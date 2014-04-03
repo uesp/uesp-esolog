@@ -280,7 +280,7 @@ class EsoLogSubmitter
 	public function outputQueuedData ($logData)
 	{
 		$this->currentLogFilename = self::ESOLOG_OUTPUT_PATH . sprintf( 'eso%05d.log', $this->currentLogIndex);
-		$result = file_put_contents($this->currentLogFilename, $logData . "\n", FILE_APPEND | LOCK_EX);
+		$result = file_put_contents($this->currentLogFilename, $logData, FILE_APPEND | LOCK_EX);
 	
 		if ($result == FALSE) return $this->reportError("Failed to append log data to file!");
 		return TRUE;
