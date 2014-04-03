@@ -1,0 +1,14 @@
+#
+# Deployment file for the UESP gamemap source as used by the uespdeploy script.
+#
+
+name = uesp.esologcollector
+
+ignore = .hg*
+ignore = *.deploy
+ignore = *.sh
+
+dest = content3.uesp.net:/home/uesp/www/esolog/
+
+chown_dest = apache {dest}log/
+chown_dest = apache {dest}log/upload
