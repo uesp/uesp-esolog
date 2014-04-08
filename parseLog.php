@@ -37,6 +37,7 @@ class EsoLogParser
 	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
+	const FIELD_FLOAT = 3;
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -64,6 +65,8 @@ class EsoLogParser
 			'logId' => self::FIELD_INT,
 			'x' => self::FIELD_INT,
 			'y' => self::FIELD_INT,
+			//'rawX' => self::FIELD_FLOAT,
+			//'rawY' => self::FIELD_FLOAT,
 			'zone' => self::FIELD_STRING,
 	);
 	
