@@ -11,3 +11,11 @@ body {
 	font-family: monospace;
 	white-space: pre-wrap;
 }
+
+.elvLargeStringView {
+	font-size: 11 px;
+	display: block;
+	unicode-bidi: embed;
+	font-family: monospace;
+	white-space: pre-wrap;
+}
