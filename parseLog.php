@@ -15,6 +15,7 @@ class EsoLogParser
 	public $db = null;
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
+	public $lastQuery = "";
 	
 	public $currentLogFilename = "tmp.log";
 	public $currentLogIndex = 1;
@@ -35,6 +36,9 @@ class EsoLogParser
 	public $currentUser = null;
 	public $currentIpAddress = null;
 	
+	public $lastBookRecord = null;
+	public $lastBookLogEntry = null;
+	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
 	const FIELD_FLOAT = 3;
@@ -42,6 +46,7 @@ class EsoLogParser
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
 			self::FIELD_STRING => "string",
+			self::FIELD_FLOAT => "string",
 	);
 	
 	public static $BOOK_FIELDS = array(
@@ -120,6 +125,7 @@ class EsoLogParser
 		else
 			return $this->reportError("Unknown ID type $idType in $table table!");
 		
+		$this->lastQuery = $query;
 		return $query;
 	}
 	
@@ -218,6 +224,7 @@ class EsoLogParser
 		else
 			return $this->reportError("Unknown ID type $idType in $table table!");
 	
+		$this->lastQuery = $query;
 		return $query;
 	}
 	
@@ -259,6 +266,7 @@ class EsoLogParser
 		}
 		
 		$query = "INSERT INTO $table($columns) VALUES($values);";
+		$this->lastQuery = $query;
 		return $query;
 	}
 	
@@ -393,6 +401,7 @@ class EsoLogParser
 		$safeName = $this->db->real_escape_string($userName);
 		
 		$query = "INSERT INTO user(name) VALUES('{$safeName}');";
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		
 		if ($result === FALSE)
@@ -419,6 +428,7 @@ class EsoLogParser
 		$safeIP = $this->db->real_escape_string($ipAddress);
 	
 		$query = "INSERT INTO ipAddress(ipAddress) VALUES('{$safeIP}');";
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 	
 		if ($result === FALSE)
@@ -444,6 +454,7 @@ class EsoLogParser
 		$safeName = $this->db->real_escape_string($userName);
 		
 		$query = "SELECT * FROM user WHERE name='{$safeName}' LIMIT 1;";
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		
 		if ($result === FALSE)
@@ -482,6 +493,7 @@ class EsoLogParser
 		$safeIP = $this->db->real_escape_string($ipAddress);
 	
 		$query = "SELECT * FROM ipAddress WHERE ipAddress='{$safeIP}' LIMIT 1;";
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 	
 		if ($result === FALSE)
@@ -581,6 +593,7 @@ class EsoLogParser
 	public function hasLogUniqueTime ($gameTime, $timeStamp, $entryHash)
 	{
 		$query = "SELECT * FROM logEntry WHERE gameTime={$gameTime} AND timeStamp={$timeStamp} AND entryHash={$entryHash};";
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		
 		if ($result === false) return $this->reportLogParseError("Failed to check logEntry table!");
@@ -605,7 +618,7 @@ class EsoLogParser
 		foreach ($VALID_FIELDS as $key => $field)
 		{
 			if (!array_key_exists($field, $logEntry)) return $this->reportLogParseError("Missing $field in log entry!");
-			if ($logEntry[$field] === '') return $this->reportLogParseError("Found empty $field in log entry!");
+			if ($logEntry[$field] == '') return $this->reportLogParseError("Found empty $field in log entry!");
 		}
 		
 		return true;
@@ -618,6 +631,7 @@ class EsoLogParser
 		$safeIp = $this->db->real_escape_string($ipAddress);
 	
 		$query = "INSERT INTO logEntry(gameTime, timeStamp, entryHash, userName, ipAddress) VALUES($gameTime, $timeStamp, $entryHash, '$safeName', '$safeIp');";
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create logEntry record!");
 	
@@ -709,6 +723,7 @@ class EsoLogParser
 	{
 		$safeZone = $this->db->real_escape_string($zone);
 		$query = "SELECT * FROM bookLocation WHERE bookId=$bookId AND zone='$safeZone' AND x=$x AND y=$y;";
+		$this->lastQuery = $query;
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to retrieve book locations!");
@@ -784,6 +799,8 @@ class EsoLogParser
 		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
 		$result = $this->CheckBookLocation($logEntry, $bookRecord);
 		
+		$this->lastBookRecord = $bookRecord;
+		$this->lastBookLogEntry = $logEntry;
 		return $result;
 	}
 	
@@ -820,7 +837,34 @@ class EsoLogParser
 		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
 		$result = $this->CheckBookLocation($logEntry, $bookRecord);
 		
+		$this->lastBookRecord = $bookRecord;
+		$this->lastBookLogEntry = $logEntry;
 		return $result;
+	}
+	
+	
+	public function OnSkillRankUpdate ($logEntry)
+	{
+		//event{SkillRankUpdate}  rank{2}  skillType{8}  name{Alchemy}  skillIndex{1}  
+		//x{0.21715186536312}  y{0.46380305290222}  zone{Vulkhel Guard}  
+		//gameTime{2610340}  timeStamp{4743643324668182528}  userName{...}  ipAddress{...}  logTime{1396487021}  end{}
+		
+		if ($this->lastBookRecord == null || $this->lastBookLogEntry == null) return true;
+		if ($logEntry['userName'] != $this->lastBookLogEntry['userName']) return true;
+		
+		$skillGameTime = (int) $logEntry['gameTime'];
+		$bookGameTime  = $this->lastBookLogEntry['gameTime'];
+		$diffTime = $skillGameTime - $bookGameTime;
+		if ($diffTime < 0 || $diffTime > 1000) return true;
+		
+		if ($this->lastBookRecord['skillIndex'] < 0)
+		{
+			print("\t\tFound {$logEntry['name']} skill update for book {$this->lastBookRecord['title']}...\n");
+			$this->lastBookRecord['skillIndex'] = $logEntry['skillIndex'];
+			$this->saveBook($this->lastBookRecord);
+		}
+		
+		return true;
 	}
 	
 	
@@ -888,7 +932,7 @@ class EsoLogParser
 			case "QuestRemoved":				$result = $this->OnNullEntry($logEntry); break;
 			case "QuestObjComplete":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestCompleteExperience":		$result = $this->OnNullEntry($logEntry); break;
-			case "SkillRankUpdate":				$result = $this->OnNullEntry($logEntry); break;
+			case "SkillRankUpdate":				$result = $this->OnSkillRankUpdate($logEntry); break;
 			case "LoreBook":					$result = $this->OnLoreBook($logEntry); break;
 			case "ShowBook":					$result = $this->OnShowBook($logEntry); break;
 			case "Sell":						$result = $this->OnNullEntry($logEntry); break;
@@ -901,17 +945,17 @@ class EsoLogParser
 			case "FoundTreasure":				$result = $this->OnNullEntry($logEntry); break;
 			case "Location":					$result = $this->OnNullEntry($logEntry); break;
 			case "ConversationUpdated":			$result = $this->OnNullEntry($logEntry); break;
-			case "MoneyGained":	$result = $this->OnNullEntry($logEntry); break;
-			case "QuestMoney":	$result = $this->OnNullEntry($logEntry); break;
-			case "SkillPointsChanged":	$result = $this->OnNullEntry($logEntry); break;
-			case "InvDump":	$result = $this->OnNullEntry($logEntry); break;
-			case "LockPick":	$result = $this->OnNullEntry($logEntry); break;
+			case "ConversationUpdated::Option":	$result = $this->OnNullEntry($logEntry); break;
+			case "MoneyGained":					$result = $this->OnNullEntry($logEntry); break;
+			case "QuestMoney":					$result = $this->OnNullEntry($logEntry); break;
+			case "SkillPointsChanged":			$result = $this->OnNullEntry($logEntry); break;
+			case "InvDump":						$result = $this->OnNullEntry($logEntry); break;
+			case "InvDump::Start":
+			case "InvDumpStart":				$result = $this->OnNullEntry($logEntry); break;
+			case "InvDump::End":
+			case "InvDumpEnd":					$result = $this->OnNullEntry($logEntry); break;
+			case "LockPick":					$result = $this->OnNullEntry($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
-			//MoneyGained
-			//QuestMoney
-			//InvDump
-			//SkillPointsChanged
-			//LockPick
 		}
 		
 		if ($result === false)
@@ -1058,7 +1102,7 @@ class EsoLogParser
 	public function testParse()
 	{
 		$this->createTables();
-		$this->parseEntireLog("/home/uesp/www/esolog/log/eso00006.log");
+		$this->parseEntireLog("/home/uesp/www/esolog/log/eso00004.log");
 		return TRUE;
 		
 		$fileData = file_get_contents("/home/uesp/www/esolog/log/eso00001.log");
@@ -1109,7 +1153,12 @@ class EsoLogParser
 	public function reportError ($errorMsg)
 	{
 		$this->log($errorMsg);
-		if ($this->db != null && $this->db->error) $this->log("DB Error:" . $this->db->error);
+		
+		if ($this->db != null && $this->db->error)
+		{
+			$this->log("DB Error:" . $this->db->error);
+			$this->log("Last Query:" . $this->lastQuery);
+		}
 		return FALSE;
 	}
 	
