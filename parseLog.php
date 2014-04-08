@@ -65,8 +65,8 @@ class EsoLogParser
 			'logId' => self::FIELD_INT,
 			'x' => self::FIELD_INT,
 			'y' => self::FIELD_INT,
-			//'rawX' => self::FIELD_FLOAT,
-			//'rawY' => self::FIELD_FLOAT,
+			'rawX' => self::FIELD_FLOAT,
+			'rawY' => self::FIELD_FLOAT,
 			'zone' => self::FIELD_STRING,
 	);
 	
@@ -78,6 +78,10 @@ class EsoLogParser
 		foreach ($fieldDef as $key => $value)
 		{
 			if ($value == self::FIELD_INT)
+			{
+				$newRecord[$key] = -1;
+			}
+			elseif ($value == self::FIELD_FLOAT)
 			{
 				$newRecord[$key] = -1;
 			}
@@ -136,6 +140,10 @@ class EsoLogParser
 			{
 				$record[$key] = -1;
 			}
+			elseif ($value == self::FIELD_FLOAT)
+			{
+				$record[$key] = -1;
+			}
 			elseif ($value == self::FIELD_STRING)
 			{
 				$record[$key] = '';
@@ -191,6 +199,8 @@ class EsoLogParser
 			
 			if ($value == self::FIELD_INT)
 				$query .= "{$key}={$record[$key]}";
+			elseif ($value == self::FIELD_FLOAT)
+				$query .= "{$key}={$record[$key]}";
 			elseif ($value == self::FIELD_STRING)
 				$query .= "{$key}='". $this->db->real_escape_string($record[$key]) ."'";
 			else
@@ -200,6 +210,8 @@ class EsoLogParser
 		}
 		
 		if ($idType == self::FIELD_INT)
+			$query .= " WHERE $idField=$id;";
+		elseif ($idType == self::FIELD_FLOAT)
 			$query .= " WHERE $idField=$id;";
 		elseif ($idType == self::FIELD_STRING)
 			$query .= " WHERE $idField='". $this->db->real_escape_string($id) ."';";
@@ -235,6 +247,8 @@ class EsoLogParser
 			$columns .= $key;
 				
 			if ($value == self::FIELD_INT)
+				$values .= $record[$key];
+			elseif ($value == self::FIELD_FLOAT)
 				$values .= $record[$key];
 			elseif ($value == self::FIELD_STRING)
 				$values .= "'". $this->db->real_escape_string($record[$key]) ."'";
@@ -358,6 +372,8 @@ class EsoLogParser
 						bookId BIGINT NOT NULL,
 						x INTEGER NOT NULL,
 						y INTEGER NOT NULL,
+						rawX FLOAT NOT NULL,
+						rawY FLOAT NOT NULL,
 						zone TINYTEXT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX find_bookloc (bookId, zone(64), x, y)
@@ -716,6 +732,8 @@ class EsoLogParser
 		
 		$bookLocRecord['x'] = $x;
 		$bookLocRecord['y'] = $y; 
+		$bookLocRecord['rawX'] = $logEntry['x'];
+		$bookLocRecord['rawY'] = $logEntry['y'];
 		$bookLocRecord['zone'] = $zone;
 		$bookLocRecord['bookId'] = $id;
 		
@@ -883,8 +901,17 @@ class EsoLogParser
 			case "FoundTreasure":				$result = $this->OnNullEntry($logEntry); break;
 			case "Location":					$result = $this->OnNullEntry($logEntry); break;
 			case "ConversationUpdated":			$result = $this->OnNullEntry($logEntry); break;
-			case "ConversationUpdated::Option":	$result = $this->OnNullEntry($logEntry); break;
+			case "MoneyGained":	$result = $this->OnNullEntry($logEntry); break;
+			case "QuestMoney":	$result = $this->OnNullEntry($logEntry); break;
+			case "SkillPointsChanged":	$result = $this->OnNullEntry($logEntry); break;
+			case "InvDump":	$result = $this->OnNullEntry($logEntry); break;
+			case "LockPick":	$result = $this->OnNullEntry($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
+			//MoneyGained
+			//QuestMoney
+			//InvDump
+			//SkillPointsChanged
+			//LockPick
 		}
 		
 		if ($result === false)
