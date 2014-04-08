@@ -54,6 +54,7 @@ class EsoLogViewer
 	public static $BOOKLOCATION_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'bookId' => self::FIELD_INT,
+			'title' => self::FIELD_STRING, //Foreign join
 			'logId' => self::FIELD_INT,
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
@@ -81,6 +82,22 @@ class EsoLogViewer
 					'table' => 'bookLocation',
 					'method' => 'DoBookLocation',
 					'sort' => 'zone',
+					'join' => array(
+							'bookId' => array(
+									'table' => 'book',
+									'fields' => array('title'),
+									'joinField' => 'id',
+									'displayField' => 'title'
+									),
+							),
+					'link' => array(
+							array(
+								'field' => 'title',
+								'linkRecord' => 'book',
+								'linkField' => 'bookId',
+							),
+					),
+					
 					//'fields' => self::$BOOKLOCATION_FIELDS,
 					//'displayFields' => self::BOOKLOCATION_DISPLAYFIELDS,
 			),
@@ -194,17 +211,65 @@ class EsoLogViewer
 	}
 	
 	
+	public function AddSelectQueryJoins($recordInfo)
+	{
+		$query = "";
+		if ($recordInfo['join'] == '') return $query;
+		
+		foreach ($recordInfo['join'] as $key => $value)
+		{
+			$table1 = $recordInfo['table'];
+			$table2 = $value['table'];
+			$tableId1 = $key;
+			$tableId2 = $value['joinField'];
+			$query .= "INNER JOIN $table2 on $table1.$tableId1 = $table2.$tableId2 ";
+		}
+		
+		return $query;
+	}
+	
+	
+	public function GetTablesForSelectQuery($recordInfo)
+	{
+		$tables = $recordInfo['table'] . ".*";
+		
+		if ($recordInfo['join'] == '') return $tables;
+		
+		foreach ($recordInfo['join'] as $key => $value)
+		{
+			$tables .= ', ';
+			
+			if ($value['fields'] == '')
+			{
+				$tables .= $value['table'] . ".*";
+			}
+			else
+			{
+				$tables .= " {$value['table']}." . implode(", {$value['table']}.", $value['fields']);
+			}
+		}
+		
+		return $tables;
+	}
+	
+	
 	public function CreateSelectQuery($recordInfo)
 	{
+		$tables = $this->GetTablesForSelectQuery($recordInfo);
 		$table = $recordInfo['table'];
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM $table";
+		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
+		
+		if ($recordInfo['join'] != '')
+		$query .= $this->AddSelectQueryJoins($recordInfo);
+		
 		
 		if ($recordInfo['sort'] != '') $query .= " ORDER BY {$recordInfo['sort']} ";
 		
-		$query .= " LIMIT $this->displayLimit OFFSET $this->displayStart";
+		$query .= " LIMIT $this->displayLimit OFFSET $this->displayStart ";
 		$query .= ";";
 		
+		print($query);
 		return $query;
 	}
 	
