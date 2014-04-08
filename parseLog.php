@@ -197,9 +197,9 @@ class EsoLogParser
 		}
 		
 		if ($idType == self::FIELD_INT)
-			$query .= " WHERE id=$id;";
+			$query .= " WHERE $idField=$id;";
 		elseif ($idType == self::FIELD_STRING)
-			$query .= " WHERE id='". $this->db->real_escape_string($id) ."';";
+			$query .= " WHERE $idField='". $this->db->real_escape_string($id) ."';";
 		else
 			return $this->reportError("Unknown ID type $idType in $table table!");
 	
@@ -277,7 +277,7 @@ class EsoLogParser
 	
 	public function saveBook (&$book)
 	{
-		return $this->saveRecord('book', $book, 'title', self::$BOOK_FIELDS);
+		return $this->saveRecord('book', $book, 'id', self::$BOOK_FIELDS);
 	}
 	
 	
@@ -750,10 +750,14 @@ class EsoLogParser
 			++$this->currentUser['newCount'];
 			$this->currentUser['__dirty'] = true;
 		}
-		elseif ($bookRecord['mediumIndex'] < 0)
+		elseif ($bookRecord['mediumIndex'] < 0 || $bookRecord['body'] == '')
 		{
+			$bookRecord['body'] = $body;
 			$bookRecord['mediumIndex'] = $medium;
 			$bookRecord['__dirty'] = true;
+			
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
 		}
 		
 		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
@@ -895,7 +899,7 @@ class EsoLogParser
 		$matchData = array();
 		$resultData = array();
 		
-		$result = preg_match_all("|([a-zA-Z]+){(.*?)}  |", $logString, $matchData);
+		$result = preg_match_all("|([a-zA-Z]+){(.*?)}  |s", $logString, $matchData);
 		
 		if ($result === 0) 
 		{
@@ -1024,7 +1028,7 @@ class EsoLogParser
 	public function testParse()
 	{
 		$this->createTables();
-		$this->parseEntireLog("/home/uesp/www/esolog/log/eso00001.log");
+		$this->parseEntireLog("/home/uesp/www/esolog/log/eso00006.log");
 		return TRUE;
 		
 		$fileData = file_get_contents("/home/uesp/www/esolog/log/eso00001.log");
@@ -1032,7 +1036,7 @@ class EsoLogParser
 		
 		$logEntries = array();
 		
-		$result = preg_match_all("|(event{.*end{}  \n)|", $fileData, $logEntries);
+		$result = preg_match_all("|(event{.*end{}  \n)|s", $fileData, $logEntries);
 		print("Preg Result = " . $result . "\n");
 		print("Result Count = " . count($logEntries) . "\n");
 		print("Result[0] Count = " . count($logEntries[0]) . "\n");
@@ -1114,6 +1118,7 @@ class EsoLogParser
 			}
 		}
 	}
+	
 	
 	public function writeHeaders ()
 	{
