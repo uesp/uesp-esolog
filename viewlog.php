@@ -15,6 +15,7 @@ class EsoLogViewer
 	public $db = null;
 	public $dbReadInitialized = false;
 	public $totalRowCount = 0;
+	public $lastQuery = "";
 	
 	public $action = "";
 	public $recordType = '';
@@ -133,7 +134,13 @@ class EsoLogViewer
 	public function ReportError ($errorMsg)
 	{
 		print($errorMsg);
-		if (self::PRINT_DB_ERRORS && $this->db != null && $this->db->error) print("<p />DB Error:" . $this->db->error . "<p />");
+		
+		if (self::PRINT_DB_ERRORS && $this->db != null && $this->db->error)
+		{
+			print("<p />DB Error:" . $this->db->error . "<p />");
+			print("<p />Last Query:" . $this->lastQuery . "<p />");
+		}
+		
 		return FALSE;
 	}
 	
@@ -253,34 +260,51 @@ class EsoLogViewer
 	}
 	
 	
-	public function CreateSelectQuery($recordInfo)
+	public function CreateSelectQuery ($recordInfo)
 	{
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
 		$table = $recordInfo['table'];
 		
 		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
 		
-		if ($recordInfo['join'] != '')
-		$query .= $this->AddSelectQueryJoins($recordInfo);
-		
-		
+		if ($recordInfo['join'] != '') $query .= $this->AddSelectQueryJoins($recordInfo);
 		if ($recordInfo['sort'] != '') $query .= " ORDER BY {$recordInfo['sort']} ";
 		
 		$query .= " LIMIT $this->displayLimit OFFSET $this->displayStart ";
 		$query .= ";";
 		
-		print($query);
+		$this->lastQuery = $query;
+		return $query;
+	}
+	
+	
+	public function CreateSelectQueryID ($recordInfo, $id)
+	{
+		$tables = $this->GetTablesForSelectQuery($recordInfo);
+		$table = $recordInfo['table'];
+		
+		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
+		
+		if ($recordInfo['join'] != '') $query .= $this->AddSelectQueryJoins($recordInfo);
+		$query .= " WHERE $table.id=$id";
+		if ($recordInfo['sort'] != '') $query .= " ORDER BY {$recordInfo['sort']} ";
+		
+		$query .= " LIMIT 1 ";
+		$query .= ";";
+		
+		$this->lastQuery = $query;
 		return $query;
 	}
 	
 	
 	public function PrintRecordFieldHeader ($recordInfo)
 	{
-		print("\t<tr>");
+		print("\t<tr>\n");
+		print("\t\t<th></th>\n");
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
-			print("<th>$key</th>");
+			print("\t\t<th>$key</th>\n");
 		}
 		
 		print("\t</tr>\n");
@@ -309,7 +333,7 @@ class EsoLogViewer
 				$output = $value;
 				break;
 			case self::FIELD_LARGESTRING:
-				$link = "View ( ". strlen($value) ." bytes)";
+				$link = "View (". strlen($value) ." bytes)";
 				$output = $this->CreateFieldLink($recordType, $field, $id, $link);
 				break;
 			case self::FIELD_POSITION:
@@ -330,6 +354,22 @@ class EsoLogViewer
 		}
 		
 		return $output;
+	}
+	
+	
+	public function FormatFieldAll ($value, $type, $recordType, $field, $id)
+	{
+		$output = "";
+		if ($value == null) return "";
+		
+		switch ($type)
+		{
+			case self::FIELD_LARGESTRING:
+				$output = "<div class='elvLargeStringView'>$value</div>";
+				return $output;
+		}
+		
+		return $this->FormatField($value, $type, $recordType, $field, $id);
 	}
 	
 	
@@ -372,6 +412,14 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetViewRecordLink ($record, $id, $link)
+	{
+		$link = "<a class='elvRecordLink' href='?action=view&record=$record&id=$id'>$link</a>";
+		
+		return $link;
+	}
+	
+	
 	public function PrintRecords ($recordInfo)
 	{
 		if (!$this->InitDatabase()) return false;
@@ -400,15 +448,17 @@ class EsoLogViewer
 		
 		while ( ($row = $result->fetch_assoc()) )
 		{
-			print("\t<tr>");
+			$id = $row['id'];
+			print("\t<tr>\n");
+			print("\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], $id, "View") ."</td>\n");
 			
 			foreach ($recordInfo['fields'] as $key => $value)
 			{
-				$output = $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $row['id']);
-				print("<td>$output</td>");
+				$output = $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id);
+				print("\t\t<td>$output</td>\n");
 			}
 			
-			print("</tr>\n");
+			print("\t</tr>\n");
 		}
 		
 		print("</table>\n");
@@ -436,6 +486,49 @@ class EsoLogViewer
 	
 	public function DoViewRecord ($recordInfo)
 	{
+		if ($this->recordField != '') return $this->DoViewRecordField($recordInfo);
+		
+		$this->OutputTopMenu($recordInfo);
+		$displayName = $recordInfo['displayNameSingle'];
+		$id = $this->recordID;
+		$output  = "<h1>Viewing $displayName: ID#$id</h1>\n";
+		
+		if (!$this->InitDatabase()) return false;
+		if ($this->recordID < 0) return $this->ReportError("Invalid record ID received!");
+		
+		$table = $recordInfo['table'];
+		
+		$query = $this->CreateSelectQueryID($recordInfo, $id);
+		//$query = "SELECT * FROM $table WHERE id=$id LIMIT 1;";
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to retrieve record from database!");
+		if ($result->num_rows === 0) return $this->ReportError("Failed to retrieve record from database!");
+		
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		
+		$output .= "<table border='1' cellpadding='2' cellspacing='0'>\n";
+		
+		foreach ($recordInfo['fields'] as $key => $value)
+		{
+			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $row['id']);
+			
+			$output .= "\t<tr>\n";
+			$output .= "\t\t<th>$key</th>\n";
+			$output .= "\t\t<td>$rowValue</td>\n";
+			$output .= "\t</tr>\n";
+		}
+		
+		$output .= "</table>\n";
+		
+		print($output);
+		return true;
+	}
+	
+	
+	public function DoViewRecordField ($recordInfo)
+	{
 		$this->OutputTopMenu($recordInfo);
 		if (!$this->InitDatabase()) return false;
 		
@@ -447,7 +540,9 @@ class EsoLogViewer
 		
 		$table = $recordInfo['table'];
 		$id = $this->recordID;
-		$query = "SELECT * FROM $table WHERE id=$id LIMIT 1;";
+		
+		$query = $this->CreateSelectQueryID($recordInfo, $id);
+		//$query = "SELECT * FROM $table WHERE id=$id LIMIT 1;";
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to retrieve record from database!");
