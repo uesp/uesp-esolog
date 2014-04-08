@@ -27,10 +27,11 @@ class EsoLogViewer
 		// TODO: Use same definitions as parseLog.php?
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
-	const FIELD_POSITION = 3;
-	const FIELD_INTPOSITIVE = 4;
-	const FIELD_INTBOOLEAN = 5;
-	const FIELD_LARGESTRING = 6;
+	const FIELD_FLOAT = 3;
+	const FIELD_POSITION = 4;
+	const FIELD_INTPOSITIVE = 5;
+	const FIELD_INTBOOLEAN = 6;
+	const FIELD_LARGESTRING = 7;
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -56,9 +57,12 @@ class EsoLogViewer
 			'id' => self::FIELD_INT,
 			'bookId' => self::FIELD_INT,
 			'title' => self::FIELD_STRING, //Foreign join
+			'isLore' => self::FIELD_INTBOOLEAN, //Foreign join
 			'logId' => self::FIELD_INT,
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
+			'rawX' => self::FIELD_FLOAT,
+			'rawY' => self::FIELD_FLOAT,
 			'zone' => self::FIELD_STRING,
 	);
 	
@@ -86,7 +90,7 @@ class EsoLogViewer
 					'join' => array(
 							'bookId' => array(
 									'table' => 'book',
-									'fields' => array('title'),
+									'fields' => array('title', 'isLore'),
 									'joinField' => 'id',
 									'displayField' => 'title'
 									),
