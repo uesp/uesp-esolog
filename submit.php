@@ -62,7 +62,7 @@ class EsoLogSubmitter
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>UESP:uespLog Manual Upload</title>
+	<title>uespLog -- Submit ESO Data</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="submit.css" />
 </head>
@@ -71,7 +71,7 @@ class EsoLogSubmitter
 <table border="0" cellpadding="2" cellspacing="0" id="maintable">
 <tr>
 	<td>
-		<h1>Submitted uespLog for ESO</h1>
+		<h1>uespLog -- Submitted ESO Data...</h1>
 		<br /> &nbsp;
 	</td>
 </tr><tr>
@@ -116,7 +116,7 @@ class EsoLogSubmitter
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>UESP:uespLog Manual Upload</title>
+	<title>uespLog -- Submit ESO Data</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="submit.css" />
 </head>
@@ -127,7 +127,7 @@ class EsoLogSubmitter
 <table border="0" cellpadding="2" cellspacing="0" id="maintable">
 <tr>
 	<td>
-		<h1>Submit uespLog for ESO</h1>
+		<h1>uespLog -- Submit ESO Data</h1>
 		Use this page to manually submit a log file created by uespLog filled with data from ESO. Note that if you are playing on the
 		PC version you can use uespLogMonitor (included with the addon) to automatically upload all logged data.
 		<p />
@@ -185,7 +185,9 @@ class EsoLogSubmitter
 		$this->fileMoveName = $destFilename;
 		
 		$result = move_uploaded_file ($this->fileTmpName, $destFilename);
-		if (!$result) return $this->reportError("Failed to move temporary upload file!"); 
+		if (!$result) return $this->reportError("Failed to move temporary upload file!");
+
+		chmod($destFilename, 0644);
 		
 		$this->Lua = new Lua();
 		

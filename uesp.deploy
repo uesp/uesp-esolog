@@ -3,6 +3,7 @@
 #
 
 name = uesp.esologcollector
+staged = true
 
 ignore = .hg*
 ignore = *.deploy

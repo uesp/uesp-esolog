@@ -1,5 +1,12 @@
 <?php
 
+
+function endsWith($haystack, $needle)
+{
+	return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+}
+
+
 class EsoLogCollector
 {
 	const ELC_OUTPUT_LOG_PATH = "log/";
@@ -111,6 +118,12 @@ class EsoLogCollector
 	public function parseLogDataItem($logData)
 	{
 		$decodedData = base64_decode($logData);
+		
+		if (endsWith($decodedData, "end{}  "))
+		{
+			$decodedData = substr($decodedData, 0, -7);
+		}
+		
 		return $this->outputQueuedData($decodedData . $this->getExtraData());
 	}
 	
