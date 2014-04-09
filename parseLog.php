@@ -136,6 +136,7 @@ class EsoLogParser
 	public $skipDuplicates = false;
 	
 	public $lastValidTime = array();
+	public $lastValidUserName = "Anonymous";
 	
 	public $users = array();
 	public $ipAddresses = array();
@@ -178,7 +179,7 @@ class EsoLogParser
 			'name' => self::FIELD_STRING,
 			'icon' => self::FIELD_STRING,
 			'color' => self::FIELD_STRING,
-			'style' => self::FIELD_STRING,
+			'style' => self::FIELD_INT,
 			'trait' => self::FIELD_INT,
 			'quality' => self::FIELD_INT,
 			'locked' => self::FIELD_INT,
@@ -468,6 +469,7 @@ class EsoLogParser
 	
 	public function __construct ()
 	{
+		$this->initDatabaseWrite();
 		$this->readIndexFile();
 		$this->currentLogFilename = $this->getCurrentLogFilename();
 		$this->setInputParams();
@@ -930,7 +932,7 @@ class EsoLogParser
 	{
 		$matches = array();
 		
-		$result = preg_match('/\|H([A-Za-z0-9]*)\:item\:([0-9]*)\:([0-9]*)\:(.*?)\|h([a-zA-Z0-9 _\']*)(.*?)\|h/', $itemLink, $matches);
+		$result = preg_match('/\|H([A-Za-z0-9]*)\:item\:([0-9]*)\:([0-9]*)\:([0-9]*)\:(.*?)\|h([a-zA-Z0-9 _\']*)(.*?)\|h/', $itemLink, $matches);
 		
 		if ($result == 0) 
 		{
@@ -942,12 +944,36 @@ class EsoLogParser
 		
 		$result['color'] = $matches[1];
 		$result['id'] = $matches[2];
-		$result['level'] = $matches[3];
-		$result['data'] = $matches[4];
-		$result['name'] = $matches[5];
-		$result['namecode'] = $matches[6] == null ? '' : $matches[6];
+		$result['unknown'] = $matches[3];
+		$result['level'] = $matches[4];
+		$result['data'] = $matches[2] . ':' . $matches[3] . ':' . $matches[5];
+		$result['name'] = $matches[6];
+		$result['namecode'] = $matches[7] == null ? '' : $matches[7];
 		
 		return $result;
+	}
+	
+	
+	public function OnInvDumpStart ($logEntry)
+	{
+		//event{InvDumpStart}  timeStamp{4743646532660625408}  gameTime{75447364}  userName{Reorx}  end{}
+		return true;
+	}
+	
+	
+	public function OnInvDumpEnd($logEntry)
+	{
+		//event{InvDumpEnd}  userName{Reorx}  end{}
+		return true;
+	}
+	
+	
+	public function OnInvDump ($logEntry)
+	{
+		//event{InvDump}  icon{/esoui/art/icons/gear_breton_neck_a.dds}  itemLink{|H3A92FF:item:29072:50:14:0:0:0:0:0:0:0:0:0:0:0:0:3:0:1:0:0|hSilky Threads|h} 
+		// itemStyle{3}  locked{false}  trait{22}  qnt{1}  craftType{0}  slot{1}  bag{0}  value{22}  equipType{2}  type{2}  quality{3}  userName{Reorx}  end{}
+		
+		return $this->OnSlotUpdateEntry($logEntry);
 	}
 	
 	
@@ -965,8 +991,8 @@ class EsoLogParser
 		$itemRecord = $this->createNewRecord(self::$ITEM_FIELDS);
 		
 		$itemRecord['link'] = $logEntry['itemLink'];
+		$itemRecord['icon'] = $logEntry['icon'];
 		$itemRecord['name'] = $itemData['name'];
-		$itemRecord['icon'] = $itemData['icon'];
 		$itemRecord['level'] = $itemData['level'];
 		$itemRecord['color'] = $itemData['color'];
 		$itemRecord['craftType'] = $logEntry['craftType'];
@@ -1352,11 +1378,11 @@ class EsoLogParser
 			case "OpenFootLocker":				$result = $this->OnNullEntry($logEntry); break;
 			case "LootGained":					$result = $this->OnLootGainedEntry($logEntry); break;
 			case "SlotUpdate":					$result = $this->OnSlotUpdateEntry($logEntry); break;
-			case "InvDump":						$result = $this->OnNullEntry($logEntry); break;
+			case "InvDump":						$result = $this->OnInvDump($logEntry); break;
 			case "InvDump::Start":
-			case "InvDumpStart":				$result = $this->OnNullEntry($logEntry); break;
+			case "InvDumpStart":				$result = $this->OnInvDumpStart($logEntry); break;
 			case "InvDump::End":
-			case "InvDumpEnd":					$result = $this->OnNullEntry($logEntry); break;
+			case "InvDumpEnd":					$result = $this->OnInvDumpEnd($logEntry); break;
 			case "MoneyGained":					$result = $this->OnNullEntry($logEntry); break;
 			case "TargetChange":				$result = $this->OnNullEntry($logEntry); break;
 			case "ChatterBegin":				$result = $this->OnNullEntry($logEntry); break;
@@ -1433,9 +1459,14 @@ class EsoLogParser
 	{
 		$logEntry['__crc'] = crc32($logString);
 		
-		//if (!array_key_exists('ipAddress', $logEntry)) $logEntry['ipAddress'] = '0.0.0.0';
-		if (!array_key_exists('userName',  $logEntry)) $logEntry['userName']  = 'Anonymous';
-		if ($logEntry['userName'] == '') $logEntry['userName']  = 'Anonymous';
+		if (!array_key_exists('userName',  $logEntry) || $logEntry['userName'] == '')
+		{
+			$logEntry['userName'] = $this->lastValidUserName;
+		}
+		else
+		{
+			$this->lastValidUserName = $logEntry['userName'];
+		}
 		
 		$ipAddress = $logEntry['ipAddress'];
 		

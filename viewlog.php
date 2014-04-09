@@ -28,6 +28,7 @@ class EsoLogViewer
 	public $recordField = '';
 	public $displayLimit = 100;
 	public $displayStart = 0;
+	public $displayRawValues = false;
 	
 		// TODO: Use same definitions as parseLog.php?
 	const FIELD_INT = 1;
@@ -72,13 +73,13 @@ class EsoLogViewer
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
 			'value' => self::FIELD_INT,
-			'style' => self::FIELD_STRING,
-			'trait' => self::FIELD_INT,
-			'quality' => self::FIELD_INT,
+			'style' => self::FIELD_INTTRANSFORM,
+			'trait' => self::FIELD_INTTRANSFORM,
+			'quality' => self::FIELD_INTTRANSFORM,
 			'locked' => self::FIELD_INTBOOLEAN,
-			'type' => self::FIELD_INT,
-			'equipType' => self::FIELD_INT,
-			'craftType' => self::FIELD_INT,
+			'type' => self::FIELD_INTTRANSFORM,
+			'equipType' => self::FIELD_INTTRANSFORM,
+			'craftType' => self::FIELD_INTTRANSFORM,
 			'color' => self::FIELD_STRING,
 			'icon' => self::FIELD_STRING,
 			'link' => self::FIELD_STRING,
@@ -160,6 +161,12 @@ class EsoLogViewer
 					'sort' => 'name',
 						
 					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
 					),
 						
 					'filters' => array(
@@ -232,10 +239,116 @@ class EsoLogViewer
 		return FALSE;
 	}
 	
-	
-	public function GetBookMediumText ($mediumIndex)
+
+	public function GetItemTraitText ($value)
 	{
-		static $MEDIUM_VALUES = array(
+		static $VALUES = array(
+				-1 => "",
+				18 => "Armor Divines",
+				17 => "Armor Exploration",
+				12 => "Armor Impenetrable",
+				16 => "Armor Infused",
+				20 => "Armor Intricate",
+				19 => "Armor Ornate",
+				13 => "Armor Reinforced",
+				11 => "Armor Sturdy",
+				15 => "Armor Training",
+				14 => "Armor Well Fitted",
+				22 => "Jewelry Arcmne",
+				21 => "Jewelry Health",
+				24 => "Jewelry Ornate",
+				23 => "Jewelry Robust",
+				0 => "None",
+				2 => "Weapon Charged",
+				5 => "Weapon Defending",
+				4 => "Weapon Infused",
+				9 => "Weapon Intricate",
+				10 => "Weapon Ornate",
+				1 => "Weapon Power",
+				3 => "Weapon Precise",
+				7 => "Weapon Sharpened",
+				6 => "Weapon Training",
+				8 => "Weapon Weighted",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetItemStyleText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "None",
+				1 => "Breton",
+				2 => "Redguard",
+				3 => "Orc",
+				4 => "Dunmer",
+				5 => "Nord",
+				6 => "Argonian",
+				7 => "Altmer",
+				8 => "Bosmer",
+				9 => "Khajiit",
+				10 => "Unique",
+				11 => "Aldmeri Dominion",
+				12 => "Ebonheart Pact",
+				13 => "Daggerfall Covenant",
+				14 => "Dwemer",
+				15 => "Ancient Elf",
+				16 => "Imperial",
+				17 => "Reach",
+				18 => "Bandit",
+				19 => "Primitive",
+				20 => "Daedric",
+				21 => "Warrior Class",
+				22 => "Mage Class",
+				23 => "Rogue Class",
+				24 => "Summoner Class",
+				25 => "Marauder Class",
+				26 => "Healer Class",
+				27 => "Battlemage Class",
+				28 => "Nightblade Class",
+				29 => "Ranger Class",
+				30 => "Knight Class",
+				31 => "Draugr",
+				32 => "Maormer",
+				33 => "Akaviri",
+				34 => "Imperial",
+				35 => "Yokudan",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetItemQualityText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "Trash",
+				1 => "Normal",
+				2 => "Fine",
+				3 => "Superior",
+				4 => "Epic",
+				5 => "Legendary",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetBookMediumText ($value)
+	{
+		static $VALUES = array(
 				-1 => "",
 				0 => "Yellowed Paper",
 				1 => "Animal Skin",
@@ -246,16 +359,105 @@ class EsoLogViewer
 				6 => "Tablet",
 		);
 		
-		$key = (int) $mediumIndex;
+		$key = (int) $value;
 		
-		if (array_key_exists($key, $MEDIUM_VALUES)) return $MEDIUM_VALUES[$key];
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
 	}
 	
 	
-	public function GetChestQualityText ($quality)
+	public function GetItemTypeText ($value)
 	{
-		static $QUALITY_VALUES = array(
+		static $VALUES = array(
+				-1 => "",
+				11 => "additive",
+				33 => "alchemy_base",
+				2 => "armor",
+				24 => "armor_booster",
+				45 => "armor_trait",
+				47 => "ava_repair",
+				41 => "blacksmithing_booster",
+				36 => "blacksmithing_material",
+				35 => "blacksmithing_raw_material",
+				43 => "clothier_booster",
+				40 => "clothier_material",
+				39 => "clothier_raw_material",
+				34 => "collectible",
+				18 => "container",
+				13 => "costume",
+				14 => "disguise",
+				12 => "drink",
+				32 => "enchanting_rune",
+				25 => "enchantment_booster",
+				28 => "flavoring",
+				4 => "food",
+				21 => "glyph_armor",
+				26 => "glyph_jewelry",
+				20 => "glyph_weapon",
+				10 => "ingredient",
+				22 => "lockpick",
+				16 => "lure",
+				0 => "none",
+				3 => "plug",
+				30 => "poison",
+				7 => "potion",
+				17 => "raw_material",
+				31 => "reagent",
+				29 => "recipe",
+				8 => "scroll",
+				6 => "siege",
+				19 => "soul_gem",
+				27 => "spice",
+				44 => "style_material",
+				15 => "tabard",
+				9 => "tool",
+				48 => "trash",
+				5 => "trophy",
+				1 => "weapon",
+				23 => "weapon_booster",
+				46 => "weapon_trait",
+				42 => "woodworking_booster",
+				38 => "woodworking_material",
+				37 => "woodworking_raw_material",
+		);
+		
+		$key = (int) $value;
+		
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	public function GetItemEquipTypeText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "none",
+				1 => "Head",
+				2 => "Neck",
+				3 => "Chest",
+				4 => "Shoulders",
+				5 => "One Hand",
+				6 => "Two Hand",
+				7 => "Off Hand",
+				8 => "Waist",
+				9 => "Legs",
+				10 => "Feet",
+				11 => "Costume",
+				12 => "Ring",
+				13 => "Hand",
+				14 => "Main Hand",
+		);
+		
+		$key = (int) $value;
+		
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetChestQualityText ($value)
+	{
+		static $VALUES = array(
 				-1 => "",
 				0 => "None",
 				1 => "Simple",
@@ -264,16 +466,18 @@ class EsoLogViewer
 				4 => "Master",
 				5 => "Impossible",
 		);
-	
-		$key = (int) $quality;
-	
-		if (array_key_exists($key, $QUALITY_VALUES)) return $QUALITY_VALUES[$key];
+		
+		$key = (int) $value;
+		
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
 	}
 	
 	
 	public function TransformRecordValue ($recordInfo, $field, $value)
 	{
+		if ($this->displayRawValues) return $value;
+		
 		if (!array_key_exists('transform', $recordInfo)) return $value;
 		if (!array_key_exists($field, $recordInfo['transform'])) return $value;
 		
@@ -580,18 +784,22 @@ If you do not understand what this information means, or how to use this webpage
 				$output = $this->CreateFieldLink($recordType, $field, $id, $link);
 				break;
 			case self::FIELD_POSITION:
+				if ($this->displayRawValues) return $value;
 				$output = $value / self::ELV_POSITION_FACTOR;
 				break;
 			case self::FIELD_INTPOSITIVE:
+				if ($this->displayRawValues) return $value;
 				if ((int) $value >= 0) $output = $value;
 				break;
 			case self::FIELD_INTID:
+				if ($this->displayRawValues) return $value;
 				if ((int) $value > 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
 				$output = $this->TransformRecordValue($recordInfo, $field, $value);
 				break;
 			case self::FIELD_INTBOOLEAN:
+				if ($this->displayRawValues) return $value;
 				$intValue = (int)$value;
 				
 				if ($intValue === 0)
@@ -871,6 +1079,16 @@ If you do not understand what this information means, or how to use this webpage
 		if (array_key_exists('sort', $this->inputParams)) $this->recordSort = $this->db->real_escape_string($this->inputParams['sort']);
 		if (array_key_exists('filter', $this->inputParams)) $this->recordFilter = $this->db->real_escape_string($this->inputParams['filter']);
 		if (array_key_exists('filterid', $this->inputParams)) $this->recordFilterId = $this->db->real_escape_string($this->inputParams['filterid']);
+		
+		if (array_key_exists('raw', $this->inputParams))
+		{
+			$raw = $this->inputParams['raw'];
+			
+			if ($raw === "true" || (int)$raw != 0)
+				$this->displayRawValues = true;
+			else
+				$this->displayRawValues = false;
+		}
 		
 		if (array_key_exists('sortorder', $this->inputParams))
 		{
