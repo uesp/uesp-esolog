@@ -74,8 +74,8 @@ class EsoLogParser
 	public $currentUser = null;
 	public $currentIpAddress = null;
 	
-	public $lastBookRecord = null;
-	public $lastBookLogEntry = null;
+	//public $lastBookRecord = null;
+	//public $lastBookLogEntry = null;
 	
 	public $skillInfo = array();
 		//index
@@ -460,7 +460,7 @@ class EsoLogParser
 	}
 	
 	
-	public function addNewUserRecord ($userName)
+	public function &addNewUserRecord ($userName)
 	{
 		print("Adding new user $userName...\n");
 		
@@ -484,6 +484,9 @@ class EsoLogParser
 		$this->users[$userName]['newCount'] = 0;
 		$this->users[$userName]['enabled'] = true;
 		$this->users[$userName]['__dirty'] = false;
+		
+		$this->users[$userName]['lastBookRecord'] = null;
+		$this->users[$userName]['lastBookLogEntry'] = null;
 		
 		return $this->users[$userName];
 	}
@@ -547,6 +550,9 @@ class EsoLogParser
 		$this->users[$userName]['newCount'] = $row['newCount'];
 		$this->users[$userName]['enabled'] = ($row['enabled'] != 0);
 		$this->users[$userName]['__dirty'] = false;
+		
+		$this->users[$userName]['lastBookRecord'] = null;
+		$this->users[$userName]['lastBookLogEntry'] = null;
 		
 		return $this->users[$userName];
 	}
@@ -831,7 +837,7 @@ class EsoLogParser
 		//gameTime{3748234}  timeStamp{4743642811914518528}  userName{Reorx}  ipAddress{72.39.63.156}  logTime{1396192529}  end{}
 		
 		$bookTitle = $logEntry['bookTitle'];
-		print("\tShowBook: $bookTitle\n");
+		//print("\tShowBook: $bookTitle\n");
 		
 		$body = $logEntry['body'];
 		$medium = (int) $logEntry['medium'];
@@ -865,8 +871,8 @@ class EsoLogParser
 		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
 		$result = $this->CheckBookLocation($logEntry, $bookRecord);
 		
-		$this->lastBookRecord = $bookRecord;
-		$this->lastBookLogEntry = $logEntry;
+		$this->currentUser['lastBookRecord'] = $bookRecord;
+		$this->currentUser['lastBookLogEntry'] = $logEntry;
 		return $result;
 	}
 	
@@ -878,7 +884,7 @@ class EsoLogParser
 		//gameTime{11874643}  timeStamp{4743642846001627136}  userName{Reorx}  ipAddress{72.39.63.156}  logTime{1396193303}  end{}
 		
 		$bookTitle = $logEntry['bookTitle'];
-		print("\tLoreBook: $bookTitle\n");
+		//print("\tLoreBook: $bookTitle\n");
 		
 		if ($bookTitle == null) return $this->reportLogParseError("Missing book title!");
 	
@@ -903,8 +909,8 @@ class EsoLogParser
 		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
 		$result = $this->CheckBookLocation($logEntry, $bookRecord);
 		
-		$this->lastBookRecord = $bookRecord;
-		$this->lastBookLogEntry = $logEntry;
+		$this->currentUser['lastBookRecord'] = $bookRecord;
+		$this->currentUser['lastBookLogEntry'] = $logEntry;
 		return $result;
 	}
 	
@@ -917,19 +923,21 @@ class EsoLogParser
 		
 		$this->AddSkillInfo($logEntry['skillIndex'], $logEntry['name'], $logEntry['skillType']);
 		
-		if ($this->lastBookRecord == null || $this->lastBookLogEntry == null) return true;
-		if ($logEntry['userName'] != $this->lastBookLogEntry['userName']) return true;
+		$lastBookRecord = &$this->currentUser['lastBookRecord'];
+		$lastBookLogEntry = &$this->currentUser['lastBookLogEntry'];
+		
+		if ($lastBookRecord == null || $lastBookLogEntry == null) return true;
 		
 		$skillGameTime = (int) $logEntry['gameTime'];
-		$bookGameTime  = $this->lastBookLogEntry['gameTime'];
+		$bookGameTime  = $lastBookLogEntry['gameTime'];
 		$diffTime = $skillGameTime - $bookGameTime;
 		if ($diffTime < 0 || $diffTime > 1000) return true;
 		
-		if ($this->lastBookRecord['skill'] == '')
+		if ($lastBookRecord['skill'] == '')
 		{
-			print("\t\tFound {$logEntry['name']} skill update for book {$this->lastBookRecord['title']}...\n");
-			$this->lastBookRecord['skill'] = $logEntry['name'];
-			$this->saveBook($this->lastBookRecord);
+			print("\t\tFound {$logEntry['name']} skill update for book {$lastBookRecord['title']}...\n");
+			$lastBookRecord['skill'] = $logEntry['name'];
+			$this->saveBook($lastBookRecord);
 		}
 		
 		return true;
@@ -1296,6 +1304,7 @@ class EsoLogParser
 	
 	
 $g_EsoLogParser = new EsoLogParser();
+//$g_EsoLogParser->testParse();
 $g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
 $g_EsoLogParser->saveData();
 $g_EsoLogParser->DumpSkillInfo();
