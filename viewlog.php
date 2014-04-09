@@ -23,6 +23,8 @@ class EsoLogViewer
 	public $recordID = -1;
 	public $recordSort = '';
 	public $recordSortOrder = '';
+	public $recordFilter = '';
+	public $recordFilterId = '';
 	public $recordField = '';
 	public $displayLimit = 100;
 	public $displayStart = 0;
@@ -82,11 +84,20 @@ class EsoLogViewer
 					'sort' => 'title',
 					
 					'transform' => array(
-							'mediumIndex' => 'GetMediumText',
+							'mediumIndex' => 'GetBookMediumText',
+					),
+					
+					'filters' => array(
+							array(
+								'record' => 'bookLoc',
+								'field' => 'bookId',
+								'thisField' => 'id',
+								'displayName' => 'View Locations',
+								'type' => 'fiter',
+							),
 					),
 						
 					//'fields' => self::$BOOK_FIELDS,
-					//'displayFields' => self::BOOK_DISPLAYFIELDS,
 			),
 			
 			'bookLoc' => array (
@@ -96,14 +107,15 @@ class EsoLogViewer
 					'table' => 'bookLocation',
 					'method' => 'DoBookLocation',
 					'sort' => 'zone',
+					
 					'join' => array(
 							'bookId' => array(
 									'table' => 'book',
 									'fields' => array('title', 'isLore'),
 									'joinField' => 'id',
-									'displayField' => 'title'
-									),
 							),
+					),
+					
 					'link' => array(
 							array(
 								'field' => 'title',
@@ -112,8 +124,17 @@ class EsoLogViewer
 							),
 					),
 					
+					'filters' => array(
+							array(
+									'record' => 'book',
+									'field' => 'id',
+									'thisField' => 'bookId',
+									'displayName' => 'View Book',
+									'type' => 'viewRecord',
+							),
+					),
+					
 					//'fields' => self::$BOOKLOCATION_FIELDS,
-					//'displayFields' => self::BOOKLOCATION_DISPLAYFIELDS,
 			),
 	);
 	
@@ -121,7 +142,7 @@ class EsoLogViewer
 	
 	public function __construct ()
 	{
-			// TODO: Static initializaiton?
+			// TODO: Static initialization?
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
 		self::$RECORD_TYPES['bookLoc']['fields'] = self::$BOOKLOCATION_FIELDS;
 		
@@ -159,7 +180,7 @@ class EsoLogViewer
 	}
 	
 	
-	public function GetMediumText ($mediumIndex)
+	public function GetBookMediumText ($mediumIndex)
 	{
 		static $MEDIUM_VALUES = array(
 				-1 => "",
@@ -216,6 +237,23 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetRecordCount ($table)
+	{
+		$query = "SELECT COUNT(*) FROM $table;";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->ReportError("Failed to get record count for $table!");
+			return 0;
+		}
+		
+		$row = $result->fetch_row();
+		return $row[0];
+	}
+	
+	
 	public function DoHomePage ($recordInfo)
 	{
 ?>
@@ -232,7 +270,8 @@ If you do not understand what this information means, or how to use this webpage
 			$displayName = $value['displayName'];
 			
 			$output  = "\t\t<li>";
-			$output .= "<a href=\"?$query\">$displayName</a>";
+			$output .= "<a href=\"?$query\">$displayName ";
+			$output .= "(" . $this->GetRecordCount($value['table']) . " records) </a>";
 			$output .= "</li>\n";
 			print($output);
 		}
@@ -265,7 +304,7 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function AddSelectQueryJoins($recordInfo)
+	public function GetSelectQueryJoins ($recordInfo)
 	{
 		$query = "";
 		if ($recordInfo['join'] == '') return $query;
@@ -307,7 +346,7 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function GetSortForSelectQuery($recordInfo)
+	public function GetSelectQuerySort ($recordInfo)
 	{
 		$sort = '';
 		
@@ -327,6 +366,65 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function GetSelectQueryFilter ($recordInfo)
+	{
+		$field = $this->recordFilter;
+		$id = $this->recordFilterId;
+		$table = $recordInfo['table'];
+		
+		if ($field == '' || $id == '') return '';
+		
+		if (!array_key_exists($field, $recordInfo['fields'])) 
+		{
+			$this->ReportError("Invalid filter field '{$field}' found for table '{$recordInfo['table']}'!");
+			return '';
+		}
+		
+		$fieldType = $recordInfo['fields'][$field];
+		
+		switch ($fieldType)
+		{
+			case self::FIELD_STRING:
+			case self::FIELD_LARGESTRING:
+				$filter = " WHERE $table.$field='$id' ";
+				break;
+			default:
+				$filter = " WHERE $table.$field=$id ";
+				break;
+		}
+		
+		return $filter;
+	}
+	
+	
+	public function CreateFilterLink ($record, $filter, $id, $link)
+	{	
+		$output = "<a href='?record={$record}&filter=$filter&filterid=$id'>$link</a>";
+		
+		return $output;
+	}
+	
+	
+	public function CreateFilterLinks ($recordInfo, $recordData)
+	{
+		$output = "";
+		
+		if (!array_key_exists('filters', $recordInfo)) return "";
+		
+		foreach ($recordInfo['filters'] as $key => $value)
+		{
+			if ($value['type'] == 'filter')
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " &nbsp; ";
+			elseif ($value['type'] == 'viewRecord')
+				$output .= $this->GetViewRecordLink($value['record'], $recordData[$value['thisField']], $value['displayName']) . " &nbsp; ";
+			else
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " &nbsp; ";
+		}
+		
+		return $output;
+	}
+	
+	
 	public function CreateSelectQuery ($recordInfo)
 	{
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
@@ -334,8 +432,9 @@ If you do not understand what this information means, or how to use this webpage
 		
 		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
 		
-		if ($recordInfo['join'] != '') $query .= $this->AddSelectQueryJoins($recordInfo);
-		if ($recordInfo['sort'] != '') $query .= $this->GetSortForSelectQuery($recordInfo);
+		$query .= $this->GetSelectQueryJoins($recordInfo);
+		$query .= $this->GetSelectQueryFilter($recordInfo);
+		$query .= $this->GetSelectQuerySort($recordInfo);
 		
 		$query .= " LIMIT $this->displayLimit OFFSET $this->displayStart ";
 		$query .= ";";
@@ -352,10 +451,9 @@ If you do not understand what this information means, or how to use this webpage
 		
 		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
 		
-		if ($recordInfo['join'] != '') $query .= $this->AddSelectQueryJoins($recordInfo);
+		$query .= $this->GetSelectQueryJoins($recordInfo);
 		$query .= " WHERE $table.id=$id";
-		if ($recordInfo['sort'] != '') $query .= " ORDER BY {$recordInfo['sort']} ";
-		
+		//$query .= " ORDER BY {$recordInfo['sort']} ";
 		$query .= " LIMIT 1 ";
 		$query .= ";";
 		
@@ -375,13 +473,14 @@ If you do not understand what this information means, or how to use this webpage
 			$output .= "\t\t<th>$sortLink</th>\n";
 		}
 		
+		$output .= "\t\t<th></th>\n";
 		$output .= "\t</tr>\n";
 		
 		return $output;
 	}
 	
 	
-	public function CreateFieldLink($recordType, $field, $id, $link)
+	public function CreateFieldLink ($recordType, $field, $id, $link)
 	{
 		$link = "<a href=\"?record=$recordType&field=$field&id=$id&action=view\">$link</a>";
 		return $link;
@@ -519,8 +618,8 @@ If you do not understand what this information means, or how to use this webpage
 		if ($result === false) return $this->reportError("Failed to retrieve record data!");
 		
 		$result2 = $this->db->query("SELECT FOUND_ROWS();");
-		$rows = $result2->fetch_row();
-		$this->totalRowCount = $rows[0];
+		$rowData = $result2->fetch_row();
+		$this->totalRowCount = $rowData[0];
 		
 		$displayCount = $result->num_rows;
 		$startIndex = $this->displayStart + 1;
@@ -545,8 +644,11 @@ If you do not understand what this information means, or how to use this webpage
 				$output .= "\t\t<td>" . $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo) . "</td>\n";
 			}
 			
+			$output .= "\t\t<td>" . $this->CreateFilterLinks($recordInfo, $row) . "</td>\n";
 			$output .= "\t</tr>\n";
 		}
+		
+		
 		
 		$output .= "</table>\n";
 		$output .= $this->GetNextPrevLink($recordInfo);
@@ -588,7 +690,6 @@ If you do not understand what this information means, or how to use this webpage
 		$table = $recordInfo['table'];
 		
 		$query = $this->CreateSelectQueryID($recordInfo, $id);
-		//$query = "SELECT * FROM $table WHERE id=$id LIMIT 1;";
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to retrieve record from database!");
@@ -631,7 +732,6 @@ If you do not understand what this information means, or how to use this webpage
 		$id = $this->recordID;
 		
 		$query = $this->CreateSelectQueryID($recordInfo, $id);
-		//$query = "SELECT * FROM $table WHERE id=$id LIMIT 1;";
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to retrieve record from database!");
@@ -691,6 +791,8 @@ If you do not understand what this information means, or how to use this webpage
 		if (array_key_exists('action', $this->inputParams)) $this->action = $this->db->real_escape_string($this->inputParams['action']);
 		if (array_key_exists('start', $this->inputParams)) $this->displayStart = (int) $this->inputParams['start'];
 		if (array_key_exists('sort', $this->inputParams)) $this->recordSort = $this->db->real_escape_string($this->inputParams['sort']);
+		if (array_key_exists('filter', $this->inputParams)) $this->recordFilter = $this->db->real_escape_string($this->inputParams['filter']);
+		if (array_key_exists('filterid', $this->inputParams)) $this->recordFilterId = $this->db->real_escape_string($this->inputParams['filterid']);
 		
 		if (array_key_exists('sortorder', $this->inputParams))
 		{
