@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 	// Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
@@ -20,6 +21,8 @@ class EsoLogViewer
 	public $action = "";
 	public $recordType = '';
 	public $recordID = -1;
+	public $recordSort = '';
+	public $recordSortOrder = '';
 	public $recordField = '';
 	public $displayLimit = 100;
 	public $displayStart = 0;
@@ -32,6 +35,7 @@ class EsoLogViewer
 	const FIELD_INTPOSITIVE = 5;
 	const FIELD_INTBOOLEAN = 6;
 	const FIELD_LARGESTRING = 7;
+	const FIELD_INTTRANSFORM = 8;
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -45,8 +49,8 @@ class EsoLogViewer
 			'body' => self::FIELD_LARGESTRING,
 			'icon' => self::FIELD_STRING,
 			'isLore' => self::FIELD_INTBOOLEAN,
-			'skillIndex' => self::FIELD_INTPOSITIVE,
-			'mediumIndex' => self::FIELD_INTPOSITIVE,
+			'skill' => self::FIELD_STRING,
+			'mediumIndex' => self::FIELD_INTTRANSFORM,
 			'categoryIndex' => self::FIELD_INTPOSITIVE,
 			'collectionIndex' => self::FIELD_INTPOSITIVE,
 			'bookIndex' => self::FIELD_INTPOSITIVE,
@@ -56,8 +60,8 @@ class EsoLogViewer
 	public static $BOOKLOCATION_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'bookId' => self::FIELD_INT,
-			'title' => self::FIELD_STRING, //Foreign join
-			'isLore' => self::FIELD_INTBOOLEAN, //Foreign join
+			'title' => self::FIELD_STRING,		//Foreign join
+			'isLore' => self::FIELD_INTBOOLEAN,	//Foreign join
 			'logId' => self::FIELD_INT,
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
@@ -76,6 +80,11 @@ class EsoLogViewer
 					'table' => 'book',
 					'method' => 'DoBook',
 					'sort' => 'title',
+					
+					'transform' => array(
+							'mediumIndex' => 'GetMediumText',
+					),
+						
 					//'fields' => self::$BOOK_FIELDS,
 					//'displayFields' => self::BOOK_DISPLAYFIELDS,
 			),
@@ -116,6 +125,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
 		self::$RECORD_TYPES['bookLoc']['fields'] = self::$BOOKLOCATION_FIELDS;
 		
+		$this->InitDatabase();
 		$this->setInputParams();
 		$this->parseInputParams();
 	}
@@ -149,6 +159,36 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetMediumText ($mediumIndex)
+	{
+		static $MEDIUM_VALUES = array(
+				-1 => "",
+				0 => "Yellowed Paper",
+				1 => "Animal Skin",
+				2 => "Rubbing Paper",
+				3 => "Letter",
+				4 => "Note",
+				5 => "Scroll",
+				6 => "Tablet",
+		);
+		
+		$key = (int) $mediumIndex;
+		
+		if (array_key_exists($key, $MEDIUM_VALUES)) return $MEDIUM_VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function TransformRecordValue ($recordInfo, $field, $value)
+	{
+		if (!array_key_exists('transform', $recordInfo)) return $value;
+		if (!array_key_exists($field, $recordInfo['transform'])) return $value;
+		
+		$method = $recordInfo['transform'][$field];
+		return $this->$method($value);
+	}
+	
+	
 	public function WritePageHeader()
 	{
 ?>
@@ -179,8 +219,11 @@ class EsoLogViewer
 	public function DoHomePage ($recordInfo)
 	{
 ?>
-	<h1>Record Types</h1>
-	<ul>
+	<h1>ESO: Record Types</h1>
+The ESO log viewer displays the raw game data for Elder Scrolls Online as collected by the <a href="http://www.uesp.net/wiki/User:Daveh/uespLog_Addon">uespLog add-on</a>. It was created to be a tool for UESP editors and patrollers to
+use as part of improving and maintaining <a href="http://www.uesp.net/">UESPWiki</a>. It is not intended to be a user-friendly way to learn about the Elder Scrolls games.
+If you do not understand what this information means, or how to use this webpage, then go to <a href="http://www.uesp.net/"><b>UESPWiki</b></a> for user-friendly game information.
+	<ul class='elvRecordTypeList'>
 <?php
 	
 		foreach (self::$RECORD_TYPES as $key => $value)
@@ -215,7 +258,7 @@ class EsoLogViewer
 		$this->OutputTopMenu($recordInfo);
 		
 		$displayName = $recordInfo['displayName'];
-		$output .= "<h1>Viewing $displayName</h1>\n";
+		$output .= "<h1>ESO: Viewing $displayName</h1>\n";
 		
 		print($output);
 		return true;
@@ -264,6 +307,26 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetSortForSelectQuery($recordInfo)
+	{
+		$sort = '';
+		
+		if ($this->recordSort == '' && $recordInfo['sort'] == '') return '';
+		
+		if ($this->recordSort == '')
+			$sort = " ORDER BY {$recordInfo['sort']} ";
+		else
+			$sort = " ORDER BY {$this->recordSort} ";
+		
+		if ($this->recordSortOrder != '')
+			$sort .= $this->recordSortOrder . ' ';
+		elseif ($recordInfo['sortOrder'] != '')
+			$sort .= $recordInfo['sortOrder'] . ' ';
+		
+		return $sort;
+	}
+	
+	
 	public function CreateSelectQuery ($recordInfo)
 	{
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
@@ -272,7 +335,7 @@ class EsoLogViewer
 		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
 		
 		if ($recordInfo['join'] != '') $query .= $this->AddSelectQueryJoins($recordInfo);
-		if ($recordInfo['sort'] != '') $query .= " ORDER BY {$recordInfo['sort']} ";
+		if ($recordInfo['sort'] != '') $query .= $this->GetSortForSelectQuery($recordInfo);
 		
 		$query .= " LIMIT $this->displayLimit OFFSET $this->displayStart ";
 		$query .= ";";
@@ -301,17 +364,20 @@ class EsoLogViewer
 	}
 	
 	
-	public function PrintRecordFieldHeader ($recordInfo)
+	public function GetRecordFieldHeader ($recordInfo)
 	{
-		print("\t<tr>\n");
-		print("\t\t<th></th>\n");
+		$output  = "\t<tr>\n";
+		$output .= "\t\t<th></th>\n";
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
-			print("\t\t<th>$key</th>\n");
+			$sortLink = $this->GetSortRecordLink($key, $key);
+			$output .= "\t\t<th>$sortLink</th>\n";
 		}
 		
-		print("\t</tr>\n");
+		$output .= "\t</tr>\n";
+		
+		return $output;
 	}
 	
 	
@@ -322,7 +388,7 @@ class EsoLogViewer
 	}
 	
 	
-	public function FormatField ($value, $type, $recordType, $field, $id)
+	public function FormatField ($value, $type, $recordType, $field, $id, $recordInfo)
 	{
 		$output = "";
 		if ($value == null) return "";
@@ -346,6 +412,9 @@ class EsoLogViewer
 			case self::FIELD_INTPOSITIVE:
 				if ((int) $value >= 0) $output = $value;
 				break;
+			case self::FIELD_INTTRANSFORM:
+				$output = $this->TransformRecordValue($recordInfo, $field, $value);
+				break;
 			case self::FIELD_INTBOOLEAN:
 				$intValue = (int)$value;
 				
@@ -361,7 +430,7 @@ class EsoLogViewer
 	}
 	
 	
-	public function FormatFieldAll ($value, $type, $recordType, $field, $id)
+	public function FormatFieldAll ($value, $type, $recordType, $field, $id, $recordInfo)
 	{
 		$output = "";
 		if ($value == null) return "";
@@ -373,18 +442,18 @@ class EsoLogViewer
 				return $output;
 		}
 		
-		return $this->FormatField($value, $type, $recordType, $field, $id);
+		return $this->FormatField($value, $type, $recordType, $field, $id, $recordInfo);
 	}
 	
 	
-	public function getPageQueryString($includeStart)
+	public function GetPageQueryString ($ignoreFields)
 	{
 		$query = "";
 		$isFirst = true;
 		
 		foreach($this->inputParams as $key => $value)
 		{
-			if (!$includeStart && $key == 'start') continue;
+			if (in_array($key, $ignoreFields)) continue;
 			
 			if (!$isFirst) $query .= "&";
 			$query .= "$key=$value";
@@ -395,7 +464,7 @@ class EsoLogViewer
 	}
 	
 	
-	public function PrintNextPrevLink ($recordInfo)
+	public function GetNextPrevLink ($recordInfo)
 	{
 		$output = "";
 		
@@ -405,14 +474,13 @@ class EsoLogViewer
 		if ($nextStart >= $this->totalRowCount) $nextStart =  $this->totalRowCount - 1;
 		if ($nextStart < 0) $nextStart = 0;
 		
-		$oldQuery = $this->getPageQueryString(false);
+		$oldQuery = $this->GetPageQueryString(array("start"));
 		
 		if ($this->displayStart > 0) $output .= "<a href='?start=$prevStart&$oldQuery'>Prev</a> &nbsp; ";
 		if ($this->displayStart < $nextStart) $output .= "<a href='?start=$nextStart&$oldQuery'>Next</a>";
 		$output .= "\n";
 		
-		print($output);
-		return true;
+		return $output;
 	}
 	
 	
@@ -420,6 +488,22 @@ class EsoLogViewer
 	{
 		$link = "<a class='elvRecordLink' href='?action=view&record=$record&id=$id'>$link</a>";
 		
+		return $link;
+	}
+	
+	
+	public function GetSortRecordLink ($sortField, $link)
+	{
+		$oldQuery = $this->GetPageQueryString(array("sort", "sortorder"));
+		
+		if ($this->recordSortOrder == "DESC")
+			$sortOrder = "a";
+		elseif ($this->recordSortOrder == "ASC")
+			$sortOrder = "d";
+		else
+			$sortOrder = "a";
+		
+		$link = "<a href='?sort=$sortField&sortorder=$sortOrder&$oldQuery'>$link</a>";
 		return $link;
 	}
 	
@@ -444,29 +528,30 @@ class EsoLogViewer
 		if ($endIndex > $this->totalRowCount) $endIndex = $this->totalRowCount;
 		print("Displaying $displayCount of $this->totalRowCount records from $startIndex to $endIndex.\n");
 		
-		$this->PrintNextPrevLink($recordInfo);
+		$output = $this->GetNextPrevLink($recordInfo);
+		$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
+		$output .= $this->GetRecordFieldHeader($recordInfo);
 		
 		$result->data_seek(0);
-		print("<table border='1' cellspacing='0' cellpadding='2'>\n");
-		$this->PrintRecordFieldHeader($recordInfo);
 		
 		while ( ($row = $result->fetch_assoc()) )
 		{
 			$id = $row['id'];
-			print("\t<tr>\n");
-			print("\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], $id, "View") ."</td>\n");
+			$output .= "\t<tr>\n";
+			$output .= "\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], $id, "View") ."</td>\n";
 			
 			foreach ($recordInfo['fields'] as $key => $value)
 			{
-				$output = $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id);
-				print("\t\t<td>$output</td>\n");
+				$output .= "\t\t<td>" . $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo) . "</td>\n";
 			}
 			
-			print("\t</tr>\n");
+			$output .= "\t</tr>\n";
 		}
 		
-		print("</table>\n");
-		$this->PrintNextPrevLink($recordInfo);
+		$output .= "</table>\n";
+		$output .= $this->GetNextPrevLink($recordInfo);
+		
+		print($output);
 	}
 	
 	
@@ -495,7 +580,7 @@ class EsoLogViewer
 		$this->OutputTopMenu($recordInfo);
 		$displayName = $recordInfo['displayNameSingle'];
 		$id = $this->recordID;
-		$output  = "<h1>Viewing $displayName: ID#$id</h1>\n";
+		$output  = "<h1>ESO: Viewing $displayName: ID#$id</h1>\n";
 		
 		if (!$this->InitDatabase()) return false;
 		if ($this->recordID < 0) return $this->ReportError("Invalid record ID received!");
@@ -516,7 +601,7 @@ class EsoLogViewer
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
-			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $row['id']);
+			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $row['id'], $recordInfo);
 			
 			$output .= "\t<tr>\n";
 			$output .= "\t\t<th>$key</th>\n";
@@ -556,7 +641,7 @@ class EsoLogViewer
 		$row = $result->fetch_assoc();
 		
 		$displayName = $recordInfo['displayNameSingle'];
-		$output  = "<h1>Viewing $displayName: ID#$id</h1>\n";
+		$output  = "<h1>ESO: Viewing $displayName: ID#$id</h1>\n";
 		$output .= "<div class='elvRecordView'>";
 		$output .= $row[$this->recordField];
 		$output .= "</div>";
@@ -600,11 +685,28 @@ class EsoLogViewer
 	
 	private function parseInputParams ()
 	{
-		if (array_key_exists('record', $this->inputParams)) $this->recordType = $this->inputParams['record'];
-		if (array_key_exists('field', $this->inputParams)) $this->recordField = $this->inputParams['field'];
-		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->inputParams['id'];
-		if (array_key_exists('action', $this->inputParams)) $this->action = $this->inputParams['action'];
-		if (array_key_exists('start', $this->inputParams)) $this->displayStart = $this->inputParams['start'];
+		if (array_key_exists('record', $this->inputParams)) $this->recordType = $this->db->real_escape_string($this->inputParams['record']);
+		if (array_key_exists('field', $this->inputParams)) $this->recordField = $this->db->real_escape_string($this->inputParams['field']);
+		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->db->real_escape_string($this->inputParams['id']);
+		if (array_key_exists('action', $this->inputParams)) $this->action = $this->db->real_escape_string($this->inputParams['action']);
+		if (array_key_exists('start', $this->inputParams)) $this->displayStart = (int) $this->inputParams['start'];
+		if (array_key_exists('sort', $this->inputParams)) $this->recordSort = $this->db->real_escape_string($this->inputParams['sort']);
+		
+		if (array_key_exists('sortorder', $this->inputParams))
+		{
+			switch ($this->inputParams['sortorder'])
+			{
+				default:
+				case 'a':
+				case 'A':
+					$this->recordSortOrder = 'ASC';
+					break;
+				case 'd':
+				case 'D':
+					$this->recordSortOrder = 'DESC';
+					break;
+			}
+		}
 		
 		return true;
 	}
