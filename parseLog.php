@@ -1059,7 +1059,23 @@ class EsoLogParser
 		
 		//print("\t\tFound Treasure...\n");
 		
-		return $this->CheckLocation("treasure", $logEntry['name'], $logEntry, null);
+		$result = $this->CheckLocation("treasure", $logEntry['name'], $logEntry, null);
+		
+		if ($logEntry['name'] == "Chest")
+		{
+			$chestRecord = $this->createNewRecord(self::$CHEST_FIELDS);
+			
+			$locationId = $this->currentUser['lastLocationRecordId'];
+			if ($locationId == null) $locationId = 0;
+			
+			$chestRecord['locationId'] = (int) $locationId;
+			$chestRecord['quality'] = -1;
+			
+			$result &= $this->saveRecord('chest', $chestRecord, 'id', self::$CHEST_FIELDS);
+			$this->currentUser['lastChestRecord'] = $chestRecord;
+		}
+		
+		return $result;
 	}
 	
 	
@@ -1070,13 +1086,16 @@ class EsoLogParser
 		$locationId = $this->currentUser['lastLocationRecordId'];
 		if ($locationId == null) $locationId = 0;
 		
-		$chestRecord = $this->createNewRecord(self::$CHEST_FIELDS);
+		if ($this->currentUser['lastChestRecord'] == null)
+			$chestRecord = $this->createNewRecord(self::$CHEST_FIELDS);
+		else 
+			$chestRecord = &$this->currentUser['lastChestRecord'];
 		
 		$chestRecord['locationId'] = (int) $locationId;
 		$chestRecord['quality'] = (int) $logEntry['quality'];
 		
-		++$this->currentUser['newCount'];
-		$this->currentUser['__dirty'] = true;
+		//++$this->currentUser['newCount'];
+		//$this->currentUser['__dirty'] = true;
 		
 		$result = $this->saveRecord('chest', $chestRecord, 'id', self::$CHEST_FIELDS);
 		return $result;
