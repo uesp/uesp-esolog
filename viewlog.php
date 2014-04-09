@@ -67,6 +67,24 @@ class EsoLogViewer
 			'logId' => self::FIELD_INTID,
 	);
 	
+	public static $ITEM_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'value' => self::FIELD_INT,
+			'style' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'locked' => self::FIELD_INTBOOLEAN,
+			'type' => self::FIELD_INT,
+			'equipType' => self::FIELD_INT,
+			'craftType' => self::FIELD_INT,
+			'color' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'link' => self::FIELD_STRING,
+			'logId' => self::FIELD_INTID,
+	);
+	
 	public static $LOCATION_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'type' => self::FIELD_STRING,
@@ -108,8 +126,6 @@ class EsoLogViewer
 								'type' => 'fiter',
 							),
 					),
-						
-					//'fields' => self::$BOOK_FIELDS,
 			),
 			
 			'chest' => array(
@@ -135,6 +151,21 @@ class EsoLogViewer
 					),
 			),
 			
+			'item' => array(
+					'displayName' => 'Items',
+					'displayNameSingle' => 'Item',
+					'record' => 'item',
+					'table' => 'item',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'location' => array (
 					'displayName' => 'Locations',
 					'displayNameSingle' => 'Location',
@@ -144,11 +175,6 @@ class EsoLogViewer
 					'sort' => 'zone',
 					
 					'join' => array(
-							/*'bookId' => array(
-									'table' => 'book',
-									'fields' => array('title', 'isLore'),
-									'joinField' => 'id',
-							), */
 					),
 					
 					'filters' => array(
@@ -160,8 +186,6 @@ class EsoLogViewer
 									'type' => 'viewRecord',
 							),
 					),
-					
-					//'fields' => self::$LOCATION_FIELDS,
 			),
 	);
 	
@@ -172,6 +196,7 @@ class EsoLogViewer
 			// TODO: Static initialization?
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
 		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
+		self::$RECORD_TYPES['item']['fields'] = self::$ITEM_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
 		
 		$this->InitDatabase();
