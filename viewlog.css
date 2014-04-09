@@ -19,3 +19,8 @@ body {
 	font-family: monospace;
 	white-space: pre-wrap;
 }
+
+.elvRecordTypeList {
+	font-size: 14px;
+	font-weight: bold;
+}

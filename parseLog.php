@@ -1,5 +1,43 @@
 <?php
 
+/*
+	SKILL_TYPE_NONE = 0
+	SKILL_TYPE_CLASS = 1
+	SKILL_TYPE_WEAPON = 2
+	SKILL_TYPE_ARMOR = 3
+	SKILL_TYPE_WORLD = 4
+	SKILL_TYPE_GUILD = 5
+	SKILL_TYPE_AVA = 6
+	SKILL_TYPE_RACIAL = 7
+	SKILL_TYPE_TRADESKILL = 8
+	
+	1 , 1, Aedric Spear
+	1 , 2, Dawn's Wrath
+	1 , 3, Restoring Light
+	2 , 1, Two Handed
+	2 , 2, One Hand and Shield
+	2 , 3, Dual Wield
+	2 , 4, Bow
+	2 , 5, Destruction Staff
+	2 , 6, Restoration Staff
+	3 , 1, Light Armor
+	3 , 2, Medium Armor
+	3 , 3, Heavy Armor
+	4 , 1, Soul Magic
+	5 , 1, Fighters  Guild
+	5 , 2, Mages Guild
+	6 , 1, Assault
+	6 , 2, Support
+	7 , 1, Breton Skills
+	8 , 1, Alchemy
+	8 , 2, Blacksmithing
+	8 , 3, Clothing
+	8 , 4, Enchanting
+	8 , 5, Provisioning
+	8 , 6, Woodworking
+
+ */
+
 	// Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
 
@@ -39,6 +77,11 @@ class EsoLogParser
 	public $lastBookRecord = null;
 	public $lastBookLogEntry = null;
 	
+	public $skillInfo = array();
+		//index
+		//type
+		//name
+	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
 	const FIELD_FLOAT = 3;
@@ -56,7 +99,7 @@ class EsoLogParser
 			'body' => self::FIELD_STRING,
 			'icon' => self::FIELD_STRING,
 			'isLore' => self::FIELD_INT,
-			'skillIndex' => self::FIELD_INT,
+			'skill' => self::FIELD_STRING,
 			'mediumIndex' => self::FIELD_INT,
 			'categoryIndex' => self::FIELD_INT,
 			'collectionIndex' => self::FIELD_INT,
@@ -229,6 +272,29 @@ class EsoLogParser
 	}
 	
 	
+	public function AddSkillInfo ($index, $name, $type)
+	{
+		if (!array_key_exists($type, $this->skillInfo)) $this->skillInfo[$type] = array();
+		if (array_key_exists($index, $this->skillInfo[$type])) return true;
+		
+		$this->skillInfo[$type][$index] = $name;
+		
+		return true;
+	}
+	
+	
+	public function DumpSkillInfo ()
+	{
+		foreach ($this->skillInfo as $type => $value)
+		{
+			foreach ($value as $index => $name)
+			{
+				print("$type , $index, $name\n");
+			}
+		}
+	}
+	
+	
 	public function createInsertQuery ($table, $record, $fieldDef)
 	{
 		$columns = "";
@@ -360,7 +426,7 @@ class EsoLogParser
 						logId BIGINT NOT NULL,
 						title TINYTEXT NOT NULL,
 						body TEXT NOT NULL,
-						skillIndex INTEGER NOT NULL,
+						skill TINYTEXT NOT NULL,
 						mediumIndex INTEGER NOT NULL,
 						isLore INTEGER NOT NULL,
 						icon TEXT NOT NULL,
@@ -849,6 +915,8 @@ class EsoLogParser
 		//x{0.21715186536312}  y{0.46380305290222}  zone{Vulkhel Guard}  
 		//gameTime{2610340}  timeStamp{4743643324668182528}  userName{...}  ipAddress{...}  logTime{1396487021}  end{}
 		
+		$this->AddSkillInfo($logEntry['skillIndex'], $logEntry['name'], $logEntry['skillType']);
+		
 		if ($this->lastBookRecord == null || $this->lastBookLogEntry == null) return true;
 		if ($logEntry['userName'] != $this->lastBookLogEntry['userName']) return true;
 		
@@ -857,10 +925,10 @@ class EsoLogParser
 		$diffTime = $skillGameTime - $bookGameTime;
 		if ($diffTime < 0 || $diffTime > 1000) return true;
 		
-		if ($this->lastBookRecord['skillIndex'] < 0)
+		if ($this->lastBookRecord['skill'] == '')
 		{
 			print("\t\tFound {$logEntry['name']} skill update for book {$this->lastBookRecord['title']}...\n");
-			$this->lastBookRecord['skillIndex'] = $logEntry['skillIndex'];
+			$this->lastBookRecord['skill'] = $logEntry['name'];
 			$this->saveBook($this->lastBookRecord);
 		}
 		
@@ -1031,6 +1099,8 @@ class EsoLogParser
 	{
 		if (!$this->initDatabaseWrite()) return false;
 		
+		$this->log("Parsing entire log file $logFilename...");
+		
 		$this->currentParseFile = $logFilename;
 		$this->currentParseLine = 0;
 		
@@ -1096,6 +1166,20 @@ class EsoLogParser
 		}
 		
 		return TRUE;
+	}
+	
+	
+	public function ParseAllLogs($path)
+	{
+		$files = glob($path . "eso*.log");
+		$this->createTables();
+		
+		foreach ($files as $key => $value)
+		{
+			$this->parseEntireLog($value);
+		}
+		
+		return true;
 	}
 	
 	
@@ -1212,8 +1296,9 @@ class EsoLogParser
 	
 	
 $g_EsoLogParser = new EsoLogParser();
-$g_EsoLogParser->testParse();
+$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
 $g_EsoLogParser->saveData();
+$g_EsoLogParser->DumpSkillInfo();
 	
 	
 ?>
