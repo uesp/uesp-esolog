@@ -986,6 +986,7 @@ class EsoLogParser
 		return $result;
 	}
 	
+	
 	public function FindItemLink ($itemLink)
 	{
 		$safeLink = $this->db->real_escape_string($itemLink);
