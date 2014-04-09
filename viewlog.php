@@ -47,7 +47,6 @@ class EsoLogViewer
 	
 	public static $BOOK_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 			'title' => self::FIELD_STRING,
 			'body' => self::FIELD_LARGESTRING,
 			'icon' => self::FIELD_STRING,
@@ -58,22 +57,31 @@ class EsoLogViewer
 			'collectionIndex' => self::FIELD_INTPOSITIVE,
 			'bookIndex' => self::FIELD_INTPOSITIVE,
 			'guildIndex' => self::FIELD_INTPOSITIVE,
+			'logId' => self::FIELD_INTID,
+	);
+	
+	public static $CHEST_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'locationId' => self::FIELD_INTID,
+			'quality' => self::FIELD_INTTRANSFORM,
+			'logId' => self::FIELD_INTID,
 	);
 	
 	public static $LOCATION_FIELDS = array(
 			'id' => self::FIELD_INTID,
+			'type' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'count' => self::FIELD_INT,
+			'zone' => self::FIELD_STRING,
+			'x' => self::FIELD_POSITION,
+			'y' => self::FIELD_POSITION,
+			'rawX' => self::FIELD_FLOAT,
+			'rawY' => self::FIELD_FLOAT,
 			'bookId' => self::FIELD_INTID,
 			'npcId' => self::FIELD_INTID,
 			'questId' => self::FIELD_INTID,
 			'itemId' => self::FIELD_INTID,
 			'logId' => self::FIELD_INTID,
-			'type' => self::FIELD_STRING,
-			'name' => self::FIELD_STRING,
-			'x' => self::FIELD_POSITION,
-			'y' => self::FIELD_POSITION,
-			'rawX' => self::FIELD_FLOAT,
-			'rawY' => self::FIELD_FLOAT,
-			'zone' => self::FIELD_STRING,
 	);
 	
 	
@@ -84,7 +92,7 @@ class EsoLogViewer
 					'displayNameSingle' => 'Book',
 					'record' => 'book',
 					'table' => 'book',
-					'method' => 'DoBook',
+					'method' => 'DoRecordDisplay',
 					'sort' => 'title',
 					
 					'transform' => array(
@@ -104,28 +112,43 @@ class EsoLogViewer
 					//'fields' => self::$BOOK_FIELDS,
 			),
 			
+			'chest' => array(
+					'displayName' => 'Chests',
+					'displayNameSingle' => 'Chest',
+					'record' => 'chest',
+					'table' => 'chest',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'quality',
+					
+					'transform' => array(
+							'quality' => 'GetChestQualityText',
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'location',
+									'field' => 'id',
+									'thisField' => 'locationId',
+									'displayName' => 'View Location',
+									'type' => 'viewRecord',
+							),
+					),
+			),
+			
 			'location' => array (
 					'displayName' => 'Locations',
 					'displayNameSingle' => 'Location',
 					'record' => 'location',
 					'table' => 'location',
-					'method' => 'DoLocation',
+					'method' => 'DoRecordDisplay',
 					'sort' => 'zone',
 					
 					'join' => array(
-							'bookId' => array(
+							/*'bookId' => array(
 									'table' => 'book',
 									'fields' => array('title', 'isLore'),
 									'joinField' => 'id',
-							),
-					),
-					
-					'link' => array(
-							array(
-								'field' => 'title',
-								'linkRecord' => 'book',
-								'linkField' => 'bookId',
-							),
+							), */
 					),
 					
 					'filters' => array(
@@ -148,6 +171,7 @@ class EsoLogViewer
 	{
 			// TODO: Static initialization?
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
+		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
 		
 		$this->InitDatabase();
@@ -200,6 +224,25 @@ class EsoLogViewer
 		$key = (int) $mediumIndex;
 		
 		if (array_key_exists($key, $MEDIUM_VALUES)) return $MEDIUM_VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetChestQualityText ($quality)
+	{
+		static $QUALITY_VALUES = array(
+				-1 => "",
+				0 => "None",
+				1 => "Simple",
+				2 => "Intermediate",
+				3 => "Advanced",
+				4 => "Master",
+				5 => "Impossible",
+		);
+	
+		$key = (int) $quality;
+	
+		if (array_key_exists($key, $QUALITY_VALUES)) return $QUALITY_VALUES[$key];
 		return "Unknown ($key)";
 	}
 	
@@ -319,7 +362,7 @@ If you do not understand what this information means, or how to use this webpage
 			$table2 = $value['table'];
 			$tableId1 = $key;
 			$tableId2 = $value['joinField'];
-			$query .= "INNER JOIN $table2 on $table1.$tableId1 = $table2.$tableId2 ";
+			$query .= "LEFT JOIN $table2 on $table1.$tableId1 = $table2.$tableId2 ";
 		}
 		
 		return $query;
@@ -584,8 +627,16 @@ If you do not understand what this information means, or how to use this webpage
 		
 		$oldQuery = $this->GetPageQueryString(array("start"));
 		
-		if ($this->displayStart > 0) $output .= "<a href='?start=$prevStart&$oldQuery'>Prev</a> &nbsp; ";
-		if ($this->displayStart < $nextStart) $output .= "<a href='?start=$nextStart&$oldQuery'>Next</a>";
+		if ($this->displayStart > 0) 
+			$output .= "<a href='?start=$prevStart&$oldQuery'>Prev</a> &nbsp; ";
+		else
+			$output .= "Prev &nbsp; ";
+		
+		if ($this->displayStart < $nextStart) 
+			$output .= "<a href='?start=$nextStart&$oldQuery'>Next</a>";
+		else
+			$output .= "Next";
+		
 		$output .= "\n";
 		
 		return $output;
@@ -638,7 +689,7 @@ If you do not understand what this information means, or how to use this webpage
 		if ($endIndex > $this->totalRowCount) $endIndex = $this->totalRowCount;
 		print("Displaying $displayCount of $this->totalRowCount records from $startIndex to $endIndex.\n");
 		
-		$output = $this->GetNextPrevLink($recordInfo);
+		$output = "<br />" . $this->GetNextPrevLink($recordInfo);
 		$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
 		$output .= $this->GetRecordFieldHeader($recordInfo);
 		
@@ -668,16 +719,7 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function DoBook ($recordInfo)
-	{
-		$this->OutputRecordHeader($recordInfo);
-		$this->PrintRecords($recordInfo);
-		
-		return true;
-	}
-	
-	
-	public function DoLocation ($recordInfo)
+	public function DoRecordDisplay ($recordInfo)
 	{
 		$this->OutputRecordHeader($recordInfo);
 		$this->PrintRecords($recordInfo);

@@ -54,6 +54,8 @@
 			questId
 			type
 			name
+			
+	Items:
 
  */
 
@@ -129,11 +131,18 @@ class EsoLogParser
 			'itemId' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
+			'count' => self::FIELD_INT,
 			'x' => self::FIELD_INT,
 			'y' => self::FIELD_INT,
 			'rawX' => self::FIELD_FLOAT,
 			'rawY' => self::FIELD_FLOAT,
 			'zone' => self::FIELD_STRING,
+	);
+	
+	public static $CHEST_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'locationId' => self::FIELD_INT,
+			'quality' => self::FIELD_INT
 	);
 	
 	
@@ -467,6 +476,7 @@ class EsoLogParser
 						bookId BIGINT NOT NULL,
 						type TINYTEXT NOT NULL,
 						name TINYTEXT NOT NULL,
+						count INTEGER NOT NULL,
 						x INTEGER NOT NULL,
 						y INTEGER NOT NULL,
 						rawX FLOAT NOT NULL,
@@ -474,6 +484,7 @@ class EsoLogParser
 						zone TINYTEXT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX find_loc (zone(64), x, y),
+						INDEX find_loctype (type(32), zone(64), x, y),
 						INDEX find_bookloc (bookId, zone(64), x, y),
 						INDEX find_npcloc (npcId, zone(64), x, y),
 						INDEX find_itemloc (itemId, zone(64), x, y),
@@ -482,6 +493,17 @@ class EsoLogParser
 		
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create location table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS chest (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						locationId BIGINT NOT NULL,
+						logId BIGINT NOT NULL,
+						quality TINYINT NOT NULL,
+						PRIMARY KEY (id)
+					);";
+		
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create chest table!");
 		
 		return true;
 	}
@@ -818,6 +840,74 @@ class EsoLogParser
 	}
 	
 	
+	public function FindLocation ($type, $x, $y, $zone)
+	{
+		$safeZone = $this->db->real_escape_string($zone);
+		$safeType = $this->db->real_escape_string($type);
+		$query = "SELECT * FROM location WHERE type='$safeType' AND zone='$safeZone' AND x=$x AND y=$y;";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve locations!");
+			return null;
+		}
+		
+		if ($result->num_rows == 0) return null;
+		
+		$row = $result->fetch_assoc();
+		$this->currentUser['lastLocationRecordId'] = $row['id'];
+		
+		return $this->createRecordFromRow($row, self::$LOCATION_FIELDS);
+	}
+	
+	
+	public function CheckLocation ($type, $name, $logEntry, $extraIds = null)
+	{
+		$x = (int) ($logEntry['x'] * self::ELP_POSITION_FACTOR);
+		$y = (int) ($logEntry['y'] * self::ELP_POSITION_FACTOR);
+		$zone = $logEntry['zone'];
+		
+		$locationRecord = $this->FindLocation($type, $x, $y, $zone);
+		
+		if ($locationRecord != null)
+		{
+			++$locationRecord['count'];
+			$result = $this->saveRecord('location', $locationRecord, 'id', self::$LOCATION_FIELDS);
+			
+			return $result;
+		}
+		
+		$locationRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
+		
+		$locationRecord['x'] = $x;
+		$locationRecord['y'] = $y;
+		$locationRecord['rawX'] = $logEntry['x'];
+		$locationRecord['rawY'] = $logEntry['y'];
+		$locationRecord['zone'] = $zone;
+		$locationRecord['count'] = 1;
+		$locationRecord['type'] = $type;
+		$locationRecord['name'] = $name;
+		
+		if ($extraIds != null)
+		{
+			if (array_key_exists('bookId',  $extraIds)) $locationRecord['bookId']  = $extraIds['bookId'];
+			if (array_key_exists('npcId',   $extraIds)) $locationRecord['npcId']   = $extraIds['npcId'];
+			if (array_key_exists('questId', $extraIds)) $locationRecord['questId'] = $extraIds['questId'];
+			if (array_key_exists('itemId',  $extraIds)) $locationRecord['itemId']  = $$extraIds['itemId'];
+		}
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->saveRecord('location', $locationRecord, 'id', self::$LOCATION_FIELDS);
+		$this->currentUser['lastLocationRecordId'] = $locationRecord['id'];
+		
+		return $result;
+	}
+	
+	
 	public function FindBookLocation ($x, $y, $zone, $bookId)
 	{
 		$safeZone = $this->db->real_escape_string($zone);
@@ -833,30 +923,8 @@ class EsoLogParser
 	
 	public function CheckBookLocation ($logEntry, $bookRecord)
 	{
-		$id = $bookRecord['id'];
-		if ($id == null || $id < 0) return $this->reportLogParseError("Invalid internal ID found for book!");
-		
-		$x = (int) ($logEntry['x'] * self::ELP_POSITION_FACTOR);
-		$y = (int) ($logEntry['y'] * self::ELP_POSITION_FACTOR);
-		$zone = $logEntry['zone'];
-		
-		if ($this->FindBookLocation($x, $y, $zone, $id)) return true;
-		
-		$bookLocRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
-		
-		$bookLocRecord['x'] = $x;
-		$bookLocRecord['y'] = $y; 
-		$bookLocRecord['rawX'] = $logEntry['x'];
-		$bookLocRecord['rawY'] = $logEntry['y'];
-		$bookLocRecord['zone'] = $zone;
-		$bookLocRecord['bookId'] = $id;
-		$bookLocRecord['type'] = "book";
-		$bookLocRecord['name'] = $bookRecord['title'];
-		
-		++$this->currentUser['newCount'];
-		$this->currentUser['__dirty'] = true;
-		
-		return $this->saveRecord('location', $bookLocRecord, 'id', self::$LOCATION_FIELDS);
+		$extraIds = array('bookId' => $bookRecord['id']);
+		return $this->CheckLocation ("book", $bookRecord['title'], $logEntry, $extraIds);
 	}
 	
 	
@@ -964,7 +1032,7 @@ class EsoLogParser
 		
 		if ($lastBookRecord['skill'] == '')
 		{
-			print("\t\tFound {$logEntry['name']} skill update for book {$lastBookRecord['title']}...\n");
+			//print("\t\tFound {$logEntry['name']} skill update for book {$lastBookRecord['title']}...\n");
 			$lastBookRecord['skill'] = $logEntry['name'];
 			$this->saveBook($lastBookRecord);
 		}
@@ -973,21 +1041,69 @@ class EsoLogParser
 	}
 	
 	
-	public function OnNullEntry($logEntry)
+	public function OnSkyshard ($logEntry)
+	{
+		//event{Skyshard}  y{0.43859297037125}  zone{Portdun Watch}  x{0.68326634168625}  lastTarget{Skyshard} 
+		//timeStamp{4743645430720495616}  gameTime{56651357}  userName{Reorx}  end{}
+		
+		//print("\t\tFound Skyshard...\n");
+		
+		return $this->CheckLocation("skyshard", "Skyshard", $logEntry, null);
+	}
+	
+	
+	public function OnFoundTreasure ($logEntry)
+	{
+		//event{FoundTreasure}  name{Chest}  x{0.25863909721375}  y{0.76831662654877}  lastTarget{Chest}  zone{Wayrest}  
+		//gameTime{336361}  timeStamp{4743645698686189568}  userName{Reorx}  end{}  
+		
+		//print("\t\tFound Treasure...\n");
+		
+		return $this->CheckLocation("treasure", $logEntry['name'], $logEntry, null);
+	}
+	
+	
+	public function OnLockPick ($logEntry)
+	{
+		//event{LockPick}  quality{1}  x{0.25767278671265}  y{0.77135974168777}  zone{Wayrest}  gameTime{336988}  timeStamp{4743645698686189568}  userName{Reorx}  end{}
+		
+		$locationId = $this->currentUser['lastLocationRecordId'];
+		if ($locationId == null) $locationId = 0;
+		
+		$chestRecord = $this->createNewRecord(self::$CHEST_FIELDS);
+		
+		$chestRecord['locationId'] = (int) $locationId;
+		$chestRecord['quality'] = (int) $logEntry['quality'];
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->saveRecord('chest', $chestRecord, 'id', self::$CHEST_FIELDS);
+		return $result;
+	}
+	
+	
+	public function OnFish ($logEntry)
+	{
+		return $this->CheckLocation("fish", "Fishing Hole", $logEntry, null);
+	}
+	
+	
+	public function OnNullEntry ($logEntry)
 	{
 		// Do Nothing
 		return true;
 	}
 	
 	
-	public function OnUnknownEntry($logEntry)
+	public function OnUnknownEntry ($logEntry)
 	{
 		$this->reportLogParseError("Unknown event '{$logEntry['event']}' found in log entry!");
 		return true;
 	}
 	
 	
-	public function handleLogEntry($logEntry)
+	public function handleLogEntry ($logEntry)
 	{
 		if (!$this->isValidLogEntry($logEntry)) return false;
 		
@@ -1024,42 +1140,44 @@ class EsoLogParser
 		
 		switch($logEntry['event'])
 		{
+			case "OpenFootLocker":				$result = $this->OnNullEntry($logEntry); break;
 			case "LootGained":					$result = $this->OnLootGainedEntry($logEntry); break;
 			case "SlotUpdate":					$result = $this->OnSlotUpdateEntry($logEntry); break;
-			case "TargetChange":				$result = $this->OnNullEntry($logEntry); break;
-			case "ChatterBegin":				$result = $this->OnNullEntry($logEntry); break;
-			case "ChatterBegin::Option":		$result = $this->OnNullEntry($logEntry); break;
-			case "QuestAdded":					$result = $this->OnNullEntry($logEntry); break;
-			case "QuestChanged":				$result = $this->OnNullEntry($logEntry); break;
-			case "QuestAdvanced":				$result = $this->OnNullEntry($logEntry); break;
-			case "CraftComplete":				$result = $this->OnNullEntry($logEntry); break;
-			case "CraftComplete::Result":		$result = $this->OnNullEntry($logEntry); break;
-			case "QuestRemoved":				$result = $this->OnNullEntry($logEntry); break;
-			case "QuestObjComplete":			$result = $this->OnNullEntry($logEntry); break;
-			case "QuestCompleteExperience":		$result = $this->OnNullEntry($logEntry); break;
-			case "SkillRankUpdate":				$result = $this->OnSkillRankUpdate($logEntry); break;
-			case "LoreBook":					$result = $this->OnLoreBook($logEntry); break;
-			case "ShowBook":					$result = $this->OnShowBook($logEntry); break;
-			case "Sell":						$result = $this->OnNullEntry($logEntry); break;
-			case "Buy":							$result = $this->OnNullEntry($logEntry); break;
-			case "Fish":						$result = $this->OnNullEntry($logEntry); break;
-			case "Skyshard":					$result = $this->OnNullEntry($logEntry); break;
-			case "Recipe":						$result = $this->OnNullEntry($logEntry); break;
-			case "Recipe::Result":				$result = $this->OnNullEntry($logEntry); break;
-			case "Recipe::Ingredient":			$result = $this->OnNullEntry($logEntry); break;
-			case "FoundTreasure":				$result = $this->OnNullEntry($logEntry); break;
-			case "Location":					$result = $this->OnNullEntry($logEntry); break;
-			case "ConversationUpdated":			$result = $this->OnNullEntry($logEntry); break;
-			case "ConversationUpdated::Option":	$result = $this->OnNullEntry($logEntry); break;
-			case "MoneyGained":					$result = $this->OnNullEntry($logEntry); break;
-			case "QuestMoney":					$result = $this->OnNullEntry($logEntry); break;
-			case "SkillPointsChanged":			$result = $this->OnNullEntry($logEntry); break;
 			case "InvDump":						$result = $this->OnNullEntry($logEntry); break;
 			case "InvDump::Start":
 			case "InvDumpStart":				$result = $this->OnNullEntry($logEntry); break;
 			case "InvDump::End":
 			case "InvDumpEnd":					$result = $this->OnNullEntry($logEntry); break;
-			case "LockPick":					$result = $this->OnNullEntry($logEntry); break;
+			case "MoneyGained":					$result = $this->OnNullEntry($logEntry); break;
+			case "TargetChange":				$result = $this->OnNullEntry($logEntry); break;
+			case "ChatterBegin":				$result = $this->OnNullEntry($logEntry); break;
+			case "ChatterBegin::Option":		$result = $this->OnNullEntry($logEntry); break;
+			case "ConversationUpdated":			$result = $this->OnNullEntry($logEntry); break;
+			case "ConversationUpdated::Option":	$result = $this->OnNullEntry($logEntry); break;
+			case "QuestAdded":					$result = $this->OnNullEntry($logEntry); break;
+			case "QuestChanged":				$result = $this->OnNullEntry($logEntry); break;
+			case "QuestAdvanced":				$result = $this->OnNullEntry($logEntry); break;
+			case "QuestRemoved":				$result = $this->OnNullEntry($logEntry); break;
+			case "QuestObjComplete":			$result = $this->OnNullEntry($logEntry); break;
+			case "QuestOptionalStep":			$result = $this->OnNullEntry($logEntry); break;
+			case "QuestCompleteExperience":		$result = $this->OnNullEntry($logEntry); break;
+			case "QuestMoney":					$result = $this->OnNullEntry($logEntry); break;
+			case "CraftComplete":				$result = $this->OnNullEntry($logEntry); break;
+			case "CraftComplete::Result":		$result = $this->OnNullEntry($logEntry); break;
+			case "SkillRankUpdate":				$result = $this->OnSkillRankUpdate($logEntry); break;
+			case "SkillPointsChanged":			$result = $this->OnNullEntry($logEntry); break;
+			case "Location":					$result = $this->OnNullEntry($logEntry); break;
+			case "LoreBook":					$result = $this->OnLoreBook($logEntry); break;
+			case "ShowBook":					$result = $this->OnShowBook($logEntry); break;
+			case "Sell":						$result = $this->OnNullEntry($logEntry); break;
+			case "Buy":							$result = $this->OnNullEntry($logEntry); break;
+			case "Fish":						$result = $this->OnFish($logEntry); break;
+			case "Skyshard":					$result = $this->OnSkyshard($logEntry); break;
+			case "FoundTreasure":				$result = $this->OnFoundTreasure($logEntry); break;
+			case "LockPick":					$result = $this->OnLockPick($logEntry); break;
+			case "Recipe":						$result = $this->OnNullEntry($logEntry); break;
+			case "Recipe::Result":				$result = $this->OnNullEntry($logEntry); break;
+			case "Recipe::Ingredient":			$result = $this->OnNullEntry($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
@@ -1073,7 +1191,7 @@ class EsoLogParser
 	}
 	
 	
-	public function parseLogEntry($logString)
+	public function parseLogEntry ($logString)
 	{
 		$matchData = array();
 		$resultData = array();
@@ -1106,8 +1224,9 @@ class EsoLogParser
 	{
 		$logEntry['__crc'] = crc32($logString);
 		
-		if (!array_key_exists('ipAddress', $logEntry)) $logEntry['ipAddress'] = '0.0.0.0';
-		if (!array_key_exists('userName',  $logEntry)) $logEntry['userName']  = 'Unknown';
+		//if (!array_key_exists('ipAddress', $logEntry)) $logEntry['ipAddress'] = '0.0.0.0';
+		if (!array_key_exists('userName',  $logEntry)) $logEntry['userName']  = 'Anonymous';
+		if ($logEntry['userName'] == '') $logEntry['userName']  = 'Anonymous';
 		
 		$ipAddress = $logEntry['ipAddress'];
 		
