@@ -55,7 +55,56 @@
 			type
 			name
 			
+		event{SlotUpdate}  
+			icon{/esoui/art/icons/crafting_flower_wormwood_r1.dds}
+			slot{50}
+			bag{1}
+			qnt{13}
+			craftType{31}
+			quality{2}
+			locked{false}
+			trait{0}
+			equipType{0}
+			itemStyle{0}
+			itemLink{|H2DC50E:item:30159:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}
+			type{31}
+			value{2}
+			
+		event{LootGained}
+			itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}
+			lootType{1}
+			qnt{1}
+			lastTarget{Wormwood}    
+
 	Items:
+		id
+		link
+		name
+		style
+		value
+		level
+		icon
+		type
+		equipType
+		craftType
+		trait
+		style
+		quality
+		color
+		
+		
+	Enchantment:
+		id
+		type
+		description
+	
+	Base Item:
+		id
+		type
+		equipType
+		craftType
+		trait
+		style?
 
  */
 
@@ -120,6 +169,24 @@ class EsoLogParser
 			'collectionIndex' => self::FIELD_INT,
 			'bookIndex' => self::FIELD_INT,
 			'guildIndex' => self::FIELD_INT,
+	);
+	
+	public static $ITEM_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'link' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'color' => self::FIELD_STRING,
+			'style' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'locked' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'equipType' => self::FIELD_INT,
+			'craftType' => self::FIELD_INT,
+			'value' => self::FIELD_INT,
+			'level' => self::FIELD_INT,
 	);
 	
 	public static $LOCATION_FIELDS = array(
@@ -505,6 +572,29 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create chest table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS item (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						link TINYTEXT NOT NULL,
+						name TINYTEXT NOT NULL,
+						icon TINYTEXT NOT NULL,
+						color TINYTEXT NOT NULL,
+						style TINYINT NOT NULL,
+						trait TINYINT NOT NULL,
+						quality TINYINT NOT NULL,
+						locked TINYINT NOT NULL,
+						type TINYINT NOT NULL,
+						equipType TINYINT NOT NULL,
+						craftType TINYINT NOT NULL,
+						value INTEGER NOT NULL,
+						level TINYINT NOT NULL,
+						PRIMARY KEY (id),
+						INDEX index_link (link(64))
+					);";
+		
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create item table!");
+		
 		return true;
 	}
 	
@@ -828,15 +918,113 @@ class EsoLogParser
 	}
 	
 	
-	public function OnLootGainedEntry($logEntry)
+	public function OnLootGainedEntry ($logEntry)
 	{
+		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
+		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
 		return true;
 	}
 	
 	
-	public function OnSlotUpdateEntry($logEntry)
+	public function ParseItemLink ($itemLink)
 	{
-		return true;
+		$matches = array();
+		
+		$result = preg_match('/\|H([A-Za-z0-9]*)\:item\:([0-9]*)\:([0-9]*)\:(.*?)\|h([a-zA-Z0-9 _\']*)(.*?)\|h/', $itemLink, $matches);
+		
+		if ($result == 0) 
+		{
+			$this->ReportLogParseError("Error parsing item link '$itemLink'!");
+			return $matches;
+		}
+		
+		$result = array();
+		
+		$result['color'] = $matches[1];
+		$result['id'] = $matches[2];
+		$result['level'] = $matches[3];
+		$result['data'] = $matches[4];
+		$result['name'] = $matches[5];
+		$result['namecode'] = $matches[6] == null ? '' : $matches[6];
+		
+		return $result;
+	}
+	
+	
+	public function OnSlotUpdateEntry ($logEntry)
+	{
+		//event{SlotUpdate}  icon{/esoui/art/icons/crafting_flower_wormwood_r1.dds}  slot{50}  bag{1}  qnt{13}  craftType{31}  quality{2}
+		//locked{false}  trait{0}  equipType{0}  itemStyle{0}  itemLink{|H2DC50E:item:30159:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}
+		//type{31}  value{2}  userName{Reorx}  end{}
+		
+		$itemData = $this->ParseItemLink($logEntry['itemLink']);
+		
+		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
+		if ($itemRecord != null) return true;
+		
+		$itemRecord = $this->createNewRecord(self::$ITEM_FIELDS);
+		
+		$itemRecord['link'] = $logEntry['itemLink'];
+		$itemRecord['name'] = $itemData['name'];
+		$itemRecord['icon'] = $itemData['icon'];
+		$itemRecord['level'] = $itemData['level'];
+		$itemRecord['color'] = $itemData['color'];
+		$itemRecord['craftType'] = $logEntry['craftType'];
+		$itemRecord['type'] = $logEntry['type'];
+		$itemRecord['equipType'] = $logEntry['equipType'];
+		$itemRecord['trait'] = $logEntry['trait'];
+		$itemRecord['style'] = $logEntry['itemStyle'];
+		$itemRecord['value'] = $logEntry['value'];
+		$itemRecord['quality'] = $logEntry['quality'];
+		$itemRecord['locked'] = $logEntry['locked'];
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->saveRecord('item', $itemRecord, 'id', self::$ITEM_FIELDS);
+		
+		return $result;
+	}
+	
+	public function FindItemLink ($itemLink)
+	{
+		$safeLink = $this->db->real_escape_string($itemLink);
+		$query = "SELECT * FROM item WHERE link='$safeLink';";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve item!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$ITEM_FIELDS);
+	}
+	
+	
+	public function FindItemID ($id)
+	{
+		$safeID = $this->db->real_escape_string($id);
+		$query = "SELECT * FROM item WHERE id=$safeID;";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve item!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$ITEM_FIELDS);
 	}
 	
 	
@@ -848,9 +1036,10 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		
 		$result = $this->db->query($query);
+		
 		if ($result === false)
 		{
-			$this->reportError("Failed to retrieve locations!");
+			$this->reportError("Failed to retrieve location!");
 			return null;
 		}
 		
@@ -1385,6 +1574,17 @@ class EsoLogParser
 		return TRUE;
 	}
 	
+	public function testItemLink()
+	{
+		$item1 = "|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h";
+		$item2 = "|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood^p|h";
+		$item3 = "|HFFFFFF:item:33767:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hshornhelm grains^p|h";
+		//$this->ParseItemLink($item1);
+		//$this->ParseItemLink($item2);
+		$this->ParseItemLink($item3);
+		return true;
+	}
+	
 	
 	public function readIndexFile()
 	{
@@ -1471,7 +1671,7 @@ class EsoLogParser
 	
 	
 $g_EsoLogParser = new EsoLogParser();
-//$g_EsoLogParser->testParse();
+//$g_EsoLogParser->testItemLink();
 $g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
 $g_EsoLogParser->saveData();
 $g_EsoLogParser->DumpSkillInfo();
