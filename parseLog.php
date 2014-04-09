@@ -35,6 +35,25 @@
 	8 , 4, Enchanting
 	8 , 5, Provisioning
 	8 , 6, Woodworking
+	
+	Locations
+		Book = Bookid
+		Skyshard
+		Chest / Heavy Sack
+		Resource Node
+		NPC = id
+		Crafting Station
+		Fishing Hole
+		Item = id
+		Quest = id
+		
+		Fields
+			bookId
+			npcId
+			itemId
+			questId
+			type
+			name
 
  */
 
@@ -74,13 +93,7 @@ class EsoLogParser
 	public $currentUser = null;
 	public $currentIpAddress = null;
 	
-	//public $lastBookRecord = null;
-	//public $lastBookLogEntry = null;
-	
 	public $skillInfo = array();
-		//index
-		//type
-		//name
 	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
@@ -107,10 +120,15 @@ class EsoLogParser
 			'guildIndex' => self::FIELD_INT,
 	);
 	
-	public static $BOOKLOCATION_FIELDS = array(
+	public static $LOCATION_FIELDS = array(
 			'id' => self::FIELD_INT,
-			'bookId' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
+			'bookId' => self::FIELD_INT,
+			'npcId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
+			'itemId' => self::FIELD_INT,
+			'type' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
 			'x' => self::FIELD_INT,
 			'y' => self::FIELD_INT,
 			'rawX' => self::FIELD_FLOAT,
@@ -440,21 +458,30 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create book table!");
 		
-		$query = "CREATE TABLE IF NOT EXISTS bookLocation (
+		$query = "CREATE TABLE IF NOT EXISTS location (
 						id BIGINT NOT NULL AUTO_INCREMENT,
 						logId BIGINT NOT NULL,
+						npcId BIGINT NOT NULL,
+						questId BIGINT NOT NULL,
+						itemId BIGINT NOT NULL,
 						bookId BIGINT NOT NULL,
+						type TINYTEXT NOT NULL,
+						name TINYTEXT NOT NULL,
 						x INTEGER NOT NULL,
 						y INTEGER NOT NULL,
 						rawX FLOAT NOT NULL,
 						rawY FLOAT NOT NULL,
 						zone TINYTEXT NOT NULL,
 						PRIMARY KEY (id),
-						INDEX find_bookloc (bookId, zone(64), x, y)
+						INDEX find_loc (zone(64), x, y),
+						INDEX find_bookloc (bookId, zone(64), x, y),
+						INDEX find_npcloc (npcId, zone(64), x, y),
+						INDEX find_itemloc (itemId, zone(64), x, y),
+						INDEX find_questloc (questId, zone(64), x, y)
 					);";
 		
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create bookLocation table!");
+		if ($result === FALSE) return $this->reportError("Failed to create location table!");
 		
 		return true;
 	}
@@ -794,7 +821,7 @@ class EsoLogParser
 	public function FindBookLocation ($x, $y, $zone, $bookId)
 	{
 		$safeZone = $this->db->real_escape_string($zone);
-		$query = "SELECT * FROM bookLocation WHERE bookId=$bookId AND zone='$safeZone' AND x=$x AND y=$y;";
+		$query = "SELECT * FROM location WHERE bookId=$bookId AND zone='$safeZone' AND x=$x AND y=$y;";
 		$this->lastQuery = $query;
 		
 		$result = $this->db->query($query);
@@ -815,7 +842,7 @@ class EsoLogParser
 		
 		if ($this->FindBookLocation($x, $y, $zone, $id)) return true;
 		
-		$bookLocRecord = $this->createNewRecord(self::$BOOKLOCATION_FIELDS);
+		$bookLocRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
 		
 		$bookLocRecord['x'] = $x;
 		$bookLocRecord['y'] = $y; 
@@ -823,11 +850,13 @@ class EsoLogParser
 		$bookLocRecord['rawY'] = $logEntry['y'];
 		$bookLocRecord['zone'] = $zone;
 		$bookLocRecord['bookId'] = $id;
+		$bookLocRecord['type'] = "book";
+		$bookLocRecord['name'] = $bookRecord['title'];
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
 		
-		return $this->saveRecord('bookLocation', $bookLocRecord, 'id', self::$BOOKLOCATION_FIELDS);
+		return $this->saveRecord('location', $bookLocRecord, 'id', self::$LOCATION_FIELDS);
 	}
 	
 	

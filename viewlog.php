@@ -38,6 +38,7 @@ class EsoLogViewer
 	const FIELD_INTBOOLEAN = 6;
 	const FIELD_LARGESTRING = 7;
 	const FIELD_INTTRANSFORM = 8;
+	const FIELD_INTID = 9;
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -45,8 +46,8 @@ class EsoLogViewer
 	);
 	
 	public static $BOOK_FIELDS = array(
-			'id' => self::FIELD_INT,
-			'logId' => self::FIELD_INT,
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
 			'title' => self::FIELD_STRING,
 			'body' => self::FIELD_LARGESTRING,
 			'icon' => self::FIELD_STRING,
@@ -59,12 +60,15 @@ class EsoLogViewer
 			'guildIndex' => self::FIELD_INTPOSITIVE,
 	);
 	
-	public static $BOOKLOCATION_FIELDS = array(
-			'id' => self::FIELD_INT,
-			'bookId' => self::FIELD_INT,
-			'title' => self::FIELD_STRING,		//Foreign join
-			'isLore' => self::FIELD_INTBOOLEAN,	//Foreign join
-			'logId' => self::FIELD_INT,
+	public static $LOCATION_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'bookId' => self::FIELD_INTID,
+			'npcId' => self::FIELD_INTID,
+			'questId' => self::FIELD_INTID,
+			'itemId' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'type' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
 			'rawX' => self::FIELD_FLOAT,
@@ -89,7 +93,7 @@ class EsoLogViewer
 					
 					'filters' => array(
 							array(
-								'record' => 'bookLoc',
+								'record' => 'location',
 								'field' => 'bookId',
 								'thisField' => 'id',
 								'displayName' => 'View Locations',
@@ -100,12 +104,12 @@ class EsoLogViewer
 					//'fields' => self::$BOOK_FIELDS,
 			),
 			
-			'bookLoc' => array (
-					'displayName' => 'Book Locations',
-					'displayNameSingle' => 'Book Location',
-					'record' => 'bookLoc',
-					'table' => 'bookLocation',
-					'method' => 'DoBookLocation',
+			'location' => array (
+					'displayName' => 'Locations',
+					'displayNameSingle' => 'Location',
+					'record' => 'location',
+					'table' => 'location',
+					'method' => 'DoLocation',
 					'sort' => 'zone',
 					
 					'join' => array(
@@ -134,7 +138,7 @@ class EsoLogViewer
 							),
 					),
 					
-					//'fields' => self::$BOOKLOCATION_FIELDS,
+					//'fields' => self::$LOCATION_FIELDS,
 			),
 	);
 	
@@ -144,7 +148,7 @@ class EsoLogViewer
 	{
 			// TODO: Static initialization?
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
-		self::$RECORD_TYPES['bookLoc']['fields'] = self::$BOOKLOCATION_FIELDS;
+		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
 		
 		$this->InitDatabase();
 		$this->setInputParams();
@@ -399,6 +403,8 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function CreateFilterLink ($record, $filter, $id, $link)
 	{	
+		if ($id == '' || $id <= 0) return "";
+		
 		$output = "<a href='?record={$record}&filter=$filter&filterid=$id'>$link</a>";
 		
 		return $output;
@@ -511,6 +517,9 @@ If you do not understand what this information means, or how to use this webpage
 			case self::FIELD_INTPOSITIVE:
 				if ((int) $value >= 0) $output = $value;
 				break;
+			case self::FIELD_INTID:
+				if ((int) $value > 0) $output = $value;
+				break;
 			case self::FIELD_INTTRANSFORM:
 				$output = $this->TransformRecordValue($recordInfo, $field, $value);
 				break;
@@ -585,6 +594,8 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function GetViewRecordLink ($record, $id, $link)
 	{
+		if ($id == '' || $id <= 0) return "";
+		
 		$link = "<a class='elvRecordLink' href='?action=view&record=$record&id=$id'>$link</a>";
 		
 		return $link;
@@ -666,7 +677,7 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function DoBookLocation ($recordInfo)
+	public function DoLocation ($recordInfo)
 	{
 		$this->OutputRecordHeader($recordInfo);
 		$this->PrintRecords($recordInfo);
