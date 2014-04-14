@@ -388,10 +388,13 @@ class EsoLogParser
 			
 			if (!$isFirst) $query .= ', ';
 			
-			if ($value == self::FIELD_INT)
-				$query .= "{$key}={$record[$key]}";
-			elseif ($value == self::FIELD_FLOAT)
-				$query .= "{$key}={$record[$key]}";
+			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
+			{
+				if ($record[$key] == null || $record[$key] === '' )
+					$query .= "{$key}=-1";
+				else
+					$query .= "{$key}={$record[$key]}";
+			}
 			elseif ($value == self::FIELD_STRING)
 				$query .= "{$key}='". $this->db->real_escape_string($record[$key]) ."'";
 			else
@@ -461,10 +464,13 @@ class EsoLogParser
 			
 			$columns .= $key;
 				
-			if ($value == self::FIELD_INT)
-				$values .= $record[$key];
-			elseif ($value == self::FIELD_FLOAT)
-				$values .= $record[$key];
+			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
+			{
+				if ($record[$key] == null || $record[$key] === '' )
+					$values .= '-1';
+				else
+					$values .= $record[$key];
+			}
 			elseif ($value == self::FIELD_STRING)
 				$values .= "'". $this->db->real_escape_string($record[$key]) ."'";
 			else
@@ -1358,7 +1364,7 @@ class EsoLogParser
 		$safeZone = $this->db->real_escape_string($zone);
 		$safeType = $this->db->real_escape_string($type);
 		$x = $this->ConvertPos($rawX);
-		$y = $this->ConvertPos($rawX);
+		$y = $this->ConvertPos($rawY);
 		$extraWhere = "";
 		
 		if ($extraIds != null)
@@ -1385,6 +1391,7 @@ class EsoLogParser
 			return null;
 		}
 		
+		//$this->reportError("query({$result->num_rows}): $query");
 		if ($result->num_rows == 0) return null;
 		
 		$row = $result->fetch_assoc();
@@ -1396,18 +1403,14 @@ class EsoLogParser
 	
 	public function CheckLocation ($type, $name, $logEntry, $extraIds = null)
 	{
-		if ($this->IncrementLocationCounter($type, $name, $logEntry)) return true;
+		if ($this->IncrementLocationCounter($type, $name, $logEntry, $extraIds)) return true;
 		return $this->CreateLocation($type, $name, $logEntry, $extraIds) != null;
 	}
 	
 	
 	public function IncrementLocationCounter ($type, $name, $logEntry, $extraIds = null)
 	{
-		$x = $this->ConvertPos($logEntry['x']);
-		$y = $this->ConvertPos($logEntry['y']);
-		$zone = $logEntry['zone'];
-		
-		$locationRecord = $this->FindLocation($type, $x, $y, $zone, $extraIds);
+		$locationRecord = $this->FindLocation($type, $logEntry['x'], $logEntry['y'], $logEntry['zone'], $extraIds);
 		if ($locationRecord == null) return false;
 		
 		++$locationRecord['count'];
@@ -1469,7 +1472,7 @@ class EsoLogParser
 	public function CheckBookLocation ($logEntry, $bookRecord)
 	{
 		$extraIds = array('bookId' => $bookRecord['id']);
-		return $this->CheckLocation ("book", $bookRecord['title'], $logEntry, $extraIds);
+		return $this->CheckLocation("book", $bookRecord['title'], $logEntry, $extraIds);
 	}
 	
 	
@@ -1772,7 +1775,9 @@ class EsoLogParser
 		
 		if (!array_key_exists('ipAddress', $resultData))
 		{
-			$this->reportLogParseError("Missing IP address! Ignoring possibly corrupt data!");
+			$event = $resultData['event'];
+			if ($event == null) $event = 'NULL';
+			$this->reportLogParseError("Missing IP address for event '$event'! Ignoring possibly corrupt data!");
 			return null;
 		}
 		
@@ -1982,6 +1987,7 @@ class EsoLogParser
 	
 	public function reportLogParseError ($errorMsg)
 	{
+		//$this->reportError("{$this->currentParseFile}:{$this->currentParseLine}: {$errorMsg}");
 		$this->reportError("{$this->currentParseLine}: {$errorMsg}");
 		return false;
 	}
