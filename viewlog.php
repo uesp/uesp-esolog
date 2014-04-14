@@ -99,8 +99,35 @@ class EsoLogViewer
 			'bookId' => self::FIELD_INTID,
 			'npcId' => self::FIELD_INTID,
 			'questId' => self::FIELD_INTID,
+			'questStageId' => self::FIELD_INTID,
 			'itemId' => self::FIELD_INTID,
 			'logId' => self::FIELD_INTID,
+	);
+	
+	public static $QUEST_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'locationId' => self::FIELD_INTID,
+			'zone' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'objective' => self::FIELD_STRING,
+	);
+	
+	public static $QUESTSTAGE_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'questId' => self::FIELD_INTID,
+			'locationId' => self::FIELD_INTID,
+			'zone' => self::FIELD_STRING,
+			'objective' => self::FIELD_STRING,
+			'overrideText' => self::FIELD_STRING,
+			'orderIndex' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'counter' => self::FIELD_INT,
+			'isFail' => self::FIELD_INTBOOLEAN,
+			'isPushed' => self::FIELD_INTBOOLEAN,
+			'isHidden' => self::FIELD_INTBOOLEAN,
+			'isComplete' => self::FIELD_INTBOOLEAN,
 	);
 	
 	
@@ -124,7 +151,7 @@ class EsoLogViewer
 								'field' => 'bookId',
 								'thisField' => 'id',
 								'displayName' => 'View Locations',
-								'type' => 'fiter',
+								'type' => 'filter',
 							),
 					),
 			),
@@ -192,6 +219,87 @@ class EsoLogViewer
 									'displayName' => 'View Book',
 									'type' => 'viewRecord',
 							),
+							array(
+									'record' => 'quest',
+									'field' => 'id',
+									'thisField' => 'questId',
+									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'queststage',
+									'field' => 'id',
+									'thisField' => 'questStageId',
+									'displayName' => 'View Quest Stage',
+									'type' => 'viewRecord',
+							),
+					),
+			),
+			
+			'quest' => array(
+					'displayName' => 'Quests',
+					'displayNameSingle' => 'Quest',
+					'record' => 'quest',
+					'table' => 'quest',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+						
+					'transform' => array(
+					),
+					
+					'join' => array(
+							'locationId' => array(
+								'joinField' => 'id',
+								'table' => 'location',
+								'fields' => array('zone'),
+							),
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'queststage',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Stages',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'location',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Locations',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'queststage' => array(
+					'displayName' => 'Quest Stages',
+					'displayNameSingle' => 'Quest Stage',
+					'record' => 'queststage',
+					'table' => 'questStage',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'questId',
+					
+					'transform' => array(
+					),
+					
+					'join' => array(
+							'locationId' => array(
+									'joinField' => 'id',
+									'table' => 'location',
+									'fields' => array('zone'),
+							),
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'quest',
+									'field' => 'id',
+									'thisField' => 'questId',
+									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
 					),
 			),
 	);
@@ -205,6 +313,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
 		self::$RECORD_TYPES['item']['fields'] = self::$ITEM_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
+		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
+		self::$RECORD_TYPES['queststage']['fields'] = self::$QUESTSTAGE_FIELDS;
 		
 		$this->InitDatabase();
 		$this->setInputParams();
@@ -270,9 +380,9 @@ class EsoLogViewer
 				6 => "Weapon Training",
 				8 => "Weapon Weighted",
 		);
-	
+		
 		$key = (int) $value;
-	
+		
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
 	}
@@ -319,9 +429,9 @@ class EsoLogViewer
 				34 => "Imperial",
 				35 => "Yokudan",
 		);
-	
+		
 		$key = (int) $value;
-	
+		
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
 	}
@@ -338,9 +448,9 @@ class EsoLogViewer
 				4 => "Epic",
 				5 => "Legendary",
 		);
-	
+		
 		$key = (int) $value;
-	
+		
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
 	}
@@ -677,7 +787,7 @@ If you do not understand what this information means, or how to use this webpage
 	{	
 		if ($id == '' || $id <= 0) return "";
 		
-		$output = "<a href='?record={$record}&filter=$filter&filterid=$id'>$link</a>";
+		$output = "<a class='elvFilterLink' href='?record={$record}&filter=$filter&filterid=$id'>$link</a>";
 		
 		return $output;
 	}
@@ -692,11 +802,11 @@ If you do not understand what this information means, or how to use this webpage
 		foreach ($recordInfo['filters'] as $key => $value)
 		{
 			if ($value['type'] == 'filter')
-				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " &nbsp; ";
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 			elseif ($value['type'] == 'viewRecord')
-				$output .= $this->GetViewRecordLink($value['record'], $recordData[$value['thisField']], $value['displayName']) . " &nbsp; ";
+				$output .= $this->GetViewRecordLink($value['record'], $recordData[$value['thisField']], $value['displayName']);
 			else
-				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " &nbsp; ";
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 		}
 		
 		return $output;
@@ -997,6 +1107,7 @@ If you do not understand what this information means, or how to use this webpage
 		}
 		
 		$output .= "</table>\n";
+		$output .= $this->CreateFilterLinks($recordInfo, $row) . "<br />";
 		
 		print($output);
 		return true;

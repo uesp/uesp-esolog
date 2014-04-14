@@ -28,3 +28,11 @@ body {
 .elvRecordTypeList li {
 	padding: 3px;
 }
+
+.elvFilterLink {
+	padding-right: 8px;
+}
+
+.elvRecordLink {
+	padding-right: 8px;
+}

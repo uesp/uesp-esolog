@@ -105,7 +105,29 @@
 		craftType
 		trait
 		style?
-
+	
+	quest
+		id
+		logId
+		locationId
+		name
+		objective
+		
+	questStage
+		id
+		logId
+		questId
+		locationId
+		objective
+		overrideText
+		index
+		type
+		counter
+		isHidden
+		isFail
+		isPushed
+		isComplete
+		
  */
 
 	// Database users, passwords and other secrets
@@ -196,6 +218,7 @@ class EsoLogParser
 			'bookId' => self::FIELD_INT,
 			'npcId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
+			'questStageId' => self::FIELD_INT,
 			'itemId' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
@@ -205,6 +228,30 @@ class EsoLogParser
 			'rawX' => self::FIELD_FLOAT,
 			'rawY' => self::FIELD_FLOAT,
 			'zone' => self::FIELD_STRING,
+	);
+	
+	public static $QUEST_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'locationId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'objective' => self::FIELD_STRING,
+	);
+	
+	public static $QUESTSTAGE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
+			'locationId' => self::FIELD_INT,
+			'objective' => self::FIELD_STRING,
+			'overrideText' => self::FIELD_STRING,
+			'orderIndex' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'counter' => self::FIELD_INT,
+			'isFail' => self::FIELD_INT,
+			'isPushed' => self::FIELD_INT,
+			'isHidden' => self::FIELD_INT,
+			'isComplete' => self::FIELD_INT,
 	);
 	
 	public static $CHEST_FIELDS = array(
@@ -452,7 +499,7 @@ class EsoLogParser
 	}
 	
 	
-	public function loadBook ($bookTitle)
+	public function LoadBook ($bookTitle)
 	{
 		$book = $this->loadRecord('book', 'title', $bookTitle, self::$BOOK_FIELDS);
 		if ($book === false) return false;
@@ -461,9 +508,39 @@ class EsoLogParser
 	}
 	
 	
-	public function saveBook (&$book)
+	public function SaveBook (&$record)
 	{
-		return $this->saveRecord('book', $book, 'id', self::$BOOK_FIELDS);
+		return $this->saveRecord('book', $record, 'id', self::$BOOK_FIELDS);
+	}
+	
+	
+	public function SaveQuest (&$record)
+	{
+		return $this->saveRecord('quest', $record, 'id', self::$QUEST_FIELDS);
+	}
+	
+	
+	public function SaveItem (&$record)
+	{
+		return $this->saveRecord('item', $record, 'id', self::$ITEM_FIELDS);
+	}
+	
+	
+	public function SaveQuestStage (&$record)
+	{
+		return $this->saveRecord('questStage', $record, 'id', self::$QUESTSTAGE_FIELDS);
+	}
+	
+	
+	public function SaveLocation (&$record)
+	{
+		return $this->saveRecord('location', $record, 'id', self::$LOCATION_FIELDS);
+	}
+	
+	
+	public function SaveChest (&$record)
+	{
+		return $this->saveRecord('chest', $record, 'id', self::$CHEST_FIELDS);
 	}
 	
 	
@@ -492,6 +569,7 @@ class EsoLogParser
 						INDEX unique_entry (gameTime, timeStamp, entryHash)
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create logEntry table!");
 		
@@ -505,6 +583,7 @@ class EsoLogParser
 						PRIMARY KEY (name(64))
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create user table!");
 		
@@ -514,6 +593,7 @@ class EsoLogParser
 						PRIMARY KEY (ipaddress(64))
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ipAddress table!");
 		
@@ -533,6 +613,7 @@ class EsoLogParser
 						PRIMARY KEY (id)
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create book table!");
 		
@@ -541,25 +622,28 @@ class EsoLogParser
 						logId BIGINT NOT NULL,
 						npcId BIGINT NOT NULL,
 						questId BIGINT NOT NULL,
+						questStageId BIGINT NOT NULL,
 						itemId BIGINT NOT NULL,
 						bookId BIGINT NOT NULL,
 						type TINYTEXT NOT NULL,
 						name TINYTEXT NOT NULL,
 						count INTEGER NOT NULL,
+						zone TINYTEXT NOT NULL,
 						x INTEGER NOT NULL,
 						y INTEGER NOT NULL,
 						rawX FLOAT NOT NULL,
 						rawY FLOAT NOT NULL,
-						zone TINYTEXT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX find_loc (zone(64), x, y),
 						INDEX find_loctype (type(32), zone(64), x, y),
 						INDEX find_bookloc (bookId, zone(64), x, y),
 						INDEX find_npcloc (npcId, zone(64), x, y),
 						INDEX find_itemloc (itemId, zone(64), x, y),
-						INDEX find_questloc (questId, zone(64), x, y)
+						INDEX find_questloc (questId, zone(64), x, y),
+						INDEX find_queststageloc (questStageId, zone(64), x, y)
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create location table!");
 		
@@ -571,6 +655,7 @@ class EsoLogParser
 						PRIMARY KEY (id)
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create chest table!");
 		
@@ -594,8 +679,44 @@ class EsoLogParser
 						INDEX index_link (link(64))
 					);";
 		
+		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create item table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS quest (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						locationId BIGINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						objective TINYTEXT NOT NULL,
+						PRIMARY KEY (id)
+					);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create quest table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS questStage (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						questId BIGINT NOT NULL,
+						locationId BIGINT NOT NULL,
+						objective TINYTEXT NOT NULL,
+						overrideText TINYTEXT NOT NULL,
+						orderIndex INTEGER NOT NULL,
+						type INTEGER NOT NULL,
+						counter INTEGER NOT NULL,
+						isHidden TINYINT NOT NULL,
+						isPushed TINYINT NOT NULL,
+						isFail TINYINT NOT NULL,
+						isComplete TINYINT NOT NULL,
+						PRIMARY KEY (id),
+						INDEX index_quest (questId)
+					);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create questStage table!");
 		
 		return true;
 	}
@@ -954,6 +1075,133 @@ class EsoLogParser
 	}
 	
 	
+	public function CreateQuest ($name, $objective, $logEntry)
+	{
+		$questRecord = $this->createNewRecord(self::$QUEST_FIELDS);
+		
+		$questRecord['name'] = $name;
+		$questRecord['objective'] = $objective;
+		$questRecord['locationId'] = -1;
+		$questRecord['__isNew'] = true;
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveQuest($questRecord);
+		if (!$result) return null;
+		
+		$questLocation = $this->CreateLocation("quest", $name, $logEntry, array('questId' => $questRecord['id']));
+		$result = $this->SaveLocation($questLocation);
+		if (!$result) return null;
+		
+		$questRecord['locationId'] = $questLocation['id'];
+		$result = $this->SaveQuest($questRecord);
+		if (!$result) return null;
+		
+		return $questRecord;
+	}
+	
+	
+	public function CreateQuestStage ($questRecord, $logEntry)
+	{
+		$questStageRecord = $this->createNewRecord(self::$QUESTSTAGE_FIELDS);
+		
+		$questStageRecord['questId'] = $questRecord['id'];
+		$questStageRecord['type'] = $logEntry['condType'];
+		$questStageRecord['counter'] = $logEntry['condMaxVal'];
+		$questStageRecord['orderIndex'] = -1;
+		$questStageRecord['objective'] = $logEntry['condition'];
+		$questStageRecord['overrideText'] = $logEntry['overrideText'];
+		$questStageRecord['isHidden'] = ($logEntry['isHidden'] === 'true') ? 1 : 0;
+		$questStageRecord['isFail'] = ($logEntry['isFail'] === 'true') ? 1 : 0;
+		$questStageRecord['isPushed'] = ($logEntry['isPushed'] === 'true') ? 1 : 0;
+		$questStageRecord['isComplete'] = ($logEntry['isComplete'] === 'true') ? 1 : 0;
+		$questStageRecord['locationId'] = -1;
+		$questStageRecord['__isNew'] = true;
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveQuestStage($questStageRecord);
+		if (!$result) return null;
+	
+		$questLocation = $this->CreateLocation("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
+		$result = $this->SaveLocation($questLocation);
+		if (!$result) return null;
+	
+		$questStageRecord['locationId'] = $questLocation['id'];
+		$result = $this->SaveQuestStage($questStageRecord);
+		if (!$result) return null;
+	
+		return $questStageRecord;
+	}
+	
+	
+	public function OnQuestAdded ($logEntry)
+	{
+		//event{QuestAdded}  quest{A Brush With Death}  objective{}  
+		//y{0.64464473724365}  zone{Mines of Khuras}  x{0.25603923201561}
+		//gameTime{2450267}  timeStamp{4743643875908780032}  userName{...}  ipAddress{...}  logTime{1396487058}  end{}
+		
+		$questRecord = $this->FindQuest($logEntry['quest']);
+		
+		if ($questRecord == null)
+		{
+			$questRecord = $this->CreateQuest($logEntry['quest'], $logEntry['objective'], $logEntry);
+			if ($questRecord == null) return false;
+		}
+		
+		return true;
+	}
+	
+	
+	public function OnQuestChanged ($logEntry)
+	{
+		//event{QuestChanged}  overrideText{Talk to Grahla}  quest{The Nameless Soldier}  isHidden{false}  isFail{false}  isPushed{false}
+		//isCondComplete{true}  isComplete{true} condition{Find Alana}  condType{9}  condVal{1}  condMaxVal{1}
+		//y{0.48894619941711}  zone{Glenumbra}  x{0.51565104722977}  
+		//timeStamp{4743643893159952384}  gameTime{456809}  userName{...}  ipAddress{...}  logTime{1396487061}  end{}
+		
+		$questRecord = $this->FindQuest($logEntry['quest']);
+		
+		if ($questRecord == null)
+		{
+			$questRecord = $this->CreateQuest($logEntry['quest'], $logEntry['objective'], $logEntry);
+			if ($questRecord == null) return false;
+		}
+		
+		$questId = $questRecord['id'];
+		
+		$questStageRecord = $this->FindQuestStage($questId, $logEntry['condition']);
+		if ($questStageRecord != null) return true;
+		
+		$questStageRecord = $this->CreateQuestStage($questRecord, $logEntry);
+		if ($questStageRecord == null) return false;
+		
+		return true;
+	}
+	
+	
+	public function OnQuestAdvanced ($logEntry)
+	{
+		//event{QuestAdvanced}  isPushed{false}  quest{The Nameless Soldier}  isComplete{true}  mainStepChanged{true}  
+		//y{0.48894619941711}  zone{Glenumbra}  x{0.51565104722977}  timeStamp{4743643893159952384}  gameTime{456839} 
+		//userName{...}  ipAddress{...}  logTime{1396487061}  end{}
+		
+		return true;
+	}
+	
+	
+	public function OnQuestRemoved ($logEntry)
+	{
+		//event{QuestRemoved}  completed{true}  poiIndex{12}  quest{The White Mask of Merien}  zoneIndex{2}
+		//y{0.31489595770836}  zone{Glenumbra}  x{0.43005546927452}  timeStamp{4743643932582215680}
+		//gameTime{7603682}  userName{...}  ipAddress{...}  logTime{1396487065}  end{}
+		  
+		return true;
+	}
+	
+	
 	public function OnInvDumpStart ($logEntry)
 	{
 		//event{InvDumpStart}  timeStamp{4743646532660625408}  gameTime{75447364}  userName{Reorx}  end{}
@@ -1007,7 +1255,7 @@ class EsoLogParser
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
 		
-		$result = $this->saveRecord('item', $itemRecord, 'id', self::$ITEM_FIELDS);
+		$result = $this->saveItem($itemRecord);
 		
 		return $result;
 	}
@@ -1055,11 +1303,78 @@ class EsoLogParser
 	}
 	
 	
-	public function FindLocation ($type, $x, $y, $zone)
+	public function FindQuest ($name)
+	{
+		$safeName = $this->db->real_escape_string($name);
+		$query = "SELECT * FROM quest WHERE name='$safeName';";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve quest!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$QUEST_FIELDS);
+	}
+	
+	
+	public function FindQuestStage ($questId, $objective)
+	{
+		$safeObj = $this->db->real_escape_string($objective);
+		$safeId = (int) $questId;
+		$query = "SELECT * FROM questStage WHERE questId=$safeId AND objective='$safeObj';";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve quest stage!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$QUESTSTAGE_FIELDS);
+	}
+	
+	
+	public function ConvertPos ($rawPos)
+	{
+		if ($rawPos == null || $rawPos == '') return 0;
+		return (int) ($rawPos * self::ELP_POSITION_FACTOR);
+	}
+	
+	
+	public function FindLocation ($type, $rawX, $rawY, $zone, $extraIds = null)
 	{
 		$safeZone = $this->db->real_escape_string($zone);
 		$safeType = $this->db->real_escape_string($type);
-		$query = "SELECT * FROM location WHERE type='$safeType' AND zone='$safeZone' AND x=$x AND y=$y;";
+		$x = $this->ConvertPos($rawX);
+		$y = $this->ConvertPos($rawX);
+		$extraWhere = "";
+		
+		if ($extraIds != null)
+		{
+			$extras = array();
+			if (array_key_exists('bookId',  $extraIds)) $extras[] = "bookId=" . $extraIds['bookId'];
+			if (array_key_exists('npcId',   $extraIds))  $extras[] = "npcId=" . $extraIds['npcId'];
+			if (array_key_exists('questId', $extraIds))  $extras[] = "questId=" . $extraIds['questId'];
+			if (array_key_exists('questStageId', $extraIds))  $extras[] = "questStageId=" . $extraIds['questStageId'];
+			if (array_key_exists('itemId',  $extraIds))  $extras[] = "itemId=" . $extraIds['itemId'];
+			
+			$extraWhere = implode(" AND ", $extras);
+			if ($extraWhere != "") $extraWhere .= " AND ";
+		}
+		
+		$query = "SELECT * FROM location WHERE $extraWhere type='$safeType' AND zone='$safeZone' AND x=$x AND y=$y;";
 		$this->lastQuery = $query;
 		
 		$result = $this->db->query($query);
@@ -1081,46 +1396,60 @@ class EsoLogParser
 	
 	public function CheckLocation ($type, $name, $logEntry, $extraIds = null)
 	{
-		$x = (int) ($logEntry['x'] * self::ELP_POSITION_FACTOR);
-		$y = (int) ($logEntry['y'] * self::ELP_POSITION_FACTOR);
+		if ($this->IncrementLocationCounter($type, $name, $logEntry)) return true;
+		return $this->CreateLocation($type, $name, $logEntry, $extraIds) != null;
+	}
+	
+	
+	public function IncrementLocationCounter ($type, $name, $logEntry, $extraIds = null)
+	{
+		$x = $this->ConvertPos($logEntry['x']);
+		$y = $this->ConvertPos($logEntry['y']);
 		$zone = $logEntry['zone'];
 		
-		$locationRecord = $this->FindLocation($type, $x, $y, $zone);
+		$locationRecord = $this->FindLocation($type, $x, $y, $zone, $extraIds);
+		if ($locationRecord == null) return false;
 		
-		if ($locationRecord != null)
-		{
-			++$locationRecord['count'];
-			$result = $this->saveRecord('location', $locationRecord, 'id', self::$LOCATION_FIELDS);
-			
-			return $result;
-		}
+		++$locationRecord['count'];
+		$this->saveLocation($locationRecord);
 		
+		return true;
+	}
+	
+	
+	public function CreateLocation ($type, $name, $logEntry, $extraIds = null)
+	{
 		$locationRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
+		
+		$x = $this->ConvertPos($logEntry['x']);
+		$y = $this->ConvertPos($logEntry['y']);
 		
 		$locationRecord['x'] = $x;
 		$locationRecord['y'] = $y;
 		$locationRecord['rawX'] = $logEntry['x'];
 		$locationRecord['rawY'] = $logEntry['y'];
-		$locationRecord['zone'] = $zone;
+		$locationRecord['zone'] = $logEntry['zone'];
 		$locationRecord['count'] = 1;
 		$locationRecord['type'] = $type;
 		$locationRecord['name'] = $name;
+		$locationRecord['__isNew'] = true;
 		
 		if ($extraIds != null)
 		{
 			if (array_key_exists('bookId',  $extraIds)) $locationRecord['bookId']  = $extraIds['bookId'];
 			if (array_key_exists('npcId',   $extraIds)) $locationRecord['npcId']   = $extraIds['npcId'];
 			if (array_key_exists('questId', $extraIds)) $locationRecord['questId'] = $extraIds['questId'];
+			if (array_key_exists('questStageId', $extraIds)) $locationRecord['questStageId'] = $extraIds['questStageId'];
 			if (array_key_exists('itemId',  $extraIds)) $locationRecord['itemId']  = $$extraIds['itemId'];
 		}
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
 		
-		$result = $this->saveRecord('location', $locationRecord, 'id', self::$LOCATION_FIELDS);
+		$result = $this->saveLocation($locationRecord);
 		$this->currentUser['lastLocationRecordId'] = $locationRecord['id'];
 		
-		return $result;
+		return $locationRecord;
 	}
 	
 	
@@ -1147,7 +1476,7 @@ class EsoLogParser
 	public function OnShowBook ($logEntry)
 	{
 		//event{ShowBook}  medium{3}  body{...} bookTitle{Jornibret's Last Dance}  y{0.60519206523895}  x{0.689866065979}  zone{Daggerfall}
-		//gameTime{3748234}  timeStamp{4743642811914518528}  userName{Reorx}  ipAddress{72.39.63.156}  logTime{1396192529}  end{}
+		//gameTime{3748234}  timeStamp{4743642811914518528}  userName{...}  ipAddress{...}  logTime{1396192529}  end{}
 		
 		$bookTitle = $logEntry['bookTitle'];
 		//print("\tShowBook: $bookTitle\n");
@@ -1157,7 +1486,7 @@ class EsoLogParser
 		
 		if ($bookTitle == null) return $this->reportLogParseError("Missing book title!");
 		
-		$bookRecord = $this->loadBook($bookTitle);
+		$bookRecord = $this->LoadBook($bookTitle);
 		if ($bookRecord === false) return false;
 		
 		if ($bookRecord['__isNew'] === true)
@@ -1181,7 +1510,7 @@ class EsoLogParser
 			$this->currentUser['__dirty'] = true;
 		}
 		
-		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
+		if ($bookRecord['__dirty']) $result &= $this->SaveBook($bookRecord);
 		$result = $this->CheckBookLocation($logEntry, $bookRecord);
 		
 		$this->currentUser['lastBookRecord'] = $bookRecord;
@@ -1194,14 +1523,14 @@ class EsoLogParser
 	{
 		//event{LoreBook}  icon{/esoui/art/icons/icon_missing.dds}  guild{0}  collection{1}  known{true}  index{18}  category{2}
 		//bookTitle{A Clothier's Primer}  y{0.52298730611801}  x{0.5053853392601}  zone{Port Hunding}
-		//gameTime{11874643}  timeStamp{4743642846001627136}  userName{Reorx}  ipAddress{72.39.63.156}  logTime{1396193303}  end{}
+		//gameTime{11874643}  timeStamp{4743642846001627136}  userName{...}  ipAddress{...}  logTime{1396193303}  end{}
 		
 		$bookTitle = $logEntry['bookTitle'];
 		//print("\tLoreBook: $bookTitle\n");
 		
 		if ($bookTitle == null) return $this->reportLogParseError("Missing book title!");
 	
-		$bookRecord = $this->loadBook($bookTitle);
+		$bookRecord = $this->LoadBook($bookTitle);
 		if ($bookRecord === false) return false;
 		
 		if ($bookRecord['__isNew'] === true)
@@ -1219,7 +1548,7 @@ class EsoLogParser
 			$this->currentUser['__dirty'] = true;
 		}
 		
-		if ($bookRecord['__dirty']) $result &= $this->saveBook($bookRecord);
+		if ($bookRecord['__dirty']) $result &= $this->SaveBook($bookRecord);
 		$result = $this->CheckBookLocation($logEntry, $bookRecord);
 		
 		$this->currentUser['lastBookRecord'] = $bookRecord;
@@ -1250,7 +1579,7 @@ class EsoLogParser
 		{
 			//print("\t\tFound {$logEntry['name']} skill update for book {$lastBookRecord['title']}...\n");
 			$lastBookRecord['skill'] = $logEntry['name'];
-			$this->saveBook($lastBookRecord);
+			$this->SaveBook($lastBookRecord);
 		}
 		
 		return true;
@@ -1287,7 +1616,7 @@ class EsoLogParser
 			$chestRecord['locationId'] = (int) $locationId;
 			$chestRecord['quality'] = -1;
 			
-			$result &= $this->saveRecord('chest', $chestRecord, 'id', self::$CHEST_FIELDS);
+			$result &= $this->saveChest($chestRecord);
 			$this->currentUser['lastChestRecord'] = $chestRecord;
 		}
 		
@@ -1310,10 +1639,7 @@ class EsoLogParser
 		$chestRecord['locationId'] = (int) $locationId;
 		$chestRecord['quality'] = (int) $logEntry['quality'];
 		
-		//++$this->currentUser['newCount'];
-		//$this->currentUser['__dirty'] = true;
-		
-		$result = $this->saveRecord('chest', $chestRecord, 'id', self::$CHEST_FIELDS);
+		$result = $this->saveChest($chestRecord);
 		return $result;
 	}
 	
@@ -1389,10 +1715,10 @@ class EsoLogParser
 			case "ChatterBegin::Option":		$result = $this->OnNullEntry($logEntry); break;
 			case "ConversationUpdated":			$result = $this->OnNullEntry($logEntry); break;
 			case "ConversationUpdated::Option":	$result = $this->OnNullEntry($logEntry); break;
-			case "QuestAdded":					$result = $this->OnNullEntry($logEntry); break;
-			case "QuestChanged":				$result = $this->OnNullEntry($logEntry); break;
-			case "QuestAdvanced":				$result = $this->OnNullEntry($logEntry); break;
-			case "QuestRemoved":				$result = $this->OnNullEntry($logEntry); break;
+			case "QuestAdded":					$result = $this->OnQuestAdded($logEntry); break;
+			case "QuestChanged":				$result = $this->OnQuestChanged($logEntry); break;
+			case "QuestAdvanced":				$result = $this->OnQuestAdvanced($logEntry); break;
+			case "QuestRemoved":				$result = $this->OnQuestRemoved($logEntry); break;
 			case "QuestObjComplete":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestOptionalStep":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestCompleteExperience":		$result = $this->OnNullEntry($logEntry); break;
