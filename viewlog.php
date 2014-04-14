@@ -274,6 +274,7 @@ class EsoLogViewer
 			),
 			
 			'queststage' => array(
+					'message' => 'Note: Quest stages are not necessarily in the correct order yet.',
 					'displayName' => 'Quest Stages',
 					'displayNameSingle' => 'Quest Stage',
 					'record' => 'queststage',
@@ -684,6 +685,11 @@ If you do not understand what this information means, or how to use this webpage
 		
 		$displayName = $recordInfo['displayName'];
 		$output .= "<h1>ESO: Viewing $displayName</h1>\n";
+		
+		if ($recordInfo['message'] != null)
+		{
+			$output .= $recordInfo['message'] ."<p />\n";
+		}
 		
 		print($output);
 		return true;
