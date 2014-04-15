@@ -143,6 +143,26 @@ class EsoLogViewer
 			'difficulty' => self::FIELD_INT,
 	);
 	
+	public static $RECIPE_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'resultItemId' => self::FIELD_INTID,
+			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+	);
+	
+	public static $INGREDIENT_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'recipeId' => self::FIELD_INTID,
+			'recipeName' => self::FIELD_STRING,
+			'itemId' => self::FIELD_INTID,
+			'name' => self::FIELD_STRING,
+			'quantity' => self::FIELD_INT,
+	);
+	
 	public static $USER_FIELDS = array(
 			'name' => self::FIELD_STRING,
 			'entryCount' => self::FIELD_INT,
@@ -219,6 +239,13 @@ class EsoLogViewer
 					),
 						
 					'filters' => array(
+							array(
+									'record' => 'ingredient',
+									'field' => 'itemId',
+									'thisField' => 'id',
+									'displayName' => 'View Recipes',
+									'type' => 'filter',
+							),
 					),
 			),
 			
@@ -246,6 +273,13 @@ class EsoLogViewer
 									'field' => 'id',
 									'thisField' => 'questId',
 									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'npc',
+									'field' => 'id',
+									'thisField' => 'npcId',
+									'displayName' => 'View NPC',
 									'type' => 'viewRecord',
 							),
 							array(
@@ -326,6 +360,73 @@ class EsoLogViewer
 					),
 			),
 			
+			'recipe' => array(
+					'displayName' => 'Recipes',
+					'displayNameSingle' => 'Recipe',
+					'record' => 'recipe',
+					'table' => 'recipe',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+							'quality' => 'GetItemQualityText',
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'ingredient',
+									'field' => 'recipeId',
+									'thisField' => 'id',
+									'displayName' => 'View Ingredients',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'item',
+									'field' => 'id',
+									'thisField' => 'resultItemId',
+									'displayName' => 'View Result Item',
+									'type' => 'viewRecord',
+							),
+					),
+			),
+			
+			'ingredient' => array(
+					'displayName' => 'Ingredients',
+					'displayNameSingle' => 'Ingredient',
+					'record' => 'ingredient',
+					'table' => 'ingredient',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'recipeId',
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'recipe',
+									'field' => 'id',
+									'thisField' => 'recipeId',
+									'displayName' => 'View Recipe',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'item',
+									'field' => 'id',
+									'thisField' => 'itemId',
+									'displayName' => 'View Item',
+									'type' => 'viewRecord',
+							),
+					),
+					
+					'join' => array(
+							'recipeId' => array(
+									'joinField' => 'id',
+									'table' => 'recipe',
+									'fields' => array('recipeName' => 'name'),
+							),
+					),
+			),
+			
 			'npc' => array(
 					'displayName' => 'NPCs',
 					'displayNameSingle' => 'NPC',
@@ -367,7 +468,66 @@ class EsoLogViewer
 			),
 	);
 	
-
+	
+	public static $SEARCH_DATA = array(
+			'book' => array(
+					'searchFields' => array('title', 'body'),
+					'fields' => array(
+							'id' => 'id',
+							'title' => 'name',
+					),
+			),
+			'item' => array(
+					'searchFields' => array('name'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+			'quest' => array(
+					'searchFields' => array('name', 'objective'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+			'questStage' => array(
+					'searchFields' => array('objective', 'overrideText'),
+					'fields' => array(
+							'id' => 'id',
+							'questId' => 'questId',
+							'objective' => 'name',
+					),
+			),
+			'npc' => array(
+					'searchFields' => array('name'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+			'recipe' => array(
+					'searchFields' => array('name'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+			'ingredient' => array(
+					'searchFields' => array('name'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+	);
+	
+	
+	public static $SEARCH_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'type' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+	);
 	
 	public function __construct ()
 	{
@@ -379,6 +539,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['queststage']['fields'] = self::$QUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
+		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
+		self::$RECORD_TYPES['ingredient']['fields'] = self::$INGREDIENT_FIELDS;
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
 		
 		$this->InitDatabase();
@@ -804,7 +966,16 @@ If you do not understand what this information means, or how to use this webpage
 			}
 			else
 			{
-				$tables .= " {$value['table']}." . implode(", {$value['table']}.", $value['fields']);
+				$isFirst = true;
+				foreach ($value['fields'] as $fieldAlias => $fieldName)
+				{
+					if (!$isFirst) $tables .= ",";
+					
+					$tables .= " {$value['table']}.$fieldName";
+					if (gettype($fieldAlias) == "string") $tables .= " as $fieldAlias";
+					
+					$ifFirst = false;
+				}
 			}
 		}
 		
@@ -1276,53 +1447,6 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public static $SEARCH_DATA = array(
-		'book' => array(
-				'searchFields' => array('title', 'body'),
-				'fields' => array(
-					'id' => 'id',
-					'title' => 'name',
-				),
-		),
-		'item' => array(
-				'searchFields' => array('name'),
-				'fields' => array(
-						'id' => 'id',
-						'name' => 'name',
-				),
-		),
-		'quest' => array(
-				'searchFields' => array('name', 'objective'),
-				'fields' => array(
-						'id' => 'id',
-						'name' => 'name',
-				),
-		),
-		'questStage' => array(
-				'searchFields' => array('objective', 'overrideText'),
-				'fields' => array(
-						'id' => 'id',
-						'questId' => 'questId',
-						'objective' => 'name',
-				),
-		),
-		'npc' => array(
-				'searchFields' => array('name'),
-				'fields' => array(
-						'id' => 'id',
-						'name' => 'name',
-				),
-		),
-	);
-	
-	
-	public static $SEARCH_FIELDS = array(
-		'id' => self::FIELD_INTID,
-		'type' => self::FIELD_STRING,
-		'name' => self::FIELD_STRING,
-	);
-	
-	
 	public function SearchTable ($table, $searchData)
 	{
 		$searchTerms = implode('* ', $this->searchTerms) . '*';
@@ -1379,6 +1503,15 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'npc':
 				$output .= $this->GetViewRecordLink('npc', $result['id'], 'View NPC');
+				break;
+			case 'recipe':
+				$output .= $this->GetViewRecordLink('recipe', $result['id'], 'View Recipe');
+				break;
+			case 'ingredient':
+				$output .= $this->GetViewRecordLink('ingredient', $result['id'], 'View Ingredient');
+				break;
+			default:
+				$output .= $this->GetViewRecordLink($result['type'], $result['id'], 'View ' . ucwords($result['type']));
 				break;
 		};
 		

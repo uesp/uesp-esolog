@@ -138,6 +138,23 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 		gender
 		difficulty
 		
+	 Recipe
+	 	id
+	 	logId
+	 	resultItemId
+	 	name
+	 	level
+	 	type
+	 	quality	
+	 	
+	 Ingredient
+	 	id
+	 	logId
+	 	recipeId
+	 	itemId
+	 	name
+	 	quantity
+		
  */
 
 	// Database users, passwords and other secrets
@@ -267,11 +284,29 @@ class EsoLogParser
 	public static $NPC_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
-			'locationId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
 			'gender' => self::FIELD_INT,
 			'difficulty' => self::FIELD_INT,
+	);
+	
+	public static $RECIPE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'resultItemId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+	);
+	
+	public static $INGREDIENT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'recipeId' => self::FIELD_INT,
+			'itemId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'quantity' => self::FIELD_INT,
 	);
 	
 	public static $CHEST_FIELDS = array(
@@ -576,6 +611,18 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveRecipe (&$record)
+	{
+		return $this->saveRecord('recipe', $record, 'id', self::$RECIPE_FIELDS);
+	}
+	
+	
+	public function SaveIngredient (&$record)
+	{
+		return $this->saveRecord('ingredient', $record, 'id', self::$INGREDIENT_FIELDS);
+	}
+	
+	
 	public function __construct ()
 	{
 		$this->initDatabaseWrite();
@@ -772,6 +819,37 @@ class EsoLogParser
 		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS recipe (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						resultItemId BIGINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						level INTEGER NOT NULL,
+						type TINYINT NOT NULL,
+						quality TINYINT NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name)
+					);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create recipe table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS ingredient (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						recipeId BIGINT NOT NULL,
+						itemId BIGINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						quantity INTEGER NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name)
+					);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create ingredient table!");
 		
 		return true;
 	}
@@ -1130,11 +1208,41 @@ class EsoLogParser
 	}
 	
 	
-	public function CreateNPC ($name, $logEntry)
+	public function CreateItem ($logEntry)
+	{
+		$itemRecord = $this->createNewRecord(self::$ITEM_FIELDS);
+		
+		$itemData = $this->ParseItemLink($logEntry['itemLink']);
+		
+		$itemRecord['link'] = $logEntry['itemLink'];
+		$itemRecord['icon'] = $logEntry['icon'];
+		$itemRecord['name'] = $itemData['name'];
+		$itemRecord['level'] = $itemData['level'];
+		$itemRecord['color'] = $itemData['color'];
+		$itemRecord['craftType'] = $logEntry['craftType'];
+		$itemRecord['type'] = $logEntry['type'];
+		$itemRecord['equipType'] = $logEntry['equipType'];
+		$itemRecord['trait'] = $logEntry['trait'];
+		$itemRecord['style'] = $logEntry['itemStyle'];
+		$itemRecord['value'] = $logEntry['value'];
+		$itemRecord['quality'] = $logEntry['quality'];
+		$itemRecord['locked'] = $logEntry['locked'];
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveItem($itemRecord);
+		if (!$result) return null;
+	
+		return $itemRecord;
+	}
+	
+	
+	public function CreateNPC ($logEntry)
 	{
 		$npcRecord = $this->createNewRecord(self::$NPC_FIELDS);
 		
-		$npcRecord['name'] = $name;
+		$npcRecord['name'] = $logEntry['name'];;
 		$npcRecord['gender'] = $logEntry['gender'];
 		$npcRecord['level'] = $logEntry['level'];
 		$npcRecord['difficulty'] = $logEntry['difficulty'];
@@ -1147,6 +1255,52 @@ class EsoLogParser
 		if (!$result) return null;
 		
 		return $npcRecord;
+	}
+	
+	
+	public function CreateRecipe ($logEntry)
+	{
+		//event{Recipe}  numIngredients{2}  provLevel{1}  name{shornhelm ale}  specialType{2}  quality{1} 
+		$recipeRecord = $this->createNewRecord(self::$RECIPE_FIELDS);
+		
+		$recipeRecord['name'] = $logEntry['name'];
+		$recipeRecord['type'] = $logEntry['specialType'];
+		$recipeRecord['level'] = $logEntry['provLevel'];
+		$recipeRecord['quality'] = $logEntry['quality'];
+		$recipeRecord['resultItemId'] = -1;
+		$recipeRecord['__isNew'] = true;
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveRecipe($recipeRecord);
+		if (!$result) return null;
+		
+		return $recipeRecord;
+	}
+	
+	
+	public function CreateIngredient ($recipeId, $itemId, $logEntry)
+	{
+		//event{Recipe::Ingredient}  icon{/esoui/art/icons/crafting_cloth_pollen.dds}  qnt{1}  name{shornhelm grains^p}  value{0}  quality{1}  itemLink{|HFFFFFF:item:33767:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hshornhelm grains^p|h}
+		
+		$ingredientRecord = $this->createNewRecord(self::$INGREDIENT_FIELDS);
+		
+		$name = preg_replace("|\^.*|", '', $logEntry['name']);
+		
+		$ingredientRecord['name'] = $name;
+		$ingredientRecord['quantity'] = $logEntry['qnt'];
+		$ingredientRecord['itemId'] = $itemId;
+		$ingredientRecord['recipeId'] = $recipeId;
+		$ingredientRecord['__isNew'] = true;
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveIngredient($ingredientRecord);
+		if (!$result) return null;
+		
+		return $ingredientRecord;
 	}
 	
 	
@@ -1306,33 +1460,13 @@ class EsoLogParser
 		//locked{false}  trait{0}  equipType{0}  itemStyle{0}  itemLink{|H2DC50E:item:30159:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}
 		//type{31}  value{2}  userName{Reorx}  end{}
 		
-		$itemData = $this->ParseItemLink($logEntry['itemLink']);
-		
 		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
 		if ($itemRecord != null) return true;
 		
-		$itemRecord = $this->createNewRecord(self::$ITEM_FIELDS);
+		$itemRecord = $this->CreateItem($logEntry);
+		if ($itemRecord == null) return false;
 		
-		$itemRecord['link'] = $logEntry['itemLink'];
-		$itemRecord['icon'] = $logEntry['icon'];
-		$itemRecord['name'] = $itemData['name'];
-		$itemRecord['level'] = $itemData['level'];
-		$itemRecord['color'] = $itemData['color'];
-		$itemRecord['craftType'] = $logEntry['craftType'];
-		$itemRecord['type'] = $logEntry['type'];
-		$itemRecord['equipType'] = $logEntry['equipType'];
-		$itemRecord['trait'] = $logEntry['trait'];
-		$itemRecord['style'] = $logEntry['itemStyle'];
-		$itemRecord['value'] = $logEntry['value'];
-		$itemRecord['quality'] = $logEntry['quality'];
-		$itemRecord['locked'] = $logEntry['locked'];
-		
-		++$this->currentUser['newCount'];
-		$this->currentUser['__dirty'] = true;
-		
-		$result = $this->saveItem($itemRecord);
-		
-		return $result;
+		return true;
 	}
 	
 	
@@ -1442,6 +1576,50 @@ class EsoLogParser
 	}
 	
 	
+	public function FindRecipe ($name)
+	{
+		$safeName = $this->db->real_escape_string($name);
+		$query = "SELECT * FROM recipe WHERE name='$safeName';";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve recipe!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$RECIPE_FIELDS);
+	}
+	
+	
+	public function FindIngredient ($recipeId, $itemId, $name)
+	{
+		$safeId1 = $this->db->real_escape_string($recipeId);
+		$safeId2 = $this->db->real_escape_string($itemId);
+		$safeName = $this->db->real_escape_string(preg_replace("|\^.*|", '', $name));
+		$query = "SELECT * FROM ingredient WHERE recipeId=$safeId1 AND itemId=$safeId2 AND name='$safeName';";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve ingredient!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$INGREDIENT_FIELDS);
+	}
+	
+	
 	public function ConvertPos ($rawPos)
 	{
 		if ($rawPos == null || $rawPos == '') return 0;
@@ -1514,7 +1692,11 @@ class EsoLogParser
 	
 	public function CreateLocation ($type, $name, $logEntry, $extraIds = null)
 	{
-		if ($logEntry['x'] == '' || $logEntry['y'] == '' || $logEntry['zone'] == '') return null;
+		if ($logEntry['x'] == '' || $logEntry['y'] == '' || $logEntry['zone'] == '')
+		{
+			$this->ReportLogParseError("Skipping location with missing x/y/zone fields!");
+			return null;
+		}
 		
 		$locationRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
 		
@@ -1754,6 +1936,75 @@ class EsoLogParser
 	}
 	
 	
+	//event{Recipe}  numIngredients{2}  provLevel{1}  name{shornhelm ale}  specialType{2}  quality{1}  gameTime{4580338}  timeStamp{4743642815408373760}  userName{}  ipAddress{}  logTime{1396192828}  end{}
+	//event{Recipe::Result}  icon{/esoui/art/icons/crafting_dom_beer_001.dds}  qnt{1}  name{shornhelm ale}  value{2}  quality{2}  itemLink{|H2DC50E:item:33933:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hshornhelm ale|h}  gameTime{4580338}  timeStamp{4743642815408373760}  userName{}  ipAddress{}  logTime{1396192828}  end{}
+	//event{Recipe::Ingredient}  icon{/esoui/art/icons/crafting_cloth_pollen.dds}  qnt{1}  name{shornhelm grains^p}  value{0}  quality{1}  itemLink{|HFFFFFF:item:33767:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hshornhelm grains^p|h}  gameTime{4580338}  timeStamp{4743642815408373760}  userName{}  ipAddress{}  logTime{1396192828}  end{}
+	//event{Recipe::Ingredient}  icon{/esoui/art/icons/crafting_cloth_pollen.dds}  qnt{1}  name{brown malt}  value{0}  quality{1}  itemLink{|HFFFFFF:item:40260:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hbrown malt|h}  gameTime{4580338}  timeStamp{4743642815408373760}  userName{}  ipAddress{}  logTime{1396192828}  end{}
+	
+	
+	public function OnRecipe ($logEntry)
+	{
+		$name = $logEntry['name'];
+		$recipeRecord = $this->FindRecipe($name);
+		
+		if ($recipeRecord == null)
+		{
+			$recipeRecord = $this->CreateRecipe($logEntry);
+			if ($recipeRecord == null) return false;
+		}
+		
+		$this->currentUser['lastRecipeRecord'] = $recipeRecord;
+		return true;
+	}
+	
+	
+	public function OnRecipeResult ($logEntry)
+	{
+		$recipeRecord = &$this->currentUser['lastRecipeRecord'];
+		if ($recipeRecord == null) return $this->ReportLogParseError("Missing recipe for recipe result!");
+		
+		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
+		
+		if ($itemRecord == null)
+		{
+			$itemRecord = $this->CreateItem($logEntry);
+			if ($itemRecord == null) return false;
+		}
+		
+		$recipeRecord['resultItemId'] = $itemRecord['id'];
+		$result = $this->SaveRecipe($recipeRecord);
+		
+		return $result;
+	}
+	
+	
+	public function OnRecipeIngredient ($logEntry)
+	{
+		$recipeRecord = &$this->currentUser['lastRecipeRecord'];
+		if ($recipeRecord == null) return $this->ReportLogParseError("Missing recipe for recipe ingredient!");
+		$recipeId = $recipeRecord['id'];
+		
+		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
+		
+		if ($itemRecord == null)
+		{
+			$itemRecord = $this->CreateItem($logEntry);
+			if ($itemRecord == null) return false;
+		}
+		
+		$itemId = $itemRecord['id'];
+		$ingredientRecord = $this->FindIngredient($recipeId, $itemId, $logEntry['name']);
+		
+		if ($ingredientRecord == null)
+		{
+			$ingredientRecord = $this->CreateIngredient($recipeId, $itemId, $logEntry);
+			if ($ingredientRecord == null) return false;
+		}
+		
+		return true;
+	}
+	
+	
 	public function OnTargetChange ($logEntry)
 	{
 		//event{TargetChange}  level{19}  gender{2}  difficulty{1}  name{Stonechewer Skirmisher}  lastTarget{Aspect Rune}  
@@ -1761,12 +2012,11 @@ class EsoLogParser
 		//userName{...}  ipAddress{...}  logTime{1396487115}  end{}
 		
 		$name = $logEntry['name'];
-		
 		$npcRecord = $this->FindNPC($name);
 		
 		if ($npcRecord == null)
 		{
-			$npcRecord = $this->CreateNPC($name, $logEntry);
+			$npcRecord = $this->CreateNPC($logEntry);
 			if ($npcRecord == null) return false;
 		}
 		
@@ -1775,7 +2025,7 @@ class EsoLogParser
 		if ($npcLocation == null)
 		{
 			$npcLocation = $this->CreateLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
-			if ($npcLocation == null) return $this->ReportError("Failed to create location for NPC!");
+			if ($npcLocation == null) return false;
 		}
 		else
 		{
@@ -1881,9 +2131,9 @@ class EsoLogParser
 			case "Skyshard":					$result = $this->OnSkyshard($logEntry); break;
 			case "FoundTreasure":				$result = $this->OnFoundTreasure($logEntry); break;
 			case "LockPick":					$result = $this->OnLockPick($logEntry); break;
-			case "Recipe":						$result = $this->OnNullEntry($logEntry); break;
-			case "Recipe::Result":				$result = $this->OnNullEntry($logEntry); break;
-			case "Recipe::Ingredient":			$result = $this->OnNullEntry($logEntry); break;
+			case "Recipe":						$result = $this->OnRecipe($logEntry); break;
+			case "Recipe::Result":				$result = $this->OnRecipeResult($logEntry); break;
+			case "Recipe::Ingredient":			$result = $this->OnRecipeIngredient($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
