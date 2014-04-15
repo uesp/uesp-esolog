@@ -920,7 +920,7 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function OutputTopMenu ($recordInfo)
+	public function OutputTopMenu ($recordInfo = null)
 	{
 		$output = "<a href='viewlog.php'>Back to Home</a><br />\n";
 		
