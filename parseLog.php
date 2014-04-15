@@ -130,6 +130,14 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 		isPushed
 		isComplete
 		
+	npc
+		logId
+		locationId
+		name
+		level
+		gender
+		difficulty
+		
  */
 
 	// Database users, passwords and other secrets
@@ -254,6 +262,16 @@ class EsoLogParser
 			'isPushed' => self::FIELD_INT,
 			'isHidden' => self::FIELD_INT,
 			'isComplete' => self::FIELD_INT,
+	);
+	
+	public static $NPC_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'locationId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'gender' => self::FIELD_INT,
+			'difficulty' => self::FIELD_INT,
 	);
 	
 	public static $CHEST_FIELDS = array(
@@ -552,6 +570,12 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveNPC (&$record)
+	{
+		return $this->saveRecord('npc', $record, 'id', self::$NPC_FIELDS);
+	}
+	
+	
 	public function __construct ()
 	{
 		$this->initDatabaseWrite();
@@ -733,6 +757,21 @@ class EsoLogParser
 		$this->lastQuest = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questStage table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS npc (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						level INTEGER NOT NULL,
+						gender TINYINT NOT NULL,
+						difficulty TINYINT NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name)
+					);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
 		
 		return true;
 	}
@@ -1091,6 +1130,26 @@ class EsoLogParser
 	}
 	
 	
+	public function CreateNPC ($name, $logEntry)
+	{
+		$npcRecord = $this->createNewRecord(self::$NPC_FIELDS);
+		
+		$npcRecord['name'] = $name;
+		$npcRecord['gender'] = $logEntry['gender'];
+		$npcRecord['level'] = $logEntry['level'];
+		$npcRecord['difficulty'] = $logEntry['difficulty'];
+		$npcRecord['__isNew'] = true;
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveNPC($npcRecord);
+		if (!$result) return null;
+		
+		return $npcRecord;
+	}
+	
+	
 	public function CreateQuest ($name, $objective, $logEntry)
 	{
 		$questRecord = $this->createNewRecord(self::$QUEST_FIELDS);
@@ -1290,9 +1349,9 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve item!");
 			return null;
 		}
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$ITEM_FIELDS);
 	}
@@ -1303,17 +1362,17 @@ class EsoLogParser
 		$safeID = $this->db->real_escape_string($id);
 		$query = "SELECT * FROM item WHERE id=$safeID;";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve item!");
 			return null;
 		}
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$ITEM_FIELDS);
 	}
@@ -1324,17 +1383,17 @@ class EsoLogParser
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM quest WHERE name='$safeName';";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve quest!");
 			return null;
 		}
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUEST_FIELDS);
 	}
@@ -1346,19 +1405,40 @@ class EsoLogParser
 		$safeId = (int) $questId;
 		$query = "SELECT * FROM questStage WHERE questId=$safeId AND objective='$safeObj';";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve quest stage!");
 			return null;
 		}
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUESTSTAGE_FIELDS);
+	}
+	
+	
+	public function FindNPC ($name)
+	{
+		$safeName = $this->db->real_escape_string($name);
+		$query = "SELECT * FROM npc WHERE name='$safeName';";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve NPC!");
+			return null;
+		}
+		
+		if ($result->num_rows == 0) return null;
+		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$NPC_FIELDS);
 	}
 	
 	
@@ -1371,6 +1451,8 @@ class EsoLogParser
 	
 	public function FindLocation ($type, $rawX, $rawY, $zone, $extraIds = null)
 	{
+		if ($rawX == '' || $rawY == '' || $zone == '') return null;
+		
 		$safeZone = $this->db->real_escape_string($zone);
 		$safeType = $this->db->real_escape_string($type);
 		$x = $this->ConvertPos($rawX);
@@ -1432,6 +1514,8 @@ class EsoLogParser
 	
 	public function CreateLocation ($type, $name, $logEntry, $extraIds = null)
 	{
+		if ($logEntry['x'] == '' || $logEntry['y'] == '' || $logEntry['zone'] == '') return null;
+		
 		$locationRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
 		
 		$x = $this->ConvertPos($logEntry['x']);
@@ -1670,6 +1754,41 @@ class EsoLogParser
 	}
 	
 	
+	public function OnTargetChange ($logEntry)
+	{
+		//event{TargetChange}  level{19}  gender{2}  difficulty{1}  name{Stonechewer Skirmisher}  lastTarget{Aspect Rune}  
+		//x{0.45511141419411}  zone{Stormhaven}  y{0.47166284918785}  timeStamp{4743643569678450688}  gameTime{2655510}  
+		//userName{...}  ipAddress{...}  logTime{1396487115}  end{}
+		
+		$name = $logEntry['name'];
+		
+		$npcRecord = $this->FindNPC($name);
+		
+		if ($npcRecord == null)
+		{
+			$npcRecord = $this->CreateNPC($name, $logEntry);
+			if ($npcRecord == null) return false;
+		}
+		
+		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
+		
+		if ($npcLocation == null)
+		{
+			$npcLocation = $this->CreateLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
+			if ($npcLocation == null) return $this->ReportError("Failed to create location for NPC!");
+		}
+		else
+		{
+			++$npcLocation['counter'];
+			
+			$result = $this->SaveLocation($npcLocation);
+			if (!$result) return false;
+		}
+		
+		return true;
+	}
+	
+	
 	public function OnFish ($logEntry)
 	{
 		return $this->CheckLocation("fish", "Fishing Hole", $logEntry, null);
@@ -1736,7 +1855,7 @@ class EsoLogParser
 			case "InvDump::End":
 			case "InvDumpEnd":					$result = $this->OnInvDumpEnd($logEntry); break;
 			case "MoneyGained":					$result = $this->OnNullEntry($logEntry); break;
-			case "TargetChange":				$result = $this->OnNullEntry($logEntry); break;
+			case "TargetChange":				$result = $this->OnTargetChange($logEntry); break;
 			case "ChatterBegin":				$result = $this->OnNullEntry($logEntry); break;
 			case "ChatterBegin::Option":		$result = $this->OnNullEntry($logEntry); break;
 			case "ConversationUpdated":			$result = $this->OnNullEntry($logEntry); break;

@@ -134,6 +134,14 @@ class EsoLogViewer
 			'isComplete' => self::FIELD_INTBOOLEAN,
 	);
 	
+	public static $NPC_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'gender' => self::FIELD_INT,
+			'difficulty' => self::FIELD_INT,
+	);
 	
 	public static $USER_FIELDS = array(
 			'name' => self::FIELD_STRING,
@@ -318,6 +326,31 @@ class EsoLogViewer
 					),
 			),
 			
+			'npc' => array(
+					'displayName' => 'NPCs',
+					'displayNameSingle' => 'NPC',
+					'record' => 'npc',
+					'table' => 'npc',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'location',
+									'field' => 'npcId',
+									'thisField' => 'id',
+									'displayName' => 'View Locations',
+									'type' => 'filter',
+							),
+					),
+					
+					'join' => array(
+					),
+			),
+			
 			'user' => array(
 					'displayName' => 'Users',
 					'displayNameSingle' => 'User',
@@ -345,6 +378,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['queststage']['fields'] = self::$QUESTSTAGE_FIELDS;
+		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
 		
 		$this->InitDatabase();
@@ -1272,6 +1306,13 @@ If you do not understand what this information means, or how to use this webpage
 						'objective' => 'name',
 				),
 		),
+		'npc' => array(
+				'searchFields' => array('name'),
+				'fields' => array(
+						'id' => 'id',
+						'name' => 'name',
+				),
+		),
 	);
 	
 	
@@ -1335,6 +1376,9 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'item':
 				$output .= $this->GetViewRecordLink('item', $result['id'], 'View Item');
+				break;
+			case 'npc':
+				$output .= $this->GetViewRecordLink('npc', $result['id'], 'View NPC');
 				break;
 		};
 		
