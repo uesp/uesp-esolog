@@ -131,6 +131,16 @@ class EsoLogViewer
 	);
 	
 	
+	public static $USER_FIELDS = array(
+			'name' => self::FIELD_STRING,
+			'entryCount' => self::FIELD_INT,
+			'newCount' => self::FIELD_INT,
+			'errorCount' => self::FIELD_INT,
+			'duplicateCount' => self::FIELD_INT,
+			'enabled' => self::FIELD_INTBOOLEAN,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -303,6 +313,21 @@ class EsoLogViewer
 							),
 					),
 			),
+			
+			'user' => array(
+					'displayName' => 'Users',
+					'displayNameSingle' => 'User',
+					'record' => 'user',
+					'table' => 'user',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+					),
+			),
 	);
 	
 
@@ -316,6 +341,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['queststage']['fields'] = self::$QUESTSTAGE_FIELDS;
+		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
 		
 		$this->InitDatabase();
 		$this->setInputParams();

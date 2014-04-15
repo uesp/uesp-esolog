@@ -157,7 +157,7 @@ class EsoLogParser
 	public $currentParseFile = "";
 	
 	public $duplicateCount = 0;
-	public $skipDuplicates = false;
+	public $skipDuplicates = true;
 	
 	public $lastValidTime = array();
 	public $lastValidUserName = "Anonymous";
@@ -932,7 +932,7 @@ class EsoLogParser
 	}
 	
 	
-	public function hasLogUniqueTime ($gameTime, $timeStamp, $entryHash)
+	public function IsDuplicateEntry ($gameTime, $timeStamp, $entryHash)
 	{
 		$query = "SELECT * FROM logEntry WHERE gameTime={$gameTime} AND timeStamp={$timeStamp} AND entryHash={$entryHash};";
 		$this->lastQuery = $query;
@@ -945,7 +945,7 @@ class EsoLogParser
 	
 	public function isDuplicateLogEntry ($logEntry)
 	{
-		return $this->hasLogUniqueTime($logEntry['gameTime'], $logEntry['timeStamp'], $logEntry['__crc']);
+		return $this->IsDuplicateEntry($logEntry['gameTime'], $logEntry['timeStamp'], $logEntry['__crc']);
 	}
 	
 	
@@ -1673,10 +1673,6 @@ class EsoLogParser
 	{
 		if (!$this->isValidLogEntry($logEntry)) return false;
 		
-		$logId = $this->addLogEntryRecordFromLog($logEntry);
-		if ($logId === false) return false;
-		$this->currentLogEntryId = $logId;
-		
 		$user = &$this->getUserRecord($logEntry['userName']);
 		$ipAddress = &$this->getIPAddressRecord($logEntry['ipAddress']);
 		$this->currentUser = &$user;
@@ -1700,6 +1696,10 @@ class EsoLogParser
 		else if (!$isDuplicate)
 		{
 		}
+		
+		$logId = $this->addLogEntryRecordFromLog($logEntry);
+		if ($logId === false) return false;
+		$this->currentLogEntryId = $logId;
 		
 		++$user['entryCount'];
 		$user['__dirty'] = true;
