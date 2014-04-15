@@ -997,7 +997,6 @@ If you do not understand what this information means, or how to use this webpage
 		$prevStart = $this->displayStart - $this->displayLimit;
 		$nextStart = $this->displayStart + $this->displayLimit;
 		if ($prevStart < 0) $prevStart = 0;
-		if ($nextStart >= $this->totalRowCount) $nextStart =  $this->totalRowCount - 1;
 		if ($nextStart < 0) $nextStart = 0;
 		
 		$oldQuery = $this->GetPageQueryString(array("start"));
@@ -1007,7 +1006,7 @@ If you do not understand what this information means, or how to use this webpage
 		else
 			$output .= "Prev &nbsp; ";
 		
-		if ($this->displayStart < $nextStart) 
+		if ($nextStart < $this->totalRowCount) 
 			$output .= "<a href='?start=$nextStart&$oldQuery'>Next</a>";
 		else
 			$output .= "Next";
