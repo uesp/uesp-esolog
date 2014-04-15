@@ -712,6 +712,11 @@ If you do not understand what this information means, or how to use this webpage
 		$displayName = $recordInfo['displayName'];
 		$output .= "<h1>ESO: Viewing $displayName</h1>\n";
 		
+		if ($this->IsFiltering())
+		{
+			$output .= "<h2>Showing for {$this->recordFilter}:{$this->recordFilterId}</h2>";
+		}
+		
 		if ($recordInfo['message'] != null)
 		{
 			$output .= $recordInfo['message'] ."<p />\n";
@@ -1099,6 +1104,12 @@ If you do not understand what this information means, or how to use this webpage
 		$this->PrintRecords($recordInfo);
 		
 		return true;
+	}
+	
+	
+	public function IsFiltering()
+	{
+		return $this->recordFilter != "" && $this->recordFilterId != "";
 	}
 	
 	
