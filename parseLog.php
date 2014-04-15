@@ -392,7 +392,7 @@ class EsoLogParser
 			
 			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
 			{
-				if ($record[$key] == null || $record[$key] === '' )
+				if ($record[$key] === null || $record[$key] === '' )
 					$query .= "{$key}=-1";
 				else
 					$query .= "{$key}={$record[$key]}";
@@ -468,7 +468,7 @@ class EsoLogParser
 				
 			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
 			{
-				if ($record[$key] == null || $record[$key] === '' )
+				if ($record[$key] === null || $record[$key] === '' )
 					$values .= '-1';
 				else
 					$values .= $record[$key];
@@ -1541,6 +1541,19 @@ class EsoLogParser
 		if ($bookRecord['__isNew'] === true)
 		{
 			$bookRecord['title'] = $bookTitle;
+			$bookRecord['icon'] = $logEntry['icon'];
+			$bookRecord['collectionIndex'] = $logEntry['collection'];
+			$bookRecord['bookIndex'] = $logEntry['index'];
+			$bookRecord['categoryIndex'] = $logEntry['category'];
+			$bookRecord['guildIndex'] = $logEntry['guild'];
+			$bookRecord['isLore'] = 1;
+			$bookRecord['__dirty'] = true;
+				
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		else if ($bookRecord['guildIndex'] < 0)
+		{
 			$bookRecord['icon'] = $logEntry['icon'];
 			$bookRecord['collectionIndex'] = $logEntry['collection'];
 			$bookRecord['bookIndex'] = $logEntry['index'];
