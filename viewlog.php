@@ -1180,7 +1180,7 @@ If you do not understand what this information means, or how to use this webpage
 		$row = $result->fetch_assoc();
 		
 		$displayName = $recordInfo['displayNameSingle'];
-		$output  = "<h1>ESO: Viewing $displayName: ID#$id</h1>\n";
+		$output  = "<h1>ESO: Viewing $displayName ($id) : {$this->recordField}</h1>\n";
 		$output .= "<div class='elvRecordView'>";
 		$output .= $row[$this->recordField];
 		$output .= "</div>";
