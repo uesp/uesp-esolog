@@ -117,7 +117,8 @@ class EsoLogCollector
 	
 	public function parseLogDataItem($logData)
 	{
-		$decodedData = base64_decode($logData);
+		$newLogData = str_replace(' ', '+', $logData);
+		$decodedData = base64_decode($newLogData);
 		
 		if (endsWith($decodedData, "end{}  "))
 		{

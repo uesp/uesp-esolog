@@ -1,5 +1,7 @@
 <?php
 
+if (php_sapi_name() != "cli") die("Can only be run from command line!");
+
 /*
 	SKILL_TYPE_NONE = 0
 	SKILL_TYPE_CLASS = 1
@@ -1861,9 +1863,9 @@ class EsoLogParser
 			++$entryCount;
 		}
 		
-		$this->log("Parsed {$entryCount} log entries from file '{$logFilename}'.");
-		$this->log("Found {$errorCount} entries with errors.");
-		$this->log("Skipped {$this->duplicateCount} duplicate log entries.");
+		$this->log("\tParsed {$entryCount} log entries from file.");
+		$this->log("\tFound {$errorCount} entries with errors.");
+		$this->log("\tSkipped {$this->duplicateCount} duplicate log entries.");
 		return TRUE;
 	}
 	
@@ -1978,8 +1980,8 @@ class EsoLogParser
 		
 		if ($this->db != null && $this->db->error)
 		{
-			$this->log("DB Error:" . $this->db->error);
-			$this->log("Last Query:" . $this->lastQuery);
+			$this->log("\tDB Error:" . $this->db->error);
+			$this->log("\tLast Query:" . $this->lastQuery);
 		}
 		return FALSE;
 	}
@@ -2036,7 +2038,7 @@ class EsoLogParser
 	
 $g_EsoLogParser = new EsoLogParser();
 //$g_EsoLogParser->testItemLink();
-$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
+$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/fix/");
 $g_EsoLogParser->saveData();
 $g_EsoLogParser->DumpSkillInfo();
 	
