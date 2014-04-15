@@ -191,10 +191,12 @@ class EsoLogCollector
 		
 		print("Found log form data with " . count($this->rawLogData) . " elements to parse.");
 		
-		$this->parseLogData();
-		$this->checkLogSize();
+		$result = $this->parseLogData();
+		if (!$result) http_response_code(500);
 		
-		return true;
+		$result &= $this->checkLogSize();
+		
+		return $result;
 	}
 	
 	
