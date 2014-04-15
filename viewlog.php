@@ -26,6 +26,10 @@ class EsoLogViewer
 	public $recordFilter = '';
 	public $recordFilterId = '';
 	public $recordField = '';
+	public $search = '';
+	public $searchTotalCount = 0;
+	public $searchTerms = array();
+	public $searchResults = array();
 	public $displayLimit = 100;
 	public $displayStart = 0;
 	public $displayRawValues = false;
@@ -690,13 +694,18 @@ If you do not understand what this information means, or how to use this webpage
 		}
 ?>
 	</ul>
+	
+	<form method='get' action=''>
+		<input type='search' name='search' value='' maxlength='64' size='32' />
+		<input type='submit' value='Search...' />
+	</form>
 <?php
 		
 		return true;
 	}
 	
 	
-	public function OutputTopMenu($recordInfo)
+	public function OutputTopMenu ($recordInfo)
 	{
 		$output = "<a href='viewlog.php'>Back to Home</a><br />\n";
 		
@@ -912,6 +921,50 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function SimpleFormatField ($value, $type)
+	{
+		$output = "";
+		if ($value == null) return "";
+		
+		switch ($type)
+		{
+			case self::FIELD_INT:
+			case self::FIELD_INTTRANSFORM:
+				$output = $value;
+				break;
+			default:
+			case self::FIELD_STRING:
+			case self::FIELD_LARGESTRING:
+				$output = $value;
+				break;
+			case self::FIELD_POSITION:
+				if ($this->displayRawValues) return $value;
+				$output = $value / self::ELV_POSITION_FACTOR;
+				break;
+			case self::FIELD_INTPOSITIVE:
+				if ($this->displayRawValues) return $value;
+				if ((int) $value >= 0) $output = $value;
+				break;
+			case self::FIELD_INTID:
+				if ($this->displayRawValues) return $value;
+				if ((int) $value > 0) $output = $value;
+				break;
+			case self::FIELD_INTBOOLEAN:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "false";
+				elseif ($intValue > 0)
+					$output = "true";
+				
+				break;
+		}
+		
+		return $output;
+	}
+	
+	
 	public function FormatField ($value, $type, $recordType, $field, $id, $recordInfo)
 	{
 		$output = "";
@@ -1089,8 +1142,6 @@ If you do not understand what this information means, or how to use this webpage
 			$output .= "\t</tr>\n";
 		}
 		
-		
-		
 		$output .= "</table>\n";
 		$output .= $this->GetNextPrevLink($recordInfo);
 		
@@ -1191,10 +1242,174 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public static $SEARCH_DATA = array(
+		'book' => array(
+				'searchFields' => array('title', 'body'),
+				'fields' => array(
+					'id' => 'id',
+					'title' => 'name',
+				),
+		),
+		'item' => array(
+				'searchFields' => array('name'),
+				'fields' => array(
+						'id' => 'id',
+						'name' => 'name',
+				),
+		),
+		'quest' => array(
+				'searchFields' => array('name', 'objective'),
+				'fields' => array(
+						'id' => 'id',
+						'name' => 'name',
+				),
+		),
+		'questStage' => array(
+				'searchFields' => array('objective', 'overrideText'),
+				'fields' => array(
+						'id' => 'id',
+						'questId' => 'questId',
+						'objective' => 'name',
+				),
+		),
+	);
+	
+	
+	public static $SEARCH_FIELDS = array(
+		'id' => self::FIELD_INTID,
+		'type' => self::FIELD_STRING,
+		'name' => self::FIELD_STRING,
+	);
+	
+	
+	public function SearchTable ($table, $searchData)
+	{
+		$searchTerms = implode('* ', $this->searchTerms) . '*';
+		$limitCount = $this->displayLimit;
+		$searchFields = implode(', ',$searchData['searchFields']);
+		
+		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM $table WHERE MATCH($searchFields) AGAINST ('$searchTerms' in BOOLEAN MODE) LIMIT $limitCount;";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to perform search on $table table!");
+		
+		$result2 = $this->db->query("SELECT FOUND_ROWS();");
+		$rowData = $result2->fetch_row();
+		$this->searchTotalCount += $rowData[0];
+		
+		$result->data_seek(0);
+		
+		while ( ($row = $result->fetch_assoc()) )
+		{
+			$results = array();
+			
+			foreach($searchData['fields'] as $key => $value)
+			{
+				$results[$value] = $row[$key];
+			}
+			
+			$results['type'] = $table;
+			$this->searchResults[] = $results;
+		}
+		
+		return true;
+	}
+	
+	
+	public function CreateSearchViewLink($result)
+	{
+		$output = "";
+		
+		switch ($result['type'])
+		{
+			case 'book':
+				$output .= $this->GetViewRecordLink('book', $result['id'], 'View Book');
+				break;
+			case 'quest':
+				$output .= $this->GetViewRecordLink('quest', $result['id'], 'View Quest');
+				break;
+			case 'questStage':
+				$output .= $this->GetViewRecordLink('quest', $result['questId'], 'View Quest') . " ";
+				$output .= $this->GetViewRecordLink('queststage', $result['id'], 'View Quest Stage');
+				break;
+			case 'item':
+				$output .= $this->GetViewRecordLink('item', $result['id'], 'View Item');
+				break;
+		};
+		
+		return $output;
+	}
+	
+	
+	public function DisplaySearchResults()
+	{
+		$searchCount = count($this->searchResults);
+		$totalCount = $this->searchTotalCount;
+		
+		$output  = "<h1>Search Results</h1>";
+		$output .= "Note: Only basic display of search results is currently supported (no paging or sorting).<p />";
+		$output .= "Displaying {$searchCount} of {$totalCount} records matching \"{$this->search}\"<p />";
+		$output .= "<table border='1' cellpadding='2' cellspacing='0'>\n";
+		$output .= "<tr>\n";
+		$output .= "\t<th></th>\n";
+		
+		foreach (self::$SEARCH_FIELDS as $key => $value)
+		{
+			$output .= "\t<th>$key</th>\n";
+		}
+		
+		$output .= "\t<th></th>\n";
+		$output .= "</tr>\n";
+		
+		foreach ($this->searchResults as $key => $result)
+		{
+			$output .= "<tr>\n";
+			$output .= "\t<td></td>\n";
+			
+			foreach (self::$SEARCH_FIELDS as $key => $value)
+			{
+				$fmtValue = $this->SimpleFormatField($result[$key], $value);
+				$output .= "\t<td>$fmtValue</td>\n";
+			}
+			
+			$viewLink = $this->CreateSearchViewLink($result);
+			$output .= "\t<td>$viewLink</td>\n";
+			$output .= "</tr>\n";
+		}
+		
+		$output .= "</table>\n";
+		
+		print($output);
+		return true;
+	}
+	
+	
+	public function DoSearch()
+	{
+		$this->OutputTopMenu();
+		
+		$this->searchTotalCount = 0;
+		$this->searchResults = array();
+		$this->searchTerms = explode(" ", $this->search);
+		
+		foreach (self::$SEARCH_DATA as $table => $searchData)
+		{
+			$this->SearchTable($table, $searchData);
+		}
+		
+		$this->DisplaySearchResults();
+		$this->WritePageFooter();
+		return true;
+	}
+	
+	
 	public function Start()
 	{
 		$this->writeHeaders();
 		$this->WritePageHeader();
+		
+		if ($this->search != "") return $this->DoSearch();
 		
 		foreach (self::$RECORD_TYPES as $key => $value)
 		{
@@ -1225,6 +1440,7 @@ If you do not understand what this information means, or how to use this webpage
 	private function parseInputParams ()
 	{
 		if (array_key_exists('record', $this->inputParams)) $this->recordType = $this->db->real_escape_string($this->inputParams['record']);
+		if (array_key_exists('search', $this->inputParams)) $this->search = $this->db->real_escape_string($this->inputParams['search']);
 		if (array_key_exists('field', $this->inputParams)) $this->recordField = $this->db->real_escape_string($this->inputParams['field']);
 		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->db->real_escape_string($this->inputParams['id']);
 		if (array_key_exists('action', $this->inputParams)) $this->action = $this->db->real_escape_string($this->inputParams['action']);

@@ -618,7 +618,9 @@ class EsoLogParser
 						collectionIndex INTEGER NOT NULL,
 						bookIndex INTEGER NOT NULL,
 						guildIndex INTEGER NOT NULL,
-						PRIMARY KEY (id)
+						PRIMARY KEY (id),
+						FULLTEXT(title),
+						FULLTEXT(body)
 					);";
 		
 		$this->lastQuest = $query;
@@ -648,7 +650,8 @@ class EsoLogParser
 						INDEX find_npcloc (npcId, zone(64), x, y),
 						INDEX find_itemloc (itemId, zone(64), x, y),
 						INDEX find_questloc (questId, zone(64), x, y),
-						INDEX find_queststageloc (questStageId, zone(64), x, y)
+						INDEX find_queststageloc (questStageId, zone(64), x, y),
+						FULLTEXT(name)
 					);";
 		
 		$this->lastQuest = $query;
@@ -684,7 +687,8 @@ class EsoLogParser
 						value INTEGER NOT NULL,
 						level TINYINT NOT NULL,
 						PRIMARY KEY (id),
-						INDEX index_link (link(64))
+						INDEX index_link (link(64)),
+						FULLTEXT(name)
 					);";
 		
 		$this->lastQuest = $query;
@@ -697,7 +701,9 @@ class EsoLogParser
 						locationId BIGINT NOT NULL,
 						name TINYTEXT NOT NULL,
 						objective TINYTEXT NOT NULL,
-						PRIMARY KEY (id)
+						PRIMARY KEY (id),
+						FULLTEXT(name),
+						FULLTEXT(objective)
 					);";
 		
 		$this->lastQuest = $query;
@@ -719,7 +725,9 @@ class EsoLogParser
 						isFail TINYINT NOT NULL,
 						isComplete TINYINT NOT NULL,
 						PRIMARY KEY (id),
-						INDEX index_quest (questId)
+						INDEX index_quest (questId),
+						FULLTEXT(objective),
+						FULLTEXT(overrideText)
 					);";
 		
 		$this->lastQuest = $query;
