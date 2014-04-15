@@ -68,6 +68,9 @@ class EsoLogViewer
 	public static $CHEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'locationId' => self::FIELD_INTID,
+			'zone' => self::FIELD_STRING,
+			'x' => self::FIELD_POSITION,
+			'y' => self::FIELD_POSITION,
 			'quality' => self::FIELD_INTTRANSFORM,
 			'logId' => self::FIELD_INTID,
 	);
@@ -123,6 +126,8 @@ class EsoLogViewer
 			'questId' => self::FIELD_INTID,
 			'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
+			'x' => self::FIELD_POSITION,
+			'y' => self::FIELD_POSITION,
 			'objective' => self::FIELD_STRING,
 			'overrideText' => self::FIELD_STRING,
 			'orderIndex' => self::FIELD_INT,
@@ -217,6 +222,13 @@ class EsoLogViewer
 									'thisField' => 'locationId',
 									'displayName' => 'View Location',
 									'type' => 'viewRecord',
+							),
+					),
+					'join' => array(
+							'locationId' => array(
+									'joinField' => 'id',
+									'table' => 'location',
+									'fields' => array('x', 'y', 'zone'),
 							),
 					),
 			),
@@ -345,7 +357,7 @@ class EsoLogViewer
 							'locationId' => array(
 									'joinField' => 'id',
 									'table' => 'location',
-									'fields' => array('zone'),
+									'fields' => array('x', 'y', 'zone'),
 							),
 					),
 					
@@ -355,6 +367,13 @@ class EsoLogViewer
 									'field' => 'id',
 									'thisField' => 'questId',
 									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'location',
+									'field' => 'id',
+									'thisField' => 'locationId',
+									'displayName' => 'View Location',
 									'type' => 'viewRecord',
 							),
 					),
@@ -967,6 +986,7 @@ If you do not understand what this information means, or how to use this webpage
 			else
 			{
 				$isFirst = true;
+				
 				foreach ($value['fields'] as $fieldAlias => $fieldName)
 				{
 					if (!$isFirst) $tables .= ",";
@@ -974,7 +994,7 @@ If you do not understand what this information means, or how to use this webpage
 					$tables .= " {$value['table']}.$fieldName";
 					if (gettype($fieldAlias) == "string") $tables .= " as $fieldAlias";
 					
-					$ifFirst = false;
+					$isFirst = false;
 				}
 			}
 		}
