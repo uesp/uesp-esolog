@@ -26,6 +26,7 @@ class EsoLogViewer
 	public $recordFilter = '';
 	public $recordFilterId = '';
 	public $recordField = '';
+	public $outputFormat = 'HTML';
 	public $search = '';
 	public $searchTotalCount = 0;
 	public $searchTerms = array();
@@ -563,8 +564,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
 		
 		$this->InitDatabase();
-		$this->setInputParams();
-		$this->parseInputParams();
+		$this->SetInputParams();
+		$this->ParseInputParams();
 	}
 	
 	
@@ -844,6 +845,8 @@ class EsoLogViewer
 	
 	public function WritePageHeader()
 	{
+		if ($this->outputFormat == 'CSV') return true;
+		
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -861,6 +864,8 @@ class EsoLogViewer
 	
 	public function WritePageFooter()
 	{
+		if ($this->outputFormat == 'CSV') return true;
+		
 		?>
 </body>
 </html>
@@ -922,6 +927,8 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function OutputTopMenu ($recordInfo = null)
 	{
+		if (!$this->IsOutputHTML()) return true;
+		
 		$output = "<a href='viewlog.php'>Back to Home</a><br />\n";
 		
 		print($output);
@@ -929,21 +936,23 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function OutputRecordHeader($recordInfo)
+	public function OutputRecordHeader ($recordInfo)
 	{
 		$this->OutputTopMenu($recordInfo);
 		
+		$output = "";
+		
 		$displayName = $recordInfo['displayName'];
-		$output .= "<h1>ESO: Viewing $displayName</h1>\n";
+		if ($this->IsOutputHTML()) $output .= "<h1>ESO: Viewing $displayName</h1>\n";
 		
 		if ($this->IsFiltering())
 		{
-			$output .= "<h2>Showing for {$this->recordFilter}:{$this->recordFilterId}</h2>";
+			if ($this->IsOutputHTML()) $output .= "<h2>Showing for {$this->recordFilter}:{$this->recordFilterId}</h2>";
 		}
 		
 		if ($recordInfo['message'] != null)
 		{
-			$output .= $recordInfo['message'] ."<p />\n";
+			if ($this->IsOutputHTML()) $output .= $recordInfo['message'] ."<p />\n";
 		}
 		
 		print($output);
@@ -1123,17 +1132,35 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function GetRecordFieldHeader ($recordInfo)
 	{
-		$output  = "\t<tr>\n";
-		$output .= "\t\t<th></th>\n";
+		if ($this->IsOutputHTML())
+		{
+			$output  = "\t<tr>\n";
+			$output .= "\t\t<th></th>\n";
+		}
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
-			$sortLink = $this->GetSortRecordLink($key, $key);
-			$output .= "\t\t<th>$sortLink</th>\n";
+			
+			if ($this->IsOutputHTML())
+			{
+				$sortLink = $this->GetSortRecordLink($key, $key);
+				$output .= "\t\t<th>$sortLink</th>\n";
+			}
+			elseif ($this->IsOutputCSV())
+			{
+				$output .= "\"$key\",";
+			}
 		}
 		
-		$output .= "\t\t<th></th>\n";
-		$output .= "\t</tr>\n";
+		if ($this->IsOutputHTML())
+		{
+			$output .= "\t\t<th></th>\n";
+			$output .= "\t</tr>\n";
+		}
+		elseif ($this->IsOutputCSV())
+		{
+			$output .= "\n";
+		}
 		
 		return $output;
 	}
@@ -1148,6 +1175,8 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function SimpleFormatField ($value, $type)
 	{
+		if ($this->IsOutputCSV()) return $this->SimpleFormatFieldCSV($value, $type);
+		
 		$output = "";
 		if ($value == null) return "";
 		
@@ -1190,8 +1219,56 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function SimpleFormatFieldCSV ($value, $type)
+	{
+		$output = "";
+		if ($value == null) return "";
+	
+		switch ($type)
+		{
+			case self::FIELD_INT:
+			case self::FIELD_INTTRANSFORM:
+				$output = $value;
+				break;
+			default:
+			case self::FIELD_STRING:
+				$output = "\"$value\"";
+				break;
+			case self::FIELD_LARGESTRING:
+				$output = "\"...\"";
+				break;
+			case self::FIELD_POSITION:
+				if ($this->displayRawValues) return $value;
+				$output = $value / self::ELV_POSITION_FACTOR;
+				break;
+			case self::FIELD_INTPOSITIVE:
+				if ($this->displayRawValues) return $value;
+				if ((int) $value >= 0) $output = $value;
+				break;
+			case self::FIELD_INTID:
+				if ($this->displayRawValues) return $value;
+				if ((int) $value > 0) $output = $value;
+				break;
+			case self::FIELD_INTBOOLEAN:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "\"false\"";
+				elseif ($intValue > 0)
+					$output = "\"true\"";
+				
+				break;
+		}
+	
+		return $output;
+	}
+	
+	
 	public function FormatField ($value, $type, $recordType, $field, $id, $recordInfo)
 	{
+		if ($this->IsOutputCSV()) return $this->FormatFieldCSV($value, $type, $recordType, $field, $id, $recordInfo);
+		
 		$output = "";
 		if ($value == null) return "";
 		
@@ -1239,8 +1316,58 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function FormatFieldCSV ($value, $type, $recordType, $field, $id, $recordInfo)
+	{
+		$output = "";
+		if ($value == null) return "";
+		
+		switch ($type)
+		{
+			case self::FIELD_INT:
+				$output = $value;
+				break;
+			default:
+			case self::FIELD_STRING:
+				$output = "\"$value\"";
+				break;
+			case self::FIELD_LARGESTRING:
+				$output = "\"...\"";
+				break;
+			case self::FIELD_POSITION:
+				if ($this->displayRawValues) return $value;
+				$output = $value / self::ELV_POSITION_FACTOR;
+				break;
+			case self::FIELD_INTPOSITIVE:
+				if ($this->displayRawValues) return $value;
+				if ((int) $value >= 0) $output = $value;
+				break;
+			case self::FIELD_INTID:
+				if ($this->displayRawValues) return $value;
+				if ((int) $value > 0) $output = $value;
+				break;
+			case self::FIELD_INTTRANSFORM:
+				$output = "\"" . $this->TransformRecordValue($recordInfo, $field, $value) . "\"";
+				break;
+			case self::FIELD_INTBOOLEAN:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "\"false\"";
+				elseif ($intValue > 0)
+					$output = "\"true\"";
+				
+				break;
+		}
+		
+		return $output;
+	}
+	
+	
 	public function FormatFieldAll ($value, $type, $recordType, $field, $id, $recordInfo)
 	{
+		if ($this->IsOutputCSV()) return $this->FormatFieldAllCSV($value, $type, $recordType, $field, $id, $recordInfo);
+		
 		$output = "";
 		if ($value == null) return "";
 		
@@ -1252,6 +1379,12 @@ If you do not understand what this information means, or how to use this webpage
 		}
 		
 		return $this->FormatField($value, $type, $recordType, $field, $id, $recordInfo);
+	}
+	
+	
+	public function FormatFieldAllCSV ($value, $type, $recordType, $field, $id, $recordInfo)
+	{
+		return $this->FormatFieldCSV($value, $type, $recordType, $field, $id, $recordInfo);
 	}
 	
 	
@@ -1344,10 +1477,16 @@ If you do not understand what this information means, or how to use this webpage
 		$startIndex = $this->displayStart + 1;
 		$endIndex = $this->displayStart + $this->displayLimit;
 		if ($endIndex > $this->totalRowCount) $endIndex = $this->totalRowCount;
-		print("Displaying $displayCount of $this->totalRowCount records from $startIndex to $endIndex.\n");
 		
-		$output = "<br />" . $this->GetNextPrevLink($recordInfo);
-		$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
+		$output = "";
+		
+		if ($this->IsOutputHTML())
+		{
+			$output .= "Displaying $displayCount of $this->totalRowCount records from $startIndex to $endIndex.\n";
+			$output .= "<br />" . $this->GetNextPrevLink($recordInfo);
+			$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
+		}
+		
 		$output .= $this->GetRecordFieldHeader($recordInfo);
 		
 		$result->data_seek(0);
@@ -1355,20 +1494,40 @@ If you do not understand what this information means, or how to use this webpage
 		while ( ($row = $result->fetch_assoc()) )
 		{
 			$id = $row['id'];
-			$output .= "\t<tr>\n";
-			$output .= "\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], $id, "View") ."</td>\n";
+			
+			if ($this->IsOutputHTML())
+			{
+				$output .= "\t<tr>\n";
+				$output .= "\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], $id, "View") ."</td>\n";
+			}
 			
 			foreach ($recordInfo['fields'] as $key => $value)
 			{
-				$output .= "\t\t<td>" . $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo) . "</td>\n";
+				$fmtValue = $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo);
+				
+				if ($this->IsOutputHTML())
+					$output .= "\t\t<td>" . $fmtValue . "</td>\n";
+				elseif ($this->IsOutputCSV())
+					$output .= "$fmtValue,";
 			}
 			
-			$output .= "\t\t<td>" . $this->CreateFilterLinks($recordInfo, $row) . "</td>\n";
-			$output .= "\t</tr>\n";
+			if ($this->IsOutputHTML())
+			{
+				$output .= "\t\t<td>" . $this->CreateFilterLinks($recordInfo, $row) . "</td>\n";
+				$output .= "\t</tr>\n";
+			}
+			elseif ($this->IsOutputCSV())
+			{
+				$output .= "\n";
+			}
+			
 		}
 		
-		$output .= "</table>\n";
-		$output .= $this->GetNextPrevLink($recordInfo);
+		if ($this->IsOutputHTML()) 
+		{
+			$output .= "</table>\n";
+			$output .= $this->GetNextPrevLink($recordInfo);
+		}
 		
 		print($output);
 	}
@@ -1389,14 +1548,30 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function IsOutputHTML()
+	{
+		return $this->outputFormat == "HTML";
+	}
+	
+	
+	public function IsOutputCSV()
+	{
+		return $this->outputFormat == "CSV";
+	}
+	
+	
 	public function DoViewRecord ($recordInfo)
 	{
+		if (!$this->IsOutputHTML()) return $this->ReportError("Cannot output record in {$this->outputFormat} format!");
+		
 		if ($this->recordField != '') return $this->DoViewRecordField($recordInfo);
 		
 		$this->OutputTopMenu($recordInfo);
 		$displayName = $recordInfo['displayNameSingle'];
 		$id = $this->recordID;
-		$output  = "<h1>ESO: Viewing $displayName: ID#$id</h1>\n";
+		
+		$output = "";
+		$output .= "<h1>ESO: Viewing $displayName: ID#$id</h1>\n";
 		
 		if (!$this->InitDatabase()) return false;
 		if ($this->recordID < 0) return $this->ReportError("Invalid record ID received!");
@@ -1413,6 +1588,8 @@ If you do not understand what this information means, or how to use this webpage
 		$row = $result->fetch_assoc();
 		
 		$output .= "<table border='1' cellpadding='2' cellspacing='0'>\n";
+		$csvHeader = "";
+		$csvData = "";
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
@@ -1434,6 +1611,8 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function DoViewRecordField ($recordInfo)
 	{
+		if (!$this->IsOutputHTML()) return $this->ReportError("Cannot output record field '{$this->recordField}' in {$this->outputFormat} format!");
+		
 		$this->OutputTopMenu($recordInfo);
 		if (!$this->InitDatabase()) return false;
 		
@@ -1544,38 +1723,65 @@ If you do not understand what this information means, or how to use this webpage
 		$searchCount = count($this->searchResults);
 		$totalCount = $this->searchTotalCount;
 		
-		$output  = "<h1>Search Results</h1>";
-		$output .= "Note: Only basic display of search results is currently supported (no paging or sorting).<p />";
-		$output .= "Displaying {$searchCount} of {$totalCount} records matching \"{$this->search}\"<p />";
-		$output .= "<table border='1' cellpadding='2' cellspacing='0'>\n";
-		$output .= "<tr>\n";
-		$output .= "\t<th></th>\n";
+		if ($this->IsOutputHTML())
+		{
+			$output  = "<h1>Search Results</h1>";
+			$output .= "Note: Only basic display of search results is currently supported (no paging or sorting).<p />";
+			$output .= "Displaying {$searchCount} of {$totalCount} records matching \"{$this->search}\"<p />";
+			$output .= "<table border='1' cellpadding='2' cellspacing='0'>\n";
+			$output .= "<tr>\n";
+			$output .= "\t<th></th>\n";
+		}
 		
 		foreach (self::$SEARCH_FIELDS as $key => $value)
 		{
-			$output .= "\t<th>$key</th>\n";
+			if ($this->IsOutputHTML())
+				$output .= "\t<th>$key</th>\n";
+			elseif ($this->IsOutputCSV())
+				$output .= "\"$key\",";
 		}
 		
-		$output .= "\t<th></th>\n";
-		$output .= "</tr>\n";
+		if ($this->IsOutputHTML())
+		{
+			$output .= "\t<th></th>\n";
+			$output .= "</tr>\n";
+		}
+		elseif ($this->IsOutputCSV())
+		{
+			$output .= "\n";
+		}
 		
 		foreach ($this->searchResults as $key => $result)
 		{
-			$output .= "<tr>\n";
-			$output .= "\t<td></td>\n";
+			if ($this->IsOutputHTML())
+			{
+				$output .= "<tr>\n";
+				$output .= "\t<td></td>\n";
+			}
 			
 			foreach (self::$SEARCH_FIELDS as $key => $value)
 			{
 				$fmtValue = $this->SimpleFormatField($result[$key], $value);
-				$output .= "\t<td>$fmtValue</td>\n";
+				
+				if ($this->IsOutputHTML())
+					$output .= "\t<td>$fmtValue</td>\n";
+				elseif ($this->IsOutputCSV())
+					$output .= "$fmtValue,";
 			}
 			
-			$viewLink = $this->CreateSearchViewLink($result);
-			$output .= "\t<td>$viewLink</td>\n";
-			$output .= "</tr>\n";
+			if ($this->IsOutputHTML())
+			{
+				$viewLink = $this->CreateSearchViewLink($result);
+				$output .= "\t<td>$viewLink</td>\n";
+				$output .= "</tr>\n";
+			}
+			elseif ($this->IsOutputCSV())
+			{
+				$output .= "\n";
+			}
 		}
 		
-		$output .= "</table>\n";
+		if ($this->IsOutputHTML()) $output .= "</table>\n";
 		
 		print($output);
 		return true;
@@ -1603,7 +1809,7 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function Start()
 	{
-		$this->writeHeaders();
+		$this->WriteHeaders();
 		$this->WritePageHeader();
 		
 		if ($this->search != "") return $this->DoSearch();
@@ -1634,10 +1840,11 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	private function parseInputParams ()
+	private function ParseInputParams ()
 	{
 		if (array_key_exists('record', $this->inputParams)) $this->recordType = $this->db->real_escape_string($this->inputParams['record']);
 		if (array_key_exists('search', $this->inputParams)) $this->search = $this->db->real_escape_string($this->inputParams['search']);
+		if (array_key_exists('format', $this->inputParams)) $this->outputFormat = strtoupper($this->db->real_escape_string($this->inputParams['format']));
 		if (array_key_exists('field', $this->inputParams)) $this->recordField = $this->db->real_escape_string($this->inputParams['field']);
 		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->db->real_escape_string($this->inputParams['id']);
 		if (array_key_exists('action', $this->inputParams)) $this->action = $this->db->real_escape_string($this->inputParams['action']);
@@ -1672,11 +1879,16 @@ If you do not understand what this information means, or how to use this webpage
 			}
 		}
 		
+		if ($this->outputFormat == 'CSV')
+		{
+			$this->displayLimit = 10000000;
+		}
+		
 		return true;
 	}
 	
 	
-	private function setInputParams ()
+	private function SetInputParams ()
 	{
 		global $argv;
 		$this->inputParams = $_REQUEST;
@@ -1697,13 +1909,17 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function writeHeaders ()
+	public function WriteHeaders ()
 	{
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
-		header("content-type: text/html");
+		
+		if ($this->IsOutputCSV())
+			header("content-type: text/plain");
+		else
+			header("content-type: text/html");
 	}
 	
 };
