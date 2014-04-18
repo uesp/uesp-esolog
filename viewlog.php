@@ -18,6 +18,8 @@ class EsoLogViewer
 	public $totalRowCount = 0;
 	public $lastQuery = "";
 	
+	public $logInfos = array();
+	
 	public $action = "";
 	public $recordType = '';
 	public $recordID = -1;
@@ -566,6 +568,7 @@ class EsoLogViewer
 		$this->InitDatabase();
 		$this->SetInputParams();
 		$this->ParseInputParams();
+		$this->LoadLogInfo();
 	}
 	
 	
@@ -596,7 +599,32 @@ class EsoLogViewer
 		return FALSE;
 	}
 	
-
+	
+	public function LoadLogInfo ()
+	{
+		$query = "SELECT * FROM logInfo;";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to load records from logInfo table!");
+	
+		$records = array();
+		if ($result->num_rows === 0) return true;
+	
+		$result->data_seek(0);
+	
+		while (($row = $result->fetch_assoc()))
+		{
+			$key = $row['id'];
+			$value = $row['value'];
+			$records[$key] = $value;
+		}
+	
+		$this->logInfos = $records;
+		return true;
+	}
+	
+	
 	public function GetItemTraitText ($value)
 	{
 		static $VALUES = array(
@@ -865,6 +893,12 @@ class EsoLogViewer
 	public function WritePageFooter()
 	{
 		if ($this->outputFormat == 'CSV') return true;
+		
+		$lastUpdate = $this->logInfos['lastUpdate'];
+		if ($lastUpdate == null) $lastUpdate = '?';
+		
+		$output = "<hr>\n<div class=\"elvLastUpdate\">Data last updated on $lastUpdate</div>";
+		print($output);
 		
 		?>
 </body>

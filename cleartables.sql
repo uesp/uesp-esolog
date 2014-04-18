@@ -1,5 +1,6 @@
 truncate table uesp_esolog.user;
 truncate table uesp_esolog.logEntry;
+truncate table uesp_esolog.logInfo;
 truncate table uesp_esolog.book;
 truncate table uesp_esolog.chest;
 truncate table uesp_esolog.quest;

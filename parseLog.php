@@ -196,6 +196,8 @@ class EsoLogParser
 	
 	public $skillInfo = array();
 	
+	public $logInfos = array();
+	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
 	const FIELD_FLOAT = 3;
@@ -204,6 +206,11 @@ class EsoLogParser
 			self::FIELD_INT => "integer",
 			self::FIELD_STRING => "string",
 			self::FIELD_FLOAT => "string",
+	);
+	
+	public static $LOGINFO_FIELDS = array(
+			'key' => self::FIELD_STRING,
+			'value' => self::FIELD_STRING,
 	);
 	
 	public static $BOOK_FIELDS = array(
@@ -418,6 +425,47 @@ class EsoLogParser
 		return $this->createRecordFromRow($row, $fieldDef);
 	}
 	
+	
+	public function LoadLogInfo ()
+	{
+		$query = "SELECT * FROM logInfo;";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to load records from logInfo table!");
+		
+		$records = array();
+		if ($result->num_rows === 0) return true;
+		
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc())) 
+		{
+			$key = $row['id'];
+			$value = $row['value'];
+			$records[$key] = $value;
+		}
+		
+		$this->logInfos = $records;
+		return true;
+	}
+	
+	
+	public function SaveLogInfo ()
+	{
+		foreach ($this->logInfos as $key => $value)
+		{
+			$safeKey = $this->db->real_escape_string($key);
+			$safeValue = $this->db->real_escape_string($value);
+			$query = "INSERT INTO logInfo(id, value) VALUES('$safeKey', '$safeValue') ON DUPLICATE KEY UPDATE id='$safeKey', value='$safeValue';";
+			$this->lastQuery = $query;
+			
+			$result = $this->db->query($query);
+			if ($result === false) return $this->reportError("Failed to save record info logInfo table!");
+		}
+		
+		return true;
+	}
 	
 	public function createUpdateQuery ($table, $record, $idField, $fieldDef)
 	{
@@ -636,6 +684,17 @@ class EsoLogParser
 	{
 		$result = $this->initDatabaseWrite();
 		if (!$result) return false;
+		
+		
+		$query = "CREATE TABLE IF NOT EXISTS logInfo (
+						id TINYTEXT NOT NULL,
+						value TINYTEXT NOT NULL,
+						PRIMARY KEY (id(64))
+					);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create logInfo table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS logEntry (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -990,6 +1049,7 @@ class EsoLogParser
 		
 		$result &= $this->saveUsers();
 		$result &= $this->saveIPAddresses();
+		$result &= $this->SaveLogInfo();
 		
 		return $result;
 	}
@@ -2292,12 +2352,14 @@ class EsoLogParser
 	{
 		$files = glob($path . "eso*.log");
 		$this->createTables();
+		$this->LoadLogInfo();
 		
 		foreach ($files as $key => $value)
 		{
 			$this->parseEntireLog($value);
 		}
 		
+		$this->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
 		return true;
 	}
 	
@@ -2428,9 +2490,14 @@ class EsoLogParser
 	
 $g_EsoLogParser = new EsoLogParser();
 //$g_EsoLogParser->testItemLink();
-$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/fix/");
-$g_EsoLogParser->saveData();
-$g_EsoLogParser->DumpSkillInfo();
+
+//$g_EsoLogParser->LoadLogInfo();
+//$g_EsoLogParser->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
+//$g_EsoLogParser->SaveLogInfo();
+
+//$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
+//$g_EsoLogParser->saveData();
+//$g_EsoLogParser->DumpSkillInfo();
 	
 	
 ?>
