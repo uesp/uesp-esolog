@@ -1,5 +1,6 @@
 drop table uesp_esolog.user;
 drop table uesp_esolog.logEntry;
+drop table uesp_esolog.logInfo;
 drop table uesp_esolog.book;
 drop table uesp_esolog.chest;
 drop table uesp_esolog.quest;
