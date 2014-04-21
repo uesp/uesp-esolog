@@ -2495,9 +2495,9 @@ $g_EsoLogParser = new EsoLogParser();
 //$g_EsoLogParser->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
 //$g_EsoLogParser->SaveLogInfo();
 
-//$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
-//$g_EsoLogParser->saveData();
-//$g_EsoLogParser->DumpSkillInfo();
+$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
+$g_EsoLogParser->saveData();
+$g_EsoLogParser->DumpSkillInfo();
 	
 	
 ?>
