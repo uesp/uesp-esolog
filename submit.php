@@ -39,6 +39,37 @@ class EsoLogSubmitter
 			$this->fileError = $_FILES["logfile"]['error'];
 			$this->fileTmpName = $_FILES["logfile"]['tmp_name'];
 			$this->hasFileData = true;
+			
+			switch($this->fileError)
+			{
+				case UPLOAD_ERR_OK:
+					$this->fileErrorMsg = ""; 
+					break;
+				case UPLOAD_ERR_INI_SIZE:
+					$this->fileErrorMsg = "The uploaded file exceeds the upload_max_filesize directive in php.ini.";
+					break;
+				case UPLOAD_ERR_FORM_SIZE:
+					$this->fileErrorMsg = "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.";
+					break;
+				case UPLOAD_ERR_PARTIAL:
+					$this->fileErrorMsg = "The uploaded file was only partially uploaded.";
+					break;
+				case UPLOAD_ERR_NO_FILE:
+					$this->fileErrorMsg = "No file was uploaded.";
+					break;
+				case UPLOAD_ERR_NO_TMP_DIR:
+					$this->fileErrorMsg = "Missing a temporary folder. Introduced in PHP 4.3.10 and PHP 5.0.3.";
+					break;
+				case UPLOAD_ERR_CANT_WRITE:
+					$this->fileErrorMsg = "Failed to write file to disk. Introduced in PHP 5.1.0.";
+					break;
+				case UPLOAD_ERR_EXTENSION:
+					$this->fileErrorMsg = "Unknown PHP extension error.";
+					break;
+				default:
+					$this->fileErrorMsg = "Unknown error " . $this->fileError . ".";
+					break;
+			}
 		}
 		
 		return true;
@@ -48,9 +79,9 @@ class EsoLogSubmitter
 	public function reportError ($errorMsg)
 	{
 		//print("Error: " . $errorMsg . "\n");
-		error_log("Error: " . $errorMsg);
+		
 		$this->fileErrorMsg .= $errorMsg . "<br/>";
-		$this->fileError = 1;
+		$this->fileError = 10;
 		
 		return false;
 	}
@@ -83,6 +114,7 @@ class EsoLogSubmitter
 	{
 		$output = "<b>Error: Failed to upload file!</b><br />";
 		$output .= $this->fileErrorMsg . "<br />";
+		$output .= "Error Code: " . $this->fileError . "<br />";
 	}
 	else
 	{
@@ -139,12 +171,12 @@ class EsoLogSubmitter
 		<li>It is safe to submit duplicate files or log entries...the log parser can detect and ignore duplicate entries.</li>
 		</ul>
 		<p />
-		Note: Maximum file upload size is 8MB.
+		Note: Maximum file upload size is 20MB.
 		<br /> &nbsp;
 	</td>
 </tr><tr>
 	<td>
-		<input type="hidden" name="MAX_FILE_SIZE" value="8000000" />
+		<input type="hidden" name="MAX_FILE_SIZE" value="21000000" />
 		<input type="file" name="logfile" value="Choose File..." />
 		<br /> &nbsp;
 	</td>
@@ -179,7 +211,11 @@ class EsoLogSubmitter
 	
 	public function processUpload ()
 	{
-		if ($this->fileError != 0) return false;
+		if ($this->fileError != 0)
+		{
+			error_log("upload error:" . $this->fileError);
+			return false;
+		}
 		
 		$destFilename = tempnam(self::ESOLOG_UPLOAD_PATH, "uespLog");
 		$this->fileMoveName = $destFilename;
