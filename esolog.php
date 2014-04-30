@@ -11,7 +11,7 @@ class EsoLogCollector
 {
 	const ELC_OUTPUT_LOG_PATH = "log/";
 	const ELC_INDEX_FILENAME = "log/esolog.index";
-	const ELC_MAX_LOG_FILESIZE = 100000000; 	# Maximum desired size of a log file in bytes
+	const ELC_MAX_LOG_FILESIZE = 25000000; 	# Maximum desired size of a log file in bytes
 
 	public $currentLogFilename = "tmp.log";
 	public $currentLogIndex = 1;

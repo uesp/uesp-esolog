@@ -180,9 +180,12 @@ class EsoLogParser
 	
 	public $currentParseLine = 0;
 	public $currentParseFile = "";
+	public $startFileIndex = 0;
 	
 	public $duplicateCount = 0;
+	public $fileDuplicateCount = 0;
 	public $skipDuplicates = true;
+	public $suppressDuplicateMsg = true;
 	
 	public $lastValidTime = array();
 	public $lastValidUserName = "Anonymous";
@@ -677,6 +680,7 @@ class EsoLogParser
 		$this->readIndexFile();
 		$this->currentLogFilename = $this->getCurrentLogFilename();
 		$this->setInputParams();
+		$this->parseInputParams();
 	}
 	
 	
@@ -1238,6 +1242,30 @@ class EsoLogParser
 	{
 		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
 		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
+		
+		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
+		
+		if ($itemRecord == null)
+		{
+			$itemRecord = $this->CreateItem($logEntry);
+			if ($itemRecord == null) return false;
+		}
+		
+		$itemLocation = $this->FindLocation("item", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('itemId' => $itemRecord['id']));
+		
+		if ($itemLocation == null)
+		{
+			$itemLocation = $this->CreateLocation("item", $itemRecord['name'], $logEntry, array('itemId' => $itemRecord['id']));
+			if ($itemLocation == null) return false;
+		}
+		else
+		{
+			++$itemLocation['counter'];
+		
+			$result = $this->SaveLocation($itemLocation);
+			if (!$result) return false;
+		}
+		
 		return true;
 	}
 	
@@ -1514,17 +1542,30 @@ class EsoLogParser
 	}
 	
 	
+	function startsWith($haystack, $needle)
+	{
+		return $needle === "" || strpos($haystack, $needle) === 0;
+	}
+	
+	
 	public function OnSlotUpdateEntry ($logEntry)
 	{
 		//event{SlotUpdate}  icon{/esoui/art/icons/crafting_flower_wormwood_r1.dds}  slot{50}  bag{1}  qnt{13}  craftType{31}  quality{2}
 		//locked{false}  trait{0}  equipType{0}  itemStyle{0}  itemLink{|H2DC50E:item:30159:1:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}
 		//type{31}  value{2}  userName{Reorx}  end{}
 		
-		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
-		if ($itemRecord != null) return true;
+		return true;
 		
-		$itemRecord = $this->CreateItem($logEntry);
-		if ($itemRecord == null) return false;
+		$itemLink = $logEntry['itemLink'];
+		if (strpos($itemLink, "|H") !== 0) return $this->ReportLogParseError("Skipping SlotUpdate with no full item link!");
+		
+		$itemRecord = $this->FindItemLink($itemLink);
+		
+		if ($itemRecord == null)
+		{
+			$itemRecord = $this->CreateItem($logEntry);
+			if ($itemRecord == null) return false;
+		}
 		
 		return true;
 	}
@@ -2137,7 +2178,8 @@ class EsoLogParser
 		
 		if ($this->skipDuplicates && $isDuplicate)
 		{
-			$this->log("{$this->currentParseLine}: Skipping duplicate log entry ({$logEntry['gameTime']}, {$logEntry['timeStamp']}, {$logEntry['__crc']})...");
+			if (!$this->suppressDuplicateMsg) $this->log("{$this->currentParseLine}: Skipping duplicate log entry ({$logEntry['gameTime']}, {$logEntry['timeStamp']}, {$logEntry['__crc']})...");
+			++$this->fileDuplicateCount;
 			++$this->duplicateCount;
 			++$user['duplicateCount'];
 			$user['__dirty'] = true;
@@ -2194,6 +2236,12 @@ class EsoLogParser
 			case "Recipe":						$result = $this->OnRecipe($logEntry); break;
 			case "Recipe::Result":				$result = $this->OnRecipeResult($logEntry); break;
 			case "Recipe::Ingredient":			$result = $this->OnRecipeIngredient($logEntry); break;
+			case "Recipe::List":				$result = $this->OnNullEntry($logEntry); break;
+			case "Recipe::End":					$result = $this->OnNullEntry($logEntry); break;
+			case "Global":						$result = $this->OnNullEntry($logEntry); break;
+			case "Global::End":					$result = $this->OnNullEntry($logEntry); break;
+			case "Achievement":					$result = $this->OnNullEntry($logEntry); break;
+			case "Achievement::End":			$result = $this->OnNullEntry($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
@@ -2282,6 +2330,19 @@ class EsoLogParser
 		
 		$this->currentParseFile = $logFilename;
 		$this->currentParseLine = 0;
+		$this->fileDuplicateCount = 0;
+		
+		$fileIndex = 0;
+		$result = preg_match("|eso([0-9]*)\.log|", $logFilename, $matches);
+		if ($result) $fileIndex = (int) $matches[1];
+		
+		//print("FileIndex = $fileIndex\n");
+		
+		if ($this->startFileIndex > $fileIndex)
+		{
+			$this->log("\t\tSkipping file $logFilename...");
+			return true;
+		}
 		
 		$logEntries = array();
 		$entryCount = 0;
@@ -2315,7 +2376,7 @@ class EsoLogParser
 		
 		$this->log("\tParsed {$entryCount} log entries from file.");
 		$this->log("\tFound {$errorCount} entries with errors.");
-		$this->log("\tSkipped {$this->duplicateCount} duplicate log entries.");
+		$this->log("\tSkipped {$this->fileDuplicateCount} duplicate log entries.");
 		return TRUE;
 	}
 	
@@ -2455,6 +2516,18 @@ class EsoLogParser
 	}
 	
 	
+	private function parseInputParams ()
+	{
+		if (array_key_exists('start', $this->inputParams))
+		{
+			$this->startFileIndex = (int) $this->inputParams['start'];
+			$this->log("Starting log parsing at file index {$this->startFileIndex}.");
+		}
+		
+		return true;
+	}
+	
+	
 	private function setInputParams ()
 	{
 		global $argv;
@@ -2497,7 +2570,7 @@ $g_EsoLogParser = new EsoLogParser();
 
 $g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
 $g_EsoLogParser->saveData();
-$g_EsoLogParser->DumpSkillInfo();
-	
-	
+
+//$g_EsoLogParser->DumpSkillInfo();
+
 ?>
