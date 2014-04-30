@@ -2242,6 +2242,7 @@ class EsoLogParser
 			case "Global::End":					$result = $this->OnNullEntry($logEntry); break;
 			case "Achievement":					$result = $this->OnNullEntry($logEntry); break;
 			case "Achievement::End":			$result = $this->OnNullEntry($logEntry); break;
+			case "ExperienceUpdate":			$result = $this->OnNullEntry($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
