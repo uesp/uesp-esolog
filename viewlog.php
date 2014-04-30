@@ -175,7 +175,12 @@ class EsoLogViewer
 			'name' => self::FIELD_STRING,
 			'entryCount' => self::FIELD_INT,
 			'newCount' => self::FIELD_INT,
-			'errorCount' => self::FIELD_INT,
+			'chestsFound' => self::FIELD_INT,
+			'sacksFound' => self::FIELD_INT,
+			'booksRead' => self::FIELD_INT,
+			'nodesHarvested' => self::FIELD_INT,
+			'itemsLooted' => self::FIELD_INT,
+			'mobsKilled' => self::FIELD_INT,
 			'duplicateCount' => self::FIELD_INT,
 			'enabled' => self::FIELD_INTBOOLEAN,
 	);

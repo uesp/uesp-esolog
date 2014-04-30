@@ -1,4 +1,4 @@
-<?php
+6<?php
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -76,7 +76,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 			itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}
 			lootType{1}
 			qnt{1}
-			lastTarget{Wormwood}    
+			lastTarget{Wormwood}
 
 	Items:
 		id
@@ -167,6 +167,9 @@ class EsoLogParser
 	const ELP_INDEX_FILENAME = "log/esolog.index";
 	const ELP_OUTPUTLOG_FILENAME = "log/parser.log";
 	
+	const TREASURE_DELTA_TIME = 4000;
+	const BOOK_DELTA_TIME = 4000;
+	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
 	public $db = null;
@@ -186,6 +189,7 @@ class EsoLogParser
 	public $fileDuplicateCount = 0;
 	public $skipDuplicates = true;
 	public $suppressDuplicateMsg = true;
+	public $suppressMissingLocationMsg = true;
 	
 	public $lastValidTime = array();
 	public $lastValidUserName = "Anonymous";
@@ -204,6 +208,93 @@ class EsoLogParser
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
 	const FIELD_FLOAT = 3;
+	
+	const RESOURCE_UNKNOWN = -1;
+	const RESOURCE_NONE = 0;
+	const RESOURCE_ORE = 1;
+	const RESOURCE_WOOD = 2;
+	const RESOURCE_CLOTH = 3;
+	const RESOURCE_LEATHER = 4;
+	const RESOURCE_RUNESTONE = 5;
+	const RESOURCE_REAGENT = 6;
+	const RESOURCE_INGREDIENT = 7;
+	
+	public static $RESOURCE_TARGETS = array(
+		'Iron Ore'				=> self::RESOURCE_ORE,
+		'High Iron Ore'			=> self::RESOURCE_ORE,
+		'Orichalcum Ore'		=> self::RESOURCE_ORE,
+		'Dwarven Ore'			=> self::RESOURCE_ORE,
+		'Ebony Ore'				=> self::RESOURCE_ORE,
+		'Calcinium Ore'			=> self::RESOURCE_ORE,
+		'Galatite Ore'			=> self::RESOURCE_ORE,
+		'Quicksilver Ore'		=> self::RESOURCE_ORE,
+		'Voidstone Ore'			=> self::RESOURCE_ORE,
+			
+		'Rough Maple'			=> self::RESOURCE_WOOD,
+		'Rough Oak'				=> self::RESOURCE_WOOD,
+		'Rough Beech'			=> self::RESOURCE_WOOD,
+		'Rough Hickory'			=> self::RESOURCE_WOOD,
+		'Rough Yew'				=> self::RESOURCE_WOOD,
+		'Rough Birch'			=> self::RESOURCE_WOOD,
+		'Rough Ash'				=> self::RESOURCE_WOOD,
+		'Rough Mahogany'		=> self::RESOURCE_WOOD,
+		'Rough Nightwood'		=> self::RESOURCE_WOOD,
+			
+		'Raw Jute'				=> self::RESOURCE_CLOTH,
+		'Raw Flax'				=> self::RESOURCE_CLOTH,
+		'Raw Cotton'			=> self::RESOURCE_CLOTH,
+		'Raw Spidersilk'		=> self::RESOURCE_CLOTH,
+		'Raw Ebonthread'		=> self::RESOURCE_CLOTH,
+		'Kreshweed'				=> self::RESOURCE_CLOTH,
+		'Ironweed'				=> self::RESOURCE_CLOTH,
+		'Saint\'s Hair'			=> self::RESOURCE_CLOTH,
+		'Void Bloom'			=> self::RESOURCE_CLOTH,
+			
+		'Rawhide Scraps'		=> self::RESOURCE_LEATHER,
+		'Leather Scraps'		=> self::RESOURCE_LEATHER,
+		'Thick Leather Scraps'	=> self::RESOURCE_LEATHER,
+		'Hide Scraps'			=> self::RESOURCE_LEATHER,
+		'Fellhide Scraps'		=> self::RESOURCE_LEATHER,
+		'Topgrain Hide Scraps'	=> self::RESOURCE_LEATHER,
+		'Iron Hide Scraps'		=> self::RESOURCE_LEATHER,
+		'Superb Scraps'			=> self::RESOURCE_LEATHER,
+		'Shadowhide Scraps'		=> self::RESOURCE_LEATHER,
+			
+		'Aspect Rune'			=> self::RESOURCE_RUNESTONE,
+		'Potency Rune'			=> self::RESOURCE_RUNESTONE,
+		'Essence Rune'			=> self::RESOURCE_RUNESTONE,
+		
+		'Pure Water'			=> self::RESOURCE_REAGENT,
+		'Water Skin'			=> self::RESOURCE_REAGENT,
+		'Water Skin'			=> self::RESOURCE_REAGENT,
+		'Blessed Thistle'		=> self::RESOURCE_REAGENT,
+		'Blue Entoloma'			=> self::RESOURCE_REAGENT,
+		'Bugloss'				=> self::RESOURCE_REAGENT,
+		'Columbine'				=> self::RESOURCE_REAGENT,
+		'Corn Flower'			=> self::RESOURCE_REAGENT,
+		'Dragonthorn'			=> self::RESOURCE_REAGENT,
+		'Emetic Russula'		=> self::RESOURCE_REAGENT,
+		'Imp Stool'				=> self::RESOURCE_REAGENT,
+		'Lady\'s Smock'			=> self::RESOURCE_REAGENT,
+		'Luminous Russula'		=> self::RESOURCE_REAGENT,
+		'Mountain Flower'		=> self::RESOURCE_REAGENT,
+		'Namira\'s Rot'			=> self::RESOURCE_REAGENT,
+		'Nirnroot'				=> self::RESOURCE_REAGENT,
+		'Stinkhorn'				=> self::RESOURCE_REAGENT,
+		'Voilet Coprinus'		=> self::RESOURCE_REAGENT,
+		'Water Hyacinth'		=> self::RESOURCE_REAGENT,
+		'White Cap'				=> self::RESOURCE_REAGENT,
+		'Wormwood'				=> self::RESOURCE_REAGENT,
+			
+		'Barrel'				=> self::RESOURCE_INGREDIENT,
+		'Crate'					=> self::RESOURCE_INGREDIENT,
+		'Barrels'				=> self::RESOURCE_INGREDIENT,
+		'Crates'				=> self::RESOURCE_INGREDIENT,
+		'Backpack'				=> self::RESOURCE_INGREDIENT,
+		'Sack'					=> self::RESOURCE_INGREDIENT,
+		'Bag'					=> self::RESOURCE_INGREDIENT,
+	
+	);
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -721,6 +812,12 @@ class EsoLogParser
 						errorCount INTEGER NOT NULL,
 						duplicateCount INTEGER NOT NULL,
 						newCount INTEGER NOT NULL,
+						chestsFound INTEGER NOT NULL,
+						sacksFound INTEGER NOT NULL,
+						booksRead INTEGER NOT NULL,
+						nodesHarvested INTEGER NOT NULL,
+						itemsLooted INTEGER NOT NULL,
+						mobsKilled INTEGER NOT NULL,
 						enabled TINYINT NOT NULL DEFAULT 1,
 						PRIMARY KEY (name(64))
 					);";
@@ -940,11 +1037,20 @@ class EsoLogParser
 		$this->users[$userName]['errorCount'] = 0;
 		$this->users[$userName]['duplicateCount'] = 0;
 		$this->users[$userName]['newCount'] = 0;
+		$this->users[$userName]['chestsFound'] = 0;
+		$this->users[$userName]['sacksFound'] = 0;
+		$this->users[$userName]['booksRead'] = 0;
+		$this->users[$userName]['itemsLooted'] = 0;
+		$this->users[$userName]['nodesHarvested'] = 0;
+		$this->users[$userName]['mobsKilled'] = 0;
 		$this->users[$userName]['enabled'] = true;
 		$this->users[$userName]['__dirty'] = false;
 		
 		$this->users[$userName]['lastBookRecord'] = null;
 		$this->users[$userName]['lastBookLogEntry'] = null;
+		$this->users[$userName]['__lastChestFoundGameTime'] = 0;
+		$this->users[$userName]['__lastSackFoundGameTime'] = 0;
+		$this->users[$userName]['__lastBookGameTime'] = 0;
 		
 		return $this->users[$userName];
 	}
@@ -999,6 +1105,12 @@ class EsoLogParser
 		settype($row['errorCount'], "integer");
 		settype($row['duplicateCount'], "integer");
 		settype($row['newCount'], "integer");
+		settype($row['chestsFound'], "integer");
+		settype($row['sacksFound'], "integer");
+		settype($row['booksRead'], "integer");
+		settype($row['itemsLooted'], "integer");
+		settype($row['nodesHarvested'], "integer");
+		settype($row['mobsKilled'], "integer");
 		
 		$this->users[$userName] = array();
 		$this->users[$userName]['name'] = $userName;
@@ -1006,6 +1118,12 @@ class EsoLogParser
 		$this->users[$userName]['errorCount'] = $row['errorCount'];
 		$this->users[$userName]['duplicateCount'] = $row['duplicateCount'];
 		$this->users[$userName]['newCount'] = $row['newCount'];
+		$this->users[$userName]['chestsFound'] = $row['chestsFound'];
+		$this->users[$userName]['sacksFound'] = $row['sacksFound'];
+		$this->users[$userName]['booksRead'] = $row['booksRead'];
+		$this->users[$userName]['itemsLooted'] = $row['itemsLooted'];
+		$this->users[$userName]['nodesHarvested'] = $row['nodesHarvested'];
+		$this->users[$userName]['mobsKilled'] = $row['mobsKilled'];
 		$this->users[$userName]['enabled'] = ($row['enabled'] != 0);
 		$this->users[$userName]['__dirty'] = false;
 		
@@ -1099,7 +1217,14 @@ class EsoLogParser
 		
 		$safeName = $this->db->real_escape_string($user['name']);
 		
-		$query = "UPDATE user SET entryCount={$user['entryCount']}, newCount={$user['newCount']}, errorCount={$user['errorCount']}, duplicateCount={$user['duplicateCount']} WHERE name='{$safeName}';";
+		$query = "UPDATE user SET entryCount={$user['entryCount']}, newCount={$user['newCount']}, errorCount={$user['errorCount']}, duplicateCount={$user['duplicateCount']}";
+		$query .= ", itemsLooted={$user['itemsLooted']}";
+		$query .= ", chestsFound={$user['chestsFound']}";
+		$query .= ", sacksFound={$user['sacksFound']}";
+		$query .= ", booksRead={$user['booksRead']}";
+		$query .= ", nodesHarvested={$user['nodesHarvested']}";
+		$query .= ", mobsKilled={$user['mobsKilled']}";
+		$query .= " WHERE name='{$safeName}';";
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to save user '{$safeName}'!");
 		
@@ -1118,6 +1243,19 @@ class EsoLogParser
 		if ($result === FALSE) return $this->reportError("Failed to save IP address '{$safeName}'!");
 		
 		return true;
+	}
+	
+	
+	public function IsTargetResource ($targetName)
+	{
+		return array_key_exists($targetName, self::$RESOURCE_TARGETS);
+	}
+	
+	
+	public function GetResourceType ($targetName)
+	{
+		if (!array_key_exists($targetName, self::$RESOURCE_TARGETS)) return self::RESOURCE_UNKNOWN;
+		return self::$RESOURCE_TARGETS[$targetName];
 	}
 	
 	
@@ -1243,7 +1381,19 @@ class EsoLogParser
 		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
 		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
 		
+		++$this->currentUser['itemsLooted'];
+		$this->currentUser['__dirty'] = true;
+		
+		if ($this->IsTargetResource($logEntry['lastTarget']))
+		{
+			//$this->log("\tFound user node harvest...");
+			++$this->currentUser['nodesHarvested'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
 		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
+		
+		
 		
 		if ($itemRecord == null)
 		{
@@ -1795,7 +1945,7 @@ class EsoLogParser
 	{
 		if ($logEntry['x'] == '' || $logEntry['y'] == '' || $logEntry['zone'] == '')
 		{
-			$this->ReportLogParseError("Skipping location with missing x/y/zone fields!");
+			if (!$this->suppressMissingLocationMsg) $this->ReportLogParseError("Skipping location with missing x/y/zone fields!");
 			return null;
 		}
 		
@@ -1857,6 +2007,15 @@ class EsoLogParser
 	{
 		//event{ShowBook}  medium{3}  body{...} bookTitle{Jornibret's Last Dance}  y{0.60519206523895}  x{0.689866065979}  zone{Daggerfall}
 		//gameTime{3748234}  timeStamp{4743642811914518528}  userName{...}  ipAddress{...}  logTime{1396192529}  end{}
+		
+		$diff = $logEntry['gameTime'] - $this->currentUser['__lastBookGameTime'];
+		
+		if ($diff >= self::BOOK_DELTA_TIME || $diff < 0)
+		{
+			++$this->currentUser['booksRead'];
+			$this->currentUser['__dirty'] = true;
+			$this->currentUser['__lastBookGameTime'] = $logEntry['gameTime'];
+		}
 		
 		$bookTitle = $logEntry['bookTitle'];
 		//print("\tShowBook: $bookTitle\n");
@@ -2011,9 +2170,60 @@ class EsoLogParser
 			
 			$result &= $this->saveChest($chestRecord);
 			$this->currentUser['lastChestRecord'] = $chestRecord;
+			
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastChestFoundGameTime'];
+			//print("Chest Diff = $diff\n");
+			
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				//$this->log("\tFound user chest...");
+				++$this->currentUser['chestsFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastChestFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
+		else if ($logEntry['name'] == "Heavy Sack")
+		{
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastSackFoundGameTime'];
+			
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				//$this->log("\tFound user sack...");
+				++$this->currentUser['sacksFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastSackFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
+		else if ($logEntry['name'] == "Heavy Crate")
+		{
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastSackFoundGameTime'];
+			
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				//$this->log("\tFound user crate...");
+				++$this->currentUser['sacksFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastSackFoundGameTime'] = $logEntry['gameTime'];
+			}
 		}
 		
 		return $result;
+	}
+	
+	
+	public function OnExperienceUpdate ($logEntry)
+	{
+		//event{ExperienceUpdate}  reason{10}  xpGained{915}  unit{player}  maxXP{0}
+		//x{0.56155747175217}  zone{Auridon}  y{0.69421499967575}
+		//timeStamp{4743653895434141696}  gameTime{32224169}  userName{Reorx}
+		
+		if ($logEntry['reason'] == 0)
+		{
+			++$this->currentUser['mobsKilled'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		return true;
 	}
 	
 	
@@ -2241,8 +2451,11 @@ class EsoLogParser
 			case "Global":						$result = $this->OnNullEntry($logEntry); break;
 			case "Global::End":					$result = $this->OnNullEntry($logEntry); break;
 			case "Achievement":					$result = $this->OnNullEntry($logEntry); break;
+			case "Category":					$result = $this->OnNullEntry($logEntry); break;
+			case "Subcategory":					$result = $this->OnNullEntry($logEntry); break;
+			case "Achievement::Start":			$result = $this->OnNullEntry($logEntry); break;
 			case "Achievement::End":			$result = $this->OnNullEntry($logEntry); break;
-			case "ExperienceUpdate":			$result = $this->OnNullEntry($logEntry); break;
+			case "ExperienceUpdate":			$result = $this->OnExperienceUpdate($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
@@ -2575,3 +2788,4 @@ $g_EsoLogParser->saveData();
 //$g_EsoLogParser->DumpSkillInfo();
 
 ?>
+
