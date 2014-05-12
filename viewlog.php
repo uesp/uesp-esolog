@@ -1271,7 +1271,8 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			default:
 			case self::FIELD_STRING:
-				$output = "\"$value\"";
+				$escapeValue = addslashes($value);
+				$output = "\"$escapeValue\"";
 				break;
 			case self::FIELD_LARGESTRING:
 				$output = "\"...\"";
@@ -1367,7 +1368,8 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			default:
 			case self::FIELD_STRING:
-				$output = "\"$value\"";
+				$escapeValue = addslashes($value);
+				$output = "\"$escapeValue\"";
 				break;
 			case self::FIELD_LARGESTRING:
 				$output = "\"...\"";
