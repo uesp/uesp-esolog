@@ -188,6 +188,75 @@ class EsoLogViewer
 			'enabled' => self::FIELD_INTBOOLEAN,
 	);
 	
+	public static $MINEDITEM_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'link' => self::FIELD_STRING,
+			'itemId' => self::FIELD_INT,
+			'internalLevel' => self::FIELD_INT,
+			'internalSubtype' => self::FIELD_INT,
+			'potionData' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'style' => self::FIELD_INTTRANSFORM,
+			'trait' => self::FIELD_INTTRANSFORM,
+			'quality' => self::FIELD_INTTRANSFORM,
+			'value' => self::FIELD_INT,
+			'level' => self::FIELD_INT,
+			'type' => self::FIELD_INTTRANSFORM,
+			'equipType' => self::FIELD_INTTRANSFORM,
+			'weaponType' => self::FIELD_INTTRANSFORM,
+			'armorType' => self::FIELD_INTTRANSFORM,
+			'craftType' => self::FIELD_INTTRANSFORM,
+			'armorRating' => self::FIELD_INT,
+			'weaponPower' => self::FIELD_INT,
+			'cond' => self::FIELD_INT,
+			'enchantId' => self::FIELD_INT,
+			'enchantLevel' => self::FIELD_INT,
+			'enchantSubtype' => self::FIELD_INT,
+			'enchantName' => self::FIELD_STRING,
+			'enchantDesc' => self::FIELD_STRING,
+			'maxCharges' => self::FIELD_INT,
+			'abilityName' => self::FIELD_STRING,
+			'abilityDesc' => self::FIELD_STRING,
+			'abilityCooldown' => self::FIELD_INT,
+			'setName' => self::FIELD_STRING,
+			'setBonusCount' => self::FIELD_INT,
+			'setMaxEquipCount' => self::FIELD_INT,
+			'setBonusCount1' => self::FIELD_INT,
+			'setBonusCount2' => self::FIELD_INT,
+			'setBonusCount3' => self::FIELD_INT,
+			'setBonusCount4' => self::FIELD_INT,
+			'setBonusCount5' => self::FIELD_INT,
+			'setBonusDesc1' => self::FIELD_STRING,
+			'setBonusDesc2' => self::FIELD_STRING,
+			'setBonusDesc3' => self::FIELD_STRING,
+			'setBonusDesc4' => self::FIELD_STRING,
+			'setBonusDesc5' => self::FIELD_STRING,
+			'glyphMinLevel' => self::FIELD_INT,
+			'glyphMaxLevel' => self::FIELD_INT,
+			'runeType' => self::FIELD_INT,				//TODO: Transform
+			'runeRank' => self::FIELD_INT,
+			'bindType' => self::FIELD_INT,				//TODO: Transform
+			'siegeHP' => self::FIELD_INT,
+			'bookTitle' => self::FIELD_STRING,
+			'craftSkillRank' => self::FIELD_INT,
+			'recipeRank' => self::FIELD_INT,			//TODO: Transform?
+			'recipeQuality' => self::FIELD_INT,			//TODO: Transform
+			'refinedItemLink' => self::FIELD_STRING,
+			'resultItemLink' => self::FIELD_STRING,
+			'materialLevelDesc' => self::FIELD_STRING,
+			'traitDesc' => self::FIELD_STRING,
+			'traitAbilityDesc' => self::FIELD_STRING,
+			'traitCooldown' => self::FIELD_INT,
+			'icon' => self::FIELD_STRING,
+			'isUnique' => self::FIELD_INTBOOLEAN,
+			'isUniqueEquipped' => self::FIELD_INTBOOLEAN,
+			'isVendorTrash' => self::FIELD_INTBOOLEAN,
+			'isArmorDecay' => self::FIELD_INTBOOLEAN,
+			'isConsumable' => self::FIELD_INTBOOLEAN,
+	);
+	
 	
 	public static $RECORD_TYPES = array(
 			
@@ -501,6 +570,29 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'minedItem' => array(
+					'displayName' => 'Mined Items',
+					'displayNameSingle' => 'Mined Item',
+					'record' => 'minedItem',
+					'table' => 'minedItem',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+					),
+			
+					'filters' => array(
+					),
+			),
 	);
 	
 	
@@ -577,6 +669,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
 		self::$RECORD_TYPES['ingredient']['fields'] = self::$INGREDIENT_FIELDS;
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
+		self::$RECORD_TYPES['minedItem']['fields'] = self::$MINEDITEM_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -667,6 +760,8 @@ class EsoLogViewer
 				7 => "Weapon Sharpened",
 				6 => "Weapon Training",
 				8 => "Weapon Weighted",
+				25 => "Nirnhoned",
+				26 => "Nirnhoned",
 		);
 		
 		$key = (int) $value;
@@ -764,6 +859,52 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetItemArmorTypeText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "None",
+				1 => "Light",
+				2 => "Medium",
+				3 => "Heavy",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetItemWeaponTypeText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "None",
+				1 => "Axe",
+				2 => "Hammer",
+				3 => "Sword",
+				4 => "Two handed Sword",
+				5 => "Two handed Axe",
+				6 => "Two handed Hammer",
+				7 => "Prop",
+				8 => "Bow",
+				9 => "Healing Staff",
+				10 => "Rune",
+				11 => "Dagger",
+				12 => "Fire Staff",
+				13 => "Frost Staff",
+				14 => "Shield",
+				15 => "Lightning Staff",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
 	public function GetItemTypeText ($value)
 	{
 		static $VALUES = array(
@@ -817,6 +958,11 @@ class EsoLogViewer
 				42 => "woodworking_booster",
 				38 => "woodworking_material",
 				37 => "woodworking_raw_material",
+				49 => "spellcrafting_tablet",
+				50 => "mount",
+				51 => "potency_rune",
+				52 => "aspect_rune",
+				53 => "essence_rune",
 		);
 		
 		$key = (int) $value;
