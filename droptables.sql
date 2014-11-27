@@ -10,3 +10,4 @@ drop table uesp_esolog.item;
 drop table uesp_esolog.npc;
 drop table uesp_esolog.recipe;
 drop table uesp_esolog.ingredient;
+drop table uesp_esolog.minedItem;

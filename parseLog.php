@@ -791,7 +791,7 @@ class EsoLogParser
 	}
 	
 	
-	private function createTables()
+	public function createTables()
 	{
 		$result = $this->initDatabaseWrite();
 		if (!$result) return false;
@@ -803,7 +803,7 @@ class EsoLogParser
 						PRIMARY KEY (id(64))
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create logInfo table!");
 		
@@ -818,7 +818,7 @@ class EsoLogParser
 						INDEX unique_entry (gameTime, timeStamp, entryHash)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create logEntry table!");
 		
@@ -839,7 +839,7 @@ class EsoLogParser
 						PRIMARY KEY (name(64))
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create user table!");
 		
@@ -849,7 +849,7 @@ class EsoLogParser
 						PRIMARY KEY (ipaddress(64))
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ipAddress table!");
 		
@@ -871,7 +871,7 @@ class EsoLogParser
 						FULLTEXT(body)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create book table!");
 		
@@ -902,7 +902,7 @@ class EsoLogParser
 						FULLTEXT(name)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create location table!");
 		
@@ -914,7 +914,7 @@ class EsoLogParser
 						PRIMARY KEY (id)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create chest table!");
 		
@@ -939,7 +939,7 @@ class EsoLogParser
 						FULLTEXT(name)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create item table!");
 		
@@ -954,7 +954,7 @@ class EsoLogParser
 						FULLTEXT(objective)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create quest table!");
 		
@@ -978,7 +978,7 @@ class EsoLogParser
 						FULLTEXT(overrideText)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questStage table!");
 		
@@ -993,7 +993,7 @@ class EsoLogParser
 						FULLTEXT(name)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
 		
@@ -1009,7 +1009,7 @@ class EsoLogParser
 						FULLTEXT(name)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create recipe table!");
 		
@@ -1024,19 +1024,18 @@ class EsoLogParser
 						FULLTEXT(name)
 					);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ingredient table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS minedItem (
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			logId BIGINT NOT NULL,
-			name TINYTEXT NOT NULL,
 			link TINYTEXT NOT NULL,
-			itemId as INTEGER NOT NULL,
-			internalLevel as SMALLINT NOT NULL,
-			internalSubType as INTEGER NOT NULL,
-			potionData as INTEGER NOT NULL DEFAULT 0,
+			itemId INTEGER NOT NULL DEFAULT 0,
+			internalLevel SMALLINT NOT NULL DEFAULT 0,
+			internalSubType INTEGER NOT NULL DEFAULT 0,
+			potionData INTEGER NOT NULL DEFAULT 0,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			icon TINYTEXT NOT NULL,
@@ -1052,7 +1051,7 @@ class EsoLogParser
 			weaponPower INTEGER NOT NULL DEFAULT -1,
 			value INTEGER NOT NULL DEFAULT -1,
 			level TINYINT NOT NULL,
-			condition INTEGER NOT NULL DEFAULT -1,
+			cond INTEGER NOT NULL DEFAULT -1,
 			glyphMinLevel SMALLINT NOT NULL DEFAULT -1,
 			glyphMaxLevel SMALLINT NOT NULL DEFAULT -1,
 			enchantId INTEGER NOT NULL DEFAULT -1,
@@ -1100,7 +1099,7 @@ class EsoLogParser
 			FULLTEXT(description)
 		);";
 		
-		$this->lastQuest = $query;
+		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedItem table!");
 		
@@ -2924,18 +2923,9 @@ class EsoLogParser
 	}
 	
 };
-	
-	
+
 $g_EsoLogParser = new EsoLogParser();
-//$g_EsoLogParser->testItemLink();
-
-//$g_EsoLogParser->LoadLogInfo();
-//$g_EsoLogParser->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
-//$g_EsoLogParser->SaveLogInfo();
-
 $g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
 $g_EsoLogParser->saveData();
-
-//$g_EsoLogParser->DumpSkillInfo();
 
 ?>
