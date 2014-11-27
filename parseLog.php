@@ -1,8 +1,22 @@
-6<?php
+<?php
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 /*
+ * TODO:
+ * 		- Add first and last timeStamp for each user
+ * 		- Parse ItemLink
+ * 		- Parse MailItem
+ * 		- Parse VeteranXPUpdate
+ * 		- Proper handling of quest items?
+ * 		- Log locations/sources of items
+ * 		- Base item and enchantments
+ * 		- Log resource locations and types 
+ * 		- Parse out item data into database fields
+ * 		- Option to delete worms/crawlers/plump worms
+ * 		- Display icon image
+ *
+ * 
 	SKILL_TYPE_NONE = 0
 	SKILL_TYPE_CLASS = 1
 	SKILL_TYPE_WEAPON = 2
@@ -176,6 +190,8 @@ class EsoLogParser
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
+	
+	public $currentLanguage = 'en';
 	
 	public $currentLogFilename = "tmp.log";
 	public $currentLogIndex = 1;
@@ -415,6 +431,16 @@ class EsoLogParser
 			'locationId' => self::FIELD_INT,
 			'quality' => self::FIELD_INT
 	);
+	
+	
+	public function __construct ()
+	{
+		$this->initDatabaseWrite();
+		$this->readIndexFile();
+		$this->currentLogFilename = $this->getCurrentLogFilename();
+		$this->setInputParams();
+		$this->parseInputParams();
+	}
 	
 	
 	public function createNewRecord ($fieldDef)
@@ -765,16 +791,6 @@ class EsoLogParser
 	}
 	
 	
-	public function __construct ()
-	{
-		$this->initDatabaseWrite();
-		$this->readIndexFile();
-		$this->currentLogFilename = $this->getCurrentLogFilename();
-		$this->setInputParams();
-		$this->parseInputParams();
-	}
-	
-	
 	private function createTables()
 	{
 		$result = $this->initDatabaseWrite();
@@ -819,6 +835,7 @@ class EsoLogParser
 						itemsLooted INTEGER NOT NULL,
 						mobsKilled INTEGER NOT NULL,
 						enabled TINYINT NOT NULL DEFAULT 1,
+						language TINYTEXT NOT NULL,
 						PRIMARY KEY (name(64))
 					);";
 		
@@ -1011,6 +1028,82 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ingredient table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS minedItem (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			logId BIGINT NOT NULL,
+			name TINYTEXT NOT NULL,
+			link TINYTEXT NOT NULL,
+			itemId as INTEGER NOT NULL,
+			internalLevel as SMALLINT NOT NULL,
+			internalSubType as INTEGER NOT NULL,
+			potionData as INTEGER NOT NULL DEFAULT 0,
+			name TINYTEXT NOT NULL,
+			description TEXT NOT NULL,
+			icon TINYTEXT NOT NULL,
+			style TINYINT NOT NULL,
+			trait TINYINT NOT NULL,
+			quality TINYINT NOT NULL,
+			type TINYINT NOT NULL,
+			equipType TINYINT NOT NULL DEFAULT -1,
+			weaponType TINYINT NOT NULL DEFAULT -1,
+			armorType TINYINT NOT NULL DEFAULT -1,
+			craftType TINYINT NOT NULL DEFAULT -1,
+			armorRating INTEGER NOT NULL DEFAULT -1,
+			weaponPower INTEGER NOT NULL DEFAULT -1,
+			value INTEGER NOT NULL DEFAULT -1,
+			level TINYINT NOT NULL,
+			condition INTEGER NOT NULL DEFAULT -1,
+			glyphMinLevel SMALLINT NOT NULL DEFAULT -1,
+			glyphMaxLevel SMALLINT NOT NULL DEFAULT -1,
+			enchantId INTEGER NOT NULL DEFAULT -1,
+			enchantLevel SMALLINT NOT NULL DEFAULT -1,
+			enchantSubType INTEGER NOT NULL DEFAULT -1,
+			enchantName TINYTEXT,
+			enchantDesc TEXT NOT NULL,
+			numCharges INTEGER NOT NULL DEFAULT -1,
+			maxCharges INTEGER NOT NULL DEFAULT -1,
+			abilityName TINYTEXT,
+			abilityDesc TEXT NOT NULL,
+			abilityCooldown INTEGER NOT NULL DEFAULT -1,
+			setName TINYTEXT NOT NULL,
+			setBonusCount TINYINT NOT NULL DEFAULT -1,
+			setMaxEquipCount TINYINT NOT NULL DEFAULT -1,
+			setBonusCount1 TINYINT NOT NULL DEFAULT -1,
+			setBonusCount2 TINYINT NOT NULL DEFAULT -1,
+			setBonusCount3 TINYINT NOT NULL DEFAULT -1,
+			setBonusCount4 TINYINT NOT NULL DEFAULT -1,
+			setBonusCount5 TINYINT NOT NULL DEFAULT -1,
+			setBonusDesc1 TINYTEXT NOT NULL,
+			setBonusDesc2 TINYTEXT NOT NULL,
+			setBonusDesc3 TINYTEXT NOT NULL,
+			setBonusDesc4 TINYTEXT NOT NULL,
+			setBonusDesc5 TINYTEXT NOT NULL,
+			runeType TINYINT NOT NULL DEFAULT -1,
+			bindType TINYINT NOT NULL DEFAULT -1,
+			siegeHP INTEGER NOT NULL DEFAULT -1,
+			bookTitle TINYTEXT,
+			traitDesc TINYTEXT,
+			runeRank TINYINT NOT NULL DEFAULT -1,
+			craftSkillRank TINYINT NOT NULL DEFAULT -1,
+			recipeRank TINYINT NOT NULL DEFAULT -1,
+			recipeQuality TINYINT NOT NULL DEFAULT -1,
+			refinedItemLink TINYTEXT NOT NULL,
+			resultItemLink TINYTEXT NOT NULL,
+			traitAbilityDesc TINYTEXT NOT NULL,
+			traitCooldown TINYINT NOT NULL DEFAULT -1,
+			materialLevelDesc TINYTEXT NOT NULL,
+			PRIMARY KEY (id),
+			INDEX index_link (link(64)),
+			INDEX index_itemId (itemId),
+			INDEX index_enchantId (enchantId),
+			FULLTEXT(name),
+			FULLTEXT(description)
+		);";
+		
+		$this->lastQuest = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create minedItem table!");
+		
 		return true;
 	}
 	
@@ -1044,7 +1137,11 @@ class EsoLogParser
 		$this->users[$userName]['nodesHarvested'] = 0;
 		$this->users[$userName]['mobsKilled'] = 0;
 		$this->users[$userName]['enabled'] = true;
+		$this->users[$userName]['language'] = 'en';
 		$this->users[$userName]['__dirty'] = false;
+		
+			/* Set default language of known users */
+		if ($userName == "klarix") $this->users[$userName]['language'] = 'de';
 		
 		$this->users[$userName]['lastBookRecord'] = null;
 		$this->users[$userName]['lastBookLogEntry'] = null;
@@ -1125,6 +1222,7 @@ class EsoLogParser
 		$this->users[$userName]['nodesHarvested'] = $row['nodesHarvested'];
 		$this->users[$userName]['mobsKilled'] = $row['mobsKilled'];
 		$this->users[$userName]['enabled'] = ($row['enabled'] != 0);
+		$this->users[$userName]['language'] = $row['language'];
 		$this->users[$userName]['__dirty'] = false;
 		
 		$this->users[$userName]['lastBookRecord'] = null;
@@ -1224,6 +1322,7 @@ class EsoLogParser
 		$query .= ", booksRead={$user['booksRead']}";
 		$query .= ", nodesHarvested={$user['nodesHarvested']}";
 		$query .= ", mobsKilled={$user['mobsKilled']}";
+		$query .= ", language='{$user['language']}'";
 		$query .= " WHERE name='{$safeName}';";
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to save user '{$safeName}'!");
@@ -1393,8 +1492,6 @@ class EsoLogParser
 		
 		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
 		
-		
-		
 		if ($itemRecord == null)
 		{
 			$itemRecord = $this->CreateItem($logEntry);
@@ -1424,11 +1521,13 @@ class EsoLogParser
 	{
 		$matches = array();
 		
-		$result = preg_match('/\|H([A-Za-z0-9]*)\:item\:([0-9]*)\:([0-9]*)\:([0-9]*)\:(.*?)\|h([a-zA-Z0-9 _\']*)(.*?)\|h/', $itemLink, $matches);
+		$result = preg_match('/\|H([A-Za-z0-9]*)\:item\:([0-9]*)\:([0-9]*)\:([0-9]*)\:(.*?)\|h([a-zA-Z0-9 _\(\)\'\-]*)(.*?)\|h/', $itemLink, $matches);
 		
 		if ($result == 0) 
 		{
 			$this->ReportLogParseError("Error parsing item link '$itemLink'!");
+			$matches['name'] = $itemLink;
+			$matches['error'] = true;
 			return $matches;
 		}
 		
@@ -1452,7 +1551,15 @@ class EsoLogParser
 		
 		$itemData = $this->ParseItemLink($logEntry['itemLink']);
 		
-		$itemRecord['link'] = $logEntry['itemLink'];
+		if ($itemData['error'] === true)
+		{
+			$itemRecord['link'] = '';
+		}
+		else
+		{
+			$itemRecord['link'] = $logEntry['itemLink'];
+		}
+		
 		$itemRecord['icon'] = $logEntry['icon'];
 		$itemRecord['name'] = $itemData['name'];
 		$itemRecord['level'] = $itemData['level'];
@@ -1692,7 +1799,7 @@ class EsoLogParser
 	}
 	
 	
-	function startsWith($haystack, $needle)
+	public function startsWith($haystack, $needle)
 	{
 		return $needle === "" || strpos($haystack, $needle) === 0;
 	}
@@ -1721,8 +1828,31 @@ class EsoLogParser
 	}
 	
 	
+	public function FindItemNameWithNoLink ($itemName)
+	{
+		$safeName = $this->db->real_escape_string($itemName);
+		$query = "SELECT * FROM item WHERE name='$safeName' AND link='';";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve item!");
+			return null;
+		}
+		
+		if ($result->num_rows == 0) return null;
+		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$ITEM_FIELDS);
+	}
+	
+	
 	public function FindItemLink ($itemLink)
 	{
+		if ($this->startsWith($itemLink, "|H")) return $this->FindItemNameWithNoLink($itemName);
+		
 		$safeLink = $this->db->real_escape_string($itemLink);
 		$query = "SELECT * FROM item WHERE link='$safeLink';";
 		$this->lastQuery = $query;
@@ -2370,6 +2500,25 @@ class EsoLogParser
 	}
 	
 	
+	public function checkLanguage ($logEntry)
+	{
+		$language = $logEntry['lang'];
+		
+		if ($language == null)
+		{
+			$language = $this->currentUser['language'];
+		}
+		else if ($language != $this->currentUser['language'])
+		{
+			$this->currentUser['language'] = $language;
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		if ($language != $this->currentLanguage) return false;
+		return true;
+	}
+	
+	
 	public function handleLogEntry ($logEntry)
 	{
 		if (!$this->isValidLogEntry($logEntry)) return false;
@@ -2383,6 +2532,8 @@ class EsoLogParser
 		if ($ipAddress == null) return $this->reportLogParseError("Invalid ipAddress found!");
 		if ($user['enabled'] === false) return $this->reportLogParseError("User is disabled...skipping entry!");
 		if ($ipAddress['enabled'] === false) return $this->reportLogParseError("IP address is disabled...skipping entry!");
+		
+		if (!$this->checkLanguage($logEntry)) return true;
 		
 		$isDuplicate = $this->isDuplicateLogEntry($logEntry);
 		
@@ -2663,7 +2814,7 @@ class EsoLogParser
 			$result = $this->parseLogEntry($value);
 		}
 		
-		return TRUE;
+		return true;
 	}
 	
 	public function testItemLink()
@@ -2683,21 +2834,21 @@ class EsoLogParser
 		if (!file_exists(self::ELP_INDEX_FILENAME))
 		{
 			$this->currentLogIndex = 1;
-			return FALSE;
+			return false;
 		}
 		
 		$index = file_get_contents(self::ELP_INDEX_FILENAME);
 	
-		if ($index === FALSE)
+		if ($index === false)
 		{
 			$this->currentLogIndex = 1;
-			return FALSE;
+			return false;
 		}
 	
 		$this->currentLogIndex = (int) $index;
 		if ($this->currentLogIndex < 0) $this->currentLogIndex = 1;
 	
-		return TRUE;
+		return true;
 	}
 	
 	
@@ -2710,7 +2861,7 @@ class EsoLogParser
 			$this->log("\tDB Error:" . $this->db->error);
 			$this->log("\tLast Query:" . $this->lastQuery);
 		}
-		return FALSE;
+		return false;
 	}
 	
 	
@@ -2788,4 +2939,3 @@ $g_EsoLogParser->saveData();
 //$g_EsoLogParser->DumpSkillInfo();
 
 ?>
-
