@@ -168,6 +168,8 @@ class EsoLogViewer
 			'recipeName' => self::FIELD_STRING,
 			'itemId' => self::FIELD_INTID,
 			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'itemLink' => self::FIELD_STRING,
 			'quantity' => self::FIELD_INT,
 	);
 	
@@ -182,6 +184,7 @@ class EsoLogViewer
 			'itemsLooted' => self::FIELD_INT,
 			'mobsKilled' => self::FIELD_INT,
 			'duplicateCount' => self::FIELD_INT,
+			'language' => self::FIELD_STRING,
 			'enabled' => self::FIELD_INTBOOLEAN,
 	);
 	
@@ -449,7 +452,12 @@ class EsoLogViewer
 							'recipeId' => array(
 									'joinField' => 'id',
 									'table' => 'recipe',
-									'fields' => array('recipeName' => 'name'),
+									'fields' => array('recipeName' => 'name',  'level' => 'level'),
+							),
+							'itemId' => array(
+									'joinField' => 'id',
+									'table' => 'item',
+									'fields' => array('itemLink' => 'link'),
 							),
 					),
 			),
