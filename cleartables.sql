@@ -10,3 +10,4 @@ truncate table uesp_esolog.item;
 truncate table uesp_esolog.npc;
 truncate table uesp_esolog.recipe;
 truncate table uesp_esolog.ingredient;
+truncate table uesp_esolog.minedItem;
