@@ -14,5 +14,6 @@ dest = content3.uesp.net:/home/uesp/www/esolog/
 
 chown_dest = apache {dest}log/
 chown_dest = apache {dest}log/upload
+chmod_dest = g+rw -R {dest}
 
 # manualcopy = all: {source}cron/uesp-esolog-parse {servername}:/etc/cron.hourly/uesp-esolog-parse
