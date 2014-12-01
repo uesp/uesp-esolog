@@ -181,9 +181,9 @@ require("/home/uesp/secrets/esolog.secrets");
 
 class EsoLogParser
 {
-	const ELP_INPUT_LOG_PATH = "log/";
-	const ELP_INDEX_FILENAME = "log/esolog.index";
-	const ELP_OUTPUTLOG_FILENAME = "log/parser.log";
+	const ELP_INPUT_LOG_PATH = "";
+	const ELP_INDEX_FILENAME = "esolog.index";
+	const ELP_OUTPUTLOG_FILENAME = "parser.log";
 	
 	const TREASURE_DELTA_TIME = 4000;
 	const BOOK_DELTA_TIME = 4000;
@@ -198,6 +198,7 @@ class EsoLogParser
 	
 	public $currentLanguage = 'en';
 	
+	public $logFilePath = "";
 	public $currentLogFilename = "tmp.log";
 	public $currentLogIndex = 1;
 	public $rawLogData = array();
@@ -2971,6 +2972,10 @@ class EsoLogParser
 			case "mineitem":					$result = $this->OnMineItem($logEntry); break;
 			case "mineItem":					$result = $this->OnMineItem($logEntry); break;
 			case "mi":							$result = $this->OnMineItemShort($logEntry); break;
+			case "ItemLink":					$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "MailItem":					$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
@@ -3151,9 +3156,9 @@ class EsoLogParser
 	}
 	
 	
-	public function ParseAllLogs($path)
-	{
-		$files = glob($path . "eso*.log");
+	public function ParseAllLogs()
+	{	
+		$files = glob($this->logFilePath . "eso*.log");
 		$this->createTables();
 		$this->LoadLogInfo();
 		
@@ -3208,13 +3213,15 @@ class EsoLogParser
 	
 	public function readIndexFile()
 	{
-		if (!file_exists(self::ELP_INDEX_FILENAME))
+		$filename = $this->logFilePath . self::ELP_INDEX_FILENAME;
+		
+		if (!file_exists($filename))
 		{
 			$this->currentLogIndex = 1;
 			return false;
 		}
 		
-		$index = file_get_contents(self::ELP_INDEX_FILENAME);
+		$index = file_get_contents($filename);
 	
 		if ($index === false)
 		{
@@ -3253,7 +3260,7 @@ class EsoLogParser
 	public function log ($msg)
 	{
 		print($msg . "\n");
-		$result = file_put_contents(self::ELP_OUTPUTLOG_FILENAME, $msg . "\n", FILE_APPEND | LOCK_EX);
+		$result = file_put_contents($this->logFilePath . self::ELP_OUTPUTLOG_FILENAME, $msg . "\n", FILE_APPEND | LOCK_EX);
 		return TRUE;
 	}
 	
@@ -3278,14 +3285,29 @@ class EsoLogParser
 			// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
+			$foundPath = false;
+			$argIndex = 0;
+			
 			foreach ($argv as $arg)
 			{
+				$argIndex += 1;
+				if ($argIndex <= 1) continue;
+				
 				$e = explode("=", $arg);
 				
 				if(count($e) == 2)
+				{
 					$this->inputParams[$e[0]] = $e[1];
+				}
+				elseif (!$foundPath)
+				{
+					$this->logFilePath = rtrim($e[0], '/') . '/';
+					$foundPath = true;
+				}
 				else
-					$this->inputParams[$e[0]] = 0;
+				{
+					$this->inputParams[$e[0]] = 1;
+				}
 			}
 		}
 	}
@@ -3304,7 +3326,7 @@ class EsoLogParser
 
 
 $g_EsoLogParser = new EsoLogParser();
-$g_EsoLogParser->ParseAllLogs("/home/uesp/www/esolog/log/");
+$g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
 
 ?>
