@@ -4,9 +4,9 @@
 class EsoLogSubmitter
 {
 	
-	const ESOLOG_UPLOAD_PATH = "/home/uesp/www/esolog/log/upload";
-	const ESOLOG_OUTPUT_PATH = "/home/uesp/www/esolog/log/";
-	const ELC_INDEX_FILENAME = "/home/uesp/www/esolog/log/esolog.index";
+	const ESOLOG_UPLOAD_PATH = "/home/uesp/esolog/upload";
+	const ESOLOG_OUTPUT_PATH = "/home/uesp/esolog/";
+	const ELC_INDEX_FILENAME = "/home/uesp/esolog/esolog.index";
 	
 	public $fileData = "";
 	public $fileError = 0;

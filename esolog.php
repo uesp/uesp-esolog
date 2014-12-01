@@ -9,11 +9,11 @@ function endsWith($haystack, $needle)
 
 class EsoLogCollector
 {
-	const ELC_OUTPUT_LOG_PATH = "log/";
-	const ELC_INDEX_FILENAME = "log/esolog.index";
+	const ELC_OUTPUT_LOG_PATH = "/home/uesp/esolog/";
+	const ELC_INDEX_FILENAME = "/home/uesp/esolog/esolog.index";
 	const ELC_MAX_LOG_FILESIZE = 25000000; 	# Maximum desired size of a log file in bytes
 
-	public $currentLogFilename = "tmp.log";
+	public $currentLogFilename = "";
 	public $currentLogIndex = 1;
 	public $rawLogData = array();
 	
