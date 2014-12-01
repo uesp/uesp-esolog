@@ -8,6 +8,7 @@ staged = true
 ignore = .hg*
 ignore = *.deploy
 ignore = *.sh
+ignore = *.sql
 ignore = cron*
 ignore = log/*.log
 ignore = log/upload/uespLog*
