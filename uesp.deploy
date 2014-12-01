@@ -10,7 +10,7 @@ ignore = *.deploy
 ignore = *.sh
 ignore = cron*
 ignore = log/*.log
-ignore = log/upload/*.log
+ignore = log/upload/uespLog*
 
 dest = content3.uesp.net:/home/uesp/www/esolog/
 
