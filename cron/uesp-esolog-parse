@@ -1,3 +1,3 @@
 #!/bin/sh
 
-php -f /home/dave/uesp.esolog/parseLog.php start=12
+php -f /home/dave/uesp.esolog/parseLog.php /home/uesp/www/esolog/log/ start=1
