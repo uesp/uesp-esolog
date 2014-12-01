@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>UESP:ESO Item -- {itemName}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoitemlink.css" />
+	</head>
+<body>
+<h1>ESO Item -- {itemName}</h1>
+<h2>Level {itemLevel} {itemQuality}</h2>
+
+<div id="esoil_itembox">
+	<img src="{iconLink}" class="esoil_itemicon"/>
+	<div class="esoil_itemtype1">{itemType1}</div>
+	<div class="esoil_itemtype2">{itemType2}</div>
+	<div class="esoil_itembindtype">{itemBindType}</div>
+	<div class="esoil_itemname esoil_quality_{itemQuality}">{itemName}</div>
+	<img src="resources/eso_item_hr.png" class="esoil_item_hr"/>
+	<div class="esoil_itemleftblock">{itemLeftBlock}</div>
+	<div class="esoil_itemlevelblock">{itemLevelBlock}</div>
+	<div class="esoil_itemvalueblock">Value <div class="esoil_itemvalue">{itemValue}</div></div>
+	<div class="esoil_itempos1"></div>
+	<div class="esoil_itembar">{itemBar}</div>
+	<div class="esoil_itemenchantblock">{itemEnchantBlock}</div>
+	<div class="esoil_itemtraitblock">{itemTraitBlock}</div>
+	<div class="esoil_itemsetblock">{itemSetBlock}</div>
+	<div class="esoil_itemdesc">{itemDesc}</div>
+</div>
+
+<hr />
+
+<h3 id="esoil_rawdatalist">Raw Item Data</h3>
+<table id="esoil_rawdatatable" cellpadding="0" cellspacing="0" border="0">
+{itemRawDataList}
+</table>
+</body>
+</html>
