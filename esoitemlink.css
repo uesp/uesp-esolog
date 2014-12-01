@@ -1,0 +1,25 @@
+#esoil_rawdatalist {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#esoil_rawdatatable {
+	margin-left: 50px;
+}
+
+table#esoil_rawdatatable td:first-child {
+	text-align: right;
+	font-weight: bold;
+	margin-right: 3px;
+	border-right: solid 3px #ccc;
+	padding: 2px;
+}
+
+table#esoil_rawdatatable td {
+	text-align: left;
+	padding: 2px;
+}
+
+table#esoil_rawdatatable tr:hover {
+	background: #eee;
+}
