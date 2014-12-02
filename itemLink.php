@@ -600,6 +600,45 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetItemLeftBlockDisplay()
+	{
+		
+		switch ($this->itemRecord['type'])
+		{
+			case 2:
+			case 1:
+				return "inline";
+		}
+		
+		return "none";
+	}
+	
+	
+	private function GetItemLevelBlockDisplay()
+	{
+		$level = $this->itemRecord['level'];
+		if ($level <= 0) return "none";
+		
+		switch ($this->itemRecord['type'])
+		{
+			case 2:
+			case 1:
+				return "inline";
+		}
+		
+		return "inline";
+	}
+	
+	
+	private function GetItemValueBlockDisplay()
+	{
+		$value = $this->itemRecord['value'];
+		
+		if ($value <= 0) return "none";
+		return "inline";
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
@@ -624,6 +663,9 @@ class CEsoItemLink
 				'{itemSetBlock}' => $this->MakeItemSetBlock(),
 				'{itemAbilityBlock}' => $this->MakeItemAbilityBlock(),
 				'{itemTraitAbilityBlock}' => $this->MakeItemTraitAbilityBlock(),
+				'{itemLeftBlockDisplay}' => $this->GetItemLeftBlockDisplay(),
+				'{itemLevelBlockDisplay}' => $this->GetItemLevelBlockDisplay(),
+				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);

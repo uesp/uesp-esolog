@@ -48,6 +48,7 @@ h1, h2, h3 {
 	position: relative;
 	margin-top: 24px;
 	max-width: 400px;
+	min-width: 400px;
 }
 
 .esoil_itemicon {
@@ -97,12 +98,13 @@ h1, h2, h3 {
 }
 
 .esoil_datablock {
-	
+	position: relative;
+	top: 1em;
+	text-align: center;
+	white-space: nowrap;
 }
 
 .esoil_itemlevelblock {
-	width: 100%;
-	text-align: center;
 }
 
 .esoil_itemlevelblock img {
@@ -110,7 +112,6 @@ h1, h2, h3 {
 }
 
 .esoil_itemvalueblock {
-	right: 3em;
 }
 
 .esoil_itemvalue, .esoil_itemlevel, .esoil_itemleft {
@@ -121,19 +122,19 @@ h1, h2, h3 {
 }
 
 .esoil_itemleftblock {
-	left: 2em;
 }
 
 .esoil_itemleftblock, .esoil_itemvalueblock, .esoil_itemlevelblock {
 	color: #C5C29E;
-	position: absolute;
-	display: block;
-	top: 6.4em;
-	font-size: 0.8em;
+	display: inline;
+	font-size: 0.9em;
 	font-weight: bold;
 	height: 1.6em;
 	line-height: 1.6em;
 	vertical-align: middle;
+	margin-right: 1.5em;
+	margin-left: 1.5em;
+	white-space: nowrap;
 }
 
 .esoil_itemdesc {
@@ -174,15 +175,6 @@ h1, h2, h3 {
 	margin-right: auto;
 }
 
-.esoil_itempos1 {
-	display: block;
-	height: 3em;
-}
-
-.esoil_itembar {
-	margin-bottom: 0.4em;
-}
-
 .esoil_itembar, .esoil_itemsetblock, .esoil_itemtraitblock, .esoil_itemenchantblock, .esoil_itemabilityblock {
 	display: block;
 	margin-top: 10px;
@@ -190,9 +182,14 @@ h1, h2, h3 {
 	margin-right: 5px;
 	text-align: center;
 	font-weight: normal;
-	font-size: 0.95em;
+	font-size: 1em;
 	line-height: 1.4em;
 	color: #C5C29E;
+}
+
+.esoil_itembar {
+	margin-top: 1.5em;
+	margin-bottom: 0.4em;
 }
 
 .esoil_white
