@@ -62,7 +62,7 @@ h1, h2, h3 {
 	border: solid 3px #C5C29E;
 	border-image: url(eso_item_border.png) 5 5 5 5 repeat;
 	border-width: 5px 5px 5px 5px;
-	font-family: "EsoFontStyle", "Univers LT Std Condensed", "Arial", sans-serif;
+	font-family: "EsoFontStyle", "Arial", sans-serif;
 	font-size: 16px;
 	display: inline-block;
 	position: relative;
