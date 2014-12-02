@@ -894,7 +894,7 @@ class EsoLogParser
 	{
 		$minedItem = $this->loadRecord('minedItem', 'link', $itemLink, self::$MINEDITEM_FIELDS);
 		if ($minedItem === false) return false;
-	
+		
 		return $minedItem;
 	}
 	
@@ -2703,7 +2703,6 @@ class EsoLogParser
 			$logEntry['enchantSubtype'] = $parsedLink['enchantSubtype'];
 			$logEntry['enchantLevel'] = $parsedLink['enchantLevel'];
 			$logEntry['potionData'] = $parsedLink['potionData'];
-			$logEntry['level'] = $parsedLink['level'];
 		}
 		
 			// Strip trailing control code from name if any
@@ -2714,21 +2713,33 @@ class EsoLogParser
 			if ($result) $logEntry['name'] = $matchData[1];
 		}
 		
-		if (array_key_exists('reqLevel', $logEntry) && $logEntry['reqLevel'] > 0)
-		{
-			$logEntry['level'] = $logEntry['reqLevel'];
-		}
-		else if (array_key_exists('reqVetLevel', $logEntry) && $logEntry['reqVetLevel'] > 0)
+		if (array_key_exists('reqVetLevel', $logEntry) && $logEntry['reqVetLevel'] > 0)
 		{
 			$logEntry['level'] = strval(intval($logEntry['reqVetLevel']) + 49);
 		}
+		elseif (array_key_exists('reqLevel', $logEntry) && $logEntry['reqLevel'] > 0)
+		{
+			$logEntry['level'] = $logEntry['reqLevel'];
+		}
 		
-		$logEntry['setMaxEquipCount'] = 0;
-		if (array_key_exists('setDesc1', $logEntry)) $logEntry['setMaxEquipCount'] = 1;
-		if (array_key_exists('setDesc2', $logEntry)) $logEntry['setMaxEquipCount'] = 2;
-		if (array_key_exists('setDesc3', $logEntry)) $logEntry['setMaxEquipCount'] = 3;
-		if (array_key_exists('setDesc4', $logEntry)) $logEntry['setMaxEquipCount'] = 4;
-		if (array_key_exists('setDesc5', $logEntry)) $logEntry['setMaxEquipCount'] = 5;
+		if (!array_key_exists('setMaxEquipCount', $logEntry))
+		{
+			$logEntry['setMaxEquipCount'] = 0; //(2 items)
+			$highestSetDesc = "";
+			
+			if (array_key_exists('setDesc1', $logEntry)) $highestSetDesc = $logEntry['setDesc1'];
+			if (array_key_exists('setDesc2', $logEntry)) $highestSetDesc = $logEntry['setDesc2'];
+			if (array_key_exists('setDesc3', $logEntry)) $highestSetDesc = $logEntry['setDesc3'];
+			if (array_key_exists('setDesc4', $logEntry)) $highestSetDesc = $logEntry['setDesc4'];
+			if (array_key_exists('setDesc5', $logEntry)) $highestSetDesc = $logEntry['setDesc5'];
+			
+			if ($highestSetDesc != "")
+			{
+				$matches = array();
+				$result = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
+				if ($result) $logEntry['setMaxEquipCount'] = (int) $matches[1];
+			}
+		}
 		
 		if (array_key_exists('flag', $logEntry))
 		{
@@ -2788,7 +2799,7 @@ class EsoLogParser
 			if (!array_key_exists($key, self::$MINED_ITEMKEY_TO_DBKEY)) continue;
 			$dbKey = self::$MINED_ITEMKEY_TO_DBKEY[$key];
 			
-			if ($dbKey != null && (!array_key_exists($dbKey, $minedItem) || $minedItem[$dbKey] != $value))
+			//if ($dbKey != null && (!array_key_exists($dbKey, $minedItem) || $minedItem[$dbKey] != $value))
 			{
 				$minedItem[$dbKey] = $value;
 				$minedItem['__dirty'] = true;
@@ -2877,6 +2888,25 @@ class EsoLogParser
 	}
 	
 	
+	public function checkLogEntryRecordCreate ($logEntry)
+	{
+		
+		switch($logEntry['event'])
+		{
+			case 'mi':
+			case 'mineitem':
+			case 'mineItem':
+			case "mineItem::AutoStart":
+			case "mineItem::Start":
+			case "mineItem::AutoEnd":
+			case "mineItem::End":
+				return false;
+		}
+		
+		return true;
+	}
+	
+	
 	public function handleLogEntry ($logEntry)
 	{
 		if (!$this->isValidLogEntry($logEntry)) return false;
@@ -2892,8 +2922,13 @@ class EsoLogParser
 		if ($ipAddress['enabled'] === false) return $this->reportLogParseError("IP address is disabled...skipping entry!");
 		
 		if (!$this->checkLanguage($logEntry)) return true;
+		$createLogEntry = $this->checkLogEntryRecordCreate($logEntry);
+		$isDuplicate = false;
 		
-		$isDuplicate = $this->isDuplicateLogEntry($logEntry);
+		if ($createLogEntry)
+		{
+			$isDuplicate = $this->isDuplicateLogEntry($logEntry);
+		}
 		
 		if ($this->skipDuplicates && $isDuplicate)
 		{
@@ -2908,9 +2943,16 @@ class EsoLogParser
 		{
 		}
 		
-		$logId = $this->addLogEntryRecordFromLog($logEntry);
-		if ($logId === false) return false;
-		$this->currentLogEntryId = $logId;
+		if ($createLogEntry)
+		{
+			$logId = $this->addLogEntryRecordFromLog($logEntry);
+			if ($logId === false) return false;
+			$this->currentLogEntryId = $logId;
+		}
+		else
+		{
+			$this->currentLogEntryId = -1;
+		}
 		
 		++$user['entryCount'];
 		$user['__dirty'] = true;
@@ -2994,7 +3036,7 @@ class EsoLogParser
 		$matchData = array();
 		$resultData = array();
 		
-		$result = preg_match_all("|([a-zA-Z]+){(.*?)}  |s", $logString, $matchData);
+		$result = preg_match_all("|([a-zA-Z0-9_]+){(.*?)}  |s", $logString, $matchData);
 		
 		if ($result === 0) 
 		{

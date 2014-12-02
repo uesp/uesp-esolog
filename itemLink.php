@@ -68,7 +68,17 @@ class CEsoItemLink
 		}
 		
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
-		if (array_key_exists('level', $this->inputParams)) $this->itemLevel = (int) $this->inputParams['level'];
+		
+		if (array_key_exists('level', $this->inputParams)) 
+		{
+			$level = strtolower($this->inputParams['level']);
+			
+			if ($level[0] == 'v')
+				$this->itemLevel = (int) ltrim($level, 'v') + 49;
+			else
+				$this->itemLevel = (int) $level;
+		}
+		
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
 		if (array_key_exists('show', $this->inputParams)) $this->showAll = true;
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
@@ -88,7 +98,6 @@ class CEsoItemLink
 			}
 		}
 		
-		$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		return true;
 	}
 	
@@ -142,12 +151,14 @@ class CEsoItemLink
 		{
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
 			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 		}
 		else
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality <= 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
 			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
+			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
 		
 		$result = $this->db->query($query);
@@ -490,6 +501,21 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeItemLevelSimpleString()
+	{
+		$level = $this->itemRecord['level'];
+		if ($level <= 0) return "Level ?";
+		
+		if ($level >= 50)
+		{
+			$level -= 49;
+			return "Rank V$level";
+		}
+		
+		return "Level $level";
+	}
+	
+	
 	private function MakeItemLevelString()
 	{
 		$level = $this->itemRecord['level'];
@@ -697,7 +723,7 @@ class CEsoItemLink
 				'{itemType2}' => $this->MakeItemSubTypeText(),
 				'{itemBindType}' => $this->MakeItemBindTypeText(),
 				'{itemValue}' => $this->itemRecord['value'],
-				'{itemLevel}' => $this->itemRecord['level'],
+				'{itemLevel}' => $this->MakeItemLevelSimpleString(),
 				'{itemLevelBlock}' => $this->MakeItemLevelString(),
 				'{itemQuality}' => $this->GetItemQualityText(),
 				'{itemRawDataList}' => $this->MakeItemRawDataList(),

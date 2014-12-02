@@ -9,7 +9,7 @@
 	</head>
 <body>
 <h1>ESO Item -- {itemName}</h1>
-<h2>Level {itemLevel} {itemQuality} Quality</h2>
+<h2>{itemQuality} {itemLevel}</h2>
 
 <center>
 <div id="esoil_outeritembox">
