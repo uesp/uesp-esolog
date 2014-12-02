@@ -16,6 +16,7 @@ class CEsoItemLink
 	public $itemLevel = 1;		// 1-64
 	public $itemQuality = 1;  	//1-5
 	public $outputType = "html";
+	public $showAll = false;
 	public $itemErrorDesc = "";
 	public $db = null;
 	public $htmlTemplate = "";
@@ -44,6 +45,7 @@ class CEsoItemLink
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
 		if (array_key_exists('level', $this->inputParams)) $this->itemLevel = (int) $this->inputParams['level'];
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
+		if (array_key_exists('show', $this->inputParams)) $this->showAll = true;
 		
 		if (array_key_exists('output', $this->inputParams)) 
 		{
@@ -124,6 +126,22 @@ class CEsoItemLink
 	}
 	
 	
+	private function TestAddSetData ($row)
+	{ 
+		$row['setMaxEquipCount'] = 5;
+		$row['setBonusCount'] = 4;
+		$row['setBonusCount1'] = 2;
+		$row['setBonusCount2'] = 3;
+		$row['setBonusCount3'] = 4;
+		$row['setBonusCount4'] = 5;
+		$row['setBonusDesc1'] = "Adds 139 Armor";
+		$row['setBonusDesc2'] = "Adds 104 Max Health";
+		$row['setBonusDesc3'] = "Adds 104 Max Health";
+		$row['setBonusDesc4'] = "Death's Wind If struck by a melee attack while below 35% health, nearby enemies are knocked back and stunned for 4.0 seconds. This effect can only happen once every 30.0 seconds";
+		return $row;
+	}
+	
+	
 	private function OutputHtmlHeader()
 	{
 		header("Expires: 0");
@@ -152,7 +170,7 @@ class CEsoItemLink
 				11 => "Armor Sturdy",
 				15 => "Armor Training",
 				14 => "Armor Well Fitted",
-				22 => "Jewelry Arcmne",
+				22 => "Jewelry Arcane",
 				21 => "Jewelry Health",
 				24 => "Jewelry Ornate",
 				23 => "Jewelry Robust",
@@ -292,60 +310,60 @@ class CEsoItemLink
 	{
 		static $VALUES = array(
 				-1 => "",
-				11 => "additive",
-				33 => "alchemy_base",
-				2 => "armor",
-				24 => "armor_booster",
-				45 => "armor_trait",
-				47 => "ava_repair",
-				41 => "blacksmithing_booster",
-				36 => "blacksmithing_material",
-				35 => "blacksmithing_raw_material",
-				43 => "clothier_booster",
-				40 => "clothier_material",
-				39 => "clothier_raw_material",
-				34 => "collectible",
-				18 => "container",
-				13 => "costume",
-				14 => "disguise",
-				12 => "drink",
-				32 => "enchanting_rune",
-				25 => "enchantment_booster",
-				28 => "flavoring",
-				4 => "food",
-				21 => "glyph_armor",
-				26 => "glyph_jewelry",
-				20 => "glyph_weapon",
-				10 => "ingredient",
-				22 => "lockpick",
-				16 => "lure",
-				0 => "none",
-				3 => "plug",
-				30 => "poison",
-				7 => "potion",
-				17 => "raw_material",
-				31 => "reagent",
-				29 => "recipe",
-				8 => "scroll",
-				6 => "siege",
-				19 => "soul_gem",
-				27 => "spice",
-				44 => "style_material",
-				15 => "tabard",
-				9 => "tool",
-				48 => "trash",
-				5 => "trophy",
-				1 => "weapon",
-				23 => "weapon_booster",
-				46 => "weapon_trait",
-				42 => "woodworking_booster",
-				38 => "woodworking_material",
-				37 => "woodworking_raw_material",
-				49 => "spellcrafting_tablet",
-				50 => "mount",
-				51 => "potency_rune",
-				52 => "aspect_rune",
-				53 => "essence_rune",
+				11 => "Additive",
+				33 => "Alchemy Base",
+				2 => "Armor",
+				24 => "Armor Booster",
+				45 => "Armor Trait",
+				47 => "Ava Repair",
+				41 => "Blacksmithing Booster",
+				36 => "Blacksmithing Material",
+				35 => "Blacksmithing Raw Material",
+				43 => "Clothier Booster",
+				40 => "Clothier Material",
+				39 => "Clothier Raw Material",
+				34 => "Collectible",
+				18 => "Container",
+				13 => "Costume",
+				14 => "Disguise",
+				12 => "Drink",
+				32 => "Enchanting Rune",
+				25 => "Enchantment Booster",
+				28 => "Flavoring",
+				4 => "Food",
+				21 => "Glyph Armor",
+				26 => "Glyph Jewelry",
+				20 => "Glyph Weapon",
+				10 => "Ingredient",
+				22 => "Lockpick",
+				16 => "Lure",
+				0 => "None",
+				3 => "Plug",
+				30 => "Poison",
+				7 => "Potion",
+				17 => "Raw Material",
+				31 => "Reagent",
+				29 => "Recipe",
+				8 => "Scroll",
+				6 => "Siege",
+				19 => "Soul Gem",
+				27 => "Spice",
+				44 => "Style Material",
+				15 => "Tabard",
+				9 => "Tool",
+				48 => "Trash",
+				5 => "Trophy",
+				1 => "Weapon",
+				23 => "Weapon Booster",
+				46 => "Weapon Trait",
+				42 => "Woodworking Booster",
+				38 => "Woodworking Material",
+				37 => "Woodworking Raw Material",
+				49 => "Spellcrafting Tablet",
+				50 => "Mount",
+				51 => "Potency Rune",
+				52 => "Aspect Rune",
+				53 => "Essence Rune",
 		);
 	
 		$key = (int) $this->itemRecord['type'];
@@ -378,7 +396,22 @@ class CEsoItemLink
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
 	}
-
+	
+	
+	public function GetItemBindTypeText()
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "",
+				1 => "Bind on Pickup",
+				2 => "Bind on Equip",
+				3 => "Backpack Bind on Pickup",
+		);
+	
+		$key = (int) $this->itemRecord['bindType'];
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
 	
 	private function MakeItemRawDataList()
 	{	
@@ -386,7 +419,7 @@ class CEsoItemLink
 		
 		foreach ($this->itemRecord as $key => $value)
 		{
-			if ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0') continue;
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0')) continue;
 			
 			if ($key == "icon")
 				$output .= "\t<tr><td>$key</td><td><img class='esoil_icon' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
@@ -419,10 +452,10 @@ class CEsoItemLink
 		if ($level >= 50) 
 		{
 			$level -= 49;
-			return "<img src='resources/eso_item_veteranicon.png' /> Rank <div class='esoil_itemlevel'>$level</div>";
+			return "<img src='resources/eso_item_veteranicon.png' /> RANK <div class='esoil_itemlevel'>$level</div>";
 		}
 		
-		return "Level <div class='esoil_itemlevel'>$level</div>";
+		return "LEVEL <div class='esoil_itemlevel'>$level</div>";
 	}
 	
 	
@@ -432,11 +465,11 @@ class CEsoItemLink
 		
 		if ($type == 2) //armor 
 		{
-			return "Armor <div class='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
+			return "ARMOR <div class='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
 		}
 		elseif ($type == 1) //weapon 
 		{
-			return "Damage <div class='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
+			return "DAMAGE <div class='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
 		}
 		
 		return "";
@@ -447,8 +480,23 @@ class CEsoItemLink
 	{
 		$bindType = $this->itemRecord['bindType'];
 		
-		if ($bindType > 0) return "Bound";
-		return "";
+		if ($bindType <= 0) return "";
+		return $this->GetItemBindTypeText();
+	}
+	
+	
+	private function MakeItemTypeText()
+	{
+		switch ($this->itemRecord['type'])
+		{
+			case 1:
+			case 2:
+				return $this->GetItemEquipTypeText();
+			case 4:
+				return "Food";
+			default:
+				return $this->GetItemTypeText();
+		}
 	}
 	
 	
@@ -483,23 +531,72 @@ class CEsoItemLink
 	
 	private function MakeItemEnchantBlock()
 	{
-		$enchantName = $this->itemRecord['enchantName'];
-		$enchantDesc = $this->itemRecord['enchantDesc'];
+		$enchantName = strtoupper($this->itemRecord['enchantName']);
+		$enchantDesc = $this->FormatDescriptionText($this->itemRecord['enchantDesc']);
 		
 		if ($enchantName == "") return "";
-		return "<div class='esoil_swhite'>$enchantName</div><br/>$enchantDesc";
+		return "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
 	}
 	
 	
 	private function MakeItemTraitBlock()
 	{
-		return "";
+		$trait = strtoupper($this->itemRecord['trait']);
+		$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
+		$traitName = strtoupper($this->GetItemTraitText());
+		
+		if ($trait <= 0) return "";
+		return "<div class='esoil_white esoil_small'>$traitName</div><br />$traitDesc";
+	}
+	
+	
+	private function FormatDescriptionText($desc)
+	{
+		$output = preg_replace("| by ([0-9\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
+		$output = preg_replace("|Adds ([0-9\.]+) |s", "Adds <div class='esoil_white'>$1</div> ", $output);
+		$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div> ", $output);
+		return $output;
 	}
 	
 	
 	private function MakeItemSetBlock()
 	{
-		return "";
+		$setName = strtoupper($this->itemRecord['setName']);
+		if ($setName == "") return "";
+		
+		$setMaxEquipCount = $this->itemRecord['setMaxEquipCount'];
+		$setBonusCount = (int) $this->itemRecord['setBonusCount'];
+		$output = "<div class='esoil_white esoil_small'>PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)</div>";
+		
+		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
+		{
+			$setCount = $this->itemRecord['setBonusCount' . $i];
+			$setDesc = $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i]);
+			$output .= "<br />($setCount items) $setDesc";
+		}
+		
+		return $output;
+	}
+	
+	
+	private function MakeItemAbilityBlock()
+	{
+		$ability = strtoupper($this->itemRecord['abilityName']);
+		$abilityDesc = $this->FormatDescriptionText($this->itemRecord['abilityDesc']);
+		$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
+		
+		if ($abilityDesc == "") return "";
+		return "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc ($cooldown second cooldown)";
+	}
+	
+	
+	private function MakeItemTraitAbilityBlock()
+	{
+		$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
+		$cooldown = ((int) $this->itemRecord['traitCooldown']) / 1000;
+		
+		if ($abilityDesc == "") return "";
+		return "$abilityDesc ($cooldown second cooldown)";
 	}
 	
 	
@@ -507,10 +604,11 @@ class CEsoItemLink
 	{
 		$replacePairs = array(
 				'{itemName}' => $this->itemRecord['name'],
+				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
 				'{itemDesc}' => $this->itemRecord['description'],
 				'{itemLink}' => $this->itemRecord['link'],
 				'{itemId}' => $this->itemRecord['id'],
-				'{itemType1}' => $this->GetItemEquipTypeText(),
+				'{itemType1}' => $this->MakeItemTypeText(),
 				'{itemType2}' => $this->MakeItemSubTypeText(),
 				'{itemBindType}' => $this->MakeItemBindTypeText(),
 				'{itemValue}' => $this->itemRecord['value'],
@@ -524,6 +622,8 @@ class CEsoItemLink
 				'{itemEnchantBlock}' => $this->MakeItemEnchantBlock(),
 				'{itemTraitBlock}' => $this->MakeItemTraitBlock(),
 				'{itemSetBlock}' => $this->MakeItemSetBlock(),
+				'{itemAbilityBlock}' => $this->MakeItemAbilityBlock(),
+				'{itemTraitAbilityBlock}' => $this->MakeItemTraitAbilityBlock(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
