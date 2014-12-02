@@ -1,7 +1,14 @@
 @font-face {
-	font-family: 'EntezareZohoor2';
-	src: url('fonts/EntezareZohoor2.eot'), url('fonts/EntezareZohoor2.ttf') format('truetype'), url('fonts/EntezareZohoor2.svg') format('svg');
+	font-family: 'EsoFontStyle';
+	src: url('EsoFontRegular.ttf') format('truetype');
 	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('EsoFontBold.ttf') format('truetype');
+	font-weight: bold;
 	font-style: normal;
 }
 
@@ -44,7 +51,7 @@ h1, h2, h3 {
 	border: solid 3px #C5C29E;
 	border-image: url(eso_item_border.png) 5 5 5 5 repeat;
 	border-width: 5px 5px 5px 5px;
-	font-family: "Univers LT Std Condensed", "Arial", sans-serif;
+	font-family: "EsoFontStyle", "Univers LT Std Condensed", "Arial", sans-serif;
 	display: inline-block;
 	position: relative;
 	margin-top: 24px;
