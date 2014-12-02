@@ -7,8 +7,9 @@
 	</head>
 <body>
 <h1>ESO Item -- {itemName}</h1>
-<h2>Level {itemLevel} {itemQuality}</h2>
+<h2>Level {itemLevel} {itemQuality} Quality</h2>
 
+<center>
 <div id="esoil_itembox">
 	<img src="{iconLink}" class="esoil_itemicon"/>
 	<div class="esoil_itemtype1">{itemType1}</div>
@@ -29,6 +30,7 @@
 	<div class="esoil_itemsetblock">{itemSetBlock}</div>
 	<div class="esoil_itemdesc">{itemDesc}</div>
 </div>
+</center>
 
 <hr />
 
