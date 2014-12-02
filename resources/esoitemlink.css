@@ -52,6 +52,11 @@ h1, h2, h3 {
 	vertical-align: middle;
 }
 
+#esoil_outeritembox {
+	display: inline-block;
+	padding-top: 24px;
+}
+
 #esoil_itembox {
 	background-color: #000;
 	border: solid 3px #C5C29E;
@@ -61,7 +66,6 @@ h1, h2, h3 {
 	font-size: 16px;
 	display: inline-block;
 	position: relative;
-	margin-top: 24px;
 	max-width: 400px;
 	min-width: 400px;
 }
