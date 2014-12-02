@@ -13,8 +13,11 @@ class CEsoItemLink
 	
 	public $inputParams = array();
 	public $itemId = 0;
+	public $itemLink = "";
 	public $itemLevel = 1;		// 1-64
-	public $itemQuality = 1;  	//1-5
+	public $itemQuality = 1;	// 1-5
+	public $itemIntLevel = -1;	// 1-50
+	public $itemIntType = -1;	// 1-400
 	public $outputType = "html";
 	public $showAll = false;
 	public $itemErrorDesc = "";
@@ -40,12 +43,36 @@ class CEsoItemLink
 	}
 	
 	
+	public function ParseItemLink($itemLink)
+	{
+		//|H0:item:70:62:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|h[Cured%20Kwama%20Leggings]|h
+		#$result = preg_match("#\|H[0-9A-Fa-f]+:item:(?<id>[0-9]+):(?<subtype>[0-9]+):(?<level>[0-9]+):(?<enchantid>[0-9]+):(?<enchanttype>[0-9]+):(?<enchantlevel>[0-9]+):(data):(?<style>[0-9]+):(?<id>[0-9]+):(?<id>[0-9]+):(?<id>[0-9]+):(?<id>[0-9]+)\|h([^\|]+)\|h#s", $itemLink);
+		$matches = array();
+		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
+		if (!$result) return false;
+		
+		$this->itemId = $matches['itemId'];
+		$this->itemIntLevel = $matches['level'];
+		$this->itemIntType = $matches['subtype'];
+		
+		return true;
+	}
+	
+	
 	private function ParseInputParams ()
 	{
+		if (array_key_exists('itemlink', $this->inputParams)) 
+		{ 
+			$this->itemLink = urldecode($this->inputParams['itemlink']);
+			$this->ParseItemLink($this->itemLink);
+		}
+		
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
 		if (array_key_exists('level', $this->inputParams)) $this->itemLevel = (int) $this->inputParams['level'];
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
 		if (array_key_exists('show', $this->inputParams)) $this->showAll = true;
+		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
+		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		
 		if (array_key_exists('output', $this->inputParams)) 
 		{
@@ -109,18 +136,30 @@ class CEsoItemLink
 	private function LoadItemRecord()
 	{
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
-		if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
-		if ($this->itemQuality <= 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
+		$query = "";
 		
-		$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
+		if ($this->itemIntLevel >= 1)
+		{
+			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+		}
+		else
+		{
+			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
+			if ($this->itemQuality <= 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
+		}
 		
 		$result = $this->db->query($query);
-		if (!$result) return false;
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		if ($result->num_rows === 0) return $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
 		if (!$row) $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
+		
+		if ($this->itemLevel <= 0) $this->itemLevel = (int) $row['level'];
+		if ($this->itemQuality <= 0) $this->itemQuality = (int) $row['quality'];
 		
 		return $row;
 	}
@@ -153,6 +192,13 @@ class CEsoItemLink
 			header("content-type: text/html");
 		else
 			header("content-type: text/plain");
+	}
+	
+	
+	public function GetItemQualityFromSubtype($level, $subtype)
+	{
+		static $LEVEL_DATA = array(
+		);
 	}
 	
 	
@@ -244,7 +290,7 @@ class CEsoItemLink
 	}
 	
 	
-	public function GetItemQualityText ($value)
+	public function GetItemQualityText()
 	{
 		static $VALUES = array(
 		-1 => "",
