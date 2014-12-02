@@ -4,12 +4,15 @@
 		<title>UESP:ESO Item -- {itemName}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="resources/esoitemlink.css" />
+		<script type="text/javascript" src="resources/html2canvas.js"></script>
+		<script type="text/javascript" src="resources/itemlink.js"></script>
 	</head>
 <body>
 <h1>ESO Item -- {itemName}</h1>
 <h2>Level {itemLevel} {itemQuality} Quality</h2>
 
 <center>
+<div id="esoil_outeritembox">
 <div id="esoil_itembox">
 	<img src="{iconLink}" class="esoil_itemicon"/>
 	<div class="esoil_itemtype1">{itemType1}</div>
@@ -29,6 +32,7 @@
 	<div class="esoil_itemtraitblock">{itemTraitBlock}</div>
 	<div class="esoil_itemsetblock">{itemSetBlock}</div>
 	<div class="esoil_itemdesc">{itemDesc}</div>
+</div>
 </div>
 </center>
 
