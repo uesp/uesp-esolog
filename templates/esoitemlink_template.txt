@@ -17,11 +17,10 @@
 	<div class="esoil_itemname esoil_quality_{itemQuality}">{itemNameUpper}</div>
 	<img src="resources/eso_item_hr.png" class="esoil_item_hr"/>
 	<div class="esoil_datablock">
-		<div class="esoil_itemleftblock">{itemLeftBlock}</div>
-		<div class="esoil_itemlevelblock">{itemLevelBlock}</div>
-		<div class="esoil_itemvalueblock">VALUE <div class="esoil_itemvalue">{itemValue}</div></div>
+		<div class="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
+		<div class="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
+		<div class="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div class="esoil_itemvalue">{itemValue}</div></div>
 	</div>
-	<div class="esoil_itempos1"></div>
 	<div class="esoil_itembar">{itemBar}</div>
 	<div class="esoil_itemabilityblock">{itemAbilityBlock}</div>
 	<div class="esoil_itemabilityblock">{itemTraitAbilityBlock}</div>
