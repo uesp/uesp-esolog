@@ -41,8 +41,9 @@ h1, h2, h3 {
 
 #esoil_itembox {
 	background-color: #000;
-	background: url(eso_item_border.png) no-repeat;
-	background-size: 100% 100%;
+	border: solid 3px #C5C29E;
+	border-image: url(eso_item_border.png) 5 5 5 5 repeat;
+	border-width: 5px 5px 5px 5px;
 	font-family: "Univers LT Std Condensed", "Arial", sans-serif;
 	display: inline-block;
 	position: relative;
