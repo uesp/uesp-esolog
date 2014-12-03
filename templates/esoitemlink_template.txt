@@ -16,27 +16,31 @@
 <h1>ESO Item -- {itemName}</h1>
 <h2 id="esoil_levelheader">{itemQuality} {itemLevel}</h2>
 
-<div id="esoil_outeritembox">
-	<div id="esoil_itembox">
-		<img src="{iconLink}" id="esoil_itemicon"/>
-		<div id="esoil_itemtype1">{itemType1}</div>
-		<div id="esoil_itemtype2">{itemType2}</div>
-		<div id="esoil_itembindtype">{itemBindType}</div>
-		<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
-		<img src="resources/eso_item_hr.png" id="esoil_item_hr"/>
-		<div id="esoil_datablock">
-			<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
-			<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
-			<div id="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div id="esoil_itemvalue">{itemValue}</div></div>
+<div id="esoil_itemcontainer">
+	<div id="esoil_outeritembox">
+		<div id="esoil_itembox">
+			<img src="{iconLink}" id="esoil_itemicon"/>
+			<div id="esoil_itemtype1">{itemType1}</div>
+			<div id="esoil_itemtype2">{itemType2}</div>
+			<div id="esoil_itembindtype">{itemBindType}</div>
+			<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
+			<img src="resources/eso_item_hr.png" id="esoil_item_hr"/>
+			<div id="esoil_datablock">
+				<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
+				<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
+				<div id="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div id="esoil_itemvalue">{itemValue}</div></div>
+			</div>
+			<div id="esoil_itembar">{itemBar}</div>
+			<div id="esoil_itemabilityblock">{itemAbilityBlock}</div>
+			<div id="esoil_itemtraitabilityblock">{itemTraitAbilityBlock}</div>
+			<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>
+			<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
+			<div id="esoil_itemsetblock">{itemSetBlock}</div>
+			<div id="esoil_itemdesc">{itemDesc}</div>
 		</div>
-		<div id="esoil_itembar">{itemBar}</div>
-		<div id="esoil_itemabilityblock">{itemAbilityBlock}</div>
-		<div id="esoil_itemtraitabilityblock">{itemTraitAbilityBlock}</div>
-		<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>
-		<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
-		<div id="esoil_itemsetblock">{itemSetBlock}</div>
-		<div id="esoil_itemdesc">{itemDesc}</div>
 	</div>
+	<br />
+	<a id="esoil_itemimagelink" href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}">Link to Item Image</a>
 </div>
 
 <div id="esoil_controls">
@@ -52,6 +56,10 @@
 	<table id="esoil_rawdatatable" cellpadding="0" cellspacing="0" border="0">
 	{itemRawDataList}
 	</table>
+</div>
+
+<div id="esoil_itemimage">
+	<a href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}">Original Item Image<br /><img src="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}" /></a>
 </div>
 
 <script type="text/javascript">
@@ -270,6 +278,7 @@
 		$('#esoil_itemname').removeClass("esoil_quality_None esoil_quality_Normal esoil_quality_Fine esoil_quality_Superior esoil_quality_Epic esoil_quality_Legendary");
 		$('#esoil_itemname').addClass("esoil_quality_" + GetEsoItemQualityText(itemData['quality']));
 		
+		
 		$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level']));
 		$('#esoil_levelheader').text(GetEsoItemLevelHeaderText(level, quality));
 		
@@ -327,7 +336,14 @@
 		$('#esoil_itemicon').attr('src', MakeEsoItemIconImageLink(itemData));
 		
 		UpdateEsoItemRawData(itemData);
+		UpdateEsoItemImageLink(itemData);
 		return true;
+	}
+	
+	
+	function UpdateEsoItemImageLink(itemData)
+	{
+		$('#esoil_itemimagelink').attr('href', "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "");
 	}
 	
 	
