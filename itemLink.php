@@ -695,8 +695,8 @@ class CEsoItemLink
 		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
-			$setDesc = $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i]);
-			$output .= "<br />($setCount items) $setDesc";
+			$setDesc = str_replace("\n", "<br />", $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i]));
+			$output .= "<br />$setDesc";
 		}
 		
 		return $output;

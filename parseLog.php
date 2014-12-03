@@ -2722,9 +2722,9 @@ class EsoLogParser
 			$logEntry['level'] = $logEntry['reqLevel'];
 		}
 		
-		if (!array_key_exists('setMaxEquipCount', $logEntry))
+		if (!array_key_exists('setMaxCount', $logEntry))
 		{
-			$logEntry['setMaxEquipCount'] = 0; //(2 items)
+			$logEntry['setMaxCount'] = 0;
 			$highestSetDesc = "";
 			
 			if (array_key_exists('setDesc1', $logEntry)) $highestSetDesc = $logEntry['setDesc1'];
@@ -2737,7 +2737,7 @@ class EsoLogParser
 			{
 				$matches = array();
 				$result = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
-				if ($result) $logEntry['setMaxEquipCount'] = (int) $matches[1];
+				if ($result) $logEntry['setMaxCount'] = (int) $matches[1];
 			}
 		}
 		
