@@ -18,7 +18,7 @@ body {
 	font-size: 13px;
 }
 
-.#esoil_rawdatalist {
+#esoil_rawdatalist {
 	font-weight: bold;
 	text-decoration: underline;
 }
@@ -62,7 +62,7 @@ h1, h2, h3 {
 	background: none;
 }
 
-.esoil_icon {
+#esoil_icon {
 	vertical-align: middle;
 }
 
@@ -84,7 +84,7 @@ h1, h2, h3 {
 	min-width: 400px;
 }
 
-.esoil_itemicon {
+#esoil_itemicon {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -92,7 +92,7 @@ h1, h2, h3 {
 	top: -24px;
 }
 
-.esoil_itemtype1 {
+#esoil_itemtype1 {
 	color: #C5C29E;
 	font-weight: bold;
 	font-size: 0.9em;
@@ -101,7 +101,7 @@ h1, h2, h3 {
 	left: 0.5em;
 }
 
-.esoil_itemtype2 {
+#esoil_itemtype2 {
 	color: #C5C29E;
 	font-weight: bold;
 	font-size: 0.9em;
@@ -110,7 +110,7 @@ h1, h2, h3 {
 	left: 0.5em;
 }
 
-.esoil_itembindtype {
+#esoil_itembindtype {
 	color: #C5C29E;
 	font-weight: bold;
 	font-size: 0.9em;
@@ -120,7 +120,7 @@ h1, h2, h3 {
 	text-align: right;
 }
 
-.esoil_itemname {
+#esoil_itemname {
 	font-weight: bold;
 	font-size: 1.5em;
 	color: #fff;
@@ -130,34 +130,34 @@ h1, h2, h3 {
 	top: 2em;
 }
 
-.esoil_datablock {
+#esoil_datablock {
 	position: relative;
 	top: 1em;
 	text-align: center;
 	white-space: nowrap;
 }
 
-.esoil_itemlevelblock {
+#esoil_itemlevelblock {
 }
 
-.esoil_itemlevelblock img {
+#esoil_itemlevelblock img {
 	vertical-align: middle;
 }
 
-.esoil_itemvalueblock {
+#esoil_itemvalueblock {
 }
 
-.esoil_itemvalue, .esoil_itemlevel, .esoil_itemleft {
+#esoil_itemvalue, #esoil_itemlevel, #esoil_itemleft {
 	color: #fff;
 	display: inline;
 	font-size: 1.6em;
 	margin-left: 4px;
 }
 
-.esoil_itemleftblock {
+#esoil_itemleftblock {
 }
 
-.esoil_itemleftblock, .esoil_itemvalueblock, .esoil_itemlevelblock {
+#esoil_itemleftblock, #esoil_itemvalueblock, #esoil_itemlevelblock {
 	color: #C5C29E;
 	display: inline;
 	font-size: 0.9em;
@@ -170,7 +170,7 @@ h1, h2, h3 {
 	white-space: nowrap;
 }
 
-.esoil_itemdesc {
+#esoil_itemdesc {
 	font-size: 0.8em;
 	color: #C5C29E;
 	margin: 10px;
@@ -178,30 +178,30 @@ h1, h2, h3 {
 }
 
 .esoil_quality_None {
-	color: #fff;
+	color: #fff !important;
 }
 
 .esoil_quality_Normal {
-	color: #fff;
+	color: #fff !important;
 }
 
 .esoil_quality_Fine {
-	color: #2DC50E;
+	color: #2DC50E !important;
 }
 
 .esoil_quality_Superior {
-	color: #3A92FF;
+	color: #3A92FF !important;
 }
 
 .esoil_quality_Epic {
-	color: #A02EF7;
+	color: #A02EF7 !important;
 }
 
 .esoil_quality_Legendary {
-	color: #ffff33;
+	color: #ffff33 !important;
 }
 
-.esoil_item_hr {
+#esoil_item_hr {
 	position: relative;
 	top: 0.8em;
 	display: block;
@@ -209,7 +209,7 @@ h1, h2, h3 {
 	margin-right: auto;
 }
 
-.esoil_itembar, .esoil_itemsetblock, .esoil_itemtraitblock, .esoil_itemenchantblock, .esoil_itemabilityblock {
+#esoil_itembar, #esoil_itemsetblock, #esoil_itemtraitblock, #esoil_itemenchantblock, #esoil_itemabilityblock, #esoil_itemtraitabilityblock {
 	display: block;
 	margin-top: 10px;
 	margin-left: 5px;
@@ -221,7 +221,7 @@ h1, h2, h3 {
 	color: #C5C29E;
 }
 
-.esoil_itembar {
+#esoil_itembar {
 	margin-top: 1.5em;
 	margin-bottom: 0.4em;
 }
