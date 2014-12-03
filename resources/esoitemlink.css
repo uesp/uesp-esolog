@@ -153,6 +153,7 @@ h1, h2, h3 {
 #esoil_rawdata {
 	display: inline-block;
 	vertical-align: top;
+	max-width: 50%;
 }
 
 #esoil_itemvalue, #esoil_itemlevel, #esoil_itemleft {
