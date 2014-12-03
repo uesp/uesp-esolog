@@ -4,12 +4,27 @@
 		<title>UESP:ESO Item -- {itemName}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="resources/esoitemlink.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="resources/html2canvas.js"></script>
 		<script type="text/javascript" src="resources/itemlink.js"></script>
+		<script type="text/javascript">
+			var initialLevel = {itemLevelRaw};
+			var initialQuality = {itemQualityRaw};
+		</script>
 	</head>
 <body>
 <h1>ESO Item -- {itemName}</h1>
 <h2>{itemQuality} {itemLevel}</h2>
+
+<div id="esoil_controls">
+	<div class="esoil_controllabel">Level:</div>
+	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="64" value="{itemLevelRaw}" />
+	<input class="esoil_rangelabel" id="esoil_leveltext" type="text" value="{itemLevelRaw}" readonly />
+	<br />
+	<div class="esoil_controllabel">Quality:</div>
+	<input id="esoil_qualitycontrol"  class="esoil_rangecontrol" type="range" min="1" max="5" value="{itemQualityRaw}" />
+	<input class="esoil_rangelabel" id="esoil_qualitytext" type="text" value="{itemQualityRaw}" readonly />
+</div>
 
 <center>
 <div id="esoil_outeritembox">
@@ -42,5 +57,49 @@
 <table id="esoil_rawdatatable" cellpadding="0" cellspacing="0" border="0">
 {itemRawDataList}
 </table>
+
+<script type="text/javascript">
+	var ESO_ITEM_QUALITIES = {
+		0: "None",
+		1: "Normal",
+		2: "Fine",
+		3: "Superior",
+		4: "Epic",
+		5: "Legendary",
+	};
+	
+	
+	function GetEsoItemQualityText(quality)
+	{
+		qualityText = ESO_ITEM_QUALITIES[quality];
+		if (qualityText == null) return '' + quality;
+		return qualityText; 
+	}
+	
+	
+	function GetEsoItemLevelText(level)
+	{
+		if (level >= 50) return 'V' + (level - 49);
+		return '' + level;
+	}
+	
+	
+	$( document ).ready(function() {
+	
+		$('#esoil_levelcontrol').on('input', function(e) { 
+			console.log(this.value); 
+			$('#esoil_leveltext').val(GetEsoItemLevelText(this.value)); 
+		});
+		
+		$('#esoil_qualitycontrol').on('input', function(e) { 
+			console.log(this.value); 
+			$('#esoil_qualitytext').val(GetEsoItemQualityText(this.value)); 
+		});
+		
+		console.log("ready");
+	});
+	
+	var itemData = {itemDataJson};
+</script>
 </body>
 </html>

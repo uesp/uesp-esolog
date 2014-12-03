@@ -48,6 +48,20 @@ h1, h2, h3 {
 	margin: 5px;
 }
 
+#esoil_controls {
+	display: inline-block;
+}
+
+.esoil_controllabel {
+	display: inline-block;
+	width: 60px;
+}
+
+.esoil_rangelabel {
+	border: none;
+	background: none;
+}
+
 .esoil_icon {
 	vertical-align: middle;
 }
