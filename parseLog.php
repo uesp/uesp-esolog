@@ -19,6 +19,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
  * 		- Parse out item data into database fields
  * 		- Option to delete worms/crawlers/plump worms
  * 		- Display icon image
+ * 		- Use esoCommon.php
  *
  * 
 	SKILL_TYPE_NONE = 0

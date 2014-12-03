@@ -2,6 +2,7 @@
 
 // Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
+require("esoCommon.php");
 
 
 class CEsoItemLink
@@ -300,309 +301,7 @@ class CEsoItemLink
 	}
 	
 	
-	public function GetItemQualityFromSubtype($level, $subtype)
-	{
-		static $LEVEL_DATA = array(
-		);
-	}
 	
-	
-	public function GetItemTraitFullText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				18 => "Armor Divines",
-				17 => "Armor Exploration",
-				12 => "Armor Impenetrable",
-				16 => "Armor Infused",
-				20 => "Armor Intricate",
-				19 => "Armor Ornate",
-				13 => "Armor Reinforced",
-				11 => "Armor Sturdy",
-				15 => "Armor Training",
-				14 => "Armor Well Fitted",
-				22 => "Jewelry Arcane",
-				21 => "Jewelry Health",
-				24 => "Jewelry Ornate",
-				23 => "Jewelry Robust",
-				0 => "None",
-				2 => "Weapon Charged",
-				5 => "Weapon Defending",
-				4 => "Weapon Infused",
-				9 => "Weapon Intricate",
-				10 => "Weapon Ornate",
-				1 => "Weapon Power",
-				3 => "Weapon Precise",
-				7 => "Weapon Sharpened",
-				6 => "Weapon Training",
-				8 => "Weapon Weighted",
-				25 => "Armor Nirnhoned",
-				26 => "Weapon Nirnhoned",
-		);
-	
-		$key = (int) $this->itemRecord['trait'];
-	
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemTraitText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				18 => "Divines",
-				17 => "Exploration",
-				12 => "Impenetrable",
-				16 => "Infused",
-				20 => "Intricate",
-				19 => "Ornate",
-				13 => "Reinforced",
-				11 => "Sturdy",
-				15 => "Training",
-				14 => "Well Fitted",
-				22 => "Arcane",
-				21 => "Health",
-				24 => "Ornate",
-				23 => "Robust",
-				0 => "None",
-				2 => "Charged",
-				5 => "Defending",
-				4 => "Infused",
-				9 => "Intricate",
-				10 => "Ornate",
-				1 => "Power",
-				3 => "Precise",
-				7 => "Sharpened",
-				6 => "Training",
-				8 => "Weighted",
-				25 => "Nirnhoned",
-				26 => "Nirnhoned",
-		);
-	
-		$key = (int) $this->itemRecord['trait'];
-	
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemStyleText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Breton",
-				2 => "Redguard",
-				3 => "Orc",
-				4 => "Dunmer",
-				5 => "Nord",
-				6 => "Argonian",
-				7 => "Altmer",
-				8 => "Bosmer",
-				9 => "Khajiit",
-				10 => "Unique",
-				11 => "Aldmeri Dominion",
-				12 => "Ebonheart Pact",
-				13 => "Daggerfall Covenant",
-				14 => "Dwemer",
-				15 => "Ancient Elf",
-				16 => "Imperial",
-				17 => "Reach",
-				18 => "Bandit",
-				19 => "Primitive",
-				20 => "Daedric",
-				21 => "Warrior Class",
-				22 => "Mage Class",
-				23 => "Rogue Class",
-				24 => "Summoner Class",
-				25 => "Marauder Class",
-				26 => "Healer Class",
-				27 => "Battlemage Class",
-				28 => "Nightblade Class",
-				29 => "Ranger Class",
-				30 => "Knight Class",
-				31 => "Draugr",
-				32 => "Maormer",
-				33 => "Akaviri",
-				34 => "Imperial",
-				35 => "Yokudan",
-		);
-		
-		$key = (int) $this->itemRecord['style'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemQualityText()
-	{
-		static $VALUES = array(
-		-1 => "",
-		0 => "Trash",
-		1 => "Normal",
-		2 => "Fine",
-		3 => "Superior",
-		4 => "Epic",
-		5 => "Legendary",
-		);
-		
-		$key = (int) $this->itemRecord['quality'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemArmorTypeText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Light",
-				2 => "Medium",
-				3 => "Heavy",
-		);
-		
-		$key = (int) $this->itemRecord['armorType'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemWeaponTypeText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Axe",
-				2 => "Hammer",
-				3 => "Sword",
-				4 => "Two handed Sword",
-				5 => "Two handed Axe",
-				6 => "Two handed Hammer",
-				7 => "Prop",
-				8 => "Bow",
-				9 => "Healing Staff",
-				10 => "Rune",
-				11 => "Dagger",
-				12 => "Fire Staff",
-				13 => "Frost Staff",
-				14 => "Shield",
-				15 => "Lightning Staff",
-		);
-		
-		$key = (int) $this->itemRecord['weaponType'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemTypeText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				11 => "Additive",
-				33 => "Alchemy Base",
-				2 => "Armor",
-				24 => "Armor Booster",
-				45 => "Armor Trait",
-				47 => "Ava Repair",
-				41 => "Blacksmithing Booster",
-				36 => "Blacksmithing Material",
-				35 => "Blacksmithing Raw Material",
-				43 => "Clothier Booster",
-				40 => "Clothier Material",
-				39 => "Clothier Raw Material",
-				34 => "Collectible",
-				18 => "Container",
-				13 => "Costume",
-				14 => "Disguise",
-				12 => "Drink",
-				32 => "Enchanting Rune",
-				25 => "Enchantment Booster",
-				28 => "Flavoring",
-				4 => "Food",
-				21 => "Glyph Armor",
-				26 => "Glyph Jewelry",
-				20 => "Glyph Weapon",
-				10 => "Ingredient",
-				22 => "Lockpick",
-				16 => "Lure",
-				0 => "None",
-				3 => "Plug",
-				30 => "Poison",
-				7 => "Potion",
-				17 => "Raw Material",
-				31 => "Reagent",
-				29 => "Recipe",
-				8 => "Scroll",
-				6 => "Siege",
-				19 => "Soul Gem",
-				27 => "Spice",
-				44 => "Style Material",
-				15 => "Tabard",
-				9 => "Tool",
-				48 => "Trash",
-				5 => "Trophy",
-				1 => "Weapon",
-				23 => "Weapon Booster",
-				46 => "Weapon Trait",
-				42 => "Woodworking Booster",
-				38 => "Woodworking Material",
-				37 => "Woodworking Raw Material",
-				49 => "Spellcrafting Tablet",
-				50 => "Mount",
-				51 => "Potency Rune",
-				52 => "Aspect Rune",
-				53 => "Essence Rune",
-		);
-	
-		$key = (int) $this->itemRecord['type'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	public function GetItemEquipTypeText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "none",
-				1 => "Head",
-				2 => "Neck",
-				3 => "Chest",
-				4 => "Shoulders",
-				5 => "One Hand",
-				6 => "Two Hand",
-				7 => "Off Hand",
-				8 => "Waist",
-				9 => "Legs",
-				10 => "Feet",
-				11 => "Costume",
-				12 => "Ring",
-				13 => "Hand",
-				14 => "Main Hand",
-		);
-		
-		$key = (int) $this->itemRecord['equipType'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetItemBindTypeText()
-	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "",
-				1 => "Bind on Pickup",
-				2 => "Bind on Equip",
-				3 => "Backpack Bind on Pickup",
-		);
-	
-		$key = (int) $this->itemRecord['bindType'];
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
 	
 	private function MakeItemRawDataList()
 	{	
@@ -688,7 +387,7 @@ class CEsoItemLink
 		$bindType = $this->itemRecord['bindType'];
 		
 		if ($bindType <= 0) return "";
-		return $this->GetItemBindTypeText();
+		return GetEsoItemBindTypeText($bindType);
 	}
 	
 	
@@ -698,11 +397,11 @@ class CEsoItemLink
 		{
 			case 1:
 			case 2:
-				return $this->GetItemEquipTypeText();
+				return GetEsoItemEquipTypeText($this->itemRecord['equipType']);
 			case 4:
 				return "Food";
 			default:
-				return $this->GetItemTypeText();
+				return GetEsoItemTypeText($this->itemRecord['type']);
 		}
 	}
 	
@@ -714,11 +413,11 @@ class CEsoItemLink
 		
 		if ($type == 2) //armor
 		{
-			return "(" . $this->GetItemArmorTypeText() . ")";
+			return "(" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . ")";
 		}
 		elseif ($type == 1) //weapon
 		{
-			return "(" . $this->GetItemWeaponTypeText() . ")";
+			return "(" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . ")";
 		}
 		
 		return "";
@@ -750,7 +449,7 @@ class CEsoItemLink
 	{
 		$trait = $this->itemRecord['trait'];
 		$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
-		$traitName = strtoupper($this->GetItemTraitText());
+		$traitName = strtoupper(GetEsoItemTraitText($trait));
 		
 		if ($trait <= 0) return "";
 		return "<div class='esoil_white esoil_small'>$traitName</div><br />$traitDesc";
@@ -871,7 +570,7 @@ class CEsoItemLink
 				'{itemLevelRaw}' => $this->itemRecord['level'],
 				'{itemQualityRaw}' => $this->itemRecord['quality'],
 				'{itemLevelBlock}' => $this->MakeItemLevelString(),
-				'{itemQuality}' => $this->GetItemQualityText(),
+				'{itemQuality}' => GetEsoItemQualityText($this->itemRecord['quality']),
 				'{itemRawDataList}' => $this->MakeItemRawDataList(),
 				'{iconLink}' => $this->MakeItemIconImageLink(),
 				'{itemLeftBlock}' => $this->MakeItemLeftBlock(),
