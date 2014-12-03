@@ -188,6 +188,25 @@ class CEsoItemLink
 		
 		while (($row = $result->fetch_assoc()))
 		{
+					// TODO: Temporary fix for setMaxEquipCount
+			if (array_key_exists('setMaxEquipCount', $row) && $row['setMaxEquipCount'] == -1)
+			{
+				$highestSetDesc = "";
+					
+				if (array_key_exists('setBonusDesc1', $row) && $row['setBonusDesc1'] != "") $highestSetDesc = $row['setBonusDesc1'];
+				if (array_key_exists('setBonusDesc2', $row) && $row['setBonusDesc2'] != "") $highestSetDesc = $row['setBonusDesc2'];
+				if (array_key_exists('setBonusDesc3', $row) && $row['setBonusDesc3'] != "") $highestSetDesc = $row['setBonusDesc3'];
+				if (array_key_exists('setBonusDesc4', $row) && $row['setBonusDesc4'] != "") $highestSetDesc = $row['setBonusDesc4'];
+				if (array_key_exists('setBonusDesc5', $row) && $row['setBonusDesc5'] != "") $highestSetDesc = $row['setBonusDesc5'];
+					
+				if ($highestSetDesc != "")
+				{
+					$matches = array();
+					$matchResult = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
+					if ($matchResult) $row['setMaxEquipCount'] = (int) $matches[1];
+				}
+			}
+			
 			$this->itemAllData[] = $row;
 		}
 		
@@ -225,6 +244,27 @@ class CEsoItemLink
 		
 		if ($this->itemLevel <= 0) $this->itemLevel = (int) $row['level'];
 		if ($this->itemQuality <= 0) $this->itemQuality = (int) $row['quality'];
+		
+			// TODO: Temporary fix for setMaxEquipCount
+		if (array_key_exists('setMaxEquipCount', $row) && $row['setMaxEquipCount'] == -1)
+		{
+			$highestSetDesc = "";
+			$row['setMaxEquipCount'] = 0;
+			
+			if (array_key_exists('setBonusDesc1', $row) && $row['setBonusDesc1'] != "") $highestSetDesc = $row['setBonusDesc1'];
+			if (array_key_exists('setBonusDesc2', $row) && $row['setBonusDesc2'] != "") $highestSetDesc = $row['setBonusDesc2'];
+			if (array_key_exists('setBonusDesc3', $row) && $row['setBonusDesc3'] != "") $highestSetDesc = $row['setBonusDesc3'];
+			if (array_key_exists('setBonusDesc4', $row) && $row['setBonusDesc4'] != "") $highestSetDesc = $row['setBonusDesc4'];
+			if (array_key_exists('setBonusDesc5', $row) && $row['setBonusDesc5'] != "") $highestSetDesc = $row['setBonusDesc5'];
+				
+			if ($highestSetDesc != "")
+			{
+				$row['setMaxEquipCount'] = 1;
+				$matches = array();
+				$matchResult = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
+				if ($matchResult) $row['setMaxEquipCount'] = (int) $matches[1];
+			}
+		}
 		
 		return $row;
 	}

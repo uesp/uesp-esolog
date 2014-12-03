@@ -16,16 +16,6 @@
 <h1>ESO Item -- {itemName}</h1>
 <h2 id="esoil_levelheader">{itemQuality} {itemLevel}</h2>
 
-<div id="esoil_controls">
-	<div class="esoil_controllabel">Level:</div>
-	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="64" value="{itemLevelRaw}" />
-	<input class="esoil_rangelabel" id="esoil_leveltext" type="text" value="{itemLevelRaw}" readonly />
-	<br />
-	<div class="esoil_controllabel">Quality:</div>
-	<input id="esoil_qualitycontrol"  class="esoil_rangecontrol" type="range" min="1" max="5" value="{itemQualityRaw}" />
-	<input class="esoil_rangelabel" id="esoil_qualitytext" type="text" value="{itemQualityRaw}" readonly />
-</div>
-
 <div id="esoil_outeritembox">
 	<div id="esoil_itembox">
 		<img src="{iconLink}" id="esoil_itemicon"/>
@@ -47,6 +37,14 @@
 		<div id="esoil_itemsetblock">{itemSetBlock}</div>
 		<div id="esoil_itemdesc">{itemDesc}</div>
 	</div>
+</div>
+
+<div id="esoil_controls">
+	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="64" value="{itemLevelRaw}" />
+	<input class="esoil_rangelabel" id="esoil_leveltext" type="text" value="{itemLevel}" readonly />
+	<br />
+	<input id="esoil_qualitycontrol"  class="esoil_rangecontrol" type="range" min="1" max="5" value="{itemQualityRaw}" />
+	<input class="esoil_rangelabel" id="esoil_qualitytext" type="text" value="{itemQuality}" readonly />
 </div>
 
 <div id="esoil_rawdata">
@@ -140,22 +138,6 @@
 		if (level >= 50) return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 49) + "</div>"
 		return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
 	}
-	
-	
-	$( document ).ready(function() {
-	
-		$('#esoil_levelcontrol').on('input', function(e) { 
-			$('#esoil_leveltext').val(GetEsoItemLevelText(this.value));
-			UpdateEsoItemData(this.value, $('#esoil_qualitycontrol').val()); 
-		});
-		
-		$('#esoil_qualitycontrol').on('input', function(e) { 
-			$('#esoil_qualitytext').val(GetEsoItemQualityText(this.value));
-			UpdateEsoItemData($('#esoil_levelcontrol').val(), this.value); 
-		});
-		
-		console.log("ready");
-	});
 	
 	
 	function MergeEsoItemData(itemData1, itemData2)
@@ -374,6 +356,22 @@
 				element.text(value);
 		}
 	}
+	
+	
+	$( document ).ready(function() {
+	
+		$('#esoil_levelcontrol').on('input', function(e) { 
+			$('#esoil_leveltext').val(GetEsoItemFullLevelText(this.value));
+			UpdateEsoItemData(this.value, $('#esoil_qualitycontrol').val()); 
+		});
+		
+		$('#esoil_qualitycontrol').on('input', function(e) { 
+			$('#esoil_qualitytext').val(GetEsoItemQualityText(this.value));
+			UpdateEsoItemData($('#esoil_levelcontrol').val(), this.value); 
+		});
+		
+		console.log("ready");
+	});
 	
 	
 	var allItemData = {itemDataJson};
