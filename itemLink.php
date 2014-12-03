@@ -18,6 +18,8 @@ class CEsoItemLink
 	public $itemQuality = 1;	// 1-5
 	public $itemIntLevel = -1;	// 1-50
 	public $itemIntType = -1;	// 1-400
+	public $itemRecord = array();
+	public $itemAllData = array();
 	public $outputType = "html";
 	public $showAll = false;
 	public $itemErrorDesc = "";
@@ -138,6 +140,56 @@ class CEsoItemLink
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
 		
+		return true;
+	}
+	
+	
+	private function ReduceAllItemData()
+	{
+		if (count($this->itemAllData) == 0) return;
+		
+		$firstItem = $this->itemAllData[0];
+		
+		foreach ($this->itemAllData as $index => &$item)
+		{
+			if ($firstItem == $item) continue;
+			$delItems = array("link");
+			
+			foreach ($item as $key => $value)
+			{
+				if (array_key_exists($key, $firstItem) && $firstItem[$key] == $value)
+				{
+					$delItems[] = $key;
+				}
+			}
+			
+			foreach ($delItems as $key => $value)
+			{
+				unset($item[$value]);
+			}
+		}
+	}
+	
+	
+	private function LoadAllItemData()
+	{
+		$this->itemAllData = array();
+		if ($this->itemId <= 0) return false;
+		
+		$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} ORDER BY level, quality;";
+		
+		$result = $this->db->query($query);
+		if (!$result) return false;
+		if ($result->num_rows === 0) return false;
+		
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemAllData[] = $row;
+		}
+		
+		$this->ReduceAllItemData();
 		return true;
 	}
 	
@@ -711,6 +763,13 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetItemDataJson()
+	{
+		$output = json_encode($this->itemAllData);
+		return $output;
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
@@ -724,6 +783,8 @@ class CEsoItemLink
 				'{itemBindType}' => $this->MakeItemBindTypeText(),
 				'{itemValue}' => $this->itemRecord['value'],
 				'{itemLevel}' => $this->MakeItemLevelSimpleString(),
+				'{itemLevelRaw}' => $this->itemRecord['level'],
+				'{itemQualityRaw}' => $this->itemRecord['quality'],
 				'{itemLevelBlock}' => $this->MakeItemLevelString(),
 				'{itemQuality}' => $this->GetItemQualityText(),
 				'{itemRawDataList}' => $this->MakeItemRawDataList(),
@@ -738,6 +799,7 @@ class CEsoItemLink
 				'{itemLeftBlockDisplay}' => $this->GetItemLeftBlockDisplay(),
 				'{itemLevelBlockDisplay}' => $this->GetItemLevelBlockDisplay(),
 				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
+				'{itemDataJson}' => $this->GetItemDataJson(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -767,6 +829,8 @@ class CEsoItemLink
 		
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
+		
+		$this->LoadAllItemData();
 		
 		if ($this->outputType == "html")
 			$this->ShowItemHtml();
