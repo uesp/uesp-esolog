@@ -68,6 +68,15 @@ h1, h2, h3 {
 	vertical-align: middle;
 }
 
+
+#esoil_itemimagelink {
+	float: right;
+}
+
+#esoil_itemcontainer {
+	display: inline-block;
+}
+
 #esoil_outeritembox {
 	display: inline-block;
 	padding-top: 24px;

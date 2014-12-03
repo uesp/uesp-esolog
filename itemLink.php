@@ -301,8 +301,6 @@ class CEsoItemLink
 	}
 	
 	
-	
-	
 	private function MakeItemRawDataList()
 	{	
 		$output = "";
@@ -561,7 +559,7 @@ class CEsoItemLink
 				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
 				'{itemDesc}' => $this->itemRecord['description'],
 				'{itemLink}' => $this->itemRecord['link'],
-				'{itemId}' => $this->itemRecord['id'],
+				'{itemId}' => $this->itemRecord['itemId'],
 				'{itemType1}' => $this->MakeItemTypeText(),
 				'{itemType2}' => $this->MakeItemSubTypeText(),
 				'{itemBindType}' => $this->MakeItemBindTypeText(),
