@@ -14,7 +14,7 @@
 	</head>
 <body>
 <h1>ESO Item -- {itemName}</h1>
-<h2>{itemQuality} {itemLevel}</h2>
+<h2 id="esoil_levelheader">{itemQuality} {itemLevel}</h2>
 
 <div id="esoil_controls">
 	<div class="esoil_controllabel">Level:</div>
@@ -26,54 +26,98 @@
 	<input class="esoil_rangelabel" id="esoil_qualitytext" type="text" value="{itemQualityRaw}" readonly />
 </div>
 
-<center>
 <div id="esoil_outeritembox">
-<div id="esoil_itembox">
-	<img src="{iconLink}" id="esoil_itemicon"/>
-	<div id="esoil_itemtype1">{itemType1}</div>
-	<div id="esoil_itemtype2">{itemType2}</div>
-	<div id="esoil_itembindtype">{itemBindType}</div>
-	<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
-	<img src="resources/eso_item_hr.png" id="esoil_item_hr"/>
-	<div id="esoil_datablock">
-		<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
-		<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
-		<div id="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div id="esoil_itemvalue">{itemValue}</div></div>
+	<div id="esoil_itembox">
+		<img src="{iconLink}" id="esoil_itemicon"/>
+		<div id="esoil_itemtype1">{itemType1}</div>
+		<div id="esoil_itemtype2">{itemType2}</div>
+		<div id="esoil_itembindtype">{itemBindType}</div>
+		<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
+		<img src="resources/eso_item_hr.png" id="esoil_item_hr"/>
+		<div id="esoil_datablock">
+			<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
+			<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
+			<div id="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div id="esoil_itemvalue">{itemValue}</div></div>
+		</div>
+		<div id="esoil_itembar">{itemBar}</div>
+		<div id="esoil_itemabilityblock">{itemAbilityBlock}</div>
+		<div id="esoil_itemtraitabilityblock">{itemTraitAbilityBlock}</div>
+		<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>
+		<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
+		<div id="esoil_itemsetblock">{itemSetBlock}</div>
+		<div id="esoil_itemdesc">{itemDesc}</div>
 	</div>
-	<div id="esoil_itembar">{itemBar}</div>
-	<div id="esoil_itemabilityblock">{itemAbilityBlock}</div>
-	<div id="esoil_itemtraitabilityblock">{itemTraitAbilityBlock}</div>
-	<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>
-	<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
-	<div id="esoil_itemsetblock">{itemSetBlock}</div>
-	<div id="esoil_itemdesc">{itemDesc}</div>
 </div>
+
+<div id="esoil_rawdata">
+	<h2 id="esoil_rawdatalist">Raw Item Data</h2>
+	<table id="esoil_rawdatatable" cellpadding="0" cellspacing="0" border="0">
+	{itemRawDataList}
+	</table>
 </div>
-</center>
-
-<hr />
-
-<h2 id="esoil_rawdatalist">Raw Item Data</h2>
-<table id="esoil_rawdatatable" cellpadding="0" cellspacing="0" border="0">
-{itemRawDataList}
-</table>
 
 <script type="text/javascript">
 	var ESO_ITEM_QUALITIES = {
-		0: "None",
-		1: "Normal",
-		2: "Fine",
-		3: "Superior",
-		4: "Epic",
-		5: "Legendary",
+			0: "None",
+			1: "Normal",
+			2: "Fine",
+			3: "Superior",
+			4: "Epic",
+			5: "Legendary",
 	};
+	
+	
+	var ESO_ITEM_TRAITS = {
+			'-1': "",
+			18: "Armor Divines",
+			17: "Armor Exploration",
+			12: "Armor Impenetrable",
+			16: "Armor Infused",
+			20: "Armor Intricate",
+			19: "Armor Ornate",
+			13: "Armor Reinforced",
+			11: "Armor Sturdy",
+			15: "Armor Training",
+			14: "Armor Well Fitted",
+			22: "Jewelry Arcane",
+			21: "Jewelry Health",
+			24: "Jewelry Ornate",
+			23: "Jewelry Robust",
+			0: "None",
+			2: "Weapon Charged",
+			5: "Weapon Defending",
+			4: "Weapon Infused",
+			9: "Weapon Intricate",
+			10: "Weapon Ornate",
+			1: "Weapon Power",
+			3: "Weapon Precise",
+			7: "Weapon Sharpened",
+			6: "Weapon Training",
+			8: "Weapon Weighted",
+			25: "Nirnhoned",
+			26: "Nirnhoned",
+	};
+	
+	
+	function GetEsoItemTraitText(trait)
+	{
+		var traitText = ESO_ITEM_TRAITS[trait];
+		if (traitText == null) return '' + trait;
+		return traitText;
+	}
 	
 	
 	function GetEsoItemQualityText(quality)
 	{
-		qualityText = ESO_ITEM_QUALITIES[quality];
+		var qualityText = ESO_ITEM_QUALITIES[quality];
 		if (qualityText == null) return '' + quality;
 		return qualityText; 
+	}
+	
+	
+	function GetEsoItemLevelHeaderText(level, quality)
+	{
+		return GetEsoItemQualityText(quality) + " " + GetEsoItemFullLevelText(level);
 	}
 	
 	
@@ -84,22 +128,255 @@
 	}
 	
 	
+	function GetEsoItemFullLevelText(level)
+	{
+		if (level >= 50) return 'Rank V' + (level - 49);
+		return 'Level ' + level;
+	}
+	
+	
+	function GetEsoItemFullLevelHtml(level)
+	{
+		if (level >= 50) return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 49) + "</div>"
+		return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
+	}
+	
+	
 	$( document ).ready(function() {
 	
 		$('#esoil_levelcontrol').on('input', function(e) { 
-			console.log(this.value); 
-			$('#esoil_leveltext').val(GetEsoItemLevelText(this.value)); 
+			$('#esoil_leveltext').val(GetEsoItemLevelText(this.value));
+			UpdateEsoItemData(this.value, $('#esoil_qualitycontrol').val()); 
 		});
 		
 		$('#esoil_qualitycontrol').on('input', function(e) { 
-			console.log(this.value); 
-			$('#esoil_qualitytext').val(GetEsoItemQualityText(this.value)); 
+			$('#esoil_qualitytext').val(GetEsoItemQualityText(this.value));
+			UpdateEsoItemData($('#esoil_levelcontrol').val(), this.value); 
 		});
 		
 		console.log("ready");
 	});
 	
-	var itemData = {itemDataJson};
+	
+	function MergeEsoItemData(itemData1, itemData2)
+	{
+		var newObject = jQuery.extend({}, itemData1);
+		
+		for (var key in itemData2)
+		{
+			if (newObject[key] == null) newObject[key] = itemData2[key];
+		}
+		
+		return newObject;
+	}
+	
+	
+	function FindEsoItemData(level, quality)
+	{
+		var firstItem = allItemData[0];
+		
+		for (var i = 0; i < allItemData.length; i++)
+		{
+			var itemData = allItemData[i];
+			if (itemData['level'] == level && itemData['quality'] == quality) return MergeEsoItemData(itemData, firstItem);
+		}
+		
+		console.log("FindEsoItemData(): Didn't find item in data!");
+		return null;
+	}
+	
+	
+	function FormatEsoDescriptionText(text)
+	{
+		if (text == null || text == "") return "";
+		var output = text.replace(/ by ([0-9\.]+)/, " by <div class='esoil_white'>$1</div>");
+		output = output.replace(/Adds ([0-9\.]+) /, "Adds <div class='esoil_white'>$1</div> ");
+		output = output.replace(/\|c([0-9a-fA-F]{6})([0-9\.]+)\|r/, "<div style='color:#$1;display:inline;'>$2</div> ");
+		output = output.replace("\n", "<br />");
+		return output;
+	}
+	
+	
+	function GetEsoItemLeftBlockHtml(itemData)
+	{
+		var type = itemData.type;
+		
+		if (type == 1) return "DAMAGE <div id='esoil_itemleft'>" + itemData.weaponPower + "</div>";
+		if (type == 2) return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
+		
+		return "";
+	}
+	
+	
+	function GetEsoItemEnchantBlockHtml(itemData)
+	{
+		if (itemData.enchantName == null) return "";
+		var enchantName = itemData.enchantName.toUpperCase();
+		var enchantDesc = FormatEsoDescriptionText(itemData.enchantDesc);
+		
+		if (enchantName == "") return "";
+		return "<div class='esoil_white esoil_small'>" + enchantName + "</div><br/>" + enchantDesc;
+	}
+	
+	
+	function GetEsoItemTraitBlockHtml(itemData)
+	{
+		if (itemData.trait == null) return "";
+		var trait = itemData.trait;
+		var traitDesc = FormatEsoDescriptionText(itemData.traitDesc);
+		var traitName = GetEsoItemTraitText(trait).toUpperCase();
+		
+		if (trait <= 0) return "";
+		return "<div class='esoil_white esoil_small'>" + traitName + "</div><br />" + traitDesc;
+	}
+	
+	
+	function GetEsoItemSetBlockHtml(itemData)
+	{
+		if (itemData.setName == null) return "";
+		var setName = itemData.setName.toUpperCase();
+		if (setName == "") return "";
+		
+		var setMaxEquipCount = itemData.setMaxEquipCount;
+		var setBonusCount = parseInt(itemData.setBonusCount);
+		var output = "<div class='esoil_white esoil_small'>PART OF THE " + setName + " SET (" + setMaxEquipCount + "/" + setMaxEquipCount + " ITEMS)</div>";
+		
+		for (var i = 1; i <= setBonusCount && i <= 5; i += 1)
+		{
+			var setCount = itemData['setBonusCount'  + i];
+			var setDesc = itemData['setBonusDesc'  + i]
+			setDesc = FormatEsoDescriptionText(setDesc);
+			output += "<br />" + setDesc;
+		}
+		
+		return output;
+	}
+	
+	
+	function GetEsoItemAbilityBlockHtml(itemData)
+	{
+		if (itemData.abilityName == null) return "";
+		var ability = itemData.abilityName.toUpperCase();
+		var abilityDesc = FormatEsoDescriptionText(itemData.abilityDesc);
+		var cooldown = parseInt(itemData.abilityCooldown) / 1000;
+		
+		if (abilityDesc == "") return "";
+		return "<div class='esoil_white esoil_small'>" + ability + "</div> " + abilityDesc + " (" + cooldown + " second cooldown)";
+	}
+	
+	
+	function GetEsoItemTraitAbilityBlockHtml(itemData)
+	{
+		if (itemData.traitAbilityDesc == null) return "";
+		var abilityDesc = itemData.traitAbilityDesc.toUpperCase();
+		var cooldown = parseInt(itemData.traitCooldown) / 1000;
+		
+		if (abilityDesc == "") return "";
+		return abilityDesc + " (" + cooldown + " second cooldown)";
+	}
+	
+	
+	function UpdateEsoItemData(level, quality)
+	{
+		//console.log("UpdateEsoItemData(" + level + ", " + quality + ")");
+		
+		var itemData = FindEsoItemData(level, quality);
+		if (itemData == null) return false;
+		
+		$('#esoil_itemname').text(itemData.itemName);
+		$('#esoil_itemname').removeClass("esoil_quality_None esoil_quality_Normal esoil_quality_Fine esoil_quality_Superior esoil_quality_Epic esoil_quality_Legendary");
+		$('#esoil_itemname').addClass("esoil_quality_" + GetEsoItemQualityText(itemData['quality']));
+		
+		$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level']));
+		$('#esoil_levelheader').text(GetEsoItemLevelHeaderText(level, quality));
+		
+		if (itemData['value'] > 0)
+		{
+			$('#esoil_itemvalue').text(itemData['value']).show();;
+		}
+		else
+		{
+			$('#esoil_itemvalue').text(itemData['value']).hide();
+		}
+		
+		var leftBlockHtml = GetEsoItemLeftBlockHtml(itemData);
+		
+		if (leftBlockHtml != "")
+			$('#esoil_itemleftblock').html(leftBlockHtml).show();
+		else
+			$('#esoil_itemleftblock').hide();
+			
+		var enchantBlockHtml = GetEsoItemEnchantBlockHtml(itemData);
+		
+		if (enchantBlockHtml != "")
+			$('#esoil_itemenchantblock').html(enchantBlockHtml).show();
+		else
+			$('#esoil_itemenchantblock').hide();
+		
+		var traitBlockHtml = GetEsoItemTraitBlockHtml(itemData);
+		
+		if (traitBlockHtml != "")
+			$('#esoil_itemtraitblock').html(traitBlockHtml).show();
+		else
+			$('#esoil_itemtraitblock').hide();
+			
+		var abilityBlockHtml = GetEsoItemAbilityBlockHtml(itemData);
+		
+		if (abilityBlockHtml != "")
+			$('#esoil_itemabilityblock').html(abilityBlockHtml).show();
+		else
+			$('#esoil_itemabilityblock').hide();
+			
+		var traitAbilityBlockHtml = GetEsoItemTraitAbilityBlockHtml(itemData);
+		
+		if (traitAbilityBlockHtml != "")
+			$('#esoil_itemtraitabilityblock').html(traitAbilityBlockHtml).show();
+		else
+			$('#esoil_itemtraitabilityblock').hide();
+			
+		var setBlockHtml = GetEsoItemSetBlockHtml(itemData);
+		
+		if (setBlockHtml != "")
+			$('#esoil_itemsetblock').html(setBlockHtml).show();
+		else
+			$('#esoil_itemsetblock').hide();
+			
+		$('#esoil_itemicon').attr('src', MakeEsoItemIconImageLink(itemData));
+		
+		UpdateEsoItemRawData(itemData);
+		return true;
+	}
+	
+	
+	function MakeEsoItemIconImageLink(itemData)
+	{
+		var icon = itemData.icon;
+		if (icon == null || icon == "") icon = "unknown.png";
+		
+		icon = icon.replace(/dds$/, 'png');
+		icon = icon.replace('/^\//', '');
+		
+		return "http://content3.uesp.net/eso/gameicons/" + icon;
+	}
+	
+	
+	function UpdateEsoItemRawData(itemData)
+	{
+		for (key in itemData)
+		{
+			var value = itemData[key];
+			var element = $('#esoil_rawdata_' + key);
+			if (element.size() == 0) continue;
+			
+			if (key == 'icon')
+				element.html("<img id='esoil_rawdata_iconimage' src='" +  MakeEsoItemIconImageLink(itemData) + "' /> " + value);
+			else
+				element.text(value);
+		}
+	}
+	
+	
+	var allItemData = {itemDataJson};
 </script>
 </body>
 </html>

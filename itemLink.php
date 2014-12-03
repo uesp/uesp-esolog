@@ -157,6 +157,8 @@ class CEsoItemLink
 			
 			foreach ($item as $key => $value)
 			{
+				if ($key == 'level' || $key == 'quality') continue;
+				
 				if (array_key_exists($key, $firstItem) && $firstItem[$key] == $value)
 				{
 					$delItems[] = $key;
@@ -529,11 +531,12 @@ class CEsoItemLink
 		foreach ($this->itemRecord as $key => $value)
 		{
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0')) continue;
+			$id = "esoil_rawdata_" . $key;
 			
 			if ($key == "icon")
-				$output .= "\t<tr><td>$key</td><td><img id='esoil_icon' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
 			else
-				$output .= "\t<tr><td>$key</td><td>$value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
 		}
 		
 		return $output;
@@ -665,7 +668,7 @@ class CEsoItemLink
 	
 	private function MakeItemTraitBlock()
 	{
-		$trait = strtoupper($this->itemRecord['trait']);
+		$trait = $this->itemRecord['trait'];
 		$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
 		$traitName = strtoupper($this->GetItemTraitText());
 		
@@ -679,6 +682,7 @@ class CEsoItemLink
 		$output = preg_replace("| by ([0-9\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 		$output = preg_replace("|Adds ([0-9\.]+) |s", "Adds <div class='esoil_white'>$1</div> ", $output);
 		$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div> ", $output);
+		$output = str_replace("\n", "<br />", $output);
 		return $output;
 	}
 	
@@ -695,7 +699,7 @@ class CEsoItemLink
 		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
-			$setDesc = str_replace("\n", "<br />", $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i]));
+			$setDesc = $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i]);
 			$output .= "<br />$setDesc";
 		}
 		
