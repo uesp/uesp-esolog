@@ -51,6 +51,7 @@ h1, h2, h3 {
 #esoil_controls {
 	display: inline-block;
 	vertical-align: top;
+	padding: 10px;
 }
 
 .esoil_controllabel {

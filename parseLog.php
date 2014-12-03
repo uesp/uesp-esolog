@@ -2727,11 +2727,11 @@ class EsoLogParser
 			$logEntry['setMaxCount'] = 0;
 			$highestSetDesc = "";
 			
-			if (array_key_exists('setDesc1', $logEntry)) $highestSetDesc = $logEntry['setDesc1'];
-			if (array_key_exists('setDesc2', $logEntry)) $highestSetDesc = $logEntry['setDesc2'];
-			if (array_key_exists('setDesc3', $logEntry)) $highestSetDesc = $logEntry['setDesc3'];
-			if (array_key_exists('setDesc4', $logEntry)) $highestSetDesc = $logEntry['setDesc4'];
-			if (array_key_exists('setDesc5', $logEntry)) $highestSetDesc = $logEntry['setDesc5'];
+			if (array_key_exists('setDesc1', $logEntry) && $logEntry['setDesc1'] != "") $highestSetDesc = $logEntry['setDesc1'];
+			if (array_key_exists('setDesc2', $logEntry) && $logEntry['setDesc2'] != "") $highestSetDesc = $logEntry['setDesc2'];
+			if (array_key_exists('setDesc3', $logEntry) && $logEntry['setDesc3'] != "") $highestSetDesc = $logEntry['setDesc3'];
+			if (array_key_exists('setDesc4', $logEntry) && $logEntry['setDesc4'] != "") $highestSetDesc = $logEntry['setDesc4'];
+			if (array_key_exists('setDesc5', $logEntry) && $logEntry['setDesc5'] != "") $highestSetDesc = $logEntry['setDesc5'];
 			
 			if ($highestSetDesc != "")
 			{
