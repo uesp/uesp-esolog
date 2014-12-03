@@ -171,10 +171,10 @@
 	function FormatEsoDescriptionText(text)
 	{
 		if (text == null || text == "") return "";
-		var output = text.replace(/ by ([0-9\.]+)/, " by <div class='esoil_white'>$1</div>");
-		output = output.replace(/Adds ([0-9\.]+) /, "Adds <div class='esoil_white'>$1</div> ");
-		output = output.replace(/\|c([0-9a-fA-F]{6})([0-9\.]+)\|r/, "<div style='color:#$1;display:inline;'>$2</div> ");
-		output = output.replace("\n", "<br />");
+		var output = text.replace(/ by ([0-9\.]+)/g, " by <div class='esoil_white'>$1</div>");
+		output = output.replace(/Adds ([0-9\.]+) /g, "Adds <div class='esoil_white'>$1</div> ");
+		output = output.replace(/\|c([0-9a-fA-F]{6})([0-9\.]+)\|r/g, "<div style='color:#$1;display:inline;'>$2</div> ");
+		output = output.replace(/\n/g, "<br />");
 		return output;
 	}
 	
