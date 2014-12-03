@@ -50,6 +50,7 @@ h1, h2, h3 {
 
 #esoil_controls {
 	display: inline-block;
+	vertical-align: top;
 }
 
 .esoil_controllabel {
@@ -62,13 +63,14 @@ h1, h2, h3 {
 	background: none;
 }
 
-#esoil_icon {
+#esoil_rawdata_iconimage {
 	vertical-align: middle;
 }
 
 #esoil_outeritembox {
 	display: inline-block;
 	padding-top: 24px;
+	vertical-align: top;
 }
 
 #esoil_itembox {
@@ -145,6 +147,11 @@ h1, h2, h3 {
 }
 
 #esoil_itemvalueblock {
+}
+
+#esoil_rawdata {
+	display: inline-block;
+	vertical-align: top;
 }
 
 #esoil_itemvalue, #esoil_itemlevel, #esoil_itemleft {
