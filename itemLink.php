@@ -531,7 +531,7 @@ class CEsoItemLink
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0')) continue;
 			
 			if ($key == "icon")
-				$output .= "\t<tr><td>$key</td><td><img class='esoil_icon' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td><img id='esoil_icon' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
 			else
 				$output .= "\t<tr><td>$key</td><td>$value</td></tr>\n";
 		}
@@ -576,10 +576,10 @@ class CEsoItemLink
 		if ($level >= 50) 
 		{
 			$level -= 49;
-			return "<img src='resources/eso_item_veteranicon.png' /> RANK <div class='esoil_itemlevel'>$level</div>";
+			return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
 		}
 		
-		return "LEVEL <div class='esoil_itemlevel'>$level</div>";
+		return "LEVEL <div id='esoil_itemlevel'>$level</div>";
 	}
 	
 	
@@ -589,11 +589,11 @@ class CEsoItemLink
 		
 		if ($type == 2) //armor 
 		{
-			return "ARMOR <div class='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
+			return "ARMOR <div id='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
 		}
 		elseif ($type == 1) //weapon 
 		{
-			return "DAMAGE <div class='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
+			return "DAMAGE <div id='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
 		}
 		
 		return "";
