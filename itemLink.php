@@ -307,7 +307,7 @@ class CEsoItemLink
 	}
 	
 	
-	public function GetItemTraitText()
+	public function GetItemTraitFullText()
 	{
 		static $VALUES = array(
 				-1 => "",
@@ -336,6 +336,46 @@ class CEsoItemLink
 				7 => "Weapon Sharpened",
 				6 => "Weapon Training",
 				8 => "Weapon Weighted",
+				25 => "Armor Nirnhoned",
+				26 => "Weapon Nirnhoned",
+		);
+	
+		$key = (int) $this->itemRecord['trait'];
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetItemTraitText()
+	{
+		static $VALUES = array(
+				-1 => "",
+				18 => "Divines",
+				17 => "Exploration",
+				12 => "Impenetrable",
+				16 => "Infused",
+				20 => "Intricate",
+				19 => "Ornate",
+				13 => "Reinforced",
+				11 => "Sturdy",
+				15 => "Training",
+				14 => "Well Fitted",
+				22 => "Arcane",
+				21 => "Health",
+				24 => "Ornate",
+				23 => "Robust",
+				0 => "None",
+				2 => "Charged",
+				5 => "Defending",
+				4 => "Infused",
+				9 => "Intricate",
+				10 => "Ornate",
+				1 => "Power",
+				3 => "Precise",
+				7 => "Sharpened",
+				6 => "Training",
+				8 => "Weighted",
 				25 => "Nirnhoned",
 				26 => "Nirnhoned",
 		);
