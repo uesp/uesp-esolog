@@ -42,7 +42,7 @@ class CEsoItemLinkImage
 	public $bigFontSize = 18;
 	public $medFontSize = 12;
 	public $smallFontSize = 11;
-	public $tinyFontSize = 9.8;
+	public $tinyFontSize = 10;
 	
 	public $topMargin = 22;
 	public $borderMargin = 5;
@@ -806,9 +806,13 @@ class CEsoItemLinkImage
 		$desc = $this->itemRecord['description'];
 		if ($desc == "") return 0;
 		
-		$x = $this->borderMargin + 1;
-		$this->PrintTextAA($image, $this->tinyFontSize, $x, $y, $this->textColor, self::ESOIL_REGULARFONT_FILE, $desc);
-		return $this->tinyFontLineHeight + $this->blockMargin;
+		$printData = array();
+		$this->AddPrintData($printData, $desc, $this->printOptionsTinyBeige, array('br' => true, 'format' => true, 'lineBreak' => true));
+		return $this->PrintDataText($image, $printData, $this->borderMargin + 10, $y, 'left') + $this->blockMargin;
+		
+		//$x = $this->borderMargin + 1;
+		//$this->PrintTextAA($image, $this->tinyFontSize, $x, $y, $this->textColor, self::ESOIL_REGULARFONT_FILE, $desc);
+		//return $this->tinyFontLineHeight + $this->blockMargin;
 	}
 	
 	
