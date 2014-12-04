@@ -9,6 +9,7 @@ class CEsoItemLinkImage
 {
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
 	const ESOIL_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
+	const ESOIL_IMAGE_CACHEPATH = "/home/uesp/esoItemImages/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	const ESOIL_IMAGE_WIDTH = 400;
 	const ESOIL_IMAGE_MAXHEIGHT = 600;
@@ -203,6 +204,14 @@ class CEsoItemLinkImage
 				if ($matchResult) $row['setMaxEquipCount'] = (int) $matches[1];
 			}
 		}
+		
+		
+		$this->itemIntLevel =  $row['internalLevel'];
+		$this->itemIntType = $row['internalSubtype'];
+		$this->itemLevel = $row['level'];
+		$this->itemId = $row['itemId'];
+		$this->itemQuality = $row['quality'];
+		$this->itemLink = $row['link'];
 		
 		return $row;
 	}
@@ -548,8 +557,6 @@ class CEsoItemLinkImage
 		$x = (self::ESOIL_IMAGE_WIDTH - $imageWidth) / 2;
 		
 		imagecopy($image, $hrImage, $x, $y, 0, 0, $imageWidth, $imageHeight);
-		
-		imagedestroy($hrImage);
 		return true;
 	}
 	
@@ -646,7 +653,6 @@ class CEsoItemLinkImage
 		if ($levelImage)
 		{
 			imagecopy($image, $levelImage, $x, $y, 0, 0, imagesx($levelImage), imagesy($levelImage));
-			imagedestroy($levelImage);
 			$x += $levelImageWidth;
 		}
 		
@@ -950,17 +956,55 @@ class CEsoItemLinkImage
 		$this->OutputCenterImage($croppedImage, $this->MakeItemIconImageFilename(), 1);
 		
 		imagepng($croppedImage);
-		imagedestroy($croppedImage);
-		imagedestroy($image);
+		$this->SaveImage($croppedImage);
+	}
+	
+	
+	public function SaveImage($image)
+	{
+		if ($this->itemId <= 0) return false;
+		if ($this->itemIntLevel <= 0) return false;
+		if ($this->itemIntType <= 0) return false;
+		
+		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
+		$filename = $path . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		
+		error_log("Saving image to $filename");
+		
+		if (!file_exists($path))
+		{
+			if (!mkdir($path, 0775)) return false;
+		}
+		
+		return imagepng($image, $filename);
+	}
+	
+	
+	public function ServeCachedImage()
+	{
+		if ($this->itemId <= 0) return false;
+		if ($this->itemIntLevel <= 0) return false;
+		if ($this->itemIntType <= 0) return false;
+		
+		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
+		$filename = $path . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		
+		if (!file_exists($filename)) return false;
+		
+		readfile($filename);
+		return true;
 	}
 	
 	
 	public function MakeImage()
 	{
 		$this->OutputHtmlHeader();
+		if ($this->ServeCachedImage()) return true;
 		
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
+		
+		if ($this->ServeCachedImage()) return true;
 		
 		$this->OutputImage();
 		return true;
