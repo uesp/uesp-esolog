@@ -255,7 +255,7 @@ class CEsoItemLinkImage
 				preg_match("|by ([0-9\.]+)|s", $value, $matches);
 			
 				unset($newData['br']);
-				$newData['text'] = " by ";
+				$newData['text'] = "by  ";
 				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
 				$newData['width']  = $extents[0];
 				$newData['height'] = $extents[1];
