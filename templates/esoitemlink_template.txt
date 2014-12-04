@@ -19,6 +19,7 @@
 <div id="esoil_itemcontainer">
 	<div id="esoil_outeritembox">
 		<div id="esoil_itembox">
+			<div id="esoil_watermark">www.uesp.net</div>
 			<img src="{iconLink}" id="esoil_itemicon"/>
 			<div id="esoil_itemtype1">{itemType1}</div>
 			<div id="esoil_itemtype2">{itemType2}</div>
