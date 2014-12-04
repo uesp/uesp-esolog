@@ -966,14 +966,12 @@ class CEsoItemLinkImage
 		if ($this->itemIntLevel <= 0) return false;
 		if ($this->itemIntType <= 0) return false;
 		
-		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
-		$filename = $path . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
-		
-		error_log("Saving image to $filename");
+		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
+		$filename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
 		
 		if (!file_exists($path))
 		{
-			if (!mkdir($path, 0775)) return false;
+			if (!mkdir($path, 0775, true)) return false;
 		}
 		
 		return imagepng($image, $filename);
