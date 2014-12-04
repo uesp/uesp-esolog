@@ -14,6 +14,7 @@ class CEsoItemLinkImage
 	const ESOIL_IMAGE_MAXHEIGHT = 600;
 	const ESOIL_REGULARFONT_FILE = "./resources/EsoFontRegular.ttf";
 	const ESOIL_BOLDFONT_FILE = "./resources/EsoFontBold.ttf";
+	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
 	
 	public $inputParams = array();
 	public $itemId = 0;
@@ -25,19 +26,25 @@ class CEsoItemLinkImage
 	public $itemRecord = array();
 	public $db = null;
 	
+	public $image = null;
 	public $background;
 	public $black;
 	public $white;
 	public $textColor;
 	public $nameColor;
 	public $qualityColors = array();
+	public $printOptionsLargeWhite;
+	public $printOptionsMedBeige;
+	public $printOptionsSmallWhite;
+	public $printOptionsSmallBeige;
+	public $printOptionsTinyBeige;
 	
 	public $bigFontSize = 18;
 	public $medFontSize = 12;
 	public $smallFontSize = 11;
 	public $tinyFontSize = 9;
 	
-	public $topMargin = 24;
+	public $topMargin = 22;
 	public $borderMargin = 5;
 	public $bigFontLineHeight = 22;
 	public $medFontLineHeight = 18;
@@ -211,35 +218,330 @@ class CEsoItemLinkImage
 	}
 	
 	
+	public function FormatPrintData(&$printData, $lineData)
+	{
+		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[0-9\.]+\|r)|(Adds [0-9\.]+)|(by [0-9\.]+)|(for [0-9\.]+)#s", $lineData['text'], -1, PREG_SPLIT_DELIM_CAPTURE);
+		$numFmts = count($formats);
+		
+		foreach ($formats as $key => $value)
+		{
+			$newData = $lineData;
+			
+			if ($value[0] == '|')
+			{
+				$matches = array();
+				preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[0-9\.]+)\|r#s", $value, $matches);
+				
+				$newData['text'] = $matches['value'];
+				$newData['color'] = hexdec($matches['color']);
+			}
+			elseif ($value[0] == 'A')
+			{
+				preg_match("|Adds ([0-9\.]+)|s", $value, $matches);
+				
+				unset($newData['br']);
+				$newData['text'] = " Adds ";
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
+				$newData['width']  = $extents[0];
+				$newData['height'] = $extents[1];
+				$printData[] = $newData;
+				
+				$newData = $lineData;
+				$newData['text'] = $matches[1];
+				$newData['color'] = 0xffffff;
+			}
+			elseif ($value[0] == 'b')
+			{
+				preg_match("|by ([0-9\.]+)|s", $value, $matches);
+			
+				unset($newData['br']);
+				$newData['text'] = " by ";
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
+				$newData['width']  = $extents[0];
+				$newData['height'] = $extents[1];
+				$printData[] = $newData;
+				
+				$newData = $lineData;
+				$newData['text'] = $matches[1];
+				$newData['color'] = 0xffffff;
+			}
+			elseif ($value[0] == 'f')
+			{
+				preg_match("|for ([0-9\.]+)|s", $value, $matches);
+					
+				unset($newData['br']);
+				$newData['text'] = "for ";
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
+				$newData['width']  = $extents[0];
+				$newData['height'] = $extents[1];
+				$printData[] = $newData;
+					
+				$newData = $lineData;
+				$newData['text'] = $matches[1] . " ";
+				$newData['color'] = 0xffffff;
+			}
+			else
+			{
+				$newData['text'] = $value;
+			}
+			
+			unset($newData['br']);
+			$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
+			$newData['width']  = $extents[0];
+			$newData['height'] = $extents[1];
+			
+			$printData[] = $newData;
+		}
+		
+		if (array_key_exists('br', $lineData)) $printData[count($printData) - 1]['br'] = true;
+	}
+	
+	
+	public function AddPrintDataEx (&$printData, $text, $baseOptions, $options = array())
+	{
+		$optionsData = array_merge($baseOptions, $options);
+		$lines = preg_split("/\\n/", $text);
+		$lineCount = 0;
+		$dataStartIndex = count($printData);
+		
+			// Split by existing line breaks
+		foreach ($lines as $key => $line)
+		{
+			$lineCount += 1;
+			$newData = $optionsData;
+			$newData['br'] = true;
+			$newData['text'] = $line;
+			
+			$extents = $this->GetTextExtents($newData['size'], $newData['font'], $line);
+			$newData['width']  = $extents[0];
+			$newData['height'] = $extents[1];
+			
+			if (array_key_exists('format', $options))
+				$this->FormatPrintData($printData, $newData);
+			else
+				$printData[] = $newData;
+		}
+		
+			// Break long lines
+		$lineWidth = 0;
+		$maxWidth = self::ESOIL_IMAGE_WIDTH - 20;
+		$lineStartIndex = $dataStartIndex;
+		
+		for ($i = $dataStartIndex; $i < count($printData); $i += 1)
+		{
+			$data = $printData[$i];
+			$origLineWidth = $lineWidth;
+			$lineWidth += $data['width'];
+			
+			if ($lineWidth > $maxWidth)
+			{
+				$words = explode(' ', $data['text']);
+				$width = $origLineWidth;
+				$breakIndex = 0;
+				$leftWords = "";
+				
+				$wordCount = count($words);
+				
+				foreach ($words as $key => $word)
+				{
+					$extents = $this->GetTextExtents($data['size'], $data['font'], $word . " ");
+					$boxWidth = $extents[0];
+					if ($width + $boxWidth > $maxWidth) break;
+					$width += $boxWidth;
+					
+					$leftWords .= $word . " ";
+					$breakIndex += 1;
+				}
+				
+				if ($breakIndex < count($words))
+				{
+					$rightWords = substr($printData[$i]['text'], strlen($leftWords));
+					$extents = $this->GetTextExtents($data['size'], $data['font'], $leftWords);
+					
+					$printData[$i]['width']  = $extents[0];
+					$printData[$i]['height'] = $extents[1];
+					$printData[$i]['text'] = $leftWords;
+					$printData[$i]['br'] = true;
+					
+					$newData = $printData[$i];
+					$extents = $this->GetTextExtents($data['size'], $data['font'], $rightWords);
+					$newData['width']  = $extents[0];
+					$newData['height'] = $extents[1];
+					$newData['text'] = $rightWords;
+					unset($newData['br']);
+					
+					array_splice($printData, $i + 1, 0, array($newData));
+					//$printData[$i + 1] = $newData;
+					
+					$lineWidth = 0;
+					$lineStartIndex = $i + 1;
+				}
+			}
+			
+			if (array_key_exists('br', $data))
+			{
+				$lineWidth = 0;
+				$lineStartIndex = $i + 1; 
+			}
+		}
+		
+		
+		return $lineCount;
+	}
+	
+	
+	public function AddPrintData (&$printData, $text, $baseOptions, $options = array())
+	{
+		if (array_key_exists('lineBreak', $options)) return $this->AddPrintDataEx($printData, $text, $baseOptions, $options);
+		
+		$newData = array_merge($baseOptions, $options);
+		$newData['text'] = $text;
+		
+		$extents = $this->GetTextExtents($newData['size'], $newData['font'], $text);
+		$newData['width']  = $extents[0];
+		$newData['height'] = $extents[1];
+		
+		$printData[] = $newData;
+		return 1;
+	}
+	
+	
+	public function PrintDataTextElement ($image, $printData, $x, $y)
+	{
+		$font = $printData['font'];
+		$size = $printData['size'];
+		$color = $printData['color'];
+		$text = $printData['text'];
+		$width = $printData['width'];
+		$height = $printData['height'];
+		
+		$this->PrintTextAA($image, $size, $x, $y + $printData['lineHeight'], $color, $font, $text);
+		
+		return array($printData['width'], $printData['height']);
+	}
+	
+	
+	public function PrintDataTextComputeSizes (&$printData)
+	{
+		$i = 0;
+		
+		while ($i < count($printData))
+		{
+			$lineWidth = 0;
+			$lineHeight = 0;
+			$lineStartIndex = $i;
+				
+			while ($i < count($printData))
+			{
+				$data = $printData[$i];
+				$lineWidth += $data['width'];
+				if ($data['height'] > $lineHeight) $lineHeight = $data['height'];
+				$i += 1;
+				if (array_key_exists('br', $data)) break;
+			}
+				
+			for ($j = $lineStartIndex; $j < $i; $j += 1)
+			{
+				$printData[$j]['lineWidth'] = $lineWidth;
+				$printData[$j]['lineHeight'] = $lineHeight;
+			}
+		}
+		
+	}
+	
+	
+	public function GetTextExtents($size, $font, $text)
+	{
+		$box = imagettfbbox($size, 0, $font, $text);
+		
+		$width = $box[4] - $box[1];
+		$height = $box[0] - $box[5];
+		
+		for ($i = 0; $i < strlen($text); $i += 1)
+		{
+			switch ($text[i])
+			{
+				case 'p':
+				case 'g':
+				case 'j':
+				case 'y':
+				case 'q':
+					$width += intval($size/8);
+					break;
+				case '1':
+					$width += 1;
+					break;
+			}
+		}
+		
+		return array($width, $height);
+	}
+	
+	
+	public function PrintDataText ($image, $printData, $x, $y, $alignment)
+	{
+		$this->PrintDataTextComputeSizes($printData);
+		$i = 0;
+		$deltaY = 0;
+		
+		while ($i < count($printData))
+		{
+			$data =$printData[$i];
+			
+			if ($alignment == 'right')
+				$startX = $x - $data['lineWidth'];
+			elseif ($alignment == 'center')
+				$startX = $x - $data['lineWidth']/2;
+			else
+				$startX = $x;
+			
+			while ($i < count($printData))
+			{
+				$data =$printData[$i];
+				$extents = $this->PrintDataTextElement($image, $data, $startX, $y + $deltaY);
+				$startX += $extents[0];
+				$i += 1;
+				if (array_key_exists('br', $data)) break;
+			}
+			
+			$deltaY += $data['lineHeight'] * self::ESOIL_LINEHEIGHT_FACTOR;
+		}
+		
+		return $deltaY;
+	}
+	
+	
 	public function PrintTextAA($image, $fontSize, $x, $y, $color, $font, $text)
 	{
-		$colorAA = imagecolorallocatealpha($image, $color & 0xff, ($color >> 8) & 0xff, ($color >> 16) & 0xff, 110);
+		$colorAA = imagecolorallocatealpha($image, ($color >> 16) & 0xff, ($color >> 8) & 0xff,  $color & 0xff, 80);
 		$delta = 1;
 		
-		imagettftext($image, $fontSize, 0, $x+$delta, $y+$delta, $colorAA, $font, $text);
-		imagettftext($image, $fontSize, 0, $x-$delta, $y-$delta, $colorAA, $font, $text);
-		imagettftext($image, $fontSize, 0, $x+$delta, $y-$delta, $colorAA, $font, $text);
-		imagettftext($image, $fontSize, 0, $x-$delta, $y+$delta, $colorAA, $font, $text);
+		imagettftext($image, $fontSize, 0, $x+$delta, $y, $colorAA, $font, $text);
+		imagettftext($image, $fontSize, 0, $x-$delta, $y, $colorAA, $font, $text);
 		
+		imagettftext($image, $fontSize, 0, $x, $y, $color, $font, $text);
+	}
+	
+	
+	public function PrintText($image, $fontSize, $x, $y, $color, $font, $text)
+	{
 		imagettftext($image, $fontSize, 0, $x, $y, $color, $font, $text);
 	}
 	
 	
 	public function PrintCenterText($image, $fontSize, $y, $color, $font, $text)
 	{
-		$box = imagettfbbox($fontSize, 0, $font, $text);
-		$x = (self::ESOIL_IMAGE_WIDTH - $box[4] + $box[0]) / 2;
-		imagettftext($image, $fontSize, 0, $x, $y, $color, $font, $text);
-		//$this->PrintTextAA($image, $fontSize, $x, $y, $color, $font, $text);
+		$extents = $this->GetTextExtents($fontSize, $font, $text);
+		$x = (self::ESOIL_IMAGE_WIDTH - $extents[0]) / 2;
+		$this->PrintTextAA($image, $fontSize, $x, $y, $color, $font, $text);
 	}
 	
 	
 	public function PrintRightText($image, $fontSize, $x, $y, $color, $font, $text)
 	{
-		$box = imagettfbbox($fontSize, 0, $font, $text);
-		$newX = $x - ($box[4] - $box[0]);
-		imagettftext($image, $fontSize, 0, $newX, $y, $color, $font, $text);
-		//$this->PrintTextAA($image, $fontSize, $newX, $y, $color, $font, $text);
+		$extents = $this->GetTextExtents($fontSize, $font, $text);
+		$newX = $x - $extents[0];
+		$this->PrintTextAA($image, $fontSize, $newX, $y, $color, $font, $text);
 	}
 	
 	
@@ -345,9 +647,9 @@ class CEsoItemLinkImage
 			$levelText = $level;
 		}
 		
-		$box1 = imagettfbbox($this->medFontSize, 0, self::ESOIL_BOLDFONT_FILE, $label);
-		$box2 = imagettfbbox($this->bigFontSize, 0, self::ESOIL_BOLDFONT_FILE, $levelText);
-		$totalWidth = $levelImageWidth + $box1[4] - $box1[0] + $box2[4] - $box2[0];
+		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, $label);
+		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $levelText);
+		$totalWidth = $levelImageWidth + $extents1[0] + $extents2[0];
 		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2;
 		
 		if ($levelImage)
@@ -357,9 +659,9 @@ class CEsoItemLinkImage
 			$x += $levelImageWidth;
 		}
 		
-		imagettftext($image, $this->medFontSize, 0, $x, $y + $box2[1] - $box2[5] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
-		$x += $box1[4] - $box1[0];
-		imagettftext($image, $this->bigFontSize, 0, $x, $y + $box2[1] - $box2[5] + 4, $this->white, self::ESOIL_BOLDFONT_FILE, $levelText);
+		$this->PrintTextAA($image, $this->medFontSize, $x, $y + $extents2[1] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
+		$x += $extents1[0];
+		$this->PrintTextAA($image, $this->bigFontSize, $x, $y + $extents2[1] + 4, $this->white, self::ESOIL_BOLDFONT_FILE, $levelText);
 	}
 	
 	
@@ -368,17 +670,12 @@ class CEsoItemLinkImage
 		$value = $this->itemRecord['value'];
 		if ($value <= 0) return;
 		
-		$label = "VALUE ";
-		$valueText = $value;
+		$printData = array();
+		$this->AddPrintData($printData, "VALUE ", $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $value, $this->printOptionsLargeWhite);
 		
-		$box1 = imagettfbbox($this->medFontSize, 0, self::ESOIL_BOLDFONT_FILE, $label);
-		$box2 = imagettfbbox($this->bigFontSize, 0, self::ESOIL_BOLDFONT_FILE, $valueText);
-		$totalWidth = $box1[4] - $box1[0] + $box2[4] - $box2[0];
 		$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - $this->dataBlockMargin;
-		
-		imagettftext($image, $this->medFontSize, 0, $x, $y + $box2[1] - $box2[5] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
-		$x += $box1[4] - $box1[0];
-		imagettftext($image, $this->bigFontSize, 0, $x, $y + $box2[1] - $box2[5] + 4, $this->white, self::ESOIL_BOLDFONT_FILE, $valueText);
+		$this->PrintDataText($image, $printData, $x, $y + 4, 'right');
 	}
 	
 	
@@ -399,14 +696,10 @@ class CEsoItemLinkImage
 				return;
 		}
 		
-		$box1 = imagettfbbox($this->medFontSize, 0, self::ESOIL_BOLDFONT_FILE, $label);
-		$box2 = imagettfbbox($this->bigFontSize, 0, self::ESOIL_BOLDFONT_FILE, $valueText);
-		$totalWidth = $box1[4] - $box1[0] + $box2[4] - $box2[0];
-		$x = $this->dataBlockMargin;
-		
-		imagettftext($image, $this->medFontSize, 0, $x, $y + $box2[1] - $box2[5] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
-		$x += $box1[4] - $box1[0];
-		imagettftext($image, $this->bigFontSize, 0, $x, $y + $box2[1] - $box2[5] + 4, $this->white, self::ESOIL_BOLDFONT_FILE, $valueText);
+		$printData = array();
+		$this->AddPrintData($printData, $label, $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $valueText, $this->printOptionsLargeWhite);
+		$this->PrintDataText($image, $printData, $this->dataBlockMargin, $y + 4, 'left');
 	}
 	
 	
@@ -434,12 +727,11 @@ class CEsoItemLinkImage
 		if ($enchantName == "") return 0;
 		$enchantDesc = $this->itemRecord['enchantDesc'];
 		
-		$y += $this->smallFontLineHeight;
-		$this->PrintCenterText($image, $this->smallFontSize, $y, $this->white, self::ESOIL_BOLDFONT_FILE, $enchantName);
-		$y += $this->medFontLineHeight;
-		$this->PrintCenterText($image, $this->medFontSize, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $enchantDesc);
+		$printData = array();
+		$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
-		return $this->smallFontLineHeight + $this->medFontLineHeight + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->smallFontLineHeight, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -452,12 +744,11 @@ class CEsoItemLinkImage
 		$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
 		$abilityDesc .= " (" . $cooldown . " second cooldown)";
 		
-		$y += $this->smallFontLineHeight;
-		$this->PrintCenterText($image, $this->smallFontSize, $y, $this->white, self::ESOIL_BOLDFONT_FILE, $ability);
-		$y += $this->medFontLineHeight;
-		$this->PrintCenterText($image, $this->medFontSize, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $abilityDesc);
-	
-		return $this->smallFontLineHeight + $this->medFontLineHeight + $this->blockMargin;
+		$printData = array();
+		$this->AddPrintData($printData, $ability, $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+		
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->smallFontLineHeight, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -466,15 +757,11 @@ class CEsoItemLinkImage
 		$trait = $this->itemRecord['trait'];
 		if ($trait <= 0) return 0;
 		
-		$traitDesc = $this->itemRecord['traitDesc'];
-		$traitName = strtoupper(GetEsoItemTraitText($trait));
+		$printData = array();
+		$this->AddPrintData($printData,strtoupper(GetEsoItemTraitText($trait)), $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData,  $this->itemRecord['traitDesc'], $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
-		$y += $this->smallFontLineHeight;
-		$this->PrintCenterText($image, $this->smallFontSize, $y, $this->white, self::ESOIL_BOLDFONT_FILE, $traitName);
-		$y += $this->medFontLineHeight;
-		$this->PrintCenterText($image, $this->medFontSize, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $traitDesc);
-		
-		return $this->smallFontLineHeight + $this->medFontLineHeight + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -485,10 +772,10 @@ class CEsoItemLinkImage
 		if ($abilityDesc == "") return 0;
 		$abilityDesc .= " (" . $cooldown . " second cooldown)";
 		
-		$y += $this->medFontLineHeight;
-		$this->PrintCenterText($image, $this->medFontSize, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $abilityDesc);
+		$printData = array();
+		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
-		return $this->medFontLineHeight + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->smallFontLineHeight, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -496,23 +783,21 @@ class CEsoItemLinkImage
 	{
 		$setName = strtoupper($this->itemRecord['setName']);
 		if ($setName == "") return "";
+		$printData = array();
 		
 		$setMaxEquipCount = $this->itemRecord['setMaxEquipCount'];
 		$setBonusCount = (int) $this->itemRecord['setBonusCount'];
 		$setLabel = "PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)";
-		
-		$deltaY = $this->smallFontLineHeight; 
-		$this->PrintCenterText($image, $this->smallFontSize, $y + $deltaY, $this->white, self::ESOIL_BOLDFONT_FILE, $setLabel);
+		$this->AddPrintData($printData, $setLabel, $this->printOptionsSmallWhite, array('br' => true));
 		
 		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
 			$setDesc = $this->itemRecord['setBonusDesc' . $i];
-			$deltaY += $this->medFontLineHeight;
-			$this->PrintCenterText($image, $this->medFontSize, $y + $deltaY, $this->textColor, self::ESOIL_BOLDFONT_FILE, $setDesc);
+			$this->AddPrintData($printData, $setDesc, $this->printOptionsSmallBeige, array('br' => true, 'format' => true, 'lineBreak' => true));
 		}
 		
-		return $deltaY + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -522,7 +807,7 @@ class CEsoItemLinkImage
 		if ($desc == "") return 0;
 		
 		$x = $this->borderMargin + 1;
-		imagettftext($image, $this->tinyFontSize, 0, $x, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $desc);
+		$this->PrintTextAA($image, $this->tinyFontSize, $x, $y, $this->textColor, self::ESOIL_REGULARFONT_FILE, $desc);
 		return $this->tinyFontLineHeight + $this->blockMargin;
 	}
 	
@@ -569,6 +854,7 @@ class CEsoItemLinkImage
 	{
 		$image = imagecreatetruecolor(self::ESOIL_IMAGE_WIDTH, self::ESOIL_IMAGE_MAXHEIGHT);
 		if ($image == null) return false;
+		$this->image = image;
 		
 		imageantialias($image, true);
 		imagealphablending($image, true);
@@ -589,6 +875,36 @@ class CEsoItemLinkImage
 		$this->white =  imagecolorallocate($image, 255, 255, 255);
 		$this->textColor =  imagecolorallocate($image, 0xC5, 0xC2, 0x9E);
 		
+		$this->printOptionsLargeWhite = array(
+				"font" => self::ESOIL_BOLDFONT_FILE,
+				"color" => $this->white,
+				"size" => $this->bigFontSize,
+		);
+		
+		$this->printOptionsMedBeige = array(
+				"font" => self::ESOIL_BOLDFONT_FILE,
+				"color" => $this->textColor,
+				"size" => $this->medFontSize,
+		);
+		
+		$this->printOptionsSmallWhite = array(
+				"font" => self::ESOIL_BOLDFONT_FILE,
+				"color" => $this->white,
+				"size" => $this->smallFontSize,
+		);
+		
+		$this->printOptionsSmallBeige = array(
+				"font" => self::ESOIL_REGULARFONT_FILE,
+				"color" => $this->textColor,
+				"size" => $this->medFontSize,
+		);
+		
+		$this->printOptionsTinyBeige = array(
+				"font" => self::ESOIL_REGULARFONT_FILE,
+				"color" => $this->textColor,
+				"size" => $this->tinyFontSize,
+		);
+		
 		imagefill($image, 0, 0, $this->background);
 		imagefilledrectangle ($image, $this->borderWidth, $this->topMargin + $this->borderWidth, self::ESOIL_IMAGE_WIDTH - $this->borderWidth, self::ESOIL_IMAGE_MAXHEIGHT - $this->borderWidth, $this->black);
 		
@@ -598,13 +914,13 @@ class CEsoItemLinkImage
 		if ($this->nameColor == null) $this->nameColor = $white;
 		
 		$y = $this->topMargin + $this->borderMargin + $this->medFontLineHeight;
-		imagettftext($image, $this->smallFontSize, 0, 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemTypeText());
+		$this->PrintTextAA($image, $this->smallFontSize, 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemTypeText());
 		
 		$y += $this->medFontLineHeight;
 		$this->PrintRightText($image, $this->smallFontSize, 390, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemBindTypeText());
-		imagettftext($image, $this->smallFontSize, 0, 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemSubTypeText());
+		$this->PrintTextAA($image, $this->smallFontSize, 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemSubTypeText());
 		
-		$y += $this->bigFontLineHeight + 16;
+		$y += $this->bigFontLineHeight + 10;
 		$this->PrintCenterText($image, $this->bigFontSize, $y, $this->nameColor, self::ESOIL_BOLDFONT_FILE, $itemName);
 		
 		$y += 6;
@@ -659,5 +975,6 @@ class CEsoItemLinkImage
 
 $g_EsoItemLinkImage = new CEsoItemLinkImage();
 $g_EsoItemLinkImage->MakeImage();
+
 
 ?>
