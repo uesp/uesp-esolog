@@ -227,18 +227,13 @@ class CEsoItemLinkImage
 		{
 			$newData = $lineData;
 			
-			if ($value[0] == '|')
+			if ($value[0] == '|' && preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[0-9\.]+)\|r#s", $value, $matches))
 			{
-				$matches = array();
-				preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[0-9\.]+)\|r#s", $value, $matches);
-				
 				$newData['text'] = $matches['value'];
 				$newData['color'] = hexdec($matches['color']);
 			}
-			elseif ($value[0] == 'A')
+			elseif ($value[0] == 'A' && preg_match("|Adds ([0-9\.]+)|s", $value, $matches))
 			{
-				preg_match("|Adds ([0-9\.]+)|s", $value, $matches);
-				
 				unset($newData['br']);
 				$newData['text'] = " Adds ";
 				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
@@ -250,10 +245,8 @@ class CEsoItemLinkImage
 				$newData['text'] = $matches[1];
 				$newData['color'] = 0xffffff;
 			}
-			elseif ($value[0] == 'b')
+			elseif ($value[0] == 'b' && preg_match("|by ([0-9\.]+)|s", $value, $matches))
 			{
-				preg_match("|by ([0-9\.]+)|s", $value, $matches);
-			
 				unset($newData['br']);
 				$newData['text'] = "by  ";
 				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
@@ -265,10 +258,8 @@ class CEsoItemLinkImage
 				$newData['text'] = $matches[1];
 				$newData['color'] = 0xffffff;
 			}
-			elseif ($value[0] == 'f')
+			elseif ($value[0] == 'f' && preg_match("|for ([0-9\.]+)|s", $value, $matches))
 			{
-				preg_match("|for ([0-9\.]+)|s", $value, $matches);
-					
 				unset($newData['br']);
 				$newData['text'] = "for ";
 				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
