@@ -285,11 +285,13 @@
 		
 		if (itemData['value'] > 0)
 		{
-			$('#esoil_itemvalue').text(itemData['value']).show();;
+			$('#esoil_itemvalue').text(itemData['value']);
+			$('#esoil_itemvalueblock').show();
 		}
 		else
 		{
-			$('#esoil_itemvalue').text(itemData['value']).hide();
+			$('#esoil_itemvalue').text(itemData['value']);
+			$('#esoil_itemvalueblock').hide();
 		}
 		
 		var leftBlockHtml = GetEsoItemLeftBlockHtml(itemData);
