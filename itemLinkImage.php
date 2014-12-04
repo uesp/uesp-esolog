@@ -731,7 +731,7 @@ class CEsoItemLinkImage
 		$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
 		$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
-		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->smallFontLineHeight, 'center') + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -748,7 +748,7 @@ class CEsoItemLinkImage
 		$this->AddPrintData($printData, $ability, $this->printOptionsSmallWhite, array('br' => true));
 		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
-		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->smallFontLineHeight, 'center') + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
 	
@@ -775,7 +775,7 @@ class CEsoItemLinkImage
 		$printData = array();
 		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
-		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->smallFontLineHeight, 'center') + $this->blockMargin;
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
 	
