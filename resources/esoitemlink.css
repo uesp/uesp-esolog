@@ -195,6 +195,14 @@ h1, h2, h3 {
 	text-align: left;
 }
 
+#esoil_watermark {
+	position: absolute;
+	right: 2px;
+	bottom: 0px;
+	color: #555;
+	font-size: 0.8em;
+}
+
 .esoil_quality_None {
 	color: #fff !important;
 }

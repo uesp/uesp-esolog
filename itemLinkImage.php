@@ -42,7 +42,7 @@ class CEsoItemLinkImage
 	public $bigFontSize = 18;
 	public $medFontSize = 12;
 	public $smallFontSize = 11;
-	public $tinyFontSize = 9;
+	public $tinyFontSize = 9.8;
 	
 	public $topMargin = 22;
 	public $borderMargin = 5;
@@ -874,6 +874,7 @@ class CEsoItemLinkImage
 		$this->black =  imagecolorallocate($image, 0, 0, 0);
 		$this->white =  imagecolorallocate($image, 255, 255, 255);
 		$this->textColor =  imagecolorallocate($image, 0xC5, 0xC2, 0x9E);
+		$this->darkGray =  imagecolorallocate($image, 0x55, 0x55, 0x55);
 		
 		$this->printOptionsLargeWhite = array(
 				"font" => self::ESOIL_BOLDFONT_FILE,
@@ -941,6 +942,9 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemSetBlock($image, $y);
 		
 		$y += $this->OutputItemDescription($image, $y);
+		
+		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");
+		$y += 8;
 		
 		$imageHeight = $y + 1;
 		
