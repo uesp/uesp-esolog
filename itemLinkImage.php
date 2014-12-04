@@ -932,8 +932,8 @@ class CEsoItemLinkImage
 		$y += 40;
 		$y += $this->OutputItemBar($image, $y);
 		
-		$y += $this->OutputItemEnchantBlock($image, $y);
 		$y += $this->OutputItemAbilityBlock($image, $y);
+		$y += $this->OutputItemEnchantBlock($image, $y);
 		$y += $this->OutputItemTraitBlock($image, $y);
 		$y += $this->OutputItemTraitAbilityBlock($image, $y);
 		$y += $this->OutputItemSetBlock($image, $y);
