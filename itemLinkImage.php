@@ -729,14 +729,14 @@ class CEsoItemLinkImage
 	private function OutputItemAbilityBlock($image, $y)
 	{
 		$ability = strtoupper($this->itemRecord['abilityName']);
-		if ($ability == "") return 0;
-		
 		$abilityDesc = $this->itemRecord['abilityDesc'];
+		if ($abilityDesc == "") return 0;
+		
 		$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
 		$abilityDesc .= " (" . $cooldown . " second cooldown)";
 		
 		$printData = array();
-		$this->AddPrintData($printData, $ability, $this->printOptionsSmallWhite, array('br' => true));
+		if ($abilityName != "") $this->AddPrintData($printData, $ability, $this->printOptionsSmallWhite, array('br' => true, 'format' => true));
 		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
@@ -800,10 +800,6 @@ class CEsoItemLinkImage
 		$printData = array();
 		$this->AddPrintData($printData, $desc, $this->printOptionsTinyBeige, array('br' => true, 'format' => true, 'lineBreak' => true));
 		return $this->PrintDataText($image, $printData, $this->borderMargin + 10, $y, 'left') + $this->blockMargin;
-		
-		//$x = $this->borderMargin + 1;
-		//$this->PrintTextAA($image, $this->tinyFontSize, $x, $y, $this->textColor, self::ESOIL_REGULARFONT_FILE, $desc);
-		//return $this->tinyFontLineHeight + $this->blockMargin;
 	}
 	
 	
