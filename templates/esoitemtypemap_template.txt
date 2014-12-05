@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Item Type Map</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoitemtypemap.css" />
+	</head>
+<body>
+<h1>ESO Item Type Map</h1>
+This page simply maps the item type distribution across all known item Ids in the Elder Scrolls Online (ESO). A title of <i>"Armor (70)"</i> indicates a single armor item with type 70.
+A title of <i>"Weapon (101-109)"</i> indicates a group of weapon items from IDs 101 to 109. The height of the block is proportional to its ID range. For more information related
+to this page see <a href="http://www.uesp.net/wiki/User:Daveh/ESO_Log_Collector">ESO Log Collector</a> or contact <a href="mailto:dave@uesp.net">Daveh</a>.
+<p />
+<b>ID Range:</b> {itemStartId} to {itemEndId} 
+<p />
+<div id="esoitm_root">
+{itemTypeMapContent}
+</div>
+
+</body>
+</html>
