@@ -134,21 +134,21 @@
 	
 	function GetEsoItemLevelText(level)
 	{
-		if (level >= 50) return 'V' + (level - 49);
+		if (level > 50) return 'V' + (level - 50);
 		return '' + level;
 	}
 	
 	
 	function GetEsoItemFullLevelText(level)
 	{
-		if (level >= 50) return 'Rank V' + (level - 49);
+		if (level > 50) return 'Rank V' + (level - 50);
 		return 'Level ' + level;
 	}
 	
 	
 	function GetEsoItemFullLevelHtml(level)
 	{
-		if (level >= 50) return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 49) + "</div>"
+		if (level > 50) return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 50) + "</div>"
 		return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
 	}
 	

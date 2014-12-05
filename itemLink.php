@@ -78,7 +78,7 @@ class CEsoItemLink
 			$level = strtolower($this->inputParams['level']);
 			
 			if ($level[0] == 'v')
-				$this->itemLevel = (int) ltrim($level, 'v') + 49;
+				$this->itemLevel = (int) ltrim($level, 'v') + 50;
 			else
 				$this->itemLevel = (int) $level;
 		}
@@ -377,9 +377,9 @@ class CEsoItemLink
 		$level = $this->itemRecord['level'];
 		if ($level <= 0) return "Level ?";
 		
-		if ($level >= 50)
+		if ($level > 50)
 		{
-			$level -= 49;
+			$level -= 50;
 			return "Rank V$level";
 		}
 		
@@ -392,9 +392,9 @@ class CEsoItemLink
 		$level = $this->itemRecord['level'];
 		if ($level <= 0) return "?";
 		
-		if ($level >= 50) 
+		if ($level > 50) 
 		{
-			$level -= 49;
+			$level -= 50;
 			return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
 		}
 		

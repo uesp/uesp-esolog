@@ -2716,7 +2716,7 @@ class EsoLogParser
 		
 		if (array_key_exists('reqVetLevel', $logEntry) && $logEntry['reqVetLevel'] > 0)
 		{
-			$logEntry['level'] = strval(intval($logEntry['reqVetLevel']) + 49);
+			$logEntry['level'] = strval(intval($logEntry['reqVetLevel']) + 50);
 		}
 		elseif (array_key_exists('reqLevel', $logEntry) && $logEntry['reqLevel'] > 0)
 		{

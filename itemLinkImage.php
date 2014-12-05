@@ -101,7 +101,7 @@ class CEsoItemLinkImage
 			$level = strtolower($this->inputParams['level']);
 				
 			if ($level[0] == 'v')
-				$this->itemLevel = (int) ltrim($level, 'v') + 49;
+				$this->itemLevel = (int) ltrim($level, 'v') + 50;
 			else
 				$this->itemLevel = (int) $level;
 		}
@@ -622,11 +622,11 @@ class CEsoItemLinkImage
 		$levelImageWidth = 0;
 		$levelImage = null;
 		
-		if ($level >= 50)
+		if ($level > 50)
 		{
 			$imageFile = "./resources/eso_item_veteranicon.png";
 			$label = "RANK ";
-			$levelText = $level - 49;
+			$levelText = $level - 50;
 			
 			$levelImage = imagecreatefrompng($imageFile);
 			
