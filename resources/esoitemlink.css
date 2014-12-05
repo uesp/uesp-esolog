@@ -81,6 +81,7 @@ h1, h2, h3 {
 	display: inline-block;
 	padding-top: 24px;
 	vertical-align: top;
+	padding-bottom: 5px;
 }
 
 #esoil_itembox {
@@ -102,6 +103,8 @@ h1, h2, h3 {
 	margin-right: auto;
 	position: relative;
 	top: -24px;
+	width: 64px;
+	height: 64px;
 }
 
 #esoil_itemtype1 {

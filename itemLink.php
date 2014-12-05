@@ -108,6 +108,8 @@ class CEsoItemLink
 				$this->itemLevel = (int) ltrim($level, 'v') + 50;
 			else
 				$this->itemLevel = (int) $level;
+			
+			$this->itemQuality = 1;
 		}
 		
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
@@ -247,28 +249,44 @@ class CEsoItemLink
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
 		$query = "";
 		
-		if ($this->itemIntLevel >= 1)
-		{
-			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
-			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
-		}
-		else
+		if ($this->itemLevel >= 1)
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality <= 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
 			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
+		else
+		{
+			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
+		}
 		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
-		if ($result->num_rows === 0) return $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
+		
+		if ($result->num_rows === 0)
+		{
+			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
+			{
+				$this->itemIntType = 2;
+				$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
+				
+				$result = $this->db->query($query);
+				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			}
+			
+			if ($result->num_rows === 0) return $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
+		}
+		
 		
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
 		if (!$row) $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		
+				
 		$this->itemLevel = (int) $row['level'];
 		$this->itemQuality = (int) $row['quality'];
 		
