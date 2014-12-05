@@ -374,7 +374,7 @@
 			var value = itemData[key];
 			var element = $('#esoil_rawdata_' + key);
 			if (element.size() == 0) continue;
-			if (value == -1 || value == 0) continue;
+			//if (value == -1 || value == 0) continue;
 			
 			if (key == 'icon')
 				element.html("<img id='esoil_rawdata_iconimage' src='" +  MakeEsoItemIconImageLink(itemData) + "' /> " + value);
