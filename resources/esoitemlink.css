@@ -150,6 +150,7 @@ h1, h2, h3 {
 	top: 1em;
 	text-align: center;
 	white-space: nowrap;
+	min-height: 30px;
 }
 
 #esoil_itemlevelblock {
@@ -240,7 +241,7 @@ h1, h2, h3 {
 
 #esoil_itembar, #esoil_itemsetblock, #esoil_itemtraitblock, #esoil_itemenchantblock, #esoil_itemabilityblock, #esoil_itemtraitabilityblock {
 	display: block;
-	margin-top: 5px;
+	margin-top: 12px;
 	margin-left: 5px;
 	margin-right: 5px;
 	text-align: center;
