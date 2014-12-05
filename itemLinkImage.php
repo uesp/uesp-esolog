@@ -2,18 +2,18 @@
 
 /*
  * itemLinkImage.php -- by Dave Humphrey (dave@uesp.net), December 2014
-*
-* Outputs an image containing an ESO item and its data in the same/similar format
-* as the in-game item tooltips.
-*
-* TODO:
-*	- Center level/value properly when no left block data exists.
-*	- Better error image.
-*	- Fix text extents.
-*	- Fix text AA.
-*	- JPEG format (tested but has no alpha).
-*
-*/
+ *
+ * Outputs an image containing an ESO item and its data in the same/similar format
+ * as the in-game item tooltips.
+ *
+ * TODO:
+ *	- Center level/value properly when no left block data exists.
+ *	- Better error image.
+ *	- Fix text extents.
+ *	- Fix text AA.
+ *	- JPEG format (tested but has no alpha).
+ *
+ */
 
 // Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
