@@ -11,7 +11,7 @@
 *	- Better error image.
 *	- Fix text extents.
 *	- Fix text AA.
-*	- JPEG format.
+*	- JPEG format (tested but has no alpha).
 *
 */
 
