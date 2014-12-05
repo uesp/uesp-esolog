@@ -21,6 +21,7 @@ class CEsoItemLink
 	public $itemIntType = -1;	// 1-400
 	public $itemRecord = array();
 	public $itemAllData = array();
+	public $itemSimilarRecords = array();
 	public $outputType = "html";
 	public $showAll = false;
 	public $itemErrorDesc = "";
@@ -243,8 +244,8 @@ class CEsoItemLink
 		$row = $result->fetch_assoc();
 		if (!$row) $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		
-		if ($this->itemLevel <= 0) $this->itemLevel = (int) $row['level'];
-		if ($this->itemQuality <= 0) $this->itemQuality = (int) $row['quality'];
+		$this->itemLevel = (int) $row['level'];
+		$this->itemQuality = (int) $row['quality'];
 		
 			// TODO: Temporary fix for setMaxEquipCount
 		if (array_key_exists('setMaxEquipCount', $row) && $row['setMaxEquipCount'] == -1)
@@ -268,6 +269,44 @@ class CEsoItemLink
 		}
 		
 		return $row;
+	}
+	
+	
+	private function MakeSimilarItemBlock()
+	{
+		$output = "";
+		
+		foreach ($this->itemSimilarRecords as $key => $item)
+		{
+			if ($item['id'] == $this->itemRecord['id']) continue;
+			
+			$intType = $item['internalSubtype'];
+			$intLevel = $item['internalLevel'];
+			$itemId = $this->itemId;
+			
+			$output .= "<li><a href='itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType'>Internal Type $intLevel:$intType</a></li>";
+		}
+		
+		if ($output == "") $output = "<li>No similar items found.</li>";
+		
+		return $output;
+	}
+	
+	
+	private function LoadSimilarItemRecords()
+	{
+		$query = "SELECT id, internalLevel, internalSubtype FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality};";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		if ($result->num_rows === 0) return true;
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemSimilarRecords[] = $row;
+		}
+		
+		return false;
 	}
 	
 	
@@ -582,6 +621,7 @@ class CEsoItemLink
 				'{itemLevelBlockDisplay}' => $this->GetItemLevelBlockDisplay(),
 				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
 				'{itemDataJson}' => $this->GetItemDataJson(),
+				'{itemSimilarBlock}' => $this->MakeSimilarItemBlock(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -613,6 +653,7 @@ class CEsoItemLink
 		if (!$this->itemRecord) return false;
 		
 		$this->LoadAllItemData();
+		$this->LoadSimilarItemRecords();
 		
 		if ($this->outputType == "html")
 			$this->ShowItemHtml();
