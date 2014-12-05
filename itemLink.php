@@ -1,5 +1,32 @@
 <?php
 
+/*
+ * itemLink.php -- by Dave Humphrey (dave@uesp.net), December 2014
+ * 
+ * Outputs a HTML page containing an ESO item and its data in the same/similar format
+ * as the in-game item tooltips.
+ * 
+ * TODO:
+ *		- Items with no level/quality data
+ *		- Items with same name but different itemIds
+ *		- Output extra data:
+ *			- style
+ *			- craft related
+ *			- glyph related
+ *			- flags
+ *		- Search
+ *		- Browse items
+ *		- IE fix
+ *		- Better error page
+ *		- Page Types:
+ *			- Normal
+ *			- Short/plain link
+ *			- Error
+ *		- Better web font
+ *		- Armor/weapon models/textures/pictures?
+ * 
+ */
+
 // Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
