@@ -998,14 +998,16 @@ class CEsoItemLinkImage
 		if ($this->itemIntType <= 0) return false;
 		
 		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
-		$filename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		$pngFilename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		$jpgFilename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".jpg";
 		
 		if (!file_exists($path))
 		{
 			if (!mkdir($path, 0775, true)) return false;
 		}
 		
-		return imagepng($image, $filename);
+		//imagejpeg($image, $jpgFilename, 75);
+		return imagepng($image, $pngFilename);
 	}
 	
 	
