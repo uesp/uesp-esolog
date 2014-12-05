@@ -15,10 +15,10 @@ class CEsoItemLink
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
-	public $itemLevel = 1;		// 1-64
-	public $itemQuality = 1;	// 1-5
-	public $itemIntLevel = -1;	// 1-50
-	public $itemIntType = -1;	// 1-400
+	public $itemLevel = -1;		// 1-65
+	public $itemQuality = -1;	// 1-5
+	public $itemIntLevel = 1;	// 1-50
+	public $itemIntType = 1;	// 1-400
 	public $itemRecord = array();
 	public $itemAllData = array();
 	public $itemSimilarRecords = array();
@@ -159,8 +159,6 @@ class CEsoItemLink
 			
 			foreach ($item as $key => $value)
 			{
-				if ($key == 'level' || $key == 'quality') continue;
-				
 				if (array_key_exists($key, $firstItem) && $firstItem[$key] == $value)
 				{
 					$delItems[] = $key;

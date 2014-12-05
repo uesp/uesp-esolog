@@ -405,6 +405,22 @@
 	}
 	
 	
+	function UpdateAllItemData()
+	{
+		var firstItem = allItemData[0];
+		
+		for (var i = 1; i < allItemData.length; i++)
+		{
+			var itemData = allItemData[i];
+			
+			if (itemData['level'] == null) itemData['level'] = firstItem['level'];
+			if (itemData['quality'] == null) itemData['quality'] = firstItem['quality'];
+			if (itemData['internalLevel'] == null) itemData['internalLevel'] = firstItem['internalLevel'];
+			if (itemData['internalSubtype'] == null) itemData['internalSubtype'] = firstItem['internalSubtype'];
+		}
+	}
+	
+	
 	$( document ).ready(function() {
 	
 		$('#esoil_levelcontrol').on('input', function(e) { 
@@ -417,6 +433,7 @@
 			UpdateEsoItemData($('#esoil_levelcontrol').val(), this.value); 
 		});
 		
+		UpdateAllItemData();
 		console.log("ready");
 	});
 	

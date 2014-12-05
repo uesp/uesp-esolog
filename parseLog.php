@@ -506,6 +506,7 @@ class EsoLogParser
 			'isVendorTrash' => self::FIELD_INT,
 			'isArmorDecay' => self::FIELD_INT,
 			'isConsumable' => self::FIELD_INT,
+			'comment' => self::FIELD_STRING,
 	);
 	
 	public static $MINED_ITEMKEY_TO_DBKEY = array(
@@ -573,6 +574,7 @@ class EsoLogParser
 			'isVendorTrash' => 'isVendorTrash',
 			'isArmorDecay' => 'isArmorDecay',
 			'isConsumable' => 'isConsumable',
+			'comment' => 'comment',
 			//runeName
 			//ingrName1-N
 	);
@@ -1264,6 +1266,7 @@ class EsoLogParser
 			isArmorDecay BIT NOT NULL DEFAULT 0,
 			isConsumable BIT NOT NULL DEFAULT 0,
 			icon TINYTEXT NOT NULL,
+			comment TINYTEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId),
@@ -1274,7 +1277,8 @@ class EsoLogParser
 			FULLTEXT(abilityName),
 			FULLTEXT(abilityDesc),
 			FULLTEXT(setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5),
-			FULLTEXT(bookTitle)
+			FULLTEXT(bookTitle),
+			FULLTEXT(comment)
 		);";
 		
 		$this->lastQuery = $query;
