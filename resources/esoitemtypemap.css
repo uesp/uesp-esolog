@@ -1,0 +1,29 @@
+body {
+	font-family: "Arial", sans-serif;
+	font-size: 12px;
+}
+
+#esoitm_root {
+	border-top: solid 1px #444;
+	border-bottom: solid 1px #444;
+}
+
+div[id^='esoitm_id_'] {
+	border: solid 1px #444;
+	background-color: #ccc;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#esoitm_id_none {
+	background: none !important;
+	border: none !important;
+}
+
+#esoitm_id_1 {
+	background-color: #ff9999 !important;
+}
+
+#esoitm_id_2 {
+	background-color: #99ff99 !important;
+}
