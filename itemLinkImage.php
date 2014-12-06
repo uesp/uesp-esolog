@@ -199,7 +199,7 @@ class CEsoItemLinkImage
 		if ($this->itemLevel >= 1)
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
-			if ($this->itemQuality <= 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
+			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
 			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
@@ -233,9 +233,9 @@ class CEsoItemLinkImage
 		if (!$row) $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		
 		if ($this->itemLevel <= 0) $this->itemLevel = (int) $row['level'];
-		if ($this->itemQuality <= 0) $this->itemQuality = (int) $row['quality'];
+		if ($this->itemQuality < 0) $this->itemQuality = (int) $row['quality'];
 		
-		// TODO: Temporary fix for setMaxEquipCount
+			// TODO: Temporary fix for setMaxEquipCount
 		if (array_key_exists('setMaxEquipCount', $row) && $row['setMaxEquipCount'] == -1)
 		{
 			$highestSetDesc = "";
@@ -255,7 +255,6 @@ class CEsoItemLinkImage
 				if ($matchResult) $row['setMaxEquipCount'] = (int) $matches[1];
 			}
 		}
-		
 		
 		$this->itemIntLevel =  $row['internalLevel'];
 		$this->itemIntType = $row['internalSubtype'];
@@ -972,6 +971,7 @@ class CEsoItemLinkImage
 		
 		$this->qualityColors = array(
 				imagecolorallocate($image, 0xff, 0xff, 0xff),
+				imagecolorallocate($image, 0xff, 0xff, 0xff),
 				imagecolorallocate($image, 0x2d, 0xc5, 0x0e),
 				imagecolorallocate($image, 0x3a, 0x92, 0xff),
 				imagecolorallocate($image, 0xa0, 0x2e, 0xf7),
@@ -1019,7 +1019,7 @@ class CEsoItemLinkImage
 		
 		$itemName = strtoupper($itemData['name']);
 		$quality = $itemData['quality'];
-		$this->nameColor = $this->qualityColors[$quality - 1];
+		$this->nameColor = $this->qualityColors[$quality];
 		if ($this->nameColor == null) $this->nameColor = $white;
 		
 		$y = $this->topMargin + $this->borderMargin + $this->medFontLineHeight;
@@ -1031,6 +1031,7 @@ class CEsoItemLinkImage
 		
 		$y += $this->bigFontLineHeight + 10;
 		$this->PrintCenterText($image, $this->bigFontSize, $y, $this->nameColor, self::ESOIL_BOLDFONT_FILE, $itemName);
+		error_log("ItemName = $itemName");
 		
 		$y += 6;
 		$this->OutputCenterImage($image, "./resources/eso_item_hr.png", $y);

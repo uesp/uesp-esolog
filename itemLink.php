@@ -273,7 +273,7 @@ class CEsoItemLink
 		if ($this->itemLevel >= 1)
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
-			if ($this->itemQuality <= 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
+			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
 			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
@@ -302,12 +302,10 @@ class CEsoItemLink
 			if ($result->num_rows === 0) return $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		}
 		
-		
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
 		if (!$row) $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		
-				
 		$this->itemLevel = (int) $row['level'];
 		$this->itemQuality = (int) $row['quality'];
 		
