@@ -37,8 +37,8 @@ class CEsoItemLinkImage
 	public $itemLink = "";
 	public $itemLevel = -1;		// 1-64
 	public $itemQuality = -1;	// 1-5
-	public $itemIntLevel = 1;	// 1-50
-	public $itemIntType = 1;	// 1-400
+	public $itemIntLevel = -1;	// 1-50
+	public $itemIntType = -1;	// 1-400
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
 	public $enchantIntType1 = -1;
@@ -143,8 +143,19 @@ class CEsoItemLinkImage
 		}
 		
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
-		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
-		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
+		
+		if (array_key_exists('intlevel', $this->inputParams))
+		{
+			$this->itemIntLevel = (int) $this->inputParams['intlevel'];
+			$this->itemIntType = 1;
+		}
+		
+		if (array_key_exists('inttype', $this->inputParams))
+		{
+			$this->itemIntType = (int) $this->inputParams['inttype'];
+			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
+		}
+		
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		
 		return true;
@@ -1031,7 +1042,6 @@ class CEsoItemLinkImage
 		
 		$y += $this->bigFontLineHeight + 10;
 		$this->PrintCenterText($image, $this->bigFontSize, $y, $this->nameColor, self::ESOIL_BOLDFONT_FILE, $itemName);
-		error_log("ItemName = $itemName");
 		
 		$y += 6;
 		$this->OutputCenterImage($image, "./resources/eso_item_hr.png", $y);
@@ -1078,50 +1088,80 @@ class CEsoItemLinkImage
 		if ($this->itemIntLevel <= 0) return false;
 		if ($this->itemIntType <= 0) return false;
 		
-		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
-		$pngFilename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
-		$jpgFilename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".jpg";
+		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
+		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int";
+		$pngFilename    = $path .    "/" . $this->itemId . "-" . $this->itemLevel    . "-" . $this->itemQuality . ".png";
+		$pngIntFilename = $intPath . "/" . $this->itemId . "-" . $this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		//$jpgFilename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".jpg";
 		
-		if (!file_exists($path))
-		{
-			if (!mkdir($path, 0775, true)) return false;
-		}
+		if (!file_exists($path)    && !mkdir($path, 0775, true))    return false;
+		if (!file_exists($intPath) && !mkdir($intPath, 0775, true)) return false;
 		
 		//imagejpeg($image, $jpgFilename, 75);
-		return imagepng($image, $pngFilename);
+		imagepng($image, $pngFilename);
+		imagepng($image, $pngIntFilename);
+		
+		return true;
 	}
 	
 	
-	public function ServeCachedImage()
+	public function ServeCachedImage($useRedirect)
 	{
 		if ($this->noCache) return false;
 		if ($this->enchantId1 > 0) return false;
 		if ($this->enchantId2 > 0) return false;
 		if ($this->itemId <= 0) return false;
-		if ($this->itemIntLevel <= 0) return false;
-		if ($this->itemIntType <= 0) return false;
 		
-		$path = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
-		$filename = $path . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
+		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
+		$filename   = $path     . $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
+		$intFilename = $intPath . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
 		
-		if (!file_exists($filename)) return false;
+		if ($this->itemLevel > 0 && $this->itemQuality >= 0 && file_exists($filename))
+		{
+			
+			if ($useRedirect)
+			{
+				$url =  "/itemcache/" . $this->itemId . "/" . $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
+				header("Location: $url");
+				return true;
+			}
+			
+			error_log("serving cached image $filename");
+			readfile($filename);
+			return true;
+		}
 		
-		readfile($filename);
-		return true;
+		if ($this->itemIntLevel > 0 && $this->itemIntType >= 0 && file_exists($intFilename))
+		{
+				
+			if ($useRedirect)
+			{
+				$url =  "/itemcache/" . $this->itemId . "/int/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+				header("Location: $url");
+				return true;
+			}
+			
+			error_log("serving cached image $intFilename");
+			readfile($intFilename);
+			return true;
+		}
+		
+		return false;
 	}
 	
 	
 	public function MakeImage()
 	{
 		$this->OutputHtmlHeader();
-		if ($this->ServeCachedImage()) return true;
+		if ($this->ServeCachedImage(false)) return true;
 		
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
 		
 		$this->LoadEnchantRecords();
 		
-		if ($this->ServeCachedImage()) return true;
+		if ($this->ServeCachedImage(false)) return true;
 		
 		$this->OutputImage();
 		return true;
