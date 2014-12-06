@@ -56,7 +56,7 @@
 	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="64" value="{itemLevelRaw}" />
 	<input class="esoil_rangelabel" id="esoil_leveltext" type="text" value="{itemLevel}" readonly />
 	<br />
-	<input id="esoil_qualitycontrol"  class="esoil_rangecontrol" type="range" min="1" max="5" value="{itemQualityRaw}" />
+	<input id="esoil_qualitycontrol"  class="esoil_rangecontrol" type="range" min="0" max="5" value="{itemQualityRaw}" />
 	<input class="esoil_rangelabel" id="esoil_qualitytext" type="text" value="{itemQuality}" readonly />
 </div>
 
@@ -69,7 +69,8 @@
 
 <script type="text/javascript">
 	var ESO_ITEM_QUALITIES = {
-			0: "None",
+			'-1': "",
+			0: "Trash",
 			1: "Normal",
 			2: "Fine",
 			3: "Superior",
