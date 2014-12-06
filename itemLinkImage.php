@@ -82,7 +82,6 @@ class CEsoItemLinkImage
 	{
 		$this->SetInputParams();
 		$this->ParseInputParams();
-		$this->InitDatabase();
 	}
 	
 	
@@ -1122,7 +1121,7 @@ class CEsoItemLinkImage
 			
 			if ($useRedirect)
 			{
-				$url =  "/itemcache/" . $this->itemId . "/" . $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
+				$url = "/itemcache/" . $this->itemId . "/" . $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
 				header("Location: $url");
 				return true;
 			}
@@ -1137,7 +1136,7 @@ class CEsoItemLinkImage
 				
 			if ($useRedirect)
 			{
-				$url =  "/itemcache/" . $this->itemId . "/int/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+				$url = "/itemcache/" . $this->itemId . "/int/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
 				header("Location: $url");
 				return true;
 			}
@@ -1155,6 +1154,8 @@ class CEsoItemLinkImage
 	{
 		$this->OutputHtmlHeader();
 		if ($this->ServeCachedImage(false)) return true;
+		
+		if (!$this->InitDatabase()) return false;
 		
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
