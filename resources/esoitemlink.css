@@ -79,7 +79,7 @@ h1, h2, h3 {
 
 #esoil_outeritembox {
 	display: inline-block;
-	padding-top: 24px;
+	padding-top: 32px;
 	vertical-align: top;
 	padding-bottom: 5px;
 }
@@ -102,7 +102,7 @@ h1, h2, h3 {
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	top: -24px;
+	top: -32px;
 	width: 64px;
 	height: 64px;
 }
@@ -228,7 +228,7 @@ h1, h2, h3 {
 }
 
 .esoil_quality_Legendary {
-	color: #ffff33 !important;
+	color: #EECA2A !important;
 }
 
 #esoil_item_hr {

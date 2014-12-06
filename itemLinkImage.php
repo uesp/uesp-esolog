@@ -39,6 +39,13 @@ class CEsoItemLinkImage
 	public $itemQuality = -1;	// 1-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
+	public $enchantId1 = -1;
+	public $enchantIntLevel1 = -1;
+	public $enchantIntType1 = -1;
+	public $enchantId2 = -1;
+	public $enchantIntLevel2 = -1;
+	public $enchantIntType2 = -1;
+	public $noCache = false;
 	public $itemRecord = array();
 	public $db = null;
 	
@@ -60,7 +67,7 @@ class CEsoItemLinkImage
 	public $smallFontSize = 11;
 	public $tinyFontSize = 10;
 	
-	public $topMargin = 22;
+	public $topMargin = 32;
 	public $borderMargin = 5;
 	public $bigFontLineHeight = 22;
 	public $medFontLineHeight = 18;
@@ -89,13 +96,20 @@ class CEsoItemLinkImage
 	
 	public function ParseItemLink($itemLink)
 	{
-		$matches = array();
-		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
+		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<enchantId2>[0-9]*)\:(?P<enchantSubtype2>[0-9]*)\:(?P<enchantLevel2>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
 		if (!$result) return false;
 		
 		$this->itemId = $matches['itemId'];
 		$this->itemIntLevel = $matches['level'];
 		$this->itemIntType = $matches['subtype'];
+		
+		$this->enchantId1 = $matches['enchantId1'];
+		$this->enchantIntLevel1 = $matches['enchantLevel1'];
+		$this->enchantIntType1 = $matches['enchantSubtype1'];
+		
+		$this->enchantId2 = $matches['enchantId2'];
+		$this->enchantIntLevel2 = $matches['enchantLevel2'];
+		$this->enchantIntType2 = $matches['enchantSubtype2'];
 		
 		return true;
 	}
@@ -106,6 +120,11 @@ class CEsoItemLinkImage
 		if (array_key_exists('itemlink', $this->inputParams))
 		{
 			$this->itemLink = urldecode($this->inputParams['itemlink']);
+			$this->ParseItemLink($this->itemLink);
+		}
+		elseif (array_key_exists('link', $this->inputParams))
+		{
+			$this->itemLink = urldecode($this->inputParams['link']);
 			$this->ParseItemLink($this->itemLink);
 		}
 		
@@ -126,6 +145,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
+		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		
 		return true;
 	}
@@ -245,6 +265,34 @@ class CEsoItemLinkImage
 		$this->itemLink = $row['link'];
 		
 		return $row;
+	}
+	
+	
+	private function LoadEnchantRecords()
+	{
+		if ($this->enchantId1 > 0 && $this->enchantIntLevel1 > 0 && $this->enchantIntType1 > 0)
+		{
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+				
+			$result->data_seek(0);
+			$row = $result->fetch_assoc();
+			if ($row) $this->enchantRecord1 = $row;
+		}
+	
+		if ($this->enchantId2 > 0 && $this->enchantIntLevel2 > 0 && $this->enchantIntType2 > 0)
+		{
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+	
+			$result->data_seek(0);
+			$row = $result->fetch_assoc();
+			if ($row) $this->enchantRecord2 = $row;
+		}
+	
+		return true;
 	}
 	
 	
@@ -431,6 +479,7 @@ class CEsoItemLinkImage
 		$extents = $this->GetTextExtents($newData['size'], $newData['font'], $text);
 		$newData['width']  = $extents[0];
 		$newData['height'] = $extents[1];
+		if ($newData['height'] == 0) $newData['height'] = $newData['size'];
 		
 		$printData[] = $newData;
 		return 1;
@@ -751,13 +800,44 @@ class CEsoItemLinkImage
 	
 	private function OutputItemEnchantBlock($image, $y)
 	{
-		$enchantName = strtoupper($this->itemRecord['enchantName']);
-		if ($enchantName == "") return 0;
-		$enchantDesc = $this->itemRecord['enchantDesc'];
-		
 		$printData = array();
-		$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
-		$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+		
+		if ($this->enchantRecord1 != null)
+		{
+			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
+			$enchantDesc = $this->enchantRecord1['enchantDesc'];
+				
+			if ($enchantDesc != "")
+			{
+				$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+				$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+			}
+		}
+		
+		if ($this->enchantRecord2 != null)
+		{
+			$enchantName = strtoupper($this->enchantRecord2['enchantName']);
+			$enchantDesc = $this->enchantRecord2['enchantDesc'];
+		
+			if ($enchantDesc != "")
+			{
+				$this->AddPrintData($printData, " ", $this->printOptionsTinyBeige, array('br' => true));
+				$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+				$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+			}
+		}
+		
+		if ($this->enchantRecord1 == null && $this->enchantRecord2 == null)
+		{
+			$enchantName = strtoupper($this->itemRecord['enchantName']);
+			$enchantDesc = $this->itemRecord['enchantDesc'];
+			
+			if ($enchantDesc != "")
+			{
+				$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+				$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+			}
+		}
 		
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
@@ -895,7 +975,7 @@ class CEsoItemLinkImage
 				imagecolorallocate($image, 0x2d, 0xc5, 0x0e),
 				imagecolorallocate($image, 0x3a, 0x92, 0xff),
 				imagecolorallocate($image, 0xa0, 0x2e, 0xf7),
-				imagecolorallocate($image, 0xff, 0xff, 0x33),
+				imagecolorallocate($image, 0xee, 0xca, 0x2a),
 		);
 		
 		$this->background = imagecolorallocatealpha($image, 0, 0, 0, 127);
@@ -1013,6 +1093,9 @@ class CEsoItemLinkImage
 	
 	public function ServeCachedImage()
 	{
+		if ($this->noCache) return false;
+		if ($this->enchantId1 > 0) return false;
+		if ($this->enchantId2 > 0) return false;
 		if ($this->itemId <= 0) return false;
 		if ($this->itemIntLevel <= 0) return false;
 		if ($this->itemIntType <= 0) return false;
@@ -1035,6 +1118,8 @@ class CEsoItemLinkImage
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
 		
+		$this->LoadEnchantRecords();
+		
 		if ($this->ServeCachedImage()) return true;
 		
 		$this->OutputImage();
@@ -1048,3 +1133,5 @@ $g_EsoItemLinkImage->MakeImage();
 
 
 ?>
+
+

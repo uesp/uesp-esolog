@@ -24,6 +24,9 @@
  *			- Error
  *		- Better web font
  *		- Armor/weapon models/textures/pictures?
+ *		- Properly update link when dynamically changing level/quality
+ *		- Handle "missing" levels/qualities
+ *		- Combine identical enchantments
  * 
  */
 
@@ -46,7 +49,15 @@ class CEsoItemLink
 	public $itemQuality = -1;	// 1-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
+	public $enchantId1 = -1;
+	public $enchantIntLevel1 = -1;
+	public $enchantIntType1 = -1;
+	public $enchantId2 = -1;
+	public $enchantIntLevel2 = -1;
+	public $enchantIntType2 = -1;
 	public $itemRecord = array();
+	public $enchantRecord1 = null;
+	public $enchantRecord2 = null;
 	public $itemAllData = array();
 	public $itemSimilarRecords = array();
 	public $outputType = "html";
@@ -76,15 +87,20 @@ class CEsoItemLink
 	
 	public function ParseItemLink($itemLink)
 	{
-		//|H0:item:70:62:50:0:0:0:0:0:0:0:0:0:0:0:0:1:0:0:0:0|h[Cured%20Kwama%20Leggings]|h
-		#$result = preg_match("#\|H[0-9A-Fa-f]+:item:(?<id>[0-9]+):(?<subtype>[0-9]+):(?<level>[0-9]+):(?<enchantid>[0-9]+):(?<enchanttype>[0-9]+):(?<enchantlevel>[0-9]+):(data):(?<style>[0-9]+):(?<id>[0-9]+):(?<id>[0-9]+):(?<id>[0-9]+):(?<id>[0-9]+)\|h([^\|]+)\|h#s", $itemLink);
-		$matches = array();
-		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
+		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<enchantId2>[0-9]*)\:(?P<enchantSubtype2>[0-9]*)\:(?P<enchantLevel2>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
 		if (!$result) return false;
 		
 		$this->itemId = $matches['itemId'];
 		$this->itemIntLevel = $matches['level'];
 		$this->itemIntType = $matches['subtype'];
+		
+		$this->enchantId1 = $matches['enchantId1'];
+		$this->enchantIntLevel1 = $matches['enchantLevel1'];
+		$this->enchantIntType1 = $matches['enchantSubtype1'];
+		
+		$this->enchantId2 = $matches['enchantId2'];
+		$this->enchantIntLevel2 = $matches['enchantLevel2'];
+		$this->enchantIntType2 = $matches['enchantSubtype2'];
 		
 		return true;
 	}
@@ -95,6 +111,11 @@ class CEsoItemLink
 		if (array_key_exists('itemlink', $this->inputParams)) 
 		{ 
 			$this->itemLink = urldecode($this->inputParams['itemlink']);
+			$this->ParseItemLink($this->itemLink);
+		}
+		elseif (array_key_exists('link', $this->inputParams))
+		{
+			$this->itemLink = urldecode($this->inputParams['link']);
 			$this->ParseItemLink($this->itemLink);
 		}
 		
@@ -315,6 +336,34 @@ class CEsoItemLink
 	}
 	
 	
+	private function LoadEnchantRecords()
+	{
+		if ($this->enchantId1 > 0 && $this->enchantIntLevel1 > 0 && $this->enchantIntType1 > 0)
+		{
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			
+			$result->data_seek(0);
+			$row = $result->fetch_assoc();
+			if ($row) $this->enchantRecord1 = $row;
+		}
+		
+		if ($this->enchantId2 > 0 && $this->enchantIntLevel2 > 0 && $this->enchantIntType2 > 0)
+		{
+			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+				
+			$result->data_seek(0);
+			$row = $result->fetch_assoc();
+			if ($row) $this->enchantRecord2 = $row;
+		}
+		
+		return true;
+	}
+	
+	
 	private function MakeSimilarItemBlock()
 	{
 		$output = "";
@@ -515,13 +564,38 @@ class CEsoItemLink
 		return "";
 	}
 	
+	
 	private function MakeItemEnchantBlock()
 	{
-		$enchantName = strtoupper($this->itemRecord['enchantName']);
-		$enchantDesc = $this->FormatDescriptionText($this->itemRecord['enchantDesc']);
+		$output = "";
 		
-		if ($enchantName == "") return "";
-		return "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+		if ($this->enchantRecord1 != null)
+		{
+			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
+			$enchantDesc = $this->FormatDescriptionText($this->enchantRecord1['enchantDesc']);
+			if ($enchantDesc != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+		}
+		
+		if ($this->enchantRecord2 != null)
+		{
+			$enchantName = strtoupper($this->enchantRecord2['enchantName']);
+			$enchantDesc = $this->FormatDescriptionText($this->enchantRecord2['enchantDesc']);
+			
+			if ($enchantDesc != "")
+			{
+				if ($output != "") $output .= "<p style='margin-top: 0.7em; margin-bottom: 0.7em;'/>";
+				$output .= "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+			}
+		}
+		
+		if ($this->enchantRecord1 == null && $this->enchantRecord2 == null)
+		{
+			$enchantName = strtoupper($this->itemRecord['enchantName']);
+			$enchantDesc = $this->FormatDescriptionText($this->itemRecord['enchantDesc']);
+			if ($enchantDesc != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+		}
+		
+		return $output;
 	}
 	
 	
@@ -695,6 +769,7 @@ class CEsoItemLink
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
 		
+		$this->LoadEnchantRecords();
 		$this->LoadAllItemData();
 		$this->LoadSimilarItemRecords();
 		
