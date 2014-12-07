@@ -138,6 +138,23 @@ class CEsoItemLink
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		
+		if (array_key_exists('enchantid', $this->inputParams))
+		{
+			$this->enchantId1 = (int) $this->inputParams['enchantid'];
+			$this->enchantIntType1 = 1;
+			$this->enchantIntLevel1 = 1;
+		}
+		
+		if (array_key_exists('enchantintlevel', $this->inputParams))
+		{
+			$this->enchantIntLevel1 = (int) $this->inputParams['enchantintlevel'];
+		}
+		
+		if (array_key_exists('enchantinttype', $this->inputParams))
+		{
+			$this->enchantIntType1 = (int) $this->inputParams['enchantinttype'];
+		}
+		
 		if (array_key_exists('output', $this->inputParams)) 
 		{
 			$this->inputParams['output'] = strtolower($this->inputParams['output']);

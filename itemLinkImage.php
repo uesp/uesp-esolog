@@ -155,6 +155,23 @@ class CEsoItemLinkImage
 			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
 		}
 		
+		if (array_key_exists('enchantid', $this->inputParams))
+		{
+			$this->enchantId1 = (int) $this->inputParams['enchantid'];
+			$this->enchantIntType1 = 1;
+			$this->enchantIntLevel1 = 1;
+		}
+		
+		if (array_key_exists('enchantintlevel', $this->inputParams))
+		{
+			$this->enchantIntLevel1 = (int) $this->inputParams['enchantintlevel'];
+		}
+		
+		if (array_key_exists('enchantinttype', $this->inputParams))
+		{
+			$this->enchantIntType1 = (int) $this->inputParams['enchantinttype'];
+		}
+		
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		
 		return true;
@@ -1113,8 +1130,18 @@ class CEsoItemLinkImage
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
-		$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
-		$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		
+		if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
+		{
+			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . "-" - $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . ".png";
+			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . "-" - $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . ".png";
+		}
+		else
+		{
+			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
+			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		}
+		
 		$fullFilename = $path . $filename; 
 		$fullIntFilename = $intPath . $intFilename;
 		
