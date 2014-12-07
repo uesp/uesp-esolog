@@ -428,8 +428,16 @@ class CEsoItemLink
 			$intType = $item['internalSubtype'];
 			$intLevel = $item['internalLevel'];
 			$itemId = $this->itemId;
-			
-			$output .= "<li><a href='itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType'>Internal Type $intLevel:$intType</a></li>";
+
+			if ($this->enchantId1 > 0)
+			{
+				$enchantId = $this->enchantId1;
+				$enchantLevel = $this->enchantIntLevel1;
+				$enchantType = $this->enchantIntType1;
+				$output .= "<li><a href='itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType&enchantid=$enchantId&enchantintlevel=$enchantLevel&enchantinttype=$enchantType'>Internal Type $intLevel:$intType</a></li>";
+			}
+			else
+				$output .= "<li><a href='itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType'>Internal Type $intLevel:$intType</a></li>";
 		}
 		
 		if ($output == "") $output = "<li>No similar items found.</li>";
@@ -825,6 +833,9 @@ class CEsoItemLink
 				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
 				'{itemDataJson}' => $this->GetItemDataJson(),
 				'{itemSimilarBlock}' => $this->MakeSimilarItemBlock(),
+				'{itemEnchantId1}' => $this->itemRecord['enchantId1'],
+				'{itemEnchantIntLevel1}' => $this->itemRecord['enchantIntLevel1'],
+				'{itemEnchantIntType1}' => $this->itemRecord['enchantIntType1'],
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);

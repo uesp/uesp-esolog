@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<br />
-	<a id="esoil_itemimagelink" href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}">Link to Item Image</a>
+	<a id="esoil_itemimagelink" href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}&enchantid={itemEnchantId1}&enchantintlevel={itemEnchantIntLevel1}&enchantinttype={itemEnchantIntType1}">Link to Item Image</a>
 	<br />
 	<div id="esoil_itemsimilarblock">
 		<div id="esoil_itemsimilarheader">Similar Items</div>
@@ -371,7 +371,10 @@
 	
 	function UpdateEsoItemImageLink(itemData)
 	{
-		$('#esoil_itemimagelink').attr('href', "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "");
+		if (itemData.enchantId1 > 0)
+			$('#esoil_itemimagelink').attr('href', "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "&enchantid=" + itemData.enchantId1 + "&enchantintlevel=" + itemData.enchantIntLevel1 + "&enchantinttype=" + itemData.enchantIntType1);
+		else
+			$('#esoil_itemimagelink').attr('href', "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "");
 	}
 	
 	
@@ -416,7 +419,10 @@
 			
 			if (itemData['level'] == item['level'] && itemData['quality'] == item['quality']) 
 			{
-				output += "<li><a href='itemLink.php?itemid=" + itemData['itemId'] + "&intlevel=" + item['internalLevel'] + "&inttype=" + item['internalSubtype'] + "'>Internal Type " + item['internalSubtype'] + ":" + item['internalLevel'] + "</a></li>";
+				if (firstItem.enchantId1 > 0)
+					output += "<li><a href='itemLink.php?itemid=" + itemData['itemId'] + "&intlevel=" + item['internalLevel'] + "&inttype=" + item['internalSubtype'] + "&enchantid=" + firstItem.enchantId1 + "&enchantintlevel=" + firstItem.enchantIntLevel1 + "&enchantinttype=" + firstItem.enchantIntType1 + "'>Internal Type " + item['internalSubtype'] + ":" + item['internalLevel'] + "</a></li>";
+				else
+					output += "<li><a href='itemLink.php?itemid=" + itemData['itemId'] + "&intlevel=" + item['internalLevel'] + "&inttype=" + item['internalSubtype'] + "'>Internal Type " + item['internalSubtype'] + ":" + item['internalLevel'] + "</a></li>";
 			}
 		}
 		
