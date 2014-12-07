@@ -1113,36 +1113,36 @@ class CEsoItemLinkImage
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
-		$filename   = $path     . $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
-		$intFilename = $intPath . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
+		$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		$fullFilename = $path . $filename; 
+		$fullIntFilename = $intPath . $intFilename;
 		
-		if ($this->itemLevel > 0 && $this->itemQuality >= 0 && file_exists($filename))
+		if ($this->itemLevel > 0 && $this->itemQuality >= 0 && file_exists($fullFilename))
 		{
 			
 			if ($useRedirect)
 			{
-				$url = "/itemcache/" . $this->itemId . "/" . $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
+				$url = "/itemcache/" . $filename;
 				header("Location: $url");
 				return true;
 			}
 			
-			error_log("serving cached image $filename");
-			readfile($filename);
+			readfile($fullFilename);
 			return true;
 		}
 		
-		if ($this->itemIntLevel > 0 && $this->itemIntType >= 0 && file_exists($intFilename))
+		if ($this->itemIntLevel > 0 && $this->itemIntType >= 0 && file_exists($fullIntFilename))
 		{
 				
 			if ($useRedirect)
 			{
-				$url = "/itemcache/" . $this->itemId . "/int/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
+				$url = "/itemcache/" . $intFilename;
 				header("Location: $url");
 				return true;
 			}
 			
-			error_log("serving cached image $intFilename");
-			readfile($intFilename);
+			readfile($fullIntFilename);
 			return true;
 		}
 		
