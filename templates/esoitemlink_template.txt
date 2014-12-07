@@ -207,12 +207,31 @@
 	
 	function GetEsoItemEnchantBlockHtml(itemData)
 	{
-		if (itemData.enchantName == null) return "";
-		var enchantName = itemData.enchantName.toUpperCase();
-		var enchantDesc = FormatEsoDescriptionText(itemData.enchantDesc);
+		var output = "";
 		
-		if (enchantName == "") return "";
-		return "<div class='esoil_white esoil_small'>" + enchantName + "</div><br/>" + enchantDesc;
+		
+		if (itemData.enchantName1 != null && itemData.enchantDesc1 != "")
+		{
+			var enchantName = itemData.enchantName1.toUpperCase();
+			var enchantDesc = FormatEsoDescriptionText(itemData.enchantDesc1);
+			output += "<div class='esoil_white esoil_small'>" + enchantName + "</div><br/>" + enchantDesc;
+		}
+		
+		if (itemData.enchantName2 != null && itemData.enchantDesc2 != "")
+		{
+			var enchantName = itemData.enchantName2.toUpperCase();
+			var enchantDesc = FormatEsoDescriptionText(itemData.enchantDesc2);
+			output += "<br style='margin-top:0.7em; margin-bottom: 0.7em;'/><div class='esoil_white esoil_small'>" + enchantName + "</div><br/>" + enchantDesc;
+		}
+		
+		if (output == "" && itemData.enchantName != null && itemData.enchantDesc != "")
+		{
+			var enchantName = itemData.enchantName.toUpperCase();
+			var enchantDesc = FormatEsoDescriptionText(itemData.enchantDesc);
+			output += "<div class='esoil_white esoil_small'>" + enchantName + "</div><br/>" + enchantDesc;
+		}
+		
+		return output;
 	}
 	
 	
@@ -406,9 +425,40 @@
 	}
 	
 	
+	function MakeItemLink(itemData, firstItem)
+	{
+		var d1 = firstItem['itemId'];
+		var d2 = itemData['internalSubtype'];
+		var d3 = itemData['internalLevel'];
+		var d4 = firstItem['enchantId1'];
+		var d5 = firstItem['enchantIntType1'];
+		var d6 = firstItem['enchantIntLevel1'];
+		var d7 = firstItem['enchantId2'];
+		var d8 = firstItem['enchantIntType2'];
+		var d9 = firstItem['enchantIntLevel2'];
+		var d10 = 0;
+		var d11 = 0;
+		var d12 = 0;
+		var d13 = 0;
+		var d14 = 0;
+		var d15 = 0;
+		var d16 = firstItem['style']; //Style
+		var d17 = 0; //Crafted
+		var d18 = 0; //Bound
+		var d19 = 0; //Charges
+		var d20 = 0; //PotionData
+		var itemName = firstItem['name'];
+		
+		$link = "|H0:item:" + d1 + ":" + d2 + ":" + d3 + ":" + d4 + ":" + d5 + ":" + d6 + ":" + d7 + ":" + d8 + ":" + d9 + ":" + d10 + ":" + d11 + ":" + d12 + ":" + d13 + ":" + d14 + ":" + d15 + ":" + d16 + ":" + d17 + ":" + d18 + ":" + d19 + ":" + d20 + "|h[" + itemName + "]|h";
+		
+		return $link;
+	}
+	
+	
 	function UpdateAllItemData()
 	{
 		var firstItem = allItemData[0];
+		firstItem['link'] = MakeItemLink(firstItem, firstItem);
 		
 		for (var i = 1; i < allItemData.length; i++)
 		{
@@ -418,6 +468,8 @@
 			if (itemData['quality'] == null) itemData['quality'] = firstItem['quality'];
 			if (itemData['internalLevel'] == null) itemData['internalLevel'] = firstItem['internalLevel'];
 			if (itemData['internalSubtype'] == null) itemData['internalSubtype'] = firstItem['internalSubtype'];
+			
+			itemData['link'] = MakeItemLink(itemData, firstItem);
 		}
 	}
 	

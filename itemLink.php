@@ -49,12 +49,12 @@ class CEsoItemLink
 	public $itemQuality = -1;	// 1-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
-	public $enchantId1 = -1;
-	public $enchantIntLevel1 = -1;
-	public $enchantIntType1 = -1;
-	public $enchantId2 = -1;
-	public $enchantIntLevel2 = -1;
-	public $enchantIntType2 = -1;
+	public $enchantId1 = 0;
+	public $enchantIntLevel1 = 0;
+	public $enchantIntType1 = 0;
+	public $enchantId2 = 0;
+	public $enchantIntLevel2 = 0;
+	public $enchantIntType2 = 0;
 	public $itemRecord = array();
 	public $enchantRecord1 = null;
 	public $enchantRecord2 = null;
@@ -274,6 +274,25 @@ class CEsoItemLink
 				}
 			}
 			
+			$row['enchantId1'] = $this->enchantId1;
+			$row['enchantId2'] = $this->enchantId2;
+			$row['enchantIntLevel1'] = $this->enchantIntLevel1;
+			$row['enchantIntType1'] = $this->enchantIntType1;
+			$row['enchantIntLevel2'] = $this->enchantIntLevel2;
+			$row['enchantIntType2'] = $this->enchantIntType2;
+			
+			if ($this->enchantRecord1 != null)
+			{
+				$row['enchantName1'] = $this->enchantRecord1['enchantName'];
+				$row['enchantDesc1'] = $this->enchantRecord1['enchantDesc'];
+			}
+			
+			if ($this->enchantRecord2 != null)
+			{
+				$row['enchantName2'] = $this->enchantRecord2['enchantName'];
+				$row['enchantDesc2'] = $this->enchantRecord2['enchantDesc'];
+			}
+			
 			$this->itemAllData[] = $row;
 		}
 		
@@ -347,6 +366,13 @@ class CEsoItemLink
 			}
 		}
 		
+		$row['enchantId1'] = $this->enchantId1;
+		$row['enchantId2'] = $this->enchantId2;
+		$row['enchantIntLevel1'] = $this->enchantIntLevel1;
+		$row['enchantIntType1'] = $this->enchantIntType1;
+		$row['enchantIntLevel2'] = $this->enchantIntLevel2;
+		$row['enchantIntType2'] = $this->enchantIntType2;
+		
 		return $row;
 	}
 	
@@ -373,6 +399,18 @@ class CEsoItemLink
 			$result->data_seek(0);
 			$row = $result->fetch_assoc();
 			if ($row) $this->enchantRecord2 = $row;
+		}
+		
+		if ($this->enchantRecord1 != null)
+		{
+			$this->itemRecord['enchantName1'] = $this->enchantRecord1['enchantName'];
+			$this->itemRecord['enchantDesc1'] = $this->enchantRecord1['enchantDesc'];
+		}
+			
+		if ($this->enchantRecord2 != null)
+		{
+			$this->itemRecord['enchantName2'] = $this->enchantRecord2['enchantName'];
+			$this->itemRecord['enchantDesc2'] = $this->enchantRecord2['enchantDesc'];
 		}
 		
 		return true;
@@ -450,11 +488,14 @@ class CEsoItemLink
 	private function MakeItemRawDataList()
 	{	
 		$output = "";
+		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
 		
 		foreach ($this->itemRecord as $key => $value)
 		{
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0')) continue;
 			$id = "esoil_rawdata_" . $key;
+			
+			if ($key == "link") $value = $this->MakeItemLink();
 			
 			if ($key == "icon")
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
@@ -723,13 +764,43 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeItemLink()
+	{
+		$d1 = $this->itemRecord['itemId'];
+		$d2 = $this->itemRecord['internalSubtype'];
+		$d3 = $this->itemRecord['internalLevel'];
+		$d4 = $this->enchantId1;
+		$d5 = $this->enchantIntType1;
+		$d6 = $this->enchantIntLevel1;
+		$d7 = $this->enchantId2;
+		$d8 = $this->enchantIntType2;
+		$d9 = $this->enchantIntLevel2;
+		$d10 = 0;
+		$d11 = 0;
+		$d12 = 0;
+		$d13 = 0;
+		$d14 = 0;
+		$d15 = 0;
+		$d16 = $this->itemRecord['style']; //Style
+		$d17 = 0; //Crafted
+		$d18 = 0; //Bound
+		$d19 = 0; //Charges
+		$d20 = 0; //PotionData
+		$itemName = $this->itemRecord['name'];
+		
+		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20|h[$itemName]|h";
+		
+		return $link;
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
 				'{itemName}' => $this->itemRecord['name'],
 				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
 				'{itemDesc}' => $this->itemRecord['description'],
-				'{itemLink}' => $this->itemRecord['link'],
+				'{itemLink}' => $this->MakeItemLink(),
 				'{itemId}' => $this->itemRecord['itemId'],
 				'{itemType1}' => $this->MakeItemTypeText(),
 				'{itemType2}' => $this->MakeItemSubTypeText(),
