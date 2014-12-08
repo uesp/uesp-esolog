@@ -28,6 +28,7 @@
  *		- Handle "missing" levels/qualities
  *		- Combine identical enchantments
  *		- Dynamic updates of enchantment data?
+ *		- Controls for enchantment level/quality
  * 
  */
 
