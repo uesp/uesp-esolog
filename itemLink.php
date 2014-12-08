@@ -24,7 +24,6 @@
  *			- Error
  *		- Better web font
  *		- Armor/weapon models/textures/pictures?
- *		- Properly update link when dynamically changing level/quality
  *		- Handle "missing" levels/qualities
  *		- Combine identical enchantments
  *		- Dynamic updates of enchantment data?
