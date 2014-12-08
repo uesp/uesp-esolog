@@ -27,6 +27,7 @@
  *		- Properly update link when dynamically changing level/quality
  *		- Handle "missing" levels/qualities
  *		- Combine identical enchantments
+ *		- Dynamic updates of enchantment data?
  * 
  */
 
@@ -49,6 +50,11 @@ class CEsoItemLink
 	public $itemQuality = -1;	// 1-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
+	public $itemBound = 0;
+	public $itemStyle = 0;
+	public $itemCrafted = 0;
+	public $itemCharges = 0;
+	public $itemPotionData = 0;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
 	public $enchantIntType1 = 0;
@@ -93,6 +99,12 @@ class CEsoItemLink
 		$this->itemId = $matches['itemId'];
 		$this->itemIntLevel = $matches['level'];
 		$this->itemIntType = $matches['subtype'];
+		
+		$this->itemStyle = $matches['style'];
+		$this->itemBound = $matches['bound'];
+		$this->itemCrafted = $matches['crafted'];
+		$this->itemCharges = $matches['charges'];
+		$this->itemPotionData = $matches['potionData'];
 		
 		$this->enchantId1 = $matches['enchantId1'];
 		$this->enchantIntLevel1 = $matches['enchantLevel1'];
@@ -888,3 +900,6 @@ $g_EsoItemLink->ShowItem();
 
 
 ?>
+
+
+
