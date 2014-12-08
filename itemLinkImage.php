@@ -38,7 +38,12 @@ class CEsoItemLinkImage
 	public $itemLevel = -1;		// 1-64
 	public $itemQuality = -1;	// 1-5
 	public $itemIntLevel = -1;	// 1-50
-	public $itemIntType = -1;	// 1-400
+	public $itemIntType = -1;	// 1-40
+	public $itemBound = 0;
+	public $itemStyle = 0;
+	public $itemCrafted = 0;
+	public $itemCharges = 0;
+	public $itemPotionData = 0;
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
 	public $enchantIntType1 = -1;
@@ -101,6 +106,12 @@ class CEsoItemLinkImage
 		$this->itemId = $matches['itemId'];
 		$this->itemIntLevel = $matches['level'];
 		$this->itemIntType = $matches['subtype'];
+		
+		$this->itemStyle = $matches['style'];
+		$this->itemBound = $matches['bound'];
+		$this->itemCrafted = $matches['crafted'];
+		$this->itemCharges = $matches['charges'];
+		$this->itemPotionData = $matches['potionData'];
 		
 		$this->enchantId1 = $matches['enchantId1'];
 		$this->enchantIntLevel1 = $matches['enchantLevel1'];
