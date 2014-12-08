@@ -47,7 +47,7 @@ class CEsoItemLink
 	public $itemId = 0;
 	public $itemLink = "";
 	public $itemLevel = -1;		// 1-65
-	public $itemQuality = -1;	// 1-5
+	public $itemQuality = -1;	// 0-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
 	public $itemBound = 0;
