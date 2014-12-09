@@ -28,6 +28,7 @@
  *		- Combine identical enchantments
  *		- Dynamic updates of enchantment data?
  *		- Controls for enchantment level/quality
+ *		- Check "comment" data mismatches
  * 
  */
 
