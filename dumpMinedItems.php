@@ -31,7 +31,7 @@ class CEsoDumpMinedItems {
 	);
 	
 	public $itemId = 0;
-	public $sortField = "";
+	public $sortFields = array();
 	public $db = null;
 	public $outputType = "csv";
 	public $noTransform = false;
@@ -124,8 +124,13 @@ class CEsoDumpMinedItems {
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
-			$result = preg_match("|^([a-zA-Z0-9_]+)|s", $this->inputParams['sort'], $matches);
-			if ($result) $this->sortField = $matches[1];
+			$sortFields = preg_split("/,/", $this->inputParams['sort']);
+			
+			foreach ($sortFields as $field)
+			{
+				$result = preg_match("|^([a-zA-Z0-9_]+)|s", trim($field), $matches);
+				if ($result) $this->sortFields[] = $matches[1];
+			}
 		}
 		
 		if (array_key_exists('output', $this->inputParams))
@@ -229,12 +234,11 @@ class CEsoDumpMinedItems {
 	public function LoadRecords()
 	{
 		$itemId = $this->itemId;
-		$sort = $this->sortField;
 		
 		if ($itemId <= 0) return $this->ReportError("ERROR: No itemid specified!");
 		
 		$query = "SELECT * FROM minedItem WHERE itemId=$itemId";
-		if ($sort != "") $query .= " ORDER BY $sort";
+		if (count($this->sortFields) > 0) $query .= " ORDER BY " . implode(",", $this->sortFields);
 		$query .= " LIMIT " . self::SELECT_LIMIT;
 		
 		$result = $this->db->query($query);
@@ -310,9 +314,16 @@ class CEsoDumpMinedItems {
 	}
 	
 	
-	public function CheckSortField()
+	public function CheckSortFields()
 	{
-		if ($this->sortField && !$this->IsValidField($this->sortField)) $this->sortField = "";
+		$newSortFields = array();
+		
+		foreach ($this->sortFields as $field)
+		{
+			if ($this->IsValidField($field)) $newSortFields[] = $field;
+		}
+		
+		$this->sortFields = $newSortFields;
 	}
 	
 	
@@ -378,7 +389,7 @@ class CEsoDumpMinedItems {
 	{
 		if (!$this->LoadFields()) return false;
 		$this->SetTableFields();
-		$this->CheckSortField();
+		$this->CheckSortFields();
 		
 		if (!$this->LoadRecords()) return false;
 		$this->OutputRecords();

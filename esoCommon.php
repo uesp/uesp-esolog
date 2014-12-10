@@ -258,7 +258,7 @@ function GetEsoItemStyleText($style)
 {
 	global $ESO_ITEMSTYLE_TEXTS;
 	
-	$key = (int) style;
+	$key = (int) $style;
 	if (array_key_exists($key, $ESO_ITEMSTYLE_TEXTS)) return $ESO_ITEMSTYLE_TEXTS[$key];
 	return "Unknown ($key)";
 }
