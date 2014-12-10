@@ -16,7 +16,7 @@ class CEsoDumpMinedItems {
 	
 	const SELECT_LIMIT = 2000;
 	
-	public static $DEFAULT_FIELDS = array("internalLevel", "internalSubtype", "level", "quality", "value", "weaponPower", "armorRating");
+	public static $DEFAULT_FIELDS = array("internalLevel", "internalSubtype", "level", "quality", "value", "weaponPower", "armorRating", "enchantDesc", "traitDesc");
 	
 	public static $TRANSFORM_FIELDS = array(
 			"trait" => GetEsoItemTraitFullText,
@@ -35,6 +35,8 @@ class CEsoDumpMinedItems {
 	public $db = null;
 	public $outputType = "csv";
 	public $noTransform = false;
+	public $keepBlankFields = false;
+	public $keepInvariantFields = false;
 	public $inputParams = array();
 	public $itemRecords = array();
 	public $fieldRecords = array();
@@ -121,6 +123,8 @@ class CEsoDumpMinedItems {
 	{
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = intval($this->inputParams['itemid']);
 		if (array_key_exists('notransform', $this->inputParams)) $this->noTransform = true;
+		if (array_key_exists('keepblank', $this->inputParams)) $this->keepBlankFields = true;
+		if (array_key_exists('keepinvariant', $this->inputParams)) $this->keepInvariantFields = true;
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
@@ -253,6 +257,7 @@ class CEsoDumpMinedItems {
 			$this->itemRecords[] = $row;
 		}
 		
+		$this->CheckFieldData();
 		return true;
 	}
 	
@@ -283,11 +288,41 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function CheckFieldData()
+	{
+		if ($this->keepBlankFields && $this->keepInvariantFields) return true;
+		$newFields = array();
+		
+		foreach ($this->tableFields as $field)
+		{
+			$firstValue = $this->itemRecords[0][$field];
+			$isBlank = true;
+			$isInvariant = true;
+			
+			foreach ($this->itemRecords as $record)
+			{
+				if ($record[$field] != "") $isBlank = false;
+				if ($record[$field] != $firstValue) $isInvariant = false;
+				if (!$isBlank && !$isInvariant) break;
+			}
+			
+			if ((!$isBlank || $this->keepBlankFields) && ($isBlank || !$isInvariant || $this->keepInvariantFields))
+			{
+				$newFields[] = $field;
+			}
+		}
+		
+		$this->tableFields = $newFields;
+		return true;
+	}
+	
+	
 	public function SetTableFields()
 	{
 		$newFields = array();
 		$newFieldMap = array();
 		
+			// Parse out special fields like "all" or "default"
 		foreach ($this->tableFields as $field)
 		{
 			if ($field == "all") 
