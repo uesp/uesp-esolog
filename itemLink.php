@@ -307,6 +307,12 @@ class CEsoItemLink
 				$row['enchantDesc2'] = $this->enchantRecord2['enchantDesc'];
 			}
 			
+			if ($this->itemStyle > 0 && $this->itemStyle != $row['style'])
+			{
+				$row['origStyle'] = $row['style'];
+				$row['style'] = $this->itemStyle;
+			}
+			
 			$this->itemAllData[] = $row;
 		}
 		
@@ -512,6 +518,12 @@ class CEsoItemLink
 		$output = "";
 		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
 		
+		if ($this->itemStyle > 0 && $this->itemStyle != $this->itemRecord['style'])
+		{
+			$this->itemRecord['origStyle'] = $this->itemRecord['style'];
+			$this->itemRecord['style'] = $this->itemStyle;
+		}
+		
 		foreach ($this->itemRecord as $key => $value)
 		{
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0')) continue;
@@ -523,6 +535,7 @@ class CEsoItemLink
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
 			else
 				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+			
 		}
 		
 		return $output;
