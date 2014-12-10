@@ -20,7 +20,8 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
  * 		- Option to delete worms/crawlers/plump worms
  * 		- Display icon image
  * 		- Use esoCommon.php
- * 		- Properly parse/save trait abilities (traitAbility1...3, traitCooldown1...3) 
+ * 		- Properly parse/save trait abilities (traitAbility1...3, traitCooldown1...3)
+ * 		- Rename minedItem "cond" to "condition" 
  *
  * 
 	SKILL_TYPE_NONE = 0
