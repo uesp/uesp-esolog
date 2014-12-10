@@ -323,4 +323,19 @@ function GetEsoItemBindTypeText($bindType)
 	return "Unknown ($key)";
 }
 
+
+function GetEsoItemLevelText($level)
+{
+	if ($level <= 50) return strval($level);
+	return "V" . strval($level - 50);
+}
+
+
+function GetEsoItemFullLevelText($level)
+{
+	if ($level <= 50) return "Level " . strval($level);
+	return "Rank V" . strval($level - 50);
+}
+
+
 ?>
