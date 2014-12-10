@@ -23,6 +23,10 @@ class CEsoDumpMinedItems {
 			"weaponType" => GetEsoItemWeaponTypeText,
 			"armorType" => GetEsoItemArmorTypeText,
 			"equipType" => GetEsoItemEquipTypeText,
+			"itemType" => GetEsoItemTypeText,
+			"bindType" => GetEsoItemBindTypeText,
+			"quality" => GetEsoItemQualityText,
+			"style" => GetEsoItemStyleText,
 			"level" => GetEsoItemLevelText,
 	);
 	
