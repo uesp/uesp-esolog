@@ -137,6 +137,7 @@ class CEsoDumpMinedItems {
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
+			$this->sortFields = array();
 			$sortFields = preg_split("/,/", $this->inputParams['sort']);
 			
 			foreach ($sortFields as $field)
@@ -378,7 +379,10 @@ class CEsoDumpMinedItems {
 		
 		foreach ($this->sortFields as $field)
 		{
-			if ($this->IsValidField($field)) $newSortFields[] = $field;
+			if ($field == "none")
+				$newSortFields = array();
+			elseif ($this->IsValidField($field))
+				$newSortFields[] = $field;
 		}
 		
 		$this->sortFields = $newSortFields;
