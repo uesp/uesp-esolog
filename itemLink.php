@@ -56,6 +56,7 @@ class CEsoItemLink
 	public $itemCrafted = 0;
 	public $itemCharges = 0;
 	public $itemPotionData = 0;
+	public $showStyle = true;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
 	public $enchantIntType1 = 0;
@@ -815,6 +816,13 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeItemStyle()
+	{
+		if ($this->itemStyle > 0) return GetEsoItemStyleText($this->itemStyle);
+		return GetEsoItemStyleText($this->itemRecord['style']);
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
@@ -822,6 +830,7 @@ class CEsoItemLink
 				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
 				'{itemDesc}' => $this->itemRecord['description'],
 				'{itemLink}' => $this->MakeItemLink(),
+				'{itemStyle}' => $this->MakeItemStyle(),
 				'{itemId}' => $this->itemRecord['itemId'],
 				'{itemType1}' => $this->MakeItemTypeText(),
 				'{itemType2}' => $this->MakeItemSubTypeText(),
