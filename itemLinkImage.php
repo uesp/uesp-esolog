@@ -970,6 +970,9 @@ class CEsoItemLinkImage
 		$style = $this->MakeItemStyle();
 		if ($style == "") return 0;
 		
+		$type = $this->itemRecord['type'];
+		if ($type != 1 && $type != 2) return;
+		
 		$this->PrintText($image, $this->smallFontSize, $this->borderMargin + 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $style);
 	}
 	
