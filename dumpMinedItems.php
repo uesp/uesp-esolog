@@ -261,23 +261,30 @@ class CEsoDumpMinedItems {
 	
 	public function OutputRecords()
 	{
+		$numRows = count($this->itemRecords);
+		$numCols = count($this->tableFields);
+		
 		print($this->tableStartText);
 		print($this->rowStartText);
+		$col = 0;
 		
 		foreach ($this->tableFields as $key => $field)
 		{
 			print($this->colStartText);
 			print($field);
 			print($this->colEndText);
-			print($this->colSepText);
+			if ($col < $numCols-1) print($this->colSepText);
+			$col++;
 		}
 		
 		print($this->rowEndText);
 		print($this->rowSepText);
+		$row = 0;
 		
 		foreach ($this->itemRecords as $record)
 		{
 			print($this->rowStartText);
+			$col = 0;
 			
 			foreach ($this->tableFields as $field)
 			{
@@ -290,11 +297,13 @@ class CEsoDumpMinedItems {
 				print($this->colStartText);
 				print($value);
 				print($this->colEndText);
-				print($this->colSepText);
+				if ($col < $numCols-1) print($this->colSepText);
+				$col++;
 			}
 			
 			print($this->rowEndText);
-			print($this->rowSepText);
+			if ($row < $numRows-1) print($this->rowSepText);
+			$row++;
 		}
 		
 		print($this->tableEndText);
