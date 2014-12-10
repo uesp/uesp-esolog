@@ -31,7 +31,7 @@ class CEsoDumpMinedItems {
 	);
 	
 	public $itemId = 0;
-	public $sortFields = array();
+	public $sortFields = array("level", "quality");
 	public $db = null;
 	public $outputType = "csv";
 	public $noTransform = false;
