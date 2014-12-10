@@ -20,11 +20,24 @@ class CEsoDumpMinedItems {
 	public $db = null;
 	public $outputType = "csv";
 	public $inputParams = array();
+	public $itemRecords = array();
+	public $fieldRecords = array();
+	
+	private $tableFields = array("all");
+	private $tableStartText = "";
+	private $tableEndText = "";
+	private $colStartText = "";
+	private $colEndText = "";
+	private $rowStartText = "";
+	private $rowEndText = "";
+	private $rowSepText = "";
+	private $colSepText = "";
 	
 	
 	public function __construct()
 	{
 		error_reporting(E_ALL);
+		$this->SetCsvStrings();
 		
 		$this->SetInputParams();
 		$this->ParseInputParameters();
@@ -89,8 +102,7 @@ class CEsoDumpMinedItems {
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
-			$matches = array();
-			$result = preg_match("|^([a-zA-Z0-9]+)|s", $this->inputParams['sort'], $matches);
+			$result = preg_match("|^([a-zA-Z0-9_]+)|s", $this->inputParams['sort'], $matches);
 			if ($result) $this->sortField = $matches[1];
 		}
 		
@@ -107,7 +119,58 @@ class CEsoDumpMinedItems {
 			
 		}
 		
+		if (array_key_exists('fields', $this->inputParams))
+		{
+			$fields = preg_split("/,/", $this->inputParams['fields']);
+			$this->tableFields = array();
+			
+			foreach ($fields as $field)
+			{
+				$result = preg_match("|^([a-zA-Z0-9_]+)|s", trim($field), $matches);
+				if ($result) $this->tableFields[] = $matches[1];
+			}
+		}
+		
 		return true;
+	}
+	
+	
+	public function SetCsvStrings()
+	{
+		$this->tableStartText = "";
+		$this->tableEndText = "";
+		$this->colStartText = "";
+		$this->colEndText = "";
+		$this->rowStartText = "";
+		$this->rowEndText = "\n";
+		$this->rowSepText = "";
+		$this->colSepText = ",";
+	}
+	
+	
+	public function SetHtmlStrings()
+	{
+		$this->tableStartText = "<table border='1' cellpadding='0' cellspacing='0' class='esodmi_table'>\n";
+		$this->tableEndText = "</table>\n";
+		$this->colStartText = "<td>";
+		$this->colEndText = "</td>";
+		$this->rowStartText = "<tr>";
+		$this->rowEndText = "</tr>\n";
+		$this->rowSepText = "";
+		$this->colSepText = "";
+	}
+	
+	
+	public function SetWikiStrings()
+	{
+		$this->tableStartText = "{| class='wikitable'\n";
+		$this->tableEndText = "|}\n";
+		$this->colStartText = "|| ";
+		$this->colEndText = "";
+		$this->rowStartText = "|-\n";
+		$this->rowEndText = "\n";
+		$this->rowSepText = "";
+		$this->colSepText = "";
 	}
 	
 	
@@ -135,37 +198,116 @@ class CEsoDumpMinedItems {
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error!");
 		
-		$records = array();
+		$this->itemRecords = array();
 		if ($result->num_rows === 0) return $records;
 		$result->data_seek(0);
 		
 		while (($row = $result->fetch_assoc()))
 		{
-			$records[] = $row;
+			$this->itemRecords[] = $row;
 		}
 		
-		return $records;
+		return true;
 	}
 	
 	
-	public function OutputRecords($records)
+	public function LoadFields()
 	{
-		print("id, itemid, level, quality, value, intlevel, intsubtype, weaponPower, armorRating\n");
+		$query = "DESCRIBE minedItem;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error!");
 		
-		foreach ($records as $key => $value)
+		$this->fieldRecords = array();
+		if ($result->num_rows === 0) return false;
+		
+		while (($row = $result->fetch_assoc()))
 		{
-			print("${value['id']}, ${value['itemId']}, ${value['level']}, ${value['quality']}, ${value['value']}, ${value['internalLevel']}, ${value['internalSubtype']}, ${value['weaponPower']}, ${value['armorRating']},\n");
+			$this->fieldRecords[] = $row;
 		}
 		
+		return true;
+	}
+	
+	
+	public function SetTableFields()
+	{
+		$doAllFields = false;
+		$newFields = array();
+		
+		foreach ($this->tableFields as $key => $field)
+		{
+			if ($field == "all") 
+				$doAllFields = true;
+			else
+				$newFields[] = $field;
+		}
+		
+		if ($doAllFields)
+		{
+			$newFields[] = "id";
+			$newFields[] = "itemId";
+			$newFields[] = "level";
+			$newFields[] = "quality";
+			$newFields[] = "value";
+			$newFields[] = "internalLevel";
+			$newFields[] = "internalSubtype";
+			$newFields[] = "weaponPower";
+			$newFields[] = "armorRating";
+		}
+		
+		$this->tableFields = $newFields;
+	}
+	
+	
+	public function OutputRecords()
+	{
+		print($this->tableStartText);
+		print($this->rowStartText);
+		
+		foreach ($this->tableFields as $key => $field)
+		{
+			print($this->colStartText);
+			print($field);
+			print($this->colEndText);
+			print($this->colSepText);
+		}
+		
+		print($this->rowEndText);
+		print($this->rowSepText);
+		
+		foreach ($this->itemRecords as $record)
+		{
+			print($this->rowStartText);
+			
+			foreach ($this->tableFields as $field)
+			{
+				
+				if (array_key_exists($field, $record))
+					$value = $record[$field];
+				else
+					$value = "";
+				
+				print($this->colStartText);
+				print($value);
+				print($this->colEndText);
+				print($this->colSepText);
+			}
+			
+			print($this->rowEndText);
+			print($this->rowSepText);
+		}
+		
+		print($this->tableEndText);
 	}
 	
 	
 	public function Output()
 	{
-		$records = $this->LoadRecords();
-		if (!$records) return false;
+		if (!$this->LoadFields()) return false;
+		$this->SetTableFields();
 		
-		$this->OutputRecords($records);
+		if (!$this->LoadRecords()) return false;
+		$this->OutputRecords();
 	}
 	
 	
