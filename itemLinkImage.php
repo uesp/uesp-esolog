@@ -373,14 +373,14 @@ class CEsoItemLinkImage
 			elseif ($value[0] == 'b' && preg_match("|by ([0-9\.]+)|s", $value, $matches))
 			{
 				unset($newData['br']);
-				$newData['text'] = "by  ";
+				$newData['text'] = "by ";
 				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
 				$newData['width']  = $extents[0];
 				$newData['height'] = $extents[1];
 				$printData[] = $newData;
 				
 				$newData = $lineData;
-				$newData['text'] = " " . $matches[1];
+				$newData['text'] = $matches[1];
 				$newData['color'] = 0xffffff;
 			}
 			elseif ($value[0] == 'f' && preg_match("|for ([0-9\.]+)|s", $value, $matches))
@@ -674,7 +674,7 @@ class CEsoItemLinkImage
 		$x = (self::ESOIL_IMAGE_WIDTH - $imageWidth) / 2;
 		
 		imagecopy($image, $hrImage, $x, $y, 0, 0, $imageWidth, $imageHeight);
-		return true;
+		return array($imageWidth, $imageHeight);
 	}
 	
 	
@@ -822,17 +822,49 @@ class CEsoItemLinkImage
 	{
 		$type = $this->itemRecord['type'];
 		if ($type <= 0) return 0;
-		$charges = $this->itemRecord['maxCharges'];
+		$maxCharges = $this->itemRecord['maxCharges'];
+		$coverImageSize = 0;
+		$coverImageHeight = 0;
 		
-		if ($type == 1 && $charges > 0) 
+		if ($type == 1 && $maxCharges > 0)
+		{
+			$coverImageHeight = 5;
+			$charges = $this->itemCharges;
+			if ($charges < 0) $charges = $maxCharges;
+			$coverImageSize = ($maxCharges - $charges) / $maxCharges * 112;
+			if ($coverImageSize < 0) $coverImageSize = 0;
+			if ($coverImageSize > 112) $coverImageSize = 112;
+			
 			$itemBarFile = "resources/eso_item_chargebar.png";
-		elseif ($type == 1 || $type == 2) 
+		}
+		elseif ($type == 1 || $type == 2)
+		{
+			$coverImageHeight = 4;
+			$condition = $this->itemCharges/100;
+			if ($condition < 0) $condition = 100;
+			$coverImageSize = (100 - $condition) * 112 / 100;
+			if ($coverImageSize < 0) $coverImageSize = 0;
+			if ($coverImageSize > 112) $coverImageSize = 112;
+			
 			$itemBarFile = "resources/eso_item_conditionbar.png";
+		}
 		else
+		{
 			return 0;
+		}
 		
-		if ($this->OutputCenterImage($image, $itemBarFile, $y)) return 7 + $this->blockMargin;
-		return 0;
+		$result = $this->OutputCenterImage($image, $itemBarFile, $y);
+		if (!$result) return 0;
+		
+		if ($coverImageSize > 0)
+		{
+			$x = (self::ESOIL_IMAGE_WIDTH - $result[0])/2 + 3;
+			imagefilledrectangle($image, $x, $y+1, $x+$coverImageSize, $y+1+$coverImageHeight, 0);
+			$x = (self::ESOIL_IMAGE_WIDTH + $result[0])/2 - 4;
+			imagefilledrectangle($image, $x-$coverImageSize, $y+1, $x, $y+1+$coverImageHeight, 0);
+		}
+		
+		return 7 + $this->blockMargin;
 	}
 	
 	

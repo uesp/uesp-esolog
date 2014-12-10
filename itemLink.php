@@ -290,6 +290,7 @@ class CEsoItemLink
 			}
 			
 			$row['isBound'] = $this->itemBound;
+			$row['charges'] = $this->itemCharges;
 			$row['isCrafted'] = $this->itemCrafted;
 			$row['enchantId1'] = $this->enchantId1;
 			$row['enchantId2'] = $this->enchantId2;
@@ -522,6 +523,7 @@ class CEsoItemLink
 		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
 		$this->itemRecord['isBound'] = $this->itemBound;
 		$this->itemRecord['isCrafted'] = $this->itemCrafted;
+		$this->itemRecord['charges'] = $this->itemCharges;
 		
 		if ($this->itemStyle > 0 && $this->itemStyle != $this->itemRecord['style'])
 		{
@@ -654,10 +656,30 @@ class CEsoItemLink
 	{
 		$type = $this->itemRecord['type'];
 		if ($type <= 0) return "";
-		$charges = $this->itemRecord['maxCharges'];
+		$maxCharges = $this->itemRecord['maxCharges'];
 		
-		if ($type == 1 && $charges > 0) return "<img src='resources/eso_item_chargebar.png' />";
-		if ($type == 1 || $type == 2) return "<img src='resources/eso_item_conditionbar.png' />";
+		if ($type == 1 && $maxCharges > 0)
+		{
+			$charges = $this->itemCharges;
+			if ($charges < 0) $charges = $maxCharges;
+			$coverImageSize = ($maxCharges - $charges) / $maxCharges * 112;
+			if ($coverImageSize < 0) $coverImageSize = 0;
+			if ($coverImageSize > 112) $coverImageSize = 112;
+			
+			return "<img src='resources/eso_item_chargebar.png' id='esoil_chargebar' /><img src='resources/eso_item_barblack.png' id='esoil_chargebar_coverleft' style='width: {$coverImageSize}px;' /><img src='resources/eso_item_barblack.png' id='esoil_chargebar_coverright' style='width: {$coverImageSize}px;' />";
+		}
+		
+		if ($type == 1 || $type == 2)
+		{
+			$condition = $this->itemCharges/100;
+			if ($condition < 0) $condition = 100;
+			$coverImageSize = (100 - $condition) * 112 / 100;
+			if ($coverImageSize < 0) $coverImageSize = 0;
+			if ($coverImageSize > 112) $coverImageSize = 112;
+			
+			return "<img src='resources/eso_item_conditionbar.png' id='esoil_conditionbar' /><img src='resources/eso_item_barblack.png' id='esoil_conditionbar_coverleft' style='width: {$coverImageSize}px;' /><img src='resources/eso_item_barblack.png' id='esoil_conditionbar_coverright' style='width: {$coverImageSize}px;' />";
+		}
+		
 		return "";
 	}
 	
@@ -825,7 +847,7 @@ class CEsoItemLink
 		$d16 = $this->itemRecord['style']; //Style
 		$d17 = $this->itemCrafted; //Crafted
 		$d18 = $this->itemBound; //Bound
-		$d19 = 0; //Charges
+		$d19 = $this->itemCharges; //Charges
 		$d20 = 0; //PotionData
 		$itemName = $this->itemRecord['name'];
 		

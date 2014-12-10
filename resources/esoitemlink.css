@@ -270,6 +270,8 @@ h1, h2, h3 {
 #esoil_itembar {
 	margin-top: 1.5em;
 	margin-bottom: 0.4em;
+	padding: 1px;
+	position: relative;
 }
 
 .esoil_white
@@ -297,4 +299,43 @@ h1, h2, h3 {
 	font-size: 1.5em;
 	font-weight: bold;
 	text-decoration: underline;
+}
+
+#esoil_chargebar, #esoil_conditionbar {
+	z-index: 50;
+	position: absolute;
+	left: 78px;
+	top: 0px;
+}
+
+#esoil_chargebar_coverright {
+	position: absolute;
+	right: 86px;
+	top: 1px;
+	height: 6px;
+	z-index: 100;
+}
+
+#esoil_chargebar_coverleft {
+	position: absolute;
+	left: 81px;
+	top: 1px;
+	height: 6px;
+	z-index: 100;
+}
+
+#esoil_conditionbar_coverright {
+	position: absolute;
+	right: 86px;
+	top: 1px;
+	height: 5px;
+	z-index: 100;
+}
+
+#esoil_conditionbar_coverleft {
+	position: absolute;
+	left: 81px;
+	top: 1px;
+	height: 5px;
+	z-index: 100;
 }
