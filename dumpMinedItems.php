@@ -7,7 +7,6 @@
  */
 
 	// Database users, passwords and other secrets
-
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 

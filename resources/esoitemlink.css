@@ -196,6 +196,7 @@ h1, h2, h3 {
 	font-size: 0.8em;
 	color: #C5C29E;
 	margin: 10px;
+	margin-bottom: 25px;
 	text-align: left;
 }
 
@@ -205,6 +206,15 @@ h1, h2, h3 {
 	bottom: 0px;
 	color: #555;
 	font-size: 0.8em;
+}
+
+#esoil_itemstyle {
+	position: absolute;
+	left: 10px;
+	bottom: 0px;
+	color: #C5C29E;
+	font-weight: bold;
+	font-size: 0.9em;
 }
 
 .esoil_quality_None {

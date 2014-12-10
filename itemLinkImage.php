@@ -957,6 +957,22 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function MakeItemStyle()
+	{
+		if ($this->itemStyle > 0) return GetEsoItemStyleText($this->itemStyle);
+		return GetEsoItemStyleText($this->itemRecord['style']);
+	}
+	
+	
+	private function OutputItemStyle($image, $y)
+	{
+		$style = $this->MakeItemStyle();
+		if ($style == "") return 0;
+		
+		$this->PrintText($image, $this->smallFontSize, $this->borderMargin + 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $style);
+	}
+	
+	
 	public function OutputBorder ($image)
 	{
 		$borderImage = imagecreatefrompng("resources/eso_item_border.png");
@@ -1087,8 +1103,9 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemTraitAbilityBlock($image, $y);
 		$y += $this->OutputItemSetBlock($image, $y);
 		
-		$y += $this->OutputItemDescription($image, $y);
+		$y += $this->OutputItemDescription($image, $y) + 4;
 		
+		$this->OutputItemStyle($image, $y);
 		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");
 		$y += 8;
 		
