@@ -40,12 +40,13 @@ class CEsoDumpMinedItems {
 	);
 	
 	public $itemId = 0;
-	public $sortFields = array("level", "quality");
+	public $sortFields = array("level", "quality", "value");
 	public $db = null;
 	public $outputType = "csv";
 	public $noTransform = false;
 	public $keepBlankFields = false;
 	public $keepInvariantFields = false;
+	public $showLimits = false;
 	public $inputParams = array();
 	public $itemRecords = array();
 	public $fieldRecords = array();
@@ -134,6 +135,7 @@ class CEsoDumpMinedItems {
 		if (array_key_exists('notransform', $this->inputParams)) $this->noTransform = true;
 		if (array_key_exists('keepblank', $this->inputParams)) $this->keepBlankFields = true;
 		if (array_key_exists('keepinvariant', $this->inputParams)) $this->keepInvariantFields = true;
+		if (array_key_exists('showlimit', $this->inputParams)) $this->showLimits = true;
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
@@ -425,6 +427,11 @@ class CEsoDumpMinedItems {
 		
 		foreach ($this->itemRecords as $record)
 		{
+			if ($this->showLimits && !($row == 0 || $row == $numRows-1)) {
+				$row++;
+				continue;
+			}
+					
 			print($this->rowStartText);
 			$col = 0;
 			
