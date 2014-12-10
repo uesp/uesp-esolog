@@ -844,6 +844,9 @@ class CEsoItemLink
 	
 	private function MakeItemStyle()
 	{
+		$type = $this->itemRecord['type'];
+		if ($type != 1 && $type != 2) return "";
+		
 		if ($this->itemStyle > 0) return GetEsoItemStyleText($this->itemStyle);
 		return GetEsoItemStyleText($this->itemRecord['style']);
 	}
