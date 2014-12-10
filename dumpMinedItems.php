@@ -295,6 +295,12 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function CheckSortField()
+	{
+		if ($this->sortField && !$this->IsValidField($this->sortField)) $this->sortField = "";
+	}
+	
+	
 	public function OutputRecords()
 	{
 		$numRows = count($this->itemRecords);
@@ -349,6 +355,7 @@ class CEsoDumpMinedItems {
 	{
 		if (!$this->LoadFields()) return false;
 		$this->SetTableFields();
+		$this->CheckSortField();
 		
 		if (!$this->LoadRecords()) return false;
 		$this->OutputRecords();
