@@ -974,6 +974,16 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function OutputItemCraftedBlock($image, $y)
+	{
+		if ($this->itemCrafted <= 0) return 0;
+		
+		$printData = array();
+		$this->AddPrintData($printData, "Crafted by: Someone", $this->printOptionsSmallWhite, array('br' => true));
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+	}
+	
+	
 	public function OutputBorder ($image)
 	{
 		$borderImage = imagecreatefrompng("resources/eso_item_border.png");
@@ -1105,6 +1115,8 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemSetBlock($image, $y);
 		
 		$y += $this->OutputItemDescription($image, $y) + 4;
+		
+		$y += $this->OutputItemCraftedBlock($image, $y);
 		
 		$this->OutputItemStyle($image, $y);
 		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");

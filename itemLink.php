@@ -290,6 +290,7 @@ class CEsoItemLink
 			}
 			
 			$row['isBound'] = $this->itemBound;
+			$row['isCrafted'] = $this->itemCrafted;
 			$row['enchantId1'] = $this->enchantId1;
 			$row['enchantId2'] = $this->enchantId2;
 			$row['enchantIntLevel1'] = $this->enchantIntLevel1;
@@ -520,6 +521,7 @@ class CEsoItemLink
 		$output = "";
 		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
 		$this->itemRecord['isBound'] = $this->itemBound;
+		$this->itemRecord['isCrafted'] = $this->itemCrafted;
 		
 		if ($this->itemStyle > 0 && $this->itemStyle != $this->itemRecord['style'])
 		{
@@ -821,7 +823,7 @@ class CEsoItemLink
 		$d14 = 0;
 		$d15 = 0;
 		$d16 = $this->itemRecord['style']; //Style
-		$d17 = 0; //Crafted
+		$d17 = $this->itemCrafted; //Crafted
 		$d18 = $this->itemBound; //Bound
 		$d19 = 0; //Charges
 		$d20 = 0; //PotionData
@@ -830,6 +832,13 @@ class CEsoItemLink
 		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20|h[$itemName]|h";
 		
 		return $link;
+	}
+	
+	
+	private function MakeItemCraftedBlock()
+	{
+		if ($this->itemCrafted <= 0) return "";
+		return "Crafted by: Someone";
 	}
 	
 	
@@ -870,6 +879,7 @@ class CEsoItemLink
 				'{itemLeftBlockDisplay}' => $this->GetItemLeftBlockDisplay(),
 				'{itemLevelBlockDisplay}' => $this->GetItemLevelBlockDisplay(),
 				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
+				'{itemCraftedBlock}' => $this->MakeItemCraftedBlock(),
 				'{itemDataJson}' => $this->GetItemDataJson(),
 				'{itemSimilarBlock}' => $this->MakeSimilarItemBlock(),
 				'{itemEnchantId1}' => $this->itemRecord['enchantId1'],

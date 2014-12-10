@@ -95,6 +95,7 @@ h1, h2, h3 {
 	position: relative;
 	max-width: 400px;
 	min-width: 400px;
+	padding-bottom: 10px;
 }
 
 #esoil_itemicon {
@@ -196,7 +197,7 @@ h1, h2, h3 {
 	font-size: 0.8em;
 	color: #C5C29E;
 	margin: 10px;
-	margin-bottom: 25px;
+	margin-bottom: 0px;
 	text-align: left;
 }
 
@@ -249,7 +250,8 @@ h1, h2, h3 {
 	margin-right: auto;
 }
 
-#esoil_itembar, #esoil_itemsetblock, #esoil_itemtraitblock, #esoil_itemenchantblock, #esoil_itemabilityblock, #esoil_itemtraitabilityblock {
+#esoil_itembar, #esoil_itemsetblock, #esoil_itemtraitblock, #esoil_itemenchantblock,
+#esoil_itemabilityblock, #esoil_itemtraitabilityblock, #esoil_itemcraftedblock {
 	display: block;
 	margin-top: 12px;
 	margin-left: 5px;
@@ -259,6 +261,10 @@ h1, h2, h3 {
 	font-size: 1em;
 	line-height: 1.4em;
 	color: #C5C29E;
+}
+
+#esoil_itemcraftedblock {
+	color: #fff;
 }
 
 #esoil_itembar {
