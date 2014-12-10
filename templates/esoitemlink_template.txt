@@ -327,40 +327,20 @@
 			$('#esoil_itemleftblock').hide();
 			
 		var enchantBlockHtml = GetEsoItemEnchantBlockHtml(itemData);
-		
-		if (enchantBlockHtml != "")
-			$('#esoil_itemenchantblock').html(enchantBlockHtml).show();
-		else
-			$('#esoil_itemenchantblock').hide();
+		$('#esoil_itemenchantblock').html(enchantBlockHtml);
 		
 		var traitBlockHtml = GetEsoItemTraitBlockHtml(itemData);
-		
-		if (traitBlockHtml != "")
-			$('#esoil_itemtraitblock').html(traitBlockHtml).show();
-		else
-			$('#esoil_itemtraitblock').hide();
+		$('#esoil_itemtraitblock').html(traitBlockHtml);
 			
 		var abilityBlockHtml = GetEsoItemAbilityBlockHtml(itemData);
-		
-		if (abilityBlockHtml != "")
-			$('#esoil_itemabilityblock').html(abilityBlockHtml).show();
-		else
-			$('#esoil_itemabilityblock').hide();
+		$('#esoil_itemabilityblock').html(abilityBlockHtml);
 			
 		var traitAbilityBlockHtml = GetEsoItemTraitAbilityBlockHtml(itemData);
-		
-		if (traitAbilityBlockHtml != "")
-			$('#esoil_itemtraitabilityblock').html(traitAbilityBlockHtml).show();
-		else
-			$('#esoil_itemtraitabilityblock').hide();
+		$('#esoil_itemtraitabilityblock').html(traitAbilityBlockHtml);
 			
 		var setBlockHtml = GetEsoItemSetBlockHtml(itemData);
+		$('#esoil_itemsetblock').html(setBlockHtml);
 		
-		if (setBlockHtml != "")
-			$('#esoil_itemsetblock').html(setBlockHtml).show();
-		else
-			$('#esoil_itemsetblock').hide();
-			
 		$('#esoil_itemicon').attr('src', MakeEsoItemIconImageLink(itemData));
 		
 		UpdateEsoItemRawData(itemData);
