@@ -1108,7 +1108,7 @@ class CEsoItemLinkImage
 		
 		$this->OutputItemStyle($image, $y);
 		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");
-		$y += 8;
+		$y += 10;
 		
 		$imageHeight = $y + 1;
 		
