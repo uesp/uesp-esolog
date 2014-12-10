@@ -32,6 +32,9 @@ class CEsoDumpMinedItems {
 	private $tableEndText = "";
 	private $colStartText = "";
 	private $colEndText = "";
+	private $colHeaderStartText = "";
+	private $colHeaderEndText = "";
+	private $colHeaderSepText = "";
 	private $rowStartText = "";
 	private $rowEndText = "";
 	private $rowSepText = "";
@@ -152,6 +155,9 @@ class CEsoDumpMinedItems {
 		$this->tableEndText = "";
 		$this->colStartText = "";
 		$this->colEndText = "";
+		$this->colHeaderStartText = "";
+		$this->colHeaderEndText = "";
+		$this->colHeaderSepText = "";
 		$this->rowStartText = "";
 		$this->rowEndText = "\n";
 		$this->rowSepText = "";
@@ -165,6 +171,9 @@ class CEsoDumpMinedItems {
 		$this->tableEndText = "</table>\n";
 		$this->colStartText = "<td>";
 		$this->colEndText = "</td>";
+		$this->colHeaderStartText = "<th>";
+		$this->colHeaderEndText = "</th>";
+		$this->colHeaderSepText = "";
 		$this->rowStartText = "<tr>";
 		$this->rowEndText = "</tr>\n";
 		$this->rowSepText = "";
@@ -174,10 +183,13 @@ class CEsoDumpMinedItems {
 	
 	public function SetWikiStrings()
 	{
-		$this->tableStartText = "{| class='wikitable'\n";
+		$this->tableStartText = "{| class=wikitable\n";
 		$this->tableEndText = "|}\n";
 		$this->colStartText = "|| ";
 		$this->colEndText = "";
+		$this->colHeaderStartText = "!";
+		$this->colHeaderEndText = "";
+		$this->colHeaderSepText = "!";
 		$this->rowStartText = "|-\n";
 		$this->rowEndText = "\n";
 		$this->rowSepText = "";
@@ -290,10 +302,10 @@ class CEsoDumpMinedItems {
 		
 		foreach ($this->tableFields as $field)
 		{
-			print($this->colStartText);
+			print($this->colHeaderStartText);
 			print($field);
-			print($this->colEndText);
-			if ($col < $numCols-1) print($this->colSepText);
+			print($this->colHeaderEndText);
+			if ($col < $numCols-1) print($this->colHeaderSepText);
 			$col++;
 		}
 		
