@@ -28,6 +28,15 @@ class CEsoDumpMinedItems {
 			"quality" => GetEsoItemQualityText,
 			"style" => GetEsoItemStyleText,
 			"level" => GetEsoItemLevelText,
+			"enchantDesc" => FormatDescriptionString,
+			"abilityDesc" => FormatDescriptionString,
+			"traitDesc" => FormatDescriptionString,
+			"traitAbilityDesc" => FormatDescriptionString,
+			"setBonusDesc1" => FormatDescriptionString,
+			"setBonusDesc2" => FormatDescriptionString,
+			"setBonusDesc3" => FormatDescriptionString,
+			"setBonusDesc4" => FormatDescriptionString,
+			"setBonusDesc5" => FormatDescriptionString,
 	);
 	
 	public $itemId = 0;
@@ -221,6 +230,17 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function FormatDescriptionString($desc)
+	{
+		if ($this->outputType == "html")
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div> ", $desc);
+		else
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "$2 ", $desc);
+		
+		return $output;
+	}
+	
+	
 	public function OutputHtmlHeader()
 	{
 		header("Expires: 0");
@@ -366,7 +386,11 @@ class CEsoDumpMinedItems {
 	{
 		if ($this->noTransform || !array_key_exists($field, self::$TRANSFORM_FIELDS)) return $value;
 		$func = self::$TRANSFORM_FIELDS[$field];
-		return $func($value);
+		
+		if ($func === $this->FormatDescriptionString)
+			return $this->$func($value);
+		else
+			return $func($value);
 	}
 	
 	
