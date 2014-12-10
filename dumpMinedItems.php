@@ -321,12 +321,15 @@ class CEsoDumpMinedItems {
 			
 			foreach ($this->itemRecords as $record)
 			{
-				if ($record[$field] != "") $isBlank = false;
-				if ($record[$field] != $firstValue) $isInvariant = false;
+				if ($record[$field] !== "") $isBlank = false;
+				if ($record[$field] !== $firstValue) $isInvariant = false;
 				if (!$isBlank && !$isInvariant) break;
 			}
 			
-			if ((!$isBlank || $this->keepBlankFields) && ($isBlank || !$isInvariant || $this->keepInvariantFields))
+			error_log("$field = $isBlank, $isInvariant");
+			if ($isBlank) $isInvariant = false;
+			
+			if ((!$isBlank || ($isBlank && $this->keepBlankFields)) && (!$isInvariant || ($isInvariant && $this->keepInvariantFields)))
 			{
 				$newFields[] = $field;
 			}
