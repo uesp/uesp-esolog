@@ -233,9 +233,9 @@ class CEsoDumpMinedItems {
 	public function FormatDescriptionString($desc)
 	{
 		if ($this->outputType == "html")
-			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div> ", $desc);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "<div class='esodmi_desc_$2' style='display:inline;'>$2</div>", $desc);
 		else
-			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "$2 ", $desc);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "$2", $desc);
 		
 		return $output;
 	}
@@ -387,7 +387,7 @@ class CEsoDumpMinedItems {
 		if ($this->noTransform || !array_key_exists($field, self::$TRANSFORM_FIELDS)) return $value;
 		$func = self::$TRANSFORM_FIELDS[$field];
 		
-		if ($func === $this->FormatDescriptionString)
+		if ($func == "FormatDescriptionString")
 			return $this->$func($value);
 		else
 			return $func($value);
