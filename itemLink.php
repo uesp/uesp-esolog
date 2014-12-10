@@ -52,11 +52,11 @@ class CEsoItemLink
 	public $itemQuality = -1;	// 0-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
-	public $itemBound = 0;
-	public $itemStyle = 0;
-	public $itemCrafted = 0;
-	public $itemCharges = 0;
-	public $itemPotionData = 0;
+	public $itemBound = -1;
+	public $itemStyle = -1;
+	public $itemCrafted = -1;
+	public $itemCharges = -1;
+	public $itemPotionData = -1;
 	public $showStyle = true;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
@@ -605,6 +605,7 @@ class CEsoItemLink
 	
 	private function MakeItemBindTypeText()
 	{
+		if ($this->itemBound > 0) return "Bound";
 		$bindType = $this->itemRecord['bindType'];
 		
 		if ($bindType <= 0) return "";
