@@ -16,7 +16,7 @@ class CEsoDumpMinedItems {
 	
 	const SELECT_LIMIT = 2000;
 	
-	public static $DEFAULT_FIELDS = array("level", "quality", "value", "condition", "weaponPower", "armorRating", "useAbilityDesc", "enchantDesc", "maxCharges", "traitDesc", "setBonusDesc1", "setBonusDesc2", "setBonusDesc3", "setBonusDesc4", "setBonusDesc5", "internalLevel", "internalSubtype", "comment");
+	public static $DEFAULT_FIELDS = array("level", "quality", "value", "cond", "weaponPower", "armorRating", "useAbilityDesc", "enchantDesc", "maxCharges", "traitDesc", "setBonusDesc1", "setBonusDesc2", "setBonusDesc3", "setBonusDesc4", "setBonusDesc5", "internalLevel", "internalSubtype", "comment");
 	
 	public static $TRANSFORM_FIELDS = array(
 			"trait" => GetEsoItemTraitFullText,
