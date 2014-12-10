@@ -430,7 +430,7 @@
 		var d16 = firstItem['style']; //Style
 		var d17 = firstItem['isCrafted']; //Crafted
 		var d18 = firstItem['isBound']; //Bound
-		var d19 = 0; //Charges
+		var d19 = firstItem['charges']; //Charges
 		var d20 = 0; //PotionData
 		var itemName = firstItem['name'];
 		
