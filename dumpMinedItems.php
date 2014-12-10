@@ -15,6 +15,8 @@ require("esoCommon.php");
 class CEsoDumpMinedItems {
 	
 	const SELECT_LIMIT = 2000;
+	public static $DEFAULT_FIELDS = array("internalLevel", "internalSubtype", "level", "quality", "value", "weaponPower", "armorRating");
+	
 	public $itemId = 0;
 	public $sortField = "";
 	public $db = null;
@@ -22,8 +24,10 @@ class CEsoDumpMinedItems {
 	public $inputParams = array();
 	public $itemRecords = array();
 	public $fieldRecords = array();
+	public $allFields = array();
+	public $validFields = array();
 	
-	private $tableFields = array("all");
+	private $tableFields = array("default");
 	private $tableStartText = "";
 	private $tableEndText = "";
 	private $colStartText = "";
@@ -223,39 +227,48 @@ class CEsoDumpMinedItems {
 		while (($row = $result->fetch_assoc()))
 		{
 			$this->fieldRecords[] = $row;
+			$this->allFields[] = $row['Field'];
+			$this->validFields[$row['Field']] = true;
 		}
 		
 		return true;
 	}
 	
 	
+	public function IsValidField($field)
+	{
+		return array_key_exists($field, $this->validFields);
+	}
+	
+	
 	public function SetTableFields()
 	{
-		$doAllFields = false;
 		$newFields = array();
+		$newFieldMap = array();
 		
-		foreach ($this->tableFields as $key => $field)
+		foreach ($this->tableFields as $field)
 		{
 			if ($field == "all") 
-				$doAllFields = true;
+				$newFields += $this->allFields;
+			elseif ($field == "default")
+				$newFields += self::$DEFAULT_FIELDS;
 			else
 				$newFields[] = $field;
 		}
 		
-		if ($doAllFields)
+		$this->tableFields = array();
+		
+			// Remove duplicates and invalid field names
+		foreach ($newFields as $field)
 		{
-			$newFields[] = "id";
-			$newFields[] = "itemId";
-			$newFields[] = "level";
-			$newFields[] = "quality";
-			$newFields[] = "value";
-			$newFields[] = "internalLevel";
-			$newFields[] = "internalSubtype";
-			$newFields[] = "weaponPower";
-			$newFields[] = "armorRating";
+			if ($this->IsValidField($field) && !array_key_exists($field, $newFieldMap))
+			{
+				$this->tableFields[] = $field;
+				$newFieldMap[$field] = true;
+			}
 		}
 		
-		$this->tableFields = $newFields;
+		return true;
 	}
 	
 	
@@ -268,7 +281,7 @@ class CEsoDumpMinedItems {
 		print($this->rowStartText);
 		$col = 0;
 		
-		foreach ($this->tableFields as $key => $field)
+		foreach ($this->tableFields as $field)
 		{
 			print($this->colStartText);
 			print($field);
@@ -288,7 +301,6 @@ class CEsoDumpMinedItems {
 			
 			foreach ($this->tableFields as $field)
 			{
-				
 				if (array_key_exists($field, $record))
 					$value = $record[$field];
 				else
