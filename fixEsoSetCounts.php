@@ -1,5 +1,7 @@
 <?php 
 
+if (php_sapi_name() != "cli") die("Can only be run from command line!");
+
 require("/home/uesp/secrets/esolog.secrets");
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
