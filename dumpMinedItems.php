@@ -15,12 +15,22 @@ require("esoCommon.php");
 class CEsoDumpMinedItems {
 	
 	const SELECT_LIMIT = 2000;
+	
 	public static $DEFAULT_FIELDS = array("internalLevel", "internalSubtype", "level", "quality", "value", "weaponPower", "armorRating");
+	
+	public static $TRANSFORM_FIELDS = array(
+			"trait" => GetEsoItemTraitFullText,
+			"weaponType" => GetEsoItemWeaponTypeText,
+			"armorType" => GetEsoItemArmorTypeText,
+			"equipType" => GetEsoItemEquipTypeText,
+			"level" => GetEsoItemLevelText,
+	);
 	
 	public $itemId = 0;
 	public $sortField = "";
 	public $db = null;
 	public $outputType = "csv";
+	public $noTransform = false;
 	public $inputParams = array();
 	public $itemRecords = array();
 	public $fieldRecords = array();
@@ -106,6 +116,7 @@ class CEsoDumpMinedItems {
 	public function ParseInputParameters()
 	{
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = intval($this->inputParams['itemid']);
+		if (array_key_exists('notransform', $this->inputParams)) $this->noTransform = true;
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
@@ -301,6 +312,14 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function TransformFieldValue($field, $value)
+	{
+		if ($this->noTransform || !array_key_exists($field, self::$TRANSFORM_FIELDS)) return $value;
+		$func = self::$TRANSFORM_FIELDS[$field];
+		return $func($value);
+	}
+	
+	
 	public function OutputRecords()
 	{
 		$numRows = count($this->itemRecords);
@@ -331,7 +350,7 @@ class CEsoDumpMinedItems {
 			foreach ($this->tableFields as $field)
 			{
 				if (array_key_exists($field, $record))
-					$value = $record[$field];
+					$value = $this->TransformFieldValue($field, $record[$field]);
 				else
 					$value = "";
 				
