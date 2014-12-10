@@ -1168,6 +1168,11 @@ class CEsoItemLinkImage
 		if ($this->enchantId1 > 0) return false;
 		if ($this->enchantId2 > 0) return false;
 		if ($this->itemId <= 0) return false;
+		if ($this->itemBound > 0) return false;
+		if ($this->itemStyle > 0) return false;
+		if ($this->itemCrafted > 0) return false;
+		if ($this->itemCharges > 0) return false;
+		if ($this->itemPotionData > 0) return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
