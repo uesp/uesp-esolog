@@ -289,6 +289,7 @@ class CEsoItemLink
 				}
 			}
 			
+			$row['isBound'] = $this->itemBound;
 			$row['enchantId1'] = $this->enchantId1;
 			$row['enchantId2'] = $this->enchantId2;
 			$row['enchantIntLevel1'] = $this->enchantIntLevel1;
@@ -518,6 +519,7 @@ class CEsoItemLink
 	{	
 		$output = "";
 		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
+		$this->itemRecord['isBound'] = $this->itemBound;
 		
 		if ($this->itemStyle > 0 && $this->itemStyle != $this->itemRecord['style'])
 		{
@@ -820,7 +822,7 @@ class CEsoItemLink
 		$d15 = 0;
 		$d16 = $this->itemRecord['style']; //Style
 		$d17 = 0; //Crafted
-		$d18 = 0; //Bound
+		$d18 = $this->itemBound; //Bound
 		$d19 = 0; //Charges
 		$d20 = 0; //PotionData
 		$itemName = $this->itemRecord['name'];
