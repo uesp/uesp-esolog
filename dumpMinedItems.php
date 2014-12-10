@@ -203,7 +203,11 @@ class CEsoDumpMinedItems {
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
-		header("content-type: text/plain");
+		
+		if ($this->outputType == "html")
+			header("content-type: text/html");
+		else
+			header("content-type: text/plain");
 	}
 	
 	
