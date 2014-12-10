@@ -135,6 +135,13 @@ class CEsoDumpMinedItems {
 			}
 		}
 		
+		if ($this->outputType == "csv")
+			$this->SetCsvStrings();
+		else if ($this->outputType == "html")
+			$this->SetHtmlStrings();
+		elseif ($this->outputType == "wiki")
+			$this->SetWikiStrings();
+		
 		return true;
 	}
 	
