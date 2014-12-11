@@ -6,7 +6,8 @@
  * Very basic browser for the ESO mined items data.
  * 
  * TODO:
- * 
+ * 		- Breadcrumb trail
+ * 		- 
  */
 
 
