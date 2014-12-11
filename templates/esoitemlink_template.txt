@@ -55,7 +55,7 @@
 </div>
 
 <div id="esoil_controls">
-	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="64" value="{itemLevelRaw}" />
+	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="65" value="{itemLevelRaw}" />
 	<input class="esoil_rangelabel" id="esoil_leveltext" type="text" value="{itemLevel}" readonly />
 	<br />
 	<input id="esoil_qualitycontrol"  class="esoil_rangecontrol" type="range" min="0" max="5" value="{itemQualityRaw}" />
