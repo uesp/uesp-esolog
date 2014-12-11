@@ -23,9 +23,15 @@ class CEsoViewMinedItems
 	public $inputParams = array();
 	public $htmlTemplate = "";
 	public $viewType = -1;
+	public $viewEquipType = -1;
+	public $viewArmorType = -1;
+	public $viewWeaponType = -1;
 	
 	public $typeRecords = array();
 	public $equipTypeRecords = array();
+	public $weaponTypeRecords = array();
+	public $armorTypeRecords = array();
+	public $itemRecords = array();
 	
 	
 	public function __construct()
@@ -49,6 +55,9 @@ class CEsoViewMinedItems
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('type', $this->inputParams)) $this->viewType = intval($this->inputParams['type']);
+		if (array_key_exists('equiptype', $this->inputParams)) $this->viewEquipType = intval($this->inputParams['equiptype']);
+		if (array_key_exists('armortype', $this->inputParams)) $this->viewArmorType = intval($this->inputParams['armortype']);
+		if (array_key_exists('weapontype', $this->inputParams)) $this->viewWeaponType = intval($this->inputParams['weapontype']);
 	}
 	
 	
@@ -129,26 +138,117 @@ class CEsoViewMinedItems
 		$query = "SELECT COUNT(*) AS count, equipType FROM minedItemSummary WHERE type={$this->viewType} GROUP BY equipType;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
-	
+		
 		$this->equipTypeRecords = array();
-	
+		
 		while (($row = $result->fetch_assoc()))
 		{
 			$row['equipTypeName'] = GetEsoItemEquipTypeText($row['equipType']);
 			$this->equipTypeRecords[] = $row;
 		}
-	
+		
 		usort($this->equipTypeRecords, function($a, $b) {
 			return strcmp($a['equipTypeName'], $b['equipTypeName']);
 		});
-	
+		
 			return true;
+	}
+	
+	
+	public function LoadWeaponTypeRecords()
+	{
+		$query = "SELECT COUNT(*) AS count, weaponType FROM minedItemSummary WHERE type={$this->viewType} AND equipType={$this->viewEquipType} GROUP BY weaponType;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->weaponTypeRecords = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['weaponTypeName'] = GetEsoItemWeaponTypeText($row['weaponType']);
+			$this->weaponTypeRecords[] = $row;
+		}
+		
+		usort($this->weaponTypeRecords, function($a, $b) {
+			return strcmp($a['weaponTypeName'], $b['weaponTypeName']);
+		});
+		
+			return true;
+	}
+	
+	
+	public function LoadArmorTypeRecords()
+	{
+		$query = "SELECT COUNT(*) AS count, armorType FROM minedItemSummary WHERE type={$this->viewType} AND equipType={$this->viewEquipType} GROUP BY armorType;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->armorTypeRecords = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['armorTypeName'] = GetEsoItemArmorTypeText($row['armorType']);
+			$this->armorTypeRecords[] = $row;
+		}
+		
+		usort($this->armorTypeRecords, function($a, $b) {
+			return strcmp($a['armorTypeName'], $b['armorTypeName']);
+		});
+		
+			return true;
+	}
+	
+	
+	public function LoadItemRecords()
+	{
+		$where = array();
+		
+		if ($this->viewType >= 0) $where[] = " type={$this->viewType} ";
+		if ($this->viewEquipType >= 0) $where[] = " equipType={$this->viewEquipType} ";
+		if ($this->viewWeaponType >= 0) $where[] = " weaponType={$this->viewWeaponType} ";
+		if ($this->viewArmorType >= 0) $where[] = " armorType={$this->viewArmorType} ";
+		
+		$whereQuery = "";
+		if (count($where) > 0) $whereQuery = " WHERE ". implode(" AND ", $where) . " ";
+		
+		$query = "SELECT itemId,name,trait FROM minedItemSummary $whereQuery ORDER BY name;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->itemRecords = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemRecords[] = $row;
+		}
+		
+		return true;
 	}
 	
 	
 	public function MakeTitleString()
 	{
-		if ($this->viewType >= 0)
+		if ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewWeaponType >= 0)
+		{
+			$typeName = GetEsoItemTypeText($this->viewType);
+			$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
+			$weaponType = GetEsoItemWeaponTypeText($this->viewWeaponType);
+			return "$weaponType $equipTypeName $typeName Items";
+		}
+		elseif ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewArmorType >= 0)
+		{
+			$typeName = GetEsoItemTypeText($this->viewType);
+			$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
+			$armorType = GetEsoItemArmorTypeText($this->viewArmorType);
+			return "$armorType $equipTypeName $typeName Items";
+		}
+		elseif ($this->viewType >= 0 && $this->viewEquipType >= 0)
+		{
+			$typeName = GetEsoItemTypeText($this->viewType);
+			$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
+			return "$equipTypeName $typeName Items";
+		}
+		else if ($this->viewType >= 0)
 		{
 			$typeName = GetEsoItemTypeText($this->viewType);
 			return "$typeName Items";
@@ -160,18 +260,128 @@ class CEsoViewMinedItems
 	
 	public function MakeContentBlock()
 	{
-		if ($this->viewType >= 0)
+		if ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewWeaponType >= 0)
+			return $this->MakeWeaponBlock();
+		elseif ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewArmorType >= 0)
+			return $this->MakeArmorBlock();
+		elseif ($this->viewType >= 0 && $this->viewEquipType >= 0)
+			return $this->MakeLevel3Block();
+		elseif ($this->viewType >= 0)
 			return $this->MakeLevel2Block();
 		else
 			return $this->MakeTypeBlock();
 	}
 	
 	
+	public function MakeItemBlock()
+	{
+		if (!$this->LoadItemRecords()) return "";
+		$output = "<ul id='esovmi_list'>\n";
+		
+		foreach ($this->itemRecords as $item)
+		{
+			$itemId = $item['itemId'];
+			$name = $item['name'];
+			
+			if ($item['trait'] > 0)
+			{
+				$traitName = GetEsoItemTraitText($item['trait']);
+				$output .= "<li><a href='itemLink.php?itemid=$itemId'>$name ($traitName)</a></li>";
+			}
+			else
+			{
+				$output .= "<li><a href='itemLink.php?itemid=$itemId'>$name</a></li>";
+			}
+		}
+		
+		$output .= "</ul>\n";
+		return $output;
+	}
+	
+	
+	public function MakeOtherBlock()
+	{
+		return $this->MakeItemBlock();
+	}
+	
+	
+	public function MakeWeaponBlock()
+	{
+		return $this->MakeItemBlock();
+	}
+	
+	
+	public function MakeArmorBlock()
+	{
+		return $this->MakeItemBlock();
+	}
+	
+	
+	public function MakeLevel3Block()
+	{
+		if ($this->viewType == 1) return $this->MakeWeaponTypeBlock();
+		if ($this->viewType == 2) return $this->MakeArmorTypeBlock();
+		return "";
+	}
+	
+	
 	public function MakeLevel2Block()
 	{
 		if ($this->viewType == 1 || $this->viewType == 2) return $this->MakeEquipTypeBlock();
+		return $this->MakeOtherBlock();
+	}
+	
+	
+	public function MakeArmorTypeBlock()
+	{
+		if (!$this->LoadArmorTypeRecords()) return "";
 		
-		$output = "";
+		$output = "<ul id='esovmi_list'>\n";
+		$totalItems = 0;
+		$type = $this->viewType;
+		$equipType = $this->viewEquipType;
+		$typeName = GetEsoItemTypeText($this->viewType);
+		$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
+		
+		foreach ($this->armorTypeRecords as $record)
+		{
+			$armorType = $record['armorType'];
+			$armorTypeName = $record['armorTypeName'];
+			$count = $record['count'];
+			$totalItems += $count;
+			
+			$output .= "<li><a href='?type=$type&equiptype=$equipType&armortype=$armorType'>$armorTypeName ($count items)</a></li>";
+		}
+	
+		$output .= "</ul>\n";
+		$output .= "Total of $totalItems $equipTypeName $typeName items";
+		return $output;
+	}
+	
+	
+	public function MakeWeaponTypeBlock()
+	{
+		if (!$this->LoadWeaponTypeRecords()) return "";
+		
+		$output = "<ul id='esovmi_list'>\n";
+		$totalItems = 0;
+		$type = $this->viewType;
+		$equipType = $this->viewEquipType;
+		$typeName = GetEsoItemTypeText($this->viewType);
+		$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
+		
+		foreach ($this->weaponTypeRecords as $record)
+		{
+			$weaponType = $record['weaponType'];
+			$weaponTypeName = $record['weaponTypeName'];
+			$count = $record['count'];
+			$totalItems += $count;
+				
+			$output .= "<li><a href='?type=$type&equiptype=$equipType&weapontype=$weaponType'>$weaponTypeName ($count items)</a></li>";
+		}
+		
+		$output .= "</ul>\n";
+		$output .= "Total of $totalItems $equipTypeName $typeName items";
 		return $output;
 	}
 	
@@ -180,7 +390,7 @@ class CEsoViewMinedItems
 	{
 		if (!$this->LoadEquipTypeRecords()) return "";
 		
-		$output = "<ul>\n";
+		$output = "<ul id='esovmi_list'>\n";
 		$totalItems = 0;
 		$type = $this->viewType;
 		$typeName = GetEsoItemTypeText($this->viewType);
@@ -205,7 +415,7 @@ class CEsoViewMinedItems
 	{
 		if (!$this->LoadTypeRecords()) return "";
 		
-		$output = "<ul>\n";
+		$output = "<ul id='esovmi_list'>\n";
 		$totalItems = 0;
 		
 		foreach ($this->typeRecords as $record)
