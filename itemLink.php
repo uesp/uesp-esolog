@@ -31,7 +31,7 @@
  *		- Controls for enchantment level/quality
  *		- Check "comment" data mismatches
  *		- Move icons to files1
- *		- Long item names (26721, 26658)
+ *		- Long item names (26721, 26658, 57584=46 chars)
  * 
  */
 
