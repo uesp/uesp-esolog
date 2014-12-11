@@ -314,6 +314,7 @@ class CEsoDumpMinedItems {
 	{
 		if ($this->keepBlankFields && $this->keepInvariantFields) return true;
 		$newFields = array();
+		$rowCount = count($this->itemRecords);
 		
 		foreach ($this->tableFields as $field)
 		{
@@ -328,10 +329,9 @@ class CEsoDumpMinedItems {
 				if (!$isBlank && !$isInvariant) break;
 			}
 			
-			error_log("$field = $isBlank, $isInvariant");
 			if ($isBlank) $isInvariant = false;
 			
-			if ((!$isBlank || ($isBlank && $this->keepBlankFields)) && (!$isInvariant || ($isInvariant && $this->keepInvariantFields)))
+			if ((!$isBlank || ($isBlank && $this->keepBlankFields)) && (!$isInvariant || $rowCount <= 1 || ($isInvariant && $this->keepInvariantFields)))
 			{
 				$newFields[] = $field;
 			}
@@ -406,6 +406,18 @@ class CEsoDumpMinedItems {
 	{
 		$numRows = count($this->itemRecords);
 		$numCols = count($this->tableFields);
+		
+		if ($numCols == 0)
+		{
+			print("No fields to output! Try with the 'keepinvariant' option.");
+			return true;
+		}
+		
+		if ($numRows == 0)
+		{
+			print("No rows to output!");
+			return true;
+		}
 		
 		print($this->tableStartText);
 		print($this->rowStartText);
