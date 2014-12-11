@@ -25,6 +25,7 @@
  *		- Better web font
  *		- Armor/weapon models/textures/pictures?
  *		- Handle "missing" levels/qualities
+ *			- Items with no level data (fixed level like item #5216)?
  *		- Combine identical enchantments
  *		- Dynamic updates of enchantment data?
  *		- Controls for enchantment level/quality
