@@ -1123,6 +1123,12 @@ class CEsoItemLinkImage
 		$this->nameColor = $this->qualityColors[$quality];
 		if ($this->nameColor == null) $this->nameColor = $white;
 		
+		$namePrintOptions = array(
+				"font" => self::ESOIL_BOLDFONT_FILE,
+				"color" => $this->nameColor,
+				"size" => $this->bigFontSize,
+		);
+		
 		$y = $this->topMargin + $this->borderMargin + $this->medFontLineHeight;
 		$this->PrintTextAA($image, $this->smallFontSize, 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemTypeText());
 		
@@ -1130,8 +1136,14 @@ class CEsoItemLinkImage
 		$this->PrintRightText($image, $this->smallFontSize, 390, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemBindTypeText());
 		$this->PrintTextAA($image, $this->smallFontSize, 10, $y, $this->textColor, self::ESOIL_BOLDFONT_FILE, $this->MakeItemSubTypeText());
 		
-		$y += $this->bigFontLineHeight + 10;
-		$this->PrintCenterText($image, $this->bigFontSize, $y, $this->nameColor, self::ESOIL_BOLDFONT_FILE, $itemName);
+		$printData = array();
+		$this->AddPrintData($printData, $itemName, $namePrintOptions, array('br' => true, 'lineBreak' => true));
+		$y += $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->medFontLineHeight, 'center') + 10;
+		
+		$printData = array();
+		$this->AddPrintData($printData, $label, $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $valueText, $this->printOptionsLargeWhite);
+		$this->PrintDataText($image, $printData, $this->dataBlockMargin, $y + 4, 'left');
 		
 		$y += 6;
 		$this->OutputCenterImage($image, "./resources/eso_item_hr.png", $y);
