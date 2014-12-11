@@ -20,3 +20,9 @@ ol#esovmi_list li {
 ol#esovmi_itemlist li {
 	margin-bottom: 2px;
 }
+
+#esovmi_searchbox {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
