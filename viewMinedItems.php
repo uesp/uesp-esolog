@@ -205,7 +205,7 @@ class CEsoViewMinedItems
 	public function LoadSearchRecords()
 	{
 		$safeSearch = $this->db->escape_string($this->viewSearch);
-		$query = "SELECT itemId,name,trait FROM minedItemSummary WHERE MATCH(name) AGAINST('+$safeSearch' IN BOOLEAN MODE) or MATCH(description) AGAINST('+$safeSearch' IN BOOLEAN MODE) ORDER BY name LIMIT 1000;";
+		$query = "SELECT itemId,name,trait FROM minedItemSummary WHERE MATCH(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5) AGAINST('$safeSearch' IN BOOLEAN MODE) ORDER BY name LIMIT 1000;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error!" . $this->db->error);
 		
