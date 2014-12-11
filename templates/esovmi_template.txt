@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Browsing Mined Items</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoviewmineditems.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+	</head>
+<body>
+<h1>ESO Browsing Mined Items</h1>
+<h2>{title}</h2>
+{content}
+</body>
+</html>
