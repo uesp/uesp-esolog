@@ -325,6 +325,7 @@ class CEsoViewMinedItems
 		{
 			$itemId = $item['itemId'];
 			$name = $item['name'];
+			if ($name == "") $name = "[blank]";
 			
 			if ($item['trait'] > 0)
 			{

@@ -338,3 +338,23 @@ h1, h2, h3 {
 	height: 5px;
 	z-index: 100;
 }
+
+#esoil_footer {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#esoil_footer a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#esoil_footer a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+a:hover {
+	background-color: #ccc;
+}
