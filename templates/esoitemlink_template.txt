@@ -43,6 +43,7 @@
 		</div>
 	</div>
 	<br />
+	<a id="esoil_datatablelink" href="dumpMinedItems.php?itemid={itemId}&output=html">View Data Table</a>
 	<a id="esoil_itemimagelink" href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}&enchantid={itemEnchantId1}&enchantintlevel={itemEnchantIntLevel1}&enchantinttype={itemEnchantIntType1}">Link to Item Image</a>
 	<br />
 	<div id="esoil_itemsimilarblock">

@@ -74,6 +74,10 @@ h1, h2, h3 {
 	float: right;
 }
 
+#esoil_datatablelink {
+	float: left;
+}
+
 #esoil_itemcontainer {
 	display: inline-block;
 }
