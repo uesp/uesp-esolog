@@ -30,3 +30,26 @@ ol#esovmi_itemlist li {
 #esovmi_breadcrumb {
 	
 }
+
+#esovmi_footer {
+	color: #777;
+	font-style: italic;
+}
+
+#esovmi_footer a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#esovmi_footer a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+#esovmi_footer a:hover {
+	background-color: #ccc;
+}
+
+#esovmi_list a:hover, #esovmi_itemlist a:hover {
+	background-color: #ccc;
+}
