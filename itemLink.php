@@ -289,9 +289,9 @@ class CEsoItemLink
 				}
 			}
 			
-			$row['isBound'] = $this->itemBound;
-			$row['charges'] = $this->itemCharges;
-			$row['isCrafted'] = $this->itemCrafted;
+			$row['isBound'] =  $this->itemBound < 0 ? 0 : $this->itemBound;
+			$row['charges'] =  $this->itemCharges < 0 ? 0 : $this->itemCharges;
+			$row['isCrafted'] = $this->itemCrafted < 0 ? 0 : $this->itemCrafted;
 			$row['enchantId1'] = $this->enchantId1;
 			$row['enchantId2'] = $this->enchantId2;
 			$row['enchantIntLevel1'] = $this->enchantIntLevel1;
@@ -521,9 +521,9 @@ class CEsoItemLink
 	{	
 		$output = "";
 		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
-		$this->itemRecord['isBound'] = $this->itemBound;
-		$this->itemRecord['isCrafted'] = $this->itemCrafted;
-		$this->itemRecord['charges'] = $this->itemCharges;
+		$this->itemRecord['isBound'] = $this->itemBound < 0 ? 0 : $this->itemBound;
+		$this->itemRecord['isCrafted'] = $this->itemCrafted < 0 ? 0 : $this->itemCrafted;
+		$this->itemRecord['charges'] = $this->itemCharges < 0 ? 0 : $this->itemCharges;
 		
 		if ($this->itemStyle > 0 && $this->itemStyle != $this->itemRecord['style'])
 		{
@@ -845,9 +845,9 @@ class CEsoItemLink
 		$d14 = 0;
 		$d15 = 0;
 		$d16 = $this->itemRecord['style']; //Style
-		$d17 = $this->itemCrafted; //Crafted
-		$d18 = $this->itemBound; //Bound
-		$d19 = $this->itemCharges; //Charges
+		$d17 = $this->itemCrafted < 0 ? 0 : $this->itemCrafted; //Crafted
+		$d18 = $this->itemBound < 0 ? 0 : $this->itemBound; //Bound
+		$d19 = $this->itemCharges < 0 ? 0 : $this->itemCharges; //Charges
 		$d20 = 0; //PotionData
 		$itemName = $this->itemRecord['name'];
 		
