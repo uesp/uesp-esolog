@@ -7,7 +7,17 @@
  * 
  * TODO:
  * 		- Breadcrumb trail
- * 		- 
+ * 		- Advanced search?
+ * 			- item type
+ * 			- equip type
+ * 			- armor/weapon type
+ * 			- bind type
+ * 			- text
+ * 			- trait
+ * 			- flags
+ * 			- value
+ * 			- weapon/armor rating
+ * 			- style 
  */
 
 
