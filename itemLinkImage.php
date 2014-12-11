@@ -993,7 +993,8 @@ class CEsoItemLinkImage
 	private function MakeItemStyle()
 	{
 		if ($this->itemStyle > 0) return GetEsoItemStyleText($this->itemStyle);
-		return GetEsoItemStyleText($this->itemRecord['style']);
+		if ($this->itemRecord['style'] > 0) return GetEsoItemStyleText($this->itemRecord['style']);
+		return "";
 	}
 	
 	
