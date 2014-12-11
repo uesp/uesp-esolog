@@ -326,6 +326,8 @@ class CEsoViewMinedItems
 			}
 		}
 		
+		if (count($this->itemRecords) == 0) $output .= "No items found!";
+		
 		$output .= "</ol>\n";
 		return $output;
 	}
@@ -476,6 +478,7 @@ class CEsoViewMinedItems
 		$replacePairs = array(
 				'{title}' => $this->MakeTitleString(),
 				'{content}' => $this->MakeContentBlock(),
+				'{search}' => $this->viewSearch,
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);

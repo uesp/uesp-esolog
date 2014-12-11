@@ -9,6 +9,12 @@
 <body>
 <h1>ESO Browsing Mined Items</h1>
 <h2>{title}</h2>
+<div id="esovmi_searchbox">
+	<form action="" method="get">
+		<input type="input" name="search" maxlength="20" value="{search}"/>
+		<input type="submit" value="Search"/>
+	</form>
+</div>
 {content}
 </body>
 </html>
