@@ -10,6 +10,7 @@ $FIELDS = array(
 		"description",
 		"style",
 		"trait",
+		"traitDesc",
 		"type",
 		"equipType",
 		"weaponType",
@@ -22,6 +23,16 @@ $FIELDS = array(
 		"isArmorDecay",
 		"isConsumable",
 		"icon",
+		"setName",
+		"setBonusDesc1",
+		"setBonusDesc2",
+		"setBonusDesc3",
+		"setBonusDesc4",
+		"setBonusDesc5",
+		"enchantName",
+		"enchantDesc",
+		"abilityName",
+		"abilityDesc",
 );
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
@@ -33,6 +44,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			description TEXT NOT NULL,
 			style TINYINT NOT NULL DEFAULT -1,
 			trait TINYINT NOT NULL DEFAULT -1,
+			traitDesc TINYTEXT NOT NULL,
 			type TINYINT NOT NULL DEFAULT -1,
 			equipType TINYINT NOT NULL DEFAULT -1,
 			weaponType TINYINT NOT NULL DEFAULT -1,
@@ -45,6 +57,16 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			isArmorDecay BIT NOT NULL DEFAULT 0,
 			isConsumable BIT NOT NULL DEFAULT 0,
 			icon TINYTEXT NOT NULL,
+			setName TINYTEXT NOT NULL,
+			setBonusDesc1 TINYTEXT NOT NULL,
+			setBonusDesc2 TINYTEXT NOT NULL,
+			setBonusDesc3 TINYTEXT NOT NULL,
+			setBonusDesc4 TINYTEXT NOT NULL,
+			setBonusDesc5 TINYTEXT NOT NULL,
+			enchantName TINYTEXT NOT NULL,
+			enchantDesc TINYTEXT NOT NULL,
+			abilityName TINYTEXT NOT NULL,
+			abilityDesc TINYTEXT NOT NULL,
 			PRIMARY KEY (itemId),
 			INDEX index_style (style),
 			INDEX index_trait (trait),
@@ -53,8 +75,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			INDEX index_armortype (armorType),
 			INDEX index_equiptype (equipType),
 			INDEX index_crafttype (craftType),
-			FULLTEXT(name),
-			FULLTEXT(description)
+			FULLTEXT(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5)
 		);";
 
 $result = $db->query($query);
@@ -67,13 +88,22 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
 	if ($id % 100 == 0) print("Writing Item $id...\n");
 	
-	$query = "SELECT * FROM minedItem WHERE itemId=$id LIMIT 1;";
+	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalSubtype>1 LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error! " . $db->error);
 	
 	$result->data_seek(0);
 	$row = $result->fetch_assoc();
-	if (!$row) continue;
+	
+	if (!$row)
+	{
+		$query = "SELECT * FROM minedItem WHERE itemId=$id LIMIT 1;";
+		$result = $db->query($query);
+		if (!$result) exit("ERROR: Database query error! " . $db->error);
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		if (!$row) continue;
+	}
 	
 	$columns = "";
 	$values = "";
