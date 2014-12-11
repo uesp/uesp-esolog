@@ -872,7 +872,8 @@ class CEsoItemLink
 		if ($type != 1 && $type != 2) return "";
 		
 		if ($this->itemStyle > 0) return GetEsoItemStyleText($this->itemStyle);
-		return GetEsoItemStyleText($this->itemRecord['style']);
+		if ($this->itemRecord['style'] > 0) return GetEsoItemStyleText($this->itemRecord['style']);
+		return "";
 	}
 	
 	
