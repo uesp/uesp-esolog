@@ -34,6 +34,7 @@ ol#esovmi_itemlist li {
 #esovmi_footer {
 	color: #777;
 	font-style: italic;
+	font-size: 0.9em;
 }
 
 #esovmi_footer a {
@@ -46,10 +47,6 @@ ol#esovmi_itemlist li {
 	color: #996699;
 }
 
-#esovmi_footer a:hover {
-	background-color: #ccc;
-}
-
-#esovmi_list a:hover, #esovmi_itemlist a:hover {
+a:hover {
 	background-color: #ccc;
 }
