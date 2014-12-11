@@ -472,6 +472,33 @@ class CEsoViewMinedItems
 	}
 	
 	
+	public function MakeBreadCrumbBlock()
+	{
+		$output .= "&lt; <a href='?'>All Items</a>";
+		
+		if ($this->viewSearch != "") return $output;
+		if ($this->viewType < 0 && $this->viewEquipType < 0) return "";
+		
+		if ($this->viewType >= 0 && $this->viewEquipType >= 0)
+		{
+			$type = $this->viewType;
+			$typeName = GetEsoItemTypeText($this->viewType);
+			$output .= ": <a href='?type=$type'>$typeName</a>";
+		}
+		
+		if ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewWeaponType >= 0 ||
+		    $this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewArmorType >= 0)
+		{
+			$type = $this->viewType;
+			$equipType = $this->viewEquipType;
+			$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
+			$output .= ": <a href='?type=$type&equiptype=$equipType'>$equipTypeName</a>";
+		}
+		
+		return $output;
+	}
+	
+	
 	public function ViewItems()
 	{
 		$this->OutputHtmlHeader();
@@ -480,6 +507,7 @@ class CEsoViewMinedItems
 				'{title}' => $this->MakeTitleString(),
 				'{content}' => $this->MakeContentBlock(),
 				'{search}' => $this->viewSearch,
+				'{breadCrumb}' => $this->MakeBreadCrumbBlock(),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
