@@ -33,6 +33,7 @@ table#esoil_rawdatatable td:first-child {
 	margin-right: 3px;
 	border-right: solid 3px #ccc;
 	padding: 2px;
+	vertical-align: top;
 }
 
 table#esoil_rawdatatable td {
