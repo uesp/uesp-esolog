@@ -521,6 +521,7 @@ class CEsoItemLink
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
+		header("Access-Control-Allow-Origin: *.uesp.net");
 		
 		if ($this->outputType == "html")
 			header("content-type: text/html");
@@ -954,7 +955,7 @@ class CEsoItemLink
 		if (!$this->itemRecord) return false;
 		$this->LoadEnchantRecords();
 		
-		if ($this->embedLink)
+		if (!$this->embedLink)
 		{
 			$this->LoadAllItemData();
 			$this->LoadSimilarItemRecords();
