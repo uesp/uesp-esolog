@@ -10,7 +10,6 @@ $FIELDS = array(
 		"description",
 		"style",
 		"trait",
-		"traitDesc",
 		"type",
 		"equipType",
 		"weaponType",
@@ -24,15 +23,8 @@ $FIELDS = array(
 		"isConsumable",
 		"icon",
 		"setName",
-		"setBonusDesc1",
-		"setBonusDesc2",
-		"setBonusDesc3",
-		"setBonusDesc4",
-		"setBonusDesc5",
 		"enchantName",
-		"enchantDesc",
 		"abilityName",
-		"abilityDesc",
 );
 
 $RANGE_FIELDS = array(
@@ -59,7 +51,6 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			description TEXT NOT NULL,
 			style TINYINT NOT NULL DEFAULT -1,
 			trait TINYINT NOT NULL DEFAULT -1,
-			traitDesc TINYTEXT NOT NULL,
 			type TINYINT NOT NULL DEFAULT -1,
 			equipType TINYINT NOT NULL DEFAULT -1,
 			weaponType TINYINT NOT NULL DEFAULT -1,
@@ -73,27 +64,20 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			isConsumable BIT NOT NULL DEFAULT 0,
 			icon TINYTEXT NOT NULL,
 			setName TINYTEXT NOT NULL,
+			enchantName TINYTEXT NOT NULL,
+			abilityName TINYTEXT NOT NULL,
+			value TINYTEXT NOT NULL,
+			weaponPower TINYTEXT NOT NULL,
+			armorRating TINYTEXT NOT NULL,
+			abilityDesc TINYTEXT NOT NULL,
+			enchantDesc TINYTEXT NOT NULL,
+			traitDesc TINYTEXT NOT NULL,
+			traitAbilityDesc TINYTEXT NOT NULL,
 			setBonusDesc1 TINYTEXT NOT NULL,
 			setBonusDesc2 TINYTEXT NOT NULL,
 			setBonusDesc3 TINYTEXT NOT NULL,
 			setBonusDesc4 TINYTEXT NOT NULL,
 			setBonusDesc5 TINYTEXT NOT NULL,
-			enchantName TINYTEXT NOT NULL,
-			enchantDesc TINYTEXT NOT NULL,
-			abilityName TINYTEXT NOT NULL,
-			abilityDesc TINYTEXT NOT NULL,
-			valueRange TINYTEXT NOT NULL,
-			weaponPowerRange TINYTEXT NOT NULL,
-			armorRatingRange TINYTEXT NOT NULL,
-			abilityDescRange TINYTEXT NOT NULL,
-			enchantDescRange TINYTEXT NOT NULL,
-			traitDescRange TINYTEXT NOT NULL,
-			traitAbilityDescRange TINYTEXT NOT NULL,
-			setBonusDesc1Range TINYTEXT NOT NULL,
-			setBonusDesc2Range TINYTEXT NOT NULL,
-			setBonusDesc3Range TINYTEXT NOT NULL,
-			setBonusDesc4Range TINYTEXT NOT NULL,
-			setBonusDesc5Range TINYTEXT NOT NULL,
 			PRIMARY KEY (itemId),
 			INDEX index_style (style),
 			INDEX index_trait (trait),
@@ -203,7 +187,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			$values[] = "'" . $db->escape_string($value) . "'";
 		}
 		
-		$columns[] = "{$field}Range";
+		$columns[] = $field;
 	}
 	
 	$query  = "INSERT INTO minedItemSummary(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
