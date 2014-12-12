@@ -62,35 +62,7 @@ class CEsoDumpMinedItems {
 			"icon",
 	);
 	
-	public static $TRANSFORM_FIELDS = array(
-			"trait" => GetEsoItemTraitText,
-			"weaponType" => GetEsoItemWeaponTypeText,
-			"armorType" => GetEsoItemArmorTypeText,
-			"equipType" => GetEsoItemEquipTypeText,
-			"itemType" => GetEsoItemTypeText,
-			"bindType" => GetEsoItemBindTypeText,
-			"quality" => GetEsoItemQualityText,
-			"style" => GetEsoItemStyleText,
-			"level" => GetEsoItemLevelText,
-			"enchantDesc" => FormatDescriptionString,
-			"abilityDesc" => FormatDescriptionString,
-			"traitDesc" => FormatDescriptionString,
-			"traitAbilityDesc" => FormatDescriptionString,
-			"setBonusDesc1" => FormatDescriptionString,
-			"setBonusDesc2" => FormatDescriptionString,
-			"setBonusDesc3" => FormatDescriptionString,
-			"setBonusDesc4" => FormatDescriptionString,
-			"setBonusDesc5" => FormatDescriptionString,
-			"enchantDescRange" => FormatDescriptionString,
-			"abilityDescRange" => FormatDescriptionString,
-			"traitDescRange" => FormatDescriptionString,
-			"traitAbilityDescRange" => FormatDescriptionString,
-			"setBonusDesc1Range" => FormatDescriptionString,
-			"setBonusDesc2Range" => FormatDescriptionString,
-			"setBonusDesc3Range" => FormatDescriptionString,
-			"setBonusDesc4Range" => FormatDescriptionString,
-			"setBonusDesc5Range" => FormatDescriptionString,
-	);
+	public $TRANSFORM_FIELDS = array();
 	
 	public $itemId = 0;
 	public $sortFields = array("level", "quality", "value");
@@ -128,6 +100,37 @@ class CEsoDumpMinedItems {
 	
 	public function __construct()
 	{
+		$this->TRANSFORM_FIELDS = array(
+				"trait" => GetEsoItemTraitText,
+				"weaponType" => GetEsoItemWeaponTypeText,
+				"armorType" => GetEsoItemArmorTypeText,
+				"equipType" => GetEsoItemEquipTypeText,
+				"itemType" => GetEsoItemTypeText,
+				"bindType" => GetEsoItemBindTypeText,
+				"quality" => GetEsoItemQualityText,
+				"style" => GetEsoItemStyleText,
+				"level" => GetEsoItemLevelText,
+				"enchantDesc" => array($this, FormatDescriptionString),
+				"abilityDesc" => array($this, FormatDescriptionString),
+				"traitDesc" => array($this, FormatDescriptionString),
+				"traitAbilityDesc" => array($this, FormatDescriptionString),
+				"setBonusDesc1" => array($this, FormatDescriptionString),
+				"setBonusDesc2" => array($this, FormatDescriptionString),
+				"setBonusDesc3" => array($this, FormatDescriptionString),
+				"setBonusDesc4" => array($this, FormatDescriptionString),
+				"setBonusDesc5" => array($this, FormatDescriptionString),
+				"enchantDescRange" => array($this, FormatDescriptionString),
+				"abilityDescRange" => array($this, FormatDescriptionString),
+				"traitDescRange" => array($this, FormatDescriptionString),
+				"traitAbilityDescRange" => array($this, FormatDescriptionString),
+				"setBonusDesc1Range" => array($this, FormatDescriptionString),
+				"setBonusDesc2Range" => array($this, FormatDescriptionString),
+				"setBonusDesc3Range" => array($this, FormatDescriptionString),
+				"setBonusDesc4Range" => array($this, FormatDescriptionString),
+				"setBonusDesc5Range" => array($this, FormatDescriptionString),
+				"icon" => array($this, MakeIconLink),
+		);
+		
 		error_reporting(E_ALL);
 		$this->SetCsvStrings();
 		
@@ -339,6 +342,23 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function MakeIconLink($icon)
+	{
+		if ($this->outputType == "html")
+		{
+			$link = MakeEsoIconLink($icon);
+			return "<img src='$link' />";
+		}
+		elseif ($this->outputType == "wiki")
+		{
+			$icon = preg_replace("/\.dds$/", ".png", $icon);
+			return MakeEsoIconLink($icon);
+		}
+		
+		return $icon;
+	}
+	
+	
 	public function OutputHtmlHeader()
 	{
 		header("Expires: 0");
@@ -520,13 +540,13 @@ class CEsoDumpMinedItems {
 	
 	public function TransformFieldValue($field, $value)
 	{
-		if ($this->noTransform || !array_key_exists($field, self::$TRANSFORM_FIELDS)) return $value;
-		$func = self::$TRANSFORM_FIELDS[$field];
+		if ($this->noTransform || !array_key_exists($field, $this->TRANSFORM_FIELDS)) return $value;
+		$func = $this->TRANSFORM_FIELDS[$field];
 		
 		if ($func == "FormatDescriptionString")
-			return $this->$func($value);
+			return call_user_func($func, $value);
 		else
-			return $func($value);
+			return call_user_func($func, $value);
 	}
 	
 	

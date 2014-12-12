@@ -338,4 +338,11 @@ function GetEsoItemFullLevelText($level)
 }
 
 
+function MakeEsoIconLink($icon)
+{
+	if ($icon[0] == '/') return "http://esoicons.uesp.net$icon";
+	return "http://esoicons.uesp.net/$icon";
+}
+
+
 ?>
