@@ -129,6 +129,8 @@ class CEsoDumpMinedItems {
 				"setBonusDesc4Range" => array($this, FormatDescriptionString),
 				"setBonusDesc5Range" => array($this, FormatDescriptionString),
 				"icon" => array($this, MakeIconLink),
+				"itemId" => array($this, MakeItemIdLink),
+				"name" => array($this, MakeItemNameLink),
 		);
 		
 		error_reporting(E_ALL);
@@ -342,6 +344,38 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function MakeItemIdLink($itemId)
+	{
+		if ($this->outputType == "html")
+		{
+			return "<a href='http://esoitem.uesp.net/itemLink.php?itemid=$itemId'>$itemId</a>";
+		}
+		elseif ($this->outputType == "wiki")
+		{
+			return "[http://esoitem.uesp.net/itemLink.php?itemid=$itemId $itemId]";
+		}
+		
+		return $itemId;
+	}
+	
+	
+	public function MakeItemNameLink($itemName, $record)
+	{
+		$itemId = $record['itemId'];
+		
+		if ($this->outputType == "html")
+		{
+			return "<a href='http://esoitem.uesp.net/itemLink.php?itemid=$itemId'>$itemName</a>";
+		}
+		elseif ($this->outputType == "wiki")
+		{
+		return "[http://esoitem.uesp.net/itemLink.php?itemid=$itemId $itemName]";
+		}
+	
+		return $itemName;
+	}
+	
+	
 	public function MakeIconLink($icon)
 	{
 		if ($this->outputType == "html")
@@ -538,15 +572,10 @@ class CEsoDumpMinedItems {
 	}
 	
 	
-	public function TransformFieldValue($field, $value)
+	public function TransformFieldValue($field, $value, $record)
 	{
 		if ($this->noTransform || !array_key_exists($field, $this->TRANSFORM_FIELDS)) return $value;
-		$func = $this->TRANSFORM_FIELDS[$field];
-		
-		if ($func == "FormatDescriptionString")
-			return call_user_func($func, $value);
-		else
-			return call_user_func($func, $value);
+		return call_user_func($this->TRANSFORM_FIELDS[$field], $value, $record);
 	}
 	
 	
@@ -597,7 +626,7 @@ class CEsoDumpMinedItems {
 			foreach ($this->tableFields as $field)
 			{
 				if (array_key_exists($field, $record))
-					$value = $this->TransformFieldValue($field, $record[$field]);
+					$value = $this->TransformFieldValue($field, $record[$field], $record);
 				else
 					$value = "";
 				
