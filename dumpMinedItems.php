@@ -78,6 +78,7 @@ class CEsoDumpMinedItems {
 	public $allFields = array();
 	public $validFields = array();
 	public $isItemTable = true;
+	public $useExTraitName = false;
 	
 	public $weaponType = -1;
 	public $armorType = -1;
@@ -101,7 +102,7 @@ class CEsoDumpMinedItems {
 	public function __construct()
 	{
 		$this->TRANSFORM_FIELDS = array(
-				"trait" => GetEsoItemTraitText,
+				"trait" => array($this, MakeItemTraitText),
 				"weaponType" => GetEsoItemWeaponTypeText,
 				"armorType" => GetEsoItemArmorTypeText,
 				"equipType" => GetEsoItemEquipTypeText,
@@ -236,6 +237,7 @@ class CEsoDumpMinedItems {
 		if (array_key_exists('keepblank', $this->inputParams)) $this->keepBlankFields = true;
 		if (array_key_exists('keepinvariant', $this->inputParams)) $this->keepInvariantFields = true;
 		if (array_key_exists('showlimit', $this->inputParams)) $this->showLimits = true;
+		if (array_key_exists('extrait', $this->inputParams)) $this->useExTraitName = true;
 		
 		if (array_key_exists('sort', $this->inputParams))
 		{
@@ -393,6 +395,19 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function MakeItemTraitText($trait, $record)
+	{
+		$traitText = GetEsoItemTraitText($trait);
+		if (!$this->useExTraitName) return $traitText;
+		
+		$matches = array();
+		$result = preg_match("/([0-9\-\.\%]+)/s", $record['traitDesc'], $matches);
+		if (!$result) return $traitText;
+		
+		return "$traitText ({$matches[1]})";
+	}
+	
+	
 	public function OutputHtmlHeader()
 	{
 		header("Expires: 0");
@@ -506,8 +521,18 @@ class CEsoDumpMinedItems {
 			
 			foreach ($this->itemRecords as $record)
 			{
-				if ($record[$field] !== "") $isBlank = false;
-				if ($record[$field] !== $firstValue) $isInvariant = false;
+				if ($field == 'trait' && $this->useExTraitName)
+				{
+					if ($record[$field] !== "") $isBlank = false;
+					if ($record[$field] !== $firstValue) $isInvariant = false;
+					if ($record['traitDesc'] !== $this->itemRecords[0]['traitDesc']) $isInvariant = false;
+				}
+				else
+				{
+					if ($record[$field] !== "") $isBlank = false;
+					if ($record[$field] !== $firstValue) $isInvariant = false;
+				}
+				
 				if (!$isBlank && !$isInvariant) break;
 			}
 			
