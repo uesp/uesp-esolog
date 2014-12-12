@@ -48,6 +48,20 @@ class CEsoItemLink
 	const ESOIL_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	
+	static public $ESOIL_ERROR_ITEM_DATA = array(
+			"name" => "Unknown",
+			"itemId" => 0,
+			"internalSubtype" => 0,
+			"internalLevel" => 0,
+			"quality" => 0,
+			"level" => "?",
+			"value" => "?",
+			"type" => 0,
+			"bind" => 0,
+			"description" => "Unknown item!",
+			"style" => -1,
+	);
+	
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
@@ -90,7 +104,7 @@ class CEsoItemLink
 	
 	public function ReportError($errorMsg)
 	{
-		print($errorMsg);
+		//print($errorMsg);
 		error_log($errorMsg);
 		return false;
 	}
@@ -337,6 +351,26 @@ class CEsoItemLink
 	}
 	
 	
+	private function LoadItemErrorData()
+	{
+		$this->itemRecord = self::$ESOIL_ERROR_ITEM_DATA;
+		$this->itemRecord['name'] = "Unknown Item #" . $this->itemId;
+		$this->itemRecord['itemId'] = $this->itemId;
+		$this->itemRecord['quality'] = $this->itemQuality;
+		$this->itemRecord['level'] = $this->itemLevel;
+		$this->itemRecord['internalSubtype'] = $this->itemIntType;
+		$this->itemRecord['internalLevel'] = $this->itemIntLevel;
+		
+		if ($this->itemLevel > 0 && $this->itemQuality >= 0)
+			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}, level {$this->itemLevel}, and quality {$this->itemQuality}!";
+		else if ($this->itemIntType >= 0 && $this->itemIntLevel > 0)
+			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}, internalLevel {$this->itemIntLevel}, and internalSubtype {$this->itemIntType}!";
+		else
+			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}!";
+		
+	}
+	
+	
 	private function LoadItemRecord()
 	{
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
@@ -409,7 +443,8 @@ class CEsoItemLink
 		$row['enchantIntLevel2'] = $this->enchantIntLevel2;
 		$row['enchantIntType2'] = $this->enchantIntType2;
 		
-		return $row;
+		$this->itemRecord = $row;
+		return true;
 	}
 	
 	
@@ -801,7 +836,7 @@ class CEsoItemLink
 		{
 			case 2:
 			case 1:
-				return "inline";
+				return "inline-block";
 		}
 		
 		return "none";
@@ -817,10 +852,10 @@ class CEsoItemLink
 		{
 			case 2:
 			case 1:
-				return "inline";
+				return "inline-block";
 		}
 		
-		return "inline";
+		return "inline-block";
 	}
 	
 	
@@ -829,7 +864,7 @@ class CEsoItemLink
 		$value = $this->itemRecord['value'];
 		
 		if ($value <= 0) return "none";
-		return "inline";
+		return "inline-block";
 	}
 	
 	
@@ -941,18 +976,11 @@ class CEsoItemLink
 	}
 	
 	
-	public function ShowItemHtml()
-	{
-		$this->OutputHtml();
-	}
-	
-	
 	public function ShowItem()
 	{
 		$this->OutputHtmlHeader();
 		
-		$this->itemRecord = $this->LoadItemRecord();
-		if (!$this->itemRecord) return false;
+		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
 		$this->LoadEnchantRecords();
 		
 		if (!$this->embedLink)
@@ -962,7 +990,7 @@ class CEsoItemLink
 		}
 		
 		if ($this->outputType == "html")
-			$this->ShowItemHtml();
+			$this->OutputHtml();
 		elseif ($this->outputType == "text")
 			$this->DumpItem();
 		else

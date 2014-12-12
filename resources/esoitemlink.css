@@ -152,7 +152,6 @@ h1, h2, h3 {
 #esoil_datablock {
 	text-align: center;
 	white-space: nowrap;
-	min-height: 30px;
 }
 
 #esoil_itemlevelblock {
@@ -160,9 +159,6 @@ h1, h2, h3 {
 
 #esoil_itemlevelblock img {
 	vertical-align: middle;
-}
-
-#esoil_itemvalueblock {
 }
 
 #esoil_rawdata {
@@ -183,10 +179,10 @@ h1, h2, h3 {
 
 #esoil_itemleftblock, #esoil_itemvalueblock, #esoil_itemlevelblock {
 	color: #C5C29E;
-	display: inline;
+	display: inline-block;
 	font-size: 0.9em;
 	font-weight: bold;
-	height: 1.6em;
+	height: 30px;
 	line-height: 1.6em;
 	vertical-align: middle;
 	margin-right: 1.5em;
