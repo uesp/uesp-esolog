@@ -340,6 +340,7 @@ class CEsoItemLinkImage
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
 		header("content-type: image/png");
+		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
 	}
 	
 	

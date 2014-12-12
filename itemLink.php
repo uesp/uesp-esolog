@@ -556,7 +556,7 @@ class CEsoItemLink
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
-		header("Access-Control-Allow-Origin: *.uesp.net");
+		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
 		
 		if ($this->outputType == "html")
 			header("content-type: text/html");
@@ -633,7 +633,7 @@ class CEsoItemLink
 		if ($level > 50) 
 		{
 			$level -= 50;
-			return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
+			return "<img src='http://esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
 		}
 		
 		return "LEVEL <div id='esoil_itemlevel'>$level</div>";
@@ -714,7 +714,7 @@ class CEsoItemLink
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
 			
-			return "<img src='resources/eso_item_chargebar.png' id='esoil_chargebar' /><img src='resources/eso_item_barblack.png' id='esoil_chargebar_coverleft' style='width: {$coverImageSize}px;' /><img src='resources/eso_item_barblack.png' id='esoil_chargebar_coverright' style='width: {$coverImageSize}px;' />";
+			return "<img src='http://esoitem.uesp.net/resources/eso_item_chargebar.png' id='esoil_chargebar' /><img src='http://esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_chargebar_coverleft' style='width: {$coverImageSize}px;' /><img src='http://esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_chargebar_coverright' style='width: {$coverImageSize}px;' />";
 		}
 		
 		if ($type == 1 || $type == 2)
@@ -725,7 +725,7 @@ class CEsoItemLink
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
 			
-			return "<img src='resources/eso_item_conditionbar.png' id='esoil_conditionbar' /><img src='resources/eso_item_barblack.png' id='esoil_conditionbar_coverleft' style='width: {$coverImageSize}px;' /><img src='resources/eso_item_barblack.png' id='esoil_conditionbar_coverright' style='width: {$coverImageSize}px;' />";
+			return "<img src='http://esoitem.uesp.net/resources/eso_item_conditionbar.png' id='esoil_conditionbar' /><img src='http://esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_conditionbar_coverleft' style='width: {$coverImageSize}px;' /><img src='http://esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_conditionbar_coverright' style='width: {$coverImageSize}px;' />";
 		}
 		
 		return "";
