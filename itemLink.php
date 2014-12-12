@@ -952,10 +952,13 @@ class CEsoItemLink
 		
 		$this->itemRecord = $this->LoadItemRecord();
 		if (!$this->itemRecord) return false;
-		
 		$this->LoadEnchantRecords();
-		$this->LoadAllItemData();
-		$this->LoadSimilarItemRecords();
+		
+		if ($this->embedLink)
+		{
+			$this->LoadAllItemData();
+			$this->LoadSimilarItemRecords();
+		}
 		
 		if ($this->outputType == "html")
 			$this->ShowItemHtml();
