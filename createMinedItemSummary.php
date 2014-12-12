@@ -35,6 +35,21 @@ $FIELDS = array(
 		"abilityDesc",
 );
 
+$RANGE_FIELDS = array(
+		"value",
+		"weaponPower",
+		"armorRating",
+		"abilityDesc",
+		"enchantDesc",
+		"traitDesc",
+		"traitAbilityDesc",
+		"setBonusDesc1",
+		"setBonusDesc2",
+		"setBonusDesc3",
+		"setBonusDesc4",
+		"setBonusDesc5",
+);
+
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
@@ -67,6 +82,18 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			enchantDesc TINYTEXT NOT NULL,
 			abilityName TINYTEXT NOT NULL,
 			abilityDesc TINYTEXT NOT NULL,
+			valueRange TINYTEXT NOT NULL,
+			weaponPowerRange TINYTEXT NOT NULL,
+			armorRatingRange TINYTEXT NOT NULL,
+			abilityDescRange TINYTEXT NOT NULL,
+			enchantDescRange TINYTEXT NOT NULL,
+			traitDescRange TINYTEXT NOT NULL,
+			traitAbilityDescRange TINYTEXT NOT NULL,
+			setBonusDesc1Range TINYTEXT NOT NULL,
+			setBonusDesc2Range TINYTEXT NOT NULL,
+			setBonusDesc3Range TINYTEXT NOT NULL,
+			setBonusDesc4Range TINYTEXT NOT NULL,
+			setBonusDesc5Range TINYTEXT NOT NULL,
 			PRIMARY KEY (itemId),
 			INDEX index_style (style),
 			INDEX index_trait (trait),
@@ -79,7 +106,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 		);";
 
 $result = $db->query($query);
-if (!$result) exit("ERROR: Database query error! " . $db->error);
+if (!$result) exit("ERROR: Database query error creating table! " . $db->error);
 
 $FIRSTID = 1;
 $LASTID = 80000;
@@ -88,39 +115,98 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
 	if ($id % 100 == 0) print("Writing Item $id...\n");
 	
-	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalSubtype>1 LIMIT 1;";
+	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=1 AND internalSubtype=2 LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error! " . $db->error);
+	$minItemData = $result->fetch_assoc();
 	
-	$result->data_seek(0);
-	$row = $result->fetch_assoc();
-	
-	if (!$row)
+	if (!$minItemData)
 	{
 		$query = "SELECT * FROM minedItem WHERE itemId=$id LIMIT 1;";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error! " . $db->error);
-		$result->data_seek(0);
-		$row = $result->fetch_assoc();
-		if (!$row) continue;
+		$minItemData = $result->fetch_assoc();
+		if (!$minItemData) continue;
 	}
 	
-	$columns = "";
-	$values = "";
+	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=50 AND internalSubtype=312 LIMIT 1;";
+	$result = $db->query($query);
+	if (!$result) exit("ERROR: Database query error! " . $db->error);
+	$maxItemData = $result->fetch_assoc();
+	
+	if (!$maxItemData)
+	{
+		$query = "SELECT * FROM minedItem where itemId=$id ORDER BY value DESC LIMIT 1;";
+		$result = $db->query($query);
+		if (!$result) exit("ERROR: Database query error! " . $db->error);
+		$maxItemData = $result->fetch_assoc();
+	}
+	
+	$columns = array();
+	$values = array();
 	
 	foreach ($FIELDS as $field)
 	{
-		if ($columns != "") $columns .= ",";
-		if ($values != "") $values .= ",";
-		
 		$value = "";
-		if (array_key_exists($field, $row)) $value = $db->escape_string($row[$field]);
+		if (array_key_exists($field, $minItemData)) $value = $db->escape_string($minItemData[$field]);
 		
-		$columns .= $field;
-		$values .= "'$value'";
+		$columns[] = $field;
+		$values[] = "'$value'";
 	}
 	
-	$query  = "INSERT INTO minedItemSummary($columns) VALUES($values);";
+	foreach ($RANGE_FIELDS as $field)
+	{
+		$minValue = $minItemData[$field];
+		$maxValue = $maxItemData[$field];
+		
+		if (is_numeric($minValue))
+		{
+			if ($minValue == null || $minValue == $maxValue)
+				$values[] = "'$minValue'";
+			else
+				$values[] = "'$minValue-$maxValue'";
+		}
+		else
+		{
+			//Grants a 3.0 point Damage Shield for 5.0 seconds
+			//Life Drain Deals 4.0 Magic Damage and heals you for 2.0.
+			//Increase weapon enchantment effect by 8.0%
+			
+			$minNumbers = preg_split("/([0-9]+\.?[0-9]?)/s", $minValue, -1, PREG_SPLIT_DELIM_CAPTURE);
+			$maxNumbers = preg_split("/([0-9]+\.?[0-9]?)/s", $maxValue, -1, PREG_SPLIT_DELIM_CAPTURE);
+			$value = "";
+			
+			for ($i = 0; $i < count($minNumbers); $i++)
+			{
+				$minBlock = $minNumbers[$i];
+				$maxBlock = $maxNumbers[$i];
+				if ($maxBlock == null) $maxBlock = $minBlock;
+				
+				if (is_numeric($minBlock[0]))
+				{
+					if ($minBlock == $maxBlock)
+						$range = strval($minBlock);
+					else
+						$range = "$minBlock-$maxBlock";
+						
+					$value .= $range;
+				}
+				else
+				{
+					$value .= $minBlock;
+				}
+			}
+			
+			//print("\tMin: $minValue\n");
+			//print("\tMax: $maxValue\n");
+			//print("\tRange: $value\n");
+			$values[] = "'" . $db->escape_string($value) . "'";
+		}
+		
+		$columns[] = "{$field}Range";
+	}
+	
+	$query  = "INSERT INTO minedItemSummary(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error! " . $db->error);
 }

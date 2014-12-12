@@ -21,7 +21,10 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
  * 		- Display icon image
  * 		- Use esoCommon.php
  * 		- Properly parse/save trait abilities (traitAbility1...3, traitCooldown1...3)
- * 		- Rename minedItem "cond" to "condition" 
+ * 		- Rename minedItem "cond" to "condition"
+ * 		- Review indexes on minedItem
+ * 			- No FULLTEXT?
+ * 			- Index on internalLevel/internalSubtype 
  *
  * 
 	SKILL_TYPE_NONE = 0
