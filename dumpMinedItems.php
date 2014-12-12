@@ -21,9 +21,12 @@ class CEsoDumpMinedItems {
 			"value",
 			"weaponPower",
 			"armorRating",
+			"abilityName",
 			"abilityDesc",
+			"enchantName",
 			"enchantDesc",
 			"maxCharges",
+			"trait",
 			"traitDesc",
 			"setBonusDesc1",
 			"setBonusDesc2",
@@ -35,7 +38,7 @@ class CEsoDumpMinedItems {
 			"comment"
 	);
 	
-	public static $WEAPONTYPE_FIELDS = array(
+	public static $ITEMTYPE_FIELDS = array(
 			"itemId",
 			"name",
 			"equipType",
@@ -43,8 +46,11 @@ class CEsoDumpMinedItems {
 			"valueRange",
 			"weaponPowerRange",
 			"armorRatingRange",
+			"abilityName",
 			"abilityDescRange",
+			"enchantName",
 			"enchantDescRange",
+			"trait",
 			"traitDescRange",
 			"traitAbilityDescRange",
 			"setName",
@@ -188,7 +194,14 @@ class CEsoDumpMinedItems {
 		{
 			$this->weaponType = intval($this->inputParams['weapontype']);
 			$this->isItemTable = false;
-			$this->tableFields = self::$WEAPONTYPE_FIELDS;
+			$this->tableFields = self::$ITEMTYPE_FIELDS;
+		}
+		
+		if (array_key_exists('armortype', $this->inputParams))
+		{
+			$this->armorType = intval($this->inputParams['armortype']);
+			$this->isItemTable = false;
+			$this->tableFields = self::$ITEMTYPE_FIELDS;
 		}
 		
 		if (array_key_exists('notransform', $this->inputParams)) $this->noTransform = true;
@@ -364,9 +377,30 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function LoadArmorTypeRecords()
+	{
+		if ($this->armorType <= 0) return $this->ReportError("ERROR: No armorType specified!");
+		
+		$query = "SELECT * FROM minedItemSummary WHERE armorType={$this->armorType} ORDER BY name;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->itemRecords = array();
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemRecords[] = $row;
+		}
+		
+		$this->CheckFieldData();
+		return true;
+	}
+	
+	
 	public function LoadFields()
 	{
-		if ($this->weaponType > 0)
+		if ($this->weaponType > 0 || $this->armorType > 0)
 			$query = "DESCRIBE minedItemSummary;";
 		else
 			$query = "DESCRIBE minedItem;";
@@ -563,8 +597,14 @@ class CEsoDumpMinedItems {
 		{
 			if (!$this->LoadWeaponTypeRecords()) return false;
 		}
+		elseif ($this->armorType > 0)
+		{
+			if (!$this->LoadArmorTypeRecords()) return false;
+		}
 		elseif (!$this->LoadRecords())
+		{
 			return false;
+		}
 		
 		$this->OutputRecords();
 	}
