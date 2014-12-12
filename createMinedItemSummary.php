@@ -94,12 +94,14 @@ if (!$result) exit("ERROR: Database query error creating table! " . $db->error);
 
 $FIRSTID = 1;
 $LASTID = 80000;
+$MINSUBTYPE = 2;
+$MAXSUBTYPE = 312;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
 	if ($id % 100 == 0) print("Writing Item $id...\n");
 	
-	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=1 AND internalSubtype=2 LIMIT 1;";
+	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error! " . $db->error);
 	$minItemData = $result->fetch_assoc();
@@ -113,7 +115,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		if (!$minItemData) continue;
 	}
 	
-	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=50 AND internalSubtype=312 LIMIT 1;";
+	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error! " . $db->error);
 	$maxItemData = $result->fetch_assoc();
