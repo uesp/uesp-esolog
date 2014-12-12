@@ -109,6 +109,8 @@ class CEsoDumpMinedItems {
 	
 	public $weaponType = -1;
 	public $armorType = -1;
+	public $itemType = -1;
+	public $equipType = -1;
 		
 	private $tableFields = array("default");
 	private $tableStartText = "";
@@ -189,6 +191,27 @@ class CEsoDumpMinedItems {
 	public function ParseInputParameters()
 	{
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = intval($this->inputParams['itemid']);
+		
+		if (array_key_exists('itemtype', $this->inputParams))
+		{
+			$this->itemType = intval($this->inputParams['itemtype']);
+			$this->isItemTable = false;
+			$this->tableFields = self::$ITEMTYPE_FIELDS;
+		}
+		
+		if (array_key_exists('type', $this->inputParams))
+		{
+			$this->itemType = intval($this->inputParams['type']);
+			$this->isItemTable = false;
+			$this->tableFields = self::$ITEMTYPE_FIELDS;
+		}
+		
+		if (array_key_exists('equiptype', $this->inputParams))
+		{
+			$this->equipType = intval($this->inputParams['equiptype']);
+			$this->isItemTable = false;
+			$this->tableFields = self::$ITEMTYPE_FIELDS;
+		}
 		
 		if (array_key_exists('weapontype', $this->inputParams))
 		{
@@ -398,9 +421,51 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function LoadItemTypeRecords()
+	{
+		if ($this->itemType <= 0) return $this->ReportError("ERROR: No itemType specified!");
+		
+		$query = "SELECT * FROM minedItemSummary WHERE type={$this->itemType} ORDER BY name;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->itemRecords = array();
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemRecords[] = $row;
+		}
+		
+		$this->CheckFieldData();
+		return true;
+	}
+	
+	
+	public function LoadEquipTypeRecords()
+	{
+		if ($this->equipType <= 0) return $this->ReportError("ERROR: No equipType specified!");
+		
+		$query = "SELECT * FROM minedItemSummary WHERE equipType={$this->equipType} ORDER BY name;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->itemRecords = array();
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemRecords[] = $row;
+		}
+		
+		$this->CheckFieldData();
+		return true;
+	}
+	
+	
 	public function LoadFields()
 	{
-		if ($this->weaponType > 0 || $this->armorType > 0)
+		if ($this->weaponType > 0 || $this->armorType > 0 || $this->equipType > 0 || $this->itemType > 0)
 			$query = "DESCRIBE minedItemSummary;";
 		else
 			$query = "DESCRIBE minedItem;";
@@ -593,7 +658,15 @@ class CEsoDumpMinedItems {
 		$this->SetTableFields();
 		$this->CheckSortFields();
 		
-		if ($this->weaponType > 0)
+		if ($this->itemType > 0)
+		{
+			if (!$this->LoadItemTypeRecords()) return false;
+		}
+		elseif ($this->equipType > 0)
+		{
+			if (!$this->LoadEquipTypeRecords()) return false;
+		}
+		elseif ($this->weaponType > 0)
 		{
 			if (!$this->LoadWeaponTypeRecords()) return false;
 		}
