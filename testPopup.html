@@ -42,6 +42,7 @@
 <script type="text/javascript">
 	
 	var EsoItemLinkPopup = null;
+	var EsoItemLinkPopup_Visible = false;
 	var EsoItemLinkPopup_LastItemId = -1;
 	var EsoItemLinkPopup_LastLevel = -1;
 	var EsoItemLinkPopup_LastQuality = -1;
@@ -60,15 +61,13 @@
 		
 		if (level) linkSrc += "&level=" + level;
 		if (quality) linkSrc += "&quality=" + quality;
-		
 		if (EsoItemLinkPopup == null) CreateEsoItemLinkPopup();
-		console.log("Requesting " + linkSrc);
 		
 		var position = $(parent).offset();
 		var width = $(parent).width();
 		EsoItemLinkPopup.css({ top: position.top-50, left: position.left + width });
 		
-		console.log(position);
+		EsoItemLinkPopup_Visible = true;
 		
 		if (EsoItemLinkPopup_LastItemId == itemId && EsoItemLinkPopup_LastLevel == level && EsoItemLinkPopup_LastQuality == quality)
 		{
@@ -80,7 +79,7 @@
 				EsoItemLinkPopup_LastItemId = itemId; 
 				EsoItemLinkPopup_LastLevel = level;
 				EsoItemLinkPopup_LastQuality = quality;
-				EsoItemLinkPopup.show(); 
+				if (EsoItemLinkPopup_Visible) EsoItemLinkPopup.show(); 
 			});
 		}
  	}
@@ -88,6 +87,7 @@
 	
 	function HideEsoItemLinkPopup()
 	{
+		EsoItemLinkPopup_Visible = false;
 		if (EsoItemLinkPopup == null) return;
 		EsoItemLinkPopup.hide();
 	}
@@ -110,4 +110,5 @@
 </script>
 </body>
 </html>
+
 
