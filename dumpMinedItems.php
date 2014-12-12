@@ -319,13 +319,13 @@ class CEsoDumpMinedItems {
 	{
 		$this->tableStartText = "{| class=wikitable\n";
 		$this->tableEndText = "|}\n";
-		$this->colStartText = "|| ";
-		$this->colEndText = "";
-		$this->colHeaderStartText = "!";
-		$this->colHeaderEndText = "";
-		$this->colHeaderSepText = "!";
+		$this->colStartText = "| ";
+		$this->colEndText = "\n";
+		$this->colHeaderStartText = "! ";
+		$this->colHeaderEndText = "\n";
+		$this->colHeaderSepText = "";
 		$this->rowStartText = "|-\n";
-		$this->rowEndText = "\n";
+		$this->rowEndText = "";
 		$this->rowSepText = "";
 		$this->colSepText = "";
 	}
