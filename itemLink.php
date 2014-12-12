@@ -43,6 +43,7 @@ require("esoCommon.php");
 class CEsoItemLink
 {
 	const ESOIL_HTML_TEMPLATE = "templates/esoitemlink_template.txt";
+	const ESOIL_HTML_EMBED_TEMPLATE = "templates/esoitemlink_embed_template.txt";
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
 	const ESOIL_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
@@ -76,6 +77,7 @@ class CEsoItemLink
 	public $itemErrorDesc = "";
 	public $db = null;
 	public $htmlTemplate = "";
+	public $embedLink = false;
 	
 	
 	public function __construct ()
@@ -83,8 +85,6 @@ class CEsoItemLink
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
-		
-		$this->htmlTemplate = file_get_contents(self::ESOIL_HTML_TEMPLATE); 
 	}
 	
 	
@@ -154,6 +154,16 @@ class CEsoItemLink
 		if (array_key_exists('show', $this->inputParams)) $this->showAll = true;
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
+		
+		if (array_key_exists('embed', $this->inputParams))
+		{
+			$this->embedLink = true;
+			$this->htmlTemplate = file_get_contents(self::ESOIL_HTML_EMBED_TEMPLATE);
+		}
+		else
+		{
+			$this->htmlTemplate = file_get_contents(self::ESOIL_HTML_TEMPLATE);
+		}
 		
 		if (array_key_exists('enchantid', $this->inputParams))
 		{
