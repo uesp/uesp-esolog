@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Item -- {itemName}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+		<link rel="stylesheet" href="resources/esoitemlink.css" />
+		<style>
+			.eso_item_link_popup {
+				position: absolute;
+			}
+			
+			.eso_item_link {
+				font-family: "Arial", sans-serif;
+				font-weight: bold;
+				text-decoration: none;
+				text-shadow: 0px 0px 2 #000000;
+			}
+			
+			.eso_item_link_q0 { color: #888 !important; }
+			.eso_item_link_q1 { color: #888 !important; }
+			.eso_item_link_q2 { color: #2DC50E !important; }
+			.eso_item_link_q3 { color: #3A92FF !important; }
+			.eso_item_link_q4 { color: #A02EF7 !important; }
+			.eso_item_link_q5 { color: #CCAA1A !important; }
+		</style>
+	</head>
+<body>
+<h1>ESO Item Popup Test</h1>
+
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=70" class="eso_item_link eso_item_link_q1" itemid="70">[Cured Kwama Leggings]</a>
+<p />
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=54885&level=v5&quality=1" class="eso_item_link eso_item_link_q1" itemid="54885" level="v5" quality="1">[Hammer of the Resilient Yokeda]</a><br/>
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=54885&level=v5&quality=2" class="eso_item_link eso_item_link_q2" itemid="54885" level="v5" quality="2">[Hammer of the Resilient Yokeda]</a><br/>
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=54885&level=v5&quality=3" class="eso_item_link eso_item_link_q3" itemid="54885" level="v5" quality="3">[Hammer of the Resilient Yokeda]</a><br/>
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=54885&level=v5&quality=4" class="eso_item_link eso_item_link_q4" itemid="54885" level="v5" quality="4">[Hammer of the Resilient Yokeda]</a><br/>
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=54885&level=v5&quality=5" class="eso_item_link eso_item_link_q5" itemid="54885" level="v5" quality="5">[Hammer of the Resilient Yokeda]</a><br/>
+<p />
+
+<a href="http://esoitem.uesp.net/itemLink.php?itemid=710" class="eso_item_link eso_item_link_q1" itemid="701">[Bad Item]</a>
+
+<script type="text/javascript">
+	
+	var EsoItemLinkPopup = null;
+	var EsoItemLinkPopup_LastItemId = -1;
+	var EsoItemLinkPopup_LastLevel = -1;
+	var EsoItemLinkPopup_LastQuality = -1;
+	
+	
+	function CreateEsoItemLinkPopup()
+	{
+		EsoItemLinkPopup = $('<div />').addClass('eso_item_link_popup').hide();
+		$('body').append(EsoItemLinkPopup);
+	}
+	
+	
+	function ShowEsoItemLinkPopup(parent, itemId, level, quality)
+	{
+		var linkSrc = "http://esoitem.uesp.net/itemLink.php?itemid=" + itemId + "&embed";
+		
+		if (level) linkSrc += "&level=" + level;
+		if (quality) linkSrc += "&quality=" + quality;
+		
+		if (EsoItemLinkPopup == null) CreateEsoItemLinkPopup();
+		console.log("Requesting " + linkSrc);
+		
+		var position = $(parent).offset();
+		var width = $(parent).width();
+		EsoItemLinkPopup.css({ top: position.top-50, left: position.left + width });
+		
+		console.log(position);
+		
+		if (EsoItemLinkPopup_LastItemId == itemId && EsoItemLinkPopup_LastLevel == level && EsoItemLinkPopup_LastQuality == quality)
+		{
+			EsoItemLinkPopup.show();
+		}
+		else
+		{
+			EsoItemLinkPopup.load(linkSrc, "", function() { 
+				EsoItemLinkPopup_LastItemId = itemId; 
+				EsoItemLinkPopup_LastLevel = level;
+				EsoItemLinkPopup_LastQuality = quality;
+				EsoItemLinkPopup.show(); 
+			});
+		}
+ 	}
+	
+	
+	function HideEsoItemLinkPopup()
+	{
+		if (EsoItemLinkPopup == null) return;
+		EsoItemLinkPopup.hide();
+	}
+	
+	
+	function OnEsoItemLinkEnter()
+	{
+		console.log("Entering Link for ItemId = " + $(this).attr('itemid'));
+		ShowEsoItemLinkPopup(this, $(this).attr('itemid'), $(this).attr('level'), $(this).attr('quality'));
+	}
+	
+	
+	function OnEsoItemLinkLeave()
+	{
+		console.log("Leaving Link for ItemId = " + $(this).attr('itemid'), $(this).attr('level'), $(this).attr('quality'));
+		HideEsoItemLinkPopup();
+	}
+	
+	$('.eso_item_link').hover(OnEsoItemLinkEnter, OnEsoItemLinkLeave);
+</script>
+</body>
+</html>
+
