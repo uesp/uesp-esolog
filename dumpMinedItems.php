@@ -287,10 +287,10 @@ class CEsoDumpMinedItems {
 	{
 		$this->tableStartText = "";
 		$this->tableEndText = "";
-		$this->colStartText = "";
-		$this->colEndText = "";
-		$this->colHeaderStartText = "";
-		$this->colHeaderEndText = "";
+		$this->colStartText = "\"";
+		$this->colEndText = "\"";
+		$this->colHeaderStartText = "\"";
+		$this->colHeaderEndText = "\"";
 		$this->colHeaderSepText = ",";
 		$this->rowStartText = "";
 		$this->rowEndText = "\n";
