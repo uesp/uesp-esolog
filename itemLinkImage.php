@@ -345,14 +345,14 @@ class CEsoItemLinkImage
 	
 	public function FormatPrintData(&$printData, $lineData)
 	{
-		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[0-9\.]+\|r)|(Adds [0-9\.]+)|(by [0-9\.]+)|(for [0-9\.]+)#s", $lineData['text'], -1, PREG_SPLIT_DELIM_CAPTURE);
+		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[a-zA-Z \-0-9\.]+\|r)|(Adds [0-9\.]+)|(by [0-9\.]+)|(for [0-9\.]+)#s", $lineData['text'], -1, PREG_SPLIT_DELIM_CAPTURE);
 		$numFmts = count($formats);
 		
 		foreach ($formats as $key => $value)
 		{
 			$newData = $lineData;
 			
-			if ($value[0] == '|' && preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[0-9\.]+)\|r#s", $value, $matches))
+			if ($value[0] == '|' && preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[a-zA-Z \-0-9\.]+)\|r#s", $value, $matches))
 			{
 				$newData['text'] = $matches['value'];
 				$newData['color'] = hexdec($matches['color']);

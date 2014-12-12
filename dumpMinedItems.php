@@ -15,7 +15,46 @@ class CEsoDumpMinedItems {
 	
 	const SELECT_LIMIT = 2000;
 	
-	public static $DEFAULT_FIELDS = array("level", "quality", "value", "cond", "weaponPower", "armorRating", "useAbilityDesc", "enchantDesc", "maxCharges", "traitDesc", "setBonusDesc1", "setBonusDesc2", "setBonusDesc3", "setBonusDesc4", "setBonusDesc5", "internalLevel", "internalSubtype", "comment");
+	public static $DEFAULT_FIELDS = array(
+			"level", 
+			"quality",
+			"value",
+			"weaponPower",
+			"armorRating",
+			"abilityDesc",
+			"enchantDesc",
+			"maxCharges",
+			"traitDesc",
+			"setBonusDesc1",
+			"setBonusDesc2",
+			"setBonusDesc3",
+			"setBonusDesc4",
+			"setBonusDesc5",
+			"internalLevel",
+			"internalSubtype",
+			"comment"
+	);
+	
+	public static $WEAPONTYPE_FIELDS = array(
+			"itemId",
+			"name",
+			"equipType",
+			"weaponType",
+			"valueRange",
+			"weaponPowerRange",
+			"armorRatingRange",
+			"abilityDescRange",
+			"enchantDescRange",
+			"traitDescRange",
+			"traitAbilityDescRange",
+			"setName",
+			"setBonusDesc1Range",
+			"setBonusDesc2Range",
+			"setBonusDesc3Range",
+			"setBonusDesc4Range",
+			"setBonusDesc5Range",
+			"icon",
+	);
 	
 	public static $TRANSFORM_FIELDS = array(
 			"trait" => GetEsoItemTraitFullText,
@@ -28,7 +67,7 @@ class CEsoDumpMinedItems {
 			"style" => GetEsoItemStyleText,
 			"level" => GetEsoItemLevelText,
 			"enchantDesc" => FormatDescriptionString,
-			"useAbilityDesc" => FormatDescriptionString,
+			"abilityDesc" => FormatDescriptionString,
 			"traitDesc" => FormatDescriptionString,
 			"traitAbilityDesc" => FormatDescriptionString,
 			"setBonusDesc1" => FormatDescriptionString,
@@ -36,6 +75,15 @@ class CEsoDumpMinedItems {
 			"setBonusDesc3" => FormatDescriptionString,
 			"setBonusDesc4" => FormatDescriptionString,
 			"setBonusDesc5" => FormatDescriptionString,
+			"enchantDescRange" => FormatDescriptionString,
+			"abilityDescRange" => FormatDescriptionString,
+			"traitDescRange" => FormatDescriptionString,
+			"traitAbilityDescRange" => FormatDescriptionString,
+			"setBonusDesc1Range" => FormatDescriptionString,
+			"setBonusDesc2Range" => FormatDescriptionString,
+			"setBonusDesc3Range" => FormatDescriptionString,
+			"setBonusDesc4Range" => FormatDescriptionString,
+			"setBonusDesc5Range" => FormatDescriptionString,
 	);
 	
 	public $itemId = 0;
@@ -51,7 +99,11 @@ class CEsoDumpMinedItems {
 	public $fieldRecords = array();
 	public $allFields = array();
 	public $validFields = array();
+	public $isItemTable = true;
 	
+	public $weaponType = -1;
+	public $armorType = -1;
+		
 	private $tableFields = array("default");
 	private $tableStartText = "";
 	private $tableEndText = "";
@@ -131,6 +183,14 @@ class CEsoDumpMinedItems {
 	public function ParseInputParameters()
 	{
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = intval($this->inputParams['itemid']);
+		
+		if (array_key_exists('weapontype', $this->inputParams))
+		{
+			$this->weaponType = intval($this->inputParams['weapontype']);
+			$this->isItemTable = false;
+			$this->tableFields = self::$WEAPONTYPE_FIELDS;
+		}
+		
 		if (array_key_exists('notransform', $this->inputParams)) $this->noTransform = true;
 		if (array_key_exists('keepblank', $this->inputParams)) $this->keepBlankFields = true;
 		if (array_key_exists('keepinvariant', $this->inputParams)) $this->keepInvariantFields = true;
@@ -235,9 +295,9 @@ class CEsoDumpMinedItems {
 	public function FormatDescriptionString($desc)
 	{
 		if ($this->outputType == "html")
-			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "<div class='esodmi_desc_$2' style='display:inline;'>$2</div>", $desc);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div class='esodmi_desc_$2' style='display:inline;'>$2</div>", $desc);
 		else
-			$output = preg_replace("#\|c([0-9a-fA-F]{6})([0-9\.]+)\|r#s", "$2", $desc);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $desc);
 		
 		return $output;
 	}
@@ -260,7 +320,6 @@ class CEsoDumpMinedItems {
 	public function LoadRecords()
 	{
 		$itemId = $this->itemId;
-		
 		if ($itemId <= 0) return $this->ReportError("ERROR: No itemid specified!");
 		
 		$query = "SELECT * FROM minedItem WHERE itemId=$itemId";
@@ -284,9 +343,34 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function LoadWeaponTypeRecords()
+	{
+		if ($this->weaponType <= 0) return $this->ReportError("ERROR: No weaponType specified!");
+		
+		$query = "SELECT * FROM minedItemSummary WHERE weaponType={$this->weaponType} ORDER BY name;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->itemRecords = array();
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$this->itemRecords[] = $row;
+		}
+		
+		$this->CheckFieldData();
+		return true;
+	}
+	
+	
 	public function LoadFields()
 	{
-		$query = "DESCRIBE minedItem;";
+		if ($this->weaponType > 0)
+			$query = "DESCRIBE minedItemSummary;";
+		else
+			$query = "DESCRIBE minedItem;";
+		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error!");
 		
@@ -475,7 +559,13 @@ class CEsoDumpMinedItems {
 		$this->SetTableFields();
 		$this->CheckSortFields();
 		
-		if (!$this->LoadRecords()) return false;
+		if ($this->weaponType > 0)
+		{
+			if (!$this->LoadWeaponTypeRecords()) return false;
+		}
+		elseif (!$this->LoadRecords())
+			return false;
+		
 		$this->OutputRecords();
 	}
 	

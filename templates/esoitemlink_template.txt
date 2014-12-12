@@ -191,7 +191,7 @@
 		var output = text.replace(/ by ([0-9\.]+)/g, " by <div class='esoil_white'>$1</div>");
 		output = output.replace(/Adds ([0-9\.]+)/g, "Adds <div class='esoil_white'>$1</div>");
 		output = output.replace(/for ([0-9\.]+)%/g, "for <div class='esoil_white'>$1</div>%");
-		output = output.replace(/\|c([0-9a-fA-F]{6})([0-9\.]+)\|r/g, "<div style='color:#$1;display:inline;'>$2</div>");
+		output = output.replace(/\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r/g, "<div style='color:#$1;display:inline;'>$2</div>");
 		output = output.replace(/\n/g, "<br />");
 		return output;
 	}
