@@ -32,13 +32,43 @@ class CEsoItemLinkImage
 	const ESOIL_BOLDFONT_FILE = "./resources/EsoFontBold.ttf";
 	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
 	
+	static public $ESOIL_ERROR_ITEM_DATA = array(
+			"name" => "Unknown",
+			"itemId" => 0,
+			"internalSubtype" => 0,
+			"internalLevel" => 0,
+			"quality" => 0,
+			"level" => "?",
+			"value" => "?",
+			"type" => 0,
+			"bind" => 0,
+			"description" => "Unknown item!",
+			"style" => -1,
+	);
+	
+	static public $ESOIL_ITEM_SUMMARY_FIELDS = array(
+			"level",
+			"value",
+			"weaponPower",
+			"armorRating",
+			"traitDesc",
+			"enchantDesc",
+			"abilityDesc",
+			"traitAbilityDesc",
+			"setBonusDesc1",
+			"setBonusDesc2",
+			"setBonusDesc3",
+			"setBonusDesc4",
+			"setBonusDesc5",
+	);
+	
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
 	public $itemLevel = -1;		// 1-64
 	public $itemQuality = -1;	// 0-5
-	public $itemIntLevel = -1;	// 1-50
-	public $itemIntType = -1;	// 1-40
+	public $itemIntLevel = 1;	// 1-50
+	public $itemIntType = 1;	// 1-40
 	public $itemBound = -1;
 	public $itemStyle = -1;
 	public $itemCrafted = -1;
@@ -51,7 +81,9 @@ class CEsoItemLinkImage
 	public $enchantIntLevel2 = -1;
 	public $enchantIntType2 = -1;
 	public $noCache = false;
+	public $showSummary = false;
 	public $itemRecord = array();
+	public $itemSummary = array();
 	public $db = null;
 	
 	public $image = null;
@@ -184,6 +216,7 @@ class CEsoItemLinkImage
 		}
 		
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
+		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		
 		return true;
 	}
@@ -301,8 +334,63 @@ class CEsoItemLinkImage
 		$this->itemQuality = $row['quality'];
 		$this->itemLink = $row['link'];
 		
-		return $row;
+		$this->itemRecord = $row;
+		return true;
 	}
+	
+	
+	private function LoadItemErrorData()
+	{
+		$this->itemRecord = self::$ESOIL_ERROR_ITEM_DATA;
+		$this->itemRecord['name'] = "Unknown Item #" . $this->itemId;
+		$this->itemRecord['itemId'] = $this->itemId;
+		$this->itemRecord['quality'] = $this->itemQuality;
+		$this->itemRecord['level'] = $this->itemLevel;
+		$this->itemRecord['internalSubtype'] = $this->itemIntType;
+		$this->itemRecord['internalLevel'] = $this->itemIntLevel;
+		
+		if ($this->itemLevel > 0 && $this->itemQuality >= 0)
+			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}, level {$this->itemLevel}, and quality {$this->itemQuality}!";
+		else if ($this->itemIntType >= 0 && $this->itemIntLevel > 0)
+			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}, internalLevel {$this->itemIntLevel}, and internalSubtype {$this->itemIntType}!";
+		else
+			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}!";
+		
+	}
+	
+	
+	public function MergeItemSummary()
+	{
+		if ($this->itemSummary == null || count($this->itemSummary) == 0) return false;
+	
+		foreach (self::$ESOIL_ITEM_SUMMARY_FIELDS as $field)
+		{
+			$value = $this->itemSummary[$field];
+				
+			if ($field == "level" && $value == "")
+				$this->itemRecord[$field] = '1-V15';
+			else
+				$this->itemRecord[$field] = $value;
+		}
+	
+		return true;
+	}
+	
+	
+	private function LoadItemSummaryData()
+	{
+		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
+		$query = "SELECT * FROM minedItemSummary WHERE itemId={$this->itemId};";
+	
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+	
+		$this->itemSummary = $result->fetch_assoc();
+		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
+	
+		return true;
+	}
+	
 	
 	
 	private function LoadEnchantRecords()
@@ -346,7 +434,7 @@ class CEsoItemLinkImage
 	
 	public function FormatPrintData(&$printData, $lineData)
 	{
-		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[a-zA-Z \-0-9\.]+\|r)|(Adds [0-9\.]+)|(by [0-9\.]+)|(for [0-9\.]+)#s", $lineData['text'], -1, PREG_SPLIT_DELIM_CAPTURE);
+		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[a-zA-Z \-0-9\.]+\|r)|(Adds [0-9\-\.]+)|(by [0-9\-\.]+)|(for [0-9\-\.]+)#s", $lineData['text'], -1, PREG_SPLIT_DELIM_CAPTURE);
 		$numFmts = count($formats);
 		
 		foreach ($formats as $key => $value)
@@ -358,7 +446,7 @@ class CEsoItemLinkImage
 				$newData['text'] = $matches['value'];
 				$newData['color'] = hexdec($matches['color']);
 			}
-			elseif ($value[0] == 'A' && preg_match("|Adds ([0-9\.]+)|s", $value, $matches))
+			elseif ($value[0] == 'A' && preg_match("|Adds ([0-9\-\.]+)|s", $value, $matches))
 			{
 				unset($newData['br']);
 				$newData['text'] = " Adds ";
@@ -371,7 +459,7 @@ class CEsoItemLinkImage
 				$newData['text'] = $matches[1];
 				$newData['color'] = 0xffffff;
 			}
-			elseif ($value[0] == 'b' && preg_match("|by ([0-9\.]+)|s", $value, $matches))
+			elseif ($value[0] == 'b' && preg_match("|by ([0-9\-\.]+)|s", $value, $matches))
 			{
 				unset($newData['br']);
 				$newData['text'] = "by ";
@@ -384,7 +472,7 @@ class CEsoItemLinkImage
 				$newData['text'] = $matches[1];
 				$newData['color'] = 0xffffff;
 			}
-			elseif ($value[0] == 'f' && preg_match("|for ([0-9\.]+)|s", $value, $matches))
+			elseif ($value[0] == 'f' && preg_match("|for ([0-9\-\.]+)|s", $value, $matches))
 			{
 				unset($newData['br']);
 				$newData['text'] = "for ";
@@ -741,7 +829,7 @@ class CEsoItemLinkImage
 		$levelImageWidth = 0;
 		$levelImage = null;
 		
-		if ($level > 50)
+		if (!$this->showSummary && $level > 50)
 		{
 			$imageFile = "./resources/eso_item_veteranicon.png";
 			$label = "RANK ";
@@ -790,7 +878,11 @@ class CEsoItemLinkImage
 		$this->AddPrintData($printData, "VALUE ", $this->printOptionsMedBeige);
 		$this->AddPrintData($printData, $value, $this->printOptionsLargeWhite);
 		
-		$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - $this->dataBlockMargin;
+		if ($this->showSummary)
+			$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - 10;
+		else
+			$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - $this->dataBlockMargin;
+		
 		$this->PrintDataText($image, $printData, $x, $y + 4, 'right');
 	}
 	
@@ -812,10 +904,15 @@ class CEsoItemLinkImage
 				return;
 		}
 		
+		if ($this->showSummary)
+			$x = 10;
+		else
+			$x = $this->dataBlockMargin;
+		
 		$printData = array();
 		$this->AddPrintData($printData, $label, $this->printOptionsMedBeige);
 		$this->AddPrintData($printData, $valueText, $this->printOptionsLargeWhite);
-		$this->PrintDataText($image, $printData, $this->dataBlockMargin, $y + 4, 'left');
+		$this->PrintDataText($image, $printData, $x, $y + 4, 'left');
 	}
 	
 	
@@ -1279,8 +1376,13 @@ class CEsoItemLinkImage
 		
 		if (!$this->InitDatabase()) return false;
 		
-		$this->itemRecord = $this->LoadItemRecord();
-		if (!$this->itemRecord) return false;
+		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+		
+		if ($this->showSummary)
+		{
+			$this->LoadItemSummaryData();
+			$this->MergeItemSummary();
+		}
 		
 		$this->LoadEnchantRecords();
 		
