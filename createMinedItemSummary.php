@@ -28,6 +28,7 @@ $FIELDS = array(
 );
 
 $RANGE_FIELDS = array(
+		"level",
 		"value",
 		"weaponPower",
 		"armorRating",
@@ -66,6 +67,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			setName TINYTEXT NOT NULL,
 			enchantName TINYTEXT NOT NULL,
 			abilityName TINYTEXT NOT NULL,
+			level TINYTEXT NOT NULL,
 			value TINYTEXT NOT NULL,
 			weaponPower TINYTEXT NOT NULL,
 			armorRating TINYTEXT NOT NULL,
@@ -151,6 +153,16 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 				$values[] = "'$minValue'";
 			else
 				$values[] = "'$minValue-$maxValue'";
+		}
+		elseif ($field == "level")
+		{
+			$minLevel = GetEsoItemLevelText($minValue);
+			$maxLevel = GetEsoItemLevelText($maxValue);
+			
+			if ($maxLevel == null || $minLevel == $maxLevel)
+				$values[] = "'$maxLevel";
+			else
+				$values[] = "'$maxLevel-$maxLevel'";
 		}
 		else
 		{

@@ -62,6 +62,22 @@ class CEsoItemLink
 			"style" => -1,
 	);
 	
+	static public $ESOIL_ITEM_SUMMARY_FIELDS = array(
+			"level",
+			"value",
+			"weaponPower",
+			"armorRating",
+			"traitDesc",
+			"enchantDesc",
+			"abilityDesc",
+			"traitAbilityDesc",
+			"setBonusDesc1",
+			"setBonusDesc2",
+			"setBonusDesc3",
+			"setBonusDesc4",
+			"setBonusDesc5",
+	);
+	
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
@@ -86,12 +102,14 @@ class CEsoItemLink
 	public $enchantRecord2 = null;
 	public $itemAllData = array();
 	public $itemSimilarRecords = array();
+	public $itemSummary = array();
 	public $outputType = "html";
 	public $showAll = false;
 	public $itemErrorDesc = "";
 	public $db = null;
 	public $htmlTemplate = "";
 	public $embedLink = false;
+	public $showSummary = false;
 	
 	
 	public function __construct ()
@@ -165,7 +183,8 @@ class CEsoItemLink
 		}
 		
 		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
-		if (array_key_exists('show', $this->inputParams)) $this->showAll = true;
+		if (array_key_exists('show', $this->inputParams) || array_key_exists('showall', $this->inputParams)) $this->showAll = true;
+		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		
@@ -368,6 +387,39 @@ class CEsoItemLink
 		else
 			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}!";
 		
+	}
+	
+	
+	public function MergeItemSummary()
+	{
+		if ($this->itemSummary == null || count($this->itemSummary) == 0) return false;
+		
+		foreach (self::$ESOIL_ITEM_SUMMARY_FIELDS as $field)
+		{
+			$value = $this->itemSummary[$field];
+			
+			if ($field == "level" && $value == "")
+				$this->itemRecord[$field] = '1-V15';
+			else
+				$this->itemRecord[$field] = $value;
+		}
+		
+		return true;
+	}
+	
+	
+	private function LoadItemSummaryData()
+	{
+		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
+		$query = "SELECT * FROM minedItemSummary WHERE itemId={$this->itemId};";
+		
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->itemSummary = $result->fetch_assoc();
+		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
+		
+		return true;
 	}
 	
 	
@@ -779,9 +831,9 @@ class CEsoItemLink
 	
 	private function FormatDescriptionText($desc)
 	{
-		$output = preg_replace("| by ([0-9\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
-		$output = preg_replace("|Adds ([0-9\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
-		$output = preg_replace("|for ([0-9\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
+		$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
+		$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
+		$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
 		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 		$output = str_replace("\n", "<br />", $output);
 		return $output;
@@ -982,6 +1034,12 @@ class CEsoItemLink
 		
 		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
 		$this->LoadEnchantRecords();
+		
+		if ($this->showSummary)
+		{
+			$this->LoadItemSummaryData();
+			$this->MergeItemSummary();
+		}
 		
 		if (!$this->embedLink)
 		{
