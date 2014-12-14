@@ -6,11 +6,7 @@
 		<link rel="stylesheet" href="resources/esoitemlink.css" />
 		<link rel="stylesheet" href="resources/esoitemlink_embed.css" />
 		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="resources/itemlink.js"></script>
-		<script type="text/javascript">
-			var initialLevel = '{itemLevelRaw}';
-			var initialQuality = '{itemQualityRaw}';
-		</script>
+		<script type="text/javascript" src="resources/esoitemlink.js"></script>
 	</head>
 <body>
 <h1>ESO Item -- {itemName}</h1>
