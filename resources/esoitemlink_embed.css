@@ -1,0 +1,275 @@
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('http://esoitem.uesp.net/resources/EsoFontRegular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('http://esoitem.uesp.net/resources/EsoFontBold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+#esoil_outeritembox{
+	font-family: sans-serif;
+	font-size: 13px;
+}
+
+#esoil_outeritembox {
+	display: inline-block;
+	padding-top: 32px;
+	vertical-align: top;
+	padding-bottom: 5px;
+}
+
+#esoil_itembox {
+	background-color: #000;
+	border: solid 3px #C5C29E;
+	border-image: url(http://esoitem.uesp.net/resources/eso_item_border.png) 5 5 5 5 repeat;
+	border-width: 5px 5px 5px 5px;
+	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-size: 16px;
+	display: inline-block;
+	position: relative;
+	max-width: 400px;
+	min-width: 400px;
+	padding-bottom: 10px;
+}
+
+#esoil_itemicon {
+	display: block;
+	margin-left: 167px;
+	position: absolute;
+	top: -32px;
+	width: 64px;
+	height: 64px;
+}
+
+#esoil_itemtype1 {
+	color: #C5C29E;
+	font-weight: bold;
+	font-size: 0.9em;
+	position: absolute;
+	top: 0.5em;
+	left: 0.5em;
+}
+
+#esoil_itemtype2 {
+	color: #C5C29E;
+	font-weight: bold;
+	font-size: 0.9em;
+	position: absolute;
+	top: 1.7em;
+	left: 0.5em;
+}
+
+#esoil_itembindtype {
+	color: #C5C29E;
+	font-weight: bold;
+	font-size: 0.9em;
+	position: absolute;
+	right: 0.5em;
+	top: 1.7em;
+	text-align: right;
+}
+
+#esoil_itemname {
+	font-weight: bold;
+	font-size: 1.5em;
+	color: #fff;
+	text-align: center;
+ 	width: 100%;
+	margin-top: 2em;
+}
+
+#esoil_datablock {
+	text-align: center;
+	white-space: nowrap;
+}
+
+#esoil_itemlevelblock {
+	text-align: center;
+}
+
+#esoil_itemleftblock {
+	text-align: center;
+}
+
+#esoil_itemvalueblock {
+	text-align: center;
+}
+
+#esoil_itemlevelblock img {
+	vertical-align: middle;
+}
+
+#esoil_itemvalue, #esoil_itemlevel, #esoil_itemleft {
+	color: #fff;
+	display: inline;
+	font-size: 1.6em;
+	margin-left: 4px;
+}
+
+#esoil_itemleftblock, #esoil_itemvalueblock, #esoil_itemlevelblock {
+	color: #C5C29E;
+	display: inline-block;
+	font-size: 0.9em;
+	font-weight: bold;
+	height: 30px;
+	width: 120px;
+	line-height: 1.6em;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+#esoil_itemdesc {
+	font-size: 0.8em;
+	color: #C5C29E;
+	margin: 10px;
+	margin-bottom: 0px;
+	text-align: left;
+}
+
+#esoil_watermark {
+	position: absolute;
+	right: 2px;
+	bottom: 0px;
+	color: #555;
+	font-size: 0.8em;
+}
+
+#esoil_itemstyle {
+	position: absolute;
+	left: 10px;
+	bottom: 0px;
+	color: #C5C29E;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+.esoil_quality_None {
+	color: #fff !important;
+}
+
+.esoil_quality_Normal {
+	color: #fff !important;
+}
+
+.esoil_quality_Fine {
+	color: #2DC50E !important;
+}
+
+.esoil_quality_Superior {
+	color: #3A92FF !important;
+}
+
+.esoil_quality_Epic {
+	color: #A02EF7 !important;
+}
+
+.esoil_quality_Legendary {
+	color: #EECA2A !important;
+}
+
+#esoil_item_hr {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+}
+
+#esoil_itembar, #esoil_itemsetblock, #esoil_itemtraitblock, #esoil_itemenchantblock,
+#esoil_itemabilityblock, #esoil_itemtraitabilityblock, #esoil_itemcraftedblock {
+	display: block;
+	margin-top: 12px;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1.4em;
+	color: #C5C29E;
+}
+
+#esoil_itemcraftedblock {
+	color: #fff;
+}
+
+#esoil_itembar {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.esoil_white
+{
+	display: inline;
+	color: white;
+}
+
+.esoil_small
+{
+	display: inline;
+	color: white;
+	font-size: 0.9em;
+}
+
+#esoil_chargebar, #esoil_conditionbar {
+	z-index: 50;
+	position: absolute;
+	left: 78px;
+	top: -8px;
+}
+
+#esoil_chargebar_coverright {
+	position: absolute;
+	right: 86px;
+	top: -7px;
+	height: 6px;
+	z-index: 100;
+}
+
+#esoil_chargebar_coverleft {
+	position: absolute;
+	left: 81px;
+	top: -7px;
+	height: 6px;
+	z-index: 100;
+}
+
+#esoil_conditionbar_coverright {
+	position: absolute;
+	right: 86px;
+	top: -7px;
+	height: 5px;
+	z-index: 100;
+}
+
+#esoil_conditionbar_coverleft {
+	position: absolute;
+	left: 81px;
+	top: -7px;
+	height: 5px;
+	z-index: 100;
+}
+
+.eso_item_link_popup {
+	position: absolute;
+	z-index: 50;
+}
+
+.eso_item_link {
+	font-family: "Arial", sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: 0px 0px 2 #000000;
+}
+
+.eso_item_link_q0 { color: #888 !important; }
+.eso_item_link_q1 { color: #888 !important; }
+.eso_item_link_q2 { color: #2DC50E !important; }
+.eso_item_link_q3 { color: #3A92FF !important; }
+.eso_item_link_q4 { color: #A02EF7 !important; }
+.eso_item_link_q5 { color: #CCAA1A !important; }
