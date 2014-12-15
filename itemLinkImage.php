@@ -184,7 +184,11 @@ class CEsoItemLinkImage
 			$this->itemQuality = 1;
 		}
 		
-		if (array_key_exists('quality', $this->inputParams)) $this->itemQuality = (int) $this->inputParams['quality'];
+		if (array_key_exists('quality', $this->inputParams))
+		{
+			$this->itemQuality = (int) $this->inputParams['quality'];
+			if ($this->itemLevel < 0) $this->itemLevel = 1;
+		}
 		
 		if (array_key_exists('intlevel', $this->inputParams))
 		{
@@ -799,7 +803,8 @@ class CEsoItemLinkImage
 	
 		if ($type == 2) //armor
 		{
-			return "(" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . ")";
+			if ($this->itemRecord['armorType'] > 0) return "(" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . ")";
+			return "";
 		}
 		elseif ($type == 1) //weapon
 		{
