@@ -1,13 +1,13 @@
 @font-face {
 	font-family: 'EsoFontStyle';
-	src: url('http://esoitem.uesp.net/resources/EsoFontRegular.ttf') format('truetype');
+	src: url(http://esoitem.uesp.net/resources/EsoFontRegular.eot?) format('eot'), url(http://esoitem.uesp.net/resources/EsoFontRegular.ttf) format('truetype'), url(http://esoitem.uesp.net/resources/EsoFontRegular.woff) format('woff'), url(http://esoitem.uesp.net/resources/EsoFontRegular.svg) format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'EsoFontStyle';
-	src: url('http://esoitem.uesp.net/resources/EsoFontBold.ttf') format('truetype');
+	src: url(http://esoitem.uesp.net/resources/EsoFontBold.eot?) format('eot'), url(http://esoitem.uesp.net/resources/EsoFontBold.ttf) format('truetype'), url(http://esoitem.uesp.net/resources/EsoFontBold.woff) format('woff'), url(http://esoitem.uesp.net/resources/EsoFontBold.svg) format('svg');
 	font-weight: bold;
 	font-style: normal;
 }
