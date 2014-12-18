@@ -122,6 +122,7 @@ class CEsoItemLinkImage
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		
+		/*
 		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "e");
 		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "p");
 		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "y");
@@ -150,7 +151,7 @@ class CEsoItemLinkImage
 		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "qqq");
 		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "111");
 		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "...");
-		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "bbb");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "bbb"); */
 	}
 	
 	
@@ -755,7 +756,7 @@ class CEsoItemLinkImage
 		}
 		
 		$width += $widthAdj1 + $widthAdj2 + $widthAdj3 + $widthAdj4;
-		error_log("GetTextExtents($size, '$font', '$text') = $width, $height");
+		//error_log("GetTextExtents($size, '$font', '$text') = $width, $height");
 		return array($width, $height);
 	}
 	
