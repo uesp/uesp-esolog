@@ -32,6 +32,7 @@
  *		- Check "comment" data mismatches
  *		- Move icons to files1
  *		- Long item names (26721, 26658, 57584=46 chars)
+ *		- Remove temporary web fonts (wait for new fonts to be used for a while to prevent caching issues)
  * 
  */
 
