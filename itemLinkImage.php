@@ -13,6 +13,8 @@
  *	- Fix text AA.
  *	- JPEG format (tested but has no alpha).
  *
+ *
+ * 
  */
 
 // Database users, passwords and other secrets
@@ -119,6 +121,36 @@ class CEsoItemLinkImage
 	{
 		$this->SetInputParams();
 		$this->ParseInputParams();
+		
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "e");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "p");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "y");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "g");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "j");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "q");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "1");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, ".");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "b");
+		
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "ee");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "pp");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "yy");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "gg");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "jj");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "qq");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "11");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "..");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "bb");
+		
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "eee");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "ppp");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "yyy");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "ggg");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "jjj");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "qqq");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "111");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "...");
+		$this->GetTextExtents(12, self::ESOIL_REGULARFONT_FILE, "bbb");
 	}
 	
 	
@@ -659,6 +691,35 @@ class CEsoItemLinkImage
 		
 	}
 	
+	/*
+	 * imagettfbbox() seems to return incorrect widths for characters with tails below the baseline
+	 * (jpgqy).
+	 * 
+	 * Character  Width  RealWidth (pixels)
+	 *    e			7		7
+	 *    b			7		7
+	 *    g			3		7		4
+	 *    j			0		5		5
+	 *    p			3		7		4
+	 *    q			3		7		4
+	 *    y			3		7		4
+	 *    1			4		4
+	 *    .			3		3
+	 *    ee		14		14
+	 *    bb		14		14
+	 *    gg		10		14		4
+	 *    jj		3		14		9
+	 *    pp		10		14		4
+	 *    qq		10		14		4
+	 *    yy		10		14		4
+	 *    eee		21		21
+	 *    bbb		21		21
+	 *    ggg		17		21		4
+	 *    jjj		6		21		15
+	 *    ppp		17		21		4
+	 *    qqq		17		21		4
+	 *    yyy		17		21		4
+	 */
 	
 	public function GetTextExtents($size, $font, $text)
 	{
@@ -666,24 +727,35 @@ class CEsoItemLinkImage
 		
 		$width = $box[4] - $box[1];
 		$height = $box[0] - $box[5];
+		$widthAdj1 = 0;
+		$widthAdj2 = 0;
+		$widthAdj3 = 0;
+		$widthAdj4 = 0;
 		
 		for ($i = 0; $i < strlen($text); $i += 1)
 		{
-			switch ($text[i])
+			switch ($text[$i])
 			{
 				case 'p':
-				case 'g':
-				case 'j':
-				case 'y':
-				case 'q':
-					$width += intval($size/8);
+					$widthAdj1 = intval($size/4);
 					break;
-				case '1':
-					$width += 1;
+				case 'g':
+					$widthAdj2 = intval($size/4);
+					break;
+				case 'q':
+					$widthAdj3 = intval($size/4);
+					break;
+				case 'y':
+					$widthAdj4 = intval($size/4);
+					break;
+				case 'j':
+					$width += intval($size/3);
 					break;
 			}
 		}
 		
+		$width += $widthAdj1 + $widthAdj2 + $widthAdj3 + $widthAdj4;
+		error_log("GetTextExtents($size, '$font', '$text') = $width, $height");
 		return array($width, $height);
 	}
 	
@@ -694,9 +766,11 @@ class CEsoItemLinkImage
 		$i = 0;
 		$deltaY = 0;
 		
+		//error_log("PrintDataText(image, " . count($printData) . ", $x, $y, $alignment)");
+		
 		while ($i < count($printData))
 		{
-			$data =$printData[$i];
+			$data = $printData[$i];
 			
 			if ($alignment == 'right')
 				$startX = $x - $data['lineWidth'];
@@ -707,7 +781,12 @@ class CEsoItemLinkImage
 			
 			while ($i < count($printData))
 			{
-				$data =$printData[$i];
+				$data = $printData[$i];
+				
+				//error_log("     Data text = \"" . $data['text'] . '"');
+				//error_log("          Size = " . $data['width'] . "," . $data['height']);
+				//error_log("          Line = " . $data['lineWidth'] . "," . $data['lineHeight']);
+				
 				$extents = $this->PrintDataTextElement($image, $data, $startX, $y + $deltaY);
 				$startX += $extents[0];
 				$i += 1;
