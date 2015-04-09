@@ -752,6 +752,9 @@ class CEsoItemLinkImage
 				case 'j':
 					$width += intval($size/3);
 					break;
+				case '1':
+					//$width += intval($size/8);
+					break;
 			}
 		}
 		
