@@ -428,7 +428,7 @@ class EsoLogViewer
 					'record' => 'queststage',
 					'table' => 'questStage',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId',
+					'sort' => 'questId, orderIndex',
 					
 					'transform' => array(
 					),
