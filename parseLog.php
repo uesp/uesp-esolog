@@ -1711,11 +1711,19 @@ class EsoLogParser
 	
 	public function ParseItemLink ($itemLink)
 	{
-		//|H0:item:ID:SUBTYPE:LEVEL:ENCHANTID:ENCHANTSUBTYPE:ENCHANTLEVEL:0:0:0:0:0:0:0:0:0:STYLE:CRAFTED:BOUND:CHARGES:POTIONEFFECT|hNAME|h
 		$matches = array();
 		
-		//$result = preg_match('/\|H([A-Za-z0-9]*)\:item\:([0-9]*)\:([0-9]*)\:([0-9]*)\:(.*?)\|h([a-zA-Z0-9 _\(\)\'\-]*)(.*?)\|h/', $itemLink, $matches);
-		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h(?P<name>[a-zA-Z0-9 _\(\)\'\-]*)(?P<nameCode>.*?)\|h/', $itemLink, $matches);
+			/* Quick check for quest items */
+		if ($itemLink[0] != '|' || $itemLink[1] != 'H')
+		{
+			$matches['name'] = $itemLink;
+			$matches['error'] = true;
+			return $matches;
+		}
+		
+			//|H0:item:ID:SUBTYPE:LEVEL:ENCHANTID:ENCHANTSUBTYPE:ENCHANTLEVEL:0:0:0:0:0:0:0:0:0:STYLE:CRAFTED:BOUND:CHARGES:POTIONEFFECT|hNAME|h
+			//(?:\:(?P<extradata>[0-9]*))?
+		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h(?P<name>[a-zA-Z0-9\s_\(\)\'\-]*)(?P<nameCode>.*?)\|h/', $itemLink, $matches);
 		
 		if ($result == 0) 
 		{
@@ -1724,17 +1732,6 @@ class EsoLogParser
 			$matches['error'] = true;
 			return $matches;
 		}
-		
-		/*
-		$result = array();
-		
-		$result['color'] = $matches[1];
-		$result['id'] = $matches[2];
-		$result['unknown'] = $matches[3];
-		$result['level'] = $matches[4];
-		$result['data'] = $matches[2] . ':' . $matches[3] . ':' . $matches[5];
-		$result['name'] = $matches[6];
-		$result['namecode'] = $matches[7] == null ? '' : $matches[7]; */
 		
 		$matches['error'] = false;
 		return $matches;
