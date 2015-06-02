@@ -204,6 +204,9 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		$columns[] = $field;
 	}
 	
+	$query = "DELETE FROM minedItemSummary WHERE itemId=" . $id . ";";
+	$result = $db->query($query);
+	
 	$query  = "INSERT INTO minedItemSummary(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error);
