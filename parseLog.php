@@ -3018,8 +3018,10 @@ class EsoLogParser
 			case "Achievement::End":			$result = $this->OnNullEntry($logEntry); break;
 			case "ExperienceUpdate":			$result = $this->OnExperienceUpdate($logEntry); break;
 			case "mineItem::AutoStart":			$result = $this->OnMineItemStart($logEntry); break;
+			case "mineitem::Start":				$result = $this->OnMineItemStart($logEntry); break;
 			case "mineItem::Start":				$result = $this->OnMineItemStart($logEntry); break;
 			case "mineItem::AutoEnd":			$result = $this->OnMineItemEnd($logEntry); break;
+			case "mineitem::End":				$result = $this->OnMineItemEnd($logEntry); break;
 			case "mineItem::End":				$result = $this->OnMineItemEnd($logEntry); break;
 			case "mineitem":					$result = $this->OnMineItem($logEntry); break;
 			case "mineItem":					$result = $this->OnMineItem($logEntry); break;
