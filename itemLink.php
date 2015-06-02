@@ -1018,6 +1018,7 @@ class CEsoItemLink
 				'{itemEnchantId1}' => $this->itemRecord['enchantId1'],
 				'{itemEnchantIntLevel1}' => $this->itemRecord['enchantIntLevel1'],
 				'{itemEnchantIntType1}' => $this->itemRecord['enchantIntType1'],
+				'{showSummary}' => $this->showSummary ? 'summary' : '',
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);

@@ -1373,6 +1373,66 @@ class CEsoItemLinkImage
 	}
 	
 	
+	public function GetImageFilename()
+	{
+		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
+		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int";
+		$filename = "";
+		$intFilename = "";
+		
+		if ($this->showSummary)
+		{
+			if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
+			{
+				$filename   = $this->itemId . "-summary-" . $this->enchantId1 . "-summary";
+			}
+			else
+			{
+				$filename   = $this->itemId . "-summary";
+			}
+		}
+		else if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
+		{
+			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . "-" . $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . "";
+		}
+		else
+		{
+			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . "";
+		}
+		
+		return $filename;
+	}
+	
+	
+	public function GetImageIntFilename()
+	{
+		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int";
+		$intFilename = "";
+		
+		if ($this->showSummary)
+		{
+			if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
+			{
+				$intFilename = $this->itemId . "-summary-" . $this->enchantId1 . "-summary";
+			}
+			else
+			{
+				$intFilename = $this->itemId . "-summary";
+			}
+		}
+		else if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
+		{
+			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . "-" . $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . "";
+		}
+		else
+		{
+			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . "";
+		}
+		
+		return $intFilename;
+	}
+	
+	
 	public function SaveImage($image)
 	{
 		if ($this->itemId <= 0) return false;
@@ -1381,8 +1441,11 @@ class CEsoItemLinkImage
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int";
-		$pngFilename    = $path .    "/" . $this->itemId . "-" . $this->itemLevel    . "-" . $this->itemQuality . ".png";
-		$pngIntFilename = $intPath . "/" . $this->itemId . "-" . $this->itemIntLevel . "-" . $this->itemIntType . ".png";
+		
+		$pngFilename = $this->GetImageFilename() . ".png";
+		$pngIntFilename = $this->GetImageIntFilename() . ".png";
+		//$pngFilename    = $path .    "/" . $this->itemId . "-" . $this->itemLevel    . "-" . $this->itemQuality . ".png";
+		//$pngIntFilename = $intPath . "/" . $this->itemId . "-" . $this->itemIntLevel . "-" . $this->itemIntType . ".png";
 		//$jpgFilename = $path . "/" . $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".jpg";
 		
 		if (!file_exists($path)    && !mkdir($path, 0775, true))    return false;
@@ -1399,7 +1462,6 @@ class CEsoItemLinkImage
 	public function ServeCachedImage($useRedirect)
 	{
 		if ($this->noCache) return false;
-		if ($this->enchantId1 > 0) return false;
 		if ($this->enchantId2 > 0) return false;
 		if ($this->itemId <= 0) return false;
 		if ($this->itemBound > 0) return false;
@@ -1408,19 +1470,8 @@ class CEsoItemLinkImage
 		if ($this->itemCharges > 0) return false;
 		if ($this->itemPotionData > 0) return false;
 		
-		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
-		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
-		
-		if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
-		{
-			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . "-" - $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . ".png";
-			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . "-" - $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . ".png";
-		}
-		else
-		{
-			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . ".png";
-			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . ".png";
-		}
+		$filename = $this->GetImageFilename() . ".png";
+		$intFilename = $this->GetImageIntFilename() . ".png";
 		
 		$fullFilename = $path . $filename; 
 		$fullIntFilename = $intPath . $intFilename;
