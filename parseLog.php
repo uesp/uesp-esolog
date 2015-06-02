@@ -193,6 +193,7 @@ class EsoLogParser
 	
 	const TREASURE_DELTA_TIME = 4000;
 	const BOOK_DELTA_TIME = 4000;
+	const QUESTOFFERED_DELTA_TIME = 30000;
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	const START_MINEITEM_TIMESTAMP = 4743729922978086912;
@@ -1337,6 +1338,7 @@ class EsoLogParser
 		$this->users[$userName]['__lastChestFoundGameTime'] = 0;
 		$this->users[$userName]['__lastSackFoundGameTime'] = 0;
 		$this->users[$userName]['__lastBookGameTime'] = 0;
+		$this->users[$userName]['lastQuestOffered'] = null;
 		
 		return $this->users[$userName];
 	}
@@ -1419,6 +1421,7 @@ class EsoLogParser
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
 		$this->users[$userName]['mineItemStartGameTime'] = 1;
 		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
+		$this->users[$userName]['lastQuestOffered'] = null;
 		
 		return $this->users[$userName];
 	}
@@ -1904,6 +1907,41 @@ class EsoLogParser
 	}
 	
 	
+	public function CreateQuestOfferStage ($questRecord, $logEntry)
+	{
+		$questStageRecord = $this->createNewRecord(self::$QUESTSTAGE_FIELDS);
+	
+		$questStageRecord['questId'] = $questRecord['id'];
+		$questStageRecord['type'] = -123;
+		$questStageRecord['counter'] = -1;
+		$questStageRecord['orderIndex'] = -123;
+		$questStageRecord['objective'] = $logEntry['dialog'];
+		$questStageRecord['overrideText'] = "";
+		$questStageRecord['isHidden'] = 0;
+		$questStageRecord['isFail'] = 0;
+		$questStageRecord['isPushed'] = 0;
+		$questStageRecord['isComplete'] = 0;
+		$questStageRecord['locationId'] = -1;
+		$questStageRecord['__isNew'] = true;
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveQuestStage($questStageRecord);
+		if (!$result) return null;
+	
+		$questLocation = $this->CreateLocation("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
+		$result = $this->SaveLocation($questLocation);
+		if (!$result) return null;
+	
+		$questStageRecord['locationId'] = $questLocation['id'];
+		$result = $this->SaveQuestStage($questStageRecord);
+		if (!$result) return null;
+	
+		return $questStageRecord;
+	}
+	
+	
 	public function OnQuestAdded ($logEntry)
 	{
 		//event{QuestAdded}  quest{A Brush With Death}  objective{}  
@@ -1916,6 +1954,26 @@ class EsoLogParser
 		{
 			$questRecord = $this->CreateQuest($logEntry['quest'], $logEntry['objective'], $logEntry);
 			if ($questRecord == null) return false;
+		}
+		
+		$questId = $questRecord['id'];
+		$questOfferData = $this->users[$userName]['lastQuestOffered'];
+		$this->users[$userName]['lastQuestOffered'] = null;
+		
+		if ($questOfferData != null)
+		{
+			$deltaQuestOfferTime = $logEntry['gameTime'] - $questOfferData['gameTime'];
+			
+			if ($deltaQuestOfferTime < self::QUESTOFFERED_DELTA_TIME && $deltaQuestOfferTime >= 0)
+			{
+				//print("\tSaving QuestOffer Data (" . $questRecord['name'] . ")\n");
+				
+				$questStageRecord = $this->FindQuestStageByType($questId, -123);
+				if ($questStageRecord != null) return true;
+				
+				$questStageRecord = $this->CreateQuestOfferStage($questRecord, $questOfferData);
+				if ($questStageRecord == null) return false;
+			}
 		}
 		
 		return true;
@@ -1959,12 +2017,24 @@ class EsoLogParser
 	}
 	
 	
+	public function OnQuestOffered ($logEntry)
+	{
+		//event{QuestOffered}  optionGold{}  response{<Accept Mission>}  optionIndex{}  optionImp{}  dialog{...}  
+		//farewell{Goodbye.}  optionText{}  optionType{}  npcLevel{0}  npcName{Bounty Mission Board}  
+		//x{0.55621987581253}  zone{Southern High Rock Gate}  y{0.53252720832825}  timeStamp{4743797388274040832}  
+		//gameTime{3757083}  lang{en}  userName{...}  ipAddress{...}  logTime{1433063158}  end{}
+		
+		$this->users[$userName]['lastQuestOffered'] = $logEntry;
+		
+		return true;
+	}
+	
 	public function OnQuestRemoved ($logEntry)
 	{
 		//event{QuestRemoved}  completed{true}  poiIndex{12}  quest{The White Mask of Merien}  zoneIndex{2}
 		//y{0.31489595770836}  zone{Glenumbra}  x{0.43005546927452}  timeStamp{4743643932582215680}
 		//gameTime{7603682}  userName{...}  ipAddress{...}  logTime{1396487065}  end{}
-		  
+		
 		return true;
 	}
 	
@@ -2124,6 +2194,28 @@ class EsoLogParser
 		
 		if ($result->num_rows == 0) return null;
 		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$QUESTSTAGE_FIELDS);
+	}
+	
+	
+	public function FindQuestStageByType ($questId, $type)
+	{
+		$safeType = $this->db->real_escape_string($type);
+		$safeId = (int) $questId;
+		$query = "SELECT * FROM questStage WHERE questId=$safeId AND type=$safeType LIMIT 1;";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve quest stage by type!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUESTSTAGE_FIELDS);
 	}
@@ -2983,6 +3075,7 @@ class EsoLogParser
 			case "QuestAdded":					$result = $this->OnQuestAdded($logEntry); break;
 			case "QuestChanged":				$result = $this->OnQuestChanged($logEntry); break;
 			case "QuestAdvanced":				$result = $this->OnQuestAdvanced($logEntry); break;
+			case "QuestOffered":				$result = $this->OnQuestOffered($logEntry); break;
 			case "QuestRemoved":				$result = $this->OnQuestRemoved($logEntry); break;
 			case "QuestObjComplete":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestOptionalStep":			$result = $this->OnNullEntry($logEntry); break;
