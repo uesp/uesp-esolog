@@ -1291,8 +1291,7 @@ If you do not understand what this information means, or how to use this webpage
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
 		$table = $recordInfo['table'];
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
-		
+		$query = "SELECT $tables FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
 		$query .= $this->GetSelectQueryFilter($recordInfo);
 		$query .= $this->GetSelectQuerySort($recordInfo);
@@ -1305,19 +1304,60 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function GetSelectQueryRecordCount($recordInfo)
+	{
+		$query = $this->CreateSelectQueryRecordCount($recordInfo);
+		
+		$result = $this->db->query($query);
+		if ($result === false) return 0;
+		
+		$rowData = $result->fetch_row();
+		if ($rowData[0] == null) return 0;
+		return $rowData[0];
+	}
+	
+	
+	public function CreateSelectQueryRecordCount ($recordInfo)
+	{
+		$tables = $this->GetTablesForSelectQuery($recordInfo);
+		$table = $recordInfo['table'];
+	
+		$query = "SELECT COUNT(*) FROM $table ";
+		$query .= $this->GetSelectQueryJoins($recordInfo);
+		$query .= $this->GetSelectQueryFilter($recordInfo);
+		$query .= ";";
+	
+		$this->lastQuery = $query;
+		return $query;
+	}
+	
+	
 	public function CreateSelectQueryID ($recordInfo, $id)
 	{
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
 		$table = $recordInfo['table'];
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS $tables FROM $table ";
-		
+		$query = "SELECT $tables FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
 		$query .= " WHERE $table.id=$id";
-		//$query .= " ORDER BY {$recordInfo['sort']} ";
 		$query .= " LIMIT 1 ";
 		$query .= ";";
 		
+		$this->lastQuery = $query;
+		return $query;
+	}
+	
+	
+	public function CreateSelectQueryIDRecordCount ($recordInfo, $id)
+	{
+		$tables = $this->GetTablesForSelectQuery($recordInfo);
+		$table = $recordInfo['table'];
+	
+		$query = "SELECT COUNT(*) FROM $table ";
+		$query .= $this->GetSelectQueryJoins($recordInfo);
+		$query .= " WHERE $table.id=$id";
+		$query .= ";";
+	
 		$this->lastQuery = $query;
 		return $query;
 	}
@@ -1658,15 +1698,13 @@ If you do not understand what this information means, or how to use this webpage
 	{
 		if (!$this->InitDatabase()) return false;
 		
+		$this->totalRowCount = $this->GetSelectQueryRecordCount($recordInfo);
+		
 		$query = $this->CreateSelectQuery($recordInfo);
 		if ($query === false) return $this->reportError("Failed to create record query!");
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to retrieve record data!");
-		
-		$result2 = $this->db->query("SELECT FOUND_ROWS();");
-		$rowData = $result2->fetch_row();
-		$this->totalRowCount = $rowData[0];
 		
 		$displayCount = $result->num_rows;
 		$startIndex = $this->displayStart + 1;
@@ -1847,15 +1885,20 @@ If you do not understand what this information means, or how to use this webpage
 		$limitCount = $this->displayLimit;
 		$searchFields = implode(', ',$searchData['searchFields']);
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM $table WHERE MATCH($searchFields) AGAINST ('$searchTerms' in BOOLEAN MODE) LIMIT $limitCount;";
+		$query = "SELECT COUNT(*) FROM $table WHERE MATCH($searchFields) AGAINST ('$searchTerms' in BOOLEAN MODE) LIMIT $limitCount;";
 		$this->lastQuery = $query;
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to perform search on $table table!");
 		
-		$result2 = $this->db->query("SELECT FOUND_ROWS();");
-		$rowData = $result2->fetch_row();
+		$rowData = $result->fetch_row();
 		$this->searchTotalCount += $rowData[0];
+		
+		$query = "SELECT * FROM $table WHERE MATCH($searchFields) AGAINST ('$searchTerms' in BOOLEAN MODE) LIMIT $limitCount;";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to perform search on $table table!");
 		
 		$result->data_seek(0);
 		
