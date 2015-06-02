@@ -92,7 +92,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 		);";
 
 $result = $db->query($query);
-if (!$result) exit("ERROR: Database query error creating table! " . $db->error);
+if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
 $FIRSTID = 1;
 $LASTID = 80000;
@@ -105,28 +105,28 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	
 	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error! " . $db->error);
+	if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 	$minItemData = $result->fetch_assoc();
 	
 	if (!$minItemData)
 	{
 		$query = "SELECT * FROM minedItem WHERE itemId=$id LIMIT 1;";
 		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error! " . $db->error);
+		if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
 		if (!$minItemData) continue;
 	}
 	
 	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error! " . $db->error);
+	if (!$result) exit("ERROR: Database query error (finding max item)!\n" . $db->error);
 	$maxItemData = $result->fetch_assoc();
 	
 	if (!$maxItemData)
 	{
 		$query = "SELECT * FROM minedItem where itemId=$id ORDER BY value DESC LIMIT 1;";
 		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error! " . $db->error);
+		if (!$result) exit("ERROR: Database query error (finding max item v2)!\n" . $db->error);
 		$maxItemData = $result->fetch_assoc();
 	}
 	
@@ -206,7 +206,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	
 	$query  = "INSERT INTO minedItemSummary(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error! " . $db->error);
+	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error);
 }
 
 ?>
