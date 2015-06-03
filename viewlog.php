@@ -296,6 +296,19 @@ class EsoLogViewer
 	);
 	
 	
+	public static $SETSUMMARY_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'setName' => self::FIELD_STRING,
+			'setMaxEquipCount' => self::FIELD_INT,
+			'setBonusDesc1' => self::FIELD_STRING,
+			'setBonusDesc2' => self::FIELD_STRING,
+			'setBonusDesc3' => self::FIELD_STRING,
+			'setBonusDesc4' => self::FIELD_STRING,
+			'setBonusDesc5' => self::FIELD_STRING,
+			'itemCount' => self::FIELD_INT,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -657,6 +670,21 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'setSummary' => array(
+					'displayName' => 'Set Summaries',
+					'displayNameSingle' => 'Set Item Summary',
+					'record' => 'setSummary',
+					'table' => 'setSummary',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
 	);
 	
 	
@@ -727,7 +755,13 @@ class EsoLogViewer
 							'name' => 'name',
 					),
 			),
-			
+			'setSummary' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+					),
+			),
 	);
 	
 	
@@ -752,6 +786,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
 		self::$RECORD_TYPES['minedItem']['fields'] = self::$MINEDITEM_FIELDS;
 		self::$RECORD_TYPES['minedItemSummary']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
