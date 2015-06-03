@@ -11,7 +11,8 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 $query = "CREATE TABLE IF NOT EXISTS setSummary(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			setName TINYTEXT NOT NULL,
-			setMaxEquipCount TINYINT NOT NULL DEFAULT -1,
+			setMaxEquipCount TINYINT NOT NULL DEFAULT 0,
+			setBonusCount TINYINT NOT NULL DEFAULT 0,
 			itemCount INTEGER NOT NULL DEFAULT 0,
 			setBonusDesc1 TINYTEXT NOT NULL,
 			setBonusDesc2 TINYTEXT NOT NULL,
@@ -42,6 +43,7 @@ while (($row = $rowResult->fetch_assoc()))
 	$setBonusDesc3 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc3']);
 	$setBonusDesc4 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc4']);
 	$setBonusDesc5 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc5']);
+	$setBonusCount = 0;
 	$setMaxEquipCount = $row['setMaxEquipCount'];
 	
 	$lastBonusDesc = $setBonusDesc5;
@@ -49,6 +51,12 @@ while (($row = $rowResult->fetch_assoc()))
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc3;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc2;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc1;
+	
+	if ($setBonusDesc1 != "") $setBonusCount = 1;
+	if ($setBonusDesc2 != "") $setBonusCount = 2;
+	if ($setBonusDesc3 != "") $setBonusCount = 3;
+	if ($setBonusDesc4 != "") $setBonusCount = 4;
+	if ($setBonusDesc5 != "") $setBonusCount = 5;
 	
 	$matches = array();
 	$regResult = preg_match('/\(([0-9]+) items\)/', $lastBonusDesc, $matches);
@@ -93,8 +101,8 @@ while (($row = $rowResult->fetch_assoc()))
 	{
 		//print("\t\tCreating new set...\n");
 		++$newCount;
-		$query  = "INSERT INTO setSummary(setName, setMaxEquipCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5) ";
-		$query .= "VALUES(\"$setName\", $setMaxEquipCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\");";
+		$query  = "INSERT INTO setSummary(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5) ";
+		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\");";
 		
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error);
