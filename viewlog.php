@@ -258,6 +258,44 @@ class EsoLogViewer
 	);
 	
 	
+	public static $MINEDITEMSUMMARY_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'itemId' => self::FIELD_INT,
+			'name' => self::FIELD_INTTRANSFORM,
+			'description' => self::FIELD_STRING,
+			'style' => self::FIELD_INTTRANSFORM,
+			'trait' => self::FIELD_INTTRANSFORM,
+			'value' => self::FIELD_STRING,
+			'level' => self::FIELD_STRING,
+			'type' => self::FIELD_INTTRANSFORM,
+			'equipType' => self::FIELD_INTTRANSFORM,
+			'weaponType' => self::FIELD_INTTRANSFORM,
+			'armorType' => self::FIELD_INTTRANSFORM,
+			'craftType' => self::FIELD_INTTRANSFORM,
+			'armorRating' => self::FIELD_STRING,
+			'weaponPower' => self::FIELD_STRING,
+			'enchantName' => self::FIELD_STRING,
+			'enchantDesc' => self::FIELD_STRING,
+			'abilityName' => self::FIELD_STRING,
+			'abilityDesc' => self::FIELD_STRING,
+			'setName' => self::FIELD_STRING,
+			'setBonusDesc1' => self::FIELD_STRING,
+			'setBonusDesc2' => self::FIELD_STRING,
+			'setBonusDesc3' => self::FIELD_STRING,
+			'setBonusDesc4' => self::FIELD_STRING,
+			'setBonusDesc5' => self::FIELD_STRING,
+			'bindType' => self::FIELD_INT,
+			'traitDesc' => self::FIELD_STRING,
+			'traitAbilityDesc' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'isUnique' => self::FIELD_INTBOOLEAN,
+			'isUniqueEquipped' => self::FIELD_INTBOOLEAN,
+			'isVendorTrash' => self::FIELD_INTBOOLEAN,
+			'isArmorDecay' => self::FIELD_INTBOOLEAN,
+			'isConsumable' => self::FIELD_INTBOOLEAN,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -595,6 +633,30 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'minedItemSummary' => array(
+					'displayName' => 'Mined Item Summaries',
+					'displayNameSingle' => 'Mined Item Summary',
+					'record' => 'minedItemSummary',
+					'table' => 'minedItemSummary',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink',
+					),
+			
+					'filters' => array(
+					),
+			),
 	);
 	
 	
@@ -681,6 +743,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['ingredient']['fields'] = self::$INGREDIENT_FIELDS;
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
 		self::$RECORD_TYPES['minedItem']['fields'] = self::$MINEDITEM_FIELDS;
+		self::$RECORD_TYPES['minedItemSummary']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -1104,6 +1167,17 @@ class EsoLogViewer
 		$itemIntType = $itemData['internalSubtype'];
 		
 		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+		
+		$itemId = $itemData['itemId'];
+		
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary\">" . $value . "</a>";
 		return $output;
 	}
 	
