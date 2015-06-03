@@ -1,4 +1,12 @@
-<?php 
+<?php
+
+
+function TransformBonusDesc($desc)
+{
+	$newDesc = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $desc);
+	return preg_replace('/\n/', ' ', $newDesc);
+}
+
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
@@ -19,6 +27,7 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary(
 			setBonusDesc3 TINYTEXT NOT NULL,
 			setBonusDesc4 TINYTEXT NOT NULL,
 			setBonusDesc5 TINYTEXT NOT NULL,
+			setBonusDesc TEXT NOT NULL,
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5)
 		);";
 
@@ -38,11 +47,11 @@ while (($row = $rowResult->fetch_assoc()))
 {
 	++$itemCount;
 	$setName = $row['setName'];
-	$setBonusDesc1 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc1']);
-	$setBonusDesc2 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc2']);
-	$setBonusDesc3 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc3']);
-	$setBonusDesc4 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc4']);
-	$setBonusDesc5 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $row['setBonusDesc5']);
+	$setBonusDesc1 = TransformBonusDesc($row['setBonusDesc1']);
+	$setBonusDesc2 = TransformBonusDesc($row['setBonusDesc2']);
+	$setBonusDesc3 = TransformBonusDesc($row['setBonusDesc3']);
+	$setBonusDesc4 = TransformBonusDesc($row['setBonusDesc4']);
+	$setBonusDesc5 = TransformBonusDesc($row['setBonusDesc5']);
 	$setBonusCount = 0;
 	$setMaxEquipCount = $row['setMaxEquipCount'];
 	
@@ -101,8 +110,16 @@ while (($row = $rowResult->fetch_assoc()))
 	{
 		//print("\t\tCreating new set...\n");
 		++$newCount;
-		$query  = "INSERT INTO setSummary(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5) ";
-		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\");";
+		
+		$setBonusDesc = "";
+		if ($setBonusDesc1 != "") $setBonusDesc .= $setBonusDesc1;
+		if ($setBonusDesc2 != "") $setBonusDesc .= "\n".$setBonusDesc2;
+		if ($setBonusDesc3 != "") $setBonusDesc .= "\n".$setBonusDesc3;
+		if ($setBonusDesc4 != "") $setBonusDesc .= "\n".$setBonusDesc4;
+		if ($setBonusDesc5 != "") $setBonusDesc .= "\n".$setBonusDesc5;
+		
+		$query  = "INSERT INTO setSummary(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc) ";
+		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\", \"$setBonusDesc\");";
 		
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error);

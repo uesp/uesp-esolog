@@ -301,11 +301,7 @@ class EsoLogViewer
 			'setName' => self::FIELD_STRING,
 			'setMaxEquipCount' => self::FIELD_INT,
 			'setBonusCount' => self::FIELD_INT,
-			'setBonusDesc1' => self::FIELD_STRING,
-			'setBonusDesc2' => self::FIELD_STRING,
-			'setBonusDesc3' => self::FIELD_STRING,
-			'setBonusDesc4' => self::FIELD_STRING,
-			'setBonusDesc5' => self::FIELD_STRING,
+			'setBonusDesc' => self::FIELD_INTTRANSFORM,
 			'itemCount' => self::FIELD_INT,
 	);
 	
@@ -681,6 +677,7 @@ class EsoLogViewer
 					'sort' => 'setName',
 					
 					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
 					),
 					
 					'filters' => array(
@@ -1223,6 +1220,14 @@ class EsoLogViewer
 		
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary\">" . $value . "</a>";
 		return $output;
+	}
+	
+	
+	public function TransformSetBonusDesc ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+		
+		return preg_replace('/\n/', '<br />', $value);
 	}
 	
 	
