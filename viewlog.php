@@ -191,12 +191,12 @@ class EsoLogViewer
 	public static $MINEDITEM_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'logId' => self::FIELD_INTID,
-			'link' => self::FIELD_STRING,
+			'link' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'internalLevel' => self::FIELD_INT,
 			'internalSubtype' => self::FIELD_INT,
 			'potionData' => self::FIELD_INT,
-			'name' => self::FIELD_STRING,
+			'name' => self::FIELD_INTTRANSFORM,
 			'description' => self::FIELD_STRING,
 			'style' => self::FIELD_INTTRANSFORM,
 			'trait' => self::FIELD_INTTRANSFORM,
@@ -588,8 +588,10 @@ class EsoLogViewer
 							'craftType' => 'GetItemTypeText',
 							'armorType' => 'GetItemArmorTypeText',
 							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink',
+							'link' => 'MakeMinedItemLink',
 					),
-			
+				
 					'filters' => array(
 					),
 			),
@@ -1018,7 +1020,7 @@ class EsoLogViewer
 	}
 	
 	
-	public function TransformRecordValue ($recordInfo, $field, $value)
+	public function TransformRecordValue ($recordInfo, $field, $value, $itemData)
 	{
 		if ($this->displayRawValues) return $value;
 		
@@ -1026,7 +1028,7 @@ class EsoLogViewer
 		if (!array_key_exists($field, $recordInfo['transform'])) return $value;
 		
 		$method = $recordInfo['transform'][$field];
-		return $this->$method($value);
+		return $this->$method($value, $itemData);
 	}
 	
 	
@@ -1081,6 +1083,19 @@ class EsoLogViewer
 		
 		$row = $result->fetch_row();
 		return $row[0];
+	}
+	
+	
+	public function MakeMinedItemLink ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+		
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+		
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType\">" . $value . "</a>";
+		return $output;
 	}
 	
 	
@@ -1499,9 +1514,9 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function FormatField ($value, $type, $recordType, $field, $id, $recordInfo)
+	public function FormatField ($value, $type, $recordType, $field, $id, $recordInfo, $itemData)
 	{
-		if ($this->IsOutputCSV()) return $this->FormatFieldCSV($value, $type, $recordType, $field, $id, $recordInfo);
+		if ($this->IsOutputCSV()) return $this->FormatFieldCSV($value, $type, $recordType, $field, $id, $recordInfo, $itemData);
 		
 		$output = "";
 		if ($value == null) return "";
@@ -1532,7 +1547,7 @@ If you do not understand what this information means, or how to use this webpage
 				if ((int) $value > 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
-				$output = $this->TransformRecordValue($recordInfo, $field, $value);
+				$output = $this->TransformRecordValue($recordInfo, $field, $value, $itemData);
 				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
@@ -1550,7 +1565,7 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function FormatFieldCSV ($value, $type, $recordType, $field, $id, $recordInfo)
+	public function FormatFieldCSV ($value, $type, $recordType, $field, $id, $recordInfo, $itemData)
 	{
 		$output = "";
 		if ($value == null) return "";
@@ -1581,7 +1596,7 @@ If you do not understand what this information means, or how to use this webpage
 				if ((int) $value > 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
-				$output = "\"" . $this->TransformRecordValue($recordInfo, $field, $value) . "\"";
+				$output = "\"" . $this->TransformRecordValue($recordInfo, $field, $value, $itemData) . "\"";
 				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
@@ -1599,9 +1614,9 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function FormatFieldAll ($value, $type, $recordType, $field, $id, $recordInfo)
+	public function FormatFieldAll ($value, $type, $recordType, $field, $id, $recordInfo, $itemData)
 	{
-		if ($this->IsOutputCSV()) return $this->FormatFieldAllCSV($value, $type, $recordType, $field, $id, $recordInfo);
+		if ($this->IsOutputCSV()) return $this->FormatFieldAllCSV($value, $type, $recordType, $field, $id, $recordInfo, $itemData);
 		
 		$output = "";
 		if ($value == null) return "";
@@ -1613,13 +1628,13 @@ If you do not understand what this information means, or how to use this webpage
 				return $output;
 		}
 		
-		return $this->FormatField($value, $type, $recordType, $field, $id, $recordInfo);
+		return $this->FormatField($value, $type, $recordType, $field, $id, $recordInfo, $itemData);
 	}
 	
 	
-	public function FormatFieldAllCSV ($value, $type, $recordType, $field, $id, $recordInfo)
+	public function FormatFieldAllCSV ($value, $type, $recordType, $field, $id, $recordInfo, $itemData)
 	{
-		return $this->FormatFieldCSV($value, $type, $recordType, $field, $id, $recordInfo);
+		return $this->FormatFieldCSV($value, $type, $recordType, $field, $id, $recordInfo, $itemData);
 	}
 	
 	
@@ -1736,7 +1751,7 @@ If you do not understand what this information means, or how to use this webpage
 			
 			foreach ($recordInfo['fields'] as $key => $value)
 			{
-				$fmtValue = $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo);
+				$fmtValue = $this->FormatField($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo, $row);
 				
 				if ($this->IsOutputHTML())
 					$output .= "\t\t<td>" . $fmtValue . "</td>\n";
@@ -1826,7 +1841,7 @@ If you do not understand what this information means, or how to use this webpage
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
-			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $row['id'], $recordInfo);
+			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $row['id'], $recordInfo, $row);
 			
 			$output .= "\t<tr>\n";
 			$output .= "\t\t<th>$key</th>\n";
