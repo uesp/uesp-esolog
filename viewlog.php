@@ -300,6 +300,7 @@ class EsoLogViewer
 			'id' => self::FIELD_INTID,
 			'setName' => self::FIELD_STRING,
 			'setMaxEquipCount' => self::FIELD_INT,
+			'setBonusCount' => self::FIELD_INT,
 			'setBonusDesc1' => self::FIELD_STRING,
 			'setBonusDesc2' => self::FIELD_STRING,
 			'setBonusDesc3' => self::FIELD_STRING,
