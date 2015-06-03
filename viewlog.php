@@ -711,9 +711,17 @@ class EsoLogViewer
 							'name' => 'name',
 					),
 			),
-			'minedItem' => array(		// Far too slow with current search implementation 
+			/*						// Far too slow with current search implementation
+			'minedItem' => array(		 
 					//'searchFields' => array('name', 'description', 'setName', 'abilityName', 'abilityDesc', 'bookTitle', 'comment', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'searchFields' => array(),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			), */
+			'minedItemSummary' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -2047,6 +2055,12 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			default:
 				$output .= $this->GetViewRecordLink($result['type'], $result['id'], 'View ' . ucwords($result['type']));
+				break;
+			case 'minedItem':
+				$output .= $this->GetViewRecordLink('minedItem', $result['id'], 'View Item');
+				break;
+			case 'minedItemSummary':
+				$output .= $this->GetViewRecordLink('minedItemSummary', $result['id'], 'View Item');
 				break;
 		};
 		
