@@ -649,6 +649,15 @@ class EsoLogViewer
 							'name' => 'name',
 					),
 			),
+			'minedItem' => array(		// Far too slow with current search implementation 
+					//'searchFields' => array('name', 'description', 'setName', 'abilityName', 'abilityDesc', 'bookTitle', 'comment', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array(),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+			
 	);
 	
 	
