@@ -47,6 +47,7 @@ $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWriteP
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
 $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
+			id BIGINT NOT NULL AUTO_INCREMENT,
 			itemId INTEGER NOT NULL,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
