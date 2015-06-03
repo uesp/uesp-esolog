@@ -34,6 +34,10 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary(
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
+$query = "UPDATE setSummary SET itemCount=0;";
+$result = $db->query($query);
+if (!$result) exit("ERROR: Database query error (clearing item counts)!\n" . $db->error);
+
 $query = "SELECT * FROM minedItemSummary WHERE setName!='';";
 $rowResult = $db->query($query);
 if (!$rowResult) exit("ERROR: Database query error (finding set items)!\n" . $db->error);
