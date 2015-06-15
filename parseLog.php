@@ -1291,6 +1291,19 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedItem table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			itemId INTEGER NOT NULL,
+			version TINYTEXT NOT NULL,
+			INDEX index_itemId (itemId),
+			INDEX index_version (version(8))
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create itemIdCheck table!");
+		
+		
 		return true;
 	}
 	
@@ -1333,6 +1346,7 @@ class EsoLogParser
 		$this->users[$userName]['lastBookRecord'] = null;
 		$this->users[$userName]['lastBookLogEntry'] = null;
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
+		$this->users[$userName]['lastMinedItemIdCheckNote'] = null;
 		$this->users[$userName]['mineItemStartGameTime'] = 1;
 		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
 		$this->users[$userName]['__lastChestFoundGameTime'] = 0;
@@ -1420,6 +1434,7 @@ class EsoLogParser
 		$this->users[$userName]['lastBookLogEntry'] = null;
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
 		$this->users[$userName]['mineItemStartGameTime'] = 1;
+		$this->users[$userName]['lastMinedItemIdCheckNote'] = null;
 		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
 		$this->users[$userName]['lastQuestOffered'] = null;
 		
@@ -2771,6 +2786,42 @@ class EsoLogParser
 	}
 	
 	
+	public function OnMineItemIdCheckStart ($logEntry)
+	{
+		$this->currentUser['lastMinedItemIdCheckNote'] = $logEntry['note'];
+	}
+	
+	
+	public function OnMineItemIdCheckEnd ($logEntry)
+	{
+		$this->currentUser['lastMinedItemIdCheckNote'] = null;
+	}
+	
+	
+	public function OnMineItemIdCheck ($logEntry)
+	{
+		$version = $this->currentUser['lastMinedItemIdCheckNote'];
+		if ($version == null || $version == "") return false;
+		
+		$startId = (int) $logEntry['startId'];
+		$endId = (int) $logEntry['endId'];
+		
+		if ($startId <= 0 || $endId <= 0) return false;
+		if ($startId > $endId) return false;
+		
+		for ($id = $startId; $id <= $endId; ++$id)
+		{
+			$query = "INSERT INTO itemIdCheck(itemId, version) VALUES($id, '$version')";
+			$this->lastQuery = $query;
+			
+			$result = $this->db->query($query);
+			if ($result === false) return $this->reportError("Failed to create itemIdCheck record!");
+		}
+		
+		return true;
+	}
+	
+	
 	public function OnMineItemStart ($logEntry)
 	{
 		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
@@ -3110,6 +3161,12 @@ class EsoLogParser
 			case "mineItem::AutoStart":			$result = $this->OnMineItemStart($logEntry); break;
 			case "mineitem::Start":				$result = $this->OnMineItemStart($logEntry); break;
 			case "mineItem::Start":				$result = $this->OnMineItemStart($logEntry); break;
+			case "mineItems::idCheck::start":
+			case "mineItem::idCheck::start":	$result = $this->OnMineItemIdCheckStart($logEntry); break;
+			case "mineItems::idCheck::end":
+			case "mineItem::idCheck::end":		$result = $this->OnMineItemIdCheckEnd($logEntry); break;
+			case "mineItems::idCheck":
+			case "mineItem::idCheck":			$result = $this->OnMineItemIdCheck($logEntry); break;
 			case "mineItem::AutoEnd":			$result = $this->OnMineItemEnd($logEntry); break;
 			case "mineitem::End":				$result = $this->OnMineItemEnd($logEntry); break;
 			case "mineItem::End":				$result = $this->OnMineItemEnd($logEntry); break;
