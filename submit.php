@@ -171,7 +171,7 @@ class EsoLogSubmitter
 		<li>It is safe to submit duplicate files or log entries...the log parser can detect and ignore duplicate entries.</li>
 		</ul>
 		<p />
-		Note: Maximum file upload size is 20MB.
+		Note: Maximum file upload size is 40MB.
 		<br /> &nbsp;
 	</td>
 </tr><tr>
