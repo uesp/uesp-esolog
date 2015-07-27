@@ -3177,6 +3177,9 @@ class EsoLogParser
 			case "MailItem":					$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "Test":
+			case "TEST":
+			case "test":						$result = $this->OnNullEntry($logEntry); break;
 			default:							$result = $this->OnUnknownEntry($logEntry); break;
 		}
 		
