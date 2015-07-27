@@ -586,6 +586,29 @@ class EsoLogParser
 	);
 	
 	
+	public static $SKILLDUMP_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'duration' => self::FIELD_INT,
+			'cost' => self::FIELD_INT,
+			'target' => self::FIELD_STRING,
+			'minRange' => self::FIELD_INT,
+			'maxRange' => self::FIELD_INT,
+			'radius' => self::FIELD_INT,
+			'isPassive' => self::FIELD_INT,
+			'isChanneled' => self::FIELD_INT,
+			'castTime' => self::FIELD_INT,
+			'channelTime' => self::FIELD_INT,
+			'angleDistance' => self::FIELD_INT,
+			'mechanic' => self::FIELD_INT,
+			'upgradeLines' => self::FIELD_STRING,
+			'effectLines' => self::FIELD_STRING,
+			'version' => self::FIELD_STRING,
+	);
+	
+	
 	public function __construct ()
 	{
 		$this->initDatabaseWrite();
@@ -633,6 +656,16 @@ class EsoLogParser
 	}
 	
 	
+	public function createNewRecordID2 ($id, $idField, $id2, $idField2, $fieldDef)
+	{
+		$record = $this->createNewRecord($fieldDef);
+		$record[$idField] = $id;
+		$record[$idField2] = $id2;
+		
+		return $record;
+	}
+	
+	
 	public function createSelectQuery ($table, $idField, $id, $fieldDef)
 	{
 		$idType = $fieldDef[$idField];
@@ -647,6 +680,33 @@ class EsoLogParser
 		
 		$this->lastQuery = $query;
 		return $query;
+	}
+	
+	
+	public function createSelectQuery2 ($table, $idField, $id, $idField2, $id2, $fieldDef)
+	{
+		$idType = $fieldDef[$idField];
+		if ($idType == null) return $this->reportError("Unknown ID field $idField in $table table!");
+		
+		$idType2 = $fieldDef[$idField2];
+		if ($idType2 == null) return $this->reportError("Unknown ID field $idField2 in $table table!");
+		
+		if ($idType == self::FIELD_INT)
+			$query1 = "$idField=$id";
+		elseif ($idType == self::FIELD_STRING)
+			$query1 = "$idField='". $this->db->real_escape_string($id) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType in $table table!");
+		
+		if ($idType2 == self::FIELD_INT)
+			$query2 = "$idField2=$id2";
+		elseif ($idType2 == self::FIELD_STRING)
+			$query2 = "$idField2='". $this->db->real_escape_string($id2) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType2 in $table table!");
+		
+		$this->lastQuery = "SELECT * FROM $table WHERE $query1 AND $query2 LIMIT 1";
+		return $this->lastQuery;
 	}
 	
 	
@@ -695,6 +755,23 @@ class EsoLogParser
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
 		
+		return $this->createRecordFromRow($row, $fieldDef);
+	}
+	
+	
+	public function loadRecord2 ($table, $idField, $id, $idField2, $id2, $fieldDef)
+	{
+		$query = $this->createSelectQuery2($table, $idField, $id, $idField2, $id2, $fieldDef);
+		if ($query === false) return false;
+	
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to load record $id from $table table!");
+	
+		if ($result->num_rows === 0) return $this->createNewRecordID2($idField, $id, $idField2, $id2, $fieldDef);
+	
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+	
 		return $this->createRecordFromRow($row, $fieldDef);
 	}
 	
@@ -908,6 +985,21 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadSkillDump ($abilityId, $version)
+	{
+		$skill = $this->loadRecord2('skillDump', 'abilityId', $abilityId, 'version',  $version,  self::$SKILLDUMP_FIELDS);
+		if ($skill === false) return false;
+	
+		return $skill;
+	}
+	
+	
+	public function SaveSkillDump (&$record)
+	{
+		return $this->saveRecord('skillDump', $record, 'id', self::$SKILLDUMP_FIELDS);
+	}
+	
+	
 	public function SaveMinedItem (&$record)
 	{
 		return $this->saveRecord('minedItem', $record, 'id', self::$MINEDITEM_FIELDS);
@@ -972,7 +1064,6 @@ class EsoLogParser
 	{
 		$result = $this->initDatabaseWrite();
 		if (!$result) return false;
-		
 		
 		$query = "CREATE TABLE IF NOT EXISTS logInfo (
 						id TINYTEXT NOT NULL,
@@ -1303,6 +1394,37 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create itemIdCheck table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS skillDump(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			abilityId INTEGER NOT NULL,
+			name TINYTEXT NOT NULL,
+			description TEXT NOT NULL,
+			target TINYTEXT NOT NULL,
+			upgradeLines TEXT NOT NULL,
+			effectLines TEXT NOT NULL,
+			duration INTEGER NOT NULL DEFAULT -1,
+			cost INTEGER NOT NULL DEFAULT -1,
+			minRange INTEGER NOT NULL DEFAULT -1,
+			maxRange INTEGER NOT NULL DEFAULT -1,
+			radius INTEGER NOT NULL DEFAULT -1,
+			isPassive TINYINT NOT NULL DEFAULT 0,
+			isChanneled TINYINT NOT NULL DEFAULT 0,
+			castTime INTEGER NOT NULL DEFAULT -1,
+			channelTime INTEGER NOT NULL DEFAULT -1,
+			angleDistance INTEGER NOT NULL DEFAULT -1,
+			mechanic INTEGER NOT NULL DEFAULT -1,
+			version TINYTEXT NOT NULL,
+			INDEX index_abilityId (abilityId),
+			INDEX index_version (version(8)),
+			FULLTEXT(name),
+			FULLTEXT(description),
+			FULLTEXT(upgradeLines),
+			FULLTEXT(effectLines)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create skillDump table!");
 		
 		return true;
 	}
@@ -1346,6 +1468,7 @@ class EsoLogParser
 		$this->users[$userName]['lastBookRecord'] = null;
 		$this->users[$userName]['lastBookLogEntry'] = null;
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
+		$this->users[$userName]['lastSkillDumpNote'] = null;
 		$this->users[$userName]['lastMinedItemIdCheckNote'] = null;
 		$this->users[$userName]['mineItemStartGameTime'] = 1;
 		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
@@ -1433,6 +1556,7 @@ class EsoLogParser
 		$this->users[$userName]['lastBookRecord'] = null;
 		$this->users[$userName]['lastBookLogEntry'] = null;
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
+		$this->users[$userName]['lastSkillDumpNote'] = null;
 		$this->users[$userName]['mineItemStartGameTime'] = 1;
 		$this->users[$userName]['lastMinedItemIdCheckNote'] = null;
 		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
@@ -3005,6 +3129,56 @@ class EsoLogParser
 	}
 	
 	
+	public function OnSkillDumpStart ($logEntry)
+	{
+		if ($logEntry['note'] != null)
+			$this->currentUser['lastSkillDumpNote'] = $logEntry['note'];
+		else
+			$this->currentUser['lastSkillDumpNote'] = '';
+		
+		return true;
+	}
+	
+	
+	public function OnSkillDumpEnd ($logEntry)
+	{
+		$this->currentUser['lastSkillDumpNote'] = null;
+		return true;
+	}
+	
+	
+	public function OnSkill ($logEntry)
+	{
+		$version = $this->currentUser['lastSkillDumpNote'];
+		$abilityId = $logEntry['id'];
+		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
+		
+		$skill = $this->LoadSkillDump($abilityId, $version);
+		if ($skill === false) return false;
+		
+		$skill['name'] = $logEntry['name'];
+		$skill['desc'] = $logEntry['description'];
+		$skill['duration'] = $logEntry['duration'];
+		$skill['cost'] = $logEntry['cost'];
+		$skill['target'] = $logEntry['target'];
+		$skill['minRange'] = $logEntry['minRange'];
+		$skill['maxRange'] = $logEntry['maxRange'];
+		$skill['radius'] = $logEntry['radius'];
+		$skill['passive'] = $logEntry['isPassive'];
+		$skill['channel'] = $logEntry['isChanneled'];
+		$skill['castTime'] = $logEntry['castTime'];
+		$skill['channelTime'] = $logEntry['channelTime'];
+		$skill['angleDistance'] = $logEntry['angleDistance'];
+		$skill['mechanic'] = $logEntry['mechanic'];
+		$skill['upgradeLines'] = $logEntry['upgradeLines'];
+		$skill['effectLines'] = $logEntry['effectLines'];
+			
+		$this->SaveSkillDump($skill);
+		
+		return true;
+	}
+	
+	
 	public function OnNullEntry ($logEntry)
 	{
 		// Do Nothing
@@ -3050,6 +3224,9 @@ class EsoLogParser
 			case "mineItem::Start":
 			case "mineItem::AutoEnd":
 			case "mineItem::End":
+			case "skill":
+			case "skillDump::Start":
+			case "skillDump::End":
 				return false;
 		}
 		
@@ -3177,6 +3354,11 @@ class EsoLogParser
 			case "MailItem":					$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "skillDump::start":
+			case "skillDump::Start":			$result = $this->OnSkillDumpStart($logEntry); break;
+			case "skillDump::end":
+			case "skillDump::End":				$result = $this->OnSkillDumpEnd($logEntry); break;
+			case "skill":						$result = $this->OnSkill($logEntry); break;
 			case "Test":
 			case "TEST":
 			case "test":						$result = $this->OnNullEntry($logEntry); break;
