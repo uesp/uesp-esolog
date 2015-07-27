@@ -306,6 +306,29 @@ class EsoLogViewer
 	);
 	
 	
+	public static $SKILLDUMP_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'version' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'duration' => self::FIELD_INT,
+			'cost' => self::FIELD_INT,
+			'target' => self::FIELD_STRING,
+			'minRange' => self::FIELD_INT,
+			'maxRange' => self::FIELD_INT,
+			'radius' => self::FIELD_INT,
+			'isPassive' => self::FIELD_INT,
+			'isChanneled' => self::FIELD_INT,
+			'castTime' => self::FIELD_INT,
+			'channelTime' => self::FIELD_INT,
+			'angleDistance' => self::FIELD_INT,
+			'mechanic' => self::FIELD_INT,
+			'upgradeLines' => self::FIELD_STRING,
+			'effectLines' => self::FIELD_STRING,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -683,6 +706,21 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'skillDump' => array(
+					'displayName' => 'Skills',
+					'displayNameSingle' => 'Skill',
+					'record' => 'skillDump',
+					'table' => 'skillDump',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+					),
+			),
 	);
 	
 	
@@ -760,6 +798,13 @@ class EsoLogViewer
 							'setName' => 'name',
 					),
 			),
+			'skillDump' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
 	);
 	
 	
@@ -785,6 +830,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedItem']['fields'] = self::$MINEDITEM_FIELDS;
 		self::$RECORD_TYPES['minedItemSummary']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
+		self::$RECORD_TYPES['skillDump']['fields'] = self::$SKILLDUMP_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -2102,6 +2148,9 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'minedItemSummary':
 				$output .= $this->GetViewRecordLink('minedItemSummary', $result['id'], 'View Item');
+				break;
+			case 'skillDump':
+				$output .= $this->GetViewRecordLink('skillDump', $result['id'], 'View Skill');
 				break;
 		};
 		
