@@ -33,7 +33,7 @@ class EsoLogViewer
 	public $searchTotalCount = 0;
 	public $searchTerms = array();
 	public $searchResults = array();
-	public $displayLimit = 100;
+	public $displayLimit = 200;
 	public $displayStart = 0;
 	public $displayRawValues = false;
 	
@@ -323,7 +323,7 @@ class EsoLogViewer
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
-			'mechanic' => self::FIELD_INT,
+			'mechanic' =>self::FIELD_INTTRANSFORM,
 			'upgradeLines' => self::FIELD_STRING,
 			'effectLines' => self::FIELD_STRING,
 	);
@@ -716,6 +716,7 @@ class EsoLogViewer
 					'sort' => 'name',
 						
 					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
 					),
 						
 					'filters' => array(
@@ -1057,6 +1058,29 @@ class EsoLogViewer
 				13 => "Frost Staff",
 				14 => "Shield",
 				15 => "Lightning Staff",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetCombatMechanicText ($value)
+	{
+		static $VALUES = array(
+				-2 => "Health",
+				-1 => "Invalid",
+				0 => "Magicka",
+				1 => "Werewolf",
+				4 => "Power",
+				6 => "Stamina",
+				7 => "Momentum",
+				9 => "Finesse",
+				10 => "Ultimate",
+				11 => "Mount Stamina",
+				12 => "Health Bonus",
 		);
 	
 		$key = (int) $value;
