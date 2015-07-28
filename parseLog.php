@@ -2097,8 +2097,8 @@ class EsoLogParser
 		}
 		
 		$questId = $questRecord['id'];
-		$questOfferData = $this->users[$userName]['lastQuestOffered'];
-		$this->users[$userName]['lastQuestOffered'] = null;
+		$questOfferData = $this->currentUser['lastQuestOffered'];
+		$this->currentUser['lastQuestOffered'] = null;
 		
 		if ($questOfferData != null)
 		{
@@ -2164,7 +2164,7 @@ class EsoLogParser
 		//x{0.55621987581253}  zone{Southern High Rock Gate}  y{0.53252720832825}  timeStamp{4743797388274040832}  
 		//gameTime{3757083}  lang{en}  userName{...}  ipAddress{...}  logTime{1433063158}  end{}
 		
-		$this->users[$userName]['lastQuestOffered'] = $logEntry;
+		$this->currentUser['lastQuestOffered'] = $logEntry;
 		
 		return true;
 	}
@@ -3132,6 +3132,8 @@ class EsoLogParser
 	
 	public function OnSkillDumpStart ($logEntry)
 	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring skillDump from user ".$this->currentUser['name']."!"); 
+		
 		if ($logEntry['note'] != null)
 			$this->currentUser['lastSkillDumpNote'] = $logEntry['note'];
 		else
@@ -3144,6 +3146,7 @@ class EsoLogParser
 	
 	public function OnSkillDumpEnd ($logEntry)
 	{
+		if ($this->currentUser['name'] != "Reorx") return false;
 		$this->currentUser['lastSkillDumpNote'] = null;
 		return true;
 	}
@@ -3151,6 +3154,8 @@ class EsoLogParser
 	
 	public function OnSkill ($logEntry)
 	{
+		if ($this->currentUser['name'] != "Reorx") return false;
+		
 		$version = $this->currentUser['lastSkillDumpNote'];
 		$abilityId = $logEntry['id'];
 		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
