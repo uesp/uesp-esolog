@@ -647,7 +647,7 @@ class EsoLogParser
 	}
 	
 	
-	public function createNewRecordID ($id, $idField, $fieldDef)
+	public function createNewRecordID ($idField, $id, $fieldDef)
 	{
 		$record = $this->createNewRecord($fieldDef);
 		$record[$idField] = $id;
@@ -656,7 +656,7 @@ class EsoLogParser
 	}
 	
 	
-	public function createNewRecordID2 ($id, $idField, $id2, $idField2, $fieldDef)
+	public function createNewRecordID2 ($idField, $id, $idField2, $id2, $fieldDef)
 	{
 		$record = $this->createNewRecord($fieldDef);
 		$record[$idField] = $id;
@@ -987,7 +987,7 @@ class EsoLogParser
 	
 	public function LoadSkillDump ($abilityId, $version)
 	{
-		$skill = $this->loadRecord2('skillDump', 'abilityId', $abilityId, 'version',  $version,  self::$SKILLDUMP_FIELDS);
+		$skill = $this->loadRecord2('skillDump', 'abilityId', $abilityId, 'version', $version, self::$SKILLDUMP_FIELDS);
 		if ($skill === false) return false;
 	
 		return $skill;
@@ -1720,7 +1720,8 @@ class EsoLogParser
 		foreach ($VALID_FIELDS as $key => $field)
 		{
 			if (!array_key_exists($field, $logEntry)) return $this->reportLogParseError("Missing $field in log entry!");
-			if ($logEntry[$field] == '') return $this->reportLogParseError("Found empty $field in log entry!");
+			if ($logEntry[$field] == '') return false; 
+				//return $this->reportLogParseError("\tFound empty $field in log entry!");
 		}
 		
 		return true;
@@ -3136,6 +3137,7 @@ class EsoLogParser
 		else
 			$this->currentUser['lastSkillDumpNote'] = '';
 		
+		$this->log("\tFound start of skillDump(".$this->currentUser['lastSkillDumpNote'].")...");
 		return true;
 	}
 	
@@ -3164,8 +3166,8 @@ class EsoLogParser
 		$skill['minRange'] = $logEntry['minRange'];
 		$skill['maxRange'] = $logEntry['maxRange'];
 		$skill['radius'] = $logEntry['radius'];
-		$skill['passive'] = $logEntry['isPassive'];
-		$skill['channel'] = $logEntry['isChanneled'];
+		$skill['isPassive'] = $logEntry['passive'];
+		$skill['isChanneled'] = $logEntry['channel'];
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
 		$skill['angleDistance'] = $logEntry['angleDistance'];
@@ -3227,6 +3229,8 @@ class EsoLogParser
 			case "skill":
 			case "skillDump::Start":
 			case "skillDump::End":
+			case "skillDump::start":
+			case "skillDump::end":
 				return false;
 		}
 		
@@ -3638,7 +3642,7 @@ class EsoLogParser
 	public function reportLogParseError ($errorMsg)
 	{
 		//$this->reportError("{$this->currentParseFile}:{$this->currentParseLine}: {$errorMsg}");
-		$this->reportError("{$this->currentParseLine}: {$errorMsg}");
+		$this->reportError("\t{$this->currentParseLine}: {$errorMsg}");
 		return false;
 	}
 	
