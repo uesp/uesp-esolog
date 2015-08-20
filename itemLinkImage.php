@@ -82,6 +82,7 @@ class CEsoItemLinkImage
 	public $enchantId2 = -1;
 	public $enchantIntLevel2 = -1;
 	public $enchantIntType2 = -1;
+	public $version = "";
 	public $noCache = false;
 	public $showSummary = false;
 	public $itemRecord = array();
@@ -255,6 +256,9 @@ class CEsoItemLinkImage
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		
+		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
+		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
+		
 		return true;
 	}
 	
@@ -308,13 +312,13 @@ class CEsoItemLinkImage
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
+			$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
 		else
 		{
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+			$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 		}
 		
@@ -326,7 +330,7 @@ class CEsoItemLinkImage
 			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
 			{
 				$this->itemIntType = 2;
-				$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 				
 				$result = $this->db->query($query);
@@ -376,6 +380,16 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function GetTableSuffix()
+	{
+		if ($this->version == "1.5") return "15";
+		if ($this->version == "1.6") return "";
+		if ($this->version == "1.7") return "";
+	
+		return "";
+	}
+	
+	
 	private function LoadItemErrorData()
 	{
 		$this->itemRecord = self::$ESOIL_ERROR_ITEM_DATA;
@@ -417,7 +431,7 @@ class CEsoItemLinkImage
 	private function LoadItemSummaryData()
 	{
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
-		$query = "SELECT * FROM minedItemSummary WHERE itemId={$this->itemId};";
+		$query = "SELECT * FROM minedItemSummary".$this->GetTableSuffix()." WHERE itemId={$this->itemId};";
 	
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
@@ -429,12 +443,11 @@ class CEsoItemLinkImage
 	}
 	
 	
-	
 	private function LoadEnchantRecords()
 	{
 		if ($this->enchantId1 > 0 && $this->enchantIntLevel1 > 0 && $this->enchantIntType1 > 0)
 		{
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
+			$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 				
@@ -445,7 +458,7 @@ class CEsoItemLinkImage
 	
 		if ($this->enchantId2 > 0 && $this->enchantIntLevel2 > 0 && $this->enchantIntType2 > 0)
 		{
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
+			$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 	
@@ -1436,6 +1449,7 @@ class CEsoItemLinkImage
 		if ($this->itemId <= 0) return false;
 		if ($this->itemIntLevel <= 0) return false;
 		if ($this->itemIntType <= 0) return false;
+		if ($this->version != "") return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int";
@@ -1467,6 +1481,7 @@ class CEsoItemLinkImage
 		if ($this->itemCrafted > 0) return false;
 		if ($this->itemCharges > 0) return false;
 		if ($this->itemPotionData > 0) return false;
+		if ($this->version != "") return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
