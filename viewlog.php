@@ -704,6 +704,13 @@ class EsoLogViewer
 					),
 					
 					'filters' => array(
+							array(
+									'record' => 'minedItemSummary',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
 					),
 			),
 			
@@ -1475,8 +1482,9 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function CreateFilterLink ($record, $filter, $id, $link)
 	{	
-		if ($id == '' || $id <= 0) return "";
+		if ($id == '' || (is_int($id) && $id <= 0)) return "";
 		
+		$id = urlencode($id);
 		$output = "<a class='elvFilterLink' href='?record={$record}&filter=$filter&filterid=$id'>$link</a>";
 		
 		return $output;
