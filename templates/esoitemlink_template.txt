@@ -42,7 +42,7 @@
 	<div id="esoil_linkcontainer">
 		<a id="esoil_datatablelink" href="dumpMinedItems.php?itemid={itemId}&output=html">View Data Table</a>
 		<a id="esoil_summarylink" href="itemLink.php?itemid={itemId}&summary">View Summary Data</a>
-		<a id="esoil_itemimagelink" href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}&enchantid={itemEnchantId1}&enchantintlevel={itemEnchantIntLevel1}&enchantinttype={itemEnchantIntType1}&{showSummary}">Link to Item Image</a>
+		<a id="esoil_itemimagelink" href="itemLinkImage.php?itemid={itemId}&level={itemLevelRaw}&quality={itemQualityRaw}&enchantid={itemEnchantId1}&enchantintlevel={itemEnchantIntLevel1}&enchantinttype={itemEnchantIntType1}&v={version}&{showSummary}">Link to Item Image</a>
 	</div>
 	<br />
 	<div id="esoil_itemsimilarblock">
