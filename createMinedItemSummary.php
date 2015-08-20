@@ -4,6 +4,8 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require("/home/uesp/secrets/esolog.secrets");
 
+$TABLE_SUFFIX = "";
+
 $FIELDS = array(
 		"itemId",
 		"name",
@@ -46,7 +48,7 @@ $RANGE_FIELDS = array(
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
+$query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			itemId INTEGER NOT NULL,
 			name TINYTEXT NOT NULL,
@@ -81,7 +83,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary(
 			setBonusDesc3 TINYTEXT NOT NULL,
 			setBonusDesc4 TINYTEXT NOT NULL,
 			setBonusDesc5 TINYTEXT NOT NULL,
-			PRIMARY KEY (itemId),
+			PRIMARY KEY (id),
 			INDEX index_style (style),
 			INDEX index_trait (trait),
 			INDEX index_type (type),
@@ -98,34 +100,34 @@ if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error)
 $FIRSTID = 1;
 $LASTID = 80000;
 $MINSUBTYPE = 2;
-$MAXSUBTYPE = 312;
+$MAXSUBTYPE = 338;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
 	if ($id % 100 == 0) print("Writing Item $id...\n");
 	
-	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
+	$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 	$minItemData = $result->fetch_assoc();
 	
 	if (!$minItemData)
 	{
-		$query = "SELECT * FROM minedItem WHERE itemId=$id LIMIT 1;";
+		$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id LIMIT 1;";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
 		if (!$minItemData) continue;
 	}
 	
-	$query = "SELECT * FROM minedItem WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
+	$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (finding max item)!\n" . $db->error);
 	$maxItemData = $result->fetch_assoc();
 	
 	if (!$maxItemData)
 	{
-		$query = "SELECT * FROM minedItem where itemId=$id ORDER BY value DESC LIMIT 1;";
+		$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." where itemId=$id ORDER BY value DESC LIMIT 1;";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error (finding max item v2)!\n" . $db->error);
 		$maxItemData = $result->fetch_assoc();
@@ -205,10 +207,10 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		$columns[] = $field;
 	}
 	
-	$query = "DELETE FROM minedItemSummary WHERE itemId=" . $id . ";";
+	$query = "DELETE FROM minedItemSummary".$TABLE_SUFFIX." WHERE itemId=" . $id . ";";
 	$result = $db->query($query);
 	
-	$query  = "INSERT INTO minedItemSummary(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
+	$query  = "INSERT INTO minedItemSummary".$TABLE_SUFFIX."(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error);
 }

@@ -102,6 +102,7 @@ class CEsoItemLink
 	public $enchantRecord1 = null;
 	public $enchantRecord2 = null;
 	public $itemAllData = array();
+	public $version = "";
 	public $itemSimilarRecords = array();
 	public $itemSummary = array();
 	public $outputType = "html";
@@ -194,6 +195,9 @@ class CEsoItemLink
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		
+		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
+		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
+		
 		if (array_key_exists('embed', $this->inputParams))
 		{
 			$this->embedLink = true;
@@ -268,6 +272,16 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetTableSuffix()
+	{
+		if ($this->version == "1.5") return "15";
+		if ($this->version == "1.6") return "";
+		if ($this->version == "1.7") return "";
+		
+		return "";
+	}
+	
+	
 	private function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
@@ -311,7 +325,7 @@ class CEsoItemLink
 		$this->itemAllData = array();
 		if ($this->itemId <= 0) return false;
 		
-		$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} ORDER BY level, quality;";
+		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} ORDER BY level, quality;";
 		
 		$result = $this->db->query($query);
 		if (!$result) return false;
@@ -417,7 +431,7 @@ class CEsoItemLink
 	private function LoadItemSummaryData()
 	{
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
-		$query = "SELECT * FROM minedItemSummary WHERE itemId={$this->itemId};";
+		$query = "SELECT * FROM minedItemSummary". $this->GetTableSuffix() ." WHERE itemId={$this->itemId};";
 		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
@@ -438,13 +452,13 @@ class CEsoItemLink
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
 		else
 		{
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 		}
 		
@@ -456,7 +470,7 @@ class CEsoItemLink
 			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
 			{
 				$this->itemIntType = 2;
-				$query = "SELECT * FROM minedItem WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 				
 				$result = $this->db->query($query);
@@ -510,7 +524,7 @@ class CEsoItemLink
 	{
 		if ($this->enchantId1 > 0 && $this->enchantIntLevel1 > 0 && $this->enchantIntType1 > 0)
 		{
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 			
@@ -521,7 +535,7 @@ class CEsoItemLink
 		
 		if ($this->enchantId2 > 0 && $this->enchantIntLevel2 > 0 && $this->enchantIntType2 > 0)
 		{
-			$query = "SELECT * FROM minedItem WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 				
@@ -577,7 +591,7 @@ class CEsoItemLink
 	
 	private function LoadSimilarItemRecords()
 	{
-		$query = "SELECT id, internalLevel, internalSubtype FROM minedItem WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality};";
+		$query = "SELECT id, internalLevel, internalSubtype FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality};";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		if ($result->num_rows === 0) return true;
@@ -630,6 +644,7 @@ class CEsoItemLink
 		$this->itemRecord['isBound'] = $this->itemBound < 0 ? 0 : $this->itemBound;
 		$this->itemRecord['isCrafted'] = $this->itemCrafted < 0 ? 0 : $this->itemCrafted;
 		$this->itemRecord['charges'] = $this->itemCharges < 0 ? 0 : $this->itemCharges;
+		$this->itemRecord['version'] = $this->version;
 		
 		if ($this->itemStyle > 0 && $this->itemStyle != $this->itemRecord['style'])
 		{
@@ -1019,11 +1034,20 @@ class CEsoItemLink
 				'{itemEnchantIntLevel1}' => $this->itemRecord['enchantIntLevel1'],
 				'{itemEnchantIntType1}' => $this->itemRecord['enchantIntType1'],
 				'{showSummary}' => $this->showSummary ? 'summary' : '',
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		
 		print ($output);
+	}
+	
+	
+	public function GetVersionTitle()
+	{
+		if ($this->GetTableSuffix() == "") return "";
+		return " v" . $this->version . "";
 	}
 	
 	
