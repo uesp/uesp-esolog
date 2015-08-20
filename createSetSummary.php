@@ -1,6 +1,9 @@
 <?php
 
 
+$TABLE_SUFFIX = "";
+
+
 function TransformBonusDesc($desc)
 {
 	$newDesc = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $desc);
@@ -16,7 +19,7 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$query = "CREATE TABLE IF NOT EXISTS setSummary(
+$query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			setName TINYTEXT NOT NULL,
 			setMaxEquipCount TINYINT NOT NULL DEFAULT 0,
@@ -34,11 +37,11 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary(
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
-$query = "UPDATE setSummary SET itemCount=0;";
+$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemCount=0;";
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error (clearing item counts)!\n" . $db->error);
 
-$query = "SELECT * FROM minedItemSummary WHERE setName!='';";
+$query = "SELECT * FROM minedItemSummary".$TABLE_SUFFIX." WHERE setName!='';";
 $rowResult = $db->query($query);
 if (!$rowResult) exit("ERROR: Database query error (finding set items)!\n" . $db->error);
 $rowResult->data_seek(0);
@@ -78,7 +81,7 @@ while (($row = $rowResult->fetch_assoc()))
 	print("\tUpdating set $setName with $setMaxEquipCount items...\n");
 	//print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
 	
-	$query = "SELECT * FROM setSummary WHERE setName=\"$setName\";";
+	$query = "SELECT * FROM setSummary".$TABLE_SUFFIX." WHERE setName=\"$setName\";";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error finding set!\n" . $db->error);
 	
@@ -122,7 +125,7 @@ while (($row = $rowResult->fetch_assoc()))
 		if ($setBonusDesc4 != "") $setBonusDesc .= "\n".$setBonusDesc4;
 		if ($setBonusDesc5 != "") $setBonusDesc .= "\n".$setBonusDesc5;
 		
-		$query  = "INSERT INTO setSummary(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc) ";
+		$query  = "INSERT INTO setSummary".$TABLE_SUFFIX."(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc) ";
 		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\", \"$setBonusDesc\");";
 		
 		$result = $db->query($query);
@@ -132,7 +135,7 @@ while (($row = $rowResult->fetch_assoc()))
 	{
 		//print("\t\tUpdating set $updateId...\n");
 		++$updateCount;
-		$query = "UPDATE setSummary SET itemCount=itemCount+1 WHERE id=$updateId;";
+		$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemCount=itemCount+1 WHERE id=$updateId;";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error updating table!\n" . $db->error);
 	}

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>UESP:ESO Item -- {itemName}</title>
+		<title>UESP:ESO Item{versionTitle} -- {itemName}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="resources/esoitemlink.css" />
 		<link rel="stylesheet" href="resources/esoitemlink_embed.css" />
@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="resources/esoitemlink.js"></script>
 	</head>
 <body>
-<h1>ESO Item -- {itemName}</h1>
+<h1>ESO Item{versionTitle} -- {itemName}</h1>
 <h2 id="esoil_levelheader">{itemQuality} {itemLevel}</h2>
 
 <div id="esoil_itemcontainer">
