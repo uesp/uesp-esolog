@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "15";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
@@ -340,11 +340,11 @@ while (($row = $rowResult->fetch_assoc()))
 		$newBonusDesc4 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc4']);
 		$newBonusDesc5 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc5']);
 		
-		if ($newBonusDesc1 != $setBonusDesc1) { $matches = false; print("\t\tSet bonus #1 doesn't match!\n"); }
-		if ($newBonusDesc2 != $setBonusDesc2) { $matches = false; print("\t\tSet bonus #2 doesn't match!\n"); }
-		if ($newBonusDesc3 != $setBonusDesc3) { $matches = false; print("\t\tSet bonus #3 doesn't match!\n"); }
-		if ($newBonusDesc4 != $setBonusDesc4) { $matches = false; print("\t\tSet bonus #4 doesn't match!\n"); }
-		if ($newBonusDesc5 != $setBonusDesc5) { $matches = false; print("\t\tSet bonus #5 doesn't match!\n"); }
+		if ($newBonusDesc1 != $setBonusDesc1) { $matches = true; print("\t\tSet bonus #1 doesn't match!\n"); }
+		if ($newBonusDesc2 != $setBonusDesc2) { $matches = true; print("\t\tSet bonus #2 doesn't match!\n"); }
+		if ($newBonusDesc3 != $setBonusDesc3) { $matches = true; print("\t\tSet bonus #3 doesn't match!\n"); }
+		if ($newBonusDesc4 != $setBonusDesc4) { $matches = true; print("\t\tSet bonus #4 doesn't match!\n"); }
+		if ($newBonusDesc5 != $setBonusDesc5) { $matches = true; print("\t\tSet bonus #5 doesn't match!\n"); }
 		if ($newRow['setMaxEquipCount'] != $setMaxEquipCount) { $matches = false; print("\t\tSet max equip count doesn't match!\n"); }
 		
 		if ($matches) 
