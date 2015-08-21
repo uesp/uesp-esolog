@@ -302,6 +302,7 @@ class EsoLogViewer
 			'setMaxEquipCount' => self::FIELD_INT,
 			'setBonusCount' => self::FIELD_INT,
 			'setBonusDesc' => self::FIELD_INTTRANSFORM,
+			'itemSlots' => self::FIELD_STRING,
 			'itemCount' => self::FIELD_INT,
 	);
 	
