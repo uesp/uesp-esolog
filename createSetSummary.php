@@ -1,7 +1,11 @@
 <?php
 
-
 $TABLE_SUFFIX = "";
+
+if (php_sapi_name() != "cli") die("Can only be run from command line!");
+print("Updating item set data from mined item summaries...\n");
+
+require("/home/uesp/secrets/esolog.secrets");
 
 
 function TransformBonusDesc($desc)
@@ -11,10 +15,242 @@ function TransformBonusDesc($desc)
 }
 
 
-if (php_sapi_name() != "cli") die("Can only be run from command line!");
-print("Updating item set data from mined item summaries...\n");
+function GetItemArmorTypeText ($value)
+{
+	static $VALUES = array(
+			-1 => "",
+			0 => "",
+			1 => "Light",
+			2 => "Medium",
+			3 => "Heavy",
+	);
 
-require("/home/uesp/secrets/esolog.secrets");
+	$key = (int) $value;
+
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "$key?";
+}
+
+
+function GetItemWeaponTypeText ($value)
+{
+	static $VALUES = array(
+			-1 => "",
+			0 => "",
+			1 => "Axe",
+			2 => "Hammer",
+			3 => "Sword",
+			4 => "2HSword",
+			5 => "2HAxe",
+			6 => "2HHammer",
+			7 => "Prop",
+			8 => "Bow",
+			9 => "HealStaff",
+			10 => "Rune",
+			11 => "Dagger",
+			12 => "FireStaff",
+			13 => "FrostStaff",
+			14 => "Shield",
+			15 => "LightStaff",
+	);
+	
+	$key = (int) $value;
+	
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "$key?";
+}
+
+
+function GetItemEquipTypeText ($value)
+{
+	static $VALUES = array(
+			-1 => "",
+			0 => "",
+			1 => "Head",
+			2 => "Neck",
+			3 => "Chest",
+			4 => "Shoulder",
+			5 => "OneHand",
+			6 => "TwoHand",
+			7 => "OffHand",
+			8 => "Waist",
+			9 => "Leg",
+			10 => "Feet",
+			11 => "Costume",
+			12 => "Ring",
+			13 => "Hand",
+			14 => "MainHand",
+	);
+
+	$key = (int) $value;
+
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "$key?";
+}
+
+
+function GetItemTypeText ($value)
+{
+	static $VALUES = array(
+			-1 => "",
+			11 => "additive",
+			33 => "alchemy_base",
+			2 => "armor",
+			24 => "armor_booster",
+			45 => "armor_trait",
+			47 => "ava_repair",
+			41 => "blacksmithing_booster",
+			36 => "blacksmithing_material",
+			35 => "blacksmithing_raw_material",
+			43 => "clothier_booster",
+			40 => "clothier_material",
+			39 => "clothier_raw_material",
+			34 => "collectible",
+			18 => "container",
+			13 => "costume",
+			14 => "disguise",
+			12 => "drink",
+			32 => "enchanting_rune",
+			25 => "enchantment_booster",
+			28 => "flavoring",
+			4 => "food",
+			21 => "glyph_armor",
+			26 => "glyph_jewelry",
+			20 => "glyph_weapon",
+			10 => "ingredient",
+			22 => "lockpick",
+			16 => "lure",
+			0 => "none",
+			3 => "plug",
+			30 => "poison",
+			7 => "potion",
+			17 => "raw_material",
+			31 => "reagent",
+			29 => "recipe",
+			8 => "scroll",
+			6 => "siege",
+			19 => "soul_gem",
+			27 => "spice",
+			44 => "style_material",
+			15 => "tabard",
+			9 => "tool",
+			48 => "trash",
+			5 => "trophy",
+			1 => "weapon",
+			23 => "weapon_booster",
+			46 => "weapon_trait",
+			42 => "woodworking_booster",
+			38 => "woodworking_material",
+			37 => "woodworking_raw_material",
+			49 => "spellcrafting_tablet",
+			50 => "mount",
+			51 => "potency_rune",
+			52 => "aspect_rune",
+			53 => "essence_rune",
+	);
+
+	$key = (int) $value;
+
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "$key?";
+}
+
+
+function JoinArrayKeys ($array)
+{
+	$output = "";
+	
+	foreach($array as $key => $value)
+	{
+		if ($output != "") $output .= " ";
+		$output = $output . $key;
+	}
+	
+	return $output;
+}
+
+
+function CreateItemSlotString ($setSlots)
+{
+	$output = "";
+	
+	foreach($setSlots as $key => $value)
+	{
+		if ($output != "") $output .= " ";
+		
+		if ($key == "Heavy" || $key == "Medium" || $key == "Light")
+		{
+			if (count($value) >= 7)
+				$output = $output . $key . "(All)";
+			else
+				$output = $output . $key . "(" . JoinArrayKeys($value) . ")";
+		}
+		elseif ($key == "Weapons")
+		{
+			if (count($value) >= 12)
+				$output = $output . $key . "(All)";
+			else
+				$output = $output . $key . "(" . JoinArrayKeys($value) . ")";
+		}
+		else
+		{
+			$output = $output . $key;
+		}
+	}
+	
+	return $output;
+}
+
+
+function UpdateItemSlotArray (&$outputArray, $item)
+{
+	$itemName = $item['name'];
+	
+	$type = $item['type'];
+	$weaponType = $item['weaponType'];
+	$armorType = $item['armorType'];
+	$equipType = $item['equipType'];
+	$typeText = GetItemTypeText($type);
+	$armorTypeText = GetItemArmorTypeText($armorType);
+	$equipTypeText = GetItemEquipTypeText($equipType);
+	$weaponTypeText = GetItemWeaponTypeText($weaponType);
+	
+	$output = &$outputArray;
+	
+	if ($armorTypeText != "") 
+	{
+		if (!array_key_exists($armorTypeText, $outputArray)) $outputArray[$armorTypeText] = array();
+		$output = &$outputArray[$armorTypeText];
+		
+		if ($equipTypeText != "")
+		{
+			$output[$equipTypeText] = 1;
+		}
+	}
+	else if ($weaponTypeText != "")
+	{
+		if ($weaponTypeText == "Shield")
+		{
+			$output["Shield"] = 1;
+		}
+		else
+		{
+			if (!array_key_exists("Weapons", $outputArray)) $outputArray["Weapons"] = array();
+			$output = &$outputArray["Weapons"];
+			$output[$weaponTypeText] = 1;
+		}
+	}
+	elseif ($equipTypeText != "") 
+	{
+		$output[$equipTypeText] = 1;
+	}
+	elseif ($typeText != "")
+	{
+		$output[$typeText] = 1;
+	}
+	
+}
+
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
@@ -31,6 +267,7 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			setBonusDesc4 TINYTEXT NOT NULL,
 			setBonusDesc5 TINYTEXT NOT NULL,
 			setBonusDesc TEXT NOT NULL,
+			itemSlots TEXT NOT NULL,
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5)
 		);";
 
@@ -49,6 +286,7 @@ $rowResult->data_seek(0);
 $itemCount = 0;
 $updateCount = 0;
 $newCount = 0;
+$setItemSlots = array();
 
 while (($row = $rowResult->fetch_assoc()))
 {
@@ -61,6 +299,7 @@ while (($row = $rowResult->fetch_assoc()))
 	$setBonusDesc5 = TransformBonusDesc($row['setBonusDesc5']);
 	$setBonusCount = 0;
 	$setMaxEquipCount = $row['setMaxEquipCount'];
+	if ($setMaxEquipCount == null || $setMaxEquipCount == "") $setMaxEquipCount = 1; 
 	
 	$lastBonusDesc = $setBonusDesc5;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc4;
@@ -73,6 +312,9 @@ while (($row = $rowResult->fetch_assoc()))
 	if ($setBonusDesc3 != "") $setBonusCount = 3;
 	if ($setBonusDesc4 != "") $setBonusCount = 4;
 	if ($setBonusDesc5 != "") $setBonusCount = 5;
+	
+	if (!array_key_exists($setName, $setItemSlots)) $setItemSlots[$setName] = array();
+	UpdateItemSlotArray($setItemSlots[$setName], $row);
 	
 	$matches = array();
 	$regResult = preg_match('/\(([0-9]+) items\)/', $lastBonusDesc, $matches);
@@ -129,7 +371,7 @@ while (($row = $rowResult->fetch_assoc()))
 		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\", \"$setBonusDesc\");";
 		
 		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error);
+		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error . "\n" . $query);
 	}
 	else if ($updateId > 0)
 	{
@@ -137,13 +379,24 @@ while (($row = $rowResult->fetch_assoc()))
 		++$updateCount;
 		$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemCount=itemCount+1 WHERE id=$updateId;";
 		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error updating table!\n" . $db->error);
+		if (!$result) exit("ERROR: Database query error updating table!\n" . $db->error . "\n" . $query);
 	}
 	else
 	{
 		print("\t\tError: Unknown set record to update!\n");
 	}
 	
+}
+
+print("\tUpdating set item slots...\n");
+
+foreach ($setItemSlots as $setName => $setSlots)
+{
+	$slotString = CreateItemSlotString($setSlots);
+	$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemSlots='".$slotString."' WHERE setName=\"".$setName."\";";
+	$result = $db->query($query);
+	if (!$result) exit("ERROR: Database query error updating table!\n" . $db->error . "\n" . $query);
+	//print("$setName: $slotString\n");
 }
 
 print("Found $itemCount item sets, $newCount new, $updateCount duplicate!\n");
