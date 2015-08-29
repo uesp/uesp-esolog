@@ -46,6 +46,7 @@ class EsoLogViewer
 	const FIELD_LARGESTRING = 7;
 	const FIELD_INTTRANSFORM = 8;
 	const FIELD_INTID = 9;
+	const FIELD_TEXTTRANSFORM = 10;
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -311,7 +312,7 @@ class EsoLogViewer
 			'abilityId' => self::FIELD_INT,
 			'version' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
-			'description' => self::FIELD_STRING,
+			'description' => self::FIELD_TEXTTRANSFORM,
 			'duration' => self::FIELD_INT,
 			'cost' => self::FIELD_INT,
 			'target' => self::FIELD_STRING,
@@ -333,8 +334,8 @@ class EsoLogViewer
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,
 			'nextSkill2'  => self::FIELD_INT,
-			'upgradeLines' => self::FIELD_STRING,
-			'effectLines' => self::FIELD_STRING,
+			'upgradeLines' => self::FIELD_TEXTTRANSFORM,
+			'effectLines' => self::FIELD_TEXTTRANSFORM,
 			'texture'  => self::FIELD_STRING,
 	);
 	
@@ -747,6 +748,9 @@ class EsoLogViewer
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
 							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
 					),
 						
 					'filters' => array(
@@ -1273,6 +1277,13 @@ class EsoLogViewer
 	}
 	
 	
+	public function RemoveTextFormats ($text)
+	{
+		$newText = preg_replace('/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t]*)\|r/', '$1', $text);
+		return $newText;
+	}
+	
+	
 	public function TransformRecordValue ($recordInfo, $field, $value, $itemData)
 	{
 		if ($this->displayRawValues) return $value;
@@ -1708,6 +1719,7 @@ If you do not understand what this information means, or how to use this webpage
 				$output = $value;
 				break;
 			default:
+			case self::FIELD_TEXTTRANSFORM:
 			case self::FIELD_STRING:
 			case self::FIELD_LARGESTRING:
 				$output = $value;
@@ -1752,6 +1764,7 @@ If you do not understand what this information means, or how to use this webpage
 				$output = $value;
 				break;
 			default:
+			case self::FIELD_TEXTTRANSFORM:
 			case self::FIELD_STRING:
 				$escapeValue = addslashes($value);
 				$output = "\"$escapeValue\"";
@@ -1820,6 +1833,7 @@ If you do not understand what this information means, or how to use this webpage
 				if ((int) $value > 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
+			case self::FIELD_TEXTTRANSFORM:
 				$output = $this->TransformRecordValue($recordInfo, $field, $value, $itemData);
 				break;
 			case self::FIELD_INTBOOLEAN:
@@ -1869,6 +1883,7 @@ If you do not understand what this information means, or how to use this webpage
 				if ((int) $value > 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
+			case self::FIELD_TEXTTRANSFORM:
 				$output = "\"" . $this->TransformRecordValue($recordInfo, $field, $value, $itemData) . "\"";
 				break;
 			case self::FIELD_INTBOOLEAN:
