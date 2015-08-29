@@ -1,6 +1,5 @@
 <?php
 
-
 	// Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
 
@@ -321,12 +320,34 @@ class EsoLogViewer
 			'radius' => self::FIELD_INT,
 			'isPassive' => self::FIELD_INT,
 			'isChanneled' => self::FIELD_INT,
+			'isPlayer'  => self::FIELD_INT,
+			'learnedLevel'  => self::FIELD_INT,
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
 			'mechanic' =>self::FIELD_INTTRANSFORM,
+			'skillType'  => self::FIELD_INTTRANSFORM,
+			'skillLine' => self::FIELD_STRING,
+			'raceType'  => self::FIELD_STRING,
+			'classType'  => self::FIELD_STRING,
+			'prevSkill'  => self::FIELD_INT,
+			'nextSkill'  => self::FIELD_INT,
+			'nextSkill2'  => self::FIELD_INT,
 			'upgradeLines' => self::FIELD_STRING,
 			'effectLines' => self::FIELD_STRING,
+			'texture'  => self::FIELD_STRING,
+	);
+	
+	
+	public static $SKILLLINE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'fullName' => self::FIELD_STRING,
+			'skillType' => self::FIELD_INTTRANSFORM,
+			'raceType' =>  self::FIELD_STRING,
+			'classType' =>  self::FIELD_STRING,
+			'numRanks' => self::FIELD_INT,
+			'xp' => self::FIELD_STRING,
 	);
 	
 	
@@ -716,8 +737,8 @@ class EsoLogViewer
 			),
 			
 			'minedSkills' => array(
-					'displayName' => 'Skills',
-					'displayNameSingle' => 'Skill',
+					'displayName' => 'Mined Skills',
+					'displayNameSingle' => 'Mined Skill',
 					'record' => 'minedSkills',
 					'table' => 'minedSkills',
 					'method' => 'DoRecordDisplay',
@@ -725,8 +746,25 @@ class EsoLogViewer
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
 					),
 						
+					'filters' => array(
+					),
+			),
+			
+			'minedSkillLines' => array(
+					'displayName' => 'Mined Skill Lines',
+					'displayNameSingle' => 'Mined Skill Line',
+					'record' => 'minedSkillLines',
+					'table' => 'minedSkillLines',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+							'skillType' => 'GetSkillTypeText',
+					),
+					
 					'filters' => array(
 					),
 			),
@@ -840,6 +878,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedItemSummary']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
+		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -1000,6 +1039,29 @@ class EsoLogViewer
 				3 => "Superior",
 				4 => "Epic",
 				5 => "Legendary",
+		);
+		
+		$key = (int) $value;
+		
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
+	public function GetSkillTypeText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "",
+				1 => "Class",
+				2 => "Weapon",
+				3 => "Armor",
+				4 => "World",
+				5 => "Guild",
+				6 => "Alliance War",
+				7 => "Racial",
+				8 => "Craft",
+				9 => "Champion",
 		);
 		
 		$key = (int) $value;
@@ -2184,6 +2246,9 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'minedSkills':
 				$output .= $this->GetViewRecordLink('minedSkills', $result['id'], 'View Skill');
+				break;
+			case 'minedSkillLines':
+				$output .= $this->GetViewRecordLink('minedSkillLines', $result['id'], 'View Skill Line');
 				break;
 		};
 		
