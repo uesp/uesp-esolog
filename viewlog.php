@@ -715,11 +715,11 @@ class EsoLogViewer
 					),
 			),
 			
-			'skillDump' => array(
+			'minedSkills' => array(
 					'displayName' => 'Skills',
 					'displayNameSingle' => 'Skill',
-					'record' => 'skillDump',
-					'table' => 'skillDump',
+					'record' => 'minedSkills',
+					'table' => 'minedSkills',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
 						
@@ -807,7 +807,7 @@ class EsoLogViewer
 							'setName' => 'name',
 					),
 			),
-			'skillDump' => array(
+			'minedSkills' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -839,7 +839,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedItem']['fields'] = self::$MINEDITEM_FIELDS;
 		self::$RECORD_TYPES['minedItemSummary']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
-		self::$RECORD_TYPES['skillDump']['fields'] = self::$SKILLDUMP_FIELDS;
+		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -2182,8 +2182,8 @@ If you do not understand what this information means, or how to use this webpage
 			case 'minedItemSummary':
 				$output .= $this->GetViewRecordLink('minedItemSummary', $result['id'], 'View Item');
 				break;
-			case 'skillDump':
-				$output .= $this->GetViewRecordLink('skillDump', $result['id'], 'View Skill');
+			case 'minedSkills':
+				$output .= $this->GetViewRecordLink('minedSkills', $result['id'], 'View Skill');
 				break;
 		};
 		

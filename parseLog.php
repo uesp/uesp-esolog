@@ -605,7 +605,6 @@ class EsoLogParser
 			'mechanic' => self::FIELD_INT,
 			'upgradeLines' => self::FIELD_STRING,
 			'effectLines' => self::FIELD_STRING,
-			'version' => self::FIELD_STRING,
 	);
 	
 	
@@ -985,9 +984,9 @@ class EsoLogParser
 	}
 	
 	
-	public function LoadSkillDump ($abilityId, $version)
+	public function LoadSkillDump ($abilityId)
 	{
-		$skill = $this->loadRecord2('skillDump', 'abilityId', $abilityId, 'version', $version, self::$SKILLDUMP_FIELDS);
+		$skill = $this->loadRecord('minedSkills', 'abilityId', $abilityId, self::$SKILLDUMP_FIELDS);
 		if ($skill === false) return false;
 	
 		return $skill;
@@ -996,7 +995,7 @@ class EsoLogParser
 	
 	public function SaveSkillDump (&$record)
 	{
-		return $this->saveRecord('skillDump', $record, 'id', self::$SKILLDUMP_FIELDS);
+		return $this->saveRecord('minedSkills', $record, 'id', self::$SKILLDUMP_FIELDS);
 	}
 	
 	
@@ -1394,7 +1393,7 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create itemIdCheck table!");
 		
-		$query = "CREATE TABLE IF NOT EXISTS skillDump(
+		$query = "CREATE TABLE IF NOT EXISTS minedSkills(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			abilityId INTEGER NOT NULL,
 			name TINYTEXT NOT NULL,
@@ -1413,9 +1412,7 @@ class EsoLogParser
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
 			mechanic INTEGER NOT NULL DEFAULT -1,
-			version TINYTEXT NOT NULL,
 			INDEX index_abilityId (abilityId),
-			INDEX index_version (version(8)),
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(upgradeLines),
@@ -1424,7 +1421,7 @@ class EsoLogParser
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create skillDump table!");
+		if ($result === FALSE) return $this->reportError("Failed to create minedSkills table!");
 		
 		return true;
 	}
@@ -3160,11 +3157,11 @@ class EsoLogParser
 		$abilityId = $logEntry['id'];
 		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
 		
-		$skill = $this->LoadSkillDump($abilityId, $version);
+		$skill = $this->LoadSkillDump($abilityId);
 		if ($skill === false) return false;
 		
 		$skill['name'] = $logEntry['name'];
-		$skill['desc'] = $logEntry['description'];
+		$skill['description'] = $logEntry['desc'];
 		$skill['duration'] = $logEntry['duration'];
 		$skill['cost'] = $logEntry['cost'];
 		$skill['target'] = $logEntry['target'];
