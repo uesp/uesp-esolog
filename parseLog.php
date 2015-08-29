@@ -605,6 +605,28 @@ class EsoLogParser
 			'mechanic' => self::FIELD_INT,
 			'upgradeLines' => self::FIELD_STRING,
 			'effectLines' => self::FIELD_STRING,
+			'texture'  => self::FIELD_STRING,
+			'skillType'  => self::FIELD_INT,
+			'isPlayer'  => self::FIELD_INT,
+			'raceType'  => self::FIELD_STRING,
+			'classType'  => self::FIELD_STRING,
+			'prevSkill'  => self::FIELD_INT,
+			'nextSkill'  => self::FIELD_INT,
+			'nextSkill2'  => self::FIELD_INT,
+			'learnedLevel'  => self::FIELD_INT,
+			'skillLine' => self::FIELD_STRING,
+	);
+	
+	
+	public static $SKILLLINE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'fullName' => self::FIELD_STRING,
+			'skillType' => self::FIELD_INT,
+			'raceType' =>  self::FIELD_STRING,
+			'classType' =>  self::FIELD_STRING,
+			'numRanks' => self::FIELD_INT,
+			'xp' => self::FIELD_STRING,
 	);
 	
 	
@@ -615,6 +637,29 @@ class EsoLogParser
 		$this->currentLogFilename = $this->getCurrentLogFilename();
 		$this->setInputParams();
 		$this->parseInputParams();
+	}
+	
+	
+	public function GetSkillTypeText ($value)
+	{
+		static $VALUES = array(
+				-1 => "",
+				0 => "",
+				1 => "Class",
+				2 => "Weapon",
+				3 => "Armor",
+				4 => "World",
+				5 => "Guild",
+				6 => "Alliance War",
+				7 => "Racial",
+				8 => "Craft",
+				9 => "Champion",
+		);
+		
+		$key = (int) $value;
+		
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
 	}
 	
 	
@@ -986,7 +1031,20 @@ class EsoLogParser
 	
 	public function LoadSkillDump ($abilityId)
 	{
+		if ($abilityId <= 0) return false;
+		
 		$skill = $this->loadRecord('minedSkills', 'abilityId', $abilityId, self::$SKILLDUMP_FIELDS);
+		if ($skill === false) return false;
+	
+		return $skill;
+	}
+	
+	
+	public function LoadSkillLine ($name)
+	{
+		if ($name == "") return false;
+		
+		$skill = $this->loadRecord('minedSkillLines', 'name', $name, self::$SKILLLINE_FIELDS);
 		if ($skill === false) return false;
 	
 		return $skill;
@@ -996,6 +1054,12 @@ class EsoLogParser
 	public function SaveSkillDump (&$record)
 	{
 		return $this->saveRecord('minedSkills', $record, 'id', self::$SKILLDUMP_FIELDS);
+	}
+	
+	
+	public function SaveSkillLine (&$record)
+	{
+		return $this->saveRecord('minedSkillLines', $record, 'name', self::$SKILLLINE_FIELDS);
 	}
 	
 	
@@ -1399,6 +1463,7 @@ class EsoLogParser
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			target TINYTEXT NOT NULL,
+			skillType INTEGER NOT NULL DEFAULT -1,
 			upgradeLines TEXT NOT NULL,
 			effectLines TEXT NOT NULL,
 			duration INTEGER NOT NULL DEFAULT -1,
@@ -1412,6 +1477,15 @@ class EsoLogParser
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
 			mechanic INTEGER NOT NULL DEFAULT -1,
+			texture TEXT NOT NULL,
+			isPlayer TINYINT NOT NULL DEFAULT 0,
+			raceType TINYTEXT NOT NULL,
+			classType TINYTEXT NOT NULL,
+			skillLine TINYTEXT NOT NULL,
+			prevSkill BIGINT NOT NULL DEFAULT 0,
+			nextSkill BIGINT NOT NULL DEFAULT 0,
+			nextSkill2 BIGINT NOT NULL DEFAULT 0,
+			learnedLevel INTEGER NOT NULL DEFAULT -1,
 			INDEX index_abilityId (abilityId),
 			FULLTEXT(name),
 			FULLTEXT(description),
@@ -1422,6 +1496,23 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedSkills table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS minedSkillLines(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			name TINYTEXT NOT NULL,
+			fullName TINYTEXT NOT NULL,
+			skillType TINYTEXT NOT NULL,
+			raceType TINYTEXT NOT NULL,
+			classType TINYTEXT NOT NULL,
+			numRanks INTEGER NOT NULL DEFAULT 0,
+			xp TEXT NOT NULL,
+			INDEX index_name (name(16)),
+			INDEX index_fullName (fullName(32))
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create minedSkillLines table!");
 		
 		return true;
 	}
@@ -3129,14 +3220,16 @@ class EsoLogParser
 	
 	public function OnSkillDumpStart ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring skillDump from user ".$this->currentUser['name']."!"); 
+		$event = $logEntry['event'];
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!"); 
 		
 		if ($logEntry['note'] != null)
 			$this->currentUser['lastSkillDumpNote'] = $logEntry['note'];
 		else
 			$this->currentUser['lastSkillDumpNote'] = '';
 		
-		$this->log("\tFound start of skillDump(".$this->currentUser['lastSkillDumpNote'].")...");
+		$this->currentUser['lastSkillLineName'] = null;
+		$this->log("\tFound $event(".$this->currentUser['lastSkillDumpNote'].")...");
 		return true;
 	}
 	
@@ -3145,6 +3238,7 @@ class EsoLogParser
 	{
 		if ($this->currentUser['name'] != "Reorx") return false;
 		$this->currentUser['lastSkillDumpNote'] = null;
+		$this->currentUser['lastSkillLineName'] = null;
 		return true;
 	}
 	
@@ -3178,6 +3272,172 @@ class EsoLogParser
 		$skill['effectLines'] = $logEntry['effectLines'];
 			
 		$this->SaveSkillDump($skill);
+		
+		return true;
+	}
+	
+	
+	public function OnSkillLearned ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return false;
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		$abilityId = $logEntry['id'];
+		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in learned skill!");
+		
+		$skill = $this->LoadSkillDump($abilityId);
+		if ($skill === false) return false;
+		
+		if (array_key_exists('texture', $logEntry)) $skill['texture'] = $logEntry['texture'];
+		if (array_key_exists('level',   $logEntry)) $skill['learnedLevel'] = $logEntry['level'];
+		$skill['isPlayer'] = 1;
+		
+		$this->SaveSkillDump($skill);
+		
+		return true;
+	}
+	
+	
+	public function OnSkillType ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return false;
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		return true;
+	}
+	
+	
+	public function OnSkillLine ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return false;
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		$this->currentUser['lastSkillLineName'] = $logEntry['name'];
+		
+		$skillLine = $this->LoadSkillLine($logEntry['name']);
+		if ($skillLine === false) return false;
+		
+		$skillLine['xp'] = $logEntry['xpString'];
+		if (array_key_exists('race', $logEntry)) $skillLine['raceType'] = $logEntry['race'];
+		if (array_key_exists('class', $logEntry)) $skillLine['classType'] = $logEntry['class'];
+		$skillLine['skillType'] = $logEntry['skillType'];
+		
+		if (array_key_exists('numRanks', $logEntry))
+		{
+			$skillLine['numRanks'] = $logEntry['numRanks'];
+		}
+		else
+		{
+			$skillLine['numRanks'] = substr_count($logEntry['xpString'], ',') + 1;
+		}
+		
+		if ($skillLine['skillType'] == 7)
+		{
+			$skillLine['fullName'] = 'Racial::' . $logEntry['name'];
+		}
+		elseif ($skillLine['skillType'] == 1)
+		{
+			$skillLine['fullName'] = $skillLine['classType'] . '::' . $logEntry['name'];
+		}
+		else
+		{
+			$skillLine['fullName'] = $this->GetSkillTypeText($skillLine['skillType']) . '::' . $logEntry['name'];
+		}
+		
+		$this->SaveSkillLine($skillLine);
+		
+		return true;
+	}
+	
+	
+	public function OnSkillAbilityId ($logEntry, $abilityId)
+	{
+		if ($abilityId == null || $abilityId == "") return false;
+		
+		$skill = $this->LoadSkillDump($abilityId);
+		if ($skill === false) return false;
+		
+		if (array_key_exists('texture', $logEntry)) $skill['texture'] = $logEntry['texture'];
+		if (array_key_exists('skillType', $logEntry)) $skill['skillType'] = $logEntry['skillType'];
+		if (array_key_exists('class', $logEntry)) $skill['classType'] = $logEntry['class'];
+		if (array_key_exists('race', $logEntry)) $skill['raceType'] = $logEntry['race'];
+		//if (array_key_exists('maxLevel', $logEntry)) $skill['learnedLevel'] = $logEntry['maxLevel'];
+		if (array_key_exists('rank', $logEntry)) $skill['learnedLevel'] = $logEntry['rank'];
+		
+		$skill['skillLine'] = $this->currentUser['lastSkillLineName'];
+		$skill['isPlayer'] = 1;
+		
+		$this->SaveSkillDump($skill);
+		
+		return true;
+	}
+	
+	
+	public function OnSkillAbility ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return false;
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId1']);
+		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId2']);
+		
+		return true;
+	}
+	
+	
+	public function OnSkillProgression ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return false;
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		$prevSkill = 0;
+		$nextSkill = 0;
+		$nextSkill2 = 0;
+		
+		for ($morph = 0; $morph < 3; ++$morph)
+		{
+			$name = $logEntry['name' . $morph];
+			$texture = $logEntry['texture' . $morph];
+			$prevSkill = 0;
+			
+			if ($morph > 0)
+			{
+				$prevSkill = $logEntry['id04'];
+				if ($prevSkill == null) $prevSkill = 0;
+			}
+			
+			for ($level = 1; $level < 5; ++$level)
+			{
+				$id = $logEntry['id' . $morph . $level];
+				if ($id == null || $id == "" || $id <= 0) continue;
+				
+				$skill = $this->LoadSkillDump($id);
+				if ($skill === false) continue;
+				
+				if ($morph == 0 && $level == 4)
+				{
+					$nextSkill = $logEntry['id11'];
+					if ($nextSkill == null) $nextSkill = 0;
+					$nextSkill2 = $logEntry['id21'];
+					if ($nextSkill2 == null) $nextSkill2 = 0;
+				}
+				else
+				{
+					$nextSkill = $logEntry['id' . $morph . ($level + 1)];
+					if ($nextSkill == null) $nextSkill = 0;
+				}
+				
+				if ($texture) $skill['texture'] = $texture;
+				$skill['prevSkill'] = $prevSkill;
+				$skill['nextSkill'] = $nextSkill;
+				$skill['nextSkill2'] = $nextSkill2;
+				$skill['isPlayer'] = 1;
+				
+				$this->SaveSkillDump($skill);
+				
+				$prevSkill = $id;
+			}
+		}
 		
 		return true;
 	}
@@ -3230,9 +3490,20 @@ class EsoLogParser
 			case "mineItem::End":
 			case "skill":
 			case "skillDump::Start":
+			case "skillDump::StartProgression":
+			case "skillDump::StartType":
+			case "skillDump::StartLearned":
 			case "skillDump::End":
+			case "skillDump::EndProgression":
+			case "skillDump::EndType":
+			case "skillDump::EndLearned":
 			case "skillDump::start":
 			case "skillDump::end":
+			case "skillType":
+			case "skillLine":
+			case "skillAbility":
+			case "skillLearned":
+			case "skillProgression":
 				return false;
 		}
 		
@@ -3365,6 +3636,17 @@ class EsoLogParser
 			case "skillDump::end":
 			case "skillDump::End":				$result = $this->OnSkillDumpEnd($logEntry); break;
 			case "skill":						$result = $this->OnSkill($logEntry); break;
+			case "skillDump::StartType":		$result = $this->OnSkillDumpStart($logEntry); break;
+			case "skillType":					$result = $this->OnSkillType($logEntry); break;
+			case "skillLine":					$result = $this->OnSkillLine($logEntry); break;
+			case "skillAbility":				$result = $this->OnSkillAbility($logEntry); break;
+			case "skillDump::EndType":			$result = $this->OnSkillDumpEnd($logEntry); break;
+			case "skillDump::StartProgression":	$result = $this->OnSkillDumpStart($logEntry); break;
+			case "skillProgression":			$result = $this->OnSkillProgression($logEntry); break;
+			case "skillDump::EndProgression":	$result = $this->OnSkillDumpEnd($logEntry); break;
+			case "skillDump::StartLearned":		$result = $this->OnSkillDumpStart($logEntry); break;
+			case "skillLearned":				$result = $this->OnSkillLearned($logEntry); break;
+			case "skillDump::EndLearned":		$result = $this->OnSkillDumpEnd($logEntry); break;
 			case "Test":
 			case "TEST":
 			case "test":						$result = $this->OnNullEntry($logEntry); break;
