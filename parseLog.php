@@ -3423,6 +3423,7 @@ class EsoLogParser
 				}
 				else
 				{
+					$nextSkill2 = 0;
 					$nextSkill = $logEntry['id' . $morph . ($level + 1)];
 					if ($nextSkill == null) $nextSkill = 0;
 				}
