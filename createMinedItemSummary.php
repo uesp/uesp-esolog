@@ -97,10 +97,14 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
+$query = "DELETE FROM minedItemSummary".$TABLE_SUFFIX.";";
+$result = $db->query($query);
+if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error);
+
 $FIRSTID = 1;
-$LASTID = 80000;
+$LASTID = 90000;
 $MINSUBTYPE = 2;
-$MAXSUBTYPE = 338;
+$MAXSUBTYPE = 370;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
