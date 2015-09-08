@@ -196,7 +196,10 @@ class EsoLogParser
 	const QUESTOFFERED_DELTA_TIME = 30000;
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
-	const START_MINEITEM_TIMESTAMP = 4743729922978086912;
+	
+	//const START_MINEITEM_TIMESTAMP = 4743729922978086912; //v1.5
+	  const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
+	//const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
