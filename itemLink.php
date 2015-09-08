@@ -82,7 +82,7 @@ class CEsoItemLink
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
-	public $itemLevel = -1;		// 1-65
+	public $itemLevel = -1;		// 1-66
 	public $itemQuality = -1;	// 0-5
 	public $itemIntLevel = 1;	// 1-50
 	public $itemIntType = 1;	// 1-400
@@ -275,7 +275,7 @@ class CEsoItemLink
 	private function GetTableSuffix()
 	{
 		if ($this->version == "1.5") return "15";
-		if ($this->version == "1.6") return "";
+		if ($this->version == "1.6") return "16";
 		if ($this->version == "1.7") return "";
 		
 		return "";
@@ -419,7 +419,7 @@ class CEsoItemLink
 			$value = $this->itemSummary[$field];
 			
 			if ($field == "level" && $value == "")
-				$this->itemRecord[$field] = '1-V15';
+				$this->itemRecord[$field] = '1-V16';
 			else
 				$this->itemRecord[$field] = $value;
 		}

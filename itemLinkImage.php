@@ -383,7 +383,7 @@ class CEsoItemLinkImage
 	private function GetTableSuffix()
 	{
 		if ($this->version == "1.5") return "15";
-		if ($this->version == "1.6") return "";
+		if ($this->version == "1.6") return "16";
 		if ($this->version == "1.7") return "";
 	
 		return "";
@@ -419,7 +419,7 @@ class CEsoItemLinkImage
 			$value = $this->itemSummary[$field];
 				
 			if ($field == "level" && $value == "")
-				$this->itemRecord[$field] = '1-V15';
+				$this->itemRecord[$field] = '1-V16';
 			else
 				$this->itemRecord[$field] = $value;
 		}
