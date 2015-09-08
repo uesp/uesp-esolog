@@ -115,3 +115,7 @@ h1, h2, h3 {
 a:hover {
 	background-color: #ccc;
 }
+
+.esoil_rangecontrol {
+	width: 250px;
+}
