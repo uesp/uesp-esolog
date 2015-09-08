@@ -721,9 +721,12 @@ class CEsoItemLink
 		{
 			return "ARMOR <div id='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
 		}
-		elseif ($type == 1) //weapon 
+		elseif ($type == 1) //weapon / shield 
 		{
-			return "DAMAGE <div id='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
+			if ($this->itemRecord['equipType'] == 7) // shield
+				return "ARMOR <div id='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
+			else //weapon
+				return "DAMAGE <div id='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
 		}
 		
 		return "";

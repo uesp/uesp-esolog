@@ -128,7 +128,13 @@ function GetEsoItemLeftBlockHtml(itemData)
 {
 	var type = itemData.type;
 	
-	if (type == 1) return "DAMAGE <div id='esoil_itemleft'>" + itemData.weaponPower + "</div>";
+	if (type == 1) {
+		if (itemData.equipType == 7) // shield
+			 return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
+		else
+			return "DAMAGE <div id='esoil_itemleft'>" + itemData.weaponPower + "</div>";
+	}
+	
 	if (type == 2) return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
 	
 	return "";

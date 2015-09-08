@@ -994,8 +994,15 @@ class CEsoItemLinkImage
 		switch ($this->itemRecord['type'])
 		{
 			case 1:
-				$label = "DAMAGE ";
-				$valueText = $this->itemRecord['weaponPower'];
+				if ($this->itemRecord['equipType'] == 7) // shield
+				{
+					$label = "ARMOR ";
+					$valueText = $this->itemRecord['armorRating'];
+				}
+				else {	//weapon
+					$label = "DAMAGE ";
+					$valueText = $this->itemRecord['weaponPower'];
+				}
 				break;
 			case 2:
 				$label = "ARMOR ";
