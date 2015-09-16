@@ -40,9 +40,11 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			abilityId BIGINT NOT NULL,
 			skillTypeName TINYTEXT NOT NULL,
 			rank INTEGER NOT NULL DEFAULT -1,
+			baseName TINYTEXT NOT NULL,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
-			INDEX index_abilityId(abilityId)
+			INDEX index_abilityId(abilityId),
+			INDEX index_skillTypeName(skillTypeName(20))
 		);";
 
 $result = $db->query($query);
@@ -208,6 +210,7 @@ foreach($skillTree as $id => $skillTreeLine)
 	}
 	
 	$skillTypeName = $db->real_escape_string($skillTypeName);
+	$baseName = $db->real_escape_string($skills[$skillTreeLine[1]]['name']);
 	
 	for($index = 1; $index <= 12; $index++)
 	{
@@ -215,7 +218,7 @@ foreach($skillTree as $id => $skillTreeLine)
 		$name = $db->real_escape_string($skills[$skillLineId]['name']);
 		$desc = $db->real_escape_string($skills[$skillLineId]['description']);
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,name,description) VALUES('$skillLineId','$skillTypeName','$index','$name','$desc')";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description) VALUES('$skillLineId','$skillTypeName','$index','$baseName','$name','$desc')";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 	}
