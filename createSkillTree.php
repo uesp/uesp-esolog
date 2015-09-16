@@ -204,7 +204,7 @@ foreach($skillTree as $id => $skillTreeLine)
 	}
 	elseif ($skill['skillType'] == 7)
 	{
-		$skillTypeName = $skill['raceType'] . "::" . $skill['skillLine'];
+		$skillTypeName = "Racial::" . $skill['skillLine'];
 	}
 	else
 	{
@@ -260,7 +260,7 @@ while (($passive = $passiveResult->fetch_assoc()))
 	}
 	elseif ($passive['skillType'] == 7)
 	{
-		$skillTypeName = $passive['raceType'] . "::" . $passive['skillLine'];
+		$skillTypeName = "Racial::" . $passive['skillLine'];
 	}
 	else
 	{
