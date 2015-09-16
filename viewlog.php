@@ -60,7 +60,7 @@ class EsoLogViewer
 			'id' => self::FIELD_INTID,
 			'title' => self::FIELD_STRING,
 			'body' => self::FIELD_LARGESTRING,
-			'icon' => self::FIELD_STRING,
+			'icon' => self::FIELD_GAMEICON,
 			'isLore' => self::FIELD_INTBOOLEAN,
 			'skill' => self::FIELD_STRING,
 			'mediumIndex' => self::FIELD_INTTRANSFORM,
@@ -94,7 +94,7 @@ class EsoLogViewer
 			'equipType' => self::FIELD_INTTRANSFORM,
 			'craftType' => self::FIELD_INTTRANSFORM,
 			'color' => self::FIELD_STRING,
-			'icon' => self::FIELD_STRING,
+			'icon' => self::FIELD_GAMEICON,
 			'link' => self::FIELD_STRING,
 			'logId' => self::FIELD_INTID,
 	);
@@ -252,7 +252,7 @@ class EsoLogViewer
 			'traitDesc' => self::FIELD_STRING,
 			'traitAbilityDesc' => self::FIELD_STRING,
 			'traitCooldown' => self::FIELD_INT,
-			'icon' => self::FIELD_STRING,
+			'icon' => self::FIELD_GAMEICON,
 			'isUnique' => self::FIELD_INTBOOLEAN,
 			'isUniqueEquipped' => self::FIELD_INTBOOLEAN,
 			'isVendorTrash' => self::FIELD_INTBOOLEAN,
@@ -893,6 +893,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'setName' => 'name',
+							'setBonusDesc' => 'note',
 					),
 			),
 			'minedSkills' => array(
@@ -900,6 +901,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+							'description' => 'note',
 					),
 			),
 	);
@@ -909,6 +911,7 @@ class EsoLogViewer
 			'id' => self::FIELD_INTID,
 			'type' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
+			'note' => self::FIELD_STRING,
 	);
 	
 	public function __construct ()
@@ -1901,7 +1904,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case self::FIELD_GAMEICON:
 				$url = self::GAME_ICON_URL . preg_replace("/\.dds/", ".png", $value);
-				$output = "<a href='$url'><img src='$url' alt='[$value]'/></a>";
+				$output = "<a href='$url'><img src='$url' title='$value'/></a>";
 				break;
 		}
 		
@@ -2369,10 +2372,12 @@ If you do not understand what this information means, or how to use this webpage
 		
 		foreach ($this->searchResults as $key => $result)
 		{
+			$viewLink = $this->CreateSearchViewLink($result);
+			
 			if ($this->IsOutputHTML())
 			{
 				$output .= "<tr>\n";
-				$output .= "\t<td></td>\n";
+				$output .= "\t<td>$viewLink</td>\n";
 			}
 			
 			foreach (self::$SEARCH_FIELDS as $key => $value)
@@ -2387,8 +2392,7 @@ If you do not understand what this information means, or how to use this webpage
 			
 			if ($this->IsOutputHTML())
 			{
-				$viewLink = $this->CreateSearchViewLink($result);
-				$output .= "\t<td>$viewLink</td>\n";
+				$output .= "\t<td></td>\n";
 				$output .= "</tr>\n";
 			}
 			elseif ($this->IsOutputCSV())
