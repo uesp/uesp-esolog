@@ -591,7 +591,6 @@ class EsoLogParser
 	
 	public static $SKILLDUMP_FIELDS = array(
 			'id' => self::FIELD_INT,
-			'abilityId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_STRING,
 			'duration' => self::FIELD_INT,
@@ -948,7 +947,7 @@ class EsoLogParser
 		
 		foreach ($fieldDef as $key => $value)
 		{
-			if ($key === 'id') continue;
+			if ($key === 'id' && $table != "minedSkills") continue;
 			
 			if (!array_key_exists($key, $record))
 			{
@@ -1036,7 +1035,7 @@ class EsoLogParser
 	{
 		if ($abilityId <= 0) return false;
 		
-		$skill = $this->loadRecord('minedSkills', 'abilityId', $abilityId, self::$SKILLDUMP_FIELDS);
+		$skill = $this->loadRecord('minedSkills', 'id', $abilityId, self::$SKILLDUMP_FIELDS);
 		if ($skill === false) return false;
 	
 		return $skill;
@@ -1461,8 +1460,7 @@ class EsoLogParser
 		if ($result === FALSE) return $this->reportError("Failed to create itemIdCheck table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS minedSkills(
-			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			abilityId INTEGER NOT NULL,
+			id INTEGER NOT NULL PRIMARY KEY,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			target TINYTEXT NOT NULL,
@@ -1489,7 +1487,6 @@ class EsoLogParser
 			nextSkill BIGINT NOT NULL DEFAULT 0,
 			nextSkill2 BIGINT NOT NULL DEFAULT 0,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
-			INDEX index_abilityId (abilityId),
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(upgradeLines),

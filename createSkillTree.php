@@ -43,8 +43,10 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			baseName TINYTEXT NOT NULL,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
+			type TINYTEXT NOT NULL,
 			INDEX index_abilityId(abilityId),
-			INDEX index_skillTypeName(skillTypeName(20))
+			INDEX index_skillTypeName(skillTypeName(20)),
+			INDEX index_type(type(8))
 		);";
 
 $result = $db->query($query);
@@ -65,7 +67,7 @@ $count = 0;
 	/* Load all skills with a progression */
 while (($skill = $skillResult->fetch_assoc()))
 {
-	$id = $skill['abilityId'];
+	$id = $skill['id'];
 	$skills[$id] = $skill;
 	$count++;
 }
@@ -186,7 +188,7 @@ foreach($skills as $id => $skill)
 	$skillType = $db->real_escape_string($skill['skillType']);
 	$skillLine = $db->real_escape_string($skill['skillLine']);
 	
-	$query = "UPDATE minedSkills SET skillType=\"$skillType\",raceType=\"$raceType\",classType=\"$classType\",skillLine=\"$skillLine\" WHERE abilityId=$id;";
+	$query = "UPDATE minedSkills SET skillType=\"$skillType\",raceType=\"$raceType\",classType=\"$classType\",skillLine=\"$skillLine\" WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
 }
@@ -209,8 +211,13 @@ foreach($skillTree as $id => $skillTreeLine)
 		$skillTypeName = GetSkillTypeText($skill['skillType']) . "::" . $skill['skillLine'];
 	}
 	
+	$rootSkill = $skills[$skillTreeLine[1]];
 	$skillTypeName = $db->real_escape_string($skillTypeName);
-	$baseName = $db->real_escape_string($skills[$skillTreeLine[1]]['name']);
+	$baseName = $db->real_escape_string($rootSkill['name']);
+	$type = "Active";
+	
+	if ($rootSkill['mechanic']  == 10) $type = "Ultimate";
+	if ($rootSkill['isPassive'] ==  1) $type = "Passive";
 	
 	for($index = 1; $index <= 12; $index++)
 	{
@@ -218,10 +225,56 @@ foreach($skillTree as $id => $skillTreeLine)
 		$name = $db->real_escape_string($skills[$skillLineId]['name']);
 		$desc = $db->real_escape_string($skills[$skillLineId]['description']);
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description) VALUES('$skillLineId','$skillTypeName','$index','$baseName','$name','$desc')";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type')";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 	}
 }
+
+	/* Create skill passives */
+$query = "SELECT * FROM minedSkills WHERE isPassive=1 AND isPlayer=1 GROUP BY name;";
+$passiveResult = $db->query($query);
+if (!$passiveResult) exit("ERROR: Database query error finding passive skills!\n" . $db->error . "\n" . $query);
+
+$passiveResult->data_seek(0);
+$passiveSkills = array();
+$count = 0;
+$type = "Passive";
+$skillTypeName = "";
+$index = 0;
+
+/* Load all skills with a progression */
+while (($passive = $passiveResult->fetch_assoc()))
+{
+	$passiveSkills[] = $passive;
+	$count++;
+	
+	$id = $passive['id'];
+	$name = $db->real_escape_string($passive['name']);
+	$baseName = $name;
+	$desc = $db->real_escape_string($passive['description']);
+	
+	if ($passive['skillType'] == 1)
+	{
+		$skillTypeName = $passive['classType'] . "::" . $passive['skillLine'];
+	}
+	elseif ($passive['skillType'] == 7)
+	{
+		$skillTypeName = $passive['raceType'] . "::" . $passive['skillLine'];
+	}
+	else
+	{
+		$skillTypeName = GetSkillTypeText($passive['skillType']) . "::" . $passive['skillLine'];
+	}
+	
+	$skillTypeName = $db->real_escape_string($skillTypeName);
+	
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type) VALUES('$id','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type')";
+	$result = $db->query($query);
+	if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
+}
+
+print("\tFound $count passive player skills.\n");
+
 
 ?>

@@ -309,7 +309,6 @@ class EsoLogViewer
 	
 	public static $SKILLDUMP_FIELDS = array(
 			'id' => self::FIELD_INT,
-			'abilityId' => self::FIELD_INT,
 			'version' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_TEXTTRANSFORM,
@@ -348,7 +347,7 @@ class EsoLogViewer
 			'raceType' =>  self::FIELD_STRING,
 			'classType' =>  self::FIELD_STRING,
 			'numRanks' => self::FIELD_INT,
-			'xp' => self::FIELD_STRING,
+			'xp' => self::FIELD_LARGESTRING,
 	);
 	
 	
@@ -359,6 +358,7 @@ class EsoLogViewer
 			'baseName' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'rank' => self::FIELD_INT,
+			'type' => self::FIELD_STRING,
 			'description' => self::FIELD_TEXTTRANSFORM,
 	);
 	
@@ -781,6 +781,13 @@ class EsoLogViewer
 					),
 					
 					'filters' => array(
+							array(
+									'record' => 'skillTree',
+									'field' => 'skillTypeName',
+									'thisField' => 'fullName',
+									'displayName' => 'View Skills',
+									'type' => 'filter',
+							),
 					),
 			),
 			
@@ -797,6 +804,13 @@ class EsoLogViewer
 					),
 						
 					'filters' => array(
+							array(
+									'record' => 'minedSkills',
+									'field' => 'id',
+									'thisField' => 'abilityId',
+									'displayName' => 'View Ability',
+									'type' => 'viewRecord',
+							),
 					),
 			),
 	);
@@ -1604,7 +1618,7 @@ If you do not understand what this information means, or how to use this webpage
 			if ($value['type'] == 'filter')
 				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 			elseif ($value['type'] == 'viewRecord')
-				$output .= $this->GetViewRecordLink($value['record'], $recordData[$value['thisField']], $value['displayName']);
+				$output .= $this->GetViewRecordLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 			else
 				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 		}
@@ -1999,11 +2013,11 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
-	public function GetViewRecordLink ($record, $id, $link)
+	public function GetViewRecordLink ($record, $targetId, $id, $link)
 	{
 		if ($id == '' || $id <= 0) return "";
 		
-		$link = "<a class='elvRecordLink' href='?action=view&record=$record&id=$id'>$link</a>";
+		$link = "<a class='elvRecordLink' href='?action=view&record=$record&$targetId=$id'>$link</a>";
 		
 		return $link;
 	}
@@ -2062,7 +2076,7 @@ If you do not understand what this information means, or how to use this webpage
 			if ($this->IsOutputHTML())
 			{
 				$output .= "\t<tr>\n";
-				$output .= "\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], $id, "View") ."</td>\n";
+				$output .= "\t\t<td>". $this->GetViewRecordLink($recordInfo['record'], 'id', $id, "View") ."</td>\n";
 			}
 			
 			foreach ($recordInfo['fields'] as $key => $value)
@@ -2257,44 +2271,44 @@ If you do not understand what this information means, or how to use this webpage
 		switch ($result['type'])
 		{
 			case 'book':
-				$output .= $this->GetViewRecordLink('book', $result['id'], 'View Book');
+				$output .= $this->GetViewRecordLink('book', 'id', $result['id'], 'View Book');
 				break;
 			case 'quest':
-				$output .= $this->GetViewRecordLink('quest', $result['id'], 'View Quest');
+				$output .= $this->GetViewRecordLink('quest', 'id', $result['id'], 'View Quest');
 				break;
 			case 'questStage':
-				$output .= $this->GetViewRecordLink('quest', $result['questId'], 'View Quest') . " ";
-				$output .= $this->GetViewRecordLink('queststage', $result['id'], 'View Quest Stage');
+				$output .= $this->GetViewRecordLink('quest', 'id', $result['questId'], 'View Quest') . " ";
+				$output .= $this->GetViewRecordLink('queststage','id', $result['id'], 'View Quest Stage');
 				break;
 			case 'item':
-				$output .= $this->GetViewRecordLink('item', $result['id'], 'View Item');
+				$output .= $this->GetViewRecordLink('item', 'id', $result['id'], 'View Item');
 				break;
 			case 'npc':
-				$output .= $this->GetViewRecordLink('npc', $result['id'], 'View NPC');
+				$output .= $this->GetViewRecordLink('npc', 'id', $result['id'], 'View NPC');
 				break;
 			case 'recipe':
-				$output .= $this->GetViewRecordLink('recipe', $result['id'], 'View Recipe');
+				$output .= $this->GetViewRecordLink('recipe', 'id', $result['id'], 'View Recipe');
 				break;
 			case 'ingredient':
-				$output .= $this->GetViewRecordLink('ingredient', $result['id'], 'View Ingredient');
+				$output .= $this->GetViewRecordLink('ingredient', 'id', $result['id'], 'View Ingredient');
 				break;
 			default:
-				$output .= $this->GetViewRecordLink($result['type'], $result['id'], 'View ' . ucwords($result['type']));
+				$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View ' . ucwords($result['type']));
 				break;
 			case 'minedItem':
-				$output .= $this->GetViewRecordLink('minedItem', $result['id'], 'View Item');
+				$output .= $this->GetViewRecordLink('minedItem', 'id', $result['id'], 'View Item');
 				break;
 			case 'minedItemSummary':
-				$output .= $this->GetViewRecordLink('minedItemSummary', $result['id'], 'View Item');
+				$output .= $this->GetViewRecordLink('minedItemSummary', 'id', $result['id'], 'View Item');
 				break;
 			case 'minedSkills':
-				$output .= $this->GetViewRecordLink('minedSkills', $result['id'], 'View Skill');
+				$output .= $this->GetViewRecordLink('minedSkills', 'id', $result['id'], 'View Skill');
 				break;
 			case 'minedSkillLines':
-				$output .= $this->GetViewRecordLink('minedSkillLines', $result['id'], 'View Skill Line');
+				$output .= $this->GetViewRecordLink('minedSkillLines', 'id', $result['id'], 'View Skill Line');
 				break;
 			case 'skillTree':
-				$output .= $this->GetViewRecordLink('skillTree', $result['id'], 'View Skill Tree');
+				$output .= $this->GetViewRecordLink('skillTree', 'id', $result['id'], 'View Skill Tree');
 				break;
 		};
 		
