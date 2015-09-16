@@ -198,8 +198,8 @@ class EsoLogParser
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
 	//const START_MINEITEM_TIMESTAMP = 4743729922978086912; //v1.5
-	  const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
-	//const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
+	//const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
+	  const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -3273,6 +3273,7 @@ class EsoLogParser
 		$skill['mechanic'] = $logEntry['mechanic'];
 		$skill['upgradeLines'] = $logEntry['upgradeLines'];
 		$skill['effectLines'] = $logEntry['effectLines'];
+		$skill['texture'] = $logEntry['icon'];
 			
 		$this->SaveSkillDump($skill);
 		
@@ -3431,7 +3432,7 @@ class EsoLogParser
 					if ($nextSkill == null) $nextSkill = 0;
 				}
 				
-				if ($texture) $skill['texture'] = $texture;
+				if ($texture != "") $skill['texture'] = $texture;
 				$skill['prevSkill'] = $prevSkill;
 				$skill['nextSkill'] = $nextSkill;
 				$skill['nextSkill2'] = $nextSkill2;
