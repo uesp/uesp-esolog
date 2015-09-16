@@ -12,6 +12,8 @@ class EsoLogViewer
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
 	
+	const GAME_ICON_URL = "http://esoicons.uesp.net";
+	
 	public $db = null;
 	public $dbReadInitialized = false;
 	public $totalRowCount = 0;
@@ -47,6 +49,7 @@ class EsoLogViewer
 	const FIELD_INTTRANSFORM = 8;
 	const FIELD_INTID = 9;
 	const FIELD_TEXTTRANSFORM = 10;
+	const FIELD_GAMEICON = 11;
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -335,7 +338,7 @@ class EsoLogViewer
 			'nextSkill2'  => self::FIELD_INT,
 			'upgradeLines' => self::FIELD_TEXTTRANSFORM,
 			'effectLines' => self::FIELD_TEXTTRANSFORM,
-			'texture'  => self::FIELD_STRING,
+			'texture'  => self::FIELD_GAMEICON,
 	);
 	
 	
@@ -354,11 +357,13 @@ class EsoLogViewer
 	public static $SKILLTREE_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'abilityId' => self::FIELD_INT,
+			'icon'  => self::FIELD_GAMEICON,
 			'skillTypeName' => self::FIELD_STRING,
 			'baseName' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'rank' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
+			'cost' => self::FIELD_STRING,
 			'description' => self::FIELD_TEXTTRANSFORM,
 	);
 	
@@ -1788,6 +1793,9 @@ If you do not understand what this information means, or how to use this webpage
 					$output = "true";
 				
 				break;
+			case self::FIELD_GAMEICON:
+				$output = $value;
+				break;
 		}
 		
 		return $output;
@@ -1835,6 +1843,9 @@ If you do not understand what this information means, or how to use this webpage
 				elseif ($intValue > 0)
 					$output = "\"true\"";
 				
+				break;
+			case self::FIELD_GAMEICON:
+				$output = $value;
 				break;
 		}
 	
@@ -1888,6 +1899,10 @@ If you do not understand what this information means, or how to use this webpage
 					$output = "true";
 				
 				break;
+			case self::FIELD_GAMEICON:
+				$url = self::GAME_ICON_URL . preg_replace("/\.dds/", ".png", $value);
+				$output = "<a href='$url'><img src='$url' alt='[$value]'/></a>";
+				break;
 		}
 		
 		return $output;
@@ -1937,6 +1952,9 @@ If you do not understand what this information means, or how to use this webpage
 				elseif ($intValue > 0)
 					$output = "\"true\"";
 				
+				break;
+			case self::FIELD_GAMEICON:
+				$output = $value;
 				break;
 		}
 		

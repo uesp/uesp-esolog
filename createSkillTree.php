@@ -31,6 +31,28 @@ function GetSkillTypeText ($value)
 }
 
 
+function GetCombatMechanicText ($value)
+{
+	static $VALUES = array(
+			-2 => "Health",
+			-1 => "Invalid",
+			0 => "Magicka",
+			1 => "Werewolf",
+			4 => "Power",
+			6 => "Stamina",
+			7 => "Momentum",
+			9 => "Finesse",
+			10 => "Ultimate",
+			11 => "Mount Stamina",
+			12 => "Health Bonus",
+	);
+
+	$key = (int) $value;
+
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "Unknown ($key)";
+}
+
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
@@ -44,6 +66,8 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			type TINYTEXT NOT NULL,
+			cost TINYTEXT NOT NULL,
+			icon TINYTEXT NOT NULL,
 			INDEX index_abilityId(abilityId),
 			INDEX index_skillTypeName(skillTypeName(20)),
 			INDEX index_type(type(8))
@@ -222,10 +246,13 @@ foreach($skillTree as $id => $skillTreeLine)
 	for($index = 1; $index <= 12; $index++)
 	{
 		$skillLineId = $skillTreeLine[$index];
-		$name = $db->real_escape_string($skills[$skillLineId]['name']);
-		$desc = $db->real_escape_string($skills[$skillLineId]['description']);
+		$thisSkill = &$skills[$skillLineId];
+		$name = $db->real_escape_string($thisSkill['name']);
+		$desc = $db->real_escape_string($thisSkill['description']);
+		$cost = "" . $thisSkill['cost'] . " " . GetCombatMechanicText($thisSkill['mechanic']);
+		$icon = $db->real_escape_string($thisSkill['texture']);
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type')";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\")";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 	}
@@ -253,6 +280,7 @@ while (($passive = $passiveResult->fetch_assoc()))
 	$name = $db->real_escape_string($passive['name']);
 	$baseName = $name;
 	$desc = $db->real_escape_string($passive['description']);
+	$icon = $db->real_escape_string($passive['texture']);
 	
 	if ($passive['skillType'] == 1)
 	{
@@ -269,7 +297,7 @@ while (($passive = $passiveResult->fetch_assoc()))
 	
 	$skillTypeName = $db->real_escape_string($skillTypeName);
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type) VALUES('$id','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type')";
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon) VALUES('$id','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\")";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 }
