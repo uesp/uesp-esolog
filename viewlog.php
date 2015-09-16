@@ -352,6 +352,17 @@ class EsoLogViewer
 	);
 	
 	
+	public static $SKILLTREE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'skillTypeName' => self::FIELD_STRING,
+			'baseName' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'rank' => self::FIELD_INT,
+			'description' => self::FIELD_TEXTTRANSFORM,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -772,6 +783,22 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'skillTree' => array(
+					'displayName' => 'Skill Tree',
+					'displayNameSingle' => 'Skill Tree',
+					'record' => 'skillTree',
+					'table' => 'skillTree',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'skillTypeName',
+						
+					'transform' => array(
+							'description' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
 	);
 	
 	
@@ -883,6 +910,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
+		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -2264,6 +2292,9 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'minedSkillLines':
 				$output .= $this->GetViewRecordLink('minedSkillLines', $result['id'], 'View Skill Line');
+				break;
+			case 'skillTree':
+				$output .= $this->GetViewRecordLink('skillTree', $result['id'], 'View Skill Tree');
 				break;
 		};
 		
