@@ -8,11 +8,28 @@ print("Creating skill tree from mined skill data...\n");
 require("/home/uesp/secrets/esolog.secrets");
 
 
-function TransformBonusDesc($desc)
+function GetSkillTypeText ($value)
 {
-	$newDesc = preg_replace('/\|c[0-9a-fA-F]{6}([0-9a-zA-Z\_\.\-\%\s]+)\|r/', '$1', $desc);
-	return preg_replace('/\n/', ' ', $newDesc);
+	static $VALUES = array(
+			-1 => "",
+			0 => "",
+			1 => "Class",
+			2 => "Weapon",
+			3 => "Armor",
+			4 => "World",
+			5 => "Guild",
+			6 => "Alliance War",
+			7 => "Racial",
+			8 => "Craft",
+			9 => "Champion",
+	);
+
+	$key = (int) $value;
+
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "Unknown ($key)";
 }
+
 
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
@@ -22,136 +39,186 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			abilityId BIGINT NOT NULL,
 			skillTypeName TINYTEXT NOT NULL,
-			rank INTEGER NOT NULL DEFAULT -1
+			rank INTEGER NOT NULL DEFAULT -1,
+			name TINYTEXT NOT NULL,
+			description TEXT NOT NULL,
+			INDEX index_abilityId(abilityId)
 		);";
 
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
-$query = "DELETE * FROM skillTree".$TABLE_SUFFIX.";";
+$query = "DELETE FROM skillTree".$TABLE_SUFFIX.";";
 $result = $db->query($query);
-if (!$result) exit("ERROR: Database query error (clearing tree)!\n" . $db->error);
+if (!$result) exit("ERROR: Database query error (clearing skill tree)!\n" . $db->error);
 
-$query = "SELECT * FROM minedSkillLines".$TABLE_SUFFIX." ORDER BY skillType, classType, raceType;";
-$skillLineResult = $db->query($query);
-if (!$skillLineResult) exit("ERROR: Database query error (finding skill lines)!\n" . $db->error);
-$skillLineResult->data_seek(0);
+$query = "SELECT * from minedSkills".$TABLE_SUFFIX." WHERE nextSkill >= 0;";
+$skillResult = $db->query($query);
+if (!$skillResult) exit("ERROR: Database query error (finding skill lines)!\n" . $db->error);
+$skillResult->data_seek(0);
+$skills = array();
+$skillRoots = array();
+$count = 0;
 
-while (($skillLine = $skillLineResult->fetch_assoc()))
+	/* Load all skills with a progression */
+while (($skill = $skillResult->fetch_assoc()))
 {
-	$query = "SELECT * FROM minedSkills".$TABLE_SUFFIX." WHERE skillType=".$skillLine['skillType']." AND skillLine='".$skillLine['name']."';";
-	$skillResult = $db->query($query);
-	if (!$skillResult) exit("ERROR: Database query error (finding skills)!\n" . $db->error);
+	$id = $skill['abilityId'];
+	$skills[$id] = $skill;
+	$count++;
 }
-	++$itemCount;
-	$setName = $row['setName'];
-	$setBonusDesc1 = TransformBonusDesc($row['setBonusDesc1']);
-	$setBonusDesc2 = TransformBonusDesc($row['setBonusDesc2']);
-	$setBonusDesc3 = TransformBonusDesc($row['setBonusDesc3']);
-	$setBonusDesc4 = TransformBonusDesc($row['setBonusDesc4']);
-	$setBonusDesc5 = TransformBonusDesc($row['setBonusDesc5']);
-	$setBonusCount = 0;
-	$setMaxEquipCount = $row['setMaxEquipCount'];
-	if ($setMaxEquipCount == null || $setMaxEquipCount == "") $setMaxEquipCount = 1; 
+
+print("\tFound $count skills with a skill progression.\n");
+$skillTree = array();
+
+	/* Find the root skills */
+foreach ($skills as $id => $skill)
+{
+	if ($skill['nextSkill'] > 0 && $skill['prevSkill'] <= 0)
+	{
+		$skillTree[$id] = array();
+		$skillTree[$id][1] = $id;
+		$skillTree[$id][2] = $skill['nextSkill'];
+	}
+}
+
+print("\tFound ".count($skillTree)." root skills\n");
+
+	/* Follow the skill tree to its end one level at a time*/
+for ($skillIndex = 2; $skillIndex <= 12; $skillIndex++)
+{
+	foreach($skillTree as $id => $skillLine)
+	{
+		$lastSkillId = $skillLine[$skillIndex];
+		$nextSkill  = $skills[$lastSkillId]['nextSkill'];
+		$nextSkill2 = $skills[$lastSkillId]['nextSkill2'];
+		
+		if ($nextSkill  > 0) $skillTree[$id][$skillIndex + 1] = $nextSkill;
+		if ($nextSkill2 > 0) $skillTree[$id][$skillIndex + 5] = $nextSkill2;
+	}
+}
+
+$skillRootData = array();
+
+	/* Find the type/line/race/class for each skill line */
+foreach($skillTree as $id => $skillTreeLine)
+{
+	$skillRootData[$id] = array();
 	
-	$lastBonusDesc = $setBonusDesc5;
-	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc4;
-	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc3;
-	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc2;
-	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc1;
+	foreach ($skillTreeLine as $index => $skillLineId)
+	{
+		$skill = $skills[$skillLineId];
+		if ($skill['skillType'] >= 0) $skillRootData[$id]['skillType'] = $skill['skillType'];
+		if ($skill['skillLine'] != "") $skillRootData[$id]['skillLine'] = $skill['skillLine'];
+		if ($skill['classType'] != "") $skillRootData[$id]['classType'] = $skill['classType'];
+		if ($skill['raceType']  != "") $skillRootData[$id]['raceType']  = $skill['raceType'];
+	}
+}
+
+	/* Propagate the  type/line/race/class throughout each skill line */
+foreach($skillTree as $id => $skillTreeLine)
+{
+	foreach ($skillTreeLine as $index => $skillLineId)
+	{
+		$skill = &$skills[$skillLineId];
+		$skill['skillType'] = $skillRootData[$id]['skillType'];
+		$skill['skillLine'] = $skillRootData[$id]['skillLine'];
+		$skill['classType'] = $skillRootData[$id]['classType'];
+		$skill['raceType']  = $skillRootData[$id]['raceType'];
+	}
+}
+
+	/* Print the basic skill tree */
+foreach($skillTree as $id => $skillTreeLine)
+{
+	$skillId1 = $skillTreeLine[1];
+	$skillId2 = $skillTreeLine[5];
+	$skillId3 = $skillTreeLine[9];
+	$line = $skills[$skillId1]['skillLine'];
+	$type = $skills[$skillId1]['skillType'];
+	$class = $skills[$skillId1]['classType'];
+	$race = $skills[$skillId1]['raceType'];
+	$name1 = $skills[$skillId1]['name'];
+	$name2 = $skills[$skillId2]['name'];
+	$name3 = $skills[$skillId3]['name'];
 	
-	if ($setBonusDesc1 != "") $setBonusCount = 1;
-	if ($setBonusDesc2 != "") $setBonusCount = 2;
-	if ($setBonusDesc3 != "") $setBonusCount = 3;
-	if ($setBonusDesc4 != "") $setBonusCount = 4;
-	if ($setBonusDesc5 != "") $setBonusCount = 5;
+	$desc1 = $skills[$skillTreeLine[1]]['description'];
+	$desc2 = $skills[$skillTreeLine[2]]['description'];
+	$desc3 = $skills[$skillTreeLine[3]]['description'];
+	$desc4 = $skills[$skillTreeLine[4]]['description'];
 	
-	if (!array_key_exists($setName, $setItemSlots)) $setItemSlots[$setName] = array();
-	UpdateItemSlotArray($setItemSlots[$setName], $row);
+	print("\t$name1: $type $line $class $race\n");
+	//print("\t\t Rank 1: $desc1\n");
+	//print("\t\t Rank 2: $desc2\n");
+	//print("\t\t Rank 3: $desc3\n");
+	//print("\t\t Rank 4: $desc4\n");
 	
-	$matches = array();
-	$regResult = preg_match('/\(([0-9]+) items\)/', $lastBonusDesc, $matches);
-	if ($regResult) $setMaxEquipCount = $matches[1];
+	$desc1 = $skills[$skillTreeLine[5]]['description'];
+	$desc2 = $skills[$skillTreeLine[6]]['description'];
+	$desc3 = $skills[$skillTreeLine[7]]['description'];
+	$desc4 = $skills[$skillTreeLine[8]]['description'];
 	
-	print("\tUpdating set $setName with $setMaxEquipCount items...\n");
-	//print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
+	print("\t\t$name2\n");
+	//print("\t\t Rank 1: $desc1\n");
+	//print("\t\t Rank 2: $desc2\n");
+	//print("\t\t Rank 3: $desc3\n");
+	//print("\t\t Rank 4: $desc4\n");
 	
-	$query = "SELECT * FROM setSummary".$TABLE_SUFFIX." WHERE setName=\"$setName\";";
+	$desc1 = $skills[$skillTreeLine[9]]['description'];
+	$desc2 = $skills[$skillTreeLine[10]]['description'];
+	$desc3 = $skills[$skillTreeLine[11]]['description'];
+	$desc4 = $skills[$skillTreeLine[12]]['description'];
+	
+	print("\t\t$name3\n");
+	//print("\t\t Rank 1: $desc1\n");
+	//print("\t\t Rank 2: $desc2\n");
+	//print("\t\t Rank 3: $desc3\n");
+	//print("\t\t Rank 4: $desc4\n");
+}
+
+	/* Update the skills */
+foreach($skills as $id => $skill)
+{
+	$classType = $db->real_escape_string($skill['classType']);
+	$raceType = $db->real_escape_string($skill['raceType']);
+	$skillType = $db->real_escape_string($skill['skillType']);
+	$skillLine = $db->real_escape_string($skill['skillLine']);
+	
+	$query = "UPDATE minedSkills SET skillType=\"$skillType\",raceType=\"$raceType\",classType=\"$classType\",skillLine=\"$skillLine\" WHERE abilityId=$id;";
 	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error finding set!\n" . $db->error);
+	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
+}
+
+	/* Save the skill tree */
+foreach($skillTree as $id => $skillTreeLine)
+{
+	$skill = $skills[$id];
 	
-	$createNewSet = true;
-	$updateId = -1;
-	
-	while ( ($newRow = $result->fetch_assoc()) )
+	if ($skill['skillType'] == 1)
 	{
-		$matches = true;
-		
-		$newBonusDesc1 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc1']);
-		$newBonusDesc2 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc2']);
-		$newBonusDesc3 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc3']);
-		$newBonusDesc4 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc4']);
-		$newBonusDesc5 = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc5']);
-		
-		if ($newBonusDesc1 != $setBonusDesc1) { $matches = true; print("\t\tSet bonus #1 doesn't match!\n"); }
-		if ($newBonusDesc2 != $setBonusDesc2) { $matches = true; print("\t\tSet bonus #2 doesn't match!\n"); }
-		if ($newBonusDesc3 != $setBonusDesc3) { $matches = true; print("\t\tSet bonus #3 doesn't match!\n"); }
-		if ($newBonusDesc4 != $setBonusDesc4) { $matches = true; print("\t\tSet bonus #4 doesn't match!\n"); }
-		if ($newBonusDesc5 != $setBonusDesc5) { $matches = true; print("\t\tSet bonus #5 doesn't match!\n"); }
-		if ($newRow['setMaxEquipCount'] != $setMaxEquipCount) { $matches = false; print("\t\tSet max equip count doesn't match!\n"); }
-		
-		if ($matches) 
-		{
-			$updateId = $newRow['id'];
-			$createNewSet = false;
-			break;
-		}
+		$skillTypeName = $skill['classType'] . "::" . $skill['skillLine'];
 	}
-	
-	if ($createNewSet)
+	elseif ($skill['skillType'] == 7)
 	{
-		//print("\t\tCreating new set...\n");
-		++$newCount;
-		
-		$setBonusDesc = "";
-		if ($setBonusDesc1 != "") $setBonusDesc .= $setBonusDesc1;
-		if ($setBonusDesc2 != "") $setBonusDesc .= "\n".$setBonusDesc2;
-		if ($setBonusDesc3 != "") $setBonusDesc .= "\n".$setBonusDesc3;
-		if ($setBonusDesc4 != "") $setBonusDesc .= "\n".$setBonusDesc4;
-		if ($setBonusDesc5 != "") $setBonusDesc .= "\n".$setBonusDesc5;
-		
-		$query  = "INSERT INTO setSummary".$TABLE_SUFFIX."(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc) ";
-		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\", \"$setBonusDesc\");";
-		
-		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error . "\n" . $query);
-	}
-	else if ($updateId > 0)
-	{
-		//print("\t\tUpdating set $updateId...\n");
-		++$updateCount;
-		$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemCount=itemCount+1 WHERE id=$updateId;";
-		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error updating table!\n" . $db->error . "\n" . $query);
+		$skillTypeName = $skill['raceType'] . "::" . $skill['skillLine'];
 	}
 	else
 	{
-		print("\t\tError: Unknown set record to update!\n");
+		$skillTypeName = GetSkillTypeText($skill['skillType']) . "::" . $skill['skillLine'];
 	}
 	
+	$skillTypeName = $db->real_escape_string($skillTypeName);
+	
+	for($index = 1; $index <= 12; $index++)
+	{
+		$skillLineId = $skillTreeLine[$index];
+		$name = $db->real_escape_string($skills[$skillLineId]['name']);
+		$desc = $db->real_escape_string($skills[$skillLineId]['description']);
+		
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,name,description) VALUES('$skillLineId','$skillTypeName','$index','$name','$desc')";
+		$result = $db->query($query);
+		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
+	}
 }
-
-print("\tUpdating set item slots...\n");
-
-foreach ($setItemSlots as $setName => $setSlots)
-{
-	$slotString = CreateItemSlotString($setSlots);
-	$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemSlots='".$slotString."' WHERE setName=\"".$setName."\";";
-	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error updating table!\n" . $db->error . "\n" . $query);
-	//print("$setName: $slotString\n");
-}
-
-print("Found $itemCount item sets, $newCount new, $updateCount duplicate!\n");
 
 ?>
