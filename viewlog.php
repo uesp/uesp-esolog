@@ -459,6 +459,10 @@ class EsoLogViewer
 					'method' => 'DoRecordDisplay',
 					'sort' => 'zone',
 					
+					'validsortfields' => array(
+							'id',
+					),
+					
 					'join' => array(
 					),
 					
@@ -688,7 +692,14 @@ class EsoLogViewer
 					'table' => 'minedItem',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-			
+					'message' => "This table is too large to search/sort quickly. Trying using the <a href='/viewlog.php?record=minedItemSummary'>Item Summary</a> table if you need to instead.",
+					
+					'validsortfields' => array(
+							'id',
+							'itemId',
+							'enchantId',
+					),
+						
 					'transform' => array(
 							'type' => 'GetItemTypeText',
 							'style' => 'GetItemStyleText',
@@ -1553,16 +1564,27 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function IsValidSortField($recordInfo, $field)
+	{
+		if ($field == '') return true;
+		if (!array_key_exists('validsortfields', $recordInfo)) return true;
+		if (in_array($field, $recordInfo['validsortfields'])) return true;
+		return false;
+	}
+	
+	
 	public function GetSelectQuerySort ($recordInfo)
 	{
 		$sort = '';
+		$customSort = $this->recordSort;
 		
-		if ($this->recordSort == '' && $recordInfo['sort'] == '') return '';
+		if (!$this->IsValidSortField($recordInfo, $customSort)) $customSort = '';
+		if ($customSort == '' && $recordInfo['sort'] == '') return '';
 		
-		if ($this->recordSort == '')
+		if ($customSort == '')
 			$sort = " ORDER BY {$recordInfo['sort']} ";
 		else
-			$sort = " ORDER BY {$this->recordSort} ";
+			$sort = " ORDER BY {$customSort} ";
 		
 		if ($this->recordSortOrder != '')
 			$sort .= $this->recordSortOrder . ' ';
@@ -1725,7 +1747,11 @@ If you do not understand what this information means, or how to use this webpage
 			
 			if ($this->IsOutputHTML())
 			{
-				$sortLink = $this->GetSortRecordLink($key, $key);
+				if (!$this->IsValidSortField($recordInfo, $key))
+					$sortLink = $key;
+				else
+					$sortLink = $this->GetSortRecordLink($key, $key);
+				
 				$output .= "\t\t<th>$sortLink</th>\n";
 			}
 			elseif ($this->IsOutputCSV())
