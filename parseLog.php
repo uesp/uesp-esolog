@@ -1432,15 +1432,7 @@ class EsoLogParser
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId),
-			INDEX index_enchantId (enchantId),
-			FULLTEXT(name),
-			FULLTEXT(description),
-			FULLTEXT(setName),
-			FULLTEXT(abilityName),
-			FULLTEXT(abilityDesc),
-			FULLTEXT(setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5),
-			FULLTEXT(bookTitle),
-			FULLTEXT(comment)
+			INDEX index_enchantId (enchantId)
 		);";
 		
 		$this->lastQuery = $query;
