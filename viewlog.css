@@ -40,3 +40,9 @@ body {
 .elvLastUpdate {
 	font-size: 11px;
 }
+
+#elvSearchForm {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}

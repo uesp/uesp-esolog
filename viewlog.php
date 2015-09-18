@@ -1466,14 +1466,22 @@ If you do not understand what this information means, or how to use this webpage
 		}
 ?>
 	</ul>
-	
-	<form method='get' action=''>
-		<input type='search' name='search' value='' maxlength='64' size='32' />
-		<input type='submit' value='Search...' />
-	</form>
-<?php
-		
+<?php	
+		$this->OutputSearchForm();
 		return true;
+	}
+	
+	
+	public function OutputSearchForm()
+	{
+?>
+		<div id='elvSearchForm'>
+			<form method='get' action=''>
+				<input type='search' name='search' value='<?=$this->search?>' maxlength='64' size='32' />
+				<input type='submit' value='Search...' />
+			</form>
+		</div>
+<?php
 	}
 	
 	
@@ -1491,6 +1499,7 @@ If you do not understand what this information means, or how to use this webpage
 	public function OutputRecordHeader ($recordInfo)
 	{
 		$this->OutputTopMenu($recordInfo);
+		$this->OutputSearchForm();
 		
 		$output = "";
 		
@@ -2437,6 +2446,7 @@ If you do not understand what this information means, or how to use this webpage
 	public function DoSearch()
 	{
 		$this->OutputTopMenu();
+		$this->OutputSearchForm();
 		
 		$this->searchTotalCount = 0;
 		$this->searchResults = array();
