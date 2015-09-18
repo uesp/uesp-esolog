@@ -31,6 +31,7 @@ class EsoLogViewer
 	public $recordField = '';
 	public $outputFormat = 'HTML';
 	public $search = '';
+	public $searchType = '';
 	public $searchTotalCount = 0;
 	public $searchTerms = array();
 	public $searchResults = array();
@@ -832,6 +833,21 @@ class EsoLogViewer
 	);
 	
 	
+	public static $SEARCH_TYPE_OPTIONS = array(
+			'All' => '',
+			'Books' => 'book',
+			'Ingredients' => 'ingredient',
+			'Items' => 'minedItemSummary',
+			'Logged Items' => 'item',
+			'NPCs' => 'npc',
+			'Quests' => 'quest',
+			'Quest Stages' => 'questStage',
+			'Recipes' => 'recipe',
+			'Sets' => 'setSummary',
+			'Skills' => 'minedSkills',
+		);
+	
+	
 	public static $SEARCH_DATA = array(
 			'book' => array(
 					'searchFields' => array('title', 'body'),
@@ -1474,11 +1490,28 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function OutputSearchForm()
 	{
+		$options = '';
+		
+		foreach(self::$SEARCH_TYPE_OPTIONS as $key => $value)
+		{
+			$selected = '';
+			if ($value == $this->searchType) $selected = 'selected';
+			$options .= "\t\t<option value='$value' $selected>$key</option>\n";
+		}
+		
+		
 ?>
 		<div id='elvSearchForm'>
 			<form method='get' action=''>
 				<input type='search' name='search' value='<?=$this->search?>' maxlength='64' size='32' />
 				<input type='submit' value='Search...' />
+				<br/>
+				<div id='elvSearchType'>
+					Search
+					<select name='searchtype'>
+						<?=$options ?>
+					</select>
+				</div>
 			</form>
 		</div>
 <?php
@@ -2454,7 +2487,10 @@ If you do not understand what this information means, or how to use this webpage
 		
 		foreach (self::$SEARCH_DATA as $table => $searchData)
 		{
-			$this->SearchTable($table, $searchData);
+			if ($this->searchType == '' || $this->searchType == $table)
+			{
+				$this->SearchTable($table, $searchData);
+			}
 		}
 		
 		$this->DisplaySearchResults();
@@ -2500,6 +2536,7 @@ If you do not understand what this information means, or how to use this webpage
 	{
 		if (array_key_exists('record', $this->inputParams)) $this->recordType = $this->db->real_escape_string($this->inputParams['record']);
 		if (array_key_exists('search', $this->inputParams)) $this->search = $this->db->real_escape_string($this->inputParams['search']);
+		if (array_key_exists('searchtype', $this->inputParams)) $this->searchType = $this->db->real_escape_string($this->inputParams['searchtype']);
 		if (array_key_exists('format', $this->inputParams)) $this->outputFormat = strtoupper($this->db->real_escape_string($this->inputParams['format']));
 		if (array_key_exists('field', $this->inputParams)) $this->recordField = $this->db->real_escape_string($this->inputParams['field']);
 		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->db->real_escape_string($this->inputParams['id']);

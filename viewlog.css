@@ -46,3 +46,12 @@ body {
 	top: 20px;
 	right: 20px;
 }
+
+#elvSearchType {
+	padding-top: 2px;
+	font-size: 11px;
+}
+
+#elvSearchType select {
+	font-size: 11px;
+}
