@@ -458,7 +458,7 @@ class EsoLogViewer
 					'record' => 'location',
 					'table' => 'location',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'zone',
+					'sort' => '',
 					
 					'validsortfields' => array(
 							'id',
