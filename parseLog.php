@@ -1225,6 +1225,7 @@ class EsoLogParser
 						rawX FLOAT NOT NULL,
 						rawY FLOAT NOT NULL,
 						PRIMARY KEY (id),
+						INDEX index_zone(zone(32)),
 						INDEX find_loc (zone(64), x, y),
 						INDEX find_loctype (type(32), zone(64), x, y),
 						INDEX find_bookloc (bookId, zone(64), x, y),
