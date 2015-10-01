@@ -425,12 +425,13 @@ class EsoLogViewer
 			),
 			
 			'item' => array(
-					'displayName' => 'Items',
-					'displayNameSingle' => 'Item',
+					'displayName' => 'Looted Items',
+					'displayNameSingle' => 'Looted Item',
 					'record' => 'item',
 					'table' => 'item',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
+					'message' => 'These are items that have been seen/looted in the game. See <a href="/viewlog.php?record=minedItemSummary">Item Summaries</a> for all possible items in the game.',
 						
 					'transform' => array(
 							'type' => 'GetItemTypeText',
@@ -693,7 +694,7 @@ class EsoLogViewer
 					'table' => 'minedItem',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-					'message' => "This table is too large to search/sort quickly. Trying using the <a href='/viewlog.php?record=minedItemSummary'>Item Summary</a> table if you need to instead.",
+					'message' => "This table is too large to search/sort quickly. Trying using the <a href='/viewlog.php?record=minedItemSummary'>Item Summary</a> table if you need to instead or <a href='/viewlog.php?record=item'>Looted Items</a>.",
 					
 					'validsortfields' => array(
 							'id',
@@ -725,6 +726,7 @@ class EsoLogViewer
 					'table' => 'minedItemSummary',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
+					'message' => 'These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
 						
 					'transform' => array(
 							'type' => 'GetItemTypeText',
