@@ -40,7 +40,6 @@ while (($item = $itemResult->fetch_assoc()))
 
 print("Fixed $itemCount items with names as links.\n");
 
-
 $query = "SELECT id,name,link FROM item$TABLE_SUFFIX WHERE link!='';";
 $itemResult = $db->query($query);
 if (!$itemResult) exit("ERROR: Database query error finding links in item names!\n" . $db->error);
@@ -75,3 +74,8 @@ while (($item = $itemResult->fetch_assoc()))
 }
 
 print("Fixed $itemCount items names.\n");
+
+$query = "SELECT name,count(*) as c,link FROM item GROUP BY link HAVING c>1;";
+$itemResult = $db->query($query);
+if (!$itemResult) exit("ERROR: Database query error finding duplicating items!\n" . $db->error);
+print ("Found {$itemResult->num_rows} duplicate item links.\n");
