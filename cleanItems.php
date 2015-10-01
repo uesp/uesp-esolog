@@ -75,7 +75,7 @@ while (($item = $itemResult->fetch_assoc()))
 
 print("Fixed $itemCount items names.\n");
 
-$query = "SELECT name,count(*) as c,link FROM item GROUP BY link HAVING c>1;";
+$query = "SELECT name,count(*) as c,link FROM item WHERE link != '' GROUP BY link HAVING c>1;";
 $itemResult = $db->query($query);
 if (!$itemResult) exit("ERROR: Database query error finding duplicating items!\n" . $db->error);
 print ("Found {$itemResult->num_rows} duplicate item links.\n");
