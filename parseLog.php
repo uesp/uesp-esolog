@@ -2335,7 +2335,7 @@ class EsoLogParser
 	
 	public function FindItemLink ($itemLink)
 	{
-		if ($this->startsWith($itemLink, "|H")) return $this->FindItemNameWithNoLink($itemName);
+		if (!$this->startsWith($itemLink, "|H")) return $this->FindItemNameWithNoLink($itemName);
 		
 		$safeLink = $this->db->real_escape_string($itemLink);
 		$query = "SELECT * FROM item WHERE link='$safeLink';";
