@@ -69,7 +69,6 @@ class EsoLogViewer
 			'collectionIndex' => self::FIELD_INTPOSITIVE,
 			'bookIndex' => self::FIELD_INTPOSITIVE,
 			'guildIndex' => self::FIELD_INTPOSITIVE,
-			'logId' => self::FIELD_INTID,
 	);
 	
 	public static $CHEST_FIELDS = array(
@@ -79,7 +78,6 @@ class EsoLogViewer
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
 			'quality' => self::FIELD_INTTRANSFORM,
-			'logId' => self::FIELD_INTID,
 	);
 	
 	public static $ITEM_FIELDS = array(
@@ -97,7 +95,6 @@ class EsoLogViewer
 			'color' => self::FIELD_STRING,
 			'icon' => self::FIELD_GAMEICON,
 			'link' => self::FIELD_STRING,
-			'logId' => self::FIELD_INTID,
 	);
 	
 	public static $LOCATION_FIELDS = array(
@@ -115,12 +112,10 @@ class EsoLogViewer
 			'questId' => self::FIELD_INTID,
 			'questStageId' => self::FIELD_INTID,
 			'itemId' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 	);
 	
 	public static $QUEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 			'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
@@ -129,7 +124,6 @@ class EsoLogViewer
 	
 	public static $QUESTSTAGE_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 			'questId' => self::FIELD_INTID,
 			'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
@@ -148,7 +142,6 @@ class EsoLogViewer
 	
 	public static $NPC_FIELDS = array(
 			'id' => self::FIELD_INT,
-			'logId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
 			'gender' => self::FIELD_INT,
@@ -157,7 +150,6 @@ class EsoLogViewer
 	
 	public static $RECIPE_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 			'resultItemId' => self::FIELD_INTID,
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
@@ -167,7 +159,6 @@ class EsoLogViewer
 	
 	public static $INGREDIENT_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 			'recipeId' => self::FIELD_INTID,
 			'recipeName' => self::FIELD_STRING,
 			'itemId' => self::FIELD_INTID,
@@ -194,7 +185,6 @@ class EsoLogViewer
 	
 	public static $MINEDITEM_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
 			'link' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'internalLevel' => self::FIELD_INT,
