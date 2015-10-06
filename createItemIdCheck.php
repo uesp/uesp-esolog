@@ -18,15 +18,16 @@ $query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
-$VERSION = "2.0.10";
+$TABLEPREFIX = "16";
+$VERSION = "1.6";
 $FIRSTID = 1;
-$LASTID = 80000;
+$LASTID = 100000;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
 	if ($id % 1000 == 0) print("Checking Item $id...\n");
 	
-	$query = "SELECT itemId FROM minedItemSummary WHERE itemId=$id LIMIT 1;";
+	$query = "SELECT itemId FROM minedItemSummary$TABLEPREFIX WHERE itemId=$id LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (finding item)!\n" . $db->error);
 	$itemData = $result->fetch_assoc();
