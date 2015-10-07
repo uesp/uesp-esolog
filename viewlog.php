@@ -727,8 +727,8 @@ class EsoLogViewer
 							'craftType' => 'GetItemTypeText',
 							'armorType' => 'GetItemArmorTypeText',
 							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink',
-							'link' => 'MakeMinedItemLink',
+							'name' => 'MakeMinedItemLink18pts',
+							'link' => 'MakeMinedItemLink18pts',
 					),
 			
 					'filters' => array(
@@ -1482,6 +1482,19 @@ class EsoLogViewer
 		$itemIntType = $itemData['internalSubtype'];
 		
 		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemLink18pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=1.8pts\">" . $value . "</a>";
 		return $output;
 	}
 	
