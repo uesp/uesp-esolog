@@ -709,6 +709,32 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem18pts' => array(
+					'displayName' => 'Mined Items from PTS 1.8',
+					'displayNameSingle' => 'Mined Item from PTS 1.8',
+					'record' => 'minedItem18pts',
+					'table' => 'minedItem18pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => "These are new items for update 1.8 (Orsinium) as logged from the PTS server.",
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink',
+							'link' => 'MakeMinedItemLink',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -749,6 +775,31 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'record' => 'minedItemSummary',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			
+			'setSummary18pts' => array(
+					'displayName' => 'Set Summaries from PTS 1.8',
+					'displayNameSingle' => 'Set Item Summary from PTS 1.8',
+					'record' => 'setSummary18pts',
+					'table' => 'setSummary18pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are new sets for update 1.8 (Orsinium) as logged from the PTS server.",
+						
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'minedItem18pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -952,6 +1003,9 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
+		
+		self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
+		self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
