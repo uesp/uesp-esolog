@@ -199,7 +199,10 @@ class EsoLogParser
 	
 	//const START_MINEITEM_TIMESTAMP = 4743729922978086912; //v1.5
 	//const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
-	  const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
+	//const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
+	  const START_MINEITEM_TIMESTAMP = 4743836443376300000; //v1.8pts
+	
+	const MINEITEM_TABLESUFFIX = "18pts";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -1015,7 +1018,7 @@ class EsoLogParser
 	
 	public function LoadMinedItemID ($id)
 	{
-		$minedItem = $this->loadRecord('minedItem', 'id', $id, self::$MINEDITEM_FIELDS);
+		$minedItem = $this->loadRecord('minedItem'.self::MINEITEM_TABLESUFFIX, 'id', $id, self::$MINEDITEM_FIELDS);
 		if ($minedItem === false) return false;
 	
 		return $minedItem;
@@ -1024,7 +1027,7 @@ class EsoLogParser
 	
 	public function LoadMinedItemLink ($itemLink)
 	{
-		$minedItem = $this->loadRecord('minedItem', 'link', $itemLink, self::$MINEDITEM_FIELDS);
+		$minedItem = $this->loadRecord('minedItem'.self::MINEITEM_TABLESUFFIX, 'link', $itemLink, self::$MINEDITEM_FIELDS);
 		if ($minedItem === false) return false;
 		
 		return $minedItem;
@@ -1067,7 +1070,7 @@ class EsoLogParser
 	
 	public function SaveMinedItem (&$record)
 	{
-		return $this->saveRecord('minedItem', $record, 'id', self::$MINEDITEM_FIELDS);
+		return $this->saveRecord('minedItem'.self::MINEITEM_TABLESUFFIX, $record, 'id', self::$MINEDITEM_FIELDS);
 	}
 	
 	
@@ -1362,7 +1365,7 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ingredient table!");
 		
-		$query = "CREATE TABLE IF NOT EXISTS minedItem (
+		$query = "CREATE TABLE IF NOT EXISTS minedItem".self::MINEITEM_TABLESUFFIX." (
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			logId BIGINT NOT NULL,
 			link TINYTEXT NOT NULL,

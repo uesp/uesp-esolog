@@ -1,6 +1,8 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "18pts";
+$SOURCEITEMTABLE = "Summary";
+$SOURCEITEMTABLE = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
@@ -282,7 +284,7 @@ if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error)
 //$result = $db->query($query);
 //if (!$result) exit("ERROR: Database query error (clearing item counts)!\n" . $db->error);
 
-$query = "SELECT * FROM minedItemSummary".$TABLE_SUFFIX." WHERE setName!='';";
+$query = "SELECT * FROM minedItem".$SOURCEITEMTABLE.$TABLE_SUFFIX." WHERE setName!='';";
 $rowResult = $db->query($query);
 if (!$rowResult) exit("ERROR: Database query error (finding set items)!\n" . $db->error);
 $rowResult->data_seek(0);
