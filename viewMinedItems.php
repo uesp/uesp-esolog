@@ -37,7 +37,12 @@ class CEsoViewMinedItems
 	public $viewEquipType = -1;
 	public $viewArmorType = -1;
 	public $viewWeaponType = -1;
-	public $viewSearch = "";
+	public $viewSearch = '';
+	public $version = '';
+	public $tableName = 'minedItemSummary';
+	public $tableSuffix = '';
+	public $fullTableName = 'minedItemSummary';
+	public $extraQueryString = '';
 	
 	public $typeRecords = array();
 	public $equipTypeRecords = array();
@@ -71,6 +76,38 @@ class CEsoViewMinedItems
 		if (array_key_exists('armortype', $this->inputParams)) $this->viewArmorType = intval($this->inputParams['armortype']);
 		if (array_key_exists('weapontype', $this->inputParams)) $this->viewWeaponType = intval($this->inputParams['weapontype']);
 		if (array_key_exists('search', $this->inputParams)) $this->viewSearch = $this->inputParams['search'];
+		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
+		
+		switch ($this->version)
+		{
+			case '1.5':
+			case '15':
+				$this->tableSuffix = '15';
+				break;
+			case '1.6':
+			case '16':
+				$this->tableSuffix = '16';
+				break;
+			case '1.7':
+			case '17':
+				$this->tableSuffix = '';
+				break;
+			case '1.8pts':
+			case '18pts':
+				$this->tableName = 'minedItem';
+				$this->tableSuffix = '18pts';
+				break;
+			default:
+				$this->tableSuffix = '';
+				break;
+		}
+		
+		$this->fullTableName = $this->tableName . $this->tableSuffix;
+		
+		if ($this->version != '') 
+		{
+			$this->extraQueryString = '&version='.$this->version;
+		}
 	}
 	
 	
@@ -126,7 +163,7 @@ class CEsoViewMinedItems
 	
 	public function LoadTypeRecords()
 	{
-		$query = "SELECT COUNT(*) AS count, type FROM minedItemSummary GROUP BY type;";
+		$query = "SELECT COUNT(*) AS count, type FROM {$this->fullTableName} GROUP BY type;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
@@ -148,7 +185,7 @@ class CEsoViewMinedItems
 	
 	public function LoadEquipTypeRecords()
 	{
-		$query = "SELECT COUNT(*) AS count, equipType FROM minedItemSummary WHERE type={$this->viewType} GROUP BY equipType;";
+		$query = "SELECT COUNT(*) AS count, equipType FROM {$this->fullTableName} WHERE type={$this->viewType} GROUP BY equipType;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
@@ -170,7 +207,7 @@ class CEsoViewMinedItems
 	
 	public function LoadWeaponTypeRecords()
 	{
-		$query = "SELECT COUNT(*) AS count, weaponType FROM minedItemSummary WHERE type={$this->viewType} AND equipType={$this->viewEquipType} GROUP BY weaponType;";
+		$query = "SELECT COUNT(*) AS count, weaponType FROM {$this->fullTableName} WHERE type={$this->viewType} AND equipType={$this->viewEquipType} GROUP BY weaponType;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
@@ -192,7 +229,7 @@ class CEsoViewMinedItems
 	
 	public function LoadArmorTypeRecords()
 	{
-		$query = "SELECT COUNT(*) AS count, armorType FROM minedItemSummary WHERE type={$this->viewType} AND equipType={$this->viewEquipType} GROUP BY armorType;";
+		$query = "SELECT COUNT(*) AS count, armorType FROM {$this->fullTableName} WHERE type={$this->viewType} AND equipType={$this->viewEquipType} GROUP BY armorType;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
@@ -215,7 +252,7 @@ class CEsoViewMinedItems
 	public function LoadSearchRecords()
 	{
 		$safeSearch = $this->db->escape_string($this->viewSearch);
-		$query = "SELECT itemId,name,trait FROM minedItemSummary WHERE MATCH(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5) AGAINST('$safeSearch' IN BOOLEAN MODE) ORDER BY name LIMIT 1000;";
+		$query = "SELECT itemId,name,trait FROM {$this->fullTableName} WHERE MATCH(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5) AGAINST('$safeSearch' IN BOOLEAN MODE) ORDER BY name LIMIT 1000;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error!" . $this->db->error);
 		
@@ -242,7 +279,7 @@ class CEsoViewMinedItems
 		$whereQuery = "";
 		if (count($where) > 0) $whereQuery = " WHERE ". implode(" AND ", $where) . " ";
 		
-		$query = "SELECT itemId,name,trait FROM minedItemSummary $whereQuery ORDER BY name;";
+		$query = "SELECT itemId,name,trait FROM {$this->fullTableName} $whereQuery ORDER BY name;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
@@ -330,11 +367,11 @@ class CEsoViewMinedItems
 			if ($item['trait'] > 0)
 			{
 				$traitName = GetEsoItemTraitText($item['trait']);
-				$output .= "<li><a href='itemLink.php?itemid=$itemId'>$name ($traitName)</a></li>";
+				$output .= "<li><a href='itemLink.php?itemid=$itemId{$this->extraQueryString}'>$name ($traitName)</a></li>";
 			}
 			else
 			{
-				$output .= "<li><a href='itemLink.php?itemid=$itemId'>$name</a></li>";
+				$output .= "<li><a href='itemLink.php?itemid=$itemId{$this->extraQueryString}'>$name</a></li>";
 			}
 		}
 		
@@ -399,7 +436,7 @@ class CEsoViewMinedItems
 			$count = $record['count'];
 			$totalItems += $count;
 			
-			$output .= "<li><a href='?type=$type&equiptype=$equipType&armortype=$armorType'>$armorTypeName ($count items)</a></li>";
+			$output .= "<li><a href='?type=$type&equiptype=$equipType&armortype=$armorType{$this->extraQueryString}'>$armorTypeName ($count items)</a></li>";
 		}
 	
 		$output .= "</ol>\n";
@@ -426,7 +463,7 @@ class CEsoViewMinedItems
 			$count = $record['count'];
 			$totalItems += $count;
 				
-			$output .= "<li><a href='?type=$type&equiptype=$equipType&weapontype=$weaponType'>$weaponTypeName ($count items)</a></li>";
+			$output .= "<li><a href='?type=$type&equiptype=$equipType&weapontype=$weaponType{$this->extraQueryString}'>$weaponTypeName ($count items)</a></li>";
 		}
 		
 		$output .= "</ol>\n";
@@ -451,7 +488,7 @@ class CEsoViewMinedItems
 			$count = $record['count'];
 			$totalItems += $count;
 			
-			$output .= "<li><a href='?type=$type&equiptype=$equipType'>$equipTypeName ($count items)</a></li>";
+			$output .= "<li><a href='?type=$type&equiptype=$equipType{$this->extraQueryString}'>$equipTypeName ($count items)</a></li>";
 		}
 		
 		$output .= "</ol>\n";
@@ -474,7 +511,7 @@ class CEsoViewMinedItems
 			$count = $record['count'];
 			$totalItems += $count;
 			
-			$output .= "<li><a href='?type=$type'>$typeName ($count items)</a></li>";
+			$output .= "<li><a href='?type=$type{$this->extraQueryString}'>$typeName ($count items)</a></li>";
 		}
 		
 		$output .= "</ol>\n";
@@ -485,7 +522,7 @@ class CEsoViewMinedItems
 	
 	public function MakeBreadCrumbBlock()
 	{
-		$output .= "&lt; <a href='?'>All Items</a>";
+		$output .= "&lt; <a href='?{$this->extraQueryString}'>All Items</a>";
 		
 		if ($this->viewSearch != "") return $output;
 		if ($this->viewType < 0 && $this->viewEquipType < 0) return "";
@@ -494,7 +531,7 @@ class CEsoViewMinedItems
 		{
 			$type = $this->viewType;
 			$typeName = GetEsoItemTypeText($this->viewType);
-			$output .= ": <a href='?type=$type'>$typeName</a>";
+			$output .= ": <a href='?type=$type{$this->extraQueryString}'>$typeName</a>";
 		}
 		
 		if ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewWeaponType >= 0 ||
@@ -503,7 +540,7 @@ class CEsoViewMinedItems
 			$type = $this->viewType;
 			$equipType = $this->viewEquipType;
 			$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
-			$output .= ": <a href='?type=$type&equiptype=$equipType'>$equipTypeName</a>";
+			$output .= ": <a href='?type=$type&equiptype=$equipType{$this->extraQueryString}'>$equipTypeName</a>";
 		}
 		
 		return $output;
