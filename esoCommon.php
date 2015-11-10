@@ -202,6 +202,10 @@ $ESO_ITEMTYPE_TEXTS = array(
 		51 => "Potency Rune",
 		52 => "Aspect Rune",
 		53 => "Essence Rune",
+		54 => "Fish",
+		55 => "Crown Repair",
+		56 => "Contraband",
+		57 => "Crown Store",
 );
 
 
