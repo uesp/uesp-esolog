@@ -8,11 +8,13 @@
 	</head>
 <body>
 <h1>ESO Browsing Mined Items</h1>
+This is a list of Elder Scrolls Online item data mined from the game sorted by item category. Return to the <a href="http://esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
 <h2>{title}</h2>
 <div id="esovmi_searchbox">
 	<form action="" method="get">
 		<input type="input" name="search" maxlength="20" value="{search}"/>
-		<input type="submit" value="Search"/>
+		<input type="submit" value="Search"/><br />
+		<small>Search All Mined Items</small>
 	</form>
 </div>
 <div id="esovmi_breadcrumb">{breadCrumb}</div>
