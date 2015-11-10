@@ -1541,6 +1541,11 @@ If you do not understand what this information means, or how to use this webpage
 		}
 ?>
 	</ul>
+	<p />
+	<b>Other Things</b>
+	<ul class='elvRecordTypeList'>
+		<li><a href="/viewMinedItems.php">Mined Items by Category</a></li>
+	</ul>
 <?php	
 		$this->OutputSearchForm();
 		return true;
