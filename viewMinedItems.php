@@ -83,22 +83,26 @@ class CEsoViewMinedItems
 			case '1.5':
 			case '15':
 				$this->tableSuffix = '15';
+				$this->version = '1.5';
 				break;
 			case '1.6':
 			case '16':
 				$this->tableSuffix = '16';
+				$this->version = '1.6';
 				break;
 			case '1.7':
 			case '17':
 				$this->tableSuffix = '';
+				$this->version = '1.7';
 				break;
 			case '1.8pts':
 			case '18pts':
-				$this->tableName = 'minedItem';
 				$this->tableSuffix = '18pts';
+				$this->version = '1.8pts';
 				break;
 			default:
 				$this->tableSuffix = '';
+				$this->version = '';
 				break;
 		}
 		
