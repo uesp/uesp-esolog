@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require("/home/uesp/secrets/esolog.secrets");
 
-$TABLE_SUFFIX = "18pts";
+$TABLE_SUFFIX = "18";
 
 $FIELDS = array(
 		"itemId",
