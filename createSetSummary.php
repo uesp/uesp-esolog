@@ -1,8 +1,7 @@
 <?php
 
-$TABLE_SUFFIX = "18";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
-$SOURCEITEMTABLE = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
@@ -327,7 +326,7 @@ while (($row = $rowResult->fetch_assoc()))
 	if ($regResult) $setMaxEquipCount = $matches[1];
 	
 	print("\tUpdating set $setName with $setMaxEquipCount items...\n");
-	//print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
+	print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
 	
 	$query = "SELECT * FROM setSummary".$TABLE_SUFFIX." WHERE setName=\"$setName\";";
 	$result = $db->query($query);
@@ -363,7 +362,7 @@ while (($row = $rowResult->fetch_assoc()))
 	
 	if ($createNewSet)
 	{
-		//print("\t\tCreating new set...\n");
+		print("\t\tCreating new set...\n");
 		++$newCount;
 		
 		$setBonusDesc = "";
@@ -381,7 +380,7 @@ while (($row = $rowResult->fetch_assoc()))
 	}
 	else if ($updateId > 0)
 	{
-		//print("\t\tUpdating set $updateId...\n");
+		print("\t\tUpdating set $updateId...\n");
 		++$updateCount;
 		$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemCount=itemCount+1 WHERE id=$updateId;";
 		$result = $db->query($query);
