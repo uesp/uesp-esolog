@@ -92,8 +92,13 @@ class CEsoViewMinedItems
 				break;
 			case '1.7':
 			case '17':
-				$this->tableSuffix = '';
+				$this->tableSuffix = '17';
 				$this->version = '1.7';
+				break;
+			case '1.8':
+			case '18':
+				$this->tableSuffix = '';
+				$this->version = '1.8';
 				break;
 			case '1.8pts':
 			case '18pts':
