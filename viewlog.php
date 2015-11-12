@@ -711,7 +711,7 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
-			
+			/*
 			'minedItem18pts' => array(
 					'displayName' => 'Mined Items from PTS 1.8',
 					'displayNameSingle' => 'Mined Item from PTS 1.8',
@@ -739,7 +739,7 @@ class EsoLogViewer
 			
 					'filters' => array(
 					),
-			),
+			), */
 			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
@@ -792,7 +792,7 @@ class EsoLogViewer
 					),
 			),
 			
-			
+			/*
 			'setSummary18pts' => array(
 					'displayName' => 'Set Summaries from PTS 1.8',
 					'displayNameSingle' => 'Set Item Summary from PTS 1.8',
@@ -815,7 +815,7 @@ class EsoLogViewer
 									'type' => 'filter',
 							),
 					),
-			),
+			),*/
 			
 			'minedSkills' => array(
 					'displayName' => 'Mined Skills',
@@ -1013,8 +1013,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
 		
-		self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
-		self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
+		// self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
+		// self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
