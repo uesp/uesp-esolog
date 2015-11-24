@@ -21,7 +21,7 @@ This is a list of Elder Scrolls Online item data mined from the game sorted by i
 {content}
 <hr>
 <div id="esovmi_footer">
-This content is made available the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
 Source code for this project is available at <a href=https://bitbucket.org/uesp/esolog">Bitbucket</a>.
 </div>
 </body>
