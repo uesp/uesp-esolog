@@ -991,6 +991,27 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetItemLinkURL()
+	{
+		$itemLinkURL = '';
+		
+		if ($this->version != '' || $this->showSummary || $this->enchantId1 > 0 || $this->enchantId2 > 0 ||
+			$this->itemPotionData > 0 || $this->itemCharges >= 0)
+		{
+			$showSummary = $this->showSummary ? 'summary' : '';
+			$itemLinkURL = 	"itemLinkImage.php?itemid={$this->itemRecord['itemId']}&level={$this->itemRecord['level']}&" .
+							"quality={$this->itemRecord['quality']}&enchantid={$this->enchantId1}&enchantintlevel={$this->enchantIntLevel1}&" .
+							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}";			
+		}
+		else 
+		{
+			$itemLinkURL = "http://esoitem.uesp.net/item-{$this->itemRecord['itemId']}-{$this->itemRecord['level']}-{$this->itemRecord['quality']}.png";
+		}
+		
+		return $itemLinkURL;
+	}
+	
+	
 	private function MakeItemStyle()
 	{
 		$type = $this->itemRecord['type'];
@@ -1041,6 +1062,7 @@ class CEsoItemLink
 				'{showSummary}' => $this->showSummary ? 'summary' : '',
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => $this->GetItemLinkURL(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
