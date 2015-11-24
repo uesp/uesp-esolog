@@ -284,10 +284,14 @@ function UpdateEsoItemData(level, quality)
 
 function UpdateEsoItemImageLink(itemData)
 {
+	var itemLinkURL = "";
+	
 	if (itemData.enchantId1 > 0)
-		$('#esoil_itemimagelink').attr('href', "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "&enchantid=" + itemData.enchantId1 + "&enchantintlevel=" + itemData.enchantIntLevel1 + "&enchantinttype=" + itemData.enchantIntType1);
+		itemLinkURL = "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "&enchantid=" + itemData.enchantId1 + "&enchantintlevel=" + itemData.enchantIntLevel1 + "&enchantinttype=" + itemData.enchantIntType1;
 	else
-		$('#esoil_itemimagelink').attr('href', "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "");
+		itemLinkURL = "http://esoitem.uesp.net/item-" + itemData.itemId + "-" + itemData.level + "-" + itemData.quality + ".png";
+	
+	$('#esoil_itemimagelink').attr('href', itemLinkURL);
 }
 
 
