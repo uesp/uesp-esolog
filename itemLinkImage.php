@@ -25,7 +25,7 @@ require("esoCommon.php");
 class CEsoItemLinkImage
 {
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
-	const ESOIL_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
+	const ESOIL_ICON_URL = "http://esoicons.uesp.net/";
 	const ESOIL_IMAGE_CACHEPATH = "/home/uesp/esoItemImages/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	const ESOIL_IMAGE_WIDTH = 400;
