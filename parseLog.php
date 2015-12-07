@@ -57,6 +57,7 @@ class EsoLogParser
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
+	public $skipCreateTables = true;
 	
 	public $currentLanguage = 'en';
 	
@@ -1693,8 +1694,7 @@ class EsoLogParser
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
 	
-		if ($this->skipCheckTables) return true;
-		return $this->checkTables();
+		return true;
 	}
 	
 	
@@ -1718,9 +1718,8 @@ class EsoLogParser
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = true;
 	
-		//if ($this->skipCheckTables) return true;
-		//return $this->checkTables();
-		return true;
+		if ($this->skipCreateTables) return true;
+		return $this->createTables();
 	}
 	
 	
