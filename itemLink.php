@@ -656,7 +656,7 @@ class CEsoItemLink
 		
 		foreach ($this->itemRecord as $key => $value)
 		{
-			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1' || $value == '0')) continue;
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
 			$id = "esoil_rawdata_" . $key;
 			
 			if ($key == "link") $value = $this->MakeItemLink();
@@ -784,12 +784,23 @@ class CEsoItemLink
 		$type = $this->itemRecord['type'];
 		$equipType = $this->itemRecord['equipType'];
 		if ($type <= 0 || $equipType == 12 || $equipType == 2) return "";
+		
 		$maxCharges = $this->itemRecord['maxCharges'];
+		
+		if ($maxCharges <= 0 && ($this->enchantRecord1 != null || $this->enchantRecord2 != null))
+		{
+					// TODO: This is a rough Estimate
+			$maxCharges = $this->itemRecord['weaponPower'] / 2;
+			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+		}
 		
 		if ($type == 1 && $maxCharges > 0)
 		{
 			$charges = $this->itemCharges;
 			if ($charges < 0) $charges = $maxCharges;
+			
+			error_log("Charges $charges, Max: $maxCharges");
+			
 			$coverImageSize = ($maxCharges - $charges) / $maxCharges * 112;
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
