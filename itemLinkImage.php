@@ -1029,7 +1029,8 @@ class CEsoItemLinkImage
 	private function OutputItemBar($image, $y)
 	{
 		$type = $this->itemRecord['type'];
-		if ($type <= 0) return 0;
+		$equipType = $this->itemRecord['equipType'];
+		if ($type <= 0 || $equipType == 12 || $equipType == 2) return 0;
 		$maxCharges = $this->itemRecord['maxCharges'];
 		$coverImageSize = 0;
 		$coverImageHeight = 0;
