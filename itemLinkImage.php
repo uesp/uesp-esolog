@@ -1031,9 +1031,17 @@ class CEsoItemLinkImage
 		$type = $this->itemRecord['type'];
 		$equipType = $this->itemRecord['equipType'];
 		if ($type <= 0 || $equipType == 12 || $equipType == 2) return 0;
-		$maxCharges = $this->itemRecord['maxCharges'];
 		$coverImageSize = 0;
 		$coverImageHeight = 0;
+		
+		$maxCharges = $this->itemRecord['maxCharges'];
+		
+		if ($maxCharges <= 0 && ($this->enchantRecord1 != null || $this->enchantRecord2 != null))
+		{
+				// TODO: This is a rough Estimate
+			$maxCharges = $this->itemRecord['weaponPower'] / 2;
+			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+		}
 		
 		if ($type == 1 && $maxCharges > 0)
 		{
