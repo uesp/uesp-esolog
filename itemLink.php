@@ -782,7 +782,8 @@ class CEsoItemLink
 	private function MakeItemBarLink()
 	{
 		$type = $this->itemRecord['type'];
-		if ($type <= 0) return "";
+		$equipType = $this->itemRecord['equipType'];
+		if ($type <= 0 || $equipType == 12 || $equipType == 2) return "";
 		$maxCharges = $this->itemRecord['maxCharges'];
 		
 		if ($type == 1 && $maxCharges > 0)
