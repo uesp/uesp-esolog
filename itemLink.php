@@ -798,9 +798,7 @@ class CEsoItemLink
 		{
 			$charges = $this->itemCharges;
 			if ($charges < 0) $charges = $maxCharges;
-			
-			error_log("Charges $charges, Max: $maxCharges");
-			
+		
 			$coverImageSize = ($maxCharges - $charges) / $maxCharges * 112;
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
