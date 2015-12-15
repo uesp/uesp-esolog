@@ -965,6 +965,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+							'itemId' => 'note',
 					),
 			),
 			'setSummary' => array(
