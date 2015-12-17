@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+
+require_once('/home/uesp/www/esobuilddata/parseBuildData.class.php');
 
 
 class EsoLogSubmitter
@@ -8,6 +11,7 @@ class EsoLogSubmitter
 	const ESOLOG_OUTPUT_PATH = "/home/uesp/esolog/";
 	const ELC_INDEX_FILENAME = "/home/uesp/esolog/esolog.index";
 	
+	public $parseBuildData = null;
 	public $fileData = "";
 	public $fileError = 0;
 	public $fileErrorMsg = "";
@@ -18,12 +22,15 @@ class EsoLogSubmitter
 	public $hasFileData = false;
 	public $parsedRecords = 0;
 	public $accountName = "Anonymous";
+	public $uploadedBuilds = 0;
+	public $parsedBuilds = 0;
 	
 	public $currentLogIndex = 1;
 	
 	
 	public function __construct ()
 	{
+		$this->parseBuildData = new EsoBuildDataParser();
 	}
 	
 	public function parseFormInput()
@@ -87,6 +94,14 @@ class EsoLogSubmitter
 	}
 	
 	
+	public function reportWarning ($errorMsg)
+	{
+		$this->fileErrorMsg .= $errorMsg . "<br/>";
+	
+		return false;
+	}
+	
+	
 	public function outputUpload ()
 	{
 ?>
@@ -124,6 +139,8 @@ class EsoLogSubmitter
 		$output .= "Local Filename: {$this->fileMoveName}<br />";
 		$output .= "Lua Result: {$this->fileLuaResult}<br />";
 		$output .= "Parsed Records: {$this->parsedRecords}<br />";
+		$output .= "Uploaded Character Builds: {$this->uploadedBuilds}<br />";
+		$output .= "Parsed Character Builds: {$this->parsedBuilds}<br />";
 		
 	}
 	
@@ -161,7 +178,7 @@ class EsoLogSubmitter
 	<td>
 		<h1>uespLog -- Submit ESO Data</h1>
 		Use this page to manually submit a log file created by uespLog filled with data from ESO. Note that if you are playing on the
-		PC version you can use uespLogMonitor (included with the addon) to automatically upload all logged data.
+		Windows PC version you can use uespLogMonitor (included with the addon) to automatically upload all logged data.
 		<p />
 		<ul>
 		<li>Choose your uespLog saved variable file (usually under your <em>"\Documents\Elder Scrolls Online\live\SavedVariables\uespLog.lua"</em> or
@@ -169,6 +186,7 @@ class EsoLogSubmitter
 		<li>Submit file.</li>
 		<li>After submitting you can run the command <em>"/uespreset all"</em> in ESO to clear the log data.</li>
 		<li>It is safe to submit duplicate files or log entries...the log parser can detect and ignore duplicate entries.</li>
+		<li>Any character build data in the file is also parsed and saved.</li>
 		</ul>
 		<p />
 		Note: Maximum file upload size is 40MB.
@@ -250,7 +268,7 @@ class EsoLogSubmitter
 	
 	public function parseVarAccountLevel ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section of the saved variable file!");
+		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (account level) of the saved variable file!");
 		
 		foreach ($object as $key => $value)
 		{
@@ -263,7 +281,7 @@ class EsoLogSubmitter
 	
 	public function parseVarAccountWideLevel ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section of the saved variable file!");
+		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (account wide leve) of the saved variable file!");
 		$this->accountName = ltrim($parentName, '@');
 		
 		foreach ($object as $key => $value)
@@ -277,22 +295,54 @@ class EsoLogSubmitter
 	
 	public function parseVarSectionLevel ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section of the saved variable file!");
+			/* Only parse the account wide section */
+		if ($parentName != '$AccountWide') return TRUE;
+		
+		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (section level) of the saved variable file!");
 		
 		$this->parseVarSectionData("all", $object["all"]);
 		$this->parseVarSectionData("achievements", $object["achievements"]);
 		$this->parseVarSectionData("globals", $object["globals"]);
+		
+		$this->parseCharacterBuildData($object["buildData"]);
 	
+		return TRUE;
+	}
+	
+	
+	public function parseCharacterBuildData ($buildData)
+	{
+			// Older log files won't have a buildData section so its not an error
+		if ($buildData == null) return TRUE;
+		
+		$data = $buildData['data'];
+		if ($data == null) return $this->reportError("Missing 'data' section in the {buildData} section of the saved variable file!");
+		
+		$data['IPAddress'] = $_SERVER["REMOTE_ADDR"];
+		$data['UploadTimestamp'] = time();
+		
+		if (!$this->parseBuildData->doParse($data)) 
+		{
+			return $this->reportError("Failed to parse/save the saved character data!");
+		}
+		
+		$this->uploadedBuilds = $this->parseBuildData->characterCount;
+		$this->parsedBuilds = $this->parseBuildData->newCharacterCount;
 		return TRUE;
 	}
 	
 	
 	public function parseVarSectionData ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section of the saved variable file!");
+		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (section data) of the saved variable file!");
 		
 		$data = $object['data'];
-		if ($object == null) return $this->reportError("Missing 'data' section in the {$parentName} section of the saved variable file!");
+		
+		if ($data == null) 
+		{
+			$this->reportWarning("Missing 'data' section in the {$parentName} section (section data) of the saved variable file!");
+			return TRUE;
+		}
 		
 		ksort($data);
 		$logData = "";
