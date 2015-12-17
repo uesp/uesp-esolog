@@ -140,7 +140,7 @@ class EsoLogSubmitter
 		$output .= "Lua Result: {$this->fileLuaResult}<br />";
 		$output .= "Parsed Records: {$this->parsedRecords}<br />";
 		$output .= "Uploaded Character Builds: {$this->uploadedBuilds}<br />";
-		$output .= "Parsed Character Builds: {$this->parsedBuilds}<br />";
+		$output .= "Saved Character Builds: {$this->parsedBuilds}<br />";
 		
 	}
 	
