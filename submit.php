@@ -24,6 +24,7 @@ class EsoLogSubmitter
 	public $accountName = "Anonymous";
 	public $uploadedBuilds = 0;
 	public $parsedBuilds = 0;
+	public $wikiUserName = '';
 	
 	public $currentLogIndex = 1;
 	
@@ -38,6 +39,11 @@ class EsoLogSubmitter
 		$this->writeHeaders();
 		
 		$this->inputParams = $_REQUEST;
+		
+		if (array_key_exists("wikiUserName", $this->inputParams))
+		{
+			$this->wikiUserName = $this->inputParams['wikiUserName'];
+		}
 		
 		if (array_key_exists("logfile", $_FILES))
 		{
@@ -194,6 +200,10 @@ class EsoLogSubmitter
 	</td>
 </tr><tr>
 	<td>
+		UESP Wiki Username: <input type="text" name="wikiUserName" value="<?= $_COOKIE['uesp_net_wiki5UserName']?>" size="24" /> (optional)
+		<br />
+		<br />
+		<br />
 		<input type="hidden" name="MAX_FILE_SIZE" value="41000000" />
 		<input type="file" name="logfile" value="Choose File..." />
 		<br /> &nbsp;
@@ -320,6 +330,7 @@ class EsoLogSubmitter
 		
 		$data['IPAddress'] = $_SERVER["REMOTE_ADDR"];
 		$data['UploadTimestamp'] = time();
+		$data['WikiUser'] = $this->wikiUserName;
 		
 		if (!$this->parseBuildData->doParse($data)) 
 		{
