@@ -116,6 +116,7 @@ class CEsoItemLinkImage
 	public $dataBlockMargin = 32;
 	public $blockMargin = 14;
 	public $borderWidth = 7;
+	public $levelBlockXOffset = 0;
 	
 	
 	public function __construct ()
@@ -958,7 +959,7 @@ class CEsoItemLinkImage
 		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, $label);
 		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $levelText);
 		$totalWidth = $levelImageWidth + $extents1[0] + $extents2[0];
-		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2;
+		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2 + $this->levelBlockXOffset;
 		
 		if ($levelImage)
 		{
@@ -986,12 +987,15 @@ class CEsoItemLinkImage
 		else
 			$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - $this->dataBlockMargin;
 		
+		$x = $x + $this->levelBlockXOffset;
+		
 		$this->PrintDataText($image, $printData, $x, $y + 4, 'right');
 	}
 	
 	
 	public function OutputItemLeftBlock($image, $y)
 	{
+		$equipType = $this->itemRecord['equipType'];
 		
 		switch ($this->itemRecord['type'])
 		{
@@ -1007,6 +1011,13 @@ class CEsoItemLinkImage
 				}
 				break;
 			case 2:
+						// ring/neck
+				if ($equipType == 2 || $equipType == 12) 
+				{
+					$this->levelBlockXOffset = -64;
+					return;
+				}
+				
 				$label = "ARMOR ";
 				$valueText = $this->itemRecord['armorRating'];
 				break;
