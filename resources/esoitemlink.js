@@ -130,12 +130,17 @@ function GetEsoItemLeftBlockHtml(itemData)
 	
 	if (type == 1) {
 		if (itemData.equipType == 7) // shield
-			 return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
+			return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
 		else
 			return "DAMAGE <div id='esoil_itemleft'>" + itemData.weaponPower + "</div>";
 	}
 	
-	if (type == 2) return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
+	if (type == 2) {
+		if (itemData.equipType == 2 || itemData.equipType == 12) // neck/ring
+			return "";
+		else
+			return "ARMOR <div id='esoil_itemleft'>" + itemData.armorRating + "</div>";
+	}
 	
 	return "";
 }

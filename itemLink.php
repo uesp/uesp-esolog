@@ -718,14 +718,18 @@ class CEsoItemLink
 	private function MakeItemLeftBlock()
 	{
 		$type = $this->itemRecord['type'];
+		$equipType = $this->itemRecord['equipType'];
 		
 		if ($type == 2) //armor 
 		{
-			return "ARMOR <div id='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
+			if ($equipType == 2 || $equipType == 12) // ring/neck
+				return "";
+			else
+				return "ARMOR <div id='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
 		}
 		elseif ($type == 1) //weapon / shield 
 		{
-			if ($this->itemRecord['equipType'] == 7) // shield
+			if ($equipType == 7) // shield
 				return "ARMOR <div id='esoil_itemleft'>{$this->itemRecord['armorRating']}</div>";
 			else //weapon
 				return "DAMAGE <div id='esoil_itemleft'>{$this->itemRecord['weaponPower']}</div>";
@@ -924,6 +928,9 @@ class CEsoItemLink
 		switch ($this->itemRecord['type'])
 		{
 			case 2:
+				$equipType = $this->itemRecord['equipType'];
+				if ($equipType == 2 || $equipType == 12) return "none";
+				return "inline-block";
 			case 1:
 				return "inline-block";
 		}
