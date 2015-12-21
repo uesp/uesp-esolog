@@ -187,8 +187,10 @@ class EsoLogSubmitter
 		Windows PC version you can use uespLogMonitor (included with the addon) to automatically upload all logged data.
 		<p />
 		<ul>
-		<li>Choose your uespLog saved variable file (usually under your <em>"\Documents\Elder Scrolls Online\live\SavedVariables\uespLog.lua"</em> or
-			similar directory.</li>
+		<li>Choose your uespLog saved variable file. This is usually in your <em>"Documents"</em> folder as one of the following:<br />
+			<em style="margin-left: 52px;">Documents\Elder Scrolls Online\live\SavedVariables\uespLog.lua</em><br /> 
+			<em style="margin-left: 52px;">Documents\Elder Scrolls Online\liveeu\SavedVariables\uespLog.lua</em> 
+		</li>
 		<li>Submit file.</li>
 		<li>After submitting you can run the command <em>"/uespreset all"</em> in ESO to clear the log data.</li>
 		<li>It is safe to submit duplicate files or log entries...the log parser can detect and ignore duplicate entries.</li>
