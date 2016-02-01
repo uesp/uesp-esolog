@@ -91,6 +91,7 @@ class CEsoItemLink
 	public $itemCrafted = -1;
 	public $itemCharges = -1;
 	public $itemPotionData = -1;
+	public $itemSetCount = -1;
 	public $showStyle = true;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
@@ -194,6 +195,7 @@ class CEsoItemLink
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
+		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -870,13 +872,29 @@ class CEsoItemLink
 	}
 	
 	
-	private function FormatDescriptionText($desc)
+	private function FormatDescriptionText($desc, $setCount, $index)
 	{
-		$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
-		$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
-		$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
-		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
-		$output = str_replace("\n", "<br />", $output);
+		$output = $desc;
+		
+		if ($this->itemSetCount >= 0 && $setCount > $this->itemSetCount)
+		{
+			$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
+			$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
+			$output = preg_replace("|for ([0-9\-\.]+)%|s", "for $1%", $output);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $output);
+			$output = str_replace("\n", "<br />", $output);
+			
+			$output = "<div class='esoil_itemsetdisabled'>" . $output . "</div>";
+		}
+		else
+		{
+			$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
+			$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
+			$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+			$output = str_replace("\n", "<br />", $output);
+		}
+				
 		return $output;
 	}
 	
@@ -893,7 +911,7 @@ class CEsoItemLink
 		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
-			$setDesc = $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i]);
+			$setDesc = $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i], $setCount, $i);
 			$output .= "<br />$setDesc";
 		}
 		

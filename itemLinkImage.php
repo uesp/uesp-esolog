@@ -75,6 +75,7 @@ class CEsoItemLinkImage
 	public $itemStyle = -1;
 	public $itemCrafted = -1;
 	public $itemCharges = -1;
+	public $itemSetCount = -1;
 	public $itemPotionData = -1;
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
@@ -254,6 +255,7 @@ class CEsoItemLinkImage
 			$this->enchantIntType1 = (int) $this->inputParams['enchantinttype'];
 		}
 		
+		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		
@@ -496,7 +498,7 @@ class CEsoItemLinkImage
 			
 			if ($value[0] == '|' && preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[a-zA-Z \-0-9\.]+)\|r#s", $value, $matches))
 			{
-				$newData['text'] = $matches['value'];
+				$newData['text'] = " " .$matches['value'];
 				$newData['color'] = hexdec($matches['color']);
 			}
 			elseif ($value[0] == 'A' && preg_match("|Adds ([0-9\-\.]+)|s", $value, $matches))
@@ -522,7 +524,7 @@ class CEsoItemLinkImage
 				$printData[] = $newData;
 				
 				$newData = $lineData;
-				$newData['text'] = $matches[1];
+				$newData['text'] = " " . $matches[1];
 				$newData['color'] = 0xffffff;
 			}
 			elseif ($value[0] == 'f' && preg_match("|for ([0-9\-\.]+)|s", $value, $matches))
@@ -555,6 +557,20 @@ class CEsoItemLinkImage
 	}
 	
 	
+	public function ClearFormatPrintData(&$printData, $lineData)
+	{
+		$newData = $lineData;
+		
+		$newData['text'] = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $lineData['text']);
+		
+		$extents = $this->GetTextExtents($lineData['size'], $newData['font'], $newData['text']);
+		$newData['width']  = $extents[0];
+		$newData['height'] = $extents[1];
+				
+		$printData[] = $newData;
+	}
+	
+	
 	public function AddPrintDataEx (&$printData, $text, $baseOptions, $options = array())
 	{
 		$optionsData = array_merge($baseOptions, $options);
@@ -574,8 +590,10 @@ class CEsoItemLinkImage
 			$newData['width']  = $extents[0];
 			$newData['height'] = $extents[1];
 			
-			if (array_key_exists('format', $options))
+			if (array_key_exists('format', $options) && $options['format'] === true)
 				$this->FormatPrintData($printData, $newData);
+			else if (array_key_exists('clearformat', $options) && $options['clearformat'] === true)
+				$this->ClearFormatPrintData($printData, $newData);
 			else
 				$printData[] = $newData;
 		}
@@ -1200,7 +1218,15 @@ class CEsoItemLinkImage
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
 			$setDesc = $this->itemRecord['setBonusDesc' . $i];
-			$this->AddPrintData($printData, $setDesc, $this->printOptionsSmallBeige, array('br' => true, 'format' => true, 'lineBreak' => true));
+			
+			if ($this->itemSetCount >= 0 && $setCount > $this->itemSetCount)
+			{
+				$this->AddPrintData($printData, $setDesc, $this->printOptionsSmallBeige, array('br' => true, 'clearformat' => true, 'lineBreak' => true, 'color' => $this->darkGray));
+			}
+			else
+			{
+				$this->AddPrintData($printData, $setDesc, $this->printOptionsSmallBeige, array('br' => true, 'format' => true, 'lineBreak' => true));
+			}
 		}
 		
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
@@ -1511,6 +1537,7 @@ class CEsoItemLinkImage
 		if ($this->itemCharges > 0) return false;
 		if ($this->itemPotionData > 0) return false;
 		if ($this->version != "") return false;
+		if ($this->itemSetCount >= 0) return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
