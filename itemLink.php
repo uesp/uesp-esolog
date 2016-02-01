@@ -1022,7 +1022,7 @@ class CEsoItemLink
 	private function MakeItemCraftedBlock()
 	{
 		if ($this->itemCrafted <= 0) return "";
-		return "Crafted by: Someone";
+		return "Created by: Someone";
 	}
 	
 	

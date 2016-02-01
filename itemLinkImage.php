@@ -1269,7 +1269,7 @@ class CEsoItemLinkImage
 		if ($this->itemCrafted <= 0) return 0;
 		
 		$printData = array();
-		$this->AddPrintData($printData, "Crafted by: Someone", $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData, "Created by: Someone", $this->printOptionsSmallWhite, array('br' => true));
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
