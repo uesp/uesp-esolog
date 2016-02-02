@@ -872,7 +872,19 @@ class CEsoItemLink
 	}
 	
 	
-	private function FormatDescriptionText($desc, $setCount, $index)
+	private function FormatDescriptionText($desc)
+	{
+		$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
+		$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
+		$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
+		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+		$output = str_replace("\n", "<br />", $output);
+		
+		return $output;
+	}
+	
+	
+	private function FormatSetDescriptionText($desc, $setCount)
 	{
 		$output = $desc;
 		
@@ -911,7 +923,7 @@ class CEsoItemLink
 		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
-			$setDesc = $this->FormatDescriptionText($this->itemRecord['setBonusDesc' . $i], $setCount, $i);
+			$setDesc = $this->FormatSetDescriptionText($this->itemRecord['setBonusDesc' . $i], $setCount);
 			$output .= "<br />$setDesc";
 		}
 		
