@@ -41,9 +41,27 @@ require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
 
+function compareRawDataSortedIndex($a, $b)
+{
+	$a0 = (int) $a[0];
+	$b0 = (int) $b[0];
+	
+	if ($a0 == $b0)
+	{
+		$a1 = (int) $a[1];
+		$b1 = (int) $b[1];
+		if ($a1 == $b1) return 0;
+		return ($a1 < $b1) ? -1 : 1;
+	}
+
+	return ($a0 < $b0) ? -1 : 1;
+}
+
+
 class CEsoItemLink
 {
 	const ESOIL_HTML_TEMPLATE = "templates/esoitemlink_template.txt";
+	const ESOIL_RAWDATA_HTML_TEMPLATE = "templates/esoitemlink_rawdata_template.txt";
 	const ESOIL_HTML_EMBED_TEMPLATE = "templates/esoitemlink_embed_template.txt";
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
 	const ESOIL_ICON_URL = "http://esoicons.uesp.net/";
@@ -107,6 +125,9 @@ class CEsoItemLink
 	public $itemSimilarRecords = array();
 	public $itemSummary = array();
 	public $outputType = "html";
+	public $outputRaw = false;
+	public $rawDataKeys = array();
+	public $rawDataSortedIndexes = array();
 	public $showAll = false;
 	public $itemErrorDesc = "";
 	public $db = null;
@@ -192,6 +213,7 @@ class CEsoItemLink
 		}
 		
 		if (array_key_exists('show', $this->inputParams) || array_key_exists('showall', $this->inputParams)) $this->showAll = true;
+		if (array_key_exists('rawdata', $this->inputParams)) $this->outputRaw = true;
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
@@ -636,6 +658,8 @@ class CEsoItemLink
 		
 		if ($this->outputType == "html")
 			header("content-type: text/html");
+		elseif ($this->outputType == "csv")
+			header("content-type: text/plain");
 		else
 			header("content-type: text/plain");
 	}
@@ -1118,6 +1142,175 @@ class CEsoItemLink
 	}
 	
 	
+	public function OutputRawData()
+	{
+		$this->CreateRawItemDataKeys();
+		$this->CreateRawItemDataSortedIndexes();
+		
+		if ($this->outputType == "html") return $this->OutputRawDataHtml();
+		
+		print($this->GetRawItemDataCsv());
+	}
+	
+	
+	public function OutputRawDataHtml()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->itemRecord['name'],
+				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
+				'{itemId}' => $this->itemRecord['itemId'],
+				'{iconLink}' => $this->MakeItemIconImageLink(),
+				'{showSummary}' => $this->showSummary ? 'summary' : '',
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => $this->GetItemLinkURL(),
+				'{rawItemData}' => $this->GetRawItemDataHtml(),
+		);		
+		
+		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
+		
+		$output = strtr($rawDataTemplate, $replacePairs);
+		print ($output);
+	}
+	
+	
+	public function GetRawItemDataHtml()
+	{
+		$output = "<table class='esoil_rawitemdata_table'>\n";
+		$output .= $this->GetRawItemDataHeaderHtml();
+		
+		foreach ($this->rawDataSortedIndexes as $sortedIndex)
+		{
+			$index = $sortedIndex[2];
+			$item = $this->itemAllData[$index];
+			$output .= $this->CreateRawItemDataHtml($item);
+		}
+		
+		$output .= "</table>\n";
+		return $output;
+	}
+	
+	
+	public function GetRawItemDataCsv()
+	{
+		$output = "";
+		$output .= $this->GetRawItemDataHeaderCsv();
+	
+		foreach ($this->rawDataSortedIndexes as $sortedIndex)
+		{
+			$index = $sortedIndex[2];
+			$item = $this->itemAllData[$index];
+			$output .= $this->CreateRawItemDataCsv($item);
+		}
+	
+		return $output;
+	}
+	
+		
+	public function CreateRawItemDataSortedIndexes()
+	{
+		$this->rawDataSortedIndexes = array();
+	
+		foreach ($this->itemAllData as $key => $item)
+		{
+			$level = $item['internalLevel'];
+			$type = $item['internalSubtype'];
+			
+			if ($level == null) $level = $this->itemAllData[0]['internalLevel'];
+			if ($type == null) $type = $this->itemAllData[0]['internalSubtype'];
+			
+			$this->rawDataSortedIndexes[] = array(
+				0 => $level,
+				1 => $type,
+				2 => $key,
+			);
+		}
+		
+		usort($this->rawDataSortedIndexes, "compareRawDataSortedIndex");
+	}
+	
+	
+	public function CreateRawItemDataKeys()
+	{
+		$this->rawDataKeys = array();
+		
+		foreach ($this->itemAllData[0] as $key => $value)
+		{
+			if ($key == "id" || $key == "logId" || $key == "itemId" || $key == "link") continue;
+			$this->rawDataKeys[] = $key;
+		}
+	}
+	
+	
+	public function GetRawItemDataHeaderHtml()
+	{
+		$output = "<tr>";
+		
+		foreach ($this->rawDataKeys as $key)
+		{
+			$output .= "<th>$key</th>\n";
+		}
+		
+		$output .= "</tr>\n";
+		
+		return $output;
+	}
+	
+	
+	public function GetRawItemDataHeaderCsv()
+	{
+		$output = "";
+	
+		foreach ($this->rawDataKeys as $key)
+		{
+			if ($output != "") $output .= ",";
+			$output .= "\"$key\"";
+		}
+	
+		$output .= "\n";
+	
+		return $output;
+	}
+	
+	
+	public function CreateRawItemDataHtml($item)
+	{
+		$output = "<tr>";
+		
+		foreach ($this->rawDataKeys as $key)
+		{
+			$value = $item[$key];
+			if ($value == null) $value = $this->itemAllData[0][$key];
+			$output .= "<td>$value</td>\n";
+		}
+		
+		$output .= "</tr>\n";
+		
+		return $output;
+	}
+	
+	
+	public function CreateRawItemDataCsv($item)
+	{
+		$output = "";
+	
+		foreach ($this->rawDataKeys as $key)
+		{
+			$value = $item[$key];
+			if ($value == null) $value = $this->itemAllData[0][$key];
+			$value = addslashes($value);
+			$value = str_replace("\n", "\\n", $value);
+			
+			if ($output != "") $output .= ",";
+			$output .= "\"$value\"";
+		}
+	
+		$output .= "\n";
+	
+		return $output;
+	}
+	
+	
 	public function GetVersionTitle()
 	{
 		if ($this->GetTableSuffix() == "") return "";
@@ -1153,7 +1346,9 @@ class CEsoItemLink
 			$this->LoadSimilarItemRecords();
 		}
 		
-		if ($this->outputType == "html")
+		if ($this->outputRaw)
+			$this->OutputRawData();
+		else if ($this->outputType == "html")
 			$this->OutputHtml();
 		elseif ($this->outputType == "text")
 			$this->DumpItem();
