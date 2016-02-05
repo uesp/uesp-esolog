@@ -2,6 +2,7 @@
 
 $TABLE_SUFFIX = "19pts";
 $SOURCEITEMTABLE = "Summary";
+$KEEPONLYNEWSETS = true;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
@@ -406,4 +407,14 @@ foreach ($setItemSlots as $setName => $setSlots)
 
 print("Found $itemCount item sets, $newCount new, $updateCount duplicate!\n");
 
-?>
+if ($KEEPONLYNEWSETS && $TABLE_SUFFIX != "")
+{
+	print("\tDeleting existing sets in setSummary...\n");
+	
+	$query = "DELETE setSummary$TABLE_SUFFIX FROM setSummary$TABLE_SUFFIX LEFT JOIN setSummary on setSummary{$TABLE_SUFFIX}.setName = setSummary.setName WHERE setSummary.setName IS NOT NULL;";
+	$result = $db->query($query);
+	if (!$result) exit("ERROR: Database query error deleting old sets!\n" . $db->error . "\n" . $query);
+	
+	print("\tDeleting old sets...OK!\n");
+}
+
