@@ -154,22 +154,22 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		$minValue = $minItemData[$field];
 		$maxValue = $maxItemData[$field];
 		
-		if (is_numeric($minValue))
+		if ($field == "level")
+		{
+			$minLevel = GetEsoItemLevelText($minValue);
+			$maxLevel = GetEsoItemLevelText($maxValue);
+				
+			if ($maxLevel == null || $minLevel == $maxLevel)
+				$values[] = "'$maxLevel";
+			else
+				$values[] = "'$maxLevel-$maxLevel'";
+		}
+		elseif (is_numeric($minValue))
 		{
 			if ($minValue == null || $minValue == $maxValue)
 				$values[] = "'$minValue'";
 			else
 				$values[] = "'$minValue-$maxValue'";
-		}
-		elseif ($field == "level")
-		{
-			$minLevel = GetEsoItemLevelText($minValue);
-			$maxLevel = GetEsoItemLevelText($maxValue);
-			
-			if ($maxLevel == null || $minLevel == $maxLevel)
-				$values[] = "'$maxLevel";
-			else
-				$values[] = "'$maxLevel-$maxLevel'";
 		}
 		else
 		{
