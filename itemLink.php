@@ -1135,11 +1135,25 @@ class CEsoItemLink
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{itemLinkURL}' => $this->GetItemLinkURL(),
+				'{viewSumDataExtraQuery}' => $this->GetSummaryDataExtraQuery(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		
 		print ($output);
+	}
+	
+	
+	public function GetSummaryDataExtraQuery()
+	{
+		$output = "";
+		
+		if ($this->version != "")
+		{
+			$output = "version=". urlencode($this->version) ."&";
+		}
+		
+		return $output;
 	}
 	
 	
