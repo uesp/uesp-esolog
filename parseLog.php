@@ -51,7 +51,7 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743836443376300000; //v1.8pts
 	  const START_MINEITEM_TIMESTAMP = 4743853750546857984; //v1.8
 	
-	const MINEITEM_TABLESUFFIX = "";
+	const MINEITEM_TABLESUFFIX = "19pts";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
