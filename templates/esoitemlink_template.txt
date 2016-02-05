@@ -41,7 +41,7 @@
 	<br />
 	<div id="esoil_linkcontainer">
 		<a id="esoil_datatablelink" href="dumpMinedItems.php?itemid={itemId}&output=html">View Data Table</a>
-		<a id="esoil_summarylink" href="itemLink.php?itemid={itemId}&summary">View Summary Data</a>
+		<a id="esoil_summarylink" href="itemLink.php?itemid={itemId}&summary&{viewSumDataExtraQuery}">View Summary Data</a>
 		<a id="esoil_itemimagelink" href="{itemLinkURL}">Link to Item Image</a>	
 	</div>
 	<br />
