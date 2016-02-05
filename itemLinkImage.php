@@ -390,6 +390,7 @@ class CEsoItemLinkImage
 		if ($this->version == "1.7") return "17";
 		if ($this->version == "1.8") return "";
 		if ($this->version == "1.8pts") return "18pts";
+		if ($this->version == "1.9pts") return "19pts";
 			
 		return "";
 	}
