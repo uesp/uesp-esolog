@@ -370,6 +370,7 @@ class EsoLogParser
 			'isArmorDecay' => self::FIELD_INT,
 			'isConsumable' => self::FIELD_INT,
 			'comment' => self::FIELD_STRING,
+			'tags' => self::FIELD_STRING,
 	);
 	
 	public static $MINED_ITEMKEY_TO_DBKEY = array(
@@ -438,6 +439,7 @@ class EsoLogParser
 			'isArmorDecay' => 'isArmorDecay',
 			'isConsumable' => 'isConsumable',
 			'comment' => 'comment',
+			'tags' => 'tags',
 			//runeName
 			//ingrName1-N
 	);
@@ -1284,6 +1286,7 @@ class EsoLogParser
 			isConsumable BIT NOT NULL DEFAULT 0,
 			icon TINYTEXT NOT NULL,
 			comment TINYTEXT NOT NULL,
+			tags TINYTEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId),
