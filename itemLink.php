@@ -860,7 +860,8 @@ class CEsoItemLink
 		{
 			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
 			$enchantDesc = $this->FormatDescriptionText($this->enchantRecord1['enchantDesc']);
-			if ($enchantDesc != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+			if ($enchantName != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br />";
+			if ($enchantDesc != "") $output .= "$enchantDesc";
 		}
 		
 		if ($this->enchantRecord2 != null)
@@ -871,7 +872,8 @@ class CEsoItemLink
 			if ($enchantDesc != "")
 			{
 				if ($output != "") $output .= "<p style='margin-top: 0.7em; margin-bottom: 0.7em;'/>";
-				$output .= "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+				if ($enchantName != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br />";
+				$output .= "$enchantDesc";
 			}
 		}
 		
@@ -879,7 +881,8 @@ class CEsoItemLink
 		{
 			$enchantName = strtoupper($this->itemRecord['enchantName']);
 			$enchantDesc = $this->FormatDescriptionText($this->itemRecord['enchantDesc']);
-			if ($enchantDesc != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br/>$enchantDesc";
+			if ($enchantName != "") $output .= "<div class='esoil_white esoil_small'>$enchantName</div><br />";
+			if ($enchantDesc != "") $output .= "$enchantDesc";
 		}
 		
 		return $output;

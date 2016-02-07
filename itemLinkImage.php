@@ -1127,7 +1127,7 @@ class CEsoItemLinkImage
 				
 			if ($enchantDesc != "")
 			{
-				$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+				if ($enchantName != "") $this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
 				$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 			}
 		}
@@ -1140,7 +1140,7 @@ class CEsoItemLinkImage
 			if ($enchantDesc != "")
 			{
 				$this->AddPrintData($printData, " ", $this->printOptionsTinyBeige, array('br' => true));
-				$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+				if ($enchantName != "") $this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
 				$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 			}
 		}
@@ -1152,7 +1152,7 @@ class CEsoItemLinkImage
 			
 			if ($enchantDesc != "")
 			{
-				$this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
+				if ($enchantName != "") $this->AddPrintData($printData, $enchantName, $this->printOptionsSmallWhite, array('br' => true));
 				$this->AddPrintData($printData, $enchantDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 			}
 		}
@@ -1421,7 +1421,6 @@ class CEsoItemLinkImage
 		
 		$y += 6;
 		$this->OutputCenterImage($image, "./resources/eso_item_hr.png", $y);
-		
 		$y += 6;
 		$this->OutputItemLeftBlock($image, $y);
 		$this->OutputItemLevelBlock($image, $y);
