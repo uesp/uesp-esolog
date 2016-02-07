@@ -99,6 +99,7 @@ class CEsoItemLinkImage
 	public $qualityColors = array();
 	public $printOptionsLargeWhite;
 	public $printOptionsMedBeige;
+	public $printOptionsMedWhite;
 	public $printOptionsSmallWhite;
 	public $printOptionsSmallBeige;
 	public $printOptionsTinyBeige;
@@ -1275,6 +1276,18 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function OutputItemTagsBlock($image, $y)
+	{
+		if ($this->itemRecord['tags'] == "") return 0;
+	
+		$printData = array();
+		$this->AddPrintData($printData, "Treasure Type:", $this->printOptionsSmallBeige, array('br' => true));
+		$this->AddPrintData($printData, $this->itemRecord['tags'], $this->printOptionsMedWhite, array('br' => true));
+		
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+	}
+	
+	
 	public function OutputBorder ($image)
 	{
 		$borderImage = imagecreatefrompng("resources/eso_item_border.png");
@@ -1352,6 +1365,12 @@ class CEsoItemLinkImage
 				"size" => $this->medFontSize,
 		);
 		
+		$this->printOptionsMedWhite = array(
+				"font" => self::ESOIL_REGULARFONT_FILE,
+				"color" => $this->white,
+				"size" => $this->medFontSize,
+		);
+		
 		$this->printOptionsSmallWhite = array(
 				"font" => self::ESOIL_BOLDFONT_FILE,
 				"color" => $this->white,
@@ -1418,7 +1437,7 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemSetBlock($image, $y);
 		
 		$y += $this->OutputItemDescription($image, $y) + 4;
-		
+		$y += $this->OutputItemTagsBlock($image, $y);
 		$y += $this->OutputItemCraftedBlock($image, $y);
 		
 		$this->OutputItemStyle($image, $y);

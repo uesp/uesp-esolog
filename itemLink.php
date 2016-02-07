@@ -1063,6 +1063,16 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeItemTagsBlock()
+	{
+		if ($this->itemRecord['tags'] == "") return "";
+		
+		$output  = "<div id='esoil_itemtags_title'>Treasure Type:</div>";
+		$output .= $this->itemRecord['tags'];
+		return $output;
+	}
+	
+	
 	private function GetItemLinkURL()
 	{
 		$itemLinkURL = '';
@@ -1126,6 +1136,7 @@ class CEsoItemLink
 				'{itemLevelBlockDisplay}' => $this->GetItemLevelBlockDisplay(),
 				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
 				'{itemCraftedBlock}' => $this->MakeItemCraftedBlock(),
+				'{itemTags}' => $this->MakeItemTagsBlock(),
 				'{itemDataJson}' => $this->GetItemDataJson(),
 				'{itemSimilarBlock}' => $this->MakeSimilarItemBlock(),
 				'{itemEnchantId1}' => $this->itemRecord['enchantId1'],

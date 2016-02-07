@@ -1,8 +1,8 @@
 <?php 
-
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require("/home/uesp/secrets/esolog.secrets");
+require("esoCommon.php");
 
 $TABLE_SUFFIX = "19pts";
 
@@ -27,6 +27,7 @@ $FIELDS = array(
 		"setName",
 		"enchantName",
 		"abilityName",
+		"tags",
 );
 
 $RANGE_FIELDS = array(
@@ -83,6 +84,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			setBonusDesc3 TINYTEXT NOT NULL,
 			setBonusDesc4 TINYTEXT NOT NULL,
 			setBonusDesc5 TINYTEXT NOT NULL,
+			tags TINYTEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_style (style),
 			INDEX index_trait (trait),
@@ -160,7 +162,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			$maxLevel = GetEsoItemLevelText($maxValue);
 				
 			if ($maxLevel == null || $minLevel == $maxLevel)
-				$values[] = "'$maxLevel";
+				$values[] = "'$maxLevel'";
 			else
 				$values[] = "'$maxLevel-$maxLevel'";
 		}
@@ -216,7 +218,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	
 	$query  = "INSERT INTO minedItemSummary".$TABLE_SUFFIX."(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error);
+	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
 }
 
 ?>

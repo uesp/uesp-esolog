@@ -20,6 +20,7 @@
 		<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
 		<div id="esoil_itemsetblock">{itemSetBlock}</div>
 		<div id="esoil_itemdesc">{itemDesc}</div>
-		<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>
+		<div id="esoil_itemtags">{itemTags}</div>
+		<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>		
 	</div>
 </div>
