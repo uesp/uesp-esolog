@@ -409,6 +409,8 @@ class CEsoItemLink
 				$row['style'] = $this->itemStyle;
 			}
 			
+			$row['version'] = $this->version;
+			
 			$this->itemAllData[] = $row;
 		}
 		
