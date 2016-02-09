@@ -298,14 +298,7 @@ class CEsoItemLink
 	
 	private function GetTableSuffix()
 	{
-		if ($this->version == "1.5") return "15";
-		if ($this->version == "1.6") return "16";
-		if ($this->version == "1.7") return "17";
-		if ($this->version == "1.8") return "";
-		if ($this->version == "1.8pts") return "18pts";
-		if ($this->version == "1.9pts") return "19pts";
-		
-		return "";
+		return GetEsoItemTableSuffix($this->version);
 	}
 	
 	

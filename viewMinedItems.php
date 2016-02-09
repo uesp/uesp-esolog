@@ -78,39 +78,7 @@ class CEsoViewMinedItems
 		if (array_key_exists('search', $this->inputParams)) $this->viewSearch = $this->inputParams['search'];
 		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
 		
-		switch ($this->version)
-		{
-			case '1.5':
-			case '15':
-				$this->tableSuffix = '15';
-				$this->version = '1.5';
-				break;
-			case '1.6':
-			case '16':
-				$this->tableSuffix = '16';
-				$this->version = '1.6';
-				break;
-			case '1.7':
-			case '17':
-				$this->tableSuffix = '17';
-				$this->version = '1.7';
-				break;
-			case '1.8':
-			case '18':
-				$this->tableSuffix = '';
-				$this->version = '1.8';
-				break;
-			case '1.8pts':
-			case '18pts':
-				$this->tableSuffix = '18pts';
-				$this->version = '1.8pts';
-				break;
-			default:
-				$this->tableSuffix = '';
-				$this->version = '';
-				break;
-		}
-		
+		$this->tableSuffix = GetEsoItemTableSuffix($this->version);
 		$this->fullTableName = $this->tableName . $this->tableSuffix;
 		
 		if ($this->version != '') 
