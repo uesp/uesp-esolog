@@ -1179,7 +1179,7 @@ class EsoLogViewer
 				11 => "Armor Sturdy",
 				15 => "Armor Training",
 				14 => "Armor Well Fitted",
-				22 => "Jewelry Arcmne",
+				22 => "Jewelry Arcane",
 				21 => "Jewelry Health",
 				24 => "Jewelry Ornate",
 				23 => "Jewelry Robust",
