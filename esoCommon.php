@@ -349,4 +349,31 @@ function MakeEsoIconLink($icon)
 }
 
 
-?>
+function GetEsoItemTableSuffix($version)
+{
+
+	switch ($version)
+	{
+		case '1.5':
+		case '15':
+			return "15";
+		case '1.6':
+		case '16':
+			return "16";
+		case '1.7':
+		case '17':
+			return "17";
+		case '1.8':
+		case '18':
+			return "18";
+		case '1.8pts':
+		case '18pts':
+			return "18pts";					
+		case '1.9pts':
+		case '19pts':
+			return "19pts";
+	}
+
+	return "";
+}
+
