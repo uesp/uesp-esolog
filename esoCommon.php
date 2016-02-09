@@ -365,7 +365,7 @@ function GetEsoItemTableSuffix($version)
 			return "17";
 		case '1.8':
 		case '18':
-			return "18";
+			return "";
 		case '1.8pts':
 		case '18pts':
 			return "18pts";					
