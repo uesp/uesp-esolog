@@ -293,6 +293,8 @@ function UpdateEsoItemImageLink(itemData)
 	
 	if (itemData.enchantId1 > 0)
 		itemLinkURL = "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "&enchantid=" + itemData.enchantId1 + "&enchantintlevel=" + itemData.enchantIntLevel1 + "&enchantinttype=" + itemData.enchantIntType1;
+	else if (itemData.version != "")
+		itemLinkURL = "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "&version=" + itemData.version;
 	else
 		itemLinkURL = "http://esoitem.uesp.net/item-" + itemData.itemId + "-" + itemData.level + "-" + itemData.quality + ".png";
 	
@@ -396,6 +398,7 @@ function UpdateAllItemData()
 		if (itemData['quality'] == null) itemData['quality'] = firstItem['quality'];
 		if (itemData['internalLevel'] == null) itemData['internalLevel'] = firstItem['internalLevel'];
 		if (itemData['internalSubtype'] == null) itemData['internalSubtype'] = firstItem['internalSubtype'];
+		if (itemData['version'] == null) itemData['version'] = firstItem['version'];
 		
 		itemData['link'] = MakeItemLink(itemData, firstItem);
 	}
