@@ -35,7 +35,8 @@ class CEsoDumpMinedItems {
 			"setBonusDesc5",
 			"internalLevel",
 			"internalSubtype",
-			"comment"
+			"tags",
+			"comment",			
 	);
 	
 	public static $ITEMTYPE_FIELDS = array(
@@ -79,6 +80,7 @@ class CEsoDumpMinedItems {
 	public $validFields = array();
 	public $isItemTable = true;
 	public $useExTraitName = false;
+	public $version = "";
 	
 	public $weaponType = -1;
 	public $armorType = -1;
@@ -153,6 +155,19 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	private function GetTableSuffix()
+	{
+		if ($this->version == "1.5") return "15";
+		if ($this->version == "1.6") return "16";
+		if ($this->version == "1.7") return "17";
+		if ($this->version == "1.8") return "";
+		if ($this->version == "1.8pts") return "18pts";
+		if ($this->version == "1.9pts") return "19pts";
+	
+		return "";
+	}
+	
+	
 	public function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
@@ -196,6 +211,9 @@ class CEsoDumpMinedItems {
 	
 	public function ParseInputParameters()
 	{
+		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
+		if (array_key_exists('v', $this->inputParams)) $this->version = $this->inputParams['v'];
+		
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = intval($this->inputParams['itemid']);
 		
 		if (array_key_exists('itemtype', $this->inputParams))
@@ -427,7 +445,7 @@ class CEsoDumpMinedItems {
 		$itemId = $this->itemId;
 		if ($itemId <= 0) return $this->ReportError("ERROR: No itemid specified!");
 		
-		$query = "SELECT * FROM minedItem WHERE itemId=$itemId";
+		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId=$itemId";
 		if (count($this->sortFields) > 0) $query .= " ORDER BY " . implode(",", $this->sortFields);
 		$query .= " LIMIT " . self::SELECT_LIMIT;
 		
@@ -435,7 +453,7 @@ class CEsoDumpMinedItems {
 		if (!$result) return $this->ReportError("ERROR: Database query error!");
 		
 		$this->itemRecords = array();
-		if ($result->num_rows === 0) return $records;
+		if ($result->num_rows === 0) return false;
 		$result->data_seek(0);
 		
 		while (($row = $result->fetch_assoc()))
@@ -460,7 +478,7 @@ class CEsoDumpMinedItems {
 		if (count($whereTypes) == 0)  return $this->ReportError("ERROR: No item types specified!");
 		$where = implode(" AND ", $whereTypes);
 		
-		$query = "SELECT * FROM minedItemSummary WHERE $where ORDER BY name;";
+		$query = "SELECT * FROM minedItemSummary". $this->GetTableSuffix() ." WHERE $where ORDER BY name;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 	
@@ -480,9 +498,9 @@ class CEsoDumpMinedItems {
 	public function LoadFields()
 	{
 		if ($this->weaponType > 0 || $this->armorType > 0 || $this->equipType > 0 || $this->itemType > 0)
-			$query = "DESCRIBE minedItemSummary;";
+			$query = "DESCRIBE minedItemSummary". $this->GetTableSuffix() .";";
 		else
-			$query = "DESCRIBE minedItem;";
+			$query = "DESCRIBE minedItem". $this->GetTableSuffix() .";";
 		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error!");
