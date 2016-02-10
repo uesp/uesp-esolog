@@ -1,0 +1,25 @@
+.esois_itemicon {
+	vertical-align: middle;
+}
+
+.esois_itemlink {
+	text-decoration: none;
+}
+
+.esois_resultrow {
+	
+}
+
+.esois_resultrow:hover {
+	background-color: #ccc;
+}
+
+.esois_itemdesc {
+	font-size: 0.9em;
+	display: block;
+}
+
+.esois_itemdata {
+	font-size: 0.9em;
+	display: inline;
+}

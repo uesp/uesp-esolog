@@ -1,7 +1,10 @@
 <?php
 
-	// Database users, passwords and other secrets
+	/* Database users, passwords and other secrets */
 require("/home/uesp/secrets/esolog.secrets");
+
+	/* Common library */
+require("esoCommon.php");
 
 
 class EsoLogViewer

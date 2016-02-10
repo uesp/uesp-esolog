@@ -13,7 +13,7 @@ $ESO_ITEMTRAIT_FULLTEXTS = array(
 		15 => "Armor Training",
 		14 => "Armor Well Fitted",
 		22 => "Jewelry Arcane",
-		21 => "Jewelry Health",
+		21 => "Jewelry Healthy",
 		24 => "Jewelry Ornate",
 		23 => "Jewelry Robust",
 		0 => "",
@@ -22,7 +22,7 @@ $ESO_ITEMTRAIT_FULLTEXTS = array(
 		4 => "Weapon Infused",
 		9 => "Weapon Intricate",
 		10 => "Weapon Ornate",
-		1 => "Weapon Power",
+		1 => "Weapon Powered",
 		3 => "Weapon Precise",
 		7 => "Weapon Sharpened",
 		6 => "Weapon Training",
@@ -45,7 +45,7 @@ $ESO_ITEMTRAIT_TEXTS = array(
 		15 => "Training",
 		14 => "Well Fitted",
 		22 => "Arcane",
-		21 => "Health",
+		21 => "Healthy",
 		24 => "Ornate",
 		23 => "Robust",
 		0 => "",
@@ -54,7 +54,7 @@ $ESO_ITEMTRAIT_TEXTS = array(
 		4 => "Infused",
 		9 => "Intricate",
 		10 => "Ornate",
-		1 => "Power",
+		1 => "Powered",
 		3 => "Precise",
 		7 => "Sharpened",
 		6 => "Training",
@@ -377,3 +377,26 @@ function GetEsoItemTableSuffix($version)
 	return "";
 }
 
+
+function FormatEsoItemDescriptionText($desc)
+{
+	$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
+	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
+	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+	$output = str_replace("\n", "<br />", $output);
+
+	return $output;
+}
+
+
+function FormatRemoveEsoItemDescriptionText($desc)
+{
+	$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
+	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
+	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for $1%", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $output);
+	$output = str_replace("\n", " ", $output);
+
+	return $output;
+}
