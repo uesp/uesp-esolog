@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Item Search</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoitemlink.css" />
+		<link rel="stylesheet" href="resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="resources/esoitemsearch.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="resources/esoitemsearch.js"></script>
+	</head>
+<body>
+{topMenu}
+<h1>ESO Item Search</h1>
+Use the below options to search for items with specific attributes and abilities:
+<p />
+<form id="eso_item_search" action="" method="get">
+	<input type="hidden" name="version" value="{formVersion}" />
+	<div>
+        <label for="text">Text:</label>
+        <input type="text" name="text" id="esois_text" value="{formText}" size="32" maxlength="32" />
+    </div>
+    <div>
+        <label for="trait">Trait:</label>
+        <select name="trait" id="esois_trait">
+        	{listTrait}
+        </select>
+    </div>
+    <div>
+        <label for="itemtype">Item Type:</label>
+        <select name="itemtype" id="esois_itemtype">
+        	{listItemType}
+        </select>
+    </div>
+    <div>
+        <label for="equiptype">Equip Type:</label>
+        <select name="equiptype" id="esois_equiptype">
+        	{listEquipType}
+        </select>
+    </div>
+    <div>
+        <label for="armortype">Armor Type:</label>
+        <select name="armortype" id="esois_armortype">
+        	{listArmorType}
+        </select>
+    </div>
+    <div>
+        <label for="weapontype">Weapon Type:</label>
+        <select name="weapontype" id="esois_weapontype">
+        	{listWeaponType}
+        </select>
+    </div>
+    
+    <input type="reset" value="Reset" />
+    <input type="submit" value="Search..." />
+</form>
+
+
+<div id="esois_searchresults" style="display:{searchResultDisplay};">
+	<div id="esois_searchcount">
+		Found {searchCount} matching items: 
+	</div>
+	<table id="" border="1" cellpadding="2" cellspacing="0">
+		{searchResults}
+	</table>
+</div>
+
+{dbQuery}
+
+<script type="text/javascript">
+</script>
+<hr>
+<div id="esoil_footer">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>
