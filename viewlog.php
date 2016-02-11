@@ -1670,6 +1670,7 @@ If you do not understand what this information means, or how to use this webpage
 	<b>Other Things</b>
 	<ul class='elvRecordTypeList'>
 		<li><a href="/viewMinedItems.php">Mined Items by Category</a></li>
+		<li><a href="/itemSearch.php">Advanced Item Search</a></li>
 	</ul>
 <?php	
 		$this->OutputSearchForm();
@@ -1701,6 +1702,7 @@ If you do not understand what this information means, or how to use this webpage
 						<?=$options ?>
 					</select>
 				</div>
+				<small class="elvSearchAdvanced"><a href="/itemSearch.php">Advanced Item Search</a></small>
 			</form>
 		</div>
 <?php
