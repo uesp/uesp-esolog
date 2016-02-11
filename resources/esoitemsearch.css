@@ -85,8 +85,8 @@
 }
 
 .esois_helpbutton {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
     display: inline-block;
     background-color: #666;
     color: #fff;
@@ -96,10 +96,17 @@
     margin-bottom: 10px;
     position: relative;
     cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    border: solid 1px black;
+}
+
+.esois_helpbutton:hover {
+	background-color: #00f;
 }
 
 .esois_helpbutton:hover:after {
-    background: #ccc;
+    background: #ffff99;
     border-radius: 5px;
     bottom: 26px;
     color: #000;
@@ -110,11 +117,12 @@
     z-index: 98;
     width: 340px;
     font-size: 13px;
+    font-weight: normal;
 }
 
 .esois_helpbutton:hover:before {
     border: solid;
-    border-color: #ccc transparent;
+    border-color: #ffff99 transparent;
     border-width: 6px 6px 0 6px;
     bottom: 20px;
     content: "";
