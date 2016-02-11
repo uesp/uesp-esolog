@@ -23,6 +23,8 @@
 		<div>
 	        <label for="text" class="esois_label1">Text:</label>
 	        <input type="text" name="text" id="esois_text" value="{formText}" size="32" maxlength="32" />
+	        <div class='esois_helpbutton' tooltip="Enter a string to search for in the item name or various description fields. You may also enter an itemId (1-99999) to find that specific item.">?
+	        </div>
 	    </div>
 	    <div>
 	        <label for="trait" class="esois_label1">Trait:</label>
@@ -35,12 +37,16 @@
 	        <select name="quality" id="esois_quality">
 	        	{listQuality}
 	        </select>
+	        <div class='esois_helpbutton' tooltip="Note that only some items (like Treasures) have a fixed quality. Most items are able to have any quality level.">?
+	        </div>
 	    </div>
 	    <div>
 	        <label for="style" class="esois_label1">Style:</label>
 	        <select name="style" id="esois_style">
 	        	{listStyle}
 	        </select>
+	        <div class='esois_helpbutton' tooltip="Only items that have fixed styles will show up in the search results when searching for a specific style.">?
+	        </div>
 	    </div>
 	    <div>
 	        <label for="itemtype" class="esois_label1">Item Type:</label>
