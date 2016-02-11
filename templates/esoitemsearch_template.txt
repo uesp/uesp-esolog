@@ -12,55 +12,78 @@
 <body>
 {topMenu}
 <h1>ESO Item Search</h1>
-Use the below options to search for items with specific attributes and abilities:
 <p />
 <form id="eso_item_search" action="" method="get">
-	<input type="hidden" name="version" value="{formVersion}" />
-	<div>
-        <label for="text">Text:</label>
-        <input type="text" name="text" id="esois_text" value="{formText}" size="32" maxlength="32" />
-    </div>
-    <div>
-        <label for="trait">Trait:</label>
-        <select name="trait" id="esois_trait">
-        	{listTrait}
-        </select>
-    </div>
-    <div>
-        <label for="itemtype">Item Type:</label>
-        <select name="itemtype" id="esois_itemtype">
-        	{listItemType}
-        </select>
-    </div>
-    <div>
-        <label for="equiptype">Equip Type:</label>
-        <select name="equiptype" id="esois_equiptype">
-        	{listEquipType}
-        </select>
-    </div>
-    <div>
-        <label for="armortype">Armor Type:</label>
-        <select name="armortype" id="esois_armortype">
-        	{listArmorType}
-        </select>
-    </div>
-    <div>
-        <label for="weapontype">Weapon Type:</label>
-        <select name="weapontype" id="esois_weapontype">
-        	{listWeaponType}
-        </select>
-    </div>
-    
-    <input type="reset" value="Reset" />
-    <input type="submit" value="Search..." />
+	<div class="esois_searchoptionheader">
+		Use the below options to search for items with specific attributes and abilities.
+	</div>
+	<div id="esois_searchoptions">
+		
+		<input type="hidden" name="version" value="{formVersion}" />
+		<div>
+	        <label for="text" class="esois_label1">Text:</label>
+	        <input type="text" name="text" id="esois_text" value="{formText}" size="32" maxlength="32" />
+	    </div>
+	    <div>
+	        <label for="trait" class="esois_label1">Trait:</label>
+	        <select name="trait" id="esois_trait">
+	        	{listTrait}
+	        </select>
+	    </div>
+	    <div>
+	        <label for="quality" class="esois_label1">Quality:</label>
+	        <select name="quality" id="esois_quality">
+	        	{listQuality}
+	        </select>
+	    </div>
+	    <div>
+	        <label for="style" class="esois_label1">Style:</label>
+	        <select name="style" id="esois_style">
+	        	{listStyle}
+	        </select>
+	    </div>
+	    <div>
+	        <label for="itemtype" class="esois_label1">Item Type:</label>
+	        <select name="itemtype" id="esois_itemtype">
+	        	{listItemType}
+	        </select>
+	    </div>
+	    <div>
+	        <label for="equiptype" class="esois_label1">Equip Type:</label>
+	        <select name="equiptype" id="esois_equiptype">
+	        	{listEquipType}
+	        </select>
+		</div>
+		<div>
+	        <label for="armortype" class="esois_label1">Armor Type:</label>
+	        <select name="armortype" id="esois_armortype">
+	        	{listArmorType}
+	        </select>
+		</div>
+		<div>
+	    	<label for="weapontype" class="esois_label1">Weapon Type:</label>
+	        <select name="weapontype" id="esois_weapontype">
+	        	{listWeaponType}
+	        </select>
+		</div>
+		<div>
+	    	<label for="enchant" class="esois_label1">Enchantment:</label>
+	        <select name="enchant" id="esois_enchant">
+	        	{listEnchant}
+	        </select>
+		</div>
+	    
+		<input type="button" class="esois_clearbutton" value="Clear" onclick="esoisResetSearchForm();" />
+		<input type="submit" class="esois_searchbutton" value="Search..." />
+	</div>
 </form>
 
 
 <div id="esois_searchresults" style="display:{searchResultDisplay};">
 	<div id="esois_searchcount">
-		Found {searchCount} matching items: 
+		Found {searchCount} matching items.
 	</div>
-	<table id="" border="1" cellpadding="2" cellspacing="0">
+	<table id="esois_searchresultstable">
 		{searchResults}
 	</table>
 </div>

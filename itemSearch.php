@@ -20,6 +20,51 @@ class EsoItemSearcher
 	const ESOIS_ICON_UNKNOWN = "unknown.png";
 	const ESOIS_ICON_WIDTH = 24;
 	
+	static public $ESOIS_ENCHANTS = array(
+			"",
+			"Absorb Magicka",
+			"Absorb Stamina",
+			"Alchemical Acceleration",
+			"Alchemical Amplification",
+			"Arms of Infernace",
+			"Bashing",
+			"Befouled Weapon",
+			"Charged Weapon",
+			"Cold Resistance",
+			"Cruel Flurry",
+			"Crusher",
+			"Crushing Wall",
+			"Decrease Health",
+			"Disease Resistance",
+			"Enchantment",
+			"Fiery Weapon",
+			"Flame Resistance",
+			"Frozen Weapon",
+			"Hardening",
+			"Health Recovery",
+			"Life Drain",
+			"Magicka Recovery",
+			"Maximum Health",
+			"Maximum Magicka",
+			"Maximum Stamina",
+			"Merciless Charge",
+			"Multi-Effect",
+			"Physical Resistance",
+			"Poison Resistance",
+			"Poisoned Weapon",
+			"Rampaging Slash",
+			"Reduce Spell Cost",
+			"Reduce Stamina Cost",
+			"Shield-play",
+			"Shock Resistance",
+			"Spell Damage",
+			"Spell Resistance",
+			"Stamina Recovery",
+			"Thunderous Volley",
+			"Weakening",
+			"Weapon Damage",
+		);
+	
 	static public $ESOIS_SEARCH_FIELDS = array(
 			'name', 
 			'description', 
@@ -37,6 +82,8 @@ class EsoItemSearcher
 	);
 	
 	static public $ESOIS_TRAITS = array();
+	static public $ESOIS_STYLES = array();
+	static public $ESOIS_QUALITIES = array();
 	static public $ESOIS_ITEMTYPES = array();
 	static public $ESOIS_EQUIPTYPES = array();
 	static public $ESOIS_ARMORTYPES = array();
@@ -62,9 +109,12 @@ class EsoItemSearcher
 	public function __construct ()
 	{
 		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTYPE_TEXTS, $ESO_ITEMEQUIPTYPE_TEXTS;
-		global $ESO_ITEMARMORTYPE_TEXTS, $ESO_ITEMWEAPONTYPE_TEXTS;
+		global $ESO_ITEMARMORTYPE_TEXTS, $ESO_ITEMWEAPONTYPE_TEXTS, $ESO_ITEMQUALITY_TEXTS;
+		global $ESO_ITEMSTYLE_TEXTS;
 		
+		self::$ESOIS_STYLES = self::MakeUniqueArray($ESO_ITEMSTYLE_TEXTS);
 		self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT_TEXTS);
+		self::$ESOIS_QUALITIES = self::MakeUniqueArray($ESO_ITEMQUALITY_TEXTS, true);
 		self::$ESOIS_ITEMTYPES = self::MakeUniqueArray($ESO_ITEMTYPE_TEXTS);
 		self::$ESOIS_EQUIPTYPES = self::MakeUniqueArray($ESO_ITEMEQUIPTYPE_TEXTS);
 		self::$ESOIS_ARMORTYPES = self::MakeUniqueArray($ESO_ITEMARMORTYPE_TEXTS);
@@ -78,10 +128,10 @@ class EsoItemSearcher
 	}
 	
 	
-	private static function MakeUniqueArray($src)
+	private static function MakeUniqueArray($src, $noSort = false)
 	{
 		$newArray = array_unique($src);
-		sort($newArray);
+		if (!$noSort) sort($newArray);
 		return $newArray;
 	}
 	
@@ -179,6 +229,28 @@ class EsoItemSearcher
 	}
 	
 	
+	public function GetItemQualityValue($text)
+	{
+		global $ESO_ITEMQUALITY_TEXTS;
+	
+		$value = array_search($text, $ESO_ITEMQUALITY_TEXTS);
+		if ($value === FALSE) return -1;
+	
+		return $value;
+	}
+	
+	
+	public function GetItemStyleValue($text)
+	{
+		global $ESO_ITEMSTYLE_TEXTS;
+	
+		$value = array_search($text, $ESO_ITEMSTYLE_TEXTS);
+		if ($value === FALSE) return -1;
+	
+		return $value;
+	}
+	
+	
 	public function GetItemTypeValue($text)
 	{
 		global $ESO_ITEMTYPE_TEXTS;
@@ -232,7 +304,15 @@ class EsoItemSearcher
 		{
 			$searchText = $this->db->real_escape_string($this->formValues['text']);
 			$searchFields = implode(",", self::$ESOIS_SEARCH_FIELDS);
-			$where[] = "MATCH($searchFields) AGAINST ('$searchText' in BOOLEAN MODE)";
+			$tmpWhere = "MATCH($searchFields) AGAINST ('$searchText' in BOOLEAN MODE)";
+			$intVal = intval($this->formValues['text']);
+			
+			if (is_numeric($this->formValues['text']) && $intVal > 0 && $intVal < 100000) 
+			{
+				$tmpWhere = "(" . $tmpWhere . " OR itemId=$intVal" . ")";	
+			}
+			
+			$where[] = $tmpWhere;
 		}
 		
 		if ($this->formValues['trait'] != "")
@@ -241,7 +321,24 @@ class EsoItemSearcher
 			$where[] = "trait = $value";
 		}
 		
-		if ($this->formValues['itemtype'] != "") 
+		if ($this->formValues['quality'] != "")
+		{
+			$value = $this->GetItemQualityValue($this->formValues['quality']);
+			
+			if ($value == 0)
+				$where[] = "(quality = '$value' or quality='0-5')";
+			else
+				$where[] = "(quality = '$value' or quality='1-5')";
+		}
+		
+		if ($this->formValues['style'] != "")
+		{
+			$value = $this->GetItemStyleValue($this->formValues['style']);
+			$where[] = "style = $value";
+		}
+		
+		
+		if ($this->formValues['itemtype'] != "")
 		{
 			$value = $this->GetItemTypeValue($this->formValues['itemtype']);
 			$where[] = "type = $value";
@@ -264,6 +361,13 @@ class EsoItemSearcher
 			$value = $this->GetWeaponTypeValue($this->formValues['weapontype']);
 			$where[] = "weaponType = $value";
 		}
+		
+		if ($this->formValues['enchant'] != "")
+		{
+			$name = $this->db->real_escape_string($this->formValues['enchant']);
+			$where[] = "enchantName LIKE '$name%'";
+		}
+		
 		
 		$this->hasSearch = false;
 		
@@ -298,6 +402,7 @@ class EsoItemSearcher
 		$itemName = $result['name'];
 		$itemLink = $result['link'];
 		$itemId = $result['itemId'];
+		$quality = $result['quality'];
 		$icon = $result['icon'];
 		$iconUrl = $this->GetIconUrl($icon);
 		$slotText = "";
@@ -327,15 +432,20 @@ class EsoItemSearcher
 		}
 		else
 		{
-			$slotText = GetEsoItemTypeText($result['type']) ;
+			$slotText = GetEsoItemTypeText($result['type']);
 		}
 		
 		$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&summary";
 		
 		$output .= "<tr class='esois_resultrow'><td>\n";
-		$output .= "<a class='esois_itemlink eso_item_link' href='$linkToItem' itemid='$itemId' summary='1'><img class='esois_itemicon' src='$iconUrl' width='" . self::ESOIS_ICON_WIDTH . "' /> $itemName</a>";
+		$output .= "<a class='esois_itemlink eso_item_link' href='$linkToItem' itemid='$itemId' summary='1' quality='$quality'><img class='esois_itemicon' src='$iconUrl' width='" . self::ESOIS_ICON_WIDTH . "' /> $itemName</a>";
 		$output .= "<div class='esois_itemdata'>";
 		$output .= "  $slotText, ";
+		
+		if (is_numeric($quality))
+		{
+			$output .= GetEsoItemQualityText($quality) . " Quality, ";
+		}
 		
 		if ($traitDesc != "")
 		{
@@ -366,7 +476,7 @@ class EsoItemSearcher
 				
 		if ($result['setName'] != "")
 		{
-			$output .= "Part of the " . $result['setName'] . " Set ";
+			$output .= "Part of the " . $result['setName'] . " Set";
 			//if ($setBonusDesc1 != "") $output .= $setBonusDesc1 . " ";
 			//if ($setBonusDesc2 != "") $output .= $setBonusDesc2 . " ";
 			//if ($setBonusDesc3 != "") $output .= $setBonusDesc3 . " ";
@@ -432,19 +542,25 @@ class EsoItemSearcher
 				'{topMenu}' => $this->GetTopMenuHtml(),
 				'{formVersion}' => $this->version,
 				'{dbQuery}' => $this->GetDbQueryHtml(),
+				
 				'{formText}' => $this->GetFormValue('text'),
 				'{formTrait}' => $this->GetFormValue('trait'),
+				'{formQuality}' => $this->GetFormValue('quality'),
 				'{formItemType}' => $this->GetFormValue('itemtype'),
 				'{formEquipType}' => $this->GetFormValue('equiptype'),
 				'{formArmorType}' => $this->GetFormValue('armortype'),
 				'{formWeaponType}' => $this->GetFormValue('weapontype'),
+				'{formEnchant}' => $this->GetFormValue('enchant'),
+				'{formStyle}' => $this->GetFormValue('stly'),
+				
 				'{listTrait}' => $this->GetGeneralListHtml(self::$ESOIS_TRAITS, 'trait'),
+				'{listQuality}' => $this->GetGeneralListHtml(self::$ESOIS_QUALITIES, 'quality'),
 				'{listItemType}' => $this->GetGeneralListHtml(self::$ESOIS_ITEMTYPES, 'itemtype'),
 				'{listEquipType}' => $this->GetGeneralListHtml(self::$ESOIS_EQUIPTYPES, 'equiptype'),
 				'{listArmorType}' => $this->GetGeneralListHtml(self::$ESOIS_ARMORTYPES, 'armortype'),
 				'{listWeaponType}' => $this->GetGeneralListHtml(self::$ESOIS_WEAPONTYPES, 'weapontype'),
-				
-				'{listEnchant}' => '',
+				'{listEnchant}' => $this->GetGeneralListHtml(self::$ESOIS_ENCHANTS, 'enchant'),
+				'{listStyle}' => $this->GetGeneralListHtml(self::$ESOIS_STYLES, 'style'),
 				
 				'{searchResults}' => $this->GetSearchResultsHtml(),
 				'{searchResultDisplay}' => $this->hasSearch ? "block" : "none",
@@ -480,6 +596,8 @@ class EsoItemSearcher
 		
 		$this->ParseFormParam("text");		
 		$this->ParseFormParam("trait");
+		$this->ParseFormParam("style");
+		$this->ParseFormParam("quality");
 		$this->ParseFormParam("enchant");
 		$this->ParseFormParam("itemtype");
 		$this->ParseFormParam("equiptype");
@@ -541,7 +659,6 @@ class EsoItemSearcher
 			
 		return true;
 	}
-	
 	
 	
 		/* Main entrance */
