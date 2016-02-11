@@ -76,6 +76,12 @@
 	        </select>
 	        <div class='esois_helpbutton' tooltip="Search for the default enchantment on an item. Most items can have their enchantments replaced in-game.">?</div>
 		</div>
+		<div>
+	    	<label for="effect" class="esois_label1">Effect:</label>
+	        <select name="effect" id="esois_effect">
+	        	{listEffect}
+	        </select>
+		</div>
 	    
 		<input type="button" class="esois_clearbutton" value="Clear" onclick="esoisResetSearchForm();" />
 		<input type="submit" class="esois_searchbutton" value="Search..." />

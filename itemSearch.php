@@ -20,6 +20,39 @@ class EsoItemSearcher
 	const ESOIS_ICON_UNKNOWN = "unknown.png";
 	const ESOIS_ICON_WIDTH = 24;
 	
+	static public $ESOIS_EFFECT_DATA = array(
+			"" => array(),
+			"Damage Shield" => array("%Adds % Damage Shield%"),
+			"Resurrection Speed" => array("%decrease time to resurrect%"),
+			"Max Health" => array("%Adds % Maximum Health%"),
+			"Max Magicka" => array("%Adds % Maximum Magicka%"),
+			"Max Stamina" => array("%Adds % Maximum Stamina%"),
+			"Restore Health" => array("%Restore % Health%"),
+			"Restore Magicka" => array("%Restore % Magicka%"),
+			"Restore Stamina" => array("%Restore % Stamina%"),
+			"Health Recovery" => array("%Adds % Health Recovery%"),
+			"Magicka Recovery" => array("%Adds % Magicka Recovery%"),
+			"Stamina Recovery" => array("%Adds % Stamina Recovery%"),
+			"Physical Resistance" => array("%Adds % Physical Resistance%"),
+			"Critical Resistance" => array("%Adds % Critical Resistance%"),
+			"Spell Damage" => array("%Increase Spell Damage%"),
+			"Weapon Damage" => array("%Increase Weapon Damage%"),
+			"Spell Critical" => array("%Adds % Spell Critical%"),
+			"Weapon Critical" => array("%Adds % Weapon Critical%"),
+		);
+	
+	static public $ESOIS_EFFECT_COLUMNS = array(
+			"setBonusDesc1",
+			"setBonusDesc2",
+			"setBonusDesc3",
+			"setBonusDesc4",
+			"setBonusDesc5",
+			"enchantDesc",
+			"traitDesc",
+			"traitAbilityDesc",
+			"abilityDesc",			
+		);
+	
 	static public $ESOIS_ENCHANTS = array(
 			"",
 			"Absorb Magicka",
@@ -88,6 +121,7 @@ class EsoItemSearcher
 	static public $ESOIS_EQUIPTYPES = array();
 	static public $ESOIS_ARMORTYPES = array();
 	static public $ESOIS_WEAPONTYPES = array();
+	static public $ESOIS_EFFECTS = array();
 	
 	public $db = null;
 	public $dbReadInitialized = false;
@@ -120,6 +154,8 @@ class EsoItemSearcher
 		self::$ESOIS_ARMORTYPES = self::MakeUniqueArray($ESO_ITEMARMORTYPE_TEXTS);
 		self::$ESOIS_WEAPONTYPES = self::MakeUniqueArray($ESO_ITEMWEAPONTYPE_TEXTS);
 		
+		self::MakeEffectArray();
+		
 		$this->InitDatabase();
 		$this->SetInputParams();
 		$this->ParseInputParams();
@@ -133,6 +169,19 @@ class EsoItemSearcher
 		$newArray = array_unique($src);
 		if (!$noSort) sort($newArray);
 		return $newArray;
+	}
+	
+	
+	private static function MakeEffectArray()
+	{
+		self::$ESOIS_EFFECTS = array();
+		
+		foreach (self::$ESOIS_EFFECT_DATA as $effectName => $effectData)
+		{
+			self::$ESOIS_EFFECTS[] = $effectName;
+		}
+		
+		sort(self::$ESOIS_EFFECTS);
 	}
 	
 	
@@ -368,6 +417,25 @@ class EsoItemSearcher
 			$where[] = "enchantName LIKE '$name%'";
 		}
 		
+		if ($this->formValues['effect'] != "")
+		{
+			$effectData = self::$ESOIS_EFFECT_DATA[$this->formValues['effect']];
+			
+			if ($effectData != null)
+			{
+				$name = $effectData[0];
+				//$tmpWhere = "MATCH($searchFields) AGAINST ('$searchText' in BOOLEAN MODE)";
+				//$where[] = "enchantName LIKE '$name%'";
+				$tmpWhere = array();
+				
+				foreach (self::$ESOIS_EFFECT_COLUMNS as $column)
+				{
+					$tmpWhere[] = "$column LIKE '$name'";
+				}
+				
+				$where[] = "(" . implode(" OR ", $tmpWhere) . ")";				
+			}
+		}		
 		
 		$this->hasSearch = false;
 		
@@ -551,7 +619,8 @@ class EsoItemSearcher
 				'{formArmorType}' => $this->GetFormValue('armortype'),
 				'{formWeaponType}' => $this->GetFormValue('weapontype'),
 				'{formEnchant}' => $this->GetFormValue('enchant'),
-				'{formStyle}' => $this->GetFormValue('stly'),
+				'{formStyle}' => $this->GetFormValue('stlye'),
+				'{formEffect}' => $this->GetFormValue('effect'),
 				
 				'{listTrait}' => $this->GetGeneralListHtml(self::$ESOIS_TRAITS, 'trait'),
 				'{listQuality}' => $this->GetGeneralListHtml(self::$ESOIS_QUALITIES, 'quality'),
@@ -561,6 +630,7 @@ class EsoItemSearcher
 				'{listWeaponType}' => $this->GetGeneralListHtml(self::$ESOIS_WEAPONTYPES, 'weapontype'),
 				'{listEnchant}' => $this->GetGeneralListHtml(self::$ESOIS_ENCHANTS, 'enchant'),
 				'{listStyle}' => $this->GetGeneralListHtml(self::$ESOIS_STYLES, 'style'),
+				'{listEffect}' => $this->GetGeneralListHtml(self::$ESOIS_EFFECTS, 'effect'),
 				
 				'{searchResults}' => $this->GetSearchResultsHtml(),
 				'{searchResultDisplay}' => $this->hasSearch ? "block" : "none",
@@ -603,6 +673,7 @@ class EsoItemSearcher
 		$this->ParseFormParam("equiptype");
 		$this->ParseFormParam("armortype");
 		$this->ParseFormParam("weapontype");
+		$this->ParseFormParam("effect");
 	}
 	
 	
@@ -632,7 +703,6 @@ class EsoItemSearcher
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
-		header("Pragma: no-cache");
 	
 		if ($this->IsOutputCSV())
 			header("content-type: text/plain");
