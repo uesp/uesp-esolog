@@ -15,7 +15,8 @@
 <p />
 <form id="eso_item_search" action="" method="get">
 	<div class="esois_searchoptionheader">
-		Use the below options to search for items with specific attributes and abilities.
+		Use the below options to search for items from the Elder Scrolls Online MMO with specific attributes and abilities. Note that the items are
+		"data mined" and may not actually be obtainable in game
 	</div>
 	<div id="esois_searchoptions">
 		
