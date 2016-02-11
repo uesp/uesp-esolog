@@ -136,3 +136,19 @@ function OnEsoItemLinkLeave()
 $( document ).ready(function() {
 	$('.eso_item_link').hover(OnEsoItemLinkEnter, OnEsoItemLinkLeave);
 });
+
+
+function esoisResetSearchForm()
+{
+	$('#esois_text').val('');
+	$('#esois_trait').val('');
+	$('#esois_style').val('');
+	$('#esois_quality').val('');
+	$('#esois_itemtype').val('');
+	$('#esois_equiptype').val('');
+	$('#esois_armortype').val('');
+	$('#esois_weapontype').val('');
+	$('#esois_enchant').val('');
+	
+	
+}

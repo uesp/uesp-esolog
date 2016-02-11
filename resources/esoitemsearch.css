@@ -23,3 +23,63 @@
 	font-size: 0.9em;
 	display: inline;
 }
+
+#esois_searchcount {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#esois_searchoptions {
+	display: block;
+	margin-bottom: 10px;
+	border: 1px solid silver;
+    border-top-width: 0 !important;
+    padding: 7px;
+    width: 500px;
+}
+
+#esois_searchresults {
+	margin: 10px;
+}
+
+#esois_searchresultstable {
+	margin-left: 0px;
+	border-collapse: collapse;
+}
+
+#esois_searchresultstable td, #esois_searchresultstable th {
+  border: 1px solid #999;
+  padding: 0.3rem;
+  text-align: left;
+}
+
+.esois_searchbutton {
+	float: right;
+	font-weight: bold;
+}
+
+.esois_searchbutton:hover {
+}
+
+.esois_clearbutton {	
+}
+
+.esois_clearbutton {
+}
+
+.esois_label1 {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.esois_searchoptionheader {
+	display: block;
+	width: 100%;
+    background-color: #F5DEB3;
+	border: 1px solid silver;
+	padding: 7px;
+	width: 500px;
+}

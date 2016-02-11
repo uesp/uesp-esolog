@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "19pts";
+$TABLE_SUFFIX = "";
 
 $FIELDS = array(
 		"itemId",
@@ -38,6 +38,7 @@ $RANGE_FIELDS = array(
 		"abilityDesc",
 		"enchantDesc",
 		"traitDesc",
+		"quality",
 		"traitAbilityDesc",
 		"setBonusDesc1",
 		"setBonusDesc2",
@@ -73,6 +74,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			abilityName TINYTEXT NOT NULL,
 			level TINYTEXT NOT NULL,
 			value TINYTEXT NOT NULL,
+			quality TINYTEXT NOT NULL,
 			weaponPower TINYTEXT NOT NULL,
 			armorRating TINYTEXT NOT NULL,
 			abilityDesc TINYTEXT NOT NULL,
@@ -179,8 +181,8 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			//Life Drain Deals 4.0 Magic Damage and heals you for 2.0.
 			//Increase weapon enchantment effect by 8.0%
 			
-			$minNumbers = preg_split("/([0-9]+\.?[0-9]?)/s", $minValue, -1, PREG_SPLIT_DELIM_CAPTURE);
-			$maxNumbers = preg_split("/([0-9]+\.?[0-9]?)/s", $maxValue, -1, PREG_SPLIT_DELIM_CAPTURE);
+			$minNumbers = preg_split("/([0-9]+(?:\.[0-9])?)/s", $minValue, -1, PREG_SPLIT_DELIM_CAPTURE);
+			$maxNumbers = preg_split("/([0-9]+(?:\.[0-9])?)/s", $maxValue, -1, PREG_SPLIT_DELIM_CAPTURE);
 			$value = "";
 			
 			for ($i = 0; $i < count($minNumbers); $i++)
