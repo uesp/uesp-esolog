@@ -156,6 +156,8 @@ class EsoItemSearcher
 		
 		self::MakeEffectArray();
 		
+		array_unshift(self::$ESOIS_TRAITS, "(none)");
+		
 		$this->InitDatabase();
 		$this->SetInputParams();
 		$this->ParseInputParams();
@@ -366,8 +368,15 @@ class EsoItemSearcher
 		
 		if ($this->formValues['trait'] != "")
 		{
-			$value = $this->GetItemTraitValue($this->formValues['trait']);
-			$where[] = "trait = $value";
+			if ($this->formValues['trait'] == "(none)")
+			{
+				$where[] = "trait <= 0";
+			}
+			else
+			{
+				$value = $this->GetItemTraitValue($this->formValues['trait']);
+				$where[] = "trait = $value";
+			}
 		}
 		
 		if ($this->formValues['quality'] != "")
