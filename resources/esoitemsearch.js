@@ -149,6 +149,5 @@ function esoisResetSearchForm()
 	$('#esois_armortype').val('');
 	$('#esois_weapontype').val('');
 	$('#esois_enchant').val('');
-	
-	
+	$('#esois_effect').val('');	
 }
