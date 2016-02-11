@@ -525,9 +525,15 @@ class EsoItemSearcher
 		}
 		
 		$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&summary";
+		$extraClass = "";
+		
+		if (is_numeric($quality))
+		{
+			$extraClass = "eso_item_link_q" . intval($quality);
+		}
 		
 		$output .= "<tr class='esois_resultrow'><td>\n";
-		$output .= "<a class='esois_itemlink eso_item_link' href='$linkToItem' itemid='$itemId' summary='1'><img class='esois_itemicon' src='$iconUrl' width='" . self::ESOIS_ICON_WIDTH . "' /> $itemName</a>";
+		$output .= "<a class='esois_itemlink eso_item_link $extraClass' href='$linkToItem' itemid='$itemId' summary='1'><img class='esois_itemicon' src='$iconUrl' width='" . self::ESOIS_ICON_WIDTH . "' /> $itemName</a>";
 		$output .= "<div class='esois_itemdata'>";
 		$output .= "  $slotText, ";
 		
