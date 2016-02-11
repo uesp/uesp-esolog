@@ -753,7 +753,7 @@ class EsoLogViewer
 					'table' => 'minedItem19pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-					'message' => "These are items for update 1.9 (Thieves Guild) as logged from the PTS server. Note that only Level 1 (White) and v16 (Gold) items have been exported.",
+					'message' => 'These are items for update 1.9 (Thieves Guild) as logged from the PTS server. Note that only Level 1 (White) and v16 (Gold) items have been exported.',
 			
 					'transform' => array(
 							'type' => 'GetItemTypeText',
@@ -811,7 +811,7 @@ class EsoLogViewer
 					'table' => 'minedItemSummary19pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-					'message' => '"These are items for update 1.9 (Thieves Guild) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+					'message' => 'These are items for update 1.9 (Thieves Guild) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
 			
 					'transform' => array(
 							'type' => 'GetItemTypeText',
