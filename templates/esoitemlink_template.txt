@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="resources/esoitemlink.js"></script>
 	</head>
 <body>
+<a href="/viewlog.php">Back to Home</a>
 <h1>ESO Item{versionTitle} -- {itemName}</h1>
 <h2 id="esoil_levelheader">{itemQuality} {itemLevel}</h2>
 
