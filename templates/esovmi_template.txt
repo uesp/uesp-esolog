@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
 	</head>
 <body>
+<a href="/viewlog.php">Back to Home</a>
 <h1>ESO Browsing Mined Items</h1>
 This is a list of Elder Scrolls Online item data mined from the game sorted by item category. Return to the <a href="http://esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
 <h2>{title}</h2>
