@@ -50,8 +50,14 @@ body {
 #elvSearchType {
 	padding-top: 2px;
 	font-size: 11px;
+	display: inline-block;
 }
 
 #elvSearchType select {
 	font-size: 11px;
+}
+
+.elvSearchAdvanced {
+	float: right;
+	margin-top: 3px;
 }
