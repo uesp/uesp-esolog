@@ -39,6 +39,12 @@ class EsoItemSearcher
 			"Weapon Damage" => array("%Increase Weapon Damage%"),
 			"Spell Critical" => array("%Adds % Spell Critical%"),
 			"Weapon Critical" => array("%Adds % Weapon Critical%"),
+			"Stealth Range" => array(	"%Reduce the range you can be detected%", 
+										"%Improves stealth radius%", 
+										"%Decrease detection radius%", ),
+			"Stealth Cost" => array(	"%Reduce the range you can be detected%", 
+										"%Reduce Sneak cost%", ),
+			"Detect Range" => array("%Increases stealth detection%"),
 		);
 	
 	static public $ESOIS_EFFECT_COLUMNS = array(
@@ -432,17 +438,17 @@ class EsoItemSearcher
 			
 			if ($effectData != null)
 			{
-				$name = $effectData[0];
-				//$tmpWhere = "MATCH($searchFields) AGAINST ('$searchText' in BOOLEAN MODE)";
-				//$where[] = "enchantName LIKE '$name%'";
 				$tmpWhere = array();
 				
-				foreach (self::$ESOIS_EFFECT_COLUMNS as $column)
+				foreach ($effectData as $name)
 				{
-					$tmpWhere[] = "$column LIKE '$name'";
+					foreach (self::$ESOIS_EFFECT_COLUMNS as $column)
+					{
+						$tmpWhere[] = "$column LIKE '$name'";
+					}
 				}
 				
-				$where[] = "(" . implode(" OR ", $tmpWhere) . ")";				
+				$where[] = "(" . implode(" OR ", $tmpWhere) . ")";
 			}
 		}		
 		
