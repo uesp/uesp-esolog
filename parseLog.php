@@ -485,6 +485,7 @@ class EsoLogParser
 			'classType' =>  self::FIELD_STRING,
 			'numRanks' => self::FIELD_INT,
 			'xp' => self::FIELD_STRING,
+			'totalXp' => self::FIELD_INT,
 	);
 	
 	
@@ -1356,6 +1357,7 @@ class EsoLogParser
 			classType TINYTEXT NOT NULL,
 			numRanks INTEGER NOT NULL DEFAULT 0,
 			xp TEXT NOT NULL,
+			totalXp INTEGER NOT NULL DEFAULT 0,
 			INDEX index_name (name(16)),
 			INDEX index_fullName (fullName(32))
 		);";
@@ -3167,6 +3169,7 @@ class EsoLogParser
 		if ($skillLine === false) return false;
 		
 		$skillLine['xp'] = $logEntry['xpString'];
+		$skillLine['totalXp'] = $logEntry['totalXp'];
 		if (array_key_exists('race', $logEntry)) $skillLine['raceType'] = $logEntry['race'];
 		if (array_key_exists('class', $logEntry)) $skillLine['classType'] = $logEntry['class'];
 		$skillLine['skillType'] = $logEntry['skillType'];
@@ -3853,5 +3856,5 @@ $g_EsoLogParser = new EsoLogParser();
 $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
 
-?>
+
 
