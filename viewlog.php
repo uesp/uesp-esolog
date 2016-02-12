@@ -346,6 +346,7 @@ class EsoLogViewer
 			'raceType' =>  self::FIELD_STRING,
 			'classType' =>  self::FIELD_STRING,
 			'numRanks' => self::FIELD_INT,
+			'totalXp' => self::FIELD_INT,
 			'xp' => self::FIELD_LARGESTRING,
 	);
 	
