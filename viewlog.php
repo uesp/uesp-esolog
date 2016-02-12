@@ -910,7 +910,7 @@ class EsoLogViewer
 					'record' => 'minedSkills',
 					'table' => 'minedSkills',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
+					'sort' => 'fullName',
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -930,7 +930,7 @@ class EsoLogViewer
 					'record' => 'minedSkillLines',
 					'table' => 'minedSkillLines',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
+					'sort' => 'fullName',
 					
 					'transform' => array(
 							'skillType' => 'GetSkillTypeText',
