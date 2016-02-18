@@ -940,8 +940,28 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function ShouldShowLevel()
+	{
+		$itemType = $this->itemRecord['type'];
+	
+		if ($itemType == 1) return true;
+		if ($itemType == 2) return true;
+		if ($itemType == 4) return true;
+		if ($itemType == 7) return true;
+		if ($itemType == 12) return true;
+		if ($itemType == 20) return true;
+		if ($itemType == 21) return true;
+		if ($itemType == 26) return true;
+		if ($itemType == 32) return true;
+	
+		return false;
+	}
+	
+	
 	public function OutputItemLevelBlock($image, $y)
 	{
+		//if (!$this->ShouldShowLevel()) return 0;
+		
 		$level = $this->itemRecord['level'];
 		$levelImageWidth = 0;
 		$levelImage = null;
