@@ -498,6 +498,17 @@ class CEsoItemLink
 				$result = $this->db->query($query);
 				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 			}
+			else if ($this->embedLink)
+			{
+				$this->itemIntType = 1;
+				$this->itemLevel = 1;
+				
+				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
+				
+				$result = $this->db->query($query);
+				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			}
 			
 			if ($result->num_rows === 0) return $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		}
