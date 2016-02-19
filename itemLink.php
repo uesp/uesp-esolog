@@ -501,7 +501,7 @@ class CEsoItemLink
 			else if ($this->embedLink)
 			{
 				$this->itemIntType = 1;
-				$this->itemLevel = 1;
+				$this->itemIntLevel = 1;
 				
 				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
