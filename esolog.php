@@ -16,7 +16,8 @@ class EsoLogCollector
 	public $currentLogFilename = "";
 	public $currentLogIndex = 1;
 	public $rawLogData = array();
-	
+	public $formResponseErrorMsg = ""; 
+		
 	
 	public function __construct ()
 	{
@@ -98,6 +99,7 @@ class EsoLogCollector
 		
 		if ($result == FALSE)
 		{
+			$this->formResponseErrorMsg = "Failed to append data to the log file!";
 			$this->reportError("Failed to append log data to file!");
 			return false;
 		}
@@ -135,7 +137,7 @@ class EsoLogCollector
 		
 		foreach ($this->rawLogData as $key => $value)
 		{
-			$result = $this->parseLogDataItem($value) and $result;
+			$result &= $this->parseLogDataItem($value) and $result;
 		}
 		
 		return $result;
@@ -186,13 +188,25 @@ class EsoLogCollector
 		
 		$this->inputParams = $_REQUEST;
 		
-		if (!array_key_exists('log', $this->inputParams)) return $this->reportError("Failed to find any form input to parse!");
+		if (!array_key_exists('log', $this->inputParams)) 
+		{
+			$this->formResponseErrorMsg = "Failed to find any form input to parse!";
+			header('X-PHP-Response-Code: 500', true, 500);
+			header('X-Uesp-Error: ' . $this->formResponseErrorMsg, false);
+			return $this->reportError($this->formResponseErrorMsg);
+		}
+		
 		$this->rawLogData = $this->inputParams['log'];
 		
 		print("Found log form data with " . count($this->rawLogData) . " elements to parse.");
 		
 		$result = $this->parseLogData();
-		if (!$result) header('X-PHP-Response-Code: 500', true, 500);
+		
+		if (!$result) 
+		{
+			header('X-PHP-Response-Code: 500', true, 500);
+			header('X-Uesp-Error: ' . $this->formResponseErrorMsg, false);
+		}
 		
 		$result &= $this->checkLogSize();
 		
