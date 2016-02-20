@@ -882,6 +882,9 @@ class CEsoItemLink
 	{
 		$output = "";
 		
+			/* TODO: Temp fix for potions showing enchantments/sets */
+		if ($this->itemRecord['type'] == 7) return "";
+		
 		if ($this->enchantRecord1 != null)
 		{
 			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
@@ -967,6 +970,9 @@ class CEsoItemLink
 	
 	private function MakeItemSetBlock()
 	{
+			/* TODO: Temp fix for potions showing enchantments/sets */
+		if ($this->itemRecord['type'] == 7) return "";
+		
 		$setName = strtoupper($this->itemRecord['setName']);
 		if ($setName == "") return "";
 		
