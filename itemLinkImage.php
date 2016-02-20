@@ -1133,6 +1133,9 @@ class CEsoItemLinkImage
 	{
 		$printData = array();
 		
+			/* TODO: Temp fix for potions showing enchantments/sets */
+		if ($this->itemRecord['type'] == 7) return 0;
+		
 		if ($this->enchantRecord1 != null)
 		{
 			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
@@ -1220,8 +1223,11 @@ class CEsoItemLinkImage
 	
 	private function OutputItemSetBlock($image, $y)
 	{
+			/* TODO: Temp fix for potions showing enchantments/sets */
+		if ($this->itemRecord['type'] == 7) return 0;
+		
 		$setName = strtoupper($this->itemRecord['setName']);
-		if ($setName == "") return "";
+		if ($setName == "") return 0;
 		$printData = array();
 		
 		$setMaxEquipCount = $this->itemRecord['setMaxEquipCount'];

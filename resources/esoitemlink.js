@@ -150,6 +150,8 @@ function GetEsoItemEnchantBlockHtml(itemData)
 {
 	var output = "";
 	
+		/* TODO: Temp fix for potions showing enchantments/sets */
+	if (itemData.type == 7) return "";
 	
 	if (itemData.enchantName1 != null && itemData.enchantDesc1 != "")
 	{
@@ -190,6 +192,9 @@ function GetEsoItemTraitBlockHtml(itemData)
 
 function GetEsoItemSetBlockHtml(itemData)
 {
+		/* TODO: Temp fix for potions showing enchantments/sets */
+	if (itemData.type == 7) return "";
+	
 	if (itemData.setName == null) return "";
 	var setName = itemData.setName.toUpperCase();
 	if (setName == "") return "";
