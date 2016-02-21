@@ -34,6 +34,8 @@ class CEsoItemLinkImage
 	const ESOIL_BOLDFONT_FILE = "./resources/esofontbold-webfont.ttf";
 	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
 	
+	const ESOIL_POTION_MAGICITEMID = 1234567;
+	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
 			"name" => "Unknown",
 			"itemId" => 0,
@@ -93,6 +95,7 @@ class CEsoItemLinkImage
 	public $image = null;
 	public $background;
 	public $black;
+	public $invis;
 	public $white;
 	public $textColor;
 	public $nameColor;
@@ -259,6 +262,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
+		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];;
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -380,6 +384,61 @@ class CEsoItemLinkImage
 		$this->itemLink = $row['link'];
 		
 		$this->itemRecord = $row;
+		
+		$this->LoadItemPotionData();
+		return true;
+	}
+	
+	
+	private function LoadItemPotionData()
+	{
+		if ($this->itemPotionData <= 0) return true;
+	
+		$potionData = intval($this->itemPotionData);
+		$potionEffect1 = $potionData & 255;
+		$potionEffect2 = ($potionData >> 8) & 255;
+		$potionEffect3 = ($potionData >> 16) & 127;
+	
+		$this->LoadItemPotionDataEffect($potionEffect1);
+		$this->LoadItemPotionDataEffect($potionEffect2);
+		$this->LoadItemPotionDataEffect($potionEffect3);
+	
+		ksort($this->itemRecord['traitAbilityDescArray']);
+		ksort($this->itemRecord['traitCooldownArray']);
+		return true;
+	}
+	
+	
+	private function LoadItemPotionDataEffect($effectIndex)
+	{
+		$effectIndex = intval($effectIndex);
+		if ($effectIndex <= 0 || $effectIndex > 127) return true;
+	
+		if ($this->itemLevel >= 1)
+		{
+			$level = $this->itemLevel;
+			$quality = $this->itemQuality;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
+		}
+		else
+		{
+			$intlevel = $this->itemIntLevel;
+			$subtype = $this->itemIntType;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND internalLevel=$intlevel AND internalSubtype=$type AND potionData=$effectIndex LIMIT 1;";
+		}
+	
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		if ($result->num_rows == 0) return true;
+	
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+	
+		if ($row['traitAbilityDesc'] == "") return true;
+	
+		$this->itemRecord['traitAbilityDescArray'][$effectIndex] = $row['traitAbilityDesc'];
+		$this->itemRecord['traitCooldownArray'][$effectIndex] = $row['traitCooldown'];
 		return true;
 	}
 	
@@ -654,8 +713,7 @@ class CEsoItemLinkImage
 				$lineWidth = 0;
 				$lineStartIndex = $i + 1; 
 			}
-		}
-		
+		}		
 		
 		return $lineCount;
 	}
@@ -1209,14 +1267,38 @@ class CEsoItemLinkImage
 	
 	private function OutputItemTraitAbilityBlock($image, $y)
 	{
-		$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
-		$cooldown = ((int) $this->itemRecord['traitCooldown']) / 1000;
-		if ($abilityDesc == "") return 0;
-		$abilityDesc .= " (" . $cooldown . " second cooldown)";
+		if ($this->itemRecord['traitAbilityDescArray'] == null)
+		{
+			$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
+			if ($abilityDesc == "") return 0;
+			$cooldown = ((int) $this->itemRecord['traitCooldown']) / 1000;
+			$abilityDesc .= " ($cooldown second cooldown)";
+			
+			$printData = array();
+			$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+			return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+		}
 		
+		$abilityDesc = array();
 		$printData = array();
-		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+		$cooldownDesc = "";
+		$isFirst = true;
+				
+		foreach ($this->itemRecord['traitAbilityDescArray'] as $index => $desc)
+		{
+			$cooldown = round($this->itemRecord['traitCooldownArray'][$index] / 1000);
+			$abilityDesc[] = $desc;
+			$cooldownDesc = " ($cooldown second cooldown)";
+
+			if (!$isFirst) $this->AddPrintData($printData, "=", $this->printOptionsSmallInvis, array('format' => false, 'lineBreak' => true));
+			$this->AddPrintData($printData, $desc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+			
+			$isFirst = false;
+		}
 		
+		if (count($abilityDesc) == 0) return 0;
+		$this->AddPrintData($printData, $cooldownDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+	
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
@@ -1367,6 +1449,7 @@ class CEsoItemLinkImage
 		);
 		
 		$this->background = imagecolorallocatealpha($image, 0, 0, 0, 127);
+		$this->invis = imagecolorallocatealpha($image, 0, 0, 0, 0);
 		$this->black =  imagecolorallocate($image, 0, 0, 0);
 		$this->white =  imagecolorallocate($image, 255, 255, 255);
 		$this->textColor =  imagecolorallocate($image, 0xC5, 0xC2, 0x9E);
@@ -1402,10 +1485,10 @@ class CEsoItemLinkImage
 				"size" => $this->medFontSize,
 		);
 		
-		$this->printOptionsTinyBeige = array(
+		$this->printOptionsSmallInvis = array(
 				"font" => self::ESOIL_REGULARFONT_FILE,
-				"color" => $this->textColor,
-				"size" => $this->tinyFontSize,
+				"color" => $this->invis,
+				"size" => $this->medFontSize,
 		);
 		
 		imagefill($image, 0, 0, $this->background);
