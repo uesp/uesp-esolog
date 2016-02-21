@@ -52,7 +52,7 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743888214748560000; //v1.9pts	
 	  const START_MINEITEM_TIMESTAMP = 4743853750546857984; //v1.8
 	
-	const MINEITEM_TABLESUFFIX = "19pts";
+	const MINEITEM_TABLESUFFIX = "";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -430,9 +430,9 @@ class EsoLogParser
 			'refinedItemLink' => 'refinedItemLink',
 			'recipeLink' => 'resultItemLink',
 			'traitDesc' => 'traitDesc',
-			'traitAbility' => 'traitAbilityDesc',
+			'traitAbility1' => 'traitAbilityDesc',
 			'matLevelDesc' => 'materialLevelDesc',
-			'traitCooldown' => 'traitCooldown',
+			'traitCooldown1' => 'traitCooldown',
 			'isUnique' => 'isUnique',
 			'isUniqueEquipped' => 'isUniqueEquipped',
 			'isVendorTrash' => 'isVendorTrash',
