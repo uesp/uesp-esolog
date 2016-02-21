@@ -67,6 +67,8 @@ class CEsoItemLink
 	const ESOIL_ICON_URL = "http://esoicons.uesp.net/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	
+	const ESOIL_POTION_MAGICITEMID = 1234567;
+	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
 			"name" => "Unknown",
 			"itemId" => 0,
@@ -218,7 +220,8 @@ class CEsoItemLink
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
-		
+		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];
+				
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
 		
@@ -548,7 +551,71 @@ class CEsoItemLink
 		$row['enchantIntLevel2'] = $this->enchantIntLevel2;
 		$row['enchantIntType2'] = $this->enchantIntType2;
 		
+		$row['traitAbilityDescs'] = array();
+		$row['traitCooldowns'] = array();
+		
+		if ($row['traitAbilityDesc'] != "")
+		{
+			$row['traitAbilityDescArray'][] = $row['traitAbilityDesc'];
+			$row['traitCooldownArray'][] = $row['traitCooldown'];
+		}
+		
 		$this->itemRecord = $row;
+		
+		$this->LoadItemPotionData();
+		return true;
+	}
+	
+	
+	private function LoadItemPotionData()
+	{
+		if ($this->itemPotionData <= 0) return true;
+		
+		$potionData = intval($this->itemPotionData);
+		$potionEffect1 = $potionData & 255;
+		$potionEffect2 = ($potionData >> 8) & 255;
+		$potionEffect3 = ($potionData >> 16) & 127;
+		
+		$this->LoadItemPotionDataEffect($potionEffect1);
+		$this->LoadItemPotionDataEffect($potionEffect2);
+		$this->LoadItemPotionDataEffect($potionEffect3);
+		
+		ksort($this->itemRecord['traitAbilityDescArray']);
+		ksort($this->itemRecord['traitCooldownArray']);		
+		return true;
+	}
+	
+	
+	private function LoadItemPotionDataEffect($effectIndex)
+	{
+		$effectIndex = intval($effectIndex);
+		if ($effectIndex <= 0 || $effectIndex > 127) return true;
+		
+		if ($this->itemLevel >= 1)
+		{
+			$level = $this->itemLevel;
+			$quality = $this->itemQuality;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
+		}
+		else
+		{
+			$intlevel = $this->itemIntLevel;
+			$subtype = $this->itemIntType;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND internalLevel=$intlevel AND internalSubtype=$type AND potionData=$effectIndex LIMIT 1;";
+		}
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		if ($result->num_rows == 0) return true;
+		
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		
+		if ($row['traitAbilityDesc'] == "") return true;
+		
+		$this->itemRecord['traitAbilityDescArray'][$effectIndex] = $row['traitAbilityDesc'];
+		$this->itemRecord['traitCooldownArray'][$effectIndex] = $row['traitCooldown'];
 		return true;
 	}
 	
@@ -1004,11 +1071,30 @@ class CEsoItemLink
 	
 	private function MakeItemTraitAbilityBlock()
 	{
-		$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
-		$cooldown = ((int) $this->itemRecord['traitCooldown']) / 1000;
+		if ($this->itemRecord['traitAbilityDescArray'] == null)
+		{
+			$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
+			if ($abilityDesc == "") return "";
+			$cooldown = round($this->itemRecord['traitCooldown'] / 1000);
+			return "$abilityDesc ($cooldown second cooldown)";
+		}
 		
-		if ($abilityDesc == "") return "";
-		return "$abilityDesc ($cooldown second cooldown)";
+		$abilityDesc = array();
+		$cooldownDesc = "";
+		
+		foreach ($this->itemRecord['traitAbilityDescArray'] as $index => $desc)
+		{
+			//$desc = strtoupper($desc);
+			$cooldown = round($this->itemRecord['traitCooldownArray'][$index] / 1000);
+			$abilityDesc[] = $desc;
+			$cooldownDesc = " ($cooldown second cooldown)";
+		}
+		
+		if (count($abilityDesc) == 0) return "";
+		
+		$output = implode("\n\n", $abilityDesc) . "\n" . $cooldownDesc;
+		$output = $this->FormatDescriptionText($output);
+		return $output;		
 	}
 	
 	
@@ -1082,7 +1168,7 @@ class CEsoItemLink
 		$d17 = $this->itemCrafted < 0 ? 0 : $this->itemCrafted; //Crafted
 		$d18 = $this->itemBound < 0 ? 0 : $this->itemBound; //Bound
 		$d19 = $this->itemCharges < 0 ? 0 : $this->itemCharges; //Charges
-		$d20 = 0; //PotionData
+		$d20 = $this->itemPotionData;
 		$itemName = $this->itemRecord['name'];
 		
 		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20|h[$itemName]|h";
@@ -1118,7 +1204,7 @@ class CEsoItemLink
 			$showSummary = $this->showSummary ? 'summary' : '';
 			$itemLinkURL = 	"itemLinkImage.php?itemid={$this->itemRecord['itemId']}&level={$this->itemRecord['level']}&" .
 							"quality={$this->itemRecord['quality']}&enchantid={$this->enchantId1}&enchantintlevel={$this->enchantIntLevel1}&" .
-							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}";			
+							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}&potiondata={$this->itemPotionData}";			
 		}
 		else 
 		{

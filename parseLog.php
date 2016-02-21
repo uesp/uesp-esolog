@@ -1285,7 +1285,7 @@ class EsoLogParser
 			materialLevelDesc TINYTEXT NOT NULL,
 			traitDesc TINYTEXT NOT NULL,
 			traitAbilityDesc TINYTEXT NOT NULL,
-			traitCooldown TINYINT NOT NULL DEFAULT -1,
+			traitCooldown INTEGER NOT NULL DEFAULT -1,
 			isUnique BIT NOT NULL DEFAULT 0,
 			isUniqueEquipped BIT NOT NULL DEFAULT 0,
 			isVendorTrash BIT NOT NULL DEFAULT 0,
