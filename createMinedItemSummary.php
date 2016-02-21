@@ -47,6 +47,11 @@ $RANGE_FIELDS = array(
 		"setBonusDesc5",
 );
 
+if (intval($TABLE_SUFFIX) <= 18)
+{
+	unset($FIELDS['tags']);
+}
+
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
