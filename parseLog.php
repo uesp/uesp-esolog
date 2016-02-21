@@ -491,6 +491,12 @@ class EsoLogParser
 	
 	public function __construct ()
 	{
+		
+		if (intval(self::MINEITEM_TABLESUFFIX) <= 18)
+		{
+			unset(self::$MINEDITEM_FIELDS['tags']);
+		}
+		
 		$this->initDatabaseWrite();
 		$this->readIndexFile();
 		$this->currentLogFilename = $this->getCurrentLogFilename();
