@@ -911,7 +911,7 @@ class EsoLogViewer
 					'record' => 'minedSkills',
 					'table' => 'minedSkills',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'fullName',
+					'sort' => 'name',
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
