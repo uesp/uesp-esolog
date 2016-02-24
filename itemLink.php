@@ -111,6 +111,7 @@ class CEsoItemLink
 	public $itemCrafted = -1;
 	public $itemCharges = -1;
 	public $itemPotionData = -1;
+	public $itemStolen = -1;
 	public $itemSetCount = -1;
 	public $showStyle = true;
 	public $enchantId1 = 0;
@@ -168,6 +169,7 @@ class CEsoItemLink
 		$this->itemCrafted = $matches['crafted'];
 		$this->itemCharges = $matches['charges'];
 		$this->itemPotionData = $matches['potionData'];
+		$this->itemStolen = $matches['stolen'];
 		
 		$this->enchantId1 = $matches['enchantId1'];
 		$this->enchantIntLevel1 = $matches['enchantLevel1'];
@@ -221,6 +223,7 @@ class CEsoItemLink
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];
+		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
 				
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -859,6 +862,16 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeItemStolenText()
+	{
+		if ($this->itemStolen <= 0) return "";
+		
+		$output = "<img src='http://esoitem.uesp.net/resources/stolenitem.png' class='esoil_stolenicon' />";
+		
+		return $output;
+	}
+	
+	
 	private function MakeItemBindTypeText()
 	{
 		if ($this->itemBound > 0) return "Bound";
@@ -1199,12 +1212,13 @@ class CEsoItemLink
 		$itemLinkURL = '';
 		
 		if ($this->version != '' || $this->showSummary || $this->enchantId1 > 0 || $this->enchantId2 > 0 ||
-			$this->itemPotionData > 0 || $this->itemCharges >= 0)
+			$this->itemPotionData > 0 || $this->itemCharges >= 0 || $this->itemStolen > 0)
 		{
 			$showSummary = $this->showSummary ? 'summary' : '';
 			$itemLinkURL = 	"itemLinkImage.php?itemid={$this->itemRecord['itemId']}&level={$this->itemRecord['level']}&" .
 							"quality={$this->itemRecord['quality']}&enchantid={$this->enchantId1}&enchantintlevel={$this->enchantIntLevel1}&" .
-							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}&potiondata={$this->itemPotionData}";			
+							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}&potiondata={$this->itemPotionData}&stolen={$this->itemStolen}&" .
+							"itemlink={$this->itemLink}";			
 		}
 		else 
 		{
@@ -1237,6 +1251,7 @@ class CEsoItemLink
 				'{itemId}' => $this->itemRecord['itemId'],
 				'{itemType1}' => $this->MakeItemTypeText(),
 				'{itemType2}' => $this->MakeItemSubTypeText(),
+				'{itemStolen}' => $this->MakeItemStolenText(),
 				'{itemBindType}' => $this->MakeItemBindTypeText(),
 				'{itemValue}' => $this->itemRecord['value'],
 				'{itemLevel}' => $this->MakeItemLevelSimpleString(),

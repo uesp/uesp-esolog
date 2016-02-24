@@ -5,6 +5,7 @@
 		<img src="{iconLink}" id="esoil_itemicon"/>
 		<div id="esoil_itemtype1">{itemType1}</div>
 		<div id="esoil_itemtype2">{itemType2}</div>
+		<div id="esoil_itemstolen">{itemStolen}</div>
 		<div id="esoil_itembindtype">{itemBindType}</div>
 		<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
 		<img src="http://esoitem.uesp.net/resources/eso_item_hr.png" id="esoil_item_hr"/>
