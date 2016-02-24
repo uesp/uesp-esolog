@@ -79,6 +79,7 @@ class CEsoItemLinkImage
 	public $itemCharges = -1;
 	public $itemSetCount = -1;
 	public $itemPotionData = -1;
+	public $itemStolen = -1;
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
 	public $enchantIntType1 = -1;
@@ -184,6 +185,7 @@ class CEsoItemLinkImage
 		$this->itemCrafted = $matches['crafted'];
 		$this->itemCharges = $matches['charges'];
 		$this->itemPotionData = $matches['potionData'];
+		$this->itemStolen = $matches['stolen'];
 		
 		$this->enchantId1 = $matches['enchantId1'];
 		$this->enchantIntLevel1 = $matches['enchantLevel1'];
@@ -263,6 +265,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];;
+		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];;
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -1016,6 +1019,23 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function OutputItemStolenBlock($image)
+	{
+		if ($this->itemStolen <= 0) return 0;
+		$stolenImage = imagecreatefrompng("./resources/stolenitem.png");
+		
+		if ($stolenImage)
+		{
+			$x = imagesx($image) - $this->borderWidth - 20;
+			$y = $this->topMargin + $this->borderWidth + 2;
+			$size = 20;
+			imagecopyresized($image, $stolenImage, $x, $y, 0, 0, $size, $size, imagesx($stolenImage),imagesy($stolenImage));
+		}
+		
+		return $size;
+	}
+	
+	
 	public function OutputItemLevelBlock($image, $y)
 	{
 		//if (!$this->ShouldShowLevel()) return 0;
@@ -1521,6 +1541,8 @@ class CEsoItemLinkImage
 		$this->AddPrintData($printData, $valueText, $this->printOptionsLargeWhite);
 		$this->PrintDataText($image, $printData, $this->dataBlockMargin, $y + 4, 'left');
 		
+		$this->OutputItemStolenBlock($image);
+		
 		$y += 6;
 		$this->OutputCenterImage($image, "./resources/eso_item_hr.png", $y);
 		$y += 6;
@@ -1659,6 +1681,7 @@ class CEsoItemLinkImage
 		if ($this->itemPotionData > 0) return false;
 		if ($this->version != "") return false;
 		if ($this->itemSetCount >= 0) return false;
+		if ($this->itemStolen > 0) return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
