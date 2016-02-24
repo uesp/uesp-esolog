@@ -455,7 +455,7 @@ class CEsoItemLink
 	
 	private function LoadItemSummaryData()
 	{
-		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
+		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-85000)!");
 		$query = "SELECT * FROM minedItemSummary". $this->GetTableSuffix() ." WHERE itemId={$this->itemId};";
 		
 		$result = $this->db->query($query);
@@ -470,7 +470,7 @@ class CEsoItemLink
 	
 	private function LoadItemRecord()
 	{
-		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
+		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-85000)!");
 		$query = "";
 		
 		if ($this->itemLevel >= 1)
