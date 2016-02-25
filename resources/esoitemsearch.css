@@ -37,7 +37,7 @@
 	border: 1px solid silver;
     border-top-width: 0 !important;
     padding: 7px;
-    width: 700px;
+    width: 640px;
 }
 
 #esois_searchresults {
@@ -83,7 +83,7 @@
     background-color: #F5DEB3;
 	border: 1px solid silver;
 	padding: 7px;
-	width: 700px;
+	width: 640px;
 }
 
 .esois_helpbutton {
@@ -205,7 +205,7 @@
 
 .esois_inlineblock {
 	display: inline-block;
-	width: 340px;
+	width: 310px;
 }
 
 .esois_buttons {
