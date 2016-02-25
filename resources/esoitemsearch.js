@@ -152,5 +152,5 @@ function esoisResetSearchForm()
 	$('#esois_enchant').val('');
 	$('#esois_effect').val('');
 	$('#esois_level').val('');
-	$('#esois_variablestyle').attr('checked', false);	
+	$('#esois_variablestyle').prop('checked', false);	
 }
