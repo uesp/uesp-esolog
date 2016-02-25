@@ -2048,8 +2048,13 @@ class EsoLogParser
 		$questItemRecord['description'] = $logEntry['desc'];
 		$questItemRecord['header'] = $logEntry['header'];
 		$questItemRecord['icon'] = $logEntry['texture'];
-		$questItemRecord['stepIndex'] = $logEntry['stepIndex'];
-		$questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
+		$questItemRecord['stepIndex'] = -1;
+		$questItemRecord['conditionIndex'] = -1;
+		
+		if ($logEntry['stepIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['stepIndex'];
+		if ($logEntry['conditionIndex'] != null) $questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
+		if ($logEntry['toolIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['toolIndex'];
+		
 		$questItemRecord['__isNew'] = true;
 		
 		$questRecord = $this->FindQuest($logEntry['questName']);
@@ -2161,8 +2166,10 @@ class EsoLogParser
 		$questItemRecord['description'] = $logEntry['desc'];
 		$questItemRecord['header'] = $logEntry['header'];
 		$questItemRecord['icon'] = $logEntry['texture'];
-		$questItemRecord['stepIndex'] = $logEntry['stepIndex'];
-		$questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
+		
+		if ($logEntry['stepIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['stepIndex'];
+		if ($logEntry['conditionIndex'] != null) $questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
+		if ($logEntry['toolIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['toolIndex'];
 		
 		$questRecord = $this->FindQuest($logEntry['questName']);
 		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
