@@ -26,11 +26,10 @@
 	        <input type="text" name="text" id="esois_text" value="{formText}" size="32" maxlength="32" />
 	        <div class='esois_helpbutton' tooltip="Enter a string to search for in the item name or various description fields. You may also enter an item ID (1-99999) to find that specific item.">?</div>
 	    </div>
-	    <div>
-	        <label for="trait" class="esois_label1">Trait:</label>
-	        <select name="trait" id="esois_trait">
-	        	{listTrait}
-	        </select>
+		<div>
+	        <label for="level" class="esois_label1">Level:</label>
+	        <input name="level" id="esois_level" value="{formLevel}" size="10" maxsize="10">
+	        <div class='esois_helpbutton' tooltip="Enter an item level from 1-66 or v1-v16. If you omit the level or quality the item summary will be shown.">?</div>
 	    </div>
 	    <div>
 	        <label for="quality" class="esois_label1">Quality:</label>
@@ -40,11 +39,19 @@
 	        <div class='esois_helpbutton' tooltip="Note that only some items (like Treasures) have a fixed quality. Most items are able to have any quality level.">?</div>
 	    </div>
 	    <div>
+	        <label for="trait" class="esois_label1">Trait:</label>
+	        <select name="trait" id="esois_trait">
+	        	{listTrait}
+	        </select>
+	    </div>
+	    <div>
 	        <label for="style" class="esois_label1">Style:</label>
 	        <select name="style" id="esois_style">
 	        	{listStyle}
 	        </select>
 	        <div class='esois_helpbutton' tooltip="Only items that have fixed styles will show up in the search results when searching for a specific style.">?</div>
+	        <input type="checkbox" name="variablestyle" id="esois_variablestyle" value="1" {formVariableStyle} > Include Items With Variable Style
+	        <div class='esois_helpbutton' tooltip="If this is checked the search will include armor/weapons that can be found in any style.">?</div>
 	    </div>
 	    <div>
 	        <label for="itemtype" class="esois_label1">Item Type:</label>
