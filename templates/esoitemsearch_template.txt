@@ -21,78 +21,81 @@
 	<div id="esois_searchoptions">
 		
 		<input type="hidden" name="version" value="{formVersion}" />
-		<div>
+		<div class='esois_inlineblock'>
 	        <label for="text" class="esois_label1">Text:</label>
 	        <input type="text" name="text" id="esois_text" value="{formText}" size="32" maxlength="32" />
 	        <div class='esois_helpbutton' tooltip="Enter a string to search for in the item name or various description fields. You may also enter an item ID (1-99999) to find that specific item.">?</div>
 	    </div>
-		<div>
+		<div class='esois_inlineblock'>
 	        <label for="level" class="esois_label1">Level:</label>
 	        <input name="level" id="esois_level" value="{formLevel}" size="10" maxsize="10">
 	        <div class='esois_helpbutton' tooltip="Enter an item level from 1-66 or v1-v16. If you omit the level or quality the item summary will be shown.">?</div>
 	    </div>
-	    <div>
+	    <div class='esois_inlineblock'>
 	        <label for="quality" class="esois_label1">Quality:</label>
 	        <select name="quality" id="esois_quality">
 	        	{listQuality}
 	        </select>
 	        <div class='esois_helpbutton' tooltip="Note that only some items (like Treasures) have a fixed quality. Most items are able to have any quality level.">?</div>
 	    </div>
-	    <div>
+	    <div class='esois_inlineblock'>
 	        <label for="trait" class="esois_label1">Trait:</label>
 	        <select name="trait" id="esois_trait">
 	        	{listTrait}
 	        </select>
 	    </div>
-	    <div>
-	        <label for="style" class="esois_label1">Style:</label>
-	        <select name="style" id="esois_style">
-	        	{listStyle}
-	        </select>
-	        <div class='esois_helpbutton' tooltip="Only items that have fixed styles will show up in the search results when searching for a specific style.">?</div>
-	        <input type="checkbox" name="variablestyle" id="esois_variablestyle" value="1" {formVariableStyle} > Include Items With Variable Style
-	        <div class='esois_helpbutton' tooltip="If this is checked the search will include armor/weapons that can be found in any style.">?</div>
-	    </div>
-	    <div>
+	    <div class='esois_inlineblock'>
 	        <label for="itemtype" class="esois_label1">Item Type:</label>
 	        <select name="itemtype" id="esois_itemtype">
 	        	{listItemType}
 	        </select>
 	    </div>
-	    <div>
+	    <div class='esois_inlineblock'>
 	        <label for="equiptype" class="esois_label1">Equip Type:</label>
 	        <select name="equiptype" id="esois_equiptype">
 	        	{listEquipType}
 	        </select>
 		</div>
-		<div>
-	        <label for="armortype" class="esois_label1">Armor Type:</label>
-	        <select name="armortype" id="esois_armortype">
-	        	{listArmorType}
-	        </select>
-		</div>
-		<div>
+		<div class='esois_inlineblock'>
 	    	<label for="weapontype" class="esois_label1">Weapon Type:</label>
 	        <select name="weapontype" id="esois_weapontype">
 	        	{listWeaponType}
 	        </select>
 		</div>
-		<div>
+		<div class='esois_inlineblock'>
+	        <label for="armortype" class="esois_label1">Armor Type:</label>
+	        <select name="armortype" id="esois_armortype">
+	        	{listArmorType}
+	        </select>
+		</div>
+		<div class='esois_inlineblock'>
 	    	<label for="enchant" class="esois_label1">Enchantment:</label>
 	        <select name="enchant" id="esois_enchant">
 	        	{listEnchant}
 	        </select>
 	        <div class='esois_helpbutton' tooltip="Search for the default enchantment on an item. Most items can have their enchantments replaced in-game.">?</div>
 		</div>
-		<div>
+		<div class='esois_inlineblock'>
 	    	<label for="effect" class="esois_label1">Effect:</label>
 	        <select name="effect" id="esois_effect">
 	        	{listEffect}
 	        </select>
 		</div>
-	    
-		<input type="button" class="esois_clearbutton" value="Clear" onclick="esoisResetSearchForm();" />
-		<input type="submit" class="esois_searchbutton" value="Search..." />
+		<div>
+	        <label for="style" class="esois_label1">Style:</label>
+	        <select name="style" id="esois_style">
+	        	{listStyle}
+	        </select>
+	        <div class='esois_helpbutton' tooltip="Only items that have fixed styles will show up in the search results when searching for a specific style.">?</div>
+	        <div class='esois_variablestyle'>
+	        	<input type="checkbox" name="variablestyle" id="esois_variablestyle" value="1" {formVariableStyle} > Include Items With Variable Style
+	        	<div class='esois_helpbutton' tooltip="If this is checked the search will include armor/weapons that can be found in any style.">?</div>
+	        </div>
+	    </div>
+	    <div class='esois_buttons'>
+			<input type="button" class="esois_clearbutton" value="Clear" onclick="esoisResetSearchForm();" />
+			<input type="submit" class="esois_searchbutton" value="Search..." />
+		</div>
 	</div>
 </form>
 

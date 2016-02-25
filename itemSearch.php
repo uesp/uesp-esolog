@@ -713,7 +713,7 @@ class EsoItemSearcher
 			$output .= GetEsoItemBindTypeText($result['bindType']) . ", ";
 		}
 		
-		$output .= "<div class='esois_rawitemlink esois_helpcopy' tooltip='Click to Copy'>$outputItemLink</div> ";
+		$output .= "<div class='esois_rawitemlink esois_helpcopy' tooltip='Click to Copy Item Link'>$outputItemLink</div> ";
 						
 		$output .= "<div class='esois_itemdesc'>$desc</div> ";
 		$output .= "<a href='$imageLinkUrl' class='esois_linktoimage'>Link to Image</a>";
