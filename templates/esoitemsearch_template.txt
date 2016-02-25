@@ -89,7 +89,7 @@
 	        <div class='esois_helpbutton' tooltip="Only items that have fixed styles will show up in the search results when searching for a specific style.">?</div>
 	        <div class='esois_variablestyle'>
 	        	<input type="checkbox" name="variablestyle" id="esois_variablestyle" value="1" {formVariableStyle} > Include Items With Variable Style
-	        	<div class='esois_helpbutton' tooltip="If this is checked the search will include armor/weapons that can be found in any style.">?</div>
+	        	<div class='esois_helpbutton' tooltip="If this is checked the search will include armor/weapons that can be found or crafted in any style.">?</div>
 	        </div>
 	    </div>
 	    <div class='esois_buttons'>
