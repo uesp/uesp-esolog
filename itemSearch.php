@@ -579,7 +579,7 @@ class EsoItemSearcher
 	{
 		$output = "";
 		
-		$itemName = $result['name'];
+		$itemName = ucfirst($result['name']);
 		$itemLink = $result['link'];
 		$itemId = $result['itemId'];
 		$quality = $result['quality'];
