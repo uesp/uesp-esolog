@@ -18,7 +18,7 @@ class EsoItemSearcher
 	
 	const ESOIS_ICON_URL = "http://esoicons.uesp.net/";
 	const ESOIS_ICON_UNKNOWN = "unknown.png";
-	const ESOIS_ICON_WIDTH = 24;
+	const ESOIS_ICON_WIDTH = 32;
 	
 	static public $ESOIS_EFFECT_DATA = array(
 			"" => array(),
@@ -667,6 +667,8 @@ class EsoItemSearcher
 		{
 			$output .= GetEsoItemBindTypeText($result['bindType']) . ", ";
 		}
+		
+		$output .= "id " . $itemId . " ";
 						
 		$output .= "<div class='esois_itemdesc'>$desc</div> ";
 		$output .= "<a href='$imageLinkUrl' class='esois_imagelink'>Link to Image</a>";
