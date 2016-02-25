@@ -419,12 +419,16 @@ class EsoItemSearcher
 		{
 			if ($this->formValues['trait'] == "(none)")
 			{
-				$where[] = "trait <= 0";
+				$where[] = "trait<=0";
+			}
+			else if ($this->formValues['trait'] == "Nirnhoned")
+			{
+				$where[] = "(trait=25 or trait=26)";
 			}
 			else
 			{
 				$value = $this->GetItemTraitValue($this->formValues['trait']);
-				$where[] = "trait = $value";
+				$where[] = "trait=$value";
 			}
 		}
 		
