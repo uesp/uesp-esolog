@@ -575,16 +575,19 @@ class EsoItemSearcher
 		$extraClass = "";
 		$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&summary";
 		$toolTipParams = "itemid='$itemId' summary='1'";
+		$imageLinkUrl = "http://esoitem.uesp.net/itemLinkImage.php?itemid=$itemId&summary&none=item.png";
 		
 		if ($this->finalItemLevel > 0 && $this->finalItemQuality >= 0)
 		{
 			$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&level={$this->finalItemLevel}&quality={$this->finalItemQuality}";
 			$toolTipParams = "itemid='$itemId' level='{$this->finalItemLevel}' quality='{$this->finalItemQuality}'";
+			$imageLinkUrl = "http://esoitem.uesp.net/item-$itemId-{$this->finalItemLevel}-{$this->finalItemQuality}.png";
 
 			if ($this->finalItemStyle > 0)
 			{
 				$linkToItem    .= "&style={$this->finalItemStyle}";
 				$toolTipParams .= " style='{$this->finalItemStyle}'";
+				$imageLinkUrl = "http://esoitem.uesp.net/itemLinkImage.php?itemid=$itemId&level={$this->finalItemLevel}&quality={$this->finalItemQuality}&style={$this->finalItemStyle}&none=item.png";
 			}
 		}
 		
@@ -665,7 +668,8 @@ class EsoItemSearcher
 			$output .= GetEsoItemBindTypeText($result['bindType']) . ", ";
 		}
 						
-		$output .= "<div class='esois_itemdesc'>$desc</div>";
+		$output .= "<div class='esois_itemdesc'>$desc</div> ";
+		$output .= "<a href='$imageLinkUrl' class='esois_imagelink'>Link to Image</a>";
 		$output .= "</div>";
 		$output .= "</td></tr>\n";
 		
