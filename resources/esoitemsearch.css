@@ -142,3 +142,12 @@
 .eso_item_link_q3 { color: #3A92FF !important; }
 .eso_item_link_q4 { color: #A02EF7 !important; }
 .eso_item_link_q5 { color: #CCAA1A !important; }
+
+.esois_imagelink {
+	font-size: 0.9em;
+	float: right;
+}
+
+.esois_imagelink:hover {
+	background-color: #9999ff;
+}
