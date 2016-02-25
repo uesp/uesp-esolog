@@ -145,16 +145,44 @@
 .eso_item_link_q4 { color: #A02EF7 !important; }
 .eso_item_link_q5 { color: #CCAA1A !important; }
 
-.esois_imagelink {
+.esois_linktoimage {
 	font-size: 0.9em;
 	float: right;
 }
 
-.esois_imagelink:hover {
+.esois_linktoimage:hover {
 	background-color: #9999ff;
 }
 
 .esois_itemid {
 	font-size: 0.9em;
 	float: left;
+}
+
+.esois_rawitemlink {
+	display: inline-block;
+	padding: 4px;
+	position: relative;
+}
+
+.esois_rawitemlink:hover {
+	background-color: #ff9999;
+	cursor: pointer;
+}
+
+.esois_helpcopy:hover:after {
+    background: #ffff99;
+    border-radius: 3px;
+    bottom: 20px;
+    color: #000;
+    content: attr(tooltip);
+    left: 90%;
+    padding: 4px;
+    position: absolute;
+    z-index: 98;
+    font-size: 12px;
+    font-weight: normal;
+    width: 75px;
+    text-align: center;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }

@@ -529,6 +529,46 @@ class EsoItemSearcher
 		$iconLink = self::ESOIS_ICON_URL . $icon;
 		return $iconLink;
 	}
+	
+	
+	public function MakeItemLink($itemData)
+	{
+		$itemId = $itemData['itemId'];
+		$weaponType = $itemData['weaponType'];
+		$armorType = $itemData['armorType'];
+		$equipType = $itemData['equipType'];
+		$style = $this->finalItemStyle;
+		$level = $this->finalItemLevel;
+		$quality = $this->finalItemQuality;
+		$charges = 0;
+		
+		if ($quality < 0) $quality = 1;
+		if ($level <= 0) $level = 1;
+		if ($style < 0) $style = 0;
+		
+		$qualityMap = FindEsoItemLevelIntTypeMap($level);
+		$intType = $qualityMap[$quality];
+		$intLevel = $level;
+		if ($intLevel > 50) $intLevel = 50;
+		
+		if ($weaponType > 0)
+		{
+			if ($weaponType == 14)
+				$charges = 10000;
+			else
+				$charges = 1000;
+		}
+		else if ($armorType > 0)
+		{
+			$charges = 10000;
+		}
+		
+		//|H1:item:Id:SubType:InternalLevel:EnchantId:EnchantSubType:EnchantLevel:EnchantId2:EnchantSubType2:EnchantLevel2:
+		//     0:0:0:0:0:0:0:Style:Crafted:Bound:Stolen::Charges:PotionEffect|hName|h
+		$itemLink = "|H0:item:$itemId:$intType:$intLevel:0:0:0:0:0:0:0:0:0:0:0:0:$style:0:0:0:$charges:0|h|h";
+		
+		return $itemLink;
+	}
 
 	
 	private function GetSearchResultRowHtml($result)
@@ -545,6 +585,7 @@ class EsoItemSearcher
 		$slotText = "";
 		$desc = FormatEsoItemDescriptionText($result['description']);
 		$trait = $result['trait'];
+		$outputItemLink = $this->MakeItemLink($result);
 		
 		$enchantDesc = FormatRemoveEsoItemDescriptionText($result['enchantDesc']);
 		$traitDesc = FormatRemoveEsoItemDescriptionText($result['traitDesc']);
@@ -668,10 +709,10 @@ class EsoItemSearcher
 			$output .= GetEsoItemBindTypeText($result['bindType']) . ", ";
 		}
 		
-		$output .= "id " . $itemId . " ";
+		$output .= "<div class='esois_rawitemlink esois_helpcopy' tooltip='Click to Copy'>$outputItemLink</div> ";
 						
 		$output .= "<div class='esois_itemdesc'>$desc</div> ";
-		$output .= "<a href='$imageLinkUrl' class='esois_imagelink'>Link to Image</a>";
+		$output .= "<a href='$imageLinkUrl' class='esois_linktoimage'>Link to Image</a>";
 		$output .= "</div>";
 		$output .= "</td></tr>\n";
 		
