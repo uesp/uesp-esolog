@@ -37,7 +37,7 @@
 	border: 1px solid silver;
     border-top-width: 0 !important;
     padding: 7px;
-    width: 500px;
+    width: 700px;
 }
 
 #esois_searchresults {
@@ -83,7 +83,7 @@
     background-color: #F5DEB3;
 	border: 1px solid silver;
 	padding: 7px;
-	width: 500px;
+	width: 700px;
 }
 
 .esois_helpbutton {
@@ -182,7 +182,37 @@
     z-index: 98;
     font-size: 12px;
     font-weight: normal;
-    width: 75px;
+    width: 130px;
     text-align: center;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#esois_text {
+	width: 166px;
+}
+
+#esois_quality, #esois_weapontype , #esois_style, #esois_itemtype, #esois_enchantment {
+	width: 170px;
+}
+
+#esois_armortype, #esois_trait, #esois_equiptype, #esois_effect {
+	width: 140px;
+}
+
+#esois_level {
+	width: 136px;
+}
+
+.esois_inlineblock {
+	display: inline-block;
+	width: 340px;
+}
+
+.esois_buttons {
+	padding-top: 10px;
+}
+
+.esois_variablestyle {
+    padding-left: 50px;
+    display: inline-block;
 }
