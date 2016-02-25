@@ -58,7 +58,7 @@ class EsoLogParser
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
-	public $skipCreateTables = true;
+	public $skipCreateTables = false;
 	
 	public $currentLanguage = 'en';
 	
@@ -266,6 +266,21 @@ class EsoLogParser
 			'isPushed' => self::FIELD_INT,
 			'isHidden' => self::FIELD_INT,
 			'isComplete' => self::FIELD_INT,
+	);
+		
+	public static $QUESTITEM_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
+			'itemLink' => self::FIELD_STRING,
+			'questName' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'itemId' => self::FIELD_INT,
+			'header' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'stepIndex' => self::FIELD_INT,
+			'conditionIndex' => self::FIELD_INT,
 	);
 	
 	public static $NPC_FIELDS = array(
@@ -958,6 +973,12 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveQuestItem (&$record)
+	{
+		return $this->saveRecord('questItem', $record, 'id', self::$QUESTITEM_FIELDS);
+	}
+	
+	
 	public function SaveLocation (&$record)
 	{
 		return $this->saveRecord('location', $record, 'id', self::$LOCATION_FIELDS);
@@ -1170,7 +1191,7 @@ class EsoLogParser
 						isFail TINYINT NOT NULL,
 						isComplete TINYINT NOT NULL,
 						PRIMARY KEY (id),
-						INDEX index_quest (questId),
+						INDEX index_quest(questId),
 						FULLTEXT(objective),
 						FULLTEXT(overrideText)
 					);";
@@ -1178,6 +1199,30 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questStage table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS questItem (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						questId BIGINT NOT NULL,
+						questName TINYTEXT NOT NULL,
+						itemLink TINYTEXT NOT NULL,
+						name TINYTEXT NOT NULL,
+						header TINYTEXT NOT NULL,
+						itemId INTEGER NOT NULL,
+						description TEXT NOT NULL,
+						icon TINYTEXT NOT NULL,
+						stepIndex INTEGER NOT NULL,
+						conditionIndex INTEGER NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name),
+						FULLTEXT(description),
+						INDEX index_questId(questId),
+						INDEX index_link (itemLink(64))
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create questItem table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS npc (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -1991,6 +2036,35 @@ class EsoLogParser
 	}
 	
 	
+	public function CreateQuestItem ($logEntry)
+	{
+		$questItemRecord = $this->createNewRecord(self::$QUESTITEM_FIELDS);
+	
+		$questItemRecord['questId'] = -1;
+		$questItemRecord['itemLink'] = $logEntry['itemLink'];
+		$questItemRecord['name'] = $logEntry['name'];
+		$questItemRecord['questName'] = $logEntry['questName'];
+		$questItemRecord['itemId'] = $logEntry['questId'];
+		$questItemRecord['description'] = $logEntry['desc'];
+		$questItemRecord['header'] = $logEntry['header'];
+		$questItemRecord['icon'] = $logEntry['texture'];
+		$questItemRecord['stepIndex'] = $logEntry['stepIndex'];
+		$questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
+		$questItemRecord['__isNew'] = true;
+		
+		$questRecord = $this->FindQuest($logEntry['questName']);
+		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveQuestItem($questItemRecord);
+		if (!$result) return null;
+		
+		return $questItemRecord;
+	}
+	
+	
 	public function CreateQuestOfferStage ($questRecord, $logEntry)
 	{
 		$questStageRecord = $this->createNewRecord(self::$QUESTSTAGE_FIELDS);
@@ -2059,6 +2133,44 @@ class EsoLogParser
 				if ($questStageRecord == null) return false;
 			}
 		}
+		
+		return true;
+	}
+	
+	
+	public function OnQuestItem ($logEntry)
+	{
+		//event{QuestItem}  stepIndex{1}  itemLink{|H0:quest_item:5625|hDurzog Feed|h}  conditionIndex{1}  
+		//header{Quest Item}  questId{5625}  name{Durzog Feed}  questName{Getting a Bellyful}  journalIndex{7}  
+		//desc{This meat is surprisingly fresh and carries a robust, heady odor.}  texture{/esoui/art/icons/quest_food_003.dds}  
+		//gameTime{845859763}  timeStamp{4743895467916525568}  lang{en}  userName{...}  ipAddress{...}  logTime{1396487061}  end{}
+		
+		$questItemRecord = $this->FindQuestItem($logEntry['itemLink']);
+		
+		if ($questItemRecord == null)
+		{
+			$questItemRecord = $this->CreateQuestItem($logEntry);
+			if ($questItemRecord == null) return false;
+			
+			return true;
+		}
+		
+		$questItemRecord['name'] = $logEntry['name'];
+		$questItemRecord['questName'] = $logEntry['questName'];
+		$questItemRecord['itemId'] = $logEntry['questId'];
+		$questItemRecord['description'] = $logEntry['desc'];
+		$questItemRecord['header'] = $logEntry['header'];
+		$questItemRecord['icon'] = $logEntry['texture'];
+		$questItemRecord['stepIndex'] = $logEntry['stepIndex'];
+		$questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
+		
+		$questRecord = $this->FindQuest($logEntry['questName']);
+		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
+		
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveQuestItem($questItemRecord);
+		if (!$result) return false;
 		
 		return true;
 	}
@@ -2280,6 +2392,26 @@ class EsoLogParser
 		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUESTSTAGE_FIELDS);
+	}
+	
+	
+	public function FindQuestItem ($itemLink)
+	{
+		$safeLink = $this->db->real_escape_string($itemLink);
+		$query = "SELECT * FROM questItem WHERE itemLink=\"$safeLink\";";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve quest item!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$QUESTITEM_FIELDS);
 	}
 	
 	
@@ -3445,6 +3577,7 @@ class EsoLogParser
 			case "QuestOptionalStep":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestCompleteExperience":		$result = $this->OnNullEntry($logEntry); break;
 			case "QuestMoney":					$result = $this->OnNullEntry($logEntry); break;
+			case "QuestItem":					$result = $this->OnQuestItem($logEntry); break;
 			case "CraftComplete":				$result = $this->OnNullEntry($logEntry); break;
 			case "CraftComplete::Result":		$result = $this->OnNullEntry($logEntry); break;
 			case "SkillRankUpdate":				$result = $this->OnSkillRankUpdate($logEntry); break;
