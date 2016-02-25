@@ -11,7 +11,7 @@ function CreateEsoItemLinkPopup()
 }
 
 
-function ShowEsoItemLinkPopup(parent, itemId, level, quality, showSummary, intLevel, intType, itemLink, setCount)
+function ShowEsoItemLinkPopup(parent, itemId, level, quality, showSummary, intLevel, intType, itemLink, setCount, style)
 {
 	var linkSrc = "http://esoitem.uesp.net/itemLink.php?&embed";
 	var dataOk = false;
@@ -21,6 +21,7 @@ function ShowEsoItemLinkPopup(parent, itemId, level, quality, showSummary, intLe
 	if (intLevel) linkSrc += "&intlevel=" + intLevel;
 	if (intType) linkSrc += "&inttype=" + intType;
 	if (level) linkSrc += "&level=" + level;
+	if (style) linkSrc += "&style=" + style;
 	if (quality) linkSrc += "&quality=" + quality;
 	if (showSummary) linkSrc += "&summary";
 	if (setCount != null && setCount != undefined && setCount >= 0) linkSrc += "&setcount=" + setCount;
@@ -123,7 +124,7 @@ function HideEsoItemLinkPopup()
 
 function OnEsoItemLinkEnter()
 {
-	ShowEsoItemLinkPopup(this, $(this).attr('itemid'), $(this).attr('level'), $(this).attr('quality'), $(this).attr('summary'), $(this).attr('intlevel'), $(this).attr('inttype'), $(this).attr('itemlink'), $(this).attr('setcount'));
+	ShowEsoItemLinkPopup(this, $(this).attr('itemid'), $(this).attr('level'), $(this).attr('quality'), $(this).attr('summary'), $(this).attr('intlevel'), $(this).attr('inttype'), $(this).attr('itemlink'), $(this).attr('setcount'), $(this).attr('style'));
 }
 
 
@@ -149,5 +150,7 @@ function esoisResetSearchForm()
 	$('#esois_armortype').val('');
 	$('#esois_weapontype').val('');
 	$('#esois_enchant').val('');
-	$('#esois_effect').val('');	
+	$('#esois_effect').val('');
+	$('#esois_level').val('');
+	$('#esois_variablestyle').attr('checked', false);	
 }

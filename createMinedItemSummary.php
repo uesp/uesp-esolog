@@ -171,7 +171,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			if ($maxLevel == null || $minLevel == $maxLevel)
 				$values[] = "'$maxLevel'";
 			else
-				$values[] = "'$maxLevel-$maxLevel'";
+				$values[] = "'$minLevel-$maxLevel'";
 		}
 		elseif (is_numeric($minValue))
 		{

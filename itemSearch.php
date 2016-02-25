@@ -151,6 +151,10 @@ class EsoItemSearcher
 	public $formValues = array();
 	public $htmlTemplate = "";
 	
+	public $finalItemLevel = -1;
+	public $finalItemQuality = -1;
+	public $finalItemStyle = 0;
+	
 	
 	public function __construct ()
 	{
@@ -303,6 +307,29 @@ class EsoItemSearcher
 	}
 	
 	
+	public function GetItemLevelValue($text)
+	{
+		$result = preg_match("/v[0-9]+/i", $text);
+		$level = 0;
+		
+		if ($result)
+		{
+			$level = intval(substr($text, 1 )) + 50;
+		}
+		else 
+		{
+			$level = intval($text);
+		}
+		
+		if ($level < 0) 
+			$level = 0;
+		else if ($level > 66)
+			$level = 66; 
+			
+		return $level; 
+	}
+	
+	
 	public function GetItemStyleValue($text)
 	{
 		global $ESO_ITEMSTYLE_TEXTS;
@@ -358,6 +385,16 @@ class EsoItemSearcher
 	}
 	
 	
+	public function GetOutputFormLevel()
+	{
+		$level = $this->GetItemLevelValue($this->formValues['level']);
+		if ($level <= 0) return "";
+		
+		if ($level > 50) return "v" . ($level - 50);
+		return (string) $level;
+	}
+	
+	
 	private function MakeSqlQuery()
 	{
 		$where = array();
@@ -391,45 +428,55 @@ class EsoItemSearcher
 			}
 		}
 		
+		if ($this->formValues['level'] != "")
+		{
+			$value = $this->GetItemLevelValue($this->formValues['level']);
+			if ($value > 0) $where[] = "(level='$value' or level='1-v16')";
+		}
+		
 		if ($this->formValues['quality'] != "")
 		{
 			$value = $this->GetItemQualityValue($this->formValues['quality']);
 			
 			if ($value == 0)
-				$where[] = "(quality = '$value' or quality='0-5')";
-			else
-				$where[] = "(quality = '$value' or quality='1-5')";
+				$where[] = "(quality='$value' or quality='0-5')";
+			else if ($value > 0)
+				$where[] = "(quality='$value' or quality='1-5')";
 		}
 		
 		if ($this->formValues['style'] != "")
 		{
 			$value = $this->GetItemStyleValue($this->formValues['style']);
-			$where[] = "style = $value";
+			
+			if ($this->formValues['variablestyle'] != 0)
+				$where[] = "(style=$value or style=0)";
+			else
+				$where[] = "style=$value";
 		}
 		
 		
 		if ($this->formValues['itemtype'] != "")
 		{
 			$value = $this->GetItemTypeValue($this->formValues['itemtype']);
-			$where[] = "type = $value";
+			$where[] = "type=$value";
 		}
 		
 		if ($this->formValues['equiptype'] != "")
 		{
 			$value = $this->GetEquipTypeValue($this->formValues['equiptype']);
-			$where[] = "equipType = $value";
+			$where[] = "equipType=$value";
 		}
 		
 		if ($this->formValues['armortype'] != "")
 		{
 			$value = $this->GetArmorTypeValue($this->formValues['armortype']);
-			$where[] = "armorType = $value";
+			$where[] = "armorType=$value";
 		}
 		
 		if ($this->formValues['weapontype'] != "")
 		{
 			$value = $this->GetWeaponTypeValue($this->formValues['weapontype']);
-			$where[] = "weaponType = $value";
+			$where[] = "weaponType=$value";
 		}
 		
 		if ($this->formValues['enchant'] != "")
@@ -492,6 +539,7 @@ class EsoItemSearcher
 		$itemLink = $result['link'];
 		$itemId = $result['itemId'];
 		$quality = $result['quality'];
+		$level = $result['level'];
 		$icon = $result['icon'];
 		$iconUrl = $this->GetIconUrl($icon);
 		$slotText = "";
@@ -524,8 +572,21 @@ class EsoItemSearcher
 			$slotText = GetEsoItemTypeText($result['type']);
 		}
 		
-		$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&summary";
 		$extraClass = "";
+		$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&summary";
+		$toolTipParams = "itemid='$itemId' summary='1'";
+		
+		if ($this->finalItemLevel > 0 && $this->finalItemQuality >= 0)
+		{
+			$linkToItem = "http://esoitem.uesp.net/itemLink.php?itemid=$itemId&level={$this->finalItemLevel}&quality={$this->finalItemQuality}";
+			$toolTipParams = "itemid='$itemId' level='{$this->finalItemLevel}' quality='{$this->finalItemQuality}'";
+
+			if ($this->finalItemStyle > 0)
+			{
+				$linkToItem    .= "&style={$this->finalItemStyle}";
+				$toolTipParams .= " style='{$this->finalItemStyle}'";
+			}
+		}
 		
 		if (is_numeric($quality))
 		{
@@ -533,7 +594,7 @@ class EsoItemSearcher
 		}
 		
 		$output .= "<tr class='esois_resultrow'><td>\n";
-		$output .= "<a class='esois_itemlink eso_item_link $extraClass' href='$linkToItem' itemid='$itemId' summary='1'><img class='esois_itemicon' src='$iconUrl' width='" . self::ESOIS_ICON_WIDTH . "' /> $itemName</a>";
+		$output .= "<a class='esois_itemlink eso_item_link $extraClass' href='$linkToItem' $toolTipParams><img class='esois_itemicon' src='$iconUrl' width='" . self::ESOIS_ICON_WIDTH . "' /> $itemName</a>";
 		$output .= "<div class='esois_itemdata'>";
 		$output .= "  $slotText, ";
 		
@@ -544,7 +605,8 @@ class EsoItemSearcher
 		
 		if ($traitDesc != "")
 		{
-			$output .= GetEsoItemTraitText($result['trait']) . ": " . $traitDesc . ", ";
+			//$output .= GetEsoItemTraitText($result['trait']) . ": " . $traitDesc . ", ";
+			$output .= GetEsoItemTraitText($result['trait']) . ", ";
 		}
 		else if ($trait > 0)
 		{
@@ -648,6 +710,8 @@ class EsoItemSearcher
 				'{formEnchant}' => $this->GetFormValue('enchant'),
 				'{formStyle}' => $this->GetFormValue('stlye'),
 				'{formEffect}' => $this->GetFormValue('effect'),
+				'{formLevel}' => $this->GetOutputFormLevel(),
+				'{formVariableStyle}' => ($this->GetFormValue('variablestyle') != 0) ? "checked" : "",
 				
 				'{listTrait}' => $this->GetGeneralListHtml(self::$ESOIS_TRAITS, 'trait'),
 				'{listQuality}' => $this->GetGeneralListHtml(self::$ESOIS_QUALITIES, 'quality'),
@@ -691,16 +755,23 @@ class EsoItemSearcher
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
 		
-		$this->ParseFormParam("text");		
-		$this->ParseFormParam("trait");
-		$this->ParseFormParam("style");
-		$this->ParseFormParam("quality");
-		$this->ParseFormParam("enchant");
-		$this->ParseFormParam("itemtype");
-		$this->ParseFormParam("equiptype");
-		$this->ParseFormParam("armortype");
-		$this->ParseFormParam("weapontype");
-		$this->ParseFormParam("effect");
+		$this->ParseFormParam('text');		
+		$this->ParseFormParam('trait');
+		$this->ParseFormParam('style');
+		$this->ParseFormParam('quality');
+		$this->ParseFormParam('enchant');
+		$this->ParseFormParam('itemtype');
+		$this->ParseFormParam('equiptype');
+		$this->ParseFormParam('armortype');
+		$this->ParseFormParam('weapontype');
+		$this->ParseFormParam('effect');
+		$this->ParseFormParam('level');
+		$this->ParseFormParam('variablestyle');
+		
+		$this->finalItemStyle   = $this->GetItemStyleValue($this->formValues['style']);
+		$this->finalItemQuality = $this->GetItemQualityValue($this->formValues['quality']);
+		$this->finalItemLevel   = $this->GetItemLevelValue($this->formValues['level']);
+		if ($this->finalItemLevel == 0) $this->finalItemLevel = -1;
 	}
 	
 	
