@@ -125,6 +125,21 @@ class EsoLogViewer
 			'objective' => self::FIELD_STRING,
 	);
 	
+	public static $QUESTITEM_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
+			'itemLink' => self::FIELD_STRING,
+			'questName' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'itemId' => self::FIELD_INT,
+			'header' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'stepIndex' => self::FIELD_INT,
+			'conditionIndex' => self::FIELD_INT,
+	);
+		
 	public static $QUESTSTAGE_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'questId' => self::FIELD_INTID,
@@ -571,6 +586,33 @@ class EsoLogViewer
 					),
 			),
 			
+			
+			'questitem' => array(
+					'message' => '',
+					'displayName' => 'Quest Items',
+					'displayNameSingle' => 'Quest Item',
+					'record' => 'questitem',
+					'table' => 'questItem',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+						
+					'transform' => array(
+					),
+						
+					'join' => array(
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'quest',
+									'field' => 'id',
+									'thisField' => 'questId',
+									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+					),
+			),
+			
 			'recipe' => array(
 					'displayName' => 'Recipes',
 					'displayNameSingle' => 'Recipe',
@@ -982,6 +1024,7 @@ class EsoLogViewer
 			'NPCs' => 'npc',
 			'Quests' => 'quest',
 			'Quest Stages' => 'questStage',
+			'Quest Item' => 'questItem',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
 			'Skills' => 'minedSkills',
@@ -1016,6 +1059,14 @@ class EsoLogViewer
 							'id' => 'id',
 							'questId' => 'questId',
 							'objective' => 'name',
+					),
+			),
+			'questItem' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
 					),
 			),
 			'npc' => array(
@@ -1090,6 +1141,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['item']['fields'] = self::$ITEM_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
+		self::$RECORD_TYPES['questitem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['queststage']['fields'] = self::$QUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
 		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
@@ -2560,6 +2612,9 @@ If you do not understand what this information means, or how to use this webpage
 			case 'questStage':
 				$output .= $this->GetViewRecordLink('quest', 'id', $result['questId'], 'View Quest') . " ";
 				$output .= $this->GetViewRecordLink('queststage','id', $result['id'], 'View Quest Stage');
+				break;
+			case 'questItem':
+				$output .= $this->GetViewRecordLink('questItem', 'id', $result['id'], 'View Quest Item') . " ";
 				break;
 			case 'item':
 				$output .= $this->GetViewRecordLink('item', 'id', $result['id'], 'View Item');
