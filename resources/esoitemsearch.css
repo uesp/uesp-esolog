@@ -1,5 +1,7 @@
 .esois_itemicon {
 	vertical-align: middle;
+	float: left;
+    padding-right: 10px;
 }
 
 .esois_itemlink {
@@ -150,4 +152,9 @@
 
 .esois_imagelink:hover {
 	background-color: #9999ff;
+}
+
+.esois_itemid {
+	font-size: 0.9em;
+	float: left;
 }
