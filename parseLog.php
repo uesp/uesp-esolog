@@ -3630,6 +3630,8 @@ class EsoLogParser
 			case "MailItem":					$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "TelvarUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "Stolen":						$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "skillDump::start":
 			case "skillDump::Start":			$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillDump::end":
