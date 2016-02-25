@@ -134,8 +134,39 @@ function OnEsoItemLinkLeave()
 }
 
 
-$( document ).ready(function() {
+function copyToClipboard(self)
+{
+	var textToCopy = $(self).text();
+	
+	$("body")
+		.append($('<input type="text" name="fname" class="textToCopyInput" style="opacity: 0; position: absolute;" />' )
+				.val(textToCopy))
+		.find(".textToCopyInput")
+		.select();
+	
+	try 
+	{
+		var successful = document.execCommand('copy');
+		var msg = successful ? 'successful' : 'unsuccessful';
+		//alert('Text copied to clipboard!');
+    }
+	catch (err) 
+    {
+    	window.prompt("To copy the text to clipboard: Ctrl+C, Enter", textToCopy);
+    }
+	
+	$(".textToCopyInput").remove();
+}
+
+
+$( document ).ready(function() 
+{
 	$('.eso_item_link').hover(OnEsoItemLinkEnter, OnEsoItemLinkLeave);
+	
+	$('.esois_rawitemlink').click(function() {
+	    	copyToClipboard(this);
+		});
+	 
 });
 
 
