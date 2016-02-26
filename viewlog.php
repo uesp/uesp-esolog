@@ -364,6 +364,14 @@ class EsoLogViewer
 			'b3' => self::FIELD_FLOAT,
 			'c3' => self::FIELD_FLOAT,
 			'R3' => self::FIELD_FLOAT,
+			'a4' => self::FIELD_FLOAT,
+			'b4' => self::FIELD_FLOAT,
+			'c4' => self::FIELD_FLOAT,
+			'R4' => self::FIELD_FLOAT,
+			'a5' => self::FIELD_FLOAT,
+			'b5' => self::FIELD_FLOAT,
+			'c5' => self::FIELD_FLOAT,
+			'R5' => self::FIELD_FLOAT,
 	);
 	
 	

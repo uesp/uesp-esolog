@@ -47,6 +47,7 @@ class EsoLogParser
 	
 	const ELP_SKILLCOEF_MININUM_R2 = 0.98;
 	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
+	const ELP_SKILLCOEF_MAXCOEFVARS = 5;
 	
 	//const START_MINEITEM_TIMESTAMP = 4743729922978086912; //v1.5
 	//const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
@@ -505,6 +506,14 @@ class EsoLogParser
 			'b3' => self::FIELD_FLOAT,
 			'c3' => self::FIELD_FLOAT,
 			'R3' => self::FIELD_FLOAT,
+			'a4' => self::FIELD_FLOAT,
+			'b4' => self::FIELD_FLOAT,
+			'c4' => self::FIELD_FLOAT,
+			'R4' => self::FIELD_FLOAT,
+			'a5' => self::FIELD_FLOAT,
+			'b5' => self::FIELD_FLOAT,
+			'c5' => self::FIELD_FLOAT,
+			'R5' => self::FIELD_FLOAT,
 	);
 	
 	
@@ -3295,6 +3304,8 @@ class EsoLogParser
 		$coefData['numCoefVars'] = $numVars;
 		$coefData['coefDescription'] = $logEntry['desc'];
 		$coefData['id'] = $logEntry['abilityId'];
+		
+		if ($numVars > self::ELP_SKILLCOEF_MAXCOEFVARS) $numVars = self::ELP_SKILLCOEF_MAXCOEFVARS; 
 		
 		for ($i = 1; $i <= $numVars; ++$i)
 		{
