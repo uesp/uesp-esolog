@@ -49,16 +49,14 @@ class CEsoViewSkillCoef
 	
 	public function ParseInputParams ()
 	{
-		if (array_key_exists('output', $this->inputParams)) 
-		{
-			$this->rawOutput = strtoupper($this->inputParams['output']);
+		if (array_key_exists('output', $this->inputParams)) $this->rawOutput = strtoupper($this->inputParams['output']);
+		if (array_key_exists('format', $this->inputParams)) $this->rawOutput = strtoupper($this->inputParams['format']);
 			
-			if ($this->rawOutput == "CSV")
-				$this->outputType = "CSV";
-			else if ($this->rawOutput == "HTML")
-				$this->outputType = "HTML";
-		}
-
+		if ($this->rawOutput == "CSV")
+			$this->outputType = "CSV";
+		else if ($this->rawOutput == "HTML")
+			$this->outputType = "HTML";
+		
 		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
 		if (array_key_exists('v',       $this->inputParams)) $this->version = $this->inputParams['v'];
 	
