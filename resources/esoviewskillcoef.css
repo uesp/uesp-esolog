@@ -1,0 +1,47 @@
+body {
+	background-color: #FBEFD5;
+	font-family: sans-serif;
+	font-size: 13px;
+}
+
+#esovsc_footer {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#esovsc_footer a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#esovsc_footer a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+a:hover {
+	background-color: #ccc;
+}
+
+.esovsc_table {
+	border: solid thin;
+	border-color: gray;
+    border-collapse: collapse;
+}
+
+.esovsc_table th, .esovsc_table td {
+    border: solid thin;
+    border-color: gray;
+    padding: 4px;
+}
+
+.esovsc_table th {
+	font-size: 15px;
+	font-weight: bold;
+    background-color: #CBAFB5;
+}
+
+.esovsc_nobreak {
+	white-space: nowrap;
+}

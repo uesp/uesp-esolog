@@ -116,6 +116,25 @@ $ESO_ITEMQUALITY_TEXTS = array(
 );
 
 
+$ESO_MECHANIC_TEXTS = array(
+		-2 => "Health",
+		-1 => "Invalid",
+		0 => "Magicka",
+		1 => "Werewolf",
+		2 => "Fervor",
+		3 => "Combo",
+		4 => "Power",
+		5 => "Charges",
+		6 => "Stamina",
+		7 => "Momentum",
+		8 => "Adrenaline",
+		9 => "Finesse",
+		10 => "Ultimate",
+		11 => "Mount Stamina",
+		12 => "Health Bonus",
+);
+
+
 $ESO_ITEMARMORTYPE_TEXTS = array(
 		-1 => "",
 		0 => "",
@@ -1193,6 +1212,39 @@ function GetEsoItemBindTypeText($bindType)
 }
 
 
+function GetEsoMechanicTypeText($mechanicType)
+{
+	global $ESO_MECHANIC_TEXTS;
+
+	$key = (int) $mechanicType;
+	if (array_key_exists($key, $ESO_MECHANIC_TEXTS)) return $ESO_MECHANIC_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoSkillTypeText ($value)
+{
+	static $VALUES = array(
+			-1 => "",
+			0 => "",
+			1 => "Class",
+			2 => "Weapon",
+			3 => "Armor",
+			4 => "World",
+			5 => "Guild",
+			6 => "Alliance War",
+			7 => "Racial",
+			8 => "Craft",
+			9 => "Champion",
+	);
+
+	$key = (int) $value;
+
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	return "Unknown ($key)";
+}
+
+
 function GetEsoItemLevelText($level)
 {
 	if ($level <= 50) return strval($level);
@@ -1248,7 +1300,7 @@ function FormatEsoItemDescriptionText($desc)
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
-	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	$output = str_replace("\n", "<br />", $output);
 
 	return $output;
@@ -1260,7 +1312,7 @@ function FormatRemoveEsoItemDescriptionText($desc)
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for $1%", $output);
-	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.]+)\|r#s", "$2", $output);
 	$output = str_replace("\n", " ", $output);
 
 	return $output;
