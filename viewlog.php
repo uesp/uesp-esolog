@@ -1745,8 +1745,9 @@ If you do not understand what this information means, or how to use this webpage
 	<p />
 	<b>Other Things</b>
 	<ul class='elvRecordTypeList'>
-		<li><a href="/viewMinedItems.php">Mined Items by Category</a></li>
 		<li><a href="/itemSearch.php">Advanced Item Search</a></li>
+		<li><a href="/viewMinedItems.php">Mined Items by Category</a></li>
+		<li><a href="viewSkillCoef.php">Skill Coefficients</a></li>
 	</ul>
 <?php	
 		$this->OutputSearchForm();
