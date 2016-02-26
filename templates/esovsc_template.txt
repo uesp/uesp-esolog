@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Skill Coefficients</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoviewskillcoef.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+<h1>ESO Skill Coefficients</h1>
+This is a list of skill coefficients currently available. Return to the <a href="http://esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
+<p />
+<table class="esovsc_table">
+{content}
+</table>
+<hr>
+<div id="esovmi_footer">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>
