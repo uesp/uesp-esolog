@@ -45,6 +45,9 @@ class EsoLogParser
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
+	const ELP_SKILLCOEF_MININUM_R2 = 0.98;
+	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
+	
 	//const START_MINEITEM_TIMESTAMP = 4743729922978086912; //v1.5
 	//const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
 	//const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
@@ -488,6 +491,20 @@ class EsoLogParser
 			'nextSkill2'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
 			'skillLine' => self::FIELD_STRING,
+			'numCoefVars' => self::FIELD_INT,
+			'coefDescription' =>  self::FIELD_STRING,
+			'a1' => self::FIELD_FLOAT,
+			'b1' => self::FIELD_FLOAT,
+			'c1' => self::FIELD_FLOAT,
+			'R1' => self::FIELD_FLOAT,
+			'a2' => self::FIELD_FLOAT,
+			'b2' => self::FIELD_FLOAT,
+			'c2' => self::FIELD_FLOAT,
+			'R2' => self::FIELD_FLOAT,
+			'a3' => self::FIELD_FLOAT,
+			'b3' => self::FIELD_FLOAT,
+			'c3' => self::FIELD_FLOAT,
+			'R3' => self::FIELD_FLOAT,
 	);
 	
 	
@@ -929,6 +946,28 @@ class EsoLogParser
 	
 		return $skill;
 	}
+	
+	
+	public function SaveSkillCoef(&$coefData)
+	{
+		$abilityId = intval($coefData['id']);
+		$setQuery = array();
+		
+		foreach ($coefData as $key => $value)
+		{
+			if ($key == "id") continue;
+			$safeValue = $this->db->real_escape_string($value);
+			$setQuery[] = "$key=\"$safeValue\"";
+		}
+		
+		$query = "UPDATE minedSkills SET " . implode(", ", $setQuery) . " WHERE id=$abilityId";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if (!$result) return $this->reportError("Failed to save skill coefficient data!");
+	
+		return true;
+	}
+	
 	
 	
 	public function SaveSkillDump (&$record)
@@ -1389,6 +1428,20 @@ class EsoLogParser
 			nextSkill BIGINT NOT NULL DEFAULT 0,
 			nextSkill2 BIGINT NOT NULL DEFAULT 0,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
+			numCoefVars TINYINT NOT NULL DEFAULT -1,
+			coefDescription TEXT NOT NULL,
+			a1 FLOAT NOT NULL DEFAULT -1,
+			b1 FLOAT NOT NULL DEFAULT -1,
+			c1 FLOAT NOT NULL DEFAULT -1,
+			R1 FLOAT NOT NULL DEFAULT -1,
+			a2 FLOAT NOT NULL DEFAULT -1,
+			b2 FLOAT NOT NULL DEFAULT -1,
+			c2 FLOAT NOT NULL DEFAULT -1,
+			R2 FLOAT NOT NULL DEFAULT -1,
+			a3 FLOAT NOT NULL DEFAULT -1,
+			b3 FLOAT NOT NULL DEFAULT -1,
+			c3 FLOAT NOT NULL DEFAULT -1,
+			R3 FLOAT NOT NULL DEFAULT -1,
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(upgradeLines),
@@ -3213,6 +3266,68 @@ class EsoLogParser
 	}
 	
 	
+	public function OnSkillCoefStart ($logEntry)
+	{
+		//numSkills{169}  numPoints{5}
+		
+		$this->currentUser['lastSkillCoefIgnore'] = true;
+		$numPoints = $logEntry['numPoints'];
+		
+		if ($numPoints >= self::ELP_SKILLCOEF_MININUM_NUMPOINTS) 
+		{
+			$this->currentUser['lastSkillCoefIgnore'] = false;
+		}
+		
+		return true;
+	}
+	
+	
+	public function OnSkillCoef ($logEntry)
+	{
+		//R1{0.99999}  desc{Conjure...can absorb |cffffff$1|r damage.}  a1{0.30219}  c1{-3.29720}  
+		//name{Conjured Ward}  b1{-0.00406}  abilityId{28418}  numVars{1}  lang{en}
+		
+		if ($this->currentUser['lastSkillCoefIgnore']) return true;
+		
+		$numVars = $logEntry['numVars'];
+		
+		$coefData = array();
+		$coefData['numCoefVars'] = $numVars;
+		$coefData['coefDescription'] = $logEntry['desc'];
+		$coefData['id'] = $logEntry['abilityId'];
+		
+		for ($i = 1; $i <= $numVars; ++$i)
+		{
+			$a = $logEntry["a".$i];
+			$b = $logEntry["b".$i];
+			$c = $logEntry["c".$i];
+			$R = $logEntry["R".$i];
+			
+			if ($a == null) continue;
+			if ($b == null) continue;
+			if ($c == null) continue;
+			if ($R == null) continue;
+			
+			if ($R < self::ELP_SKILLCOEF_MININUM_R2) continue;
+			
+			$coefData["a".$i] = $a;
+			$coefData["b".$i] = $b;
+			$coefData["c".$i] = $c;
+			$coefData["R".$i] = $R;
+		}
+		
+		$this->SaveSkillCoef($coefData);
+		return true;
+	}
+	
+	
+	public function OnSkillCoefEnd ($logEntry)
+	{
+		$this->currentUser['lastSkillCoefIgnore'] = false;
+		return true;
+	}
+	
+	
 	public function OnSkillDumpStart ($logEntry)
 	{
 		$event = $logEntry['event'];
@@ -3632,6 +3747,9 @@ class EsoLogParser
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "TelvarUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "Stolen":						$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "SkillCoef::Start":			$result = $this->OnSkillCoefStart($logEntry); break;
+			case "SkillCoef":					$result = $this->OnSkillCoef($logEntry); break;
+			case "SkillCoef::End":				$result = $this->OnSkillCoefEnd($logEntry); break;
 			case "skillDump::start":
 			case "skillDump::Start":			$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillDump::end":
@@ -4003,6 +4121,7 @@ class EsoLogParser
 $g_EsoLogParser = new EsoLogParser();
 $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
+
 
 
 

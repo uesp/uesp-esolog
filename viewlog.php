@@ -350,6 +350,20 @@ class EsoLogViewer
 			'upgradeLines' => self::FIELD_TEXTTRANSFORM,
 			'effectLines' => self::FIELD_TEXTTRANSFORM,
 			'texture'  => self::FIELD_GAMEICON,
+			'numCoefVars' => self::FIELD_INT,
+			'coefDescription' =>  self::FIELD_TEXTTRANSFORM,
+			'a1' => self::FIELD_FLOAT,
+			'b1' => self::FIELD_FLOAT,
+			'c1' => self::FIELD_FLOAT,
+			'R1' => self::FIELD_FLOAT,
+			'a2' => self::FIELD_FLOAT,
+			'b2' => self::FIELD_FLOAT,
+			'c2' => self::FIELD_FLOAT,
+			'R2' => self::FIELD_FLOAT,
+			'a3' => self::FIELD_FLOAT,
+			'b3' => self::FIELD_FLOAT,
+			'c3' => self::FIELD_FLOAT,
+			'R3' => self::FIELD_FLOAT,
 	);
 	
 	
@@ -959,6 +973,7 @@ class EsoLogViewer
 							'mechanic' => 'GetCombatMechanicText',
 							'skillType' => 'GetSkillTypeText',
 							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
 							'effectLines' => 'RemoveTextFormats',
 							'upgradeLines' => 'RemoveTextFormats',
 					),
