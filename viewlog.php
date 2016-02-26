@@ -2809,6 +2809,7 @@ If you do not understand what this information means, or how to use this webpage
 		if (array_key_exists('search', $this->inputParams)) $this->search = $this->db->real_escape_string($this->inputParams['search']);
 		if (array_key_exists('searchtype', $this->inputParams)) $this->searchType = $this->db->real_escape_string($this->inputParams['searchtype']);
 		if (array_key_exists('format', $this->inputParams)) $this->outputFormat = strtoupper($this->db->real_escape_string($this->inputParams['format']));
+		if (array_key_exists('output', $this->inputParams)) $this->outputFormat = strtoupper($this->db->real_escape_string($this->inputParams['output']));
 		if (array_key_exists('field', $this->inputParams)) $this->recordField = $this->db->real_escape_string($this->inputParams['field']);
 		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->db->real_escape_string($this->inputParams['id']);
 		if (array_key_exists('action', $this->inputParams)) $this->action = $this->db->real_escape_string($this->inputParams['action']);
