@@ -138,7 +138,11 @@ class CEsoViewSkillCoef
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
-		header("content-type: text/html");
+		
+		if ($this->outputType == "CSV")
+			header("content-type: text/plain");
+		else
+			header("content-type: text/html");
 	}
 	
 	
@@ -178,6 +182,33 @@ class CEsoViewSkillCoef
 			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c (R2 = $R)<br />";
 		}
 		
+		return $output;
+	}
+	
+	
+	public function MakeEquationDataCsv($skill)
+	{
+		$output = "";
+		$numVars = $skill['numCoefVars'];
+	
+		for ($i = 1; $i <= $numVars; ++$i)
+		{
+			$a = $skill['a'.$i];
+			$b = $skill['b'.$i];
+			$c = $skill['c'.$i];
+			$R = $skill['R'.$i];
+				
+			$bop = "+";
+			$cop = "+";
+			if ($b < 0) { $b = -$b; $bop = "-"; }
+			if ($c < 0) { $c = -$c; $cop = "-"; }
+				
+			if ($a == null || $b == null || $c == null || $R == null) continue;
+			if ($R < 0) continue;
+				
+			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c (R2 = $R)   ";
+		}
+	
 		return $output;
 	}
 	
@@ -227,7 +258,42 @@ class CEsoViewSkillCoef
 	
 	public function OutputCsv()
 	{
+		$output = "";
 		
+		$output .= "Skill Name, ";
+		$output .= "ID, ";
+		$output .= "Mechanic, ";
+		$output .= "Class, ";
+		$output .= "Skill Line, ";
+		$output .= "#, ";
+		$output .= "Description, ";
+		$output .= "Equations";
+		$output .= "\n";
+				
+		foreach ($this->coefData as $skill)
+		{
+			$desc = FormatRemoveEsoItemDescriptionText($skill['coefDescription']);
+			$equationData = $this->MakeEquationDataCsv($skill);
+			
+			$skillLine = $skill['skillLine'];
+			$skillType = $skill['classType'];
+			if ($skillType == "") $skillType = $skill['raceType'];
+			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
+			
+			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
+			
+			$output .= "{$skill['name']}, ";
+			$output .= "{$skill['id']}, ";
+			$output .= "$mechanic, ";
+			$output .= "$skillType, ";
+			$output .= "$skillLine, ";
+			$output .= "{$skill['numCoefVars']}, ";
+			$output .= "\"$desc\", ";
+			$output .= "\"$equationData\"";
+			$output .= "\n";
+		}
+				
+		print($output);		
 		
 		return true;
 	}
