@@ -37,15 +37,21 @@ function ShowEsoItemLinkPopup(parent, itemId, level, quality, showSummary, intLe
 	
 	var cacheId = "";
 	
-	if (itemId) 
-		cacheId = itemId.toString();
-	else if (itemLink)
+	if (itemLink)
+	{
 		cacheId = itemLink.toString();
+	}
 	else if (intLevel && intType)
-		cacheId = "INT_" + intLevel.toString() + "_" + intType.toString();
+	{
+		cacheId = itemId.toString() + "_INT_" + intLevel.toString() + "_" + intType.toString();		
+	}
+	else if (itemId) 
+	{
+		cacheId = itemId.toString();
+		if (level) cacheId += "-L" + level.toString();
+		if (quality) cacheId += "-Q" + quality.toString();
+	}
 	
-	if (level) cacheId += "-L" + level.toString();
-	if (quality) cacheId += "-Q" + quality.toString();
 	if (showSummary) cacheId += "-S";
 	EsoItemLinkPopup_CacheId = cacheId;
 	
