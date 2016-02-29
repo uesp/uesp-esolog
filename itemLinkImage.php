@@ -35,6 +35,7 @@ class CEsoItemLinkImage
 	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
 	
 	const ESOIL_POTION_MAGICITEMID = 1234567;
+	const ESOIL_ENCHANT_ITEMID = 23662;
 	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
 			"name" => "Unknown",
@@ -390,6 +391,43 @@ class CEsoItemLinkImage
 		$this->itemRecord = $row;
 		
 		$this->LoadItemPotionData();
+		$this->LoadEnchantMaxCharges();
+		return true;
+	}
+	
+	
+	private function LoadEnchantMaxCharges()
+	{
+		if ($this->itemRecord['maxCharges'] > 0) return true;
+	
+		if ($this->itemLevel >= 1)
+		{
+			$level = $this->itemLevel;
+			$quality = $this->itemQuality;
+			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND level=$level AND quality=$quality LIMIT 1;";
+		}
+		else
+		{
+			$intlevel = $this->itemIntLevel;
+			$subtype = $this->itemIntType;
+			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND internalLevel=$intlevel AND internalSubtype=$type LIMIT 1;";
+		}
+	
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		if ($result->num_rows == 0) return true;
+	
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		if ($row['maxCharges'] == "") return true;
+		
+		$maxCharges = $row['maxCharges'];
+		if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+		
+		$this->itemRecord['maxCharges'] = $maxCharges;
+	
+		$this->itemRecord['maxCharges'] = $row['maxCharges'];
 		return true;
 	}
 	
