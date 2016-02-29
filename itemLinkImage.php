@@ -1157,7 +1157,7 @@ class CEsoItemLinkImage
 		if ($type <= 0 || $equipType == 12 || $equipType == 2) return false;
 	
 		/* Weapons with no enchantments */
-		if ($type == 1 && $this->itemRecord['weaponType'] != 12)
+		if ($type == 1 && $this->itemRecord['weaponType'] != 14)
 		{
 			$hasEnchant = false;
 			if ($this->itemRecord['enchantName'] != "") $hasEnchant = true;
@@ -1188,7 +1188,7 @@ class CEsoItemLinkImage
 			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
 		}
 		
-		if ($type == 1 && $maxCharges > 0 && $this->itemRecord['weaponType'] != 12)
+		if ($type == 1 && $maxCharges > 0 && $this->itemRecord['weaponType'] != 14)
 		{
 			$coverImageHeight = 5;
 			$charges = $this->itemCharges;

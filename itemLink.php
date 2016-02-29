@@ -928,7 +928,7 @@ class CEsoItemLink
 		if ($type <= 0 || $equipType == 12 || $equipType == 2) return false;
 		
 			/* Weapons with no enchantments */
-		if ($type == 1 && $this->itemRecord['weaponType'] != 12)
+		if ($type == 1 && $this->itemRecord['weaponType'] != 14)
 		{
 			$hasEnchant = false;
 			if ($this->itemRecord['enchantName'] != "") $hasEnchant = true;
@@ -961,14 +961,16 @@ class CEsoItemLink
 					// TODO: This is a rough Estimate
 			$maxCharges = $this->itemRecord['weaponPower'] / 2;
 			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+			$this->itemRecord['estimatedMaxCharges'] = $maxCharges;
+			$this->itemAllData[0]['estimatedMaxCharges'] = $maxCharges;
 		}
 		
-		if ($type == 1 && $maxCharges > 0 && $this->itemRecord['weaponType'] != 12)
+		if ($type == 1 && $maxCharges > 0 && $this->itemRecord['weaponType'] != 14)
 		{
 			$charges = $this->itemCharges;
 			if ($charges < 0) $charges = $maxCharges;
 		
-			$coverImageSize = ($maxCharges - $charges) / $maxCharges * 112;
+			$coverImageSize = ($maxCharges - $charges) * 112 / $maxCharges;
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
 			
@@ -979,6 +981,7 @@ class CEsoItemLink
 		{
 			$condition = $this->itemCharges/100;
 			if ($condition < 0) $condition = 100;
+			
 			$coverImageSize = (100 - $condition) * 112 / 100;
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
@@ -1294,7 +1297,6 @@ class CEsoItemLink
 				'{itemQualityRaw}' => $this->itemRecord['quality'],
 				'{itemLevelBlock}' => $this->MakeItemLevelString(),
 				'{itemQuality}' => GetEsoItemQualityText($this->itemRecord['quality']),
-				'{itemRawDataList}' => $this->MakeItemRawDataList(),
 				'{iconLink}' => $this->MakeItemIconImageLink(),
 				'{itemLeftBlock}' => $this->MakeItemLeftBlock(),
 				'{itemBar}' => $this->MakeItemBarLink(),
@@ -1319,6 +1321,7 @@ class CEsoItemLink
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{itemLinkURL}' => $this->GetItemLinkURL(),
 				'{viewSumDataExtraQuery}' => $this->GetSummaryDataExtraQuery(),
+				'{itemRawDataList}' => $this->MakeItemRawDataList(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
