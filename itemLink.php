@@ -69,6 +69,9 @@ class CEsoItemLink
 	
 	const ESOIL_POTION_MAGICITEMID = 1234567;
 	
+		// Weird results based on level when enabled (depends on level of character not item)
+	const ESOIL_USEPRECENT_CRITICALVALUE = false;
+	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
 			"name" => "Unknown",
 			"itemId" => 0,
@@ -1015,7 +1018,7 @@ class CEsoItemLink
 		$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 		$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 		$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
-		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.%]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 		$output = str_replace("\n", "<br />", $output);
 		
 		return $output;
@@ -1024,24 +1027,27 @@ class CEsoItemLink
 	
 	private function FormatSetDescriptionText($desc, $setCount)
 	{
-		$output = $desc;
+		if (self::ESOIL_USEPRECENT_CRITICALVALUE)
+			$output = FormatEsoCriticalDescriptionText($desc, $this->itemRecord['level']);
+		else
+			$output = $desc;
 		
 		if ($this->itemSetCount >= 0 && $setCount > $this->itemSetCount)
 		{
-			$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
+			$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $output);
 			$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
 			$output = preg_replace("|for ([0-9\-\.]+)%|s", "for $1%", $output);
-			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $output);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.%]+)\|r#s", "$2", $output);
 			$output = str_replace("\n", "<br />", $output);
 			
 			$output = "<div class='esoil_itemsetdisabled'>" . $output . "</div>";
 		}
 		else
 		{
-			$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
+			$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $output);
 			$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 			$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
-			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.%]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 			$output = str_replace("\n", "<br />", $output);
 		}
 				

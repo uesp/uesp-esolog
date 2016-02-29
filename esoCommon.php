@@ -1300,7 +1300,7 @@ function FormatEsoItemDescriptionText($desc)
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
-	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	$output = str_replace("\n", "<br />", $output);
 
 	return $output;
@@ -1312,8 +1312,48 @@ function FormatRemoveEsoItemDescriptionText($desc)
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for $1%", $output);
-	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.]+)\|r#s", "$2", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "$2", $output);
 	$output = str_replace("\n", " ", $output);
 
 	return $output;
+}
+
+
+function ConvertEsoCriticalValueToPercent($value, $level)
+{
+	if ($level <= 0) return $value;
+	$newValue = $value / (2 * $level * (100 + $level) / 100);
+	return sprintf("%.1f", $newValue);
+}
+
+
+function FormatEsoCriticalDescriptionText($desc, $level)
+{
+	// 1% = 2 * Level * (100 + Level) / 100
+	// Level = NormalLevel + VeteranRank
+	
+	if ($level <= 0 || $desc == "") return $desc;
+	$newDesc = $desc;
+	
+	$matches = array();
+	$result = preg_match("#([0-9]+)-([0-9]+)(\|r)? (Spell|Weapon) Critical#i", $newDesc, $matches);
+	
+	if ($result)
+	{
+		$newValue1 = ConvertEsoCriticalValueToPercent($matches[1], 1);
+		$newValue2 = ConvertEsoCriticalValueToPercent($matches[2], 66);
+		$newDesc = preg_replace("#([0-9]+)-([0-9]+)(\|r)? ((Spell|Weapon) Critical)#i", "$newValue1-$newValue2%$3 $4", $newDesc);
+		return $newDesc;
+	}
+	
+	$matches = array();
+	$result = preg_match("#([0-9]+)(\|r)? (Spell|Weapon) Critical#i", $newDesc, $matches);
+	
+	if ($result)
+	{
+		$newValue = ConvertEsoCriticalValueToPercent($matches[1], $level);
+		$newDesc = preg_replace("#([0-9]+)(\|r)? ((Spell|Weapon) Critical)#i", "$newValue%$2 $3", $newDesc);
+	}
+	
+	return $newDesc;
 }
