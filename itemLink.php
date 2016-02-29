@@ -68,6 +68,7 @@ class CEsoItemLink
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	
 	const ESOIL_POTION_MAGICITEMID = 1234567;
+	const ESOIL_ENCHANT_ITEMID = 23662;	
 	
 		// Weird results based on level when enabled (depends on level of character not item)
 	const ESOIL_USEPRECENT_CRITICALVALUE = false;
@@ -570,6 +571,7 @@ class CEsoItemLink
 		$this->itemRecord = $row;
 		
 		$this->LoadItemPotionData();
+		$this->LoadEnchantMaxCharges();
 		return true;
 	}
 	
@@ -623,6 +625,40 @@ class CEsoItemLink
 		
 		$this->itemRecord['traitAbilityDescArray'][$effectIndex] = $row['traitAbilityDesc'];
 		$this->itemRecord['traitCooldownArray'][$effectIndex] = $row['traitCooldown'];
+		return true;
+	}
+	
+	
+	private function LoadEnchantMaxCharges()
+	{
+		if ($this->itemRecord['maxCharges'] > 0) return true;
+		
+		if ($this->itemLevel >= 1)
+		{
+			$level = $this->itemLevel;
+			$quality = $this->itemQuality;
+			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND level=$level AND quality=$quality LIMIT 1;";
+		}
+		else
+		{
+			$intlevel = $this->itemIntLevel;
+			$subtype = $this->itemIntType;
+			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND internalLevel=$intlevel AND internalSubtype=$type LIMIT 1;";
+		}
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		if ($result->num_rows == 0) return true;
+		
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		if ($row['maxCharges'] == "") return true;
+		
+		$maxCharges = $row['maxCharges'];
+		if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+		
+		$this->itemRecord['maxCharges'] = $maxCharges; 
 		return true;
 	}
 	
@@ -959,8 +995,13 @@ class CEsoItemLink
 		if ($maxCharges <= 0 && ($this->enchantRecord1 != null || $this->enchantRecord2 != null))
 		{
 					// TODO: This is a rough Estimate
-			$maxCharges = $this->itemRecord['weaponPower'] / 2;
+					// MaxCharges = 6.242428345 * Level + 112.8789751
+					// MaxCharges = -108.8146179 + 0.6707490449 * WD - 6.371375423E-005 * WD*WD - 7.121772545E-008 * WD*WD*WD
+					// $maxCharges = $this->itemRecord['weaponPower'] / 2;
+			$wp = intval($this->itemRecord['weaponPower']);
+			$maxCharges = -108.8146179 + 0.6707490449 * $wp - 6.371375423E-005 * $wp * $wp - 7.121772545E-008 * $wp * $wp * $wp;
 			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+			
 			$this->itemRecord['estimatedMaxCharges'] = $maxCharges;
 			$this->itemAllData[0]['estimatedMaxCharges'] = $maxCharges;
 		}
