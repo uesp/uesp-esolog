@@ -1149,11 +1149,33 @@ class CEsoItemLinkImage
 	}
 	
 	
-	private function OutputItemBar($image, $y)
+	private function HasItemBar()
 	{
 		$type = $this->itemRecord['type'];
 		$equipType = $this->itemRecord['equipType'];
-		if ($type <= 0 || $equipType == 12 || $equipType == 2) return 0;
+	
+		if ($type <= 0 || $equipType == 12 || $equipType == 2) return false;
+	
+		/* Weapons with no enchantments */
+		if ($type == 1 && $this->itemRecord['weaponType'] != 12)
+		{
+			$hasEnchant = false;
+			if ($this->itemRecord['enchantName'] != "") $hasEnchant = true;
+			if ($this->itemRecord['enchantDesc'] != "") $hasEnchant = true;
+			if ($this->enchantRecord1 != null) $hasEnchant = true;
+			if ($this->enchantRecord2 != null)  $hasEnchant = true;
+			if (!$hasEnchant) return false;
+		}
+	
+		return true;
+	}
+	
+	
+	private function OutputItemBar($image, $y)
+	{
+		if (!$this->HasItemBar()) return 0;
+		
+		$type = $this->itemRecord['type'];
 		$coverImageSize = 0;
 		$coverImageHeight = 0;
 		
@@ -1166,7 +1188,7 @@ class CEsoItemLinkImage
 			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
 		}
 		
-		if ($type == 1 && $maxCharges > 0)
+		if ($type == 1 && $maxCharges > 0 && $this->itemRecord['weaponType'] != 12)
 		{
 			$coverImageHeight = 5;
 			$charges = $this->itemCharges;
