@@ -1299,7 +1299,7 @@ function FormatEsoItemDescriptionText($desc)
 {
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
-	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for <div class='esoil_white'>$1</div>%", $output);
+	$output = preg_replace("|for ([0-9\-\.]+)|s", "for <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	$output = str_replace("\n", "<br />", $output);
 
@@ -1311,7 +1311,7 @@ function FormatRemoveEsoItemDescriptionText($desc)
 {
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
-	$output = preg_replace("|for ([0-9\-\.]+)%|s", "for $1%", $output);
+	$output = preg_replace("|for ([0-9\-\.]+)|s", "for $1", $output);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "$2", $output);
 	$output = str_replace("\n", " ", $output);
 
