@@ -30,7 +30,7 @@
 				<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
 				<div id="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div id="esoil_itemvalue">{itemValue}</div></div>
 			</div>
-			<div id="esoil_itembar">{itemBar}</div>
+			<div id="esoil_itembar" class="{itemBarClass}">{itemBar}</div>
 			<div id="esoil_itemabilityblock">{itemAbilityBlock}</div>
 			<div id="esoil_itemtraitabilityblock">{itemTraitAbilityBlock}</div>
 			<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>

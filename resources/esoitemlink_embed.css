@@ -235,6 +235,10 @@
 	color: #C5C29E;
 }
 
+.esoilHidden {
+	display: none !important;
+}
+
 #esoil_itemcraftedblock {
 	color: #fff;
 }
