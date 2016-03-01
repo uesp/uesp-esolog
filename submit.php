@@ -2,6 +2,7 @@
 
 
 require_once('/home/uesp/www/esobuilddata/parseBuildData.class.php');
+require_once('/home/uesp/www/esobuilddata/parseCharData.class.php');
 
 
 class EsoLogSubmitter
@@ -12,6 +13,7 @@ class EsoLogSubmitter
 	const ELC_INDEX_FILENAME = "/home/uesp/esolog/esolog.index";
 	
 	public $parseBuildData = null;
+	public $parseCharData = null;
 	public $fileData = "";
 	public $fileError = 0;
 	public $fileErrorMsg = "";
@@ -24,6 +26,8 @@ class EsoLogSubmitter
 	public $accountName = "Anonymous";
 	public $uploadedBuilds = 0;
 	public $parsedBuilds = 0;
+	public $uploadedCharacters = 0;
+	public $parsedCharacters = 0;
 	public $wikiUserName = '';
 	
 	public $currentLogIndex = 1;
@@ -32,7 +36,9 @@ class EsoLogSubmitter
 	public function __construct ()
 	{
 		$this->parseBuildData = new EsoBuildDataParser();
+		$this->parseCharData  = new EsoCharDataParser();
 	}
+	
 	
 	public function parseFormInput()
 	{
@@ -145,8 +151,10 @@ class EsoLogSubmitter
 		$output .= "Local Filename: {$this->fileMoveName}<br />";
 		$output .= "Lua Result: {$this->fileLuaResult}<br />";
 		$output .= "Parsed Records: {$this->parsedRecords}<br />";
-		$output .= "Uploaded Character Builds: {$this->uploadedBuilds}<br />";
-		$output .= "Saved Character Builds: {$this->parsedBuilds}<br />";
+		$output .= "Uploaded Builds: {$this->uploadedBuilds}<br />";
+		$output .= "Saved Builds: {$this->parsedBuilds}<br />";
+		$output .= "Uploaded Characters: {$this->uploadedCharacters}<br />";
+		$output .= "Saved Characters: {$this->parsedCharacters}<br />";
 		
 	}
 	
@@ -192,9 +200,9 @@ class EsoLogSubmitter
 			<em style="margin-left: 52px;">Documents\Elder Scrolls Online\liveeu\SavedVariables\uespLog.lua</em> 
 		</li>
 		<li>Submit file.</li>
-		<li>After submitting you can run the command <em>"/uespreset all"</em> in ESO to clear the log data.</li>
+		<li>After submitting you can run the command <em>"/uespreset log"</em> in ESO to clear the log data and similarly <em>"/uespreset builddata"</em> for any build data.</li>
 		<li>It is safe to submit duplicate files or log entries...the log parser can detect and ignore duplicate entries.</li>
-		<li>Any character build data in the file is also parsed and saved.</li>
+		<li>Any character and build data in the file is also parsed and saved.</li>
 		</ul>
 		<p />
 		Note: Maximum file upload size is 40MB.
@@ -274,13 +282,17 @@ class EsoLogSubmitter
 			$this->parseVarAccountLevel($key, $value);
 		}
 		
+		$this->parseCharData->saveParsedCharacters();
+		$this->uploadedCharacters = $this->parseCharData->characterCount;
+		$this->parsedCharacters = $this->parseCharData->savedCharacters;
+		
 		return TRUE;
 	}
 	
 	
 	public function parseVarAccountLevel ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (account level) of the saved variable file!");
+		if ($object == null) return $this->reportError("Missing object in the {$parentName} section (account level) of the saved variable file!");
 		
 		foreach ($object as $key => $value)
 		{
@@ -293,7 +305,7 @@ class EsoLogSubmitter
 	
 	public function parseVarAccountWideLevel ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (account wide leve) of the saved variable file!");
+		if ($object == null) return $this->reportError("Missing object in the {$parentName} section (account wide leve) of the saved variable file!");
 		$this->accountName = ltrim($parentName, '@');
 		
 		foreach ($object as $key => $value)
@@ -307,16 +319,21 @@ class EsoLogSubmitter
 	
 	public function parseVarSectionLevel ($parentName, $object)
 	{
-			/* Only parse the account wide section */
-		if ($parentName != '$AccountWide') return TRUE;
+		if ($parentName == '$AccountWide')
+		{
+			if ($object == null) return $this->reportError("Missing object in the {$parentName} section (section level) of the saved variable file!");
 		
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (section level) of the saved variable file!");
+			$this->parseVarSectionData("all", $object["all"]);
+			$this->parseVarSectionData("achievements", $object["achievements"]);
+			$this->parseVarSectionData("globals", $object["globals"]);
 		
-		$this->parseVarSectionData("all", $object["all"]);
-		$this->parseVarSectionData("achievements", $object["achievements"]);
-		$this->parseVarSectionData("globals", $object["globals"]);
-		
-		$this->parseCharacterBuildData($object["buildData"]);
+			$this->parseCharacterBuildData($object["buildData"]);
+			$this->parseCharacterData($object["bankData"]);
+		}
+		else
+		{
+			$this->parseCharacterData($object["charData"]);
+		}
 	
 		return TRUE;
 	}
@@ -327,8 +344,9 @@ class EsoLogSubmitter
 			// Older log files won't have a buildData section so its not an error
 		if ($buildData == null) return TRUE;
 		
+			// Empty data sections are removed by the Lua/PHP parser	
 		$data = $buildData['data'];
-		if ($data == null) return $this->reportError("Missing 'data' section in the {buildData} section of the saved variable file!");
+		if ($data == null) return True;
 		
 		$data['IPAddress'] = $_SERVER["REMOTE_ADDR"];
 		$data['UploadTimestamp'] = time();
@@ -336,7 +354,7 @@ class EsoLogSubmitter
 		
 		if (!$this->parseBuildData->doParse($data)) 
 		{
-			return $this->reportError("Failed to parse/save the saved character data!");
+			return $this->reportError("Failed to parse and save the build data!");
 		}
 		
 		$this->uploadedBuilds = $this->parseBuildData->characterCount;
@@ -345,9 +363,32 @@ class EsoLogSubmitter
 	}
 	
 	
+	public function parseCharacterData ($charData)
+	{
+			// Older log files won't have a charData section so its not an error
+		if ($charData == null) return TRUE;
+		
+				// Empty data sections are removed by the Lua/PHP parser
+		$data = $charData['data'];
+		if ($data == null) return True; 
+		
+		$data['IPAddress'] = $_SERVER["REMOTE_ADDR"];
+		$data['UploadTimestamp'] = time();
+		$data['WikiUser'] = $this->wikiUserName;
+	
+		if (!$this->parseCharData->doParse($data))
+		{
+			return $this->reportError("Failed to parse and save the character data!");
+		}
+	
+		return TRUE;
+	}
+	
+	
 	public function parseVarSectionData ($parentName, $object)
 	{
-		if ($object == null) return $this->reportError("NULL object found in the {$parentName} section (section data) of the saved variable file!");
+			// Empty object arrays will be removed by the Lua/PHP parser
+		if ($object == null) return True; 
 		
 		$data = $object['data'];
 		
@@ -437,4 +478,3 @@ $g_EsoLogSubmitter->parseFormInput();
 $g_EsoLogSubmitter->output();
 
 
-?>
