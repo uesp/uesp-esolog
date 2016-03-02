@@ -45,7 +45,7 @@ class EsoLogParser
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
-	const ELP_SKILLCOEF_MININUM_R2 = 0.98;
+	const ELP_SKILLCOEF_MININUM_R2 = -1;       //Log all coefficients for now
 	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
 	const ELP_SKILLCOEF_MAXCOEFVARS = 5;
 	
@@ -498,22 +498,27 @@ class EsoLogParser
 			'b1' => self::FIELD_FLOAT,
 			'c1' => self::FIELD_FLOAT,
 			'R1' => self::FIELD_FLOAT,
+			'avg1' => self::FIELD_FLOAT,
 			'a2' => self::FIELD_FLOAT,
 			'b2' => self::FIELD_FLOAT,
 			'c2' => self::FIELD_FLOAT,
 			'R2' => self::FIELD_FLOAT,
+			'avg2' => self::FIELD_FLOAT,
 			'a3' => self::FIELD_FLOAT,
 			'b3' => self::FIELD_FLOAT,
 			'c3' => self::FIELD_FLOAT,
 			'R3' => self::FIELD_FLOAT,
+			'avg3' => self::FIELD_FLOAT,
 			'a4' => self::FIELD_FLOAT,
 			'b4' => self::FIELD_FLOAT,
 			'c4' => self::FIELD_FLOAT,
 			'R4' => self::FIELD_FLOAT,
+			'avg4' => self::FIELD_FLOAT,
 			'a5' => self::FIELD_FLOAT,
 			'b5' => self::FIELD_FLOAT,
 			'c5' => self::FIELD_FLOAT,
 			'R5' => self::FIELD_FLOAT,
+			'avg5' => self::FIELD_FLOAT,
 	);
 	
 	
@@ -1443,14 +1448,27 @@ class EsoLogParser
 			b1 FLOAT NOT NULL DEFAULT -1,
 			c1 FLOAT NOT NULL DEFAULT -1,
 			R1 FLOAT NOT NULL DEFAULT -1,
+			avg1 FLOAT NOT NULL DEFAULT -1,
 			a2 FLOAT NOT NULL DEFAULT -1,
 			b2 FLOAT NOT NULL DEFAULT -1,
 			c2 FLOAT NOT NULL DEFAULT -1,
 			R2 FLOAT NOT NULL DEFAULT -1,
+			avg2 FLOAT NOT NULL DEFAULT -1,
 			a3 FLOAT NOT NULL DEFAULT -1,
 			b3 FLOAT NOT NULL DEFAULT -1,
 			c3 FLOAT NOT NULL DEFAULT -1,
 			R3 FLOAT NOT NULL DEFAULT -1,
+			avg3 FLOAT NOT NULL DEFAULT -1,
+			a4 FLOAT NOT NULL DEFAULT -1,
+			b4 FLOAT NOT NULL DEFAULT -1,
+			c4 FLOAT NOT NULL DEFAULT -1,
+			R4 FLOAT NOT NULL DEFAULT -1,
+			avg4 FLOAT NOT NULL DEFAULT -1,
+			a5 FLOAT NOT NULL DEFAULT -1,
+			b5 FLOAT NOT NULL DEFAULT -1,
+			c5 FLOAT NOT NULL DEFAULT -1,
+			R5 FLOAT NOT NULL DEFAULT -1,
+			avg5 FLOAT NOT NULL DEFAULT -1,
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(upgradeLines),
@@ -3325,6 +3343,7 @@ class EsoLogParser
 			$coefData["b".$i] = $b;
 			$coefData["c".$i] = $c;
 			$coefData["R".$i] = $R;
+			$coefData["avg".$i] = $logEntry["avg".$i];
 		}
 		
 		$this->SaveSkillCoef($coefData);
