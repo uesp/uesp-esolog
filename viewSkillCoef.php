@@ -168,6 +168,7 @@ class CEsoViewSkillCoef
 			$b = $skill['b'.$i];
 			$c = $skill['c'.$i];
 			$R = $skill['R'.$i];
+			$avg = $skill['avg'.$i];
 			
 			$bop = "+";
 			$cop = "+";
@@ -177,7 +178,7 @@ class CEsoViewSkillCoef
 			if ($a == null || $b == null || $c == null || $R == null) continue;
 			if ($R < 0) continue;
 			
-			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c (R2 = $R)<br />";
+			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c (R2 = $R, average = $avg)<br />";
 		}
 		
 		return $output;
