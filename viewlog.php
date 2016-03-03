@@ -55,6 +55,9 @@ class EsoLogViewer
 	const FIELD_TEXTTRANSFORM = 10;
 	const FIELD_GAMEICON = 11;
 	
+	
+	const UESP_POWERTYPE_SOULTETHER = -1234;
+	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
 			self::FIELD_STRING => "string",
@@ -352,26 +355,42 @@ class EsoLogViewer
 			'texture'  => self::FIELD_GAMEICON,
 			'numCoefVars' => self::FIELD_INT,
 			'coefDescription' =>  self::FIELD_TEXTTRANSFORM,
+			'type1' => self::FIELD_INTTRANSFORM,
 			'a1' => self::FIELD_FLOAT,
 			'b1' => self::FIELD_FLOAT,
 			'c1' => self::FIELD_FLOAT,
 			'R1' => self::FIELD_FLOAT,
+			'avg1' => self::FIELD_FLOAT,
+			'type2' => self::FIELD_INTTRANSFORM,
 			'a2' => self::FIELD_FLOAT,
 			'b2' => self::FIELD_FLOAT,
 			'c2' => self::FIELD_FLOAT,
 			'R2' => self::FIELD_FLOAT,
+			'avg2' => self::FIELD_FLOAT,
+			'type3' => self::FIELD_INTTRANSFORM,
 			'a3' => self::FIELD_FLOAT,
 			'b3' => self::FIELD_FLOAT,
 			'c3' => self::FIELD_FLOAT,
 			'R3' => self::FIELD_FLOAT,
+			'avg3' => self::FIELD_FLOAT,
+			'type4' => self::FIELD_INTTRANSFORM,
 			'a4' => self::FIELD_FLOAT,
 			'b4' => self::FIELD_FLOAT,
 			'c4' => self::FIELD_FLOAT,
 			'R4' => self::FIELD_FLOAT,
+			'avg4' => self::FIELD_FLOAT,
+			'type5' => self::FIELD_INTTRANSFORM,
 			'a5' => self::FIELD_FLOAT,
 			'b5' => self::FIELD_FLOAT,
 			'c5' => self::FIELD_FLOAT,
 			'R5' => self::FIELD_FLOAT,
+			'avg5' => self::FIELD_FLOAT,
+			'type6' => self::FIELD_INTTRANSFORM,
+			'a6' => self::FIELD_FLOAT,
+			'b6' => self::FIELD_FLOAT,
+			'c6' => self::FIELD_FLOAT,
+			'R6' => self::FIELD_FLOAT,
+			'avg6' => self::FIELD_FLOAT,
 	);
 	
 	
@@ -979,6 +998,12 @@ class EsoLogViewer
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
 							'skillType' => 'GetSkillTypeText',
 							'description' => 'RemoveTextFormats',
 							'coefDescription' => 'RemoveTextFormats',
@@ -1461,6 +1486,13 @@ class EsoLogViewer
 	
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
+	}
+	
+	
+	public function GetCustomCombatMechanicText ($value)
+	{
+		if ($value == self::UESP_POWERTYPE_SOULTETHER) return "Ulimate (ignore WD)";
+		return $this->GetCombatMechanicText($value);
 	}
 	
 	
