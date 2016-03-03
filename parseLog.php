@@ -494,31 +494,42 @@ class EsoLogParser
 			'skillLine' => self::FIELD_STRING,
 			'numCoefVars' => self::FIELD_INT,
 			'coefDescription' =>  self::FIELD_STRING,
+			'type1' => self::FIELD_INT,
 			'a1' => self::FIELD_FLOAT,
 			'b1' => self::FIELD_FLOAT,
 			'c1' => self::FIELD_FLOAT,
 			'R1' => self::FIELD_FLOAT,
 			'avg1' => self::FIELD_FLOAT,
+			'type2' => self::FIELD_INT,
 			'a2' => self::FIELD_FLOAT,
 			'b2' => self::FIELD_FLOAT,
 			'c2' => self::FIELD_FLOAT,
 			'R2' => self::FIELD_FLOAT,
 			'avg2' => self::FIELD_FLOAT,
+			'type3' => self::FIELD_INT,
 			'a3' => self::FIELD_FLOAT,
 			'b3' => self::FIELD_FLOAT,
 			'c3' => self::FIELD_FLOAT,
 			'R3' => self::FIELD_FLOAT,
 			'avg3' => self::FIELD_FLOAT,
+			'type4' => self::FIELD_INT,
 			'a4' => self::FIELD_FLOAT,
 			'b4' => self::FIELD_FLOAT,
 			'c4' => self::FIELD_FLOAT,
 			'R4' => self::FIELD_FLOAT,
 			'avg4' => self::FIELD_FLOAT,
+			'type5' => self::FIELD_INT,
 			'a5' => self::FIELD_FLOAT,
 			'b5' => self::FIELD_FLOAT,
 			'c5' => self::FIELD_FLOAT,
 			'R5' => self::FIELD_FLOAT,
 			'avg5' => self::FIELD_FLOAT,
+			'type6' => self::FIELD_INT,
+			'a6' => self::FIELD_FLOAT,
+			'b6' => self::FIELD_FLOAT,
+			'c6' => self::FIELD_FLOAT,
+			'R6' => self::FIELD_FLOAT,
+			'avg6' => self::FIELD_FLOAT,
 	);
 	
 	
@@ -1444,31 +1455,42 @@ class EsoLogParser
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL,
+			type1 INTEGER NOT NULL DEFAULT -1,
 			a1 FLOAT NOT NULL DEFAULT -1,
 			b1 FLOAT NOT NULL DEFAULT -1,
 			c1 FLOAT NOT NULL DEFAULT -1,
 			R1 FLOAT NOT NULL DEFAULT -1,
 			avg1 FLOAT NOT NULL DEFAULT -1,
+			type2 INTEGER NOT NULL DEFAULT -1,
 			a2 FLOAT NOT NULL DEFAULT -1,
 			b2 FLOAT NOT NULL DEFAULT -1,
 			c2 FLOAT NOT NULL DEFAULT -1,
 			R2 FLOAT NOT NULL DEFAULT -1,
-			avg2 FLOAT NOT NULL DEFAULT -1,
+			avg2 FLOAT NOT NULL DEFAULT -
+			type3 INTEGER NOT NULL DEFAULT -1,1,
 			a3 FLOAT NOT NULL DEFAULT -1,
 			b3 FLOAT NOT NULL DEFAULT -1,
 			c3 FLOAT NOT NULL DEFAULT -1,
 			R3 FLOAT NOT NULL DEFAULT -1,
 			avg3 FLOAT NOT NULL DEFAULT -1,
+			type4 INTEGER NOT NULL DEFAULT -1,
 			a4 FLOAT NOT NULL DEFAULT -1,
 			b4 FLOAT NOT NULL DEFAULT -1,
 			c4 FLOAT NOT NULL DEFAULT -1,
 			R4 FLOAT NOT NULL DEFAULT -1,
 			avg4 FLOAT NOT NULL DEFAULT -1,
+			type5 INTEGER NOT NULL DEFAULT -1,1,
 			a5 FLOAT NOT NULL DEFAULT -1,
 			b5 FLOAT NOT NULL DEFAULT -1,
 			c5 FLOAT NOT NULL DEFAULT -1,
 			R5 FLOAT NOT NULL DEFAULT -1,
 			avg5 FLOAT NOT NULL DEFAULT -1,
+			type6 INTEGER NOT NULL DEFAULT -1,1,
+			a6 FLOAT NOT NULL DEFAULT -1,
+			b6 FLOAT NOT NULL DEFAULT -1,
+			c6 FLOAT NOT NULL DEFAULT -1,
+			R6 FLOAT NOT NULL DEFAULT -1,
+			avg6 FLOAT NOT NULL DEFAULT -1,
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(upgradeLines),
@@ -3331,6 +3353,7 @@ class EsoLogParser
 			$b = $logEntry["b".$i];
 			$c = $logEntry["c".$i];
 			$R = $logEntry["R".$i];
+			$type = $logEntry["type".$i];
 			
 			if ($a == null) continue;
 			if ($b == null) continue;
@@ -3344,6 +3367,7 @@ class EsoLogParser
 			$coefData["c".$i] = $c;
 			$coefData["R".$i] = $R;
 			$coefData["avg".$i] = $logEntry["avg".$i];
+			$coefData["type".$i] = $type;
 		}
 		
 		$this->SaveSkillCoef($coefData);

@@ -17,6 +17,8 @@ class CEsoViewSkillCoef
 {
 	const ESOVSC_HTML_TEMPLATE = "templates/esovsc_template.txt";
 	
+	const UESP_POWERTYPE_SOULTETHER = -1234;
+	
 	public $db = null;
 	
 	public $coefData = array();
@@ -130,6 +132,30 @@ class CEsoViewSkillCoef
 	}
 	
 	
+	public function GetCombatMechanicText ($value)
+	{
+		static $VALUES = array(
+				self::UESP_POWERTYPE_SOULTETHER, "Ultimate (ignore WD)",
+				-2 => "Health",
+				-1 => "Invalid",
+				0 => "Magicka",
+				1 => "Werewolf",
+				4 => "Power",
+				6 => "Stamina",
+				7 => "Momentum",
+				9 => "Finesse",
+				10 => "Ultimate",
+				11 => "Mount Stamina",
+				12 => "Health Bonus",
+		);
+	
+		$key = (int) $value;
+	
+		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+		return "Unknown ($key)";
+	}
+	
+	
 	public function OutputHeader()
 	{
 		header("Expires: 0");
@@ -169,6 +195,9 @@ class CEsoViewSkillCoef
 			$c = $skill['c'.$i];
 			$R = $skill['R'.$i];
 			$avg = $skill['avg'.$i];
+			$type = $skill['type'.$i];
+			if ($type == -1) $type = $skill['mechanic'];
+			$typeName = $this->GetCombatMechanicText($type);
 			
 			$bop = "+";
 			$cop = "+";
@@ -178,7 +207,14 @@ class CEsoViewSkillCoef
 			if ($a == null || $b == null || $c == null || $R == null) continue;
 			if ($R < 0) continue;
 			
-			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c (R2 = $R, average = $avg)<br />";
+			if ($b == 0)
+				$output .= "\$$i = {$a} Stat $cop $c";
+			else
+				$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c";
+			
+			$output .= " ($typeName, R2 = $R";
+			if ($avg != -1) $output .= ", average = $avg";
+			$output .= ")<br />";
 		}
 		
 		return $output;
