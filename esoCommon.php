@@ -1,5 +1,14 @@
 <?php
 
+
+const UESP_POWERTYPE_SOULTETHER    = -50;
+const UESP_POWERTYPE_LIGHTARMOR    = -51;
+const UESP_POWERTYPE_MEDIUMARMOR   = -52;
+const UESP_POWERTYPE_HEAVYARMOR    = -53;
+const UESP_POWERTYPE_WEAPONDAGGER  = -54;
+const UESP_POWERTYPE_ARMORTYPE     = -55;
+
+
 $ESO_ITEMTRAIT_FULLTEXTS = array(
 		-1 => "",
 		18 => "Armor Divines",
@@ -1219,6 +1228,24 @@ function GetEsoMechanicTypeText($mechanicType)
 	$key = (int) $mechanicType;
 	if (array_key_exists($key, $ESO_MECHANIC_TEXTS)) return $ESO_MECHANIC_TEXTS[$key];
 	return "Unknown ($key)";
+}
+
+
+function GetEsoCustomMechanicTypeText($mechanicType)
+{
+	static $VALUES = array(
+			UESP_POWERTYPE_SOULTETHER => "Ulimate (ignore WD)",
+			UESP_POWERTYPE_LIGHTARMOR => "Light Armor",
+			UESP_POWERTYPE_MEDIUMARMOR => "Medium Armor",
+			UESP_POWERTYPE_HEAVYARMOR => "Heavy Armor",
+			UESP_POWERTYPE_WEAPONDAGGER => "Daggers",
+			UESP_POWERTYPE_ARMORTYPE => "Armor Types",
+	);
+
+	$key = (int) $mechanicType;
+	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	
+	return GetEsoMechanicTypeText($mechanicType);
 }
 
 
