@@ -3319,6 +3319,8 @@ class EsoLogParser
 	{
 		//numSkills{169}  numPoints{5}
 		
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		
 		$this->currentUser['lastSkillCoefIgnore'] = true;
 		$numPoints = $logEntry['numPoints'];
 		
@@ -3336,6 +3338,7 @@ class EsoLogParser
 		//R1{0.99999}  desc{Conjure...can absorb |cffffff$1|r damage.}  a1{0.30219}  c1{-3.29720}  
 		//name{Conjured Ward}  b1{-0.00406}  abilityId{28418}  numVars{1}  lang{en}
 		
+		if ($this->currentUser['name'] != "Reorx") return true;
 		if ($this->currentUser['lastSkillCoefIgnore']) return true;
 		
 		$numVars = $logEntry['numVars'];
