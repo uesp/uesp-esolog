@@ -54,9 +54,7 @@ class EsoLogViewer
 	const FIELD_INTID = 9;
 	const FIELD_TEXTTRANSFORM = 10;
 	const FIELD_GAMEICON = 11;
-	
-	
-	const UESP_POWERTYPE_SOULTETHER = -1234;
+
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -1400,6 +1398,18 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetCombatMechanicText ($value)
+	{
+		return GetEsoMechanicTypeText($value);
+	}
+	
+	
+	public function GetCustomCombatMechanicText ($value)
+	{
+		return GetEsoCustomMechanicTypeText($value);
+	}
+	
+	
 	public function GetBookMediumText ($value)
 	{
 		static $VALUES = array(
@@ -1463,36 +1473,6 @@ class EsoLogViewer
 	
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
-	}
-	
-	
-	public function GetCombatMechanicText ($value)
-	{
-		static $VALUES = array(
-				-2 => "Health",
-				-1 => "Invalid",
-				0 => "Magicka",
-				1 => "Werewolf",
-				4 => "Power",
-				6 => "Stamina",
-				7 => "Momentum",
-				9 => "Finesse",
-				10 => "Ultimate",
-				11 => "Mount Stamina",
-				12 => "Health Bonus",
-		);
-	
-		$key = (int) $value;
-	
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
-	}
-	
-	
-	public function GetCustomCombatMechanicText ($value)
-	{
-		if ($value == self::UESP_POWERTYPE_SOULTETHER) return "Ulimate (ignore WD)";
-		return $this->GetCombatMechanicText($value);
 	}
 	
 	
