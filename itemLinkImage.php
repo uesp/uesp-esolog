@@ -1420,12 +1420,61 @@ class CEsoItemLinkImage
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
+
+	private function CheckVersionLessThan($version)
+	{
+		if ($this->version == "") return false;
+		return $this->version < $version;
+	}
+	
+
+	
+	private function MakePotencyItemDescription()
+	{
+		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
+		$glyphMaxLevel = $this->itemRecord['glyphMaxLevel'];
+		if ($glyphMinLevel == 0 && $glyphMaxLevel == 0) return $this->itemRecord['description'];
+		
+		$minDesc = "";
+		$maxDesc = "";
+		
+		if ($glyphMinLevel < 50)
+		{
+			$minDesc = "level $glyphMinLevel";
+		}
+		else
+		{
+			$glyphMinLevel = $glyphMinLevel - 50;
+			if ($this->CheckVersionLessThan(1.9)) $glyphMinLevel += 1;
+			$minDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMinLevel";
+		}
+		
+		if ($glyphMaxLevel < 50)
+		{
+			$maxDesc = "level $glyphMaxLevel";
+		}
+		else
+		{
+			$glyphMaxLevel = $glyphMaxLevel - 50;
+			if ($this->CheckVersionLessThan(1.9)) $glyphMaxLevel += 1;
+			$maxDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMaxLevel";
+		}
+	
+		if ($minDesc == $maxDesc)
+			$desc = "Used to create glyphs of $minDesc.";
+		else
+			$desc = "Used to create glyphs of $minDesc to $maxDesc.";
+		
+		return $desc;		
+	}
+	
 	
 	private function OutputItemDescription($image, $y)
 	{
 		$desc = $this->itemRecord['description'];
 		$matDesc = $this->itemRecord['materialLevelDesc'];
 		if ($matDesc != "") $desc = $matDesc;
+		if ($this->itemRecord['type'] == 51) $desc = $this->MakePotencyItemDescription();
 		if ($desc == "") return 0;
 		
 		$printData = array();
