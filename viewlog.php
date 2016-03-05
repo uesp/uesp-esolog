@@ -308,6 +308,7 @@ class EsoLogViewer
 			'isVendorTrash' => self::FIELD_INTBOOLEAN,
 			'isArmorDecay' => self::FIELD_INTBOOLEAN,
 			'isConsumable' => self::FIELD_INTBOOLEAN,
+			'materialLevelDesc' => self::FIELD_TEXTTRANSFORM,
 	);
 	
 	
@@ -879,6 +880,7 @@ class EsoLogViewer
 							'description' => 'RemoveTextFormats',
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
 					),
 			
 					'filters' => array(
@@ -908,6 +910,7 @@ class EsoLogViewer
 							'description' => 'RemoveTextFormats',
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
 					),
 						
 					'filters' => array(
@@ -1591,8 +1594,7 @@ class EsoLogViewer
 	
 	public function RemoveTextFormats ($text)
 	{
-		$newText = preg_replace('/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t]*)\|r/', '$1', $text);
-		return $newText;
+		return FormatRemoveEsoItemDescriptionText($text);
 	}
 	
 	

@@ -108,6 +108,7 @@ class CEsoItemLinkImage
 	public $printOptionsSmallWhite;
 	public $printOptionsSmallBeige;
 	public $printOptionsTinyBeige;
+	public $printOptionsSmallInvis;
 	
 	public $bigFontSize = 18;
 	public $medFontSize = 12;
@@ -657,7 +658,10 @@ class CEsoItemLinkImage
 	{
 		$newData = $lineData;
 		
-		$newData['text'] = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $lineData['text']);
+		$newText = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $lineData['text']);
+		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $newText);
+		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $newText);
+		$newData['text'] = $newText;
 		
 		$extents = $this->GetTextExtents($lineData['size'], $newData['font'], $newData['text']);
 		$newData['width']  = $extents[0];
@@ -1420,6 +1424,8 @@ class CEsoItemLinkImage
 	private function OutputItemDescription($image, $y)
 	{
 		$desc = $this->itemRecord['description'];
+		$matDesc = $this->itemRecord['materialLevelDesc'];
+		if ($matDesc != "") $desc = $matDesc;
 		if ($desc == "") return 0;
 		
 		$printData = array();
@@ -1564,6 +1570,12 @@ class CEsoItemLinkImage
 				"font" => self::ESOIL_REGULARFONT_FILE,
 				"color" => $this->textColor,
 				"size" => $this->medFontSize,
+		);
+		
+		$this->printOptionsTinyBeige = array(
+				"font" => self::ESOIL_REGULARFONT_FILE,
+				"color" => $this->textColor,
+				"size" => $this->smallFontSize,
 		);
 		
 		$this->printOptionsSmallInvis = array(
