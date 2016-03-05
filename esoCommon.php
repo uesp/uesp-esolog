@@ -1322,12 +1322,27 @@ function GetEsoItemTableSuffix($version)
 }
 
 
+function FormatEsoItemDescriptionIcons($desc)
+{
+	//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
+	$output = strtolower($desc);
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s", "<img src='http://esoicons.uesp.net/$3.png' />", $output);
+
+	return $output;
+}
+
+
 function FormatEsoItemDescriptionText($desc)
 {
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)|s", "for <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+	
+		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $output);
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $output);
+	
 	$output = str_replace("\n", "<br />", $output);
 
 	return $output;
@@ -1336,10 +1351,9 @@ function FormatEsoItemDescriptionText($desc)
 
 function FormatRemoveEsoItemDescriptionText($desc)
 {
-	$output = preg_replace("| by ([0-9\-\.]+)|s", " by $1", $desc);
-	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds $1", $output);
-	$output = preg_replace("|for ([0-9\-\.]+)|s", "for $1", $output);
-	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "$2", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "$2", $desc);
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $output);
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $output);
 	$output = str_replace("\n", " ", $output);
 
 	return $output;
@@ -1356,8 +1370,8 @@ function ConvertEsoCriticalValueToPercent($value, $level)
 
 function FormatEsoCriticalDescriptionText($desc, $level)
 {
-	// 1% = 2 * Level * (100 + Level) / 100
-	// Level = NormalLevel + VeteranRank
+	// 1% Critical = 2 * Level * (100 + Level) / 100
+	// Level = NormalLevel(1-50) + VeteranRank(0-16)
 	
 	if ($level <= 0 || $desc == "") return $desc;
 	$newDesc = $desc;
