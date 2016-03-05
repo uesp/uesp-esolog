@@ -586,7 +586,10 @@ class CEsoItemLinkImage
 	
 	public function FormatPrintData(&$printData, $lineData)
 	{
-		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[a-zA-Z \-0-9\.]+\|r)|(Adds [0-9\-\.]+)|(by [0-9\-\.]+)|(for [0-9\-\.]+)#s", $lineData['text'], -1, PREG_SPLIT_DELIM_CAPTURE);
+		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $lineData['text']);
+		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $newText);
+		
+		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[a-zA-Z \-0-9\.]+\|r)|(Adds [0-9\-\.]+)|(by [0-9\-\.]+)|(for [0-9\-\.]+)#s", $newText, -1, PREG_SPLIT_DELIM_CAPTURE);
 		$numFmts = count($formats);
 		
 		foreach ($formats as $key => $value)
@@ -768,6 +771,7 @@ class CEsoItemLinkImage
 	public function AddPrintData (&$printData, $text, $baseOptions, $options = array())
 	{
 		if (array_key_exists('lineBreak', $options)) return $this->AddPrintDataEx($printData, $text, $baseOptions, $options);
+		if (array_key_exists('format', $options)) return $this->AddPrintDataEx($printData, $text, $baseOptions, $options);
 		
 		$newData = array_merge($baseOptions, $options);
 		$newData['text'] = $text;
@@ -1427,7 +1431,6 @@ class CEsoItemLinkImage
 		return $this->version < $version;
 	}
 	
-
 	
 	private function MakePotencyItemDescription()
 	{
