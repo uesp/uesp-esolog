@@ -148,6 +148,7 @@ class CEsoViewSkillCoef
 	{
 		$replacePairs = array(
 				'{content}' => $this->MakeContentHtml(),
+				'{count}' => count($this->coefData),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -181,13 +182,17 @@ class CEsoViewSkillCoef
 			if ($a == null || $b == null || $c == null || $R == null) continue;
 			if ($R < 0) continue;
 			
-			if ($b == 0)
+			if ($b == 0 && $c == 0)
+				$output .= "\$$i = {$a} Stat";
+			else if ($c == 0)
+				$output .= "\$$i = {$a} Stat $bop $b";
+			else if ($b == 0)
 				$output .= "\$$i = {$a} Stat $cop $c";
 			else
 				$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c";
 			
 			$output .= " ($typeName, R2 = $R";
-			if ($avg != -1) $output .= ", average = $avg";
+			//if ($avg != -1) $output .= ", average = $avg";
 			$output .= ")<br />";
 		}
 		
