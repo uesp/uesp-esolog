@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "19";
+$TABLE_SUFFIX = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Creating skill tree from mined skill data...\n");
