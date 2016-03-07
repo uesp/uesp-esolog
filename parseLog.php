@@ -54,9 +54,11 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
 	//const START_MINEITEM_TIMESTAMP = 4743836443376300000; //v1.8pts
 	//const START_MINEITEM_TIMESTAMP = 4743888214748560000; //v1.9pts	
-	  const START_MINEITEM_TIMESTAMP = 4743853750546857984; //v1.8
+	//const START_MINEITEM_TIMESTAMP = 4743853750546857984; //v1.8
+	  const START_MINEITEM_TIMESTAMP = 4743899415482204160; //v1.9	1457359600
 	
-	const MINEITEM_TABLESUFFIX = "";
+	const MINEITEM_TABLESUFFIX = "19";
+	const SKILLS_TABLESUFFIX   = "19";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -867,7 +869,7 @@ class EsoLogParser
 		
 		foreach ($fieldDef as $key => $value)
 		{
-			if ($key === 'id' && $table != "minedSkills") continue;
+			if ($key === 'id' && $table != "minedSkills".self::SKILLS_TABLESUFFIX) continue;
 			
 			if (!array_key_exists($key, $record))
 			{
@@ -955,7 +957,7 @@ class EsoLogParser
 	{
 		if ($abilityId <= 0) return false;
 		
-		$skill = $this->loadRecord('minedSkills', 'id', $abilityId, self::$SKILLDUMP_FIELDS);
+		$skill = $this->loadRecord('minedSkills'.self::SKILLS_TABLESUFFIX, 'id', $abilityId, self::$SKILLDUMP_FIELDS);
 		if ($skill === false) return false;
 	
 		return $skill;
@@ -966,7 +968,7 @@ class EsoLogParser
 	{
 		if ($name == "") return false;
 		
-		$skill = $this->loadRecord('minedSkillLines', 'name', $name, self::$SKILLLINE_FIELDS);
+		$skill = $this->loadRecord('minedSkillLines'.self::SKILLS_TABLESUFFIX, 'name', $name, self::$SKILLLINE_FIELDS);
 		if ($skill === false) return false;
 	
 		return $skill;
@@ -985,7 +987,7 @@ class EsoLogParser
 			$setQuery[] = "$key=\"$safeValue\"";
 		}
 		
-		$query = "UPDATE minedSkills SET " . implode(", ", $setQuery) . " WHERE id=$abilityId";
+		$query = "UPDATE minedSkills".self::SKILLS_TABLESUFFIX." SET " . implode(", ", $setQuery) . " WHERE id=$abilityId";
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportError("Failed to save skill coefficient data!");
@@ -997,13 +999,13 @@ class EsoLogParser
 	
 	public function SaveSkillDump (&$record)
 	{
-		return $this->saveRecord('minedSkills', $record, 'id', self::$SKILLDUMP_FIELDS);
+		return $this->saveRecord('minedSkills'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$SKILLDUMP_FIELDS);
 	}
 	
 	
 	public function SaveSkillLine (&$record)
 	{
-		return $this->saveRecord('minedSkillLines', $record, 'name', self::$SKILLLINE_FIELDS);
+		return $this->saveRecord('minedSkillLines'.self::SKILLS_TABLESUFFIX, $record, 'name', self::$SKILLLINE_FIELDS);
 	}
 	
 	
@@ -1425,7 +1427,7 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create itemIdCheck table!");
 		
-		$query = "CREATE TABLE IF NOT EXISTS minedSkills(
+		$query = "CREATE TABLE IF NOT EXISTS minedSkills".self::SKILLS_TABLESUFFIX."(
 			id INTEGER NOT NULL PRIMARY KEY,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
@@ -1501,7 +1503,7 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedSkills table!");
 		
-		$query = "CREATE TABLE IF NOT EXISTS minedSkillLines(
+		$query = "CREATE TABLE IF NOT EXISTS minedSkillLines".self::SKILLS_TABLESUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			name TINYTEXT NOT NULL,
 			fullName TINYTEXT NOT NULL,

@@ -29,6 +29,7 @@ class EsoLogSubmitter
 	public $uploadedCharacters = 0;
 	public $parsedCharacters = 0;
 	public $wikiUserName = '';
+	public $hasCharData = false;
 	
 	public $currentLogIndex = 1;
 	
@@ -282,9 +283,12 @@ class EsoLogSubmitter
 			$this->parseVarAccountLevel($key, $value);
 		}
 		
-		$this->parseCharData->saveParsedCharacters();
-		$this->uploadedCharacters = $this->parseCharData->characterCount;
-		$this->parsedCharacters = $this->parseCharData->savedCharacters;
+		if ($this->hasCharData)
+		{
+			$this->parseCharData->saveParsedCharacters();
+			$this->uploadedCharacters = $this->parseCharData->characterCount;
+			$this->parsedCharacters = $this->parseCharData->savedCharacters;
+		}
 		
 		return TRUE;
 	}
@@ -370,7 +374,9 @@ class EsoLogSubmitter
 		
 				// Empty data sections are removed by the Lua/PHP parser
 		$data = $charData['data'];
-		if ($data == null) return True; 
+		if ($data == null) return True;
+		
+		$this->hasCharData = true;
 		
 		$data['IPAddress'] = $_SERVER["REMOTE_ADDR"];
 		$data['UploadTimestamp'] = time();

@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "19";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = true;
 
