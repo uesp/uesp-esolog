@@ -1113,6 +1113,7 @@ class EsoLogParser
 						newCount INTEGER NOT NULL,
 						chestsFound INTEGER NOT NULL,
 						sacksFound INTEGER NOT NULL,
+						trovesFound INTEGER NOT NULL,
 						booksRead INTEGER NOT NULL,
 						nodesHarvested INTEGER NOT NULL,
 						itemsLooted INTEGER NOT NULL,
@@ -1549,6 +1550,7 @@ class EsoLogParser
 		$this->users[$userName]['newCount'] = 0;
 		$this->users[$userName]['chestsFound'] = 0;
 		$this->users[$userName]['sacksFound'] = 0;
+		$this->users[$userName]['trovesFound'] = 0;
 		$this->users[$userName]['booksRead'] = 0;
 		$this->users[$userName]['itemsLooted'] = 0;
 		$this->users[$userName]['nodesHarvested'] = 0;
@@ -1569,6 +1571,7 @@ class EsoLogParser
 		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
 		$this->users[$userName]['__lastChestFoundGameTime'] = 0;
 		$this->users[$userName]['__lastSackFoundGameTime'] = 0;
+		$this->users[$userName]['__lastTroveFoundGameTime'] = 0;
 		$this->users[$userName]['__lastBookGameTime'] = 0;
 		$this->users[$userName]['lastQuestOffered'] = null;
 		
@@ -1626,6 +1629,7 @@ class EsoLogParser
 		settype($row['duplicateCount'], "integer");
 		settype($row['newCount'], "integer");
 		settype($row['chestsFound'], "integer");
+		settype($row['trovesFound'], "integer");
 		settype($row['sacksFound'], "integer");
 		settype($row['booksRead'], "integer");
 		settype($row['itemsLooted'], "integer");
@@ -1639,6 +1643,7 @@ class EsoLogParser
 		$this->users[$userName]['duplicateCount'] = $row['duplicateCount'];
 		$this->users[$userName]['newCount'] = $row['newCount'];
 		$this->users[$userName]['chestsFound'] = $row['chestsFound'];
+		$this->users[$userName]['trovesFound'] = $row['trovesFound'];
 		$this->users[$userName]['sacksFound'] = $row['sacksFound'];
 		$this->users[$userName]['booksRead'] = $row['booksRead'];
 		$this->users[$userName]['itemsLooted'] = $row['itemsLooted'];
@@ -1747,6 +1752,7 @@ class EsoLogParser
 		$query = "UPDATE user SET entryCount={$user['entryCount']}, newCount={$user['newCount']}, errorCount={$user['errorCount']}, duplicateCount={$user['duplicateCount']}";
 		$query .= ", itemsLooted={$user['itemsLooted']}";
 		$query .= ", chestsFound={$user['chestsFound']}";
+		$query .= ", trovesFound={$user['trovesFound']}";
 		$query .= ", sacksFound={$user['sacksFound']}";
 		$query .= ", booksRead={$user['booksRead']}";
 		$query .= ", nodesHarvested={$user['nodesHarvested']}";
@@ -2946,6 +2952,18 @@ class EsoLogParser
 				++$this->currentUser['sacksFound'];
 				$this->currentUser['__dirty'] = true;
 				$this->currentUser['__lastSackFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
+		else if ($logEntry['name'] == "Thieves Trove")
+		{
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastTroveFoundGameTime'];
+			
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				//$this->log("\tFound user chest...");
+				++$this->currentUser['trovesFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
 			}
 		}
 		
