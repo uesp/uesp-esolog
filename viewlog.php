@@ -193,6 +193,7 @@ class EsoLogViewer
 			'newCount' => self::FIELD_INT,
 			'chestsFound' => self::FIELD_INT,
 			'sacksFound' => self::FIELD_INT,
+			'trovesFound' => self::FIELD_INT,
 			'booksRead' => self::FIELD_INT,
 			'nodesHarvested' => self::FIELD_INT,
 			'itemsLooted' => self::FIELD_INT,
