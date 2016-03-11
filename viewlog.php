@@ -9,8 +9,10 @@ require("esoCommon.php");
 
 class EsoLogViewer
 {
-	
 	const PRINT_DB_ERRORS = true;
+	
+	const ENABLE_18PTS = false;
+	const ENABLE_19PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -800,7 +802,7 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
-			/*
+			
 			'minedItem18pts' => array(
 					'displayName' => 'Mined Items from PTS 1.8',
 					'displayNameSingle' => 'Mined Item from PTS 1.8',
@@ -828,7 +830,7 @@ class EsoLogViewer
 			
 					'filters' => array(
 					),
-			), */
+			),
 			
 			'minedItem19pts' => array(
 					'displayName' => 'Mined Items from PTS 1.9',
@@ -941,7 +943,6 @@ class EsoLogViewer
 					),
 			),
 			
-			/*
 			'setSummary18pts' => array(
 					'displayName' => 'Set Summaries from PTS 1.8',
 					'displayNameSingle' => 'Set Item Summary from PTS 1.8',
@@ -964,7 +965,7 @@ class EsoLogViewer
 									'type' => 'filter',
 							),
 					),
-			),*/
+			),
 			
 			'setSummary19pts' => array(
 					'displayName' => 'Set Summaries from PTS 1.9',
@@ -1157,7 +1158,39 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary18pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
+			'minedItemSummary19pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
+			'setSummary18pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
+			'setSummary19pts' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
@@ -1204,12 +1237,35 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
 		
-		// self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
-		// self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
+		if (self::ENABLE_18PTS) 
+		{
+			self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary18pts']);
+			unset(self::$RECORD_TYPES['minedItem18pts']);
+			unset(self::$RECORD_TYPES['setSummary18pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary18pts']);
+			unset(self::$SEARCH_DATA['setSummary18pts']);
+		}
 		
-		self::$RECORD_TYPES['minedItem19pts']['fields'] = self::$MINEDITEM_FIELDS;
-		self::$RECORD_TYPES['setSummary19pts']['fields'] = self::$SETSUMMARY_FIELDS;
-		self::$RECORD_TYPES['minedItemSummary19pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+		if (self::ENABLE_19PTS)
+		{
+			self::$RECORD_TYPES['minedItem19pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary19pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary19pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary19pts']);
+			unset(self::$RECORD_TYPES['minedItem19pts']);
+			unset(self::$RECORD_TYPES['setSummary19pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary19pts']);
+			unset(self::$SEARCH_DATA['setSummary19pts']);
+		}
+		
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
