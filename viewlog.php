@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 	const ENABLE_18PTS = false;
-	const ENABLE_19PTS = true;
+	const ENABLE_19PTS = false;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
