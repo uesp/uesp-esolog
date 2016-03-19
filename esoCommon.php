@@ -1300,22 +1300,30 @@ function GetEsoItemTableSuffix($version)
 	{
 		case '1.5':
 		case '15':
+		case '5':
 			return "15";
 		case '1.6':
 		case '16':
+		case '6':
 			return "16";
 		case '1.7':
 		case '17':
+		case '7':
 			return "17";
 		case '1.8':
 		case '18':
-			return "";
+		case '8':
+			return "18";
 		case '1.8pts':
 		case '18pts':
 			return "18pts";					
 		case '1.9pts':
 		case '19pts':
 			return "19pts";
+		case '1.9':
+		case '19':
+		case '9':
+			return "";
 	}
 
 	return "";
