@@ -49,6 +49,8 @@ class EsoLogParser
 	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
 	const ELP_SKILLCOEF_MAXCOEFVARS = 6;
 	
+	const ELP_THIEVESTROVE_LASTFIXTIMESTAMP = 4743900596690485248;
+	
 	//const START_MINEITEM_TIMESTAMP = 4743729922978086912; //v1.5
 	//const START_MINEITEM_TIMESTAMP = 4743796906663084032; //v1.6
 	//const START_MINEITEM_TIMESTAMP = 4743831656832434176; //v1.7
@@ -1117,6 +1119,7 @@ class EsoLogParser
 						booksRead INTEGER NOT NULL,
 						nodesHarvested INTEGER NOT NULL,
 						itemsLooted INTEGER NOT NULL,
+						itemsStolen INTEGER NOT NULL,
 						mobsKilled INTEGER NOT NULL,
 						enabled TINYINT NOT NULL DEFAULT 1,
 						language TINYTEXT NOT NULL,
@@ -1553,6 +1556,7 @@ class EsoLogParser
 		$this->users[$userName]['trovesFound'] = 0;
 		$this->users[$userName]['booksRead'] = 0;
 		$this->users[$userName]['itemsLooted'] = 0;
+		$this->users[$userName]['itemsStolen'] = 0;
 		$this->users[$userName]['nodesHarvested'] = 0;
 		$this->users[$userName]['mobsKilled'] = 0;
 		$this->users[$userName]['enabled'] = true;
@@ -1633,6 +1637,7 @@ class EsoLogParser
 		settype($row['sacksFound'], "integer");
 		settype($row['booksRead'], "integer");
 		settype($row['itemsLooted'], "integer");
+		settype($row['itemsStolen'], "integer");
 		settype($row['nodesHarvested'], "integer");
 		settype($row['mobsKilled'], "integer");
 		
@@ -1647,6 +1652,7 @@ class EsoLogParser
 		$this->users[$userName]['sacksFound'] = $row['sacksFound'];
 		$this->users[$userName]['booksRead'] = $row['booksRead'];
 		$this->users[$userName]['itemsLooted'] = $row['itemsLooted'];
+		$this->users[$userName]['itemsStolen'] = $row['itemsStolen'];
 		$this->users[$userName]['nodesHarvested'] = $row['nodesHarvested'];
 		$this->users[$userName]['mobsKilled'] = $row['mobsKilled'];
 		$this->users[$userName]['enabled'] = ($row['enabled'] != 0);
@@ -1751,6 +1757,7 @@ class EsoLogParser
 		
 		$query = "UPDATE user SET entryCount={$user['entryCount']}, newCount={$user['newCount']}, errorCount={$user['errorCount']}, duplicateCount={$user['duplicateCount']}";
 		$query .= ", itemsLooted={$user['itemsLooted']}";
+		$query .= ", itemsStolen={$user['itemsStolen']}";
 		$query .= ", chestsFound={$user['chestsFound']}";
 		$query .= ", trovesFound={$user['trovesFound']}";
 		$query .= ", sacksFound={$user['sacksFound']}";
@@ -1909,6 +1916,30 @@ class EsoLogParser
 	}
 	
 	
+	public function OnStolen ($logEntry)
+	{
+		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
+		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
+	
+		++$this->currentUser['itemsStolen'];
+		$this->currentUser['__dirty'] = true;
+	
+		if ($logEntry['lastTarget'] == "Thieves Trove" && $logEntry['timeStamp'] < self::ELP_THIEVESTROVE_LASTFIXTIMESTAMP)
+		{
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastTroveFoundGameTime'];
+	
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				++$this->currentUser['trovesFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
+		
+		return true;
+	}
+		
+	
 	public function OnLootGainedEntry ($logEntry)
 	{
 		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
@@ -1916,6 +1947,24 @@ class EsoLogParser
 		
 		++$this->currentUser['itemsLooted'];
 		$this->currentUser['__dirty'] = true;
+		
+		if ($logEntry['lastTarget'] == "Thieves Trove" && $logEntry['timeStamp'] < self::ELP_THIEVESTROVE_LASTFIXTIMESTAMP)
+		{
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastTroveFoundGameTime'];
+				
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				++$this->currentUser['trovesFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
+		
+		if ($logEntry['rvcType'] == "stole" || $logEntry['rcvType'] == "stole")
+		{
+			++$this->currentUser['itemsStolen'];
+			$this->currentUser['__dirty'] = true;
+		}
 		
 		if ($this->IsTargetResource($logEntry['lastTarget']))
 		{
@@ -2960,7 +3009,6 @@ class EsoLogParser
 			
 			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
 			{
-				//$this->log("\tFound user chest...");
 				++$this->currentUser['trovesFound'];
 				$this->currentUser['__dirty'] = true;
 				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
@@ -3823,7 +3871,7 @@ class EsoLogParser
 			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "TelvarUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
-			case "Stolen":						$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "Stolen":						$result = $this->OnStolen($logEntry); break;
 			case "SkillCoef::Start":			$result = $this->OnSkillCoefStart($logEntry); break;
 			case "SkillCoef":					$result = $this->OnSkillCoef($logEntry); break;
 			case "SkillCoef::End":				$result = $this->OnSkillCoefEnd($logEntry); break;

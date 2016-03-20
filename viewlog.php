@@ -199,6 +199,7 @@ class EsoLogViewer
 			'booksRead' => self::FIELD_INT,
 			'nodesHarvested' => self::FIELD_INT,
 			'itemsLooted' => self::FIELD_INT,
+			'itemsStolen' => self::FIELD_INT,
 			'mobsKilled' => self::FIELD_INT,
 			'duplicateCount' => self::FIELD_INT,
 			'language' => self::FIELD_STRING,
