@@ -134,6 +134,7 @@ class CEsoDumpMinedItems {
 				"icon" => array($this, MakeIconLink),
 				"itemId" => array($this, MakeItemIdLink),
 				"name" => array($this, MakeItemNameLink),
+				"title" => array($this, EscapeQuotes),
 		);
 		
 		error_reporting(E_ALL);
@@ -353,6 +354,7 @@ class CEsoDumpMinedItems {
 		else
 			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $desc);
 		
+		$output = $this->EscapeQuotes($output);
 		return $output;
 	}
 	
@@ -382,10 +384,17 @@ class CEsoDumpMinedItems {
 		}
 		elseif ($this->outputType == "wiki")
 		{
-		return "[http://esoitem.uesp.net/itemLink.php?itemid=$itemId $itemName]";
+			return "[http://esoitem.uesp.net/itemLink.php?itemid=$itemId $itemName]";
 		}
-	
+		
+		$itemName = $this->EscapeQuotes($itemName);
 		return $itemName;
+	}
+	
+	
+	public function EscapeQuotes($inputString)
+	{
+		return str_replace('"', '""', $inputString);;
 	}
 	
 	
