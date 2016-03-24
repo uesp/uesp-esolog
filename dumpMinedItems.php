@@ -36,7 +36,7 @@ class CEsoDumpMinedItems {
 			"internalLevel",
 			"internalSubtype",
 			"tags",
-			"comment",			
+			"comment",
 	);
 	
 	public static $ITEMTYPE_FIELDS = array(
@@ -489,6 +489,7 @@ class CEsoDumpMinedItems {
 	
 		while (($row = $result->fetch_assoc()))
 		{
+			$row['link'] = $this->MakeItemLink($row);
 			$this->itemRecords[] = $row;
 		}
 	
@@ -497,12 +498,40 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function MakeItemLink($item)
+	{
+		$itemId = $item['itemId'];
+		
+		$style = $item['style'];
+		$intType = $item['internalSubtype'];
+		$intLevel = $item['internalLevel'];
+		
+		if ($style == null) $style = 0;
+		if ($intType == null) $intType = 1;
+		if ($intLevel == null) $intLevel = 1;
+		
+		$itemLink = "|H0:item:$itemId:$intType:$intLevel:0:0:0:0:0:0:0:0:0:0:0:0:$style:0:0:0:0:0|h|h";
+		
+		return $itemLink;
+	}
+	
+	
+	
 	public function LoadFields()
 	{
+		$this->validFields = array();
+		
 		if ($this->weaponType > 0 || $this->armorType > 0 || $this->equipType > 0 || $this->itemType > 0)
+		{
 			$query = "DESCRIBE minedItemSummary". $this->GetTableSuffix() .";";
-		else
+			$this->validFields['link'] = true;
+			$this->allFields[] = 'link';
+			$this->fieldRecords[] = 'link';
+		}
+		else 
+		{
 			$query = "DESCRIBE minedItem". $this->GetTableSuffix() .";";
+		}
 		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error!");
