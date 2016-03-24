@@ -506,11 +506,23 @@ class CEsoDumpMinedItems {
 		$intType = $item['internalSubtype'];
 		$intLevel = $item['internalLevel'];
 		
+		$enchantId = $item['enchantId'];
+		$enchantLevel = $item['enchantLevel'];
+		$enchantType = $item['enchantSubtype'];
+		$enchantCharges = $item['maxCharges'];
+		$condition = $item['condition'];
+		
+		if ($enchantId == null) $enchantId = 0;
+		if ($enchantLevel == null) $enchantLevel = 0;
+		if ($enchantType == null) $enchantType = 0;
+		if ($enchantCharges == null) $enchantCharges = 0;
+		if ($condition == null) $condition = $enchantCharges;
+		
 		if ($style == null) $style = 0;
 		if ($intType == null) $intType = 1;
 		if ($intLevel == null) $intLevel = 1;
 		
-		$itemLink = "|H0:item:$itemId:$intType:$intLevel:0:0:0:0:0:0:0:0:0:0:0:0:$style:0:0:0:0:0|h|h";
+		$itemLink = "|H0:item:$itemId:$intType:$intLevel:$enchantId:$enchantType:$enchantLevel:0:0:0:0:0:0:0:0:0:$style:0:0:0:$condition:0|h|h";
 		
 		return $itemLink;
 	}
