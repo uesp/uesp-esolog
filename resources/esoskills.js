@@ -45,11 +45,17 @@ function OnEsoSkillLineTitleClick(event)
 	EsoSkillShowSkillLine(skillLine);
 }
 
+function OnEsoSkillBlockClick(event)
+{
+	$(this).next('.esovsAbilityBlockList').slideToggle();
+}
+
 
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
 	$('.esovsSkillLineTitle').click(OnEsoSkillLineTitleClick);
+	$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
 }
 
 

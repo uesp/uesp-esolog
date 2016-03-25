@@ -499,6 +499,7 @@ class EsoLogParser
 			'rank'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
 			'skillLine' => self::FIELD_STRING,
+			'skillIndex' => self::FIELD_INT,
 			'numCoefVars' => self::FIELD_INT,
 			'coefDescription' =>  self::FIELD_STRING,
 			'type1' => self::FIELD_INT,
@@ -1462,7 +1463,8 @@ class EsoLogParser
 			nextSkill BIGINT NOT NULL DEFAULT 0,
 			nextSkill2 BIGINT NOT NULL DEFAULT 0,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
-			rank TINYINT NOT NULL DEFAULT 0,				
+			rank TINYINT NOT NULL DEFAULT 0,		
+			skillIndex TINYINT NOT NULL DEFAULT -1,
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL,
 			type1 TINYINT NOT NULL DEFAULT -1,
@@ -3620,6 +3622,7 @@ class EsoLogParser
 		$skill['isPlayer'] = 1;
 		$skill['nextSkill'] = $nextAbilityId;
 		$skill['prevSkill'] = $prevAbilityId;
+		$skill['skillIndex'] = $logEntry['abilityIndex'];
 		
 		$this->SaveSkillDump($skill);
 		

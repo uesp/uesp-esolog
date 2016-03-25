@@ -74,6 +74,8 @@ class CEsoViewSkills
 		
 		while (($row = $result->fetch_assoc()))
 		{
+			//$row['name'] = preg_replace("#(.*) [IV]+#", "$1", $row['name']);
+			//$row['baseName'] = preg_replace("#(.*) [IV]+#", "$1", $row['baseName']);
 			$this->skills[] = $row;
 		}
 		
@@ -94,6 +96,11 @@ class CEsoViewSkills
 		foreach($this->skillTree as &$skillType)
 		{
 			ksort($skillType);
+			
+			foreach($skillType as &$skillLine)
+			{
+				usort($skillLine, 'CompareEsoSkillLine');
+			}
 		}
 		
 		/*
@@ -290,6 +297,8 @@ class CEsoViewSkills
 	
 	public function FindLastAbility($abilityData)
 	{
+		if ($abilityData['type'] != "Passive" && array_key_exists(4, $abilityData)) return $abilityData[4];
+		
 		for ($i = 12; $i >= -1; --$i)
 		{
 			if (array_key_exists($i, $abilityData)) return $abilityData[$i];
@@ -309,6 +318,29 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetRomanNumeral($value)
+	{
+		static $NUMERALS = array(
+				0  => '0',
+				1  => 'I',
+				2  => 'II',
+				3  => 'III',
+				4  => 'IV',
+				5  => 'V',
+				6  => 'VI',
+				7  => 'VII',
+				8  => 'VIII',
+				9  => 'IX',
+				10 => 'X',
+				11 => 'XI',
+				12 => 'XII',
+		);
+				
+		if (array_key_exists($value, $NUMERALS)) return $NUMERALS[$value];
+		return $value;
+	}
+	
+	
 	public function GetSkillContentHtml_SkillLineType($type, $typeLabel, $skillLine, $skillLineData)
 	{
 		$output = "";
@@ -325,25 +357,36 @@ class CEsoViewSkills
 			
 			$name = $baseAbility['name'];
 			$icon = $this->GetIconURL($baseAbility['icon']);
+			$learnedLevel = $baseAbility['learnedLevel'];
 			$rankLabel = "";
+			$levelDesc = "";
 			$desc = "";
 			
 			if ($type == "Passive")
 			{
 				$desc = FormatRemoveEsoItemDescriptionText($lastAbility['description']);
 				$rank = $lastAbility['rank'];
+				$learnedLevel = $lastAbility['learnedLevel'];
 				if ($rank < 0) $rank = 1;
-				$rankLabel = " ($rank)";
+				//$rankLabel = " ($rank)";
+				$rankLabel = " " . $this->GetRomanNumeral($rank);
 			}
 			else
 			{
-				$desc = FormatRemoveEsoItemDescriptionText($baseAbility['description']);
+				$desc = FormatRemoveEsoItemDescriptionText($lastAbility['description']);
+				$learnedLevel = $lastAbility['learnedLevel'];
+				$rank = $lastAbility['rank'];
+				$rankLabel = " " . $this->GetRomanNumeral($rank);
 			}
+
+			if ($learnedLevel > 0) $levelDesc = "Unlocked at rank $learnedLevel";
 						
 			$output .= "<div class='esovsAbilityBlock'>";
-			$output .= "<div class='esovsAbilityBlockTitle'><div class='$iconClass'><img src='$icon' /></div> $name $rankLabel</div>";
+			$output .= "<div class='esovsAbilityBlockTitle'><div class='$iconClass'><img src='$icon' /></div>";
+			$output .= "<div class='esovsAbilityBlockTitleLabel'>$name $rankLabel<br /><div class='esovsAbilityBlockLevelDesc'>$levelDesc</div></div></div>";
 			$output .= "<div class='esovsAbilityBlockDesc'>$desc</div>";
 			$output .= "</div>";
+			$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
 		}
 		
 		if ($output != "")
@@ -351,6 +394,67 @@ class CEsoViewSkills
 			$output = "<div class='esovsSkillBlockTypeTitle'>$typeLabel</div>" . $output;
 		}
 		
+		return $output;
+	}
+	
+	
+	public function GetSkillContentHtml_AbilityList($abilityName, $abilityData)
+	{
+		$output = "<div class='esovsAbilityBlockList' style='display: none;'>\n";
+		
+		foreach ($abilityData as $rank => $ability)
+		{
+			if (!is_numeric($rank)) continue;
+			$output .= $this->GetSkillContentHtml_Ability($abilityName, $rank, $ability);
+		}
+		
+		$output .= "</div>\n";
+		return $output;
+	}
+	
+	
+	public function GetSkillContentHtml_Ability($abilityName, $abilityRank, $abilityData)
+	{
+		$type = $abilityData['type'];
+		$rank = $abilityData['rank'];
+		
+		if ($type != "Passive" && !($rank == 8 || $rank == 12)) return "";
+		
+		$name = $abilityData['name'];
+		$icon = $this->GetIconURL($abilityData['icon']);
+		$learnedLevel = $abilityData['learnedLevel'];
+		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
+		
+		$iconClass = "esovsAbilityBlockIcon";
+		if ($type == "Passive") $iconClass = "esovsAbilityBlockPassiveIcon";
+		
+		$levelDesc = "";
+		if ($learnedLevel > 0) $levelDesc = "<br /><div class='esovsAbilityBlockLevelDesc'>Unlocked at rank $learnedLevel</div>";
+		
+		if ($type == "Passive")
+		{
+			if ($rank < 0) $rank = 1;
+		}
+		else if ($rank > 8)
+		{
+			$rank -= 8;
+			$levelDesc = "";
+		}
+		else if ($rank > 4)
+		{
+			$rank -= 4;
+			$levelDesc = "";
+		}
+		
+		$rankLabel = " " . $this->GetRomanNumeral($rank);
+		
+		$output = "<div class='esovsAbilityBlockListItem'>";
+		$output .= "<div class='esovsAbilityBlock'>";
+		$output .= "<div class='esovsAbilityBlockTitle'><div class='$iconClass'><img src='$icon' /></div>";
+		$output .= "<div class='esovsAbilityBlockTitleLabel'>$name $rankLabel$levelDesc</div></div>";
+		$output .= "<div class='esovsAbilityBlockDesc'>$desc</div>";
+		
+		$output .= "</div></div>\n";
 		return $output;
 	}
 	
@@ -378,6 +482,29 @@ class CEsoViewSkills
 	}
 	
 };
+
+
+function CompareEsoSkillLine($a, $b)
+{
+	$a1 = null;
+	$b1 = null;
+	
+	if (array_key_exists(1, $a)) 
+		$a1 = $a[1];
+	else if (array_key_exists(-1, $a))
+		$a1 = $a[-1];
+	else
+		return 1;
+	
+	if (array_key_exists(1, $b))
+		$b1 = $b[1];
+	else if (array_key_exists(-1, $b))
+		$b1 = $b[-1];
+	else
+		return -1;
+	
+	return $a1['skillIndex'] - $b1['skillIndex'];
+}
 
 
 $g_EsoViewSkills = new CEsoViewSkills();
