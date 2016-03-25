@@ -1,3 +1,27 @@
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
 body {
 	background-color: #FBEFD5;
 	font-family: sans-serif;
@@ -26,4 +50,136 @@ h1, h2, h3 {
 
 a:hover {
 	background-color: #ccc;
+}
+
+
+#esovsLeftBlock {
+	width: 50%;	
+	padding: 5px;
+}
+
+#esovsRightBlock {
+	float:right;
+	width: 50%;
+	padding: 5px;
+}
+
+#esovsSkillTree {
+	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-size: 16px;
+    width: 200px;
+    display: inline-block;
+}
+
+.esovsSkillType {
+	margin-left: 25px;
+}
+
+.esovsSkillTypeTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    padding: 8px;
+    padding-left: 0px;
+}
+
+.esovsSkillTypeTitle:hover {
+	background-color: #999;
+	cursor: pointer;
+}
+
+.esovsSkillLineTitle:hover {
+	background-color: #999;
+	cursor: pointer;
+}
+
+.esovsSkillLineTitle {
+    font-size: 17px;
+    font-weight: bold;
+    color: #000000;
+    padding: 2px;
+}
+
+.esovsSkillLineTitleHighlight {
+}
+
+.esovsSkillTypeTitleHighlight {
+	color: #000099;
+	background-color: #ccc;
+}
+
+#esovsSkillContent {
+	border: solid 1px gray;
+	display: inline-block;
+	vertical-align: top;
+	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-size: 16px;
+	width: 700px;
+}
+
+.esovsSkillContentBlock {
+	
+}
+
+.esovsSkillContentTitle {
+	font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    padding: 8px;
+    padding-left: 0px;
+}
+
+.esovsSkillBlockTypeTitle {
+	font-size: 20px;
+    font-weight: bold;
+    color: #666622;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.esovsAbilityBlock {
+	padding: 5px;
+	margin-left: 25px;
+}
+
+.esovsAbilityBlockTitle {
+	font-size: 18px;
+    font-weight: bold;
+    color: #000000;
+    margin-left: 10px;
+    vertical-align: top;
+    width: 225px;
+    display: inline-block;
+}
+
+.esovsAbilityBlockIcon {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	background-image: url(eso_ability_frame.png);
+	background-size: 100% 100%;
+}
+
+.esovsAbilityBlockIcon img, .esovsAbilityBlockPassiveIcon img {
+	width: 32px;
+    height: 32px;
+    margin-top: 1px;
+    margin-left: 1px;
+    vertical-align: middle;
+}
+
+.esovsAbilityBlockPassiveIcon {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	background-image: url(eso_round_ability_frame.png);
+	background-size: 100% 100%;
+}
+
+.esovsAbilityBlockDesc {
+	font-size: 14px;
+    font-weight: normal;
+    font-color: #000000;
+    display: inline-block;
+    width: 425px;
 }
