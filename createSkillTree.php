@@ -80,7 +80,7 @@ $query = "DELETE FROM skillTree".$TABLE_SUFFIX.";";
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error (clearing skill tree)!\n" . $db->error);
 
-$query = "SELECT * from minedSkills".$TABLE_SUFFIX." WHERE nextSkill >= 0;";
+$query = "SELECT * from minedSkills".$TABLE_SUFFIX." WHERE nextSkill >= 0 AND isPassive=0 AND isPlayer=1;";
 $skillResult = $db->query($query);
 if (!$skillResult) exit("ERROR: Database query error (finding skill lines)!\n" . $db->error);
 $skillResult->data_seek(0);
@@ -136,7 +136,7 @@ foreach($skillTree as $id => $skillTreeLine)
 	foreach ($skillTreeLine as $index => $skillLineId)
 	{
 		$skill = $skills[$skillLineId];
-		if ($skill['skillType'] >= 0) $skillRootData[$id]['skillType'] = $skill['skillType'];
+		if ($skill['skillType'] >   0) $skillRootData[$id]['skillType'] = $skill['skillType'];
 		if ($skill['skillLine'] != "") $skillRootData[$id]['skillLine'] = $skill['skillLine'];
 		if ($skill['classType'] != "") $skillRootData[$id]['classType'] = $skill['classType'];
 		if ($skill['raceType']  != "") $skillRootData[$id]['raceType']  = $skill['raceType'];
@@ -148,11 +148,10 @@ foreach($skillTree as $id => $skillTreeLine)
 {
 	foreach ($skillTreeLine as $index => $skillLineId)
 	{
-		$skill = &$skills[$skillLineId];
-		$skill['skillType'] = $skillRootData[$id]['skillType'];
-		$skill['skillLine'] = $skillRootData[$id]['skillLine'];
-		$skill['classType'] = $skillRootData[$id]['classType'];
-		$skill['raceType']  = $skillRootData[$id]['raceType'];
+		$skills[$skillLineId]['skillType'] = $skillRootData[$id]['skillType'];
+		$skills[$skillLineId]['skillLine'] = $skillRootData[$id]['skillLine'];
+		$skills[$skillLineId]['classType'] = $skillRootData[$id]['classType'];
+		$skills[$skillLineId]['raceType']  = $skillRootData[$id]['raceType'];
 	}
 }
 
@@ -259,7 +258,7 @@ foreach($skillTree as $id => $skillTreeLine)
 }
 
 	/* Create skill passives */
-$query = "SELECT * FROM minedSkills WHERE isPassive=1 AND isPlayer=1 GROUP BY name;";
+$query = "SELECT * FROM minedSkills WHERE isPassive=1 AND isPlayer=1;";
 $passiveResult = $db->query($query);
 if (!$passiveResult) exit("ERROR: Database query error finding passive skills!\n" . $db->error . "\n" . $query);
 
@@ -270,18 +269,37 @@ $type = "Passive";
 $skillTypeName = "";
 $index = 0;
 
-/* Load all skills with a progression */
+	/* Load all passives */
 while (($passive = $passiveResult->fetch_assoc()))
 {
-	$passiveSkills[] = $passive;
-	$count++;
-	
 	$id = $passive['id'];
-	$name = $db->real_escape_string($passive['name']);
-	$baseName = $name;
-	$desc = $db->real_escape_string($passive['description']);
-	$icon = $db->real_escape_string($passive['texture']);
+	$passiveSkills[$id] = $passive;
+	$count++;
+}
+
+	/* Update next/prev IDs and set skillTypeName */
+foreach ($passiveSkills as $id => $passive)
+{
+	$nextSkill = $passiveSkills[$id]['nextSkill'];
+	$prevSkill = $passiveSkills[$id]['prevSkill'];
 	
+	$hasPrevSkill = array_key_exists($prevSkill, $passiveSkills);
+	$hasNextSkill = array_key_exists($nextSkill, $passiveSkills);
+		
+	if ($hasPrevSkill && $hasNextSkill)
+	{
+		$passiveSkills[$nextSkill]['prevSkill'] = $id;
+		$passiveSkills[$prevSkill]['nextSkill'] = $id;
+	}
+	else if ($hasPrevSkill)
+	{
+		$passiveSkills[$prevSkill]['nextSkill'] = $id;
+	}
+	else if ($hasNextSkill)
+	{
+		$passiveSkills[$nextSkill]['prevSkill'] = $id;
+	}
+		
 	if ($passive['skillType'] == 1)
 	{
 		$skillTypeName = $passive['classType'] . "::" . $passive['skillLine'];
@@ -294,12 +312,54 @@ while (($passive = $passiveResult->fetch_assoc()))
 	{
 		$skillTypeName = GetSkillTypeText($passive['skillType']) . "::" . $passive['skillLine'];
 	}
+
+	$passiveSkills[$id]['skillTypeName'] = $skillTypeName;
+}
+
+
+function ComparePassives($a, $b)
+{
+	//$compare = strcmp($a['skillTypeName'], $b['skillTypeName']);
+	$compare = 0;
 	
-	$skillTypeName = $db->real_escape_string($skillTypeName);
+	if ($compare == 0)
+	{
+		$compare = strcmp($a['name'], $b['name']);
+		
+		if ($compare == 0)
+		{
+			$compare = $a['rank'] - $b['rank'];
+		}
+	}
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon) VALUES('$id','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\")";
+	return $compare;
+}
+
+	/* Sort passives */
+usort($passiveSkills, "ComparePassives");
+
+	/* Create tree for passives */
+foreach ($passiveSkills as $passive)
+{	
+	$id = $passive['id'];
+	$name = $db->real_escape_string($passive['name']);
+	$baseName = $name;
+	$desc = $db->real_escape_string($passive['description']);
+	$icon = $db->real_escape_string($passive['texture']);
+	$rank = $passive['rank'];
+	
+	$skillTypeName = $db->real_escape_string($passive['skillTypeName']);
+	
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\")";
 	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
+	if (!$result) exit("ERROR: Database query error inserting into skillTree table!\n" . $db->error . "\n" . $query);
+	
+	$nextSkill = $passive['nextSkill'];
+	$prevSkill = $passive['prevSkill'];
+	
+	$query = "UPDATE minedSkills SET nextSkill=$nextSkill, prevSkill=$prevSkill WHERE id=$id;";
+	$result = $db->query($query);
+	if (!$result) exit("ERROR: Database query error updating minedSkill table!\n" . $db->error . "\n" . $query);
 }
 
 print("\tFound $count passive player skills.\n");

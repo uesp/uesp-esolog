@@ -494,6 +494,7 @@ class EsoLogParser
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,
 			'nextSkill2'  => self::FIELD_INT,
+			'rank'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
 			'skillLine' => self::FIELD_STRING,
 			'numCoefVars' => self::FIELD_INT,
@@ -1459,6 +1460,7 @@ class EsoLogParser
 			nextSkill BIGINT NOT NULL DEFAULT 0,
 			nextSkill2 BIGINT NOT NULL DEFAULT 0,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
+			rank TINYINT NOT NULL DEFAULT 0,				
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL,
 			type1 TINYINT NOT NULL DEFAULT -1,
@@ -1472,8 +1474,8 @@ class EsoLogParser
 			b2 FLOAT NOT NULL DEFAULT -1,
 			c2 FLOAT NOT NULL DEFAULT -1,
 			R2 FLOAT NOT NULL DEFAULT -1,
-			avg2 FLOAT NOT NULL DEFAULT -
-			type3 TINYINT NOT NULL DEFAULT -1,1,
+			avg2 FLOAT NOT NULL DEFAULT -1,
+			type3 TINYINT NOT NULL DEFAULT -1,
 			a3 FLOAT NOT NULL DEFAULT -1,
 			b3 FLOAT NOT NULL DEFAULT -1,
 			c3 FLOAT NOT NULL DEFAULT -1,
@@ -1485,13 +1487,13 @@ class EsoLogParser
 			c4 FLOAT NOT NULL DEFAULT -1,
 			R4 FLOAT NOT NULL DEFAULT -1,
 			avg4 FLOAT NOT NULL DEFAULT -1,
-			type5 TINYINT NOT NULL DEFAULT -1,1,
+			type5 TINYINT NOT NULL DEFAULT -1,
 			a5 FLOAT NOT NULL DEFAULT -1,
 			b5 FLOAT NOT NULL DEFAULT -1,
 			c5 FLOAT NOT NULL DEFAULT -1,
 			R5 FLOAT NOT NULL DEFAULT -1,
 			avg5 FLOAT NOT NULL DEFAULT -1,
-			type6 TINYINT NOT NULL DEFAULT -1,1,
+			type6 TINYINT NOT NULL DEFAULT -1,
 			a6 FLOAT NOT NULL DEFAULT -1,
 			b6 FLOAT NOT NULL DEFAULT -1,
 			c6 FLOAT NOT NULL DEFAULT -1,
@@ -3587,7 +3589,7 @@ class EsoLogParser
 	}
 	
 	
-	public function OnSkillAbilityId ($logEntry, $abilityId)
+	public function OnSkillAbilityId ($logEntry, $abilityId, $prevAbilityId, $nextAbilityId, $rankMod)
 	{
 		if ($abilityId == null || $abilityId == "") return false;
 		
@@ -3598,11 +3600,22 @@ class EsoLogParser
 		if (array_key_exists('skillType', $logEntry)) $skill['skillType'] = $logEntry['skillType'];
 		if (array_key_exists('class', $logEntry)) $skill['classType'] = $logEntry['class'];
 		if (array_key_exists('race', $logEntry)) $skill['raceType'] = $logEntry['race'];
-		//if (array_key_exists('maxLevel', $logEntry)) $skill['learnedLevel'] = $logEntry['maxLevel'];
-		if (array_key_exists('rank', $logEntry)) $skill['learnedLevel'] = $logEntry['rank'];
+		if (array_key_exists('level', $logEntry)) $skill['rank'] = $logEntry['level'] + $rankMod;
+		
+		if (array_key_exists('rank', $logEntry) && rankMod == 0 && $logEntry['level'] == 1) 
+		{
+			$skill['learnedLevel'] = $logEntry['rank'];
+		}
+		
+		if (array_key_exists('nextEarnedRank', $logEntry) && rankMod == 1)
+		{
+			$skill['learnedLevel'] = $logEntry['nextEarnedRank'];
+		}
 		
 		$skill['skillLine'] = $this->currentUser['lastSkillLineName'];
 		$skill['isPlayer'] = 1;
+		$skill['nextSkill'] = $nextAbilityId;
+		$skill['prevSkill'] = $prevAbilityId;
 		
 		$this->SaveSkillDump($skill);
 		
@@ -3615,8 +3628,8 @@ class EsoLogParser
 		if ($this->currentUser['name'] != "Reorx") return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
-		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId1']);
-		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId2']);
+		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId1'], -1, $logEntry['abilityId2'], 0);
+		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId2'], $logEntry['abilityId1'], -1, 1);
 		
 		return true;
 	}
@@ -3670,6 +3683,7 @@ class EsoLogParser
 				$skill['nextSkill'] = $nextSkill;
 				$skill['nextSkill2'] = $nextSkill2;
 				$skill['isPlayer'] = 1;
+				$skill['rank'] = $level;
 				
 				$this->SaveSkillDump($skill);
 				
@@ -4022,6 +4036,7 @@ class EsoLogParser
 		if ($result === 0) return $this->reportError("Failed to find any log entries in file '{$logFilename}'!");
 		
 		$totalLineCount = 0;
+		$nextLineUpdate = 1000;
 		
 		foreach ($logEntries[1] as $key => $value)
 		{
@@ -4037,6 +4052,12 @@ class EsoLogParser
 			}
 			
 			++$entryCount;
+			
+			if ($totalLineCount >= $nextLineUpdate)
+			{
+				print("\tParsing line $totalLineCount...\n");
+				$nextLineUpdate += 1000;
+			}
 		}
 		
 		$this->log("\tParsed {$entryCount} log entries from file.");
