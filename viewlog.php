@@ -418,6 +418,7 @@ class EsoLogViewer
 			'skillTypeName' => self::FIELD_STRING,
 			'baseName' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
+			'learnedLevel' => self::FIELD_INT,
 			'rank' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
 			'cost' => self::FIELD_STRING,
@@ -1049,7 +1050,8 @@ class EsoLogViewer
 					'record' => 'skillTree',
 					'table' => 'skillTree',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'skillTypeName',
+					'sort' => array("FIELD(type, 'Ultimate', 'Active', 'Passive')", 'skillTypeName', 'learnedLevel', 'rank'),
+					//'sort' => array('type', 'rank'),
 						
 					'transform' => array(
 							'description' => 'RemoveTextFormats',
@@ -1965,10 +1967,12 @@ If you do not understand what this information means, or how to use this webpage
 		if (!$this->IsValidSortField($recordInfo, $customSort)) $customSort = '';
 		if ($customSort == '' && $recordInfo['sort'] == '') return '';
 		
-		if ($customSort == '')
-			$sort = " ORDER BY {$recordInfo['sort']} ";
-		else
-			$sort = " ORDER BY {$customSort} ";
+		$sortFields = $recordInfo['sort'];
+		if ($customSort != '') $sortFields = $customSort;
+		
+		if (is_array($sortFields)) $sortFields = implode(",", $sortFields);
+			
+		$sort = " ORDER BY {$sortFields} ";
 		
 		if ($this->recordSortOrder != '')
 			$sort .= $this->recordSortOrder . ' ';
