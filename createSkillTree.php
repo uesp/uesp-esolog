@@ -61,6 +61,7 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			abilityId BIGINT NOT NULL,
 			skillTypeName TINYTEXT NOT NULL,
+			learnedLevel INTEGER NOT NULL DEFAULT -1,
 			rank INTEGER NOT NULL DEFAULT -1,
 			baseName TINYTEXT NOT NULL,
 			name TINYTEXT NOT NULL,
@@ -137,6 +138,7 @@ foreach($skillTree as $id => $skillTreeLine)
 	{
 		$skill = $skills[$skillLineId];
 		if ($skill['skillType'] >   0) $skillRootData[$id]['skillType'] = $skill['skillType'];
+		if ($skill['learnedLevel'] >0) $skillRootData[$id]['learnedLevel'] = $skill['learnedLevel'];
 		if ($skill['skillLine'] != "") $skillRootData[$id]['skillLine'] = $skill['skillLine'];
 		if ($skill['classType'] != "") $skillRootData[$id]['classType'] = $skill['classType'];
 		if ($skill['raceType']  != "") $skillRootData[$id]['raceType']  = $skill['raceType'];
@@ -148,10 +150,11 @@ foreach($skillTree as $id => $skillTreeLine)
 {
 	foreach ($skillTreeLine as $index => $skillLineId)
 	{
-		$skills[$skillLineId]['skillType'] = $skillRootData[$id]['skillType'];
-		$skills[$skillLineId]['skillLine'] = $skillRootData[$id]['skillLine'];
-		$skills[$skillLineId]['classType'] = $skillRootData[$id]['classType'];
-		$skills[$skillLineId]['raceType']  = $skillRootData[$id]['raceType'];
+		$skills[$skillLineId]['skillType']    = $skillRootData[$id]['skillType'];
+		$skills[$skillLineId]['learnedLevel'] = $skillRootData[$id]['learnedLevel'];
+		$skills[$skillLineId]['skillLine']    = $skillRootData[$id]['skillLine'];
+		$skills[$skillLineId]['classType']    = $skillRootData[$id]['classType'];
+		$skills[$skillLineId]['raceType']     = $skillRootData[$id]['raceType'];
 	}
 }
 
@@ -210,8 +213,9 @@ foreach($skills as $id => $skill)
 	$raceType = $db->real_escape_string($skill['raceType']);
 	$skillType = $db->real_escape_string($skill['skillType']);
 	$skillLine = $db->real_escape_string($skill['skillLine']);
+	$learnedLevel = $db->real_escape_string($skill['learnedLevel']);
 	
-	$query = "UPDATE minedSkills SET skillType=\"$skillType\",raceType=\"$raceType\",classType=\"$classType\",skillLine=\"$skillLine\" WHERE id=$id;";
+	$query = "UPDATE minedSkills SET skillType=\"$skillType\",raceType=\"$raceType\",classType=\"$classType\",skillLine=\"$skillLine\",learnedLevel=\"$learnedLevel\" WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
 }
@@ -237,6 +241,7 @@ foreach($skillTree as $id => $skillTreeLine)
 	$rootSkill = $skills[$skillTreeLine[1]];
 	$skillTypeName = $db->real_escape_string($skillTypeName);
 	$baseName = $db->real_escape_string($rootSkill['name']);
+	 
 	$type = "Active";
 	
 	if ($rootSkill['mechanic']  == 10) $type = "Ultimate";
@@ -250,8 +255,9 @@ foreach($skillTree as $id => $skillTreeLine)
 		$desc = $db->real_escape_string($thisSkill['description']);
 		$cost = "" . $thisSkill['cost'] . " " . GetCombatMechanicText($thisSkill['mechanic']);
 		$icon = $db->real_escape_string($thisSkill['texture']);
+		$learnedLevel = $thisSkill['learnedLevel'];
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\")";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\")";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 	}
@@ -347,10 +353,11 @@ foreach ($passiveSkills as $passive)
 	$desc = $db->real_escape_string($passive['description']);
 	$icon = $db->real_escape_string($passive['texture']);
 	$rank = $passive['rank'];
+	$learnedLevel = $passive['learnedLevel'];
 	
 	$skillTypeName = $db->real_escape_string($passive['skillTypeName']);
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\")";
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\")";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error inserting into skillTree table!\n" . $db->error . "\n" . $query);
 	

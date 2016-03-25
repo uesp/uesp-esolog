@@ -35,6 +35,8 @@ require("/home/uesp/secrets/esolog.secrets");
 
 class EsoLogParser
 {
+	const SHOW_PARSE_LINENUMBERS = true;
+	
 	const ELP_INPUT_LOG_PATH = "";
 	const ELP_INDEX_FILENAME = "esolog.index";
 	const ELP_OUTPUTLOG_FILENAME = "parser.log";
@@ -3602,12 +3604,14 @@ class EsoLogParser
 		if (array_key_exists('race', $logEntry)) $skill['raceType'] = $logEntry['race'];
 		if (array_key_exists('level', $logEntry)) $skill['rank'] = $logEntry['level'] + $rankMod;
 		
-		if (array_key_exists('rank', $logEntry) && rankMod == 0 && $logEntry['level'] == 1) 
+		if ($logEntry['passive'] == "true" && $skill['rank'] == 0) $skill['rank'] = 1;
+		
+		if (array_key_exists('rank', $logEntry) && $rankMod == 0 && $logEntry['passive'] == "false") 
 		{
 			$skill['learnedLevel'] = $logEntry['rank'];
 		}
 		
-		if (array_key_exists('nextEarnedRank', $logEntry) && rankMod == 1)
+		if (array_key_exists('nextEarnedRank', $logEntry) && $rankMod == 1)
 		{
 			$skill['learnedLevel'] = $logEntry['nextEarnedRank'];
 		}
@@ -4053,7 +4057,7 @@ class EsoLogParser
 			
 			++$entryCount;
 			
-			if ($totalLineCount >= $nextLineUpdate)
+			if ($totalLineCount >= $nextLineUpdate && self::SHOW_PARSE_LINENUMBERS)
 			{
 				print("\tParsing line $totalLineCount...\n");
 				$nextLineUpdate += 1000;
