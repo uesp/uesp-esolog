@@ -10,6 +10,13 @@
 <body>
 <a href="/viewlog.php">Back to Home</a>
 <h1>ESO Skills{versionTitle}</h1>
+<div id="esovsRightBlock">
+	<div id="esovsSkillTree">{skillTree}</div>
+	<div id="esovsSkillContent">{skillContent}</div>		
+</div>
+<div id="esovsLeftBlock">
+	left
+</div>
 
 
 
