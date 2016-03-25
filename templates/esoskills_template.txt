@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Skills{versionTitle}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoskills.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="resources/esoskills.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+<h1>ESO Skills{versionTitle}</h1>
+
+
+
+
+<script type="text/javascript">
+</script>
+<hr>
+<div id="esovs_footer">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>
