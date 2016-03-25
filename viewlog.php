@@ -1050,7 +1050,7 @@ class EsoLogViewer
 					'record' => 'skillTree',
 					'table' => 'skillTree',
 					'method' => 'DoRecordDisplay',
-					'sort' => array("FIELD(type, 'Ultimate', 'Active', 'Passive')", 'skillTypeName', 'learnedLevel', 'rank'),
+					'sort' => array("FIELD(type, 'Ultimate', 'Active', 'Passive')", 'baseName', 'learnedLevel', 'rank'),
 					//'sort' => array('type', 'rank'),
 						
 					'transform' => array(
