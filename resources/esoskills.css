@@ -72,7 +72,7 @@ a:hover {
 }
 
 .esovsSkillType {
-	margin-left: 25px;
+	margin-left: 15px;
 }
 
 .esovsSkillTypeTitle {
@@ -133,13 +133,12 @@ a:hover {
 	font-size: 20px;
     font-weight: bold;
     color: #666622;
-    margin-left: 10px;
     padding: 5px;
 }
 
 .esovsAbilityBlock {
 	padding: 5px;
-	margin-left: 25px;
+	margin-left: 5px;
 }
 
 .esovsAbilityBlockTitle {
@@ -147,22 +146,27 @@ a:hover {
     font-weight: bold;
     color: #000000;
     margin-left: 10px;
-    vertical-align: top;
-    width: 225px;
+    width: 275px;
     display: inline-block;
+}
+
+.esovsAbilityBlock:hover {
+	background-color: #aaa;
+	cursor: pointer;
 }
 
 .esovsAbilityBlockIcon {
 	display: inline-block;
-	width: 34px;
-	height: 34px;
+	width: 50px;
+	height: 50px;
 	background-image: url(eso_ability_frame.png);
 	background-size: 100% 100%;
+    margin: 5px;
 }
 
 .esovsAbilityBlockIcon img, .esovsAbilityBlockPassiveIcon img {
-	width: 32px;
-    height: 32px;
+	width: 48px;
+    height: 48px;
     margin-top: 1px;
     margin-left: 1px;
     vertical-align: middle;
@@ -170,16 +174,57 @@ a:hover {
 
 .esovsAbilityBlockPassiveIcon {
 	display: inline-block;
-	width: 34px;
-	height: 34px;
+	width: 50px;
+	height: 50px;
 	background-image: url(eso_round_ability_frame.png);
 	background-size: 100% 100%;
+	margin: 5px;
 }
 
 .esovsAbilityBlockDesc {
 	font-size: 14px;
     font-weight: normal;
-    font-color: #000000;
+    color: #000000;
     display: inline-block;
-    width: 425px;
+    width: 385px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.esovsAbilityBlockLevelDesc {
+	font-size: 14px;
+    font-weight: normal;
+    color: #000000;
+    display: inline-block;
+}
+
+.esovsAbilityBlockTitleLabel {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.esovsAbilityBlockList {
+	margin-left: 20px;
+}
+
+.esovsAbilityBlockListItem {
+	
+}
+
+.esovsAbilityBlockListItem .esovsAbilityBlockDesc {
+	width: 350px;
+}
+
+.esovsAbilityBlockListItem .esovsAbilityBlockIcon,
+.esovsAbilityBlockListItem .esovsAbilityBlockPassiveIcon {
+	width: 34px;
+	height: 34px;
+}
+
+.esovsAbilityBlockListItem .esovsAbilityBlockIcon img, 
+.esovsAbilityBlockListItem .esovsAbilityBlockPassiveIcon img {
+	width: 32px;
+    height: 32px;
+    margin-top: 1px;
+    margin-left: 1px;
 }

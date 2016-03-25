@@ -347,6 +347,7 @@ class EsoLogViewer
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
 			'mechanic' =>self::FIELD_INTTRANSFORM,
+			'skillIndex' => self::FIELD_INT,
 			'skillType'  => self::FIELD_INTTRANSFORM,
 			'skillLine' => self::FIELD_STRING,
 			'raceType'  => self::FIELD_STRING,
@@ -422,6 +423,7 @@ class EsoLogViewer
 			'rank' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
 			'cost' => self::FIELD_STRING,
+			'skillIndex' => self::FIELD_INT,
 			'description' => self::FIELD_TEXTTRANSFORM,
 	);
 	
@@ -1050,7 +1052,8 @@ class EsoLogViewer
 					'record' => 'skillTree',
 					'table' => 'skillTree',
 					'method' => 'DoRecordDisplay',
-					'sort' => array("FIELD(type, 'Ultimate', 'Active', 'Passive')", 'baseName', 'learnedLevel', 'rank'),
+					'sort' => array('skillTypeName', 'skillIndex', 'rank'),
+					//'sort' => array("FIELD(type, 'Ultimate', 'Active', 'Passive')", 'baseName', 'learnedLevel', 'rank'),
 					//'sort' => array('type', 'rank'),
 						
 					'transform' => array(

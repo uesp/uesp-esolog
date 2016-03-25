@@ -1,6 +1,7 @@
 <?php
 
 $TABLE_SUFFIX = "";
+$PRINT_TABLE = false;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Creating skill tree from mined skill data...\n");
@@ -69,6 +70,7 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			type TINYTEXT NOT NULL,
 			cost TINYTEXT NOT NULL,
 			icon TINYTEXT NOT NULL,
+			skillIndex TINYINT NOT NULL DEFAULT -1,
 			INDEX index_abilityId(abilityId),
 			INDEX index_skillTypeName(skillTypeName(20)),
 			INDEX index_type(type(8))
@@ -137,8 +139,10 @@ foreach($skillTree as $id => $skillTreeLine)
 	foreach ($skillTreeLine as $index => $skillLineId)
 	{
 		$skill = $skills[$skillLineId];
+		
 		if ($skill['skillType'] >   0) $skillRootData[$id]['skillType'] = $skill['skillType'];
 		if ($skill['learnedLevel'] >0) $skillRootData[$id]['learnedLevel'] = $skill['learnedLevel'];
+		if ($skill['skillIndex']  > 0) $skillRootData[$id]['skillIndex'] = $skill['skillIndex'];
 		if ($skill['skillLine'] != "") $skillRootData[$id]['skillLine'] = $skill['skillLine'];
 		if ($skill['classType'] != "") $skillRootData[$id]['classType'] = $skill['classType'];
 		if ($skill['raceType']  != "") $skillRootData[$id]['raceType']  = $skill['raceType'];
@@ -152,6 +156,7 @@ foreach($skillTree as $id => $skillTreeLine)
 	{
 		$skills[$skillLineId]['skillType']    = $skillRootData[$id]['skillType'];
 		$skills[$skillLineId]['learnedLevel'] = $skillRootData[$id]['learnedLevel'];
+		$skills[$skillLineId]['skillIndex']   = $skillRootData[$id]['skillIndex'];
 		$skills[$skillLineId]['skillLine']    = $skillRootData[$id]['skillLine'];
 		$skills[$skillLineId]['classType']    = $skillRootData[$id]['classType'];
 		$skills[$skillLineId]['raceType']     = $skillRootData[$id]['raceType'];
@@ -159,54 +164,60 @@ foreach($skillTree as $id => $skillTreeLine)
 }
 
 	/* Print the basic skill tree */
-foreach($skillTree as $id => $skillTreeLine)
+if ($PRINT_TABLE) 
 {
-	$skillId1 = $skillTreeLine[1];
-	$skillId2 = $skillTreeLine[5];
-	$skillId3 = $skillTreeLine[9];
-	$line = $skills[$skillId1]['skillLine'];
-	$type = $skills[$skillId1]['skillType'];
-	$class = $skills[$skillId1]['classType'];
-	$race = $skills[$skillId1]['raceType'];
-	$name1 = $skills[$skillId1]['name'];
-	$name2 = $skills[$skillId2]['name'];
-	$name3 = $skills[$skillId3]['name'];
-	
-	$desc1 = $skills[$skillTreeLine[1]]['description'];
-	$desc2 = $skills[$skillTreeLine[2]]['description'];
-	$desc3 = $skills[$skillTreeLine[3]]['description'];
-	$desc4 = $skills[$skillTreeLine[4]]['description'];
-	
-	print("\t$name1: $type $line $class $race\n");
-	//print("\t\t Rank 1: $desc1\n");
-	//print("\t\t Rank 2: $desc2\n");
-	//print("\t\t Rank 3: $desc3\n");
-	//print("\t\t Rank 4: $desc4\n");
-	
-	$desc1 = $skills[$skillTreeLine[5]]['description'];
-	$desc2 = $skills[$skillTreeLine[6]]['description'];
-	$desc3 = $skills[$skillTreeLine[7]]['description'];
-	$desc4 = $skills[$skillTreeLine[8]]['description'];
-	
-	print("\t\t$name2\n");
-	//print("\t\t Rank 1: $desc1\n");
-	//print("\t\t Rank 2: $desc2\n");
-	//print("\t\t Rank 3: $desc3\n");
-	//print("\t\t Rank 4: $desc4\n");
-	
-	$desc1 = $skills[$skillTreeLine[9]]['description'];
-	$desc2 = $skills[$skillTreeLine[10]]['description'];
-	$desc3 = $skills[$skillTreeLine[11]]['description'];
-	$desc4 = $skills[$skillTreeLine[12]]['description'];
-	
-	print("\t\t$name3\n");
-	//print("\t\t Rank 1: $desc1\n");
-	//print("\t\t Rank 2: $desc2\n");
-	//print("\t\t Rank 3: $desc3\n");
-	//print("\t\t Rank 4: $desc4\n");
+	foreach($skillTree as $id => $skillTreeLine)
+	{
+		$skillId1 = $skillTreeLine[1];
+		$skillId2 = $skillTreeLine[5];
+		$skillId3 = $skillTreeLine[9];
+		$line = $skills[$skillId1]['skillLine'];
+		$type = $skills[$skillId1]['skillType'];
+		$class = $skills[$skillId1]['classType'];
+		$race = $skills[$skillId1]['raceType'];
+		$skillIndex = $skills[$skillId1]['skillIndex'];
+		$name1 = $skills[$skillId1]['name'];
+		$name2 = $skills[$skillId2]['name'];
+		$name3 = $skills[$skillId3]['name'];
+		
+		$desc1 = $skills[$skillTreeLine[1]]['description'];
+		$desc2 = $skills[$skillTreeLine[2]]['description'];
+		$desc3 = $skills[$skillTreeLine[3]]['description'];
+		$desc4 = $skills[$skillTreeLine[4]]['description'];
+		
+		print("\t$name1: $type $line $class $race $skillIndex\n");
+		//print("\t\t Rank 1: $desc1\n");
+		//print("\t\t Rank 2: $desc2\n");
+		//print("\t\t Rank 3: $desc3\n");
+		//print("\t\t Rank 4: $desc4\n");
+		
+		$desc1 = $skills[$skillTreeLine[5]]['description'];
+		$desc2 = $skills[$skillTreeLine[6]]['description'];
+		$desc3 = $skills[$skillTreeLine[7]]['description'];
+		$desc4 = $skills[$skillTreeLine[8]]['description'];
+		
+		print("\t\t$name2\n");
+		//print("\t\t Rank 1: $desc1\n");
+		//print("\t\t Rank 2: $desc2\n");
+		//print("\t\t Rank 3: $desc3\n");
+		//print("\t\t Rank 4: $desc4\n");
+		
+		$desc1 = $skills[$skillTreeLine[9]]['description'];
+		$desc2 = $skills[$skillTreeLine[10]]['description'];
+		$desc3 = $skills[$skillTreeLine[11]]['description'];
+		$desc4 = $skills[$skillTreeLine[12]]['description'];
+		
+		print("\t\t$name3\n");
+		//print("\t\t Rank 1: $desc1\n");
+		//print("\t\t Rank 2: $desc2\n");
+		//print("\t\t Rank 3: $desc3\n");
+		//print("\t\t Rank 4: $desc4\n");
+	}
 }
 
 	/* Update the skills */
+print("Updating skill data...\n");
+
 foreach($skills as $id => $skill)
 {
 	$classType = $db->real_escape_string($skill['classType']);
@@ -214,13 +225,16 @@ foreach($skills as $id => $skill)
 	$skillType = $db->real_escape_string($skill['skillType']);
 	$skillLine = $db->real_escape_string($skill['skillLine']);
 	$learnedLevel = $db->real_escape_string($skill['learnedLevel']);
+	$skillIndex = $db->real_escape_string($skill['skillIndex']);
 	
-	$query = "UPDATE minedSkills SET skillType=\"$skillType\",raceType=\"$raceType\",classType=\"$classType\",skillLine=\"$skillLine\",learnedLevel=\"$learnedLevel\" WHERE id=$id;";
+	$query = "UPDATE minedSkills SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\" WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
 }
 
 	/* Save the skill tree */
+print("Creating skill tree...\n");
+
 foreach($skillTree as $id => $skillTreeLine)
 {
 	$skill = $skills[$id];
@@ -256,8 +270,9 @@ foreach($skillTree as $id => $skillTreeLine)
 		$cost = "" . $thisSkill['cost'] . " " . GetCombatMechanicText($thisSkill['mechanic']);
 		$icon = $db->real_escape_string($thisSkill['texture']);
 		$learnedLevel = $thisSkill['learnedLevel'];
+		$abilityIndex = $thisSkill['skillIndex'];
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\")";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\")";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 	}
@@ -275,13 +290,21 @@ $type = "Passive";
 $skillTypeName = "";
 $index = 0;
 
+print("Loading passives...\n");
+
 	/* Load all passives */
 while (($passive = $passiveResult->fetch_assoc()))
 {
 	$id = $passive['id'];
+	$passive['name'] = preg_replace("#(.*) [IV]+#", "$1", $passive['name']);
+	$passive['baseName'] = preg_replace("#(.*) [IV]+#", "$1", $passive['baseName']);
+	
 	$passiveSkills[$id] = $passive;
 	$count++;
 }
+
+print("Loaded ".count($passiveSkills)." passives!\n");
+print("Updating next/prev pointers in passive data...\n");
 
 	/* Update next/prev IDs and set skillTypeName */
 foreach ($passiveSkills as $id => $passive)
@@ -342,7 +365,10 @@ function ComparePassives($a, $b)
 }
 
 	/* Sort passives */
+print("Sorting passive data...\n");
 usort($passiveSkills, "ComparePassives");
+
+print("Creating passive skill tree and saving data...\n");
 
 	/* Create tree for passives */
 foreach ($passiveSkills as $passive)
@@ -354,10 +380,11 @@ foreach ($passiveSkills as $passive)
 	$icon = $db->real_escape_string($passive['texture']);
 	$rank = $passive['rank'];
 	$learnedLevel = $passive['learnedLevel'];
+	$abilityIndex = $passive['skillIndex'];
 	
 	$skillTypeName = $db->real_escape_string($passive['skillTypeName']);
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\")";
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\")";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error inserting into skillTree table!\n" . $db->error . "\n" . $query);
 	
