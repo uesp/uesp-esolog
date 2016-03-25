@@ -341,6 +341,7 @@ class EsoLogViewer
 			'isPassive' => self::FIELD_INT,
 			'isChanneled' => self::FIELD_INT,
 			'isPlayer'  => self::FIELD_INT,
+			'rank'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
