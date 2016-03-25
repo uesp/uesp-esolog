@@ -131,6 +131,7 @@ class CEsoDumpMinedItems {
 				"setBonusDesc3Range" => array($this, FormatDescriptionString),
 				"setBonusDesc4Range" => array($this, FormatDescriptionString),
 				"setBonusDesc5Range" => array($this, FormatDescriptionString),
+				"description" => array($this, EscapeQuotes),
 				"icon" => array($this, MakeIconLink),
 				"itemId" => array($this, MakeItemIdLink),
 				"name" => array($this, MakeItemNameLink),
