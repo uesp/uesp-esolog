@@ -3604,7 +3604,12 @@ class EsoLogParser
 		if (array_key_exists('skillType', $logEntry)) $skill['skillType'] = $logEntry['skillType'];
 		if (array_key_exists('class', $logEntry)) $skill['classType'] = $logEntry['class'];
 		if (array_key_exists('race', $logEntry)) $skill['raceType'] = $logEntry['race'];
-		if (array_key_exists('level', $logEntry)) $skill['rank'] = $logEntry['level'] + $rankMod;
+		
+		if (array_key_exists('level', $logEntry)) 
+		{
+			$skill['rank'] = $logEntry['level'] + $rankMod;
+			if ($skill['rank'] == -1) $skill['rank'] = 1;
+		}		
 		
 		if ($logEntry['passive'] == "true" && $skill['rank'] == 0) $skill['rank'] = 1;
 		
