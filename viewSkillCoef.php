@@ -173,6 +173,7 @@ class CEsoViewSkillCoef
 			$type = $skill['type'.$i];
 			if ($type == -1) $type = $skill['mechanic'];
 			$typeName = GetEsoCustomMechanicTypeText($type);
+			$ratio = sprintf("%0.2f", $b / $a);
 			
 			$bop = "+";
 			$cop = "+";
@@ -193,6 +194,7 @@ class CEsoViewSkillCoef
 			
 			$output .= " ($typeName, R2 = $R";
 			//if ($avg != -1) $output .= ", average = $avg";
+			$output .= ", ratio = $ratio";
 			$output .= ")<br />";
 		}
 		
@@ -211,6 +213,10 @@ class CEsoViewSkillCoef
 			$b = $skill['b'.$i];
 			$c = $skill['c'.$i];
 			$R = $skill['R'.$i];
+			$type = $skill['type'.$i];
+			if ($type == -1) $type = $skill['mechanic'];
+			$typeName = GetEsoCustomMechanicTypeText($type);
+			$ratio = sprintf("%0.2f", $b / $a);
 				
 			$bop = "+";
 			$cop = "+";
@@ -220,7 +226,7 @@ class CEsoViewSkillCoef
 			if ($a == null || $b == null || $c == null || $R == null) continue;
 			if ($R < 0) continue;
 				
-			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c (R2 = $R)   ";
+			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c ($typeName, R2 = $R, ratio = $ratio)   ";
 		}
 	
 		return $output;
@@ -249,13 +255,15 @@ class CEsoViewSkillCoef
 			
 			$skillLine = $skill['skillLine'];
 			$skillType = $skill['classType'];
+			$rank = $skill['rank'];
+			if ($rank <= 0) $rank = '';
 			if ($skillType == "") $skillType = $skill['raceType'];
 			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
 			
 			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
 			
 			$output .= "<tr>";
-			$output .= "<td>{$skill['name']}</td>";
+			$output .= "<td><nobr>{$skill['name']} $rank</nobr></td>";
 			$output .= "<td>{$skill['id']}</td>";
 			$output .= "<td>$mechanic</td>";
 			$output .= "<td>$skillType</td>";
@@ -291,12 +299,14 @@ class CEsoViewSkillCoef
 			
 			$skillLine = $skill['skillLine'];
 			$skillType = $skill['classType'];
+			$rank = $skill['rank'];
+			if ($rank <= 0) $rank = '';
 			if ($skillType == "") $skillType = $skill['raceType'];
 			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
 			
 			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
 			
-			$output .= "{$skill['name']}, ";
+			$output .= "{$skill['name']} $rank, ";
 			$output .= "{$skill['id']}, ";
 			$output .= "$mechanic, ";
 			$output .= "$skillType, ";
