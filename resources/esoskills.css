@@ -109,7 +109,6 @@ a:hover {
 }
 
 #esovsSkillContent {
-	border: solid 1px gray;
 	display: inline-block;
 	vertical-align: top;
 	font-family: "EsoFontStyle", "Arial", sans-serif;
@@ -139,6 +138,7 @@ a:hover {
 .esovsAbilityBlock {
 	padding: 5px;
 	margin-left: 5px;
+	clear: both;
 }
 
 .esovsAbilityBlockTitle {
@@ -146,8 +146,9 @@ a:hover {
     font-weight: bold;
     color: #000000;
     margin-left: 10px;
-    width: 275px;
-    display: inline-block;
+    display: block;
+	width: auto;
+	overflow: hidden;
 }
 
 .esovsAbilityBlock:hover {
@@ -155,30 +156,29 @@ a:hover {
 	cursor: pointer;
 }
 
-.esovsAbilityBlockIcon {
+.esovsAbilityBlockIcon, .esovsAbilityBlockPassiveIcon {
 	display: inline-block;
-	width: 50px;
-	height: 50px;
-	background-image: url(eso_ability_frame.png);
+	width: 52px;
+	height: 52px;
 	background-size: 100% 100%;
     margin: 5px;
+    float: left;
+}
+
+.esovsAbilityBlockIcon {
+	background-image: url(eso_ability_frame.png);
+}
+
+.esovsAbilityBlockPassiveIcon {
+	background-image: url(eso_round_ability_frame.png);
 }
 
 .esovsAbilityBlockIcon img, .esovsAbilityBlockPassiveIcon img {
 	width: 48px;
     height: 48px;
-    margin-top: 1px;
-    margin-left: 1px;
+    margin-top: 2px;
+    margin-left: 2px;
     vertical-align: middle;
-}
-
-.esovsAbilityBlockPassiveIcon {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	background-image: url(eso_round_ability_frame.png);
-	background-size: 100% 100%;
-	margin: 5px;
 }
 
 .esovsAbilityBlockDesc {
@@ -186,45 +186,65 @@ a:hover {
     font-weight: normal;
     color: #000000;
     display: inline-block;
-    width: 385px;
     vertical-align: middle;
     margin-left: 10px;
 }
 
-.esovsAbilityBlockLevelDesc {
+.esovsAbilityBlockName {
+	display: inline-block;
+	float: left;
+	width: 250px;
+}
+
+.esovsAbilityBlockLevel {
 	font-size: 14px;
-    font-weight: normal;
+    font-weight: bold;
     color: #000000;
     display: inline-block;
+    float: right;
+    text-align: right;
+}
+
+.esovsAbilityBlockCost {
+	font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    display: inline-block;
+    text-align: center;
+    float: center;
 }
 
 .esovsAbilityBlockTitleLabel {
 	display: inline-block;
 	vertical-align: middle;
+	width: 100%;
 }
 
 .esovsAbilityBlockList {
-	margin-left: 20px;
+	margin-left: 30px;
+	background-color: #EBDFC5; 
+	overflow: hidden;
+    clear: both;
 }
 
-.esovsAbilityBlockListItem {
-	
+.esovsAbilityBlockList .esovsAbilityBlockDesc {
 }
 
-.esovsAbilityBlockListItem .esovsAbilityBlockDesc {
-	width: 350px;
+.esovsAbilityBlockList .esovsAbilityBlockIcon,
+.esovsAbilityBlockList .esovsAbilityBlockPassiveIcon {
+	width: 52px;
+	height: 52px;
 }
 
-.esovsAbilityBlockListItem .esovsAbilityBlockIcon,
-.esovsAbilityBlockListItem .esovsAbilityBlockPassiveIcon {
-	width: 34px;
-	height: 34px;
+.esovsAbilityBlockList .esovsAbilityBlockIcon img, 
+.esovsAbilityBlockList .esovsAbilityBlockPassiveIcon img {
+	width: 48px;
+    height: 48px;
+    margin-top: 2px;
+    margin-left: 2px;
 }
 
-.esovsAbilityBlockListItem .esovsAbilityBlockIcon img, 
-.esovsAbilityBlockListItem .esovsAbilityBlockPassiveIcon img {
-	width: 32px;
-    height: 32px;
-    margin-top: 1px;
-    margin-left: 1px;
+.esovsBlockClear {
+	float: none;
+	clear: both;
 }
