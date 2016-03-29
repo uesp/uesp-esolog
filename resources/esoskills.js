@@ -38,7 +38,6 @@ function EsoViewSkillShowTooltip(skillData)
 	
 	element.html("");
 	
-	//console.log(skillData.abilityId);
 	g_LastSkillId = skillData.abilityId;
 	
 	var output = "<div class='esovsSkillTooltip'>\n";
@@ -157,8 +156,6 @@ function OnEsoSkillBlockClick(event)
 function EsoSkillShowSkillLine(skillLine)
 {
 	var id = skillLine.replace(/[ '"]/g, '_');
-	
-	console.log("'" + skillLine + "'", "'" + id + "'");
 	
 	$(".esovsSkillContentBlock:visible").hide();
 	$("#" + id).show();
