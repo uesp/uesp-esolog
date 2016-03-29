@@ -20,6 +20,10 @@
 		Use the controls below to set your character stats and update all skill tooltips. Click on any skill to
 		focus it in the above tooltip.
 		<p />
+		<div class="esovsRangeLabel">Health</div>
+		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="20000">
+		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="20000">		
+		<br />
 		<div class="esovsRangeLabel">Magicka</div>
 		<input id="esovsInputMagicka" class="esovsInputControl" type="text" value="20000">
 		<input id="esovsControlMagicka" class="esovsRangeControl" type="range" min="1" max="50000" value="20000">
@@ -27,10 +31,6 @@
 		<div class="esovsRangeLabel">Stamina</div>
 		<input id="esovsInputStamina" class="esovsInputControl" type="text" value="20000">
 		<input id="esovsControlStamina" class="esovsRangeControl" type="range" min="1" max="50000" value="20000">
-		<br />
-		<div class="esovsRangeLabel">Health</div>
-		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="20000">
-		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="20000">		
 		<br />
 		<div class="esovsRangeLabel">Spell Damage</div>
 		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="2000">
