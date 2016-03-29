@@ -75,6 +75,7 @@
 	text-align: right;
     margin-bottom: 5px;
     font-weight: bold;
+	margin-top: 4px;
 }
 
 .esois_searchoptionheader {
@@ -191,7 +192,7 @@
 	width: 166px;
 }
 
-#esois_quality, #esois_weapontype , #esois_style, #esois_itemtype, #esois_enchantment {
+#esois_quality, #esois_weapontype , #esois_style, #esois_itemtype, #esois_enchant {
 	width: 170px;
 }
 
