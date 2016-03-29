@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>UESP:ESO Skills{versionTitle}</title>
+		<title>UESP:ESO Skill Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="resources/esoskills.css" />
 		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
@@ -9,9 +9,54 @@
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
-<h1>ESO Skills{versionTitle}</h1>
+<h1>ESO Skill Browser {versionTitle}</h1>
 <div id="esovsLeftBlock">
-	left
+	<div id="esovsSkillTooltipRoot">
+		<div class='esovsSkillTooltip'>
+			<div class='esovsSkillTooltipDesc'>Loading skill data...</div>
+		</div>
+	</div>
+	<div id="esovsControls">
+		Use the controls below to set your character stats and update all skill tooltips. Click on any skill to
+		focus it in the above tooltip.
+		<p />
+		<div class="esovsRangeLabel">Magicka</div>
+		<input id="esovsInputMagicka" class="esovsInputControl" type="text" value="20000">
+		<input id="esovsControlMagicka" class="esovsRangeControl" type="range" min="1" max="50000" value="20000">
+		<br />
+		<div class="esovsRangeLabel">Stamina</div>
+		<input id="esovsInputStamina" class="esovsInputControl" type="text" value="20000">
+		<input id="esovsControlStamina" class="esovsRangeControl" type="range" min="1" max="50000" value="20000">
+		<br />
+		<div class="esovsRangeLabel">Health</div>
+		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="20000">
+		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="20000">		
+		<br />
+		<div class="esovsRangeLabel">Spell Damage</div>
+		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="2000">
+		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="2000">		
+		<br />
+		<div class="esovsRangeLabel">Weapon Damage</div>
+		<input id="esovsInputWeaponDamage" class="esovsInputControl" type="text" value="2000">
+		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="2000">		
+		<br />
+	</div>
+	<hr />
+	<div id="esovsSkillCoefData">
+		<h2>Skill Coefficients</h2>		
+		<div id="esovsSkillCoefContent">
+			{coefSkillData}
+		</div>
+	</div>
+	<hr />
+	<div id="esovsRawData">
+		<a id="esovsRawDataSkillLink" class="esovsRawDataSkillLink">View Raw Skill Data</a>
+		<h2>Raw Skill Data</h2>		
+		<div id="esovsRawDataContent">
+			{rawSkillData}
+		</div>
+	</div>
+</div>
 </div>
 <div id="esovsRightBlock">
 	<div id="esovsSkillTree">{skillTree}</div>
@@ -20,6 +65,7 @@
 
 <div class="esovsBlockClear"></div>
 <script type="text/javascript">
+	var g_SkillsData = {skillsJson};
 </script>
 <hr>
 <div id="esovs_footer">
