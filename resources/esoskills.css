@@ -22,6 +22,20 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontregular-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontbold-webfont.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
 body {
 	background-color: #FBEFD5;
 	font-family: sans-serif;
@@ -54,20 +68,20 @@ a:hover {
 
 
 #esovsLeftBlock {
-	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	width: 400px;
 	float: left;	
 	padding: 5px;
 }
 
 #esovsRightBlock {
-	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	padding: 5px;
 	margin-left: 410px;
 }
 
 #esovsSkillTree {
-	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	font-size: 16px;
     width: 200px;
 	float: left;
@@ -112,7 +126,7 @@ a:hover {
 
 #esovsSkillContent {
 	vertical-align: top;
-	font-family: "EsoFontStyle", "Arial", sans-serif;
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	font-size: 16px;
 	min-width: 600px;
 	margin-left: 210px;
@@ -200,7 +214,7 @@ a:hover {
 }
 
 .esovsAbilityBlockLevel {
-	font-size: 14px;
+	font-size: 15px;
     font-weight: bold;
     color: #000000;
     display: inline-block;
@@ -209,7 +223,7 @@ a:hover {
 }
 
 .esovsAbilityBlockCost {
-	font-size: 14px;
+	font-size: 17px;
     font-weight: bold;
     color: #000000;
     display: inline-block;
@@ -295,7 +309,7 @@ a:hover {
 }
 
 .esovsSkillTooltipName {
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: bold;
 	color: #C5C29E;
 	margin-left: 10px;
@@ -303,7 +317,7 @@ a:hover {
 }
 
 .esovsSkillTooltipValue {
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: bold;
 	float: right;
 	color: WHITE;
