@@ -8,6 +8,7 @@ function EsoSkillShowSkillLine(skillLine)
 	$("#" + id).show();
 }
 
+
 function OnEsoSkillTypeTitleClick(event)
 {
 	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillLineTitleHighlight");
@@ -47,7 +48,7 @@ function OnEsoSkillLineTitleClick(event)
 
 function OnEsoSkillBlockClick(event)
 {
-	$(this).next('.esovsAbilityBlockList').slideToggle();
+	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
 }
 
 
@@ -55,7 +56,9 @@ function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
 	$('.esovsSkillLineTitle').click(OnEsoSkillLineTitleClick);
-	$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
+	
+	//$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
+	$('.esovsAbilityBlockPlus').click(OnEsoSkillBlockClick);
 }
 
 
