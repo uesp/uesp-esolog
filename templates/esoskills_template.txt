@@ -10,17 +10,15 @@
 <body>
 <a href="/viewlog.php">Back to Home</a>
 <h1>ESO Skills{versionTitle}</h1>
+<div id="esovsLeftBlock">
+	left
+</div>
 <div id="esovsRightBlock">
 	<div id="esovsSkillTree">{skillTree}</div>
 	<div id="esovsSkillContent">{skillContent}</div>		
 </div>
-<div id="esovsLeftBlock">
-	left
-</div>
 
-
-
-
+<div class="esovsBlockClear"></div>
 <script type="text/javascript">
 </script>
 <hr>

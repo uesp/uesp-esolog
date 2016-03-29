@@ -54,21 +54,21 @@ a:hover {
 
 
 #esovsLeftBlock {
-	width: 50%;	
+	width: 400px;
+	float: left;	
 	padding: 5px;
 }
 
 #esovsRightBlock {
-	float:right;
-	width: 50%;
 	padding: 5px;
+	margin-left: 410px;
 }
 
 #esovsSkillTree {
 	font-family: "EsoFontStyle", "Arial", sans-serif;
 	font-size: 16px;
     width: 200px;
-    display: inline-block;
+	float: left;
 }
 
 .esovsSkillType {
@@ -109,11 +109,11 @@ a:hover {
 }
 
 #esovsSkillContent {
-	display: inline-block;
 	vertical-align: top;
 	font-family: "EsoFontStyle", "Arial", sans-serif;
 	font-size: 16px;
-	width: 700px;
+	min-width: 600px;
+	margin-left: 210px;
 }
 
 .esovsSkillContentBlock {
@@ -138,7 +138,8 @@ a:hover {
 .esovsAbilityBlock {
 	padding: 5px;
 	margin-left: 5px;
-	clear: both;
+    display: inline-block;
+    width: 99%;
 }
 
 .esovsAbilityBlockTitle {
@@ -152,7 +153,7 @@ a:hover {
 }
 
 .esovsAbilityBlock:hover {
-	background-color: #aaa;
+    background-color: #E3d5c0;
 	cursor: pointer;
 }
 
@@ -221,10 +222,9 @@ a:hover {
 }
 
 .esovsAbilityBlockList {
-	margin-left: 30px;
+	margin-left: 60px;
 	background-color: #EBDFC5; 
 	overflow: hidden;
-    clear: both;
 }
 
 .esovsAbilityBlockList .esovsAbilityBlockDesc {
@@ -247,4 +247,17 @@ a:hover {
 .esovsBlockClear {
 	float: none;
 	clear: both;
+}
+
+.esovsAbilityBlockPlus {
+	width: 32px;
+	height: 32px;
+	margin-top: 16px;
+	float: left;
+	opacity: 1;
+}
+
+.esovsAbilityBlockPlus:hover {
+	opacity: 0.5;
+	
 }

@@ -356,10 +356,10 @@ class CEsoViewSkills
 			
 			$lastAbility = $this->FindLastAbility($abilityData);
 			
-			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility);
+			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true);
 			
 			$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
-			$output .= "<div class='esovsBlockClear'></div>";
+			//$output .= "<div class='esovsBlockClear'></div>";
 		}
 		
 		if ($output != "")
@@ -371,7 +371,7 @@ class CEsoViewSkills
 	}
 	
 	
-	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility)
+	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel)
 	{
 		$output = "";
 					
@@ -412,6 +412,7 @@ class CEsoViewSkills
 		$rankLabel = " " . $this->GetRomanNumeral($rank);
 			
 		$output .= "<div class='esovsAbilityBlock'>";
+		if ($topLevel) $output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";		
 		$output .= "<div class='$iconClass'><img src='$icon' /></div>";
 		$output .= "<div class='esovsAbilityBlockTitle'>";
 		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
@@ -435,60 +436,13 @@ class CEsoViewSkills
 			if (!is_numeric($rank)) continue;
 			if (!$this->showAll && $ability['type'] != "Passive" && !($rank == 8 || $rank == 12)) continue;
 			
-			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability);
+			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false);
 		}
 		
 		$output .= "</div>\n";
 		return $output;
 	}
-	
-	
-	public function GetSkillContentHtml_Ability($abilityName, $abilityRank, $abilityData)
-	{
-		$type = $abilityData['type'];
-		$rank = $abilityData['rank'];
 		
-		if ($type != "Passive" && !($rank == 8 || $rank == 12)) return "";
-		
-		$name = $abilityData['name'];
-		$icon = $this->GetIconURL($abilityData['icon']);
-		$learnedLevel = $abilityData['learnedLevel'];
-		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
-		$cost = $abilityData['cost'];
-		
-		$iconClass = "esovsAbilityBlockIcon";
-		if ($type == "Passive") $iconClass = "esovsAbilityBlockPassiveIcon";
-		
-		$levelDesc = "";
-		if ($learnedLevel > 0) $levelDesc = "<br /><div class='esovsAbilityBlockLevelDesc'>Unlocked at rank $learnedLevel</div>";
-		
-		if ($type == "Passive")
-		{
-			if ($rank < 0) $rank = 1;
-		}
-		else if ($rank > 8)
-		{
-			$rank -= 8;
-			$levelDesc = "<br /><div class='esovsAbilityBlockLevelDesc'>$cost</div>";
-		}
-		else if ($rank > 4)
-		{
-			$rank -= 4;
-			$levelDesc = "<br /><div class='esovsAbilityBlockLevelDesc'>$cost</div>";
-		}
-		
-		$rankLabel = " " . $this->GetRomanNumeral($rank);
-		
-		$output = "<div class='esovsAbilityBlockListItem'>";
-		$output .= "<div class='esovsAbilityBlock'>";
-		$output .= "<div class='esovsAbilityBlockTitle'><div class='$iconClass'><img src='$icon' /></div>";
-		$output .= "<div class='esovsAbilityBlockTitleLabel'>$name $rankLabel$levelDesc</div></div>";
-		$output .= "<div class='esovsAbilityBlockDesc'>$desc</div>";
-		
-		$output .= "</div></div>\n";
-		return $output;
-	}
-	
 	
 	public function OutputHtml()
 	{
