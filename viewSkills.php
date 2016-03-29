@@ -24,6 +24,8 @@ class CEsoViewSkills
 	public $version = "";
 	public $showAll = false;
 	
+	public $isFirstSkill = true;
+	
 	public $skills = array();
 	public $skillTree = array();
 	
@@ -66,8 +68,10 @@ class CEsoViewSkills
 	
 	private function LoadSkills()
 	{
-		
-		$query = "SELECT * from skillTree".$this->GetTableSuffix().";";
+		//$query = "SELECT * from skillTree".$this->GetTableSuffix().";";
+		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
+		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
+		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load skill data!");
 		
@@ -75,9 +79,8 @@ class CEsoViewSkills
 		
 		while (($row = $result->fetch_assoc()))
 		{
-			//$row['name'] = preg_replace("#(.*) [IV]+#", "$1", $row['name']);
-			//$row['baseName'] = preg_replace("#(.*) [IV]+#", "$1", $row['baseName']);
-			$this->skills[] = $row;
+			$id = $row['abilityId'];
+			$this->skills[$id] = $row;
 		}
 		
 		$this->CreateSkillTree();
@@ -197,6 +200,7 @@ class CEsoViewSkills
 	public function GetSkillTreeHtml()
 	{
 		$output = "";
+		$this->isFirstSkill = true;
 		
 		$output .= $this->GetSkillTreeTypeHtml("Dragonknight");
 		$output .= $this->GetSkillTreeTypeHtml("Nightblade");
@@ -218,13 +222,24 @@ class CEsoViewSkills
 	{
 		$skillTypeUpper = strtoupper($skillType);
 		
+		$displayType = "none";
+		$extraClass = "";
+		
+		if ($this->isFirstSkill) 
+		{
+			$extraClass = "esovsSkillTypeTitleHighlight";
+			$displayType = "block"; 
+			$this->isFirstSkill = false; 
+		}
+		
 		$output  = "";
 		$output .= "<div class='esovsSkillTypeTitle'>$skillTypeUpper</div>\n";
-		$output .= "<div class='esovsSkillType' style=\"display: none;\">\n";
+		$output .= "<div class='esovsSkillType' style=\"display: $displayType;\">\n";
 		
 		foreach ($this->skillTree[$skillType] as $skillLine => $skillLineData)
 		{
-			$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData);		
+			$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass);
+			$extraClass = "";
 		}
 		
 		$output .= "</div>\n";
@@ -232,9 +247,9 @@ class CEsoViewSkills
 	}
 	
 	
-	public function GetSkillTreeLineHtml($skillLine, $skillLineData)
+	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "")
 	{
-		$output  = "<div class='esovsSkillLineTitle'>$skillLine</div>";
+			$output  = "<div class='esovsSkillLineTitle $extraClass'>$skillLine</div>";
 		
 		return $output;
 	}
@@ -243,6 +258,7 @@ class CEsoViewSkills
 	public function GetSkillContentHtml()
 	{
 		$output = "";
+		$this->isFirstSkill = true;
 		
 		foreach($this->skillTree as $skillType => $skillTypeData)
 		{
@@ -272,8 +288,16 @@ class CEsoViewSkills
 	
 	public function GetSkillContentHtml_SkillLine($skillLine, $skillLineData)
 	{
+		$displayType = "none";
+		
+		if ($this->isFirstSkill) 
+		{
+			$displayType = "block";
+			$this->isFirstSkill = false;
+		}
+		
 		$id = $this->MakeHtmlId($skillLine);
-		$output = "<div class='esovsSkillContentBlock' id='$id' style='display: none;'>\n";
+		$output = "<div class='esovsSkillContentBlock' id='$id' style='display: $displayType;'>\n";
 		
 		$output .= "<div class='esovsSkillContentTitle'>".$skillLine."</div>";
 		
@@ -375,6 +399,7 @@ class CEsoViewSkills
 	{
 		$output = "";
 					
+		$id = $abilityData['abilityId'];
 		$name = $baseAbility['name'];
 		$type = $baseAbility['type'];
 		$icon = $this->GetIconURL($baseAbility['icon']);
@@ -411,7 +436,7 @@ class CEsoViewSkills
 		
 		$rankLabel = " " . $this->GetRomanNumeral($rank);
 			
-		$output .= "<div class='esovsAbilityBlock'>";
+		$output .= "<div class='esovsAbilityBlock' skillid='$id'>" ;
 		if ($topLevel) $output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";		
 		$output .= "<div class='$iconClass'><img src='$icon' /></div>";
 		$output .= "<div class='esovsAbilityBlockTitle'>";
@@ -420,7 +445,7 @@ class CEsoViewSkills
 		$output .= "<div class='esovsAbilityBlockLevel'>$levelDesc</div>";
 		$output .= "<div class='esovsAbilityBlockCost'>$costDesc</div>";
 		$output .= "</div>";
-		$output .= "<div class='esovsAbilityBlockDesc'>$desc</div>";
+		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc</div>";
 		$output .= "</div>";
 		$output .= "</div>";
 		
@@ -442,16 +467,25 @@ class CEsoViewSkills
 		$output .= "</div>\n";
 		return $output;
 	}
-		
+	
+	
+	public function GetSkillsJson()
+	{
+		$output = json_encode($this->skills);
+		return $output;
+	}
+	
 	
 	public function OutputHtml()
 	{
 		$replacePairs = array(
-				
+				'{skillsJson}' => $this->GetSkillsJson(),
 				'{skillTree}' => $this->GetSkillTreeHtml(),
 				'{skillContent}'  => $this->GetSkillContentHtml(),
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
+				'{rawSkillData}' => "",
+				'{coefSkillData}' => "",
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);

@@ -54,12 +54,14 @@ a:hover {
 
 
 #esovsLeftBlock {
+	font-family: "EsoFontStyle", "Arial", sans-serif;
 	width: 400px;
 	float: left;	
 	padding: 5px;
 }
 
 #esovsRightBlock {
+	font-family: "EsoFontStyle", "Arial", sans-serif;
 	padding: 5px;
 	margin-left: 410px;
 }
@@ -259,5 +261,149 @@ a:hover {
 
 .esovsAbilityBlockPlus:hover {
 	opacity: 0.5;
-	
+}
+
+.esovsSkillTooltip {
+	width: 360px;
+	background-image: url(eso_item_border.png);
+	background-size: 100% 100%;
+	color: #C5C29E;
+	line-height: 125%;
+	text-align: left;
+    white-space: normal;
+	padding: 10px;
+}
+
+.esovsSkillTooltipDivider {
+	width: 100%;
+	height: 3px;
+}
+
+.esovsSkillTooltipDesc {
+	text-align: center;
+	font-size: 16px;
+	line-height: 1.3em;
+	padding: 10px;
+}
+
+.esovsSkillTooltipTitle {
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: WHITE;
+	padding-top: 8px;
+}
+
+.esovsSkillTooltipName {
+	font-size: 16px;
+	font-weight: bold;
+	color: #C5C29E;
+	margin-left: 10px;
+	line-height: 1.3em;
+}
+
+.esovsSkillTooltipValue {
+	font-size: 16px;
+	font-weight: bold;
+	float: right;
+	color: WHITE;
+	margin-right: 10px;
+	line-height: 1.3em;
+}
+
+.esovsSkillTooltipLevel {
+	font-size: 16px;
+	font-weight: normal;
+	text-align: center;
+	color: RED;
+	margin-top: 12px;
+}
+
+.esovsWhite {
+	display: inline;
+	color: white;
+}
+
+.esovsBold {
+	font-weight: bold;
+	display: inline;
+}
+
+#esovsControls {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 10px;
+	font-family: "Arial", sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.esovsInputControl
+{
+	width: 40px;
+	display: inline-block;
+}
+
+.esovsRangeControl {
+	display: inline-block;
+	border: none;
+	background: none;
+	width: 220px;
+	vertical-align: middle;
+	padding-bottom: 4px;
+}
+
+.esovsRangeLabel {
+	display: inline-block;
+	font-weight: bold;
+	width: 110px;
+	text-align: right;
+}
+
+#esovsRawData,
+#esovsSkillCoefData {
+	font-family: "Arial", sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.esovsRawDataName {
+	width: 100px;
+	font-weight: bold;
+	text-align: right;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.esovsRawDataValue {
+	width: 280px;
+    display: inline-block;
+	text-align: left;
+	margin-left: 10px;
+	vertical-align: top;
+}
+
+.esovsRawDataSkillLink {
+	float: right;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+#esovsSkillCoefData {
+	font-size: 13px;
+}
+
+.esovsSkillCoefRow {
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
+.esovsSkillCoefRowDetail {
+	margin-left: 50px;
+}
+
+.esovsSkillCoefDesc {
+	text-align: center;
+	padding: 5px;
+	margin-top: 10px;
 }
