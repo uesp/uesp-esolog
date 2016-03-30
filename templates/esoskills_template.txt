@@ -20,6 +20,10 @@
 		Use the controls below to set your character stats and update all skill tooltips. Click on any skill to
 		focus it in the above tooltip.
 		<p />
+		<div class="esovsRangeLabel">Level</div>
+		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="v16">
+		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="66">		
+		<br />
 		<div class="esovsRangeLabel">Health</div>
 		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="20000">
 		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="20000">		
