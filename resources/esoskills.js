@@ -121,7 +121,7 @@ function EsoViewSkillShowTooltip(skillData)
 		
 		if (cost != '')
 		{
-			output += "<div class='esovsSkillTooltipValue'>" + cost + "</div>";
+			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipCost'>" + cost + "</div>";
 			output += "<div class='esovsSkillTooltipName'>Cost</div>";			
 		}
 		
@@ -148,6 +148,7 @@ function OnEsoSkillBlockClick(event)
 	
 	EsoViewSkillShowTooltip(g_SkillsData[skillId]);
 	UpdateEsoSkillTooltipDescription();
+	UpdateEsoSkillTooltipCost();
 	UpdateEsoSkillRawData();
 	UpdateEsoSkillCoefData();
 }
@@ -184,6 +185,7 @@ function OnEsoSkillTypeTitleClick(event)
 	
 	EsoSkillShowSkillLine(skillLine);
 	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
 	UpdateEsoSkillRawData();
 	UpdateEsoSkillCoefData();
 }
@@ -202,6 +204,7 @@ function OnEsoSkillLineTitleClick(event)
 	
 	EsoSkillShowSkillLine(skillLine);
 	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
 	UpdateEsoSkillRawData();
 	UpdateEsoSkillCoefData();
 }
@@ -220,6 +223,7 @@ function GetEsoSkillInputValues()
 	var health = parseInt($('#esovsInputHealth').val());
 	var spellDamage = parseInt($('#esovsInputSpellDamage').val());
 	var weaponDamage = parseInt($('#esovsInputWeaponDamage').val());
+	var level = ParseEsoLevel($('#esovsInputLevel').val());
 	
 	g_LastSkillInputValues = { magicka: magicka,
 			 stamina: stamina,
@@ -227,7 +231,8 @@ function GetEsoSkillInputValues()
 			 spellDamage: spellDamage,
 			 weaponDamage: weaponDamage,
 			 maxStat: Math.max(stamina, magicka),
-			 maxDamage: Math.max(spellDamage, weaponDamage)
+			 maxDamage: Math.max(spellDamage, weaponDamage),
+			 level: level
 		};
 	
 	return g_LastSkillInputValues; 
@@ -311,6 +316,57 @@ function UpdateEsoSkillTooltipDescription()
 }
 
 
+function ComputeEsoSkillCost(baseCost, level)
+{
+	if (level < 1) level = 1;
+	if (level >= 66) return baseCost;
+	
+	if (level >= 1 && level <= 50) return Math.round(baseCost * level / 65.5367 + baseCost / 10.7466);
+	return Math.round(baseCost * level / 110.942 + baseCost / 2.46882);
+}
+
+
+function UpdateEsoSkillTooltipCost()
+{		
+	if (g_LastSkillId <= 0) return;
+	UpdateEsoSkillCost(g_LastSkillId, $("#esovsSkillTooltipCost"), GetEsoSkillInputValues());
+}
+
+
+function UpdateEsoSkillCost(skillId, costElement, inputValues)
+{
+	var skillData = g_SkillsData[skillId];
+	if (skillData == null) return;
+	
+	var mechanic = skillData['mechanic'];
+	if (mechanic != 0 && mechanic != 6) return;
+	
+	var passive = skillData['isPassive'];
+	if (passive != 0) return;
+	
+	var baseCost = parseInt(skillData['cost']);
+	var cost = ComputeEsoSkillCost(baseCost, inputValues.level);
+	
+	var costStr = "" + cost + " ";
+	
+	if (mechanic == 0)
+		costStr += "Magica";
+	else
+		costStr += "Stamina";
+	
+	costElement.text(costStr);
+}
+
+
+function UpdateEsoSkillCost_ForEach(index, element)
+{
+	var skillId = $(this).attr('skillid');
+	if (skillId == null || skillId == '') return;
+	
+	UpdateEsoSkillCost(skillId, $(element), g_LastSkillInputValues);
+}
+
+
 function UpdateEsoSkillDescription_ForEach(index, element)
 {
 	var skillId = $(this).attr('skillid');
@@ -324,6 +380,13 @@ function UpdateEsoAllSkillDescription()
 {
 	var inputValues = GetEsoSkillInputValues();
 	$(".esovsSkillContentBlock:visible .esovsAbilityBlockDesc").each(UpdateEsoSkillDescription_ForEach);
+}
+
+
+function UpdateEsoAllSkillCost()
+{
+	var inputValues = GetEsoSkillInputValues();
+	$(".esovsSkillContentBlock:visible .esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
 }
 
 
@@ -497,10 +560,10 @@ function UpdateEsoSkillRawDataLink(skillId)
 
 function ParseEsoLevel(level)
 {
-	if ($.isNumeric(level)) return level;
+	if ($.isNumeric(level)) return parseInt(level);
 	
 	var vetRank = level.match(/^\s*[vV](\d+)/);
-	if (vetRank == null) return level;
+	if (vetRank == null) return parseInt(level);
 	
 	return parseInt(vetRank[1]) + 50;
 }
@@ -534,7 +597,9 @@ function OnChangeEsoSkillData(dataName)
 	}	
 	
 	UpdateEsoSkillTooltipDescription();
+	UpdateEsoSkillTooltipCost();
 	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
 }
 
 
@@ -593,6 +658,9 @@ function esovsOnDocReady()
 	$('#esovsInputWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage');	});
 
 	$(".esovsAbilityBlock").first().trigger('click');
+	
+	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
 	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);

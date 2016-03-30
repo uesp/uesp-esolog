@@ -445,7 +445,7 @@ class CEsoViewSkills
 		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
 		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
 		//$output .= "<div class='esovsAbilityBlockLevel'>$levelDesc</div>";
-		$output .= "<div class='esovsAbilityBlockCost'>$costDesc</div>";
+		$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc</div>";
 		$output .= "</div>";
