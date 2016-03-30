@@ -83,7 +83,7 @@ a:hover {
 #esovsSkillTree {
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	font-size: 16px;
-    width: 200px;
+    width: 170px;
 	float: left;
 }
 
@@ -128,7 +128,7 @@ a:hover {
 	vertical-align: top;
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	font-size: 16px;
-	min-width: 600px;
+	min-width: 400px;
 	margin-left: 210px;
 }
 
@@ -155,7 +155,6 @@ a:hover {
 	padding: 5px;
 	margin-left: 5px;
     display: inline-block;
-    width: 99%;
 }
 
 .esovsAbilityBlockTitle {
@@ -211,6 +210,19 @@ a:hover {
     margin-top: 2px;
     margin-left: 2px;
     vertical-align: middle;
+}
+
+.esovsAbilityBlockIconLevel {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    color: #FFFF99;
+    text-shadow: 0px 0px 2px black;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    padding: 1px;
+    box-shadow: 0px 0px 2px rgb(0, 0, 0);
 }
 
 .esovsAbilityBlockDesc {
