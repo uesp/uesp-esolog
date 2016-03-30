@@ -130,7 +130,7 @@ function EsoViewSkillShowTooltip(skillData)
 	}
 
 	output += "<div id='esovsSkillTooltipDesc' class='esovsSkillTooltipDesc'>" + desc + "</div>\n";
-	if (effectLines != "") output += " <div class='esovsSkillTooltipEffectLines'>" + effectLines + "</div>";
+	if (effectLines != "") output += " <div class='esovsSkillTooltipEffectLines'><b>NEW EFFECT</b><br/>" + effectLines + "</div>";
 	
 	if (learnedLevel > 0)
 	{
