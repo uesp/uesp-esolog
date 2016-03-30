@@ -95,6 +95,7 @@ class CEsoViewSkills
 			$this->ParseSkill($skill);		
 		}
 		
+			// Sort tree and fill in missing effectLines
 		foreach($this->skillTree as &$skillType)
 		{
 			uksort($skillType, 'CompareEsoSkillTypeName');
@@ -102,6 +103,26 @@ class CEsoViewSkills
 			foreach($skillType as &$skillLine)
 			{
 				usort($skillLine, 'CompareEsoSkillLine');
+				
+				foreach ($skillLine as $baseName => &$baseAbility)
+				{
+					foreach ($baseAbility as $rank => &$ability)
+					{
+						if (!is_numeric($rank)) continue;
+						
+						if ($ability['effectLines'] == "")
+						{
+							if ($rank > 5 && $rank < 9 && array_key_exists(5, $baseAbility))
+							{
+								$ability["effectLines"] = $baseAbility[5]["effectLines"];
+							}
+							else if ($rank > 9 && $rank < 13 && array_key_exists(9, $baseAbility))
+							{
+								$ability["effectLines"] = $baseAbility[9]["effectLines"];
+							}
+						}
+					}
+				}
 			}
 		}
 		
@@ -367,7 +388,6 @@ class CEsoViewSkills
 			$lastAbility = $this->FindLastAbility($abilityData);
 			
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true);
-			
 			$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
 		}
 		
@@ -388,6 +408,7 @@ class CEsoViewSkills
 		$name = $baseAbility['name'];
 		$type = $baseAbility['type'];
 		$icon = $this->GetIconURL($baseAbility['icon']);
+		$effectLines = $abilityData['effectLines'];
 		
 		$cost = $abilityData['cost'];
 		$learnedLevel = $abilityData['learnedLevel'];
@@ -431,12 +452,15 @@ class CEsoViewSkills
 		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
 		$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
 		$output .= "</div>";
-		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc</div>";
+		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc";
+		if ($effectLines != "") $output .= " <div class='esovsAbilityBlockEffectLines'>$effectLines</div>";
+		$output .= "</div>";
 		$output .= "</div>";
 		$output .= "</div>";
 		
 		return $output;		
 	}
+	
 	
 	public function GetSkillContentHtml_AbilityList($abilityName, $abilityData)
 	{
