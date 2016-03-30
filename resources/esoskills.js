@@ -495,6 +495,26 @@ function UpdateEsoSkillRawDataLink(skillId)
 }
 
 
+function ParseEsoLevel(level)
+{
+	if ($.isNumeric(level)) return level;
+	
+	var vetRank = level.match(/^\s*[vV](\d+)/);
+	if (vetRank == null) return level;
+	
+	return parseInt(vetRank[1]) + 50;
+}
+
+
+function FormatEsoLevel(level)
+{
+	if (level <= 0 || level > 66) return level;
+	if (level < 50) return level;
+
+	return "v" + (level - 50);
+}
+
+
 function OnChangeEsoSkillData(dataName)
 {
 	var rangeControl = $('#esovsControl' + dataName);
@@ -503,11 +523,13 @@ function OnChangeEsoSkillData(dataName)
 	
 	if (!$(this).is(rangeControl))
 	{
+		if (dataName == "Level") value = ParseEsoLevel(value);
 		rangeControl.val(value);
 	}
 	
 	if (!$(this).is(inputControl))
 	{
+		if (dataName == "Level") value = FormatEsoLevel(value);
 		inputControl.val(value);
 	}	
 	
@@ -551,6 +573,9 @@ function esovsOnDocReady()
 	
 	$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
 	$('.esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
+	
+	$('#esovsControlLevel').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Level'); });
+	$('#esovsInputLevel').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Level');	});
 	
 	$('#esovsControlMagicka').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Magicka'); });
 	$('#esovsInputMagicka').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Magicka');	});
