@@ -375,6 +375,7 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 	var cOp = '+';
 	var typeString = "";
 	var srcString = "<b>$" + i + "</b>";
+	var ratio = '';
 	
 	if (b < 0) { bOp = '-'; b = -b; }
 	if (c < 0) { cOp = '-'; c = -c; }
@@ -388,21 +389,25 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 	{
 		output += srcString + " = " + a + " Magicka " + bOp + " " + b + " SpellDamage " + cOp + " " + c;
 		typeString = "Magicka";
+		ratio = (b/a).toFixed(2);
 	}
 	else if (type == 6) // Stamina
 	{
 		output += srcString + " = " + a + " Stamina " + bOp + " " + b + " WeaponDamage " + cOp + " " + c;
 		typeString = "Stamina";
+		ratio = (b/a).toFixed(2);
 	}
 	else if (type == 10) // Ultimate
 	{
 		output += srcString + " = " + a + " MaxStat " + bOp + " " + b + " MaxDamage " + cOp + " " + c;
 		typeString = "Ultimate";
+		ratio = (b/a).toFixed(2);
 	}
 	else if (type == -50) // Ultimate Soul Tether
 	{
 		output += srcString + " = " + a + " MaxStat " + bOp + " " + b + " SpellDamage " + cOp + " " + c;
 		typeString = "Ultimate (no weapon damage)";
+		ratio = (b/a).toFixed(2);
 	}
 	else if (type == -51) // Light Armor
 	{
@@ -436,7 +441,9 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 	}
 	
 	output += "</div>";
-	output += "<div class='esovsSkillCoefRowDetail'>" + typeString + ", R<sup>2</sup> = " + R + "</div>";
+	output += "<div class='esovsSkillCoefRowDetail'>" + typeString + ", R<sup>2</sup> = " + R;
+	if (ratio != "") output += ", Ratio = " + ratio;
+	output += "</div>";
 	
 	return output;
 }
