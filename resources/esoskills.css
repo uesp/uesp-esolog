@@ -311,7 +311,7 @@ a:hover {
 
 .esovsSkillTooltip {
 	width: 360px;
-	background-image: url(eso_item_border.png);
+	background-image: url(eso_skill_border.png);
 	background-size: 100% 100%;
 	color: #C5C29E;
 	line-height: 125%;
