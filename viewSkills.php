@@ -18,6 +18,8 @@ require("esoCommon.php");
 class CEsoViewSkills
 {
 	
+	const ESOVS_ENABLE_PROFILE = false;
+	
 	const ESOVS_HTML_TEMPLATE = "templates/esoskills_template.txt";
 	const ESOVS_ICON_URL = "http://esoicons.uesp.net/";
 	
@@ -41,6 +43,15 @@ class CEsoViewSkills
 	}
 	
 	
+	public function LogProfile($name, $startTime)
+	{
+		if (!self::ESOVS_ENABLE_PROFILE) return;
+		
+		$deltaTime = (microtime(true) - $startTime) * 1000.0;
+		error_log("Profile $name = $deltaTime ms");
+	}
+	
+	
 	public function ReportError($errorMsg)
 	{
 		error_log($errorMsg);
@@ -59,6 +70,17 @@ class CEsoViewSkills
 	}
 	
 	
+	private function OutputHtmlHeader()
+	{
+		ob_start("ob_gzhandler");
+		header("Expires: 0");
+		header("Pragma: no-cache");
+		header("Cache-Control: no-cache, no-store, must-revalidate");
+		header("Pragma: no-cache");
+		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
+	}
+	
+	
 	private function LoadTemplate()
 	{
 		$this->htmlTemplate = file_get_contents(self::ESOVS_HTML_TEMPLATE);
@@ -67,6 +89,8 @@ class CEsoViewSkills
 	
 	private function LoadSkills()
 	{
+		$startTime = microtime(true);
+		
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
 		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id;";
@@ -81,6 +105,8 @@ class CEsoViewSkills
 			$this->skills[$id] = $row;
 		}
 		
+		$this->LogProfile("LoadSkills()", $startTime);
+		
 		$this->CreateSkillTree();
 		return true;		
 	}
@@ -88,6 +114,7 @@ class CEsoViewSkills
 	
 	private function CreateSkillTree()
 	{
+		$startTime = microtime(true);
 		$this->skillTree = array();
 		
 		foreach($this->skills as &$skill)
@@ -126,6 +153,7 @@ class CEsoViewSkills
 			}
 		}
 		
+		$this->LogProfile("CreateSkillTree()", $startTime);
 	}
 	
 	
@@ -220,7 +248,7 @@ class CEsoViewSkills
 		$output .= $this->GetSkillTreeTypeHtml("Alliance War");
 		$output .= $this->GetSkillTreeTypeHtml("Racial");
 		$output .= $this->GetSkillTreeTypeHtml("Craft");
-				
+
 		return $output;	
 	}
 	
@@ -481,31 +509,44 @@ class CEsoViewSkills
 	
 	public function GetSkillsJson()
 	{
+		$startTime = microtime(true);
+		
 		$output = json_encode($this->skills);
+		
+		$this->LogProfile("GetSkillTreeHtml()", $startTime);
 		return $output;
 	}
 	
 	
 	public function OutputHtml()
 	{
+		$startTime = microtime(true);
+		
 		$replacePairs = array(
-				'{skillsJson}' => $this->GetSkillsJson(),
 				'{skillTree}' => $this->GetSkillTreeHtml(),
 				'{skillContent}'  => $this->GetSkillContentHtml(),
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{rawSkillData}' => "",
 				'{coefSkillData}' => "",
+				'{skillsJson}' => $this->GetSkillsJson(),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
-	
+		
+		$this->LogProfile("OutputHtml():Transform", $startTime);
+		
+		$startTime = microtime(true);
+		
 		print ($output);
+				
+		$this->LogProfile("OutputHtml():Print", $startTime);
 	}
 	
 	
 	public function Render()
 	{
+		$this->OutputHtmlHeader();
 		$this->LoadSkills();
 		$this->OutputHtml();
 	}
