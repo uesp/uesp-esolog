@@ -350,7 +350,7 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 	var costStr = "" + cost + " ";
 	
 	if (mechanic == 0)
-		costStr += "Magica";
+		costStr += "Magicka";
 	else
 		costStr += "Stamina";
 	
