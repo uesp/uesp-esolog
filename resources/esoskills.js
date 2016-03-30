@@ -107,7 +107,7 @@ function EsoViewSkillShowTooltip(skillData)
 			output += "<div class='esovsSkillTooltipName'>Radius</div>";			
 		}
 		
-		if (range > 0)
+		if (range != "")
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + range + "</div>";
 			output += "<div class='esovsSkillTooltipName'>Range</div>";			
