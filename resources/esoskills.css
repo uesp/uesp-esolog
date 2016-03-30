@@ -421,3 +421,23 @@ a:hover {
 	padding: 5px;
 	margin-top: 10px;
 }
+
+.esovsShowHideButton {
+	width: 100%;
+	background-color: #DBBFA5;
+    color: #666666;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    vertical-align: middle;
+    border-style: solid;
+    border-color: #bbb #888 #666 #aaa;
+    border-width: 1px 2px 2px 1px;
+}
+
+.esovsShowHideButton:hover {
+	cursor: pointer; 
+	background-color: #AB9F95;
+    border-color: #666 #aaa #bbb #888;
+    border-width: 2px 1px 1px 2px;
+}
