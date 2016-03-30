@@ -55,7 +55,8 @@ function EsoViewSkillShowTooltip(skillData)
 	var radius = skillData['radius'] / 100;
 	var castTimeStr = castTime + " seconds";
 	var skillType = skillData['type'];
-	var learnedLevel = skillData['learnedLevel']; 
+	var learnedLevel = skillData['learnedLevel'];
+	var effectLines = skillData['effectLines'];
 	var area = "";
 	var range = "";
 	
@@ -127,8 +128,9 @@ function EsoViewSkillShowTooltip(skillData)
 		
 		output += "<img src='resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	}
-	
+
 	output += "<div id='esovsSkillTooltipDesc' class='esovsSkillTooltipDesc'>" + desc + "</div>\n";
+	if (effectLines != "") output += " <div class='esovsSkillTooltipEffectLines'>" + effectLines + "</div>";
 	
 	if (learnedLevel > 0)
 	{
@@ -301,6 +303,9 @@ function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
 		
 		coefDesc = coefDesc.replace(srcString, value);
 	}
+	
+	var effectLines = skillData['effectLines'];
+	if (effectLines != "") coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";	
 	
 	if (useHtml)
 		descElement.html(EsoConvertDescToHTML(coefDesc));
