@@ -509,6 +509,34 @@ function OnChangeEsoSkillData(dataName)
 }
 
 
+function OnToggleSkillCoef(event)
+{
+	var object = $("#esovsSkillCoefContent");
+	var isVisible = object.is(":visible");
+	
+	object.slideToggle();
+	
+	if (isVisible)
+		$(this).text("Show Skill Coefficients");
+	else
+		$(this).text("Hide Skill Coefficients");
+}
+
+
+function OnToggleRawDataCoef(event)
+{
+	var object = $("#esovsRawDataContent");
+	var isVisible = object.is(":visible");
+	
+	object.slideToggle();
+	
+	if (isVisible)
+		$(this).text("Show Raw Data");
+	else
+		$(this).text("Hide Raw Data");
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
@@ -532,7 +560,10 @@ function esovsOnDocReady()
 	$('#esovsControlWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage'); });
 	$('#esovsInputWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage');	});
 
-	$(".esovsAbilityBlock").first().trigger('click');	
+	$(".esovsAbilityBlock").first().trigger('click');
+	
+	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
+	$("#esovsRawDataButton").click(OnToggleRawDataCoef);
 }
 
 

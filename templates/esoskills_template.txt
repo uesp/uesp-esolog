@@ -44,17 +44,19 @@
 	<hr />
 	<div id="esovsSkillCoefData">
 		<h2>Skill Coefficients</h2>		
-		<div id="esovsSkillCoefContent">
+		<div id="esovsSkillCoefContent" style="display: none;">
 			{coefSkillData}
 		</div>
+		<div class="esovsShowHideButton" id="esovsSkillCoefButton">Show Skill Coefficients</div>
 	</div>
 	<hr />
 	<div id="esovsRawData">
-		<a id="esovsRawDataSkillLink" class="esovsRawDataSkillLink">View Raw Skill Data</a>
+		<a id="esovsRawDataSkillLink" class="esovsRawDataSkillLink">Link to Raw Skill Data</a>
 		<h2>Raw Skill Data</h2>		
-		<div id="esovsRawDataContent">
+		<div id="esovsRawDataContent" style="display: none;">
 			{rawSkillData}
 		</div>
+		<div class="esovsShowHideButton" id="esovsRawDataButton">Show Raw Data</div>
 	</div>
 </div>
 </div>
