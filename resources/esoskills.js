@@ -164,20 +164,20 @@ function EsoSkillShowSkillLine(skillLine)
 
 function OnEsoSkillTypeTitleClick(event)
 {
-	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillLineTitleHighlight");
-	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillTypeTitleHighlight");
+	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillTypeTitleHighlight");
+	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
 	
 	if ($(this)[0] == currentSkillType[0]) return;
 	
 	$(".esovsSkillType:visible").slideUp();
-	currentSkillType.removeClass("esovsTitleHighlight");
-	currentSkillLine.removeClass("esovsTitleHighlight");
+	currentSkillType.removeClass("esovsSkillTypeTitleHighlight");
+	currentSkillLine.removeClass("esovsSkillLineTitleHighlight");
 	
 	$(this).next(".esovsSkillType").slideDown();
-	$(this).addClass("esovsSkillLineTitleHighlight");
+	$(this).addClass("esovsSkillTypeTitleHighlight");
 	
 	var firstSkillLine = $(this).next(".esovsSkillType").children(".esovsSkillLineTitle").first();
-	firstSkillLine.addClass("esovsSkillTypeTitleHighlight");
+	firstSkillLine.addClass("esovsSkillLineTitleHighlight");
 	
 	var skillType = $(this).text();
 	var skillLine = firstSkillLine.text();
@@ -191,12 +191,12 @@ function OnEsoSkillTypeTitleClick(event)
 
 function OnEsoSkillLineTitleClick(event)
 {
-	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillTypeTitleHighlight");
+	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
 	
 	if ($(this)[0] == currentSkillLine[0]) return;
-	currentSkillLine.removeClass("esovsSkillTypeTitleHighlight");
+	currentSkillLine.removeClass("esovsSkillLineTitleHighlight");
 	
-	$(this).addClass("esovsSkillTypeTitleHighlight");
+	$(this).addClass("esovsSkillLineTitleHighlight");
 	
 	var skillLine = $(this).text();
 	

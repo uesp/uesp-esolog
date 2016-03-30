@@ -227,7 +227,7 @@ class CEsoViewSkills
 		
 		if ($this->isFirstSkill) 
 		{
-			$extraClass = "esovsSkillTypeTitleHighlight";
+			$extraClass = "esovsSkillLineTitleHighlight";
 			$displayType = "block"; 
 			$this->isFirstSkill = false; 
 		}
