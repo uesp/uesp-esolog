@@ -434,9 +434,7 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 	}
 	
 	output += "</div>";
-	
-	output += "<div class='esovsSkillCoefRowDetail'>" + typeString + "</div>";
-	output += "<div class='esovsSkillCoefRowDetail'>R<sup>2</sup> = " + R + "</div>";	
+	output += "<div class='esovsSkillCoefRowDetail'>" + typeString + ", R<sup>2</sup> = " + R + "</div>";
 	
 	return output;
 }
