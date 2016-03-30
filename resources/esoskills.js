@@ -351,8 +351,8 @@ function UpdateEsoSkillRawData(skillId)
 		var key = keys[index];
 		var value = skillData[key];
 		
-		output += "<div class='esovsRawDataName'>" + key + "</div>";
-		output += "<div class='esovsRawDataValue'>" + value + "</div>";
+		output += "<div class='esovsRawDataName'>" + key + "</div> ";
+		output += "<div class='esovsRawDataValue'>" + value + "</div> ";
 	}
 	
 	rawDataElement.html(output);
