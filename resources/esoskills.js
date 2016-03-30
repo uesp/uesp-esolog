@@ -351,8 +351,10 @@ function UpdateEsoSkillRawData(skillId)
 		var key = keys[index];
 		var value = skillData[key];
 		
+		output += "<div class='esovsRawDataRow'>";
 		output += "<div class='esovsRawDataName'>" + key + "</div> ";
 		output += "<div class='esovsRawDataValue'>" + value + "</div> ";
+		output += "</div>";
 	}
 	
 	rawDataElement.html(output);
@@ -442,14 +444,14 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 
 function UpdateEsoSkillCoefData(skillId)
 {
-	var rawDataElement = $("#esovsSkillCoefContent");
+	var skillCoefElement = $("#esovsSkillCoefContent");
 	
 	if (skillId == null) skillId = g_LastSkillId;
 	var skillData = g_SkillsData[skillId];
 	
 	if (skillData == null || skillData['numCoefVars'] <= 0) 
 	{
-		rawDataElement.html("No known skill coefficients.");
+		skillCoefElement.html("No known skill coefficients.");
 		return;
 	}
 	
@@ -466,7 +468,7 @@ function UpdateEsoSkillCoefData(skillId)
 	
 	output += "<div class='esovsSkillCoefDesc'>" + skillDesc + "</div>";
 	
-	rawDataElement.html(output);
+	skillCoefElement.html(output);
 }
 
 
