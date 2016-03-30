@@ -1647,6 +1647,7 @@ class EsoLogViewer
 				3 => "Advanced",
 				4 => "Master",
 				5 => "Impossible",
+				7 => "Trivial",
 		);
 		
 		$key = (int) $value;
