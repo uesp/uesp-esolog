@@ -68,7 +68,6 @@ class CEsoViewSkills
 	
 	private function LoadSkills()
 	{
-		//$query = "SELECT * from skillTree".$this->GetTableSuffix().";";
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
 		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id;";
@@ -99,7 +98,8 @@ class CEsoViewSkills
 		
 		foreach($this->skillTree as &$skillType)
 		{
-			ksort($skillType);
+			//ksort($skillType);
+			uksort($skillType, 'CompareEsoSkillTypeName');
 			
 			foreach($skillType as &$skillLine)
 			{
@@ -503,6 +503,30 @@ class CEsoViewSkills
 	}
 	
 };
+
+
+function CompareEsoSkillTypeName($a, $b)
+{
+	static $SKILLTYPES = array(
+			"Light Armor" => 1,
+			"Medium Armor" => 2,
+			"Heavy Armor" => 3,
+			
+			"Two Handed" => 1,
+			"One Hand and Shield" => 2,
+			"Dual Wield" => 3,
+			"Bow" => 4,
+			"Destruction Staff" => 5,
+			"Restoration Staff" => 6,			
+	);
+	
+	if (!array_key_exists($a, $SKILLTYPES) || !array_key_exists($b, $SKILLTYPES))
+	{
+		return strcmp($a, $b);
+	}
+	
+	return $SKILLTYPES[$a] - $SKILLTYPES[$b];
+}
 
 
 function CompareEsoSkillLine($a, $b)
