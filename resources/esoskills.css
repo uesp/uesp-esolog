@@ -66,18 +66,18 @@ a:hover {
 	background-color: #ccc;
 }
 
-
 #esovsLeftBlock {
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	width: 400px;
-	float: left;	
-	padding: 5px;
+	float: left;
+    padding-right: 5px;
+    border-right: solid 2px #afaf94;	
 }
 
 #esovsRightBlock {
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
-	padding: 5px;
 	margin-left: 410px;
+	padding-left: 5px;
 }
 
 #esovsSkillTree {
@@ -129,7 +129,7 @@ a:hover {
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	font-size: 16px;
 	min-width: 400px;
-	margin-left: 210px;
+	margin-left: 175px;
 }
 
 .esovsSkillContentBlock {
@@ -305,6 +305,10 @@ a:hover {
 	opacity: 0.5;
 }
 
+#esovsSkillTooltipRoot {
+	text-align: center;
+}
+
 .esovsSkillTooltip {
 	width: 360px;
 	background-image: url(eso_item_border.png);
@@ -314,6 +318,7 @@ a:hover {
 	text-align: left;
     white-space: normal;
 	padding: 10px;
+	display: inline-block;
 }
 
 .esovsSkillTooltipDivider {
