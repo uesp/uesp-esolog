@@ -408,8 +408,17 @@ a:hover {
 	width: 280px;
     display: inline-block;
 	text-align: left;
-	margin-left: 10px;
+    padding-left: 10px;
 	vertical-align: top;
+}
+
+.esovsRawDataRow {
+	display: block;
+	width: 100%;
+}
+
+.esovsRawDataRow:nth-child(even) {
+	background-color: #FFF7E0;
 }
 
 .esovsRawDataSkillLink {
