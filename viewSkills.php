@@ -437,12 +437,14 @@ class CEsoViewSkills
 		$rankLabel = " " . $this->GetRomanNumeral($rank);
 			
 		$output .= "<div class='esovsAbilityBlock' skillid='$id'>" ;
-		if ($topLevel) $output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";		
-		$output .= "<div class='$iconClass'><img src='$icon' /></div>";
+		if ($topLevel) $output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";
+		$output .= "<div class='$iconClass'><img src='$icon' />";
+		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
+		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockTitle'>";
 		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
 		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
-		$output .= "<div class='esovsAbilityBlockLevel'>$levelDesc</div>";
+		//$output .= "<div class='esovsAbilityBlockLevel'>$levelDesc</div>";
 		$output .= "<div class='esovsAbilityBlockCost'>$costDesc</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc</div>";
