@@ -43,7 +43,6 @@ class CEsoViewSkills
 	
 	public function ReportError($errorMsg)
 	{
-		//print($errorMsg);
 		error_log($errorMsg);
 		return false;
 	}
@@ -98,7 +97,6 @@ class CEsoViewSkills
 		
 		foreach($this->skillTree as &$skillType)
 		{
-			//ksort($skillType);
 			uksort($skillType, 'CompareEsoSkillTypeName');
 			
 			foreach($skillType as &$skillLine)
@@ -106,18 +104,6 @@ class CEsoViewSkills
 				usort($skillLine, 'CompareEsoSkillLine');
 			}
 		}
-		
-		/*
-		foreach($this->skillTree as &$skillType)
-		{
-			foreach($skillType as &$skillLine)
-			{
-				foreach($skillLine as &$ability)
-				{
-					ksort($ability);
-				}
-			}
-		} // */
 		
 	}
 	
@@ -383,7 +369,6 @@ class CEsoViewSkills
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true);
 			
 			$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
-			//$output .= "<div class='esovsBlockClear'></div>";
 		}
 		
 		if ($output != "")
@@ -444,7 +429,6 @@ class CEsoViewSkills
 		$output .= "<div class='esovsAbilityBlockTitle'>";
 		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
 		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
-		//$output .= "<div class='esovsAbilityBlockLevel'>$levelDesc</div>";
 		$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc</div>";
