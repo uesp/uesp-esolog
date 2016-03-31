@@ -3494,9 +3494,7 @@ class EsoLogParser
 		
 		$skill = $this->LoadSkillDump($abilityId);
 		if ($skill === false) return false;
-  
-			//	learnedLevel{1}  skillLine{Emperor}  rank{1}
-		
+  	
 		$skill['name'] = $logEntry['name'];
 		$skill['description'] = $logEntry['desc'];
 		$skill['duration'] = $logEntry['duration'];
@@ -3517,6 +3515,7 @@ class EsoLogParser
 		
 		if (array_key_exists('rank', $logEntry)) $skill['rank'] = $logEntry['rank'];
 		if (array_key_exists('learnedLevel', $logEntry)) $skill['learnedLevel'] = $logEntry['learnedLevel'];
+		if (array_key_exists('abilityIndex', $logEntry)) $skill['skillIndex'] = $logEntry['abilityIndex'];
 		
 		if (array_key_exists('skillLine', $logEntry)) 
 		{
@@ -3529,10 +3528,20 @@ class EsoLogParser
 			);
 			
 			$skill['isPlayer'] = 1;
-			$skill['skillIndex'] = 1;
 			$skill['skillLine'] = $logEntry['skillLine'];
 			$skill['skillType'] = $SKILL_TYPES[$logEntry['skillLine']];
 			if ($skill['skillType'] == null) $skill['skillType'] = 0;
+		}
+		
+		if (array_key_exists('nextSkill', $logEntry))
+		{
+			$skill['nextSkill'] = $logEntry['nextSkill'];
+			$skill['nextSkill2'] = $logEntry['nextSkill2'];
+			$skill['prevSkill'] = $logEntry['prevSkill'];
+			
+			if ($skill['nextSkill'] < 0) $skill['nextSkill'] = 0;
+			if ($skill['nextSkill2'] < 0) $skill['nextSkill2'] = 0;
+			if ($skill['prevSkill'] < 0) $skill['prevSkill'] = 0;
 		}
 				
 		$this->SaveSkillDump($skill);
