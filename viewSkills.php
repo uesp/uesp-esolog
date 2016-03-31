@@ -416,7 +416,11 @@ class CEsoViewSkills
 			$lastAbility = $this->FindLastAbility($abilityData);
 			
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true);
-			$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
+			
+			if ($lastAbility['maxRank'] > 1)
+			{
+				$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
+			}
 		}
 		
 		if ($output != "")
@@ -444,6 +448,8 @@ class CEsoViewSkills
 		$costDesc = "";
 		if ($learnedLevel > 0) $levelDesc = "Unlocked at rank $learnedLevel";
 		$rank = $abilityData['rank'];
+		$maxRank = $abilityData['maxRank'];
+		$rankLabel = "";
 			
 		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
 		
@@ -468,10 +474,18 @@ class CEsoViewSkills
 			}
 		}
 		
-		$rankLabel = " " . $this->GetRomanNumeral($rank);
+		if ($rank > 0 && $maxRank > 1) $rankLabel = " " . $this->GetRomanNumeral($rank);
 			
 		$output .= "<div class='esovsAbilityBlock' skillid='$id'>" ;
-		if ($topLevel) $output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";
+		
+		if ($topLevel) 
+		{
+			if ($maxRank > 1) 
+				$output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";
+			else
+				$output .= "<div class='esovsAbilityBlockPlus'></div>";
+		}
+		
 		$output .= "<div class='$iconClass'><img src='$icon' />";
 		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
 		$output .= "</div>";
