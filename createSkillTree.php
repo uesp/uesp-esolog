@@ -285,6 +285,7 @@ if (!$passiveResult) exit("ERROR: Database query error finding passive skills!\n
 
 $passiveResult->data_seek(0);
 $passiveSkills = array();
+$passiveIds = array();
 $count = 0;
 $type = "Passive";
 $skillTypeName = "";
@@ -299,34 +300,36 @@ while (($passive = $passiveResult->fetch_assoc()))
 	$passive['name'] = preg_replace("#(.*) [IV]+$#", "$1", $passive['name']);
 	$passive['baseName'] = preg_replace("#(.*) [IV]+$#", "$1", $passive['baseName']);
 	
-	$passiveSkills[$id] = $passive;
+	$passiveSkills[] = $passive;
+	$passiveIds[$id] = &$passiveSkills[count($passiveSkills) - 1];
 	$count++;
 }
 
-print("Loaded ".count($passiveSkills)." passives!\n");
+print("Loaded ".count($passiveIds)." passives!\n");
 print("Updating next/prev pointers in passive data...\n");
 
 	/* Update next/prev IDs and set skillTypeName */
-foreach ($passiveSkills as $id => $passive)
+foreach ($passiveSkills as $index => &$passive)
 {
-	$nextSkill = $passiveSkills[$id]['nextSkill'];
-	$prevSkill = $passiveSkills[$id]['prevSkill'];
+	$id = $passive['id'];
+	$nextSkill = $passiveIds[$id]['nextSkill'];
+	$prevSkill = $passiveIds[$id]['prevSkill'];
 	
-	$hasPrevSkill = array_key_exists($prevSkill, $passiveSkills);
-	$hasNextSkill = array_key_exists($nextSkill, $passiveSkills);
+	$hasPrevSkill = array_key_exists($prevSkill, $passiveIds);
+	$hasNextSkill = array_key_exists($nextSkill, $passiveIds);
 		
 	if ($hasPrevSkill && $hasNextSkill)
 	{
-		$passiveSkills[$nextSkill]['prevSkill'] = $id;
-		$passiveSkills[$prevSkill]['nextSkill'] = $id;
+		$passiveIds[$nextSkill]['prevSkill'] = $id;
+		$passiveIds[$prevSkill]['nextSkill'] = $id;
 	}
 	else if ($hasPrevSkill)
 	{
-		$passiveSkills[$prevSkill]['nextSkill'] = $id;
+		$passiveIds[$prevSkill]['nextSkill'] = $id;
 	}
 	else if ($hasNextSkill)
 	{
-		$passiveSkills[$nextSkill]['prevSkill'] = $id;
+		$passiveIds[$nextSkill]['prevSkill'] = $id;
 	}
 		
 	if ($passive['skillType'] == 1)
@@ -342,8 +345,94 @@ foreach ($passiveSkills as $id => $passive)
 		$skillTypeName = GetSkillTypeText($passive['skillType']) . "::" . $passive['skillLine'];
 	}
 
-	$passiveSkills[$id]['skillTypeName'] = $skillTypeName;
+	//$passiveSkills[$index]['skillTypeName'] = $skillTypeName;
+	$passive['skillTypeName'] = $skillTypeName;
 }
+
+	/* Handle abilities in duplicate skill lines */
+$DUPLICATE_SKILLS = array(
+		array(		// Robust
+				"id" => array(36064, 45297, 45298),
+				"race1" => "Nord",
+				"race2" => "Orc",
+				"index1" => 2,
+				"index2" => 3,
+		),	
+		array(		// Magnus
+				"id" => array(35995, 45259, 45260),
+				"race1" => "Breton",
+				"race2" => "High Elf",
+				"index1" => 2,
+				"index2" => 3,
+		),
+		array(		// Steathly
+				"id" => array(36022, 45295, 45296),
+				"race1" => "Wood Elf",
+				"race2" => "Khajiit",
+				"index1" => 4,
+				"index2" => 3,
+		),
+		array(		// Shield Affinity
+				"id" => array(36312),
+				"race1" => "Imperial",
+				"race2" => "Redguard",
+				"index1" => 1,
+				"index2" => 1,
+		),
+		array(		// Conditioning
+				"id" => array(36153, 45279, 45280),
+				"race1" => "Imperial",
+				"race2" => "Redguard",
+				"index1" => 3,
+				"index2" => 3,
+		),
+);
+
+$newPassives = array();
+
+foreach ($DUPLICATE_SKILLS as $dupSkill)
+{
+	$ids = $dupSkill['id'];
+	$race1 = $dupSkill['race1'];
+	$race2 = $dupSkill['race2'];
+	$index1 = $dupSkill['index1'];
+	$index2 = $dupSkill['index2'];
+	
+	foreach ($ids as $id)
+	{
+		$passive = &$passiveIds[$id];
+		
+		if ($passive == null) 
+		{
+			print("\tSkill $id not found!\n");
+			continue;
+		}
+		
+		if ($passive['raceType'] != $race1)
+		{
+			$newPassive = $passive;
+			$newPassive['raceType'] = $race1;
+			$newPassive['skillLine'] = $race1 . " Skills";
+			$newPassive['skillTypeName'] = "Racial::" . $newPassive['skillLine'];
+			$newPassive['skillIndex'] = $index1;
+			$newPassives[] = $newPassive;
+			print("\tAdded skill $id for $race1\n");
+		}
+		
+		if ($passive['raceType'] != $race2)
+		{
+			$newPassive = $passive;
+			$newPassive['raceType'] = $race2;
+			$newPassive['skillLine'] = $race2 . " Skills";
+			$newPassive['skillTypeName'] = "Racial::" . $newPassive['skillLine'];
+			$newPassive['skillIndex'] = $index2;
+			$newPassives[] = $newPassive;
+			print("\tAdded skill $id for $race2\n");
+		}
+	}
+}
+
+$passiveSkills = array_merge($passiveSkills, $newPassives);
 
 
 function ComparePassives($a, $b)
@@ -398,5 +487,3 @@ foreach ($passiveSkills as $passive)
 
 print("\tFound $count passive player skills.\n");
 
-
-?>
