@@ -2959,6 +2959,7 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function WriteHeaders ()
 	{
+		ob_start("ob_gzhandler");
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");

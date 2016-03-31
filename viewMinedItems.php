@@ -130,6 +130,7 @@ class CEsoViewMinedItems
 	
 	private function OutputHtmlHeader()
 	{
+		ob_start("ob_gzhandler");
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
