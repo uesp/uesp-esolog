@@ -849,6 +849,7 @@ class EsoItemSearcher
 	
 	public function WriteHeaders()
 	{
+		ob_start("ob_gzhandler");
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
