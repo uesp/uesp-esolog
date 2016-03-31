@@ -3,6 +3,22 @@ var g_LastSkillInputValues = {};
 var MAX_SKILL_COEF = 6;
 
 
+var ROMAN_NUMERALS = {
+		1 : 'I',
+		2 : 'II',
+		3 : 'III',
+		4 : 'IV',
+		5 : 'V',
+		6 : 'VI',
+		7 : 'VII',
+		8 : 'VIII',
+		9 : 'IX',
+		10 : 'X',
+		11 : 'XI',
+		12 : 'XII',
+	};
+
+
 function EsoConvertDescToHTML(desc)
 {
 	return EsoConvertDescToHTMLClass(desc, "esovsWhite");
@@ -25,6 +41,17 @@ function EsoConvertDescToText(desc)
 }
 
 
+function GetRomanNumeral(value)
+{
+	if (value <= 0) return '';
+	
+	var roman = ROMAN_NUMERALS[value]
+	if (roman != null) return roman;
+	
+	return value.tostring();
+}
+
+
 function EsoViewSkillShowTooltip(skillData)
 {
 	var element = $('#esovsSkillTooltipRoot');
@@ -42,6 +69,8 @@ function EsoViewSkillShowTooltip(skillData)
 	
 	var output = "<div class='esovsSkillTooltip'>\n";
 	var safeName = skillData['name'];
+	var rank = skillData['rank'];
+	var maxRank = skillData['maxRank'];
 	var desc = EsoConvertDescToHTML(skillData['description']);
 	var channelTime = skillData['channelTime'] / 1000;
 	var castTime = skillData['castTime'] / 1000;
@@ -59,6 +88,16 @@ function EsoViewSkillShowTooltip(skillData)
 	var effectLines = skillData['effectLines'];
 	var area = "";
 	var range = "";
+	var rankStr = "";
+	var realRank = rank;
+	
+	if (skillType != 'Passive')
+	{
+		if (realRank > 4) realRank -= 4;
+		if (realRank > 4) realRank -= 4;
+	}
+	
+	if (maxRank > 1 && realRank > 0) rankStr = " " + GetRomanNumeral(realRank);
 	
 	if (minRange > 0 && maxRange > 0)
 		range = (minRange/100) + " - " + (maxRange/100) + " meters"
@@ -69,7 +108,7 @@ function EsoViewSkillShowTooltip(skillData)
 	
 	if (angleDistance > 0) area = (radius/100) + " x " + (angleDistance/50) + " meters"
 		
-	output += "<div class='esovsSkillTooltipTitle'>" + safeName + "</div>\n";
+	output += "<div class='esovsSkillTooltipTitle'>" + safeName + rankStr + "</div>\n";
 	output += "<img src='resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	
 	if (skillType != 'Passive')
