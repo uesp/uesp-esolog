@@ -3494,6 +3494,8 @@ class EsoLogParser
 		
 		$skill = $this->LoadSkillDump($abilityId);
 		if ($skill === false) return false;
+  
+			//	learnedLevel{1}  skillLine{Emperor}  rank{1}
 		
 		$skill['name'] = $logEntry['name'];
 		$skill['description'] = $logEntry['desc'];
@@ -3512,7 +3514,27 @@ class EsoLogParser
 		$skill['upgradeLines'] = $logEntry['upgradeLines'];
 		$skill['effectLines'] = $logEntry['effectLines'];
 		$skill['texture'] = $logEntry['icon'];
+		
+		if (array_key_exists('rank', $logEntry)) $skill['rank'] = $logEntry['rank'];
+		if (array_key_exists('learnedLevel', $logEntry)) $skill['learnedLevel'] = $logEntry['learnedLevel'];
+		
+		if (array_key_exists('skillLine', $logEntry)) 
+		{
+			static $SKILL_TYPES = array(
+					"Legerdemain" => 4,
+					"Werewolf" => 4,
+					"Vampire" => 4,
+					"Emperor" => 6,
+					"Provisioning" => 8,
+			);
 			
+			$skill['isPlayer'] = 1;
+			$skill['skillIndex'] = 1;
+			$skill['skillLine'] = $logEntry['skillLine'];
+			$skill['skillType'] = $SKILL_TYPES[$logEntry['skillLine']];
+			if ($skill['skillType'] == null) $skill['skillType'] = 0;
+		}
+				
 		$this->SaveSkillDump($skill);
 		
 		return true;
@@ -3905,6 +3927,8 @@ class EsoLogParser
 			case "skillDump::Start":			$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillDump::end":
 			case "skillDump::End":				$result = $this->OnSkillDumpEnd($logEntry); break;
+			case "skillDump::StartMissing":		$result = $this->OnSkillDumpStart($logEntry); break;
+			case "skillDump::EndMissing":		$result = $this->OnSkillDumpEnd($logEntry); break;
 			case "skill":						$result = $this->OnSkill($logEntry); break;
 			case "skillDump::StartType":		$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillType":					$result = $this->OnSkillType($logEntry); break;
