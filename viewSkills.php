@@ -481,7 +481,7 @@ class CEsoViewSkills
 		$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc";
-		if ($effectLines != "") $output .= " <div class='esovsAbilityBlockEffectLines'><b>NEW EFFECT</b><br/>$effectLines</div>";
+		if ($effectLines != "") $output .= " <div class='esovsAbilityBlockEffectLines'>$effectLines</div>";
 		$output .= "</div>";
 		$output .= "</div>";
 		$output .= "</div>";
