@@ -421,6 +421,7 @@ class EsoLogViewer
 			'name' => self::FIELD_STRING,
 			'learnedLevel' => self::FIELD_INT,
 			'rank' => self::FIELD_INT,
+			'maxLevel' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
 			'cost' => self::FIELD_STRING,
 			'skillIndex' => self::FIELD_INT,
