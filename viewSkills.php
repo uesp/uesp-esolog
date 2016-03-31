@@ -102,7 +102,7 @@ class CEsoViewSkills
 		while (($row = $result->fetch_assoc()))
 		{
 			$id = $row['abilityId'];
-			$this->skills[$id] = $row;
+			$this->skills[] = $row;
 		}
 		
 		$this->LogProfile("LoadSkills()", $startTime);
@@ -510,8 +510,14 @@ class CEsoViewSkills
 	public function GetSkillsJson()
 	{
 		$startTime = microtime(true);
+		$skillIds = array();
 		
-		$output = json_encode($this->skills);
+		foreach ($this->skills as $skill)
+		{
+			$skillIds[$skill['abilityId']] = $skill;
+		}
+		
+		$output = json_encode($skillIds);
 		
 		$this->LogProfile("GetSkillTreeHtml()", $startTime);
 		return $output;
