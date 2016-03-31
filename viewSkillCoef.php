@@ -123,7 +123,9 @@ class CEsoViewSkillCoef
 		}
 		
 		usort($this->coefData, function($a, $b) {
-			return strcmp($a['name'], $b['name']);
+			$c = strcmp($a['name'], $b['name']);
+			if ($c == 0) $c = $a['rank'] - $b['rank']; 
+			return $c;
 		});
 		
 		return true;
