@@ -63,7 +63,7 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			abilityId BIGINT NOT NULL,
 			skillTypeName TINYTEXT NOT NULL,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
-			maxLevel TINYINT NOT NULL DEFAULT -1,
+			maxRank TINYINT NOT NULL DEFAULT -1,
 			rank INTEGER NOT NULL DEFAULT -1,
 			baseName TINYTEXT NOT NULL,
 			name TINYTEXT NOT NULL,
@@ -276,7 +276,7 @@ foreach($skillTree as $id => $skillTreeLine)
 		$abilityIndex = $thisSkill['skillIndex'];
 		$maxLevel = $thisSkill['maxLevel'];
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex, maxLevel) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\")";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\")";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 		unset($thisSkill);
@@ -542,7 +542,7 @@ foreach ($passiveSkills as $passive)
 	
 	$skillTypeName = $db->real_escape_string($passive['skillTypeName']);
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex, maxLevel) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\")";
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\")";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error inserting into skillTree table!\n" . $db->error . "\n" . $query);
 	
