@@ -63,6 +63,7 @@ $query = "CREATE TABLE IF NOT EXISTS skillTree".$TABLE_SUFFIX."(
 			abilityId BIGINT NOT NULL,
 			skillTypeName TINYTEXT NOT NULL,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
+			maxLevel TINYINT NOT NULL DEFAULT -1,
 			rank INTEGER NOT NULL DEFAULT -1,
 			baseName TINYTEXT NOT NULL,
 			name TINYTEXT NOT NULL,
@@ -95,6 +96,8 @@ $count = 0;
 while (($skill = $skillResult->fetch_assoc()))
 {
 	$id = $skill['id'];
+	$skill['maxLevel'] = 4;
+	
 	$skills[$id] = $skill;
 	$count++;
 }
@@ -227,7 +230,7 @@ foreach($skills as $id => $skill)
 	$learnedLevel = $db->real_escape_string($skill['learnedLevel']);
 	$skillIndex = $db->real_escape_string($skill['skillIndex']);
 	
-	$query = "UPDATE minedSkills SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\" WHERE id=$id;";
+	$query = "UPDATE minedSkills SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\"  WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
 }
@@ -271,10 +274,12 @@ foreach($skillTree as $id => $skillTreeLine)
 		$icon = $db->real_escape_string($thisSkill['texture']);
 		$learnedLevel = $thisSkill['learnedLevel'];
 		$abilityIndex = $thisSkill['skillIndex'];
+		$maxLevel = $thisSkill['maxLevel'];
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\")";
+		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex, maxLevel) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\")";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
+		unset($thisSkill);
 	}
 }
 
@@ -286,6 +291,7 @@ if (!$passiveResult) exit("ERROR: Database query error finding passive skills!\n
 $passiveResult->data_seek(0);
 $passiveSkills = array();
 $passiveIds = array();
+$passiveMaxLevel = array();
 $count = 0;
 $type = "Passive";
 $skillTypeName = "";
@@ -299,9 +305,11 @@ while (($passive = $passiveResult->fetch_assoc()))
 	$id = $passive['id'];
 	$passive['name'] = preg_replace("#(.*) [IV]+$#", "$1", $passive['name']);
 	$passive['baseName'] = preg_replace("#(.*) [IV]+$#", "$1", $passive['baseName']);
+	$passive['maxLevel'] = 1;
 	
 	$passiveSkills[] = $passive;
 	$passiveIds[$id] = &$passiveSkills[count($passiveSkills) - 1];
+	$passiveMaxLevel[$id] = 1;
 	$count++;
 }
 
@@ -309,11 +317,11 @@ print("Loaded ".count($passiveIds)." passives!\n");
 print("Updating next/prev pointers in passive data...\n");
 
 	/* Update next/prev IDs and set skillTypeName */
-foreach ($passiveSkills as $index => &$passive)
+foreach ($passiveSkills as $index => $passive)
 {
 	$id = $passive['id'];
-	$nextSkill = $passiveIds[$id]['nextSkill'];
-	$prevSkill = $passiveIds[$id]['prevSkill'];
+	$nextSkill = $passive['nextSkill'];
+	$prevSkill = $passive['prevSkill'];
 	
 	$hasPrevSkill = array_key_exists($prevSkill, $passiveIds);
 	$hasNextSkill = array_key_exists($nextSkill, $passiveIds);
@@ -345,8 +353,65 @@ foreach ($passiveSkills as $index => &$passive)
 		$skillTypeName = GetSkillTypeText($passive['skillType']) . "::" . $passive['skillLine'];
 	}
 
-	//$passiveSkills[$index]['skillTypeName'] = $skillTypeName;
-	$passive['skillTypeName'] = $skillTypeName;
+	$passiveSkills[$index]['skillTypeName'] = $skillTypeName;
+}
+
+	/* Count maxLevels */
+print("Counting passive maxLevels...\n");
+
+foreach ($passiveSkills as $passive)
+{
+	$id = $passive['id'];
+	$nextSkillId = $passive['nextSkill'];
+	$prevSkillId = $passive['prevSkill'];
+	
+	if ($nextSkillId <= 0 || $prevSkillId > 0) continue;
+	if (!array_key_exists($nextSkillId, $passiveIds)) continue;
+	$maxLevelCount = 1;
+	$nextSkill = $passiveIds[$nextSkillId];
+	
+	while ($nextSkill != null)
+	{
+		$maxLevelCount = $maxLevelCount + 1;
+		$nextSkillId = $nextSkill['nextSkill'];
+		if (!array_key_exists($nextSkillId, $passiveIds)) break;
+		$nextSkill = $passiveIds[$nextSkillId];
+	
+		if ($maxLevelCount > 20) break;
+	}
+	
+	$passiveMaxLevel[$id] = $maxLevelCount;
+	//print("\tMaxLevel for $id is $maxLevelCount\n");
+}
+
+	/* Propagate maxLevels */
+print("Propagating passive maxLevels...\n");
+
+foreach ($passiveSkills as $index => $passive)
+{
+	$id = $passive['id'];
+	$nextSkillId = $passive['nextSkill'];
+	$prevSkillId = $passive['prevSkill'];
+		
+	if ($nextSkillId <= 0 || $prevSkillId > 0) continue;
+	if (!array_key_exists($nextSkillId, $passiveIds)) continue;
+	$nextSkill = $passiveIds[$nextSkillId];
+	$maxLevelCount = 1;
+	
+	$maxLevel = $passiveMaxLevel[$id];
+	$passiveIds[$id]['maxLevel'] = $maxLevel;
+		
+	while ($nextSkill != null)
+	{
+		$maxLevelCount = $maxLevelCount + 1;
+		
+		$passiveIds[$nextSkillId]['maxLevel'] = $maxLevel;
+		$nextSkillId = $nextSkill['nextSkill'];
+		if (!array_key_exists($nextSkillId, $passiveIds)) break;
+		$nextSkill = $passiveIds[$nextSkillId];
+		
+		if ($maxLevelCount > 20) break;
+	}
 }
 
 	/* Handle abilities in duplicate skill lines */
@@ -400,7 +465,7 @@ foreach ($DUPLICATE_SKILLS as $dupSkill)
 	
 	foreach ($ids as $id)
 	{
-		$passive = &$passiveIds[$id];
+		$passive = $passiveIds[$id];
 		
 		if ($passive == null) 
 		{
@@ -432,6 +497,7 @@ foreach ($DUPLICATE_SKILLS as $dupSkill)
 	}
 }
 
+unset($passive);
 $passiveSkills = array_merge($passiveSkills, $newPassives);
 
 
@@ -470,10 +536,13 @@ foreach ($passiveSkills as $passive)
 	$rank = $passive['rank'];
 	$learnedLevel = $passive['learnedLevel'];
 	$abilityIndex = $passive['skillIndex'];
+	$maxLevel = $passive['maxLevel'];
+	
+	if ($learnedLevel < 0) $learnedLevel = 1;
 	
 	$skillTypeName = $db->real_escape_string($passive['skillTypeName']);
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\")";
+	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex, maxLevel) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\")";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error inserting into skillTree table!\n" . $db->error . "\n" . $query);
 	
