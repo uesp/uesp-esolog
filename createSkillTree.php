@@ -296,8 +296,8 @@ print("Loading passives...\n");
 while (($passive = $passiveResult->fetch_assoc()))
 {
 	$id = $passive['id'];
-	$passive['name'] = preg_replace("#(.*) [IV]+#", "$1", $passive['name']);
-	$passive['baseName'] = preg_replace("#(.*) [IV]+#", "$1", $passive['baseName']);
+	$passive['name'] = preg_replace("#(.*) [IV]+$#", "$1", $passive['name']);
+	$passive['baseName'] = preg_replace("#(.*) [IV]+$#", "$1", $passive['baseName']);
 	
 	$passiveSkills[$id] = $passive;
 	$count++;
