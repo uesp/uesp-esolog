@@ -3523,9 +3523,10 @@ class EsoLogParser
 					"Legerdemain" => 4,
 					"Werewolf" => 4,
 					"Vampire" => 4,
+					"Thieves Guild" => 5,
 					"Emperor" => 6,
 					"Provisioning" => 8,
-			);
+				);
 			
 			$skill['isPlayer'] = 1;
 			$skill['skillLine'] = $logEntry['skillLine'];
