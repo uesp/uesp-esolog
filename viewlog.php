@@ -1876,6 +1876,8 @@ If you do not understand what this information means, or how to use this webpage
 		$output = "<a href='viewlog.php'>Back to Home</a><br />\n";
 		
 		print($output);
+		
+		$this->OutputSearchForm();
 		return true;
 	}
 	
@@ -1883,8 +1885,7 @@ If you do not understand what this information means, or how to use this webpage
 	public function OutputRecordHeader ($recordInfo)
 	{
 		$this->OutputTopMenu($recordInfo);
-		$this->OutputSearchForm();
-		
+				
 		$output = "";
 		
 		$displayName = $recordInfo['displayName'];
@@ -2896,7 +2897,6 @@ If you do not understand what this information means, or how to use this webpage
 	public function DoSearch()
 	{
 		$this->OutputTopMenu();
-		$this->OutputSearchForm();
 		
 		$this->searchTotalCount = 0;
 		$this->searchResults = array();
