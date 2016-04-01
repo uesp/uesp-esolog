@@ -2669,6 +2669,8 @@ If you do not understand what this information means, or how to use this webpage
 	public function SearchTableExact ($table, $searchData)
 	{
 		$safeSearch = $this->db->real_escape_string(trim($this->rawSearch));
+		if ($safeSearch == "") return false;
+		
 		$limitCount = $this->displayLimit;
 		$likeString = " LIKE '%$safeSearch%' ";
 		$searchFields = $searchData['searchFields']; 
@@ -2715,7 +2717,19 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function SearchTable ($table, $searchData)
 	{
-		$searchTerms = implode('* ', $this->searchTerms) . '*';
+		$matches = array();
+		preg_match_all('#([A-Za-z0-9_]+)([[:punct:]]+[A-Za-z0-9_]+)?\s*#', trim($this->rawSearch), $matches);
+		$this->searchWords = array();
+		
+		foreach ($matches[1] as $word)
+		{
+			if (count($word) > 2) $this->searchWords[] = $word;
+		}
+		
+		if (count($this->searchWords) == 0) return false;
+		$this->searchWordWildcard = implode('*', $this->searchWords) . '*';
+		$searchTerms = $this->searchWordWildcard;
+		
 		$limitCount = $this->displayLimit;
 		$searchFields = implode(', ',$searchData['searchFields']);
 		
