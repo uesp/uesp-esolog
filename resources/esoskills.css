@@ -153,9 +153,15 @@ a:hover {
 
 .esovsAbilityBlock {
 	padding: 5px;
-	margin-left: 5px;
     display: inline-block;
     width: 99%;
+	border-radius: 20px;
+}
+
+.esovsAbilityBlock:hover {
+    background-color: #E3d5c0;
+	cursor: pointer;
+	box-shadow: 0px 0px 10px #E3d5c0;
 }
 
 .esovsAbilityBlockTitle {
@@ -166,11 +172,6 @@ a:hover {
     display: block;
 	width: auto;
 	overflow: hidden;
-}
-
-.esovsAbilityBlock:hover {
-    background-color: #E3d5c0;
-	cursor: pointer;
 }
 
 .esovsAbilityBlockIcon, .esovsAbilityBlockPassiveIcon {
@@ -271,8 +272,9 @@ a:hover {
 
 .esovsAbilityBlockList {
 	margin-left: 60px;
-	background-color: #EBDFC5; 
 	overflow: hidden;
+	border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .esovsAbilityBlockList .esovsAbilityBlockDesc {
