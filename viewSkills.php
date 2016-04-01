@@ -102,6 +102,11 @@ class CEsoViewSkills
 		while (($row = $result->fetch_assoc()))
 		{
 			$id = $row['abilityId'];
+			$index = count($this->skills);
+			
+			$row['__isOutput'] = false;
+			$row['__index'] = $index;
+			
 			$this->skills[] = $row;
 		}
 		
@@ -437,6 +442,9 @@ class CEsoViewSkills
 		$output = "";
 					
 		$id = $abilityData['abilityId'];
+		$index = $abilityData['__index'];
+		$this->skills[$index]['__isOutput'] = true;
+		
 		$name = $baseAbility['name'];
 		$type = $baseAbility['type'];
 		$icon = $this->GetIconURL($baseAbility['icon']);

@@ -287,7 +287,7 @@ function EsoSkillShowSkillLine(skillLine)
 }
 
 
-function OnEsoSkillTypeTitleClick(event)
+function OnEsoSkillTypeTitleClick(event, noUpdate)
 {
 	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillTypeTitleHighlight");
 	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
@@ -307,15 +307,18 @@ function OnEsoSkillTypeTitleClick(event)
 	var skillType = $(this).text();
 	var skillLine = firstSkillLine.text();
 	
-	EsoSkillShowSkillLine(skillLine);
-	UpdateEsoAllSkillDescription();
-	UpdateEsoAllSkillCost();
-	UpdateEsoSkillRawData();
-	UpdateEsoSkillCoefData();
+	if (noUpdate !== false)
+	{
+		EsoSkillShowSkillLine(skillLine);
+		UpdateEsoAllSkillDescription();
+		UpdateEsoAllSkillCost();
+		UpdateEsoSkillRawData();
+		UpdateEsoSkillCoefData();
+	}
 }
 
 
-function OnEsoSkillLineTitleClick(event)
+function OnEsoSkillLineTitleClick(event, noUpdate)
 {
 	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
 	
@@ -326,11 +329,14 @@ function OnEsoSkillLineTitleClick(event)
 	
 	var skillLine = $(this).text();
 	
-	EsoSkillShowSkillLine(skillLine);
-	UpdateEsoAllSkillDescription();
-	UpdateEsoAllSkillCost();
-	UpdateEsoSkillRawData();
-	UpdateEsoSkillCoefData();
+	if (noUpdate !== false)
+	{
+		EsoSkillShowSkillLine(skillLine);
+		UpdateEsoAllSkillDescription();
+		UpdateEsoAllSkillCost();
+		UpdateEsoSkillRawData();
+		UpdateEsoSkillCoefData();
+	}
 }
 
 
@@ -781,6 +787,162 @@ function OnToggleRawDataCoef(event)
 }
 
 
+var g_EsoSkillSearchText = "";
+var g_EsoSkillSearchLastIndex = -1;
+
+
+function FindNextEsoSkillText()
+{
+	var keys = Object.keys(g_SkillsData);
+	var searchText = g_EsoSkillSearchText.toLowerCase();
+	
+	for (var i = g_EsoSkillSearchLastIndex + 1; i < keys.length; ++i)
+	{
+		var id = keys[i];
+		var skillData = g_SkillsData[id];
+		
+		var index = skillData['name'].toLowerCase().indexOf(searchText);
+		if (index < 0) index = skillData['description'].toLowerCase().indexOf(searchText);
+		
+		if (index >= 0 && skillData.__isOutput)
+		{
+			return { id : id, index: i };
+		}
+	}
+	
+	return null;
+}
+
+
+function SelectEsoSkillLine(skillType, skillLine)
+{
+	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillTypeTitleHighlight");
+	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
+	var forceLineChange = false;
+	
+	skillType = skillType.toUpperCase();
+	
+	if (currentSkillType.text() != skillType)
+	{
+		var newSkillType = $(".esovsSkillTypeTitle:contains('" + skillType + "')");
+		
+		$(".esovsSkillType:visible").slideUp();
+		currentSkillType.removeClass("esovsSkillTypeTitleHighlight");
+		currentSkillLine.removeClass("esovsSkillLineTitleHighlight");
+		
+		newSkillType.next(".esovsSkillType").slideDown();
+		newSkillType.addClass("esovsSkillTypeTitleHighlight");
+		
+		forceLineChange = true;
+	}
+	
+	if (forceLineChange || currentSkillLine.text() != skillLine)
+	{
+		var newSkillLine = $(".esovsSkillLineTitle:contains('" + skillLine + "')");
+		
+		currentSkillLine.removeClass("esovsSkillLineTitleHighlight");
+		newSkillLine.addClass("esovsSkillLineTitleHighlight");
+		
+		EsoSkillShowSkillLine(skillLine);
+	}
+	
+}
+
+
+function DoesEsoSkillBlockExist(id)
+{
+	var objects = $(".esovsAbilityBlock[skillid='" + id + "']");
+	return objects.length != 0;
+}
+
+
+function IsScrolledIntoView($elem)
+{
+    var $window = $(window);
+
+    var docViewTop = $window.scrollTop();
+    var docViewBottom = docViewTop + $window.height();
+
+    var elemTop = $elem.offset().top;
+    var elemBottom = elemTop + $elem.height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+
+function HighlightEsoSkill(id)
+{
+	var skillData = g_SkillsData[id];
+	if (skillData == null) return false;
+	
+	var skillTypeName = skillData['skillTypeName'];
+	var splitName = skillTypeName.split("::");
+	var skillType = splitName[0];
+	var skillLine = splitName[1];
+	
+	if (skillType == null || skillLine == null) return false;
+	
+	SelectEsoSkillLine(skillType, skillLine);
+	EsoViewSkillShowTooltip(skillData);
+	
+	var abilityBlock = $(".esovsAbilityBlock[skillid='" + id + "']");
+	
+	if (!abilityBlock.is(':visible'))
+	{
+		abilityBlock.parent(".esovsAbilityBlockList").slideDown();
+	}
+	
+	abilityBlock.addClass("esovsSearchHighlight");
+	
+	if (!IsScrolledIntoView(abilityBlock))
+	{
+		abilityBlock[0].scrollIntoView({
+		    behavior: "smooth",
+		    block: "end"
+		});
+	}
+	
+	return true;
+}
+
+
+function DoEsoSkillSearch(text)
+{
+	var newSearch = false;
+	
+	if (text != g_EsoSkillSearchText) 
+	{
+		g_EsoSkillSearchText = text;
+		g_EsoSkillSearchLastIndex = -1;
+		newSearch = true;
+	}
+	
+	$(".esovsSearchHighlight").removeClass("esovsSearchHighlight");
+	
+	var result = FindNextEsoSkillText();
+	
+	if (result == null)
+	{
+		g_EsoSkillSearchLastIndex = -1;
+		$("#esovsSearchResult").text("No matches found!");
+		return false;
+	}
+	
+	g_EsoSkillSearchLastIndex = result.index;
+	$("#esovsSearchResult").text("Found match! Hit search again for next match...");
+	
+	HighlightEsoSkill(result.id);
+	return true;
+}
+
+
+function OnSkillSearch(event)
+{
+	var text = $("#esovsSearchText").val().trim();
+	DoEsoSkillSearch(text);
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
@@ -814,6 +976,11 @@ function esovsOnDocReady()
 	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);
+	
+	$("#esovsSearchText").on("keypress", function(e) {
+			if ( e.keyCode == 13 ) OnSkillSearch(e); 
+		});
+	$("#esovsSearchButton").click(OnSkillSearch);
 }
 
 
