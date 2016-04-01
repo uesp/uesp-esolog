@@ -281,7 +281,7 @@ function AdjustEsoSkillPopupTooltipPosition(tooltip, parent)
      var elementHeight = parent.height();
      var elementWidth = parent.width();
      
-     var top = parent.offset().top - toolTipHeight/2;
+     var top = parent.offset().top - toolTipHeight/2 + elementHeight/2;
      var left = parent.offset().left + parent.outerWidth() + 3;
      
      tooltip.offset({ top: top, left: left });
