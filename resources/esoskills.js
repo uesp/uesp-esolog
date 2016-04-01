@@ -722,7 +722,7 @@ function ParseEsoLevel(level)
 function FormatEsoLevel(level)
 {
 	if (level <= 0 || level > 66) return level;
-	if (level < 50) return level;
+	if (level <= 50) return level;
 
 	return "v" + (level - 50);
 }
