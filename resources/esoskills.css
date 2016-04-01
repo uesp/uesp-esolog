@@ -518,3 +518,11 @@ a:hover {
 .esovsSearchHighlight {
 	background-color: white;
 }
+
+#esovsPopupSkillTooltip {
+	width: 360px;
+	line-height: 125%;
+	text-align: left;
+    white-space: normal;
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
+}

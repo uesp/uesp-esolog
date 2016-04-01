@@ -135,22 +135,12 @@ function GetRomanNumeral(value)
 }
 
 
-function EsoViewSkillShowTooltip(skillData)
+function GetEsoSkillTooltipHtml(skillData)
 {
-	var element = $('#esovsSkillTooltipRoot');
-		
-	if (skillData == null) 
-	{
-		element.html("<div class='esovsSkillTooltip'>Click on a skill to the right to view tooltip.</div>");
-		g_LastSkillId = -1;
-		return;
-	}
-	
-	element.html("");
-	
-	g_LastSkillId = skillData.abilityId;
-	
+	if (skillData == null) return "";
+
 	var output = "<div class='esovsSkillTooltip'>\n";
+	
 	var safeName = skillData['name'];
 	var rank = skillData['rank'];
 	var maxRank = skillData['maxRank'];
@@ -260,8 +250,89 @@ function EsoViewSkillShowTooltip(skillData)
 	}
 	
 	output += "</div>";
+	return output;
+}
+
+
+function EsoShowPopupSkillTooltip(skillData, parent)
+{
+	var popupElement = $("#esovsPopupSkillTooltip");
 	
-	element.html(output);
+	if (skillData == null)
+	{
+		popupElement.hide();
+		return;
+	}
+	
+	var output = GetEsoSkillTooltipHtml(skillData);
+	
+	popupElement.html(output);
+	popupElement.show();
+	AdjustEsoSkillPopupTooltipPosition(popupElement, $(parent));
+}
+
+
+function AdjustEsoSkillPopupTooltipPosition(tooltip, parent)
+{
+     var windowWidth = $(window).width();
+     var windowHeight = $(window).height();
+     var toolTipWidth = tooltip.width();
+     var toolTipHeight = tooltip.height();
+     var elementHeight = parent.height();
+     var elementWidth = parent.width();
+     
+     var top = parent.offset().top - toolTipHeight/2;
+     var left = parent.offset().left + parent.outerWidth() + 3;
+     
+     tooltip.offset({ top: top, left: left });
+     
+     var viewportTooltip = tooltip[0].getBoundingClientRect();
+     
+     if (viewportTooltip.bottom > windowHeight) 
+     {
+    	 var deltaHeight = viewportTooltip.bottom - windowHeight + 10;
+         top = top - deltaHeight
+     }
+     else if (viewportTooltip.top < 0)
+     {
+    	 var deltaHeight = viewportTooltip.top - 10;
+         top = top - deltaHeight
+     }
+         
+     if (viewportTooltip.right > windowWidth) 
+     {
+         left = left - toolTipWidth - parent.width() - 28;
+     }
+     
+     tooltip.offset({ top: top, left: left });
+     viewportTooltip = tooltip[0].getBoundingClientRect();
+     
+     if (viewportTooltip.left < 0 )
+     {
+    	 var el = $('<i/>').css('display','inline').insertBefore(parent[0]);
+         var realOffset = el.offset();
+         el.remove();
+         
+         left = realOffset.left - toolTipWidth - 3;
+         tooltip.offset({ top: top, left: left });
+     }
+     
+}
+
+
+function EsoViewSkillShowTooltip(skillData)
+{
+	var element = $('#esovsSkillTooltipRoot');
+		
+	if (skillData == null) 
+	{
+		element.html("<div class='esovsSkillTooltip'>Click on a skill to the right to view tooltip.</div>");
+		g_LastSkillId = -1;
+		return;
+	}
+			
+	g_LastSkillId = skillData.abilityId;
+	element.html(GetEsoSkillTooltipHtml(skillData));
 }
 
 
@@ -943,6 +1014,24 @@ function OnSkillSearch(event)
 }
 
 
+function OnHoverEsoIcon(e)
+{
+	var parentBlock = $(this).parent(".esovsAbilityBlock");
+	var skillid = parentBlock.attr("skillid");
+	
+	if (skillid == null || skillid == "") return;
+	
+	var skillData = g_SkillsData[parseInt(skillid)];
+	EsoShowPopupSkillTooltip(skillData, $(this)[0]);
+}
+
+function OnLeaveEsoIcon(e)
+{
+	var popupElement = $("#esovsPopupSkillTooltip");
+	popupElement.hide();
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
@@ -981,6 +1070,9 @@ function esovsOnDocReady()
 			if ( e.keyCode == 13 ) OnSkillSearch(e); 
 		});
 	$("#esovsSearchButton").click(OnSkillSearch);
+	
+	$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+	$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);	
 }
 
 
