@@ -35,6 +35,7 @@ class EsoLogViewer
 	public $recordFilterId = '';
 	public $recordField = '';
 	public $outputFormat = 'HTML';
+	public $rawSearch = '';
 	public $search = '';
 	public $searchType = '';
 	public $searchTotalCount = 0;
@@ -1852,7 +1853,7 @@ If you do not understand what this information means, or how to use this webpage
 ?>
 		<div id='elvSearchForm'>
 			<form method='get' action=''>
-				<input type='search' name='search' value='<?=$this->search?>' maxlength='64' size='32' />
+				<input type='search' name='search' value="<?=htmlspecialchars($this->rawSearch)?>" maxlength='64' size='32' />
 				<input type='submit' value='Search...' />
 				<br/>
 				<div id='elvSearchType'>
@@ -2665,6 +2666,53 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function SearchTableExact ($table, $searchData)
+	{
+		$safeSearch = $this->db->real_escape_string(trim($this->rawSearch));
+		$limitCount = $this->displayLimit;
+		$likeString = " LIKE '%$safeSearch%' ";
+		$searchFields = $searchData['searchFields']; 
+				
+		foreach ($searchFields as &$field)
+		{
+			$field .= $likeString;
+		}
+		
+		$whereQuery = implode(' OR ', $searchFields);
+		$query = "SELECT COUNT(*) FROM $table WHERE $whereQuery LIMIT $limitCount;";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to perform exact search on $table table!");
+	
+		$rowData = $result->fetch_row();
+		$this->searchTotalCount += $rowData[0];
+	
+		$query = "SELECT * FROM $table WHERE $whereQuery LIMIT $limitCount;";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to perform search on $table table!");
+	
+		$result->data_seek(0);
+	
+		while ( ($row = $result->fetch_assoc()) )
+		{
+			$results = array();
+				
+			foreach($searchData['fields'] as $key => $value)
+			{
+				$results[$value] = $row[$key];
+			}
+				
+			$results['type'] = $table;
+			$this->searchResults[] = $results;
+		}
+	
+		return true;
+	}
+	
+	
 	public function SearchTable ($table, $searchData)
 	{
 		$searchTerms = implode('* ', $this->searchTerms) . '*';
@@ -2839,7 +2887,17 @@ If you do not understand what this information means, or how to use this webpage
 		$this->searchTotalCount = 0;
 		$this->searchResults = array();
 		$this->searchTerms = explode(" ", $this->search);
+			
+			/* Exact searches */
+		foreach (self::$SEARCH_DATA as $table => $searchData)
+		{
+			if ($this->searchType == '' || $this->searchType == $table)
+			{
+				$this->SearchTableExact($table, $searchData);
+			}
+		}
 		
+			/* Partial searches */
 		foreach (self::$SEARCH_DATA as $table => $searchData)
 		{
 			if ($this->searchType == '' || $this->searchType == $table)
@@ -2890,7 +2948,12 @@ If you do not understand what this information means, or how to use this webpage
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('record', $this->inputParams)) $this->recordType = $this->db->real_escape_string($this->inputParams['record']);
-		if (array_key_exists('search', $this->inputParams)) $this->search = $this->db->real_escape_string($this->inputParams['search']);
+		
+		if (array_key_exists('search', $this->inputParams)) 
+		{
+			$this->rawSearch = $this->inputParams['search'];
+			$this->search = $this->db->real_escape_string($this->inputParams['search']);
+		}
 		if (array_key_exists('searchtype', $this->inputParams)) $this->searchType = $this->db->real_escape_string($this->inputParams['searchtype']);
 		if (array_key_exists('format', $this->inputParams)) $this->outputFormat = strtoupper($this->db->real_escape_string($this->inputParams['format']));
 		if (array_key_exists('output', $this->inputParams)) $this->outputFormat = strtoupper($this->db->real_escape_string($this->inputParams['output']));
