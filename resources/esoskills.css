@@ -95,17 +95,15 @@ a:hover {
     font-size: 20px;
     font-weight: bold;
     color: #000000;
-    padding: 8px;
-    padding-left: 0px;
+    padding: 4px;
+	margin: 4px;
+    padding-left: 5px;
 }
 
 .esovsSkillTypeTitle:hover {
-	background-color: #999;
-	cursor: pointer;
-}
-
-.esovsSkillLineTitle:hover {
-	background-color: #999;
+	border-radius: 15px;
+	background-color: #E3d5c0;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.7);
 	cursor: pointer;
 }
 
@@ -114,11 +112,20 @@ a:hover {
     font-weight: bold;
     color: #000000;
     padding: 2px;
+    padding-left: 5px;
+}
+
+.esovsSkillLineTitle:hover {
+	border-radius: 10px;
+	background-color: #E3d5c0;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.7);
+	cursor: pointer;
 }
 
 .esovsSkillLineTitleHighlight {
-	color: #000099;
-	background-color: #ccc;
+	border-radius: 10px;
+	background-color: #aaa;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.7);
 }
 
 .esovsSkillTypeTitleHighlight {
