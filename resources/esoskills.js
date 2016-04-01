@@ -1022,7 +1022,7 @@ function DoEsoSkillSearch(text)
 	}
 	
 	g_EsoSkillSearchLastIndex = result.index;
-	$("#esovsSearchResult").text("Found match! Hit search again for next match...");
+	$("#esovsSearchResult").text("Found match! Search again for next match...");
 	
 	HighlightEsoSkill(result.id);
 	return true;
