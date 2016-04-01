@@ -141,10 +141,11 @@ function GetEsoSkillTooltipHtml(skillData)
 
 	var output = "<div class='esovsSkillTooltip'>\n";
 	
+	var abilityId = skillData['abilityId'];
 	var safeName = skillData['name'];
 	var rank = skillData['rank'];
 	var maxRank = skillData['maxRank'];
-	var desc = EsoConvertDescToHTML(skillData['description']);
+	var desc = GetEsoSkillDescription(abilityId, null, true);
 	var channelTime = skillData['channelTime'] / 1000;
 	var castTime = skillData['castTime'] / 1000;
 	var radius = skillData['radius'] / 100;
@@ -477,13 +478,15 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 }
 
 
-function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
+function GetEsoSkillDescription(skillId, inputValues, useHtml)
 {
+	var output = "";
 	var skillData = g_SkillsData[skillId];
-	if (skillData == null) return;
+	
+	if (skillData == null) return "";
 	
 	var coefDesc = skillData['coefDescription'];
-	if (coefDesc == null || coefDesc == "") return;
+	if (coefDesc == null || coefDesc == "") return "";
 	
 	if (inputValues == null) inputValues = GetEsoSkillInputValues()
 	
@@ -505,14 +508,23 @@ function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
 	
 	if (useHtml)
 	{
-		descElement.html(EsoConvertDescToHTML(coefDesc));
+		output = EsoConvertDescToHTML(coefDesc);
 	}
 	else
 	{
 		var effectLines = skillData['effectLines'];
 		if (effectLines != "") coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";
-		descElement.html(EsoConvertDescToText(coefDesc));
+		output = EsoConvertDescToText(coefDesc)
 	}
+	
+	return output;
+}
+
+
+function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
+{
+	var html = GetEsoSkillDescription(skillId, inputValues, useHtml); 
+	descElement.html(html);
 }
 
 
