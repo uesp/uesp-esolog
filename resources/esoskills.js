@@ -2,8 +2,91 @@ var g_LastSkillId = 0;
 var g_LastSkillInputValues = {};
 var MAX_SKILL_COEF = 6;
 
+var RAWDATA_KEYS = 
+[
+ 		"abilityId",
+		"name",
+		"type",
+		"skillTypeName",
+		"cost",
+		"rank",
+		"maxRank",
+		"learnedLevel",
+		"target",
+		"duration",
+		"minRange",
+		"maxRange",
+		"radius",
+		"castTime",
+		"channelTime",
+		"angleDistance",
+		"isPassive",
+		"skillType",
+		"isPlayer",
+		
+		"numCoefVars",
+		"coefDescription",
+		"type1",
+		"a1",
+		"b1",
+		"c1",
+		"R1",
+		"avg1",
+		"type2",
+		"a2",
+		"b2",
+		"c2",
+		"R2",
+		"avg2",
+		"type3",
+		"a3",
+		"b3",
+		"c3",
+		"R3",
+		"avg3",
+		"type4",
+		"a4",
+		"b4",
+		"c4",
+		"R4",
+		"avg4",
+		"type5",
+		"a5",
+		"b5",
+		"c5",
+		"R5",
+		"avg5",
+		"type6",
+		"a6",
+		"b6",
+		"c6",
+		"R6",
+		"avg6",
 
-var ROMAN_NUMERALS = {
+		"description",
+		"baseName",
+		"effectLines",
+		"icon",
+		"raceType",
+		"classType",
+		"skillLine",
+		"prevSkill",
+		"nextSkill",
+		"nextSkill2",
+		"skillIndex",
+		"isChanneled",
+		"mechanic",
+		"upgradeLines",
+];
+
+var RAWDATA_IGNORE_KEYS =
+{
+		"id" : true,
+		"texture" : true,
+};
+
+var ROMAN_NUMERALS = 
+{
 		1 : 'I',
 		2 : 'II',
 		3 : 'III',
@@ -16,7 +99,7 @@ var ROMAN_NUMERALS = {
 		10 : 'X',
 		11 : 'XI',
 		12 : 'XII',
-	};
+};
 
 
 function EsoConvertDescToHTML(desc)
@@ -450,12 +533,32 @@ function UpdateEsoSkillRawData(skillId)
 	}
 	
 	var output = "";
-	var keys = Object.keys(skillData);
-	//keys = keys.sort();
-	
-	for (var index in keys) 
+	var keysOutput = {};
+
+	for (var i in RAWDATA_KEYS)
 	{
-		var key = keys[index];
+		var key = RAWDATA_KEYS[i];
+		
+		if (RAWDATA_IGNORE_KEYS[key] || keysOutput[key]) continue;
+		keysOutput[key] = true;
+		
+		var value = skillData[key];
+		
+		output += "<div class='esovsRawDataRow'>";
+		output += "<div class='esovsRawDataName'>" + key + "</div> ";
+		output += "<div class='esovsRawDataValue'>" + value + "</div> ";
+		output += "</div>";
+	}
+	
+	var keys = Object.keys(skillData);
+	
+	for (var i in keys) 
+	{
+		var key = keys[i];
+		
+		if (RAWDATA_IGNORE_KEYS[key] || keysOutput[key]) continue;
+		keysOutput[key] = true;
+		
 		var value = skillData[key];
 		
 		output += "<div class='esovsRawDataRow'>";
