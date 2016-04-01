@@ -525,4 +525,6 @@ a:hover {
 	text-align: left;
     white-space: normal;
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
+	position: absolute;
+	z-index: 50;
 }

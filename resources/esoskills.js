@@ -486,7 +486,7 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml)
 	if (skillData == null) return "";
 	
 	var coefDesc = skillData['coefDescription'];
-	if (coefDesc == null || coefDesc == "") return "";
+	if (coefDesc == null || coefDesc == "") return skillData['description'];;
 	
 	if (inputValues == null) inputValues = GetEsoSkillInputValues()
 	
