@@ -161,7 +161,7 @@ a:hover {
 .esovsAbilityBlock:hover {
     background-color: #E3d5c0;
 	cursor: pointer;
-	box-shadow: 0px 0px 10px #E3d5c0;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .esovsAbilityBlockTitle {
