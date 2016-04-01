@@ -9,6 +9,12 @@
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
+<div id="esovsSearchBlock">
+	<input type="search" id="esovsSearchText" value="" size="30" /> 
+	<button id="esovsSearchButton">Find Skill</button>
+	<div id="esovsSearchResult">
+	</div> 
+</div>
 <h1>ESO Skill Browser {versionTitle}</h1>
 <div id="esovsLeftBlock">
 	<div id="esovsSkillTooltipRoot">

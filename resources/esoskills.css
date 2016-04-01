@@ -506,3 +506,15 @@ a:hover {
     border-width: 2px 1px 1px 2px;
 }
 
+#esovsSearchBlock {
+	float: right;
+	background-color: #FBEFD5;
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	padding: 7px;
+}
+
+.esovsSearchHighlight {
+	background-color: white;
+}
