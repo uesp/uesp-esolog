@@ -2,6 +2,10 @@ var g_LastSkillId = 0;
 var g_LastSkillInputValues = {};
 var MAX_SKILL_COEF = 6;
 
+var g_EsoSkillSearchText = "";
+var g_EsoSkillSearchLastIndex = -1;
+
+
 var RAWDATA_KEYS = 
 [
  		"abilityId",
@@ -875,10 +879,6 @@ function OnToggleRawDataCoef(event)
 }
 
 
-var g_EsoSkillSearchText = "";
-var g_EsoSkillSearchLastIndex = -1;
-
-
 function FindNextEsoSkillText()
 {
 	var keys = Object.keys(g_SkillsData);
@@ -972,6 +972,12 @@ function HighlightEsoSkill(id)
 	
 	SelectEsoSkillLine(skillType, skillLine);
 	EsoViewSkillShowTooltip(skillData);
+	UpdateEsoSkillTooltipDescription();
+	UpdateEsoSkillTooltipCost();
+	UpdateEsoSkillRawData();
+	UpdateEsoSkillCoefData();
+	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
 	
 	var abilityBlock = $(".esovsAbilityBlock[skillid='" + id + "']");
 	
