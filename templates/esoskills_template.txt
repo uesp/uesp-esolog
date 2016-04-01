@@ -78,6 +78,7 @@
 <div class="esovsBlockClear"></div>
 <script type="text/javascript">
 	var g_SkillsData = {skillsJson};
+	var g_SkillSearchIds = {skillSearchIdJson};
 </script>
 <hr>
 <div id="esovs_footer">

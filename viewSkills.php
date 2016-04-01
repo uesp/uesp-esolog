@@ -30,6 +30,7 @@ class CEsoViewSkills
 	
 	public $skills = array();
 	public $skillTree = array();
+	public $skillSearchIds = array();
 	
 	public $htmlTemplate = "";
 	
@@ -113,6 +114,7 @@ class CEsoViewSkills
 		$this->LogProfile("LoadSkills()", $startTime);
 		
 		$this->CreateSkillTree();
+		$this->CreateSkillSearchIds();
 		return true;		
 	}
 	
@@ -130,7 +132,7 @@ class CEsoViewSkills
 			// Sort tree and fill in missing effectLines
 		foreach($this->skillTree as &$skillType)
 		{
-			uksort($skillType, 'CompareEsoSkillTypeName');
+			uksort($skillType, 'CompareEsoSkillLineName');
 			
 			foreach($skillType as &$skillLine)
 			{
@@ -158,7 +160,35 @@ class CEsoViewSkills
 			}
 		}
 		
+		uksort($this->skillTree, 'CompareEsoSkillTypeName');
+		
 		$this->LogProfile("CreateSkillTree()", $startTime);
+	}
+	
+	
+	private function CreateSkillSearchIds()
+	{
+		$startTime = microtime(true);
+		
+		$this->skillSearchIds = array();
+		
+		foreach($this->skillTree as &$skillType)
+		{
+			foreach($skillType as &$skillLine)
+			{
+				foreach ($skillLine as $baseName => &$baseAbility)
+				{
+					foreach ($baseAbility as $rank => &$ability)
+					{
+						if (!is_numeric($rank)) continue;
+						
+						$this->skillSearchIds[] = $ability['abilityId'];
+					}
+				}
+			}
+		}
+		
+		$this->LogProfile("CreateSkillSearchIds()", $startTime);
 	}
 	
 	
@@ -541,8 +571,21 @@ class CEsoViewSkills
 		
 		$output = json_encode($skillIds);
 		
-		$this->LogProfile("GetSkillTreeHtml()", $startTime);
+		$this->LogProfile("GetSkillsJson()", $startTime);
 		return $output;
+	}
+	
+	
+	public function GetSkillSearchIdsJson()
+	{
+		$startTime = microtime(true);
+				
+		$output = json_encode($this->skillSearchIds);
+		
+		$this->LogProfile("GetSkillSearchIdsJson()", $startTime);
+		
+		return $output;
+		
 	}
 	
 	
@@ -558,6 +601,7 @@ class CEsoViewSkills
 				'{rawSkillData}' => "",
 				'{coefSkillData}' => "",
 				'{skillsJson}' => $this->GetSkillsJson(),
+				'{skillSearchIdJson}' => $this->GetSkillSearchIdsJson(),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -582,13 +626,12 @@ class CEsoViewSkills
 };
 
 
-function CompareEsoSkillTypeName($a, $b)
+function CompareEsoSkillLineName($a, $b)
 {
-	static $SKILLTYPES = array(
+	static $SKILLLINES = array(
 			"Light Armor" => 1,
 			"Medium Armor" => 2,
 			"Heavy Armor" => 3,
-			
 			"Two Handed" => 1,
 			"One Hand and Shield" => 2,
 			"Dual Wield" => 3,
@@ -597,11 +640,37 @@ function CompareEsoSkillTypeName($a, $b)
 			"Restoration Staff" => 6,			
 	);
 	
-	if (!array_key_exists($a, $SKILLTYPES) || !array_key_exists($b, $SKILLTYPES))
+	if (!array_key_exists($a, $SKILLLINES) || !array_key_exists($b, $SKILLLINES))
 	{
 		return strcmp($a, $b);
 	}
 	
+	return $SKILLLINES[$a] - $SKILLLINES[$b];
+}
+
+
+function CompareEsoSkillTypeName($a, $b)
+{
+	static $SKILLTYPES = array(
+			"Class" => 0,
+			"Dragonknight" => 1,
+			"Nightblade" => 2,
+			"Sorcerer" => 3,
+			"Templar" => 4,
+			"Weapon" => 5,
+			"Armor" => 6,
+			"World" => 7,
+			"Guild" => 8,
+			"Alliance War" => 9,
+			"Racial" => 10,
+			"Craft" => 11,
+	);
+
+	if (!array_key_exists($a, $SKILLTYPES) || !array_key_exists($b, $SKILLTYPES))
+	{
+		return strcmp($a, $b);
+	}
+
 	return $SKILLTYPES[$a] - $SKILLTYPES[$b];
 }
 

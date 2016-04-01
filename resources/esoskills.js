@@ -881,12 +881,11 @@ function OnToggleRawDataCoef(event)
 
 function FindNextEsoSkillText()
 {
-	var keys = Object.keys(g_SkillsData);
 	var searchText = g_EsoSkillSearchText.toLowerCase();
 	
-	for (var i = g_EsoSkillSearchLastIndex + 1; i < keys.length; ++i)
+	for (var i = g_EsoSkillSearchLastIndex + 1; i < g_SkillSearchIds.length; ++i)
 	{
-		var id = keys[i];
+		var id = g_SkillSearchIds[i];
 		var skillData = g_SkillsData[id];
 		
 		var index = skillData['name'].toLowerCase().indexOf(searchText);
