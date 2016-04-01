@@ -12,6 +12,7 @@
 This is a list of skill coefficients currently available. Return to the <a href="http://esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
 Found {count} skills with valid coefficients.
 <p />
+{pageHeader}
 <table class="esovsc_table">
 {content}
 </table>

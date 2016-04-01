@@ -27,6 +27,10 @@ class CEsoViewSkillCoef
 	public $version = "";
 	public $tableSuffix = "";
 	public $extraQueryString = "";
+	public $minR2 = 0;
+	public $maxR2 = 1;
+	public $minRatio = -100;
+	public $maxRatio = 100;
 	
 	
 	public function __construct()
@@ -59,6 +63,19 @@ class CEsoViewSkillCoef
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
 		if (array_key_exists('v',       $this->inputParams)) $this->version = $this->inputParams['v'];
+		
+		if (array_key_exists('minr2', $this->inputParams)) $this->minR2 = floatval($this->inputParams['minr2']);
+		if (array_key_exists('maxr2', $this->inputParams)) $this->maxR2 = floatval($this->inputParams['maxr2']);
+		
+		if ($this->minR2 > 1) $this->minR2 = 1;
+		if ($this->minR2 < 0) $this->minR2 = 0;
+		if ($this->maxR2 > 1) $this->maxR2 = 1;
+		if ($this->maxR2 < 0) $this->maxR2 = 0;
+		if ($this->minR2 > $this->maxR2) swap($this->minR2, $this->maxR2);
+		
+		if (array_key_exists('minratio', $this->inputParams)) $this->minRatio = floatval($this->inputParams['minratio']);
+		if (array_key_exists('maxratio', $this->inputParams)) $this->maxRatio = floatval($this->inputParams['maxratio']);
+		if ($this->minRatio > $this->maxRatio) swap($this->minRatio, $this->maxRatio);
 	
 		$this->tableSuffix = GetEsoItemTableSuffix($this->version);
 	
@@ -111,7 +128,7 @@ class CEsoViewSkillCoef
 	
 	public function LoadSkillCoef()
 	{
-		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1 >= 0.98;";
+		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1 > 0.1;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportErrror("Failed to load skill coefficient data!");
 		
@@ -147,15 +164,49 @@ class CEsoViewSkillCoef
 	}
 	
 	
+	public function MakePageHeaderHtml()
+	{
+		$output = "";
+
+		if ($this->minR2 > 0 || $this->maxR2 < 1)
+		{
+			$output .= "Showing skill coefficients with an R2 value between ".$this->minR2." - ".$this->maxR2.". ";
+		}
+		
+		if ($this->minR2 > 0 || $this->maxR2 < 1)
+		{
+			$output .= "Showing skill coefficients with a ratio value between ".$this->minRatio." - ".$this->maxRatio.". ";
+		}
+		
+		return $output;
+	}
+	
+	
 	public function OutputHtml()
 	{
 		$replacePairs = array(
+				'{pageHeader}' => $this->MakePageHeaderHtml(),
 				'{content}' => $this->MakeContentHtml(),
 				'{count}' => count($this->coefData),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		print($output);
+		
+		return true;
+	}
+	
+	
+	public function ShouldOutputCoef($a, $b, $c, $R2)
+	{
+		$ratio = $b / $a;
+		
+		if ($ratio < $this->minRatio) return false;
+		if ($ratio > $this->maxRatio) return false;
+		
+		if ($R2 < $this->minR2) return false;
+		if ($R2 > $this->maxR2) return false;
+		
 		
 		return true;
 	}
@@ -177,6 +228,8 @@ class CEsoViewSkillCoef
 			if ($type == -1) $type = $skill['mechanic'];
 			$typeName = GetEsoCustomMechanicTypeText($type);
 			$ratio = sprintf("%0.2f", $b / $a);
+			
+			if (!$this->ShouldOutputCoef($a, $b, $c, $R)) continue;
 			
 			$bop = "+";
 			$cop = "+";
@@ -220,6 +273,8 @@ class CEsoViewSkillCoef
 			if ($type == -1) $type = $skill['mechanic'];
 			$typeName = GetEsoCustomMechanicTypeText($type);
 			$ratio = sprintf("%0.2f", $b / $a);
+			
+			if (!$this->ShouldOutputCoef($a, $b, $c, $R)) continue;
 				
 			$bop = "+";
 			$cop = "+";
@@ -254,7 +309,9 @@ class CEsoViewSkillCoef
 		foreach ($this->coefData as $skill)
 		{
 			$desc = FormatRemoveEsoItemDescriptionText($skill['coefDescription']);
+			
 			$equationData = $this->MakeEquationDataHtml($skill);
+			if ($equationData == "") continue;
 			
 			$skillLine = $skill['skillLine'];
 			$skillType = $skill['classType'];
@@ -298,7 +355,9 @@ class CEsoViewSkillCoef
 		foreach ($this->coefData as $skill)
 		{
 			$desc = FormatRemoveEsoItemDescriptionText($skill['coefDescription']);
+			
 			$equationData = $this->MakeEquationDataCsv($skill);
+			if ($equationData == "") continue;
 			
 			$skillLine = $skill['skillLine'];
 			$skillType = $skill['classType'];
@@ -341,6 +400,14 @@ class CEsoViewSkillCoef
 	}
 	
 };
+
+
+function swap(&$x,&$y) 
+{
+	$tmp=$x;
+	$x=$y;
+	$y=$tmp;
+}
 
 
 $g_EsoViewSkillCoef = new CEsoViewSkillCoef();
