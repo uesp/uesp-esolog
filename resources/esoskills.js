@@ -426,13 +426,16 @@ function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
 		coefDesc = coefDesc.replace(srcString, value);
 	}
 	
-	var effectLines = skillData['effectLines'];
-	if (effectLines != "") coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";	
-	
 	if (useHtml)
+	{
 		descElement.html(EsoConvertDescToHTML(coefDesc));
+	}
 	else
+	{
+		var effectLines = skillData['effectLines'];
+		if (effectLines != "") coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";
 		descElement.html(EsoConvertDescToText(coefDesc));
+	}
 }
 
 
