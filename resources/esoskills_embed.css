@@ -227,6 +227,7 @@
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
+    line-height: 1.2em;
 }
 
 .esovsAbilityBlockEffectLines {
@@ -323,6 +324,8 @@
 .esovsSkillTooltipDivider {
 	width: 100%;
 	height: 3px;
+	padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 .esovsSkillTooltipDesc {
@@ -498,6 +501,12 @@
 	position: fixed;
 	right: 0px;
 	top: 0px;
+	padding: 7px;
+}
+
+#esovsSearchBlockFloat {
+	float: right;
+	background-color: #FBEFD5;
 	padding: 7px;
 }
 

@@ -31,6 +31,8 @@ class CEsoViewSkills
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
 	public $baseUrl = "";
+	public $basePath = "";
+	public $baseResource = "";
 
 
 	public function __construct ($isEmbedded = false)
@@ -40,7 +42,6 @@ class CEsoViewSkills
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
-		$this->LoadTemplate();
 	}
 
 
@@ -82,12 +83,16 @@ class CEsoViewSkills
 	}
 
 
-	private function LoadTemplate()
+	public function LoadTemplate()
 	{
+		$templateFile = $this->basePath;
+		
 		if ($this->isEmbedded)
-			$this->htmlTemplate = file_get_contents(self::ESOVS_HTML_TEMPLATE_EMBED);
+			$templateFile .= self::ESOVS_HTML_TEMPLATE_EMBED;
 		else
-			$this->htmlTemplate = file_get_contents(self::ESOVS_HTML_TEMPLATE);
+			$templateFile .= self::ESOVS_HTML_TEMPLATE;
+			
+		$this->htmlTemplate = file_get_contents($templateFile);
 	}
 
 
@@ -553,9 +558,9 @@ class CEsoViewSkills
 		if ($topLevel)
 		{
 			if ($maxRank > 1)
-				$output .= "<img class='esovsAbilityBlockPlus' src='resources/pointsplus_up.png' />";
-				else
-					$output .= "<div class='esovsAbilityBlockPlus'></div>";
+				$output .= "<img class='esovsAbilityBlockPlus' src='http://esolog.uesp.net/resources/pointsplus_up.png' />";
+			else
+				$output .= "<div class='esovsAbilityBlockPlus'></div>";
 		}
 
 		$output .= "<div class='$iconClass'><img src='$icon' />";
@@ -640,8 +645,20 @@ class CEsoViewSkills
 
 	public function OutputHtml()
 	{
+		$output = $this->CreateOutputHtml();
+
 		$startTime = microtime(true);
 
+		print ($output);
+
+		$this->LogProfile("OutputHtml():Print", $startTime);
+	}
+	
+	
+	public function CreateOutputHtml()
+	{
+		$startTime = microtime(true);
+	
 		$replacePairs = array(
 				'{skillTree}' => $this->GetSkillTreeHtml(),
 				'{skillContent}'  => $this->GetSkillContentHtml(),
@@ -655,25 +672,30 @@ class CEsoViewSkills
 				'{skillHighlightType}' => $this->highlightSkillType,
 				'{skillHighlightLine}' => $this->highlightSkillLine,
 		);
-
+	
 		$output = strtr($this->htmlTemplate, $replacePairs);
-
+	
 		$this->LogProfile("OutputHtml():Transform", $startTime);
-
-		$startTime = microtime(true);
-
-		print ($output);
-
-		$this->LogProfile("OutputHtml():Print", $startTime);
+		return $output;
 	}
 
 
 	public function Render()
 	{
 		$this->OutputHtmlHeader();
+		$this->LoadTemplate();
 		$this->LoadSkills();
 		$this->SetupHighlightSkill();
 		$this->OutputHtml();
+	}
+	
+	
+	public function GetOutputHtml()
+	{
+		$this->LoadTemplate();
+		$this->LoadSkills();
+		$this->SetupHighlightSkill();
+		return $this->CreateOutputHtml();
 	}
 
 };
