@@ -279,6 +279,9 @@ class CEsoSkillTooltip
 	{
 		$output = "";
 		
+		$id = $this->skillData['abilityId'];
+		$url = "http://esolog.uesp.net/viewSkills.php?id=$id";
+		
 		$name = $this->escape($this->skillData['name']);
 		$rank = $this->skillData['rank'];
 		$learnedLevel = $this->skillData['learnedLevel'];
@@ -303,7 +306,7 @@ class CEsoSkillTooltip
 		$fullName = $name;
 		if ($realRank > 0) $fullName .= " " . $this->GetRomanNumeral($realRank);
 		
-		$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
+		$output .= "<a class='esoSkillPopupTooltipTitle' href='$url'>$fullName</a>";
 		$output .= self::TOOLTIP_DIVIDER;
 		
 		if ($skillType != 'passive')

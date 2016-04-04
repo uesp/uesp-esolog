@@ -1078,11 +1078,6 @@ function esovsOnDocReady()
 	$('#esovsControlWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage'); });
 	$('#esovsInputWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage');	});
 
-	$(".esovsAbilityBlock").first().trigger('click');
-	
-	UpdateEsoAllSkillDescription();
-	UpdateEsoAllSkillCost();
-	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);
 	
@@ -1092,7 +1087,18 @@ function esovsOnDocReady()
 	$("#esovsSearchButton").click(OnSkillSearch);
 	
 	$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
-	$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);	
+	$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+	
+	var highlightSkill = $(".esovsSearchHighlight");
+	
+	if (highlightSkill.length == 0)
+		$(".esovsAbilityBlock").first().trigger('click');
+	else
+		highlightSkill.trigger('click');
+	
+	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
+
 }
 
 

@@ -25,10 +25,14 @@ class CEsoViewSkills
 	
 	public $version = "";
 	public $showAll = false;
+	public $highlightSkillId = 33963; // Dragonknight Standard
+	public $highlightSkillType = "";
+	public $highlightSkillLine = "";
 	
 	public $isFirstSkill = true;
 	
 	public $skills = array();
+	public $skillIds = array();
 	public $skillTree = array();
 	public $skillSearchIds = array();
 	
@@ -109,6 +113,7 @@ class CEsoViewSkills
 			$row['__index'] = $index;
 			
 			$this->skills[] = $row;
+			$this->skillIds[$id] = $row;
 		}
 		
 		$this->LogProfile("LoadSkills()", $startTime);
@@ -220,6 +225,9 @@ class CEsoViewSkills
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('showall', $this->inputParams)) $this->showAll = true;
+		if (array_key_exists('skillid', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['skillid']);
+		if (array_key_exists('abilityid', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['abilityid']);
+		if (array_key_exists('id', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['id']);
 		
 		return true;
 	}
@@ -295,21 +303,26 @@ class CEsoViewSkills
 		$displayType = "none";
 		$extraClass = "";
 		
-		if ($this->isFirstSkill) 
+		if (($this->isFirstSkill && $this->highlightSkillType == "") || $this->highlightSkillType == $skillType) 
 		{
 			$extraClass = "esovsSkillLineTitleHighlight";
 			$displayType = "block"; 
-			$this->isFirstSkill = false; 
+			$this->isFirstSkill = false;
 		}
 		
 		$output  = "";
 		$output .= "<div class='esovsSkillTypeTitle'>$skillTypeUpper</div>\n";
 		$output .= "<div class='esovsSkillType' style=\"display: $displayType;\">\n";
+		$isFirstSkillLine = true;
 		
 		foreach ($this->skillTree[$skillType] as $skillLine => $skillLineData)
 		{
-			$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass);
-			$extraClass = "";
+			if ($displayType != "none" && ($this->highlightSkillLine == $skillLine || ($this->highlightSkillLine == "" && $isFirstSkillLine)))
+				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight");
+			else
+				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "");
+			
+			$isFirstSkillLine = false;
 		}
 		
 		$output .= "</div>\n";
@@ -360,7 +373,7 @@ class CEsoViewSkills
 	{
 		$displayType = "none";
 		
-		if ($this->isFirstSkill) 
+		if (($this->isFirstSkill && $this->highlightSkillLine  == "" )|| $this->highlightSkillLine == $skillLine) 
 		{
 			$displayType = "block";
 			$this->isFirstSkill = false;
@@ -401,6 +414,25 @@ class CEsoViewSkills
 		}
 	
 		return null;
+	}
+	
+	
+	public function SetupHighlightSkill()
+	{
+		$skillData = $this->skillIds[$this->highlightSkillId];
+		if ($skillData == null) return false;
+		
+		$skillTypeName = $skillData['skillTypeName'];
+		$names = explode("::", $skillTypeName);
+		
+		$skillType = $names[0];
+		$skillLine = $names[1];
+		if ($skillType == null || $skillLine == null) return false;
+		
+		$this->highlightSkillType = $skillType;
+		$this->highlightSkillLine = $skillLine;
+		
+		return true;
 	}
 	
 	
@@ -513,8 +545,11 @@ class CEsoViewSkills
 		}
 		
 		if ($rank > 0 && $maxRank > 1) $rankLabel = " " . $this->GetRomanNumeral($rank);
+		
+		$extraClass = "";
+		if ($id == $this->highlightSkillId) $extraClass = "esovsSearchHighlight";
 			
-		$output .= "<div class='esovsAbilityBlock' skillid='$id'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id'>" ;
 		
 		if ($topLevel) 
 		{
@@ -542,9 +577,24 @@ class CEsoViewSkills
 	}
 	
 	
+	public function DoesAbilityListHaveHighlightSkill($abilityData)
+	{
+		foreach ($abilityData as $rank => $ability)
+		{
+			if (!is_numeric($rank)) continue;
+			if ($ability['abilityId'] == $this->highlightSkillId) return true;
+		}
+		
+		return false;
+	}
+	
+	
 	public function GetSkillContentHtml_AbilityList($abilityName, $abilityData)
 	{
-		$output = "<div class='esovsAbilityBlockList' style='display: none;'>\n";
+		$displayType = "none";
+		if ($this->DoesAbilityListHaveHighlightSkill($abilityData)) $displayType = "block";
+			
+		$output = "<div class='esovsAbilityBlockList' style='display: $displayType;'>\n";
 		
 		foreach ($abilityData as $rank => $ability)
 		{
@@ -602,6 +652,9 @@ class CEsoViewSkills
 				'{coefSkillData}' => "",
 				'{skillsJson}' => $this->GetSkillsJson(),
 				'{skillSearchIdJson}' => $this->GetSkillSearchIdsJson(),
+				'{skillHighlightId}' => $this->highlightSkillId,
+				'{skillHighlightType}' => $this->highlightSkillType,
+				'{skillHighlightLine}' => $this->highlightSkillLine,
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -620,6 +673,7 @@ class CEsoViewSkills
 	{
 		$this->OutputHtmlHeader();
 		$this->LoadSkills();
+		$this->SetupHighlightSkill();
 		$this->OutputHtml();
 	}
 	
