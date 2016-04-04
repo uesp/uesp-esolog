@@ -136,11 +136,11 @@ class CEsoViewSkills
 		// Sort tree and fill in missing effectLines
 		foreach($this->skillTree as &$skillType)
 		{
-			uksort($skillType, 'CompareEsoSkillLineName');
+			uksort($skillType, 'CompareEsoSkillLineName_Priv');
 				
 			foreach($skillType as &$skillLine)
 			{
-				usort($skillLine, 'CompareEsoSkillLine');
+				usort($skillLine, 'CompareEsoSkillLine_Priv');
 
 				foreach ($skillLine as $baseName => &$baseAbility)
 				{
@@ -164,7 +164,7 @@ class CEsoViewSkills
 			}
 		}
 
-		uksort($this->skillTree, 'CompareEsoSkillTypeName');
+		uksort($this->skillTree, 'CompareEsoSkillTypeName_Priv');
 
 		$this->LogProfile("CreateSkillTree()", $startTime);
 	}
@@ -679,7 +679,7 @@ class CEsoViewSkills
 };
 
 
-function CompareEsoSkillLineName($a, $b)
+function CompareEsoSkillLineName_Priv($a, $b)
 {
 	static $SKILLLINES = array(
 			"Light Armor" => 1,
@@ -702,7 +702,7 @@ function CompareEsoSkillLineName($a, $b)
 }
 
 
-function CompareEsoSkillTypeName($a, $b)
+function CompareEsoSkillTypeName_Priv($a, $b)
 {
 	static $SKILLTYPES = array(
 			"Class" => 0,
@@ -728,26 +728,26 @@ function CompareEsoSkillTypeName($a, $b)
 }
 
 
-function CompareEsoSkillLine($a, $b)
+function CompareEsoSkillLine_Priv($a, $b)
 {
 	$a1 = null;
 	$b1 = null;
 
 	if (array_key_exists(1, $a))
 		$a1 = $a[1];
-		else if (array_key_exists(-1, $a))
-			$a1 = $a[-1];
-			else
-				return 1;
+	else if (array_key_exists(-1, $a))
+		$a1 = $a[-1];
+	else
+		return 1;
 
-				if (array_key_exists(1, $b))
-					$b1 = $b[1];
-					else if (array_key_exists(-1, $b))
-						$b1 = $b[-1];
-						else
-							return -1;
+	if (array_key_exists(1, $b))
+		$b1 = $b[1];
+	else if (array_key_exists(-1, $b))
+		$b1 = $b[-1];
+	else
+		return -1;
 
-							return $a1['skillIndex'] - $b1['skillIndex'];
+	return $a1['skillIndex'] - $b1['skillIndex'];
 }
 
 
