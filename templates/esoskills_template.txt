@@ -79,6 +79,9 @@
 <script type="text/javascript">
 	var g_SkillsData = {skillsJson};
 	var g_SkillSearchIds = {skillSearchIdJson};
+	var g_SkillHighlightId = {skillHighlightId};
+	var g_SkillHighlightType = "{skillHighlightType}";
+	var g_SkillHighlightLine = "{skillHighlightLine}";
 </script>
 <hr>
 <div id="esovs_footer">
