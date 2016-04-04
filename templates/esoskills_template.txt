@@ -70,7 +70,6 @@
 		<div class="esovsShowHideButton" id="esovsRawDataButton">Show Raw Data</div>
 	</div>
 </div>
-</div>
 <div id="esovsRightBlock">
 	<div id="esovsSkillTree">{skillTree}</div>
 	<div id="esovsSkillContent">{skillContent}</div>		

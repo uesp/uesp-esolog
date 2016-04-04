@@ -1,10 +1,8 @@
-<div id="esovsSearchBlock">
+<div id="esovsSearchBlockFloat">
 	<input type="search" id="esovsSearchText" value="" size="30" /> 
 	<button id="esovsSearchButton">Find Skill</button>
-	<div id="esovsSearchResult">
-	</div> 
+	<div id="esovsSearchResult"></div> 
 </div>
-<h1>ESO Skill Browser {versionTitle}</h1>
 <div id="esovsLeftBlock">
 	<div id="esovsSkillTooltipRoot">
 		<div class='esovsSkillTooltip'>
@@ -57,7 +55,6 @@
 		</div>
 		<div class="esovsShowHideButton" id="esovsRawDataButton">Show Raw Data</div>
 	</div>
-</div>
 </div>
 <div id="esovsRightBlock">
 	<div id="esovsSkillTree">{skillTree}</div>
