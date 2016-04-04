@@ -203,7 +203,8 @@ function GetEsoSkillTooltipHtml(skillData)
 		if (channelTime > 0) 
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + channelTime + " seconds</div>";
-			output += "<div class='esovsSkillTooltipName'>Channel Time</div>";			
+			output += "<div class='esovsSkillTooltipName'>Channel Time</div>";
+			castTimeStr = "";
 		}
 		else if (castTime <= 0)
 		{

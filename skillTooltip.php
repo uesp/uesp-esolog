@@ -36,10 +36,9 @@ class CEsoSkillTooltip
 	
 	public $skillData = array();
 	
+
 	public function __construct ()
 	{
-		ob_start("ob_gzhandler");
-		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
@@ -296,6 +295,7 @@ class CEsoSkillTooltip
 		$skillType = $this->skillData['type'];
 		$newDesc = $this->GetSkillDescription();
 		$mechanic = $this->skillData['mechanic'];
+		$effectLines = $this->skillData['effectLines'];
 		
 		$realRank = $rank;
 		if ($realRank >= 9) $realRank -= 8;
@@ -320,6 +320,7 @@ class CEsoSkillTooltip
 			{
 				$output .= "<div class='esoSkillPopupTooltipValue'>$channelTime seconds</div>";
 				$output .= "<div class='esoSkillPopupTooltipName'>Channel Time</div>";
+				$castTimeStr = "";
 			}
 			else if ($castTime <= 0)
 			{
@@ -372,6 +373,7 @@ class CEsoSkillTooltip
 		}
 		
 		$output .= "<div class='esoSkillPopupTooltipDesc'>$newDesc</div>";
+		if ($effectLines != "") $output .= " <div class='esoSkillPopupTooltipEffectLines'><b>NEW EFFECT</b><br/>$effectLines</div>";
 		
 		if ($learnedLevel > 0)
 		{
