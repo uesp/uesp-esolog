@@ -823,6 +823,7 @@ function UpdateEsoSkillRawDataLink(skillId)
 function ParseEsoLevel(level)
 {
 	if ($.isNumeric(level)) return parseInt(level);
+	if (level == null) return 66;
 	
 	var vetRank = level.match(/^\s*[vV](\d+)/);
 	if (vetRank == null) return parseInt(level);
