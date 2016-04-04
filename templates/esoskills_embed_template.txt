@@ -1,15 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>UESP:ESO Skill Browser {versionTitle}</title>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esoskills.css" />
-		<link rel="stylesheet" href="resources/esoskills_embed.css" />
-		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="resources/esoskills.js"></script>
-	</head>
-<body>
-<a href="/viewlog.php">Back to Home</a>
 <div id="esovsSearchBlock">
 	<input type="search" id="esovsSearchText" value="" size="30" /> 
 	<button id="esovsSearchButton">Find Skill</button>
@@ -84,12 +72,3 @@
 	var g_SkillHighlightType = "{skillHighlightType}";
 	var g_SkillHighlightLine = "{skillHighlightLine}";
 </script>
-<hr>
-<div id="esovs_footer">
-This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
-Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
-</div>
-<div id="esovsPopupSkillTooltip" style="display: none;">
-</div>
-</body>
-</html>
