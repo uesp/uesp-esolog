@@ -17,7 +17,7 @@ require("esoCommon.php");
 class CEsoSkillTooltip
 {
 	
-	const TOOLTIP_DIVIDER = "<img src='http://esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider'>";
+	const TOOLTIP_DIVIDER = "<img src='http://esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
 	const MAX_SKILL_COEF = 6;
 	
 	public $inputParams = array();
@@ -279,9 +279,6 @@ class CEsoSkillTooltip
 	{
 		$output = "";
 		
-		$id = $this->skillData['abilityId'];
-		$url = "http://esolog.uesp.net/viewSkills.php?id=$id";
-		
 		$name = $this->escape($this->skillData['name']);
 		$rank = $this->skillData['rank'];
 		$learnedLevel = $this->skillData['learnedLevel'];
@@ -294,10 +291,11 @@ class CEsoSkillTooltip
 		$target = $this->escape($this->skillData['target']);
 		$area = $this->escape($this->skillData['area']);
 		$range = $this->escape($this->skillData['range']);
-		$cost = $this->ComputeEsoSkillCost($this->skillData['cost'], $this->skillLevel);
+		$cost = $this->ComputeEsoSkillCost(intval($this->skillData['cost']), $this->skillLevel);
 		$castTimeStr = $castTime . " seconds";
 		$skillType = $this->skillData['type'];
 		$newDesc = $this->GetSkillDescription();
+		$mechanic = $this->skillData['mechanic'];
 		
 		$realRank = $rank;
 		if ($realRank >= 9) $realRank -= 8;
@@ -306,11 +304,18 @@ class CEsoSkillTooltip
 		$fullName = $name;
 		if ($realRank > 0) $fullName .= " " . $this->GetRomanNumeral($realRank);
 		
-		$output .= "<a class='esoSkillPopupTooltipTitle' href='$url'>$fullName</a>";
+		$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
 		$output .= self::TOOLTIP_DIVIDER;
 		
 		if ($skillType != 'passive')
 		{
+			$costStr = "$cost ";
+			
+			if ($mechanic == 0)
+				$costStr .= "Magicka";
+			else if ($mechanic == 6)
+				$costStr .= "Stamina";
+				
 			if ($channelTime > 0)
 			{
 				$output .= "<div class='esoSkillPopupTooltipValue'>$channelTime seconds</div>";
@@ -359,7 +364,7 @@ class CEsoSkillTooltip
 				
 			if ($cost != '')
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$cost</div>";
+				$output .= "<div class='esoSkillPopupTooltipValue'>$costStr</div>";
 				$output .= "<div class='esoSkillPopupTooltipName'>Cost</div>";
 			}
 				
@@ -379,10 +384,25 @@ class CEsoSkillTooltip
 	}
 	
 	
+	private function OutputHtmlHeader()
+	{
+		ob_start("ob_gzhandler");
+		
+		header("Expires: 0");
+		header("Pragma: no-cache");
+		header("Cache-Control: no-cache, no-store, must-revalidate");
+		header("Pragma: no-cache");
+		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
+		header("content-type: text/html");
+	}
+	
+	
 	public function Render()
 	{
-		if (!$this->LoadSkill()) return "Unknown skill {$this->skillId}!";
+		$this->OutputHtmlHeader();
 		
+		if (!$this->LoadSkill()) return "Unknown skill {$this->skillId}!";
+
 		$this->OutputHtml();
 		
 		return true;
