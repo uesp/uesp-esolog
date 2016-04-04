@@ -510,8 +510,6 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml)
 		var srcString = "$" + i;
 		
 		var value = ComputeEsoSkillValue(inputValues, type, a, b, c);
-		if (value == null) continue;
-		
 		coefDesc = coefDesc.replace(srcString, value);
 	}
 	
