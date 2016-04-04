@@ -145,6 +145,7 @@ function GetEsoSkillTooltipHtml(skillData)
 
 	var output = "<div class='esovsSkillTooltip'>\n";
 	
+	var mechanic = skillData['mechanic'];
 	var abilityId = skillData['abilityId'];
 	var safeName = skillData['name'];
 	var rank = skillData['rank'];
@@ -191,6 +192,14 @@ function GetEsoSkillTooltipHtml(skillData)
 	
 	if (skillType != 'Passive')
 	{
+		var realCost = ComputeEsoSkillCost(cost, null);
+		var costStr = "" + realCost + " ";
+		
+		if (mechanic == 0)
+			costStr += "Magicka";
+		else if (mechanic == 6)
+			costStr += "Stamina";
+		
 		if (channelTime > 0) 
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + channelTime + " seconds</div>";
@@ -239,7 +248,7 @@ function GetEsoSkillTooltipHtml(skillData)
 		
 		if (cost != '')
 		{
-			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipCost'>" + cost + "</div>";
+			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipCost'>" + costStr + "</div>";
 			output += "<div class='esovsSkillTooltipName'>Cost</div>";			
 		}
 		
@@ -544,6 +553,12 @@ function UpdateEsoSkillTooltipDescription()
 
 function ComputeEsoSkillCost(baseCost, level)
 {
+	if (level == null) 
+	{
+		var inputValues = GetEsoSkillInputValues()
+		level = inputValues.level;
+	}
+	
 	if (level < 1) level = 1;
 	if (level >= 66) return baseCost;
 	
@@ -577,7 +592,7 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 	
 	if (mechanic == 0)
 		costStr += "Magicka";
-	else
+	else if (mechanic == 6)
 		costStr += "Stamina";
 	
 	costElement.text(costStr);
