@@ -373,6 +373,7 @@ function OnEsoSkillBlockClick(event)
 	UpdateEsoSkillTooltipCost();
 	UpdateEsoSkillRawData();
 	UpdateEsoSkillCoefData();
+	UpdateSkillLink();
 }
 
 
@@ -412,6 +413,7 @@ function OnEsoSkillTypeTitleClick(event, noUpdate)
 		UpdateEsoAllSkillCost();
 		UpdateEsoSkillRawData();
 		UpdateEsoSkillCoefData();
+		UpdateSkillLink();
 	}
 }
 
@@ -434,6 +436,7 @@ function OnEsoSkillLineTitleClick(event, noUpdate)
 		UpdateEsoAllSkillCost();
 		UpdateEsoSkillRawData();
 		UpdateEsoSkillCoefData();
+		UpdateSkillLink();
 	}
 }
 
@@ -875,6 +878,7 @@ function OnChangeEsoSkillData(dataName)
 	UpdateEsoSkillTooltipCost();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
+	UpdateSkillLink();
 }
 
 
@@ -1004,6 +1008,7 @@ function HighlightEsoSkill(id)
 	UpdateEsoSkillCoefData();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
+	UpdateSkillLink();
 	
 	var abilityBlock = $(".esovsAbilityBlock[skillid='" + id + "']");
 	
@@ -1024,6 +1029,26 @@ function HighlightEsoSkill(id)
 	}
 	
 	return true;
+}
+
+
+function UpdateSkillLink()
+{
+	var linkElement = $("#esovsLinkBlock");
+	var inputValues = GetEsoSkillInputValues();
+	var params = "";
+	
+	params += "id=" + g_LastSkillId;
+	params += "&level=" + inputValues.level;
+	params += "&health=" + inputValues.health;
+	params += "&magicka=" + inputValues.magicka;
+	params += "&stamina=" + inputValues.stamina;
+	params += "&spelldamage=" + inputValues.spellDamage;
+	params += "&weapondamage=" + inputValues.weaponDamage;
+	
+	if (g_SkillShowAll) params += "&showall";
+	
+	linkElement.attr("href", "?" + params);
 }
 
 

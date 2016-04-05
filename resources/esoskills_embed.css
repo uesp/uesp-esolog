@@ -514,6 +514,22 @@
 	background-color: white;
 }
 
+.esovsLinkBlock {
+	float: right;
+	background-color: #FBEFD5;
+	position: fixed;
+	right: 350px;
+	top: 0px;
+	padding: 7px;
+	padding-top: 10px;
+}
+ 
+.esovsLinkBlockFloat {
+	float: right;
+	padding: 7px;
+	padding-top: 10px;
+}
+
 #esovsPopupSkillTooltip {
 	width: 360px;
 	line-height: 125%;
