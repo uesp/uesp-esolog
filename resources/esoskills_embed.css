@@ -539,3 +539,8 @@
 	position: absolute;
 	z-index: 50;
 }
+
+.esovsUpdateDate {
+	color: #777;
+	font-style: italic;
+}

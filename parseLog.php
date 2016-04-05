@@ -3471,6 +3471,8 @@ class EsoLogParser
 		
 		$this->currentUser['lastSkillLineName'] = null;
 		$this->log("\tFound $event(".$this->currentUser['lastSkillDumpNote'].")...");
+		
+		$this->logInfos['lastSkillUpdate'] = date("Y-M-d H:i:s");
 		return true;
 	}
 	
@@ -3789,10 +3791,12 @@ class EsoLogParser
 			case "skillDump::StartProgression":
 			case "skillDump::StartType":
 			case "skillDump::StartLearned":
+			case "skillDump::StartMissing":
 			case "skillDump::End":
 			case "skillDump::EndProgression":
 			case "skillDump::EndType":
 			case "skillDump::EndLearned":
+			case "skillDump::EndMissing":
 			case "skillDump::start":
 			case "skillDump::end":
 			case "skillType":

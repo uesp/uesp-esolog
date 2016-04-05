@@ -701,6 +701,19 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetUpdateDate()
+	{
+		$query = "SELECT * FROM logInfo WHERE id='lastSkillUpdate';";
+		$result = $this->db->query($query);
+		if (!$result) return "";
+		
+		$row = $result->fetch_assoc();
+		$updateDate = $row['value'];
+		
+		return $updateDate;
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		$startTime = microtime(true);
@@ -725,6 +738,7 @@ class CEsoViewSkills
 				'{spellDamage}' => $this->skillSpellDamage,
 				'{weaponDamage}' => $this->skillWeaponDamage,
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
+				'{updateDate}' => $this->GetUpdateDate(),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
