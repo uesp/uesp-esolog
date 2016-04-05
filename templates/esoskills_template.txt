@@ -28,28 +28,28 @@
 		focus it in the above tooltip.
 		<p />
 		<div class="esovsRangeLabel">Level</div>
-		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="v16">
-		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="66">		
+		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="{fmtLevel}">
+		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">		
 		<br />
 		<div class="esovsRangeLabel">Health</div>
-		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="20000">
-		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="20000">		
+		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="{health}">
+		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="{health}">		
 		<br />
 		<div class="esovsRangeLabel">Magicka</div>
-		<input id="esovsInputMagicka" class="esovsInputControl" type="text" value="20000">
-		<input id="esovsControlMagicka" class="esovsRangeControl" type="range" min="1" max="50000" value="20000">
+		<input id="esovsInputMagicka" class="esovsInputControl" type="text" value="{magicka}">
+		<input id="esovsControlMagicka" class="esovsRangeControl" type="range" min="1" max="50000" value="{magicka}">
 		<br />
 		<div class="esovsRangeLabel">Stamina</div>
-		<input id="esovsInputStamina" class="esovsInputControl" type="text" value="20000">
-		<input id="esovsControlStamina" class="esovsRangeControl" type="range" min="1" max="50000" value="20000">
+		<input id="esovsInputStamina" class="esovsInputControl" type="text" value="{stamina}">
+		<input id="esovsControlStamina" class="esovsRangeControl" type="range" min="1" max="50000" value="{stamina}">
 		<br />
 		<div class="esovsRangeLabel">Spell Damage</div>
-		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="2000">
-		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="2000">		
+		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="{spellDamage}">
+		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="{spellDamage}">		
 		<br />
 		<div class="esovsRangeLabel">Weapon Damage</div>
-		<input id="esovsInputWeaponDamage" class="esovsInputControl" type="text" value="2000">
-		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="2000">		
+		<input id="esovsInputWeaponDamage" class="esovsInputControl" type="text" value="{weaponDamage}">
+		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="{weaponDamage}">		
 		<br />
 	</div>
 	<hr />

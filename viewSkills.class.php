@@ -27,6 +27,12 @@ class CEsoViewSkills
 	public $skillIds = array();
 	public $skillTree = array();
 	public $skillSearchIds = array();
+	public $skillHealth = 20000;
+	public $skillMagicka = 20000;
+	public $skillStamina = 20000;
+	public $skillLevel = 66;
+	public $skillSpellDamage = 2000;
+	public $skillWeaponDamage = 2000;
 
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
@@ -223,6 +229,32 @@ class CEsoViewSkills
 
 		return true;
 	}
+	
+	
+	public function ParseLevel($level)
+	{
+		$value = 66;	
+	
+		if (is_numeric($level))
+		{
+			$value = intval($level);
+		}
+		else if (preg_match("#^[vV]([0-9]+)#", trim($level), $matches))
+		{
+			$value = intval($matches[1]) + 50;
+		}
+		
+		if ($value < 1) $value = 1;
+		if ($value > 66) $value = 66;
+		
+		return $value;
+	}
+	
+	public function FormatLevel($level)
+	{
+		if ($level <= 50) return $level;
+		return "v" . ($level - 50);
+	}
 
 
 	private function ParseInputParams ()
@@ -232,6 +264,14 @@ class CEsoViewSkills
 		if (array_key_exists('skillid', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['skillid']);
 		if (array_key_exists('abilityid', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['abilityid']);
 		if (array_key_exists('id', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['id']);
+		
+		if (array_key_exists('level', $this->inputParams)) $this->skillLevel = $this->ParseLevel($this->inputParams['level']);
+		
+		if (array_key_exists('health', $this->inputParams)) $this->skillHealth = intval($this->inputParams['health']);
+		if (array_key_exists('magicka', $this->inputParams)) $this->skillMagicka = intval($this->inputParams['magicka']);
+		if (array_key_exists('stamina', $this->inputParams)) $this->skillStamina = intval($this->inputParams['stamina']);
+		if (array_key_exists('spelldamage', $this->inputParams)) $this->skillSpellDamage = intval($this->inputParams['spelldamage']);
+		if (array_key_exists('weapondamage', $this->inputParams)) $this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
 
 		return true;
 	}
@@ -671,6 +711,13 @@ class CEsoViewSkills
 				'{skillHighlightId}' => $this->highlightSkillId,
 				'{skillHighlightType}' => $this->highlightSkillType,
 				'{skillHighlightLine}' => $this->highlightSkillLine,
+				'{level}' => $this->skillLevel,
+				'{fmtLevel}' => $this->FormatLevel($this->skillLevel),
+				'{health}' => $this->skillHealth,
+				'{magicka}' => $this->skillMagicka,
+				'{stamina}' => $this->skillStamina,
+				'{spellDamage}' => $this->skillSpellDamage,
+				'{weaponDamage}' => $this->skillWeaponDamage,
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -771,5 +818,6 @@ function CompareEsoSkillLine_Priv($a, $b)
 
 	return $a1['skillIndex'] - $b1['skillIndex'];
 }
+
 
 
