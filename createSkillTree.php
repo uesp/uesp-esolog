@@ -88,6 +88,7 @@ $query = "SELECT * from minedSkills".$TABLE_SUFFIX." WHERE nextSkill >= 0 AND is
 $skillResult = $db->query($query);
 if (!$skillResult) exit("ERROR: Database query error (finding skill lines)!\n" . $db->error);
 $skillResult->data_seek(0);
+
 $skills = array();
 $skillRoots = array();
 $count = 0;
@@ -97,7 +98,6 @@ while (($skill = $skillResult->fetch_assoc()))
 {
 	$id = $skill['id'];
 	$skill['maxLevel'] = 4;
-	
 	$skills[$id] = $skill;
 	$count++;
 }
@@ -114,6 +114,7 @@ foreach ($skills as $id => $skill)
 		$skillTree[$id][1] = $id;
 		$skillTree[$id][2] = $skill['nextSkill'];
 	}
+
 }
 
 print("\tFound ".count($skillTree)." root skills\n");
@@ -218,6 +219,38 @@ if ($PRINT_TABLE)
 	}
 }
 
+	/* Update the skill effect lines */
+foreach($skillTree as $id => $skillTreeLine)
+{
+	if ($skillTreeLine[5] == null || $skillTreeLine[9] == null) continue;
+	
+	$skillLineId5 = $skillTreeLine[5];
+	$skillLineId9 = $skillTreeLine[9];
+	if ($skills[$skillLineId5] == null || $skills[$skillLineId9] == null) continue;
+	
+	$effectLine1 = $skills[$skillLineId5]['effectLines'];
+	$effectLine2 = $skills[$skillLineId9]['effectLines'];
+	if ($effectLine1 == "" && $effectLine2 == "") continue;
+	
+	for ($index = 1; $index <= 12; $index++)
+	{
+		$skillLineId = $skillTreeLine[$index];
+		$skill = $skills[$skillLineId];
+		$rank = $index;
+
+		if ($rank > 5 && $rank < 9)
+		{
+			//print("\tSetting effect line for $id morph 1\n");
+			$skills[$skillLineId]['effectLines'] = $effectLine1;
+		}
+		elseif ($rank > 9 && $rank < 13)
+		{
+			//print("\tSetting effect line for $id morph 2\n");
+			$skills[$skillLineId]['effectLines'] = $effectLine2;
+		}
+	}
+}
+
 	/* Update the skills */
 print("Updating skill data...\n");
 
@@ -229,8 +262,9 @@ foreach($skills as $id => $skill)
 	$skillLine = $db->real_escape_string($skill['skillLine']);
 	$learnedLevel = $db->real_escape_string($skill['learnedLevel']);
 	$skillIndex = $db->real_escape_string($skill['skillIndex']);
+	$effectLines = $db->real_escape_string($skill['effectLines']);
 	
-	$query = "UPDATE minedSkills SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\"  WHERE id=$id;";
+	$query = "UPDATE minedSkills SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\", effectLines=\"$effectLines\"  WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
 }
