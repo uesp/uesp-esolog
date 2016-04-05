@@ -71,3 +71,4 @@
 	var g_SkillHighlightLine = "{skillHighlightLine}";
 	var g_SkillShowAll = {skillShowAll};
 </script>
+<div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>

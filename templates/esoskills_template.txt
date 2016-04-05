@@ -85,6 +85,7 @@
 	var g_SkillHighlightLine = "{skillHighlightLine}";
 	var g_SkillShowAll = {skillShowAll};
 </script>
+<div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>
 <hr>
 <div id="esovs_footer">
 This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
