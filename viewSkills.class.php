@@ -260,7 +260,15 @@ class CEsoViewSkills
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
-		if (array_key_exists('showall', $this->inputParams)) $this->showAll = true;
+		
+		if (array_key_exists('showall', $this->inputParams)) 
+		{
+			if ($this->inputParams['showall'] == '')
+				$this->showAll = true;
+			else
+				$this->showAll = (intval($this->inputParams['showall']) != 0) ? true : false;
+		}
+		
 		if (array_key_exists('skillid', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['skillid']);
 		if (array_key_exists('abilityid', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['abilityid']);
 		if (array_key_exists('id', $this->inputParams)) $this->highlightSkillId = intval($this->inputParams['id']);
