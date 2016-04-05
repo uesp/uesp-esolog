@@ -718,6 +718,7 @@ class CEsoViewSkills
 				'{stamina}' => $this->skillStamina,
 				'{spellDamage}' => $this->skillSpellDamage,
 				'{weaponDamage}' => $this->skillWeaponDamage,
+				'{skillShowAll}' => $this->showAll ? "true" : "false",
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);

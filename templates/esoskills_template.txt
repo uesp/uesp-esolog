@@ -10,6 +10,7 @@
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
+<a id="esovsLinkBlock" class="esovsLinkBlock" href="">Link to Skill</a>
 <div id="esovsSearchBlock">
 	<input type="search" id="esovsSearchText" value="" size="30" /> 
 	<button id="esovsSearchButton">Find Skill</button>
@@ -82,6 +83,7 @@
 	var g_SkillHighlightId = {skillHighlightId};
 	var g_SkillHighlightType = "{skillHighlightType}";
 	var g_SkillHighlightLine = "{skillHighlightLine}";
+	var g_SkillShowAll = {skillShowAll};
 </script>
 <hr>
 <div id="esovs_footer">

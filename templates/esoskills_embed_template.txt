@@ -3,6 +3,7 @@
 	<button id="esovsSearchButton">Find Skill</button>
 	<div id="esovsSearchResult"></div> 
 </div>
+<a id="esovsLinkBlock" class="esovsLinkBlockFloat" href="">Link to Skill</a>
 <div id="esovsLeftBlock">
 	<div id="esovsSkillTooltipRoot">
 		<div class='esovsSkillTooltip'>
@@ -68,4 +69,5 @@
 	var g_SkillHighlightId = {skillHighlightId};
 	var g_SkillHighlightType = "{skillHighlightType}";
 	var g_SkillHighlightLine = "{skillHighlightLine}";
+	var g_SkillShowAll = {skillShowAll};
 </script>
