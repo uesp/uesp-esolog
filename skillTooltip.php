@@ -280,6 +280,7 @@ class CEsoSkillTooltip
 		$name = $this->escape($this->skillData['name']);
 		$rank = $this->skillData['rank'];
 		$learnedLevel = $this->skillData['learnedLevel'];
+		$skillLine = $this->skillData['skillLine'];
 		$desc = $this->ConvertDescriptionToHtml($this->skillData['description']);
 		$coefDesc = $this->skillData['coefDescription'];
 		$channelTime = intval($this->skillData['channelTime']) / 1000;
@@ -376,7 +377,10 @@ class CEsoSkillTooltip
 		
 		if ($learnedLevel > 0)
 		{
-			$output .= "<div class='esoSkillPopupTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
+			if ($skillLine != "")
+				$output .= "<div class='esoSkillPopupTooltipLevel'>Unlocked at $skillLine Rank $learnedLevel</div>";
+			else
+				$output .= "<div class='esoSkillPopupTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
 		}
 		
 		print($output);

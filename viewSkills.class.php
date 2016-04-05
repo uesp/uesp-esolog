@@ -566,9 +566,7 @@ class CEsoViewSkills
 
 		$cost = $abilityData['cost'];
 		$learnedLevel = $abilityData['learnedLevel'];
-		$levelDesc = "";
 		$costDesc = "";
-		if ($learnedLevel > 0) $levelDesc = "Unlocked at rank $learnedLevel";
 		$rank = $abilityData['rank'];
 		$maxRank = $abilityData['maxRank'];
 		$rankLabel = "";
