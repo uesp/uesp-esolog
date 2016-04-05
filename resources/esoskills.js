@@ -165,6 +165,7 @@ function GetEsoSkillTooltipHtml(skillData)
 	var skillType = skillData['type'];
 	var learnedLevel = skillData['learnedLevel'];
 	var effectLines = skillData['effectLines'];
+	var skillLine = skillData['skillLine'];
 	var area = "";
 	var range = "";
 	var rankStr = "";
@@ -261,7 +262,10 @@ function GetEsoSkillTooltipHtml(skillData)
 	
 	if (learnedLevel > 0)
 	{
-		output += "<div class='esovsSkillTooltipLevel'>Unlocked at Rank " + learnedLevel + "</div>\n";
+		if (skillLine != "")
+			output += "<div class='esovsSkillTooltipLevel'>Unlocked at " + skillLine + " Rank " + learnedLevel + "</div>\n";
+		else
+			output += "<div class='esovsSkillTooltipLevel'>Unlocked at Rank " + learnedLevel + "</div>\n";
 	}
 	
 	output += "</div>";
