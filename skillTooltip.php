@@ -88,7 +88,6 @@ class CEsoSkillTooltip
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
-		if (array_key_exists('showall', $this->inputParams)) $this->showAll = true;
 		
 		if (array_key_exists('id', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
 		if (array_key_exists('skillid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
