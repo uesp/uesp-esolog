@@ -200,6 +200,8 @@ function GetEsoSkillTooltipHtml(skillData)
 			costStr += "Magicka";
 		else if (mechanic == 6)
 			costStr += "Stamina";
+		else
+			costStr = cost;
 		
 		if (channelTime > 0) 
 		{
@@ -573,6 +575,8 @@ function UpdateEsoSkillTooltipDescription()
 
 function ComputeEsoSkillCost(baseCost, level)
 {
+	baseCost = parseInt(baseCost);
+	
 	if (level == null) 
 	{
 		var inputValues = GetEsoSkillInputValues()
