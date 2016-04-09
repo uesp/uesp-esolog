@@ -1388,7 +1388,7 @@ class EsoLogParser
 			setBonusDesc2 TINYTEXT NOT NULL,
 			setBonusDesc3 TINYTEXT NOT NULL,
 			setBonusDesc4 TINYTEXT NOT NULL,
-			setBonusDesc5 TINYTEXT NOT NULL,
+			setBonusDesc5 TEXT NOT NULL,
 			glyphMinLevel SMALLINT NOT NULL DEFAULT -1,
 			glyphMaxLevel SMALLINT NOT NULL DEFAULT -1,
 			runeType TINYINT NOT NULL DEFAULT -1,
