@@ -201,13 +201,13 @@ class CEsoSkillTooltip
 	}
 	
 	
-	public function ComputeEsoSkillCost($baseCost, $level)
+	public function ComputeEsoSkillCost($maxCost, $level)
 	{
 		if ($level < 1) $level = 1;
-		if ($level >= 66) return $baseCost;
+		if ($level >= 66) return $maxCost;
 	
-		if ($level >= 1 && $level <= 50) return round($baseCost * $level / 65.5367 + $baseCost / 10.7466);
-		return round($baseCost * $level / 110.942 + $baseCost / 2.46882);
+		if ($level >= 1 && $level <= 50) return round($maxCost * $level * 25.0 / 1624.0 + $maxCost * 75.0 / 812.0);
+		return round($maxCost * $level / 116.0 + $maxCost / 2.32);
 	}
 	
 	
