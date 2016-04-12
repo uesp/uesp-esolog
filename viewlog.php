@@ -445,6 +445,7 @@ class EsoLogViewer
 			'skillIndex' => self::FIELD_INT,
 			'unlockLevel' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
+			'maxValue' => self::FIELD_FLOAT,
 			'minDescription' => self::FIELD_TEXTTRANSFORM,
 			'maxDescription' => self::FIELD_TEXTTRANSFORM,
 			'x' => self::FIELD_FLOAT,
