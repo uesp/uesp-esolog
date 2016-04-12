@@ -41,6 +41,16 @@ $ESO_ITEMTRAIT_FULLTEXTS = array(
 );
 
 
+$ESO_ATTRIBUTES = array(
+		-1 => "",
+		0 => "None",
+		1 => "Health",
+		2 => "Magicka",
+		3 => "Stamina",
+);
+
+
+
 $ESO_ITEMTRAIT_TEXTS = array(
 		-1 => "",
 		18 => "Divines",
@@ -1270,6 +1280,16 @@ function GetEsoSkillTypeText ($value)
 	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 	return "Unknown ($key)";
 }
+
+
+function GetEsoAttributeText($attribute)
+{
+	global $ESO_ATTRIBUTES;
+	$attribute = intval($attribute);
+	if (array_key_exists($attribute, $ESO_ATTRIBUTES)) return $ESO_ATTRIBUTES[$attribute];
+	return "Unknown ($attribute)";
+}
+
 
 
 function GetEsoItemLevelText($level)

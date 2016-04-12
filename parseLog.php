@@ -554,6 +554,35 @@ class EsoLogParser
 	);
 	
 	
+	public static $CPDISCIPLINE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'attribute' => self::FIELD_INT,
+	);
+	
+	public static $CPSKILL_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'skillIndex' => self::FIELD_INT,
+			'unlockLevel' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'minDescription' => self::FIELD_STRING,
+			'maxDescription' => self::FIELD_STRING,
+			'x' => self::FIELD_FLOAT,
+			'y' => self::FIELD_FLOAT,
+	);
+	
+	public static $CPSKILLDESCRIPTION_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'description' => self::FIELD_STRING,
+			'points' => self::FIELD_INT,
+	);
+	
+	
 	public function __construct ()
 	{
 		
@@ -791,6 +820,7 @@ class EsoLogParser
 		return true;
 	}
 	
+	
 	public function createUpdateQuery ($table, $record, $idField, $fieldDef)
 	{
 		$idType = $fieldDef[$idField];
@@ -1001,6 +1031,22 @@ class EsoLogParser
 		return true;
 	}
 	
+	
+	public function SaveCPSkill (&$record)
+	{
+		return $this->saveRecord('cpSkills'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPSKILL_FIELDS);
+	}
+	
+	public function SaveCPDiscipline (&$record)
+	{
+		return $this->saveRecord('cpDisciplines'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPDISCIPLINE_FIELDS);
+	}
+	
+	
+	public function SaveCPSkillDescription (&$record)
+	{
+		return $this->saveRecord('cpSkillDescriptions'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPSKILLDESCRIPTION_FIELDS);
+	}
 	
 	
 	public function SaveSkillDump (&$record)
@@ -1530,6 +1576,48 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedSkillLines table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cpDisciplines".self::SKILLS_TABLESUFFIX."(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			disciplineIndex INTEGER NOT NULL,
+			name TINYTEXT NOT NULL,
+			description TEXT NOT NULL,
+			attribute TINYINT NOT NULL
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cpDisciplines table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cpSkills".self::SKILLS_TABLESUFFIX."(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			abilityId INTEGER NOT NULL,
+			disciplineIndex INTEGER NOT NULL,
+			skillIndex INTEGER NOT NULL,
+			unlockLevel INTEGER NOT NULL,
+			name TINYTEXT NOT NULL,
+			minDescription TEXT NOT NULL,
+			maxDescription TEXT NOT NULL,
+			x FLOAT NOT NULL,
+			y FLOAT NOT NULL,
+			INDEX index_abilityId(abilityId)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cpSkills table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cpSkillDescriptions".self::SKILLS_TABLESUFFIX."(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			abilityId INTEGER NOT NULL,
+			points INTEGER NOT NULL,
+			description TEXT NOT NULL,
+			INDEX index_abilityId(abilityId)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cpSkillDescriptions table!");
 		
 		return true;
 	}
@@ -3740,6 +3828,93 @@ class EsoLogParser
 		return true;
 	}
 	
+		
+	public function OnCPStart ($logEntry)
+	{
+		$event = $logEntry['event'];
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+	
+		if ($logEntry['note'] != null)
+			$this->logInfos['lastCPNote'] = $logEntry['note'];
+		else
+			$this->logInfos['lastCPNote'] = '';
+
+		$this->log("\tFound $event(".$logEntry['note'].")...");
+		$this->logInfos['lastCPUpdate'] = date("Y-M-d H:i:s");
+		
+		$this->lastQuery = "DELETE FROM cpDisciplines;";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cpDisciplines table!");
+		
+		$this->lastQuery = "DELETE FROM cpSkills;";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cpSkills table!");
+		
+		$this->lastQuery = "DELETE FROM cpSkillDescriptions;";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cpSkillDescriptions table!");
+		
+		return true;
+	}
+	
+	
+	public function OnCPDiscipline ($logEntry)
+	{
+		$cp = array();
+		$cp['disciplineIndex'] = $logEntry['discIndex'];
+		$cp['description'] = $logEntry['desc'];
+		$cp['name'] = $logEntry['name'];
+		$cp['attribute'] = $logEntry['attr'];
+		
+		$cp['__isNew'] = true;
+		$cp['__dirty'] = true;
+		
+		return $this->SaveCPDiscipline($cp);
+	}
+	
+	
+	public function OnCPSkill ($logEntry)
+	{
+		$cpDisc = array();
+		$cpDisc['abilityId'] = $logEntry['abilityId'];
+		$cpDisc['disciplineIndex'] = $logEntry['discIndex'];
+		$cpDisc['skillIndex'] = $logEntry['skillIndex'];
+		$cpDisc['minDescription'] = $logEntry['desc'];
+		$cpDisc['maxDescription'] = $logEntry['maxDesc'];
+		$cpDisc['name'] = $logEntry['name'];
+		$cpDisc['x'] = $logEntry['x'];
+		$cpDisc['y'] = $logEntry['y'];
+		
+		if ($logEntry['unlockLevel'] == null)
+			$cpDisc['unlockLevel'] = 0;
+		else
+			$cpDisc['unlockLevel'] = $logEntry['unlockLevel'];
+		
+		$cpDisc['__isNew'] = true;
+		$cpDisc['__dirty'] = true;
+		
+		return $this->SaveCPSkill($cpDisc);
+	}
+	
+	
+	public function OnCPDescription ($logEntry)
+	{
+		$cpDesc = array();
+		$cpDesc['abilityId'] = $logEntry['abilityId'];
+		$cpDesc['description'] = $logEntry['desc'];
+		$cpDesc['points'] = $logEntry['points'];
+		$cpDesc['__isNew'] = true;
+		$cpDesc['__dirty'] = true;
+		
+		return $this->SaveCPSkillDescription($cpDesc);
+	}
+	
+	
+	public function OnCPEnd ($logEntry)
+	{
+		return true;
+	}
+	
 	
 	public function OnNullEntry ($logEntry)
 	{
@@ -3804,6 +3979,11 @@ class EsoLogParser
 			case "skillAbility":
 			case "skillLearned":
 			case "skillProgression":
+			case "CP":
+			case "CP::start":
+			case "CP::end":
+			case "CP::disc":
+			case "CP::desc":				
 				return false;
 		}
 		
@@ -3955,6 +4135,12 @@ class EsoLogParser
 			case "skillDump::StartLearned":		$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillLearned":				$result = $this->OnSkillLearned($logEntry); break;
 			case "skillDump::EndLearned":		$result = $this->OnSkillDumpEnd($logEntry); break;
+			case "CP::start":					$result = $this->OnCPStart($logEntry); break;
+			case "CP::disc":					$result = $this->OnCPDiscipline($logEntry); break;
+			case "CP":							$result = $this->OnCPSkill($logEntry); break;
+			case "CP::desc":					$result = $this->OnCPDescription($logEntry); break;
+			case "CP::end":						$result = $this->OnCPEnd($logEntry); 
+			break;
 			case "Test":
 			case "TEST":
 			case "test":						$result = $this->OnNullEntry($logEntry); break;
@@ -4317,6 +4503,10 @@ class EsoLogParser
 $g_EsoLogParser = new EsoLogParser();
 $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
+
+
+
+
 
 
 
