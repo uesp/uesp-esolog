@@ -430,6 +430,35 @@ class EsoLogViewer
 	);
 	
 	
+	public static $CPDISCIPLINE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_TEXTTRANSFORM,
+			'attribute' => self::FIELD_TEXTTRANSFORM,
+	);
+	
+	public static $CPSKILL_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'skillIndex' => self::FIELD_INT,
+			'unlockLevel' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'minDescription' => self::FIELD_TEXTTRANSFORM,
+			'maxDescription' => self::FIELD_TEXTTRANSFORM,
+			'x' => self::FIELD_FLOAT,
+			'y' => self::FIELD_FLOAT,
+	);
+	
+	public static $CPSKILLDESCRIPTION_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'description' => self::FIELD_TEXTTRANSFORM,
+			'points' => self::FIELD_INT,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -1072,6 +1101,57 @@ class EsoLogViewer
 							),
 					),
 			),
+			
+			'cpDisciplines' => array(
+					'displayName' => 'Champion Point Disciplines',
+					'displayNameSingle' => 'Champion Point Discipline',
+					'record' => 'cpDisciplines',
+					'table' => 'cpDisciplines',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'disciplineIndex',
+			
+					'transform' => array(
+							'attribute' => 'GetAttributeText',
+							'description' => 'RemoveTextFormats',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
+			'cpSkills' => array(
+					'displayName' => 'Champion Point Skills',
+					'displayNameSingle' => 'Champion Point Skill',
+					'record' => 'cpSkills',
+					'table' => 'cpSkills',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('disciplineIndex', 'skillIndex'),
+						
+					'transform' => array(
+							'minDescription' => 'RemoveTextFormats',
+							'maxDescription' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
+			'cpSkillDescriptions' => array(
+					'displayName' => 'CP Skill Descriptions',
+					'displayNameSingle' => 'CP Skill Description',
+					'record' => 'cpSkillDescriptions',
+					'table' => 'cpSkillDescriptions',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('abilityId', 'points'),
+						
+					'transform' => array(
+							'description' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+				
 	);
 	
 	
@@ -1225,6 +1305,7 @@ class EsoLogViewer
 			'note' => self::FIELD_STRING,
 	);
 	
+	
 	public function __construct ()
 	{
 			// TODO: Static initialization?
@@ -1245,6 +1326,9 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
+		self::$RECORD_TYPES['cpDisciplines']['fields'] = self::$CPDISCIPLINE_FIELDS;
+		self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
+		self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
 		
 		if (self::ENABLE_18PTS) 
 		{
@@ -1441,6 +1525,12 @@ class EsoLogViewer
 		
 		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 		return "Unknown ($key)";
+	}
+	
+	
+	public function GetAttributeText($value)
+	{
+		return GetEsoAttributeText($value);
 	}
 	
 	
