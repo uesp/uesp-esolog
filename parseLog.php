@@ -571,6 +571,7 @@ class EsoLogParser
 			'name' => self::FIELD_STRING,
 			'minDescription' => self::FIELD_STRING,
 			'maxDescription' => self::FIELD_STRING,
+			'maxValue' => self::FIELD_FLOAT,
 			'x' => self::FIELD_FLOAT,
 			'y' => self::FIELD_FLOAT,
 	);
@@ -1598,6 +1599,7 @@ class EsoLogParser
 			name TINYTEXT NOT NULL,
 			minDescription TEXT NOT NULL,
 			maxDescription TEXT NOT NULL,
+			maxValue FLOAT NOT NULL,
 			x FLOAT NOT NULL,
 			y FLOAT NOT NULL,
 			INDEX index_abilityId(abilityId)
@@ -3884,11 +3886,19 @@ class EsoLogParser
 		$cpDisc['name'] = $logEntry['name'];
 		$cpDisc['x'] = $logEntry['x'];
 		$cpDisc['y'] = $logEntry['y'];
+		$cpDisc['maxValue'] = 0;		
 		
 		if ($logEntry['unlockLevel'] == null)
+		{
 			$cpDisc['unlockLevel'] = 0;
+			$matches = array();
+			$result = preg_match("#([0-9\.]+)#", $logEntry['maxDesc'], $matches);
+			if ($result) $cpDisc['maxValue'] = $matches[1];
+		}
 		else
+		{
 			$cpDisc['unlockLevel'] = $logEntry['unlockLevel'];
+		}
 		
 		$cpDisc['__isNew'] = true;
 		$cpDisc['__dirty'] = true;
