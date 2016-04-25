@@ -1321,29 +1321,36 @@ function GetEsoItemTableSuffix($version)
 		case '1.5':
 		case '15':
 		case '5':
-			return "15";
+			return "5";
 		case '1.6':
 		case '16':
 		case '6':
-			return "16";
+			return "6";
 		case '1.7':
 		case '17':
 		case '7':
-			return "17";
+			return "7";
 		case '1.8':
 		case '18':
 		case '8':
-			return "18";
+			return "8";
 		case '1.8pts':
 		case '18pts':
-			return "18pts";					
+			return "8pts";					
 		case '1.9pts':
 		case '19pts':
-			return "19pts";
+			return "9pts";
 		case '1.9':
 		case '19':
 		case '9':
-			return "";
+			return "";			// TODO: Update when DB hits
+		case '1.10pts':
+		case '10pts':
+			return "10pts";
+		case '1.10':
+		case '110':
+		case '10':
+			return "10pts";		// TODO: Update when DB hits
 	}
 
 	return "";

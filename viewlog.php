@@ -11,8 +11,8 @@ class EsoLogViewer
 {
 	const PRINT_DB_ERRORS = true;
 	
-	const ENABLE_18PTS = false;
-	const ENABLE_19PTS = false;
+	const ENABLE_8PTS = false;
+	const ENABLE_9PTS = false;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -840,14 +840,14 @@ class EsoLogViewer
 					),
 			),
 			
-			'minedItem18pts' => array(
-					'displayName' => 'Mined Items from PTS 1.8',
-					'displayNameSingle' => 'Mined Item from PTS 1.8',
-					'record' => 'minedItem18pts',
-					'table' => 'minedItem18pts',
+			'minedItem8pts' => array(
+					'displayName' => 'Mined Items from PTS Update 8',
+					'displayNameSingle' => 'Mined Item from PTS Update 8',
+					'record' => 'minedItem8pts',
+					'table' => 'minedItem8pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-					'message' => "These are new items for update 1.8 (Orsinium) as logged from the PTS server.",
+					'message' => "These are new items for update 8 (Orsinium) as logged from the PTS server.",
 						
 					'transform' => array(
 							'type' => 'GetItemTypeText',
@@ -858,8 +858,8 @@ class EsoLogViewer
 							'craftType' => 'GetItemTypeText',
 							'armorType' => 'GetItemArmorTypeText',
 							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink18pts',
-							'link' => 'MakeMinedItemLink18pts',
+							'name' => 'MakeMinedItemLink8pts',
+							'link' => 'MakeMinedItemLink8pts',
 							'description' => 'RemoveTextFormats',
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
@@ -869,14 +869,14 @@ class EsoLogViewer
 					),
 			),
 			
-			'minedItem19pts' => array(
-					'displayName' => 'Mined Items from PTS 1.9',
-					'displayNameSingle' => 'Mined Item from PTS 1.9',
-					'record' => 'minedItem19pts',
-					'table' => 'minedItem19pts',
+			'minedItem9pts' => array(
+					'displayName' => 'Mined Items from PTS Update 9',
+					'displayNameSingle' => 'Mined Item from PTS Update 9',
+					'record' => 'minedItem9pts',
+					'table' => 'minedItem9pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-					'message' => 'These are items for update 1.9 (Thieves Guild) as logged from the PTS server. Note that only Level 1 (White) and v16 (Gold) items have been exported.',
+					'message' => 'These are items for update 9 (Thieves Guild) as logged from the PTS server. Note that only Level 1 (White) and v16 (Gold) items have been exported.',
 			
 					'transform' => array(
 							'type' => 'GetItemTypeText',
@@ -887,8 +887,8 @@ class EsoLogViewer
 							'craftType' => 'GetItemTypeText',
 							'armorType' => 'GetItemArmorTypeText',
 							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink19pts',
-							'link' => 'MakeMinedItemLink19pts',
+							'name' => 'MakeMinedItemLink9pts',
+							'link' => 'MakeMinedItemLink9pts',
 							'description' => 'RemoveTextFormats',
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
@@ -928,14 +928,14 @@ class EsoLogViewer
 			),
 			
 			
-			'minedItemSummary19pts' => array(
-					'displayName' => 'Mined Item Summaries from PTS 1.9',
-					'displayNameSingle' => 'Mined Item Summary from PTS 1.9',
-					'record' => 'minedItemSummary19pts',
-					'table' => 'minedItemSummary19pts',
+			'minedItemSummary9pts' => array(
+					'displayName' => 'Mined Item Summaries from PTS Update 9',
+					'displayNameSingle' => 'Mined Item Summary from Update 9',
+					'record' => 'minedItemSummary9pts',
+					'table' => 'minedItemSummary9pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
-					'message' => 'These are items for update 1.9 (Thieves Guild) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+					'message' => 'These are items for update 9 (Thieves Guild) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
 			
 					'transform' => array(
 							'type' => 'GetItemTypeText',
@@ -946,7 +946,7 @@ class EsoLogViewer
 							'craftType' => 'GetItemTypeText',
 							'armorType' => 'GetItemArmorTypeText',
 							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink19pts',
+							'name' => 'MakeMinedItemSummaryLink9pts',
 							'description' => 'RemoveTextFormats',
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
@@ -980,14 +980,14 @@ class EsoLogViewer
 					),
 			),
 			
-			'setSummary18pts' => array(
-					'displayName' => 'Set Summaries from PTS 1.8',
-					'displayNameSingle' => 'Set Item Summary from PTS 1.8',
-					'record' => 'setSummary18pts',
-					'table' => 'setSummary18pts',
+			'setSummary8pts' => array(
+					'displayName' => 'Set Summaries from PTS Update 8',
+					'displayNameSingle' => 'Set Item Summary from PTS Update 8',
+					'record' => 'setSummary8pts',
+					'table' => 'setSummary8pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'setName',
-					'message' => "These are new sets for update 1.8 (Orsinium) as logged from the PTS server.",
+					'message' => "These are new sets for update 8 (Orsinium) as logged from the PTS server.",
 						
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
@@ -995,7 +995,7 @@ class EsoLogViewer
 						
 					'filters' => array(
 							array(
-									'record' => 'minedItem18pts',
+									'record' => 'minedItem8pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -1004,14 +1004,14 @@ class EsoLogViewer
 					),
 			),
 			
-			'setSummary19pts' => array(
-					'displayName' => 'Set Summaries from PTS 1.9',
-					'displayNameSingle' => 'Set Item Summary from PTS 1.9',
-					'record' => 'setSummary19pts',
-					'table' => 'setSummary19pts',
+			'setSummary9pts' => array(
+					'displayName' => 'Set Summaries from PTS Update 9',
+					'displayNameSingle' => 'Set Item Summary from Update 9',
+					'record' => 'setSummary9pts',
+					'table' => 'setSummary9pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'setName',
-					'message' => "These are sets for update 1.9 (Thieves Guild) as logged from the PTS server.",
+					'message' => "These are sets for update 9 (Thieves Guild) as logged from the PTS server.",
 			
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
@@ -1019,7 +1019,7 @@ class EsoLogViewer
 			
 					'filters' => array(
 							array(
-									'record' => 'minedItem19pts',
+									'record' => 'minedItem9pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -1248,7 +1248,7 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
-			'minedItemSummary18pts' => array(
+			'minedItemSummary8pts' => array(
 					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
@@ -1256,7 +1256,7 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
-			'minedItemSummary19pts' => array(
+			'minedItemSummary9pts' => array(
 					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
@@ -1272,7 +1272,7 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
-			'setSummary18pts' => array(
+			'setSummary8pts' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
@@ -1280,7 +1280,7 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
-			'setSummary19pts' => array(
+			'setSummary9pts' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
@@ -1331,33 +1331,33 @@ class EsoLogViewer
 		self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
 		self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
 		
-		if (self::ENABLE_18PTS) 
+		if (self::ENABLE_8PTS) 
 		{
-			self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItem8pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary8pts']['fields'] = self::$SETSUMMARY_FIELDS;
 		}
 		else
 		{
-			unset(self::$RECORD_TYPES['minedItemSummary18pts']);
-			unset(self::$RECORD_TYPES['minedItem18pts']);
-			unset(self::$RECORD_TYPES['setSummary18pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary18pts']);
-			unset(self::$SEARCH_DATA['setSummary18pts']);
+			unset(self::$RECORD_TYPES['minedItemSummary8pts']);
+			unset(self::$RECORD_TYPES['minedItem8pts']);
+			unset(self::$RECORD_TYPES['setSummary8pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary8pts']);
+			unset(self::$SEARCH_DATA['setSummary8pts']);
 		}
 		
-		if (self::ENABLE_19PTS)
+		if (self::ENABLE_9PTS)
 		{
-			self::$RECORD_TYPES['minedItem19pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary19pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary19pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItem9pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary9pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary9pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 		}
 		else
 		{
-			unset(self::$RECORD_TYPES['minedItemSummary19pts']);
-			unset(self::$RECORD_TYPES['minedItem19pts']);
-			unset(self::$RECORD_TYPES['setSummary19pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary19pts']);
-			unset(self::$SEARCH_DATA['setSummary19pts']);
+			unset(self::$RECORD_TYPES['minedItemSummary9pts']);
+			unset(self::$RECORD_TYPES['minedItem9pts']);
+			unset(self::$RECORD_TYPES['setSummary9pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary9pts']);
+			unset(self::$SEARCH_DATA['setSummary9pts']);
 		}
 		
 		
@@ -1835,7 +1835,7 @@ class EsoLogViewer
 	}
 	
 	
-	public function MakeMinedItemLink18pts ($value, $itemData)
+	public function MakeMinedItemLink8pts ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
 	
@@ -1843,12 +1843,12 @@ class EsoLogViewer
 		$itemIntLevel = $itemData['internalLevel'];
 		$itemIntType = $itemData['internalSubtype'];
 	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=1.8pts\">" . $value . "</a>";
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=8pts\">" . $value . "</a>";
 		return $output;
 	}
 	
 	
-	public function MakeMinedItemLink19pts ($value, $itemData)
+	public function MakeMinedItemLink9pts ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
 	
@@ -1856,7 +1856,7 @@ class EsoLogViewer
 		$itemIntLevel = $itemData['internalLevel'];
 		$itemIntType = $itemData['internalSubtype'];
 	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=1.9pts\">" . $value . "</a>";
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=9pts\">" . $value . "</a>";
 		return $output;
 	}
 	
@@ -1872,13 +1872,13 @@ class EsoLogViewer
 	}
 	
 	
-	public function MakeMinedItemSummaryLink19pts ($value, $itemData)
+	public function MakeMinedItemSummaryLink9pts ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
 	
 		$itemId = $itemData['itemId'];
 	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=1.9pts\">" . $value . "</a>";
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=9pts\">" . $value . "</a>";
 		return $output;
 	}
 	

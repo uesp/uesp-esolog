@@ -1449,7 +1449,7 @@ class CEsoItemLinkImage
 		else
 		{
 			$glyphMinLevel = $glyphMinLevel - 50;
-			if ($this->CheckVersionLessThan(1.9)) $glyphMinLevel += 1;
+			if ($this->CheckVersionLessThan(9)) $glyphMinLevel += 1;
 			$minDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMinLevel";
 		}
 		
@@ -1460,7 +1460,7 @@ class CEsoItemLinkImage
 		else
 		{
 			$glyphMaxLevel = $glyphMaxLevel - 50;
-			if ($this->CheckVersionLessThan(1.9)) $glyphMaxLevel += 1;
+			if ($this->CheckVersionLessThan(9)) $glyphMaxLevel += 1;
 			$maxDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMaxLevel";
 		}
 	
