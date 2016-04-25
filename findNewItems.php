@@ -7,8 +7,8 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$FIRST_VERSION = "1.7";
-$SECOND_VERSION = "1.8pts";
+$FIRST_VERSION = "7";
+$SECOND_VERSION = "8pts";
 
 $query = "SELECT * FROM itemIdCheck WHERE version='$FIRST_VERSION';";
 $result = $db->query($query);
