@@ -80,38 +80,94 @@
 	height: 100%;
 }
 
-#esovcpCPDisc_Tower {
+.esovpDiscipline {
 	position: absolute;
 	width: 33%;
 	height: 33%;
-	background-image: url('champion_constellations-1.png');
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 	background-size: cover;
-	top: 20%;
-	left: 50%;
-	transform: rotate(80deg) translate(33%,-33%);
 	opacity: 0.7;
 }
 
-#esovcpCPDisc_Tower_Hover {
-	background-image: url('champion_constellations_glow-1.png');
-	background-repeat: no-repeat;
-	background-position: 0px 0px;
-	background-size: cover;
+.esovcpDiscplineHighlight {
+	opacity: 1;
+}
+
+.esovpDiscipline:hover {
+}
+
+.esovpDisciplineHoverArea {
 	position: relative;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	display: none;
+	width: 50%;
+	height: 80%;
+	top: 10%;
+	margin: auto 0;
 }
 
-#esovcpCPDisc_Tower:hover {
-	opacity: 1;
+.esovpDisciplineHoverArea:hover {
 }
 
-#esovcpCPDisc_Tower:hover #esovcpCPDisc_Tower_Hover {
-	opacity: 1;
+#esovcpCPDisc_Tower {
+	background-image: url('champion_constellations-1-small.png');
+	top: 29%;
+	left: 62%;
+	transform: rotate(80deg);
 }
+
+#esovcpCPDisc_Lord {
+	background-image: url('champion_constellations-2-small.png');
+	top: 13%;
+	left: 51%;
+	transform: rotate(40deg);
+}
+
+#esovcpCPDisc_Lady {
+	background-image: url('champion_constellations-3-small.png');
+	top: 6%;
+	left: 32%;
+	transform: rotate(0deg);
+}
+
+#esovcpCPDisc_Steed {
+	background-image: url('champion_constellations-4-small.png');
+	top: 12%;
+	left: 17%;
+	transform: rotate(-40deg);
+}
+
+#esovcpCPDisc_Ritual {
+	background-image: url('champion_constellations-5-small.png');
+	top: 30%;
+	left: 7%;
+	transform: rotate(-80deg);
+}
+
+#esovcpCPDisc_Atronach {
+	background-image: url('champion_constellations-6-small.png');
+	top: 47%;
+	left: 9%;
+	transform: rotate(-120deg);
+}
+
+#esovcpCPDisc_Apprentice {
+	background-image: url('champion_constellations-7-small.png');
+	top: 60%;
+	left: 24%;
+	transform: rotate(-160deg);
+}
+
+#esovcpCPDisc_Shadow {
+	background-image: url('champion_constellations-8-small.png');
+	top: 61%;
+	left: 43%;
+	transform: rotate(-200deg);
+}
+
+#esovcpCPDisc_Lover {
+	background-image: url('champion_constellations-9-small.png');
+	top: 48%;
+	left: 58%;
+	transform: rotate(-240deg);
+}
+

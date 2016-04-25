@@ -22,8 +22,32 @@
 <div id="esovcpContainer">
 	<div id="esovcpRoot">
 		<img id="esovcpBackGroundImage" src="resources/champion_colorclouds.png" />
-		<div id="esovcpCPDisc_Tower">
-			<div id="esovcpCPDisc_Tower_Hover"></div>			
+		<div id="esovcpCPDisc_Tower" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Lord" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Lady" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Steed" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Ritual" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Atronach" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Apprentice" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Shadow" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Lover" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
 		</div>
 	</div>
 </div>
