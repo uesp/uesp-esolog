@@ -1138,6 +1138,33 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedSkills10pts' => array(
+					'displayName' => 'Mined Skills',
+					'displayNameSingle' => 'Mined Skill',
+					'record' => 'minedSkills',
+					'table' => 'minedSkills',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+			
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'minedSkillLines' => array(
 					'displayName' => 'Mined Skill Lines',
 					'displayNameSingle' => 'Mined Skill Line',
