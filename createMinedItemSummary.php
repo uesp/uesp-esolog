@@ -48,7 +48,7 @@ $RANGE_FIELDS = array(
 		"setBonusDesc5",
 );
 
-if (intval($TABLE_SUFFIX) <= 18)
+if (intval($TABLE_SUFFIX) <= 8)
 {
 	unset($FIELDS['tags']);
 }

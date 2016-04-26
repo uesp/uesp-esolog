@@ -59,8 +59,8 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743836443376300000; //v8pts
 	//const START_MINEITEM_TIMESTAMP = 4743888214748560000; //v9pts	
 	//const START_MINEITEM_TIMESTAMP = 4743853750546857984; //v8
-	  const START_MINEITEM_TIMESTAMP = 4743899415482204160; //v9	1457359600
-		  				//v10pts
+	//const START_MINEITEM_TIMESTAMP = 4743899415482204160; //v9	 1457359600
+	  const START_MINEITEM_TIMESTAMP = 4743917341752950784;	//v10pts 1461632912
 	
 	const MINEITEM_TABLESUFFIX = "10pts";
 	const SKILLS_TABLESUFFIX   = "10pts";
@@ -588,7 +588,7 @@ class EsoLogParser
 	public function __construct ()
 	{
 		
-		if (intval(self::MINEITEM_TABLESUFFIX) <= 18)
+		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
 		{
 			unset(self::$MINEDITEM_FIELDS['tags']);
 		}
@@ -3341,6 +3341,10 @@ class EsoLogParser
 		if (array_key_exists('reqVetLevel', $logEntry) && $logEntry['reqVetLevel'] > 0)
 		{
 			$logEntry['level'] = strval(intval($logEntry['reqVetLevel']) + 50);
+		}
+		elseif (array_key_exists('reqCP', $logEntry) && $logEntry['reqCP'] > 0)
+		{
+			$logEntry['level'] = strval(intval($logEntry['reqCP'])/10 + 50);
 		}
 		elseif (array_key_exists('reqLevel', $logEntry) && $logEntry['reqLevel'] > 0)
 		{
