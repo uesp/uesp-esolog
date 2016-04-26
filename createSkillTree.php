@@ -264,7 +264,7 @@ foreach($skills as $id => $skill)
 	$skillIndex = $db->real_escape_string($skill['skillIndex']);
 	$effectLines = $db->real_escape_string($skill['effectLines']);
 	
-	$query = "UPDATE minedSkills SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\", effectLines=\"$effectLines\"  WHERE id=$id;";
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\", effectLines=\"$effectLines\"  WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating skills table!\n" . $db->error . "\n" . $query);
 }
@@ -310,7 +310,7 @@ foreach($skillTree as $id => $skillTreeLine)
 		$abilityIndex = $thisSkill['skillIndex'];
 		$maxLevel = $thisSkill['maxLevel'];
 		
-		$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\")";
+		$query = "INSERT INTO skillTree$TABLE_SUFFIX(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\")";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into skillTree database!\n" . $db->error . "\n" . $query);
 		unset($thisSkill);
@@ -318,7 +318,7 @@ foreach($skillTree as $id => $skillTreeLine)
 }
 
 	/* Create skill passives */
-$query = "SELECT * FROM minedSkills WHERE isPassive=1 AND isPlayer=1;";
+$query = "SELECT * FROM minedSkills$TABLE_SUFFIX WHERE isPassive=1 AND isPlayer=1;";
 $passiveResult = $db->query($query);
 if (!$passiveResult) exit("ERROR: Database query error finding passive skills!\n" . $db->error . "\n" . $query);
 
@@ -576,14 +576,14 @@ foreach ($passiveSkills as $passive)
 	
 	$skillTypeName = $db->real_escape_string($passive['skillTypeName']);
 	
-	$query = "INSERT INTO skillTree(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\")";
+	$query = "INSERT INTO skillTree$TABLE_SUFFIX(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'$type','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\")";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error inserting into skillTree table!\n" . $db->error . "\n" . $query);
 	
 	$nextSkill = $passive['nextSkill'];
 	$prevSkill = $passive['prevSkill'];
 	
-	$query = "UPDATE minedSkills SET nextSkill=$nextSkill, prevSkill=$prevSkill WHERE id=$id;";
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET nextSkill=$nextSkill, prevSkill=$prevSkill WHERE id=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating minedSkill table!\n" . $db->error . "\n" . $query);
 }
