@@ -13,6 +13,7 @@ class EsoLogViewer
 	
 	const ENABLE_8PTS = false;
 	const ENABLE_9PTS = false;
+	const ENABLE_10PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -898,6 +899,35 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem10pts' => array(
+					'displayName' => 'Mined Items from PTS Update 10 (DB)',
+					'displayNameSingle' => 'Mined Item from PTS Update 10 (DB)',
+					'record' => 'minedItem10pts',
+					'table' => 'minedItem10pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 10 (Dark Brotherhood) as logged from the PTS server. Note that only CP160 (Gold) items have been exported.',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink10pts',
+							'link' => 'MakeMinedItemLink10pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -953,6 +983,35 @@ class EsoLogViewer
 							'materialLevelDesc' => 'RemoveTextFormats',
 					),
 						
+					'filters' => array(
+					),
+			),
+			
+			'minedItemSummary10pts' => array(
+					'displayName' => 'Mined Item Summaries from PTS Update 10 (DB)',
+					'displayNameSingle' => 'Mined Item Summary from Update 10 (DB)',
+					'record' => 'minedItemSummary10pts',
+					'table' => 'minedItemSummary10pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 10 (Dark Brotherhood) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink10pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+			
 					'filters' => array(
 					),
 			),
@@ -1020,6 +1079,30 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'record' => 'minedItem9pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'setSummary10pts' => array(
+					'displayName' => 'Set Summaries from PTS Update 10 (DB)',
+					'displayNameSingle' => 'Set Item Summary from Update 10 (DB)',
+					'record' => 'setSummary10pts',
+					'table' => 'setSummary10pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update 10 (Dark Brotherhood) as logged from the PTS server.",
+						
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'minedItem10pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -1360,6 +1443,20 @@ class EsoLogViewer
 			unset(self::$SEARCH_DATA['setSummary9pts']);
 		}
 		
+		if (self::ENABLE_10PTS)
+		{
+			self::$RECORD_TYPES['minedItem10pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary10pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary10pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary10pts']);
+			unset(self::$RECORD_TYPES['minedItem10pts']);
+			unset(self::$RECORD_TYPES['setSummary10pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary10pts']);
+			unset(self::$SEARCH_DATA['setSummary10pts']);
+		}		
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -1861,6 +1958,19 @@ class EsoLogViewer
 	}
 	
 	
+	public function MakeMinedItemLink10pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=10pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
 	public function MakeMinedItemSummaryLink ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
@@ -1879,6 +1989,17 @@ class EsoLogViewer
 		$itemId = $itemData['itemId'];
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=9pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink10pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=10pts\">" . $value . "</a>";
 		return $output;
 	}
 	
