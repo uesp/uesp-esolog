@@ -2,7 +2,7 @@
 
 $TABLE_SUFFIX = "10pts";
 $SOURCEITEMTABLE = "Summary";
-$KEEPONLYNEWSETS = true;
+$KEEPONLYNEWSETS = false;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
