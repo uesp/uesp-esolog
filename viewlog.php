@@ -1139,10 +1139,10 @@ class EsoLogViewer
 			),
 			
 			'minedSkills10pts' => array(
-					'displayName' => 'Mined Skills',
-					'displayNameSingle' => 'Mined Skill',
-					'record' => 'minedSkills',
-					'table' => 'minedSkills',
+					'displayName' => 'Mined Skills Update 10 PTS',
+					'displayNameSingle' => 'Mined Skill  Update 10 PTS',
+					'record' => 'minedSkills10pts',
+					'table' => 'minedSkills10pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
 			
@@ -1271,6 +1271,7 @@ class EsoLogViewer
 			'Books' => 'book',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
+			'Items DB-PTS' => 'minedItemSummary10pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'Quests' => 'quest',
@@ -1278,7 +1279,9 @@ class EsoLogViewer
 			'Quest Item' => 'questItem',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
+			'Sets DB-PTS' => 'setSummary10pts',
 			'Skills' => 'minedSkills',
+			'Skills DB-PTS' => 'minedSkills10pts',
 		);
 	
 	
@@ -1374,6 +1377,14 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary10pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -1398,7 +1409,23 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
+			'setSummary10pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
 			'minedSkills' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
+			'minedSkills10pts' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -1475,6 +1502,7 @@ class EsoLogViewer
 			self::$RECORD_TYPES['minedItem10pts']['fields'] = self::$MINEDITEM_FIELDS;
 			self::$RECORD_TYPES['setSummary10pts']['fields'] = self::$SETSUMMARY_FIELDS;
 			self::$RECORD_TYPES['minedItemSummary10pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedSkills10pts']['fields'] = self::$SKILLDUMP_FIELDS;
 		}
 		else
 		{
@@ -1483,6 +1511,7 @@ class EsoLogViewer
 			unset(self::$RECORD_TYPES['setSummary10pts']);
 			unset(self::$SEARCH_DATA['minedItemSummary10pts']);
 			unset(self::$SEARCH_DATA['setSummary10pts']);
+			unset(self::$SEARCH_DATA['minedSkills10pts']);
 		}		
 		
 		$this->InitDatabase();
