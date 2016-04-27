@@ -3068,7 +3068,8 @@ If you do not understand what this information means, or how to use this webpage
 				$output .= $this->GetViewRecordLink('ingredient', 'id', $result['id'], 'View Ingredient');
 				break;
 			default:
-				$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View ' . ucwords($result['type']));
+				//$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View ' . ucwords($result['type']));
+				$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View');
 				break;
 			case 'minedItem':
 				$output .= $this->GetViewRecordLink('minedItem', 'id', $result['id'], 'View Item');
