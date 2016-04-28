@@ -9,6 +9,7 @@ var ESO_ITEM_QUALITIES = {
 };
 
 
+	// TODO: Update 10 changes
 var ESO_ITEM_TRAITS = {
 		'-1': "",
 		18: "Divines",
@@ -65,6 +66,12 @@ function GetEsoItemLevelHeaderText(level, quality)
 
 function GetEsoItemLevelText(level)
 {
+	if (itemRawVersion >= 10) 
+	{
+		if (level > 50) return '50 CP ' + ((level - 50)*10);
+		return '' + level;
+	}
+	
 	if (level > 50) return 'V' + (level - 50);
 	return '' + level;
 }
@@ -72,6 +79,12 @@ function GetEsoItemLevelText(level)
 
 function GetEsoItemFullLevelText(level)
 {
+	if (itemRawVersion >= 10) 
+	{
+		if (level > 50) return 'Level 50 CP ' + ((level - 50)*10);
+		return 'Level ' + level;
+	}
+	
 	if (level > 50) return 'Rank V' + (level - 50);
 	return 'Level ' + level;
 }
@@ -79,10 +92,27 @@ function GetEsoItemFullLevelText(level)
 
 function GetEsoItemFullLevelHtml(level)
 {
-	if (level > 50) return "<img src='resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 50) + "</div>"
+	if (itemRawVersion >= 10) 
+	{
+		if (level > 50) level = 50; 
+		return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
+	}
+	
+	if (level > 50) return "<img src='http://esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 50) + "</div>"
 	return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
 }
 
+
+function GetEsoItemCPHtml(level)
+{
+	if (itemRawVersion >= 10) 
+	{
+		if (level <= 50) return "";
+		return "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP <div id='esoil_itemlevel'>" + ((level - 50)*10) + "</div>"
+	}
+
+	return "";
+}
 
 function MergeEsoItemData(itemData1, itemData2)
 {
@@ -238,6 +268,29 @@ function GetEsoItemTraitAbilityBlockHtml(itemData)
 }
 
 
+function UpdateEsoItemValue(text, display)
+{
+	if (itemRawVersion >= 10)
+	{
+		$('#esoil_itemnewvalue').text(text);
+		
+		if (display)
+			$('#esoil_itemnewvalueblock').show();
+		else
+			$('#esoil_itemnewvalueblock').hide();
+	}
+	else
+	{
+		$('#esoil_itemoldvalue').text(text);
+		
+		if (display)
+			$('#esoil_rightblock').show();
+		else
+			$('#esoil_rightblock').hide();
+	}
+}
+
+
 function UpdateEsoItemData(level, quality)
 {
 	var itemData = FindEsoItemData(level, quality);
@@ -250,15 +303,15 @@ function UpdateEsoItemData(level, quality)
 	$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level']));
 	$('#esoil_levelheader').text(GetEsoItemLevelHeaderText(level, quality));
 	
+	if (itemRawVersion >= 10) $('#esoil_itemrightblock').html(GetEsoItemCPHtml(itemData['level']));
+	
 	if (itemData['value'] > 0)
 	{
-		$('#esoil_itemvalue').text(itemData['value']);
-		$('#esoil_itemvalueblock').show();
+		UpdateEsoItemValue(itemData['value'], true);
 	}
 	else
 	{
-		$('#esoil_itemvalue').text(itemData['value']);
-		$('#esoil_itemvalueblock').hide();
+		UpdateEsoItemValue(itemData['value'], true);
 	}
 	
 	var leftBlockHtml = GetEsoItemLeftBlockHtml(itemData);

@@ -129,6 +129,7 @@ class CEsoItemLink
 	public $enchantRecord2 = null;
 	public $itemAllData = array();
 	public $version = "";
+	public $useUpdate10Display = false;
 	public $itemSimilarRecords = array();
 	public $itemSummary = array();
 	public $outputType = "html";
@@ -273,6 +274,8 @@ class CEsoItemLink
 					break;
 			}
 		}
+		
+		$this->useUpdate10Display = IsEsoVersionAtLeast($this->version, 10);
 		
 		return true;
 	}
@@ -842,14 +845,19 @@ class CEsoItemLink
 	
 	
 	private function MakeItemLevelSimpleString()
-	{
+	{		
 		$level = $this->itemRecord['level'];
 		if ($level <= 0) return "Level ?";
 		
 		if ($level > 50)
 		{
 			$level -= 50;
-			return "Rank V$level";
+			$cp = $level * 10;
+			
+			if ($this->useUpdate10Display)
+				return "Level 50 CP$cp";
+			else
+				return "Rank V$level";
 		}
 		
 		return "Level $level";
@@ -884,7 +892,11 @@ class CEsoItemLink
 		if ($level > 50) 
 		{
 			$level -= 50;
-			return "<img src='http://esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
+			
+			if ($this->useUpdate10Display)
+				return "LEVEL <div id='esoil_itemlevel'>50</div>";
+			else
+				return "<img src='http://esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
 		}
 		
 		return "LEVEL <div id='esoil_itemlevel'>$level</div>";
@@ -912,6 +924,37 @@ class CEsoItemLink
 		}
 		
 		return "";
+	}
+	
+	
+	private function MakeItemRightBlock()
+	{
+		if (!$this->useUpdate10Display) return $this->MakeItemOldValueBlock();
+
+		$level = $this->itemRecord['level'];
+		if ($level <= 50) return "";
+		
+		$cp = ($level - 50) * 10;
+		$output = "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP <div id='esoil_itemlevel'>$cp</div>";
+		
+		return $output;
+	}
+	
+	
+	private function MakeItemOldValueBlock()
+	{
+		$value = $this->itemRecord['value'];
+		$output = "VALUE <div id='esoil_itemoldvalue'>$value</div>";
+		return $output;
+	}
+	
+	
+	private function MakeItemNewValueBlock()
+	{
+			// TODO: Add gold icon
+		$value = $this->itemRecord['value'];
+		$output = "<div id='esoil_itemnewvalue'>$value</div> <img src='http://esoitem.uesp.net/resources/currency_gold_32.png' class='esoil_goldimg'>";
+		return $output;
 	}
 	
 	
@@ -1232,6 +1275,24 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetItemRightBlockDisplay()
+	{
+		if (!$this->useUpdate10Display) return $this->GetItemValueBlockDisplay();
+		
+		if ($this->itemRecord['level'] > 50) return "inline-block";
+		return "none";
+	}
+	
+	
+	private function GetItemNewValueBlockDisplay()
+	{
+		if (!$this->useUpdate10Display) return "none";
+	
+		if ($this->itemRecord['value'] > 0) return "inline-block";
+		return "none";
+	}
+	
+	
 	private function GetItemDataJson()
 	{
 		$output = json_encode($this->itemAllData);
@@ -1328,13 +1389,38 @@ class CEsoItemLink
 	
 	private function MakePotencyItemDescription()
 	{
+		if (!$this->useUpdate10Display) return MakeOldPotencyItemDescription;
+		
+		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
+		if ($glyphMinLevel == 0) return $this->itemRecord['description'];
+		
+		$minDesc = "";
+		
+		if ($glyphMinLevel < 50)
+		{
+			$minDesc = "level $glyphMinLevel";
+		}
+		else
+		{
+			$glyphMinLevel = 50;
+			$cp = ($glyphMinLevel - 50) * 10;
+			$minDesc = "level $glyphMinLevel <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP $cp";
+		}
+		
+		$desc = "Used to create glyphs of $minDesc.";
+		return $desc;		
+	}
+	
+	
+	private function MakeOldPotencyItemDescription()
+	{
 		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
 		$glyphMaxLevel = $this->itemRecord['glyphMaxLevel'];
 		if ($glyphMinLevel == 0 && $glyphMaxLevel == 0) return $this->itemRecord['description'];
-		
+	
 		$minDesc = "";
 		$maxDesc = "";
-		
+	
 		if ($glyphMinLevel < 50)
 		{
 			$minDesc = "level $glyphMinLevel";
@@ -1345,7 +1431,7 @@ class CEsoItemLink
 			if ($this->CheckVersionLessThan(9)) $glyphMinLevel += 1;
 			$minDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMinLevel";
 		}
-		
+	
 		if ($glyphMaxLevel < 50)
 		{
 			$maxDesc = "level $glyphMaxLevel";
@@ -1359,10 +1445,10 @@ class CEsoItemLink
 	
 		if ($minDesc == $maxDesc)
 			$desc = "Used to create glyphs of $minDesc.";
-		else
-			$desc = "Used to create glyphs of $minDesc to $maxDesc.";
-		
-		return $desc;		
+			else
+				$desc = "Used to create glyphs of $minDesc to $maxDesc.";
+	
+				return $desc;
 	}
 	
 	
@@ -1374,6 +1460,17 @@ class CEsoItemLink
 		if ($matDesc != "") $desc = $matDesc;
 		
 		return FormatEsoItemDescriptionText($desc);
+	}
+	
+	
+	private function GetItemRawVersion()
+	{
+		if ($this->version == "")
+			$suffix = GetEsoUpdateVersion();
+		else
+			$suffix = intval(GetEsoItemTableSuffix($this->version));
+		
+		return $suffix;
 	}
 	
 	
@@ -1398,6 +1495,8 @@ class CEsoItemLink
 				'{itemQuality}' => GetEsoItemQualityText($this->itemRecord['quality']),
 				'{iconLink}' => $this->MakeItemIconImageLink(),
 				'{itemLeftBlock}' => $this->MakeItemLeftBlock(),
+				'{itemRightBlock}' => $this->MakeItemRightBlock(),
+				'{itemNewValueBlock}' => $this->MakeItemNewValueBlock(), 
 				'{itemBar}' => $this->MakeItemBarLink(),
 				'{itemBarClass}' =>  $this->MakeItemBarClass(),
 				'{itemEnchantBlock}' => $this->MakeItemEnchantBlock(),
@@ -1407,7 +1506,8 @@ class CEsoItemLink
 				'{itemTraitAbilityBlock}' => $this->MakeItemTraitAbilityBlock(),
 				'{itemLeftBlockDisplay}' => $this->GetItemLeftBlockDisplay(),
 				'{itemLevelBlockDisplay}' => $this->GetItemLevelBlockDisplay(),
-				'{itemValueBlockDisplay}' => $this->GetItemValueBlockDisplay(),
+				'{itemRightBlockDisplay}' => $this->GetItemRightBlockDisplay(),
+				'{itemNewValueBlockDisplay}' => $this->GetItemNewValueBlockDisplay(),
 				'{itemCraftedBlock}' => $this->MakeItemCraftedBlock(),
 				'{itemTags}' => $this->MakeItemTagsBlock(),
 				'{itemDataJson}' => $this->GetItemDataJson(),
@@ -1421,6 +1521,7 @@ class CEsoItemLink
 				'{itemLinkURL}' => $this->GetItemLinkURL(),
 				'{viewSumDataExtraQuery}' => $this->GetSummaryDataExtraQuery(),
 				'{itemRawDataList}' => $this->MakeItemRawDataList(),
+				'{rawItemVersion}' => $this->GetItemRawVersion(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);

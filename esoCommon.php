@@ -9,6 +9,7 @@ const UESP_POWERTYPE_WEAPONDAGGER  = -54;
 const UESP_POWERTYPE_ARMORTYPE     = -55;
 
 
+	// TODO: Update 10 changes
 $ESO_ITEMTRAIT_FULLTEXTS = array(
 		-1 => "",
 		18 => "Armor Divines",
@@ -50,7 +51,7 @@ $ESO_ATTRIBUTES = array(
 );
 
 
-
+	// TODO: Update 10 changes
 $ESO_ITEMTRAIT_TEXTS = array(
 		-1 => "",
 		18 => "Divines",
@@ -1310,6 +1311,23 @@ function MakeEsoIconLink($icon)
 {
 	if ($icon[0] == '/') return "http://esoicons.uesp.net$icon";
 	return "http://esoicons.uesp.net/$icon";
+}
+
+
+function IsEsoVersionAtLeast($version, $checkVersion)
+{
+	if ($version == "")
+		$suffix = GetEsoUpdateVersion();
+	else
+		$suffix = intval(GetEsoItemTableSuffix($version));
+	
+	return ($suffix >= $checkVersion);
+}
+
+
+function GetEsoUpdateVersion()
+{
+	return 9;	
 }
 
 
