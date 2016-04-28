@@ -1133,7 +1133,7 @@ class CEsoItemLink
 	{
 		$trait = $this->itemRecord['trait'];
 		$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
-		$traitName = strtoupper(GetEsoItemTraitText($trait));
+		$traitName = strtoupper(GetEsoItemTraitText($trait, $this->version));
 		
 		if ($trait <= 0) return "";
 		return "<div class='esoil_white esoil_small'>$traitName</div><br />$traitDesc";

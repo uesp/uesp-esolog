@@ -418,7 +418,7 @@ class CEsoDumpMinedItems {
 	
 	public function MakeItemTraitText($trait, $record)
 	{
-		$traitText = GetEsoItemTraitText($trait);
+		$traitText = GetEsoItemTraitText($trait, $this->version);
 		if (!$this->useExTraitName) return $traitText;
 		
 		$matches = array();

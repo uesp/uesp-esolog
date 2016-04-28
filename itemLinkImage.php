@@ -1348,7 +1348,7 @@ class CEsoItemLinkImage
 		if ($trait <= 0) return 0;
 		
 		$printData = array();
-		$this->AddPrintData($printData,strtoupper(GetEsoItemTraitText($trait)), $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData,strtoupper(GetEsoItemTraitText($trait, $this->version)), $this->printOptionsSmallWhite, array('br' => true));
 		$this->AddPrintData($printData, $this->itemRecord['traitDesc'], $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;

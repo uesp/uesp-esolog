@@ -344,7 +344,7 @@ class CEsoViewMinedItems
 			
 			if ($item['trait'] > 0)
 			{
-				$traitName = GetEsoItemTraitText($item['trait']);
+				$traitName = GetEsoItemTraitText($item['trait'], $this->version);
 				$output .= "<li><a href='itemLink.php?itemid=$itemId{$this->extraQueryString}'>$name ($traitName)</a></li>";
 			}
 			else
