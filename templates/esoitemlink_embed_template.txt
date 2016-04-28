@@ -12,7 +12,7 @@
 		<div id="esoil_datablock">
 			<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
 			<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
-			<div id="esoil_itemvalueblock" style="display:{itemValueBlockDisplay};">VALUE <div id="esoil_itemvalue">{itemValue}</div></div>
+			<div id="esoil_itemrightblock" style="display:{itemRightBlockDisplay};">{itemRightBlock}</div>
 		</div>
 		<div id="esoil_itembar" class="{itemBarClass}">{itemBar}</div>
 		<div id="esoil_itemabilityblock">{itemAbilityBlock}</div>
@@ -22,6 +22,7 @@
 		<div id="esoil_itemsetblock">{itemSetBlock}</div>
 		<div id="esoil_itemdesc">{itemDesc}</div>
 		<div id="esoil_itemtags">{itemTags}</div>
-		<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>		
+		<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>
+		<div id="esoil_itemnewvalueblock" style="display:{itemNewValueBlockDisplay}">{itemNewValueBlock}</div>
 	</div>
 </div>

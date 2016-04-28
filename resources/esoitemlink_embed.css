@@ -121,7 +121,7 @@
 	text-align: center;
 }
 
-#esoil_itemvalueblock {
+#esoil_itemrightblock {
 	text-align: center;
 }
 
@@ -129,14 +129,14 @@
 	vertical-align: middle;
 }
 
-#esoil_itemvalue, #esoil_itemlevel, #esoil_itemleft {
+#esoil_itemoldvalue, #esoil_itemlevel, #esoil_itemleft {
 	color: #fff;
 	display: inline;
 	font-size: 1.6em;
 	margin-left: 4px;
 }
 
-#esoil_itemleftblock, #esoil_itemvalueblock, #esoil_itemlevelblock {
+#esoil_itemleftblock, #esoil_itemrightblock, #esoil_itemlevelblock {
 	color: #C5C29E;
 	display: inline-block;
 	font-size: 0.9em;
@@ -146,6 +146,30 @@
 	line-height: 1.6em;
 	vertical-align: middle;
 	white-space: nowrap;
+}
+
+#esoil_itemnewvalueblock {
+	width: 100%;
+	text-align: center;
+}
+
+#esoil_itemnewvalue {
+	font-size: 1em;
+	font-weight: normal;
+	color: white;
+	display: inline-block;
+}
+
+.esoil_cpimg {
+	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+}
+
+.esoil_goldimg {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
 }
 
 #esoil_itemdesc {
