@@ -951,7 +951,6 @@ class CEsoItemLink
 	
 	private function MakeItemNewValueBlock()
 	{
-			// TODO: Add gold icon
 		$value = $this->itemRecord['value'];
 		$output = "<div id='esoil_itemnewvalue'>$value</div> <img src='http://esoitem.uesp.net/resources/currency_gold_32.png' class='esoil_goldimg'>";
 		return $output;
