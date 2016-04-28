@@ -160,7 +160,7 @@ class EsoItemSearcher
 	{
 		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTYPE_TEXTS, $ESO_ITEMEQUIPTYPE_TEXTS;
 		global $ESO_ITEMARMORTYPE_TEXTS, $ESO_ITEMWEAPONTYPE_TEXTS, $ESO_ITEMQUALITY_TEXTS;
-		global $ESO_ITEMSTYLE_TEXTS;
+		global $ESO_ITEMSTYLE_TEXTS, $ESO_ITEMTRAIT10_TEXTS;
 		
 		self::$ESOIS_STYLES = self::MakeUniqueArray($ESO_ITEMSTYLE_TEXTS);
 		self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT_TEXTS);
@@ -287,11 +287,14 @@ class EsoItemSearcher
 	
 	public function GetItemTraitValue($text)
 	{
-		global $ESO_ITEMTRAIT_TEXTS;
-	
-		$value = array_search($text, $ESO_ITEMTRAIT_TEXTS);
+		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTRAIT10_TEXTS;
+		
+		if (IsEsoVersionAtLeast($this->version, 10))
+			$value = array_search($text, $ESO_ITEMTRAIT10_TEXTS);
+		else
+			$value = array_search($text, $ESO_ITEMTRAIT_TEXTS);
+		
 		if ($value === FALSE) return -1;
-	
 		return $value;
 	}
 	
@@ -654,11 +657,11 @@ class EsoItemSearcher
 		if ($traitDesc != "")
 		{
 			//$output .= GetEsoItemTraitText($result['trait']) . ": " . $traitDesc . ", ";
-			$output .= GetEsoItemTraitText($result['trait']) . ", ";
+			$output .= GetEsoItemTraitText($result['trait'], $this->version) . ", ";
 		}
 		else if ($trait > 0)
 		{
-			$output .= GetEsoItemTraitText($result['trait']) . ", ";
+			$output .= GetEsoItemTraitText($result['trait'], $this->version) . ", ";
 		}
 		
 		if ($enchantDesc != "" && $result['enchantName'] != "")
@@ -823,6 +826,12 @@ class EsoItemSearcher
 		$this->finalItemQuality = $this->GetItemQualityValue($this->formValues['quality']);
 		$this->finalItemLevel   = $this->GetItemLevelValue($this->formValues['level']);
 		if ($this->finalItemLevel == 0) $this->finalItemLevel = -1;
+		
+		if (IsEsoVersionAtLeast($this->version, 10))
+		{
+			global $ESO_ITEMTRAIT10_TEXTS;
+			self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT10_TEXTS);
+		}
 	}
 	
 	
