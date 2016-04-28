@@ -1086,7 +1086,7 @@ class CEsoItemLinkImage
 	
 	public function OutputItemLevelBlock($image, $y)
 	{
-		//if (!$this->ShouldShowLevel()) return 0;
+		if (IsEsoVersionAtLeast($this->version, 10)) return $this->OutputItemNewLevelBlock($image, $y);
 		
 		$level = $this->itemRecord['level'];
 		$levelImageWidth = 0;
@@ -1128,27 +1128,109 @@ class CEsoItemLinkImage
 		
 		$this->PrintTextAA($image, $this->medFontSize, $x, $y + $extents2[1] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
 		$x += $extents1[0];
-		$this->PrintTextAA($image, $this->bigFontSize, $x, $y + $extents2[1] + 4, $this->white, self::ESOIL_BOLDFONT_FILE, $levelText);
+		return $this->PrintTextAA($image, $this->bigFontSize, $x, $y + $extents2[1] + 4, $this->white, self::ESOIL_BOLDFONT_FILE, $levelText);
 	}
 	
 	
-	public function OutputItemValueBlock($image, $y)
+	public function OutputItemNewLevelBlock($image, $y)
+	{
+		$level = $this->itemRecord['level'];
+		if ($level > 50) $level = 50;
+		
+		$printData = array();
+		$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
+	
+		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, $label);
+		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $levelText);
+		$totalWidth = $extents1[0] + $extents2[0];
+		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2 + $this->levelBlockXOffset;
+		
+		return $this->PrintDataText($image, $printData, $x, $y + $extents2[1] + 4, 'right');
+	}
+	
+	
+	public function OutputItemRightBlock($image, $y)
+	{
+		if (!IsEsoVersionAtLeast($this->version, 10)) return $this->OutputItemOldValueBlock($image, $y);
+		
+		$level = $this->itemRecord['level'];
+		if ($level <= 50) return 0;
+		
+		$cp = ($level - 50) * 10;
+		
+		$imageFile = "./resources/champion_icon.png";
+		$cpImage = imagecreatefrompng($imageFile);
+		
+		$printData = array();
+		$this->AddPrintData($printData, "CP ", $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $cp, $this->printOptionsLargeWhite);
+		
+		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, "CP ");
+		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $cp);
+		$totalWidth = $extents1[0] + $extents2[0];
+		
+		$x = self::ESOIL_IMAGE_WIDTH - $this->dataBlockMargin;
+		$x = $x + $this->levelBlockXOffset;
+		
+		if ($cpImage != null)
+		{
+			imageantialias($cpImage, true);
+			imagealphablending($cpImage, true);
+			imagesavealpha($cpImage, true);
+			imagecopyresampled($image, $cpImage, $x - $totalWidth - 26, $y + 2, 0, 0, 24, 24, imagesx($cpImage), imagesy($cpImage));
+		}		
+		
+		return $this->PrintDataText($image, $printData, $x, $y + 4, 'right');
+	}
+	
+	
+	public function OutputItemOldValueBlock($image, $y)
 	{
 		$value = $this->itemRecord['value'];
-		if ($value <= 0) return;
+		if ($value <= 0) return 0;
 		
 		$printData = array();
 		$this->AddPrintData($printData, "VALUE ", $this->printOptionsMedBeige);
 		$this->AddPrintData($printData, $value, $this->printOptionsLargeWhite);
 		
 		if ($this->showSummary)
-			$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - 10;
+			$x = self::ESOIL_IMAGE_WIDTH - 10;
 		else
-			$x = self::ESOIL_IMAGE_WIDTH - $totalWidth - $this->dataBlockMargin;
+			$x = self::ESOIL_IMAGE_WIDTH - $this->dataBlockMargin;
 		
 		$x = $x + $this->levelBlockXOffset;
 		
-		$this->PrintDataText($image, $printData, $x, $y + 4, 'right');
+		return $this->PrintDataText($image, $printData, $x, $y + 4, 'right');
+	}
+	
+	
+	private function OutputItemNewValueBlock($image, $y)
+	{
+		$value = $this->itemRecord['value'];
+		if ($value <= 0) return 0;
+		
+		$label = "$value";
+		
+		$imageFile = "./resources/currency_gold_32.png";
+		$goldImage = imagecreatefrompng($imageFile);
+			
+		if ($goldImage != null)
+		{
+			imageantialias($goldImage, true);
+			imagealphablending($goldImage, true);
+			imagesavealpha($goldImage, true);
+			imagecopyresampled($image, $goldImage, self::ESOIL_IMAGE_WIDTH/2 + 4, $y - 2, 0, 0, 16, 16, imagesx($goldImage), imagesy($goldImage));
+		}
+		else
+		{
+			$label = "$value gp";
+		}
+		
+		$printData = array();
+		$this->AddPrintData($printData, $label, $this->printOptionsSmallWhite, array('br' => true));
+		
+		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'right') + $this->blockMargin;
 	}
 	
 	
@@ -1187,7 +1269,7 @@ class CEsoItemLinkImage
 		if ($this->showSummary)
 			$x = 10;
 		else
-			$x = $this->dataBlockMargin;
+		$x = $this->dataBlockMargin;
 		
 		$printData = array();
 		$this->AddPrintData($printData, $label, $this->printOptionsMedBeige);
@@ -1516,7 +1598,7 @@ class CEsoItemLinkImage
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
 	
-	
+		
 	private function OutputItemTagsBlock($image, $y)
 	{
 		if ($this->itemRecord['tags'] == "") return 0;
@@ -1674,7 +1756,7 @@ class CEsoItemLinkImage
 		$y += 6;
 		$this->OutputItemLeftBlock($image, $y);
 		$this->OutputItemLevelBlock($image, $y);
-		$this->OutputItemValueBlock($image, $y);
+		$this->OutputItemRightBlock($image, $y);
 		
 		$y += 40;
 		$y += $this->OutputItemBar($image, $y);
@@ -1688,6 +1770,12 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemDescription($image, $y) + 4;
 		$y += $this->OutputItemTagsBlock($image, $y);
 		$y += $this->OutputItemCraftedBlock($image, $y);
+		
+		if (IsEsoVersionAtLeast($this->version, 10))
+		{
+			$y += $this->OutputItemNewValueBlock($image, $y);
+		}
+			
 		
 		$this->OutputItemStyle($image, $y);
 		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");
