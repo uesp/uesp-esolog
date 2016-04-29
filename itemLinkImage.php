@@ -1137,7 +1137,9 @@ class CEsoItemLinkImage
 	
 	public function OutputItemNewLevelBlock($image, $y)
 	{
-		$level = $this->itemRecord['level'];
+		$level = intval($this->itemRecord['level']);
+		if ($level <= 0) return 0;
+		
 		if ($level > 50) $level = 50;
 		
 		$printData = array();
