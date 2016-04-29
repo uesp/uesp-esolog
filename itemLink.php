@@ -1388,7 +1388,7 @@ class CEsoItemLink
 	
 	private function MakePotencyItemDescription()
 	{
-		if (!$this->useUpdate10Display) return MakeOldPotencyItemDescription;
+		if (!$this->useUpdate10Display) return $this->MakeOldPotencyItemDescription();
 		
 		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
 		if ($glyphMinLevel == 0) return $this->itemRecord['description'];
@@ -1401,12 +1401,11 @@ class CEsoItemLink
 		}
 		else
 		{
-			$glyphMinLevel = 50;
 			$cp = ($glyphMinLevel - 50) * 10;
-			$minDesc = "level $glyphMinLevel <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP $cp";
+			$minDesc = "level 50 <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimgsmall'>CP $cp";
 		}
 		
-		$desc = "Used to create glyphs of $minDesc.";
+		$desc = "Used to create glyphs of $minDesc and higher.";
 		return $desc;		
 	}
 	
@@ -1444,10 +1443,10 @@ class CEsoItemLink
 	
 		if ($minDesc == $maxDesc)
 			$desc = "Used to create glyphs of $minDesc.";
-			else
-				$desc = "Used to create glyphs of $minDesc to $maxDesc.";
+		else
+			$desc = "Used to create glyphs of $minDesc to $maxDesc.";
 	
-				return $desc;
+		return $desc;
 	}
 	
 	

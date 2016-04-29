@@ -88,6 +88,7 @@ class CEsoItemLinkImage
 	public $enchantIntLevel2 = -1;
 	public $enchantIntType2 = -1;
 	public $version = "";
+	public $useUpdate10Display = false;
 	public $noCache = false;
 	public $showSummary = false;
 	public $itemRecord = array();
@@ -272,6 +273,8 @@ class CEsoItemLinkImage
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
+				
+		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Display = true;
 		
 		return true;
 	}
@@ -1086,7 +1089,7 @@ class CEsoItemLinkImage
 	
 	public function OutputItemLevelBlock($image, $y)
 	{
-		if (IsEsoVersionAtLeast($this->version, 10)) return $this->OutputItemNewLevelBlock($image, $y);
+		if ($this->useUpdate10Display) return $this->OutputItemNewLevelBlock($image, $y);
 		
 		$level = $this->itemRecord['level'];
 		$levelImageWidth = 0;
@@ -1152,7 +1155,7 @@ class CEsoItemLinkImage
 	
 	public function OutputItemRightBlock($image, $y)
 	{
-		if (!IsEsoVersionAtLeast($this->version, 10)) return $this->OutputItemOldValueBlock($image, $y);
+		if (!$this->useUpdate10Display) return $this->OutputItemOldValueBlock($image, $y);
 		
 		$level = $this->itemRecord['level'];
 		if ($level <= 50) return 0;
@@ -1517,6 +1520,30 @@ class CEsoItemLinkImage
 	
 	private function MakePotencyItemDescription()
 	{
+		if (!$this->useUpdate10Display) return $this->MakeOldPotencyItemDescription();
+		
+		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
+		if ($glyphMinLevel == 0) return $this->itemRecord['description'];
+		
+		$minDesc = "";
+		
+		if ($glyphMinLevel <= 50)
+		{
+			$minDesc = "level $glyphMinLevel";
+		}
+		else
+		{
+			$cp = ($glyphMinLevel - 50) * 10;
+			$minDesc = "level 50 CP$cp";
+		}
+		
+		$desc = "Used to create glyphs of $minDesc and higher.";
+		return $desc;
+	}
+	
+	
+	private function MakeOldPotencyItemDescription()
+	{
 		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
 		$glyphMaxLevel = $this->itemRecord['glyphMaxLevel'];
 		if ($glyphMinLevel == 0 && $glyphMaxLevel == 0) return $this->itemRecord['description'];
@@ -1532,7 +1559,7 @@ class CEsoItemLinkImage
 		{
 			$glyphMinLevel = $glyphMinLevel - 50;
 			if ($this->CheckVersionLessThan(9)) $glyphMinLevel += 1;
-			$minDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMinLevel";
+			$minDesc = "VR$glyphMinLevel";
 		}
 		
 		if ($glyphMaxLevel < 50)
@@ -1543,7 +1570,7 @@ class CEsoItemLinkImage
 		{
 			$glyphMaxLevel = $glyphMaxLevel - 50;
 			if ($this->CheckVersionLessThan(9)) $glyphMaxLevel += 1;
-			$maxDesc = "|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|trank $glyphMaxLevel";
+			$maxDesc = "VR$glyphMaxLevel";
 		}
 	
 		if ($minDesc == $maxDesc)
@@ -1771,11 +1798,10 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemTagsBlock($image, $y);
 		$y += $this->OutputItemCraftedBlock($image, $y);
 		
-		if (IsEsoVersionAtLeast($this->version, 10))
+		if ($this->useUpdate10Display)
 		{
 			$y += $this->OutputItemNewValueBlock($image, $y);
-		}
-			
+		}			
 		
 		$this->OutputItemStyle($image, $y);
 		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");
