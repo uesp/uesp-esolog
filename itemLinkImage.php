@@ -33,6 +33,7 @@ class CEsoItemLinkImage
 	const ESOIL_REGULARFONT_FILE = "./resources/esofontregular-webfont.ttf";
 	const ESOIL_BOLDFONT_FILE = "./resources/esofontbold-webfont.ttf";
 	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
+	const ESOIL_LEVELBLOCK_CENTERXAMT = 70;
 	
 	const ESOIL_POTION_MAGICITEMID = 1234567;
 	const ESOIL_ENCHANT_ITEMID = 23662;
@@ -1123,11 +1124,13 @@ class CEsoItemLinkImage
 		$totalWidth = $levelImageWidth + $extents1[0] + $extents2[0];
 		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2 + $this->levelBlockXOffset;
 		
+		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
+		
 		if ($levelImage)
 		{
 			imagecopy($image, $levelImage, $x, $y, 0, 0, imagesx($levelImage), imagesy($levelImage));
 			$x += $levelImageWidth;
-		}
+		}		
 		
 		$this->PrintTextAA($image, $this->medFontSize, $x, $y + $extents2[1] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
 		$x += $extents1[0];
@@ -1151,7 +1154,54 @@ class CEsoItemLinkImage
 		$totalWidth = $extents1[0] + $extents2[0];
 		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2 + $this->levelBlockXOffset;
 		
+		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
+		
 		return $this->PrintDataText($image, $printData, $x, $y + $extents2[1] + 4, 'right');
+	}
+	
+	
+	private function GetHasItemBlockDisplay()
+	{
+	
+		switch ($this->itemRecord['type'])
+		{
+			case 2:
+				$equipType = $this->itemRecord['equipType'];
+				
+				if ($equipType == 2 || $equipType == 12) 
+					$display = false;
+				else
+					$display = true;
+				
+				break;
+			case 1:
+				$display = true;
+				break;
+		}
+		
+		if ($display) return true;
+
+		$level = $this->itemRecord['level'];
+		if ($level <= 0) return false;
+		
+		return true;
+	}
+	
+	
+	private function GetItemLeftBlockDisplay()
+	{
+	
+		switch ($this->itemRecord['type'])
+		{
+			case 2:
+				$equipType = $this->itemRecord['equipType'];
+				if ($equipType == 2 || $equipType == 12) return false;
+				return true;
+			case 1:
+				return true;
+		}
+	
+		return false;
 	}
 	
 	
@@ -1177,6 +1227,8 @@ class CEsoItemLinkImage
 		
 		$x = self::ESOIL_IMAGE_WIDTH - $this->dataBlockMargin;
 		$x = $x + $this->levelBlockXOffset;
+		
+		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
 		
 		if ($cpImage != null)
 		{
@@ -1205,6 +1257,8 @@ class CEsoItemLinkImage
 			$x = self::ESOIL_IMAGE_WIDTH - $this->dataBlockMargin;
 		
 		$x = $x + $this->levelBlockXOffset;
+		
+		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
 		
 		return $this->PrintDataText($image, $printData, $x, $y + 4, 'right');
 	}
@@ -1783,12 +1837,15 @@ class CEsoItemLinkImage
 		$y += 6;
 		$this->OutputCenterImage($image, "./resources/eso_item_hr.png", $y);
 		$y += 6;
-		$this->OutputItemLeftBlock($image, $y);
-		$this->OutputItemLevelBlock($image, $y);
-		$this->OutputItemRightBlock($image, $y);
 		
-		$y += 40;
-		$y += $this->OutputItemBar($image, $y);
+		if ($this->GetHasItemBlockDisplay())
+		{
+			$this->OutputItemLeftBlock($image, $y);
+			$this->OutputItemLevelBlock($image, $y);
+			$this->OutputItemRightBlock($image, $y);
+			$y += 40;
+			$y += $this->OutputItemBar($image, $y);
+		}
 		
 		$y += $this->OutputItemAbilityBlock($image, $y);
 		$y += $this->OutputItemEnchantBlock($image, $y);
