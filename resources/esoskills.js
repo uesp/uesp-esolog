@@ -575,6 +575,24 @@ function UpdateEsoSkillTooltipDescription()
 
 function ComputeEsoSkillCost(maxCost, level)
 {
+	if (!g_SkillUseUpdate10Cost) return ComputeEsoSkillCostOld(maxCost, level)
+	maxCost = parseInt(maxCost);
+	
+	if (level == null) 
+	{
+		var inputValues = GetEsoSkillInputValues()
+		level = inputValues.level;
+	}
+	
+	if (level < 1) level = 1;
+	if (level >= 66) return maxCost;
+	
+	return Math.round(maxCost * level / 72.0 + maxCost / 12.0);
+}
+
+
+function ComputeEsoSkillCostOld(maxCost, level)
+{
 	maxCost = parseInt(maxCost);
 	
 	if (level == null) 

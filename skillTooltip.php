@@ -33,6 +33,7 @@ class CEsoSkillTooltip
 	public $skillMaxStat = 20000;
 	public $skillMaxDamage = 2000;
 	public $version = "";
+	public $useUpdate10Costs = false;
 	
 	public $skillData = array();
 	
@@ -103,6 +104,8 @@ class CEsoSkillTooltip
 		
 		$this->skillMaxStat = max($this->skillMagicka, $this->skillStamina);
 		$this->skillMaxDamage = max($this->skillSpellDamage, $this->skillWeaponDamage);
+		
+		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
 	
 		return true;
 	}
@@ -202,6 +205,17 @@ class CEsoSkillTooltip
 	
 	
 	public function ComputeEsoSkillCost($maxCost, $level)
+	{
+		if (!$this->useUpdate10Costs) return $this->ComputeEsoSkillCostOld($maxCost, $level);
+		
+		if ($level < 1) $level = 1;
+		if ($level >= 66) return $maxCost;
+	
+		return round($maxCost * $level / 72.0 + $maxCost / 12.0);
+	}
+	
+	
+	public function ComputeEsoSkillCostOld($maxCost, $level)
 	{
 		if ($level < 1) $level = 1;
 		if ($level >= 66) return $maxCost;
