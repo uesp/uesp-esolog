@@ -324,11 +324,18 @@ class CEsoSkillTooltip
 		if ($skillType != 'passive')
 		{
 			$costStr = "$cost ";
+			$costClass = "";
 			
 			if ($mechanic == 0)
+			{
 				$costStr .= "Magicka";
+				$costClass = "esovsMagicka";
+			}
 			else if ($mechanic == 6)
+			{
 				$costStr .= "Stamina";
+				$costClass = "esovsStamina";
+			}
 				
 			if ($channelTime > 0)
 			{
@@ -379,7 +386,7 @@ class CEsoSkillTooltip
 				
 			if ($cost != '')
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$costStr</div>";
+				$output .= "<div class='esoSkillPopupTooltipValue $costClass'>$costStr</div>";
 				$output .= "<div class='esoSkillPopupTooltipName'>Cost</div>";
 			}
 				
