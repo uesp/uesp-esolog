@@ -333,6 +333,7 @@ class EsoLogSubmitter
 		
 			$this->parseCharacterBuildData($object["buildData"]);
 			$this->parseCharacterData($object["bankData"]);
+			$this->parseCharacterData($object["craftBagData"]);
 		}
 		else
 		{
