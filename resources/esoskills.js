@@ -195,13 +195,22 @@ function GetEsoSkillTooltipHtml(skillData)
 	{
 		var realCost = ComputeEsoSkillCost(cost, null);
 		var costStr = "" + realCost + " ";
+		var costClass = "";
 		
 		if (mechanic == 0)
+		{
 			costStr += "Magicka";
+			costClass = "esovsMagicka";
+		}
 		else if (mechanic == 6)
+		{
 			costStr += "Stamina";
+			costClass = "esovsStamina";
+		}
 		else
+		{
 			costStr = cost;
+		}
 		
 		if (channelTime > 0) 
 		{
@@ -252,7 +261,7 @@ function GetEsoSkillTooltipHtml(skillData)
 		
 		if (cost != '')
 		{
-			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipCost'>" + costStr + "</div>";
+			output += "<div class='esovsSkillTooltipValue " + costClass + "' id='esovsSkillTooltipCost'>" + costStr + "</div>";
 			output += "<div class='esovsSkillTooltipName'>Cost</div>";			
 		}
 		

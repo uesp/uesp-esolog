@@ -566,6 +566,7 @@ class CEsoViewSkills
 		$type = $baseAbility['type'];
 		$icon = $this->GetIconURL($baseAbility['icon']);
 		$effectLines = $abilityData['effectLines'];
+		$mechanic = $baseAbility['mechanic'];
 
 		$cost = $abilityData['cost'];
 		$learnedLevel = $abilityData['learnedLevel'];
@@ -611,7 +612,7 @@ class CEsoViewSkills
 			else
 				$output .= "<div class='esovsAbilityBlockPlus'></div>";
 		}
-
+		
 		$output .= "<div class='$iconClass'><img src='$icon' />";
 		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
 		$output .= "</div>";
