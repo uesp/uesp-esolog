@@ -70,5 +70,6 @@
 	var g_SkillHighlightType = "{skillHighlightType}";
 	var g_SkillHighlightLine = "{skillHighlightLine}";
 	var g_SkillShowAll = {skillShowAll};
+	var g_SkillUseUpdate10Cost = {useUpdate10Costs};
 </script>
 <div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>

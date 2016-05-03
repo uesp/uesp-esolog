@@ -22,6 +22,7 @@ class CEsoViewSkills
 	public $highlightSkillLine = "";
 
 	public $isFirstSkill = true;
+	public $useUpdate10Costs = false;
 
 	public $skills = array();
 	public $skillIds = array();
@@ -280,6 +281,8 @@ class CEsoViewSkills
 		if (array_key_exists('stamina', $this->inputParams)) $this->skillStamina = intval($this->inputParams['stamina']);
 		if (array_key_exists('spelldamage', $this->inputParams)) $this->skillSpellDamage = intval($this->inputParams['spelldamage']);
 		if (array_key_exists('weapondamage', $this->inputParams)) $this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
+		
+		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
 
 		return true;
 	}
@@ -739,6 +742,7 @@ class CEsoViewSkills
 				'{weaponDamage}' => $this->skillWeaponDamage,
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
 				'{updateDate}' => $this->GetUpdateDate(),
+				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
