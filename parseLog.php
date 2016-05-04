@@ -116,6 +116,18 @@ class EsoLogParser
 	const RESOURCE_REAGENT = 6;
 	const RESOURCE_INGREDIENT = 7;
 	
+	
+	public static $TABLES_WITH_IDFIELD = array(
+			"minedSkills",
+			"minedSkills8",
+			"minedSkills8pts",
+			"minedSkills9",
+			"minedSkills9pts",
+			"minedSkills10pts",
+			"collectibles",
+	);
+	
+	
 	public static $RESOURCE_TARGETS = array(
 		'Iron Ore'				=> self::RESOURCE_ORE,
 		'High Iron Ore'			=> self::RESOURCE_ORE,
@@ -585,6 +597,40 @@ class EsoLogParser
 	);
 	
 	
+	public static $COLLECTIBLE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'nickname' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'itemLink' => self::FIELD_STRING,
+			'hint' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'backgroundIcon' => self::FIELD_STRING,
+			'lockedIcon' => self::FIELD_STRING,
+			'categoryType' => self::FIELD_INT,
+			'zoneIndex' => self::FIELD_INT,
+			'categoryIndex' => self::FIELD_INT,
+			'subCategoryIndex' => self::FIELD_INT,
+			'collectibleIndex' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
+			'subCategoryName' => self::FIELD_STRING,
+			'isUnlocked' => self::FIELD_INT,
+			'isActive' => self::FIELD_INT,
+			'isSlottable' => self::FIELD_INT,
+			'isUsable' => self::FIELD_INT,
+			'isRenameable' => self::FIELD_INT,
+			'isPlaceholder' => self::FIELD_INT,
+			'isHidden' => self::FIELD_INT,
+			'hasAppearance' => self::FIELD_INT,
+			'visualPriority' => self::FIELD_INT,
+			'helpCategoryIndex' => self::FIELD_INT,
+			'helpIndex' => self::FIELD_INT,
+			'questName' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'cooldown' => self::FIELD_INT,
+	);
+	
+	
 	public function __construct ()
 	{
 		
@@ -907,7 +953,7 @@ class EsoLogParser
 		
 		foreach ($fieldDef as $key => $value)
 		{
-			if ($key === 'id' && $table != "minedSkills".self::SKILLS_TABLESUFFIX) continue;
+			if ($key === 'id' && !in_array($table, self::$TABLES_WITH_IDFIELD)) continue;
 			
 			if (!array_key_exists($key, $record))
 			{
@@ -970,6 +1016,15 @@ class EsoLogParser
 		if ($book === false) return false;
 		
 		return $book;
+	}
+	
+	
+	public function LoadCollectible ($id)
+	{
+		$record = $this->loadRecord('collectibles', 'id', $id, self::$COLLECTIBLE_FIELDS);
+		if ($record === false) return false;
+	
+		return $record;
 	}
 	
 	
@@ -1126,6 +1181,12 @@ class EsoLogParser
 	public function SaveIngredient (&$record)
 	{
 		return $this->saveRecord('ingredient', $record, 'id', self::$INGREDIENT_FIELDS);
+	}
+	
+	
+	public function SaveCollectible (&$record)
+	{
+		return $this->saveRecord('collectibles', $record, 'id', self::$COLLECTIBLE_FIELDS);
 	}
 	
 	
@@ -1621,6 +1682,51 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create cpSkillDescriptions table!");
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cpSkills table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS collectibles(
+			id BIGINT NOT NULL PRIMARY KEY,
+			name TINYTEXT NOT NULL,
+			nickname TINYTEXT NOT NULL,
+			description MEDIUMTEXT NOT NULL,
+			itemLink TINYTEXT NOT NULL,
+			hint MEDIUMTEXT NOT NULL,
+			icon TINYTEXT NOT NULL,
+			backgroundIcon TINYTEXT NOT NULL,
+			lockedIcon TINYTEXT NOT NULL,
+			categoryType TINYINT NOT NULL,
+			zoneIndex INTEGER NOT NULL,
+			categoryIndex TINYINT NOT NULL,
+			subCategoryIndex TINYINT NOT NULL,
+			collectibleIndex TINYINT NOT NULL,
+			categoryName TINYTEXT NOT NULL,
+			subCategoryName TINYTEXT NOT NULL,
+			isUnlocked TINYINT NOT NULL,
+			isActive TINYINT NOT NULL,
+			isSlottable TINYINT NOT NULL,
+			isUsable TINYINT NOT NULL,
+			isRenameable TINYINT NOT NULL,
+			isPlaceholder TINYINT NOT NULL,
+			isHidden TINYINT NOT NULL,
+			hasAppearance TINYINT NOT NULL,
+			visualPriority TINYINT NOT NULL,
+			helpCategoryIndex INTEGER NOT NULL,
+			helpIndex INTEGER NOT NULL,
+			questName TINYTEXT NOT NULL,
+			backgroundText MEDIUMTEXT NOT NULL,
+			cooldown INTEGER NOT NULL,
+			FULLTEXT(name),
+			FULLTEXT(nickname),
+			FULLTEXT(description),
+			FULLTEXT(hint)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create collectibles table!");
 		
 		return true;
 	}
@@ -3867,6 +3973,8 @@ class EsoLogParser
 	
 	public function OnCPDiscipline ($logEntry)
 	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		
 		$cp = array();
 		$cp['disciplineIndex'] = $logEntry['discIndex'];
 		$cp['description'] = $logEntry['desc'];
@@ -3882,6 +3990,8 @@ class EsoLogParser
 	
 	public function OnCPSkill ($logEntry)
 	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		
 		$cpDisc = array();
 		$cpDisc['abilityId'] = $logEntry['abilityId'];
 		$cpDisc['disciplineIndex'] = $logEntry['discIndex'];
@@ -3914,6 +4024,8 @@ class EsoLogParser
 	
 	public function OnCPDescription ($logEntry)
 	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		
 		$cpDesc = array();
 		$cpDesc['abilityId'] = $logEntry['abilityId'];
 		$cpDesc['description'] = $logEntry['desc'];
@@ -3926,6 +4038,72 @@ class EsoLogParser
 	
 	
 	public function OnCPEnd ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		return true;
+	}
+	
+	
+	public function OnMineCollectIDStart ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		
+		return true;
+	}
+	
+	
+	public function OnMineCollectID ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		
+		$id = $logEntry['id'];
+		if ($id == null || $id == "") return false;
+		
+		$collectible = $this->LoadCollectible($id);
+		
+		if (!$collectible)
+		{
+			$collectible = array();
+			$collectible['__isNew'] = true;
+			$collectible['id'] = $id;			
+		}
+		
+		$collectible['name'] = $logEntry['name'];
+		$collectible['nickname'] = $logEntry['nickname'];
+		$collectible['description'] = $logEntry['description'];
+		$collectible['itemLink'] = $logEntry['itemLink'];
+		$collectible['hint'] = $logEntry['hint'];
+		$collectible['icon'] = $logEntry['icon'];
+		$collectible['backgroundIcon'] = $logEntry['bgImage'];
+		$collectible['lockedIcon'] = $logEntry['lockedIcon'];
+		$collectible['categoryType'] = $logEntry['categoryType'];
+		$collectible['zoneIndex'] = $logEntry['zoneIndex'];
+		$collectible['categoryIndex'] = $logEntry['category'];
+		$collectible['subCategoryIndex'] = $logEntry['subCategory'];
+		$collectible['collectibleIndex'] = $logEntry['index'];
+		$collectible['categoryName'] = $logEntry['categoryName'];
+		$collectible['subCategoryName'] = $logEntry['subCategoryName'];
+		$collectible['isUnlocked'] = $logEntry['unlocked'];
+		$collectible['isActive'] = $logEntry['isActive'];
+		$collectible['isPlaceholder'] = $logEntry['isPlaceholder'];
+		$collectible['isSlottable'] = $logEntry['isSlottable'];
+		$collectible['isUsable'] = $logEntry['isUsable'];
+		$collectible['isRenameable'] = $logEntry['isRenameable'];
+		$collectible['isHidden'] = $logEntry['isHidden'];
+		$collectible['hasAppearance'] = $logEntry['hasAppearance'];
+		$collectible['visualPriority'] = $logEntry['visualPriority'];
+		$collectible['helpCategoryIndex'] = $logEntry['helpCategoryIndex'];
+		$collectible['helpIndex'] = $logEntry['helpIndex'];
+		$collectible['questName'] = $logEntry['questName'];
+		$collectible['backgroundText'] = $logEntry['backgroundText'];
+		$collectible['cooldown'] = $logEntry['cooldown'];
+		$collectible['__dirty'] = true;
+		
+		return $this->SaveCollectible($collectible);
+	}
+	
+	
+	public function OnMineCollectIDEnd ($logEntry)
 	{
 		return true;
 	}
@@ -3998,7 +4176,15 @@ class EsoLogParser
 			case "CP::start":
 			case "CP::end":
 			case "CP::disc":
-			case "CP::desc":				
+			case "CP::desc":
+			case "MineCollect::Start":
+			case "MineCollect::Category":
+			case "MineCollect::Subcategory":
+			case "MineCollect::Index":
+			case "MineCollect::End":
+			case "MineCollectID::Start":
+			case "MineCollectID":
+			case "MineCollectID::End":
 				return false;
 		}
 		
@@ -4154,7 +4340,15 @@ class EsoLogParser
 			case "CP::disc":					$result = $this->OnCPDiscipline($logEntry); break;
 			case "CP":							$result = $this->OnCPSkill($logEntry); break;
 			case "CP::desc":					$result = $this->OnCPDescription($logEntry); break;
-			case "CP::end":						$result = $this->OnCPEnd($logEntry); 
+			case "CP::end":						$result = $this->OnCPEnd($logEntry); break;
+			case "MineCollect::Start":
+			case "MineCollect::Category":
+			case "MineCollect::Subcategory":
+			case "MineCollect::Index":
+			case "MineCollect::End":			$result = $this->OnNullEntry($logEntry); break;
+			case "MineCollectID::Start":		$result = $this->OnMineCollectIDStart($logEntry); break;
+			case "MineCollectID":				$result = $this->OnMineCollectID($logEntry); break;
+			case "MineCollectID::End":			$result = $this->OnMineCollectIDEnd($logEntry); break;
 			break;
 			case "Test":
 			case "TEST":
