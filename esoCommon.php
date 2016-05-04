@@ -8,7 +8,8 @@ const UESP_POWERTYPE_HEAVYARMOR    = -53;
 const UESP_POWERTYPE_WEAPONDAGGER  = -54;
 const UESP_POWERTYPE_ARMORTYPE     = -55;
 
-const UESP_SHOWCPLEVEL = true;
+	// TODO: Change to true when DB is released
+const UESP_SHOWCPLEVEL = false;
 
 
 $ESO_ITEMTRAIT_FULLTEXTS = array(
