@@ -461,6 +461,40 @@ class EsoLogViewer
 	);
 	
 	
+	public static $COLLECTIBLE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'itemLink' => self::FIELD_STRING,
+			'nickname' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'hint' => self::FIELD_STRING,
+			'icon' => self::FIELD_GAMEICON,
+			'lockedIcon' => self::FIELD_GAMEICON,
+			'backgroundIcon' => self::FIELD_STRING,
+			'categoryType' => self::FIELD_INT,
+			'zoneIndex' => self::FIELD_INT,
+			'categoryIndex' => self::FIELD_INT,
+			'subCategoryIndex' => self::FIELD_INT,
+			'collectibleIndex' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
+			'subCategoryName' => self::FIELD_STRING,
+			'isUnlocked' => self::FIELD_INT,
+			'isActive' => self::FIELD_INT,
+			'isSlottable' => self::FIELD_INT,
+			'isUsable' => self::FIELD_INT,
+			'isRenameable' => self::FIELD_INT,
+			'isPlaceholder' => self::FIELD_INT,
+			'isHidden' => self::FIELD_INT,
+			'hasAppearance' => self::FIELD_INT,
+			'visualPriority' => self::FIELD_INT,
+			'helpCategoryIndex' => self::FIELD_INT,
+			'helpIndex' => self::FIELD_INT,
+			'questName' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'cooldown' => self::FIELD_INT,
+	);
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -1262,6 +1296,21 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'collectibles' => array(
+					'displayName' => 'Collectibles',
+					'displayNameSingle' => 'Collectible',
+					'record' => 'collectibles',
+					'table' => 'collectibles',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('id'),
+			
+					'transform' => array(
+					),
+			
+					'filters' => array(
+					),
+			),
 				
 	);
 	
@@ -1269,6 +1318,7 @@ class EsoLogViewer
 	public static $SEARCH_TYPE_OPTIONS = array(
 			'All' => '',
 			'Books' => 'book',
+			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
 			'Items DB-PTS' => 'minedItemSummary10pts',
@@ -1291,6 +1341,13 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'title' => 'name',
+					),
+			),
+			'collectibles' => array(
+					'searchFields' => array('name', 'description', 'nickname', 'hint'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
 					),
 			),
 			'item' => array(
@@ -1467,6 +1524,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['cpDisciplines']['fields'] = self::$CPDISCIPLINE_FIELDS;
 		self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
 		self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
+		self::$RECORD_TYPES['collectibles']['fields'] = self::$COLLECTIBLE_FIELDS;
 		
 		if (self::ENABLE_8PTS) 
 		{
@@ -1576,109 +1634,19 @@ class EsoLogViewer
 	
 	public function GetItemTraitText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				18 => "Armor Divines",
-				17 => "Armor Exploration",
-				12 => "Armor Impenetrable",
-				16 => "Armor Infused",
-				20 => "Armor Intricate",
-				19 => "Armor Ornate",
-				13 => "Armor Reinforced",
-				11 => "Armor Sturdy",
-				15 => "Armor Training",
-				14 => "Armor Well Fitted",
-				22 => "Jewelry Arcane",
-				21 => "Jewelry Health",
-				24 => "Jewelry Ornate",
-				23 => "Jewelry Robust",
-				0 => "None",
-				2 => "Weapon Charged",
-				5 => "Weapon Defending",
-				4 => "Weapon Infused",
-				9 => "Weapon Intricate",
-				10 => "Weapon Ornate",
-				1 => "Weapon Power",
-				3 => "Weapon Precise",
-				7 => "Weapon Sharpened",
-				6 => "Weapon Training",
-				8 => "Weapon Weighted",
-				25 => "Nirnhoned",
-				26 => "Nirnhoned",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemTraitFullText($value);
 	}
 	
 	
 	public function GetItemStyleText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Breton",
-				2 => "Redguard",
-				3 => "Orc",
-				4 => "Dunmer",
-				5 => "Nord",
-				6 => "Argonian",
-				7 => "Altmer",
-				8 => "Bosmer",
-				9 => "Khajiit",
-				10 => "Unique",
-				11 => "Aldmeri Dominion",
-				12 => "Ebonheart Pact",
-				13 => "Daggerfall Covenant",
-				14 => "Dwemer",
-				15 => "Ancient Elf",
-				16 => "Imperial",
-				17 => "Reach",
-				18 => "Bandit",
-				19 => "Primitive",
-				20 => "Daedric",
-				21 => "Warrior Class",
-				22 => "Mage Class",
-				23 => "Rogue Class",
-				24 => "Summoner Class",
-				25 => "Marauder Class",
-				26 => "Healer Class",
-				27 => "Battlemage Class",
-				28 => "Nightblade Class",
-				29 => "Ranger Class",
-				30 => "Knight Class",
-				31 => "Draugr",
-				32 => "Maormer",
-				33 => "Akaviri",
-				34 => "Imperial",
-				35 => "Yokudan",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemStyleText($value);
 	}
 	
 	
 	public function GetItemQualityText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "Trash",
-				1 => "Normal",
-				2 => "Fine",
-				3 => "Superior",
-				4 => "Epic",
-				5 => "Legendary",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemQualityText($value);
 	}
 	
 	
@@ -1690,24 +1658,7 @@ class EsoLogViewer
 	
 	public function GetSkillTypeText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "",
-				1 => "Class",
-				2 => "Weapon",
-				3 => "Armor",
-				4 => "World",
-				5 => "Guild",
-				6 => "Alliance War",
-				7 => "Racial",
-				8 => "Craft",
-				9 => "Champion",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoSkillTypeText($value);
 	}
 	
 	
@@ -1725,6 +1676,7 @@ class EsoLogViewer
 	
 	public function GetBookMediumText ($value)
 	{
+			// TODO: Move to EsoCommon.php
 		static $VALUES = array(
 				-1 => "",
 				0 => "Yellowed Paper",
@@ -1745,146 +1697,30 @@ class EsoLogViewer
 	
 	public function GetItemArmorTypeText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Light",
-				2 => "Medium",
-				3 => "Heavy",
-		);
-	
-		$key = (int) $value;
-	
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemArmorTypeText($value);
 	}
 	
 	
 	public function GetItemWeaponTypeText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Axe",
-				2 => "Hammer",
-				3 => "Sword",
-				4 => "Two handed Sword",
-				5 => "Two handed Axe",
-				6 => "Two handed Hammer",
-				7 => "Prop",
-				8 => "Bow",
-				9 => "Healing Staff",
-				10 => "Rune",
-				11 => "Dagger",
-				12 => "Fire Staff",
-				13 => "Frost Staff",
-				14 => "Shield",
-				15 => "Lightning Staff",
-		);
-	
-		$key = (int) $value;
-	
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemWeaponTypeText($value);
 	}
 	
 	
 	public function GetItemTypeText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				11 => "additive",
-				33 => "alchemy_base",
-				2 => "armor",
-				24 => "armor_booster",
-				45 => "armor_trait",
-				47 => "ava_repair",
-				41 => "blacksmithing_booster",
-				36 => "blacksmithing_material",
-				35 => "blacksmithing_raw_material",
-				43 => "clothier_booster",
-				40 => "clothier_material",
-				39 => "clothier_raw_material",
-				34 => "collectible",
-				18 => "container",
-				13 => "costume",
-				14 => "disguise",
-				12 => "drink",
-				32 => "enchanting_rune",
-				25 => "enchantment_booster",
-				28 => "flavoring",
-				4 => "food",
-				21 => "glyph_armor",
-				26 => "glyph_jewelry",
-				20 => "glyph_weapon",
-				10 => "ingredient",
-				22 => "lockpick",
-				16 => "lure",
-				0 => "none",
-				3 => "plug",
-				30 => "poison",
-				7 => "potion",
-				17 => "raw_material",
-				31 => "reagent",
-				29 => "recipe",
-				8 => "scroll",
-				6 => "siege",
-				19 => "soul_gem",
-				27 => "spice",
-				44 => "style_material",
-				15 => "tabard",
-				9 => "tool",
-				48 => "trash",
-				5 => "trophy",
-				1 => "weapon",
-				23 => "weapon_booster",
-				46 => "weapon_trait",
-				42 => "woodworking_booster",
-				38 => "woodworking_material",
-				37 => "woodworking_raw_material",
-				49 => "spellcrafting_tablet",
-				50 => "mount",
-				51 => "potency_rune",
-				52 => "aspect_rune",
-				53 => "essence_rune",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemTypeText($value);
 	}
 	
 	public function GetItemEquipTypeText ($value)
 	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "none",
-				1 => "Head",
-				2 => "Neck",
-				3 => "Chest",
-				4 => "Shoulders",
-				5 => "One Hand",
-				6 => "Two Hand",
-				7 => "Off Hand",
-				8 => "Waist",
-				9 => "Legs",
-				10 => "Feet",
-				11 => "Costume",
-				12 => "Ring",
-				13 => "Hand",
-				14 => "Main Hand",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoItemEquipTypeText($value);
 	}
 	
 	
 	public function GetChestQualityText ($value)
 	{
+			// TODO: Move to EsoCommon.php
 		static $VALUES = array(
 				-1 => "",
 				0 => "None",
@@ -3324,5 +3160,3 @@ If you do not understand what this information means, or how to use this webpage
 $g_EsoLogViewer = new EsoLogViewer();
 $g_EsoLogViewer->Start();
 
-
-?>

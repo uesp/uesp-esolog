@@ -256,7 +256,6 @@ $ESO_ITEMWEAPONTYPE_TEXTS = array(
 $ESO_ITEMTYPE_TEXTS = array(
 		-1 => "",
 		11 => "Additive",
-		
 		2 => "Armor",
 		24 => "Armor Booster",
 		45 => "Armor Trait",
