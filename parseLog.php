@@ -612,6 +612,7 @@ class EsoLogParser
 			'categoryIndex' => self::FIELD_INT,
 			'subCategoryIndex' => self::FIELD_INT,
 			'collectibleIndex' => self::FIELD_INT,
+			'achievementIndex' => self::FIELD_INT,
 			'categoryName' => self::FIELD_STRING,
 			'subCategoryName' => self::FIELD_STRING,
 			'isUnlocked' => self::FIELD_INT,
@@ -1702,6 +1703,7 @@ class EsoLogParser
 			categoryIndex TINYINT NOT NULL,
 			subCategoryIndex TINYINT NOT NULL,
 			collectibleIndex TINYINT NOT NULL,
+			achievementIndex INTEGER NOT NULL,
 			categoryName TINYTEXT NOT NULL,
 			subCategoryName TINYTEXT NOT NULL,
 			isUnlocked TINYINT NOT NULL,
@@ -4081,6 +4083,7 @@ class EsoLogParser
 		$collectible['categoryIndex'] = $logEntry['category'];
 		$collectible['subCategoryIndex'] = $logEntry['subCategory'];
 		$collectible['collectibleIndex'] = $logEntry['index'];
+		$collectible['achievementIndex'] = $logEntry['achieveIndex'];
 		$collectible['categoryName'] = $logEntry['categoryName'];
 		$collectible['subCategoryName'] = $logEntry['subCategoryName'];
 		$collectible['isUnlocked'] = $logEntry['unlocked'];
