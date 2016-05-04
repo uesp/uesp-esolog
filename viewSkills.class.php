@@ -251,9 +251,11 @@ class CEsoViewSkills
 		return $value;
 	}
 	
+	
 	public function FormatLevel($level)
 	{
 		if ($level <= 50) return $level;
+		if (UESP_SHOWCPLEVEL) return "CP" . (($level - 50)*10);
 		return "v" . ($level - 50);
 	}
 

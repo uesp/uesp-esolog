@@ -393,7 +393,12 @@ class EsoItemSearcher
 		$level = $this->GetItemLevelValue($this->formValues['level']);
 		if ($level <= 0) return "";
 		
-		if ($level > 50) return "v" . ($level - 50);
+		if ($level > 50) 
+		{
+			if (UESP_SHOWCPLEVEL) return "CP" . (($level - 50)*10);
+			return "v" . ($level - 50);
+		}
+		
 		return (string) $level;
 	}
 	

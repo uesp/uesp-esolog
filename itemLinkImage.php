@@ -223,9 +223,18 @@ class CEsoItemLinkImage
 			$level = strtolower($this->inputParams['level']);
 				
 			if ($level[0] == 'v')
+			{
 				$this->itemLevel = (int) ltrim($level, 'v') + 50;
+			}
+			else if ($level[0] == 'c' && $level[1] == 'p')
+			{
+				$this->itemLevel = floor(((int) substr($level, 2))/10) + 50;
+				error_log("item level = ".$this->itemLevel);
+			}
 			else
+			{
 				$this->itemLevel = (int) $level;
+			}
 			
 			$this->itemQuality = 1;
 		}
@@ -1209,9 +1218,25 @@ class CEsoItemLinkImage
 	{
 		if (!$this->useUpdate10Display) return $this->OutputItemOldValueBlock($image, $y);
 		
+		$x = self::ESOIL_IMAGE_WIDTH - $this->dataBlockMargin;
+		$x = $x + $this->levelBlockXOffset;
+		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
+				
 		$level = $this->itemRecord['level'];
-		if ($level <= 50) return 0;
+		if ($level == "CP160") $level = 66;
 		
+		if (!is_numeric($level))
+		{
+			if ($level == "1-CP160") $level = "1 - CP160";
+			
+			$printData = array();
+			$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
+			$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
+			
+			return $this->PrintDataText($image, $printData, $x, $y + 4, 'right');
+		}
+		
+		if ($level <= 50) return 0;
 		$cp = ($level - 50) * 10;
 		
 		$imageFile = "./resources/champion_icon.png";
@@ -1224,11 +1249,6 @@ class CEsoItemLinkImage
 		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, "CP ");
 		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $cp);
 		$totalWidth = $extents1[0] + $extents2[0];
-		
-		$x = self::ESOIL_IMAGE_WIDTH - $this->dataBlockMargin;
-		$x = $x + $this->levelBlockXOffset;
-		
-		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
 		
 		if ($cpImage != null)
 		{
