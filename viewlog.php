@@ -476,6 +476,7 @@ class EsoLogViewer
 			'categoryIndex' => self::FIELD_INT,
 			'subCategoryIndex' => self::FIELD_INT,
 			'collectibleIndex' => self::FIELD_INT,
+			'achievementIndex' => self::FIELD_INT,
 			'categoryName' => self::FIELD_STRING,
 			'subCategoryName' => self::FIELD_STRING,
 			'isUnlocked' => self::FIELD_INT,
