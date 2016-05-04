@@ -208,9 +208,17 @@ class CEsoItemLink
 			$level = strtolower($this->inputParams['level']);
 			
 			if ($level[0] == 'v')
+			{
 				$this->itemLevel = (int) ltrim($level, 'v') + 50;
+			}
+			else if ($level[0] == 'c' && $level[1] == 'p')
+			{
+				$this->itemLevel = floor(((int) substr($level, 2))/10) + 50;
+			}			
 			else
+			{
 				$this->itemLevel = (int) $level;
+			}
 			
 			$this->itemQuality = 1;
 		}
@@ -932,10 +940,18 @@ class CEsoItemLink
 		if (!$this->useUpdate10Display) return $this->MakeItemOldValueBlock();
 
 		$level = $this->itemRecord['level'];
+		
+		if (!is_numeric($level)) 
+		{
+			if ($level == "CP160") return "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
+			if ($level == "1-CP160") return "<div id='esoil_itemlevel'>1 -</div> <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
+			return "<div id='esoil_itemlevel'>$level</div>";
+		}
+		
 		if ($level <= 50) return "";
 		
 		$cp = ($level - 50) * 10;
-		$output = "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP <div id='esoil_itemlevel'>$cp</div>";
+		$output = "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>$cp</div>";
 		
 		return $output;
 	}
@@ -1278,7 +1294,11 @@ class CEsoItemLink
 	{
 		if (!$this->useUpdate10Display) return $this->GetItemValueBlockDisplay();
 		
-		if ($this->itemRecord['level'] > 50) return "inline-block";
+		$level = $this->itemRecord['level'];
+		
+		if ($level > 50) return "inline-block";
+		if (!is_numeric($level)) return $level;
+		
 		return "none";
 	}
 	

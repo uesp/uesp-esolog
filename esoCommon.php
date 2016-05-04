@@ -8,6 +8,8 @@ const UESP_POWERTYPE_HEAVYARMOR    = -53;
 const UESP_POWERTYPE_WEAPONDAGGER  = -54;
 const UESP_POWERTYPE_ARMORTYPE     = -55;
 
+const UESP_SHOWCPLEVEL = true;
+
 
 $ESO_ITEMTRAIT_FULLTEXTS = array(
 		-1 => "",
@@ -1376,10 +1378,10 @@ function GetEsoAttributeText($attribute)
 }
 
 
-
 function GetEsoItemLevelText($level)
 {
 	if ($level <= 50) return strval($level);
+	if (UESP_SHOWCPLEVEL) return "CP" . (($level - 50) * 10); 
 	return "V" . strval($level - 50);
 }
 
@@ -1387,6 +1389,7 @@ function GetEsoItemLevelText($level)
 function GetEsoItemFullLevelText($level)
 {
 	if ($level <= 50) return "Level " . strval($level);
+	if (UESP_SHOWCPLEVEL) return "Level 50 CP" . (($level - 50) * 10);
 	return "Rank V" . strval($level - 50);
 }
 
@@ -1461,7 +1464,7 @@ function GetEsoItemTableSuffix($version)
 
 function FormatEsoItemDescriptionIcons($desc)
 {
-	//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
+		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
 	$output = strtolower($desc);
 	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s", "<img src='http://esoicons.uesp.net/$3.png' />", $output);
 
@@ -1477,6 +1480,8 @@ function FormatEsoItemDescriptionText($desc)
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
+		//EsoUI/Art/champion/champion_icon.dds
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
 	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $output);
 	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $output);
 	
@@ -1489,6 +1494,7 @@ function FormatEsoItemDescriptionText($desc)
 function FormatRemoveEsoItemDescriptionText($desc)
 {
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "$2", $desc);
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
 	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $output);
 	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $output);
 	$output = str_replace("\n", " ", $output);

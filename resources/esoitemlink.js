@@ -68,7 +68,7 @@ function GetEsoItemLevelText(level)
 {
 	if (itemRawVersion >= 10) 
 	{
-		if (level > 50) return '50 CP ' + ((level - 50)*10);
+		if (level > 50) return '50 CP' + ((level - 50)*10);
 		return '' + level;
 	}
 	
@@ -81,7 +81,7 @@ function GetEsoItemFullLevelText(level)
 {
 	if (itemRawVersion >= 10) 
 	{
-		if (level > 50) return 'Level 50 CP ' + ((level - 50)*10);
+		if (level > 50) return 'Level 50 CP' + ((level - 50)*10);
 		return 'Level ' + level;
 	}
 	
@@ -94,7 +94,7 @@ function GetEsoItemFullLevelHtml(level)
 {
 	if (itemRawVersion >= 10) 
 	{
-		if (level > 50) level = 50; 
+		if (level > 50) return "LEVEL <div id='esoil_itemlevel'>50</div>";
 		return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
 	}
 	
@@ -113,6 +113,7 @@ function GetEsoItemCPHtml(level)
 
 	return "";
 }
+
 
 function MergeEsoItemData(itemData1, itemData2)
 {
