@@ -933,8 +933,8 @@ class EsoLogViewer
 			),
 			
 			'minedItem8pts' => array(
-					'displayName' => 'Mined Items from PTS Update 8',
-					'displayNameSingle' => 'Mined Item from PTS Update 8',
+					'displayName' => 'Update 8-PTS: Mined Items',
+					'displayNameSingle' => 'Update 8-PTS: Mined Item',
 					'record' => 'minedItem8pts',
 					'table' => 'minedItem8pts',
 					'method' => 'DoRecordDisplay',
@@ -962,8 +962,8 @@ class EsoLogViewer
 			),
 			
 			'minedItem9pts' => array(
-					'displayName' => 'Mined Items from PTS Update 9',
-					'displayNameSingle' => 'Mined Item from PTS Update 9',
+					'displayName' => 'Update 9-PTS: Mined Items',
+					'displayNameSingle' => 'Update 9-PTS: Mined Item',
 					'record' => 'minedItem9pts',
 					'table' => 'minedItem9pts',
 					'method' => 'DoRecordDisplay',
@@ -991,8 +991,8 @@ class EsoLogViewer
 			),
 			
 			'minedItem10pts' => array(
-					'displayName' => 'Mined Items from PTS Update 10 (DB)',
-					'displayNameSingle' => 'Mined Item from PTS Update 10 (DB)',
+					'displayName' => 'Update 10-PTS: Mined Items',
+					'displayNameSingle' => 'Update 10-PTS: Mined Item',
 					'record' => 'minedItem10pts',
 					'table' => 'minedItem10pts',
 					'method' => 'DoRecordDisplay',
@@ -1050,8 +1050,8 @@ class EsoLogViewer
 			
 			
 			'minedItemSummary9pts' => array(
-					'displayName' => 'Mined Item Summaries from PTS Update 9',
-					'displayNameSingle' => 'Mined Item Summary from Update 9',
+					'displayName' => 'Update 9-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 9-PTS: Mined Item Summary',
 					'record' => 'minedItemSummary9pts',
 					'table' => 'minedItemSummary9pts',
 					'method' => 'DoRecordDisplay',
@@ -1079,8 +1079,8 @@ class EsoLogViewer
 			),
 			
 			'minedItemSummary10pts' => array(
-					'displayName' => 'Mined Item Summaries from PTS Update 10 (DB)',
-					'displayNameSingle' => 'Mined Item Summary from Update 10 (DB)',
+					'displayName' => 'Update 10-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 10-PTS: Mined Item Summary',
 					'record' => 'minedItemSummary10pts',
 					'table' => 'minedItemSummary10pts',
 					'method' => 'DoRecordDisplay',
@@ -1131,8 +1131,8 @@ class EsoLogViewer
 			),
 			
 			'setSummary8pts' => array(
-					'displayName' => 'Set Summaries from PTS Update 8',
-					'displayNameSingle' => 'Set Item Summary from PTS Update 8',
+					'displayName' => 'Update 8-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 8-PTS: Set Item Summary',
 					'record' => 'setSummary8pts',
 					'table' => 'setSummary8pts',
 					'method' => 'DoRecordDisplay',
@@ -1155,8 +1155,8 @@ class EsoLogViewer
 			),
 			
 			'setSummary9pts' => array(
-					'displayName' => 'Set Summaries from PTS Update 9',
-					'displayNameSingle' => 'Set Item Summary from Update 9',
+					'displayName' => 'Update 9-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 9-PTS: Set Item Summary',
 					'record' => 'setSummary9pts',
 					'table' => 'setSummary9pts',
 					'method' => 'DoRecordDisplay',
@@ -1179,8 +1179,8 @@ class EsoLogViewer
 			),
 			
 			'setSummary10pts' => array(
-					'displayName' => 'Set Summaries from PTS Update 10 (DB)',
-					'displayNameSingle' => 'Set Item Summary from Update 10 (DB)',
+					'displayName' => 'Update 10-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 10-PTS: Set Item Summary',
 					'record' => 'setSummary10pts',
 					'table' => 'setSummary10pts',
 					'method' => 'DoRecordDisplay',
@@ -1230,8 +1230,8 @@ class EsoLogViewer
 			),
 			
 			'minedSkills10pts' => array(
-					'displayName' => 'Mined Skills Update 10 PTS',
-					'displayNameSingle' => 'Mined Skill  Update 10 PTS',
+					'displayName' => 'Update 10-PTS: Mined Skills',
+					'displayNameSingle' => 'Update 10-PTS: Mined Skill',
 					'record' => 'minedSkills10pts',
 					'table' => 'minedSkills10pts',
 					'method' => 'DoRecordDisplay',
@@ -1339,8 +1339,8 @@ class EsoLogViewer
 			),
 			
 			'cpSkillDescriptions' => array(
-					'displayName' => 'CP Skill Descriptions',
-					'displayNameSingle' => 'CP Skill Description',
+					'displayName' => 'Champion Point Skill Descriptions',
+					'displayNameSingle' => 'Champion Point Skill Description',
 					'record' => 'cpSkillDescriptions',
 					'table' => 'cpSkillDescriptions',
 					'method' => 'DoRecordDisplay',
@@ -1661,6 +1661,8 @@ class EsoLogViewer
 	
 	public function __construct ()
 	{
+		uasort(self::$RECORD_TYPES, CompareRecordTypeByDisplayName);
+		
 			// TODO: Static initialization?
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
 		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
@@ -3340,6 +3342,11 @@ If you do not understand what this information means, or how to use this webpage
 	
 };
 
+
+function CompareRecordTypeByDisplayName($a, $b)
+{
+	return strcmp($a['displayName'], $b['displayName']);
+}
 
 $g_EsoLogViewer = new EsoLogViewer();
 $g_EsoLogViewer->Start();
