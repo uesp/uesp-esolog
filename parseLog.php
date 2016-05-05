@@ -3596,7 +3596,7 @@ class EsoLogParser
 	{
 		//numSkills{169}  numPoints{5}
 		
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$this->currentUser['lastSkillCoefIgnore'] = true;
 		$numPoints = $logEntry['numPoints'];
@@ -3615,7 +3615,7 @@ class EsoLogParser
 		//R1{0.99999}  desc{Conjure...can absorb |cffffff$1|r damage.}  a1{0.30219}  c1{-3.29720}  
 		//name{Conjured Ward}  b1{-0.00406}  abilityId{28418}  numVars{1}  lang{en}
 		
-		if ($this->currentUser['name'] != "Reorx") return true;
+		if (!$this->IsValidUser($logEntry)) return false;
 		if ($this->currentUser['lastSkillCoefIgnore']) return true;
 		
 		$numVars = $logEntry['numVars'];
@@ -3664,8 +3664,7 @@ class EsoLogParser
 	
 	public function OnSkillDumpStart ($logEntry)
 	{
-		$event = $logEntry['event'];
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!"); 
+		if (!$this->IsValidUser($logEntry)) return false; 
 		
 		if ($logEntry['note'] != null)
 			$this->currentUser['lastSkillDumpNote'] = $logEntry['note'];
@@ -3682,7 +3681,7 @@ class EsoLogParser
 	
 	public function OnSkillDumpEnd ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		$this->currentUser['lastSkillDumpNote'] = null;
 		$this->currentUser['lastSkillLineName'] = null;
 		return true;
@@ -3691,7 +3690,7 @@ class EsoLogParser
 	
 	public function OnSkill ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$version = $this->currentUser['lastSkillDumpNote'];
 		$abilityId = $logEntry['id'];
@@ -3758,7 +3757,7 @@ class EsoLogParser
 	
 	public function OnSkillLearned ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
 		$abilityId = $logEntry['id'];
@@ -3779,7 +3778,7 @@ class EsoLogParser
 	
 	public function OnSkillType ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
 		return true;
@@ -3788,7 +3787,7 @@ class EsoLogParser
 	
 	public function OnSkillLine ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
 		$this->currentUser['lastSkillLineName'] = $logEntry['name'];
@@ -3833,6 +3832,7 @@ class EsoLogParser
 	public function OnSkillAbilityId ($logEntry, $abilityId, $prevAbilityId, $nextAbilityId, $rankMod)
 	{
 		if ($abilityId == null || $abilityId == "") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$skill = $this->LoadSkillDump($abilityId);
 		if ($skill === false) return false;
@@ -3874,7 +3874,7 @@ class EsoLogParser
 	
 	public function OnSkillAbility ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
 		$this->OnSkillAbilityId($logEntry, $logEntry['abilityId1'], -1, $logEntry['abilityId2'], 0);
@@ -3886,7 +3886,7 @@ class EsoLogParser
 	
 	public function OnSkillProgression ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return false;
+		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
 		$prevSkill = 0;
@@ -3946,8 +3946,7 @@ class EsoLogParser
 		
 	public function OnCPStart ($logEntry)
 	{
-		$event = $logEntry['event'];
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 	
 		if ($logEntry['note'] != null)
 			$this->logInfos['lastCPNote'] = $logEntry['note'];
@@ -3975,7 +3974,7 @@ class EsoLogParser
 	
 	public function OnCPDiscipline ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$cp = array();
 		$cp['disciplineIndex'] = $logEntry['discIndex'];
@@ -3992,7 +3991,7 @@ class EsoLogParser
 	
 	public function OnCPSkill ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$cpDisc = array();
 		$cpDisc['abilityId'] = $logEntry['abilityId'];
@@ -4026,7 +4025,7 @@ class EsoLogParser
 	
 	public function OnCPDescription ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$cpDesc = array();
 		$cpDesc['abilityId'] = $logEntry['abilityId'];
@@ -4041,14 +4040,14 @@ class EsoLogParser
 	
 	public function OnCPEnd ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		return true;
 	}
 	
 	
 	public function OnMineCollectIDStart ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		return true;
 	}
@@ -4056,7 +4055,7 @@ class EsoLogParser
 	
 	public function OnMineCollectID ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring $event from user ".$this->currentUser['name']."!");
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$id = $logEntry['id'];
 		if ($id == null || $id == "") return false;
@@ -4112,6 +4111,28 @@ class EsoLogParser
 	}
 	
 	
+	public function OnAchievementStart ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		return true;
+	}
+	
+	
+	public function OnAchievement ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		return true;
+	}
+	
+	
+	public function OnAchievementEnd ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		return true;
+	}	
+	
+	
 	public function OnNullEntry ($logEntry)
 	{
 		// Do Nothing
@@ -4123,6 +4144,13 @@ class EsoLogParser
 	{
 		$this->reportLogParseError("Unknown event '{$logEntry['event']}' found in log entry!");
 		return true;
+	}
+	
+	
+	public function IsValidUser ($logEntry)
+	{
+		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring {$logEntry['event']} from user ".$this->currentUser['name']."!");
+		return false;
 	}
 	
 	
@@ -4291,11 +4319,11 @@ class EsoLogParser
 			case "Recipe::End":					$result = $this->OnNullEntry($logEntry); break;
 			case "Global":						$result = $this->OnNullEntry($logEntry); break;
 			case "Global::End":					$result = $this->OnNullEntry($logEntry); break;
-			case "Achievement":					$result = $this->OnNullEntry($logEntry); break;
 			case "Category":					$result = $this->OnNullEntry($logEntry); break;
 			case "Subcategory":					$result = $this->OnNullEntry($logEntry); break;
-			case "Achievement::Start":			$result = $this->OnNullEntry($logEntry); break;
-			case "Achievement::End":			$result = $this->OnNullEntry($logEntry); break;
+			case "Achievement::Start":			$result = $this->OnAchievementStart($logEntry); break;
+			case "Achievement":					$result = $this->OnAchievement($logEntry); break;
+			case "Achievement::End":			$result = $this->OnAchievementEnd($logEntry); break;
 			case "ExperienceUpdate":			$result = $this->OnExperienceUpdate($logEntry); break;
 			case "mineItem::AutoStart":			$result = $this->OnMineItemStart($logEntry); break;
 			case "mineitem::Start":				$result = $this->OnMineItemStart($logEntry); break;
