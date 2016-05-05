@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>UESP:ESO Item{versionTitle} -- {itemName}</title>
+		<title>UESP:ESO {itemTypeTitle}Item{versionTitle} -- {itemName}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="resources/esoitemlink.css" />
 		<link rel="stylesheet" href="resources/esoitemlink_embed.css" />
@@ -10,7 +10,7 @@
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
-<h1>ESO Item{versionTitle} -- {itemName}</h1>
+<h1>ESO {itemTypeTitle}Item{versionTitle} -- {itemName}</h1>
 <h2 id="esoil_levelheader">{itemQuality} {itemLevel}</h2>
 
 <div id="esoil_itemcontainer">
@@ -36,20 +36,20 @@
 			<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>
 			<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
 			<div id="esoil_itemsetblock">{itemSetBlock}</div>
-			<div id="esoil_itemdesc">{itemDesc}</div>
+			<div id="esoil_itemdesc" class="{itemDescClass}">{itemDesc}</div>
 			<div id="esoil_itemtags">{itemTags}</div>
 			<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>			
 			<div id="esoil_itemnewvalueblock" style="display:{itemNewValueBlockDisplay}">{itemNewValueBlock}</div>
 		</div>
 	</div>
 	<br />
-	<div id="esoil_linkcontainer">
+	<div id="esoil_linkcontainer" style="display: {extraDataLinkDisplay};">
 		<a id="esoil_datatablelink" href="dumpMinedItems.php?itemid={itemId}&output=html">View Data Table</a>
 		<a id="esoil_summarylink" href="itemLink.php?itemid={itemId}&summary&{viewSumDataExtraQuery}">View Summary Data</a>
 		<a id="esoil_itemimagelink" href="{itemLinkURL}">Link to Item Image</a>	
 	</div>
 	<br />
-	<div id="esoil_itemsimilarblock">
+	<div id="esoil_itemsimilarblock" style="display: {similarItemBlockDisplay};">
 		<div id="esoil_itemsimilarheader">Similar Items</div>
 		The following items have the same ID, level and quality:
 		<ul id="esoil_itemsimilarlist">
@@ -58,7 +58,7 @@
 	</div>
 </div>
 
-<div id="esoil_controls">
+<div id="esoil_controls" style="display: {controlBlockDisplay};">
 	<input id="esoil_levelcontrol" class="esoil_rangecontrol" type="range" min="1" max="66" value="{itemLevelRaw}" />
 	<input class="esoil_rangelabel" id="esoil_leveltext" type="text" value="{itemLevel}" readonly />
 	<br />
@@ -67,7 +67,7 @@
 </div>
 
 <div id="esoil_rawdata">
-	<h2 id="esoil_rawdatalist">Raw Item Data</h2>
+	<h2 id="esoil_rawdatalist">Raw {itemTypeTitle}Item Data</h2>
 	<table id="esoil_rawdatatable" cellpadding="0" cellspacing="0" border="0">
 	{itemRawDataList}
 	</table>

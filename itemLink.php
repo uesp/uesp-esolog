@@ -84,7 +84,53 @@ class CEsoItemLink
 			"type" => 0,
 			"bind" => 0,
 			"description" => "Unknown item!",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
 			"style" => -1,
+	);
+	
+	static public $ESOIL_ERROR_QUESTITEM_DATA = array(
+			"name" => "Unknown",
+			"questId" => "",
+			"itemLink" => "",
+			"questName" => "",
+			"itemId" => "",
+			"header" => "",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
+			"description" => "Unknown quest item!",
+			"stepIndex" => "",
+			"conditionIndex" => "",
+	);
+	
+	static public $ESOIL_ERROR_COLLECTIBLEITEM_DATA = array(
+			"name" => "Unknown",
+			"itemLink" => "",
+			"nickname" => "",
+			"description" => "Unknown collectible item!",
+			"hint" => "",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
+			"lockedIcon" => "",
+			"backgroundIcon" => "",
+			"categoryType" => "",
+			"zoneIndex" => "",
+			"categoryIndex" => "",
+			"subCategoryIndex" => "",
+			"collectibleIndex" => "",
+			"achievementIndex" => "",
+			"categoryName" => "",
+			"subCategoryName" => "",
+			"isUnlocked" => "",
+			"isActive" => "",
+			"isSlottable" => "",
+			"isUsable" => "",
+			"isPlaceholder" => "",
+			"isHidden" => "",
+			"hasAppeareance" => "",
+			"visualPriority" => "",
+			"helpCategoryIndex" => "",
+			"helpIndex" => "",
+			"questName" => "",
+			"backgroundText" => "",
+			"cooldown" => "",
 	);
 	
 	static public $ESOIL_ITEM_SUMMARY_FIELDS = array(
@@ -142,6 +188,12 @@ class CEsoItemLink
 	public $htmlTemplate = "";
 	public $embedLink = false;
 	public $showSummary = false;
+	
+	public $questItemId = -1;
+	public $questItemData = array();
+	
+	public $collectibleItemId = -1;
+	public $collectibleItemData = array();
 	
 	
 	public function __construct ()
@@ -283,6 +335,16 @@ class CEsoItemLink
 			}
 		}
 		
+		if (array_key_exists('qid', $this->inputParams))
+		{
+			$this->questItemId = (int) $this->inputParams['qid'];
+		}
+		
+		if (array_key_exists('cid', $this->inputParams))
+		{
+			$this->collectibleItemId = (int) $this->inputParams['cid']; 
+		}
+				
 		$this->useUpdate10Display = IsEsoVersionAtLeast($this->version, 10);
 		
 		return true;
@@ -454,6 +516,26 @@ class CEsoItemLink
 	}
 	
 	
+	private function LoadQuestItemErrorData()
+	{
+		$this->questItemData = self::$ESOIL_ERROR_QUESTITEM_DATA;
+		
+		$this->questItemData['name'] = "Unknown Quest Item";
+		$this->questItemData['itemId'] = $this->questItemId;
+		$this->questItemData['description'] = "No quest item found matching ID# {$this->questItemId}!";
+	}
+	
+	
+	private function LoadCollectibleItemErrorData()
+	{
+		$this->collectibleItemData = self::$ESOIL_ERROR_COLLECTIBLEITEM_DATA;
+	
+		$this->collectibleItemData['name'] = "Unknown Collectible";
+		$this->collectibleItemData['id'] = $this->collectibleItemId;
+		$this->collectibleItemData['description'] = "No collectible item found matching ID# {$this->collectibleItemId}!";
+	}
+	
+	
 	public function MergeItemSummary()
 	{
 		if ($this->itemSummary == null || count($this->itemSummary) == 0) return false;
@@ -595,6 +677,54 @@ class CEsoItemLink
 		
 		$this->LoadItemPotionData();
 		$this->LoadEnchantMaxCharges();
+		return true;
+	}
+	
+	
+	private function LoadQuestItemRecord()
+	{
+		if ($this->questItemId <= 0) return $this->ReportError("ERROR: Missing or invalid quest item ID specified (1-85000)!");
+		$query = "";
+	
+		$query = "SELECT * FROM questItem". $this->GetTableSuffix() ." WHERE itemId={$this->questItemId} LIMIT 1;";
+		$this->itemErrorDesc = "qid={$this->questItemId}";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$result->data_seek(0);
+		$this->questItemData = $result->fetch_assoc();
+		
+		if (!$this->questItemData) 
+		{
+			$this->ReportError("ERROR: No quest item found matching {$this->itemErrorDesc}!");
+			$this->questItemData = array();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	private function LoadCollectibleItemRecord()
+	{
+		if ($this->collectibleItemId <= 0) return $this->ReportError("ERROR: Missing or invalid collectible item ID specified (1-85000)!");
+		$query = "";
+	
+		$query = "SELECT * FROM collectibles". $this->GetTableSuffix() ." WHERE id={$this->collectibleItemId} LIMIT 1;";
+		$this->itemErrorDesc = "cid={$this->collectibleItemId}";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+	
+		$result->data_seek(0);
+		$this->collectibleItemData = $result->fetch_assoc();
+		
+		if (!$this->collectibleItemData) 
+		{
+			$this->ReportError("ERROR: No collectible item found matching {$this->itemErrorDesc}!");
+			$this->collectibleItemData = array();
+			return false;
+		}
+	
 		return true;
 	}
 	
@@ -839,9 +969,50 @@ class CEsoItemLink
 	}
 	
 	
-	private function MakeItemIconImageLink()
+	private function MakeQuestItemRawDataList()
 	{
-		$icon = $this->itemRecord['icon'];
+		$output = "";
+		$this->questItemData['version'] = $this->version;
+	
+		foreach ($this->questItemData as $key => $value)
+		{
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
+			$id = "esoil_rawdata_" . $key;
+			
+			if ($key == "icon")
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeQuestItemIconImageLink()}' /> $value</td></tr>\n";
+			else
+				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+						
+		}
+	
+		return $output;
+	}
+	
+	
+	private function MakeCollectibleItemRawDataList()
+	{
+		$output = "";
+		$this->collectibleItemData['version'] = $this->version;
+	
+		foreach ($this->collectibleItemData as $key => $value)
+		{
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
+			$id = "esoil_rawdata_" . $key;
+				
+			if ($key == "icon")
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeCollectibleItemIconImageLink()}' /> $value</td></tr>\n";
+			else
+				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+	
+		}
+	
+		return $output;
+	}
+	
+	
+	private function MakeIconImageLink($icon)
+	{
 		if ($icon == null || $icon == "") $icon = self::ESOIL_ICON_UNKNOWN;
 		
 		$icon = preg_replace('/dds$/', 'png', $icon);
@@ -849,6 +1020,27 @@ class CEsoItemLink
 		
 		$iconLink = self::ESOIL_ICON_URL . $icon;
 		return $iconLink;
+	}
+	
+	
+	private function MakeItemIconImageLink()
+	{
+		$icon = $this->itemRecord['icon'];
+		return $this->MakeIconImageLink($icon);
+	}
+	
+	
+	private function MakeQuestItemIconImageLink()
+	{
+		$icon = $this->questItemData['icon'];
+		return $this->MakeIconImageLink($icon);
+	}
+	
+	
+	private function MakeCollectibleItemIconImageLink()
+	{
+		$icon = $this->collectibleItemData['icon'];
+		return $this->MakeIconImageLink($icon);
 	}
 	
 	
@@ -1481,6 +1673,21 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeQuestItemDescription()
+	{
+		$desc = $this->questItemData['description'];
+		return FormatEsoItemDescriptionText($desc);
+	}
+	
+	
+	private function MakeCollectibleItemDescription()
+	{
+		$desc = $this->collectibleItemData['description'] . "\n\n" . $this->collectibleItemData['hint'];
+		$desc = preg_replace("#\<\<player{his/her}\>\>#", "his", $desc);
+		return FormatEsoItemDescriptionText($desc);
+	}
+	
+	
 	private function GetItemRawVersion()
 	{
 		if ($this->version == "")
@@ -1540,10 +1747,148 @@ class CEsoItemLink
 				'{viewSumDataExtraQuery}' => $this->GetSummaryDataExtraQuery(),
 				'{itemRawDataList}' => $this->MakeItemRawDataList(),
 				'{rawItemVersion}' => $this->GetItemRawVersion(),
+				'{extraDataLinkDisplay}' => "block",
+				'{controlBlockDisplay}' => "block",
+				'{similarItemBlockDisplay}' => "none",
+				'{itemTypeTitle}' => "",
+				'{itemDescClass}' => "",
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		
+		print ($output);
+	}
+	
+	
+	private function OutputQuestItemHtml()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->questItemData['name'],
+				'{itemNameUpper}' => $this->MakeQuestItemName(),
+				'{itemDesc}' => strtoupper($this->questItemData['name']),
+				'{itemLink}' => $this->questItemData['itemLink'],
+				'{itemStyle}' => "",
+				'{itemId}' => $this->questItemId,
+				'{itemType1}' => $this->questItemData['header'],
+				'{itemType2}' => "",
+				'{itemStolen}' => "",
+				'{itemBindType}' => "",
+				'{itemValue}' => "",
+				'{itemLevel}' => "",
+				'{itemLevelRaw}' => "",
+				'{itemQualityRaw}' => "",
+				'{itemLevelBlock}' => "",
+				'{itemQuality}' => "",
+				'{iconLink}' => $this->MakeQuestItemIconImageLink(),
+				'{itemLeftBlock}' => "",
+				'{itemRightBlock}' => "",
+				'{itemNewValueBlock}' => "",
+				'{itemBar}' => "",
+				'{itemBarClass}' => "esoilHidden",
+				'{itemEnchantBlock}' => "",
+				'{itemTraitBlock}' => "",
+				'{itemSetBlock}' => "",
+				'{itemAbilityBlock}' => "",
+				'{itemTraitAbilityBlock}' => "",
+				'{itemLeftBlockDisplay}' => "none",
+				'{itemLevelBlockDisplay}' => "none",
+				'{itemRightBlockDisplay}' => "none",
+				'{itemNewValueBlockDisplay}' => "none",
+				'{itemCraftedBlock}' => "",
+				'{itemTags}' => "",
+				'{itemDataJson}' => "{}",
+				'{itemSimilarBlock}' => "",
+				'{itemEnchantId1}' => "",
+				'{itemEnchantIntLevel1}' => "",
+				'{itemEnchantIntType1}' => "",
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => "",
+				'{viewSumDataExtraQuery}' => "",
+				'{itemRawDataList}' => $this->MakeQuestItemRawDataList(),
+				'{rawItemVersion}' => $this->GetItemRawVersion(),
+				'{extraDataLinkDisplay}' => "none",
+				'{controlBlockDisplay}' => "none",
+				'{similarItemBlockDisplay}' => "none",
+				'{itemTypeTitle}' => "Quest ",
+				'{itemDescClass}' => "esoil_itemdescQuest",
+		);
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+	
+		print ($output);
+	}
+	
+
+	private function MakeCollectibleItemName()
+	{
+		$name = strtoupper($this->collectibleItemData['name']);
+		$nickname = strtoupper($this->collectibleItemData['nickname']);
+		
+		if ($nickname != "") $name .= "<div class='esoil_nickname'>\"".$nickname."\"</div>";
+		
+		return $name;
+	}		
+	
+	
+	private function OutputCollectibleItemHtml()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->collectibleItemData['name'],
+				'{itemNameUpper}' => $this->MakeCollectibleItemName(),
+				'{itemDesc}' => $this->MakeCollectibleItemDescription(),
+				'{itemLink}' => $this->collectibleItemData['itemLink'],
+				'{itemStyle}' => "",
+				'{itemId}' => $this->collectibleItemId,
+				'{itemType1}' => $this->collectibleItemData['categoryName'],
+				'{itemType2}' => "",
+				'{itemStolen}' => "",
+				'{itemBindType}' => "",
+				'{itemValue}' => "",
+				'{itemLevel}' => "",
+				'{itemLevelRaw}' => "",
+				'{itemQualityRaw}' => "",
+				'{itemLevelBlock}' => "",
+				'{itemQuality}' => "",
+				'{iconLink}' => $this->MakeCollectibleItemIconImageLink(),
+				'{itemLeftBlock}' => "",
+				'{itemRightBlock}' => "",
+				'{itemNewValueBlock}' => "",
+				'{itemBar}' => "",
+				'{itemBarClass}' => "esoilHidden",
+				'{itemEnchantBlock}' => "",
+				'{itemTraitBlock}' => "",
+				'{itemSetBlock}' => "",
+				'{itemAbilityBlock}' => "",
+				'{itemTraitAbilityBlock}' => "",
+				'{itemLeftBlockDisplay}' => "none",
+				'{itemLevelBlockDisplay}' => "none",
+				'{itemRightBlockDisplay}' => "none",
+				'{itemNewValueBlockDisplay}' => "none",
+				'{itemCraftedBlock}' => "",
+				'{itemTags}' => "",
+				'{itemDataJson}' => "{}",
+				'{itemSimilarBlock}' => "",
+				'{itemEnchantId1}' => "",
+				'{itemEnchantIntLevel1}' => "",
+				'{itemEnchantIntType1}' => "",
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => "",
+				'{viewSumDataExtraQuery}' => "",
+				'{itemRawDataList}' => $this->MakeCollectibleItemRawDataList(),
+				'{rawItemVersion}' => $this->GetItemRawVersion(),
+				'{extraDataLinkDisplay}' => "none",
+				'{controlBlockDisplay}' => "none",
+				'{similarItemBlockDisplay}' => "none",
+				'{itemTypeTitle}' => "Collectible ",
+				'{itemDescClass}' => "esoil_itemdescQuest",
+		);
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+	
 		print ($output);
 	}
 	
@@ -1569,6 +1914,48 @@ class CEsoItemLink
 		if ($this->outputType == "html") return $this->OutputRawDataHtml();
 		
 		print($this->GetRawItemDataCsv());
+	}
+	
+	
+	public function OutputQuestItemRawData()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->questItemData['name'],
+				'{itemNameUpper}' => strtoupper($this->questItemData['name']),
+				'{itemId}' => $this->questItemId,
+				'{iconLink}' => $this->MakeQuestItemIconImageLink(),
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => $this->GetQuestItemLinkURL(),
+				'{rawItemData}' => $this->GetRawQuestItemDataHtml(),
+		);
+		
+		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
+		
+		$output = strtr($rawDataTemplate, $replacePairs);
+		print ($output);
+	}
+	
+	
+	public function OutputCollectibleItemRawData()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->collectibleItemData['name'],
+				'{itemNameUpper}' => strtoupper($this->collectibleItemData['name']),
+				'{itemId}' => $this->collectibleItemId,
+				'{iconLink}' => $this->MakeCollectibleItemIconImageLink(),
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => $this->GetCollectibleItemLinkURL(),
+				'{rawItemData}' => $this->GetRawCollectibleItemDataHtml(),
+		);
+		
+		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
+		
+		$output = strtr($rawDataTemplate, $replacePairs);
+		print ($output);
 	}
 	
 	
@@ -1605,6 +1992,54 @@ class CEsoItemLink
 			$output .= $this->CreateRawItemDataHtml($item);
 		}
 		
+		$output .= "</table>\n";
+		return $output;
+	}
+	
+	
+	public function GetRawQuestItemDataHtml()
+	{
+		$output  = "<table class='esoil_rawitemdata_table'>\n";
+		$output .= "<tr>";
+		
+		foreach ($this->questItemData as $key => $value)
+		{
+			$output .= "<th>$key</th>\n";
+		}
+		
+		$output .= "</tr>\n";
+		
+		foreach ($this->questItemData as $key => $value)
+		{
+			$output .= "<tr>";
+			$output .= "<td>$value</td>\n";
+			$output .= "</tr>\n";
+		}
+	
+		$output .= "</table>\n";
+		return $output;
+	}
+	
+	
+	public function GetRawCollectibleItemDataHtml()
+	{
+		$output  = "<table class='esoil_rawitemdata_table'>\n";
+		$output .= "<tr>";
+		
+		foreach ($this->collectibleItemData as $key => $value)
+		{
+			$output .= "<th>$key</th>\n";
+		}
+		
+		$output .= "</tr>\n";
+	
+		foreach ($this->collectibleItemData as $key => $value)
+		{
+			$output .= "<tr>";
+			$output .= "<td>$value</td>\n";
+			$output .= "</tr>\n";
+		}
+	
 		$output .= "</table>\n";
 		return $output;
 	}
@@ -1746,9 +2181,64 @@ class CEsoItemLink
 	}
 	
 	
+	public function DumpQuestItem()
+	{
+		foreach ($this->questItemData as $key => $value)
+		{
+			print("$key = $value\n");
+		}
+	}
+	
+	
+	public function DumpCollectibleItem()
+	{
+		foreach ($this->collectibleItemData as $key => $value)
+		{
+			print("$key = $value\n");
+		}
+	}
+	
+	
+	public function ShowQuestItem()
+	{
+		if (!$this->LoadQuestItemRecord()) $this->LoadQuestItemErrorData();
+		
+		if ($this->outputRaw)
+			$this->OutputQuestItemRawData();
+		else if ($this->outputType == "html")
+			$this->OutputQuestItemHtml();
+		elseif ($this->outputType == "text")
+			$this->DumpQuestItem();
+		else
+			return $this->ReportError("Error: Unknown output type '{$this->outputType}' specified!");
+		
+		return true;
+	}
+	
+	
+	public function ShowCollectibleItem()
+	{
+		if (!$this->LoadCollectibleItemRecord()) $this->LoadCollectibleItemErrorData();
+		
+		if ($this->outputRaw)
+			$this->OutputCollectibleItemRawData();
+		else if ($this->outputType == "html")
+			$this->OutputCollectibleItemHtml();
+		elseif ($this->outputType == "text")
+			$this->DumpCollectibleItem();
+		else
+			return $this->ReportError("Error: Unknown output type '{$this->outputType}' specified!");
+		
+		return true;
+	}
+	
+	
 	public function ShowItem()
 	{
 		$this->OutputHtmlHeader();
+		
+		if ($this->questItemId > 0) return $this->ShowQuestItem();
+		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		
 		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
 		$this->LoadEnchantRecords();

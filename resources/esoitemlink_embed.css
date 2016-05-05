@@ -352,3 +352,18 @@
 	color: #666 !important;
 	display: inline-block;
 }
+
+.esoil_itemdescQuest {
+	font-size: 1em !important;
+	text-align: center !important;
+	margin-top: 30px !important;
+	line-height: 1.25em !important; 
+}
+
+.esoil_nickname {
+	display: block;
+	margin-top: 15px;
+	text-align: center;
+	font-size: 0.8em;
+	
+}
