@@ -1672,7 +1672,8 @@ class CEsoItemLink
 	private function MakeQuestItemDescription()
 	{
 		$desc = $this->questItemData['description'];
-		return FormatEsoItemDescriptionText($desc);
+		$questName = $this->questItemData['questName'];
+		return FormatEsoItemDescriptionText($desc) . "<br/><div class='esoil_itemdescQuestName'>$questName</div>";
 	}
 	
 	

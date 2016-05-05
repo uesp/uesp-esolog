@@ -366,3 +366,10 @@
 	text-align: center;
 	font-size: 0.8em;
 }
+
+.esoil_itemdescQuestName {
+	font-size: 0.85em !important;
+	text-align: left !important;
+	line-height: 1.1em !important;
+	margin-top: 15px;
+}
