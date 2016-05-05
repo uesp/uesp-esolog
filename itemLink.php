@@ -335,15 +335,11 @@ class CEsoItemLink
 			}
 		}
 		
-		if (array_key_exists('qid', $this->inputParams))
-		{
-			$this->questItemId = (int) $this->inputParams['qid'];
-		}
-		
-		if (array_key_exists('cid', $this->inputParams))
-		{
-			$this->collectibleItemId = (int) $this->inputParams['cid']; 
-		}
+		if (array_key_exists('qid', $this->inputParams)) $this->questItemId = (int) $this->inputParams['qid'];
+		if (array_key_exists('questid', $this->inputParams)) $this->questItemId = (int) $this->inputParams['questid'];
+		if (array_key_exists('cid', $this->inputParams)) $this->collectibleItemId = (int) $this->inputParams['cid'];
+		if (array_key_exists('collectid', $this->inputParams)) $this->collectibleItemId = (int) $this->inputParams['collectid'];
+		if (array_key_exists('collectibleid', $this->inputParams)) $this->collectibleItemId = (int) $this->inputParams['collectibleid'];
 				
 		$this->useUpdate10Display = IsEsoVersionAtLeast($this->version, 10);
 		
