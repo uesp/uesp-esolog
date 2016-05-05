@@ -125,6 +125,7 @@ class EsoLogParser
 			"minedSkills9pts",
 			"minedSkills10pts",
 			"collectibles",
+			"achievements",
 	);
 	
 	
@@ -631,6 +632,58 @@ class EsoLogParser
 			'cooldown' => self::FIELD_INT,
 	);
 	
+	public static $ACHIEVEMENTCATEGORY_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
+			'subcategoryName' => self::FIELD_STRING,
+			'categoryIndex' => self::FIELD_INT,
+			'subCategoryIndex' => self::FIELD_INT,
+			'numAchievements' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'hidesPoints' => self::FIELD_INT,
+			'icon' => self::FIELD_STRING,
+			'pressedIcon' => self::FIELD_STRING,
+			'mouseoverIcon' => self::FIELD_STRING,
+			'gamepadIcon' => self::FIELD_STRING,
+	);
+		
+	
+	public static $ACHIEVEMENT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'categoryIndex' => self::FIELD_INT,
+			'subCategoryIndex' => self::FIELD_INT,
+			'achievementIndex' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'icon' => self::FIELD_STRING,
+			'numRewards' => self::FIELD_INT,
+			'itemLink' => self::FIELD_STRING,
+			'link' => self::FIELD_STRING,
+			'firstId' => self::FIELD_INT,
+			'prevId' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'itemName' => self::FIELD_STRING,
+			'itemIcon' => self::FIELD_STRING,
+			'itemQuality' => self::FIELD_INT,
+			'title' => self::FIELD_STRING,
+			'collectibleId' => self::FIELD_INT,
+			'dyeIndex' => self::FIELD_INT,
+			'dyeName' => self::FIELD_STRING,
+			'dyeRarity' => self::FIELD_INT,
+			'dyeHue' => self::FIELD_INT,
+			'dyeColor' => self::FIELD_STRING,
+	);
+	
+	
+	public static $ACHIEVEMENTCRITERIA_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'achievementId' => self::FIELD_INT,
+			'description' => self::FIELD_STRING,
+			'numRequired' => self::FIELD_INT,
+			'criteriaIndex' => self::FIELD_INT,
+	);
+	
 	
 	public function __construct ()
 	{
@@ -796,6 +849,8 @@ class EsoLogParser
 	
 	public function loadRecord ($table, $idField, $id, $fieldDef)
 	{
+		if ($id == null) return $this->createNewRecordID($idField, $id, $fieldDef);
+		
 		$query = $this->createSelectQuery($table, $idField, $id, $fieldDef);
 		if ($query === false) return false;
 		
@@ -813,6 +868,8 @@ class EsoLogParser
 	
 	public function loadRecord2 ($table, $idField, $id, $idField2, $id2, $fieldDef)
 	{
+		if ($id == null || $id2 == null) return $this->createNewRecordID2($idField, $id, $idField2, $id2, $fieldDef);
+		
 		$query = $this->createSelectQuery2($table, $idField, $id, $idField2, $id2, $fieldDef);
 		if ($query === false) return false;
 	
@@ -1029,6 +1086,33 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadAchievementCategory ($id)
+	{
+		$record = $this->loadRecord('achievementCategories', 'id', $id, self::$ACHIEVEMENTCATEGORY_FIELDS);
+		if ($record === false) return false;
+	
+		return $record;
+	}
+	
+	
+	public function LoadAchievement ($id)
+	{
+		$record = $this->loadRecord('achievements', 'id', $id, self::$ACHIEVEMENT_FIELDS);
+		if ($record === false) return false;
+	
+		return $record;
+	}
+	
+	
+	public function LoadAchievementCriteria ($id)
+	{
+		$record = $this->loadRecord('achievementCriteria', 'id', $id, self::$ACHIEVEMENTCRITERIA_FIELDS);
+		if ($record === false) return false;
+	
+		return $record;
+	}
+	
+	
 	public function LoadMinedItemID ($id)
 	{
 		$minedItem = $this->loadRecord('minedItem'.self::MINEITEM_TABLESUFFIX, 'id', $id, self::$MINEDITEM_FIELDS);
@@ -1188,6 +1272,24 @@ class EsoLogParser
 	public function SaveCollectible (&$record)
 	{
 		return $this->saveRecord('collectibles', $record, 'id', self::$COLLECTIBLE_FIELDS);
+	}
+	
+	
+	public function SaveAchievementCategory (&$record)
+	{
+		return $this->saveRecord('achievementCategories', $record, 'id', self::$ACHIEVEMENTCATEGORY_FIELDS);
+	}
+	
+	
+	public function SaveAchievement (&$record)
+	{
+		return $this->saveRecord('achievements', $record, 'id', self::$ACHIEVEMENT_FIELDS);
+	}
+	
+	
+	public function SaveAchievementCriteria (&$record)
+	{
+		return $this->saveRecord('achievementCriteria', $record, 'id', self::$ACHIEVEMENTCRITERIA_FIELDS);
 	}
 	
 	
@@ -1729,6 +1831,76 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create collectibles table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS achievementCategories(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			categoryName TINYTEXT NOT NULL,
+			subcategoryName TINYTEXT NOT NULL,
+			categoryIndex INTEGER NOT NULL,
+			subCategoryIndex INTEGER NOT NULL,
+			numAchievements INTEGER NOT NULL,
+			points INTEGER NOT NULL,
+			hidesPoints TINYINT NOT NULL,
+			icon TINYTEXT NOT NULL,
+			pressedIcon TINYTEXT NOT NULL,
+			mouseoverIcon TINYTEXT NOT NULL,
+			gamepadIcon TINYTEXT NOT NULL,
+			INDEX index_categoryIndex(categoryIndex),
+			INDEX index_subCategoryIndex(subCategoryIndex),
+			FULLTEXT(categoryName),
+			FULLTEXT(subcategoryName)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create achievementCategories table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS achievements(
+			id INTEGER NOT NULL PRIMARY KEY,
+			name TINYTEXT NOT NULL,
+			description TINYTEXT NOT NULL,
+			categoryIndex INTEGER NOT NULL,
+			subCategoryIndex INTEGER NOT NULL,
+			achievementIndex INTEGER NOT NULL,
+			points INTEGER NOT NULL,
+			icon TINYTEXT NOT NULL,
+			numRewards TINYINT NOT NULL,
+			itemLink TINYTEXT NOT NULL,
+			link TINYTEXT NOT NULL,
+			firstId INTEGER NOT NULL,
+			prevId INTEGER NOT NULL,
+			itemName TINYTEXT NOT NULL,
+			itemIcon TINYTEXT NOT NULL,
+			itemQuality TINYINT NOT NULL,
+			title TINYTEXT NOT NULL,
+			collectibleId INTEGER NOT NULL,
+			dyeIndex INTEGER NOT NULL,
+			dyeName TINYTEXT NOT NULL,
+			dyeRarity TINYINT NOT NULL,
+			dyeHue TINYINT NOT NULL,
+			dyeColor TINYTEXT NOT NULL,
+			FULLTEXT(name),
+			FULLTEXT(description),
+			FULLTEXT(title)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create achievements table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS achievementCriteria(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			achievementId INTEGER NOT NULL,
+			description MEDIUMTEXT NOT NULL,
+			numRequired INTEGER NOT NULL,
+			criteriaIndex INTEGER NOT NULL,
+			INDEX index_achievmentId(achievementId),
+			FULLTEXT(description)
+		);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create achievementCriteria table!");
 		
 		return true;
 	}
@@ -4062,13 +4234,6 @@ class EsoLogParser
 		
 		$collectible = $this->LoadCollectible($id);
 		
-		if (!$collectible)
-		{
-			$collectible = array();
-			$collectible['__isNew'] = true;
-			$collectible['id'] = $id;			
-		}
-		
 		$collectible['name'] = $logEntry['name'];
 		$collectible['nickname'] = $logEntry['nickname'];
 		$collectible['description'] = $logEntry['description'];
@@ -4112,16 +4277,142 @@ class EsoLogParser
 	
 	
 	public function OnAchievementStart ($logEntry)
+	{		
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		print("\tFound Achievement::Start...\n");
+				
+		$this->lastQuery = "DELETE FROM achievementCategories;";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear achievementCategories table!");
+		
+		$this->lastQuery = "DELETE FROM achievements;";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear achievements table!");
+		
+		$this->lastQuery = "DELETE FROM achievementCriteria;";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear achievementCriteria table!");
+				
+		return true;
+	}
+	
+	
+	public function OnAchievementCategory ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
-		return true;
+		
+		$achievementCategory = array();
+		
+		$achievementCategory['categoryName'] = $logEntry['name'];
+		$achievementCategory['subcategoryName'] = "";
+		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
+		$achievementCategory['subCategoryIndex'] = -1;
+		$achievementCategory['numAchievements'] = $logEntry['numAchievements'];
+		$achievementCategory['points'] = $logEntry['points'];
+		$achievementCategory['hidesPoints'] = $logEntry['hidesPoints'];
+		$achievementCategory['icon'] = $logEntry['icon'];
+		$achievementCategory['pressedIcon'] = $logEntry['pressedIcon'];
+		$achievementCategory['mouseoverIcon'] = $logEntry['mouseoverIcon'];
+		$achievementCategory['gamepadIcon'] = $logEntry['gamepadIcon'];
+		
+		$achievementCategory['__isNew'] = true;
+		$achievementCategory['__dirty'] = true;
+		
+		return $this->SaveAchievementCategory($achievementCategory);
+	}
+	
+	
+	public function OnAchievementSubcategory ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$achievementCategory = array();
+		
+		$achievementCategory['categoryName'] = $logEntry['categoryName'];
+		$achievementCategory['subcategoryName'] = $logEntry['name'];
+		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
+		$achievementCategory['subCategoryIndex'] = $logEntry['subCategoryIndex'];
+		$achievementCategory['numAchievements'] = $logEntry['numAchievements'];
+		$achievementCategory['points'] = $logEntry['points'];
+		$achievementCategory['hidesPoints'] = $logEntry['hidesPoints'];
+		$achievementCategory['icon'] = "";
+		$achievementCategory['pressedIcon'] = "";
+		$achievementCategory['mouseoverIcon'] = "";
+		$achievementCategory['gamepadIcon'] = "";
+		
+		$achievementCategory['__isNew'] = true;
+		$achievementCategory['__dirty'] = true;
+		
+		return $this->SaveAchievementCategory($achievementCategory);
 	}
 	
 	
 	public function OnAchievement ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
-		return true;
+		
+		$id = $logEntry['id'];
+		if ($id == null || $id == "") return false;
+		
+		$achievement = $this->LoadAchievement($id);
+		
+		$achievement['name'] = $logEntry['name'];
+		$achievement['categoryIndex'] = $logEntry['categoryIndex'];
+		$achievement['subCategoryIndex'] = $logEntry['subCategoryIndex'];
+		$achievement['achievementIndex'] = $logEntry['achievementIndex'];
+		$achievement['description'] = $logEntry['description'];
+		$achievement['points'] = $logEntry['points'];
+		$achievement['icon'] = $logEntry['icon'];
+		$achievement['numRewards'] = $logEntry['numRewards'];
+		$achievement['itemLink'] = $logEntry['itemLink'];
+		$achievement['link'] = $logEntry['link'];
+		$achievement['firstId'] = $logEntry['firstId'];
+		$achievement['prevId'] = $logEntry['prevId'];
+		$achievement['points'] = $logEntry['points'];
+		$achievement['itemName'] = $logEntry['itemName'];
+		$achievement['itemIcon'] = $logEntry['itemIcon'];
+		$achievement['itemQuality'] = $logEntry['itemQuality'];
+		$achievement['title'] = $logEntry['title'];
+		
+		if ($logEntry['hasDyeReward'])
+		{
+			$achievement['dyeIndex'] = $logEntry['dyeIndex'];
+			$achievement['dyeName'] = $logEntry['dyeName'];
+			$achievement['dyeRarity'] = $logEntry['dyeRarity'];
+			$achievement['dyeHue'] = $logEntry['dyeHue'];
+			$achievement['dyeColor'] = dechex(floor($logEntry['dyeR'] * 255)) . dechex(floor($logEntry['dyeG'] * 255)) . dechex(floor($logEntry['dyeB'] * 255));
+		}
+		else
+		{
+			$achievement['dyeIndex'] = -1;
+			$achievement['dyeName'] = "";
+			$achievement['dyeRarity'] = -1;
+			$achievement['dyeHue'] = -1;
+			$achievement['dyeColor'] = "";
+		}
+		
+		$achievement['collectibleId'] = $logEntry['collectibleId'];
+		$achievement['__dirty'] = true;
+		
+		return $this->SaveAchievement($achievement);
+	}
+	
+	
+	public function OnAchievementCriteria ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$achievementCriteria = array();
+		
+		$achievementCriteria['achievementId'] = $logEntry['id'];
+		$achievementCriteria['description'] = $logEntry['description'];
+		$achievementCriteria['numRequired'] = $logEntry['numRequired'];
+		$achievementCriteria['criteriaIndex'] = $logEntry['index'];
+		$achievementCriteria['__isNew'] = true;
+		$achievementCriteria['__dirty'] = true;
+		
+		return $this->SaveAchievementCriteria($achievementCriteria);
 	}
 	
 	
@@ -4150,7 +4441,7 @@ class EsoLogParser
 	public function IsValidUser ($logEntry)
 	{
 		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring {$logEntry['event']} from user ".$this->currentUser['name']."!");
-		return false;
+		return true;
 	}
 	
 	
@@ -4216,6 +4507,12 @@ class EsoLogParser
 			case "MineCollectID::Start":
 			case "MineCollectID":
 			case "MineCollectID::End":
+			case "Achievement::Start":
+			case "Achievement::Subcategory":
+			case "Achievement::Category":
+			case "Achievement::Criteria":
+			case "Achievement":
+			case "Achievement::End":
 				return false;
 		}
 		
@@ -4319,10 +4616,13 @@ class EsoLogParser
 			case "Recipe::End":					$result = $this->OnNullEntry($logEntry); break;
 			case "Global":						$result = $this->OnNullEntry($logEntry); break;
 			case "Global::End":					$result = $this->OnNullEntry($logEntry); break;
-			case "Category":					$result = $this->OnNullEntry($logEntry); break;
-			case "Subcategory":					$result = $this->OnNullEntry($logEntry); break;
 			case "Achievement::Start":			$result = $this->OnAchievementStart($logEntry); break;
 			case "Achievement":					$result = $this->OnAchievement($logEntry); break;
+			case "Category":					$result = $this->OnAchievementCategory($logEntry); break;
+			case "Subcategory":					$result = $this->OnAchievementSubcategory($logEntry); break;
+			case "Achievement::Category":		$result = $this->OnAchievementCategory($logEntry); break;
+			case "Achievement::Subcategory":	$result = $this->OnAchievementSubcategory($logEntry); break;
+			case "Achievement::Criteria":		$result = $this->OnAchievementCriteria($logEntry); break;
 			case "Achievement::End":			$result = $this->OnAchievementEnd($logEntry); break;
 			case "ExperienceUpdate":			$result = $this->OnExperienceUpdate($logEntry); break;
 			case "mineItem::AutoStart":			$result = $this->OnMineItemStart($logEntry); break;
@@ -4743,11 +5043,5 @@ class EsoLogParser
 $g_EsoLogParser = new EsoLogParser();
 $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
-
-
-
-
-
-
 
 
