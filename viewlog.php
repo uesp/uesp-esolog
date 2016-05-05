@@ -499,6 +499,7 @@ class EsoLogViewer
 	
 	public static $ACHIEVEMENTCATEGORY_FIELDS = array(
 			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
 			'categoryName' => self::FIELD_STRING,
 			'subcategoryName' => self::FIELD_STRING,
 			'categoryIndex' => self::FIELD_INT,
@@ -1432,6 +1433,13 @@ class EsoLogViewer
 					),
 			
 					'filters' => array(
+							array(
+									'record' => 'achievements',
+									'field' => 'id',
+									'thisField' => 'achievementId',
+									'displayName' => 'View Achievement',
+									'type' => 'viewRecord',
+							),
 					),
 			),
 				
@@ -1456,10 +1464,22 @@ class EsoLogViewer
 			'Sets DB-PTS' => 'setSummary10pts',
 			'Skills' => 'minedSkills',
 			'Skills DB-PTS' => 'minedSkills10pts',
-		);
+	);
+	
+	
+	public static $SEARCH_TYPE_EXTRAS = array(
+			'achievements' => array('achievementCriteria', 'achievementCategories'),
+	);
 	
 	
 	public static $SEARCH_DATA = array(
+			'achievementCategories' => array(
+					'searchFields' => array('name'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
 			'achievements' => array(
 					'searchFields' => array('name', 'description', 'title'),
 					'fields' => array(
@@ -1467,6 +1487,13 @@ class EsoLogViewer
 							'name' => 'name',
 					),
 			),
+			'achievementCriteria' => array(
+					'searchFields' => array('description'),
+					'fields' => array(
+							'id' => 'id',
+							'description' => 'name',
+					),
+			),			
 			'book' => array(
 					'searchFields' => array('title', 'body'),
 					'fields' => array(
@@ -3144,6 +3171,18 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function IsTableSearchType($table)
+	{
+		if ($this->searchType == '') return true;
+		if ($this->searchType == $table) return true;
+		
+		$extraTypes = self::$SEARCH_TYPE_EXTRAS[$this->searchType];
+		if ($extraTypes != null && in_array($table, $extraTypes)) return true;
+		
+		return false;
+	}
+	
+	
 	public function DoSearch()
 	{
 		$this->OutputTopMenu();
@@ -3155,7 +3194,7 @@ If you do not understand what this information means, or how to use this webpage
 			/* Exact searches */
 		foreach (self::$SEARCH_DATA as $table => $searchData)
 		{
-			if ($this->searchType == '' || $this->searchType == $table)
+			if ($this->IsTableSearchType($table))
 			{
 				$this->SearchTableExact($table, $searchData);
 			}
@@ -3164,7 +3203,7 @@ If you do not understand what this information means, or how to use this webpage
 			/* Partial searches */
 		foreach (self::$SEARCH_DATA as $table => $searchData)
 		{
-			if ($this->searchType == '' || $this->searchType == $table)
+			if ($this->IsTableSearchType($table))
 			{
 				$this->SearchTable($table, $searchData);
 			}

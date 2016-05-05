@@ -634,6 +634,7 @@ class EsoLogParser
 	
 	public static $ACHIEVEMENTCATEGORY_FIELDS = array(
 			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
 			'categoryName' => self::FIELD_STRING,
 			'subcategoryName' => self::FIELD_STRING,
 			'categoryIndex' => self::FIELD_INT,
@@ -1834,6 +1835,7 @@ class EsoLogParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS achievementCategories(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			name TINYTEXT NOT NULL,
 			categoryName TINYTEXT NOT NULL,
 			subcategoryName TINYTEXT NOT NULL,
 			categoryIndex INTEGER NOT NULL,
@@ -4305,6 +4307,7 @@ class EsoLogParser
 		$achievementCategory = array();
 		
 		$achievementCategory['categoryName'] = $logEntry['name'];
+		$achievementCategory['name'] = $logEntry['name'];
 		$achievementCategory['subcategoryName'] = "";
 		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
 		$achievementCategory['subCategoryIndex'] = -1;
@@ -4331,6 +4334,7 @@ class EsoLogParser
 		
 		$achievementCategory['categoryName'] = $logEntry['categoryName'];
 		$achievementCategory['subcategoryName'] = $logEntry['name'];
+		$achievementCategory['name'] =  $logEntry['categoryName'] . "::" . $logEntry['name'];
 		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
 		$achievementCategory['subCategoryIndex'] = $logEntry['subCategoryIndex'];
 		$achievementCategory['numAchievements'] = $logEntry['numAchievements'];
