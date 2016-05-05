@@ -1760,8 +1760,8 @@ class CEsoItemLink
 	{
 		$replacePairs = array(
 				'{itemName}' => $this->questItemData['name'],
-				'{itemNameUpper}' => $this->MakeQuestItemName(),
-				'{itemDesc}' => strtoupper($this->questItemData['name']),
+				'{itemNameUpper}' => strtoupper($this->questItemData['name']),
+				'{itemDesc}' => $this->MakeQuestItemDescription(),
 				'{itemLink}' => $this->questItemData['itemLink'],
 				'{itemStyle}' => "",
 				'{itemId}' => $this->questItemId,
