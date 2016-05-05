@@ -58,6 +58,7 @@ class EsoLogViewer
 	const FIELD_INTID = 9;
 	const FIELD_TEXTTRANSFORM = 10;
 	const FIELD_GAMEICON = 11;
+	const FIELD_COLORBOX = 12;
 
 	
 	public static $FIELD_NAMES = array(
@@ -493,6 +494,60 @@ class EsoLogViewer
 			'questName' => self::FIELD_STRING,
 			'backgroundText' => self::FIELD_STRING,
 			'cooldown' => self::FIELD_INT,
+	);
+	
+	
+	public static $ACHIEVEMENTCATEGORY_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
+			'subcategoryName' => self::FIELD_STRING,
+			'categoryIndex' => self::FIELD_INT,
+			'subCategoryIndex' => self::FIELD_INT,
+			'numAchievements' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'hidesPoints' => self::FIELD_INT,
+			'icon' => self::FIELD_GAMEICON,
+			'pressedIcon' => self::FIELD_GAMEICON,
+			'mouseoverIcon' => self::FIELD_GAMEICON,
+			'gamepadIcon' => self::FIELD_GAMEICON,
+	);
+	
+	
+	public static $ACHIEVEMENT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'categoryIndex' => self::FIELD_INT,
+			'subCategoryIndex' => self::FIELD_INT,
+			'achievementIndex' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'icon' => self::FIELD_GAMEICON,
+			'numRewards' => self::FIELD_INT,
+			'itemLink' => self::FIELD_STRING,
+			'link' => self::FIELD_STRING,
+			'firstId' => self::FIELD_INT,
+			'prevId' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'itemName' => self::FIELD_STRING,
+			'itemIcon' => self::FIELD_STRING,
+			'itemQuality' => self::FIELD_INT,
+			'title' => self::FIELD_STRING,
+			'collectibleId' => self::FIELD_INT,
+			'dyeIndex' => self::FIELD_INT,
+			'dyeName' => self::FIELD_STRING,
+			'dyeRarity' => self::FIELD_INT,
+			'dyeHue' => self::FIELD_INT,
+			'dyeColor' => self::FIELD_COLORBOX,
+	);
+	
+	
+	public static $ACHIEVEMENTCRITERIA_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'achievementId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'numRequired' => self::FIELD_INT,
+			'criteriaIndex' => self::FIELD_INT,
 	);
 	
 	
@@ -1312,12 +1367,80 @@ class EsoLogViewer
 					'filters' => array(
 					),
 			),
+			
+			'achievementCategories' => array(
+					'displayName' => 'Achievement Categories',
+					'displayNameSingle' => 'Achievement Category',
+					'record' => 'achievementCategories',
+					'table' => 'achievementCategories',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('categoryIndex', 'subCategoryIndex'),
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'achievements',
+									'field' => 'categoryIndex',
+									'thisField' => 'categoryIndex',
+									'displayName' => 'View Achievements',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'achievements' => array(
+					'displayName' => 'Achievements',
+					'displayNameSingle' => 'Achievement',
+					'record' => 'achievements',
+					'table' => 'achievements',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('id'),
+			
+					'transform' => array(
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'achievementCriteria',
+									'field' => 'achievementId',
+									'thisField' => 'id',
+									'displayName' => 'View Criteria',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'achievementCriteria' => array(
+					'displayName' => 'Achievement Criteria',
+					'displayNameSingle' => 'Achievement Criteria',
+					'record' => 'achievementCriteria',
+					'table' => 'achievementCriteria',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('achievementId', 'criteriaIndex'),
+					
+					'join' => array(
+							'achievementId' => array(
+									'joinField' => 'id',
+									'table' => 'achievements',
+									'fields' => array('name'),
+							),
+					),
+			
+					'transform' => array(
+					),
+			
+					'filters' => array(
+					),
+			),
 				
 	);
 	
 	
 	public static $SEARCH_TYPE_OPTIONS = array(
 			'All' => '',
+			'Achievements' => 'achievements',
 			'Books' => 'book',
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
@@ -1337,6 +1460,13 @@ class EsoLogViewer
 	
 	
 	public static $SEARCH_DATA = array(
+			'achievements' => array(
+					'searchFields' => array('name', 'description', 'title'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
 			'book' => array(
 					'searchFields' => array('title', 'body'),
 					'fields' => array(
@@ -1526,6 +1656,9 @@ class EsoLogViewer
 		self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
 		self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
 		self::$RECORD_TYPES['collectibles']['fields'] = self::$COLLECTIBLE_FIELDS;
+		self::$RECORD_TYPES['achievementCategories']['fields'] = self::$ACHIEVEMENTCATEGORY_FIELDS;
+		self::$RECORD_TYPES['achievements']['fields'] = self::$ACHIEVEMENT_FIELDS;
+		self::$RECORD_TYPES['achievementCriteria']['fields'] = self::$ACHIEVEMENTCRITERIA_FIELDS;
 		
 		if (self::ENABLE_8PTS) 
 		{
@@ -2298,6 +2431,7 @@ If you do not understand what this information means, or how to use this webpage
 			default:
 			case self::FIELD_TEXTTRANSFORM:
 			case self::FIELD_STRING:
+			case self::FIELD_COLORBOX:
 			case self::FIELD_LARGESTRING:
 				$output = $value;
 				break;
@@ -2377,6 +2511,9 @@ If you do not understand what this information means, or how to use this webpage
 			case self::FIELD_GAMEICON:
 				$output = $value;
 				break;
+			case self::FIELD_COLORBOX:
+				$output = $value;
+				break;
 		}
 	
 		return $output;
@@ -2433,6 +2570,10 @@ If you do not understand what this information means, or how to use this webpage
 				$url = self::GAME_ICON_URL . preg_replace("/\.dds/", ".png", $value);
 				$output = "<a href='$url'><img src='$url' title='$value'/></a>";
 				break;
+			case self::FIELD_COLORBOX:
+				$displayValue = strtoupper($value);
+				$output = "#$displayValue <div style='background-color: #$value;' class='elvColorBox'></div>";
+				break;
 		}
 		
 		return $output;
@@ -2484,6 +2625,9 @@ If you do not understand what this information means, or how to use this webpage
 				
 				break;
 			case self::FIELD_GAMEICON:
+				$output = $value;
+				break;
+			case self::FIELD_COLORBOX:
 				$output = $value;
 				break;
 		}
