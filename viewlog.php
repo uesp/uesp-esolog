@@ -2495,6 +2495,14 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function EscapeStringCSV($value)
+	{
+		$newValue = str_replace("\\", "\\\\", $value);
+		$newValue = str_replace("\"", "\\\"", $value);
+		return $newValue;
+	}
+	
+	
 	public function SimpleFormatFieldCSV ($value, $type)
 	{
 		$output = "";
@@ -2509,7 +2517,7 @@ If you do not understand what this information means, or how to use this webpage
 			default:
 			case self::FIELD_TEXTTRANSFORM:
 			case self::FIELD_STRING:
-				$escapeValue = addslashes($value);
+				$escapeValue = $this->EscapeStringCSV($value);
 				$output = "\"$escapeValue\"";
 				break;
 			case self::FIELD_LARGESTRING:
@@ -2621,7 +2629,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			default:
 			case self::FIELD_STRING:
-				$escapeValue = addslashes($value);
+				$escapeValue = $this->EscapeStringCSV($value);
 				$output = "\"$escapeValue\"";
 				break;
 			case self::FIELD_LARGESTRING:
