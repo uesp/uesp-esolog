@@ -1,8 +1,9 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "10pts";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
+$REMOVEDUPLICATES = true;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries...\n");
@@ -418,4 +419,34 @@ if ($KEEPONLYNEWSETS && $TABLE_SUFFIX != "")
 	
 	print("\tDeleting old sets...OK!\n");
 }
+
+if ($REMOVEDUPLICATES)
+{
+	print("\tRemoving duplicates...\n");
+	
+	$query = "SELECT *, COUNT(*) c, GROUP_CONCAT(id) ids, GROUP_CONCAT(itemCount) itemCounts FROM setSummary$TABLE_SUFFIX GROUP BY setName HAVING c > 1;";
+	$rowResult = $db->query($query);
+	if (!$rowResult) exit("ERROR: Database query error finding duplicate sets!\n" . $db->error . "\n" . $query);
+	
+	while (($row = $rowResult->fetch_assoc()))
+	{
+		$setName = $row['setName'];
+		$count = $row['c'];
+		$id = $row['id'];
+		$ids = explode(",", $row['ids']);
+		$itemCounts = explode(",", $row['itemCounts']);
+		
+		print("\t\tFound duplicate set $setName ($c records, '{$row['ids']}', '{$row['itemCounts']}') \n");
+		
+		$minCounts = array_keys($itemCounts, min($itemCounts));
+		$minCount = $minCounts[0];
+		$minId = $ids[$minCount];
+		print("\t\t\tDeleting record {$minId} with count {$itemCounts[$minCount]}...\n");
+		
+		$query = "DELETE FROM setSummary$TABLE_SUFFIX WHERE id=$minId;";
+		$deleteResult =	$db->query($query);
+		if (!$deleteResult) exit("ERROR: Database query error deleting duplicate sets!\n" . $db->error . "\n" . $query);
+	}
+}
+
 
