@@ -327,6 +327,11 @@ class EsoLogViewer
 			'setBonusDesc' => self::FIELD_INTTRANSFORM,
 			'itemSlots' => self::FIELD_STRING,
 			'itemCount' => self::FIELD_INT,
+			'setBonusDesc1' => self::FIELD_STRING,
+			'setBonusDesc2' => self::FIELD_STRING,
+			'setBonusDesc3' => self::FIELD_STRING,
+			'setBonusDesc4' => self::FIELD_STRING,
+			'setBonusDesc5' => self::FIELD_STRING,
 	);
 	
 	

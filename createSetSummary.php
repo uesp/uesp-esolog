@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "10pts";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 
@@ -13,7 +13,8 @@ require("/home/uesp/secrets/esolog.secrets");
 function TransformBonusDesc($desc)
 {
 	$newDesc = preg_replace('/\|c[0-9a-fA-F]{6}([0-9\.\-\%\s]+)\|r/', '$1', $desc);
-	return preg_replace('/\n/', ' ', $newDesc);
+	//$newDesc = preg_replace('/\n/', ' ', $newDesc);
+	return $newDesc;
 }
 
 
@@ -267,7 +268,7 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			setBonusDesc2 TINYTEXT NOT NULL,
 			setBonusDesc3 TINYTEXT NOT NULL,
 			setBonusDesc4 TINYTEXT NOT NULL,
-			setBonusDesc5 TINYTEXT NOT NULL,
+			setBonusDesc5 TEXT NOT NULL,
 			setBonusDesc TEXT NOT NULL,
 			itemSlots TEXT NOT NULL,
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5)
