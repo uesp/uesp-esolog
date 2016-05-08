@@ -268,7 +268,7 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			setBonusDesc1 TINYTEXT NOT NULL,
 			setBonusDesc2 TINYTEXT NOT NULL,
 			setBonusDesc3 TINYTEXT NOT NULL,
-			setBonusDesc4 TINYTEXT NOT NULL,
+			setBonusDesc4 TEXT NOT NULL,
 			setBonusDesc5 TEXT NOT NULL,
 			setBonusDesc TEXT NOT NULL,
 			itemSlots TEXT NOT NULL,
