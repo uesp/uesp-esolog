@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "10pts";
+$TABLE_SUFFIX = "";
 
 $FIELDS = array(
 		"itemId",
@@ -88,10 +88,10 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			enchantDesc TEXT NOT NULL,
 			traitDesc TINYTEXT NOT NULL,
 			traitAbilityDesc TINYTEXT NOT NULL,
-			setBonusDesc1 TINYTEXT NOT NULL,
-			setBonusDesc2 TINYTEXT NOT NULL,
-			setBonusDesc3 TINYTEXT NOT NULL,
-			setBonusDesc4 TINYTEXT NOT NULL,
+			setBonusDesc1 TEXT NOT NULL,
+			setBonusDesc2 TEXT NOT NULL,
+			setBonusDesc3 TEXT NOT NULL,
+			setBonusDesc4 TEXT NOT NULL,
 			setBonusDesc5 TEXT NOT NULL,
 			tags TINYTEXT NOT NULL,
 			PRIMARY KEY (id),
