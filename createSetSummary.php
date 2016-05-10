@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "10pts";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -265,9 +265,9 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			setMaxEquipCount TINYINT NOT NULL DEFAULT 0,
 			setBonusCount TINYINT NOT NULL DEFAULT 0,
 			itemCount INTEGER NOT NULL DEFAULT 0,
-			setBonusDesc1 TINYTEXT NOT NULL,
-			setBonusDesc2 TINYTEXT NOT NULL,
-			setBonusDesc3 TINYTEXT NOT NULL,
+			setBonusDesc1 TEXT NOT NULL,
+			setBonusDesc2 TEXT NOT NULL,
+			setBonusDesc3 TEXT NOT NULL,
 			setBonusDesc4 TEXT NOT NULL,
 			setBonusDesc5 TEXT NOT NULL,
 			setBonusDesc TEXT NOT NULL,
