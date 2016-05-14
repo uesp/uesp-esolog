@@ -63,12 +63,12 @@
 }
 
 #esovcpSkills {
-	margin-left: 410px;	
+	margin-left: 460px;	
 }
 
 #esovcpDisciplines {
 	float: left;
-	width: 400px;
+	width: 450px;
 }
 
 .esovcpDiscHea {
@@ -88,6 +88,9 @@
 	font-size: 20px;
 	font-weight: bold;
 	border: solid 4px rgba(0,0,0,0);
+	height: 50px;
+	overflow: hidden;
+	margin-left: 50px;
 }
 
 .esovcpDiscipline:hover {
@@ -187,4 +190,27 @@
 	font-size: 22px;
 	font-weight: bold;
 	margin-left: 50px;	
+}
+
+.esovcpDiscAttrPoints {
+	height: 100px;
+	width: 50px;
+	float: left;
+	text-align: center;
+	padding-top: 92px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.esovcpDiscAttrGroup {
+}
+
+.esovcpTotalPoints {
+	width: 440px;
+	height: 25px;
+	font-size: 24px;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+	background-color: lightgray;
 }

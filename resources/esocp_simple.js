@@ -111,6 +111,7 @@ function UpdateDiscPoints(discId)
 {
 	var skillInputs = $("#skills_" + discId + " .esovcpPointInput");
 	var totalPoints = 0;
+	var attributeIndex = $("#" + discId).parent().attr("attributeindex");
 	
 	skillInputs.each(function() {
 		totalPoints += Number($(this).val());
@@ -118,6 +119,35 @@ function UpdateDiscPoints(discId)
 	
 	$("#skills_" + discId + " .esovcpDiscTitlePoints").text(totalPoints);
 	$("#" + discId + " .esovcpDiscPoints").text(totalPoints);	
+	
+	UpdateDiscAttrPoints(attributeIndex);
+}
+
+
+function UpdateDiscAttrPoints(attributeIndex)
+{
+	var discPoints = $(".esovcpDiscAttrGroup[attributeindex='" + attributeIndex + "'] .esovcpDiscPoints");
+	var totalPoints = 0;
+	
+	discPoints.each(function() {
+		totalPoints += Number($(this).text());
+    });
+	
+	$(".esovcpDiscAttrPoints[attributeindex='" + attributeIndex + "']").text(totalPoints);
+	
+	UpdateTotalCPPoints();
+}
+
+
+function UpdateTotalCPPoints()
+{	var attrPoints = $(".esovcpDiscAttrPoints");
+	var totalPoints = 0;
+	
+	attrPoints.each(function() {
+		totalPoints += Number($(this).text());
+	});
+
+	$(".esovcpTotalPoints").text(totalPoints + " CP");
 }
 
 
