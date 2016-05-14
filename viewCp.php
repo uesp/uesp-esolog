@@ -310,15 +310,27 @@ class CEsoViewCP
 	{
 		$output = "";
 		
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[2], "esovcpDiscSta");
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[3], "esovcpDiscSta");
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[4], "esovcpDiscSta");
+		$output .= "<div class='esovcpTotalPoints'>0 CP</div>";
+		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscHea' attributeindex='1'>0</div>";
+		$output .= "<div class='esovcpDiscAttrGroup' id='disc_hea' attributeindex='1'>";
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[2], "esovcpDiscHea");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[3], "esovcpDiscHea");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[4], "esovcpDiscHea");
+		$output .= "</div>";
+	
+		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscMag' attributeindex='2'>0</div>";
+		$output .= "<div class='esovcpDiscAttrGroup' id='disc_mag' attributeindex='2'>";
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[5], "esovcpDiscMag");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[6], "esovcpDiscMag");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[7], "esovcpDiscMag");
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[8], "esovcpDiscHea");
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[9], "esovcpDiscHea");
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[1], "esovcpDiscHea");
+		$output .= "</div>";
+		
+		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscSta' attributeindex='3'>0</div>";
+		$output .= "<div class='esovcpDiscAttrGroup' id='disc_sta' attributeindex='3'>";
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[8], "esovcpDiscSta");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[9], "esovcpDiscSta");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[1], "esovcpDiscSta");
+		$output .= "</div>";
 		
 		return $output;
 	}
