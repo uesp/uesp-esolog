@@ -111,6 +111,7 @@
 .esovcpDiscSkillTitle {
 	font-size: 24px;
 	font-weight: bold;
+	display: inline-block;
 }
 
 .esovcpSkill {
@@ -152,6 +153,7 @@
 .esovcpSkillControls {
 	width: 100px;
 	display: inline-block;
+	text-align: center;
 }
 
 .esovcpPointInput {
@@ -174,4 +176,15 @@
 	vertical-align: middle;
 	margin: 0;
     padding: 0;
+}
+
+.esovcpDiscPoints {
+	float: right;
+}
+
+.esovcpDiscTitlePoints {
+	display: inline-block;
+	font-size: 22px;
+	font-weight: bold;
+	margin-left: 50px;	
 }

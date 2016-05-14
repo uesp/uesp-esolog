@@ -26,6 +26,7 @@ class CEsoViewCP
 	public $cpIndexes = array();
 	public $cpAbilityIds = array();
 	public $cpSkillDesc = array();
+	public $cpTotalPoints = array(0, 0, 0, 0);
 			
 
 	public function __construct ($isEmbedded = false)
@@ -86,6 +87,7 @@ class CEsoViewCP
 			
 			$this->cpIndexes[$name] = $index;
 			$this->cpData[$index] = $row;
+			$this->cpData[$index]['totalPoints'] = 0;
 			$this->cpData[$index]['skills'] = array();
 		}
 		
@@ -258,8 +260,9 @@ class CEsoViewCP
 			$display = "none";
 			if ($index == $this->displayDiscIndex) $display = "block";
 			
-			$output .= "<div id='skills_$id' class='esovcpDiscSkills' style='display: $display;'>";
+			$output .= "<div id='skills_$id' disciplineid='$id' disciplineindex='$index' class='esovcpDiscSkills' style='display: $display;'>";
 			$output .= "<div class='esovcpDiscSkillTitle'>$name</div>";
+			$output .= "<div class='esovcpDiscTitlePoints'>0</div>";
 			$output .= "<hr>";
 			
 			foreach ($discipline['skills'] as $skill)
@@ -334,8 +337,8 @@ class CEsoViewCP
 		
 		$id = str_replace(" ", "_", strtolower($name));
 			
-		$output .= "<div id='$id' class='esovcpDiscipline $extraClass'>";
-		$output .= "$name <div class='esovcpDiscDesc'>$desc</div>";
+		$output .= "<div id='$id' disciplineindex='$index' class='esovcpDiscipline $extraClass'>";
+		$output .= "$name <div class='esovcpDiscPoints'>0</div><div class='esovcpDiscDesc'>$desc</div>";
 		$output .= "</div>";	
 	
 		return $output;
