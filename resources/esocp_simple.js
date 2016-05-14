@@ -121,6 +121,7 @@ function UpdateDiscPoints(discId)
 	$("#" + discId + " .esovcpDiscPoints").text(totalPoints);	
 	
 	UpdateDiscAttrPoints(attributeIndex);
+	UpdateUnlockLevels(discId);
 }
 
 
@@ -188,9 +189,28 @@ function UpdateCPLink()
 	});
 	
 	cpQueryData = EncodeSkillData64(skillData);
-	//console.log(DecodeSkillData64(cpQueryData));
 	
 	link.attr("href", "?cp=" + cpQueryData);
+}
+
+
+function UpdateUnlockLevels(discId)
+{
+	var points = parseInt($("#skills_" + discId + " .esovcpDiscTitlePoints").text());
+	var passives = $("#skills_" + discId + " .esovcpSkillLevel");
+	
+	passives.each(function() {
+		var unlockLevel = $(this).parent().attr("unlocklevel");
+		
+		if (unlockLevel <= points)
+		{
+			$(this).addClass("esovcpPassiveUnlocked");
+		}
+		else
+		{
+			$(this).removeClass("esovcpPassiveUnlocked");
+		}
+	});
 }
 
 
