@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Champion Point Browser {versionTitle}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esocp.css" />
+		<link rel="stylesheet" href="resources/esocp_simple_embed.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="resources/esocp_simple.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+
+<h1>ESO Champion Point Browser {versionTitle}</h1>
+
+<div id="esovcpContainer">
+	<div id="esovcpDisciplines">{cpDisciplines}</div>
+	<div id="esovcpSkills">{cpSkills}</div>
+</div>
+
+<script type="text/javascript">
+	var g_SkillDesc = {skillDescJson};
+</script>
+
+<div class="esovpBlockClear"></div>
+<div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>
+<hr>
+<div id="esovcpFooter">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</div>
+</body>
+</html>
