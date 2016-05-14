@@ -9,7 +9,10 @@ class CEsoViewCP
 {
 	const ESOVCP_HTML_TEMPLATE = "templates/esocp_template.txt";
 	const ESOVCP_HTML_TEMPLATE_EMBED = "templates/esocp_template.txt";
+	const ESOVCP_HTML_SIMPLE_TEMPLATE = "templates/esocp_simple_template.txt";
+	const ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED = "templates/esocp_simple_template.txt";
 	
+	public $viewSimpleOutput = true;
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
 	public $baseUrl = "";
@@ -17,6 +20,11 @@ class CEsoViewCP
 	public $baseResource = "";
 	
 	public $version = "";
+	
+	public $cpData = array();
+	public $cpIndexes = array();
+	public $cpAbilityIds = array();
+	public $cpSkillDesc = array();
 			
 
 	public function __construct ($isEmbedded = false)
@@ -47,6 +55,90 @@ class CEsoViewCP
 	}
 	
 	
+	private function LoadCpData()
+	{
+		$result = true;
+		
+		$result &= $this->LoadCpDisciplines();
+		$result &= $this->LoadCpSkills();
+		$result &= $this->LoadCpSkillDescriptions();
+		
+		return $result;
+	}
+	
+	
+	private function LoadCpDisciplines()
+	{
+		$query = "SELECT * FROM cpDisciplines;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load cpDisciplines records!");
+		
+		$this->cpData = array();
+		$this->cpIndexes = array();
+		$this->cpAbilityIds = array();
+		$this->cpSkillDesc = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$name = $row['name'];
+			$index = $row['disciplineIndex'];
+			
+			$this->cpIndexes[$name] = $index;
+			$this->cpData[$index] = $row;
+			$this->cpData[$index]['skills'] = array();
+		}
+		
+		return true;	
+	}
+	
+	
+	private function LoadCpSkills()
+	{
+		$query = "SELECT * FROM cpSkills;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load cpSkills records!");
+		
+		$this->cpAbilityIds = array();
+	
+		while (($row = $result->fetch_assoc()))
+		{
+			$abilityId = $row['abilityId'];
+			$index = $row['disciplineIndex'];
+			
+			$this->cpAbilityIds[$abilityId] = $index;
+			$this->cpData[$index]['skills'][$abilityId] = $row;
+			$this->cpData[$index]['skills'][$abilityId]['descriptions'] = array();
+		}
+	
+		return true;
+	}
+	
+	
+	private function LoadCpSkillDescriptions()
+	{
+		$query = "SELECT * FROM cpSkillDescriptions;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load cpSkillDescriptions records!");
+		
+		$this->cpSkillDesc = array();
+
+		while (($row = $result->fetch_assoc()))
+		{
+			$abilityId = $row['abilityId'];
+			$index = $this->cpAbilityIds[$abilityId];
+			$points = $row['points'];
+				
+			$this->cpAbilityIds[$abilityId] = $index;
+			$this->cpData[$index]['skills'][$abilityId]['descriptions'][$points] = $row;
+			
+			if ($this->cpSkillDesc[$abilityId] == null) $this->cpSkillDesc[$abilityId] = array();
+			$this->cpSkillDesc[$abilityId][$points] = $this->FormatDescriptionHtml($row['description']);
+		}
+	
+		return true;
+	}
+	
+	
 	private function OutputHtmlHeader()
 	{
 		ob_start("ob_gzhandler");
@@ -64,9 +156,19 @@ class CEsoViewCP
 		$templateFile = $this->basePath;
 	
 		if ($this->isEmbedded)
-			$templateFile .= self::ESOVCP_HTML_TEMPLATE_EMBED;
+		{
+			if ($this->viewSimpleOutput)
+				$templateFile .= self::ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED;
+			else
+				$templateFile .= self::ESOVCP_HTML_TEMPLATE_EMBED;
+		}
 		else
-			$templateFile .= self::ESOVCP_HTML_TEMPLATE;
+		{
+			if ($this->viewSimpleOutput)
+				$templateFile .= self::ESOVCP_HTML_SIMPLE_TEMPLATE;
+			else
+				$templateFile .= self::ESOVCP_HTML_TEMPLATE;
+		}
 					
 		$this->htmlTemplate = file_get_contents($templateFile);
 	}
@@ -133,7 +235,111 @@ class CEsoViewCP
 		if ($this->GetTableSuffix() == "") return "";
 		return " v" . $this->version . "";
 	}
+	
+	
+	public function FormatDescriptionHtml($description)
+	{
+		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "<div class='esovcpDescWhite'>$2</div>", $description);
+		return $output;
+	}
+	
+	
+	public function GetCpSkillsHtml()
+	{
+		$output = "";
+		$display = "block";
 		
+		foreach ($this->cpData as &$discipline)
+		{
+			$name = $discipline['name'];
+			$id = str_replace(" ", "_", strtolower($name));
+			$output .= "<div id='skills_$id' class='esovcpDiscSkills' style='display: $display;'>";
+			$output .= "<div class='esovcpDiscSkillTitle'>$name</div>";
+			$output .= "<hr>";
+			$display = "none";
+			
+			foreach ($discipline['skills'] as $skill)
+			{
+				$output .= $this->GetCpSkillSectionHtml($skill, "");
+			}
+			
+			$output .= "</div>";			
+		}
+		
+		return $output;
+	}
+	
+	
+	public function GetCpSkillSectionHtml($skill, $extraClass = "")
+	{
+		$name = $skill['name'];
+		$id = $skill['abilityId'];
+		$unlockLevel = $skill['unlockLevel'];
+		$desc = $this->FormatDescriptionHtml($skill['minDescription']);
+		
+		$output  = "<div id='skill_$id' skillid='$id' class='esovcpSkill $extraClass'>";
+		
+		if ($unlockLevel > 0)
+		{
+			$output .= "<div class='esovcpSkillLevel'>Unlocked at <br/>$unlockLevel</div>";
+		}
+		else
+		{
+			$output .= "<div class='esovcpSkillControls'>";
+			$output .= "<button skillid='$id' class='esovcpMinusButton'>-</button>";
+			$output .= "<input skillid='$id' class='esovcpPointInput' type='text' value='0' size='3' maxlength='3'>";
+			$output .= "<button skillid='$id' class='esovcpPlusButton'>+</button>";
+			$output .= "</div>";	
+		}
+		
+		$output .= "$name <div class='esovcpSkillDesc' id='descskill_$id'>$desc</div>";
+		$output .= "</div>";
+		
+		return $output;
+	}
+	
+	
+	public function GetCpDisciplinesHtml()
+	{
+		$output = "";
+		
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[2], "esovcpDiscHighlight esovcpDiscSta");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[3], "esovcpDiscSta");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[4], "esovcpDiscSta");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[5], "esovcpDiscMag");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[6], "esovcpDiscMag");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[7], "esovcpDiscMag");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[8], "esovcpDiscHea");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[9], "esovcpDiscHea");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[1], "esovcpDiscHea");
+		
+		return $output;
+	}
+	
+	
+	public function GetCpDisciplineTitleHtml($discipline, $extraClass = "")
+	{
+		if ($discipline == null) return "";
+		
+		$name = $discipline['name'];
+		$desc = $discipline['description'];
+		$attr = $discipline['attribute'];
+		
+		$id = str_replace(" ", "_", strtolower($name));
+			
+		$output .= "<div id='$id' class='esovcpDiscipline $extraClass'>";
+		$output .= "$name <div class='esovcpDiscDesc'>$desc</div>";
+		$output .= "</div>";	
+	
+		return $output;
+	}
+	
+	
+	public function GetCpSkillDescJson()
+	{
+		return json_encode($this->cpSkillDesc);	
+	}
+	
 	
 	public function CreateOutputHtml()
 	{
@@ -143,6 +349,9 @@ class CEsoViewCP
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{updateDate}' => $this->GetUpdateDate(),
+				'{cpSkills}' => $this->GetCpSkillsHtml(),
+				'{cpDisciplines}' => $this->GetCpDisciplinesHtml(),
+				'{skillDescJson}' => $this->GetCpSkillDescJson(),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -153,6 +362,8 @@ class CEsoViewCP
 	
 	public function Render()
 	{
+		$this->LoadCpData();
+		
 		$this->OutputHtmlHeader();
 		
 		$output = $this->CreateOutputHtml();

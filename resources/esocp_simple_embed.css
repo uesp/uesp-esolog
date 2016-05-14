@@ -1,0 +1,176 @@
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontregular-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontbold-webfont.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+#esovcpFooter {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#esovcpFooter a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#esovcpFooter a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+.esovcpUpdateDate {
+	color: #777;
+	font-style: italic;
+}
+
+#esovcpContainer {
+	width: 100%;
+	font-family: "EsoFontStyle", "Arial", sans-serif;
+}
+
+#esovcpSkills {
+	margin-left: 410px;	
+}
+
+#esovcpDisciplines {
+	float: left;
+	width: 400px;
+}
+
+.esovcpDiscHea {
+	background-color: #ffcc88;
+}
+
+.esovcpDiscMag {
+	background-color: #aaaaff;
+}
+
+.esovcpDiscSta {
+	background-color: #bbffbb;
+}
+
+.esovcpDiscipline {
+	padding: 7px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.esovcpDiscipline:hover {
+	cursor: pointer;
+	background: white;	
+}
+
+.esovcpDiscDesc {
+	margin-left: 25px;
+	font-size: 14px;
+	font-weight: normal;	
+}
+
+.esovcpDiscHighlight {
+}
+
+.esovcpDiscSkills {
+	
+}
+
+.esovcpDiscSkillTitle {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.esovcpSkill {
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.esovcpSkill:hover {
+	background-color: #E3d5c0;
+}
+
+.esovcpSkillDesc {
+	font-size: 16px;
+	font-weight: normal;
+	display: block;
+	margin-left: 140px;
+	padding: 4px;
+}
+
+.esovcpDescWhite {
+	display: inline;
+	font-weight: bold;
+}
+
+.esovpBlockClear {
+	float: none;
+	clear: both;
+}
+
+.esovcpSkillLevel {
+	width: 100px;
+	display: inline-block;
+	font-size: 15px;
+	text-align: center;
+	float: left;
+}
+
+.esovcpSkillControls {
+	width: 100px;
+	display: inline-block;
+}
+
+.esovcpPointInput {
+	width: 30px;
+	vertical-align: middle;
+	margin: 4px;
+}
+
+.esovcpMinusButton {
+	width: 21px;
+	height: 21px;
+	vertical-align: middle;
+	margin: 0;
+    padding: 0;
+}
+
+.esovcpPlusButton {
+	width: 21px;
+	height: 21px;
+	vertical-align: middle;
+	margin: 0;
+    padding: 0;
+}
