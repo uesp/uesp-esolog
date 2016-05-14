@@ -17,7 +17,7 @@ function OnPlusButtonClick(e)
 	
 	if (inputControl.length == 0) return;
 	
-	var value = parseInt(inputControl.val()) + 1;
+	var value = (parseInt(inputControl.val()) || 0) + 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
 	
 	if (value > 100) value = 100;
@@ -35,7 +35,7 @@ function OnMinusButtonClick(e)
 	
 	if (inputControl.length == 0) return;
 	
-	var value = parseInt(inputControl.val()) - 1;
+	var value = (parseInt(inputControl.val()) || 0) - 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
 	
 	if (value < 0) value = 0;
@@ -49,7 +49,7 @@ function OnMinusButtonClick(e)
 function OnPointInputChange(e)
 {
 	var skillId = $(this).attr('skillid');
-	var value = parseInt($(this).val());
+	var value = parseInt($(this).val()) || 0;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
 	
 	if (value < 0) value = 0;
@@ -67,7 +67,7 @@ function OnPointInputScrollUp(e)
 	
 	if (inputControl.length == 0) return;
 	
-	var value = parseInt(inputControl.val()) + 1;
+	var value = (parseInt(inputControl.val()) || 0) + 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
 	
 	if (value < 0) value = 0;
@@ -86,7 +86,7 @@ function OnPointInputScrollDown(e)
 	
 	if (inputControl.length == 0) return;
 	
-	var value = parseInt(inputControl.val()) - 1;
+	var value = (parseInt(inputControl.val()) || 0) - 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
 	
 	if (value < 0) value = 0;
@@ -114,7 +114,7 @@ function UpdateDiscPoints(discId)
 	var attributeIndex = $("#" + discId).parent().attr("attributeindex");
 	
 	skillInputs.each(function() {
-		totalPoints += Number($(this).val());
+		totalPoints += parseInt($(this).val()) || 0;
     });
 	
 	$("#skills_" + discId + " .esovcpDiscTitlePoints").text(totalPoints);
@@ -131,7 +131,7 @@ function UpdateDiscAttrPoints(attributeIndex)
 	var totalPoints = 0;
 	
 	discPoints.each(function() {
-		totalPoints += Number($(this).text());
+		totalPoints += parseInt($(this).text()) || 0;
     });
 	
 	$(".esovcpDiscAttrPoints[attributeindex='" + attributeIndex + "']").text(totalPoints);
@@ -145,7 +145,7 @@ function UpdateTotalCPPoints()
 	var totalPoints = 0;
 	
 	attrPoints.each(function() {
-		totalPoints += Number($(this).text());
+		totalPoints += parseInt($(this).text()) || 0;
 	});
 
 	$(".esovcpTotalPoints").text(totalPoints + " CP");
@@ -182,10 +182,10 @@ function UpdateCPLink()
 	
 	inputControls.each(function() {
 		var disciplineIndex = parseInt($(this).attr("disciplineIndex"));
-		var skillIndex = parseInt($(this).attr("skillIndex"));
+		var skillIndex = parseInt($(this).attr("skillIndex")) || 0;
 		var index = (disciplineIndex - 1) * 4 + skillIndex - 1;
 		
-		skillData[index] = parseInt($(this).val());
+		skillData[index] = parseInt($(this).val()) || 0;
 	});
 	
 	cpQueryData = EncodeSkillData64(skillData);
@@ -196,7 +196,7 @@ function UpdateCPLink()
 
 function UpdateUnlockLevels(discId)
 {
-	var points = parseInt($("#skills_" + discId + " .esovcpDiscTitlePoints").text());
+	var points = parseInt($("#skills_" + discId + " .esovcpDiscTitlePoints").text()) || 0;
 	var passives = $("#skills_" + discId + " .esovcpSkillLevel");
 	
 	passives.each(function() {
