@@ -24,6 +24,7 @@
 </script>
 
 <div class="esovpBlockClear"></div>
+<p/>
 <div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>
 <hr>
 <div id="esovcpFooter">
