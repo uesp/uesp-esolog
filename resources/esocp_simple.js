@@ -166,6 +166,16 @@ function esovcpOnDocReady()
 	    	OnPointInputScrollDown.call(this, e);
 	    }
 	});
+	
+	UpdateDiscPoints('the_lord');
+	UpdateDiscPoints('the_lady');
+	UpdateDiscPoints('the_steed');
+	UpdateDiscPoints('the_ritual');
+	UpdateDiscPoints('the_atronach');
+	UpdateDiscPoints('the_apprentice');
+	UpdateDiscPoints('the_shadow');
+	UpdateDiscPoints('the_lover');
+	UpdateDiscPoints('the_tower');
 }
 
 
