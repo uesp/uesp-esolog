@@ -312,7 +312,7 @@ class CEsoViewCP
 		$skillIndex = $skill['skillIndex'];
 		$desc = $this->FormatDescriptionHtml($skill['minDescription']);
 		
-		$output  = "<div id='skill_$id' skillid='$id' class='esovcpSkill $extraClass'>";
+		$output = "<div id='skill_$id' skillid='$id' unlocklevel='$unlockLevel' class='esovcpSkill $extraClass'>";
 		
 		if ($unlockLevel > 0)
 		{
