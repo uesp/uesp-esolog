@@ -84,9 +84,10 @@
 }
 
 .esovcpDiscipline {
-	padding: 7px;
+	padding: 3px;
 	font-size: 20px;
 	font-weight: bold;
+	border: solid 4px rgba(0,0,0,0);
 }
 
 .esovcpDiscipline:hover {
@@ -101,10 +102,10 @@
 }
 
 .esovcpDiscHighlight {
+	border: solid 4px yellow;
 }
 
 .esovcpDiscSkills {
-	
 }
 
 .esovcpDiscSkillTitle {

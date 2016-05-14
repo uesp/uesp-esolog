@@ -2,6 +2,9 @@ function OnDisciplineClick(e)
 {
 	var id = $(this).attr('id');
 	
+	$(".esovcpDiscHighlight").removeClass("esovcpDiscHighlight");
+	$(this).addClass("esovcpDiscHighlight");
+	
 	$(".esovcpDiscSkills").hide();
 	$("#skills_" + id).show();
 }
