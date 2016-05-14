@@ -18,6 +18,7 @@ class CEsoViewCP
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResource = "";
+	public $displayDiscIndex = 2;
 	
 	public $version = "";
 	
@@ -247,16 +248,19 @@ class CEsoViewCP
 	public function GetCpSkillsHtml()
 	{
 		$output = "";
-		$display = "block";
 		
 		foreach ($this->cpData as &$discipline)
 		{
 			$name = $discipline['name'];
+			$index = $discipline['disciplineIndex'];
 			$id = str_replace(" ", "_", strtolower($name));
+			
+			$display = "none";
+			if ($index == $this->displayDiscIndex) $display = "block";
+			
 			$output .= "<div id='skills_$id' class='esovcpDiscSkills' style='display: $display;'>";
 			$output .= "<div class='esovcpDiscSkillTitle'>$name</div>";
 			$output .= "<hr>";
-			$display = "none";
 			
 			foreach ($discipline['skills'] as $skill)
 			{
@@ -303,7 +307,7 @@ class CEsoViewCP
 	{
 		$output = "";
 		
-		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[2], "esovcpDiscHighlight esovcpDiscSta");
+		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[2], "esovcpDiscSta");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[3], "esovcpDiscSta");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[4], "esovcpDiscSta");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[5], "esovcpDiscMag");
@@ -324,6 +328,9 @@ class CEsoViewCP
 		$name = $discipline['name'];
 		$desc = $discipline['description'];
 		$attr = $discipline['attribute'];
+		$index = $discipline['disciplineIndex'];
+		
+		if ($index == $this->displayDiscIndex) $extraClass .= " esovcpDiscHighlight";
 		
 		$id = str_replace(" ", "_", strtolower($name));
 			
