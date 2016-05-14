@@ -148,6 +148,49 @@ function UpdateTotalCPPoints()
 	});
 
 	$(".esovcpTotalPoints").text(totalPoints + " CP");
+	
+	UpdateCPLink();
+}
+
+
+function EncodeSkillData64(skillData)
+{
+	var rawData = new Uint8Array(skillData);
+	var result = btoa(String.fromCharCode.apply(null, rawData));
+	
+	return encodeURIComponent(result);
+}
+
+
+function DecodeSkillData64(rawData)
+{
+	var result = new Uint8Array(atob(decodeURIComponent(rawData)).split("").map(function(c) {
+		return c.charCodeAt(0); 
+	}));
+	
+	return result;
+}
+
+
+function UpdateCPLink()
+{
+	var link = $("#esovcpLinkBlock");
+	var inputControls = $(".esovcpPointInput");
+	var cpQueryData = "";
+	var skillData = [];
+	
+	inputControls.each(function() {
+		var disciplineIndex = parseInt($(this).attr("disciplineIndex"));
+		var skillIndex = parseInt($(this).attr("skillIndex"));
+		var index = (disciplineIndex - 1) * 4 + skillIndex - 1;
+		
+		skillData[index] = parseInt($(this).val());
+	});
+	
+	cpQueryData = EncodeSkillData64(skillData);
+	//console.log(DecodeSkillData64(cpQueryData));
+	
+	link.attr("href", "?cp=" + cpQueryData);
 }
 
 

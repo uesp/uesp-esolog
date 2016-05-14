@@ -207,10 +207,19 @@
 
 .esovcpTotalPoints {
 	width: 440px;
-	height: 25px;
 	font-size: 24px;
 	font-weight: bold;
 	padding: 5px;
 	text-align: center;
 	background-color: lightgray;
+}
+
+.esovcpLinkBlock {
+    float: right;
+    background-color: #FBEFD5;
+    position: fixed;
+    right: 350px;
+    top: 0px;
+    padding: 7px;
+    padding-top: 10px;
 }

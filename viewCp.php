@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Database users, passwords and other secrets
 require_once("/home/uesp/secrets/esolog.secrets");
@@ -19,6 +19,9 @@ class CEsoViewCP
 	public $basePath = "";
 	public $baseResource = "";
 	public $displayDiscIndex = 2;
+	public $rawCpData = "";
+	public $decodedCpData = "";
+	public $cpDataArray = array();
 	
 	public $version = "";
 	
@@ -180,6 +183,13 @@ class CEsoViewCP
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
+		
+		if (array_key_exists('cp', $this->inputParams))
+		{
+			$this->rawCpData = urldecode($this->inputParams['cp']);
+			$this->decodedCpData = base64_decode($this->rawCpData);
+			$this->cpDataArray = unpack('C*', $this->decodedCpData);
+		}
 	
 		return true;
 	}
@@ -277,11 +287,29 @@ class CEsoViewCP
 	}
 	
 	
+	public function GetInitialSkillValue($skill)
+	{
+		$disciplineIndex = $skill['disciplineIndex'];
+		$skillIndex = $skill['skillIndex'];
+		$index = ($disciplineIndex - 1) * 4 + $skillIndex;
+
+		if ($this->cpDataArray[$index] == null) return "0";
+		
+		$value = $this->cpDataArray[$index];
+		if ($value < 0) $value = 0;
+		if ($value > 100) $value = 100;
+		
+		return $value;
+	}
+	
+	
 	public function GetCpSkillSectionHtml($skill, $extraClass = "")
 	{
 		$name = $skill['name'];
 		$id = $skill['abilityId'];
 		$unlockLevel = $skill['unlockLevel'];
+		$disciplineIndex = $skill['disciplineIndex'];
+		$skillIndex = $skill['skillIndex'];
 		$desc = $this->FormatDescriptionHtml($skill['minDescription']);
 		
 		$output  = "<div id='skill_$id' skillid='$id' class='esovcpSkill $extraClass'>";
@@ -292,9 +320,11 @@ class CEsoViewCP
 		}
 		else
 		{
+			$initialValue = $this->GetInitialSkillValue($skill);
+			
 			$output .= "<div class='esovcpSkillControls'>";
 			$output .= "<button skillid='$id' class='esovcpMinusButton'>-</button>";
-			$output .= "<input skillid='$id' class='esovcpPointInput' type='text' value='0' size='3' maxlength='3'>";
+			$output .= "<input skillid='$id' class='esovcpPointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3'>";
 			$output .= "<button skillid='$id' class='esovcpPlusButton'>+</button>";
 			$output .= "</div>";	
 		}
@@ -374,6 +404,7 @@ class CEsoViewCP
 				'{cpSkills}' => $this->GetCpSkillsHtml(),
 				'{cpDisciplines}' => $this->GetCpDisciplinesHtml(),
 				'{skillDescJson}' => $this->GetCpSkillDescJson(),
+				'{cpDataJson}' => json_encode($this->cpDataArray),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
