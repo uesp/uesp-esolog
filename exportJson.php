@@ -1,9 +1,11 @@
 <?php
 
 $TABLES_TO_EXPORT = array(
-	"cpDisciplines",
-	"cpSkills",
-	"cpSkillDescriptions",
+	//"cpDisciplines",
+	//"cpSkills",
+	//"cpSkillDescriptions",
+	//"minedSkills",
+	"minedItemSummary",
 );
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
