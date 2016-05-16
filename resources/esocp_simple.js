@@ -214,6 +214,91 @@ function UpdateUnlockLevels(discId)
 }
 
 
+function OnCPSearch(e)
+{
+	var text = $("#esovcpSearchText").val().trim();
+	DoEsoCPSearch(text);
+}
+
+
+var g_EsoCPSearchText = "";
+var g_EsoCPSearchLastIndex = -1;
+
+
+function DoEsoCPSearch(text)
+{
+	var newSearch = false;
+	
+	text = text.toLowerCase();
+		
+	if (text != g_EsoCPSearchText) 
+	{
+		g_EsoCPSearchText = text;
+		g_EsoCPSearchLastIndex = -1;
+		newSearch = true;
+	}
+	
+	$(".esovcpHighlightSkill").removeClass("esovcpHighlightSkill");
+	
+	var result = FindNextEsoCPText();
+	
+	if (result == null)
+	{
+		$("#esovcpSearchResult").text("No matches found!");
+		return false;
+	}
+	
+	$("#esovcpSearchResult").text("Found match! Search again for next match...");
+	SelectCPSkillElement(result);
+	
+	return true;
+}
+
+
+function SelectCPSkillElement(element)
+{
+	if (element == null || element.length == 0) return;
+	
+	var parent = element.parent();
+	var skillId = parseInt(element.attr("skillid")) || 0;
+	if (skillId <= 0) return;
+	
+	element.addClass("esovcpHighlightSkill");
+	
+	if (!parent.is(':visible'))
+	{
+		var discId = parent.attr("disciplineid");
+		$(".esovcpDiscSkills:visible").hide();
+		parent.show();
+		
+		$(".esovcpDiscHighlight").removeClass("esovcpDiscHighlight");
+		$("#" + discId).addClass("esovcpDiscHighlight");
+	}
+}
+
+
+function FindNextEsoCPText()
+{
+	var searchElements = $(".esovcpSkill");
+	var searchText = g_EsoCPSearchText.toLowerCase();
+	
+	for (var i = g_EsoCPSearchLastIndex + 1; i < searchElements.length; ++i)
+	{
+		var element = $(searchElements[i]);
+		var index = element.text().toLowerCase().indexOf(searchText);
+		
+		if (index >= 0)
+		{
+			g_EsoCPSearchLastIndex = i;
+			return element;
+		}
+	}
+	
+	g_EsoCPSearchLastIndex = -1;
+	return null;
+}
+
+
 function esovcpOnDocReady()
 {
 	$(".esovcpDiscipline").click(OnDisciplineClick);
@@ -229,6 +314,11 @@ function esovcpOnDocReady()
 	    	OnPointInputScrollDown.call(this, e);
 	    }
 	});
+	
+	$("#esovcpSearchText").on("keypress", function(e) {
+		if ( e.keyCode == 13 ) OnCPSearch(e); 
+	});
+	$("#esovcpSearchButton").click(OnCPSearch);
 	
 	UpdateDiscPoints('the_lord');
 	UpdateDiscPoints('the_lady');

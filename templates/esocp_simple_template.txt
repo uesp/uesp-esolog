@@ -11,6 +11,11 @@
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
+<div id="esovcpSearchBlockFloat">
+	<input type="search" id="esovcpSearchText" value="" size="30" /> 
+	<button id="esovcpSearchButton">Find CP</button>
+	<div id="esovcpSearchResult"></div> 
+</div>
 <a id="esovcpLinkBlock" class="esovcpLinkBlock" href="">Link to CP Setup</a>
 
 <h1>ESO Champion Point Browser {versionTitle}</h1>

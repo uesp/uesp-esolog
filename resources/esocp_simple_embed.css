@@ -227,3 +227,21 @@
 .esovcpPassiveUnlocked {
 	color: lightgray;
 }
+
+#esovcpSearchBlock {
+	float: right;
+	background-color: #FBEFD5;
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	padding: 7px;
+}
+
+#esovcpSearchBlockFloat {
+	float: right;
+	background-color: #FBEFD5;
+}
+
+.esovcpHighlightSkill {
+	background-color: white;
+}
