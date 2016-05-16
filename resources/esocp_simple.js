@@ -7,6 +7,8 @@ function OnDisciplineClick(e)
 	
 	$(".esovcpDiscSkills").hide();
 	$("#skills_" + id).show();
+	
+	UpdateCPLink();
 }
 
 
@@ -178,6 +180,7 @@ function UpdateCPLink()
 	var link = $("#esovcpLinkBlock");
 	var inputControls = $(".esovcpPointInput");
 	var cpQueryData = "";
+	var selectDiscId = $(".esovcpDiscHighlight").attr("id");
 	var skillData = [];
 	
 	inputControls.each(function() {
@@ -189,6 +192,7 @@ function UpdateCPLink()
 	});
 	
 	cpQueryData = EncodeSkillData64(skillData);
+	if (selectDiscId != "") cpQueryData += "&disc=" + selectDiscId;
 	
 	link.attr("href", "?cp=" + cpQueryData);
 }
