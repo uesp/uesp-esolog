@@ -18,10 +18,10 @@ class CEsoViewCP
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResource = "";
-	public $displayDiscIndex = 2;
 	public $rawCpData = "";
 	public $decodedCpData = "";
 	public $cpDataArray = array();
+	public $selectedDiscId = "the_lord";
 	
 	public $version = "";
 	
@@ -190,6 +190,8 @@ class CEsoViewCP
 			$this->decodedCpData = base64_decode($this->rawCpData);
 			$this->cpDataArray = unpack('C*', $this->decodedCpData);
 		}
+		
+		if (array_key_exists('disc', $this->inputParams)) $this->selectedDiscId = urldecode($this->inputParams['disc']);
 	
 		return true;
 	}
@@ -268,7 +270,7 @@ class CEsoViewCP
 			$id = str_replace(" ", "_", strtolower($name));
 			
 			$display = "none";
-			if ($index == $this->displayDiscIndex) $display = "block";
+			if ($id == $this->selectedDiscId) $display = "block";
 			
 			$output .= "<div id='skills_$id' disciplineid='$id' disciplineindex='$index' class='esovcpDiscSkills' style='display: $display;'>";
 			$output .= "<div class='esovcpDiscSkillTitle'>$name</div>";
@@ -374,11 +376,10 @@ class CEsoViewCP
 		$desc = $discipline['description'];
 		$attr = $discipline['attribute'];
 		$index = $discipline['disciplineIndex'];
-		
-		if ($index == $this->displayDiscIndex) $extraClass .= " esovcpDiscHighlight";
-		
 		$id = str_replace(" ", "_", strtolower($name));
-			
+		
+		if ($id == $this->selectedDiscId) $extraClass .= " esovcpDiscHighlight";
+		
 		$output .= "<div id='$id' disciplineindex='$index' class='esovcpDiscipline $extraClass'>";
 		$output .= "$name <div class='esovcpDiscPoints'>0</div><div class='esovcpDiscDesc'>$desc</div>";
 		$output .= "</div>";	
