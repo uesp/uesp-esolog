@@ -152,8 +152,8 @@ class CEsoViewCP
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
-		header("Pragma: no-cache");
 		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
+		header("content-type: text/html");
 	}
 	
 	

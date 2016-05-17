@@ -219,7 +219,6 @@ class EsoLogCollector
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
-		header("Pragma: no-cache");
 		header("content-type: text/html");
 	}
 	

@@ -1745,7 +1745,7 @@ class CEsoItemLink
 				'{itemRawDataList}' => $this->MakeItemRawDataList(),
 				'{rawItemVersion}' => $this->GetItemRawVersion(),
 				'{extraDataLinkDisplay}' => "block",
-				'{controlBlockDisplay}' => "block",
+				'{controlBlockDisplay}' => "inline-block",
 				'{similarItemBlockDisplay}' => "none",
 				'{itemTypeTitle}' => "",
 				'{itemDescClass}' => "",
