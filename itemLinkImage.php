@@ -73,8 +73,8 @@ class CEsoItemLinkImage
 	public $itemLink = "";
 	public $itemLevel = -1;		// 1-64
 	public $itemQuality = -1;	// 0-5
-	public $itemIntLevel = 1;	// 1-50
-	public $itemIntType = 1;	// 1-40
+	public $itemIntLevel = -1;	// 1-50
+	public $itemIntType = -1;	// 1-40
 	public $itemBound = -1;
 	public $itemStyle = -1;
 	public $itemCrafted = -1;
@@ -285,6 +285,12 @@ class CEsoItemLinkImage
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
 				
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Display = true;
+		
+		if ($this->itemLevel < 0 && $this->itemQuality < 0)
+		{
+			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
+			if ($this->itemIntType  < 0) $this->itemIntType  = 1;
+		}
 		
 		return true;
 	}
