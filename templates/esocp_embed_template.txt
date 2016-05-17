@@ -1,0 +1,41 @@
+<h1>ESO Champion Point Browser {versionTitle}</h1>
+
+<div id="testLeft">Left</div>
+<div id="testRight">Right</div>
+<div id="testZoomIn">ZoomIn</div>
+<div id="testZoomOut">ZoomOut</div>
+
+<div id="esovcpContainer">
+	<div id="esovcpRoot">
+		<img id="esovcpBackGroundImage" src="resources/champion_colorclouds.png" />
+		<div id="esovcpCPDisc_Tower" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Lord" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Lady" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Steed" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Ritual" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Atronach" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Apprentice" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Shadow" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+		<div id="esovcpCPDisc_Lover" class="esovpDiscipline">
+			<div class="esovpDisciplineHoverArea"></div>
+		</div>
+	</div>
+</div>
+
+<div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>

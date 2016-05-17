@@ -1,0 +1,20 @@
+<div id="esovcpSearchBlockFloat">
+	<input type="search" id="esovcpSearchText" value="" size="30" /> 
+	<button id="esovcpSearchButton">Find CP</button>
+	<div id="esovcpSearchResult"></div> 
+</div>
+<a id="esovcpLinkBlock" class="esovcpLinkBlock" href="">Link to CP Setup</a>
+
+<div id="esovcpContainer">
+	<div id="esovcpDisciplines">{cpDisciplines}</div>
+	<div id="esovcpSkills">{cpSkills}</div>
+</div>
+
+<script type="text/javascript">
+	var g_SkillDesc = {skillDescJson};
+	var g_CpData = {cpDataJson};
+</script>
+
+<div class="esovpBlockClear"></div>
+<p/>
+<div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>
