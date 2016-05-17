@@ -324,6 +324,12 @@ class CEsoViewCP
 		{
 			$initialValue = $this->GetInitialSkillValue($skill);
 			
+			if ($initialValue > 0 && $initialValue <= 100)
+			{
+				$rawDesc = $skill['descriptions'][$initialValue]['description'];
+				if ($rawDesc != null && $rawDesc != "") $desc = $this->FormatDescriptionHtml($rawDesc);
+			}
+			
 			$output .= "<div class='esovcpSkillControls'>";
 			$output .= "<button skillid='$id' class='esovcpMinusButton'>-</button>";
 			$output .= "<input skillid='$id' class='esovcpPointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3'>";
