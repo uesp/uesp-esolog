@@ -227,7 +227,7 @@ class CEsoLogJsonExport
 				$where[] = "itemId=$itemId";
 			}
 			
-			if ($this->inputType != "") $where[] = "itemType=".(int)$this->inputType;
+			if ($this->inputItemType != "") $where[] = "type=".(int)$this->inputItemType;
 			if ($this->inputEquipType != "") $where[] = "equipType=".(int)$this->inputEquipType;
 			if ($this->inputWeaponType != "") $where[] = "weaponType=".(int)$this->inputWeaponType;
 			if ($this->inputArmorType != "") $where[] = "armorType=".(int)$this->inputArmorType;
