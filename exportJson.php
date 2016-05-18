@@ -11,6 +11,14 @@ class CEsoLogJsonExport
 	
 	public $version = "";
 	public $inputId = "";
+	public $inputLevel = "";
+	public $inputQuality = "";
+	public $inputItemType = "";
+	public $inputEquipType = "";
+	public $inputWeaponType = "";
+	public $inputArmorType = "";
+	public $inputIntLevel = "";
+	public $inputIntType = "";
 	public $exportTables = array();
 	public $outputData = array();
 	public $outputJson = "";
@@ -55,12 +63,14 @@ class CEsoLogJsonExport
 	}
 	
 	
-	public function ReportError($errorMsg)
+	public function ReportError($errorMsg, $statusCode = 0)
 	{
 		error_log($errorMsg);
 		
 		if ($this->outputData['error'] == null) $this->outputData['error'] = array();
 		$this->outputData['error'][] = $errorMsg;
+		
+		if ($statusCode > 0) header("X-PHP-Response-Code: " . $statusCode, true, $statusCode);
 		
 		return false;
 	}
@@ -71,7 +81,7 @@ class CEsoLogJsonExport
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
 	
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
-		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
+		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!", 500);
 	
 		return true;
 	}
@@ -98,6 +108,14 @@ class CEsoLogJsonExport
 		}
 		
 		if (array_key_exists('id', $this->inputParams)) $this->inputId = urldecode($this->inputParams['id']);
+		if (array_key_exists('intlevel', $this->inputParams)) $this->inputIntLevel = (int) $this->inputParams['intlevel'];
+		if (array_key_exists('inttype', $this->inputParams)) $this->inputIntType = (int) $this->inputParams['inttype'];
+		if (array_key_exists('level', $this->inputParams)) $this->inputLevel = (int) $this->inputParams['level'];
+		if (array_key_exists('quality', $this->inputParams)) $this->inputQuality = (int) $this->inputParams['quality'];
+		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = (int) $this->inputParams['type'];
+		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType = (int) $this->inputParams['equiptype'];
+		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
+		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
 	
 		return true;
 	}
@@ -173,14 +191,48 @@ class CEsoLogJsonExport
 		
 		if ($table == "minedItem")
 		{
-			if ($this->inputId == "") return $this->ReportError("Error: Missing required item id!");
+			$isValid = false;
+			if ($this->inputId != "") $isValid = true;
 			
-			$itemId = (int) $this->inputId;
-			if ($itemId <= 0) return $this->ReportError("Error: Invalid item id '{$this->inputId} received!");
+				// Currently far too slow (2-3 minutes for a typical query with 10-100k records)
+			//if ($this->inputLevel != "" && $this->inputQuality != "") $isValid = true;
+				
+			if (!$isValid) return $this->ReportError("Error: Missing required item id!", 400);
 			
-			$where[] = "itemId=$itemId;";
+			if ($this->inputId != "")
+			{
+				$itemId = (int) $this->inputId;
+				if ($itemId <= 0) return $this->ReportError("Error: Invalid item id '{$this->inputId} received!", 400);
+				$where[] = "itemId=$itemId";
+			}
+
+			if ($this->inputIntLevel != "" && $this->inputIntType != "")
+			{
+				$where[] = "internalLevel=".(int)$this->inputIntLevel;
+				$where[] = "internalSubtype=".(int)$this->inputIntType;
+			}
+			else if ($this->inputLevel != "" && $this->inputQuality != "")
+			{
+				$where[] = "level=".(int)$this->inputLevel;
+				$where[] = "quality=".(int)$this->inputQuality;
+			}
 		}
-		elseif ($this->inputId != "")
+		else if ($table == "minedItemSummary")
+		{
+			
+			if ($this->inputId != "")
+			{
+				$itemId = (int) $this->inputId;
+				if ($itemId <= 0) return $this->ReportError("Error: Invalid item id '{$this->inputId} received!", 400);
+				$where[] = "itemId=$itemId";
+			}
+			
+			if ($this->inputType != "") $where[] = "itemType=".(int)$this->inputType;
+			if ($this->inputEquipType != "") $where[] = "equipType=".(int)$this->inputEquipType;
+			if ($this->inputWeaponType != "") $where[] = "weaponType=".(int)$this->inputWeaponType;
+			if ($this->inputArmorType != "") $where[] = "armorType=".(int)$this->inputArmorType;
+		}
+		else if ($this->inputId != "")
 		{
 			$idField = $this->TABLE_IDS[$table];
 			$id = $this->db->real_escape_string($this->inputId);
@@ -202,7 +254,7 @@ class CEsoLogJsonExport
 		if ($query == "") return false;
 		
 		$result = $this->db->query($query);
-		if (!$result) return $this->ReportError("Error: Failed to load records from '$table'!");
+		if (!$result) return $this->ReportError("Error: Failed to load records from '$table'!", 500);
 		
 		$this->outputData[$table] = array();
 		$numRecords = 0;
@@ -211,8 +263,7 @@ class CEsoLogJsonExport
 		{
 			$this->outputData[$table][] = $row;
 			++$numRecords;
-		}
-		
+		}		
 		
 		$this->outputData['numRecords'] += $numRecords;
 		
@@ -224,7 +275,7 @@ class CEsoLogJsonExport
 	{
 		if (!$this->IsValidTable($table))
 		{
-			$this->ReportError("Error: '$table' is not a valid table for JSON export!");
+			$this->ReportError("Error: '$table' is not a valid table for JSON export!", 400);
 			return false;
 		}
 		
@@ -235,7 +286,7 @@ class CEsoLogJsonExport
 	public function ExportTables()
 	{
 		$this->outputData['numRecords'] = 0;
-		if (count($this->exportTables) == 0) return $this->ReportError("Error: No tables specified for export!");
+		if (count($this->exportTables) == 0) return $this->ReportError("Error: No tables specified for export!", 400);
 		
 		foreach ($this->exportTables as $table)
 		{
