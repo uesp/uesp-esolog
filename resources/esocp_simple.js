@@ -78,6 +78,8 @@ function OnPointInputScrollUp(e)
 	inputControl.val(value);
 	UpdateSkillDesc(skillId, value);
 	UpdateDiscPoints(disciplineId);
+	
+	e.preventDefault();
 }
 
 
@@ -97,6 +99,8 @@ function OnPointInputScrollDown(e)
 	inputControl.val(value);
 	UpdateSkillDesc(skillId, value);
 	UpdateDiscPoints(disciplineId);
+	
+	e.preventDefault();
 }
 
 
