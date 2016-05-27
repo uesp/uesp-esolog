@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Test Character Build</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="resources/esoTestBuild.css" />
+		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="resources/esoTestBuild.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+
+<h1>ESO Test Character Build</h1>
+Note that this character builder is for test purposes and is currently undergoing active development. Accuracy of the 
+displayed statistics is unknown.
+    
+<hr>
+<div id="esotbFooter">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</div>
+</body>
+</html>

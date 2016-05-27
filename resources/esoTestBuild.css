@@ -1,0 +1,71 @@
+body {
+	background-color: #FBEFD5;
+	font-family: sans-serif;
+	font-size: 13px;
+}
+
+h1, h2, h3 {
+	margin: 5px;
+}
+
+a:hover {
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontregular-webfont.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontbold-webfont.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+#esotbFooter {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#esotbFooter a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#esotbFooter a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+.esotbUpdateDate {
+	color: #777;
+	font-style: italic;
+}
