@@ -13,6 +13,35 @@ class CEsoTestBuild
 	public $version = "";
 	
 	
+	public static $COMPUTED_STATS_LIST = array(
+			
+			"Health" => array(
+					"title" => "Health",
+					"compute" => array(
+							"+156 * Level + 944",
+							"+122 * AttributeHealth",
+					),
+				),
+			
+			"Magicka" => array(
+					"title" => "Magicka",
+					"compute" => array(
+							"+142 * Level + 858",
+							"+111 * AttributeMagicka",
+					),
+			),
+			
+			"Stamina" => array(
+					"title" => "Stamina",
+					"compute" => array(
+							"+142 * Level + 858",
+							"+111 * AttributeStamina",
+					),
+			),
+			
+	); 
+	
+	
 	public function __construct()
 	{
 		$this->SetInputParams();
@@ -103,10 +132,17 @@ class CEsoTestBuild
 	}
 	
 	
+	public function GetComputedStatsJson()
+	{
+		return json_encode(self::$COMPUTED_STATS_LIST);
+	}
+	
+	
 	public function GetOutputHtml()
 	{
 		$replacePairs = array(
 				'{version}' => $this->version,
+				'{esoComputedStatsJson}' => $this->GetComputedStatsJson(),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
