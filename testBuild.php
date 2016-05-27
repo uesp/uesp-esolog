@@ -13,6 +13,23 @@ class CEsoTestBuild
 	public $version = "";
 	
 	
+	public static $INPUT_STATS_LIST = array(
+			"Level",
+			"AttributeHealth",
+			"AttributeMagicka",
+			"AttributeStamina",
+			"GearHealth",
+			"GearMagicka",
+			"GearStamina",
+			"CPHealth",
+			"CPMagicka",
+			"CPStamina",
+			"FoodHealth",
+			"FoodMagicka",
+			"FoodStamina",
+	);
+	
+	
 	public static $COMPUTED_STATS_LIST = array(
 			
 			"Health" => array(
@@ -20,14 +37,18 @@ class CEsoTestBuild
 					"compute" => array(
 							"+156 * Level + 944",
 							"+122 * AttributeHealth",
+							"+GearHealth",
+							"(1 + pow(CPHealth, 0.56432)/100)",
 					),
-				),
+			),
 			
 			"Magicka" => array(
 					"title" => "Magicka",
 					"compute" => array(
 							"+142 * Level + 858",
 							"+111 * AttributeMagicka",
+							"+GearMagicka",
+							"(1 + pow(CPMagicka, 0.56432)/100)",
 					),
 			),
 			
@@ -36,6 +57,8 @@ class CEsoTestBuild
 					"compute" => array(
 							"+142 * Level + 858",
 							"+111 * AttributeStamina",
+							"+GearStamina",
+							"(1 + pow(CPStamina, 0.56432)/100)",
 					),
 			),
 			
@@ -138,11 +161,18 @@ class CEsoTestBuild
 	}
 	
 	
+	public function GetInputStatsJson()
+	{
+		return json_encode(self::$INPUT_STATS_LIST);
+	}
+	
+	
 	public function GetOutputHtml()
 	{
 		$replacePairs = array(
 				'{version}' => $this->version,
 				'{esoComputedStatsJson}' => $this->GetComputedStatsJson(),
+				'{esoInputStatsJson}' => $this->GetInputStatsJson(),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
