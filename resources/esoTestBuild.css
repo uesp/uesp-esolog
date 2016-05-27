@@ -69,3 +69,88 @@ a:hover {
 	color: #777;
 	font-style: italic;
 }
+
+.esotbAttrLabel {
+	width: 100px;
+	text-align: right;
+	font-weight: bold;
+	display: inline-block;
+}
+
+.esotbAttrTitle {
+	width: 100%;
+	background-color: #E3d5c0;
+	font-weight: bold;
+	text-align: center;
+	padding: 3px;
+}
+
+.esotbAttributeInput {
+	font-weight: normal;
+	display: inline-block;
+	text-align:center;
+	width: 50px;
+}
+
+#esotbStatInputs {
+	float: left;
+	display: inline-block;
+	padding: 7px;
+}
+
+#esotbStatList {
+	width: 300px;
+	padding: 7px;
+	display: inline-block;
+}
+
+.esotbStatTitle {
+	width: 100%;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 5px;
+	border-bottom: solid 1px gray;
+}
+
+.esotbBlockClear {
+	float: none;
+	clear: both;
+}
+
+.esotbStatRow {
+	padding: 3px;
+}
+
+.esotbStatRow:hover {
+	background-color: #ccc;
+}
+
+.esotbStatName {
+	float: left;
+	width: 115px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.esotbStatValue {
+	float: right;
+	width: 175px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.esotbStatComputeValue {
+	width: 50px;
+	float: left;
+	font-family: monospace;
+	font-size: 12px;
+	text-align: left;
+	margin-left: 25px;
+}
+
+.esotbStatComputeItem {
+	font-family: monospace;
+	font-size: 12px;
+	text-align: left;
+	margin-left: 80px;
+}

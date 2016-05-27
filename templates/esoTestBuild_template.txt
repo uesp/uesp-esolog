@@ -14,7 +14,29 @@
 <h1>ESO Test Character Build</h1>
 Note that this character builder is for test purposes and is currently undergoing active development. Accuracy of the 
 displayed statistics is unknown.
+<p/>
+<div id="esotbRoot">
+	<div id="esotbStatInputs">
+		<div class="esotbAttrLabel">Level</div> <input id="esotbLevel" class="esotbAttributeInput" statid="Level" type="number" size="2" value="50"><br/>
+		<p>
+		<div id="esotbAttributes">
+			<div class="esotbAttrTitle">Attributes</div>
+			<div class="esotbAttrLabel">Health</div> <input id="esotbAttrHea" statid="AttributeHealth" class="esotbAttributeInput" type="number" size="2" value="0"><br/>
+			<div class="esotbAttrLabel">Magicka</div> <input id="esotbAttrMag" statid="AttributeMagicka" class="esotbAttributeInput" type="number" size="2" value="0"><br/>
+			<div class="esotbAttrLabel">Stamina</div> <input id="esotbAttrSta" statid="AttributeStamina" class="esotbAttributeInput" type="number" size="2" value="0"><br/>
+			<div class="esotbAttrLabel">Total</div> <div id="esotbAttrTotal"  statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div>
+		</div>
+	</div>
+	<div id="esotbStatList">
+		<div class="esotbStatTitle">Computed Character Statistics</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	g_EsoComputedStats = {esoComputedStatsJson}; 
+</script>
     
+<div class="esotbBlockClear"></div>
 <hr>
 <div id="esotbFooter">
 This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
