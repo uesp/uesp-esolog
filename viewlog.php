@@ -455,6 +455,10 @@ class EsoLogViewer
 			'maxValue' => self::FIELD_FLOAT,
 			'minDescription' => self::FIELD_TEXTTRANSFORM,
 			'maxDescription' => self::FIELD_TEXTTRANSFORM,
+			'fitDescription' => self::FIELD_STRING,
+			'a' => self::FIELD_FLOAT,
+			'b' => self::FIELD_FLOAT,
+			'r2' => self::FIELD_FLOAT,
 			'x' => self::FIELD_FLOAT,
 			'y' => self::FIELD_FLOAT,
 	);

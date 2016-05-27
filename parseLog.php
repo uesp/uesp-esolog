@@ -588,6 +588,10 @@ class EsoLogParser
 			'maxValue' => self::FIELD_FLOAT,
 			'x' => self::FIELD_FLOAT,
 			'y' => self::FIELD_FLOAT,
+			'a' => self::FIELD_FLOAT,
+			'b' => self::FIELD_FLOAT,
+			'r2' => self::FIELD_FLOAT,
+			'fitDescription' => self::FIELD_STRING,
 	);
 	
 	public static $CPSKILLDESCRIPTION_FIELDS = array(
@@ -1180,6 +1184,7 @@ class EsoLogParser
 		return $this->saveRecord('cpSkills'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPSKILL_FIELDS);
 	}
 	
+	
 	public function SaveCPDiscipline (&$record)
 	{
 		return $this->saveRecord('cpDisciplines'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPDISCIPLINE_FIELDS);
@@ -1768,6 +1773,10 @@ class EsoLogParser
 			maxValue FLOAT NOT NULL,
 			x FLOAT NOT NULL,
 			y FLOAT NOT NULL,
+			a FLOAT NOT NULL,
+			b FLOAT NOT NULL,
+			r2 FLOAT NOT NULL,
+			fitDescription TEXT NOT NULL,
 			INDEX index_abilityId(abilityId)
 		);";
 		
