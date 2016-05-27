@@ -85,7 +85,7 @@ a:hover {
 	padding: 3px;
 }
 
-.esotbAttributeInput {
+.esotbAttributeInput, .esotbLevelInput {
 	font-weight: normal;
 	display: inline-block;
 	text-align:center;
@@ -141,7 +141,7 @@ a:hover {
 
 .esotbStatComputeValue {
 	width: 50px;
-	float: left;
+	display: inline-block;
 	font-family: monospace;
 	font-size: 12px;
 	text-align: left;
@@ -150,7 +150,8 @@ a:hover {
 
 .esotbStatComputeItem {
 	font-family: monospace;
-	font-size: 12px;
+	font-size: 11px;
 	text-align: left;
-	margin-left: 80px;
+	width: 210px;
+	display: inline-block;
 }

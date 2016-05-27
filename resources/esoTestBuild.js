@@ -3,6 +3,14 @@ function GetEsoInputValues()
 {
 	var inputValues = {};
 	
+	for (var i = 0; i < g_EsoInputStats.length; ++i)
+	{
+		var key = g_EsoInputStats[i];
+		inputValues[key] = 0;
+	}
+	
+	inputValues.pow = Math.pow;
+	
 	inputValues.Level = $("#esotbLevel").val();
 	inputValues.AttributeHealth = $("#esotbAttrHea").val();
 	inputValues.AttributeMagicka = $("#esotbAttrMag").val();
@@ -56,17 +64,17 @@ function CreateEsoComputedStat(statId, stat)
 {
 	var element;
 	
-	element = $("<div/>").attr("id", "esoidStat_" + statId)
-		.addClass("esotbStatRow")
-		.appendTo("#esotbStatList");
+	element = $("<div/>").attr("id", "esoidStat_" + statId).
+		addClass("esotbStatRow").
+		appendTo("#esotbStatList");
 
-	$("<div/>").addClass("esotbStatName")
-		.text(stat.title)
-		.appendTo(element);
+	$("<div/>").addClass("esotbStatName").
+		text(stat.title).
+		appendTo(element);
 	
-	$("<div/>").addClass("esotbStatValue")
-		.text("?")
-		.appendTo(element);
+	$("<div/>").addClass("esotbStatValue").
+		text("?").
+		appendTo(element);
 	
 	var computeElement = $("<div/>").addClass("esotbComputeItems").
 										appendTo(element);
@@ -75,22 +83,66 @@ function CreateEsoComputedStat(statId, stat)
 	{
 		var computeItem = stat.compute[i];
 		
-		$("<div/>").addClass("esotbStatComputeValue")
-			.text("+0")
-			.appendTo(computeElement);
+		$("<div/>").addClass("esotbStatComputeValue").
+			text("+0").
+			appendTo(computeElement);
 		
-		$("<div/>").addClass("esotbStatComputeItem")
-			.text("(" + computeItem + ")")
-			.appendTo(computeElement);
+		$("<div/>").addClass("esotbStatComputeItem").
+			text(computeItem).
+			appendTo(computeElement);
 	}
 	
 	return element;
 }
 
 
+function OnEsoInputChange(e)
+{
+	var id = $(this).attr("id");
+	
+	if (id == "esotbLevel") 
+	{
+		OnEsoLevelChange.call(this, e);
+	}
+	else if ($(this).hasClass("esotbAttributeInput"))
+	{
+		OnEsoAttributeChange.call(this, e);
+	}
+	
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoAttributeChange(e)
+{
+	var $this = $(this);
+	var value = $this.val();
+	
+	if (value == "")$this.val("0");
+	if (value > 64) $this.val("64");
+	if (value < 0)  $this.val("0");
+	
+	var totalValue = parseInt($("#esotbAttrHea").val()) + parseInt($("#esotbAttrMag").val()) + parseInt($("#esotbAttrSta").val());
+	if (totalValue > 64) $this.val(64 - totalValue + parseInt(value));
+}
+
+
+function OnEsoLevelChange(e)
+{
+	var $this = $(this);
+	var value = $this.val();
+	
+	if (value == "")$this.val("0");
+	if (value > 50) $this.val("50");
+	if (value < 1)  $this.val("1");
+}
+
+
 function esotbOnDocReady()
 {
 	UpdateEsoComputedStatsList();
+	
+	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this); });
 }
 
 

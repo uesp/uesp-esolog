@@ -17,13 +17,13 @@ displayed statistics is unknown.
 <p/>
 <div id="esotbRoot">
 	<div id="esotbStatInputs">
-		<div class="esotbAttrLabel">Level</div> <input id="esotbLevel" class="esotbAttributeInput" statid="Level" type="number" size="2" value="50"><br/>
+		<div class="esotbAttrLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50"><br/>
 		<p>
 		<div id="esotbAttributes">
 			<div class="esotbAttrTitle">Attributes</div>
-			<div class="esotbAttrLabel">Health</div> <input id="esotbAttrHea" statid="AttributeHealth" class="esotbAttributeInput" type="number" size="2" value="0"><br/>
-			<div class="esotbAttrLabel">Magicka</div> <input id="esotbAttrMag" statid="AttributeMagicka" class="esotbAttributeInput" type="number" size="2" value="0"><br/>
-			<div class="esotbAttrLabel">Stamina</div> <input id="esotbAttrSta" statid="AttributeStamina" class="esotbAttributeInput" type="number" size="2" value="0"><br/>
+			<div class="esotbAttrLabel">Health</div> <input id="esotbAttrHea" statid="AttributeHealth" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0"><br/>
+			<div class="esotbAttrLabel">Magicka</div> <input id="esotbAttrMag" statid="AttributeMagicka" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0"><br/>
+			<div class="esotbAttrLabel">Stamina</div> <input id="esotbAttrSta" statid="AttributeStamina" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0"><br/>
 			<div class="esotbAttrLabel">Total</div> <div id="esotbAttrTotal"  statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div>
 		</div>
 	</div>
@@ -33,7 +33,8 @@ displayed statistics is unknown.
 </div>
 
 <script type="text/javascript">
-	g_EsoComputedStats = {esoComputedStatsJson}; 
+	g_EsoComputedStats = {esoComputedStatsJson};
+	g_EsoInputStats = {esoInputStatsJson}; 
 </script>
     
 <div class="esotbBlockClear"></div>
