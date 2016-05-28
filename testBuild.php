@@ -12,85 +12,99 @@ class CEsoTestBuild
 	public $htmlTemplate = "";
 	public $version = "";
 	
-	/*
-	 	Level
-	 	Divines
-	 	ArmorLight
-	 	ArmorMedium
-	 	ArmorHeavy
-	 	ArmorTypeCount
-	 	WeaponDagger
-	 	WeaponSword
-	 		...
-	 	
-	 	Base
- 		Attribute
- 		Item
- 		Set
- 		Skill (Passive, Skill)
- 		Buff
- 		CP
- 		Mundus
- 		
- 		Health
- 		Magicka
- 		Stamina
- 		HR
- 		MR
- 		SR
- 		WD
- 		SD
- 		WC
- 		SC
- 		SR
- 		PR
- 		FireR
- 		ColdR
- 		PoisonR
- 		ShockR
- 		SPen
- 		PPen
- 		
-	 */
 	
-	
-	public static $INPUT_STATS_LIST = array(
-			"Level",
-			"AttributeHealth",
-			"AttributeMagicka",
-			"AttributeStamina",
-			"GearHealth",
-			"GearMagicka",
-			"GearStamina",
-			"CPHealth",
-			"CPMagicka",
-			"CPStamina",
-			"FoodHealth",
-			"FoodMagicka",
-			"FoodStamina",
+	public $STATS_UNIQUE_LIST = array(
 			"Divines",
-			"SkillsHealth",
-			"MundusHealth",
+			"Armor.Light",
+			"Armor.Medium",
+			"Armor.Heavy",
+			"Armor.Types",
+			"Level",
+			"EffectiveLevel",
+			"CP.TotalPoints",
+			"Attribute.TotalPoints",
+			"Mundus.Name",
 	);
 	
 	
-	public static $COMPUTED_STATS_LIST = array(
+	public $STATS_TYPE_LIST = array(
+			"Attribute",
+			"Item",
+			"Set",
+			"Skill",
+			"Buff",
+			"Food",
+			"CP",
+			"Mundus",
+	);
+	
+	
+	public $STATS_BASE_LIST = array(
+			"Health",
+			"Magicka",
+			"Stamina",
+			"HealthRegen",
+			"MagickaRegen",
+			"StaminaRegen",
+			"WeaponDamage",
+			"SpellDamage",
+			"WeaponCrit",
+			"SpellCrit",
+			"CritDamage",
+			"SpellResist",
+			"PhysicalResist",
+			"FireResist",
+			"ColdResist",
+			"PoisonResist",
+			"ShockResist",
+			"CritResist",
+			"SpellPenetration",
+			"PhysicalPenetration",
+			"RunSpeed",
+			"HealingGiven",
+			"HealingReceived",
+	);
+	
+	
+	public $MUNDUS_TYPES = array(
+			"The Apprentice" 	=> "Spell Damage",
+			"The Atronach" 		=> "Magicka Regen",
+			"The Lady" 			=> "Physical Resist",
+			"The Lover" 		=> "Spell Resist",
+			"The Lord" 			=> "Health",
+			"The Mage" 			=> "Magicka",
+			"The Ritual" 		=> "Healing",
+			"The Serpent" 		=> "Stamina Regen",
+			"The Shadow" 		=> "Crit Damage",
+			"The Steed" 		=> "Run/Health Regen",
+			"The Thief" 		=> "Crit Chance",
+			"The Tower" 		=> "Stamina",
+			"The Warrior" 		=> "Weapon Damage",
+	);
+	
+	
+	public $INPUT_STATS_LIST = array();
+	
+	
+	public $COMPUTED_STATS_LIST = array(
 			
 			"Health" => array(
 					"title" => "Health",
 					"compute" => array(
 							"156 * Level + 944",
-							"122 * AttributeHealth",
+							"122 * Attribute.Health",
 							"+",
-							"GearHealth",
+							"Item.Health",
 							"+",
-							"1 + pow(CPHealth, 0.56432)/100",
+							"Set.Health",
+							"+",
+							"1 + pow(CP.Health, 0.56432)/100",
 							"*",
-							"FoodHealth",
+							"Food.Health",
 							"+",
-							"MundusHealth * Divines",
+							"Mundus.Health * (1 + Divines)",
 							"+",
-							"SkillsHealth",
+							"1 + Skill.Health",
 							"*",
 					),
 			),
@@ -99,11 +113,17 @@ class CEsoTestBuild
 					"title" => "Magicka",
 					"compute" => array(
 							"142 * Level + 858",
-							"111 * AttributeMagicka",
+							"111 * Attribute.Magicka",
 							"+",
-							"GearMagicka",
+							"Item.Magicka",
 							"+",
-							"1 + pow(CPMagicka, 0.56432)/100",
+							"1 + pow(CP.Magicka, 0.56432)/100",
+							"*",
+							"Food.Magicka",
+							"+",
+							"Mundus.Magicka * (1 + Divines)",
+							"+",
+							"1 + Skill.Magicka",
 							"*",
 					),
 			),
@@ -112,11 +132,17 @@ class CEsoTestBuild
 					"title" => "Stamina",
 					"compute" => array(
 							"142 * Level + 858",
-							"111 * AttributeStamina",
+							"111 * Attribute.Stamina",
 							"+",						
-							"GearStamina",
+							"Item.Stamina",
 							"+",
-							"1 + pow(CPStamina, 0.56432)/100",
+							"1 + pow(CP.Stamina, 0.56432)/100",
+							"*",
+							"Food.Stamina",
+							"+",
+							"Mundus.Stamina * (1 + Divines)",
+							"+",
+							"1 + Skill.Stamina",
 							"*",
 					),
 			),
@@ -126,10 +152,11 @@ class CEsoTestBuild
 	
 	public function __construct()
 	{
+		$this->MakeInputStatsList();
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
-		$this->LoadTemplate();
+		$this->LoadTemplate();		
 	}
 	
 	
@@ -185,8 +212,7 @@ class CEsoTestBuild
 	
 		return true;
 	}
-	
-	
+		
 	
 	public function LoadTemplate()
 	{
@@ -214,15 +240,63 @@ class CEsoTestBuild
 	}
 	
 	
+	public function MakeInputStatsList()
+	{
+		$this->INPUT_STATS_LIST = array();
+		
+		foreach ($this->STATS_UNIQUE_LIST as $statItem)
+		{
+			$statList = explode(".", $statItem);
+			$count = count($statList);
+			
+			if ($count == 1)
+			{
+				$this->INPUT_STATS_LIST[$statList[0]] = 0;
+			}
+			else if ($count == 2)
+			{
+				$statBase = $statList[0];
+				if ($this->INPUT_STATS_LIST[$statBase] == null) $this->INPUT_STATS_LIST[$statBase] = array();
+				$this->INPUT_STATS_LIST[$statBase][$statList[1]] = 0;
+			}			
+		}
+		
+		foreach ($this->STATS_TYPE_LIST as $statBase)
+		{
+			if ($this->INPUT_STATS_LIST[$statBase] == null) $this->INPUT_STATS_LIST[$statBase] = array();
+			
+			foreach ($this->STATS_BASE_LIST as $stat)
+			{
+				$this->INPUT_STATS_LIST[$statBase][$stat] = 0;
+			}
+		}
+		
+		
+	}
+	
+	
 	public function GetComputedStatsJson()
 	{
-		return json_encode(self::$COMPUTED_STATS_LIST);
+		return json_encode($this->COMPUTED_STATS_LIST);
 	}
 	
 	
 	public function GetInputStatsJson()
 	{
-		return json_encode(self::$INPUT_STATS_LIST);
+		return json_encode($this->INPUT_STATS_LIST);
+	}
+	
+	
+	public function GetMundusListHtml()
+	{
+		$output = "";
+		
+		foreach ($this->MUNDUS_TYPES as $name => $type)
+		{
+			$output .= "<option value='$name'>$name <small>($type)</small></option>";
+		}
+		
+		return $output;
 	}
 	
 	
@@ -232,6 +306,7 @@ class CEsoTestBuild
 				'{version}' => $this->version,
 				'{esoComputedStatsJson}' => $this->GetComputedStatsJson(),
 				'{esoInputStatsJson}' => $this->GetInputStatsJson(),
+				'{mundusList}' => $this->GetMundusListHtml(),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
