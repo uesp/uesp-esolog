@@ -27,6 +27,12 @@ displayed statistics is unknown.
 			<div class="esotbAttrLabel"></div> <div id="esotbAttrTotal" statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div>
 		</div>
 		<p>
+		<div id="esotbRaceList">
+			<div class="esotbAttrLabel">Race</div> <select id="esotbRace" name="esotbRace" statid="Race">{raceList}</select>
+		</div>
+		<div id="esotbClassList">
+			<div class="esotbAttrLabel">Class</div> <select id="esotbClass" name="esotbClass" statid="Class">{classList}</select>
+		</div>
 		<div id="esotbMundusList">
 			<div class="esotbAttrLabel">Mundus</div> <select id="esotbMundus" name="esotbMundus" statid="Mundus.Name">{mundusList}</select>
 		</div>

@@ -21,9 +21,12 @@ class CEsoTestBuild
 			"Armor.Types",
 			"Level",
 			"EffectiveLevel",
+			"EffectiveLevel",
 			"CP.TotalPoints",
 			"Attribute.TotalPoints",
 			"Mundus.Name",
+			"Race",
+			"Class",
 	);
 	
 	
@@ -32,6 +35,7 @@ class CEsoTestBuild
 			"Item",
 			"Set",
 			"Skill",
+			"Skill2",
 			"Buff",
 			"Food",
 			"CP",
@@ -80,6 +84,28 @@ class CEsoTestBuild
 			"The Thief" 		=> "Crit Chance",
 			"The Tower" 		=> "Stamina",
 			"The Warrior" 		=> "Weapon Damage",
+	);
+	
+	
+	public $RACE_TYPES = array(
+			"Argonian" => "",
+			"Breton" => "",
+			"Dark Elf" => "Dunmer",
+			"High Elf" => "Altmer",
+			"Imperial" => "",
+			"Khajiit" => "",
+			"Nord" => "",
+			"Orc" => "Orsimer",
+			"Redguard" => "",
+			"Wood Elf" => "Bosmer",
+	);
+	
+	
+	public $CLASS_TYPES = array(
+			"Dragonknight",
+			"Nightblade",
+			"Sorcerer",
+			"Templar",
 	);
 	
 	
@@ -143,6 +169,85 @@ class CEsoTestBuild
 							"Mundus.Stamina * (1 + Divines)",
 							"+",
 							"1 + Skill.Stamina",
+							"*",
+					),
+			),
+			
+			"HealthRegen" => array(
+					"title" => "Health Regen",
+					"compute" => array(
+							"round(5.592 * Level + 29.4)",
+							"Item.HealthRegen",
+							"+",
+							"Mundus.HealthRegen * (1 + Divines)",
+							"+",
+							"1 + CP.HealthRegen",
+							"*",
+							"1 + Skill2.HealthRegen",
+							"*",
+							"Food.HealthRegen",
+							"+",
+							"1 + Skill.HealthRegen",
+							"*",
+					),
+			),
+			
+			"MagickaRegen" => array(
+					"title" => "Magicka Regen",
+					"compute" => array(
+							"round(9.30612 * Level + 48.7)",
+							"Item.MagickaRegen",
+							"+",
+							"Mundus.MagickaRegen * (1 + Divines)",
+							"+",
+							"1 + CP.MagickaRegen",
+							"*",
+							"1 + Skill2.MagickaRegen",
+							"*",
+							"Food.MagickaRegen",
+							"+",
+							"1 + Skill.MagickaRegen",
+							"*",
+					),
+			),
+			
+			"StaminaRegen" => array(
+					"title" => "Stamina Regen",
+					"compute" => array(
+							"round(9.30612 * Level + 48.7)",
+							"Item.StaminaRegen",
+							"+",
+							"Mundus.StaminaRegen * (1 + Divines)",
+							"+",
+							"1 + CP.StaminaRegen",
+							"*",
+							"1 + Skill2.StaminaRegen",
+							"*",
+							"Food.StaminaRegen",
+							"+",
+							"1 + Skill.StaminaRegen",
+							"*",
+					),
+			),
+			
+			"SpellDamage" => array(
+					"title" => "Spell Damage",
+					"compute" => array(
+							"Item.SpellDamage",
+							"Mundus.SpellDamage * (1 + Divines)",
+							"+",
+							"1 + Skill.SpellDamage",
+							"*",							
+					),
+			),
+			
+			"WeaponDamage" => array(
+					"title" => "Weapon Damage",
+					"compute" => array(
+							"Item.WeaponDamage",
+							"Mundus.WeaponDamage * (1 + Divines)",
+							"+",
+							"1 + Skill.WeaponDamage",
 							"*",
 					),
 			),
@@ -290,6 +395,7 @@ class CEsoTestBuild
 	public function GetMundusListHtml()
 	{
 		$output = "";
+		$output .= "<option value='none'>(none)</option>";
 		
 		foreach ($this->MUNDUS_TYPES as $name => $type)
 		{
@@ -300,12 +406,42 @@ class CEsoTestBuild
 	}
 	
 	
+	public function GetClassListHtml()
+	{
+		$output = "";
+	
+		foreach ($this->CLASS_TYPES as $class)
+		{
+			$output .= "<option value='$class'>$class</option>";
+		}
+	
+		return $output;
+	}
+	
+	
+	public function GetRaceListHtml()
+	{
+		$output = "";
+	
+		foreach ($this->RACE_TYPES as $name => $extra)
+		{
+			$extraDesc = "";
+			if ($extra != "") $extraDesc = " ($extra)";
+			$output .= "<option value='$name'>$name$extraDesc</option>";
+		}
+	
+		return $output;
+	}
+	
+	
 	public function GetOutputHtml()
 	{
 		$replacePairs = array(
 				'{version}' => $this->version,
 				'{esoComputedStatsJson}' => $this->GetComputedStatsJson(),
 				'{esoInputStatsJson}' => $this->GetInputStatsJson(),
+				'{raceList}' => $this->GetRaceListHtml(),
+				'{classList}' => $this->GetClassListHtml(),
 				'{mundusList}' => $this->GetMundusListHtml(),
 		);
 		
