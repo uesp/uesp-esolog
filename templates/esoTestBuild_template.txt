@@ -24,7 +24,11 @@ displayed statistics is unknown.
 			<div class="esotbAttrLabel">Health</div> <input id="esotbAttrHea" statid="AttributeHealth" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0"><br/>
 			<div class="esotbAttrLabel">Magicka</div> <input id="esotbAttrMag" statid="AttributeMagicka" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0"><br/>
 			<div class="esotbAttrLabel">Stamina</div> <input id="esotbAttrSta" statid="AttributeStamina" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0"><br/>
-			<div class="esotbAttrLabel">Total</div> <div id="esotbAttrTotal"  statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div>
+			<div class="esotbAttrLabel"></div> <div id="esotbAttrTotal" statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div>
+		</div>
+		<p>
+		<div id="esotbMundusList">
+			<div class="esotbAttrLabel">Mundus</div> <select id="esotbMundus" name="esotbMundus" statid="Mundus.Name">{mundusList}</select>
 		</div>
 	</div>
 	<div id="esotbStatList">

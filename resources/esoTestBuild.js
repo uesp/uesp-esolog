@@ -1,24 +1,105 @@
+ESO_MAX_ATTRIBUTES = 64;
+
 
 function GetEsoInputValues()
 {
 	var inputValues = {};
 	
-	for (var i = 0; i < g_EsoInputStats.length; ++i)
+	for (var key in g_EsoInputStats)
 	{
-		var key = g_EsoInputStats[i];
-		inputValues[key] = 0;
+		var object = g_EsoInputStats[key];
+		
+		if (typeof(object) == "object")
+		{
+			inputValues[key] = {};
+			
+			for (var key1 in object)
+			{
+				inputValues[key][key1] = 0;
+			}
+		}
+		else
+		{
+			inputValues[key] = 0;	
+		}		
 	}
 	
 	inputValues.pow = Math.pow;
 	
 	inputValues.Level = $("#esotbLevel").val();
-	inputValues.AttributeHealth = $("#esotbAttrHea").val();
-	inputValues.AttributeMagicka = $("#esotbAttrMag").val();
-	inputValues.AttributeStamina = $("#esotbAttrSta").val();
+	inputValues.Attribute.Health = $("#esotbAttrHea").val();
+	inputValues.Attribute.Magicka = $("#esotbAttrMag").val();
+	inputValues.Attribute.Stamina = $("#esotbAttrSta").val();
+	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
 	
-	inputValues.SkillsHealth = 1;
+	$.extend(inputValues.Mundus, GetEsoInputMundusValues());
 	
 	return inputValues;
+}
+
+
+function GetEsoInputMundusValues()
+{
+	var result = {}
+	
+	result.Name = $("#esotbMundus").val();
+	
+	if (result.Name == "The Lady")
+	{
+		result.PhysicalResist = 1280;
+	}
+	else if (result.Name == "The Lover")
+	{
+		result.SpellResist = 1280;
+	}
+	else if (result.Name == "The Lord")
+	{
+		result.Health = 1280;
+	}
+	else if (result.Name == "The Mage")
+	{
+		result.Magicka = 1280;
+	}
+	else if (result.Name == "The Tower")
+	{
+		result.Stamina = 1280;
+	}
+	else if (result.Name == "The Atronach")
+	{
+		result.MagickaRegen = 210;
+	}
+	else if (result.Name == "The Serpent")
+	{
+		result.StaminaRegen = 210;
+	}
+	else if (result.Name == "The Shadow")
+	{
+		result.CritDamage = 0.12;
+	}
+	else if (result.Name == "The Ritual")
+	{
+		result.HealingGiven = 0.10;
+	}
+	else if (result.Name == "The Thief")
+	{
+		result.SpellCrit = 0.11;	//TODO: Absolute values?
+		result.WeaponCrit = 0.11;
+	}
+	else if (result.Name == "The Warrior")
+	{
+		result.WeaponDamage = 166;
+	}
+	else if (result.Name == "The Apprentice")
+	{
+		result.SpellDamage = 166;
+	}
+	else if (result.Name == "The Steed")
+	{
+		result.HealthRegen = 210;
+		result.RunSpeed = 0.05;
+	}
+	
+	return result;
 }
 
 
@@ -74,7 +155,12 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 		
 		with(inputValues)
 		{
-			itemValue = eval(computeItem);
+			try {
+				itemValue = eval(computeItem); 
+			} catch (e) {
+			    itemValue = "ERR";
+			}
+			
 			stack.push(itemValue);
 		}
 		
@@ -183,18 +269,18 @@ function OnEsoAttributeChange(e)
 	var value = $this.val();
 	
 	if (value == "")$this.val("0");
-	if (value > 64) $this.val("64");
+	if (value > ESO_MAX_ATTRIBUTES) $this.val(ESO_MAX_ATTRIBUTES);
 	if (value < 0)  $this.val("0");
 	
 	var totalValue = parseInt($("#esotbAttrHea").val()) + parseInt($("#esotbAttrMag").val()) + parseInt($("#esotbAttrSta").val());
 	
-	if (totalValue > 64) 
+	if (totalValue > ESO_MAX_ATTRIBUTES) 
 	{
-		totalValue = 64;
-		$this.val(64 - totalValue + parseInt(value));
+		totalValue = ESO_MAX_ATTRIBUTES;
+		$this.val(ESO_MAX_ATTRIBUTES - totalValue + parseInt(value));
 	}
 	
-	$("#esotbAttrTotal").text(totalValue + " / 64");
+	$("#esotbAttrTotal").text(totalValue + " / " + ESO_MAX_ATTRIBUTES);
 }
 
 
@@ -222,12 +308,18 @@ function OnEsoToggleStatComputeItems(e)
 }
 
 
+function OnEsoMundusChange(e)
+{
+	UpdateEsoComputedStatsList();
+}
+
+
 function esotbOnDocReady()
 {
 	UpdateEsoComputedStatsList();
 	
-	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this); });
-	
+	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
+	$("#esotbMundus").change(OnEsoMundusChange)
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
 }
 
