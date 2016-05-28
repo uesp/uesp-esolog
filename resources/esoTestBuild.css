@@ -122,21 +122,21 @@ a:hover {
 }
 
 .esotbStatRow:hover {
-	background-color: #ccc;
+	background-color: #FFF5E0;
 }
 
 .esotbStatName {
-	float: left;
 	width: 115px;
 	text-align: left;
 	font-weight: bold;
+	display: inline-block;
 }
 
 .esotbStatValue {
-	float: right;
-	width: 175px;
+	width: 160px;
 	text-align: left;
 	font-weight: bold;
+	display: inline-block;
 }
 
 .esotbStatComputeValue {
@@ -152,6 +152,23 @@ a:hover {
 	font-family: monospace;
 	font-size: 11px;
 	text-align: left;
-	width: 210px;
+	width: 200px;
 	display: inline-block;
+}
+
+.esotbStatComputeButton {
+	width: 16px;
+	height: 16px;
+	background-color: #ccc;
+	text-align: center;
+	float: right;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+}
+
+.esotbStatComputeButton:hover {
+	cursor: pointer;
+	background-color: #777;
 }

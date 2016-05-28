@@ -12,6 +12,47 @@ class CEsoTestBuild
 	public $htmlTemplate = "";
 	public $version = "";
 	
+	/*
+	 	Level
+	 	Divines
+	 	ArmorLight
+	 	ArmorMedium
+	 	ArmorHeavy
+	 	ArmorTypeCount
+	 	WeaponDagger
+	 	WeaponSword
+	 		...
+	 	
+	 	Base
+ 		Attribute
+ 		Item
+ 		Set
+ 		Skill (Passive, Skill)
+ 		Buff
+ 		CP
+ 		Mundus
+ 		
+ 		Health
+ 		Magicka
+ 		Stamina
+ 		HR
+ 		MR
+ 		SR
+ 		WD
+ 		SD
+ 		WC
+ 		SC
+ 		SR
+ 		PR
+ 		FireR
+ 		ColdR
+ 		PoisonR
+ 		ShockR
+ 		SPen
+ 		PPen
+ 		
+	 */
+	
 	
 	public static $INPUT_STATS_LIST = array(
 			"Level",
@@ -27,6 +68,9 @@ class CEsoTestBuild
 			"FoodHealth",
 			"FoodMagicka",
 			"FoodStamina",
+			"Divines",
+			"SkillsHealth",
+			"MundusHealth",
 	);
 	
 	
@@ -35,30 +79,45 @@ class CEsoTestBuild
 			"Health" => array(
 					"title" => "Health",
 					"compute" => array(
-							"+156 * Level + 944",
-							"+122 * AttributeHealth",
-							"+GearHealth",
-							"(1 + pow(CPHealth, 0.56432)/100)",
+							"156 * Level + 944",
+							"122 * AttributeHealth",
+							"+",
+							"GearHealth",
+							"+",
+							"1 + pow(CPHealth, 0.56432)/100",
+							"*",
+							"FoodHealth",
+							"+",
+							"MundusHealth * Divines",
+							"+",
+							"SkillsHealth",
+							"*",
 					),
 			),
 			
 			"Magicka" => array(
 					"title" => "Magicka",
 					"compute" => array(
-							"+142 * Level + 858",
-							"+111 * AttributeMagicka",
-							"+GearMagicka",
-							"(1 + pow(CPMagicka, 0.56432)/100)",
+							"142 * Level + 858",
+							"111 * AttributeMagicka",
+							"+",
+							"GearMagicka",
+							"+",
+							"1 + pow(CPMagicka, 0.56432)/100",
+							"*",
 					),
 			),
 			
 			"Stamina" => array(
 					"title" => "Stamina",
 					"compute" => array(
-							"+142 * Level + 858",
-							"+111 * AttributeStamina",
-							"+GearStamina",
-							"(1 + pow(CPStamina, 0.56432)/100)",
+							"142 * Level + 858",
+							"111 * AttributeStamina",
+							"+",						
+							"GearStamina",
+							"+",
+							"1 + pow(CPStamina, 0.56432)/100",
+							"*",
 					),
 			),
 			
