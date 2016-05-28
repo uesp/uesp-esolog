@@ -25,8 +25,15 @@ function GetEsoInputValues()
 	}
 	
 	inputValues.pow = Math.pow;
+	inputValues.floor = Math.floor;
+	inputValues.round = Math.round;
+	inputValues.ceil = Math.ceil;
+	
+	inputValues.Race = $("#esotbRace").val();
+	inputValues.Class = $("#esotbClass").val();
 	
 	inputValues.Level = $("#esotbLevel").val();
+	inputValues.EffectiveLevel = inputValues.Level;
 	inputValues.Attribute.Health = $("#esotbAttrHea").val();
 	inputValues.Attribute.Magicka = $("#esotbAttrMag").val();
 	inputValues.Attribute.Stamina = $("#esotbAttrSta").val();
@@ -268,7 +275,7 @@ function OnEsoAttributeChange(e)
 	var $this = $(this);
 	var value = $this.val();
 	
-	if (value == "")$this.val("0");
+	//if (value == "")$this.val("0");
 	if (value > ESO_MAX_ATTRIBUTES) $this.val(ESO_MAX_ATTRIBUTES);
 	if (value < 0)  $this.val("0");
 	
@@ -289,7 +296,7 @@ function OnEsoLevelChange(e)
 	var $this = $(this);
 	var value = $this.val();
 	
-	if (value == "")$this.val("0");
+	//if (value == "")$this.val("0");
 	if (value > 50) $this.val("50");
 	if (value < 1)  $this.val("1");
 }
@@ -308,6 +315,18 @@ function OnEsoToggleStatComputeItems(e)
 }
 
 
+function OnEsoRaceChange(e)
+{
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoClassChange(e)
+{
+	UpdateEsoComputedStatsList();
+}
+
+
 function OnEsoMundusChange(e)
 {
 	UpdateEsoComputedStatsList();
@@ -319,6 +338,8 @@ function esotbOnDocReady()
 	UpdateEsoComputedStatsList();
 	
 	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
+	$("#esotbRace").change(OnEsoRaceChange)
+	$("#esotbClass").change(OnEsoClassChange)
 	$("#esotbMundus").change(OnEsoMundusChange)
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
 }
