@@ -612,6 +612,8 @@ class CEsoTestBuild
 	public function __construct()
 	{
 		$this->viewCps = new CEsoViewCP(true);
+		$this->viewCps->hideTopBar = true;
+		$this->viewCps->shortDiscDisplay = true;
 		
 		$this->MakeInputStatsList();
 		$this->SetInputParams();
