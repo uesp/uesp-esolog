@@ -32,11 +32,13 @@ function GetEsoInputValues()
 	inputValues.Race = $("#esotbRace").val();
 	inputValues.Class = $("#esotbClass").val();
 	
-	inputValues.Level = $("#esotbLevel").val();
-	inputValues.EffectiveLevel = inputValues.Level;
-	inputValues.Attribute.Health = $("#esotbAttrHea").val();
-	inputValues.Attribute.Magicka = $("#esotbAttrMag").val();
-	inputValues.Attribute.Stamina = $("#esotbAttrSta").val();
+	inputValues.Level = parseInt($("#esotbLevel").val());
+	inputValues.CPLevel = 0;
+	inputValues.EffectiveLevel = inputValues.Level + inputValues.CPLevel;
+	
+	inputValues.Attribute.Health = parseInt($("#esotbAttrHea").val());
+	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
+	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
 	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
 	
 	$.extend(inputValues.Mundus, GetEsoInputMundusValues());
@@ -85,7 +87,7 @@ function GetEsoInputMundusValues()
 	}
 	else if (result.Name == "The Ritual")
 	{
-		result.HealingGiven = 0.10;
+		result.HealingDone = 0.10;
 	}
 	else if (result.Name == "The Thief")
 	{
@@ -112,10 +114,11 @@ function GetEsoInputMundusValues()
 
 function UpdateEsoComputedStatsList()
 {
+	var inputValues = GetEsoInputValues();
 	
 	for (var statId in g_EsoComputedStats)
 	{
-		UpdateEsoComputedStat(statId, g_EsoComputedStats[statId]);
+		UpdateEsoComputedStat(statId, g_EsoComputedStats[statId], inputValues);
 	}
 	
 }
@@ -159,6 +162,15 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 			
 			continue;
 		}
+		else if (computeItem == "-")
+		{
+			if (stack.length >= 2)
+				stack.push(-stack.pop() + stack.pop());
+			else
+				error = "ERR";
+			
+			continue;
+		}
 		
 		with(inputValues)
 		{
@@ -172,6 +184,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 		}
 		
 		var prefix = "";
+		if (nextItem == "-") prefix = "-";
 		if (nextItem == "+") prefix = "+";
 		if (nextItem == "*") prefix = "x";
 		
@@ -182,9 +195,24 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 	if (stack.length <= 0) error = "ERR";
 	
 	if (error == "")
-		valueElement.text(Math.floor(stack.pop()));
+	{
+		var result = stack.pop();
+		var display = stat.display;
+		
+		inputValues[statId] = result;
+		
+		if (display == "percent")
+		{
+			result = Math.round(result*1000)/10 + "%";
+		}
+		
+		valueElement.text(result);
+	}
 	else
+	{
+		inputValues[statId] = error;
 		valueElement.text(error);
+	}
 }
 
 
@@ -232,10 +260,14 @@ function CreateEsoComputedStatItems(computeData, parentElement)
 		else if (computeItem == "+")
 		{
 		}
+		else if (computeItem == "-")
+		{
+		}
 		else
 		{
 			var prefix = "";
 			if (nextItem == "+") prefix = "+";
+			if (nextItem == "-") prefix = "-";
 			if (nextItem == "*") prefix = "x";
 			
 			$("<div/>").addClass("esotbStatComputeValue").
@@ -333,6 +365,31 @@ function OnEsoMundusChange(e)
 }
 
 
+function OnEsoClickItem(e)
+{
+	var $this = $(this);
+	var id = $this.attr("id");
+	
+	SelectEsoItem($this);
+}
+
+
+function SelectEsoItem(element)
+{
+	var itemType = element.attr("itemtype");
+	var equipType = element.attr("equiptype");
+	var selectElement = $("#esotbItemSelect");
+	var offset = element.offset();
+	
+	$("#esotbItemSelectTitle").text("Select Item")
+		
+	selectElement.offset({left: offset.left, top: offset.top - 100 });
+	selectElement.show();
+	
+	
+}
+
+
 function esotbOnDocReady()
 {
 	UpdateEsoComputedStatsList();
@@ -342,6 +399,8 @@ function esotbOnDocReady()
 	$("#esotbClass").change(OnEsoClassChange)
 	$("#esotbMundus").change(OnEsoMundusChange)
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
+	
+	$(".esotbItem").click(OnEsoClickItem)
 }
 
 

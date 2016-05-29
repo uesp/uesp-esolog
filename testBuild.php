@@ -15,11 +15,14 @@ class CEsoTestBuild
 	
 	public $STATS_UNIQUE_LIST = array(
 			"Divines",
+			"Defending",
+			"Sturdy",
 			"Armor.Light",
 			"Armor.Medium",
 			"Armor.Heavy",
 			"Armor.Types",
 			"Level",
+			"CPLevel",
 			"EffectiveLevel",
 			"EffectiveLevel",
 			"CP.TotalPoints",
@@ -65,8 +68,19 @@ class CEsoTestBuild
 			"SpellPenetration",
 			"PhysicalPenetration",
 			"RunSpeed",
-			"HealingGiven",
+			"HealingDone",
+			"HealingTaken",
 			"HealingReceived",
+			"HealingTotal",
+			"BashCost",
+			"BlockCost",
+			"BlockMitigation",
+			"RollDodgeCost",
+			"SprintCost",
+			"SneakCost",
+			"BreakFreeCost",
+			"HARestore",
+			"Constitution",
 	);
 	
 	
@@ -143,6 +157,8 @@ class CEsoTestBuild
 							"+",
 							"Item.Magicka",
 							"+",
+							"Set.Magicka",
+							"+",
 							"1 + pow(CP.Magicka, 0.56432)/100",
 							"*",
 							"Food.Magicka",
@@ -162,6 +178,8 @@ class CEsoTestBuild
 							"+",						
 							"Item.Stamina",
 							"+",
+							"Set.Stamina",
+							"+",
 							"1 + pow(CP.Stamina, 0.56432)/100",
 							"*",
 							"Food.Stamina",
@@ -178,6 +196,8 @@ class CEsoTestBuild
 					"compute" => array(
 							"round(5.592 * Level + 29.4)",
 							"Item.HealthRegen",
+							"+",
+							"Set.HealthRegen",
 							"+",
 							"Mundus.HealthRegen * (1 + Divines)",
 							"+",
@@ -198,6 +218,8 @@ class CEsoTestBuild
 							"round(9.30612 * Level + 48.7)",
 							"Item.MagickaRegen",
 							"+",
+							"Set.MagickaRegen",
+							"+",
 							"Mundus.MagickaRegen * (1 + Divines)",
 							"+",
 							"1 + CP.MagickaRegen",
@@ -216,6 +238,8 @@ class CEsoTestBuild
 					"compute" => array(
 							"round(9.30612 * Level + 48.7)",
 							"Item.StaminaRegen",
+							"+",
+							"Set.StaminaRegen",
 							"+",
 							"Mundus.StaminaRegen * (1 + Divines)",
 							"+",
@@ -245,9 +269,336 @@ class CEsoTestBuild
 					"title" => "Weapon Damage",
 					"compute" => array(
 							"Item.WeaponDamage",
+							"Set.WeaponDamage",
+							"+",
 							"Mundus.WeaponDamage * (1 + Divines)",
 							"+",
 							"1 + Skill.WeaponDamage",
+							"*",
+					),
+			),
+			
+			
+			"SpellCrit" => array(
+					"title" => "Spell Critical",
+					"compute" => array(
+							"Item.SpellCrit",
+							"Mundus.SpellCrit * (1 + Divines)",
+							"+",
+							"Skill.SpellCrit",
+							"+",
+							"Buff.SpellCrit",
+							"+",
+					),
+			),
+			
+			"WeaponCrit" => array(
+					"title" => "Weapon Critical",
+					"compute" => array(
+							"Item.WeaponCrit",
+							"Set.WeaponCrit",
+							"+",
+							"Mundus.WeaponCrit * (1 + Divines)",
+							"+",
+							"Skill.WeaponCrit",
+							"+",
+							"Buff.WeaponCrit",
+							"+",
+					),
+			),
+			
+			"CritDamage" => array(
+					"title" => "Critical Damage",
+					"display" => "percent",
+					"compute" => array(
+							"CP.CritDamage",
+							"Skill.CritDamage",
+							"+",
+							"Mundus.CritDamage * (1 + Divines)",
+							"+",
+							"Buff.CritDamage",
+							"+",
+							"0.5",
+							"+",
+					),
+			),
+			
+			"SpellResist" => array(
+					"title" => "Spell Resistance",
+					"compute" => array(
+							"Item.SpellResist",
+							"Skill2.SpellResist",
+							"+",
+							"1 + Defending",
+							"*",
+							"Set.SpellResist",
+							"+",
+							"Skill.SpellResist",
+							"+",
+							"CP.SpellResist",
+							"+",
+					),
+			),
+			
+			"PhysicalResist" => array(
+					"title" => "Physical Resistance",
+					"compute" => array(
+							"Item.PhysicalResist",
+							"Skill2.PhysicalResist",
+							"+",
+							"1 + Defending",
+							"*",
+							"Set.PhysicalResist",
+							"+",
+							"Skill.PhysicalResist",
+							"+",
+							"CP.PhysicalResist",
+							"+",
+					),
+			),
+			
+			"CritResist" => array(
+					"title" => "Critical Resistance",
+					"compute" => array(
+							"Item.CritResist",
+							"Set.CritResist",
+							"+",
+							"Skill.CritResist",
+							"+",
+							"CP.CritResist",
+							"+",
+					),
+			),
+			
+			"ColdResist" => array(
+					"title" => "Cold Resistance",
+					"compute" => array(
+							"Item.ColdResist",
+							"Set.ColdResist",
+							"+",
+							"Skill.ColdResist",
+							"+",
+							"CP.ColdResist",
+							"+",
+							"Buff.ColdResist",
+							"+",
+					),
+			),
+			
+			"FireResist" => array(
+					"title" => "Fire Resistance",
+					"compute" => array(
+							"Item.FireResist",
+							"Set.FireResist",
+							"+",
+							"Skill.FireResist",
+							"+",
+							"CP.FireResist",
+							"+",
+							"Buff.FireResist",
+							"+",
+					),
+			),
+			
+			"ShockResist" => array(
+					"title" => "Shock Resistance",
+					"compute" => array(
+							"Item.ShockResist",
+							"Set.ShockResist",
+							"+",
+							"Skill.ShockResist",
+							"+",
+							"CP.ShockResist",
+							"+",
+							"Buff.ShockResist",
+							"+",
+					),
+			),
+			
+			"PoisonResist" => array(
+					"title" => "Poison Resistance",
+					"compute" => array(
+							"Item.PoisonResist",
+							"Set.PoisonResist",
+							"+",
+							"Skill.PoisonResist",
+							"+",
+							"CP.PoisonResist",
+							"+",
+							"Buff.PoisonResist",
+							"+",
+					),
+			),
+			
+			"HealingDone" => array(
+					"title" => "Healing Done",
+					"display" => "percent",
+					"compute" => array(
+							"Item.HealingDone",
+							"Set.HealingDone",
+							"+",
+							"Skill.HealingDone",
+							"+",
+							"CP.HealingDone",
+							"+",
+							"Buff.HealingDone",
+							"+",
+							"Mundus.HealingDone",
+							"+",
+					),
+			),
+			
+			"HealingTaken" => array(
+					"title" => "Healing Taken",
+					"display" => "percent",
+					"compute" => array(
+							"Item.HealingTaken",
+							"Set.HealingTaken",
+							"+",
+							"Skill.HealingTaken",
+							"+",
+							"CP.HealingTaken",
+							"+",
+							"Buff.HealingTaken",
+							"+",
+					),
+			),
+			
+			"HealingReceived" => array(
+					"title" => "Healing Received",
+					"display" => "percent",
+					"compute" => array(
+							"Item.HealingReceived",
+							"Set.HealingReceived",
+							"+",
+							"Skill.HealingReceived",
+							"+",
+							"CP.HealingReceived",
+							"+",
+							"Buff.HealingReceived",
+							"+",
+					),
+			),
+			
+			"Healing" => array(
+					"title" => "Healing Total",
+					"display" => "percent",
+					"compute" => array(
+							"1 + HealingDone",
+							"1 + HealingTaken",
+							"*",
+							"1 + HealingReceived",
+							"*"
+					),
+			),
+			
+			"SneakCost" => array(
+					"title" => "Sneak Cost",
+					"compute" => array(			// TODO: Include item
+							"1 + 2 * EffectiveLevel",
+							"1 - CP.SneakCost",
+							"*",
+							"1 - Skill.SneakCost",
+							"*",
+					),
+			),
+			
+			"SprintCost" => array(
+					"title" => "Sprint Cost",
+					"compute" => array(		// TODO: Include items/skills
+							"floor(38.46 + 7.69*EffectiveLevel)",
+							"1 - CP.SprintCost",
+							"*",
+					),
+			),
+			
+			"BashCost" => array(
+					"title" => "Bash Cost",
+					"compute" => array(
+							"floor(157 + 26.25*EffectiveLevel)",
+							"Item.BashCost * 1.1625",  // TODO: Check?
+							"-",
+					),
+			),
+			
+			"BlockCost" => array(
+					"title" => "Block Cost",
+					"compute" => array(
+							"180 + 30*EffectiveLevel",
+							"1 - Sturdy/1.16",
+							"*",
+							"1 - CP.BlockCost",
+							"*",
+							"Item.BlockCost",
+							"-",
+							"Set.BlockCost",
+							"-",
+							"1 - Skill.BlockCost",
+							"*",
+					),
+			),
+			
+			"RollDodgeCost" => array(
+					"title" => "Roll Dodge Cost",
+					"compute" => array(
+							"floor(34 + 5.62*EffectiveLevel)*10",
+							"1 - CP.RollDodgeCost",
+							"*",
+							"1 - Skill.RollDodgeCost",
+							"*",
+							"1 - Item.RollDodgeCost",  	// TODO: Check?
+							"*",
+							"1 - Set.RollDodgeCost",  	// TODO: Check?
+							"*",
+					),
+			),
+			
+			"BreakFreeCost" => array(					// TODO: Check?
+					"title" => "Break Free Cost",
+					"compute" => array(
+							"450 + 75*EffectiveLevel",
+							"1 - CP.BreakFreeCost",
+							"*",
+							"1 - Skill.BreakFreeCost",
+							"*",
+							"1 - Item.BreakFreeCost",
+							"*",
+							"1 - Set.BreakFreeCost",
+							"*",
+					),
+			),
+				
+			"BlockMitigation" => array(
+					"title" => "Block Mitigation",
+					"compute" => array(
+							"0.5",
+							"1 - Skill.BlockMitigation",
+							"*",
+					),
+			),
+			
+			//Mitigation?
+
+			"HARestore" => array(
+					"title" => "Heavy Attack Restore",
+					"compute" => array(
+							"floor(1 + Level * 28.25)",
+							"floor(CPLevel * 30.625)",
+							"+",
+							"1 + CP.HARestore",
+							"*",
+							"1 + Skill.HARestore",
+							"*",
+					),
+			),
+			
+			"Constitution" => array(				// TODO: Check?
+					"title" => "Constitution",
+					"compute" => array(
+							"floor(2.82 * EffectiveLevel)",
+							"Armor.Heavy",
+							"*",
+							"1 + Set.Constitution",
 							"*",
 					),
 			),
@@ -364,6 +715,11 @@ class CEsoTestBuild
 				if ($this->INPUT_STATS_LIST[$statBase] == null) $this->INPUT_STATS_LIST[$statBase] = array();
 				$this->INPUT_STATS_LIST[$statBase][$statList[1]] = 0;
 			}			
+		}
+		
+		foreach ($this->STATS_BASE_LIST as $stat)
+		{
+			$this->INPUT_STATS_LIST[$stat] = 0;
 		}
 		
 		foreach ($this->STATS_TYPE_LIST as $statBase)

@@ -127,14 +127,14 @@ a:hover {
 }
 
 .esotbStatName {
-	width: 115px;
+	width: 150px;
 	text-align: left;
 	font-weight: bold;
 	display: inline-block;
 }
 
 .esotbStatValue {
-	width: 160px;
+	width: 125px;
 	text-align: left;
 	font-weight: bold;
 	display: inline-block;
@@ -175,4 +175,37 @@ a:hover {
 .esotbStatComputeButton:hover {
 	cursor: pointer;
 	background-color: #777;
+}
+
+.esotbItem {
+	width: 48px;
+	height: 48px;
+	background-color: #ccc;
+	display: inline-block;
+}
+
+.esotbItem:hover {
+	cursor: pointer;
+	background-color: #999;	
+}
+
+.esotbItemLabel {
+	margin-left: 120px;
+}
+
+#esotbItemSelect {
+	width: 500px;
+	height: 300px;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    background-color: black;
+    color: white;
+}
+
+#esotbItemSelectTitle {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
 }
