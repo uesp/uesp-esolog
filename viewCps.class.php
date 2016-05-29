@@ -286,7 +286,8 @@ class CEsoViewCP
 			{
 				$output .= $this->GetCpSkillSectionHtml($skill, "");
 			}
-			
+		
+			$output .= "<button class='esotvcpResetDisc'>Reset Discipline</button>";
 			$output .= "</div>";			
 		}
 		

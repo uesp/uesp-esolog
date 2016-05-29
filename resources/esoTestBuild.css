@@ -71,7 +71,7 @@ a:hover {
 }
 
 #esotbAttributes {
-	    text-align: center;
+	text-align: center;
 }
 
 .esotbAttrLabel {
@@ -100,7 +100,6 @@ a:hover {
 .esotbAttributeInput, .esotbLevelInput {
 	font-weight: normal;
 	display: inline-block;
-	text-align:center;
 	width: 50px;
 }
 

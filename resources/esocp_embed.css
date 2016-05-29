@@ -170,3 +170,7 @@
 	left: 58%;
 	transform: rotate(-240deg);
 }
+
+#esotvcpResetCP {
+	float: right;
+}

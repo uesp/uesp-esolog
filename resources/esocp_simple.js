@@ -309,6 +309,39 @@ function FindNextEsoCPText()
 }
 
 
+function OnEsoCPResetAll(e)
+{
+	$(".esovcpPointInput").val(0);
+	EsoCpUpdateAll();
+}
+
+
+function OnEsoCPResetDisc(e)
+{
+	var parent = $(this).parent();
+	var discId = parent.attr("disciplineid");
+	if (discId == null || discId == "") return;
+	
+	parent.find(".esovcpPointInput").val("0");
+	
+	UpdateDiscPoints(discId);
+}
+
+
+function EsoCpUpdateAll()
+{
+	UpdateDiscPoints('the_lord');
+	UpdateDiscPoints('the_lady');
+	UpdateDiscPoints('the_steed');
+	UpdateDiscPoints('the_ritual');
+	UpdateDiscPoints('the_atronach');
+	UpdateDiscPoints('the_apprentice');
+	UpdateDiscPoints('the_shadow');
+	UpdateDiscPoints('the_lover');
+	UpdateDiscPoints('the_tower');
+}
+
+
 function esovcpOnDocReady()
 {
 	$(".esovcpDiscipline").click(OnDisciplineClick);
@@ -330,15 +363,10 @@ function esovcpOnDocReady()
 	});
 	$("#esovcpSearchButton").click(OnCPSearch);
 	
-	UpdateDiscPoints('the_lord');
-	UpdateDiscPoints('the_lady');
-	UpdateDiscPoints('the_steed');
-	UpdateDiscPoints('the_ritual');
-	UpdateDiscPoints('the_atronach');
-	UpdateDiscPoints('the_apprentice');
-	UpdateDiscPoints('the_shadow');
-	UpdateDiscPoints('the_lover');
-	UpdateDiscPoints('the_tower');
+	$("#esotvcpResetCP").click(OnEsoCPResetAll);
+	$(".esotvcpResetDisc").click(OnEsoCPResetDisc);
+	
+	EsoCpUpdateAll();
 }
 
 
