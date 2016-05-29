@@ -397,3 +397,12 @@ a:hover {
 	font-size: 13px;
 }
 /* End CP Overrides */
+
+.esotbInputValueRO {
+	display: inline-block;
+	border: solid 1px gray;
+	background-color: lightgray;
+	padding: 2px;
+	margin-top: 3px;
+	min-width: 50px;
+}

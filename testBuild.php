@@ -133,6 +133,7 @@ class CEsoTestBuild
 			
 			"Health" => array(
 					"title" => "Health",
+					"round" => "floor",
 					"compute" => array(
 							"156 * Level + 944",
 							"122 * Attribute.Health",
@@ -154,6 +155,7 @@ class CEsoTestBuild
 			
 			"Magicka" => array(
 					"title" => "Magicka",
+					"round" => "floor",
 					"compute" => array(
 							"142 * Level + 858",
 							"111 * Attribute.Magicka",
@@ -175,6 +177,7 @@ class CEsoTestBuild
 			
 			"Stamina" => array(
 					"title" => "Stamina",
+					"round" => "floor",
 					"compute" => array(
 							"142 * Level + 858",
 							"111 * Attribute.Stamina",

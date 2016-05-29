@@ -157,6 +157,8 @@ function UpdateTotalCPPoints()
 	$(".esovcpTotalPoints").text(totalPoints + " CP");
 	
 	UpdateCPLink();
+	
+	$( document ).trigger("esocpUpdate");
 }
 
 

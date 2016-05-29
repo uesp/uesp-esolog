@@ -1,4 +1,7 @@
 ESO_MAX_ATTRIBUTES = 64;
+ESO_MAX_LEVEL = 50;
+ESO_MAX_CPLEVEL = 16;
+ESO_MAX_EFFECTIVELEVEL = 66;
 
 g_EsoBuildClickWallLinkElement = null;
 
@@ -35,8 +38,18 @@ function GetEsoInputValues()
 	inputValues.Class = $("#esotbClass").val();
 	
 	inputValues.Level = parseInt($("#esotbLevel").val());
-	inputValues.CPLevel = 0;
+	if (inputValues.Level > ESO_MAX_LEVEL) inputValues.Level = ESO_MAX_LEVEL;
+	
+	inputValues.CP.Health = parseInt($("#esovcpDiscHea").text());
+	inputValues.CP.Magicka = parseInt($("#esovcpDiscMag").text());
+	inputValues.CP.Stamina = parseInt($("#esovcpDiscSta").text());
+	inputValues.CP.TotalPoints = inputValues.CP.Health + inputValues.CP.Magicka + inputValues.CP.Stamina;
+	
+	inputValues.CPLevel = Math.floor(inputValues.CP.TotalPoints/10);
+	if (inputValues.CPLevel > ESO_MAX_CPLEVEL) inputValues.CPLevel = ESO_MAX_CPLEVEL;
+	
 	inputValues.EffectiveLevel = inputValues.Level + inputValues.CPLevel;
+	if (inputValues.EffectiveLevel > ESO_MAX_EFFECTIVELEVEL) inputValues.EffectiveLevel = ESO_MAX_EFFECTIVELEVEL;
 	
 	inputValues.Attribute.Health = parseInt($("#esotbAttrHea").val());
 	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
@@ -123,6 +136,16 @@ function UpdateEsoComputedStatsList()
 		UpdateEsoComputedStat(statId, g_EsoComputedStats[statId], inputValues);
 	}
 	
+	UpdateEsoReadOnlyStats(inputValues);
+}
+
+
+function UpdateEsoReadOnlyStats(inputValues)
+{
+	if (inputValues == null) inputValues = GetEsoInputValues();
+	
+	$("#esotbEffectiveLevel").text(inputValues.EffectiveLevel);
+	$("#esotbCPTotalPoints").text(inputValues.CP.TotalPoints);
 }
 
 
@@ -131,6 +154,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 	var stack = [];
 	var error = "";
 	var computeIndex = 0;
+	var round = stat.round;
 	
 	if (inputValues == null) inputValues = GetEsoInputValues();
 	
@@ -153,6 +177,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 			else
 				error = "ERR";
 
+			if (round == "floor") stack.push(Math.floor(stack.pop()));
 			continue;
 		}
 		else if (computeItem == "+")
@@ -310,7 +335,6 @@ function OnEsoAttributeChange(e)
 	var $this = $(this);
 	var value = $this.val();
 	
-	//if (value == "")$this.val("0");
 	if (value > ESO_MAX_ATTRIBUTES) $this.val(ESO_MAX_ATTRIBUTES);
 	if (value < 0)  $this.val("0");
 	
@@ -331,7 +355,6 @@ function OnEsoLevelChange(e)
 	var $this = $(this);
 	var value = $this.val();
 	
-	//if (value == "")$this.val("0");
 	if (value > 50) $this.val("50");
 	if (value < 1)  $this.val("1");
 }
@@ -515,6 +538,12 @@ function OnEsoClickBuildStatTab(e)
 }
 
 
+function OnEsoBuildCpUpdate(e)
+{
+	UpdateEsoComputedStatsList();
+}
+
+
 function esotbOnDocReady()
 {
 	UpdateEsoComputedStatsList();
@@ -532,6 +561,8 @@ function esotbOnDocReady()
 	$("#esotbClickWall").click(OnEsoClickBuildWall);
 	
 	$(".esotbStatTab").click(OnEsoClickBuildStatTab);
+	
+	$(document).on("esocpUpdate", OnEsoBuildCpUpdate);
 }
 
 
