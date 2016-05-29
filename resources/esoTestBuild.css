@@ -82,11 +82,11 @@ a:hover {
 }
 
 .esotbStatLabel {
-	width: 100px;
+	width: 125px;
 	text-align: right;
 	font-weight: bold;
 	display: inline-block;
-	padding: 3px;
+	padding: 5px;
 }
 
 .esotbAttrTitle {
@@ -138,14 +138,14 @@ a:hover {
 }
 
 .esotbStatName {
-	width: 150px;
+	width: 200px;
 	text-align: left;
 	font-weight: bold;
 	display: inline-block;
 }
 
 .esotbStatValue {
-	width: 125px;
+	width:75px;
 	text-align: left;
 	font-weight: bold;
 	display: inline-block;
@@ -396,6 +396,10 @@ a:hover {
 	font-size: 13px;
 }
 /* End CP Overrides */
+
+.esotbTargetInput {
+	width: 75px;
+}
 
 .esotbInputValueRO {
 	display: inline-block;

@@ -41,15 +41,25 @@ displayed statistics is unknown.
 			</div>
 			<p>
 			<div class="esotbStatLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50"><br/>
-			<div class="esotbStatLabel">Effective Level</div> <div id="esotbEffectiveLevel" class="esotbInputValueRO" statid="EffectiveLevel">50</div><br/>
-			<div class="esotbStatLabel">Total CPs</div> <div id="esotbCPTotalPoints" class="esotbInputValueRO" statid="CP.TotalPoints">0</div><br/>
+			<div class="esotbStatLabel">Total CPs</div> <input id="esotbCPTotalPoints" class="esotbLevelInput esotbInputValue" statid="CP.TotalPoints" type="number" size="2" value="160"><br/>
+			<div class="esotbStatLabel">Effective Level</div> <div id="esotbEffectiveLevel" class="esotbInputValueRO" statid="EffectiveLevel">66</div><br/>
 			<p>
 			<div id="esotbAttributes">
 				<div class="esotbAttrTitle">Attributes <div id="esotbAttrTotal" statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div></div>
 				<div class="esotbAttrLabel">Health</div> <input id="esotbAttrHea" statid="AttributeHealth" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0">
 				<div class="esotbAttrLabel">Magicka</div> <input id="esotbAttrMag" statid="AttributeMagicka" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0">
 				<div class="esotbAttrLabel">Stamina</div> <input id="esotbAttrSta" statid="AttributeStamina" class="esotbAttributeInput esotbInputValue" type="number" size="2" value="0">
-				
+			</div>
+			<p>
+			<div id="esotbTarget">
+				<div class="esotbAttrTitle">Target Stats</div>
+				These statistics are to simulate attacking/defending from a NPC/player with the given resistances/penetrations.
+				<p>
+				<div class="esotbStatLabel">Flat Penetration</div> <input id="esotbTargetPenetrationFlat" class="esotbInputValue esotbTargetInput" statid="Target.PenetrationFlat" type="number" size="2" value="0">
+				<div class="esotbStatLabel">% Penetration</div> <input id="esotbTargetPenetrationFactor" class="esotbInputValue esotbTargetInput" statid="Target.PenetrationFactor" type="number" size="2" value="0"><br/>
+				<div class="esotbStatLabel">% Defense Bonus</div> <input id="esotbTargetDefenseBonus" class="esotbInputValue esotbTargetInput" statid="Target.DefenseBonus" type="number" size="2" value="0">
+				<div class="esotbStatLabel">% Attack Bonus</div> <input id="esotbTargetAttackBonus" class="esotbInputValue esotbTargetInput" statid="Target.AttackBonus" type="number" size="2" value="0"><br/>
+				<div class="esotbStatLabel">Resistance</div> <input id="esotbTargetResistance" class="esotbInputValue esotbTargetInput" statid="Target.Resistance" type="number" size="2" value="0"><br/>
 			</div>
 		</div>
 		<div id="esotbStatBlock2" class="esotbStatBlock" style="display: none;">

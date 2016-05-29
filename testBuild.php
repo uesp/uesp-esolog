@@ -29,10 +29,16 @@ class CEsoTestBuild
 			"EffectiveLevel",
 			"EffectiveLevel",
 			"CP.TotalPoints",
+			"CP.UsedPoints",
 			"Attribute.TotalPoints",
 			"Mundus.Name",
 			"Race",
 			"Class",
+			"Target.Resistance",
+			"Target.PenetrationFactor",
+			"Target.PenetrationFlat",
+			"Target.DefenseBonus",
+			"Target.AttackBonus",
 	);
 	
 	
@@ -61,11 +67,14 @@ class CEsoTestBuild
 			"WeaponCrit",
 			"SpellCrit",
 			"CritDamage",
+			"SpellCritDamage",
+			"WeaponCritDamage",
 			"SpellResist",
 			"PhysicalResist",
 			"FireResist",
 			"ColdResist",
 			"PoisonResist",
+			"DiseaseResist",
 			"ShockResist",
 			"CritResist",
 			"SpellPenetration",
@@ -75,6 +84,7 @@ class CEsoTestBuild
 			"HealingTaken",
 			"HealingReceived",
 			"HealingTotal",
+			"HealingReduction",
 			"BashCost",
 			"BlockCost",
 			"BlockMitigation",
@@ -84,6 +94,21 @@ class CEsoTestBuild
 			"BreakFreeCost",
 			"HARestore",
 			"Constitution",
+			"DamageShield",
+			"HADamageResist",
+			"DOTResist",
+			"DOTDamage",
+			"MagickaDamageResist",
+			"MagickaDamage",
+			"PhysicalDamage",
+			"PhysicalDamageResist",
+			"HAWeaponDamage",
+			"HABowDamage",
+			"HAStaffDamage",
+			"ShieldDamage",
+			"FearDuration",
+			"MagickaCost",
+			"StaminaCost",			
 	);
 	
 	
@@ -199,6 +224,7 @@ class CEsoTestBuild
 			
 			"HealthRegen" => array(
 					"title" => "Health Regen",
+					"round" => "floor",
 					"compute" => array(
 							"round(5.592 * Level + 29.4)",
 							"Item.HealthRegen",
@@ -220,6 +246,7 @@ class CEsoTestBuild
 			
 			"MagickaRegen" => array(
 					"title" => "Magicka Regen",
+					"round" => "floor",
 					"compute" => array(
 							"round(9.30612 * Level + 48.7)",
 							"Item.MagickaRegen",
@@ -241,6 +268,7 @@ class CEsoTestBuild
 			
 			"StaminaRegen" => array(
 					"title" => "Stamina Regen",
+					"round" => "floor",
 					"compute" => array(
 							"round(9.30612 * Level + 48.7)",
 							"Item.StaminaRegen",
@@ -436,6 +464,120 @@ class CEsoTestBuild
 					),
 			),
 			
+			"SpellPenetration" => array(				
+					"title" => "Spell Penetration",
+					"compute" => array(
+							"Item.SpellPenetration",
+							"Set.SpellPenetration",
+							"+",
+							"Skill.SpellPenetration",
+							"+",
+							"CP.SpellPenetration",
+							"+",
+							"Buff.SpellPenetration",
+							"+",
+					),
+			),
+			
+			"PhysicalPenetration" => array(
+					"title" => "Physical Penetration",
+					"compute" => array(
+							"Item.PhysicalPenetration",
+							"Set.PhysicalPenetration",
+							"+",
+							"Skill.PhysicalPenetration",
+							"+",
+							"CP.PhysicalPenetration",
+							"+",
+							"Buff.PhysicalPenetration",
+							"+",
+					),
+			),
+						
+			"AttackSpellMitigation" => array(
+					"title" => "Attacker Spell Mitigation",
+					"display" => "percent",
+					"depends" => array("SpellPenetration"),
+					"compute" => array(
+							"Target.Resistance",
+							"1 - Skill2.SpellPenetration",
+							"*",
+							"SpellPenetration",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 - Target.DefenseBonus",
+							"*",
+							"1 + CP.MagickaDamage",
+							"*",							
+					),
+			),
+			
+			"AttackPhysicalMitigation" => array(
+					"title" => "Attacker Physical Mitigation",
+					"display" => "percent",
+					"depends" => array("PhysicalPenetration"),
+					"compute" => array(
+							"Target.Resistance",
+							"1 - Skill2.PhysicalPenetration",
+							"*",
+							"PhysicalPenetration",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 - Target.DefenseBonus",
+							"*",
+							"1 + CP.PhysicalDamage",
+							"*",
+					),
+			),
+			
+			"DefenseSpellMitigation" => array(
+					"title" => "Defending Spell Mitigation",
+					"display" => "percent",
+					"depends" => array("SpellResist"),
+					"compute" => array(
+							"SpellResist",
+							"1 - Target.PenetrationFactor",
+							"*",
+							"Target.PenetrationFlat",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 + Target.AttackBonus",
+							"*",
+							"1 - CP.MagickaDamageResist",
+							"*",							
+					),
+			),
+			
+			"DefensePhysicalMitigation" => array(
+					"title" => "Defending Physical Mitigation",
+					"display" => "percent",
+					"depends" => array("PhysicalResist"),
+					"compute" => array(
+							"PhysicalResist",
+							"1 - Target.PenetrationFactor",
+							"*",
+							"Target.PenetrationFlat",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 + Target.AttackBonus",
+							"*",
+							"1 - CP.PhysicalDamageResist",
+							"*",
+					),
+			),
+			
 			"HealingDone" => array(
 					"title" => "Healing Done",
 					"display" => "percent",
@@ -489,6 +631,7 @@ class CEsoTestBuild
 			"Healing" => array(
 					"title" => "Healing Total",
 					"display" => "percent",
+					"depends" => array("HealingDone", "HealingTaken", "HealingReceived"),
 					"compute" => array(
 							"1 + HealingDone",
 							"1 + HealingTaken",
@@ -498,8 +641,17 @@ class CEsoTestBuild
 					),
 			),
 			
+			"HealingReduction" => array(
+					"title" => "Healing Reduction",
+					"display" => "percent",
+					"compute" => array(
+							"1 + CP.HealingReduction",
+					),
+			),
+			
 			"SneakCost" => array(
 					"title" => "Sneak Cost",
+					"round" => "floor",
 					"compute" => array(			// TODO: Include item
 							"1 + 2 * EffectiveLevel",
 							"1 - CP.SneakCost",
@@ -511,6 +663,7 @@ class CEsoTestBuild
 			
 			"SprintCost" => array(
 					"title" => "Sprint Cost",
+					"round" => "floor",
 					"compute" => array(		// TODO: Include items/skills
 							"floor(38.46 + 7.69*EffectiveLevel)",
 							"1 - CP.SprintCost",
@@ -520,15 +673,19 @@ class CEsoTestBuild
 			
 			"BashCost" => array(
 					"title" => "Bash Cost",
+					"round" => "floor",
 					"compute" => array(
 							"floor(157 + 26.25*EffectiveLevel)",
 							"Item.BashCost * 1.1625",  // TODO: Check?
 							"-",
+							"1 - CP.BashCost",
+							"*",
 					),
 			),
 			
 			"BlockCost" => array(
 					"title" => "Block Cost",
+					"round" => "floor",
 					"compute" => array(
 							"180 + 30*EffectiveLevel",
 							"1 - Sturdy/1.16",
@@ -546,6 +703,7 @@ class CEsoTestBuild
 			
 			"RollDodgeCost" => array(
 					"title" => "Roll Dodge Cost",
+					"round" => "floor",
 					"compute" => array(
 							"floor(34 + 5.62*EffectiveLevel)*10",
 							"1 - CP.RollDodgeCost",
@@ -561,6 +719,7 @@ class CEsoTestBuild
 			
 			"BreakFreeCost" => array(					// TODO: Check?
 					"title" => "Break Free Cost",
+					"round" => "floor",
 					"compute" => array(
 							"450 + 75*EffectiveLevel",
 							"1 - CP.BreakFreeCost",
@@ -583,10 +742,9 @@ class CEsoTestBuild
 					),
 			),
 			
-			//Mitigation?
-
 			"HARestore" => array(
 					"title" => "Heavy Attack Restore",
+					"round" => "floor",
 					"compute" => array(
 							"floor(1 + Level * 28.25)",
 							"floor(CPLevel * 30.625)",
@@ -600,6 +758,7 @@ class CEsoTestBuild
 			
 			"Constitution" => array(				// TODO: Check?
 					"title" => "Constitution",
+					"round" => "floor",
 					"compute" => array(
 							"floor(2.82 * EffectiveLevel)",
 							"Armor.Heavy",
@@ -609,6 +768,143 @@ class CEsoTestBuild
 					),
 			),
 			
+			"MagickaCost" => array(
+					"title" => "Magicka Ability Cost",
+					"display" => "percent",
+					"compute" => array(
+							"1 - CP.MagickaCost",
+							"1 - Skill.MagickaCost",
+							"*",
+					),
+			),
+			
+			"StaminaCost" => array(
+					"title" => "Stamina Ability Cost",
+					"display" => "percent",
+					"compute" => array(
+							"1 - CP.StaminaCost",
+							"1 - Skill.StaminaCost",
+							"*",
+					),
+			),
+			
+			"DamageShield" => array(
+					"title" => "Damage Shield",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.DamageShield",
+					),
+			),
+			
+			"ShieldDamage" => array(
+					"title" => "Shield Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.ShieldDamage",
+					),
+			),
+			
+			"DOTResist" => array(
+					"title" => "DOT Resist",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.DOTResist",
+					),
+			),
+			
+			"DOTDamage" => array(
+					"title" => "DOT Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.DOTDamage",
+					),
+			),
+			
+			"MagickaDamageResist" => array(
+					"title" => "Magic Damage Resist",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.MagickaDamageResist",
+					),
+			),
+			
+			"MagickaDamage" => array(
+					"title" => "Magic Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.MagickaDamage",
+					),
+			),
+			
+			"PhysicalDamage" => array(
+					"title" => "Physical Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.PhysicalDamage",
+					),
+			),
+			
+			"PhysicalDamageResist" => array(
+					"title" => "Physical Damage Resist",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.PhysicalDamageResist",
+					),
+			),
+			
+			"HADamageResist" => array(
+					"title" => "Light/Heavy Damage Resist",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.HADamageResist",
+					),
+			),
+			
+			"HAWeaponDamage" => array(
+					"title" => "Light/Heavy Weapon Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.HAWeaponDamage",
+					),
+			),
+			
+			"HABowDamage" => array(
+					"title" => "Light/Heavy Bow Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.HABowDamage",
+					),
+			),
+			
+			"HAStaffDamage" => array(
+					"title" => "Light/Heavy Staff Damage",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 + CP.HAStaffDamage",
+					),
+			),
+						
+			"FearDuration" => array(
+					"title" => "Fear Duration",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 - CP.FearDuration",
+					),
+			),
+
 	); 
 	
 	

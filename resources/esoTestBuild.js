@@ -39,100 +39,209 @@ function GetEsoInputValues()
 	
 	inputValues.Level = parseInt($("#esotbLevel").val());
 	if (inputValues.Level > ESO_MAX_LEVEL) inputValues.Level = ESO_MAX_LEVEL;
+
+	inputValues.Attribute.Health = parseInt($("#esotbAttrHea").val());
+	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
+	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
+	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
 	
+	GetEsoInputMundusValues(inputValues);
+	GetEsoInputCPValues(inputValues);
+	GetEsoInputTargetValues(inputValues);
+	
+	return inputValues;
+}
+
+
+function GetEsoInputTargetValues(inputValues)
+{
+	inputValues.Target.Resistance = $("#esotbTargetResistance").val();
+	inputValues.Target.PenetrationFlat = $("#esotbTargetPenetrationFlat").val();
+	inputValues.Target.PenetrationFactor = $("#esotbTargetPenetrationFactor").val() / 100;
+	inputValues.Target.DefenseBonus = $("#esotbTargetDefenseBonus").val() / 100;
+	inputValues.Target.AttackBonus = $("#esotbTargetAttackBonus").val() / 100;
+}
+
+
+function GetEsoInputMundusValues(inputValues)
+{
+	inputValues.Mundus.Name = $("#esotbMundus").val();
+	
+	if (inputValues.Mundus.Name == "The Lady")
+	{
+		inputValues.Mundus.PhysicalResist = 1280;
+	}
+	else if (inputValues.Mundus.Name == "The Lover")
+	{
+		inputValues.Mundus.SpellResist = 1280;
+	}
+	else if (inputValues.Mundus.Name == "The Lord")
+	{
+		inputValues.Mundus.Health = 1280;
+	}
+	else if (inputValues.Mundus.Name == "The Mage")
+	{
+		inputValues.Mundus.Magicka = 1280;
+	}
+	else if (inputValues.Mundus.Name == "The Tower")
+	{
+		inputValues.Mundus.Stamina = 1280;
+	}
+	else if (inputValues.Mundus.Name == "The Atronach")
+	{
+		inputValues.Mundus.MagickaRegen = 210;
+	}
+	else if (inputValues.Mundus.Name == "The Serpent")
+	{
+		inputValues.Mundus.StaminaRegen = 210;
+	}
+	else if (inputValues.Mundus.Name == "The Shadow")
+	{
+		inputValues.Mundus.CritDamage = 0.12;
+	}
+	else if (inputValues.Mundus.Name == "The Ritual")
+	{
+		inputValues.Mundus.HealingDone = 0.10;
+	}
+	else if (inputValues.Mundus.Name == "The Thief")
+	{
+		inputValues.Mundus.SpellCrit = 0.11;	//TODO: Absolute values?
+		inputValues.Mundus.WeaponCrit = 0.11;
+	}
+	else if (inputValues.Mundus.Name == "The Warrior")
+	{
+		inputValues.Mundus.WeaponDamage = 166;
+	}
+	else if (inputValues.Mundus.Name == "The Apprentice")
+	{
+		inputValues.Mundus.SpellDamage = 166;
+	}
+	else if (inputValues.Mundus.Name == "The Steed")
+	{
+		inputValues.Mundus.HealthRegen = 210;
+		inputValues.Mundus.RunSpeed = 0.05;
+	}
+
+}
+
+
+function GetEsoInputCPValues(inputValues)
+{
 	inputValues.CP.Health = parseInt($("#esovcpDiscHea").text());
 	inputValues.CP.Magicka = parseInt($("#esovcpDiscMag").text());
 	inputValues.CP.Stamina = parseInt($("#esovcpDiscSta").text());
-	inputValues.CP.TotalPoints = inputValues.CP.Health + inputValues.CP.Magicka + inputValues.CP.Stamina;
+	inputValues.CP.TotalPoints = parseInt($("#esotbCPTotalPoints").val());
+	inputValues.CP.UsedPoints = inputValues.CP.Health + inputValues.CP.Magicka + inputValues.CP.Stamina;
 	
 	inputValues.CPLevel = Math.floor(inputValues.CP.TotalPoints/10);
 	if (inputValues.CPLevel > ESO_MAX_CPLEVEL) inputValues.CPLevel = ESO_MAX_CPLEVEL;
 	
 	inputValues.EffectiveLevel = inputValues.Level + inputValues.CPLevel;
 	if (inputValues.EffectiveLevel > ESO_MAX_EFFECTIVELEVEL) inputValues.EffectiveLevel = ESO_MAX_EFFECTIVELEVEL;
+
+		/* Lord */
+	if (inputValues.Armor.Heavy >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60624);
+	ParseEsoCPValue(inputValues, "DamageShield", 59948);
+	ParseEsoCPValue(inputValues, "HADamageResist", 59953);
+	ParseEsoCPValue(inputValues, "HealingReceived", 63851);
 	
-	inputValues.Attribute.Health = parseInt($("#esotbAttrHea").val());
-	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
-	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
-	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
+		/* Lady */
+	if (inputValues.Armor.Light >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
+	ParseEsoCPValue(inputValues, "DOTResist", 63850);
+	ParseEsoCPValue(inputValues, "PhysicalDamageResist", 63844);
+	ParseEsoCPValue(inputValues, "MagicDamageResist", 63843);
 	
-	$.extend(inputValues.Mundus, GetEsoInputMundusValues());
+		/* Steed */
+	if (inputValues.Armor.Medium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
+	ParseEsoCPValue(inputValues, "BlockCost", 60649); // TODO: Move?
+	ParseEsoCPValue(inputValues, "SpellResist", 62760);
+	ParseEsoCPValue(inputValues, "CritResist", 60384);
 	
-	return inputValues;
+		/* Ritual */
+	ParseEsoCPValue(inputValues, "DOTDamage", 63847);
+	ParseEsoCPValue(inputValues, "WeaponCritDamage", 59105);
+	ParseEsoCPValue(inputValues, "PhysicalPenetration", 61546);
+	ParseEsoCPValue(inputValues, "PhysicalDamage", 63868);
+	
+		/* Atronach */
+	ParseEsoCPValue(inputValues, "HAWeaponDamage", 60565);
+	ParseEsoCPValue(inputValues, "ShieldDamage", 60662);
+	ParseEsoCPValue(inputValues, "HABowDamage", 60546);
+	ParseEsoCPValue(inputValues, "HAStaffDamage", 60503);
+	
+		/* Apprentice */
+	ParseEsoCPValue(inputValues, "MagicDamage", 63848);
+	ParseEsoCPValue(inputValues, "SpellPenetration", 61555);
+	ParseEsoCPValue(inputValues, "SpellCritDamage", 61680);
+	ParseEsoCPValue(inputValues, "HealingDone", 59630);
+	
+		/* Shadow */
+	ParseEsoCPValue(inputValues, "HealingReduction", 59298);
+	ParseEsoCPValue(inputValues, "SneakCost", 61548);
+	ParseEsoCPValue(inputValues, "FearDuration", 59353);
+	ParseEsoCPValue(inputValues, ["RollDodgeCost", "BreakFreeCost"], 63863);
+	
+		/* Lover */
+	ParseEsoCPValue(inputValues, "StaminaRegen", 59346);
+	ParseEsoCPValue(inputValues, "MagickaRegen", 59577);
+	ParseEsoCPValue(inputValues, "HealthRegen", 60374);
+	ParseEsoCPValue(inputValues, "HARestore", 63854);
+	
+		/* Tower */
+	ParseEsoCPValue(inputValues, "BashCost", 58899);
+	ParseEsoCPValue(inputValues, "SprintCost", 64077);
+	ParseEsoCPValue(inputValues, "MagickaCost", 63861);
+	ParseEsoCPValue(inputValues, "StaminaCost", 63862);
 }
 
 
-function GetEsoInputMundusValues()
+function ParseEsoCPValue(inputValues, statIds, abilityId)
 {
-	var result = {}
+	var cpDesc = $("#descskill_" + abilityId);
+	if (cpDesc.length == 0) return false;
 	
-	result.Name = $("#esotbMundus").val();
+	var text = cpDesc.text();
+	var results = text.match(/by ([0-9]+\.?[0-9]*\%?)/);
+	if (results.length == 0) return false;
 	
-	if (result.Name == "The Lady")
+	var value = parseFloat(results[1]);
+	var lastChar = results[1].slice(-1);
+	if (lastChar == "%") value = value/100;
+
+	if (typeof(statIds) == "object")
 	{
-		result.PhysicalResist = 1280;
+		for (var i = 0; i < statIds.length; ++i)
+		{
+			inputValues.CP[statIds[i]] += value;
+		}
 	}
-	else if (result.Name == "The Lover")
+	else
 	{
-		result.SpellResist = 1280;
-	}
-	else if (result.Name == "The Lord")
-	{
-		result.Health = 1280;
-	}
-	else if (result.Name == "The Mage")
-	{
-		result.Magicka = 1280;
-	}
-	else if (result.Name == "The Tower")
-	{
-		result.Stamina = 1280;
-	}
-	else if (result.Name == "The Atronach")
-	{
-		result.MagickaRegen = 210;
-	}
-	else if (result.Name == "The Serpent")
-	{
-		result.StaminaRegen = 210;
-	}
-	else if (result.Name == "The Shadow")
-	{
-		result.CritDamage = 0.12;
-	}
-	else if (result.Name == "The Ritual")
-	{
-		result.HealingDone = 0.10;
-	}
-	else if (result.Name == "The Thief")
-	{
-		result.SpellCrit = 0.11;	//TODO: Absolute values?
-		result.WeaponCrit = 0.11;
-	}
-	else if (result.Name == "The Warrior")
-	{
-		result.WeaponDamage = 166;
-	}
-	else if (result.Name == "The Apprentice")
-	{
-		result.SpellDamage = 166;
-	}
-	else if (result.Name == "The Steed")
-	{
-		result.HealthRegen = 210;
-		result.RunSpeed = 0.05;
+		inputValues.CP[statIds] += value;
 	}
 	
-	return result;
+	return true;
 }
 
 
 function UpdateEsoComputedStatsList()
 {
 	var inputValues = GetEsoInputValues();
+	var deferredStats = [];
 	
 	for (var statId in g_EsoComputedStats)
 	{
+		var depends = g_EsoComputedStats[statId].depends;
+		
+		if (depends != null)
+			deferredStats.push(statId);
+		else
+			UpdateEsoComputedStat(statId, g_EsoComputedStats[statId], inputValues);
+	}
+	
+	for (var i = 0; i < deferredStats.length; ++i)
+	{
+		var statId = deferredStats[i];
 		UpdateEsoComputedStat(statId, g_EsoComputedStats[statId], inputValues);
 	}
 	
@@ -145,7 +254,6 @@ function UpdateEsoReadOnlyStats(inputValues)
 	if (inputValues == null) inputValues = GetEsoInputValues();
 	
 	$("#esotbEffectiveLevel").text(inputValues.EffectiveLevel);
-	$("#esotbCPTotalPoints").text(inputValues.CP.TotalPoints);
 }
 
 
@@ -159,7 +267,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 	if (inputValues == null) inputValues = GetEsoInputValues();
 	
 	var element = $("#esoidStat_" + statId);
-	if (element.length == 0) element = CreateEsoComputedStat(statId, stat);
+	if (element.length == 0) return false;
 	
 	var valueElement = element.children(".esotbStatValue");
 	var computeElements = element.find(".esotbStatComputeValue");
@@ -217,7 +325,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 		
 		if (!(itemValue % 1 === 0))
 		{
-			itemValue = itemValue.toFixed(3);
+			itemValue = Number(itemValue).toFixed(3);
 		}
 		
 		$(computeElements[computeIndex]).text(prefix + itemValue);
@@ -245,6 +353,16 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 		inputValues[statId] = error;
 		valueElement.text(error);
 	}
+}
+
+
+function CreateEsoComputedStats()
+{
+	for (var statId in g_EsoComputedStats)
+	{
+		CreateEsoComputedStat(statId, g_EsoComputedStats[statId]);
+	}
+	
 }
 
 
@@ -362,6 +480,15 @@ function OnEsoLevelChange(e)
 	
 	if (value > 50) $this.val("50");
 	if (value < 1)  $this.val("1");
+}
+
+
+function OnEsoCPTotalPointsChange(e)
+{
+	var $this = $(this);
+	var value = $this.val();
+	
+	if (value < 0) $this.val("0");
 }
 
 
@@ -551,13 +678,16 @@ function OnEsoBuildCpUpdate(e)
 
 function esotbOnDocReady()
 {
+	CreateEsoComputedStats();
 	UpdateEsoComputedStatsList();
-	
-	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
+		
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
 	$("#esotbMundus").change(OnEsoMundusChange)
+	$("#esotbCPTotalPoints").change(OnEsoCPTotalPointsChange);
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
+	
+	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
 	
 	$(".esotbItem").click(OnEsoClickItem)
 	$(".esotbComputeItems").click(OnEsoClickComputeItems);
