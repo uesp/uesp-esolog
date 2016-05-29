@@ -2,6 +2,7 @@
 
 require_once("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
+require_once("viewCps.class.php");
 
 
 class CEsoTestBuild 
@@ -11,6 +12,8 @@ class CEsoTestBuild
 	public $db = null;
 	public $htmlTemplate = "";
 	public $version = "";
+	
+	public $viewCps = null;
 	
 	
 	public $STATS_UNIQUE_LIST = array(
@@ -144,7 +147,7 @@ class CEsoTestBuild
 							"+",
 							"Mundus.Health * (1 + Divines)",
 							"+",
-							"1 + Skill.Health",
+							"1 + Skill.Health + Buff.Health",
 							"*",
 					),
 			),
@@ -165,7 +168,7 @@ class CEsoTestBuild
 							"+",
 							"Mundus.Magicka * (1 + Divines)",
 							"+",
-							"1 + Skill.Magicka",
+							"1 + Skill.Magicka + Buff.Magicka",
 							"*",
 					),
 			),
@@ -186,7 +189,7 @@ class CEsoTestBuild
 							"+",
 							"Mundus.Stamina * (1 + Divines)",
 							"+",
-							"1 + Skill.Stamina",
+							"1 + Skill.Stamina + Buff.Stamina",
 							"*",
 					),
 			),
@@ -207,7 +210,7 @@ class CEsoTestBuild
 							"*",
 							"Food.HealthRegen",
 							"+",
-							"1 + Skill.HealthRegen",
+							"1 + Skill.HealthRegen + Buff.HealthRegen",
 							"*",
 					),
 			),
@@ -228,7 +231,7 @@ class CEsoTestBuild
 							"*",
 							"Food.MagickaRegen",
 							"+",
-							"1 + Skill.MagickaRegen",
+							"1 + Skill.MagickaRegen + Buff.MagickaRegen",
 							"*",
 					),
 			),
@@ -249,7 +252,7 @@ class CEsoTestBuild
 							"*",
 							"Food.StaminaRegen",
 							"+",
-							"1 + Skill.StaminaRegen",
+							"1 + Skill.StaminaRegen + Buff.StaminaRegen",
 							"*",
 					),
 			),
@@ -260,7 +263,7 @@ class CEsoTestBuild
 							"Item.SpellDamage",
 							"Mundus.SpellDamage * (1 + Divines)",
 							"+",
-							"1 + Skill.SpellDamage",
+							"1 + Skill.SpellDamage + Buff.SpellDamage",
 							"*",							
 					),
 			),
@@ -273,7 +276,7 @@ class CEsoTestBuild
 							"+",
 							"Mundus.WeaponDamage * (1 + Divines)",
 							"+",
-							"1 + Skill.WeaponDamage",
+							"1 + Skill.WeaponDamage + Buff.WeaponDamage",
 							"*",
 					),
 			),
@@ -608,6 +611,8 @@ class CEsoTestBuild
 	
 	public function __construct()
 	{
+		$this->viewCps = new CEsoViewCP(true);
+		
 		$this->MakeInputStatsList();
 		$this->SetInputParams();
 		$this->ParseInputParams();
@@ -790,6 +795,12 @@ class CEsoTestBuild
 	}
 	
 	
+	public function GetCPHtml()
+	{
+		return $this->viewCps->GetOutputHtml();
+	}
+	
+	
 	public function GetOutputHtml()
 	{
 		$replacePairs = array(
@@ -799,6 +810,7 @@ class CEsoTestBuild
 				'{raceList}' => $this->GetRaceListHtml(),
 				'{classList}' => $this->GetClassListHtml(),
 				'{mundusList}' => $this->GetMundusListHtml(),
+				'{cpHtml}' => $this->GetCPHtml(),
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
