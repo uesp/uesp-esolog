@@ -339,14 +339,19 @@ a:hover {
 	padding: 8px;
 }
 
-/* CP Overrides */
+/* Start CP Overrides */
 .esovcpSkill {
 	font-size: 16px;
+	margin-bottom: 5px;
+	margin-left: 10px;
 }
 
 .esovcpSkillDesc {
 	font-size: 12px;
 	max-width: 600px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-left: 4px;
 }
 
 #esovcpContainer {
@@ -369,7 +374,7 @@ a:hover {
 }
 
 #esovcpSkills {
-    margin-left: 230px;
+    margin-left: 220px;
 }
 
 .esovcpTotalPoints {
@@ -391,3 +396,4 @@ a:hover {
 .esovcpSkillLevel {
 	font-size: 13px;
 }
+/* End CP Overrides */
