@@ -64,5 +64,16 @@ This content is made available by the <a href="http://www.uesp.net">Unofficial E
 Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
 </div>
 </div>
+
+<div id="esotbFormulaPopup" style="display: none;">
+	<div id="esotbFormulaCloseButton">x</div>
+	<div id="esotbFormulaTitle"></div>
+	<div id="esotbFormulaName"></div>
+	<div id="esotbFormula"></div>
+	<div id="esotbFormulaNote">Note that formulas are estimates and may not be completely accurate for all inputs.</div>
+</div>
+
+<div id="esotbClickWall" style="display: none;">
+</div>
 </body>
 </html>

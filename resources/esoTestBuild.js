@@ -1,5 +1,7 @@
 ESO_MAX_ATTRIBUTES = 64;
 
+g_EsoBuildClickWallLinkElement = null;
+
 
 function GetEsoInputValues()
 {
@@ -221,6 +223,7 @@ function CreateEsoComputedStat(statId, stat)
 	var element;
 	
 	element = $("<div/>").attr("id", "esoidStat_" + statId).
+		attr("statid", statId).
 		addClass("esotbStatRow").
 		appendTo("#esotbStatList");
 
@@ -385,8 +388,118 @@ function SelectEsoItem(element)
 		
 	selectElement.offset({left: offset.left, top: offset.top - 100 });
 	selectElement.show();
+}
+
+
+function ShowEsoBuildClickWall(enable)
+{
+	if (enable || enable == null)
+	{
+		$("#esotbClickWall").show();
+	}
+	else
+	{
+		$("#esotbClickWall").hide();
+		
+		if (g_EsoBuildClickWallLinkElement != null)
+		{
+			g_EsoBuildClickWallLinkElement.hide();
+			g_EsoBuildClickWallLinkElement = null;
+		}
+	}
+}
+
+
+function OnEsoClickBuildWall(e)
+{
+	ShowEsoBuildClickWall(false);
+}
+
+
+function OnEsoClickComputeItems(e)
+{
+	var parent = $(this).parent(".esotbStatRow");
+	var statId = parent.attr("statid");
 	
+	if (statId == null || statId == "") return false;
 	
+	return ShowEsoFormulaPopup(statId);
+}
+
+
+function ConvertEsoFormulaToPrefix(computeItems)
+{
+	var equation = "";
+	var stack = [];
+	var lastOperator = "";
+	
+	for (var key in computeItems)
+	{
+		var computeItem = computeItems[key];
+		var operator = "";
+		
+		if (computeItem == "*" || computeItem == "+" || computeItem == "-")
+		{
+			operator = computeItem;
+		}
+		else
+		{
+			stack.push(computeItem);
+			continue;
+		}
+		
+		if (stack.length < 2)
+		{
+			equation += " ERR ";
+			continue;
+		}
+		
+		var op1 = stack.pop();
+		var op2 = stack.pop();
+		
+		if (operator == "*")
+		{
+			if (lastOperator == "*")
+				stack.push("" + op2 + "" + operator + "(" + op1 + ")");
+			else
+				stack.push("(" + op2 + ")" + operator + "(" + op1 + ")");
+		}
+		else
+			stack.push("" + op2 + " " + operator + " " + op1 + "");
+		
+		lastOperator = operator;
+	}
+	
+	if (stack.length != 1) return "ERR";
+	return stack.pop();
+}
+
+
+function ShowEsoFormulaPopup(statId)
+{
+	var formulaPopup = $("#esotbFormulaPopup");
+	var stat = g_EsoComputedStats[statId];
+	
+	if (stat == null) return false;
+
+	var equation = ConvertEsoFormulaToPrefix(stat.compute);
+	
+	$("#esotbFormulaTitle").text("Complete Formula for " + stat.title);
+	$("#esotbFormulaName").text(statId + " = ");
+	$("#esotbFormula").text(equation);
+	
+	formulaPopup.show();
+	g_EsoBuildClickWallLinkElement = formulaPopup;
+	ShowEsoBuildClickWall(true);
+	
+	return true;
+}
+
+
+function CloseEsoFormulaPopup()
+{
+	$("#esotbFormulaPopup").hide();
+	ShowEsoBuildClickWall(false);
 }
 
 
@@ -401,6 +514,10 @@ function esotbOnDocReady()
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
 	
 	$(".esotbItem").click(OnEsoClickItem)
+	$(".esotbComputeItems").click(OnEsoClickComputeItems);
+
+	$("#esotbFormulaCloseButton").click(CloseEsoFormulaPopup);
+	$("#esotbClickWall").click(OnEsoClickBuildWall);
 }
 
 
