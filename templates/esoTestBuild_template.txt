@@ -3,12 +3,13 @@
 	<head>
 		<title>UESP:ESO Test Character Build</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esoTestBuild.css" />
 		<link rel="stylesheet" href="resources/esocp_simple_embed.css" />
+		<link rel="stylesheet" href="resources/esoTestBuild.css" />
 		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="resources/jquery.transit.min.js"></script>
-		<script type="text/javascript" src="resources/esoTestBuild.js"></script>
 		<script type="text/javascript" src="resources/esocp_simple.js"></script>
+		<script type="text/javascript" src="resources/esoTestBuild.js"></script>
+		
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>

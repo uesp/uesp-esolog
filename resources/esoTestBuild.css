@@ -338,3 +338,56 @@ a:hover {
 	border-radius: 4px;
 	padding: 8px;
 }
+
+/* CP Overrides */
+.esovcpSkill {
+	font-size: 16px;
+}
+
+.esovcpSkillDesc {
+	font-size: 12px;
+	max-width: 600px;
+}
+
+#esovcpContainer {
+	margin-top: 10px;
+	font-family: arial;
+}
+    
+.esovcpDiscipline {
+	height: 25px;
+	line-height: 25px;
+	font-size: 16px;
+	vertical-align: middle;
+}     
+
+.esovcpDiscAttrPoints {
+    height: 72px;
+    padding-top: 45px;
+    font-size: 20px;
+    font-size: 16px;
+}
+
+#esovcpSkills {
+    margin-left: 230px;
+}
+
+.esovcpTotalPoints {
+	font-size: 18px;
+}
+
+.esovcpDiscPoints {
+	font-size: 14px;
+}
+
+.esovcpDiscSkillTitle {
+	font-size: 22px;
+}
+
+.esovcpDiscTitlePoints {
+	font-size: 18px;
+}
+
+.esovcpSkillLevel {
+	font-size: 13px;
+}

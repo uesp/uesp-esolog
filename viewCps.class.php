@@ -32,6 +32,9 @@ class CEsoViewCP
 	public $cpAbilityIds = array();
 	public $cpSkillDesc = array();
 	public $cpTotalPoints = array(0, 0, 0, 0);
+
+	public $shortDiscDisplay = false;
+	public $hideTopBar = false;
 			
 
 	public function __construct ($isEmbedded = false)
@@ -389,7 +392,13 @@ class CEsoViewCP
 		if ($id == $this->selectedDiscId) $extraClass .= " esovcpDiscHighlight";
 		
 		$output .= "<div id='$id' disciplineindex='$index' class='esovcpDiscipline $extraClass'>";
-		$output .= "$name <div class='esovcpDiscPoints'>0</div><div class='esovcpDiscDesc'>$desc</div>";
+		$output .= "$name <div class='esovcpDiscPoints'>0</div>";
+		
+		if (!$this->shortDiscDisplay)
+		{
+			$output .= "<div class='esovcpDiscDesc'>$desc</div>";
+		}
+		
 		$output .= "</div>";	
 	
 		return $output;
@@ -399,6 +408,20 @@ class CEsoViewCP
 	public function GetCpSkillDescJson()
 	{
 		return json_encode($this->cpSkillDesc);	
+	}
+	
+	
+	public function GetTopBarDisplay()
+	{
+		if ($this->hideTopBar) return "none";
+		return "block";
+	}
+	
+	
+	public function GetDiscWidth()
+	{
+		if ($this->shortDiscDisplay) return "210px";
+		return "";
 	}
 	
 	
@@ -414,6 +437,8 @@ class CEsoViewCP
 				'{cpDisciplines}' => $this->GetCpDisciplinesHtml(),
 				'{skillDescJson}' => $this->GetCpSkillDescJson(),
 				'{cpDataJson}' => json_encode($this->cpDataArray),
+				'{topBarDisplay}' => $this->GetTopBarDisplay(),
+				'{discWidth}' => $this->GetDiscWidth(),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -424,7 +449,6 @@ class CEsoViewCP
 	public function GetOutputHtml()
 	{
 		$this->LoadCpData();
-		$this->OutputHtmlHeader();
 		
 		$output = $this->CreateOutputHtml();
 		return $output;
@@ -433,6 +457,8 @@ class CEsoViewCP
 	
 	public function Render()
 	{
+		$this->OutputHtmlHeader();
+		
 		$output = $this->GetOutputHtml();
 		print ($output);
 	}

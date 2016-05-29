@@ -1,12 +1,12 @@
-<div id="esovcpSearchBlockFloat">
+<div id="esovcpSearchBlockFloat" style="display:{topBarDisplay};">
 	<input type="search" id="esovcpSearchText" value="" size="30" /> 
 	<button id="esovcpSearchButton">Find CP</button>
 	<div id="esovcpSearchResult"></div> 
 </div>
-<a id="esovcpLinkBlock" class="esovcpLinkBlock" href="">Link to CP Setup</a>
+<a id="esovcpLinkBlock" class="esovcpLinkBlock" href="" style="display:{topBarDisplay};">Link to CP Setup</a>
 
 <div id="esovcpContainer">
-	<div id="esovcpDisciplines">{cpDisciplines}</div>
+	<div id="esovcpDisciplines" style="width:{discWidth};">{cpDisciplines}</div>
 	<div id="esovcpSkills">{cpSkills}</div>
 </div>
 
