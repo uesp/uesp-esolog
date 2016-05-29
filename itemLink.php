@@ -572,6 +572,8 @@ class CEsoItemLink
 		
 		if ($this->itemLevel >= 1)
 		{
+			if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+			
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
 			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
@@ -579,6 +581,8 @@ class CEsoItemLink
 		}
 		else
 		{
+			if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+			
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
 			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
@@ -591,6 +595,8 @@ class CEsoItemLink
 		{
 			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
 			{
+				if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+				
 				$this->itemIntType = 2;
 				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
@@ -600,6 +606,8 @@ class CEsoItemLink
 				
 				if ($result->num_rows === 0)
 				{
+					if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+					
 					$this->itemLevel = 50;
 					$this->itemIntLevel = 50;
 					$this->itemIntType = 370;
@@ -612,6 +620,8 @@ class CEsoItemLink
 			}
 			else if ($this->embedLink)
 			{
+				if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+				
 				$this->itemIntType = 1;
 				$this->itemIntLevel = 1;
 				
@@ -748,6 +758,8 @@ class CEsoItemLink
 	{
 		$effectIndex = intval($effectIndex);
 		if ($effectIndex <= 0 || $effectIndex > 127) return true;
+		
+		return $this->ReportError("Error: Slow item query temporarily disabled!");
 		
 		if ($this->itemLevel >= 1)
 		{

@@ -215,6 +215,11 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 		if (nextItem == "+") prefix = "+";
 		if (nextItem == "*") prefix = "x";
 		
+		if (!(itemValue % 1 === 0))
+		{
+			itemValue = itemValue.toFixed(3);
+		}
+		
 		$(computeElements[computeIndex]).text(prefix + itemValue);
 		++computeIndex;
 	}
