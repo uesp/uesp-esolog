@@ -36,6 +36,12 @@ displayed statistics is unknown.
 		<div id="esotbMundusList">
 			<div class="esotbAttrLabel">Mundus</div> <select id="esotbMundus" name="esotbMundus" statid="Mundus.Name">{mundusList}</select>
 		</div>
+		<p>
+		<div id="esotbItems">
+			<div class="esotbAttrLabel">Helmet</div>
+			<div class="esotbItem" id="esotbItemHelmet" equiptype="1" itemtype="2"></div>
+			<div class="esotbItemLabel" id="esotbItemHelmetLabel"></div>
+		</div>
 	</div>
 	<div id="esotbStatList">
 		<div class="esotbStatTitle">Computed Character Statistics</div>
@@ -46,6 +52,10 @@ displayed statistics is unknown.
 	g_EsoComputedStats = {esoComputedStatsJson};
 	g_EsoInputStats = {esoInputStatsJson}; 
 </script>
+
+<div id="esotbItemSelect" style="display: none;">
+	<div id="esotbItemSelectTitle"></div>
+</div>
     
 <div class="esotbBlockClear"></div>
 <hr>
