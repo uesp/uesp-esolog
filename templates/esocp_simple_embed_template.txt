@@ -6,7 +6,10 @@
 <a id="esovcpLinkBlock" class="esovcpLinkBlock" href="" style="display:{topBarDisplay};">Link to CP Setup</a>
 
 <div id="esovcpContainer">
-	<div id="esovcpDisciplines" style="width:{discWidth};">{cpDisciplines}</div>
+	<div id="esovcpDisciplines" style="width:{discWidth};">
+		{cpDisciplines}
+		<button id="esotvcpResetCP">Reset All</button>
+	</div>
 	<div id="esovcpSkills">{cpSkills}</div>
 </div>
 

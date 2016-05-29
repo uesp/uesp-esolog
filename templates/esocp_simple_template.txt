@@ -21,7 +21,10 @@
 <h1>ESO Champion Point Browser {versionTitle}</h1>
 
 <div id="esovcpContainer">
-	<div id="esovcpDisciplines" style="width:{discWidth};">{cpDisciplines}</div>
+	<div id="esovcpDisciplines" style="width:{discWidth};">
+		{cpDisciplines}
+		<button id="esotvcpResetCP">Reset All</button>
+	</div>
 	<div id="esovcpSkills">{cpSkills}</div>
 </div>
 
