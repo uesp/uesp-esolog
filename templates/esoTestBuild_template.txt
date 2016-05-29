@@ -41,6 +41,8 @@ displayed statistics is unknown.
 			</div>
 			<p>
 			<div class="esotbStatLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50"><br/>
+			<div class="esotbStatLabel">Effective Level</div> <div id="esotbEffectiveLevel" class="esotbInputValueRO" statid="EffectiveLevel">50</div><br/>
+			<div class="esotbStatLabel">Total CPs</div> <div id="esotbCPTotalPoints" class="esotbInputValueRO" statid="CP.TotalPoints">0</div><br/>
 			<p>
 			<div id="esotbAttributes">
 				<div class="esotbAttrTitle">Attributes <div id="esotbAttrTotal" statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div></div>
