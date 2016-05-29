@@ -391,28 +391,28 @@ function SelectEsoItem(element)
 }
 
 
-function ShowEsoBuildClickWall(enable)
+function ShowEsoBuildClickWall(parentElement)
 {
-	if (enable || enable == null)
+	$("#esotbClickWall").show();
+	g_EsoBuildClickWallLinkElement = parentElement;
+}
+
+
+function HideEsoBuildClickWall()
+{
+	$("#esotbClickWall").hide();
+	
+	if (g_EsoBuildClickWallLinkElement != null)
 	{
-		$("#esotbClickWall").show();
-	}
-	else
-	{
-		$("#esotbClickWall").hide();
-		
-		if (g_EsoBuildClickWallLinkElement != null)
-		{
-			g_EsoBuildClickWallLinkElement.hide();
-			g_EsoBuildClickWallLinkElement = null;
-		}
+		g_EsoBuildClickWallLinkElement.hide();
+		g_EsoBuildClickWallLinkElement = null;
 	}
 }
 
 
 function OnEsoClickBuildWall(e)
 {
-	ShowEsoBuildClickWall(false);
+	HideEsoBuildClickWall();
 }
 
 
@@ -489,8 +489,7 @@ function ShowEsoFormulaPopup(statId)
 	$("#esotbFormula").text(equation);
 	
 	formulaPopup.show();
-	g_EsoBuildClickWallLinkElement = formulaPopup;
-	ShowEsoBuildClickWall(true);
+	ShowEsoBuildClickWall(formulaPopup);
 	
 	return true;
 }
@@ -499,7 +498,20 @@ function ShowEsoFormulaPopup(statId)
 function CloseEsoFormulaPopup()
 {
 	$("#esotbFormulaPopup").hide();
-	ShowEsoBuildClickWall(false);
+	HideEsoBuildClickWall();
+}
+
+
+function OnEsoClickBuildStatTab(e)
+{
+	var tabId = $(this).attr("tabid");
+	if (tabId == null || tabId == "") return;
+	
+	$(".esotbStatTabSelected").removeClass("esotbStatTabSelected");
+	$(this).addClass("esotbStatTabSelected");
+	
+	$(".esotbStatBlock:visible").hide();
+	$("#" + tabId).show();
 }
 
 
@@ -518,6 +530,8 @@ function esotbOnDocReady()
 
 	$("#esotbFormulaCloseButton").click(CloseEsoFormulaPopup);
 	$("#esotbClickWall").click(OnEsoClickBuildWall);
+	
+	$(".esotbStatTab").click(OnEsoClickBuildStatTab);
 }
 
 

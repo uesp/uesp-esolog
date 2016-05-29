@@ -70,19 +70,31 @@ a:hover {
 	font-style: italic;
 }
 
+#esotbAttributes {
+	    text-align: center;
+}
+
 .esotbAttrLabel {
-	width: 100px;
+	width: 60px;
 	text-align: right;
 	font-weight: bold;
 	display: inline-block;
 }
 
+.esotbStatLabel {
+	width: 100px;
+	text-align: right;
+	font-weight: bold;
+	display: inline-block;
+	padding: 3px;
+}
+
 .esotbAttrTitle {
-	width: 100%;
 	background-color: #E3d5c0;
 	font-weight: bold;
 	text-align: center;
 	padding: 3px;
+	margin: 3px;
 }
 
 .esotbAttributeInput, .esotbLevelInput {
@@ -282,4 +294,47 @@ a:hover {
 	margin-top: 10px;
 	color: #777;
 	font-style: italic; 
+}
+
+#esotbRace, #esotbClass, #esotbMundus {
+	width: 210px;
+}
+
+.esotbStatTab {
+	display: inline-block;
+	width: 120px;
+	padding: 3px;
+	border: solid 1px gray;
+	padding 4px;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: normal;
+	font-size: 14px;
+	border-bottom: none;
+	border-radius: 4px 4px 0px 0px;
+	position: relative;
+    top: 1px;
+}
+
+.esotbStatTab:hover {
+	background-color: #ccc;
+	cursor: pointer;
+}
+
+.esotbStatTabSelected {
+	background-color: #FBEFD5;
+	font-weight: bold;
+}
+
+.esotbStatTabSpacer {
+	display: inline-block;
+	width: 20px;
+}
+
+.esotbStatBlock {
+	min-width: 400px;
+	min-height: 200px;
+	border: solid 1px gray;
+	border-radius: 4px;
+	padding: 8px;
 }
