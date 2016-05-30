@@ -4,14 +4,15 @@
 		<title>UESP:ESO Test Character Build</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="resources/esocp_simple_embed.css" />
-		<link rel="stylesheet" href="resources/esoTestBuild.css" />
 		<link rel="stylesheet" href="resources/esoItemSearchPopup.css" />
+		<link rel="stylesheet" href="resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="resources/esoTestBuild.css" />
 		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="resources/jquery.transit.min.js"></script>
 		<script type="text/javascript" src="resources/esocp_simple.js"></script>
 		<script type="text/javascript" src="resources/esoTestBuild.js"></script>
 		<script type="text/javascript" src="resources/esoItemSearchPopup.js"></script>
-		
+		<script type="text/javascript" src="http://content3.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
@@ -67,8 +68,10 @@ displayed statistics is unknown.
 		<div id="esotbStatBlock2" class="esotbStatBlock" style="display: none;">
 			<div id="esotbItems">
 				<div class="esotbStatLabel">Helmet</div>
-				<div class="esotbItem" id="esotbItemHelmet" equiptype="1" itemtype="2"></div>
-				<div class="esotbItemLabel" id="esotbItemHelmetLabel"></div>
+				<div class="esotbItem eso_item_link" id="esotbItemHelmet" equiptype="1" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>				
 			</div>
 		</div>
 		<div id="esotbStatBlock3" class="esotbStatBlock" style="display: none;">
