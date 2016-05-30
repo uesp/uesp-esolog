@@ -149,7 +149,7 @@ function GetEsoInputCPValues(inputValues)
 	if (inputValues.Armor.Light >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
 	ParseEsoCPValue(inputValues, "DOTResist", 63850);
 	ParseEsoCPValue(inputValues, "PhysicalDamageResist", 63844);
-	ParseEsoCPValue(inputValues, "MagicDamageResist", 63843);
+	ParseEsoCPValue(inputValues, "MagickaDamageResist", 63843);
 	
 		/* Steed */
 	if (inputValues.Armor.Medium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
@@ -170,7 +170,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "HAStaffDamage", 60503);
 	
 		/* Apprentice */
-	ParseEsoCPValue(inputValues, "MagicDamage", 63848);
+	ParseEsoCPValue(inputValues, "MagickaDamage", 63848);
 	ParseEsoCPValue(inputValues, "SpellPenetration", 61555);
 	ParseEsoCPValue(inputValues, "SpellCritDamage", 61680);
 	ParseEsoCPValue(inputValues, "HealingDone", 59630);
