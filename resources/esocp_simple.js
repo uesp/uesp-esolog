@@ -28,7 +28,7 @@ function UpdateEsoCpData()
 		}
 		
 		g_EsoCpData[skillId].points = $this.find(".esovcpPointInput").val();
-		g_EsoCpData[skillId].isUnlocked = $this.find(".esovcpSkillLevel").hasClass("esovcpPassiveUnlocked");		
+		g_EsoCpData[skillId].isUnlocked = ($this.attr("unlocked") != 0);		
 	});
 		
 	cpDiscs.each(function(){
