@@ -394,7 +394,7 @@ function CreateEsoComputedStat(statId, stat)
 		appendTo(element);
 	
 	$("<div/>").addClass("esotbStatComputeButton").
-		text("+").
+		html("+").
 		appendTo(element);
 	
 	var computeElement = $("<div/>").addClass("esotbComputeItems").
