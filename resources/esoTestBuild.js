@@ -3,7 +3,32 @@ ESO_MAX_LEVEL = 50;
 ESO_MAX_CPLEVEL = 16;
 ESO_MAX_EFFECTIVELEVEL = 66;
 
+
 g_EsoBuildClickWallLinkElement = null;
+g_EsoBuildItemData = {};
+
+g_EsoBuildItemData.Head = {}
+g_EsoBuildItemData.Shoulders = {}
+g_EsoBuildItemData.Chest = {}
+g_EsoBuildItemData.Hands = {}
+g_EsoBuildItemData.Legs = {}
+g_EsoBuildItemData.Waist = {}
+g_EsoBuildItemData.Feet = {}
+g_EsoBuildItemData.Neck = {}
+g_EsoBuildItemData.Ring1 = {}
+g_EsoBuildItemData.Ring2 = {}
+g_EsoBuildItemData.MainHand1 = {}
+g_EsoBuildItemData.OffHand1 = {}
+g_EsoBuildItemData.MainHand2 = {}
+g_EsoBuildItemData.OffHand2 = {}
+g_EsoBuildItemData.Poison1 = {}
+g_EsoBuildItemData.Poison2 = {}
+g_EsoBuildItemData.Food = {}
+g_EsoBuildItemData.Potion = {}
+
+g_EsoBuildSetData = {};
+
+g_EsoBuildActiveWeapon = 1;
 
 
 function GetEsoInputValues()
@@ -49,7 +74,131 @@ function GetEsoInputValues()
 	GetEsoInputCPValues(inputValues);
 	GetEsoInputTargetValues(inputValues);
 	
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Head);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Shoulders);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Chest);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Hands);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Waist);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Legs);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Feet);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Neck);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Ring1);
+	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Ring2);
+	
+	if (g_EsoBuildActiveWeapon == 1)
+	{
+		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.MainHand1);
+		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.OffHand1);
+		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Poison1);
+	}
+	else
+	{
+		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.MainHand2);
+		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.OffHand2);
+		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Poison2);
+	}	
+	
+	UpdateEsoItemSetData();
+	
 	return inputValues;
+}
+
+
+function GetEsoInputItemValues(inputValues, itemData)
+{
+	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
+	
+	var traitMatch = itemData.traitDesc.match(/[0-9]+/);
+	var traitValue = 0;
+	if (traitMatch != null && traitMatch[0] != null) traitValue = parseFloat(traitMatch[0]);
+	
+	if (itemData.armorType == 1)
+		++inputValues.Armor.Light;
+	else if (itemData.armorType == 2)
+		++inputValues.Armor.Medium;
+	else if (itemData.armorType == 3)
+		++inputValues.Armor.Heavy;		
+	
+	if (itemData.armorRating > 0)
+	{
+		var factor = 1;
+		var bonusSpellResist = 0;
+		
+		if (itemData.weaponType == 14)		// Shield expert
+		{
+			//TODO
+			//factor *= 1.75;
+		}
+		
+		if (itemData.trait == 13)	// Reinforced
+		{
+			factor *= 1 + traitValue/100;
+		}
+		else if (itemData.trait == 25) // Nirnhoned
+		{
+			bonusSpellResist = Math.floor(itemData.armorRating*traitValue/100*factor);
+		}
+		
+		var armorRating = Math.floor(itemData.armorRating * factor);
+		
+		inputValues.Item.SpellResist += armorRating + bonusSpellResist;
+		inputValues.Item.PhysicalResist += armorRating;
+	}
+	
+	if (itemData.trait == 18) // Divines
+	{
+		inputValues.Divines += traitValue/100;
+	}
+	else if (itemData.trait == 17) //Prosperous
+	{
+		//TODO
+	}
+	else if (itemData.trait == 12) //Impenetrable
+	{
+		inputValues.Item.CritResist += traitValue;
+	}
+	else if (itemData.trait == 11) //Sturdy
+	{
+		inputValues.Sturdy += traitValue/100;
+	}
+	else if (itemData.trait == 15) //Training
+	{
+		//TODO
+	}
+	else if (itemData.trait == 21) //Healthy
+	{
+		inputValues.Item.Health += traitValue;	
+	}
+	else if (itemData.trait == 22) //Arcane
+	{
+		inputValues.Item.Magicka += traitValue;
+	}
+	else if (itemData.trait == 23) //Robust
+	{
+		inputValues.Item.Stamina += traitValue;
+	}	
+
+}
+
+
+function UpdateEsoItemSetData()
+{
+	g_EsoBuildSetData = {};
+	
+	for (var key in g_EsoBuildItemData)
+	{
+		if (g_EsoBuildActiveWeapon == 1 && (key == "MainHand2" || key == "OffHand2" || key == "Poison2")) continue;
+		if (g_EsoBuildActiveWeapon == 2 && (key == "MainHand1" || key == "OffHand1" || key == "Poison1")) continue;
+		
+		var data = g_EsoBuildItemData[key];
+		var setName = data.setName;
+		
+		if (setName == null || setName == "") continue;
+		
+		if (g_EsoBuildSetData[setName] == null) g_EsoBuildSetData[setName] = 0;
+		++g_EsoBuildSetData[setName];
+	}
+	
 }
 
 
@@ -547,6 +696,22 @@ function OnEsoSelectItem(itemData, element)
 	var iconElement = $(element).find(".esotbItemIcon");
 	var labelElement = $(element).find(".esotbItemLabel");
 	
+	var slotId = $(element).attr("slotId");
+	if (slotId == null || slotId == "") return false;
+	
+	if ($.isEmptyObject(itemData))
+	{
+		iconElement.attr("src", "");
+		labelElement.text("");
+		$(element).attr("itemid", "");
+		$(element).attr("level", "");
+		$(element).attr("quality", "");
+		g_EsoBuildItemData[slotId] = {};
+		
+		UpdateEsoComputedStatsList();
+		return;
+	}
+	
 	var iconUrl = "http://esoicons.uesp.net" + itemData.icon.replace(".dds", ".png");
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
 	
@@ -556,6 +721,50 @@ function OnEsoSelectItem(itemData, element)
 	$(element).attr("itemid", itemData.itemId);
 	$(element).attr("level", itemData.level);
 	$(element).attr("quality", itemData.quality);
+	
+	g_EsoBuildItemData[slotId] = itemData;
+	RequestEsoItemData(itemData, element);
+}
+
+
+function RequestEsoItemData(itemData, element)
+{	
+	if (itemData.itemId == null || itemData.itemId == "") return false;
+	if (itemData.level == null || itemData.level == "") return false;
+	if (itemData.quality == null || itemData.quality == "") return false;
+	
+	var queryParams = {
+			"table" : "minedItem",
+			"id" : itemData.itemId,
+			"level" : itemData.level,
+			"quality" : itemData.quality,
+			"limit" : 1,
+	};
+	
+	$.ajax("http://esolog.uesp.net/exportJson.php", {
+			data: queryParams,
+		}).
+		done(function(data, status, xhr) { OnEsoItemDataReceive(data, status, xhr, element, itemData); }).
+		fail(function(xhr, status, errorMsg) { OnEsoItemDataError(xhr, status, errorMsg); });
+}
+
+
+function OnEsoItemDataReceive(data, status, xhr, element, origItemData)
+{
+	var slotId = $(element).attr("slotId");
+	if (slotId == null || slotId == "") return false;
+	
+	if (data.minedItem != null && data.minedItem[0] != null)
+	{
+		g_EsoBuildItemData[slotId] = data.minedItem[0];
+		UpdateEsoComputedStatsList();
+	}
+	
+}
+
+
+function OnEsoItemDataError(xhr, status, errorMsg)
+{
 }
 
 

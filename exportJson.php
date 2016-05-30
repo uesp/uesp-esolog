@@ -19,6 +19,7 @@ class CEsoLogJsonExport
 	public $inputArmorType = "";
 	public $inputIntLevel = "";
 	public $inputIntType = "";
+	public $inputLimit = -1;
 	public $exportTables = array();
 	public $outputData = array();
 	public $outputJson = "";
@@ -116,6 +117,7 @@ class CEsoLogJsonExport
 		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType = (int) $this->inputParams['equiptype'];
 		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
 		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
+		if (array_key_exists('limit', $this->inputParams)) $this->inputLimit = (int) $this->inputParams['limit'];
 	
 		return true;
 	}
@@ -242,6 +244,7 @@ class CEsoLogJsonExport
 		
 		$query = "SELECT * FROM $table";
 		if (count($where) > 0) $query .= " WHERE " . implode(" AND ", $where);
+		if ($this->inputLimit > 0) $query .= " LIMIT ".$this->inputLimit." ";
 		$query .= ";";
 		
 		return $query;
