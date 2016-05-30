@@ -137,6 +137,10 @@
 	padding: 4px;
 }
 
+.esovcpSkillName {
+	display: inline-block;
+}
+
 .esovcpDescWhite {
 	display: inline;
 	font-weight: bold;
