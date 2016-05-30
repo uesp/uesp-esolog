@@ -1,0 +1,34 @@
+#esoispRoot {
+	position: absolute;
+	width: 400px;
+	height: 500px;
+	top: 100px;
+	left: 100px;
+	background-color: black;
+	color: white;
+	font-family: "Arial", sans-serif;
+	border: solid 2px gray;
+	z-index: 100;
+}
+
+#esoispCloseButton {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+	background-color: #aaa;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+	color: black;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#esoispCloseButton:hover {
+	background-color: #eee;
+}
+
