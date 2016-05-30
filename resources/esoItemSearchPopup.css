@@ -8,7 +8,7 @@
 	color: white;
 	font-family: "Arial", sans-serif;
 	border: solid 2px gray;
-	z-index: 100;
+	z-index: 40;
 	padding: 7px;
 }
 
@@ -27,6 +27,7 @@
 	color: black;
 	text-align: center;
 	vertical-align: middle;
+	line-height: 14px;
 }
 
 #esoispCloseButton:hover {
@@ -36,13 +37,72 @@
 #esoispResults {
 	overflow: auto;
 	height: 350px;
+	float: none;
+	clear: both;
+	margin-top: 30px;
 }
 
 .esoispResultRow {
-	
+	font-weight: bold;
+	margin-left: 10px;
 }
 
 .esoispResultRow:hover {
 	cursor: pointer;
 	background-color: #777;
+}
+
+.esoispResultIcon {
+	width: 32px;
+	vertical-align: middle;
+	padding: 2px;
+	margin-right: 8px;
+}
+
+.esoispResultDetails {
+	font-weight: normal;
+	display: inline-block;
+	margin-left: 10px;
+	font-size: 0.9em;
+}
+
+#esoispTitle {
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	color: #ffff99;
+	padding: 3px;
+}
+
+#esoispLevel {
+	width: 50px;
+	display: inline-block;	
+}
+
+#esoispQuality {
+	display: inline-block;	
+}
+
+#esoispLevelSlider {
+	width: 250px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.esoispInputLabel {
+	text-align: right;
+	width: 50px;
+	height: 24px;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 24px;
+}
+
+#esoispSearchButton {
+	margin-top: 4px;
+	float: right;
+}
+
+.esoispInputText {
+	width: 150px;
 }

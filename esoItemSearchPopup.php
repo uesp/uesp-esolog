@@ -11,10 +11,15 @@ class CEsoItemSearchPopup
 	public $inputParams = array();
 	
 	public $inputText = "";
+	public $inputItemType = "";
+	public $inputEquipType = "";
+	public $inputWeaponType = "";
 	public $inputLimit = 100;
 	
 	public $resultItems = array();
 	public $resultError = array("error" => true);
+	
+	public $itemRows = array("itemId", "name", "icon", "type", "equipType", "weaponType", "armorType", "trait", "style");
 	
 	
 	public function __construct()
@@ -27,11 +32,8 @@ class CEsoItemSearchPopup
 	
 	public function ReportError($errorMsg)
 	{
-		print($errorMsg);
 		error_log($errorMsg);
-		
 		$this->resultError[] = $errorMsg;
-		
 		return false;
 	}
 	
@@ -51,6 +53,9 @@ class CEsoItemSearchPopup
 	public function ParseInputParams ()
 	{
 		if (array_key_exists('text', $this->inputParams)) $this->inputText = urldecode($this->inputParams['text']);
+		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = (int) $this->inputParams['type'];
+		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType = (int) $this->inputParams['equiptype'];
+		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
 	}
 	
 	
@@ -67,13 +72,29 @@ class CEsoItemSearchPopup
 	
 	public function CreateQuery()
 	{
-		$query = "SELECT itemId, name, icon FROM minedItemSummary ";
+		$rows = implode(",", $this->itemRows);
+		$query = "SELECT $rows FROM minedItemSummary ";
 		$whereQuery = array();
 		
 		if ($this->inputText != "")
 		{
 			$safeText = $this->db->real_escape_string($this->inputText);
 			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%')";
+		}
+		
+		if ($this->inputItemType != "")
+		{
+			$whereQuery[] = "type=".$this->inputItemType;
+		}
+		
+		if ($this->inputEquipType != "")
+		{
+			$whereQuery[] = "equiptype=".$this->inputEquipType;
+		}
+		
+		if ($this->inputWeaponType != "")
+		{
+			$whereQuery[] = "weapontype=".$this->inputWeaponType;
 		}
 		
 		if (count($whereQuery) > 0)

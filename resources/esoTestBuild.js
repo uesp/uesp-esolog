@@ -542,9 +542,37 @@ function OnEsoClickItem(e)
 }
 
 
+function OnEsoSelectItem(itemData, element)
+{
+	var iconElement = $(element).find(".esotbItemIcon");
+	var labelElement = $(element).find(".esotbItemLabel");
+	
+	var iconUrl = "http://esoicons.uesp.net" + itemData.icon.replace(".dds", ".png");
+	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
+	
+	iconElement.attr("src", iconUrl);
+	labelElement.text(niceName);
+	
+	$(element).attr("itemid", itemData.itemId);
+	$(element).attr("level", itemData.level);
+	$(element).attr("quality", itemData.quality);
+}
+
+
 function SelectEsoItem(element)
 {
-	var root = UESP.showEsoItemSearchPopup();
+	var equipType = element.attr("equiptype");
+	var itemType = element.attr("itemtype");
+	var weaponType = element.attr("weapontype");
+	
+	var data = {
+		onSelectItem: OnEsoSelectItem,
+		itemType: itemType,
+		equipType: equipType,
+		weaponType: weaponType,
+	};
+	
+	var root = UESP.showEsoItemSearchPopup(element, data);
 	ShowEsoBuildClickWall(root);
 }
 
@@ -709,6 +737,7 @@ function esotbOnDocReady()
 	$(document).on("EsoItemSearchPopupOnClose", OnEsoItemSearchPopupClose);
 	
 	$(document).on("esocpUpdate", OnEsoBuildCpUpdate);
+	
 }
 
 
