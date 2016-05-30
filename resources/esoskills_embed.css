@@ -422,6 +422,7 @@
 	font-family: "Arial", sans-serif;
 	font-size: 13px;
 	font-weight: normal;
+	position: relative;
 }
 
 .esovsRawDataName {
@@ -454,6 +455,8 @@
 	float: right;
 	font-size: 12px;
 	font-weight: normal;
+	position: absolute;
+	right: 2px;
 }
 
 #esovsSkillCoefData {
