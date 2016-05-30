@@ -9,6 +9,7 @@
 	font-family: "Arial", sans-serif;
 	border: solid 2px gray;
 	z-index: 100;
+	padding: 7px;
 }
 
 #esoispCloseButton {
@@ -32,3 +33,16 @@
 	background-color: #eee;
 }
 
+#esoispResults {
+	overflow: auto;
+	height: 350px;
+}
+
+.esoispResultRow {
+	
+}
+
+.esoispResultRow:hover {
+	cursor: pointer;
+	background-color: #777;
+}
