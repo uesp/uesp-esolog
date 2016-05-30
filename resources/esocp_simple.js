@@ -1,3 +1,5 @@
+var g_EsoCpDisableUpdates = false;
+
 function OnDisciplineClick(e)
 {
 	var id = $(this).attr('id');
@@ -107,9 +109,23 @@ function OnPointInputScrollDown(e)
 function UpdateSkillDesc(skillId, points)
 {
 	var descControl = $("#descskill_" + skillId);
+	
+	if (g_SkillDesc[skillId] == null) return;
 	var desc = g_SkillDesc[skillId][points];
 	
 	descControl.html(desc);
+}
+
+
+function UpdateDiscSkillDesc(discId)
+{
+	var discElement = $("#skills_" + discId);
+	
+	discElement.find(".esovcpSkill").each(function(i, element){
+		var skillId = $(this).attr("skillid");
+		if (skillId == null || skillId == "") return;
+		UpdateSkillDesc(skillId, 0);
+	});
 }
 
 
@@ -158,7 +174,7 @@ function UpdateTotalCPPoints()
 	
 	UpdateCPLink();
 	
-	$( document ).trigger("esocpUpdate");
+	if (!g_EsoCpDisableUpdates) $( document ).trigger("esocpUpdate");
 }
 
 
@@ -324,12 +340,25 @@ function OnEsoCPResetDisc(e)
 	
 	parent.find(".esovcpPointInput").val("0");
 	
+	UpdateDiscSkillDesc(discId);
 	UpdateDiscPoints(discId);
 }
 
 
 function EsoCpUpdateAll()
 {
+	UpdateDiscSkillDesc('the_lord');
+	UpdateDiscSkillDesc('the_lady');
+	UpdateDiscSkillDesc('the_steed');
+	UpdateDiscSkillDesc('the_ritual');
+	UpdateDiscSkillDesc('the_atronach');
+	UpdateDiscSkillDesc('the_apprentice');
+	UpdateDiscSkillDesc('the_shadow');
+	UpdateDiscSkillDesc('the_lover');
+	UpdateDiscSkillDesc('the_tower');
+	
+	g_EsoCpDisableUpdates = true;
+	
 	UpdateDiscPoints('the_lord');
 	UpdateDiscPoints('the_lady');
 	UpdateDiscPoints('the_steed');
@@ -338,6 +367,8 @@ function EsoCpUpdateAll()
 	UpdateDiscPoints('the_apprentice');
 	UpdateDiscPoints('the_shadow');
 	UpdateDiscPoints('the_lover');
+	
+	g_EsoCpDisableUpdates = false;
 	UpdateDiscPoints('the_tower');
 }
 
