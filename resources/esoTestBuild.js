@@ -156,12 +156,14 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "BlockCost", 60649); // TODO: Move?
 	ParseEsoCPValue(inputValues, "SpellResist", 62760);
 	ParseEsoCPValue(inputValues, "CritResist", 60384);
+	//ParseEsoCPValue(inputValues, "CritResist", 64079, "the_steed");	//Spell Armor
 	
 		/* Ritual */
 	ParseEsoCPValue(inputValues, "DOTDamage", 63847);
 	ParseEsoCPValue(inputValues, "WeaponCritDamage", 59105);
 	ParseEsoCPValue(inputValues, "PhysicalPenetration", 61546);
 	ParseEsoCPValue(inputValues, "PhysicalDamage", 63868);
+	ParseEsoCPValue(inputValues, "WeaponCrit", 59418, "the_ritual", 30);
 	
 		/* Atronach */
 	ParseEsoCPValue(inputValues, "HAWeaponDamage", 60565);
@@ -174,6 +176,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "SpellPenetration", 61555);
 	ParseEsoCPValue(inputValues, "SpellCritDamage", 61680);
 	ParseEsoCPValue(inputValues, "HealingDone", 59630);
+	ParseEsoCPValue(inputValues, "SpellCrit", 59626, "the_apprentice", 30);
 	
 		/* Shadow */
 	ParseEsoCPValue(inputValues, "HealingReduction", 59298);
@@ -195,7 +198,7 @@ function GetEsoInputCPValues(inputValues)
 }
 
 
-function ParseEsoCPValue(inputValues, statIds, abilityId)
+function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 {
 	var cpDesc = $("#descskill_" + abilityId);
 	if (cpDesc.length == 0) return false;
@@ -203,6 +206,12 @@ function ParseEsoCPValue(inputValues, statIds, abilityId)
 	var text = cpDesc.text();
 	var results = text.match(/by ([0-9]+\.?[0-9]*\%?)/);
 	if (results.length == 0) return false;
+	
+	if (discId != null && unlockLevel != null)
+	{
+		var discPoints = parseInt($("#skills_" + discId).find(".esovcpDiscTitlePoints").text());
+		if (discPoints < unlockLevel) return false;
+	}
 	
 	var value = parseFloat(results[1]);
 	var lastChar = results[1].slice(-1);
@@ -228,6 +237,7 @@ function UpdateEsoComputedStatsList()
 {
 	var inputValues = GetEsoInputValues();
 	var deferredStats = [];
+	
 	
 	for (var statId in g_EsoComputedStats)
 	{

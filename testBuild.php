@@ -315,21 +315,33 @@ class CEsoTestBuild
 			
 			"SpellCrit" => array(
 					"title" => "Spell Critical",
+					"display" => "percent",
 					"compute" => array(
+							"Set.SpellCrit",
+							"1/219/100",
+							"*",
 							"Item.SpellCrit",
+							"+",
 							"Mundus.SpellCrit * (1 + Divines)",
 							"+",
 							"Skill.SpellCrit",
 							"+",
 							"Buff.SpellCrit",
 							"+",
+							"CP.SpellCrit",
+							"+",
 					),
 			),
 			
 			"WeaponCrit" => array(
 					"title" => "Weapon Critical",
+					"display" => "percent",
 					"compute" => array(
+							"Set.WeaponCrit",
+							"1/219/100",
+							"*",
 							"Item.WeaponCrit",
+							"+",
 							"Set.WeaponCrit",
 							"+",
 							"Mundus.WeaponCrit * (1 + Divines)",
@@ -337,6 +349,8 @@ class CEsoTestBuild
 							"Skill.WeaponCrit",
 							"+",
 							"Buff.WeaponCrit",
+							"+",
+							"CP.WeaponCrit",
 							"+",
 					),
 			),
