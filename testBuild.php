@@ -341,11 +341,27 @@ class CEsoTestBuild
 					),
 			),
 			
-			"CritDamage" => array(
-					"title" => "Critical Damage",
+			"SpellCritDamage" => array(
+					"title" => "Spell Critical Damage",
 					"display" => "percent",
 					"compute" => array(
-							"CP.CritDamage",
+							"CP.SpellCritDamage",
+							"Skill.CritDamage",
+							"+",
+							"Mundus.CritDamage * (1 + Divines)",
+							"+",
+							"Buff.CritDamage",
+							"+",
+							"0.5",
+							"+",
+					),
+			),
+			
+			"WeaponCritDamage" => array(
+					"title" => "Weapon Critical Damage",
+					"display" => "percent",
+					"compute" => array(
+							"CP.WeaponCritDamage",
 							"Skill.CritDamage",
 							"+",
 							"Mundus.CritDamage * (1 + Divines)",
@@ -398,8 +414,6 @@ class CEsoTestBuild
 							"Set.CritResist",
 							"+",
 							"Skill.CritResist",
-							"+",
-							"CP.CritResist",
 							"+",
 					),
 			),
