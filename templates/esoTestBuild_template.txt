@@ -121,29 +121,29 @@ displayed statistics is unknown.
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 1</div>
-				<div class="esotbItem eso_item_link" id="esotbItemMainHand1" slotid="MainHand1" equiptype="14,5,6" itemtype="1">
+				<div class="esotbItem eso_item_link" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
 				</div>
-				<div class="esotbItem eso_item_link" id="esotbItemOffHand1" slotid="OffHand1" equiptype="15,5" itemtype="1">
+				<div class="esotbItem eso_item_link" id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
 				</div>
-				<div class="esotbItem eso_item_link" id="esotbItemPoison1" slotid="Poison1" equiptype="15,5" itemtype="2">
+				<div class="esotbItem eso_item_link" id="esotbItemPoison1" slotid="Poison1" equiptype="15" itemtype="2">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 2</div>
-				<div class="esotbItem eso_item_link" id="esotbItemMainHand2" slotid="MainHand2" equiptype="14,5,6" itemtype="1">
+				<div class="esotbItem eso_item_link" id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
 				</div>
-				<div class="esotbItem eso_item_link" id="esotbItemOffHand2" slotid="OffHand2" equiptype="15,5" itemtype="1">
+				<div class="esotbItem eso_item_link" id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
 				</div>
-				<div class="esotbItem eso_item_link" id="esotbItemPoison2" slotid="Poison2" equiptype="15,5" itemtype="2">
+				<div class="esotbItem eso_item_link" id="esotbItemPoison2" slotid="Poison2" equiptype="15" itemtype="2">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
 				</div><br/>

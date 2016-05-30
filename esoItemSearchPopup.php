@@ -54,7 +54,7 @@ class CEsoItemSearchPopup
 	{
 		if (array_key_exists('text', $this->inputParams)) $this->inputText = urldecode($this->inputParams['text']);
 		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = (int) $this->inputParams['type'];
-		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType = (int) $this->inputParams['equiptype'];
+		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
 		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
 	}
 	
@@ -89,12 +89,20 @@ class CEsoItemSearchPopup
 		
 		if ($this->inputEquipType != "")
 		{
-			$whereQuery[] = "equiptype=".$this->inputEquipType;
+			$equipTypes = explode(",", $this->inputEquipType);
+			$tmpQuery = array();
+			
+			foreach ($equipTypes as $equipType)
+			{
+				$tmpQuery[] = "equipType=".((int)$equipType);
+			}
+			
+			$whereQuery[] = "(" . implode(" OR ", $tmpQuery) . ")";
 		}
 		
 		if ($this->inputWeaponType != "")
 		{
-			$whereQuery[] = "weapontype=".$this->inputWeaponType;
+			$whereQuery[] = "weaponType=".$this->inputWeaponType;
 		}
 		
 		if (count($whereQuery) > 0)

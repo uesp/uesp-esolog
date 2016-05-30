@@ -177,6 +177,11 @@ function GetEsoInputItemValues(inputValues, itemData)
 	{
 		inputValues.Item.Stamina += traitValue;
 	}	
+	else if (itemData.trait == 14) //Well Fitted
+	{
+		inputValues.Item.SprintCost += traitValue;
+		inputValues.Item.RollDodgeCost += traitValue;
+	}
 
 }
 
@@ -690,6 +695,27 @@ function OnEsoClickItem(e)
 }
 
 
+function UnequipEsoItemSlot(slotId, update)
+{
+	if (g_EsoBuildItemData[slotId] == null) return false;
+	
+	var element = $("#esotbItem" + slotId);
+	var iconElement = $(element).find(".esotbItemIcon");
+	var labelElement = $(element).find(".esotbItemLabel");
+	
+	iconElement.attr("src", "");
+	labelElement.text("");
+	element.attr("itemid", "");
+	element.attr("level", "");
+	element.attr("quality", "");
+	
+	g_EsoBuildItemData[slotId] = {};
+	
+	if (update == null || update === true) UpdateEsoComputedStatsList();
+	return true;
+}
+
+
 function OnEsoSelectItem(itemData, element)
 {
 	var iconElement = $(element).find(".esotbItemIcon");
@@ -720,6 +746,20 @@ function OnEsoSelectItem(itemData, element)
 	$(element).attr("itemid", itemData.itemId);
 	$(element).attr("level", itemData.level);
 	$(element).attr("quality", itemData.quality);
+	
+	if (itemData.equipType == 6)
+	{
+		if (slotId == "MainHand1") UnequipEsoItemSlot("OffHand1", false);
+		if (slotId == "MainHand2") UnequipEsoItemSlot("OffHand2", false);
+	}
+	else if (slotId == "OffHand1")
+	{
+		if (g_EsoBuildItemData["MainHand1"].equipType == 6) UnequipEsoItemSlot("MainHand1", false);
+	}
+	else if (slotId == "OffHand2")
+	{
+		if (g_EsoBuildItemData["MainHand2"].equipType == 6) UnequipEsoItemSlot("MainHand2", false);
+	}
 	
 	g_EsoBuildItemData[slotId] = itemData;
 	RequestEsoItemData(itemData, element);
