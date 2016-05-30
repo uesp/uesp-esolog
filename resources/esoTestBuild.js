@@ -69,11 +69,7 @@ function GetEsoInputValues()
 	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
 	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
 	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
-	
-	GetEsoInputMundusValues(inputValues);
-	GetEsoInputCPValues(inputValues);
-	GetEsoInputTargetValues(inputValues);
-	
+		
 	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Head);
 	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Shoulders);
 	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Chest);
@@ -96,9 +92,13 @@ function GetEsoInputValues()
 		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.MainHand2);
 		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.OffHand2);
 		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Poison2);
-	}	
+	}
 	
 	UpdateEsoItemSetData();
+	
+	GetEsoInputMundusValues(inputValues);
+	GetEsoInputCPValues(inputValues);
+	GetEsoInputTargetValues(inputValues);
 	
 	return inputValues;
 }
@@ -124,17 +124,17 @@ function GetEsoInputItemValues(inputValues, itemData)
 		var factor = 1;
 		var bonusSpellResist = 0;
 		
-		if (itemData.weaponType == 14)		// Shield expert
+				// Shield expert
+		if (itemData.weaponType == 14 && g_EsoCpData['Shield Expert'].isUnlocked)
 		{
-			//TODO
-			//factor *= 1.75;
+			factor *= 1.75;
 		}
 		
 		if (itemData.trait == 13)	// Reinforced
 		{
 			factor *= 1 + traitValue/100;
 		}
-		else if (itemData.trait == 25) // Nirnhoned
+		else if (itemData.trait == 25) // Armor Nirnhoned
 		{
 			bonusSpellResist = Math.floor(itemData.armorRating*traitValue/100*factor);
 		}
@@ -276,9 +276,9 @@ function GetEsoInputMundusValues(inputValues)
 
 function GetEsoInputCPValues(inputValues)
 {
-	inputValues.CP.Health = parseInt($("#esovcpDiscHea").text());
-	inputValues.CP.Magicka = parseInt($("#esovcpDiscMag").text());
-	inputValues.CP.Stamina = parseInt($("#esovcpDiscSta").text());
+	inputValues.CP.Health = g_EsoCpData.attribute1.points;
+	inputValues.CP.Magicka = g_EsoCpData.attribute2.points;
+	inputValues.CP.Stamina = g_EsoCpData.attribute3.points;
 	inputValues.CP.TotalPoints = parseInt($("#esotbCPTotalPoints").val());
 	inputValues.CP.UsedPoints = inputValues.CP.Health + inputValues.CP.Magicka + inputValues.CP.Stamina;
 	
@@ -305,7 +305,6 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "BlockCost", 60649); // TODO: Move?
 	ParseEsoCPValue(inputValues, "SpellResist", 62760);
 	ParseEsoCPValue(inputValues, "CritResist", 60384);
-	//ParseEsoCPValue(inputValues, "CritResist", 64079, "the_steed");	//Spell Armor
 	
 		/* Ritual */
 	ParseEsoCPValue(inputValues, "DOTDamage", 63847);
