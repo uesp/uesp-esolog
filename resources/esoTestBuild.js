@@ -544,15 +544,6 @@ function OnEsoClickItem(e)
 
 function SelectEsoItem(element)
 {
-	var itemType = element.attr("itemtype");
-	var equipType = element.attr("equiptype");
-	var selectElement = $("#esotbItemSelect");
-	var offset = element.offset();
-	
-	$("#esotbItemSelectTitle").text("Select Item")
-		
-	selectElement.offset({left: offset.left, top: offset.top - 100 });
-	selectElement.show();
 }
 
 
