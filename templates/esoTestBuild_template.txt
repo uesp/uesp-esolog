@@ -67,11 +67,87 @@ displayed statistics is unknown.
 		</div>
 		<div id="esotbStatBlock2" class="esotbStatBlock" style="display: none;">
 			<div id="esotbItems">
-				<div class="esotbStatLabel">Helmet</div>
-				<div class="esotbItem eso_item_link" id="esotbItemHelmet" equiptype="1" itemtype="2">
+				<div class="esotbItemSlotLabel"></div>
+				<div class="esotbItemSlotLabel"></div>
+				<div class="esotbItemSlotLabel">Head</div>
+				<div class="esotbItem eso_item_link" id="esotbItemHead" slotid="Head" equiptype="1" itemtype="2">
 					<img class="esotbItemIcon" src="">
 					<div class="esotbItemLabel"></div>
-				</div>				
+				</div><br/>
+				<div class="esotbItemSlotLabel">Shoulders</div>
+				<div class="esotbItem eso_item_link" id="esotbItemShoulders" slotid="Shoulders" equiptype="4" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItemSlotLabel">Chest</div>
+				<div class="esotbItem eso_item_link" id="esotbItemChest" slotid="Chest" equiptype="3" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div><br/>
+				<div class="esotbItemSlotLabel">Hands</div>
+				<div class="esotbItem eso_item_link" id="esotbItemHands" slotid="Hands" equiptype="13" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItemSlotLabel">Waist</div>
+				<div class="esotbItem eso_item_link" id="esotbItemWaist" slotid="Waist" equiptype="8" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div><br/>
+				<div class="esotbItemSlotLabel">Legs</div>
+				<div class="esotbItem eso_item_link" id="esotbItemLegs" slotid="Legs" equiptype="9" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItemSlotLabel">Feet</div>
+				<div class="esotbItem eso_item_link" id="esotbItemFeet" slotid="Feet" equiptype="10" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div><br/>
+				
+				<div class="esotbItemSlotLabel">Neck</div>
+				<div class="esotbItem eso_item_link" id="esotbItemNeck" slotid="Neck" equiptype="2" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItemSlotLabel">Rings</div>
+				<div class="esotbItem eso_item_link" id="esotbItemRing1" slotid="Ring1" equiptype="12" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItem eso_item_link" id="esotbItemRing2" slotid="Ring2" equiptype="12" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div><br/>
+				
+				<div class="esotbItemSlotLabel">Weapon 1</div>
+				<div class="esotbItem eso_item_link" id="esotbItemMainHand1" slotid="MainHand1" equiptype="14,5,6" itemtype="1">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItem eso_item_link" id="esotbItemOffHand1" slotid="OffHand1" equiptype="15,5" itemtype="1">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItem eso_item_link" id="esotbItemPoison1" slotid="Poison1" equiptype="15,5" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div><br/>
+				
+				<div class="esotbItemSlotLabel">Weapon 2</div>
+				<div class="esotbItem eso_item_link" id="esotbItemMainHand2" slotid="MainHand2" equiptype="14,5,6" itemtype="1">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItem eso_item_link" id="esotbItemOffHand2" slotid="OffHand2" equiptype="15,5" itemtype="1">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div>
+				<div class="esotbItem eso_item_link" id="esotbItemPoison2" slotid="Poison2" equiptype="15,5" itemtype="2">
+					<img class="esotbItemIcon" src="">
+					<div class="esotbItemLabel"></div>
+				</div><br/>
+				
 			</div>
 		</div>
 		<div id="esotbStatBlock3" class="esotbStatBlock" style="display: none;">

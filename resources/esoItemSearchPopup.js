@@ -95,6 +95,7 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	
 	$("#esoispCloseButton").click(function() { self.onClose(); });
 	$("#esoispSearchButton").click(function() { self.onSearch(); });
+	$("#esoispUneqipButton").click(function() { self.onUnequip(); });
 	$("#esoispLevel").on("input", function(e) { self.onLevelChange(e); });
 	$("#esoispQuality").change(function(e) { self.onQualityChange(e); });
 	$("#esoispLevelSlider").on("input", function(e) { self.onLevelSlideChange(e); });
@@ -129,6 +130,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"	</select><br/>" +
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='66' readonly='readonly'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
+		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip Item</button>" +
 		"	<button id='esoispSearchButton' class='esoispButton'>Search...</button>" +
 		"</div>" +
 		"<div id='esoispResults'></div>" + 
@@ -152,6 +154,15 @@ UESP.EsoItemSearchPopup.prototype.onClose = function()
 {
 	this.hide();
 	$(document).trigger("EsoItemSearchPopupOnClose");
+};
+
+
+UESP.EsoItemSearchPopup.prototype.onUnequip = function()
+{
+	this.hide();
+	$(document).trigger("EsoItemSearchPopupOnClose");
+	
+	if (this.onSelectItem) this.onSelectItem({}, this.sourceElement);
 };
 
 
@@ -276,7 +287,7 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 		var traitName = UESP.ESO_TRAIT_TYPES[itemData.trait];
 		var armorName = UESP.ESO_ARMOR_TYPES[itemData.armorType]
 		
-		if (armorName != null) detailList.push(armorName);
+		if (armorName != null && armorName != "") detailList.push(armorName);
 		if (traitName != null && traitName != "") detailList.push(traitName);
 		
 		details = "(" + detailList.join(", ") + ")";
