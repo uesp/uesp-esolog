@@ -544,6 +544,8 @@ function OnEsoClickItem(e)
 
 function SelectEsoItem(element)
 {
+	var root = UESP.showEsoItemSearchPopup();
+	ShowEsoBuildClickWall(root);
 }
 
 
@@ -677,6 +679,12 @@ function OnEsoBuildCpUpdate(e)
 }
 
 
+function OnEsoItemSearchPopupClose(e)
+{
+	HideEsoBuildClickWall();
+}
+
+
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
@@ -697,6 +705,8 @@ function esotbOnDocReady()
 	$("#esotbClickWall").click(OnEsoClickBuildWall);
 	
 	$(".esotbStatTab").click(OnEsoClickBuildStatTab);
+	
+	$(document).on("EsoItemSearchPopupOnClose", OnEsoItemSearchPopupClose);
 	
 	$(document).on("esocpUpdate", OnEsoBuildCpUpdate);
 }
