@@ -77,7 +77,7 @@ class CEsoItemSearchPopup
 	public function CreateQuery()
 	{
 		$rows = implode(",", $this->itemRows);
-		$query = "SELECT $rows FROM minedItemSummary ";
+		$query = "SELECT SQL_CALC_FOUND_ROWS $rows FROM minedItemSummary ";
 		$whereQuery = array();
 				
 		if ($this->inputItemType != "")
@@ -129,6 +129,16 @@ class CEsoItemSearchPopup
 		while (($row = $result->fetch_assoc()))
 		{
 			$this->resultItems[] = $row;	
+		}
+		
+		$result = $this->db->query("SELECT FOUND_ROWS() as rowCount;");
+		
+		if ($result) 
+		{
+			$row = $result->fetch_assoc();
+			$row['type'] = -1;
+			$row['name'] = "zzzzzzzzz";
+			$this->resultItems[] = $row; 
 		}
 		
 		return true;

@@ -68,6 +68,8 @@ UESP.ESO_ARMOR_TYPES = {
 	/* Class Constructor */
 UESP.EsoItemSearchPopup = function () 
 {
+	this.ROW_LIMIT = 100;
+	
 	this.iconURL = "http://esoicons.uesp.net";
 	this.queryURL = "http://esolog.uesp.net/esoItemSearchPopup.php";
 	this.rootElement = this.create();
@@ -373,8 +375,31 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 	
 	this.searchResults = itemData;
 	
+	if (itemData.length == 0)
+	{
+		
+		return;
+	}
+	
 	for (var i = 0; i < itemData.length; ++i)
 	{
+		if (itemData[i].type < 0)
+		{
+			var rowCount = itemData[i].rowCount;
+			
+			if (rowCount == 0)
+			{
+				newResults += "No items found matching the input values!";
+			}
+			else if (rowCount > this.ROW_LIMIT)
+			{
+				rowCount -= 100;
+				newResults += "Found " + rowCount + " more results! Try a more specific search query.";
+			}
+			
+			continue;
+		}
+		
 		newResults += this.createSearchResult(itemData[i], i);
 	}
 		
@@ -391,7 +416,7 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 	var iconUrl = this.getIconUrl(itemData.icon);
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
 	var details = "";
-	
+		
 	if (this.itemType == 2)
 	{
 		var detailList = [];
