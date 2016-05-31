@@ -107,17 +107,27 @@ function GetEsoInputValues()
 function GetEsoInputItemValues(inputValues, itemData)
 {
 	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
+	itemData.rawOutput = {};
 	
 	var traitMatch = itemData.traitDesc.match(/[0-9]+/);
 	var traitValue = 0;
 	if (traitMatch != null && traitMatch[0] != null) traitValue = parseFloat(traitMatch[0]);
 	
 	if (itemData.armorType == 1)
+	{
 		++inputValues.Armor.Light;
+		itemData.rawOutput["Armor.Light"] = 1;
+	}
 	else if (itemData.armorType == 2)
+	{
 		++inputValues.Armor.Medium;
+		itemData.rawOutput["Armor.Medium"] = 1;
+	}
 	else if (itemData.armorType == 3)
-		++inputValues.Armor.Heavy;		
+	{
+		++inputValues.Armor.Heavy;
+		itemData.rawOutput["Armor.Heavy"] = 1;
+	}
 	
 	if (itemData.armorRating > 0)
 	{
@@ -143,11 +153,14 @@ function GetEsoInputItemValues(inputValues, itemData)
 		
 		inputValues.Item.SpellResist += armorRating + bonusSpellResist;
 		inputValues.Item.PhysicalResist += armorRating;
+		itemData.rawOutput["Item.SpellResist"] = inputValues.Item.SpellResist;
+		itemData.rawOutput["Item.PhysicalResist"] = inputValues.Item.PhysicalResist;
 	}
 	
 	if (itemData.trait == 18) // Divines
 	{
 		inputValues.Divines += traitValue/100;
+		itemData.rawOutput["Divines"] = inputValues.Divines;
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
@@ -156,31 +169,39 @@ function GetEsoInputItemValues(inputValues, itemData)
 	else if (itemData.trait == 12) //Impenetrable
 	{
 		inputValues.Item.CritResist += traitValue;
+		itemData.rawOutput["Item.CritResist"] = inputValues.Item.CritResist;
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
 		inputValues.Sturdy += traitValue/100;
+		itemData.rawOutput["Item.Sturdy"] = inputValues.Sturdy;
 	}
 	else if (itemData.trait == 15) //Training
 	{
 		//TODO
+		//itemData["Item.CritResist"] = 0;
 	}
 	else if (itemData.trait == 21) //Healthy
 	{
-		inputValues.Item.Health += traitValue;	
+		inputValues.Item.Health += traitValue;
+		itemData.rawOutput["Item.Health"] = inputValues.Item.Health;
 	}
 	else if (itemData.trait == 22) //Arcane
 	{
 		inputValues.Item.Magicka += traitValue;
+		itemData.rawOutput["Item.Magicka"] = inputValues.Item.Magicka;
 	}
 	else if (itemData.trait == 23) //Robust
 	{
 		inputValues.Item.Stamina += traitValue;
+		itemData.rawOutput["Item.Stamina"] = inputValues.Item.Stamina;
 	}	
 	else if (itemData.trait == 14) //Well Fitted
 	{
 		inputValues.Item.SprintCost += traitValue;
 		inputValues.Item.RollDodgeCost += traitValue;
+		itemData.rawOutput["Item.SprintCost"] = inputValues.Item.SprintCost;
+		itemData.rawOutput["Item.RollDodgeCost"] = inputValues.Item.RollDodgeCost;
 	}
 
 }
@@ -202,6 +223,7 @@ function UpdateEsoItemSetData()
 		
 		if (g_EsoBuildSetData[setName] == null) g_EsoBuildSetData[setName] = 0;
 		++g_EsoBuildSetData[setName];
+		data.rawOutput["Set." + setName] = 1;
 	}
 	
 }
