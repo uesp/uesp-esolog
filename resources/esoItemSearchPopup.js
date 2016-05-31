@@ -249,7 +249,6 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 
 UESP.EsoItemSearchPopup.prototype.show = function() 
 {
-	this.update();
 	this.rootElement.show();
 };
 
@@ -508,51 +507,58 @@ UESP.EsoItemSearchPopup.prototype.onWeaponTraitChange = function(e)
 }
 
 
-	/* Main function entrance */
-UESP.showEsoItemSearchPopup = function(sourceElement, data)
+UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 {
 	var clearResults = false;
 	
 	data = data || {};
-	
-	if (UESP.esoItemSearchPopup == null)
-	{
-		UESP.esoItemSearchPopup = new UESP.EsoItemSearchPopup();
-	}
-	
-	UESP.esoItemSearchPopup.sourceElement = sourceElement;
-	UESP.esoItemSearchPopup.onSelectItem = data.onSelectItem;
-	
-	if (UESP.esoItemSearchPopup.itemType != data.itemType)
-	{
-		UESP.esoItemSearchPopup.itemType = data.itemType;
-		clearResults = true;
-	}
-	
-	if (UESP.esoItemSearchPopup.equipType != data.equipType)
-	{
-		UESP.esoItemSearchPopup.equipType = data.equipType;
-		clearResults = true;
 		
-		UESP.esoItemSearchPopup.equipTypes = data.equipType.split(",");
+	this.sourceElement = sourceElement;
+	this.onSelectItem = data.onSelectItem;
+	
+	if (this.itemType != data.itemType)
+	{
+		this.itemType = data.itemType;
+		clearResults = true;
 	}
 	
-	if (UESP.esoItemSearchPopup.weaponType != data.weaponType)
+	if (this.equipType != data.equipType)
 	{
-		UESP.esoItemSearchPopup.weaponType = data.weaponType;
+		this.equipType = data.equipType;
+		this.equipTypes = data.equipType.split(",");
+		clearResults = true;
+	}
+	
+	if (this.weaponType != data.weaponType)
+	{
+		this.weaponType = data.weaponType;
 		clearResults = true;
 	}
 	
 	if (clearResults)
 	{
-		UESP.esoItemSearchPopup.itemTrait = -1;
-		UESP.esoItemSearchPopup.armorType = -1;
-		UESP.esoItemSearchPopup.searchResults = [];
+		this.itemTrait = -1;
+		this.armorType = -1;
+		this.searchResults = [];
 		$("#esoispResults").text("");
 	}
 	
-	UESP.esoItemSearchPopup.updateTitle();
-	UESP.esoItemSearchPopup.show();
+	this.update();
+	this.updateTitle();
+	this.show();
+}
+
+
+	/* Main function entrance */
+UESP.showEsoItemSearchPopup = function(sourceElement, data)
+{
+
+	if (UESP.esoItemSearchPopup == null)
+	{
+		UESP.esoItemSearchPopup = new UESP.EsoItemSearchPopup();
+	}
 	
-	return UESP.esoItemSearchPopup.rootElement;
+	UESP.esoItemSearchPopup.display(sourceElement, data);
+	
+	return UESP.esoItemSearchPopup;
 }

@@ -842,8 +842,8 @@ function SelectEsoItem(element)
 		weaponType: weaponType,
 	};
 	
-	var root = UESP.showEsoItemSearchPopup(element, data);
-	ShowEsoBuildClickWall(root);
+	var rootSearchPopup = UESP.showEsoItemSearchPopup(element, data);
+	ShowEsoBuildClickWall(rootSearchPopup);
 }
 
 
