@@ -153,14 +153,14 @@ function GetEsoInputItemValues(inputValues, itemData)
 		
 		inputValues.Item.SpellResist += armorRating + bonusSpellResist;
 		inputValues.Item.PhysicalResist += armorRating;
-		itemData.rawOutput["Item.SpellResist"] = inputValues.Item.SpellResist;
-		itemData.rawOutput["Item.PhysicalResist"] = inputValues.Item.PhysicalResist;
+		itemData.rawOutput["Item.SpellResist"] = armorRating + bonusSpellResist;
+		itemData.rawOutput["Item.PhysicalResist"] = armorRating;
 	}
 	
 	if (itemData.trait == 18) // Divines
 	{
 		inputValues.Divines += traitValue/100;
-		itemData.rawOutput["Divines"] = inputValues.Divines;
+		itemData.rawOutput["Divines"] = traitValue/100;
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
@@ -169,12 +169,12 @@ function GetEsoInputItemValues(inputValues, itemData)
 	else if (itemData.trait == 12) //Impenetrable
 	{
 		inputValues.Item.CritResist += traitValue;
-		itemData.rawOutput["Item.CritResist"] = inputValues.Item.CritResist;
+		itemData.rawOutput["Item.CritResist"] = traitValue
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
 		inputValues.Sturdy += traitValue/100;
-		itemData.rawOutput["Item.Sturdy"] = inputValues.Sturdy;
+		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
 	}
 	else if (itemData.trait == 15) //Training
 	{
@@ -184,24 +184,24 @@ function GetEsoInputItemValues(inputValues, itemData)
 	else if (itemData.trait == 21) //Healthy
 	{
 		inputValues.Item.Health += traitValue;
-		itemData.rawOutput["Item.Health"] = inputValues.Item.Health;
+		itemData.rawOutput["Item.Health"] = traitValue;
 	}
 	else if (itemData.trait == 22) //Arcane
 	{
 		inputValues.Item.Magicka += traitValue;
-		itemData.rawOutput["Item.Magicka"] = inputValues.Item.Magicka;
+		itemData.rawOutput["Item.Magicka"] = traitValue;
 	}
 	else if (itemData.trait == 23) //Robust
 	{
 		inputValues.Item.Stamina += traitValue;
-		itemData.rawOutput["Item.Stamina"] = inputValues.Item.Stamina;
+		itemData.rawOutput["Item.Stamina"] = traitValue;
 	}	
 	else if (itemData.trait == 14) //Well Fitted
 	{
 		inputValues.Item.SprintCost += traitValue;
 		inputValues.Item.RollDodgeCost += traitValue;
-		itemData.rawOutput["Item.SprintCost"] = inputValues.Item.SprintCost;
-		itemData.rawOutput["Item.RollDodgeCost"] = inputValues.Item.RollDodgeCost;
+		itemData.rawOutput["Item.SprintCost"] = traitValue;
+		itemData.rawOutput["Item.RollDodgeCost"] = traitValue;
 	}
 
 }
@@ -716,6 +716,14 @@ function OnEsoClickItem(e)
 	SelectEsoItem($this);
 }
 
+function OnEsoClickItemIcon(e)
+{
+	var $this = $(this).parent();
+	var id = $this.attr("id");
+	
+	SelectEsoItem($this);
+}
+
 
 function UnequipEsoItemSlot(slotId, update)
 {
@@ -727,9 +735,9 @@ function UnequipEsoItemSlot(slotId, update)
 	
 	iconElement.attr("src", "");
 	labelElement.text("");
-	element.attr("itemid", "");
-	element.attr("level", "");
-	element.attr("quality", "");
+	iconElement.attr("itemid", "");
+	iconElement.attr("level", "");
+	iconElement.attr("quality", "");
 	
 	g_EsoBuildItemData[slotId] = {};
 	
@@ -750,9 +758,9 @@ function OnEsoSelectItem(itemData, element)
 	{
 		iconElement.attr("src", "");
 		labelElement.text("");
-		$(element).attr("itemid", "");
-		$(element).attr("level", "");
-		$(element).attr("quality", "");
+		iconElement.attr("itemid", "");
+		iconElement.attr("level", "");
+		iconElement.attr("quality", "");
 		g_EsoBuildItemData[slotId] = {};
 		
 		UpdateEsoComputedStatsList();
@@ -765,9 +773,9 @@ function OnEsoSelectItem(itemData, element)
 	iconElement.attr("src", iconUrl);
 	labelElement.text(niceName);
 	
-	$(element).attr("itemid", itemData.itemId);
-	$(element).attr("level", itemData.level);
-	$(element).attr("quality", itemData.quality);
+	iconElement.attr("itemid", itemData.itemId);
+	iconElement.attr("level", itemData.level);
+	iconElement.attr("quality", itemData.quality);
 	
 	if (itemData.equipType == 6)
 	{
@@ -983,6 +991,47 @@ function OnEsoItemSearchPopupClose(e)
 }
 
 
+function OnEsoItemDetailsClick(e)
+{
+	var slotId = $(this).parent().attr("slotId");
+	if (slotId == null || slotId == "") return;
+	ShowEsoItemDetailsPopup(slotId);
+}
+
+
+function ShowEsoItemDetailsPopup(slotId)
+{
+	var detailsPopup = $("#esotbItemDetailsPopup");
+	
+	var itemData = g_EsoBuildItemData[slotId];
+	if (itemData == null) return false;
+	if (itemData.rawOutput == null) return false;
+	
+	var detailsHtml = "";
+	
+	for (var key in itemData.rawOutput)
+	{
+		var value = itemData.rawOutput[key];
+		detailsHtml += key + " = " + value + "<br/>";
+	}
+
+	$("#esotbItemDetailsTitle").text("Item Details for " + slotId);
+	$("#esotbItemDetailsText").html(detailsHtml);
+	
+	detailsPopup.show();
+	ShowEsoBuildClickWall(detailsPopup);
+	
+	return true;
+}
+
+
+function CloseEsoItemDetailsPopup()
+{
+	$("#esotbItemDetailsPopup").hide();
+	HideEsoBuildClickWall();
+}
+
+
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
@@ -996,9 +1045,12 @@ function esotbOnDocReady()
 	
 	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
 	
-	$(".esotbItem").click(OnEsoClickItem)
+	//$(".esotbItem").click(OnEsoClickItem)
+	$(".esotbItemIcon").click(OnEsoClickItemIcon)
+	
 	$(".esotbComputeItems").click(OnEsoClickComputeItems);
 
+	$("#esotbItemDetailsCloseButton").click(CloseEsoItemDetailsPopup);
 	$("#esotbFormulaCloseButton").click(CloseEsoFormulaPopup);
 	$("#esotbClickWall").click(OnEsoClickBuildWall);
 	
@@ -1008,6 +1060,7 @@ function esotbOnDocReady()
 	
 	$(document).on("esocpUpdate", OnEsoBuildCpUpdate);
 	
+	$(".esotbItemDetailsButton").click(OnEsoItemDetailsClick);
 }
 
 
