@@ -14,6 +14,7 @@ class CEsoItemSearchPopup
 	public $inputItemType = "";
 	public $inputEquipType = "";
 	public $inputWeaponType = "";
+	public $inputItemTrait = -1;
 	public $inputLimit = 100;
 	
 	public $resultItems = array();
@@ -56,6 +57,7 @@ class CEsoItemSearchPopup
 		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = (int) $this->inputParams['type'];
 		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
 		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
+		if (array_key_exists('trait', $this->inputParams)) $this->inputItemTrait = (int) $this->inputParams['trait'];
 	}
 	
 	
@@ -103,6 +105,11 @@ class CEsoItemSearchPopup
 		if ($this->inputWeaponType != "")
 		{
 			$whereQuery[] = "weaponType=".$this->inputWeaponType;
+		}
+		
+		if ($this->inputItemTrait >= 0)
+		{
+			$whereQuery[] = "trait=".$this->inputItemTrait;
 		}
 		
 		if (count($whereQuery) > 0)

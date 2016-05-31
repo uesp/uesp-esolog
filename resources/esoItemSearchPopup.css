@@ -75,7 +75,7 @@
 }
 
 #esoispLevel {
-	width: 50px;
+	width: 40px;
 	display: inline-block;	
 }
 
@@ -84,14 +84,14 @@
 }
 
 #esoispLevelSlider {
-	width: 250px;
+	width: 240px;
 	display: inline-block;
 	vertical-align: middle;
 }
 
 .esoispInputLabel {
 	text-align: right;
-	width: 50px;
+	width: 90px;
 	height: 24px;
 	display: inline-block;
 	vertical-align: middle;
@@ -103,6 +103,10 @@
 	float: right;
 }
 
-.esoispInputText {
-	width: 150px;
+#esoispInputText {
+	width: 96px;
+}
+
+#esoispInputs select {
+	width: 100px;
 }
