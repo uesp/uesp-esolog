@@ -81,6 +81,7 @@ UESP.EsoItemSearchPopup = function ()
 	this.equipType = null;
 	this.equipTypes = [];
 	this.weaponType = null;
+	this.armorType = "-1";
 	this.itemTrait = "-1";
 };
 
@@ -101,6 +102,7 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	$("#esoispLevel").on("input", function(e) { self.onLevelChange(e); });
 	$("#esoispQuality").change(function(e) { self.onQualityChange(e); });
 	$("#esoispArmorTrait").change(function(e) { self.onArmorTraitChange(e); });
+	$("#esoispArmorType").change(function(e) { self.onArmorTypeChange(e); });
 	$("#esoispJewelryTrait").change(function(e) { self.onJewelryTraitChange(e); });
 	$("#esoispWeaponTrait").change(function(e) { self.onWeaponTraitChange(e); });
 	$("#esoispLevelSlider").on("input", function(e) { self.onLevelSlideChange(e); });
@@ -165,6 +167,12 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='3'>Precise</option>" +
 		"		<option value='7'>Sharpened</option>" +
 		"		<option value='6'>Training</option>" +
+		"	</select>" +
+		"	<div class='esoispInputLabel' id='esoispArmorTypeLabel'>Armor Types</div> <select id='esoispArmorType' type='text' name='ArmorType'>" +
+		"		<option value='-1'>Any</option>" +
+		"		<option value='1'>Light</option>" +
+		"		<option value='2'>Medium</option>" +
+		"		<option value='3'>Heavy</option>" +
 		"	</select><br/>" +
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='66' readonly='readonly'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
@@ -180,6 +188,8 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 {
 	if (this.itemType == 1) // Weapons
 	{
+		$("#esoispArmorType").hide();
+		$("#esoispArmorTypeLabel").hide();
 		$("#esoispJewelryTrait").hide();
 		$("#esoispJewelryTraitLabel").hide();
 		$("#esoispWeaponTrait").show();
@@ -219,7 +229,10 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			$("#esoispWeaponTraitLabel").hide();
 			$("#esoispArmorTrait").show();
 			$("#esoispArmorTraitLabel").show();
+			$("#esoispArmorType").show();
+			$("#esoispArmorTypeLabel").show();
 			$("#esoispArmorTrait").val(this.itemTrait);
+			$("#esoispArmorType").val(this.armorType);
 		}
 	}
 	else
@@ -273,6 +286,7 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	if (this.itemType != null) queryParams['type'] = this.itemType;
 	if (this.equipType != null) queryParams['equiptype'] = this.equipType;
 	if (this.weaponType != null) queryParams['weapontype'] = this.weaponType;
+	if (this.armorType != null) queryParams['armortype'] = this.armorType;
 	if (this.itemTrait >= 0) queryParams['trait'] = this.itemTrait;
 	
 	return queryParams;
@@ -468,6 +482,12 @@ UESP.EsoItemSearchPopup.prototype.onQualityChange = function(e)
 }
 
 
+UESP.EsoItemSearchPopup.prototype.onArmorTypeChange = function(e)
+{
+	this.armorType = $("#esoispArmorType").val();
+}
+
+
 UESP.EsoItemSearchPopup.prototype.onArmorTraitChange = function(e)
 {
 	$("#esoispWeaponTrait").val("0");
@@ -526,6 +546,7 @@ UESP.showEsoItemSearchPopup = function(sourceElement, data)
 	if (clearResults)
 	{
 		UESP.esoItemSearchPopup.itemTrait = -1;
+		UESP.esoItemSearchPopup.armorType = -1;
 		UESP.esoItemSearchPopup.searchResults = [];
 		$("#esoispResults").text("");
 	}

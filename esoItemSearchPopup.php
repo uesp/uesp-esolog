@@ -14,6 +14,7 @@ class CEsoItemSearchPopup
 	public $inputItemType = "";
 	public $inputEquipType = "";
 	public $inputWeaponType = "";
+	public $inputArmorType = -1;
 	public $inputItemTrait = -1;
 	public $inputLimit = 100;
 	
@@ -58,6 +59,7 @@ class CEsoItemSearchPopup
 		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
 		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
 		if (array_key_exists('trait', $this->inputParams)) $this->inputItemTrait = (int) $this->inputParams['trait'];
+		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
 	}
 	
 	
@@ -77,13 +79,7 @@ class CEsoItemSearchPopup
 		$rows = implode(",", $this->itemRows);
 		$query = "SELECT $rows FROM minedItemSummary ";
 		$whereQuery = array();
-		
-		if ($this->inputText != "")
-		{
-			$safeText = $this->db->real_escape_string($this->inputText);
-			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%')";
-		}
-		
+				
 		if ($this->inputItemType != "")
 		{
 			$whereQuery[] = "type=".$this->inputItemType;
@@ -102,16 +98,16 @@ class CEsoItemSearchPopup
 			$whereQuery[] = "(" . implode(" OR ", $tmpQuery) . ")";
 		}
 		
-		if ($this->inputWeaponType != "")
-		{
-			$whereQuery[] = "weaponType=".$this->inputWeaponType;
-		}
+		if ($this->inputWeaponType != "") $whereQuery[] = "weaponType=".$this->inputWeaponType;
+		if ($this->inputItemTrait >= 0)	$whereQuery[] = "trait=".$this->inputItemTrait;
+		if ($this->inputArmorType >= 0)	$whereQuery[] = "armorType=".$this->inputArmorType;
 		
-		if ($this->inputItemTrait >= 0)
+		if ($this->inputText != "")
 		{
-			$whereQuery[] = "trait=".$this->inputItemTrait;
+			$safeText = $this->db->real_escape_string($this->inputText);
+			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%')";
 		}
-		
+				
 		if (count($whereQuery) > 0)
 		{
 			$query .= "WHERE " . implode(" AND ", $whereQuery) . " ";
