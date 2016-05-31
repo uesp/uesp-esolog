@@ -20,6 +20,8 @@ class CEsoTestBuild
 			"Divines",
 			"Defending",
 			"Sturdy",
+			"Prosperous",
+			"Training",
 			"Armor.Light",
 			"Armor.Medium",
 			"Armor.Heavy",
@@ -958,6 +960,10 @@ class CEsoTestBuild
 							"1 - CP.FearDuration",
 					),
 			),
+			
+			//Divines?
+			//Training?
+			//Prosperous?
 
 	); 
 	
