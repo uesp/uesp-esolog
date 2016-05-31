@@ -164,7 +164,8 @@ function GetEsoInputItemValues(inputValues, itemData)
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
-		//TODO
+		inputValues.Prosperous += traitValue/100;
+		itemData.rawOutput["Prosperous"] = traitValue/100;
 	}
 	else if (itemData.trait == 12) //Impenetrable
 	{
@@ -178,8 +179,8 @@ function GetEsoInputItemValues(inputValues, itemData)
 	}
 	else if (itemData.trait == 15) //Training
 	{
-		//TODO
-		//itemData["Item.CritResist"] = 0;
+		inputValues.Training += traitValue/100;
+		itemData.rawOutput["Training"] = traitValue/100;
 	}
 	else if (itemData.trait == 21) //Healthy
 	{
@@ -198,10 +199,10 @@ function GetEsoInputItemValues(inputValues, itemData)
 	}	
 	else if (itemData.trait == 14) //Well Fitted
 	{
-		inputValues.Item.SprintCost += traitValue;
-		inputValues.Item.RollDodgeCost += traitValue;
-		itemData.rawOutput["Item.SprintCost"] = traitValue;
-		itemData.rawOutput["Item.RollDodgeCost"] = traitValue;
+		inputValues.Item.SprintCost += traitValue/100;
+		inputValues.Item.RollDodgeCost += traitValue/100;
+		itemData.rawOutput["Item.SprintCost"] = traitValue/100;
+		itemData.rawOutput["Item.RollDodgeCost"] = traitValue/100;
 	}
 
 }
