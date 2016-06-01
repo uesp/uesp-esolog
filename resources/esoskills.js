@@ -535,7 +535,7 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 	}
 	else if (type == -55)
 	{
-		return '' + a + ' * ARMORTYPES)';
+		return '(' + a + ' * ARMORTYPES)';
 	}
 	else
 	{
