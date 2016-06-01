@@ -62,8 +62,8 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743899415482204160; //v9	 1457359600
 	  const START_MINEITEM_TIMESTAMP = 4743917341752950784;	//v10pts 1461632912
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "10pts";
+	const MINEITEM_TABLESUFFIX = "10";
+	const SKILLS_TABLESUFFIX   = "10";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -4188,7 +4188,11 @@ class EsoLogParser
 		$cpDisc['name'] = $logEntry['name'];
 		$cpDisc['x'] = $logEntry['x'];
 		$cpDisc['y'] = $logEntry['y'];
-		$cpDisc['maxValue'] = 0;		
+		$cpDisc['maxValue'] = 0;
+		$cpDisc['a'] = -1;
+		$cpDisc['b'] = -1;
+		$cpDisc['r2'] = -1;
+		$cpDisc['fitDescription'] = "";
 		
 		if ($logEntry['unlockLevel'] == null)
 		{
