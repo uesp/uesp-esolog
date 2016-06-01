@@ -415,7 +415,10 @@ class EsoLogSubmitter
 			$extraData .= "logTime{" . time() . "}  ";
 			$extraData .= "end{}  ";
 			
-			$logData .= $value . $extraData . "\n";
+			if (substr_compare($value, "#STR#", strlen($str)-5, 5) !== 0)
+			{
+				$logData .= $value . $extraData . "\n";
+			}
 			
 			++$this->parsedRecords;
 		}
