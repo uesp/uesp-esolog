@@ -530,6 +530,7 @@ class EsoLogViewer
 			'categoryIndex' => self::FIELD_INT,
 			'subCategoryIndex' => self::FIELD_INT,
 			'achievementIndex' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
 			'points' => self::FIELD_INT,
 			'icon' => self::FIELD_GAMEICON,
 			'numRewards' => self::FIELD_INT,
@@ -1392,8 +1393,8 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'record' => 'achievements',
-									'field' => 'categoryIndex',
-									'thisField' => 'categoryIndex',
+									'field' => 'categoryName',
+									'thisField' => 'name',
 									'displayName' => 'View Achievements',
 									'type' => 'filter',
 							),
