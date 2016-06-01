@@ -1416,7 +1416,7 @@ function IsEsoVersionAtLeast($version, $checkVersion)
 
 function GetEsoUpdateVersion()
 {
-	return 9;	
+	return 10;	
 }
 
 
