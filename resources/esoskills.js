@@ -114,7 +114,7 @@ function EsoConvertDescToHTML(desc)
 
 function EsoConvertDescToHTMLClass(desc, className)
 {
-	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$\?]*)\|r/g, '<div class="' + className + '">$1</div>');
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '<div class="' + className + '">$1</div>');
 	newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -122,7 +122,7 @@ function EsoConvertDescToHTMLClass(desc, className)
 
 function EsoConvertDescToText(desc)
 {
-	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$\?]*)\|r/g, '$1');
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '$1');
 	//newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -512,6 +512,30 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 	else if (type == -50) // Ultimate Soul Tether
 	{
 		value = a * values.maxStat + b * values.spellDamage + c;
+	}
+	else if (type == -56) // Spell + Weapon Damage
+	{
+		value = a * values.spellDamage + b * values.weaponDamage + c;
+	}
+	else if (type == -51)
+	{
+		return '(' + a + ' * LIGHTARMOR)';
+	}
+	else if (type == -52)
+	{
+		return '(' + a + ' * MEDIUMARMOR)';
+	}
+	else if (type == -53)
+	{
+		return '(' + a + ' * HEAVYARMOR)';
+	}
+	else if (type == -54)
+	{
+		return '(' + a + ' * DAGGER)';
+	}
+	else if (type == -55)
+	{
+		return '' + a + ' * ARMORTYPES)';
 	}
 	else
 	{
