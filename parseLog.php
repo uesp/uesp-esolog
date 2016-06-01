@@ -4145,15 +4145,15 @@ class EsoLogParser
 		$this->log("\tFound CPStart(".$logEntry['note'].")...");
 		$this->logInfos['lastCPUpdate'] = date("Y-M-d H:i:s");
 		
-		$this->lastQuery = "DELETE FROM cpDisciplines;";
+		$this->lastQuery = "DELETE FROM cpDisciplines".self::SKILLS_TABLESUFFIX.";";
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return $this->reportLogParseError("Failed to clear cpDisciplines table!");
 		
-		$this->lastQuery = "DELETE FROM cpSkills;";
+		$this->lastQuery = "DELETE FROM cpSkills".self::SKILLS_TABLESUFFIX.";";
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return $this->reportLogParseError("Failed to clear cpSkills table!");
 		
-		$this->lastQuery = "DELETE FROM cpSkillDescriptions;";
+		$this->lastQuery = "DELETE FROM cpSkillDescriptions".self::SKILLS_TABLESUFFIX.";";
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return $this->reportLogParseError("Failed to clear cpSkillDescriptions table!");
 		
