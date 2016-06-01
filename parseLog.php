@@ -660,6 +660,7 @@ class EsoLogParser
 			'categoryIndex' => self::FIELD_INT,
 			'subCategoryIndex' => self::FIELD_INT,
 			'achievementIndex' => self::FIELD_INT,
+			'categoryName' =>  self::FIELD_STRING,
 			'points' => self::FIELD_INT,
 			'icon' => self::FIELD_STRING,
 			'numRewards' => self::FIELD_INT,
@@ -1873,6 +1874,7 @@ class EsoLogParser
 			categoryIndex INTEGER NOT NULL,
 			subCategoryIndex INTEGER NOT NULL,
 			achievementIndex INTEGER NOT NULL,
+			categoryName TINYTEXT NOT NULL,
 			points INTEGER NOT NULL,
 			icon TINYTEXT NOT NULL,
 			numRewards TINYINT NOT NULL,
@@ -1890,6 +1892,7 @@ class EsoLogParser
 			dyeRarity TINYINT NOT NULL,
 			dyeHue TINYINT NOT NULL,
 			dyeColor TINYTEXT NOT NULL,
+			INDEX index_categoryName(32),
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(title)
@@ -4387,6 +4390,11 @@ class EsoLogParser
 		$achievement['itemIcon'] = $logEntry['itemIcon'];
 		$achievement['itemQuality'] = $logEntry['itemQuality'];
 		$achievement['title'] = $logEntry['title'];
+		
+		if ($logEntry['subCategoryName'] == null || $logEntry['subCategoryName'] == "")
+			$achievement['categoryName'] = $logEntry['categoryName'];
+		else
+			$achievement['categoryName'] = $logEntry['categoryName'] . "::" . $logEntry['subCategoryName'];
 		
 		if ($logEntry['hasDyeReward'])
 		{
