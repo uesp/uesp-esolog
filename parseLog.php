@@ -125,6 +125,7 @@ class EsoLogParser
 			"minedSkills9",
 			"minedSkills9pts",
 			"minedSkills10pts",
+			"minedSkills10",
 			"collectibles",
 			"achievements",
 	);
@@ -1893,7 +1894,7 @@ class EsoLogParser
 			dyeRarity TINYINT NOT NULL,
 			dyeHue TINYINT NOT NULL,
 			dyeColor TINYTEXT NOT NULL,
-			INDEX index_categoryName(32),
+			INDEX index_categoryName(categoryName(32)),
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(title)
@@ -3859,7 +3860,7 @@ class EsoLogParser
 			$this->currentUser['lastSkillDumpNote'] = '';
 		
 		$this->currentUser['lastSkillLineName'] = null;
-		$this->log("\tFound $event(".$this->currentUser['lastSkillDumpNote'].")...");
+		$this->log("\tFound SkillDumpStart(".$this->currentUser['lastSkillDumpNote'].")...");
 		
 		$this->logInfos['lastSkillUpdate'] = date("Y-M-d H:i:s");
 		return true;
@@ -3917,6 +3918,7 @@ class EsoLogParser
 					"Thieves Guild" => 5,
 					"Emperor" => 6,
 					"Provisioning" => 8,
+					"Dark Brotherhood" => 4,
 				);
 			
 			$skill['isPlayer'] = 1;
@@ -4140,7 +4142,7 @@ class EsoLogParser
 		else
 			$this->logInfos['lastCPNote'] = '';
 
-		$this->log("\tFound $event(".$logEntry['note'].")...");
+		$this->log("\tFound CPStart(".$logEntry['note'].")...");
 		$this->logInfos['lastCPUpdate'] = date("Y-M-d H:i:s");
 		
 		$this->lastQuery = "DELETE FROM cpDisciplines;";
