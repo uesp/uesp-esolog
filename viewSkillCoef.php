@@ -212,6 +212,27 @@ class CEsoViewSkillCoef
 	}
 	
 	
+	public function GetStatNames($powerType)
+	{
+		static $STATNAMES = array(
+				UESP_POWERTYPE_SOULTETHER => array("Stat", "Power"),
+				UESP_POWERTYPE_LIGHTARMOR => array("LightArmor", ""),
+				UESP_POWERTYPE_MEDIUMARMOR => array("MediumArmor", ""),
+				UESP_POWERTYPE_HEAVYARMOR => array("HeavyArmor", ""),
+				UESP_POWERTYPE_WEAPONDAGGER => array("Daggers", ""),
+				UESP_POWERTYPE_ARMORTYPE => array("ArmorTypes", ""),
+				UESP_POWERTYPE_DAMAGE => array("SD", "WD"),
+				-2 => array("Health", ""),
+				0 => array("Magicka", "SD"),
+				6 => array("Stamina", "WD"),
+				10 => array("Stat", "Power"),
+		);
+		
+		if ($STATNAMES[$powerType] == null) return array("Stat", "Power");
+		return $STATNAMES[$powerType];
+	}
+	
+	
 	public function MakeEquationDataHtml($skill)
 	{
 		$output = "";
@@ -229,6 +250,10 @@ class CEsoViewSkillCoef
 			$typeName = GetEsoCustomMechanicTypeText($type);
 			$ratio = sprintf("%0.2f", $b / $a);
 			
+			$statNames = $this->GetStatNames($type);
+			$name1 = $statNames[0];
+			$name2 = $statNames[1];
+			
 			if (!$this->ShouldOutputCoef($a, $b, $c, $R)) continue;
 			
 			$bop = "+";
@@ -240,13 +265,13 @@ class CEsoViewSkillCoef
 			if ($R < 0) continue;
 			
 			if ($b == 0 && $c == 0)
-				$output .= "\$$i = {$a} Stat";
+				$output .= "\$$i = {$a} $name1";
 			else if ($c == 0)
-				$output .= "\$$i = {$a} Stat $bop $b";
+				$output .= "\$$i = {$a} $name1 $bop $b";
 			else if ($b == 0)
-				$output .= "\$$i = {$a} Stat $cop $c";
+				$output .= "\$$i = {$a} $name1 $cop $c";
 			else
-				$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c";
+				$output .= "\$$i = {$a} $name1 $bop {$b} $name2 $cop $c";
 			
 			$output .= " ($typeName, R2 = $R";
 			//if ($avg != -1) $output .= ", average = $avg";
