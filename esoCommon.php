@@ -10,7 +10,7 @@ const UESP_POWERTYPE_ARMORTYPE     = -55;
 const UESP_POWERTYPE_DAMAGE        = -56;
 
 	// TODO: Change to true when DB is released
-const UESP_SHOWCPLEVEL = false;
+const UESP_SHOWCPLEVEL = true;
 
 
 $ESO_ITEMTRAIT_FULLTEXTS = array(
