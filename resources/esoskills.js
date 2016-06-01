@@ -809,6 +809,11 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 		output += srcString + " = " + a + " ArmorTypes " + cOp + " " + c;
 		typeString = "Armor Type #";
 	}
+	else if (type == -56) // Spell + Weapon Damage
+	{
+		output += srcString + " = " + a + " SpellDamage " + bOp + " " + b + " WeaponDamage " + cOp + " " + c;
+		typeString = "Spell + Weapon Damage";
+	}
 	else
 	{
 		output += srcString + " = ?";
