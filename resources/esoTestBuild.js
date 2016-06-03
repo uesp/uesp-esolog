@@ -132,7 +132,7 @@ function GetEsoInputItemValues(inputValues, itemData)
 	if (itemData.armorRating > 0)
 	{
 		var factor = 1;
-		var bonusSpellResist = 0;
+		var bonusResist = 0;
 		
 				// Shield expert
 		if (itemData.weaponType == 14 && g_EsoCpData['Shield Expert'].isUnlocked)
@@ -146,15 +146,15 @@ function GetEsoInputItemValues(inputValues, itemData)
 		}
 		else if (itemData.trait == 25) // Armor Nirnhoned
 		{
-			bonusSpellResist = Math.floor(itemData.armorRating*traitValue/100*factor);
+			bonusResist = Math.floor(itemData.armorRating*traitValue/100*factor);
 		}
 		
 		var armorRating = Math.floor(itemData.armorRating * factor);
 		
-		inputValues.Item.SpellResist += armorRating + bonusSpellResist;
-		inputValues.Item.PhysicalResist += armorRating;
-		itemData.rawOutput["Item.SpellResist"] = armorRating + bonusSpellResist;
-		itemData.rawOutput["Item.PhysicalResist"] = armorRating;
+		inputValues.Item.SpellResist += armorRating + bonusResist;
+		inputValues.Item.PhysicalResist += armorRating + bonusResist;
+		itemData.rawOutput["Item.SpellResist"] = armorRating + bonusResist;
+		itemData.rawOutput["Item.PhysicalResist"] = armorRating + bonusResist;
 	}
 	
 	if (itemData.trait == 18) // Divines
