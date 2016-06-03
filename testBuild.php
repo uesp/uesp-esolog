@@ -744,7 +744,7 @@ class CEsoTestBuild
 					"round" => "floor",
 					"compute" => array(
 							"180 + 30*EffectiveLevel",
-							"1 - Sturdy/1.16",
+							"1 - Sturdy",
 							"*",
 							"1 - CP.BlockCost",
 							"*",
