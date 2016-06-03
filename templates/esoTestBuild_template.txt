@@ -198,6 +198,7 @@ displayed statistics is unknown.
 	<div id="esotbFormulaTitle"></div>
 	<div id="esotbFormulaName"></div>
 	<div id="esotbFormula"></div>
+	<div id="esotbFormulaInputs"></div>
 	<div id="esotbFormulaNote">Note that formulas are estimates and may not be completely accurate for all inputs.</div>
 </div>
 
