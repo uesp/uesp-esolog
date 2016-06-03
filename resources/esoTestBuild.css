@@ -290,7 +290,8 @@ a:hover {
 #esotbFormulaNote {
 	margin-top: 10px;
 	color: #777;
-	font-style: italic; 
+	font-style: italic;
+	text-align: left;
 }
 
 #esotbRace, #esotbClass, #esotbMundus {
@@ -482,4 +483,28 @@ a:hover {
 .esotbItemDetailsButton:hover {
 	cursor: pointer;
 	background-color: #777;	
+}
+
+#esotbFormulaInputs {
+	margin-top: 10px;
+	text-align: left;
+	margin-left: 25px;
+}
+
+.esotbFormInputName, 
+.esotbFormInputResult {
+	display: inline-block;
+	width: 200px;
+	text-align: right;
+	margin-right: 10px;
+	font-family: monospace;
+}
+
+.esotbFormInputResult {
+	font-weight: bold;
+}
+
+.esotbFormInputInputResult {
+	font-weight: bold;
+	background-color: #ccc;
 }

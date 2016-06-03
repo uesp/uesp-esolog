@@ -1,3 +1,8 @@
+/*
+ * TODO:
+ * 		- Description of input types (plain, percent, special, etc...)
+ */
+
 ESO_MAX_ATTRIBUTES = 64;
 ESO_MAX_LEVEL = 50;
 ESO_MAX_CPLEVEL = 16;
@@ -29,6 +34,7 @@ g_EsoBuildItemData.Potion = {}
 g_EsoBuildSetData = {};
 
 g_EsoBuildActiveWeapon = 1;
+g_EsoFormulaInputValues = {};
 
 
 function GetEsoInputValues()
@@ -443,13 +449,14 @@ function UpdateEsoReadOnlyStats(inputValues)
 }
 
 
-function UpdateEsoComputedStat(statId, stat, inputValues)
+function UpdateEsoComputedStat(statId, stat, inputValues, saveResult)
 {
 	var stack = [];
 	var error = "";
 	var computeIndex = 0;
 	var round = stat.round;
 	
+	if (saveResult == null) saveResult = true;
 	if (inputValues == null) inputValues = GetEsoInputValues();
 	
 	var element = $("#esoidStat_" + statId);
@@ -514,31 +521,42 @@ function UpdateEsoComputedStat(statId, stat, inputValues)
 			itemValue = Number(itemValue).toFixed(3);
 		}
 		
-		$(computeElements[computeIndex]).text(prefix + itemValue);
+		if (saveResult === true)
+		{
+			$(computeElements[computeIndex]).text(prefix + itemValue);
+		}
+		
 		++computeIndex;
 	}
 	
 	if (stack.length <= 0) error = "ERR";
 	
-	if (error == "")
+	if (error === "")
 	{
 		var result = stack.pop();
 		var display = stat.display;
+		var displayResult = result;
 		
-		inputValues[statId] = result;
+		if (display == "percent") displayResult = Math.round(result*1000)/10 + "%";
 		
-		if (display == "percent")
+		if (saveResult === true)
 		{
-			result = Math.round(result*1000)/10 + "%";
+			inputValues[statId] = result;
+			stat.value = result;
+			valueElement.text(displayResult);
 		}
 		
-		valueElement.text(result);
+		return result;
 	}
-	else
+	
+	if (saveResult === true)
 	{
 		inputValues[statId] = error;
+		stat.value = error;
 		valueElement.text(error);
 	}
+	
+	return error;
 }
 
 
@@ -940,11 +958,28 @@ function ConvertEsoFormulaToPrefix(computeItems)
 }
 
 
+function OnEsoFormulaInputChange(e)
+{
+	var statId = $(this).attr("statid");
+	if (statId == null || statId == "") return;
+	
+	SetEsoInputValue(statId, $(this).val(), g_EsoFormulaInputValues);
+	
+	var computeStatId = $("#esotbFormulaPopup").attr("statid");
+	if (computeStatId == null || computeStatId == "") return;
+	
+	var stat = g_EsoComputedStats[computeStatId];
+	if (stat == null) return;
+	
+	var newValue = UpdateEsoComputedStat(computeStatId, stat, g_EsoFormulaInputValues, false);
+	$("#esotbFormInputInputResult").val(newValue);
+}
+
+
 function ShowEsoFormulaPopup(statId)
 {
 	var formulaPopup = $("#esotbFormulaPopup");
 	var stat = g_EsoComputedStats[statId];
-	
 	if (stat == null) return false;
 
 	var equation = ConvertEsoFormulaToPrefix(stat.compute);
@@ -952,11 +987,107 @@ function ShowEsoFormulaPopup(statId)
 	$("#esotbFormulaTitle").text("Complete Formula for " + stat.title);
 	$("#esotbFormulaName").text(statId + " = ");
 	$("#esotbFormula").text(equation);
+	formulaPopup.attr("statid", statId);
+	$("#esotbFormulaInputs").html(MakeEsoFormulaInputs(statId));
+	
+	$(".esotbFormInputInput").on("input", OnEsoFormulaInputChange);
 	
 	formulaPopup.show();
 	ShowEsoBuildClickWall(formulaPopup);
 	
 	return true;
+}
+
+
+function MakeEsoFormulaInputs(statId)
+{
+	var output = "";
+	var stat = g_EsoComputedStats[statId];
+	if (stat == null) return "";
+	
+	var FUNCTIONS = { "floor" : 1, "round" : 1, "ceil" : 1, "pow" : 1 };
+	
+	var inputValues = GetEsoInputValues();
+	var inputNames = {};
+	
+	g_EsoFormulaInputValues = inputValues;
+	
+	for (var i = 0; i < stat.compute.length; ++i)
+	{
+		var computeItem = stat.compute[i];
+		var variables = computeItem.match(/[a-zA-Z]+[a-zA-Z_0-9\.]*/g);
+		if (variables == null) continue;
+		
+		for (var j = 0; j < variables.length; ++j)
+		{
+			var name = variables[j];
+			
+			if (FUNCTIONS[name] != null) continue;
+			
+			if (inputNames[name] == null) inputNames[name] = 0;
+			++inputNames[name];
+		}
+	}
+	
+	for (var name in inputNames)
+	{	
+		var value = GetEsoInputValue(name, inputValues);
+		
+		output += "<div class='esotbFormulaInput'>";
+		output += "<div class='esotbFormInputName'>" + name + "</div>";
+		output += "<input type='text' class='esotbFormInputInput' statid='" + name + "' value='" + value + "' size='5'>";
+		output += "</div>";
+	}
+	
+	output += "<div class='esotbFormulaInput'>";
+	output += "<div class='esotbFormInputResult'>" + stat.title + "</div>";
+	output += "<input type='text' class='esotbFormInputInputResult' id='esotbFormInputInputResult' statid='" + stat.title + "' value='" + stat.value + "' size='5' readonly='readonly'>";
+	output += "</div>";
+	
+	return output;
+}
+
+
+function SetEsoInputValue(name, value, inputValues)
+{
+	var ids = name.split(".");
+	var data = inputValues;
+	var newData = {};
+	var lastId = "";
+	
+	for (var i = 0; i < ids.length; ++i)
+	{
+		lastId = ids[i];
+		newData = data[ids[i]];
+		if (newData == null) return false;
+		
+		if (typeof(newData) != "object") break;
+		data = newData;
+	}
+	
+	if (typeof(newData) == "object") return false;
+	data[lastId] = parseFloat(value);	
+	return true;
+}
+
+
+function GetEsoInputValue(name, inputValues)
+{
+	var ids = name.split(".");
+	var data = inputValues;
+	var newData = {};
+	
+	for (var i = 0; i < ids.length; ++i)
+	{
+		newData = data[ids[i]];
+		if (newData == null) return 0;
+		
+		if (typeof(newData) != "object") break;
+		data = newData;
+	}
+	
+	if (typeof(newData) == "object") return 0;
+	return newData;
 }
 
 
