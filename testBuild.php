@@ -757,6 +757,15 @@ class CEsoTestBuild
 					),
 			),
 			
+			"BlockMitigation" => array(
+					"title" => "Block Mitigation",
+					"compute" => array(
+							"0.5",
+							"1 - Skill.BlockMitigation",
+							"*",
+					),
+			),
+			
 			"RollDodgeCost" => array(
 					"title" => "Roll Dodge Cost",
 					"round" => "floor",
@@ -789,15 +798,6 @@ class CEsoTestBuild
 					),
 			),
 				
-			"BlockMitigation" => array(
-					"title" => "Block Mitigation",
-					"compute" => array(
-							"0.5",
-							"1 - Skill.BlockMitigation",
-							"*",
-					),
-			),
-			
 			"HARestore" => array(
 					"title" => "Heavy Attack Restore",
 					"round" => "floor",
@@ -808,6 +808,8 @@ class CEsoTestBuild
 							"1 + CP.HARestore",
 							"*",
 							"1 + Skill.HARestore",
+							"*",
+							"1 + Set.HARestore",	// TODO: Check?
 							"*",
 					),
 			),
