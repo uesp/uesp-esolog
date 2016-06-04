@@ -1098,8 +1098,6 @@ function SetEsoInputValue(name, value, inputValues)
 
 function GetEsoInputValue(name, inputValues)
 {
-	console.log("GetEsoInputValue", name, inputValues);
-	
 	var ids = name.split(".");
 	var data = inputValues;
 	var newData = {};
