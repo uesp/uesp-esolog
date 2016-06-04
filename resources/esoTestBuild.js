@@ -963,7 +963,12 @@ function OnEsoFormulaInputChange(e)
 	var statId = $(this).attr("statid");
 	if (statId == null || statId == "") return;
 	
-	SetEsoInputValue(statId, $(this).val(), g_EsoFormulaInputValues);
+	var display = $(this).attr("display") || "";
+	var value = $(this).val();
+	if (value === "") value = 0;
+	if (display == "%") value = parseFloat(value)/100.0;
+	
+	SetEsoInputValue(statId, value, g_EsoFormulaInputValues);
 	
 	var computeStatId = $("#esotbFormulaPopup").attr("statid");
 	if (computeStatId == null || computeStatId == "") return;
@@ -1032,10 +1037,21 @@ function MakeEsoFormulaInputs(statId)
 	for (var name in inputNames)
 	{	
 		var value = GetEsoInputValue(name, inputValues);
+		var statDetails = g_EsoInputStatDetails[name] || {};
+		var extraAttr = "";
+		var suffixText = "";
 		
+		if (statDetails.display == '%')
+		{
+			extraAttr = "display='%' ";	
+			suffixText = '%';
+			value = value * 100;
+		}
+			
 		output += "<div class='esotbFormulaInput'>";
 		output += "<div class='esotbFormInputName'>" + name + "</div>";
-		output += "<input type='text' class='esotbFormInputInput' statid='" + name + "' value='" + value + "' size='5'>";
+		output += "<input type='text' class='esotbFormInputInput' statid='" + name + "' value='" + value + "' size='5' " + extraAttr + "> ";
+		output += suffixText;
 		output += "</div>";
 	}
 	

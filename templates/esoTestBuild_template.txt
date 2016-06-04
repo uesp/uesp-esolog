@@ -183,7 +183,8 @@ displayed statistics is unknown.
 
 <script type="text/javascript">
 	g_EsoComputedStats = {esoComputedStatsJson};
-	g_EsoInputStats = {esoInputStatsJson}; 
+	g_EsoInputStats = {esoInputStatsJson};
+	g_EsoInputStatDetails = {esoInputStatDetailsJson}; 
 </script>
     
 <div class="esotbBlockClear"></div>

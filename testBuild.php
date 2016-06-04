@@ -156,6 +156,29 @@ class CEsoTestBuild
 	public $INPUT_STATS_LIST = array();
 	
 	
+	public $INPUT_STAT_DETAILS = array(
+			"Item.Divines" => array(
+				"display" => "%",	
+			),
+			
+			"Item.Training" => array(
+					"display" => "%",
+			),
+			
+			"Item.Prosperous" => array(
+					"display" => "%",
+			),
+			
+			"Item.Defending" => array(
+					"display" => "%",
+			),
+			
+			"Item.Sturdy" => array(
+					"display" => "%",
+			),
+			
+	);
+	
 	public $COMPUTED_STATS_LIST = array(
 			
 			"Health" => array(
@@ -1103,8 +1126,12 @@ class CEsoTestBuild
 				$this->INPUT_STATS_LIST[$statBase][$stat] = 0;
 			}
 		}
-		
-		
+	}
+	
+	
+	public function GetInputStatDetailsJson()
+	{
+		return json_encode($this->INPUT_STAT_DETAILS);
 	}
 	
 	
@@ -1174,6 +1201,7 @@ class CEsoTestBuild
 				'{version}' => $this->version,
 				'{esoComputedStatsJson}' => $this->GetComputedStatsJson(),
 				'{esoInputStatsJson}' => $this->GetInputStatsJson(),
+				'{esoInputStatDetailsJson}' => $this->GetInputStatDetailsJson(),
 				'{raceList}' => $this->GetRaceListHtml(),
 				'{classList}' => $this->GetClassListHtml(),
 				'{mundusList}' => $this->GetMundusListHtml(),
