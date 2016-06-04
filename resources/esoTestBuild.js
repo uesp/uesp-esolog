@@ -115,7 +115,7 @@ function GetEsoInputItemValues(inputValues, itemData)
 	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
 	itemData.rawOutput = {};
 	
-	var traitMatch = itemData.traitDesc.match(/[0-9]+/);
+	var traitMatch = itemData.traitDesc.match(/[0-9]+.?[0-9]*/);
 	var traitValue = 0;
 	if (traitMatch != null && traitMatch[0] != null) traitValue = parseFloat(traitMatch[0]);
 	
@@ -1045,7 +1045,7 @@ function MakeEsoFormulaInputs(statId)
 		{
 			extraAttr = "display='%' ";	
 			suffixText = '%';
-			value = value * 100;
+			value = Math.round(value*1000)/10;
 		}
 			
 		output += "<div class='esotbFormulaInput'>";
