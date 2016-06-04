@@ -13,7 +13,7 @@ class CEsoViewSkills
 	const ESOVS_HTML_TEMPLATE = "templates/esoskills_template.txt";
 	const ESOVS_HTML_TEMPLATE_EMBED = "templates/esoskills_embed_template.txt";
 	
-	const ESOVS_ICON_URL = "http://esoicons.uesp.net/";
+	const ESOVS_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
 
 	public $version = "";
 	public $showAll = false;
