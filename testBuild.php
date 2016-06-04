@@ -394,6 +394,8 @@ class CEsoTestBuild
 							"+",
 							"0.5",
 							"+",
+							"Skill2.CritDamage",
+							"*",
 					),
 			),
 			
@@ -412,6 +414,8 @@ class CEsoTestBuild
 							"+",
 							"0.5",
 							"+",
+							"Skill2.CritDamage",
+							"*",
 					),
 			),
 			
