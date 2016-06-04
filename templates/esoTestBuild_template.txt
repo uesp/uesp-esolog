@@ -74,6 +74,7 @@ displayed statistics is unknown.
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div><br/>
 				<div class="esotbItemSlotLabel">Shoulders</div>
 				<div class="esotbItem " id="esotbItemShoulders" slotid="Shoulders" equiptype="4" itemtype="2">

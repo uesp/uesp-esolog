@@ -137,11 +137,27 @@ class CEsoItemSearchPopup
 		{
 			$row = $result->fetch_assoc();
 			$row['type'] = -1;
-			$row['name'] = "zzzzzzzzz";
+			$row['name'] = "zzzzzzzzz_RowCount";
 			$this->resultItems[] = $row; 
 		}
 		
+		$this->TransformItems();
 		return true;
+	}
+	
+	
+	public function TransformItems()
+	{
+		foreach ($this->resultItems as $key => &$item)
+		{
+			$itemType = $item['type'];
+			
+			if ($itemType == 21 || $itemType == 20 || $itemType == 26)
+			{
+				$item['name'] = preg_replace("/^trifling /i", "", $item['name']);
+			}
+			
+		}
 	}
 	
 	
