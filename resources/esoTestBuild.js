@@ -35,12 +35,15 @@ g_EsoBuildSetData = {};
 
 g_EsoBuildActiveWeapon = 1;
 g_EsoFormulaInputValues = {};
+g_EsoInputStatSources = {};
 
 
 function GetEsoInputValues(mergeComputedStats)
 {
 	var inputValues = {};
 	if (mergeComputedStats == null) mergeComputedStats = false;
+	
+	g_EsoInputStatSources = {}
 	
 	for (var key in g_EsoInputStats)
 	{
@@ -58,7 +61,7 @@ function GetEsoInputValues(mergeComputedStats)
 		else
 		{
 			inputValues[key] = 0;	
-		}		
+		}
 	}
 	
 	inputValues.pow = Math.pow;
@@ -132,16 +135,19 @@ function GetEsoInputItemValues(inputValues, itemData)
 	{
 		++inputValues.Armor.Light;
 		itemData.rawOutput["Armor.Light"] = 1;
+		AddEsoInputStatSource("Armor.Light", { item: itemData, value: 1});
 	}
 	else if (itemData.armorType == 2)
 	{
 		++inputValues.Armor.Medium;
 		itemData.rawOutput["Armor.Medium"] = 1;
+		AddEsoInputStatSource("Armor.Medium", { item: itemData, value: 1});
 	}
 	else if (itemData.armorType == 3)
 	{
 		++inputValues.Armor.Heavy;
 		itemData.rawOutput["Armor.Heavy"] = 1;
+		AddEsoInputStatSource("Armor.Heavy", { item: itemData, value: 1});
 	}
 	
 	if (itemData.armorRating > 0)
@@ -164,53 +170,64 @@ function GetEsoInputItemValues(inputValues, itemData)
 			bonusResist = Math.floor(itemData.armorRating*traitValue/100*factor);
 		}
 		
-		var armorRating = Math.floor(itemData.armorRating * factor);
+		var armorRating = Math.floor(itemData.armorRating * factor) + bonusResist;
 		
-		inputValues.Item.SpellResist += armorRating + bonusResist;
-		inputValues.Item.PhysicalResist += armorRating + bonusResist;
-		itemData.rawOutput["Item.SpellResist"] = armorRating + bonusResist;
-		itemData.rawOutput["Item.PhysicalResist"] = armorRating + bonusResist;
+		inputValues.Item.SpellResist += armorRating;
+		inputValues.Item.PhysicalResist += armorRating;
+		itemData.rawOutput["Item.SpellResist"] = armorRating;
+		itemData.rawOutput["Item.PhysicalResist"] = armorRating;
+		
+		AddEsoInputStatSource("Item.SpellResist", { item: itemData, value: armorRating});
+		AddEsoInputStatSource("Item.PhysicalResist", { item: itemData, value: armorRating });
 	}
 	
 	if (itemData.trait == 18) // Divines
 	{
 		inputValues.Item.Divines += traitValue/100;
-		itemData.rawOutput["Divines"] = traitValue/100;
+		itemData.rawOutput["Item.Divines"] = traitValue/100;
+		AddEsoInputStatSource("Item.Divines", { item: itemData, value: traitValue/100 });
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
 		inputValues.Item.Prosperous += traitValue/100;
-		itemData.rawOutput["Prosperous"] = traitValue/100;
+		itemData.rawOutput["Item.Prosperous"] = traitValue/100;
+		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue/100 });
 	}
 	else if (itemData.trait == 12) //Impenetrable
 	{
 		inputValues.Item.CritResist += traitValue;
-		itemData.rawOutput["Item.CritResist"] = traitValue
+		itemData.rawOutput["Item.CritResist"] = traitValue;
+		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue });
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
 		inputValues.Item.Sturdy += traitValue/100;
 		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
+		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue });
 	}
 	else if (itemData.trait == 15) //Training
 	{
 		inputValues.Item.Training += traitValue/100;
-		itemData.rawOutput["Training"] = traitValue/100;
+		itemData.rawOutput["Item.Training"] = traitValue/100;
+		AddEsoInputStatSource("Item.Training", { item: itemData, value: traitValue });
 	}
 	else if (itemData.trait == 21) //Healthy
 	{
 		inputValues.Item.Health += traitValue;
 		itemData.rawOutput["Item.Health"] = traitValue;
+		AddEsoInputStatSource("Item.Health", { item: itemData, value: traitValue });
 	}
 	else if (itemData.trait == 22) //Arcane
 	{
 		inputValues.Item.Magicka += traitValue;
 		itemData.rawOutput["Item.Magicka"] = traitValue;
+		AddEsoInputStatSource("Item.Magicka", { item: itemData, value: traitValue });
 	}
 	else if (itemData.trait == 23) //Robust
 	{
 		inputValues.Item.Stamina += traitValue;
 		itemData.rawOutput["Item.Stamina"] = traitValue;
+		AddEsoInputStatSource("Item.Stamina", { item: itemData, value: traitValue });
 	}	
 	else if (itemData.trait == 14) //Well Fitted
 	{
@@ -218,6 +235,8 @@ function GetEsoInputItemValues(inputValues, itemData)
 		inputValues.Item.RollDodgeCost += traitValue/100;
 		itemData.rawOutput["Item.SprintCost"] = traitValue/100;
 		itemData.rawOutput["Item.RollDodgeCost"] = traitValue/100;
+		AddEsoInputStatSource("Item.SprintCost", { item: itemData, value: traitValue/100 });
+		AddEsoInputStatSource("Item.RollDodgeCost", { item: itemData, value: traitValue/100 });
 	}
 
 }
@@ -237,9 +256,18 @@ function UpdateEsoItemSetData()
 		
 		if (setName == null || setName == "") continue;
 		
-		if (g_EsoBuildSetData[setName] == null) g_EsoBuildSetData[setName] = 0;
-		++g_EsoBuildSetData[setName];
+		if (g_EsoBuildSetData[setName] == null) 
+		{
+			g_EsoBuildSetData[setName] = {
+					count: 0,
+					items: [],
+			};
+		}
+		
+		++g_EsoBuildSetData[setName].count;
+		g_EsoBuildSetData[setName].items.push(data);
 		data.rawOutput["Set." + setName] = 1;
+		AddEsoInputStatSource("Set." + setName, { set: setName, item: data });
 	}
 	
 }
@@ -394,6 +422,8 @@ function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 	var cpDesc = $("#descskill_" + abilityId);
 	if (cpDesc.length == 0) return false;
 	
+	var cpName = cpDesc.prev().text();
+	
 	var text = cpDesc.text();
 	var results = text.match(/by ([0-9]+\.?[0-9]*\%?)/);
 	if (results.length == 0) return false;
@@ -413,14 +443,23 @@ function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 		for (var i = 0; i < statIds.length; ++i)
 		{
 			inputValues.CP[statIds[i]] += value;
+			AddEsoInputStatSource("CP." + statIds[i], { source: "CP." + cpName, abilityId: abilityId, value: value });
 		}
 	}
 	else
 	{
 		inputValues.CP[statIds] += value;
+		AddEsoInputStatSource("CP." + statIds, { source: "CP." + cpName, abilityId: abilityId, value: value });
 	}
 	
 	return true;
+}
+
+
+function AddEsoInputStatSource(statId, data)
+{
+	if (g_EsoInputStatSources[statId] == null) g_EsoInputStatSources[statId] = [];
+	g_EsoInputStatSources[statId].push(data);
 }
 
 
