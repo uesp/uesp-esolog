@@ -37,9 +37,10 @@ g_EsoBuildActiveWeapon = 1;
 g_EsoFormulaInputValues = {};
 
 
-function GetEsoInputValues()
+function GetEsoInputValues(mergeComputedStats)
 {
 	var inputValues = {};
+	if (mergeComputedStats == null) mergeComputedStats = false;
 	
 	for (var key in g_EsoInputStats)
 	{
@@ -105,6 +106,14 @@ function GetEsoInputValues()
 	GetEsoInputMundusValues(inputValues);
 	GetEsoInputCPValues(inputValues);
 	GetEsoInputTargetValues(inputValues);
+	
+	if (mergeComputedStats === true) 
+	{
+		for (var name in g_EsoComputedStats)
+		{
+			inputValues[name] = g_EsoComputedStats[name].value;
+		}
+	}
 	
 	return inputValues;
 }
@@ -1012,7 +1021,7 @@ function MakeEsoFormulaInputs(statId)
 	
 	var FUNCTIONS = { "floor" : 1, "round" : 1, "ceil" : 1, "pow" : 1 };
 	
-	var inputValues = GetEsoInputValues();
+	var inputValues = GetEsoInputValues(true);
 	var inputNames = {};
 	
 	g_EsoFormulaInputValues = inputValues;
@@ -1089,6 +1098,8 @@ function SetEsoInputValue(name, value, inputValues)
 
 function GetEsoInputValue(name, inputValues)
 {
+	console.log("GetEsoInputValue", name, inputValues);
+	
 	var ids = name.split(".");
 	var data = inputValues;
 	var newData = {};
@@ -1096,14 +1107,14 @@ function GetEsoInputValue(name, inputValues)
 	for (var i = 0; i < ids.length; ++i)
 	{
 		newData = data[ids[i]];
-		if (newData == null) return 0;
+		if (newData == null) break;
 		
 		if (typeof(newData) != "object") break;
 		data = newData;
 	}
 	
-	if (typeof(newData) == "object") return 0;
-	return newData;
+	if (typeof(newData) != "object") return newData;
+	return 0;
 }
 
 
