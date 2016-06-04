@@ -158,7 +158,7 @@ class CEsoTestBuild
 	
 	public $INPUT_STAT_DETAILS = array(
 			"Item.Divines" => array(
-				"display" => "%",	
+					"display" => "%",	
 			),
 			
 			"Item.Training" => array(
@@ -174,6 +174,143 @@ class CEsoTestBuild
 			),
 			
 			"Item.Sturdy" => array(
+					"display" => "%",
+			),
+			
+			"Skill.Health" => array(
+					"display" => "%",
+			),
+			
+			"Buff.Health" => array(
+					"display" => "%",
+			),
+			
+			"Skill.Magicka" => array(
+					"display" => "%",
+			),
+				
+			"Buff.Magicka" => array(
+					"display" => "%",
+			),
+			
+			"Skill.Stamina" => array(
+					"display" => "%",
+			),
+				
+			"Buff.Stamina" => array(
+					"display" => "%",
+			),
+			
+			"Skill.HealthRegen" => array(
+					"display" => "%",
+			),
+			
+			"Skill2.HealthRegen" => array(
+					"display" => "%",
+			),
+				
+			"Buff.HealthRegen" => array(
+					"display" => "%",
+			),
+			
+			"Skill.MagickaRegen" => array(
+					"display" => "%",
+			),
+			
+			"Buff.MagickaRegen" => array(
+					"display" => "%",
+			),
+			
+			"Skill.StaminaRegen" => array(
+					"display" => "%",
+			),
+			
+			"Buff.StaminaRegen" => array(
+					"display" => "%",
+			),
+			
+			"Buff.SpellDamage" => array(
+					"display" => "%",
+			),
+			
+			"Buff.WeaponDamage" => array(
+					"display" => "%",
+			),
+			
+			"Skill.CritDamage" => array(
+					"display" => "%",
+			),
+			
+			"Mundus.CritDamage" => array(
+					"display" => "%",
+			),
+			
+			"Skill.CritDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.CritDamage" => array(
+					"display" => "%",
+			),
+			
+			"Buff.CritDamage" => array(
+					"display" => "%",
+			),
+			
+			"Skill2.CritDamage" => array(
+					"display" => "%",
+			),
+			
+			//Set raw critical values?
+			"Item.WeaponCrit" => array(
+					"display" => "%",
+			),
+			
+			"Mundus.WeaponCrit" => array(
+					"display" => "%",
+			),
+			
+			"Skill.WeaponCrit" => array(
+					"display" => "%",
+			),
+			
+			"Buff.WeaponCrit" => array(
+					"display" => "%",
+			),
+			
+			"CP.WeaponCrit" => array(
+					"display" => "%",
+			),
+			
+			"Item.SpellCrit" => array(
+					"display" => "%",
+			),
+				
+			"Mundus.SpellCrit" => array(
+					"display" => "%",
+			),
+				
+			"Skill.SpellCrit" => array(
+					"display" => "%",
+			),
+				
+			"Buff.SpellCrit" => array(
+					"display" => "%",
+			),
+				
+			"CP.SpellCrit" => array(
+					"display" => "%",
+			),
+			
+			"CP.HABowDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.HAWeaponDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.HAStaffDamage" => array(
 					"display" => "%",
 			),
 			
@@ -386,8 +523,6 @@ class CEsoTestBuild
 							"0.10",
 							"+",
 							"Item.WeaponCrit",
-							"+",
-							"Set.WeaponCrit",
 							"+",
 							"Mundus.WeaponCrit",
 							"+",
@@ -824,6 +959,15 @@ class CEsoTestBuild
 							"*",
 					),
 			),
+			
+			"FearDuration" => array(
+					"title" => "Fear Duration",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"1 - CP.FearDuration",
+					),
+			),
 				
 			"HARestore" => array(
 					"title" => "Heavy Attack Restore",
@@ -946,7 +1090,7 @@ class CEsoTestBuild
 			),
 			
 			"HADamageResist" => array(
-					"title" => "Light/Heavy Damage Resist",
+					"title" => "Light/Heavy Attack Resist",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
@@ -954,45 +1098,192 @@ class CEsoTestBuild
 					),
 			),
 			
-			"HAWeaponDamage" => array(
-					"title" => "Light/Heavy Weapon Damage",
-					"display" => "percent",
+			"HAFireStaff" => array(						// TODO: Staff passive?
+					"title" => "Heavy Attack Fire Staff",
 					"round" => "floor",
+					"depends" => array("Magicka", "SpellDamage"),
 					"compute" => array(
-							"1 + CP.HAWeaponDamage",
-					),
-			),
-			
-			"HABowDamage" => array(
-					"title" => "Light/Heavy Bow Damage",
-					"display" => "percent",
-					"round" => "floor",
-					"compute" => array(
-							"1 + CP.HABowDamage",
-					),
-			),
-			
-			"HAStaffDamage" => array(
-					"title" => "Light/Heavy Staff Damage",
-					"display" => "percent",
-					"round" => "floor",
-					"compute" => array(
+							"0.055*Magicka",
+							"2.20*SpellDamage - 0.67",
+							"+",
 							"1 + CP.HAStaffDamage",
-					),
-			),
-						
-			"FearDuration" => array(
-					"title" => "Fear Duration",
-					"display" => "percent",
-					"round" => "floor",
-					"compute" => array(
-							"1 - CP.FearDuration",
+							"*",
 					),
 			),
 			
-			//Divines?
-			//Training?
-			//Prosperous?
+			"HAColdStaff" => array(						// TODO: Staff passive?
+					"title" => "Heavy Attack Cold Staff",
+					"round" => "floor",
+					"depends" => array("Magicka", "SpellDamage"),
+					"compute" => array(
+							"0.055*Magicka",
+							"2.20*SpellDamage - 0.67",
+							"+",
+							"1 + CP.HAStaffDamage",
+							"*",
+					),
+			),
+			
+			"HAShockStaff" => array(					// TODO: Staff passive?
+					"title" => "Heavy Attack Shock Staff",
+					"round" => "floor",
+					"depends" => array("Magicka", "SpellDamage"),
+					"compute" => array(
+							"0.013*Magicka",
+							"0.52*SpellDamage - 0.26",
+							"+",
+							"1.8",
+							"*",
+							"0.0182*Magicka",
+							"0.728*SpellDamage - 0.03",
+							"+",
+							"+",
+							"1 + CP.HAStaffDamage",
+							"*",
+					),
+			),
+			
+			"HARestoration" => array(
+					"title" => "Heavy Attack Restoration",
+					"round" => "floor",
+					"depends" => array("Magicka", "SpellDamage"),
+					"compute" => array(
+							"0.0481*Magicka",
+							"1.92*SpellDamage - 3.06",
+							"+",
+							"1.6",
+							"*",
+							"0.02643*Magicka",
+							"1.055*SpellDamage - 0.62",
+							"+",
+							"+",
+							"1 + CP.HAStaffDamage",
+							"*",
+					),
+			),
+			
+			"HAOneHand" => array(
+					"title" => "Heavy Attack One Hand",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.03852*Stamina",
+							"1.5436*WeaponDamage - 0.33",
+							"+",
+							"1 + CP.HAWeaponDamage",
+							"*",
+					),
+			),
+			
+			"HATwoHand" => array(						// TODO: Axe, Mace, Sword 2H passive
+					"title" => "Heavy Attack Two Hand",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.123*Stamina",
+							"1.283*WeaponDamage - 0.94",
+							"+",
+							"1 + CP.HAWeaponDamage",
+							"*",
+					),
+			),
+			
+			"HABow" => array(
+					"title" => "Heavy Attack Bow",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.0550*Stamina",
+							"2.20*WeaponDamage - 0.95",
+							"+",
+							"1 + CP.HABowDamage",
+							"*",
+					),
+			),
+			
+			"HADualWield" => array(						// TODO: Dual wield passive
+					"title" => "Heavy Attack Dual Wield",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.01636*Stamina",
+							"0.6556*WeaponDamage + 0.81",
+							"+",
+							"0.0199*Stamina",
+							"0.800*WeaponDamage + 3.82",
+							"+",
+							"+",
+							"1 + CP.HAWeaponDamage",
+							"*",
+					),
+			),
+			
+			"HAWerewolf" => array(
+					"title" => "Heavy Attack Werewolf",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.0440*Stamina",
+							"1.76*WeaponDamage + 0.74",
+							"+",
+							"1 + CP.HAWeaponDamage", // TODO: Check?
+							"*",
+					),
+			),
+			
+			"LAStaff" => array(
+					"title" => "Light Attack Staff",
+					"round" => "floor",
+					"depends" => array("Magicka", "SpellDamage"),
+					"compute" => array(
+							"0.0140*Magicka",
+							"0.56*SpellDamage - 0.60",
+							"+",
+							"1 + CP.HAStaffDamage",
+							"*",
+					),
+			),
+			
+			"LAOneHand" => array(
+					"title" => "Light Attack One Hand",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.0140*Stamina",
+							"0.56*WeaponDamage - 0.60",
+							"+",
+							"1 + CP.HAWeaponDamage",
+							"*",
+					),
+			),
+			
+			"LATwoHand" => array(
+					"title" => "Light Attack Two Hand",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.0148*Stamina",
+							"0.592*WeaponDamage - 1.06",
+							"+",
+							"1 + CP.HAWeaponDamage",
+							"*",
+					),
+			),
+			
+			"LABow" => array(
+					"title" => "Light Attack Bow",
+					"round" => "floor",
+					"depends" => array("Stamina", "WeaponDamage"),
+					"compute" => array(
+							"0.0140*Stamina",
+							"0.56*WeaponDamage - 0.60",
+							"+",
+							"1 + CP.HABowDamage",
+							"*",
+					),
+			),
+			
+			//Physical/spell mitigation = (resistance - 100) / (level*10)
 
 	); 
 	
@@ -1225,3 +1516,4 @@ class CEsoTestBuild
 
 $g_EsoTestBuild = new CEsoTestBuild();
 $g_EsoTestBuild->Render();
+
