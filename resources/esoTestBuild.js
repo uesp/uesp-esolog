@@ -513,7 +513,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues, saveResult)
 		
 		var prefix = "";
 		if (nextItem == "-") prefix = "-";
-		if (nextItem == "+") prefix = "+";
+		if (nextItem == "+" && itemValue >= 0) prefix = "+";
 		if (nextItem == "*") prefix = "x";
 		
 		if (!(itemValue % 1 === 0))
