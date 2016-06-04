@@ -456,7 +456,7 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 	resultsElement.html(newResults);
 	
 	$(".esoispResultRow").click(function(e) { self.onResultClick(e, $(this)); });
-	$('.eso_item_link').hover(OnEsoItemLinkEnter, OnEsoItemLinkLeave);
+	$('#esoispResults .eso_item_link').hover(OnEsoItemLinkEnter, OnEsoItemLinkLeave);
 }
 
 
@@ -517,7 +517,6 @@ UESP.EsoItemSearchPopup.prototype.updateTitle = function()
 	}
 	else if (this.itemType == 1) // Weapons
 	{
-		
 	}
 	
 	titleElement.text(title);
@@ -614,7 +613,12 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	if (this.equipType != data.equipType)
 	{
 		this.equipType = data.equipType;
-		this.equipTypes = data.equipType.split(",");
+		
+		if (this.equipType == null)
+			this.equipTypes = [];
+		else
+			this.equipTypes = data.equipType.split(",");
+		
 		clearResults = true;
 	}
 	

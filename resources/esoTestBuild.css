@@ -508,3 +508,24 @@ a:hover {
 	font-weight: bold;
 	background-color: #ccc;
 }
+
+.esotbItemEnchantButton {
+	width: 16px;
+	height: 16px;
+	background-color: #DBBFA5;
+	text-align: center;
+	float: right;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+	position: absolute;
+	right: 22px;
+	top: 2px;
+	line-height: 16px;
+}
+
+.esotbItemEnchantButton:hover {
+	cursor: pointer;
+	background-color: #777;	
+}

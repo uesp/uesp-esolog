@@ -11,6 +11,7 @@ ESO_MAX_EFFECTIVELEVEL = 66;
 
 g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
+g_EsoBuildEnchantData = {};
 
 g_EsoBuildItemData.Head = {}
 g_EsoBuildItemData.Shoulders = {}
@@ -30,6 +31,21 @@ g_EsoBuildItemData.Poison1 = {}
 g_EsoBuildItemData.Poison2 = {}
 g_EsoBuildItemData.Food = {}
 g_EsoBuildItemData.Potion = {}
+
+g_EsoBuildEnchantData.Head = {}
+g_EsoBuildEnchantData.Shoulders = {}
+g_EsoBuildEnchantData.Chest = {}
+g_EsoBuildEnchantData.Hands = {}
+g_EsoBuildEnchantData.Legs = {}
+g_EsoBuildEnchantData.Waist = {}
+g_EsoBuildEnchantData.Feet = {}
+g_EsoBuildEnchantData.Neck = {}
+g_EsoBuildEnchantData.Ring1 = {}
+g_EsoBuildEnchantData.Ring2 = {}
+g_EsoBuildEnchantData.MainHand1 = {}
+g_EsoBuildEnchantData.OffHand1 = {}
+g_EsoBuildEnchantData.MainHand2 = {}
+g_EsoBuildEnchantData.OffHand2 = {}
 
 g_EsoBuildSetData = {};
 
@@ -80,28 +96,28 @@ function GetEsoInputValues(mergeComputedStats)
 	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
 	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
 		
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Head);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Shoulders);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Chest);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Hands);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Waist);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Legs);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Feet);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Neck);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Ring1);
-	GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Ring2);
+	GetEsoInputItemValues(inputValues, "Head");
+	GetEsoInputItemValues(inputValues, "Shoulders");
+	GetEsoInputItemValues(inputValues, "Chest");
+	GetEsoInputItemValues(inputValues, "Hands");
+	GetEsoInputItemValues(inputValues, "Waist");
+	GetEsoInputItemValues(inputValues, "Legs");
+	GetEsoInputItemValues(inputValues, "Feet");
+	GetEsoInputItemValues(inputValues, "Neck");
+	GetEsoInputItemValues(inputValues, "Ring1");
+	GetEsoInputItemValues(inputValues, "Ring2");
 	
 	if (g_EsoBuildActiveWeapon == 1)
 	{
-		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.MainHand1);
-		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.OffHand1);
-		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Poison1);
+		GetEsoInputItemValues(inputValues, "MainHand1");
+		GetEsoInputItemValues(inputValues, "OffHand1");
+		GetEsoInputItemValues(inputValues, "Poison1");
 	}
 	else
 	{
-		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.MainHand2);
-		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.OffHand2);
-		GetEsoInputItemValues(inputValues, g_EsoBuildItemData.Poison2);
+		GetEsoInputItemValues(inputValues, "MainHand2");
+		GetEsoInputItemValues(inputValues, "OffHand2");
+		GetEsoInputItemValues(inputValues, "Poison2");
 	}
 	
 	UpdateEsoItemSetData();
@@ -122,9 +138,38 @@ function GetEsoInputValues(mergeComputedStats)
 }
 
 
-function GetEsoInputItemValues(inputValues, itemData)
+function GetEsoEnchantData(slotId)
 {
+	var itemData = null;
+	var enchantData = {};
+	
+	if (g_EsoBuildEnchantData[slotId] == null) return null;
+	
+	if ($.isEmptyObject(g_EsoBuildEnchantData[slotId]))
+		itemData = g_EsoBuildItemData[slotId];
+	else
+		itemData = g_EsoBuildEnchantData[slotId];
+	
+	if (itemData == null) return null;
+	
+	enchantData.itemId = itemData.itemId;
+	enchantData.internalLevel = itemData.internalLevel;
+	enchantData.internalSubtype = itemData.internalSubtype;
+	enchantData.enchantId = itemData.enchantId;
+	enchantData.enchantLevel = itemData.enchantLevel;
+	enchantData.enchantSubtype = itemData.enchantSubtype;
+	enchantData.enchantName = itemData.enchantName;
+	enchantData.enchantDesc = itemData.enchantDesc;
+	
+	return enchantData;
+}
+
+
+function GetEsoInputItemValues(inputValues, slotId)
+{
+	var itemData = g_EsoBuildItemData[slotId];
 	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
+	
 	itemData.rawOutput = {};
 	
 	var traitMatch = itemData.traitDesc.match(/[0-9]+.?[0-9]*/);
@@ -239,6 +284,35 @@ function GetEsoInputItemValues(inputValues, itemData)
 		AddEsoInputStatSource("Item.RollDodgeCost", { item: itemData, value: traitValue/100 });
 	}
 
+	GetEsoInputItemEnchantValues(inputValues, slotId);
+}
+
+
+function GetEsoInputItemEnchantValues(inputValues, slotId)
+{
+	var itemData = g_EsoBuildItemData[slotId];
+	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
+	
+	var infusedFactor = 1;
+	
+	if (itemData.trait == 16)
+	{
+		var results = itemData.traitDesc.match(/by ([0-9]+\.?[0-9]*\%?)/);
+		
+		if (results.length !== 0) 
+		{
+			infusedFactor = parseFloat(results[1])/100;
+			if (isNan(infusedFactor) || infusedFactor < 1) infusedFactor = 1;
+		}
+	}
+	
+	var enchantData = GetEsoEnchantData(slotId);
+	if (enchantData == null) return false;
+	if (enchantData.enchantDesc == "") return true;
+	
+	console.log("Parsing Enchant Data", enchantData);
+	
+	return true;
 }
 
 
@@ -1228,6 +1302,132 @@ function CloseEsoItemDetailsPopup()
 }
 
 
+function OnEsoItemEnchantClick(e)
+{
+	var parent = $(this).parent();
+	
+	SelectEsoItemEnchant(parent);
+	
+}
+
+
+function SelectEsoItemEnchant(element)
+{
+	var slotId = element.attr("slotid");
+	if (slotId == null || slotId == "") return false;
+	
+	var itemData = g_EsoBuildItemData[slotId];
+	if (itemData == null || $.isEmptyObject(itemData)) return false;
+	
+	var equipType = element.attr("equiptype");
+	var itemType = element.attr("itemtype");
+	var enchantType = 0;
+	
+	if (itemType == 1) // Weapon
+	{
+		if (itemData.weaponType == 14)
+			enchantType = 21;
+		else
+			enchantType = 20;
+	}
+	else if (itemType == 2) // Armor
+	{
+		if (equipType == 2 || equipType == 12)
+			enchantType = 26;
+		else
+			enchantType = 21;
+	}
+
+	if (enchantType == 0) return false;
+	
+	var data = {
+		onSelectItem: OnEsoSelectItemEnchant,
+		itemType: enchantType,
+	};
+	
+	var rootSearchPopup = UESP.showEsoItemSearchPopup(element, data);
+	ShowEsoBuildClickWall(rootSearchPopup);
+	
+	return true;
+}
+
+
+function OnEsoSelectItemEnchant(itemData, element)
+{
+	var iconElement = $(element).find(".esotbItemIcon");
+	var labelElement = $(element).find(".esotbItemLabel");
+	
+	var slotId = $(element).attr("slotId");
+	if (slotId == null || slotId == "") return false;
+	
+	if ($.isEmptyObject(itemData))
+	{
+		iconElement.attr("enchantid", "");
+		iconElement.attr("enchantlevel", "");
+		iconElement.attr("enchantquality", "");
+		iconElement.attr("enchantintlevel", "");
+		iconElement.attr("enchantinttype", "");
+		g_EsoBuildEnchantData[slotId] = {};
+		
+		UpdateEsoComputedStatsList();
+		return;
+	}
+		
+	iconElement.attr("enchantid", itemData.itemId);
+	iconElement.attr("enchantlevel", itemData.level);
+	iconElement.attr("enchantquality", itemData.quality);
+	
+	g_EsoBuildEnchantData[slotId] = itemData;
+	RequestEsoEnchantData(itemData, element);
+}
+
+
+function RequestEsoEnchantData(itemData, element)
+{	
+	if (itemData.itemId == null || itemData.itemId == "") return false;
+	if (itemData.level == null || itemData.level == "") return false;
+	if (itemData.quality == null || itemData.quality == "") return false;
+	
+	var queryParams = {
+			"table" : "minedItem",
+			"id" : itemData.itemId,
+			"level" : itemData.level,
+			"quality" : itemData.quality,
+			"limit" : 1,
+	};
+	
+	$.ajax("http://esolog.uesp.net/exportJson.php", {
+			data: queryParams,
+		}).
+		done(function(data, status, xhr) { OnEsoEnchantDataReceive(data, status, xhr, element, itemData); }).
+		fail(function(xhr, status, errorMsg) { OnEsoEnchantDataError(xhr, status, errorMsg); });
+}
+
+
+function OnEsoEnchantDataReceive(data, status, xhr, element, origItemData)
+{
+	var slotId = $(element).attr("slotId");
+	if (slotId == null || slotId == "") return false;
+	
+	if (data.minedItem != null && data.minedItem[0] != null)
+	{
+		g_EsoBuildEnchantData[slotId] = data.minedItem[0];
+		
+		var iconElement = $(element).find(".esotbItemIcon");
+		iconElement.attr("enchantintlevel", data.minedItem[0].internalLevel);
+		iconElement.attr("enchantinttype", data.minedItem[0].internalSubtype);
+		
+		UpdateEsoComputedStatsList();
+	}
+	
+}
+
+
+function OnEsoEnchantDataError(xhr, status, errorMsg)
+{
+}
+
+
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
@@ -1257,6 +1457,7 @@ function esotbOnDocReady()
 	$(document).on("esocpUpdate", OnEsoBuildCpUpdate);
 	
 	$(".esotbItemDetailsButton").click(OnEsoItemDetailsClick);
+	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);	
 }
 
 
