@@ -165,12 +165,12 @@ function GetEsoInputItemValues(inputValues, itemData)
 	
 	if (itemData.trait == 18) // Divines
 	{
-		inputValues.Divines += traitValue/100;
+		inputValues.Item.Divines += traitValue/100;
 		itemData.rawOutput["Divines"] = traitValue/100;
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
-		inputValues.Prosperous += traitValue/100;
+		inputValues.Item.Prosperous += traitValue/100;
 		itemData.rawOutput["Prosperous"] = traitValue/100;
 	}
 	else if (itemData.trait == 12) //Impenetrable
@@ -180,12 +180,12 @@ function GetEsoInputItemValues(inputValues, itemData)
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
-		inputValues.Sturdy += traitValue/100;
+		inputValues.Item.Sturdy += traitValue/100;
 		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
 	}
 	else if (itemData.trait == 15) //Training
 	{
-		inputValues.Training += traitValue/100;
+		inputValues.Item.Training += traitValue/100;
 		itemData.rawOutput["Training"] = traitValue/100;
 	}
 	else if (itemData.trait == 21) //Healthy
@@ -786,7 +786,7 @@ function OnEsoSelectItem(itemData, element)
 		return;
 	}
 	
-	var iconUrl = "http://esoicons.uesp.net" + itemData.icon.replace(".dds", ".png");
+	var iconUrl = "http://content3.uesp.net/eso/gameicons" + itemData.icon.replace(".dds", ".png");
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
 	
 	iconElement.attr("src", iconUrl);
