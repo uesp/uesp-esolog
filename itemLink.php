@@ -64,7 +64,7 @@ class CEsoItemLink
 	const ESOIL_RAWDATA_HTML_TEMPLATE = "templates/esoitemlink_rawdata_template.txt";
 	const ESOIL_HTML_EMBED_TEMPLATE = "templates/esoitemlink_embed_template.txt";
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
-	const ESOIL_ICON_URL = "http://esoicons.uesp.net/";
+	const ESOIL_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	
 	const ESOIL_POTION_MAGICITEMID = 1234567;
