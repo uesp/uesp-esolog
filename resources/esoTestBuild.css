@@ -577,3 +577,22 @@ button.esotbWeaponSelect {
   	cursor: not-allowed;
 }
 
+#esotbRawInputs {
+	
+}
+
+.esotbRawInputItem {
+	
+}
+
+.esotbRawInputName {
+	display: block;
+	font-weight: bold;
+	margin-top: 5px;
+	padding: 3px;
+}
+
+.esotbRawInputValue {
+	display: block;
+	margin-left: 50px;
+}

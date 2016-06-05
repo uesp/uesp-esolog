@@ -29,7 +29,7 @@ displayed statistics is unknown.
 			<div class="esotbStatTab" tabid="esotbStatBlock2">Items</div>
 			<div class="esotbStatTab" tabid="esotbStatBlock3">Skills</div>
 			<div class="esotbStatTab" tabid="esotbStatBlock4">Champion Points</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock5">Raw Input</div>
+			<div class="esotbStatTab" tabid="esotbStatBlock5">Raw Inputs</div>
 			<div class="esotbStatTabSpacer"></div>
 		</div>
 		<div id="esotbStatBlock1" class="esotbStatBlock">
@@ -204,7 +204,8 @@ displayed statistics is unknown.
 			{cpHtml}
 		</div>
 		<div id="esotbStatBlock5" class="esotbStatBlock" style="display: none;">
-			Raw Inputs...
+			<div id="esotbRawInputs">
+			</div>
 		</div>
 	</div>
 	<div id="esotbStatList">
