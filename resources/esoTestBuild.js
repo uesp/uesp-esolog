@@ -396,6 +396,29 @@ function GetEsoInputItemValues(inputValues, slotId)
 		AddEsoInputStatSource("Item.PhysicalResist", { item: itemData, value: armorRating, slotId:slotId });
 	}
 	
+	if (itemData.weaponPower > 0)
+	{
+		var weaponPower = parseFloat(itemData.weaponPower);
+		
+		if (slotId == "OffHand1" || slotId == "OffHand2") 
+		{
+			weaponPower = Math.floor(weaponPower * 0.287);
+		}
+		
+		if (itemData.trait == 26)	// Weapon nirnhoned
+		{
+			weaponPower = Math.floor(weaponPower * (1 + traitValue/100));
+		}
+		
+		inputValues.Item.WeaponDamage += weaponPower;
+		inputValues.Item.SpellDamage += weaponPower;
+		itemData.rawOutput["Item.WeaponDamage"] = weaponPower;
+		itemData.rawOutput["Item.SpellDamage"] = weaponPower;
+		
+		AddEsoInputStatSource("Item.WeaponDamage", { item: itemData, value: weaponPower, slotId:slotId });
+		AddEsoInputStatSource("Item.SpellDamage", { item: itemData, value: weaponPower, slotId:slotId });
+	}
+	
 	if (itemData.trait == 18) // Divines
 	{
 		inputValues.Item.Divines += traitValue/100;
@@ -420,7 +443,7 @@ function GetEsoInputItemValues(inputValues, slotId)
 		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
 		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue, slotId:slotId });
 	}
-	else if (itemData.trait == 15) //Training
+	else if (itemData.trait == 15 || itemData == 6) //Training
 	{
 		inputValues.Item.Training += traitValue/100;
 		itemData.rawOutput["Item.Training"] = traitValue/100;
@@ -453,7 +476,49 @@ function GetEsoInputItemValues(inputValues, slotId)
 		AddEsoInputStatSource("Item.SprintCost", { item: itemData, value: traitValue/100, slotId:slotId });
 		AddEsoInputStatSource("Item.RollDodgeCost", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
-
+	else if (itemData.trait == 7) //Sharpened
+	{
+		inputValues.Item.SpellPenetration += traitValue/100;
+		inputValues.Item.PhysicalPenetration += traitValue/100;
+		itemData.rawOutput["Item.SpellPenetration"] = traitValue/100;
+		itemData.rawOutput["Item.PhysicalPenetration"] = traitValue/100;
+		AddEsoInputStatSource("Item.SpellPenetration", { item: itemData, value: traitValue/100, slotId:slotId });
+		AddEsoInputStatSource("Item.PhysicalPenetration", { item: itemData, value: traitValue/100, slotId:slotId });
+	}
+	else if (itemData.trait == 3) //Precise
+	{
+		inputValues.Item.SpellCrit += traitValue/100;
+		inputValues.Item.WeaponCrit += traitValue/100;
+		itemData.rawOutput["Item.SpellCrit"] = traitValue/100;
+		itemData.rawOutput["Item.WeaponCrit"] = traitValue/100;
+		AddEsoInputStatSource("Item.SpellCrit", { item: itemData, value: traitValue/100, slotId:slotId });
+		AddEsoInputStatSource("Item.WeaponCrit", { item: itemData, value: traitValue/100, slotId:slotId });
+	}
+	else if (itemData.trait == 5) //Defending
+	{
+		inputValues.Item.Defending += traitValue/100;
+		itemData.rawOutput["Item.Defending"] = traitValue/100;
+		AddEsoInputStatSource("Item.Defending", { item: itemData, value: traitValue/100, slotId:slotId });
+	}
+	else if (itemData.trait == 2) //Charged
+	{
+	}
+	else if (itemData.trait == 4) //Infused
+	{
+	}
+	else if (itemData.trait == 1) //Powered
+	{
+		inputValues.Item.HealingDone += traitValue/100;
+		itemData.rawOutput["Item.HealingDone"] = traitValue/100;
+		AddEsoInputStatSource("Item.HealingDone", { item: itemData, value: traitValue/100, slotId:slotId });
+	}
+	else if (itemData.trait == 8) //Decisive
+	{
+		//inputValues.Item.AttackSpeed += traitValue/100;
+		//itemData.rawOutput["Item.AttackSpeed"] = traitValue/100;
+		//AddEsoInputStatSource("Item.AttackSpeed", { item: itemData, value: traitValue/100, slotId:slotId });
+	}
+	
 	GetEsoInputItemEnchantValues(inputValues, slotId);
 }
 
