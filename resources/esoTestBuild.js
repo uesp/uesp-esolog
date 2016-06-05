@@ -13,7 +13,6 @@ g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
 g_EsoBuildEnchantData = {};
 g_EsoBuildSetData = {};
-g_EsoBuildOtherEffects = {};
 
 g_EsoBuildItemData.Head = {}
 g_EsoBuildItemData.Shoulders = {}
@@ -257,7 +256,6 @@ function GetEsoInputValues(mergeComputedStats)
 	if (mergeComputedStats == null) mergeComputedStats = false;
 	
 	g_EsoInputStatSources = {};
-	g_EsoBuildOtherEffects = {};
 	
 	for (var key in g_EsoInputStats)
 	{
@@ -503,13 +501,13 @@ function GetEsoInputItemValues(inputValues, slotId)
 	{
 		inputValues.Item.Sturdy += traitValue/100;
 		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
-		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue, slotId:slotId });
+		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 15 || itemData == 6) //Training
 	{
 		inputValues.Item.Training += traitValue/100;
 		itemData.rawOutput["Item.Training"] = traitValue/100;
-		AddEsoInputStatSource("Item.Training", { item: itemData, value: traitValue, slotId:slotId });
+		AddEsoInputStatSource("Item.Training", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 21) //Healthy
 	{
@@ -679,7 +677,7 @@ function ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor)
 function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, enchantData, enchantFactor)
 {
 	var rawDesc = RemoveEsoDescriptionFormats(enchantData.enchantDesc);
-	var addOtherEffects = false;
+	var addFinalEffect = false;
 	
 	for (var i = 0; i < ESO_ENCHANT_WEAPON_MATCHES.length; ++i)
 	{
@@ -695,7 +693,7 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 		else if (matchData.statId == "OtherEffects")
 		{
 			rawDesc = rawDesc.replace(matchData.match, function(match, p1, offset, string) { return ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor); });
-			addOtherEffects = true;
+			addFinalEffect = true;
 		}
 		else
 		{
@@ -707,18 +705,11 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 		}
 	}
 	
-	if (addOtherEffects) 
+	if (addFinalEffect) 
 	{
-		AddEsoBuildOtherEffects("WeaponEnchant", rawDesc);
+		AddEsoInputStatSource("OtherEffects", { other: true, item: itemData, enchant: enchantData, value: rawDesc, slotId: slotId });
 		itemData.rawOutput["WeaponEnchant"] = rawDesc;
 	}
-}
-
-
-function AddEsoBuildOtherEffects(statId, effectData)
-{
-	if (g_EsoBuildOtherEffects[statId] == null) g_EsoBuildOtherEffects[statId] = [];
-	g_EsoBuildOtherEffects[statId].push(effectData);
 }
 
 
@@ -923,13 +914,13 @@ function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 		for (var i = 0; i < statIds.length; ++i)
 		{
 			inputValues.CP[statIds[i]] += value;
-			AddEsoInputStatSource("CP." + statIds[i], { source: "CP." + cpName, abilityId: abilityId, value: value });
+			AddEsoInputStatSource("CP." + statIds[i], { cp: cpName, abilityId: abilityId, value: value });
 		}
 	}
 	else
 	{
 		inputValues.CP[statIds] += value;
-		AddEsoInputStatSource("CP." + statIds, { source: "CP." + cpName, abilityId: abilityId, value: value });
+		AddEsoInputStatSource("CP." + statIds, { cp: cpName, abilityId: abilityId, value: value });
 	}
 	
 	return true;
@@ -1685,6 +1676,11 @@ function OnEsoClickBuildStatTab(e)
 	
 	$(".esotbStatBlock:visible").hide();
 	$("#" + tabId).show();
+	
+	if (tabId == "esotbStatBlock5")
+	{
+		UpdateEsoBuildRawInputs();		
+	}
 }
 
 
@@ -1898,6 +1894,88 @@ function OnEsoWeaponSelect2(e)
 	
 	g_EsoBuildActiveWeapon = 2;
 	UpdateEsoComputedStatsList();
+}
+
+
+function UpdateEsoBuildRawInputs()
+{
+	var rawInputs = $("#esotbRawInputs");
+	var output = "";
+	var keys = Object.keys(g_EsoInputStatSources).sort();
+	
+	for (var i = 0; i < keys.length; ++i)
+	{
+		var key = keys[i];
+		var statSource = g_EsoInputStatSources[key];
+		
+		if (HasEsoBuildRawInputSources(statSource))
+		{
+			output += GetEsoBuildRawInputSourcesHtml(key, statSource);
+		}
+	}
+	
+	rawInputs.html(output);
+}
+
+
+function HasEsoBuildRawInputSources(sourceData)
+{
+	if (sourceData == null) return false;
+	
+	for (var i = 0; i < sourceData.length; ++i)
+	{
+		if (sourceData[i].value != null && sourceData[i].value != 0) return true;
+	}	
+	
+	return false;
+}
+
+
+function GetEsoBuildRawInputSourcesHtml(sourceName, sourceData)
+{
+	if (sourceData.length <= 0) return "";
+	var statDetails = g_EsoInputStatDetails[sourceName] || {};
+	
+	var output = "<div class='esotbRawInputItem'>";
+	var sourceValue = "";
+	
+	output += "<div class='esotbRawInputName'>" + sourceName + ":</div>";
+	
+	for (var i = 0; i < sourceData.length; ++i)
+	{
+		output += GetEsoBuildRawInputSourceItemHtml(sourceData[i], statDetails);
+	}
+	
+	output += "</div>";
+	return output;
+}
+
+
+function GetEsoBuildRawInputSourceItemHtml(sourceItem, statDetails)
+{
+	var output = "<div class='esotbRawInputValue'>";
+	var value = sourceItem.value;
+	
+	if (statDetails.display == '%') value = "" + (Math.round(value * 1000)/10) + "%";
+		
+	if (sourceItem.slotId != null && sourceItem.item != null && sourceItem.enchant != null)
+	{
+		if (sourceItem.other)
+			output += "" + value + ": Enchantment on " + sourceItem.item.name + " in " + sourceItem.slotId + " equip slot";
+		else
+			output += "" + value + ": " + sourceItem.enchant.enchantName + " on " + sourceItem.item.name + " in " + sourceItem.slotId + " equip slot";
+	}
+	else if (sourceItem.slotId != null && sourceItem.item != null)
+	{
+		output += "" + value + ": " + sourceItem.item.name + " in " + sourceItem.slotId + " equip slot";
+	}
+	else if (sourceItem.abilityId != null && sourceItem.cp != null)
+	{
+		output += "" + value + ": " + sourceItem.cp + " CP ability (abilityId " + sourceItem.abilityId + ")";
+	}	
+	
+	output += "</div>";
+	return output;
 }
 
 
