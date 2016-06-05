@@ -81,36 +81,42 @@ displayed statistics is unknown.
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItemSlotLabel">Chest</div>
 				<div class="esotbItem" id="esotbItemChest" slotid="Chest" equiptype="3" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div><br/>
 				<div class="esotbItemSlotLabel">Hands</div>
 				<div class="esotbItem " id="esotbItemHands" slotid="Hands" equiptype="13" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItemSlotLabel">Waist</div>
 				<div class="esotbItem " id="esotbItemWaist" slotid="Waist" equiptype="8" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div><br/>
 				<div class="esotbItemSlotLabel">Legs</div>
 				<div class="esotbItem " id="esotbItemLegs" slotid="Legs" equiptype="9" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItemSlotLabel">Feet</div>
 				<div class="esotbItem " id="esotbItemFeet" slotid="Feet" equiptype="10" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Neck</div>
@@ -118,17 +124,20 @@ displayed statistics is unknown.
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItemSlotLabel">Rings</div>
 				<div class="esotbItem " id="esotbItemRing1" slotid="Ring1" equiptype="12" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItem " id="esotbItemRing2" slotid="Ring2" equiptype="12" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 1</div>
@@ -136,11 +145,13 @@ displayed statistics is unknown.
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItem " id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItem " id="esotbItemPoison1" slotid="Poison1" equiptype="15" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">
@@ -153,11 +164,13 @@ displayed statistics is unknown.
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
+					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<div class="esotbItem " id="esotbItemPoison2" slotid="Poison2" equiptype="15" itemtype="2">
 					<img class="esotbItemIcon eso_item_link" src="">

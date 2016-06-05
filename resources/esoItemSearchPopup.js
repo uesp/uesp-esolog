@@ -517,6 +517,22 @@ UESP.EsoItemSearchPopup.prototype.updateTitle = function()
 	}
 	else if (this.itemType == 1) // Weapons
 	{
+		if (this.equipTypes.indexOf("7") >= 0) 
+			title = "Select Off Hand Weapon";
+		else
+			title = "Select Main Hand Weapon";
+	}
+	else if (this.itemType == 20) // Weapon Glyphs
+	{
+		title = "Select Weapon Enchantment";
+	}
+	else if (this.itemType == 21) // Armor Glyphs
+	{
+		title = "Select Armor Enchantment";
+	}
+	else if (this.itemType == 26) // Jewelry Glyphs
+	{
+		title = "Select Jewelry Enchantment";
 	}
 	
 	titleElement.text(title);
@@ -634,6 +650,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 		this.armorType = "-1";
 		this.searchResults = [];
 		$("#esoispResults").text("");
+		$("#esoispInputText").val("");
 	}
 	
 	this.update();

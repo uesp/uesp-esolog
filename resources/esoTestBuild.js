@@ -53,6 +53,98 @@ g_EsoBuildActiveWeapon = 1;
 g_EsoFormulaInputValues = {};
 g_EsoInputStatSources = {};
 
+	
+ESO_ENCHANT_MATCHES = [
+	{
+		statId: "Health",
+		match: /Adds ([0-9]+) Maximum Health/i,
+	},
+	{
+		statId: "Magicka",
+		match: /Adds ([0-9]+) Maximum Magicka/i,
+	},
+	{
+		statId: "Stamina",
+		match: /Adds ([0-9]+) Maximum Stamina/i,
+	},
+	{
+		statId: "BashDamage",
+		match: /Increase bash damage by ([0-9]+)/i,
+	},
+	{
+		statId: "PhysicalResist",
+		match: /Adds ([0-9]+) Physical Resistance/i,
+	},
+	{
+		statId: "SpellResist",
+		match: /Adds ([0-9]+) Spell Resistance/i,
+	},
+	{
+		statId: "DiseaseResist",
+		match: /Adds ([0-9]+) Disease Resistance/i,
+	},
+	{
+		statId: "PoisonResist",
+		match: /Adds ([0-9]+) Poison Resistance/i,
+	},
+	{
+		statId: "FireResist",
+		match: /Adds ([0-9]+) Flame Resistance/i,
+	},
+	{
+		statId: "ColdResist",
+		match: /Adds ([0-9]+) Cold Resistance/i,
+	},
+	{
+		statId: "ShockResist",
+		match: /Adds ([0-9]+) Shock Resistance/i,
+	},
+	{
+		statId: "HealthRegen",
+		match: /Adds ([0-9]+) Health Recovery/i,
+	},
+	{
+		statId: "MagickaRegen",
+		match: /Adds ([0-9]+) Magicka Recovery/i,
+	},
+	{
+		statId: "StaminaRegen",
+		match: /Adds ([0-9]+) Stamina Recovery/i,
+	},
+	{
+		statId: "SpellDamage",
+		match: /Adds ([0-9]+) Spell Damage/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /Adds ([0-9]+) Weapon Damage/i,
+	},
+	{
+		statId: "PotionDuration",
+		match: /Increase the duration of potion effects by ([0-9]+\.?[0-9]*) seconds/i,
+	},
+	{
+		statId: "PotionCooldown",
+		match: /Reduce the cooldown of potions below this item's level by ([0-9]+\.?[0-9]*) seconds/i,
+	},
+	{
+		statId: "StaminaCost",
+		match: /Reduce Stamina cost of abilities by ([0-9]+)/i,
+	},
+	{
+		statId: "MagickaCost",
+		match: /Reduce Magicka cost of abilities by ([0-9]+)/i,
+	},
+	{
+		statId: "BashCost",
+		match: /Reduce cost of bash by ([0-9]+)/i,
+	},
+	{
+		statId: "BlockCost",
+		match: /Reduce cost of blocking by ([0-9]+)/i,
+	},
+];
+
 
 function GetEsoInputValues(mergeComputedStats)
 {
@@ -180,19 +272,19 @@ function GetEsoInputItemValues(inputValues, slotId)
 	{
 		++inputValues.Armor.Light;
 		itemData.rawOutput["Armor.Light"] = 1;
-		AddEsoInputStatSource("Armor.Light", { item: itemData, value: 1});
+		AddEsoInputStatSource("Armor.Light", { item: itemData, value: 1, slotId:slotId });
 	}
 	else if (itemData.armorType == 2)
 	{
 		++inputValues.Armor.Medium;
 		itemData.rawOutput["Armor.Medium"] = 1;
-		AddEsoInputStatSource("Armor.Medium", { item: itemData, value: 1});
+		AddEsoInputStatSource("Armor.Medium", { item: itemData, value: 1, slotId:slotId });
 	}
 	else if (itemData.armorType == 3)
 	{
 		++inputValues.Armor.Heavy;
 		itemData.rawOutput["Armor.Heavy"] = 1;
-		AddEsoInputStatSource("Armor.Heavy", { item: itemData, value: 1});
+		AddEsoInputStatSource("Armor.Heavy", { item: itemData, value: 1, slotId:slotId });
 	}
 	
 	if (itemData.armorRating > 0)
@@ -222,57 +314,57 @@ function GetEsoInputItemValues(inputValues, slotId)
 		itemData.rawOutput["Item.SpellResist"] = armorRating;
 		itemData.rawOutput["Item.PhysicalResist"] = armorRating;
 		
-		AddEsoInputStatSource("Item.SpellResist", { item: itemData, value: armorRating});
-		AddEsoInputStatSource("Item.PhysicalResist", { item: itemData, value: armorRating });
+		AddEsoInputStatSource("Item.SpellResist", { item: itemData, value: armorRating, slotId:slotId });
+		AddEsoInputStatSource("Item.PhysicalResist", { item: itemData, value: armorRating, slotId:slotId });
 	}
 	
 	if (itemData.trait == 18) // Divines
 	{
 		inputValues.Item.Divines += traitValue/100;
 		itemData.rawOutput["Item.Divines"] = traitValue/100;
-		AddEsoInputStatSource("Item.Divines", { item: itemData, value: traitValue/100 });
+		AddEsoInputStatSource("Item.Divines", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
 		inputValues.Item.Prosperous += traitValue/100;
 		itemData.rawOutput["Item.Prosperous"] = traitValue/100;
-		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue/100 });
+		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 12) //Impenetrable
 	{
 		inputValues.Item.CritResist += traitValue;
 		itemData.rawOutput["Item.CritResist"] = traitValue;
-		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue });
+		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
 		inputValues.Item.Sturdy += traitValue/100;
 		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
-		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue });
+		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 15) //Training
 	{
 		inputValues.Item.Training += traitValue/100;
 		itemData.rawOutput["Item.Training"] = traitValue/100;
-		AddEsoInputStatSource("Item.Training", { item: itemData, value: traitValue });
+		AddEsoInputStatSource("Item.Training", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 21) //Healthy
 	{
 		inputValues.Item.Health += traitValue;
 		itemData.rawOutput["Item.Health"] = traitValue;
-		AddEsoInputStatSource("Item.Health", { item: itemData, value: traitValue });
+		AddEsoInputStatSource("Item.Health", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 22) //Arcane
 	{
 		inputValues.Item.Magicka += traitValue;
 		itemData.rawOutput["Item.Magicka"] = traitValue;
-		AddEsoInputStatSource("Item.Magicka", { item: itemData, value: traitValue });
+		AddEsoInputStatSource("Item.Magicka", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 23) //Robust
 	{
 		inputValues.Item.Stamina += traitValue;
 		itemData.rawOutput["Item.Stamina"] = traitValue;
-		AddEsoInputStatSource("Item.Stamina", { item: itemData, value: traitValue });
+		AddEsoInputStatSource("Item.Stamina", { item: itemData, value: traitValue, slotId:slotId });
 	}	
 	else if (itemData.trait == 14) //Well Fitted
 	{
@@ -280,8 +372,8 @@ function GetEsoInputItemValues(inputValues, slotId)
 		inputValues.Item.RollDodgeCost += traitValue/100;
 		itemData.rawOutput["Item.SprintCost"] = traitValue/100;
 		itemData.rawOutput["Item.RollDodgeCost"] = traitValue/100;
-		AddEsoInputStatSource("Item.SprintCost", { item: itemData, value: traitValue/100 });
-		AddEsoInputStatSource("Item.RollDodgeCost", { item: itemData, value: traitValue/100 });
+		AddEsoInputStatSource("Item.SprintCost", { item: itemData, value: traitValue/100, slotId:slotId });
+		AddEsoInputStatSource("Item.RollDodgeCost", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 
 	GetEsoInputItemEnchantValues(inputValues, slotId);
@@ -293,7 +385,7 @@ function GetEsoInputItemEnchantValues(inputValues, slotId)
 	var itemData = g_EsoBuildItemData[slotId];
 	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
 	
-	var infusedFactor = 1;
+	var enchantFactor = 1;
 	
 	if (itemData.trait == 16)
 	{
@@ -301,16 +393,35 @@ function GetEsoInputItemEnchantValues(inputValues, slotId)
 		
 		if (results.length !== 0) 
 		{
-			infusedFactor = parseFloat(results[1])/100;
-			if (isNan(infusedFactor) || infusedFactor < 1) infusedFactor = 1;
+			var infusedFactor = 1 + parseFloat(results[1])/100;
+			if (isNaN(infusedFactor) || infusedFactor < 1) infusedFactor = 1;
+			enchantFactor = enchantFactor * infusedFactor;
 		}
+	}
+	
+	if (slotId == "Waist" || slotId == "Feet" || slotId == "Shoulders" || slotId == "Hands")
+	{
+		enchantFactor = enchantFactor * 0.4044;
 	}
 	
 	var enchantData = GetEsoEnchantData(slotId);
 	if (enchantData == null) return false;
 	if (enchantData.enchantDesc == "") return true;
 	
-	console.log("Parsing Enchant Data", enchantData);
+	var rawDesc = enchantData.enchantDesc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '$1');
+	
+	for (var i = 0; i < ESO_ENCHANT_MATCHES.length; ++i)
+	{
+		var matchData = ESO_ENCHANT_MATCHES[i];
+		var matches = rawDesc.match(matchData.match);
+		if (matches == null) continue;
+		
+		var statValue = Math.floor(parseFloat(matches[1]) * enchantFactor);
+		
+		inputValues.Item[matchData.statId] += statValue;
+		itemData.rawOutput["Item." + matchData.statId] = statValue;
+		AddEsoInputStatSource("Item." + matchData.statId, { item: itemData, enchant: enchantData, value: statValue, slotId: slotId });
+	}
 	
 	return true;
 }
