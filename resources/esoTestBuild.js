@@ -12,6 +12,8 @@ ESO_MAX_EFFECTIVELEVEL = 66;
 g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
 g_EsoBuildEnchantData = {};
+g_EsoBuildSetData = {};
+g_EsoBuildOtherEffects = {};
 
 g_EsoBuildItemData.Head = {}
 g_EsoBuildItemData.Shoulders = {}
@@ -47,14 +49,13 @@ g_EsoBuildEnchantData.OffHand1 = {}
 g_EsoBuildEnchantData.MainHand2 = {}
 g_EsoBuildEnchantData.OffHand2 = {}
 
-g_EsoBuildSetData = {};
-
 g_EsoBuildActiveWeapon = 1;
 g_EsoFormulaInputValues = {};
 g_EsoInputStatSources = {};
 
+
 	
-ESO_ENCHANT_MATCHES = [
+ESO_ENCHANT_ARMOR_MATCHES = [
 	{
 		statId: "Health",
 		match: /Adds ([0-9]+) Maximum Health/i,
@@ -150,6 +151,66 @@ ESO_ENCHANT_MATCHES = [
 ];
 
 
+ESO_ENCHANT_WEAPON_MATCHES = [
+  	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) Magic Damage/i,
+	},
+	{
+		statId: "",
+		match: /and restores ([0-9]+) Health/i,
+	},
+	{
+		statId: "",
+		match: /and restores ([0-9]+) Magicka/i,
+	},
+	{
+		statId: "",
+		match: /and restores ([0-9]+) Stamina/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Reduce's targets armor by ([0-9]+) for restores [0-9]+ seconds/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) unresistable damage/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) flame damage/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) disease damage/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) cold damage/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) poison damage/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) shock damage/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Deals ([0-9]+) Magic Damage to Undead and Daedra/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Grants a ([0-9]+) point Damage Shield for [0-9]+ seconds/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Reduce target Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i,
+	},
+];
+
+
 ESO_ABILITYDESC_MATCHES = [
 	{
 		statId: "Health",
@@ -195,7 +256,8 @@ function GetEsoInputValues(mergeComputedStats)
 	var inputValues = {};
 	if (mergeComputedStats == null) mergeComputedStats = false;
 	
-	g_EsoInputStatSources = {}
+	g_EsoInputStatSources = {};
+	g_EsoBuildOtherEffects = {};
 	
 	for (var key in g_EsoInputStats)
 	{
@@ -317,7 +379,7 @@ function GetEsoInputGeneralValues(inputValues, outputId, slotId)
 
 function GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId)
 {
-	var rawDesc = itemData.abilityDesc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '$1');
+	var rawDesc = RemoveEsoDescriptionFormats(itemData.abilityDesc);
 	if (rawDesc == "") return;
 	
 	for (var i = 0; i < ESO_ABILITYDESC_MATCHES.length; ++i)
@@ -514,12 +576,26 @@ function GetEsoInputItemValues(inputValues, slotId)
 	}
 	else if (itemData.trait == 8) //Decisive
 	{
-		//inputValues.Item.AttackSpeed += traitValue/100;
-		//itemData.rawOutput["Item.AttackSpeed"] = traitValue/100;
-		//AddEsoInputStatSource("Item.AttackSpeed", { item: itemData, value: traitValue/100, slotId:slotId });
+		// TODO?
 	}
 	
 	GetEsoInputItemEnchantValues(inputValues, slotId);
+}
+
+
+function IsEsoItemArmor(itemData)
+{
+	if (itemData.type == 1 && itemData.weaponType == 14) return true;
+	if (itemData.type != 2) return false;
+	return true;
+}
+
+
+function IsEsoItemWeapon(itemData)
+{
+	if (itemData.type != 1) return false;
+	if (itemData.weaponType == 14) return false;
+	return true;
 }
 
 
@@ -528,13 +604,19 @@ function GetEsoInputItemEnchantValues(inputValues, slotId)
 	var itemData = g_EsoBuildItemData[slotId];
 	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
 	
+	var enchantData = GetEsoEnchantData(slotId);
+	if (enchantData == null) return false;
+	if (enchantData.enchantDesc == "") return true;
+	
 	var enchantFactor = 1;
 	
-	if (itemData.trait == 16)
+		// Infused
+	if (itemData.trait == 16 || itemData.trait == 4)
 	{
-		var results = itemData.traitDesc.match(/by ([0-9]+\.?[0-9]*\%?)/);
+		var rawDesc = RemoveEsoDescriptionFormats(itemData.traitDesc);
+		var results = rawDesc.match(/by ([0-9]+\.?[0-9]*\%?)/);
 		
-		if (results.length !== 0) 
+		if (results != null && results.length !== 0) 
 		{
 			var infusedFactor = 1 + parseFloat(results[1])/100;
 			if (isNaN(infusedFactor) || infusedFactor < 1) infusedFactor = 1;
@@ -547,15 +629,27 @@ function GetEsoInputItemEnchantValues(inputValues, slotId)
 		enchantFactor = enchantFactor * 0.4044;
 	}
 	
-	var enchantData = GetEsoEnchantData(slotId);
-	if (enchantData == null) return false;
-	if (enchantData.enchantDesc == "") return true;
-	
-	var rawDesc = enchantData.enchantDesc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '$1');
-	
-	for (var i = 0; i < ESO_ENCHANT_MATCHES.length; ++i)
+	if (IsEsoItemWeapon(itemData))
 	{
-		var matchData = ESO_ENCHANT_MATCHES[i];
+		GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, enchantData, enchantFactor);
+	}
+	else if (IsEsoItemArmor(itemData))
+	{
+		GetEsoInputItemEnchantArmorValues(inputValues, slotId, itemData, enchantData, enchantFactor);
+	}
+	
+	
+	return true;
+}
+
+
+function GetEsoInputItemEnchantArmorValues(inputValues, slotId, itemData, enchantData, enchantFactor)
+{
+	var rawDesc = RemoveEsoDescriptionFormats(enchantData.enchantDesc);
+	
+	for (var i = 0; i < ESO_ENCHANT_ARMOR_MATCHES.length; ++i)
+	{
+		var matchData = ESO_ENCHANT_ARMOR_MATCHES[i];
 		var matches = rawDesc.match(matchData.match);
 		if (matches == null) continue;
 		
@@ -565,8 +659,66 @@ function GetEsoInputItemEnchantValues(inputValues, slotId)
 		itemData.rawOutput["Item." + matchData.statId] = statValue;
 		AddEsoInputStatSource("Item." + matchData.statId, { item: itemData, enchant: enchantData, value: statValue, slotId: slotId });
 	}
+}
+
+
+function RemoveEsoDescriptionFormats(text)
+{
+	if (text == null) return "";
+	return text.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '$1');
+}
+
+
+function ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor)
+{
+	var newValue = Math.floor(parseFloat(p1) * enchantFactor);
+	return match.replace(p1, newValue);
+}
+
+
+function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, enchantData, enchantFactor)
+{
+	var rawDesc = RemoveEsoDescriptionFormats(enchantData.enchantDesc);
+	var addOtherEffects = false;
 	
-	return true;
+	for (var i = 0; i < ESO_ENCHANT_WEAPON_MATCHES.length; ++i)
+	{
+		var matchData = ESO_ENCHANT_WEAPON_MATCHES[i];
+		var matches = rawDesc.match(matchData.match);
+		if (matches == null) continue;
+		
+		if (matchData.statId == "")
+		{
+			rawDesc = rawDesc.replace(matchData.match, function(match, p1, offset, string) { return ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor); });
+			
+		}
+		else if (matchData.statId == "OtherEffects")
+		{
+			rawDesc = rawDesc.replace(matchData.match, function(match, p1, offset, string) { return ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor); });
+			addOtherEffects = true;
+		}
+		else
+		{
+			var statValue = Math.floor(parseFloat(matches[1]) * enchantFactor);
+			
+			inputValues.Item[matchData.statId] += statValue;
+			itemData.rawOutput["Item." + matchData.statId] = statValue;
+			AddEsoInputStatSource("Item." + matchData.statId, { item: itemData, enchant: enchantData, value: statValue, slotId: slotId });
+		}
+	}
+	
+	if (addOtherEffects) 
+	{
+		AddEsoBuildOtherEffects("WeaponEnchant", rawDesc);
+		itemData.rawOutput["WeaponEnchant"] = rawDesc;
+	}
+}
+
+
+function AddEsoBuildOtherEffects(statId, effectData)
+{
+	if (g_EsoBuildOtherEffects[statId] == null) g_EsoBuildOtherEffects[statId] = [];
+	g_EsoBuildOtherEffects[statId].push(effectData);
 }
 
 
@@ -752,7 +904,7 @@ function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 	
 	var cpName = cpDesc.prev().text();
 	
-	var text = cpDesc.text();
+	var text = RemoveEsoDescriptionFormats(cpDesc.text());
 	var results = text.match(/by ([0-9]+\.?[0-9]*\%?)/);
 	if (results.length == 0) return false;
 	

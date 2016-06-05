@@ -426,9 +426,9 @@ a:hover {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	width: 400px;
+	width: 600px;
 	margin-top: -200px;
-	margin-left: -200px;
+	margin-left: -300px;
 	z-index: 40;
 	border: solid 2px gray;
 	background-color: #FBEFD5;
