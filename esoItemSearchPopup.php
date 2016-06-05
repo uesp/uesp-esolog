@@ -16,6 +16,8 @@ class CEsoItemSearchPopup
 	public $inputWeaponType = "";
 	public $inputArmorType = -1;
 	public $inputItemTrait = -1;
+	public $inputItemLevel = -1;
+	public $inputItemQuality = -1;
 	public $inputLimit = 100;
 	
 	public $resultItems = array();
@@ -55,11 +57,13 @@ class CEsoItemSearchPopup
 	public function ParseInputParams ()
 	{
 		if (array_key_exists('text', $this->inputParams)) $this->inputText = urldecode($this->inputParams['text']);
-		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = (int) $this->inputParams['type'];
+		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = urldecode($this->inputParams['type']);
 		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
 		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
 		if (array_key_exists('trait', $this->inputParams)) $this->inputItemTrait = (int) $this->inputParams['trait'];
 		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
+		if (array_key_exists('level', $this->inputParams)) $this->inputItemLevel = (int) $this->inputParams['level'];
+		if (array_key_exists('quality', $this->inputParams)) $this->inputItemQuality = (int) $this->inputParams['quality'];
 	}
 	
 	
@@ -82,7 +86,55 @@ class CEsoItemSearchPopup
 				
 		if ($this->inputItemType != "")
 		{
-			$whereQuery[] = "type=".$this->inputItemType;
+			$itemTypes = explode(",", $this->inputItemType);
+			$tmpQuery = array();
+				
+			foreach ($itemTypes as $itemType)
+			{
+				$tmpQuery[] = "type=".((int)$itemType);
+			}
+				
+			$whereQuery[] = "(" . implode(" OR ", $tmpQuery) . ")";
+		}
+		
+		if ($this->inputItemType == "4,12" || $this->inputItemType == "4" || $this->inputItemType == "12")
+		{
+			$level = (int) $this->inputItemLevel;
+			
+				if ($level <= 0)
+				{
+					// Do nothing
+				}
+				else if ($level < 2)
+					$whereQuery[] = "level = 1";
+				else if ($level < 5)
+					$whereQuery[] = "level >= 1 AND level < 5";
+				else if ($level < 10)
+					$whereQuery[] = "level >= 5 AND level <= 9";
+				else if ($level < 15)
+					$whereQuery[] = "level >= '10' AND level < '15'";
+				else if ($level < 20)
+					$whereQuery[] = "level >= '15' AND level < '20'";
+				else if ($level < 25)
+					$whereQuery[] = "level >= '20' AND level < '25'";
+				else if ($level < 30)
+					$whereQuery[] = "level >= '25' AND level < '30'";
+				else if ($level < 35)
+					$whereQuery[] = "level >= '30' AND level < '35'";
+				else if ($level < 40)
+					$whereQuery[] = "level >= '35' AND level < '40'";
+				else if ($level < 45)
+					$whereQuery[] = "level >= '40' AND level < '45'";
+				else if ($level < 50)
+					$whereQuery[] = "level >= '45' AND level < '50'";
+				else if ($level < 55)
+					$whereQuery[] = "((level >= 'V1' AND level < 'V5') OR (level >= 'CP10' AND level < 'CP50'))";
+				else if ($level < 60)
+					$whereQuery[] = "((level >= 'V5' AND level <= 'V9') OR (level >= 'CP50' AND level <= 'CP90'))";
+				else if ($level < 65)
+					$whereQuery[] = "((level >= 'V10' AND level < 'V15') OR (level >= 'CP100' AND level < 'CP150'))";
+				else if ($level <= 66)
+					$whereQuery[] = "((level >= 'V15' AND level <= 'V16') OR (level >= 'CP150' AND level <= 'CP160'))";
 		}
 		
 		if ($this->inputEquipType != "")

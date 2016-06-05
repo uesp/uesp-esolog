@@ -219,8 +219,11 @@ a:hover {
 
 .esotbItemLabel {
 	font-weight: bold;
-	display: inline;
+	display: inline-block;
 	vertical-align: middle;
+	width: 190px;
+	overflow-x: hidden;
+    white-space: nowrap;
 }
 
 #esotbClickWall {
