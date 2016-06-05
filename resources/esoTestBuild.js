@@ -136,6 +136,10 @@ ESO_ENCHANT_MATCHES = [
 		match: /Reduce Magicka cost of abilities by ([0-9]+)/i,
 	},
 	{
+		statId: "MagickaCost",
+		match: /Reduce Magicka cost of spells by ([0-9]+)/i,
+	},
+	{
 		statId: "BashCost",
 		match: /Reduce cost of bash by ([0-9]+)/i,
 	},
