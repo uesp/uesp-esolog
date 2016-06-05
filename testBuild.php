@@ -88,6 +88,7 @@ class CEsoTestBuild
 			"HealingTotal",
 			"HealingReduction",
 			"BashCost",
+			"BashDamage",
 			"BlockCost",
 			"BlockMitigation",
 			"RollDodgeCost",
@@ -110,7 +111,10 @@ class CEsoTestBuild
 			"ShieldDamage",
 			"FearDuration",
 			"MagickaCost",
-			"StaminaCost",			
+			"StaminaCost",
+			"PotionDuration",
+			"PotionCooldown",
+			"AttackSpeed",
 	);
 	
 	
@@ -682,6 +686,21 @@ class CEsoTestBuild
 					),
 			),
 			
+			"DiseaseResist" => array(
+					"title" => "Disease Resistance",
+					"compute" => array(
+							"Item.DiseaseResist",
+							"Set.DiseaseResist",
+							"+",
+							"Skill.DiseaseResist",
+							"+",
+							"CP.DiseaseResist",
+							"+",
+							"Buff.DiseaseResist",
+							"+",
+					),
+			),
+			
 			"SpellPenetration" => array(				
 					"title" => "Spell Penetration",
 					"compute" => array(
@@ -997,7 +1016,7 @@ class CEsoTestBuild
 					),
 			),
 			
-			"MagickaCost" => array(
+			"MagickaCost" => array(					// TODO: Add flat cost reduce
 					"title" => "Magicka Ability Cost",
 					"display" => "percent",
 					"compute" => array(
@@ -1007,7 +1026,7 @@ class CEsoTestBuild
 					),
 			),
 			
-			"StaminaCost" => array(
+			"StaminaCost" => array(					// TODO: Add flat cost reduce
 					"title" => "Stamina Ability Cost",
 					"display" => "percent",
 					"compute" => array(
