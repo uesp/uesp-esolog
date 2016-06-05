@@ -994,8 +994,31 @@ function UnequipEsoItemSlot(slotId, update)
 	iconElement.attr("itemid", "");
 	iconElement.attr("level", "");
 	iconElement.attr("quality", "");
-	
+		
 	g_EsoBuildItemData[slotId] = {};
+	
+	UnequipEsoEnchantSlot(slotId, false);
+	
+	if (update == null || update === true) UpdateEsoComputedStatsList();
+	return true;
+}
+
+
+function UnequipEsoEnchantSlot(slotId, update)
+{
+	if (g_EsoBuildEnchantData[slotId] == null) return false;
+	
+	var element = $("#esotbItem" + slotId);
+	var iconElement = $(element).find(".esotbItemIcon");
+	var labelElement = $(element).find(".esotbItemLabel");
+	
+	iconElement.attr("enchantid", "");
+	iconElement.attr("enchantlevel", "");
+	iconElement.attr("enchantquality", "");
+	iconElement.attr("enchantintlevel", "");
+	iconElement.attr("enchantinttype", "");
+
+	g_EsoBuildEnchantData[slotId] = {};
 	
 	if (update == null || update === true) UpdateEsoComputedStatsList();
 	return true;
@@ -1040,11 +1063,16 @@ function OnEsoSelectItem(itemData, element)
 	}
 	else if (slotId == "OffHand1")
 	{
+		console.log(g_EsoBuildEnchantData["OffHand1"].type , itemData.weaponType);
 		if (g_EsoBuildItemData["MainHand1"].equipType == 6) UnequipEsoItemSlot("MainHand1", false);
+		if (g_EsoBuildEnchantData["OffHand1"].type == 21 && itemData.weaponType != 14) UnequipEsoEnchantSlot("OffHand1", false);
+		if (g_EsoBuildEnchantData["OffHand1"].type == 20 && itemData.weaponType == 14) UnequipEsoEnchantSlot("OffHand1", false);
 	}
 	else if (slotId == "OffHand2")
 	{
 		if (g_EsoBuildItemData["MainHand2"].equipType == 6) UnequipEsoItemSlot("MainHand2", false);
+		if (g_EsoBuildEnchantData["OffHand2"].type == 21 && itemData.weaponType != 14) UnequipEsoEnchantSlot("OffHand2", false);
+		if (g_EsoBuildEnchantData["OffHand2"].type == 20 && itemData.weaponType == 14) UnequipEsoEnchantSlot("OffHand2", false);
 	}
 	
 	g_EsoBuildItemData[slotId] = itemData;

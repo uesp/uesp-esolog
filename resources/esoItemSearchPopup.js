@@ -196,7 +196,6 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"	<div class='esoispInputLabel' id='esoispWeaponTypeLabel2'>Weapon Types</div> <select id='esoispWeaponType2' type='text' name='WeaponType2'>" +
 		"		<option value='-1'>Any</option>" +
 		"		<option value='1'>Axe</option>" +
-		"		<option value='8'>Bow</option>" +
 		"		<option value='11'>Dagger</option>" +
 		"		<option value='2'>Hammer</option>" +
 		"		<option value='14'>Shield</option>" +
