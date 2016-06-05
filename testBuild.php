@@ -161,6 +161,14 @@ class CEsoTestBuild
 	
 	
 	public $INPUT_STAT_DETAILS = array(
+			"Level" => array(
+					"desc" => "1-50",	
+			),
+			
+			"EffectiveLevel" => array(
+					"desc" => "1-66",
+			),
+			
 			"Item.Divines" => array(
 					"display" => "%",	
 			),

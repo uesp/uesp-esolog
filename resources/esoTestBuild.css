@@ -529,3 +529,37 @@ a:hover {
 	cursor: pointer;
 	background-color: #777;	
 }
+
+.esotbItemEnchantButton:hover:after {
+    background: #eeeeaa;
+    border-radius: 5px;
+    border: solid 1px gray;
+    bottom: 18px;
+    color: #000;
+    content: "Enchant...";
+    left: 20%;
+    padding: 3px;
+    position: absolute;
+    z-index: 98;
+    font-size: 13px;
+    font-weight: normal;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.esotbItemDetailsButton:hover:after {
+    background: #eeeeaa;
+    border-radius: 5px;
+    border: solid 1px gray;
+    bottom: 18px;
+    color: #000;
+    content: "View Item Details...";
+    left: 20%;
+    padding: 3px;
+    position: absolute;
+    z-index: 98;
+    font-size: 13px;
+    font-weight: normal;
+    white-space: nowrap;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
