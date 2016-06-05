@@ -132,7 +132,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"<div id='esoispInputs'>" + 
 		"	<p>" +
 		"	<div class='esoispInputLabel'>Text</div> <input id='esoispInputText' type='text' name='text' value=''>" +
-		"	<div class='esoispInputLabel'>Quality</div> <select id='esoispQuality' type='text' name='quality'>" +
+		"	<div class='esoispInputLabel' id='esoispQualityLabel'>Quality</div> <select id='esoispQuality' type='text' name='quality'>" +
 		"		<option value='1'>Normal</option>" +
 		"		<option value='2'>Fine</option>" +
 		"		<option value='3'>Superior</option>" +
@@ -213,8 +213,13 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 
 UESP.EsoItemSearchPopup.prototype.update = function()
 {
+	this.itemLevel = $("#esoispLevel").val();
+	this.itemQuality = $("#esoispQuality").val();
+	
 	if (this.itemType == 1) // Weapons
 	{
+		$("#esoispQuality").show();
+		$("#esoispQualityLabel").show();
 		$("#esoispArmorType").hide();
 		$("#esoispArmorTypeLabel").hide();
 		$("#esoispJewelryTrait").hide();
@@ -249,6 +254,8 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 	}
 	else if (this.itemType == 2) // Armor
 	{
+		$("#esoispQuality").show();
+		$("#esoispQualityLabel").show();
 		$("#esoispWeaponType1").hide();
 		$("#esoispWeaponTypeLabel1").hide();
 		$("#esoispWeaponType2").hide();
@@ -280,8 +287,27 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			$("#esoispArmorType").val(this.armorType);
 		}
 	}
+	else if (this.itemType == "4,12")
+	{
+		$("#esoispQuality").hide();
+		$("#esoispQualityLabel").hide();
+		$("#esoispJewelryTrait").hide();
+		$("#esoispJewelryTraitLabel").hide();
+		$("#esoispWeaponTrait").hide();
+		$("#esoispWeaponTraitLabel").hide();
+		$("#esoispArmorTrait").hide();
+		$("#esoispArmorTraitLabel").hide();
+		$("#esoispWeaponType1").hide();
+		$("#esoispWeaponTypeLabel1").hide();
+		$("#esoispWeaponType2").hide();
+		$("#esoispWeaponTypeLabel2").hide();
+		$("#esoispArmorType").hide();
+		$("#esoispArmorTypeLabel").hide();	
+	}
 	else
 	{
+		$("#esoispQuality").show();
+		$("#esoispQualityLabel").show();
 		$("#esoispJewelryTrait").hide();
 		$("#esoispJewelryTraitLabel").hide();
 		$("#esoispWeaponTrait").hide();
@@ -338,6 +364,8 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	if (this.weaponType >= 0) queryParams['weapontype'] = this.weaponType;
 	if (this.armorType != null) queryParams['armortype'] = this.armorType;
 	if (this.itemTrait >= 0) queryParams['trait'] = this.itemTrait;
+	queryParams['level'] = this.itemLevel;
+	queryParams['quality'] = this.itemQuality;
 	
 	return queryParams;
 }
@@ -516,7 +544,7 @@ UESP.EsoItemSearchPopup.prototype.updateTitle = function()
 	}
 	else if (this.itemType == 1) // Weapons
 	{
-		if (this.equipTypes.indexOf("7") >= 0) 
+		if (this.equipTypes.indexOf("7") >= 0)
 			title = "Select Off Hand Weapon";
 		else
 			title = "Select Main Hand Weapon";
@@ -532,6 +560,26 @@ UESP.EsoItemSearchPopup.prototype.updateTitle = function()
 	else if (this.itemType == 26) // Jewelry Glyphs
 	{
 		title = "Select Jewelry Enchantment";
+	}
+	else if (this.itemType == "4,12")
+	{
+		title = "Select Food or Drink";
+	}
+	else if (this.itemType == "4")
+	{
+		title = "Select Food";
+	}
+	else if (this.itemType == "12")
+	{
+		title = "Select Drink";
+	}
+	else if (this.itemType == "7")
+	{
+		title = "Select Potion";
+	}
+	else
+	{
+		title = "Select Item";
 	}
 	
 	titleElement.text(title);

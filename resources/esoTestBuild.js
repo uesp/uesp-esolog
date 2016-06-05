@@ -150,6 +150,46 @@ ESO_ENCHANT_MATCHES = [
 ];
 
 
+ESO_ABILITYDESC_MATCHES = [
+	{
+		statId: "Health",
+		match: /Max Health by ([0-9]+)/i,
+	},                  
+	{
+		statId: "Magicka",
+		match: /Max Magicka by ([0-9]+)/i,
+	},
+	{
+		statId: "Magicka",
+		match: /Max Magicka and Max Stamina by ([0-9]+)/i,
+	},
+	{
+		statId: "Stamina",
+		match: /Max Stamina by ([0-9]+)/i,
+	},
+	{
+		statId: "HealthRegen",
+		match: /Health Recovery by ([0-9]+)/i,
+	},
+	{
+		statId: "MagickaRegen",
+		match: /Magicka Recovery by ([0-9]+)/i,
+	},
+	{
+		statId: "MagickaRegen",
+		match: /Magicka and Stamina Recovery by ([0-9]+)/i,
+	},
+	{
+		statId: "StaminaRegen",
+		match: /Stamina Recovery by ([0-9]+)/i,
+	},
+	{
+		statId: "StaminaRegen",
+		match: /Stamina and Magicka Recovery by ([0-9]+)/i,
+	},
+];
+
+
 function GetEsoInputValues(mergeComputedStats)
 {
 	var inputValues = {};
@@ -202,6 +242,9 @@ function GetEsoInputValues(mergeComputedStats)
 	GetEsoInputItemValues(inputValues, "Neck");
 	GetEsoInputItemValues(inputValues, "Ring1");
 	GetEsoInputItemValues(inputValues, "Ring2");
+	
+	GetEsoInputGeneralValues(inputValues, "Food", "Food");
+	GetEsoInputGeneralValues(inputValues, "Buff", "Potion");
 	
 	if (g_EsoBuildActiveWeapon == 1)
 	{
@@ -258,6 +301,37 @@ function GetEsoEnchantData(slotId)
 	enchantData.enchantDesc = itemData.enchantDesc;
 	
 	return enchantData;
+}
+
+
+function GetEsoInputGeneralValues(inputValues, outputId, slotId)
+{
+	var itemData = g_EsoBuildItemData[slotId];
+	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
+	
+	itemData.rawOutput = {};
+	
+	GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId);
+}
+
+
+function GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId)
+{
+	var rawDesc = itemData.abilityDesc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '$1');
+	if (rawDesc == "") return;
+	
+	for (var i = 0; i < ESO_ABILITYDESC_MATCHES.length; ++i)
+	{
+		var matchData = ESO_ABILITYDESC_MATCHES[i];
+		var matches = rawDesc.match(matchData.match);
+		if (matches == null) continue;
+		
+		var statValue = Math.floor(parseFloat(matches[1]));
+		
+		inputValues[outputId][matchData.statId] += statValue;
+		itemData.rawOutput[outputId + "." + matchData.statId] = statValue;
+		AddEsoInputStatSource(outputId + "." + matchData.statId, { item: itemData, value: statValue, slotId: slotId });
+	}
 }
 
 
@@ -1092,6 +1166,12 @@ function RequestEsoItemData(itemData, element)
 			"quality" : itemData.quality,
 			"limit" : 1,
 	};
+	
+	if (itemData.type == 4 || itemData.type == 12)
+	{
+		queryParams.level = null;
+		queryParams.quality = null;
+	}
 	
 	$.ajax("http://esolog.uesp.net/exportJson.php", {
 			data: queryParams,
