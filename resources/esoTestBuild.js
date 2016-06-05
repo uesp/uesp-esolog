@@ -53,6 +53,373 @@ g_EsoFormulaInputValues = {};
 g_EsoInputStatSources = {};
 
 
+ESO_SETEFFECT_MATCHES = [
+	{
+		statId: "SpellCrit",
+		match: /Adds ([0-9]+) Spell Critical/i,
+	},
+	{
+		statId: "WeaponCrit",
+		match: /Adds ([0-9]+) Weapon Critical/i,
+	},
+	{
+		statId: "Health",
+		match: /Adds ([0-9]+) Maximum Health/i,
+	},
+	{
+		statId: "Magicka",
+		match: /Adds ([0-9]+) Maximum Magicka/i,
+	},
+	{
+		statId: "Stamina",
+		match: /Adds ([0-9]+) Maximum Stamina/i,
+	},
+	{
+		statId: "SpellDamage",
+		match: /Increase Spell Damage by ([0-9]+)/i,
+	},
+	{
+		statId: "SpellDamage",
+		match: /increases Weapon and Spell Damage by ([0-9]+)/i,
+	},
+	{
+		statId: "SpellDamage",
+		match: /Adds ([0-9]+) Spell Damage/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /increases Weapon and Spell Damage by ([0-9]+)/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /Increase Weapon Damage by ([0-9]+)/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /Adds ([0-9]+) Weapon Damage/i,
+	},
+	{
+		statId: "HealthRegen",
+		match: /Adds ([0-9]+) Health Recovery/i,
+	},
+	{
+		statId: "MagickaRegen",
+		match: /Adds ([0-9]+) Magicka Recovery/i,
+	},
+	{
+		statId: "StaminaRegen",
+		match: /Adds ([0-9]+) Stamina Recovery/i,
+	},
+	{
+		statId: "PhysicalResist",
+		match: /Adds ([0-9]+) Physical Resistance/i,
+	},
+	{
+		statId: "SpellResist",
+		match: /Adds ([0-9]+) Spell Resistance/i,
+	},
+	{
+		statId: "HealingTaken",
+		display: '%',
+		match: /Adds ([0-9]+\.?[0-9]*)% Healing Taken/i,
+	},	
+	{
+		statId: "HealingTaken",
+		display: '%',
+		match: /Group members within [0-9]+m gain ([0-9]+\.?[0-9]*)% increased effect from heals/i,
+	},	
+	{
+		statId: "HealingTaken",
+		display: '%',
+		match: /When you are healed, gain ([0-9]+\.?[0-9]*)% additional healing/i,
+	},	
+	{
+		statId: "CritDamage",
+		display: '%',
+		match: /Critical Damage increases by ([0-9]+\.?[0-9]*)%/i,
+	},	
+	{
+		statId: "CritResist",
+		display: '%',
+		match: /Reduces damage from Critical Hits by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaCost",
+		display: '%',
+		match: /Reduce the Magicka cost of abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaCost",
+		display: '%',
+		match: /Reduce all costs by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaCost",
+		display: '%',
+		match: /Reduce Magicka costs for up to [0-9]+ group members by ([0-9]+\.?[0-9]*)%/i,
+	},	
+	{
+		statId: "StaminaCost",
+		display: '%',
+		match: /Reduce the Stamina cost of abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "StaminaCost",
+		display: '%',
+		match: /Reduces the costs of Stamina abilities by ([0-9]+\.?[0-9]*)%/i,
+	},	
+	{
+		statId: "StaminaCost",
+		display: '%',
+		match: /Reduce all costs by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "UltimateCost",
+		display: '%',
+		match: /Reduce cost of Ultimate abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "PhysicalPenetration",
+		match: /Adds ([0-9]+) Physical Penetration/i,
+	},
+	{
+		statId: "Spell Penetration",
+		match: /Adds ([0-9]+) Spell Penetration/i,
+	},
+	{
+		statId: "SnareDuration",
+		display: '%',
+		match: /Snares on you have ([0-9]+)% shorter duration/i,
+	},
+	{
+		statId: "PlayerDamageResist",
+		display: '%',
+		match: /Reduce damage taken from players by ([0-9]+)%/i,
+	},
+	{
+		statId: "HARestore",
+		display: '%',
+		match: /Increases the Magicka and Stamina restoration benefit from the Constitution Passive ability by ([0-9]+)%/i,
+	},
+	{
+		statId: "RollDodgeDuration",
+		match: /After roll dodging, continue to dodge attacks for an additional ([0-9]+\.?[0-9]*) seconds/i,
+	},
+	{
+		statId: "NegativeEffectDuration",
+		display: '%',
+		match: /Reduce the duration of negative effects on you by ([0-9]+)%/i,
+	},
+	{
+		statId: "SprintCost",
+		display: '%',
+		match: /Reduces Stamina cost for sprinting and crouching by ([0-9]+)%/i,
+	},
+	{
+		statId: "SprintCost",
+		display: '%',
+		match: /Sprint cost reduced by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SprintCost",
+		display: '%',
+		match: /Sprint costs ([0-9]+\.?[0-9]*)% less/i,
+	},	
+	{
+		statId: "SneakCost",
+		display: '%',
+		match: /Reduces Stamina cost for sprinting and crouching by ([0-9]+)%/i,
+	},
+	{
+		statId: "SneakCost",
+		display: '%',
+		match: /Reduces crouch cost by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SneakCost",
+		display: '%',
+		match: /Reduce Sneak cost by ([0-9]+\.?[0-9]*)%/i,
+	},	
+	{
+		statId: "BowRange",
+		match: /Increase range of bow attacks by ([0-9]+) meters/i,
+	},
+	{
+		statId: "LAHADamage",
+		display: '%',
+		category: "Skill",
+		match: /Light attack and heavy attack damage increased by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "HADamage",
+		match: /Your fully charged Heavy Attacks do an additional ([0-9]+\.?[0-9]*) damage/i,
+	},
+	{
+		statId: "HADamage",
+		display: '%',
+		category: "Skill",
+		match: /Your fully charged heavy attacks deal ([0-9]+\.?[0-9]*)% additional damage/i,
+	},
+	{
+		statId: "FireEffectDuration",
+		match: /Increases duration of your damaging fire effects by ([0-9]+\.?[0-9]*) seconds/i,
+	},
+	{
+		statId: "RunSpeed",
+		display: '%',
+		match: /movement speed increased by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "BlockMitigation",
+		display: '%',
+		match: /Increase your block mitigation by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "BlockMitigation",
+		display: '%',
+		match: /Increase block mitigation by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		category: "Skill",
+		statId: "Magicka",
+		display: '%',
+		match: /Increase Maximum Magicka by ([0-9]+\.?[0-9]*)%./i,
+	},
+	{
+		statId: "BowAbilityCost",
+		display: '%',
+		match: /Reduce cost of bow abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "BowAbilityDamage",
+		display: '%',
+		match: /Reduce cost of bow abilities by [0-9]+\.?[0-9]*% and increase their damage by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "HealingDone",
+		display: '%',
+		match: /Increases healing done by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "HealingDone",
+		display: '%',
+		match: /Increase healing done by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Health",
+		match: /Increase Max Health for up to 12 group members by ([0-9]+\.?[0-9]*)/i,
+	},
+	{
+		category: "Skill",
+		statId: "StaminaRecovery",
+		display: '%',
+		match: /Increase Max Health for up to 12 group members by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		category: "Skill",
+		statId: "StaminaRecovery",
+		display: '%',
+		match: /Increase Max Health for up to 12 group members by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "ResurrectTime",
+		display: '%',
+		match: /decrease time to resurrect an ally by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "BossDamageResist",
+		display: '%',
+		match: /you to take ([0-9]+\.?[0-9]*)% less damage from Boss/i,
+	},
+	{
+		statId: "SneakRange",
+		match: /Reduce the range you can be detected while hidden by ([0-9]+\.?[0-9]*) meters/i,
+	},
+	{
+		statId: "SneakRange",
+		match: /Decrease detection radius by ([0-9]+\.?[0-9]*) meters/i,
+	},
+	{
+		statId: "SneakDetectRange",
+		category: "Skill",
+		display: '%',
+		match: /Stealth detection radius increased by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SneakDetectRange",
+		match: /Increases stealth detection radius by 2 meters/i,
+	},	
+	{
+		statId: "BreakFreeCost",
+		display: '%',
+		match: /Reduce the cost of Break Free by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "TwiceBornStar",
+		match: /Allows you to have two Mundus Stone Boons at the same time/i,
+	},
+	
+	
+	
+	
+	
+	{
+		toggle: true,
+		enabled: false,
+		statId: "HealthRegen",
+		display: '%',
+		category: "Skill",
+		match: /If below 60% Health, increase Health Recovery by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		toggle: true,
+		enabled: false,
+		statId: "HealthRegen",
+		match: /Gain ([0-9]+\.?[0-9]*) Health Recovery while you have a Damage Shield/i,
+	},
+	{
+		toggle: true,
+		enabled: false,
+		statId: "HealthRegen",
+		display: '%',
+		match: /Increase all recovery in combat by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		toggle: true,
+		enabled: false,
+		statId: "MagickaRegen",
+		display: '%',
+		match: /Increase all recovery in combat by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		toggle: true,
+		enabled: false,
+		statId: "StaminaRegen",
+		display: '%',
+		match: /Increase all recovery in combat by ([0-9]+\.?[0-9]*)%/i,
+	},
+	
+	
+	 
+	
+	
+	
+	
+	{
+		statId: "OtherEffects",
+		match: /Increase Max Health for up to 12 group members by ([0-9]+\.?[0-9]*)/i,
+	},
+	{
+		statId: "OtherEffects",
+		display: '%',
+		match: /increase the damage of your bow abilities against players by ([0-9]+\.?[0-9]*)%/i,
+	},
+	
+	 
+	
+	
+];
+
 	
 ESO_ENCHANT_ARMOR_MATCHES = [
 	{
@@ -129,24 +496,25 @@ ESO_ENCHANT_ARMOR_MATCHES = [
 	},
 	{
 		statId: "StaminaCost",
-		match: /Reduce Stamina cost of abilities by ([0-9]+)/i,
+		match: /Reduce Stamina cost of abilities by ([0-9]+\.?[0-9]*)/i,
 	},
 	{
 		statId: "MagickaCost",
-		match: /Reduce Magicka cost of abilities by ([0-9]+)/i,
+		match: /Reduce Magicka cost of abilities by ([0-9]+\.?[0-9]*)/i,
 	},
 	{
 		statId: "MagickaCost",
-		match: /Reduce Magicka cost of spells by ([0-9]+)/i,
+		match: /Reduce Magicka cost of spells by ([0-9]+\.?[0-9]*)/i,
 	},
 	{
 		statId: "BashCost",
-		match: /Reduce cost of bash by ([0-9]+)/i,
+		match: /Reduce cost of bash by ([0-9]+\.?[0-9]*)/i,
 	},
 	{
 		statId: "BlockCost",
-		match: /Reduce cost of blocking by ([0-9]+)/i,
+		match: /Reduce cost of blocking by ([0-9]+\.?[0-9]*)/i,
 	},
+	
 ];
 
 
@@ -291,7 +659,7 @@ function GetEsoInputValues(mergeComputedStats)
 	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
 	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
 	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
-		
+	
 	GetEsoInputItemValues(inputValues, "Head");
 	GetEsoInputItemValues(inputValues, "Shoulders");
 	GetEsoInputItemValues(inputValues, "Chest");
@@ -319,7 +687,8 @@ function GetEsoInputValues(mergeComputedStats)
 		GetEsoInputItemValues(inputValues, "Poison2");
 	}
 	
-	UpdateEsoItemSetData();
+	UpdateEsoItemSets();
+	GetEsoInputSetValues(inputValues);
 	
 	GetEsoInputMundusValues(inputValues);
 	GetEsoInputCPValues(inputValues);
@@ -334,6 +703,78 @@ function GetEsoInputValues(mergeComputedStats)
 	}
 	
 	return inputValues;
+}
+
+
+function GetEsoInputSetValues(inputValues)
+{
+	for (var setName in g_EsoBuildSetData)
+	{
+		var setData = g_EsoBuildSetData[setName];
+		GetEsoInputSetDataValues(inputValues, setData);
+	}
+}
+
+
+function GetEsoInputSetDataValues(inputValues, setData)
+{
+	if (setData == null || setData.count <= 0) return;
+	setData.rawOutput = [];
+	
+	for (var i = 0; i < 5; ++i)
+	{
+		var setBonusCount = parseInt(setData.items[0]['setBonusCount' + (i+1)]);
+		if (setBonusCount > setData.count) continue;
+		
+		var setDesc = setData.averageDesc[i];
+		
+		GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData);
+	}
+}
+
+
+function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
+{
+	var foundMatch = false;
+	var addFinalEffect = false;
+	
+	if (setBonusCount < 0 || setDesc == "") return;
+	
+	for (var i = 0; i < ESO_SETEFFECT_MATCHES.length; ++i)
+	{
+		var matchData = ESO_SETEFFECT_MATCHES[i];
+		var matches = setDesc.match(matchData.match);
+		if (matches == null) continue;
+		
+			/* Ignore toggled effects that aren't on */
+		if (matchData.toggle === true && matchData.enabled === false) continue;
+		
+		foundMatch = true;
+		
+		if (matchData.statId == "OtherEffects")
+		{
+			addFinalEffect = true;
+		}
+		else
+		{
+			var statValue = Math.floor(parseFloat(matches[1]));
+			var category = matchData.category || "Set";
+			
+			var display = matchData.display || "";
+			if (display == "%") statValue = statValue/100;
+		
+			inputValues[category][matchData.statId] += statValue;
+			setData.rawOutput[category + "." + matchData.statId] = statValue;
+			AddEsoInputStatSource(category + "." + matchData.statId, { set: setData, setBonusCount: setBonusCount, value: statValue });
+		}
+	}
+	
+	if (!foundMatch || addFinalEffect)
+	{
+		AddEsoInputStatSource("OtherEffects", { other: true, set: setData, setBonusCount: setBonusCount, value: setDesc });
+		setData.rawOutput["OtherEffects"] = setDesc;
+	}
+	
 }
 
 
@@ -713,7 +1154,7 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 }
 
 
-function UpdateEsoItemSetData()
+function UpdateEsoItemSets()
 {
 	g_EsoBuildSetData = {};
 	
@@ -730,6 +1171,7 @@ function UpdateEsoItemSetData()
 		if (g_EsoBuildSetData[setName] == null) 
 		{
 			g_EsoBuildSetData[setName] = {
+					name: setName,
 					count: 0,
 					items: [],
 			};
@@ -741,6 +1183,7 @@ function UpdateEsoItemSetData()
 		AddEsoInputStatSource("Set." + setName, { set: setName, item: data });
 	}
 	
+	ComputeEsoBuildAllSetData();
 }
 
 
@@ -1973,9 +2416,137 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem, statDetails)
 	{
 		output += "" + value + ": " + sourceItem.cp + " CP ability (abilityId " + sourceItem.abilityId + ")";
 	}	
+	else if (sourceItem.set != null)
+	{
+		if (sourceItem.other)
+			output += "" + value + ": " + sourceItem.set.name + " set bonus #" + sourceItem.setBonusCount + "";
+		else
+			output += "" + value + ": " + sourceItem.set.name + " set bonus #" + sourceItem.setBonusCount + "";
+	}
+	else
+	{
+		output += "" + value + ": Unknown";
+	}
 	
 	output += "</div>";
 	return output;
+}
+
+
+function ComputeEsoBuildAllSetData()
+{
+	for (var setName in g_EsoBuildSetData)
+	{
+		var setData = g_EsoBuildSetData[setName];
+		ComputeEsoBuildSetData(setData);
+	}
+}
+
+
+function ComputeEsoBuildSetData(setData)
+{
+	setData.parsedNumbers = [];
+	setData.averageNumbers = [];
+	setData.averageDesc = [];
+	
+	for (var i = 0; i < setData.items.length; ++i)
+	{
+		var item = setData.items[i];
+		ComputeEsoBuildSetDataItem(setData, item);
+	}
+	
+	ComputeEsoBuildSetDataAverages(setData);
+	UpdateEsoBuildSetDesc(setData);
+}
+
+
+function UpdateEsoBuildSetDesc(setData)
+{
+	setData.averageDesc = [];
+	if (setData.items.length == 0) return;
+	
+	for (var i = 0; i < setData.averageNumbers.length; ++i)
+	{
+		var numbers = setData.averageNumbers[i];
+		var rawDesc = RemoveEsoDescriptionFormats(setData.items[0]["setBonusDesc" + (i+1)]);
+		var matchCounter = 0;
+		
+		if (rawDesc == null)
+		{
+			setData.averageDesc[i] = "";
+			continue;
+		}
+		
+		setData.averageDesc[i] = rawDesc.replace(/[0-9]+\.?[0-9]*/g, function(match) {
+			++matchCounter;
+			return numbers[matchCounter-1] || "";
+		});
+	}
+}
+
+
+function ComputeEsoBuildSetDataAverages(setData)
+{
+	var sums = [];
+	setData.averageNumbers = [];
+	
+	for (var i = 0; i < setData.parsedNumbers.length; ++i)
+	{
+		if (setData.parsedNumbers[i] == null) continue;
+		var thisSum = [];
+		var counts = [];
+		
+		for (var j = 0; j < setData.parsedNumbers[i].length; ++j)
+		{
+			if (setData.parsedNumbers[i][j] == null) continue;
+			
+			for (var k = 0; k < setData.parsedNumbers[i][j].length; ++k)
+			{
+				if (thisSum[k] == null) 
+				{
+					thisSum[k] = parseFloat(setData.parsedNumbers[i][j][k]);
+					counts[k] = 1;
+				}
+				else
+				{
+					thisSum[k] += parseFloat(setData.parsedNumbers[i][j][k]);
+					++counts[k];
+				}
+			}	
+		}
+		
+		setData.averageNumbers[i] = [];
+		
+		for (var j = 0; j < thisSum.length; ++j)
+		{
+			if (counts[j] != 0)
+				setData.averageNumbers[i][j] = Math.floor(thisSum[j] / counts[j]);
+			else
+				setData.averageNumbers[i][j] = 0;
+		}
+	}
+	
+}
+
+
+function ComputeEsoBuildSetDataItem(setData, item)
+{
+	ParseEsoBuildSetDesc(setData, 0, item.setBonusDesc1);
+	ParseEsoBuildSetDesc(setData, 1, item.setBonusDesc2);
+	ParseEsoBuildSetDesc(setData, 2, item.setBonusDesc3);
+	ParseEsoBuildSetDesc(setData, 3, item.setBonusDesc4);
+	ParseEsoBuildSetDesc(setData, 4, item.setBonusDesc5);
+}
+
+
+function ParseEsoBuildSetDesc(setData, descIndex, description)
+{
+	var rawDesc = RemoveEsoDescriptionFormats(description);
+	var results = rawDesc.match(/[0-9]+\.?[0-9]*/g);
+	
+	if (setData.parsedNumbers[descIndex] == null) setData.parsedNumbers[descIndex] = [];
+	
+	setData.parsedNumbers[descIndex].push(results);
 }
 
 
