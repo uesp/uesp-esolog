@@ -344,6 +344,12 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Mundus.HealingDone" => array(
+					"display" => "%",
+			),
+				
+			
+			
 	);
 	
 	public $COMPUTED_STATS_LIST = array(

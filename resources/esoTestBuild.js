@@ -3,6 +3,8 @@
  * 		- Description of input types (plain, percent, special, etc...)
  */
 
+ESO_TESTBUILD_SHOWALLRAWINPUTS = false;
+
 ESO_MAX_ATTRIBUTES = 64;
 ESO_MAX_LEVEL = 50;
 ESO_MAX_CPLEVEL = 16;
@@ -1204,56 +1206,71 @@ function GetEsoInputMundusValues(inputValues)
 	if (inputValues.Mundus.Name == "The Lady")
 	{
 		inputValues.Mundus.PhysicalResist = 1280;
+		AddEsoInputStatSource("Mundus.PhysicalResist", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.PhysicalResist });
 	}
 	else if (inputValues.Mundus.Name == "The Lover")
 	{
 		inputValues.Mundus.SpellResist = 1280;
+		AddEsoInputStatSource("Mundus.SpellResist", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.SpellResist });
 	}
 	else if (inputValues.Mundus.Name == "The Lord")
 	{
 		inputValues.Mundus.Health = 1280;
+		AddEsoInputStatSource("Mundus.Health", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.Health });
 	}
 	else if (inputValues.Mundus.Name == "The Mage")
 	{
 		inputValues.Mundus.Magicka = 1280;
+		AddEsoInputStatSource("Mundus.Magicka", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.Magicka });
 	}
 	else if (inputValues.Mundus.Name == "The Tower")
 	{
 		inputValues.Mundus.Stamina = 1280;
+		AddEsoInputStatSource("Mundus.Stamina", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.Stamina });
 	}
 	else if (inputValues.Mundus.Name == "The Atronach")
 	{
 		inputValues.Mundus.MagickaRegen = 210;
+		AddEsoInputStatSource("Mundus.MagickaRegen", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.MagickaRegen });
 	}
 	else if (inputValues.Mundus.Name == "The Serpent")
 	{
 		inputValues.Mundus.StaminaRegen = 210;
+		AddEsoInputStatSource("Mundus.StaminaRegen", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.StaminaRegen });
 	}
 	else if (inputValues.Mundus.Name == "The Shadow")
 	{
 		inputValues.Mundus.CritDamage = 0.12;
+		AddEsoInputStatSource("Mundus.CritDamage", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.CritDamage });
 	}
 	else if (inputValues.Mundus.Name == "The Ritual")
 	{
 		inputValues.Mundus.HealingDone = 0.10;
+		AddEsoInputStatSource("Mundus.HealingDone", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.HealingDone });
 	}
 	else if (inputValues.Mundus.Name == "The Thief")
 	{
 		inputValues.Mundus.SpellCrit = 0.11;	//TODO: Absolute values?
 		inputValues.Mundus.WeaponCrit = 0.11;
+		AddEsoInputStatSource("Mundus.SpellCrit", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.SpellCrit });
+		AddEsoInputStatSource("Mundus.WeaponCrit", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.WeaponCrit });
 	}
 	else if (inputValues.Mundus.Name == "The Warrior")
 	{
 		inputValues.Mundus.WeaponDamage = 166;
+		AddEsoInputStatSource("Mundus.WeaponDamage", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.WeaponDamage });
 	}
 	else if (inputValues.Mundus.Name == "The Apprentice")
 	{
 		inputValues.Mundus.SpellDamage = 166;
+		AddEsoInputStatSource("Mundus.SpellDamage", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.SpellDamage });
 	}
 	else if (inputValues.Mundus.Name == "The Steed")
 	{
 		inputValues.Mundus.HealthRegen = 210;
 		inputValues.Mundus.RunSpeed = 0.05;
+		AddEsoInputStatSource("Mundus.HealthRegen", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.HealthRegen });
+		AddEsoInputStatSource("Mundus.RunSpeed", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.RunSpeed });
 	}
 
 }
@@ -1374,6 +1391,18 @@ function AddEsoInputStatSource(statId, data)
 {
 	if (g_EsoInputStatSources[statId] == null) g_EsoInputStatSources[statId] = [];
 	g_EsoInputStatSources[statId].push(data);
+	
+	var statIds = statId.split(".");
+	
+	if (statIds.length > 1)
+	{
+		var firstStatId = statIds.shift();
+		//if (firstStatId == "Armor") return;
+		
+		var newStatId = statIds.join(".");
+		if (g_EsoInputStatSources[newStatId] == null) g_EsoInputStatSources[newStatId] = [];
+		g_EsoInputStatSources[newStatId].push(data);
+	}
 }
 
 
@@ -2379,6 +2408,8 @@ function GetEsoBuildRawInputSourcesHtml(sourceName, sourceData)
 	if (sourceData.length <= 0) return "";
 	var statDetails = g_EsoInputStatDetails[sourceName] || {};
 	
+	if (!ESO_TESTBUILD_SHOWALLRAWINPUTS && sourceName.indexOf(".") >= 0) return "";
+	
 	var output = "<div class='esotbRawInputItem'>";
 	var sourceValue = "";
 	
@@ -2399,6 +2430,7 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem, statDetails)
 	var output = "<div class='esotbRawInputValue'>";
 	var value = sourceItem.value;
 	
+	if (value == 0) return "";
 	if (statDetails.display == '%') value = "" + (Math.round(value * 1000)/10) + "%";
 		
 	if (sourceItem.slotId != null && sourceItem.item != null && sourceItem.enchant != null)
@@ -2423,6 +2455,10 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem, statDetails)
 		else
 			output += "" + value + ": " + sourceItem.set.name + " set bonus #" + sourceItem.setBonusCount + "";
 	}
+	else if (sourceItem.mundus != null)
+	{
+		output += "" + value + ": " + sourceItem.mundus + " mundus stone";
+	}		
 	else
 	{
 		output += "" + value + ": Unknown";
