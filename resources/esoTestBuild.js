@@ -1063,7 +1063,6 @@ function OnEsoSelectItem(itemData, element)
 	}
 	else if (slotId == "OffHand1")
 	{
-		console.log(g_EsoBuildEnchantData["OffHand1"].type , itemData.weaponType);
 		if (g_EsoBuildItemData["MainHand1"].equipType == 6) UnequipEsoItemSlot("MainHand1", false);
 		if (g_EsoBuildEnchantData["OffHand1"].type == 21 && itemData.weaponType != 14) UnequipEsoEnchantSlot("OffHand1", false);
 		if (g_EsoBuildEnchantData["OffHand1"].type == 20 && itemData.weaponType == 14) UnequipEsoEnchantSlot("OffHand1", false);

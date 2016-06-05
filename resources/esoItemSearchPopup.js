@@ -138,7 +138,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='3'>Superior</option>" +
 		"		<option value='4'>Epic</option>" +
 		"		<option value='5'>Legendary</option>" +
-		"	</select><br/>" +
+		"	</select>" +
 		"	<div class='esoispInputLabel' id='esoispArmorTraitLabel'>Armor Traits</div> <select id='esoispArmorTrait' type='text' name='armorTrait'>" +
 		"		<option value='-1'>Any</option>" +
 		"		<option value='0'>None</option>" +
@@ -578,7 +578,9 @@ UESP.EsoItemSearchPopup.prototype.onArmorTypeChange = function(e)
 
 UESP.EsoItemSearchPopup.prototype.onArmorTraitChange = function(e)
 {
-	$("#esoispWeaponTrait").val("0");
+	$("#esoispWeaponTrait").val("-1");
+	$("#esoispWeaponType1").val("-1");
+	$("#esoispWeaponType2").val("-1");
 	this.itemTrait = $("#esoispArmorTrait").val();
 }
 
@@ -591,21 +593,21 @@ UESP.EsoItemSearchPopup.prototype.onJewelryTraitChange = function(e)
 
 UESP.EsoItemSearchPopup.prototype.onWeaponTraitChange = function(e)
 {
-	$("#esoispArmorTrait").val("0");
+	$("#esoispArmorTrait").val("-1");
 	this.itemTrait = $("#esoispWeaponTrait").val();
 }
 
 
 UESP.EsoItemSearchPopup.prototype.onWeaponType1Change = function(e)
 {
-	$("#esoispArmorTrait").val("0");
+	$("#esoispArmorTrait").val("-1");
 	this.weaponType = $("#esoispWeaponType1").val();
 }
 
 
 UESP.EsoItemSearchPopup.prototype.onWeaponType2Change = function(e)
 {
-	$("#esoispArmorTrait").val("0");
+	$("#esoispArmorTrait").val("-1");
 	this.weaponType = $("#esoispWeaponType2").val();
 }
 

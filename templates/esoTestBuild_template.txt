@@ -141,13 +141,13 @@ displayed statistics is unknown.
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 1</div>
-				<div class="esotbItem " id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1">
+				<div class="esotbItem " id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 					<div class="esotbItemEnchantButton">*</div>
 				</div>
-				<div class="esotbItem " id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1">
+				<div class="esotbItem " id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
@@ -160,13 +160,13 @@ displayed statistics is unknown.
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 2</div>
-				<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1">
+				<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 					<div class="esotbItemEnchantButton">*</div>
 				</div>
-				<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1">
+				<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
