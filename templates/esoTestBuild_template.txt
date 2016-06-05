@@ -141,23 +141,25 @@ displayed statistics is unknown.
 				</div><br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 1</div>
-				<div class="esotbItem " id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
+				<div class="esotbItem esotbWeaponSelect" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 					<div class="esotbItemEnchantButton">*</div>
 				</div>
-				<div class="esotbItem " id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1" weapontype="-1">
+				<div class="esotbItem esotbWeaponSelect" id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 					<div class="esotbItemEnchantButton">*</div>
 				</div>
-				<div class="esotbItem " id="esotbItemPoison1" slotid="Poison1" equiptype="15" itemtype="30">
+				<div class="esotbItem esotbWeaponSelect" id="esotbItemPoison1" slotid="Poison1" equiptype="15" itemtype="30">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
-				</div><br/>
+				</div>
+				<button class="esotbWeaponSelect" id="esotbWeaponSelect1">Select</button>
+				<br/>
 				
 				<div class="esotbItemSlotLabel">Weapon 2</div>
 				<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1" weapontype="-1">
@@ -176,7 +178,9 @@ displayed statistics is unknown.
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
-				</div><br/>
+				</div>
+				<button class="" id="esotbWeaponSelect2">Select</button>
+				<br/>
 				
 				<div class="esotbItemSlotLabel">Food/Drink</div>
 				<div class="esotbItem " id="esotbItemFood" slotid="Food" itemtype="4,12">

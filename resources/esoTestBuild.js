@@ -1650,6 +1650,40 @@ function OnEsoEnchantDataError(xhr, status, errorMsg)
 }
 
 
+function OnEsoWeaponSelect1(e)
+{
+	$("#esotbWeaponSelect1").addClass("esotbWeaponSelect");
+	$("#esotbItemMainHand1").addClass("esotbWeaponSelect");
+	$("#esotbItemOffHand1").addClass("esotbWeaponSelect");
+	$("#esotbItemPoison1").addClass("esotbWeaponSelect");
+		
+	$("#esotbWeaponSelect2").removeClass("esotbWeaponSelect");
+	$("#esotbItemMainHand2").removeClass("esotbWeaponSelect");
+	$("#esotbItemOffHand2").removeClass("esotbWeaponSelect");
+	$("#esotbItemPoison2").removeClass("esotbWeaponSelect");
+	
+	g_EsoBuildActiveWeapon = 1;
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoWeaponSelect2(e)
+{
+	$("#esotbWeaponSelect1").removeClass("esotbWeaponSelect");
+	$("#esotbItemMainHand1").removeClass("esotbWeaponSelect");
+	$("#esotbItemOffHand1").removeClass("esotbWeaponSelect");
+	$("#esotbItemPoison1").removeClass("esotbWeaponSelect");
+		
+	$("#esotbWeaponSelect2").addClass("esotbWeaponSelect");
+	$("#esotbItemMainHand2").addClass("esotbWeaponSelect");
+	$("#esotbItemOffHand2").addClass("esotbWeaponSelect");
+	$("#esotbItemPoison2").addClass("esotbWeaponSelect");
+	
+	g_EsoBuildActiveWeapon = 2;
+	UpdateEsoComputedStatsList();
+}
+
+
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
@@ -1679,7 +1713,9 @@ function esotbOnDocReady()
 	$(document).on("esocpUpdate", OnEsoBuildCpUpdate);
 	
 	$(".esotbItemDetailsButton").click(OnEsoItemDetailsClick);
-	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);	
+	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);
+	$("#esotbWeaponSelect1").click(OnEsoWeaponSelect1);
+	$("#esotbWeaponSelect2").click(OnEsoWeaponSelect2);
 }
 
 
