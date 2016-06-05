@@ -40,7 +40,10 @@ displayed statistics is unknown.
 				<div class="esotbStatLabel">Class</div> <select id="esotbClass" name="esotbClass" statid="Class">{classList}</select>
 			</div>
 			<div id="esotbMundusList">
-				<div class="esotbStatLabel">Mundus</div> <select id="esotbMundus" name="esotbMundus" statid="Mundus.Name">{mundusList}</select>
+				<div class="esotbStatLabel">Mundus</div> <select id="esotbMundus"  name="esotbMundus"  statid="Mundus.Name" >{mundusList}</select>
+				<br/>
+				<div class="esotbStatLabel">Mundus #2</div> <select id="esotbMundus2" name="esotbMundus2" statid="Mundus.Name2" disabled>{mundusList}</select>
+				For Twice-Born Star builds
 			</div>
 			<p>
 			<div class="esotbStatLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50"><br/>
