@@ -760,6 +760,8 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 		else
 		{
 			var statValue = Math.floor(parseFloat(matches[1]));
+			if (isNaN(statValue)) statValue = 1;
+			
 			var category = matchData.category || "Set";
 			
 			var display = matchData.display || "";
@@ -1202,75 +1204,87 @@ function GetEsoInputTargetValues(inputValues)
 function GetEsoInputMundusValues(inputValues)
 {
 	inputValues.Mundus.Name = $("#esotbMundus").val();
+	GetEsoInputMundusNameValues(inputValues, inputValues.Mundus.Name);
 	
-	if (inputValues.Mundus.Name == "The Lady")
+	if (IsTwiceBornStarEnabled())
+	{
+		inputValues.Mundus.Name2 = $("#esotbMundus2").val();
+		GetEsoInputMundusNameValues(inputValues, inputValues.Mundus.Name2);
+	}
+}
+
+
+function GetEsoInputMundusNameValues(inputValues, mundusName)
+{
+	
+	if (mundusName == "The Lady")
 	{
 		inputValues.Mundus.PhysicalResist = 1280;
-		AddEsoInputStatSource("Mundus.PhysicalResist", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.PhysicalResist });
+		AddEsoInputStatSource("Mundus.PhysicalResist", { mundus: mundusName, value: inputValues.Mundus.PhysicalResist });
 	}
-	else if (inputValues.Mundus.Name == "The Lover")
+	else if (mundusName == "The Lover")
 	{
 		inputValues.Mundus.SpellResist = 1280;
-		AddEsoInputStatSource("Mundus.SpellResist", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.SpellResist });
+		AddEsoInputStatSource("Mundus.SpellResist", { mundus: mundusName, value: inputValues.Mundus.SpellResist });
 	}
-	else if (inputValues.Mundus.Name == "The Lord")
+	else if (mundusName == "The Lord")
 	{
 		inputValues.Mundus.Health = 1280;
-		AddEsoInputStatSource("Mundus.Health", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.Health });
+		AddEsoInputStatSource("Mundus.Health", { mundus: mundusName, value: inputValues.Mundus.Health });
 	}
-	else if (inputValues.Mundus.Name == "The Mage")
+	else if (mundusName == "The Mage")
 	{
 		inputValues.Mundus.Magicka = 1280;
-		AddEsoInputStatSource("Mundus.Magicka", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.Magicka });
+		AddEsoInputStatSource("Mundus.Magicka", { mundus: mundusName, value: inputValues.Mundus.Magicka });
 	}
-	else if (inputValues.Mundus.Name == "The Tower")
+	else if (mundusName == "The Tower")
 	{
 		inputValues.Mundus.Stamina = 1280;
-		AddEsoInputStatSource("Mundus.Stamina", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.Stamina });
+		AddEsoInputStatSource("Mundus.Stamina", { mundus: mundusName, value: inputValues.Mundus.Stamina });
 	}
-	else if (inputValues.Mundus.Name == "The Atronach")
+	else if (mundusName == "The Atronach")
 	{
 		inputValues.Mundus.MagickaRegen = 210;
-		AddEsoInputStatSource("Mundus.MagickaRegen", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.MagickaRegen });
+		AddEsoInputStatSource("Mundus.MagickaRegen", { mundus: mundusName, value: inputValues.Mundus.MagickaRegen });
 	}
-	else if (inputValues.Mundus.Name == "The Serpent")
+	else if (mundusName == "The Serpent")
 	{
 		inputValues.Mundus.StaminaRegen = 210;
-		AddEsoInputStatSource("Mundus.StaminaRegen", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.StaminaRegen });
+		AddEsoInputStatSource("Mundus.StaminaRegen", { mundus: mundusName, value: inputValues.Mundus.StaminaRegen });
 	}
-	else if (inputValues.Mundus.Name == "The Shadow")
+	else if (mundusName == "The Shadow")
 	{
 		inputValues.Mundus.CritDamage = 0.12;
-		AddEsoInputStatSource("Mundus.CritDamage", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.CritDamage });
+		AddEsoInputStatSource("Mundus.CritDamage", { mundus: mundusName, value: inputValues.Mundus.CritDamage });
 	}
-	else if (inputValues.Mundus.Name == "The Ritual")
+	else if (mundusName == "The Ritual")
 	{
 		inputValues.Mundus.HealingDone = 0.10;
-		AddEsoInputStatSource("Mundus.HealingDone", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.HealingDone });
+		AddEsoInputStatSource("Mundus.HealingDone", { mundus: mundusName, value: inputValues.Mundus.HealingDone });
 	}
-	else if (inputValues.Mundus.Name == "The Thief")
+	else if (mundusName == "The Thief")
 	{
 		inputValues.Mundus.SpellCrit = 0.11;	//TODO: Absolute values?
 		inputValues.Mundus.WeaponCrit = 0.11;
-		AddEsoInputStatSource("Mundus.SpellCrit", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.SpellCrit });
-		AddEsoInputStatSource("Mundus.WeaponCrit", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.WeaponCrit });
+		AddEsoInputStatSource("Mundus.SpellCrit", { mundus: mundusName, value: inputValues.Mundus.SpellCrit });
+		AddEsoInputStatSource("Mundus.WeaponCrit", { mundus: mundusName, value: inputValues.Mundus.WeaponCrit });
 	}
-	else if (inputValues.Mundus.Name == "The Warrior")
+	else if (mundusName == "The Warrior")
 	{
 		inputValues.Mundus.WeaponDamage = 166;
-		AddEsoInputStatSource("Mundus.WeaponDamage", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.WeaponDamage });
+		AddEsoInputStatSource("Mundus.WeaponDamage", { mundus: mundusName, value: inputValues.Mundus.WeaponDamage });
 	}
-	else if (inputValues.Mundus.Name == "The Apprentice")
+	else if (mundusName == "The Apprentice")
 	{
 		inputValues.Mundus.SpellDamage = 166;
-		AddEsoInputStatSource("Mundus.SpellDamage", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.SpellDamage });
+		AddEsoInputStatSource("Mundus.SpellDamage", { mundus: mundusName, value: inputValues.Mundus.SpellDamage });
 	}
-	else if (inputValues.Mundus.Name == "The Steed")
+	else if (mundusName == "The Steed")
 	{
 		inputValues.Mundus.HealthRegen = 210;
 		inputValues.Mundus.RunSpeed = 0.05;
-		AddEsoInputStatSource("Mundus.HealthRegen", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.HealthRegen });
-		AddEsoInputStatSource("Mundus.RunSpeed", { mundus: inputValues.Mundus.Name, value: inputValues.Mundus.RunSpeed });
+		AddEsoInputStatSource("Mundus.HealthRegen", { mundus: mundusName, value: inputValues.Mundus.HealthRegen });
+		AddEsoInputStatSource("Mundus.RunSpeed", { mundus: mundusName, value: inputValues.Mundus.RunSpeed });
 	}
 
 }
@@ -1429,6 +1443,7 @@ function UpdateEsoComputedStatsList()
 	}
 	
 	UpdateEsoReadOnlyStats(inputValues);
+	UpdateEsoBuildMundusList2();
 }
 
 
@@ -2586,6 +2601,31 @@ function ParseEsoBuildSetDesc(setData, descIndex, description)
 }
 
 
+function IsTwiceBornStarEnabled()
+{
+	if (g_EsoInputStatSources.TwiceBornStar == null) return false;
+	if (g_EsoInputStatSources.TwiceBornStar[0] == null) return false;
+	if (g_EsoInputStatSources.TwiceBornStar[0].value == 1) return true;
+	return false;
+}
+
+
+function UpdateEsoBuildMundusList2()
+{
+	var isEnabled = IsTwiceBornStarEnabled();
+	
+	if (isEnabled)
+	{
+		$("#esotbMundus2").prop("disabled", false);
+	}
+	else
+	{
+		$("#esotbMundus2").val("none");
+		$("#esotbMundus2").prop("disabled", "disabled");
+	}
+}
+
+
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
@@ -2594,6 +2634,7 @@ function esotbOnDocReady()
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
 	$("#esotbMundus").change(OnEsoMundusChange)
+	$("#esotbMundus2").change(OnEsoMundusChange)
 	$("#esotbCPTotalPoints").change(OnEsoCPTotalPointsChange);
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
 	

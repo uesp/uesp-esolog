@@ -34,6 +34,7 @@ class CEsoTestBuild
 			"CP.UsedPoints",
 			"Attribute.TotalPoints",
 			"Mundus.Name",
+			"Mundus.Name2",
 			"Race",
 			"Class",
 			"Target.Resistance",
