@@ -139,19 +139,6 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='4'>Epic</option>" +
 		"		<option value='5'>Legendary</option>" +
 		"	</select>" +
-		"	<div class='esoispInputLabel' id='esoispArmorTraitLabel'>Armor Traits</div> <select id='esoispArmorTrait' type='text' name='armorTrait'>" +
-		"		<option value='-1'>Any</option>" +
-		"		<option value='0'>None</option>" +
-		"		<option value='18'>Divines</option>" +
-		"		<option value='12'>Impenetrable</option>" +
-		"		<option value='16'>Infused</option>" +
-		"		<option value='25'>Nirnhoned</option>" +
-		"		<option value='17'>Prosperous</option>" +
-		"		<option value='13'>Reinforced</option>" +
-		"		<option value='11'>Sturdy</option>" +
-		"		<option value='15'>Training</option>" +
-		"		<option value='14'>Well Fitted</option>" +
-		"	</select>" +
 		"	<div class='esoispInputLabel' id='esoispJewelryTraitLabel'>Jewelry Traits</div> <select id='esoispJewelryTrait' type='text' name='jewelryTrait'>" +
 		"		<option value='-1'>Any</option>" +
 		"		<option value='0'>None</option>" +
@@ -200,7 +187,21 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='2'>Hammer</option>" +
 		"		<option value='14'>Shield</option>" +
 		"		<option value='3'>Sword</option>" +
-		"	</select><br/>" +
+		"	</select>" +
+		"	<div class='esoispInputLabel' id='esoispArmorTraitLabel'>Armor Traits</div> <select id='esoispArmorTrait' type='text' name='armorTrait'>" +
+		"		<option value='-1'>Any</option>" +
+		"		<option value='0'>None</option>" +
+		"		<option value='18'>Divines</option>" +
+		"		<option value='12'>Impenetrable</option>" +
+		"		<option value='16'>Infused</option>" +
+		"		<option value='25'>Nirnhoned</option>" +
+		"		<option value='17'>Prosperous</option>" +
+		"		<option value='13'>Reinforced</option>" +
+		"		<option value='11'>Sturdy</option>" +
+		"		<option value='15'>Training</option>" +
+		"		<option value='14'>Well Fitted</option>" +
+		"	</select>" +
+		"	<br/>" +
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='66' readonly='readonly'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
 		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip Item</button>" +
