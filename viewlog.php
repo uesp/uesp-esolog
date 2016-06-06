@@ -290,6 +290,7 @@ class EsoLogViewer
 			'trait' => self::FIELD_INTTRANSFORM,
 			'value' => self::FIELD_STRING,
 			'level' => self::FIELD_STRING,
+			'quality' => self::FIELD_STRING,
 			'type' => self::FIELD_INTTRANSFORM,
 			'equipType' => self::FIELD_INTTRANSFORM,
 			'weaponType' => self::FIELD_INTTRANSFORM,
