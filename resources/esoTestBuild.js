@@ -521,6 +521,84 @@ ESO_ENCHANT_ARMOR_MATCHES = [
 
 
 ESO_ENCHANT_WEAPON_MATCHES = [
+	{
+		modValue: 0.5,
+		statId: "WeaponDamage",
+		match: /grants ([0-9]+) additional Weapon Damage/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /increases Weapon Damage by ([0-9]+)/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /increase Weapon Damage by ([0-9]+)/i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /gain ([0-9]+) Weapon Damage/i,
+	},
+	{
+		statId: "SpellDamage",
+		match: /gain ([0-9]+) Spell Damage/i,
+	},
+	{
+		statId: "SpellDamage",
+		match: /grants ([0-9]+) additional Spell Damage/i,
+	},
+	{
+		category: "Set",
+		statId: "SpellCrit",
+		match: /grants ([0-9]+) additional Spell Critical/i,
+	},
+	{
+		statId: "Health",
+		match: /grants ([0-9]+) Max Health/i,
+	},
+	{
+		statId: "Stamina",
+		match: /grants ([0-9]+) Max Stamina/i,
+	},
+	{
+		statId: "Magicka",
+		match: /grants ([0-9]+) Max Magicka/i,
+	},
+	{
+		statId: "Health",
+		match: /increase Max Health by ([0-9]+)/i,
+	},
+	{
+		statId: "Stamina",
+		match: /increase Max Stamina by ([0-9]+)/i,
+	},
+	{
+		statId: "Magicka",
+		match: /increase Max Magicka by ([0-9]+)/i,
+	},
+	{
+		statId: "Health",
+		match: /Max Health increased by ([0-9]+)/i,
+	},
+	{
+		statId: "Stamina",
+		match: /Max Stamina increased by ([0-9]+)/i,
+	},
+	{
+		statId: "Magicka",
+		match: /Max Magicka increased by ([0-9]+)/i,
+	},
+	{
+		statId: "Health",
+		match: /Max Health is increased by ([0-9]+)/i,
+	},
+	{
+		statId: "Stamina",
+		match: /Max Stamina is increased by ([0-9]+)/i,
+	},
+	{
+		statId: "Magicka",
+		match: /Max Magicka is increased by ([0-9]+)/i,
+	},
   	{
 		statId: "OtherEffects",
 		match: /Deals ([0-9]+) Magic Damage/i,
@@ -768,7 +846,7 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 			if (display == "%") statValue = statValue/100;
 		
 			inputValues[category][matchData.statId] += statValue;
-			setData.rawOutput[category + "." + matchData.statId] = statValue;
+			AddEsoItemRawOutput(setData, category + "." + matchData.statId, statValue);
 			AddEsoInputStatSource(category + "." + matchData.statId, { set: setData, setBonusCount: setBonusCount, value: statValue });
 		}
 	}
@@ -776,7 +854,7 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 	if (!foundMatch || addFinalEffect)
 	{
 		AddEsoInputStatSource("OtherEffects", { other: true, set: setData, setBonusCount: setBonusCount, value: setDesc });
-		setData.rawOutput["OtherEffects"] = setDesc;
+		AddEsoItemRawOutput(setData, "OtherEffects", secDesc);
 	}
 	
 }
@@ -834,9 +912,16 @@ function GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId)
 		var statValue = Math.floor(parseFloat(matches[1]));
 		
 		inputValues[outputId][matchData.statId] += statValue;
-		itemData.rawOutput[outputId + "." + matchData.statId] = statValue;
+		AddEsoItemRawOutput(itemData, outputId + "." + matchData.statId, statValue);
 		AddEsoInputStatSource(outputId + "." + matchData.statId, { item: itemData, value: statValue, slotId: slotId });
 	}
+}
+
+
+function AddEsoItemRawOutput(itemData, statId, value)
+{
+	if (itemData.rawOutput[statId] == null) itemData.rawOutput[statId] = 0;
+	itemData.rawOutput[statId] += value;
 }
 
 
@@ -854,19 +939,19 @@ function GetEsoInputItemValues(inputValues, slotId)
 	if (itemData.armorType == 1)
 	{
 		++inputValues.Armor.Light;
-		itemData.rawOutput["Armor.Light"] = 1;
+		AddEsoItemRawOutput(itemData, "Armor.Light", 1);
 		AddEsoInputStatSource("Armor.Light", { item: itemData, value: 1, slotId:slotId });
 	}
 	else if (itemData.armorType == 2)
 	{
 		++inputValues.Armor.Medium;
-		itemData.rawOutput["Armor.Medium"] = 1;
+		AddEsoItemRawOutput(itemData, "Armor.Medium", 1);
 		AddEsoInputStatSource("Armor.Medium", { item: itemData, value: 1, slotId:slotId });
 	}
 	else if (itemData.armorType == 3)
 	{
 		++inputValues.Armor.Heavy;
-		itemData.rawOutput["Armor.Heavy"] = 1;
+		AddEsoItemRawOutput(itemData, "Armor.Heavy", 1);
 		AddEsoInputStatSource("Armor.Heavy", { item: itemData, value: 1, slotId:slotId });
 	}
 	
@@ -894,8 +979,9 @@ function GetEsoInputItemValues(inputValues, slotId)
 		
 		inputValues.Item.SpellResist += armorRating;
 		inputValues.Item.PhysicalResist += armorRating;
-		itemData.rawOutput["Item.SpellResist"] = armorRating;
-		itemData.rawOutput["Item.PhysicalResist"] = armorRating;
+		
+		AddEsoItemRawOutput(itemData, "Item.SpellResist", armorRating);
+		AddEsoItemRawOutput(itemData, "Item.PhysicalResist", armorRating);
 		
 		AddEsoInputStatSource("Item.SpellResist", { item: itemData, value: armorRating, slotId:slotId });
 		AddEsoInputStatSource("Item.PhysicalResist", { item: itemData, value: armorRating, slotId:slotId });
@@ -917,8 +1003,9 @@ function GetEsoInputItemValues(inputValues, slotId)
 		
 		inputValues.Item.WeaponDamage += weaponPower;
 		inputValues.Item.SpellDamage += weaponPower;
-		itemData.rawOutput["Item.WeaponDamage"] = weaponPower;
-		itemData.rawOutput["Item.SpellDamage"] = weaponPower;
+		
+		AddEsoItemRawOutput(itemData, "Item.WeaponDamage", weaponPower);
+		AddEsoItemRawOutput(itemData, "Item.SpellDamage", weaponPower);
 		
 		AddEsoInputStatSource("Item.WeaponDamage", { item: itemData, value: weaponPower, slotId:slotId });
 		AddEsoInputStatSource("Item.SpellDamage", { item: itemData, value: weaponPower, slotId:slotId });
@@ -927,57 +1014,58 @@ function GetEsoInputItemValues(inputValues, slotId)
 	if (itemData.trait == 18) // Divines
 	{
 		inputValues.Item.Divines += traitValue/100;
-		itemData.rawOutput["Item.Divines"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.Divines", traitValue/100);
 		AddEsoInputStatSource("Item.Divines", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 17) //Prosperous
 	{
 		inputValues.Item.Prosperous += traitValue/100;
-		itemData.rawOutput["Item.Prosperous"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.Prosperous", traitValue/100);
 		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 12) //Impenetrable
 	{
 		inputValues.Item.CritResist += traitValue;
-		itemData.rawOutput["Item.CritResist"] = traitValue;
+		AddEsoItemRawOutput(itemData, "Item.CritResist", traitValue);
 		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
 		inputValues.Item.Sturdy += traitValue/100;
-		itemData.rawOutput["Item.Sturdy"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.Sturdy", traitValue/100);
 		AddEsoInputStatSource("Item.Sturdy", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 15 || itemData == 6) //Training
 	{
 		inputValues.Item.Training += traitValue/100;
-		itemData.rawOutput["Item.Training"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.Training", traitValue/100);
 		AddEsoInputStatSource("Item.Training", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 21) //Healthy
 	{
 		inputValues.Item.Health += traitValue;
 		itemData.rawOutput["Item.Health"] = traitValue;
+		AddEsoItemRawOutput(itemData, "Item.Health", traitValue);
 		AddEsoInputStatSource("Item.Health", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 22) //Arcane
 	{
 		inputValues.Item.Magicka += traitValue;
-		itemData.rawOutput["Item.Magicka"] = traitValue;
+		AddEsoItemRawOutput(itemData, "Item.Magicka", traitValue);
 		AddEsoInputStatSource("Item.Magicka", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 23) //Robust
 	{
 		inputValues.Item.Stamina += traitValue;
-		itemData.rawOutput["Item.Stamina"] = traitValue;
+		AddEsoItemRawOutput(itemData, "Item.Stamina", traitValue);
 		AddEsoInputStatSource("Item.Stamina", { item: itemData, value: traitValue, slotId:slotId });
 	}	
 	else if (itemData.trait == 14) //Well Fitted
 	{
 		inputValues.Item.SprintCost += traitValue/100;
 		inputValues.Item.RollDodgeCost += traitValue/100;
-		itemData.rawOutput["Item.SprintCost"] = traitValue/100;
-		itemData.rawOutput["Item.RollDodgeCost"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.SprintCost", traitValue/100);
+		AddEsoItemRawOutput(itemData, "Item.RollDodgeCost", traitValue/100);
 		AddEsoInputStatSource("Item.SprintCost", { item: itemData, value: traitValue/100, slotId:slotId });
 		AddEsoInputStatSource("Item.RollDodgeCost", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
@@ -985,8 +1073,8 @@ function GetEsoInputItemValues(inputValues, slotId)
 	{
 		inputValues.Item.SpellPenetration += traitValue/100;
 		inputValues.Item.PhysicalPenetration += traitValue/100;
-		itemData.rawOutput["Item.SpellPenetration"] = traitValue/100;
-		itemData.rawOutput["Item.PhysicalPenetration"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.SpellPenetration", traitValue/100);
+		AddEsoItemRawOutput(itemData, "Item.PhysicalPenetration", traitValue/100);
 		AddEsoInputStatSource("Item.SpellPenetration", { item: itemData, value: traitValue/100, slotId:slotId });
 		AddEsoInputStatSource("Item.PhysicalPenetration", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
@@ -994,15 +1082,15 @@ function GetEsoInputItemValues(inputValues, slotId)
 	{
 		inputValues.Item.SpellCrit += traitValue/100;
 		inputValues.Item.WeaponCrit += traitValue/100;
-		itemData.rawOutput["Item.SpellCrit"] = traitValue/100;
-		itemData.rawOutput["Item.WeaponCrit"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.SpellCrit", traitValue/100);
+		AddEsoItemRawOutput(itemData, "Item.WeaponCrit", traitValue/100);
 		AddEsoInputStatSource("Item.SpellCrit", { item: itemData, value: traitValue/100, slotId:slotId });
 		AddEsoInputStatSource("Item.WeaponCrit", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 5) //Defending
 	{
 		inputValues.Item.Defending += traitValue/100;
-		itemData.rawOutput["Item.Defending"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.Defending", traitValue/100);
 		AddEsoInputStatSource("Item.Defending", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 2) //Charged
@@ -1014,7 +1102,7 @@ function GetEsoInputItemValues(inputValues, slotId)
 	else if (itemData.trait == 1) //Powered
 	{
 		inputValues.Item.HealingDone += traitValue/100;
-		itemData.rawOutput["Item.HealingDone"] = traitValue/100;
+		AddEsoItemRawOutput(itemData, "Item.HealingDone", traitValue/100);
 		AddEsoInputStatSource("Item.HealingDone", { item: itemData, value: traitValue/100, slotId:slotId });
 	}
 	else if (itemData.trait == 8) //Decisive
@@ -1099,7 +1187,7 @@ function GetEsoInputItemEnchantArmorValues(inputValues, slotId, itemData, enchan
 		var statValue = Math.floor(parseFloat(matches[1]) * enchantFactor);
 		
 		inputValues.Item[matchData.statId] += statValue;
-		itemData.rawOutput["Item." + matchData.statId] = statValue;
+		AddEsoItemRawOutput(itemData, "Item." + matchData.statId, statValue);
 		AddEsoInputStatSource("Item." + matchData.statId, { item: itemData, enchant: enchantData, value: statValue, slotId: slotId });
 	}
 }
@@ -1130,6 +1218,8 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 		var matches = rawDesc.match(matchData.match);
 		if (matches == null) continue;
 		
+		var modValue = matchData.modValue || 1;
+		
 		if (matchData.statId == "")
 		{
 			rawDesc = rawDesc.replace(matchData.match, function(match, p1, offset, string) { return ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor); });
@@ -1142,18 +1232,19 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 		}
 		else
 		{
-			var statValue = Math.floor(parseFloat(matches[1]) * enchantFactor);
+			var statValue = Math.floor(parseFloat(matches[1]) * enchantFactor * modValue);
+			var category = matchData.category || "Item";
 			
-			inputValues.Item[matchData.statId] += statValue;
-			itemData.rawOutput["Item." + matchData.statId] = statValue;
-			AddEsoInputStatSource("Item." + matchData.statId, { item: itemData, enchant: enchantData, value: statValue, slotId: slotId });
+			inputValues[category][matchData.statId] += statValue;
+			AddEsoItemRawOutput(itemData, category + "." + matchData.statId, statValue);
+			AddEsoInputStatSource(category + "." + matchData.statId, { item: itemData, enchant: enchantData, value: statValue, slotId: slotId });
 		}
 	}
 	
 	if (addFinalEffect) 
 	{
 		AddEsoInputStatSource("OtherEffects", { other: true, item: itemData, enchant: enchantData, value: rawDesc, slotId: slotId });
-		itemData.rawOutput["WeaponEnchant"] = rawDesc;
+		AddEsoItemRawOutput(itemData, WeaponEnchant, rawDesc);
 	}
 }
 
@@ -1183,7 +1274,7 @@ function UpdateEsoItemSets()
 		
 		++g_EsoBuildSetData[setName].count;
 		g_EsoBuildSetData[setName].items.push(data);
-		data.rawOutput["Set." + setName] = 1;
+		AddEsoItemRawOutput(data, "Set." + setName, 1);
 		AddEsoInputStatSource("Set." + setName, { set: setName, item: data });
 	}
 	
