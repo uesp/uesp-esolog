@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="resources/esoitemsearch.css" />
 		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="resources/esoitemsearch.js"></script>
+		<script type="text/javascript" src="http://content3.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
 {topMenu}
