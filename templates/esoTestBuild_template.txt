@@ -141,8 +141,8 @@ displayed statistics is unknown.
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 					<div class="esotbItemEnchantButton">*</div>
-				</div><br/>
-				
+				</div>
+				<p/>
 				<div class="esotbItemSlotLabel">Weapon 1</div>
 				<div class="esotbItem esotbWeaponSelect" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
 					<img class="esotbItemIcon eso_item_link" src="">
@@ -183,7 +183,7 @@ displayed statistics is unknown.
 					<div class="esotbItemDetailsButton">...</div>
 				</div>
 				<button class="" id="esotbWeaponSelect2">Select</button>
-				<br/>
+				<p/>
 				
 				<div class="esotbItemSlotLabel">Food/Drink</div>
 				<div class="esotbItem " id="esotbItemFood" slotid="Food" itemtype="4,12">
@@ -191,19 +191,13 @@ displayed statistics is unknown.
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 				</div>
-				<div class="esotbItemSlotLabel">Potion</div>
-				<div class="esotbItem " id="esotbItemPotion" slotid="Potion" itemtype="7">
+				<div class="esotbItemSlotLabel" style="display: none;">Potion</div>
+				<div class="esotbItem " id="esotbItemPotion" slotid="Potion" itemtype="7" style="display: none;">
 					<img class="esotbItemIcon eso_item_link" src="">
 					<div class="esotbItemLabel"></div>
 					<div class="esotbItemDetailsButton">...</div>
 				</div><br/>
 				
-			</div>
-			<div id="esotbSets">
-				<h3>Set Data</h3>
-				<hr>
-				<div id="esotbSetInfo">
-				</div>				
 			</div>
 		</div>
 		<div id="esotbStatBlock3" class="esotbStatBlock" style="display: none;">
@@ -214,6 +208,12 @@ displayed statistics is unknown.
 		</div>
 		<div id="esotbStatBlock5" class="esotbStatBlock" style="display: none;">
 			<div id="esotbRawInputs">
+			</div>
+			<div id="esotbSets">
+				<h3>Set Information</h3>
+				<hr>
+				<div id="esotbSetInfo">
+				</div>				
 			</div>
 		</div>
 	</div>

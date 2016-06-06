@@ -1404,6 +1404,8 @@ function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 function AddEsoInputStatSource(statId, data)
 {
 	if (g_EsoInputStatSources[statId] == null) g_EsoInputStatSources[statId] = [];
+	
+	data.origStatId = statId;
 	g_EsoInputStatSources[statId].push(data);
 	
 	var statIds = statId.split(".");
@@ -2204,8 +2206,16 @@ function ShowEsoItemDetailsPopup(slotId)
 	
 	for (var key in itemData.rawOutput)
 	{
+		var statDetails = g_EsoInputStatDetails[key] || {};
 		var value = itemData.rawOutput[key];
-		detailsHtml += key + " = " + value + "<br/>";
+		var suffix = "";
+		
+		if (statDetails.display == '%') 
+		{
+			suffix = "%";
+			value = value * 100;
+		}
+		detailsHtml += key + " = " + value + suffix + "<br/>";
 	}
 
 	$("#esotbItemDetailsTitle").text("Item Details for " + slotId);
@@ -2422,7 +2432,7 @@ function HasEsoBuildRawInputSources(sourceData)
 function GetEsoBuildRawInputSourcesHtml(sourceName, sourceData)
 {
 	if (sourceData.length <= 0) return "";
-	var statDetails = g_EsoInputStatDetails[sourceName] || {};
+	var statDetails = g_EsoInputStatDetails[sourceData[0].origStatId] || {};
 	
 	if (!ESO_TESTBUILD_SHOWALLRAWINPUTS && sourceName.indexOf(".") >= 0) return "";
 	
