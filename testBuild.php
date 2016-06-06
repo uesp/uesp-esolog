@@ -42,6 +42,7 @@ class CEsoTestBuild
 			"Target.PenetrationFlat",
 			"Target.DefenseBonus",
 			"Target.AttackBonus",
+			"Misc.SpellCost",
 	);
 	
 	
@@ -403,7 +404,28 @@ class CEsoTestBuild
 			
 			"CP.MagickaCost" => array(
 					"display" => "%",
-			),			
+			),		
+			
+			"Set.MagickaCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.MagickaCost" => array(
+					"display" => "%",
+			),
+			
+			"CP.StaminaCost" => array(
+					"display" => "%",
+			),
+			
+			"Set.StaminaCost" => array(
+					"display" => "%",
+			),
+				
+			"Skill.StaminaCost" => array(
+					"display" => "%",
+			),
+			
 			
 	);
 	
@@ -976,11 +998,35 @@ class CEsoTestBuild
 			"SneakCost" => array(
 					"title" => "Sneak Cost",
 					"round" => "floor",
-					"compute" => array(			// TODO: Include item
+					"compute" => array(				// TODO: Include item
 							"1 + 2 * EffectiveLevel",
 							"1 - CP.SneakCost",
 							"*",
 							"1 - Skill.SneakCost",
+							"*",
+					),
+			),
+			
+			"SneakRange" => array(					// TODO: Check?
+					"title" => "Sneak Range",
+					"round" => "floor",
+					"compute" => array(
+							"21",
+							"Item.SneakRange",
+							"-",
+							"1 - Skill.SneakRange",
+							"*",
+					),
+			),
+			
+			"SneakDetectRange" => array(			// TODO: Check?
+					"title" => "Sneak Detection Range",
+					"round" => "floor",
+					"compute" => array(
+							"21",
+							"Item.SneakDetectRange",
+							"+",
+							"1 + Skill.SneakDetectRange",
 							"*",
 					),
 			),
@@ -1103,22 +1149,30 @@ class CEsoTestBuild
 					),
 			),
 			
-			"MagickaCost" => array(					// TODO: Add flat cost reduce
+			"MagickaCost" => array(
 					"title" => "Magicka Ability Cost",
-					"display" => "percent",
+					"round" => "floor",
 					"compute" => array(
+							"Misc.SpellCost",
 							"1 - CP.MagickaCost",
-							"1 - Skill.MagickaCost",
+							"*",
+							"Item.MagickaCost",
+							"-",
+							"1 - Skill.MagickaCost - Set.MagickaCost",
 							"*",
 					),
 			),
 			
-			"StaminaCost" => array(					// TODO: Add flat cost reduce
+			"StaminaCost" => array(
 					"title" => "Stamina Ability Cost",
-					"display" => "percent",
+					"round" => "floor",
 					"compute" => array(
+							"Misc.SpellCost",
 							"1 - CP.StaminaCost",
-							"1 - Skill.StaminaCost",
+							"*",
+							"Item.StaminaCost",
+							"-",
+							"1 - Skill.StaminaCost - Set.StaminaCost",
 							"*",
 					),
 			),
