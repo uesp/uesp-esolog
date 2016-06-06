@@ -1909,7 +1909,7 @@ function OnEsoSelectItem(itemData, element)
 		return;
 	}
 	
-	var iconUrl = "http://content3.uesp.net/eso/gameicons" + itemData.icon.replace(".dds", ".png");
+	var iconUrl = "http://esoicons.uesp.net" + itemData.icon.replace(".dds", ".png");
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
 	
 	iconElement.attr("src", iconUrl);

@@ -64,7 +64,7 @@ class CEsoItemLink
 	const ESOIL_RAWDATA_HTML_TEMPLATE = "templates/esoitemlink_rawdata_template.txt";
 	const ESOIL_HTML_EMBED_TEMPLATE = "templates/esoitemlink_embed_template.txt";
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
-	const ESOIL_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
+	const ESOIL_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	
 	const ESOIL_POTION_MAGICITEMID = 1234567;
@@ -1024,8 +1024,7 @@ class CEsoItemLink
 		if ($icon == null || $icon == "") $icon = self::ESOIL_ICON_UNKNOWN;
 		
 		$icon = preg_replace('/dds$/', 'png', $icon);
-		$icon = preg_replace('/^\//', '', $icon);
-		
+
 		$iconLink = self::ESOIL_ICON_URL . $icon;
 		return $iconLink;
 	}

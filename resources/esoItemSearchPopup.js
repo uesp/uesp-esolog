@@ -70,7 +70,7 @@ UESP.EsoItemSearchPopup = function ()
 {
 	this.ROW_LIMIT = 100;
 	
-	this.iconURL = "http://content3.uesp.net/eso/gameicons";
+	this.iconURL = "http://esoicons.uesp.net";
 	this.queryURL = "http://esolog.uesp.net/esoItemSearchPopup.php";
 	this.rootElement = this.create();
 	this.sourceElement = null;

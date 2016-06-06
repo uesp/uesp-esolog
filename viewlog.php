@@ -18,7 +18,7 @@ class EsoLogViewer
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
 	
-	const GAME_ICON_URL = "http://content3.uesp.net/eso/gameicons";
+	const GAME_ICON_URL = UESP_ESO_ICON_URL;
 	
 	public $db = null;
 	public $dbReadInitialized = false;
