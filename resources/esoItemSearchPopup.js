@@ -102,14 +102,14 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	$("#esoispSearchButton").click(function() { self.onSearch(); });
 	$("#esoispUneqipButton").click(function() { self.onUnequip(); });
 	$("#esoispLevel").on("input", function(e) { self.onLevelChange(e); });
+	$("#esoispLevelSlider").on("input", function(e) { self.onLevelSlideChange(e); });
 	$("#esoispQuality").change(function(e) { self.onQualityChange(e); });
 	$("#esoispArmorTrait").change(function(e) { self.onArmorTraitChange(e); });
 	$("#esoispArmorType").change(function(e) { self.onArmorTypeChange(e); });
 	$("#esoispJewelryTrait").change(function(e) { self.onJewelryTraitChange(e); });
 	$("#esoispWeaponTrait").change(function(e) { self.onWeaponTraitChange(e); });
 	$("#esoispWeaponType1").change(function(e) { self.onWeaponType1Change(e); });
-	$("#esoispWeaponType2").change(function(e) { self.onWeaponType2Change(e); });
-	$("#esoispLevelSlider").on("input", function(e) { self.onLevelSlideChange(e); });
+	$("#esoispWeaponType2").change(function(e) { self.onWeaponType2Change(e); });	
 	
 	$("#esoispInputText").keyup(function (e) {
 	    if (e.keyCode == 13) {
@@ -121,6 +121,44 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	$("#esoispResults").scroll(function(e) { self.onResultsScroll(e); })
 	
 	return rootElement;
+}
+
+
+UESP.EsoItemSearchPopup.prototype.parseLevel = function(level)
+{
+	if (level == null) return 66;
+	
+	var vetRank = level.match(/^\s*V(\d+)|\s*VR(\d+)/i);
+	var cpLevel = level.match(/^\s*CP(\d+)/i);
+	
+	if ($.isNumeric(level)) 
+	{
+		level =  parseInt(level);
+	}
+	else if (vetRank != null) 
+	{
+		level = parseInt(vetRank[1]) + 50;
+	}
+	else if (cpLevel != null) 
+	{
+		level =  Math.floor(parseInt(cpLevel[1])/10) + 50;
+	}
+	else
+	{
+		level = parseInt(level);
+	}
+	
+	if (isNaN(level)) return 66;
+	if (level > 66) return 66;
+	if (level < 1) return 1;
+	return level;
+}
+
+
+UESP.EsoItemSearchPopup.prototype.formatLevel = function(level)
+{
+	if (level <= 50) return level;
+	return "CP" + (level - 50)*10;
 }
 
 
@@ -202,7 +240,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='14'>Well Fitted</option>" +
 		"	</select>" +
 		"	<br/>" +
-		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='66' readonly='readonly'>" +
+		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='CP160'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
 		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip Item</button>" +
 		"	<button id='esoispSearchButton' class='esoispButton'>Search...</button>" +
@@ -598,7 +636,7 @@ UESP.EsoItemSearchPopup.prototype.onLevelSlideChange = function(e)
 {
 	var newLevel = $("#esoispLevelSlider").val();
 		
-	$("#esoispLevel").val(newLevel);
+	$("#esoispLevel").val(this.formatLevel(newLevel));
 	$(".esoispResultRow").attr("level", newLevel);
 	this.itemLevel = newLevel;
 }
@@ -606,8 +644,9 @@ UESP.EsoItemSearchPopup.prototype.onLevelSlideChange = function(e)
 
 UESP.EsoItemSearchPopup.prototype.onLevelChange = function(e)
 {
-	var newLevel = $("#esoispLevel").val();
+	var newLevel = this.parseLevel($("#esoispLevel").val());
 	$(".esoispResultRow").attr("level", newLevel);
+	$("#esoispLevelSlider").val(newLevel);
 	this.itemLevel = newLevel;
 }
 

@@ -770,6 +770,12 @@ function GetEsoInputValues(mergeComputedStats)
 		GetEsoInputItemValues(inputValues, "Poison2");
 	}
 	
+	inputValues.ArmorTypes = 0;
+	if (inputValues.ArmorLight  > 0) ++inputValues.ArmorTypes;
+	if (inputValues.ArmorMedium > 0) ++inputValues.ArmorTypes;
+	if (inputValues.ArmorHeavy  > 0) ++inputValues.ArmorTypes;
+	AddEsoInputStatSource("ArmorTypes", { source: "Worn Armor", value: inputValues.ArmorTypes });
+	
 	UpdateEsoItemSets();
 	GetEsoInputSetValues(inputValues);
 	
@@ -949,21 +955,21 @@ function GetEsoInputItemValues(inputValues, slotId)
 	
 	if (itemData.armorType == 1)
 	{
-		++inputValues.Armor.Light;
-		AddEsoItemRawOutput(itemData, "Armor.Light", 1);
-		AddEsoInputStatSource("Armor.Light", { item: itemData, value: 1, slotId:slotId });
+		++inputValues.ArmorLight;
+		AddEsoItemRawOutput(itemData, "ArmorLight", 1);
+		AddEsoInputStatSource("ArmorLight", { item: itemData, value: 1, slotId:slotId });
 	}
 	else if (itemData.armorType == 2)
 	{
-		++inputValues.Armor.Medium;
-		AddEsoItemRawOutput(itemData, "Armor.Medium", 1);
-		AddEsoInputStatSource("Armor.Medium", { item: itemData, value: 1, slotId:slotId });
+		++inputValues.ArmorMedium;
+		AddEsoItemRawOutput(itemData, "ArmorMedium", 1);
+		AddEsoInputStatSource("ArmorMedium", { item: itemData, value: 1, slotId:slotId });
 	}
 	else if (itemData.armorType == 3)
 	{
-		++inputValues.Armor.Heavy;
-		AddEsoItemRawOutput(itemData, "Armor.Heavy", 1);
-		AddEsoInputStatSource("Armor.Heavy", { item: itemData, value: 1, slotId:slotId });
+		++inputValues.ArmorHeavy;
+		AddEsoItemRawOutput(itemData, "ArmorHeavy", 1);
+		AddEsoInputStatSource("ArmorHeavy", { item: itemData, value: 1, slotId:slotId });
 	}
 	
 	if (itemData.armorRating > 0)
@@ -1038,7 +1044,7 @@ function GetEsoInputItemValues(inputValues, slotId)
 	{
 		inputValues.Item.CritResist += traitValue;
 		AddEsoItemRawOutput(itemData, "Item.CritResist", traitValue);
-		AddEsoInputStatSource("Item.Prosperous", { item: itemData, value: traitValue, slotId:slotId });
+		AddEsoInputStatSource("Item.CritResist", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 11) //Sturdy
 	{
@@ -1414,19 +1420,19 @@ function GetEsoInputCPValues(inputValues)
 	if (inputValues.EffectiveLevel > ESO_MAX_EFFECTIVELEVEL) inputValues.EffectiveLevel = ESO_MAX_EFFECTIVELEVEL;
 
 		/* Lord */
-	if (inputValues.Armor.Heavy >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60624);
+	if (inputValues.ArmorHeavy >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60624);
 	ParseEsoCPValue(inputValues, "DamageShield", 59948);
 	ParseEsoCPValue(inputValues, "HADamageResist", 59953);
 	ParseEsoCPValue(inputValues, "HealingReceived", 63851);
 	
 		/* Lady */
-	if (inputValues.Armor.Light >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
+	if (inputValues.ArmorLight >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
 	ParseEsoCPValue(inputValues, "DOTResist", 63850);
 	ParseEsoCPValue(inputValues, "PhysicalDamageResist", 63844);
 	ParseEsoCPValue(inputValues, "MagickaDamageResist", 63843);
 	
 		/* Steed */
-	if (inputValues.Armor.Medium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
+	if (inputValues.ArmorMedium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
 	ParseEsoCPValue(inputValues, "BlockCost", 60649); // TODO: Move?
 	ParseEsoCPValue(inputValues, "SpellResist", 62760);
 	ParseEsoCPValue(inputValues, "CritResist", 60384);
@@ -2587,6 +2593,10 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 	{
 		output += "" + value + ": " + sourceItem.mundus + " mundus stone";
 	}		
+	else if (sourceItem.source != null)
+	{
+		output += "" + value + ": " + sourceItem.source;
+	}
 	else
 	{
 		output += "" + value + ": Unknown";

@@ -221,10 +221,13 @@ a:hover {
 .esotbItemLabel {
 	font-weight: normal;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: top;
 	width: 190px;
-	overflow-x: hidden;
-    white-space: nowrap;
+    top: 22px;
+    position: relative;
+	line-height: 1.1em;
+    max-height: 50px;
+    overflow: hidden;
 }
 
 #esotbClickWall {
@@ -599,6 +602,10 @@ button.esotbWeaponSelect {
 	background-color: #ccc;
 	opacity: 0.65; 
   	cursor: not-allowed;
+}
+
+.esotbWeaponSelect1, .esotbWeaponSelect2 {
+	cursor: pointer;
 }
 
 #esotbRawInputs {
