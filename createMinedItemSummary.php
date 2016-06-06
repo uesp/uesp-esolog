@@ -119,7 +119,7 @@ $MAXSUBTYPE = 370;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
-	if ($id % 100 == 0) print("Writing Item $id...\n");
+	if ($id % 100 == 0) print("Parsing Item $id...\n");
 	
 	$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
@@ -155,6 +155,19 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	{
 		$value = "";
 		if (array_key_exists($field, $minItemData)) $value = $db->escape_string($minItemData[$field]);
+		
+		if ($value != "" && ($field == 'name' || $field == 'setName'))
+		{
+			$value = preg_replace("#Trifling #i", "", $value);
+			
+			$value = ucwords($value);
+			$value = preg_replace("/ In /", " in ", $value);
+			$value = preg_replace("/ Of /", " of ", $value);
+			$value = preg_replace("/ The /", " the ", $value);
+			$value = preg_replace("/ And /", " and ", $value);
+			
+			$value = preg_replace("#\^[a-zA-Z]*#", "", $value);
+		}
 		
 		$columns[] = $field;
 		$values[] = "'$value'";
