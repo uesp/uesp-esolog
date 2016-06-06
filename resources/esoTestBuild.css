@@ -211,6 +211,7 @@ a:hover {
 	vertical-align: middle;
 	cursor: pointer;
 	border: solid 2px transparent;
+	margin: 2px;
 }
 
 .esotbItemIcon:hover {
