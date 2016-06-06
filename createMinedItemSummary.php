@@ -48,6 +48,13 @@ $RANGE_FIELDS = array(
 		"setBonusDesc5",
 );
 
+
+function EsoNameMatchUpper($matches)
+{
+	return strtoupper($matches[0]);
+}
+
+
 if (intval($TABLE_SUFFIX) <= 8)
 {
 	unset($FIELDS['tags']);
@@ -165,8 +172,8 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			$value = preg_replace("/ Of /", " of ", $value);
 			$value = preg_replace("/ The /", " the ", $value);
 			$value = preg_replace("/ And /", " and ", $value);
-			$value = preg_replace("/\-[a-z]/e", 'strtoupper("$0")', $value);
-			
+			$value = preg_replace_callback("/\-[a-z]/", 'EsoNameMatchUpper', $value);
+									
 			$value = preg_replace("#\^[a-zA-Z]*#", "", $value);
 		}
 		
@@ -244,4 +251,4 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
 }
 
-?>
+
