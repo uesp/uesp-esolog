@@ -581,6 +581,10 @@ UESP.EsoItemSearchPopup.prototype.updateTitle = function()
 	{
 		title = "Select Potion";
 	}
+	else if (this.itemType == "30")
+	{
+		title = "Select Poison";
+	}
 	else
 	{
 		title = "Select Item";
