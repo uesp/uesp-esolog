@@ -538,7 +538,7 @@ class EsoItemSearcher
 		$icon = preg_replace('/dds$/', 'png', $icon);
 		$icon = preg_replace('/^\//', '', $icon);
 		
-		$iconLink = self::ESOIS_ICON_URL . $icon;
+		$iconLink = self::ESOIS_ICON_URL . '/' . $icon;
 		return $iconLink;
 	}
 	
