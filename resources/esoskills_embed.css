@@ -149,9 +149,10 @@
     display: inline-block;
     width: 99%;
 	border-radius: 20px;
+	position: relative;
 }
 
-.esovsAbilityBlock:hover {
+.esovsAbilityBlockHover:hover {
     background-color: #E3d5c0;
 	cursor: pointer;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
@@ -293,7 +294,8 @@
 	clear: both;
 }
 
-.esovsAbilityBlockPlus {
+.esovsAbilityBlockPlus,
+.esovsAbilityBlockPlusSelect {
 	width: 32px;
 	height: 32px;
 	margin-top: 16px;
@@ -301,8 +303,49 @@
 	opacity: 1;
 }
 
-.esovsAbilityBlockPlus:hover {
-	opacity: 0.5;
+.esovsAbilityBlockMinusSelect {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	top: 35px;
+	left: 5px;
+	opacity: 1;
+}
+
+/*
+.esovsAbilityBlockPlusSelect {
+	width: 32px;
+	height: 32px;
+	margin-top: 16px;
+	float: left;
+	opacity: 1;
+	position: relative;
+	top: -12px;
+}*/
+
+.esovsAbilityBlockNotPurchase .esovsAbilityBlockIcon, 
+.esovsAbilityBlockNotPurchase .esovsAbilityBlockTitle,
+.esovsAbilityBlockNotPurchase .esovsAbilityBlockPassiveIcon {
+	opacity: 0.3;
+}
+
+.esovsAbilityBlockPlus:hover,
+.esovsAbilityBlockPlusSelect:hover,
+.esovsAbilityBlockMinusSelect:hover {
+	cursor: pointer;
+	opacity: 0.3;
+}
+
+.esovsPlusMinusDisable {
+	cursor: not-allowed !important;
+	opacity: 0.3;
+}
+
+.esovsAbilityBlockPlus:hover .esovsPlusMinusDisable,
+.esovsAbilityBlockPlusSelect:hover .esovsPlusMinusDisable,
+.esovsAbilityBlockMinusSelect:hover .esovsPlusMinusDisable {
+	cursor: not-allowed !important;
+	opacity: 0.4;
 }
 
 #esovsSkillTooltipRoot {
@@ -557,3 +600,17 @@
 .esovsStamina {
 	color: #96DA43;
 }
+
+.esovsAbilityNone {
+	padding: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	vertical-align: middle;
+	line-height: 32px;
+}
+
+
+.esovsAbilityNone img {
+	vertical-align: middle;	
+}
+

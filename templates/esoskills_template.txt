@@ -10,15 +10,15 @@
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
-<a id="esovsLinkBlock" class="esovsLinkBlock" href="">Link to Skill</a>
-<div id="esovsSearchBlock">
+<a id="esovsLinkBlock" class="esovsLinkBlock" href="" style="display: {menuBarDisplay};">Link to Skill</a>
+<div id="esovsSearchBlock" style="display: {menuBarDisplay};">
 	<input type="search" id="esovsSearchText" value="" size="30" /> 
 	<button id="esovsSearchButton">Find Skill</button>
 	<div id="esovsSearchResult">
 	</div> 
 </div>
 <h1>ESO Skill Browser {versionTitle}</h1>
-<div id="esovsLeftBlock">
+<div id="esovsLeftBlock" style="display: {leftBlockDisplay};">
 	<div id="esovsSkillTooltipRoot">
 		<div class='esovsSkillTooltip'>
 			<div class='esovsSkillTooltipDesc'>Loading skill data...</div>
@@ -71,7 +71,7 @@
 		<div class="esovsShowHideButton" id="esovsRawDataButton">Show Raw Data</div>
 	</div>
 </div>
-<div id="esovsRightBlock">
+<div id="esovsRightBlock" style="{rightBlockMargin}">
 	<div id="esovsSkillTree">{skillTree}</div>
 	<div id="esovsSkillContent">{skillContent}</div>		
 </div>
@@ -85,6 +85,8 @@
 	var g_SkillHighlightLine = "{skillHighlightLine}";
 	var g_SkillShowAll = {skillShowAll};
 	var g_SkillUseUpdate10Cost = {useUpdate10Costs};
+	var g_SkillDisplayType = "{displayType}";
+	
 </script>
 <div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>
 <hr>

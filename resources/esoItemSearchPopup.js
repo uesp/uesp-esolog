@@ -169,7 +169,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"<div id='esoispTitle'>Select Item</div>" + 
 		"<div id='esoispInputs'>" + 
 		"	<p>" +
-		"	<div class='esoispInputLabel'>Text</div> <input id='esoispInputText' type='text' name='text' value=''>" +
+		"	<div class='esoispInputLabel'>Find Text</div> <input id='esoispInputText' type='text' name='text' value=''>" +
 		"	<div class='esoispInputLabel' id='esoispQualityLabel'>Quality</div> <select id='esoispQuality' type='text' name='quality'>" +
 		"		<option value='1'>Normal</option>" +
 		"		<option value='2'>Fine</option>" +
