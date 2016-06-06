@@ -244,6 +244,10 @@ class CEsoViewSkills
 		{
 			$value = intval($matches[1]) + 50;
 		}
+		else if (preg_match("#^CP([0-9]+)#i", trim($level), $matches))
+		{
+			$value = floor(intval($matches[1])/10) + 50;
+		}
 		
 		if ($value < 1) $value = 1;
 		if ($value > 66) $value = 66;
