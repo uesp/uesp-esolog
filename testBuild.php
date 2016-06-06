@@ -348,8 +348,62 @@ class CEsoTestBuild
 			"Mundus.HealingDone" => array(
 					"display" => "%",
 			),
-				
 			
+			"CP.DOTDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.HealthRegen" => array(
+					"display" => "%",
+			),
+			
+			"CP.MagickaRegen" => array(
+					"display" => "%",
+			),
+			
+			"CP.StaminaRegen" => array(
+					"display" => "%",
+			),
+			
+			"CP.SpellCritDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.WeaponCritDamage" => array(
+					"display" => "%",
+			),
+			
+			"Mundus.SpellCrit" => array(
+					"display" => "%",
+			),
+			
+			"CP.SpellCrit" => array(
+					"display" => "%",
+			),
+			
+			"Mundus.WeaponCrit" => array(
+					"display" => "%",
+			),
+				
+			"CP.WeaponCrit" => array(
+					"display" => "%",
+			),
+			
+			"CP.PhysicalDamageResist" => array(
+					"display" => "%",
+			),
+			
+			"CP.MagickaDamageResist" => array(
+					"display" => "%",
+			),
+			
+			"CP.MagickaDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.MagickaCost" => array(
+					"display" => "%",
+			),			
 			
 	);
 	

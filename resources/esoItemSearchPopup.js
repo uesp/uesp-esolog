@@ -698,8 +698,8 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 		this.itemTrait = "-1";
 		this.armorType = "-1";
 		this.searchResults = [];
-		//$("#esoispResults").text("");
-		$("#esoispInputText").val("");
+		$("#esoispResults").text("");
+		//$("#esoispInputText").val("");
 	}
 	
 	this.update();
