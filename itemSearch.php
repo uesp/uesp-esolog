@@ -16,7 +16,7 @@ class EsoItemSearcher
 	
 	const ESOIS_HTML_TEMPLATE = "templates/esoitemsearch_template.txt";
 	
-	const ESOIS_ICON_URL = "http://content3.uesp.net/eso/gameicons";
+	const ESOIS_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOIS_ICON_UNKNOWN = "unknown.png";
 	const ESOIS_ICON_WIDTH = 32;
 	

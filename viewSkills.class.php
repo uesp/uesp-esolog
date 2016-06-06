@@ -13,7 +13,7 @@ class CEsoViewSkills
 	const ESOVS_HTML_TEMPLATE = "templates/esoskills_template.txt";
 	const ESOVS_HTML_TEMPLATE_EMBED = "templates/esoskills_embed_template.txt";
 	
-	const ESOVS_ICON_URL = "http://content3.uesp.net/eso/gameicons/";
+	const ESOVS_ICON_URL = UESP_ESO_ICON_URL;
 
 	public $version = "";
 	public $showAll = false;
@@ -496,8 +496,6 @@ class CEsoViewSkills
 	public function GetIconURL($icon)
 	{
 		$icon = preg_replace('/dds$/', 'png', $icon);
-		$icon = preg_replace('/^\//', '', $icon);
-
 		$iconLink = self::ESOVS_ICON_URL . $icon;
 		return $iconLink;
 	}

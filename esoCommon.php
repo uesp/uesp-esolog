@@ -1,5 +1,7 @@
 <?php
 
+const UESP_ESO_ICON_URL = "http://esoicons.uesp.net";
+
 
 const UESP_POWERTYPE_SOULTETHER    = -50;
 const UESP_POWERTYPE_LIGHTARMOR    = -51;
@@ -1398,8 +1400,9 @@ function GetEsoItemFullLevelText($level)
 
 function MakeEsoIconLink($icon)
 {
-	if ($icon[0] == '/') return "http://content3.uesp.net/eso/gameicons$icon";
-	return "http://content3.uesp.net/eso/gameicons/$icon";
+	$icon = preg_replace("#\.dds#", ".png", $icon);
+	if ($icon[0] == '/') return UESP_ESO_ICON_URL . $icon;
+	return UESP_ESO_ICON_URL . "/" . $icon;
 }
 
 
@@ -1468,7 +1471,7 @@ function FormatEsoItemDescriptionIcons($desc)
 {
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
 	$output = strtolower($desc);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s", "<img src='http://content3.uesp.net/eso/gameicons/$3.png' />", $output);
+	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s", "<img src='" . UESP_ESO_ICON_URL . "$3.png' />", $output);
 
 	return $output;
 }

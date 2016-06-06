@@ -369,7 +369,7 @@ function MakeEsoItemIconImageLink(itemData)
 	icon = icon.replace(/dds$/, 'png');
 	icon = icon.replace('/^\//', '');
 	
-	return "http://content3.uesp.net/eso/gameicons/" + icon;
+	return "http://esoicons.uesp.net/" + icon;
 }
 
 
