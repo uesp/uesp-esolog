@@ -1546,3 +1546,15 @@ function FormatEsoCriticalDescriptionText($desc, $level)
 	
 	return $newDesc;
 }
+
+
+function startsWith($haystack, $needle) 
+{
+	return strncmp($haystack, $needle, count($needle));
+}
+
+
+function startsWithNoCase($haystack, $needle)
+{
+	return strncasecmp($haystack, $needle, count($needle));
+}

@@ -462,6 +462,18 @@ function OnEsoSkillBlockPlusClick(event)
 }
 
 
+function OnEsoSkillBlockPlusSelectClick(event)
+{
+	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
+}
+
+
+function OnEsoSkillBlockMinusSelectClick(event)
+{
+	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
+}
+
+
 function GetEsoSkillInputValues()
 {
 	var magicka = parseInt($('#esovsInputMagicka').val());
@@ -1202,6 +1214,35 @@ function OnLeaveEsoIcon(e)
 }
 
 
+function OnAbilityBlockSelect(e)
+{
+	var $this = $(this);
+	var displayBlock = $this.parent().prev(".esovsAbilityBlock");
+	var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
+	var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
+	var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
+	var skillId = $this.attr("skillid");
+	var selectBlock = $this;
+	
+	if (skillId < 0) 
+	{
+		selectBlock = $this.next();
+		selectBlock
+		displayBlock.addClass('esovsAbilityBlockNotPurchase');
+	}
+	else
+	{
+		displayBlock.removeClass('esovsAbilityBlockNotPurchase');
+	}
+	
+	iconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockIcon").html());
+	titleDisplayBlock.html(selectBlock.children(".esovsAbilityBlockTitle").html());
+	passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
+	
+	$this.parent().slideToggle();
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
@@ -1209,6 +1250,8 @@ function esovsOnDocReady()
 	
 	$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
 	$('.esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
+	$('.esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
+	$('.esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
 	
 	$('#esovsControlLevel').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Level'); });
 	$('#esovsInputLevel').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Level');	});
@@ -1238,6 +1281,8 @@ function esovsOnDocReady()
 	
 	$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
 	$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+	
+	$(".esovsAbilityBlockSelect").click(OnAbilityBlockSelect);
 	
 	var highlightSkill = $(".esovsSearchHighlight");
 	

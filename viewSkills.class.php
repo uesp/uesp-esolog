@@ -37,6 +37,11 @@ class CEsoViewSkills
 
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
+	public $displayType = "summary";
+	public $showLeftDetails = true;
+	public $displayClass = "all";
+	public $displayRace = "all";
+	public $displayMenuBar = true;
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResource = "";
@@ -288,7 +293,32 @@ class CEsoViewSkills
 		if (array_key_exists('spelldamage', $this->inputParams)) $this->skillSpellDamage = intval($this->inputParams['spelldamage']);
 		if (array_key_exists('weapondamage', $this->inputParams)) $this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
 		
+		if (array_key_exists('display', $this->inputParams)) 
+		{
+			$displayType = urldecode($this->inputParams['display']);
+			
+			if ($displayType == "summary")
+				$this->displayType = "summary";
+			else if ($displayType == "select")
+				$this->displayType = "select";
+		}
+		
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
+		
+		if ($this->displayType == "summary")
+		{
+			$this->showLeftDetails = true;
+			$this->displayClass = "all";
+			$this->displayRace = "all";
+			$this->displayMenuBar = true;
+		}
+		else if ($this->displayType == "select")
+		{
+			$this->showLeftDetails = false;
+			$this->displayClass = "Dragonknight";
+			$this->displayRace = "Argonian";
+			$this->displayMenuBar = false;
+		}
 
 		return true;
 	}
@@ -299,7 +329,7 @@ class CEsoViewSkills
 		global $argv;
 		$this->inputParams = $_REQUEST;
 
-		// Add command line arguments to input parameters for testing
+			// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
 			$argIndex = 0;
@@ -341,49 +371,64 @@ class CEsoViewSkills
 		$output = "";
 		$this->isFirstSkill = true;
 
-		$output .= $this->GetSkillTreeTypeHtml("Dragonknight");
-		$output .= $this->GetSkillTreeTypeHtml("Nightblade");
-		$output .= $this->GetSkillTreeTypeHtml("Sorcerer");
-		$output .= $this->GetSkillTreeTypeHtml("Templar");
-		$output .= $this->GetSkillTreeTypeHtml("Weapon");
-		$output .= $this->GetSkillTreeTypeHtml("Armor");
-		$output .= $this->GetSkillTreeTypeHtml("World");
-		$output .= $this->GetSkillTreeTypeHtml("Guild");
-		$output .= $this->GetSkillTreeTypeHtml("Alliance War");
-		$output .= $this->GetSkillTreeTypeHtml("Racial");
-		$output .= $this->GetSkillTreeTypeHtml("Craft");
+		$output .= $this->GetSkillTreeTypeHtml("Dragonknight", true);
+		$output .= $this->GetSkillTreeTypeHtml("Nightblade", true);
+		$output .= $this->GetSkillTreeTypeHtml("Sorcerer", true);
+		$output .= $this->GetSkillTreeTypeHtml("Templar", true);
+		$output .= $this->GetSkillTreeTypeHtml("Weapon", false);
+		$output .= $this->GetSkillTreeTypeHtml("Armor", false);
+		$output .= $this->GetSkillTreeTypeHtml("World", false);
+		$output .= $this->GetSkillTreeTypeHtml("Guild", false);
+		$output .= $this->GetSkillTreeTypeHtml("Alliance War", false);
+		$output .= $this->GetSkillTreeTypeHtml("Racial", false);
+		$output .= $this->GetSkillTreeTypeHtml("Craft", false);
 
 		return $output;
 	}
 
 
-	public function GetSkillTreeTypeHtml($skillType)
+	public function GetSkillTreeTypeHtml($skillType, $isClass)
 	{
-		$skillTypeUpper = strtoupper($skillType);
-
+		$isClassVisible = true;
 		$displayType = "none";
 		$extraClass = "";
-
-		if (($this->isFirstSkill && $this->highlightSkillType == "") || $this->highlightSkillType == $skillType)
+		$skillTypeUpper = strtoupper($skillType);
+		$titleDisplayType = "block";
+		
+		if ($isClass && $this->displayClass != "all" && strcasecmp($this->displayClass, $skillType) != 0)
+		{
+			$isClassVisible = false;
+			$displayType = "none";
+			$titleDisplayType = "none";
+		}
+			
+		if ($isClassVisible && (($this->isFirstSkill && $this->highlightSkillType == "") || $this->highlightSkillType == $skillType))
 		{
 			$extraClass = "esovsSkillLineTitleHighlight";
 			$displayType = "block";
 			$this->isFirstSkill = false;
 		}
-
+		
 		$output  = "";
-		$output .= "<div class='esovsSkillTypeTitle'>$skillTypeUpper</div>\n";
+		$output .= "<div class='esovsSkillTypeTitle' style=\"display: $titleDisplayType;\">$skillTypeUpper</div>\n";
 		$output .= "<div class='esovsSkillType' style=\"display: $displayType;\">\n";
 		$isFirstSkillLine = true;
 
 		foreach ($this->skillTree[$skillType] as $skillLine => $skillLineData)
 		{
+			$isRaceVisible = true;
+			
+			if ($skillType == "Racial" && $this->displayRace != "all" && startsWithNoCase($this->displayRace, $skillLine) != 0)
+			{
+				$isRaceVisible = false;
+			}
+			
 			if ($displayType != "none" && ($this->highlightSkillLine == $skillLine || ($this->highlightSkillLine == "" && $isFirstSkillLine)))
-				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight");
-				else
-					$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "");
+				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight", $isRaceVisible);
+			else
+				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "", $isRaceVisible);
 						
-					$isFirstSkillLine = false;
+			$isFirstSkillLine = false;
 		}
 
 		$output .= "</div>\n";
@@ -391,9 +436,12 @@ class CEsoViewSkills
 	}
 
 
-	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "")
+	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "", $isVisible = true)
 	{
-		$output  = "<div class='esovsSkillLineTitle $extraClass'>$skillLine</div>";
+		$displayType = "block";
+		if (!$isVisible) $displayType = "none";
+		
+		$output  = "<div class='esovsSkillLineTitle $extraClass' style=\"display: $displayType;\">$skillLine</div>";
 
 		return $output;
 	}
@@ -538,12 +586,12 @@ class CEsoViewSkills
 				
 			$baseAbility = $this->FindFirstAbility($abilityData);
 			if ($baseAbility == null) continue;
-				
+			
 			$lastAbility = $this->FindLastAbility($abilityData);
-				
+			
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true);
 				
-			if ($lastAbility['maxRank'] > 1)
+			if ($lastAbility['maxRank'] > 1 || $this->displayType == "select")
 			{
 				$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
 			}
@@ -564,7 +612,6 @@ class CEsoViewSkills
 			
 		$id = $abilityData['abilityId'];
 		$index = $abilityData['__index'];
-		$this->skills[$index]['__isOutput'] = true;
 
 		$name = $baseAbility['name'];
 		$type = $baseAbility['type'];
@@ -578,6 +625,19 @@ class CEsoViewSkills
 		$rank = $abilityData['rank'];
 		$maxRank = $abilityData['maxRank'];
 		$rankLabel = "";
+		
+		if ($topLevel && $type == "Passive" && $this->displayType == "select")
+		{
+			$cost = $baseAbility['cost'];
+			$learnedLevel = $baseAbility['learnedLevel'];
+			$rank = $baseAbility['rank'];
+			$maxRank = $baseAbility['maxRank'];
+			$baseAbility = $baseAbility['effectLines'];
+			$id = $baseAbility['abilityId'];
+			$index = $baseAbility['__index'];
+		}
+		
+		$this->skills[$index]['__isOutput'] = true;
 			
 		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
 
@@ -604,17 +664,34 @@ class CEsoViewSkills
 
 		if ($rank > 0 && $maxRank > 1) $rankLabel = " " . $this->GetRomanNumeral($rank);
 
-		$extraClass = "";
-		if ($id == $this->highlightSkillId) $extraClass = "esovsSearchHighlight";
+		$extraClass = "esovsAbilityBlockHover";
+		
+		if ($this->displayType == "select")
+		{
+			if ($topLevel) 
+				$extraClass = "esovsAbilityBlockNotPurchase";
+			else
+				$extraClass .= " esovsAbilityBlockSelect";
+		}
+		
+		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 			
 		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id'>" ;
 
 		if ($topLevel)
 		{
-			if ($maxRank > 1)
+			if ($this->displayType == "select")
+			{
+				$output .= "<img class='esovsAbilityBlockPlusSelect' src='http://esolog.uesp.net/resources/pointsplus_up.png' />";
+			}
+			else if ($maxRank > 1)
+			{
 				$output .= "<img class='esovsAbilityBlockPlus' src='http://esolog.uesp.net/resources/pointsplus_up.png' />";
+			}
 			else
+			{
 				$output .= "<div class='esovsAbilityBlockPlus'></div>";
+			}
 		}
 		
 		$output .= "<div class='$iconClass'><img src='$icon' />";
@@ -650,14 +727,26 @@ class CEsoViewSkills
 	public function GetSkillContentHtml_AbilityList($abilityName, $abilityData)
 	{
 		$displayType = "none";
-		if ($this->DoesAbilityListHaveHighlightSkill($abilityData)) $displayType = "block";
+		$extraClass = "";
+		if ($this->DoesAbilityListHaveHighlightSkill($abilityData) && $this->displayType == "summary") $displayType = "block";
 			
-		$output = "<div class='esovsAbilityBlockList' style='display: $displayType;'>\n";
+		$output = "<div class='esovsAbilityBlockList $extraClass' style='display: $displayType;'>\n";
+		
+		if ($this->displayType == "select")
+		{
+			$output .= "<div class='esovsAbilityBlock esovsAbilityBlockHover esovsAbilityBlockSelect esovsAbilityNone' skillid='-1'>";
+			$output .= "<img src='resources/edit_cancel_up.png'> Refund Ability";
+			$output .= "</div>";
+		}
 
 		foreach ($abilityData as $rank => $ability)
 		{
 			if (!is_numeric($rank)) continue;
-			if (!$this->showAll && $ability['type'] != "Passive" && !($rank == 8 || $rank == 12)) continue;
+			
+			if (!$this->showAll && $ability['type'] != "Passive")
+			{
+				if (!($rank == 8 || $rank == 12 || ($rank == 4 && $this->displayType == "select"))) continue;
+			}
 				
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false);
 		}
@@ -722,6 +811,27 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetLeftBlockDisplay()
+	{
+		if ($this->showLeftDetails) return "block";
+		return "none";
+	}
+	
+	
+	public function GetMenuBarDisplay()
+	{
+		if ($this->displayMenuBar) return "block";
+		return "none";
+	}
+	
+	
+	public function GetRightBlockMargin()
+	{
+		if ($this->showLeftDetails)	return "";
+		return "margin-left: 0;";
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		$startTime = microtime(true);
@@ -748,6 +858,10 @@ class CEsoViewSkills
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
 				'{updateDate}' => $this->GetUpdateDate(),
 				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,
+				'{leftBlockDisplay}' => $this->GetLeftBlockDisplay(),
+				'{rightBlockMargin}' => $this->GetRightBlockMargin(),
+				'{menuBarDisplay}' => $this->GetMenuBarDisplay(),
+				'{displayType}' => $this->displayType,
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
