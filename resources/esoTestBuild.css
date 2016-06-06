@@ -595,6 +595,7 @@ button.esotbWeaponSelect {
 .esotbRawInputValue {
 	display: block;
 	margin-left: 50px;
+	padding: 1px;
 }
 
 #esotbSets {
