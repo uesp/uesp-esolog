@@ -41,11 +41,14 @@
 	clear: both;
 	margin-top: 10px;
 	color: #ff9999;
+    border: solid 1px gray;
+	padding: 3px;
 }
 
 .esoispResultRow {
 	font-weight: bold;
 	margin-left: 10px;
+	height: 36px;
 }
 
 .esoispResultRow:hover {

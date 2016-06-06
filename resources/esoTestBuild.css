@@ -215,11 +215,11 @@ a:hover {
 }
 
 .esotbItemIcon:hover {
-	border: solid 2px yellow;
+	border: solid 2px black;
 }
 
 .esotbItemLabel {
-	font-weight: bold;
+	font-weight: normal;
 	display: inline-block;
 	vertical-align: middle;
 	width: 190px;
@@ -424,6 +424,7 @@ a:hover {
 	text-align: right;
 	font-weight: bold;
 	display: inline-block;
+	display: none;
 	padding: 5px;
 }
 
@@ -483,7 +484,7 @@ a:hover {
 	border-bottom: 1px solid #333333;
 	border-left: 1px solid #CCCCCC;
 	position: absolute;
-	left: 75px;
+	left: 55px;
 	top: 0px;
 	line-height: 16px;
 }
@@ -522,13 +523,12 @@ a:hover {
 	height: 16px;
 	background-color: #DBBFA5;
 	text-align: center;
-	float: right;
 	border-top: 1px solid #CCCCCC;
 	border-right: 1px solid #333333;
 	border-bottom: 1px solid #333333;
 	border-left: 1px solid #CCCCCC;
 	position: absolute;
-	left: 55px;
+	left: 75px;
 	top: 0px;
 	line-height: 16px;
 }
@@ -536,6 +536,25 @@ a:hover {
 .esotbItemEnchantButton:hover {
 	cursor: pointer;
 	background-color: #777;	
+}
+
+.esotbItem:hover:after {
+	background: #eeeeaa;
+    border-radius: 5px;
+    border: solid 1px gray;
+    color: #000;
+    content: attr(slotid);
+    left: -20px;
+    top: -5px;
+    padding: 3px;
+    position: absolute;
+    z-index: 98;
+    font-size: 13px;
+    font-weight: normal;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    line-height: 1em;
+    display: none;
 }
 
 .esotbItemEnchantButton:hover:after {
@@ -642,4 +661,12 @@ button.esotbWeaponSelect {
 
 .esotbToggleSetDesc {
 	display: inline-block;
+}
+
+#esotbItems {
+	margin-left: 25px;
+}
+
+#esotbItemHead {
+	left: 150px;
 }
