@@ -404,6 +404,10 @@ a:hover {
 	width: 75px;
 }
 
+.esotbMiscInput {
+	width: 75px;
+}
+
 .esotbInputValueRO {
 	display: inline-block;
 	border: solid 1px gray;
@@ -621,4 +625,21 @@ button.esotbWeaponSelect {
 .esotbSetInfoRow {
 	margin-left: 50px;
     padding: 2px;
+}
+
+#esotbItemToggleSets h3 {
+	font-size: 16px;
+}
+
+.esotbToggledSetItem {
+	margin-left: 20px;
+}
+
+.esotbToggleSetTitle {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.esotbToggleSetDesc {
+	display: inline-block;
 }

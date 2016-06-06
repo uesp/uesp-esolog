@@ -15,6 +15,7 @@ g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
 g_EsoBuildEnchantData = {};
 g_EsoBuildSetData = {};
+g_EsoBuildToggledSetData = {};
 
 g_EsoBuildItemData.Head = {}
 g_EsoBuildItemData.Shoulders = {}
@@ -361,52 +362,57 @@ ESO_SETEFFECT_MATCHES = [
 		match: /Allows you to have two Mundus Stone Boons at the same time/i,
 	},
 	
-	
-	
-	
-	
+		// Optionally toggled effects
 	{
+		id: "Orgnum's Scales",
+		setBonusCount: 4,
 		toggle: true,
 		enabled: false,
-		statId: "HealthRegen",
-		display: '%',
 		category: "Skill",
+		statId: "HealthRegen",
+		display: '%',		
 		match: /If below 60% Health, increase Health Recovery by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
+		id: "Permafrost",
+		setBonusCount: 4,
 		toggle: true,
 		enabled: false,
 		statId: "HealthRegen",
 		match: /Gain ([0-9]+\.?[0-9]*) Health Recovery while you have a Damage Shield/i,
 	},
 	{
+		id: "Willow's Path",
+		setBonusCount: 4,
 		toggle: true,
 		enabled: false,
+		category: "Skill",
 		statId: "HealthRegen",
 		display: '%',
 		match: /Increase all recovery in combat by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
+		id: "Willow's Path",
+		setBonusCount: 4,
 		toggle: true,
 		enabled: false,
+		category: "Skill",
 		statId: "MagickaRegen",
 		display: '%',
 		match: /Increase all recovery in combat by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
+		id: "Willow's Path",
+		setBonusCount: 4,
 		toggle: true,
 		enabled: false,
+		category: "Skill",
 		statId: "StaminaRegen",
 		display: '%',
 		match: /Increase all recovery in combat by ([0-9]+\.?[0-9]*)%/i,
 	},
 	
-	
-	 
-	
-	
-	
-	
+		// Other Effects
 	{
 		statId: "OtherEffects",
 		match: /Increase Max Health for up to 12 group members by ([0-9]+\.?[0-9]*)/i,
@@ -416,9 +422,6 @@ ESO_SETEFFECT_MATCHES = [
 		display: '%',
 		match: /increase the damage of your bow abilities against players by ([0-9]+\.?[0-9]*)%/i,
 	},
-	
-	 
-	
 	
 ];
 
@@ -773,6 +776,7 @@ function GetEsoInputValues(mergeComputedStats)
 	GetEsoInputMundusValues(inputValues);
 	GetEsoInputCPValues(inputValues);
 	GetEsoInputTargetValues(inputValues);
+	GetEsoInputMiscValues(inputValues);
 	
 	if (mergeComputedStats === true) 
 	{
@@ -827,7 +831,10 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 		if (matches == null) continue;
 		
 			/* Ignore toggled effects that aren't on */
-		if (matchData.toggle === true && matchData.enabled === false) continue;
+		if (matchData.toggle === true)
+		{
+			if (!IsEsoBuildToggledSetEnabled(matchData.id)) continue;
+		}
 		
 		foundMatch = true;
 		
@@ -854,7 +861,7 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 	if (!foundMatch || addFinalEffect)
 	{
 		AddEsoInputStatSource("OtherEffects", { other: true, set: setData, setBonusCount: setBonusCount, value: setDesc });
-		AddEsoItemRawOutput(setData, "OtherEffects", secDesc);
+		AddEsoItemRawOutput(setData, "OtherEffects", setDesc);
 	}
 	
 }
@@ -920,7 +927,11 @@ function GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId)
 
 function AddEsoItemRawOutput(itemData, statId, value)
 {
-	if (itemData.rawOutput[statId] == null) itemData.rawOutput[statId] = 0;
+	if (itemData.rawOutput[statId] == null) 
+	{
+		itemData.rawOutput[statId] = "";
+	}
+	
 	itemData.rawOutput[statId] += value;
 }
 
@@ -1279,16 +1290,23 @@ function UpdateEsoItemSets()
 	}
 	
 	ComputeEsoBuildAllSetData();
+	UpdateEsoBuildToggledSetData();
 }
 
 
 function GetEsoInputTargetValues(inputValues)
 {
-	inputValues.Target.Resistance = $("#esotbTargetResistance").val();
-	inputValues.Target.PenetrationFlat = $("#esotbTargetPenetrationFlat").val();
-	inputValues.Target.PenetrationFactor = $("#esotbTargetPenetrationFactor").val() / 100;
-	inputValues.Target.DefenseBonus = $("#esotbTargetDefenseBonus").val() / 100;
-	inputValues.Target.AttackBonus = $("#esotbTargetAttackBonus").val() / 100;
+	inputValues.Target.Resistance = parseFloat($("#esotbTargetResistance").val());
+	inputValues.Target.PenetrationFlat = parseFloat($("#esotbTargetPenetrationFlat").val());
+	inputValues.Target.PenetrationFactor = parseFloat($("#esotbTargetPenetrationFactor").val()) / 100;
+	inputValues.Target.DefenseBonus = parseFloat($("#esotbTargetDefenseBonus").val()) / 100;
+	inputValues.Target.AttackBonus = parseFloat($("#esotbTargetAttackBonus").val()) / 100;
+}
+
+
+function GetEsoInputMiscValues(inputValues)
+{
+	inputValues.Misc.SpellCost = parseFloat($("#esotbMiscSpellCost").val());
 }
 
 
@@ -1538,6 +1556,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoReadOnlyStats(inputValues);
 	UpdateEsoBuildMundusList2();
 	UpdateEsoBuildSetInfo();
+	UpdateEsoBuildToggleSets();
 }
 
 
@@ -2523,8 +2542,6 @@ function HasEsoBuildRawInputSources(sourceData)
 function GetEsoBuildRawInputSourcesHtml(sourceName, sourceData)
 {
 	if (sourceData.length <= 0) return "";
-	var statDetails = g_EsoInputStatDetails[sourceData[0].origStatId] || {};
-	
 	if (!ESO_TESTBUILD_SHOWALLRAWINPUTS && sourceName.indexOf(".") >= 0) return "";
 	
 	var output = "<div class='esotbRawInputItem'>";
@@ -2534,7 +2551,7 @@ function GetEsoBuildRawInputSourcesHtml(sourceName, sourceData)
 	
 	for (var i = 0; i < sourceData.length; ++i)
 	{
-		output += GetEsoBuildRawInputSourceItemHtml(sourceData[i], statDetails);
+		output += GetEsoBuildRawInputSourceItemHtml(sourceData[i]);
 	}
 	
 	output += "</div>";
@@ -2542,10 +2559,11 @@ function GetEsoBuildRawInputSourcesHtml(sourceName, sourceData)
 }
 
 
-function GetEsoBuildRawInputSourceItemHtml(sourceItem, statDetails)
+function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 {
 	var output = "<div class='esotbRawInputValue'>";
 	var value = sourceItem.value;
+	var statDetails = g_EsoInputStatDetails[sourceItem.origStatId] || {};
 	
 	if (value == 0) return "";
 	if (statDetails.display == '%') value = "" + (Math.round(value * 1000)/10) + "%";
@@ -2755,7 +2773,11 @@ function GetEsoBuildSetInfoHtml()
 		
 		for (var name in setData.rawOutput)
 		{
+			var statDetails = g_EsoInputStatDetails[name] || {};
 			var value = setData.rawOutput[name];
+			
+			if (statDetails.display == '%') value = "" + Math.floor(value * 1000)/10 + "%";
+			
 			output += "<div class='esotbSetInfoRow'>" + name + " = " + value + "</div>";
 		}
 		
@@ -2766,12 +2788,156 @@ function GetEsoBuildSetInfoHtml()
 }
 
 
+function CreateEsoBuildToggledSetData()
+{
+	g_EsoBuildToggledSetData = {};
+	
+	for (var i = 0; i < ESO_SETEFFECT_MATCHES.length; ++i)
+	{
+		var setEffectData = ESO_SETEFFECT_MATCHES[i];
+		if (setEffectData.toggle !== true) continue;
+		
+		var id = setEffectData.id;
+		
+		if (g_EsoBuildToggledSetData[id] == null) 
+		{
+			g_EsoBuildToggledSetData[id] = {};
+			g_EsoBuildToggledSetData[id].statIds = [];
+		}
+		
+		g_EsoBuildToggledSetData[id].id = id;
+		g_EsoBuildToggledSetData[id].setBonusCount = setEffectData.setBonusCount;
+		g_EsoBuildToggledSetData[id].desc = "";
+		g_EsoBuildToggledSetData[id].valid = false;
+		g_EsoBuildToggledSetData[id].enabled = setEffectData.enabled;
+		g_EsoBuildToggledSetData[id].statIds.push(setEffectData.statId);
+		
+		if (g_EsoBuildSetData[id] != null && g_EsoBuildSetData[id].averageDesc != null &&
+				g_EsoBuildSetData[id].averageDesc[setEffectData.setBonusCount] != null)
+		{
+			g_EsoBuildToggledSetData[id].desc = g_EsoBuildSetData[id].averageDesc[setEffectData.setBonusCount];
+		}
+	}
+	
+}
+
+
+function IsEsoBuildToggledSetEnabled(setId)
+{
+	if (g_EsoBuildToggledSetData[setId] == null) return false;
+	return g_EsoBuildToggledSetData[setId].enabled;
+}
+
+
+function SetEsoBuildToggledSetValid(setId, valid)
+{
+	if (g_EsoBuildToggledSetData[setId] != null) g_EsoBuildToggledSetData[setId].valid = valid;
+}
+
+
+function SetEsoBuildToggledSetDesc(setId, desc)
+{
+	if (g_EsoBuildToggledSetData[setId] != null) g_EsoBuildToggledSetData[setId].desc = desc;
+}
+
+
+function SetEsoBuildToggledSetEnable(setId, enable)
+{
+	if (g_EsoBuildToggledSetData[setId] == null) return false;
+	g_EsoBuildToggledSetData[setId].enabled = enable;
+}
+
+
+function UpdateEsoBuildToggledSetData()
+{
+	
+	for (var setName in g_EsoBuildSetData)
+	{
+		var setData = g_EsoBuildSetData[setName];
+		var toggleData = g_EsoBuildToggledSetData[setName];
+		if (toggleData == null) continue;
+		
+		if (setData.averageDesc == null || setData.items[0] == null)
+		{
+			SetEsoBuildToggledSetValid(setName, false);
+			continue;
+		}
+		
+		var setDesc = setData.averageDesc[toggleData.setBonusCount - 1];
+		var setCount = setData.items[0]['setBonusCount' + toggleData.setBonusCount];
+		
+		if (setDesc == null || setCount == null) 
+		{
+			SetEsoBuildToggledSetValid(setName, false);
+			continue;
+		}
+		
+		toggleData.desc = setDesc;
+		
+		if (setCount > setData.count) 
+		{
+			SetEsoBuildToggledSetValid(setName, false);
+			continue;
+		}
+		
+		SetEsoBuildToggledSetValid(setName, true);
+		
+		var checkElement = $(".esotbToggledSetItem[setid=\"" + setName + "\"]").find(".esotbToggleSetCheck");
+		
+		if (checkElement.length > 0)
+		{
+			SetEsoBuildToggledSetEnable(setName, checkElement.is(":checked"));
+		}
+	}
+}
+
+
+function UpdateEsoBuildToggleSets()
+{
+	var element = $("#esotbToggledSetInfo");
+	var output = "";
+	
+	for (var setId in g_EsoBuildToggledSetData)
+	{
+		var setData = g_EsoBuildToggledSetData[setId];
+		if (!setData.valid) continue;
+		output += CreateEsoBuildToggleSetHtml(setData);
+	}
+	
+	element.html(output);
+	
+	$(".esotbToggleSetCheck").click(OnEsoBuildToggleSet);
+}
+
+
+function OnEsoBuildToggleSet(e)
+{
+	var setId = $(this).parent().attr("setid");
+	if (setId == null || setId == "") return;
+	
+	UpdateEsoComputedStatsList();
+}
+
+
+function CreateEsoBuildToggleSetHtml(setData)
+{
+	var output = "<div class='esotbToggledSetItem' setid=\"" + setData.id + "\">";
+	var checked = setData.enabled ? "checked" : "";
+	
+	output += "<input type='checkbox' class='esotbToggleSetCheck'  " + checked + " >";
+	output += "<div class='esotbToggleSetTitle'>" + setData.id + ":</div> ";
+	output += "<div class='esotbToggleSetDesc'>" + setData.desc + "</div>";
+	
+	output += "</div>";
+	return output;
+}
 
 
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
 	UpdateEsoComputedStatsList();
+	CreateEsoBuildToggledSetData();
 		
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
