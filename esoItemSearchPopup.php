@@ -23,7 +23,7 @@ class CEsoItemSearchPopup
 	public $resultItems = array();
 	public $resultError = array("error" => true);
 	
-	public $itemRows = array("itemId", "name", "icon", "type", "equipType", "weaponType", "armorType", "trait", "style");
+	public $itemRows = array("itemId", "name", "icon", "type", "equipType", "weaponType", "armorType", "trait", "style", "quality", "level");
 	
 	
 	public function __construct()
