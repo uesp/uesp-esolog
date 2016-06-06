@@ -904,10 +904,33 @@ function ParseEsoLevel(level)
 	if ($.isNumeric(level)) return parseInt(level);
 	if (level == null) return 66;
 	
-	var vetRank = level.match(/^\s*[vV](\d+)/);
-	if (vetRank == null) return parseInt(level);
+	var vetRank = level.match(/^\s*[v](\d+)/i);
 	
-	return parseInt(vetRank[1]) + 50;
+	if (vetRank != null) 
+	{
+		level = parseInt(vetRank[1]) + 50;
+		
+		if (isNaN(level)) return 66;
+		if (level > 66) return 66;
+		if (level < 1) return 1;
+		return level;
+	}
+	
+	var cpLevel = level.match(/^\s*CP(\d+)/i);
+	
+	if (cpLevel != null) 
+	{
+		level =  Math.floor(parseInt(cpLevel[1])/10) + 50;
+		
+		if (isNaN(level)) return 66;
+		if (level > 66) return 66;
+		if (level < 1) return 1;
+		return level;
+	}
+		
+	level = parseInt(level);
+	if (isNaN(level)) return 1;
+	return level;
 }
 
 
@@ -916,7 +939,8 @@ function FormatEsoLevel(level)
 	if (level <= 0 || level > 66) return level;
 	if (level <= 50) return level;
 
-	return "v" + (level - 50);
+	//return "v" + (level - 50);
+	return "CP" + (level - 50)*10;
 }
 
 
