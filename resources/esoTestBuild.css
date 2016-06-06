@@ -578,7 +578,7 @@ button.esotbWeaponSelect {
 }
 
 #esotbRawInputs {
-	
+
 }
 
 .esotbRawInputItem {
@@ -595,4 +595,28 @@ button.esotbWeaponSelect {
 .esotbRawInputValue {
 	display: block;
 	margin-left: 50px;
+}
+
+#esotbSets {
+	margin-top: 20px;
+}
+
+#esotbSets h3 {
+	font-size: 16px;
+}
+
+#esotbSets h4
+{
+	margin: 3px;
+	margin-top: 12px;
+	font-size: 14px;
+}
+
+.esotbSetInfoSet {
+	margin-left: 25px;
+}
+
+.esotbSetInfoRow {
+	margin-left: 50px;
+    padding: 2px;
 }

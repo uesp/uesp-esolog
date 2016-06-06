@@ -1444,6 +1444,7 @@ function UpdateEsoComputedStatsList()
 	
 	UpdateEsoReadOnlyStats(inputValues);
 	UpdateEsoBuildMundusList2();
+	UpdateEsoBuildSetInfo();
 }
 
 
@@ -2624,6 +2625,46 @@ function UpdateEsoBuildMundusList2()
 		$("#esotbMundus2").prop("disabled", "disabled");
 	}
 }
+
+
+function UpdateEsoBuildSetInfo()
+{
+	var setInfoElement = $("#esotbSetInfo");
+	var output = GetEsoBuildSetInfoHtml(); 
+		
+	setInfoElement.html(output);
+}
+
+
+function GetEsoBuildSetInfoHtml()
+{
+	var output = "";
+	
+	for (var setName in g_EsoBuildSetData)
+	{
+		var setData = g_EsoBuildSetData[setName];
+		
+		var wornItems = setData.count;
+		if (wornItems <= 0) continue;
+		
+		output += "<div class='esotbSetInfoSet'>";
+		output += "<h4>" + setName + "</h4>";
+		
+		output += "<div class='esotbSetInfoRow'>Worn Set Items = " + wornItems + "</div>";
+		
+		for (var name in setData.rawOutput)
+		{
+			var value = setData.rawOutput[name];
+			output += "<div class='esotbSetInfoRow'>" + name + " = " + value + "</div>";
+		}
+		
+		output += "</div>";
+	}
+	
+	return output;
+}
+
+
 
 
 function esotbOnDocReady()

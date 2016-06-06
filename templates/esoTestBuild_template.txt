@@ -199,6 +199,12 @@ displayed statistics is unknown.
 				</div><br/>
 				
 			</div>
+			<div id="esotbSets">
+				<h3>Set Data</h3>
+				<hr>
+				<div id="esotbSetInfo">
+				</div>				
+			</div>
 		</div>
 		<div id="esotbStatBlock3" class="esotbStatBlock" style="display: none;">
 			Skills...
