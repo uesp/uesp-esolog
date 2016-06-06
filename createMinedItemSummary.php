@@ -165,6 +165,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			$value = preg_replace("/ Of /", " of ", $value);
 			$value = preg_replace("/ The /", " the ", $value);
 			$value = preg_replace("/ And /", " and ", $value);
+			$value = preg_replace("/\-[a-z]/e", 'strtoupper("$0")', $value);
 			
 			$value = preg_replace("#\^[a-zA-Z]*#", "", $value);
 		}
