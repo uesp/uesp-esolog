@@ -509,12 +509,15 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 	this.itemLevel = $("#esoispLevel").val();
 	this.itemQuality = $("#esoispQuality").val();
 	
+	var quality = Number(itemData.quality);
+	if (isNaN(quality)) quality = this.itemQuality;
+	
 	var itemLinkData = 	"itemid='" + itemData.itemId + "' " + 
 						"level='" + this.itemLevel + "' " +
 						"quality='" + this.itemQuality + "' " +
 						"itemindex='"+ itemIndex + "' " +
 						"";
-	var itemQualityClass = "eso_item_link_q" + this.itemQuality;
+	var itemQualityClass = "eso_item_link_q" + quality;
 	
 	resultHtml = 	"<div class='esoispResultRow eso_item_link " + itemQualityClass + "' " + itemLinkData + ">" + 
 						"<img class='esoispResultIcon' src='" + iconUrl + "'>" +
