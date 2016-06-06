@@ -1871,7 +1871,7 @@ function UnequipEsoItemSlot(slotId, update)
 	var iconElement = $(element).find(".esotbItemIcon");
 	var labelElement = $(element).find(".esotbItemLabel");
 	
-	iconElement.attr("src", "");
+	iconElement.attr("src", g_EsoGearIcons[slotId] || "");
 	labelElement.text("");
 	iconElement.attr("itemid", "");
 	iconElement.attr("level", "");
@@ -1917,14 +1917,7 @@ function OnEsoSelectItem(itemData, element)
 	
 	if ($.isEmptyObject(itemData))
 	{
-		iconElement.attr("src", "");
-		labelElement.text("");
-		iconElement.attr("itemid", "");
-		iconElement.attr("level", "");
-		iconElement.attr("quality", "");
-		g_EsoBuildItemData[slotId] = {};
-		
-		UpdateEsoComputedStatsList();
+		UnequipEsoItemSlot(slotId, true);
 		return;
 	}
 	
@@ -2948,7 +2941,6 @@ function esotbOnDocReady()
 	
 	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
 	
-	//$(".esotbItem").click(OnEsoClickItem)
 	$(".esotbItemIcon").click(OnEsoClickItemIcon)
 	
 	$(".esotbComputeItems").click(OnEsoClickComputeItems);

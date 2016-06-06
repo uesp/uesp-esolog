@@ -16,6 +16,27 @@ class CEsoTestBuild
 	public $viewCps = null;
 	
 	
+	public $GEARSLOT_BASEICONS = array(
+			"Head" 		=> "resources/gearslot_head.png",
+			"Shoulders" => "resources/gearslot_shoulders.png",
+			"Chest" 	=> "resources/gearslot_chest.png",
+			"Hands" 	=> "resources/gearslot_hands.png",
+			"Waist" 	=> "resources/gearslot_belt.png",
+			"Legs" 		=> "resources/gearslot_legs.png",
+			"Feet" 		=> "resources/gearslot_feet.png",
+			"Neck"		=> "resources/gearslot_neck.png",
+			"Ring1"		=> "resources/gearslot_ring.png",
+			"Ring2"		=> "resources/gearslot_ring.png",
+			"MainHand1" => "resources/gearslot_mainhand.png",
+			"MainHand2" => "resources/gearslot_mainhand.png",
+			"OffHand1" 	=> "resources/gearslot_offhand.png",
+			"OffHand2" 	=> "resources/gearslot_offhand.png",
+			"Poison1" 	=> "resources/gearslot_poison.png",
+			"Poison2"	=> "resources/gearslot_poison.png",
+			"Food"		=> "resources/gearslot_quickslot.png",
+			"Potion"	=> "resources/gearslot_quickslot.png",
+	);
+	
 	public $STATS_UNIQUE_LIST = array(
 			"Item.Divines",
 			"Item.Defending",
@@ -665,7 +686,7 @@ class CEsoTestBuild
 							"+",
 							"0.5",
 							"+",
-							"Skill2.CritDamage",
+							"1 + Skill2.CritDamage",
 							"*",
 					),
 			),
@@ -685,7 +706,7 @@ class CEsoTestBuild
 							"+",
 							"0.5",
 							"+",
-							"Skill2.CritDamage",
+							"1 + Skill2.CritDamage",
 							"*",
 					),
 			),
@@ -1598,6 +1619,12 @@ class CEsoTestBuild
 	}
 	
 	
+	public function GetGearIconJson()
+	{
+		return json_encode($this->GEARSLOT_BASEICONS);
+	}
+	
+	
 	public function GetMundusListHtml()
 	{
 		$output = "";
@@ -1653,10 +1680,29 @@ class CEsoTestBuild
 				'{esoComputedStatsJson}' => $this->GetComputedStatsJson(),
 				'{esoInputStatsJson}' => $this->GetInputStatsJson(),
 				'{esoInputStatDetailsJson}' => $this->GetInputStatDetailsJson(),
+				'{gearIconJson}' => $this->GetGearIconJson(),
 				'{raceList}' => $this->GetRaceListHtml(),
 				'{classList}' => $this->GetClassListHtml(),
 				'{mundusList}' => $this->GetMundusListHtml(),
 				'{cpHtml}' => $this->GetCPHtml(),
+				'{gearIconHead}' => $this->GEARSLOT_BASEICONS['Head'],
+				'{gearIconShoulders}' => $this->GEARSLOT_BASEICONS['Shoulders'],
+				'{gearIconChest}' => $this->GEARSLOT_BASEICONS['Chest'],
+				'{gearIconHands}' => $this->GEARSLOT_BASEICONS['Hands'],
+				'{gearIconWaist}' => $this->GEARSLOT_BASEICONS['Waist'],
+				'{gearIconLegs}' => $this->GEARSLOT_BASEICONS['Legs'],
+				'{gearIconFeet}' => $this->GEARSLOT_BASEICONS['Feet'],
+				'{gearIconNeck}' => $this->GEARSLOT_BASEICONS['Neck'],
+				'{gearIconRing1}' => $this->GEARSLOT_BASEICONS['Ring1'],
+				'{gearIconRing2}' => $this->GEARSLOT_BASEICONS['Ring2'],
+				'{gearIconMainHand1}' => $this->GEARSLOT_BASEICONS['MainHand1'],
+				'{gearIconOffHand1}' => $this->GEARSLOT_BASEICONS['OffHand1'],
+				'{gearIconPoison1}' => $this->GEARSLOT_BASEICONS['Poison1'],
+				'{gearIconMainHand2}' => $this->GEARSLOT_BASEICONS['MainHand2'],
+				'{gearIconOffHand2}' => $this->GEARSLOT_BASEICONS['OffHand2'],
+				'{gearIconPoison2}' => $this->GEARSLOT_BASEICONS['Poison2'],
+				'{gearIconFood}' => $this->GEARSLOT_BASEICONS['Food'],
+				'{gearIconPotion}' => $this->GEARSLOT_BASEICONS['Potion'],
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
