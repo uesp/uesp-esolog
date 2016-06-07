@@ -17,39 +17,39 @@ g_EsoBuildEnchantData = {};
 g_EsoBuildSetData = {};
 g_EsoBuildToggledSetData = {};
 
-g_EsoBuildItemData.Head = {}
-g_EsoBuildItemData.Shoulders = {}
-g_EsoBuildItemData.Chest = {}
-g_EsoBuildItemData.Hands = {}
-g_EsoBuildItemData.Legs = {}
-g_EsoBuildItemData.Waist = {}
-g_EsoBuildItemData.Feet = {}
-g_EsoBuildItemData.Neck = {}
-g_EsoBuildItemData.Ring1 = {}
-g_EsoBuildItemData.Ring2 = {}
-g_EsoBuildItemData.MainHand1 = {}
-g_EsoBuildItemData.OffHand1 = {}
-g_EsoBuildItemData.MainHand2 = {}
-g_EsoBuildItemData.OffHand2 = {}
-g_EsoBuildItemData.Poison1 = {}
-g_EsoBuildItemData.Poison2 = {}
-g_EsoBuildItemData.Food = {}
-g_EsoBuildItemData.Potion = {}
+g_EsoBuildItemData.Head = {};
+g_EsoBuildItemData.Shoulders = {};
+g_EsoBuildItemData.Chest = {};
+g_EsoBuildItemData.Hands = {};
+g_EsoBuildItemData.Legs = {};
+g_EsoBuildItemData.Waist = {};
+g_EsoBuildItemData.Feet = {};
+g_EsoBuildItemData.Neck = {};
+g_EsoBuildItemData.Ring1 = {};
+g_EsoBuildItemData.Ring2 = {};
+g_EsoBuildItemData.MainHand1 = {};
+g_EsoBuildItemData.OffHand1 = {};
+g_EsoBuildItemData.MainHand2 = {};
+g_EsoBuildItemData.OffHand2 = {};
+g_EsoBuildItemData.Poison1 = {};
+g_EsoBuildItemData.Poison2 = {};
+g_EsoBuildItemData.Food = {};
+g_EsoBuildItemData.Potion = {};
 
-g_EsoBuildEnchantData.Head = {}
-g_EsoBuildEnchantData.Shoulders = {}
-g_EsoBuildEnchantData.Chest = {}
-g_EsoBuildEnchantData.Hands = {}
-g_EsoBuildEnchantData.Legs = {}
-g_EsoBuildEnchantData.Waist = {}
-g_EsoBuildEnchantData.Feet = {}
-g_EsoBuildEnchantData.Neck = {}
-g_EsoBuildEnchantData.Ring1 = {}
-g_EsoBuildEnchantData.Ring2 = {}
-g_EsoBuildEnchantData.MainHand1 = {}
-g_EsoBuildEnchantData.OffHand1 = {}
-g_EsoBuildEnchantData.MainHand2 = {}
-g_EsoBuildEnchantData.OffHand2 = {}
+g_EsoBuildEnchantData.Head = {};
+g_EsoBuildEnchantData.Shoulders = {};
+g_EsoBuildEnchantData.Chest = {};
+g_EsoBuildEnchantData.Hands = {};
+g_EsoBuildEnchantData.Legs = {};
+g_EsoBuildEnchantData.Waist = {};
+g_EsoBuildEnchantData.Feet = {};
+g_EsoBuildEnchantData.Neck = {};
+g_EsoBuildEnchantData.Ring1 = {};
+g_EsoBuildEnchantData.Ring2 = {};
+g_EsoBuildEnchantData.MainHand1 = {};
+g_EsoBuildEnchantData.OffHand1 = {};
+g_EsoBuildEnchantData.MainHand2 = {};
+g_EsoBuildEnchantData.OffHand2 = {};
 
 g_EsoBuildActiveWeapon = 1;
 g_EsoFormulaInputValues = {};
@@ -1837,12 +1837,16 @@ function OnEsoToggleStatComputeItems(e)
 
 function OnEsoRaceChange(e)
 {
+	var newRace = $(this).val();
+	EnableEsoRaceSkills(newRace);
 	UpdateEsoComputedStatsList();
 }
 
 
 function OnEsoClassChange(e)
 {
+	var newClass = $(this).val();
+	EnableEsoClassSkills(newClass);
 	UpdateEsoComputedStatsList();
 }
 

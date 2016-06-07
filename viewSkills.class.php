@@ -656,7 +656,6 @@ class CEsoViewSkills
 			$cost = $baseAbility['cost'];
 			$learnedLevel = $baseAbility['learnedLevel'];
 			$rank = $baseAbility['rank'];
-			$maxRank = $baseAbility['maxRank'];
 			$effectLines = $baseAbility['effectLines'];
 			$id = $baseAbility['abilityId'];
 			$index = $baseAbility['__index'];
@@ -673,6 +672,7 @@ class CEsoViewSkills
 		{
 			if ($rank < 0) $rank = 1;
 			$morph = -1;
+			$origRank = 1;
 		}
 		else
 		{
