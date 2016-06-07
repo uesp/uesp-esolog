@@ -73,7 +73,8 @@
 </div>
 <div id="esovsRightBlock" style="{rightBlockMargin}">
 	<div id="esovsSkillTree">{skillTree}</div>
-	<div id="esovsSkillContent">{skillContent}</div>		
+	<div id="esovsSkillContent">{skillContent}</div>
+	{skillBar}		
 </div>
 
 <div class="esovsBlockClear"></div>
