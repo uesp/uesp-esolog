@@ -224,10 +224,12 @@ class CEsoViewSkills
 		$abilityName = $skill['name'];
 		$baseName = $skill['baseName'];
 		$rank = $skill['rank'];
-
+		
 		if (!array_key_exists($skillType, $this->skillTree)) $this->skillTree[$skillType] = array();
 		if (!array_key_exists($skillLine, $this->skillTree[$skillType])) $this->skillTree[$skillType][$skillLine] = array();
 		if (!array_key_exists($baseName, $this->skillTree[$skillType][$skillLine])) $this->skillTree[$skillType][$skillLine][$baseName] = array();
+		
+		$this->skillTree[$skillType][$skillLine]['skillType'] = $skillType;
 
 		$this->skillTree[$skillType][$skillLine][$baseName][$rank] = &$skill;
 		$this->skillTree[$skillType][$skillLine][$baseName]['type'] = $skill['type'];
@@ -456,7 +458,7 @@ class CEsoViewSkills
 		{
 			foreach($skillTypeData as $skillLine => $skillLineData)
 			{
-				$output .= $this->GetSkillContentHtml_SkillLine($skillLine, $skillLineData);
+				$output .= $this->GetSkillContentHtml_SkillLine($skillLine, $skillLineData, $skillType);
 			}
 		}
 
@@ -478,7 +480,7 @@ class CEsoViewSkills
 	}
 
 
-	public function GetSkillContentHtml_SkillLine($skillLine, $skillLineData)
+	public function GetSkillContentHtml_SkillLine($skillLine, $skillLineData, $skillType)
 	{
 		$displayType = "none";
 
@@ -489,7 +491,7 @@ class CEsoViewSkills
 		}
 
 		$id = $this->MakeHtmlId($skillLine);
-		$output = "<div class='esovsSkillContentBlock' id='$id' style='display: $displayType;'>\n";
+		$output = "<div class='esovsSkillContentBlock' id='$id' style='display: $displayType;' skilltype='$skillType'>\n";
 
 		$output .= "<div class='esovsSkillContentTitle'>".$skillLine."</div>";
 
@@ -618,11 +620,16 @@ class CEsoViewSkills
 		$icon = $this->GetIconURL($baseAbility['icon']);
 		$effectLines = $abilityData['effectLines'];
 		$mechanic = $baseAbility['mechanic'];
+		$skillType = GetEsoSkillTypeText($baseAbility['skillType']);
+		$skillLine = $baseAbility['skillLine'];
+		$classType = $baseAbility['classType'];
+		$raceType = $baseAbility['raceType'];
 
 		$cost = $abilityData['cost'];
 		$learnedLevel = $abilityData['learnedLevel'];
 		$costDesc = "";
 		$rank = $abilityData['rank'];
+		$origRank = $rank;
 		$maxRank = $abilityData['maxRank'];
 		$rankLabel = "";
 		
@@ -632,7 +639,7 @@ class CEsoViewSkills
 			$learnedLevel = $baseAbility['learnedLevel'];
 			$rank = $baseAbility['rank'];
 			$maxRank = $baseAbility['maxRank'];
-			$baseAbility = $baseAbility['effectLines'];
+			$effectLines = $baseAbility['effectLines'];
 			$id = $baseAbility['abilityId'];
 			$index = $baseAbility['__index'];
 		}
@@ -676,7 +683,7 @@ class CEsoViewSkills
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 			
-		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
 
 		if ($topLevel)
 		{

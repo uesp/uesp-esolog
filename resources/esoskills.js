@@ -1243,6 +1243,54 @@ function OnAbilityBlockSelect(e)
 }
 
 
+function EnableEsoClassSkills(className)
+{
+	className = className.toUpperCase();
+	var classElement = $(".esovsSkillTypeTitle:contains('" + className + "')")
+	
+	$(".esovsSkillTypeTitle:contains('DRAGONKNIGHT')").hide();
+	$(".esovsSkillTypeTitle:contains('NIGHTBLADE')").hide();
+	$(".esovsSkillTypeTitle:contains('SORCERER')").hide();
+	$(".esovsSkillTypeTitle:contains('TEMPLAR')").hide();
+	$(".esovsSkillContentBlock").hide();
+	$(".esovsSkillType").hide();
+	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
+		
+	var skillTypes = classElement.next(".esovsSkillType");
+	var firstSkillLine = skillTypes.find(".esovsSkillLineTitle").first();
+	
+	var skillLine = firstSkillLine.text();
+	skillLine = skillLine.replace(/ /g, "_");
+	
+	firstSkillLine.addClass("esovsSkillLineTitleHighlight");
+	
+	classElement.show();
+	skillTypes.show();
+	$("#" + skillLine).show();
+}
+
+
+function EnableEsoRaceSkills(raceName)
+{
+	var raceId = raceName + " Skills";
+	var raceElement = $(".esovsSkillLineTitle:contains('" + raceId + "')")
+	var classElement = $(".esovsSkillTypeTitle:contains('RACIAL')");
+	
+	classElement.next(".esovsSkillType").find(".esovsSkillLineTitle").hide();
+	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
+	$(".esovsSkillContentBlock").hide();
+	$(".esovsSkillType").hide();
+
+	raceElement.addClass("esovsSkillLineTitleHighlight");
+	
+	raceId = raceId.replace(/ /g, "_");
+
+	classElement.next(".esovsSkillType").show();
+	raceElement.show();
+	$("#" + raceId).show();	
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
