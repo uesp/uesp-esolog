@@ -1323,7 +1323,7 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 		return true;
 	}
 	
-	if (morph > 0) ++newPoints;	
+	if (morph > 0) ++newPoints;
 	g_EsoSkillPointsUsed += newPoints - origPoints;
 	
 	g_EsoSkillActiveData[origAbilityId].abilityType = abilityType;
@@ -1340,63 +1340,15 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 
 function OnAbilityBlockPurchase(e)
 {
-	var $this = $(this);
-	var $parent = $this.parent();
-	var displayBlock = $parent.prev(".esovsAbilityBlock");
-	var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
-	var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
-	var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
-	var skillId = $this.attr("skillid");
-	var rank = $this.attr("rank");
-	var origRank = displayBlock.attr("rank");
-	var origSkillId1 = displayBlock.attr("skillid");
-	var origSkillId2 = displayBlock.attr("origskillid");
-	var selectBlock = $this;
-	var origPurchased = !displayBlock.hasClass("esovsAbilityBlockNotPurchase");
-	var abilityType = $this.attr("abilitytype");
-	var morph = $this.attr("morph");
-	
-	if (!origPurchased) origRank = 0;
-	
-	if (origPurchased && skillId != origSkillId1)
-	{
-		RemoveSkillBarAbility(origSkillId1, 1);
-		RemoveSkillBarAbility(origSkillId1, 2);
-		RemoveSkillBarAbility(origSkillId2, 1);
-		RemoveSkillBarAbility(origSkillId2, 2);
-		UpdateEsoSkillBarData();
-	}
+	var skillId = $(this).attr("skillid");
+	var parentSkillId = $(this).parent().prev(".esovsAbilityBlock").attr("skillid");
 	
 	if (skillId <= 0)
-	{
-		rank = 0;
-		selectBlock = $this.next();
-		skillId = selectBlock.attr("skillid");
-		origSkillId2 = skillId;
-		abilityType = selectBlock.attr("abilitytype");
-		
-		displayBlock.addClass('esovsAbilityBlockNotPurchase');
-		iconDisplayBlock.attr("draggable", "false");
-		displayBlock.attr("skillid", skillId);
-	}
+		ResetEsoPurchasedSkill(parentSkillId);
 	else
-	{
-		displayBlock.removeClass('esovsAbilityBlockNotPurchase');
-		iconDisplayBlock.attr("draggable", "true");
-		displayBlock.attr("skillid", skillId);
-		displayBlock.attr("rank", rank);
-	}
+		PurchaseEsoSkill(skillId);
 	
-	iconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockIcon").html());
-	titleDisplayBlock.html(selectBlock.children(".esovsAbilityBlockTitle").html());
-	passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
-	
-	$parent.slideToggle();
-	
-	if (abilityType == "Passive") 
-		UpdateEsoSkillPassiveData(origSkillId2, skillId, rank);
-	else
-		UpdateEsoSkillActiveData(origSkillId2, skillId, rank, abilityType, morph);
+	$(this).parent().slideUp();
 }
 
 
@@ -1429,6 +1381,54 @@ function EnableEsoClassSkills(className)
 }
 
 
+function PurchaseEsoSkill(abilityId)
+{
+	var skillElement = $(".esovsAbilityBlockList").
+				children(".esovsAbilityBlock[skillid='" + abilityId + "']");
+	if (skillElement.length == 0) return;
+	
+	var displayBlock = skillElement.parent().prev(".esovsAbilityBlock");
+	if (displayBlock.length == 0) return;
+	
+	var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
+	var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
+	var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
+		
+	var rank = skillElement.attr("rank");
+	var morph = skillElement.attr("morph");
+	var origAbilityId = displayBlock.attr("origskillid");
+	var abilityType = skillElement.attr("abilitytype");
+		
+	var origRank = displayBlock.attr("rank");
+	var origSkillId1 = displayBlock.attr("skillid");
+	var origSkillId2 = displayBlock.attr("origskillid");
+	
+	var origPurchased = !displayBlock.hasClass("esovsAbilityBlockNotPurchase");
+	if (!origPurchased) origRank = 0;
+	
+	if (origPurchased && abilityId != origSkillId1)
+	{
+		RemoveSkillBarAbility(origSkillId1);
+		RemoveSkillBarAbility(origSkillId2);
+		UpdateEsoSkillBarData();
+	}
+	
+	displayBlock.removeClass('esovsAbilityBlockNotPurchase');
+	iconDisplayBlock.attr("draggable", "true");
+	displayBlock.attr("skillid", abilityId);
+	displayBlock.attr("rank", rank);
+	
+	iconDisplayBlock.html(skillElement.children(".esovsAbilityBlockIcon").html());
+	titleDisplayBlock.html(skillElement.children(".esovsAbilityBlockTitle").html());
+	passiveIconDisplayBlock.html(skillElement.children(".esovsAbilityBlockPassiveIcon").html());
+			
+	if (abilityType == "Passive")
+		UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank);
+	else
+		UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, morph);
+}
+
+
 function ResetEsoPurchasedSkill(abilityId)
 {
 	var skillElement = $(".esovsSkillContentBlock").
@@ -1439,17 +1439,16 @@ function ResetEsoPurchasedSkill(abilityId)
 	var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
 	var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
 	var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
-	var selectBlock = displayBlock.children(".esovsAbilityBlockList").children(".esovsAbilityBlock").eq(1);
+	var selectBlock = displayBlock.next(".esovsAbilityBlockList").children(".esovsAbilityBlock").eq(1);
 	
 	var rank = skillElement.attr("rank");
 	var morph = skillElement.attr("morph");
-	var origAbilityId = skillElement.attr("origskillid");
+	var origAbilityId = selectBlock.attr("origskillid");
 	var abilityType = skillElement.attr("abilitytype");
 	
-	RemoveSkillBarAbility(origAbilityId, 1);
-	RemoveSkillBarAbility(origAbilityId, 2);
-	RemoveSkillBarAbility(abilityId, 1);
-	RemoveSkillBarAbility(abilityId, 2);
+	RemoveSkillBarAbility(origAbilityId);
+	RemoveSkillBarAbility(abilityId);
+	UpdateEsoSkillBarData();
 
 	displayBlock.addClass('esovsAbilityBlockNotPurchase');
 	iconDisplayBlock.attr("draggable", "false");
@@ -1460,9 +1459,9 @@ function ResetEsoPurchasedSkill(abilityId)
 	passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
 			
 	if (abilityType == "Passive")
-		UpdateEsoSkillPassiveData(origAbilityId, abilityId, -1);
+		UpdateEsoSkillPassiveData(origAbilityId, origAbilityId, -1);
 	else
-		UpdateEsoSkillActiveData(origAbilityId, abilityId, -1, abilityType, morph);
+		UpdateEsoSkillActiveData(origAbilityId, origAbilityId, -1, abilityType, morph);
  
 }
 
@@ -1645,6 +1644,13 @@ function OnSkillBarDrop(e)
 
 function RemoveSkillBarAbility(abilityId, skillBar)
 {
+	if (skillBar == null)
+	{
+		RemoveSkillBarAbility(abilityId, 1);
+		RemoveSkillBarAbility(abilityId, 2);
+		return;
+	}
+	
 	var skillBars1 = $("#esovsSkillBar" + skillBar).find(".esovsSkillBarIcon[skillid='" + abilityId + "']");
 	var skillBars2 = $("#esovsSkillBar" + skillBar).find(".esovsSkillBarIcon[origskillid='" + abilityId + "']");
 	
@@ -1757,6 +1763,34 @@ function OnEsoSkillReset(e)
 }
 
 
+function OnEsoSkillLinePurchaseAll()
+{
+	var skillElements = $(this).parent().children(".esovsAbilityBlock");
+	
+	skillElements.each(function() {
+		var skillId = $(this).attr("skillid");
+		var lastSkill = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").last();
+		var lastSkillId = lastSkill.attr("skillid");
+		PurchaseEsoSkill(lastSkillId, false);
+	});
+	
+	UpdateEsoSkillTotalPoints();
+}
+
+
+function OnEsoSkillLineResetAll()
+{
+	var skillElements = $(this).parent().children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
+	
+	skillElements.each(function() {
+		var skillId = $(this).attr("skillid");
+		ResetEsoPurchasedSkill(skillId);
+	});
+	
+	UpdateEsoSkillTotalPoints();
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
@@ -1810,6 +1844,9 @@ function esovsOnDocReady()
 	
 	$("#esovsSkillReset").click(OnEsoSkillReset);
 	
+	$(".esovsSkillLinePurchaseAll").click(OnEsoSkillLinePurchaseAll);
+	$(".esovsSkillLineResetAll").click(OnEsoSkillLineResetAll);
+	
 	var highlightSkill = $(".esovsSearchHighlight");
 	
 	if (highlightSkill.length == 0)
@@ -1822,4 +1859,4 @@ function esovsOnDocReady()
 }
 
 
-$( document ).ready(esovsOnDocReady);	
+$( document ).ready(esovsOnDocReady);

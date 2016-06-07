@@ -700,3 +700,12 @@
 #esovsSkillReset {
 	margin-top: 20px;
 }
+
+.esovsSkillLinePurchaseAll {
+	float: right;
+	margin-right: 20px;
+}
+
+.esovsSkillLineResetAll {
+	float: right;
+}
