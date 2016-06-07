@@ -388,10 +388,22 @@ class CEsoViewSkills
 		$output .= $this->GetSkillTreeTypeHtml("Alliance War", false);
 		$output .= $this->GetSkillTreeTypeHtml("Racial", false);
 		$output .= $this->GetSkillTreeTypeHtml("Craft", false);
+		
+		if ($this->displayType == "select") $output .= $this->GetSkillPointsHtml();
 
 		return $output;
 	}
 
+	
+	public function GetSkillPointsHtml()
+	{
+		$output  = "<div id='esovsSkillPointsContent'>";
+		$output .= "	<div id='esovsSkillPointsTitle'>Used Skill Points:</div> <div id='esovsSkillPoints'>0</div>";
+		$output .= "	<button id='esovsSkillReset'>Reset All Skills</button>";
+		$output .= "</div>";
+		return $output;
+	}
+	
 
 	public function GetSkillTreeTypeHtml($skillType, $isClass)
 	{
@@ -637,6 +649,7 @@ class CEsoViewSkills
 		$origRank = $rank;
 		$maxRank = $abilityData['maxRank'];
 		$rankLabel = "";
+		$morph = 0;
 		
 		if ($topLevel && $type == "Passive" && $this->displayType == "select")
 		{
@@ -659,6 +672,7 @@ class CEsoViewSkills
 		if ($type == "Passive")
 		{
 			if ($rank < 0) $rank = 1;
+			$morph = -1;
 		}
 		else
 		{
@@ -666,10 +680,12 @@ class CEsoViewSkills
 				
 			if ($rank > 8)
 			{
+				$morph = 2;
 				$rank -= 8;
 			}
 			else if ($rank > 4)
 			{
+				$morph = 1;
 				$rank -= 4;
 			}
 			
@@ -690,7 +706,7 @@ class CEsoViewSkills
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 			
-		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id' origskillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
 
 		if ($topLevel)
 		{

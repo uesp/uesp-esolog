@@ -477,15 +477,30 @@ function OnEsoSkillBlockPlusClick(event)
 
 function OnEsoSkillBlockPlusSelectClick(event)
 {
-	$('.esovsAbilityBlockList').slideUp();
-	
+	var $openList = $('.esovsAbilityBlockList:visible');
 	var $parent = $(this).parent();
-	var element = $parent.next('.esovsAbilityBlockList');
-	element.slideToggle();
+	var $element = $parent.next('.esovsAbilityBlockList');
+		
+	if ($openList[0] == $element[0])
+	{
+		$element.slideUp();
+		return;
+	}
 	
-	//$parent.parent().animate({
-		//scrollTop: element.offset().top,
-    //});
+	$openList.slideUp();
+	$element.slideToggle();
+	
+	var offsetTop = $element.offset().top;
+	var offsetBottom = offsetTop + $element.height();
+	var scrollTop = $element.parent().scrollTop();
+	var scrollBottom = $element.parent().height();
+	
+	if (offsetTop > scrollBottom)
+	{
+		$element.parent().animate({
+			scrollTop: offsetTop,
+	    });
+	}
 }
 
 
@@ -1274,8 +1289,49 @@ function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 	
 	g_EsoSkillPassiveData[origAbilityId].rank = rank;
 	g_EsoSkillPassiveData[origAbilityId].abilityId = abilityId;
+	g_EsoSkillPassiveData[origAbilityId].baseAbilityId = origAbilityId;
 	g_EsoSkillPassiveData[origAbilityId].skillDesc = GetEsoCurrentSkillDescription(abilityId);
 	
+	UpdateEsoSkillTotalPoints();
+	return true;
+}
+
+
+function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, morph)
+{
+	var origPoints = 0;
+	var newPoints = 0;
+	
+	if (g_EsoSkillActiveData[origAbilityId] == null)
+	{
+		if (rank <= 0) return true;
+		g_EsoSkillActiveData[origAbilityId] = {};
+		g_EsoSkillActiveData[origAbilityId].rank = 0;
+	}
+	else
+	{
+		origPoints = 1;
+		if (g_EsoSkillActiveData[origAbilityId].morph > 0) ++origPoints;
+	}
+	
+	if (rank <= 0)
+	{
+		g_EsoSkillPointsUsed -= origPoints;
+		
+		delete g_EsoSkillActiveData[origAbilityId];
+		return true;
+	}
+	
+	g_EsoSkillPointsUsed += newPoints - origPoints;
+	
+	g_EsoSkillActiveData[origAbilityId].abilityType = abilityType;
+	g_EsoSkillActiveData[origAbilityId].morph = morph;
+	g_EsoSkillActiveData[origAbilityId].rank = rank;
+	g_EsoSkillActiveData[origAbilityId].abilityId = abilityId;
+	g_EsoSkillActiveData[origAbilityId].baseAbilityId = origAbilityId;
+	g_EsoSkillActiveData[origAbilityId].skillDesc = GetEsoCurrentSkillDescription(abilityId);
+	
+	UpdateEsoSkillTotalPoints();
 	return true;
 }
 
@@ -1296,6 +1352,7 @@ function OnAbilityBlockPurchase(e)
 	var selectBlock = $this;
 	var origPurchased = !displayBlock.hasClass("esovsAbilityBlockNotPurchase");
 	var abilityType = $this.attr("abilitytype");
+	var morph = $this.attr("morph");
 	
 	if (!origPurchased) origRank = 0;
 	
@@ -1334,7 +1391,10 @@ function OnAbilityBlockPurchase(e)
 	
 	$parent.slideToggle();
 	
-	if (abilityType == "Passive") UpdateEsoSkillPassiveData(origSkillId2, skillId, rank);
+	if (abilityType == "Passive") 
+		UpdateEsoSkillPassiveData(origSkillId2, skillId, rank);
+	else
+		UpdateEsoSkillActiveData(origSkillId2, skillId, rank, abilityType, morph);
 }
 
 
@@ -1581,6 +1641,46 @@ function GetEsoCurrentSkillDescription(abilityId)
 }
 
 
+function UpdateEsoSkillTotalPoints()
+{
+	var element = $("#esovsSkillPoints");
+	element.text(g_EsoSkillPointsUsed);
+}
+
+
+function OnEsoSkillReset(e)
+{
+	g_EsoSkillPassiveData = {};
+	g_EsoSkillActiveData = {};
+	g_EsoSkillPointsUsed = 0;
+	
+	$(".esovsSkillBarIcon").attr("skillid", "0").
+		attr("src", "").
+		attr("draggable", "false").
+		attr("origskillid", "0");
+	
+	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").each(function(i, e) {
+		var selectBlock = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").eq(1);
+		var displayBlock = $(this);
+		var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
+		var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
+		var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
+		var skillId = selectBlock.attr("skillid");
+
+		displayBlock.addClass('esovsAbilityBlockNotPurchase');
+		iconDisplayBlock.attr("draggable", "false");
+		displayBlock.attr("skillid", skillId);
+	
+		iconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockIcon").html());
+		titleDisplayBlock.html(selectBlock.children(".esovsAbilityBlockTitle").html());
+		passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
+	});
+	
+	UpdateEsoSkillBarData();
+	UpdateEsoSkillTotalPoints();
+}
+
+
 function esovsOnDocReady()
 {
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
@@ -1631,6 +1731,8 @@ function esovsOnDocReady()
 	$(".esovsSkillBarIcon").on('dragover', OnSkillBarDragOver);
 	$(".esovsSkillBarIcon").on('drop', OnSkillBarDrop);
 	$(document).on('dropend', OnSkillBarDragEnd);
+	
+	$("#esovsSkillReset").click(OnEsoSkillReset);
 	
 	var highlightSkill = $(".esovsSearchHighlight");
 	
