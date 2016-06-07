@@ -3,6 +3,7 @@
 require_once("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
 require_once("viewCps.class.php");
+require_once("viewSkills.class.php");
 
 
 class CEsoTestBuild 
@@ -14,6 +15,7 @@ class CEsoTestBuild
 	public $version = "";
 	
 	public $viewCps = null;
+	public $viewSkills = null;
 	
 	
 	public $GEARSLOT_BASEICONS = array(
@@ -1475,11 +1477,13 @@ class CEsoTestBuild
 		$this->viewCps->hideTopBar = true;
 		$this->viewCps->shortDiscDisplay = true;
 		
+		$this->viewSkills = new CEsoViewSkills(true, "select");
+		
 		$this->MakeInputStatsList();
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
-		$this->LoadTemplate();		
+		$this->LoadTemplate();
 	}
 	
 	
@@ -1673,6 +1677,12 @@ class CEsoTestBuild
 	}
 	
 	
+	public function GetSkillHtml()
+	{
+		return $this->viewSkills->GetOutputHtml();
+	}
+	
+	
 	public function GetOutputHtml()
 	{
 		$replacePairs = array(
@@ -1685,6 +1695,7 @@ class CEsoTestBuild
 				'{classList}' => $this->GetClassListHtml(),
 				'{mundusList}' => $this->GetMundusListHtml(),
 				'{cpHtml}' => $this->GetCPHtml(),
+				'{skillHtml}' => $this->GetSkillHtml(), 
 				'{gearIconHead}' => $this->GEARSLOT_BASEICONS['Head'],
 				'{gearIconShoulders}' => $this->GEARSLOT_BASEICONS['Shoulders'],
 				'{gearIconChest}' => $this->GEARSLOT_BASEICONS['Chest'],

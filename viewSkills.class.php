@@ -48,9 +48,10 @@ class CEsoViewSkills
 	public $baseResource = "";
 
 
-	public function __construct ($isEmbedded = false)
+	public function __construct ($isEmbedded = false, $displayType = "summary")
 	{
 		$this->isEmbedded = $isEmbedded;
+		$this->displayType = $displayType;
 		
 		$this->SetInputParams();
 		$this->ParseInputParams();
@@ -852,24 +853,24 @@ class CEsoViewSkills
 		
 		$output .= "<div id='esovsSkillBar1' class='esovsSkillBar esovsSkillBarHighlight' skillbar='1'>";
 		$output .= "	<div class='esovsSkillBarTitle'>Bar 1</div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon11' skillindex='1' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon12' skillindex='2' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon13' skillindex='3' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon14' skillindex='4' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon15' skillindex='5' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false' id='esovsSkillIcon11' skillindex='1' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon12' skillindex='2' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon13' skillindex='3' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon14' skillindex='4' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon15' skillindex='5' skillbar='1' skillid='0' src=''></div>";
 		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";  
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon16' skillindex='6' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon16' skillindex='6' skillbar='1' skillid='0' src=''></div>";
 		$output .= "</div>";
 		
 		$output .= "<div id='esovsSkillBar2' class='esovsSkillBar' skillbar='2'>";
 		$output .= "	<div class='esovsSkillBarTitle'>Bar 2</div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon21' skillindex='1' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon22' skillindex='2' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon23' skillindex='3' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon24' skillindex='4' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon25' skillindex='5' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon21' skillindex='1' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon22' skillindex='2' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon23' skillindex='3' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon24' skillindex='4' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon25' skillindex='5' skillbar='2' skillid='0' src=''></div>";
 		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon26' skillindex='6' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon26' skillindex='6' skillbar='2' skillid='0' src=''></div>";
 		$output .= "</div>";
 		
 		$output .= "</div>";
