@@ -515,6 +515,12 @@ class CEsoViewSkills
 		$output .= $this->GetSkillContentHtml_SkillLineType("Active",   "SKILLS",    $skillLine, $skillLineData);
 		$output .= $this->GetSkillContentHtml_SkillLineType("Passive",  "PASSIVES",  $skillLine, $skillLineData);
 
+		if ($this->displayType == "select")
+		{
+			$output .= "<button class='esovsSkillLineResetAll'>Reset All</button>";
+			$output .= "<button class='esovsSkillLinePurchaseAll'>Purchase All</button> ";
+		}
+		
 		$output .= "</div>\n";
 		return $output;
 	}
@@ -628,7 +634,7 @@ class CEsoViewSkills
 	{
 		$output = "";
 			
-		$origId = $baseAbility['abilityId'];
+		$baseId = "";
 		$id = $abilityData['abilityId'];
 		$index = $abilityData['__index'];
 
@@ -706,7 +712,7 @@ class CEsoViewSkills
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 			
-		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' baseskillid='$baseId' origskillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
 
 		if ($topLevel)
 		{
