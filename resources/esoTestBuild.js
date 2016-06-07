@@ -1261,7 +1261,7 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 	if (addFinalEffect) 
 	{
 		AddEsoInputStatSource("OtherEffects", { other: true, item: itemData, enchant: enchantData, value: rawDesc, slotId: slotId });
-		AddEsoItemRawOutput(itemData, WeaponEnchant, rawDesc);
+		AddEsoItemRawOutput(itemData, "WeaponEnchant", rawDesc);
 	}
 }
 
@@ -1563,6 +1563,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildMundusList2();
 	UpdateEsoBuildSetInfo();
 	UpdateEsoBuildToggleSets();
+	UpdateEsoBuildItemLinkSetCounts();
 }
 
 
@@ -1882,6 +1883,7 @@ function UnequipEsoItemSlot(slotId, update)
 	iconElement.attr("itemid", "");
 	iconElement.attr("level", "");
 	iconElement.attr("quality", "");
+	iconElement.attr("setcount", "");
 		
 	g_EsoBuildItemData[slotId] = {};
 	
@@ -1936,6 +1938,7 @@ function OnEsoSelectItem(itemData, element)
 	iconElement.attr("itemid", itemData.itemId);
 	iconElement.attr("level", itemData.level);
 	iconElement.attr("quality", itemData.quality);
+	iconElement.attr("setcount", "0");
 	
 	if (itemData.equipType == 6)
 	{
@@ -2933,6 +2936,44 @@ function CreateEsoBuildToggleSetHtml(setData)
 	
 	output += "</div>";
 	return output;
+}
+
+
+function UpdateEsoBuildItemLinkSetCounts()
+{
+	UpdateEsoBuildItemLinkSetCount("Head");
+	UpdateEsoBuildItemLinkSetCount("Shoulders");
+	UpdateEsoBuildItemLinkSetCount("Chest");
+	UpdateEsoBuildItemLinkSetCount("Hands");
+	UpdateEsoBuildItemLinkSetCount("Waist");
+	UpdateEsoBuildItemLinkSetCount("Legs");
+	UpdateEsoBuildItemLinkSetCount("Feet");
+	UpdateEsoBuildItemLinkSetCount("Neck");
+	UpdateEsoBuildItemLinkSetCount("Ring1");
+	UpdateEsoBuildItemLinkSetCount("Ring2");
+	UpdateEsoBuildItemLinkSetCount("MainHand1");
+	UpdateEsoBuildItemLinkSetCount("OffHand1");
+	UpdateEsoBuildItemLinkSetCount("MainHand2");
+	UpdateEsoBuildItemLinkSetCount("OffHand2");
+}
+
+
+function UpdateEsoBuildItemLinkSetCount(slotId)
+{
+	var itemElement = $(".esotbItem[slotid='" + slotId + "']");
+	var iconElement = itemElement.children(".esotbItemIcon");
+	var itemData = g_EsoBuildItemData[slotId];
+	
+	iconElement.attr("setcount", "0");
+	
+	if (itemData == null) return;
+	if (itemData.setName == null || itemData.setName == "") return;
+	
+	var setData = g_EsoBuildSetData[itemData.setName];
+	if (setData == null) return;
+	if (setData.count == null) return;
+	
+	iconElement.attr("setcount", setData.count);
 }
 
 
