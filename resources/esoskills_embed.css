@@ -614,3 +614,63 @@
 	vertical-align: middle;	
 }
 
+#esovsSkillBar {
+	width: 550px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+}
+
+.esovsSkillBar {
+}
+
+.esovsSkillBar:hover {
+	cursor: pointer;
+	background-color: #ffff99;
+}
+
+#esovsSkillBar1 {
+	border: solid 2px rgba(0,0,0,0);
+    padding: 2px;
+    text-align: left;
+}
+
+#esovsSkillBar2 {
+	border: solid 2px rgba(0,0,0,0);
+    padding: 2px;
+    text-align: left;
+}
+
+.esovsSkillBarHighlight {
+	border: solid 2px yellow !important;
+	background-color: #99ffff;
+}
+
+.esovsSkillBarItem {
+	display: inline-block;
+    width: 68px;
+    height: 68px;
+    background-image: url(eso_ability_frame.png);
+    background-size: 100% 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.esovsSkillBarTitle {
+	display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+    width: 50px;
+    text-align: right;
+	font-weight: bold;
+    font-size: 17px;    
+}
+
+.esovsSkillBarIcon {
+	width: 64px;
+    height: 64px;
+    left: 0px;
+    top: 2px;
+    position: relative;
+}

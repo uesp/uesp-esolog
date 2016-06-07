@@ -42,6 +42,7 @@ class CEsoViewSkills
 	public $displayClass = "all";
 	public $displayRace = "all";
 	public $displayMenuBar = true;
+	public $displaySkillBar = false;
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResource = "";
@@ -313,6 +314,7 @@ class CEsoViewSkills
 			$this->displayClass = "all";
 			$this->displayRace = "all";
 			$this->displayMenuBar = true;
+			$this->displaySkillBar = false;
 		}
 		else if ($this->displayType == "select")
 		{
@@ -320,6 +322,7 @@ class CEsoViewSkills
 			$this->displayClass = "Dragonknight";
 			$this->displayRace = "Argonian";
 			$this->displayMenuBar = false;
+			$this->displaySkillBar = true;
 		}
 
 		return true;
@@ -612,6 +615,7 @@ class CEsoViewSkills
 	{
 		$output = "";
 			
+		$origId = $baseAbility['abilityId'];
 		$id = $abilityData['abilityId'];
 		$index = $abilityData['__index'];
 
@@ -647,7 +651,7 @@ class CEsoViewSkills
 		$this->skills[$index]['__isOutput'] = true;
 			
 		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
-
+		$extraIconAttr = "";
 		$iconClass = "esovsAbilityBlockIcon";
 		if ($type == "Passive") $iconClass = "esovsAbilityBlockPassiveIcon";
 
@@ -667,6 +671,8 @@ class CEsoViewSkills
 			{
 				$rank -= 4;
 			}
+			
+			if ($this->displayType == "select" && $topLevel) $extraIconAttr = "draggable='false'";
 		}
 
 		if ($rank > 0 && $maxRank > 1) $rankLabel = " " . $this->GetRomanNumeral($rank);
@@ -683,7 +689,7 @@ class CEsoViewSkills
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 			
-		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' skillid='$id' origskillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
 
 		if ($topLevel)
 		{
@@ -701,7 +707,7 @@ class CEsoViewSkills
 			}
 		}
 		
-		$output .= "<div class='$iconClass'><img src='$icon' />";
+		$output .= "<div class='$iconClass' $extraIconAttr><img src='$icon' />";
 		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockTitle'>";
@@ -839,6 +845,38 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetSkillBarHtml()
+	{
+		if (!$this->displaySkillBar) return "";
+		$output = "<div id='esovsSkillBar'>";
+		
+		$output .= "<div id='esovsSkillBar1' class='esovsSkillBar esovsSkillBarHighlight' skillbar='1'>";
+		$output .= "	<div class='esovsSkillBarTitle'>Bar 1</div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon11' skillindex='1' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon12' skillindex='2' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon13' skillindex='3' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon14' skillindex='4' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon15' skillindex='5' skillbar='1' skillid='0' src=''></div>";
+		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";  
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon16' skillindex='6' skillbar='1' skillid='0' src=''></div>";
+		$output .= "</div>";
+		
+		$output .= "<div id='esovsSkillBar2' class='esovsSkillBar' skillbar='2'>";
+		$output .= "	<div class='esovsSkillBarTitle'>Bar 2</div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon21' skillindex='1' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon22' skillindex='2' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon23' skillindex='3' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon24' skillindex='4' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon25' skillindex='5' skillbar='2' skillid='0' src=''></div>";
+		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
+		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' id='esovsSkillIcon26' skillindex='6' skillbar='2' skillid='0' src=''></div>";
+		$output .= "</div>";
+		
+		$output .= "</div>";
+		return $output;
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		$startTime = microtime(true);
@@ -869,6 +907,7 @@ class CEsoViewSkills
 				'{rightBlockMargin}' => $this->GetRightBlockMargin(),
 				'{menuBarDisplay}' => $this->GetMenuBarDisplay(),
 				'{displayType}' => $this->displayType,
+				'{skillBar}' => $this->GetSkillBarHtml(),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
