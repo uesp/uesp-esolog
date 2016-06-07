@@ -7,6 +7,11 @@ var g_EsoSkillSearchLastIndex = -1;
 
 var g_EsoSkillDragData = {};
 
+var g_EsoSkillBarData = [];
+var g_EsoSkillPassiveData = {};
+var g_EsoSkillActiveData = {};
+var g_EsoSkillPointsUsed = 0;
+
 
 var RAWDATA_KEYS = 
 [
@@ -472,7 +477,15 @@ function OnEsoSkillBlockPlusClick(event)
 
 function OnEsoSkillBlockPlusSelectClick(event)
 {
-	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
+	$('.esovsAbilityBlockList').slideUp();
+	
+	var $parent = $(this).parent();
+	var element = $parent.next('.esovsAbilityBlockList');
+	element.slideToggle();
+	
+	//$parent.parent().animate({
+		//scrollTop: element.offset().top,
+    //});
 }
 
 
@@ -1239,6 +1252,34 @@ function OnLeaveEsoSkillBarIcon(e)
 }
 
 
+function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
+{
+	
+	if (g_EsoSkillPassiveData[origAbilityId] == null)
+	{
+		if (rank <= 0) return true;
+		g_EsoSkillPassiveData[origAbilityId] = {};
+		g_EsoSkillPassiveData[origAbilityId].rank = 0;
+	}
+	
+	if (rank <= 0)
+	{
+		g_EsoSkillPointsUsed -= g_EsoSkillPassiveData[origAbilityId].rank;
+		
+		delete g_EsoSkillPassiveData[origAbilityId];
+		return true;
+	}
+	
+	g_EsoSkillPointsUsed += rank - g_EsoSkillPassiveData[origAbilityId].rank;
+	
+	g_EsoSkillPassiveData[origAbilityId].rank = rank;
+	g_EsoSkillPassiveData[origAbilityId].abilityId = abilityId;
+	g_EsoSkillPassiveData[origAbilityId].skillDesc = GetEsoCurrentSkillDescription(abilityId);
+	
+	return true;
+}
+
+
 function OnAbilityBlockPurchase(e)
 {
 	var $this = $(this);
@@ -1248,12 +1289,32 @@ function OnAbilityBlockPurchase(e)
 	var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
 	var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
 	var skillId = $this.attr("skillid");
+	var rank = $this.attr("rank");
+	var origRank = displayBlock.attr("rank");
+	var origSkillId1 = displayBlock.attr("skillid");
+	var origSkillId2 = displayBlock.attr("origskillid");
 	var selectBlock = $this;
+	var origPurchased = !displayBlock.hasClass("esovsAbilityBlockNotPurchase");
+	var abilityType = $this.attr("abilitytype");
 	
-	if (skillId < 0) 
+	if (!origPurchased) origRank = 0;
+	
+	if (origPurchased && skillId != origSkillId1)
 	{
+		RemoveSkillBarAbility(origSkillId1, 1);
+		RemoveSkillBarAbility(origSkillId1, 2);
+		RemoveSkillBarAbility(origSkillId2, 1);
+		RemoveSkillBarAbility(origSkillId2, 2);
+		UpdateEsoSkillBarData();
+	}
+	
+	if (skillId <= 0) 
+	{
+		rank = 0;
 		selectBlock = $this.next();
 		skillId = selectBlock.attr("skillid");
+		origSkillId2 = skillId;
+		abilityType = selectBlock.attr("abilitytype");
 		
 		displayBlock.addClass('esovsAbilityBlockNotPurchase');
 		iconDisplayBlock.attr("draggable", "false");
@@ -1264,6 +1325,7 @@ function OnAbilityBlockPurchase(e)
 		displayBlock.removeClass('esovsAbilityBlockNotPurchase');
 		iconDisplayBlock.attr("draggable", "true");
 		displayBlock.attr("skillid", skillId);
+		displayBlock.attr("rank", rank);
 	}
 	
 	iconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockIcon").html());
@@ -1271,6 +1333,8 @@ function OnAbilityBlockPurchase(e)
 	passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
 	
 	$parent.slideToggle();
+	
+	if (abilityType == "Passive") UpdateEsoSkillPassiveData(origSkillId2, skillId, rank);
 }
 
 
@@ -1393,6 +1457,8 @@ function OnSkillBarDragOver(e)
 	var skillBar = $this.attr("skillbar");
 	var skillIndex = $this.attr("skillindex");
 	
+	if (g_EsoSkillDragData.skillBar == skillBar && g_EsoSkillDragData.skillIndex == skillIndex) return true;
+	
 	if (skillIndex == 6 && g_EsoSkillDragData.abilityType != "Ultimate") return true;
 	if (skillIndex  < 6 && g_EsoSkillDragData.abilityType == "Ultimate") return true;
 	
@@ -1406,12 +1472,14 @@ function OnSkillBarDrop(e)
 	var skillBar = $this.attr("skillbar");
 	var skillIndex = $this.attr("skillindex");
 		
-	if (g_EsoSkillDragData.skillBar != skillBar && g_EsoSkillDragData.origElement != null)
+	if (g_EsoSkillDragData.origElement != null)
 	{
 		var swapId = $this.attr("skillid");
 		var swapOrigId = $this.attr("origskillid");
 		
-		if (swapId != g_EsoSkillDragData.abilityId && swapOrigId != g_EsoSkillDragData.origAbilityId)
+		if (g_EsoSkillDragData.skillBar == skillBar && g_EsoSkillDragData.skillIndex == skillIndex) return;
+		
+		if (swapId != g_EsoSkillDragData.abilityId && swapOrigId != g_EsoSkillDragData.origAbilityId && g_EsoSkillDragData.skillBar != skillBar)
 		{
 			RemoveSkillBarAbility(g_EsoSkillDragData.abilityId, skillBar);
 			RemoveSkillBarAbility(g_EsoSkillDragData.origAbilityId, skillBar);
@@ -1435,6 +1503,7 @@ function OnSkillBarDrop(e)
 	$(this).attr("draggable", "true");
 	
 	g_EsoSkillDragData.isDragging = false;
+	UpdateEsoSkillBarData();
 }
 
 
@@ -1458,6 +1527,57 @@ function RemoveSkillBarAbility(abilityId, skillBar)
 function OnSkillBarDragEnd(e)
 {
 	g_EsoSkillDragData.isDragging = false;
+}
+
+
+function UpdateEsoSkillBarData()
+{
+	g_EsoSkillBarData = [];
+	g_EsoSkillBarData[0] = [];
+	g_EsoSkillBarData[1] = [];
+	
+	UpdateEsoSkillBarSkill(1, 1);
+	UpdateEsoSkillBarSkill(1, 2);
+	UpdateEsoSkillBarSkill(1, 3);
+	UpdateEsoSkillBarSkill(1, 4);
+	UpdateEsoSkillBarSkill(1, 5);
+	UpdateEsoSkillBarSkill(1, 6);
+	
+	UpdateEsoSkillBarSkill(2, 1);
+	UpdateEsoSkillBarSkill(2, 2);
+	UpdateEsoSkillBarSkill(2, 3);
+	UpdateEsoSkillBarSkill(2, 4);
+	UpdateEsoSkillBarSkill(2, 5);
+	UpdateEsoSkillBarSkill(2, 6);
+}
+
+
+function UpdateEsoSkillBarSkill(skillBar, skillIndex)
+{
+	var iconElement = $("#esovsSkillBar" + skillBar).find(".esovsSkillBarIcon[skillindex='" + skillIndex + "']");
+	var skillId = iconElement.attr("skillid");
+	
+	var newData = {};
+	
+	if (skillId == 0)
+	{
+		newData.skillId = skillId;
+	}
+	else
+	{
+		newData.skillId = skillId;
+		newData.origSkillId =  iconElement.attr("origskillid");;
+		newData.skillType = skillIndex == 6 ? "Ultimate" : "Active";
+		newData.skillDesc = GetEsoCurrentSkillDescription(skillId);
+	}
+	
+	g_EsoSkillBarData[skillBar-1][skillIndex-1] = newData;
+}
+
+
+function GetEsoCurrentSkillDescription(abilityId)
+{
+	 return $(".esovsAbilityBlockDesc[skillid='" + abilityId + "']").text();
 }
 
 
