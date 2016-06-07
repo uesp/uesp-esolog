@@ -677,3 +677,63 @@ button.esotbWeaponSelect {
 #esotbItemHead {
 	left: 150px;
 }
+
+/* Skills overide */
+#esovsSkillContent {
+	width: 650px;
+}
+
+.esovsSkillContentBlock {
+	height: 600px;
+	overflow: auto;
+}
+
+.esovsAbilityBlock  {
+	padding: 0px;
+}
+
+.esovsAbilityBlockDesc {
+	display: none;
+}
+
+.esovsAbilityBlockTitle {
+	margin-top: 5px;
+}
+
+.esovsAbilityBlockList {
+    padding: 5px;
+}
+
+.esovsAbilityBlockIcon,
+.esovsAbilityBlockPassiveIcon,
+.esovsAbilityBlockList .esovsAbilityBlockIcon,
+.esovsAbilityBlockList .esovsAbilityBlockPassiveIcon {
+	width: 34px;
+	height: 34px;
+}
+
+.esovsAbilityBlockIcon img,
+.esovsAbilityBlockPassiveIcon img,
+.esovsAbilityBlockList .esovsAbilityBlockIcon img,
+.esovsAbilityBlockList .esovsAbilityBlockPassiveIcon img
+ {
+	width: 32px;
+	height: 32px;	
+	margin-top: 1px;
+	margin-left: 1px;
+}
+
+.esovsAbilityBlockTitleLabel {
+	line-height: 32px;
+}
+
+.esovsAbilityBlockPlus,
+.esovsAbilityBlockPlusSelect {
+	margin-top: 6px;
+	margin-left: 10px;
+}
+
+.esovsAbilityBlockIcon[draggable='true']{
+	cursor: copy;
+}
+/* End of Skills overide */

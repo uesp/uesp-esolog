@@ -620,6 +620,7 @@
     margin-left: auto;
     margin-right: auto;
     white-space: nowrap;
+	padding-top: 10px;
 }
 
 .esovsSkillBar {
