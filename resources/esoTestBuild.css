@@ -678,7 +678,7 @@ button.esotbWeaponSelect {
 	left: 150px;
 }
 
-/* Skills overide */
+/* Skills override */
 #esovsSkillContent {
 	width: 650px;
 }
@@ -703,6 +703,7 @@ button.esotbWeaponSelect {
 .esovsAbilityBlockList {
     padding: 5px;
     margin-right: 10px;
+	margin-bottom: 5px;
 }
 
 .esovsAbilityBlockIcon,
@@ -735,6 +736,6 @@ button.esotbWeaponSelect {
 }
 
 .esovsAbilityBlockIcon[draggable='true']{
-	cursor: copy;
+	cursor: move;
 }
-/* End of Skills overide */
+/* End of Skills override */
