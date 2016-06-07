@@ -607,11 +607,11 @@
 	font-size: 18px;
 	vertical-align: middle;
 	line-height: 32px;
-	margin-left: 7px;
 }
 
 .esovsAbilityNone img {
-	vertical-align: middle;	
+	vertical-align: middle;
+	margin-left: 7px;	
 }
 
 #esovsSkillBar {
