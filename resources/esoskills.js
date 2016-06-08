@@ -519,14 +519,14 @@ function GetEsoSkillInputValues()
 	var weaponDamage = parseInt($('#esovsInputWeaponDamage').val());
 	var level = ParseEsoLevel($('#esovsInputLevel').val());
 	
-	g_LastSkillInputValues = { magicka: magicka,
-			 stamina: stamina,
-			 health: health,
-			 spellDamage: spellDamage,
-			 weaponDamage: weaponDamage,
-			 maxStat: Math.max(stamina, magicka),
-			 maxDamage: Math.max(spellDamage, weaponDamage),
-			 level: level
+	g_LastSkillInputValues = { Magicka: magicka,
+			 Stamina: stamina,
+			 Health: health,
+			 SpellDamage: spellDamage,
+			 WeaponDamage: weaponDamage,
+			 MaxStat: Math.max(stamina, magicka),
+			 MaxDamage: Math.max(spellDamage, weaponDamage),
+			 EffectiveLevel: level
 		};
 	
 	return g_LastSkillInputValues; 
@@ -543,47 +543,52 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 
 	if (type == -2) // Health
 	{
-		value = a * values.health + c;
+		value = a * values.Health + c;
 	}
 	else if (type == 0) // Magicka
 	{
-		value = a * values.magicka + b * values.spellDamage + c;
+		value = a * values.Magicka + b * values.SpellDamage + c;
 	}
 	else if (type == 6) // Stamina
 	{
-		value = a * values.stamina + b * values.weaponDamage + c;
+		value = a * values.Stamina + b * values.WeaponDamage + c;
 	}
 	else if (type == 10) // Ultimate
 	{
-		value = a * values.maxStat + b * values.maxDamage + c;
+		value = a * values.MaxStat + b * values.MaxDamage + c;
 	}
 	else if (type == -50) // Ultimate Soul Tether
 	{
-		value = a * values.maxStat + b * values.spellDamage + c;
+		value = a * values.MaxStat + b * values.SpellDamage + c;
 	}
 	else if (type == -56) // Spell + Weapon Damage
 	{
-		value = a * values.spellDamage + b * values.weaponDamage + c;
+		value = a * values.SpellDamage + b * values.WeaponDamage + c;
 	}
 	else if (type == -51)
 	{
-		return '(' + a + ' * LIGHTARMOR)';
+		if (values.LightArmor == null) return '(' + a + ' * LIGHTARMOR)';
+		value = a * values.LightArmor;
 	}
 	else if (type == -52)
 	{
-		return '(' + a + ' * MEDIUMARMOR)';
+		if (values.MediumArmor == null) return '(' + a + ' * MEDIUMARMOR)';
+		value = a * values.MediumArmor;
 	}
 	else if (type == -53)
 	{
-		return '(' + a + ' * HEAVYARMOR)';
+		if (values.HeavyArmor == null) return '(' + a + ' * HEAVYARMOR)';
+		value = a * values.HeavyArmor;
 	}
 	else if (type == -54)
 	{
-		return '(' + a + ' * DAGGER)';
+		if (values.DaggerWeapon == null) return '(' + a + ' * DAGGER)';
+		value = a * values.DaggerWeapon;
 	}
 	else if (type == -55)
 	{
-		return '(' + a + ' * ARMORTYPES)';
+		if (values.ArmorTypes == null) return '(' + a + ' * ARMORTYPES)';
+		value = a * values.ArmorTypes;
 	}
 	else
 	{
@@ -662,7 +667,7 @@ function ComputeEsoSkillCost(maxCost, level)
 	if (level == null) 
 	{
 		var inputValues = GetEsoSkillInputValues()
-		level = inputValues.level;
+		level = inputValues.EffectiveLevel;
 	}
 	
 	if (level < 1) level = 1;
@@ -679,7 +684,7 @@ function ComputeEsoSkillCostOld(maxCost, level)
 	if (level == null) 
 	{
 		var inputValues = GetEsoSkillInputValues()
-		level = inputValues.level;
+		level = inputValues.EffectiveLevel;
 	}
 	
 	if (level < 1) level = 1;
@@ -709,7 +714,7 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 	if (passive != 0) return;
 	
 	var baseCost = parseInt(skillData['cost']);
-	var cost = ComputeEsoSkillCost(baseCost, inputValues.level);
+	var cost = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel);
 	
 	var costStr = "" + cost + " ";
 	
@@ -956,6 +961,7 @@ function ParseEsoLevel(level)
 		level =  parseInt(level);
 		if (level < 1) return 1;
 		if (level > 66) return 66;
+		return level;
 	}
 	
 	var vetRank = level.match(/^\s*[v](\d+)/i);
@@ -1181,12 +1187,12 @@ function UpdateSkillLink()
 	var params = "";
 	
 	params += "id=" + g_LastSkillId;
-	params += "&level=" + inputValues.level;
-	params += "&health=" + inputValues.health;
-	params += "&magicka=" + inputValues.magicka;
-	params += "&stamina=" + inputValues.stamina;
-	params += "&spelldamage=" + inputValues.spellDamage;
-	params += "&weapondamage=" + inputValues.weaponDamage;
+	params += "&level=" + inputValues.EffectiveLevel;
+	params += "&health=" + inputValues.Health;
+	params += "&magicka=" + inputValues.Magicka;
+	params += "&stamina=" + inputValues.Stamina;
+	params += "&spelldamage=" + inputValues.SpellDamage;
+	params += "&weapondamage=" + inputValues.WeaponDamage;
 	
 	if (g_SkillShowAll) params += "&showall";
 	

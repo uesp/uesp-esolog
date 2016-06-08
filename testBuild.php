@@ -49,6 +49,15 @@ class CEsoTestBuild
 			"ArmorMedium",
 			"ArmorHeavy",
 			"ArmorTypes",
+			"WeaponDagger",
+			"WeaponSword",
+			"WeaponMace",
+			"WeaponAxe",
+			"WeaponBow",
+			"Weapon1H",
+			"Weapon2H",
+			"WeaponResStaff",
+			"WeaponDesStaff",
 			"Level",
 			"CPLevel",
 			"EffectiveLevel",
@@ -221,10 +230,6 @@ class CEsoTestBuild
 			),
 			
 			"Item.Prosperous" => array(
-					"display" => "%",
-			),
-			
-			"Item.Defending" => array(
 					"display" => "%",
 			),
 			
@@ -719,8 +724,8 @@ class CEsoTestBuild
 							"Item.SpellResist",
 							"Skill2.SpellResist",
 							"+",
-							"1 + Item.Defending",
-							"*",
+							"Item.Defending",
+							"+",
 							"Set.SpellResist",
 							"+",
 							"Skill.SpellResist",
@@ -736,8 +741,8 @@ class CEsoTestBuild
 							"Item.PhysicalResist",
 							"Skill2.PhysicalResist",
 							"+",
-							"1 + Item.Defending",
-							"*",
+							"Item.Defending",
+							"+",
 							"Set.PhysicalResist",
 							"+",
 							"Skill.PhysicalResist",
