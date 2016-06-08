@@ -12,6 +12,8 @@ var g_EsoSkillPassiveData = {};
 var g_EsoSkillActiveData = {};
 var g_EsoSkillPointsUsed = 0;
 
+var g_EsoSkillUpdateEnable = true;
+
 
 var RAWDATA_KEYS = 
 [
@@ -599,7 +601,7 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 }
 
 
-function GetEsoSkillDescription(skillId, inputValues, useHtml)
+function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 {
 	var output = "";
 	var skillData = g_SkillsData[skillId];
@@ -637,7 +639,7 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml)
 	else
 	{
 		var effectLines = skillData['effectLines'];
-		if (effectLines != "") coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";
+		if (effectLines != "" && noEffectLines !== true) coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";
 		output = EsoConvertDescToText(coefDesc)
 	}
 	
@@ -1288,7 +1290,8 @@ function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 	{
 		g_EsoSkillPointsUsed -= parseInt(g_EsoSkillPassiveData[origAbilityId].rank);
 		delete g_EsoSkillPassiveData[origAbilityId];
-		UpdateEsoSkillTotalPoints();
+		
+		if (g_EsoSkillUpdateEnable) UpdateEsoSkillTotalPoints();
 		return true;
 	}
 	
@@ -1299,7 +1302,7 @@ function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 	g_EsoSkillPassiveData[origAbilityId].baseAbilityId = origAbilityId;
 	g_EsoSkillPassiveData[origAbilityId].skillDesc = GetEsoCurrentSkillDescription(abilityId);
 	
-	UpdateEsoSkillTotalPoints();
+	if (g_EsoSkillUpdateEnable) UpdateEsoSkillTotalPoints();
 	return true;
 }
 
@@ -1325,7 +1328,8 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 	{
 		g_EsoSkillPointsUsed -= origPoints;
 		delete g_EsoSkillActiveData[origAbilityId];
-		UpdateEsoSkillTotalPoints();
+		
+		if (g_EsoSkillUpdateEnable) UpdateEsoSkillTotalPoints();
 		return true;
 	}
 	
@@ -1339,7 +1343,7 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 	g_EsoSkillActiveData[origAbilityId].baseAbilityId = origAbilityId;
 	g_EsoSkillActiveData[origAbilityId].skillDesc = GetEsoCurrentSkillDescription(abilityId);
 	
-	UpdateEsoSkillTotalPoints();
+	if (g_EsoSkillUpdateEnable) UpdateEsoSkillTotalPoints();
 	return true;
 }
 
@@ -1477,11 +1481,15 @@ function RemovePurchasedEsoClassSkills()
 	var skillElements = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skilltype='Class']").
 				not(".esovsAbilityBlockNotPurchase");
-
+	
+	g_EsoSkillUpdateEnable = false;	
+	
 	skillElements.each(function(){
 		var skillId = $(this).attr("skillid");
 		ResetEsoPurchasedSkill(skillId);		
 	});
+	
+	g_EsoSkillUpdateEnable = true;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
@@ -1493,11 +1501,15 @@ function RemovePurchasedEsoRaceSkills()
 	var skillElements = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skilltype='Racial']").
 				not(".esovsAbilityBlockNotPurchase");
+	
+	g_EsoSkillUpdateEnable = false;
 
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		ResetEsoPurchasedSkill(skillId);		
 	});
+	
+	g_EsoSkillUpdateEnable = true;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
@@ -1527,14 +1539,29 @@ function EnableEsoRaceSkills(raceName)
 }
 
 
+function SetEsoSkillBarSelect(skillBarIndex)
+{
+	if (skillBarIndex == 1)
+	{
+		$("#esovsSkillBar1").addClass("esovsSkillBarHighlight");
+		$("#esovsSkillBar2").removeClass("esovsSkillBarHighlight");
+	}
+	else if (skillBarIndex == 2)
+	{
+		$("#esovsSkillBar1").removeClass("esovsSkillBarHighlight");
+		$("#esovsSkillBar2").addClass("esovsSkillBarHighlight");
+	}
+}
+
+
 function OnSkillBarSelect(e)
 {
 	var skillBar = $(this).attr("skillbar");
 	
-	$(".esovsSkillBarHighlight").removeClass("esovsSkillBarHighlight");
-	$(this).addClass("esovsSkillBarHighlight");
+	SetEsoSkillBarSelect(skillBar);
 	
 	console.log("Switch to skill bar " + skillBar);
+	$(document).trigger("EsoSkillBarSwap", [ skillBar ]);
 }
 
 
@@ -1733,6 +1760,8 @@ function UpdateEsoSkillTotalPoints()
 {
 	var element = $("#esovsSkillPoints");
 	element.text(g_EsoSkillPointsUsed);
+	
+	$(document).trigger("EsoSkillUpdate");
 }
 
 
@@ -1741,6 +1770,8 @@ function OnEsoSkillReset(e)
 	g_EsoSkillPassiveData = {};
 	g_EsoSkillActiveData = {};
 	g_EsoSkillPointsUsed = 0;
+	
+	g_EsoSkillUpdateEnable = false;
 	
 	$(".esovsSkillBarIcon").attr("skillid", "0").
 		attr("src", "").
@@ -1764,6 +1795,8 @@ function OnEsoSkillReset(e)
 		passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
 	});
 	
+	g_EsoSkillUpdateEnable = true;
+	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
 }
@@ -1773,13 +1806,16 @@ function OnEsoSkillLinePurchaseAll()
 {
 	var skillElements = $(this).parent().children(".esovsAbilityBlock");
 	
+	g_EsoSkillUpdateEnable = false;
+	
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		var lastSkill = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").last();
 		var lastSkillId = lastSkill.attr("skillid");
-		PurchaseEsoSkill(lastSkillId, false);
+		PurchaseEsoSkill(lastSkillId);
 	});
 	
+	g_EsoSkillUpdateEnable = true;
 	UpdateEsoSkillTotalPoints();
 }
 
@@ -1788,11 +1824,14 @@ function OnEsoSkillLineResetAll()
 {
 	var skillElements = $(this).parent().children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
 	
+	g_EsoSkillUpdateEnable = false;
+	
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		ResetEsoPurchasedSkill(skillId);
 	});
 	
+	g_EsoSkillUpdateEnable = true;
 	UpdateEsoSkillTotalPoints();
 }
 

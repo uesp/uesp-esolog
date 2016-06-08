@@ -713,6 +713,7 @@ UESP.EsoItemSearchPopup.prototype.onWeaponType2Change = function(e)
 UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 {
 	var clearResults = false;
+	var clearSettings = false;
 	
 	data = data || {};
 		
@@ -743,10 +744,14 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 		clearResults = true;
 	}
 	
-	if (clearResults)
+	if (clearSettings)
 	{
 		this.itemTrait = "-1";
 		this.armorType = "-1";
+	}
+	
+	if (clearResults)
+	{
 		this.searchResults = [];
 		$("#esoispResults").text("");
 	}
