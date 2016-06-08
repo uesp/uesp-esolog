@@ -1453,14 +1453,14 @@ function GetEsoItemTableSuffix($version)
 		case '1.9':
 		case '19':
 		case '9':
-			return "";			// TODO: Update when DB hits
+			return "9";
 		case '1.10pts':
 		case '10pts':
 			return "10pts";
 		case '1.10':
 		case '110':
 		case '10':
-			return "10pts";		// TODO: Update when DB hits
+			return "";
 	}
 
 	return "";

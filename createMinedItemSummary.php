@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "10";
+$TABLE_SUFFIX = "";
 
 $FIELDS = array(
 		"itemId",
@@ -119,7 +119,7 @@ $query = "DELETE FROM minedItemSummary".$TABLE_SUFFIX.";";
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error);
 
-$FIRSTID = 1;
+$FIRSTID = 3;		// 1/2 are potion/poison data
 $LASTID = 90000;
 $MINSUBTYPE = 2;
 $MAXSUBTYPE = 370;
