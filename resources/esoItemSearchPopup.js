@@ -473,7 +473,8 @@ UESP.EsoItemSearchPopup.prototype.onResultClick = function(e, element)
 	
 	this.itemLevel = $("#esoispLevel").val();
 	this.itemQuality = $("#esoispQuality").val();
-	itemData.level = this.itemLevel;
+	
+	itemData.level = this.parseLevel(this.itemLevel);
 	itemData.quality = this.itemQuality;
 	
 	if (this.onSelectItem) this.onSelectItem(itemData, this.sourceElement);
@@ -570,7 +571,9 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 
 UESP.EsoItemSearchPopup.prototype.getIconUrl = function(rawIcon)
 {
-	return this.iconURL + rawIcon.replace(".dds", ".png");
+	var iconName = rawIcon.replace(".dds", ".png");
+	if (iconName == "") return this.iconURL + "/unknown.png";
+	return this.iconURL + iconName;
 }
 
 
@@ -746,7 +749,6 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 		this.armorType = "-1";
 		this.searchResults = [];
 		$("#esoispResults").text("");
-		//$("#esoispInputText").val("");
 	}
 	
 	this.update();

@@ -971,6 +971,87 @@ function GetEsoInputItemValues(inputValues, slotId)
 		AddEsoItemRawOutput(itemData, "ArmorHeavy", 1);
 		AddEsoInputStatSource("ArmorHeavy", { item: itemData, value: 1, slotId:slotId });
 	}
+
+	switch (parseInt(itemData.weaponType))
+	{
+	case 1:
+		++inputValues.WeaponAxe;
+		AddEsoItemRawOutput(itemData, "WeaponAxe", 1);
+		AddEsoInputStatSource("WeaponAxe", { item: itemData, value: 1, slotId: slotId });
+		
+		++inputValues.Weapon1H;
+		AddEsoItemRawOutput(itemData, "Weapon1H", 1);
+		AddEsoInputStatSource("Weapon1H", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 2:
+		++inputValues.WeaponMace;
+		AddEsoItemRawOutput(itemData, "WeaponMace", 1);
+		AddEsoInputStatSource("WeaponMace", { item: itemData, value: 1, slotId: slotId });
+		
+		++inputValues.Weapon1H;
+		AddEsoItemRawOutput(itemData, "Weapon1H", 1);
+		AddEsoInputStatSource("Weapon1H", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 3:
+		++inputValues.WeaponSword;
+		AddEsoItemRawOutput(itemData, "WeaponSword", 1);
+		AddEsoInputStatSource("WeaponSword", { item: itemData, value: 1, slotId: slotId });
+		
+		++inputValues.Weapon1H;
+		AddEsoItemRawOutput(itemData, "Weapon1H", 1);
+		AddEsoInputStatSource("Weapon1H", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 4:
+		++inputValues.WeaponSword;
+		AddEsoItemRawOutput(itemData, "WeaponSword", 1);
+		AddEsoInputStatSource("WeaponSword", { item: itemData, value: 1, slotId: slotId });
+		
+		++inputValues.Weapon2H;
+		AddEsoItemRawOutput(itemData, "Weapon2H", 1);
+		AddEsoInputStatSource("Weapon2H", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 5:
+		++inputValues.WeaponAxe;
+		AddEsoItemRawOutput(itemData, "WeaponAxe", 1);
+		AddEsoInputStatSource("WeaponAxe", { item: itemData, value: 1, slotId: slotId });
+		
+		++inputValues.Weapon2H;
+		AddEsoItemRawOutput(itemData, "Weapon2H", 1);
+		AddEsoInputStatSource("Weapon2H", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 6:
+		
+		++inputValues.WeaponMace;
+		AddEsoItemRawOutput(itemData, "WeaponMace", 1);
+		AddEsoInputStatSource("WeaponMace", { item: itemData, value: 1, slotId: slotId });
+		
+		++inputValues.Weapon2H;
+		AddEsoItemRawOutput(itemData, "Weapon2H", 1);
+		AddEsoInputStatSource("Weapon2H", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 8:
+		++inputValues.WeaponBow;
+		AddEsoItemRawOutput(itemData, "WeaponBow", 1);
+		AddEsoInputStatSource("WeaponBow", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 9:
+		++inputValues.WeaponResStaff;
+		AddEsoItemRawOutput(itemData, "WeaponResStaff", 1);
+		AddEsoInputStatSource("WeaponResStaff", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 11:
+		++inputValues.WeaponDagger;
+		AddEsoItemRawOutput(itemData, "WeaponDagger", 1);
+		AddEsoInputStatSource("WeaponDagger", { item: itemData, value: 1, slotId: slotId });
+		break;
+	case 12:
+	case 13:
+	case 15:
+		++inputValues.WeaponDesStaff;
+		AddEsoItemRawOutput(itemData, "WeaponDesStaff", 1);
+		AddEsoInputStatSource("WeaponDesStaff", { item: itemData, value: 1, slotId: slotId });
+		break;
+	}
 	
 	if (itemData.armorRating > 0)
 	{
@@ -1106,9 +1187,9 @@ function GetEsoInputItemValues(inputValues, slotId)
 	}
 	else if (itemData.trait == 5) //Defending
 	{
-		inputValues.Item.Defending += traitValue/100;
-		AddEsoItemRawOutput(itemData, "Item.Defending", traitValue/100);
-		AddEsoInputStatSource("Item.Defending", { item: itemData, value: traitValue/100, slotId:slotId });
+		inputValues.Item.Defending += traitValue;
+		AddEsoItemRawOutput(itemData, "Item.Defending", traitValue);
+		AddEsoInputStatSource("Item.Defending", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 2) //Charged
 	{
@@ -1416,7 +1497,11 @@ function GetEsoInputCPValues(inputValues)
 	inputValues.CPLevel = Math.floor(inputValues.CP.TotalPoints/10);
 	if (inputValues.CPLevel > ESO_MAX_CPLEVEL) inputValues.CPLevel = ESO_MAX_CPLEVEL;
 	
-	inputValues.EffectiveLevel = inputValues.Level + inputValues.CPLevel;
+	if (inputValues.Level == 50)
+		inputValues.EffectiveLevel = inputValues.Level + inputValues.CPLevel;
+	else
+		inputValues.EffectiveLevel = inputValues.Level;
+		
 	if (inputValues.EffectiveLevel > ESO_MAX_EFFECTIVELEVEL) inputValues.EffectiveLevel = ESO_MAX_EFFECTIVELEVEL;
 
 		/* Lord */
@@ -1564,6 +1649,8 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildSetInfo();
 	UpdateEsoBuildToggleSets();
 	UpdateEsoBuildItemLinkSetCounts();
+	UpdateEsoAllSkillDescription();
+	UpdateEsoAllSkillCost();
 }
 
 
@@ -1933,8 +2020,11 @@ function OnEsoSelectItem(itemData, element)
 		return;
 	}
 	
-	var iconUrl = "http://esoicons.uesp.net" + itemData.icon.replace(".dds", ".png");
+	var iconName = itemData.icon.replace(".dds", ".png");
+	var iconUrl = "http://esoicons.uesp.net" + iconName;
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
+	
+	if (iconName == "" || iconName == "/") iconUrl = "";
 	
 	iconElement.attr("src", iconUrl);
 	labelElement.text(niceName);
@@ -2287,6 +2377,12 @@ function OnEsoClickBuildStatTab(e)
 	{
 		UpdateEsoBuildRawInputs();		
 	}
+	else if (tabId == "esotbStatBlock3")
+	{
+		UpdateEsoAllSkillDescription();
+		UpdateEsoAllSkillCost();
+	}
+	
 }
 
 
@@ -2987,8 +3083,48 @@ function OnEsoBuildEscapeKey(e)
 }
 
 
+function GetEsoTestBuildStat(statId)
+{
+	if (g_EsoComputedStats[statId] != null) return g_EsoComputedStats[statId];
+	return g_EsoInputStats[statId];
+}
+
+
+function GetEsoTestBuildSkillInputValues()
+{
+	var inputValues = GetEsoInputValues(true);
+	
+	var magicka = parseInt(inputValues.Magicka);
+	var stamina = parseInt(inputValues.Stamina);
+	var health = parseInt(inputValues.Health);
+	var spellDamage = parseInt(inputValues.SpellDamage);
+	var weaponDamage = parseInt(inputValues.WeaponDamage);
+	var level = parseInt(inputValues.EffectiveLevel);
+	
+	g_LastSkillInputValues = 
+	{ 
+			Magicka			: magicka,
+			Stamina			: stamina,
+			Health			: health,
+			SpellDamage		: spellDamage,
+			WeaponDamage	: weaponDamage,
+			MaxStat			: Math.max(stamina, magicka),
+			MaxDamage		: Math.max(spellDamage, weaponDamage),
+			EffectiveLevel	: level,
+			LightArmor		: parseInt(inputValues.ArmorLight),
+			MediumArmor		: parseInt(inputValues.ArmorMedium),
+			HeavyArmor		: parseInt(inputValues.ArmorHeavy),
+			ArmorTypes		: parseInt(inputValues.ArmorTypes),
+			DaggerWeapon	: parseInt(inputValues.WepaonDagger),
+	};
+	
+	return g_LastSkillInputValues; 
+}
+
+
 function esotbOnDocReady()
 {
+	GetEsoSkillInputValues = GetEsoTestBuildSkillInputValues;
 	CreateEsoComputedStats();
 	UpdateEsoComputedStatsList();
 	CreateEsoBuildToggledSetData();
