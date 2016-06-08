@@ -63,8 +63,8 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743917341752950784;	//v10pts 1461632912
 	  const START_MINEITEM_TIMESTAMP = 4743923056748003328;	//v10	 1464706800
 	
-	const MINEITEM_TABLESUFFIX = "10";
-	const SKILLS_TABLESUFFIX   = "10";
+	const MINEITEM_TABLESUFFIX = "";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -4039,8 +4039,9 @@ class EsoLogParser
 		
 		if ($logEntry['passive'] == "true" && $skill['rank'] == 0) $skill['rank'] = 1;
 		
-		if (array_key_exists('rank', $logEntry) && $rankMod == 0 && $logEntry['passive'] == "false") 
+		if (array_key_exists('rank', $logEntry) && $rankMod == 0) 
 		{
+			//if ($logEntry['passive'] == "false")
 			$skill['learnedLevel'] = $logEntry['rank'];
 		}
 		
