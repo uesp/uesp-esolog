@@ -88,7 +88,7 @@ class CEsoItemLinkImage
 	public $enchantIntLevel2 = -1;
 	public $enchantIntType2 = -1;
 	public $version = "";
-	public $useUpdate10Display = false;
+	public $useUpdate10Display = true;
 	public $noCache = false;
 	public $showSummary = false;
 	public $itemRecord = array();
@@ -1154,23 +1154,20 @@ class CEsoItemLinkImage
 	
 	public function OutputItemNewLevelBlock($image, $y)
 	{
+		if ($this->showSummary) return 0;
+		
 		$level = intval($this->itemRecord['level']);
 		if ($level <= 0) return 0;
-		
 		if ($level > 50) $level = 50;
 		
 		$printData = array();
 		$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
 		$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
-	
-		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, $label);
-		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $levelText);
-		$totalWidth = $extents1[0] + $extents2[0];
-		$x = (self::ESOIL_IMAGE_WIDTH - $totalWidth ) / 2 + $this->levelBlockXOffset;
 		
+		$x = self::ESOIL_IMAGE_WIDTH/2;
 		if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
 		
-		return $this->PrintDataText($image, $printData, $x, $y + $extents2[1] + 4, 'right');
+		return $this->PrintDataText($image, $printData, $x, $y + 4, 'center');
 	}
 	
 	
