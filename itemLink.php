@@ -175,7 +175,7 @@ class CEsoItemLink
 	public $enchantRecord2 = null;
 	public $itemAllData = array();
 	public $version = "";
-	public $useUpdate10Display = false;
+	public $useUpdate10Display = true;
 	public $itemSimilarRecords = array();
 	public $itemSummary = array();
 	public $outputType = "html";
@@ -1142,15 +1142,20 @@ class CEsoItemLink
 		
 		if (!is_numeric($level)) 
 		{
-			if ($level == "CP160") return "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
-			if ($level == "1-CP160") return "<div id='esoil_itemlevel'>1 -</div> <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
-			return "<div id='esoil_itemlevel'>$level</div>";
+			$prefix = "";
+			if ($this->showSummary) $prefix = "LEVEL ";
+			if ($level == "CP160") return "$prefix <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
+			if ($level == "1-CP160") return "$prefix <div id='esoil_itemlevel'>1 - </div> <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
+			return "$prefix <div id='esoil_itemlevel'>$level</div>";
 		}
 		
 		if ($level <= 50) return "";
-		
 		$cp = ($level - 50) * 10;
-		$output = "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>$cp</div>";
+		
+		$output = "";
+		
+		if ($this->showSummary) $output .= "LEVEL ";
+		$output .= "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>$cp</div>";
 		
 		return $output;
 	}
@@ -1469,6 +1474,8 @@ class CEsoItemLink
 		$level = $this->itemRecord['level'];
 		if ($level <= 0) return "none";
 		
+		if ($this->showSummary) return "none";
+		
 		switch ($this->itemRecord['type'])
 		{
 			case 2:
@@ -1496,7 +1503,7 @@ class CEsoItemLink
 		$level = $this->itemRecord['level'];
 		
 		if ($level > 50) return "inline-block";
-		if (!is_numeric($level)) return $level;
+		if (!is_numeric($level)) return "inline-block";
 		
 		return "none";
 	}
@@ -2280,9 +2287,4 @@ class CEsoItemLink
 
 $g_EsoItemLink = new CEsoItemLink();
 $g_EsoItemLink->ShowItem();
-
-
-?>
-
-
 

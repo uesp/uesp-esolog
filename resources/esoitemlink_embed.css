@@ -148,6 +148,11 @@
 	white-space: nowrap;
 }
 
+#esoil_itemrightblock {
+	margin-left: 10px;
+	margin-right: 10px;	
+}
+
 #esoil_itemnewvalueblock {
 	width: 100%;
 	text-align: center;

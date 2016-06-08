@@ -285,9 +285,9 @@ function UpdateEsoItemValue(text, display)
 		$('#esoil_itemoldvalue').text(text);
 		
 		if (display)
-			$('#esoil_rightblock').show();
+			$('#esoil_itemrightblock').show();
 		else
-			$('#esoil_rightblock').hide();
+			$('#esoil_itemrightblock').hide();
 	}
 }
 
@@ -301,10 +301,18 @@ function UpdateEsoItemData(level, quality)
 	$('#esoil_itemname').removeClass("esoil_quality_None esoil_quality_Normal esoil_quality_Fine esoil_quality_Superior esoil_quality_Epic esoil_quality_Legendary");
 	$('#esoil_itemname').addClass("esoil_quality_" + GetEsoItemQualityText(itemData['quality']));
 	
-	$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level']));
+	$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level'])).show();
 	$('#esoil_levelheader').text(GetEsoItemLevelHeaderText(level, quality));
 	
-	if (itemRawVersion >= 10) $('#esoil_itemrightblock').html(GetEsoItemCPHtml(itemData['level']));
+	if (itemRawVersion >= 10) 
+	{
+		var output = GetEsoItemCPHtml(itemData['level']);
+		
+		if (output == "")
+			$('#esoil_itemrightblock').hide();
+		else
+			$('#esoil_itemrightblock').html(output).show();
+	}
 	
 	if (itemData['value'] > 0)
 	{
