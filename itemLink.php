@@ -67,7 +67,8 @@ class CEsoItemLink
 	const ESOIL_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	
-	const ESOIL_POTION_MAGICITEMID = 1234567;
+	const ESOIL_POTION_MAGICITEMID = 1;
+	const ESOIL_POISON_MAGICITEMID = 2;
 	const ESOIL_ENCHANT_ITEMID = 23662;	
 	
 		// Weird results based on level when enabled (depends on level of character not item)
@@ -572,7 +573,7 @@ class CEsoItemLink
 		
 		if ($this->itemLevel >= 1)
 		{
-			if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+			//if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
 			
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
@@ -581,7 +582,7 @@ class CEsoItemLink
 		}
 		else
 		{
-			if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+			//if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
 			
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
 			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
@@ -595,7 +596,7 @@ class CEsoItemLink
 		{
 			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
 			{
-				if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+				//if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
 				
 				$this->itemIntType = 2;
 				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
@@ -606,7 +607,7 @@ class CEsoItemLink
 				
 				if ($result->num_rows === 0)
 				{
-					if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+					//if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
 					
 					$this->itemLevel = 50;
 					$this->itemIntLevel = 50;
@@ -620,7 +621,7 @@ class CEsoItemLink
 			}
 			else if ($this->embedLink)
 			{
-				if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
+				//if ($this->itemId == self::ESOIL_POTION_MAGICITEMID) return $this->ReportError("Error: Slow item query temporarily disabled!");
 				
 				$this->itemIntType = 1;
 				$this->itemIntLevel = 1;
@@ -681,7 +682,9 @@ class CEsoItemLink
 		
 		$this->itemRecord = $row;
 		
-		$this->LoadItemPotionData();
+		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
+		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
+		
 		$this->LoadEnchantMaxCharges();
 		return true;
 	}
@@ -744,9 +747,9 @@ class CEsoItemLink
 		$potionEffect2 = ($potionData >> 8) & 255;
 		$potionEffect3 = ($potionData >> 16) & 127;
 		
-		$this->LoadItemPotionDataEffect($potionEffect1);
-		$this->LoadItemPotionDataEffect($potionEffect2);
-		$this->LoadItemPotionDataEffect($potionEffect3);
+		$this->LoadItemPotionDataEffect($potionEffect1, true);
+		$this->LoadItemPotionDataEffect($potionEffect2, true);
+		$this->LoadItemPotionDataEffect($potionEffect3, true);
 		
 		ksort($this->itemRecord['traitAbilityDescArray']);
 		ksort($this->itemRecord['traitCooldownArray']);		
@@ -754,24 +757,48 @@ class CEsoItemLink
 	}
 	
 	
-	private function LoadItemPotionDataEffect($effectIndex)
+	private function LoadItemPoisonData()
+	{
+		if ($this->itemPotionData <= 0) return true;
+	
+		$potionData = intval($this->itemPotionData);
+		$potionEffect1 = $potionData & 255;
+		$potionEffect2 = ($potionData >> 8) & 255;
+		$potionEffect3 = ($potionData >> 16) & 127;
+	
+		$this->LoadItemPotionDataEffect($potionEffect1, false);
+		$this->LoadItemPotionDataEffect($potionEffect2, false);
+		$this->LoadItemPotionDataEffect($potionEffect3, false);
+	
+		ksort($this->itemRecord['traitAbilityDescArray']);
+		ksort($this->itemRecord['traitCooldownArray']);
+		return true;
+	}
+	
+	
+	private function LoadItemPotionDataEffect($effectIndex, $loadPotion = true)
 	{
 		$effectIndex = intval($effectIndex);
 		if ($effectIndex <= 0 || $effectIndex > 127) return true;
 		
-		return $this->ReportError("Error: Slow item query temporarily disabled!");
+		if ($loadPotion)
+			$itemId = self::ESOIL_POTION_MAGICITEMID;
+		else
+			$itemId = self::ESOIL_POISON_MAGICITEMID; 
+		
+		//return $this->ReportError("Error: Slow item query temporarily disabled!");
 		
 		if ($this->itemLevel >= 1)
 		{
 			$level = $this->itemLevel;
 			$quality = $this->itemQuality;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
 		}
 		else
 		{
 			$intlevel = $this->itemIntLevel;
 			$subtype = $this->itemIntType;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND internalLevel=$intlevel AND internalSubtype=$type AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$type AND potionData=$effectIndex LIMIT 1;";
 		}
 		
 		$this->lastQuery = $query;
@@ -1545,11 +1572,12 @@ class CEsoItemLink
 		$d16 = $this->itemRecord['style']; //Style
 		$d17 = $this->itemCrafted < 0 ? 0 : $this->itemCrafted; //Crafted
 		$d18 = $this->itemBound < 0 ? 0 : $this->itemBound; //Bound
-		$d19 = $this->itemCharges < 0 ? 0 : $this->itemCharges; //Charges
-		$d20 = $this->itemPotionData;
+		$d19 = ($this->itemStolen <= 0) ? 0 : 1;
+		$d20 = $this->itemCharges < 0 ? 0 : $this->itemCharges; //Charges
+		$d21 = $this->itemPotionData;
 		$itemName = $this->itemRecord['name'];
 		
-		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20|h[$itemName]|h";
+		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20:$d21|h[$itemName]|h";
 		
 		return $link;
 	}
