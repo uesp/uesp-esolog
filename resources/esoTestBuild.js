@@ -2981,6 +2981,12 @@ function UpdateEsoBuildItemLinkSetCount(slotId)
 }
 
 
+function OnEsoBuildEscapeKey(e) 
+{
+	HideEsoBuildClickWall();
+}
+
+
 function esotbOnDocReady()
 {
 	CreateEsoComputedStats();
@@ -3014,6 +3020,10 @@ function esotbOnDocReady()
 	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);
 	$("#esotbWeaponSelect1").click(OnEsoWeaponSelect1);
 	$("#esotbWeaponSelect2").click(OnEsoWeaponSelect2);
+	
+	$(document).keyup(function(e) {
+	    if (e.keyCode == 27) OnEsoBuildEscapeKey(e);
+	});
 }
 
 
