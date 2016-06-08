@@ -230,6 +230,7 @@ displayed statistics is unknown.
 			<div id="esotbSets">
 				<h3>Set Information</h3>
 				<hr>
+				The following data is information on all worn sets.
 				<div id="esotbSetInfo">
 				</div>				
 			</div>

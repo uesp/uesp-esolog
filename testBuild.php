@@ -58,6 +58,7 @@ class CEsoTestBuild
 			"Weapon2H",
 			"WeaponResStaff",
 			"WeaponDesStaff",
+			"Weapon1HShield",
 			"Level",
 			"CPLevel",
 			"EffectiveLevel",
@@ -115,7 +116,6 @@ class CEsoTestBuild
 			"CritResist",
 			"SpellPenetration",
 			"PhysicalPenetration",
-			"RunSpeed",
 			"HealingDone",
 			"HealingTaken",
 			"HealingReceived",
@@ -128,6 +128,7 @@ class CEsoTestBuild
 			"RollDodgeCost",
 			"RollDodgeDuration",
 			"SprintCost",
+			"SprintSpeed",
 			"SneakCost",
 			"BreakFreeCost",
 			"HARestore",
@@ -162,7 +163,7 @@ class CEsoTestBuild
 			"FireEffectDuration",
 			"BowAbilityCost",
 			"BowAbilityDamage",
-			"ResurrectTime",
+			"ResurrectSpeed",
 			"BossDamageResist",
 			"SneakRange",
 			"SneakDetectRange",
@@ -454,6 +455,56 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Skill.SneakRange" => array(
+					"display" => "%",
+			),
+			
+			"Item.RollDodgeCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.RollDodgeCost" => array(
+					"display" => "%",
+			),
+			
+			"Item.SprintCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.SprintCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.SprintSpeed" => array(
+					"display" => "%",
+			),
+			
+			"Skill.SpellDamage" => array(
+					"display" => "%",
+			),
+			
+			"Skill.WeaponDamage" => array(
+					"display" => "%",
+			),
+			
+			"Skill.SneakCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.HealingReceived" => array(
+					"display" => "%",
+			),
+			
+			"Buff.SpellDamage" => array(
+					"display" => "%",
+			),
+			
+			"Buff.WeaponDamage" => array(
+					"display" => "%",
+			),		
+			
+			
+			
 			
 	);
 	
@@ -638,7 +689,11 @@ class CEsoTestBuild
 					"title" => "Spell Critical",
 					"display" => "percent",
 					"compute" => array(
-							"Set.SpellCrit/219/100",
+							"Set.SpellCrit",
+							"Skill2.SpellCrit",
+							"+",
+							"1/219/100",
+							"*",
 							"0.10",
 							"+",
 							"Item.SpellCrit",
@@ -660,7 +715,11 @@ class CEsoTestBuild
 					"title" => "Weapon Critical",
 					"display" => "percent",
 					"compute" => array(
-							"Set.WeaponCrit/219/100",
+							"Set.WeaponCrit",
+							"Skill2.WeaponCrit",
+							"+",
+							"1/219/100",
+							"*",
 							"0.10",
 							"+",
 							"Item.WeaponCrit",

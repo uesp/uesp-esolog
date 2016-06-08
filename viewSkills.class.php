@@ -519,8 +519,8 @@ class CEsoViewSkills
 
 		if ($this->displayType == "select")
 		{
-			$output .= "<button class='esovsSkillLineResetAll'>Reset All</button>";
-			$output .= "<button class='esovsSkillLinePurchaseAll'>Purchase All</button> ";
+			$output .= "<button class='esovsSkillLineResetAll'>Reset Line</button>";
+			$output .= "<button class='esovsSkillLinePurchaseAll'>Purchase Line</button> ";
 		}
 		
 		$output .= "</div>\n";

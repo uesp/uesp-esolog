@@ -56,6 +56,555 @@ g_EsoFormulaInputValues = {};
 g_EsoInputStatSources = {};
 
 
+ESO_PASSIVEEFFECT_MATCHES = [
+	{
+		factorStatId: "ArmorLight",
+		statId: "MagickaCost",
+		display: "%",
+		match: /Reduces the Magicka cost of spells by ([0-9]+\.?[0-9]*)% per piece of Light Armor/i,
+	},
+	{
+		factorStatId: "ArmorLight",
+		statId: "MagickaRegen",
+		display: "%",
+		match: /Increases Magicka Recovery by ([0-9]+\.?[0-9]*)% per piece of Light Armor/i,
+	},
+	{
+		statId: "SpellResist",
+		match: /Increases your Spell Resistance for each piece of Light Armor equipped.[\s\S]*Current Bonus\: ([0-9]+)/i,
+	},
+	{
+		statRequireId: "ArmorLight",
+		statRequireValue: 5,
+		category: "Skill2",
+		statId: "SpellCrit",
+		match: /WHEN 5 OR MORE PIECES OF LIGHT ARMOR ARE EQUIPPED[\s\S]*Increases your Spell Critical rating by ([0-9]+)/i,
+	},
+	{
+		statRequireId: "ArmorLight",
+		statRequireValue: 5,
+		statId: "SpellPenetration",
+		match: /WHEN 5 OR MORE PIECES OF LIGHT ARMOR ARE EQUIPPED[\s\S]*Increases your Spell Penetration by ([0-9]+)/i,
+	},
+	{
+		category: "Skill2",
+		statId: "WeaponCrit",
+		match: /Increases your Weapon Critical rating for each piece of Medium Armor equipped.[\s\S]*Current Bonus\: ([0-9]+)/i,
+	},
+	{
+		factorStatId: "ArmorMedium",
+		statId: "StaminaRegen",
+		display: '%',
+		match: /Increases Stamina Recovery by ([0-9]+\.?[0-9]*)% per piece of Medium Armor equipped/i,
+	},
+	{
+		factorStatId: "ArmorMedium",
+		statId: "StaminaCost",
+		display: '%',
+		match: /Reduces the Stamina cost of abilities by ([0-9]+\.?[0-9]*)% per piece of Medium Armor equipped/i,
+	},
+	{
+		factorStatId: "ArmorMedium",
+		statId: "SneakCost",
+		display: '%',
+		match: /Reduces the cost of sneaking by ([0-9]+\.?[0-9]*)% per piece of Medium Armor equipped/i,
+	},
+	{
+		factorStatId: "ArmorMedium",
+		statId: "SneakRange",
+		display: '%',
+		match: /Reduces the size of your detection area by ([0-9]+\.?[0-9]*)% per piece of Medium Armor equipped/i,
+	},
+	{
+		statRequireId: "ArmorMedium",
+		statRequireValue: 5,
+		statId: "WeaponDamage",
+		display: '%',
+		match: /WHEN 5 OR MORE PIECES OF MEDIUM ARMOR ARE EQUIPPED[\s\S]*Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		// factorStatId: "ArmorMedium", // TODO: Check?
+		statId: "SprintSpeed",
+		display: '%',
+		match: /increases your movement speed while using Sprint by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		factorStatId: "ArmorMedium",
+		statId: "RollDodgeCost",
+		display: '%',
+		match: /Reduces the cost of Roll Dodge by ([0-9]+\.?[0-9]*)% per piece of Medium Armor equipped/i,
+	},
+	{
+		statId: "PhysicalResist",
+		match: /Increases your Physical Resistance and Spell Resistance for each piece of Heavy Armor equipped.[\s\S]*Current bonus\: ([0-9]+)/i,
+	},
+	{
+		statId: "SpellResist",
+		match: /Increases your Physical Resistance and Spell Resistance for each piece of Heavy Armor equipped.[\s\S]*Current bonus\: ([0-9]+)/i,
+	},
+	{
+		factorStatId: "ArmorHeavy",
+		statId: "HealthRegen",
+		display: "%",
+		match: /Increases Health Recovery by ([0-9]+\.?[0-9]*)% per piece of Heavy Armor equipped/i,
+	},
+	{
+		statId: "Constitution",
+		match: /Also restores Magicka and Stamina each time you are hit[.\s\S]*Current bonus\: ([0-9]+)/i,
+	},
+	{
+		factorStatId: "ArmorHeavy",
+		statId: "Health",
+		display: "%",
+		match: /Increases Max Health by ([0-9]+\.?[0-9]*)% per piece of Heavy Armor equipped/i,
+	},
+	{
+		statRequireId: "ArmorHeavy",
+		statRequireValue: 5,
+		statId: "HealingReceived",
+		display: "%",
+		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*Increases your healing received by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SneakCost",
+		display: '%',
+		match: /Reduces the Stamina cost of sneaking by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		factorStatId: "ArmorTypes",
+		statId: "Health",
+		display: '%',
+		match: /Increases your Max Health, Stamina, and Magicka by ([0-9]+\.?[0-9]*)% per type of Armor/i,
+	},
+	{
+		factorStatId: "ArmorTypes",
+		statId: "Magicka",
+		display: '%',
+		match: /Increases your Max Health, Stamina, and Magicka by ([0-9]+\.?[0-9]*)% per type of Armor/i,
+	},
+	{
+		factorStatId: "ArmorTypes",
+		statId: "Stamina",
+		display: '%',
+		match: /Increases your Max Health, Stamina, and Magicka by ([0-9]+\.?[0-9]*)% per type of Armor/i,
+	},
+	{
+		statId: "Health",
+		display: '%',
+		match: /Increases your Max Health by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "PoisonResist",
+		match: /Increases your Poison and Disease Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "DiseaseResist",
+		match: /Increases your Poison and Disease Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "PoisonResist",
+		match: /Poison and Disease Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "DiseaseResist",
+		match: /Poison and Disease Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "HealingReceived",
+		display: "%",
+		match: /Increases the effectiveness of healing on you by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /Increases Max Health by ([0-9]+\.?[0-9]*)%\./i,
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /Increases Max Health by ([0-9]+\.?[0-9]*)% and /i,
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /Increases your Max Health by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Magicka",
+		display: "%",
+		match: /Increases your Max Magicka by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /Increases Max Health and Max Stamina by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Stamina",
+		display: "%",
+		match: /Increases Max Health and Max Stamina by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Stamina",
+		display: "%",
+		match: /Increases your Max Stamina by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SpellResist",
+		match: /Increases your Spell Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "MagickaCost",
+		display: "%",
+		match: /Reduces the Magicka cost of spells by ([0-9]+\.?[0-9]*)%\./i,
+	},
+	{
+		statId: "Magicka",
+		display: "%",
+		match: /Increases Max Magicka and Max Stamina by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "Stamina",
+		display: "%",
+		match: /Increases Max Magicka and Max Stamina by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "FireResist",
+		display: "%",
+		match: /Increases Flame Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "Magicka",
+		display: "%",
+		match: /Increases Flame Resistance by [0-9]+ and increases Max Magicka by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaRegen",
+		display: "%",
+		match: /Increases Magicka Recovery by ([0-9]+\.?[0-9]*)%\./i,
+	},
+	{
+		statId: "StaminaRegen",
+		display: "%",
+		match: /Increases Stamina Recovery by ([0-9]+\.?[0-9]*)%\./i,
+	},
+	{
+		statId: "HealthRegen",
+		display: "%",
+		match: /Increases Health Recovery by ([0-9]+\.?[0-9]*)%\./i,
+	},
+	{
+		statId: "HealthRegen",
+		display: "%",
+		match: /Increases Health Recovery by ([0-9]+\.?[0-9]*)%\ and /i,
+	},
+	{
+		statId: "StaminaRegen",
+		display: "%",
+		match: /Increases Health Recovery by [0-9]+\.?[0-9]*% and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		category: "Skill2",
+		statId: "SneakRange",
+		match: /Reduces your detection radius in stealth by ([0-9]+\.?[0-9]*) meters/i,
+	},
+	{
+		statId: "WeaponCrit",
+		display: "%",
+		match: /Increases your Weapon Critical rating by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "ColdResist",
+		display: "%",
+		match: /Increases Cold Resistance by ([0-9])+/i,
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /Increases Cold Resistance by [0-9]+ and increases Max Health by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaDamageResist",
+		display: "%",
+		match: /Reduces incoming damage by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "PhysicalDamageResist",
+		display: "%",
+		match: /Reduces incoming damage by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SprintCost",
+		display: "%",
+		match: /Reduces Sprint cost by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "SprintSpeed",
+		display: "%",
+		match: /Increases sprint speed by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		statId: "BlockCost",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		statId: "BlockCost",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		statId: "WeaponDamage",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		statId: "BlockMitigation",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*amount of damage you can block by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		statId: "BashDamage",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Bashing deals ([0-9]+\.?[0-9]*)% additional damage/i,
+	},
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		statId: "BashCost",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Bashing deals [0-9]+\.?[0-9]*% additional damage and costs ([0-9]+\.?[0-9]*)% less Stamina/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		factorStatId: "WeaponMace",
+		category: "Skill2",
+		statId: "PhysicalPenetration",
+		display: "%",
+		match: /Each mace causes your attacks to ignore ([0-9]+\.?[0-9]*)% of an enemy's Physical Resistance/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		factorStatId: "WeaponSword",
+		statId: "MagickaDamage",
+		display: "%",
+		match: /Each sword increases your damage done by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		factorStatId: "WeaponSword",
+		statId: "PhysicalDamage",
+		display: "%",
+		match: /Each sword increases your damage done by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		factorStatId: "WeaponDagger",
+		category: "Skill2",
+		statId: "WeaponCrit",
+		match: /Each dagger increases your Weapon Critical rating[.\s\S]*Current bonus\: ([0-9]+)/i,
+	},
+	{
+		statRequireId: "WeaponBow",
+		statRequireValue: 1,
+		category: "Skill2",
+		statId: "WeaponCrit",
+		match: /WITH BOW EQUIPPED Increases Weapon Critical rating by ([0-9]+)/i,
+	},
+	{
+		statRequireId: "WeaponDestStaff",
+		statRequireValue: 1,
+		category: "Skill2",
+		statId: "SpellPenetration",
+		display: "%",
+		match: /WITH DESTRUCTION STAFF EQUIPPED Allows your Destruction Staff spells to ignore ([0-9]+)% of an enemy's Spell Resistance/i,
+	},
+	{
+		statRequireId: "WeaponDestStaff",
+		statRequireValue: 1,
+		statId: "OtherEffects",
+		match: /WITH DESTRUCTION STAFF EQUIPPED Restores ([0-9]+) Magicka when you kill a target with a Destruction Staff spell or weapon attack/i,
+	},
+	{
+		statId: "WeaponDamage",
+		display: "%",
+		match: /Increases your Weapon Damage by ([0-9]+\.?[0-9]*)% and /i,
+	},
+	{
+		statId: "WeaponDamage",
+		match: /and your Spell Resistance by ([0-9]+)/i,
+	},
+	{
+		statId: "MagickaCost",
+		display: "%",
+		match: /Reduces Magicka, Stamina, and Ultimate ability costs by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "StaminaCost",
+		display: "%",
+		match: /Reduces Magicka, Stamina, and Ultimate ability costs by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "StaminaCost",
+		display: "%",
+		match: /Reduces Magicka and Stamina costs for all abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaCost",
+		display: "%",
+		match: /Reduces Magicka and Stamina costs for all abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "UltimateCost",
+		display: "%",
+		match: /Reduces Magicka, Stamina, and Ultimate ability costs by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "UltimateCost",
+		display: "%",
+		match: /Reduces the cost of Ultimate abilities by ([0-9]+\.?[0-9]*)%/i,
+	},	
+	{
+		statId: "ResurrectSpeed",
+		display: "%",
+		match: /Increases Resurrection speed by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "HealthRegen",
+		display: "%",
+		match: /Increases Stamina, Health and Magicka Recovery by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "MagickaRegen",
+		display: "%",
+		match: /Increases Stamina, Health and Magicka Recovery by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "StaminaRegen",
+		display: "%",
+		match: /Increases Stamina, Health and Magicka Recovery by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statId: "BlockMitigation",
+		display: "%",
+		match: /Block an additional ([0-9]+\.?[0-9]*)% damage/i,
+	},
+	{
+		statId: "SpellResist",
+		match: /Increases Spell Resistance by ([0-9]+)/i,
+	},
+	
+		// Heavy Armor
+	//WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED Gain 20 Weapon and Spell Damage for 6 seconds when you take damage, stacking up to 10 times.
+	//WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED increases the Magicka or Stamina your Heavy Attacks restore by 50%.
+	
+		// Dragonknight
+	//Increases the damage of Fiery Breath, Searing Strike, and Dragonknight Standard abilities by 3% and the duration by 2 seconds.
+	//Increases the damage of Flame and Poison area of effect abilities by 6%.
+	//WHILE USING DRACONIC POWER ABILITIES Increases healing received by 12% while a Draconic Power ability is active
+	//WITH DRACONIC POWER ABILITIES SLOTTED Increases Health Recovery by 5% for each Draconic Power ability slotted.
+	
+		// Nightblade
+	//Increases Weapon and Spell Damage while invisible or stealthed by 10%. The stun from the Crouch ability stuns for 100% longer.
+	//WITH AN ASSASSINATION ABILITY SLOTTED Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted. Current bonus: 0.
+	//WITH AN ASSASSINATION ABILITY SLOTTED Increases damage dealt by Critical Strikes by 10%.
+	//Activating a Shadow ability grants Major Resolve and Major Ward, increasing Physical Resistance and Spell Resistance by 5280 for 4 seconds. This duration is increased for each piece of Heavy Armor equipped. Current Bonus: (25 * HEAVYARMOR)%
+	//WITH A SHADOW ABILITY SLOTTED Each Shadow Ability slotted increases your Max Health by 3%. Current bonus: 0%.
+	//WITH SIPHONING ABILITY SLOTTED Increases Max Magicka 8% while a Siphoning ability is slotted.
+	//WHILE USING SIPHONING ABILITIES Increases the effectiveness of your Healing done by 3% for each Siphoning ability slotted. Current bonus: 0%.
+	
+		// Sorcerer
+	//WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED Increases your Health and Stamina Recovery by 20% when a Daedric Summoning ability is slotted.
+	//Increases your Max Health by 8% if you have a Daedric Summoning pet active.
+	//Increases your Physical and Shock Damage by 5%.
+	//Increases Spell Damage and Weapon Damage by 2% for each Sorcerer ability slotted. Current value: 0%.	
+	
+		// Templar
+	//WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED Increases the damage bonus for your critical strikes by 10% and your damage against blocking targets by 10%.
+	//WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED Increases the amount of damage you can block against melee attacks by 15%.
+	//Gives you a 25% chance to cause an extra 1803 Damage any time you hit with an Aedric Spear ability. Deals Physical Damage and scales with Weapon Damage, or deals Magic Damage and scales with Spell Damage, based on whichever is higher.
+	
+		// Restoration Staff
+	//WITH RESTORATION STAFF EQUIPPED Increases your healing by 15% on allies under 30% Health.
+	//WITH RESTORATION STAFF EQUIPPED Restores an additional 30% Magicka when you complete a heavy attack.
+	//WITH RESTORATION STAFF EQUIPPED Restores 540 Magicka when you block a spell.
+	//WITH RESTORATION STAFF EQUIPPED Increases healing with Restoration Staff spells by 5%.
+	
+		// Destruction Staff
+	//Grants bonus effects based on the element used: 
+		//Fully charged heavy fire attacks deal 12% additional damage.
+		//Fully charged heavy frost attacks grant a damage shield that absorbs 1809 damage.
+		//Fully charged heavy shock attacks damage nearby enemies for 100% of the damage done.
+	//WITH DESTRUCTION STAFF EQUIPPED Reduces the time it takes to charge a heavy attack by 10%.
+	
+		// Bow
+	//WITH BOW ABILITIES Gives you a damage bonus of up to 12% against enemies at longer range.
+	//WITH BOW EQUIPPED Reduces the Stamina cost of Bow abilities by 20%.
+	//WITH BOW EQUIPPED Your successful Light and Heavy Attacks increase the damage of your Bow abilities by 5% for 4 seconds, stacking up to 3 times.
+	
+		// Dual Wield
+	//WHILE DUAL WIELDING Increases damage with Dual Wield abilities by 20% against enemies with under 25% Health.
+	//WHILE DUAL WIELDING Increases Weapon Damage by 6% of off-hand weapon's damage.
+	//Grants a bonus based on the type of weapon equipped: 
+		//Each axe gives your melee attacks a 8% chance to bleed enemies for 5635 Physical Damage over 6 seconds. 
+	
+		// One Hand and Shield
+	//WITH ONE HAND WEAPON AND SHIELD EQUIPPED Increases the amount of damage you can block from projectiles and ranged attacks by 15%.
+	//WITH ONE HAND WEAPON AND SHIELD EQUIPPED Increases your Movement Speed while blocking by 60%
+	
+		// Two Handed
+	//Grants a bonus based on the type of weapon equipped: 
+		//Swords increase your damage done by 5%.
+		//Axes grant your melee attacks 16% chance to apply a bleed dealing 5635 Physical Damage over 6 seconds.
+		//Maces cause your attacks to ignore 20% of your target's Physical Resistance.
+	
+		// Racial
+	//Increases your Damage with Flame effects by 7%
+	//Increases your Damage with Frost, Fire, and Shock effects by 4%
+	//Gives your melee attacks a 10% chance to restore 854 Health.
+	//Increases damage done while in stealth by 10%.
+	//Increases your damage with melee weapon attacks by 4%.
+	//Restores 361 Stamina whenever you damage an enemy with a melee attack. This can happen no more than once every 3 seconds.
+	
+		// Fighters Guild
+	//Increases Weapon Damage by 3% for each Fighters Guild ability slotted.
+	
+		// Mages Guild
+	//WITH A MAGES GUILD ABILITY SLOTTED Increases your Max Magicka and your Magicka Recovery by 2% for each Mages Guild ability slotted.
+	
+		// Vampire
+	//WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER Increases your Magicka and Stamina Recovery by 10%.
+	//Reduces the severity of the Health Recovery determent in Vampirism stages 2 through 4.
+	
+		// Werewolf
+	//WHILE IN WEREWOLF FORM Increases the amount of Stamina your heavy attacks restore by 100%.
+	//WHILE IN WEREWOLF FORM Increases Weapon Damage by 18%.
+	
+		// Support
+	//Increases Magicka Recovery by 10% for each Support ability slotted.
+	
+		// Emperor
+	//WHILE EMPEROR Increases Health, Magicka, and Stamina recovery in combat by 100% while in your campaign.
+	//WHILE EMPEROR Increases Ultimate gains by 100% while in your campaign.
+	//WHILE EMPEROR Increases the magnitude of healing effects on Emperors by 50% while in your campaign.
+	//WHILE EMPEROR Increases Health, Magicka, and Stamina by 75% while in your campaign.
+];
+
+
 ESO_SETEFFECT_MATCHES = [
 	{
 		statId: "SpellCrit",
@@ -268,7 +817,7 @@ ESO_SETEFFECT_MATCHES = [
 		match: /Increases duration of your damaging fire effects by ([0-9]+\.?[0-9]*) seconds/i,
 	},
 	{
-		statId: "RunSpeed",
+		statId: "SprintSpeed",
 		display: '%',
 		match: /movement speed increased by ([0-9]+\.?[0-9]*)%/i,
 	},
@@ -325,7 +874,7 @@ ESO_SETEFFECT_MATCHES = [
 		match: /Increase Max Health for up to 12 group members by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
-		statId: "ResurrectTime",
+		statId: "ResurrectSpeed",
 		display: '%',
 		match: /decrease time to resurrect an ally by ([0-9]+\.?[0-9]*)%/i,
 	},
@@ -703,6 +1252,7 @@ ESO_ABILITYDESC_MATCHES = [
 
 function GetEsoInputValues(mergeComputedStats)
 {
+	console.log("GetEsoInputValues");
 	var inputValues = {};
 	if (mergeComputedStats == null) mergeComputedStats = false;
 	
@@ -759,12 +1309,18 @@ function GetEsoInputValues(mergeComputedStats)
 	
 	if (g_EsoBuildActiveWeapon == 1)
 	{
+		if ( ( (g_EsoBuildItemData.MainHand1.weaponType >= 1 && g_EsoBuildItemData.MainHand1.weaponType <= 3) ||
+				g_EsoBuildItemData.MainHand1.weaponType == 1) &&				
+				g_EsoBuildItemData.OffHand1.weaponType == 14) inputValues.Weapon1HShield = 1;
 		GetEsoInputItemValues(inputValues, "MainHand1");
 		GetEsoInputItemValues(inputValues, "OffHand1");
 		GetEsoInputItemValues(inputValues, "Poison1");
 	}
 	else
 	{
+		if ( ( (g_EsoBuildItemData.MainHand2.weaponType >= 1 && g_EsoBuildItemData.MainHand2.weaponType <= 3) ||
+				g_EsoBuildItemData.MainHand2.weaponType == 1) &&				
+				g_EsoBuildItemData.OffHand2.weaponType == 14) inputValues.Weapon1HShield = 1;
 		GetEsoInputItemValues(inputValues, "MainHand2");
 		GetEsoInputItemValues(inputValues, "OffHand2");
 		GetEsoInputItemValues(inputValues, "Poison2");
@@ -782,6 +1338,7 @@ function GetEsoInputValues(mergeComputedStats)
 	GetEsoInputMundusValues(inputValues);
 	GetEsoInputCPValues(inputValues);
 	GetEsoInputTargetValues(inputValues);
+	GetEsoInputSkillPassives(inputValues);
 	GetEsoInputMiscValues(inputValues);
 	
 	if (mergeComputedStats === true) 
@@ -931,6 +1488,68 @@ function GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId)
 }
 
 
+function GetEsoInputSkillPassives(inputValues)
+{
+	UpdateEsoTestBuildSkillInputValues(inputValues);
+	var skillInputValues = GetEsoTestBuildSkillInputValues();
+	
+	for (var skillId in g_EsoSkillPassiveData)
+	{
+		GetEsoInputSkillPassiveValues(inputValues, skillInputValues, g_EsoSkillPassiveData[skillId]);	
+	}
+	
+}
+
+
+function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
+{
+	var skillDesc = GetEsoSkillDescription(skillData.abilityId, skillInputValues, false, true);
+	var rawDesc = RemoveEsoDescriptionFormats(skillDesc);
+	if (rawDesc == "") return;
+	
+	for (var i = 0; i < ESO_PASSIVEEFFECT_MATCHES.length; ++i)
+	{
+		var matchData = ESO_PASSIVEEFFECT_MATCHES[i];
+		var matches = rawDesc.match(matchData.match);
+		if (matches == null) continue;
+		
+		var statValue = parseFloat(matches[1]);
+		
+		//console.log("Match", matchData);
+		
+		if (matchData.statRequireId != null)
+		{
+			var requiredStat = inputValues[matchData.statRequireId];
+			if (requiredStat == null) continue;
+			if (parseFloat(requiredStat) < parseFloat(matchData.statRequireValue)) continue;
+		}
+		
+		var statFactor = 1;
+		
+		if (matchData.factorStatId != null)
+		{
+			var factorStat = inputValues[matchData.factorStatId];
+			if (factorStat != null) statFactor = parseFloat(factorStat);
+		}
+		
+		statValue = statValue * statFactor;
+		
+		if (matchData.display == '%') statValue = statValue / 100;
+		if (matchData.round == 'floor') statValue = Math.floor(statValue);
+		
+		var category = "Skill";
+		if (matchData.category != null) category = matchData.category;
+		
+		inputValues[category][matchData.statId] += statValue;
+		//AddEsoItemRawOutput(itemData, category + "." + matchData.statId, statValue);
+		AddEsoInputStatSource(category + "." + matchData.statId, { passive: g_SkillsData[skillData.abilityId], value: statValue });
+		
+		//console.log("PassiveSkill", skillData, rawDesc);
+	}
+	
+}
+
+
 function AddEsoItemRawOutput(itemData, statId, value)
 {
 	if (itemData.rawOutput[statId] == null) 
@@ -949,8 +1568,9 @@ function GetEsoInputItemValues(inputValues, slotId)
 	
 	itemData.rawOutput = {};
 	
-	var traitMatch = itemData.traitDesc.match(/[0-9]+.?[0-9]*/);
+	var traitMatch = null;
 	var traitValue = 0;
+	if (itemData.traitDesc != null) traitMatch = itemData.traitDesc.match(/[0-9]+.?[0-9]*/);
 	if (traitMatch != null && traitMatch[0] != null) traitValue = parseFloat(traitMatch[0]);
 	
 	if (itemData.armorType == 1)
@@ -1478,9 +2098,9 @@ function GetEsoInputMundusNameValues(inputValues, mundusName)
 	else if (mundusName == "The Steed")
 	{
 		inputValues.Mundus.HealthRegen = 210;
-		inputValues.Mundus.RunSpeed = 0.05;
+		inputValues.Mundus.SprintSpeed = 0.05;
 		AddEsoInputStatSource("Mundus.HealthRegen", { mundus: mundusName, value: inputValues.Mundus.HealthRegen });
-		AddEsoInputStatSource("Mundus.RunSpeed", { mundus: mundusName, value: inputValues.Mundus.RunSpeed });
+		AddEsoInputStatSource("Mundus.SprintSpeed", { mundus: mundusName, value: inputValues.Mundus.SprintSpeed });
 	}
 
 }
@@ -1627,7 +2247,8 @@ function UpdateEsoComputedStatsList()
 	var inputValues = GetEsoInputValues();
 	var deferredStats = [];
 	
-	
+	UpdateEsoTestBuildSkillInputValues(inputValues);
+		
 	for (var statId in g_EsoComputedStats)
 	{
 		var depends = g_EsoComputedStats[statId].depends;
@@ -1643,6 +2264,9 @@ function UpdateEsoComputedStatsList()
 		var statId = deferredStats[i];
 		UpdateEsoComputedStat(statId, g_EsoComputedStats[statId], inputValues);
 	}
+	
+	
+	UpdateEsoTestBuildSkillInputValues(inputValues);
 	
 	UpdateEsoReadOnlyStats(inputValues);
 	UpdateEsoBuildMundusList2();
@@ -2575,34 +3199,16 @@ function OnEsoEnchantDataError(xhr, status, errorMsg)
 
 function OnEsoWeaponSelect1(e)
 {
-	$("#esotbWeaponSelect1").addClass("esotbWeaponSelect");
-	$("#esotbItemMainHand1").addClass("esotbWeaponSelect");
-	$("#esotbItemOffHand1").addClass("esotbWeaponSelect");
-	$("#esotbItemPoison1").addClass("esotbWeaponSelect");
-		
-	$("#esotbWeaponSelect2").removeClass("esotbWeaponSelect");
-	$("#esotbItemMainHand2").removeClass("esotbWeaponSelect");
-	$("#esotbItemOffHand2").removeClass("esotbWeaponSelect");
-	$("#esotbItemPoison2").removeClass("esotbWeaponSelect");
-	
-	g_EsoBuildActiveWeapon = 1;
+	SetEsoBuildActiveWeaponBar(1);
+	SetEsoBuildActiveSkillBar(1);
 	UpdateEsoComputedStatsList();
 }
 
 
 function OnEsoWeaponSelect2(e)
 {
-	$("#esotbWeaponSelect1").removeClass("esotbWeaponSelect");
-	$("#esotbItemMainHand1").removeClass("esotbWeaponSelect");
-	$("#esotbItemOffHand1").removeClass("esotbWeaponSelect");
-	$("#esotbItemPoison1").removeClass("esotbWeaponSelect");
-		
-	$("#esotbWeaponSelect2").addClass("esotbWeaponSelect");
-	$("#esotbItemMainHand2").addClass("esotbWeaponSelect");
-	$("#esotbItemOffHand2").addClass("esotbWeaponSelect");
-	$("#esotbItemPoison2").addClass("esotbWeaponSelect");
-	
-	g_EsoBuildActiveWeapon = 2;
+	SetEsoBuildActiveWeaponBar(1);
+	SetEsoBuildActiveSkillBar(1);
 	UpdateEsoComputedStatsList();
 }
 
@@ -2699,6 +3305,15 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 	else if (sourceItem.source != null)
 	{
 		output += "" + value + ": " + sourceItem.source;
+	}
+	else if (sourceItem.passive != null)
+	{
+		var skillData = sourceItem.passive;
+		
+		if (skillData == null || skillData.name == null)
+			output += "" + value + ": Unknown skill passive";
+		else
+			output += "" + value + ": " + skillData.name + " " + skillData.rank + " passive in " + skillData.skillLine + " line";
 	}
 	else
 	{
@@ -3090,9 +3705,15 @@ function GetEsoTestBuildStat(statId)
 }
 
 
-function GetEsoTestBuildSkillInputValues()
+function GetEsoTestBuildSkillInputValues(inputValues)
 {
-	var inputValues = GetEsoInputValues(true);
+	return g_LastSkillInputValues;
+}
+
+
+function UpdateEsoTestBuildSkillInputValues(inputValues)
+{
+	if (inputValues == null) return;
 	
 	var magicka = parseInt(inputValues.Magicka);
 	var stamina = parseInt(inputValues.Stamina);
@@ -3100,6 +3721,12 @@ function GetEsoTestBuildSkillInputValues()
 	var spellDamage = parseInt(inputValues.SpellDamage);
 	var weaponDamage = parseInt(inputValues.WeaponDamage);
 	var level = parseInt(inputValues.EffectiveLevel);
+	
+	if (isNaN(magicka)) magicka = parseInt(g_EsoComputedStats.Magicka.value);
+	if (isNaN(stamina)) stamina = parseInt(g_EsoComputedStats.Stamina.value);
+	if (isNaN(health)) health = parseInt(g_EsoComputedStats.Health.value);
+	if (isNaN(spellDamage)) spellDamage = parseInt(g_EsoComputedStats.SpellDamage.value);
+	if (isNaN(weaponDamage)) weaponDamage = parseInt(g_EsoComputedStats.WeaponDamage.value);
 	
 	g_LastSkillInputValues = 
 	{ 
@@ -3116,9 +3743,64 @@ function GetEsoTestBuildSkillInputValues()
 			HeavyArmor		: parseInt(inputValues.ArmorHeavy),
 			ArmorTypes		: parseInt(inputValues.ArmorTypes),
 			DaggerWeapon	: parseInt(inputValues.WepaonDagger),
+			
+			//DamageBonus?
 	};
 	
 	return g_LastSkillInputValues; 
+}
+
+
+function SetEsoBuildActiveWeaponBar(barIndex)
+{
+	if (barIndex == 1)
+	{
+		$("#esotbWeaponSelect1").addClass("esotbWeaponSelect");
+		$("#esotbItemMainHand1").addClass("esotbWeaponSelect");
+		$("#esotbItemOffHand1").addClass("esotbWeaponSelect");
+		$("#esotbItemPoison1").addClass("esotbWeaponSelect");
+			
+		$("#esotbWeaponSelect2").removeClass("esotbWeaponSelect");
+		$("#esotbItemMainHand2").removeClass("esotbWeaponSelect");
+		$("#esotbItemOffHand2").removeClass("esotbWeaponSelect");
+		$("#esotbItemPoison2").removeClass("esotbWeaponSelect");
+		
+		g_EsoBuildActiveWeapon = barIndex;
+	}
+	else if (barIndex == 2)
+	{
+		$("#esotbWeaponSelect1").removeClass("esotbWeaponSelect");
+		$("#esotbItemMainHand1").removeClass("esotbWeaponSelect");
+		$("#esotbItemOffHand1").removeClass("esotbWeaponSelect");
+		$("#esotbItemPoison1").removeClass("esotbWeaponSelect");
+			
+		$("#esotbWeaponSelect2").addClass("esotbWeaponSelect");
+		$("#esotbItemMainHand2").addClass("esotbWeaponSelect");
+		$("#esotbItemOffHand2").addClass("esotbWeaponSelect");
+		$("#esotbItemPoison2").addClass("esotbWeaponSelect");
+		
+		g_EsoBuildActiveWeapon = barIndex;
+	}
+	
+}
+
+
+function SetEsoBuildActiveSkillBar(skillBarIndex)
+{
+	SetEsoSkillBarSelect(skillBarIndex);
+}
+
+
+function OnEsoBuildSkillBarSwap(e, skillBarIndex)
+{
+	SetEsoBuildActiveWeaponBar(skillBarIndex);	
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoBuildSkillUpdate(e)
+{
+	UpdateEsoComputedStatsList();
 }
 
 
@@ -3156,6 +3838,9 @@ function esotbOnDocReady()
 	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);
 	$("#esotbWeaponSelect1").click(OnEsoWeaponSelect1);
 	$("#esotbWeaponSelect2").click(OnEsoWeaponSelect2);
+	
+	$(document).on("EsoSkillBarSwap", OnEsoBuildSkillBarSwap);
+	$(document).on("EsoSkillUpdate", OnEsoBuildSkillUpdate);
 	
 	$(document).keyup(function(e) {
 	    if (e.keyCode == 27) OnEsoBuildEscapeKey(e);
