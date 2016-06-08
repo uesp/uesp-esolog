@@ -201,6 +201,8 @@ class CEsoViewSkills
 			{
 				foreach ($skillLine as $baseName => &$baseAbility)
 				{
+					if (!is_array($baseAbility)) continue;
+					
 					foreach ($baseAbility as $rank => &$ability)
 					{
 						if (!is_numeric($rank)) continue;
