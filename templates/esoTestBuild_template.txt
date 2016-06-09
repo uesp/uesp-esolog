@@ -49,16 +49,17 @@ displayed statistics is unknown.
 				For Twice-Born Star builds
 			</div>
 			<p>
-			<div class="esotbStatLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50"><br/>
-			<div class="esotbStatLabel">Total CPs</div> <input id="esotbCPTotalPoints" class="esotbLevelInput esotbInputValue" statid="CP.TotalPoints" type="number" size="2" value="160"><br/>
-			<div class="esotbStatLabel">Effective Level</div> <div id="esotbEffectiveLevel" class="esotbInputValueRO" statid="EffectiveLevel">66</div><br/>
+			<div class="esotbStatLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50">
+			<div class="esotbStatLabel">Total CPs</div> <input id="esotbCPTotalPoints" class="esotbLevelInput esotbInputValue" statid="CP.TotalPoints" type="number" size="2" value="160">
+			<div class="esotbStatLabel">Effective Level</div> <div id="esotbEffectiveLevel" class="esotbInputValueRO" statid="EffectiveLevel">66</div>
+			<br/>
 			<div class="esotbStatLabel">Vampire Stage</div> <select id="esotbVampireStage" name="esotbVampireStage" statid="VampireStage">
 				<option value="0">none</option>
 				<option value="1">Stage 1</option>
 				<option value="2">Stage 2</option>
 				<option value="3">Stage 3</option>
 				<option value="4">Stage 4</option>
-			</select><br/>
+			</select>
 			<div class="esotbStatLabel">Werewolf</div> <input id="esotbWerewolf" class="esotbInputValue" statid="Werewolf" type="checkbox" value="1"><br/>
 			<p>
 			<div id="esotbAttributes">

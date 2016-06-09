@@ -127,6 +127,7 @@ class CEsoTestBuild
 			"BashDamage",
 			"BlockCost",
 			"BlockMitigation",
+			"BlockMeleeMitigation",
 			"RollDodgeCost",
 			"RollDodgeDuration",
 			"SprintCost",
@@ -531,6 +532,20 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Skill.HealingDone" => array(
+					"display" => "%",
+			),
+			
+			"Skill.HealingTaken" => array(
+					"display" => "%",
+			),
+			
+			"Skill.HealingReceived" => array(
+					"display" => "%",
+			),
+			
+			
+			
 	);
 	
 	
@@ -682,6 +697,7 @@ class CEsoTestBuild
 			
 			"SpellDamage" => array(
 					"title" => "Spell Damage",
+					"round" => "floor",
 					"compute" => array(
 							"Item.SpellDamage",
 							"Set.SpellDamage",
@@ -697,6 +713,7 @@ class CEsoTestBuild
 			
 			"WeaponDamage" => array(
 					"title" => "Weapon Damage",
+					"round" => "floor",
 					"compute" => array(
 							"Item.WeaponDamage",
 							"Set.WeaponDamage",
@@ -953,90 +970,6 @@ class CEsoTestBuild
 					),
 			),
 						
-			"AttackSpellMitigation" => array(
-					"title" => "Attacker Spell Mitigation",
-					"display" => "percent",
-					"depends" => array("SpellPenetration"),
-					"compute" => array(
-							"Target.Resistance",
-							"1 - Skill2.SpellPenetration",
-							"*",
-							"SpellPenetration",
-							"-",
-							"-1/(Level * 1000)",
-							"*",
-							"1",
-							"+",
-							"1 - Target.DefenseBonus",
-							"*",
-							"1 + CP.MagickaDamage",
-							"*",							
-					),
-			),
-			
-			"AttackPhysicalMitigation" => array(
-					"title" => "Attacker Physical Mitigation",
-					"display" => "percent",
-					"depends" => array("PhysicalPenetration"),
-					"compute" => array(
-							"Target.Resistance",
-							"1 - Skill2.PhysicalPenetration",
-							"*",
-							"PhysicalPenetration",
-							"-",
-							"-1/(Level * 1000)",
-							"*",
-							"1",
-							"+",
-							"1 - Target.DefenseBonus",
-							"*",
-							"1 + CP.PhysicalDamage",
-							"*",
-					),
-			),
-			
-			"DefenseSpellMitigation" => array(
-					"title" => "Defending Spell Mitigation",
-					"display" => "percent",
-					"depends" => array("SpellResist"),
-					"compute" => array(
-							"SpellResist",
-							"1 - Target.PenetrationFactor",
-							"*",
-							"Target.PenetrationFlat",
-							"-",
-							"-1/(Level * 1000)",
-							"*",
-							"1",
-							"+",
-							"1 + Target.AttackBonus",
-							"*",
-							"1 - CP.MagickaDamageResist",
-							"*",							
-					),
-			),
-			
-			"DefensePhysicalMitigation" => array(
-					"title" => "Defending Physical Mitigation",
-					"display" => "percent",
-					"depends" => array("PhysicalResist"),
-					"compute" => array(
-							"PhysicalResist",
-							"1 - Target.PenetrationFactor",
-							"*",
-							"Target.PenetrationFlat",
-							"-",
-							"-1/(Level * 1000)",
-							"*",
-							"1",
-							"+",
-							"1 + Target.AttackBonus",
-							"*",
-							"1 - CP.PhysicalDamageResist",
-							"*",
-					),
-			),
-			
 			"HealingDone" => array(
 					"title" => "Healing Done",
 					"display" => "percent",
@@ -1552,6 +1485,90 @@ class CEsoTestBuild
 							"0.56*WeaponDamage - 0.60",
 							"+",
 							"1 + CP.HABowDamage",
+							"*",
+					),
+			),
+			
+			"AttackSpellMitigation" => array(
+					"title" => "Attacker Spell Mitigation",
+					"display" => "percent",
+					"depends" => array("SpellPenetration"),
+					"compute" => array(
+							"Target.Resistance",
+							"1 - Skill2.SpellPenetration",
+							"*",
+							"SpellPenetration",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 - Target.DefenseBonus",
+							"*",
+							"1 + CP.MagickaDamage",
+							"*",
+					),
+			),
+				
+			"AttackPhysicalMitigation" => array(
+					"title" => "Attacker Physical Mitigation",
+					"display" => "percent",
+					"depends" => array("PhysicalPenetration"),
+					"compute" => array(
+							"Target.Resistance",
+							"1 - Skill2.PhysicalPenetration",
+							"*",
+							"PhysicalPenetration",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 - Target.DefenseBonus",
+							"*",
+							"1 + CP.PhysicalDamage",
+							"*",
+					),
+			),
+				
+			"DefenseSpellMitigation" => array(
+					"title" => "Defending Spell Mitigation",
+					"display" => "percent",
+					"depends" => array("SpellResist"),
+					"compute" => array(
+							"SpellResist",
+							"1 - Target.PenetrationFactor",
+							"*",
+							"Target.PenetrationFlat",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 + Target.AttackBonus",
+							"*",
+							"1 - CP.MagickaDamageResist",
+							"*",
+					),
+			),
+				
+			"DefensePhysicalMitigation" => array(
+					"title" => "Defending Physical Mitigation",
+					"display" => "percent",
+					"depends" => array("PhysicalResist"),
+					"compute" => array(
+							"PhysicalResist",
+							"1 - Target.PenetrationFactor",
+							"*",
+							"Target.PenetrationFlat",
+							"-",
+							"-1/(Level * 1000)",
+							"*",
+							"1",
+							"+",
+							"1 + Target.AttackBonus",
+							"*",
+							"1 - CP.PhysicalDamageResist",
 							"*",
 					),
 			),

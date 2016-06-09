@@ -444,7 +444,7 @@ function OnEsoSkillTypeTitleClick(event, noUpdate)
 	$(this).next(".esovsSkillType").slideDown();
 	$(this).addClass("esovsSkillTypeTitleHighlight");
 	
-	var firstSkillLine = $(this).next(".esovsSkillType").children(".esovsSkillLineTitle").first();
+	var firstSkillLine = $(this).next(".esovsSkillType").children(".esovsSkillLineTitle").not(".esovsSkillLineDisabled").first();
 	firstSkillLine.addClass("esovsSkillLineTitleHighlight");
 	
 	var skillType = $(this).text();
@@ -611,7 +611,10 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 		return '?';
 	}
 	
-	return Math.round(value);
+	value = Math.round(value);
+	
+	if (value < 0) return 0;
+	return value;
 }
 
 
@@ -689,7 +692,10 @@ function ComputeEsoSkillCost(maxCost, level)
 	if (level < 1) level = 1;
 	if (level >= 66) return maxCost;
 	
-	return Math.round(maxCost * level / 72.0 + maxCost / 12.0);
+	var cost = Math.round(maxCost * level / 72.0 + maxCost / 12.0);
+	if (cost < 0) return 0;
+	
+	return 0;
 }
 
 
@@ -706,8 +712,11 @@ function ComputeEsoSkillCostOld(maxCost, level)
 	if (level < 1) level = 1;
 	if (level >= 66) return maxCost;
 	
-	if (level >= 1 && level <= 50) return Math.round(maxCost * level * 25.0 / 1624.0 + maxCost * 75.0 / 812.0);
-	return Math.round(maxCost * level / 116.0 + maxCost / 2.32);
+	var cost = Math.round(maxCost * level / 116.0 + maxCost / 2.32);
+	if (level >= 1 && level <= 50) cost =  Math.round(maxCost * level * 25.0 / 1624.0 + maxCost * 75.0 / 812.0);
+	
+	if (cost < 0) return 0;
+	return cost;
 }
 
 
@@ -1390,6 +1399,7 @@ function EnableEsoClassSkills(className)
 	$(".esovsSkillContentBlock").hide();
 	$(".esovsSkillType").hide();
 	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
+	$(".esovsSkillTypeTitleHighlight").removeClass("esovsSkillTypeTitleHighlight");
 		
 	var skillTypes = classElement.next(".esovsSkillType");
 	var firstSkillLine = skillTypes.find(".esovsSkillLineTitle").first();
@@ -1504,7 +1514,7 @@ function RemovePurchasedEsoClassSkills()
 		ResetEsoPurchasedSkill(skillId);		
 	});
 	
-	g_EsoSkillUpdateEnable = g_EsoSkillUpdateEnable;
+	g_EsoSkillUpdateEnable = initialUpdate;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
@@ -1540,7 +1550,7 @@ function EnableEsoRaceSkills(raceName)
 	
 	RemovePurchasedEsoRaceSkills();
 	
-	classElement.next(".esovsSkillType").find(".esovsSkillLineTitle").hide();
+	classElement.next(".esovsSkillType").find(".esovsSkillLineTitle").hide().addClass("esovsSkillLineDisabled");
 	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
 	$(".esovsSkillContentBlock").hide();
 	$(".esovsSkillType").hide();
@@ -1551,6 +1561,7 @@ function EnableEsoRaceSkills(raceName)
 
 	classElement.next(".esovsSkillType").show();
 	raceElement.show();
+	raceElement.removeClass("esovsSkillLineDisabled");
 	$("#" + raceId).show();	
 }
 
@@ -1741,7 +1752,7 @@ function UpdateEsoSkillBarData()
 	UpdateEsoSkillBarSkill(2, 5);
 	UpdateEsoSkillBarSkill(2, 6);
 	
-	$(document).trigger("EsoSkillBarUpdate");
+	if (g_EsoSkillUpdateEnable)	$(document).trigger("EsoSkillBarUpdate");
 }
 
 
@@ -1779,7 +1790,7 @@ function UpdateEsoSkillTotalPoints()
 	var element = $("#esovsSkillPoints");
 	element.text(g_EsoSkillPointsUsed);
 	
-	$(document).trigger("EsoSkillUpdate");
+	if (g_EsoSkillUpdateEnable)	$(document).trigger("EsoSkillUpdate");
 }
 
 

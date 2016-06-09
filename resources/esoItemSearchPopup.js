@@ -725,6 +725,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	{
 		this.itemType = data.itemType;
 		clearResults = true;
+		clearSettings = true;
 	}
 	
 	if (this.equipType != data.equipType)
