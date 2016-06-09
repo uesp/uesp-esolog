@@ -4475,6 +4475,7 @@ function UpdateEsoBuildToggleSets()
 	element.html(output);
 	
 	$(".esotbToggleSetCheck").click(OnEsoBuildToggleSet);
+	$(".esotbToggledSetItem").click(OnEsoBuildToggleSetClick);
 }
 
 
@@ -4483,6 +4484,14 @@ function OnEsoBuildToggleSet(e)
 	var setId = $(this).parent().attr("setid");
 	if (setId == null || setId == "") return;
 	
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoBuildToggleSetClick(e)
+{
+	var checkbox = $(this).find(".esotbToggleSetCheck");
+	checkbox.prop("checked", !checkbox.prop("checked"));
 	UpdateEsoComputedStatsList();
 }
 
@@ -4506,6 +4515,14 @@ function OnEsoBuildToggleSkill(e)
 	var skillId = $(this).parent().attr("skillId");
 	if (skillId == null || skillId == "") return;
 	
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoBuildToggleSkillClick(e)
+{
+	var checkbox = $(this).find(".esotbToggleSkillCheck");
+	checkbox.prop("checked", !checkbox.prop("checked"));
 	UpdateEsoComputedStatsList();
 }
 
@@ -4542,6 +4559,7 @@ function UpdateEsoBuildToggleSkills()
 	element.html(output);
 	$(".esotbToggleSkillCheck").click(OnEsoBuildToggleSkill);
 	$(".esotbToggleSkillNumber").on("input", OnEsoBuildToggleSkillNumber);
+	$(".esotbToggledSkillItem").click(OnEsoBuildToggleSkillClick);
 }
 
 
@@ -4670,32 +4688,12 @@ function SetEsoBuildActiveWeaponBar(barIndex)
 		$("#esotbWeaponBar1").addClass("esotbWeaponSelect");
 		$("#esotbWeaponBar2").removeClass("esotbWeaponSelect");
 		
-		//$("#esotbWeaponSelect1").addClass("esotbWeaponSelect");
-		//$("#esotbItemMainHand1").addClass("esotbWeaponSelect");
-		//$("#esotbItemOffHand1").addClass("esotbWeaponSelect");
-		//$("#esotbItemPoison1").addClass("esotbWeaponSelect");
-			
-		//$("#esotbWeaponSelect2").removeClass("esotbWeaponSelect");
-		//$("#esotbItemMainHand2").removeClass("esotbWeaponSelect");
-		//$("#esotbItemOffHand2").removeClass("esotbWeaponSelect");
-		//$("#esotbItemPoison2").removeClass("esotbWeaponSelect");
-		
 		g_EsoBuildActiveWeapon = barIndex;
 	}
 	else if (barIndex == 2)
 	{
 		$("#esotbWeaponBar1").removeClass("esotbWeaponSelect");
 		$("#esotbWeaponBar2").addClass("esotbWeaponSelect");
-		
-		//$("#esotbWeaponSelect1").removeClass("esotbWeaponSelect");
-		///$("#esotbItemMainHand1").removeClass("esotbWeaponSelect");
-		//$("#esotbItemOffHand1").removeClass("esotbWeaponSelect");
-		//$("#esotbItemPoison1").removeClass("esotbWeaponSelect");
-			
-		//$("#esotbWeaponSelect2").addClass("esotbWeaponSelect");
-		//$("#esotbItemMainHand2").addClass("esotbWeaponSelect");
-		//$("#esotbItemOffHand2").addClass("esotbWeaponSelect");
-		//$("#esotbItemPoison2").addClass("esotbWeaponSelect");
 		
 		g_EsoBuildActiveWeapon = barIndex;
 	}
