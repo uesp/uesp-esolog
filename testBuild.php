@@ -70,7 +70,8 @@ class CEsoTestBuild
 			"Mundus.Name2",
 			"Race",
 			"Class",
-			"Target.Resistance",
+			"Target.SpellResistance",
+			"Target.PhysicalResistance",
 			"Target.PenetrationFactor",
 			"Target.PenetrationFlat",
 			"Target.DefenseBonus",
@@ -173,6 +174,7 @@ class CEsoTestBuild
 			"TwiceBornStar",
 			"HAChargeTime",
 			"FireDamageResist",
+			"DodgeChance",
 	);
 	
 	
@@ -339,11 +341,7 @@ class CEsoTestBuild
 			"Skill.WeaponCrit" => array(
 					"display" => "%",
 			),
-			
-			"Buff.WeaponCrit" => array(
-					"display" => "%",
-			),
-			
+
 			"CP.WeaponCrit" => array(
 					"display" => "%",
 			),
@@ -359,11 +357,7 @@ class CEsoTestBuild
 			"Skill.SpellCrit" => array(
 					"display" => "%",
 			),
-				
-			"Buff.SpellCrit" => array(
-					"display" => "%",
-			),
-				
+			
 			"CP.SpellCrit" => array(
 					"display" => "%",
 			),
@@ -544,6 +538,57 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Target.AttackBonus" => array(
+					"display" => "%",
+			),
+			
+			"Target.DefenseBonus" => array(
+					"display" => "%",
+			),
+			
+			"Buff.DodgeChance" => array(
+					"display" => "%",
+			),
+			
+			"Buff.HealingReceived" => array(
+					"display" => "%",
+			),
+			
+			"Buff.HealthRegen" => array(
+					"display" => "%",
+			),
+			
+			"Buff.MagickaRegen" => array(
+					"display" => "%",
+			),
+			
+			"Buff.StaminaRegen" => array(
+					"display" => "%",
+			),
+			
+			"Buff.MagickaDamage" => array(
+					"display" => "%",
+			),
+			
+			"Buff.PhysicalDamage" => array(
+					"display" => "%",
+			),
+			
+			"Buff.MagickaDamageResist" => array(
+					"display" => "%",
+			),
+			
+			"Buff.PhysicalDamageResist" => array(
+					"display" => "%",
+			),
+			
+			"Buff.PhysicalDamageResist" => array(
+					"display" => "%",
+			),
+			
+			"Buff.SprintSpeed" => array(
+					"display" => "%",
+			),		
 			
 			
 	);
@@ -735,6 +780,8 @@ class CEsoTestBuild
 							"Set.SpellCrit",
 							"Skill2.SpellCrit",
 							"+",
+							"Buff.SpellCrit",
+							"+",
 							"1/219/100",
 							"*",
 							"0.10",
@@ -746,8 +793,6 @@ class CEsoTestBuild
 							"Mundus.SpellCrit * Item.Divines",
 							"+",
 							"Skill.SpellCrit",
-							"+",
-							"Buff.SpellCrit",
 							"+",
 							"CP.SpellCrit",
 							"+",
@@ -761,6 +806,8 @@ class CEsoTestBuild
 							"Set.WeaponCrit",
 							"Skill2.WeaponCrit",
 							"+",
+							"Buff.WeaponCrit",
+							"+",
 							"1/219/100",
 							"*",
 							"0.10",
@@ -772,8 +819,6 @@ class CEsoTestBuild
 							"Mundus.WeaponCrit * Item.Divines",
 							"+",
 							"Skill.WeaponCrit",
-							"+",
-							"Buff.WeaponCrit",
 							"+",
 							"CP.WeaponCrit",
 							"+",
@@ -832,6 +877,8 @@ class CEsoTestBuild
 							"+",
 							"Skill.SpellResist",
 							"+",
+							"Buff.SpellResist",
+							"+",
 							"CP.SpellResist",
 							"+",
 					),
@@ -848,6 +895,8 @@ class CEsoTestBuild
 							"Set.PhysicalResist",
 							"+",
 							"Skill.PhysicalResist",
+							"+",
+							"Buff.PhysicalResist",
 							"+",
 							"CP.PhysicalResist",
 							"+",
@@ -1494,7 +1543,7 @@ class CEsoTestBuild
 					"display" => "percent",
 					"depends" => array("SpellPenetration"),
 					"compute" => array(
-							"Target.Resistance",
+							"Target.SpellResist",
 							"1 - Skill2.SpellPenetration",
 							"*",
 							"SpellPenetration",
@@ -1515,7 +1564,7 @@ class CEsoTestBuild
 					"display" => "percent",
 					"depends" => array("PhysicalPenetration"),
 					"compute" => array(
-							"Target.Resistance",
+							"Target.PhysicalResist",
 							"1 - Skill2.PhysicalPenetration",
 							"*",
 							"PhysicalPenetration",
@@ -1573,6 +1622,7 @@ class CEsoTestBuild
 					),
 			),
 			
+			//SprintSpeed
 			//Physical/spell mitigation = (resistance - 100) / (level*10)
 
 	); 
