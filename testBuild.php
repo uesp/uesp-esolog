@@ -76,6 +76,8 @@ class CEsoTestBuild
 			"Target.DefenseBonus",
 			"Target.AttackBonus",
 			"Misc.SpellCost",
+			"VampireStage",
+			"Werewolf",
 	);
 	
 	
@@ -168,6 +170,8 @@ class CEsoTestBuild
 			"SneakRange",
 			"SneakDetectRange",
 			"TwiceBornStar",
+			"HAChargeTime",
+			"FireDamageResist",
 	);
 	
 	
@@ -450,6 +454,14 @@ class CEsoTestBuild
 			"Set.StaminaCost" => array(
 					"display" => "%",
 			),
+			
+			"Set.UltimateCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.UltimateCost" => array(
+					"display" => "%",
+			),
 				
 			"Skill.StaminaCost" => array(
 					"display" => "%",
@@ -502,6 +514,12 @@ class CEsoTestBuild
 			"Buff.WeaponDamage" => array(
 					"display" => "%",
 			),		
+			
+			"Skill.FireDamageResist" => array(
+					"display" => "%",
+			),
+			
+			
 			
 			
 			

@@ -3918,7 +3918,7 @@ class EsoLogParser
 					"Thieves Guild" => 5,
 					"Emperor" => 6,
 					"Provisioning" => 8,
-					"Dark Brotherhood" => 4,
+					"Dark Brotherhood" => 5,
 				);
 			
 			$skill['isPlayer'] = 1;

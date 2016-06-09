@@ -510,18 +510,18 @@ class CEsoViewSkills
 
 		$id = $this->MakeHtmlId($skillLine);
 		$output = "<div class='esovsSkillContentBlock' id='$id' style='display: $displayType;' skilltype='$skillType'>\n";
+		
+		if ($this->displayType == "select")
+		{
+			$output .= "<button class='esovsSkillLineResetAll'>Reset Line</button>";
+			$output .= "<button class='esovsSkillLinePurchaseAll'>Purchase Line</button> ";
+		}
 
 		$output .= "<div class='esovsSkillContentTitle'>".$skillLine."</div>";
 
 		$output .= $this->GetSkillContentHtml_SkillLineType("Ultimate", "ULTIMATES", $skillLine, $skillLineData);
 		$output .= $this->GetSkillContentHtml_SkillLineType("Active",   "SKILLS",    $skillLine, $skillLineData);
 		$output .= $this->GetSkillContentHtml_SkillLineType("Passive",  "PASSIVES",  $skillLine, $skillLineData);
-
-		if ($this->displayType == "select")
-		{
-			$output .= "<button class='esovsSkillLineResetAll'>Reset Line</button>";
-			$output .= "<button class='esovsSkillLinePurchaseAll'>Purchase Line</button> ";
-		}
 		
 		$output .= "</div>\n";
 		return $output;

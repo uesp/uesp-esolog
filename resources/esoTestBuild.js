@@ -10,12 +10,14 @@ ESO_MAX_LEVEL = 50;
 ESO_MAX_CPLEVEL = 16;
 ESO_MAX_EFFECTIVELEVEL = 66;
 
+g_EsoBuildLastInputValues = {};
 
 g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
 g_EsoBuildEnchantData = {};
 g_EsoBuildSetData = {};
 g_EsoBuildToggledSetData = {};
+g_EsoBuildToggledSkillData = {};
 
 g_EsoBuildItemData.Head = {};
 g_EsoBuildItemData.Shoulders = {};
@@ -191,15 +193,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	{
 		statId: "Health",
 		display: '%',
-		match: /Increases your Max Health by ([0-9]+\.?[0-9]*)%/i,
-	},
-	{
-		statId: "PoisonResist",
-		match: /Increases your Poison and Disease Resistance by ([0-9]+)/i,
-	},
-	{
-		statId: "DiseaseResist",
-		match: /Increases your Poison and Disease Resistance by ([0-9]+)/i,
+		match: /^Increases your Max Health by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statId: "PoisonResist",
@@ -223,11 +217,6 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statId: "Health",
 		display: "%",
 		match: /Increases Max Health by ([0-9]+\.?[0-9]*)% and /i,
-	},
-	{
-		statId: "Health",
-		display: "%",
-		match: /Increases your Max Health by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statId: "Magicka",
@@ -507,35 +496,210 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statId: "SpellResist",
 		match: /Increases Spell Resistance by ([0-9]+)/i,
 	},
+	{
+		statRequireId: "ArmorHeavy",
+		statRequireValue: 5,
+		statId: "Constitution",
+		display: "%",
+		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*increases the Magicka or Stamina your Heavy Attacks restore by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		factorSkillLine: "Draconic Power",
+		statId: "HealthRegen",
+		display: "%",
+		match: /WITH DRACONIC POWER ABILITIES SLOTTED[.\s\S]*Increases Health Recovery by ([0-9]+\.?[0-9]*)% for each Draconic Power ability slotted/i
+	},
+	{
+		factorSkillLine: "Assassination",
+		statId: "CritDamage",
+		display: "%",
+		match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*Increases damage dealt by Critical Strikes by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		factorSkillLine: "Shadow",
+		statId: "Health",
+		display: "%",
+		match: /WITH A SHADOW ABILITY SLOTTED[.\s\S]*Each Shadow Ability slotted increases your Max Health by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "SIPHONING",
+		statId: "Magicka",
+		display: "%",
+		match: /WITH SIPHONING ABILITY SLOTTED[.\s\S]*Increases Max Magicka ([0-9]+\.?[0-9]*)% while a Siphoning ability is slotted/i
+	},
+	{
+		requireSkillLine: "DAEDRIC SUMMONING",
+		statId: "HealthRegen",
+		display: "%",
+		match: /WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED[.\s\S]*Increases your Health and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "DAEDRIC SUMMONING",
+		statId: "StaminaRegen",
+		display: "%",
+		match: /WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED[.\s\S]*Increases your Health and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		factorSkillType: "Sorcerer",
+		statId: "SpellDamage",
+		display: "%",
+		match: /Increases Spell Damage and Weapon Damage by ([0-9]+\.?[0-9]*)% for each Sorcerer ability slotted/i
+	},
+	{
+		factorSkillType: "Sorcerer",
+		statId: "WeaponDamage",
+		display: "%",
+		match: /Increases Spell Damage and Weapon Damage by ([0-9]+\.?[0-9]*)% for each Sorcerer ability slotted/i
+	},
+	{
+		requireSkillLine: "AEDRIC SPEAR",
+		statId: "CritDamage",
+		display: "%",
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "AEDRIC SPEAR",
+		statId: "OtherEffects",
+		display: "%",
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "AEDRIC SPEAR",
+		statId: "BlockMitigation",
+		display: "%",
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "Fighters Guild",
+		statId: "WeaponDamage",
+		display: "%",
+		match: /Increases Weapon Damage by ([0-9]+\.?[0-9]*)% for each Fighters Guild ability slotted/i
+	},
+	{
+		requireSkillLine: "Mages Guild",
+		statId: "Magicka",
+		display: "%",
+		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "Mages Guild",
+		statId: "MagickaRegen",
+		display: "%",
+		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		requireSkillLine: "Support",
+		statId: "MagickaRegen",
+		display: "%",
+		match: /Increases Magicka Recovery by ([0-9]+\.?[0-9]*)% for each Support ability slotted/i
+	},
+	{
+		statId: "HealthRegen",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "MagickaRegen",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "StaminaRegen",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "OtherEffect",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Ultimate gains by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "HealingTaken",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases the magnitude of healing effects on Emperors by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "Magicka",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statId: "Stamina",
+		display: "%",
+		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
+	},
+	{
+		statRequireId: "VampireStage",
+		statRequireValue: 2,
+		statId: "StaminaRegen",
+		display: "%",
+		match: /WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER[.\s\S]*Increases your Magicka and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statRequireId: "VampireStage",
+		statRequireValue: 2,
+		statId: "MagickaRegen",
+		display: "%",
+		match: /WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER[.\s\S]*Increases your Magicka and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statRequireId: "VampireStage",
+		statRequireValue: 2,
+		statId: "HealthRegen",
+		display: "%",
+		statValue: "25",
+		match: /Reduces the severity of the Health Recovery determent in Vampirism stages 2 through 4/i
+	},
+	{
+		statRequireId: "Werewolf",
+		statRequireValue: 1,
+		statId: "OtherEffects",
+		display: "%",
+		match: /WHILE IN WEREWOLF FORM[.\s\S]*Increases the amount of Stamina your heavy attacks restore by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statRequireId: "Werewolf",
+		statRequireValue: 1,
+		statId: "WeaponDamage",
+		display: "%",
+		match: /WHILE IN WEREWOLF FORM[.\s\S]*Increases Weapon Damage by ([0-9]+\.?[0-9]*)%/i
+	},
 	
-		// Heavy Armor
-	//WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED Gain 20 Weapon and Spell Damage for 6 seconds when you take damage, stacking up to 10 times.
-	//WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED increases the Magicka or Stamina your Heavy Attacks restore by 50%.
+		/* Begin Toggled Passives */
+	{
+		statRequireId: "ArmorHeavy",
+		statRequireValue: 5,
+		statId: "WeaponDamage",
+		toggle: true,
+		enable: false,
+		maxTimes: 10,
+		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[.\s\S]*Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
+	},
+	
+	
+		/* Begin Other Effects */
 	
 		// Dragonknight
 	//Increases the damage of Fiery Breath, Searing Strike, and Dragonknight Standard abilities by 3% and the duration by 2 seconds.
 	//Increases the damage of Flame and Poison area of effect abilities by 6%.
 	//WHILE USING DRACONIC POWER ABILITIES Increases healing received by 12% while a Draconic Power ability is active
-	//WITH DRACONIC POWER ABILITIES SLOTTED Increases Health Recovery by 5% for each Draconic Power ability slotted.
 	
 		// Nightblade
 	//Increases Weapon and Spell Damage while invisible or stealthed by 10%. The stun from the Crouch ability stuns for 100% longer.
-	//WITH AN ASSASSINATION ABILITY SLOTTED Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted. Current bonus: 0.
-	//WITH AN ASSASSINATION ABILITY SLOTTED Increases damage dealt by Critical Strikes by 10%.
+	//WITH AN ASSASSINATION ABILITY SLOTTED Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted. Current bonus: 0
 	//Activating a Shadow ability grants Major Resolve and Major Ward, increasing Physical Resistance and Spell Resistance by 5280 for 4 seconds. This duration is increased for each piece of Heavy Armor equipped. Current Bonus: (25 * HEAVYARMOR)%
-	//WITH A SHADOW ABILITY SLOTTED Each Shadow Ability slotted increases your Max Health by 3%. Current bonus: 0%.
-	//WITH SIPHONING ABILITY SLOTTED Increases Max Magicka 8% while a Siphoning ability is slotted.
 	//WHILE USING SIPHONING ABILITIES Increases the effectiveness of your Healing done by 3% for each Siphoning ability slotted. Current bonus: 0%.
 	
 		// Sorcerer
-	//WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED Increases your Health and Stamina Recovery by 20% when a Daedric Summoning ability is slotted.
 	//Increases your Max Health by 8% if you have a Daedric Summoning pet active.
-	//Increases your Physical and Shock Damage by 5%.
-	//Increases Spell Damage and Weapon Damage by 2% for each Sorcerer ability slotted. Current value: 0%.	
+	//Increases your Physical and Shock Damage by 5%.		
 	
 		// Templar
-	//WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED Increases the damage bonus for your critical strikes by 10% and your damage against blocking targets by 10%.
-	//WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED Increases the amount of damage you can block against melee attacks by 15%.
 	//Gives you a 25% chance to cause an extra 1803 Damage any time you hit with an Aedric Spear ability. Deals Physical Damage and scales with Weapon Damage, or deals Magic Damage and scales with Spell Damage, based on whichever is higher.
 	
 		// Restoration Staff
@@ -580,28 +744,8 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	//Increases your damage with melee weapon attacks by 4%.
 	//Restores 361 Stamina whenever you damage an enemy with a melee attack. This can happen no more than once every 3 seconds.
 	
-		// Fighters Guild
-	//Increases Weapon Damage by 3% for each Fighters Guild ability slotted.
 	
-		// Mages Guild
-	//WITH A MAGES GUILD ABILITY SLOTTED Increases your Max Magicka and your Magicka Recovery by 2% for each Mages Guild ability slotted.
-	
-		// Vampire
-	//WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER Increases your Magicka and Stamina Recovery by 10%.
-	//Reduces the severity of the Health Recovery determent in Vampirism stages 2 through 4.
-	
-		// Werewolf
-	//WHILE IN WEREWOLF FORM Increases the amount of Stamina your heavy attacks restore by 100%.
-	//WHILE IN WEREWOLF FORM Increases Weapon Damage by 18%.
-	
-		// Support
-	//Increases Magicka Recovery by 10% for each Support ability slotted.
-	
-		// Emperor
-	//WHILE EMPEROR Increases Health, Magicka, and Stamina recovery in combat by 100% while in your campaign.
-	//WHILE EMPEROR Increases Ultimate gains by 100% while in your campaign.
-	//WHILE EMPEROR Increases the magnitude of healing effects on Emperors by 50% while in your campaign.
-	//WHILE EMPEROR Increases Health, Magicka, and Stamina by 75% while in your campaign.
+
 ];
 
 
@@ -1293,6 +1437,8 @@ function GetEsoInputValues(mergeComputedStats)
 	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
 	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
 	
+	GetEsoInputSpecialValues(inputValues);
+	
 	GetEsoInputItemValues(inputValues, "Head");
 	GetEsoInputItemValues(inputValues, "Shoulders");
 	GetEsoInputItemValues(inputValues, "Chest");
@@ -1349,7 +1495,68 @@ function GetEsoInputValues(mergeComputedStats)
 		}
 	}
 	
+	g_EsoBuildLastInputValues = inputValues;
 	return inputValues;
+}
+
+
+function GetEsoInputSpecialValues(inputValues)
+{
+	inputValues.VampireStage = parseInt($("#esotbVampireStage").val());
+	
+	if (inputValues.VampireStage > 0)
+	{
+		var healthRegenValue = 0;
+		var flameDamageValue = 0;
+		var costReduction = 0;
+		
+		if (inputValues.VampireStage == 1)
+		{
+			healthRegenValue = 0;
+			flameDamageValue = 0;
+			costReduction = 0;
+		}
+		else if (inputValues.VampireStage == 2)
+		{
+			healthRegenValue = -0.25;
+			flameDamageValue = -0.15;
+			costReduction = 0.07;
+		}
+		else if (inputValues.VampireStage == 3)
+		{
+			healthRegenValue = -0.50;
+			flameDamageValue = -0.20;
+			costReduction = 0.14;
+		}
+		else if (inputValues.VampireStage == 4)
+		{
+			healthRegenValue = -0.75;
+			flameDamageValue = -0.25;
+			costReduction = 0.21;
+		}
+		
+		if (healthRegenValue != 0)
+		{
+			inputValues.Skill.HealthRegen += healthRegenValue;
+			//AddEsoItemRawOutput(itemData, "Skill.HealthRegen", healthRegenValue);
+			AddEsoInputStatSource("Skill.HealthRegen", { source: "Vampire Stage " + inputValues.VampireStage , value: healthRegenValue });
+		}
+		
+		if (flameDamageValue != 0)
+		{
+			inputValues.Skill.FireDamageResist += flameDamageValue;
+			//AddEsoItemRawOutput(itemData, "Skill.FireDamageResist", flameDamageValue);
+			AddEsoInputStatSource("Skill.FireDamageResist", { source: "Vampire Stage " + inputValues.VampireStage , value: flameDamageValue });
+		}
+		
+		if (costReduction != 0)
+		{
+			//AddEsoItemRawOutput(itemData, "OtherEffects", costReduction);
+			AddEsoInputStatSource("OtherEffects", { other: true, source: "Vampire Stage " + inputValues.VampireStage , value: "Reduce cost of Vampire abilities by " + (costReduction*100) + "%" });
+		}
+	}
+	
+	if ($("#esotbWerewolf").is(":checked"))	inputValues.Werewolf = parseInt($("#esotbWerewolf").val());
 }
 
 
@@ -1513,9 +1720,23 @@ function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 		var matches = rawDesc.match(matchData.match);
 		if (matches == null) continue;
 		
-		var statValue = parseFloat(matches[1]);
+		var statValue = 0;
+		var statFactor = 1;
 		
-		//console.log("Match", matchData);
+		if (matches[1] != null ) statValue = parseFloat(matches[1]);
+		if (matchData.statValue != null) statValue = matchData.statValue;
+		
+		if (matchData.requireSkillLine != null)
+		{
+			var count = CountEsoBarSkillsWithSkillLine(matchData.requireSkillLine);
+			if (count == 0) continue;
+		}
+		
+		if (matchData.requireSkillType != null)
+		{
+			var count = CountEsoBarSkillsWithSkillType(matchData.requireSkillType);
+			if (count == 0) continue;
+		}
 		
 		if (matchData.statRequireId != null)
 		{
@@ -1524,9 +1745,17 @@ function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 			if (parseFloat(requiredStat) < parseFloat(matchData.statRequireValue)) continue;
 		}
 		
-		var statFactor = 1;
-		
-		if (matchData.factorStatId != null)
+		if (matchData.factorSkillLine != null)
+		{
+			var count = CountEsoBarSkillsWithSkillLine(matchData.factorSkillLine);
+			statFactor = count;
+		}
+		else if (matchData.factorSkillType != null)
+		{
+			var count = CountEsoBarSkillsWithSkillType(matchData.factorSkillType);
+			statFactor = count;
+		}
+		else if (matchData.factorStatId != null)
 		{
 			var factorStat = inputValues[matchData.factorStatId];
 			if (factorStat != null) statFactor = parseFloat(factorStat);
@@ -1543,8 +1772,6 @@ function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 		inputValues[category][matchData.statId] += statValue;
 		//AddEsoItemRawOutput(itemData, category + "." + matchData.statId, statValue);
 		AddEsoInputStatSource(category + "." + matchData.statId, { passive: g_SkillsData[skillData.abilityId], value: statValue });
-		
-		//console.log("PassiveSkill", skillData, rawDesc);
 	}
 	
 }
@@ -2562,6 +2789,28 @@ function OnEsoClassChange(e)
 }
 
 
+function OnEsoVampireChange(e)
+{
+	if ($("#esotbVampireStage").val() > 0)
+	{
+		$("#esotbWerewolf").prop("checked", false);
+	}
+	
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoWerewolfChange(e)
+{
+	if ($("#esotbWerewolf").is(":checked"))
+	{
+		$("#esotbVampireStage").val("0");
+	}
+	
+	UpdateEsoComputedStatsList();
+}
+
+
 function OnEsoMundusChange(e)
 {
 	UpdateEsoComputedStatsList();
@@ -3197,7 +3446,7 @@ function OnEsoEnchantDataError(xhr, status, errorMsg)
 }
 
 
-function OnEsoWeaponSelect1(e)
+function OnEsoWeaponBarSelect1()
 {
 	SetEsoBuildActiveWeaponBar(1);
 	SetEsoBuildActiveSkillBar(1);
@@ -3205,10 +3454,10 @@ function OnEsoWeaponSelect1(e)
 }
 
 
-function OnEsoWeaponSelect2(e)
+function OnEsoWeaponBarSelect2()
 {
-	SetEsoBuildActiveWeaponBar(1);
-	SetEsoBuildActiveSkillBar(1);
+	SetEsoBuildActiveWeaponBar(2);
+	SetEsoBuildActiveSkillBar(2);
 	UpdateEsoComputedStatsList();
 }
 
@@ -3755,29 +4004,35 @@ function SetEsoBuildActiveWeaponBar(barIndex)
 {
 	if (barIndex == 1)
 	{
-		$("#esotbWeaponSelect1").addClass("esotbWeaponSelect");
-		$("#esotbItemMainHand1").addClass("esotbWeaponSelect");
-		$("#esotbItemOffHand1").addClass("esotbWeaponSelect");
-		$("#esotbItemPoison1").addClass("esotbWeaponSelect");
+		$("#esotbWeaponBar1").addClass("esotbWeaponSelect");
+		$("#esotbWeaponBar2").removeClass("esotbWeaponSelect");
+		
+		//$("#esotbWeaponSelect1").addClass("esotbWeaponSelect");
+		//$("#esotbItemMainHand1").addClass("esotbWeaponSelect");
+		//$("#esotbItemOffHand1").addClass("esotbWeaponSelect");
+		//$("#esotbItemPoison1").addClass("esotbWeaponSelect");
 			
-		$("#esotbWeaponSelect2").removeClass("esotbWeaponSelect");
-		$("#esotbItemMainHand2").removeClass("esotbWeaponSelect");
-		$("#esotbItemOffHand2").removeClass("esotbWeaponSelect");
-		$("#esotbItemPoison2").removeClass("esotbWeaponSelect");
+		//$("#esotbWeaponSelect2").removeClass("esotbWeaponSelect");
+		//$("#esotbItemMainHand2").removeClass("esotbWeaponSelect");
+		//$("#esotbItemOffHand2").removeClass("esotbWeaponSelect");
+		//$("#esotbItemPoison2").removeClass("esotbWeaponSelect");
 		
 		g_EsoBuildActiveWeapon = barIndex;
 	}
 	else if (barIndex == 2)
 	{
-		$("#esotbWeaponSelect1").removeClass("esotbWeaponSelect");
-		$("#esotbItemMainHand1").removeClass("esotbWeaponSelect");
-		$("#esotbItemOffHand1").removeClass("esotbWeaponSelect");
-		$("#esotbItemPoison1").removeClass("esotbWeaponSelect");
+		$("#esotbWeaponBar1").removeClass("esotbWeaponSelect");
+		$("#esotbWeaponBar2").addClass("esotbWeaponSelect");
+		
+		//$("#esotbWeaponSelect1").removeClass("esotbWeaponSelect");
+		///$("#esotbItemMainHand1").removeClass("esotbWeaponSelect");
+		//$("#esotbItemOffHand1").removeClass("esotbWeaponSelect");
+		//$("#esotbItemPoison1").removeClass("esotbWeaponSelect");
 			
-		$("#esotbWeaponSelect2").addClass("esotbWeaponSelect");
-		$("#esotbItemMainHand2").addClass("esotbWeaponSelect");
-		$("#esotbItemOffHand2").addClass("esotbWeaponSelect");
-		$("#esotbItemPoison2").addClass("esotbWeaponSelect");
+		//$("#esotbWeaponSelect2").addClass("esotbWeaponSelect");
+		//$("#esotbItemMainHand2").addClass("esotbWeaponSelect");
+		//$("#esotbItemOffHand2").addClass("esotbWeaponSelect");
+		//$("#esotbItemPoison2").addClass("esotbWeaponSelect");
 		
 		g_EsoBuildActiveWeapon = barIndex;
 	}
@@ -3804,6 +4059,58 @@ function OnEsoBuildSkillUpdate(e)
 }
 
 
+function OnEsoBuildSkillBarUpdate(e)
+{
+	UpdateEsoComputedStatsList();
+}
+
+
+function CountEsoBarSkillsWithSkillLine(skillLine)
+{
+	var skillBar = g_EsoSkillBarData[g_EsoBuildActiveWeapon - 1];
+	var count = 0;
+	
+	if (skillBar == null) return 0;
+	skillLine = skillLine.toUpperCase();
+	
+	for (var i = 0; i < skillBar.length; ++i)
+	{
+		var skillId = skillBar[i].skillId;
+		if (skillId == null || skillId <= 0) continue;
+		
+		var skillData = g_SkillsData[skillId];
+		if (skillData == null) continue;
+		
+		if (skillData.skillLine.toUpperCase() == skillLine) ++count;
+	}
+	
+	return count;
+}
+
+
+function CountEsoBarSkillsWithSkillType(skillType)
+{
+	var skillBar = g_EsoSkillBarData[g_EsoBuildActiveWeapon - 1];
+	var count = 0;
+	
+	if (skillBar == null) return 0;
+	skillType = skillType.toUpperCase();
+	
+	for (var i = 0; i < skillBar.length; ++i)
+	{
+		var skillId = skillBar[i].skillId;
+		if (skillId == null || skillId <= 0) continue;
+		
+		var skillData = g_SkillsData[skillId];
+		if (skillData == null) continue;
+		
+		if (skillData.skillTypeName.substr(0, skillType.length).toUpperCase() == skillType) ++count;
+	}
+	
+	return count;
+}
+
+
 function esotbOnDocReady()
 {
 	GetEsoSkillInputValues = GetEsoTestBuildSkillInputValues;
@@ -3813,6 +4120,8 @@ function esotbOnDocReady()
 		
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
+	$("#esotbVampireStage").change(OnEsoVampireChange)
+	$("#esotbWerewolf").change(OnEsoWerewolfChange)
 	$("#esotbMundus").change(OnEsoMundusChange)
 	$("#esotbMundus2").change(OnEsoMundusChange)
 	$("#esotbCPTotalPoints").change(OnEsoCPTotalPointsChange);
@@ -3836,11 +4145,13 @@ function esotbOnDocReady()
 	
 	$(".esotbItemDetailsButton").click(OnEsoItemDetailsClick);
 	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);
-	$("#esotbWeaponSelect1").click(OnEsoWeaponSelect1);
-	$("#esotbWeaponSelect2").click(OnEsoWeaponSelect2);
+	
+	$("#esotbWeaponBar1").click(OnEsoWeaponBarSelect1);
+	$("#esotbWeaponBar2").click(OnEsoWeaponBarSelect2);
 	
 	$(document).on("EsoSkillBarSwap", OnEsoBuildSkillBarSwap);
 	$(document).on("EsoSkillUpdate", OnEsoBuildSkillUpdate);
+	$(document).on("EsoSkillBarUpdate", OnEsoBuildSkillBarUpdate);
 	
 	$(document).keyup(function(e) {
 	    if (e.keyCode == 27) OnEsoBuildEscapeKey(e);
