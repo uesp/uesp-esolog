@@ -3986,7 +3986,7 @@ function CreateEsoBuildToggledSetData()
 		g_EsoBuildToggledSetData[id].id = id;
 		g_EsoBuildToggledSetData[id].setBonusCount = setEffectData.setBonusCount;
 		g_EsoBuildToggledSetData[id].desc = "";
-		g_EsoBuildToggledSetData[id].valid = true;
+		g_EsoBuildToggledSetData[id].valid = false;
 		g_EsoBuildToggledSetData[id].enabled = setEffectData.enabled;
 		g_EsoBuildToggledSetData[id].statIds.push(setEffectData.statId);
 		
@@ -4086,7 +4086,6 @@ function UpdateEsoBuildToggledSkillData(inputValues)
 		}
 		
 		toggleSkillData.valid = true;
-		//toggleSkillData.desc = FindMatchingEsoPassiveSkillDescription(toggleSkillData.matchData);
 		toggleSkillData.desc = GetEsoSkillDescription(abilityData.abilityId, g_LastSkillInputValues, false, true);
 		
 		var checkElement = $(".esotbToggledSkillItem[skillid=\"" + skillId + "\"]").find(".esotbToggleSkillCheck");
