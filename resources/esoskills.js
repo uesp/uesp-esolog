@@ -15,6 +15,20 @@ var g_EsoSkillPointsUsed = 0;
 var g_EsoSkillUpdateEnable = true;
 
 
+ESO_SKILL_TYPES = {
+		0 : "",
+		1 : "Class",
+		2 : "Weapon",
+		3 : "Armor",
+		4 : "World",
+		5 : "Guild",
+		6 : "Alliance War",
+		7 : "Racial",
+		8 : "Craft",
+		9 : "Champion",	
+};
+
+
 var RAWDATA_KEYS = 
 [
  		"abilityId",
@@ -1724,6 +1738,8 @@ function UpdateEsoSkillBarData()
 	UpdateEsoSkillBarSkill(2, 4);
 	UpdateEsoSkillBarSkill(2, 5);
 	UpdateEsoSkillBarSkill(2, 6);
+	
+	$(document).trigger("EsoSkillBarUpdate");
 }
 
 

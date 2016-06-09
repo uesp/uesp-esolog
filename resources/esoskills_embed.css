@@ -717,8 +717,10 @@
 .esovsSkillLinePurchaseAll {
 	float: right;
 	margin-right: 20px;
+	margin: 10px;
 }
 
 .esovsSkillLineResetAll {
 	float: right;
+    margin: 10px;
 }

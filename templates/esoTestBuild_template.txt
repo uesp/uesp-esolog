@@ -42,10 +42,9 @@ displayed statistics is unknown.
 			</div>
 			<div id="esotbClassList">
 				<div class="esotbStatLabel">Class</div> <select id="esotbClass" name="esotbClass" statid="Class">{classList}</select>
-			</div>
+			</div><br/>
 			<div id="esotbMundusList">
-				<div class="esotbStatLabel">Mundus</div> <select id="esotbMundus"  name="esotbMundus"  statid="Mundus.Name" >{mundusList}</select>
-				<br/>
+				<div class="esotbStatLabel">Mundus</div> <select id="esotbMundus" name="esotbMundus" statid="Mundus.Name">{mundusList}</select>
 				<div class="esotbStatLabel">Mundus #2</div> <select id="esotbMundus2" name="esotbMundus2" statid="Mundus.Name2" disabled>{mundusList}</select>
 				For Twice-Born Star builds
 			</div>
@@ -53,6 +52,14 @@ displayed statistics is unknown.
 			<div class="esotbStatLabel">Level</div> <input id="esotbLevel" class="esotbLevelInput esotbInputValue" statid="Level" type="number" size="2" value="50"><br/>
 			<div class="esotbStatLabel">Total CPs</div> <input id="esotbCPTotalPoints" class="esotbLevelInput esotbInputValue" statid="CP.TotalPoints" type="number" size="2" value="160"><br/>
 			<div class="esotbStatLabel">Effective Level</div> <div id="esotbEffectiveLevel" class="esotbInputValueRO" statid="EffectiveLevel">66</div><br/>
+			<div class="esotbStatLabel">Vampire Stage</div> <select id="esotbVampireStage" name="esotbVampireStage" statid="VampireStage">
+				<option value="0">none</option>
+				<option value="1">Stage 1</option>
+				<option value="2">Stage 2</option>
+				<option value="3">Stage 3</option>
+				<option value="4">Stage 4</option>
+			</select><br/>
+			<div class="esotbStatLabel">Werewolf</div> <input id="esotbWerewolf" class="esotbInputValue" statid="Werewolf" type="checkbox" value="1"><br/>
 			<p>
 			<div id="esotbAttributes">
 				<div class="esotbAttrTitle">Attributes <div id="esotbAttrTotal" statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div></div>
@@ -152,46 +159,48 @@ displayed statistics is unknown.
 					<div class="esotbItemEnchantButton">*</div>
 				</div>
 				<hr>
-				<div class="esotbItemSlotLabel">Weapon 1</div>
-				<div class="esotbItem esotbWeaponSelect" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
-					<img class="esotbItemIcon eso_item_link" src="{gearIconMainHand1}">
-					<div class="esotbItemLabel"></div>
-					<div class="esotbItemDetailsButton">...</div>
-					<div class="esotbItemEnchantButton">*</div>
+				<div id="esotbWeaponBar1" class="esotbWeaponSelect">
+					<div class="esotbItemSlotLabel">Weapon 1</div>
+					<div class="esotbItem" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
+						<img class="esotbItemIcon eso_item_link" src="{gearIconMainHand1}">
+						<div class="esotbItemLabel"></div>
+						<div class="esotbItemDetailsButton">...</div>
+						<div class="esotbItemEnchantButton">*</div>
+					</div>
+					<div class="esotbItem" id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1" weapontype="-1">
+						<img class="esotbItemIcon eso_item_link" src="{gearIconOffHand1}">
+						<div class="esotbItemLabel"></div>
+						<div class="esotbItemDetailsButton">...</div>
+						<div class="esotbItemEnchantButton">*</div>
+					</div>
+					<div class="esotbItem" id="esotbItemPoison1" slotid="Poison1" equiptype="15" itemtype="30">
+						<img class="esotbItemIcon eso_item_link" src="{gearIconPoison1}">
+						<div class="esotbItemLabel"></div>
+						<div class="esotbItemDetailsButton">...</div>
+					</div>
 				</div>
-				<div class="esotbItem esotbWeaponSelect" id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1" weapontype="-1">
-					<img class="esotbItemIcon eso_item_link" src="{gearIconOffHand1}">
-					<div class="esotbItemLabel"></div>
-					<div class="esotbItemDetailsButton">...</div>
-					<div class="esotbItemEnchantButton">*</div>
-				</div>
-				<div class="esotbItem esotbWeaponSelect" id="esotbItemPoison1" slotid="Poison1" equiptype="15" itemtype="30">
-					<img class="esotbItemIcon eso_item_link" src="{gearIconPoison1}">
-					<div class="esotbItemLabel"></div>
-					<div class="esotbItemDetailsButton">...</div>
-				</div>
-				<button class="esotbWeaponSelect" id="esotbWeaponSelect1">Select</button>
 				<br/>
 				
-				<div class="esotbItemSlotLabel">Weapon 2</div>
-				<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1" weapontype="-1">
-					<img class="esotbItemIcon eso_item_link" src="{gearIconMainHand2}">
-					<div class="esotbItemLabel"></div>
-					<div class="esotbItemDetailsButton">...</div>
-					<div class="esotbItemEnchantButton">*</div>
+				<div id="esotbWeaponBar2" class="">
+					<div class="esotbItemSlotLabel">Weapon 2</div>
+					<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1" weapontype="-1">
+						<img class="esotbItemIcon eso_item_link" src="{gearIconMainHand2}">
+						<div class="esotbItemLabel"></div>
+						<div class="esotbItemDetailsButton">...</div>
+						<div class="esotbItemEnchantButton">*</div>
+					</div>
+					<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1" weapontype="-1">
+						<img class="esotbItemIcon eso_item_link" src="{gearIconOffHand2}">
+						<div class="esotbItemLabel"></div>
+						<div class="esotbItemDetailsButton">...</div>
+						<div class="esotbItemEnchantButton">*</div>
+					</div>
+					<div class="esotbItem " id="esotbItemPoison2" slotid="Poison2" equiptype="15" itemtype="30">
+						<img class="esotbItemIcon eso_item_link" src="{gearIconPoison2}">
+						<div class="esotbItemLabel"></div>
+						<div class="esotbItemDetailsButton">...</div>
+					</div>
 				</div>
-				<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1" weapontype="-1">
-					<img class="esotbItemIcon eso_item_link" src="{gearIconOffHand2}">
-					<div class="esotbItemLabel"></div>
-					<div class="esotbItemDetailsButton">...</div>
-					<div class="esotbItemEnchantButton">*</div>
-				</div>
-				<div class="esotbItem " id="esotbItemPoison2" slotid="Poison2" equiptype="15" itemtype="30">
-					<img class="esotbItemIcon eso_item_link" src="{gearIconPoison2}">
-					<div class="esotbItemLabel"></div>
-					<div class="esotbItemDetailsButton">...</div>
-				</div>
-				<button class="" id="esotbWeaponSelect2">Select</button>
 				<hr>				
 				<div class="esotbItemSlotLabel" style="display: inline-block">Food/Drink</div>
 				<div class="esotbItem " id="esotbItemFood" slotid="Food" itemtype="4,12">

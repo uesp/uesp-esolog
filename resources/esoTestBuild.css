@@ -598,6 +598,12 @@ a:hover {
 	background-color: #99ffff;
 }
 
+#esotbWeaponBar1:hover,
+#esotbWeaponBar2:hover {
+	cursor: pointer;
+	background-color: #ffff99;
+}
+
 button.esotbWeaponSelect {
 	background-color: #ccc;
 	opacity: 0.65; 
@@ -739,3 +745,9 @@ button.esotbWeaponSelect {
 	cursor: move;
 }
 /* End of Skills override */
+
+
+#esotbRaceList,
+#esotbClassList {
+	display: inline-block;
+}

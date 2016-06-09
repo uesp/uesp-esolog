@@ -3,6 +3,7 @@ var UESP = UESP || {};
 
 UESP.esoItemSearchPopup = null;
 
+
 UESP.ESO_EQUIP_TYPES = {
 		"-1" : "",
 		"0"  : "",
