@@ -561,6 +561,7 @@
 	right: 0px;
 	top: 0px;
 	padding: 7px;
+	z-index: 10;
 }
 
 #esovsSearchBlockFloat {
@@ -578,7 +579,7 @@
 .esovsLinkBlock {
 	float: right;
 	background-color: #FBEFD5;
-	position: fixed;
+	position: absolute;
 	right: 350px;
 	top: 0px;
 	padding: 7px;

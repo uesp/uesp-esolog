@@ -61,8 +61,177 @@ g_EsoInputStatSources = {};
 
 
 	// Buffs
-// Major Resolve and Major Ward
-// Minor Savagery
+// Major Resolve and Major Ward 5280
+// Minor Ward 1320
+// Major Savagery 2191
+// Minor Savagery 
+// Major Fortitude +20% HR
+// Major Intellect +20% MR
+// Major Endurance +20% SR
+// Minor Endurance +10 %SR 
+// Major Expedition +30%
+// Major Prophecy 2191
+// Major Vitality +30% Healing Received
+// Minor Vitality +8% Healing Received
+// Major Empower +20% Damage
+// Major Evasion +20% Dodge
+// Major Fracture/Breach -5280
+// Minor Berserk +8% Damage
+// Major Protection -30% Damage
+// Minor Maim -15% damage done
+// Major Defile -30% Healing Received
+// Minor Heroism 1 Ult/1.5secs for 9 secs
+// Increases your Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i
+
+
+ESO_ACTIVEEFFECT_MATCHES = [
+
+    {
+		statId: "BlockMitigation",
+		display: "%",
+		match: /While slotted, the amount of damage you can block is increased by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statId: "BlockCost",
+		display: "%",
+		match: /the cost of blocking is reduced by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statId: "BreakFreeCost",
+		display: "%",
+		match: /While slotted, the Stamina cost of breaking free from a disabling effect is reduced for each piece of Heavy Armor equipped.[\s]*Current Bonus: ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statId: "StaminaRegen",
+		display: "%",
+		match: /While slotted, your Stamina Recovery is increased by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statId: "WeaponDamage",
+		display: "%",
+		match: /While slotted, your weapon damage is increased by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statId: "Magicka",
+		display: "%",
+		match: /While slotted, your Max Magicka is increased by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		statId: "Health",
+		display: "%",
+		match: /While slotted, your Max Health is increased by ([0-9]+\.?[0-9]*)%/i
+	},
+	
+		/* Begin Other Effects */
+	{
+		statId: "OtherEffects",
+		display: "%",
+		rawInputMatch: /(While slotted, blocking any attack increases the damage of your next Power Slam by [0-9]+\.?[0-9]*% for [0-9]+ seconds)/i,
+		match: /While slotted, blocking any attack increases the damage of your next Power Slam by ([0-9]+\.?[0-9]*)% for [0-9]+ seconds/i
+	},
+	{
+		statId: "OtherEffects",
+		rawInputMatch: /(While slotted, your Spell and Weapon Damage is increased by [0-9]+ for Ardent Flame abilities)/i,
+		match: /While slotted, your Spell and Weapon Damage is increased by ([0-9]+) for Ardent Flame abilities/i
+	},
+	{
+		statId: "OtherEffects",
+		rawInputMatch: /(While slotted, any time you kill an enemy you gain [0-9]+ Ultimate\.)/i,
+		match: /While slotted, any time you kill an enemy you gain ([0-9]+) Ultimate/i
+	},
+	{
+		statId: "OtherEffects",
+		rawInputMatch: /(While slotted, your movement speed while stealthed or invisible is increased\.)/i,
+		match: /While slotted, your movement speed while stealthed or invisible is increased/i
+	},
+	{
+		statId: "OtherEffects",
+		rawInputMatch: /(You also prevent the stun and reduce the damage from stealth attacks by [0-9]+% for you and nearby allies\.)/i,
+		match: /You also prevent the stun and reduce the damage from stealth attacks by ([0-9]+)% for you and nearby allies/i
+	},
+	{
+		statId: "OtherEffects",
+		rawInputMatch: /(You also recover ([0-9]+) Magicka every 0\.5 seconds\.)/i,
+		match: /You also recover ([0-9]+) Magicka every 0\.5 seconds/i
+	},
+		/* End Other Effects */
+	
+	
+		/* Begin Toggled Abilities */
+	{
+		id: "Leeching Strikes",
+		matchSkillName: true,
+		baseSkillId: 37977,
+		statId: "OtherEffects",
+		toggle: true,
+		enable: false,
+		rawInputMatch: /(Imbue your weapons with soul-stealing power, causing your Light and Heavy Attacks to restore [0-9]+ Magicka, [0-9]+ Stamina, and [0-9]+\.?[0-9]*% of your Max Health while toggled\.)/i,
+		match: /Imbue your weapons with soul-stealing power, causing your Light and Heavy Attacks to restore [0-9]+ Magicka, [0-9]+ Stamina, and ([0-9]+\.?[0-9]*)% of your Max Health while toggled/i
+	},
+	{
+		id: "Leeching Strikes",
+		matchSkillName: true,
+		baseSkillId: 37977,
+		statId: "WeaponDamage",
+		toggle: true,
+		enable: false,
+		factorValue: -1,
+		display: "%",
+		match: /Leeching Strikes also reduces your Weapon Power and Spell Power by ([0-9]+\.?[0-9]*)% while toggled/i
+	},
+	{
+		id: "Leeching Strikes",
+		matchSkillName: true,
+		baseSkillId: 37977,
+		statId: "SpellDamage",
+		toggle: true,
+		enable: false,
+		factorValue: -1,
+		display: "%",
+		match: /Leeching Strikes also reduces your Weapon Power and Spell Power by ([0-9]+\.?[0-9]*)% while toggled/i
+	},
+	{
+		id: "Bound Armor",
+		//matchSkillName: true,
+		baseSkillId: 30418,
+		statId: "Magicka",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /The armor also increases your Max Magicka by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		id: "Bound Armor",
+		//matchSkillName: true,
+		baseSkillId: 30418,
+		statId: "HADamage",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /The armor also increases your damage with Heavy Attacks by ([0-9]+\.?[0-9]*)% and increases your Max Stamina by [0-9]+\.?[0-9]*%/i
+	},
+	{
+		id: "Bound Armor",
+		//matchSkillName: true,
+		baseSkillId: 30418,
+		statId: "Stamina",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /The armor also increases your damage with Heavy Attacks by [0-9]+\.?[0-9]*% and increases your Max Stamina by ([0-9]+\.?[0-9]*)%/i
+	},
+		/* End Toggled Abilities */
+	
+	
+    	// Buffs
+	// While slotted, you gain Major Prophecy and Major Savagery
+	// While slotted, you gain Major Prophecy
+	// While slotted you gain Minor Vitality
+	// While slotted gain Major Savagery
+	// While slotted, you gain Major Prophecy,
+	// While slotted, your Max Magicka is increased by 5% and you gain Major Prophecy,
+	// While slotted, you gain Minor Fortitude, Minor Endurance, and Minor Intellect,
+];
 
 
 ESO_PASSIVEEFFECT_MATCHES = [
@@ -449,7 +618,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /Increases your Weapon Damage by ([0-9]+\.?[0-9]*)% and /i,
 	},
 	{
-		statId: "WeaponDamage",
+		statId: "SpellResist",
 		match: /and your Spell Resistance by ([0-9]+)/i,
 	},
 	{
@@ -612,19 +781,19 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "CritDamage",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*?Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN  ABILITY IS SLOTTED[\s]*?Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "OtherEffects",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*?your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN  ABILITY IS SLOTTED[\s\S]*?your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "AEDRIC SPEAR",
-		statId: "BlockMitigation",
+		statId: "BlockMeleeMitigation",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*?Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s]*?Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "Fighters Guild",
@@ -1468,6 +1637,10 @@ ESO_ENCHANT_WEAPON_MATCHES = [
 		statId: "OtherEffects",
 		match: /Reduce target Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i,
 	},
+	{
+		statId: "OtherEffects",		// Added to buffs
+		match: /Increases your Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i,
+	},
 ];
 
 
@@ -1514,6 +1687,7 @@ ESO_ABILITYDESC_MATCHES = [
 function GetEsoInputValues(mergeComputedStats)
 {
 	console.log("GetEsoInputValues");
+	
 	var inputValues = {};
 	if (mergeComputedStats == null) mergeComputedStats = false;
 	
@@ -1603,8 +1777,9 @@ function GetEsoInputValues(mergeComputedStats)
 	GetEsoInputTargetValues(inputValues);
 	
 	UpdateEsoBuildToggledSkillData(inputValues);
+	UpdateEsoTestBuildSkillInputValues(inputValues);
 	GetEsoInputSkillPassives(inputValues);
-	//GetEsoInputSkillActiveBar(inputValues);
+	GetEsoInputSkillActiveBar(inputValues);
 	
 	GetEsoInputMiscValues(inputValues);
 	
@@ -1766,9 +1941,15 @@ function GetEsoEnchantData(slotId)
 	if (g_EsoBuildEnchantData[slotId] == null) return null;
 	
 	if ($.isEmptyObject(g_EsoBuildEnchantData[slotId]))
+	{
 		itemData = g_EsoBuildItemData[slotId];
+		enchantData.isDefaultEnchant = true;
+	}
 	else
+	{
 		itemData = g_EsoBuildEnchantData[slotId];
+		enchantData.isDefaultEnchant = false;
+	}
 	
 	if (itemData == null) return null;
 	
@@ -1818,7 +1999,6 @@ function GetEsoInputAbilityDescValues(inputValues, outputId, itemData, slotId)
 
 function GetEsoInputSkillPassives(inputValues)
 {
-	UpdateEsoTestBuildSkillInputValues(inputValues);
 	var skillInputValues = GetEsoTestBuildSkillInputValues();
 	
 	for (var skillId in g_EsoSkillPassiveData)
@@ -1826,6 +2006,145 @@ function GetEsoInputSkillPassives(inputValues)
 		GetEsoInputSkillPassiveValues(inputValues, skillInputValues, g_EsoSkillPassiveData[skillId]);	
 	}
 	
+}
+
+
+function GetEsoInputSkillActiveBar(inputValues)
+{
+	var skillInputValues = GetEsoTestBuildSkillInputValues();
+	
+	for (var skillId in g_EsoSkillActiveData)
+	{
+		GetEsoInputSkillActiveValues(inputValues, skillInputValues, g_EsoSkillActiveData[skillId]);	
+	}
+	
+}
+
+
+function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData, isPassive)
+{
+	var statValue = 0;
+	var statFactor = 1;
+	var matches = null;
+	
+	if (matchData.showLog === true) console.log("Matching RawDesc", rawDesc, abilityData);
+	
+	if (matchData.statValue != null) statValue = matchData.statValue;
+	
+	if (matchData.match != null) 
+	{
+		if (matchData.showLog === true) console.log("Matching", matchData.match, rawDesc);
+		
+		matches = rawDesc.match(matchData.match);
+		
+		if (matchData.showLog === true) console.log("Match results", matches);
+		
+		if (matches == null) return false;
+		if (matches[1] != null) statValue = parseFloat(matches[1]);
+	}
+	
+	if (matchData.skillName != null)
+	{
+		if (matchData.showLog === true) console.log("Checking Skill Name ", abilityData.name, matchData.skillName);
+		if (abilityData.name.toUpperCase() != matchData.skillName.toUpperCase()) return false;
+	}
+	
+	if (matchData.skillRank != null)
+	{
+		if (abilityData.rank != matchData.skillRank) return false;
+	}
+			
+	if (matchData.toggle === true && matchData.id != null)
+	{
+		if (matchData.showLog === true)console.log("is toggled", matchData.id);
+		if (!IsEsoBuildToggledSkillEnabled(matchData.id)) return false;
+	}
+	
+	if (matchData.requireSkillLine != null)
+	{
+		var count = CountEsoBarSkillsWithSkillLine(matchData.requireSkillLine);
+		if (count == 0) return false;
+	}
+	
+	if (matchData.requireSkillType != null)
+	{
+		var count = CountEsoBarSkillsWithSkillType(matchData.requireSkillType);
+		if (count == 0) return false;
+	}
+	
+	if (matchData.statRequireId != null)
+	{
+		var requiredStat = inputValues[matchData.statRequireId];
+		if (requiredStat == null) return false;
+		if (parseFloat(requiredStat) < parseFloat(matchData.statRequireValue)) return false;
+	}
+	
+	if (matchData.factorSkillLine != null)
+	{
+		var count = CountEsoBarSkillsWithSkillLine(matchData.factorSkillLine);
+		statFactor = count;
+	}
+	else if (matchData.factorSkillType != null)
+	{
+		var count = CountEsoBarSkillsWithSkillType(matchData.factorSkillType);
+		statFactor = count;
+	}
+	else if (matchData.factorStatId != null)
+	{
+		var factorStat = inputValues[matchData.factorStatId];
+		if (factorStat != null) statFactor = parseFloat(factorStat);
+	}
+	else if (matchData.maxTimes != null)
+	{
+		var toggleData = g_EsoBuildToggledSkillData[matchData.id];
+		if (toggleData != null && toggleData.count != null) statFactor = toggleData.count;
+	}
+	else if (matchData.factorValue != null)
+	{
+		statFactor = matchData.factorValue;
+	}
+	
+	statValue = statValue * statFactor;
+	
+	if (matchData.display == '%') statValue = statValue / 100;
+	if (matchData.round == 'floor') statValue = Math.floor(statValue);
+	
+	var category = "Skill";
+	if (matchData.category != null) category = matchData.category;
+	
+	if (matchData.showLog === true) console.log("Matching Skill", matchData, rawDesc);
+	
+	if (matchData.statId == "OtherEffects")
+	{
+		var rawInputDesc = rawDesc;
+		
+		if (matchData.rawInputMatch != null)
+		{
+			var rawInputMatches = rawDesc.match(matchData.rawInputMatch);
+			if (matchData.showLog === true) console.log("rawInputMatches", rawInputMatches);
+			if (rawInputMatches != null) rawInputDesc = rawInputMatches[1];
+			if (rawInputDesc == null) rawInputDesc = rawDesc;
+		}
+		
+		//AddEsoItemRawOutput(abilityData, "PassiveEffect", rawInputDesc);
+		
+		if (isPassive)
+			AddEsoInputStatSource("OtherEffects", { other: true, passive: abilityData, value: rawInputDesc, rawInputMatch: matchData.rawInputMatch });
+		else
+			AddEsoInputStatSource("OtherEffects", { other: true, active: abilityData, value: rawInputDesc, rawInputMatch: matchData.rawInputMatch });
+	}
+	else 
+	{
+		inputValues[category][matchData.statId] += statValue;
+		//AddEsoItemRawOutput(abilityData, category + "." + matchData.statId, statValue);
+		
+		if (isPassive)
+			AddEsoInputStatSource(category + "." + matchData.statId, { passive: abilityData, value: statValue, rawInputMatch: matchData.rawInputMatch });
+		else
+			AddEsoInputStatSource(category + "." + matchData.statId, { active: abilityData, value: statValue, rawInputMatch: matchData.rawInputMatch });
+	}
+	
+	return true;
 }
 
 
@@ -1839,104 +2158,23 @@ function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 	for (var i = 0; i < ESO_PASSIVEEFFECT_MATCHES.length; ++i)
 	{
 		var matchData = ESO_PASSIVEEFFECT_MATCHES[i];
-		var statValue = 0;
-		var statFactor = 1;
-		var matches = null;
-		
-		if (matchData.statValue != null) statValue = matchData.statValue;
-		
-		if (matchData.match != null) 
-		{
-			matches = rawDesc.match(matchData.match);
-			if (matches == null) continue;
-			if (matches[1] != null ) statValue = parseFloat(matches[1]);
-		}
-		
-		if (matchData.skillName != null)
-		{
-			if (abilityData.name.toUpperCase() != matchData.skillName.toUpperCase()) continue;
-		}
-		
-		if (matchData.skillRank != null)
-		{
-			if (abilityData.rank != matchData.skillRank) continue;
-		}
-				
-		if (matchData.toggle === true && matchData.id != null)
-		{
-			var toggleData = g_EsoBuildToggledSkillData[matchData.id];
-			if (toggleData == null) continue;
-			if (!toggleData.enabled) continue;
-		}
-		
-		if (matchData.requireSkillLine != null)
-		{
-			var count = CountEsoBarSkillsWithSkillLine(matchData.requireSkillLine);
-			if (count == 0) continue;
-		}
-		
-		if (matchData.requireSkillType != null)
-		{
-			var count = CountEsoBarSkillsWithSkillType(matchData.requireSkillType);
-			if (count == 0) continue;
-		}
-		
-		if (matchData.statRequireId != null)
-		{
-			var requiredStat = inputValues[matchData.statRequireId];
-			if (requiredStat == null) continue;
-			if (parseFloat(requiredStat) < parseFloat(matchData.statRequireValue)) continue;
-		}
-		
-		if (matchData.factorSkillLine != null)
-		{
-			var count = CountEsoBarSkillsWithSkillLine(matchData.factorSkillLine);
-			statFactor = count;
-		}
-		else if (matchData.factorSkillType != null)
-		{
-			var count = CountEsoBarSkillsWithSkillType(matchData.factorSkillType);
-			statFactor = count;
-		}
-		else if (matchData.factorStatId != null)
-		{
-			var factorStat = inputValues[matchData.factorStatId];
-			if (factorStat != null) statFactor = parseFloat(factorStat);
-		}
-		else if (matchData.maxTimes != null)
-		{
-			var toggleData = g_EsoBuildToggledSkillData[matchData.id];
-			if (toggleData != null && toggleData.count != null) statFactor = toggleData.count;
-		}
-		
-		statValue = statValue * statFactor;
-		
-		if (matchData.display == '%') statValue = statValue / 100;
-		if (matchData.round == 'floor') statValue = Math.floor(statValue);
-		
-		var category = "Skill";
-		if (matchData.category != null) category = matchData.category;
-		
-		if (matchData.statId == "OtherEffects")
-		{
-			var rawInputDesc = rawDesc;
-			
-			if (matchData.rawInputMatch != null)
-			{
-				var rawInputMatches = rawDesc.match(matchData.rawInputMatch);
-				if (rawInputMatches != null) rawInputDesc = rawInputMatches[1];
-				if (rawInputDesc == null) rawInputDesc = rawDesc;
-			}
-			
-			//AddEsoItemRawOutput(abilityData, "PassiveEffect", rawInputDesc);
-			AddEsoInputStatSource("OtherEffects", { other: true, passive: abilityData, value: rawInputDesc });
-		}
-		else 
-		{
-			inputValues[category][matchData.statId] += statValue;
-			//AddEsoItemRawOutput(abilityData, category + "." + matchData.statId, statValue);
-			AddEsoInputStatSource(category + "." + matchData.statId, { passive: abilityData, value: statValue });
-		}
+		ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData, true);
+	}
+	
+}
+
+
+function GetEsoInputSkillActiveValues(inputValues, skillInputValues, skillData)
+{
+	var abilityData = g_SkillsData[skillData.abilityId];
+	var skillDesc = GetEsoSkillDescription(skillData.abilityId, skillInputValues, false, true);
+	var rawDesc = RemoveEsoDescriptionFormats(skillDesc);
+	if (rawDesc == "" || abilityData == null) return;
+	
+	for (var i = 0; i < ESO_ACTIVEEFFECT_MATCHES.length; ++i)
+	{
+		var matchData = ESO_ACTIVEEFFECT_MATCHES[i];
+		ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData, false);
 	}
 	
 }
@@ -2103,12 +2341,12 @@ function GetEsoInputItemValues(inputValues, slotId)
 		
 		if (slotId == "OffHand1" || slotId == "OffHand2") 
 		{
-			weaponPower = Math.floor(weaponPower * 0.287);
+			weaponPower = Math.floor(weaponPower * 0.200);
 		}
 		
 		if (itemData.trait == 26)	// Weapon nirnhoned
 		{
-			weaponPower = Math.floor(weaponPower * (1 + traitValue/100));
+			//weaponPower = Math.floor(weaponPower * (1 + traitValue/100));		// Included in weapon data?
 		}
 		
 		inputValues.Item.WeaponDamage += weaponPower;
@@ -2294,7 +2532,9 @@ function GetEsoInputItemEnchantArmorValues(inputValues, slotId, itemData, enchan
 		var matches = rawDesc.match(matchData.match);
 		if (matches == null) continue;
 		
-		var statValue = Math.floor(parseFloat(matches[1]) * enchantFactor);
+		var statValue = parseFloat(matches[1]);
+		if (!enchantData.isDefaultEnchant) statValue *= enchantFactor;
+		statValue = Math.floor(statValue);
 		
 		inputValues.Item[matchData.statId] += statValue;
 		AddEsoItemRawOutput(itemData, "Item." + matchData.statId, statValue);
@@ -2661,6 +2901,7 @@ function UpdateEsoComputedStatsList()
 	
 	
 	UpdateEsoTestBuildSkillInputValues(inputValues);
+	UpdateEsoBuildRawInputOtherEffects();
 	
 	UpdateEsoReadOnlyStats(inputValues);
 	UpdateEsoBuildMundusList2();
@@ -2668,6 +2909,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildToggleSets();
 	UpdateEsoBuildToggleSkills();
 	UpdateEsoBuildItemLinkSetCounts();
+	
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
 }
@@ -3741,6 +3983,15 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 		else
 			output += "" + value + ": " + skillData.name + " " + skillData.rank + " passive in " + skillData.skillLine + " line";
 	}
+	else if (sourceItem.active != null)
+	{
+		var skillData = sourceItem.active;
+		
+		if (skillData == null || skillData.name == null)
+			output += "" + value + ": Unknown active skill";
+		else
+			output += "" + value + ": " + skillData.name + " " + skillData.rank + " active skill in " + skillData.skillLine + " line";
+	}
 	else
 	{
 		output += "" + value + ": Unknown";
@@ -3936,6 +4187,29 @@ function GetEsoBuildSetInfoHtml()
 }
 
 
+function AddEsoBuildToggledSkillData(skillEffectData, isPassive)
+{
+	var id = skillEffectData.id;
+	
+	if (g_EsoBuildToggledSkillData[id] == null) 
+	{
+		g_EsoBuildToggledSkillData[id] = {};
+		g_EsoBuildToggledSkillData[id].isPassive = isPassive;
+		g_EsoBuildToggledSkillData[id].matchData = skillEffectData;
+		g_EsoBuildToggledSkillData[id].baseSkillId = skillEffectData.baseSkillId;
+		g_EsoBuildToggledSkillData[id].statIds = [];
+	}
+	
+	g_EsoBuildToggledSkillData[id].id = id;
+	g_EsoBuildToggledSkillData[id].desc = "";
+	g_EsoBuildToggledSkillData[id].valid = false;
+	g_EsoBuildToggledSkillData[id].enabled = skillEffectData.enabled;
+	g_EsoBuildToggledSkillData[id].count = 0;
+	g_EsoBuildToggledSkillData[id].maxTimes = skillEffectData.maxTimes;
+	g_EsoBuildToggledSkillData[id].statIds.push(skillEffectData.statId);
+}
+
+
 function CreateEsoBuildToggledSkillData()
 {
 	g_EsoBuildToggledSkillData = {};
@@ -3945,23 +4219,15 @@ function CreateEsoBuildToggledSkillData()
 		var skillEffectData = ESO_PASSIVEEFFECT_MATCHES[i];
 		if (skillEffectData.toggle !== true) continue;
 		
-		var id = skillEffectData.id;
+		AddEsoBuildToggledSkillData(skillEffectData, true);
+	}
+	
+	for (var i = 0; i < ESO_ACTIVEEFFECT_MATCHES.length; ++i)
+	{
+		var skillEffectData = ESO_ACTIVEEFFECT_MATCHES[i];
+		if (skillEffectData.toggle !== true) continue;
 		
-		if (g_EsoBuildToggledSkillData[id] == null) 
-		{
-			g_EsoBuildToggledSkillData[id] = {};
-			g_EsoBuildToggledSkillData[id].matchData = skillEffectData;
-			g_EsoBuildToggledSkillData[id].baseSkillId = skillEffectData.baseSkillId;
-			g_EsoBuildToggledSkillData[id].statIds = [];
-		}
-		
-		g_EsoBuildToggledSkillData[id].id = id;
-		g_EsoBuildToggledSkillData[id].desc = "";
-		g_EsoBuildToggledSkillData[id].valid = false;
-		g_EsoBuildToggledSkillData[id].enabled = skillEffectData.enabled;
-		g_EsoBuildToggledSkillData[id].count = 0;
-		g_EsoBuildToggledSkillData[id].maxTimes = skillEffectData.maxTimes;
-		g_EsoBuildToggledSkillData[id].statIds.push(skillEffectData.statId);
+		AddEsoBuildToggledSkillData(skillEffectData, false);
 	}
 }
 
@@ -4003,7 +4269,7 @@ function CreateEsoBuildToggledSetData()
 function IsEsoBuildToggledSkillEnabled(skillId)
 {
 	if (g_EsoBuildToggledSkillData[skillId] == null) return false;
-	return g_EsoBuildToggledSkillData[skillId].enabled;
+	return g_EsoBuildToggledSkillData[skillId].valid && g_EsoBuildToggledSkillData[skillId].enabled;
 }
 
 
@@ -4036,7 +4302,7 @@ function SetEsoBuildToggledSkillCount(skillId, value)
 function IsEsoBuildToggledSetEnabled(setId)
 {
 	if (g_EsoBuildToggledSetData[setId] == null) return false;
-	return g_EsoBuildToggledSetData[setId].enabled;
+	return g_EsoBuildToggledSetData[setId].valid && g_EsoBuildToggledSetData[setId].enabled;
 }
 
 
@@ -4074,15 +4340,27 @@ function UpdateEsoBuildToggledSkillData(inputValues)
 		{
 			abilityData = g_EsoSkillActiveData[abilityId];
 			if (abilityData == null) continue;
-		}			
+		}
 
 		if (toggleSkillData.matchData == null) continue;
+		
+		if (toggleSkillData.matchData.matchSkillName === true)
+		{
+			var data = g_SkillsData[abilityData.abilityId];
+			if (data == null) continue;
+			if (toggleSkillData.matchData.id.toUpperCase() != data.name.toUpperCase()) continue;
+		}
 		
 		if (toggleSkillData.matchData.statRequireId != null)
 		{
 			var requiredStat = inputValues[toggleSkillData.matchData.statRequireId];
 			if (requiredStat == null) continue;
 			if (parseFloat(requiredStat) < parseFloat(toggleSkillData.matchData.statRequireValue)) continue;
+		}
+		
+		if (!toggleSkillData.isPassive)
+		{
+			if (!IsEsoSkillOnActiveBar(abilityData.abilityId)) continue;
 		}
 		
 		toggleSkillData.valid = true;
@@ -4376,7 +4654,7 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 			MediumArmor		: parseInt(inputValues.ArmorMedium),
 			HeavyArmor		: parseInt(inputValues.ArmorHeavy),
 			ArmorTypes		: parseInt(inputValues.ArmorTypes),
-			DaggerWeapon	: parseInt(inputValues.WepaonDagger),
+			DaggerWeapon	: parseInt(inputValues.WeaponDagger),
 			
 			//DamageBonus?
 	};
@@ -4450,6 +4728,40 @@ function OnEsoBuildSkillBarUpdate(e)
 }
 
 
+function IsEsoSkillOnActiveBar(abilityId)
+{
+	var skillBar = g_EsoSkillBarData[g_EsoBuildActiveWeapon - 1];
+	if (skillBar == null) return false;
+	
+	for (var i = 0; i < skillBar.length; ++i)
+	{
+		var skillId = skillBar[i].skillId;
+		if (skillId == null || skillId <= 0) continue;
+		
+		if (skillId == abilityId) return true;
+	}
+	
+	return false;
+}
+
+
+function IsEsoOrigSkillOnActiveBar(abilityId)
+{
+	var skillBar = g_EsoSkillBarData[g_EsoBuildActiveWeapon - 1];
+	if (skillBar == null) return false;
+	
+	for (var i = 0; i < skillBar.length; ++i)
+	{
+		var skillId = skillBar[i].origSkillId;
+		if (skillId == null || skillId <= 0) continue;
+		
+		if (skillId == abilityId) return true;
+	}
+	
+	return false;
+}
+
+
 function CountEsoBarSkillsWithSkillLine(skillLine)
 {
 	var skillBar = g_EsoSkillBarData[g_EsoBuildActiveWeapon - 1];
@@ -4493,6 +4805,28 @@ function CountEsoBarSkillsWithSkillType(skillType)
 	}
 	
 	return count;
+}
+
+
+function UpdateEsoBuildRawInputOtherEffects()
+{
+	for (var key in g_EsoInputStatSources.OtherEffects)
+	{
+		var data = g_EsoInputStatSources.OtherEffects[key];
+		var skillData = null
+		
+		if (data.active  != null) skillData = data.active;
+		if (data.passive != null) skillData = data.passive;
+		if (skillData == null || skillData.id == null) continue;
+		
+		data.value = GetEsoSkillDescription(skillData.abilityId, null, false, true);
+		
+		if (data.rawInputMatch != null)
+		{
+			var matches = data.value.match(data.rawInputMatch);
+			if (matches != null && matches[1] != null) data.value = matches[1];
+		}
+	}
 }
 
 

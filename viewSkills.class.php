@@ -459,7 +459,12 @@ class CEsoViewSkills
 	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "", $isVisible = true)
 	{
 		$displayType = "block";
-		if (!$isVisible) $displayType = "none";
+		
+		if (!$isVisible) 
+		{
+			$displayType = "none";
+			$extraClass .= " esovsSkillLineDisabled";
+		}
 		
 		$output  = "<div class='esovsSkillLineTitle $extraClass' style=\"display: $displayType;\">$skillLine</div>";
 
