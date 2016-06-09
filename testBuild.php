@@ -56,8 +56,8 @@ class CEsoTestBuild
 			"WeaponBow",
 			"Weapon1H",
 			"Weapon2H",
-			"WeaponResStaff",
-			"WeaponDesStaff",
+			"WeaponRestStaff",
+			"WeaponDestStaff",
 			"Weapon1HShield",
 			"Level",
 			"CPLevel",
@@ -519,12 +519,20 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Skill2.SpellPenetration" => array(
+					"display" => "%",
+			),
 			
+			"Skill2.PhysicalPenetration" => array(
+					"display" => "%",
+			),
 			
-			
-			
+			"Skill.HAChargeTime" => array(
+					"display" => "%",
+			),
 			
 	);
+	
 	
 	public $COMPUTED_STATS_LIST = array(
 			

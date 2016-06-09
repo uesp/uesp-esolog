@@ -12,6 +12,8 @@ ESO_MAX_EFFECTIVELEVEL = 66;
 
 g_EsoBuildLastInputValues = {};
 
+g_EsoBuildEnableUpdates = true;
+
 g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
 g_EsoBuildEnchantData = {};
@@ -58,6 +60,11 @@ g_EsoFormulaInputValues = {};
 g_EsoInputStatSources = {};
 
 
+	// Buffs
+// Major Resolve and Major Ward
+// Minor Savagery
+
+
 ESO_PASSIVEEFFECT_MATCHES = [
 	{
 		factorStatId: "ArmorLight",
@@ -73,25 +80,25 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	},
 	{
 		statId: "SpellResist",
-		match: /Increases your Spell Resistance for each piece of Light Armor equipped.[\s\S]*Current Bonus\: ([0-9]+)/i,
+		match: /Increases your Spell Resistance for each piece of Light Armor equipped.[\s\S]*?Current Bonus\: ([0-9]+)/i,
 	},
 	{
 		statRequireId: "ArmorLight",
 		statRequireValue: 5,
 		category: "Skill2",
 		statId: "SpellCrit",
-		match: /WHEN 5 OR MORE PIECES OF LIGHT ARMOR ARE EQUIPPED[\s\S]*Increases your Spell Critical rating by ([0-9]+)/i,
+		match: /WHEN 5 OR MORE PIECES OF LIGHT ARMOR ARE EQUIPPED[\s\S]*?Increases your Spell Critical rating by ([0-9]+)/i,
 	},
 	{
 		statRequireId: "ArmorLight",
 		statRequireValue: 5,
 		statId: "SpellPenetration",
-		match: /WHEN 5 OR MORE PIECES OF LIGHT ARMOR ARE EQUIPPED[\s\S]*Increases your Spell Penetration by ([0-9]+)/i,
+		match: /WHEN 5 OR MORE PIECES OF LIGHT ARMOR ARE EQUIPPED[\s\S]*?Increases your Spell Penetration by ([0-9]+)/i,
 	},
 	{
 		category: "Skill2",
 		statId: "WeaponCrit",
-		match: /Increases your Weapon Critical rating for each piece of Medium Armor equipped.[\s\S]*Current Bonus\: ([0-9]+)/i,
+		match: /Increases your Weapon Critical rating for each piece of Medium Armor equipped.[\s\S]*?Current Bonus\: ([0-9]+)/i,
 	},
 	{
 		factorStatId: "ArmorMedium",
@@ -122,7 +129,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 5,
 		statId: "WeaponDamage",
 		display: '%',
-		match: /WHEN 5 OR MORE PIECES OF MEDIUM ARMOR ARE EQUIPPED[\s\S]*Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
+		match: /WHEN 5 OR MORE PIECES OF MEDIUM ARMOR ARE EQUIPPED[\s\S]*?Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		// factorStatId: "ArmorMedium", // TODO: Check?
@@ -138,11 +145,11 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	},
 	{
 		statId: "PhysicalResist",
-		match: /Increases your Physical Resistance and Spell Resistance for each piece of Heavy Armor equipped.[\s\S]*Current bonus\: ([0-9]+)/i,
+		match: /Increases your Physical Resistance and Spell Resistance for each piece of Heavy Armor equipped.[\s\S]*?Current bonus\: ([0-9]+)/i,
 	},
 	{
 		statId: "SpellResist",
-		match: /Increases your Physical Resistance and Spell Resistance for each piece of Heavy Armor equipped.[\s\S]*Current bonus\: ([0-9]+)/i,
+		match: /Increases your Physical Resistance and Spell Resistance for each piece of Heavy Armor equipped.[\s\S]*?Current bonus\: ([0-9]+)/i,
 	},
 	{
 		factorStatId: "ArmorHeavy",
@@ -152,7 +159,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	},
 	{
 		statId: "Constitution",
-		match: /Also restores Magicka and Stamina each time you are hit[.\s\S]*Current bonus\: ([0-9]+)/i,
+		match: /Also restores Magicka and Stamina each time you are hit[.\s\S]*?Current bonus\: ([0-9]+)/i,
 	},
 	{
 		factorStatId: "ArmorHeavy",
@@ -165,7 +172,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 5,
 		statId: "HealingReceived",
 		display: "%",
-		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*Increases your healing received by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*?Increases your healing received by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statId: "SneakCost",
@@ -337,42 +344,42 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 1,
 		statId: "BlockCost",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BlockCost",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "WeaponDamage",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BlockMitigation",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*amount of damage you can block by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?amount of damage you can block by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BashDamage",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Bashing deals ([0-9]+\.?[0-9]*)% additional damage/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Bashing deals ([0-9]+\.?[0-9]*)% additional damage/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BashCost",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*Bashing deals [0-9]+\.?[0-9]*% additional damage and costs ([0-9]+\.?[0-9]*)% less Stamina/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Bashing deals [0-9]+\.?[0-9]*% additional damage and costs ([0-9]+\.?[0-9]*)% less Stamina/i,
 	},
 	{
 		statRequireId: "Weapon1H",
@@ -405,14 +412,14 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		factorStatId: "WeaponDagger",
 		category: "Skill2",
 		statId: "WeaponCrit",
-		match: /Each dagger increases your Weapon Critical rating[.\s\S]*Current bonus\: ([0-9]+)/i,
+		match: /Each dagger increases your Weapon Critical rating[\s\S]*?Current bonus\: ([0-9]+)/i,
 	},
 	{
 		statRequireId: "WeaponBow",
 		statRequireValue: 1,
 		category: "Skill2",
 		statId: "WeaponCrit",
-		match: /WITH BOW EQUIPPED Increases Weapon Critical rating by ([0-9]+)/i,
+		match: /WITH BOW EQUIPPED[.\s\S]*?Increases Weapon Critical rating by ([0-9]+)/i,
 	},
 	{
 		statRequireId: "WeaponDestStaff",
@@ -420,13 +427,21 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		category: "Skill2",
 		statId: "SpellPenetration",
 		display: "%",
-		match: /WITH DESTRUCTION STAFF EQUIPPED Allows your Destruction Staff spells to ignore ([0-9]+)% of an enemy's Spell Resistance/i,
+		match: /WITH DESTRUCTION STAFF EQUIPPED[\s\S]*?Allows your Destruction Staff spells to ignore ([0-9]+)% of an enemy's Spell Resistance/i,
+	},
+	{
+		statRequireId: "WeaponDestStaff",
+		statRequireValue: 1,
+		statId: "HAChargeTime",
+		display: "%",
+		match: /WITH DESTRUCTION STAFF EQUIPPED[.\s\S]*?Reduces the time it takes to charge a heavy attack by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "WeaponDestStaff",
 		statRequireValue: 1,
 		statId: "OtherEffects",
-		match: /WITH DESTRUCTION STAFF EQUIPPED Restores ([0-9]+) Magicka when you kill a target with a Destruction Staff spell or weapon attack/i,
+		rawInputMatch: /WITH DESTRUCTION STAFF EQUIPPED[\s]*(.*)/i,
+		match: /WITH DESTRUCTION STAFF EQUIPPED[.\s\S]*?Restores ([0-9]+) Magicka when you kill a target with a Destruction Staff spell or weapon attack/i,
 	},
 	{
 		statId: "WeaponDamage",
@@ -501,43 +516,85 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 5,
 		statId: "Constitution",
 		display: "%",
-		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*increases the Magicka or Stamina your Heavy Attacks restore by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*?increases the Magicka or Stamina your Heavy Attacks restore by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		factorSkillLine: "Draconic Power",
 		statId: "HealthRegen",
 		display: "%",
-		match: /WITH DRACONIC POWER ABILITIES SLOTTED[.\s\S]*Increases Health Recovery by ([0-9]+\.?[0-9]*)% for each Draconic Power ability slotted/i
+		match: /WITH DRACONIC POWER ABILITIES SLOTTED[.\s\S]*?Increases Health Recovery by ([0-9]+\.?[0-9]*)% for each Draconic Power ability slotted/i
 	},
 	{
 		factorSkillLine: "Assassination",
 		statId: "CritDamage",
 		display: "%",
-		match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*Increases damage dealt by Critical Strikes by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*?Increases damage dealt by Critical Strikes by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		factorSkillLine: "Assassination",
+		category: "Skill2",
+		statId: "WeaponCrit",
+		statValue: 219,
+		skillName: "Pressure Points",
+		skillRank: 1,
+		//match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*?Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted/i
+	},
+	{
+		factorSkillLine: "Assassination",
+		category: "Skill2",
+		statId: "SpellCrit",
+		statValue: 219,
+		skillName: "Pressure Points",
+		skillRank: 1,
+		//match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*?Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted/i
+	},
+	{
+		factorSkillLine: "Assassination",
+		category: "Skill2",
+		statId: "WeaponCrit",
+		statValue: 438,
+		skillName: "Pressure Points",
+		skillRank: 2,
+		//match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*?Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted/i
+	},
+	{
+		factorSkillLine: "Assassination",
+		category: "Skill2",
+		statId: "SpellCrit",
+		statValue: 438,
+		skillName: "Pressure Points",
+		skillRank: 2,
+		//match: /WITH AN ASSASSINATION ABILITY SLOTTED[.\s\S]*?Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted/i
 	},
 	{
 		factorSkillLine: "Shadow",
 		statId: "Health",
 		display: "%",
-		match: /WITH A SHADOW ABILITY SLOTTED[.\s\S]*Each Shadow Ability slotted increases your Max Health by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH A SHADOW ABILITY SLOTTED[.\s\S]*?Each Shadow Ability slotted increases your Max Health by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "SIPHONING",
 		statId: "Magicka",
 		display: "%",
-		match: /WITH SIPHONING ABILITY SLOTTED[.\s\S]*Increases Max Magicka ([0-9]+\.?[0-9]*)% while a Siphoning ability is slotted/i
+		match: /WITH SIPHONING ABILITY SLOTTED[.\s\S]*?Increases Max Magicka ([0-9]+\.?[0-9]*)% while a Siphoning ability is slotted/i
+	},
+	{
+		requireSkillLine: "SIPHONING",
+		statId: "HealingDone",
+		display: "%",
+		match: /WHILE USING SIPHONING ABILITIES[.\s\S]*?Increases the effectiveness of your Healing done by ([0-9]+\.?[0-9]*)% for each Siphoning ability slotted/i
 	},
 	{
 		requireSkillLine: "DAEDRIC SUMMONING",
 		statId: "HealthRegen",
 		display: "%",
-		match: /WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED[.\s\S]*Increases your Health and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED[.\s\S]*?Increases your Health and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "DAEDRIC SUMMONING",
 		statId: "StaminaRegen",
 		display: "%",
-		match: /WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED[.\s\S]*Increases your Health and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE A DAEDRIC SUMMONING ABILITY IS SLOTTED[.\s\S]*?Increases your Health and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		factorSkillType: "Sorcerer",
@@ -555,19 +612,19 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "CritDamage",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*?Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "OtherEffects",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*?your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "BlockMitigation",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN  ABILITY IS SLOTTED[.\s\S]*?Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "Fighters Guild",
@@ -579,13 +636,13 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		requireSkillLine: "Mages Guild",
 		statId: "Magicka",
 		display: "%",
-		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*?Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "Mages Guild",
 		statId: "MagickaRegen",
 		display: "%",
-		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*?Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "Support",
@@ -596,56 +653,56 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	{
 		statId: "HealthRegen",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "MagickaRegen",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "StaminaRegen",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Health, Magicka, and Stamina recovery in combat by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "OtherEffect",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Ultimate gains by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Ultimate gains by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "HealingTaken",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases the magnitude of healing effects on Emperors by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases the magnitude of healing effects on Emperors by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "Health",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "Magicka",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statId: "Stamina",
 		display: "%",
-		match: /WHILE EMPEROR[.\s\S]*Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
+		match: /WHILE EMPEROR[.\s\S]*?Increases Health, Magicka, and Stamina by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
 		statRequireId: "VampireStage",
 		statRequireValue: 2,
 		statId: "StaminaRegen",
 		display: "%",
-		match: /WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER[.\s\S]*Increases your Magicka and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER[.\s\S]*?Increases your Magicka and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		statRequireId: "VampireStage",
 		statRequireValue: 2,
 		statId: "MagickaRegen",
 		display: "%",
-		match: /WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER[.\s\S]*Increases your Magicka and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE YOU HAVE VAMPIRISM STAGE 2 OR HIGHER[.\s\S]*?Increases your Magicka and Stamina Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		statRequireId: "VampireStage",
@@ -660,43 +717,103 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 1,
 		statId: "OtherEffects",
 		display: "%",
-		match: /WHILE IN WEREWOLF FORM[.\s\S]*Increases the amount of Stamina your heavy attacks restore by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE IN WEREWOLF FORM[.\s\S]*?Increases the amount of Stamina your heavy attacks restore by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		statRequireId: "Werewolf",
 		statRequireValue: 1,
 		statId: "WeaponDamage",
 		display: "%",
-		match: /WHILE IN WEREWOLF FORM[.\s\S]*Increases Weapon Damage by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE IN WEREWOLF FORM[.\s\S]*?Increases Weapon Damage by ([0-9]+\.?[0-9]*)%/i
 	},
 	
 		/* Begin Toggled Passives */
 	{
+		id: "Wrath",
+		baseSkillId: 29773,
 		statRequireId: "ArmorHeavy",
 		statRequireValue: 5,
+		category: "Item",
 		statId: "WeaponDamage",
 		toggle: true,
 		enable: false,
 		maxTimes: 10,
-		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[.\s\S]*Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
+		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[.\s\S]*?Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
 	},
+	{
+		id: "Wrath",
+		baseSkillId: 29773,
+		statRequireId: "ArmorHeavy",
+		statRequireValue: 5,
+		category: "Item",
+		statId: "SpellDamage",
+		toggle: true,
+		enable: false,
+		maxTimes: 10,
+		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[.\s\S]*?Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
+	},
+	{
+		id: "Burning Heart",
+		baseSkillId: 29457,
+		statId: "HealingReceived",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /WHILE USING DRACONIC POWER ABILITIES[.\s\S]*?Increases healing received by ([0-9]+\.?[0-9]*)% while a Draconic Power ability is active/i
+	},
+	{
+		id: "Master Assassin",
+		baseSkillId: 36616,
+		statId: "WeaponDamage",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /Increases Weapon and Spell Damage while invisible or stealthed by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		id: "Master Assassin",
+		baseSkillId: 36616,
+		statId: "SpellDamage",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /Increases Weapon and Spell Damage while invisible or stealthed by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		id: "Master Assassin",
+		baseSkillId: 36616,
+		statId: "OtherEffects",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /while invisible or stealthed[.\s\S]*?The stun from the Crouch ability stuns for ([0-9]+\.?[0-9]*)% longer/i
+	},
+	{
+		id: "Expert Summoner",
+		baseSkillId: 31412,
+		statId: "Health",
+		toggle: true,
+		enable: false,
+		display: "%",
+		match: /Increases your Max Health by ([0-9]+\.?[0-9]*)% if you have a Daedric Summoning pet active/i
+	},
+		/* End Toggled Passives */
 	
-	
+
 		/* Begin Other Effects */
+		/* End Other Effects */
+	
+	
 	
 		// Dragonknight
 	//Increases the damage of Fiery Breath, Searing Strike, and Dragonknight Standard abilities by 3% and the duration by 2 seconds.
 	//Increases the damage of Flame and Poison area of effect abilities by 6%.
-	//WHILE USING DRACONIC POWER ABILITIES Increases healing received by 12% while a Draconic Power ability is active
 	
 		// Nightblade
-	//Increases Weapon and Spell Damage while invisible or stealthed by 10%. The stun from the Crouch ability stuns for 100% longer.
-	//WITH AN ASSASSINATION ABILITY SLOTTED Increases Critical Strike and Spell Critical ratings for each Assassination ability slotted. Current bonus: 0
-	//Activating a Shadow ability grants Major Resolve and Major Ward, increasing Physical Resistance and Spell Resistance by 5280 for 4 seconds. This duration is increased for each piece of Heavy Armor equipped. Current Bonus: (25 * HEAVYARMOR)%
-	//WHILE USING SIPHONING ABILITIES Increases the effectiveness of your Healing done by 3% for each Siphoning ability slotted. Current bonus: 0%.
+	//
 	
 		// Sorcerer
-	//Increases your Max Health by 8% if you have a Daedric Summoning pet active.
+	//
 	//Increases your Physical and Shock Damage by 5%.		
 	
 		// Templar
@@ -1484,7 +1601,11 @@ function GetEsoInputValues(mergeComputedStats)
 	GetEsoInputMundusValues(inputValues);
 	GetEsoInputCPValues(inputValues);
 	GetEsoInputTargetValues(inputValues);
+	
+	UpdateEsoBuildToggledSkillData(inputValues);
 	GetEsoInputSkillPassives(inputValues);
+	//GetEsoInputSkillActiveBar(inputValues);
+	
 	GetEsoInputMiscValues(inputValues);
 	
 	if (mergeComputedStats === true) 
@@ -1710,21 +1831,43 @@ function GetEsoInputSkillPassives(inputValues)
 
 function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 {
+	var abilityData = g_SkillsData[skillData.abilityId];
 	var skillDesc = GetEsoSkillDescription(skillData.abilityId, skillInputValues, false, true);
 	var rawDesc = RemoveEsoDescriptionFormats(skillDesc);
-	if (rawDesc == "") return;
+	if (rawDesc == "" || abilityData == null) return;
 	
 	for (var i = 0; i < ESO_PASSIVEEFFECT_MATCHES.length; ++i)
 	{
 		var matchData = ESO_PASSIVEEFFECT_MATCHES[i];
-		var matches = rawDesc.match(matchData.match);
-		if (matches == null) continue;
-		
 		var statValue = 0;
 		var statFactor = 1;
+		var matches = null;
 		
-		if (matches[1] != null ) statValue = parseFloat(matches[1]);
 		if (matchData.statValue != null) statValue = matchData.statValue;
+		
+		if (matchData.match != null) 
+		{
+			matches = rawDesc.match(matchData.match);
+			if (matches == null) continue;
+			if (matches[1] != null ) statValue = parseFloat(matches[1]);
+		}
+		
+		if (matchData.skillName != null)
+		{
+			if (abilityData.name.toUpperCase() != matchData.skillName.toUpperCase()) continue;
+		}
+		
+		if (matchData.skillRank != null)
+		{
+			if (abilityData.rank != matchData.skillRank) continue;
+		}
+				
+		if (matchData.toggle === true && matchData.id != null)
+		{
+			var toggleData = g_EsoBuildToggledSkillData[matchData.id];
+			if (toggleData == null) continue;
+			if (!toggleData.enabled) continue;
+		}
 		
 		if (matchData.requireSkillLine != null)
 		{
@@ -1760,6 +1903,11 @@ function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 			var factorStat = inputValues[matchData.factorStatId];
 			if (factorStat != null) statFactor = parseFloat(factorStat);
 		}
+		else if (matchData.maxTimes != null)
+		{
+			var toggleData = g_EsoBuildToggledSkillData[matchData.id];
+			if (toggleData != null && toggleData.count != null) statFactor = toggleData.count;
+		}
 		
 		statValue = statValue * statFactor;
 		
@@ -1769,9 +1917,26 @@ function GetEsoInputSkillPassiveValues(inputValues, skillInputValues, skillData)
 		var category = "Skill";
 		if (matchData.category != null) category = matchData.category;
 		
-		inputValues[category][matchData.statId] += statValue;
-		//AddEsoItemRawOutput(itemData, category + "." + matchData.statId, statValue);
-		AddEsoInputStatSource(category + "." + matchData.statId, { passive: g_SkillsData[skillData.abilityId], value: statValue });
+		if (matchData.statId == "OtherEffects")
+		{
+			var rawInputDesc = rawDesc;
+			
+			if (matchData.rawInputMatch != null)
+			{
+				var rawInputMatches = rawDesc.match(matchData.rawInputMatch);
+				if (rawInputMatches != null) rawInputDesc = rawInputMatches[1];
+				if (rawInputDesc == null) rawInputDesc = rawDesc;
+			}
+			
+			//AddEsoItemRawOutput(abilityData, "PassiveEffect", rawInputDesc);
+			AddEsoInputStatSource("OtherEffects", { other: true, passive: abilityData, value: rawInputDesc });
+		}
+		else 
+		{
+			inputValues[category][matchData.statId] += statValue;
+			//AddEsoItemRawOutput(abilityData, category + "." + matchData.statId, statValue);
+			AddEsoInputStatSource(category + "." + matchData.statId, { passive: abilityData, value: statValue });
+		}
 	}
 	
 }
@@ -1882,9 +2047,9 @@ function GetEsoInputItemValues(inputValues, slotId)
 		AddEsoInputStatSource("WeaponBow", { item: itemData, value: 1, slotId: slotId });
 		break;
 	case 9:
-		++inputValues.WeaponResStaff;
-		AddEsoItemRawOutput(itemData, "WeaponResStaff", 1);
-		AddEsoInputStatSource("WeaponResStaff", { item: itemData, value: 1, slotId: slotId });
+		++inputValues.WeaponRestStaff;
+		AddEsoItemRawOutput(itemData, "WeaponRestStaff", 1);
+		AddEsoInputStatSource("WeaponRestStaff", { item: itemData, value: 1, slotId: slotId });
 		break;
 	case 11:
 		++inputValues.WeaponDagger;
@@ -1894,9 +2059,9 @@ function GetEsoInputItemValues(inputValues, slotId)
 	case 12:
 	case 13:
 	case 15:
-		++inputValues.WeaponDesStaff;
-		AddEsoItemRawOutput(itemData, "WeaponDesStaff", 1);
-		AddEsoInputStatSource("WeaponDesStaff", { item: itemData, value: 1, slotId: slotId });
+		++inputValues.WeaponDestStaff;
+		AddEsoItemRawOutput(itemData, "WeaponDestStaff", 1);
+		AddEsoInputStatSource("WeaponDestStaff", { item: itemData, value: 1, slotId: slotId });
 		break;
 	}
 	
@@ -2471,6 +2636,8 @@ function AddEsoInputStatSource(statId, data)
 
 function UpdateEsoComputedStatsList()
 {
+	if (!g_EsoBuildEnableUpdates) return;
+	
 	var inputValues = GetEsoInputValues();
 	var deferredStats = [];
 	
@@ -2499,6 +2666,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildMundusList2();
 	UpdateEsoBuildSetInfo();
 	UpdateEsoBuildToggleSets();
+	UpdateEsoBuildToggleSkills();
 	UpdateEsoBuildItemLinkSetCounts();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
@@ -2776,7 +2944,11 @@ function OnEsoToggleStatComputeItems(e)
 function OnEsoRaceChange(e)
 {
 	var newRace = $(this).val();
+	
+	g_EsoBuildEnableUpdates = false;
 	EnableEsoRaceSkills(newRace);
+	g_EsoBuildEnableUpdates = true;
+		
 	UpdateEsoComputedStatsList();
 }
 
@@ -2784,7 +2956,11 @@ function OnEsoRaceChange(e)
 function OnEsoClassChange(e)
 {
 	var newClass = $(this).val();
+	
+	g_EsoBuildEnableUpdates = false;
 	EnableEsoClassSkills(newClass);
+	g_EsoBuildEnableUpdates = true;
+		
 	UpdateEsoComputedStatsList();
 }
 
@@ -3521,6 +3697,7 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 	var output = "<div class='esotbRawInputValue'>";
 	var value = sourceItem.value;
 	var statDetails = g_EsoInputStatDetails[sourceItem.origStatId] || {};
+	var suffix = " (" + sourceItem.origStatId + ")";
 	
 	if (value == 0) return "";
 	if (statDetails.display == '%') value = "" + (Math.round(value * 1000)/10) + "%";
@@ -3569,6 +3746,7 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 		output += "" + value + ": Unknown";
 	}
 	
+	output += suffix;
 	output += "</div>";
 	return output;
 }
@@ -3758,6 +3936,36 @@ function GetEsoBuildSetInfoHtml()
 }
 
 
+function CreateEsoBuildToggledSkillData()
+{
+	g_EsoBuildToggledSkillData = {};
+	
+	for (var i = 0; i < ESO_PASSIVEEFFECT_MATCHES.length; ++i)
+	{
+		var skillEffectData = ESO_PASSIVEEFFECT_MATCHES[i];
+		if (skillEffectData.toggle !== true) continue;
+		
+		var id = skillEffectData.id;
+		
+		if (g_EsoBuildToggledSkillData[id] == null) 
+		{
+			g_EsoBuildToggledSkillData[id] = {};
+			g_EsoBuildToggledSkillData[id].matchData = skillEffectData;
+			g_EsoBuildToggledSkillData[id].baseSkillId = skillEffectData.baseSkillId;
+			g_EsoBuildToggledSkillData[id].statIds = [];
+		}
+		
+		g_EsoBuildToggledSkillData[id].id = id;
+		g_EsoBuildToggledSkillData[id].desc = "";
+		g_EsoBuildToggledSkillData[id].valid = false;
+		g_EsoBuildToggledSkillData[id].enabled = skillEffectData.enabled;
+		g_EsoBuildToggledSkillData[id].count = 0;
+		g_EsoBuildToggledSkillData[id].maxTimes = skillEffectData.maxTimes;
+		g_EsoBuildToggledSkillData[id].statIds.push(skillEffectData.statId);
+	}
+}
+
+
 function CreateEsoBuildToggledSetData()
 {
 	g_EsoBuildToggledSetData = {};
@@ -3778,7 +3986,7 @@ function CreateEsoBuildToggledSetData()
 		g_EsoBuildToggledSetData[id].id = id;
 		g_EsoBuildToggledSetData[id].setBonusCount = setEffectData.setBonusCount;
 		g_EsoBuildToggledSetData[id].desc = "";
-		g_EsoBuildToggledSetData[id].valid = false;
+		g_EsoBuildToggledSetData[id].valid = true;
 		g_EsoBuildToggledSetData[id].enabled = setEffectData.enabled;
 		g_EsoBuildToggledSetData[id].statIds.push(setEffectData.statId);
 		
@@ -3789,6 +3997,39 @@ function CreateEsoBuildToggledSetData()
 		}
 	}
 	
+}
+
+
+function IsEsoBuildToggledSkillEnabled(skillId)
+{
+	if (g_EsoBuildToggledSkillData[skillId] == null) return false;
+	return g_EsoBuildToggledSkillData[skillId].enabled;
+}
+
+
+function SetEsoBuildToggledSkillValid(skillId, valid)
+{
+	if (g_EsoBuildToggledSkillData[skillId] != null) g_EsoBuildToggledSkillData[skillId].valid = valid;
+}
+
+
+function SetEsoBuildToggledSkillDesc(skillId, desc)
+{
+	if (g_EsoBuildToggledSkillData[skillId] != null) g_EsoBuildToggledSkillData[skillId].desc = desc;
+}
+
+
+function SetEsoBuildToggledSkillEnable(skillId, enable)
+{
+	if (g_EsoBuildToggledSkillData[skillId] == null) return false;
+	g_EsoBuildToggledSkillData[skillId].enabled = enable;
+}
+
+
+function SetEsoBuildToggledSkillCount(skillId, value)
+{
+	if (g_EsoBuildToggledSkillData[skillId] == null) return false;
+	g_EsoBuildToggledSkillData[skillId].count = parseInt(value);
 }
 
 
@@ -3815,6 +4056,86 @@ function SetEsoBuildToggledSetEnable(setId, enable)
 {
 	if (g_EsoBuildToggledSetData[setId] == null) return false;
 	g_EsoBuildToggledSetData[setId].enabled = enable;
+}
+
+
+function UpdateEsoBuildToggledSkillData(inputValues)
+{
+	
+	for (var skillId in g_EsoBuildToggledSkillData)
+	{
+		var toggleSkillData = g_EsoBuildToggledSkillData[skillId];
+		var abilityId = toggleSkillData.baseSkillId;
+		var abilityData = g_EsoSkillPassiveData[abilityId];
+		
+		toggleSkillData.valid = false;
+		
+		if (abilityData == null)
+		{
+			abilityData = g_EsoSkillActiveData[abilityId];
+			if (abilityData == null) continue;
+		}			
+
+		if (toggleSkillData.matchData == null) continue;
+		
+		if (toggleSkillData.matchData.statRequireId != null)
+		{
+			var requiredStat = inputValues[toggleSkillData.matchData.statRequireId];
+			if (requiredStat == null) continue;
+			if (parseFloat(requiredStat) < parseFloat(toggleSkillData.matchData.statRequireValue)) continue;
+		}
+		
+		toggleSkillData.valid = true;
+		//toggleSkillData.desc = FindMatchingEsoPassiveSkillDescription(toggleSkillData.matchData);
+		toggleSkillData.desc = GetEsoSkillDescription(abilityData.abilityId, g_LastSkillInputValues, false, true);
+		
+		var checkElement = $(".esotbToggledSkillItem[skillid=\"" + skillId + "\"]").find(".esotbToggleSkillCheck");
+		
+		if (checkElement.length > 0)
+		{
+			SetEsoBuildToggledSkillEnable(skillId, checkElement.is(":checked"));
+			
+			var countElement = checkElement.next(".esotbToggleSkillNumber");
+			if (countElement.length > 0) SetEsoBuildToggledSkillCount(skillId, countElement.val());
+		}
+	}
+	
+}
+
+function FindMatchingEsoPassiveSkillDescription(matchData)
+{
+	if (matchData == null) return "";
+	
+	for (var skillId in g_EsoSkillPassiveData)
+	{
+		var skillData = g_EsoSkillPassiveData[skillId];
+		var abilityData = g_SkillsData[skillData.abilityId];
+		
+		if (abilityData == null) continue;
+		
+		var skillDesc = GetEsoSkillDescription(abilityData.abilityId, g_LastSkillInputValues, false, true);
+		var rawDesc = skillDesc;
+		
+		if (matchData.match != null)
+		{
+			var matches = rawDesc.match(matchData.match);
+			if (matches == null) continue;
+		}
+	
+		if (matchData.skillName != null)
+		{
+			if (abilityData.name.toUpperCase() != matchData.skillName.toUpperCase()) continue;
+		}
+		
+		if (matchData.skillRank != null)
+		{
+			if (abilityData.rank != matchData.skillRank) continue;
+		}
+
+		return rawDesc;
+	}
+	
+	return "";
 }
 
 
@@ -3897,6 +4218,71 @@ function CreateEsoBuildToggleSetHtml(setData)
 	output += "<input type='checkbox' class='esotbToggleSetCheck'  " + checked + " >";
 	output += "<div class='esotbToggleSetTitle'>" + setData.id + ":</div> ";
 	output += "<div class='esotbToggleSetDesc'>" + setData.desc + "</div>";
+	
+	output += "</div>";
+	return output;
+}
+
+
+function OnEsoBuildToggleSkill(e)
+{
+	var skillId = $(this).parent().attr("skillId");
+	if (skillId == null || skillId == "") return;
+	
+	UpdateEsoComputedStatsList();
+}
+
+
+function OnEsoBuildToggleSkillNumber(e)
+{
+	var skillId = $(this).parent().attr("skillId");
+	if (skillId == null || skillId == "") return;
+	
+	var toggleData = g_EsoBuildToggledSkillData[skillId];
+	if (toggleData == null) return;
+	
+	var value = $(this).val();
+	
+	if (value < 0) $(this).val("0");
+	if (toggleData.maxTimes != null && value > toggleData.maxTimes)  $(this).val(toggleData.maxTimes);
+	
+	UpdateEsoComputedStatsList();
+}
+
+
+function UpdateEsoBuildToggleSkills()
+{
+	var element = $("#esotbToggledSkillInfo");
+	var output = "";
+	
+	for (var skillId in g_EsoBuildToggledSkillData)
+	{
+		var skillData = g_EsoBuildToggledSkillData[skillId];
+		if (!skillData.valid) continue;
+		output += CreateEsoBuildToggleSkillHtml(skillData);
+	}
+	
+	element.html(output);
+	$(".esotbToggleSkillCheck").click(OnEsoBuildToggleSkill);
+	$(".esotbToggleSkillNumber").on("input", OnEsoBuildToggleSkillNumber);
+}
+
+
+function CreateEsoBuildToggleSkillHtml(skillData)
+{
+	var output = "<div class='esotbToggledSkillItem' skillid=\"" + skillData.id + "\">";
+	var checked = skillData.enabled ? "checked" : "";
+	
+	output += "<input type='checkbox' class='esotbToggleSkillCheck'  " + checked + " >";
+	
+	if (skillData.maxTimes != null) 
+	{
+		output += "<input type='number' class='esotbToggleSkillNumber'  value='" + skillData.count + "' >";
+		//output += " (0-" + skillData.maxTimes + ") ";
+	}
+	
+	output += "<div class='esotbToggleSkillTitle'>" + skillData.id + ":</div> ";
+	output += "<div class='esotbToggleSkillDesc'>" + skillData.desc + "</div>";
 	
 	output += "</div>";
 	return output;
@@ -4117,6 +4503,7 @@ function esotbOnDocReady()
 	CreateEsoComputedStats();
 	UpdateEsoComputedStatsList();
 	CreateEsoBuildToggledSetData();
+	CreateEsoBuildToggledSkillData();
 		
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
