@@ -668,6 +668,15 @@ button.esotbWeaponSelect {
 .esotbToggledSetItem,
 .esotbToggledSkillItem {
 	margin-left: 20px;
+    padding: 5px;
+}
+
+.esotbToggledSetItem:hover,
+.esotbToggledSkillItem:hover {
+	border-radius: 15px;
+	background-color: #E3d5c0;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.7);
+	cursor: pointer;
 }
 
 .esotbToggleSetTitle,
