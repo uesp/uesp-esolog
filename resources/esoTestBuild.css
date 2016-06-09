@@ -659,20 +659,24 @@ button.esotbWeaponSelect {
     padding: 2px;
 }
 
-#esotbItemToggleSets h3 {
+#esotbItemToggleSets h3,
+#esotbItemToggleSkills h3 {
 	font-size: 16px;
 }
 
-.esotbToggledSetItem {
+.esotbToggledSetItem,
+.esotbToggledSkillItem {
 	margin-left: 20px;
 }
 
-.esotbToggleSetTitle {
+.esotbToggleSetTitle,
+.esotbToggleSkillTitle {
 	display: inline-block;
 	font-weight: bold;
 }
 
-.esotbToggleSetDesc {
+.esotbToggleSetDesc,
+.esotbToggleSkillDesc {
 	display: inline-block;
 }
 
@@ -750,4 +754,9 @@ button.esotbWeaponSelect {
 #esotbRaceList,
 #esotbClassList {
 	display: inline-block;
+}
+
+.esotbToggleSkillNumber {
+	width: 50px;
+	margin-right: 10px;
 }

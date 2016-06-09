@@ -218,6 +218,15 @@ displayed statistics is unknown.
 		</div>
 		<div id="esotbStatBlock3" class="esotbStatBlock" style="display: none;">
 			{skillHtml}
+			<p>
+			<div id="esotbToggleSkills">
+				<h3>Toggled Skills</h3>
+				<hr>
+				The following passive/active skills can be manually enabled as desired.
+				<p>
+				<div id="esotbToggledSkillInfo">
+				</div>
+			</div>
 		</div>
 		<div id="esotbStatBlock4" class="esotbStatBlock" style="display: none;">
 			{cpHtml}

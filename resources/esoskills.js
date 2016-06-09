@@ -1496,6 +1496,7 @@ function RemovePurchasedEsoClassSkills()
 				children(".esovsAbilityBlock[skilltype='Class']").
 				not(".esovsAbilityBlockNotPurchase");
 	
+	var initialUpdate = g_EsoSkillUpdateEnable;
 	g_EsoSkillUpdateEnable = false;	
 	
 	skillElements.each(function(){
@@ -1503,7 +1504,7 @@ function RemovePurchasedEsoClassSkills()
 		ResetEsoPurchasedSkill(skillId);		
 	});
 	
-	g_EsoSkillUpdateEnable = true;
+	g_EsoSkillUpdateEnable = g_EsoSkillUpdateEnable;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
@@ -1516,6 +1517,7 @@ function RemovePurchasedEsoRaceSkills()
 				children(".esovsAbilityBlock[skilltype='Racial']").
 				not(".esovsAbilityBlockNotPurchase");
 	
+	var initialUpdate = g_EsoSkillUpdateEnable;
 	g_EsoSkillUpdateEnable = false;
 
 	skillElements.each(function() {
@@ -1523,7 +1525,7 @@ function RemovePurchasedEsoRaceSkills()
 		ResetEsoPurchasedSkill(skillId);		
 	});
 	
-	g_EsoSkillUpdateEnable = true;
+	g_EsoSkillUpdateEnable = initialUpdate;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();

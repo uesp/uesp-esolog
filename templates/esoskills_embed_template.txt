@@ -74,4 +74,3 @@
 	var g_SkillUseUpdate10Cost = {useUpdate10Costs};
 	var g_SkillDisplayType = "{displayType}";
 </script>
-<div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>
