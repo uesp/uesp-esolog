@@ -255,7 +255,13 @@ displayed statistics is unknown.
 			</div>
 		</div>
 		<div id="esotbStatBlock7" class="esotbStatBlock" style="display: none;">
-			Buffs...
+			<div id="esotbBuffs">
+				You can manually select which buffs to include in your character data calculation. Note that some buffs may already be
+				applied through passive/active skills.
+				<p>
+				<div id="esotbBuffInfo">
+				</div>
+			</div>
 		</div>
 	</div>
 	<div id="esotbStatList">

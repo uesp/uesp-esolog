@@ -60,28 +60,336 @@ g_EsoFormulaInputValues = {};
 g_EsoInputStatSources = {};
 
 
-	// Buffs
-// Major Resolve and Major Ward 5280
-// Minor Ward 1320
-// Major Savagery 2191
-// Minor Savagery 
-// Major Fortitude +20% HR
-// Major Intellect +20% MR
-// Major Endurance +20% SR
-// Minor Endurance +10 %SR 
-// Major Expedition +30%
-// Major Prophecy 2191
-// Major Vitality +30% Healing Received
-// Minor Vitality +8% Healing Received
-// Major Empower +20% Damage
-// Major Evasion +20% Dodge
-// Major Fracture/Breach -5280
-// Minor Berserk +8% Damage
-// Major Protection -30% Damage
-// Minor Maim -15% damage done
-// Major Defile -30% Healing Received
-// Minor Heroism 1 Ult/1.5secs for 9 secs
-// Increases your Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i
+g_EsoBuildBuffData =			// TODO: Icons? 
+{
+		"Major Sorcery" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display: "%",
+			statId : "SpellDamage",
+		},
+		"Minor Sorcery" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.05,
+			display: "%",
+			statId : "SpellDamage",
+		},
+		"Major Brutality" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display: "%",
+			statId : "WeaponDamage",
+		},
+		"Minor Brutality" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.05,
+			display: "%",
+			statId : "WeaponDamage",
+		},
+		"Major Resolve" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 5280,
+			statId : "PhysicalResist",
+		},
+		"Minor Resolve" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 1320,
+			statId : "PhysicalResist",
+		},
+		"Major Ward" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 5280,
+			statId : "SpellResist",
+		},
+		"Minor Ward" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 1320,
+			statId : "SpellResist",
+		},
+		"Major Savagery" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 2191,
+			statId : "WeaponCrit",
+		},
+		"Minor Savagery" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 657,
+			statId : "WeaponCrit",
+		},
+		"Major Prophecy" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 2191,
+			statId : "SpellCrit",
+		},
+		"Minor Prophecy" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 657,
+			statId : "SpellCrit",
+		},
+		"Major Fortitude" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display : "%",
+			statId : "HealthRegen",
+		},
+		"Minor Fortitude" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.10,
+			display : "%",
+			statId : "HealthRegen",
+		},
+		"Major Intellect" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display : "%",
+			statId : "MagickaRegen",
+		},
+		"Minor Intellect" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.10,
+			display : "%",
+			statId : "MagickaRegen",
+		},
+		"Major Endurance" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display : "%",
+			statId : "StaminaRegen",
+		},
+		"Minor Endurance" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.10,
+			display : "%",
+			statId : "StaminaRegen",
+		},
+		"Major Expedition" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.30,
+			display : "%",
+			statId : "SprintSpeed",
+		},
+		"Minor Expedition" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.10,
+			display : "%",
+			statId : "SprintSpeed",
+		},
+		"Major Vitality" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.30,
+			display : "%",
+			statId : "HealingReceived",
+		},
+		"Minor Vitality" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.08,
+			display : "%",
+			statId : "HealingReceived",
+		},
+		"Empower" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display : "%",
+			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+		},
+		"Major Evasion" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.20,
+			display : "%",
+			statId : "DodgeChance",
+		},
+		"Major Berserk" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.25,
+			display: "%",
+			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+		},
+		"Minor Berserk" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.08,
+			display: "%",
+			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+		},
+		"Major Protection" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.30,
+			display: "%",
+			statIds : [ "MagickaDamageResist", "PhysicalDamageResist" ],
+		},
+		"Minor Protection" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.08,
+			display: "%",
+			statIds : [ "MagickaDamageResist", "PhysicalDamageResist" ],
+		},
+		"Major Defile" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -0.30,
+			display: "%",
+			statId : "HealingReceived",
+		},
+		"Minor Defile" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -0.08,
+			display: "%",
+			statId : "HealingReceived",
+		},
+		"Minor Heroism" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : "Grants you 1 Ultimate every 1.5 seconds for 9 seconds.",
+			statId : "OtherEffects",
+		},  
+		"Major Fracture" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -5280,
+			statId : "PhysicalResist",
+		},
+		"Minor Fracture" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -1320,
+			statId : "PhysicalResist",
+		},
+		"Major Breach" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -5280,
+			statId : "SpellResist",
+		},
+		"Minor Breach" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -1320,
+			statId : "SpellResist",
+		},
+		"Minor Maim" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -0.15,
+			display: "%",
+			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+		},
+		"Weapon Damage Enchantment" : // TODO: Variable values?
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 348,
+			category: "Item",
+			statIds : [ "WeaponDamage", "SpellDamage" ],
+		},
+		
+			/* Target Buffs */
+		"Major Fracture (Target)" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -5280,
+			category: "Target",
+			statId : "PhysicalResist",
+		},
+		"Minor Fracture (Target)" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -1320,
+			category: "Target",
+			statId : "PhysicalResist",
+		},
+		"Major Breach (Target)" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -5280,
+			category: "Target",
+			statId : "SpellResist",
+		},
+		"Minor Breach (Target)" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : -1320,
+			category: "Target",
+			statId : "SpellResist",
+		},
+		"Minor Maim (Target)" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			category: "Target",
+			value : -0.15,
+			display: "%",
+			statId : "AttackBonus",
+		},
+
+};
 
 
 ESO_ACTIVEEFFECT_MATCHES = [
@@ -1780,6 +2088,7 @@ function GetEsoInputValues(mergeComputedStats)
 	UpdateEsoTestBuildSkillInputValues(inputValues);
 	GetEsoInputSkillPassives(inputValues);
 	GetEsoInputSkillActiveBar(inputValues);
+	GetEsoInputBuffValues(inputValues);
 	
 	GetEsoInputMiscValues(inputValues);
 	
@@ -1793,6 +2102,49 @@ function GetEsoInputValues(mergeComputedStats)
 	
 	g_EsoBuildLastInputValues = inputValues;
 	return inputValues;
+}
+
+
+function GetEsoInputBuffValues(inputValues)
+{
+	for (var buffName in g_EsoBuildBuffData)
+	{
+		var buffData = g_EsoBuildBuffData[buffName];
+		if (!(buffData.enabled || buffData.skillEnabled)) continue;
+		GetEsoInputBuffValue(inputValues, buffName, buffData);
+	}
+}
+
+
+function GetEsoInputBuffValue(inputValues, buffName, buffData)
+{
+	var statId = buffData.statId;
+	var statIds = buffData.statIds;
+	var category = "Buff";
+	var statValue = buffData.value;
+	
+	buffData.rawOutput = {};
+	
+	if (buffData.category != null) category = buffData.category;
+	if (statIds == null) statIds = [ statId ];
+	
+	for (var i = 0; i < statIds.length; ++i)
+	{
+		statId = statIds[i];
+		
+		if (statId == "OtherEffects")
+		{
+			AddEsoItemRawOutput(buffData, "OtherEffects", statValue);
+			AddEsoInputStatSource("OtherEffects", { other: true, buff: buffData, buffName: buffName, value: statValue });
+		}
+		else
+		{
+			inputValues[category][statId] += parseFloat(statValue);
+			AddEsoItemRawOutput(buffData, category + "." + statId, statValue);
+			AddEsoInputStatSource(category + "." + statId, { buff: buffData,  buffName: buffName, value: statValue });
+		}
+	}
+	
 }
 
 
@@ -2515,8 +2867,7 @@ function GetEsoInputItemEnchantValues(inputValues, slotId)
 	else if (IsEsoItemArmor(itemData))
 	{
 		GetEsoInputItemEnchantArmorValues(inputValues, slotId, itemData, enchantData, enchantFactor);
-	}
-	
+	}	
 	
 	return true;
 }
@@ -2635,7 +2986,8 @@ function UpdateEsoItemSets()
 
 function GetEsoInputTargetValues(inputValues)
 {
-	inputValues.Target.Resistance = parseFloat($("#esotbTargetResistance").val());
+	inputValues.Target.SpellResist = parseFloat($("#esotbTargetResistance").val());
+	inputValues.Target.PhysicalResist = inputValues.Target.SpellResist;
 	inputValues.Target.PenetrationFlat = parseFloat($("#esotbTargetPenetrationFlat").val());
 	inputValues.Target.PenetrationFactor = parseFloat($("#esotbTargetPenetrationFactor").val()) / 100;
 	inputValues.Target.DefenseBonus = parseFloat($("#esotbTargetDefenseBonus").val()) / 100;
@@ -3992,6 +4344,10 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 		else
 			output += "" + value + ": " + skillData.name + " " + skillData.rank + " active skill in " + skillData.skillLine + " line";
 	}
+	else if (sourceItem.buff != null)
+	{
+		output += "" + value + ": " + sourceItem.buff.name + " buff ";
+	}
 	else
 	{
 		output += "" + value + ": Unknown";
@@ -4485,6 +4841,9 @@ function OnEsoBuildToggleSet(e)
 	if (setId == null || setId == "") return;
 	
 	UpdateEsoComputedStatsList();
+	
+	e.stopPropagation();
+	return true;
 }
 
 
@@ -4492,7 +4851,10 @@ function OnEsoBuildToggleSetClick(e)
 {
 	var checkbox = $(this).find(".esotbToggleSetCheck");
 	checkbox.prop("checked", !checkbox.prop("checked"));
+	
 	UpdateEsoComputedStatsList();
+	
+	return false;
 }
 
 
@@ -4516,6 +4878,9 @@ function OnEsoBuildToggleSkill(e)
 	if (skillId == null || skillId == "") return;
 	
 	UpdateEsoComputedStatsList();
+	
+	e.stopPropagation();
+	return true;
 }
 
 
@@ -4523,7 +4888,10 @@ function OnEsoBuildToggleSkillClick(e)
 {
 	var checkbox = $(this).find(".esotbToggleSkillCheck");
 	checkbox.prop("checked", !checkbox.prop("checked"));
+	
 	UpdateEsoComputedStatsList();
+	
+	return false;
 }
 
 
@@ -4828,6 +5196,130 @@ function UpdateEsoBuildRawInputOtherEffects()
 }
 
 
+function CreateEsoBuildBuffElements()
+{
+	var buffElement = $("#esotbBuffInfo");
+	var output = "";
+	var keys = Object.keys(g_EsoBuildBuffData).sort();
+	
+	for (var i = 0; i < keys.length; ++i)
+	{
+		var buffName = keys[i];
+		var buffData = g_EsoBuildBuffData[buffName];
+		output += CreateEsoBuildBuffHtml(buffName, buffData);
+	}
+	
+	buffElement.html(output);
+}
+
+
+function CreateEsoBuildBuffHtml(buffName, buffData)
+{
+	var statId = buffData.statId;
+	var statIds = buffData.statIds;
+	var newStatIds = [];
+	var statValue = buffData.value;
+	var statListText = "";
+	var prefixDesc = "Increases ";
+	var targetDesc = " your ";
+	var output = "<div class='esotbBuffItem' buffid='" + buffName + "'>";
+	
+	buffData.name = buffName;
+	
+	if (statIds == null) statIds = [ statId ];
+	
+	output += "<input class='esotbBuffCheck' type='checkbox' buffid='" + buffName + "'> ";
+	output += "<div class='esotbBuffTitle'>" + buffName + "</div>";
+	
+	for (var i = 0; i < statIds.length; ++i)
+	{
+		var newId = statIds[i].replace(/([A-Z])/g, ' $1').trim();
+		newStatIds.push(newId);
+	}
+	
+	if (newStatIds.length == 1)
+	{
+		statListText = newStatIds[0];
+	}
+	else if (newStatIds.length == 2)
+	{
+		statListText = newStatIds[0] + " and " + newStatIds[1];
+	}
+	else if (newStatIds.length >= 3)
+	{
+		var lastElement = newStatIds.pop();
+		statListText = newStatIds.join(", ") + " and " + lastElement;
+	}
+	
+	if (typeof(statValue) != "string")
+	{
+		if (statValue < 0) 
+		{
+			prefixDesc = "Decreases ";
+			statValue *= -1;
+		}
+		
+		if (buffData.category == "Target") targetDesc = " the target's ";
+		
+		if (buffData.display == "%")
+		{
+			statValue = "" + (Math.floor(statValue*1000)/10) + "%";
+		}
+		
+		buffData.desc = prefixDesc + targetDesc + statListText + " by " + statValue;
+	}
+	else
+	{
+		buffData.desc = statValue;
+	}
+	
+	output += "<div class='esotbBuffDesc'>" + buffData.desc + "</div>";
+	output += "<div class='esotbBuffSkillEnable'></div>";
+	output += "</div>"
+	
+	
+	return output;
+}
+
+
+function OnEsoBuildBuffClick(e)
+{
+	var checkElement = $(this).find(".esotbBuffCheck");
+	var buffId = $(this).attr("buffid");
+	var buffData = g_EsoBuildBuffData[buffId];
+	
+	checkElement.prop("checked", !checkElement.prop("checked"));
+	
+	if (buffData != null)
+	{
+		buffData.enabled = checkElement.prop("checked");
+	}
+	
+	UpdateEsoComputedStatsList();
+	
+	return false;
+}
+
+
+function OnEsoBuildBuffCheckClick(e)
+{
+	var parent = $(this).parent();
+	var buffId = parent.attr("buffid");
+	var buffData = g_EsoBuildBuffData[buffId];
+	
+	if (buffData != null)
+	{
+		buffData.enabled = $(this).prop("checked");
+		//$(this).prop("checked", buffData.enabled);
+	}
+	
+	UpdateEsoComputedStatsList();
+
+	e.stopPropagation();
+	return true;
+}
+
+
 function esotbOnDocReady()
 {
 	GetEsoSkillInputValues = GetEsoTestBuildSkillInputValues;
@@ -4835,6 +5327,7 @@ function esotbOnDocReady()
 	UpdateEsoComputedStatsList();
 	CreateEsoBuildToggledSetData();
 	CreateEsoBuildToggledSkillData();
+	CreateEsoBuildBuffElements();
 		
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
@@ -4870,6 +5363,9 @@ function esotbOnDocReady()
 	$(document).on("EsoSkillBarSwap", OnEsoBuildSkillBarSwap);
 	$(document).on("EsoSkillUpdate", OnEsoBuildSkillUpdate);
 	$(document).on("EsoSkillBarUpdate", OnEsoBuildSkillBarUpdate);
+	
+	$(".esotbBuffCheck").click(OnEsoBuildBuffCheckClick);
+	$(".esotbBuffItem").click(OnEsoBuildBuffClick);	
 	
 	$(document).keyup(function(e) {
 	    if (e.keyCode == 27) OnEsoBuildEscapeKey(e);
