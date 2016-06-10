@@ -1440,6 +1440,78 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function ModifyEnchantDesc($desc, $isDefaultEnchant)
+	{
+		static $WEAPON_MATCHES = array
+		(
+				"#(Deals \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
+				"#(restores \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
+				"#(by \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
+				"#(Grants a \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
+		);
+	
+		$newDesc = $desc;
+		$trait = $this->itemRecord['trait'];
+		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
+	
+		$armorFactor = 1;
+		$weaponFactor = 1;
+	
+			/* Infused */
+		if ($trait == 16 || $trait == 4)
+		{
+			$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
+			$traitValue = 0;
+				
+			if ($result && $matches[1])
+			{
+				$traitValue = 1 + ((float) $matches[1]) / 100;
+				if ($trait == 16) $armorFactor *= $traitValue;
+				if ($trait ==  4) $weaponFactor *= $traitValue;
+			}
+		}
+	
+		$armorType = $this->itemRecord['armorType'];
+		$equipType = $this->itemRecord['equipType'];
+	
+			/* Modify enchants of small armor pieces */
+		if ($armorType > 0 && ($equipType == 4 || $equipType == 8 || $equipType == 10 || $equipType == 13))
+		{
+			$armorFactor *= 0.4044;
+		}
+	
+		if (!$isDefaultEnchant && $armorFactor != 1)
+		{
+			$newDesc = preg_replace_callback("#(Adds \|c[0-9a-fA-F]{6})([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
+						
+					function ($matches) use ($armorFactor) {
+						$result = floor($matches[2] * $armorFactor);
+						return $matches[1] . $result . $matches[3];
+					},
+	
+					$newDesc);
+	
+		}
+		else if ($weaponFactor != 1)
+		{
+			foreach ($WEAPON_MATCHES as $match)
+			{
+				$newDesc = preg_replace_callback($match,
+							
+						function ($matches) use ($weaponFactor) {
+							$result = floor($matches[2] * $weaponFactor);
+							return $matches[1] . $result . $matches[3];
+						},
+	
+						$newDesc);
+			}
+		}
+	
+		//$newDesc = $this->FormatDescriptionText($newDesc);
+		return $newDesc;
+	}
+	
+	
 	private function OutputItemEnchantBlock($image, $y)
 	{
 		$printData = array();
@@ -1450,7 +1522,7 @@ class CEsoItemLinkImage
 		if ($this->enchantRecord1 != null)
 		{
 			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
-			$enchantDesc = $this->enchantRecord1['enchantDesc'];
+			$enchantDesc = $this->ModifyEnchantDesc($this->enchantRecord1['enchantDesc'], false);
 				
 			if ($enchantDesc != "")
 			{
@@ -1462,7 +1534,7 @@ class CEsoItemLinkImage
 		if ($this->enchantRecord2 != null)
 		{
 			$enchantName = strtoupper($this->enchantRecord2['enchantName']);
-			$enchantDesc = $this->enchantRecord2['enchantDesc'];
+			$enchantDesc = $this->ModifyEnchantDesc($this->enchantRecord2['enchantDesc'], false);
 		
 			if ($enchantDesc != "")
 			{
@@ -1475,7 +1547,7 @@ class CEsoItemLinkImage
 		if ($this->enchantRecord1 == null && $this->enchantRecord2 == null)
 		{
 			$enchantName = strtoupper($this->itemRecord['enchantName']);
-			$enchantDesc = $this->itemRecord['enchantDesc'];
+			$enchantDesc = $this->ModifyEnchantDesc($this->itemRecord['enchantDesc'], true);
 			
 			if ($enchantDesc != "")
 			{
