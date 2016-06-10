@@ -79,6 +79,31 @@ class CEsoTestBuild
 			"Misc.SpellCost",
 			"VampireStage",
 			"Werewolf",
+			"SkillCost.Ardent_Flame_Cost",
+			"SkillCost.Draconic_Power_Cost",
+			"SkillCost.Earthern_Heart_Cost",
+			"SkillCost.Assassination_Cost",
+			"SkillCost.Shadow_Cost",
+			"SkillCost.Siphoning_Cost",
+			"SkillCost.Daedric_Summoning_Cost",
+			"SkillCost.Dark_Magic_Cost",
+			"SkillCost.Storm_Calling_Cost",
+			"SkillCost.Aedric_Spear_Cost",
+			"SkillCost.Dawns_Wrath_Cost",
+			"SkillCost.Restoring_Light_Cost",
+			"SkillCost.Two_Handed_Cost",
+			"SkillCost.One_Hand_and_Shield_Cost",
+			"SkillCost.Dual_Wield_Cost",
+			"SkillCost.Bow_Cost",
+			"SkillCost.Destruction_Staff_Cost",
+			"SkillCost.Restoration_Staff_Cost",
+			"SkillCost.Vampire_Cost",
+			"SkillCost.Werewolf_Cost",
+			"SkillCost.Fighters_Guild_Cost",
+			"SkillCost.Mages_Guild_Cost",
+			"SkillCost.Undaunted_Cost",
+			"SkillCost.Assault_Cost",
+			"SkillCost.Support_Cost",
 	);
 	
 	
@@ -175,6 +200,8 @@ class CEsoTestBuild
 			"HAChargeTime",
 			"FireDamageResist",
 			"DodgeChance",
+			"DamageTaken",
+			"DamageDone",
 	);
 	
 	
@@ -329,7 +356,7 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			//Set raw critical values?
+				//Set raw critical values?
 			"Item.WeaponCrit" => array(
 					"display" => "%",
 			),
@@ -590,6 +617,25 @@ class CEsoTestBuild
 					"display" => "%",
 			),		
 			
+			"Buff.DamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"Buff.HealingReceived" => array(
+					"display" => "%",
+			),
+			
+			"Buff.DamageShield" => array(
+					"display" => "%",
+			),
+			
+			"Buff.DamageDone" => array(
+					"display" => "%",
+			),
+			
+			"Skill.HADamage" => array(
+					"display" => "%",
+			),
 			
 	);
 	
@@ -1168,6 +1214,7 @@ class CEsoTestBuild
 			
 			"BlockMitigation" => array(
 					"title" => "Block Mitigation",
+					"display" => "%",
 					"compute" => array(
 							"0.5",
 							"1 - Skill.BlockMitigation",

@@ -339,6 +339,7 @@ class EsoLogViewer
 	public static $SKILLDUMP_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'version' => self::FIELD_STRING,
+			'texture'  => self::FIELD_GAMEICON,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_TEXTTRANSFORM,
 			'duration' => self::FIELD_INT,
@@ -366,7 +367,6 @@ class EsoLogViewer
 			'nextSkill2'  => self::FIELD_INT,
 			'upgradeLines' => self::FIELD_TEXTTRANSFORM,
 			'effectLines' => self::FIELD_TEXTTRANSFORM,
-			'texture'  => self::FIELD_GAMEICON,
 			'numCoefVars' => self::FIELD_INT,
 			'coefDescription' =>  self::FIELD_TEXTTRANSFORM,
 			'type1' => self::FIELD_INTTRANSFORM,
