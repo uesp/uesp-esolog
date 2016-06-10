@@ -779,10 +779,16 @@ button.esotbWeaponSelect {
 	font-size: 15px;
 	font-weight: bold;
 	margin-right: 10px;
+	vertical-align: top;
+}
+
+.esotbBuffCheck {
+	vertical-align: top;
 }
 
 .esotbBuffDesc {
 	display: inline-block;
+	vertical-align: top;
 }
 
 .esotbBuffItem {
@@ -808,4 +814,13 @@ button.esotbWeaponSelect {
 .esotbBuffSkillEnable {
 	margin-left: 10px;
 	display: inline-block;
+}
+
+.esotbBuffIcon {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 2px;
+	padding-right: 7px;	
 }

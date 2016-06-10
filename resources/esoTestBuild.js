@@ -5,6 +5,8 @@
 
 ESO_TESTBUILD_SHOWALLRAWINPUTS = false;
 
+ESO_ICON_URL = "http://esoicons.uesp.net";
+
 ESO_MAX_ATTRIBUTES = 64;
 ESO_MAX_LEVEL = 50;
 ESO_MAX_CPLEVEL = 16;
@@ -69,6 +71,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display: "%",
 			statId : "SpellDamage",
+			icon : "/esoui/art/icons/ability_sorcerer_critical_surge.png",
 		},
 		"Minor Sorcery" : 
 		{
@@ -77,6 +80,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.05,
 			display: "%",
 			statId : "SpellDamage",
+			icon : "/esoui/art/icons/ability_sorcerer_surge.png",
 		},
 		"Major Brutality" : 
 		{
@@ -85,6 +89,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display: "%",
 			statId : "WeaponDamage",
+			icon : "/esoui/art/icons/ability_2handed_005.png",
 		},
 		"Minor Brutality" : 
 		{
@@ -93,6 +98,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.05,
 			display: "%",
 			statId : "WeaponDamage",
+			icon : "/esoui/art/icons/ability_warrior_012.png",
 		},
 		"Major Resolve" : 
 		{
@@ -100,6 +106,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 5280,
 			statId : "PhysicalResist",
+			icon : "/esoui/art/icons/ability_warrior_021.png",
 		},
 		"Minor Resolve" : 
 		{
@@ -107,6 +114,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 1320,
 			statId : "PhysicalResist",
+			icon : "/esoui/art/icons/ability_warrior_033.png",
 		},
 		"Major Ward" : 
 		{
@@ -114,6 +122,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 5280,
 			statId : "SpellResist",
+			icon : "/esoui/art/icons/ability_mage_069.png",
 		},
 		"Minor Ward" : 
 		{
@@ -121,6 +130,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 1320,
 			statId : "SpellResist",
+			icon : "/esoui/art/icons/ability_mage_038.png",
 		},
 		"Major Savagery" : 
 		{
@@ -128,6 +138,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 2191,
 			statId : "WeaponCrit",
+			icon : "/esoui/art/icons/ability_warrior_022.png",
 		},
 		"Minor Savagery" : 
 		{
@@ -135,6 +146,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 657,
 			statId : "WeaponCrit",
+			icon : "/esoui/art/icons/ability_warrior_005.png",
 		},
 		"Major Prophecy" : 
 		{
@@ -142,6 +154,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 2191,
 			statId : "SpellCrit",
+			icon : "/esoui/art/icons/ability_mage_017.png",
 		},
 		"Minor Prophecy" : 
 		{
@@ -149,6 +162,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 657,
 			statId : "SpellCrit",
+			icon : "/esoui/art/icons/ability_mage_042.png",
 		},
 		"Major Fortitude" : 
 		{
@@ -157,6 +171,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display : "%",
 			statId : "HealthRegen",
+			icon : "/esoui/art/icons/ability_healer_003.png",
 		},
 		"Minor Fortitude" : 
 		{
@@ -165,6 +180,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.10,
 			display : "%",
 			statId : "HealthRegen",
+			icon : "/esoui/art/icons/ability_healer_002.png",
 		},
 		"Major Intellect" : 
 		{
@@ -173,6 +189,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display : "%",
 			statId : "MagickaRegen",
+			icon : "/esoui/art/icons/ability_mage_045.png",
 		},
 		"Minor Intellect" : 
 		{
@@ -181,6 +198,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.10,
 			display : "%",
 			statId : "MagickaRegen",
+			icon : "/esoui/art/icons/ability_mage_044.png",
 		},
 		"Major Endurance" : 
 		{
@@ -189,6 +207,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display : "%",
 			statId : "StaminaRegen",
+			icon : "/esoui/art/icons/ability_warrior_028.png",
 		},
 		"Minor Endurance" : 
 		{
@@ -197,6 +216,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.10,
 			display : "%",
 			statId : "StaminaRegen",
+			icon : "/esoui/art/icons/ability_warrior_031.png",
 		},
 		"Major Expedition" : 
 		{
@@ -205,6 +225,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.30,
 			display : "%",
 			statId : "SprintSpeed",
+			icon : "/esoui/art/icons/ability_rogue_049.png",
 		},
 		"Minor Expedition" : 
 		{
@@ -213,6 +234,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.10,
 			display : "%",
 			statId : "SprintSpeed",
+			icon : "/esoui/art/icons/ability_rogue_045.png",
 		},
 		"Major Vitality" : 
 		{
@@ -221,6 +243,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.30,
 			display : "%",
 			statId : "HealingReceived",
+			icon : "/esoui/art/icons/ability_healer_018.png",
 		},
 		"Minor Vitality" : 
 		{
@@ -229,6 +252,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.08,
 			display : "%",
 			statId : "HealingReceived",
+			icon : "/esoui/art/icons/ability_healer_004.png",
 		},
 		"Empower" : 
 		{
@@ -237,6 +261,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display : "%",
 			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			icon : "/esoui/art/icons/ability_warrior_012.png",
 		},
 		"Major Evasion" : 
 		{
@@ -245,7 +270,9 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display : "%",
 			statId : "DodgeChance",
+			icon : "/esoui/art/icons/ability_rogue_037.png",
 		},
+			// Minor Evasion: /esoui/art/icons/ability_rogue_035.png
 		"Major Berserk" : 
 		{
 			enabled: false,
@@ -253,6 +280,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.25,
 			display: "%",
 			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			icon : "/esoui/art/icons/ability_rogue_011.png",
 		},
 		"Minor Berserk" : 
 		{
@@ -261,6 +289,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.08,
 			display: "%",
 			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			icon : "/esoui/art/icons/ability_warrior_025.png",
 		},
 		"Major Protection" : 
 		{
@@ -269,6 +298,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.30,
 			display: "%",
 			statIds : [ "MagickaDamageResist", "PhysicalDamageResist" ],
+			icon : "/esoui/art/icons/ability_templar_sun_shield.png",
 		},
 		"Minor Protection" : 
 		{
@@ -277,6 +307,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.08,
 			display: "%",
 			statIds : [ "MagickaDamageResist", "PhysicalDamageResist" ],
+			icon : "/esoui/art/icons/ability_templar_radiant_ward.png",
 		},
 		"Major Defile" : 
 		{
@@ -285,6 +316,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -0.30,
 			display: "%",
 			statId : "HealingReceived",
+			icon : "/esoui/art/icons/ability_nightblade_001_a.png",
 		},
 		"Minor Defile" : 
 		{
@@ -293,13 +325,16 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -0.08,
 			display: "%",
 			statId : "HealingReceived",
+			icon : "/esoui/art/icons/ability_nightblade_001_b.png",
 		},
+			// Major Heroism: /esoui/art/icons/ability_templar_breath_of_life.png
 		"Minor Heroism" : 
 		{
 			enabled: false,
 			skillEnabled : false,
 			value : "Grants you 1 Ultimate every 1.5 seconds for 9 seconds.",
 			statId : "OtherEffects",
+			icon : "/esoui/art/icons/ability_templar_honor_the_dead.png",
 		},  
 		"Major Fracture" : 
 		{
@@ -307,6 +342,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : -5280,
 			statId : "PhysicalResist",
+			icon : "/esoui/art/icons/ability_1handed_002_a.png",
 		},
 		"Minor Fracture" : 
 		{
@@ -314,6 +350,8 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : -1320,
 			statId : "PhysicalResist",
+			icon : "/esoui/art/icons/ability_1handed_002.png",
+			//icon : "/esoui/art/icons/ability_warrior_016.png",
 		},
 		"Major Breach" : 
 		{
@@ -321,6 +359,8 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : -5280,
 			statId : "SpellResist",
+			icon : "/esoui/art/icons/ability_mage_039.png",
+			//icon : "/esoui/art/icons/ability_1handed_002_b.png",			
 		},
 		"Minor Breach" : 
 		{
@@ -328,7 +368,9 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : -1320,
 			statId : "SpellResist",
+			icon : "/esoui/art/icons/ability_mage_053.png",
 		},
+			// Major Maim: /esoui/art/icons/ability_fightersguild_004_a.png
 		"Minor Maim" : 
 		{
 			enabled: false,
@@ -336,17 +378,29 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -0.15,
 			display: "%",
 			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			icon : "/esoui/art/icons/ability_fightersguild_004.png",
 		},
 		"Weapon Damage Enchantment" : // TODO: Variable values?
 		{
 			enabled: false,
 			skillEnabled : false,
+			visible : false,
+			toggleVisible : true,
 			value : 348,
 			category: "Item",
 			statIds : [ "WeaponDamage", "SpellDamage" ],
+			icon : "/esoui/art/icons/enchantment_weapon_berserking.png",
 		},
-		
-		//Battle Spirit buff
+		"Battle Spirit" :
+		{
+			enabled: false,
+			skillEnabled : false,
+			displays : [ "", "%", "%", "%" ],
+			categories : [ "Item", "Buff", "Buff", "Buff" ],
+			values : [ 5000, 0.50, 0.50, 0.50 ],
+			statIds : [ "Health", "HealingReceived", "DamageTaken", "DamageShield" ],
+			icon: "/esoui/art/icons/ability_templar_002.png",
+		},
 		
 			/* Target Buffs */
 		"Major Fracture (Target)" : 
@@ -356,6 +410,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -5280,
 			category: "Target",
 			statId : "PhysicalResist",
+			icon : "/esoui/art/icons/ability_1handed_002_a.png",
 		},
 		"Minor Fracture (Target)" : 
 		{
@@ -364,6 +419,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -1320,
 			category: "Target",
 			statId : "PhysicalResist",
+			icon : "/esoui/art/icons/ability_1handed_002.png",
 		},
 		"Major Breach (Target)" : 
 		{
@@ -372,6 +428,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -5280,
 			category: "Target",
 			statId : "SpellResist",
+			icon : "/esoui/art/icons/ability_mage_039.png",
 		},
 		"Minor Breach (Target)" : 
 		{
@@ -380,6 +437,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -1320,
 			category: "Target",
 			statId : "SpellResist",
+			icon : "/esoui/art/icons/ability_mage_053.png",
 		},
 		"Minor Maim (Target)" : 
 		{
@@ -389,6 +447,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : -0.15,
 			display: "%",
 			statId : "AttackBonus",
+			icon : "/esoui/art/icons/ability_fightersguild_004.png",
 		},
 
 };
@@ -433,11 +492,35 @@ ESO_ACTIVEEFFECT_MATCHES = [
 	},
 	{
 		buffId: "Major Prophecy",
-		match: /While slotted, you gain Major Prophecy and Major Savagery/i
+		match: /While slotted, you gain Major Prophecy/i
 	},
 	{
 		buffId: "Major Savagery",
 		match: /While slotted, you gain Major Prophecy and Major Savagery/i
+	},
+	{
+		buffId: "Minor Vitality",
+		match: /While slotted you gain Minor Vitality/i
+	},
+	{
+		buffId: "Major Savagery",
+		match: /While slotted you gain Major Savagery/i
+	},
+	{
+		buffId: "Major Prophecy",
+		match: /While slotted, your Max Magicka is increased by [0-9]+\.?[0-9]*% and you gain Major Prophecy/i
+	},
+	{
+		buffId: "Minor Fortitude",
+		match: /While slotted, you gain Minor Fortitude/i
+	},
+	{
+		buffId: "Minor Endurance",
+		match: /While slotted, you gain Minor Fortitude, Minor Endurance/i
+	},
+	{
+		buffId: "Minor Intellect",
+		match: /While slotted, you gain Minor Fortitude, Minor Endurance, and Minor Intellect/i
 	},
 	
 		/* Begin Other Effects */
@@ -459,8 +542,8 @@ ESO_ACTIVEEFFECT_MATCHES = [
 	},
 	{
 		statId: "OtherEffects",
-		rawInputMatch: /(While slotted, your movement speed while stealthed or invisible is increased\.)/i,
-		match: /While slotted, your movement speed while stealthed or invisible is increased/i
+		rawInputMatch: /(While slotted, your movement speed while stealthed or invisible is increased by [0-9]+\.?[0-9]*%\.)/i,
+		match: /While slotted, your movement speed while stealthed or invisible is increased by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		statId: "OtherEffects",
@@ -472,8 +555,16 @@ ESO_ACTIVEEFFECT_MATCHES = [
 		rawInputMatch: /(You also recover ([0-9]+) Magicka every 0\.5 seconds\.)/i,
 		match: /You also recover ([0-9]+) Magicka every 0\.5 seconds/i
 	},
+	{
+		statId: "OtherEffects",
+		match: /While slotted, any time you kill an enemy you gain ([0-9]+) Ultimate\./i
+	},
+	{
+		statId: "OtherEffects",
+		rawInputMatch: /(Critical hits from crouch grant Minor Berserk)/i,
+		match: /Critical hits from crouch grant Minor Berserk/i,
+	},
 		/* End Other Effects */
-	
 	
 		/* Begin Toggled Abilities */
 	{
@@ -510,7 +601,6 @@ ESO_ACTIVEEFFECT_MATCHES = [
 	},
 	{
 		id: "Bound Armor",
-		//matchSkillName: true,
 		baseSkillId: 30418,
 		statId: "Magicka",
 		toggle: true,
@@ -520,7 +610,7 @@ ESO_ACTIVEEFFECT_MATCHES = [
 	},
 	{
 		id: "Bound Armor",
-		//matchSkillName: true,
+		displayName: "Bound Armaments",
 		baseSkillId: 30418,
 		statId: "HADamage",
 		toggle: true,
@@ -530,7 +620,7 @@ ESO_ACTIVEEFFECT_MATCHES = [
 	},
 	{
 		id: "Bound Armor",
-		//matchSkillName: true,
+		displayName: "Bound Armaments",
 		baseSkillId: 30418,
 		statId: "Stamina",
 		toggle: true,
@@ -538,16 +628,60 @@ ESO_ACTIVEEFFECT_MATCHES = [
 		display: "%",
 		match: /The armor also increases your damage with Heavy Attacks by [0-9]+\.?[0-9]*% and increases your Max Stamina by ([0-9]+\.?[0-9]*)%/i
 	},
+	{
+		id: "Bound Armor",
+		baseSkillId: 30418,
+		buffId : "Minor Resolve",
+		toggle: true,
+		enable: false,
+		match: /Protect yourself with the power of Oblivion, creating a suit of Daedric mail that grants Minor Resolve/i,
+	},
+	{
+		id: "Bound Armor",
+		baseSkillId: 30418,
+		buffId : "Minor Ward",
+		toggle: true,
+		enable: false,
+		match: /Protect yourself with the power of Oblivion, creating a suit of Daedric mail that grants Minor Resolve and Minor Ward/i,
+	},
+	{
+		id: "Lightning Form",
+		baseSkillId: 30235,
+		buffId : "Major Ward",
+		toggle: true,
+		enable: false,
+		match: /While in this form you also gain Major Resolve and Major Ward/i,
+	},
+	{
+		id: "Lightning Form",
+		baseSkillId: 30235,
+		buffId : "Major Resolve",
+		toggle: true,
+		enable: false,
+		match: /While in this form you also gain Major Resolve and Major Ward/i,
+	},
+	{
+		id: "Lightning Form",
+		displayName: "Hurricane",
+		baseSkillId: 30244,
+		buffId : "Minor Expedition",
+		toggle: true,
+		enable: false,
+		match: /While in this form you gain Major Resolve, Major Ward, and Minor Expedition/i,
+	},
+	{
+		id: "Lightning Form",
+		displayName: "Boundless Storm",
+		baseSkillId: 30255,
+		buffId : "Major Expedition",
+		toggle: true,
+		enable: false,
+		match: /Activating this grants Major Expedition for a brief period/i,
+	},
 		/* End Toggled Abilities */
 	
 	
-    	// Buffs
-	// While slotted, you gain Major Prophecy
-	// While slotted you gain Minor Vitality
-	// While slotted gain Major Savagery
-	// While slotted, you gain Major Prophecy,
-	// While slotted, your Max Magicka is increased by 5% and you gain Major Prophecy,
-	// While slotted, you gain Minor Fortitude, Minor Endurance, and Minor Intellect,
+	// While slotted, your Spell and Weapon Damage is increased by 101 for Ardent Flame abilities.
 ];
 
 
@@ -1956,7 +2090,9 @@ ESO_ENCHANT_WEAPON_MATCHES = [
 	},
 	{
 		statId: "OtherEffects",		// Added to buffs
-		match: /Increases your Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i,
+		match: /Increase your Weapon Damage and Spell Damage by ([0-9]+) for [0-9]+ seconds/i,
+		buffId : "Weapon Damage Enchantment",
+		updateBuffValue : true,
 	},
 ];
 
@@ -2121,7 +2257,7 @@ function GetEsoInputBuffValues(inputValues)
 	for (var buffName in g_EsoBuildBuffData)
 	{
 		var buffData = g_EsoBuildBuffData[buffName];
-		if (!(buffData.enabled || buffData.skillEnabled)) continue;
+		if (!buffData.visible || !(buffData.enabled || buffData.skillEnabled)) continue;
 		GetEsoInputBuffValue(inputValues, buffName, buffData);
 	}
 }
@@ -2132,13 +2268,20 @@ function GetEsoInputBuffValue(inputValues, buffName, buffData)
 	var statId = buffData.statId;
 	var statIds = buffData.statIds;
 	var category = "Buff";
+	var categories = buffData.categories;
 	var statValue = buffData.value;
+	var statValues = buffData.values;
 	
 	if (buffData.category != null) category = buffData.category;
+	
 	if (statIds == null) statIds = [ statId ];
+	if (statValues == null) statValues = [].fill.call({ length: statIds.length }, statValue);
+	if (categories == null) categories = [].fill.call({ length: statIds.length }, category);
 	
 	for (var i = 0; i < statIds.length; ++i)
 	{
+		statValue = statValues[i];
+		category = categories[i];
 		statId = statIds[i];
 		
 		if (statId == "OtherEffects")
@@ -2485,7 +2628,8 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 	
 	if (matchData.buffId != null)
 	{
-		console.log("Matching Buff", matchData.buffId, g_EsoBuildBuffData[matchData.buffId]);
+		if (matchData.showLog === true) console.log("Matching Buff", matchData.buffId, g_EsoBuildBuffData[matchData.buffId]);
+		
 		var buffData = g_EsoBuildBuffData[matchData.buffId];
 		if (buffData == null) return false;
 		
@@ -2532,6 +2676,8 @@ function ResetEsoBuffSkillEnabled()
 	for (var buffName in g_EsoBuildBuffData)
 	{
 		var buffData = g_EsoBuildBuffData[buffName];
+		if (buffData.visible == null) buffData.visible = true;
+		if (buffData.toggleVisible === true) buffData.visible = false;
 		buffData.skillEnabled = false;
 		buffData.rawOutput = {};
 		buffData.skillAbilities = [];
@@ -3001,6 +3147,19 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 		{
 			rawDesc = rawDesc.replace(matchData.match, function(match, p1, offset, string) { return ReplaceEsoWeaponMatch(match, p1, offset, string, enchantFactor); });
 			addFinalEffect = true;
+			
+			if (matchData.buffId != null && matchData.updateBuffValue === true)
+			{
+				var buffData = g_EsoBuildBuffData[matchData.buffId];
+				
+				if (buffData != null) 
+				{
+					var matches = rawDesc.match(matchData.match);
+					if (matches != null && matches[1] != null) buffData.value = parseFloat(matches[1]);
+					
+					buffData.visible = true;
+				}
+			}
 		}
 		else
 		{
@@ -3333,6 +3492,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildToggleSkills();
 	UpdateEsoBuildItemLinkSetCounts();
 	
+	UpdateEsoBuildVisibleBuffs();
 	UpdateEsoBuffSkillEnabled();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
@@ -3736,7 +3896,7 @@ function OnEsoSelectItem(itemData, element)
 	}
 	
 	var iconName = itemData.icon.replace(".dds", ".png");
-	var iconUrl = "http://esoicons.uesp.net" + iconName;
+	var iconUrl = ESO_ICON_URL + iconName;
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
 	
 	if (iconName == "" || iconName == "/") iconUrl = "";
@@ -4639,7 +4799,11 @@ function AddEsoBuildToggledSkillData(skillEffectData, isPassive)
 	g_EsoBuildToggledSkillData[id].enabled = skillEffectData.enabled;
 	g_EsoBuildToggledSkillData[id].count = 0;
 	g_EsoBuildToggledSkillData[id].maxTimes = skillEffectData.maxTimes;
-	g_EsoBuildToggledSkillData[id].statIds.push(skillEffectData.statId);
+	
+	if (skillEffectData.statId != null)
+		g_EsoBuildToggledSkillData[id].statIds.push(skillEffectData.statId);
+	else if (skillEffectData.buffId != null)
+		g_EsoBuildToggledSkillData[id].statIds.push("Buff." + skillEffectData.buffId);
 }
 
 
@@ -4811,6 +4975,7 @@ function UpdateEsoBuildToggledSkillData(inputValues)
 	}
 	
 }
+
 
 function FindMatchingEsoPassiveSkillDescription(matchData)
 {
@@ -5013,15 +5178,23 @@ function CreateEsoBuildToggleSkillHtml(skillData)
 	var output = "<div class='esotbToggledSkillItem' skillid=\"" + skillData.id + "\">";
 	var checked = skillData.enabled ? "checked" : "";
 	
+	var displayName = skillData.id;
+	var activeData = g_EsoSkillActiveData[skillData.baseSkillId];
+	
+	if (activeData != null && activeData.abilityId != null)
+	{
+		var abilityData = g_SkillsData[activeData.abilityId];
+		if (abilityData != null && abilityData.name != null) displayName = abilityData.name;
+	}	
+	
 	output += "<input type='checkbox' class='esotbToggleSkillCheck'  " + checked + " >";
 	
 	if (skillData.maxTimes != null) 
 	{
 		output += "<input type='number' class='esotbToggleSkillNumber'  value='" + skillData.count + "' >";
-		//output += " (0-" + skillData.maxTimes + ") ";
 	}
 	
-	output += "<div class='esotbToggleSkillTitle'>" + skillData.id + ":</div> ";
+	output += "<div class='esotbToggleSkillTitle'>" + displayName + ":</div> ";
 	output += "<div class='esotbToggleSkillDesc'>" + skillData.desc + "</div>";
 	
 	output += "</div>";
@@ -5292,70 +5465,104 @@ function CreateEsoBuildBuffElements()
 
 function CreateEsoBuildBuffHtml(buffName, buffData)
 {
-	var statId = buffData.statId;
-	var statIds = buffData.statIds;
-	var newStatIds = [];
-	var statValue = buffData.value;
-	var statListText = "";
-	var prefixDesc = "Increases ";
-	var targetDesc = "your ";
-	var output = "<div class='esotbBuffItem' buffid='" + buffName + "'>";
+	var icon = buffData.icon;
+	var extraAttributes = "";
 	
 	buffData.name = buffName;
 	
-	if (statIds == null) statIds = [ statId ];
+	if (icon == null) icon = "/unknown.png";
+	icon = ESO_ICON_URL + icon;
+	
+	if (buffData.visible === false) extraAttributes = "style='display: none;'";
+	
+	var output = "<div class='esotbBuffItem' " + extraAttributes + " buffid='" + buffName + "'>";
 	
 	output += "<input class='esotbBuffCheck' type='checkbox' buffid='" + buffName + "'> ";
+	output += "<img class='esotbBuffIcon' src='" + icon + "'>";
 	output += "<div class='esotbBuffTitle'>" + buffName + "</div>";
+	
+	CreateEsoBuildBuffDescHtml(buffData);
+
+	output += "<div class='esotbBuffDesc'>" + buffData.desc + "</div>";
+	output += "<div class='esotbBuffSkillEnable'></div>";
+	output += "</div>";
+	
+	return output;
+}
+
+
+function CreateEsoBuildBuffDescHtml(buffData)
+{
+	var statId = buffData.statId;
+	var statIds = buffData.statIds;
+	var category = buffData.category;;
+	var categories = buffData.categories;
+	var statValue = buffData.value;
+	var statValues = buffData.values;
+	var display = buffData.display;
+	var displays = buffData.displays;
+	var prefixDesc = "Increases ";
+	var targetDesc = "your ";
+	
+	buffData.desc = "";
+	
+	if (statIds == null) statIds = [ statId ];
+	if (statValues == null) statValues = [].fill.call({ length: statIds.length }, statValue);
+	if (categories == null) categories = [].fill.call({ length: statIds.length }, category);
+	if (displays == null) displays = [].fill.call({ length: statIds.length }, display);
 	
 	for (var i = 0; i < statIds.length; ++i)
 	{
-		var newId = statIds[i].replace(/([A-Z])/g, ' $1').trim();
-		newStatIds.push(newId);
-	}
-	
-	if (newStatIds.length == 1)
-	{
-		statListText = newStatIds[0];
-	}
-	else if (newStatIds.length == 2)
-	{
-		statListText = newStatIds[0] + " and " + newStatIds[1];
-	}
-	else if (newStatIds.length >= 3)
-	{
-		var lastElement = newStatIds.pop();
-		statListText = newStatIds.join(", ") + " and " + lastElement;
-	}
-	
-	if (typeof(statValue) != "string")
-	{
-		if (statValue < 0) 
+		statId = statIds[i].replace(/([A-Z])/g, ' $1').trim();
+		statValue = statValues[i];
+		category = categories[i];
+		display = displays[i];
+		
+		if (typeof(statValue) != "string")
 		{
-			prefixDesc = "Decreases ";
-			statValue *= -1;
+			if (statValue < 0) 
+			{
+				prefixDesc = "Decreases ";
+				statValue *= -1;
+			}
+			
+			if (buffData.category == "Target") targetDesc = "the target's ";
+			
+			if (display == "%")
+			{
+				statValue = "" + (Math.floor(statValue*1000)/10) + "%";
+			}
+			
+			buffData.desc += prefixDesc + targetDesc + statId + " by " + statValue + "<br/>";
 		}
-		
-		if (buffData.category == "Target") targetDesc = "the target's ";
-		
-		if (buffData.display == "%")
+		else
 		{
-			statValue = "" + (Math.floor(statValue*1000)/10) + "%";
+			buffData.desc += statValue + "<br/>";
 		}
-		
-		buffData.desc = prefixDesc + targetDesc + statListText + " by " + statValue;
 	}
-	else
+	
+	return buffData.desc;
+}
+
+
+function UpdateEsoBuildVisibleBuffs()
+{
+	
+	for (var buffName in g_EsoBuildBuffData)
 	{
-		buffData.desc = statValue;
+		var buffData = g_EsoBuildBuffData[buffName];
+		var element = $(".esotbBuffItem[buffid='" + buffName + "']");
+		
+		if (buffData.toggleVisible === true && buffData.visible)
+		{
+			element.show();
+			element.find(".esotbBuffDesc").html(CreateEsoBuildBuffDescHtml(buffData));
+		}
+		else if (buffData.toggleVisible === false)
+		{
+			element.hide();
+		}
 	}
-	
-	output += "<div class='esotbBuffDesc'>" + buffData.desc + "</div>";
-	output += "<div class='esotbBuffSkillEnable'></div>";
-	output += "</div>"
-	
-	
-	return output;
 }
 
 
