@@ -721,7 +721,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor -= inputValues.UltimateCost.Buff;
 	}
 	
-	if (mechanic != 10 && inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
+	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
 	{
 		SkillFactor -= parseFloat(inputValues.SkillLineCost[skillLineId]);
 	}

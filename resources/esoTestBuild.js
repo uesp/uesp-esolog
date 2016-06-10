@@ -3678,6 +3678,15 @@ function CreateEsoComputedStat(statId, stat)
 		text("?").
 		appendTo(element);
 	
+	var warningStyle = "display: none;";
+	if (stat.warning != null) warningStyle = "";
+	
+	$("<div/>").addClass("esotbStatWarningButton").
+		html("?").
+		attr("style", warningStyle).
+		appendTo(element);
+
+	
 	$("<div/>").addClass("esotbStatComputeButton").
 		html("+").
 		appendTo(element);
@@ -3789,7 +3798,7 @@ function OnEsoCPTotalPointsChange(e)
 
 function OnEsoToggleStatComputeItems(e)
 {
-	var computeItems = $(this).next(".esotbComputeItems");
+	var computeItems = $(this).nextAll(".esotbComputeItems");
 	
 	if (computeItems.is(":visible"))
 		$(this).text("+");
@@ -3797,6 +3806,17 @@ function OnEsoToggleStatComputeItems(e)
 		$(this).text("-");
 		
 	computeItems.slideToggle();
+}
+
+
+function OnEsoClickStatWarningButton(e)
+{
+	var parent = $(this).parent(".esotbStatRow");
+	var statId = parent.attr("statid");
+	
+	if (statId == null || statId == "") return false;
+	
+	return ShowEsoFormulaPopup(statId);
 }
 
 
@@ -4144,6 +4164,11 @@ function ShowEsoFormulaPopup(statId)
 	if (stat == null) return false;
 
 	var equation = ConvertEsoFormulaToPrefix(stat.compute);
+	
+	if (stat.warning == null)
+		$("#esotbFormulaNote").html();
+	else
+		$("#esotbFormulaNote").html(stat.warning + "<p>");
 	
 	$("#esotbFormulaTitle").text("Complete Formula for " + stat.title);
 	$("#esotbFormulaName").text(statId + " = ");
@@ -5682,6 +5707,7 @@ function esotbOnDocReady()
 	$("#esotbMundus2").change(OnEsoMundusChange)
 	$("#esotbCPTotalPoints").change(OnEsoCPTotalPointsChange);
 	$(".esotbStatComputeButton").click(OnEsoToggleStatComputeItems);
+	$(".esotbStatWarningButton").click(OnEsoClickStatWarningButton);
 	
 	$(".esotbInputValue").on('input', function(e) { OnEsoInputChange.call(this, e); });
 	
