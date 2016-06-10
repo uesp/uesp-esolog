@@ -178,7 +178,6 @@ a:hover {
 	height: 16px;
 	background-color: #DBBFA5;
 	text-align: center;
-	float: right;
 	border-top: 1px solid #CCCCCC;
 	border-right: 1px solid #333333;
 	border-bottom: 1px solid #333333;
@@ -186,6 +185,24 @@ a:hover {
 	position: absolute;
 	right: 2px;
 	top: 2px;
+}
+
+.esotbStatWarningButton {
+	width: 14px;
+	height: 16px;
+	background-color: #ff9999;
+	text-align: center;
+	border: solid 1px gray;
+	position: absolute;
+	right: 22px;
+	top: 2px;
+	border-radius: 5px;
+	padding-right: 2px;
+}
+
+.esotbStatWarningButton:hover {
+	cursor: pointer;
+	background-color: #cc3333;
 }
 
 .esotbStatComputeButton:hover {
@@ -263,6 +280,10 @@ a:hover {
 	margin-bottom: 10px;	
 }
 
+#esotbFormulaNote {
+	padding: 7px;
+}
+
 #esotbFormulaName {
 	font-family: monospace;
 	font-size: 14px;
@@ -295,7 +316,7 @@ a:hover {
 	cursor: pointer;
 }
 
-#esotbFormulaNote {
+#esotbFormulaBottomNote {
 	margin-top: 10px;
 	color: #777;
 	font-style: italic;

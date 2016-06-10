@@ -1394,6 +1394,7 @@ class CEsoTestBuild
 			"MagickaCost" => array(
 					"title" => "Magicka Ability Cost",
 					"round" => "floor",
+					"warning" => "Note: Currently there is a bug on Live that randomly results in ability costs 0-2% higher than normal. ",
 					"compute" => array(
 							"Misc.SpellCost",
 							"1 - CP.MagickaCost",
@@ -1408,6 +1409,7 @@ class CEsoTestBuild
 			"StaminaCost" => array(
 					"title" => "Stamina Ability Cost",
 					"round" => "floor",
+					"warning" => "Note: Currently there is a bug on Live that randomly results in ability costs 0-2% higher than normal. ",
 					"compute" => array(
 							"Misc.SpellCost",
 							"1 - CP.StaminaCost",
