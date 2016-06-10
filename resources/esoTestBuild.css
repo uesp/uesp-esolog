@@ -786,8 +786,9 @@ button.esotbWeaponSelect {
 }
 
 .esotbBuffItem {
+	padding: 4px;
+	margin: 3px;
 	margin-left: 25px;
-    padding: 6px;
 }
 
 .esotbBuffItem:hover {
@@ -806,4 +807,5 @@ button.esotbWeaponSelect {
 
 .esotbBuffSkillEnable {
 	margin-left: 10px;
+	display: inline-block;
 }

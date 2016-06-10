@@ -346,6 +346,8 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			statIds : [ "WeaponDamage", "SpellDamage" ],
 		},
 		
+		//Battle Spirit buff
+		
 			/* Target Buffs */
 		"Major Fracture (Target)" : 
 		{
@@ -428,6 +430,14 @@ ESO_ACTIVEEFFECT_MATCHES = [
 		statId: "Health",
 		display: "%",
 		match: /While slotted, your Max Health is increased by ([0-9]+\.?[0-9]*)%/i
+	},
+	{
+		buffId: "Major Prophecy",
+		match: /While slotted, you gain Major Prophecy and Major Savagery/i
+	},
+	{
+		buffId: "Major Savagery",
+		match: /While slotted, you gain Major Prophecy and Major Savagery/i
 	},
 	
 		/* Begin Other Effects */
@@ -532,7 +542,6 @@ ESO_ACTIVEEFFECT_MATCHES = [
 	
 	
     	// Buffs
-	// While slotted, you gain Major Prophecy and Major Savagery
 	// While slotted, you gain Major Prophecy
 	// While slotted you gain Minor Vitality
 	// While slotted gain Major Savagery
@@ -1996,6 +2005,8 @@ function GetEsoInputValues(mergeComputedStats)
 {
 	console.log("GetEsoInputValues");
 	
+	ResetEsoBuffSkillEnabled();
+	
 	var inputValues = {};
 	if (mergeComputedStats == null) mergeComputedStats = false;
 	
@@ -2122,8 +2133,6 @@ function GetEsoInputBuffValue(inputValues, buffName, buffData)
 	var statIds = buffData.statIds;
 	var category = "Buff";
 	var statValue = buffData.value;
-	
-	buffData.rawOutput = {};
 	
 	if (buffData.category != null) category = buffData.category;
 	if (statIds == null) statIds = [ statId ];
@@ -2364,10 +2373,18 @@ function GetEsoInputSkillPassives(inputValues)
 function GetEsoInputSkillActiveBar(inputValues)
 {
 	var skillInputValues = GetEsoTestBuildSkillInputValues();
+	var skillBar = g_EsoSkillBarData[g_EsoBuildActiveWeapon - 1];
+	if (skillBar == null) return;
 	
-	for (var skillId in g_EsoSkillActiveData)
+	for (var i = 0; i < skillBar.length; ++i)
 	{
-		GetEsoInputSkillActiveValues(inputValues, skillInputValues, g_EsoSkillActiveData[skillId]);	
+		var skillData = skillBar[i];
+		if (skillData.origSkillId == null) continue;
+		
+		var activeData = g_EsoSkillActiveData[skillData.origSkillId];
+		if (activeData == null) continue;
+		
+		GetEsoInputSkillActiveValues(inputValues, skillInputValues, activeData);	
 	}
 	
 }
@@ -2466,7 +2483,17 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 	
 	if (matchData.showLog === true) console.log("Matching Skill", matchData, rawDesc);
 	
-	if (matchData.statId == "OtherEffects")
+	if (matchData.buffId != null)
+	{
+		console.log("Matching Buff", matchData.buffId, g_EsoBuildBuffData[matchData.buffId]);
+		var buffData = g_EsoBuildBuffData[matchData.buffId];
+		if (buffData == null) return false;
+		
+		buffData.skillEnabled = true;
+		buffData.skillAbilities.push(abilityData);
+		//AddEsoItemRawOutput(buffData, isPassive ? "Passive Skill" : "Active Skill", abilityData.name);
+	}
+	else if (matchData.statId == "OtherEffects")
 	{
 		var rawInputDesc = rawDesc;
 		
@@ -2497,6 +2524,53 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 	}
 	
 	return true;
+}
+
+
+function ResetEsoBuffSkillEnabled()
+{
+	for (var buffName in g_EsoBuildBuffData)
+	{
+		var buffData = g_EsoBuildBuffData[buffName];
+		buffData.skillEnabled = false;
+		buffData.rawOutput = {};
+		buffData.skillAbilities = [];
+	}
+}
+
+function UpdateEsoBuffSkillEnabled()
+{
+	
+	for (var buffName in g_EsoBuildBuffData)
+	{
+		var buffData = g_EsoBuildBuffData[buffName];
+		var parent = $(".esotbBuffItem[buffid='" + buffName + "']");
+		var element = parent.find(".esotbBuffSkillEnable");
+		
+		if (buffData.skillEnabled)
+		{
+			var abilityData = buffData.skillAbilities[0];
+			var abilityDesc = "";
+			
+			if (abilityData != null)
+			{
+				abilityDesc = abilityData.name;
+				
+				if (buffData.skillAbilities.length == 2) 
+					abilityDesc += " and 1 other";
+				else if (buffData.skillAbilities.length > 2)
+					abilityDesc += " and " + (buffData.skillAbilities.length - 1) + " others";
+			}
+			
+			parent.addClass("esotbBuffDisable");
+			element.text(" (Enabled by " + abilityDesc + ")");
+		}
+		else
+		{
+			parent.removeClass("esotbBuffDisable");
+			element.text("");
+		}
+	}
 }
 
 
@@ -2534,11 +2608,8 @@ function GetEsoInputSkillActiveValues(inputValues, skillInputValues, skillData)
 
 function AddEsoItemRawOutput(itemData, statId, value)
 {
-	if (itemData.rawOutput[statId] == null) 
-	{
-		itemData.rawOutput[statId] = "";
-	}
-	
+	if (itemData.rawOutput == null) itemData.rawOutput = {};
+	if (itemData.rawOutput[statId] == null)	itemData.rawOutput[statId] = "";
 	itemData.rawOutput[statId] += value;
 }
 
@@ -3262,6 +3333,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildToggleSkills();
 	UpdateEsoBuildItemLinkSetCounts();
 	
+	UpdateEsoBuffSkillEnabled();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
 }
@@ -4346,7 +4418,12 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 	}
 	else if (sourceItem.buff != null)
 	{
-		output += "" + value + ": " + sourceItem.buff.name + " buff ";
+		var abilityData = sourceItem.buff.skillAbilities[0];
+		
+		if (abilityData == null || abilityData.name == null)
+			output += "" + value + ": " + sourceItem.buff.name + " buff ";
+		else
+			output += "" + value + ": " + sourceItem.buff.name + " buff from " + abilityData.name + " skill";
 	}
 	else
 	{
@@ -5221,7 +5298,7 @@ function CreateEsoBuildBuffHtml(buffName, buffData)
 	var statValue = buffData.value;
 	var statListText = "";
 	var prefixDesc = "Increases ";
-	var targetDesc = " your ";
+	var targetDesc = "your ";
 	var output = "<div class='esotbBuffItem' buffid='" + buffName + "'>";
 	
 	buffData.name = buffName;
@@ -5259,7 +5336,7 @@ function CreateEsoBuildBuffHtml(buffName, buffData)
 			statValue *= -1;
 		}
 		
-		if (buffData.category == "Target") targetDesc = " the target's ";
+		if (buffData.category == "Target") targetDesc = "the target's ";
 		
 		if (buffData.display == "%")
 		{
