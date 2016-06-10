@@ -181,7 +181,7 @@ class CEsoTestBuild
 			"SnareDuration",
 			"MagickaCost",
 			"StaminaCost",
-			"UlimateCost",
+			"UltimateCost",
 			"PotionDuration",
 			"PotionCooldown",
 			"AttackSpeed",

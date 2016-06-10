@@ -216,7 +216,7 @@ function GetEsoSkillTooltipHtml(skillData)
 	
 	if (skillType != 'Passive')
 	{
-		var realCost = ComputeEsoSkillCost(cost, null);
+		var realCost = ComputeEsoSkillCost(cost, null, null, skillData);
 		var costStr = "" + realCost + " ";
 		var costClass = "";
 		
@@ -229,6 +229,11 @@ function GetEsoSkillTooltipHtml(skillData)
 		{
 			costStr += "Stamina";
 			costClass = "esovsStamina";
+		}
+		else if (mechanic == 10)
+		{
+			costStr += "Ultimate";
+			costClass = "esovsUltimate";
 		}
 		else
 		{
@@ -678,45 +683,97 @@ function UpdateEsoSkillTooltipDescription()
 }
 
 
-function ComputeEsoSkillCost(maxCost, level)
+function CreateEsoSkillLineId(skillLine)
 {
-	if (!g_SkillUseUpdate10Cost) return ComputeEsoSkillCostOld(maxCost, level)
-	maxCost = parseInt(maxCost);
+	return skillLine.replace(/ /g, "_");
+}
+
+
+function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
+{
+	if (skillData == null) return cost;
 	
-	if (level == null) 
+	var mechanic = skillData.mechanic;
+	var CPFactor = 1;
+	var FlatCost = 0;
+	var SkillFactor = 1;
+	var skillLineId = CreateEsoSkillLineId(skillData.skillLine) + "_Cost";
+	
+	if (mechanic == 0 && inputValues.MagickaCost != null)
 	{
-		var inputValues = GetEsoSkillInputValues()
-		level = inputValues.EffectiveLevel;
+		if (inputValues.MagickaCost.CP    != null) CPFactor    -= inputValues.MagickaCost.CP;
+		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
+		if (inputValues.MagickaCost.Skill != null) SkillFactor -= inputValues.MagickaCost.Skill;
+		if (inputValues.MagickaCost.Buff  != null) SkillFactor -= inputValues.MagickaCost.Buff;
 	}
+	else if (mechanic == 6 && inputValues.StaminaCost != null)
+	{
+		if (inputValues.StaminaCost.CP    != null) CPFactor    -= inputValues.StaminaCost.CP;
+		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
+		if (inputValues.StaminaCost.Skill != null) SkillFactor -= inputValues.StaminaCost.Skill;
+		if (inputValues.StaminaCost.Buff  != null) SkillFactor -= inputValues.StaminaCost.Buff;
+	}
+	else if (mechanic == 10 && inputValues.UltimateCost != null)
+	{
+		if (inputValues.UltimateCost.CP    != null) CPFactor    -= inputValues.UltimateCost.CP;
+		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
+		if (inputValues.UltimateCost.Skill != null) SkillFactor -= inputValues.UltimateCost.Skill;
+		if (inputValues.UltimateCost.Buff  != null) SkillFactor -= inputValues.UltimateCost.Buff;
+	}		
 	
-	if (level < 1) level = 1;
-	if (level >= 66) return maxCost;
-	
-	var cost = Math.round(maxCost * level / 72.0 + maxCost / 12.0);
-	if (cost < 0) return 0;
+	if (mechanic != 10 && inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
+	{
+		SkillFactor -= parseFloat(inputValues.SkillLineCost[skillLineId]);
+	}
+			
+	cost = Math.floor((cost * CPFactor - FlatCost) * SkillFactor);
 	
 	return cost;
 }
 
 
-function ComputeEsoSkillCostOld(maxCost, level)
+function ComputeEsoSkillCost(maxCost, level, inputValues, skillData)
 {
-	maxCost = parseInt(maxCost);
+	if (!g_SkillUseUpdate10Cost) return ComputeEsoSkillCostOld(maxCost, level, inputValues, skillData)
+	if (inputValues == null) inputValues = GetEsoSkillInputValues();
 	
-	if (level == null) 
+	var cost = parseInt(maxCost);
+	
+	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6))
 	{
-		var inputValues = GetEsoSkillInputValues()
-		level = inputValues.EffectiveLevel;
+		if (level == null) level = inputValues.EffectiveLevel;
+		if (level < 1) level = 1;
+		if (level >= 66) level = 66;
+		
+		cost = Math.round(cost * level / 72.0 + cost / 12.0);
+		if (cost < 0) return 0;
 	}
 	
-	if (level < 1) level = 1;
-	if (level >= 66) return maxCost;
+	return ComputeEsoSkillCostExtra(cost, level, inputValues, skillData);
+}
+
+
+function ComputeEsoSkillCostOld(maxCost, level, inputValues, skillData)
+{
+	if (inputValues == null) inputValues = GetEsoSkillInputValues();
 	
-	var cost = Math.round(maxCost * level / 116.0 + maxCost / 2.32);
-	if (level >= 1 && level <= 50) cost =  Math.round(maxCost * level * 25.0 / 1624.0 + maxCost * 75.0 / 812.0);
+	var cost = parseInt(maxCost);
 	
-	if (cost < 0) return 0;
-	return cost;
+	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6))
+	{
+		if (level == null) level = inputValues.EffectiveLevel;
+		if (level < 1) level = 1;
+		if (level >= 66) return cost;
+		
+		if (level >= 1 && level <= 50) 
+			cost =  Math.round(cost * level * 25.0 / 1624.0 + cost * 75.0 / 812.0);
+		else
+			cost = Math.round(cost * level / 116.0 + cost / 2.32);
+		
+		if (cost < 0) return 0;
+	}
+	
+	return ComputeEsoSkillCostExtra(cost, level, inputValues, skillData);
 }
 
 
@@ -733,13 +790,13 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 	if (skillData == null) return;
 	
 	var mechanic = skillData['mechanic'];
-	if (mechanic != 0 && mechanic != 6) return;
+	if (mechanic != 0 && mechanic != 6 && mechanic != 10) return;
 	
 	var passive = skillData['isPassive'];
 	if (passive != 0) return;
 	
 	var baseCost = parseInt(skillData['cost']);
-	var cost = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel);
+	var cost = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, skillData);
 	
 	var costStr = "" + cost + " ";
 	
@@ -747,6 +804,8 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 		costStr += "Magicka";
 	else if (mechanic == 6)
 		costStr += "Stamina";
+	else if (mechanic == 10)
+		costStr += "Ultimate";
 	
 	costElement.text(costStr);
 }
@@ -777,10 +836,16 @@ function UpdateEsoAllSkillDescription()
 }
 
 
-function UpdateEsoAllSkillCost()
+function UpdateEsoAllSkillCost(onlyVisible)
 {
 	var inputValues = GetEsoSkillInputValues();
-	$(".esovsSkillContentBlock:visible .esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
+	
+	if (onlyVisible == null) onlyVisible = true;
+	
+	if (onlyVisible)
+		$(".esovsSkillContentBlock:visible .esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
+	else
+		$(".esovsSkillContentBlock .esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
 }
 
 
