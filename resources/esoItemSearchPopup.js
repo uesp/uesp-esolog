@@ -57,12 +57,37 @@ UESP.ESO_TRAIT_TYPES = {
 };
 
 
-UESP.ESO_ARMOR_TYPES = {
+UESP.ESO_ARMOR_TYPES = 
+{
 		"-1" : "",
 		"0"  : "",
 		"1"  : "Light",
 		"2"  : "Medium",
 		"3"  : "Heavy",	
+};
+
+
+UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP = 
+{
+		 1 : [1,  30,  31,  32,  33,  34],
+		 4 : [1,  25,  26,  27,  28,  29],
+		 6 : [1,  20,  21,  22,  23,  24],
+		51 : [1, 125, 135, 145, 155, 156],
+		52 : [1, 126, 136, 146, 156, 166],
+		53 : [1, 127, 137, 147, 157, 167],
+		54 : [1, 128, 138, 148, 158, 168],
+		55 : [1, 129, 139, 149, 159, 169],
+		56 : [1, 130, 140, 150, 160, 170],
+		57 : [1, 131, 141, 151, 161, 171],
+		58 : [1, 132, 142, 152, 162, 172],
+		59 : [1, 133, 143, 153, 163, 173],
+		60 : [1, 134, 144, 154, 164, 174],
+		61 : [1, 236, 237, 238, 239, 240],
+		62 : [1, 254, 255, 256, 257, 258],
+		63 : [1, 272, 273, 274, 275, 276],
+		64 : [1, 290, 291, 292, 293, 294],
+		65 : [1, 308, 309, 310, 311, 312],
+		66 : [1, 366, 367, 368, 369, 370],
 };
 
 
@@ -80,6 +105,8 @@ UESP.EsoItemSearchPopup = function ()
 	
 	this.itemLevel = "1";
 	this.itemQuality = "1";
+	this.itemIntLevel = "1";
+	this.itemIntType = "1";
 	this.itemType = null;
 	this.equipType = null;
 	this.equipTypes = [];
@@ -153,6 +180,30 @@ UESP.EsoItemSearchPopup.prototype.parseLevel = function(level)
 	if (level > 66) return 66;
 	if (level < 1) return 1;
 	return level;
+}
+
+
+UESP.EsoItemSearchPopup.prototype.findInternalLevelType = function(level, quality)
+{
+	level = this.parseLevel(level);
+	var result = { type: 1, level: level };
+	
+	if (result.level > 50) result.level = 50;
+	if (result.level <  1) result.level = 1;
+	
+	for (var l in UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP)
+	{
+		var levelData = UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP[l];
+		
+		if (level <= l)
+		{
+			if (levelData[quality] == null) return result;
+			result.type = levelData[quality];
+			break;
+		}
+	}
+	
+	return result;
 }
 
 
@@ -253,8 +304,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 
 UESP.EsoItemSearchPopup.prototype.update = function()
 {
-	this.itemLevel = $("#esoispLevel").val();
-	this.itemQuality = $("#esoispQuality").val();
+	this.updateLevelQuality();
 	
 	if (this.itemType == 1) // Weapons
 	{
@@ -404,8 +454,11 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	if (this.weaponType >= 0) queryParams['weapontype'] = this.weaponType;
 	if (this.armorType != null) queryParams['armortype'] = this.armorType;
 	if (this.itemTrait >= 0) queryParams['trait'] = this.itemTrait;
-	queryParams['level'] = this.itemLevel;
-	queryParams['quality'] = this.itemQuality;
+	
+	this.updateLevelQuality();
+	
+	queryParams['intlevel'] = this.itemIntLevel;
+	queryParams['inttype'] = this.itemIntType;
 	
 	return queryParams;
 }
@@ -472,11 +525,12 @@ UESP.EsoItemSearchPopup.prototype.onResultClick = function(e, element)
 	var itemData = this.searchResults[itemIndex];
 	if (itemData == null) return false;
 	
-	this.itemLevel = $("#esoispLevel").val();
-	this.itemQuality = $("#esoispQuality").val();
+	this.updateLevelQuality();
 	
 	itemData.level = this.parseLevel(this.itemLevel);
 	itemData.quality = this.itemQuality;
+	itemData.internalLevel = this.itemIntLevel;
+	itemData.internalSubtype  = this.itemIntType;
 	
 	if (this.onSelectItem) this.onSelectItem(itemData, this.sourceElement);
 	
@@ -528,6 +582,18 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 }
 
 
+UESP.EsoItemSearchPopup.prototype.updateLevelQuality = function()
+{
+	this.itemLevel = $("#esoispLevel").val();
+	this.itemQuality = $("#esoispQuality").val();
+	
+	var intLevelType = this.findInternalLevelType(this.itemLevel, this.itemQuality);
+	
+	this.itemIntLevel = intLevelType.level;
+	this.itemIntType  = intLevelType.type;
+}
+
+
 UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIndex)
 {
 	var resultHtml;
@@ -547,15 +613,12 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 		details = "(" + detailList.join(", ") + ")";
 	}
 	
-	this.itemLevel = $("#esoispLevel").val();
-	this.itemQuality = $("#esoispQuality").val();
-	
 	var quality = Number(itemData.quality);
 	if (isNaN(quality)) quality = this.itemQuality;
 	
 	var itemLinkData = 	"itemid='" + itemData.itemId + "' " + 
-						"level='" + this.itemLevel + "' " +
-						"quality='" + this.itemQuality + "' " +
+						"intlevel='" + this.itemIntLevel + "' " +
+						"inttype='" + this.itemIntType + "' " +
 						"itemindex='"+ itemIndex + "' " +
 						"";
 	var itemQualityClass = "eso_item_link_q" + quality;
@@ -642,16 +705,19 @@ UESP.EsoItemSearchPopup.prototype.onLevelSlideChange = function(e)
 		
 	$("#esoispLevel").val(this.formatLevel(newLevel));
 	$(".esoispResultRow").attr("level", newLevel);
-	this.itemLevel = newLevel;
+	
+	this.updateLevelQuality();
 }
 
 
 UESP.EsoItemSearchPopup.prototype.onLevelChange = function(e)
 {
 	var newLevel = this.parseLevel($("#esoispLevel").val());
-	$(".esoispResultRow").attr("level", newLevel);
 	$("#esoispLevelSlider").val(newLevel);
-	this.itemLevel = newLevel;
+	
+	this.updateLevelQuality();
+	
+	$(".esoispResultRow").attr("intlevel", this.itemIntLevel);
 }
 
 
@@ -663,9 +729,10 @@ UESP.EsoItemSearchPopup.prototype.onQualityChange = function(e)
 	$(".esoispResultRow").removeClass(itemQualityClass);
 	itemQualityClass = "eso_item_link_q" + newQuality;
 	$(".esoispResultRow").addClass(itemQualityClass);
+		
+	this.updateLevelQuality();
 	
-	$(".esoispResultRow").attr("quality", newQuality);
-	this.itemQuality = newQuality;
+	$(".esoispResultRow").attr("inttype", this.itemIntType);
 }
 
 

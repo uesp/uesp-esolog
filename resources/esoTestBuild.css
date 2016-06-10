@@ -282,6 +282,8 @@ a:hover {
 
 #esotbFormulaNote {
 	padding: 7px;
+    background-color: #ffff99;
+    margin-bottom: 7px;
 }
 
 #esotbFormulaName {

@@ -964,35 +964,35 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 1,
 		statId: "BlockCost",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[\s]*Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BlockCost",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[\s]*Reduces the cost of blocking by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "WeaponDamage",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[\s]*Increases your Weapon Damage by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BlockMitigation",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?amount of damage you can block by ([0-9]+\.?[0-9]*)%/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[\s\S]*?amount of damage you can block by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
 		statRequireValue: 1,
 		statId: "BashDamage",
 		display: "%",
-		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[.\s\S]*?Bashing deals ([0-9]+\.?[0-9]*)% additional damage/i,
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[\s]*Bashing deals ([0-9]+\.?[0-9]*)% additional damage/i,
 	},
 	{
 		statRequireId: "Weapon1HShield",
@@ -1014,15 +1014,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireId: "Weapon1H",
 		statRequireValue: 2,
 		factorStatId: "WeaponSword",
-		statId: "MagickaDamage",
-		display: "%",
-		match: /Each sword increases your damage done by ([0-9]+\.?[0-9]*)%/i,
-	},
-	{
-		statRequireId: "Weapon1H",
-		statRequireValue: 2,
-		factorStatId: "WeaponSword",
-		statId: "PhysicalDamage",
+		statId: "DamageDone",
 		display: "%",
 		match: /Each sword increases your damage done by ([0-9]+\.?[0-9]*)%/i,
 	},
@@ -1033,6 +1025,23 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		category: "Skill2",
 		statId: "WeaponCrit",
 		match: /Each dagger increases your Weapon Critical rating[\s\S]*?Current bonus\: ([0-9]+)/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		statId: "OtherEffects",
+		rawInputMatch: /(Each axe gives your melee attacks a [0-9]+\.?[0-9]*% chance to bleed enemies for [0-9]+ Physical Damage over 6 seconds\.)/i,
+		match: /Each axe gives your melee attacks a [0-9]+\.?[0-9]*% chance to bleed enemies for ([0-9]+) Physical Damage over 6 seconds/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		category: "Item",
+		statId: "WeaponDamage",
+		factorStatId: "WeaponOffHandDamage",
+		display: "%",
+		round: "floor",
+		match: /WHILE DUAL WIELDING[\s]*Increases Weapon Damage by ([0-9]+\.?[0-9]*)% of off-hand weapon's damage/i,
 	},
 	{
 		statRequireId: "WeaponBow",
@@ -1083,7 +1092,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireId: "Weapon1H",
 		statRequireValue: 2,
 		category: "SkillCost",
-		statId: "Dual_Wield",
+		statId: "Dual_Wield_Cost",
 		display: "%",
 		match: /WHILE DUAL WIELDING[\s]*Reduces the cost of Dual Wield abilities by ([0-9]+\.?[0-9]*)%/i,
 	},
@@ -1091,14 +1100,14 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireId: "WeaponBow",
 		statRequireValue: 1,
 		category: "SkillCost",
-		statId: "Bow",
+		statId: "Bow_Cost",
 		display: "%",
 		match: /WITH BOW EQUIPPED[\s]*Reduces the Stamina cost of Bow abilities by ([0-9]+\.?[0-9]*)%/i,
 	},	 
 	{
 		statId: "WeaponDamage",
 		display: "%",
-		match: /Increases your Weapon Damage by ([0-9]+\.?[0-9]*)% and /i,
+		match: /^Increases your Weapon Damage by ([0-9]+\.?[0-9]*)% and /i,
 	},
 	{
 		statId: "SpellResist",
@@ -1166,7 +1175,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	{
 		statRequireId: "ArmorHeavy",
 		statRequireValue: 5,
-		statId: "Constitution",
+		statId: "HARestore",
 		display: "%",
 		match: /WITH 5 OR MORE PIECES OF HEAVY ARMOR EQUIPPED[.\s\S]*?increases the Magicka or Stamina your Heavy Attacks restore by ([0-9]+\.?[0-9]*)%/i
 	},
@@ -1264,19 +1273,19 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "CritDamage",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[\s]*?Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED[\s]*Increases the damage bonus for your critical strikes by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "AEDRIC SPEAR",
 		statId: "OtherEffects",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[\s\S]*?your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED[\s\S]*?your damage against blocking targets by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "AEDRIC SPEAR",
-		statId: "BlockMeleeMitigation",
+		statId: "OtherEffects",
 		display: "%",
-		match: /WHILE AN  ABILITY IS SLOTTED[.\s]*?Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
+		match: /WHILE AN AEDRIC SPEAR ABILITY IS SLOTTED[\s]*Increases the amount of damage you can block against melee attacks by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "Fighters Guild",
@@ -1285,16 +1294,16 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /Increases Weapon Damage by ([0-9]+\.?[0-9]*)% for each Fighters Guild ability slotted/i
 	},
 	{
-		requireSkillLine: "Mages Guild",
+		factorSkillLine: "Mages Guild",
 		statId: "Magicka",
 		display: "%",
-		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*?Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH A MAGES GUILD ABILITY SLOTTED[\s]*Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
-		requireSkillLine: "Mages Guild",
+		factorSkillLine: "Mages Guild",
 		statId: "MagickaRegen",
 		display: "%",
-		match: /WITH A MAGES GUILD ABILITY SLOTTED[.\s\S]*?Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
+		match: /WITH A MAGES GUILD ABILITY SLOTTED[\s]*Increases your Max Magicka and your Magicka Recovery by ([0-9]+\.?[0-9]*)%/i
 	},
 	{
 		requireSkillLine: "Support",
@@ -1491,9 +1500,6 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	
 		// Dual Wield
 	//WHILE DUAL WIELDING Increases damage with Dual Wield abilities by 20% against enemies with under 25% Health.
-	//WHILE DUAL WIELDING Increases Weapon Damage by 6% of off-hand weapon's damage.
-	//Grants a bonus based on the type of weapon equipped: 
-		//Each axe gives your melee attacks a 8% chance to bleed enemies for 5635 Physical Damage over 6 seconds. 
 	
 		// One Hand and Shield
 	//WITH ONE HAND WEAPON AND SHIELD EQUIPPED Increases the amount of damage you can block from projectiles and ranged attacks by 15%.
@@ -1662,7 +1668,7 @@ ESO_SETEFFECT_MATCHES = [
 		match: /Reduce damage taken from players by ([0-9]+)%/i,
 	},
 	{
-		statId: "HARestore",
+		statId: "Constitution",
 		display: '%',
 		match: /Increases the Magicka and Stamina restoration benefit from the Constitution Passive ability by ([0-9]+)%/i,
 	},
@@ -2213,8 +2219,11 @@ function GetEsoInputValues(mergeComputedStats)
 	inputValues.Attribute.Health = parseInt($("#esotbAttrHea").val());
 	inputValues.Attribute.Magicka = parseInt($("#esotbAttrMag").val());
 	inputValues.Attribute.Stamina = parseInt($("#esotbAttrSta").val());
+	if (isNaN(inputValues.Attribute.Health))  inputValues.Attribute.Health = 0;
+	if (isNaN(inputValues.Attribute.Magicka)) inputValues.Attribute.Magicka = 0;
+	if (isNaN(inputValues.Attribute.Stamina)) inputValues.Attribute.Stamina = 0;
 	inputValues.Attribute.TotalPoints = inputValues.Attribute.Health + inputValues.Attribute.Magicka + inputValues.Attribute.Stamina;
-	
+		
 	GetEsoInputSpecialValues(inputValues);
 	
 	GetEsoInputItemValues(inputValues, "Head");
@@ -2789,7 +2798,7 @@ function AddEsoItemRawOutput(itemData, statId, value)
 {
 	if (itemData.rawOutput == null) itemData.rawOutput = {};
 	if (itemData.rawOutput[statId] == null)	itemData.rawOutput[statId] = "";
-	itemData.rawOutput[statId] += value;
+	itemData.rawOutput[statId] = +itemData.rawOutput[statId] + +value;
 }
 
 
@@ -2918,7 +2927,7 @@ function GetEsoInputItemValues(inputValues, slotId)
 		
 		if (itemData.trait == 13)	// Reinforced
 		{
-			factor *= 1 + traitValue/100;
+			//factor *= 1 + traitValue/100;		// Now included in the raw item data when mined
 		}
 		else if (itemData.trait == 25) // Armor Nirnhoned
 		{
@@ -2943,14 +2952,15 @@ function GetEsoInputItemValues(inputValues, slotId)
 		
 		if (slotId == "OffHand1" || slotId == "OffHand2") 
 		{
+			inputValues.WeaponOffHandDamage = weaponPower;
 			weaponPower = Math.floor(weaponPower * 0.200);
 		}
 		
 		if (itemData.trait == 26)	// Weapon nirnhoned
 		{
-			//weaponPower = Math.floor(weaponPower * (1 + traitValue/100));		// Included in weapon data?
+			//weaponPower = Math.floor(weaponPower * (1 + traitValue/100));		// Now included in raw weapon data
 		}
-		
+				
 		inputValues.Item.WeaponDamage += weaponPower;
 		inputValues.Item.SpellDamage += weaponPower;
 		
@@ -3039,9 +3049,12 @@ function GetEsoInputItemValues(inputValues, slotId)
 	}
 	else if (itemData.trait == 5) //Defending
 	{
-		inputValues.Item.Defending += traitValue;
-		AddEsoItemRawOutput(itemData, "Item.Defending", traitValue);
-		AddEsoInputStatSource("Item.Defending", { item: itemData, value: traitValue, slotId:slotId });
+		inputValues.Item.SpellResist += traitValue;
+		inputValues.Item.PhysicalResist += traitValue;
+		AddEsoItemRawOutput(itemData, "Item.SpellResist", traitValue);
+		AddEsoInputStatSource("Item.SpellResist", { item: itemData, value: traitValue, slotId:slotId });
+		AddEsoItemRawOutput(itemData, "Item.PhysicalResist", traitValue);
+		AddEsoInputStatSource("Item.PhysicalResist", { item: itemData, value: traitValue, slotId:slotId });
 	}
 	else if (itemData.trait == 2) //Charged
 	{
@@ -3222,8 +3235,8 @@ function UpdateEsoItemSets()
 		if (g_EsoBuildActiveWeapon == 1 && (key == "MainHand2" || key == "OffHand2" || key == "Poison2")) continue;
 		if (g_EsoBuildActiveWeapon == 2 && (key == "MainHand1" || key == "OffHand1" || key == "Poison1")) continue;
 		
-		var data = g_EsoBuildItemData[key];
-		var setName = data.setName;
+		var setData = g_EsoBuildItemData[key];
+		var setName = setData.setName;
 		
 		if (setName == null || setName == "") continue;
 		
@@ -3237,9 +3250,9 @@ function UpdateEsoItemSets()
 		}
 		
 		++g_EsoBuildSetData[setName].count;
-		g_EsoBuildSetData[setName].items.push(data);
-		AddEsoItemRawOutput(data, "Set." + setName, 1);
-		AddEsoInputStatSource("Set." + setName, { set: setName, item: data });
+		g_EsoBuildSetData[setName].items.push(setData);
+		AddEsoItemRawOutput(setData, "Set." + setName, 1);
+		AddEsoInputStatSource("Set." + setName, { set: setName, item: setData });
 	}
 	
 	ComputeEsoBuildAllSetData();
@@ -3307,12 +3320,12 @@ function GetEsoInputMundusNameValues(inputValues, mundusName)
 	}
 	else if (mundusName == "The Atronach")
 	{
-		inputValues.Mundus.MagickaRegen = 210;
+		inputValues.Mundus.MagickaRegen = 198;
 		AddEsoInputStatSource("Mundus.MagickaRegen", { mundus: mundusName, value: inputValues.Mundus.MagickaRegen });
 	}
 	else if (mundusName == "The Serpent")
 	{
-		inputValues.Mundus.StaminaRegen = 210;
+		inputValues.Mundus.StaminaRegen = 198;
 		AddEsoInputStatSource("Mundus.StaminaRegen", { mundus: mundusName, value: inputValues.Mundus.StaminaRegen });
 	}
 	else if (mundusName == "The Shadow")
@@ -3344,7 +3357,7 @@ function GetEsoInputMundusNameValues(inputValues, mundusName)
 	}
 	else if (mundusName == "The Steed")
 	{
-		inputValues.Mundus.HealthRegen = 210;
+		inputValues.Mundus.HealthRegen = 198;
 		inputValues.Mundus.SprintSpeed = 0.05;
 		AddEsoInputStatSource("Mundus.HealthRegen", { mundus: mundusName, value: inputValues.Mundus.HealthRegen });
 		AddEsoInputStatSource("Mundus.SprintSpeed", { mundus: mundusName, value: inputValues.Mundus.SprintSpeed });
@@ -3900,8 +3913,8 @@ function UnequipEsoItemSlot(slotId, update)
 	iconElement.attr("src", g_EsoGearIcons[slotId] || "");
 	labelElement.text("");
 	iconElement.attr("itemid", "");
-	iconElement.attr("level", "");
-	iconElement.attr("quality", "");
+	iconElement.attr("intlevel", "");
+	iconElement.attr("inttype", "");
 	iconElement.attr("setcount", "");
 		
 	g_EsoBuildItemData[slotId] = {};
@@ -3922,8 +3935,6 @@ function UnequipEsoEnchantSlot(slotId, update)
 	var labelElement = $(element).find(".esotbItemLabel");
 	
 	iconElement.attr("enchantid", "");
-	iconElement.attr("enchantlevel", "");
-	iconElement.attr("enchantquality", "");
 	iconElement.attr("enchantintlevel", "");
 	iconElement.attr("enchantinttype", "");
 
@@ -3958,8 +3969,8 @@ function OnEsoSelectItem(itemData, element)
 	labelElement.text(niceName);
 	
 	iconElement.attr("itemid", itemData.itemId);
-	iconElement.attr("level", itemData.level);
-	iconElement.attr("quality", itemData.quality);
+	iconElement.attr("intlevel", itemData.internalLevel);
+	iconElement.attr("inttype", itemData.internalSubtype);
 	iconElement.attr("setcount", "0");
 	
 	if (itemData.equipType == 6)
@@ -3994,13 +4005,15 @@ function RequestEsoItemData(itemData, element)
 	var queryParams = {
 			"table" : "minedItem",
 			"id" : itemData.itemId,
-			"level" : itemData.level,
-			"quality" : itemData.quality,
+			"intlevel" : itemData.internalLevel,
+			"inttype" : itemData.internalSubtype,
 			"limit" : 1,
 	};
 	
 	if (itemData.type == 4 || itemData.type == 12)
 	{
+		queryParams.intlevel = null;
+		queryParams.inttype = null;
 		queryParams.level = null;
 		queryParams.quality = null;
 	}
@@ -4166,9 +4179,9 @@ function ShowEsoFormulaPopup(statId)
 	var equation = ConvertEsoFormulaToPrefix(stat.compute);
 	
 	if (stat.warning == null)
-		$("#esotbFormulaNote").html();
+		$("#esotbFormulaNote").html("").hide();
 	else
-		$("#esotbFormulaNote").html(stat.warning + "<p>");
+		$("#esotbFormulaNote").html(stat.warning).show();
 	
 	$("#esotbFormulaTitle").text("Complete Formula for " + stat.title);
 	$("#esotbFormulaName").text(statId + " = ");
@@ -4339,6 +4352,25 @@ function OnEsoItemDetailsClick(e)
 }
 
 
+function MakeEsoBuildItemLink(slotId)
+{
+	var itemData = g_EsoBuildItemData[slotId];
+	if (itemData == null) return "";
+	
+	var itemLink = itemData.link;
+	if (itemLink == null) return "";
+	
+	var enchantData = g_EsoBuildEnchantData[slotId];
+	if (enchantData == null || enchantData.itemId == null) return itemLink;
+	
+	itemLink = itemLink.replace(/(\|H[0-9]+:item:[0-9]+:[0-9]+:[0-9]+:)([0-9]+)(:[0-9]+:[0-9]+:)/, "$1" + enchantData.itemId + "$3");
+	itemLink = itemLink.replace(/(\|H[0-9]+:item:[0-9]+:[0-9]+:[0-9]+:[0-9]+:)([0-9]+)(:[0-9]+:)/, "$1" + enchantData.internalSubtype + "$3");
+	itemLink = itemLink.replace(/(\|H[0-9]+:item:[0-9]+:[0-9]+:[0-9]+:[0-9]+:[0-9]+:)([0-9]+)(:)/, "$1" + enchantData.internalLevel + "$3");
+		
+	return itemLink;
+}
+
+
 function ShowEsoItemDetailsPopup(slotId)
 {
 	var detailsPopup = $("#esotbItemDetailsPopup");
@@ -4348,6 +4380,8 @@ function ShowEsoItemDetailsPopup(slotId)
 	if (itemData.rawOutput == null) return false;
 	
 	var detailsHtml = "";
+	
+	detailsHtml += "Item Link = " + MakeEsoBuildItemLink(slotId) + "<br/>"; 
 	
 	for (var key in itemData.rawOutput)
 	{
@@ -4441,8 +4475,6 @@ function OnEsoSelectItemEnchant(itemData, element)
 	if ($.isEmptyObject(itemData))
 	{
 		iconElement.attr("enchantid", "");
-		iconElement.attr("enchantlevel", "");
-		iconElement.attr("enchantquality", "");
 		iconElement.attr("enchantintlevel", "");
 		iconElement.attr("enchantinttype", "");
 		g_EsoBuildEnchantData[slotId] = {};
@@ -4452,8 +4484,8 @@ function OnEsoSelectItemEnchant(itemData, element)
 	}
 		
 	iconElement.attr("enchantid", itemData.itemId);
-	iconElement.attr("enchantlevel", itemData.level);
-	iconElement.attr("enchantquality", itemData.quality);
+	iconElement.attr("enchantintlevel", itemData.internalLevel);
+	iconElement.attr("enchantinttype", itemData.internalSubtype);
 	
 	g_EsoBuildEnchantData[slotId] = itemData;
 	RequestEsoEnchantData(itemData, element);
@@ -4469,8 +4501,8 @@ function RequestEsoEnchantData(itemData, element)
 	var queryParams = {
 			"table" : "minedItem",
 			"id" : itemData.itemId,
-			"level" : itemData.level,
-			"quality" : itemData.quality,
+			"intlevel" : itemData.internalLevel,
+			"inttype" : itemData.internalSubtype,
 			"limit" : 1,
 	};
 	

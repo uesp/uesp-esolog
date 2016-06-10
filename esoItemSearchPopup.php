@@ -18,6 +18,8 @@ class CEsoItemSearchPopup
 	public $inputItemTrait = -1;
 	public $inputItemLevel = -1;
 	public $inputItemQuality = -1;
+	public $inputItemIntLevel = -1;
+	public $inputItemIntType = -1;
 	public $inputLimit = 100;
 	
 	public $resultItems = array();
@@ -64,6 +66,8 @@ class CEsoItemSearchPopup
 		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
 		if (array_key_exists('level', $this->inputParams)) $this->inputItemLevel = (int) $this->inputParams['level'];
 		if (array_key_exists('quality', $this->inputParams)) $this->inputItemQuality = (int) $this->inputParams['quality'];
+		if (array_key_exists('intlevel', $this->inputParams)) $this->inputIntLevel = (int) $this->inputParams['intlevel'];
+		if (array_key_exists('intype', $this->inputParams)) $this->inputIntType = (int) $this->inputParams['intype'];
 	}
 	
 	
