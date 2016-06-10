@@ -5291,8 +5291,36 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 			HeavyArmor		: parseInt(inputValues.ArmorHeavy),
 			ArmorTypes		: parseInt(inputValues.ArmorTypes),
 			DaggerWeapon	: parseInt(inputValues.WeaponDagger),
-			
-			//DamageBonus?
+			//Damage Modifiers
+	};
+	
+	g_LastSkillInputValues.SkillCost = inputValues.SkillCost;
+	
+	g_LastSkillInputValues.MagickaCost = 
+	{
+			CP 		: inputValues.CP.MagickaCost,
+			Item 	: inputValues.Item.MagickaCost,
+			Skill 	: inputValues.Skill.MagickaCost,
+			Skill2	: inputValues.Skill2.MagickaCost,
+			Buff	: inputValues.Buff.MagickaCost,
+	};
+	
+	g_LastSkillInputValues.StaminaCost = 
+	{
+			CP 		: inputValues.CP.StaminaCost,
+			Item 	: inputValues.Item.StaminaCost,
+			Skill 	: inputValues.Skill.StaminaCost,
+			Skill2	: inputValues.Skill2.StaminaCost,
+			Buff	: inputValues.Buff.StaminaCost,
+	};
+	
+	g_LastSkillInputValues.UltimateCost = 
+	{
+			CP 		: inputValues.CP.UltimateCost,
+			Item 	: inputValues.Item.UltimateCost,
+			Skill 	: inputValues.Skill.UltimateCost,
+			Skill2	: inputValues.Skill2.UltimateCost,
+			Buff	: inputValues.Buff.UltimateCost,
 	};
 	
 	return g_LastSkillInputValues; 
