@@ -695,7 +695,7 @@ function ComputeEsoSkillCost(maxCost, level)
 	var cost = Math.round(maxCost * level / 72.0 + maxCost / 12.0);
 	if (cost < 0) return 0;
 	
-	return 0;
+	return cost;
 }
 
 
