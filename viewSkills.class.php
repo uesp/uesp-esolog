@@ -233,7 +233,7 @@ class CEsoViewSkills
 		if (!array_key_exists($skillLine, $this->skillTree[$skillType])) $this->skillTree[$skillType][$skillLine] = array();
 		if (!array_key_exists($baseName, $this->skillTree[$skillType][$skillLine])) $this->skillTree[$skillType][$skillLine][$baseName] = array();
 		
-		$this->skillTree[$skillType][$skillLine]['skillType'] = $skillType;
+		//$this->skillTree[$skillType][$skillLine]['skillType'] = $skillType;
 
 		$this->skillTree[$skillType][$skillLine][$baseName][$rank] = &$skill;
 		$this->skillTree[$skillType][$skillLine][$baseName]['type'] = $skill['type'];
