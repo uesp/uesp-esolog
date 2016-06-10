@@ -637,6 +637,106 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"SkillCost.Ardent_Flame_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Draconic_Power_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Earthern_Heart_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Assassination_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Shadow_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Siphoning_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Daedric_Summoning_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Dark_Magic_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Storm_Calling_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Aedric_Spear_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Dawns_Wrath_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Restoring_Light_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Two_Handed_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.One_Hand_and_Shield_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Dual_Wield_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Bow_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Destruction_Staff_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Restoration_Staff_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Vampire_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Werewolf_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Fighters_Guild_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Mages_Guild_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Undaunted_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Assault_Cost" => array(
+					"display" => "%",
+			),
+			
+			"SkillCost.Support_Cost" => array(
+					"display" => "%",
+			),
+			
 	);
 	
 	

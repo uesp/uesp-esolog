@@ -1088,6 +1088,14 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /WHILE DUAL WIELDING[\s]*Reduces the cost of Dual Wield abilities by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
+		statRequireId: "WeaponBow",
+		statRequireValue: 1,
+		category: "SkillCost",
+		statId: "Bow",
+		display: "%",
+		match: /WITH BOW EQUIPPED[\s]*Reduces the Stamina cost of Bow abilities by ([0-9]+\.?[0-9]*)%/i,
+	},	 
+	{
 		statId: "WeaponDamage",
 		display: "%",
 		match: /Increases your Weapon Damage by ([0-9]+\.?[0-9]*)% and /i,
@@ -2362,25 +2370,26 @@ function GetEsoInputSpecialValues(inputValues)
 		if (healthRegenValue != 0)
 		{
 			inputValues.Skill.HealthRegen += healthRegenValue;
-			//AddEsoItemRawOutput(itemData, "Skill.HealthRegen", healthRegenValue);
-			AddEsoInputStatSource("Skill.HealthRegen", { source: "Vampire Stage " + inputValues.VampireStage , value: healthRegenValue });
+			AddEsoInputStatSource("Skill.HealthRegen", { source: "Vampire Stage " + inputValues.VampireStage, value: healthRegenValue });
 		}
 		
 		if (flameDamageValue != 0)
 		{
 			inputValues.Skill.FireDamageResist += flameDamageValue;
-			//AddEsoItemRawOutput(itemData, "Skill.FireDamageResist", flameDamageValue);
-			AddEsoInputStatSource("Skill.FireDamageResist", { source: "Vampire Stage " + inputValues.VampireStage , value: flameDamageValue });
+			AddEsoInputStatSource("Skill.FireDamageResist", { source: "Vampire Stage " + inputValues.VampireStage, value: flameDamageValue });
 		}
 		
 		if (costReduction != 0)
 		{
-			//AddEsoItemRawOutput(itemData, "OtherEffects", costReduction);
-			AddEsoInputStatSource("OtherEffects", { other: true, source: "Vampire Stage " + inputValues.VampireStage , value: "Reduce cost of Vampire abilities by " + (costReduction*100) + "%" });
+			inputValues.SkillCost.Vampire_Cost += costReduction;
+			AddEsoInputStatSource("SkillCost.Vampire_Cost", { source: "Vampire Stage " + inputValues.VampireStage, value: costReduction });
 		}
 	}
 	
-	if ($("#esotbWerewolf").is(":checked"))	inputValues.Werewolf = parseInt($("#esotbWerewolf").val());
+	if ($("#esotbWerewolf").is(":checked"))
+	{
+		inputValues.Werewolf = parseInt($("#esotbWerewolf").val());
+	}
 }
 
 
