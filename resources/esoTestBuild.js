@@ -1061,7 +1061,31 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		statRequireValue: 1,
 		statId: "OtherEffects",
 		rawInputMatch: /WITH DESTRUCTION STAFF EQUIPPED[\s]*(.*)/i,
-		match: /WITH DESTRUCTION STAFF EQUIPPED[.\s\S]*?Restores ([0-9]+) Magicka when you kill a target with a Destruction Staff spell or weapon attack/i,
+		match: /WITH DESTRUCTION STAFF EQUIPPED[\s]*Restores ([0-9]+) Magicka when you kill a target with a Destruction Staff spell or weapon attack/i,
+	},
+	{
+		statRequireId: "Weapon2H",
+		statRequireValue: 1,
+		category: "SkillCost",
+		statId: "Two_Handed_Cost",
+		display: "%",
+		match: /WITH TWO-HANDED WEAPON EQUIPPED[\s]*Reduces the cost of Two-Handed abilities by ([0-9]+\.?[0-9]*)%/i,
+	},	
+	{
+		statRequireId: "Weapon1HShield",
+		statRequireValue: 1,
+		category: "SkillCost",
+		statId: "One_Hand_and_Shield_Cost",
+		display: "%",
+		match: /WITH ONE HAND WEAPON AND SHIELD EQUIPPED[\s]*Reduces the cost of One Hand and Shield abilities by ([0-9]+\.?[0-9]*)%/i,
+	},
+	{
+		statRequireId: "Weapon1H",
+		statRequireValue: 2,
+		category: "SkillCost",
+		statId: "Dual_Wield",
+		display: "%",
+		match: /WHILE DUAL WIELDING[\s]*Reduces the cost of Dual Wield abilities by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
 		statId: "WeaponDamage",
@@ -5294,7 +5318,7 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 			//Damage Modifiers
 	};
 	
-	g_LastSkillInputValues.SkillCost = inputValues.SkillCost;
+	g_LastSkillInputValues.SkillLineCost = inputValues.SkillCost;
 	
 	g_LastSkillInputValues.MagickaCost = 
 	{

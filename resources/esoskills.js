@@ -137,7 +137,7 @@ function EsoConvertDescToHTML(desc)
 
 function EsoConvertDescToHTMLClass(desc, className)
 {
-	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '<div class="' + className + '">$1</div>');
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '<div class="' + className + '">$1</div>');
 	newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -145,7 +145,7 @@ function EsoConvertDescToHTMLClass(desc, className)
 
 function EsoConvertDescToText(desc)
 {
-	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t\$\*\(\)\#\?]*)\|r/g, '$1');
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '$1');
 	//newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -719,7 +719,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
 		if (inputValues.UltimateCost.Skill != null) SkillFactor -= inputValues.UltimateCost.Skill;
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor -= inputValues.UltimateCost.Buff;
-	}		
+	}
 	
 	if (mechanic != 10 && inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
 	{
