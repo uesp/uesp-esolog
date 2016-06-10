@@ -33,6 +33,7 @@
  *		- Move icons to files1
  *		- Long item names (26721, 26658, 57584=46 chars)
  *		- Remove temporary web fonts (wait for new fonts to be used for a while to prevent caching issues)
+ *		- Infused modify in client side JS
  * 
  */
 
@@ -1181,7 +1182,7 @@ class CEsoItemLink
 		
 		$output = "";
 		
-		if ($this->showSummary) $output .= "LEVEL ";
+		//if ($this->showSummary) $output .= "LEVEL ";
 		$output .= "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>$cp</div>";
 		
 		return $output;
@@ -1405,8 +1406,7 @@ class CEsoItemLink
 		
 		$newDesc = $this->FormatDescriptionText($newDesc);
 		return $newDesc;
-	}
-	
+	}	
 
 	
 	private function MakeItemEnchantBlock()
