@@ -60,7 +60,7 @@ displayed statistics is unknown.
 				<option value="3">Stage 3</option>
 				<option value="4">Stage 4</option>
 			</select>
-			<div class="esotbStatLabel">Werewolf</div> <input id="esotbWerewolf" class="esotbInputValue" statid="Werewolf" type="checkbox" value="1"><br/>
+			<div class="esotbStatLabel">In Werewolf Form</div> <input id="esotbWerewolf" class="esotbInputValue" statid="Werewolf" type="checkbox" value="1"><br/>
 			<p>
 			<div id="esotbAttributes">
 				<div class="esotbAttrTitle">Attributes <div id="esotbAttrTotal" statid="AttributeTotal" class="esotbAttributeInput">0 / 64</div></div>

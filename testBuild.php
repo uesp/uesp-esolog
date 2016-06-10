@@ -41,7 +41,6 @@ class CEsoTestBuild
 	
 	public $STATS_UNIQUE_LIST = array(
 			"Item.Divines",
-			"Item.Defending",
 			"Item.Sturdy",
 			"Item.Prosperous",
 			"Item.Training",
@@ -59,6 +58,7 @@ class CEsoTestBuild
 			"WeaponRestStaff",
 			"WeaponDestStaff",
 			"Weapon1HShield",
+			"WeaponOffHandDamage",
 			"Level",
 			"CPLevel",
 			"EffectiveLevel",
@@ -633,6 +633,22 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Skill.DamageDone" => array(
+					"display" => "%",
+			),
+			
+			"Item.DamageDone" => array(
+					"display" => "%",
+			),
+			
+			"Skill2.DamageDone" => array(
+					"display" => "%",
+			),
+			
+			"CP.DamageDone" => array(
+					"display" => "%",
+			),
+			
 			"Skill.HADamage" => array(
 					"display" => "%",
 			),
@@ -737,6 +753,31 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Skill.BlockMitigation" => array(
+					"display" => "%",
+			),
+			
+			"CP.DamageShield" => array(
+					"display" => "%",
+			),
+			
+			"CP.PhysicalDamage" => array(
+					"display" => "%",
+			),
+			
+			"CP.BlockCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.BashCost" => array(
+					"display" => "%",
+			),			
+			
+			"CP.BlockCost" => array(
+					"display" => "%",
+			),
+			
+			
 	);
 	
 	
@@ -745,6 +786,7 @@ class CEsoTestBuild
 			"Health" => array(
 					"title" => "Health",
 					"round" => "floor",
+					"warning" => "Note: Currently there is a bug on Live with the Undaunted Mettle passive that sometimes causes incorrect health/magica/stamina values to be displayed. Logging out and back in should reset the display issue.",
 					"compute" => array(
 							"156 * Level + 944",
 							"122 * Attribute.Health",
@@ -769,6 +811,7 @@ class CEsoTestBuild
 			"Magicka" => array(
 					"title" => "Magicka",
 					"round" => "floor",
+					"warning" => "Note: Currently there is a bug on Live with the Undaunted Mettle passive that sometimes causes incorrect health/magica/stamina values to be displayed. Logging out and back in should reset the display issue.",
 					"compute" => array(
 							"142 * Level + 858",
 							"111 * Attribute.Magicka",
@@ -793,6 +836,7 @@ class CEsoTestBuild
 			"Stamina" => array(
 					"title" => "Stamina",
 					"round" => "floor",
+					"warning" => "Note: Currently there is a bug on Live with the Undaunted Mettle passive that sometimes causes incorrect health/magica/stamina values to be displayed. Logging out and back in should reset the display issue.",
 					"compute" => array(
 							"142 * Level + 858",
 							"111 * Attribute.Stamina",
@@ -1017,8 +1061,6 @@ class CEsoTestBuild
 							"Item.SpellResist",
 							"Skill2.SpellResist",
 							"+",
-							"Item.Defending",
-							"+",
 							"Set.SpellResist",
 							"+",
 							"Skill.SpellResist",
@@ -1035,8 +1077,6 @@ class CEsoTestBuild
 					"compute" => array(
 							"Item.PhysicalResist",
 							"Skill2.PhysicalResist",
-							"+",
-							"Item.Defending",
 							"+",
 							"Set.PhysicalResist",
 							"+",
@@ -1138,7 +1178,9 @@ class CEsoTestBuild
 			"SpellPenetration" => array(				
 					"title" => "Spell Penetration",
 					"compute" => array(
+							"100",
 							"Item.SpellPenetration",
+							"+",
 							"Set.SpellPenetration",
 							"+",
 							"Skill.SpellPenetration",
@@ -1153,7 +1195,9 @@ class CEsoTestBuild
 			"PhysicalPenetration" => array(
 					"title" => "Physical Penetration",
 					"compute" => array(
+							"100",
 							"Item.PhysicalPenetration",
+							"+",
 							"Set.PhysicalPenetration",
 							"+",
 							"Skill.PhysicalPenetration",
