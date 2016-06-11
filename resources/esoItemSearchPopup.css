@@ -1,7 +1,7 @@
 #esoispRoot {
 	position: absolute;
-	width: 400px;
-	height: 500px;
+	width: 450px;
+	height: 515px;
 	top: 100px;
 	left: 100px;
 	background-color: black;
@@ -108,9 +108,9 @@
 }
 
 #esoispInputText {
-	width: 96px;
+	width: 116px;
 }
 
 #esoispInputs select {
-	width: 100px;
+	width: 120px;
 }

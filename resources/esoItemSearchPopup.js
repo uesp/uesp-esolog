@@ -90,6 +90,29 @@ UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP =
 		66 : [1, 366, 367, 368, 369, 370],
 };
 
+UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP_JEWELRY = 
+{
+		 1 : [1,  30,  31,  32,  33,  34],
+		 4 : [1,  25,  26,  27,  28,  29],
+		 6 : [1,  20,  21,  22,  23,  24],
+		51 : [1, 125, 135, 145, 155, 156],
+		52 : [1, 126, 136, 146, 156, 166],
+		53 : [1, 127, 137, 147, 157, 167],
+		54 : [1, 128, 138, 148, 158, 168],
+		55 : [1, 129, 139, 149, 159, 169],
+		56 : [1, 130, 140, 150, 160, 170],
+		57 : [1, 131, 141, 151, 161, 171],
+		58 : [1, 132, 142, 152, 162, 172],
+		59 : [1, 133, 143, 153, 163, 173],
+		60 : [1, 134, 144, 154, 164, 174],
+		61 : [1, 236, 237, 238, 239, 240],
+		62 : [1, 254, 255, 256, 257, 258],
+		63 : [1, 272, 273, 274, 275, 276],
+		64 : [1, 290, 291, 292, 293, 294],
+		65 : [1, 308, 309, 310, 311, 312], //TODO: and previous levels
+		66 : [1, 360, 361, 362, 363, 364],
+};
+
 
 	/* Class Constructor */
 UESP.EsoItemSearchPopup = function () 
@@ -183,17 +206,20 @@ UESP.EsoItemSearchPopup.prototype.parseLevel = function(level)
 }
 
 
-UESP.EsoItemSearchPopup.prototype.findInternalLevelType = function(level, quality)
+UESP.EsoItemSearchPopup.prototype.findInternalLevelType = function(level, quality, equipType)
 {
 	level = this.parseLevel(level);
 	var result = { type: 1, level: level };
+	var typeMap = UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP;
 	
 	if (result.level > 50) result.level = 50;
 	if (result.level <  1) result.level = 1;
 	
-	for (var l in UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP)
+	if (equipType == 12 || equipType == 2) typeMap = UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP_JEWELRY;
+	
+	for (var l in typeMap)
 	{
-		var levelData = UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP[l];
+		var levelData = typeMap[l];
 		
 		if (level <= l)
 		{
@@ -587,7 +613,7 @@ UESP.EsoItemSearchPopup.prototype.updateLevelQuality = function()
 	this.itemLevel = $("#esoispLevel").val();
 	this.itemQuality = $("#esoispQuality").val();
 	
-	var intLevelType = this.findInternalLevelType(this.itemLevel, this.itemQuality);
+	var intLevelType = this.findInternalLevelType(this.itemLevel, this.itemQuality, this.equipType);
 	
 	this.itemIntLevel = intLevelType.level;
 	this.itemIntType  = intLevelType.type;
@@ -797,6 +823,14 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	
 	if (this.equipType != data.equipType)
 	{
+		if (this.itemType == 2)
+		{
+			if (!((this.equipType == 2 && data.equipType == 12) || (this.equipType == 12 && data.equipType == 2)))
+			{
+				clearSettings = true;
+			}			
+		}
+		
 		this.equipType = data.equipType;
 		
 		if (this.equipType == null)
