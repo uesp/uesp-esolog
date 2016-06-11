@@ -2704,7 +2704,7 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 		
 		buffData.skillEnabled = true;
 		buffData.skillAbilities.push(abilityData);
-		//AddEsoItemRawOutput(buffData, isPassive ? "Passive Skill" : "Active Skill", abilityData.name);
+		AddEsoItemRawOutput(abilityData, (isPassive ? "Passive Skill" : "Active Skill"), abilityData.name);
 	}
 	else if (matchData.statId == "OtherEffects")
 	{
@@ -2718,7 +2718,7 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 			if (rawInputDesc == null) rawInputDesc = rawDesc;
 		}
 		
-		//AddEsoItemRawOutput(abilityData, "PassiveEffect", rawInputDesc);
+		AddEsoItemRawOutput(abilityData, "PassiveEffect", rawInputDesc);
 		
 		if (isPassive)
 			AddEsoInputStatSource("OtherEffects", { other: true, passive: abilityData, value: rawInputDesc, rawInputMatch: matchData.rawInputMatch });
@@ -2728,7 +2728,7 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 	else 
 	{
 		inputValues[category][matchData.statId] += statValue;
-		//AddEsoItemRawOutput(abilityData, category + "." + matchData.statId, statValue);
+		AddEsoItemRawOutput(abilityData, category + "." + matchData.statId, statValue);
 		
 		if (isPassive)
 			AddEsoInputStatSource(category + "." + matchData.statId, { passive: abilityData, value: statValue, rawInputMatch: matchData.rawInputMatch });
@@ -4504,6 +4504,8 @@ function ShowEsoSkillDetailsPopup(abilityId)
 	var skillData = g_SkillsData[abilityId];
 	if (skillData == null) return false;
 	//if (skillData.rawOutput == null) return false;
+	
+	GetEsoSkillDescription(abilityId, null, false); 
 	
 	var detailsHtml = "";
 	

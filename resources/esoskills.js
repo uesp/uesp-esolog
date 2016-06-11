@@ -667,12 +667,15 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 		output = EsoConvertDescToText(coefDesc)
 	}
 	
+	skillData.lastDesc = output;
 	return output;
 }
 
 
 function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 {
+	var rawOutput = [];
+	var newRawOutput = {};
 	var newDesc = skillDesc;
 	if (inputValues.Damage == null) return newDesc;
 	
@@ -684,93 +687,204 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
 		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Magic";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Magic;
+				
 		if (isDot || p1 != "" || p5 != "") 
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Magic;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Magic;
 		
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
 	
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
 		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Physical";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Physical;
+		
 		if (isDot || p1 != "" || p5 != "") 
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Physical;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Physical;
 		
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
 	
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
-
-		if (isDot || p1 != "" || p5 != "") 
+		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Shock";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Shock;
+		
+		if (isDot || p1 != "" || p5 != "")
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Shock;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Shock;
 		
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
 	
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
-
-		if (isDot || p1 != "" || p5 != "") 
+		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Flame";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Flame;
+		
+		if (isDot || p1 != "" || p5 != "")
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Flame;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Flame;
 		
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
 	
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
-
-		if (isDot || p1 != "" || p5 != "") 
+		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Cold";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Cold;
+		
+		if (isDot || p1 != "" || p5 != "")
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Cold;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Cold;
 		
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
 	
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
-
-		if (isDot || p1 != "" || p5 != "") 
+		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Poison";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Poison;
+		
+		if (isDot || p1 != "" || p5 != "")
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Poison;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Poison;
-		
+				
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
 	
 	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
 		var modDamage = parseFloat(p3);
-
-		if (isDot || p1 != "" || p5 != "") 
+		
+		newRawOutput = {};
+		newRawOutput.DamageType = "Disease";
+		newRawOutput.BaseDamage = p3;
+		newRawOutput.MainDamageDone = inputValues.Damage.Disease;
+		
+		if (isDot || p1 != "" || p5 != "")
+		{
 			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Disease;
+			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
+		}
 		else
 			modDamage *= 1 + inputValues.Damage.Disease;
 		
+		newRawOutput.DamageDone = inputValues.Damage.All;
 		modDamage *= 1 + inputValues.Damage.All;
 		modDamage = Math.round(modDamage);
+		
+		newRawOutput.DamageDone = inputValues.Damage.All;
+		newRawOutput.FinalDamage = modDamage;
+		rawOutput.push(newRawOutput);
+		
 		return p1 + p2 + modDamage + p4 + p5;
 	});
+	
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
+	
+	for (var i = 0; i < rawOutput.length; ++i)
+	{
+		var rawData = rawOutput[i];
+		var output = "";
+				
+		if (rawData.MainDamageDone != null && rawData.MainDamageDone != 0) output += " + " + (rawData.MainDamageDone*100) + "% " + rawData.DamageType;
+		if (rawData.DotDamageDone  != null && rawData.DotDamageDone  != 0) output += " + " + (rawData.DotDamageDone*100) + "% DoT";
+		if (rawData.DamageDone     != null && rawData.DamageDone     != 0) output += " + " + (rawData.DamageDone*100) + "% All";
+		
+		if (output == "")
+			output = "" + rawData.BaseDamage + " " + rawData.DamageType + " Damage (unmodified)";
+		else
+			output = "" + rawData.BaseDamage + " " + rawData.DamageType + " Damage " + output + " = " + rawData.FinalDamage + " final";
+		
+		skillData.rawOutput["Tooltip Damage " + (i+1)] = output;
+	}
 	
 	return newDesc;	
 }
@@ -778,7 +892,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 
 function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
 {
-	var html = GetEsoSkillDescription(skillId, inputValues, useHtml); 
+	var html = GetEsoSkillDescription(skillId, inputValues, useHtml);
 	descElement.html(html);
 }
 
@@ -821,7 +935,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (inputValues.StaminaCost.Buff  != null) SkillFactor -= inputValues.StaminaCost.Buff;
 	}
 	else if (mechanic == 10 && inputValues.UltimateCost != null)
-	{
+{
 		if (inputValues.UltimateCost.CP    != null) CPFactor    -= inputValues.UltimateCost.CP;
 		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
 		if (inputValues.UltimateCost.Skill != null) SkillFactor -= inputValues.UltimateCost.Skill;
