@@ -501,22 +501,23 @@ a:hover {
 }
 
 .esotbItemDetailsButton {
-	width: 16px;
-	height: 16px;
-	background-color: #DBBFA5;
-	text-align: center;
-	float: right;
-	border-top: 1px solid #CCCCCC;
-	border-right: 1px solid #333333;
-	border-bottom: 1px solid #333333;
-	border-left: 1px solid #CCCCCC;
 	position: absolute;
-	left: 55px;
+	left: 75px;
 	top: 0px;
-	line-height: 16px;
 }
 
 .esotbItemDetailsButton:hover {
+	cursor: pointer;
+	background-color: #777;	
+}
+
+.esotbItemDisableButton {
+	position: absolute;
+	left: 55px;
+	top: 0px;
+}
+
+.esotbItemDisableButton:hover {
 	cursor: pointer;
 	background-color: #777;	
 }
@@ -545,7 +546,7 @@ a:hover {
 	background-color: #ccc;
 }
 
-.esotbItemEnchantButton {
+.esotbItemButton {
 	width: 16px;
 	height: 16px;
 	background-color: #DBBFA5;
@@ -554,10 +555,13 @@ a:hover {
 	border-right: 1px solid #333333;
 	border-bottom: 1px solid #333333;
 	border-left: 1px solid #CCCCCC;
-	position: absolute;
-	left: 75px;
-	top: 0px;
 	line-height: 16px;
+}
+
+.esotbItemEnchantButton {
+	position: absolute;
+	left: 95px;
+	top: 0px;
 }
 
 .esotbItemEnchantButton:hover {
@@ -616,6 +620,27 @@ a:hover {
     font-weight: normal;
     white-space: nowrap;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.esotbItemDisableButton:hover:after {
+    background: #eeeeaa;
+    border-radius: 5px;
+    border: solid 1px gray;
+    bottom: 18px;
+    color: #000;
+    content: "Disable item...";
+    left: 20%;
+    padding: 3px;
+    position: absolute;
+    z-index: 98;
+    font-size: 13px;
+    font-weight: normal;
+    white-space: nowrap;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.esotbItemDisabled .esotbItemDisableButton:hover:after {
+	content: "Enable item...";
 }
 
 .esotbWeaponSelect {
@@ -846,4 +871,8 @@ button.esotbWeaponSelect {
 	vertical-align: top;
 	padding: 2px;
 	padding-right: 7px;	
+}
+
+.esotbItemDisabled {
+	opacity: 0.5;
 }

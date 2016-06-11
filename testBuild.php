@@ -164,8 +164,8 @@ class CEsoTestBuild
 			"Constitution",
 			"DamageShield",
 			"HADamageResist",
-			"DOTResist",
-			"DOTDamage",
+			"DotResist",
+			"DotDamage",
 			"MagickaDamageResist",
 			"MagickaDamage",
 			"PhysicalDamage",
@@ -405,7 +405,7 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"CP.DOTDamage" => array(
+			"CP.DotDamage" => array(
 					"display" => "%",
 			),
 			
@@ -776,6 +776,11 @@ class CEsoTestBuild
 			"CP.BlockCost" => array(
 					"display" => "%",
 			),
+			
+			"Skill.HARestore" => array(
+					"display" => "%",
+			),
+			
 			
 			
 	);
@@ -1492,7 +1497,7 @@ class CEsoTestBuild
 					),
 			),
 			
-			"DOTDamage" => array(
+			"DotDamage" => array(
 					"title" => "DOT Damage",
 					"display" => "percent",
 					"round" => "floor",

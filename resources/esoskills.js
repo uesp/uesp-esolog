@@ -1672,6 +1672,8 @@ function OnAbilityDragStart(e)
 	g_EsoSkillDragData.origAbilityId = $parent.attr("origskillid");;
 	g_EsoSkillDragData.abilityType =  $parent.attr("abilitytype");;
 	g_EsoSkillDragData.iconUrl = $(this).children("img").attr("src");
+	g_EsoSkillDragData.fromSkillBar = false;
+	g_EsoSkillDragData.wasDropped = false;
 	
 	e.originalEvent.dataTransfer.effectAllowed = "copy";
 	
@@ -1696,6 +1698,8 @@ function OnSkillBarDragStart(e)
 	g_EsoSkillDragData.abilityId = abilityId;
 	g_EsoSkillDragData.origAbilityId = $this.attr("origskillid");
 	g_EsoSkillDragData.iconUrl = $(this).attr("src");
+	g_EsoSkillDragData.fromSkillBar = true;
+	g_EsoSkillDragData.wasDropped = false;
 	
 	if (g_EsoSkillDragData.skillIndex < 6)
 		g_EsoSkillDragData.abilityType = "Active";
@@ -1731,6 +1735,8 @@ function OnSkillBarDrop(e)
 	var $this = $(this);
 	var skillBar = $this.attr("skillbar");
 	var skillIndex = $this.attr("skillindex");
+	
+	g_EsoSkillDragData.wasDropped = true;
 		
 	if (g_EsoSkillDragData.origElement != null)
 	{
@@ -1794,6 +1800,12 @@ function RemoveSkillBarAbility(abilityId, skillBar)
 function OnSkillBarDragEnd(e)
 {
 	g_EsoSkillDragData.isDragging = false;
+	
+	if (g_EsoSkillDragData.fromSkillBar && !g_EsoSkillDragData.wasDropped) 
+	{
+		RemoveSkillBarAbility(g_EsoSkillDragData.abilityId, g_EsoSkillDragData.skillBar );
+		UpdateEsoSkillBarData();		
+	}
 }
 
 
@@ -1979,7 +1991,7 @@ function esovsOnDocReady()
 	$(".esovsSkillBarIcon").on('dragstart', OnSkillBarDragStart);
 	$(".esovsSkillBarIcon").on('dragover', OnSkillBarDragOver);
 	$(".esovsSkillBarIcon").on('drop', OnSkillBarDrop);
-	$(document).on('dropend', OnSkillBarDragEnd);
+	$(document).on('dragend', OnSkillBarDragEnd);
 	
 	$("#esovsSkillReset").click(OnEsoSkillReset);
 	
