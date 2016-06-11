@@ -344,7 +344,12 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 		$("#esoispWeaponTraitLabel").show();
 		$("#esoispWeaponTrait").val(this.itemTrait);
 		
-		
+		if ($("#esoispWeaponTrait").val() == null) 
+		{
+			this.itemTrait = -1;
+			$("#esoispWeaponTrait").val(-1);
+		}
+				
 		if (this.equipTypes.indexOf("7") >= 0)
 		{
 			$("#esoispArmorTrait").show();
@@ -355,6 +360,17 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			$("#esoispWeaponType2").show();
 			$("#esoispWeaponTypeLabel2").show();
 			$("#esoispWeaponType2").val(this.weaponType);
+			
+			if ($("#esoispWeaponType2").val() == null)
+			{
+				this.weaponType = -1;
+				$("#esoispWeaponTrait2").val(-1);
+			}
+			
+			if ($("#esoispArmorTrait").val() == null)
+			{
+				$("#esoispArmorTrait").val(-1);
+			}
 		}
 		else
 		{
@@ -365,6 +381,12 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			$("#esoispWeaponType1").val(this.weaponType);
 			$("#esoispArmorTrait").hide();
 			$("#esoispArmorTraitLabel").hide();
+			
+			if ($("#esoispWeaponType1").val() == null)
+			{
+				this.weaponType = -1;
+				$("#esoispWeaponTrait1").val(-1);
+			}
 		}
 		
 	}
@@ -388,6 +410,12 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			$("#esoispArmorTraitLabel").hide();
 			$("#esoispArmorType").hide();
 			$("#esoispArmorTypeLabel").hide();
+			
+			if ($("#esoispJewelryTrait").val() == null)
+			{
+				this.itemType = -1;
+				$("#esoispJewelryTrait").val(-1);
+			}
 		}
 		else
 		{
@@ -401,6 +429,18 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			$("#esoispArmorTypeLabel").show();
 			$("#esoispArmorTrait").val(this.itemTrait);
 			$("#esoispArmorType").val(this.armorType);
+			
+			if ($("#esoispArmorTrait").val() == null)
+			{
+				this.itemTrait = -1;
+				$("#esoispArmorTrait").val(-1);
+			}
+			
+			if ($("#esoispArmorType").val() == null)
+			{
+				this.armorType = -1;
+				$("#esoispArmorType").val(-1);
+			}
 		}
 	}
 	else if (this.itemType == "4,12")
@@ -804,6 +844,26 @@ UESP.EsoItemSearchPopup.prototype.onWeaponType2Change = function(e)
 }
 
 
+UESP.EsoItemSearchPopup.prototype.getEquipTypeGroup = function(equipType)
+{
+	if (equipType == null || equipType == "") "None";
+	
+	if (equipType == 30) return "Poison";
+	if (equipType == 2 || equipType == 12) return "Jewelry";
+	if (equipType == "5,6" || equipType == 6 || equipType == 5) return "Weapon";
+	if (equipType == "5,7" || equipType == 7) return "Weapon";
+	if (equipType == 1 || equipType == 3 || equipType == 4 || equipType == 8 || equipType == 9 || equipType == 10 || equipType == 13) return "Armor";
+	
+	return "Other";
+}
+
+
+UESP.EsoItemSearchPopup.prototype.areEquipTypesSameGroup = function(equipType1, equipType2)
+{
+	return this.getEquipTypeGroup(equipType1) == this.getEquipTypeGroup(equipType2);
+}
+
+
 UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 {
 	var clearResults = false;
@@ -823,12 +883,9 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	
 	if (this.equipType != data.equipType)
 	{
-		if (this.itemType == 2)
+		if (!this.areEquipTypesSameGroup(this.equipType, data.equipType))
 		{
-			if (!((this.equipType == 2 && data.equipType == 12) || (this.equipType == 12 && data.equipType == 2)))
-			{
-				clearSettings = true;
-			}			
+			clearSettings = true;
 		}
 		
 		this.equipType = data.equipType;
@@ -841,16 +898,11 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 		clearResults = true;
 	}
 	
-	if (this.weaponType != data.weaponType)
-	{
-		this.weaponType = data.weaponType;
-		clearResults = true;
-	}
-	
 	if (clearSettings)
 	{
 		this.itemTrait = "-1";
 		this.armorType = "-1";
+		this.weaponType = "-1";
 	}
 	
 	if (clearResults)

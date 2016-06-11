@@ -4149,9 +4149,10 @@ function SelectEsoItem(element)
 	var data = {
 		onSelectItem: OnEsoSelectItem,
 		itemType: itemType,
-		equipType: equipType,
-		weaponType: weaponType,
 	};
+	
+	if (equipType  != null) data.equipType  = equipType;
+	if (weaponType != null) data.weaponType = weaponType;
 	
 	var rootSearchPopup = UESP.showEsoItemSearchPopup(element, data);
 	ShowEsoBuildClickWall(rootSearchPopup);
