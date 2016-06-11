@@ -27,16 +27,17 @@ displayed statistics is unknown.
 	<div id="esotbStatInputs">
 		<div class="esotbStatTabList">
 			<div class="esotbStatTabSpacer"></div>
-			<div class="esotbStatTab esotbStatTabSelected" tabid="esotbStatBlock1">General</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock2">Items</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock6">Sets</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock3">Skills</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock7">Buffs</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock4">Champion Points</div>
-			<div class="esotbStatTab" tabid="esotbStatBlock5">Raw Inputs</div>
+			<div class="esotbStatTab esotbStatTabSelected" tabid="esotbStatBlockGeneral">General</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockItems">Items</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockSets">Sets</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockSkills">Skills</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockBuffs">Buffs</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockCPs">CPs</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockRawData">Raw Data</div>
+			<div class="esotbStatTab" tabid="esotbStatBlockHelp">Help</div>
 			<div class="esotbStatTabSpacer"></div>
 		</div>
-		<div id="esotbStatBlock1" class="esotbStatBlock">
+		<div id="esotbStatBlockGeneral" class="esotbStatBlock">
 			<div id="esotbRaceList">
 				<div class="esotbStatLabel">Race</div> <select id="esotbRace" name="esotbRace" statid="Race">{raceList}</select>
 			</div>
@@ -89,7 +90,7 @@ displayed statistics is unknown.
 				This value is used to see the effect of cost reduction from all factors.
 			</div>
 		</div>
-		<div id="esotbStatBlock2" class="esotbStatBlock" style="display: none;">
+		<div id="esotbStatBlockItems" class="esotbStatBlock" style="display: none;">
 			<div id="esotbItems">
 				<div class="esotbItemSlotLabel"></div>
 				<div class="esotbItemSlotLabel"></div>
@@ -239,7 +240,7 @@ displayed statistics is unknown.
 				</div><br/>
 			</div>
 		</div>
-		<div id="esotbStatBlock3" class="esotbStatBlock" style="display: none;">
+		<div id="esotbStatBlockSkills" class="esotbStatBlock" style="display: none;">
 			{skillHtml}
 			<p>
 			<div id="esotbToggleSkills">
@@ -251,14 +252,14 @@ displayed statistics is unknown.
 				</div>
 			</div>
 		</div>
-		<div id="esotbStatBlock4" class="esotbStatBlock" style="display: none;">
+		<div id="esotbStatBlockCPs" class="esotbStatBlock" style="display: none;">
 			{cpHtml}
 		</div>
-		<div id="esotbStatBlock5" class="esotbStatBlock" style="display: none;">
+		<div id="esotbStatBlockRawData" class="esotbStatBlock" style="display: none;">
 			<div id="esotbRawInputs">
 			</div>
 		</div>
-		<div id="esotbStatBlock6" class="esotbStatBlock" style="display: none;">
+		<div id="esotbStatBlockSets" class="esotbStatBlock" style="display: none;">
 			<div class="esotbItemToggleSets">
 				<h3>Toggled Sets</h3>
 				<hr>
@@ -276,7 +277,7 @@ displayed statistics is unknown.
 				</div>				
 			</div>
 		</div>
-		<div id="esotbStatBlock7" class="esotbStatBlock" style="display: none;">
+		<div id="esotbStatBlockBuffs" class="esotbStatBlock" style="display: none;">
 			<div id="esotbBuffs">
 				You can manually select which buffs to include in your character data calculation. Note that some buffs may already be
 				applied through passive/active skills.
@@ -284,6 +285,92 @@ displayed statistics is unknown.
 				<div id="esotbBuffInfo">
 				</div>
 			</div>
+		</div>
+		<div id="esotbStatBlockHelp" class="esotbStatBlock" style="display: none;">
+			
+			<div class="esotbHelpWarning">
+				Warning: This ESO character builder is currently undergoing construction and is not 100% completed. There are bugs and 
+				missing features as detailed below.				
+			</div>
+			<p>
+			This is a yet another character builder/planner for Elder Scrolls Online. The design goal behind the builder is to be able to see 
+			all the various calculations and stat sources to be able to better understand how one thing or another affects your character's
+			final stats. If you notice any bugs, errors, calculation discrepancies or just would like to suggest a feature just leave a note on
+			<a href="http://en.uesp.net/wiki/User_talk:Daveh">Daveh's talk page</a>.
+			<p>
+			A for a brief description as to what is and isn't working here yet:
+			
+			<div class='esotbHelpWorkBlock'>
+				<h4>"Mostly" Working</h4>
+				<ul>
+					<li>General stats</li>
+					<li>Items</li>
+					<li>Champion Points</li>
+					<li>Sets (basic stats only)</li>
+					<li>Skills (basic stats only)</li>
+					<li>Buffs (basic stats only)</li>
+					<li>Main computed stats (everything above penetration)</li>
+				</ul>
+			</div>
+			<div class='esotbHelpWorkBlock'>
+				<h4>"Half" Working</h4>
+				<ul>
+					<li>Skill tooltip cost and damage updates</li>
+					<li>All secondary computed stats</li>
+					<li>Base stat values for less than max level (CP160)<li>
+				</ul>
+			</div>
+			<div class='esotbHelpWorkBlock'>
+				<h4>"Not Yet" Working</h4>
+				<ul>
+					<li>Scaling of healing effects on skill tooltips</li>
+					<li>More complex set, skill, and buff effects</li>
+					<li>Saving and loading of builds</li>
+					<li>Integration into the UESP wiki</li>
+					<li>Combining into the existing build data on UESP</li> 
+				</ul>
+			</div><br/>
+			
+			<p>
+			<h3>Basic Usage</h3>
+			Hopefully, most basic interface elements should be obvious to those familiar with the game, but here are a few general tips to help you get going and explore
+			some of the not-so-obvious features of this character builder.  
+			<ul>
+				<li>Enter your basic character stats in the <em>"General"</em> tab. The <em>"Target"</em> and <em>"Miscellaneous"</em> stats are for more advanced
+					users wishing to test specific things.</li>
+				<li>Use the <em>"Item"</em> to select your character's armor and weapons like in the game. Click on an item slot to display a simple item
+					search dialog to help you find your desired item. Use the <em>*</em> button to enchant your gear. The <em>...</em> button displays detail
+					on the gear stat and the <em>-</em> button can temporarily disable an item from being used in the stat calculations.</li>
+				<li>The <em>"Sets"</em> tab displays information on any worn sets in addition to some specific set effects that can be manually toggled on/off.</li>
+				<li>Choose your skills in the <em>"Skills"</em> tab just like in game, although here you are not limited to availabe skill points. Purchase or refund
+					an ability by clicking on the <em>"+"</em> to the left of each skill. Passive effects
+					are applied as soon as the passive is purchased. Active effects need to be dragged to the active skill bar in order to take effect. Skill costs
+					and damage/healing values are updated automatically as you character stats change.</li>
+				<li>The <em>"Buffs"</em> tab allows you to select which buff effects to apply on your character. These are familiar things like the potion effects
+					or effects granted by using certain skills. Note that some effects may be automatically granted by a passive or an active slotted skill.</li>
+				<li>Choose your champion points in the <em>"CP"</em> tab. You can exceed the limit of 100 points per skill and 167 per skill line
+					unlike in the actual game. CP passive skills are granted automatically at the appropriate level. Note that buying CPs in this tab does *not* change
+					your <em>"Total CPs"</em> value in the general tab which governs your character level.</li>
+				<li>The <em>"Raw Data"</em> tab shows all the contributors to each statistic.</li>
+				<li>The <em>"Computed Character Statistics"</em> list on the right shows all the computed stastic values obtained from all the enter 
+					input character data. A <div class='esotbStatWarningButton'>?</div> button means there may be issues calculating that particular stat (click to see details).
+					You can click on the <em>"+"</em> button to the right to view details on the inputs and calculation for each tab. More information can be
+					seen by clicking on this list.</li>
+			</ul>			
+			
+			<p>
+			<h3>Credits</h3>
+			<hr>
+			This builder has been made possible by a large number of contributors.
+			<ul>
+				<li>The builder was assembled from all the parts by <a href="http://www.uesp.net/wiki/User:Daveh">Daveh</a>.</li>
+				<li>Asayre and his detailed <a href="http://tamrielfoundry.com/topic/pts-2-1-2-sorcerer-arithmagic/">Arithmagic Post</a> on <a href="http://tamrielfoundry.com/">Tamriel Foundry</a> among his many others.</li>
+				<li>The <a href="http://en.uesp.net/wiki/Online:UespLog_AddOn">uespLog add-on</a> which collects various data from the game.</li>
+				<li>The <a href="http://esolog.uesp.net/viewlog.php">data</a> collected by users of uespLog.</a></li>
+				<li>The <a href="http://www.uesp.net/wiki/Special:EsoCps">ESO Champion Point Browser</a> is used within the builder.</li>
+				<li>The <a href="http://www.uesp.net/wiki/Special:EsoSkills">ESO Skill Browser</a> is also used within the builder.</li>
+				<li>All the numerous people who have tested and posted various ESO game details they've figured out.</li> 
+			</ul>
 		</div>
 	</div>
 	<div id="esotbStatList">

@@ -1009,7 +1009,7 @@ class CEsoTestBuild
 			
 			"SpellCrit" => array(
 					"title" => "Spell Critical",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"Set.SpellCrit",
 							"Skill2.SpellCrit",
@@ -1035,7 +1035,7 @@ class CEsoTestBuild
 			
 			"WeaponCrit" => array(
 					"title" => "Weapon Critical",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"Set.WeaponCrit",
 							"Skill2.WeaponCrit",
@@ -1061,7 +1061,7 @@ class CEsoTestBuild
 			
 			"SpellCritDamage" => array(
 					"title" => "Spell Critical Damage",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"CP.SpellCritDamage",
 							"Skill.CritDamage",
@@ -1081,7 +1081,7 @@ class CEsoTestBuild
 			
 			"WeaponCritDamage" => array(
 					"title" => "Weapon Critical Damage",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"CP.WeaponCritDamage",
 							"Skill.CritDamage",
@@ -1255,7 +1255,7 @@ class CEsoTestBuild
 						
 			"HealingDone" => array(
 					"title" => "Healing Done",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"Item.HealingDone",
 							"Set.HealingDone",
@@ -1273,7 +1273,7 @@ class CEsoTestBuild
 			
 			"HealingTaken" => array(
 					"title" => "Healing Taken",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"Item.HealingTaken",
 							"Set.HealingTaken",
@@ -1289,7 +1289,7 @@ class CEsoTestBuild
 			
 			"HealingReceived" => array(
 					"title" => "Healing Received",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"Item.HealingReceived",
 							"Set.HealingReceived",
@@ -1305,7 +1305,7 @@ class CEsoTestBuild
 			
 			"Healing" => array(
 					"title" => "Healing Total",
-					"display" => "percent",
+					"display" => "%",
 					"depends" => array("HealingDone", "HealingTaken", "HealingReceived"),
 					"compute" => array(
 							"1 + HealingDone",
@@ -1318,7 +1318,7 @@ class CEsoTestBuild
 			
 			"HealingReduction" => array(
 					"title" => "Healing Reduction",
-					"display" => "percent",
+					"display" => "%",
 					"compute" => array(
 							"1 + CP.HealingReduction",
 					),
@@ -1444,7 +1444,7 @@ class CEsoTestBuild
 			
 			"FearDuration" => array(
 					"title" => "Fear Duration",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"1 - CP.FearDuration",
@@ -1511,7 +1511,7 @@ class CEsoTestBuild
 			
 			"DamageShield" => array(
 					"title" => "Damage Shield",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"1 + CP.DamageShield",
@@ -1520,7 +1520,7 @@ class CEsoTestBuild
 			
 			"ShieldDamage" => array(
 					"title" => "Shield Damage",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"1 + CP.ShieldDamage",
@@ -1529,7 +1529,7 @@ class CEsoTestBuild
 			
 			"DotDamageTaken" => array(
 					"title" => "DOT Damge Taken",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.DotDamageTaken",
@@ -1538,7 +1538,7 @@ class CEsoTestBuild
 			
 			"DotDamageDone" => array(
 					"title" => "DOT Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.DotDamageDone",
@@ -1547,7 +1547,7 @@ class CEsoTestBuild
 			
 			"MagicDamageTaken" => array(
 					"title" => "Magic Damage Taken",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.MagicDamageTaken",
@@ -1562,7 +1562,7 @@ class CEsoTestBuild
 			
 			"PhysicalDamageTaken" => array(
 					"title" => "Physical Damage Taken",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.PhysicalDamageTaken",
@@ -1578,7 +1578,7 @@ class CEsoTestBuild
 			
 			"DamageDone" => array(
 					"title" => "Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.DamageDone",
@@ -1593,7 +1593,7 @@ class CEsoTestBuild
 			
 			"DamageTaken" => array(
 					"title" => "Damage Taken",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.DamageTaken",
@@ -1608,7 +1608,7 @@ class CEsoTestBuild
 			
 			"MagicDamageDone" => array(
 					"title" => "Magic Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.MagicDamageDone",
@@ -1623,7 +1623,7 @@ class CEsoTestBuild
 			
 			"PhysicalDamageDone" => array(
 					"title" => "Physical Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.PhysicalDamageDone",
@@ -1638,7 +1638,7 @@ class CEsoTestBuild
 			
 			"ShockDamageDone" => array(
 					"title" => "Shock Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.ShockDamageDone",
@@ -1653,7 +1653,7 @@ class CEsoTestBuild
 			
 			"FlameDamageDone" => array(
 					"title" => "Flame Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.FlameDamageDone",
@@ -1668,7 +1668,7 @@ class CEsoTestBuild
 			
 			"ColdDamageDone" => array(
 					"title" => "Cold Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.ColdDamageDone",
@@ -1683,7 +1683,7 @@ class CEsoTestBuild
 			
 			"PoisonDamageDone" => array(
 					"title" => "Poison Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.PoisonDamageDone",
@@ -1698,7 +1698,7 @@ class CEsoTestBuild
 			
 			"DiseaseDamageDone" => array(
 					"title" => "Disease Damage Done",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"CP.DiseaseDamageDone",
@@ -1713,7 +1713,7 @@ class CEsoTestBuild
 			
 			"HADamageResist" => array(
 					"title" => "Light/Heavy Attack Resist",
-					"display" => "percent",
+					"display" => "%",
 					"round" => "floor",
 					"compute" => array(
 							"1 + CP.HADamageResist",
@@ -1907,7 +1907,7 @@ class CEsoTestBuild
 			
 			"AttackSpellMitigation" => array(
 					"title" => "Attacker Spell Mitigation",
-					"display" => "percent",
+					"display" => "%",
 					"depends" => array("SpellPenetration"),
 					"compute" => array(
 							"Target.SpellResist",
@@ -1928,7 +1928,7 @@ class CEsoTestBuild
 				
 			"AttackPhysicalMitigation" => array(
 					"title" => "Attacker Physical Mitigation",
-					"display" => "percent",
+					"display" => "%",
 					"depends" => array("PhysicalPenetration"),
 					"compute" => array(
 							"Target.PhysicalResist",
@@ -1949,7 +1949,7 @@ class CEsoTestBuild
 				
 			"DefenseSpellMitigation" => array(
 					"title" => "Defending Spell Mitigation",
-					"display" => "percent",
+					"display" => "%",
 					"depends" => array("SpellResist"),
 					"compute" => array(
 							"SpellResist",
@@ -1970,7 +1970,7 @@ class CEsoTestBuild
 				
 			"DefensePhysicalMitigation" => array(
 					"title" => "Defending Physical Mitigation",
-					"display" => "percent",
+					"display" => "%",
 					"depends" => array("PhysicalResist"),
 					"compute" => array(
 							"PhysicalResist",
