@@ -172,14 +172,14 @@ displayed statistics is unknown.
 				<hr>
 				<div id="esotbWeaponBar1" class="esotbWeaponSelect">
 					<div class="esotbItemSlotLabel">Weapon 1</div>
-					<div class="esotbItem" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1" weapontype="-1">
+					<div class="esotbItem" id="esotbItemMainHand1" slotid="MainHand1" equiptype="5,6" itemtype="1">
 						<img class="esotbItemIcon eso_item_link" src="{gearIconMainHand1}">
 						<div class="esotbItemLabel"></div>
 						<div class="esotbItemDisableButton esotbItemButton">-</div>
 						<div class="esotbItemDetailsButton esotbItemButton">...</div>
 						<div class="esotbItemEnchantButton esotbItemButton">*</div>
 					</div>
-					<div class="esotbItem" id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1" weapontype="-1">
+					<div class="esotbItem" id="esotbItemOffHand1" slotid="OffHand1" equiptype="5,7" itemtype="1">
 						<img class="esotbItemIcon eso_item_link" src="{gearIconOffHand1}">
 						<div class="esotbItemLabel"></div>
 						<div class="esotbItemDisableButton esotbItemButton">-</div>
@@ -197,14 +197,14 @@ displayed statistics is unknown.
 				
 				<div id="esotbWeaponBar2" class="">
 					<div class="esotbItemSlotLabel">Weapon 2</div>
-					<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1" weapontype="-1">
+					<div class="esotbItem " id="esotbItemMainHand2" slotid="MainHand2" equiptype="5,6" itemtype="1">
 						<img class="esotbItemIcon eso_item_link" src="{gearIconMainHand2}">
 						<div class="esotbItemLabel"></div>
 						<div class="esotbItemDisableButton esotbItemButton">-</div>
 						<div class="esotbItemDetailsButton esotbItemButton">...</div>
 						<div class="esotbItemEnchantButton esotbItemButton">*</div>
 					</div>
-					<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1" weapontype="-1">
+					<div class="esotbItem " id="esotbItemOffHand2" slotid="OffHand2" equiptype="5,7" itemtype="1">
 						<img class="esotbItemIcon eso_item_link" src="{gearIconOffHand2}">
 						<div class="esotbItemLabel"></div>
 						<div class="esotbItemDisableButton esotbItemButton">-</div>
