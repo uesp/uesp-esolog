@@ -317,7 +317,7 @@ displayed statistics is unknown.
 				<ul>
 					<li>Skill tooltip cost and damage updates</li>
 					<li>All secondary computed stats</li>
-					<li>Base stat values for less than max level (CP160)<li>
+					<li>Base stat values and calculations for less than max level (CP160)</li>
 				</ul>
 			</div>
 			<div class='esotbHelpWorkBlock'>
