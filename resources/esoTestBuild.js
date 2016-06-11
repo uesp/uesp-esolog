@@ -3271,9 +3271,10 @@ function UpdateEsoItemSets()
 		if (g_EsoBuildActiveWeapon == 1 && (key == "MainHand2" || key == "OffHand2" || key == "Poison2")) continue;
 		if (g_EsoBuildActiveWeapon == 2 && (key == "MainHand1" || key == "OffHand1" || key == "Poison1")) continue;
 		
-		var setData = g_EsoBuildItemData[key];
-		var setName = setData.setName;
+		var itemData = g_EsoBuildItemData[key];
+		var setName = itemData.setName;
 		
+		if (itemData.enabled === false) continue;
 		if (setName == null || setName == "") continue;
 		
 		if (g_EsoBuildSetData[setName] == null) 
@@ -3286,9 +3287,9 @@ function UpdateEsoItemSets()
 		}
 		
 		++g_EsoBuildSetData[setName].count;
-		g_EsoBuildSetData[setName].items.push(setData);
-		AddEsoItemRawOutput(setData, "Set." + setName, 1);
-		AddEsoInputStatSource("Set." + setName, { set: setName, item: setData });
+		g_EsoBuildSetData[setName].items.push(itemData);
+		AddEsoItemRawOutput(itemData, "Set." + setName, 1);
+		AddEsoInputStatSource("Set." + setName, { set: setName, item: itemData });
 	}
 	
 	ComputeEsoBuildAllSetData();
