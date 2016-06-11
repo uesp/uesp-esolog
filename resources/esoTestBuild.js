@@ -4460,10 +4460,20 @@ function OnEsoItemSearchPopupClose(e)
 }
 
 
+function OnEsoSkillDetailsClick(e)
+{
+	var skillId = $(this).parent().attr("skillid");
+	if (skillId == null || skillId == "") return;
+	
+	ShowEsoSkillDetailsPopup(skillId);
+}
+
+
 function OnEsoItemDetailsClick(e)
 {
 	var slotId = $(this).parent().attr("slotId");
 	if (slotId == null || slotId == "") return;
+	
 	ShowEsoItemDetailsPopup(slotId);
 }
 
@@ -4484,6 +4494,80 @@ function MakeEsoBuildItemLink(slotId)
 	itemLink = itemLink.replace(/(\|H[0-9]+:item:[0-9]+:[0-9]+:[0-9]+:[0-9]+:[0-9]+:)([0-9]+)(:)/, "$1" + enchantData.internalLevel + "$3");
 		
 	return itemLink;
+}
+
+
+function ShowEsoSkillDetailsPopup(abilityId)
+{
+	var detailsPopup = $("#esotbItemDetailsPopup");
+	
+	var skillData = g_SkillsData[abilityId];
+	if (skillData == null) return false;
+	//if (skillData.rawOutput == null) return false;
+	
+	var detailsHtml = "";
+	
+	for (var key in skillData.rawOutput)
+	{
+		var statDetails = g_EsoInputStatDetails[key] || {};
+		var value = skillData.rawOutput[key];
+		var suffix = "";
+		
+		if (statDetails.display == '%') 
+		{
+			suffix = "%";
+			value = value * 100;
+		}
+		
+		detailsHtml += key + " = " + value + suffix + "<br/>";
+	}
+	
+	if (skillData.numCoefVars > 0)
+	{
+		detailsHtml += "<br/><h4>Skill Coefficients</h4>";
+		detailsHtml += "<div class='esotbSkillDetailsCoef'>"
+		
+		for (var i = 1; i < 1 + +skillData.numCoefVars; ++i)
+		{
+			var a = skillData["a" + i];
+			var b = skillData["b" + i];
+			var c = skillData["c" + i];
+			var r = skillData["R" + i];
+			var type = skillData["type" + i];
+			detailsHtml += "$" + i + " = " + a + "*A + " + b + "*B + " + c + "   (R2=" + r + ",  type=" + type + ")  <br/>";
+		}
+		
+		detailsHtml += "<p>" + RemoveEsoDescriptionFormats(skillData.coefDescription) + "</div>";
+	}
+	
+	detailsHtml += "<h4>Raw Ability Data</h4>";
+	detailsHtml += "<div class='esotbSkillDetailsOther'>";
+	detailsHtml += "abilityId = " + abilityId + "<br/>";
+	detailsHtml += "skillType = " + skillData.skillTypeName.split("::")[0] + "<br/>";
+	detailsHtml += "skillLine = " + skillData.skillLine + "<br/>";
+	detailsHtml += "type = " + skillData.type + "<br/>";
+	detailsHtml += "rank = " + skillData.rank + "<br/>";
+	detailsHtml += "learnedLevel = " + skillData.learnedLevel + "<br/>";
+	detailsHtml += "target = " + skillData.target + "<br/>";
+	detailsHtml += "duration = " + skillData.duration + "<br/>";
+	detailsHtml += "</div>";
+	detailsHtml += "<div class='esotbSkillDetailsOther'>";
+	detailsHtml += "minRange = " + skillData.minRange + "<br/>";
+	detailsHtml += "maxRange = " + skillData.maxRange + "<br/>";
+	detailsHtml += "radius = " + skillData.radius + "<br/>";
+	detailsHtml += "castTime = " + skillData.castTime + "<br/>";
+	detailsHtml += "channelTime = " + skillData.channelTime + "<br/>";
+	detailsHtml += "angleDistance = " + skillData.angleDistance + "<br/>";
+	detailsHtml += "mechanic = " + skillData.mechanic + "<br/>";
+	detailsHtml += "</div>";
+	
+	$("#esotbItemDetailsTitle").text("Details for ability " + skillData.name);
+	$("#esotbItemDetailsText").html(detailsHtml);
+	
+	detailsPopup.show();
+	ShowEsoBuildClickWall(detailsPopup);
+	
+	return true;
 }
 
 
@@ -4510,6 +4594,7 @@ function ShowEsoItemDetailsPopup(slotId)
 			suffix = "%";
 			value = value * 100;
 		}
+		
 		detailsHtml += key + " = " + value + suffix + "<br/>";
 	}
 
@@ -5926,6 +6011,15 @@ function OnEsoBuildBuffCheckClick(e)
 }
 
 
+function AddEsoBuildSkillDetailsButtons()
+{
+	var skillDetails = "<div class='esotbItemButton esotbSkillDetailsButton'>...</div>";
+	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").append(skillDetails);
+	//$(".esovsSkillContentBlock").children(".esovsAbilityBlock").append("<div class='esotbItemButton esotbSkillDetailsButton'>...</div>");
+	//$(".esovsSkillContentBlock").children(".esovsAbilityBlock").find(".esovsAbilityBlockName").after("<div class='esotbItemButton esotbSkillDetailsButton'>...</div>");
+}
+
+
 function esotbOnDocReady()
 {
 	GetEsoSkillInputValues = GetEsoTestBuildSkillInputValues;
@@ -5935,6 +6029,7 @@ function esotbOnDocReady()
 	CreateEsoBuildToggledSetData();
 	CreateEsoBuildToggledSkillData();
 	CreateEsoBuildBuffElements();
+	AddEsoBuildSkillDetailsButtons();
 		
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
@@ -5964,7 +6059,8 @@ function esotbOnDocReady()
 	
 	$(".esotbItemDetailsButton").click(OnEsoItemDetailsClick);
 	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);
-	$(".esotbItemDisableButton").click(OnEsoItemDisableClick);	
+	$(".esotbItemDisableButton").click(OnEsoItemDisableClick);
+	$(".esotbSkillDetailsButton").click(OnEsoSkillDetailsClick);
 	
 	$("#esotbWeaponBar1").click(OnEsoWeaponBarSelect1);
 	$("#esotbWeaponBar2").click(OnEsoWeaponBarSelect2);
