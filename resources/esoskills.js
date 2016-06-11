@@ -654,6 +654,8 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 		coefDesc = coefDesc.replace(srcString, value);
 	}
 	
+	coefDesc = UpdateEsoSkillDamageDescription(skillData, coefDesc, inputValues);
+	
 	if (useHtml)
 	{
 		output = EsoConvertDescToHTML(coefDesc);
@@ -666,6 +668,111 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 	}
 	
 	return output;
+}
+
+
+function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	if (inputValues.Damage == null) return newDesc;
+	
+	var isDot = false;
+	if (skillData.channelTime > 0) isDot = true;
+	if (inputValues.Damage.Dot == null || isNaN(inputValues.Damage.Dot)) isDot = false;
+	
+		//additional |cffffff2237|r Magic Damage
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+		
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Magic;
+		else
+			modDamage *= 1 + inputValues.Damage.Magic;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+		
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Physical;
+		else
+			modDamage *= 1 + inputValues.Damage.Physical;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Shock;
+		else
+			modDamage *= 1 + inputValues.Damage.Shock;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Flame;
+		else
+			modDamage *= 1 + inputValues.Damage.Flame;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Cold;
+		else
+			modDamage *= 1 + inputValues.Damage.Cold;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Poison;
+		else
+			modDamage *= 1 + inputValues.Damage.Poison;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage )(over|)/i, function(match, p1, p2, p3, p4, p5, offset, string) {
+		var modDamage = parseFloat(p3);
+
+		if (isDot || p1 != "" || p5 != "") 
+			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Disease;
+		else
+			modDamage *= 1 + inputValues.Damage.Disease;
+		
+		modDamage *= 1 + inputValues.Damage.All;
+		modDamage = Math.round(modDamage);
+		return p1 + p2 + modDamage + p4 + p5;
+	});
+	
+	return newDesc;	
 }
 
 

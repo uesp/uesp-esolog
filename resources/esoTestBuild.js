@@ -932,8 +932,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 	},
 	{
 		statId: "ColdResist",
-		display: "%",
-		match: /Increases Cold Resistance by ([0-9])+/i,
+		match: /Increases Cold Resistance by ([0-9]+)/i,
 	},
 	{
 		statId: "Health",
@@ -941,7 +940,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /Increases Cold Resistance by [0-9]+ and increases Max Health by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
-		statId: "MagickaDamageTaken",
+		statId: "MagicDamageTaken",
 		display: "%",
 		match: /Reduces incoming damage by ([0-9]+\.?[0-9]*)%/i,
 	},
@@ -1333,7 +1332,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /WHILE EMPEROR[.\s\S]*?Increases Ultimate gains by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
 	{
-		statId: "HealingTaken",
+		statId: "HealingReceived",
 		display: "%",
 		match: /WHILE EMPEROR[.\s\S]*?Increases the magnitude of healing effects on Emperors by ([0-9]+\.?[0-9]*)% while in your campaign/i
 	},
@@ -1375,7 +1374,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /Reduces the severity of the Health Recovery determent in Vampirism stages 2 through 4/i
 	},
 	{
-		statRequireId: "Werewolf",
+		statRequireId: "WerewolfStage",
 		statRequireValue: 1,
 		statId: "OtherEffects",
 		display: "%",
@@ -1597,12 +1596,12 @@ ESO_SETEFFECT_MATCHES = [
 		match: /Adds ([0-9]+\.?[0-9]*)% Healing Taken/i,
 	},	
 	{
-		statId: "HealingTaken",
+		statId: "HealingReceived",
 		display: '%',
 		match: /Group members within [0-9]+m gain ([0-9]+\.?[0-9]*)% increased effect from heals/i,
 	},	
 	{
-		statId: "HealingTaken",
+		statId: "HealingReceived",
 		display: '%',
 		match: /When you are healed, gain ([0-9]+\.?[0-9]*)% additional healing/i,
 	},	
@@ -2420,10 +2419,7 @@ function GetEsoInputSpecialValues(inputValues)
 		}
 	}
 	
-	if ($("#esotbWerewolf").is(":checked"))
-	{
-		inputValues.Werewolf = parseInt($("#esotbWerewolf").val());
-	}
+	inputValues.WerewolfStage = parseInt($("#esotbWerewolfStage").val());
 }
 
 
@@ -3432,9 +3428,9 @@ function GetEsoInputCPValues(inputValues)
 	
 		/* Lady */
 	if (inputValues.ArmorLight >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
-	ParseEsoCPValue(inputValues, "DOTResist", 63850);
+	ParseEsoCPValue(inputValues, "DotDamageTaken", 63850);
 	ParseEsoCPValue(inputValues, "PhysicalDamageTaken", 63844);
-	ParseEsoCPValue(inputValues, "MagickaDamageTaken", 63843);
+	ParseEsoCPValue(inputValues, "MagicDamageTaken", 63843);
 	
 		/* Steed */
 	if (inputValues.ArmorMedium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
@@ -3443,7 +3439,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "CritResist", 60384);
 	
 		/* Ritual */
-	ParseEsoCPValue(inputValues, "DotDamage", 63847);
+	ParseEsoCPValue(inputValues, "DotDamageDone", 63847);
 	ParseEsoCPValue(inputValues, "WeaponCritDamage", 59105);
 	ParseEsoCPValue(inputValues, "PhysicalPenetration", 61546);
 	ParseEsoCPValue(inputValues, "PhysicalDamageDone", 63868);
@@ -3456,7 +3452,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "HAStaffDamage", 60503);
 	
 		/* Apprentice */
-	ParseEsoCPValue(inputValues, "MagickaDamageDone", 63848);
+	ParseEsoCPValue(inputValues, "MagicDamageDone", 63848);
 	ParseEsoCPValue(inputValues, "SpellPenetration", 61555);
 	ParseEsoCPValue(inputValues, "SpellCritDamage", 61680);
 	ParseEsoCPValue(inputValues, "HealingDone", 59630);
@@ -3594,7 +3590,7 @@ function UpdateEsoComputedStatsList()
 	
 	UpdateEsoBuildVisibleBuffs();
 	UpdateEsoBuffSkillEnabled();
-	UpdateEsoAllSkillDescription();
+	//UpdateEsoAllSkillDescription(); // Currently all hidden
 	UpdateEsoAllSkillCost();
 }
 
@@ -3930,7 +3926,7 @@ function OnEsoVampireChange(e)
 {
 	if ($("#esotbVampireStage").val() > 0)
 	{
-		$("#esotbWerewolf").prop("checked", false);
+		$("#esotbWerewolfStage").val("0");
 	}
 	
 	UpdateEsoComputedStatsList();
@@ -3939,7 +3935,7 @@ function OnEsoVampireChange(e)
 
 function OnEsoWerewolfChange(e)
 {
-	if ($("#esotbWerewolf").is(":checked"))
+	if ($("#esotbWerewolfStage").val() > 0)
 	{
 		$("#esotbVampireStage").val("0");
 	}
@@ -4443,7 +4439,7 @@ function OnEsoClickBuildStatTab(e)
 	}
 	else if (tabId == "esotbStatBlock3")
 	{
-		UpdateEsoAllSkillDescription();
+		//UpdateEsoAllSkillDescription();
 		UpdateEsoAllSkillCost();
 	}
 	
@@ -5589,6 +5585,27 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 			Buff	: inputValues.Buff.UltimateCost,
 	};
 	
+	g_LastSkillInputValues.Damage =
+	{
+		Physical	: inputValues.PhysicalDamageDone,
+		Magic		: inputValues.MagicDamageDone,
+		Shock		: inputValues.ShockDamageDone,
+		Flame		: inputValues.FlameDamageDone,
+		Cold		: inputValues.ColdDamageDone,
+		Poison		: inputValues.PoisonDamageDone,
+		Disease		: inputValues.DiseaseDamageDone,
+		Dot			: inputValues.DotDamageDone,
+		All			: inputValues.DamageDone,
+		Empower		: inputValues.Empower,
+	};
+	
+	g_LastSkillInputValues.Healing =
+	{
+		Done		: inputValues.HealingDone,
+		Taken		: inputValues.HealingTaken,
+		Received	: inputValues.HealingReceived,	
+	};
+	
 	return g_LastSkillInputValues; 
 }
 
@@ -5901,6 +5918,7 @@ function OnEsoBuildBuffCheckClick(e)
 function esotbOnDocReady()
 {
 	GetEsoSkillInputValues = GetEsoTestBuildSkillInputValues;
+	
 	CreateEsoComputedStats();
 	UpdateEsoComputedStatsList();
 	CreateEsoBuildToggledSetData();
@@ -5910,7 +5928,7 @@ function esotbOnDocReady()
 	$("#esotbRace").change(OnEsoRaceChange)
 	$("#esotbClass").change(OnEsoClassChange)
 	$("#esotbVampireStage").change(OnEsoVampireChange)
-	$("#esotbWerewolf").change(OnEsoWerewolfChange)
+	$("#esotbWerewolfStage").change(OnEsoWerewolfChange)
 	$("#esotbMundus").change(OnEsoMundusChange)
 	$("#esotbMundus2").change(OnEsoMundusChange)
 	$("#esotbCPTotalPoints").change(OnEsoCPTotalPointsChange);

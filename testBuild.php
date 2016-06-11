@@ -78,7 +78,7 @@ class CEsoTestBuild
 			"Target.AttackBonus",
 			"Misc.SpellCost",
 			"VampireStage",
-			"Werewolf",
+			"WerewolfStage",
 			"SkillCost.Ardent_Flame_Cost",
 			"SkillCost.Draconic_Power_Cost",
 			"SkillCost.Earthern_Heart_Cost",
@@ -104,6 +104,7 @@ class CEsoTestBuild
 			"SkillCost.Undaunted_Cost",
 			"SkillCost.Assault_Cost",
 			"SkillCost.Support_Cost",
+			"Stealthed",
 	);
 	
 	
@@ -164,11 +165,16 @@ class CEsoTestBuild
 			"Constitution",
 			"DamageShield",
 			"HADamageResist",
-			"DotResist",
-			"DotDamage",
-			"MagickaDamageTaken",
-			"MagickaDamageDone",
+			"DotDamageTaken",
+			"DotDamageDone",
+			"MagicDamageTaken",
+			"MagicDamageDone",
 			"PhysicalDamageDone",
+			"ShockDamageDone",
+			"FlameDamageDone",
+			"ColdDamageDone",
+			"PoisonDamageDone",
+			"DiseaseDamageDone",
 			"PhysicalDamageTaken",
 			"LAHADamage",
 			"HADamage",
@@ -406,7 +412,7 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"CP.DotDamage" => array(
+			"CP.DotDamageDone" => array(
 					"display" => "%",
 			),
 			
@@ -450,11 +456,11 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"CP.MagickaDamageTaken" => array(
+			"CP.MagicDamageTaken" => array(
 					"display" => "%",
 			),
 			
-			"CP.MagickaDamageDone" => array(
+			"CP.MagicDamageDone" => array(
 					"display" => "%",
 			),
 			
@@ -598,7 +604,7 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"Buff.MagickaDamageDone" => array(
+			"Buff.MagicDamageDone" => array(
 					"display" => "%",
 			),
 			
@@ -606,7 +612,7 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"Buff.MagickaDamageTaken" => array(
+			"Buff.MagicDamageTaken" => array(
 					"display" => "%",
 			),
 			
@@ -779,6 +785,38 @@ class CEsoTestBuild
 			),
 			
 			"Skill.HARestore" => array(
+					"display" => "%",
+			),
+			
+			"Skill.DamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"Skill.MagicDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"Skill.PhysicalDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"CP.BreakFreeCost" => array(
+					"display" => "%",
+			),
+			
+			"Skill.RollDodgeCost" => array(
+					"display" => "%",
+			),
+			
+			"CP.RollDodgeCost" => array(
+					"display" => "%",
+			),
+			
+			"CP.ResurrectSpeed" => array(
+					"display" => "%",
+			),
+			
+			"Skill.ResurrectSpeed" => array(
 					"display" => "%",
 			),
 			
@@ -1489,48 +1527,36 @@ class CEsoTestBuild
 					),
 			),
 			
-			"DOTResist" => array(
-					"title" => "DOT Resist",
+			"DotDamageTaken" => array(
+					"title" => "DOT Damge Taken",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.DOTResist",
+							"CP.DotDamageTaken",
 					),
 			),
 			
-			"DotDamage" => array(
-					"title" => "DOT Damage",
+			"DotDamageDone" => array(
+					"title" => "DOT Damage Done",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.DOTDamage",
+							"CP.DotDamageDone",
 					),
 			),
 			
-			"MagickaDamageTaken" => array(
+			"MagicDamageTaken" => array(
 					"title" => "Magic Damage Taken",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.MagickaDamageTaken",
-					),
-			),
-			
-			"MagickaDamageDone" => array(
-					"title" => "Magic Damage Done",
-					"display" => "percent",
-					"round" => "floor",
-					"compute" => array(
-							"1 + CP.MagickaDamageDone",
-					),
-			),
-			
-			"PhysicalDamageDone" => array(
-					"title" => "Physical Damage Done",
-					"display" => "percent",
-					"round" => "floor",
-					"compute" => array(
-							"1 + CP.PhysicalDamageDone",
+							"CP.MagicDamageTaken",
+							"Skill.MagicDamageTaken",
+							"+",
+							"Buff.MagicDamageTaken",
+							"+",
+							"Item.MagicDamageTaken",
+							"+",
 					),
 			),
 			
@@ -1539,7 +1565,149 @@ class CEsoTestBuild
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.PhysicalDamageTaken",
+							"CP.PhysicalDamageTaken",
+							"Skill.PhysicalDamageTaken",
+							"+",
+							"Buff.PhysicalDamageTaken",
+							"+",
+							"Item.PhysicalDamageTaken",
+							"+",
+					),
+			),
+			
+			
+			"DamageDone" => array(
+					"title" => "Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.DamageDone",
+							"Skill.DamageDone",
+							"+",
+							"Buff.DamageDone",
+							"+",
+							"Item.DamageDone",
+							"+",
+					),
+			),
+			
+			"DamageTaken" => array(
+					"title" => "Damage Taken",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.DamageTaken",
+							"Skill.DamageTaken",
+							"+",
+							"Buff.DamageTaken",
+							"+",
+							"Item.DamageTaken",
+							"+",
+					),
+			),
+			
+			"MagicDamageDone" => array(
+					"title" => "Magic Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.MagicDamageDone",
+							"Skill.MagicDamageDone",
+							"+",
+							"Buff.MagicDamageDone",
+							"+",
+							"Item.MagicDamageDone",
+							"+",
+					),
+			),
+			
+			"PhysicalDamageDone" => array(
+					"title" => "Physical Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.PhysicalDamageDone",
+							"Skill.PhysicalDamageDone",
+							"+",
+							"Buff.PhysicalDamageDone",
+							"+",
+							"Item.PhysicalDamageDone",
+							"+",
+					),
+			),
+			
+			"ShockDamageDone" => array(
+					"title" => "Shock Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.ShockDamageDone",
+							"Skill.ShockDamageDone",
+							"+",
+							"Buff.ShockDamageDone",
+							"+",
+							"Item.ShockDamageDone",
+							"+",
+					),
+			),
+			
+			"FlameDamageDone" => array(
+					"title" => "Flame Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.FlameDamageDone",
+							"Skill.FlameDamageDone",
+							"+",
+							"Buff.FlameDamageDone",
+							"+",
+							"Item.FlameDamageDone",
+							"+",
+					),
+			),
+			
+			"ColdDamageDone" => array(
+					"title" => "Cold Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.ColdDamageDone",
+							"Skill.ColdDamageDone",
+							"+",
+							"Buff.ColdDamageDone",
+							"+",
+							"Item.ColdDamageDone",
+							"+",
+					),
+			),
+			
+			"PoisonDamageDone" => array(
+					"title" => "Poison Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.PoisonDamageDone",
+							"Skill.PoisonDamageDone",
+							"+",
+							"Buff.PoisonDamageDone",
+							"+",
+							"Item.PoisonDamageDone",
+							"+",
+					),
+			),
+			
+			"DiseaseDamageDone" => array(
+					"title" => "Disease Damage Done",
+					"display" => "percent",
+					"round" => "floor",
+					"compute" => array(
+							"CP.DiseaseDamageDone",
+							"Skill.DiseaseDamageDone",
+							"+",
+							"Buff.DiseaseDamageDone",
+							"+",
+							"Item.DiseaseDamageDone",
+							"+",
 					),
 			),
 			
@@ -1753,7 +1921,7 @@ class CEsoTestBuild
 							"+",
 							"1 - Target.DefenseBonus",
 							"*",
-							"1 + CP.MagickaDamageDone",
+							"1 + MagicDamageDone",
 							"*",
 					),
 			),
@@ -1774,7 +1942,7 @@ class CEsoTestBuild
 							"+",
 							"1 - Target.DefenseBonus",
 							"*",
-							"1 + CP.PhysicalDamageDone",
+							"1 + PhysicalDamageDone",
 							"*",
 					),
 			),
@@ -1795,7 +1963,7 @@ class CEsoTestBuild
 							"+",
 							"1 + Target.AttackBonus",
 							"*",
-							"1 - CP.MagickaDamageTaken",
+							"1 - MagicDamageTaken",
 							"*",
 					),
 			),
@@ -1816,13 +1984,15 @@ class CEsoTestBuild
 							"+",
 							"1 + Target.AttackBonus",
 							"*",
-							"1 - CP.PhysicalDamageTaken",
+							"1 - PhysicalDamageTaken",
 							"*",
 					),
 			),
 			
 			//SprintSpeed
 			//Physical/spell mitigation = (resistance - 100) / (level*10)
+			//Mitigation = [Resist ÷ (Level × 1,000)] or  = (resistance-100)/(level+VR)*10
+			// 50% cap on element + spell resistance
 
 	); 
 	
