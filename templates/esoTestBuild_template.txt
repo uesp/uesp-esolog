@@ -348,7 +348,7 @@ displayed statistics is unknown.
 					and damage/healing values are updated automatically as you character stats change.</li>
 				<li>The <em>"Buffs"</em> tab allows you to select which buff effects to apply on your character. These are familiar things like the potion effects
 					or effects granted by using certain skills. Note that some effects may be automatically granted by a passive or an active slotted skill.</li>
-				<li>Choose your champion points in the <em>"CP"</em> tab. You can exceed the limit of 100 points per skill and 167 per skill line
+				<li>Choose your champion points in the <em>"CP"</em> tab. You can exceed the limit of 167 points per skill line
 					unlike in the actual game. CP passive skills are granted automatically at the appropriate level. Note that buying CPs in this tab does *not* change
 					your <em>"Total CPs"</em> value in the general tab which governs your character level.</li>
 				<li>The <em>"Raw Data"</em> tab shows all the contributors to each statistic.</li>

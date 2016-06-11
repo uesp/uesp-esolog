@@ -4503,7 +4503,6 @@ function ShowEsoSkillDetailsPopup(abilityId)
 	
 	var skillData = g_SkillsData[abilityId];
 	if (skillData == null) return false;
-	//if (skillData.rawOutput == null) return false;
 	
 	GetEsoSkillDescription(abilityId, null, false); 
 	
@@ -4531,15 +4530,11 @@ function ShowEsoSkillDetailsPopup(abilityId)
 		
 		for (var i = 1; i < 1 + +skillData.numCoefVars; ++i)
 		{
-			var a = skillData["a" + i];
-			var b = skillData["b" + i];
-			var c = skillData["c" + i];
-			var r = skillData["R" + i];
-			var type = skillData["type" + i];
-			detailsHtml += "$" + i + " = " + a + "*A + " + b + "*B + " + c + "   (R2=" + r + ",  type=" + type + ")  <br/>";
+			detailsHtml += GetEsoSkillCoefDataHtml(skillData, i);
 		}
 		
-		detailsHtml += "<p>" + RemoveEsoDescriptionFormats(skillData.coefDescription) + "</div>";
+		var skillDesc = EsoConvertDescToHTMLClass(skillData.coefDescription, 'esovsBold');
+		detailsHtml += "<div class='esotbSkillDetailsDesc'>" + skillDesc + "</div></div>";
 	}
 	
 	detailsHtml += "<h4>Raw Ability Data</h4>";
@@ -4563,7 +4558,7 @@ function ShowEsoSkillDetailsPopup(abilityId)
 	detailsHtml += "mechanic = " + skillData.mechanic + "<br/>";
 	detailsHtml += "</div>";
 	
-	$("#esotbItemDetailsTitle").text("Details for ability " + skillData.name);
+	$("#esotbItemDetailsTitle").text("Details for Ability " + skillData.name);
 	$("#esotbItemDetailsText").html(detailsHtml);
 	
 	detailsPopup.show();
@@ -6017,8 +6012,6 @@ function AddEsoBuildSkillDetailsButtons()
 {
 	var skillDetails = "<div class='esotbItemButton esotbSkillDetailsButton'>...</div>";
 	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").append(skillDetails);
-	//$(".esovsSkillContentBlock").children(".esovsAbilityBlock").append("<div class='esotbItemButton esotbSkillDetailsButton'>...</div>");
-	//$(".esovsSkillContentBlock").children(".esovsAbilityBlock").find(".esovsAbilityBlockName").after("<div class='esotbItemButton esotbSkillDetailsButton'>...</div>");
 }
 
 
