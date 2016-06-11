@@ -356,8 +356,15 @@ displayed statistics is unknown.
 					input character data. A <div class='esotbStatWarningButton'>?</div> button means there may be issues calculating that particular stat (click to see details).
 					You can click on the <em>"+"</em> button to the right to view details on the inputs and calculation for each tab. More information can be
 					seen by clicking on this list.</li>
-			</ul>			
-			
+			</ul>
+			<p>
+			<h3>Recent Work</h3>
+			<hr>
+			<b>11 June 2016</b>
+			<ul>
+				<li>Added damage scaling to most skills.</li>
+				<li>Added skill details button.</li>
+			</ul>
 			<p>
 			<h3>Credits</h3>
 			<hr>
