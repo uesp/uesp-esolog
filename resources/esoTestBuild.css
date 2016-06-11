@@ -469,6 +469,30 @@ a:hover {
 	text-align: center;
 }
 
+.esotbSkillDetailsCoef {
+	text-align: left;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
+.esotbSkillDetailsOther {
+	text-align: left;
+	margin-left: 15px;
+	width: 45%;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+#esotbItemDetailsPopup h4 {
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 3px;
+	margin: 0;
+	margin-top: 5px;
+	border-bottom: solid 1px gray;
+}
+
 #esotbItemDetailsTitle {
 	text-align: center;
 	font-size: 16px;
@@ -746,7 +770,7 @@ button.esotbWeaponSelect {
 
 /* Skills override */
 #esovsSkillContent {
-	width: 650px;
+	width: 500px;
 }
 
 .esovsSkillContentBlock {
@@ -803,6 +827,10 @@ button.esotbWeaponSelect {
 
 .esovsAbilityBlockIcon[draggable='true']{
 	cursor: move;
+}
+
+.esovsAbilityBlockTitleLabel {
+	position: relative;
 }
 /* End of Skills override */
 
@@ -885,4 +913,18 @@ button.esotbWeaponSelect {
 
 #esotbStatBlockHelp {
 	line-height: 1.4em;
+}
+
+.esotbSkillDetailsButton {
+	position: absolute;
+	left: 460px;
+	top: 7px;
+	font-family: arial, sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.esotbSkillDetailsButton:hover {
+	background-color: #aaa;
+	cursor: pointer;
 }
