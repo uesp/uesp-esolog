@@ -166,10 +166,10 @@ class CEsoTestBuild
 			"HADamageResist",
 			"DotResist",
 			"DotDamage",
-			"MagickaDamageResist",
-			"MagickaDamage",
-			"PhysicalDamage",
-			"PhysicalDamageResist",
+			"MagickaDamageTaken",
+			"MagickaDamageDone",
+			"PhysicalDamageDone",
+			"PhysicalDamageTaken",
 			"LAHADamage",
 			"HADamage",
 			"LADamage",
@@ -202,6 +202,7 @@ class CEsoTestBuild
 			"DodgeChance",
 			"DamageTaken",
 			"DamageDone",
+			"Empower",
 	);
 	
 	
@@ -445,15 +446,19 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"CP.PhysicalDamageResist" => array(
+			"CP.PhysicalDamageTaken" => array(
 					"display" => "%",
 			),
 			
-			"CP.MagickaDamageResist" => array(
+			"CP.MagickaDamageTaken" => array(
 					"display" => "%",
 			),
 			
-			"CP.MagickaDamage" => array(
+			"CP.MagickaDamageDone" => array(
+					"display" => "%",
+			),
+			
+			"CP.StaminaDamageDone" => array(
 					"display" => "%",
 			),
 			
@@ -593,23 +598,19 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
-			"Buff.MagickaDamage" => array(
+			"Buff.MagickaDamageDone" => array(
 					"display" => "%",
 			),
 			
-			"Buff.PhysicalDamage" => array(
+			"Buff.PhysicalDamageDone" => array(
 					"display" => "%",
 			),
 			
-			"Buff.MagickaDamageResist" => array(
+			"Buff.MagickaDamageTaken" => array(
 					"display" => "%",
 			),
 			
-			"Buff.PhysicalDamageResist" => array(
-					"display" => "%",
-			),
-			
-			"Buff.PhysicalDamageResist" => array(
+			"Buff.PhysicalDamageTaken" => array(
 					"display" => "%",
 			),
 			
@@ -1506,39 +1507,39 @@ class CEsoTestBuild
 					),
 			),
 			
-			"MagickaDamageResist" => array(
-					"title" => "Magic Damage Resist",
+			"MagickaDamageTaken" => array(
+					"title" => "Magic Damage Taken",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.MagickaDamageResist",
+							"1 + CP.MagickaDamageTaken",
 					),
 			),
 			
-			"MagickaDamage" => array(
-					"title" => "Magic Damage",
+			"MagickaDamageDone" => array(
+					"title" => "Magic Damage Done",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.MagickaDamage",
+							"1 + CP.MagickaDamageDone",
 					),
 			),
 			
-			"PhysicalDamage" => array(
-					"title" => "Physical Damage",
+			"PhysicalDamageDone" => array(
+					"title" => "Physical Damage Done",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.PhysicalDamage",
+							"1 + CP.PhysicalDamageDone",
 					),
 			),
 			
-			"PhysicalDamageResist" => array(
-					"title" => "Physical Damage Resist",
+			"PhysicalDamageTaken" => array(
+					"title" => "Physical Damage Taken",
 					"display" => "percent",
 					"round" => "floor",
 					"compute" => array(
-							"1 + CP.PhysicalDamageResist",
+							"1 + CP.PhysicalDamageTaken",
 					),
 			),
 			
@@ -1752,7 +1753,7 @@ class CEsoTestBuild
 							"+",
 							"1 - Target.DefenseBonus",
 							"*",
-							"1 + CP.MagickaDamage",
+							"1 + CP.MagickaDamageDone",
 							"*",
 					),
 			),
@@ -1773,7 +1774,7 @@ class CEsoTestBuild
 							"+",
 							"1 - Target.DefenseBonus",
 							"*",
-							"1 + CP.PhysicalDamage",
+							"1 + CP.PhysicalDamageDone",
 							"*",
 					),
 			),
@@ -1794,7 +1795,7 @@ class CEsoTestBuild
 							"+",
 							"1 + Target.AttackBonus",
 							"*",
-							"1 - CP.MagickaDamageResist",
+							"1 - CP.MagickaDamageTaken",
 							"*",
 					),
 			),
@@ -1815,7 +1816,7 @@ class CEsoTestBuild
 							"+",
 							"1 + Target.AttackBonus",
 							"*",
-							"1 - CP.PhysicalDamageResist",
+							"1 - CP.PhysicalDamageTaken",
 							"*",
 					),
 			),

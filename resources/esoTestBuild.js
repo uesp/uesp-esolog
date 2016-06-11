@@ -261,7 +261,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 0.20,
 			display : "%",
-			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			statId : "Empower",
 			icon : "/esoui/art/icons/ability_warrior_012.png",
 		},
 		"Major Evasion" : 
@@ -280,7 +280,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 0.25,
 			display: "%",
-			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			statId : "DamageDone",
 			icon : "/esoui/art/icons/ability_rogue_011.png",
 		},
 		"Minor Berserk" : 
@@ -289,7 +289,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 0.08,
 			display: "%",
-			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			statId : "DamageDone",
 			icon : "/esoui/art/icons/ability_warrior_025.png",
 		},
 		"Major Protection" : 
@@ -298,7 +298,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 0.30,
 			display: "%",
-			statIds : [ "MagickaDamageResist", "PhysicalDamageResist" ],
+			statId : "DamageTaken",
 			icon : "/esoui/art/icons/ability_templar_sun_shield.png",
 		},
 		"Minor Protection" : 
@@ -307,7 +307,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : 0.08,
 			display: "%",
-			statIds : [ "MagickaDamageResist", "PhysicalDamageResist" ],
+			statId : "DamageTaken",
 			icon : "/esoui/art/icons/ability_templar_radiant_ward.png",
 		},
 		"Major Defile" : 
@@ -378,7 +378,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			value : -0.15,
 			display: "%",
-			statIds : [ "MagickaDamage", "PhysicalDamage" ],
+			statId : "DamageDone",
 			icon : "/esoui/art/icons/ability_fightersguild_004.png",
 		},
 		"Weapon Damage Enchantment" : // TODO: Variable values?
@@ -941,12 +941,12 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		match: /Increases Cold Resistance by [0-9]+ and increases Max Health by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
-		statId: "MagickaDamageResist",
+		statId: "MagickaDamageTaken",
 		display: "%",
 		match: /Reduces incoming damage by ([0-9]+\.?[0-9]*)%/i,
 	},
 	{
-		statId: "PhysicalDamageResist",
+		statId: "PhysicalDamageTaken",
 		display: "%",
 		match: /Reduces incoming damage by ([0-9]+\.?[0-9]*)%/i,
 	},
@@ -3433,8 +3433,8 @@ function GetEsoInputCPValues(inputValues)
 		/* Lady */
 	if (inputValues.ArmorLight >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
 	ParseEsoCPValue(inputValues, "DOTResist", 63850);
-	ParseEsoCPValue(inputValues, "PhysicalDamageResist", 63844);
-	ParseEsoCPValue(inputValues, "MagickaDamageResist", 63843);
+	ParseEsoCPValue(inputValues, "PhysicalDamageTaken", 63844);
+	ParseEsoCPValue(inputValues, "MagickaDamageTaken", 63843);
 	
 		/* Steed */
 	if (inputValues.ArmorMedium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
@@ -3446,7 +3446,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "DotDamage", 63847);
 	ParseEsoCPValue(inputValues, "WeaponCritDamage", 59105);
 	ParseEsoCPValue(inputValues, "PhysicalPenetration", 61546);
-	ParseEsoCPValue(inputValues, "PhysicalDamage", 63868);
+	ParseEsoCPValue(inputValues, "PhysicalDamageDone", 63868);
 	ParseEsoCPValue(inputValues, "WeaponCrit", 59418, "the_ritual", 30);
 	
 		/* Atronach */
@@ -3456,7 +3456,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "HAStaffDamage", 60503);
 	
 		/* Apprentice */
-	ParseEsoCPValue(inputValues, "MagickaDamage", 63848);
+	ParseEsoCPValue(inputValues, "MagickaDamageDone", 63848);
 	ParseEsoCPValue(inputValues, "SpellPenetration", 61555);
 	ParseEsoCPValue(inputValues, "SpellCritDamage", 61680);
 	ParseEsoCPValue(inputValues, "HealingDone", 59630);
