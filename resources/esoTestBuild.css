@@ -331,7 +331,7 @@ a:hover {
 
 .esotbStatTab {
 	display: inline-block;
-	width: 120px;
+	width: 80px;
 	padding: 3px;
 	border: solid 1px gray;
 	padding 4px;
@@ -688,11 +688,11 @@ button.esotbWeaponSelect {
 	margin-top: 20px;
 }
 
-#esotbSets h3 {
+.esotbStatBlock h3 {
 	font-size: 16px;
 }
 
-#esotbSets h4
+.esotbStatBlock h4
 {
 	margin: 3px;
 	margin-top: 12px;
@@ -706,11 +706,6 @@ button.esotbWeaponSelect {
 .esotbSetInfoRow {
 	margin-left: 50px;
     padding: 2px;
-}
-
-#esotbItemToggleSets h3,
-#esotbItemToggleSkills h3 {
-	font-size: 16px;
 }
 
 .esotbToggledSetItem,
@@ -875,4 +870,15 @@ button.esotbWeaponSelect {
 
 .esotbItemDisabled {
 	opacity: 0.5;
+}
+
+.esotbHelpWarning {
+	background-color: #ffff99;
+	padding: 10px;
+}
+
+.esotbHelpWorkBlock {
+	display: inline-block;
+	width: 32%;
+	vertical-align: top;
 }

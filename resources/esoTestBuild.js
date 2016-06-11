@@ -262,6 +262,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			value : 0.20,
 			display : "%",
 			statId : "Empower",
+			statDesc : "Increases the power of your next attack by ",
 			icon : "/esoui/art/icons/ability_warrior_012.png",
 		},
 		"Major Evasion" : 
@@ -3692,7 +3693,7 @@ function UpdateEsoComputedStat(statId, stat, inputValues, saveResult)
 		var display = stat.display;
 		var displayResult = result;
 		
-		if (display == "percent") displayResult = Math.round(result*1000)/10 + "%";
+		if (display == "%") displayResult = Math.round(result*1000)/10 + "%";
 		
 		if (saveResult === true)
 		{
@@ -4434,11 +4435,11 @@ function OnEsoClickBuildStatTab(e)
 	$(".esotbStatBlock:visible").hide();
 	$("#" + tabId).show();
 	
-	if (tabId == "esotbStatBlock5")
+	if (tabId == "esotbStatBlockRawData")
 	{
 		UpdateEsoBuildRawInputs();		
 	}
-	else if (tabId == "esotbStatBlock3")
+	else if (tabId == "esotbStatBlockSkils")
 	{
 		//UpdateEsoAllSkillDescription();
 		UpdateEsoAllSkillCost();
@@ -5813,6 +5814,8 @@ function CreateEsoBuildBuffDescHtml(buffData)
 	var statValues = buffData.values;
 	var display = buffData.display;
 	var displays = buffData.displays;
+	var statDesc = buffData.statDesc;
+	var statDescs = buffData.statDescs;
 	var prefixDesc = "Increases ";
 	var targetDesc = "your ";
 	
@@ -5822,7 +5825,8 @@ function CreateEsoBuildBuffDescHtml(buffData)
 	if (statValues == null) statValues = [].fill.call({ length: statIds.length }, statValue);
 	if (categories == null) categories = [].fill.call({ length: statIds.length }, category);
 	if (displays == null) displays = [].fill.call({ length: statIds.length }, display);
-	
+	if (statDescs == null) statDescs = [].fill.call({ length: statIds.length }, statDesc);
+			
 	for (var i = 0; i < statIds.length; ++i)
 	{
 		statId = statIds[i].replace(/([A-Z])/g, ' $1').trim();
@@ -5845,11 +5849,17 @@ function CreateEsoBuildBuffDescHtml(buffData)
 				statValue = "" + (Math.floor(statValue*1000)/10) + "%";
 			}
 			
-			buffData.desc += prefixDesc + targetDesc + statId + " by " + statValue + "<br/>";
+			if (statDescs[i] != null)
+				buffData.desc += statDescs[i] + statValue + "<br/>";
+			else
+				buffData.desc += prefixDesc + targetDesc + statId + " by " + statValue + "<br/>";
 		}
 		else
 		{
-			buffData.desc += statValue + "<br/>";
+			if (statDescs[i] != null)
+				buffData.desc += statDescs[i]+ statValue + "<br/>";
+			else
+				buffData.desc += statValue + "<br/>";
 		}
 	}
 	
