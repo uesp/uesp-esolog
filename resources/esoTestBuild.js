@@ -20,6 +20,7 @@ g_EsoBuildClickWallLinkElement = null;
 g_EsoBuildItemData = {};
 g_EsoBuildEnchantData = {};
 g_EsoBuildSetData = {};
+g_EsoBuildSetMaxData = {};
 g_EsoBuildToggledSetData = {};
 g_EsoBuildToggledSkillData = {};
 
@@ -397,7 +398,7 @@ g_EsoBuildBuffData =			// TODO: Icons?
 			skillEnabled : false,
 			displays : [ "", "%", "%", "%" ],
 			categories : [ "Item", "Buff", "Buff", "Buff" ],
-			values : [ 5000, 0.50, 0.50, 0.50 ],
+			values : [ 5000, -0.50, -0.50, -0.50 ],
 			statIds : [ "Health", "HealingReceived", "DamageTaken", "DamageShield" ],
 			icon: "/esoui/art/icons/ability_templar_002.png",
 		},
@@ -1829,6 +1830,22 @@ ESO_SETEFFECT_MATCHES = [
 		statId: "TwiceBornStar",
 		match: /Allows you to have two Mundus Stone Boons at the same time/i,
 	},
+	{
+		statId: "SpellResist",
+		factorValue: 0.2309,
+		round: "floor",
+		match: /Mark of the Pariah[\s]*Increase your Physical and Spell Resistance by up to ([0-9]+) based on your missing Health/i,
+	},
+	{
+		statId: "PhysicalResist",
+		factorValue: 0.2309,
+		round: "floor",
+		match: /Mark of the Pariah[\s]*Increase your Physical and Spell Resistance by up to ([0-9]+) based on your missing Health/i,
+	},
+	{
+		statId: "OtherEffects",
+		match: /Mark of the Pariah[\s]*Increase your Physical and Spell Resistance by up to ([0-9]+) based on your missing Health/i,
+	},
 	
 		// Optionally toggled effects
 	{
@@ -2327,7 +2344,7 @@ function GetEsoInputBuffValue(inputValues, buffName, buffData)
 		
 		if (statId == "OtherEffects")
 		{
-			AddEsoItemRawOutput(buffData, "OtherEffects", statValue);
+			AddEsoItemRawOutputString(buffData, "OtherEffects", statValue);
 			AddEsoInputStatSource("OtherEffects", { other: true, buff: buffData, buffName: buffName, value: statValue });
 		}
 		else
@@ -2456,14 +2473,19 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 		}
 		else
 		{
-			var statValue = Math.floor(parseFloat(matches[1]));
+			var statValue = parseFloat(matches[1]);
 			if (isNaN(statValue)) statValue = 1;
+			
+			if (matchData.factorValue != null)
+			{
+				statValue = statValue * matchData.factorValue;
+			}
+			
+			if (matchData.round == "floor") statValue = Math.floor(statValue);
+			if (matchData.display == "%") statValue = statValue/100;
 			
 			var category = matchData.category || "Set";
 			
-			var display = matchData.display || "";
-			if (display == "%") statValue = statValue/100;
-		
 			inputValues[category][matchData.statId] += statValue;
 			AddEsoItemRawOutput(setData, category + "." + matchData.statId, statValue);
 			AddEsoInputStatSource(category + "." + matchData.statId, { set: setData, setBonusCount: setBonusCount, value: statValue });
@@ -2473,7 +2495,7 @@ function GetEsoInputSetDescValues(inputValues, setDesc, setBonusCount, setData)
 	if (!foundMatch || addFinalEffect)
 	{
 		AddEsoInputStatSource("OtherEffects", { other: true, set: setData, setBonusCount: setBonusCount, value: setDesc });
-		AddEsoItemRawOutput(setData, "OtherEffects", setDesc);
+		AddEsoItemRawOutputString(setData, "OtherEffects", setDesc);
 	}
 	
 }
@@ -2802,6 +2824,14 @@ function AddEsoItemRawOutput(itemData, statId, value)
 }
 
 
+function AddEsoItemRawOutputString(itemData, statId, value)
+{
+	if (itemData.rawOutput == null) itemData.rawOutput = {};
+	if (itemData.rawOutput[statId] == null)	itemData.rawOutput[statId] = "";
+	itemData.rawOutput[statId] += "" + value;
+}
+
+
 function GetEsoInputItemValues(inputValues, slotId)
 {
 	var itemData = g_EsoBuildItemData[slotId];
@@ -2922,7 +2952,8 @@ function GetEsoInputItemValues(inputValues, slotId)
 				// Shield expert
 		if (itemData.weaponType == 14 && g_EsoCpData['Shield Expert'].isUnlocked)
 		{
-			factor *= 1.75;
+			//var extraBonus = factor * 0.75;
+			//factor *= 1.75;
 		}
 		
 		if (itemData.trait == 13)	// Reinforced
@@ -3221,7 +3252,7 @@ function GetEsoInputItemEnchantWeaponValues(inputValues, slotId, itemData, encha
 	if (addFinalEffect) 
 	{
 		AddEsoInputStatSource("OtherEffects", { other: true, item: itemData, enchant: enchantData, value: rawDesc, slotId: slotId });
-		AddEsoItemRawOutput(itemData, "WeaponEnchant", rawDesc);
+		AddEsoItemRawOutputString(itemData, "WeaponEnchant", rawDesc);
 	}
 }
 
@@ -3439,6 +3470,20 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "SprintCost", 64077);
 	ParseEsoCPValue(inputValues, "MagickaCost", 63861);
 	ParseEsoCPValue(inputValues, "StaminaCost", 63862);
+	
+	var itemData = g_EsoBuildItemData.OffHand1;
+	if (g_EsoBuildActiveWeapon == 2) itemData = g_EsoBuildItemData.OffHand2;
+	
+	if (itemData.weaponType == 14 && g_EsoCpData['Shield Expert'].isUnlocked)
+	{
+		var extraBonus = Math.floor(itemData.armorRating * 0.75);
+		
+		inputValues.Item.SpellResist += extraBonus;
+		inputValues.Item.PhysicalResist += extraBonus;
+		AddEsoInputStatSource("Item.SpellResist", { cp: "Shield Expert", abilityId: g_EsoCpData['Shield Expert'].id, value: extraBonus });
+		AddEsoInputStatSource("Item.PhysicalResist", { cp: "Shield Expert", abilityId: g_EsoCpData['Shield Expert'].id, value: extraBonus });
+	}
+	
 }
 
 
@@ -4035,8 +4080,56 @@ function OnEsoItemDataReceive(data, status, xhr, element, origItemData)
 	{
 		g_EsoBuildItemData[slotId] = data.minedItem[0];
 		UpdateEsoComputedStatsList();
+		
+		GetEsoSetMaxData(g_EsoBuildItemData[slotId]);
 	}
 	
+}
+
+
+function GetEsoSetMaxData(itemData)
+{
+	if (itemData == null) return;
+	
+	var setName = itemData.setName;
+	if (setName == null || setName == "") return;
+	
+	if (g_EsoBuildSetMaxData[setName] != null) return;
+	
+	var queryParams = {
+			"table" : "minedItem",
+			"id" : itemData.itemId,
+			"intlevel" : 50,
+			"inttype" : 370,
+			"limit" : 1,
+	};
+	
+	$.ajax("http://esolog.uesp.net/exportJson.php", {
+			data: queryParams,
+		}).
+		done(function(data, status, xhr) { OnEsoSetMaxDataReceive(data, status, xhr); }).
+		fail(function(xhr, status, errorMsg) { OnEsoItemDataError(xhr, status, errorMsg); });
+}
+
+
+function OnEsoSetMaxDataReceive(data, status, xhr)
+{
+	if (data.minedItem != null && data.minedItem[0] != null)
+	{
+		var itemData = data.minedItem[0];
+		g_EsoBuildSetMaxData[itemData.setName] = itemData;
+		
+		var setData = {};
+		setData.parsedNumbers = [];
+		setData.averageNumbers = [];
+		setData.averageDesc = [];
+		
+		g_EsoBuildSetMaxData[itemData.setName].setData = setData;
+		
+		ComputeEsoBuildSetDataItem(setData, itemData);
+		
+		//UpdateEsoComputedStatsList();
+	}
 }
 
 
@@ -4702,6 +4795,13 @@ function ComputeEsoBuildSetData(setData)
 	setData.averageNumbers = [];
 	setData.averageDesc = [];
 	
+	var setMaxData = g_EsoBuildSetMaxData[setData.name];
+	
+	if (setMaxData != null && setMaxData.setData != null && setMaxData.setData.parsedNumbers != null)
+	{
+		setData.maxParsedNumbers = setMaxData.setData.parsedNumbers;
+	}
+	
 	for (var i = 0; i < setData.items.length; ++i)
 	{
 		var item = setData.items[i];
@@ -4742,10 +4842,14 @@ function ComputeEsoBuildSetDataAverages(setData)
 {
 	var sums = [];
 	setData.averageNumbers = [];
+	setData.numbersVary = [];
 	
 	for (var i = 0; i < setData.parsedNumbers.length; ++i)
 	{
 		if (setData.parsedNumbers[i] == null) continue;
+		
+		var numbersVary = [];
+		var lastNumber = [];
 		var thisSum = [];
 		var counts = [];
 		
@@ -4755,27 +4859,52 @@ function ComputeEsoBuildSetDataAverages(setData)
 			
 			for (var k = 0; k < setData.parsedNumbers[i][j].length; ++k)
 			{
+				var number = parseFloat(setData.parsedNumbers[i][j][k]);
+				
 				if (thisSum[k] == null) 
 				{
-					thisSum[k] = parseFloat(setData.parsedNumbers[i][j][k]);
+					thisSum[k] = number;
 					counts[k] = 1;
+					lastNumber[k] = number;
+					numbersVary[k] = false;
 				}
 				else
 				{
-					thisSum[k] += parseFloat(setData.parsedNumbers[i][j][k]);
+					if (lastNumber[k] != number) numbersVary[k] = true;
+					lastNumber[k] = number;
+					thisSum[k] += number;
 					++counts[k];
 				}
 			}	
 		}
 		
+		setData.numbersVary[i] = numbersVary;
 		setData.averageNumbers[i] = [];
 		
 		for (var j = 0; j < thisSum.length; ++j)
 		{
-			if (counts[j] != 0)
-				setData.averageNumbers[i][j] = Math.floor(thisSum[j] / counts[j]);
-			else
+			if (counts[j] == 0)
+			{
 				setData.averageNumbers[i][j] = 0;
+				continue;
+			}
+			
+			setData.averageNumbers[i][j] = Math.floor(thisSum[j] / counts[j]);
+			
+			if (numbersVary[j])
+			{
+				if (setData.maxParsedNumbers == null) continue;
+				if (setData.maxParsedNumbers[i] == null) continue;
+				if (setData.maxParsedNumbers[i][0] == null) continue;
+				
+				var maxNumber = setData.maxParsedNumbers[i][0][j];
+				if (maxNumber == null) continue;
+
+				var delta = maxNumber / 86;		// Best estimate so far
+				setData.averageNumbers[i][j] = Math.round(Math.floor(setData.averageNumbers[i][j] / delta) * delta);
+			}
+			
+			
 		}
 	}
 	
