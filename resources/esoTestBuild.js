@@ -2231,6 +2231,13 @@ function GetEsoInputValues(mergeComputedStats)
 	inputValues.Race = $("#esotbRace").val();
 	inputValues.Class = $("#esotbClass").val();
 	
+	if (inputValues.Race  == "Khajiit" || inputValues.Race == "Wood Elf") 
+		FixupEsoRacialSkills(inputValues.Race , [36022, 45295, 45296]);
+	else if (inputValues.Race  == "Breton" || inputValues.Race == "High Elf") 
+		FixupEsoRacialSkills(inputValues.Race , [35995, 45259, 45260]);
+	else if (inputValues.Race  == "Orc" || inputValues.Race == "Nord") 
+		FixupEsoRacialSkills(inputValues.Race , [36064, 45297, 45298]);	
+	
 	inputValues.Level = parseInt($("#esotbLevel").val());
 	if (inputValues.Level > ESO_MAX_LEVEL) inputValues.Level = ESO_MAX_LEVEL;
 
@@ -3880,6 +3887,21 @@ function OnEsoClickStatWarningButton(e)
 }
 
 
+function FixupEsoRacialSkills(raceName, abilityIds)
+{
+	for (var i = 0; i < abilityIds.length; ++i)
+	{
+		var abilityId = abilityIds[i];
+		var skillData = g_SkillsData[abilityId];
+		if (skillData == null) continue;
+		
+		skillData.skillTypeName = "Racial::" + raceName + " Skills";
+		skillData.skillLine = raceName + " Skills";
+		skillData.raceType = raceName;
+	}
+}
+
+
 function OnEsoRaceChange(e)
 {
 	var newRace = $(this).val();
@@ -3887,7 +3909,7 @@ function OnEsoRaceChange(e)
 	g_EsoBuildEnableUpdates = false;
 	EnableEsoRaceSkills(newRace);
 	g_EsoBuildEnableUpdates = true;
-		
+	
 	UpdateEsoComputedStatsList();
 }
 
