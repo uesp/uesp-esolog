@@ -882,3 +882,7 @@ button.esotbWeaponSelect {
 	width: 32%;
 	vertical-align: top;
 }
+
+#esotbStatBlockHelp {
+	line-height: 1.4em;
+}
