@@ -1400,7 +1400,7 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		toggle: true,
 		enable: false,
 		maxTimes: 10,
-		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[.\s\S]*?Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
+		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[\s]*Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
 	},
 	{
 		id: "Wrath",
@@ -1412,16 +1412,17 @@ ESO_PASSIVEEFFECT_MATCHES = [
 		toggle: true,
 		enable: false,
 		maxTimes: 10,
-		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[.\s\S]*?Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
+		match: /WHEN 5 OR MORE PIECES OF HEAVY ARMOR ARE EQUIPPED[\s]*Gain ([0-9]+) Weapon and Spell Damage for [0-9]+ seconds when you take damage, stacking up to 10 times/i
 	},
 	{
 		id: "Burning Heart",
+		requireSkillLine: "DRACONIC POWER",
 		baseSkillId: 29457,
 		statId: "HealingReceived",
 		toggle: true,
 		enable: false,
 		display: "%",
-		match: /WHILE USING DRACONIC POWER ABILITIES[.\s\S]*?Increases healing received by ([0-9]+\.?[0-9]*)% while a Draconic Power ability is active/i
+		match: /WHILE USING DRACONIC POWER ABILITIES[\s]*Increases healing received by ([0-9]+\.?[0-9]*)% while a Draconic Power ability is active/i
 	},
 	{
 		id: "Master Assassin",
@@ -1832,7 +1833,7 @@ ESO_SETEFFECT_MATCHES = [
 	},
 	{
 		statId: "SpellResist",
-		factorValue: 0.2309,
+		factorValue: 0.2304,
 		round: "floor",
 		match: /Mark of the Pariah[\s]*Increase your Physical and Spell Resistance by up to ([0-9]+) based on your missing Health/i,
 	},
@@ -2632,7 +2633,7 @@ function ComputeEsoInputSkillValue(matchData, inputValues, rawDesc, abilityData,
 			
 	if (matchData.toggle === true && matchData.id != null)
 	{
-		if (matchData.showLog === true)console.log("is toggled", matchData.id);
+		if (matchData.showLog === true) console.log("is toggled", matchData.id);
 		if (!IsEsoBuildToggledSkillEnabled(matchData.id)) return false;
 	}
 	
@@ -2836,6 +2837,7 @@ function GetEsoInputItemValues(inputValues, slotId)
 {
 	var itemData = g_EsoBuildItemData[slotId];
 	if (itemData == null || itemData.itemId == null || itemData.itemId == "") return false;
+	if (itemData.enabled === false) return false;
 	
 	itemData.rawOutput = {};
 	
@@ -3434,7 +3436,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "CritResist", 60384);
 	
 		/* Ritual */
-	ParseEsoCPValue(inputValues, "DOTDamage", 63847);
+	ParseEsoCPValue(inputValues, "DotDamage", 63847);
 	ParseEsoCPValue(inputValues, "WeaponCritDamage", 59105);
 	ParseEsoCPValue(inputValues, "PhysicalPenetration", 61546);
 	ParseEsoCPValue(inputValues, "PhysicalDamage", 63868);
@@ -4512,7 +4514,23 @@ function OnEsoItemEnchantClick(e)
 	var parent = $(this).parent();
 	
 	SelectEsoItemEnchant(parent);
+}
+
+
+function OnEsoItemDisableClick(e)
+{
+	var parent = $(this).parent();
+	var slotId = parent.attr("slotId");
+	var itemData = g_EsoBuildItemData[slotId];
 	
+	parent.toggleClass("esotbItemDisabled");
+	
+	if (itemData != null)
+	{
+		itemData.enabled = !parent.hasClass("esotbItemDisabled");
+	}
+
+	UpdateEsoComputedStatsList();
 }
 
 
@@ -4724,7 +4742,7 @@ function GetEsoBuildRawInputSourceItemHtml(sourceItem)
 	}
 	else if (sourceItem.abilityId != null && sourceItem.cp != null)
 	{
-		output += "" + value + ": " + sourceItem.cp + " CP ability (abilityId " + sourceItem.abilityId + ")";
+		output += "" + value + ": " + sourceItem.cp + " CP ability";
 	}	
 	else if (sourceItem.set != null)
 	{
@@ -5172,6 +5190,12 @@ function UpdateEsoBuildToggledSkillData(inputValues)
 			var requiredStat = inputValues[toggleSkillData.matchData.statRequireId];
 			if (requiredStat == null) continue;
 			if (parseFloat(requiredStat) < parseFloat(toggleSkillData.matchData.statRequireValue)) continue;
+		}
+		
+		if (toggleSkillData.matchData.requireSkillLine != null)
+		{
+			var count = CountEsoBarSkillsWithSkillLine(toggleSkillData.matchData.requireSkillLine);
+			if (count == 0) return false;
 		}
 		
 		if (!toggleSkillData.isPassive)
@@ -5888,6 +5912,7 @@ function esotbOnDocReady()
 	
 	$(".esotbItemDetailsButton").click(OnEsoItemDetailsClick);
 	$(".esotbItemEnchantButton").click(OnEsoItemEnchantClick);
+	$(".esotbItemDisableButton").click(OnEsoItemDisableClick);	
 	
 	$("#esotbWeaponBar1").click(OnEsoWeaponBarSelect1);
 	$("#esotbWeaponBar2").click(OnEsoWeaponBarSelect2);
@@ -5897,7 +5922,7 @@ function esotbOnDocReady()
 	$(document).on("EsoSkillBarUpdate", OnEsoBuildSkillBarUpdate);
 	
 	$(".esotbBuffCheck").click(OnEsoBuildBuffCheckClick);
-	$(".esotbBuffItem").click(OnEsoBuildBuffClick);	
+	$(".esotbBuffItem").click(OnEsoBuildBuffClick);
 	
 	$(document).keyup(function(e) {
 	    if (e.keyCode == 27) OnEsoBuildEscapeKey(e);
