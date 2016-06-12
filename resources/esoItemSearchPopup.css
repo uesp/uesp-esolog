@@ -10,7 +10,10 @@
 	border: solid 2px gray;
 	z-index: 40;
 	padding: 7px;
+	font-size: 13px;
 }
+
+#esoispRoot .eso_item_link_q1 { color: #fff !important; }
 
 #esoispCloseButton {
 	position: absolute;
@@ -36,13 +39,17 @@
 
 #esoispResults {
 	overflow: auto;
-	height: 340px;
+	height: 355px;
 	float: none;
 	clear: both;
 	margin-top: 10px;
 	color: #ff9999;
     border: solid 1px gray;
 	padding: 3px;
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	width: 445px;
 }
 
 .esoispResultRow {

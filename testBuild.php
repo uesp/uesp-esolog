@@ -2310,7 +2310,9 @@ class CEsoTestBuild
 };
 
 
-
 $g_EsoTestBuild = new CEsoTestBuild();
 $g_EsoTestBuild->Render();
+
+//header('Location: http://esobuilds.uesp.net/editBuild.php');
+
 
