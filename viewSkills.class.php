@@ -2,7 +2,7 @@
 
 // Database users, passwords and other secrets
 require_once("/home/uesp/secrets/esolog.secrets");
-require_once("esoCommon.php");
+require_once(__DIR__."/esoCommon.php");
 
 
 class CEsoViewSkills
@@ -10,8 +10,8 @@ class CEsoViewSkills
 
 	const ESOVS_ENABLE_PROFILE = false;
 
-	const ESOVS_HTML_TEMPLATE = "templates/esoskills_template.txt";
-	const ESOVS_HTML_TEMPLATE_EMBED = "templates/esoskills_embed_template.txt";
+	public $ESOVS_HTML_TEMPLATE = "";
+	public $ESOVS_HTML_TEMPLATE_EMBED = "";
 	
 	const ESOVS_ICON_URL = UESP_ESO_ICON_URL;
 
@@ -50,6 +50,9 @@ class CEsoViewSkills
 
 	public function __construct ($isEmbedded = false, $displayType = "summary")
 	{
+		$this->ESOVS_HTML_TEMPLATE = __DIR__."/templates/esoskills_template.txt";
+		$this->ESOVS_HTML_TEMPLATE_EMBED = __DIR__."/templates/esoskills_embed_template.txt";
+		
 		$this->isEmbedded = $isEmbedded;
 		$this->displayType = $displayType;
 		
@@ -102,9 +105,9 @@ class CEsoViewSkills
 		$templateFile = $this->basePath;
 		
 		if ($this->isEmbedded)
-			$templateFile .= self::ESOVS_HTML_TEMPLATE_EMBED;
+			$templateFile .= $this->ESOVS_HTML_TEMPLATE_EMBED;
 		else
-			$templateFile .= self::ESOVS_HTML_TEMPLATE;
+			$templateFile .= $this->ESOVS_HTML_TEMPLATE;
 			
 		$this->htmlTemplate = file_get_contents($templateFile);
 	}
