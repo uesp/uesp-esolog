@@ -357,6 +357,13 @@ displayed statistics is unknown.
 					seen by clicking on this list.</li>
 			</ul>
 			<p>
+			<h3>Known Bugs</h3>
+			<hr>
+			<ul>
+				<li>Live In-Game Issue: Ability tooltip costs sometimes report 1-2% higher than actual for no obvious reasons. No known cause or fix.</li>
+				<li>Live In-Game Issue: The Undaunted Mettle passive sometimes breaks resulting with incorrect stats. Logging out and back in fixes it temporarily.</li>
+			</ul>			
+			<p>
 			<h3>Recent Work</h3>
 			<hr>
 			<b>11 June 2016</b>

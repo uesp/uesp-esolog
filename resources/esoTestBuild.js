@@ -2395,19 +2395,19 @@ function GetEsoInputSpecialValues(inputValues)
 		else if (inputValues.VampireStage == 2)
 		{
 			healthRegenValue = -0.25;
-			flameDamageValue = 0.15;
+			flameDamageValue = -0.15;
 			costReduction = 0.07;
 		}
 		else if (inputValues.VampireStage == 3)
 		{
 			healthRegenValue = -0.50;
-			flameDamageValue = 0.20;
+			flameDamageValue = -0.20;
 			costReduction = 0.14;
 		}
 		else if (inputValues.VampireStage == 4)
 		{
 			healthRegenValue = -0.75;
-			flameDamageValue = 0.25;
+			flameDamageValue = -0.25;
 			costReduction = 0.21;
 		}
 		
@@ -4558,9 +4558,10 @@ function ShowEsoSkillDetailsPopup(abilityId)
 	detailsHtml += "rank = " + skillData.rank + "<br/>";
 	detailsHtml += "learnedLevel = " + skillData.learnedLevel + "<br/>";
 	detailsHtml += "target = " + skillData.target + "<br/>";
-	detailsHtml += "duration = " + skillData.duration + "<br/>";
+	detailsHtml += "cost = " + skillData.cost + "<br/>";
 	detailsHtml += "</div>";
 	detailsHtml += "<div class='esotbSkillDetailsOther'>";
+	detailsHtml += "duration = " + skillData.duration + "<br/>";
 	detailsHtml += "minRange = " + skillData.minRange + "<br/>";
 	detailsHtml += "maxRange = " + skillData.maxRange + "<br/>";
 	detailsHtml += "radius = " + skillData.radius + "<br/>";
