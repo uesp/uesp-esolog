@@ -781,7 +781,7 @@ class CEsoViewSkills
 		if ($this->displayType == "select")
 		{
 			$output .= "<div class='esovsAbilityBlock esovsAbilityBlockHover esovsAbilityBlockSelect esovsAbilityNone' skillid='-1'>";
-			$output .= "<img src='resources/edit_cancel_up.png'> Refund Ability";
+			$output .= "<img src='http://esolog.uesp.net/resources/edit_cancel_up.png'> Refund Ability";
 			$output .= "</div>";
 		}
 
