@@ -3605,7 +3605,7 @@ function UpdateEsoComputedStatsList()
 	UpdateEsoBuildVisibleBuffs();
 	UpdateEsoBuffSkillEnabled();
 	//UpdateEsoAllSkillDescription(); // Currently all hidden
-	UpdateEsoAllSkillCost();
+	UpdateEsoAllSkillCost(false);
 }
 
 
@@ -4454,7 +4454,7 @@ function OnEsoClickBuildStatTab(e)
 	else if (tabId == "esotbStatBlockSkils")
 	{
 		//UpdateEsoAllSkillDescription();
-		UpdateEsoAllSkillCost();
+		UpdateEsoAllSkillCost(false);
 	}
 	
 }
