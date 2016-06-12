@@ -369,7 +369,7 @@ displayed statistics is unknown.
 			<b>11 June 2016</b>
 			<ul>
 				<li>Added damage and healing scaling to most skill tooltips.</li>
-				<li>Added skill details button.</li>
+				<li>Added skill details button which includes details on the spell cost and damage/healing calculations.</li>
 			</ul>
 			<p>
 			<h3>Credits</h3>
