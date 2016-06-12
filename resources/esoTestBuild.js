@@ -65,6 +65,16 @@ g_EsoInputStatSources = {};
 
 g_EsoBuildBuffData =			// TODO: Icons? 
 {
+		"Major Mending" : 
+		{
+			enabled: false,
+			skillEnabled : false,
+			value : 0.25,
+			display: "%",
+			statId : "HealingDone",
+			icon : "/esoui/art/icons/ability_templar_cleansing_ritual.png",
+		},
+		// Minor Mending: /esoui/art/icons/ability_templar_extended_ritual.png
 		"Major Sorcery" : 
 		{
 			enabled: false,
@@ -2385,19 +2395,19 @@ function GetEsoInputSpecialValues(inputValues)
 		else if (inputValues.VampireStage == 2)
 		{
 			healthRegenValue = -0.25;
-			flameDamageValue = -0.15;
+			flameDamageValue = 0.15;
 			costReduction = 0.07;
 		}
 		else if (inputValues.VampireStage == 3)
 		{
 			healthRegenValue = -0.50;
-			flameDamageValue = -0.20;
+			flameDamageValue = 0.20;
 			costReduction = 0.14;
 		}
 		else if (inputValues.VampireStage == 4)
 		{
 			healthRegenValue = -0.75;
-			flameDamageValue = -0.25;
+			flameDamageValue = 0.25;
 			costReduction = 0.21;
 		}
 		
@@ -2409,8 +2419,8 @@ function GetEsoInputSpecialValues(inputValues)
 		
 		if (flameDamageValue != 0)
 		{
-			inputValues.Skill.FireDamageResist += flameDamageValue;
-			AddEsoInputStatSource("Skill.FireDamageResist", { source: "Vampire Stage " + inputValues.VampireStage, value: flameDamageValue });
+			inputValues.Skill.FlameDamageTaken += flameDamageValue;
+			AddEsoInputStatSource("Skill.FlameDamageTaken", { source: "Vampire Stage " + inputValues.VampireStage, value: flameDamageValue });
 		}
 		
 		if (costReduction != 0)
@@ -3431,8 +3441,8 @@ function GetEsoInputCPValues(inputValues)
 		/* Lady */
 	if (inputValues.ArmorLight >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 60502);
 	ParseEsoCPValue(inputValues, "DotDamageTaken", 63850);
-	ParseEsoCPValue(inputValues, "PhysicalDamageTaken", 63844);
-	ParseEsoCPValue(inputValues, "MagicDamageTaken", 63843);
+	ParseEsoCPValue(inputValues, ["PhysicalDamageTaken", "PoisonDamageTaken", "DiseaseDamageTaken"], 63844, null, -1);
+	ParseEsoCPValue(inputValues, ["MagicDamageTaken", "FlameDamageTaken", "ColdDamageTaken", "ShockDamageTaken"], 63843, null, -1);
 	
 		/* Steed */
 	if (inputValues.ArmorMedium >= 5) ParseEsoCPValue(inputValues, "PhysicalResist", 59120);
@@ -3444,7 +3454,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "DotDamageDone", 63847);
 	ParseEsoCPValue(inputValues, "WeaponCritDamage", 59105);
 	ParseEsoCPValue(inputValues, "PhysicalPenetration", 61546);
-	ParseEsoCPValue(inputValues, "PhysicalDamageDone", 63868);
+	ParseEsoCPValue(inputValues, ["PhysicalDamageDone", "PoisonDamageDone", "DiseaseDamageDone"], 63868);
 	ParseEsoCPValue(inputValues, "WeaponCrit", 59418, "the_ritual", 30);
 	
 		/* Atronach */
@@ -3454,7 +3464,7 @@ function GetEsoInputCPValues(inputValues)
 	ParseEsoCPValue(inputValues, "HAStaffDamage", 60503);
 	
 		/* Apprentice */
-	ParseEsoCPValue(inputValues, "MagicDamageDone", 63848);
+	ParseEsoCPValue(inputValues, ["MagicDamageDone", "FlameDamageDone", "ColdDamageDone", "ShockDamageDone"], 63848);
 	ParseEsoCPValue(inputValues, "SpellPenetration", 61555);
 	ParseEsoCPValue(inputValues, "SpellCritDamage", 61680);
 	ParseEsoCPValue(inputValues, "HealingDone", 59630);
@@ -3494,7 +3504,7 @@ function GetEsoInputCPValues(inputValues)
 }
 
 
-function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
+function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel, statFactor)
 {
 	var cpDesc = $("#descskill_" + abilityId);
 	if (cpDesc.length == 0) return false;
@@ -3514,6 +3524,8 @@ function ParseEsoCPValue(inputValues, statIds, abilityId, discId, unlockLevel)
 	var value = parseFloat(results[1]);
 	var lastChar = results[1].slice(-1);
 	if (lastChar == "%") value = value/100;
+	
+	if (statFactor != null) value *= statFactor;
 
 	if (typeof(statIds) == "object")
 	{
@@ -5646,6 +5658,7 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 	{
 			CP 		: inputValues.CP.MagickaCost,
 			Item 	: inputValues.Item.MagickaCost,
+			Set 	: inputValues.Set.MagickaCost,
 			Skill 	: inputValues.Skill.MagickaCost,
 			Skill2	: inputValues.Skill2.MagickaCost,
 			Buff	: inputValues.Buff.MagickaCost,
@@ -5655,6 +5668,7 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 	{
 			CP 		: inputValues.CP.StaminaCost,
 			Item 	: inputValues.Item.StaminaCost,
+			Set		: inputValues.Set.StaminaCost,
 			Skill 	: inputValues.Skill.StaminaCost,
 			Skill2	: inputValues.Skill2.StaminaCost,
 			Buff	: inputValues.Buff.StaminaCost,
@@ -5664,6 +5678,7 @@ function UpdateEsoTestBuildSkillInputValues(inputValues)
 	{
 			CP 		: inputValues.CP.UltimateCost,
 			Item 	: inputValues.Item.UltimateCost,
+			Set 	: inputValues.Set.UltimateCost,
 			Skill 	: inputValues.Skill.UltimateCost,
 			Skill2	: inputValues.Skill2.UltimateCost,
 			Buff	: inputValues.Buff.UltimateCost,
