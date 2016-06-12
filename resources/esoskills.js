@@ -655,6 +655,7 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 	}
 	
 	coefDesc = UpdateEsoSkillDamageDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillHealingDescription(skillData, coefDesc, inputValues);
 	
 	if (useHtml)
 	{
@@ -672,221 +673,254 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 }
 
 
-function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
+ESO_SKILL_HEALINGMATCHES = 
+[
+	{
+		healId: "Done",
+		match: /(healing yourself or a wounded ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(heals one other injured target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing them for an additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",  // TODO: ?
+		match: /(Each reflected spell heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",  // TODO: ?
+		match: /(heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",  // TODO: ?
+		match: /(You also heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing you and your allies in the target area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing you or up to 2 nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+	},
+	{
+		healId: "Done",
+		match: /(heals for an immediate \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing you and your allies in front of you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(Each attack against the enemy restores \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		healId2: "Taken",	//TODO: Sap Essence?
+		match: /(healing you and your allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing them for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing themselves for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	{
+		healId: "Done",
+		match: /(healing yourself and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+	},
+	
+
+];                       
+
+
+function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 {
+	var newDesc = skillDesc;
+	if (inputValues.Healing == null) return newDesc;
+	
 	var rawOutput = [];
 	var newRawOutput = {};
-	var newDesc = skillDesc;
-	if (inputValues.Damage == null) return newDesc;
 	
-	var isDot = false;
-	if (skillData.channelTime > 0) isDot = true;
-	if (inputValues.Damage.Dot == null || isNaN(inputValues.Damage.Dot)) isDot = false;
-	
-		//additional |cffffff2237|r Magic Damage
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
+	for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
+	{
+		var matchData = ESO_SKILL_HEALINGMATCHES[i];
 		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Magic";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Magic;
-				
-		if (isDot || p1 != "" || p5 != "") 
+		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
 		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Magic;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Magic;
-		
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
-		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Physical";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Physical;
-		
-		if (isDot || p1 != "" || p5 != "") 
-		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Physical;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Physical;
-		
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
-		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Shock";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Shock;
-		
-		if (isDot || p1 != "" || p5 != "")
-		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Shock;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Shock;
-		
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
-		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Flame";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Flame;
-		
-		if (isDot || p1 != "" || p5 != "")
-		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Flame;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Flame;
-		
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
-		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Cold";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Cold;
-		
-		if (isDot || p1 != "" || p5 != "")
-		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Cold;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Cold;
-		
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
-		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Poison";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Poison;
-		
-		if (isDot || p1 != "" || p5 != "")
-		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Poison;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Poison;
-				
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	newDesc = newDesc.replace(/(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage )(over|)/gi, function(match, p1, p2, p3, p4, p5, offset, string) {
-		var modDamage = parseFloat(p3);
-		
-		newRawOutput = {};
-		newRawOutput.DamageType = "Disease";
-		newRawOutput.BaseDamage = p3;
-		newRawOutput.MainDamageDone = inputValues.Damage.Disease;
-		
-		if (isDot || p1 != "" || p5 != "")
-		{
-			modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage.Disease;
-			newRawOutput.DotDamageDone = inputValues.Damage.Dot;
-		}
-		else
-			modDamage *= 1 + inputValues.Damage.Disease;
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		modDamage *= 1 + inputValues.Damage.All;
-		modDamage = Math.round(modDamage);
-		
-		newRawOutput.DamageDone = inputValues.Damage.All;
-		newRawOutput.FinalDamage = modDamage;
-		rawOutput.push(newRawOutput);
-		
-		return p1 + p2 + modDamage + p4 + p5;
-	});
-	
-	if (skillData.rawOutput == null) skillData.rawOutput = {};
+			if (inputValues.Healing[matchData.healId] == null) return string;
+			
+			var modHealing = parseFloat(p2);
+			
+			newRawOutput = {};
+			newRawOutput.healId = matchData.healId;
+			newRawOutput.baseHeal = p2;
+			newRawOutput.healDone = inputValues.Healing[matchData.healId];
+			
+			modHealing *= 1 + inputValues.Healing[matchData.healId];
+			modHealing = Math.round(modHealing);
+			
+			newRawOutput.finalHeal = modHealing;
+			rawOutput.push(newRawOutput);
+			
+			return p1 + modHealing + p3;
+		});
+	}
 	
 	for (var i = 0; i < rawOutput.length; ++i)
 	{
 		var rawData = rawOutput[i];
 		var output = "";
 				
-		if (rawData.MainDamageDone != null && rawData.MainDamageDone != 0) output += " + " + (rawData.MainDamageDone*100) + "% " + rawData.DamageType;
-		if (rawData.DotDamageDone  != null && rawData.DotDamageDone  != 0) output += " + " + (rawData.DotDamageDone*100) + "% DoT";
-		if (rawData.DamageDone     != null && rawData.DamageDone     != 0) output += " + " + (rawData.DamageDone*100) + "% All";
+		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + (rawData.healDone*100) + "% " + rawData.healId;
+		//TODO: healId2?
 		
 		if (output == "")
-			output = "" + rawData.BaseDamage + " " + rawData.DamageType + " Damage (unmodified)";
+			output = "" + rawData.baseHeal + " Health (unmodified)";
 		else
-			output = "" + rawData.BaseDamage + " " + rawData.DamageType + " Damage " + output + " = " + rawData.FinalDamage + " final";
+			output = "" + rawData.baseHeal + " Health " + output + " = " + rawData.finalHeal + " final";
+		
+		skillData.rawOutput["Tooltip Healing " + (i+1)] = output;
+	}
+	
+	return newDesc;
+}
+
+
+ESO_SKILL_DAMAGEMATCHES = 
+[
+	{
+		damageId: "Magic",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over|)/gi,
+	},
+	{
+		damageId: "Physical",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over|)/gi,
+	},
+	{
+		damageId: "Flame",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over|)/gi,
+	},
+	{
+		damageId: "Shock",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over|)/gi,
+	},
+	{
+		damageId: "Cold",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over|)/gi,
+	},
+	{
+		damageId: "Poison",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over|)/gi,
+	},
+	{
+		damageId: "Disease",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over|)/gi,
+	},
+];
+
+
+function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	if (inputValues.Damage == null) return newDesc;
+	
+	var rawOutput = [];
+	var newRawOutput = {};
+	
+	var isDot = false;
+	if (skillData.channelTime > 0) isDot = true;
+	if (inputValues.Damage.Dot == null || isNaN(inputValues.Damage.Dot)) isDot = false;
+	
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
+	
+	for (var i = 0; i < ESO_SKILL_DAMAGEMATCHES.length; ++i)
+	{
+		var matchData = ESO_SKILL_DAMAGEMATCHES[i];
+		
+		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, offset, string) 
+		{
+			if (inputValues.Damage[matchData.damageId] == null) return string;
+			
+			var modDamage = parseFloat(p3);
+			
+			newRawOutput = {};
+			newRawOutput.damageId = matchData.damageId;
+			newRawOutput.baseDamage = p3;
+			newRawOutput.mainDamageDone = inputValues.Damage[matchData.damageId];
+					
+			if (isDot || p1 != "" || p5 != "") 
+			{
+				modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage[matchData.damageId];
+				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
+			}
+			else
+			{
+				modDamage *= 1 + inputValues.Damage[matchData.damageId];
+			}
+			
+			if (inputValues.Damage.All != null)
+			{
+				modDamage *= 1 + inputValues.Damage.All;
+				
+				newRawOutput.damageDone = inputValues.Damage.All;
+				newRawOutput.finalDamage = Math.round(modDamage);
+			}
+			
+			rawOutput.push(newRawOutput);
+			modDamage = Math.round(modDamage);
+			return p1 + p2 + modDamage + p4 + p5;
+		});
+	}
+	
+	for (var i = 0; i < rawOutput.length; ++i)
+	{
+		var rawData = rawOutput[i];
+		var output = "";
+				
+		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + (rawData.mainDamageDone*100) + "% " + rawData.damageId;
+		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + (rawData.dotDamageDone*100) + "% DoT";
+		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + (rawData.damageDone*100) + "% All";
+		
+		if (output == "")
+			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
+		else
+			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage " + output + " = " + rawData.finalDamage + " final";
 		
 		skillData.rawOutput["Tooltip Damage " + (i+1)] = output;
 	}
 	
-	return newDesc;	
+	return newDesc;
 }
 
 
@@ -924,6 +958,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 	{
 		if (inputValues.MagickaCost.CP    != null) CPFactor    -= inputValues.MagickaCost.CP;
 		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
+		if (inputValues.MagickaCost.Set   != null) SkillFactor -= inputValues.MagickaCost.Set;
 		if (inputValues.MagickaCost.Skill != null) SkillFactor -= inputValues.MagickaCost.Skill;
 		if (inputValues.MagickaCost.Buff  != null) SkillFactor -= inputValues.MagickaCost.Buff;
 	}
@@ -931,6 +966,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 	{
 		if (inputValues.StaminaCost.CP    != null) CPFactor    -= inputValues.StaminaCost.CP;
 		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
+		if (inputValues.StaminaCost.Set   != null) SkillFactor -= inputValues.StaminaCost.Set;
 		if (inputValues.StaminaCost.Skill != null) SkillFactor -= inputValues.StaminaCost.Skill;
 		if (inputValues.StaminaCost.Buff  != null) SkillFactor -= inputValues.StaminaCost.Buff;
 	}
@@ -939,6 +975,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.CP    != null) CPFactor    -= inputValues.UltimateCost.CP;
 		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
 		if (inputValues.UltimateCost.Skill != null) SkillFactor -= inputValues.UltimateCost.Skill;
+		if (inputValues.UltimateCost.Set   != null) SkillFactor -= inputValues.UltimateCost.Set;
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor -= inputValues.UltimateCost.Buff;
 	}
 	

@@ -167,7 +167,6 @@ class CEsoTestBuild
 			"HADamageResist",
 			"DotDamageTaken",
 			"DotDamageDone",
-			"MagicDamageTaken",
 			"MagicDamageDone",
 			"PhysicalDamageDone",
 			"ShockDamageDone",
@@ -175,7 +174,13 @@ class CEsoTestBuild
 			"ColdDamageDone",
 			"PoisonDamageDone",
 			"DiseaseDamageDone",
+			"MagicDamageTaken",
 			"PhysicalDamageTaken",
+			"ShockDamageTaken",
+			"FlameDamageTaken",
+			"ColdDamageTaken",
+			"PoisonDamageTaken",
+			"DiseaseDamageTaken",
 			"LAHADamage",
 			"HADamage",
 			"LADamage",
@@ -214,15 +219,15 @@ class CEsoTestBuild
 	
 	public $MUNDUS_TYPES = array(
 			"The Apprentice" 	=> "Spell Damage",
-			"The Atronach" 		=> "Magicka Regen",
+			"The Atronach" 		=> "Magicka Recovery",
 			"The Lady" 			=> "Physical Resist",
 			"The Lover" 		=> "Spell Resist",
 			"The Lord" 			=> "Health",
 			"The Mage" 			=> "Magicka",
 			"The Ritual" 		=> "Healing",
-			"The Serpent" 		=> "Stamina Regen",
+			"The Serpent" 		=> "Stamina Recovery",
 			"The Shadow" 		=> "Crit Damage",
-			"The Steed" 		=> "Run/Health Regen",
+			"The Steed" 		=> "Run/Health Recovery",
 			"The Thief" 		=> "Crit Chance",
 			"The Tower" 		=> "Stamina",
 			"The Warrior" 		=> "Weapon Damage",
@@ -820,7 +825,29 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"CP.FlameDamageDone" => array(
+					"display" => "%",
+			),
 			
+			"CP.ColdDamageDone" => array(
+					"display" => "%",
+			),
+			
+			"CP.ShockDamageDone" => array(
+					"display" => "%",
+			),
+			
+			"CP.PoisonDamageDone" => array(
+					"display" => "%",
+			),
+			
+			"CP.DiseaseDamageDone" => array(
+					"display" => "%",
+			),
+			
+			"CP.HealingDone" => array(
+					"display" => "%",
+			),
 			
 	);
 	
@@ -903,7 +930,7 @@ class CEsoTestBuild
 			),
 			
 			"HealthRegen" => array(
-					"title" => "Health Regen",
+					"title" => "Health Recovery",
 					"round" => "floor",
 					"compute" => array(
 							"round(5.592 * Level + 29.4)",
@@ -927,7 +954,7 @@ class CEsoTestBuild
 			),
 			
 			"MagickaRegen" => array(
-					"title" => "Magicka Regen",
+					"title" => "Magicka Recovery",
 					"round" => "floor",
 					"compute" => array(
 							"round(9.30612 * Level + 48.7)",
@@ -951,7 +978,7 @@ class CEsoTestBuild
 			),
 			
 			"StaminaRegen" => array(
-					"title" => "Stamina Regen",
+					"title" => "Stamina Recovery",
 					"round" => "floor",
 					"compute" => array(
 							"round(9.30612 * Level + 48.7)",

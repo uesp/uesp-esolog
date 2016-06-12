@@ -289,7 +289,7 @@ displayed statistics is unknown.
 		<div id="esotbStatBlockHelp" class="esotbStatBlock" style="display: none;">
 			
 			<div class="esotbHelpWarning">
-				Warning: This ESO character builder is currently undergoing construction and is not 100% completed. There are bugs and 
+				<b>Warning:</b> This ESO character builder is currently undergoing construction and is not 100% completed. There are bugs and 
 				missing features as detailed below.				
 			</div>
 			<p>
@@ -315,7 +315,7 @@ displayed statistics is unknown.
 			<div class='esotbHelpWorkBlock'>
 				<h4>"Half" Working</h4>
 				<ul>
-					<li>Skill tooltip cost and damage updates</li>
+					<li>Skill tooltip cost, damage and healing updates</li>
 					<li>All secondary computed stats</li>
 					<li>Base stat values and calculations for less than max level (CP160)</li>
 				</ul>
@@ -323,7 +323,6 @@ displayed statistics is unknown.
 			<div class='esotbHelpWorkBlock'>
 				<h4>"Not Yet" Working</h4>
 				<ul>
-					<li>Scaling of healing effects on skill tooltips</li>
 					<li>More complex set, skill, and buff effects</li>
 					<li>Saving and loading of builds</li>
 					<li>Integration into the UESP wiki</li>
@@ -362,13 +361,13 @@ displayed statistics is unknown.
 			<hr>
 			<b>11 June 2016</b>
 			<ul>
-				<li>Added damage scaling to most skills.</li>
+				<li>Added damage and healing scaling to most skill tooltips.</li>
 				<li>Added skill details button.</li>
 			</ul>
 			<p>
 			<h3>Credits</h3>
 			<hr>
-			This builder has been made possible by a large number of contributors.
+			This character builder has been made possible by a large number of contributors:
 			<ul>
 				<li>The builder was assembled from all the parts by <a href="http://www.uesp.net/wiki/User:Daveh">Daveh</a>.</li>
 				<li>Asayre and his detailed <a href="http://tamrielfoundry.com/topic/pts-2-1-2-sorcerer-arithmagic/">Arithmagic Post</a> on <a href="http://tamrielfoundry.com/">Tamriel Foundry</a> among his many others.</li>
