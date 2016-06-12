@@ -849,6 +849,33 @@ class CEsoTestBuild
 					"display" => "%",
 			),
 			
+			"Skill.FlameDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"CP.FlameDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"CP.ShockDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"CP.ColdDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"CP.PoisonDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			"CP.DiseaseDamageTaken" => array(
+					"display" => "%",
+			),
+			
+			
+			
+			
 	);
 	
 	
