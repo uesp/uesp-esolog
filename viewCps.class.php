@@ -2,16 +2,15 @@
 
 // Database users, passwords and other secrets
 require_once("/home/uesp/secrets/esolog.secrets");
-require_once("esoCommon.php");
+require_once(__DIR__."/esoCommon.php");
 
 
 class CEsoViewCP
 {
-	const ESOVCP_HTML_TEMPLATE = "templates/esocp_template.txt";
-	const ESOVCP_HTML_TEMPLATE_EMBED = "templates/esocp_embed_template.txt";
-	const ESOVCP_HTML_SIMPLE_TEMPLATE = "templates/esocp_simple_template.txt";
-	const ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED = "templates/esocp_simple_embed_template.txt";
-	
+	public $ESOVCP_HTML_TEMPLATE = "";
+	public $ESOVCP_HTML_TEMPLATE_EMBED = "";
+	public $ESOVCP_HTML_SIMPLE_TEMPLATE = "";
+	public $ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED = "";	
 	
 	public $baseUrl = "";
 	public $basePath = "";
@@ -39,6 +38,12 @@ class CEsoViewCP
 
 	public function __construct ($isEmbedded = false)
 	{
+		$this->ESOVCP_HTML_TEMPLATE = __DIR__."/templates/esocp_template.txt";
+		$this->ESOVCP_HTML_TEMPLATE_EMBED = __DIR__."/templates/esocp_embed_template.txt";
+		$this->ESOVCP_HTML_SIMPLE_TEMPLATE = __DIR__."/templates/esocp_simple_template.txt";
+		$this->ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED = __DIR__."/templates/esocp_simple_embed_template.txt";
+		
+		
 		$this->isEmbedded = $isEmbedded;
 	
 		$this->SetInputParams();
@@ -169,16 +174,16 @@ class CEsoViewCP
 		if ($this->isEmbedded)
 		{
 			if ($this->viewSimpleOutput)
-				$templateFile .= self::ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED;
+				$templateFile .= $this->ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED;
 			else
-				$templateFile .= self::ESOVCP_HTML_TEMPLATE_EMBED;
+				$templateFile .= $this->ESOVCP_HTML_TEMPLATE_EMBED;
 		}
 		else
 		{
 			if ($this->viewSimpleOutput)
-				$templateFile .= self::ESOVCP_HTML_SIMPLE_TEMPLATE;
+				$templateFile .= $this->ESOVCP_HTML_SIMPLE_TEMPLATE;
 			else
-				$templateFile .= self::ESOVCP_HTML_TEMPLATE;
+				$templateFile .= $this->ESOVCP_HTML_TEMPLATE;
 		}
 					
 		$this->htmlTemplate = file_get_contents($templateFile);
