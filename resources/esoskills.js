@@ -947,7 +947,9 @@ function CreateEsoSkillLineId(skillLine)
 function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 {
 	if (skillData == null) return cost;
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
+	var baseCost = cost;
 	var mechanic = skillData.mechanic;
 	var CPFactor = 1;
 	var FlatCost = 0;
@@ -979,12 +981,28 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor -= inputValues.UltimateCost.Buff;
 	}
 	
+	var output = "";
+	if (CPFactor != 1) output += " - " + Math.round(1000 - CPFactor*1000)/10 + "% CP";
+	if (FlatCost != 0) output += " - " + FlatCost + " Flat";
+	if (SkillFactor != 1) output += " - " + Math.round(1000 - SkillFactor*1000)/10 + "% Skill";
+	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
 	{
-		SkillFactor -= parseFloat(inputValues.SkillLineCost[skillLineId]);
+		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
+		SkillFactor -= SkillLineFactor;
+		
+		if (SkillLineFactor != 0) output += " - " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 	}
-			
+				
 	cost = Math.floor((cost * CPFactor - FlatCost) * SkillFactor);
+	if (cost < 0) cost = 0;
+	
+	if (output == "") 
+		output = " (unmodified)";
+	else
+		output += " = " + cost + " Final";
+	
+	skillData.rawOutput["Ability Cost"] = "" + baseCost + " Base " + output;
 	
 	return cost;
 }
@@ -999,12 +1017,13 @@ function ComputeEsoSkillCost(maxCost, level, inputValues, skillData)
 	
 	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6))
 	{
+		if (maxCost == 0) return 0;
 		if (level == null) level = inputValues.EffectiveLevel;
 		if (level < 1) level = 1;
 		if (level >= 66) level = 66;
 		
 		cost = Math.round(cost * level / 72.0 + cost / 12.0);
-		if (cost < 0) return 0;
+		if (cost < 0) cost = 0;
 	}
 	
 	return ComputeEsoSkillCostExtra(cost, level, inputValues, skillData);
