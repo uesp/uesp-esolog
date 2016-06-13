@@ -53,7 +53,12 @@ class CEsoItemSearchPopup
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
 		header("content-type: application/json");
-		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
+		$origin = $_SERVER['HTTP_ORIGIN'];
+		
+		if (substr($origin, -8) == "uesp.net")
+		{
+			header("Access-Control-Allow-Origin: $origin");
+		}
 	}
 	
 	
