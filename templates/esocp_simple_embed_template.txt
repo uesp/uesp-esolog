@@ -14,8 +14,7 @@
 </div>
 
 <script type="text/javascript">
-	var g_SkillDesc = {skillDescJson};
-	var g_CpData = {cpDataJson};
+	var g_EsoCpSkillDesc = {skillDescJson};
 </script>
 
 <div class="esovpBlockClear"></div>

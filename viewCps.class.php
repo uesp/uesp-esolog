@@ -22,6 +22,7 @@ class CEsoViewCP
 	public $rawCpData = "";
 	public $decodedCpData = "";
 	public $cpDataArray = array();
+	public $hasPackedCpData = false;
 	public $selectedDiscId = "the_lord";
 	
 	public $version = "";
@@ -34,9 +35,11 @@ class CEsoViewCP
 
 	public $shortDiscDisplay = false;
 	public $hideTopBar = false;
+	
+	public $initialData = null;
 			
 
-	public function __construct ($isEmbedded = false)
+	public function __construct ($isEmbedded = false, $parseParams = true)
 	{
 		$this->ESOVCP_HTML_TEMPLATE = __DIR__."/templates/esocp_template.txt";
 		$this->ESOVCP_HTML_TEMPLATE_EMBED = __DIR__."/templates/esocp_embed_template.txt";
@@ -46,8 +49,12 @@ class CEsoViewCP
 		
 		$this->isEmbedded = $isEmbedded;
 	
-		$this->SetInputParams();
-		$this->ParseInputParams();
+		if ($parseParams)
+		{
+			$this->SetInputParams();
+			$this->ParseInputParams();
+		}
+		
 		$this->InitDatabase();
 	}
 	
@@ -199,6 +206,7 @@ class CEsoViewCP
 			$this->rawCpData = urldecode($this->inputParams['cp']);
 			$this->decodedCpData = base64_decode($this->rawCpData);
 			$this->cpDataArray = unpack('C*', $this->decodedCpData);
+			$this->hasPackedCpData = true;
 		}
 		
 		if (array_key_exists('disc', $this->inputParams)) $this->selectedDiscId = urldecode($this->inputParams['disc']);
@@ -282,9 +290,11 @@ class CEsoViewCP
 			$display = "none";
 			if ($id == $this->selectedDiscId) $display = "block";
 			
+			$totalPoints = $this->GetInitialDisciplinePoints($name);
+			
 			$output .= "<div id='skills_$id' disciplineid='$id' disciplineindex='$index' class='esovcpDiscSkills' style='display: $display;'>";
 			$output .= "<div class='esovcpDiscSkillTitle'>$name</div>";
-			$output .= "<div class='esovcpDiscTitlePoints'>0</div>";
+			$output .= "<div class='esovcpDiscTitlePoints'>$totalPoints</div>";
 			//$output .= "<hr>";
 			
 			foreach ($discipline['skills'] as $skill)
@@ -300,18 +310,78 @@ class CEsoViewCP
 	}
 	
 	
+	public function GetInitialTotalPoints()
+	{
+		return 	$this->GetInitialAttributePoints(1) + 
+				$this->GetInitialAttributePoints(2) + 
+				$this->GetInitialAttributePoints(3);
+	}
+	
+	
+	public function GetInitialAttributePoints($attribute)
+	{
+		if ($attribute == 1) //Stamina
+		{
+			return 	$this->GetInitialDisciplinePoints("The Lord") +
+					$this->GetInitialDisciplinePoints("The Lady") +
+					$this->GetInitialDisciplinePoints("The Steed");
+		}
+		else if ($attribute == 2) //Magicka
+		{
+			return 	$this->GetInitialDisciplinePoints("The Ritual") +
+					$this->GetInitialDisciplinePoints("The Atronach") +
+					$this->GetInitialDisciplinePoints("The Apprentice");
+		}
+		else if ($attribute == 3) //Health
+		{
+			return 	$this->GetInitialDisciplinePoints("The Tower") +
+					$this->GetInitialDisciplinePoints("The Shadow") +
+					$this->GetInitialDisciplinePoints("The Lover");
+		}
+	}
+	
+	
+	public function GetInitialDisciplinePoints($discipline)
+	{
+		if ($this->initialData == null) return 0;
+		
+		if ($this->initialData[$discipline] == null) return 0;
+		if ($this->initialData[$discipline]['points'] == null) return 0;
+		
+		return $this->initialData[$discipline]['points'];
+	}
+	
+	
 	public function GetInitialSkillValue($skill)
+	{
+		if ($this->hasPackedCpData) return $this->GetInitialSkillValueFromPackedData($skill);
+		if ($this->initialData == null) return 0;
+		
+		$skillName = $skill['name'];
+		$disciplineIndex = $skill['disciplineIndex'];
+		$discName = $this->cpData[$disciplineIndex]['name'];
+		
+		if ($discName == null) return 0;
+		
+		if ($this->initialData[$discName] == null) return 0;
+		if ($this->initialData[$discName][$skillName] == null) return 0;
+		
+		return $this->initialData[$discName][$skillName];
+	}
+	
+	
+	public function GetInitialSkillValueFromPackedData($skill)
 	{
 		$disciplineIndex = $skill['disciplineIndex'];
 		$skillIndex = $skill['skillIndex'];
 		$index = ($disciplineIndex - 1) * 4 + $skillIndex;
-
+	
 		if ($this->cpDataArray[$index] == null) return "0";
-		
+	
 		$value = $this->cpDataArray[$index];
 		if ($value < 0) $value = 0;
 		if ($value > 100) $value = 100;
-		
+	
 		return $value;
 	}
 	
@@ -326,6 +396,9 @@ class CEsoViewCP
 		$desc = $this->FormatDescriptionHtml($skill['minDescription']);
 		$isUnlocked = 0;
 		
+		$initialValue = $this->GetInitialSkillValue($skill);
+		if ($initialValue < 0) $isUnlocked = 1;
+		
 		$output = "<div id='skill_$id' skillid='$id' unlocklevel='$unlockLevel' unlocked='$isUnlocked' class='esovcpSkill $extraClass'>";
 		
 		if ($unlockLevel > 0)
@@ -334,13 +407,11 @@ class CEsoViewCP
 		}
 		else
 		{
-			$initialValue = $this->GetInitialSkillValue($skill);
-			
-			if ($initialValue > 0 && $initialValue <= 100)
-			{
-				$rawDesc = $skill['descriptions'][$initialValue]['description'];
-				if ($rawDesc != null && $rawDesc != "") $desc = $this->FormatDescriptionHtml($rawDesc);
-			}
+			if ($initialValue < 0) $initialValue = 0;
+			if ($initialValue > 100) $initialValue = 100;
+				
+			$rawDesc = $skill['descriptions'][$initialValue]['description'];
+			if ($rawDesc != null && $rawDesc != "") $desc = $this->FormatDescriptionHtml($rawDesc);
 			
 			$output .= "<div class='esovcpSkillControls'>";
 			$output .= "<button skillid='$id' class='esovcpMinusButton'>-</button>";
@@ -361,22 +432,27 @@ class CEsoViewCP
 	{
 		$output = "";
 		
-		$output .= "<div class='esovcpTotalPoints' id='esovcpTotalPoints'>0 CP</div>";
-		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscHea' id='esovcpDiscHea' attributeindex='1'>0</div>";
+		$totalPoints = $this->GetInitialTotalPoints();
+		$totalPoints1 = $this->GetInitialAttributePoints(1);
+		$totalPoints2 = $this->GetInitialAttributePoints(2);
+		$totalPoints3 = $this->GetInitialAttributePoints(3);
+		
+		$output .= "<div class='esovcpTotalPoints' id='esovcpTotalPoints'>$totalPoints CP</div>";
+		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscHea' id='esovcpDiscHea' attributeindex='1'>$totalPoints1</div>";
 		$output .= "<div class='esovcpDiscAttrGroup' id='disc_hea' attributeindex='1'>";
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[2], "esovcpDiscHea");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[3], "esovcpDiscHea");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[4], "esovcpDiscHea");
 		$output .= "</div>";
 	
-		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscMag' id='esovcpDiscMag' attributeindex='2'>0</div>";
+		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscMag' id='esovcpDiscMag' attributeindex='2'>$totalPoints2</div>";
 		$output .= "<div class='esovcpDiscAttrGroup' id='disc_mag' attributeindex='2'>";
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[5], "esovcpDiscMag");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[6], "esovcpDiscMag");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[7], "esovcpDiscMag");
 		$output .= "</div>";
 		
-		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscSta' id='esovcpDiscSta' attributeindex='3'>0</div>";
+		$output .= "<div class='esovcpDiscAttrPoints esovcpDiscSta' id='esovcpDiscSta' attributeindex='3'>$totalPoints3</div>";
 		$output .= "<div class='esovcpDiscAttrGroup' id='disc_sta' attributeindex='3'>";
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[8], "esovcpDiscSta");
 		$output .= $this->GetCpDisciplineTitleHtml($this->cpData[9], "esovcpDiscSta");

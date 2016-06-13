@@ -7,11 +7,6 @@ var g_EsoSkillSearchLastIndex = -1;
 
 var g_EsoSkillDragData = {};
 
-var g_EsoSkillBarData = [];
-var g_EsoSkillPassiveData = {};
-var g_EsoSkillActiveData = {};
-var g_EsoSkillPointsUsed = 0;
-
 var g_EsoSkillUpdateEnable = true;
 
 
@@ -496,7 +491,7 @@ function OnEsoSkillBlockPlusClick(event)
 }
 
 
-function OnEsoSkillBlockPlusSelectClick(event)
+function OnEsoSkillBlockPlusSelectClick(e)
 {
 	var $openList = $('.esovsAbilityBlockList:visible');
 	var $parent = $(this).parent();
@@ -505,7 +500,7 @@ function OnEsoSkillBlockPlusSelectClick(event)
 	if ($openList[0] == $element[0])
 	{
 		$element.slideUp();
-		return;
+		return false;
 	}
 	
 	$openList.slideUp();
@@ -522,6 +517,10 @@ function OnEsoSkillBlockPlusSelectClick(event)
 			scrollTop: offsetTop,
 	    });
 	}
+	
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
 }
 
 

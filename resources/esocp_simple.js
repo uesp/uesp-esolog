@@ -179,8 +179,8 @@ function UpdateEsoCPSkillDesc(skillId, points)
 {
 	var descControl = $("#descskill_" + skillId);
 	
-	if (g_SkillDesc[skillId] == null) return;
-	var desc = g_SkillDesc[skillId][points];
+	if (g_EsoCpSkillDesc[skillId] == null) return;
+	var desc = g_EsoCpSkillDesc[skillId][points];
 	
 	descControl.html(desc);
 }
@@ -193,7 +193,8 @@ function UpdateEsoCPDiscSkillDesc(discId)
 	discElement.find(".esovcpSkill").each(function(i, element){
 		var skillId = $(this).attr("skillid");
 		if (skillId == null || skillId == "") return;
-		UpdateEsoCPSkillDesc(skillId, 0);
+		var points = $(this).find(".esovcpPointInput").val();
+		UpdateEsoCPSkillDesc(skillId, points);
 	});
 }
 
