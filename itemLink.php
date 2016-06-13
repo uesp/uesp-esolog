@@ -961,7 +961,13 @@ class CEsoItemLink
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
-		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
+		
+		$origin = $_SERVER['HTTP_ORIGIN'];
+		
+		if (substr($origin, -8) == "uesp.net")
+		{
+			header("Access-Control-Allow-Origin: $origin");
+		}
 		
 		if ($this->outputType == "html")
 			header("content-type: text/html");
