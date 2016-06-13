@@ -622,7 +622,7 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 }
 
 
-function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
+function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, outputRaw)
 {
 	var output = "";
 	var skillData = g_SkillsData[skillId];
@@ -664,7 +664,11 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines)
 	{
 		var effectLines = skillData['effectLines'];
 		if (effectLines != "" && noEffectLines !== true) coefDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";
-		output = EsoConvertDescToText(coefDesc)
+		
+		if (outputRaw !== true) 
+			output = EsoConvertDescToText(coefDesc);
+		else
+			output = coefDesc;
 	}
 	
 	skillData.lastDesc = output;
@@ -1002,7 +1006,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		output += " = " + cost + " Final";
 	
 	skillData.rawOutput["Ability Cost"] = "" + baseCost + " Base " + output;
-	
+	skillData.modifiedCost = cost;
 	return cost;
 }
 
@@ -1060,16 +1064,18 @@ function UpdateEsoSkillTooltipCost()
 }
 
 
-function UpdateEsoSkillCost(skillId, costElement, inputValues)
+function GetEsoSkillCost(skillId, inputValues)
 {
 	var skillData = g_SkillsData[skillId];
-	if (skillData == null) return;
+	if (skillData == null) return "";
 	
 	var mechanic = skillData['mechanic'];
-	if (mechanic != 0 && mechanic != 6 && mechanic != 10) return;
+	if (mechanic != 0 && mechanic != 6 && mechanic != 10) return "";
 	
 	var passive = skillData['isPassive'];
-	if (passive != 0) return;
+	if (passive != 0) return "";
+	
+	if (inputValues == null) inputValues = g_LastSkillInputValues;
 	
 	var baseCost = parseInt(skillData['cost']);
 	var cost = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, skillData);
@@ -1082,6 +1088,14 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 		costStr += "Stamina";
 	else if (mechanic == 10)
 		costStr += "Ultimate";
+	
+	return costStr;
+}
+
+
+function UpdateEsoSkillCost(skillId, costElement, inputValues)
+{
+	var costStr = GetEsoSkillCost(skillId, inputValues);
 	
 	costElement.text(costStr);
 }

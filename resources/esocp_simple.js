@@ -19,16 +19,17 @@ function UpdateEsoCpData()
 		if (g_EsoCpData[skillId] == null) 
 		{
 			g_EsoCpData[skillId] = {};
+			g_EsoCpData[skillId].type = "skill";
 			g_EsoCpData[skillId].id = skillId;
 			g_EsoCpData[skillId].name = skillName;
 			g_EsoCpData[skillId].discipline = $this.parent().attr("disciplineid");
 			g_EsoCpData[skillId].unlockLevel = $this.attr("unlockLevel");
-			
 			g_EsoCpData[skillName] = g_EsoCpData[skillId];
 		}
 		
 		g_EsoCpData[skillId].points = $this.find(".esovcpPointInput").val();
-		g_EsoCpData[skillId].isUnlocked = ($this.attr("unlocked") != 0);		
+		g_EsoCpData[skillId].isUnlocked = ($this.attr("unlocked") != 0);
+		g_EsoCpData[skillId].description = $this.find(".esovcpSkillDesc").text();
 	});
 		
 	cpDiscs.each(function(){
@@ -40,6 +41,7 @@ function UpdateEsoCpData()
 		if (g_EsoCpData[discId] == null)
 		{
 			g_EsoCpData[discId] = {};
+			g_EsoCpData[discId].type = "discipline";
 			g_EsoCpData[discId].index = $this.attr("disciplineindex");
 			g_EsoCpData[discId].attribute = $this.parent().attr("attributeindex");
 		}
@@ -59,6 +61,7 @@ function UpdateEsoCpData()
 		if (g_EsoCpData[attributeId] == null)
 		{
 			g_EsoCpData[attributeId] = {};
+			g_EsoCpData[attributeId].type = "attribute";
 			g_EsoCpData[attributeId].index = attributeIndex;
 		}
 		
