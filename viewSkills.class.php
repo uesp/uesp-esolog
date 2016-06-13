@@ -22,7 +22,7 @@ class CEsoViewSkills
 	public $highlightSkillLine = "";
 
 	public $isFirstSkill = true;
-	public $useUpdate10Costs = false;
+	public $useUpdate10Costs = true;
 
 	public $skills = array();
 	public $skillIds = array();
@@ -46,9 +46,16 @@ class CEsoViewSkills
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResource = "";
+	
+	public $initialData = array();
+	public $activeData = array();
+	public $passiveData = array();
+	public $initialSkillBarData = array();
+	public $dataLoaded = false;	
+	public $activeSkillBar = 1;
 
 
-	public function __construct ($isEmbedded = false, $displayType = "summary")
+	public function __construct ($isEmbedded = false, $displayType = "summary", $parseParams = true)
 	{
 		$this->ESOVS_HTML_TEMPLATE = __DIR__."/templates/esoskills_template.txt";
 		$this->ESOVS_HTML_TEMPLATE_EMBED = __DIR__."/templates/esoskills_embed_template.txt";
@@ -56,8 +63,12 @@ class CEsoViewSkills
 		$this->isEmbedded = $isEmbedded;
 		$this->displayType = $displayType;
 		
-		$this->SetInputParams();
-		$this->ParseInputParams();
+		if ($parseParams)
+		{
+			$this->SetInputParams();
+			$this->ParseInputParams();
+		}
+		
 		$this->InitDatabase();
 	}
 
@@ -141,6 +152,7 @@ class CEsoViewSkills
 
 		$this->CreateSkillTree();
 		$this->CreateSkillSearchIds();
+		//$this->FindBaseAbilityForInitialActiveData();
 		return true;
 	}
 
@@ -398,12 +410,25 @@ class CEsoViewSkills
 
 		return $output;
 	}
+	
+	
+	public function GetUsedSkillPoints()
+	{
+		if ($this->initialData == null) return 0;
+		
+		$usedPoints = $this->initialData['UsedPoints'];
+		if ($usedPoints == null || $usedPoints < 0) $usedPoints = 0;
+		
+		return $usedPoints;
+	}
 
 	
 	public function GetSkillPointsHtml()
 	{
+		$usedPoints = $this->GetUsedSkillPoints();;
+		
 		$output  = "<div id='esovsSkillPointsContent'>";
-		$output .= "	<div id='esovsSkillPointsTitle'>Used Skill Points:</div> <div id='esovsSkillPoints'>0</div>";
+		$output .= "	<div id='esovsSkillPointsTitle'>Used Skill Points:</div> <div id='esovsSkillPoints'>$usedPoints</div>";
 		$output .= "	<button id='esovsSkillReset'>Reset All Skills</button>";
 		$output .= "</div>";
 		return $output;
@@ -558,6 +583,23 @@ class CEsoViewSkills
 
 		return null;
 	}
+	
+	
+	public function FindPurchasedAbility($abilityData)
+	{
+		if ($this->initialData == null) return null;
+		
+		for ($i = -1; $i <= 12; ++$i)
+		{
+			if ($abilityData[$i] == null) continue;
+			$abilityId = $abilityData[$i]['abilityId'];
+			if ($this->initialData[$abilityId] == null) continue;
+			
+			return $abilityData[$i];
+		}
+		
+		return null;		
+	}
 
 
 	public function SetupHighlightSkill()
@@ -622,8 +664,22 @@ class CEsoViewSkills
 			if ($baseAbility == null) continue;
 			
 			$lastAbility = $this->FindLastAbility($abilityData);
+			$isPurchased = false;
 			
-			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true);
+			if ($this->displayType == "select")
+			{
+				$purchasedAbility = $this->FindPurchasedAbility($abilityData);
+				
+				if ($purchasedAbility != null) 
+				{
+					$lastAbility = $purchasedAbility;
+					$baseAbility = $lastAbility;
+					$abilityName = $lastAbility['name'];
+					$isPurchased = true;
+				}
+			}
+			
+			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true, $isPurchased);
 				
 			if ($lastAbility['maxRank'] > 1 || $this->displayType == "select")
 			{
@@ -640,7 +696,7 @@ class CEsoViewSkills
 	}
 
 
-	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel)
+	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel, $isPurchased = false)
 	{
 		$output = "";
 			
@@ -705,7 +761,13 @@ class CEsoViewSkills
 				$rank -= 4;
 			}
 			
-			if ($this->displayType == "select" && $topLevel) $extraIconAttr = "draggable='false'";
+			if ($this->displayType == "select" && $topLevel) 
+			{
+				if ($isPurchased)
+					$extraIconAttr = "draggable='true'";
+				else
+					$extraIconAttr = "draggable='false'";
+			}
 		}
 
 		if ($rank > 0 && $maxRank > 1) $rankLabel = " " . $this->GetRomanNumeral($rank);
@@ -714,8 +776,10 @@ class CEsoViewSkills
 		
 		if ($this->displayType == "select")
 		{
-			if ($topLevel) 
-				$extraClass = "esovsAbilityBlockNotPurchase";
+			if ($topLevel && !$isPurchased) 
+				$extraClass .= " esovsAbilityBlockNotPurchase";
+			else if ($topLevel)
+				$extraClass .= "";
 			else
 				$extraClass .= " esovsAbilityBlockSelect";
 		}
@@ -756,6 +820,42 @@ class CEsoViewSkills
 
 		return $output;
 	}
+	
+	
+	public function FindBaseAbilityForInitialActiveData()
+	{
+		foreach ($this->activeData as $abilityId => $activeData)
+		{
+			$this->activeData[$abilityId]['baseAbilityId'] = $this->FindBaseAbilityForActiveData($abilityId);
+		}
+	}
+	
+	
+	public function FindBaseAbilityForActiveData($abilityId)
+	{
+		$skillData = $this->skillIds[$abilityId];
+		if ($skillData == null) return $abilityId;
+				
+		while ($skillData['prevSkill'] > 0)
+		{
+			$prevId = $skillData['prevSkill'];
+			$skillData = $this->skillIds[$prevId];
+			if ($skillData == null) return $abilityId;
+		}
+		
+		$baseAbilityId = $skillData['abilityId'];
+		if ($skillData['isPassive'] != 0) return $baseAbilityId;
+				
+		while ($skillData['nextSkill'] > 0)
+		{
+			$nextId = $skillData['nextSkill'];
+			$skillData = $this->skillIds[$nextId];
+			if ($skillData == null) return $baseAbilityId;
+			if ($skillData['rank'] == 4) return $skillData['abilityId'];
+		}
+		
+		return $baseAbilityId;
+	}	
 
 
 	public function DoesAbilityListHaveHighlightSkill($abilityData)
@@ -883,29 +983,71 @@ class CEsoViewSkills
 		if (!$this->displaySkillBar) return "";
 		$output = "<div id='esovsSkillBar'>";
 		
-		$output .= "<div id='esovsSkillBar1' class='esovsSkillBar esovsSkillBarHighlight' skillbar='1'>";
+		$extraClass1 = "";
+		$extraClass2 = "";
+		if ($this->activeSkillBar == 1) $extraClass1 = "esovsSkillBarHighlight";
+		if ($this->activeSkillBar == 2) $extraClass2 = "esovsSkillBarHighlight";
+		
+		$output .= "<div id='esovsSkillBar1' class='esovsSkillBar $extraClass1' skillbar='1'>";
 		$output .= "	<div class='esovsSkillBarTitle'>Bar 1</div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false' id='esovsSkillIcon11' skillindex='1' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon12' skillindex='2' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon13' skillindex='3' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon14' skillindex='4' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon15' skillindex='5' skillbar='1' skillid='0' src=''></div>";
-		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";  
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon16' skillindex='6' skillbar='1' skillid='0' src=''></div>";
-		$output .= "</div>";
-		
-		$output .= "<div id='esovsSkillBar2' class='esovsSkillBar' skillbar='2'>";
-		$output .= "	<div class='esovsSkillBarTitle'>Bar 2</div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon21' skillindex='1' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon22' skillindex='2' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon23' skillindex='3' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon24' skillindex='4' skillbar='2' skillid='0' src=''></div>";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon25' skillindex='5' skillbar='2' skillid='0' src=''></div>";
+		$output .= $this->GetSkillBarSlotHtml(0, 0);
+		$output .= $this->GetSkillBarSlotHtml(0, 1);
+		$output .= $this->GetSkillBarSlotHtml(0, 2);
+		$output .= $this->GetSkillBarSlotHtml(0, 3);
+		$output .= $this->GetSkillBarSlotHtml(0, 4);
 		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
-		$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false'  id='esovsSkillIcon26' skillindex='6' skillbar='2' skillid='0' src=''></div>";
+		$output .= $this->GetSkillBarSlotHtml(0, 5);
+		//$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false' id='esovsSkillIcon16' skillindex='6' skillbar='1' skillid='0' src=''></div>";
+		$output .= "</div>";
+		
+		$output .= "<div id='esovsSkillBar2' class='esovsSkillBar $extraClass2' skillbar='2'>";
+		$output .= "	<div class='esovsSkillBarTitle'>Bar 2</div>";
+		$output .= $this->GetSkillBarSlotHtml(1, 0);
+		$output .= $this->GetSkillBarSlotHtml(1, 1);
+		$output .= $this->GetSkillBarSlotHtml(1, 2);
+		$output .= $this->GetSkillBarSlotHtml(1, 3);
+		$output .= $this->GetSkillBarSlotHtml(1, 4);
+		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
+		$output .= $this->GetSkillBarSlotHtml(1, 5);
+		//$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false' id='esovsSkillIcon26' skillindex='6' skillbar='2' skillid='0' src=''></div>";
 		$output .= "</div>";
 		
 		$output .= "</div>";
+		return $output;
+	}
+	
+	
+	public function GetSkillBarSlotHtml($barIndex, $slotIndex)
+	{
+		$outBarIndex = $barIndex + 1;
+		$outSlotIndex = $slotIndex + 1;
+		$classSuffix = "" . $outBarIndex . $outSlotIndex. "";
+		
+		$draggable = "false";
+		$skillId = "0";
+		$origSkillId = "0";
+		$imageSrc = "";
+		
+		if ($this->initialSkillBarData[$barIndex] != null && $this->initialSkillBarData[$barIndex][$slotIndex] != null)
+		{
+			$skillData = $this->initialSkillBarData[$barIndex][$slotIndex];
+			
+			if ($skillData['skillId'] > 0)
+			{
+				$abilityData = $this->skillIds[$skillData['skillId']];
+				
+				$draggable = "true";
+				$skillId = $skillData['skillId'];
+				$origSkillId = $skillData['origSkillId'];
+				
+				if ($abilityData != null) $imageSrc = $this->GetIconURL($abilityData['texture']);
+			}
+		}
+						
+		$output = "<div class='esovsSkillBarItem'>";
+		$output .= "	<img class='esovsSkillBarIcon' draggable='$draggable' id='esovsSkillIcon$classSuffix' skillindex='$outSlotIndex' skillbar='$outBarIndex' skillid='$skillId' origskillid='$origSkillId' src='$imageSrc'>";
+		$output .= "</div>";
+		
 		return $output;
 	}
 	
@@ -941,6 +1083,10 @@ class CEsoViewSkills
 				'{menuBarDisplay}' => $this->GetMenuBarDisplay(),
 				'{displayType}' => $this->displayType,
 				'{skillBar}' => $this->GetSkillBarHtml(),
+				'{usedPoints}' => $this->GetUsedSkillPoints(),
+				'{activeDataJson}' => json_encode($this->activeData),
+				'{passiveDataJson}' => json_encode($this->passiveData),
+				'{skillBarJson}'  => json_encode($this->initialSkillBarData),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -953,17 +1099,36 @@ class CEsoViewSkills
 	public function Render()
 	{
 		$this->OutputHtmlHeader();
-		$this->LoadTemplate();
-		$this->LoadSkills();
+		
+		if (!$this->dataLoaded)
+		{
+			$this->LoadTemplate();
+			$this->LoadSkills();
+			$this->dataLoaded = true;
+		}
+		
 		$this->SetupHighlightSkill();
 		$this->OutputHtml();
 	}
 	
 	
-	public function GetOutputHtml()
+	public function LoadData()
 	{
 		$this->LoadTemplate();
 		$this->LoadSkills();
+		$this->dataLoaded = true;
+	}
+	
+	
+	public function GetOutputHtml()
+	{
+		if (!$this->dataLoaded)
+		{
+			$this->LoadTemplate();
+			$this->LoadSkills();
+			$this->dataLoaded = true;
+		}
+		
 		$this->SetupHighlightSkill();
 		return $this->CreateOutputHtml();
 	}
