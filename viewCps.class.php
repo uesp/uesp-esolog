@@ -182,7 +182,8 @@ class CEsoViewCP
 	
 	public function LoadTemplate()
 	{
-		$templateFile = $this->basePath;
+		//$templateFile = $this->basePath;
+		$templateFile = "";
 	
 		if ($this->isEmbedded)
 		{

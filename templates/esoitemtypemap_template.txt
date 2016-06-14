@@ -3,7 +3,7 @@
 	<head>
 		<title>UESP:ESO Item Type Map</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esoitemtypemap.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemtypemap.css" />
 	</head>
 <body>
 <h1>ESO Item Type Map</h1>

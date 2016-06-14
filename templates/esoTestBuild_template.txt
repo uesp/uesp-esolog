@@ -3,18 +3,18 @@
 	<head>
 		<title>UESP:ESO Test Character Build</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esocp_simple_embed.css" />
-		<link rel="stylesheet" href="resources/esoskills_embed.css" />
-		<link rel="stylesheet" href="resources/esoItemSearchPopup.css" />
-		<link rel="stylesheet" href="resources/esoitemlink_embed.css" />
-		<link rel="stylesheet" href="resources/esoTestBuild.css" />
-		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="resources/jquery.transit.min.js"></script>
-		<script type="text/javascript" src="resources/esocp_simple.js"></script>
-		<script type="text/javascript" src="resources/esoskills.js"></script>
-		<script type="text/javascript" src="resources/esoTestBuild.js"></script>
-		<script type="text/javascript" src="resources/esoItemSearchPopup.js"></script>
-		<script type="text/javascript" src="http://content3.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esocp_simple_embed.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoskills_embed.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoItemSearchPopup.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoTestBuild.css" />
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esocp_simple.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoskills.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoTestBuild.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoItemSearchPopup.js"></script>
+		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
