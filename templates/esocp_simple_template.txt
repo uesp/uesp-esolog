@@ -3,11 +3,11 @@
 	<head>
 		<title>UESP:ESO Champion Point Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esocp.css" />
-		<link rel="stylesheet" href="resources/esocp_simple_embed.css" />
-		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="resources/jquery.transit.min.js"></script>
-		<script type="text/javascript" src="resources/esocp_simple.js"></script>
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esocp.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esocp_simple_embed.css" />
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esocp_simple.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php" style="display:{topBarDisplay};">Back to Home</a>

@@ -3,10 +3,10 @@
 	<head>
 		<title>UESP:ESO Skill Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esoskills.css" />
-		<link rel="stylesheet" href="resources/esoskills_embed.css" />
-		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="resources/esoskills.js"></script>
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoskills.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoskills_embed.css" />
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoskills.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>

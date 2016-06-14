@@ -134,7 +134,8 @@ class CEsoViewSkills
 
 	public function LoadTemplate()
 	{
-		$templateFile = $this->basePath;
+		//$templateFile = $this->basePath;
+		$templateFile = "";
 		
 		if ($this->isEmbedded)
 			$templateFile .= $this->ESOVS_HTML_TEMPLATE_EMBED;
