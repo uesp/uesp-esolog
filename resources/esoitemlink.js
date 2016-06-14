@@ -138,7 +138,6 @@ function FindEsoItemData(level, quality)
 		if (itemData['level'] == level && itemData['quality'] == quality) return MergeEsoItemData(itemData, firstItem);
 	}
 	
-	console.log("FindEsoItemData(): Didn't find item #" + firstItem.itemId + "(level " + level + ", quality " + quality + ") in data!");
 	return null;
 }
 
@@ -485,7 +484,6 @@ $( document ).ready(function() {
 	});
 	
 	UpdateAllItemData();
-	console.log("ready");
 });
 	
 	
