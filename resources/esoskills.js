@@ -1942,7 +1942,6 @@ function OnSkillBarSelect(e)
 	
 	SetEsoSkillBarSelect(skillBar);
 	
-	console.log("Switch to skill bar " + skillBar);
 	$(document).trigger("EsoSkillBarSwap", [ skillBar ]);
 }
 
