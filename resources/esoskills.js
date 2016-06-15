@@ -2289,10 +2289,13 @@ function esovsOnDocReady()
 	
 	var highlightSkill = $(".esovsSearchHighlight");
 	
-	if (highlightSkill.length == 0)
-		$(".esovsAbilityBlock").first().trigger('click');
-	else
-		highlightSkill.trigger('click');
+	if (g_SkillDisplayType == "summary")
+	{
+		if (highlightSkill.length == 0)
+			$(".esovsAbilityBlock").first().trigger('click');
+		else
+			highlightSkill.trigger('click');
+	}
 	
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
