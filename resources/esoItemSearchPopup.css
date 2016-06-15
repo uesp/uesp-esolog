@@ -38,7 +38,8 @@
 }
 
 #esoispResults {
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	height: 355px;
 	float: none;
 	clear: both;
@@ -56,6 +57,7 @@
 	font-weight: bold;
 	margin-left: 10px;
 	height: 36px;
+	white-space: nowrap;
 }
 
 .esoispResultRow:hover {

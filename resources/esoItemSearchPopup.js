@@ -545,8 +545,16 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	
 	this.updateLevelQuality();
 	
-	queryParams['intlevel'] = this.itemIntLevel;
-	queryParams['inttype'] = this.itemIntType;
+	if (this.itemType == 4 || this.itemType == 12 || this.itemType == "4,12")
+	{
+		queryParams['level'] = this.parseLevel(this.itemLevel);
+		queryParams['quality'] = this.itemQuality;
+	}
+	else
+	{
+		queryParams['intlevel'] = this.itemIntLevel;
+		queryParams['inttype'] = this.itemIntType;
+	}
 	
 	return queryParams;
 }
