@@ -158,6 +158,8 @@ UESP.EsoItemSearchPopup = function ()
 	this.weaponType = "-1";
 	this.armorType = "-1";
 	this.itemTrait = "-1";
+	this.xoffset = 0;
+	this.yoffset = 0;
 };
 
 
@@ -347,6 +349,54 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"</div>" +
 		"<div id='esoispResults'></div>" + 
 		"";
+}
+
+
+UESP.EsoItemSearchPopup.prototype.adjustPosition = function()
+{
+    var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    var toolTipWidth = this.rootElement.width();
+    var toolTipHeight = this.rootElement.height();
+    var elementHeight = this.sourceElement.height();
+    var elementWidth = this.sourceElement.width();
+     
+    var top = this.sourceElement.offset().top - 150 + this.yoffset;
+    var left = this.sourceElement.offset().left + this.sourceElement.outerWidth() + 3 + this.xoffset;
+     
+    this.rootElement.offset({ top: top, left: left });
+     
+    var viewportTooltip = this.rootElement[0].getBoundingClientRect();
+     
+    if (viewportTooltip.bottom > windowHeight) 
+    {
+    	var deltaHeight = viewportTooltip.bottom - windowHeight + 10;
+        top = top - deltaHeight
+    }
+    else if (viewportTooltip.top < 0)
+    {
+    	var deltaHeight = viewportTooltip.top - 10;
+        top = top - deltaHeight
+    }
+         
+    if (viewportTooltip.right > windowWidth) 
+    {
+    	left = left - toolTipWidth - this.rootElement.width() - 28;
+    }
+     
+    this.rootElement.offset({ top: top, left: left });
+    viewportTooltip = this.rootElement[0].getBoundingClientRect();
+     
+    if (viewportTooltip.left < 0 )
+    {
+    	var el = $('<i/>').css('display','inline').insertBefore(this.rootElement[0]);
+        var realOffset = el.offset();
+        el.remove();
+         
+        left = realOffset.left - toolTipWidth - 3;
+        this.rootElement.offset({ top: top, left: left });
+    }
+     
 }
 
 
@@ -922,6 +972,12 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	this.sourceElement = sourceElement;
 	this.onSelectItem = data.onSelectItem;
 	
+	this.xoffset = 0;
+	this.yoffset = 0;
+	
+	if (data.xoffset != null) this.xoffset = data.xoffset;
+	if (data.yoffset != null) this.yoffset = data.yoffset;
+	
 	if (this.itemType != data.itemType)
 	{
 		this.itemType = data.itemType;
@@ -962,6 +1018,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	this.update();
 	this.updateTitle();
 	this.show();
+	this.adjustPosition();
 }
 
 
