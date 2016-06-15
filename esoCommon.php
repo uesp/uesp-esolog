@@ -15,6 +15,26 @@ const UESP_POWERTYPE_DAMAGE        = -56;
 const UESP_SHOWCPLEVEL = true;
 
 
+$APIVERSION_TO_GAMEUPDATE = array(
+		"100010" => "5",
+		"100011" => "6",
+		"100012" => "7",
+		"100013" => "8",
+		"100014" => "9",
+		"100015" => "10",
+);
+
+
+$APIVERSION_TO_GAMEVERSION = array(
+		"100010" => "1.5",
+		"100011" => "2.0",
+		"100012" => "2.1",
+		"100013" => "2.2",
+		"100014" => "2.3",
+		"100015" => "2.4",
+);
+
+
 $ESO_ITEMTRAIT_FULLTEXTS = array(
 		-1 => "",
 		18 => "Armor Divines",
