@@ -88,13 +88,21 @@ function OnEsoCpDisciplineClick(e)
 
 function OnEsoCPPlusButtonClick(e)
 {
+	var isShift = false;
+	if (e.shiftKey) isShift = true;
+	
 	var skillId = $(this).attr('skillid');
 	var inputControl = $(".esovcpPointInput[skillid='" + skillId + "']");
 	
 	if (inputControl.length == 0) return;
 	
-	var value = (parseInt(inputControl.val()) || 0) + 1;
+	var value = (parseInt(inputControl.val()) || 0);
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
+	
+	if (isShift)
+		value += 10;
+	else
+		value += 1;
 	
 	if (value > 100) value = 100;
 	inputControl.val(value);
@@ -106,13 +114,21 @@ function OnEsoCPPlusButtonClick(e)
 
 function OnEsoCPMinusButtonClick(e)
 {
+	var isShift = false;
+	if (e.shiftKey) isShift = true;
+	
 	var skillId = $(this).attr('skillid');
 	var inputControl = $(".esovcpPointInput[skillid='" + skillId + "']");
 	
 	if (inputControl.length == 0) return;
 	
-	var value = (parseInt(inputControl.val()) || 0) - 1;
+	var value = (parseInt(inputControl.val()) || 0);
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
+	
+	if (isShift)
+		value -= 10;
+	else
+		value -= 1;
 	
 	if (value < 0) value = 0;
 	inputControl.val(value);
