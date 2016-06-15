@@ -1975,6 +1975,9 @@ function OnAbilityDragStart(e)
 	g_EsoSkillDragData.fromSkillBar = false;
 	g_EsoSkillDragData.wasDropped = false;
 	
+		// Fix for Firefox not dragging?
+	e.originalEvent.dataTransfer.setData('something', 'anything2');
+	
 	e.originalEvent.dataTransfer.effectAllowed = "copy";
 	
 	var popupElement = $("#esovsPopupSkillTooltip");
@@ -2070,6 +2073,10 @@ function OnSkillBarDrop(e)
 	
 	g_EsoSkillDragData.isDragging = false;
 	UpdateEsoSkillBarData();
+	
+		// Fix for Firefox
+	 e.preventDefault();
+	 e.stopPropagation();
 }
 
 
