@@ -826,7 +826,7 @@ class CEsoViewSkills
 			}
 		}
 		
-		$output .= "<div class='$iconClass' $extraIconAttr><img src='$icon' />";
+		$output .= "<div class='$iconClass' $extraIconAttr><img alt='' src='$icon' />";
 		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockTitle'>";
@@ -1067,7 +1067,7 @@ class CEsoViewSkills
 		}
 						
 		$output = "<div class='esovsSkillBarItem'>";
-		$output .= "	<img class='esovsSkillBarIcon' draggable='$draggable' id='esovsSkillIcon$classSuffix' skillindex='$outSlotIndex' skillbar='$outBarIndex' skillid='$skillId' origskillid='$origSkillId' src='$imageSrc'>";
+		$output .= "	<img class='esovsSkillBarIcon' alt='' draggable='$draggable' id='esovsSkillIcon$classSuffix' skillindex='$outSlotIndex' skillbar='$outBarIndex' skillid='$skillId' origskillid='$origSkillId' src='$imageSrc'>";
 		$output .= "</div>";
 		
 		return $output;
