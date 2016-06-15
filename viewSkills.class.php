@@ -896,7 +896,7 @@ class CEsoViewSkills
 	{
 		$displayType = "none";
 		$extraClass = "";
-		if ($this->DoesAbilityListHaveHighlightSkill($abilityData) && $this->displayType == "summary") $displayType = "block";
+		if ($this->displayType == "summary" && $this->DoesAbilityListHaveHighlightSkill($abilityData)) $displayType = "block";
 			
 		$output = "<div class='esovsAbilityBlockList $extraClass' style='display: $displayType;'>\n";
 		
