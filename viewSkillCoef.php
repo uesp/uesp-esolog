@@ -222,6 +222,7 @@ class CEsoViewSkillCoef
 				UESP_POWERTYPE_WEAPONDAGGER => array("Daggers", ""),
 				UESP_POWERTYPE_ARMORTYPE => array("ArmorTypes", ""),
 				UESP_POWERTYPE_DAMAGE => array("SD", "WD"),
+				UESP_POWERTYPE_ASSASSINATION => array("AssassinSkills", ""),
 				-2 => array("Health", ""),
 				0 => array("Magicka", "SD"),
 				6 => array("Stamina", "WD"),

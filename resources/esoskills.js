@@ -546,7 +546,8 @@ function GetEsoSkillInputValues()
 			 WeaponDamage: weaponDamage,
 			 MaxStat: Math.max(stamina, magicka),
 			 MaxDamage: Math.max(spellDamage, weaponDamage),
-			 EffectiveLevel: level
+			 EffectiveLevel: level,
+			 AssassinSkills: 0,
 		};
 	
 	return g_LastSkillInputValues; 
@@ -584,6 +585,10 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 	else if (type == -56) // Spell + Weapon Damage
 	{
 		value = a * values.SpellDamage + b * values.WeaponDamage + c;
+	}
+	else if (type == -57) // Assassination Skills Slotted
+	{
+		value = a * values.AssassinSkills;
 	}
 	else if (type == -51)
 	{
@@ -1270,6 +1275,12 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 	{
 		output += srcString + " = " + a + " SpellDamage " + bOp + " " + b + " WeaponDamage " + cOp + " " + c;
 		typeString = "Spell + Weapon Damage";
+	}
+	else if (type == -57) // Assassination Skills Slotted
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " AssassinSkills";
+		typeString = "Assassination Skills Slotted";
 	}
 	else
 	{
