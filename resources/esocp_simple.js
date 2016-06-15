@@ -138,10 +138,8 @@ function OnEsoCPPointInputChange(e)
 
 function OnEsoCPPointInputScrollUp(e)
 {
-	var skillId = $(this).attr('skillid');
-	var inputControl = $(this).find("input");
-	
-	if (inputControl.length == 0) return;
+	var inputControl = $(this);
+	var skillId = inputControl.parent().parent().attr('skillid');
 	
 	var value = (parseInt(inputControl.val()) || 0) + 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
@@ -159,10 +157,8 @@ function OnEsoCPPointInputScrollUp(e)
 
 function OnEsoCPPointInputScrollDown(e)
 {
-	var skillId = $(this).attr('skillid');
-	var inputControl = $(this).find("input");
-	
-	if (inputControl.length == 0) return;
+	var inputControl = $(this);
+	var skillId = inputControl.parent().parent().attr('skillid');
 	
 	var value = (parseInt(inputControl.val()) || 0) - 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
@@ -456,7 +452,7 @@ function esovcpOnDocReady()
 	$(".esovcpPlusButton").click(OnEsoCPPlusButtonClick);
 	$(".esovcpPointInput").on('input', function(e) { OnEsoCPPointInputChange.call(this, e); });
 		
-	$(".esovcpSkill").bind('mousewheel DOMMouseScroll', function(e) { 
+	$(".esovcpPointInput").bind('mousewheel DOMMouseScroll', function(e) { 
 		if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
 	        OnEsoCPPointInputScrollUp.call(this, e);
 	    }
