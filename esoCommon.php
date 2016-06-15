@@ -10,6 +10,7 @@ const UESP_POWERTYPE_HEAVYARMOR    = -53;
 const UESP_POWERTYPE_WEAPONDAGGER  = -54;
 const UESP_POWERTYPE_ARMORTYPE     = -55;
 const UESP_POWERTYPE_DAMAGE        = -56;
+const UESP_POWERTYPE_ASSASSINATION = -57;
 
 	// TODO: Change to true when DB is released
 const UESP_SHOWCPLEVEL = true;
@@ -1361,6 +1362,7 @@ function GetEsoCustomMechanicTypeText($mechanicType)
 			UESP_POWERTYPE_WEAPONDAGGER => "Daggers",
 			UESP_POWERTYPE_ARMORTYPE => "Armor Types",
 			UESP_POWERTYPE_DAMAGE => "Spell + Weapon Damage",
+			UESP_POWERTYPE_ASSASSINATION => "Assassination Skills Slotted",
 	);
 
 	$key = (int) $mechanicType;
