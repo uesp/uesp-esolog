@@ -67,6 +67,28 @@ UESP.ESO_ARMOR_TYPES =
 };
 
 
+UESP.ESO_WEAPON_TYPES =
+{
+		"-1" : "",
+		"0" : "",
+		"1" : "Axe",
+		"2" : "Hammer",
+		"3" : "Sword",
+		"4" : "2H Sword",
+		"5" : "2H Axe",
+		"6" : "2H Hammer",
+		"7" : "Prop",
+		"8" : "Bow",
+		"9" : "Restoration Staff",
+		"10" : "Rune",
+		"11" : "Dagger",
+		"12" : "Fire Staff",
+		"13" : "Frost Staff",
+		"14" : "Shield",
+		"15" : "Lightning Staff",
+};
+
+
 UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP = 
 {
 		 1 : [1,  30,  31,  32,  33,  34],
@@ -666,18 +688,36 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 	var iconUrl = this.getIconUrl(itemData.icon);
 	var niceName = itemData.name.charAt(0).toUpperCase() + itemData.name.slice(1);
 	var details = "";
+	var detailList = [];
 		
 	if (this.itemType == 2)
 	{
-		var detailList = [];
 		var traitName = UESP.ESO_TRAIT_TYPES[itemData.trait];
 		var armorName = UESP.ESO_ARMOR_TYPES[itemData.armorType]
 		
 		if (armorName != null && armorName != "") detailList.push(armorName);
 		if (traitName != null && traitName != "") detailList.push(traitName);
-		
-		details = "(" + detailList.join(", ") + ")";
 	}
+	else if (this.itemType == 1)
+	{
+		var traitName = UESP.ESO_TRAIT_TYPES[itemData.trait];
+		var weaponName = UESP.ESO_WEAPON_TYPES[itemData.weaponType];
+		
+		if (weaponName != null && weaponName != "") detailList.push(weaponName);
+		if (traitName != null && traitName != "") detailList.push(traitName);
+		
+	}
+	else if (this.itemType == "4,12")
+	{
+		if (itemData.type == 4)
+			detailList.push("Food");
+		else if (itemData.type == 12)
+			detailList.push("Drink");
+		
+		detailList.push("Level " + itemData.level);
+	}
+	
+	if (detailList.length > 0) details = "(" + detailList.join(", ") + ")";
 	
 	var quality = Number(itemData.quality);
 	if (isNaN(quality)) quality = this.itemQuality;
