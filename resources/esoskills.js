@@ -967,43 +967,43 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 	
 	if (mechanic == 0 && inputValues.MagickaCost != null)
 	{
-		if (inputValues.MagickaCost.CP    != null) CPFactor    -= inputValues.MagickaCost.CP;
+		if (inputValues.MagickaCost.CP    != null) CPFactor    += inputValues.MagickaCost.CP;
 		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
-		if (inputValues.MagickaCost.Set   != null) SkillFactor -= inputValues.MagickaCost.Set;
-		if (inputValues.MagickaCost.Skill != null) SkillFactor -= inputValues.MagickaCost.Skill;
-		if (inputValues.MagickaCost.Buff  != null) SkillFactor -= inputValues.MagickaCost.Buff;
+		if (inputValues.MagickaCost.Set   != null) SkillFactor += inputValues.MagickaCost.Set;
+		if (inputValues.MagickaCost.Skill != null) SkillFactor += inputValues.MagickaCost.Skill;
+		if (inputValues.MagickaCost.Buff  != null) SkillFactor += inputValues.MagickaCost.Buff;
 	}
 	else if (mechanic == 6 && inputValues.StaminaCost != null)
 	{
-		if (inputValues.StaminaCost.CP    != null) CPFactor    -= inputValues.StaminaCost.CP;
+		if (inputValues.StaminaCost.CP    != null) CPFactor    += inputValues.StaminaCost.CP;
 		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
-		if (inputValues.StaminaCost.Set   != null) SkillFactor -= inputValues.StaminaCost.Set;
-		if (inputValues.StaminaCost.Skill != null) SkillFactor -= inputValues.StaminaCost.Skill;
-		if (inputValues.StaminaCost.Buff  != null) SkillFactor -= inputValues.StaminaCost.Buff;
+		if (inputValues.StaminaCost.Set   != null) SkillFactor += inputValues.StaminaCost.Set;
+		if (inputValues.StaminaCost.Skill != null) SkillFactor += inputValues.StaminaCost.Skill;
+		if (inputValues.StaminaCost.Buff  != null) SkillFactor += inputValues.StaminaCost.Buff;
 	}
 	else if (mechanic == 10 && inputValues.UltimateCost != null)
 {
-		if (inputValues.UltimateCost.CP    != null) CPFactor    -= inputValues.UltimateCost.CP;
+		if (inputValues.UltimateCost.CP    != null) CPFactor    += inputValues.UltimateCost.CP;
 		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
-		if (inputValues.UltimateCost.Skill != null) SkillFactor -= inputValues.UltimateCost.Skill;
-		if (inputValues.UltimateCost.Set   != null) SkillFactor -= inputValues.UltimateCost.Set;
-		if (inputValues.UltimateCost.Buff  != null) SkillFactor -= inputValues.UltimateCost.Buff;
+		if (inputValues.UltimateCost.Skill != null) SkillFactor += inputValues.UltimateCost.Skill;
+		if (inputValues.UltimateCost.Set   != null) SkillFactor += inputValues.UltimateCost.Set;
+		if (inputValues.UltimateCost.Buff  != null) SkillFactor += inputValues.UltimateCost.Buff;
 	}
 	
 	var output = "";
-	if (CPFactor != 1) output += " - " + Math.round(1000 - CPFactor*1000)/10 + "% CP";
-	if (FlatCost != 0) output += " - " + FlatCost + " Flat";
-	if (SkillFactor != 1) output += " - " + Math.round(1000 - SkillFactor*1000)/10 + "% Skill";
+	if (CPFactor != 1) output += " + " + Math.round(CPFactor*1000 - 1000)/10 + "% CP";
+	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
+	if (SkillFactor != 1) output += " + " + Math.round(SkillFactor*1000 - 1000)/10 + "% Skill";
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
-		SkillFactor -= SkillLineFactor;
+		SkillFactor += SkillLineFactor;
 		
-		if (SkillLineFactor != 0) output += " - " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
+		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000 - 1000)/10 + "% SkillLine";
 	}
 				
-	cost = Math.floor((cost * CPFactor - FlatCost) * SkillFactor);
+	cost = Math.floor((cost * CPFactor + FlatCost) * SkillFactor);
 	if (cost < 0) cost = 0;
 	
 	if (output == "") 
