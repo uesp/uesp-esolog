@@ -687,6 +687,7 @@ class CEsoViewSkills
 			
 			$lastAbility = $this->FindLastAbility($abilityData);
 			$isPurchased = false;
+			$baseAbilityId = $baseAbility['abilityId'];
 			
 			if ($this->displayType == "select")
 			{
@@ -694,6 +695,7 @@ class CEsoViewSkills
 				
 				if ($purchasedAbility != null) 
 				{
+					
 					$lastAbility = $purchasedAbility;
 					$baseAbility = $lastAbility;
 					$abilityName = $lastAbility['name'];
@@ -701,7 +703,7 @@ class CEsoViewSkills
 				}
 			}
 			
-			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true, $isPurchased);
+			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true, $isPurchased, $baseAbilityId);
 				
 			if ($lastAbility['maxRank'] > 1 || $this->displayType == "select")
 			{
@@ -718,11 +720,15 @@ class CEsoViewSkills
 	}
 
 
-	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel, $isPurchased = false)
+	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel, $isPurchased, $baseAbilityId)
 	{
 		$output = "";
 			
-		$baseId = "";
+		if ($baseAbilityId == null) 
+			$baseId = $baseAbility['abilityId'];
+		else
+			$baseId = $baseAbilityId;
+		
 		$id = $abilityData['abilityId'];
 		$index = $abilityData['__index'];
 
@@ -808,7 +814,7 @@ class CEsoViewSkills
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 			
-		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' baseskillid='$baseId' origskillid='$id' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$baseId' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
 
 		if ($topLevel)
 		{
@@ -896,6 +902,7 @@ class CEsoViewSkills
 	{
 		$displayType = "none";
 		$extraClass = "";
+		$baseId = "";
 		if ($this->displayType == "summary" && $this->DoesAbilityListHaveHighlightSkill($abilityData)) $displayType = "block";
 			
 		$output = "<div class='esovsAbilityBlockList $extraClass' style='display: $displayType;'>\n";
@@ -910,13 +917,14 @@ class CEsoViewSkills
 		foreach ($abilityData as $rank => $ability)
 		{
 			if (!is_numeric($rank)) continue;
+			if ($baseId == "") $baseId = $ability['abilityId'];
 			
 			if (!$this->showAll && $ability['type'] != "Passive")
 			{
 				if (!($rank == 8 || $rank == 12 || ($rank == 4 && $this->displayType == "select"))) continue;
 			}
 				
-			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false);
+			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false, false, $baseId);
 		}
 
 		$output .= "</div>\n";
