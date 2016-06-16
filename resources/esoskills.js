@@ -2,6 +2,7 @@ var g_LastSkillId = 0;
 var g_LastSkillInputValues = {};
 var MAX_SKILL_COEF = 6;
 
+var g_SkillDisplayType = "summary";
 var g_EsoSkillSearchText = "";
 var g_EsoSkillSearchLastIndex = -1;
 

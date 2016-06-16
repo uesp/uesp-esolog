@@ -86,7 +86,7 @@
 	var g_SkillHighlightLine = "{skillHighlightLine}";
 	var g_SkillShowAll = {skillShowAll};
 	var g_SkillUseUpdate10Cost = {useUpdate10Costs};
-	var g_SkillDisplayType = "{displayType}";
+	g_SkillDisplayType = "{displayType}";
 	var g_EsoSkillPointsUsed = {usedPoints};
 	var g_EsoSkillPassiveData = {passiveDataJson};
 	var g_EsoSkillActiveData = {activeDataJson};
