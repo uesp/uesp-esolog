@@ -121,7 +121,7 @@ if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error)
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
 $LASTID = 90000;
-$MINSUBTYPE = 2;
+$MINSUBTYPE = 1;
 $MAXSUBTYPE = 370;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
