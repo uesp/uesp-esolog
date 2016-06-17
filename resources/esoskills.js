@@ -173,7 +173,7 @@ function GetEsoSkillTooltipHtml(skillData)
 	var channelTime = skillData['channelTime'] / 1000;
 	var castTime = skillData['castTime'] / 1000;
 	var radius = skillData['radius'] / 100;
-	var duration = skillData['duration'] / 1000;
+	var duration = Math.floor(GetEsoSkillDuration(abilityId, null) / 100) / 10;
 	var target = skillData['target'];
 	var angleDistance = skillData['angleDistance'];
 	var minRange = skillData['minRange'];
@@ -279,7 +279,7 @@ function GetEsoSkillTooltipHtml(skillData)
 		
 		if (duration > 0)
 		{
-			output += "<div class='esovsSkillTooltipValue'>" + duration + " seconds</div>";
+			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipDuration'>" + duration + " seconds</div>";
 			output += "<div class='esovsSkillTooltipName'>Duration</div>";			
 		}
 		
@@ -830,31 +830,31 @@ ESO_SKILL_DAMAGEMATCHES =
 [
 	{
 		damageId: "Magic",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Physical",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Flame",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Shock",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Cold",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Poison",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Disease",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 ];
 
@@ -877,7 +877,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 	{
 		var matchData = ESO_SKILL_DAMAGEMATCHES[i];
 		
-		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, offset, string) 
+		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, p6, p7, p8, offset, string) 
 		{
 			if (inputValues.Damage[matchData.damageId] == null) return string;
 			
@@ -887,15 +887,39 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			newRawOutput.damageId = matchData.damageId;
 			newRawOutput.baseDamage = p3;
 			newRawOutput.mainDamageDone = inputValues.Damage[matchData.damageId];
-					
+
+			if (inputValues.SkillDamage != null && inputValues.SkillDamage[skillData.baseName] != null)
+			{
+				newRawOutput.mainDamageDone += inputValues.SkillDamage[skillData.baseName];
+			}
+			
 			if (isDot || p1 != "" || p5 != "") 
 			{
-				modDamage *= 1 + inputValues.Damage.Dot + inputValues.Damage[matchData.damageId];
+				
+				if (p5 == " over" && p7 != "" && inputValues.SkillDuration != null && inputValues.SkillDuration[skillData.baseName] != null)
+				{
+					var modDuration = inputValues.SkillDuration[skillData.baseName];
+					var oldDuration = parseFloat(p7);
+					var newDuration = oldDuration * (1 + modDuration);
+					if (modDuration >= 1) newDuration = oldDuration + modDuration;
+					
+					var oldTicks = Math.floor(oldDuration/2) + 1;
+					var newTicks = Math.floor(newDuration/2) + 1;
+					
+					if (oldTicks != newTicks && !isNaN(oldTicks) && !isNaN(newTicks))
+					{
+						modDamage = Math.round(modDamage * newTicks / oldTicks);
+						newRawOutput.modDuration = Math.floor((newDuration - oldDuration)*10)/10;
+						p7 = Math.floor(newDuration*10)/10;
+					}
+				}
+				
+				modDamage *= 1 + inputValues.Damage.Dot + newRawOutput.mainDamageDone;
 				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
 			}
 			else
 			{
-				modDamage *= 1 + inputValues.Damage[matchData.damageId];
+				modDamage *= 1 + newRawOutput.mainDamageDone;
 			}
 			
 			if (inputValues.Damage.All != null)
@@ -909,7 +933,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			
 			rawOutput.push(newRawOutput);
 			modDamage = Math.round(modDamage);
-			return p1 + p2 + modDamage + p4 + p5;
+			return p1 + p2 + modDamage + p4 + p5 + p6 + p7 + p8;
 		});
 	}
 	
@@ -918,6 +942,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 		var rawData = rawOutput[i];
 		var output = "";
 				
+		if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + rawData.modDuration + " sec ";
 		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + (rawData.mainDamageDone*100) + "% " + rawData.damageId;
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + (rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + (rawData.damageDone*100) + "% All";
@@ -1100,11 +1125,58 @@ function GetEsoSkillCost(skillId, inputValues)
 }
 
 
+function UpdateEsoSkillTooltipDuration()
+{		
+	if (g_LastSkillId <= 0) return;
+	UpdateEsoSkillDuration(g_LastSkillId, $("#esovsSkillTooltipDuration"), GetEsoSkillInputValues());
+}
+
+
+function GetEsoSkillDuration(skillId, inputValues)
+{
+	var skillData = g_SkillsData[skillId];
+	if (skillData == null) return "";
+	
+	if (skillData.duration == 0) return 0;
+	
+	if (inputValues == null) inputValues = g_LastSkillInputValues;
+	if (inputValues.SkillDuration == null) return skillData.duration;
+	if (inputValues.SkillDuration[skillData.baseName] == null) return skillData.duration;
+	
+	var modDuration = +inputValues.SkillDuration[skillData.baseName];
+	var newDuration = 0;
+	
+	if (modDuration >= 1) 
+	{
+		newDuration = +skillData.duration + modDuration*1000;
+		skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base + " + modDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+	}
+	else 
+	{
+		newDuration = Math.floor(+skillData.duration * (1 + modDuration));
+		skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base x " + Math.floor(modDuration*100) + "% = " + (Math.floor(newDuration/100)/10) + " secs";
+	}	
+	
+	return newDuration;
+}
+
+
 function UpdateEsoSkillCost(skillId, costElement, inputValues)
 {
 	var costStr = GetEsoSkillCost(skillId, inputValues);
 	
 	costElement.text(costStr);
+}
+
+
+function UpdateEsoSkillDuration(skillId, durationElement, inputValues)
+{
+	var duration = GetEsoSkillDuration(skillId, inputValues);
+	var durationStr = "";
+
+	if (duration > 0) durationStr = "" + Math.round(duration/100)/10 + " seconds";
+
+	durationElement.text(durationStr);
 }
 
 
@@ -1417,6 +1489,7 @@ function OnChangeEsoSkillData(dataName)
 	
 	UpdateEsoSkillTooltipDescription();
 	UpdateEsoSkillTooltipCost();
+	UpdateEsoSkillTooltipDuration();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
 	UpdateSkillLink();
