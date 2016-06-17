@@ -900,9 +900,10 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			
 			if (inputValues.Damage.All != null)
 			{
-				modDamage *= 1 + inputValues.Damage.All;
+				var amountAll = Math.round(inputValues.Damage.All*100)/100;
+				modDamage *= 1 + amountAll;
 				
-				newRawOutput.damageDone = inputValues.Damage.All;
+				newRawOutput.damageDone = amountAll;
 				newRawOutput.finalDamage = Math.round(modDamage);
 			}
 			
