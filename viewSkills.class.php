@@ -687,7 +687,7 @@ class CEsoViewSkills
 			
 			$lastAbility = $this->FindLastAbility($abilityData);
 			$isPurchased = false;
-			$baseAbilityId = $baseAbility['abilityId'];
+			$baseAbilityId = $lastAbility['abilityId'];
 			
 			if ($this->displayType == "select")
 			{
@@ -917,12 +917,13 @@ class CEsoViewSkills
 		foreach ($abilityData as $rank => $ability)
 		{
 			if (!is_numeric($rank)) continue;
-			if ($baseId == "") $baseId = $ability['abilityId'];
 			
 			if (!$this->showAll && $ability['type'] != "Passive")
 			{
 				if (!($rank == 8 || $rank == 12 || ($rank == 4 && $this->displayType == "select"))) continue;
 			}
+			
+			if ($baseId == "") $baseId = $ability['abilityId'];
 				
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false, false, $baseId);
 		}
