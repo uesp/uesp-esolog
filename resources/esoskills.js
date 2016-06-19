@@ -558,6 +558,16 @@ function GetEsoSkillInputValues()
 function ComputeEsoSkillValue(values, type, a, b, c)
 {
 	var value = 0;
+	var SpellDamage = values.SpellDamage;
+	var WeaponDamage = values.WeaponDamage;
+	var MaxDamage = values.MaxDamage;
+	
+	if (values.useMaelstromDamage && values.Damage != null && values.Damage.MaelstromDamage != null)
+	{
+		SpellDamage += values.Damage.MaelstromDamage;
+		WeaponDamage += values.Damage.MaelstromDamage;
+		MaxDamage = Math.max(SpellDamage, WeaponDamage);
+	}
 	
 	a = parseFloat(a);
 	b = parseFloat(b);
@@ -569,23 +579,23 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 	}
 	else if (type == 0) // Magicka
 	{
-		value = a * values.Magicka + b * values.SpellDamage + c;
+		value = a * values.Magicka + b * SpellDamage + c;
 	}
 	else if (type == 6) // Stamina
 	{
-		value = a * values.Stamina + b * values.WeaponDamage + c;
+		value = a * values.Stamina + b * WeaponDamage + c;
 	}
 	else if (type == 10) // Ultimate
 	{
-		value = a * values.MaxStat + b * values.MaxDamage + c;
+		value = a * values.MaxStat + b * MaxDamage + c;
 	}
 	else if (type == -50) // Ultimate Soul Tether
 	{
-		value = a * values.MaxStat + b * values.SpellDamage + c;
+		value = a * values.MaxStat + b * SpellDamage + c;
 	}
 	else if (type == -56) // Spell + Weapon Damage
 	{
-		value = a * values.SpellDamage + b * values.WeaponDamage + c;
+		value = a * SpellDamage + b * WeaponDamage + c;
 	}
 	else if (type == -57) // Assassination Skills Slotted
 	{
@@ -628,11 +638,25 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 }
 
 
+function IsEsoSkillValidForMaelstromDWEnchant(skillData)
+{
+	if (skillData.baseName == "Soul Strike") return true;
+	if (skillData.name == "Rending Slashes") return true;
+	if (skillData.name == "Poison Injection") return true;
+	if (skillData.baseName == "Searing Strike") return true;
+	if (skillData.baseName == "Entropy") return true;
+	
+	//Burning Breath AoE
+	//Cleave AoE
+	
+	return false;
+}
+
+
 function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, outputRaw)
 {
 	var output = "";
 	var skillData = g_SkillsData[skillId];
-	
 	if (skillData == null) return "";
 	
 	var coefDesc = skillData['coefDescription'];
@@ -644,7 +668,14 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 	}
 	
 	if (inputValues == null) inputValues = GetEsoSkillInputValues()
+	inputValues.useMaelstromDamage = false;
 	
+	if (inputValues.Damage != null && inputValues.Damage.MaelstromDamage != null && inputValues.Damage.MaelstromDamage > 0 && IsEsoSkillValidForMaelstromDWEnchant(skillData))
+	{
+		inputValues.useMaelstromDamage = true;
+		if (skillData.rawOutput != null) skillData.rawOutput["Maelstrom DW Enchant"] = "+" + inputValues.Damage.MaelstromDamage + " Weapon/Spell Damage";
+	}
+
 	for (var i = 1; i <= MAX_SKILL_COEF; ++i)
 	{
 		var type  = skillData['type' + i];
@@ -883,9 +914,8 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(healing yourself and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
-	
 
-];                       
+];                     
 
 
 function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
@@ -1053,7 +1083,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			return p1 + p2 + modDamage + p4 + p5 + p6 + p7 + p8;
 		});
 	}
-	
+		
 	for (var i = 0; i < rawOutput.length; ++i)
 	{
 		var rawData = rawOutput[i];
