@@ -894,7 +894,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				newRawOutput.mainDamageDone += inputValues.SkillDamage[skillData.baseName];
 			}
 			
-			if (isDot || p1 != "" || p5 != "") 
+			if (isDot || p1 != "" || p5 != "")
 			{
 				thisEffectIsDot = true;
 				
@@ -916,12 +916,12 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 					}
 				}
 				
-				modDamage *= 1 + inputValues.Damage.Dot + newRawOutput.mainDamageDone;
+				modDamage *= 1 + +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
 				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
 			}
 			else
 			{
-				modDamage *= 1 + newRawOutput.mainDamageDone;
+				modDamage *= 1 + +newRawOutput.mainDamageDone;
 			}
 			
 			var amountAll = 0;
@@ -929,13 +929,9 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			if (inputValues.Damage.All != null) amountAll += Math.round(inputValues.Damage.All*100)/100;
 			if (inputValues.Damage.Empower != null && !thisEffectIsDot && skillData.mechanic != 10) amountAll += Math.round(inputValues.Damage.Empower*100)/100;
 			
-			if (amountAll != 0)
-			{
-				modDamage *= 1 + amountAll;
-				
-				newRawOutput.damageDone = amountAll;
-				newRawOutput.finalDamage = Math.round(modDamage);
-			}
+			if (amountAll != 0)	modDamage *= 1 + amountAll;
+			newRawOutput.damageDone = amountAll;
+			newRawOutput.finalDamage = Math.round(modDamage);
 			
 			rawOutput.push(newRawOutput);
 			modDamage = Math.round(modDamage);
