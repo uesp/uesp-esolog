@@ -876,6 +876,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 	for (var i = 0; i < ESO_SKILL_DAMAGEMATCHES.length; ++i)
 	{
 		var matchData = ESO_SKILL_DAMAGEMATCHES[i];
+		var thisEffectIsDot = isDot;
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, p6, p7, p8, offset, string) 
 		{
@@ -895,6 +896,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			
 			if (isDot || p1 != "" || p5 != "") 
 			{
+				thisEffectIsDot = true;
 				
 				if (p5 == " over" && p7 != "" && inputValues.SkillDuration != null && inputValues.SkillDuration[skillData.baseName] != null)
 				{
@@ -922,9 +924,13 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				modDamage *= 1 + newRawOutput.mainDamageDone;
 			}
 			
-			if (inputValues.Damage.All != null)
+			var amountAll = 0;
+			
+			if (inputValues.Damage.All != null) amountAll += Math.round(inputValues.Damage.All*100)/100;
+			if (inputValues.Damage.Empower != null && !thisEffectIsDot && skillData.mechanic != 10) amountAll += Math.round(inputValues.Damage.Empower*100)/100;
+			
+			if (amountAll != 0)
 			{
-				var amountAll = Math.round(inputValues.Damage.All*100)/100;
 				modDamage *= 1 + amountAll;
 				
 				newRawOutput.damageDone = amountAll;
