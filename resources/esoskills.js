@@ -661,6 +661,7 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 	
 	coefDesc = UpdateEsoSkillDamageDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillHealingDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillDamageShieldDescription(skillData, coefDesc, inputValues);	
 	
 	if (useHtml)
 	{
@@ -682,91 +683,205 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 }
 
 
+ESO_SKILL_DAMAGESHIELDMATCHES = 
+[
+		{
+			type: "flat",
+			match: /(granting a damage shield for you and nearby allies that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(granting a damage shield for you and your pets that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(You also gain a damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(You gain a damage shield after the attack, absorbing \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(Fully charged heavy frost attacks grant a damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(Surround yourself with a net of magic negation to absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(Invoke defensive tactics to protect yourself and nearby allies with wards that each absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(absorbing up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r Damage from the next spell projectile cast at you)/gi,
+		},
+		{
+			type: "flat",
+			match: /(with a ward to absorb \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "%",
+			match: /(Surround yourself with a whirlwind of bones, absorbing damage equivalent to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(absorbing damage to allies equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of their Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(Also absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(granting a damage shield equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(You also gain a damage shield equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(nearby allies gain a damage shield for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of their Max Health)/gi,
+		},
+];
+
+
+function UpdateEsoSkillDamageShieldDescription(skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	if (inputValues.DamageShield == null || inputValues.DamageShield == 0) return newDesc;
+	
+	var rawOutput = [];
+	var newRawOutput = {};
+	
+	for (var i = 0; i < ESO_SKILL_DAMAGESHIELDMATCHES.length; ++i)
+	{
+		var matchData = ESO_SKILL_DAMAGESHIELDMATCHES[i];
+		
+		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
+		{
+			var modDamageShield = parseFloat(p2);
+			
+			newRawOutput = {};
+			newRawOutput.baseShield = p2;
+			newRawOutput.shieldBonus = inputValues.DamageShield;
+			
+			modDamageShield *= 1 + newRawOutput.shieldBonus;
+			modDamageShield = Math.floor(modDamageShield);
+			
+			newRawOutput.finalShield = modDamageShield;
+			rawOutput.push(newRawOutput);
+			
+			return p1 + modDamageShield + p3;
+		});
+	}
+	
+	for (var i = 0; i < rawOutput.length; ++i)
+	{
+		var rawData = rawOutput[i];
+		var output = "";
+				
+		if (rawData.shieldBonus != null && rawData.shieldBonus != 0) output += " + " + (rawData.shieldBonus*100) + "% ";
+		
+		if (output == "")
+			output = "" + rawData.baseShield + " (unmodified)";
+		else
+			output = "" + rawData.baseShield + " " + output + " = " + rawData.finalShield + " final";
+		
+		skillData.rawOutput["Tooltip Damage Shield " + (i+1)] = output;
+	}
+	
+	return newDesc;
+}
+
+
 ESO_SKILL_HEALINGMATCHES = 
 [
 	{
 		healId: "Done",
-		match: /(healing yourself or a wounded ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing yourself or a wounded ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(heals one other injured target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(heals one other injured target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/,
+		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing them for an additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
-	},
-	{
-		healId: "Done",
-		healId2: "Received",  // TODO: ?
-		match: /(Each reflected spell heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+		match: /(healing them for an additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
 	{
 		healId: "Done",
 		healId2: "Received",  // TODO: ?
-		match: /(heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(Each reflected spell heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
 	{
 		healId: "Done",
 		healId2: "Received",  // TODO: ?
-		match: /(You also heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing you and your allies in the target area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		healId2: "Received",  // TODO: ?
+		match: /(You also heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing you or up to 2 nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+		match: /(healing you and your allies in the target area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(heals for an immediate \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing you or up to 2 nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing you and your allies in front of you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(heals for an immediate \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(Each attack against the enemy restores \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing you and your allies in front of you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(Each attack against the enemy restores \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
 		healId2: "Taken",	//TODO: Sap Essence?
-		match: /(healing you and your allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/,
+		match: /(healing you and your allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing them for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing them for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing themselves for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing themselves for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing yourself and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/,
+		match: /(healing yourself and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	
 
