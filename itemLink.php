@@ -1652,11 +1652,21 @@ class CEsoItemLink
 		$d17 = $this->itemCrafted < 0 ? 0 : $this->itemCrafted; //Crafted
 		$d18 = $this->itemBound < 0 ? 0 : $this->itemBound; //Bound
 		$d19 = ($this->itemStolen <= 0) ? 0 : 1;
-		$d20 = $this->itemCharges < 0 ? 0 : $this->itemCharges; //Charges
-		$d21 = $this->itemPotionData;
+		$d19 = $this->itemCharges < 0 ? 0 : $this->itemCharges; //Charges
+		
+		if ($this->itemStolen < 0)
+			$d20 = "0";
+		else
+			$d20 = $this->itemStolen;
+		
+		if ($this->itemPotionData < 0)
+			$d21 = "0";
+		else
+			$d21 = $this->itemPotionData;
+		
 		$itemName = $this->itemRecord['name'];
 		
-		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20:$d21|h[$itemName]|h";
+		$link = "|H0:item:$d1:$d2:$d3:$d4:$d5:$d6:$d7:$d8:$d9:$d10:$d11:$d12:$d13:$d14:$d15:$d16:$d17:$d18:$d19:$d20:$d21|h|h";
 		
 		return $link;
 	}
