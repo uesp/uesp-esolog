@@ -313,11 +313,16 @@ class EsoItemSearcher
 	public function GetItemLevelValue($text)
 	{
 		$result = preg_match("/v[0-9]+/i", $text);
+		$result1 = preg_match("/cp[0-9]+/i", $text);
 		$level = 0;
 		
 		if ($result)
 		{
-			$level = intval(substr($text, 1 )) + 50;
+			$level = intval(substr($text, 1)) + 50;
+		}
+		else if ($result1)
+		{
+			$level = floor(intval(substr($text, 2))/10) + 50;
 		}
 		else 
 		{
@@ -443,7 +448,8 @@ class EsoItemSearcher
 		if ($this->formValues['level'] != "")
 		{
 			$value = $this->GetItemLevelValue($this->formValues['level']);
-			if ($value > 0) $where[] = "(level='$value' or level='1-v16')";
+			//if ($value > 0) $where[] = "(level='$value' or level='1-v16')";
+			if ($value > 0) $where[] = "(level='$value' or level='1-CP160')";
 		}
 		
 		if ($this->formValues['quality'] != "")
@@ -453,7 +459,7 @@ class EsoItemSearcher
 			if ($value == 0)
 				$where[] = "(quality='$value' or quality='0-5')";
 			else if ($value > 0)
-				$where[] = "(quality='$value' or quality='1-5')";
+				$where[] = "(quality='$value' or quality='1-5' or quality='0-5')";
 		}
 		
 		if ($this->formValues['style'] != "")
