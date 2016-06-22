@@ -441,11 +441,12 @@ function MakeItemLink(itemData, firstItem)
 	var d16 = firstItem['style']; //Style
 	var d17 = firstItem['isCrafted']; //Crafted
 	var d18 = firstItem['isBound']; //Bound
-	var d19 = firstItem['charges']; //Charges
-	var d20 = 0; //PotionData
+	var d19 = 0; //Stolen
+	var d20 = firstItem['charges']; //Charges
+	var d21 = 0; //PotionData
 	var itemName = firstItem['name'];
 	
-	$link = "|H0:item:" + d1 + ":" + d2 + ":" + d3 + ":" + d4 + ":" + d5 + ":" + d6 + ":" + d7 + ":" + d8 + ":" + d9 + ":" + d10 + ":" + d11 + ":" + d12 + ":" + d13 + ":" + d14 + ":" + d15 + ":" + d16 + ":" + d17 + ":" + d18 + ":" + d19 + ":" + d20 + "|h[" + itemName + "]|h";
+	$link = "|H0:item:" + d1 + ":" + d2 + ":" + d3 + ":" + d4 + ":" + d5 + ":" + d6 + ":" + d7 + ":" + d8 + ":" + d9 + ":" + d10 + ":" + d11 + ":" + d12 + ":" + d13 + ":" + d14 + ":" + d15 + ":" + d16 + ":" + d17 + ":" + d18 + ":" + d19 + ":" + d20 + ":" + d21 + "|h|h";
 	
 	return $link;
 }
