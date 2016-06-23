@@ -438,6 +438,10 @@ class EsoItemSearcher
 			{
 				$where[] = "(trait=25 or trait=26)";
 			}
+			else if (strtolower($this->formValues['trait']) == "infused")
+			{
+				$where[] = "(trait=4 or trait=16)";
+			}
 			else
 			{
 				$value = $this->GetItemTraitValue($this->formValues['trait']);
