@@ -127,6 +127,8 @@ class EsoLogParser
 			"minedSkills9pts",
 			"minedSkills10pts",
 			"minedSkills10",
+			"minedSkills11",
+			"minedSkills11pts",
 			"collectibles",
 			"achievements",
 	);

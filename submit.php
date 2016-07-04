@@ -206,7 +206,7 @@ class EsoLogSubmitter
 		<li>Any character and build data in the file is also parsed and saved.</li>
 		</ul>
 		<p />
-		Note: Maximum file upload size is 40MB.
+		Note: Maximum file upload size is 50MB.
 		<br /> &nbsp;
 	</td>
 </tr><tr>
@@ -215,7 +215,7 @@ class EsoLogSubmitter
 		<br />
 		<br />
 		<br />
-		<input type="hidden" name="MAX_FILE_SIZE" value="41000000" />
+		<input type="hidden" name="MAX_FILE_SIZE" value="51000000" />
 		<input type="file" name="logfile" value="Choose File..." />
 		<br /> &nbsp;
 	</td>

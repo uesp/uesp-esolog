@@ -120,7 +120,7 @@ $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error);
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
-$LASTID = 90000;
+$LASTID = 110000;
 $MINSUBTYPE = 1;
 $MAXSUBTYPE = 370;
 

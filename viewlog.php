@@ -13,7 +13,8 @@ class EsoLogViewer
 	
 	const ENABLE_8PTS = false;
 	const ENABLE_9PTS = false;
-	const ENABLE_10PTS = true;
+	const ENABLE_10PTS = false;
+	const ENABLE_11PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -1030,6 +1031,35 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem11pts' => array(
+					'displayName' => 'Update 11-PTS: Mined Items',
+					'displayNameSingle' => 'Update 11-PTS: Mined Item',
+					'record' => 'minedItem11pts',
+					'table' => 'minedItem11pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 11 (Shadows of the Hist) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink11pts',
+							'link' => 'MakeMinedItemLink11pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -1114,6 +1144,35 @@ class EsoLogViewer
 							'materialLevelDesc' => 'RemoveTextFormats',
 					),
 			
+					'filters' => array(
+					),
+			),
+			
+			'minedItemSummary11pts' => array(
+					'displayName' => 'Update 11-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 11-PTS: Mined Item Summary',
+					'record' => 'minedItemSummary11pts',
+					'table' => 'minedItemSummary11pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 11 (Shadows of the Hist) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink11pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+						
 					'filters' => array(
 					),
 			),
@@ -1213,6 +1272,30 @@ class EsoLogViewer
 					),
 			),
 			
+			'setSummary11pts' => array(
+					'displayName' => 'Update 11-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 11-PTS: Set Item Summary',
+					'record' => 'setSummary11pts',
+					'table' => 'setSummary11pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update 11 (Shadows of the Hist) as logged from the PTS server.",
+			
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'minedItemSummary11pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
 			'minedSkills' => array(
 					'displayName' => 'Mined Skills',
 					'displayNameSingle' => 'Mined Skill',
@@ -1263,6 +1346,34 @@ class EsoLogViewer
 							'upgradeLines' => 'RemoveTextFormats',
 					),
 			
+					'filters' => array(
+					),
+			),
+			
+			'minedSkills11pts' => array(
+					'displayName' => 'Update 11-PTS: Mined Skills',
+					'displayNameSingle' => 'Update 11-PTS: Mined Skill',
+					'record' => 'minedSkills11pts',
+					'table' => 'minedSkills11pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are sets for update 11 (Shadows of the Hist) as logged from the PTS server.",
+						
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+						
 					'filters' => array(
 					),
 			),
@@ -1464,7 +1575,7 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			'Items DB-PTS' => 'minedItemSummary10pts',
+			'Items 11-PTS' => 'minedItemSummary11pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'Quests' => 'quest',
@@ -1472,9 +1583,9 @@ class EsoLogViewer
 			'Quest Item' => 'questItem',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			'Sets DB-PTS' => 'setSummary10pts',
+			'Sets 11-PTS' => 'setSummary11pts',
 			'Skills' => 'minedSkills',
-			'Skills DB-PTS' => 'minedSkills10pts',
+			'Skills 11-PTS' => 'minedSkills11pts',
 	);
 	
 	
@@ -1611,6 +1722,14 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary11pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -1643,6 +1762,14 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
+			'setSummary11pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
 			'minedSkills' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
@@ -1652,6 +1779,14 @@ class EsoLogViewer
 					),
 			),
 			'minedSkills10pts' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
+			'minedSkills11pts' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -1741,10 +1876,29 @@ class EsoLogViewer
 			unset(self::$RECORD_TYPES['minedItemSummary10pts']);
 			unset(self::$RECORD_TYPES['minedItem10pts']);
 			unset(self::$RECORD_TYPES['setSummary10pts']);
+			unset(self::$RECORD_TYPES['minedSkills10pts']);
 			unset(self::$SEARCH_DATA['minedItemSummary10pts']);
 			unset(self::$SEARCH_DATA['setSummary10pts']);
 			unset(self::$SEARCH_DATA['minedSkills10pts']);
-		}		
+		}
+		
+		if (self::ENABLE_11PTS)
+		{
+			self::$RECORD_TYPES['minedItem11pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary11pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary11pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedSkills11pts']['fields'] = self::$SKILLDUMP_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary11pts']);
+			unset(self::$RECORD_TYPES['minedItem11pts']);
+			unset(self::$RECORD_TYPES['setSummary11pts']);
+			unset(self::$RECORD_TYPES['minedSkills11pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary11pts']);
+			unset(self::$SEARCH_DATA['setSummary11pts']);
+			unset(self::$SEARCH_DATA['minedSkills11pts']);
+		}
 		
 		$this->InitDatabase();
 		$this->SetInputParams();
@@ -2037,6 +2191,19 @@ class EsoLogViewer
 	}
 	
 	
+	public function MakeMinedItemLink11pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=11pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
 	public function MakeMinedItemSummaryLink ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
@@ -2066,6 +2233,17 @@ class EsoLogViewer
 		$itemId = $itemData['itemId'];
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=10pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink11pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=11pts\">" . $value . "</a>";
 		return $output;
 	}
 	
