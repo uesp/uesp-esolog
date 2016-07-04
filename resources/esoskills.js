@@ -981,6 +981,10 @@ ESO_SKILL_DAMAGEMATCHES =
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
+		damageId: "Magic", // Blazing Shield
+		match: /(When the shield expires it explodes outward, dealing )(\|c[a-fA-F0-9]{6})([^|]*)(\|r% of the Damage)(X|)(X|)(X|)(X|)/gi,
+	},
+	{
 		damageId: "Physical",
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
@@ -1043,7 +1047,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				newRawOutput.mainDamageDone += inputValues.SkillDamage[skillData.baseName];
 			}
 			
-			if (isDot || p1 != "" || p5 != "")
+			if (isDot || p1 == "additional " || p5 != "")
 			{
 				thisEffectIsDot = true;
 				
