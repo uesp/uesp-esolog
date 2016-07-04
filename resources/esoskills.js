@@ -661,12 +661,6 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 	
 	var coefDesc = skillData['coefDescription'];
 	
-	if (coefDesc == null || coefDesc == "") 
-	{
-		if (useHtml) return EsoConvertDescToHTML(skillData['description']);
-		return EsoConvertDescToText(skillData['description']);
-	}
-	
 	if (inputValues == null) inputValues = GetEsoSkillInputValues()
 	inputValues.useMaelstromDamage = false;
 	
@@ -675,19 +669,26 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 		inputValues.useMaelstromDamage = true;
 		if (skillData.rawOutput != null) skillData.rawOutput["Maelstrom DW Enchant"] = "+" + inputValues.Damage.MaelstromDamage + " Weapon/Spell Damage";
 	}
-
-	for (var i = 1; i <= MAX_SKILL_COEF; ++i)
+	
+	if (coefDesc == null || coefDesc == "") 
 	{
-		var type  = skillData['type' + i];
-		if (type == -1) continue;
-		
-		var a = skillData['a' + i];
-		var b = skillData['b' + i];
-		var c = skillData['c' + i];
-		var srcString = "$" + i;
-		
-		var value = ComputeEsoSkillValue(inputValues, type, a, b, c);
-		coefDesc = coefDesc.replace(srcString, value);
+		coefDesc = skillData.description;
+	}
+	else
+	{
+		for (var i = 1; i <= MAX_SKILL_COEF; ++i)
+		{
+			var type  = skillData['type' + i];
+			if (type == -1) continue;
+			
+			var a = skillData['a' + i];
+			var b = skillData['b' + i];
+			var c = skillData['c' + i];
+			var srcString = "$" + i;
+			
+			var value = ComputeEsoSkillValue(inputValues, type, a, b, c);
+			coefDesc = coefDesc.replace(srcString, value);
+		}
 	}
 	
 	coefDesc = UpdateEsoSkillDamageDescription(skillData, coefDesc, inputValues);
@@ -782,6 +783,7 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 function UpdateEsoSkillDamageShieldDescription(skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
+	if (inputValues == null) return newDesc;
 	if (inputValues.DamageShield == null || inputValues.DamageShield == 0) return newDesc;
 	
 	var rawOutput = [];
@@ -792,7 +794,7 @@ function UpdateEsoSkillDamageShieldDescription(skillData, skillDesc, inputValues
 		var matchData = ESO_SKILL_DAMAGESHIELDMATCHES[i];
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
-		{
+		{			
 			var modDamageShield = parseFloat(p2);
 			
 			newRawOutput = {};
@@ -813,7 +815,7 @@ function UpdateEsoSkillDamageShieldDescription(skillData, skillDesc, inputValues
 	{
 		var rawData = rawOutput[i];
 		var output = "";
-				
+		
 		if (rawData.shieldBonus != null && rawData.shieldBonus != 0) output += " + " + (rawData.shieldBonus*100) + "% ";
 		
 		if (output == "")
@@ -921,6 +923,7 @@ ESO_SKILL_HEALINGMATCHES =
 function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
+	if (inputValues == null) return newDesc;
 	if (inputValues.Healing == null) return newDesc;
 	
 	var rawOutput = [];
@@ -1007,6 +1010,7 @@ ESO_SKILL_DAMAGEMATCHES =
 function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
+	if (inputValues == null) return newDesc;
 	if (inputValues.Damage == null) return newDesc;
 	
 	var rawOutput = [];

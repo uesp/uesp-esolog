@@ -13,7 +13,7 @@ require("/home/uesp/secrets/esolog.secrets");
 
 function TransformBonusDesc($desc)
 {
-	$newDesc = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $desc);
+	$newDesc = preg_replace('/\|c[0-9a-fA-F]{6}([^|]+)\|r/', '$1', $desc);
 	//$newDesc = preg_replace('/\n/', ' ', $newDesc);
 	return $newDesc;
 }
