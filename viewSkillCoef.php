@@ -128,7 +128,7 @@ class CEsoViewSkillCoef
 	
 	public function LoadSkillCoef()
 	{
-		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1 > 0.1;";
+		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1 > 0.9;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportErrror("Failed to load skill coefficient data!");
 		
