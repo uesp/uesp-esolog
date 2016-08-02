@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "11pts";
+$TABLE_SUFFIX = "";
 $PRINT_TABLE = false;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -450,13 +450,14 @@ foreach ($passiveSkills as $index => $passive)
 
 	/* Handle abilities in duplicate skill lines */
 $DUPLICATE_SKILLS = array(
+	/*
 		array(		// Robust
 				"id" => array(36064, 45297, 45298),
 				"race1" => "Nord",
 				"race2" => "Orc",
 				"index1" => 2,
 				"index2" => 3,
-		),	
+		), //*/	
 		array(		// Magnus
 				"id" => array(35995, 45259, 45260),
 				"race1" => "Breton",
@@ -471,13 +472,14 @@ $DUPLICATE_SKILLS = array(
 				"index1" => 4,
 				"index2" => 3,
 		),
+		/*
 		array(		// Shield Affinity
 				"id" => array(36312),
 				"race1" => "Imperial",
 				"race2" => "Redguard",
 				"index1" => 1,
 				"index2" => 1,
-		),
+		), //*/
 		array(		// Conditioning
 				"id" => array(36153, 45279, 45280),
 				"race1" => "Imperial",

@@ -62,9 +62,10 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743899415482204160; //v9	 1457359600
 	//const START_MINEITEM_TIMESTAMP = 4743917341752950784;	//v10pts 1461632912
 	//const START_MINEITEM_TIMESTAMP = 4743923056748003328;	//v10	 1464706800
-	  const START_MINEITEM_TIMESTAMP = 4743940391898710016;	//v11pts 1467127601
+	//const START_MINEITEM_TIMESTAMP = 4743940391898710016;	//v11pts 1467127601
+	  const START_MINEITEM_TIMESTAMP = 4743947678092620000;	//v11    1470075600
 	
-	const MINEITEM_TABLESUFFIX = "";
+	const MINEITEM_TABLESUFFIX = "11";
 	const SKILLS_TABLESUFFIX   = "";
 	
 	public $db = null;
@@ -129,6 +130,8 @@ class EsoLogParser
 			"minedSkills10",
 			"minedSkills11",
 			"minedSkills11pts",
+			"minedSkills12",
+			"minedSkills12pts",
 			"collectibles",
 			"achievements",
 	);

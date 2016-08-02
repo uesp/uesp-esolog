@@ -1443,7 +1443,7 @@ function IsEsoVersionAtLeast($version, $checkVersion)
 
 function GetEsoUpdateVersion()
 {
-	return 10;	
+	return 11;	
 }
 
 
@@ -1484,11 +1484,15 @@ function GetEsoItemTableSuffix($version)
 		case '1.10':
 		case '110':
 		case '10':
-			return "";
+			return "10";
 		case '1.11pts':
 		case '111pts':
 		case '11pts':
 			return "11pts";
+		case '1.11':
+		case '111':
+		case '11':
+			return "";
 	}
 
 	return "";
