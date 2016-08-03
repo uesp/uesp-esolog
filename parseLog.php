@@ -4047,13 +4047,18 @@ class EsoLogParser
 		
 		if (array_key_exists('rank', $logEntry) && $rankMod == 0) 
 		{
-			//if ($logEntry['passive'] == "false")
-			$skill['learnedLevel'] = $logEntry['rank'];
+			if ($logEntry['passive'] == "false")
+				$skill['learnedLevel'] = $logEntry['rank'];
+			else if ($logEntry['level'] <= 1)
+				$skill['learnedLevel'] = $logEntry['rank'];
 		}
 		
-		if (array_key_exists('nextEarnedRank', $logEntry) && $rankMod == 1)
+		if (array_key_exists('nextEarnedRank', $logEntry))
 		{
-			$skill['learnedLevel'] = $logEntry['nextEarnedRank'];
+			if ($rankMod == 1)
+			{
+				$skill['learnedLevel'] = $logEntry['nextEarnedRank'];
+			}
 		}
 		
 		$skill['skillLine'] = $this->currentUser['lastSkillLineName'];
