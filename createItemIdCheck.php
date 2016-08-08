@@ -18,8 +18,8 @@ $query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
-$TABLEPREFIX = "16";
-$VERSION = "1.6";
+$TABLEPREFIX = "";
+$VERSION = "11";
 $FIRSTID = 1;
 $LASTID = 100000;
 
