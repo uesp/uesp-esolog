@@ -93,6 +93,7 @@ class EsoLogParser
 	
 	public $lastValidTime = array();
 	public $lastValidUserName = "Anonymous";
+	public $lastSetCount6WarningItemId = -1;
 	
 	public $users = array();
 	public $ipAddresses = array();
@@ -3663,6 +3664,7 @@ class EsoLogParser
 			if (array_key_exists('setDesc3', $logEntry) && $logEntry['setDesc3'] != "") $highestSetDesc = $logEntry['setDesc3'];
 			if (array_key_exists('setDesc4', $logEntry) && $logEntry['setDesc4'] != "") $highestSetDesc = $logEntry['setDesc4'];
 			if (array_key_exists('setDesc5', $logEntry) && $logEntry['setDesc5'] != "") $highestSetDesc = $logEntry['setDesc5'];
+			if (array_key_exists('setDesc6', $logEntry) && $logEntry['setDesc6'] != "") $highestSetDesc = $logEntry['setDesc6'];
 			
 			if ($highestSetDesc != "")
 			{
@@ -3712,6 +3714,30 @@ class EsoLogParser
 		
 		$this->ParseMinedItemLog($logEntry);
 		$this->MergeMineItemLogToDb($minedItem, $logEntry);
+		
+		if (array_key_exists('setDesc6', $logEntry))
+		{
+			if ($minedItem['itemId'] != $this->lastSetCount6WarningItemId)
+			{
+				$setName = $logEntry['setName'];
+				$setCount = $logEntry['setBonusCount'];
+				$itemId = $minedItem['itemId'];
+				print("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!\n");
+				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
+			}
+			
+			if ($minedItem['setName'] == "Amberplasm")
+			{
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
+			}
+			else
+			{
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+			}
+			
+			$minedItem['__dirty'] = true;
+		}
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
@@ -3776,6 +3802,30 @@ class EsoLogParser
 		$this->ParseMinedItemLog($logEntry);
 		$mergedLogEntry = $this->MergeMineItemLogs($logEntry, $this->currentUser['lastMinedItemLogEntry']);
 		$this->MergeMineItemLogToDb($minedItem, $mergedLogEntry);
+		
+		if (array_key_exists('setDesc6', $mergedLogEntry))
+		{
+			if ($minedItem['itemId'] != $this->lastSetCount6WarningItemId)
+			{
+				$setName = $mergedLogEntry['setName'];
+				$setCount = $mergedLogEntry['setBonusCount'];
+				$itemId = $minedItem['itemId'];
+				print("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!\n");
+				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
+			}
+				
+			if ($minedItem['setName'] == "Amberplasm")
+			{
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+			}
+			else
+			{
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
+			}
+				
+			$minedItem['__dirty'] = true;
+		}
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);

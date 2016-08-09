@@ -310,6 +310,7 @@ while (($row = $rowResult->fetch_assoc()))
 	if ($setMaxEquipCount == null || $setMaxEquipCount == "") $setMaxEquipCount = 1; 
 	
 	$lastBonusDesc = $setBonusDesc5;
+	
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc4;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc3;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc2;
