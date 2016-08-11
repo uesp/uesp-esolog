@@ -1067,6 +1067,10 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 						newRawOutput.modDuration = Math.floor((newDuration - oldDuration)*10)/10;
 						p7 = Math.floor(newDuration*10)/10;
 					}
+					else
+					{
+						p7 = Math.floor(newDuration*10)/10;
+					}
 				}
 				
 				modDamage *= 1 + +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
