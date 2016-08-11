@@ -687,7 +687,11 @@ class CEsoViewSkills
 			
 			$lastAbility = $this->FindLastAbility($abilityData);
 			$isPurchased = false;
-			$baseAbilityId = $lastAbility['abilityId'];
+			
+			if ($baseAbility['type'] == "Passive")
+				$baseAbilityId = $baseAbility['abilityId'];
+			else
+				$baseAbilityId = $lastAbility['abilityId'];
 			
 			if ($this->displayType == "select")
 			{
@@ -695,7 +699,6 @@ class CEsoViewSkills
 				
 				if ($purchasedAbility != null) 
 				{
-					
 					$lastAbility = $purchasedAbility;
 					$baseAbility = $lastAbility;
 					$abilityName = $lastAbility['name'];
