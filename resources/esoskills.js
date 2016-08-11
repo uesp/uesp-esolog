@@ -1185,7 +1185,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
 		SkillFactor += SkillLineFactor;
 		
-		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000 - 1000)/10 + "% SkillLine";
+		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 	}
 				
 	cost = Math.floor((cost * CPFactor + FlatCost) * SkillFactor);
