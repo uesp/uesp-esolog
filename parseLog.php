@@ -683,7 +683,7 @@ class EsoLogParser
 			'itemQuality' => self::FIELD_INT,
 			'title' => self::FIELD_STRING,
 			'collectibleId' => self::FIELD_INT,
-			'dyeIndex' => self::FIELD_INT,
+			'dyeId' => self::FIELD_INT,
 			'dyeName' => self::FIELD_STRING,
 			'dyeRarity' => self::FIELD_INT,
 			'dyeHue' => self::FIELD_INT,
@@ -1896,7 +1896,7 @@ class EsoLogParser
 			itemQuality TINYINT NOT NULL,
 			title TINYTEXT NOT NULL,
 			collectibleId INTEGER NOT NULL,
-			dyeIndex INTEGER NOT NULL,
+			dyeId INTEGER NOT NULL,
 			dyeName TINYTEXT NOT NULL,
 			dyeRarity TINYINT NOT NULL,
 			dyeHue TINYINT NOT NULL,
@@ -4467,7 +4467,11 @@ class EsoLogParser
 		
 		if ($logEntry['hasDyeReward'])
 		{
-			$achievement['dyeIndex'] = $logEntry['dyeIndex'];
+			if ($logEntry['dyeId'] != null)
+				$achievement['dyeId'] = $logEntry['dyeId'];
+			else if ($logEntry['dyeIndex'] != null)
+				$achievement['dyeId'] = $logEntry['dyeIndex'];
+				
 			$achievement['dyeName'] = $logEntry['dyeName'];
 			$achievement['dyeRarity'] = $logEntry['dyeRarity'];
 			$achievement['dyeHue'] = $logEntry['dyeHue'];
@@ -4475,7 +4479,7 @@ class EsoLogParser
 		}
 		else
 		{
-			$achievement['dyeIndex'] = -1;
+			$achievement['dyeId'] = -1;
 			$achievement['dyeName'] = "";
 			$achievement['dyeRarity'] = -1;
 			$achievement['dyeHue'] = -1;
