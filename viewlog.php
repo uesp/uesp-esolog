@@ -546,7 +546,7 @@ class EsoLogViewer
 			'itemQuality' => self::FIELD_INT,
 			'title' => self::FIELD_STRING,
 			'collectibleId' => self::FIELD_INT,
-			'dyeIndex' => self::FIELD_INT,
+			'dyeId' => self::FIELD_INT,
 			'dyeName' => self::FIELD_STRING,
 			'dyeRarity' => self::FIELD_INT,
 			'dyeHue' => self::FIELD_INT,
