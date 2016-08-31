@@ -43,7 +43,7 @@ class EsoLogViewer
 	public $searchTotalCount = 0;
 	public $searchTerms = array();
 	public $searchResults = array();
-	public $displayLimit = 200;
+	public $displayLimit = 300;
 	public $displayStart = 0;
 	public $displayRawValues = false;
 	
