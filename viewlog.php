@@ -14,7 +14,8 @@ class EsoLogViewer
 	const ENABLE_8PTS = false;
 	const ENABLE_9PTS = false;
 	const ENABLE_10PTS = false;
-	const ENABLE_11PTS = true;
+	const ENABLE_11PTS = false;
+	const ENABLE_12PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -1060,6 +1061,35 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem12pts' => array(
+					'displayName' => 'Update 12-PTS: Mined Items',
+					'displayNameSingle' => 'Update 12-PTS: Mined Item',
+					'record' => 'minedItem12pts',
+					'table' => 'minedItem12pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 12 (One Tamriel) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink12pts',
+							'link' => 'MakeMinedItemLink12pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -1173,6 +1203,36 @@ class EsoLogViewer
 							'materialLevelDesc' => 'RemoveTextFormats',
 					),
 						
+					'filters' => array(
+					),
+			),
+			
+			
+			'minedItemSummary12pts' => array(
+					'displayName' => 'Update 12-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 12-PTS: Mined Item Summary',
+					'record' => 'minedItemSummary12pts',
+					'table' => 'minedItemSummary12pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 12 (One Tamriel) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink12pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+			
 					'filters' => array(
 					),
 			),
@@ -1296,6 +1356,31 @@ class EsoLogViewer
 					),
 			),
 			
+			
+			'setSummary12pts' => array(
+					'displayName' => 'Update 12-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 12-PTS: Set Item Summary',
+					'record' => 'setSummary12pts',
+					'table' => 'setSummary12pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update 12 (One Tamriel) as logged from the PTS server.",
+						
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'minedItemSummary12pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
 			'minedSkills' => array(
 					'displayName' => 'Mined Skills',
 					'displayNameSingle' => 'Mined Skill',
@@ -1374,6 +1459,35 @@ class EsoLogViewer
 							'upgradeLines' => 'RemoveTextFormats',
 					),
 						
+					'filters' => array(
+					),
+			),
+			
+			
+			'minedSkills12pts' => array(
+					'displayName' => 'Update 12-PTS: Mined Skills',
+					'displayNameSingle' => 'Update 12-PTS: Mined Skill',
+					'record' => 'minedSkills12pts',
+					'table' => 'minedSkills12pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are sets for update 12 (One Tamriel) as logged from the PTS server.",
+			
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+			
 					'filters' => array(
 					),
 			),
@@ -1575,7 +1689,7 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			'Items 11-PTS' => 'minedItemSummary11pts',
+			'Items 12-PTS' => 'minedItemSummary12pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'Quests' => 'quest',
@@ -1583,9 +1697,9 @@ class EsoLogViewer
 			'Quest Item' => 'questItem',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			'Sets 11-PTS' => 'setSummary11pts',
+			'Sets 12-PTS' => 'setSummary12pts',
 			'Skills' => 'minedSkills',
-			'Skills 11-PTS' => 'minedSkills11pts',
+			'Skills 12-PTS' => 'minedSkills12pts',
 	);
 	
 	
@@ -1730,6 +1844,14 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary12pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -1770,6 +1892,14 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
+			'setSummary12pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
 			'minedSkills' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
@@ -1787,6 +1917,14 @@ class EsoLogViewer
 					),
 			),
 			'minedSkills11pts' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
+			'minedSkills12pts' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -1898,6 +2036,24 @@ class EsoLogViewer
 			unset(self::$SEARCH_DATA['minedItemSummary11pts']);
 			unset(self::$SEARCH_DATA['setSummary11pts']);
 			unset(self::$SEARCH_DATA['minedSkills11pts']);
+		}
+		
+		if (self::ENABLE_12PTS)
+		{
+			self::$RECORD_TYPES['minedItem12pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary12pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary12pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedSkills12pts']['fields'] = self::$SKILLDUMP_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary12pts']);
+			unset(self::$RECORD_TYPES['minedItem12pts']);
+			unset(self::$RECORD_TYPES['setSummary12pts']);
+			unset(self::$RECORD_TYPES['minedSkills12pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary12pts']);
+			unset(self::$SEARCH_DATA['setSummary12pts']);
+			unset(self::$SEARCH_DATA['minedSkills12pts']);
 		}
 		
 		$this->InitDatabase();
@@ -2204,6 +2360,19 @@ class EsoLogViewer
 	}
 	
 	
+	public function MakeMinedItemLink12pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=12pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
 	public function MakeMinedItemSummaryLink ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
@@ -2244,6 +2413,17 @@ class EsoLogViewer
 		$itemId = $itemData['itemId'];
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=11pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink12pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=12pts\">" . $value . "</a>";
 		return $output;
 	}
 	

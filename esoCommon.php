@@ -24,6 +24,7 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100014" => "9",
 		"100015" => "10",
 		"100016" => "11",
+		"100017" => "12",
 );
 
 
@@ -35,6 +36,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100014" => "2.3",
 		"100015" => "2.4",
 		"100016" => "2.5",
+		"100017" => "2.6",
 );
 
 
@@ -1493,6 +1495,10 @@ function GetEsoItemTableSuffix($version)
 		case '111':
 		case '11':
 			return "";
+		case '1.12pts':
+		case '112pts':
+		case '12pts':
+			return "12pts";
 	}
 
 	return "";
