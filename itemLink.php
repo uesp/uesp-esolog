@@ -172,6 +172,7 @@ class CEsoItemLink
 	public $enchantId2 = 0;
 	public $enchantIntLevel2 = 0;
 	public $enchantIntType2 = 0;
+	public $enchantFactor = 0;
 	public $itemRecord = array();
 	public $enchantRecord1 = null;
 	public $enchantRecord2 = null;
@@ -292,6 +293,7 @@ class CEsoItemLink
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
+		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
 				
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -304,7 +306,7 @@ class CEsoItemLink
 		else
 		{
 			$this->htmlTemplate = file_get_contents(self::ESOIL_HTML_TEMPLATE);
-		}
+		}		
 		
 		if (array_key_exists('enchantid', $this->inputParams))
 		{
@@ -1357,9 +1359,9 @@ class CEsoItemLink
 		$trait = $this->itemRecord['trait'];
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
 		
-		$armorFactor = 1;
-		$weaponFactor = 1;
-				
+		$armorFactor = 1 + $this->enchantFactor;
+		$weaponFactor = 1 + $this->enchantFactor;
+		
 				/* Infused */
 		if ($trait == 16 || $trait == 4)
 		{
@@ -1375,6 +1377,7 @@ class CEsoItemLink
 		}
 		
 		$armorType = $this->itemRecord['armorType'];
+		$weaponType = $this->itemRecord['weaponType'];
 		$equipType = $this->itemRecord['equipType'];
 		
 			/* Modify enchants of small armor pieces */
@@ -1383,7 +1386,7 @@ class CEsoItemLink
 			$armorFactor *= 0.4044; 
 		}
 
-		if (!$isDefaultEnchant && $armorFactor != 1)
+		if ($armorType > 0 && !$isDefaultEnchant && $armorFactor != 1)
 		{
 			$newDesc = preg_replace_callback("#(Adds \|c[0-9a-fA-F]{6})([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
 					
@@ -1395,8 +1398,9 @@ class CEsoItemLink
         		$newDesc);
 
 		}
-		else if ($weaponFactor != 1)
+		else if ($weaponType > 0 && $weaponFactor != 1)
 		{
+			
 			foreach ($WEAPON_MATCHES as $match)
 			{
 				$newDesc = preg_replace_callback($match,

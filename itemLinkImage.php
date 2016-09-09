@@ -87,6 +87,7 @@ class CEsoItemLinkImage
 	public $enchantId2 = -1;
 	public $enchantIntLevel2 = -1;
 	public $enchantIntType2 = -1;
+	public $enchantFactor = 0;
 	public $version = "";
 	public $useUpdate10Display = true;
 	public $noCache = false;
@@ -279,6 +280,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];;
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];;
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
+		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (int) $this->inputParams['enchantfactor'];
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -1460,8 +1462,8 @@ class CEsoItemLinkImage
 		$trait = $this->itemRecord['trait'];
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
 	
-		$armorFactor = 1;
-		$weaponFactor = 1;
+		$armorFactor = 1 + $this->enchantFactor;
+		$weaponFactor = 1 + $this->enchantFactor;
 	
 			/* Infused */
 		if ($trait == 16 || $trait == 4)
