@@ -36,6 +36,7 @@
 			<div id="esoil_itemenchantblock">{itemEnchantBlock}</div>
 			<div id="esoil_itemtraitblock">{itemTraitBlock}</div>
 			<div id="esoil_itemsetblock">{itemSetBlock}</div>
+			<div id="esoil_itemdyestampblock">{itemDyeStampBlock}</div>
 			<div id="esoil_itemdesc" class="{itemDescClass}">{itemDesc}</div>
 			<div id="esoil_itemtags">{itemTags}</div>
 			<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>			

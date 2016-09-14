@@ -1588,6 +1588,8 @@ class CEsoItemLink
 		
 		switch ($this->itemRecord['type'])
 		{
+			case 59:
+				return "none";
 			case 2:
 			case 1:
 				return "inline-block";
@@ -1835,6 +1837,55 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeItemDyeStampBlock()
+	{
+		$dyeData = $this->itemRecord['dyeData'];
+		if ($this->itemRecord['type'] != 59 || $dyeData == null || $dyeData == "") return "";
+		
+		$parsedDyeData = explode(",", $dyeData);
+		$dyeStampId = $parsedDyeData[0];
+		$dye1 = $parsedDyeData[1];
+		$dye2 = $parsedDyeData[2];
+		$dye3 = $parsedDyeData[3];
+				
+		$output = "<div class='esoil_dyedesc'>Dyes all the channels of your currently equipped<br/><div class='esoil_white'>Costume</div> and <div class='esoil_white'>Hat.</div></div>";
+		
+		$output .= $this->MakeItemDyeStampSubBlock($dye1);
+		$output .= $this->MakeItemDyeStampSubBlock($dye2);
+		$output .= $this->MakeItemDyeStampSubBlock($dye3);
+		
+		return $output;
+	}
+	
+	
+	private function MakeItemDyeStampSubBlock($rawDyeData)
+	{
+		if ($rawDyeData == null) return "";
+		
+		$result = preg_match("/(?P<dyeId>[0-9]+){(?P<dyeName>[^}]*)}{(?P<dyeColor>[0-9a-zA-Z]*)}/", $rawDyeData, $matches);
+		if (!$result) return "";
+		
+		$dyeId = $matches['dyeId'];
+		$dyeName = $matches['dyeName'];
+		$dyeColor = $matches['dyeColor'];
+		
+		if ($dyeName  == null || $dyeName  == "") return "";
+		if ($dyeColor == null || $dyeColor == "") return "";
+		
+		$output = "<div class='esoil_dyename'>";
+		
+			//http://esoitem.uesp.net/resources/dyeStampBox.png  24x24 px
+		$output .= "<div class='esoil_dyecolorbox'>";
+		$output .= "<div class='esoil_dyecolor' style='background-color: #{$dyeColor}'></div>";
+		$output .= "</div>"; 
+			
+		$output .= $dyeName;  
+		$output .= "</div>";
+		
+		return $output;
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
@@ -1888,6 +1939,7 @@ class CEsoItemLink
 				'{similarItemBlockDisplay}' => "none",
 				'{itemTypeTitle}' => "",
 				'{itemDescClass}' => "",
+				'{itemDyeStampBlock}' => $this->MakeItemDyeStampBlock(),
 			);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);

@@ -278,6 +278,7 @@ class EsoLogViewer
 			'isVendorTrash' => self::FIELD_INTBOOLEAN,
 			'isArmorDecay' => self::FIELD_INTBOOLEAN,
 			'isConsumable' => self::FIELD_INTBOOLEAN,
+			'dyeData' => self::FIELD_STRING,
 	);
 	
 	
@@ -288,6 +289,7 @@ class EsoLogViewer
 			'icon' => self::FIELD_GAMEICON,
 			'description' => self::FIELD_TEXTTRANSFORM,
 			'tags' => self::FIELD_STRING,
+			'dyeData' => self::FIELD_STRING,
 			'style' => self::FIELD_INTTRANSFORM,
 			'trait' => self::FIELD_INTTRANSFORM,
 			'value' => self::FIELD_STRING,

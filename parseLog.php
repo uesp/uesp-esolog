@@ -420,6 +420,7 @@ class EsoLogParser
 			'isConsumable' => self::FIELD_INT,
 			'comment' => self::FIELD_STRING,
 			'tags' => self::FIELD_STRING,
+			'dyeData' => self::FIELD_STRING,
 	);
 	
 	public static $MINED_ITEMKEY_TO_DBKEY = array(
@@ -489,6 +490,7 @@ class EsoLogParser
 			'isConsumable' => 'isConsumable',
 			'comment' => 'comment',
 			'tags' => 'tags',
+			'dyeData' => 'dyeData',
 			//runeName
 			//ingrName1-N
 	);
@@ -1642,6 +1644,7 @@ class EsoLogParser
 			icon TINYTEXT NOT NULL,
 			comment TINYTEXT NOT NULL,
 			tags TINYTEXT NOT NULL,
+			dyeData TEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId),
@@ -3692,6 +3695,25 @@ class EsoLogParser
 				else if ($flag == "Consumable")
 					$logEntry['isConsumable'] = true;
 			}
+		}
+		
+		if (array_key_exists('dyeStampId', $logEntry) && $logEntry['dyeStampId'] > 0)
+		{
+			$dyeId = $logEntry['dyeStampId'];
+			$pId = $logEntry['primaryDyeId'];
+			$sId = $logEntry['secondaryDyeId'];
+			$aId = $logEntry['accentDyeId'];
+			$pColor = $logEntry['primaryDyeColor'];
+			$sColor = $logEntry['secondaryDyeColor'];
+			$aColor = $logEntry['accentDyeColor'];
+			$pName = $logEntry['primaryDyeName'];
+			$sName = $logEntry['secondaryDyeName'];
+			$aName = $logEntry['accentDyeName'];
+			
+			$a = '{';
+			$b = '}';
+			
+			$logEntry['dyeData'] = "$dyeId, $pId$a$pName$b$a$pColor$b, $sId$a$sName$b$a$sColor$b, $aId$a$aName$b$a$aColor$b";
 		}
 		
 	}

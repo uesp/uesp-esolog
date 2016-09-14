@@ -299,6 +299,7 @@ $ESO_ITEMTYPE_TEXTS = array(
 		13 => "Costume",
 		14 => "Disguise",
 		12 => "Drink",
+		59 => "Dye Stamp",
 		32 => "Enchanting Rune",
 		25 => "Enchantment Booster",
 		28 => "Flavoring",

@@ -258,7 +258,8 @@
 }
 
 #esoil_itembar, #esoil_itemsetblock, #esoil_itemtraitblock, #esoil_itemenchantblock,
-#esoil_itemabilityblock, #esoil_itemtraitabilityblock, #esoil_itemcraftedblock {
+#esoil_itemabilityblock, #esoil_itemtraitabilityblock, #esoil_itemcraftedblock,
+#esoil_itemdyestampblock {
 	display: block;
 	margin-top: 12px;
 	margin-left: 5px;
@@ -377,4 +378,34 @@
 	text-align: left !important;
 	line-height: 1.1em !important;
 	margin-top: 15px;
+}
+
+.esoil_dyedesc {
+	font-size: 1.0em !important;
+	text-align: center !important;
+	color: #C5C29E;
+	padding-bottom: 10px;
+}
+
+.esoil_dyename {
+	color: white;
+	font-size: 1.0em !important;
+	text-align: left !important;
+	font-weight: bold !important;
+	margin-left: 120px;
+}
+
+.esoil_dyecolorbox {
+	background-image: url(http://esoitem.uesp.net/resources/dyeStampBox.png);
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 5px;
+}
+
+.esoil_dyecolor {
+	margin: 2px;
+	width: 20px;
+	height: 20px;
 }
