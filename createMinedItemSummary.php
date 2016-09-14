@@ -29,6 +29,7 @@ $FIELDS = array(
 		"enchantName",
 		"abilityName",
 		"tags",
+		"dyeData",
 );
 
 $RANGE_FIELDS = array(
@@ -101,6 +102,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			setBonusDesc4 TEXT NOT NULL,
 			setBonusDesc5 TEXT NOT NULL,
 			tags TINYTEXT NOT NULL,
+			dyeData TEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_style (style),
 			INDEX index_trait (trait),

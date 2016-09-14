@@ -1184,6 +1184,9 @@ class CEsoItemLinkImage
 	
 		switch ($this->itemRecord['type'])
 		{
+			case 59:
+				return false;
+				
 			case 2:
 				$equipType = $this->itemRecord['equipType'];
 				
@@ -1193,6 +1196,7 @@ class CEsoItemLinkImage
 					$display = true;
 				
 				break;
+				
 			case 1:
 				$display = true;
 				break;
@@ -1796,6 +1800,69 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function OutputItemDyeStampBlock($image, $y)
+	{
+		$origy = $y;
+		
+		$dyeData = $this->itemRecord['dyeData'];
+		if ($this->itemRecord['type'] != 59 || $dyeData == null || $dyeData == "") return 0;
+	
+		$parsedDyeData = explode(",", $dyeData);
+		$dyeStampId = $parsedDyeData[0];
+		$dye1 = $parsedDyeData[1];
+		$dye2 = $parsedDyeData[2];
+		$dye3 = $parsedDyeData[3];
+	
+		$printData = array();
+		$text = "Dyes all the channels of your currently equipped\n|cffffffCostume|r and |cffffffHat|r.";
+		$this->AddPrintData($printData, $text, $this->printOptionsSmallBeige, array('br' => true, 'format' => true, 'lineBreak' => true));
+		
+		$y += $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+		$y += 2;
+	
+		$y += $this->OutputItemDyeStampSubBlock($dye1, $image, $y);
+		$y += $this->OutputItemDyeStampSubBlock($dye2, $image, $y);
+		$y += $this->OutputItemDyeStampSubBlock($dye3, $image, $y);
+		
+		$y += 5;
+	
+		return $y - $origy;
+	}
+	
+	
+	private function OutputItemDyeStampSubBlock($rawDyeData, $image, $y)
+	{
+		$origy = $y;
+		if ($rawDyeData == null) return 0;
+	
+		$result = preg_match("/(?P<dyeId>[0-9]+){(?P<dyeName>[^}]*)}{(?P<dyeColor>[0-9a-zA-Z]*)}/", $rawDyeData, $matches);
+		if (!$result) return 0;
+	
+		$dyeId = $matches['dyeId'];
+		$dyeName = $matches['dyeName'];
+		$dyeColor = $matches['dyeColor'];
+	
+		if ($dyeName  == null || $dyeName  == "") return "";
+		if ($dyeColor == null || $dyeColor == "") return "";
+		
+		$printData = array();
+		$this->AddPrintData($printData, $dyeName, $this->printOptionsSmallWhite, array('br' => true, 'format' => false, 'lineBreak' => false));
+		$this->PrintDataText($image, $printData, $this->borderMargin + 145, $y + 4, 'left');
+		
+		$color = imagecolorallocate($image, hexdec(substr($dyeColor, 0, 2)), hexdec(substr($dyeColor, 2, 2)), hexdec(substr($dyeColor, 4, 2)));
+		imagefilledrectangle($image, 120, $y, 120 + 20, $y + 20, $color);
+		
+		$dyeStampImage = imagecreatefrompng("resources/dyeStampBox.png");
+		
+		if ($dyeStampImage != null)
+		{
+			imagecopy($image, $dyeStampImage, 120 - 2, $y - 2, 0, 0, 24, 24);
+		}
+		
+		return 30;
+	}
+	
+	
 	public function OutputBorder ($image)
 	{
 		$borderImage = imagecreatefrompng("resources/eso_item_border.png");
@@ -1954,6 +2021,7 @@ class CEsoItemLinkImage
 		$y += $this->OutputItemTraitBlock($image, $y);
 		$y += $this->OutputItemTraitAbilityBlock($image, $y);
 		$y += $this->OutputItemSetBlock($image, $y);
+		$y += $this->OutputItemDyeStampBlock($image, $y);
 		
 		$y += $this->OutputItemDescription($image, $y) + 4;
 		$y += $this->OutputItemTagsBlock($image, $y);
