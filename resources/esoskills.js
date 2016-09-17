@@ -205,7 +205,7 @@ function GetEsoSkillTooltipHtml(skillData)
 	else if (minRange > 0 && maxRange <= 0)
 		range = "Under " + (minRange/100) + " meters"
 	
-	if (angleDistance > 0) area = (radius/100) + " x " + (angleDistance/50) + " meters"
+	if (angleDistance > 0) area = (radius) + " x " + (angleDistance/50) + " meters"
 		
 	output += "<div class='esovsSkillTooltipTitle'>" + safeName + rankStr + "</div>\n";
 	output += "<img src='http://esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
