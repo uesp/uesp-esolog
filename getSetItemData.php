@@ -130,8 +130,18 @@ class CEsoLogGetSetItemData
 		$tableSuffix = $this->GetTableSuffix();
 		$setName = $this->db->real_escape_string($this->inputSetName);
 		$equipType = $this->inputEquipType;
+		$extraEquipTypes = "";
 		
-		$query = "SELECT itemId from minedItemSummary$tableSuffix WHERE setName='$setName' AND equipType='$equipType' LIMIT 1;";
+		if ($equipType == 14)
+		{
+			$extraEquipTypes = " OR equipType='5' OR equipType='6' ";			
+		}
+		else if ($equipType == 7)
+		{
+			$extraEquipTypes = " OR equipType='5' ";
+		}
+		
+		$query = "SELECT itemId from minedItemSummary$tableSuffix WHERE setName='$setName' AND (equipType='$equipType' $extraEquipTypes) LIMIT 1;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Database query error trying to find set item data!");
 		if ($result->num_rows <= 0) return $this->ReportError("No item with specified set found!");
