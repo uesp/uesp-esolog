@@ -47,7 +47,7 @@ class EsoLogParser
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
-	const ELP_SKILLCOEF_MININUM_R2 = -1;       //Log all coefficients for now
+	const ELP_SKILLCOEF_MININUM_R2 = -1;       //Log all coefficients focrr now
 	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
 	const ELP_SKILLCOEF_MAXCOEFVARS = 6;
 	
@@ -68,7 +68,7 @@ class EsoLogParser
 	const START_MINEITEM_TIMESTAMP = 4743975994677000000;	//v12    1475650800
 	
 	const MINEITEM_TABLESUFFIX = "12";
-	const SKILLS_TABLESUFFIX   = "12";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
