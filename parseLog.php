@@ -1884,7 +1884,7 @@ class EsoLogParser
 		$query = "CREATE TABLE IF NOT EXISTS achievements(
 			id INTEGER NOT NULL PRIMARY KEY,
 			name TINYTEXT NOT NULL,
-			description TINYTEXT NOT NULL,
+			description TEXT NOT NULL,
 			categoryIndex INTEGER NOT NULL,
 			subCategoryIndex INTEGER NOT NULL,
 			achievementIndex INTEGER NOT NULL,
