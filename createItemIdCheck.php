@@ -19,9 +19,9 @@ $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
 $TABLEPREFIX = "";
-$VERSION = "11";
+$VERSION = "12";
 $FIRSTID = 1;
-$LASTID = 100000;
+$LASTID = 130000;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
