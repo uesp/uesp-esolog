@@ -3764,6 +3764,8 @@ class EsoLogParser
 					//$abilityDesc .= "\nThese effects are scaled based on your level.";
 				}
 				
+				$recipeIngredients = preg_replace("#(\^[a-zA-Z]+)#", "", $recipeIngredients);
+				
 				if ($recipeIngredients != "") $abilityDesc .= "\n\n|cffffffINGREDIENTS|r\n" . ucwords($recipeIngredients);
 				if ($recipeRank > 0 && $recipeQuality > 0) $abilityDesc .= "\n\n|cffffffTO CREATE|r\n|c00ff00Requires Recipe Improvement $recipeRank|r\n|c00ff00Requires Recipe Quality $recipeQuality|r";
 				
