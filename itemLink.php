@@ -174,6 +174,7 @@ class CEsoItemLink
 	public $enchantIntType2 = 0;
 	public $enchantFactor = 0;
 	public $itemRecord = array();
+	public $resultItemRecord = array();
 	public $enchantRecord1 = null;
 	public $enchantRecord2 = null;
 	public $itemAllData = array();
@@ -689,6 +690,43 @@ class CEsoItemLink
 		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
 		
 		$this->LoadEnchantMaxCharges();
+		return true;
+	}
+	
+	
+	private function LoadResultItemRecord()
+	{
+		$itemLink = $this->itemRecord['resultItemLink'];
+		if ($itemLink == null || $itemLink == "") return true;
+		
+		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(.*)\|h/', $itemLink, $matches);
+		if (!$result) return true;
+		
+		$resultItemId = $matches['itemId'];
+		$resultItemLevel = $matches['level']; 
+		$resultItemSubType = $matches['subtype'];
+		
+		if ($resultItemId == null || $resultItemId == "") return true;
+		if ($resultItemLevel == null || $resultItemLevel == "") return true;
+		if ($resultItemSubType == null || $resultItemSubType == "") return true;
+		
+		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId=$resultItemId AND internalLevel=$resultItemLevel AND internalSubType=$resultItemSubType LIMIT 1;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		if ($result->num_rows === 0)
+		{
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId=$resultItemId AND internalLevel=1 AND internalSubType=1 LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		}
+		
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		if ($result->num_rows === 0) $this->ReportError("ERROR: No result item found matching '$itemLink'!");
+		
+		$this->resultItemRecord = $row;
+		
 		return true;
 	}
 	
@@ -1262,6 +1300,10 @@ class CEsoItemLink
 		{
 			return "(" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . ")";
 		}
+		elseif ($type == 29) // Recipe
+		{
+			return "(Provisioning)";
+		}
 		
 		return "";
 	}
@@ -1524,9 +1566,20 @@ class CEsoItemLink
 	
 	private function MakeItemAbilityBlock()
 	{
-		$ability = strtoupper($this->itemRecord['abilityName']);
-		$abilityDesc = $this->FormatDescriptionText($this->itemRecord['abilityDesc']);
-		$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
+		if ($this->itemRecord['type'] == 29)	//Recipes
+		{
+			$ability = strtoupper($this->itemRecord['abilityName']);
+			$abilityDesc = FormatEsoItemDescriptionIcons($this->itemRecord['abilityDesc']);
+			$abilityDesc = $this->FormatDescriptionText($abilityDesc);
+			if ($abilityDesc == "") return "";
+			return "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc";
+		}
+		else
+		{
+			$ability = strtoupper($this->itemRecord['abilityName']);
+			$abilityDesc = $this->FormatDescriptionText($this->itemRecord['abilityDesc']);
+			$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
+		}
 		
 		if ($abilityDesc == "") return "";
 		return "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc ($cooldown second cooldown)";
@@ -1588,9 +1641,11 @@ class CEsoItemLink
 		
 		switch ($this->itemRecord['type'])
 		{
-			case 59:
+			case 29:	// Recipe
 				return "none";
-			case 2:
+			case 59:	// Dye Stamp
+				return "none";
+			case 2:		// Armor/Weapons
 			case 1:
 				return "inline-block";
 		}
@@ -2429,6 +2484,7 @@ class CEsoItemLink
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		
 		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+		$this->LoadResultItemRecord();
 		$this->LoadEnchantRecords();
 		
 		if ($this->showSummary)
