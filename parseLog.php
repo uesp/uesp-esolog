@@ -3765,7 +3765,7 @@ class EsoLogParser
 				}
 				
 				if ($recipeIngredients != "") $abilityDesc .= "\n\n|cffffffINGREDIENTS|r\n" . ucwords($recipeIngredients);
-				if ($recipeRank > 0 && $recipeQuality > 0) $abilityDesc .= "\n\n|cffffffTO CREATE|r\n|c00ff00Requires Recipe Improvement $recipeRank\nRequires Recipe Quality $recipeQuality|r";
+				if ($recipeRank > 0 && $recipeQuality > 0) $abilityDesc .= "\n\n|cffffffTO CREATE|r\n|c00ff00Requires Recipe Improvement $recipeRank|r\n|c00ff00Requires Recipe Quality $recipeQuality|r";
 				
 				$logEntry['useAbilityDesc'] = $abilityDesc;
 				

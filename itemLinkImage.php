@@ -613,17 +613,21 @@ class CEsoItemLinkImage
 	
 	public function FormatPrintData(&$printData, $lineData)
 	{
+		$lineBreak = array_key_exists('br', $lineData);
+		
 		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $lineData['text']);
+		$newText = preg_replace("#\|t([0-9]*):([0-9]*):champion_icon_[0-9]+\.dds\|t#s", "CP", $newText);
+		                         //"|t24:24:champion_icon_24.dds|t"
 		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $newText);
 		
-		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[a-zA-Z \-0-9\.]+\|r)|(Adds [0-9\-\.]+)|(by [0-9\-\.]+)|(for [0-9\-\.]+)#s", $newText, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[^\|]+\|r)|(Adds [0-9\-\.]+)|(by [0-9\-\.]+)|(for [0-9\-\.]+)#s", $newText, -1, PREG_SPLIT_DELIM_CAPTURE);
 		$numFmts = count($formats);
 		
 		foreach ($formats as $key => $value)
 		{
 			$newData = $lineData;
 			
-			if ($value[0] == '|' && preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[a-zA-Z \-0-9\.]+)\|r#s", $value, $matches))
+			if ($value[0] == '|' && preg_match("#\|c(?<color>[0-9a-fA-F]{6})(?<value>[^\|]+)\|r#s", $value, $matches))
 			{
 				$newData['text'] = " " .$matches['value'];
 				$newData['color'] = hexdec($matches['color']);
@@ -671,16 +675,26 @@ class CEsoItemLinkImage
 			{
 				$newData['text'] = $value;
 			}
+	
+			if ($newData['text'] == "")
+			{
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], "Aj");
+				$newData['width']  = 1;
+				$newData['height'] = $extents[1];
+			}
+			else 
+			{
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
+				$newData['width']  = $extents[0];
+				$newData['height'] = $extents[1];
+			}
 			
 			unset($newData['br']);
-			$extents = $this->GetTextExtents($newData['size'], $newData['font'], $newData['text']);
-			$newData['width']  = $extents[0];
-			$newData['height'] = $extents[1];
 			
 			$printData[] = $newData;
 		}
 		
-		if (array_key_exists('br', $lineData)) $printData[count($printData) - 1]['br'] = true;
+		if ($lineBreak) $printData[count($printData) - 1]['br'] = true;
 	}
 	
 	
@@ -688,7 +702,7 @@ class CEsoItemLinkImage
 	{
 		$newData = $lineData;
 		
-		$newText = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.]+)\|r#s", "$2", $lineData['text']);
+		$newText = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.\t\n]+)\|r#s", "$2", $lineData['text']);
 		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $newText);
 		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $newText);
 		$newData['text'] = $newText;
@@ -705,6 +719,7 @@ class CEsoItemLinkImage
 	{
 		$optionsData = array_merge($baseOptions, $options);
 		$lines = preg_split("/\\n/", $text);
+		//$lines = str_split("\n", $text);
 		$lineCount = 0;
 		$dataStartIndex = count($printData);
 		
@@ -716,8 +731,17 @@ class CEsoItemLinkImage
 			$newData['br'] = true;
 			$newData['text'] = $line;
 			
-			$extents = $this->GetTextExtents($newData['size'], $newData['font'], $line);
-			$newData['width']  = $extents[0];
+			if ($line == "")
+			{
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], "Aj");
+				$newData['width'] = 1;
+			}
+			else
+			{
+				$extents = $this->GetTextExtents($newData['size'], $newData['font'], $line);
+				$newData['width']  = $extents[0];
+			}
+			
 			$newData['height'] = $extents[1];
 			
 			if (array_key_exists('format', $options) && $options['format'] === true)
@@ -736,6 +760,7 @@ class CEsoItemLinkImage
 		for ($i = $dataStartIndex; $i < count($printData); $i += 1)
 		{
 			$data = $printData[$i];
+			$lineBreak = $data['br'];
 			$origLineWidth = $lineWidth;
 			$lineWidth += $data['width'];
 			
@@ -774,7 +799,11 @@ class CEsoItemLinkImage
 					$newData['width']  = $extents[0];
 					$newData['height'] = $extents[1];
 					$newData['text'] = $rightWords;
-					unset($newData['br']);
+					
+					if ($lineBreak)
+						$newData['br'] = $lineBreak;
+					else
+						unset($newData['br']);
 					
 					array_splice($printData, $i + 1, 0, array($newData));
 					//$printData[$i + 1] = $newData;
@@ -1057,6 +1086,10 @@ class CEsoItemLinkImage
 		{
 			return "(" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . ")";
 		}
+		elseif ($type == 29) // Recipe
+		{
+			return "(Provisioning)";
+		}
 	
 		return "";
 	}
@@ -1184,7 +1217,10 @@ class CEsoItemLinkImage
 	
 		switch ($this->itemRecord['type'])
 		{
-			case 59:
+			case 29:	// Recipe
+				return false;
+				
+			case 59:	// Dye Stamp
 				return false;
 				
 			case 2:
@@ -1574,16 +1610,25 @@ class CEsoItemLinkImage
 	
 	private function OutputItemAbilityBlock($image, $y)
 	{
-		$ability = strtoupper($this->itemRecord['abilityName']);
-		$abilityDesc = $this->itemRecord['abilityDesc'];
-		if ($abilityDesc == "") return 0;
-		
-		$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
-		$abilityDesc .= " (" . $cooldown . " second cooldown)";
+		if ($this->itemRecord['type'] == 29)	// Recipes
+		{
+			$ability = strtoupper($this->itemRecord['abilityName']);
+			$abilityDesc = $this->itemRecord['abilityDesc'];
+			if ($abilityDesc == "") return "";
+		}
+		else
+		{
+			$ability = strtoupper($this->itemRecord['abilityName']);
+			$abilityDesc = $this->itemRecord['abilityDesc'];
+			if ($abilityDesc == "") return 0;
+			
+			$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
+			$abilityDesc .= " (" . $cooldown . " second cooldown)";
+		}
 		
 		$printData = array();
-		if ($abilityName != "") $this->AddPrintData($printData, $ability, $this->printOptionsSmallWhite, array('br' => true, 'format' => true));
-		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+		if ($ability != "") $this->AddPrintData($printData, $ability, $this->printOptionsSmallWhite, array('br' => true, 'format' => true));
+		$this->AddPrintData($printData, $abilityDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true, 'br' => true));
 		
 		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 	}
@@ -2015,6 +2060,11 @@ class CEsoItemLinkImage
 			$y += 40;
 			$y += $this->OutputItemBar($image, $y);
 		}
+		else
+		{
+			$y += 5;
+		}
+			
 		
 		$y += $this->OutputItemAbilityBlock($image, $y);
 		$y += $this->OutputItemEnchantBlock($image, $y);
