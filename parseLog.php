@@ -3717,6 +3717,61 @@ class EsoLogParser
 			$logEntry['dyeData'] = "$dyeId, $pId$a$pName$b$a$pColor$b, $sId$a$sName$b$a$sColor$b, $aId$a$aName$b$a$aColor$b";
 		}
 		
+		if (array_key_exists('recipeLink', $logEntry) && $logEntry['recipeLink'] != "")
+		{
+			$resultAbility = $logEntry['resultUseAbility'];
+			$resultCooldown = $logEntry['resultCooldown'];
+			$recipeIngredients = $logEntry['recipeIngredients'];
+			$resultMinLevel = $logEntry['resultMinLevel'];
+			$resultMaxLevel = $logEntry['resultMaxLevel'];
+			$recipeRank = $logEntry['recipeRank'];
+			$recipeQuality = $logEntry['recipeQuality'];
+			
+			if ($resultAbility == null) $resultAbility = "";
+			if ($resultCooldown == null) $resultCooldown = "0";
+			if ($resultMinLevel == null) $resultMinLevel = "";
+			if ($resultMaxLevel == null) $resultMaxLevel = "";
+			if ($recipeRank == null) $recipeRank = "";
+			if ($recipeQuality == null) $recipeQuality = "";
+			if ($recipeIngredients == null) $recipeIngredients = "";
+			
+			if ($resultAbility != "")
+			{
+				$abilityDesc = $resultAbility;
+				if ($resultCooldown != "" && $resultCooldown > 0) $abilityDesc .= " (" . intval($resultCooldown/1000) . " second cooldown)";
+				
+				if ($resultMinLevel > 0 && $resultMaxLevel > 0)
+				{
+					$minImage = "level ";
+					$maxImage = "level ";
+					
+					if ($resultMinLevel > 50)
+					{
+						$resultMinLevel = ($resultMinLevel - 50) * 10; 
+						$minImage = "|t24:24:champion_icon_24.dds|t";
+					}
+					
+					if ($resultMaxLevel > 50)
+					{
+						$resultMaxLevel = ($resultMaxLevel - 50) * 10;
+						$maxImage = "|t24:24:champion_icon_24.dds|t";
+					}
+					
+					$abilityDesc .= "\nScales from $minImage|cffffff".$resultMinLevel."|r to $maxImage|cffffff".$resultMaxLevel."|r.";
+				}
+				else if ($resultMinLevel == 0 && $resultMaxLevel == 0)
+				{
+					//$abilityDesc .= "\nThese effects are scaled based on your level.";
+				}
+				
+				if ($recipeIngredients != "") $abilityDesc .= "\n\n|cffffffINGREDIENTS|r\n" . ucwords($recipeIngredients);
+				if ($recipeRank > 0 && $recipeQuality > 0) $abilityDesc .= "\n\n|cffffffTO CREATE|r\n|c00ff00Requires Recipe Improvement $recipeRank\nRequires Recipe Quality $recipeQuality|r";
+				
+				$logEntry['useAbilityDesc'] = $abilityDesc;
+				
+				//print("\tCreated Recipe Description: $abilityDesc\n");
+			}			
+		}		
 	}
 	
 	

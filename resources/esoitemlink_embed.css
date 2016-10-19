@@ -409,3 +409,8 @@
 	width: 20px;
 	height: 20px;
 }
+
+#esoil_itemabilityblock img {
+    position: relative;
+    top: 7px;
+}

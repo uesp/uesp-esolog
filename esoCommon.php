@@ -1513,8 +1513,14 @@ function GetEsoItemTableSuffix($version)
 function FormatEsoItemDescriptionIcons($desc)
 {
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
-	$output = strtolower($desc);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s", "<img src='" . UESP_ESO_ICON_URL . "$3.png' />", $output);
+	//$output = strtolower($desc);
+	
+	$output = preg_replace_callback("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s",  
+			function ($matches) {
+				return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' />";
+				//"<img src='" . UESP_ESO_ICON_URL . "/$3.png' />",
+			},
+			$desc);
 
 	return $output;
 }
