@@ -2484,7 +2484,7 @@ class CEsoItemLink
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		
 		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
-		$this->LoadResultItemRecord();
+		//$this->LoadResultItemRecord();
 		$this->LoadEnchantRecords();
 		
 		if ($this->showSummary)
