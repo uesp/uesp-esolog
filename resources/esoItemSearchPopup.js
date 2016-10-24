@@ -94,6 +94,7 @@ UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP =
 		 1 : [1,  30,  31,  32,  33,  34],
 		 4 : [1,  25,  26,  27,  28,  29],
 		 6 : [1,  20,  21,  22,  23,  24],
+		50 : [1,  20,  21,  22,  23,  24], //?
 		51 : [1, 125, 135, 145, 155, 156],
 		52 : [1, 126, 136, 146, 156, 166],
 		53 : [1, 127, 137, 147, 157, 167],
@@ -117,6 +118,7 @@ UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP_JEWELRY =
 		 1 : [1,  30,  31,  32,  33,  34],
 		 4 : [1,  25,  26,  27,  28,  29],
 		 6 : [1,  20,  21,  22,  23,  24],
+		50 : [1,  20,  21,  22,  23,  24],  //?
 		51 : [1, 125, 135, 145, 155, 156],
 		52 : [1, 126, 136, 146, 156, 166],
 		53 : [1, 127, 137, 147, 157, 167],
@@ -868,9 +870,12 @@ UESP.EsoItemSearchPopup.prototype.onLevelSlideChange = function(e)
 	var newLevel = $("#esoispLevelSlider").val();
 		
 	$("#esoispLevel").val(this.formatLevel(newLevel));
-	$(".esoispResultRow").attr("level", newLevel);
+	//$(".esoispResultRow").attr("level", newLevel);
 	
 	this.updateLevelQuality();
+	
+	$(".esoispResultRow").attr("intlevel", this.itemIntLevel);
+	$(".esoispResultRow").attr("inttype", this.itemIntType);
 }
 
 
@@ -882,6 +887,7 @@ UESP.EsoItemSearchPopup.prototype.onLevelChange = function(e)
 	this.updateLevelQuality();
 	
 	$(".esoispResultRow").attr("intlevel", this.itemIntLevel);
+	$(".esoispResultRow").attr("inttype", this.itemIntType);
 }
 
 
@@ -896,6 +902,7 @@ UESP.EsoItemSearchPopup.prototype.onQualityChange = function(e)
 		
 	this.updateLevelQuality();
 	
+	$(".esoispResultRow").attr("intlevel", this.itemIntLevel);
 	$(".esoispResultRow").attr("inttype", this.itemIntType);
 }
 
@@ -948,8 +955,8 @@ UESP.EsoItemSearchPopup.prototype.getEquipTypeGroup = function(equipType)
 	
 	if (equipType == 30) return "Poison";
 	if (equipType == 2 || equipType == 12) return "Jewelry";
-	if (equipType == "5,6" || equipType == 6 || equipType == 5) return "Weapon";
-	if (equipType == "5,7" || equipType == 7) return "Weapon";
+	if (equipType == "5,6" || equipType == 6 || equipType == 5) return "MainHand";
+	if (equipType == "5,7" || equipType == 7) return "OffHand";
 	if (equipType == 1 || equipType == 3 || equipType == 4 || equipType == 8 || equipType == 9 || equipType == 10 || equipType == 13) return "Armor";
 	
 	return "Other";
