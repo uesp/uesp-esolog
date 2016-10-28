@@ -447,7 +447,7 @@ class CEsoViewSkills
 	
 	public function GetSkillPointsHtml()
 	{
-		$usedPoints = $this->GetUsedSkillPoints();;
+		$usedPoints = $this->GetUsedSkillPoints();
 		
 		$output  = "<div id='esovsSkillPointsContent'>";
 		$output .= "	<div id='esovsSkillPointsTitle'>Used Skill Points:</div> <div id='esovsSkillPoints'>$usedPoints</div>";
@@ -865,17 +865,17 @@ class CEsoViewSkills
 	public function FindBaseAbilityForActiveData($abilityId)
 	{
 		$skillData = $this->skillIds[$abilityId];
-		if ($skillData == null) return $abilityId;
+		if ($skillData == null) { return $abilityId; }
 				
 		while ($skillData['prevSkill'] > 0)
 		{
 			$prevId = $skillData['prevSkill'];
 			$skillData = $this->skillIds[$prevId];
-			if ($skillData == null) return $abilityId;
+			if ($skillData == null) { return $abilityId; }
 		}
 		
 		$baseAbilityId = $skillData['abilityId'];
-		if ($skillData['isPassive'] != 0) return $baseAbilityId;
+		if ($skillData['isPassive'] != 0) { return $baseAbilityId; }
 				
 		while ($skillData['nextSkill'] > 0)
 		{

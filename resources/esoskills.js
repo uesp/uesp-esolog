@@ -1149,6 +1149,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 	var FlatCost = 0;
 	var SkillFactor = 1;
 	var skillLineId = CreateEsoSkillLineId(skillData.skillLine) + "_Cost";
+	var skillNameId = CreateEsoSkillLineId(skillData.baseName) + "_Cost";
 	
 	if (mechanic == 0 && inputValues.MagickaCost != null)
 	{
@@ -1186,6 +1187,14 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		SkillFactor += SkillLineFactor;
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
+	}
+	
+	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillNameId] != null)
+	{
+		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillNameId]);
+		SkillFactor += SkillLineFactor;
+		
+		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
 	}
 				
 	cost = Math.floor((cost * CPFactor + FlatCost) * SkillFactor);
@@ -1900,6 +1909,8 @@ function OnLeaveEsoSkillBarIcon(e)
 
 function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 {
+	EsoSkillLog("UpdateEsoSkillPassiveData", origAbilityId, abilityId, rank);
+	
 	rank = parseInt(rank); 
 		
 	if (g_EsoSkillPassiveData[origAbilityId] == null)
