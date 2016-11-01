@@ -580,17 +580,29 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	
 	//EsoSkillLog("ComputeEsoSkillValue", skillData.name, valueIndex, damageType, isDot, values.useMaelstromDamage);
 	
-	if (values.useMaelstromDamage && isDot && values.SkillWeaponDamage != null && values.SkillSpellDamage != null)
+	if (values.SkillWeaponDamage == null || values.SkillSpellDamage == null)
 	{
-		skillWeaponValues = values.SkillWeaponDamage['Maelstrom'];
-		skillSpellValues  = values.SkillSpellDamage['Maelstrom'];
-		SpellDamageType.push("Maelstrom");
-		WeaponDamageType.push("Maelstrom");
+		
+	}
+	else if (skillData['castTime'] > 0 || skillData['channelTime'] > 0)
+	{
+		skillWeaponValues = values.SkillWeaponDamage['Channel'];
+		skillSpellValues  = values.SkillSpellDamage['Channel'];
+		SpellDamageType.push("Channel/Cast Time");
+		WeaponDamageType.push("Channel/Cast Time");
 	}
 	else
 	{
 		skillWeaponValues = values.SkillWeaponDamage;
 		skillSpellValues  = values.SkillSpellDamage;
+	}
+	
+	if (values.useMaelstromDamage && isDot && skillWeaponValues != null && skillWeaponValues != null)
+	{
+		skillWeaponValues = skillWeaponValues['Maelstrom'];
+		skillSpellValues  = skillWeaponValues['Maelstrom'];
+		SpellDamageType.push("Maelstrom");
+		WeaponDamageType.push("Maelstrom");
 	}
 	
 	if (skillWeaponValues != null) 
@@ -739,7 +751,6 @@ function IsEsoSkillValidForMaelstromDWEnchant(skillData)
 	if (skillData.baseName == "Entropy") return true;
 	if (skillData.name == "Scalding Rune") return true;
 	if (skillData.baseName == "Inner Fire") return true;
-	
 	
 		//Ultimates
 	//Rapid Fire (Toxic Barrage / Ballista)
