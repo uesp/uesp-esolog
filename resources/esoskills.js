@@ -582,7 +582,6 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	
 	if (values.SkillWeaponDamage == null || values.SkillSpellDamage == null)
 	{
-		
 	}
 	else if (skillData['castTime'] > 0 || skillData['channelTime'] > 0)
 	{
@@ -600,7 +599,7 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	if (values.useMaelstromDamage && isDot && skillWeaponValues != null && skillWeaponValues != null)
 	{
 		skillWeaponValues = skillWeaponValues['Maelstrom'];
-		skillSpellValues  = skillWeaponValues['Maelstrom'];
+		skillSpellValues  = skillSpellValues['Maelstrom'];
 		SpellDamageType.push("Maelstrom");
 		WeaponDamageType.push("Maelstrom");
 	}
@@ -617,10 +616,10 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 		
 		WeaponDamage = typeWeaponValues['base'];
 
-		if (typeWeaponValues[damageType] != null && damageType != 'base')
+		if (typeWeaponValues[damageType] != null)
 		{
 			WeaponDamage = typeWeaponValues[damageType];
-			WeaponDamageType.push(damageType);
+			if (damageType != 'base') WeaponDamageType.push(damageType);
 		}
 		
 		if (WeaponDamage == null) WeaponDamage = values.WeaponDamage;
@@ -638,10 +637,10 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 		
 		SpellDamage = typeSpellValues['base'];
 
-		if (typeSpellValues[damageType] != null && damageType != 'base')
+		if (typeSpellValues[damageType] != null)
 		{
 			SpellDamage = typeSpellValues[damageType];
-			SpellDamageType.push(damageType);
+			if (damageType != 'base') SpellDamageType.push(damageType);
 		}
 		
 		if (SpellDamage == null) SpellDamage = values.SpellDamage;
