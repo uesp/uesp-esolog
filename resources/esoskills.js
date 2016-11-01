@@ -555,19 +555,90 @@ function GetEsoSkillInputValues()
 }
 
 
-function ComputeEsoSkillValue(values, type, a, b, c)
+function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skillData)
 {
 	var value = 0;
 	var SpellDamage = values.SpellDamage;
 	var WeaponDamage = values.WeaponDamage;
 	var MaxDamage = values.MaxDamage;
+	var matchRegex = new RegExp("\\|c[a-fA-F0-9]{6}\\$" + valueIndex + "\\|r ([A-Za-z]+) Damage( over| each| every| to a target enemy over|)", "i");
+	var matchResults = coefDesc.match(matchRegex);
+	var damageType = "base";
+	var isDot = false;
+	var skillLine = skillData['skillLine'].toLowerCase();
+	var skillWeaponValues = null;
+	var skillSpellValues = null;
+	var typeWeaponValues = null;
+	var typeSpellValues = null;
+	var SpellDamageType = [];
+	var WeaponDamageType = [];
+	var includeSpellRawOutput = 0;
+	var includeWeaponRawOutput = 0;
 	
-	if (values.useMaelstromDamage && values.Damage != null && values.Damage.MaelstromDamage != null)
+	if (matchResults != null && matchResults[1] != null) damageType = matchResults[1].toLowerCase();
+	if (matchResults != null && matchResults[2] != null && matchResults[2] != "") isDot = true;
+	
+	//EsoSkillLog("ComputeEsoSkillValue", skillData.name, valueIndex, damageType, isDot, values.useMaelstromDamage);
+	
+	if (values.useMaelstromDamage && isDot && values.SkillWeaponDamage != null && values.SkillSpellDamage != null)
 	{
-		SpellDamage += values.Damage.MaelstromDamage;
-		WeaponDamage += values.Damage.MaelstromDamage;
-		MaxDamage = Math.max(SpellDamage, WeaponDamage);
+		skillWeaponValues = values.SkillWeaponDamage['Maelstrom'];
+		skillSpellValues  = values.SkillSpellDamage['Maelstrom'];
+		SpellDamageType.push("Maelstrom");
+		WeaponDamageType.push("Maelstrom");
 	}
+	else
+	{
+		skillWeaponValues = values.SkillWeaponDamage;
+		skillSpellValues  = values.SkillSpellDamage;
+	}
+	
+	if (skillWeaponValues != null) 
+	{
+		typeWeaponValues = skillWeaponValues['base'];
+		
+		if (skillWeaponValues[skillLine] != null) 
+		{
+			typeWeaponValues = skillWeaponValues[skillLine];
+			WeaponDamageType.push(skillLine);
+		}
+		
+		WeaponDamage = typeWeaponValues['base'];
+
+		if (typeWeaponValues[damageType] != null && damageType != 'base')
+		{
+			WeaponDamage = typeWeaponValues[damageType];
+			WeaponDamageType.push(damageType);
+		}
+		
+		if (WeaponDamage == null) WeaponDamage = values.WeaponDamage;
+	}
+	
+	if (skillSpellValues != null) 
+	{
+		typeSpellValues = skillSpellValues['base'];
+		
+		if (skillSpellValues[skillLine] != null) 
+		{
+			typeSpellValues = skillSpellValues[skillLine];
+			SpellDamageType.push(skillLine);
+		}
+		
+		SpellDamage = typeSpellValues['base'];
+
+		if (typeSpellValues[damageType] != null && damageType != 'base')
+		{
+			SpellDamage = typeSpellValues[damageType];
+			SpellDamageType.push(damageType);
+		}
+		
+		if (SpellDamage == null) SpellDamage = values.SpellDamage;
+	}
+	
+	MaxDamage = Math.max(SpellDamage, WeaponDamage);
+	
+	if (SpellDamage != values.SpellDamage) includeSpellRawOutput = 1;
+	if (WeaponDamage != values.WeaponDamage) includeWeaponRawOutput = 1;
 	
 	a = parseFloat(a);
 	b = parseFloat(b);
@@ -580,22 +651,29 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 	else if (type == 0) // Magicka
 	{
 		value = a * values.Magicka + b * SpellDamage + c;
+		++includeSpellRawOutput;
 	}
 	else if (type == 6) // Stamina
 	{
 		value = a * values.Stamina + b * WeaponDamage + c;
+		++includeWeaponRawOutput;
 	}
 	else if (type == 10) // Ultimate
 	{
 		value = a * values.MaxStat + b * MaxDamage + c;
+		++includeSpellRawOutput;
+		++includeWeaponRawOutput;
 	}
 	else if (type == -50) // Ultimate Soul Tether
 	{
 		value = a * values.MaxStat + b * SpellDamage + c;
+		++includeSpellRawOutput;
 	}
 	else if (type == -56) // Spell + Weapon Damage
 	{
 		value = a * SpellDamage + b * WeaponDamage + c;
+		++includeSpellRawOutput;
+		++includeWeaponRawOutput;
 	}
 	else if (type == -57) // Assassination Skills Slotted
 	{
@@ -631,6 +709,9 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 		return '?';
 	}
 	
+	if (includeSpellRawOutput  >= 2) skillData.rawOutput["$" + valueIndex + " Spell Damage Used"] = "" + SpellDamage + " " + SpellDamageType.join("+") + "";
+	if (includeWeaponRawOutput >= 2) skillData.rawOutput["$" + valueIndex + " Weapon Damage Used"] = "" + WeaponDamage + " " + WeaponDamageType.join("+") + "";
+	
 	value = Math.round(value);
 	
 	if (value < 0) return 0;
@@ -641,13 +722,48 @@ function ComputeEsoSkillValue(values, type, a, b, c)
 function IsEsoSkillValidForMaelstromDWEnchant(skillData)
 {
 	if (skillData.baseName == "Soul Strike") return true;
-	if (skillData.name == "Rending Slashes") return true;
-	if (skillData.name == "Poison Injection") return true;
-	if (skillData.baseName == "Searing Strike") return true;
-	if (skillData.baseName == "Entropy") return true;
+	if (skillData.baseName == "Rapid Fire") return true;
 	
-	//Burning Breath AoE
-	//Cleave AoE
+	if (skillData.baseName == "Twin Slashes") return true;
+	if (skillData.baseName == "Poison Arrow") return true;
+	if (skillData.baseName == "Searing Strike") return true;
+	if (skillData.name == "Agony") return true;
+	if (skillData.name == "Prolonged Suffering") return true;
+	if (skillData.baseName == "Cripple") return true;
+	if (skillData.baseName == "Trap Beast") return true;
+	
+	if (skillData.baseName == "Sun Fire") return true;
+	if (skillData.baseName == "Soul Trap") return true;
+	if (skillData.baseName == "Radiant Destruction") return true;
+	if (skillData.baseName == "Destructive Touch") return true;
+	if (skillData.baseName == "Entropy") return true;
+	if (skillData.name == "Scalding Rune") return true;
+	if (skillData.baseName == "Inner Fire") return true;
+	
+	
+		//Ultimates
+	//Rapid Fire (Toxic Barrage / Ballista)
+	//Soul Strike (Soul Assault / Shatter Soul)
+	
+		//Stamina
+	//Searing Strike (Venomous Claw / Burning Embers)
+	//Agony (Prolonged Suffering)
+	//Cripple (Debilitate / Crippling Grasp)
+	//Twin Slashes (Rending Slashes / Blood Craze)
+	//Poison Arrow (Venom Arrow / Poison Injection)
+	//Trap Beast (Rearming Trap / Lightweight Beast Trap)
+	
+		//Magicka
+	//Sun Fire (Vampire's Bane / )
+	//Radiant Destruction? (Radiant Glory / Radiant Oppression)
+	//Destructive Touch (Destructive Clench / Destructive Reach)
+	//Entropy (Degeneration / Structured Entropy)
+	//Scalding Rune
+	//Inner Fire? (Inner Rage / Inner Beast)
+	
+		//AoE effects that might work?
+	//Soul Trap? (Soul Splitting Trap / Consuming Trap)
+	//Reflective Light?
 	
 	return false;
 }
@@ -664,10 +780,10 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 	if (inputValues == null) inputValues = GetEsoSkillInputValues()
 	inputValues.useMaelstromDamage = false;
 	
-	if (inputValues.Damage != null && inputValues.Damage.MaelstromDamage != null && inputValues.Damage.MaelstromDamage > 0 && IsEsoSkillValidForMaelstromDWEnchant(skillData))
+	if (IsEsoSkillValidForMaelstromDWEnchant(skillData))
 	{
 		inputValues.useMaelstromDamage = true;
-		if (skillData.rawOutput != null) skillData.rawOutput["Maelstrom DW Enchant"] = "+" + inputValues.Damage.MaelstromDamage + " Weapon/Spell Damage";
+		//if (skillData.rawOutput != null) skillData.rawOutput["Maelstrom DW Enchant"] = "+" + inputValues.Damage.MaelstromDamage + " Weapon/Spell Damage";
 	}
 	
 	if (coefDesc == null || coefDesc == "") 
@@ -685,8 +801,8 @@ function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, ou
 			var b = skillData['b' + i];
 			var c = skillData['c' + i];
 			var srcString = "$" + i;
-			
-			var value = ComputeEsoSkillValue(inputValues, type, a, b, c);
+						
+			var value = ComputeEsoSkillValue(inputValues, type, a, b, c, coefDesc, i, skillData);
 			coefDesc = coefDesc.replace(srcString, value);
 		}
 	}
@@ -1909,7 +2025,7 @@ function OnLeaveEsoSkillBarIcon(e)
 
 function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 {
-	EsoSkillLog("UpdateEsoSkillPassiveData", origAbilityId, abilityId, rank);
+	//EsoSkillLog("UpdateEsoSkillPassiveData", origAbilityId, abilityId, rank);
 	
 	rank = parseInt(rank); 
 		
