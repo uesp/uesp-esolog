@@ -1,0 +1,114 @@
+body {
+	background-color: #FBEFD5;
+	font-family: sans-serif;
+	font-size: 13px;
+}
+
+#esovsd_root {
+	display: inline-block;
+}
+
+h1, h2, h3 {
+	margin: 5px;
+}
+
+#esovsd_footer {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#esovsd_footer a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#esovsd_footer a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+a:hover {
+	background-color: #ccc;
+}
+
+#esovsd_level {
+	width: 136px;
+}
+
+.esovsd_inlineblock {
+	display: inline-block;
+	width: 310px;
+}
+
+.esovsd_searchbutton {
+	float: right;
+	font-weight: bold;
+}
+
+.esovsd_searchbutton:hover {
+}
+
+.esovsd_clearbutton {	
+}
+
+.esovsd_label1 {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+    margin-bottom: 5px;
+    font-weight: bold;
+	margin-top: 4px;
+}
+
+#esovsd_text {
+	width: 166px;
+}
+
+#esovsd_quality, #esovsd_weapontype , #esovsd_style, #esovsd_itemtype, #esovsd_enchant {
+	width: 170px;
+}
+
+#esovsd_armortype, #esovsd_trait, #esovsd_equiptype, #esovsd_effect {
+	width: 140px;
+}
+
+.esovsd_buttons {
+	padding-top: 10px;
+}
+
+#esovsd_searchform {
+	width: 640px;
+	border: 1px solid silver;
+	padding: 7px;
+	border-top-width: 0 !important;
+}
+
+.esovsd_searchoptionheader {
+	display: block;
+    width: 100%;
+    background-color: #F5DEB3;
+    border: 1px solid silver;
+    padding: 7px;
+    width: 640px;
+}
+
+#esovsd_searchresults_table {
+	
+}
+
+.esovsd_itemicon {
+	width: 32px;
+	height: 32px;
+	vertical-align: middle;
+}
+
+.esovsd_itemlink {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.esovsd_itemlink:hover {
+	cursor: pointer;
+	background-color: #ccc;
+}
