@@ -65,7 +65,7 @@ a:hover {
 	width: 166px;
 }
 
-#esovsd_quality, #esovsd_weapontype , #esovsd_style, #esovsd_itemtype, #esovsd_enchant {
+#esovsd_quality, #esovsd_weapontype , #esovsd_style, #esovsd_itemtype, #esovsd_enchant, #esovsd_timeperiod {
 	width: 170px;
 }
 
@@ -110,5 +110,13 @@ a:hover {
 
 .esovsd_itemlink:hover {
 	cursor: pointer;
+	background-color: #ccc;
+}
+
+#esovsd_errormessages {
+	padding: 7px;
+}
+
+#esovsd_searchresults_table tr:hover {
 	background-color: #ccc;
 }

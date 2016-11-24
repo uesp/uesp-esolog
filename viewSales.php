@@ -6,6 +6,10 @@ require_once("/home/uesp/secrets/esosalesdata.secrets");
 require_once(__DIR__."/esoCommon.php");
 
 
+$g_EsoSalesDataSortOrder = 1;
+$g_EsoItemData = null;
+
+
 class EsoViewSalesData
 {
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
@@ -24,16 +28,24 @@ class EsoViewSalesData
 	
 	public $htmlTemplate = "";
 	
+	public $viewSalesItemId = -1;
 	public $formValues = array();
 	public $finalItemLevel = -1;
 	public $finalItemQuality = -1;
+	public $sortField = "itemname";
+	public $sortOrder = 1;
 	
 	public $guildData = array();
 	public $searchCount = 0;
+	public $itemCount = 0;
 	public $itemResults = array();
+	public $itemIds = array();
+	public $itemSortedKeys = array();
 	public $searchResults = array();
 	public $searchLimitCount = 500;
 	public $searchItemIdsLimit = 1000;
+	public $totalItemCount = 0;
+	public $totalSalesCount = 0;
 	
 	public $itemQuery = "";
 	public $salesQuery = "";
@@ -46,6 +58,14 @@ class EsoViewSalesData
 	static public $ESOVSD_EQUIPTYPES = array();
 	static public $ESOVSD_ARMORTYPES = array();
 	static public $ESOVSD_WEAPONTYPES = array();
+	
+	static public $ESOVSD_TIMEPERIODS = array(
+			-1 => "",
+			86400 => "Last Day",
+			604800 => "Last Week",
+			2678400 => "Last Month",
+			31558150 => "Last Year",
+	);
 	
 
 	public function __construct ()
@@ -123,10 +143,23 @@ class EsoViewSalesData
 		$this->ParseFormParam('armortype');
 		$this->ParseFormParam('weapontype');
 		$this->ParseFormParam('level');
+		$this->ParseFormParam('timeperiod');
 		
 		$this->finalItemQuality = $this->GetItemQualityValue($this->formValues['quality']);
 		$this->finalItemLevel   = $this->GetItemLevelValue($this->formValues['level']);
 		if ($this->finalItemLevel == 0) $this->finalItemLevel = -1;
+		
+		if (array_key_exists("sort", $this->inputParams)) $this->sortField = $this->inputParams['sort'];
+		
+		if (array_key_exists("order", $this->inputParams)) 
+		{
+			$this->sortOrder = intval($this->inputParams['order']);
+		}
+		
+		if (array_key_exists("viewsales", $this->inputParams))
+		{
+			$this->viewSalesItemId = intval($this->inputParams['viewsales']);
+		}		
 		
 		return true;
 	}
@@ -190,19 +223,24 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetGeneralListHtml($listArray, $formName)
+	public function GetGeneralListHtml($listArray, $formName, $useKeyAsValue = false)
 	{
 		$output = "";
 		$selectedValue = $this->GetFormValue($formName);
 	
-		foreach ($listArray as $value)
+		foreach ($listArray as $key => $value)
 		{
 			if ($value == $selectedValue)
+				$selected = "selected";
+			else if ($useKeyAsValue && $key == $selectedValue)
 				$selected = "selected";
 			else
 				$selected = "";
 	
-			$output .= "<option value='$value' $selected>$value</option>";
+			if ($useKeyAsValue)
+				$output .= "<option value='$key' $selected>$value</option>";
+			else
+				$output .= "<option value='$value' $selected>$value</option>";
 		}
 	
 		return $output;
@@ -330,9 +368,69 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetSearchResultsHtml()
+	public function GetItemSearchResultsHtml()
 	{
-		$output = "<table id='esovsd_searchresults_table'>";
+		$output  = "<table id='esovsd_searchresults_table'>";
+		$output .= "<tr>";
+		$output .= "<th>Item</th>";
+		$output .= "<th>Trait</th>";
+		$output .= "<th>Type</th>";
+		$output .= "<th>EquipType</th>";
+		$output .= "<th>WeaponType</th>";
+		$output .= "<th>ArmorType</th>";
+		$output .= "<th>Set Name</th>";
+		$output .= "<th></th>";
+		$output .= "</tr>";
+		
+		
+		foreach ($this->itemSortedKeys as $itemId)
+		{
+			$item = $this->itemResults[$itemId];
+			
+			$iconURL = $this->GetIconUrl($item['icon']);
+				
+			$trait = $item['trait'];
+			$itemType = GetEsoItemTypeText($item['itemType']);
+			$weaponType = GetEsoItemWeaponTypeText($item['weaponType']);
+			$armorType = GetEsoItemArmorTypeText($item['armorType']);
+			$equipType = GetEsoItemEquipTypeText($item['equipType']);
+			$setName = $item['setName'];
+				
+			$traitText = "";
+			if ($trait > 0) $traitText = GetEsoItemTraitText($trait);
+			
+			$output .= "<tr>";
+			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}'>";
+			$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$item['name']}</div></td>";
+			$output .= "<td>$traitText</td>";
+			$output .= "<td>$itemType</td>";
+			$output .= "<td>$equipType</td>";
+			$output .= "<td>$weaponType</td>";
+			$output .= "<td>$armorType</td>";
+			$output .= "<td>$setName</td>";
+			$output .= "<td><a href='?viewsales=$itemId'>View Item Sales</a></td>";
+			$output .= "</tr>\n";
+		}
+		
+		$output .= "</table>";
+		return $output;
+	}
+	
+	
+	public function GetSalesSearchResultsHtml()
+	{
+		$output  = "<table id='esovsd_searchresults_table'>";
+		$output .= "<tr>";
+		$output .= "<th>Item</th>";
+		$output .= "<th>Trait</th>";
+		$output .= "<th>Guild</th>";
+		$output .= "<th>Seller</th>";
+		$output .= "<th>Buyer</th>";
+		$output .= "<th>Date</th>";
+		$output .= "<th>Price</th>";
+		$output .= "<th>Qnt</th>";
+		$output .= "<th>Unit Price</th>";
+		$output .= "</tr>";
 		
 		foreach ($this->searchResults as $row)
 		{
@@ -340,17 +438,39 @@ class EsoViewSalesData
 			$item = $this->itemResults[$row['itemId']];
 			$buyDate = gmdate("Y-m-d H:i:s", $row['buyTimestamp']);
 			$iconURL = $this->GetIconUrl($item['icon']);
+			$unitPrice = number_format(floatval($row['price']) / floatval($row['qnt']), 2, ".", '');
+			
+			$trait = $item['trait'];
+			$itemType = $item['itemType'];
+			$weaponType = $item['weaponType'];
+			$armorType = $item['armorType'];
+			$equipType = $item['equipType'];
+			$setName = $item['setName'];
+			
+			//$summary = array();
+			$traitText = "";
+			
+			if ($trait > 0) {
+				$traitText = GetEsoItemTraitText($trait);
+			}
+			//if ($itemType > 0) $summary[] = GetEsoItemTypeText($itemType);
+			//if ($weaponType > 0) $summary[] = GetEsoItemWeaponTypeText($weaponType);
+			//if ($armorType > 0) $summary[] = GetEsoItemArmorTypeText($armorType);
+			//if ($equipType > 0) $summary[] = GetEsoItemEquipTypeText($equipType);
+			//if ($setName != "") $summary[] = $setName;
+			//$summary = implode(", ", $summary);
 			
 			$output .= "<tr>";
-			$output .= "<td></td>";
-			$output .= "<td><div class='esovsd_itemlink eso_item_link' itemlink='{$row['itemLink']}'>";
+			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemlink='{$row['itemLink']}'>";
 			$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$item['name']}</div></td>";
+			$output .= "<td>$traitText</td>";
 			$output .= "<td>{$guild['name']}</td>";
 			$output .= "<td>{$row['sellerName']}</td>";
 			$output .= "<td>{$row['buyerName']}</td>";
+			$output .= "<td>{$buyDate}</td>";
 			$output .= "<td>{$row['price']}</td>";
 			$output .= "<td>{$row['qnt']}</td>";
-			$output .= "<td>{$buyDate}</td>";
+			$output .= "<td>{$unitPrice}</td>";
 			$output .= "</tr>\n";
 		}
 	
@@ -359,7 +479,14 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetSearchItemIdsQuery()
+	public function GetSearchResultsHtml()
+	{
+		if ($this->viewSalesItemId > 0) return $this->GetSalesSearchResultsHtml();
+		return $this->GetItemSearchResultsHtml();
+	}
+	
+	
+	public function GetFindItemQuery()
 	{
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
@@ -397,25 +524,28 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetSearchItemIds()
+	public function LoadItemData()
 	{		
-		$itemIds = array();
+		$this->totalItemCount = 0;
 		
-		$this->lastQuery = $this->GetSearchItemIdsQuery();
+		$this->lastQuery = $this->GetFindItemQuery();
 		
 		$result = $this->db->query($this->lastQuery);
-		if ($result === false) return $itemIds;
+		if ($result === false) return false;
 		
 		if ($result->num_rows == 0)
 		{
 			$this->errorMessages[] = "No items found matching input search!";
-			return $itemIds;
+			return false;
 		}
+		
+		$this->totalItemCount = $result->num_rows;
+		$this->itemCount = $result->num_rows;
 		
 		while (($row = $result->fetch_assoc()))
 		{
 			$this->itemResults[$row['id']] = $row;
-			$itemIds[] = $row['id'];
+			$this->itemIds[] = $row['id'];
 		}
 		
 		if ($result->num_rows >= $this->searchItemIdsLimit)
@@ -426,11 +556,13 @@ class EsoViewSalesData
 			{
 				$row = $result->fetch_assoc();
 				$totalItems = $row['rowCount'];
-				$this->errorMessages[] = "Found $totalItems matching items which exceeds the maximum of {$this->searchItemIdsLimit}. Try using a better search to limit results.";
+				$this->totalItemCount = $totalItems;
+				$this->errorMessages[] = "Found $totalItems matching items which exceeds the maximum of {$this->searchItemIdsLimit}.";
 			}
 		}
 		
-		return $itemIds;
+		$this->SortItemSearchResults();
+		return true;
 	}
 	
 	
@@ -454,12 +586,18 @@ class EsoViewSalesData
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
 		$where = array();
 		
-		$itemIds = $this->GetSearchItemIds();
-		
-		if (count($itemIds) <= 0) 
+		if (count($this->itemIds) <= 0) 
 			$where[] = "0"; 
 		else
-			$where[] = "itemId IN (" . implode(",", $itemIds) . ")";
+			$where[] = "itemId IN (" . implode(",", $this->itemIds) . ")";
+		
+		$timePeriod = intval($this->formValues['timeperiod']);
+		
+		if ($timePeriod > 0) 
+		{
+			$timestamp = time() - $timePeriod;
+			$where[] = "buyTimestamp >= $timestamp";
+		}
 		
 		if (count($where) > 0)
 		{
@@ -471,15 +609,47 @@ class EsoViewSalesData
 		$this->salesQuery = $query;
 		return $query;
 	}
+	
+	
+	public function GetSingleSearchQuery()
+	{
+		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
+		$where = array();
+	
+		$where[] = "itemId=" . $this->viewSalesItemId;
+		
+		$timePeriod = intval($this->formValues['timeperiod']);
+
+		if ($timePeriod > 0)
+		{
+			$timestamp = time() - $timePeriod;
+			$where[] = "buyTimestamp >= $timestamp";
+		}
+
+		if (count($where) > 0)
+		{
+			$query .= " WHERE " . implode(" AND ", $where);
+		}
+
+		$query .= " LIMIT {$this->searchLimitCount};";
+
+		$this->salesQuery = $query;
+		return $query;
+	}
 		
 	
-	public function LoadSearchResults()
+	public function LoadSalesSearchResults($loadSingle = false)
 	{
-		$this->lastQuery = $this->GetSearchQuery();
+		if ($loadSingle)
+			$this->lastQuery = $this->GetSingleSearchQuery();
+		else
+			$this->lastQuery = $this->GetSearchQuery();
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to search for sales data!");
 		
 		$this->searchCount = $result->num_rows;
+		$this->totalSalesCount = $this->searchCount;
 		
 		if ($this->searchCount == 0)
 		{
@@ -489,6 +659,8 @@ class EsoViewSalesData
 		
 		while (($row = $result->fetch_assoc()))
 		{
+			$row['unitPrice'] = floatval($row['price']) / floatval($row['qnt']);
+			$row['itemName'] = $this->itemResults[$row['itemId']]['name'];
 			$this->searchResults[] = $row;
 		}
 		
@@ -500,13 +672,93 @@ class EsoViewSalesData
 			{
 				$row = $result->fetch_assoc();
 				$totalSales = $row['rowCount'];
-				$this->errorMessages[] = "Found $totalSales matching sales which exceeds the maximum of {$this->searchLimitCount}. Try using a better search to limit results.";
+				$this->totalSalesCount = $totalSales;
+				$this->errorMessages[] = "Displaying {$this->searchLimitCount} out of $totalSales matching sales from {$this->itemCount} items.";
 			}
+		}
+		else
+		{
+			$this->errorMessages[] = "Found {$this->totalSalesCount} matching sales from {$this->itemCount} items.";
+		}
+				
+		$this->SortSalesSearchResults();
+		return true;
+	}
+	
+		
+	public function LoadSingleItemData()
+	{
+		$this->lastQuery = "SELECT * FROM items WHERE id={$this->viewSalesItemId};";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return $this->ReportError("Failed to load single item data!");
+		
+		if ($result->num_rows == 0) return $this->ReportError("Failed to load single item data (ID = {$this->viewSalesItemId})!");
+		$row = $result->fetch_assoc();
+		
+		$this->itemResults[$row['id']] = $row;
+		$this->itemIds[] = $row['id'];
+		
+		return true;
+	}
+	
+	
+	public function LoadSearchResults()
+	{
+		
+		if ($this->viewSalesItemId > 0)
+		{
+			$this->LoadSingleItemData();
+			$this->LoadSalesSearchResults(true);	
+		}
+		else
+		{
+			$this->LoadItemData();
+		}
+		
+	}
+	
+	
+	public function SortItemSearchResults()
+	{
+		global $g_EsoSalesDataSortOrder, $g_EsoItemData;
+		
+		$g_EsoItemData = $this->itemResults;
+		$g_EsoSalesDataSortOrder = $this->sortOrder;
+		
+		$this->itemSortedKeys = array_keys($this->itemResults);
+	
+		if ($this->sortField == "") return true;
+	
+		if ($this->sortField == "itemname")
+		{
+			usort($this->itemSortedKeys, "EsoItemDataCompareItemName");
 		}
 		
 		return true;
 	}
 	
+	
+	public function SortSalesSearchResults()
+	{
+		global $g_EsoSalesDataSortOrder;
+		
+		$g_EsoSalesDataSortOrder = $this->sortOrder;
+		if ($this->sortField == "") return true;
+		
+		if ($this->sortField == "itemname")
+			usort($this->searchResults, "EsoSalesDataCompareItemName");
+		else if ($this->sortField == "buydate")
+			usort($this->searchResults, "EsoSalesDataCompareBuyDate");
+		else if ($this->sortField == "price")
+			usort($this->searchResults, "EsoSalesDataComparePrice");
+		else if ($this->sortField == "qnt")
+			usort($this->searchResults, "EsoSalesDataCompareQnt");
+		else if ($this->sortField == "unitprice")
+			usort($this->searchResults, "EsoSalesDataCompareUnitPrice");
+		
+		return true;
+	}
+		
 	
 	public function GetErrorMessagesHtml()
 	{
@@ -533,6 +785,7 @@ class EsoViewSalesData
 				'{formEquipType}' => $this->GetFormValue('equiptype'),
 				'{formArmorType}' => $this->GetFormValue('armortype'),
 				'{formWeaponType}' => $this->GetFormValue('weapontype'),
+				'{formTimePeriod}' => $this->GetFormValue('timeperiod'),
 				'{formLevel}' => $this->GetOutputFormLevel(),
 				
 				'{listTrait}' => $this->GetGeneralListHtml(self::$ESOVSD_TRAITS, 'trait'),
@@ -541,7 +794,9 @@ class EsoViewSalesData
 				'{listEquipType}' => $this->GetGeneralListHtml(self::$ESOVSD_EQUIPTYPES, 'equiptype'),
 				'{listArmorType}' => $this->GetGeneralListHtml(self::$ESOVSD_ARMORTYPES, 'armortype'),
 				'{listWeaponType}' => $this->GetGeneralListHtml(self::$ESOVSD_WEAPONTYPES, 'weapontype'),
+				'{listTimePeriod}' => $this->GetGeneralListHtml(self::$ESOVSD_TIMEPERIODS, 'timeperiod', true),
 				
+				//'{searchResults}' => $this->GetSalesSearchResultsHtml(),
 				'{searchResults}' => $this->GetSearchResultsHtml(),
 				'{errorMessages}' => $this->GetErrorMessagesHtml(),
 				'{itemQuery}' => $this->itemQuery,
@@ -558,6 +813,7 @@ class EsoViewSalesData
 	{
 		$this->LoadTemplate();
 		$this->LoadGuilds();
+		
 		$this->LoadSearchResults();
 
 		return $this->CreateOutputHtml();
@@ -573,5 +829,73 @@ class EsoViewSalesData
 };
 
 
+function EsoItemDataCompareItemName($a, $b)
+{
+	global $g_EsoSalesDataSortOrder, $g_EsoItemData;
+	
+	$result = strcmp($g_EsoItemData[$a]['name'], $g_EsoItemData[$b]['name']);
+
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
+function EsoSalesDataCompareItemName($a, $b)
+{
+	global $g_EsoSalesDataSortOrder;
+	
+	$result = strcmp($a['itemName'], $b['itemName']);
+	
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
+function EsoSalesDataCompareBuyDate($a, $b)
+{
+	global $g_EsoSalesDataSortOrder;
+	
+	$result = $a['buyTimestamp'] - $b['buyTimestamp'];
+	
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
+function EsoSalesDataComparePrice($a, $b)
+{
+	global $g_EsoSalesDataSortOrder;
+	
+	$result = $a['price'] - $b['price'];
+	
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
+function EsoSalesDataCompareQnt($a, $b)
+{
+	global $g_EsoSalesDataSortOrder;
+	
+	$result = $a['qnt'] - $b['qnt'];
+	
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
+function EsoSalesDataCompareUnitPrice($a, $b)
+{
+	global $g_EsoSalesDataSortOrder;
+	
+	$result = $a['unitPrice'] - $b['unitPrice'];
+	
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
 $viewSales = new EsoViewSalesData();
 $viewSales->Render();
+
+

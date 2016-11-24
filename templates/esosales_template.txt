@@ -63,7 +63,13 @@
 		        	{listArmorType}
 		        </select>
 			</div>
-		    <div class='esovsd_buttons'>
+			<div class="esovsd_inlineblock">
+		        <label for="timeperiod" class="esovsd_label1">Time Period:</label>
+		        <select name="timeperiod" id="esovsd_timeperiod">
+		        	{listTimePeriod}
+		        </select>
+			</div>
+			<div class='esovsd_buttons'>
 				<input type="button" class="esovsd_clearbutton" value="Clear" onclick="esovsdResetSearchForm();" />
 				<input type="submit" class="esovsd_searchbutton" value="Search..." />
 			</div>
@@ -80,10 +86,10 @@
 <script type="text/javascript">
 </script>
 
-<hr>
+<!--
 {itemQuery}
-<hr>
 {salesQuery}
+-->
 <hr>
 <div id="esovsd_footer">
 This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
