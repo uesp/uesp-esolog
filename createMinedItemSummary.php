@@ -92,7 +92,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			quality TINYTEXT NOT NULL,
 			weaponPower TINYTEXT NOT NULL,
 			armorRating TINYTEXT NOT NULL,
-			abilityDesc TINYTEXT NOT NULL,
+			abilityDesc TEXT NOT NULL,
 			enchantDesc TEXT NOT NULL,
 			traitDesc TINYTEXT NOT NULL,
 			traitAbilityDesc TINYTEXT NOT NULL,
