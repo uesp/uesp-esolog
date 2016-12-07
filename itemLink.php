@@ -2056,6 +2056,7 @@ class CEsoItemLink
 				'{similarItemBlockDisplay}' => "none",
 				'{itemTypeTitle}' => "Quest ",
 				'{itemDescClass}' => "esoil_itemdescQuest",
+				'{itemDyeStampBlock}' => '',
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
