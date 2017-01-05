@@ -370,6 +370,7 @@ class EsoLogParser
 			'trait' => self::FIELD_INT,
 			'quality' => self::FIELD_INT,
 			'type' => self::FIELD_INT,
+			'specialType' => self::FIELD_INT,
 			'equipType' => self::FIELD_INT,
 			'weaponType' => self::FIELD_INT,
 			'armorType' => self::FIELD_INT,
@@ -440,6 +441,7 @@ class EsoLogParser
 			'trait' => 'trait',
 			'quality' => 'quality',
 			'type' => 'type',
+			'specialType' => 'specialType',
 			'equipType' => 'equipType',
 			'weaponType' => 'weaponType',
 			'armorType' => 'armorType',
@@ -1595,6 +1597,7 @@ class EsoLogParser
 			value INTEGER NOT NULL DEFAULT -1,
 			level TINYINT NOT NULL,
 			type TINYINT NOT NULL,
+			specialType SMALLINT NOT NULL DEFAULT -1,
 			equipType TINYINT NOT NULL DEFAULT -1,
 			weaponType TINYINT NOT NULL DEFAULT -1,
 			armorType TINYINT NOT NULL DEFAULT -1,
@@ -3729,6 +3732,7 @@ class EsoLogParser
 			$resultMaxLevel = $logEntry['resultMaxLevel'];
 			$recipeRank = $logEntry['recipeRank'];
 			$recipeQuality = $logEntry['recipeQuality'];
+			$reqTrades = $logEntry['reqTrades'];
 			
 			if ($resultAbility == null) $resultAbility = "";
 			if ($resultCooldown == null) $resultCooldown = "0";
@@ -3737,46 +3741,78 @@ class EsoLogParser
 			if ($recipeRank == null) $recipeRank = "";
 			if ($recipeQuality == null) $recipeQuality = "";
 			if ($recipeIngredients == null) $recipeIngredients = "";
+			if ($reqTrades == null) $reqTrades = "";
 			
-			if ($resultAbility != "")
+			$abilityDesc = $resultAbility;
+			if ($resultCooldown != "" && $resultCooldown > 0) $abilityDesc .= " (" . intval($resultCooldown/1000) . " second cooldown)";
+			
+			if ($resultMinLevel > 0 && $resultMaxLevel > 0)
 			{
-				$abilityDesc = $resultAbility;
-				if ($resultCooldown != "" && $resultCooldown > 0) $abilityDesc .= " (" . intval($resultCooldown/1000) . " second cooldown)";
+				$minImage = "level ";
+				$maxImage = "level ";
 				
-				if ($resultMinLevel > 0 && $resultMaxLevel > 0)
+				if ($resultMinLevel > 50)
 				{
-					$minImage = "level ";
-					$maxImage = "level ";
-					
-					if ($resultMinLevel > 50)
-					{
-						$resultMinLevel = ($resultMinLevel - 50) * 10; 
-						$minImage = "|t24:24:champion_icon_24.dds|t";
-					}
-					
-					if ($resultMaxLevel > 50)
-					{
-						$resultMaxLevel = ($resultMaxLevel - 50) * 10;
-						$maxImage = "|t24:24:champion_icon_24.dds|t";
-					}
-					
-					$abilityDesc .= "\nScales from $minImage|cffffff".$resultMinLevel."|r to $maxImage|cffffff".$resultMaxLevel."|r.";
-				}
-				else if ($resultMinLevel == 0 && $resultMaxLevel == 0)
-				{
-					//$abilityDesc .= "\nThese effects are scaled based on your level.";
+					$resultMinLevel = ($resultMinLevel - 50) * 10; 
+					$minImage = "|t24:24:champion_icon_24.dds|t";
 				}
 				
-				$recipeIngredients = preg_replace("#(\^[a-zA-Z]+)#", "", $recipeIngredients);
+				if ($resultMaxLevel > 50)
+				{
+					$resultMaxLevel = ($resultMaxLevel - 50) * 10;
+					$maxImage = "|t24:24:champion_icon_24.dds|t";
+				}
 				
-				if ($recipeIngredients != "") $abilityDesc .= "\n\n|cffffffINGREDIENTS|r\n" . ucwords($recipeIngredients);
-				if ($recipeRank > 0 && $recipeQuality > 0) $abilityDesc .= "\n\n|cffffffTO CREATE|r\n|c00ff00Requires Recipe Improvement $recipeRank|r\n|c00ff00Requires Recipe Quality $recipeQuality|r";
+				if ($abilityDesc != "") $abilityDesc .= "\n";
+				$abilityDesc .= "Scales from $minImage|cffffff".$resultMinLevel."|r to $maxImage|cffffff".$resultMaxLevel."|r.";
+			}
+			else if ($resultMinLevel == 0 && $resultMaxLevel == 0)
+			{
+				//$abilityDesc .= "\nThese effects are scaled based on your level.";
+			}
+			
+			$recipeIngredients = preg_replace("#(\^[a-zA-Z]+)#", "", $recipeIngredients);
+			
+			if ($abilityDesc != "") $abilityDesc .= "\n\n";
+			
+			if ($recipeIngredients != "") 
+			{
+				$ingr = ucwords($recipeIngredients);
+				$ingr = preg_replace("# X([0-9]+)#", " ($1)", $ingr);
+				$ingr = preg_replace("# \(1\)#", "", $ingr);
+				$abilityDesc .= "|cffffffINGREDIENTS|r\n" . $ingr;
+			}
+			
+			if ($reqTrades != "")
+			{
+				if ($abilityDesc != "") $abilityDesc .= "\n\n";
+				$abilityDesc .= "|cffffffTO CREATE|r";
+				$trades = explode(",", $reqTrades);
 				
-				$logEntry['useAbilityDesc'] = $abilityDesc;
+				foreach ($trades as $trade) 
+				{
+					$abilityDesc .= "\n|c00ff00Requires $trade|r";
+				}
 				
-				//print("\tCreated Recipe Description: $abilityDesc\n");
-			}			
-		}		
+				if ($recipeQuality > 0) $abilityDesc .= "\n|c00ff00Requires Recipe Quality $recipeQuality|r";
+			}
+			else if ($recipeRank > 0 && $recipeQuality > 0)
+			{
+				$abilityDesc .= "\n\n|cffffffTO CREATE|r\n|c00ff00Requires Recipe Improvement $recipeRank|r\n|c00ff00Requires Recipe Quality $recipeQuality|r";
+			}
+			
+			$logEntry['useAbilityDesc'] = $abilityDesc;
+			//print("\tCreated Recipe Description: $abilityDesc\n");
+		}	
+		
+		if (array_key_exists('furnDataID', $logEntry))
+		{
+			$logEntry['setDesc1'] = $logEntry['furnDataID'];
+			$logEntry['setDesc2'] = $logEntry['furnCate'];
+			$logEntry['setDesc3'] = $logEntry['furnSubCate'];
+			$logEntry['setDesc4'] = $logEntry['furnCateName'];
+			$logEntry['setDesc5'] = $logEntry['furnSubCateName'];
+		}
 	}
 	
 	
