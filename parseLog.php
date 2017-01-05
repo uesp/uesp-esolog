@@ -47,7 +47,7 @@ class EsoLogParser
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
-	const ELP_SKILLCOEF_MININUM_R2 = -1;       //Log all coefficients focrr now
+	const ELP_SKILLCOEF_MININUM_R2 = -1;       //Log all coefficients for now
 	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
 	const ELP_SKILLCOEF_MAXCOEFVARS = 6;
 	
@@ -66,9 +66,10 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743947678092620000;	//v11    1470075600
 	//const START_MINEITEM_TIMESTAMP = 4743947678092620000;	//v12pts
 	const START_MINEITEM_TIMESTAMP = 4743975994677000000;	//v12    1475650800
+	//const START_MINEITEM_TIMESTAMP = 4744009321690431488;	//v13pts 1483541100
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "13pts";
+	const SKILLS_TABLESUFFIX   = "13pts";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -135,6 +136,8 @@ class EsoLogParser
 			"minedSkills11pts",
 			"minedSkills12",
 			"minedSkills12pts",
+			"minedSkills13",
+			"minedSkills13pts",
 			"collectibles",
 			"achievements",
 	);
