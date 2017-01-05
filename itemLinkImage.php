@@ -1088,7 +1088,17 @@ class CEsoItemLinkImage
 		}
 		elseif ($type == 29) // Recipe
 		{
-			return "(Provisioning)";
+			$specialType = $this->itemRecord['specialType'];
+			if ($specialType == null || $specialType == "" || $specialType <= 0) return "(Provisioning)";
+			return "(" . GetEsoItemSpecialTypeText($specialType) . ")";
+		}
+		elseif ($type == 61) // Furniture
+		{
+			$type1 = $this->itemRecord['setBonusDesc4'];
+			$type2 = $this->itemRecord['setBonusDesc5'];
+			
+			if ($type1 != "" && $type != "") return "(" . $type1 . " / " . $type2 . ")";
+			return "(" . $type1 . $type2 . ")";
 		}
 	
 		return "";
@@ -1217,9 +1227,8 @@ class CEsoItemLinkImage
 	
 		switch ($this->itemRecord['type'])
 		{
+			case 61:	// Furnishing
 			case 29:	// Recipe
-				return false;
-				
 			case 59:	// Dye Stamp
 				return false;
 				

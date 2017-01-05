@@ -229,6 +229,7 @@ class EsoLogViewer
 			'value' => self::FIELD_INT,
 			'level' => self::FIELD_INT,
 			'type' => self::FIELD_INTTRANSFORM,
+			'specialType' => self::FIELD_INTTRANSFORM,
 			'equipType' => self::FIELD_INTTRANSFORM,
 			'weaponType' => self::FIELD_INTTRANSFORM,
 			'armorType' => self::FIELD_INTTRANSFORM,
@@ -297,6 +298,7 @@ class EsoLogViewer
 			'level' => self::FIELD_STRING,
 			'quality' => self::FIELD_STRING,
 			'type' => self::FIELD_INTTRANSFORM,
+			'specialType'=> self::FIELD_INTTRANSFORM,
 			'equipType' => self::FIELD_INTTRANSFORM,
 			'weaponType' => self::FIELD_INTTRANSFORM,
 			'armorType' => self::FIELD_INTTRANSFORM,
@@ -930,6 +932,7 @@ class EsoLogViewer
 						
 					'transform' => array(
 							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
 							'style' => 'GetItemStyleText',
 							'trait' => 'GetItemTraitText',
 							'quality' => 'GetItemQualityText',
@@ -1104,6 +1107,7 @@ class EsoLogViewer
 			
 					'transform' => array(
 							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
 							'style' => 'GetItemStyleText',
 							'trait' => 'GetItemTraitText',
 							'quality' => 'GetItemQualityText',
@@ -1133,6 +1137,7 @@ class EsoLogViewer
 						
 					'transform' => array(
 							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
 							'style' => 'GetItemStyleText',
 							'trait' => 'GetItemTraitText',
 							'quality' => 'GetItemQualityText',
@@ -1280,6 +1285,7 @@ class EsoLogViewer
 			
 					'transform' => array(
 							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
 							'style' => 'GetItemStyleText',
 							'trait' => 'GetItemTraitText',
 							'quality' => 'GetItemQualityText',
@@ -2350,6 +2356,13 @@ class EsoLogViewer
 	{
 		return GetEsoItemTypeText($value);
 	}
+	
+	
+	public function GetItemSpecialTypeText ($value)
+	{
+		return GetEsoItemSpecialTypeText($value);
+	}
+	
 	
 	public function GetItemEquipTypeText ($value)
 	{
