@@ -845,11 +845,11 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 [
 		{
 			type: "flat",
-			match: /(granting a damage shield for you and nearby allies that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+			match: /( a damage shield for you and nearby allies that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
-			match: /(granting a damage shield for you and your pets that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+			match: /( a damage shield for you and your pets that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",

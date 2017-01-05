@@ -25,6 +25,7 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100015" => "10",
 		"100016" => "11",
 		"100017" => "12",
+		"100018" => "13",
 );
 
 
@@ -37,6 +38,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100015" => "2.4",
 		"100016" => "2.5",
 		"100017" => "2.6",
+		"100018" => "2.7",
 );
 
 
@@ -304,6 +306,7 @@ $ESO_ITEMTYPE_TEXTS = array(
 		25 => "Enchantment Booster",
 		28 => "Flavoring",
 		4 => "Food",
+		61 => "Furniture",
 		21 => "Armor Glyph",
 		26 => "Jewelry Glyph",
 		20 => "Weapon Glyph",
@@ -1504,6 +1507,14 @@ function GetEsoItemTableSuffix($version)
 		case '112':
 		case '12':
 			return "";
+		case '1.13pts':
+		case '113pts':
+		case '13pts':
+			return "13pts";
+		case '1.13':
+		case '113':
+		case '13':
+			return "13";	//TODO: Update on Homestead release
 	}
 
 	return "";
