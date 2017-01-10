@@ -31,6 +31,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 	// Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
+require_once("parseSalesData.php");
 
 
 class EsoLogParser
@@ -76,6 +77,8 @@ class EsoLogParser
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
 	public $skipCreateTables = false;
+	
+	private $salesData = null;
 	
 	public $currentLanguage = 'en';
 	
@@ -711,11 +714,20 @@ class EsoLogParser
 	
 	public function __construct ()
 	{
+		ini_set('mysql.connect_timeout', 1000);
+		ini_set('default_socket_timeout', 1000);
 		
 		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
 		{
 			unset(self::$MINEDITEM_FIELDS['tags']);
 		}
+				
+		if (intval(self::MINEITEM_TABLESUFFIX) < 13)
+		{
+			unset(self::$MINEDITEM_FIELDS['specialType']);
+		}
+		
+		$this->salesData = new EsoSalesDataParser();
 		
 		$this->initDatabaseWrite();
 		$this->readIndexFile();
@@ -2121,6 +2133,7 @@ class EsoLogParser
 		$result &= $this->saveUsers();
 		$result &= $this->saveIPAddresses();
 		$result &= $this->SaveLogInfo();
+		$result &= $this->salesData->SaveUpdatedGuilds();
 		
 		return $result;
 	}
@@ -4635,7 +4648,235 @@ class EsoLogParser
 		if (!$this->IsValidUser($logEntry)) return false;
 		
 		return true;
-	}	
+	}
+	
+	
+	public function OnGuildSummary ($logEntry)
+	{
+		/*		
+			logData.guildIndex = guildIndex
+			logData.guildId = GetGuildId(guildIndex)
+			logData.name = GetGuildName(logData.guildId)
+			logData.founded = GetGuildFoundedDate(logData.guildId)
+			logData.numMembers, logData.numOnline, logData.leader = GetGuildInfo(logData.guildId)
+			--logData.description = GetGuildDescription(logData.guildId)
+			--logData.motd = GetGuildMotD(logData.guildId)
+			logData.kiosk = GetGuildOwnedKioskInfo(guildId)
+			logData.server = GetWorldName()
+		*/
+		
+		$server = $this->GetGuildSaleServer($logEntry['server']);
+		$this->salesData->server = $server;
+		
+		$guildData = &$this->salesData->GetGuildData($server, $logEntry['name']);
+		
+		//print("OnGuildSummary");
+		//print_r($logEntry);
+		
+		if ($guildData['__new'] === true)
+		{
+			$guildData['foundedDate'] = $logEntry['founded'];
+			$guildData['storeLocation'] = $logEntry['kiosk'];
+			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
+			$guildData['numMembers'] = $logEntry['numMembers'];
+			$guildData['leader'] = $logEntry['leader'];			
+			
+			$guildData['__dirty'] = true;
+			$guildData['__new'] = false;
+		}
+		else if ($guildData['lastStoreLocTime'] <= 0 || intval($guildData['lastStoreLocTime']) < intval($logEntry['timeStamp1']))
+		{
+			//print("Updating Guild Data...\n");
+			$guildData['storeLocation'] = $logEntry['kiosk'];
+			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
+			$guildData['numMembers'] = $logEntry['numMembers'];
+			$guildData['leader'] = $logEntry['leader'];
+			
+			$guildData['__dirty'] = true;
+		}
+		
+		return true;
+	}
+	
+	
+	public function OnGuildSaleSearchInfo ($logEntry)
+	{
+		/*
+		 logData.guildId = guildId
+		 logData.guild = GetGuildName(guildId)
+		 logData.server = GetWorldName()
+		 logData.zone = uespLog.lastTargetData.zone
+		 logData.lastTarget = uespLog.lastTargetData.name
+		 logData.kiosk = GetGuildOwnedKioskInfo(guildId)
+		 */
+		
+		//print("OnGuildSaleSearchInfo");
+		
+		$server = $this->GetGuildSaleServer($logEntry['server']);
+		$this->salesData->server = $server;
+				
+		$guildData = &$this->salesData->GetGuildData($server, $logEntry['name']);
+		
+		if ($guildData['__new'] === true)
+		{
+			if ($logEntry['kiosk'] != null && $logEntry['kiosk'] != "")
+			{
+				$guildData['storeLocation'] = $logEntry['kiosk'];
+			}
+			else
+			{
+				$guildData['storeLocation'] = $logEntry['lastTarget'] . " in " . $logEntry['zone'];
+			}
+			
+			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
+			$guildData['numMembers'] = 0;
+			$guildData['leader'] = "";
+				
+			$guildData['__dirty'] = true;
+			$guildData['__new'] = false;
+		}
+		else if ($guildData['lastStoreLocTime'] <= 0 || intval($guildData['lastStoreLocTime']) < intval($logEntry['timeStamp1']))
+		{
+			if ($logEntry['kiosk'] != null && $logEntry['kiosk'] != "")
+			{
+				$guildData['storeLocation'] = $logEntry['kiosk'];
+			}
+			else
+			{
+				$guildData['storeLocation'] = $logEntry['lastTarget'] . " in " . $logEntry['zone'];
+			}
+			
+			$guildData['lastStoreLocTime'] = $logEntry['timeSstamp1'];
+			
+			$guildData['__dirty'] = true;
+		}
+		
+		return true;
+	}
+	
+	
+	public function GetGuildSaleServer($server)
+	{
+		return $this->salesData->GetGuildSaleServer($server);
+	}
+	
+	
+	public function OnGuildSale ($logEntry)
+	{
+		/*
+		 	logData.type = eventType
+			logData.saleTimestamp = tostring(currentTimestamp - seconds)
+			logData.eventId = tostring(eventId)
+			logData.seller = seller
+			logData.buyer = buyer
+			logData.qnt = qnt
+			logData.gold = gold
+			logData.taxes = taxes
+			logData.server = GetWorldName()
+			logData.guild = GetGuildName(guildId)
+			logData.itemLink = itemLink
+		 */
+		
+		if ($logEntry["itemLink"] == null) return false;
+		
+		$server = $this->GetGuildSaleServer($logEntry['server']);
+		$this->salesData->server = $server;
+		
+		$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
+		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
+	
+		$salesData = $this->salesData->LoadSale($itemData['id'], $guildData['id'], $logEntry['eventId']);
+		
+		if ($salesData === false)
+		{
+			$salesData = $this->salesData->CreateNewSale($itemData, $guildData, $logEntry);
+		}
+		
+		return true;
+	}
+	
+	
+	public function OnGuildSaleSearchEntry ($logEntry)
+	{
+		/*
+			logData.event = "GuildSaleSearchEntry"
+			logData.guildId = guildId
+			logData.guild = GetGuildName(guildId)
+			logData.server = GetWorldName()
+			logData.icon, logData.item, logData.quality, logData.qnt, logData.seller, logData.timeRemaining, logData.price, logData.currency = GetTradingHouseSearchResultItemInfo(itemIndex)
+			logData.itemLink = GetTradingHouseSearchResultItemLink(itemIndex)
+			logData.listTimestamp = tostring(currentTimestamp + logData.timeRemaining - uespLog.SALES_MAX_LISTING_TIME) 
+		 */
+		
+		if ($logEntry["itemLink"] == null) return false;
+		
+		$server = $this->GetGuildSaleServer($logEntry['server']);
+		$this->salesData->server = $server;
+		
+		$logEntry['seller'] = preg_replace("#(\|.*)#", "", $logEntry['seller']);
+		
+		$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
+		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
+		
+		$salesData = $this->salesData->LoadSaleSearchEntry($itemData['id'], $guildData['id'], $logEntry['listTimestamp'], $logEntry['sellerName']);
+		
+		if ($salesData === false)
+		{
+			$salesData = $this->salesData->CreateNewSaleSearchEntry($itemData, $guildData, $logEntry);
+		}
+		
+		return true;
+	}
+	
+	
+	public function OnGuildSaleListingEntryCancel ($logEntry)
+	{
+		/*
+			logData.event = eventName
+			logData.guildId, logData.guild = GetCurrentTradingHouseGuildDetails()
+			logData.server = GetWorldName()
+			logData.qnt = listingData.qnt
+			logData.seller = listingData.seller
+			logData.item = listingData.name
+			logData.quality = listingData.quality
+			logData.price = listingData.price
+			logData.itemLink = listingData.itemLink
+			logData.listTimestamp = tostring(listingData.listTimestamp) 
+		 */
+		return true;
+	}
+	
+	
+	public function OnGuildSaleListingInfo ($logEntry)
+	{
+		/*
+	 		logData.event = "GuildSaleListingInfo"
+			logData.guildId = guildId
+			logData.guild = guildName
+			logData.server = GetWorldName()
+			logData.zone = uespLog.lastTargetData.zone
+			logData.lastTarget = uespLog.lastTargetData.name
+			logData.kiosk = GetGuildOwnedKioskInfo(guildId)
+		 */
+		
+		return $this->OnGuildSaleSearchInfo($logEntry);
+	}
+	
+	
+	public function OnGuildSaleListingEntry ($logEntry)
+	{
+		/*
+			logData.event = "GuildSaleListingEntry"
+			logData.guildId = guildId
+			logData.guild = guildName
+			logData.server = GetWorldName()
+			logData.icon, logData.item, logData.quality, logData.qnt, logData.seller, logData.timeRemaining, logData.price = GetTradingHouseListingItemInfo(itemIndex)
+			logData.itemLink = GetTradingHouseListingItemLink(itemIndex)
+			logData.listTimestamp = tostring(currentTimestamp + logData.timeRemaining - uespLog.SALES_MAX_LISTING_TIME) 
+		 */
+		
+		return $this->OnGuildSaleSearchEntry($logEntry);
+	}
 	
 	
 	public function OnNullEntry ($logEntry)
@@ -4727,6 +4968,13 @@ class EsoLogParser
 			case "Achievement::Criteria":
 			case "Achievement":
 			case "Achievement::End":
+			case "GuildSummary":
+			case "GuildSale":
+			case "GuildSaleSearchInfo":
+			case "GuildSaleSearchEntry":
+			case "GuildSaleListingEntry::Cancel":
+			case "GuildSaleListingInfo":
+			case "GuildSaleListingEntry":
 				return false;
 		}
 		
@@ -4894,7 +5142,15 @@ class EsoLogParser
 			case "MineCollectID::Start":		$result = $this->OnMineCollectIDStart($logEntry); break;
 			case "MineCollectID":				$result = $this->OnMineCollectID($logEntry); break;
 			case "MineCollectID::End":			$result = $this->OnMineCollectIDEnd($logEntry); break;
-			break;
+			
+			case "GuildSummary":				$result = $this->OnGuildSummary($logEntry); break;
+			case "GuildSale":					$result = $this->OnGuildSale($logEntry); break;
+			case "GuildSaleSearchInfo":			$result = $this->OnGuildSaleSearchInfo($logEntry); break;
+			case "GuildSaleSearchEntry":		$result = $this->OnGuildSaleSearchEntry($logEntry); break;
+			case "GuildSaleListingEntry::Cancel":$result = $this->OnGuildSaleListingEntryCancel($logEntry); break;
+			case "GuildSaleListingInfo":		$result = $this->OnGuildSaleListingInfo($logEntry); break;
+			case "GuildSaleListingEntry":		$result = $this->OnGuildSaleListingEntry($logEntry); break;
+			
 			case "Test":
 			case "TEST":
 			case "test":						$result = $this->OnNullEntry($logEntry); break;
