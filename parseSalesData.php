@@ -9,9 +9,8 @@ class EsoSalesDataParser
 {
 	const SKIP_CREATE_TABLES = false;
 	const ESD_OUTPUTLOG_FILENAME = "esosalesdata.log";
-	
-	
-	public $server = "na";
+		
+	public $server = "NA";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -64,10 +63,9 @@ class EsoSalesDataParser
 	private function initDatabaseWrite ()
 	{
 		global $uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase;
-		global $uespEsoSalesDataDatabaseNA, $uespEsoSalesDataDatabaseEU;
+		global $uespEsoSalesDataDatabase;
 		
-		$database = $uespEsoSalesDataDatabaseNA;
-		if ($this->server == "eu" || $this->server == "EU") $database = $uespEsoSalesDataDatabaseEU; 
+		$database = $uespEsoSalesDataDatabase;
 	
 		if ($this->dbWriteInitialized) return true;
 	
@@ -97,6 +95,18 @@ class EsoSalesDataParser
 		}
 	
 		return true;
+	}
+	
+	
+	public function GetGuildSaleServer($server)
+	{
+		$upperServer = strtoupper($server);
+	
+		if (strncmp($upperServer, "NA", 2) == 0) return "NA";
+		if (strncmp($upperServer, "EU", 2) == 0) return "EU";
+		if (strncmp($upperServer, "PTS", 3) == 0) return "PTS";
+	
+		return $server;
 	}
 	
 	
@@ -153,12 +163,16 @@ class EsoSalesDataParser
 	
 		$query = "CREATE TABLE IF NOT EXISTS guilds (
 						id SMALLINT NOT NULL AUTO_INCREMENT,
+						server TINYTEXT NOT NULL,
 						name TINYTEXT NOT NULL,
 						storeLocation TINYTEXT NOT NULL,
+						lastStoreLocTime INT UNSIGNED NOT NULL,
 						description TEXT NOT NULL,
 						numMembers INTEGER NOT NULL,
+						foundedDate INT UNSIGNED NOT NULL,
+						leader TINYTEXT NOT NULL,
 						PRIMARY KEY (id),
-						INDEX name_index(name(24))
+						INDEX name_index(server(3), name(24))
 					);";
 	
 		$this->lastQuery = $query;
@@ -181,6 +195,7 @@ class EsoSalesDataParser
 						icon TINYTEXT NOT NULL,
 						setName TINYTEXT NOT NULL,
 						potionData INT UNSIGNED NOT NULL,
+						style TINYINT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_index(itemId, internalLevel, internalSubType, potionData)
 					);";
@@ -191,8 +206,8 @@ class EsoSalesDataParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS sales (
 						id INTEGER NOT NULL AUTO_INCREMENT,
+						server TINYTEXT NOT NULL,
 						itemId INTEGER NOT NULL,
-						itemLink TINYTEXT NOT NULL,
 						guildId SMALLINT NOT NULL,
 						sellerName TINYTEXT NOT NULL,
 						listTimestamp INT UNSIGNED NOT NULL,
@@ -202,8 +217,8 @@ class EsoSalesDataParser
 						price INTEGER NOT NULL,
 						qnt INTEGER NOT NULL,
 						PRIMARY KEY (id),
-						INDEX unique_entry1(itemId, guildId, listTimestamp, sellerName(24)),
-						INDEX unique_entry2(itemId, guildId, eventId)
+						INDEX unique_entry1(server(3), itemId, guildId, listTimestamp, sellerName(24)),
+						INDEX unique_entry2(server(3), itemId, guildId, eventId)
 					);";
 		
 		$this->lastQuery = $query;
@@ -225,10 +240,12 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function LoadGuild($name)
+	public function LoadGuild($server, $name)
 	{
 		$safeName = $this->db->real_escape_string($name);
-		$this->lastQuery = "SELECT * FROM guilds WHERE name=\"$safeName\" LIMIT 1;";
+		$safeServer = $this->db->real_escape_string($server);
+		
+		$this->lastQuery = "SELECT * FROM guilds WHERE server=\"$safeServer\" AND name=\"$safeName\" LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load guilds record!");
 		if ($result->num_rows == 0) return false;
@@ -240,46 +257,99 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function CreateNewGuild($name)
+	public function CreateNewGuild($server, $name)
 	{
 		$safeName = $this->db->real_escape_string($name);
-		$this->lastQuery = "INSERT INTO guilds(name) VALUES(\"$safeName\");";
+		$safeServer = $this->db->real_escape_string($server);
+		
+		$this->lastQuery = "INSERT INTO guilds(server, name) VALUES(\"$server\", \"$safeName\");";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create guilds record!");
 		
 		$guildData = array();
 		
 		$guildData['name'] = $name;
+		$guildData['server'] = $server;
 		$guildData['id'] = $this->db->insert_id;
 		$guildData['__new'] = true;
-		$guildData['__dirty'] = false;
+		$guildData['__dirty'] = true;
 			
 		return $guildData;
 	}
 	
 	
-	public function &GetGuildData($name)
+	public function &GetGuildData($server, $name)
 	{
-		if ($this->guildData[$name] != null) return $this->guildData[$name];
+		if ($this->guildData[$server] != null)
+		{
+			if ($this->guildData[$server][$name] != null) return $this->guildData[$server][$name];
+		}
 		
-		$guildData = $this->LoadGuild($name);
-		if ($guildData === false) $guildData = $this->CreateNewGuild($name);
+		$guildData = $this->LoadGuild($server, $name);
+		if ($guildData === false) $guildData = $this->CreateNewGuild($server, $name);
 		
+		if ($this->guildData[$server] == null) $this->guildData[$server] = array(); 
+ 		
 		if ($guildData === false)
 		{
-			$this->guildData[$name] = array();
-			$this->guildData[$name] = $name;
-			$this->guildData[$name]['id'] = -1;
-			$this->guildData[$name]['__dirty'] = true;
-			$this->guildData[$name]['__error'] = true;
+			$this->guildData[$server][$name] = array();
+			$this->guildData[$server][$name]['name'] = $name;
+			$this->guildData[$server][$name]['server'] = $server;
+			$this->guildData[$server][$name]['id'] = -1;
+			$this->guildData[$server][$name]['__dirty'] = true;
+			$this->guildData[$server][$name]['__error'] = true;
 		}
 		else
 		{
-			$this->guildData[$name] = $guildData;
-			$this->guildData[$name]['__dirty'] = false;
+			$this->guildData[$server][$name] = $guildData;
+			$this->guildData[$server][$name]['__dirty'] = false;
 		}
 		
-		return $this->guildData[$name];
+		return $this->guildData[$server][$name];
+	}
+	
+	
+	public function SaveGuild(&$guildData)
+	{
+		$id = intval($guildData['id']);
+		$safeName = $this->db->real_escape_string($guildData['name']);
+		$safeServer = $this->db->real_escape_string($guildData['server']);
+		$desc = $this->db->real_escape_string($guildData['description']);
+		$numMembers = intval($guildData['numMembers']);
+		$storeLocation = $this->db->real_escape_string($guildData['storeLocation']);
+		$lastStoreLocTime = intval($guildData['lastStoreLocTime']);
+		$foundedDate = intval($guildData['foundedDate']);
+		$leader = $this->db->real_escape_string($guildData['leader']);
+		
+		$this->lastQuery  = "UPDATE guilds SET name=\"$safeName\", server=\"$safeServer\", storeLocation=\"$storeLocation\", leader=\"$leader\"";
+		$this->lastQuery .= "numMembers=$numMembers, lastStoreLocTime=$lastStoreLocTime, foundedDate=$foundedDate, description=\"$desc\" WHERE id=$id;";
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to save guild record!");
+	
+		$guildData['__dirty'] = false;
+	
+		return true;
+	}
+	
+	
+	public function SaveUpdatedGuilds()
+	{
+		$guildCount = 0;
+		
+		print_r($this->guildData);
+		
+		foreach ($this->guildData as $id => &$guildData)
+		{
+			if ($guildData['__dirty'] === true) 
+			{
+				$this->SaveGuild($guildData);
+				++$guildCount;
+			}
+		}
+		
+		print ("Saved $guildCount updated guild data...\n");
+		return true;
 	}
 	
 	
@@ -334,7 +404,7 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function CreateNewItem($itemId, $itemIntLevel, $itemIntType, $itemPotionData, &$subItemData, $itemKey)
+	public function CreateNewItem($itemId, $itemIntLevel, $itemIntType, $itemPotionData, $subItemData = null, $itemKey = null)
 	{
 		$minedItemData = $this->LoadMinedItem($itemId, $itemIntLevel, $itemIntType, $itemPotionData);
 		
@@ -364,7 +434,7 @@ class EsoSalesDataParser
 			$quality = $minedItemData['quality'];
 			$level = $minedItemData['level'];
 			
-			if ($subItemData != "")
+			if ($subItemData != null && $subItemData != "")
 			{
 				$name = $subItemData['itemDesc'];
 			}
@@ -411,7 +481,7 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function &GetItemData($itemLink, &$subItemData, $itemKey)
+	public function &GetItemData($itemLink, $subItemData = null, $itemKey = null)
 	{
 		$itemLinkData = $this->ParseItemLink($itemLink);
 		if ($itemLinkData === false) return false;
@@ -454,11 +524,31 @@ class EsoSalesDataParser
 	}
 	
 	
+	public function LoadSaleSearchEntry($itemMyId, $guildId, $listTime, $sellerName)
+	{
+		$safeTime = intval($listTime);
+		$safeName = $this->db->real_escape_string($sellerName);
+		$server = $this->db->real_escape_string($this->server);
+		
+		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp=$safeTime AND sellerName=\"$safeName\" LIMIT 1;";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$safeTime:$safeName!");
+		
+		if ($result->num_rows == 0) return false;
+		
+		$rowData = $result->fetch_assoc();
+		$rowData['__dirty'] = false;
+	
+		return $rowData;
+	}
+	
+	
 	public function LoadSale($itemMyId, $guildId, $eventId)
 	{
 		$safeEventId = $this->db->real_escape_string($eventId);
+		$server = $this->db->real_escape_string($this->server);
 		
-		$this->lastQuery = "SELECT * FROM sales WHERE itemId='$itemMyId' AND guildId='$guildId' AND eventId='$safeEventId' LIMIT 1;";
+		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND eventId='$safeEventId' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$eventId!");
 	
@@ -471,7 +561,7 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function CreateNewSale(&$itemData, &$guildData, &$subItemData, &$saleData)
+	public function CreateNewSaleMM(&$itemData, &$guildData, &$subItemData, &$saleData)
 	{
 		$itemId = $itemData['id'];
 		$guildId = $guildData['id'];
@@ -481,17 +571,64 @@ class EsoSalesDataParser
 		$buyTimestamp = $this->db->real_escape_string($saleData['timestamp']);
 		$price = $this->db->real_escape_string($saleData['price']);
 		$qnt = $this->db->real_escape_string($saleData['quant']);
-		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
+		$server = $this->db->real_escape_string($this->server);
 				
-		$this->lastQuery  = "INSERT INTO sales(itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink) ";
-		$this->lastQuery .= "VALUES('$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
 		
 		++$this->localNewSalesCount;
 		
 		return true;
-	}	
+	}
+	
+	
+	public function CreateNewSale(&$itemData, &$guildData, &$saleData)
+	{
+		$itemId = $itemData['id'];
+		$guildId = $guildData['id'];
+		$eventId = $this->db->real_escape_string($saleData['eventId']);
+		$sellerName = $this->db->real_escape_string($saleData['seller']);
+		$buyerName = $this->db->real_escape_string($saleData['buyer']);
+		$buyTimestamp = $this->db->real_escape_string($saleData['saleTimestamp']);
+		$price = $this->db->real_escape_string($saleData['gold']);
+		$qnt = $this->db->real_escape_string($saleData['qnt']);
+		$server = $this->db->real_escape_string($this->server);
+	
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt');";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
+	
+		++$this->localNewSalesCount;
+	
+		return true;
+	}
+	
+	
+	public function CreateNewSaleSearchEntry(&$itemData, &$guildData, &$saleData)
+	{
+		$itemId = $itemData['id'];
+		$guildId = $guildData['id'];
+		$eventId = 0;
+		$sellerName = $this->db->real_escape_string($saleData['seller']);
+		$buyerName = "";
+		$buyTimestamp = 0;
+		$listTimestamp = intval($saleData['listTimestamp']);
+		$price = $this->db->real_escape_string($saleData['price']);
+		$qnt = $this->db->real_escape_string($saleData['qnt']);
+		$server = $this->db->real_escape_string($this->server);
+	
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt');";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");
+	
+		++$this->localNewSalesCount;
+	
+		return true;
+	}
 	
 	
 	public function LoadMMFile($filename)
@@ -587,8 +724,8 @@ class EsoSalesDataParser
 		$itemLink = $saleData['itemLink'];
 		//print("\tFound sale for item $itemLink\n");
 		
-		$guildData = $this->GetGuildData($saleData['guild']);
-		$itemData = $this->GetItemData($itemLink, $subItemData, $itemKey);
+		$guildData = &$this->GetGuildData($this->server, $saleData['guild']);
+		$itemData = &$this->GetItemData($itemLink, $subItemData, $itemKey);
 		
 		if ($itemData['icon'] != $subItemData['itemIcon'])
 		{
@@ -607,7 +744,7 @@ class EsoSalesDataParser
 		
 		if ($saleRecord === false)
 		{
-			$this->CreateNewSale($itemData, $guildData, $subItemData, $saleData);
+			$this->CreateNewSaleMM($itemData, $guildData, $subItemData, $saleData);
 		}
 		
 		return true;
