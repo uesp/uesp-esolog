@@ -69,6 +69,9 @@ class EsoLogParser
 	const START_MINEITEM_TIMESTAMP = 4743975994677000000;	//v12    1475650800
 	//const START_MINEITEM_TIMESTAMP = 4744009321690431488;	//v13pts 1483541100
 	
+		/* Ignore any guild sales earlier than this timestamp */
+	const START_GUILDSALESDATA_TIMESTAMP = 0;
+	
 	const MINEITEM_TABLESUFFIX = "13pts";
 	const SKILLS_TABLESUFFIX   = "13pts";
 	
@@ -78,7 +81,7 @@ class EsoLogParser
 	public $lastQuery = "";
 	public $skipCreateTables = false;
 	
-	private $salesData = null;
+	public $salesData = null;
 	
 	public $currentLanguage = 'en';
 	
@@ -2134,7 +2137,8 @@ class EsoLogParser
 		$result &= $this->saveIPAddresses();
 		$result &= $this->SaveLogInfo();
 		$result &= $this->salesData->SaveUpdatedGuilds();
-		
+		$result &= $this->salesData->SaveUpdatedItems();		
+				
 		return $result;
 	}
 	
@@ -4665,6 +4669,8 @@ class EsoLogParser
 			logData.server = GetWorldName()
 		*/
 		
+		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
 		
@@ -4673,9 +4679,15 @@ class EsoLogParser
 		//print("OnGuildSummary");
 		//print_r($logEntry);
 		
-		if ($guildData['__new'] === true)
+		if ($guildData['__new'] === true || true)
 		{
-			$guildData['foundedDate'] = $logEntry['founded'];
+			$a = strptime($logEntry['founded'], '%m/%d/%Y');
+						
+			if ($a !== false)
+			{
+				$guildData['foundedDate'] = mktime(0, 0, 0, $a['tm_mon']+1, $a['tm_mday'], $a['tm_year']+1900);
+			}
+			
 			$guildData['storeLocation'] = $logEntry['kiosk'];
 			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
 			$guildData['numMembers'] = $logEntry['numMembers'];
@@ -4703,7 +4715,7 @@ class EsoLogParser
 	{
 		/*
 		 logData.guildId = guildId
-		 logData.guild = GetGuildName(guildId)
+		 logData.name = GetGuildName(guildId)
 		 logData.server = GetWorldName()
 		 logData.zone = uespLog.lastTargetData.zone
 		 logData.lastTarget = uespLog.lastTargetData.name
@@ -4711,6 +4723,8 @@ class EsoLogParser
 		 */
 		
 		//print("OnGuildSaleSearchInfo");
+		
+		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
@@ -4746,7 +4760,7 @@ class EsoLogParser
 				$guildData['storeLocation'] = $logEntry['lastTarget'] . " in " . $logEntry['zone'];
 			}
 			
-			$guildData['lastStoreLocTime'] = $logEntry['timeSstamp1'];
+			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
 			
 			$guildData['__dirty'] = true;
 		}
@@ -4777,19 +4791,28 @@ class EsoLogParser
 			logData.itemLink = itemLink
 		 */
 		
+		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		if ($logEntry["itemLink"] == null) return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
 		
-		$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
+		$logEntry["seller"] = preg_replace("#(;.*)#", "", $logEntry["seller"]);
+		$logEntry["buyer"] = preg_replace("#(;.*)#", "", $logEntry["buyer"]);
+		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
+		//$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
+		$itemData = &$this->salesData->GetItemDataByKey($server, $logEntry["itemLink"], $logEntry);
 	
 		$salesData = $this->salesData->LoadSale($itemData['id'], $guildData['id'], $logEntry['eventId']);
 		
 		if ($salesData === false)
 		{
 			$salesData = $this->salesData->CreateNewSale($itemData, $guildData, $logEntry);
+		}
+		else
+		{
+			//print("Found duplicate sale: {$itemData['id']}:{$guildData['id']}:{$logEntry['eventId']}\n");
 		}
 		
 		return true;
@@ -4808,17 +4831,22 @@ class EsoLogParser
 			logData.listTimestamp = tostring(currentTimestamp + logData.timeRemaining - uespLog.SALES_MAX_LISTING_TIME) 
 		 */
 		
+		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		if ($logEntry["itemLink"] == null) return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
 		
 		$logEntry['seller'] = preg_replace("#(\|.*)#", "", $logEntry['seller']);
+		$logEntry["seller"] = preg_replace("#(;.*)#", "", $logEntry["seller"]);
+		$logEntry["buyer"] = preg_replace("#(;.*)#", "", $logEntry["buyer"]);
 		
-		$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
 		
-		$salesData = $this->salesData->LoadSaleSearchEntry($itemData['id'], $guildData['id'], $logEntry['listTimestamp'], $logEntry['sellerName']);
+		//$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
+		$itemData = &$this->salesData->GetItemDataByKey($server, $logEntry["itemLink"], $logEntry);
+		
+		$salesData = $this->salesData->LoadSaleSearchEntry($itemData['id'], $guildData['id'], $logEntry['listTimestamp'], $logEntry['seller']);
 		
 		if ($salesData === false)
 		{
@@ -4843,6 +4871,9 @@ class EsoLogParser
 			logData.itemLink = listingData.itemLink
 			logData.listTimestamp = tostring(listingData.listTimestamp) 
 		 */
+		
+		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		
 		return true;
 	}
 	
@@ -5031,6 +5062,8 @@ class EsoLogParser
 		
 		++$user['entryCount'];
 		$user['__dirty'] = true;
+		
+		//print($logEntry['event'] . "\n");
 		
 		switch($logEntry['event'])
 		{
@@ -5513,5 +5546,9 @@ class EsoLogParser
 $g_EsoLogParser = new EsoLogParser();
 $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
+
+$g_EsoLogParser->salesData->ShowParseSummary();
+
+
 
 
