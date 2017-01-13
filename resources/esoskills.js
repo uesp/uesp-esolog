@@ -1323,7 +1323,8 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
 	}
 				
-	cost = Math.floor((cost * CPFactor + FlatCost) * SkillFactor);
+	//cost = Math.floor((cost * CPFactor + FlatCost) * SkillFactor);
+	cost = Math.ceil((cost * CPFactor + FlatCost) * SkillFactor);
 	if (cost < 0) cost = 0;
 	
 	if (output == "") 
