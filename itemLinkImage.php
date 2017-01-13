@@ -409,6 +409,8 @@ class CEsoItemLinkImage
 		$this->itemQuality = $row['quality'];
 		$this->itemLink = $row['link'];
 		
+		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
+		
 		$this->itemRecord = $row;
 		
 		$this->LoadItemPotionData();
@@ -1537,7 +1539,7 @@ class CEsoItemLinkImage
 			$armorFactor *= 0.4044;
 		}
 	
-		if (!$isDefaultEnchant && $armorFactor != 1)
+		if (($armorType > 0 || $weaponType == 14) && !$isDefaultEnchant && $armorFactor != 1)
 		{
 			$newDesc = preg_replace_callback("#(Adds \|c[0-9a-fA-F]{6})([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
 						
@@ -1549,7 +1551,7 @@ class CEsoItemLinkImage
 					$newDesc);
 	
 		}
-		else if ($weaponFactor != 1)
+		else if (( $weaponType > 0 && $weaponType != 14) && $weaponFactor != 1)
 		{
 			foreach ($WEAPON_MATCHES as $match)
 			{
