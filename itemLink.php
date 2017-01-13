@@ -488,6 +488,7 @@ class CEsoItemLink
 			}
 			
 			$row['version'] = $this->version;
+			$row['name'] = preg_replace("#\|.*#", "", $row['name']);
 			
 			$this->itemAllData[] = $row;
 		}
@@ -563,7 +564,10 @@ class CEsoItemLink
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
-		$this->itemSummary = $result->fetch_assoc();
+		$row = $result->fetch_assoc();
+		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
+		
+		$this->itemSummary = $row;
 		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
 		
 		return true;
@@ -683,6 +687,8 @@ class CEsoItemLink
 			$row['traitAbilityDescArray'][] = $row['traitAbilityDesc'];
 			$row['traitCooldownArray'][] = $row['traitCooldown'];
 		}
+		
+		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
 		
 		$this->itemRecord = $row;
 		
@@ -1438,7 +1444,7 @@ class CEsoItemLink
 			$armorFactor *= 0.4044; 
 		}
 
-		if ($armorType > 0 && !$isDefaultEnchant && $armorFactor != 1)
+		if (($armorType > 0 || $weaponType == 14) && !$isDefaultEnchant && $armorFactor != 1)
 		{
 			$newDesc = preg_replace_callback("#(Adds \|c[0-9a-fA-F]{6})([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
 					
@@ -1450,7 +1456,7 @@ class CEsoItemLink
         		$newDesc);
 
 		}
-		else if ($weaponType > 0 && $weaponFactor != 1)
+		else if ($weaponType > 0 && $weaponType != 14 && $weaponFactor != 1)
 		{
 			
 			foreach ($WEAPON_MATCHES as $match)
