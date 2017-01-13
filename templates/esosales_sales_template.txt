@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Sales Data</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="http://esolog.uesp.net/resources/esosales.css" />
+		<script type="text/javascript" src="http://esolog.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://esolog.uesp.net/resources/esosales.js"></script>
+		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+<h1>ESO Sales Data</h1>
+
+<div id="esovsd_root">
+	<div class="">
+		Viewing sales data collected from the Elder Scrolls Online MMO for the item {salesItemLink} on the {server} server.
+	</div>
+	
+	<div id='esovsd_pricestats'>
+		{priceStats}
+	</div>
+	
+	<div id="esovsd_results">
+		{searchResults}
+	</div>
+</div>
+
+<script type="text/javascript">
+</script>
+
+<!--
+{itemQuery}
+{salesQuery}
+-->
+<hr>
+<div id="esovsd_footer">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>

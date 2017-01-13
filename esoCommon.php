@@ -313,6 +313,7 @@ $ESO_ITEMTYPE_TEXTS = array(
 		10 => "Ingredient",
 		22 => "Lockpick",
 		16 => "Lure",
+		60 => "Master Writ",		// Update 13
 		0 => "",
 		3 => "Plug",
 		30 => "Poison",

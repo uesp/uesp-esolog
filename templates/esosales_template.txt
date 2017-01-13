@@ -69,6 +69,12 @@
 		        	{listTimePeriod}
 		        </select>
 			</div>
+			<div class="esovsd_inlineblock">
+		        <label for="server" class="esovsd_label1">Server:</label>
+		        <select name="server" id="esovsd_server">
+		        	{listServer}
+		        </select>
+			</div>
 			<div class='esovsd_buttons'>
 				<input type="button" class="esovsd_clearbutton" value="Clear" onclick="esovsdResetSearchForm();" />
 				<input type="submit" class="esovsd_searchbutton" value="Search..." />
