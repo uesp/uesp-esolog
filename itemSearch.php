@@ -124,6 +124,7 @@ class EsoItemSearcher
 			'setBonusDesc3', 
 			'setBonusDesc4', 
 			'setBonusDesc5',
+			'tags',
 	);
 	
 	static public $ESOIS_TRAITS = array();
