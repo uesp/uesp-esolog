@@ -113,7 +113,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 			INDEX index_armortype (armorType),
 			INDEX index_equiptype (equipType),
 			INDEX index_crafttype (craftType),
-			FULLTEXT(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5)
+			FULLTEXT(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, tags)
 		);";
 
 $result = $db->query($query);
