@@ -72,7 +72,7 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "13pts";
+	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "13pts";
 	
 	public $db = null;
@@ -718,6 +718,7 @@ class EsoLogParser
 	public function __construct ()
 	{
 		ini_set('mysql.connect_timeout', 1000);
+		ini_set('mysql.wait_timeout', 1000);
 		ini_set('default_socket_timeout', 1000);
 		
 		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
@@ -3681,7 +3682,7 @@ class EsoLogParser
 		{
 			$logEntry['level'] = $logEntry['reqLevel'];
 		}
-		
+				
 		if (!array_key_exists('setMaxCount', $logEntry))
 		{
 			$logEntry['setMaxCount'] = 0;
@@ -3700,6 +3701,36 @@ class EsoLogParser
 				$result = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
 				if ($result) $logEntry['setMaxCount'] = (int) $matches[1];
 			}
+		}
+		
+		if (!array_key_exists('setDesc1', $logEntry))
+		{
+			$logEntry['setDesc1'] = "";
+			$logEntry['setBonus1'] = "-1";
+		}
+		
+		if (!array_key_exists('setDesc2', $logEntry))
+		{
+			$logEntry['setDesc2'] = "";
+			$logEntry['setBonus2'] = "-1";
+		}
+		
+		if (!array_key_exists('setDesc3', $logEntry))
+		{
+			$logEntry['setDesc3'] = "";
+			$logEntry['setBonus3'] = "-1";
+		}
+		
+		if (!array_key_exists('setDesc4', $logEntry))
+		{
+			$logEntry['setDesc4'] = "";
+			$logEntry['setBonus4'] = "-1";
+		}
+		
+		if (!array_key_exists('setDesc5', $logEntry))
+		{
+			$logEntry['setDesc5'] = "";
+			$logEntry['setBonus5'] = "-1";
 		}
 		
 		if (array_key_exists('flag', $logEntry))

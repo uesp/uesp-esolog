@@ -503,6 +503,7 @@ $ESO_ITEMBINDTYPE_TEXTS = array(
 
 
 $ESO_ITEMINTTYPE_QUALITYMAP = array(
+		0 => 1,
 		1 => 0,
 		2 => 1,
 		3 => 2,
@@ -906,6 +907,7 @@ $ESO_ITEMINTTYPE_QUALITYMAP = array(
 );
 
 $ESO_ITEMINTTYPE_LEVELMAP = array(
+		0 => 1,
 		1 => 1,
 		2 => 1,
 		3 => 1,
@@ -1571,7 +1573,7 @@ function MakeEsoIconLink($icon)
 
 function IsEsoVersionAtLeast($version, $checkVersion)
 {
-	if ($version == null || $version == "")
+	if ($version === null || $version == "")
 		$suffix = GetEsoUpdateVersion();
 	else
 		$suffix = intval(GetEsoItemTableSuffix($version));
