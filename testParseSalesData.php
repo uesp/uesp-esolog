@@ -1,5 +1,6 @@
 <?php 
 
+if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require("parseSalesData.php");
 

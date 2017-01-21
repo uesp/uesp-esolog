@@ -421,7 +421,7 @@ class EsoItemSearcher
 			$tmpWhere = "MATCH($searchFields) AGAINST ('$searchText' in BOOLEAN MODE)";
 			$intVal = intval($this->formValues['text']);
 			
-			if (is_numeric($this->formValues['text']) && $intVal > 0 && $intVal < 100000) 
+			if (is_numeric($this->formValues['text']) && $intVal > 0 && $intVal < 200000) 
 			{
 				$tmpWhere = "(" . $tmpWhere . " OR itemId=$intVal" . ")";	
 			}
