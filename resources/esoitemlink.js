@@ -32,7 +32,7 @@ var ESO_ITEM_TRAITS = {
 		4: "Infused",
 		9: "Intricate",
 		10: "Ornate",
-		1: "Power",
+		1: "Powered",
 		3: "Precise",
 		7: "Sharpened",
 		6: "Training",
