@@ -431,17 +431,31 @@ class EsoItemSearcher
 		
 		if ($this->formValues['trait'] != "")
 		{
-			if (strtolower($this->formValues['trait']) == "(none)")
+			$lowerTrait = strtolower($this->formValues['trait']);
+			
+			if ($lowerTrait == "(none)")
 			{
 				$where[] = "trait<=0";
 			}
-			else if (strtolower($this->formValues['trait']) == "nirnhoned")
+			else if ($lowerTrait == "nirnhoned")
 			{
 				$where[] = "(trait=25 or trait=26)";
 			}
-			else if (strtolower($this->formValues['trait']) == "infused")
+			else if ($lowerTrait == "infused")
 			{
 				$where[] = "(trait=4 or trait=16)";
+			}
+			else if ($lowerTrait == "intricate")
+			{
+				$where[] = "(trait=9 or trait=20)";
+			}
+			else if ($lowerTrait == "ornate")
+			{
+				$where[] = "(trait=10 or trait=19 or trait=24)";
+			}
+			else if ($lowerTrait == "training")
+			{
+				$where[] = "(trait=6 or trait=15)";
 			}
 			else
 			{
