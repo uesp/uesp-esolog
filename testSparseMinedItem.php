@@ -10,37 +10,6 @@ $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, 
 if ($db === null || $db->connect_error) return die("ERROR: Could not connect to mysql database!");
 
 
-
-function LoadMinedItem ($db, $itemId, $intLevel, $intSubtype, $tableSuffix = "")
-{
-	$query = "SELECT * FROM minedItem{$tableSuffix} WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype';";
-	$result = $db->query($query);
-	if ($result === false) return null;
-	if ($result->num_rows === 0) return null;
-	
-	return $result->fetch_assoc();
-}
-
-
-function LoadMinedItems ($db, $itemId, $tableSuffix = "")
-{
-	$query = "SELECT * FROM minedItem{$tableSuffix} WHERE itemId='$itemId';";
-	$result = $db->query($query);
-	if ($result === false) return null;
-	if ($result->num_rows === 0) return null;
-	
-	$result->data_seek(0);
-	$rows = array();
-	
-	while (($row = $result->fetch_assoc()))
-	{
-		$rows[] = $row;
-	}
-	
-	return $rows;
-}
-
-
 function CompareSparseMinedItem($item)
 {
 	global $db;
@@ -53,30 +22,55 @@ function CompareSparseMinedItem($item)
 	$level = $item['level'];
 	$quality = $item['quality'];
 	
+	if ($intLevel == 0 || $intSubtype == 0 || $intSubtype == 378) return true;
+	
 	$sparseItem = LoadEsoSparseMinedItem ($db, $itemId, $intLevel, $intSubtype);
 	if ($sparseItem == null) return false;
 	
 	//print_r($sparseItem);
-	
-	print("Comparing Item $itemId:$intLevel:$intSubtype ($level/$quality)...\n");
+
+	$outputHeader = false;
 	$result = true;
 		
 	foreach ($item as $key => $value)
 	{
 		if ($key == 'id') continue;
 		if ($key == 'comment') continue;
+		if ($key == 'icon') continue;
+		$outputError = false;
 		
 		$sparseValue = $sparseItem[$key];
 		
+		if ($key == 'enchantDesc' || $key == 'enchantName') 
+		{
+			if ($sparseValue == "" && $value != "") continue;
+		}		
+		
 		if ($sparseValue === null)
 		{
-			print("\t$key: Missing value in sparse data!\n");
+			$outputErrorMsg = "\t$key: Missing value in sparse data!\n";
+			$outputError = true;
 			$result = false;
 		}
 		else if (RemoveFormats($sparseValue) != RemoveFormats($value))
 		{
-			print("\t$key: Value mismatch! $value / $sparseValue\n");
+			if ($key == 'value')
+				$outputErrorMsg = "\t$key: ". ($value - $sparseValue) ."\n";
+			else
+				$outputErrorMsg = "\t$key: Value mismatch! $value / $sparseValue\n";
+			
+			$outputError = true;
 			$result = false;
+		}
+		
+		if ($outputError)
+		{
+			if (!$outputHeader)
+			{
+				print("Comparing Item $itemId:$intLevel:$intSubtype ($level/$quality)...\n");
+				$outputHeader = true;
+			}
+			print ($outputErrorMsg);
 		}
 	}
 	
@@ -92,7 +86,7 @@ function CompareSparseMinedItem($item)
 
 function RemoveFormats($text)
 {
-	return preg_replace("#\|c[a-fA-F0-9]{6}(.*)\|r#", "$1", $text);
+	return strtolower(preg_replace("#\|c[a-fA-F0-9]{6}(.*)\|r#", "$1", $text));
 }
 
 
@@ -100,7 +94,7 @@ function CompareSingleSparseMinedItem($itemId, $intLevel, $intSubtype)
 {
 	global $db;
 	
-	$item = LoadMinedItem($db, $itemId, $intLevel, $intSubtype, "");
+	$item = LoadEsoMinedItem($db, $itemId, $intLevel, $intSubtype, "");
 	
 	if ($item === null) 
 	{
@@ -109,7 +103,8 @@ function CompareSingleSparseMinedItem($itemId, $intLevel, $intSubtype)
 	}
 	
 	print("Comparing item $itemId:$intLevel:$intSubtype...\n");
-	CompareSparseMinedItem($item);
+	
+	return CompareSparseMinedItem($item);
 }
 
 
@@ -117,27 +112,54 @@ function CompareAllSparseMinedItems($itemId)
 {
 	global $db;
 	
-	$items = LoadMinedItems($db, $itemId, "");
+	$items = LoadEsoMinedItems($db, $itemId, "");
+	if ($items == null) return false;
+	
 	$totalOk = 0;
 	
-	printf("Comparing %d items with ID %d...\n", count($items), $itemId);
+	//printf("Comparing %d items with ID %d...\n", count($items), $itemId);
 	
 	foreach ($items as $item)
 	{
 		if (CompareSparseMinedItem($item)) ++$totalOk;
 	}
 	
-	printf("Found %d of %d items that matched!\n", $totalOk, count($items));
+	printf("%d: Found %d of %d items that matched!\n", $itemId, $totalOk, count($items));
 }
 
 
+function CompareRandomSparseMinedItems($count)
+{
+	for ($i = 0; $i < $count; ++$i)
+	{
+		$itemId = mt_rand(1, 120000);
+		CompareAllSparseMinedItems($itemId);
+	}
+}
 
-//CompareAllSparseMinedItems(68118);
+
 //CompareSingleSparseMinedItem(68118, 50, 177);
-
-
-CompareAllSparseMinedItems(113000);
 //CompareSingleSparseMinedItem(113000, 4, 8);
+//CompareSingleSparseMinedItem(113000, 50, 370);
+//CompareAllSparseMinedItems(64655);
+//CompareSingleSparseMinedItem(64655, 50, 368);
+//CompareSingleSparseMinedItem(64655, 0, 0);
+
+//CompareAllSparseMinedItems(113000);
+//CompareAllSparseMinedItems(64655);
+//CompareAllSparseMinedItems(68118);
+//CompareAllSparseMinedItems(75741);
+//CompareAllSparseMinedItems(107884);
+//CompareAllSparseMinedItems(94648);
+//CompareAllSparseMinedItems(51329);
+//CompareAllSparseMinedItems(69101);
+//CompareAllSparseMinedItems(107779);
+//CompareAllSparseMinedItems(50919);
+CompareAllSparseMinedItems(68944);
+
+//CompareRandomSparseMinedItems(100);
+
+
 
 
 

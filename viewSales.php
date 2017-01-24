@@ -1030,6 +1030,7 @@ class EsoViewSalesData
 				$foundedDate = date('Y-m-d', $guild['foundedDate']);
 			
 			$storeLoc = $guild['storeLocation'];
+			if ($storeLoc == "") $storeLoc = "None";
 			
 			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
 			if ($lastStoreLocTime != "") $lastStoreLocTime = "<small>updated " . $lastStoreLocTime . "</small>";

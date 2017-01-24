@@ -149,6 +149,7 @@ class CEsoItemLink
 			"setBonusDesc3",
 			"setBonusDesc4",
 			"setBonusDesc5",
+			"icon",
 	);
 	
 	public $inputParams = array();
@@ -1441,7 +1442,7 @@ class CEsoItemLink
 			/* Modify enchants of small armor pieces */
 		if ($armorType > 0 && ($equipType == 4 || $equipType == 8 || $equipType == 10 || $equipType == 13))
 		{
-			$armorFactor *= 0.4044; 
+			$armorFactor *= 0.405; 
 		}
 
 		if (($armorType > 0 || $weaponType == 14) && !$isDefaultEnchant && $armorFactor != 1)
