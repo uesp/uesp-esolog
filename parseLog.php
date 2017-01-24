@@ -720,7 +720,7 @@ class EsoLogParser
 		ini_set('mysql.connect_timeout', 1000);
 		ini_set('mysql.wait_timeout', 1000);
 		ini_set('default_socket_timeout', 1000);
-		
+				
 		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
 		{
 			unset(self::$MINEDITEM_FIELDS['tags']);
@@ -4780,7 +4780,7 @@ class EsoLogParser
 			$guildData['__dirty'] = true;
 			$guildData['__new'] = false;
 		}
-		else if ($guildData['lastStoreLocTime'] <= 0 || intval($guildData['lastStoreLocTime']) < intval($logEntry['timeStamp1']))
+		else if ($guildData['lastStoreLocTime'] <= 0 || intval($guildData['lastStoreLocTime']) < intval($logEntry['timeStamp1']) || $guildData['storeLocation'] == "")
 		{
 			if ($logEntry['kiosk'] != null && $logEntry['kiosk'] != "")
 			{

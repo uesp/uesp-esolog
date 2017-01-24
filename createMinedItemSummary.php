@@ -14,7 +14,7 @@ $FIELDS = array(
 		"style",
 		"trait",
 		"type",
-		"specialType",
+		//"specialType",	//Update13
 		"equipType",
 		"weaponType",
 		"armorType",
@@ -165,7 +165,16 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	foreach ($FIELDS as $field)
 	{
 		$value = "";
-		if (array_key_exists($field, $minItemData)) $value = $db->escape_string($minItemData[$field]);
+		
+		if (array_key_exists($field, $minItemData)) 
+		{
+			$value = $db->escape_string($minItemData[$field]);
+		}
+		
+		if ($field == "icon" && array_key_exists($field, $maxItemData))
+		{
+			$value = $db->escape_string($maxItemData[$field]);
+		}
 		
 		if ($value != "" && ($field == 'name' || $field == 'setName'))
 		{
@@ -181,6 +190,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			$value = preg_replace("#\^[a-zA-Z]*#", "", $value);
 		}
 		
+		$value = $db->escape_string($value);
 		$columns[] = $field;
 		$values[] = "'$value'";
 	}
