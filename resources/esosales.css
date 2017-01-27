@@ -94,13 +94,17 @@ a:hover {
 }
 
 #esovsd_searchresults_table {
-	
+	margin-left: 0px;
+    border-collapse: collapse;
+    text-align: center;
+	border: solid 1px lightgray;
 }
 
 .esovsd_itemicon {
 	width: 32px;
 	height: 32px;
 	vertical-align: middle;
+	padding-right: 5px;
 }
 
 .esovsd_itemlink {
@@ -109,7 +113,6 @@ a:hover {
 }
 
 .esovsd_itemlink:hover {
-	cursor: pointer;
 	background-color: #ccc;
 }
 
@@ -117,8 +120,21 @@ a:hover {
 	padding: 7px;
 }
 
+#esovsd_searchresults_table tr {
+	border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+}
+
 #esovsd_searchresults_table tr:hover {
 	background-color: #ccc;
+}
+
+#esovsd_searchresults_table td {
+	padding: 2px 10px;
+}
+
+#esovsd_searchresults_table th {
+	padding: 2px 10px;
 }
 
 #esovsd_pricestats {
@@ -142,3 +158,56 @@ a:hover {
 	background-color: #ff9999;
 	cursor: pointer;
 }
+
+.esovsd_copypricesmall {
+	font-size: 11px;
+	margin-left: 5px;
+	padding: 3px;
+}
+
+.esovsd_itemresults {
+}
+
+.esovsd_salesresults {
+}
+
+.esovsd_itemresults td:first-child {
+	text-align: left;
+}
+
+.esovsd_itemresults td:first-child {
+	text-align: left;
+}
+
+.esovsd_itemresults td:nth-child(10) {
+	text-align: right;
+}
+
+.esovsd_salesresults td:last-child {
+	text-align: right;
+}
+
+.esovsd_salesresults td:nth-child(4) {
+	text-align: right;
+}
+
+#esovsd_guildresults_table {
+	margin-left: 0px;
+    border-collapse: collapse;
+    text-align: center;	
+    border: 1px solid lightgray;
+}
+
+#esovsd_guildresults_table tr {
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+
+#esovsd_guildresults_table th {
+	padding: 2px 5px;
+}
+
+#esovsd_guildresults_table td:first-child {
+	text-align: left;
+}
+

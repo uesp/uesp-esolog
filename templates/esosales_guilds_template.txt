@@ -10,13 +10,14 @@
 		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
+<a href="/viewSales.php">Back to Item Sales Search</a>
 <h1>ESO Sales Data: Guilds</h1>
 
 <div id="esovsd_root">
 	<div class="">
-		Viewing guild data collected from the Elder Scrolls Online MMO from all collected sales.
+		Viewing guild data collected from the Elder Scrolls Online from all collected sales.
 	</div>
-	
+	<br/>
 	{errorMessages}
 
 	<div id="esovsd_results">

@@ -1,3 +1,15 @@
+function EsoSalesResetSearchForm()
+{
+	$('#esovsd_text').val('');
+	$('#esovsd_level').val('');
+	$('#esovsd_trait').val('');
+	$('#esovsd_quality').val('');
+	$('#esovsd_itemtype').val('');
+	$('#esovsd_armortype').val('');
+	$('#esovsd_weapontype').val('');
+	$('#esovsd_equiptype').val('');
+}
+
 
 function EsoSalesCopyToClipboard(self)
 {

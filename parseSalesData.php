@@ -172,6 +172,7 @@ class EsoSalesDataParser
 						foundedDate INT UNSIGNED NOT NULL,
 						leader TINYTEXT NOT NULL,
 						totalSales INT UNSIGNED NOT NULL,
+						totalPurchases INT UNSIGNED NOT NULL, 
 						PRIMARY KEY (id),
 						INDEX name_index(server(3), name(24))
 					);";
@@ -197,9 +198,15 @@ class EsoSalesDataParser
 						icon TINYTEXT NOT NULL,
 						setName TINYTEXT NOT NULL,
 						potionData INT UNSIGNED NOT NULL,
-						totalSales INT UNSIGNED NOT NULL,
+						sumPurchases FLOAT NOT NULL,
+						countPurchases INT UNSIGNED NOT NULL,
+						countItemPurchases BIGINT UNSIGNED NOT NULL,
+						sumSales FLOAT NOT NULL,
+						countSales INT UNSIGNED NOT NULL,
+						countItemSales BIGINT UNSIGNED NOT NULL,
 						PRIMARY KEY (id),
-						INDEX unique_index(server(3), itemId, level, quality, trait, potionData)
+						INDEX unique_index1(server(3), itemId, level, quality, trait, potionData),
+						INDEX unique_index2(server(3), itemId, internalLevel, internalSubType, potionData)
 					);";
 		
 		$this->lastQuery = $query;
@@ -256,6 +263,9 @@ class EsoSalesDataParser
 		$rowData = $result->fetch_assoc();
 		$rowData['__dirty'] = false;
 		
+		$rowData['totalPurchases'] = intval($rowData['totalPurchases']);
+		$rowData['totalSales'] = intval($rowData['totalSales']);
+		
 		return $rowData;
 	}
 	
@@ -273,6 +283,7 @@ class EsoSalesDataParser
 		
 		$guildData['name'] = $name;
 		$guildData['server'] = $server;
+		$guildData['totalPurchases'] = 0;
 		$guildData['totalSales'] = 0;
 		$guildData['id'] = $this->db->insert_id;
 		$guildData['__new'] = true;
@@ -299,6 +310,7 @@ class EsoSalesDataParser
 			$this->guildData[$server][$name] = array();
 			$this->guildData[$server][$name]['name'] = $name;
 			$this->guildData[$server][$name]['server'] = $server;
+			$this->guildData[$server][$name]['totalPurchases'] = 0;
 			$this->guildData[$server][$name]['totalSales'] = 0;
 			$this->guildData[$server][$name]['id'] = -1;
 			$this->guildData[$server][$name]['__dirty'] = true;
@@ -325,11 +337,14 @@ class EsoSalesDataParser
 		$lastStoreLocTime = intval($guildData['lastStoreLocTime']);
 		$foundedDate = intval($guildData['foundedDate']);
 		$leader = $this->db->real_escape_string($guildData['leader']);
+		
+		$totalPurchases = $guildData['totalPurchases'];
 		$totalSales = $guildData['totalSales'];
 		
 		$this->lastQuery  = "UPDATE guilds SET name=\"$safeName\", server=\"$safeServer\", storeLocation=\"$storeLocation\", leader=\"$leader\",";
 		$this->lastQuery .= "numMembers=$numMembers, lastStoreLocTime=$lastStoreLocTime, foundedDate=$foundedDate, description=\"$desc\", ";
-		$this->lastQuery .= "totalSales=$totalSales WHERE id=$id;";
+		$this->lastQuery .= "totalPurchases=$totalPurchases, totalSales=$totalSales ";
+		$this->lastQuery .= "WHERE id=$id;";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to save guild record!");
@@ -340,15 +355,24 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function SaveItemCount(&$itemData)
+	public function SaveItemStats(&$itemData)
 	{
 		$id = intval($itemData['id']);
-		$totalSales = $itemData['totalSales'];
+				
+		$countPurchases = $itemData['countPurchases'];
+		$countSales = $itemData['countSales'];
+		$countItemPurchases = $itemData['countItemPurchases'];
+		$countItemSales = $itemData['countItemSales'];
+		$sumPurchases = $itemData['sumPurchases'];
+		$sumSales = $itemData['sumSales'];
 		
-		$this->lastQuery = "UPDATE items SET totalSales=$totalSales WHERE id=$id;";
+		$this->lastQuery = "UPDATE items SET ";
+		$this->lastQuery .= "countPurchases=$countPurchases, countSales=$countSales, countItemPurchases=$countItemPurchases, ";
+		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales ";
+		$this->lastQuery .= "WHERE id=$id;";
 		
 		$result = $this->db->query($this->lastQuery);
-		if ($result === FALSE) return $this->reportError("Failed to save item counts record!");
+		if ($result === FALSE) return $this->reportError("Failed to save item stats data!");
 		
 		$itemData['__dirty'] = false;
 		
@@ -390,7 +414,7 @@ class EsoSalesDataParser
 		{
 			if ($itemData['__dirty'] === true)
 			{
-				$this->SaveItemCount($itemData);
+				$this->SaveItemStats($itemData);
 				++$itemCount;
 			}
 		}
@@ -411,6 +435,13 @@ class EsoSalesDataParser
 		$rowData = $result->fetch_assoc();
 		$rowData['__dirty'] = false;
 		
+		$rowData['countPurchases'] = intval($rowData['countPurchases']);
+		$rowData['countSales'] = intval($rowData['countSales']);
+		$rowData['countItemPurchases'] = intval($rowData['countItemPurchases']);
+		$rowData['countItemSales'] = intval($rowData['countItemSales']);
+		$rowData['sumSales'] = floatval($rowData['sumSales']);
+		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
+		
 		return $rowData;
 	}
 	
@@ -425,6 +456,13 @@ class EsoSalesDataParser
 			
 		$rowData = $result->fetch_assoc();
 		$rowData['__dirty'] = false;
+		
+		$rowData['countPurchases'] = intval($rowData['countPurchases']);
+		$rowData['countSales'] = intval($rowData['countSales']);
+		$rowData['countItemPurchases'] = intval($rowData['countItemPurchases']);
+		$rowData['countItemSales'] = intval($rowData['countItemSales']);
+		$rowData['sumSales'] = floatval($rowData['sumSales']);
+		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
 		
 		return $rowData;
 	}
@@ -530,13 +568,17 @@ class EsoSalesDataParser
 		$itemData['potionData'] = $potionData;
 		$itemData['internalLevel'] = $internalLevel;
 		$itemData['internalSubType'] = $internalSubType;
-		$itemData['totalSales'] = 0;
+		
+		$itemData['sumPurchases'] = 0;
+		$itemData['sumSales'] = 0;
+		$itemData['countPurchases'] = 0;
+		$itemData['countSales'] = 0;
+		$itemData['countItemPurchases'] = 0;
+		$itemData['countItemSales'] = 0;
 		
 		++$this->localNewItemCount;
 		
 		return $itemData;
-		
-		return "";
 	}
 	
 	
@@ -609,8 +651,14 @@ class EsoSalesDataParser
 		$itemData['name'] = $name;
 		$itemData['setName'] = $setName;
 		$itemData['potionData'] = $itemPotionData;
-		$itemData['totalSales'] = 0;
 		
+		$itemData['sumPurchases'] = 0;
+		$itemData['sumSales'] = 0;
+		$itemData['countPurchases'] = 0;
+		$itemData['countSales'] = 0;
+		$itemData['countItemPurchases'] = 0;
+		$itemData['countItemSales'] = 0;
+				
 		++$this->localNewItemCount;
 		
 		return $itemData;
@@ -624,8 +672,7 @@ class EsoSalesDataParser
 		$quality = $itemRawData['quality'];
 		$trait = $itemRawData['trait'];
 		$potionData = $itemRawData['potionData'];
-		if ($level <= 0) $level = 1;
-		
+				
 		$itemLinkData = $this->ParseItemLink($itemLink);
 		if ($itemLinkData === false) return false;
 	
@@ -642,7 +689,28 @@ class EsoSalesDataParser
 		}
 		
 		$itemRawData['internalLevel'] = $itemLinkData['level'];
-		$itemRawData['internalSubType'] = $itemLinkData['subtype'];				
+		$itemRawData['internalSubType'] = $itemLinkData['subtype'];
+		
+			/* Check for missing or "old" sales data that may have incorrect data */
+		if ($level == null || $trait == null || $quality == null || $itemRawData['timeStamp1'] < 1485400000)
+		{
+			$minedItemData = $this->LoadMinedItem($itemId, $itemLinkData['level'], $itemLinkData['subtype'], $itemPotionData);
+				
+			if ($minedItemData !== false)
+			{
+				$quality = $minedItemData['quality'];
+				$trait = $minedItemData['trait'];
+				$level = $minedItemData['level'];
+			}
+			else
+			{
+				if ($quality == null) $quality = 1;
+				if ($trait == null) $trait = 0;
+				if ($level == null) $level = 1;
+			}
+		}
+		
+		if ($level <= 0) $level = 1;
 		
 		$cacheId = $server . ":" . $itemId . ":" . $level . ":" .$quality . ":" . $trait . ":" . $potionData;
 		if ($this->itemData[$cacheId] != null) return $this->itemData[$cacheId];
@@ -670,57 +738,20 @@ class EsoSalesDataParser
 			$this->itemData[$cacheId]['quality'] = $quality;
 			$this->itemData[$cacheId]['trait'] = $trait;
 			$this->itemData[$cacheId]['potionData'] = $potionData;
-			$this->itemData[$cacheId]['totalSales'] = 0;
+			$this->itemData[$cacheId]['sumPurchases'] = 0;
+			$this->itemData[$cacheId]['sumSales'] = 0;
+			$this->itemData[$cacheId]['countPurchases'] = 0;
+			$this->itemData[$cacheId]['countSales'] = 0;
+			$this->itemData[$cacheId]['countItemPurchases'] = 0;
+			$this->itemData[$cacheId]['countItemSales'] = 0;
+				
 			$this->itemData[$cacheId]['__dirty'] = true;
 			$this->itemData[$cacheId]['__error'] = true;
 		}
 		
 		return $this->itemData[$cacheId];
 	}
-	
-	
-	public function &GetItemData($itemLink, $subItemData = null, $itemKey = null)
-	{
-		$itemLinkData = $this->ParseItemLink($itemLink);
-		if ($itemLinkData === false) return false;
 		
-		$itemId = intval($itemLinkData['itemId']);
-		$itemIntLevel = intval($itemLinkData['level']);
-		$itemIntType = intval($itemLinkData['subtype']);
-		$itemPotionData = intval($itemLinkData['potionData']);
-		$cacheId = $this->server . ":" . $itemId . ":" . $itemIntLevel . ":" .$itemIntType . ":" . $itemPotionData;
-		
-		if ($this->itemData[$cacheId] != null) return $this->itemData[$cacheId];
-	
-		$itemData = $this->LoadItem($this->server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData);
-		
-		if ($itemData === false) 
-		{
-			$itemData = $this->CreateNewItem($this->server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData, $subItemData, $itemKey);
-		}
-	
-		if ($itemData === false)
-		{
-			$this->itemData[$cacheId] = array();
-			$this->itemData[$cacheId] = $name;
-			$this->itemData[$cacheId]['id'] = -1;
-			$this->itemData[$cacheId]['server'] = $this->server;
-			$this->itemData[$cacheId]['itemId'] = $itemId;
-			$this->itemData[$cacheId]['potionData'] = $itemPotionData;
-			$this->itemData[$cacheId]['totalSales'] = 0;
-			$this->itemData[$cacheId]['__dirty'] = true;
-			$this->itemData[$cacheId]['__error'] = true;
-		}
-		else
-		{
-			$this->itemData[$cacheId] = $itemData;
-			$this->itemData[$cacheId]['__dirty'] = false;
-		}
-	
-		return $this->itemData[$cacheId];
-	
-	}
-	
 	
 	public function LoadSaleSearchEntry($itemMyId, $guildId, $listTime, $sellerName)
 	{
@@ -761,6 +792,8 @@ class EsoSalesDataParser
 	
 	public function CreateNewSaleMM(&$itemData, &$guildData, &$subItemData, &$saleData)
 	{
+		if ($saleData['quant'] == 0) return false;
+		
 		$itemId = $itemData['id'];
 		$guildId = $guildData['id'];
 		$eventId = $this->db->real_escape_string($saleData['id']);
@@ -771,16 +804,20 @@ class EsoSalesDataParser
 		$qnt = $this->db->real_escape_string($saleData['quant']);
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
-				
+		
 		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
 
-		++$guildData['totalSales'];
+		++$guildData['totalPurchases'];
 		$guildData['__dirty'] = true;
-		++$itemData['totalSales'];
+		
+		$itemData['countPurchases'] += 1;
+		$itemData['sumPurchases'] += floatval($saleData['price']);
+		$itemData['countItemPurchases'] += intval($saleData['quant']);
 		$itemData['__dirty'] = true;
+		
 		++$this->localNewSalesCount;
 		
 		return true;
@@ -789,6 +826,8 @@ class EsoSalesDataParser
 	
 	public function CreateNewSale(&$itemData, &$guildData, &$saleData)
 	{
+		if ($saleData['qnt'] == 0) return false;
+		
 		$itemId = $itemData['id'];
 		$guildId = $guildData['id'];
 		$eventId = $this->db->real_escape_string($saleData['eventId']);
@@ -805,10 +844,14 @@ class EsoSalesDataParser
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
 	
-		++$guildData['totalSales'];
+		$guildData['totalPurchases'] += 1;
 		$guildData['__dirty'] = true;
-		++$itemData['totalSales'];
+				
+		$itemData['countPurchases'] += 1;
+		$itemData['sumPurchases'] += floatval($saleData['gold']);
+		$itemData['countItemPurchases'] += intval($saleData['qnt']);
 		$itemData['__dirty'] = true;
+		
 		++$this->localNewSalesCount;
 	
 		return true;
@@ -817,6 +860,8 @@ class EsoSalesDataParser
 	
 	public function CreateNewSaleSearchEntry(&$itemData, &$guildData, &$saleData)
 	{
+		if ($saleData['qnt'] == 0) return false;
+		
 		$itemId = $itemData['id'];
 		$guildId = $guildData['id'];
 		$eventId = 0;
@@ -827,16 +872,21 @@ class EsoSalesDataParser
 		$price = $this->db->real_escape_string($saleData['price']);
 		$qnt = $this->db->real_escape_string($saleData['qnt']);
 		$server = $this->db->real_escape_string($this->server);
+		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 	
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");
 	
-		++$guildData['totalSales'];
+		$guildData['totalSales'] += 1;
 		$guildData['__dirty'] = true;
-		++$itemData['totalSales'];
+		
+		$itemData['countSales'] += 1;
+		$itemData['sumSales'] += floatval($saleData['price']);
+		$itemData['countItemSales'] += intval($saleData['qnt']);
 		$itemData['__dirty'] = true;
+			
 		++$this->localNewSalesCount;
 	
 		return true;
@@ -947,7 +997,6 @@ class EsoSalesDataParser
 		$itemParsedData['trait'] = intval($keyData[3]);
 		
 		$guildData = &$this->GetGuildData($this->server, $saleData['guild']);
-		//$itemData = &$this->GetItemData($itemLink, $subItemData, $itemKey);
 		$itemData = &$this->GetItemDataByKey($this->server, $itemLink, $itemParsedData);
 		
 		if ($itemData['icon'] != $subItemData['itemIcon'])

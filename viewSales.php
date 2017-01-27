@@ -14,6 +14,9 @@ class EsoViewSalesData
 {
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
+	
+	public $OMIT_BUYER_INFO = true;
+	public $OMIT_SELLER_INFO = true;
 		
 	public $ESOVSD_HTML_TEMPLATE = "";
 	public $ESOVSD_HTML_TEMPLATE_EMBED = "";
@@ -42,6 +45,7 @@ class EsoViewSalesData
 	public $rawShowForm = "";
 	public $showForm = "ItemSearch";
 	public $viewRawData = false;
+	public $hasSearchData = false;
 	
 	public $guildData = array();
 	public $searchCount = 0;
@@ -84,8 +88,8 @@ class EsoViewSalesData
 	
 	static public $ESOVSD_SALETYPES = array(
 			"All" => "All",
-			"Purchases" => "Only Purchases",
-			"ForSale" => "Only For Sale",
+			"Purchases" => "Only Sold Items",
+			"ForSale" => "Only Listed Items",
 	);
 	
 
@@ -237,6 +241,9 @@ class EsoViewSalesData
 	{
 		global $argv;
 		$this->inputParams = $_REQUEST;
+		
+		$this->hasSearchData = false;
+		if (count($this->inputParams) > 0) $this->hasSearchData = true;
 	}
 
 
@@ -441,20 +448,23 @@ class EsoViewSalesData
 	
 	public function GetItemSearchResultsHtml()
 	{
-		$output  = "<table id='esovsd_searchresults_table'>";
+		if (!$this->hasSearchData) return "";
+		
+		$output  = "<table id='esovsd_searchresults_table' class='esovsd_itemresults'>";
 		$output .= "<tr>";
 		$output .= "<th>Item</th>";
+		$output .= "<th>Level</th>";
 		$output .= "<th>Trait</th>";
 		$output .= "<th>Type</th>";
-		$output .= "<th>EquipType</th>";
-		$output .= "<th>WeaponType</th>";
-		$output .= "<th>ArmorType</th>";
+		$output .= "<th>Equip</th>";
+		$output .= "<th>Armor</th>";
+		$output .= "<th>Weapon</th>";
 		$output .= "<th>Set Name</th>";
-		$output .= "<th>Sales</th>";
+		$output .= "<th>#</th>";
+		$output .= "<th>Avg Price</th>";
 		$output .= "<th></th>";
 		$output .= "</tr>";
-		
-		
+				
 		foreach ($this->itemSortedKeys as $itemId)
 		{
 			$item = $this->itemResults[$itemId];
@@ -462,26 +472,48 @@ class EsoViewSalesData
 			$iconURL = $this->GetIconUrl($item['icon']);
 				
 			$trait = $item['trait'];
+			$levelText = GetEsoItemLevelText($item['level']);
 			$itemType = GetEsoItemTypeText($item['itemType']);
 			$weaponType = GetEsoItemWeaponTypeText($item['weaponType']);
 			$armorType = GetEsoItemArmorTypeText($item['armorType']);
 			$equipType = GetEsoItemEquipTypeText($item['equipType']);
 			$setName = $item['setName'];
-			$totalSales = $item['totalSales'];
+			$totalSales = floatval($item['countSales']);
+			$totalPurchases = floatval($item['countPurchases']);
+			$sumSales = floatval($item['sumSales']);
+			$sumPurchases = floatval($item['sumPurchases']);
+			$totalCount = $totalSales + $totalPurchases;
+			$totalItems = floatval($item['countItemPurchases']) + floatval($item['countItemSales']);
+			$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
+						
+			$totalCountText = $totalCount;
+			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
+			
+			if ($avgPrice >= 1000)
+				$avgPrice = round($avgPrice, 0);
+			else if ($avgPrice >= 100)
+				$avgPrice = round($avgPrice, 1);
+			else
+				$avgPrice = round($avgPrice, 2);
 				
 			$traitText = "";
 			if ($trait > 0) $traitText = GetEsoItemTraitText($trait);
 			
+			$copyPriceTooltip = $this->CreateItemCopyPriceTooltip($avgPrice, $totalSales, $totalPurchases, 0, $totalItems, $item);
+			$copyPriceHtml = "<div class='esovsd_copyprice esovsd_copypricesmall' copydata='$copyPriceTooltip'>Copy</div>";
+			
 			$output .= "<tr>";
 			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}'>";
 			$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$item['name']}</div></td>";
+			$output .= "<td>$levelText</td>";
 			$output .= "<td>$traitText</td>";
 			$output .= "<td>$itemType</td>";
 			$output .= "<td>$equipType</td>";
-			$output .= "<td>$weaponType</td>";
 			$output .= "<td>$armorType</td>";
+			$output .= "<td>$weaponType</td>";
 			$output .= "<td>$setName</td>";
-			$output .= "<td>$totalSales</td>";
+			$output .= "<td>$totalCountText</td>";
+			$output .= "<td>$avgPrice gp$copyPriceHtml</td>";
 			$output .= "<td><a href='?viewsales=$itemId'>View Item Sales</a></td>";
 			$output .= "</tr>\n";
 		}
@@ -529,13 +561,13 @@ class EsoViewSalesData
 	
 	public function GetSalesSearchResultsHtml()
 	{
-		$output  = "<table id='esovsd_searchresults_table'>";
+		$output  = "<table id='esovsd_searchresults_table' class='esovsd_salesresults'>";
 		$output .= "<tr>";
 		$output .= "<th>Guild</th>";
-		$output .= "<th>Seller</th>";
-		$output .= "<th>Buyer</th>";
-		$output .= "<th>Listed</th>";
-		$output .= "<th>Purchased</th>";
+		$output .= "<th>Kiosk Location</th>";
+		if (!$this->OMIT_SELLER_INFO) $output .= "<th>Seller</th>";
+		if (!$this->OMIT_BUYER_INFO) $output .= "<th>Buyer</th>";
+		$output .= "<th>Listed / Sold</th>";
 		$output .= "<th>Price</th>";
 		$output .= "<th>Qnt</th>";
 		$output .= "<th>Unit Price</th>";
@@ -550,40 +582,26 @@ class EsoViewSalesData
 			$iconURL = $this->GetIconUrl($item['icon']);
 			$unitPrice = number_format(floatval($row['price']) / floatval($row['qnt']), 2, ".", '');
 			
-			//if ($row['listTimestamp'] <= 0) $listDate = "";
-			//if ($row['buyTimestamp'] <= 0) $buyDate = "";
-			
-			//$trait = $item['trait'];
-			//$itemType = $item['itemType'];
-			//$weaponType = $item['weaponType'];
-			//$armorType = $item['armorType'];
-			//$equipType = $item['equipType'];
-			//$setName = $item['setName'];
-			
-			//$summary = array();
-			//$traitText = "";
-			//if ($trait > 0) $traitText = GetEsoItemTraitText($trait);
-			
-			//if ($itemType > 0) $summary[] = GetEsoItemTypeText($itemType);
-			//if ($weaponType > 0) $summary[] = GetEsoItemWeaponTypeText($weaponType);
-			//if ($armorType > 0) $summary[] = GetEsoItemArmorTypeText($armorType);
-			//if ($equipType > 0) $summary[] = GetEsoItemEquipTypeText($equipType);
-			//if ($setName != "") $summary[] = $setName;
-			//$summary = implode(", ", $summary);
+			$kiosk = $guild['storeLocation'];
+			if ($kiosk == "") $kiosk = "None";
+	
+			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
+			if ($lastStoreLocTime != "") $kiosk .= "<br/><small>updated " . $lastStoreLocTime . "</small>";
 			
 			$output .= "<tr>";
-			//$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}'>";
-			//$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemlink='{$row['itemLink']}'>";
-			//$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$item['name']}</div></td>";
-			//$output .= "<td>$traitText</td>";
 			$output .= "<td>{$guild['name']}</td>";
-			$output .= "<td>{$row['sellerName']}</td>";
-			$output .= "<td>{$row['buyerName']}</td>";
-			$output .= "<td>{$listDate}</td>";
-			$output .= "<td>{$buyDate}</td>";
-			$output .= "<td>{$row['price']}</td>";
+			$output .= "<td>$kiosk</td>";
+			if (!$this->OMIT_SELLER_INFO) $output .= "<td>{$row['sellerName']}</td>";
+			if (!$this->OMIT_BUYER_INFO) $output .= "<td>{$row['buyerName']}</td>";
+			
+			if ($listDate != "")
+				$output .= "<td>Listed {$listDate}</td>";
+			else
+				$output .= "<td>Sold {$buyDate}</td>";
+			
+			$output .= "<td>{$row['price']} gp</td>";
 			$output .= "<td>{$row['qnt']}</td>";
-			$output .= "<td>{$unitPrice}</td>";
+			$output .= "<td>{$unitPrice} gp</td>";
 			$output .= "</tr>\n";
 		}
 	
@@ -599,17 +617,56 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetFindItemQuery()
+	public function GetFindItemLinkQuery($itemLinkData)
 	{
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
+		
+		$itemId = intval($itemLinkData['itemId']);
+		$intSubtype = intval($itemLinkData['subtype']);
+		$intLevel = intval($itemLinkData['level']);
+		$potionData = intval($itemLinkData['potionData']);
+		
+		$where[] = "itemId=$itemId";
+		$where[] = "internalLevel=$intLevel";
+		$where[] = "internalSubtype=$intSubtype";		
+		$where[] = "potionData=$potionData";
+				
+		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
+		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
+		
+		$this->itemQuery = $query;
+		return $query;
+	}
+	
+	
+	public function GetFindItemQuery()
+	{
+		$itemLinkData = $this->ParseItemLink($this->formValues['text']);
+		if ($itemLinkData) return $this->GetFindItemLinkQuery($itemLinkData);
+		
+		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
+		$where = array();
 
-		$where[] = "server='".$this->salesData->server."'";
+		$where[] = "server='".$this->server."'";
 		if ($this->finalItemLevel   >= 1) $where[] = "level=".$this->finalItemLevel;
 		if ($this->finalItemQuality >= 0) $where[] = "quality=".$this->finalItemQuality;
 		
 		$traitValue = $this->GetItemTraitValue($this->formValues['trait']);
-		if ($traitValue > 0) $where[] = "trait=".$traitValue;
+		
+		if ($traitValue > 0) 
+		{
+			if ($traitValue == 20 || $traitValue == 9)
+				$where[] = "(trait=9 OR trait=20)";
+			else if ($traitValue == 19 || $traitValue == 24 || $traitValue == 10)
+				$where[] = "(trait=10 OR trait=19 or trait=24)";
+			else if ($traitValue == 6 || $traitValue == 15)
+				$where[] = "(trait=6 OR trait=15)";
+			else if ($traitValue == 25 || $traitValue == 26)
+				$where[] = "(trait=25 OR trait=26)";
+			else
+				$where[] = "trait=".$traitValue;
+		}
 		
 		$equipTypeValue = $this->GetEquipTypeValue($this->formValues['equiptype']);
 		if ($equipTypeValue > 0) $where[] = "equipType=".$equipTypeValue;
@@ -641,6 +698,7 @@ class EsoViewSalesData
 	public function LoadItemData()
 	{		
 		$this->totalItemCount = 0;
+		if (!$this->hasSearchData) return true;
 		
 		$this->lastQuery = $this->GetFindItemQuery();
 		
@@ -1013,7 +1071,7 @@ class EsoViewSalesData
 		$output .= "<th>Founder</th>";
 		$output .= "<th>Founded Date</th>";
 		$output .= "<th>Kiosk Location</th>";
-		$output .= "<th>Sales</th>";
+		$output .= "<th>Listed / Sold</th>";
 		$output .= "</tr>";
 	
 		foreach ($this->guildData as $key => $guild)
@@ -1023,6 +1081,7 @@ class EsoViewSalesData
 			$numMembers = $guild['numMembers'];
 			$founder = $guild['leader'];
 			$numSales = $guild['totalSales'];
+			$numPurchases = $guild['totalPurchases'];
 			
 			if ($guild['foundedDate'] <= 0) 
 				$foundedDate = "";
@@ -1043,7 +1102,7 @@ class EsoViewSalesData
 			$output .= "<td>$founder</td>";
 			$output .= "<td>$foundedDate</td>";
 			$output .= "<td>$storeLoc<br/>$lastStoreLocTime</td>";
-			$output .= "<td>$numSales</td>";
+			$output .= "<td>$numSales / $numPurchases</td>";
 			
 			$output .= "</tr>\n";
 		}
@@ -1054,9 +1113,9 @@ class EsoViewSalesData
 	}
 	
 	
-	public function CreateItemCopyPriceHtml($price, $saleCount, $purchaseCount, $lastTimestamp, $totalItems)
+	public function CreateItemCopyPriceTooltip($price, $saleCount, $purchaseCount, $lastTimestamp, $totalItems, $itemData)
 	{
-		if ($this->singleItemData == null) return "";
+		$copyData = "UESP price (";
 		
 		if ($price >= 1000)
 			$price = round($price, 0);
@@ -1065,27 +1124,38 @@ class EsoViewSalesData
 		else
 			$price = round($price, 2);
 		
-		$itemId = $this->singleItemData['itemId'];
-		$itemLevel = $this->singleItemData['internalLevel'];
-		$itemSubType = $this->singleItemData['internalSubType'];
-		$days = intval((time() - $lastTimestamp) / 86400) + 1;
-		
-		$copyData = "UESP price (";
+		$itemId = $itemData['itemId'];
+		$itemLevel = $itemData['internalLevel'];
+		$itemSubType = $itemData['internalSubType'];
 		
 		if ($saleCount > 0 && $purchaseCount > 0)
-			$copyData .= "$saleCount for sale, $purchaseCount purchases";
+			$copyData .= "$saleCount listed, $purchaseCount sold";
 		else if ($purchaseCount > 0)
-			$copyData .= "$purchaseCount purchases";
-		else 
-			$copyData .= "$saleCount for sale";
-		
+			$copyData .= "$purchaseCount sold";
+		else
+			$copyData .= "$saleCount listed";
+	
 		if ($totalItems > $saleCount + $purchaseCount)
 		{
 			$copyData .= ", $totalItems items";
 		}
 			
-		$copyData .= ", $days days): $price gp for |H1:item:$itemId:$itemSubType:$itemLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
+		if ($lastTimestamp > 0)
+		{
+			$days = intval((time() - $lastTimestamp) / 86400) + 1;
+			$copyData .= ", $days days";
+		}
 		
+		$copyData .= "): $price gp for |H1:item:$itemId:$itemSubType:$itemLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
+		return $copyData;
+	}
+	
+	
+	public function CreateItemCopyPriceHtml($price, $saleCount, $purchaseCount, $lastTimestamp, $totalItems)
+	{
+		if ($this->singleItemData == null) return "";
+		
+		$copyData = $this->CreateItemCopyPriceTooltip($price, $saleCount, $purchaseCount, $lastTimestamp, $totalItems, $this->singleItemData);
 		$output = "<div class='esovsd_copyprice' copydata='$copyData'>Copy to Clipboard</div>";
 		
 		return $output;
@@ -1111,7 +1181,7 @@ class EsoViewSalesData
 			
 			$days = intval((time() - $this->salePriceAverageLastTimestamp) / 86400) + 1;
 			$count = $this->salePriceAverageCount - $this->salePriceAverageBuyCount;
-			$output .= "Average price for all data ($count for sale, {$this->salePriceAverageBuyCount} purchases,";
+			$output .= "Average price for all data ($count listed, {$this->salePriceAverageBuyCount} sold,";
 			
 			if ($this->salePriceAverageQnt > $this->salePriceAverageCount)	$output .= " {$this->salePriceAverageQnt} items,";
 			
@@ -1135,7 +1205,7 @@ class EsoViewSalesData
 				$fmt = round($this->salePriceAverageBuy, 2);
 			
 			$days = intval((time() - $this->salePriceAverageBuyLastTimestamp) / 86400) + 1;
-			$output .= "Average price for only purchases ({$this->salePriceAverageBuyCount} purchases,";
+			$output .= "Average price for items sold ({$this->salePriceAverageBuyCount} sold,";
 			
 			if ($this->salePriceAverageBuyQnt != $this->salePriceAverageBuyCount)	$output .= " {$this->salePriceAverageBuyQnt} items,";
 				
@@ -1145,6 +1215,33 @@ class EsoViewSalesData
 		 
 		$output .= "";
 		return $output;		
+	}
+	
+	
+	public function GetItemDetailsHtml()
+	{
+		if ($this->singleItemData == null) return "";
+		
+		$traitText = "";
+		if ($trait > 0) $traitText = GetEsoItemTraitText($this->singleItemData['trait']) . ",";
+		
+		$details = array();
+		
+		$details[] = GetEsoItemQualityText($this->singleItemData['quality']);
+		$details[] = "Level ".GetEsoItemLevelText($this->singleItemData['level']);
+		$details[] = GetEsoItemTypeText($this->singleItemData['itemType']);
+		$details[] = GetEsoItemWeaponTypeText($this->singleItemData['weaponType']);
+		$details[] = GetEsoItemArmorTypeText($this->singleItemData['armorType']);
+		$details[] = GetEsoItemEquipTypeText($this->singleItemData['equipType']);
+		$details[] = $item['setName'];
+		
+		$details = array_filter($details);
+		
+		$output = "Item Details: ";
+		$output .= implode(", ", $details);
+		$output .= "";
+		
+		return $output;				
 	}
 	
 	
@@ -1180,6 +1277,7 @@ class EsoViewSalesData
 				'{guildsResults}' => $this->GetGuildResultsHtml(),
 				
 				'{priceStats}' => $this->GetPriceStatHtml(),
+				'{itemDetails}' => $this->GetItemDetailsHtml(),
 				
 		);
 		
@@ -1284,5 +1382,6 @@ function EsoSalesDataCompareUnitPrice($a, $b)
 
 $viewSales = new EsoViewSalesData();
 $viewSales->Render();
+
 
 
