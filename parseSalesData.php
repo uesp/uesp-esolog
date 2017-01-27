@@ -729,6 +729,8 @@ class EsoSalesDataParser
 		}
 		else
 		{
+			print("\tError: Couldn't load or create new item $itemId!\n");
+			
 			$this->itemData[$cacheId] = array();
 			$this->itemData[$cacheId] = $name;
 			$this->itemData[$cacheId]['id'] = -1;
@@ -893,6 +895,12 @@ class EsoSalesDataParser
 	}
 	
 	
+	public function ClearMMData()
+	{
+		$this->Lua = new Lua();
+	}
+	
+	
 	public function LoadMMFile($filename)
 	{
 		$result = $this->Lua->include($filename);
@@ -904,22 +912,26 @@ class EsoSalesDataParser
 	
 	public function ParseAllMMData()
 	{
-		$this->ParseMMData($this->Lua->MM00DataSavedVariables, 'MM00DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM01DataSavedVariables, 'MM01DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM02DataSavedVariables, 'MM02DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM03DataSavedVariables, 'MM03DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM04DataSavedVariables, 'MM04DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM05DataSavedVariables, 'MM05DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM06DataSavedVariables, 'MM06DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM07DataSavedVariables, 'MM07DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM08DataSavedVariables, 'MM08DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM09DataSavedVariables, 'MM09DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM10DataSavedVariables, 'MM10DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM11DataSavedVariables, 'MM11DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM12DataSavedVariables, 'MM12DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM13DataSavedVariables, 'MM13DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM14DataSavedVariables, 'MM14DataSavedVariables');
-		$this->ParseMMData($this->Lua->MM15DataSavedVariables, 'MM15DataSavedVariables');
+		$returnValue = true;
+		
+		$returnValue &= $this->ParseMMData($this->Lua->MM00DataSavedVariables, 'MM00DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM01DataSavedVariables, 'MM01DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM02DataSavedVariables, 'MM02DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM03DataSavedVariables, 'MM03DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM04DataSavedVariables, 'MM04DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM05DataSavedVariables, 'MM05DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM06DataSavedVariables, 'MM06DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM07DataSavedVariables, 'MM07DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM08DataSavedVariables, 'MM08DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM09DataSavedVariables, 'MM09DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM10DataSavedVariables, 'MM10DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM11DataSavedVariables, 'MM11DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM12DataSavedVariables, 'MM12DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM13DataSavedVariables, 'MM13DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM14DataSavedVariables, 'MM14DataSavedVariables');
+		$returnValue &= $this->ParseMMData($this->Lua->MM15DataSavedVariables, 'MM15DataSavedVariables');
+		
+		return $returnValue;
 	}
 	
 	
