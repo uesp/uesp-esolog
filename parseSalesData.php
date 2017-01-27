@@ -365,10 +365,11 @@ class EsoSalesDataParser
 		$countItemSales = $itemData['countItemSales'];
 		$sumPurchases = $itemData['sumPurchases'];
 		$sumSales = $itemData['sumSales'];
+		$icon = $this->db->real_escape_string($itemData['icon']);
 		
 		$this->lastQuery = "UPDATE items SET ";
 		$this->lastQuery .= "countPurchases=$countPurchases, countSales=$countSales, countItemPurchases=$countItemPurchases, ";
-		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales ";
+		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales, icon='$$icon' ";
 		$this->lastQuery .= "WHERE id=$id;";
 		
 		$result = $this->db->query($this->lastQuery);
