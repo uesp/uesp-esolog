@@ -214,6 +214,8 @@ class CEsoMMLogSubmitter
 			<li>Select the ESO server where the MM data comes from.</li>
 			<li>Submit files.</li>
 			<li>You can upload the same MM files multiple times and only new sales will be added to our database.</li>
+			<li>You can also use the <a href='http://www.esoui.com/downloads/info1257-uespLog.html'>uespLog add-on</a> to automatically download all
+					guild trader listed and purchased items.</li>
 		</ul>
 		<p />
 		Note: Maximum file upload size is 50MB.
