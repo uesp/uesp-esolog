@@ -14,3 +14,19 @@ body {
 #submitbutton {
 	float: right;
 }
+
+#esosubmituploadscreen {
+	position: fixed;
+	z-index: 100;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0, 0.8);
+	text-align: center;
+	vertical-align: middle;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 25%;
+}
