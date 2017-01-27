@@ -183,6 +183,8 @@ class EsoLogSubmitter
 	<title>uespLog -- Submit ESO Data</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="submit.css" />
+	<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="submit.js"></script>
 </head>
 <body>
 
@@ -221,12 +223,16 @@ class EsoLogSubmitter
 	</td>
 </tr><tr>
 	<td>
-		<input type="submit" id="submitbutton" />
+		<input type="submit" id="submitbutton"  onclick="return OnSubmitEsoMMData();"/>
 	</td>
 	
 </table>
 
 </form>
+
+<div id='esosubmituploadscreen' style='display: none;'>
+Uploading Data...
+</div>
 
 </body>
 </html>
