@@ -10,18 +10,17 @@
 		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
-<a href="/viewlog.php">Back to Home</a>
 <h1>ESO Sales Data</h1>
 
 <div id="esovsd_root">
 	<div class="esovsd_searchoptionheader">
-		Use the below options to search for sales data collected from the Elder Scrolls Online MMO.
+		Use the below options to search for item sales collected from the Elder Scrolls Online.
 	</div>
 	<div id="esovsd_searchform">
 		<form id="eso_sales_search" action="" method="get">
 			<div class='esovsd_inlineblock'>
-		        <label for="text" class="esovsd_label1">Text:</label>
-		        <input type="text" name="text" id="esovsd_text" value="{formText}" size="32" maxlength="32" />
+		        <label for="text" class="esovsd_label1">Text / Item Link:</label>
+		        <input type="text" name="text" id="esovsd_text" value="{formText}" size="32" maxlength="100" />
 		    </div>
 			<div class='esovsd_inlineblock'>
 		        <label for="level" class="esovsd_label1">Level:</label>
@@ -64,24 +63,18 @@
 		        </select>
 			</div>
 			<div class="esovsd_inlineblock">
-		        <label for="timeperiod" class="esovsd_label1">Time Period:</label>
-		        <select name="timeperiod" id="esovsd_timeperiod">
-		        	{listTimePeriod}
-		        </select>
-			</div>
-			<div class="esovsd_inlineblock">
 		        <label for="server" class="esovsd_label1">Server:</label>
 		        <select name="server" id="esovsd_server">
 		        	{listServer}
 		        </select>
 			</div>
 			<div class='esovsd_buttons'>
-				<input type="button" class="esovsd_clearbutton" value="Clear" onclick="esovsdResetSearchForm();" />
+				<input type="button" class="esovsd_clearbutton" value="Clear" onclick="EsoSalesResetSearchForm();" />
 				<input type="submit" class="esovsd_searchbutton" value="Search..." />
 			</div>
 		</form>
 	</div>
-	
+	<br/>
 	{errorMessages}
 
 	<div id="esovsd_results">

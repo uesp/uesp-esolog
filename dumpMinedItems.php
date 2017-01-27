@@ -138,7 +138,8 @@ class CEsoDumpMinedItems {
 				"title" => array($this, EscapeQuotes),
 		);
 		
-		error_reporting(E_ALL);
+		//error_reporting(E_ALL);
+		
 		$this->SetCsvStrings();
 		
 		$this->SetInputParams();

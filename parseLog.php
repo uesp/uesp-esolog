@@ -4700,7 +4700,8 @@ class EsoLogParser
 			logData.server = GetWorldName()
 		*/
 		
-		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if ($logEntry['name'] == "") return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
@@ -4755,7 +4756,13 @@ class EsoLogParser
 		
 		//print("OnGuildSaleSearchInfo");
 		
-		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		
+		if ($logEntry['name'] == "") 
+		{
+			if ($logEntry['guild'] == "") return false;
+			$logEntry['name'] = $logEntry['guild'];
+		}
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
@@ -4821,9 +4828,10 @@ class EsoLogParser
 			logData.guild = GetGuildName(guildId)
 			logData.itemLink = itemLink
 		 */
-		
-		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+				
+		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		if ($logEntry["itemLink"] == null) return false;
+		if ($logEntry['guild'] == "") return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
@@ -4832,7 +4840,6 @@ class EsoLogParser
 		$logEntry["buyer"] = preg_replace("#(;.*)#", "", $logEntry["buyer"]);
 		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
-		//$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
 		$itemData = &$this->salesData->GetItemDataByKey($server, $logEntry["itemLink"], $logEntry);
 	
 		$salesData = $this->salesData->LoadSale($itemData['id'], $guildData['id'], $logEntry['eventId']);
@@ -4862,8 +4869,9 @@ class EsoLogParser
 			logData.listTimestamp = tostring(currentTimestamp + logData.timeRemaining - uespLog.SALES_MAX_LISTING_TIME) 
 		 */
 		
-		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		if ($logEntry["itemLink"] == null) return false;
+		if ($logEntry['guild'] == "") return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
@@ -4873,8 +4881,6 @@ class EsoLogParser
 		$logEntry["buyer"] = preg_replace("#(;.*)#", "", $logEntry["buyer"]);
 		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
-		
-		//$itemData = &$this->salesData->GetItemData($logEntry['itemLink']);
 		$itemData = &$this->salesData->GetItemDataByKey($server, $logEntry["itemLink"], $logEntry);
 		
 		$salesData = $this->salesData->LoadSaleSearchEntry($itemData['id'], $guildData['id'], $logEntry['listTimestamp'], $logEntry['seller']);
@@ -4903,7 +4909,7 @@ class EsoLogParser
 			logData.listTimestamp = tostring(listingData.listTimestamp) 
 		 */
 		
-		if (intval($logEntry['timestamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		
 		return true;
 	}

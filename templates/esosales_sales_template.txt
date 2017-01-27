@@ -10,18 +10,20 @@
 		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
-<a href="/viewlog.php">Back to Home</a>
+<a href="/viewSales.php">Back to Item Sales Search</a>
 <h1>ESO Sales Data</h1>
 
 <div id="esovsd_root">
 	<div class="">
-		Viewing sales data collected from the Elder Scrolls Online MMO for the item {salesItemLink} on the {server} server.
+		Viewing sales data collected from the Elder Scrolls Online for the item {salesItemLink} on the {server} server.
+		<br/>
+		{itemDetails}
 	</div>
-	
+	<br/>
 	<div id='esovsd_pricestats'>
 		{priceStats}
 	</div>
-	
+	<br/>
 	<div id="esovsd_results">
 		{searchResults}
 	</div>
