@@ -174,7 +174,7 @@ class CEsoMMLogSubmitter
 </tr><tr>
 	<td>
 		<p><br/>
-		Successfully uploaded files will be parsed within 24 hours and can be viewed at <a href='http://esolog.uesp.net/viewSales.php'>http://esolog.uesp.net/viewSales.php</a>.
+		Successfully uploaded files will be parsed within 24 hours and can be viewed at <a href='http://esosales.uesp.net/'>//http://esosales.uesp.net/</a>.
 	</td>
 </table>
 
@@ -204,7 +204,7 @@ class CEsoMMLogSubmitter
 	<td>
 		<h1>uespLog -- Submit MasterMerchant Data</h1>
 		
-		Submit your MasterMerchant add-on data to the UESP and view the <a href='http://esolog.uesp.net/viewSales.php'>collected sales data</a>.
+		Submit your MasterMerchant add-on data to the UESP and view the <a href='http://esosales.uesp.net/'>collected sales data</a>.
 		<p />
 		Upload Steps:
 		<ul>

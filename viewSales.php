@@ -3,6 +3,7 @@
 
 // Database users, passwords and other secrets
 require_once("/home/uesp/secrets/esosalesdata.secrets");
+require_once("/home/uesp/secrets/esolog.secrets");
 require_once(__DIR__."/esoCommon.php");
 
 
@@ -130,6 +131,12 @@ class EsoViewSalesData
 		return $newArray;
 	}
 
+	
+	public function Escape ($html)
+	{
+		return htmlspecialchars($html);	
+	}
+	
 
 	public function ReportError ($errorMsg)
 	{
@@ -297,7 +304,7 @@ class EsoViewSalesData
 	public function GetFormValue($id, $default = "")
 	{
 		if (!array_key_exists($id, $this->formValues)) return $default;
-		return htmlspecialchars($this->formValues[$id]);
+		return $this->Escape($this->formValues[$id]);
 	}
 	
 	
@@ -469,7 +476,7 @@ class EsoViewSalesData
 		{
 			$item = $this->itemResults[$itemId];
 			
-			$iconURL = $this->GetIconUrl($item['icon']);
+			$iconURL = $this->Escape($this->GetIconUrl($item['icon']));
 				
 			$trait = $item['trait'];
 			$levelText = GetEsoItemLevelText($item['level']);
@@ -477,7 +484,7 @@ class EsoViewSalesData
 			$weaponType = GetEsoItemWeaponTypeText($item['weaponType']);
 			$armorType = GetEsoItemArmorTypeText($item['armorType']);
 			$equipType = GetEsoItemEquipTypeText($item['equipType']);
-			$setName = $item['setName'];
+			$setName = $this->Escape($item['setName']);
 			$totalSales = floatval($item['countSales']);
 			$totalPurchases = floatval($item['countPurchases']);
 			$sumSales = floatval($item['sumSales']);
@@ -485,6 +492,7 @@ class EsoViewSalesData
 			$totalCount = $totalSales + $totalPurchases;
 			$totalItems = floatval($item['countItemPurchases']) + floatval($item['countItemSales']);
 			$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
+			$itemName = $this->Escape($item['name']);
 						
 			$totalCountText = $totalCount;
 			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
@@ -504,7 +512,7 @@ class EsoViewSalesData
 			
 			$output .= "<tr>";
 			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}'>";
-			$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$item['name']}</div></td>";
+			$output .= "<img src='$iconURL' class='esovsd_itemicon'>$itemName</div></td>";
 			$output .= "<td>$levelText</td>";
 			$output .= "<td>$traitText</td>";
 			$output .= "<td>$itemType</td>";
@@ -619,24 +627,84 @@ class EsoViewSalesData
 	
 	public function GetFindItemLinkQuery($itemLinkData)
 	{
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
-		$where = array();
-		
 		$itemId = intval($itemLinkData['itemId']);
 		$intSubtype = intval($itemLinkData['subtype']);
 		$intLevel = intval($itemLinkData['level']);
 		$potionData = intval($itemLinkData['potionData']);
 		
+		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
+		$where = array();
+		
 		$where[] = "itemId=$itemId";
 		$where[] = "internalLevel=$intLevel";
 		$where[] = "internalSubtype=$intSubtype";		
-		$where[] = "potionData=$potionData";
+		$where[] = "potionData=$potionData";		
 				
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
 		
 		$this->itemQuery = $query;
 		return $query;
+	}
+	
+	
+	public function GetSecondFindItemLinkQuery($itemLinkData)
+	{
+		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
+		
+		$itemId = intval($itemLinkData['itemId']);
+		$intSubtype = intval($itemLinkData['subtype']);
+		$intLevel = intval($itemLinkData['level']);
+		$potionData = intval($itemLinkData['potionData']);
+		
+		$query = "SELECT level, quality FROM $uespEsoLogDatabase.minedItemSummary WHERE itemId=$itemId;";
+		$result = $this->db->query($query);
+		
+		$level = null;
+		$quality = null;
+		
+		if ($result !== false && $result->num_rows > 0)
+		{
+			$row = $result->fetch_assoc();
+			$level = $row['level'];
+			$quality = $row['quality'];
+			
+			if (strpos($level, "-") !== false || strpos($quality, "-") !== false) 
+			{
+				$level = null;
+				$quality = null;
+			}
+		}
+		
+		if ($level === null || $quality === null)
+		{
+			$quality = GetEsoQualityFromIntType($intSubtype);
+			$level = GetEsoLevelFromIntType($intSubtype);
+			if ($level == 1) $level = $intLevel;
+		}
+		
+		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
+		$where = array();
+	
+		$where[] = "itemId=$itemId";
+		$where[] = "level=$level";
+		$where[] = "quality=$quality";
+		$where[] = "potionData=$potionData";
+	
+		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
+		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
+		
+		$this->itemQuery = $query;
+		return $query;
+	}
+	
+	
+	public function GetSecondFindItemQuery()
+	{
+		$itemLinkData = $this->ParseItemLink($this->formValues['text']);
+		if ($itemLinkData) return $this->GetSecondFindItemLinkQuery($itemLinkData);
+		
+		return "";
 	}
 	
 	
@@ -707,8 +775,21 @@ class EsoViewSalesData
 		
 		if ($result->num_rows == 0)
 		{
-			$this->errorMessages[] = "No items found matching input search!";
-			return false;
+			$secondQuery = $this->GetSecondFindItemQuery();
+			
+			if ($secondQuery != "")
+			{
+				$this->lastQuery = $secondQuery;
+				
+				$result = $this->db->query($this->lastQuery);
+				if ($result === false) return false;
+				
+				if ($result->num_rows == 0)
+				{
+					$this->errorMessages[] = "No items found matching input search!";
+					return false;
+				}
+			}
 		}
 		
 		$this->totalItemCount = $result->num_rows;
@@ -1018,6 +1099,7 @@ class EsoViewSalesData
 		
 		foreach ($this->errorMessages as $errorMsg)
 		{
+			$errorMsg = $this->Escape($errorMsg);
 			$output .= "<div class='esovsd_errormsg'>$errorMsg</div>";	
 		}		
 		
@@ -1045,11 +1127,15 @@ class EsoViewSalesData
 		$item = $this->singleItemData;
 		$iconURL = $this->GetIconUrl($item['icon']);
 		
-		$internalLevel = $item['internalLevel'];	
-		$internalSubType = $item['internalSubType'];
+		$quality = intval($item['quality']);
+		$itemId = intval($item['itemId']);
+		$internalLevel = intval($item['internalLevel']);	
+		$internalSubType = intval($item['internalSubType']);
+		$potionData = intval($item['potionData']);
+		$itemName = $this->Escape($item['name']);
 		
-		$output .= "<div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$internalLevel}' inttype='{$internalSubType}' potiondata='{$item['potionData']}'>";
-		$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$item['name']}</div>";
+		$output .= "<div class='esovsd_itemlink eso_item_link eso_item_link_q{$quality}' itemid='{$itemId}' intlevel='{$internalLevel}' inttype='{$internalSubType}' potiondata='{$potionData}'>";
+		$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$itemName}</div>";
 		
 		return $output;
 	}
@@ -1076,19 +1162,19 @@ class EsoViewSalesData
 	
 		foreach ($this->guildData as $key => $guild)
 		{
-			$name = $guild['name'];
-			$server = $guild['server'];
-			$numMembers = $guild['numMembers'];
-			$founder = $guild['leader'];
-			$numSales = $guild['totalSales'];
-			$numPurchases = $guild['totalPurchases'];
+			$name = $this->Escape($guild['name']);
+			$server = $this->Escape($guild['server']);
+			$numMembers = $this->Escape($guild['numMembers']);
+			$founder = $this->Escape($guild['leader']);
+			$numSales = $this->Escape($guild['totalSales']);
+			$numPurchases = $this->Escape($guild['totalPurchases']);
 			
 			if ($guild['foundedDate'] <= 0) 
 				$foundedDate = "";
 			else
 				$foundedDate = date('Y-m-d', $guild['foundedDate']);
 			
-			$storeLoc = $guild['storeLocation'];
+			$storeLoc = $this->Escape($guild['storeLocation']);
 			if ($storeLoc == "") $storeLoc = "None";
 			
 			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
@@ -1233,7 +1319,7 @@ class EsoViewSalesData
 		$details[] = GetEsoItemWeaponTypeText($this->singleItemData['weaponType']);
 		$details[] = GetEsoItemArmorTypeText($this->singleItemData['armorType']);
 		$details[] = GetEsoItemEquipTypeText($this->singleItemData['equipType']);
-		$details[] = $item['setName'];
+		$details[] = $this->Escape($item['setName']);
 		
 		$details = array_filter($details);
 		
