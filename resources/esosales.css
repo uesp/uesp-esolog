@@ -211,3 +211,9 @@ a:hover {
 	text-align: left;
 }
 
+.esosalesnote {
+	background-color: #F5DEB3;
+	border: 1px solid lightgray;
+	padding: 5px;
+	margin: 5px; 
+}
