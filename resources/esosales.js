@@ -8,7 +8,8 @@ function EsoSalesResetSearchForm()
 	$('#esovsd_armortype').val('');
 	$('#esovsd_weapontype').val('');
 	$('#esovsd_equiptype').val('');
-	$('#esovsd_saletype').val('');
+	$('#esovsd_saletype').val('all');
+	$('#esovsd_timeperiod').val(0);
 }
 
 
