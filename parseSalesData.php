@@ -204,6 +204,8 @@ class EsoSalesDataParser
 						sumSales FLOAT NOT NULL,
 						countSales INT UNSIGNED NOT NULL,
 						countItemSales BIGINT UNSIGNED NOT NULL,
+						lastPurchaseTimestamp INT UNSIGNED NOT NULL,
+						lastSaleTimestamp INT UNSIGNED NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_index1(server(3), itemId, level, quality, trait, potionData),
 						INDEX unique_index2(server(3), itemId, internalLevel, internalSubType, potionData)
@@ -365,11 +367,14 @@ class EsoSalesDataParser
 		$countItemSales = $itemData['countItemSales'];
 		$sumPurchases = $itemData['sumPurchases'];
 		$sumSales = $itemData['sumSales'];
+		$lastPurchase = $itemData['lastPurchaseTimestamp'];
+		$lastSale = $itemData['lastSaleTimestamp'];
 		$icon = $this->db->real_escape_string($itemData['icon']);
 		
 		$this->lastQuery = "UPDATE items SET ";
 		$this->lastQuery .= "countPurchases=$countPurchases, countSales=$countSales, countItemPurchases=$countItemPurchases, ";
-		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales, icon='$icon' ";
+		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales, icon='$icon', ";
+		$this->lastQuery .= "lastPurchaseTimestamp=$lastPurchase, lastSaleTimestamp=$lastSale ";
 		$this->lastQuery .= "WHERE id=$id;";
 		
 		$result = $this->db->query($this->lastQuery);
@@ -821,6 +826,8 @@ class EsoSalesDataParser
 		$itemData['countItemPurchases'] += intval($saleData['quant']);
 		$itemData['__dirty'] = true;
 		
+		if ($buyTimestamp > 0 && $buyTimestamp > $itemData['lastPurchaseTimestamp']) $itemData['lastPurchaseTimestamp'] = $buyTimestamp;
+				
 		++$this->localNewSalesCount;
 		
 		return true;
@@ -854,6 +861,8 @@ class EsoSalesDataParser
 		$itemData['sumPurchases'] += floatval($saleData['gold']);
 		$itemData['countItemPurchases'] += intval($saleData['qnt']);
 		$itemData['__dirty'] = true;
+		
+		if ($buyTimestamp > 0 && $buyTimestamp > $itemData['lastPurchaseTimestamp']) $itemData['lastPurchaseTimestamp'] = $buyTimestamp;
 		
 		++$this->localNewSalesCount;
 	
@@ -889,6 +898,8 @@ class EsoSalesDataParser
 		$itemData['sumSales'] += floatval($saleData['price']);
 		$itemData['countItemSales'] += intval($saleData['qnt']);
 		$itemData['__dirty'] = true;
+		
+		if ($listTimestamp > 0 && $listTimestamp > $itemData['lastSaleTimestamp']) $itemData['lastSaleTimestamp'] = $listTimestamp;
 			
 		++$this->localNewSalesCount;
 	

@@ -90,7 +90,7 @@ class EsoViewSalesData
 	static public $ESOVSD_WEAPONTYPES = array();
 	
 	static public $ESOVSD_TIMEPERIODS = array(
-			-1 => "",
+			0 => "All Time",
 			86400 => "Last Day",
 			604800 => "Last Week",
 			2678400 => "Last Month",
@@ -104,9 +104,9 @@ class EsoViewSalesData
 	);
 	
 	static public $ESOVSD_SALETYPES = array(
-			"All"    => "All",
-			"Sold"   => "Only Sold Items",
-			"Listed" => "Only Listed Items",
+			"all"    => "All",
+			"sold"   => "Only Sold Items",
+			"listed" => "Only Listed Items",
 	);
 	
 
@@ -170,14 +170,11 @@ class EsoViewSalesData
 	private function InitDatabaseRead ()
 	{
 		global $uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase;
-		global $uespEsoSalesDataDatabase;
-
-		$database = $uespEsoSalesDataDatabase;
 
 		if ($this->dbReadInitialized) return true;
 
-		$this->db = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $database);
-		if ($db->connect_error) return $this->ReportError("Could not connect to mysql database!");
+		$this->db = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase);
+		if ($this->db->connect_error) return $this->ReportError("Could not connect to mysql database!");
 
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
@@ -199,6 +196,11 @@ class EsoViewSalesData
 		$this->ParseFormParam('timeperiod');
 		$this->ParseFormParam('server');
 		$this->ParseFormParam('saletype');
+		
+		if ($this->formValues['saletype'] != null)
+		{
+			$this->formValues['saletype'] = strtolower($this->formValues['saletype']);
+		}
 		
 		if ($this->formValues['server'] != null)
 		{
@@ -512,20 +514,25 @@ class EsoViewSalesData
 			$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
 			$extraQuery = "";
 			
-			if ($this->formValues['saletype'] == "Sold")
+			if ($this->formValues['saletype'] == "sold")
 			{
 				$totalCount = $totalPurchases;
 				$totalItems = floatval($item['countItemPurchases']);
 				$avgPrice = $sumPurchases / $totalItems;
-				$extraQuery = "saletype=Sold";
+				$extraQuery .= "&saletype=sold";
 			}
-			else if ($this->formValues['saletype'] == "Listed")
+			else if ($this->formValues['saletype'] == "listed")
 			{
 				$totalCount = $totalSales;
 				$totalItems = floatval($item['countItemSales']);
 				$avgPrice = $sumSales / $totalItems;
-				$extraQuery = "saletype=Listed";
-			}			
+				$extraQuery .= "&saletype=listed";
+			}
+			
+			if ($this->formValues['timeperiod'] > 0)
+			{
+				$extraQuery .= "&timeperiod=".intval($this->formValues['timeperiod']);
+			}
 						
 			$totalCountText = $totalCount;
 			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
@@ -555,7 +562,7 @@ class EsoViewSalesData
 			$output .= "<td>$setName</td>";
 			$output .= "<td>$totalCountText</td>";
 			$output .= "<td>$avgPrice gp$copyPriceHtml</td>";
-			$output .= "<td><a href='?viewsales=$itemId&$extraQuery'>View Item Sales</a></td>";
+			$output .= "<td><a href='?viewsales=$itemId$extraQuery'>View Item Sales</a></td>";
 			$output .= "</tr>\n";
 		}
 		
@@ -788,14 +795,23 @@ class EsoViewSalesData
 			$where[] = "(name LIKE '%$safeText%' or setName LIKE '%$safeText%')";
 		}
 		
-		if ($this->formValues['saletype'] == "Sold")
+		$timePeriod = intval($this->formValues['timeperiod']);
+		$timestamp = time() - $timePeriod;
+				
+		if ($this->formValues['saletype'] == "sold")
 		{
 			$where[] = "countPurchases > 0";
+			if ($timePeriod > 0) $where[] = "lastPurchaseTimestamp >= $timestamp";
 		}
-		else if ($this->formValues['saletype'] == "Listed")
+		else if ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "countSales > 0";
-		}			
+			if ($timePeriod > 0) $where[] = "lastSaleTimestamp >= $timestamp";
+		}
+		elseif ($timePeriod > 0)
+		{
+			$where[] = "(lastPurchaseTimestamp >= $timestamp OR lastSaleTimestamp >= $timestamp)";
+		}
 		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
@@ -896,11 +912,11 @@ class EsoViewSalesData
 			$where[] = "(buyTimestamp >= $timestamp or listTimestamp >= $timestamp)";
 		}
 				
-		if ($this->formValues['saletype'] == "Sold")
+		if ($this->formValues['saletype'] == "sold")
 		{
 			$where[] = "buyTimestamp > 0";
 		}
-		else if ($this->formValues['saletype'] == "Listed")
+		else if ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "listTimestamp > 0";
 		}
@@ -929,14 +945,14 @@ class EsoViewSalesData
 		if ($timePeriod > 0)
 		{
 			$timestamp = time() - $timePeriod;
-			$where[] = "buyTimestamp >= $timestamp";
+			$where[] = "(buyTimestamp >= $timestamp or listTimestamp >= $timestamp)";
 		}
 		
-		if ($this->formValues['saletype'] == "Sold")
+		if ($this->formValues['saletype'] == "sold")
 		{
 			$where[] = "buyTimestamp > 0";
 		}
-		else if ($this->formValues['saletype'] == "Listed")
+		else if ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "listTimestamp > 0";
 		}
@@ -1370,17 +1386,17 @@ class EsoViewSalesData
 	{
 		$output = "";
 		
-		if ($this->formValues['saletype'] == "All")
+		if ($this->formValues['saletype'] != "listed" && $this->formValues['saletype'] != "sold")
 		{
 			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsCountAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
 			$output .= "<br /><br />";
 		}
 		
-		if ($this->formValues['saletype'] == "Listed")
+		if ($this->formValues['saletype'] == "listed")
 		{
 			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsCountListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
 		}
-		else if ($this->formValues['saletype'] == "Sold" || $this->formValues['saletype'] == "All")
+		else
 		{
 			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsCountSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
 		}
@@ -1414,6 +1430,74 @@ class EsoViewSalesData
 		$output .= "";
 		
 		return $output;				
+	}
+	
+		
+	public function GetSalesTypeHtml()
+	{
+		$output = "";
+		$saleType = $this->formValues['saletype'];
+		$timePeriod = intval($this->formValues['timeperiod']);
+		$itemId = $this->viewSalesItemId;
+		
+		$output .= "View: ";
+		
+		if ($saleType == "all")
+			$output .= " <b>All Data</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=all&timeperiod=$timePeriod'>All Data</a>";
+		
+		$output .= " : ";
+		
+		if ($saleType == "sold")
+			$output .= " <b>Only Sold Items</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=sold&timeperiod=$timePeriod'>Only Sold Items</a>";
+		
+		$output .= " : ";
+		
+		if ($saleType == "listed")
+			$output .= " <b>Only Listed Items</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=listed&timeperiod=$timePeriod'>Only Listed Items</a>";
+		
+		$output .= " : ";
+			
+		if ($timePeriod == 0)
+			$output .= " <b>All Time</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=0'>All Time</a>";
+		
+		$output .= " : ";
+			
+		if ($timePeriod == 86400)
+			$output .= " <b>Last Day</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=86400'>Last Day</a>";
+		
+		$output .= " : ";
+			
+		if ($timePeriod == 604800)
+			$output .= " <b>Last Week</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=604800'>Last Week</a>";
+		
+		$output .= " : ";
+				
+		if ($timePeriod == 2678400)
+			$output .= " <b>Last Month</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=2678400'>Last Month</a>";
+		
+		$output .= " : ";
+		
+		if ($timePeriod == 31558150)
+			$output .= " <b>Last Year</b> ";
+		else
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=31558150'>Last Year</a>";
+		
+		$output .= "<br/>";
+		return $output;
 	}
 	
 	
@@ -1452,6 +1536,7 @@ class EsoViewSalesData
 				
 				'{priceStats}' => $this->GetPriceStatHtml(),
 				'{itemDetails}' => $this->GetItemDetailsHtml(),
+				'{showSalesType}' => $this->GetSalesTypeHtml(),
 				
 		);
 		

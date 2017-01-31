@@ -29,6 +29,8 @@
 		{priceStats}
 	</div>
 	<br/>
+	{showSalesType}
+	<br/>
 	<div id="esovsd_results">
 		{searchResults}
 	</div>
