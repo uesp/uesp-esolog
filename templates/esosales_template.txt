@@ -73,6 +73,12 @@
 		        	{listServer}
 		        </select>
 			</div>
+			<div class="esovsd_inlineblock">
+		        <label for="saletype" class="esovsd_label1">Sale Type:</label>
+		        <select name="saletype" id="esovsd_saletype">
+		        	{listSaleType}
+		        </select>
+			</div>
 			<div class='esovsd_buttons'>
 				<input type="button" class="esovsd_clearbutton" value="Clear" onclick="EsoSalesResetSearchForm();" />
 				<input type="submit" class="esovsd_searchbutton" value="Search..." />

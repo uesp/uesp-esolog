@@ -61,6 +61,22 @@ class EsoViewSalesData
 	public $totalItemCount = 0;
 	public $totalSalesCount = 0;
 	
+	public $salePriceAverageAll = 0;
+	public $salePriceAverageCountAll = 0;
+	public $salePriceAverageItemsAll = 0;
+	
+	public $salePriceAverageSold = 0;
+	public $salePriceAverageCountSold = 0;
+	public $salePriceAverageItemsSold = 0;
+	
+	public $salePriceAverageListed = 0;
+	public $salePriceAverageCountListed = 0;
+	public $salePriceAverageItemsListed = 0;
+	
+	public $salePriceAverageLastTimestampListed = 0;
+	public $salePriceAverageLastTimestampSold = 0;
+	public $salePriceAverageLastTimestampAll = 0;
+	
 	public $itemQuery = "";
 	public $salesQuery = "";
 	
@@ -88,9 +104,9 @@ class EsoViewSalesData
 	);
 	
 	static public $ESOVSD_SALETYPES = array(
-			"All" => "All",
-			"Purchases" => "Only Sold Items",
-			"ForSale" => "Only Listed Items",
+			"All"    => "All",
+			"Sold"   => "Only Sold Items",
+			"Listed" => "Only Listed Items",
 	);
 	
 
@@ -182,6 +198,7 @@ class EsoViewSalesData
 		$this->ParseFormParam('level');
 		$this->ParseFormParam('timeperiod');
 		$this->ParseFormParam('server');
+		$this->ParseFormParam('saletype');
 		
 		if ($this->formValues['server'] != null)
 		{
@@ -479,6 +496,7 @@ class EsoViewSalesData
 			$iconURL = $this->Escape($this->GetIconUrl($item['icon']));
 				
 			$trait = $item['trait'];
+			$itemName = $this->Escape($item['name']);
 			$levelText = GetEsoItemLevelText($item['level']);
 			$itemType = GetEsoItemTypeText($item['itemType']);
 			$weaponType = GetEsoItemWeaponTypeText($item['weaponType']);
@@ -492,7 +510,22 @@ class EsoViewSalesData
 			$totalCount = $totalSales + $totalPurchases;
 			$totalItems = floatval($item['countItemPurchases']) + floatval($item['countItemSales']);
 			$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
-			$itemName = $this->Escape($item['name']);
+			$extraQuery = "";
+			
+			if ($this->formValues['saletype'] == "Sold")
+			{
+				$totalCount = $totalPurchases;
+				$totalItems = floatval($item['countItemPurchases']);
+				$avgPrice = $sumPurchases / $totalItems;
+				$extraQuery = "saletype=Sold";
+			}
+			else if ($this->formValues['saletype'] == "Listed")
+			{
+				$totalCount = $totalSales;
+				$totalItems = floatval($item['countItemSales']);
+				$avgPrice = $sumSales / $totalItems;
+				$extraQuery = "saletype=Listed";
+			}			
 						
 			$totalCountText = $totalCount;
 			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
@@ -522,7 +555,7 @@ class EsoViewSalesData
 			$output .= "<td>$setName</td>";
 			$output .= "<td>$totalCountText</td>";
 			$output .= "<td>$avgPrice gp$copyPriceHtml</td>";
-			$output .= "<td><a href='?viewsales=$itemId'>View Item Sales</a></td>";
+			$output .= "<td><a href='?viewsales=$itemId&$extraQuery'>View Item Sales</a></td>";
 			$output .= "</tr>\n";
 		}
 		
@@ -755,6 +788,15 @@ class EsoViewSalesData
 			$where[] = "(name LIKE '%$safeText%' or setName LIKE '%$safeText%')";
 		}
 		
+		if ($this->formValues['saletype'] == "Sold")
+		{
+			$where[] = "countPurchases > 0";
+		}
+		else if ($this->formValues['saletype'] == "Listed")
+		{
+			$where[] = "countSales > 0";
+		}			
+		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
 		
@@ -851,7 +893,16 @@ class EsoViewSalesData
 		if ($timePeriod > 0) 
 		{
 			$timestamp = time() - $timePeriod;
-			$where[] = "buyTimestamp >= $timestamp";
+			$where[] = "(buyTimestamp >= $timestamp or listTimestamp >= $timestamp)";
+		}
+				
+		if ($this->formValues['saletype'] == "Sold")
+		{
+			$where[] = "buyTimestamp > 0";
+		}
+		else if ($this->formValues['saletype'] == "Listed")
+		{
+			$where[] = "listTimestamp > 0";
 		}
 		
 		if (count($where) > 0)
@@ -879,6 +930,15 @@ class EsoViewSalesData
 		{
 			$timestamp = time() - $timePeriod;
 			$where[] = "buyTimestamp >= $timestamp";
+		}
+		
+		if ($this->formValues['saletype'] == "Sold")
+		{
+			$where[] = "buyTimestamp > 0";
+		}
+		else if ($this->formValues['saletype'] == "Listed")
+		{
+			$where[] = "listTimestamp > 0";
 		}
 
 		if (count($where) > 0)
@@ -968,12 +1028,15 @@ class EsoViewSalesData
 	{
 		$priceSumAll = 0;
 		$countAll = 0;
-		$countSales = 0;
-		$priceSumBuy = 0;
-		$countBuy = 0;
-		$countSalesBuy = 0;
+		$countSold = 0;
+		$countListed = 0;
+		$countItemsAll = 0;
+		$countItemsSold = 0;
+		$countItemsListed = 0;
+		$priceSumSold = 0;
+		$priceSumListed = 0;
 		$lastListTimestamp = time();
-		$lastBuyTimestamp = $lastListTimestamp;
+		$lastSoldTimestamp = $lastListTimestamp;
 		
 		foreach ($this->searchResults as $result)
 		{
@@ -982,48 +1045,64 @@ class EsoViewSalesData
 			
 			if ($result['buyTimestamp'] > 0)
 			{
-				$priceSumBuy += $price;
-				$countBuy += $qnt;
-				++$countSalesBuy;
+				$priceSumSold += $price;
+				$countItemsSold += $qnt;
+				++$countSold;
 				
-				if ($result['buyTimestamp'] < $lastBuyTimestamp) $lastBuyTimestamp = intval($result['buyTimestamp']);
+				if ($result['buyTimestamp'] < $lastSoldTimestamp) $lastSoldTimestamp = intval($result['buyTimestamp']);
+			}
+			
+			if ($result['listTimestamp'] > 0)
+			{
+				$priceSumListed += $price;
+				$countItemsListed += $qnt;
+				++$countListed;
+				
+				if ($result['listTimestamp'] < $lastListTimestamp) $lastListTimestamp = intval($result['listTimestamp']);
 			}
 			
 			$priceSumAll += $price;
-			$countAll += $qnt;
-			++$countSales;
-			if ($result['listTimestamp'] > 0 && $result['listTimestamp'] < $lastListTimestamp) $lastListTimestamp = intval($result['listTimestamp']);
+			$countItemsAll += $qnt;
+			++$countAll;
+			
 		}
+		
+		$this->salePriceAverageAll = 0;
+		$this->salePriceAverageCountAll = 0;
+		$this->salePriceAverageItemsAll = 0;
+		
+		$this->salePriceAverageSold = 0;
+		$this->salePriceAverageCountSold = 0;
+		$this->salePriceAverageItemsSold = 0;
+		
+		$this->salePriceAverageListed = 0;
+		$this->salePriceAverageCountListed = 0;
+		$this->salePriceAverageItemsListed = 0;
 		
 		if ($countAll > 0)
 		{
-			$this->salePriceAverage = floatval($priceSumAll) / $countAll;
-			$this->salePriceAverageCount = $countSales;
-			$this->salePriceAverageQnt = $countAll;
-		}
-		else
-		{
-			$this->salePriceAverage = -1;
-			$this->salePriceAverageQnt = -1;
-			$this->salePriceAverageCount = -1;			
+			$this->salePriceAverageAll = floatval($priceSumAll) / $countAll;
+			$this->salePriceAverageCountAll = $countAll;
+			$this->salePriceAverageItemsAll = $countItemsAll;
 		}
 		
-		if ($countBuy > 0)
+		if ($countSold > 0)
 		{
-			$this->salePriceAverageBuy = floatval($priceSumBuy) / $countBuy;;
-			$this->salePriceAverageBuyQnt = $countBuy;
-			$this->salePriceAverageBuyCount = $countSalesBuy;
-		}
-		else
-		{
-			$this->salePriceAverageBuy = -1;
-			$this->salePriceAverageBuyQnt = -1;
-			$this->salePriceAverageBuyCount = -1;			
+			$this->salePriceAverageSold = floatval($priceSumSold) / $countSold;
+			$this->salePriceAverageCountSold = $countSold;
+			$this->salePriceAverageItemsSold = $countItemsSold;
 		}
 		
-		$this->salePriceAverageListLastTimestamp = $lastListTimestamp;
-		$this->salePriceAverageBuyLastTimestamp = $lastBuyTimestamp;
-		$this->salePriceAverageLastTimestamp = min($lastBuyTimestamp, $lastListTimestamp);
+		if ($countListed > 0)
+		{
+			$this->salePriceAverageListed = floatval($priceSumListed) / $countListed;
+			$this->salePriceAverageCountListed = $countListed;
+			$this->salePriceAverageItemsListed = $countItemsListed;
+		}
+		
+		$this->salePriceAverageLastTimestampListed = $lastListTimestamp;
+		$this->salePriceAverageLastTimestampSold = $lastSoldTimestamp;
+		$this->salePriceAverageLastTimestampAll = min($lastSoldTimestamp, $lastListTimestamp);
 	}
 	
 	
@@ -1248,55 +1327,62 @@ class EsoViewSalesData
 	}
 	
 	
+	public function FormatPrice ($price)
+	{
+		if ($avgPrice >= 1000)
+			$fmtPrice = round($price, 0);
+		else if ($avgPrice >= 100)
+			$fmtPrice = round($price, 1);
+		else
+			$fmtPrice = round($price, 2);
+		
+		return $fmtPrice;
+	}
+	
+	
+	public function GetPriceStatSaleTypeHtml($listCount, $soldCount, $itemCount, $avgPrice, $lastTimestamp, $label)
+	{
+		$output = "";
+		$totalCount = $listCount + $soldCount;
+		$fmtPrice = $this->FormatPrice($avgPrice);
+		
+		if ($totalCount <= 0)
+		{
+			$output .= "Not enough data to compute average price for $label!";
+		}
+		else
+		{
+			$days = intval((time() - $lastTimestamp) / 86400) + 1;
+			$output .= "Average price for $label (";
+			if ($listCount > 0) $output .= "$listCount listed, ";
+			if ($soldCount > 0) $output .= "$soldCount sold, ";
+			if ($itemCount > $totalCount) $output .= "$itemCount items, ";
+				
+			$output .= "$days days): <b>" . $fmtPrice . " gp</b>";
+			$output .= $this->CreateItemCopyPriceHtml($avgPrice, $listCount, $soldCount, $lastTimestamp, $itemCount);
+		}
+		
+		return $output;
+	}
+	
+	
 	public function GetPriceStatHtml()
 	{
 		$output = "";
 		
-		if ($this->salePriceAverageCount <= 0)
+		if ($this->formValues['saletype'] == "All")
 		{
-			$output .= "Not enough data to compute average price!";	
-		}
-		else
-		{
-			if ($this->salePriceAverage >= 1000)
-				$fmt = round($this->salePriceAverage, 0);
-			else if ($this->salePriceAverage >= 100)
-				$fmt = round($this->salePriceAverage, 1);
-			else
-				$fmt = round($this->salePriceAverage, 2);
-			
-			$days = intval((time() - $this->salePriceAverageLastTimestamp) / 86400) + 1;
-			$count = $this->salePriceAverageCount - $this->salePriceAverageBuyCount;
-			$output .= "Average price for all data ($count listed, {$this->salePriceAverageBuyCount} sold,";
-			
-			if ($this->salePriceAverageQnt > $this->salePriceAverageCount)	$output .= " {$this->salePriceAverageQnt} items,";
-			
-			$output .= " $days days): <b>" . $fmt . " gp</b>";
-			$output .= $this->CreateItemCopyPriceHtml($this->salePriceAverage, $this->salePriceAverageCount-$this->salePriceAverageBuyCount, $this->salePriceAverageBuyCount, $this->salePriceAverageLastTimestamp, $this->salePriceAverageQnt);
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsCountAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
+			$output .= "<br /><br />";
 		}
 		
-		$output .= "<br /><br />";
-			
-		if ($this->salePriceAverageBuyCount <= 0)
+		if ($this->formValues['saletype'] == "Listed")
 		{
-			$output .= "Not enough item purchases to compute average price!";
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsCountListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
 		}
-		else
+		else if ($this->formValues['saletype'] == "Sold" || $this->formValues['saletype'] == "All")
 		{
-			if ($this->salePriceAverageBuy >= 1000)
-				$fmt = round($this->salePriceAverageBuy, 0);
-			else if ($this->salePriceAverageBuy >= 100)
-				$fmt = round($this->salePriceAverageBuy, 1);
-			else
-				$fmt = round($this->salePriceAverageBuy, 2);
-			
-			$days = intval((time() - $this->salePriceAverageBuyLastTimestamp) / 86400) + 1;
-			$output .= "Average price for items sold ({$this->salePriceAverageBuyCount} sold,";
-			
-			if ($this->salePriceAverageBuyQnt != $this->salePriceAverageBuyCount)	$output .= " {$this->salePriceAverageBuyQnt} items,";
-				
-			$output .= " $days days): <b>" . $fmt . " gp</b>";
-			$output .= $this->CreateItemCopyPriceHtml($this->salePriceAverageBuy, 0, $this->salePriceAverageBuyCount, $this->salePriceAverageBuyLastTimestamp, $this->salePriceAverageBuyQnt);
+			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsCountSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
 		}
 		 
 		$output .= "";
@@ -1343,6 +1429,7 @@ class EsoViewSalesData
 				'{formWeaponType}' => $this->GetFormValue('weapontype'),
 				'{formTimePeriod}' => $this->GetFormValue('timeperiod'),
 				'{formServer}' => $this->GetFormValue('server'),
+				'{formSaleType}' => $this->GetFormValue('saletype'),
 				'{formLevel}' => $this->GetOutputFormLevel(),
 				
 				'{listTrait}' => $this->GetGeneralListHtml(self::$ESOVSD_TRAITS, 'trait'),
@@ -1353,6 +1440,7 @@ class EsoViewSalesData
 				'{listWeaponType}' => $this->GetGeneralListHtml(self::$ESOVSD_WEAPONTYPES, 'weapontype'),
 				'{listTimePeriod}' => $this->GetGeneralListHtml(self::$ESOVSD_TIMEPERIODS, 'timeperiod', true),
 				'{listServer}' => $this->GetGeneralListHtml(self::$ESOVSD_SERVERS, 'server', true),
+				'{listSaleType}' => $this->GetGeneralListHtml(self::$ESOVSD_SALETYPES, 'saletype', true),
 				
 				'{searchResults}' => $this->GetSearchResultsHtml(),
 				'{errorMessages}' => $this->GetErrorMessagesHtml(),
