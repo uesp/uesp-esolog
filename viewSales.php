@@ -537,12 +537,7 @@ class EsoViewSalesData
 			$totalCountText = $totalCount;
 			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
 			
-			if ($avgPrice >= 1000)
-				$avgPrice = round($avgPrice, 0);
-			else if ($avgPrice >= 100)
-				$avgPrice = round($avgPrice, 1);
-			else
-				$avgPrice = round($avgPrice, 2);
+			$avgPrice = $this->FormatPrice($avgPrice);
 				
 			$traitText = "";
 			if ($trait > 0) $traitText = GetEsoItemTraitText($trait);
@@ -1302,14 +1297,7 @@ class EsoViewSalesData
 	public function CreateItemCopyPriceTooltip($price, $saleCount, $purchaseCount, $lastTimestamp, $totalItems, $itemData)
 	{
 		$copyData = "UESP price (";
-		
-		if ($price >= 1000)
-			$price = round($price, 0);
-		else if ($price >= 100)
-			$price = round($price, 1);
-		else
-			$price = round($price, 2);
-		
+		$price = $this->FormatPrice($price);
 		$itemId = $itemData['itemId'];
 		$itemLevel = $itemData['internalLevel'];
 		$itemSubType = $itemData['internalSubType'];
@@ -1350,9 +1338,11 @@ class EsoViewSalesData
 	
 	public function FormatPrice ($price)
 	{
-		if ($avgPrice >= 1000)
+		$price = floatval($price);
+		
+		if ($price >= 1000)
 			$fmtPrice = round($price, 0);
-		else if ($avgPrice >= 100)
+		else if ($price >= 100)
 			$fmtPrice = round($price, 1);
 		else
 			$fmtPrice = round($price, 2);
@@ -1394,15 +1384,18 @@ class EsoViewSalesData
 		if ($this->formValues['saletype'] != "listed" && $this->formValues['saletype'] != "sold") 
 		{
 			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
-			$output .= "<br /><br />";
 		}
 		
-		if ($this->formValues['saletype'] == "listed")
+		if ($this->formValues['saletype'] == "listed" || $this->formValues['saletype'] == "")
 		{
+			if ($output != "") $output .= "<br /><br />";
 			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
+			
 		}
-		else
+		
+		if ($this->formValues['saletype'] == "sold" || $this->formValues['saletype'] == "")
 		{
+			if ($output != "") $output .= "<br /><br />";
 			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
 		}
 		 
