@@ -93,7 +93,7 @@
 	</div>
 	<br/>
 	{errorMessages}
-	{timePeriodMessage}
+	{searchResultMessage}
 
 	<div id="esovsd_results">
 		{searchResults}
