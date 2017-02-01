@@ -7,7 +7,7 @@ require("parseSalesData.php");
 
 $salesData = new EsoSalesDataParser();
 
-//*
+/*
 $salesData->LoadMMFile('../MM00Data.lua');
 $salesData->LoadMMFile('../MM01Data.lua');
 $salesData->LoadMMFile('../MM02Data.lua');
@@ -26,7 +26,7 @@ $salesData->LoadMMFile('../MM14Data.lua');
 $salesData->LoadMMFile('../MM15Data.lua');
 //*/
 
-/*
+//*
 $salesData->LoadMMFile('../9jan2017/MM00Data.lua');
 $salesData->LoadMMFile('../9jan2017/MM01Data.lua');
 $salesData->LoadMMFile('../9jan2017/MM02Data.lua');

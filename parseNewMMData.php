@@ -11,11 +11,25 @@ class CEsoParseNewMMData
 	const ESO_MMINDEX_FILENAME = "mmparse.index";
 	
 	public $salesData = null;
+	public $parseAll = false;
 
 	
 	public function __construct ()
 	{
 		$this->salesData = new EsoSalesDataParser();
+		$this->ParseInputParams();
+	}
+	
+	
+	public function ParseInputParams()
+	{
+		global $argv, $argc;
+		
+		foreach ($argv as $arg)
+		{
+			if ($arg == "parseall") $this->parseAll = true;
+		}
+		
 	}
 	
 	
@@ -94,7 +108,7 @@ class CEsoParseNewMMData
 			{
 				$dirIndex = intval($fileinfo->getFilename());
 				
-				if ($dirIndex > $parseIndex)
+				if ($this->parseAll || $dirIndex > $parseIndex)
 				{
 					$this->ParseMMFiles($inputPath . $fileinfo->getFilename() . "/");
 					if ($dirIndex > $maxDirIndex) $maxDirIndex = $dirIndex;
