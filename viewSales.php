@@ -60,6 +60,10 @@ class EsoViewSalesData
 	public $searchItemIdsLimit = 1000;
 	public $totalItemCount = 0;
 	public $totalSalesCount = 0;
+	public $totalSoldCount = 0;
+	public $totalListedCount = 0;
+	public $allItemsCount = 0;
+	public $allSalesCount = 0;
 	
 	public $salePriceAverageAll = 0;
 	public $salePriceAverageCountAll = 0;
@@ -819,10 +823,35 @@ class EsoViewSalesData
 	}
 	
 	
+	public function LoadTotalRecordCounts()
+	{
+		$this->lastQuery = "SELECT COUNT(*) as count FROM items;";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return false;
+		
+		$row = $result->fetch_assoc();
+		$this->allItemsCount = $row['count'];
+		
+		$this->lastQuery = "SELECT COUNT(*) as count FROM sales;";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return false;
+		
+		$row = $result->fetch_assoc();
+		$this->allSalesCount = $row['count'];
+		
+		return true;
+	}
+	
+	
 	public function LoadItemData()
 	{		
 		$this->totalItemCount = 0;
-		if (!$this->hasSearchData) return true;
+		$this->totalListedCount = 0;
+		$this->totalSoldCount = 0;
+		$this->totalSalesCount = 0;
+		$this->itemCount = 0;
+		
+		if (!$this->hasSearchData) return $this->LoadTotalRecordCounts();
 		
 		$this->lastQuery = $this->GetFindItemQuery();
 		
@@ -842,7 +871,7 @@ class EsoViewSalesData
 				
 				if ($result->num_rows == 0)
 				{
-					$this->errorMessages[] = "No items found matching input search!";
+					//$this->errorMessages[] = "No items found matching input search!";
 					return false;
 				}
 			}
@@ -855,7 +884,12 @@ class EsoViewSalesData
 		{
 			$this->itemResults[$row['id']] = $row;
 			$this->itemIds[] = $row['id'];
+			
+			$this->totalListedCount += $row['countSales'];
+			$this->totalSoldCount   += $row['countPurchases'];
 		}
+		
+		$this->totalSalesCount = $this->totalListedCount + $this->totalSoldCount;
 		
 		if ($result->num_rows >= $this->searchItemIdsLimit)
 		{
@@ -866,7 +900,7 @@ class EsoViewSalesData
 				$row = $result->fetch_assoc();
 				$totalItems = $row['rowCount'];
 				$this->totalItemCount = $totalItems;
-				$this->errorMessages[] = "Found $totalItems matching items which exceeds the maximum of {$this->searchItemIdsLimit}.";
+				//$this->errorMessages[] = "Found $totalItems matching items which exceeds the maximum of {$this->searchItemIdsLimit}.";
 			}
 		}
 		
@@ -1136,6 +1170,10 @@ class EsoViewSalesData
 		else if ($this->showForm == "ItemSearch")
 		{
 			$this->LoadItemData();
+		}
+		else
+		{
+			$this->LoadTotalRecordCounts();
 		}
 		
 	}
@@ -1499,10 +1537,51 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetTimePeriodMessageHtml()
+	public function GetSearchResultMessageHtml()
 	{
-		if ($this->formValues['timeperiod'] <= 0) return "";
-		return "Note: The displayed sale # and average price are for all time. View the item sale details for more accurate values.<br/><br/>";
+		$output = "";
+		
+		if ($this->showForm == "ViewGuilds")
+		{
+			$count = count($this->guildData);
+			$output .= "Showing data from all $count guilds.";
+			$output .= "<br/><br/>";
+			return $output;
+		}
+		else if ($this->viewSalesItemId > 0)
+		{
+			$output .= "";
+			return $output;
+		}
+		else if (!$this->hasSearchData)
+		{
+			$output .= "There are {$this->allItemsCount} items with {$this->allSalesCount} listings/sales currently in the database.";
+			$output .= "<br/><br/>";
+			return $output;
+		}
+		else if ($this->totalItemCount > $this->itemCount)
+		{
+			$output .= "Displaying {$this->searchItemIdsLimit} of {$this->totalItemCount} matching items with a total of {$this->totalListedCount} listings and {$this->totalSoldCount} sales.";
+			$output .= "<br/><br/>";
+		}
+		else if ($this->itemCount == 0)
+		{
+			$output .= "No items found matching input search!";
+			$output .= "<br/><br/>";
+		}
+		else
+		{
+			$output .= "Found {$this->totalItemCount} matching items with a total of {$this->totalListedCount} listings and {$this->totalSoldCount} sales.";
+			$output .= "<br/><br/>";
+		}
+		
+		if ($this->formValues['timeperiod'] > 0)
+		{
+			$output .= "Note: The displayed sale # and average price are for all time. View the item sale details for more accurate values.";
+			$output .= "<br/><br/>";
+		}
+		
+		return $output;
 	}
 		
 	
@@ -1533,7 +1612,7 @@ class EsoViewSalesData
 				
 				'{searchResults}' => $this->GetSearchResultsHtml(),
 				'{errorMessages}' => $this->GetErrorMessagesHtml(),
-				'{timePeriodMessage}' => $this->GetTimePeriodMessageHtml(),
+				'{searchResultMessage}' => $this->GetSearchResultMessageHtml(),
 				'{itemQuery}' => $this->itemQuery,
 				'{salesQuery}' => $this->salesQuery,
 				'{salesItemLink}' => $this->GetSalesItemLinkHtml(),
