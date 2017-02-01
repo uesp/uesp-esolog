@@ -217,3 +217,7 @@ a:hover {
 	padding: 5px;
 	margin: 5px; 
 }
+
+.esovsd_outlier {
+	background-color: #ffcccc;
+}

@@ -15,6 +15,7 @@ class EsoViewSalesData
 {
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
+	const ESOVSD_MAXZSCORE = 2;
 	
 	public $OMIT_BUYER_INFO = true;
 	public $OMIT_SELLER_INFO = true;
@@ -80,6 +81,20 @@ class EsoViewSalesData
 	public $salePriceAverageLastTimestampListed = 0;
 	public $salePriceAverageLastTimestampSold = 0;
 	public $salePriceAverageLastTimestampAll = 0;
+	
+	public $salePriceStdDevAll = 0;
+	public $salePriceStdDevSold = 0;
+	public $salePriceStdDevListed = 0;
+	
+	public $salePriceAdjCountAll = 0;
+	public $salePriceAdjCountSold = 0;
+	public $salePriceAdjCountListed = 0;
+	public $salePriceAdjItemsAll = 0;
+	public $salePriceAdjItemsSold = 0;
+	public $salePriceAdjItemsListed = 0;
+	public $salePriceAdjAll = 0;
+	public $salePriceAdjSold = 0;
+	public $salePriceAdjListed = 0;
 	
 	public $itemQuery = "";
 	public $salesQuery = "";
@@ -637,7 +652,10 @@ class EsoViewSalesData
 			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
 			if ($lastStoreLocTime != "") $kiosk .= "<br/><small>updated " . $lastStoreLocTime . "</small>";
 			
-			$output .= "<tr>";
+			$extraClass = "";
+			if ($row['outlier'] === true) $extraClass = "esovsd_outlier";
+			
+			$output .= "<tr class='$extraClass'>";
 			$output .= "<td>{$guild['name']}</td>";
 			$output .= "<td>$kiosk</td>";
 			if (!$this->OMIT_SELLER_INFO) $output .= "<td>{$row['sellerName']}</td>";
@@ -1151,6 +1169,132 @@ class EsoViewSalesData
 		$this->salePriceAverageLastTimestampListed = $lastListTimestamp;
 		$this->salePriceAverageLastTimestampSold = $lastSoldTimestamp;
 		$this->salePriceAverageLastTimestampAll = min($lastSoldTimestamp, $lastListTimestamp);
+		
+		$this->ComputeSaleAdvancedStatistics();
+	}	
+	
+	
+	public function ComputeSaleAdvancedStatistics()
+	{
+		$sumSquareAll = 0;
+		$sumSquareListed = 0;
+		$sumSquareSold = 0;
+		
+		foreach ($this->searchResults as $result)
+		{
+			$price = intval($result['price']);
+			$qnt = intval($result['qnt']);
+			$unitPrice = $price / (float) $qnt;
+			
+			$sumSquareAll += pow($unitPrice - $this->salePriceAverageAll, 2);
+			if ($result['buyTimestamp']  > 0) $sumSquareSold += pow($unitPrice - $this->salePriceAverageSold, 2);
+			if ($result['listTimestamp'] > 0) $sumSquareListed += pow($unitPrice - $this->salePriceAverageListed, 2);
+		}
+		
+		$this->salePriceStdDevAll = 0;
+		$this->salePriceStdDevListed = 0;
+		$this->salePriceStdDevSold = 0;
+		
+		if ($this->salePriceAverageCountAll    > 0) $this->salePriceStdDevAll = sqrt($sumSquareAll / floatval($this->salePriceAverageCountAll));
+		if ($this->salePriceAverageCountSold   > 0) $this->salePriceStdDevSold = sqrt($sumSquareSold / floatval($this->salePriceAverageCountSold));
+		if ($this->salePriceAverageCountListed > 0)	$this->salePriceStdDevListed = sqrt($sumSquareListed / floatval($this->salePriceAverageCountListed));
+		
+		$sumAdjAll = 0;
+		$sumAdjListed = 0;
+		$sumAdjSold = 0;
+		$countAdjAll = 0;
+		$countAdjListed = 0;
+		$countAdjSold = 0;
+		$itemsAdjAll = 0;
+		$itemsAdjListed = 0;
+		$itemsAdjSold = 0;
+		$zScoreAll = 1;
+		$zScoreSold = 1;
+		$zScoreListed = 1;
+		
+		foreach ($this->searchResults as &$result)
+		{
+			$price = intval($result['price']);
+			$qnt = intval($result['qnt']);
+			$unitPrice = $price / (float) $qnt;
+			
+			if ($this->salePriceStdDevAll != 0) $zScoreAll = abs(($unitPrice - $this->salePriceAverageAll) / $this->salePriceStdDevAll);
+
+			if ($zScoreAll <= self::ESOVSD_MAXZSCORE)
+			{
+				$sumAdjAll += $price;
+				$itemsAdjAll += $qnt;
+				++$countAdjAll;
+			}			
+			else
+			{
+				$result['outlier'] = true;
+			}
+			
+			if ($result['buyTimestamp']  > 0) 
+			{
+				if ($this->salePriceStdDevSold != 0) $zScoreSold = abs(($unitPrice - $this->salePriceAverageSold) / $this->salePriceStdDevSold);
+				
+				if ($zScoreSold <= self::ESOVSD_MAXZSCORE)
+				{
+					$sumAdjSold += $price;
+					$itemsAdjSold += $qnt;
+					++$countAdjSold;
+				}
+				else
+				{
+					$result['outlier'] = true;
+				}
+			}
+			
+			if ($result['listTimestamp'] > 0) 
+			{
+				if ($this->salePriceStdDevListed != 0) $zScoreList = abs(($unitPrice - $this->salePriceAverageListed) / $this->salePriceStdDevListed);
+				
+				if ($zScoreList <= self::ESOVSD_MAXZSCORE)
+				{
+					$sumAdjListed += $price;
+					$itemsAdjListed += $qnt;
+					++$countAdjListed;
+				}
+				else
+				{
+					$result['outlier'] = true;
+				}
+			}
+		}
+		
+		$this->salePriceAdjCountAll = 0;
+		$this->salePriceAdjCountSold = 0;
+		$this->salePriceAdjCountListed = 0;
+		$this->salePriceAdjItemsAll = 0;
+		$this->salePriceAdjItemsSold = 0;
+		$this->salePriceAdjItemsListed = 0;
+		$this->salePriceAdjAll = 0;
+		$this->salePriceAdjSold = 0;
+		$this->salePriceAdjListed = 0;
+		
+		if ($countAdjAll > 0)
+		{
+			$this->salePriceAdjAll = $sumAdjAll / (float) $itemsAdjAll;
+			$this->salePriceAdjItemsAll = $itemsAdjAll;
+			$this->salePriceAdjCountAll = $countAdjAll;
+		}
+		
+		if ($countAdjSold > 0)
+		{
+			$this->salePriceAdjSold = $sumAdjSold / (float) $itemsAdjSold;
+			$this->salePriceAdjItemsSold = $itemsAdjSold;
+			$this->salePriceAdjCountSold = $countAdjSold;
+		}
+		
+		if ($countAdjListed > 0)
+		{
+			$this->salePriceAdjListed = $sumAdjListed / (float) $itemsAdjListed;
+			$this->salePriceAdjItemsListed = $itemsAdjListed;
+			$this->salePriceAdjCountListed = $countAdjListed;
+		}
+		
 	}
 	
 	
@@ -1583,6 +1727,48 @@ class EsoViewSalesData
 		
 		return $output;
 	}
+	
+	
+	public function GetSaleStatsHtml()
+	{
+		static $VALUES = array(
+				"AvgPriceAll" => "salePriceAverageAll",
+				"CountAll" => "salePriceAverageCountAll",
+				"ItemsAll" => "salePriceAverageItemsAll",				
+				"AvgPriceSold" => "salePriceAverageSold",
+				"CountSold" => "salePriceAverageCountSold",
+				"ItemsSold" => "salePriceAverageItemsSold",				
+				"AvgPriceListed" => "salePriceAverageListed",
+				"CountListed" => "salePriceAverageCountListed",
+				"ItemsListed" => "salePriceAverageItemsListed",
+				"LastTimeAll" => "salePriceAverageLastTimestampAll",
+				"LastTimeListed" => "salePriceAverageLastTimestampListed",
+				"LastTimeSold" => "salePriceAverageLastTimestampSold",
+				"StdDevAll" => "salePriceStdDevAll",
+				"StdDevSold" => "salePriceStdDevSold",
+				"StdDevListed" => "salePriceStdDevListed",
+				"AdjCountAll" => "salePriceAdjCountAll",
+				"AdjCountSold" => "salePriceAdjCountSold",
+				"AdjCountListed" => "salePriceAdjCountListed",
+				"AdjItemsAll" => "salePriceAdjItemsAll",
+				"AdjItemsSold" => "salePriceAdjItemsSold",
+				"AdjItemsListed" => "salePriceAdjItemsListed",
+				"AdjPriceAll" => "salePriceAdjAll",
+				"AdjPriceSold" => "salePriceAdjSold",
+				"AdjPriceListed" => "salePriceAdjListed",				
+		);
+		
+		$vars = get_object_vars($this);
+		$output = "";
+		
+		foreach ($VALUES as $label => $member)
+		{
+			$value = $vars[$member];
+			$output .= "$label = $value\n";
+		}
+		
+		return $output;
+	}
 		
 	
 	public function CreateOutputHtml()
@@ -1622,6 +1808,7 @@ class EsoViewSalesData
 				'{priceStats}' => $this->GetPriceStatHtml(),
 				'{itemDetails}' => $this->GetItemDetailsHtml(),
 				'{showSalesType}' => $this->GetSalesTypeHtml(),
+				'{saleStats}' => $this->GetSaleStatsHtml(),
 				
 		);
 		
