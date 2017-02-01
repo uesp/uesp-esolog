@@ -39,8 +39,9 @@ class EsoLogParser
 	const SHOW_PARSE_LINENUMBERS = true;
 	
 	const ELP_INPUT_LOG_PATH = "";
-	const ELP_INDEX_FILENAME = "esolog.index";
 	const ELP_OUTPUTLOG_FILENAME = "parser.log";
+	
+	const ELP_PARSE_INDEXFILE = "esolog.parse.index";
 	
 	const TREASURE_DELTA_TIME = 4000;
 	const BOOK_DELTA_TIME = 4000;
@@ -86,13 +87,11 @@ class EsoLogParser
 	public $currentLanguage = 'en';
 	
 	public $logFilePath = "";
-	public $currentLogFilename = "tmp.log";
-	public $currentLogIndex = 1;
-	public $rawLogData = array();
-	
 	public $currentParseLine = 0;
 	public $currentParseFile = "";
-	public $startFileIndex = 0;
+	public $startFileIndex = -1;
+	public $usingManualStartIndex = false;
+	public $lastFileIndexParsed;
 	
 	public $duplicateCount = 0;
 	public $fileDuplicateCount = 0;
@@ -734,10 +733,9 @@ class EsoLogParser
 		$this->salesData = new EsoSalesDataParser();
 		
 		$this->initDatabaseWrite();
-		$this->readIndexFile();
-		$this->currentLogFilename = $this->getCurrentLogFilename();
 		$this->setInputParams();
 		$this->parseInputParams();
+		$this->readParseIndexFile();
 	}
 	
 	
@@ -2325,26 +2323,7 @@ class EsoLogParser
 		return $this->createTables();
 	}
 	
-	
-	public function getCurrentLogFilename()
-	{
-		return $this->generateLogFilename($this->currentLogIndex);
-	}
-	
-	
-	public function generateLogFilename($index)
-	{
-		$logFilename = self::ELP_INPUT_LOG_PATH . sprintf( 'eso%05d.log', $index);
-		return $logFilename;
-	}
-	
-	
-	public function parseFormInput()
-	{
-		return true;
-	}
-	
-	
+		
 	public function OnStolen ($logEntry)
 	{
 		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
@@ -5339,6 +5318,8 @@ class EsoLogParser
 			return true;
 		}
 		
+		$this->lastFileIndexParsed = $fileIndex;
+		
 		$logEntries = array();
 		$entryCount = 0;
 		$errorCount = 0;
@@ -5422,6 +5403,11 @@ class EsoLogParser
 			$this->parseEntireLog($value);
 		}
 		
+		if ($this->lastFileIndexParsed > 0 && !$this->usingManualStartIndex)
+		{
+			$this->writeParseIndexFile($this->lastFileIndexParsed);
+		}
+		
 		$this->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
 		return true;
 	}
@@ -5465,32 +5451,7 @@ class EsoLogParser
 		return true;
 	}
 	
-	
-	public function readIndexFile()
-	{
-		$filename = $this->logFilePath . self::ELP_INDEX_FILENAME;
 		
-		if (!file_exists($filename))
-		{
-			$this->currentLogIndex = 1;
-			return false;
-		}
-		
-		$index = file_get_contents($filename);
-	
-		if ($index === false)
-		{
-			$this->currentLogIndex = 1;
-			return false;
-		}
-	
-		$this->currentLogIndex = (int) $index;
-		if ($this->currentLogIndex < 0) $this->currentLogIndex = 1;
-	
-		return true;
-	}
-	
-	
 	public function reportError ($errorMsg)
 	{
 		$this->log($errorMsg);
@@ -5520,12 +5481,32 @@ class EsoLogParser
 	}
 	
 	
+	private function readParseIndexFile ()
+	{
+		$indexData = file_get_contents($this->logFilePath . self::ELP_PARSE_INDEXFILE);
+		
+		if ($indexData !== false && !$this->usingManualStartIndex)
+		{
+			$this->startFileIndex = (int) $indexData;
+			$this->log("Starting log parsing at automatic file index {$this->startFileIndex}.");
+		}
+		
+	}
+	
+	
+	private function writeParseIndexFile ($index)
+	{
+		file_put_contents($this->logFilePath . self::ELP_PARSE_INDEXFILE, (string)$index);
+	}
+	
+	
 	private function parseInputParams ()
 	{
 		if (array_key_exists('start', $this->inputParams))
 		{
 			$this->startFileIndex = (int) $this->inputParams['start'];
-			$this->log("Starting log parsing at file index {$this->startFileIndex}.");
+			$this->usingManualStartIndex = true;
+			$this->log("Starting log parsing at manual file index {$this->startFileIndex}.");
 		}
 		
 		return true;
