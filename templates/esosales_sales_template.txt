@@ -42,6 +42,8 @@
 <!--
 {itemQuery}
 {salesQuery}
+
+{saleStats}
 -->
 <hr>
 <div id="esovsd_footer">
