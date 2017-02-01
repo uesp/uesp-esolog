@@ -1,115 +1,197 @@
 <?php
 
-$SERVER = "NA";
-
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require_once("/home/uesp/secrets/esosalesdata.secrets");
 
-$db = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase);
-if ($db->connect_error) die("Could not connect to mysql database!");
 
-$query = "SELECT * FROM items WHERE server='$SERVER';";
-$result = $db->query($query);
-if ($result === false) die("Failed to load items!");
-
-//print("Loaded ".$result->num_rows." items...\n");
-
-$itemData = array();
-
-while (($row = $result->fetch_assoc()))
+class CEsoSalesMakePriceList
 {
-	$itemId = $row['itemId'];
-	$level = $row['level'];
-	$quality = $row['quality'];
-	$trait = $row['trait'];
-	$potionData = $row['potionData'];
-		
-	if (!isset($itemData[$itemId])) $itemData[$itemId] = array();
-	if (!isset($itemData[$itemId][$level])) $itemData[$itemId][$level] = array();
-	if (!isset($itemData[$itemId][$level][$quality])) $itemData[$itemId][$level][$quality] = array();
-	if (!isset($itemData[$itemId][$level][$quality][$trait])) $itemData[$itemId][$level][$quality][$trait] = array();
-	if (!isset($itemData[$itemId][$level][$quality][$trait][$potionData])) $itemData[$itemId][$level][$quality][$trait][$potionData] = array();
-		
-	$saleData = &$itemData[$itemId][$level][$quality][$trait][$potionData];
+	public $VERSION = "1";
+	public $OUTPUT_BASEPATH = "prices";
 	
-	$count = intval($row['countPurchases']) + intval($row['countSales']);
-	$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
-	$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
-	$avgPrice = $sumPrice / $itemCount;
-		
-	if ($avgPrice >= 1000)
-		$avgPrice = round($avgPrice, 0);
-	else if ($avgPrice >= 100)
-		$avgPrice = round($avgPrice, 1);
-	else
-		$avgPrice = round($avgPrice, 2);
+	public $db = null;
 	
-	$avgPurchasePrice = 0;
-	$avgSalePrice = 0;
 	
-	if ($row['countPurchases'] > 0)$avgPurchasePrice = floatval($row['sumPurchases']) / intval($row['countItemPurchases']);
-	if ($row['countSales'] > 0) $avgSalePrice = floatval($row['sumSales']) / intval($row['countItemSales']);
-	
-	if ($avgPurchasePrice >= 1000)
-		$avgPurchasePrice = round($avgPurchasePrice, 0);
-	else if ($avgPurchasePrice >= 100)
-		$avgPurchasePrice = round($avgPurchasePrice, 1);
-	else
-		$avgPurchasePrice = round($avgPurchasePrice, 2);
-
-	if ($avgSalePrice >= 1000)
-		$avgSalePrice = round($avgSalePrice, 0);
-	else if ($avgPrice >= 100)
-		$avgSalePrice = round($avgSalePrice, 1);
-	else
-		$avgSalePrice = round($avgSalePrice, 2);
-	
-	$saleData[0] = $avgPrice;
-	$saleData[1] = $row['countPurchases'];
-	$saleData[2] = $row['countSales'];
-	$saleData[3] = $count;
-	//$saleData[2] = $itemCount;
-	//$saleData[2] = $row['countItemPurchases'];
-	//$saleData[3] = $avgSalePrice;
-	//$saleData[5] = $row['countItemSales'];
-}
-
-print("uespLog.SalesPrice = {\n");
-
-foreach ($itemData as $itemId => $levelData)
-{
-	print("[$itemId]={\n");
-	
-	foreach ($levelData as $level => $qualityData)
+	public function __construct()
 	{
-		print("[$level]={");
+		$this->InitDatabase();	
+	}	
+	
+	
+	public function InitDatabase()
+	{
+		global $uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase;
 		
-		foreach ($qualityData as $quality => $traitData)
-		{
-			print("[$quality]={");
-			
-			foreach ($traitData as $trait => $potionData)
-			{
-				print("[$trait]={");
-				
-				foreach ($potionData as $potion => $salesData)
-				{
-					//print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]}},");
-					//print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]}},");
-					print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]}},");
-				}
-				
-				print("},");
-			}
-			
-			print("},");
-		}
-		
-		print("},");
+		$this->db = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase);
+		if ($this->db->connect_error) die("Could not connect to mysql database!");
 	}
 	
-	print("},\n");
-}
+	
+	public function LoadItems($server)
+	{
+		$query = "SELECT * FROM items WHERE server='{$server}';";
+		$result = $this->db->query($query);
+		if ($result === false) die("Failed to load items: $query");
+		
+		print("Loaded {$result->num_rows} items for server $server...\n");
+		$itemData = array();
+				
+		while (($row = $result->fetch_assoc()))
+		{
+			$itemId = $row['itemId'];
+			$level = $row['level'];
+			$quality = $row['quality'];
+			$trait = $row['trait'];
+			$potionData = $row['potionData'];
+		
+			if (!isset($itemData[$itemId])) $itemData[$itemId] = array();
+			if (!isset($itemData[$itemId][$level])) $itemData[$itemId][$level] = array();
+			if (!isset($itemData[$itemId][$level][$quality])) $itemData[$itemId][$level][$quality] = array();
+			if (!isset($itemData[$itemId][$level][$quality][$trait])) $itemData[$itemId][$level][$quality][$trait] = array();
+			if (!isset($itemData[$itemId][$level][$quality][$trait][$potionData])) $itemData[$itemId][$level][$quality][$trait][$potionData] = array();
+		
+			$saleData = &$itemData[$itemId][$level][$quality][$trait][$potionData];
+		
+			$count = intval($row['countPurchases']) + intval($row['countSales']);
+			$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
+			$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
+			$avgPrice = $sumPrice / $itemCount;
+		
+			if ($avgPrice >= 1000)
+				$avgPrice = round($avgPrice, 0);
+			else if ($avgPrice >= 100)
+				$avgPrice = round($avgPrice, 1);
+			else
+				$avgPrice = round($avgPrice, 2);
+		
+			$avgPurchasePrice = 0;
+			$avgSalePrice = 0;
 
-print("}\n");
+			if ($row['countPurchases'] > 0)$avgPurchasePrice = floatval($row['sumPurchases']) / intval($row['countItemPurchases']);
+			if ($row['countSales'] > 0) $avgSalePrice = floatval($row['sumSales']) / intval($row['countItemSales']);
+
+			if ($avgPurchasePrice >= 1000)
+				$avgPurchasePrice = round($avgPurchasePrice, 0);
+			else if ($avgPurchasePrice >= 100)
+				$avgPurchasePrice = round($avgPurchasePrice, 1);
+			else
+				$avgPurchasePrice = round($avgPurchasePrice, 2);
+
+			if ($avgSalePrice >= 1000)
+				$avgSalePrice = round($avgSalePrice, 0);
+			else if ($avgPrice >= 100)
+				$avgSalePrice = round($avgSalePrice, 1);
+			else
+				$avgSalePrice = round($avgSalePrice, 2);
+
+			$saleData[0] = $avgPrice;
+			$saleData[1] = $avgPurchasePrice;
+			$saleData[2] = $avgSalePrice;
+			$saleData[3] = $row['countPurchases'];
+			$saleData[4] = $row['countSales'];
+			$saleData[5] = $row['countItemPurchases'];
+			$saleData[6] = $row['countItemSales'];
+		}
+		
+		return $itemData;
+	}
+	
+	
+	public function MakeLuaData($itemData, $server)
+	{
+		$output = "";
+		
+		$output .= "function uespLog.InitSalesPrices()\n";
+		$output .= "uespLog.SalesPricesServer = '$server'\n";
+		$output .= "uespLog.SalesPricesVersion = {$this->VERSION}\n";
+		$output .= "uespLog.SalesPrices = {\n";
+		
+		foreach ($itemData as $itemId => $levelData)
+		{
+			$output .= "[$itemId]={\n";
+		
+			foreach ($levelData as $level => $qualityData)
+			{
+				$output .= "[$level]={";
+		
+				foreach ($qualityData as $quality => $traitData)
+				{
+					$output .= "[$quality]={";
+						
+					foreach ($traitData as $trait => $potionData)
+					{
+						$output .= "[$trait]={";
+		
+						foreach ($potionData as $potion => $salesData)
+						{
+							$output .= "[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]},{$salesData[6]}},";
+						}
+		
+						$output .= "},";
+					}
+						
+					$output .= "},";
+				}
+		
+				$output .= "},";
+			}
+		
+			$output .= "},\n";
+		}
+		
+		$output .= "}\n";
+		$output .= "end\n";
+		
+		return $output;
+	}
+	
+	
+	public function OutputPriceList($server, $luaData)
+	{
+		$outputFile = $this->OUTPUT_BASEPATH . "$server/uespSalesPrices.lua";
+		print("Saving $server price list to '$outputFile'...\n");
+		
+		if (file_put_contents($outputFile, $luaData) === false)
+		{
+			print("Error: Failed to write file data!\n");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	public function CreatePriceList($server)
+	{
+		$itemData = $this->LoadItems($server);
+		$luaData = $this->MakeLuaData($itemData, $server);
+		$this->OutputPriceList($server, $luaData);
+		
+		return true;
+	}
+	
+		
+	public function MakePrices()
+	{
+		$this->CreatePriceList("NA");
+		$this->CreatePriceList("EU");
+		$this->CreatePriceList("PTS");
+		$this->CreatePriceList("Other");
+	}
+	
+};
+
+
+$priceList = new CEsoSalesMakePriceList();
+$priceList->MakePrices();
+
+
+
+
+
+
+
+
+
+

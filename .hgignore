@@ -1,3 +1,4 @@
 syntax: glob
 *.secrets
 *.log
+prices*/*.lua
