@@ -223,7 +223,7 @@ class EsoViewSalesData
 		{
 			$this->viewSalesItemId = intval($this->inputParams['viewsales']);
 			$this->showForm = "ViewSales";
-			$this->sortField = "buydate";
+			$this->sortField = "lastseen";
 			$this->sortOrder = 0;
 		}
 		
@@ -615,8 +615,8 @@ class EsoViewSalesData
 		$output .= "<th>Kiosk Location</th>";
 		if (!$this->OMIT_SELLER_INFO) $output .= "<th>Seller</th>";
 		if (!$this->OMIT_BUYER_INFO) $output .= "<th>Buyer</th>";
-		$output .= "<th>Last Seen</th>";
 		$output .= "<th>Listed / Sold</th>";
+		$output .= "<th>Last Seen</th>";
 		$output .= "<th>Price</th>";
 		$output .= "<th>Qnt</th>";
 		$output .= "<th>Unit Price</th>";
@@ -643,13 +643,13 @@ class EsoViewSalesData
 			$output .= "<td>$kiosk</td>";
 			if (!$this->OMIT_SELLER_INFO) $output .= "<td>{$row['sellerName']}</td>";
 			if (!$this->OMIT_BUYER_INFO) $output .= "<td>{$row['buyerName']}</td>";
-			$output .= "<td>$lastSeen</td>";
 			
 			if ($listDate != "")
 				$output .= "<td>Listed {$listDate}</td>";
 			else
 				$output .= "<td>Sold {$buyDate}</td>";
-			
+
+			$output .= "<td>$lastSeen</td>";
 			$output .= "<td>{$row['price']} gp</td>";
 			$output .= "<td>{$row['qnt']}</td>";
 			$output .= "<td>{$unitPrice} gp</td>";
@@ -1185,6 +1185,8 @@ class EsoViewSalesData
 			usort($this->searchResults, "EsoSalesDataCompareQnt");
 		else if ($this->sortField == "unitprice")
 			usort($this->searchResults, "EsoSalesDataCompareUnitPrice");
+		else if ($this->sortField == "lastseen")
+			usort($this->searchResults, "EsoSalesDataCompareLastSeen");
 		
 		return true;
 	}
@@ -1611,6 +1613,20 @@ function EsoSalesDataCompareBuyDate($a, $b)
 	$result = $t1 - $t2;
 	
 	//if ($result == 0) $result = $a['listTimestamp'] - $b['listTimestamp']; 
+	
+	if ($g_EsoSalesDataSortOrder == 0) return -$result;
+	return $result;
+}
+
+
+function EsoSalesDataCompareLastSeen($a, $b)
+{
+	global $g_EsoSalesDataSortOrder;
+	
+	$t1 = $a['lastSeen'];
+	$t2 = $b['lastSeen'];
+	
+	$result = $t1 - $t2;
 	
 	if ($g_EsoSalesDataSortOrder == 0) return -$result;
 	return $result;
