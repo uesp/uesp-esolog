@@ -34,10 +34,10 @@ while (($row = $result->fetch_assoc()))
 	$saleData = &$itemData[$itemId][$level][$quality][$trait][$potionData];
 	
 	$count = intval($row['countPurchases']) + intval($row['countSales']);
-	$itemCount = intval($row['countItemPurchases']) + intval($row['countItemsSales']);
+	$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
 	$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
-	$avgPrice = $sumPrice / $count;
-	
+	$avgPrice = $sumPrice / $itemCount;
+		
 	if ($avgPrice >= 1000)
 		$avgPrice = round($avgPrice, 0);
 	else if ($avgPrice >= 100)
@@ -45,9 +45,34 @@ while (($row = $result->fetch_assoc()))
 	else
 		$avgPrice = round($avgPrice, 2);
 	
+	$avgPurchasePrice = 0;
+	$avgSalePrice = 0;
+	
+	if ($row['countPurchases'] > 0)$avgPurchasePrice = floatval($row['sumPurchases']) / intval($row['countItemPurchases']);
+	if ($row['countSales'] > 0) $avgSalePrice = floatval($row['sumSales']) / intval($row['countItemSales']);
+	
+	if ($avgPurchasePrice >= 1000)
+		$avgPurchasePrice = round($avgPurchasePrice, 0);
+	else if ($avgPurchasePrice >= 100)
+		$avgPurchasePrice = round($avgPurchasePrice, 1);
+	else
+		$avgPurchasePrice = round($avgPurchasePrice, 2);
+
+	if ($avgSalePrice >= 1000)
+		$avgSalePrice = round($avgSalePrice, 0);
+	else if ($avgPrice >= 100)
+		$avgSalePrice = round($avgSalePrice, 1);
+	else
+		$avgSalePrice = round($avgSalePrice, 2);
+	
 	$saleData[0] = $avgPrice;
-	$saleData[1] = $count;
-	$saleData[2] = $itemCount;
+	$saleData[1] = $row['countPurchases'];
+	$saleData[2] = $row['countSales'];
+	$saleData[3] = $count;
+	//$saleData[2] = $itemCount;
+	//$saleData[2] = $row['countItemPurchases'];
+	//$saleData[3] = $avgSalePrice;
+	//$saleData[5] = $row['countItemSales'];
 }
 
 print("uespLog.SalesPrice = {\n");
@@ -70,7 +95,9 @@ foreach ($itemData as $itemId => $levelData)
 				
 				foreach ($potionData as $potion => $salesData)
 				{
-					print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]}},");
+					//print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]}},");
+					//print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]}},");
+					print("[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]}},");
 				}
 				
 				print("},");

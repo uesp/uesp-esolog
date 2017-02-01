@@ -1098,23 +1098,23 @@ class EsoViewSalesData
 		$this->salePriceAverageCountListed = 0;
 		$this->salePriceAverageItemsListed = 0;
 		
-		if ($countAll > 0)
+		if ($countItemsAll > 0)
 		{
-			$this->salePriceAverageAll = floatval($priceSumAll) / $countAll;
+			$this->salePriceAverageAll = floatval($priceSumAll) / $countItemsAll;
 			$this->salePriceAverageCountAll = $countAll;
 			$this->salePriceAverageItemsAll = $countItemsAll;
 		}
 		
-		if ($countSold > 0)
+		if ($countItemsSold > 0)
 		{
-			$this->salePriceAverageSold = floatval($priceSumSold) / $countSold;
+			$this->salePriceAverageSold = floatval($priceSumSold) / $countItemsSold;
 			$this->salePriceAverageCountSold = $countSold;
 			$this->salePriceAverageItemsSold = $countItemsSold;
 		}
 		
-		if ($countListed > 0)
+		if ($countItemsListed > 0)
 		{
-			$this->salePriceAverageListed = floatval($priceSumListed) / $countListed;
+			$this->salePriceAverageListed = floatval($priceSumListed) / $countItemsListed;
 			$this->salePriceAverageCountListed = $countListed;
 			$this->salePriceAverageItemsListed = $countItemsListed;
 		}
@@ -1391,19 +1391,19 @@ class EsoViewSalesData
 	{
 		$output = "";
 		
-		if ($this->formValues['saletype'] != "listed" && $this->formValues['saletype'] != "sold")
+		if ($this->formValues['saletype'] != "listed" && $this->formValues['saletype'] != "sold") 
 		{
-			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsCountAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
 			$output .= "<br /><br />";
 		}
 		
 		if ($this->formValues['saletype'] == "listed")
 		{
-			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsCountListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
 		}
 		else
 		{
-			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsCountSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
+			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
 		}
 		 
 		$output .= "";
