@@ -615,6 +615,7 @@ class EsoViewSalesData
 		$output .= "<th>Kiosk Location</th>";
 		if (!$this->OMIT_SELLER_INFO) $output .= "<th>Seller</th>";
 		if (!$this->OMIT_BUYER_INFO) $output .= "<th>Buyer</th>";
+		$output .= "<th>Last Seen</th>";
 		$output .= "<th>Listed / Sold</th>";
 		$output .= "<th>Price</th>";
 		$output .= "<th>Qnt</th>";
@@ -627,6 +628,7 @@ class EsoViewSalesData
 			$item = $this->itemResults[$row['itemId']];
 			$buyDate = $this->FormatTimeStamp($row['buyTimestamp']);
 			$listDate = $this->FormatTimeStamp($row['listTimestamp']);
+			$lastSeen = $this->FormatTimeStamp($row['lastSeen']);
 			$iconURL = $this->GetIconUrl($item['icon']);
 			$unitPrice = number_format(floatval($row['price']) / floatval($row['qnt']), 2, ".", '');
 			
@@ -641,6 +643,7 @@ class EsoViewSalesData
 			$output .= "<td>$kiosk</td>";
 			if (!$this->OMIT_SELLER_INFO) $output .= "<td>{$row['sellerName']}</td>";
 			if (!$this->OMIT_BUYER_INFO) $output .= "<td>{$row['buyerName']}</td>";
+			$output .= "<td>$lastSeen</td>";
 			
 			if ($listDate != "")
 				$output .= "<td>Listed {$listDate}</td>";
@@ -806,11 +809,11 @@ class EsoViewSalesData
 		else if ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "countSales > 0";
-			if ($timePeriod > 0) $where[] = "lastSaleTimestamp >= $timestamp";
+			if ($timePeriod > 0) $where[] = "(lastSaleTimestamp > 0 AND lastSeen >= $timestamp)";
 		}
 		elseif ($timePeriod > 0)
 		{
-			$where[] = "(lastPurchaseTimestamp >= $timestamp OR lastSaleTimestamp >= $timestamp)";
+			$where[] = "(lastPurchaseTimestamp >= $timestamp OR (lastSaleTimestamp > 0 AND lastSeen >= $timestamp))";
 		}
 		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
@@ -909,7 +912,7 @@ class EsoViewSalesData
 		if ($timePeriod > 0) 
 		{
 			$timestamp = time() - $timePeriod;
-			$where[] = "(buyTimestamp >= $timestamp or listTimestamp >= $timestamp)";
+			$where[] = "(buyTimestamp >= $timestamp OR (listTimestamp > 0 AND lastSeen >= $timestamp))";
 		}
 				
 		if ($this->formValues['saletype'] == "sold")
@@ -945,7 +948,7 @@ class EsoViewSalesData
 		if ($timePeriod > 0)
 		{
 			$timestamp = time() - $timePeriod;
-			$where[] = "(buyTimestamp >= $timestamp or listTimestamp >= $timestamp)";
+			$where[] = "(buyTimestamp >= $timestamp or (listTimestamp > 0 AND lastSeen >= $timestamp))";
 		}
 		
 		if ($this->formValues['saletype'] == "sold")
@@ -1442,10 +1445,10 @@ class EsoViewSalesData
 		
 		$output .= "View: ";
 		
-		if ($saleType == "all")
-			$output .= " <b>All Data</b> ";
+		if ($saleType == "all" || $saleType == "")
+			$output .= " <b>All Items</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=all&timeperiod=$timePeriod'>All Data</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=all&timeperiod=$timePeriod'>All Items</a>";
 		
 		$output .= " : ";
 		
@@ -1461,9 +1464,9 @@ class EsoViewSalesData
 		else
 			$output .= " <a href='?viewsales=$itemId&saletype=listed&timeperiod=$timePeriod'>Only Listed Items</a>";
 		
-		$output .= " : ";
+		$output .= " from ";
 			
-		if ($timePeriod == 0)
+		if ($timePeriod <= 0)
 			$output .= " <b>All Time</b> ";
 		else
 			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=0'>All Time</a>";
@@ -1501,6 +1504,13 @@ class EsoViewSalesData
 	}
 	
 	
+	public function GetTimePeriodMessageHtml()
+	{
+		if ($this->formValues['timeperiod'] <= 0) return "";
+		return "Note: The displayed sale # and average price are for all time. View the item sale details for more accurate values.<br/><br/>";
+	}
+		
+	
 	public function CreateOutputHtml()
 	{
 		$replacePairs = array(
@@ -1528,6 +1538,7 @@ class EsoViewSalesData
 				
 				'{searchResults}' => $this->GetSearchResultsHtml(),
 				'{errorMessages}' => $this->GetErrorMessagesHtml(),
+				'{timePeriodMessage}' => $this->GetTimePeriodMessageHtml(),
 				'{itemQuery}' => $this->itemQuery,
 				'{salesQuery}' => $this->salesQuery,
 				'{salesItemLink}' => $this->GetSalesItemLinkHtml(),

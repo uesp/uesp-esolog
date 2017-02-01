@@ -8,7 +8,7 @@ require_once("/home/uesp/secrets/esosalesdata.secrets");
 class EsoSalesDataParser
 {
 	const SKIP_CREATE_TABLES = false;
-	const ESD_OUTPUTLOG_FILENAME = "esosalesdata.log";
+	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
 		
 	public $server = "NA";
 	
@@ -42,7 +42,7 @@ class EsoSalesDataParser
 	public function log ($msg)
 	{
 		print($msg . "\n");
-		$result = file_put_contents($this->logFilePath . self::ESD_OUTPUTLOG_FILENAME, $msg . "\n", FILE_APPEND | LOCK_EX);
+		$result = file_put_contents(self::ESD_OUTPUTLOG_FILENAME, $msg . "\n", FILE_APPEND | LOCK_EX);
 		return TRUE;
 	}
 	
@@ -114,35 +114,6 @@ class EsoSalesDataParser
 	{
 		global $argv;
 		$this->inputParams = $_REQUEST;
-	
-			// Add command line arguments to input parameters for testing
-		if ($argv !== null)
-		{
-			$foundPath = false;
-			$argIndex = 0;
-				
-			foreach ($argv as $arg)
-			{
-				$argIndex += 1;
-				if ($argIndex <= 1) continue;
-	
-				$e = explode("=", $arg);
-	
-				if(count($e) == 2)
-				{
-					$this->inputParams[$e[0]] = $e[1];
-				}
-				elseif (!$foundPath)
-				{
-					$this->logFilePath = rtrim($e[0], '/') . '/';
-					$foundPath = true;
-				}
-				else
-				{
-					$this->inputParams[$e[0]] = 1;
-				}
-			}
-		}
 	}
 	
 	
@@ -206,6 +177,7 @@ class EsoSalesDataParser
 						countItemSales BIGINT UNSIGNED NOT NULL,
 						lastPurchaseTimestamp INT UNSIGNED NOT NULL,
 						lastSaleTimestamp INT UNSIGNED NOT NULL,
+						lastSeen INT UNSIGNED NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_index1(server(3), itemId, level, quality, trait, potionData),
 						INDEX unique_index2(server(3), itemId, internalLevel, internalSubType, potionData)
@@ -228,6 +200,7 @@ class EsoSalesDataParser
 						price INTEGER NOT NULL,
 						qnt INTEGER NOT NULL,
 						itemLink TINYTEXT NOT NULL,
+						lastSeen INT UNSIGNED NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_entry1(server(3), itemId, guildId, listTimestamp, sellerName(24)),
 						INDEX unique_entry2(server(3), itemId, guildId, eventId)
@@ -369,12 +342,13 @@ class EsoSalesDataParser
 		$sumSales = $itemData['sumSales'];
 		$lastPurchase = $itemData['lastPurchaseTimestamp'];
 		$lastSale = $itemData['lastSaleTimestamp'];
+		$lastSeen = $itemData['lastSeen'];
 		$icon = $this->db->real_escape_string($itemData['icon']);
 		
 		$this->lastQuery = "UPDATE items SET ";
 		$this->lastQuery .= "countPurchases=$countPurchases, countSales=$countSales, countItemPurchases=$countItemPurchases, ";
 		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales, icon='$icon', ";
-		$this->lastQuery .= "lastPurchaseTimestamp=$lastPurchase, lastSaleTimestamp=$lastSale ";
+		$this->lastQuery .= "lastPurchaseTimestamp=$lastPurchase, lastSaleTimestamp=$lastSale, lastSeen=$lastSeen ";
 		$this->lastQuery .= "WHERE id=$id;";
 		
 		$result = $this->db->query($this->lastQuery);
@@ -582,6 +556,10 @@ class EsoSalesDataParser
 		$itemData['countItemPurchases'] = 0;
 		$itemData['countItemSales'] = 0;
 		
+		$itemData['lastPurchaseTimestamp'] = 0;
+		$itemData['lastSaleTimestamp'] = 0;
+		$itemData['lastSeen'] = 0;
+		
 		++$this->localNewItemCount;
 		
 		return $itemData;
@@ -664,6 +642,10 @@ class EsoSalesDataParser
 		$itemData['countSales'] = 0;
 		$itemData['countItemPurchases'] = 0;
 		$itemData['countItemSales'] = 0;
+		
+		$itemData['lastPurchaseTimestamp'] = 0;
+		$itemData['lastSaleTimestamp'] = 0;
+		$itemData['lastSeen'] = 0;
 				
 		++$this->localNewItemCount;
 		
@@ -752,6 +734,7 @@ class EsoSalesDataParser
 			$this->itemData[$cacheId]['countSales'] = 0;
 			$this->itemData[$cacheId]['countItemPurchases'] = 0;
 			$this->itemData[$cacheId]['countItemSales'] = 0;
+			$this->itemData[$cacheId]['lastSeen'] = 0;
 				
 			$this->itemData[$cacheId]['__dirty'] = true;
 			$this->itemData[$cacheId]['__error'] = true;
@@ -813,8 +796,8 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 		
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$buyTimestamp');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
 
@@ -826,7 +809,11 @@ class EsoSalesDataParser
 		$itemData['countItemPurchases'] += intval($saleData['quant']);
 		$itemData['__dirty'] = true;
 		
-		if ($buyTimestamp > 0 && $buyTimestamp > $itemData['lastPurchaseTimestamp']) $itemData['lastPurchaseTimestamp'] = $buyTimestamp;
+		if ($buyTimestamp > 0)
+		{
+			if ($buyTimestamp > $itemData['lastPurchaseTimestamp']) $itemData['lastPurchaseTimestamp'] = $buyTimestamp;
+			if ($buyTimestamp > $itemData['lastSeen']) $itemData['lastSeen'] = $buyTimestamp;
+		}		
 				
 		++$this->localNewSalesCount;
 		
@@ -840,6 +827,7 @@ class EsoSalesDataParser
 		
 		$itemId = $itemData['id'];
 		$guildId = $guildData['id'];
+		$timestamp = intval($saleData['timeStamp1']);
 		$eventId = $this->db->real_escape_string($saleData['eventId']);
 		$sellerName = $this->db->real_escape_string($saleData['seller']);
 		$buyerName = $this->db->real_escape_string($saleData['buyer']);
@@ -849,8 +837,8 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 	
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$timestamp');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
 	
@@ -863,7 +851,8 @@ class EsoSalesDataParser
 		$itemData['__dirty'] = true;
 		
 		if ($buyTimestamp > 0 && $buyTimestamp > $itemData['lastPurchaseTimestamp']) $itemData['lastPurchaseTimestamp'] = $buyTimestamp;
-		
+		if ($timestamp > 0 && $timestamp > $itemData['lastSeen']) $itemData['lastSeen'] = $timestamp;
+				
 		++$this->localNewSalesCount;
 	
 		return true;
@@ -877,6 +866,7 @@ class EsoSalesDataParser
 		$itemId = $itemData['id'];
 		$guildId = $guildData['id'];
 		$eventId = 0;
+		$timestamp = intval($saleData['timeStamp1']);
 		$sellerName = $this->db->real_escape_string($saleData['seller']);
 		$buyerName = "";
 		$buyTimestamp = 0;
@@ -886,8 +876,8 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 	
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp);";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");
 	
@@ -900,6 +890,7 @@ class EsoSalesDataParser
 		$itemData['__dirty'] = true;
 		
 		if ($listTimestamp > 0 && $listTimestamp > $itemData['lastSaleTimestamp']) $itemData['lastSaleTimestamp'] = $listTimestamp;
+		if ($timestamp > 0 && $timestamp > $itemData['lastSeen']) $itemData['lastSeen'] = $timestamp;
 			
 		++$this->localNewSalesCount;
 	
