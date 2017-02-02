@@ -15,7 +15,9 @@ class EsoViewSalesData
 {
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
-	const ESOVSD_MAXZSCORE = 2;
+	const ESOVSD_MAXZSCORE = 2.0;
+	const ESOVSD_MAXZSCORE_WEIGHTED = 3.0;
+	const ESOVSD_WEIGHTED_CONSTANT = 30.0;
 	
 	public $OMIT_BUYER_INFO = true;
 	public $OMIT_SELLER_INFO = true;
@@ -78,6 +80,13 @@ class EsoViewSalesData
 	public $salePriceAverageCountListed = 0;
 	public $salePriceAverageItemsListed = 0;
 	
+	public $salePriceWeightAll = 0;
+	public $salePriceWeightItemsAll = 0;
+	public $salePriceWeightSold = 0;
+	public $salePriceWeightItemsSold = 0;
+	public $salePriceWeightListed = 0;
+	public $salePriceWeightItemsListed = 0;
+	
 	public $salePriceAverageLastTimestampListed = 0;
 	public $salePriceAverageLastTimestampSold = 0;
 	public $salePriceAverageLastTimestampAll = 0;
@@ -95,6 +104,20 @@ class EsoViewSalesData
 	public $salePriceAdjAll = 0;
 	public $salePriceAdjSold = 0;
 	public $salePriceAdjListed = 0;
+	
+	public $salePriceStdDevWeightAll = 0;
+	public $salePriceStdDevWeightListed = 0;
+	public $salePriceStdDevWeightSold = 0;
+	
+	public $salePriceAdjWeightCountAll = 0;
+	public $salePriceAdjWeightCountSold = 0;
+	public $salePriceAdjWeightCountListed = 0;
+	public $salePriceAdjWeightItemsAll = 0;
+	public $salePriceAdjWeightItemsSold = 0;
+	public $salePriceAdjWeightItemsListed = 0;
+	public $salePriceAdjWeightAll = 0;
+	public $salePriceAdjWeightSold = 0;
+	public $salePriceAdjWeightListed = 0;
 	
 	public $itemQuery = "";
 	public $salesQuery = "";
@@ -1104,6 +1127,14 @@ class EsoViewSalesData
 		$lastListTimestamp = time();
 		$lastSoldTimestamp = $lastListTimestamp;
 		
+		$weightSumAll = 0;
+		$weightSumSold = 0;
+		$weightSumListed = 0;
+		$weightItemsAll = 0;
+		$weightItemsSold = 0;
+		$weightItemsListed = 0;
+		$currentTimestamp = time();
+		
 		foreach ($this->searchResults as $result)
 		{
 			$price = intval($result['price']);
@@ -1116,6 +1147,17 @@ class EsoViewSalesData
 				++$countSold;
 				
 				if ($result['buyTimestamp'] < $lastSoldTimestamp) $lastSoldTimestamp = intval($result['buyTimestamp']);
+				
+				$days = ($currentTimestamp - $result['buyTimestamp'])/86400;
+				$weight = self::ESOVSD_WEIGHTED_CONSTANT / $days;
+				if ($weight > 1) $weight = 1;
+				if ($weight < 0) $weight = 0;
+				
+				$weightSumSold += $price * $weight;
+				$weightItemsSold += $qnt * $weight;
+				
+				$weightSumAll += $price * $weight;
+				$weightItemsAll += $qnt * $weight;
 			}
 			
 			if ($result['listTimestamp'] > 0)
@@ -1125,6 +1167,17 @@ class EsoViewSalesData
 				++$countListed;
 				
 				if ($result['listTimestamp'] < $lastListTimestamp) $lastListTimestamp = intval($result['listTimestamp']);
+				
+				$days = ($currentTimestamp - $result['listTimestamp'])/86400;
+				$weight = self::ESOVSD_WEIGHTED_CONSTANT / $days;
+				if ($weight > 1) $weight = 1;
+				if ($weight < 0) $weight = 0;
+				
+				$weightSumListed += $price * $weight;
+				$weightItemsListed += $qnt * $weight;
+				
+				$weightSumAll += $price * $weight;
+				$weightItemsAll += $qnt * $weight;
 			}
 			
 			$priceSumAll += $price;
@@ -1145,11 +1198,21 @@ class EsoViewSalesData
 		$this->salePriceAverageCountListed = 0;
 		$this->salePriceAverageItemsListed = 0;
 		
+		$this->salePriceWeightAll = 0;
+		$this->salePriceWeightItemsAll = 0;
+		$this->salePriceWeightSold = 0;
+		$this->salePriceWeightItemsSold = 0;
+		$this->salePriceWeightListed = 0;
+		$this->salePriceWeightItemsListed = 0;
+		
 		if ($countItemsAll > 0)
 		{
 			$this->salePriceAverageAll = floatval($priceSumAll) / $countItemsAll;
 			$this->salePriceAverageCountAll = $countAll;
 			$this->salePriceAverageItemsAll = $countItemsAll;
+			
+			$this->salePriceWeightAll = floatval($weightSumAll) / $weightItemsAll;
+			$this->salePriceWeightItemsAll = $weightItemsAll;
 		}
 		
 		if ($countItemsSold > 0)
@@ -1157,6 +1220,9 @@ class EsoViewSalesData
 			$this->salePriceAverageSold = floatval($priceSumSold) / $countItemsSold;
 			$this->salePriceAverageCountSold = $countSold;
 			$this->salePriceAverageItemsSold = $countItemsSold;
+			
+			$this->salePriceWeightSold = floatval($weightSumSold) / $weightItemsSold;
+			$this->salePriceWeightItemsSold = $weightItemsSold;
 		}
 		
 		if ($countItemsListed > 0)
@@ -1164,6 +1230,9 @@ class EsoViewSalesData
 			$this->salePriceAverageListed = floatval($priceSumListed) / $countItemsListed;
 			$this->salePriceAverageCountListed = $countListed;
 			$this->salePriceAverageItemsListed = $countItemsListed;
+			
+			$this->salePriceWeightListed = floatval($weightSumListed) / $weightItemsListed;
+			$this->salePriceWeightItemsListed = $weightItemsListed;
 		}
 		
 		$this->salePriceAverageLastTimestampListed = $lastListTimestamp;
@@ -1176,9 +1245,16 @@ class EsoViewSalesData
 	
 	public function ComputeSaleAdvancedStatistics()
 	{
+		$currentTimestamp = time();
 		$sumSquareAll = 0;
 		$sumSquareListed = 0;
 		$sumSquareSold = 0;
+		$sumWeightAll = 0;
+		$sumWeightListed = 0;
+		$sumWeightSold = 0;
+		$sumWeightCountAll = 0;
+		$sumWeightCountListed = 0;
+		$sumWeightCountSold = 0;
 		
 		foreach ($this->searchResults as $result)
 		{
@@ -1187,17 +1263,62 @@ class EsoViewSalesData
 			$unitPrice = $price / (float) $qnt;
 			
 			$sumSquareAll += pow($unitPrice - $this->salePriceAverageAll, 2);
-			if ($result['buyTimestamp']  > 0) $sumSquareSold += pow($unitPrice - $this->salePriceAverageSold, 2);
-			if ($result['listTimestamp'] > 0) $sumSquareListed += pow($unitPrice - $this->salePriceAverageListed, 2);
+			
+			if ($result['buyTimestamp']  > 0) 
+			{
+				$sumSquareSold += pow($unitPrice - $this->salePriceAverageSold, 2);
+				
+				$days = ($currentTimestamp - $result['buyTimestamp'])/86400;
+				$weight = self::ESOVSD_WEIGHTED_CONSTANT / $days;
+				if ($weight > 1) $weight = 1;
+				if ($weight < 0) $weight = 0;
+	
+				$sumWeightAll += pow($unitPrice - $this->salePriceWeightAll, 2) * $weight;
+				$sumWeightSold += pow($unitPrice - $this->salePriceWeightSold, 2) * $weight;
+				$sumWeightCountAll += 1 * $weight;
+				$sumWeightCountSold += 1 * $weight;
+			}
+			
+			if ($result['listTimestamp'] > 0) 
+			{
+				$sumSquareListed += pow($unitPrice - $this->salePriceAverageListed, 2);
+				
+				$days = ($currentTimestamp - $result['listTimestamp'])/86400;
+				$weight = self::ESOVSD_WEIGHTED_CONSTANT / $days;
+				if ($weight > 1) $weight = 1;
+				if ($weight < 0) $weight = 0;
+				
+				$sumWeightAll += pow($unitPrice - $this->salePriceWeightAll, 2) * $weight;
+				$sumWeightListed += pow($unitPrice - $this->salePriceWeightListed, 2) * $weight;
+				$sumWeightCountAll += 1 * $weight;
+				$sumWeightCountListed += 1 * $weight;
+			}
 		}
 		
 		$this->salePriceStdDevAll = 0;
 		$this->salePriceStdDevListed = 0;
 		$this->salePriceStdDevSold = 0;
+		$this->salePriceStdDevWeightAll = 0;
+		$this->salePriceStdDevWeightListed = 0;
+		$this->salePriceStdDevWeightSold = 0;
 		
-		if ($this->salePriceAverageCountAll    > 0) $this->salePriceStdDevAll = sqrt($sumSquareAll / floatval($this->salePriceAverageCountAll));
-		if ($this->salePriceAverageCountSold   > 0) $this->salePriceStdDevSold = sqrt($sumSquareSold / floatval($this->salePriceAverageCountSold));
-		if ($this->salePriceAverageCountListed > 0)	$this->salePriceStdDevListed = sqrt($sumSquareListed / floatval($this->salePriceAverageCountListed));
+		if ($this->salePriceAverageCountAll > 0) 
+		{
+			$this->salePriceStdDevAll = sqrt($sumSquareAll / floatval($this->salePriceAverageCountAll));
+			$this->salePriceStdDevWeightAll = sqrt($sumWeightAll / $sumWeightCountAll);
+		}
+		
+		if ($this->salePriceAverageCountSold > 0) 
+		{
+			$this->salePriceStdDevSold = sqrt($sumSquareSold / floatval($this->salePriceAverageCountSold));
+			$this->salePriceStdDevWeightSold = sqrt($sumWeightSold / $sumWeightCountSold);
+		}
+		
+		if ($this->salePriceAverageCountListed > 0)	
+		{
+			$this->salePriceStdDevListed = sqrt($sumSquareListed / floatval($this->salePriceAverageCountListed));
+			$this->salePriceStdDevWeightListed = sqrt($sumWeightListed / $sumWeightCountListed);
+		}
 		
 		$sumAdjAll = 0;
 		$sumAdjListed = 0;
@@ -1211,7 +1332,19 @@ class EsoViewSalesData
 		$zScoreAll = 1;
 		$zScoreSold = 1;
 		$zScoreListed = 1;
-		
+		$zScoreWeightAll = 1;
+		$zScoreWeightSold = 1;
+		$zScoreWeightListed = 1;
+		$sumAdjWeightAll = 0;
+		$sumAdjWeightListed = 0;
+		$sumAdjWeightSold = 0;
+		$countAdjWeightAll = 0;
+		$countAdjWeightListed = 0;
+		$countAdjWeightSold = 0;
+		$itemsAdjWeightAll = 0;
+		$itemsAdjWeightListed = 0;
+		$itemsAdjWeightSold = 0;
+				
 		foreach ($this->searchResults as &$result)
 		{
 			$price = intval($result['price']);
@@ -1219,6 +1352,7 @@ class EsoViewSalesData
 			$unitPrice = $price / (float) $qnt;
 			
 			if ($this->salePriceStdDevAll != 0) $zScoreAll = abs(($unitPrice - $this->salePriceAverageAll) / $this->salePriceStdDevAll);
+			if ($this->salePriceStdDevWeightAll != 0) $zScoreWeightAll = abs(($unitPrice - $this->salePriceWeightAll) / $this->salePriceStdDevWeightAll);
 
 			if ($zScoreAll <= self::ESOVSD_MAXZSCORE)
 			{
@@ -1230,10 +1364,16 @@ class EsoViewSalesData
 			{
 				$result['outlier'] = true;
 			}
-			
+						
 			if ($result['buyTimestamp']  > 0) 
 			{
 				if ($this->salePriceStdDevSold != 0) $zScoreSold = abs(($unitPrice - $this->salePriceAverageSold) / $this->salePriceStdDevSold);
+				if ($this->salePriceStdDevWeightSold != 0) $zScoreWeightSold = abs(($unitPrice - $this->salePriceWeightSold) / $this->salePriceStdDevWeightSold);
+				
+				$days = ($currentTimestamp - $result['buyTimestamp'])/86400;
+				$weight = self::ESOVSD_WEIGHTED_CONSTANT / $days;
+				if ($weight > 1) $weight = 1;
+				if ($weight < 0) $weight = 0;
 				
 				if ($zScoreSold <= self::ESOVSD_MAXZSCORE)
 				{
@@ -1245,17 +1385,68 @@ class EsoViewSalesData
 				{
 					$result['outlier'] = true;
 				}
+				
+				if ($zScoreWeightAll <= self::ESOVSD_MAXZSCORE_WEIGHTED)
+				{
+					$sumAdjWeightAll += $price * $weight;
+					$itemsAdjWeightAll += $qnt * $weight;
+					++$countAdjWeightAll;
+				}
+				else
+				{
+					$result['outlier'] = true;
+				}
+				
+				if ($zScoreWeightSold <= self::ESOVSD_MAXZSCORE_WEIGHTED)
+				{
+					$sumAdjWeightSold += $price * $weight;
+					$itemsAdjWeightSold += $qnt * $weight;
+					++$countAdjWeightSold;
+				}
+				else
+				{
+					$result['outlier'] = true;
+				}
+					
 			}
 			
 			if ($result['listTimestamp'] > 0) 
 			{
 				if ($this->salePriceStdDevListed != 0) $zScoreList = abs(($unitPrice - $this->salePriceAverageListed) / $this->salePriceStdDevListed);
+				if ($this->salePriceStdDevWeightListed != 0) $zScoreWeightListed = abs(($unitPrice - $this->salePriceWeightListed) / $this->salePriceStdDevWeightListed);
+				
+				$days = ($currentTimestamp - $result['listTimestamp'])/86400;
+				$weight = self::ESOVSD_WEIGHTED_CONSTANT / $days;
+				if ($weight > 1) $weight = 1;
+				if ($weight < 0) $weight = 0;
 				
 				if ($zScoreList <= self::ESOVSD_MAXZSCORE)
 				{
 					$sumAdjListed += $price;
 					$itemsAdjListed += $qnt;
 					++$countAdjListed;
+				}
+				else
+				{
+					$result['outlier'] = true;
+				}
+				
+				if ($zScoreWeightAll <= self::ESOVSD_MAXZSCORE_WEIGHTED)
+				{
+					$sumAdjWeightAll += $price * $weight;
+					$itemsAdjWeightAll += $qnt * $weight;
+					++$countAdjWeightAll;
+				}
+				else
+				{
+					$result['outlier'] = true;
+				}
+				
+				if ($zScoreWeightListed <= self::ESOVSD_MAXZSCORE_WEIGHTED)
+				{
+					$sumAdjWeightListed += $price * $weight;
+					$itemsAdjWeightListed += $qnt * $weight;
+					++$countAdjWeightListed;
 				}
 				else
 				{
@@ -1273,12 +1464,25 @@ class EsoViewSalesData
 		$this->salePriceAdjAll = 0;
 		$this->salePriceAdjSold = 0;
 		$this->salePriceAdjListed = 0;
+		$this->salePriceAdjWeightCountAll = 0;
+		$this->salePriceAdjWeightCountSold = 0;
+		$this->salePriceAdjWeightCountListed = 0;
+		$this->salePriceAdjWeightItemsAll = 0;
+		$this->salePriceAdjWeightItemsSold = 0;
+		$this->salePriceAdjWeightItemsListed = 0;
+		$this->salePriceAdjWeightAll = 0;
+		$this->salePriceAdjWeightSold = 0;
+		$this->salePriceAdjWeightListed = 0;
 		
 		if ($countAdjAll > 0)
 		{
 			$this->salePriceAdjAll = $sumAdjAll / (float) $itemsAdjAll;
 			$this->salePriceAdjItemsAll = $itemsAdjAll;
 			$this->salePriceAdjCountAll = $countAdjAll;
+			
+			$this->salePriceAdjWeightAll = $sumAdjWeightAll / (float) $itemsAdjWeightAll;
+			$this->salePriceAdjWeightItemsAll = $itemsAdjWeightAll;
+			$this->salePriceAdjWeightCountAll = $countAdjWeightAll;
 		}
 		
 		if ($countAdjSold > 0)
@@ -1286,6 +1490,10 @@ class EsoViewSalesData
 			$this->salePriceAdjSold = $sumAdjSold / (float) $itemsAdjSold;
 			$this->salePriceAdjItemsSold = $itemsAdjSold;
 			$this->salePriceAdjCountSold = $countAdjSold;
+			
+			$this->salePriceAdjWeightSold = $sumAdjWeightSold / (float) $itemsAdjWeightSold;
+			$this->salePriceAdjWeightItemsSold = $itemsAdjWeightSold;
+			$this->salePriceAdjWeightCountSold = $countAdjWeightSold;
 		}
 		
 		if ($countAdjListed > 0)
@@ -1293,6 +1501,10 @@ class EsoViewSalesData
 			$this->salePriceAdjListed = $sumAdjListed / (float) $itemsAdjListed;
 			$this->salePriceAdjItemsListed = $itemsAdjListed;
 			$this->salePriceAdjCountListed = $countAdjListed;
+			
+			$this->salePriceAdjWeightListed = $sumAdjWeightListed / (float) $itemsAdjWeightListed;
+			$this->salePriceAdjWeightItemsListed = $itemsAdjWeightListed;
+			$this->salePriceAdjWeightCountListed = $countAdjWeightListed;
 		}
 		
 	}
@@ -1755,7 +1967,25 @@ class EsoViewSalesData
 				"AdjItemsListed" => "salePriceAdjItemsListed",
 				"AdjPriceAll" => "salePriceAdjAll",
 				"AdjPriceSold" => "salePriceAdjSold",
-				"AdjPriceListed" => "salePriceAdjListed",				
+				"AdjPriceListed" => "salePriceAdjListed",
+				"WeightPriceAll" => "salePriceWeightAll",
+				"WeightItemsAll" => "salePriceWeightItemsAll",
+				"WeightPriceSold" => "salePriceWeightSold",
+				"WeightItemsSold" => "salePriceWeightItemsSold",
+				"WeightPriceListed" => "salePriceWeightListed",
+				"WeightItemsListed" => "salePriceWeightItemsListed",
+				"StdDevWeightAll" => "salePriceStdDevWeightAll",
+				"StdDevWeightSold" => "salePriceStdDevWeightSold",
+				"StdDevWeightListed" => "salePriceStdDevWeightListed",
+				"AdjWeightCountAll" => "salePriceAdjWeightCountAll",
+				"AdjWeightCountSold" => "salePriceAdjWeightCountSold",
+				"AdjWeightCountListed" => "salePriceAdjWeightCountListed",
+				"AdjWeightItemsAll" => "salePriceAdjWeightItemsAll",
+				"AdjWeightItemsSold" => "salePriceAdjWeightItemsSold",
+				"AdjWeightItemsListed" => "salePriceAdjWeightItemsListed",
+				"AdjWeightPriceAll" => "salePriceAdjWeightAll",
+				"AdjWeightPriceSold" => "salePriceAdjWeightSold",
+				"AdjWeightPriceListed" => "salePriceAdjWeightListed",
 		);
 		
 		$vars = get_object_vars($this);
