@@ -9,12 +9,18 @@ class CEsoSalesMakePriceList
 {
 	public $VERSION = "1";
 	public $OUTPUT_BASEPATH = "prices";
+	public $OUTPUT_LUAFILENAME = "uespSalesPrices.lua";
+	public $OUTPUT_PRICELISTINDEX = "priceIndex.html";
 	
 	public $db = null;
+	
+	public $indexData = array();
+	public $updateTime = 0;
 	
 	
 	public function __construct()
 	{
+		$this->updateTime = time();
 		$this->InitDatabase();	
 	}	
 	
@@ -36,6 +42,8 @@ class CEsoSalesMakePriceList
 		
 		print("Loaded {$result->num_rows} items for server $server...\n");
 		$itemData = array();
+		$totalSales = 0;
+		$totalPurchases = 0;
 				
 		while (($row = $result->fetch_assoc()))
 		{
@@ -92,7 +100,14 @@ class CEsoSalesMakePriceList
 			$saleData[4] = $row['countSales'];
 			$saleData[5] = $row['countItemPurchases'];
 			$saleData[6] = $row['countItemSales'];
+			
+			$totalSales += $row['countSales'];
+			$totalPurchases += $row['countPurchases'];
 		}
+		
+		$this->indexData[$server]['numItems'] = count($itemData);
+		$this->indexData[$server]['numListed'] = countSales;
+		$this->indexData[$server]['numSold'] = countPurchases;
 		
 		return $itemData;
 	}
@@ -101,6 +116,7 @@ class CEsoSalesMakePriceList
 	public function MakeLuaData($itemData, $server)
 	{
 		$output = "";
+		$dataCount = 0;
 		
 		$output .= "function uespLog.InitSalesPrices()\n";
 		$output .= "uespLog.SalesPricesServer = '$server'\n";
@@ -126,6 +142,7 @@ class CEsoSalesMakePriceList
 						foreach ($potionData as $potion => $salesData)
 						{
 							$output .= "[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]},{$salesData[6]}},";
+							++$dataCount;
 						}
 		
 						$output .= "},";
@@ -143,18 +160,49 @@ class CEsoSalesMakePriceList
 		$output .= "}\n";
 		$output .= "end\n";
 		
+		$this->indexData[$server]['dataCount'] = $dataCount;
+		
 		return $output;
 	}
 	
 	
 	public function OutputPriceList($server, $luaData)
 	{
-		$outputFile = $this->OUTPUT_BASEPATH . "$server/uespSalesPrices.lua";
+		$outputFile = $this->OUTPUT_BASEPATH . "$server/{$this->OUTPUT_LUAFILENAME}";
 		print("Saving $server price list to '$outputFile'...\n");
 		
 		if (file_put_contents($outputFile, $luaData) === false)
 		{
 			print("Error: Failed to write file data!\n");
+			return false;
+		}
+		
+		$this->indexData[$server]['fileSize'] = strlen($luaData);
+		$this->indexData[$server]['updateDate'] = date('Y-m-d H:i:s', $this->updateTime);
+		
+		return true;
+	}
+	
+	
+	public function CreatePriceListIndex()
+	{
+		$output = "";
+		
+		foreach ($this->indexData as $server => $indexData)
+		{
+			$size = round($indexData['fileSize'] / 1000000, 1);
+			$date = $indexData['updateDate'];
+			$priceCount = $indexData['dataCount'];
+			
+			$output .= "<li>";
+			$output .= "<a href='{$this->OUTPUT_BASEPATH}$server/{$this->OUTPUT_LUAFILENAME}'><b>$server {$this->OUTPUT_LUAFILENAME}</b></a> -- ";
+			$output .= "$priceCount Prices, Last Updated $date, $size MB";
+			$output .= "</li>\n";
+		}
+		
+		if (file_put_contents($this->OUTPUT_PRICELISTINDEX, $output) === false)
+		{
+			print("Error: Failed to write price index data!\n");
 			return false;
 		}
 		
@@ -164,6 +212,8 @@ class CEsoSalesMakePriceList
 	
 	public function CreatePriceList($server)
 	{
+		$this->indexData[$server] = array();
+		
 		$itemData = $this->LoadItems($server);
 		$luaData = $this->MakeLuaData($itemData, $server);
 		$this->OutputPriceList($server, $luaData);
@@ -178,6 +228,8 @@ class CEsoSalesMakePriceList
 		$this->CreatePriceList("EU");
 		$this->CreatePriceList("PTS");
 		$this->CreatePriceList("Other");
+		
+		$this->CreatePriceListIndex();
 	}
 	
 };
