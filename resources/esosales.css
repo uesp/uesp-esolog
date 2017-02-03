@@ -221,3 +221,14 @@ a:hover {
 .esovsd_outlier {
 	background-color: #ffcccc;
 }
+
+#esovsd_priceindex li {
+	padding-top: 5px;
+	padding-bottom: 2px;
+}
+
+.esovsd_rightheaderlink {
+	float: right;
+	font-weight: bold;
+	padding-right: 10px;
+}

@@ -11,6 +11,11 @@
 	</head>
 <body>
 <a href="/viewSales.php">Back to Item Sales Search</a>
+<a class="esovsd_rightheaderlink" href="http://www.uesp.net/wiki/UESPWiki:EsoSalesData">Help</a>
+<a class="esovsd_rightheaderlink" href="http://www.uesp.net/wiki/UESPWiki_talk:EsoSalesData">Feedback</a>
+<a class="esovsd_rightheaderlink" href="/viewSales.php?view=guilds">View Guilds</a>
+<a class="esovsd_rightheaderlink" href="/salesPrices.shtml">Download Prices</a>
+
 <div class="esosalesnote">
 	<b>Note:</b> The sales data collector and viewer are in early beta and may not work perfectly. User discretion is advised. See 
 	<a href='http://www.uesp.net/wiki/UESPWiki:EsoSalesData'>here</a> for more information on using and contributing sales data and feel free to 
