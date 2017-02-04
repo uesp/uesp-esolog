@@ -196,7 +196,7 @@ class CEsoSalesMakePriceList
 			
 			$output .= "<li>";
 			$output .= "<a href='{$this->OUTPUT_BASEPATH}$server/{$this->OUTPUT_LUAFILENAME}'><b>$server {$this->OUTPUT_LUAFILENAME}</b></a> -- ";
-			$output .= "$priceCount Prices, Last Updated $date, $size MB";
+			$output .= "$priceCount Prices, Last Updated $date EST, $size MB";
 			$output .= "</li>\n";
 		}
 		
