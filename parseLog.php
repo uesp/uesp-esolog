@@ -5561,6 +5561,15 @@ class EsoLogParser
 };
 
 
+$output = shell_exec("ps -ef | grep -v grep | grep parseLog.php | wc -l");
+
+if ($output >= 2)
+{
+	echo "ParseLog is already running...aborting!\n";
+	exit;
+}
+
+
 $g_EsoLogParser = new EsoLogParser();
 $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();

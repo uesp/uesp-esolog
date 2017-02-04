@@ -9,6 +9,7 @@ class EsoSalesDataParser
 {
 	const SKIP_CREATE_TABLES = false;
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
+	const ESD_LISTTIME_ROUND = 10;
 		
 	public $server = "NA";
 	
@@ -750,7 +751,9 @@ class EsoSalesDataParser
 		$safeName = $this->db->real_escape_string($sellerName);
 		$server = $this->db->real_escape_string($this->server);
 		
-		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp=$safeTime AND sellerName=\"$safeName\" LIMIT 1;";
+		if (self::ESD_LISTTIME_ROUND > 0) $safeTime = floor($safeTime / self::ESD_LISTTIME_ROUND) * self::ESD_LISTTIME_ROUND;
+		
+		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\" LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$safeTime:$safeName!");
 		
@@ -875,6 +878,8 @@ class EsoSalesDataParser
 		$qnt = $this->db->real_escape_string($saleData['qnt']);
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
+		
+		if (self::ESD_LISTTIME_ROUND > 0) $listTimestamp = floor($listTimestamp / self::ESD_LISTTIME_ROUND) * self::ESD_LISTTIME_ROUND;
 	
 		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp);";
