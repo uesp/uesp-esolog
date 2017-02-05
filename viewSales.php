@@ -1734,7 +1734,7 @@ class EsoViewSalesData
 		if ($lastTimestamp > 0)
 		{
 			$days = intval((time() - $lastTimestamp) / 86400) + 1;
-			$copyData .= ", $days days";
+			//$copyData .= ", $days days";
 		}
 		
 		$copyData .= "): $price gp for |H1:item:$itemId:$itemSubType:$itemLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
@@ -1782,11 +1782,17 @@ class EsoViewSalesData
 		{
 			$days = intval((time() - $lastTimestamp) / 86400) + 1;
 			$output .= "Average price for $label (";
-			if ($listCount > 0) $output .= "$listCount listed, ";
-			if ($soldCount > 0) $output .= "$soldCount sold, ";
-			if ($itemCount > $totalCount) $output .= "$itemCount items, ";
+			
+			if ($listCount > 0) 
+			{
+				$output .= "$listCount listed";
+				if ($soldCount > 0) $output .= ", ";
+			}
+			
+			if ($soldCount > 0) $output .= "$soldCount sold";
+			if ($itemCount > $totalCount) $output .= ", $itemCount items";
 				
-			$output .= "$days days): <b>" . $fmtPrice . " gp</b>";
+			$output .= "): <b>" . $fmtPrice . " gp</b>";
 			$output .= $this->CreateItemCopyPriceHtml($avgPrice, $listCount, $soldCount, $lastTimestamp, $itemCount);
 		}
 		
