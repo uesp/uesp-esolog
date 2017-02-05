@@ -250,9 +250,9 @@ class EsoViewSalesData
 		{
 			if ($this->formValues['server'] == "NA")
 				$this->server = "NA";
-			else if ($this->formValues['server'] == "EU")
+			elseif ($this->formValues['server'] == "EU")
 				$this->server = "EU";
-			else if ($this->formValues['server'] == "PTS")
+			elseif ($this->formValues['server'] == "PTS")
 				$this->server = "PTS";
 			
 			$this->displayServer = $this->server;
@@ -345,7 +345,7 @@ class EsoViewSalesData
 			else
 				$templateFile .= $this->ESOVSD_HTML_SALES_TEMPLATE;
 		}
-		else if ($this->showForm == "ViewGuilds")
+		elseif ($this->showForm == "ViewGuilds")
 		{
 			if ($this->isEmbedded)
 				$templateFile .= $this->ESOVSD_HTML_GUILDS_TEMPLATE_EMBED;
@@ -380,7 +380,7 @@ class EsoViewSalesData
 		{
 			if ($value == $selectedValue)
 				$selected = "selected";
-			else if ($useKeyAsValue && $key == $selectedValue)
+			elseif ($useKeyAsValue && $key == $selectedValue)
 				$selected = "selected";
 			else
 				$selected = "";
@@ -427,7 +427,7 @@ class EsoViewSalesData
 		{
 			$level = intval(substr($text, 1)) + 50;
 		}
-		else if ($result1)
+		elseif ($result1)
 		{
 			$level = floor(intval(substr($text, 2))/10) + 50;
 		}
@@ -438,7 +438,7 @@ class EsoViewSalesData
 	
 		if ($level < 0)
 			$level = 0;
-		else if ($level > 66)
+		elseif ($level > 66)
 			$level = 66;
 					
 		return $level;
@@ -565,7 +565,7 @@ class EsoViewSalesData
 				$avgPrice = $sumPurchases / $totalItems;
 				$extraQuery .= "&saletype=sold";
 			}
-			else if ($this->formValues['saletype'] == "listed")
+			elseif ($this->formValues['saletype'] == "listed")
 			{
 				$totalCount = $totalSales;
 				$totalItems = floatval($item['countItemSales']);
@@ -632,13 +632,13 @@ class EsoViewSalesData
 		
 		if ($days > 1)
 			return "$days days ago";
-		else if ($days > 0)
+		elseif ($days > 0)
 			return "1 day ago";
-		else if ($hours > 1)
+		elseif ($hours > 1)
 			return "$hours hours ago";
-		else if ($hours > 0)
+		elseif ($hours > 0)
 			return "1 hour ago";
-		else if ($minutes > 1)
+		elseif ($minutes > 1)
 			return "$minutes mins ago";
 		else
 			return "1 minute ago";
@@ -815,11 +815,11 @@ class EsoViewSalesData
 		{
 			if ($traitValue == 20 || $traitValue == 9)
 				$where[] = "(trait=9 OR trait=20)";
-			else if ($traitValue == 19 || $traitValue == 24 || $traitValue == 10)
+			elseif ($traitValue == 19 || $traitValue == 24 || $traitValue == 10)
 				$where[] = "(trait=10 OR trait=19 or trait=24)";
-			else if ($traitValue == 6 || $traitValue == 15)
+			elseif ($traitValue == 6 || $traitValue == 15)
 				$where[] = "(trait=6 OR trait=15)";
-			else if ($traitValue == 25 || $traitValue == 26)
+			elseif ($traitValue == 25 || $traitValue == 26)
 				$where[] = "(trait=25 OR trait=26)";
 			else
 				$where[] = "trait=".$traitValue;
@@ -852,7 +852,7 @@ class EsoViewSalesData
 			$where[] = "countPurchases > 0";
 			if ($timePeriod > 0) $where[] = "lastPurchaseTimestamp >= $timestamp";
 		}
-		else if ($this->formValues['saletype'] == "listed")
+		elseif ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "countSales > 0";
 			$minTimestamp = $timestamp - $this->ESOVSD_MAX_LISTING_TIME;
@@ -998,7 +998,7 @@ class EsoViewSalesData
 		{
 			$where[] = "buyTimestamp > 0";
 		}
-		else if ($this->formValues['saletype'] == "listed")
+		elseif ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "listTimestamp > 0";
 		}
@@ -1035,7 +1035,7 @@ class EsoViewSalesData
 		{
 			$where[] = "buyTimestamp > 0";
 		}
-		else if ($this->formValues['saletype'] == "listed")
+		elseif ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "listTimestamp > 0";
 		}
@@ -1529,11 +1529,11 @@ class EsoViewSalesData
 			$this->LoadSalesSearchResults(true);
 			$this->ComputeSaleStatistics();
 		}
-		else if ($this->showForm == "ViewGuilds")
+		elseif ($this->showForm == "ViewGuilds")
 		{
 			
 		}
-		else if ($this->showForm == "ItemSearch")
+		elseif ($this->showForm == "ItemSearch")
 		{
 			$this->LoadItemData();
 		}
@@ -1574,17 +1574,17 @@ class EsoViewSalesData
 		
 		if ($this->sortField == "itemname")
 			usort($this->searchResults, "EsoSalesDataCompareItemName");
-		else if ($this->sortField == "buydate")
+		elseif ($this->sortField == "buydate")
 			usort($this->searchResults, "EsoSalesDataCompareBuyDate");
-		else if ($this->sortField == "listdate")
+		elseif ($this->sortField == "listdate")
 			usort($this->searchResults, "EsoSalesDataCompareListDate");
-		else if ($this->sortField == "price")
+		elseif ($this->sortField == "price")
 			usort($this->searchResults, "EsoSalesDataComparePrice");
-		else if ($this->sortField == "qnt")
+		elseif ($this->sortField == "qnt")
 			usort($this->searchResults, "EsoSalesDataCompareQnt");
-		else if ($this->sortField == "unitprice")
+		elseif ($this->sortField == "unitprice")
 			usort($this->searchResults, "EsoSalesDataCompareUnitPrice");
-		else if ($this->sortField == "lastseen")
+		elseif ($this->sortField == "lastseen")
 			usort($this->searchResults, "EsoSalesDataCompareLastSeen");
 		
 		return true;
@@ -1706,16 +1706,29 @@ class EsoViewSalesData
 		$itemLevel = $itemData['internalLevel'];
 		$itemSubType = $itemData['internalSubType'];
 		
-		if ($saleCount > 0 && $purchaseCount > 0)
-			$copyData .= "$saleCount listed, $purchaseCount sold";
-		else if ($purchaseCount > 0)
+		if ($saleCount > 0) 
+		{
+			if ($saleCount >= 1000)
+				$copyData .= floor($saleCount/1000) . "k listed";
+			else
+				$copyData .= "$saleCount listed";
+			
+			if ($purchaseCount > 0) $copyData .= ", ";
+		}
+		
+		if ($purchaseCount >= 1000)
+			$copyData .= floor($purchaseCount/1000) . "k sold";
+		elseif ($purchaseCount > 0)
 			$copyData .= "$purchaseCount sold";
-		else
-			$copyData .= "$saleCount listed";
 	
 		if ($totalItems > $saleCount + $purchaseCount)
 		{
-			$copyData .= ", $totalItems items";
+			if ($totalItems >= 1000000)
+				$copyData .= ", " . floor($totalItems/1000000) . "M items";
+			elseif ($totalItems >= 1000)
+				$copyData .= ", " . floor($totalItems/1000) . "k items";
+			else
+				$copyData .= ", $totalItems items";
 		}
 			
 		if ($lastTimestamp > 0)
@@ -1746,7 +1759,7 @@ class EsoViewSalesData
 		
 		if ($price >= 1000)
 			$fmtPrice = round($price, 0);
-		else if ($price >= 100)
+		elseif ($price >= 100)
 			$fmtPrice = round($price, 1);
 		else
 			$fmtPrice = round($price, 2);
@@ -1914,23 +1927,23 @@ class EsoViewSalesData
 			$output .= "<br/><br/>";
 			return $output;
 		}
-		else if ($this->viewSalesItemId > 0)
+		elseif ($this->viewSalesItemId > 0)
 		{
 			$output .= "";
 			return $output;
 		}
-		else if (!$this->hasSearchData)
+		elseif (!$this->hasSearchData)
 		{
 			$output .= "There are {$this->allItemsCount} items with {$this->allSalesCount} listings/sales currently in the database.";
 			$output .= "<br/><br/>";
 			return $output;
 		}
-		else if ($this->totalItemCount > $this->itemCount)
+		elseif ($this->totalItemCount > $this->itemCount)
 		{
 			$output .= "Displaying {$this->searchItemIdsLimit} of {$this->totalItemCount} matching items with a total of {$this->totalListedCount} listings and {$this->totalSoldCount} sales.";
 			$output .= "<br/><br/>";
 		}
-		else if ($this->itemCount == 0)
+		elseif ($this->itemCount == 0)
 		{
 			$output .= "No items found matching input search!";
 			$output .= "<br/><br/>";
