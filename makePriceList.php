@@ -145,7 +145,7 @@ class CEsoSalesMakePriceList
 							++$dataCount;
 						}
 		
-						$output .= "},";
+						$output .= "},\n";
 					}
 						
 					$output .= "},";

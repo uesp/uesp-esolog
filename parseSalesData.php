@@ -9,7 +9,7 @@ class EsoSalesDataParser
 {
 	const SKIP_CREATE_TABLES = false;
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
-	const ESD_LISTTIME_ROUND = 10;
+	const ESD_LISTTIME_RANGE = 10;
 		
 	public $server = "NA";
 	
@@ -751,9 +751,18 @@ class EsoSalesDataParser
 		$safeName = $this->db->real_escape_string($sellerName);
 		$server = $this->db->real_escape_string($this->server);
 		
-		if (self::ESD_LISTTIME_ROUND > 0) $safeTime = floor($safeTime / self::ESD_LISTTIME_ROUND) * self::ESD_LISTTIME_ROUND;
+		if (self::ESD_LISTTIME_RANGE > 0) 
+		{
+			$minTime = $safeTime - self::ESD_LISTTIME_RANGE;
+			$maxTime = $safeTime + self::ESD_LISTTIME_RANGE;
+			
+			$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp>='$minTime' AND listTimestamp<='$maxTime' AND sellerName=\"$safeName\" LIMIT 1;";
+		}
+		else
+		{
+			$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\" LIMIT 1;";
+		}
 		
-		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\" LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$safeTime:$safeName!");
 		
@@ -879,8 +888,6 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 		
-		if (self::ESD_LISTTIME_ROUND > 0) $listTimestamp = floor($listTimestamp / self::ESD_LISTTIME_ROUND) * self::ESD_LISTTIME_ROUND;
-	
 		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp);";
 		$result = $this->db->query($this->lastQuery);
