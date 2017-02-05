@@ -232,3 +232,15 @@ a:hover {
 	font-weight: bold;
 	padding-right: 10px;
 }
+
+#esovsd_searchformheader {
+	display: inline-block;
+	padding-left: 20px;	
+}
+
+.esovsd_headerlabel1 {
+	font-weight: bold;
+}
+
+#esovsd_headertext {
+}

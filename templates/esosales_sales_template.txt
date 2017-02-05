@@ -11,6 +11,12 @@
 	</head>
 <body>
 <a href="/viewSales.php">Back to Item Sales Search</a>
+<div id="esovsd_searchformheader">
+	<form id="eso_sales_search" action="" method="get">
+		<label for="text" class="esovsd_headerlabel1">Find Item:</label>
+		<input type="text" name="text" id="esovsd_headertext" value="" size="24" maxlength="100" />
+	</form>
+</div>
 <a class="esovsd_rightheaderlink" href="http://www.uesp.net/wiki/UESPWiki:EsoSalesData">Help</a>
 <a class="esovsd_rightheaderlink" href="http://www.uesp.net/wiki/UESPWiki_talk:EsoSalesData">Feedback</a>
 <a class="esovsd_rightheaderlink" href="/viewSales.php?view=guilds">View Guilds</a>
