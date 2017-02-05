@@ -4811,6 +4811,7 @@ class EsoLogParser
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		if ($logEntry["itemLink"] == null) return false;
 		if ($logEntry['guild'] == "") return false;
+		if (floatval($logEntry['eventId']) < 1) return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
