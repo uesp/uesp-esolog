@@ -18,7 +18,7 @@ class EsoViewSalesData
 	const ESOVSD_MAXZSCORE = 2.0;
 	const ESOVSD_MAXZSCORE_WEIGHTED = 3.0;
 	const ESOVSD_WEIGHTED_CONSTANT = 30.0;
-	
+		
 	public $OMIT_BUYER_INFO = true;
 	public $OMIT_SELLER_INFO = true;
 		
@@ -28,6 +28,8 @@ class EsoViewSalesData
 	public $ESOVSD_HTML_SALES_TEMPLATE_EMBED = "";
 	public $ESOVSD_HTML_GUILDS_TEMPLATE = "";
 	public $ESOVSD_HTML_GUILDS_TEMPLATE_EMBED = "";
+	
+	public $ESOVSD_MAX_LISTING_TIME = 2592000;
 	
 	public $server = "NA";
 	public $isEmbedded = false;
@@ -800,6 +802,10 @@ class EsoViewSalesData
 		$where = array();
 
 		$where[] = "server='".$this->server."'";
+		
+		$itemIdValue = intval($this->formValues['text']);
+		if ($itemIdValue > 0) $where[] = "itemId='$itemIdValue'";
+		
 		if ($this->finalItemLevel   >= 1) $where[] = "level=".$this->finalItemLevel;
 		if ($this->finalItemQuality >= 0) $where[] = "quality=".$this->finalItemQuality;
 		
@@ -831,7 +837,7 @@ class EsoViewSalesData
 		$armorTypeValue = $this->GetArmorTypeValue($this->formValues['armortype']);
 		if ($armorTypeValue > 0) $where[] = "armorType=".$armorTypeValue;
 		
-		if ($this->formValues['text'] != "")
+		if ($this->formValues['text'] != "" && $itemIdValue <= 0)
 		{
 			$safeText = $this->db->real_escape_string($this->formValues['text']);
 			//$where[] = "MATCH(name, setName) AGAINST ('$safeText' in BOOLEAN MODE)";
@@ -849,11 +855,13 @@ class EsoViewSalesData
 		else if ($this->formValues['saletype'] == "listed")
 		{
 			$where[] = "countSales > 0";
-			if ($timePeriod > 0) $where[] = "(lastSaleTimestamp > 0 AND lastSeen >= $timestamp)";
+			$minTimestamp = $timestamp - $this->ESOVSD_MAX_LISTING_TIME;
+			if ($timePeriod > 0) $where[] = "(lastSaleTimestamp > $minTimestamp AND lastSeen >= $timestamp)";
 		}
 		elseif ($timePeriod > 0)
 		{
-			$where[] = "(lastPurchaseTimestamp >= $timestamp OR (lastSaleTimestamp > 0 AND lastSeen >= $timestamp))";
+			$minTimestamp = $timestamp - $this->ESOVSD_MAX_LISTING_TIME;
+			$where[] = "(lastPurchaseTimestamp >= $timestamp OR (lastSaleTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
 		}
 		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
@@ -982,7 +990,8 @@ class EsoViewSalesData
 		if ($timePeriod > 0) 
 		{
 			$timestamp = time() - $timePeriod;
-			$where[] = "(buyTimestamp >= $timestamp OR (listTimestamp > 0 AND lastSeen >= $timestamp))";
+			$minTimestamp = time() - $this->ESOVSD_MAX_LISTING_TIME;
+			$where[] = "(buyTimestamp >= $timestamp OR (listTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
 		}
 				
 		if ($this->formValues['saletype'] == "sold")
@@ -1018,7 +1027,8 @@ class EsoViewSalesData
 		if ($timePeriod > 0)
 		{
 			$timestamp = time() - $timePeriod;
-			$where[] = "(buyTimestamp >= $timestamp or (listTimestamp > 0 AND lastSeen >= $timestamp))";
+			$minTimestamp = time() - $this->ESOVSD_MAX_LISTING_TIME;
+			$where[] = "(buyTimestamp >= $timestamp or (listTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
 		}
 		
 		if ($this->formValues['saletype'] == "sold")
@@ -1780,14 +1790,14 @@ class EsoViewSalesData
 			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
 		}
 		
-		if ($this->formValues['saletype'] == "listed" || $this->formValues['saletype'] == "")
+		if ($this->formValues['saletype'] == "listed" || $this->formValues['saletype'] == "" || $this->formValues['saletype'] == "all")
 		{
 			if ($output != "") $output .= "<br /><br />";
 			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
 			
 		}
 		
-		if ($this->formValues['saletype'] == "sold" || $this->formValues['saletype'] == "")
+		if ($this->formValues['saletype'] == "sold" || $this->formValues['saletype'] == "" || $this->formValues['saletype'] == "all")
 		{
 			if ($output != "") $output .= "<br /><br />";
 			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
