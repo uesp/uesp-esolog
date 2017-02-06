@@ -75,7 +75,7 @@ class EsoLogParser
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
 	const MINEITEM_TABLESUFFIX = "13";
-	const SKILLS_TABLESUFFIX   = "13";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
