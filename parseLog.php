@@ -2385,7 +2385,17 @@ class EsoLogParser
 			{
 				$logEntry['name'] = $name;
 				$npcRecord = $this->FindNPC($name);
-				if ($npcRecord == null) $npcRecord = $this->CreateNPC($logEntry);
+				
+				if ($npcRecord == null) {
+					$npcRecord = $this->CreateNPC($logEntry);
+					
+					if ($npcRecord['ppClass'] == "" && $logEntry['ppClassString'] != "")
+					{
+						$npcRecord['ppClass'] = $logEntry['ppClassString'];
+						$npcRecord['ppDifficulty'] = $logEntry['ppDifficulty'];
+						$this->SaveNPC($npcRecord);
+					}
+				}
 				
 				if ($npcRecord != null) $npcId = $npcRecord['id'];
 			}
@@ -4968,6 +4978,13 @@ class EsoLogParser
 		{
 			$npcRecord = $this->CreateNPC($logEntry);
 			if ($npcRecord == null) return false;
+			
+			if ($npcRecord['ppClass'] == "" && $logEntry['ppClassString'] != "")
+			{
+				$npcRecord['ppClass'] = $logEntry['ppClassString'];
+				$npcRecord['ppDifficulty'] = $logEntry['ppDifficulty'];
+				$this->SaveNPC($npcRecord);
+			}
 		}
 		
 		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
