@@ -334,6 +334,8 @@ class EsoLogParser
 			'level' => self::FIELD_INT,
 			'gender' => self::FIELD_INT,
 			'difficulty' => self::FIELD_INT,
+			'ppClass' => self::FIELD_STRING,
+			'ppDifficulty' => self::FIELD_INT,
 	);
 	
 	public static $RECIPE_FIELDS = array(
@@ -1557,8 +1559,11 @@ class EsoLogParser
 						level INTEGER NOT NULL,
 						gender TINYINT NOT NULL,
 						difficulty TINYINT NOT NULL,
+						ppClass TINYTEXT NOT NULL,
+						ppDifficulty TINYINT NOT NULL,						
 						PRIMARY KEY (id),
-						FULLTEXT(name)
+						FULLTEXT(name),
+						FULLTEXT(ppClass),
 					);";
 		
 		$this->lastQuery = $query;
@@ -2353,6 +2358,7 @@ class EsoLogParser
 	{
 		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
 		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
+		//ppBonus, ppIsHostile, ppChance, ppDifficulty, ppEmpty, ppResult, ppClassString, ppClass
 		
 		++$this->currentUser['itemsLooted'];
 		$this->currentUser['__dirty'] = true;
@@ -2366,6 +2372,22 @@ class EsoLogParser
 				++$this->currentUser['trovesFound'];
 				$this->currentUser['__dirty'] = true;
 				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
+		
+		$npcId = 0;
+		
+		if ($logEntry['ppClassString'] != null && $logEntry['ppDifficulty'] != null)
+		{
+			$name = $logEntry['lastTarget'];
+			
+			if ($name != "") 
+			{
+				$logEntry['name'] = $name;
+				$npcRecord = $this->FindNPC($name);
+				if ($npcRecord == null) $npcRecord = $this->CreateNPC($logEntry);
+				
+				if ($npcRecord != null) $npcId = $npcRecord['id'];
 			}
 		}
 		
@@ -2485,6 +2507,9 @@ class EsoLogParser
 		$npcRecord['level'] = $logEntry['level'];
 		$npcRecord['difficulty'] = $logEntry['difficulty'];
 		$npcRecord['__isNew'] = true;
+		
+		if ($logEntry['ppClassString'] != "") $npcRecord['ppClass']      = $logEntry['ppClassString'];
+		if ($logEntry['ppDifficulty']  != "") $npcRecord['ppDifficulty'] = $logEntry['ppDifficulty'];
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
@@ -4928,6 +4953,42 @@ class EsoLogParser
 	}
 	
 	
+	public function OnPickPocketFailed ($logEntry)
+	{
+		//logData.ppBonus, logData.ppIsHostile, logData.ppChance, logData.ppDifficulty, logData.ppEmpty, 
+		//logData.ppResult, logData.ppClassString, logData.ppClass = GetGameCameraPickpocketingBonusInfo()
+		//x, y, zone ,target
+		
+		$name = $logEntry['target'];
+		if ($name == "") return false;
+		
+		$npcRecord = $this->FindNPC($name);
+		
+		if ($npcRecord == null)
+		{
+			$npcRecord = $this->CreateNPC($logEntry);
+			if ($npcRecord == null) return false;
+		}
+		
+		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
+		
+		if ($npcLocation == null)
+		{
+			$npcLocation = $this->CreateLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
+			if ($npcLocation == null) return false;
+		}
+		else
+		{
+			++$npcLocation['counter'];
+				
+			$result = $this->SaveLocation($npcLocation);
+			if (!$result) return false;
+		}
+		
+		return true;
+	}
+	
+	
 	public function OnNullEntry ($logEntry)
 	{
 		// Do Nothing
@@ -5201,6 +5262,8 @@ class EsoLogParser
 			case "GuildSaleListingEntry::Cancel":$result = $this->OnGuildSaleListingEntryCancel($logEntry); break;
 			case "GuildSaleListingInfo":		$result = $this->OnGuildSaleListingInfo($logEntry); break;
 			case "GuildSaleListingEntry":		$result = $this->OnGuildSaleListingEntry($logEntry); break;
+			
+			case "PickpocketFailed":			$result = $this->OnPickPocketFailed($logEntry); break;
 			
 			case "Test":
 			case "TEST":
