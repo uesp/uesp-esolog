@@ -173,6 +173,8 @@ class EsoLogViewer
 			'level' => self::FIELD_INT,
 			'gender' => self::FIELD_INT,
 			'difficulty' => self::FIELD_INT,
+			'ppClass' => self::FIELD_STRING,
+			'ppDifficulty' => self::FIELD_INT,
 	);
 	
 	public static $RECIPE_FIELDS = array(
