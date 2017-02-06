@@ -2388,6 +2388,8 @@ class EsoLogParser
 				
 				if ($npcRecord == null) {
 					$npcRecord = $this->CreateNPC($logEntry);
+				}
+				else {
 					
 					if ($npcRecord['ppClass'] == "" && $logEntry['ppClassString'] != "")
 					{
