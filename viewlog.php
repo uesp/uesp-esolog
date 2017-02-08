@@ -2847,7 +2847,7 @@ If you do not understand what this information means, or how to use this webpage
 				$filter = " WHERE $table.$field='$id' ";
 				break;
 			default:
-				$filter = " WHERE $table.$field=$id ";
+				$filter = " WHERE $table.$field='$id' ";
 				break;
 		}
 		
@@ -2939,7 +2939,7 @@ If you do not understand what this information means, or how to use this webpage
 		
 		$query = "SELECT $tables FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
-		$query .= " WHERE $table.id=$id";
+		$query .= " WHERE $table.id='$id'";
 		$query .= " LIMIT 1 ";
 		$query .= ";";
 		
@@ -2955,7 +2955,7 @@ If you do not understand what this information means, or how to use this webpage
 	
 		$query = "SELECT COUNT(*) FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
-		$query .= " WHERE $table.id=$id";
+		$query .= " WHERE $table.id='$id'";
 		$query .= ";";
 	
 		$this->lastQuery = $query;
