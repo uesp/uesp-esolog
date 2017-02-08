@@ -720,10 +720,10 @@ class EsoViewSalesData
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
 		
-		$where[] = "itemId=$itemId";
-		$where[] = "internalLevel=$intLevel";
-		$where[] = "internalSubtype=$intSubtype";		
-		$where[] = "potionData=$potionData";		
+		$where[] = "itemId='$itemId'";
+		$where[] = "internalLevel='$intLevel'";
+		$where[] = "internalSubtype='$intSubtype'";		
+		$where[] = "potionData='$potionData'";		
 				
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
@@ -742,7 +742,7 @@ class EsoViewSalesData
 		$intLevel = intval($itemLinkData['level']);
 		$potionData = intval($itemLinkData['potionData']);
 		
-		$query = "SELECT level, quality FROM $uespEsoLogDatabase.minedItemSummary WHERE itemId=$itemId;";
+		$query = "SELECT level, quality FROM $uespEsoLogDatabase.minedItemSummary WHERE itemId='$itemId';";
 		$result = $this->db->query($query);
 		
 		$level = null;
@@ -771,10 +771,10 @@ class EsoViewSalesData
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
 	
-		$where[] = "itemId=$itemId";
-		$where[] = "level=$level";
-		$where[] = "quality=$quality";
-		$where[] = "potionData=$potionData";
+		$where[] = "itemId='$itemId'";
+		$where[] = "level='$level'";
+		$where[] = "quality='$quality'";
+		$where[] = "potionData='$potionData'";
 	
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
@@ -806,8 +806,8 @@ class EsoViewSalesData
 		$itemIdValue = intval($this->formValues['text']);
 		if ($itemIdValue > 0) $where[] = "itemId='$itemIdValue'";
 		
-		if ($this->finalItemLevel   >= 1) $where[] = "level=".$this->finalItemLevel;
-		if ($this->finalItemQuality >= 0) $where[] = "quality=".$this->finalItemQuality;
+		if ($this->finalItemLevel   >= 1) $where[] = "level='{$this->finalItemLevel}'";
+		if ($this->finalItemQuality >= 0) $where[] = "quality='{$this->finalItemQuality}'";
 		
 		$traitValue = $this->GetItemTraitValue($this->formValues['trait']);
 		
@@ -822,20 +822,23 @@ class EsoViewSalesData
 			elseif ($traitValue == 25 || $traitValue == 26)
 				$where[] = "(trait=25 OR trait=26)";
 			else
-				$where[] = "trait=".$traitValue;
+			{
+				$safeValue = $this->db->real_escape_string($traitValue);
+				$where[] = "trait='$safeValue'";
+			}
 		}
 		
 		$equipTypeValue = $this->GetEquipTypeValue($this->formValues['equiptype']);
-		if ($equipTypeValue > 0) $where[] = "equipType=".$equipTypeValue;
+		if ($equipTypeValue > 0) $where[] = "equipType='$equipTypeValue'";
 		
 		$itemTypeValue = $this->GetItemTypeValue($this->formValues['itemtype']);
-		if ($itemTypeValue > 0) $where[] = "itemType=".$itemTypeValue;
+		if ($itemTypeValue > 0) $where[] = "itemType='$itemTypeValue'";
 		
 		$weaponTypeValue = $this->GetWeaponTypeValue($this->formValues['weapontype']);
-		if ($weaponTypeValue > 0) $where[] = "weaponType=".$weaponTypeValue;
+		if ($weaponTypeValue > 0) $where[] = "weaponType='$weaponTypeValue'";
 		
 		$armorTypeValue = $this->GetArmorTypeValue($this->formValues['armortype']);
-		if ($armorTypeValue > 0) $where[] = "armorType=".$armorTypeValue;
+		if ($armorTypeValue > 0) $where[] = "armorType='$armorTypeValue'";
 		
 		if ($this->formValues['text'] != "" && $itemIdValue <= 0)
 		{
@@ -1020,7 +1023,7 @@ class EsoViewSalesData
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
 		$where = array();
 	
-		$where[] = "itemId=" . $this->viewSalesItemId;
+		$where[] = "itemId='{$this->viewSalesItemId}'";
 		
 		$timePeriod = intval($this->formValues['timeperiod']);
 
