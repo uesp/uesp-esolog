@@ -407,6 +407,13 @@ class EsoSalesDataParser
 	
 	public function LoadItemByKey($server, $itemId, $level, $quality, $trait, $potionData)
 	{
+		$server = $this->db->real_escape_string($server);
+		$itemId = $this->db->real_escape_string($itemId);
+		$level = $this->db->real_escape_string($level);
+		$quality = $this->db->real_escape_string($quality);
+		$trait = $this->db->real_escape_string($trait);
+		$potionData = $this->db->real_escape_string($potionData);
+		
 		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='$level' AND quality='$quality' AND trait='$trait' AND potionData='$potionData' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData!");
@@ -429,6 +436,12 @@ class EsoSalesDataParser
 	
 	public function LoadItem($server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData)
 	{
+		$server = $this->db->real_escape_string($server);
+		$itemId = $this->db->real_escape_string($itemId);
+		$itemIntLevel = $this->db->real_escape_string($itemIntLevel);
+		$itemIntType = $this->db->real_escape_string($itemIntType);
+		$itemPotionData = $this->db->real_escape_string($itemPotionData);
+		
 		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' and potionData='$itemPotionData' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$itemIntLevel:$itemIntType!");
@@ -451,6 +464,11 @@ class EsoSalesDataParser
 	
 	public function LoadMinedItem($itemId, $itemIntLevel, $itemIntType, $itemPotionData)
 	{
+		$itemId = $this->db->real_escape_string($itemId);
+		$itemIntLevel = $this->db->real_escape_string($itemIntLevel);
+		$itemIntType = $this->db->real_escape_string($itemIntType);
+		$itemPotionData = $this->db->real_escape_string($itemPotionData);
+		
 		$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
@@ -523,8 +541,10 @@ class EsoSalesDataParser
 		$safeName = $this->db->real_escape_string($this->MakeNiceItemName($name));
 		$safeSetName = $this->db->real_escape_string($setName);
 		$server = $this->db->real_escape_string($this->server);
-		$internalLevel = $itemRawData['internalLevel'];
-		$internalSubType = $itemRawData['internalSubType'];
+		$internalLevel = $this->db->real_escape_string($itemRawData['internalLevel']);
+		$internalSubType = $this->db->real_escape_string($itemRawData['internalSubType']);
+		$itemId = $this->db->real_escape_string($itemId);
+		$potionData = $this->db->real_escape_string($potionData);
 		
 		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, internalLevel, internalSubType) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$potionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$internalLevel\", \"$internalSubType\");";
@@ -614,6 +634,8 @@ class EsoSalesDataParser
 		$safeName = $this->db->real_escape_string($this->MakeNiceItemName($name));
 		$safeSetName = $this->db->real_escape_string($setName);
 		$server = $this->db->real_escape_string($this->server);
+		$itemId = $this->db->real_escape_string($itemId);
+		$itemPotionData = $this->db->real_escape_string($itemPotionData);
 		
 		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$itemPotionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\");";
@@ -748,6 +770,8 @@ class EsoSalesDataParser
 	public function LoadSaleSearchEntry($itemMyId, $guildId, $listTime, $sellerName)
 	{
 		$safeTime = intval($listTime);
+		$itemMyId = $this->db->real_escape_string($itemMyId);
+		$guildId = $this->db->real_escape_string($guildId);
 		$safeName = $this->db->real_escape_string($sellerName);
 		$server = $this->db->real_escape_string($this->server);
 		
@@ -779,7 +803,9 @@ class EsoSalesDataParser
 	{
 		$safeEventId = $this->db->real_escape_string($eventId);
 		$server = $this->db->real_escape_string($this->server);
-		
+		$itemMyId = $this->db->real_escape_string($itemMyId);
+		$guildId = $this->db->real_escape_string($guildId);
+				
 		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND eventId='$safeEventId' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$eventId!");
@@ -797,8 +823,8 @@ class EsoSalesDataParser
 	{
 		if ($saleData['quant'] == 0) return false;
 		
-		$itemId = $itemData['id'];
-		$guildId = $guildData['id'];
+		$itemId = $this->db->real_escape_string($itemData['id']);
+		$guildId = $this->db->real_escape_string($guildData['id']);
 		$eventId = $this->db->real_escape_string($saleData['id']);
 		$sellerName = $this->db->real_escape_string($saleData['seller']);
 		$buyerName = $this->db->real_escape_string($saleData['buyer']);
@@ -837,8 +863,8 @@ class EsoSalesDataParser
 	{
 		if ($saleData['qnt'] == 0) return false;
 		
-		$itemId = $itemData['id'];
-		$guildId = $guildData['id'];
+		$itemId = $this->db->real_escape_string($itemData['id']);
+		$guildId = $this->db->real_escape_string($guildData['id']);
 		$timestamp = intval($saleData['timeStamp1']);
 		$eventId = $this->db->real_escape_string($saleData['eventId']);
 		$sellerName = $this->db->real_escape_string($saleData['seller']);
@@ -875,8 +901,8 @@ class EsoSalesDataParser
 	{
 		if ($saleData['qnt'] == 0) return false;
 		
-		$itemId = $itemData['id'];
-		$guildId = $guildData['id'];
+		$itemId = $this->db->real_escape_string($itemData['id']);
+		$guildId = $this->db->real_escape_string($guildData['id']);
 		$eventId = 0;
 		$timestamp = intval($saleData['timeStamp1']);
 		$sellerName = $this->db->real_escape_string($saleData['seller']);
