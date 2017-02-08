@@ -1563,7 +1563,7 @@ class EsoLogParser
 						ppDifficulty TINYINT NOT NULL,						
 						PRIMARY KEY (id),
 						FULLTEXT(name),
-						FULLTEXT(ppClass),
+						FULLTEXT(ppClass)
 					);";
 		
 		$this->lastQuery = $query;
@@ -4573,8 +4573,8 @@ class EsoLogParser
 		$achievementCategory = array();
 		
 		$achievementCategory['categoryName'] = $logEntry['name'];
-		$achievementCategory['name'] = $logEntry['name'];
-		$achievementCategory['subcategoryName'] = "";
+		$achievementCategory['name'] = $logEntry['name'] . "::General";
+		$achievementCategory['subcategoryName'] = "General";
 		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
 		$achievementCategory['subCategoryIndex'] = -1;
 		$achievementCategory['numAchievements'] = $logEntry['numAchievements'];
@@ -4600,7 +4600,12 @@ class EsoLogParser
 		
 		$achievementCategory['categoryName'] = $logEntry['categoryName'];
 		$achievementCategory['subcategoryName'] = $logEntry['name'];
-		$achievementCategory['name'] =  $logEntry['categoryName'] . "::" . $logEntry['name'];
+		
+		if ($logEntry['name'] == "")
+			$achievementCategory['name'] =  $logEntry['categoryName'] . "::General";
+		else
+			$achievementCategory['name'] =  $logEntry['categoryName'] . "::" . $logEntry['name'];
+		
 		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
 		$achievementCategory['subCategoryIndex'] = $logEntry['subCategoryIndex'];
 		$achievementCategory['numAchievements'] = $logEntry['numAchievements'];
@@ -4646,7 +4651,7 @@ class EsoLogParser
 		$achievement['title'] = $logEntry['title'];
 		
 		if ($logEntry['subCategoryName'] == null || $logEntry['subCategoryName'] == "")
-			$achievement['categoryName'] = $logEntry['categoryName'];
+			$achievement['categoryName'] = $logEntry['categoryName'] . "::General";
 		else
 			$achievement['categoryName'] = $logEntry['categoryName'] . "::" . $logEntry['subCategoryName'];
 		
