@@ -374,6 +374,7 @@ class EsoLogViewer
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,
 			'nextSkill2'  => self::FIELD_INT,
+			'baseAbilityId'  => self::FIELD_INT,
 			'upgradeLines' => self::FIELD_TEXTTRANSFORM,
 			'effectLines' => self::FIELD_TEXTTRANSFORM,
 			'numCoefVars' => self::FIELD_INT,
@@ -1498,6 +1499,34 @@ class EsoLogViewer
 					),
 						
 					'filters' => array(
+							array(
+									'record' => 'minedSkills',
+									'field' => 'id',
+									'thisField' => 'prevSkill',
+									'displayName' => 'Prev',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'minedSkills',
+									'field' => 'id',
+									'thisField' => 'nextSkill',
+									'displayName' => 'Next',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'minedSkills',
+									'field' => 'id',
+									'thisField' => 'nextSkill2',
+									'displayName' => 'Next2',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'minedSkills',
+									'field' => 'id',
+									'thisField' => 'baseAbilityId',
+									'displayName' => 'Base',
+									'type' => 'viewRecord',
+							),
 					),
 			),
 			
