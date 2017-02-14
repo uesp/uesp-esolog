@@ -12,7 +12,7 @@ const UESP_POWERTYPE_ARMORTYPE     = -55;
 const UESP_POWERTYPE_DAMAGE        = -56;
 const UESP_POWERTYPE_ASSASSINATION = -57;
 
-	// TODO: Change to true when DB is released
+	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
 
 
