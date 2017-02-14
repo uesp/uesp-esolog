@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Alchemy Viewer</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="http://esolog.uesp.net/resources/esopotions.css" />
+		<script type="text/javascript" src="http://esolog.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://esolog.uesp.net/resources/esopotions.js"></script>
+		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+	</head>
+<body>
+
+<h1>ESO Alchemy Viewer</h1>
+
+<div id="esopd_root">
+
+	{reagents}
+
+</div>
+
+
+<hr>
+<div id="eso_footer">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>
