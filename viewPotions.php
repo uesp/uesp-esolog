@@ -13,6 +13,7 @@ class CEsoViewPotions
 	public $inputParams = array();
 	
 	public $inputSolvent = "";
+	public $inputIsPoison = false;
 	public $inputReagents = array("", "", "");
 	
 	
@@ -42,6 +43,7 @@ class CEsoViewPotions
 		if (array_key_exists("solvent", $this->inputParams)) $this->inputSolvent = $this->inputParams['solvent'];
 		
 		if ($ESO_SOLVENT_DATA[$this->inputSolvent] == null) $this->inputSolvent = "Lorkhan's Tears";
+		if ($ESO_SOLVENT_DATA[$this->inputSolvent]['isPoison']) $this->inputIsPoison = true;
 				
 		if (array_key_exists("r1", $this->inputParams)) $this->inputReagents[0] = $this->inputParams['r1'];
 		if (array_key_exists("r2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['r2'];
@@ -51,13 +53,9 @@ class CEsoViewPotions
 		if (array_key_exists("reagent2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['reagent2'];
 		if (array_key_exists("reagent3", $this->inputParams)) $this->inputReagents[2] = $this->inputParams['reagent3'];
 		
-		error_log("Reagent1 = ".$this->inputReagents[0]);
-		
 		if ($ESO_REAGENT_DATA[$this->inputReagents[0]] == null) $this->inputReagents[0] = "";
 		if ($ESO_REAGENT_DATA[$this->inputReagents[1]] == null) $this->inputReagents[1] = "";
 		if ($ESO_REAGENT_DATA[$this->inputReagents[2]] == null) $this->inputReagents[2] = "";
-		
-		error_log("Reagent1 = ".$this->inputReagents[0]);
 		
 		return true;
 	}
@@ -146,10 +144,15 @@ class CEsoViewPotions
 			$effectIndex = $effect['id'];
 			$icon = $effect['icon'];
 			$name = $effect['name'];
+			$name1 = $effect['name1'];
+			$name2 = $effect['name2'];
+			$name3 = $effect['name3'];
 			$isPositive = $effect['isPositive'];
 			
 			$extraClass = "esopdEffectPositive";
 			if (!$isPositive) $extraClass = "esopdEffectNegative";
+			
+			if ($this->inputIsPoison && $name2) $name = $name2;
 			
 			$output .= "<div class=\"esopdEffect $extraClass\" effectindex=\"$effectIndex\">";
 			$output .= "<img src='$icon'> ";
