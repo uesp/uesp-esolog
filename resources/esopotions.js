@@ -2,6 +2,7 @@ var EsoPotionItemLinkPopup = null;
 var EsoPotionNextFreeReagent = 1;
 var EsoPotionItemLinkCache = {};
 var EsoPotionLastItemLink = "";
+var EsoPotionLastPotionData = "";
 
 
 function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
@@ -31,6 +32,7 @@ function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
 	if (potionData == null) potionData = 0;
 
 	EsoPotionLastItemLink = "|H1:item:" + itemId + ":" + intType + ":" + intLevel + ":0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:" + potionData + "|h|h";
+	EsoPotionLastPotionData = "" + itemId + ":" + intType + ":" + intLevel + ":" + potionData;
 	
 	linkSrc += "&itemid=" + itemId;
 	linkSrc += "&intlevel=" + intLevel;
@@ -241,6 +243,7 @@ function UpdateEsoPotion()
 	
 	UpdateEsoPotionTooltip(potionData, potionBaseId, poisonBaseId);
 	UpdateEsoPotionLink();
+	UpdateEsoPotionDataText();
 }
 
 
@@ -720,6 +723,12 @@ function UpdateEsoPotionLink()
 }
 
 
+function UpdateEsoPotionDataText()
+{
+	$("#esopdPotionData").text("Potion Data: " + EsoPotionLastPotionData);
+}
+
+
 function esopdOnDocReady()
 {
 	EsoPotionItemLinkPopup = $("#esopdTooltip");
@@ -727,9 +736,7 @@ function esopdOnDocReady()
 	$(".esopdReagentIcon").click(OnClickEsoReagent);
 	$(".esopdSolventIcon").click(OnClickEsoSolvent);
 	$("#esopdSolventUsed").click(OnClickEsoSolventSlot)
-	$("#esopdReagent1").click(OnClickEsoReagentSlot)
-	$("#esopdReagent2").click(OnClickEsoReagentSlot)
-	$("#esopdReagent3").click(OnClickEsoReagentSlot)
+	$("#esopdReagentIcon").click(OnClickEsoReagentSlot)
 	$(".esopdEffect").click(OnClickEsoEffect);
 	$(".esopdReagentTab").click(OnClickEsoReagentTab);
 	$("#esopdCopyItemLink").click(OnClickCopyEsoPotionItemLink);
