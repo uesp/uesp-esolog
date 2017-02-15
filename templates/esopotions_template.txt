@@ -25,6 +25,7 @@
 			<div id="esopdTooltip" class="">
 			</div>
 			<div id="esopdCopyItemLink">Copy Item Link</div>
+			<div id="esopdPotionData">Potion Data = 0</div>
 		</div>
 		<div id="esopdWorkArea">
 			<div id="esopdSolventUsed" solvent="{solventName}">
@@ -32,7 +33,7 @@
 				<div class="esopdWorkAreaName">{solventName}<br/>{solventLevel}</div>
 			</div>
 			<div id="esopdReagent1" reagent="{reagentName1}">
-				<img src="{reagentIcon1}">
+				<img class="esopdReagentIcon" src="{reagentIcon1}">
 				<div class="esopdWorkAreaName">{reagentName1}</div>
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon11}" title="{reagentEffectTitle11}"></div>
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon12}" title="{reagentEffectTitle12}"></div><br/>
@@ -40,7 +41,7 @@
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon14}" title="{reagentEffectTitle14}"></div>
 			</div>
 			<div id="esopdReagent2" reagent="{reagentName2}">
-				<img src="{reagentIcon2}">
+				<img class="esopdReagentIcon" src="{reagentIcon2}">
 				<div class="esopdWorkAreaName">{reagentName2}</div>
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon21}" title="{reagentEffectTitle21}"></div>
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon22}" title="{reagentEffectTitle22}"></div><br/>
@@ -48,7 +49,7 @@
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon24}" title="{reagentEffectTitle24}"></div>
 			</div>
 			<div id="esopdReagent3" reagent="{reagentName3}">
-				<img src="{reagentIcon3}">
+				<img class="esopdReagentIcon" src="{reagentIcon3}">
 				<div class="esopdWorkAreaName">{reagentName3}</div>
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon31}" title="{reagentEffectTitle31}"></div>
 				<div class="esopdReagentEffects"><img src="{reagentEffectIcon32}" title="{reagentEffectTitle32}"></div><br/>

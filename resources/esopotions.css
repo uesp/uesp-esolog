@@ -205,7 +205,7 @@ a:hover {
 	vertical-align: top;
 }
 
-#esopdReagent1 img:hover, #esopdReagent2 img:hover, #esopdReagent3 img:hover {
+#esopdReagentIcon:hover {
 	cursor: pointer;
 	background-color: #ccc;
 }
@@ -354,6 +354,7 @@ a:hover {
     text-decoration: underline;
     font-weight: bold;
     color: blue;
+    float: right;
 }
 
 .esopdEffectName {
@@ -363,4 +364,9 @@ a:hover {
 #esopdPotionLink {
 	float: right;
 	font-weight: bold;
+}
+
+#esopdPotionData {
+	margin-left: 25px;
+	float: left;
 }
