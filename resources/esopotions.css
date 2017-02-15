@@ -80,33 +80,254 @@ a:hover {
 	display: inline-block;
 }
 
-.esovdReagent {
-	width: 100px;
-	height: 100px;
-	display: inline-block;
+#esopdReagentsRoot {
 }
 
-.esovdReagentIcon {
+#esopdReagents, #esopdFindPotions {
+	width: 1000px;
+	height: 485px;
+	border: solid 1px gray;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#esopdEffects {
+	width: 206px;
+	padding: 3px;
+	border: solid 1px gray;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.esopdEffect {
+	width: 200px;
+	height: 21px;
+	font-family: "Arial", sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding: 2px;
+	border: 2px solid transparent;
+}
+
+.esopdEffect:hover {
+	cursor: pointer;
+	background-color: #ccc;
+	border: 2px solid silver;
+}
+
+.esopdEffectPositive {
+	background-color: #cfc;
+}
+
+.esopdEffectNegative {
+	background-color: #fcc;
+}
+
+.esopdEffect img {
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+}
+
+.esopdReagent {
+	width: 110px;
+	height: 110px;
+	display: inline-block;
+	text-align: center;
+	border: 2px solid transparent;
+}
+
+.esopdReagentIcon {
 	width: 64px;
 	height: 64px;
 	display: inline-block;
+	border: solid 1px transparent;
+}
+
+.esopdReagentIcon:hover {
+	background-color: #ccc;
+	border: solid 1px silver;
+	cursor: pointer;
 }
 
 .esopdReagentName {
 	display: inline-block;
-	font-family: "EsoFontStyle", "Arial", sans-serif;
-	font-size: 14px;
+	font-family: "Arial", sans-serif;
+	font-size: 12px;
 	font-weight: bold;
 }
 
 .esopdTraits {
-	height: 20px;
-	width: 72px;
 	display: inline-block;
 }
 
 .esopdTraits img {
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 	display: inline-block;
+}
+
+#esopdTooltipContainer {
+	display: inline-block;
+	width: 430px;
+	height: 400px;
+	position: absolute;
+}
+
+#esopdWorkArea {
+	display: inline-block;
+	width: 450px;
+	height: 320px;
+	position: relative;
+	left: 450px;
+	margin-top: 150px;
+    margin-left: 50px;
+}
+
+#esopdLeft {
+	display: inline-block;
+	width: 1020px;
+    vertical-align: top;
+}
+
+#esopdSolvent, #esopdReagent1, #esopdReagent2, #esopdReagent3 {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	text-align: center;
+}
+
+.esopdWorkAreaName {
+	text-align: center;
+	font-weight: bold;
+	font-family: "Arial", sans-serif;
+	font-size: 12px;
+	height: 16px;
+}
+
+.esopdReagentEffects {
+	width: 32px;
+	height: 32px;
+	background-image: url("crafting_alchemy_trait_slot.png");
+	background-size: 32px 32px;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.esopdReagentEffects img {
+	width: 26px;
+	height: 26px;
+	display: inline-block;
+	position: relative;
+    left: 0px;
+    top: 3px;
+}
+
+.esopdEffectHighlighted {
+	border: 2px solid #77f;
+}
+
+.esopdReagentDisable {
+	opacity: 0.25;
+}
+
+.esopdEffectDisable {
+	opacity: 0.5;
+}
+
+.esopdReagentHighlight {
+	border: 2px solid #77f;
+    border-radius: 5px;
+}
+
+#esopdResetEffects {
+	float: right;
+	margin-right: 25px;
+}
+
+#esopdFindEffects {
+	float: right;
+}
+
+#esopdReagentTabs {
+}
+
+.esopdReagentTab {
+	display: inline-block;
+    width: 125px;
+    padding: 3px;
+    border: solid 1px gray;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+    font-size: 14px;
+    border-bottom: none;
+    border-radius: 4px 4px 0px 0px;
+    position: relative;
+    top: 1px;
+}
+
+.esopdReagentTab:hover {
+	cursor: pointer;
+	background-color: #ccc;
+}
+
+.esopdReagentTabSelected {
+    background-color: #FBEFD5;
+    font-weight: bold;
+}
+
+.esopdReagentTabSpacer {
+    display: inline-block;
+    width: 10px;
+}
+
+#esopdFindPotionMsg {
+	padding: 5px;
+    display: inline;
+}
+
+#esopdFindPotionResults {
+	max-height: 440px;
+    overflow: auto;
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.esopdPotionResult {
+	padding: 3px;
+	vertical-align: middle;
+}
+
+.esopdPotionResult:hover {
+	cursor: pointer;
+	background-color: #ccc;
+}
+
+.esopdPotionResultName {
+	font-weight: bold;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.esopdPotionResultName img {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.esopdPotionResultEffects {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.esopdPotionResultEffects img {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
 }
