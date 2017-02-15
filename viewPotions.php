@@ -10,6 +10,11 @@ class CEsoViewPotions
 {
 	public $ESOPD_HTML_TEMPLATE = "";
 	
+	public $inputParams = array();
+	
+	public $inputSolvent = "";
+	public $inputReagents = array("", "", "");
+	
 	
 	public function __construct()
 	{
@@ -31,6 +36,29 @@ class CEsoViewPotions
 	
 	private function ParseInputParams ()
 	{
+		global $ESO_SOLVENT_DATA, $ESO_REAGENT_DATA;
+		
+		if (array_key_exists("s", $this->inputParams)) $this->inputSolvent = $this->inputParams['s'];
+		if (array_key_exists("solvent", $this->inputParams)) $this->inputSolvent = $this->inputParams['solvent'];
+		
+		if ($ESO_SOLVENT_DATA[$this->inputSolvent] == null) $this->inputSolvent = "Lorkhan's Tears";
+				
+		if (array_key_exists("r1", $this->inputParams)) $this->inputReagents[0] = $this->inputParams['r1'];
+		if (array_key_exists("r2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['r2'];
+		if (array_key_exists("r3", $this->inputParams)) $this->inputReagents[2] = $this->inputParams['r3'];
+		
+		if (array_key_exists("reagent1", $this->inputParams)) $this->inputReagents[0] = $this->inputParams['reagent1'];
+		if (array_key_exists("reagent2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['reagent2'];
+		if (array_key_exists("reagent3", $this->inputParams)) $this->inputReagents[2] = $this->inputParams['reagent3'];
+		
+		error_log("Reagent1 = ".$this->inputReagents[0]);
+		
+		if ($ESO_REAGENT_DATA[$this->inputReagents[0]] == null) $this->inputReagents[0] = "";
+		if ($ESO_REAGENT_DATA[$this->inputReagents[1]] == null) $this->inputReagents[1] = "";
+		if ($ESO_REAGENT_DATA[$this->inputReagents[2]] == null) $this->inputReagents[2] = "";
+		
+		error_log("Reagent1 = ".$this->inputReagents[0]);
+		
 		return true;
 	}
 	
@@ -74,7 +102,6 @@ class CEsoViewPotions
 		{
 			$iconUrl = $reagent['icon'];
 			$name = $reagent['name'];
-			$effectIndex = $reagent['id'];
 			
 			$trait1 = $ESO_POTIONEFFECT_DATA[$reagent['effects'][0]] ?: $ESO_UNKNOWN_POTION_EFFECT;
 			$trait2 = $ESO_POTIONEFFECT_DATA[$reagent['effects'][1]] ?: $ESO_UNKNOWN_POTION_EFFECT;
@@ -91,7 +118,7 @@ class CEsoViewPotions
 			$traitText3 = $trait3['name'];
 			$traitText4 = $trait4['name'];
 			
-			$output .= "<div class=\"esopdReagent\" reagent=\"$name\" effectindex=\"$effectIndex\">";
+			$output .= "<div class=\"esopdReagent\" reagent=\"$name\">";
 			$output .= "<img class=\"esopdReagentIcon\" src=\"$iconUrl\"><br /><div class=\"esopdReagentName\">$name</div><br />";
 			$output .= "<div class=\"esopdTraits\">";
 			$output .= "<img src='$traitIcon1' title='$traitText1'>";
@@ -125,7 +152,8 @@ class CEsoViewPotions
 			if (!$isPositive) $extraClass = "esopdEffectNegative";
 			
 			$output .= "<div class=\"esopdEffect $extraClass\" effectindex=\"$effectIndex\">";
-			$output .= "<img src='$icon'> $name";
+			$output .= "<img src='$icon'> ";
+			$output .= "<div class=\"esopdEffectName\">$name</div>";
 			$output .= "</div>";
 		}		
 		
@@ -162,14 +190,183 @@ class CEsoViewPotions
 	}
 	
 	
+	public function GetSolventsHtml()
+	{
+		global $ESO_SOLVENT_DATA;
+		
+		$output = "";
+		$sortedSolvents = $ESO_SOLVENT_DATA;
+		//usort($sortedSolvents, EsoSortSolventData);
+		
+		foreach ($sortedSolvents as $solvent)
+		{
+			$iconUrl = $solvent['icon'];
+			$name = $solvent['name'];
+			$level = $solvent['level'];
+			$isPoison = $solvent['isPoison'];
+			
+			if ($level > 50)
+				$level = "CP" . (($level - 50) * 10);
+			else
+				$level = "Level $level";
+			
+			$output .= "<div class=\"esopdSolvent\" solvent=\"$name\">";
+			$output .= "<img class=\"esopdSolventIcon\" src=\"$iconUrl\"><br /><div class=\"esopdSolventName\">$name<br/>$level</div><br />";
+			$output .= "</div>";		
+		}
+		
+		return $output;
+	}
+	
+	
+	public function GetSolventJson()
+	{
+		global $ESO_SOLVENT_DATA;
+		return json_encode($ESO_SOLVENT_DATA);
+	}
+	
+	
+	public function GetInputSolventName()
+	{
+		return htmlspecialchars($this->inputSolvent);
+	}
+	
+	
+	public function GetInputSolventLevel()
+	{
+		global $ESO_SOLVENT_DATA;
+		
+		$solventData = $ESO_SOLVENT_DATA[$this->inputSolvent];
+		if ($solventData == null) return "Level 1";
+		
+		$level = $solventData['level'];
+		
+		if ($level > 50)
+			$level = "CP". (($level-50)*10);
+		else
+			$level = "Level $level";
+			
+		return $level;
+	}
+	
+	
+	public function GetInputSolventIcon()
+	{
+		global $ESO_SOLVENT_DATA;
+		
+		$solventData = $ESO_SOLVENT_DATA[$this->inputSolvent];
+		if ($solventData == null) return "resources/alchemy_emptyslot_solvent.png";
+		
+		return $solventData['icon'];
+	}
+	
+	
+	public function GetInputReagentName($i)
+	{
+		if ($this->inputReagents[$i] == null) return "";
+		return htmlspecialchars($this->inputReagents[$i]);
+	}
+	
+	
+	public function GetInputReagentIcon($i)
+	{
+		global $ESO_REAGENT_DATA;
+		
+		$reagent = $this->inputReagents[$i];
+		if ($reagent == null) $reagent = "";
+		
+		if ($ESO_REAGENT_DATA[$reagent] == null) return "resources/alchemy_emptyslot_reagent.png";
+		
+		return $ESO_REAGENT_DATA[$reagent]['icon'];
+	}
+	
+	
+	public function GetInputReagentEffectName($i, $effectIndex)
+	{
+		global $ESO_REAGENT_DATA, $ESO_POTIONEFFECT_DATA;
+	
+		$reagent = $this->inputReagents[$i];
+		if ($reagent == null) return "";
+		if ($ESO_REAGENT_DATA[$reagent] == null) return "";
+	
+		$effect = $ESO_REAGENT_DATA[$reagent]['effects'][$effectIndex];
+		if ($effect == null) return "";
+	
+		$effectData = $ESO_POTIONEFFECT_DATA[$effect];
+		if ($effectData == null) return "";
+	
+		return htmlspecialchars($effectData['name']);
+	}
+	
+	
+	public function GetInputReagentEffectIcon($i, $effectIndex)
+	{
+		global $ESO_REAGENT_DATA, $ESO_POTIONEFFECT_DATA;
+		
+		$reagent = $this->inputReagents[$i];
+		if ($reagent == null) return "/resources/blank.gif";
+		if ($ESO_REAGENT_DATA[$reagent] == null) return "/resources/blank.gif";
+		
+		$effect = $ESO_REAGENT_DATA[$reagent]['effects'][$effectIndex];
+		if ($effect == null) return "/resources/blank.gif";
+		
+		$effectData = $ESO_POTIONEFFECT_DATA[$effect];
+		if ($effectData == null) return "/resources/blank.gif";
+		
+		return $effectData['icon'];
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		$replacePairs = array(
 				'{reagents}' => $this->GetReagentsHtml(),
+				'{solvents}' => $this->GetSolventsHtml(),
 				'{effects}' => $this->GetEffectsHtml(),
 				'{reagentJS}' => $this->GetReagentJson(),
+				'{solventJS}' => $this->GetSolventJson(),
 				'{effectJS}' => $this->GetEffectJson(),
 				'{unknownEffectJS}' => $this->GetUnknownEffectJson(),
+				
+				'{solventName}' => $this->GetInputSolventName(),
+				'{solventLevel}' => $this->GetInputSolventLevel(),
+				'{solventIcon}' => $this->GetInputSolventIcon(),
+				
+				'{reagentName1}' => $this->GetInputReagentName(0),
+				'{reagentIcon1}' => $this->GetInputReagentIcon(0),
+				
+				'{reagentName2}' => $this->GetInputReagentName(1),
+				'{reagentIcon2}' => $this->GetInputReagentIcon(1),
+				
+				'{reagentName3}' => $this->GetInputReagentName(2),
+				'{reagentIcon3}' => $this->GetInputReagentIcon(2),
+				
+				'{reagentEffectTitle11}' => $this->GetInputReagentEffectName(0, 0),
+				'{reagentEffectTitle12}' => $this->GetInputReagentEffectName(0, 1),
+				'{reagentEffectTitle13}' => $this->GetInputReagentEffectName(0, 2),
+				'{reagentEffectTitle14}' => $this->GetInputReagentEffectName(0, 3),
+				'{reagentEffectIcon11}' => $this->GetInputReagentEffectIcon(0, 0),
+				'{reagentEffectIcon12}' => $this->GetInputReagentEffectIcon(0, 1),
+				'{reagentEffectIcon13}' => $this->GetInputReagentEffectIcon(0, 2),
+				'{reagentEffectIcon14}' => $this->GetInputReagentEffectIcon(0, 3),
+				
+				'{reagentEffectTitle21}' => $this->GetInputReagentEffectName(1, 0),
+				'{reagentEffectTitle22}' => $this->GetInputReagentEffectName(1, 1),
+				'{reagentEffectTitle23}' => $this->GetInputReagentEffectName(1, 2),
+				'{reagentEffectTitle24}' => $this->GetInputReagentEffectName(1, 3),
+				'{reagentEffectIcon21}' => $this->GetInputReagentEffectIcon(1, 0),
+				'{reagentEffectIcon22}' => $this->GetInputReagentEffectIcon(1, 1),
+				'{reagentEffectIcon23}' => $this->GetInputReagentEffectIcon(1, 2),
+				'{reagentEffectIcon24}' => $this->GetInputReagentEffectIcon(1, 3),
+				
+				'{reagentEffectTitle31}' => $this->GetInputReagentEffectName(2, 0),
+				'{reagentEffectTitle32}' => $this->GetInputReagentEffectName(2, 1),
+				'{reagentEffectTitle33}' => $this->GetInputReagentEffectName(2, 2),
+				'{reagentEffectTitle34}' => $this->GetInputReagentEffectName(2, 3),
+				'{reagentEffectIcon31}' => $this->GetInputReagentEffectIcon(2, 0),
+				'{reagentEffectIcon32}' => $this->GetInputReagentEffectIcon(2, 1),
+				'{reagentEffectIcon33}' => $this->GetInputReagentEffectIcon(2, 2),
+				'{reagentEffectIcon34}' => $this->GetInputReagentEffectIcon(2, 3),
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);

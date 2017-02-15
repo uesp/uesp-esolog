@@ -7,8 +7,8 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "12";
-$VERSION = "12";
+$TABLEPREFIX = "13";
+$VERSION = "13";
 $FIRSTID = 3;
 $LASTID = 130000;
 $checkData = array();
@@ -45,7 +45,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		{
 			print("\t$id: Missing complete item!\n");
 		}
-		else if ($itemCount != 1 && $itemCount != $MAGICCOUNT)
+		else if ($itemCount != 1 && $itemCount < $MAGICCOUNT)
 		{
 			print("\t$id: Missing partial item data ($itemCount records)!\n");
 		}
