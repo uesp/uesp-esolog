@@ -34,7 +34,8 @@ class CEsoItemLinkImage
 	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
 	const ESOIL_LEVELBLOCK_CENTERXAMT = 70;
 	
-	const ESOIL_POTION_MAGICITEMID = 1234567;
+	const ESOIL_POTION_MAGICITEMID = 1;
+	const ESOIL_POISON_MAGICITEMID = 2;
 	const ESOIL_ENCHANT_ITEMID = 23662;
 	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
@@ -88,6 +89,10 @@ class CEsoItemLinkImage
 	public $enchantId2 = -1;
 	public $enchantIntLevel2 = -1;
 	public $enchantIntType2 = -1;
+	public $inputIntType = -1;
+	public $inputIntLevel = -1;
+	public $inputLevel = -1;
+	public $inputQuality = -1;
 	public $enchantFactor = 0;
 	public $version = "";
 	public $useUpdate10Display = true;
@@ -181,24 +186,24 @@ class CEsoItemLinkImage
 		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<enchantId2>[0-9]*)\:(?P<enchantSubtype2>[0-9]*)\:(?P<enchantLevel2>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
 		if (!$result) return false;
 		
-		$this->itemId = $matches['itemId'];
-		$this->itemIntLevel = $matches['level'];
-		$this->itemIntType = $matches['subtype'];
+		$this->itemId = (int) $matches['itemId'];
+		$this->itemIntLevel = (int) $matches['level'];
+		$this->itemIntType = (int) $matches['subtype'];
 		
-		$this->itemStyle = $matches['style'];
-		$this->itemBound = $matches['bound'];
-		$this->itemCrafted = $matches['crafted'];
-		$this->itemCharges = $matches['charges'];
-		$this->itemPotionData = $matches['potionData'];
-		$this->itemStolen = $matches['stolen'];
+		$this->itemStyle = (int) $matches['style'];
+		$this->itemBound = (int) $matches['bound'];
+		$this->itemCrafted = (int) $matches['crafted'];
+		$this->itemCharges = (int) $matches['charges'];
+		$this->itemPotionData = (int) $matches['potionData'];
+		$this->itemStolen = (int) $matches['stolen'];
 		
-		$this->enchantId1 = $matches['enchantId1'];
-		$this->enchantIntLevel1 = $matches['enchantLevel1'];
-		$this->enchantIntType1 = $matches['enchantSubtype1'];
+		$this->enchantId1 = (int) $matches['enchantId1'];
+		$this->enchantIntLevel1 = (int) $matches['enchantLevel1'];
+		$this->enchantIntType1 = (int) $matches['enchantSubtype1'];
 		
-		$this->enchantId2 = $matches['enchantId2'];
-		$this->enchantIntLevel2 = $matches['enchantLevel2'];
-		$this->enchantIntType2 = $matches['enchantSubtype2'];
+		$this->enchantId2 = (int) $matches['enchantId2'];
+		$this->enchantIntLevel2 = (int) $matches['enchantLevel2'];
+		$this->enchantIntType2 = (int) $matches['enchantSubtype2'];
 		
 		return true;
 	}
@@ -293,6 +298,11 @@ class CEsoItemLinkImage
 			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
 			if ($this->itemIntType  < 0) $this->itemIntType  = 1;
 		}
+		
+		$this->inputIntType = $this->itemIntType;
+		$this->inputIntLevel = $this->itemIntLevel;
+		$this->inputLevel = $this->itemLevel;
+		$this->inputQuality = $this->itemQuality;
 		
 		return true;
 	}
@@ -414,8 +424,11 @@ class CEsoItemLinkImage
 		
 		$this->itemRecord = $row;
 		
-		$this->LoadItemPotionData();
+		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
+		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
+		
 		$this->LoadEnchantMaxCharges();
+		
 		return true;
 	}
 	
@@ -475,22 +488,58 @@ class CEsoItemLinkImage
 	}
 	
 	
-	private function LoadItemPotionDataEffect($effectIndex)
+	private function LoadItemPoisonData()
+	{
+		if ($this->itemPotionData <= 0) return true;
+	
+		$potionData = intval($this->itemPotionData);
+		$potionEffect1 = $potionData & 255;
+		$potionEffect2 = ($potionData >> 8) & 255;
+		$potionEffect3 = ($potionData >> 16) & 127;
+	
+		$this->LoadItemPotionDataEffect($potionEffect1, false);
+		$this->LoadItemPotionDataEffect($potionEffect2, false);
+		$this->LoadItemPotionDataEffect($potionEffect3, false);
+	
+		ksort($this->itemRecord['traitAbilityDescArray']);
+		ksort($this->itemRecord['traitCooldownArray']);
+		return true;
+	}
+	
+	
+	private function LoadItemPotionDataEffect($effectIndex, $loadPotion = true)
 	{
 		$effectIndex = intval($effectIndex);
 		if ($effectIndex <= 0 || $effectIndex > 127) return true;
-	
-		if ($this->itemLevel >= 1)
-		{
-			$level = $this->itemLevel;
-			$quality = $this->itemQuality;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
-		}
+		
+		if ($loadPotion)
+			$itemId = self::ESOIL_POTION_MAGICITEMID;
 		else
+			$itemId = self::ESOIL_POISON_MAGICITEMID;
+		
+		if ($this->inputIntLevel >= 0 && $this->inputIntType >= 0)
+		{
+			$intlevel = $this->inputIntLevel;
+			$subtype = $this->inputIntType;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+		}
+		else if ($this->itemIntLevel >= 0 && $this->itemIntType >= 0)
 		{
 			$intlevel = $this->itemIntLevel;
 			$subtype = $this->itemIntType;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_POTION_MAGICITEMID." AND internalLevel=$intlevel AND internalSubtype=$type AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+		}
+		else if ($this->itemLevel >= 1)
+		{
+			$level = $this->itemLevel;
+			$quality = $this->itemQuality;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
+		}
+		else
+		{
+			$intlevel = 1;
+			$subtype = 1;
+			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 	
 		$this->lastQuery = $query;
