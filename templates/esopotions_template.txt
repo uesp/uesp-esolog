@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>UESP:ESO Alchemy Viewer</title>
+		<title>UESP:ESO Alchemy Calculator</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink_embed.css" />
 		<link rel="stylesheet" href="http://esolog.uesp.net/resources/esopotions.css" />
@@ -11,14 +11,78 @@
 	</head>
 <body>
 
-<h1>ESO Alchemy Viewer</h1>
+<h1>ESO Alchemy Calculator</h1>
 
 <div id="esopd_root">
-
-	{reagents}
+	<div id="esopdLeft">
+		<div id="esopdTooltipContainer">
+			<div id="esopdTooltip" class="">
+			</div>
+		</div>
+		<div id="esopdWorkArea">
+			<div id="esopdSolvent" solvent="">
+				<img src="resources/alchemy_emptyslot_solvent.png">
+				<div class="esopdWorkAreaName"></div>
+			</div>
+			<div id="esopdReagent1" reagent="">
+				<img src="resources/alchemy_emptyslot_reagent.png">
+				<div class="esopdWorkAreaName"></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div><br/>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+			</div>
+			<div id="esopdReagent2" reagent="">
+				<img src="resources/alchemy_emptyslot_reagent.png">
+				<div class="esopdWorkAreaName"></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div><br/>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+			</div>
+			<div id="esopdReagent3" reagent="">
+				<img src="resources/alchemy_emptyslot_reagent.png">
+				<div class="esopdWorkAreaName"></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div><br/>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+				<div class="esopdReagentEffects"><img src="resources/blank.gif" title=""></div>
+			</div>
+		</div>
+		<div
+		<div id="esopdReagentsRoot">
+			<div id="esopdReagentTabs">
+				<div class="esopdReagentTabSpacer"></div>
+				<div class="esopdReagentTab esopdReagentTabSelected" tabid="esopdReagents">Reagents</div>
+				<div class="esopdReagentTabSpacer"></div>
+				<div class="esopdReagentTab" tabid="esopdFindPotions" id="esopdFindPotionTab">Find Potions</div>
+				<div class="esopdReagentTabSpacer"></div>
+			</div>
+			<div id="esopdReagents">
+				Click on the reagents below to add it to the above potion crafting area.<br/>
+				{reagents}
+			</div>
+			<div id="esopdFindPotions" style="display: none;">
+				Select 1-3 effects on the right and hit "Find" to search for matching potion combinations.
+				<div id="esopdFindPotionMsg"></div>
+				<div id="esopdFindPotionResults"></div>
+			</div>
+		</div>
+	</div>	
+	<div id="esopdEffects">
+		<button onclick="OnEsoPotionEffectFind()"  id="esopdFindEffects">Find</button>
+		<button onclick="OnEsoPotionEffectReset()" id="esopdResetEffects">Reset</button>
+		<h3>Effects</h3>
+		{effects}
+	</div>
 
 </div>
 
+<script type="text/javascript">
+	var g_EsoPotionReagents = {reagentJS};
+	var g_EsoPotionEffects = {effectJS};
+	var g_EsoUnknownPotionEffect = {unknownEffectJS};
+</script>
 
 <hr>
 <div id="eso_footer">
