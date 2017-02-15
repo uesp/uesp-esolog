@@ -74,7 +74,7 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "13";
+	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "";
 	
 	public $db = null;
