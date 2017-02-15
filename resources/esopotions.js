@@ -1,16 +1,36 @@
 var EsoPotionItemLinkPopup = null;
 var EsoPotionNextFreeReagent = 1;
+var EsoPotionItemLinkCache = {};
+var EsoPotionLastItemLink = "";
 
 
-function UpdateEsoPotionTooltip(potionData)
+function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
 {
 	var linkSrc = "http://esoitem.uesp.net/itemLink.php?&embed";
+	var solventName = $("#esopdSolventUsed").attr("solvent");
+	var solventData = g_EsoPotionSolvents[solventName];
 	
 	var itemId = 54339;
-	var intLevel = 1;
+	var intLevel = 3;
 	var intType = 30;
 	
+	if (potionItemId) itemId = potionItemId;
+	
+	if (solventData)
+	{
+		intLevel = solventData.internalLevel;
+		intType = solventData.internalType;
+		
+		if (solventData.isPoison)
+		{
+			itemId = 76827;
+			if (poisonItemId) itemId = poisonItemId;
+		}
+	}
+	
 	if (potionData == null) potionData = 0;
+
+	EsoPotionLastItemLink = "|H1:item:" + itemId + ":" + intType + ":" + intLevel + ":0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:" + potionData + "|h|h";
 	
 	linkSrc += "&itemid=" + itemId;
 	linkSrc += "&intlevel=" + intLevel;
@@ -18,18 +38,22 @@ function UpdateEsoPotionTooltip(potionData)
 	linkSrc += "&potiondata=" + potionData;
 		
 	$.get(linkSrc, function(data) {
-			EsoPotionItemLinkPopup.html(data);
-		});
+		EsoPotionItemLinkPopup.html(data);
+	});
 }
 
 
-function HasEsoPotionReagent(name)
+function GetEsoPotionReagentSlot(name)
 {
 	var slot1 = $("#esopdReagent1").attr("reagent");
 	var slot2 = $("#esopdReagent2").attr("reagent");
 	var slot3 = $("#esopdReagent3").attr("reagent");
 	
-	return (slot1 == name || slot2 == name || slot3 == name);
+	if (slot1 == name) return $("#esopdReagent1");
+	if (slot2 == name) return $("#esopdReagent2");
+	if (slot3 == name) return $("#esopdReagent3");
+	
+	return null;
 }
 
 
@@ -75,17 +99,15 @@ function UpdateEsoPotionReagent(reagentSlot, reagentName, reagentIcon)
 		effectSlots.children("img").attr("src", "resources/blank.gif").attr("title", "");
 		return;
 	}
-	
-	console.log("reagentData", reagentData);
-	
+
 	var effect1 = GetEsoPotionEffectData(reagentData.effects[0]);
 	var effect2 = GetEsoPotionEffectData(reagentData.effects[1]);
 	var effect3 = GetEsoPotionEffectData(reagentData.effects[2]);
 	var effect4 = GetEsoPotionEffectData(reagentData.effects[3]);
 	
 	var effectSlot1 = $(effectSlots.get(0));
-	var effectSlot2 = $(effectSlots.get(1));
-	var effectSlot3 = $(effectSlots.get(2));
+	var effectSlot2 = $(effectSlots.get(2));
+	var effectSlot3 = $(effectSlots.get(1));
 	var effectSlot4 = $(effectSlots.get(3));
 	
 	var effectImg1 = effectSlot1.children("img");
@@ -102,6 +124,38 @@ function UpdateEsoPotionReagent(reagentSlot, reagentName, reagentIcon)
 	effectImg2.attr("title", effect2.name);
 	effectImg3.attr("title", effect3.name);
 	effectImg4.attr("title", effect4.name);
+}
+
+
+function UpdateEsoPotionSolvent(solventName, solventIcon)
+{
+	var solventData = g_EsoPotionSolvents[solventName];
+	var solventSlot = $("#esopdSolventUsed");
+	var displayName = solventName;
+	
+	if (solventIcon == "" || solventIcon == null)
+	{
+		if (solventName == "")
+			solventIcon = "resources/alchemy_emptyslot_solvent.png";
+		else if (solventData === null)
+			solventIcon = "resources/blank.gif";
+		else
+			solventIcon = solventData.icon;
+	}
+	
+	if (solventData != null)
+	{
+		var level = solventData.level;
+		
+		if (level > 50)
+			displayName += "<br/>CP" + ((level - 50)*10);
+		else
+			displayName += "<br/>Level " + level;
+	}
+	
+	solventSlot.children("img").attr("src", solventIcon);
+	solventSlot.attr("solvent", solventName);
+	solventSlot.children(".esopdWorkAreaName").html(displayName);	
 }
 
 
@@ -146,7 +200,15 @@ function CombineEsoReagentEffects(effects1, effects2, effects3)
 	for (var effectId in effectCounts) 
 	{
 		effectId = parseInt(effectId);
+		
+		var effectData = g_EsoPotionEffects[effectId];
 		var count = effectCounts[effectId];
+		
+		if (effectData && effectData.oppositeId > 0 && effectCounts[effectData.oppositeId] > 0)
+		{
+			count -= effectCounts[effectData.oppositeId];
+		}
+		
 		if (count > 1) combinedEffects.push(effectId);
 	}
 	
@@ -160,21 +222,25 @@ function UpdateEsoPotion()
 	var effects2 = GetEsoReagentEffects($("#esopdReagent2"));
 	var effects3 = GetEsoReagentEffects($("#esopdReagent3"));
 	
-	console.log("Effects", effects1, effects2, effects3);
-	
 	var combinedEffects = CombineEsoReagentEffects(effects1, effects2, effects3);
-	console.log("combinedEffects", combinedEffects);
-	
 	var potionData = 0;
+	var potionBaseId = 0;
+	var poisonBaseId = 0;
 	
 	for (var i = 0; i < combinedEffects.length; i++) 
 	{
 		potionData = potionData * 256 + combinedEffects[i];
+		
+		if (i == 0 && g_EsoPotionEffects[combinedEffects[i]] != null)
+		{
+			var effectData = g_EsoPotionEffects[combinedEffects[i]];
+			potionBaseId = effectData.potionBaseId;
+			poisonBaseId = effectData.poisonBaseId;
+		}
 	}
 	
-	console.log("PotionData", potionData);
-	
-	UpdateEsoPotionTooltip(potionData);
+	UpdateEsoPotionTooltip(potionData, potionBaseId, poisonBaseId);
+	UpdateEsoPotionLink();
 }
 
 
@@ -193,10 +259,32 @@ function OnClickEsoReagent(e)
 	var slotIndex = GetEsoPotionFreeSlotIndex();
 	var slotName = "#esopdReagent" + slotIndex; 
 	var reagentName = reagent.attr("reagent");
+	var currentSlot = GetEsoPotionReagentSlot(reagentName)
 		
-	if (HasEsoPotionReagent(reagentName)) return;
+	if (currentSlot != null) 
+	{
+		UpdateEsoPotionReagent(currentSlot, "", "");
+	}
+	else
+	{
+		UpdateEsoPotionReagent($(slotName), reagentName, $this.attr("src"));
+	}
 	
-	UpdateEsoPotionReagent($(slotName), reagentName, $this.attr("src"));
+	
+	UpdateEsoPotion();
+}
+
+
+function OnClickEsoSolvent(e)
+{
+	var $this = $(this);
+	var solvent = $this.parent();
+	var solventName = solvent.attr("solvent");
+	var solventData = g_EsoPotionSolvents[solventName];
+	
+	if (solventData) ChangeEsoPotionEffectNames(solventData.isPoison);
+	
+	UpdateEsoPotionSolvent(solventName, $this.attr("src"));
 	UpdateEsoPotion();
 }
 
@@ -205,6 +293,13 @@ function OnClickEsoReagentSlot(e)
 {
 	UpdateEsoPotionReagent($(this), "", "");
 	UpdateEsoPotion();
+}
+
+
+function OnClickEsoSolventSlot(e)
+{
+	//UpdateEsoPotionSolvent(solventName, $this.attr("src"));
+	//UpdateEsoPotion();
 }
 
 
@@ -313,11 +408,11 @@ function FindEsoMatchingReagents(effects)
 function FindEsoPotionCombinations(effects)
 {
 	var reagents = FindEsoMatchingReagents(effects);
+	var allReagents = Object.keys(g_EsoPotionReagents);
 	var potions = [];
 	var potionKeys = {};
 		
 	if (reagents.length == 0) return potions;
-	console.log("effects", effects);
 	
 	for (var i in reagents)
 	{
@@ -334,7 +429,6 @@ function FindEsoPotionCombinations(effects)
 			if (reagent1 == null || reagent2 == null) continue;
 			
 			var combineEffects1 = CombineEsoReagentEffects(reagent1.effects, reagent2.effects, []);
-			console.log("combineEffects1", combineEffects1);
 			var matched = true;
 			
 			for (var m in effects)
@@ -362,16 +456,15 @@ function FindEsoPotionCombinations(effects)
 				potions.push(result);
 			}
 			
-			for (var k in reagents)
+			for (var k in allReagents)
 			{
-				var name3 = reagents[k];
+				var name3 = allReagents[k];
 				if (name1 == name3 || name2 == name3) continue;
 				
 				var reagent3 = g_EsoPotionReagents[name3];
 				if (reagent3 == null) continue;
 				
 				var combineEffects2 = CombineEsoReagentEffects(reagent1.effects, reagent2.effects, reagent3.effects);
-				console.log("combineEffects2", combineEffects1);
 				var matched = true;
 				
 				for (var m in effects)
@@ -407,18 +500,20 @@ function FindEsoPotionCombinations(effects)
 		}
 	}
 	
-	console.log("Find Reagents:", reagents);
-	console.log("Find Potions:", potions);
 	return potions;
 }
 
 
 function CreateEsoFindPotionResultHtml(result)
 {
-	var output = "<div class=\"esopdPotionResult\"";
+	var output = "<li class=\"esopdPotionResult\"";
 	var reagent1 = g_EsoPotionReagents[result.name1];
 	var reagent2 = g_EsoPotionReagents[result.name2];
 	var reagent3 = g_EsoPotionReagents[result.name3];
+	var isPoison = false;
+	var solventData = g_EsoPotionSolvents[$("#esopdSolventUsed").attr("solvent")];
+	
+	if (solventData && solventData.isPoison) isPoison = true;
 	
 	output += " reagent1=\"" + result.name1 + "\"";
 	output += " reagent2=\"" + result.name2 + "\"";
@@ -449,23 +544,30 @@ function CreateEsoFindPotionResultHtml(result)
 		if (effectData == null) continue;
 		
 		if (i > 0) output += " + ";
-		output += "<img src=\"" + effectData.icon + "\"> " + effectData.name;
+		output += "<img src=\"" + effectData.icon + "\"> ";
+		
+		if (isPoison && effectData.name2)
+			output +=  effectData.name2;
+		else
+			output +=  effectData.name;
 	}
 	
 	output += "</div>";
-	output += "</div>";
+	output += "</li>";
 	return output;
 }
 
 
 function CreateEsoFindPotionResults(results)
 {
-	var output = "";
+	var output = "<ol class=\"esopdPotionResultsList\">";
 	
 	for (var i in results)
 	{
 		output += CreateEsoFindPotionResultHtml(results[i]);
 	}
+	
+	output += "</ol>";
 	
 	$("#esopdFindPotionResults").html(output);
 	
@@ -493,6 +595,10 @@ function OnEsoPotionEffectFind()
 	var effects = GetEsoPotionSelectedEffects();
 	var results = FindEsoPotionCombinations(effects);
 	var effectNames = "";
+	var isPoison = false;
+	var solventData = g_EsoPotionSolvents[$("#esopdSolventUsed").attr("solvent")];
+	
+	if (solventData && solventData.isPoison) isPoison = true;
 	
 	for (var i in effects)
 	{
@@ -500,7 +606,11 @@ function OnEsoPotionEffectFind()
 		if (effectData == null) continue;
 		
 		if (i > 0) effectNames += " + ";
-		effectNames += effectData.name;
+		
+		if (isPoison && effectData.name2)
+			effectNames += effectData.name2;
+		else
+			effectNames += effectData.name;
 	}
 	
 	if (results.length == 0)
@@ -544,9 +654,69 @@ function OnClickEsoReagentTab(e)
 	$this.addClass("esopdReagentTabSelected");
 	
 	$("#esopdReagents").hide();
+	$("#esopdSolvents").hide();
 	$("#esopdFindPotions").hide();
 	
 	$("#" + tabid).show();
+}
+
+
+function OnClickCopyEsoPotionItemLink()
+{
+}
+
+
+function OnClickCopyEsoPotionItemLink(e)
+{
+	var textToCopy = EsoPotionLastItemLink;
+	
+	$("body")
+		.append($('<input type="text" name="fname" class="textToCopyInput" style="opacity: 0; position: absolute;" />' )
+				.val(textToCopy))
+		.find(".textToCopyInput")
+		.select();
+	
+	try 
+	{
+		var successful = document.execCommand('copy');
+		var msg = successful ? 'successful' : 'unsuccessful';
+		//alert('Text copied to clipboard!');
+    }
+	catch (err) 
+    {
+    	window.prompt("To copy the text to clipboard: Ctrl+C, Enter", textToCopy);
+    }
+	
+	$(".textToCopyInput").remove();	
+}
+
+
+function ChangeEsoPotionEffectNames(usePoison)
+{
+	$(".esopdEffect").each(function(){
+		var effectindex = parseInt($(this).attr("effectindex"));
+		var effectData = g_EsoPotionEffects[effectindex];
+		
+		if (effectData == null) return;
+		
+		var newName = effectData.name;
+		if (usePoison && effectData.name2) newName = effectData.name2;
+		
+		$(this).children(".esopdEffectName").text(newName);
+	});
+}
+
+
+function UpdateEsoPotionLink()
+{
+	var solvent = $("#esopdSolventUsed").attr("solvent");
+	var reagent1 = $("#esopdReagent1").attr("reagent");
+	var reagent2 = $("#esopdReagent2").attr("reagent");
+	var reagent3 = $("#esopdReagent3").attr("reagent");
+	
+	var link = "?s=" + solvent + "&r1=" + reagent1 + "&r2=" + reagent2 + "&r3=" + reagent3;
+	
+	$("#esopdPotionLink").attr("href", link);
 }
 
 
@@ -555,13 +725,16 @@ function esopdOnDocReady()
 	EsoPotionItemLinkPopup = $("#esopdTooltip");
 	
 	$(".esopdReagentIcon").click(OnClickEsoReagent);
+	$(".esopdSolventIcon").click(OnClickEsoSolvent);
+	$("#esopdSolventUsed").click(OnClickEsoSolventSlot)
 	$("#esopdReagent1").click(OnClickEsoReagentSlot)
 	$("#esopdReagent2").click(OnClickEsoReagentSlot)
 	$("#esopdReagent3").click(OnClickEsoReagentSlot)
 	$(".esopdEffect").click(OnClickEsoEffect);
 	$(".esopdReagentTab").click(OnClickEsoReagentTab);
+	$("#esopdCopyItemLink").click(OnClickCopyEsoPotionItemLink);
 	
-	UpdateEsoPotionTooltip();
+	UpdateEsoPotion();
 }
 
 
