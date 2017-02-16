@@ -87,9 +87,12 @@ class CEsoItemLinkImage
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
 	public $enchantIntType1 = -1;
-	public $enchantId2 = -1;
-	public $enchantIntLevel2 = -1;
-	public $enchantIntType2 = -1;
+	public $writData1 = 0;
+	public $writData2 = 0;
+	public $writData3 = 0;
+	public $writData4 = 0;
+	public $writData5 = 0;
+	public $writData6 = 0;
 	public $inputIntType = -1;
 	public $inputIntLevel = -1;
 	public $inputLevel = -1;
@@ -205,9 +208,12 @@ class CEsoItemLinkImage
 		$this->enchantIntLevel1 = (int) $matches['enchantLevel1'];
 		$this->enchantIntType1 = (int) $matches['enchantSubtype1'];
 		
-		$this->enchantId2 = (int) $matches['enchantId2'];
-		$this->enchantIntLevel2 = (int) $matches['enchantLevel2'];
-		$this->enchantIntType2 = (int) $matches['enchantSubtype2'];
+		$this->writData1 = (int) $matches['writ1'];
+		$this->writData2 = (int) $matches['writ2'];
+		$this->writData3 = (int) $matches['writ3'];
+		$this->writData4 = (int) $matches['writ4'];
+		$this->writData5 = (int) $matches['writ5'];
+		$this->writData6 = (int) $matches['writ6'];
 		
 		return true;
 	}
@@ -294,7 +300,15 @@ class CEsoItemLinkImage
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
-				
+		
+		if (array_key_exists('writ1', $this->inputParams)) $this->writData1 = (int) $this->inputParams['writ1'];
+		if (array_key_exists('writ2', $this->inputParams)) $this->writData2 = (int) $this->inputParams['writ2'];
+		if (array_key_exists('writ3', $this->inputParams)) $this->writData3 = (int) $this->inputParams['writ3'];
+		if (array_key_exists('writ4', $this->inputParams)) $this->writData4 = (int) $this->inputParams['writ4'];
+		if (array_key_exists('writ5', $this->inputParams)) $this->writData5 = (int) $this->inputParams['writ5'];
+		if (array_key_exists('writ6', $this->inputParams)) $this->writData6 = (int) $this->inputParams['writ6'];
+		if (array_key_exists('vouchers', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['vouchers'];
+						
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Display = true;
 		
 		if ($this->itemLevel < 0 && $this->itemQuality < 0)
@@ -385,6 +399,17 @@ class CEsoItemLinkImage
 				$result = $this->db->query($query);
 				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 			}
+			else
+			{
+				$this->itemIntType = 1;
+				$this->itemIntLevel = 1;
+			
+				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
+			
+				$result = $this->db->query($query);
+				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			}
 			
 			if ($result->num_rows === 0) return $this->ReportError("ERROR: No item found matching {$this->itemErrorDesc}!");
 		}
@@ -431,9 +456,21 @@ class CEsoItemLinkImage
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
 		
+		if ($this->itemRecord['type'] == 60) $this->CreateMasterWritData();
+		
 		$this->LoadEnchantMaxCharges();
 		
 		return true;
+	}
+		
+
+	public function CreateMasterWritData()
+	{
+		$text = CreateEsoMasterWritText($this->db, $this->itemRecord['name'], $this->writData1, $this->writData2, $this->writData3,
+				$this->writData4, $this->writData5, $this->writData6, $this->itemPotionData);
+	
+		$this->itemRecord['abilityName'] = '';
+		$this->itemRecord['abilityDesc'] = $text;
 	}
 	
 	
@@ -632,17 +669,6 @@ class CEsoItemLinkImage
 			$result->data_seek(0);
 			$row = $result->fetch_assoc();
 			if ($row) $this->enchantRecord1 = $row;
-		}
-	
-		if ($this->enchantId2 > 0 && $this->enchantIntLevel2 > 0 && $this->enchantIntType2 > 0)
-		{
-			$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
-			$result = $this->db->query($query);
-			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
-	
-			$result->data_seek(0);
-			$row = $result->fetch_assoc();
-			if ($row) $this->enchantRecord2 = $row;
 		}
 	
 		return true;
@@ -1682,7 +1708,13 @@ class CEsoItemLinkImage
 	
 	private function OutputItemAbilityBlock($image, $y)
 	{
-		if ($this->itemRecord['type'] == 29)	// Recipes
+		if ($this->itemRecord['type'] == 60)	// Master Writs
+		{
+			$ability = "";
+			$abilityDesc = $this->itemRecord['abilityDesc'];
+			if ($abilityDesc == "") return "";
+		}
+		else if ($this->itemRecord['type'] == 29)	// Recipes
 		{
 			$ability = strtoupper($this->itemRecord['abilityName']);
 			$abilityDesc = $this->itemRecord['abilityDesc'];
@@ -2263,13 +2295,18 @@ class CEsoItemLinkImage
 	public function ServeCachedImage($useRedirect)
 	{
 		if ($this->noCache) return false;
-		if ($this->enchantId2 > 0) return false;
 		if ($this->itemId <= 0) return false;
 		if ($this->itemBound > 0) return false;
 		if ($this->itemStyle > 0) return false;
 		if ($this->itemCrafted > 0) return false;
 		if ($this->itemCharges > 0) return false;
 		if ($this->itemPotionData > 0) return false;
+		if ($this->writData1 > 0) return false;
+		if ($this->writData2 > 0) return false;
+		if ($this->writData3 > 0) return false;
+		if ($this->writData4 > 0) return false;
+		if ($this->writData5 > 0) return false;
+		if ($this->writData6 > 0) return false;
 		if ($this->version != "") return false;
 		if ($this->itemSetCount >= 0) return false;
 		if ($this->itemStolen > 0) return false;
