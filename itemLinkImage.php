@@ -1282,6 +1282,7 @@ class CEsoItemLinkImage
 			case 61:	// Furnishing
 			case 29:	// Recipe
 			case 59:	// Dye Stamp
+			case 60:	// Master Writ
 			case 44:	// Style Material
 				return false;
 				
