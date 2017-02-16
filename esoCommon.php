@@ -2096,20 +2096,13 @@ function CreateEsoMasterWritAlchemyText($db, $writ1, $writ2, $writ3, $writ4, $wr
 	$itemId = 1;
 	$name = "Unknown Potion";
 	$properties = "Unknown";
+	$isPoison = false;
 		
 	if ($writ1 == 239) 
 	{
+		$isPoison = true;
 		$name = "Unknown Poison";
 		$itemId = 2;
-	}
-	
-	$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='50' AND internalSubtype='307';";
-	$result = $db->query($query);	
-	
-	if ($result !== false && $result->num_rows > 0)
-	{
-		$row = $result->fetch_assoc();
-		$name = $row['name'];
 	}
 	
 	if ($ESO_POTIONEFFECT_DATA != null)
@@ -2119,11 +2112,34 @@ function CreateEsoMasterWritAlchemyText($db, $writ1, $writ2, $writ3, $writ4, $wr
 		$effect2 = $ESO_POTIONEFFECT_DATA[$writ3];
 		$effect3 = $ESO_POTIONEFFECT_DATA[$writ4];
 		
-		if ($effect1 != null) $props[] = $effect1['name'];
-		if ($effect2 != null) $props[] = $effect2['name'];
-		if ($effect3 != null) $props[] = $effect3['name'];
+		if ($effect3 != null) 
+		{
+			$itemId = $isPoison ? $effect3['poisonBaseId'] : $effect3['potionBaseId'];
+			$props[] = $effect3['name'];
+		}
+		
+		if ($effect2 != null) 
+		{
+			$itemId = $isPoison ? $effect2['poisonBaseId'] : $effect2['potionBaseId'];
+			$props[] = $effect2['name'];
+		}
+		
+		if ($effect1 != null) 
+		{
+			$itemId = $isPoison ? $effect1['poisonBaseId'] : $effect1['potionBaseId'];
+			$props[] = $effect1['name'];
+		}
 		
 		$properties = implode(", ", $props);
+	}
+	
+	$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='50' AND internalSubtype='307';";
+	$result = $db->query($query);
+	
+	if ($result !== false && $result->num_rows > 0)
+	{
+		$row = $result->fetch_assoc();
+		$name = $row['name'];
 	}
 	
 	if ($rawVouchers < 0) $rawVouchers = 0;
