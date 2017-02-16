@@ -231,7 +231,7 @@ class EsoViewSalesData
 	{
 		$this->ParseFormParam('text');
 		$this->ParseFormParam('trait');
-		$this->ParseFormParam('quality');
+		$this->ParseFormParam('quality');+
 		$this->ParseFormParam('itemtype');
 		$this->ParseFormParam('equiptype');
 		$this->ParseFormParam('armortype');
@@ -716,10 +716,12 @@ class EsoViewSalesData
 		$intSubtype = intval($itemLinkData['subtype']);
 		$intLevel = intval($itemLinkData['level']);
 		$potionData = intval($itemLinkData['potionData']);
+		$server = $this->db->real_escape_string($this->server);
 		
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
 		
+		$where[] = "server='$server'";
 		$where[] = "itemId='$itemId'";
 		$where[] = "internalLevel='$intLevel'";
 		$where[] = "internalSubtype='$intSubtype'";		
@@ -741,6 +743,7 @@ class EsoViewSalesData
 		$intSubtype = intval($itemLinkData['subtype']);
 		$intLevel = intval($itemLinkData['level']);
 		$potionData = intval($itemLinkData['potionData']);
+		$server = $this->db->real_escape_string($this->server);
 		
 		$query = "SELECT level, quality FROM $uespEsoLogDatabase.minedItemSummary WHERE itemId='$itemId';";
 		$result = $this->db->query($query);
@@ -771,6 +774,7 @@ class EsoViewSalesData
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
 	
+		$where[] = "server='$server'";
 		$where[] = "itemId='$itemId'";
 		$where[] = "level='$level'";
 		$where[] = "quality='$quality'";

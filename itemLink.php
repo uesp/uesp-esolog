@@ -1680,6 +1680,7 @@ class CEsoItemLink
 			case 61:	// Furnishing
 			case 29:	// Recipe
 			case 59:	// Dye Stamp
+			case 44:	// Style Material
 				return "none";
 			case 2:		// Armor/Weapons
 			case 1:
