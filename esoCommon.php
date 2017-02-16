@@ -1956,12 +1956,20 @@ function GetEsoItemTableSuffix($version)
 function FormatEsoItemDescriptionIcons($desc)
 {
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
-	//$output = strtolower($desc);
-	
+
 	$output = preg_replace_callback("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s",  
 			function ($matches) {
-				return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' />";
-				//"<img src='" . UESP_ESO_ICON_URL . "/$3.png' />",
+				$extra = "";
+				
+				if (stripos($matches[3], "currency_writvoucher") > 0)
+				{
+					$extra = "style=\"position: relative; top: 3px;\"";	
+				}
+				
+				if ($matches[1] != "" && $matches[2] != "") 
+					return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' width=\"$matches[1]\" height=\"$matches[2]\" $extra />";
+				else
+					return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' $extra />";
 			},
 			$desc);
 
@@ -2049,4 +2057,232 @@ function startsWith($haystack, $needle)
 function startsWithNoCase($haystack, $needle)
 {
 	return strncasecmp($haystack, $needle, count($needle));
+}
+
+
+function ParseEsoItemLink($itemLink)
+{
+	$matches = array();
+	
+	$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:' .
+						 '(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<writ1>[0-9]*)\:(?P<writ2>[0-9]*)\:' . 
+						 '(?P<writ3>[0-9]*)\:(?P<writ4>[0-9]*)\:(?P<writ5>[0-9]*)\:(?P<writ6>[0-9]*)\:(.*?)\:' . 
+							'(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:' . 
+						 '(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', 
+						$itemLink, $matches);
+	if (!$result) return false;
+
+	return $matches;
+}
+
+
+function CreateEsoMasterWritText($db, $name, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
+{
+	if (stripos($name, "alchemy")) return CreateEsoMasterWritAlchemyText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	if (stripos($name, "blacksmith")) return CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	if (stripos($name, "clothier")) return CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	if (stripos($name, "enchant")) return CreateEsoMasterWritEnchantingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	if (stripos($name, "provision")) return CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	if (stripos($name, "woodwork")) return CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	
+	return "";
+}
+
+
+function CreateEsoMasterWritAlchemyText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
+{
+	global $ESO_POTIONEFFECT_DATA;
+	
+	$itemId = 1;
+	$name = "Unknown Potion";
+	$properties = "Unknown";
+		
+	if ($writ1 == 239) 
+	{
+		$name = "Unknown Poison";
+		$itemId = 2;
+	}
+	
+	$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='50' AND internalSubtype='307';";
+	$result = $db->query($query);	
+	
+	if ($result !== false && $result->num_rows > 0)
+	{
+		$row = $result->fetch_assoc();
+		$name = $row['name'];
+	}
+	
+	if ($ESO_POTIONEFFECT_DATA != null)
+	{
+		$props = array();
+		$effect1 = $ESO_POTIONEFFECT_DATA[$writ2];
+		$effect2 = $ESO_POTIONEFFECT_DATA[$writ3];
+		$effect3 = $ESO_POTIONEFFECT_DATA[$writ4];
+		
+		if ($effect1 != null) $props[] = $effect1['name'];
+		if ($effect2 != null) $props[] = $effect2['name'];
+		if ($effect3 != null) $props[] = $effect3['name'];
+		
+		$properties = implode(", ", $props);
+	}
+	
+	if ($rawVouchers < 0) $rawVouchers = 0;
+	$vouchers = round($rawVouchers/10000);
+	
+	$text  = "Consume to start quest:\n";
+	$text .= FixVowelArticles("Craft a $name with the following properties: ");
+	$text .= "$properties\n\n";
+	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+	
+	return $text;
+}
+
+
+function CreateEsoMasterWritEnchantingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
+{
+	$query = "SELECT * FROM minedItem WHERE itemId='$writ1' AND internalLevel='50' AND internalSubtype='307';";
+	$result = $db->query($query);
+	$name = "Unknown Glyph";
+	
+	if ($result !== false && $result->num_rows > 0)
+	{
+		$row = $result->fetch_assoc();
+		$name = $row['name'];
+	}
+	
+	$quality = GetEsoItemQualityText($writ3);
+	
+	if ($rawVouchers < 0) $rawVouchers = 0;
+	$vouchers = round($rawVouchers/10000);
+	
+	$text  = "Consume to start quest:\n";
+	$text .= FixVowelArticles("Craft a $name;");
+	$text .= " Quality: $quality\n\n";
+	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+	
+	return $text;
+}
+
+
+function FixVowelArticles($text)
+{
+	return preg_replace('/(^| )a ([aeiouAEIOU])/', '$1an $2', $text);	
+}
+
+
+function CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
+{
+	$query = "SELECT * FROM minedItem WHERE itemId='$writ1' AND internalLevel='1' AND internalSubtype='1';";
+	$result = $db->query($query);
+	$name = "Unknown Food";
+	
+	if ($result !== false && $result->num_rows > 0)
+	{
+		$row = $result->fetch_assoc();
+		$name = $row['name'];
+	}
+	
+	if ($rawVouchers < 0) $rawVouchers = 0;
+	$vouchers = round($rawVouchers/10000);
+	
+	$text  = "Consume to start quest:\n";
+	$text .= FixVowelArticles("Craft a $name\n\n");
+	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+		
+	return $text;
+}
+
+
+function CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
+{
+	static $ESO_SMITHING_CRAFTTYPE = array(
+			188 => "Rubedite",
+			190 => "Rubedo Leather",
+			192 => "Ruby Ash",
+			194 => "Ancestor Silk",
+	);
+	
+	static $ESO_SMITHING_MASTERWRIT_TYPES = array(
+			17 => "Helmet",
+			18 => "Necklace",
+			19 => "Chest",
+			20 => "Shoulder",
+			21 => "Belt",
+			22 => "Leg",
+			23 => "Feet",
+			24 => "Ring",
+			25 => "Glove",
+			26 => "Hat",
+			27 => "Necklace",
+			28 => "Shirt",
+			29 => "Epaulet",
+			30 => "Sash",
+			31 => "Breeches",
+			32 => "Shoe",
+			33 => "Ring",
+			34 => "Glove",
+			35 => "Helmet",
+			36 => "Necklace",
+			37 => "Jack",
+			38 => "Arm Cop",
+			39 => "Belt",
+			40 => "Guards",
+			41 => "Boot",
+			42 => "Ring",
+			43 => "Bracer",
+			44 => "Helm",
+			45 => "Necklace",
+			46 => "Cuirass",
+			47 => "Pauldron",
+			48 => "Girdle",
+			49 => "Greave",
+			50 => "Sabatons",
+			51 => "Ring",
+			52 => "Gauntlet",
+			53 => "Axe",
+			56 => "Mace",
+			59 => "Sword",
+			62 => "Dagger",
+			65 => "Shield",
+			66 => "Rune/Off-Hand",
+			67 => "2H Sword",
+			68 => "2H Axe",
+			69 => "2H Maul",
+			70 => "Bow",
+			71 => "Restoration Staff",
+			72 => "Inferno Staff",
+			73 => "Frost Staff",
+			74 => "Lightning Staff",
+			75 => "Chest",
+			76 => "Bread",
+			77 => "Meat",
+			78 => "Stew",
+			80 => "Wine",
+			81 => "Spirits",
+			82 => "Beer",
+	);
+		
+	$craftPrefix = "Unknown";
+	$itemType = "Unknown";
+	
+	if ($ESO_SMITHING_CRAFTTYPE[$writ2] != null) $craftPrefix = $ESO_SMITHING_CRAFTTYPE[$writ2];
+	if ($ESO_SMITHING_MASTERWRIT_TYPES[$writ1] != null) $itemType = $ESO_SMITHING_MASTERWRIT_TYPES[$writ1];
+	
+	$quality = GetEsoItemQualityText($writ3);
+	$set = GetEsoSetIndexText($writ4);
+	$trait = GetEsoItemTraitText($writ5);
+	$style = GetEsoItemStyleText($writ6);
+	
+	if ($rawVouchers < 0) $rawVouchers = 0;
+	$vouchers = round($rawVouchers/10000);
+	
+	$text  = "Consume to start quest:\n";
+	$text .= FixVowelArticles("Craft a $craftPrefix $itemType;");
+	$text .= " Quality: $quality;";
+	$text .= " Trait: $trait;";
+	if ($set) $text .= " Set: $set;";
+	$text .= " Style: $style\n\n";
+	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+	
+	return $text;
 }

@@ -40,6 +40,7 @@
 // Database users, passwords and other secrets
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
+require("esoPotionData.php");
 
 
 function compareRawDataSortedIndex($a, $b)
@@ -170,15 +171,18 @@ class CEsoItemLink
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
 	public $enchantIntType1 = 0;
-	public $enchantId2 = 0;
-	public $enchantIntLevel2 = 0;
-	public $enchantIntType2 = 0;
 	public $enchantFactor = 0;
 	public $inputIntType = -1;
 	public $inputIntLevel = -1;
 	public $inputLevel = -1;
 	public $inputQuality = -1;
 	public $itemRecord = array();
+	public $writData1 = 0;
+	public $writData2 = 0;
+	public $writData3 = 0;
+	public $writData4 = 0;
+	public $writData5 = 0;
+	public $writData6 = 0;
 	public $resultItemRecord = array();
 	public $enchantRecord1 = null;
 	public $enchantRecord2 = null;
@@ -223,8 +227,11 @@ class CEsoItemLink
 	
 	public function ParseItemLink($itemLink)
 	{
-		$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<enchantId2>[0-9]*)\:(?P<enchantSubtype2>[0-9]*)\:(?P<enchantLevel2>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
-		if (!$result) return $this->ReportError("Failed to parse item link: $itemLink");
+		//$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<enchantId2>[0-9]*)\:(?P<enchantSubtype2>[0-9]*)\:(?P<enchantLevel2>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
+		//if (!$result) return $this->ReportError("Failed to parse item link: $itemLink");
+		
+		$matches = ParseEsoItemLink($itemLink);
+		if (!$matches) return $this->ReportError("Failed to parse item link: $itemLink");
 		
 		$this->itemId = (int) $matches['itemId'];
 		$this->itemIntLevel = (int) $matches['level'];
@@ -241,10 +248,13 @@ class CEsoItemLink
 		$this->enchantIntLevel1 = (int) $matches['enchantLevel1'];
 		$this->enchantIntType1 = (int) $matches['enchantSubtype1'];
 		
-		$this->enchantId2 = (int) $matches['enchantId2'];
-		$this->enchantIntLevel2 = (int) $matches['enchantLevel2'];
-		$this->enchantIntType2 = (int) $matches['enchantSubtype2'];
-		
+		$this->writData1 = (int) $matches['writ1'];
+		$this->writData2 = (int) $matches['writ2'];
+		$this->writData3 = (int) $matches['writ3'];
+		$this->writData4 = (int) $matches['writ4'];
+		$this->writData5 = (int) $matches['writ5'];
+		$this->writData6 = (int) $matches['writ6'];
+				
 		return true;
 	}
 	
@@ -300,6 +310,14 @@ class CEsoItemLink
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
+		
+		if (array_key_exists('writ1', $this->inputParams)) $this->writData1 = (int) $this->inputParams['writ1'];
+		if (array_key_exists('writ2', $this->inputParams)) $this->writData2 = (int) $this->inputParams['writ2'];
+		if (array_key_exists('writ3', $this->inputParams)) $this->writData3 = (int) $this->inputParams['writ3'];
+		if (array_key_exists('writ4', $this->inputParams)) $this->writData4 = (int) $this->inputParams['writ4'];
+		if (array_key_exists('writ5', $this->inputParams)) $this->writData5 = (int) $this->inputParams['writ5'];
+		if (array_key_exists('writ6', $this->inputParams)) $this->writData6 = (int) $this->inputParams['writ6'];
+		if (array_key_exists('vouchers', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['vouchers'];
 				
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -473,24 +491,15 @@ class CEsoItemLink
 			$row['charges'] =  $this->itemCharges < 0 ? 0 : $this->itemCharges;
 			$row['isCrafted'] = $this->itemCrafted < 0 ? 0 : $this->itemCrafted;
 			$row['enchantId1'] = $this->enchantId1;
-			$row['enchantId2'] = $this->enchantId2;
 			$row['enchantIntLevel1'] = $this->enchantIntLevel1;
 			$row['enchantIntType1'] = $this->enchantIntType1;
-			$row['enchantIntLevel2'] = $this->enchantIntLevel2;
-			$row['enchantIntType2'] = $this->enchantIntType2;
 			
 			if ($this->enchantRecord1 != null)
 			{
 				$row['enchantName1'] = $this->enchantRecord1['enchantName'];
 				$row['enchantDesc1'] = $this->enchantRecord1['enchantDesc'];
 			}
-			
-			if ($this->enchantRecord2 != null)
-			{
-				$row['enchantName2'] = $this->enchantRecord2['enchantName'];
-				$row['enchantDesc2'] = $this->enchantRecord2['enchantDesc'];
-			}
-			
+						
 			if ($this->itemStyle > 0 && $this->itemStyle != $row['style'])
 			{
 				$row['origStyle'] = $row['style'];
@@ -683,11 +692,8 @@ class CEsoItemLink
 		}
 		
 		$row['enchantId1'] = $this->enchantId1;
-		$row['enchantId2'] = $this->enchantId2;
 		$row['enchantIntLevel1'] = $this->enchantIntLevel1;
 		$row['enchantIntType1'] = $this->enchantIntType1;
-		$row['enchantIntLevel2'] = $this->enchantIntLevel2;
-		$row['enchantIntType2'] = $this->enchantIntType2;
 		
 		$row['traitAbilityDescs'] = array();
 		$row['traitCooldowns'] = array();
@@ -705,8 +711,20 @@ class CEsoItemLink
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
 		
+		if ($this->itemRecord['type'] == 60) $this->CreateMasterWritData();
+		
 		$this->LoadEnchantMaxCharges();
 		return true;
+	}
+	
+	
+	public function CreateMasterWritData()
+	{
+		$text = CreateEsoMasterWritText($this->db, $this->itemRecord['name'], $this->writData1, $this->writData2, $this->writData3,
+										$this->writData4, $this->writData5, $this->writData6, $this->itemPotionData);
+		
+		$this->itemRecord['abilityName'] = '';
+		$this->itemRecord['abilityDesc'] = $text;
 	}
 	
 	
@@ -930,30 +948,13 @@ class CEsoItemLink
 			$row = $result->fetch_assoc();
 			if ($row) $this->enchantRecord1 = $row;
 		}
-		
-		if ($this->enchantId2 > 0 && $this->enchantIntLevel2 > 0 && $this->enchantIntType2 > 0)
-		{
-			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->enchantId2} AND internalLevel={$this->enchantIntLevel2} AND internalSubtype={$this->enchantIntType2} LIMIT 1;";
-			$result = $this->db->query($query);
-			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 				
-			$result->data_seek(0);
-			$row = $result->fetch_assoc();
-			if ($row) $this->enchantRecord2 = $row;
-		}
-		
 		if ($this->enchantRecord1 != null)
 		{
 			$this->itemRecord['enchantName1'] = $this->enchantRecord1['enchantName'];
 			$this->itemRecord['enchantDesc1'] = $this->enchantRecord1['enchantDesc'];
 		}
-			
-		if ($this->enchantRecord2 != null)
-		{
-			$this->itemRecord['enchantName2'] = $this->enchantRecord2['enchantName'];
-			$this->itemRecord['enchantDesc2'] = $this->enchantRecord2['enchantDesc'];
-		}
-		
+				
 		return true;
 	}
 	
@@ -1361,9 +1362,18 @@ class CEsoItemLink
 			if ($this->enchantRecord1 != null) $hasEnchant = true;
 			if ($this->enchantRecord2 != null)  $hasEnchant = true;
 			if (!$hasEnchant) return false;
+			return true;
+		}
+		else if ($type == 2)
+		{
+			return true;
+		}
+		else if ($type == 60 || $type == 29)
+		{
+			return false;
 		}
 		
-		return true;
+		return false;
 	}
 	
 	
@@ -1602,7 +1612,15 @@ class CEsoItemLink
 	
 	private function MakeItemAbilityBlock()
 	{
-		if ($this->itemRecord['type'] == 29)	//Recipes
+		
+		if ($this->itemRecord['type'] == 60)	// Master Writs
+		{
+			$abilityDesc = FormatEsoItemDescriptionIcons($this->itemRecord['abilityDesc']);
+			$abilityDesc = $this->FormatDescriptionText($abilityDesc);
+			if ($abilityDesc == "") return "";
+			return "$abilityDesc";
+		}
+		else if ($this->itemRecord['type'] == 29)	//Recipes
 		{
 			$ability = strtoupper($this->itemRecord['abilityName']);
 			$abilityDesc = FormatEsoItemDescriptionIcons($this->itemRecord['abilityDesc']);
@@ -1637,7 +1655,6 @@ class CEsoItemLink
 		
 		foreach ($this->itemRecord['traitAbilityDescArray'] as $index => $desc)
 		{
-			//$desc = strtoupper($desc);
 			$cooldown = round($this->itemRecord['traitCooldownArray'][$index] / 1000);
 			$abilityDesc[] = $desc;
 			$cooldownDesc = " ($cooldown second cooldown)";
@@ -1738,12 +1755,12 @@ class CEsoItemLink
 		$d4 = $this->enchantId1;
 		$d5 = $this->enchantIntType1;
 		$d6 = $this->enchantIntLevel1;
-		$d7 = $this->enchantId2;
-		$d8 = $this->enchantIntType2;
-		$d9 = $this->enchantIntLevel2;
-		$d10 = 0;
-		$d11 = 0;
-		$d12 = 0;
+		$d7 = $this->writData1;
+		$d8 = $this->writData2;
+		$d9 = $this->writData3;
+		$d10 = $this->writData4;
+		$d11 = $this->writData5;
+		$d12 = $this->writData6;
 		$d13 = 0;
 		$d14 = 0;
 		$d15 = 0;
@@ -1758,7 +1775,7 @@ class CEsoItemLink
 		else
 			$d20 = $this->itemStolen;
 		
-		if ($this->itemPotionData < 0)
+		if ($this->itemPotionData <= 0)
 			$d21 = "0";
 		else
 			$d21 = $this->itemPotionData;
@@ -1792,13 +1809,15 @@ class CEsoItemLink
 	{
 		$itemLinkURL = '';
 		
-		if ($this->version != '' || $this->showSummary || $this->enchantId1 > 0 || $this->enchantId2 > 0 ||
-			$this->itemPotionData > 0 || $this->itemCharges >= 0 || $this->itemStolen > 0)
+		if ($this->version != '' || $this->showSummary || $this->enchantId1 > 0 ||
+			$this->itemPotionData > 0 || $this->itemCharges >= 0 || $this->itemStolen > 0 ||
+			$this->writData1 > 0 || $this->writData2 > 0 || $this->writData3 > 0 || $this->writData4 > 0 || $this->writData5 > 0 || $this->writData6 > 0)
 		{
 			$showSummary = $this->showSummary ? 'summary' : '';
 			$itemLinkURL = 	"itemLinkImage.php?itemid={$this->itemRecord['itemId']}&level={$this->itemRecord['level']}&" .
 							"quality={$this->itemRecord['quality']}&enchantid={$this->enchantId1}&enchantintlevel={$this->enchantIntLevel1}&" .
 							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}&potiondata={$this->itemPotionData}&stolen={$this->itemStolen}&" .
+							"writ1={$this->writData1}&writ2={$this->writData2}&writ3={$this->writData3}&writ4={$this->writData4}&writ5={$this->writData5}&writ6={$this->writData6}&" .
 							"itemlink={$this->itemLink}";			
 		}
 		else 
