@@ -168,12 +168,14 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		
 		if (array_key_exists($field, $minItemData)) 
 		{
-			$value = $db->escape_string($minItemData[$field]);
+			//$value = $db->real_escape_string($minItemData[$field]);
+			$value = $minItemData[$field];
 		}
 		
 		if ($field == "icon" && array_key_exists($field, $maxItemData))
 		{
-			$value = $db->escape_string($maxItemData[$field]);
+			//$value = $db->real_escape_string($maxItemData[$field]);
+			$value = $maxItemData[$field];
 		}
 		
 		if ($value != "" && ($field == 'name' || $field == 'setName'))
@@ -190,7 +192,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			$value = preg_replace("#\^[a-zA-Z]*#", "", $value);
 		}
 		
-		$value = $db->escape_string($value);
+		$value = $db->real_escape_string($value);
 		$columns[] = $field;
 		$values[] = "'$value'";
 	}
@@ -251,7 +253,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			//print("\tMin: $minValue\n");
 			//print("\tMax: $maxValue\n");
 			//print("\tRange: $value\n");
-			$values[] = "'" . $db->escape_string($value) . "'";
+			$values[] = "'" . $db->real_escape_string($value) . "'";
 		}
 		
 		$columns[] = $field;
