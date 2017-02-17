@@ -429,9 +429,9 @@ function MakeItemLink(itemData, firstItem)
 	var d4 = firstItem['enchantId1'];
 	var d5 = firstItem['enchantIntType1'];
 	var d6 = firstItem['enchantIntLevel1'];
-	var d7 = firstItem['enchantId2'];
-	var d8 = firstItem['enchantIntType2'];
-	var d9 = firstItem['enchantIntLevel2'];
+	var d7 = 0;
+	var d8 = 0;
+	var d9 = 0;
 	var d10 = 0;
 	var d11 = 0;
 	var d12 = 0;
