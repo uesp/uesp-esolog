@@ -1164,7 +1164,7 @@ class CEsoItemLink
 			$cp = $level * 10;
 			
 			if ($this->useUpdate10Display)
-				return "Level 50 CP$cp";
+				return "CP$cp";
 			else
 				return "Rank V$level";
 		}
@@ -1700,9 +1700,49 @@ class CEsoItemLink
 			case 59:	// Dye Stamp
 			case 60:	// Master Writ
 			case 44:	// Style Material
+			case 31:	// Reagent
+			case 10:	// Ingredient
+			case 52:	// Rune
+			case 53:
+			case 41:	// Blacksmith Temper
+			case 43:
+			case 34:
+			case 39:
+			case 18:
+			case 55:
+			case 57:
+			case 47: 	// PVP Repair
+			case 36:	// BS Material
+			case 35:	// BS Raw Material
+			case 40:
+			case 54:
+			case 16:
+			case 8:
+			case 17:
+			case 6:
+			case 19:
+			case 48:
+			case 5:
+			case 46:
+			case 42:
+			case 38:
+			case 37:
 				return "none";
+				
 			case 2:		// Armor/Weapons
 			case 1:
+			case 12: 	// Drink
+			case 4: 	// Food
+			case 26:	// Glyph
+			case 3:
+			case 20:
+			case 21:
+			case 30:	// Poison
+			case 58:	// Poison Base
+			case 51:
+			case 7:		// Potion
+			case 33:	// Potion Base
+			case 9:		// Repair Kit
 				return "inline-block";
 		}
 		
@@ -1853,7 +1893,12 @@ class CEsoItemLink
 		if (!$this->useUpdate10Display) return $this->MakeOldPotencyItemDescription();
 		
 		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
-		if ($glyphMinLevel == 0) return $this->itemRecord['description'];
+		
+		if ($glyphMinLevel <= 0) 
+		{
+			$glyphMinLevel = $this->itemRecord['level'];
+			//return $this->itemRecord['description'];
+		}
 		
 		$minDesc = "";
 		
@@ -1864,7 +1909,7 @@ class CEsoItemLink
 		else
 		{
 			$cp = ($glyphMinLevel - 50) * 10;
-			$minDesc = "level 50 <img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimgsmall'>CP $cp";
+			$minDesc = "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimgsmall'>CP $cp";
 		}
 		
 		$desc = "Used to create glyphs of $minDesc and higher.";

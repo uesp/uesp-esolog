@@ -1957,7 +1957,7 @@ function FormatEsoItemDescriptionIcons($desc)
 {
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
 
-	$output = preg_replace_callback("#\|t([0-9]*):([0-9]*):([^\|]*)\.dds\|t#s",  
+	$output = preg_replace_callback("#\|t([0-9%]*):([0-9%]*):([^\|]*)\.dds\|t#s",  
 			function ($matches) {
 				$extra = "";
 				
@@ -1986,9 +1986,9 @@ function FormatEsoItemDescriptionText($desc)
 	
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
 		//EsoUI/Art/champion/champion_icon.dds
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $output);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $output);
+	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
+	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $output);
+	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $output);
 	
 	$output = str_replace("\n", "<br />", $output);
 
@@ -1999,9 +1999,9 @@ function FormatEsoItemDescriptionText($desc)
 function FormatRemoveEsoItemDescriptionText($desc)
 {
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([^|]+)\|r#s", "$2", $desc);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $output);
-	$output = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $output);
+	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
+	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $output);
+	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $output);
 	$output = str_replace("\n", " ", $output);
 
 	return $output;
