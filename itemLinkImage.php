@@ -708,10 +708,10 @@ class CEsoItemLinkImage
 	{
 		$lineBreak = array_key_exists('br', $lineData);
 		
-		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $lineData['text']);
-		$newText = preg_replace("#\|t([0-9]*):([0-9]*):champion_icon_[0-9]+\.dds\|t#s", "CP", $newText);
+		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $lineData['text']);
+		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):champion_icon_[0-9]+\.dds\|t#s", "CP", $newText);
 		                         //"|t24:24:champion_icon_24.dds|t"
-		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $newText);
+		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $newText);
 		
 		$formats = preg_split("#(\|c[0-9a-fA-F]{6}[^\|]+\|r)|(Adds [0-9\-\.]+)|(by [0-9\-\.]+)|(for [0-9\-\.]+)#s", $newText, -1, PREG_SPLIT_DELIM_CAPTURE);
 		$numFmts = count($formats);
@@ -796,8 +796,8 @@ class CEsoItemLinkImage
 		$newData = $lineData;
 		
 		$newText = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.\t\n]+)\|r#s", "$2", $lineData['text']);
-		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|trank #s", "VR ", $newText);
-		$newText = preg_replace("#\|t([0-9]*):([0-9]*):([^\|]*)\|t#s", "", $newText);
+		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $newText);
+		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $newText);
 		$newData['text'] = $newText;
 		
 		$extents = $this->GetTextExtents($lineData['size'], $newData['font'], $newData['text']);
@@ -1325,6 +1325,33 @@ class CEsoItemLinkImage
 			case 59:	// Dye Stamp
 			case 60:	// Master Writ
 			case 44:	// Style Material
+			case 31:	// Reagent
+			case 10:	// Ingredient
+			case 52:	// Rune
+			case 53:
+			case 41:	// Blacksmith Temper
+			case 43:
+			case 34:
+			case 39:
+			case 18:
+			case 55:
+			case 57:
+			case 47: 	// PVP Repair
+			case 36:	// BS Material
+			case 35:	// BS Raw Material
+			case 40:
+			case 54:
+			case 16:
+			case 8:
+			case 17:
+			case 6:
+			case 19:
+			case 48:
+			case 5:
+			case 46:
+			case 42:
+			case 38:
+			case 37:
 				return false;
 				
 			case 2:
@@ -1340,6 +1367,20 @@ class CEsoItemLinkImage
 			case 1:
 				$display = true;
 				break;
+				
+			case 12: 	// Drink
+			case 4: 	// Food
+			case 26:	// Glyph
+			case 3:
+			case 20:
+			case 21:
+			case 30:	// Poison
+			case 58:	// Poison Base
+			case 51:
+			case 7:		// Potion
+			case 33:	// Potion Base
+			case 9:		// Repair Kit
+				return true;
 		}
 		
 		if ($display) return true;
@@ -1845,7 +1886,12 @@ class CEsoItemLinkImage
 		if (!$this->useUpdate10Display) return $this->MakeOldPotencyItemDescription();
 		
 		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
-		if ($glyphMinLevel == 0) return $this->itemRecord['description'];
+		
+		if ($glyphMinLevel <= 0) 
+		{
+			$glyphMinLevel = $this->itemRecord['level'];
+			//return $this->itemRecord['description'];
+		}
 		
 		$minDesc = "";
 		
@@ -1856,7 +1902,7 @@ class CEsoItemLinkImage
 		else
 		{
 			$cp = ($glyphMinLevel - 50) * 10;
-			$minDesc = "level 50 CP$cp";
+			$minDesc = "CP$cp";
 		}
 		
 		$desc = "Used to create glyphs of $minDesc and higher.";
