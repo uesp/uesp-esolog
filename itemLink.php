@@ -311,6 +311,17 @@ class CEsoItemLink
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
 		
+		if (array_key_exists('extradata', $this->inputParams)) 
+		{
+			$extraData = explode(":", $this->inputParams['extradata']);
+			$this->writData1 = intval($extraData[0]);
+			$this->writData2 = intval($extraData[1]);
+			$this->writData3 = intval($extraData[2]);
+			$this->writData4 = intval($extraData[3]);
+			$this->writData5 = intval($extraData[4]);
+			$this->writData6 = intval($extraData[5]);
+		}
+		
 		if (array_key_exists('writ1', $this->inputParams)) $this->writData1 = (int) $this->inputParams['writ1'];
 		if (array_key_exists('writ2', $this->inputParams)) $this->writData2 = (int) $this->inputParams['writ2'];
 		if (array_key_exists('writ3', $this->inputParams)) $this->writData3 = (int) $this->inputParams['writ3'];

@@ -5,6 +5,7 @@
 require_once("/home/uesp/secrets/esosalesdata.secrets");
 require_once("/home/uesp/secrets/esolog.secrets");
 require_once(__DIR__."/esoCommon.php");
+require_once(__DIR__."/esoPotionData.php");
 
 
 $g_EsoSalesDataSortOrder = 1;
@@ -589,8 +590,10 @@ class EsoViewSalesData
 			$copyPriceTooltip = $this->CreateItemCopyPriceTooltip($avgPrice, $totalSales, $totalPurchases, 0, $totalItems, $item);
 			$copyPriceHtml = "<div class='esovsd_copyprice esovsd_copypricesmall' copydata='$copyPriceTooltip'>Copy</div>";
 			
+			$extraData = $this->Escape($item['extraData']);
+			
 			$output .= "<tr>";
-			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}'>";
+			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}' extradata='$extraData'>";
 			$output .= "<img src='$iconURL' class='esovsd_itemicon'>$itemName</div></td>";
 			$output .= "<td>$levelText</td>";
 			$output .= "<td>$traitText</td>";
@@ -717,6 +720,13 @@ class EsoViewSalesData
 		$intLevel = intval($itemLinkData['level']);
 		$potionData = intval($itemLinkData['potionData']);
 		$server = $this->db->real_escape_string($this->server);
+		$extraData = "";
+		
+		if ($itemLinkData['writ1'] > 0)
+		{
+			$extraData = "{$itemLinkData['writ1']}:{$itemLinkData['writ2']}:{$itemLinkData['writ3']}:{$itemLinkData['writ4']}:{$itemLinkData['writ5']}:{$itemLinkData['writ6']}";
+			$extraData = $this->db->real_escape_string($extraData);
+		}
 		
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
 		$where = array();
@@ -726,6 +736,7 @@ class EsoViewSalesData
 		$where[] = "internalLevel='$intLevel'";
 		$where[] = "internalSubtype='$intSubtype'";		
 		$where[] = "potionData='$potionData'";		
+		$where[] = "extraData='$extraData'";
 				
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
@@ -744,6 +755,13 @@ class EsoViewSalesData
 		$intLevel = intval($itemLinkData['level']);
 		$potionData = intval($itemLinkData['potionData']);
 		$server = $this->db->real_escape_string($this->server);
+		$extraData = "";
+		
+		if ($itemLinkData['writ1'] > 0)
+		{
+			$extraData = "{$itemLinkData['writ1']}:{$itemLinkData['writ2']}:{$itemLinkData['writ3']}:{$itemLinkData['writ4']}:{$itemLinkData['writ5']}:{$itemLinkData['writ6']}";
+			$extraData = $this->db->real_escape_string($extraData);
+		}
 		
 		$query = "SELECT level, quality FROM $uespEsoLogDatabase.minedItemSummary WHERE itemId='$itemId';";
 		$result = $this->db->query($query);
@@ -779,6 +797,7 @@ class EsoViewSalesData
 		$where[] = "level='$level'";
 		$where[] = "quality='$quality'";
 		$where[] = "potionData='$potionData'";
+		$where[] = "extraData='$extraData'";
 	
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
 		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
@@ -1616,12 +1635,7 @@ class EsoViewSalesData
 	
 	public function ParseItemLink ($itemLink)
 	{
-		$matches = array();
-	
-		$result = preg_match('/\|H(?P<linkType>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h(?P<name>[^|\^]*)(?P<nameCode>.*?)\|h/', $itemLink, $matches);
-		if ($result == 0) return false;
-	
-		return $matches;
+		return ParseEsoItemLink($itemLink);
 	}
 	
 	
@@ -1638,9 +1652,10 @@ class EsoViewSalesData
 		$internalLevel = intval($item['internalLevel']);	
 		$internalSubType = intval($item['internalSubType']);
 		$potionData = intval($item['potionData']);
+		$extraData = $this->Escape($item['extraData']);
 		$itemName = $this->Escape($item['name']);
 		
-		$output .= "<div class='esovsd_itemlink eso_item_link eso_item_link_q{$quality}' itemid='{$itemId}' intlevel='{$internalLevel}' inttype='{$internalSubType}' potiondata='{$potionData}'>";
+		$output .= "<div class='esovsd_itemlink eso_item_link eso_item_link_q{$quality}' itemid='{$itemId}' intlevel='{$internalLevel}' inttype='{$internalSubType}' potiondata='{$potionData}' extradata='{$extraData}'>";
 		$output .= "<img src='$iconURL' class='esovsd_itemicon'>{$itemName}</div>";
 		
 		return $output;

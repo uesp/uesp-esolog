@@ -33,6 +33,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require_once("parseSalesData.php");
 require_once("esoCommon.php");
+require_once("esoPotionData.php");
 
 
 class EsoLogParser
@@ -77,6 +78,9 @@ class EsoLogParser
 	
 	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "";
+	
+		/* Set to true to only parse sales related data */
+	const ONLY_PARSE_SALES = false;
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -5119,6 +5123,24 @@ class EsoLogParser
 	
 	public function handleLogEntry ($logEntry)
 	{
+		
+		if (self::ONLY_PARSE_SALES)
+		{
+			switch ($logEntry['event'])
+			{
+				case "GuildSummary":
+				case "GuildSale":
+				case "GuildSaleSearchInfo":
+				case "GuildSaleSearchEntry":
+				case "GuildSaleListingEntry::Cancel":
+				case "GuildSaleListingInfo":
+				case "GuildSaleListingEntry":
+					break;
+				default:
+					return true;
+			}
+		}
+		
 		if (!$this->isValidLogEntry($logEntry)) return false;
 		
 		$user = &$this->getUserRecord($logEntry['userName']);

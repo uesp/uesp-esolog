@@ -301,6 +301,17 @@ class CEsoItemLinkImage
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
 		
+		if (array_key_exists('extradata', $this->inputParams))
+		{
+			$extraData = explode(":", $this->inputParams['extradata']);
+			$this->writData1 = intval($extraData[0]);
+			$this->writData2 = intval($extraData[1]);
+			$this->writData3 = intval($extraData[2]);
+			$this->writData4 = intval($extraData[3]);
+			$this->writData5 = intval($extraData[4]);
+			$this->writData6 = intval($extraData[5]);
+		}
+		
 		if (array_key_exists('writ1', $this->inputParams)) $this->writData1 = (int) $this->inputParams['writ1'];
 		if (array_key_exists('writ2', $this->inputParams)) $this->writData2 = (int) $this->inputParams['writ2'];
 		if (array_key_exists('writ3', $this->inputParams)) $this->writData3 = (int) $this->inputParams['writ3'];

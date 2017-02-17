@@ -3,6 +3,8 @@
 
 // Database users, passwords and other secrets
 require_once("/home/uesp/secrets/esosalesdata.secrets");
+require_once("esoCommon.php");
+require_once("esoPotionData.php");
 
 
 class EsoSalesDataParser
@@ -170,6 +172,7 @@ class EsoSalesDataParser
 						icon TINYTEXT NOT NULL,
 						setName TINYTEXT NOT NULL,
 						potionData INT UNSIGNED NOT NULL,
+						extraData TINYTEXT NOT NULL,
 						sumPurchases FLOAT NOT NULL,
 						countPurchases INT UNSIGNED NOT NULL,
 						countItemPurchases BIGINT UNSIGNED NOT NULL,
@@ -359,8 +362,6 @@ class EsoSalesDataParser
 	public function SaveUpdatedGuilds()
 	{
 		$guildCount = 0;
-		
-		//print_r($this->guildData);
 
 		foreach ($this->guildData as $server => &$serverGuildData)
 		{
@@ -368,7 +369,6 @@ class EsoSalesDataParser
 			{
 				if ($guildData['__dirty'] === true) 
 				{
-					//print("Saving guild {$guildData['name']}...\n");
 					$this->SaveGuild($guildData);
 					++$guildCount;
 				}
@@ -384,8 +384,6 @@ class EsoSalesDataParser
 	{
 		$itemCount = 0;
 		
-		//print_r($this->guildData);
-		
 		foreach ($this->itemData as $cacheId => &$itemData)
 		{
 			if ($itemData['__dirty'] === true)
@@ -400,7 +398,7 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function LoadItemByKey($server, $itemId, $level, $quality, $trait, $potionData)
+	public function LoadItemByKey($server, $itemId, $level, $quality, $trait, $potionData, $extraData = "")
 	{
 		$server = $this->db->real_escape_string($server);
 		$itemId = $this->db->real_escape_string($itemId);
@@ -408,10 +406,11 @@ class EsoSalesDataParser
 		$quality = $this->db->real_escape_string($quality);
 		$trait = $this->db->real_escape_string($trait);
 		$potionData = $this->db->real_escape_string($potionData);
+		$extraData = $this->db->real_escape_string($extraData);
 		
-		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='$level' AND quality='$quality' AND trait='$trait' AND potionData='$potionData' LIMIT 1;";
+		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='$level' AND quality='$quality' AND trait='$trait' AND potionData='$potionData' AND extraData='$extraData' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
-		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData!");
+		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
 		
 		if ($result->num_rows == 0) return false;
 			
@@ -425,21 +424,24 @@ class EsoSalesDataParser
 		$rowData['sumSales'] = floatval($rowData['sumSales']);
 		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
 		
+		$itemData['extraData'] = $extraData;
+		
 		return $rowData;
 	}
 	
 	
-	public function LoadItem($server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData)
+	public function LoadItem($server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData, $extraData = "")
 	{
 		$server = $this->db->real_escape_string($server);
 		$itemId = $this->db->real_escape_string($itemId);
 		$itemIntLevel = $this->db->real_escape_string($itemIntLevel);
 		$itemIntType = $this->db->real_escape_string($itemIntType);
 		$itemPotionData = $this->db->real_escape_string($itemPotionData);
+		$extraData = $this->db->real_escape_string($extraData);
 		
-		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' and potionData='$itemPotionData' LIMIT 1;";
+		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' and potionData='$itemPotionData' AND extraData='$extraData' LIMIT 1;";
 		$result = $this->db->query($this->lastQuery);
-		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$itemIntLevel:$itemIntType!");
+		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$itemIntLevel:$itemIntType:$itemPotionData:$extraData!");
 		
 		if ($result->num_rows == 0) return false;
 			
@@ -452,6 +454,8 @@ class EsoSalesDataParser
 		$rowData['countItemSales'] = intval($rowData['countItemSales']);
 		$rowData['sumSales'] = floatval($rowData['sumSales']);
 		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
+		
+		$itemData['extraData'] = $extraData;
 		
 		return $rowData;
 	}
@@ -498,7 +502,7 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function CreateNewItemByKey($server, $itemId, $level, $quality, $trait, $potionData, $itemLink, $itemRawData)
+	public function CreateNewItemByKey($server, $itemId, $level, $quality, $trait, $potionData, $extraData, $itemLink, $itemRawData)
 	{
 		$minedItemData = $this->LoadMinedItem($itemId, $itemRawData['internalLevel'], $itemRawData['internalSubType'], $potionData);
 		
@@ -511,9 +515,6 @@ class EsoSalesDataParser
 			$weaponType = "0";
 			$itemType = "0";
 			$armorType = "0";
-			//$trait = "0";
-			//$quality = "0";
-			//$level = "0";
 		}
 		else
 		{
@@ -524,9 +525,6 @@ class EsoSalesDataParser
 			$weaponType = $minedItemData['weaponType'];
 			$itemType = $minedItemData['type'];
 			$armorType = $minedItemData['armorType'];
-			//$trait = $minedItemData['trait'];
-			//$quality = $minedItemData['quality'];
-			//$level = $minedItemData['level'];
 		}
 		
 		if ($itemRawData['name'] != null) $name = $itemRawData['name']; 
@@ -540,9 +538,10 @@ class EsoSalesDataParser
 		$internalSubType = $this->db->real_escape_string($itemRawData['internalSubType']);
 		$itemId = $this->db->real_escape_string($itemId);
 		$potionData = $this->db->real_escape_string($potionData);
+		$extraData = $this->db->real_escape_string($extraData);
 		
-		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, internalLevel, internalSubType) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$potionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$internalLevel\", \"$internalSubType\");";
+		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, internalLevel, internalSubType, extraData) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$potionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$internalLevel\", \"$internalSubType\", \"$extraData\");";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
 		
@@ -562,6 +561,7 @@ class EsoSalesDataParser
 		$itemData['name'] = $name;
 		$itemData['setName'] = $setName;
 		$itemData['potionData'] = $potionData;
+		$itemData['extraData'] = $extraData;
 		$itemData['internalLevel'] = $internalLevel;
 		$itemData['internalSubType'] = $internalSubType;
 		
@@ -582,7 +582,7 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function CreateNewItem($server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData, $subItemData = null, $itemKey = null)
+	public function CreateNewItem($server, $itemId, $itemIntLevel, $itemIntType, $itemPotionData, $extraData, $subItemData = null, $itemKey = null)
 	{
 		$minedItemData = $this->LoadMinedItem($itemId, $itemIntLevel, $itemIntType, $itemPotionData);
 		
@@ -631,9 +631,10 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemId = $this->db->real_escape_string($itemId);
 		$itemPotionData = $this->db->real_escape_string($itemPotionData);
+		$extraData = $this->db->real_escape_string($extraData);
 		
-		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$itemPotionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\");";
+		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, extraData,) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$itemPotionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$extraData\");";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
 		
@@ -653,6 +654,7 @@ class EsoSalesDataParser
 		$itemData['name'] = $name;
 		$itemData['setName'] = $setName;
 		$itemData['potionData'] = $itemPotionData;
+		$itemData['extraData'] = $extraData;
 		
 		$itemData['sumPurchases'] = 0;
 		$itemData['sumSales'] = 0;
@@ -678,9 +680,15 @@ class EsoSalesDataParser
 		$quality = $itemRawData['quality'];
 		$trait = $itemRawData['trait'];
 		$potionData = $itemRawData['potionData'];
+		$extraData = "";
 				
 		$itemLinkData = $this->ParseItemLink($itemLink);
 		if ($itemLinkData === false) return false;
+		
+		if ($itemLinkData['writ1'] > 0)
+		{
+			$extraData = "{$itemLinkData['writ1']}:{$itemLinkData['writ2']}:{$itemLinkData['writ3']}:{$itemLinkData['writ4']}:{$itemLinkData['writ5']}:{$itemLinkData['writ6']}";
+		}
 	
 		if ($itemId == null) 
 		{
@@ -718,14 +726,14 @@ class EsoSalesDataParser
 		
 		if ($level <= 0) $level = 1;
 		
-		$cacheId = $server . ":" . $itemId . ":" . $level . ":" .$quality . ":" . $trait . ":" . $potionData;
+		$cacheId = $server . ":" . $itemId . ":" . $level . ":" .$quality . ":" . $trait . ":" . $potionData . ":" . $extraData;
 		if ($this->itemData[$cacheId] != null) return $this->itemData[$cacheId];
 		
-		$itemData = $this->LoadItemByKey($server, $itemId, $level, $quality, $trait, $potionData);
+		$itemData = $this->LoadItemByKey($server, $itemId, $level, $quality, $trait, $potionData, $extraData);
 		
 		if ($itemData === false)
 		{
-			$itemData = $this->CreateNewItemByKey($server, $itemId, $level, $quality, $trait, $potionData, $itemLink, $itemRawData);
+			$itemData = $this->CreateNewItemByKey($server, $itemId, $level, $quality, $trait, $potionData, $extraData, $itemLink, $itemRawData);
 		}
 		
 		if ($itemData !== false)
@@ -746,6 +754,7 @@ class EsoSalesDataParser
 			$this->itemData[$cacheId]['quality'] = $quality;
 			$this->itemData[$cacheId]['trait'] = $trait;
 			$this->itemData[$cacheId]['potionData'] = $potionData;
+			$this->itemData[$cacheId]['extraData'] = $extraData;
 			$this->itemData[$cacheId]['sumPurchases'] = 0;
 			$this->itemData[$cacheId]['sumSales'] = 0;
 			$this->itemData[$cacheId]['countPurchases'] = 0;
