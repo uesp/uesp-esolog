@@ -1152,6 +1152,8 @@ class CEsoItemLinkImage
 	
 	private function MakeItemTypeText()
 	{
+		if ($this->itemRecord['specialType'] > 0) return GetEsoItemSpecialTypeText($this->itemRecord['specialType']);
+		
 		switch ($this->itemRecord['type'])
 		{
 			case 1:
@@ -1168,9 +1170,14 @@ class CEsoItemLinkImage
 	private function MakeItemSubTypeText()
 	{
 		$type = $this->itemRecord['type'];
-		if ($type <= 0) return "";
-	
-		if ($type == 2) //armor
+		$craftType = $this->itemRecord['craftType'];
+		$specialType = $this->itemRecord['specialType'];
+		
+		if ($type <= 0) 
+		{
+			return "";
+		}
+		else if ($type == 2) //armor
 		{
 			if ($this->itemRecord['armorType'] > 0) return "(" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . ")";
 			return "";
@@ -1181,9 +1188,8 @@ class CEsoItemLinkImage
 		}
 		elseif ($type == 29) // Recipe
 		{
-			$specialType = $this->itemRecord['specialType'];
-			if ($specialType == null || $specialType == "" || $specialType <= 0) return "(Provisioning)";
-			return "(" . GetEsoItemSpecialTypeText($specialType) . ")";
+			if ($craftType == null || $craftType == "" || $craftType <= 0) return "";
+			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
 		}
 		elseif ($type == 61) // Furniture
 		{
@@ -1192,6 +1198,10 @@ class CEsoItemLinkImage
 			
 			if ($type1 != "" && $type != "") return "(" . $type1 . " / " . $type2 . ")";
 			return "(" . $type1 . $type2 . ")";
+		}
+		else if ($craftType > 0)
+		{
+			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
 		}
 	
 		return "";
@@ -1354,6 +1364,8 @@ class CEsoItemLinkImage
 			case 37:
 			case 0:
 			case -1:
+			case 58:	// Poison Base
+			case 33:	// Potion Base
 				return false;
 				
 			case 2:
@@ -1377,10 +1389,8 @@ class CEsoItemLinkImage
 			case 20:
 			case 21:
 			case 30:	// Poison
-			case 58:	// Poison Base
 			case 51:
 			case 7:		// Potion
-			case 33:	// Potion Base
 			case 9:		// Repair Kit
 				return true;
 		}
@@ -1774,6 +1784,34 @@ class CEsoItemLinkImage
 			$abilityDesc = $this->itemRecord['abilityDesc'];
 			if ($abilityDesc == "") return "";
 		}
+		else if ($this->itemRecord['type'] == 33)	//Potion Base
+		{
+			$level = $this->MakeLevelTooltipText($this->itemRecord['level']);
+			$craft = $this->itemRecord['craftType'];
+			$skillRank = $this->itemRecord['craftSkillRank'];
+			$abilityDesc = "Makes a $level potion.";
+				
+			if ($craft > 0 && $skillRank > 0)
+			{
+				$craft = GetEsoItemCraftRequireText($craft);
+				$skillRank = intval($skillRank);
+				$abilityDesc .= "\n\n|c00ff00Requires $craft $skillRank.|r";
+			}
+		}
+		else if ($this->itemRecord['type'] == 58)	//Poison Base
+		{
+			$level = $this->MakeLevelTooltipText($this->itemRecord['level']);
+			$craft = $this->itemRecord['craftType'];
+			$skillRank = $this->itemRecord['craftSkillRank'];
+			$abilityDesc = "Makes a $level poison.";
+				
+			if ($craft > 0 && $skillRank > 0)
+			{
+				$craft = GetEsoItemCraftRequireText($craft);
+				$skillRank = intval($skillRank);
+				$abilityDesc .= "\n\n|c00ff00Requires $craft $skillRank.|r";
+			}
+		}
 		else
 		{
 			$ability = strtoupper($this->itemRecord['abilityName']);
@@ -1888,26 +1926,28 @@ class CEsoItemLinkImage
 		if (!$this->useUpdate10Display) return $this->MakeOldPotencyItemDescription();
 		
 		$glyphMinLevel = $this->itemRecord['glyphMinLevel'];
+		if ($glyphMinLevel <= 0) $glyphMinLevel = $this->itemRecord['level'];
 		
-		if ($glyphMinLevel <= 0) 
+		$minDesc = $this->MakeLevelTooltipText($glyphMinLevel);
+		$desc = "Used to create glyphs of $minDesc and higher.";
+		return $desc;
+	}
+	
+	
+	public function MakeLevelTooltipText($level)
+	{
+		$desc = "";
+	
+		if ($level <= 50)
 		{
-			$glyphMinLevel = $this->itemRecord['level'];
-			//return $this->itemRecord['description'];
-		}
-		
-		$minDesc = "";
-		
-		if ($glyphMinLevel <= 50)
-		{
-			$minDesc = "level $glyphMinLevel";
+			$minDesc = "level $level";
 		}
 		else
 		{
-			$cp = ($glyphMinLevel - 50) * 10;
+			$cp = ($level - 50) * 10;
 			$minDesc = "CP$cp";
 		}
-		
-		$desc = "Used to create glyphs of $minDesc and higher.";
+	
 		return $desc;
 	}
 	
@@ -1956,8 +1996,29 @@ class CEsoItemLinkImage
 	{
 		$desc = $this->itemRecord['description'];
 		$matDesc = $this->itemRecord['materialLevelDesc'];
-		if ($matDesc != "") $desc = $matDesc;
-		if ($this->itemRecord['type'] == 51) $desc = $this->MakePotencyItemDescription();
+		
+		if ($this->itemRecord['type'] == 51)
+		{
+			$desc = $this->MakePotencyItemDescription();
+		}
+		else if ($this->itemRecord['type'] == 44)
+		{
+			$style = GetEsoItemStyleText($this->itemRecord['style']);
+			$desc = "An ingredient for crafting in the $style style.";
+		}
+		else if ($this->itemRecord['type'] == 58)
+		{
+			$desc = "";
+		}
+		else if ($this->itemRecord['type'] == 33)
+		{
+			$desc = "";
+		}
+		else if ($matDesc != "") 
+		{
+			$desc = $matDesc;
+		}
+		
 		if ($desc == "") return 0;
 		
 		$printData = array();
