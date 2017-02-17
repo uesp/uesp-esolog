@@ -414,3 +414,8 @@
     position: relative;
     top: 7px;
 }
+
+#esoil_itemabilityblock .esoil_cpimgsmall { 
+	position: relative !important;
+	top: -1px !important;
+}

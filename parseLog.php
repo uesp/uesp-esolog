@@ -81,6 +81,7 @@ class EsoLogParser
 	
 		/* Set to true to only parse sales related data */
 	const ONLY_PARSE_SALES = false;
+	const ONLY_PARSE_MINEDITEMS = true;
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -3725,36 +3726,6 @@ class EsoLogParser
 			}
 		}
 		
-		if (!array_key_exists('setDesc1', $logEntry))
-		{
-			$logEntry['setDesc1'] = "";
-			$logEntry['setBonus1'] = "-1";
-		}
-		
-		if (!array_key_exists('setDesc2', $logEntry))
-		{
-			$logEntry['setDesc2'] = "";
-			$logEntry['setBonus2'] = "-1";
-		}
-		
-		if (!array_key_exists('setDesc3', $logEntry))
-		{
-			$logEntry['setDesc3'] = "";
-			$logEntry['setBonus3'] = "-1";
-		}
-		
-		if (!array_key_exists('setDesc4', $logEntry))
-		{
-			$logEntry['setDesc4'] = "";
-			$logEntry['setBonus4'] = "-1";
-		}
-		
-		if (!array_key_exists('setDesc5', $logEntry))
-		{
-			$logEntry['setDesc5'] = "";
-			$logEntry['setBonus5'] = "-1";
-		}
-		
 		if (array_key_exists('flag', $logEntry))
 		{
 			$flags = explode(' ', $logEntry['flag']);
@@ -5124,7 +5095,39 @@ class EsoLogParser
 	public function handleLogEntry ($logEntry)
 	{
 		
-		if (self::ONLY_PARSE_SALES)
+		if (self::ONLY_PARSE_MINEDITEMS)
+		{
+			switch ($logEntry['event'])
+			{
+				case "mineItem::AutoStart":
+				case "mineitem::Start":
+				case "mineItem::Start":
+				case "mineItems::idCheck::start":
+				case "mineItem::idCheck::start":
+				case "mineItems::idCheck::end":
+				case "mineItem::idCheck::end":
+				case "mineItems::idCheck":
+				case "mineItem::idCheck":
+				case "mineItem::AutoEnd":
+				case "mineitem::End":
+				case "mineItem::End":
+				case "mineitem":
+				case "mineItem":
+				case "mi":
+				case "MineCollect::Start":
+				case "MineCollect::Category":
+				case "MineCollect::Subcategory":
+				case "MineCollect::Index":
+				case "MineCollect::End":
+				case "MineCollectID::Start":
+				case "MineCollectID":
+				case "MineCollectID::End":
+					break;
+				default:
+					return true;
+			}
+		}
+		else if (self::ONLY_PARSE_SALES)
 		{
 			switch ($logEntry['event'])
 			{
@@ -5246,6 +5249,7 @@ class EsoLogParser
 			case "Achievement::Criteria":		$result = $this->OnAchievementCriteria($logEntry); break;
 			case "Achievement::End":			$result = $this->OnAchievementEnd($logEntry); break;
 			case "ExperienceUpdate":			$result = $this->OnExperienceUpdate($logEntry); break;
+			
 			case "mineItem::AutoStart":			$result = $this->OnMineItemStart($logEntry); break;
 			case "mineitem::Start":				$result = $this->OnMineItemStart($logEntry); break;
 			case "mineItem::Start":				$result = $this->OnMineItemStart($logEntry); break;
@@ -5261,6 +5265,7 @@ class EsoLogParser
 			case "mineitem":					$result = $this->OnMineItem($logEntry); break;
 			case "mineItem":					$result = $this->OnMineItem($logEntry); break;
 			case "mi":							$result = $this->OnMineItemShort($logEntry); break;
+			
 			case "ItemLink":					$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "MailItem":					$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
@@ -5293,6 +5298,7 @@ class EsoLogParser
 			case "CP":							$result = $this->OnCPSkill($logEntry); break;
 			case "CP::desc":					$result = $this->OnCPDescription($logEntry); break;
 			case "CP::end":						$result = $this->OnCPEnd($logEntry); break;
+			
 			case "MineCollect::Start":
 			case "MineCollect::Category":
 			case "MineCollect::Subcategory":
