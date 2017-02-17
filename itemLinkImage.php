@@ -1352,6 +1352,8 @@ class CEsoItemLinkImage
 			case 42:
 			case 38:
 			case 37:
+			case 0:
+			case -1:
 				return false;
 				
 			case 2:
