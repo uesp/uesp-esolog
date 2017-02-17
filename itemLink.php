@@ -1727,6 +1727,8 @@ class CEsoItemLink
 			case 42:
 			case 38:
 			case 37:
+			case 0:
+			case -1:
 				return "none";
 				
 			case 2:		// Armor/Weapons
