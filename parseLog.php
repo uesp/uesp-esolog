@@ -81,7 +81,7 @@ class EsoLogParser
 	
 		/* Set to true to only parse sales related data */
 	const ONLY_PARSE_SALES = false;
-	const ONLY_PARSE_MINEDITEMS = true;
+	const ONLY_PARSE_MINEDITEMS = false;
 	
 	public $db = null;
 	private $dbReadInitialized  = false;
@@ -3745,6 +3745,36 @@ class EsoLogParser
 			}
 		}
 		
+		if ($logEntry['type'] >= 35 && $logEntry['type'] <= 40)
+		{
+			$logEntry['useAbilityDesc'] = "";
+		}
+		
+		if ($logEntry['materialLevelDesc'] != null)
+		{
+			$logEntry['matLevelDesc'] = $logEntry['materialLevelDesc'];
+		}
+		
+		if ($logEntry['refinedMat'] != "")
+		{
+			$mat = ucwords(preg_replace("#\^.*#", "", $logEntry['refinedMat']));
+			$logEntry['useAbilityDesc'] = "Can be refined into |cffffff7|r to |cffffff10|r |cffffff$mat|r.";
+		}
+		
+		if ($logEntry["reagentTrait1"] != "")
+		{
+			$logEntry['useAbilityDesc'] = "|cffffffTRAITS|r\n{$logEntry["reagentTrait1"]}\n{$logEntry["reagentTrait2"]}\n{$logEntry["reagentTrait3"]}\n{$logEntry["reagentTrait4"]}";
+		}
+		
+		if ($logEntry["runeName"] != "" && $logEntry["type"] >= 51 && $logEntry["type"] <= 53)
+		{
+			$skillName = "Aspect Improvement";
+			if ($logEntry["type"] == 51) $skillName = "Potency Improvement";
+			
+			$logEntry['useAbilityDesc'] = "|cffffffTRANSLATION|r\n{$logEntry["runeName"]}";
+			if ($logEntry["runeRank"] > 0) $logEntry['useAbilityDesc'] .= "\n\n|c00ff00Requires $skillName {$logEntry["runeRank"]}|r";
+		}
+		
 		if (array_key_exists('dyeStampId', $logEntry) && $logEntry['dyeStampId'] > 0)
 		{
 			$dyeId = $logEntry['dyeStampId'];
@@ -3779,7 +3809,7 @@ class EsoLogParser
 			if ($resultCooldown == null) $resultCooldown = "0";
 			if ($resultMinLevel == null) $resultMinLevel = "";
 			if ($resultMaxLevel == null) $resultMaxLevel = "";
-			if ($recipeRank == null) $recipeRank = "";
+			if ($recipeRank== null) $recipeRank = "";
 			if ($recipeQuality == null) $recipeQuality = "";
 			if ($recipeIngredients == null) $recipeIngredients = "";
 			if ($reqTrades == null) $reqTrades = "";
@@ -3843,8 +3873,7 @@ class EsoLogParser
 			}
 			
 			$logEntry['useAbilityDesc'] = $abilityDesc;
-			//print("\tCreated Recipe Description: $abilityDesc\n");
-		}	
+		}
 		
 		if (array_key_exists('furnDataID', $logEntry))
 		{
@@ -3854,6 +3883,7 @@ class EsoLogParser
 			$logEntry['setDesc4'] = $logEntry['furnCateName'];
 			$logEntry['setDesc5'] = $logEntry['furnSubCateName'];
 		}
+		
 	}
 	
 	
@@ -5418,8 +5448,6 @@ class EsoLogParser
 	{
 		if (!$this->initDatabaseWrite()) return false;
 		
-		$this->log("Parsing entire log file $logFilename...");
-		
 		$this->currentParseFile = $logFilename;
 		$this->currentParseLine = 0;
 		$this->fileDuplicateCount = 0;
@@ -5428,13 +5456,13 @@ class EsoLogParser
 		$result = preg_match("|eso([0-9]*)\.log|", $logFilename, $matches);
 		if ($result) $fileIndex = (int) $matches[1];
 		
-		//print("FileIndex = $fileIndex\n");
-		
 		if ($this->startFileIndex > $fileIndex)
 		{
-			$this->log("\t\tSkipping file $logFilename...");
+			//$this->log("\t\tSkipping file $logFilename...");
 			return true;
 		}
+		
+		$this->log("Parsing entire log file $logFilename...");
 		
 		$this->lastFileIndexParsed = $fileIndex;
 		
