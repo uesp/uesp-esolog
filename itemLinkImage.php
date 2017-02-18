@@ -1366,6 +1366,8 @@ class CEsoItemLinkImage
 			case -1:
 			case 58:	// Poison Base
 			case 33:	// Potion Base
+			case 45:
+			case 51:
 				return false;
 				
 			case 2:
@@ -1819,7 +1821,7 @@ class CEsoItemLinkImage
 			if ($abilityDesc == "") return 0;
 			
 			$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
-			$abilityDesc .= " (" . $cooldown . " second cooldown)";
+			if ($cooldown > 0) $abilityDesc .= " (" . $cooldown . " second cooldown)";
 		}
 		
 		$printData = array();
@@ -2004,7 +2006,7 @@ class CEsoItemLinkImage
 		else if ($this->itemRecord['type'] == 44)
 		{
 			$style = GetEsoItemStyleText($this->itemRecord['style']);
-			$desc = "An ingredient for crafting in the $style style.";
+			$desc = "An ingredient for crafting in the |cffffff$style|r style.";
 		}
 		else if ($this->itemRecord['type'] == 58)
 		{

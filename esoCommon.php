@@ -2138,10 +2138,17 @@ function FormatEsoItemDescriptionIcons($desc)
 					$extra = "style=\"position: relative; top: 3px;\"";	
 				}
 				
-				if ($matches[1] != "" && $matches[2] != "") 
-					return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' width=\"$matches[1]\" height=\"$matches[2]\" $extra />";
+				if ($matches[1] != "" && $matches[2] != "")
+				{
+					if (substr($matches[1], -1) == "%" || substr($matches[2], -1) == "%")
+						return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' width=\"16px\" height=\"16px\" $extra style=\"position: relative; top: 3px;\" />";
+					else
+						return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' width=\"$matches[1]\" height=\"$matches[2]\" $extra />";
+				}
 				else
+				{
 					return "<img src='" . UESP_ESO_ICON_URL . "/" . strtolower($matches[3]) . ".png' $extra />";
+				}
 			},
 			$desc);
 

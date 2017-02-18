@@ -1664,7 +1664,7 @@ class CEsoItemLink
 			
 			if ($craft > 0 && $skillRank > 0)
 			{
-				$craft = GetEsoItemCraftTypeText($craft);
+				$craft = GetEsoItemCraftRequireText($craft);
 				$skillRank = intval($skillRank);
 				$desc .= "\n\n|c00ff00Requires $craft $skillRank.|r";
 			}
@@ -1679,7 +1679,10 @@ class CEsoItemLink
 		}
 		
 		if ($abilityDesc == "") return "";
-		return "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc ($cooldown second cooldown)";
+		
+		$output = "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc";
+		if ($cooldown > 0) $output .= " ($cooldown second cooldown)";
+		return $output;
 	}
 	
 	
@@ -1772,6 +1775,8 @@ class CEsoItemLink
 			case -1:
 			case 58:	// Poison Base
 			case 33:	// Potion Base
+			case 45:
+			case 51:
 				return "none";
 				
 			case 2:		// Armor/Weapons
@@ -2018,7 +2023,7 @@ class CEsoItemLink
 		else if ($this->itemRecord['type'] == 44)
 		{
 			$style = GetEsoItemStyleText($this->itemRecord['style']);
-			$desc = "An ingredient for crafting in the $style style.";
+			$desc = "An ingredient for crafting in the |cffffff$style|r style.";
 		}
 		else if ($this->itemRecord['type'] == 58)
 		{
@@ -2030,7 +2035,7 @@ class CEsoItemLink
 		}
 		else if ($matDesc != "") 
 		{
-			$desc = $matDesc;
+			$desc = FormatEsoItemDescriptionIcons($matDesc);
 		}
 		
 		return FormatEsoItemDescriptionText($desc);
