@@ -3814,6 +3814,12 @@ class EsoLogParser
 			if ($recipeIngredients == null) $recipeIngredients = "";
 			if ($reqTrades == null) $reqTrades = "";
 			
+			$reqTrades = str_replace("Alchemy", "Solvent Proficiency", $reqTrades);
+			$reqTrades = str_replace("Blacksmithing", "Metalworking", $reqTrades);
+			$reqTrades = str_replace("Clothing", "Tailoring", $reqTrades);
+			$reqTrades = str_replace("Enchanting", "Potency Improvement", $reqTrades);
+			$reqTrades = str_replace("Provisioning", "Recipe Improvement", $reqTrades);
+			
 			$abilityDesc = $resultAbility;
 			if ($resultCooldown != "" && $resultCooldown > 0) $abilityDesc .= " (" . intval($resultCooldown/1000) . " second cooldown)";
 			

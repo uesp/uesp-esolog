@@ -2,7 +2,7 @@
 
 const UESP_ESO_ICON_URL = "http://esoicons.uesp.net";
 
-
+	/* Make sure these match values used in uespLog */
 const UESP_POWERTYPE_SOULTETHER    = -50;
 const UESP_POWERTYPE_LIGHTARMOR    = -51;
 const UESP_POWERTYPE_MEDIUMARMOR   = -52;
@@ -11,6 +11,13 @@ const UESP_POWERTYPE_WEAPONDAGGER  = -54;
 const UESP_POWERTYPE_ARMORTYPE     = -55;
 const UESP_POWERTYPE_DAMAGE        = -56;
 const UESP_POWERTYPE_ASSASSINATION = -57;
+const UESP_POWERTYPE_FIGHTERSGUILD = -58;
+const UESP_POWERTYPE_DRACONICPOWER = -59;
+const UESP_POWERTYPE_SHADOW = -60;
+const UESP_POWERTYPE_SIPHONING = -61;
+const UESP_POWERTYPE_SORCERER = -62;
+const UESP_POWERTYPE_MAGESGUILD = -63;
+const UESP_POWERTYPE_SUPPORT = -64;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -1964,6 +1971,13 @@ function GetEsoCustomMechanicTypeText($mechanicType)
 			UESP_POWERTYPE_ARMORTYPE => "Armor Types",
 			UESP_POWERTYPE_DAMAGE => "Spell + Weapon Damage",
 			UESP_POWERTYPE_ASSASSINATION => "Assassination Skills Slotted",
+			UESP_POWERTYPE_FIGHTERSGUILD => "Fighters Guild Skills Slotted",
+			UESP_POWERTYPE_DRACONICPOWER => "Draconic Power Skills Slotted",
+			UESP_POWERTYPE_SHADOW => "Shadow Skills Slotted",
+			UESP_POWERTYPE_SIPHONING => "Siphoning Skills Slotted",
+			UESP_POWERTYPE_SORCERER => "Sorcerer Skills Slotted",
+			UESP_POWERTYPE_MAGESGUILD => "Mages Guild Skills Slotted",
+			UESP_POWERTYPE_SUPPORT => "Support Skills Slotted",
 	);
 
 	$key = (int) $mechanicType;

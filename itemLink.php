@@ -1680,7 +1680,7 @@ class CEsoItemLink
 		
 		if ($abilityDesc == "") return "";
 		
-		$output = "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc";
+		$output = "<div class='esoil_white esoil_small'>$ability</div><br/>$abilityDesc";
 		if ($cooldown > 0) $output .= " ($cooldown second cooldown)";
 		return $output;
 	}
