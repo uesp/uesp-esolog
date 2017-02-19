@@ -549,6 +549,13 @@ function GetEsoSkillInputValues()
 			 MaxDamage: Math.max(spellDamage, weaponDamage),
 			 EffectiveLevel: level,
 			 AssassinSkills: 0,
+			 FightersGuildSkills: 0,
+			 DraconicPowerSkills: 0,
+			 ShadowSkills: 0,
+			 SiphoningSkills: 0,
+			 SorcererSkills: 0,
+			 MagesGuildSkills: 0,
+			 SupportSkills: 0,
 		};
 	
 	return g_LastSkillInputValues; 
@@ -689,6 +696,34 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	else if (type == -57) // Assassination Skills Slotted
 	{
 		value = a * values.AssassinSkills;
+	}
+	else if (type == -58) // Fighters Guild Skills Slotted
+	{
+		value = a * values.FightersGuildSkills;
+	}
+	else if (type == -59)
+	{
+		value = a * values.DraconicPowerSkills;
+	}
+	else if (type == -60)
+	{
+		value = a * values.ShadowSkills;
+	}
+	else if (type == -61)
+	{
+		value = a * values.SiphoningSkills;
+	}
+	else if (type == -62)
+	{
+		value = a * values.SorcererSkills;
+	}
+	else if (type == -63)
+	{
+		value = a * values.MagesGuildSkills;
+	}
+	else if (type == -64)
+	{
+		value = a * values.SupportSkills;
 	}
 	else if (type == -51)
 	{
@@ -1650,6 +1685,48 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 		a = Math.round(a);
 		output += srcString + " = " + a + " AssassinSkills";
 		typeString = "Assassination Skills Slotted";
+	}
+	else if (type == -58) // Fighters Guild Skills Slotted
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " FightersGuildSkills";
+		typeString = "Fighters Guild Skills Slotted";
+	}
+	else if (type == -59)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " DraconicPowerSkills";
+		typeString = "Draconic Power Skills Slotted";
+	}
+	else if (type == -60)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " ShadowSkills";
+		typeString = "Shadow Skills Slotted";
+	}
+	else if (type == -61)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " SiphoningSkills";
+		typeString = "Siphoning Skills Slotted";
+	}
+	else if (type == -62)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " SorcererSkills";
+		typeString = "Sorcerer Skills Slotted";
+	}
+	else if (type == -63)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " MagesGuildSkills";
+		typeString = "Mages Guild Skills Slotted";
+	}
+	else if (type == -64)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " SupportSkills";
+		typeString = "Support Skills Slotted";
 	}
 	else
 	{
