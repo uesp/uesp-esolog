@@ -1162,6 +1162,10 @@ ESO_SKILL_DAMAGEMATCHES =
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
+		damageId: "Cold",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Frost Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+	},
+	{
 		damageId: "Poison",
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
@@ -1180,8 +1184,10 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 	
 	var rawOutput = [];
 	var newRawOutput = {};
+	var target = skillData.target.toLowerCase();
 	
 	var isDot = false;
+	
 	if (skillData.channelTime > 0) isDot = true;
 	if (inputValues.Damage.Dot == null || isNaN(inputValues.Damage.Dot)) isDot = false;
 	
@@ -1197,6 +1203,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			if (inputValues.Damage[matchData.damageId] == null) return string;
 			
 			var modDamage = parseFloat(p3);
+			var baseFactor = 1;
 			
 			newRawOutput = {};
 			newRawOutput.damageId = matchData.damageId;
@@ -1234,18 +1241,38 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 					}
 				}
 				
-				modDamage *= 1 + +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
+				baseFactor += +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
 				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
 			}
 			else
 			{
-				modDamage *= 1 + +newRawOutput.mainDamageDone;
+				baseFactor += +newRawOutput.mainDamageDone;
 			}
 			
 			var amountAll = 0;
 			
 			if (inputValues.Damage.All != null) amountAll += Math.round(inputValues.Damage.All*100)/100;
 			if (inputValues.Damage.Empower != null && !thisEffectIsDot && skillData.mechanic != 10) amountAll += Math.round(inputValues.Damage.Empower*100)/100;
+			
+			if (inputValues.Damage.SingleTarget != null) 
+			{
+				if (target == "enemy") 
+				{
+					baseFactor += Math.round(inputValues.Damage.SingleTarget*100)/100;
+					newRawOutput.singleTargetDamageDone = +inputValues.Damage.SingleTarget;
+				}
+			}
+			
+			if (inputValues.Damage.AOE != null) 
+			{
+				if (target == "area" || target == "cone" || target == "self" || target == "ground")
+				{
+					baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
+					newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
+				}
+			}
+			
+			modDamage *= baseFactor;
 			
 			if (amountAll != 0)	modDamage *= 1 + amountAll;
 			newRawOutput.damageDone = amountAll;
@@ -1264,6 +1291,8 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				
 		if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + rawData.modDuration + " sec ";
 		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + (rawData.mainDamageDone*100) + "% " + rawData.damageId;
+		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + (rawData.aoeDamageDone*100) + "% AoE";
+		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + (rawData.singleTargetDamageDone*100) + "% Target";
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + (rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + (rawData.damageDone*100) + "% All";
 		
