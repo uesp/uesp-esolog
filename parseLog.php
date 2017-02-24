@@ -79,7 +79,7 @@ class EsoLogParser
 	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "";
 	
-		/* Set to true to only parse sales related data */
+		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
 	const ONLY_PARSE_MINEDITEMS = false;
 	
