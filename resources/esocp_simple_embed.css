@@ -188,7 +188,7 @@
 	height: 21px;
 	vertical-align: middle;
 	margin: 0;
-    padding: 0;
+    padding: 0 !important;
 }
 
 .esovcpPlusButton {
@@ -196,7 +196,7 @@
 	height: 21px;
 	vertical-align: middle;
 	margin: 0;
-    padding: 0;
+    padding: 0 !important;
 }
 
 .esovcpDiscPoints {

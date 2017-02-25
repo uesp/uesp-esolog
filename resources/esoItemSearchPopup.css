@@ -136,3 +136,8 @@
   margin-top: -14px;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
 }
+
+#esoispUneqipButton, #esoispSearchButton {
+	background-color: #ccc !important;
+}
+
