@@ -86,13 +86,15 @@ a:hover {
     vertical-align: top;
 }
 
-#esopdReagents, #esopdFindPotions, #esopdSolvents {
+#esopdReagents, #esopdFindPotions, #esopdSolvents, #esopdLearn {
 	border: solid 1px gray;
     border-radius: 4px;
     display: inline-block;
     padding: 5px;
     vertical-align: top;
+	min-width: 460px;
 }
+
 
 #esopdEffects {
 	width: 226px;
@@ -271,7 +273,7 @@ a:hover {
 
 .esopdReagentTab {
 	display: inline-block;
-    width: 125px;
+    width: 75px;
     padding: 3px;
     border: solid 1px gray;
     text-align: center;
@@ -296,7 +298,7 @@ a:hover {
 
 .esopdReagentTabSpacer {
     display: inline-block;
-    width: 10px;
+    width: 5px;
 }
 
 #esopdFindPotionMsg {
@@ -369,4 +371,9 @@ a:hover {
 #esopdPotionData {
 	margin-left: 25px;
 	float: left;
+}
+
+.esopdLearnList li:hover {
+	cursor: pointer;
+	background-color: #ccc;
 }

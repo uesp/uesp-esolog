@@ -740,6 +740,7 @@ function esopdOnDocReady()
 	$(".esopdEffect").click(OnClickEsoEffect);
 	$(".esopdReagentTab").click(OnClickEsoReagentTab);
 	$("#esopdCopyItemLink").click(OnClickCopyEsoPotionItemLink);
+	$(".esopdLearnList li").click(OnEsoPotionResultClick)
 	
 	UpdateEsoPotion();
 }
