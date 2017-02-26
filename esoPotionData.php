@@ -51,7 +51,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"name2" => "Drain Health",
 				"potionBaseId" => 54339,
 				"poisonBaseId" => 76827,
-				"icon" => "resources/crafting_alchemy_trait_ravagehealth.png",
+				"icon" => "resources/crafting_alchemy_trait_restorehealth.png",
 				"isPositive" => true,
 			),
 	2 =>  array(
@@ -76,7 +76,7 @@ $ESO_POTIONEFFECT_DATA = array(
 			),
 	4 =>  array(
 				"id" => 4,
-				"oppositeId" => 5,
+				"oppositeId" => 3,
 				"name" => "Ravage Magicka",
 				"name2" => "Increase Magicka Cost",
 				"potionBaseId" => 44815,
@@ -253,7 +253,7 @@ $ESO_POTIONEFFECT_DATA = array(
 			),
 	21 =>  array(
 				"id" => 21,
-				"oppositeId" => 0,
+				"oppositeId" => 22,
 				"name" => "Detection",
 				"name2" => "Expose Victim",
 				"potionBaseId" => 30142,
@@ -263,7 +263,7 @@ $ESO_POTIONEFFECT_DATA = array(
 			),
 	22 =>  array(
 				"id" => 22,
-				"oppositeId" => 0,
+				"oppositeId" => 21,
 				"name" => "Invisible",
 				"name2" => "Mark Victim",
 				"potionBaseId" => 44715,
