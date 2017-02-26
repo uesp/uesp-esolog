@@ -659,6 +659,7 @@ function OnClickEsoReagentTab(e)
 	$("#esopdReagents").hide();
 	$("#esopdSolvents").hide();
 	$("#esopdFindPotions").hide();
+	$("#esopdLearn").hide();
 	
 	$("#" + tabid).show();
 }
