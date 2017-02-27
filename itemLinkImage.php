@@ -1778,13 +1778,13 @@ class CEsoItemLinkImage
 		{
 			$ability = "";
 			$abilityDesc = $this->itemRecord['abilityDesc'];
-			if ($abilityDesc == "") return "";
+			if ($abilityDesc == "") return 0
 		}
 		else if ($this->itemRecord['type'] == 29)	// Recipes
 		{
 			$ability = strtoupper($this->itemRecord['abilityName']);
 			$abilityDesc = $this->itemRecord['abilityDesc'];
-			if ($abilityDesc == "") return "";
+			if ($abilityDesc == "") return 0;
 		}
 		else if ($this->itemRecord['type'] == 33)	//Potion Base
 		{
@@ -1813,6 +1813,10 @@ class CEsoItemLinkImage
 				$skillRank = intval($skillRank);
 				$abilityDesc .= "\n\n|c00ff00Requires $craft $skillRank.|r";
 			}
+		}
+		else if (($this->itemRecord['type'] == 30 || $this->itemRecord['type'] == 7) && $this->itemPotionData > 0)
+		{
+			return 0;
 		}
 		else
 		{
