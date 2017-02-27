@@ -1671,6 +1671,10 @@ class CEsoItemLink
 			
 			return FormatEsoItemDescriptionText($desc);
 		}
+		else if (($this->itemRecord['type'] == 30 || $this->itemRecord['type'] == 7) && $this->itemPotionData > 0)
+		{
+			return "";					
+		}
 		else
 		{
 			$ability = strtoupper($this->itemRecord['abilityName']);
