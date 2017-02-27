@@ -1778,7 +1778,7 @@ class CEsoItemLinkImage
 		{
 			$ability = "";
 			$abilityDesc = $this->itemRecord['abilityDesc'];
-			if ($abilityDesc == "") return 0
+			if ($abilityDesc == "") return 0;
 		}
 		else if ($this->itemRecord['type'] == 29)	// Recipes
 		{
