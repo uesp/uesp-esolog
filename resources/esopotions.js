@@ -627,6 +627,7 @@ function OnEsoPotionEffectFind()
 		$("#esopdFindPotionMsg").html("Found <b>" + results.length + "</b> potions with the effects of <b>"+ effectNames + "</b>!");
 	
 	CreateEsoFindPotionResults(results);
+	ShowFindResults();
 		
 	OnClickEsoReagentTab.call($("#esopdFindPotionTab"));
 }
