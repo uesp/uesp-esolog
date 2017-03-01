@@ -79,7 +79,13 @@
 		</div>
 		<div id="esopdFindPotions" style="display: none;">
 			Select 1-3 effects on the left and hit "Find" to search for matching potion combinations.
-			<div id="esopdFindPotionMsg"></div>
+			<div id="esopdFindPotionMsg"></div><br/>
+			Show Only:
+				<input type="checkbox" id="esopdFindTwoReagents">2 Ingredient
+				<input type="checkbox" id="esopdFindThreeReagents">3 Ingredient
+				<input type="checkbox" id="esopdFindOneEffect">1 Effect
+				<input type="checkbox" id="esopdFindTwoEffects">2 Effects
+				<input type="checkbox" id="esopdFindThreeEffects">3 Effects
 			<div id="esopdFindPotionResults"></div>
 		</div>
 		<div id="esopdLearn" style="display: none;">

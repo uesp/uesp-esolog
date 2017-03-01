@@ -515,12 +515,17 @@ function CreateEsoFindPotionResultHtml(result)
 	var reagent3 = g_EsoPotionReagents[result.name3];
 	var isPoison = false;
 	var solventData = g_EsoPotionSolvents[$("#esopdSolventUsed").attr("solvent")];
+	var numReagents = 2;
+	var numEffects = result.effects.length;
 	
 	if (solventData && solventData.isPoison) isPoison = true;
+	if (reagent1 != null && reagent2 != null && reagent3 != null) numReagents = 3;
 	
 	output += " reagent1=\"" + result.name1 + "\"";
 	output += " reagent2=\"" + result.name2 + "\"";
 	output += " reagent3=\"" + result.name3 + "\"";
+	output += " numreagents=\"" + numReagents + "\"";
+	output += " numeffects=\"" + numEffects + "\"";
 	output += ">";
 	
 	output += "<div class=\"esopdPotionResultName\">";
@@ -730,6 +735,81 @@ function UpdateEsoPotionDataText()
 }
 
 
+function ShowFindResults()
+{
+	var numEffects = 0;
+	var numReagents = 0;
+	
+	if ($('#esopdFindOneEffect').is(':checked')) numEffects = 1;
+	if ($('#esopdFindTwoEffects').is(':checked')) numEffects = 2;
+	if ($('#esopdFindThreeEffects').is(':checked')) numEffects = 3;
+	
+	if ($('#esopdFindTwoReagents').is(':checked')) numReagents = 2;
+	if ($('#esopdFindThreeReagents').is(':checked')) numReagents = 3;
+	
+	if (numEffects == 0 && numReagents == 0)
+	{
+		$(".esopdPotionResult").show();
+		return;
+	}
+	
+	if (numReagents == 0)
+	{
+		$(".esopdPotionResult").hide();
+		$(".esopdPotionResult[numeffects='" + numEffects + "']").show();
+		return;
+	}
+	
+	if (numEffects == 0)
+	{
+		$(".esopdPotionResult").hide();
+		$(".esopdPotionResult[numreagents='" + numReagents + "']").show();
+		return;
+	}
+	
+	$(".esopdPotionResult").hide();
+	$(".esopdPotionResult[numreagents='" + numReagents + "'][numeffects='" + numEffects + "']").show();
+}
+
+
+function OnEsoFindTwoReagants(e)
+{
+	$('#esopdFindThreeReagents').attr('checked', false);
+	ShowFindResults();
+}
+
+
+function OnEsoFindThreeReagants(e)
+{
+	$('#esopdFindTwoReagents').attr('checked', false);
+	ShowFindResults();
+}
+
+
+function OnEsoFindOneEffect(e)
+{
+	$('#esopdFindTwoEffects').attr('checked', false);
+	$('#esopdFindThreeEffects').attr('checked', false);
+	ShowFindResults();
+}
+
+
+function OnEsoFindTwoEffects(e)
+{
+	$('#esopdFindOneEffect').attr('checked', false);
+	$('#esopdFindThreeEffects').attr('checked', false);
+	ShowFindResults();
+}
+
+
+function OnEsoFindThreeEffects(e)
+{
+	$('#esopdFindOneEffect').attr('checked', false);
+	$('#esopdFindTwoEffects').attr('checked', false);
+	ShowFindResults();
+}
+
+
 function esopdOnDocReady()
 {
 	EsoPotionItemLinkPopup = $("#esopdTooltip");
@@ -742,6 +822,11 @@ function esopdOnDocReady()
 	$(".esopdReagentTab").click(OnClickEsoReagentTab);
 	$("#esopdCopyItemLink").click(OnClickCopyEsoPotionItemLink);
 	$(".esopdLearnList li").click(OnEsoPotionResultClick)
+	$("#esopdFindTwoReagents").change(OnEsoFindTwoReagants)
+	$("#esopdFindThreeReagents").change(OnEsoFindThreeReagants)
+	$("#esopdFindOneEffect").change(OnEsoFindOneEffect)
+	$("#esopdFindTwoEffects").change(OnEsoFindTwoEffects)
+	$("#esopdFindThreeEffects").change(OnEsoFindThreeEffects)
 	
 	UpdateEsoPotion();
 }
