@@ -24,7 +24,8 @@ class EsoGetSalesImage
 	const TICK_LENGTH = 5;
 	const TICK_FONT_SIZE = 10;
 		
-	const WEIGHTED_AVERAGE_INTERVAL = 11;
+	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
+	const WEIGHTED_AVERAGE_BUCKETS = 20;
 	
 	const MAX_ZSCORE = 3;
 	
@@ -210,16 +211,16 @@ class EsoGetSalesImage
 	}
 	
 	
-	public function ComputeWeightedAverage($dataArray, $numPoints = self::WEIGHTED_AVERAGE_INTERVAL)
+	public function ComputeWeightedAverage($dataArray, $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL)
 	{
 		$weighted = array();
 		$count = 0;
 		$sum = 0;
 		$lastTimestamp = 0;
 		
-		if (count($dataArray) > 20 * $numPoints)
+		if (count($dataArray) > self::WEIGHTED_AVERAGE_BUCKETS * $numPoints)
 		{
-			$numPoints = intval(count($dataArray) / 20);
+			$numPoints = intval(count($dataArray) / self::WEIGHTED_AVERAGE_BUCKETS);
 		}
 		
 		$numDataPoints = count($dataArray);
