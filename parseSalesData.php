@@ -182,6 +182,9 @@ class EsoSalesDataParser
 						lastPurchaseTimestamp INT UNSIGNED NOT NULL,
 						lastSaleTimestamp INT UNSIGNED NOT NULL,
 						lastSeen INT UNSIGNED NOT NULL,
+						goodPrice FLOAT NOT NULL,
+						goodSoldPrice FLOAT NOT NULL,
+						goodListPrice FLOAT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_index1(server(3), itemId, level, quality, trait, potionData),
 						INDEX unique_index2(server(3), itemId, internalLevel, internalSubType, potionData)
