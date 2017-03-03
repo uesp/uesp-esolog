@@ -16,12 +16,20 @@ class CEsoSalesMakePriceList
 	
 	public $indexData = array();
 	public $updateTime = 0;
+	public $outputPath = "";
 	
 	
 	public function __construct()
 	{
+		global $argc, $argv;
+		
 		$this->updateTime = time();
-		$this->InitDatabase();	
+		$this->InitDatabase();
+		
+		if ($argc > 1)
+		{
+			$this->outputPath = $argv[1];
+		}
 	}	
 	
 	
@@ -168,7 +176,7 @@ class CEsoSalesMakePriceList
 	
 	public function OutputPriceList($server, $luaData)
 	{
-		$outputFile = $this->OUTPUT_BASEPATH . "$server/{$this->OUTPUT_LUAFILENAME}";
+		$outputFile = $this->outputPath . $this->OUTPUT_BASEPATH . "$server/{$this->OUTPUT_LUAFILENAME}";
 		print("Saving $server price list to '$outputFile'...\n");
 		
 		if (file_put_contents($outputFile, $luaData) === false)
@@ -200,7 +208,7 @@ class CEsoSalesMakePriceList
 			$output .= "</li>\n";
 		}
 		
-		if (file_put_contents($this->OUTPUT_PRICELISTINDEX, $output) === false)
+		if (file_put_contents($this->outputPath . $this->OUTPUT_PRICELISTINDEX, $output) === false)
 		{
 			print("Error: Failed to write price index data!\n");
 			return false;
