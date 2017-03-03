@@ -520,7 +520,7 @@ class EsoGetSalesImage
 		return intval(($this->maxPriceLimit - $y) / $graphRange * $pixelRange) + self::BORDER_TOP_MARGIN;
 	}
 	
-	
+		
 	public function CreateImageBorders(&$image)
 	{
 		$x1 = self::BORDER_LEFT_MARGIN;
@@ -530,9 +530,12 @@ class EsoGetSalesImage
 		
 		imagerectangle($image, $x1, $y1, $x2, $y2, $this->borderColor);
 		
+		$label = "Hours Ago";
+		if ($this->ShowTimeAsDays()) $label = "Days Ago";
+		
 		$x = ($x2 + $x1) / 2;
 		$y = $this->outputHeight - 7;
-		$this->PrintText($image, "Days Ago", self::TICK_FONT_SIZE + 1, $this->borderColor, $x, $y, self::ALIGN_CENTER, self::ALIGN_BOTTOM);
+		$this->PrintText($image, $label, self::TICK_FONT_SIZE + 1, $this->borderColor, $x, $y, self::ALIGN_CENTER, self::ALIGN_BOTTOM);
 		
 		$x = 15;
 		$y = ($y1 + $y2) / 2;		
@@ -547,9 +550,9 @@ class EsoGetSalesImage
 	}
 	
 	
-	public function FormatTimestampValue($timestamp)
+	public function FormatTimestampValue($timestamp, $factor = 86400)
 	{
-		$days = intval(($this->maxTime - $timestamp) / 86400);
+		$days = intval(($this->maxTime - $timestamp) / $factor);
 		return $days;
 	}
 	
@@ -563,18 +566,29 @@ class EsoGetSalesImage
 		
 		return $price;
 	}
+
+	
+	public function ShowTimeAsDays()
+	{
+		$diffTime = $this->maxTime - $this->minTime;
+		return ($diffTime >= 100000);
+	}
 	
 	
 	public function CreateImageTicksX(&$image)
 	{
 		$y1 = $this->outputHeight - self::BORDER_BOTTOM_MARGIN;
 		$y2 = $y1 + self::TICK_LENGTH;
-		$tickRange = $this->GetNiceTickRange($this->minTime, $this->maxTime, 86400);
+		
+		$timeFactor = 86400;
+		if (!$this->ShowTimeAsDays()) $timeFactor /= 24;
+		
+		$tickRange = $this->GetNiceTickRange($this->minTime, $this->maxTime, $timeFactor);
 		$startValue = $this->minTime + $tickRange - fmod($this->minTime, $tickRange);
 		
 		for ($value = $this->maxTime; $value >= $this->minTime ; $value -= $tickRange)
 		{
-			$days = $this->FormatTimestampValue($value);			
+			$days = $this->FormatTimestampValue($value, $timeFactor);			
 			$x = $this->ConvertGraphToPixelX($value);
 			imageline($image, $x, $y1, $x, $y2, $this->borderColor);
 
