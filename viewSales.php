@@ -2050,6 +2050,18 @@ class EsoViewSalesData
 		
 		return $output;
 	}
+	
+		
+	public function GetViewType()
+	{
+		$type = $this->formValues['saletype'];
+		
+		if ($type == null || $type == "both" || $type == "" || $type == "all") return "all";
+		if ($type == "listed" || $type == "list") return "list";
+		if ($type == "sold") return "sold";
+
+		return "both";
+	}
 		
 	
 	public function CreateOutputHtml()
@@ -2066,6 +2078,8 @@ class EsoViewSalesData
 				'{formServer}' => $this->GetFormValue('server'),
 				'{formSaleType}' => $this->GetFormValue('saletype'),
 				'{formLevel}' => $this->GetOutputFormLevel(),
+				'{itemId}' => $this->viewSalesItemId,
+				'{viewType}' => $this->GetViewType(),
 				
 				'{listTrait}' => $this->GetGeneralListHtml(self::$ESOVSD_TRAITS, 'trait'),
 				'{listQuality}' => $this->GetGeneralListHtml(self::$ESOVSD_QUALITIES, 'quality'),

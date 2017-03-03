@@ -44,6 +44,10 @@
 		{priceStats}
 	</div>
 	<br/>
+	<div id="esovsdSalesImage">
+		<img src="getSalesImage.php?id={itemId}&width=1024&height=600&view={viewType}&timeperiod={formTimePeriod}" width="1024" height="600">
+	</div>
+	<br/>
 	{showSalesType}
 	<br/>
 	<div id="esovsd_results">
