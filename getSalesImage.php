@@ -361,10 +361,10 @@ class EsoGetSalesImage
 			$this->minPrice /= 2;
 			$this->maxPrice *= 2;
 			
-			if ($this->minPriceLimit == 0)
+			if ($this->minPrice == 0)
 			{
-				$this->minPriceLimit = 0;
-				$this->maxPriceLimit = 10;
+				$this->minPrice = 0;
+				$this->maxPrice = 10;
 			}
 			
 			$this->minTime -= 3600;
@@ -394,7 +394,7 @@ class EsoGetSalesImage
 				
 			if ($sale['buyTimestamp']  > 0)
 			{
-				$sumSquareSold += pow($unitPrice - $this->saleAvgPrice, 2);
+				$sumSquareSold += pow($unitPrice - $this->soldAvgPrice, 2);
 			}
 				
 			if ($sale['listTimestamp'] > 0)
@@ -412,9 +412,9 @@ class EsoGetSalesImage
 			$this->totalPriceStdDev = sqrt($sumSquareAll / floatval($this->totalItemCount));
 		}
 	
-		if ($this->saleItemCount > 0)
+		if ($this->soldItemCount > 0)
 		{
-			$this->soldPriceStdDev = sqrt($sumSquareSold / floatval($this->saleItemCount));
+			$this->soldPriceStdDev = sqrt($sumSquareSold / floatval($this->soldItemCount));
 		}
 	
 		if ($this->listItemCount > 0)
@@ -434,10 +434,8 @@ class EsoGetSalesImage
 		$minPrice = 1000000000;
 		$maxPrice = -1;
 			
-		foreach ($this->salesData as &$sale)
+		foreach ($this->salesData as $i => $sale)
 		{
-			$price = intval($sale['price']);
-			$qnt = intval($sale['qnt']);
 			$unitPrice = $sale['unitPrice'];
 			
 			if ($sale['buyTimestamp']  > 0 && $this->viewData == "list") continue;
@@ -452,7 +450,7 @@ class EsoGetSalesImage
 						
 			if ($sale['buyTimestamp'] > 0 && $this->soldPriceStdDev != 0)
 			{
-				$zScoreSold = abs(($unitPrice - $this->saleAvgPrice) / $this->soldPriceStdDev);
+				$zScoreSold = abs(($unitPrice - $this->soldAvgPrice) / $this->soldPriceStdDev);
 				if ($zScoreSold > self::MAX_ZSCORE) $isOK = false;
 			}
 			
@@ -469,7 +467,7 @@ class EsoGetSalesImage
 			}
 			else
 			{
-				$sale['outlier'] = true;
+				$this->salesData[$i]['outlier'] = true;
 			}			
 			
 		}
