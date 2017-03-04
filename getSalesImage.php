@@ -26,6 +26,7 @@ class EsoGetSalesImage
 		
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
+	const WEIGHTED_SMOOTH_INTERVAL = 21;
 	
 	const MAX_ZSCORE = 3;
 	
@@ -237,23 +238,8 @@ class EsoGetSalesImage
 		$endTimestamp = 0;
 		$endCount = 0;
 		
-		for ($i = 0; $i < $numDataPoints + $numPoints; ++$i)
+		for ($i = 0; $i < $numDataPoints; ++$i)
 		{
-			if ($i >= $numDataPoints)
-			{
-				break;
-				
-				if ($count > 0)
-				{
-					$timestamp = ($endTimestamp + $dataArray[$i - $endCount]['timestamp'])/2;
-					$weighted[$timestamp] = $sum / $count;
-					$sum -= $dataArray[$i - $numPoints]['unitPrice'];
-				}
-				
-				--$count;		
-				continue;
-			}
-			
 			$data = $dataArray[$i];
 			$unitPrice = $data['unitPrice'];
 			$lastTimestamp = $data['timestamp'];
@@ -284,9 +270,47 @@ class EsoGetSalesImage
 			$weighted[$lastTimestamp] = $sum / $count;
 			$weighted[time()] = $sum / $count;
 		}
+		
+		$this->SmoothWeightedArray($weighted);
 
 		return $weighted;
 	}	
+	
+		
+	public function SmoothWeightedArray(&$weighted)
+	{
+		$orig = $weighted;
+		$numPoints = self::WEIGHTED_SMOOTH_INTERVAL;
+		$count = 0;
+		$sum = 0;
+		$savePrices = array_fill(0, $numPoints, 0);
+		$saveIndex = 0;
+		
+		foreach ($orig as $timestamp => $price)
+		{
+			if ($count < $numPoints)
+			{
+				$savePrices[$saveIndex] = $price;
+				++$saveIndex;
+				if ($saveIndex >= $numPoints) $saveIndex = 0;
+				
+				++$count;
+				$sum += $price;
+				$weighted[$timestamp] = $sum / $count;
+			}
+			else
+			{
+				$sum += $price;
+				$sum -= $savePrices[$saveIndex];
+				
+				$weighted[$timestamp] = $sum / $count;
+				
+				$savePrices[$saveIndex] = $price;
+				++$saveIndex;
+				if ($saveIndex >= $numPoints) $saveIndex = 0;
+			}
+		}
+	}
 	
 	
 	public function ComputeBasicStats()
