@@ -16,7 +16,7 @@ class EsoViewSalesData
 {
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
-	const ESOVSD_MAXZSCORE = 2.0;
+	const ESOVSD_MAXZSCORE = 3.0;
 	const ESOVSD_MAXZSCORE_WEIGHTED = 3.0;
 	const ESOVSD_WEIGHTED_CONSTANT = 30.0;
 		

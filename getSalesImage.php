@@ -184,6 +184,18 @@ class EsoGetSalesImage
 	}
 	
 	
+	public function SalesDataSortSoldTimestamp($a, $b)
+	{
+		return $a['buyTimestamp'] - $b['buyTimestamp'];
+	}
+	
+	
+	public function SalesDataSortListTimestamp($a, $b)
+	{
+		return $a['listTimestamp'] - $b['listTimestamp'];
+	}
+	
+	
 	public function ComputeWeightedAverages()
 	{
 		$this->soldData = array();
@@ -200,8 +212,8 @@ class EsoGetSalesImage
 		}
 		
 		usort($this->validSalesData, array('EsoGetSalesImage','SalesDataSortTimestamp'));
-		usort($this->soldData, array('EsoGetSalesImage','SalesDataSortTimestamp'));
-		usort($this->listData, array('EsoGetSalesImage','SalesDataSortTimestamp'));
+		usort($this->soldData, array('EsoGetSalesImage','SalesDataSortSoldTimestamp'));
+		usort($this->listData, array('EsoGetSalesImage','SalesDataSortListTimestamp'));
 		
 		$this->avgData = $this->ComputeWeightedAverage($this->validSalesData);
 		$this->avgSoldData = $this->ComputeWeightedAverage($this->soldData);
@@ -211,17 +223,15 @@ class EsoGetSalesImage
 	}
 	
 	
-	public function ComputeWeightedAverage($dataArray, $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL)
+	public function ComputeWeightedAverage($dataArray)
 	{
 		$weighted = array();
 		$count = 0;
 		$sum = 0;
 		$lastTimestamp = 0;
 		
-		if (count($dataArray) > self::WEIGHTED_AVERAGE_BUCKETS * $numPoints)
-		{
-			$numPoints = intval(count($dataArray) / self::WEIGHTED_AVERAGE_BUCKETS);
-		}
+		$numPoints = intval(count($dataArray) / self::WEIGHTED_AVERAGE_BUCKETS);
+		if ($numPoints < self::MIN_WEIGHTED_AVERAGE_INTERVAL) $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL;
 		
 		$numDataPoints = count($dataArray);
 		$endTimestamp = 0;
@@ -229,10 +239,9 @@ class EsoGetSalesImage
 		
 		for ($i = 0; $i < $numDataPoints + $numPoints; ++$i)
 		{
-			
 			if ($i >= $numDataPoints)
 			{
-				continue;
+				break;
 				
 				if ($count > 0)
 				{
@@ -248,7 +257,7 @@ class EsoGetSalesImage
 			$data = $dataArray[$i];
 			$unitPrice = $data['unitPrice'];
 			$lastTimestamp = $data['timestamp'];
-				
+			
 			if ($count < $numPoints)
 			{
 				++$count;
@@ -257,7 +266,6 @@ class EsoGetSalesImage
 				$endTimestamp = $data['timestamp'];
 				$timestamp = ($data['timestamp'] + $dataArray[$i - $count + 1]['timestamp'])/2;
 				$weighted[$timestamp] = $sum / $count;
-				continue;
 			}
 			else
 			{
@@ -269,6 +277,7 @@ class EsoGetSalesImage
 				$sum += $unitPrice;
 				$sum -= $dataArray[$i - $numPoints]['unitPrice'];
 			}
+			
 		}
 		
 		if ($count > 0) {
@@ -364,7 +373,7 @@ class EsoGetSalesImage
 		
 		$this->minPriceLimit = $this->minPrice;
 		$this->maxPriceLimit = $this->maxPrice;
-				
+		
 		return true;
 	}
 	

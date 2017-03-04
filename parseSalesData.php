@@ -12,6 +12,11 @@ class EsoSalesDataParser
 	const SKIP_CREATE_TABLES = false;
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
 	const ESD_LISTTIME_RANGE = 10;
+	
+	const MAX_ZSCORE = 3;
+	
+	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
+	const WEIGHTED_AVERAGE_BUCKETS = 20;
 		
 	public $server = "NA";
 	
@@ -346,11 +351,15 @@ class EsoSalesDataParser
 		$lastSale = $itemData['lastSaleTimestamp'];
 		$lastSeen = $itemData['lastSeen'];
 		$icon = $this->db->real_escape_string($itemData['icon']);
+		$goodPrice = $itemData['goodPrice'];
+		$goodListPrice = $itemData['goodListPrice'];
+		$goodSoldPrice = $itemData['goodSoldPrice'];
 		
 		$this->lastQuery = "UPDATE items SET ";
 		$this->lastQuery .= "countPurchases=$countPurchases, countSales=$countSales, countItemPurchases=$countItemPurchases, ";
 		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales, icon='$icon', ";
-		$this->lastQuery .= "lastPurchaseTimestamp=$lastPurchase, lastSaleTimestamp=$lastSale, lastSeen=$lastSeen ";
+		$this->lastQuery .= "lastPurchaseTimestamp=$lastPurchase, lastSaleTimestamp=$lastSale, lastSeen=$lastSeen, ";
+		$this->lastQuery .= "goodPrice=$goodPrice, goodListPrice=$goodListPrice, goodSoldPrice=$goodSoldPrice ";
 		$this->lastQuery .= "WHERE id=$id;";
 		
 		$result = $this->db->query($this->lastQuery);
@@ -383,17 +392,301 @@ class EsoSalesDataParser
 	}
 	
 	
+	public function LoadSalesForItem($server, $itemId)
+	{
+		$query = "SELECT price, qnt, listTimestamp, buyTimestamp FROM sales WHERE server='$server' AND itemId=$itemId;";
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to load sales for item $itemId!");
+		if ($result->num_rows == 0) return $this->reportError("No sales found for item $itemId!");
+		
+		$salesData = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			if ($row['buyTimestamp']  > 0) $row['timestamp'] = $row['buyTimestamp'];
+			if ($row['listTimestamp'] > 0) $row['timestamp'] = $row['listTimestamp'];
+
+			$salesData[] = $row;
+		}
+		
+		return $salesData;
+	}
+	
+	
+	public function SalesDataSortTimestamp($a, $b)
+	{
+		return $b['timestamp'] - $a['timestamp'];
+	}
+	
+	
+	public function SalesDataSortListTimestamp($a, $b)
+	{
+		return $b['listTimestamp'] - $a['listTimestamp'];
+	}
+	
+	
+	public function SalesDataSortSoldTimestamp($a, $b)
+	{
+		return $b['buyTimestamp'] - $a['buyTimestamp'];
+	}
+	
+	
+	public function UpdateItemGoodPrice(&$item, $output = false)
+	{
+		$salesData = $this->LoadSalesForItem($item['server'], $item['id']);
+		if ($salesData === false) return false;
+		
+		if ($output) print("{$item['id']}: Loaded " . count($salesData) . " sales for item.\n");
+				
+		$stats = $this->ComputeBasicSalesStats($salesData);
+		$this->ComputeAdvancedSalesStats($salesData, $stats);
+		$this->RecalculatePriceLimits($salesData, $stats);
+		
+		$soldData = array();
+		$listData = array();
+		$validSalesData = array();
+		
+		foreach ($salesData as $sale)
+		{
+			if ($sale['outlier'] === true) continue;
+				
+			$validSalesData[] = $sale;
+			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
+			if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+		}
+		
+		usort($validSalesData, array('EsoSalesDataParser', 'SalesDataSortTimestamp'));
+		$item['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
+		
+		usort($soldData, array('EsoSalesDataParser', 'SalesDataSortSoldTimestamp'));
+		$item['goodListPrice'] = $this->ComputeWeightedAverage($soldData);
+		
+		usort($listData, array('EsoSalesDataParser', 'SalesDataSortListTimestamp'));
+		$item['goodSoldPrice'] = $this->ComputeWeightedAverage($listData);
+		
+		return true;
+	}
+	
+	
+	public function ComputeWeightedAverage($salesData)
+	{
+		$numPoints = intval(count($salesData) / self::WEIGHTED_AVERAGE_BUCKETS); 
+		if ($numPoints < self::MIN_WEIGHTED_AVERAGE_INTERVAL) $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL;
+		
+		$sum = 0;
+		$count = 0;
+		$i = 0;
+		
+		while ($i < count($salesData) && $count < $numPoints)
+		{
+			$data = $salesData[$i];
+			++$i;
+			
+			if ($data['outlier'] === true) continue;
+			
+			$sum += $data['unitPrice'];
+			
+			$day = round((time() - $data['timestamp']) / 86400, 2);
+			$day = $data['timestamp'];
+				
+			++$count;			
+		}
+		
+		if ($count == 0) return 0;
+		return $sum / $count;
+	}
+	
+	
+	public function ComputeBasicSalesStats($salesData)
+	{
+		if (count($salesData) < 1) return false;
+		
+		$result = array();
+	
+		$listSum = 0;
+		$soldSum = 0;
+		$listCount = 0;
+		$soldCount = 0;
+		$minPrice = 1000000000;
+		$maxPrice = -1;
+		$minTime = time();
+		$maxTime = 0;
+	
+		foreach ($salesData as $sale)
+		{
+			$price = intval($sale['price']);
+			$qnt = intval($sale['qnt']);
+			$unitPrice = $sale['unitPrice'];
+			$soldTime = intval($sale['buyTimestamp']);
+			$listTime = intval($sale['listTimestamp']);
+	
+			if ($soldTime > 0)
+			{
+				$soldSum += $price;
+				$soldCount += $qnt;
+	
+				if ($minPrice > $unitPrice) $minPrice = $unitPrice;
+				if ($maxPrice < $unitPrice) $maxPrice = $unitPrice;
+				if ($minTime > $soldTime) $minTime = $soldTime;
+				if ($maxTime < $soldTime) $maxTime = $soldTime;
+			}
+				
+			if ($listTime > 0)
+			{
+				$listSum += $price;
+				$listCount += $qnt;
+	
+				if ($minPrice > $unitPrice) $minPrice = $unitPrice;
+				if ($maxPrice < $unitPrice) $maxPrice = $unitPrice;
+				if ($minTime > $listTime) $minTime = $listTime;
+				if ($maxTime < $listTime) $maxTime = $listTime;
+			}
+		}
+	
+	
+		$result['minTime'] = $minTime;
+		$result['maxTime'] = time();
+		$result['maxTimeAction'] = $maxTime;
+		$result['minPrice'] = $minPrice;
+		$result['maxPrice'] = $maxPrice;
+	
+		$result['soldAvgPrice'] = 0;
+		$result['listAvgPrice'] = 0;
+		$result['totalAvgPrice'] = 0;
+	
+		if ($soldCount > 0) $result['soldAvgPrice'] = $soldSum / $soldCount;
+		$result['soldItemCount'] = $soldCount;
+		if ($listCount > 0) $result['listAvgPrice'] = $listSum / $listCount;
+		$result['listItemCount'] = $listCount;
+	
+		$result['totalItemCount'] = $soldCount + $listCount;
+		$result['totalAvgPrice'] = ($soldSum + $listSum) / $result['totalItemCount'];
+	
+		$result['minPriceLimit'] = $result['minPrice'];
+		$result['maxPriceLimit'] = $result['maxPrice'];
+		
+		return $result;
+	}
+	
+	
+	public function ComputeAdvancedSalesStats($salesData, &$stats)
+	{
+		$sumSquareAll = 0;
+		$sumSquareListed = 0;
+		$sumSquareSold = 0;
+	
+		foreach ($salesData as $sale)
+		{
+			$price = intval($sale['price']);
+			$qnt = intval($sale['qnt']);
+			$unitPrice = $sale['unitPrice'];
+	
+			$sumSquareAll += pow($unitPrice - $stats['totalAvgPrice'], 2);
+	
+			if ($sale['buyTimestamp']  > 0)
+			{
+				$sumSquareSold += pow($unitPrice - $stats['soldAvgPrice'], 2);
+			}
+	
+			if ($sale['listTimestamp'] > 0)
+			{
+				$sumSquareListed += pow($unitPrice - $stats['listAvgPrice'], 2);
+			}
+		}
+	
+		$stats['totalPriceStdDev'] = 0;
+		$stats['soldPriceStdDev'] = 0;
+		$stats['listedPriceStdDev'] = 0;
+	
+		if ($stats['totalItemCount'] > 0)
+		{
+			$stats['totalPriceStdDev'] = sqrt($sumSquareAll / floatval($stats['totalItemCount']));
+		}
+	
+		if ($stats['saleItemCount'] > 0)
+		{
+			$stats['soldPriceStdDev'] = sqrt($sumSquareSold / floatval($stats['saleItemCount']));
+		}
+	
+		if ($stats['listItemCount'] > 0)
+		{
+			$stats['listedPriceStdDev'] = sqrt($sumSquareListed / floatval($stats['listItemCount']));
+		}
+		
+		return true;
+	}
+	
+	
+	public function RecalculatePriceLimits(&$salesData, &$stats)
+	{
+		if (count($salesData) <= 0) return false;
+		if ($stats['totalPriceStdDev'] == 0) return false;
+	
+		$minPrice = 1000000000;
+		$maxPrice = -1;
+		$numValidPoints = 0;
+			
+		foreach ($salesData as $i => $sale)
+		{
+			$unitPrice = $sale['unitPrice'];
+				
+			$zScoreAll = abs(($unitPrice - $stats['totalAvgPrice']) / $stats['totalPriceStdDev']);
+			$zScoreSold = 1;
+			$zScoreListed = 1;
+			$isOK = true;
+				
+			if ($zScoreAll > self::MAX_ZSCORE) $isOk = false;
+	
+			if ($sale['buyTimestamp'] > 0 && $stats['soldPriceStdDev'] != 0)
+			{
+				$zScoreSold = abs(($unitPrice - $stats['soldAvgPrice']) / $stats['soldPriceStdDev']);
+				if ($zScoreSold > self::MAX_ZSCORE) $isOK = false;
+			}
+				
+			if ($sale['listTimestamp'] > 0 && $stats['listedPriceStdDev'] != 0)
+			{
+				$zScoreListed = abs(($unitPrice - $stats['listAvgPrice']) / $stats['listedPriceStdDev']);
+				if ($zScoreListed > self::MAX_ZSCORE) $isOK = false;
+			}
+				
+			if ($isOK)
+			{
+				++$numValidPoints;
+				if ($minPrice > $unitPrice) $minPrice = $unitPrice;
+				if ($maxPrice < $unitPrice) $maxPrice = $unitPrice;
+			}
+			else
+			{
+				$salesData[$i]['outlier'] = true;
+			}
+		}
+	
+		$stats['minPriceLimit'] = $minPrice;
+		$stats['maxPriceLimit'] = $maxPrice;
+		$stats['numValidPoints'] = $numValidPoints;
+			
+		return true;
+	}
+	
+	
 	public function SaveUpdatedItems()
 	{
 		$itemCount = 0;
 		
+		print ("Updating all modified items...\n");
+		
 		foreach ($this->itemData as $cacheId => &$itemData)
 		{
-			if ($itemData['__dirty'] === true)
-			{
-				$this->SaveItemStats($itemData);
-				++$itemCount;
-			}
+			if ($itemData['__dirty'] !== true) continue;
+			++$itemCount;
+			
+			print("\tUpdating item {$itemData['id']}...\n");
+			
+			$this->UpdateItemGoodPrice($itemData);
+			
+			$this->SaveItemStats($itemData);			
 		}
 		
 		print ("Saved $itemCount updated item data...\n");
@@ -579,6 +872,10 @@ class EsoSalesDataParser
 		$itemData['lastSaleTimestamp'] = 0;
 		$itemData['lastSeen'] = 0;
 		
+		$itemData['goodPrice'] = 0;
+		$itemData['goodSoldPrice'] = 0;
+		$itemData['goodListPrice'] = 0;
+		
 		++$this->localNewItemCount;
 		
 		return $itemData;
@@ -669,6 +966,10 @@ class EsoSalesDataParser
 		$itemData['lastPurchaseTimestamp'] = 0;
 		$itemData['lastSaleTimestamp'] = 0;
 		$itemData['lastSeen'] = 0;
+		
+		$itemData['goodPrice'] = 0;
+		$itemData['goodSoldPrice'] = 0;
+		$itemData['goodListPrice'] = 0;
 				
 		++$this->localNewItemCount;
 		
