@@ -212,6 +212,7 @@ class EsoViewSalesData
 			error_log("\tDB Error:" . $this->db->error);
 			error_log("\tLast Query:" . $this->lastQuery);
 		}
+		
 		return false;
 	}
 
@@ -227,6 +228,8 @@ class EsoViewSalesData
 
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
+		
+		UpdateEsoPageViews("salesDataViews", $this->db);
 		
 		return true;
 	}

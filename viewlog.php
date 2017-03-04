@@ -109,6 +109,11 @@ class EsoLogViewer
 			'link' => self::FIELD_STRING,
 	);
 	
+	public static $LOGINFO_FIELDS = array(
+			'id' => self::FIELD_STRING,
+			'value' => self::FIELD_STRING,
+	);
+	
 	public static $LOCATION_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'type' => self::FIELD_STRING,
@@ -701,6 +706,21 @@ class EsoLogViewer
 									'displayName' => 'View Quest Stage',
 									'type' => 'viewRecord',
 							),
+					),
+			),
+			
+			'logInfo' => array(
+					'displayName' => 'Log Statistics',
+					'displayNameSingle' => 'Log Statistic',
+					'record' => 'logInfo',
+					'table' => 'logInfo',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'id',
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
 					),
 			),
 			
@@ -2146,6 +2166,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['achievementCategories']['fields'] = self::$ACHIEVEMENTCATEGORY_FIELDS;
 		self::$RECORD_TYPES['achievements']['fields'] = self::$ACHIEVEMENT_FIELDS;
 		self::$RECORD_TYPES['achievementCriteria']['fields'] = self::$ACHIEVEMENTCRITERIA_FIELDS;
+		self::$RECORD_TYPES['logInfo']['fields'] = self::$LOGINFO_FIELDS;
 		
 		if (self::ENABLE_8PTS) 
 		{
@@ -2263,6 +2284,8 @@ class EsoLogViewer
 		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($db->connect_error) return $this->ReportError("Could not connect to mysql database!");
+		
+		UpdateEsoPageViews("logViews", $this->db);
 		
 		$this->dbReadInitialized = true;
 		return true;

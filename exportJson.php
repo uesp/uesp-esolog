@@ -83,6 +83,8 @@ class CEsoLogJsonExport
 	
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!", 500);
+		
+		UpdateEsoPageViews("exportJsonViews", $this->db);
 	
 		return true;
 	}
