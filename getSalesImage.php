@@ -285,9 +285,12 @@ class EsoGetSalesImage
 		$sum = 0;
 		$savePrices = array_fill(0, $numPoints, 0);
 		$saveIndex = 0;
-		
+		$lastPrice = 0;
+				
 		foreach ($orig as $timestamp => $price)
 		{
+			$lastPrice = $price;
+			
 			if ($count < $numPoints)
 			{
 				$savePrices[$saveIndex] = $price;
@@ -310,6 +313,8 @@ class EsoGetSalesImage
 				if ($saveIndex >= $numPoints) $saveIndex = 0;
 			}
 		}
+		
+		$weighted[$timestamp] = $lastPrice;
 	}
 	
 	
