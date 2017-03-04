@@ -571,6 +571,12 @@ class EsoGetSalesImage
 			$price = intval($price/100000) . "M";
 		else if ($price >= 10000)
 			$price = intval($price/1000) . "k";
+		else if ($price >= 100)
+			$price = round($price);
+		else if ($price >= 10)
+			$price = round($price, 1);
+		else
+			$price = round($price, 2);
 		
 		return $price;
 	}
