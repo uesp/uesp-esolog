@@ -1680,7 +1680,7 @@ class EsoLogParser
 			dyeData TEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
-			INDEX index_itemId (itemId),
+			INDEX index_itemId (itemId, internalLevel, internalSubtype),
 			INDEX index_enchantId (enchantId)
 		);";
 		
