@@ -19,6 +19,10 @@ class EsoViewSalesData
 	const ESOVSD_MAXZSCORE = 3.0;
 	const ESOVSD_MAXZSCORE_WEIGHTED = 3.0;
 	const ESOVSD_WEIGHTED_CONSTANT = 30.0;
+	
+	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
+	const WEIGHTED_AVERAGE_BUCKETS = 20;
+	const WEIGHTED_SMOOTH_INTERVAL = 21;	
 		
 	public $OMIT_BUYER_INFO = true;
 	public $OMIT_SELLER_INFO = true;
@@ -1108,7 +1112,10 @@ class EsoViewSalesData
 		
 		while (($row = $result->fetch_assoc()))
 		{
-			$row['unitPrice'] = floatval($row['price']) / floatval($row['qnt']);
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			if ($row['buyTimestamp']  > 0) $row['timestamp'] = $row['buyTimestamp'];
+			if ($row['listTimestamp'] > 0) $row['timestamp'] = $row['listTimestamp'];
+				
 			$row['itemName'] = $this->itemResults[$row['itemId']]['name'];
 			$this->searchResults[] = $row;
 			
@@ -1287,6 +1294,7 @@ class EsoViewSalesData
 		$this->salePriceAverageLastTimestampAll = min($lastSoldTimestamp, $lastListTimestamp);
 		
 		$this->ComputeSaleAdvancedStatistics();
+		$this->ComputeItemGoodPrice();
 	}	
 	
 	
@@ -1554,6 +1562,85 @@ class EsoViewSalesData
 			$this->salePriceAdjWeightCountListed = $countAdjWeightListed;
 		}
 		
+	}
+	
+	
+	public function SalesDataSortTimestamp($a, $b)
+	{
+		return $b['timestamp'] - $a['timestamp'];
+	}
+	
+	
+	public function SalesDataSortListTimestamp($a, $b)
+	{
+		return $b['listTimestamp'] - $a['listTimestamp'];
+	}
+	
+	
+	public function SalesDataSortSoldTimestamp($a, $b)
+	{
+		return $b['buyTimestamp'] - $a['buyTimestamp'];
+	}
+	
+	
+	public function ComputeItemGoodPrice()
+	{
+		$soldData = array();
+		$listData = array();
+		$validSalesData = array();
+	
+		foreach ($this->searchResults as $sale)
+		{
+			if ($sale['outlier'] === true) continue;
+	
+			$validSalesData[] = $sale;
+			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
+			if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+		}
+	
+		usort($validSalesData, array('EsoViewSalesData', 'SalesDataSortTimestamp'));
+		$this->singleItemData['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
+			
+		usort($soldData, array('EsoViewSalesData', 'SalesDataSortSoldTimestamp'));
+		$this->singleItemData['goodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
+	
+		usort($listData, array('EsoViewSalesData', 'SalesDataSortListTimestamp'));
+		$this->singleItemData['goodListPrice'] = $this->ComputeWeightedAverage($listData);
+		
+		$this->goodPriceAll = $this->singleItemData['goodPrice'];
+		$this->goodPriceListed = $this->singleItemData['goodListPrice'];
+		$this->goodPriceSold = $this->singleItemData['goodSoldPrice'];
+	
+		return true;
+	}
+	
+	
+	public function ComputeWeightedAverage($salesData)
+	{
+		$numPoints = intval(count($salesData) / self::WEIGHTED_AVERAGE_BUCKETS);
+		if ($numPoints < self::MIN_WEIGHTED_AVERAGE_INTERVAL) $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL;
+	
+		$sum = 0;
+		$count = 0;
+		$i = 0;
+	
+		while ($i < count($salesData) && $count < $numPoints)
+		{
+			$data = $salesData[$i];
+			++$i;
+				
+			if ($data['outlier'] === true) continue;
+				
+			$sum += $data['unitPrice'];
+				
+			$day = round((time() - $data['timestamp']) / 86400, 2);
+			$day = $data['timestamp'];
+	
+			++$count;
+		}
+	
+		if ($count == 0) return 0;
+		return $sum / $count;
 	}
 	
 	
