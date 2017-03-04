@@ -25,6 +25,8 @@ class CEsoViewPotions
 		$this->ParseInputParams();
 		
 		$this->LoadTemplate();
+		
+		UpdateEsoPageViews("potionViews");
 	}
 	
 	

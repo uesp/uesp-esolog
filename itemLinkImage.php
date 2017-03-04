@@ -373,6 +373,8 @@ class CEsoItemLinkImage
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
 		
+		UpdateEsoPageViews("itemLinkImageViews", $this->db);
+		
 		return true;
 	}
 	
@@ -2481,7 +2483,12 @@ class CEsoItemLinkImage
 	public function MakeImage()
 	{
 		$this->OutputHtmlHeader();
-		if ($this->ServeCachedImage(false)) return true;
+		
+		if ($this->ServeCachedImage(false)) 
+		{
+			UpdateEsoPageViews("itemLinkImageViews");
+			return true;
+		}
 		
 		if (!$this->InitDatabase()) return false;
 		

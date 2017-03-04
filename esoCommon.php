@@ -2495,3 +2495,25 @@ function CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $w
 	
 	return $text;
 }
+
+
+function UpdateEsoPageViews($id, $db = null)
+{
+	global $uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase;
+	
+	$deleteDb = false;
+	
+	if ($db == null)
+	{
+		$deleteDb = true;
+		$db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
+		if ($db->connect_error) return false;
+	}
+	
+	$query = "UPDATE uesp_esolog.logInfo SET value=value+1 WHERE id='$id';";
+	$result = $db->query($query);
+	
+	if ($deleteDb) $db->close();
+	
+	return $result !== false; 
+}
