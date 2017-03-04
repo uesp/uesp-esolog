@@ -741,8 +741,17 @@ class EsoGetSalesImage
 		//$t = IMG_COLOR_TRANSPARENT;
 		//imagesetstyle($image, array($c, $t));
 		
+		$roundValue = $lastValue;
+		
+		if ($lastValue > 100)
+			$roundValue = round($lastValue); 
+		else if ($lastValue > 10)
+			$roundValue = round($lastValue, 1);
+		else 
+			$roundValue = round($lastValue, 2);
+		
 		imageline($image, $x1, $y, $x2, $y, $color);
-		$this->PrintText($image, intval($lastValue) . "gp", 10, $color, $x1 + 2, $y + 2, self::ALIGN_LEFT, self::ALIGN_TOP);
+		$this->PrintText($image, $roundValue . "gp", 10, $color, $x1 + 2, $y + 2, self::ALIGN_LEFT, self::ALIGN_TOP);
 		
 		return true;
 	}
