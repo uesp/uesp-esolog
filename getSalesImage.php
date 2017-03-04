@@ -577,6 +577,18 @@ class EsoGetSalesImage
 		$x = 15;
 		$y = ($y1 + $y2) / 2;		
 		$this->PrintText($image, "Price", self::TICK_FONT_SIZE + 1, $this->borderColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_CENTER, self::REGULARFONT_FILE, 90);
+
+		$goldImage = imagecreatefrompng("./resources/currency_gold_32.png");
+			
+		if ($goldImage != null)
+		{
+			imageantialias($goldImage, true);
+			imagealphablending($goldImage, true);
+			imagesavealpha($goldImage, true);
+			$y -= 50;
+			$x -= 12;
+			imagecopyresampled($image, $goldImage, $x, $y, 0, 0, 16, 16, imagesx($goldImage), imagesy($goldImage));
+		}
 		
 		$x = self::BORDER_LEFT_MARGIN + 2;
 		$y = $this->outputHeight - self::BORDER_BOTTOM_MARGIN - 2;
