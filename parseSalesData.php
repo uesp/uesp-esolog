@@ -215,7 +215,8 @@ class EsoSalesDataParser
 						lastSeen INT UNSIGNED NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_entry1(server(3), itemId, guildId, listTimestamp, sellerName(24)),
-						INDEX unique_entry2(server(3), itemId, guildId, eventId)
+						INDEX unique_entry2(server(3), itemId, guildId, eventId),
+						INDEX unique_itemid(itemId)
 					);";
 		
 		$this->lastQuery = $query;
