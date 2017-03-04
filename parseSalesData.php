@@ -461,10 +461,10 @@ class EsoSalesDataParser
 		$item['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
 		
 		usort($soldData, array('EsoSalesDataParser', 'SalesDataSortSoldTimestamp'));
-		$item['goodListPrice'] = $this->ComputeWeightedAverage($soldData);
+		$item['goodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
 		
 		usort($listData, array('EsoSalesDataParser', 'SalesDataSortListTimestamp'));
-		$item['goodSoldPrice'] = $this->ComputeWeightedAverage($listData);
+		$item['goodListPrice'] = $this->ComputeWeightedAverage($listData);
 		
 		return true;
 	}
@@ -605,9 +605,9 @@ class EsoSalesDataParser
 			$stats['totalPriceStdDev'] = sqrt($sumSquareAll / floatval($stats['totalItemCount']));
 		}
 	
-		if ($stats['saleItemCount'] > 0)
+		if ($stats['soldItemCount'] > 0)
 		{
-			$stats['soldPriceStdDev'] = sqrt($sumSquareSold / floatval($stats['saleItemCount']));
+			$stats['soldPriceStdDev'] = sqrt($sumSquareSold / floatval($stats['soldItemCount']));
 		}
 	
 		if ($stats['listItemCount'] > 0)
