@@ -577,6 +577,20 @@ class EsoGetSalesImage
 		$x = 15;
 		$y = ($y1 + $y2) / 2;		
 		$this->PrintText($image, "Price", self::TICK_FONT_SIZE + 1, $this->borderColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_CENTER, self::REGULARFONT_FILE, 90);
+		
+		$x = self::BORDER_LEFT_MARGIN + 2;
+		$y = $this->outputHeight - self::BORDER_BOTTOM_MARGIN - 2;
+		
+		if ($this->viewData != "list") 
+		{
+			$this->PrintText($image, "Sales", self::TICK_FONT_SIZE, $this->saleColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_BOTTOM);
+			$y -= 15;
+		}
+		
+		if ($this->viewData != "sold") 
+		{
+			$this->PrintText($image, "Listed", self::TICK_FONT_SIZE, $this->listColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_BOTTOM);
+		}
 	}
 	
 	
