@@ -60,6 +60,9 @@ class CEsoSalesMakePriceList
 			$quality = $row['quality'];
 			$trait = $row['trait'];
 			$potionData = $row['potionData'];
+			$goodPrice = $row['goodPrice'];
+			$goodSoldPrice = $row['goodSoldPrice'];
+			$goodListPrice = $row['goodListPrice'];
 		
 			if (!isset($itemData[$itemId])) $itemData[$itemId] = array();
 			if (!isset($itemData[$itemId][$level])) $itemData[$itemId][$level] = array();
@@ -73,6 +76,7 @@ class CEsoSalesMakePriceList
 			$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
 			$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
 			$avgPrice = $sumPrice / $itemCount;
+			if ($goodPrice > 0) $avgPrice = $goodPrice;
 		
 			if ($avgPrice >= 1000)
 				$avgPrice = round($avgPrice, 0);
@@ -86,6 +90,8 @@ class CEsoSalesMakePriceList
 
 			if ($row['countPurchases'] > 0)$avgPurchasePrice = floatval($row['sumPurchases']) / intval($row['countItemPurchases']);
 			if ($row['countSales'] > 0) $avgSalePrice = floatval($row['sumSales']) / intval($row['countItemSales']);
+			if ($goodSoldPrice > 0) $avgPurchasePrice = $goodSoldPrice;
+			if ($goodListPrice > 0) $avgSalePrice = $goodListPrice;
 
 			if ($avgPurchasePrice >= 1000)
 				$avgPurchasePrice = round($avgPurchasePrice, 0);

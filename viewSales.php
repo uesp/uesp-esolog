@@ -83,6 +83,10 @@ class EsoViewSalesData
 	public $salePriceAverageCountListed = 0;
 	public $salePriceAverageItemsListed = 0;
 	
+	public $goodPriceAll = 0;
+	public $goodPriceSold = 0;
+	public $goodPriceListed = 0;
+	
 	public $salePriceWeightAll = 0;
 	public $salePriceWeightItemsAll = 0;
 	public $salePriceWeightSold = 0;
@@ -1143,6 +1147,10 @@ class EsoViewSalesData
 		$this->itemIds[] = $row['id'];
 		$this->singleItemData = $row;
 		
+		$this->goodPriceAll = $row['goodPrice'];
+		$this->goodPriceListed = $row['goodListPrice'];
+		$this->goodPriceSold = $row['goodSoldPrice'];
+		
 		$this->itemCount = 1;
 		
 		return true;
@@ -1790,8 +1798,10 @@ class EsoViewSalesData
 	}
 	
 	
-	public function GetPriceStatSaleTypeHtml($listCount, $soldCount, $itemCount, $avgPrice, $lastTimestamp, $label)
+	public function GetPriceStatSaleTypeHtml($listCount, $soldCount, $itemCount, $avgPrice, $avgGoodPrice, $lastTimestamp, $label)
 	{
+		if ($avgGoodPrice > 0) $avgPrice = $avgGoodPrice;
+		
 		$output = "";
 		$totalCount = $listCount + $soldCount;
 		$fmtPrice = $this->FormatPrice($avgPrice);
@@ -1828,20 +1838,20 @@ class EsoViewSalesData
 		
 		if ($this->formValues['saletype'] != "listed" && $this->formValues['saletype'] != "sold") 
 		{
-			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsAll, $this->salePriceAverageAll, $this->salePriceAverageLastTimestampAll, "all data");
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, $this->salePriceAverageCountSold, $this->salePriceAverageItemsAll, $this->salePriceAverageAll, $this->goodPriceAll, $this->salePriceAverageLastTimestampAll, "all data");
 		}
 		
 		if ($this->formValues['saletype'] == "listed" || $this->formValues['saletype'] == "" || $this->formValues['saletype'] == "all")
 		{
 			if ($output != "") $output .= "<br /><br />";
-			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->salePriceAverageLastTimestampListed, "items listed");
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->goodPriceListed,$this->salePriceAverageLastTimestampListed, "items listed");
 			
 		}
 		
 		if ($this->formValues['saletype'] == "sold" || $this->formValues['saletype'] == "" || $this->formValues['saletype'] == "all")
 		{
 			if ($output != "") $output .= "<br /><br />";
-			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsSold, $this->salePriceAverageSold, $this->salePriceAverageLastTimestampSold, "items sold");
+			$output .= $this->GetPriceStatSaleTypeHtml(0, $this->salePriceAverageCountSold, $this->salePriceAverageItemsSold, $this->salePriceAverageSold, $this->goodPriceSold, $this->salePriceAverageLastTimestampSold, "items sold");
 		}
 		 
 		$output .= "";
