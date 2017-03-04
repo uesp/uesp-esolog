@@ -387,6 +387,11 @@ class EsoViewSalesData
 	{
 		$output = "";
 		$selectedValue = $this->GetFormValue($formName);
+		
+		if ($selectedValue == "" && $formName = "server")
+		{
+			$selectedValue = $this->server;
+		}
 	
 		foreach ($listArray as $key => $value)
 		{
@@ -1119,8 +1124,11 @@ class EsoViewSalesData
 			$row['itemName'] = $this->itemResults[$row['itemId']]['name'];
 			$this->searchResults[] = $row;
 			
-			$this->displayServer = $row['server'];
+			$this->server = $row['server'];
 		}
+		
+		$this->displayServer = $this->server;
+		$this->salesData->server = $this->server;
 		
 		if ($result->num_rows >= $this->searchLimitCount)
 		{
@@ -1160,6 +1168,10 @@ class EsoViewSalesData
 		$this->goodPriceAll = $row['goodPrice'];
 		$this->goodPriceListed = $row['goodListPrice'];
 		$this->goodPriceSold = $row['goodSoldPrice'];
+		
+		$this->server = $row['server'];
+		$this->displayServer = $this->server;
+		$this->salesData->server = $this->server;
 		
 		$this->itemCount = 1;
 		
