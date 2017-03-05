@@ -573,6 +573,7 @@ class EsoViewSalesData
 			$totalCount = $totalSales + $totalPurchases;
 			$totalItems = floatval($item['countItemPurchases']) + floatval($item['countItemSales']);
 			$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
+			$goodPrice = floatval($item['goodPrice']);
 			$extraQuery = "";
 			
 			if ($this->formValues['saletype'] == "sold")
@@ -581,6 +582,7 @@ class EsoViewSalesData
 				$totalItems = floatval($item['countItemPurchases']);
 				$avgPrice = $sumPurchases / $totalItems;
 				$extraQuery .= "&saletype=sold";
+				$goodPrice = floatval($item['goodSoldPrice']);
 			}
 			elseif ($this->formValues['saletype'] == "listed")
 			{
@@ -588,7 +590,10 @@ class EsoViewSalesData
 				$totalItems = floatval($item['countItemSales']);
 				$avgPrice = $sumSales / $totalItems;
 				$extraQuery .= "&saletype=listed";
+				$goodPrice = floatval($item['goodListPrice']);
 			}
+			
+			if ($goodPrice > 0) $avgPrice = $goodPrice;
 			
 			if ($this->formValues['timeperiod'] > 0)
 			{
