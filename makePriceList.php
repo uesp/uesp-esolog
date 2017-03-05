@@ -131,10 +131,12 @@ class CEsoSalesMakePriceList
 	{
 		$output = "";
 		$dataCount = 0;
+		$updateDate = date("Y-m-d H:i:s");
 		
 		$output .= "function uespLog.InitSalesPrices()\n";
 		$output .= "uespLog.SalesPricesServer = '$server'\n";
 		$output .= "uespLog.SalesPricesVersion = {$this->VERSION}\n";
+		$output .= "uespLog.SalesPricesLastUpdate = '$updateDate'\n";
 		$output .= "uespLog.SalesPrices = {\n";
 		
 		foreach ($itemData as $itemId => $levelData)
@@ -172,6 +174,7 @@ class CEsoSalesMakePriceList
 		}
 		
 		$output .= "}\n";
+		$output .= "uespLog.SalesPricesDataCount = $dataCount\n";
 		$output .= "end\n";
 		
 		$this->indexData[$server]['dataCount'] = $dataCount;
