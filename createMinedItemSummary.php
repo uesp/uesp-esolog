@@ -65,7 +65,10 @@ if (intval($TABLE_SUFFIX) <= 8)
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
+$query = "DROP TABLE minedItemSummaryTmp IF EXISTS;";
+$result = $db->query($query);
+
+$query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			itemId INTEGER NOT NULL,
 			name TINYTEXT NOT NULL,
@@ -118,10 +121,6 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummary".$TABLE_SUFFIX."(
 
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
-
-$query = "DELETE FROM minedItemSummary".$TABLE_SUFFIX.";";
-$result = $db->query($query);
-if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error);
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
 $LASTID = 130000;
@@ -259,12 +258,14 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		$columns[] = $field;
 	}
 	
-	$query = "DELETE FROM minedItemSummary".$TABLE_SUFFIX." WHERE itemId=" . $id . ";";
+	$query  = "INSERT INTO minedItemSummaryTmp(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
-	
-	$query  = "INSERT INTO minedItemSummary".$TABLE_SUFFIX."(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
-	$result = $db->query($query);
-	if (!$result) exit("ERROR: Database query error (writing item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
+	if (!$result) print("ERROR: Database query error (writing item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
 }
 
+$query = "DROP TABLE minedItemSummary$TABLE_SUFFIX IF EXISTS;";
+$result = $db->query($query);
 
+$query = "RENAME TABLE minedItemSummaryTmp to minedItemSummary$TABLE_SUFFIX;";
+$result = $db->query($query);
+if (!$result) print("Error: Failed to rename temp table to minedItemSummary$TABLE_SUFFIX!");
