@@ -183,13 +183,16 @@ class CEsoSalesMakePriceList
 	public function OutputPriceList($server, $luaData)
 	{
 		$outputFile = $this->outputPath . $this->OUTPUT_BASEPATH . "$server/{$this->OUTPUT_LUAFILENAME}";
+		$tmpFile = $outputFile . ".tmp";
 		print("Saving $server price list to '$outputFile'...\n");
 		
-		if (file_put_contents($outputFile, $luaData) === false)
+		if (file_put_contents($tmpFile, $luaData) === false)
 		{
 			print("Error: Failed to write file data!\n");
 			return false;
 		}
+		
+		rename($tmpFile, $outputFile);
 		
 		$this->indexData[$server]['fileSize'] = strlen($luaData);
 		$this->indexData[$server]['updateDate'] = date('Y-m-d H:i:s', $this->updateTime);
