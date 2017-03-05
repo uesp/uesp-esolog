@@ -17,7 +17,8 @@ class EsoLogCollector
 	public $currentLogIndex = 1;
 	public $rawLogData = array();
 	public $formResponseErrorMsg = ""; 
-		
+	public $contentEncoding = "";
+	
 	
 	public function __construct ()
 	{
@@ -186,7 +187,22 @@ class EsoLogCollector
 	{
 		$this->writeHeaders();
 		
+		$this->contentEncoding = $_SERVER["HTTP_CONTENT_ENCODING"];
 		$this->inputParams = $_REQUEST;
+		
+		if (strtolower($this->contentEncoding) == "gzip")
+		{
+			$raw_post = file_get_contents("php://input");
+			$size = strlen($raw_post);
+			
+			$postData = gzuncompress($raw_post);
+			
+			if ($postData)
+			{  
+				parse_str($postData, $this->inputParams);
+				//urldecode();
+			}			
+		}
 		
 		if (!array_key_exists('log', $this->inputParams)) 
 		{
