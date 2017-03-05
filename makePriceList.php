@@ -60,9 +60,12 @@ class CEsoSalesMakePriceList
 			$quality = $row['quality'];
 			$trait = $row['trait'];
 			$potionData = $row['potionData'];
+			$extraData = $row['extraData'];
 			$goodPrice = $row['goodPrice'];
 			$goodSoldPrice = $row['goodSoldPrice'];
 			$goodListPrice = $row['goodListPrice'];
+			
+			if ($extraData != "") $potionData = $extraData;
 		
 			if (!isset($itemData[$itemId])) $itemData[$itemId] = array();
 			if (!isset($itemData[$itemId][$level])) $itemData[$itemId][$level] = array();
@@ -157,7 +160,12 @@ class CEsoSalesMakePriceList
 		
 						foreach ($potionData as $potion => $salesData)
 						{
-							$output .= "[$potion]={{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]},{$salesData[6]}},";
+							if (is_string($potion))
+								$output .= "[\"$potion\"]=";
+							else 
+								$output .= "[$potion]=";
+								
+							$output .= "{{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]},{$salesData[6]}},";
 							++$dataCount;
 						}
 		
