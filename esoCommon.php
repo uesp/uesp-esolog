@@ -2517,3 +2517,26 @@ function UpdateEsoPageViews($id, $db = null)
 	
 	return $result !== false; 
 }
+
+
+function EsoNameMatchUpper($matches)
+{
+	return strtoupper($matches[0]);
+}
+
+
+function MakeEsoTitleCaseName($name)
+{
+	$newName = preg_replace("#\^.*#", "", $name);
+	
+	$newName = ucwords($newName);
+	
+	$newName = preg_replace("/ In /", " in ", $newName);
+	$newName = preg_replace("/ Of /", " of ", $newName);
+	$newName = preg_replace("/ The /", " the ", $newName);
+	$newName = preg_replace("/ And /", " and ", $newName);
+	$newName = preg_replace_callback("/\-[a-z]/", 'EsoNameMatchUpper', $newName);
+	$newName = preg_replace_callback("/\[vix]+$/", 'EsoNameMatchUpper', $newName);
+	
+	return $newName;
+}

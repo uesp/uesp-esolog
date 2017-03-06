@@ -377,3 +377,7 @@ a:hover {
 	cursor: pointer;
 	background-color: #ccc;
 }
+
+#esopdFindItemLinkRoot {
+	padding: 5px;
+}
