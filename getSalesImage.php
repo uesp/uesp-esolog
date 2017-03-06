@@ -203,18 +203,32 @@ class EsoGetSalesImage
 		$this->listData = array();
 		$this->validSalesData = array();
 		
+		$numPoints = 0;
+		
 		foreach ($this->salesData as $sale)
 		{
 			if ($sale['outlier'] === true) continue;
 			
+			++$numPoints;
 			$this->validSalesData[] = $sale;
 			if ($sale['listTimestamp'] > 0) $this->listData[] = $sale;
 			if ($sale['buyTimestamp'] > 0) $this->soldData[] = $sale;
 		}
 		
+		if ($numPoints == 0)
+		{
+			foreach ($this->salesData as $sale)
+			{
+				$this->validSalesData[] = $sale;
+				if ($sale['listTimestamp'] > 0) $this->listData[] = $sale;
+				if ($sale['buyTimestamp'] > 0) $this->soldData[] = $sale;
+			}
+		}
+		
 		usort($this->validSalesData, array('EsoGetSalesImage','SalesDataSortTimestamp'));
 		usort($this->soldData, array('EsoGetSalesImage','SalesDataSortSoldTimestamp'));
 		usort($this->listData, array('EsoGetSalesImage','SalesDataSortListTimestamp'));
+
 		
 		$this->avgData = $this->ComputeWeightedAverage($this->validSalesData);
 		$this->avgSoldData = $this->ComputeWeightedAverage($this->soldData);
@@ -373,6 +387,11 @@ class EsoGetSalesImage
 		$this->minPrice = $minPrice;
 		$this->maxPrice = $maxPrice;
 		
+		if ($this->minTime == $this->maxTime)
+		{
+			$this->minTime -= 3600;
+		}
+		
 		$this->soldAvgPrice = 0;
 		$this->listAvgPrice = 0;
 		$this->totalAvgPrice = 0;
@@ -383,21 +402,12 @@ class EsoGetSalesImage
 		$this->listItemCount = $listCount;
 		
 		$this->totalItemCount = $soldCount + $listCount;
-		$this->totalAvgPrice = ($soldSum + $listSum) / $this->totalItemCount;
+		if ($this->totalItemCount > 0) $this->totalAvgPrice = ($soldSum + $listSum) / $this->totalItemCount;
 		
-		if ($this->totalItemCount == 1)
+		if ($this->minPrice == $this->maxPrice)
 		{
-			$this->minPrice /= 2;
-			$this->maxPrice *= 2;
-			
-			if ($this->minPrice == 0)
-			{
-				$this->minPrice = 0;
-				$this->maxPrice = 10;
-			}
-			
-			$this->minTime -= 3600;
-			$this->maxTime += 3600;			
+			$this->minPrice = $this->maxPrice*0.9 - 1;
+			$this->maxPrice = $this->maxPrice*1.1 + 1;
 		}
 		
 		$this->minPriceLimit = $this->minPrice;
@@ -462,6 +472,7 @@ class EsoGetSalesImage
 		
 		$minPrice = 1000000000;
 		$maxPrice = -1;
+		$numPoints = 0;
 			
 		foreach ($this->salesData as $i => $sale)
 		{
@@ -493,6 +504,7 @@ class EsoGetSalesImage
 			{
 				if ($minPrice > $unitPrice) $minPrice = $unitPrice;
 				if ($maxPrice < $unitPrice) $maxPrice = $unitPrice;
+				++$numPoints;
 			}
 			else
 			{
@@ -501,19 +513,15 @@ class EsoGetSalesImage
 			
 		}
 		
+		if ($numPoints <= 0) return false;
+		
 		$this->minPriceLimit = $minPrice;
 		$this->maxPriceLimit = $maxPrice;
 		
 		if ($this->minPriceLimit == $this->maxPriceLimit)
 		{
-			$this->minPriceLimit /= 2;
-			$this->maxPriceLimit *= 2;
-			
-			if ($this->minPriceLimit == 0)
-			{
-				$this->minPriceLimit = 0;
-				$this->maxPriceLimit = 10;
-			}
+			$this->minPriceLimit = $this->maxPriceLimit * 0.9 - 1;
+			$this->maxPriceLimit = $this->maxPriceLimit * 1.1 + 1;
 		}
 			
 		return true;
@@ -655,7 +663,7 @@ class EsoGetSalesImage
 		$tickRange = $this->GetNiceTickRange($this->minTime, $this->maxTime, $timeFactor);
 		$startValue = $this->minTime + $tickRange - fmod($this->minTime, $tickRange);
 		
-		for ($value = $this->maxTime; $value >= $this->minTime ; $value -= $tickRange)
+		for ($value = $this->maxTime; $value >= $this->minTime; $value -= $tickRange)
 		{
 			$days = $this->FormatTimestampValue($value, $timeFactor);			
 			$x = $this->ConvertGraphToPixelX($value);
@@ -742,7 +750,7 @@ class EsoGetSalesImage
 	public function GetNiceTickRange(&$min, &$max, $nearestMultiple = 0, $numTicks = 5)
 	{
 		$range = $max - $min;
-		if ($range == 0) $range = 1;
+		if ($range == 0) $range = $max/5;
 		$tempStep = $range / $numTicks;
 		
 		$mag = floor(log10($tempStep));
@@ -757,7 +765,9 @@ class EsoGetSalesImage
 		else if ($magMsd > 1.0)
 			$magMsd = 2.0;
 		
-		$tickRange =  $magMsd * $magPow;
+		$tickRange = $magMsd * $magPow;
+		
+		if ($tickRange <= 0) $tickRange = 1;
 		
 		if ($nearestMultiple > 0)
 		{
@@ -765,6 +775,7 @@ class EsoGetSalesImage
 			if ($remainder != 0) $tickRange = $tickRange + $nearestMultiple - $remainder;
 		}
 		
+		if ($tickRange <= 0) $tickRange = 1;
 		return $tickRange;
 	}
 	

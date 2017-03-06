@@ -1614,6 +1614,16 @@ class EsoViewSalesData
 			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
 			if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
 		}
+		
+		if (count($validSalesData) == 0)
+		{
+			foreach ($this->searchResults as $sale)
+			{
+				$validSalesData[] = $sale;
+				if ($sale['listTimestamp'] > 0) $listData[] = $sale;
+				if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+			}
+		}
 	
 		usort($validSalesData, array('EsoViewSalesData', 'SalesDataSortTimestamp'));
 		$this->singleItemData['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
@@ -1645,8 +1655,6 @@ class EsoViewSalesData
 		{
 			$data = $salesData[$i];
 			++$i;
-				
-			if ($data['outlier'] === true) continue;
 				
 			$sum += $data['unitPrice'];
 				

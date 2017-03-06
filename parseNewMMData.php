@@ -128,6 +128,8 @@ class CEsoParseNewMMData
 		$this->ParseServer("PTS");
 		$this->ParseServer("Other");
 		
+		$this->salesData->SaveUpdatedItems();
+		
 		return true;
 	}
 };
