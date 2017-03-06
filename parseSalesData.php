@@ -35,6 +35,8 @@ class EsoSalesDataParser
 	public $localNewSalesCount = 0;
 	public $localNewItemCount = 0;
 	
+	public $lastLoadedSalesData = array();
+	
 	
 	public function __construct ()
 	{
@@ -439,6 +441,8 @@ class EsoSalesDataParser
 		$salesData = $this->LoadSalesForItem($item['server'], $item['id']);
 		if ($salesData === false) return false;
 		
+		$this->lastLoadedSalesData = $salesData;
+		
 		if ($output) print("{$item['id']}: Loaded " . count($salesData) . " sales for item.\n");
 				
 		$stats = $this->ComputeBasicSalesStats($salesData);
@@ -715,7 +719,22 @@ class EsoSalesDataParser
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
 		
-		if ($result->num_rows == 0) return false;
+			/* Check for recipe with a forced level of 1 */
+		if ($result->num_rows == 0) 
+		{
+			$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='1' AND quality='$quality' AND trait='$trait' AND potionData='$potionData' AND extraData='$extraData' AND itemType=29 LIMIT 1;";
+			$result = $this->db->query($this->lastQuery);
+			if ($result === FALSE) return $this->reportError("Failed to load recipe record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
+			
+				/* Check for potion/poison with a forced quality of 1 */
+			if ($result->num_rows == 0)
+			{
+				$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='$level' AND quality='1' AND trait='$trait' AND potionData='$potionData' AND extraData='$extraData' AND (itemType=7 OR itemType=30) LIMIT 1;";
+				$result = $this->db->query($this->lastQuery);
+				if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
+				if ($result->num_rows == 0) return false;
+			}
+		}
 			
 		$rowData = $result->fetch_assoc();
 		$rowData['__dirty'] = false;
@@ -830,6 +849,18 @@ class EsoSalesDataParser
 			$armorType = $minedItemData['armorType'];
 		}
 		
+			/* Some potions have incorrect qualities */
+		if ($itemType == 30 || $itemType == 7)
+		{
+			$quality = 1;
+		}
+		
+			/* Ignore level for recipes */
+		if ($itemType == 29)
+		{
+			$level = 1;
+		}
+						
 		if ($itemRawData['name'] != null) $name = $itemRawData['name']; 
 		if ($itemRawData['icon'] != null) $icon = $itemRawData['icon'];
 		
@@ -931,6 +962,18 @@ class EsoSalesDataParser
 				if ($level1 != 0) $level = $level1;
 			}
 		}
+		
+			/* Some potions have incorrect qualities */
+		if ($itemType == 30 || $itemType == 7)
+		{
+			$quality = 1;
+		}
+		
+			/* Ignore level for recipes */
+		if ($itemType == 29)
+		{
+			$level = 1;
+		}
 
 		$safeIcon = $this->db->real_escape_string($icon);
 		$safeName = $this->db->real_escape_string($this->MakeNiceItemName($name));
@@ -992,6 +1035,7 @@ class EsoSalesDataParser
 		$trait = $itemRawData['trait'];
 		$potionData = $itemRawData['potionData'];
 		$extraData = "";
+		$itemType = 0;
 				
 		$itemLinkData = $this->ParseItemLink($itemLink);
 		if ($itemLinkData === false) return false;
@@ -1026,6 +1070,7 @@ class EsoSalesDataParser
 				$quality = $minedItemData['quality'];
 				$trait = $minedItemData['trait'];
 				$level = $minedItemData['level'];
+				$itemType = $minedItemData['type'];
 			}
 			else
 			{

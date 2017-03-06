@@ -228,7 +228,6 @@ class EsoGetSalesImage
 		usort($this->validSalesData, array('EsoGetSalesImage','SalesDataSortTimestamp'));
 		usort($this->soldData, array('EsoGetSalesImage','SalesDataSortSoldTimestamp'));
 		usort($this->listData, array('EsoGetSalesImage','SalesDataSortListTimestamp'));
-
 		
 		$this->avgData = $this->ComputeWeightedAverage($this->validSalesData);
 		$this->avgSoldData = $this->ComputeWeightedAverage($this->soldData);
