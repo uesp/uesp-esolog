@@ -51,11 +51,6 @@ $RANGE_FIELDS = array(
 );
 
 
-function EsoNameMatchUpper($matches)
-{
-	return strtoupper($matches[0]);
-}
-
 
 if (intval($TABLE_SUFFIX) <= 8)
 {
@@ -180,15 +175,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		if ($value != "" && ($field == 'name' || $field == 'setName'))
 		{
 			$value = preg_replace("#Trifling #i", "", $value);
-			
-			$value = ucwords($value);
-			$value = preg_replace("/ In /", " in ", $value);
-			$value = preg_replace("/ Of /", " of ", $value);
-			$value = preg_replace("/ The /", " the ", $value);
-			$value = preg_replace("/ And /", " and ", $value);
-			$value = preg_replace_callback("/\-[a-z]/", 'EsoNameMatchUpper', $value);
-									
-			$value = preg_replace("#\^[a-zA-Z]*#", "", $value);
+			$value = MakeEsoTitleCaseName($value);
 		}
 		
 		$value = $db->real_escape_string($value);

@@ -671,11 +671,6 @@ function OnClickEsoReagentTab(e)
 }
 
 
-function OnClickCopyEsoPotionItemLink()
-{
-}
-
-
 function OnClickCopyEsoPotionItemLink(e)
 {
 	var textToCopy = EsoPotionLastItemLink;
@@ -808,6 +803,98 @@ function OnEsoFindThreeEffects(e)
 	$('#esopdFindOneEffect').attr('checked', false);
 	$('#esopdFindTwoEffects').attr('checked', false);
 	ShowFindResults();
+}
+
+function OnFindItemLinkKeyDown()
+{
+	if(event.keyCode == 13) OnEsoPotionFindItemLinkButton();    
+}
+
+
+function ParseEsoItemLink(itemLink)
+{
+	//|H1:item:Id:SubType:InternalLevel:EnchantId:EnchantSubType:EnchantLevel:Writ1:Writ2:Writ3:Writ4:Writ5:Writ6:0:0:0:Style:Crafted:Bound:Stolen::Charges:PotionEffect/WritReward|hName|h
+	var result = itemLink.match(/\|H([0-9a-zA-Z]+):(.*?):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+):([0-9]+)\|h(.*?)\|h/);
+	if (result == null) return false;
+	
+	result.linkType = result[1];
+	result.linkName = result[2];
+	result.itemId = result[3];
+	result.internalSubtype = result[4];
+	result.internalLevel = result[5];
+	result.enchantId = result[6];
+	result.enchantSubtype = result[7];
+	result.enchantLevel = result[8];
+	result.writ1 = result[9];
+	result.writ2 = result[10];
+	result.writ3 = result[11];
+	result.writ4 = result[12];
+	result.writ5 = result[13];
+	result.writ6 = result[14];
+	result.zero1 = result[15];
+	result.zero2 = result[16];
+	result.zero3 = result[17];
+	result.style = result[18];
+	result.crafted = result[19];
+	result.bound = result[20];
+	result.stolen = result[21];
+	result.charges = result[22];
+	result.potionData = result[23];
+	result.name = result[24];	
+	
+	return result;
+}
+
+
+function OnEsoPotionFindItemLinkButton()
+{
+	var itemLink = $("#esopdFindItemLink").val();
+	FindPotionItemLinkEffects(itemLink);
+}
+
+
+function FindPotionItemLinkEffects(itemLink)
+{
+	OnEsoPotionEffectReset();
+	
+	var itemData = ParseEsoItemLink(itemLink);
+	
+	if (itemData === false) 
+	{
+		OnEsoPotionEffectFind();
+		return false;
+	}
+	
+	var effect1 = 0;
+	var effect2 = 0;
+	var effect3 = 0;
+	
+	if (itemData.writ1 == 239 || itemData.writ1 == 199)
+	{
+		effect1 = itemData.writ2;
+		effect2 = itemData.writ3;
+		effect3 = itemData.writ4;
+	}
+	else if (itemData.potionData > 0)
+	{
+		effect1 = (itemData.potionData & 255);
+		effect2 = ((itemData.potionData >> 8) & 255);
+		effect3 = ((itemData.potionData >> 16) & 255);
+	}
+	else
+	{
+		OnEsoPotionEffectFind();
+		return false;
+	}
+	
+	if (effect1 > 0) $(".esopdEffect[effectindex='" + effect1 + "']").addClass("esopdEffectHighlighted");
+	if (effect2 > 0) $(".esopdEffect[effectindex='" + effect2 + "']").addClass("esopdEffectHighlighted");
+	if (effect3 > 0) $(".esopdEffect[effectindex='" + effect3 + "']").addClass("esopdEffectHighlighted");
+	
+	$(".esopdEffect").not(".esopdEffectHighlighted").addClass("esopdEffectDisable");
+	
+	OnEsoPotionEffectFind();
+	return true;
 }
 
 

@@ -809,18 +809,7 @@ class EsoSalesDataParser
 	
 	public function MakeNiceItemName($name)
 	{
-		$newName = preg_replace("#\^.*#", "", $name);
-		
-		$newName = ucwords($newName);
-		
-		$newName = preg_replace("/ In /", " in ", $newName);
-		$newName = preg_replace("/ Of /", " of ", $newName);
-		$newName = preg_replace("/ The /", " the ", $newName);
-		$newName = preg_replace("/ And /", " and ", $newName);
-		$newName = preg_replace_callback("/\-[a-z]/", 'EsoNameMatchUpper', $newName);
-		$newName = preg_replace_callback("/\[vix]+$/", 'EsoNameMatchUpper', $newName);
-		
-		return $newName;
+		return MakeEsoTitleCaseName($name);
 	}
 	
 	
@@ -861,7 +850,7 @@ class EsoSalesDataParser
 			$level = 1;
 		}
 						
-		if ($itemRawData['name'] != null) $name = $itemRawData['name']; 
+		//if ($itemRawData['name'] != null) $name = $itemRawData['name']; 
 		if ($itemRawData['icon'] != null) $icon = $itemRawData['icon'];
 		
 		$safeIcon = $this->db->real_escape_string($icon);
@@ -952,7 +941,7 @@ class EsoSalesDataParser
 			
 			if ($subItemData != null && $subItemData != "")
 			{
-				$name = $subItemData['itemDesc'];
+				//$name = $subItemData['itemDesc'];
 			}
 				
 			if ($itemPotionData > 0 && $itemKey != null)
@@ -1448,7 +1437,3 @@ class EsoSalesDataParser
 };
 
 
-function EsoNameMatchUpper($matches)
-{
-	return strtoupper($matches[0]);
-}
