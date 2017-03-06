@@ -11,6 +11,9 @@ class EsoGetSalesImage
 	const REGULARFONT_FILE = "./resources/esofontregular-webfont.ttf";
 	const BOLDFONT_FILE = "./resources/esofontbold-webfont.ttf";
 	
+	//const REGULARFONT_FILE = "./resources/arial.ttf";
+	//const BOLDFONT_FILE = "./resources/arialbd.ttf";
+	
 	const ALIGN_LEFT = 0;
 	const ALIGN_RIGHT = 1;
 	const ALIGN_CENTER = 2;
