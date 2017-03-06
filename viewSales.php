@@ -184,7 +184,8 @@ class EsoViewSalesData
 		self::$ESOVSD_ARMORTYPES = self::MakeUniqueArray($ESO_ITEMARMORTYPE_TEXTS);
 		self::$ESOVSD_WEAPONTYPES = self::MakeUniqueArray($ESO_ITEMWEAPONTYPE_TEXTS);
 		
-		array_unshift(self::$ESOVSD_TRAITS, "(none)");
+		self::$ESOVSD_TRAITS[-1] = "(none)";
+		//array_unshift(self::$ESOVSD_TRAITS, "(none)");
 	
 		$this->InitDatabaseRead();
 
@@ -1850,6 +1851,10 @@ class EsoViewSalesData
 		$itemId = $itemData['itemId'];
 		$itemLevel = $itemData['internalLevel'];
 		$itemSubType = $itemData['internalSubType'];
+		$extraData = $itemData['extraData'];
+		$potionData = $itemData['potionData'];
+		
+		if ($extraData == "") $extraData = "0:0:0:0:0:0";
 		
 		if ($saleCount > 0) 
 		{
@@ -1882,7 +1887,7 @@ class EsoViewSalesData
 			//$copyData .= ", $days days";
 		}
 		
-		$copyData .= "): $price gp for |H1:item:$itemId:$itemSubType:$itemLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
+		$copyData .= "): $price gp for |H1:item:$itemId:$itemSubType:$itemLevel:0:0:0:$extraData:0:0:0:0:0:0:0:0:$potionData|h|h";
 		return $copyData;
 	}
 	
