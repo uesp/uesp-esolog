@@ -458,6 +458,16 @@ class EsoSalesDataParser
 			if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
 		}
 		
+		if (count($validSalesData) == 0)
+		{
+			foreach ($salesData as $sale)
+			{
+				$validSalesData[] = $sale;
+				if ($sale['listTimestamp'] > 0) $listData[] = $sale;
+				if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+			}	
+		}
+		
 		usort($validSalesData, array('EsoSalesDataParser', 'SalesDataSortTimestamp'));
 		$item['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
 		
@@ -466,6 +476,8 @@ class EsoSalesDataParser
 		
 		usort($listData, array('EsoSalesDataParser', 'SalesDataSortListTimestamp'));
 		$item['goodListPrice'] = $this->ComputeWeightedAverage($listData);
+		
+		if ($output) print("\t\tGood Prices: {$item['goodPrice']}, {$item['goodSoldPrice']}, {$item['goodListPrice']} \n");
 		
 		return true;
 	}
@@ -485,13 +497,7 @@ class EsoSalesDataParser
 			$data = $salesData[$i];
 			++$i;
 			
-			if ($data['outlier'] === true) continue;
-			
 			$sum += $data['unitPrice'];
-			
-			$day = round((time() - $data['timestamp']) / 86400, 2);
-			$day = $data['timestamp'];
-				
 			++$count;			
 		}
 		
@@ -685,7 +691,7 @@ class EsoSalesDataParser
 			
 			print("\tUpdating item {$itemData['id']}...\n");
 			
-			$this->UpdateItemGoodPrice($itemData);
+			$this->UpdateItemGoodPrice($itemData, false);
 			
 			$this->SaveItemStats($itemData);			
 		}
