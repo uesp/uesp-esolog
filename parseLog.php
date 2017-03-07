@@ -83,6 +83,9 @@ class EsoLogParser
 	const ONLY_PARSE_SALES = false;
 	const ONLY_PARSE_MINEDITEMS = false;
 	
+		// Start of log09100.log: 1487204716 / 4744024596682899456
+	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1487204716;
+	
 	public $db = null;
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
@@ -5131,6 +5134,11 @@ class EsoLogParser
 	public function handleLogEntry ($logEntry)
 	{
 		
+		if ($this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 > 0 && $logEntry['timeStamp1'] > 0)
+		{
+			if ($logEntry['timeStamp1'] < $this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1) return false;
+		}
+				
 		if (self::ONLY_PARSE_MINEDITEMS)
 		{
 			switch ($logEntry['event'])

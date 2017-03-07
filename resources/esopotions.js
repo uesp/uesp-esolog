@@ -893,6 +893,15 @@ function FindPotionItemLinkEffects(itemLink)
 	
 	$(".esopdEffect").not(".esopdEffectHighlighted").addClass("esopdEffectDisable");
 	
+	if (itemData.writ1 == 239)
+	{
+		UpdateEsoPotionSolvent("Alkahest");
+	}
+	else if(itemData.writ1 == 199)
+	{
+		UpdateEsoPotionSolvent("Lorkhan's Tears");
+	}
+	
 	OnEsoPotionEffectFind();
 	return true;
 }
