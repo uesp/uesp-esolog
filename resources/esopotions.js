@@ -41,6 +41,7 @@ function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
 		
 	$.get(linkSrc, function(data) {
 		EsoPotionItemLinkPopup.html(data);
+		if (potionData == 0) ShowBadEsoPotion(solventData.isPoison);
 	});
 }
 
@@ -904,6 +905,18 @@ function FindPotionItemLinkEffects(itemLink)
 	
 	OnEsoPotionEffectFind();
 	return true;
+}
+
+
+function ShowBadEsoPotion(isPoison)
+{
+	if (isPoison === true)
+		$("#esoil_itemname").text("UNKNOWN POISON");
+	else
+		$("#esoil_itemname").text("UNKNOWN POTION");
+	
+	$("#esoil_itemicon").attr("src", "http://esoicons.uesp.net/unknown.png");
+	$("#esoil_itemtraitabilityblock").hide();
 }
 
 
