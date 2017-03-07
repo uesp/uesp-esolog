@@ -104,6 +104,9 @@
 	<div id="esovsd_results">
 		{searchResults}
 	</div>
+	
+	<p />
+	{viewCsvLink}
 </div>
 
 <script type="text/javascript">
