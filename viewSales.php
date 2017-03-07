@@ -34,6 +34,7 @@ class EsoViewSalesData
 	public $ESOVSD_HTML_GUILDS_TEMPLATE = "";
 	public $ESOVSD_HTML_GUILDS_TEMPLATE_EMBED = "";
 	
+	public $MAX_SALES_RECORD_DISPLAYED = 1000;
 	public $ESOVSD_MAX_LISTING_TIME = 2592000;
 	
 	public $server = "NA";
@@ -686,8 +687,21 @@ class EsoViewSalesData
 		$output .= "<th>Unit Price</th>";
 		$output .= "</tr>";
 		
+		$outputCount = 0;
+		
 		foreach ($this->searchResults as $row)
 		{
+			++$outputCount;
+			
+			if ($outputCount > $this->MAX_SALES_RECORD_DISPLAYED) 
+			{
+				$moreRows = count($this->searchResults) - $outputCount; 
+				$output .= "<tr class='esovsdMoreSalesHidden'><td colspan='7'>";
+				$output .= "Not displaying $moreRows more sales for performance reasons...";
+				$output .= "</td></tr>";
+				break;
+			}
+			
 			$guild = $this->guildData[$row['guildId']];
 			$item = $this->itemResults[$row['itemId']];
 			$buyDate = $this->FormatTimeStamp($row['buyTimestamp']);
