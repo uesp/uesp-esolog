@@ -2353,7 +2353,6 @@ class EsoViewSalesData
 			$output .= "\n";
 		}
 		
-		$output .= "</table>";
 		return $output;
 	}
 	
