@@ -248,3 +248,7 @@ a:hover {
 .esovsdHeaderServer {
 	width: 70px
 }
+
+.esovsdMoreSalesHidden td{
+	text-align: center !important;
+}
