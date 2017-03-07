@@ -38,7 +38,9 @@ function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
 	linkSrc += "&intlevel=" + intLevel;
 	linkSrc += "&inttype=" + intType;
 	linkSrc += "&potiondata=" + potionData;
-		
+	
+	if (potionData != 0) $("#esopdCopyItemLink").show();
+			
 	$.get(linkSrc, function(data) {
 		EsoPotionItemLinkPopup.html(data);
 		if (potionData == 0) ShowBadEsoPotion(solventData.isPoison);
@@ -722,13 +724,14 @@ function UpdateEsoPotionLink()
 	
 	var link = "?s=" + solvent + "&r1=" + reagent1 + "&r2=" + reagent2 + "&r3=" + reagent3;
 	
-	$("#esopdPotionLink").attr("href", link);
+	$("#esopdPotionLink").attr("href", link).show();
 }
+
 
 
 function UpdateEsoPotionDataText()
 {
-	$("#esopdPotionData").text("Potion Data: " + EsoPotionLastPotionData);
+	$("#esopdPotionData").text("Potion Data: " + EsoPotionLastPotionData).show();
 }
 
 
@@ -917,6 +920,9 @@ function ShowBadEsoPotion(isPoison)
 	
 	$("#esoil_itemicon").attr("src", "http://esoicons.uesp.net/unknown.png");
 	$("#esoil_itemtraitabilityblock").hide();
+	
+	$("#esopdPotionData").hide();
+	$("#esopdCopyItemLink").hide();
 }
 
 
