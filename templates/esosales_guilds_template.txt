@@ -33,6 +33,9 @@
 	<div id="esovsd_results">
 		{guildsResults}
 	</div>
+	
+	<p />
+	{viewCsvLink}
 </div>
 
 <script type="text/javascript">

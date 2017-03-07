@@ -58,6 +58,7 @@ class EsoViewSalesData
 	public $showForm = "ItemSearch";
 	public $viewRawData = false;
 	public $hasSearchData = false;
+	public $outputType = "html";
 	
 	public $guildData = array();
 	public $searchCount = 0;
@@ -285,6 +286,16 @@ class EsoViewSalesData
 			$this->sortOrder = 0;
 		}
 		
+		if ($this->inputParams['output'] != null)
+		{
+			$this->inputParams['output'] = strtolower($this->inputParams['output']);
+				
+			if ($this->inputParams['output'] == 'csv')
+				$this->outputType = "csv";
+				else if ($this->inputParams['output'] == 'html')
+					$this->outputType = "html";
+		}
+		
 		if (array_key_exists("view", $this->inputParams))
 		{
 			$this->rawShowForm = strtolower($this->inputParams['view']);
@@ -337,10 +348,27 @@ class EsoViewSalesData
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
-		header("Pragma: no-cache");
+		header("Content-Type: text/html");
 		
 		$origin = $_SERVER['HTTP_ORIGIN'];
 		
+		if (substr($origin, -8) == "uesp.net")
+		{
+			header("Access-Control-Allow-Origin: $origin");
+		}
+	}
+	
+	
+	private function OutputCsvHeader()
+	{
+		ob_start("ob_gzhandler");
+		header("Expires: 0");
+		header("Pragma: no-cache");
+		header("Cache-Control: no-cache, no-store, must-revalidate");
+		header("Content-Type: text/plain");
+	
+		$origin = $_SERVER['HTTP_ORIGIN'];
+	
 		if (substr($origin, -8) == "uesp.net")
 		{
 			header("Access-Control-Allow-Origin: $origin");
@@ -2206,6 +2234,16 @@ class EsoViewSalesData
 
 		return "both";
 	}
+	
+	
+	public function GetViewCsvLink()
+	{
+		if ($_SERVER['QUERY_STRING'] == "") return "";
+		if ($this->showForm == "ItemSearch" && (!$this->hasSearchData || count($this->itemSortedKeys) == 0)) return "";
+		
+		$output = "<a href=\"?" . $_SERVER['QUERY_STRING'] . "&output=csv\">View Data as CSV</a>";
+		return $output;
+	}
 		
 	
 	public function CreateOutputHtml()
@@ -2249,10 +2287,250 @@ class EsoViewSalesData
 				'{showSalesType}' => $this->GetSalesTypeHtml(),
 				'{saleStats}' => $this->GetSaleStatsHtml(),
 				
+				'{viewCsvLink}' => $this->GetViewCsvLink(),
+				
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		return $output;
+	}
+	
+	
+	public function CreateSalesOutputCsv()
+	{
+		$output = "";
+		
+		$output .= "\"ID\",";
+		$output .= "\"Guild ID\",";
+		$output .= "\"Guild\",";
+		$output .= "\"Kiosk Location\",";
+		if (!$this->OMIT_SELLER_INFO) $output .= "\"Seller\",";
+		if (!$this->OMIT_BUYER_INFO) $output .= "\"Buyer\",";
+		$output .= "\"List Time\",";
+		$output .= "\"Sold Time\",";
+		$output .= "\"Last Seen Time\",";
+		$output .= "\"Price\",";
+		$output .= "\"Qnt\",";
+		$output .= "\"Unit Price\",";
+		$output .= "\"Outlier\",";
+		$output .= "\"Event ID\",";
+		$output .= "\"Item Link\"";
+		$output .= "\n";
+		
+		foreach ($this->searchResults as $row)
+		{
+			$guild = $this->guildData[$row['guildId']];
+			$guildName = $this->CsvEscape($guild['name']);
+			$item = $this->itemResults[$row['itemId']];
+			$buyDate = $row['buyTimestamp'];
+			$listDate = $row['listTimestamp'];
+			$lastSeen = $row['lastSeen'];
+			$unitPrice = number_format(floatval($row['price']) / floatval($row['qnt']), 2, ".", '');
+							
+			$kiosk = $this->CsvEscape($guild['storeLocation']);
+			if ($kiosk == "") $kiosk = "None";
+			
+			$outlier = "0";
+			if ($row['outlier'] === true) $outlier = "1";
+			
+			$output .= "\"{$row['id']}\",";
+			$output .= "\"{$row['guildId']}\",";
+			$output .= "\"$guildName\",";
+			$output .= "\"$kiosk\",";
+			if (!$this->OMIT_SELLER_INFO) $output .= "\"{$row['buyerName']}\",";
+			if (!$this->OMIT_BUYER_INFO) $output .= "\"{$row['sellerName']}\",";
+				
+			$output .= "\"{$listDate}\",";
+			$output .= "\"{$buyDate}\",";
+			$output .= "\"{$lastSeen}\",";
+	
+			$output .= "\"{$row['price']}\",";
+			$output .= "\"{$row['qnt']}\",";
+			$output .= "\"{$unitPrice}\",";
+			$output .= "\"$outlier\",";
+			$output .= "\"{$row['eventId']}\",";
+			$output .= "\"{$row['itemLink']}\"";
+			$output .= "\n";
+		}
+		
+		$output .= "</table>";
+		return $output;
+	}
+	
+	
+	public function CsvEscape($text)
+	{
+		return str_replace('"', "'", $text);
+	}
+	
+	
+	public function CreateGuildsOutputCsv()
+	{
+		$output = "";
+		
+		$output .= "\"ID\",\"Guild\",\"Server\",\"Members\",\"Founder\",\"Founded Date\",\"Kisok Location\",\"Last Updated\",\"Listed\",\"Sold\"\n";
+		
+		foreach ($this->guildData as $key => $guild)
+		{
+			$name = $this->CsvEscape($guild['name']);
+			$server = $this->CsvEscape($guild['server']);
+			$numMembers = $guild['numMembers'];
+			$founder = $this->CsvEscape($guild['leader']);
+			$numSales = $guild['totalSales'];
+			$numPurchases = $guild['totalPurchases'];
+				
+			if ($guild['foundedDate'] <= 0)
+				$foundedDate = "";
+			else
+				$foundedDate = date('Y-m-d', $guild['foundedDate']);
+						
+			$storeLoc = $this->CsvEscape($guild['storeLocation']);
+			if ($storeLoc == "") $storeLoc = "None";
+				
+			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
+
+			$output .= "\"{$guild['id']}\",";
+			$output .= "\"$name\",";
+			$output .= "\"$server\",";
+			$output .= "$numMembers,";
+			$output .= "\"$founder\",";
+			$output .= "\"$foundedDate\",";
+			$output .= "\"$storeLoc\",";
+			$output .= "\"$lastStoreLocTime\",";
+			$output .= "$numSales,";
+			$output .= "$numPurchases";
+			$output .= "\n";
+		}
+		
+		return $output;
+	}
+	
+	
+	public function CreateItemsOutputCsv()
+	{
+		$output = "";
+		
+		$output .= "\"ID\",";
+		$output .= "\"Item\",";
+		$output .= "\"Level\",";
+		$output .= "\"Quality\",";
+		$output .= "\"Item ID\",";
+		$output .= "\"Internal Level\",";
+		$output .= "\"Internal Subtype\",";
+		$output .= "\"Item Type\",";
+		$output .= "\"Equip Type\",";
+		$output .= "\"Armor Type\",";
+		$output .= "\"Weapon Type\",";
+		$output .= "\"Set Name\",";
+		$output .= "\"Extra Data\",";
+		$output .= "\"Sales Count\",";
+		$output .= "\"Sales Items\",";
+		$output .= "\"Sales Price\",";
+		$output .= "\"Last Sale Time\",";
+		$output .= "\"List Count\",";
+		$output .= "\"List Items\",";
+		$output .= "\"List Price\",";
+		$output .= "\"Last List Time\",";
+		$output .= "\"Last Seen Time\",";
+		$output .= "\"Good Price\",";
+		$output .= "\"Good Sales Price\",";
+		$output .= "\"Good List Price\"";
+		$output .= "\n";
+				
+		if (!$this->hasSearchData) return "";
+		
+		foreach ($this->itemSortedKeys as $itemId)
+		{
+			$item = $this->itemResults[$itemId];
+		
+			$trait = $item['trait'];
+			$itemName = $this->CsvEscape($item['name']);
+			$itemType = $item['itemType'];
+			$weaponType = $item['weaponType'];
+			$armorType = $item['armorType'];
+			$equipType = $item['equipType'];
+			$setName = $this->CsvEscape($item['setName']);
+			$totalSales = floatval($item['countSales']);
+			$totalPurchases = floatval($item['countPurchases']);
+			$sumSales = floatval($item['sumSales']);
+			$sumPurchases = floatval($item['sumPurchases']);
+			$totalCount = $totalSales + $totalPurchases;
+			$totalItems = floatval($item['countItemPurchases']) + floatval($item['countItemSales']);
+			$totalSaleItems = floatval($item['countItemPurchases']);
+			$totalListItems = floatval($item['countItemSales']);
+			$goodPrice = floatval($item['goodPrice']);
+			$goodSalesPrice = floatval($item['goodSoldPrice']);
+			$goodListPrice = floatval($item['goodListPrice']);
+			$extraQuery = "";
+			$avgPrice = 0;
+			$avgSalePrice = 0;
+			$avgListPrice = 0;
+			
+			if ($totalItems > 0) $avgPrice = ($sumSales + $sumPurchases) / $totalItems;
+			if ($totalSaleItems > 0) $avgSalePrice = $sumPurchases / $totalSaleItems;
+			if ($totalListItems > 0) $avgListPrice = $sumSales / $totalListItems;
+			
+			$extraData = $item['extraData'];
+			if ($extraData == "") $extraData = $item['potionData']; 
+			
+			$output .= "\"{$item['id']}\",";
+			$output .= "\"$itemName\",";
+			$output .= "\"{$item['level']}\",";
+			$output .= "\"{$item['quality']}\",";
+			$output .= "\"{$item['itemId']}\",";
+			$output .= "\"{$item['internalLevel']}\",";
+			$output .= "\"{$item['internalSubType']}\",";
+			$output .= "\"$itemType\",";
+			$output .= "\"$equipType\",";
+			$output .= "\"$armorType\",";
+			$output .= "\"$weaponType\",";
+			$output .= "\"$setName\",";
+			$output .= "\"$extraData\",";
+			$output .= "\"$totalPurchases\",";
+			$output .= "\"$totalSaleItems\",";
+			$output .= "\"$avgSalePrice\",";
+			$output .= "\"{$item['lastPurchaseTimestamp']}\",";
+			$output .= "\"$totalSales\",";
+			$output .= "\"$totalListItems\",";
+			$output .= "\"$avgListPrice\",";
+			$output .= "\"{$item['lastSaleTimestamp']}\",";
+			$output .= "\"{$item['lastSeen']}\",";
+			$output .= "\"$goodPrice\",";
+			$output .= "\"$goodSoldPrice\",";
+			$output .= "\"$goodListPrice\"";
+			$output .= "\n";
+		}
+		
+		return $output;
+	}
+	
+	
+	public function CreateOutputCsv()
+	{
+		$output = "";
+		
+		if ($this->showForm == "ViewSales")
+		{
+			$output = $this->CreateSalesOutputCsv();
+		}
+		elseif ($this->showForm == "ViewGuilds")
+		{
+			$output = $this->CreateGuildsOutputCsv();
+		}
+		else
+		{
+			$output = $this->CreateItemsOutputCsv();
+		}
+		
+		return $output;
+	}
+	
+	
+	public function GetOutputCsv()
+	{
+		$this->LoadGuilds();
+		$this->LoadSearchResults();
+		return $this->CreateOutputCsv();
 	}
 	
 	
@@ -2267,8 +2545,24 @@ class EsoViewSalesData
 	}
 	
 	
+	public function RenderCsv()
+	{
+		$this->OutputCsvHeader();
+		
+		$output = $this->GetOutputCsv();
+		print ($output);
+	}	
+	
+	
 	public function Render()
 	{
+		if ($this->outputType == "csv")
+		{
+			$this->RenderCsv();
+			return;
+		}
+		
+		$this->OutputHtmlHeader();
 		$output = $this->GetOutputHtml();
 		print ($output);
 	}
@@ -2366,6 +2660,5 @@ function EsoSalesDataCompareUnitPrice($a, $b)
 
 $viewSales = new EsoViewSalesData();
 $viewSales->Render();
-
 
 
