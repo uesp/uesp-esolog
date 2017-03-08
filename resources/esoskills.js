@@ -2410,17 +2410,25 @@ function EnableEsoRaceSkills(raceName)
 }
 
 
-function SetEsoSkillBarSelect(skillBarIndex)
+function SetEsoSkillBarSelect(skillBarIndex, weaponBarIndex)
 {
+	$(".esovsSkillBar").removeClass("esovsSkillBarHighlight");
+	
 	if (skillBarIndex == 1)
 	{
-		$("#esovsSkillBar1").addClass("esovsSkillBarHighlight");
-		$("#esovsSkillBar2").removeClass("esovsSkillBarHighlight");
+		$(".esovsSkillBar[skillbar='1']").addClass("esovsSkillBarHighlight");
 	}
 	else if (skillBarIndex == 2)
 	{
-		$("#esovsSkillBar1").removeClass("esovsSkillBarHighlight");
-		$("#esovsSkillBar2").addClass("esovsSkillBarHighlight");
+		$(".esovsSkillBar[skillbar='2']").addClass("esovsSkillBarHighlight");
+	}
+	else if (skillBarIndex == 3)
+	{
+		$(".esovsSkillBar[skillbar='3']").addClass("esovsSkillBarHighlight");
+	}
+	else if (skillBarIndex == 4)
+	{
+		$(".esovsSkillBar[skillbar='4']").addClass("esovsSkillBarHighlight");
 	}
 }
 
@@ -2428,10 +2436,11 @@ function SetEsoSkillBarSelect(skillBarIndex)
 function OnSkillBarSelect(e)
 {
 	var skillBar = $(this).attr("skillbar");
+	var weaponBar = $(this).attr("activeweaponbar");
 	
-	SetEsoSkillBarSelect(skillBar);
+	SetEsoSkillBarSelect(skillBar, weaponBar);
 	
-	$(document).trigger("EsoSkillBarSwap", [ skillBar ]);
+	$(document).trigger("EsoSkillBarSwap", [ skillBar, weaponBar ]);
 }
 
 
@@ -2589,11 +2598,13 @@ function RemoveSkillBarAbility(abilityId, skillBar)
 	{
 		RemoveSkillBarAbility(abilityId, 1);
 		RemoveSkillBarAbility(abilityId, 2);
+		RemoveSkillBarAbility(abilityId, 3);
+		RemoveSkillBarAbility(abilityId, 4);
 		return;
 	}
 	
-	var skillBars1 = $("#esovsSkillBar" + skillBar).find(".esovsSkillBarIcon[skillid='" + abilityId + "']");
-	var skillBars2 = $("#esovsSkillBar" + skillBar).find(".esovsSkillBarIcon[origskillid='" + abilityId + "']");
+	var skillBars1 = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[skillid='" + abilityId + "']");
+	var skillBars2 = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[origskillid='" + abilityId + "']");
 	
 	skillBars1.attr("skillid", "0");
 	skillBars1.attr("origskillid", "0");
@@ -2624,8 +2635,11 @@ function OnSkillBarDragEnd(e)
 function UpdateEsoSkillBarData()
 {
 	g_EsoSkillBarData = [];
+	
 	g_EsoSkillBarData[0] = [];
 	g_EsoSkillBarData[1] = [];
+	g_EsoSkillBarData[2] = [];
+	g_EsoSkillBarData[3] = [];
 	
 	UpdateEsoSkillBarSkill(1, 1);
 	UpdateEsoSkillBarSkill(1, 2);
@@ -2641,13 +2655,27 @@ function UpdateEsoSkillBarData()
 	UpdateEsoSkillBarSkill(2, 5);
 	UpdateEsoSkillBarSkill(2, 6);
 	
+	UpdateEsoSkillBarSkill(3, 1);
+	UpdateEsoSkillBarSkill(3, 2);
+	UpdateEsoSkillBarSkill(3, 3);
+	UpdateEsoSkillBarSkill(3, 4);
+	UpdateEsoSkillBarSkill(3, 5);
+	UpdateEsoSkillBarSkill(3, 6);
+	
+	UpdateEsoSkillBarSkill(4, 1);
+	UpdateEsoSkillBarSkill(4, 2);
+	UpdateEsoSkillBarSkill(4, 3);
+	UpdateEsoSkillBarSkill(4, 4);
+	UpdateEsoSkillBarSkill(4, 5);
+	UpdateEsoSkillBarSkill(4, 6);
+	
 	if (g_EsoSkillUpdateEnable)	$(document).trigger("EsoSkillBarUpdate");
 }
 
 
 function UpdateEsoSkillBarSkill(skillBar, skillIndex)
 {
-	var iconElement = $("#esovsSkillBar" + skillBar).find(".esovsSkillBarIcon[skillindex='" + skillIndex + "']");
+	var iconElement = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[skillindex='" + skillIndex + "']");
 	var skillId = iconElement.attr("skillid");
 	
 	var newData = {};
@@ -2691,12 +2719,12 @@ function OnEsoSkillReset(e)
 	
 	g_EsoSkillUpdateEnable = false;
 	
-	$(".esovsSkillBarIcon").attr("skillid", "0").
+	$("#esovsSkillBar .esovsSkillBarIcon").attr("skillid", "0").
 		attr("src", "").
 		attr("draggable", "false").
 		attr("origskillid", "0");
 	
-	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").each(function(i, e) {
+	$("#esovsSkillBar .esovsSkillContentBlock").children(".esovsAbilityBlock").each(function(i, e) {
 		var selectBlock = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").eq(1);
 		var displayBlock = $(this);
 		var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
