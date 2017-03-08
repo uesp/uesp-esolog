@@ -50,6 +50,11 @@ class CEsoViewSkills
 	public $initialData = array();
 	public $activeData = array();
 	public $passiveData = array();
+	public $enableWerewolf = false;
+	public $enableOverload = false;
+	public $activeWeaponBar3 = "-1";
+	public $activeWeaponBar4 = "-1";
+	
 	public $initialSkillBarData = array(
 			0 => array( 
 					0 => array(), 
@@ -65,7 +70,22 @@ class CEsoViewSkills
 					3 => array(),
 					4 => array(),
 					5 => array() ),
+			2 => array(
+					0 => array(),
+					1 => array(),
+					2 => array(),
+					3 => array(),
+					4 => array(),
+					5 => array() ),
+			3 => array(
+					0 => array(),
+					1 => array(),
+					2 => array(),
+					3 => array(),
+					4 => array(),
+					5 => array() ),
 		);
+	
 	public $dataLoaded = false;	
 	public $activeSkillBar = 1;
 
@@ -1021,10 +1041,29 @@ class CEsoViewSkills
 		
 		$extraClass1 = "";
 		$extraClass2 = "";
+		$extraClass3 = "";
+		$extraClass4 = "";
+		
+		$activeBar3 = $this->activeWeaponBar3;
+		$activeBar4 = $this->activeWeaponBar4;
+		$activeBar3 = -1;
+		$activeBar4 = -1;
+		
+		$barTitle3 = "Overload";
+		$barTitle4 = "Werewolf";
+		
+		$barDisplay3 = "display: none;";
+		$barDisplay4 = "display: none;";
+		
+		if ($this->enableOverload) $barDisplay3 = "";
+		if ($this->enableWerewolf) $barDisplay4 = "";
+		
 		if ($this->activeSkillBar == 1) $extraClass1 = "esovsSkillBarHighlight";
 		if ($this->activeSkillBar == 2) $extraClass2 = "esovsSkillBarHighlight";
+		if ($this->activeSkillBar == 3) $extraClass3 = "esovsSkillBarHighlight";
+		if ($this->activeSkillBar == 4) $extraClass4 = "esovsSkillBarHighlight";
 		
-		$output .= "<div id='esovsSkillBar1' class='esovsSkillBar $extraClass1' skillbar='1'>";
+		$output .= "<div id='esovsSkillBar1' class='esovsSkillBar $extraClass1' skillbar='1' activeweaponbar='1'>";
 		$output .= "	<div class='esovsSkillBarTitle'>Bar 1</div>";
 		$output .= $this->GetSkillBarSlotHtml(0, 0);
 		$output .= $this->GetSkillBarSlotHtml(0, 1);
@@ -1033,10 +1072,9 @@ class CEsoViewSkills
 		$output .= $this->GetSkillBarSlotHtml(0, 4);
 		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
 		$output .= $this->GetSkillBarSlotHtml(0, 5);
-		//$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false' id='esovsSkillIcon16' skillindex='6' skillbar='1' skillid='0' src=''></div>";
 		$output .= "</div>";
 		
-		$output .= "<div id='esovsSkillBar2' class='esovsSkillBar $extraClass2' skillbar='2'>";
+		$output .= "<div id='esovsSkillBar2' class='esovsSkillBar $extraClass2' skillbar='2' activeweaponbar='2'>";
 		$output .= "	<div class='esovsSkillBarTitle'>Bar 2</div>";
 		$output .= $this->GetSkillBarSlotHtml(1, 0);
 		$output .= $this->GetSkillBarSlotHtml(1, 1);
@@ -1045,7 +1083,28 @@ class CEsoViewSkills
 		$output .= $this->GetSkillBarSlotHtml(1, 4);
 		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
 		$output .= $this->GetSkillBarSlotHtml(1, 5);
-		//$output .= "	<div class='esovsSkillBarItem'><img class='esovsSkillBarIcon' draggable='false' id='esovsSkillIcon26' skillindex='6' skillbar='2' skillid='0' src=''></div>";
+		$output .= "</div>";
+		
+		$output .= "<div id='esovsSkillBar3' class='esovsSkillBar $extraClass3' skillbar='3' style='$barDisplay3' activeweaponbar='$activeBar3'>";
+		$output .= "	<div class='esovsSkillBarTitle'>$barTitle3</div>";
+		$output .= $this->GetSkillBarSlotHtml(2, 0);
+		$output .= $this->GetSkillBarSlotHtml(2, 1);
+		$output .= $this->GetSkillBarSlotHtml(2, 2);
+		$output .= $this->GetSkillBarSlotHtml(2, 3);
+		$output .= $this->GetSkillBarSlotHtml(2, 4);
+		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
+		$output .= $this->GetSkillBarSlotHtml(2, 5);
+		$output .= "</div>";
+		
+		$output .= "<div id='esovsSkillBar4' class='esovsSkillBar $extraClass4' skillbar='4' style='$barDisplay4' activeweaponbar='$activeBar4'>";
+		$output .= "	<div class='esovsSkillBarTitle'>$barTitle4</div>";
+		$output .= $this->GetSkillBarSlotHtml(3, 0);
+		$output .= $this->GetSkillBarSlotHtml(3, 1);
+		$output .= $this->GetSkillBarSlotHtml(3, 2);
+		$output .= $this->GetSkillBarSlotHtml(3, 3);
+		$output .= $this->GetSkillBarSlotHtml(3, 4);
+		$output .= "	&nbsp; &nbsp; &nbsp; &nbsp; ";
+		$output .= $this->GetSkillBarSlotHtml(3, 5);
 		$output .= "</div>";
 		
 		$output .= "</div>";
@@ -1242,6 +1301,7 @@ function CompareEsoSkillLine_Priv($a, $b)
 
 	return $a1['skillIndex'] - $b1['skillIndex'];
 }
+
 
 
 

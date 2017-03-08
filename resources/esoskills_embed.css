@@ -639,7 +639,7 @@
 }
 
 #esovsSkillBar {
-	width: 550px;
+	width: 580px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -673,6 +673,18 @@
     text-align: left;
 }
 
+#esovsSkillBar3 {
+	border: solid 2px rgba(0,0,0,0);
+    padding: 2px;
+    text-align: left;
+}
+
+#esovsSkillBar4 {
+	border: solid 2px rgba(0,0,0,0);
+    padding: 2px;
+    text-align: left;
+}
+
 .esovsSkillBarHighlight {
 	border: solid 2px yellow !important;
 	background-color: #99ffff;
@@ -692,7 +704,7 @@
 	display: inline-block;
     vertical-align: middle;
     padding-right: 10px;
-    width: 50px;
+    width: 75px;
     text-align: right;
 	font-weight: bold;
     font-size: 17px;    
