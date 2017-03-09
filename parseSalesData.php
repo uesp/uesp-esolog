@@ -14,7 +14,7 @@ class EsoSalesDataParser
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
 	const ESD_LISTTIME_RANGE = 10;
 	
-	const MAX_ZSCORE = 3;
+	const MAX_ZSCORE = 3.0;
 	
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
@@ -475,7 +475,7 @@ class EsoSalesDataParser
 				
 			$validSalesData[] = $sale;
 			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
-			if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+			if ($sale['buyTimestamp']  > 0) $soldData[] = $sale;
 		}
 		
 		if (count($validSalesData) == 0)
@@ -484,7 +484,7 @@ class EsoSalesDataParser
 			{
 				$validSalesData[] = $sale;
 				if ($sale['listTimestamp'] > 0) $listData[] = $sale;
-				if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+				if ($sale['buyTimestamp']  > 0) $soldData[] = $sale;
 			}	
 		}
 		
