@@ -155,7 +155,8 @@ class EsoViewSalesData
 	static public $ESOVSD_SERVERS = array(
 			"NA" => "PC-NA",
 			"EU" => "PC-EU",
-			"PTS" => "PTS",			
+			"PTS" => "PTS",
+			"Other" => "Other",
 	);
 	
 	static public $ESOVSD_SALETYPES = array(
