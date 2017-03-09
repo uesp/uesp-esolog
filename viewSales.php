@@ -14,6 +14,8 @@ $g_EsoItemData = null;
 
 class EsoViewSalesData
 {
+	const ESOVSD_ENABLE_PROFILE = false;
+	
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
 	const ESOVSD_MAXZSCORE = 3.0;
@@ -41,6 +43,7 @@ class EsoViewSalesData
 	public $isEmbedded = false;
 	
 	public $db = null;
+	public $dbLog = null;
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
@@ -189,11 +192,26 @@ class EsoViewSalesData
 		
 		self::$ESOVSD_TRAITS[-1] = "(none)";
 		//array_unshift(self::$ESOVSD_TRAITS, "(none)");
+		
+		if (self::ESOVSD_ENABLE_PROFILE)
+		{
+			error_log("Profiling Sales Request: " . $_SERVER['REQUEST_URI']);
+		}
 	
 		$this->InitDatabaseRead();
+		$this->InitLogDatabaseRead();
 
 		$this->SetInputParams();
 		$this->ParseInputParams();
+	}
+	
+	
+	public function LogProfile($name, $startTime)
+	{
+		if (!self::ESOVSD_ENABLE_PROFILE) return;
+	
+		$deltaTime = (microtime(true) - $startTime) * 1000.0;
+		error_log("Profile $name = $deltaTime ms");
 	}
 	
 	
@@ -236,12 +254,25 @@ class EsoViewSalesData
 
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
-		
-		UpdateEsoPageViews("salesDataViews", $this->db);
-		
+	
 		return true;
 	}
 
+	
+	private function InitLogDatabaseRead ()
+	{
+		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
+	
+		if ($this->dbLog != null) return true;
+	
+		$this->dbLog = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
+		if ($this->dbLog->connect_error) return $this->ReportError("Could not connect to esolog mysql database!");
+		
+		UpdateEsoPageViews("salesDataViews", $this->dbLog);
+	
+		return true;
+	}
+	
 
 	private function ParseInputParams ()
 	{
@@ -813,8 +844,6 @@ class EsoViewSalesData
 	
 	public function GetSecondFindItemLinkQuery($itemLinkData)
 	{
-		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-		
 		$itemId = intval($itemLinkData['itemId']);
 		$intSubtype = intval($itemLinkData['subtype']);
 		$intLevel = intval($itemLinkData['level']);
@@ -829,7 +858,7 @@ class EsoViewSalesData
 		}
 		
 		$query = "SELECT level, quality FROM $uespEsoLogDatabase.minedItemSummary WHERE itemId='$itemId';";
-		$result = $this->db->query($query);
+		$result = $this->dbLog->query($query);
 		
 		$level = null;
 		$quality = null;
@@ -1051,6 +1080,8 @@ class EsoViewSalesData
 	
 	public function LoadGuilds()
 	{
+		$startTime = microtime(true);
+		
 		$this->lastQuery = "SELECT * FROM guilds;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to load guild data!");
@@ -1060,6 +1091,7 @@ class EsoViewSalesData
 			$this->guildData[$row['id']] = $row;
 		}
 		
+		$this->LogProfile("LoadGuilds()", $startTime);
 		return true;
 	}
 	
@@ -1108,10 +1140,25 @@ class EsoViewSalesData
 	
 	public function GetSingleSearchQuery()
 	{
+		/*id INTEGER NOT NULL AUTO_INCREMENT,
+		server TINYTEXT NOT NULL,
+		itemId INTEGER NOT NULL,
+		guildId SMALLINT NOT NULL,
+		sellerName TINYTEXT NOT NULL,
+		listTimestamp INT UNSIGNED NOT NULL,
+		buyerName TINYTEXT NOT NULL,
+		buyTimestamp INT UNSIGNED NOT NULL,
+		eventId BIGINT NOT NULL,
+		price INTEGER NOT NULL,
+		qnt INTEGER NOT NULL,
+		itemLink TINYTEXT NOT NULL,
+		lastSeen INT UNSIGNED NOT NULL, */
+		
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
+		//$query = "SELECT itemId, guildId, listTimestamp, buyTimestamp, price, qnt, lastSeen FROM sales ";
 		$where = array();
 	
-		$where[] = "itemId='{$this->viewSalesItemId}'";
+		$where[] = "itemId={$this->viewSalesItemId}";
 		
 		$timePeriod = intval($this->formValues['timeperiod']);
 
@@ -1136,7 +1183,7 @@ class EsoViewSalesData
 			$query .= " WHERE " . implode(" AND ", $where);
 		}
 
-		//$query .= " LIMIT {$this->searchLimitCount};";
+		//$query .= " LIMIT 1000";
 		//$query .= " ORDER BY buyTimestamp DESC;";
 		$query .= ";";
 
@@ -1147,6 +1194,8 @@ class EsoViewSalesData
 	
 	public function LoadSalesSearchResults($loadSingle = false)
 	{
+		$startTime = microtime(true);
+		
 		if ($loadSingle)
 			$this->lastQuery = $this->GetSingleSearchQuery();
 		else
@@ -1197,6 +1246,8 @@ class EsoViewSalesData
 		}
 				
 		$this->SortSalesSearchResults();
+		
+		$this->LogProfile("LoadSalesSearchResults()", $startTime);
 		return true;
 	}
 	
@@ -1230,6 +1281,8 @@ class EsoViewSalesData
 	
 	public function ComputeSaleStatistics()
 	{
+		$startTime = microtime(true);
+		
 		$priceSumAll = 0;
 		$countAll = 0;
 		$countSold = 0;
@@ -1356,6 +1409,8 @@ class EsoViewSalesData
 		
 		$this->ComputeSaleAdvancedStatistics();
 		$this->ComputeItemGoodPrice();
+		
+		$this->LogProfile("ComputeSaleStatistics()", $startTime);
 	}	
 	
 	
@@ -1771,6 +1826,8 @@ class EsoViewSalesData
 	
 	public function SortSalesSearchResults()
 	{
+		$startTime = microtime(true);
+		
 		global $g_EsoSalesDataSortOrder;
 		
 		$g_EsoSalesDataSortOrder = $this->sortOrder;
@@ -1791,6 +1848,7 @@ class EsoViewSalesData
 		elseif ($this->sortField == "lastseen")
 			usort($this->searchResults, "EsoSalesDataCompareLastSeen");
 		
+		$this->LogProfile("SortSalesSearchResults()", $startTime);
 		return true;
 	}
 		
@@ -2260,6 +2318,8 @@ class EsoViewSalesData
 	
 	public function CreateOutputHtml()
 	{
+		$startTime = microtime(true);
+		
 		$replacePairs = array(
 				'{formText}' => $this->GetFormValue('text'),
 				'{formTrait}' => $this->GetFormValue('trait'),
@@ -2304,6 +2364,8 @@ class EsoViewSalesData
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
+		
+		$this->LogProfile("CreateOutputHtml()", $startTime);
 		return $output;
 	}
 	
