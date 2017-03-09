@@ -383,25 +383,25 @@ class EsoViewSalesData
 		if ($this->showForm == "ViewSales")
 		{
 			if ($this->isEmbedded)
-				$templateFile .= $this->ESOVSD_HTML_SALES_TEMPLATE_EMBED;
+				$templateFile = $this->ESOVSD_HTML_SALES_TEMPLATE_EMBED;
 			else
-				$templateFile .= $this->ESOVSD_HTML_SALES_TEMPLATE;
+				$templateFile = $this->ESOVSD_HTML_SALES_TEMPLATE;
 		}
 		elseif ($this->showForm == "ViewGuilds")
 		{
 			if ($this->isEmbedded)
-				$templateFile .= $this->ESOVSD_HTML_GUILDS_TEMPLATE_EMBED;
+				$templateFile = $this->ESOVSD_HTML_GUILDS_TEMPLATE_EMBED;
 			else
-				$templateFile .= $this->ESOVSD_HTML_GUILDS_TEMPLATE;
+				$templateFile = $this->ESOVSD_HTML_GUILDS_TEMPLATE;
 		}
 		else
 		{
 			if ($this->isEmbedded)
-				$templateFile .= $this->ESOVSD_HTML_TEMPLATE_EMBED;
+				$templateFile = $this->ESOVSD_HTML_TEMPLATE_EMBED;
 			else
-				$templateFile .= $this->ESOVSD_HTML_TEMPLATE;
+				$templateFile = $this->ESOVSD_HTML_TEMPLATE;
 		}
-			
+		
 		$this->htmlTemplate = file_get_contents($templateFile);
 	}
 	
@@ -1728,6 +1728,17 @@ class EsoViewSalesData
 		elseif ($this->showForm == "ItemSearch")
 		{
 			$this->LoadItemData();
+			
+			if ($this->itemCount == 1)
+			{
+				$this->showForm = "ViewSales";
+				$this->viewSalesItemId = $this->itemIds[0];
+				$this->singleItemData = $this->itemResults[$this->viewSalesItemId];
+				
+				$this->LoadSalesSearchResults(true);
+				$this->ComputeSaleStatistics();
+				$this->LoadTemplate();
+			}
 		}
 		else
 		{
