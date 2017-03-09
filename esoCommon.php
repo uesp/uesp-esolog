@@ -2,6 +2,8 @@
 
 const UESP_ESO_ICON_URL = "http://esoicons.uesp.net";
 
+const ENABLE_ESO_PAGEVIEW_UPDATES = true;
+
 	/* Make sure these match values used in uespLog */
 const UESP_POWERTYPE_SOULTETHER    = -50;
 const UESP_POWERTYPE_LIGHTARMOR    = -51;
@@ -2500,6 +2502,8 @@ function CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $w
 function UpdateEsoPageViews($id, $db = null)
 {
 	global $uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase;
+		
+	if (!ENABLE_ESO_PAGEVIEW_UPDATES) return false;
 	
 	$deleteDb = false;
 	
