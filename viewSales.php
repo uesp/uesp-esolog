@@ -1516,7 +1516,7 @@ class EsoViewSalesData
 		$itemsAdjWeightListed = 0;
 		$itemsAdjWeightSold = 0;
 				
-		foreach ($this->searchResults as &$result)
+		foreach ($this->searchResults as $i => $result)
 		{
 			$price = intval($result['price']);
 			$qnt = intval($result['qnt']);
@@ -1533,7 +1533,7 @@ class EsoViewSalesData
 			}			
 			else
 			{
-				$result['outlier'] = true;
+				$this->searchResults[$i]['outlier'] = true;
 			}
 						
 			if ($result['buyTimestamp']  > 0) 
@@ -1554,7 +1554,7 @@ class EsoViewSalesData
 				}
 				else
 				{
-					$result['outlier'] = true;
+					$this->searchResults[$i]['outlier'] = true;
 				}
 				
 				if ($zScoreWeightAll <= self::ESOVSD_MAXZSCORE_WEIGHTED)
@@ -1565,7 +1565,7 @@ class EsoViewSalesData
 				}
 				else
 				{
-					$result['outlier'] = true;
+					//$this->searchResults[$i]['outlier'] = true;
 				}
 				
 				if ($zScoreWeightSold <= self::ESOVSD_MAXZSCORE_WEIGHTED)
@@ -1576,7 +1576,7 @@ class EsoViewSalesData
 				}
 				else
 				{
-					$result['outlier'] = true;
+					//$this->searchResults[$i]['outlier'] = true;
 				}
 					
 			}
@@ -1599,7 +1599,7 @@ class EsoViewSalesData
 				}
 				else
 				{
-					$result['outlier'] = true;
+					$this->searchResults[$i]['outlier'] = true;
 				}
 				
 				if ($zScoreWeightAll <= self::ESOVSD_MAXZSCORE_WEIGHTED)
@@ -1610,7 +1610,7 @@ class EsoViewSalesData
 				}
 				else
 				{
-					$result['outlier'] = true;
+					//$this->searchResults[$i]['outlier'] = true;
 				}
 				
 				if ($zScoreWeightListed <= self::ESOVSD_MAXZSCORE_WEIGHTED)
@@ -1621,7 +1621,7 @@ class EsoViewSalesData
 				}
 				else
 				{
-					$result['outlier'] = true;
+					//$this->searchResults[$i]['outlier'] = true;
 				}
 			}
 		}
@@ -1711,7 +1711,7 @@ class EsoViewSalesData
 	
 			$validSalesData[] = $sale;
 			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
-			if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+			if ($sale['buyTimestamp']  > 0) $soldData[] = $sale;
 		}
 		
 		if (count($validSalesData) == 0)
@@ -1720,22 +1720,22 @@ class EsoViewSalesData
 			{
 				$validSalesData[] = $sale;
 				if ($sale['listTimestamp'] > 0) $listData[] = $sale;
-				if ($sale['buyTimestamp'] > 0) $soldData[] = $sale;
+				if ($sale['buyTimestamp']  > 0) $soldData[] = $sale;
 			}
 		}
 	
 		usort($validSalesData, array('EsoViewSalesData', 'SalesDataSortTimestamp'));
-		$this->singleItemData['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
+		$this->singleItemData['newGoodPrice'] = $this->ComputeWeightedAverage($validSalesData);
 			
 		usort($soldData, array('EsoViewSalesData', 'SalesDataSortSoldTimestamp'));
-		$this->singleItemData['goodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
+		$this->singleItemData['newGoodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
 	
 		usort($listData, array('EsoViewSalesData', 'SalesDataSortListTimestamp'));
-		$this->singleItemData['goodListPrice'] = $this->ComputeWeightedAverage($listData);
+		$this->singleItemData['newGoodListPrice'] = $this->ComputeWeightedAverage($listData);
 		
-		$this->goodPriceAll = $this->singleItemData['goodPrice'];
-		$this->goodPriceListed = $this->singleItemData['goodListPrice'];
-		$this->goodPriceSold = $this->singleItemData['goodSoldPrice'];
+		//$this->goodPriceAll = $this->singleItemData['goodPrice'];
+		//$this->goodPriceListed = $this->singleItemData['goodListPrice'];
+		//$this->goodPriceSold = $this->singleItemData['goodSoldPrice'];
 	
 		return true;
 	}
@@ -1756,10 +1756,7 @@ class EsoViewSalesData
 			++$i;
 				
 			$sum += $data['unitPrice'];
-				
-			$day = round((time() - $data['timestamp']) / 86400, 2);
-			$day = $data['timestamp'];
-	
+			
 			++$count;
 		}
 	
@@ -2076,7 +2073,7 @@ class EsoViewSalesData
 		if ($this->formValues['saletype'] == "listed" || $this->formValues['saletype'] == "" || $this->formValues['saletype'] == "all")
 		{
 			if ($output != "") $output .= "<br /><br />";
-			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->goodPriceListed,$this->salePriceAverageLastTimestampListed, "items listed");
+			$output .= $this->GetPriceStatSaleTypeHtml($this->salePriceAverageCountListed, 0, $this->salePriceAverageItemsListed, $this->salePriceAverageListed, $this->goodPriceListed, $this->salePriceAverageLastTimestampListed, "items listed");
 			
 		}
 		
