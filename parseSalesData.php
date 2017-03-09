@@ -3,6 +3,7 @@
 
 // Database users, passwords and other secrets
 require_once("/home/uesp/secrets/esosalesdata.secrets");
+require_once("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
 require_once("esoPotionData.php");
 
@@ -21,6 +22,7 @@ class EsoSalesDataParser
 	public $server = "NA";
 	
 	public $db = null;
+	public $dbLog = null;
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
@@ -43,6 +45,7 @@ class EsoSalesDataParser
 		$this->Lua = new Lua();
 				
 		$this->initDatabaseWrite();
+		$this->InitLogDatabaseRead();
 				
 		$this->setInputParams();
 		$this->parseInputParams();
@@ -95,6 +98,19 @@ class EsoSalesDataParser
 			
 		if (self::SKIP_CREATE_TABLES) return true;
 		return $this->createTables();
+	}
+	
+	
+	private function InitLogDatabaseRead ()
+	{
+		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
+	
+		if ($this->dbLog != null) return true;
+	
+		$this->dbLog = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
+		if ($this->dbLog->connect_error) return $this->ReportError("Could not connect to esolog mysql database!");
+
+		return true;
 	}
 	
 
@@ -785,19 +801,19 @@ class EsoSalesDataParser
 	
 	public function LoadMinedItem($itemId, $itemIntLevel, $itemIntType, $itemPotionData)
 	{
-		$itemId = $this->db->real_escape_string($itemId);
-		$itemIntLevel = $this->db->real_escape_string($itemIntLevel);
-		$itemIntType = $this->db->real_escape_string($itemIntType);
-		$itemPotionData = $this->db->real_escape_string($itemPotionData);
+		$itemId = $this->dbLog->real_escape_string($itemId);
+		$itemIntLevel = $this->dbLog->real_escape_string($itemIntLevel);
+		$itemIntType = $this->dbLog->real_escape_string($itemIntType);
+		$itemPotionData = $this->dbLog->real_escape_string($itemPotionData);
 		
 		$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbLog->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
 		
 		if ($result->num_rows == 0) 
 		{
 			$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
-			$result = $this->db->query($this->lastQuery);
+			$result = $this->dbLog->query($this->lastQuery);
 			if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:1:1:$itemPotionData!");
 		}
 		
