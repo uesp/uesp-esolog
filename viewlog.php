@@ -16,7 +16,7 @@ class EsoLogViewer
 	const ENABLE_10PTS = false;
 	const ENABLE_11PTS = false;
 	const ENABLE_12PTS = false;
-	const ENABLE_13PTS = true;
+	const ENABLE_13PTS = false;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
