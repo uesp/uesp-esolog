@@ -259,6 +259,7 @@ class EsoLogParser
 			'collectionIndex' => self::FIELD_INT,
 			'bookIndex' => self::FIELD_INT,
 			'guildIndex' => self::FIELD_INT,
+			'bookId' => self::FIELD_INT,
 	);
 	
 	public static $ITEM_FIELDS = array(
@@ -1127,6 +1128,15 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadBookId ($bookId)
+	{
+		$book = $this->loadRecord('book', 'bookId', $bookId, self::$BOOK_FIELDS);
+		if ($book === false) return false;
+	
+		return $book;
+	}
+	
+	
 	public function LoadCollectible ($id)
 	{
 		$record = $this->loadRecord('collectibles', 'id', $id, self::$COLLECTIBLE_FIELDS);
@@ -1420,9 +1430,11 @@ class EsoLogParser
 						collectionIndex INTEGER NOT NULL,
 						bookIndex INTEGER NOT NULL,
 						guildIndex INTEGER NOT NULL,
+						bookId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(title),
-						FULLTEXT(body)
+						FULLTEXT(body),
+						INDEX index_bookId(bookId)
 					);";
 		
 		$this->lastQuery = $query;
@@ -3291,9 +3303,9 @@ class EsoLogParser
 			++$this->currentUser['newCount'];
 			$this->currentUser['__dirty'] = true;
 		}
-		elseif ($bookRecord['mediumIndex'] < 0 || $bookRecord['body'] == '' || $bookRecord['icon'] == '')
+		elseif ($bookRecord['mediumIndex'] <= 0 || $bookRecord['body'] == '' || $bookRecord['icon'] == '')
 		{
-			$bookRecord['body'] = $body;
+			if ($bookRecord['body'] == '') $bookRecord['body'] = $body;
 			$bookRecord['mediumIndex'] = $medium;
 			$bookRecord['__dirty'] = true;
 			
@@ -3358,6 +3370,58 @@ class EsoLogParser
 		
 		$this->currentUser['lastBookRecord'] = $bookRecord;
 		$this->currentUser['lastBookLogEntry'] = $logEntry;
+		return $result;
+	}
+	
+	
+	public function OnMineBookStart ($logEntry)
+	{
+		return true;
+	}
+	
+	
+	public function OnMineBookEnd ($logEntry)
+	{
+		return true;
+	}
+	
+	
+	public function OnMineBookCategory ($logEntry)
+	{
+		return true;
+	}
+	
+	
+	public function OnMineBookCollection ($logEntry)
+	{
+		return true;
+	}
+	
+	
+	public function OnMineBook ($logEntry)
+	{
+		$bookId = $logEntry['bookId'];
+		if ($bookId == null) return $this->reportLogParseError("Missing book ID!");
+		
+		$bookRecord = $this->LoadBookId($bookId);
+		if ($bookRecord === false) return false;
+		
+		$bookRecord['title'] = $logEntry['title'];;
+		$bookRecord['icon'] = $logEntry['icon'];
+			
+		if ($logEntry['medium'] > 0) $bookRecord['medium'] = $logEntry['medium'];
+			
+		$bookRecord['categoryIndex'] = $logEntry['categoryIndex'];
+		$bookRecord['collectionIndex'] = $logEntry['collectionIndex'];
+		$bookRecord['bookIndex'] = $logEntry['bookIndex'];
+
+		$bookRecord['__dirty'] = true;
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result &= $this->SaveBook($bookRecord);
+		
 		return $result;
 	}
 	
@@ -5125,6 +5189,11 @@ class EsoLogParser
 			case "GuildSaleListingEntry::Cancel":
 			case "GuildSaleListingInfo":
 			case "GuildSaleListingEntry":
+			case 'mineBook':
+			case 'mineBook:Start':
+			case 'mineBook:End':
+			case 'mineBook:Category':
+			case 'mineBook:Collection':
 				return false;
 		}
 		
@@ -5272,6 +5341,11 @@ class EsoLogParser
 			case "Location":					$result = $this->OnNullEntry($logEntry); break;
 			case "LoreBook":					$result = $this->OnLoreBook($logEntry); break;
 			case "ShowBook":					$result = $this->OnShowBook($logEntry); break;
+			case "mineBook:Start":				$result = $this->OnMineBookStart($logEntry); break;
+			case "mineBook:End":				$result = $this->OnMineBookEnd($logEntry); break;
+			case "mineBook:Collection":			$result = $this->OnMineBookCollection($logEntry); break;
+			case "mineBook:Category":			$result = $this->OnMineBookCategory($logEntry); break;
+			case "mineBook":					$result = $this->OnMineBook($logEntry); break;
 			case "Sell":						$result = $this->OnNullEntry($logEntry); break;
 			case "Buy":							$result = $this->OnNullEntry($logEntry); break;
 			case "Fish":						$result = $this->OnFish($logEntry); break;
