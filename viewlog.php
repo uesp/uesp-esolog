@@ -81,6 +81,7 @@ class EsoLogViewer
 			'collectionIndex' => self::FIELD_INTPOSITIVE,
 			'bookIndex' => self::FIELD_INTPOSITIVE,
 			'guildIndex' => self::FIELD_INTPOSITIVE,
+			'bookId' => self::FIELD_INT,
 	);
 	
 	public static $CHEST_FIELDS = array(
