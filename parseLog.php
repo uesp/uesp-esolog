@@ -3338,7 +3338,7 @@ class EsoLogParser
 			++$this->currentUser['newCount'];
 			$this->currentUser['__dirty'] = true;
 		}
-		else if ($bookRecord['guildIndex'] < 0 || bookRecord['icon'] == '' || bookRecord['icon'] == '/esoui/art/icons/icon_missing.dds' ||
+		else if ($bookRecord['guildIndex'] < 0 || $bookRecord['icon'] == '' || $bookRecord['icon'] == '/esoui/art/icons/icon_missing.dds' ||
 				 $bookRecord['collectionIndex'] <= 0 || $bookRecord['bookIndex'] <= 0 || $bookRecord['categoryIndex'] <= 0 || $bookRecord['guildIndex'] <= 0 )
 		{
 			$bookRecord['icon'] = $logEntry['icon'];
