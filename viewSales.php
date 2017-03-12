@@ -1431,7 +1431,7 @@ class EsoViewSalesData
 		{
 			$price = intval($result['price']);
 			$qnt = intval($result['qnt']);
-			$unitPrice = $price / (float) $qnt;
+			$unitPrice = $result['unitPrice'];
 			
 			$sumSquareAll += pow($unitPrice - $this->salePriceAverageAll, 2);
 			
@@ -1725,17 +1725,17 @@ class EsoViewSalesData
 		}
 	
 		usort($validSalesData, array('EsoViewSalesData', 'SalesDataSortTimestamp'));
-		$this->singleItemData['newGoodPrice'] = $this->ComputeWeightedAverage($validSalesData);
+		$this->singleItemData['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
 			
 		usort($soldData, array('EsoViewSalesData', 'SalesDataSortSoldTimestamp'));
-		$this->singleItemData['newGoodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
+		$this->singleItemData['goodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
 	
 		usort($listData, array('EsoViewSalesData', 'SalesDataSortListTimestamp'));
-		$this->singleItemData['newGoodListPrice'] = $this->ComputeWeightedAverage($listData);
+		$this->singleItemData['goodListPrice'] = $this->ComputeWeightedAverage($listData);
 		
-		//$this->goodPriceAll = $this->singleItemData['goodPrice'];
-		//$this->goodPriceListed = $this->singleItemData['goodListPrice'];
-		//$this->goodPriceSold = $this->singleItemData['goodSoldPrice'];
+		$this->goodPriceAll = $this->singleItemData['goodPrice'];
+		$this->goodPriceListed = $this->singleItemData['goodListPrice'];
+		$this->goodPriceSold = $this->singleItemData['goodSoldPrice'];
 	
 		return true;
 	}
