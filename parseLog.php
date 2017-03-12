@@ -3282,20 +3282,22 @@ class EsoLogParser
 		}
 		
 		$bookTitle = $logEntry['bookTitle'];
-		//print("\tShowBook: $bookTitle\n");
-		
+		$bookId = $logEntry['bookId'];
 		$body = $logEntry['body'];
 		$medium = (int) $logEntry['medium'];
+		$bookRecord = null;
 		
-		if ($bookTitle == null) return $this->reportLogParseError("Missing book title!");
+		if ($bookId != null) 
+			$bookRecord = $this->LoadBookId($bookId);
+		else if ($bookTitle != null)
+			$bookRecord = $this->LoadBook($bookTitle);
 		
-		$bookRecord = $this->LoadBook($bookTitle);
-		if ($bookRecord === false) return false;
+		if ($bookRecord == null || $bookRecord === false) return $this->reportLogParseError("Missing book title or ID!");
 		
 		if ($bookRecord['__isNew'] === true)
 		{
 			$bookRecord['title'] = $bookTitle;
-			$bookRecord['body'] = $body;
+			$bookRecord['bookId'] = $body;
 			$bookRecord['mediumIndex'] = $medium;
 			$bookRecord['isLore'] = 0;
 			$bookRecord['__dirty'] = true;
