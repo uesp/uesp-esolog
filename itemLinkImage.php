@@ -245,7 +245,6 @@ class CEsoItemLinkImage
 			else if ($level[0] == 'c' && $level[1] == 'p')
 			{
 				$this->itemLevel = floor(((int) substr($level, 2))/10) + 50;
-				error_log("item level = ".$this->itemLevel);
 			}
 			else
 			{
@@ -656,6 +655,52 @@ class CEsoItemLinkImage
 	}
 	
 	
+	public function MergeItemSummaryAll()
+	{
+		if ($this->itemSummary == null || count($this->itemSummary) == 0) return false;
+	
+		foreach ($this->itemSummary as $field => $value)
+		{
+			if ($field == "level" && $value == "")
+				$this->itemRecord[$field] = '1-CP160';
+			else
+				$this->itemRecord[$field] = $value;
+		}
+	
+		$this->itemRecord['setBonusCount'] = 0;
+		$this->itemRecord['setMaxEquipCount'] = 0;
+		$numSetItems = 0;
+	
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc1'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+	
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc2'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+	
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc3'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+	
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc4'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+	
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc5'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+	
+		$this->itemRecord['setMaxEquipCount'] = $numSetItems;
+	
+		if ($this->itemRecord['setBonusDesc1'] != "") $this->itemRecord['setBonusCount'] = 1;
+		if ($this->itemRecord['setBonusDesc2'] != "") $this->itemRecord['setBonusCount'] = 2;
+		if ($this->itemRecord['setBonusDesc3'] != "") $this->itemRecord['setBonusCount'] = 3;
+		if ($this->itemRecord['setBonusDesc4'] != "") $this->itemRecord['setBonusCount'] = 4;
+		if ($this->itemRecord['setBonusDesc5'] != "") $this->itemRecord['setBonusCount'] = 5;
+		
+		if ($this->itemQuality > 0) $this->itemRecord['quality'] = $this->itemQuality;
+		if ($this->itemLevel > 0) $this->itemRecord['level'] = $this->itemLevel;
+		
+		return true;
+	}
+	
+	
 	private function LoadItemSummaryData()
 	{
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
@@ -666,7 +711,12 @@ class CEsoItemLinkImage
 	
 		$this->itemSummary = $result->fetch_assoc();
 		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
-	
+		
+		if ($this->itemSummary['type'] == 7)  $this->LoadItemPotionData();
+		if ($this->itemSummary['type'] == 30) $this->LoadItemPoisonData();
+		
+		if ($this->itemSummary['type'] == 60) $this->CreateMasterWritData();
+			
 		return true;
 	}
 	
@@ -1559,7 +1609,7 @@ class CEsoItemLinkImage
 		if ($this->showSummary)
 			$x = 10;
 		else
-		$x = $this->dataBlockMargin;
+			$x = $this->dataBlockMargin;
 		
 		$printData = array();
 		$this->AddPrintData($printData, $label, $this->printOptionsMedBeige);
@@ -2254,7 +2304,7 @@ class CEsoItemLinkImage
 		$itemName = strtoupper($itemData['name']);
 		$quality = $itemData['quality'];
 		$this->nameColor = $this->qualityColors[$quality];
-		if ($this->nameColor == null) $this->nameColor = $white;
+		if ($this->nameColor == null) $this->nameColor = $this->white;
 		
 		$namePrintOptions = array(
 				"font" => self::ESOIL_BOLDFONT_FILE,
@@ -2492,21 +2542,36 @@ class CEsoItemLinkImage
 		
 		if (!$this->InitDatabase()) return false;
 		
-		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+		if ($this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		
 		if ($this->showSummary)
 		{
-			$this->LoadItemSummaryData();
-			$this->MergeItemSummary();
+			if ($this->version >= GetEsoUpdateVersion())
+			{
+				if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+			}
+				
+			$this->LoadEnchantRecords();
+			if (!$this->LoadItemSummaryData()) $this->LoadItemErrorData();
+				
+			if ($this->version >= GetEsoUpdateVersion())
+				$this->MergeItemSummary();
+			else
+				$this->MergeItemSummaryAll();
 		}
-		
-		$this->LoadEnchantRecords();
-		
+		else
+		{
+			if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+			$this->LoadEnchantRecords();
+		}
+				
 		if ($this->ServeCachedImage(false)) return true;
 		
 		$this->OutputImage();
 		return true;
 	}
+	
+	
 	
 };
 
