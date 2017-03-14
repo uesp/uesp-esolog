@@ -2058,7 +2058,7 @@ function MakeEsoIconLink($icon)
 
 function IsEsoVersionAtLeast($version, $checkVersion)
 {
-	if ($version === null || $version == "")
+	if ($version === null || $version == "" || $version == GetEsoUpdateVersion())
 		$suffix = GetEsoUpdateVersion();
 	else
 		$suffix = intval(GetEsoItemTableSuffix($version));

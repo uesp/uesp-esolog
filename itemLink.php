@@ -579,10 +579,56 @@ class CEsoItemLink
 			$value = $this->itemSummary[$field];
 			
 			if ($field == "level" && $value == "")
-				$this->itemRecord[$field] = '1-V16';
+				$this->itemRecord[$field] = '1-CP160';
 			else
 				$this->itemRecord[$field] = $value;
 		}
+		
+		return true;
+	}
+	
+	
+	public function MergeItemSummaryAll()
+	{
+		if ($this->itemSummary == null || count($this->itemSummary) == 0) return false;
+	
+		foreach ($this->itemSummary as $field => $value)
+		{
+			if ($field == "level" && $value == "")
+				$this->itemRecord[$field] = '1-CP160';
+			else
+				$this->itemRecord[$field] = $value;
+		}
+		
+		$this->itemRecord['setBonusCount'] = 0;
+		$this->itemRecord['setMaxEquipCount'] = 0;
+		$numSetItems = 0;
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc1'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc2'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc3'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc4'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc5'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+				
+		$this->itemRecord['setMaxEquipCount'] = $numSetItems;
+		
+		if ($this->itemRecord['setBonusDesc1'] != "") $this->itemRecord['setBonusCount'] = 1;
+		if ($this->itemRecord['setBonusDesc2'] != "") $this->itemRecord['setBonusCount'] = 2;
+		if ($this->itemRecord['setBonusDesc3'] != "") $this->itemRecord['setBonusCount'] = 3;
+		if ($this->itemRecord['setBonusDesc4'] != "") $this->itemRecord['setBonusCount'] = 4;
+		if ($this->itemRecord['setBonusDesc5'] != "") $this->itemRecord['setBonusCount'] = 5;
+		
+		if ($this->itemQuality > 0) $this->itemRecord['quality'] = $this->itemQuality;
+		if ($this->itemLevel > 0) $this->itemRecord['level'] = $this->itemLevel;
 		
 		return true;
 	}
@@ -601,6 +647,11 @@ class CEsoItemLink
 		
 		$this->itemSummary = $row;
 		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
+		
+		if ($this->itemSummary['type'] == 7)  $this->LoadItemPotionData();
+		if ($this->itemSummary['type'] == 30) $this->LoadItemPoisonData();
+		
+		if ($this->itemSummary['type'] == 60) $this->CreateMasterWritData();
 		
 		return true;
 	}
@@ -2676,14 +2727,27 @@ class CEsoItemLink
 		if ($this->questItemId > 0) return $this->ShowQuestItem();
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		
-		if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
-		//$this->LoadResultItemRecord();
-		$this->LoadEnchantRecords();
+		if ($this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		
 		if ($this->showSummary)
 		{
-			$this->LoadItemSummaryData();
-			$this->MergeItemSummary();
+			if ($this->version >= GetEsoUpdateVersion()) 
+			{
+				if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+			}
+			
+			$this->LoadEnchantRecords();
+			if (!$this->LoadItemSummaryData()) $this->LoadItemErrorData();
+			
+			if ($this->version >= GetEsoUpdateVersion())
+				$this->MergeItemSummary();
+			else
+				$this->MergeItemSummaryAll();
+		}
+		else
+		{
+			if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
+			$this->LoadEnchantRecords();
 		}
 		
 		if (!$this->embedLink)
