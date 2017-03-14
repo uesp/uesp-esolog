@@ -1788,6 +1788,23 @@ class EsoViewSalesData
 				$this->viewSalesItemId = $this->itemIds[0];
 				$this->singleItemData = $this->itemResults[$this->viewSalesItemId];
 				
+				$this->itemResults[$this->singleItemData['id']] = $this->singleItemData;
+				$this->itemIds[] = $this->singleItemData['id'];
+				
+				$this->goodPriceAll = $this->singleItemData['goodPrice'];
+				$this->goodPriceListed = $this->singleItemData['goodListPrice'];
+				$this->goodPriceSold = $this->singleItemData['goodSoldPrice'];
+				
+				$this->server = $this->singleItemData['server'];
+				$this->displayServer = $this->server;
+				$this->salesData->server = $this->server;
+				
+				if ($this->sortField == "itemname") 
+				{
+					$this->sortField = "lastseen";
+					$this->sortOrder = 0;
+				}
+				
 				$this->LoadSalesSearchResults(true);
 				$this->ComputeSaleStatistics();
 				$this->LoadTemplate();
