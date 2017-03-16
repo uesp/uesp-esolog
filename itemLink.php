@@ -2727,7 +2727,7 @@ class CEsoItemLink
 		if ($this->questItemId > 0) return $this->ShowQuestItem();
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		
-		if ($this->version < GetEsoUpdateVersion()) $this->showSummary = true;
+		if ($this->version != "" && $this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		
 		if ($this->showSummary)
 		{

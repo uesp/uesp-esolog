@@ -2542,7 +2542,7 @@ class CEsoItemLinkImage
 		
 		if (!$this->InitDatabase()) return false;
 		
-		if ($this->version < GetEsoUpdateVersion()) $this->showSummary = true;
+		if ($this->version != "" && $this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		
 		if ($this->showSummary)
 		{
