@@ -676,7 +676,7 @@ class EsoLogParser
 			'id' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'categoryName' => self::FIELD_STRING,
-			'subcategoryName' => self::FIELD_STRING,
+			'subCategoryName' => self::FIELD_STRING,
 			'categoryIndex' => self::FIELD_INT,
 			'subCategoryIndex' => self::FIELD_INT,
 			'numAchievements' => self::FIELD_INT,
@@ -703,6 +703,7 @@ class EsoLogParser
 			'itemLink' => self::FIELD_STRING,
 			'link' => self::FIELD_STRING,
 			'firstId' => self::FIELD_INT,
+			'nextId' => self::FIELD_INT,
 			'prevId' => self::FIELD_INT,
 			'points' => self::FIELD_INT,
 			'itemName' => self::FIELD_STRING,
@@ -1922,7 +1923,7 @@ class EsoLogParser
 			INDEX index_categoryIndex(categoryIndex),
 			INDEX index_subCategoryIndex(subCategoryIndex),
 			FULLTEXT(categoryName),
-			FULLTEXT(subcategoryName)
+			FULLTEXT(subCategoryName)
 		);";
 		
 		$this->lastQuery = $query;
@@ -1944,6 +1945,7 @@ class EsoLogParser
 			link TINYTEXT NOT NULL,
 			firstId INTEGER NOT NULL,
 			prevId INTEGER NOT NULL,
+			nextId INTEGER NOT NULL,
 			itemName TINYTEXT NOT NULL,
 			itemIcon TINYTEXT NOT NULL,
 			itemQuality TINYINT NOT NULL,
@@ -4656,7 +4658,7 @@ class EsoLogParser
 		
 		$achievementCategory['categoryName'] = $logEntry['name'];
 		$achievementCategory['name'] = $logEntry['name'] . "::General";
-		$achievementCategory['subcategoryName'] = "General";
+		$achievementCategory['subCategoryName'] = "General";
 		$achievementCategory['categoryIndex'] = $logEntry['categoryIndex'];
 		$achievementCategory['subCategoryIndex'] = -1;
 		$achievementCategory['numAchievements'] = $logEntry['numAchievements'];
@@ -4681,7 +4683,7 @@ class EsoLogParser
 		$achievementCategory = array();
 		
 		$achievementCategory['categoryName'] = $logEntry['categoryName'];
-		$achievementCategory['subcategoryName'] = $logEntry['name'];
+		$achievementCategory['subCategoryName'] = $logEntry['name'];
 		
 		if ($logEntry['name'] == "")
 			$achievementCategory['name'] =  $logEntry['categoryName'] . "::General";
@@ -4726,6 +4728,7 @@ class EsoLogParser
 		$achievement['link'] = $logEntry['link'];
 		$achievement['firstId'] = $logEntry['firstId'];
 		$achievement['prevId'] = $logEntry['prevId'];
+		$achievement['nextId'] = $logEntry['nextId'];
 		$achievement['points'] = $logEntry['points'];
 		$achievement['itemName'] = $logEntry['itemName'];
 		$achievement['itemIcon'] = $logEntry['itemIcon'];
