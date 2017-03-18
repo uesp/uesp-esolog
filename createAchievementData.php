@@ -185,8 +185,17 @@ foreach ($achievements as $achievement)
 		$newData['title'] = $achievement['title'];
 	}
 	
-	if ($achievement['collectibleId'] != "")
+	if ($achievement['collectibleId'] > 0)
 	{
+		$result = $db->query("SELECT * FROM collectibles WHERE id={$achievement['collectibleId']};");
+		
+		if ($result->num_rows > 0)
+		{
+			$collectData = $result->fetch_assoc();
+			if ($collectData['icon'] != "") $newData['collectIcon'] = $collectData['icon'];
+			if ($collectData['name'] != "") $newData['collectName'] = $collectData['name'];
+		}
+		
 		$newData['collectId'] = $achievement['collectibleId'];
 	}
 	
