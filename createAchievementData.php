@@ -91,7 +91,7 @@ foreach ($categories as $category)
 {
 	$catName = $category['categoryName'];
 	$subCatName = $category['subCategoryName'];
-	
+		
 	$newCate = array();
 	$newCate['name'] = $catName;
 	$newCate['subName'] = $subCatName;
@@ -103,6 +103,8 @@ foreach ($categories as $category)
 	
 	$categoryData[$category['name']] = $newCate;
 	if ($category['subCategoryIndex'] == -1) $categoryData[$catName] = $newCate;
+	
+	if ($category['numAchievements'] == 0) continue;
 	
 	if ($treeData[$catName] == null) $treeData[$catName] = array();
 	$treeData[$catName][$subCatName] = array();
@@ -171,6 +173,29 @@ foreach ($achievements as $achievement)
 	$newData['points'] = intval($achievement['points']);
 	$newData['index'] = intval($achievement['achievementIndex']);
 	$newData['criteria'] = array();
+		
+	if ($achievement['dyeName'] != "")
+	{
+		$newData['dyeName'] = $achievement['dyeName'];
+		$newData['dyeColor'] = $achievement['dyeColor'];
+	}
+	
+	if ($achievement['title'] != "")
+	{
+		$newData['title'] = $achievement['title'];
+	}
+	
+	if ($achievement['collectibleId'] != "")
+	{
+		$newData['collectId'] = $achievement['collectibleId'];
+	}
+	
+	if ($achievement['itemName'] != "")
+	{
+		$newData['itemName'] = $achievement['itemName'];
+		$newData['itemLink'] = $achievement['itemLink'];
+		$newData['itemIcon'] = $achievement['itemIcon'];
+	}
 	
 	foreach ($achievement['criteria'] as $index => $criteria)
 	{

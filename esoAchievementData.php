@@ -613,6 +613,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Dried Blood Brown',
+    'dyeColor' => '997c6b',
+    'collectId' => '0',
   ),
   1004 => 
   array (
@@ -631,6 +634,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Mages Guild Blue',
+    'dyeColor' => '4f6972',
+    'collectId' => '0',
   ),
   1005 => 
   array (
@@ -649,6 +655,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Fighters Guild Red',
+    'dyeColor' => '72524f',
+    'collectId' => '0',
   ),
   702 => 
   array (
@@ -691,6 +700,10 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Eyevea Blue',
+    'dyeColor' => '1c5b72',
+    'title' => 'Master Wizard',
+    'collectId' => '0',
   ),
   703 => 
   array (
@@ -733,6 +746,10 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Champion Red',
+    'dyeColor' => '72231c',
+    'title' => 'Fighters Guild Victor',
+    'collectId' => '0',
   ),
   704 => 
   array (
@@ -841,6 +858,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   1012 => 
   array (
@@ -859,6 +877,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Syffim Red',
+    'dyeColor' => '8b3e37',
+    'collectId' => '0',
   ),
   1011 => 
   array (
@@ -877,6 +898,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Arcane Blue',
+    'dyeColor' => '1e4558',
+    'collectId' => '0',
   ),
   1013 => 
   array (
@@ -895,6 +919,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Undaunted Bronze',
+    'dyeColor' => '80543a',
+    'collectId' => '0',
   ),
   1684 => 
   array (
@@ -913,6 +940,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1685 => 
   array (
@@ -931,6 +959,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1686 => 
   array (
@@ -949,6 +978,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1681 => 
   array (
@@ -967,6 +997,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1682 => 
   array (
@@ -985,6 +1016,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1683 => 
   array (
@@ -1003,6 +1035,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1678 => 
   array (
@@ -1021,6 +1054,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1679 => 
   array (
@@ -1039,6 +1073,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1680 => 
   array (
@@ -1057,6 +1092,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1216 => 
   array (
@@ -1075,6 +1111,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1215 => 
   array (
@@ -1093,6 +1130,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1217 => 
   array (
@@ -1111,6 +1149,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1221 => 
   array (
@@ -1129,6 +1168,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1222 => 
   array (
@@ -1147,6 +1187,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1223 => 
   array (
@@ -1165,6 +1206,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1218 => 
   array (
@@ -1183,6 +1225,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1219 => 
   array (
@@ -1201,6 +1244,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1220 => 
   array (
@@ -1219,6 +1263,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1214 => 
   array (
@@ -1249,6 +1294,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Starlight Gold',
+    'dyeColor' => 'b1955e',
+    'collectId' => '0',
   ),
   1213 => 
   array (
@@ -1267,6 +1315,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1212 => 
   array (
@@ -1285,6 +1334,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1197 => 
   array (
@@ -1303,6 +1353,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1201 => 
   array (
@@ -1321,6 +1372,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1202 => 
   array (
@@ -1339,6 +1391,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Contraband Violet',
+    'dyeColor' => '59158e',
+    'collectId' => '0',
   ),
   1203 => 
   array (
@@ -1357,6 +1412,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1204 => 
   array (
@@ -1375,6 +1431,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1205 => 
   array (
@@ -1393,6 +1450,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1193 => 
   array (
@@ -1411,6 +1469,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1194 => 
   array (
@@ -1429,6 +1488,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1211 => 
   array (
@@ -1447,6 +1507,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1232 => 
   array (
@@ -1465,6 +1526,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1233 => 
   array (
@@ -1483,6 +1545,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1234 => 
   array (
@@ -1501,6 +1564,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1196 => 
   array (
@@ -1525,6 +1589,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Shadowfoot Gray',
+    'dyeColor' => '5e5450',
+    'collectId' => '0',
   ),
   1227 => 
   array (
@@ -1543,6 +1610,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1231 => 
   array (
@@ -1561,6 +1629,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1230 => 
   array (
@@ -1579,6 +1648,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1206 => 
   array (
@@ -1597,6 +1667,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1207 => 
   array (
@@ -1615,6 +1686,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1208 => 
   array (
@@ -1633,6 +1705,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1195 => 
   array (
@@ -1657,6 +1730,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1224 => 
   array (
@@ -1675,6 +1749,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1225 => 
   array (
@@ -1693,6 +1768,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1226 => 
   array (
@@ -1711,6 +1787,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1190 => 
   array (
@@ -1729,6 +1806,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1191 => 
   array (
@@ -1747,6 +1825,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1192 => 
   array (
@@ -1765,6 +1844,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Forest Footpad Green',
+    'dyeColor' => '608342',
+    'collectId' => '0',
   ),
   1228 => 
   array (
@@ -1783,6 +1865,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1198 => 
   array (
@@ -1801,6 +1884,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1199 => 
   array (
@@ -1819,6 +1903,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1200 => 
   array (
@@ -1837,6 +1922,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1229 => 
   array (
@@ -1855,6 +1941,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1209 => 
   array (
@@ -1873,6 +1960,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1210 => 
   array (
@@ -1891,6 +1979,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   431 => 
   array (
@@ -1939,6 +2028,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   405 => 
   array (
@@ -1969,6 +2059,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   989 => 
   array (
@@ -2125,6 +2216,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 24,
       ),
     ),
+    'dyeName' => 'Aetherial Blue',
+    'dyeColor' => '58a3b1',
+    'collectId' => '0',
   ),
   694 => 
   array (
@@ -2227,6 +2321,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   693 => 
   array (
@@ -2329,6 +2424,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   692 => 
   array (
@@ -2431,6 +2527,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   556 => 
   array (
@@ -2539,6 +2636,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   695 => 
   array (
@@ -2647,6 +2745,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   557 => 
   array (
@@ -2755,6 +2854,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   408 => 
   array (
@@ -2785,6 +2885,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   398 => 
   array (
@@ -2815,6 +2916,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   686 => 
   array (
@@ -2923,6 +3025,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   547 => 
   array (
@@ -3031,6 +3134,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   688 => 
   array (
@@ -3139,6 +3243,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   409 => 
   array (
@@ -3247,6 +3352,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   682 => 
   array (
@@ -3355,6 +3461,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   683 => 
   array (
@@ -3463,6 +3570,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   727 => 
   array (
@@ -3547,6 +3655,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   684 => 
   array (
@@ -3655,6 +3764,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   685 => 
   array (
@@ -3763,6 +3873,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   554 => 
   array (
@@ -3871,6 +3982,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   687 => 
   array (
@@ -3979,6 +4091,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   397 => 
   array (
@@ -4087,6 +4200,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   515 => 
   array (
@@ -4195,6 +4309,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   407 => 
   array (
@@ -4225,6 +4340,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   689 => 
   array (
@@ -4333,6 +4449,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
+    'collectId' => '0',
   ),
   912 => 
   array (
@@ -4381,6 +4498,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   748 => 
   array (
@@ -4399,6 +4517,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   12 => 
   array (
@@ -4417,6 +4536,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Novice Tan',
+    'dyeColor' => 'b18e7d',
+    'collectId' => '0',
   ),
   13 => 
   array (
@@ -4435,6 +4557,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Apprentice Blue',
+    'dyeColor' => '4f6472',
+    'collectId' => '0',
   ),
   14 => 
   array (
@@ -4453,6 +4578,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Adept Purple',
+    'dyeColor' => '724f72',
+    'collectId' => '0',
   ),
   15 => 
   array (
@@ -4471,6 +4599,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Expert Gray',
+    'dyeColor' => 'a1afb1',
+    'collectId' => '0',
   ),
   16 => 
   array (
@@ -4489,6 +4620,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Master Gold',
+    'dyeColor' => 'bfa585',
+    'collectId' => '0',
   ),
   19 => 
   array (
@@ -4507,6 +4641,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   20 => 
   array (
@@ -4525,6 +4660,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   21 => 
   array (
@@ -4543,6 +4679,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   22 => 
   array (
@@ -4561,6 +4698,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   18 => 
   array (
@@ -4579,6 +4717,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Pillager Purple',
+    'dyeColor' => '4b214b',
+    'collectId' => '0',
   ),
   17 => 
   array (
@@ -4597,6 +4738,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Ransacker Blue',
+    'dyeColor' => '21314b',
+    'collectId' => '0',
   ),
   35 => 
   array (
@@ -4615,6 +4759,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Superior Blue',
+    'dyeColor' => '243147',
+    'collectId' => '0',
   ),
   36 => 
   array (
@@ -4633,6 +4780,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Epic Violet',
+    'dyeColor' => '3b1b30',
+    'collectId' => '0',
   ),
   39 => 
   array (
@@ -4681,6 +4831,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Boethiah Gray',
+    'dyeColor' => '666666',
+    'collectId' => '0',
   ),
   40 => 
   array (
@@ -4699,6 +4852,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Automaton Bronze',
+    'dyeColor' => '4b4236',
+    'collectId' => '0',
   ),
   38 => 
   array (
@@ -4729,6 +4885,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Bandit Brown',
+    'dyeColor' => '72594f',
+    'collectId' => '0',
   ),
   41 => 
   array (
@@ -4783,6 +4942,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 7,
       ),
     ),
+    'dyeName' => 'Hunter Green',
+    'dyeColor' => '364b3d',
+    'collectId' => '0',
   ),
   42 => 
   array (
@@ -4819,6 +4981,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Mort Flesh White',
+    'dyeColor' => 'acbcbf',
+    'collectId' => '0',
   ),
   51 => 
   array (
@@ -4861,6 +5026,10 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Stendarr White',
+    'dyeColor' => 'aed2d9',
+    'title' => 'Monster Hunter',
+    'collectId' => '0',
   ),
   1007 => 
   array (
@@ -4879,6 +5048,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Wolf\'s Fur Brown',
+    'dyeColor' => '4b3b36',
+    'collectId' => '0',
   ),
   1008 => 
   array (
@@ -4897,6 +5069,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Noxophilic Black',
+    'dyeColor' => '3a3e40',
+    'collectId' => '0',
   ),
   1687 => 
   array (
@@ -4915,6 +5090,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1688 => 
   array (
@@ -4933,6 +5109,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1689 => 
   array (
@@ -4951,6 +5128,8 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'title' => 'Duelist',
+    'collectId' => '0',
   ),
   1009 => 
   array (
@@ -4969,6 +5148,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Lycanthrope Gray',
+    'dyeColor' => '808080',
+    'collectId' => '0',
   ),
   1010 => 
   array (
@@ -4987,6 +5169,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Lamae\'s White',
+    'dyeColor' => 'bfbfbf',
+    'collectId' => '0',
   ),
   494 => 
   array (
@@ -5047,6 +5232,10 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 8,
       ),
     ),
+    'dyeName' => 'Slaughterfish Flesh Pink',
+    'dyeColor' => 'a67491',
+    'title' => 'Master Angler',
+    'collectId' => '0',
   ),
   476 => 
   array (
@@ -5089,6 +5278,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Covenant Fisher Blue',
+    'dyeColor' => '4373bf',
+    'collectId' => '0',
   ),
   488 => 
   array (
@@ -5131,6 +5323,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Dominion Fisher Yellow',
+    'dyeColor' => 'bfb52f',
+    'collectId' => '0',
   ),
   482 => 
   array (
@@ -5173,6 +5368,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Pact Fisher Red',
+    'dyeColor' => 'bf5656',
+    'collectId' => '0',
   ),
   489 => 
   array (
@@ -5257,6 +5455,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'dyeName' => 'Nibenay Trout Green',
+    'dyeColor' => '6e9944',
+    'collectId' => '0',
   ),
   474 => 
   array (
@@ -5341,6 +5542,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   483 => 
   array (
@@ -5425,6 +5627,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   475 => 
   array (
@@ -5509,6 +5712,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   493 => 
   array (
@@ -5527,6 +5731,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   490 => 
   array (
@@ -5611,6 +5816,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   916 => 
   array (
@@ -5695,6 +5901,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'dyeName' => 'Yokudan Cod Tan',
+    'dyeColor' => 'bf9c85',
+    'collectId' => '0',
   ),
   478 => 
   array (
@@ -5779,6 +5988,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   480 => 
   array (
@@ -5863,6 +6073,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   471 => 
   array (
@@ -5947,6 +6158,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   484 => 
   array (
@@ -6031,6 +6243,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   485 => 
   array (
@@ -6115,6 +6328,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   492 => 
   array (
@@ -6133,6 +6347,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   486 => 
   array (
@@ -6217,6 +6432,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   487 => 
   array (
@@ -6301,6 +6517,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   481 => 
   array (
@@ -6385,6 +6602,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   473 => 
   array (
@@ -6469,6 +6687,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   479 => 
   array (
@@ -6553,6 +6772,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   477 => 
   array (
@@ -6637,6 +6857,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   472 => 
   array (
@@ -6721,6 +6942,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   491 => 
   array (
@@ -6739,6 +6961,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   847 => 
   array (
@@ -6775,6 +6998,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Elemental White',
+    'dyeColor' => 'bfb1ac',
+    'collectId' => '0',
   ),
   842 => 
   array (
@@ -6835,6 +7061,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 8,
       ),
     ),
+    'dyeName' => 'Mudcrab Maroon',
+    'dyeColor' => '724f54',
+    'collectId' => '0',
   ),
   846 => 
   array (
@@ -6859,6 +7088,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Faded Dwemer Scholar Red',
+    'dyeColor' => 'bf827c',
+    'collectId' => '0',
   ),
   844 => 
   array (
@@ -6913,6 +7145,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 7,
       ),
     ),
+    'dyeName' => 'Trolls Fur Brown',
+    'dyeColor' => '665147',
+    'collectId' => '0',
   ),
   843 => 
   array (
@@ -6967,6 +7202,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 7,
       ),
     ),
+    'dyeName' => 'Spriggan Green',
+    'dyeColor' => '6b997e',
+    'collectId' => '0',
   ),
   848 => 
   array (
@@ -7009,6 +7247,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Oblivion Vermilion',
+    'dyeColor' => '996b6b',
+    'collectId' => '0',
   ),
   838 => 
   array (
@@ -7093,6 +7334,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 12,
       ),
     ),
+    'dyeName' => 'Beast Collector Violet',
+    'dyeColor' => '44364b',
+    'collectId' => '0',
   ),
   841 => 
   array (
@@ -7141,6 +7385,9 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Gangrene Green',
+    'dyeColor' => '414b36',
+    'collectId' => '0',
   ),
   92 => 
   array (
@@ -7159,6 +7406,10 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Volunteer\'s Iron',
+    'dyeColor' => 'b1b1b1',
+    'title' => 'Volunteer',
+    'collectId' => '0',
   ),
   903 => 
   array (
@@ -7177,6 +7428,7 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   935 => 
   array (
@@ -7197,6 +7449,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Ruby Throne Red',
+    'dyeColor' => '581212',
+    'collectId' => '47',
   ),
   93 => 
   array (
@@ -7215,6 +7470,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Recruit',
+    'collectId' => '0',
   ),
   94 => 
   array (
@@ -7233,6 +7490,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Tyro',
+    'collectId' => '0',
   ),
   95 => 
   array (
@@ -7251,6 +7510,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Legionary\'s Lead',
+    'dyeColor' => 'b1a7a1',
+    'title' => 'Legionary',
+    'collectId' => '0',
   ),
   96 => 
   array (
@@ -7269,6 +7532,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Veteran',
+    'collectId' => '0',
   ),
   97 => 
   array (
@@ -7287,6 +7552,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Corporal\'s Green',
+    'dyeColor' => '4b4b36',
+    'title' => 'Corporal',
+    'collectId' => '0',
   ),
   98 => 
   array (
@@ -7305,6 +7574,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Sergeant\'s Charcoal',
+    'dyeColor' => '403b3a',
+    'title' => 'Sergeant',
+    'collectId' => '0',
   ),
   706 => 
   array (
@@ -7323,6 +7596,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'First Sergeant',
+    'collectId' => '0',
   ),
   99 => 
   array (
@@ -7341,6 +7616,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Lieutenant',
+    'collectId' => '0',
   ),
   100 => 
   array (
@@ -7359,6 +7636,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Captain\'s Violet',
+    'dyeColor' => '4b3636',
+    'title' => 'Captain',
+    'collectId' => '0',
   ),
   101 => 
   array (
@@ -7377,6 +7658,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Major',
+    'collectId' => '0',
   ),
   102 => 
   array (
@@ -7395,6 +7678,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Centurion Metal',
+    'dyeColor' => '99796b',
+    'title' => 'Centurion',
+    'collectId' => '0',
   ),
   103 => 
   array (
@@ -7413,6 +7700,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Colonel',
+    'collectId' => '0',
   ),
   104 => 
   array (
@@ -7431,6 +7720,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Tribune\'s Steel',
+    'dyeColor' => '3d4a4b',
+    'title' => 'Tribune',
+    'collectId' => '0',
   ),
   105 => 
   array (
@@ -7449,6 +7742,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Brigadier',
+    'collectId' => '0',
   ),
   106 => 
   array (
@@ -7467,6 +7762,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Prefect\'s Gray',
+    'dyeColor' => '4b4b4b',
+    'title' => 'Prefect',
+    'collectId' => '0',
   ),
   107 => 
   array (
@@ -7485,6 +7784,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Praetorian',
+    'collectId' => '0',
   ),
   108 => 
   array (
@@ -7503,6 +7804,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Palatine\'s White',
+    'dyeColor' => 'd9c3b7',
+    'title' => 'Palatine',
+    'collectId' => '0',
   ),
   109 => 
   array (
@@ -7521,6 +7826,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'August Palatine',
+    'collectId' => '0',
   ),
   110 => 
   array (
@@ -7539,6 +7846,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Legate\'s Black',
+    'dyeColor' => '181a1a',
+    'title' => 'Legate',
+    'collectId' => '0',
   ),
   111 => 
   array (
@@ -7557,6 +7868,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'General\'s Gold',
+    'dyeColor' => '803e20',
+    'title' => 'General',
+    'collectId' => '0',
   ),
   112 => 
   array (
@@ -7575,6 +7890,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Warlord\'s Red',
+    'dyeColor' => '582420',
+    'title' => 'Warlord',
+    'collectId' => '0',
   ),
   113 => 
   array (
@@ -7593,6 +7912,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Grand Warlord\'s Violet',
+    'dyeColor' => '242447',
+    'title' => 'Grand Warlord',
+    'collectId' => '0',
   ),
   114 => 
   array (
@@ -7611,6 +7934,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Overlord\'s Purple',
+    'dyeColor' => '2e72e',
+    'title' => 'Overlord',
+    'collectId' => '0',
   ),
   705 => 
   array (
@@ -7629,6 +7956,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Grand Overlord\'s Brass',
+    'dyeColor' => '99713d',
+    'title' => 'Grand Overlord',
+    'collectId' => '0',
   ),
   119 => 
   array (
@@ -7647,6 +7978,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   120 => 
   array (
@@ -7665,6 +7997,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   121 => 
   array (
@@ -7683,6 +8016,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   117 => 
   array (
@@ -7701,6 +8035,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   118 => 
   array (
@@ -7719,6 +8054,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   115 => 
   array (
@@ -7737,6 +8073,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   116 => 
   array (
@@ -7755,6 +8092,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   882 => 
   array (
@@ -7773,6 +8111,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   904 => 
   array (
@@ -7791,6 +8130,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Regicide Red',
+    'dyeColor' => '4b2121',
+    'collectId' => '0',
   ),
   134 => 
   array (
@@ -7809,6 +8151,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Murder Mahogany',
+    'dyeColor' => '996444',
+    'collectId' => '0',
   ),
   722 => 
   array (
@@ -7827,6 +8172,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   141 => 
   array (
@@ -7845,6 +8191,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   720 => 
   array (
@@ -7863,6 +8210,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   724 => 
   array (
@@ -7881,6 +8229,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   726 => 
   array (
@@ -7899,6 +8248,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   725 => 
   array (
@@ -7917,6 +8267,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   721 => 
   array (
@@ -7935,6 +8286,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   719 => 
   array (
@@ -7953,6 +8305,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   718 => 
   array (
@@ -7971,6 +8324,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   723 => 
   array (
@@ -7989,6 +8343,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   88 => 
   array (
@@ -8007,6 +8362,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   962 => 
   array (
@@ -8025,6 +8381,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Dragonknights\' Blood',
+    'dyeColor' => '4b3836',
+    'collectId' => '0',
   ),
   89 => 
   array (
@@ -8043,6 +8402,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   960 => 
   array (
@@ -8061,6 +8421,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Sorcerers\'-Bane Violet',
+    'dyeColor' => 'af8ebf',
+    'collectId' => '0',
   ),
   90 => 
   array (
@@ -8079,6 +8442,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   961 => 
   array (
@@ -8097,6 +8461,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Templars\' Last Dawn',
+    'dyeColor' => '99856b',
+    'collectId' => '0',
   ),
   717 => 
   array (
@@ -8115,6 +8482,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   959 => 
   array (
@@ -8133,6 +8501,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Nightblades\' Indigo',
+    'dyeColor' => '363d4b',
+    'collectId' => '0',
   ),
   91 => 
   array (
@@ -8151,6 +8522,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   122 => 
   array (
@@ -8169,6 +8541,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   963 => 
   array (
@@ -8193,6 +8566,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Heartlands Umber',
+    'dyeColor' => '99756b',
+    'collectId' => '0',
   ),
   135 => 
   array (
@@ -8211,6 +8587,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   136 => 
   array (
@@ -8229,6 +8606,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   137 => 
   array (
@@ -8247,6 +8625,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   138 => 
   array (
@@ -8265,6 +8644,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   139 => 
   array (
@@ -8283,6 +8663,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   140 => 
   array (
@@ -8301,6 +8682,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1789 => 
   array (
@@ -8319,6 +8701,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1790 => 
   array (
@@ -8337,6 +8720,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1791 => 
   array (
@@ -8355,6 +8739,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1031 => 
   array (
@@ -8373,6 +8758,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Alchemist Bilious',
+    'dyeColor' => '726d1c',
+    'collectId' => '0',
   ),
   1045 => 
   array (
@@ -8493,6 +8881,9 @@ Long may you reign!',
         'index' => 18,
       ),
     ),
+    'dyeName' => 'Nirnroot Gray',
+    'dyeColor' => 'a6968d',
+    'collectId' => '0',
   ),
   1102 => 
   array (
@@ -8529,6 +8920,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1088 => 
   array (
@@ -8565,6 +8957,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1464 => 
   array (
@@ -8625,6 +9018,9 @@ Long may you reign!',
         'index' => 8,
       ),
     ),
+    'dyeName' => 'Viridian Venom',
+    'dyeColor' => '161ff',
+    'collectId' => '0',
   ),
   1094 => 
   array (
@@ -8661,6 +9057,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1465 => 
   array (
@@ -8697,6 +9094,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1469 => 
   array (
@@ -8733,6 +9131,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1468 => 
   array (
@@ -8769,6 +9168,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1095 => 
   array (
@@ -8805,6 +9205,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1470 => 
   array (
@@ -8841,6 +9242,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1467 => 
   array (
@@ -8877,6 +9279,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1466 => 
   array (
@@ -8913,6 +9316,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1472 => 
   array (
@@ -8949,6 +9353,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1471 => 
   array (
@@ -8985,6 +9390,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1101 => 
   array (
@@ -9021,6 +9427,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1096 => 
   array (
@@ -9057,6 +9464,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1103 => 
   array (
@@ -9093,6 +9501,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1089 => 
   array (
@@ -9129,6 +9538,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1104 => 
   array (
@@ -9165,6 +9575,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1099 => 
   array (
@@ -9201,6 +9612,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1091 => 
   array (
@@ -9237,6 +9649,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1097 => 
   array (
@@ -9273,6 +9686,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1093 => 
   array (
@@ -9309,6 +9723,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1090 => 
   array (
@@ -9345,6 +9760,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1098 => 
   array (
@@ -9381,6 +9797,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1087 => 
   array (
@@ -9417,6 +9834,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1100 => 
   array (
@@ -9453,6 +9871,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1092 => 
   array (
@@ -9489,6 +9908,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1764 => 
   array (
@@ -9507,6 +9927,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1765 => 
   array (
@@ -9525,6 +9946,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1766 => 
   array (
@@ -9543,6 +9965,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1783 => 
   array (
@@ -9561,6 +9984,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1784 => 
   array (
@@ -9579,6 +10003,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1785 => 
   array (
@@ -9597,6 +10022,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1032 => 
   array (
@@ -9615,6 +10041,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Smith Steel Blue',
+    'dyeColor' => '213a4b',
+    'collectId' => '0',
   ),
   1758 => 
   array (
@@ -9633,6 +10062,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1759 => 
   array (
@@ -9651,6 +10081,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1760 => 
   array (
@@ -9669,6 +10100,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1040 => 
   array (
@@ -9705,6 +10137,9 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Earthforge Iron Gray',
+    'dyeColor' => '69868b',
+    'collectId' => '0',
   ),
   1780 => 
   array (
@@ -9723,6 +10158,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1781 => 
   array (
@@ -9741,6 +10177,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1782 => 
   array (
@@ -9759,6 +10196,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1786 => 
   array (
@@ -9777,6 +10215,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1787 => 
   array (
@@ -9795,6 +10234,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1788 => 
   array (
@@ -9813,6 +10253,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1033 => 
   array (
@@ -9831,6 +10272,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Clothier Purple',
+    'dyeColor' => '4b132a',
+    'collectId' => '0',
   ),
   1761 => 
   array (
@@ -9849,6 +10293,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1762 => 
   array (
@@ -9867,6 +10312,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1763 => 
   array (
@@ -9885,6 +10331,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1048 => 
   array (
@@ -9921,6 +10368,9 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Ironweed Violet',
+    'dyeColor' => 'b161b0',
+    'collectId' => '0',
   ),
   788 => 
   array (
@@ -9963,6 +10413,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Aspect Red',
+    'dyeColor' => '996e6b',
+    'collectId' => '0',
   ),
   1317 => 
   array (
@@ -10005,6 +10458,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   987 => 
   array (
@@ -10029,6 +10483,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Potency Blue',
+    'dyeColor' => '706b99',
+    'collectId' => '0',
   ),
   780 => 
   array (
@@ -10125,6 +10582,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   779 => 
   array (
@@ -10221,6 +10679,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1777 => 
   array (
@@ -10239,6 +10698,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1778 => 
   array (
@@ -10257,6 +10717,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1779 => 
   array (
@@ -10275,6 +10736,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1034 => 
   array (
@@ -10293,6 +10755,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Enchanter Tangerine',
+    'dyeColor' => '733b22',
+    'collectId' => '0',
   ),
   781 => 
   array (
@@ -10407,6 +10872,9 @@ Long may you reign!',
         'index' => 17,
       ),
     ),
+    'dyeName' => 'Essence Green',
+    'dyeColor' => 'a1bf85',
+    'collectId' => '0',
   ),
   1767 => 
   array (
@@ -10425,6 +10893,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1772 => 
   array (
@@ -10443,6 +10912,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1768 => 
   array (
@@ -10461,6 +10931,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1792 => 
   array (
@@ -10479,6 +10950,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1793 => 
   array (
@@ -10497,6 +10969,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1794 => 
   array (
@@ -10515,6 +10988,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1026 => 
   array (
@@ -10533,6 +11007,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Battaglir Green',
+    'dyeColor' => '6b9979',
+    'collectId' => '0',
   ),
   1027 => 
   array (
@@ -10551,6 +11028,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Shein Violet',
+    'dyeColor' => '4b363f',
+    'collectId' => '0',
   ),
   1028 => 
   array (
@@ -10569,6 +11049,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Recipe Reaper Red',
+    'dyeColor' => '99444f',
+    'collectId' => '0',
   ),
   1035 => 
   array (
@@ -10587,6 +11070,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Provisioner Brown',
+    'dyeColor' => 'cc775b',
+    'collectId' => '0',
   ),
   1769 => 
   array (
@@ -10605,6 +11091,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1770 => 
   array (
@@ -10623,6 +11110,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1771 => 
   array (
@@ -10641,6 +11129,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1085 => 
   array (
@@ -10665,6 +11154,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1086 => 
   array (
@@ -10689,6 +11179,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1046 => 
   array (
@@ -10713,6 +11204,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Brewer\'s Ale Brown',
+    'dyeColor' => '4b2113',
+    'collectId' => '0',
   ),
   1774 => 
   array (
@@ -10731,6 +11225,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1775 => 
   array (
@@ -10749,6 +11244,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1776 => 
   array (
@@ -10767,6 +11263,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1036 => 
   array (
@@ -10785,6 +11282,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Woodworker Yellow',
+    'dyeColor' => '999344',
+    'collectId' => '0',
   ),
   1755 => 
   array (
@@ -10803,6 +11303,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1756 => 
   array (
@@ -10821,6 +11322,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1757 => 
   array (
@@ -10839,6 +11341,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1044 => 
   array (
@@ -10875,6 +11378,9 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Mastic Yellow',
+    'dyeColor' => 'cc9b5b',
+    'collectId' => '0',
   ),
   64 => 
   array (
@@ -10893,6 +11399,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Dragonthorn Yellow',
+    'dyeColor' => '99956b',
+    'collectId' => '0',
   ),
   65 => 
   array (
@@ -10911,6 +11420,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Hyacinth Pink',
+    'dyeColor' => 'bf859c',
+    'collectId' => '0',
   ),
   66 => 
   array (
@@ -10929,6 +11441,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Jute Green',
+    'dyeColor' => '4f725e',
+    'collectId' => '0',
   ),
   67 => 
   array (
@@ -10947,6 +11462,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Raw Hide Tan',
+    'dyeColor' => 'bf9385',
+    'collectId' => '0',
   ),
   68 => 
   array (
@@ -10965,6 +11483,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Kresh Flower Red',
+    'dyeColor' => '993e35',
+    'collectId' => '0',
   ),
   1025 => 
   array (
@@ -11061,6 +11582,9 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'dyeName' => 'Book Cover Brown',
+    'dyeColor' => '725d4f',
+    'collectId' => '0',
   ),
   1146 => 
   array (
@@ -11079,6 +11603,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1147 => 
   array (
@@ -11097,6 +11622,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1148 => 
   array (
@@ -11115,6 +11641,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1149 => 
   array (
@@ -11133,6 +11660,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1023 => 
   array (
@@ -11241,6 +11769,9 @@ Long may you reign!',
         'index' => 16,
       ),
     ),
+    'dyeName' => 'Amethyst Violet',
+    'dyeColor' => '544f72',
+    'collectId' => '0',
   ),
   1145 => 
   array (
@@ -11289,6 +11820,9 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Woodsman Green',
+    'dyeColor' => '2d4034',
+    'collectId' => '0',
   ),
   1017 => 
   array (
@@ -11307,6 +11841,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Forge Ember Red',
+    'dyeColor' => 'bf7c7c',
+    'collectId' => '0',
   ),
   1018 => 
   array (
@@ -11325,6 +11862,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Obsidian Black',
+    'dyeColor' => '474747',
+    'collectId' => '0',
   ),
   1019 => 
   array (
@@ -11343,6 +11883,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Craftmaster Gold',
+    'dyeColor' => '725734',
+    'collectId' => '0',
   ),
   1415 => 
   array (
@@ -11439,6 +11982,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1714 => 
   array (
@@ -11535,6 +12079,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1416 => 
   array (
@@ -11631,6 +12176,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1715 => 
   array (
@@ -11727,6 +12273,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1414 => 
   array (
@@ -11823,6 +12370,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1798 => 
   array (
@@ -11919,6 +12467,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1799 => 
   array (
@@ -11937,6 +12486,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1800 => 
   array (
@@ -11955,6 +12505,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1801 => 
   array (
@@ -11973,6 +12524,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1797 => 
   array (
@@ -12069,6 +12621,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1418 => 
   array (
@@ -12087,6 +12640,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1713 => 
   array (
@@ -12183,6 +12737,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1020 => 
   array (
@@ -12201,6 +12756,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Bugloss Blue',
+    'dyeColor' => '4f5d72',
+    'collectId' => '0',
   ),
   1021 => 
   array (
@@ -12219,6 +12777,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Birch White',
+    'dyeColor' => 'bfbfbf',
+    'collectId' => '0',
   ),
   1022 => 
   array (
@@ -12237,6 +12798,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Polished Steel Gray',
+    'dyeColor' => '8b8b8b',
+    'collectId' => '0',
   ),
   1041 => 
   array (
@@ -12345,6 +12909,9 @@ Long may you reign!',
         'index' => 16,
       ),
     ),
+    'dyeName' => 'Moonstone White',
+    'dyeColor' => 'adc7cc',
+    'collectId' => '0',
   ),
   1125 => 
   array (
@@ -12369,6 +12936,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Nirncrux Red',
+    'dyeColor' => '4b1b1b',
+    'collectId' => '0',
   ),
   1030 => 
   array (
@@ -12435,6 +13005,9 @@ Long may you reign!',
         'index' => 9,
       ),
     ),
+    'dyeName' => 'Motif Pattern Blue',
+    'dyeColor' => '6b8c99',
+    'collectId' => '0',
   ),
   1043 => 
   array (
@@ -12477,6 +13050,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Motif Master Brown',
+    'dyeColor' => '3b2715',
+    'collectId' => '0',
   ),
   1318 => 
   array (
@@ -12573,6 +13149,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1144 => 
   array (
@@ -12669,6 +13246,9 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'dyeName' => 'Dwarven Brass',
+    'dyeColor' => '513419',
+    'collectId' => '0',
   ),
   1319 => 
   array (
@@ -12765,6 +13345,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1348 => 
   array (
@@ -12861,6 +13442,7 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1042 => 
   array (
@@ -12879,6 +13461,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Entoloma Blue',
+    'dyeColor' => '549994',
+    'collectId' => '0',
   ),
   587 => 
   array (
@@ -12915,6 +13500,8 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'title' => 'Savior of Nirn',
+    'collectId' => '0',
   ),
   318 => 
   array (
@@ -13023,6 +13610,10 @@ Long may you reign!',
         'index' => 16,
       ),
     ),
+    'dyeName' => 'Daedric Red',
+    'dyeColor' => '33ff',
+    'title' => 'Daedric Lord Slayer',
+    'collectId' => '0',
   ),
   584 => 
   array (
@@ -13125,6 +13716,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   579 => 
   array (
@@ -13227,6 +13819,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   585 => 
   array (
@@ -13329,6 +13922,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   586 => 
   array (
@@ -13401,6 +13995,7 @@ Long may you reign!',
         'index' => 10,
       ),
     ),
+    'collectId' => '0',
   ),
   324 => 
   array (
@@ -13419,6 +14014,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Dolmen Deep Blue',
+    'dyeColor' => '38364b',
+    'collectId' => '0',
   ),
   619 => 
   array (
@@ -13437,6 +14035,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   620 => 
   array (
@@ -13455,6 +14054,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   621 => 
   array (
@@ -13473,6 +14073,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Enemy of Coldharbour',
+    'collectId' => '0',
   ),
   322 => 
   array (
@@ -13491,6 +14093,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Nightshade Purple',
+    'dyeColor' => '441544',
+    'collectId' => '0',
   ),
   303 => 
   array (
@@ -13509,6 +14114,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   304 => 
   array (
@@ -13527,6 +14133,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   305 => 
   array (
@@ -13545,6 +14152,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   306 => 
   array (
@@ -13563,6 +14171,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   307 => 
   array (
@@ -13581,6 +14190,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   308 => 
   array (
@@ -13599,6 +14209,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   309 => 
   array (
@@ -13617,6 +14228,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   310 => 
   array (
@@ -13635,6 +14247,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   311 => 
   array (
@@ -13653,6 +14266,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   312 => 
   array (
@@ -13671,6 +14285,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   313 => 
   array (
@@ -13689,6 +14304,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   314 => 
   array (
@@ -13707,6 +14323,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   315 => 
   array (
@@ -13725,6 +14342,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   316 => 
   array (
@@ -13743,6 +14361,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   317 => 
   array (
@@ -13761,6 +14380,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   548 => 
   array (
@@ -13779,6 +14399,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1503 => 
   array (
@@ -13797,6 +14418,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Mageslayer',
+    'collectId' => '0',
   ),
   1139 => 
   array (
@@ -13827,6 +14450,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   991 => 
   array (
@@ -13845,6 +14469,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Warrior\'s Steel',
+    'dyeColor' => '373540',
+    'collectId' => '0',
   ),
   1136 => 
   array (
@@ -13863,6 +14490,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   870 => 
   array (
@@ -13881,6 +14509,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1080 => 
   array (
@@ -13899,6 +14528,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Dragonstar Red',
+    'dyeColor' => '802534',
+    'collectId' => '0',
   ),
   990 => 
   array (
@@ -13917,6 +14549,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Julianos White',
+    'dyeColor' => 'd8d8d8',
+    'collectId' => '0',
   ),
   1137 => 
   array (
@@ -13935,6 +14570,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1081 => 
   array (
@@ -13953,6 +14589,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Aurora Green',
+    'dyeColor' => '259969',
+    'collectId' => '0',
   ),
   1474 => 
   array (
@@ -13971,6 +14610,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Shehai Shatterer',
+    'collectId' => '0',
   ),
   1123 => 
   array (
@@ -13989,6 +14630,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Ophidian Jade',
+    'dyeColor' => '134025',
+    'collectId' => '0',
   ),
   1462 => 
   array (
@@ -14007,6 +14651,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Ophidian Overlord',
+    'collectId' => '0',
   ),
   1138 => 
   array (
@@ -14025,6 +14671,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1113 => 
   array (
@@ -14043,6 +14690,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1124 => 
   array (
@@ -14061,6 +14709,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Scaled Court Brown',
+    'dyeColor' => 'a68380',
+    'collectId' => '0',
   ),
   1079 => 
   array (
@@ -14079,6 +14730,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Celestial Violet',
+    'dyeColor' => '85708b',
+    'collectId' => '0',
   ),
   1078 => 
   array (
@@ -14097,6 +14751,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Mundus Blue',
+    'dyeColor' => '7489b1',
+    'collectId' => '0',
   ),
   1117 => 
   array (
@@ -14115,6 +14772,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1115 => 
   array (
@@ -14133,6 +14791,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1116 => 
   array (
@@ -14151,6 +14810,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   992 => 
   array (
@@ -14169,6 +14829,8 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'title' => 'Dragonstar Arena Champion',
+    'collectId' => '0',
   ),
   1140 => 
   array (
@@ -14187,6 +14849,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Adamantine Silver',
+    'dyeColor' => '97acb1',
+    'title' => 'Boethiah\'s Scythe',
+    'collectId' => '0',
   ),
   470 => 
   array (
@@ -14205,6 +14871,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   468 => 
   array (
@@ -14223,6 +14890,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1069 => 
   array (
@@ -14265,6 +14933,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Dominion Conqueror Yellow',
+    'dyeColor' => '4b4813',
+    'collectId' => '0',
   ),
   1070 => 
   array (
@@ -14307,6 +14978,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Covenant Conqueror Blue',
+    'dyeColor' => '13284b',
+    'collectId' => '0',
   ),
   1068 => 
   array (
@@ -14349,6 +15023,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Pact Conqueror Red',
+    'dyeColor' => '4b1313',
+    'collectId' => '0',
   ),
   380 => 
   array (
@@ -14367,6 +15044,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   714 => 
   array (
@@ -14385,6 +15063,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   460 => 
   array (
@@ -14403,6 +15082,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   379 => 
   array (
@@ -14421,6 +15101,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   388 => 
   array (
@@ -14439,6 +15120,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   381 => 
   array (
@@ -14457,6 +15139,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   371 => 
   array (
@@ -14475,6 +15158,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   707 => 
   array (
@@ -14493,6 +15177,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   713 => 
   array (
@@ -14511,6 +15196,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   708 => 
   array (
@@ -14529,6 +15215,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   445 => 
   array (
@@ -14547,6 +15234,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   372 => 
   array (
@@ -14565,6 +15253,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   469 => 
   array (
@@ -14583,6 +15272,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   874 => 
   array (
@@ -14601,6 +15291,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1053 => 
   array (
@@ -14637,6 +15328,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1054 => 
   array (
@@ -14685,6 +15377,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1051 => 
   array (
@@ -14739,6 +15432,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   368 => 
   array (
@@ -14781,6 +15475,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   370 => 
   array (
@@ -14817,6 +15512,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   376 => 
   array (
@@ -14865,6 +15561,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   374 => 
   array (
@@ -14919,6 +15616,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   396 => 
   array (
@@ -14961,6 +15659,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   378 => 
   array (
@@ -15015,6 +15714,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1055 => 
   array (
@@ -15063,6 +15763,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1049 => 
   array (
@@ -15111,6 +15812,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1050 => 
   array (
@@ -15159,6 +15861,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   300 => 
   array (
@@ -15207,6 +15910,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1052 => 
   array (
@@ -15255,6 +15959,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   390 => 
   array (
@@ -15297,6 +16002,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1056 => 
   array (
@@ -15351,6 +16057,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1061 => 
   array (
@@ -15387,6 +16094,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1062 => 
   array (
@@ -15435,6 +16143,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1059 => 
   array (
@@ -15489,6 +16198,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   367 => 
   array (
@@ -15531,6 +16241,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   369 => 
   array (
@@ -15567,6 +16278,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   375 => 
   array (
@@ -15615,6 +16327,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   373 => 
   array (
@@ -15669,6 +16382,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   395 => 
   array (
@@ -15711,6 +16425,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   377 => 
   array (
@@ -15765,6 +16480,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1063 => 
   array (
@@ -15813,6 +16529,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1057 => 
   array (
@@ -15861,6 +16578,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1058 => 
   array (
@@ -15909,6 +16627,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   299 => 
   array (
@@ -15957,6 +16676,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1060 => 
   array (
@@ -16005,6 +16725,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   389 => 
   array (
@@ -16047,6 +16768,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1064 => 
   array (
@@ -16101,6 +16823,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1074 => 
   array (
@@ -16143,6 +16866,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Covenant Vanquisher Violet',
+    'dyeColor' => '5d3472',
+    'collectId' => '0',
   ),
   1075 => 
   array (
@@ -16185,6 +16911,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Dominion Vanquisher Green',
+    'dyeColor' => '34724d',
+    'collectId' => '0',
   ),
   1073 => 
   array (
@@ -16227,6 +16956,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Pact Vanquisher Brown',
+    'dyeColor' => '72311c',
+    'collectId' => '0',
   ),
   325 => 
   array (
@@ -16251,6 +16983,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1555 => 
   array (
@@ -16299,6 +17032,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   294 => 
   array (
@@ -16323,6 +17057,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1562 => 
   array (
@@ -16371,6 +17106,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   301 => 
   array (
@@ -16395,6 +17131,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1571 => 
   array (
@@ -16443,6 +17180,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   11 => 
   array (
@@ -16473,6 +17211,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1579 => 
   array (
@@ -16521,6 +17260,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   78 => 
   array (
@@ -16551,6 +17291,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1587 => 
   array (
@@ -16599,6 +17340,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   79 => 
   array (
@@ -16629,6 +17371,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1595 => 
   array (
@@ -16677,6 +17420,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   551 => 
   array (
@@ -16707,6 +17451,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1603 => 
   array (
@@ -16737,6 +17482,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   272 => 
   array (
@@ -16767,6 +17513,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   80 => 
   array (
@@ -16803,6 +17550,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1616 => 
   array (
@@ -16851,6 +17599,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   81 => 
   array (
@@ -16881,6 +17630,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   357 => 
   array (
@@ -16911,6 +17661,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   391 => 
   array (
@@ -16941,6 +17692,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   417 => 
   array (
@@ -16971,6 +17723,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   393 => 
   array (
@@ -17001,6 +17754,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   410 => 
   array (
@@ -17031,6 +17785,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   570 => 
   array (
@@ -17067,6 +17822,7 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   749 => 
   array (
@@ -17085,6 +17841,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1158 => 
   array (
@@ -17103,6 +17860,10 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
+    'itemName' => 'Undaunted Enclave Invitation',
+    'itemLink' => '|H0:item:59731:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h',
+    'itemIcon' => '/esoui/art/icons/quest_letter_001.dds',
   ),
   1707 => 
   array (
@@ -17121,6 +17882,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1708 => 
   array (
@@ -17139,6 +17901,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1709 => 
   array (
@@ -17157,6 +17920,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1710 => 
   array (
@@ -17175,6 +17939,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1150 => 
   array (
@@ -17193,6 +17958,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1151 => 
   array (
@@ -17211,6 +17977,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1152 => 
   array (
@@ -17229,6 +17996,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1153 => 
   array (
@@ -17247,6 +18015,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1154 => 
   array (
@@ -17265,6 +18034,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1155 => 
   array (
@@ -17283,6 +18053,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1156 => 
   array (
@@ -17301,6 +18072,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1157 => 
   array (
@@ -17319,6 +18091,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   691 => 
   array (
@@ -17337,6 +18110,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   709 => 
   array (
@@ -17355,6 +18129,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Boss Butcher Brown',
+    'dyeColor' => '4b3d36',
+    'collectId' => '0',
   ),
   710 => 
   array (
@@ -17373,6 +18150,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   711 => 
   array (
@@ -17391,6 +18169,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Dungeon Victor Turquoise',
+    'dyeColor' => '476663',
+    'collectId' => '0',
   ),
   750 => 
   array (
@@ -17409,6 +18190,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Tombstone Gray',
+    'dyeColor' => '5b6466',
+    'collectId' => '0',
   ),
   751 => 
   array (
@@ -17427,6 +18211,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   752 => 
   array (
@@ -17445,6 +18230,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Restorative Gold',
+    'dyeColor' => '72704f',
+    'collectId' => '0',
   ),
   753 => 
   array (
@@ -17463,6 +18251,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   754 => 
   array (
@@ -17481,6 +18270,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Guardian Blue',
+    'dyeColor' => '36424b',
+    'collectId' => '0',
   ),
   1072 => 
   array (
@@ -17541,6 +18333,9 @@ Long may you reign!',
         'index' => 8,
       ),
     ),
+    'dyeName' => 'Voidstone Violet',
+    'dyeColor' => '12f33',
+    'collectId' => '0',
   ),
   1554 => 
   array (
@@ -17559,6 +18354,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   451 => 
   array (
@@ -17577,6 +18373,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1561 => 
   array (
@@ -17595,6 +18392,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   342 => 
   array (
@@ -17613,6 +18411,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1570 => 
   array (
@@ -17631,6 +18430,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   448 => 
   array (
@@ -17649,6 +18449,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1578 => 
   array (
@@ -17667,6 +18468,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   463 => 
   array (
@@ -17685,6 +18487,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1586 => 
   array (
@@ -17703,6 +18506,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   467 => 
   array (
@@ -17721,6 +18525,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1594 => 
   array (
@@ -17739,6 +18544,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   681 => 
   array (
@@ -17757,6 +18563,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1602 => 
   array (
@@ -17775,6 +18582,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1114 => 
   array (
@@ -17793,6 +18601,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1609 => 
   array (
@@ -17811,6 +18620,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1615 => 
   array (
@@ -17829,6 +18639,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1084 => 
   array (
@@ -17847,6 +18658,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1622 => 
   array (
@@ -17865,6 +18677,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1628 => 
   array (
@@ -17883,6 +18696,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1634 => 
   array (
@@ -17901,6 +18715,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1640 => 
   array (
@@ -17919,6 +18734,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1646 => 
   array (
@@ -17937,6 +18753,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1652 => 
   array (
@@ -17955,6 +18772,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1658 => 
   array (
@@ -17973,6 +18791,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1550 => 
   array (
@@ -17991,6 +18810,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1551 => 
   array (
@@ -18009,6 +18829,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   853 => 
   array (
@@ -18027,6 +18848,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   852 => 
   array (
@@ -18045,6 +18867,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1558 => 
   array (
@@ -18063,6 +18886,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1557 => 
   array (
@@ -18081,6 +18905,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   850 => 
   array (
@@ -18099,6 +18924,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   851 => 
   array (
@@ -18117,6 +18943,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1567 => 
   array (
@@ -18135,6 +18962,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1566 => 
   array (
@@ -18153,6 +18981,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   855 => 
   array (
@@ -18171,6 +19000,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   854 => 
   array (
@@ -18189,6 +19019,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1575 => 
   array (
@@ -18207,6 +19038,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1574 => 
   array (
@@ -18225,6 +19057,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   858 => 
   array (
@@ -18243,6 +19076,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   859 => 
   array (
@@ -18261,6 +19095,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1583 => 
   array (
@@ -18279,6 +19114,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1582 => 
   array (
@@ -18297,6 +19133,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   857 => 
   array (
@@ -18315,6 +19152,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   856 => 
   array (
@@ -18333,6 +19171,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1591 => 
   array (
@@ -18351,6 +19190,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1590 => 
   array (
@@ -18369,6 +19209,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   861 => 
   array (
@@ -18387,6 +19228,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   860 => 
   array (
@@ -18405,6 +19247,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1598 => 
   array (
@@ -18423,6 +19266,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1599 => 
   array (
@@ -18441,6 +19285,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1105 => 
   array (
@@ -18459,6 +19304,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1106 => 
   array (
@@ -18477,6 +19323,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1605 => 
   array (
@@ -18495,6 +19342,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1606 => 
   array (
@@ -18513,6 +19361,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1612 => 
   array (
@@ -18531,6 +19380,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1611 => 
   array (
@@ -18549,6 +19399,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   940 => 
   array (
@@ -18567,6 +19418,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   939 => 
   array (
@@ -18585,6 +19437,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1619 => 
   array (
@@ -18603,6 +19456,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1618 => 
   array (
@@ -18621,6 +19475,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1624 => 
   array (
@@ -18639,6 +19494,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1625 => 
   array (
@@ -18657,6 +19513,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1631 => 
   array (
@@ -18675,6 +19532,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1630 => 
   array (
@@ -18693,6 +19551,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1636 => 
   array (
@@ -18711,6 +19570,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1637 => 
   array (
@@ -18729,6 +19589,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1643 => 
   array (
@@ -18747,6 +19608,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1642 => 
   array (
@@ -18765,6 +19627,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1649 => 
   array (
@@ -18783,6 +19646,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1648 => 
   array (
@@ -18801,6 +19665,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1654 => 
   array (
@@ -18819,6 +19684,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1655 => 
   array (
@@ -18837,6 +19703,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1553 => 
   array (
@@ -18855,6 +19722,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1564 => 
   array (
@@ -18873,6 +19741,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1560 => 
   array (
@@ -18891,6 +19760,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1563 => 
   array (
@@ -18909,6 +19779,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1569 => 
   array (
@@ -18927,6 +19798,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1572 => 
   array (
@@ -18945,6 +19817,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1577 => 
   array (
@@ -18963,6 +19836,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1580 => 
   array (
@@ -18981,6 +19855,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1585 => 
   array (
@@ -18999,6 +19874,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1588 => 
   array (
@@ -19017,6 +19893,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1593 => 
   array (
@@ -19035,6 +19912,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1596 => 
   array (
@@ -19053,6 +19931,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1601 => 
   array (
@@ -19071,6 +19950,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1107 => 
   array (
@@ -19089,6 +19969,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1608 => 
   array (
@@ -19107,6 +19988,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1614 => 
   array (
@@ -19125,6 +20007,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   942 => 
   array (
@@ -19143,6 +20026,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1621 => 
   array (
@@ -19161,6 +20045,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1627 => 
   array (
@@ -19179,6 +20064,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1633 => 
   array (
@@ -19197,6 +20083,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1639 => 
   array (
@@ -19215,6 +20102,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1645 => 
   array (
@@ -19233,6 +20121,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1651 => 
   array (
@@ -19251,6 +20140,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1657 => 
   array (
@@ -19269,6 +20159,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1071 => 
   array (
@@ -19323,6 +20214,9 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'dyeName' => 'Akatosh\'s Scales Gold',
+    'dyeColor' => 'bfbd7c',
+    'collectId' => '0',
   ),
   1552 => 
   array (
@@ -19341,6 +20235,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   449 => 
   array (
@@ -19359,6 +20254,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1559 => 
   array (
@@ -19377,6 +20273,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   340 => 
   array (
@@ -19395,6 +20292,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1568 => 
   array (
@@ -19413,6 +20311,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   446 => 
   array (
@@ -19431,6 +20330,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1576 => 
   array (
@@ -19449,6 +20349,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   461 => 
   array (
@@ -19467,6 +20368,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1584 => 
   array (
@@ -19485,6 +20387,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   465 => 
   array (
@@ -19503,6 +20406,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1592 => 
   array (
@@ -19521,6 +20425,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   679 => 
   array (
@@ -19539,6 +20444,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1600 => 
   array (
@@ -19557,6 +20463,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1108 => 
   array (
@@ -19575,6 +20482,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1607 => 
   array (
@@ -19593,6 +20501,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1613 => 
   array (
@@ -19611,6 +20520,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   941 => 
   array (
@@ -19629,6 +20539,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1620 => 
   array (
@@ -19647,6 +20558,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1626 => 
   array (
@@ -19665,6 +20577,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1632 => 
   array (
@@ -19683,6 +20596,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1638 => 
   array (
@@ -19701,6 +20615,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1644 => 
   array (
@@ -19719,6 +20634,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1650 => 
   array (
@@ -19737,6 +20653,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1656 => 
   array (
@@ -19755,6 +20672,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1549 => 
   array (
@@ -19797,6 +20715,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   545 => 
   array (
@@ -19827,6 +20746,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1556 => 
   array (
@@ -19869,6 +20789,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   343 => 
   array (
@@ -19899,6 +20820,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1565 => 
   array (
@@ -19941,6 +20863,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   421 => 
   array (
@@ -19971,6 +20894,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1573 => 
   array (
@@ -20019,6 +20943,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   459 => 
   array (
@@ -20049,6 +20974,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1581 => 
   array (
@@ -20097,6 +21023,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   464 => 
   array (
@@ -20127,6 +21054,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1589 => 
   array (
@@ -20175,6 +21103,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   678 => 
   array (
@@ -20205,6 +21134,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1597 => 
   array (
@@ -20253,6 +21183,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   878 => 
   array (
@@ -20283,6 +21214,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Sigil Orange',
+    'dyeColor' => '8b3e1b',
+    'collectId' => '0',
   ),
   1159 => 
   array (
@@ -20343,6 +21277,8 @@ Long may you reign!',
         'index' => 8,
       ),
     ),
+    'title' => 'Deadlands Adept',
+    'collectId' => '0',
   ),
   1111 => 
   array (
@@ -20361,6 +21297,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Deceit Orange',
+    'dyeColor' => '995b3d',
+    'collectId' => '0',
   ),
   1082 => 
   array (
@@ -20445,6 +21384,7 @@ Long may you reign!',
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1604 => 
   array (
@@ -20493,6 +21433,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1610 => 
   array (
@@ -20541,6 +21482,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   876 => 
   array (
@@ -20571,6 +21513,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1617 => 
   array (
@@ -20619,6 +21562,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1623 => 
   array (
@@ -20667,6 +21611,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1629 => 
   array (
@@ -20715,6 +21660,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1635 => 
   array (
@@ -20763,6 +21709,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1641 => 
   array (
@@ -20811,6 +21758,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1647 => 
   array (
@@ -20859,6 +21807,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1653 => 
   array (
@@ -20919,6 +21868,7 @@ Long may you reign!',
         'index' => 8,
       ),
     ),
+    'collectId' => '0',
   ),
   573 => 
   array (
@@ -20937,6 +21887,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   289 => 
   array (
@@ -20955,6 +21906,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   969 => 
   array (
@@ -21003,6 +21955,9 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Ayleid Gold',
+    'dyeColor' => '58411e',
+    'collectId' => '0',
   ),
   622 => 
   array (
@@ -21045,6 +22000,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   976 => 
   array (
@@ -21069,6 +22025,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Maormer-Eyes Gray',
+    'dyeColor' => '222a2b',
+    'collectId' => '0',
   ),
   977 => 
   array (
@@ -21093,6 +22052,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Graht-Bark Brown',
+    'dyeColor' => '583724',
+    'collectId' => '0',
   ),
   978 => 
   array (
@@ -21117,6 +22079,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Dibella\'s Blush',
+    'dyeColor' => '994467',
+    'collectId' => '0',
   ),
   979 => 
   array (
@@ -21141,6 +22106,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Silvenar Green',
+    'dyeColor' => '364b21',
+    'collectId' => '0',
   ),
   980 => 
   array (
@@ -21165,6 +22133,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Jode Red',
+    'dyeColor' => '721c28',
+    'collectId' => '0',
   ),
   287 => 
   array (
@@ -21213,6 +22184,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   572 => 
   array (
@@ -21261,6 +22233,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   568 => 
   array (
@@ -21309,6 +22282,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   296 => 
   array (
@@ -21357,6 +22331,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   452 => 
   array (
@@ -21405,6 +22380,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   769 => 
   array (
@@ -21459,6 +22435,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   832 => 
   array (
@@ -21513,6 +22490,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   839 => 
   array (
@@ -21567,6 +22545,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   768 => 
   array (
@@ -21609,6 +22588,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Khenarthi Red',
+    'dyeColor' => '723434',
+    'collectId' => '0',
   ),
   862 => 
   array (
@@ -21663,6 +22645,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   835 => 
   array (
@@ -21717,6 +22700,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   356 => 
   array (
@@ -21735,6 +22719,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   352 => 
   array (
@@ -21753,6 +22738,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   559 => 
   array (
@@ -21771,6 +22757,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   293 => 
   array (
@@ -21789,6 +22776,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   426 => 
   array (
@@ -21807,6 +22795,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   281 => 
   array (
@@ -21825,6 +22814,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   260 => 
   array (
@@ -21843,6 +22833,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   576 => 
   array (
@@ -21861,6 +22852,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   553 => 
   array (
@@ -21879,6 +22871,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   456 => 
   array (
@@ -21897,6 +22890,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   274 => 
   array (
@@ -21915,6 +22909,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   425 => 
   array (
@@ -21933,6 +22928,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   288 => 
   array (
@@ -21951,6 +22947,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   258 => 
   array (
@@ -21969,6 +22966,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   259 => 
   array (
@@ -21987,6 +22985,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   290 => 
   array (
@@ -22005,6 +23004,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   457 => 
   array (
@@ -22023,6 +23023,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   560 => 
   array (
@@ -22041,6 +23042,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   353 => 
   array (
@@ -22059,6 +23061,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   428 => 
   array (
@@ -22077,6 +23080,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   263 => 
   array (
@@ -22095,6 +23099,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   555 => 
   array (
@@ -22113,6 +23118,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   558 => 
   array (
@@ -22131,6 +23137,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   298 => 
   array (
@@ -22149,6 +23156,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   458 => 
   array (
@@ -22167,6 +23175,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   561 => 
   array (
@@ -22185,6 +23194,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   453 => 
   array (
@@ -22203,6 +23213,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   351 => 
   array (
@@ -22221,6 +23232,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   292 => 
   array (
@@ -22239,6 +23251,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   427 => 
   array (
@@ -22257,6 +23270,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   578 => 
   array (
@@ -22275,6 +23289,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   697 => 
   array (
@@ -22293,6 +23308,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   567 => 
   array (
@@ -22311,6 +23327,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   355 => 
   array (
@@ -22329,6 +23346,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   430 => 
   array (
@@ -22347,6 +23365,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   716 => 
   array (
@@ -22365,6 +23384,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   699 => 
   array (
@@ -22383,6 +23403,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   282 => 
   array (
@@ -22401,6 +23422,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   563 => 
   array (
@@ -22419,6 +23441,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   574 => 
   array (
@@ -22437,6 +23460,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   562 => 
   array (
@@ -22455,6 +23479,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   286 => 
   array (
@@ -22473,6 +23498,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   696 => 
   array (
@@ -22491,6 +23517,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   526 => 
   array (
@@ -22515,6 +23542,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   262 => 
   array (
@@ -22533,6 +23561,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   354 => 
   array (
@@ -22551,6 +23580,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   564 => 
   array (
@@ -22569,6 +23599,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   261 => 
   array (
@@ -22587,6 +23618,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   454 => 
   array (
@@ -22605,6 +23637,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   700 => 
   array (
@@ -22623,6 +23656,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   297 => 
   array (
@@ -22641,6 +23675,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   550 => 
   array (
@@ -22659,6 +23694,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   701 => 
   array (
@@ -22677,6 +23713,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   575 => 
   array (
@@ -22695,6 +23732,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   291 => 
   array (
@@ -22713,6 +23751,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   698 => 
   array (
@@ -22731,6 +23770,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   455 => 
   array (
@@ -22749,6 +23789,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   577 => 
   array (
@@ -22767,6 +23808,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   429 => 
   array (
@@ -22785,6 +23827,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   565 => 
   array (
@@ -22803,6 +23846,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   982 => 
   array (
@@ -22851,6 +23895,9 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Orichalc Green',
+    'dyeColor' => '37402a',
+    'collectId' => '0',
   ),
   625 => 
   array (
@@ -22893,6 +23940,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   981 => 
   array (
@@ -22917,6 +23965,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Hunding Gold',
+    'dyeColor' => '4b3a21',
+    'collectId' => '0',
   ),
   964 => 
   array (
@@ -22941,6 +23992,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Vine Green',
+    'dyeColor' => '56bf77',
+    'collectId' => '0',
   ),
   965 => 
   array (
@@ -22965,6 +24019,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Flame-Knight Light Red',
+    'dyeColor' => '994b44',
+    'collectId' => '0',
   ),
   966 => 
   array (
@@ -22989,6 +24046,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Haunted Moor Mauve',
+    'dyeColor' => '9c56bf',
+    'collectId' => '0',
   ),
   967 => 
   array (
@@ -23013,6 +24073,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Ash\'abah Hood Gray',
+    'dyeColor' => '8b7970',
+    'collectId' => '0',
   ),
   968 => 
   array (
@@ -23037,6 +24100,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Wisp Blue',
+    'dyeColor' => '5691bf',
+    'collectId' => '0',
   ),
   176 => 
   array (
@@ -23085,6 +24151,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   177 => 
   array (
@@ -23133,6 +24200,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   178 => 
   array (
@@ -23181,6 +24249,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   413 => 
   array (
@@ -23229,6 +24298,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   180 => 
   array (
@@ -23277,6 +24347,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   773 => 
   array (
@@ -23307,6 +24378,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   774 => 
   array (
@@ -23331,6 +24403,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   775 => 
   array (
@@ -23385,6 +24458,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   833 => 
   array (
@@ -23439,6 +24513,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   840 => 
   array (
@@ -23493,6 +24568,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   849 => 
   array (
@@ -23547,6 +24623,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   865 => 
   array (
@@ -23601,6 +24678,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   416 => 
   array (
@@ -23619,6 +24697,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   385 => 
   array (
@@ -23637,6 +24716,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   225 => 
   array (
@@ -23655,6 +24735,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   387 => 
   array (
@@ -23673,6 +24754,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   401 => 
   array (
@@ -23691,6 +24773,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   419 => 
   array (
@@ -23709,6 +24792,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   403 => 
   array (
@@ -23727,6 +24811,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   227 => 
   array (
@@ -23745,6 +24830,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   541 => 
   array (
@@ -23763,6 +24849,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   220 => 
   array (
@@ -23781,6 +24868,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   160 => 
   array (
@@ -23799,6 +24887,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   149 => 
   array (
@@ -23817,6 +24906,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   414 => 
   array (
@@ -23835,6 +24925,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   495 => 
   array (
@@ -23853,6 +24944,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   219 => 
   array (
@@ -23871,6 +24963,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   217 => 
   array (
@@ -23889,6 +24982,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   231 => 
   array (
@@ -23907,6 +25001,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   224 => 
   array (
@@ -23925,6 +25020,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   228 => 
   array (
@@ -23943,6 +25039,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   402 => 
   array (
@@ -23961,6 +25058,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   382 => 
   array (
@@ -23979,6 +25077,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   161 => 
   array (
@@ -23997,6 +25096,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   497 => 
   array (
@@ -24015,6 +25115,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   158 => 
   array (
@@ -24033,6 +25134,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   232 => 
   array (
@@ -24051,6 +25153,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   215 => 
   array (
@@ -24069,6 +25172,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   544 => 
   array (
@@ -24087,6 +25191,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   222 => 
   array (
@@ -24105,6 +25210,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   498 => 
   array (
@@ -24123,6 +25229,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   404 => 
   array (
@@ -24141,6 +25248,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   151 => 
   array (
@@ -24159,6 +25267,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   383 => 
   array (
@@ -24177,6 +25286,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   496 => 
   array (
@@ -24195,6 +25305,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   159 => 
   array (
@@ -24213,6 +25324,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   218 => 
   array (
@@ -24231,6 +25343,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   499 => 
   array (
@@ -24249,6 +25362,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   150 => 
   array (
@@ -24267,6 +25381,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   226 => 
   array (
@@ -24285,6 +25400,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   406 => 
   array (
@@ -24303,6 +25419,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   230 => 
   array (
@@ -24321,6 +25438,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   223 => 
   array (
@@ -24339,6 +25457,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   221 => 
   array (
@@ -24357,6 +25476,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   543 => 
   array (
@@ -24375,6 +25495,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   500 => 
   array (
@@ -24393,6 +25514,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   420 => 
   array (
@@ -24411,6 +25533,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   412 => 
   array (
@@ -24429,6 +25552,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   216 => 
   array (
@@ -24447,6 +25571,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   163 => 
   array (
@@ -24465,6 +25590,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   400 => 
   array (
@@ -24483,6 +25609,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   162 => 
   array (
@@ -24501,6 +25628,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   152 => 
   array (
@@ -24519,6 +25647,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   399 => 
   array (
@@ -24537,6 +25666,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   540 => 
   array (
@@ -24555,6 +25685,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   386 => 
   array (
@@ -24573,6 +25704,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   229 => 
   array (
@@ -24591,6 +25723,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   539 => 
   array (
@@ -24609,6 +25742,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   542 => 
   array (
@@ -24627,6 +25761,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   384 => 
   array (
@@ -24645,6 +25780,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   153 => 
   array (
@@ -24663,6 +25799,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   148 => 
   array (
@@ -24681,6 +25818,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   423 => 
   array (
@@ -24699,6 +25837,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   983 => 
   array (
@@ -24747,6 +25886,9 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Atmoran Bronze',
+    'dyeColor' => '733e21',
+    'collectId' => '0',
   ),
   626 => 
   array (
@@ -24789,6 +25931,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   975 => 
   array (
@@ -24813,6 +25956,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Netch Jelly Blue',
+    'dyeColor' => '56a1bf',
+    'collectId' => '0',
   ),
   970 => 
   array (
@@ -24837,6 +25983,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Telvanni Brown',
+    'dyeColor' => '724b34',
+    'collectId' => '0',
   ),
   971 => 
   array (
@@ -24861,6 +26010,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Indoril Blue',
+    'dyeColor' => '1c3d72',
+    'collectId' => '0',
   ),
   972 => 
   array (
@@ -24885,6 +26037,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Strangler Maw Red',
+    'dyeColor' => 'a63a3a',
+    'collectId' => '0',
   ),
   973 => 
   array (
@@ -24909,6 +26064,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Sulfur Pools Yellow',
+    'dyeColor' => 'bfb856',
+    'collectId' => '0',
   ),
   974 => 
   array (
@@ -24933,6 +26091,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Mammoth Fur Brown',
+    'dyeColor' => 'cc885b',
+    'collectId' => '0',
   ),
   181 => 
   array (
@@ -24981,6 +26142,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   270 => 
   array (
@@ -25029,6 +26191,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   193 => 
   array (
@@ -25077,6 +26240,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   424 => 
   array (
@@ -25125,6 +26289,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   328 => 
   array (
@@ -25173,6 +26338,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   770 => 
   array (
@@ -25203,6 +26369,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   771 => 
   array (
@@ -25227,6 +26394,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   772 => 
   array (
@@ -25281,6 +26449,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   834 => 
   array (
@@ -25335,6 +26504,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   845 => 
   array (
@@ -25395,6 +26565,7 @@ Long may you reign!',
         'index' => 8,
       ),
     ),
+    'collectId' => '0',
   ),
   866 => 
   array (
@@ -25449,6 +26620,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   863 => 
   array (
@@ -25503,6 +26675,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   276 => 
   array (
@@ -25521,6 +26694,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   214 => 
   array (
@@ -25539,6 +26713,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   211 => 
   array (
@@ -25557,6 +26732,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   245 => 
   array (
@@ -25575,6 +26751,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   331 => 
   array (
@@ -25593,6 +26770,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   256 => 
   array (
@@ -25611,6 +26789,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   257 => 
   array (
@@ -25629,6 +26808,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   280 => 
   array (
@@ -25647,6 +26827,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   250 => 
   array (
@@ -25665,6 +26846,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   330 => 
   array (
@@ -25683,6 +26865,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   246 => 
   array (
@@ -25701,6 +26884,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   190 => 
   array (
@@ -25719,6 +26903,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   247 => 
   array (
@@ -25737,6 +26922,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   251 => 
   array (
@@ -25755,6 +26941,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   269 => 
   array (
@@ -25773,6 +26960,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   198 => 
   array (
@@ -25791,6 +26979,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   279 => 
   array (
@@ -25809,6 +26998,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   203 => 
   array (
@@ -25827,6 +27017,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   329 => 
   array (
@@ -25845,6 +27036,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   332 => 
   array (
@@ -25863,6 +27055,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   254 => 
   array (
@@ -25881,6 +27074,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   347 => 
   array (
@@ -25899,6 +27093,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   248 => 
   array (
@@ -25917,6 +27112,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   348 => 
   array (
@@ -25935,6 +27131,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   349 => 
   array (
@@ -25953,6 +27150,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   187 => 
   array (
@@ -25971,6 +27169,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   206 => 
   array (
@@ -25989,6 +27188,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   252 => 
   array (
@@ -26007,6 +27207,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   202 => 
   array (
@@ -26025,6 +27226,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   345 => 
   array (
@@ -26043,6 +27245,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   268 => 
   array (
@@ -26061,6 +27264,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   264 => 
   array (
@@ -26079,6 +27283,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   265 => 
   array (
@@ -26097,6 +27302,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   278 => 
   array (
@@ -26115,6 +27321,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   213 => 
   array (
@@ -26133,6 +27340,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   196 => 
   array (
@@ -26151,6 +27359,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   205 => 
   array (
@@ -26169,6 +27378,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   189 => 
   array (
@@ -26187,6 +27397,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   200 => 
   array (
@@ -26205,6 +27416,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   188 => 
   array (
@@ -26223,6 +27435,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   253 => 
   array (
@@ -26241,6 +27454,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   249 => 
   array (
@@ -26259,6 +27473,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   210 => 
   array (
@@ -26277,6 +27492,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   212 => 
   array (
@@ -26295,6 +27511,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   199 => 
   array (
@@ -26313,6 +27530,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   277 => 
   array (
@@ -26331,6 +27549,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   197 => 
   array (
@@ -26349,6 +27568,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   208 => 
   array (
@@ -26367,6 +27587,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   275 => 
   array (
@@ -26385,6 +27606,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   333 => 
   array (
@@ -26403,6 +27625,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   192 => 
   array (
@@ -26421,6 +27644,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   334 => 
   array (
@@ -26439,6 +27663,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   207 => 
   array (
@@ -26457,6 +27682,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   255 => 
   array (
@@ -26475,6 +27701,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   195 => 
   array (
@@ -26493,6 +27720,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   267 => 
   array (
@@ -26511,6 +27739,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   266 => 
   array (
@@ -26529,6 +27758,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   346 => 
   array (
@@ -26547,6 +27777,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   191 => 
   array (
@@ -26565,6 +27796,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   350 => 
   array (
@@ -26583,6 +27815,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   984 => 
   array (
@@ -26607,6 +27840,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Soul Shriven Pale',
+    'dyeColor' => 'd9c4b7',
+    'collectId' => '0',
   ),
   438 => 
   array (
@@ -26655,6 +27891,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   864 => 
   array (
@@ -26709,6 +27946,7 @@ Long may you reign!',
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   432 => 
   array (
@@ -26727,6 +27965,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   443 => 
   array (
@@ -26745,6 +27984,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   434 => 
   array (
@@ -26763,6 +28003,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   441 => 
   array (
@@ -26781,6 +28022,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   444 => 
   array (
@@ -26799,6 +28041,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   442 => 
   array (
@@ -26817,6 +28060,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   435 => 
   array (
@@ -26835,6 +28079,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   433 => 
   array (
@@ -26853,6 +28098,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   440 => 
   array (
@@ -26871,6 +28117,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   436 => 
   array (
@@ -26889,6 +28136,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   439 => 
   array (
@@ -26907,6 +28155,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   437 => 
   array (
@@ -26925,6 +28174,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   986 => 
   array (
@@ -26949,6 +28199,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Craglorn Crimson',
+    'dyeColor' => '4b131a',
+    'collectId' => '0',
   ),
   1126 => 
   array (
@@ -26973,6 +28226,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   985 => 
   array (
@@ -27057,6 +28311,7 @@ Long may you reign!',
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1127 => 
   array (
@@ -27105,6 +28360,7 @@ Long may you reign!',
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   902 => 
   array (
@@ -27171,6 +28427,7 @@ Long may you reign!',
         'index' => 9,
       ),
     ),
+    'collectId' => '0',
   ),
   937 => 
   array (
@@ -27201,6 +28458,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1664 => 
   array (
@@ -27243,6 +28501,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1663 => 
   array (
@@ -27285,6 +28544,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1665 => 
   array (
@@ -27327,6 +28587,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   896 => 
   array (
@@ -27345,6 +28606,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   893 => 
   array (
@@ -27363,6 +28625,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   892 => 
   array (
@@ -27381,6 +28644,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   898 => 
   array (
@@ -27399,6 +28663,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   897 => 
   array (
@@ -27417,6 +28682,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   891 => 
   array (
@@ -27435,6 +28701,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   901 => 
   array (
@@ -27453,6 +28720,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   887 => 
   array (
@@ -27471,6 +28739,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   889 => 
   array (
@@ -27489,6 +28758,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   884 => 
   array (
@@ -27507,6 +28777,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   894 => 
   array (
@@ -27525,6 +28796,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   890 => 
   array (
@@ -27543,6 +28815,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   885 => 
   array (
@@ -27561,6 +28834,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   888 => 
   array (
@@ -27579,6 +28853,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   886 => 
   array (
@@ -27597,6 +28872,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   895 => 
   array (
@@ -27615,6 +28891,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   900 => 
   array (
@@ -27633,6 +28910,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   899 => 
   array (
@@ -27651,6 +28929,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1121 => 
   array (
@@ -27669,6 +28948,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   766 => 
   array (
@@ -27789,6 +29069,9 @@ Long may you reign!',
         'index' => 18,
       ),
     ),
+    'dyeName' => 'Colovian Deep Brown',
+    'dyeColor' => '4b2b17',
+    'collectId' => '0',
   ),
   730 => 
   array (
@@ -27819,6 +29102,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   731 => 
   array (
@@ -27843,6 +29127,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   736 => 
   array (
@@ -27861,6 +29146,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   742 => 
   array (
@@ -27891,6 +29177,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   737 => 
   array (
@@ -27909,6 +29196,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   732 => 
   array (
@@ -27933,6 +29221,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   743 => 
   array (
@@ -27951,6 +29240,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   738 => 
   array (
@@ -27975,6 +29265,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   744 => 
   array (
@@ -28005,6 +29296,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   745 => 
   array (
@@ -28029,6 +29321,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   733 => 
   array (
@@ -28053,6 +29346,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   734 => 
   array (
@@ -28083,6 +29377,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   746 => 
   array (
@@ -28107,6 +29402,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   739 => 
   array (
@@ -28131,6 +29427,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   735 => 
   array (
@@ -28155,6 +29452,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   740 => 
   array (
@@ -28197,6 +29495,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   741 => 
   array (
@@ -28221,6 +29520,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   747 => 
   array (
@@ -28239,6 +29539,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   627 => 
   array (
@@ -28275,6 +29576,8 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'title' => 'Explorer',
+    'collectId' => '0',
   ),
   867 => 
   array (
@@ -28413,6 +29716,7 @@ Long may you reign!',
         'index' => 21,
       ),
     ),
+    'collectId' => '0',
   ),
   869 => 
   array (
@@ -28515,6 +29819,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   871 => 
   array (
@@ -28617,6 +29922,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   872 => 
   array (
@@ -28743,6 +30049,9 @@ Long may you reign!',
         'index' => 19,
       ),
     ),
+    'dyeName' => 'Liar\'s Linen',
+    'dyeColor' => 'b1a6a0',
+    'collectId' => '0',
   ),
   873 => 
   array (
@@ -28845,6 +30154,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   836 => 
   array (
@@ -28863,6 +30173,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   993 => 
   array (
@@ -28881,6 +30192,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Soul Shriven Gray',
+    'dyeColor' => '665e5b',
+    'collectId' => '0',
   ),
   994 => 
   array (
@@ -28899,6 +30213,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   995 => 
   array (
@@ -28917,6 +30232,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   996 => 
   array (
@@ -28935,6 +30251,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Soul Gem Purple',
+    'dyeColor' => '674f72',
+    'collectId' => '0',
   ),
   997 => 
   array (
@@ -28953,6 +30272,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   998 => 
   array (
@@ -28971,6 +30291,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   999 => 
   array (
@@ -28989,6 +30310,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1000 => 
   array (
@@ -29007,6 +30329,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Red Diamond Red',
+    'dyeColor' => '721c1c',
+    'collectId' => '0',
   ),
   1001 => 
   array (
@@ -29025,6 +30350,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1002 => 
   array (
@@ -29043,6 +30369,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1003 => 
   array (
@@ -29061,6 +30388,9 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Coldharbour Ash Black',
+    'dyeColor' => '26211f',
+    'collectId' => '0',
   ),
   525 => 
   array (
@@ -29079,6 +30409,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   604 => 
   array (
@@ -29097,6 +30428,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   943 => 
   array (
@@ -29127,6 +30459,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Varla White',
+    'dyeColor' => 'ccb7ad',
+    'collectId' => '0',
   ),
   360 => 
   array (
@@ -29145,6 +30480,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   361 => 
   array (
@@ -29163,6 +30499,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   362 => 
   array (
@@ -29181,6 +30518,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   608 => 
   array (
@@ -29199,6 +30537,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   944 => 
   array (
@@ -29223,6 +30562,9 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'dyeName' => 'Thalmor Black',
+    'dyeColor' => '2b2b2b',
+    'collectId' => '0',
   ),
   607 => 
   array (
@@ -29241,6 +30583,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   606 => 
   array (
@@ -29259,6 +30602,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   605 => 
   array (
@@ -29277,6 +30621,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   610 => 
   array (
@@ -29295,6 +30640,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   945 => 
   array (
@@ -29325,6 +30671,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Welkynd Blue',
+    'dyeColor' => '2fbfb1',
+    'collectId' => '0',
   ),
   510 => 
   array (
@@ -29343,6 +30692,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   512 => 
   array (
@@ -29361,6 +30711,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   511 => 
   array (
@@ -29379,6 +30730,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   611 => 
   array (
@@ -29397,6 +30749,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   946 => 
   array (
@@ -29427,6 +30780,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Falinesti Green',
+    'dyeColor' => '1c7238',
+    'collectId' => '0',
   ),
   285 => 
   array (
@@ -29445,6 +30801,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   283 => 
   array (
@@ -29463,6 +30820,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   284 => 
   array (
@@ -29481,6 +30839,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   602 => 
   array (
@@ -29499,6 +30858,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   947 => 
   array (
@@ -29529,6 +30889,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Senche-Tiger Orange',
+    'dyeColor' => '994f2d',
+    'collectId' => '0',
   ),
   536 => 
   array (
@@ -29547,6 +30910,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   537 => 
   array (
@@ -29565,6 +30929,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   538 => 
   array (
@@ -29583,6 +30948,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   415 => 
   array (
@@ -29613,6 +30979,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   34 => 
   array (
@@ -29631,6 +30998,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   953 => 
   array (
@@ -29667,6 +31035,9 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Wyrd Tree Green',
+    'dyeColor' => '666337',
+    'collectId' => '0',
   ),
   28 => 
   array (
@@ -29685,6 +31056,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   31 => 
   array (
@@ -29703,6 +31075,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   30 => 
   array (
@@ -29721,6 +31094,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   57 => 
   array (
@@ -29739,6 +31113,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   954 => 
   array (
@@ -29769,6 +31144,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Wayrest Royal Purple',
+    'dyeColor' => '3b3472',
+    'collectId' => '0',
   ),
   156 => 
   array (
@@ -29787,6 +31165,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   154 => 
   array (
@@ -29805,6 +31184,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   155 => 
   array (
@@ -29823,6 +31203,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   58 => 
   array (
@@ -29841,6 +31222,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   955 => 
   array (
@@ -29871,6 +31253,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Doomcrag Verdigris',
+    'dyeColor' => '34726d',
+    'collectId' => '0',
   ),
   590 => 
   array (
@@ -29889,6 +31274,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   589 => 
   array (
@@ -29907,6 +31293,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   591 => 
   array (
@@ -29925,6 +31312,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   59 => 
   array (
@@ -29943,6 +31331,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   956 => 
   array (
@@ -29973,6 +31362,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Alik\'r Lapis',
+    'dyeColor' => '344b72',
+    'collectId' => '0',
   ),
   517 => 
   array (
@@ -29991,6 +31383,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   518 => 
   array (
@@ -30009,6 +31402,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   516 => 
   array (
@@ -30027,6 +31421,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   60 => 
   array (
@@ -30045,6 +31440,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   958 => 
   array (
@@ -30075,6 +31471,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Evermore Gold',
+    'dyeColor' => 'bf9660',
+    'collectId' => '0',
   ),
   146 => 
   array (
@@ -30093,6 +31492,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   145 => 
   array (
@@ -30111,6 +31511,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   147 => 
   array (
@@ -30129,6 +31530,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   194 => 
   array (
@@ -30231,6 +31633,7 @@ Long may you reign!',
         'index' => 15,
       ),
     ),
+    'collectId' => '0',
   ),
   593 => 
   array (
@@ -30249,6 +31652,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   948 => 
   array (
@@ -30279,6 +31683,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Ashland Gray',
+    'dyeColor' => '998379',
+    'collectId' => '0',
   ),
   201 => 
   array (
@@ -30297,6 +31704,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   204 => 
   array (
@@ -30315,6 +31723,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   209 => 
   array (
@@ -30333,6 +31742,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   595 => 
   array (
@@ -30351,6 +31761,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   949 => 
   array (
@@ -30381,6 +31792,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Hlaalu Gold',
+    'dyeColor' => '99774b',
+    'collectId' => '0',
   ),
   363 => 
   array (
@@ -30399,6 +31813,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   364 => 
   array (
@@ -30417,6 +31832,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   365 => 
   array (
@@ -30435,6 +31851,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   596 => 
   array (
@@ -30453,6 +31870,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   950 => 
   array (
@@ -30483,6 +31901,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Hist Green',
+    'dyeColor' => '5d9926',
+    'collectId' => '0',
   ),
   185 => 
   array (
@@ -30501,6 +31922,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   186 => 
   array (
@@ -30519,6 +31941,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   184 => 
   array (
@@ -30537,6 +31960,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   600 => 
   array (
@@ -30555,6 +31979,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   951 => 
   array (
@@ -30585,6 +32010,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Windhelm Steel',
+    'dyeColor' => '585858',
+    'collectId' => '0',
   ),
   597 => 
   array (
@@ -30603,6 +32031,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   599 => 
   array (
@@ -30621,6 +32050,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   598 => 
   array (
@@ -30639,6 +32069,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   603 => 
   array (
@@ -30657,6 +32088,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   952 => 
   array (
@@ -30687,6 +32119,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Riften Copper',
+    'dyeColor' => '996044',
+    'collectId' => '0',
   ),
   335 => 
   array (
@@ -30705,6 +32140,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   336 => 
   array (
@@ -30723,6 +32159,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   337 => 
   array (
@@ -30741,6 +32178,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   616 => 
   array (
@@ -30759,6 +32197,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   957 => 
   array (
@@ -30789,6 +32228,9 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Necromancer Blue',
+    'dyeColor' => '7db1ad',
+    'collectId' => '0',
   ),
   524 => 
   array (
@@ -30807,6 +32249,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   613 => 
   array (
@@ -30825,6 +32268,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   612 => 
   array (
@@ -30843,6 +32287,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   614 => 
   array (
@@ -30861,6 +32306,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   758 => 
   array (
@@ -30933,6 +32379,7 @@ Long may you reign!',
         'index' => 10,
       ),
     ),
+    'collectId' => '0',
   ),
   759 => 
   array (
@@ -31005,6 +32452,7 @@ Long may you reign!',
         'index' => 10,
       ),
     ),
+    'collectId' => '0',
   ),
   760 => 
   array (
@@ -31077,6 +32525,7 @@ Long may you reign!',
         'index' => 10,
       ),
     ),
+    'collectId' => '0',
   ),
   761 => 
   array (
@@ -31149,6 +32598,7 @@ Long may you reign!',
         'index' => 10,
       ),
     ),
+    'collectId' => '0',
   ),
   762 => 
   array (
@@ -31221,6 +32671,7 @@ Long may you reign!',
         'index' => 10,
       ),
     ),
+    'collectId' => '0',
   ),
   1143 => 
   array (
@@ -31245,6 +32696,7 @@ Long may you reign!',
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   909 => 
   array (
@@ -31287,6 +32739,7 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   936 => 
   array (
@@ -31317,6 +32770,7 @@ Long may you reign!',
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   778 => 
   array (
@@ -31335,6 +32789,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1112 => 
   array (
@@ -31353,6 +32808,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   908 => 
   array (
@@ -31371,6 +32827,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   905 => 
   array (
@@ -31389,6 +32846,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1014 => 
   array (
@@ -31407,6 +32865,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   907 => 
   array (
@@ -31425,6 +32884,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   906 => 
   array (
@@ -31443,6 +32903,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1015 => 
   array (
@@ -31461,6 +32922,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1016 => 
   array (
@@ -31479,6 +32941,7 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   628 => 
   array (
@@ -31515,6 +32978,8 @@ Long may you reign!',
         'index' => 4,
       ),
     ),
+    'title' => 'Tamriel Hero',
+    'collectId' => '0',
   ),
   618 => 
   array (
@@ -31557,6 +33022,10 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Dominion Yellow',
+    'dyeColor' => '8b612a',
+    'title' => 'Dominion Hero',
+    'collectId' => '0',
   ),
   61 => 
   array (
@@ -31599,6 +33068,10 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Covenant Blue',
+    'dyeColor' => '242d58',
+    'title' => 'Covenant Hero',
+    'collectId' => '0',
   ),
   617 => 
   array (
@@ -31641,6 +33114,10 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Pact Blood Red',
+    'dyeColor' => '662323',
+    'title' => 'Pact Hero',
+    'collectId' => '0',
   ),
   767 => 
   array (
@@ -31683,6 +33160,9 @@ Long may you reign!',
         'index' => 5,
       ),
     ),
+    'dyeName' => 'Cyrodilic Steel',
+    'dyeColor' => '485960',
+    'collectId' => '0',
   ),
   52 => 
   array (
@@ -31703,6 +33183,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Quester Yellow',
+    'dyeColor' => 'bfba85',
+    'collectId' => '0',
   ),
   53 => 
   array (
@@ -31723,6 +33206,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Explorer Green',
+    'dyeColor' => '8ebf9e',
+    'collectId' => '0',
   ),
   54 => 
   array (
@@ -31743,6 +33229,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Adventurer Brown',
+    'dyeColor' => '724434',
+    'collectId' => '0',
   ),
   55 => 
   array (
@@ -31763,6 +33252,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Master Adventurer Purple',
+    'dyeColor' => '72344d',
+    'collectId' => '0',
   ),
   56 => 
   array (
@@ -31783,6 +33275,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Indomitable Violet',
+    'dyeColor' => '584757',
+    'collectId' => '0',
   ),
   1730 => 
   array (
@@ -31813,6 +33308,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'title' => 'Count',
+    'collectId' => '0',
   ),
   1728 => 
   array (
@@ -31831,6 +33328,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'title' => 'Lord',
+    'collectId' => '0',
   ),
   1727 => 
   array (
@@ -31849,6 +33348,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'title' => 'Clan Father',
+    'collectId' => '0',
   ),
   1729 => 
   array (
@@ -31867,6 +33368,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'title' => 'Councilor',
+    'collectId' => '0',
   ),
   1725 => 
   array (
@@ -31957,6 +33460,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 13,
       ),
     ),
+    'collectId' => '0',
   ),
   1812 => 
   array (
@@ -32047,6 +33551,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 13,
       ),
     ),
+    'collectId' => '0',
   ),
   1813 => 
   array (
@@ -32137,6 +33642,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 13,
       ),
     ),
+    'collectId' => '0',
   ),
   1726 => 
   array (
@@ -32269,6 +33775,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 20,
       ),
     ),
+    'collectId' => '0',
   ),
   1814 => 
   array (
@@ -32401,6 +33908,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 20,
       ),
     ),
+    'collectId' => '0',
   ),
   1815 => 
   array (
@@ -32533,6 +34041,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 20,
       ),
     ),
+    'collectId' => '0',
   ),
   1724 => 
   array (
@@ -32563,6 +34072,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1745 => 
   array (
@@ -32581,6 +34091,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1746 => 
   array (
@@ -32599,6 +34110,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1747 => 
   array (
@@ -32617,6 +34129,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1748 => 
   array (
@@ -32635,6 +34148,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1749 => 
   array (
@@ -32653,6 +34167,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1741 => 
   array (
@@ -32671,6 +34186,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1735 => 
   array (
@@ -32689,6 +34205,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1734 => 
   array (
@@ -32707,6 +34224,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1744 => 
   array (
@@ -32725,6 +34243,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1738 => 
   array (
@@ -32743,6 +34262,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1737 => 
   array (
@@ -32761,6 +34281,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1733 => 
   array (
@@ -32779,6 +34300,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1740 => 
   array (
@@ -32797,6 +34319,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1732 => 
   array (
@@ -32815,6 +34338,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1742 => 
   array (
@@ -32833,6 +34357,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1731 => 
   array (
@@ -32851,6 +34376,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1736 => 
   array (
@@ -32869,6 +34395,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1739 => 
   array (
@@ -32887,6 +34414,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1750 => 
   array (
@@ -32905,6 +34433,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1752 => 
   array (
@@ -32923,6 +34452,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1753 => 
   array (
@@ -32941,6 +34471,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1754 => 
   array (
@@ -32959,6 +34490,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1751 => 
   array (
@@ -32977,6 +34509,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1546 => 
   array (
@@ -33013,6 +34546,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'title' => 'Sun\'s Dusk Reaper',
+    'collectId' => '0',
   ),
   1545 => 
   array (
@@ -33109,6 +34644,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1540 => 
   array (
@@ -33127,6 +34663,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1541 => 
   array (
@@ -33145,6 +34682,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1542 => 
   array (
@@ -33163,6 +34701,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1539 => 
   array (
@@ -33181,6 +34720,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1543 => 
   array (
@@ -33199,6 +34739,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1716 => 
   array (
@@ -33229,6 +34770,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'title' => 'Lord of Misrule',
+    'collectId' => '0',
   ),
   1720 => 
   array (
@@ -33259,6 +34802,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1719 => 
   array (
@@ -33277,6 +34821,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1721 => 
   array (
@@ -33313,6 +34858,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1717 => 
   array (
@@ -33331,6 +34877,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1723 => 
   array (
@@ -33379,6 +34926,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'title' => 'Royal Jester',
+    'collectId' => '0',
   ),
   1718 => 
   array (
@@ -33397,6 +34946,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1669 => 
   array (
@@ -33427,6 +34977,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1670 => 
   array (
@@ -33445,6 +34996,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1677 => 
   array (
@@ -33529,6 +35081,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'title' => 'Magnanimous',
+    'collectId' => '0',
   ),
   1666 => 
   array (
@@ -33565,6 +35119,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1548 => 
   array (
@@ -33595,6 +35150,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1674 => 
   array (
@@ -33661,6 +35217,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 9,
       ),
     ),
+    'dyeName' => 'New Life Cerulean',
+    'dyeColor' => '7c8ec6',
+    'collectId' => '0',
   ),
   1675 => 
   array (
@@ -33727,6 +35286,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 9,
       ),
     ),
+    'collectId' => '0',
   ),
   1673 => 
   array (
@@ -33745,6 +35305,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1676 => 
   array (
@@ -33841,6 +35402,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1671 => 
   array (
@@ -33859,6 +35421,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1672 => 
   array (
@@ -33877,6 +35440,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1667 => 
   array (
@@ -33907,6 +35471,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1668 => 
   array (
@@ -33931,6 +35496,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1526 => 
   array (
@@ -33949,6 +35515,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1518 => 
   array (
@@ -33967,6 +35534,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1517 => 
   array (
@@ -33985,6 +35553,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1529 => 
   array (
@@ -34021,6 +35590,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '482',
   ),
   1523 => 
   array (
@@ -34063,6 +35633,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1522 => 
   array (
@@ -34105,6 +35676,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1532 => 
   array (
@@ -34123,6 +35695,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1534 => 
   array (
@@ -34141,6 +35714,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1525 => 
   array (
@@ -34159,6 +35733,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1530 => 
   array (
@@ -34177,6 +35752,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1515 => 
   array (
@@ -34195,6 +35771,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1527 => 
   array (
@@ -34213,6 +35790,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1512 => 
   array (
@@ -34231,6 +35809,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1795 => 
   array (
@@ -34327,6 +35906,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1535 => 
   array (
@@ -34345,6 +35925,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1516 => 
   array (
@@ -34363,6 +35944,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1507 => 
   array (
@@ -34381,6 +35963,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1511 => 
   array (
@@ -34417,6 +36000,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '481',
   ),
   1505 => 
   array (
@@ -34453,6 +36037,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1504 => 
   array (
@@ -34489,6 +36074,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1514 => 
   array (
@@ -34507,6 +36093,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1513 => 
   array (
@@ -34525,6 +36112,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1531 => 
   array (
@@ -34543,6 +36131,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1538 => 
   array (
@@ -34567,6 +36156,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'title' => 'Hist-Shadow',
+    'collectId' => '0',
   ),
   1520 => 
   array (
@@ -34585,6 +36176,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '373',
   ),
   1796 => 
   array (
@@ -34681,6 +36273,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1509 => 
   array (
@@ -34699,6 +36292,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1528 => 
   array (
@@ -34717,6 +36311,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1519 => 
   array (
@@ -34735,6 +36330,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1506 => 
   array (
@@ -34753,6 +36349,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1508 => 
   array (
@@ -34771,6 +36368,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1524 => 
   array (
@@ -34789,6 +36387,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1536 => 
   array (
@@ -34807,6 +36406,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1533 => 
   array (
@@ -34825,6 +36425,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1510 => 
   array (
@@ -34843,6 +36444,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1421 => 
   array (
@@ -34861,6 +36463,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '374',
   ),
   1456 => 
   array (
@@ -34879,6 +36482,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1440 => 
   array (
@@ -34897,6 +36501,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1441 => 
   array (
@@ -34915,6 +36520,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1442 => 
   array (
@@ -34933,6 +36539,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1443 => 
   array (
@@ -34951,6 +36558,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1444 => 
   array (
@@ -34969,6 +36577,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'title' => 'Silencer',
+    'collectId' => '0',
   ),
   1424 => 
   array (
@@ -35065,6 +36675,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1434 => 
   array (
@@ -35107,6 +36718,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'title' => 'Bane of the Gold Coast',
+    'collectId' => '390',
   ),
   1450 => 
   array (
@@ -35245,6 +36858,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 21,
       ),
     ),
+    'collectId' => '0',
   ),
   1457 => 
   array (
@@ -35275,6 +36889,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'collectId' => '0',
   ),
   1420 => 
   array (
@@ -35293,6 +36908,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1661 => 
   array (
@@ -35389,6 +37005,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1419 => 
   array (
@@ -35407,6 +37024,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1425 => 
   array (
@@ -35431,6 +37049,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1435 => 
   array (
@@ -35449,6 +37068,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1436 => 
   array (
@@ -35467,6 +37087,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1437 => 
   array (
@@ -35485,6 +37106,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1438 => 
   array (
@@ -35503,6 +37125,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1439 => 
   array (
@@ -35521,6 +37144,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1451 => 
   array (
@@ -35539,6 +37163,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1452 => 
   array (
@@ -35557,6 +37182,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1453 => 
   array (
@@ -35575,6 +37201,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1459 => 
   array (
@@ -35593,6 +37220,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1460 => 
   array (
@@ -35611,6 +37239,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1461 => 
   array (
@@ -35629,6 +37258,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1445 => 
   array (
@@ -35647,6 +37277,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1446 => 
   array (
@@ -35665,6 +37296,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1447 => 
   array (
@@ -35683,6 +37315,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1463 => 
   array (
@@ -35731,6 +37364,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '389',
   ),
   1427 => 
   array (
@@ -35749,6 +37383,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1432 => 
   array (
@@ -35767,6 +37402,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1433 => 
   array (
@@ -35785,6 +37421,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1429 => 
   array (
@@ -35809,6 +37446,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1458 => 
   array (
@@ -35863,6 +37501,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1431 => 
   array (
@@ -35947,6 +37586,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1428 => 
   array (
@@ -35971,6 +37611,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1430 => 
   array (
@@ -36019,6 +37660,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1342 => 
   array (
@@ -36067,6 +37709,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1449 => 
   array (
@@ -36085,6 +37728,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1426 => 
   array (
@@ -36103,6 +37747,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1455 => 
   array (
@@ -36121,6 +37766,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1410 => 
   array (
@@ -36229,6 +37875,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 16,
       ),
     ),
+    'title' => 'Executioner',
+    'collectId' => '387',
   ),
   1454 => 
   array (
@@ -36247,6 +37895,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1662 => 
   array (
@@ -36343,6 +37992,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1660 => 
   array (
@@ -36439,6 +38089,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1448 => 
   array (
@@ -36457,6 +38108,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1395 => 
   array (
@@ -36475,6 +38127,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1396 => 
   array (
@@ -36493,6 +38146,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1397 => 
   array (
@@ -36511,6 +38165,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1413 => 
   array (
@@ -36529,6 +38184,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '360',
   ),
   1383 => 
   array (
@@ -36565,6 +38221,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'title' => 'Master Thief',
+    'collectId' => '361',
   ),
   1375 => 
   array (
@@ -36583,6 +38241,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1422 => 
   array (
@@ -36679,6 +38338,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1360 => 
   array (
@@ -36697,6 +38357,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1370 => 
   array (
@@ -36715,6 +38376,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1361 => 
   array (
@@ -36733,6 +38395,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1362 => 
   array (
@@ -36751,6 +38414,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1363 => 
   array (
@@ -36769,6 +38433,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1402 => 
   array (
@@ -36787,6 +38452,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1355 => 
   array (
@@ -36805,6 +38471,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1349 => 
   array (
@@ -36859,6 +38526,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1380 => 
   array (
@@ -36901,6 +38569,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1353 => 
   array (
@@ -36919,6 +38588,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1404 => 
   array (
@@ -36937,6 +38607,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1352 => 
   array (
@@ -36955,6 +38626,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1354 => 
   array (
@@ -36979,6 +38651,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1379 => 
   array (
@@ -37021,6 +38694,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1406 => 
   array (
@@ -37063,6 +38737,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1659 => 
   array (
@@ -37159,6 +38834,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1405 => 
   array (
@@ -37201,6 +38877,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1394 => 
   array (
@@ -37237,6 +38914,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1372 => 
   array (
@@ -37255,6 +38933,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1373 => 
   array (
@@ -37273,6 +38952,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1374 => 
   array (
@@ -37291,6 +38971,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1398 => 
   array (
@@ -37309,6 +38990,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1399 => 
   array (
@@ -37327,6 +39009,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1400 => 
   array (
@@ -37345,6 +39028,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1365 => 
   array (
@@ -37387,6 +39071,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1364 => 
   array (
@@ -37405,6 +39090,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1366 => 
   array (
@@ -37423,6 +39109,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1357 => 
   array (
@@ -37447,6 +39134,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1351 => 
   array (
@@ -37531,6 +39219,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1359 => 
   array (
@@ -37555,6 +39244,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1358 => 
   array (
@@ -37591,6 +39281,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1347 => 
   array (
@@ -37639,6 +39330,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1401 => 
   array (
@@ -37675,6 +39367,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1407 => 
   array (
@@ -37717,6 +39410,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1378 => 
   array (
@@ -37735,6 +39429,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1382 => 
   array (
@@ -37753,6 +39448,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1409 => 
   array (
@@ -37789,6 +39485,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1403 => 
   array (
@@ -37807,6 +39504,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1343 => 
   array (
@@ -37825,6 +39523,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Abyssal Beryl',
+    'dyeColor' => '3698c4',
+    'collectId' => '0',
   ),
   1368 => 
   array (
@@ -37843,6 +39544,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '312',
   ),
   1344 => 
   array (
@@ -37861,6 +39563,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1390 => 
   array (
@@ -37879,6 +39582,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1391 => 
   array (
@@ -37921,6 +39625,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'title' => 'Dro-m\'Athra Destroyer',
+    'collectId' => '0',
   ),
   1385 => 
   array (
@@ -37939,6 +39645,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1392 => 
   array (
@@ -37957,6 +39664,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1386 => 
   array (
@@ -37975,6 +39683,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1388 => 
   array (
@@ -37993,6 +39702,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1369 => 
   array (
@@ -38011,6 +39721,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1389 => 
   array (
@@ -38029,6 +39740,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1408 => 
   array (
@@ -38047,6 +39759,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1417 => 
   array (
@@ -38143,6 +39856,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1381 => 
   array (
@@ -38185,6 +39899,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1376 => 
   array (
@@ -38203,6 +39918,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1356 => 
   array (
@@ -38221,6 +39937,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1350 => 
   array (
@@ -38275,6 +39992,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 7,
       ),
     ),
+    'collectId' => '0',
   ),
   1423 => 
   array (
@@ -38371,6 +40089,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1367 => 
   array (
@@ -38389,6 +40108,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1371 => 
   array (
@@ -38407,6 +40127,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1377 => 
   array (
@@ -38425,6 +40146,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1304 => 
   array (
@@ -38491,6 +40213,10 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 9,
       ),
     ),
+    'dyeName' => 'Blademaster\'s Mauve',
+    'dyeColor' => '64418b',
+    'title' => 'Maelstrom Arena Champion',
+    'collectId' => '0',
   ),
   1393 => 
   array (
@@ -38509,6 +40235,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '160',
   ),
   1336 => 
   array (
@@ -38527,6 +40254,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1337 => 
   array (
@@ -38545,6 +40273,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1338 => 
   array (
@@ -38563,6 +40292,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1341 => 
   array (
@@ -38659,6 +40389,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1299 => 
   array (
@@ -38677,6 +40408,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1298 => 
   array (
@@ -38695,6 +40427,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1249 => 
   array (
@@ -38743,6 +40476,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1248 => 
   array (
@@ -38791,6 +40525,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'title' => 'Hero of Wrothgar',
+    'collectId' => '0',
   ),
   1339 => 
   array (
@@ -38809,6 +40545,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1288 => 
   array (
@@ -38827,6 +40564,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1287 => 
   array (
@@ -38845,6 +40583,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1289 => 
   array (
@@ -38863,6 +40602,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1290 => 
   array (
@@ -38881,6 +40621,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1285 => 
   array (
@@ -38899,6 +40640,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1286 => 
   array (
@@ -38917,6 +40659,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1260 => 
   array (
@@ -38953,6 +40696,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'title' => 'Kingmaker',
+    'collectId' => '0',
   ),
   1305 => 
   array (
@@ -39019,6 +40764,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 9,
       ),
     ),
+    'title' => 'Stormproof',
+    'collectId' => '213',
   ),
   1330 => 
   array (
@@ -39037,6 +40784,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'title' => 'The Flawless Conqueror',
+    'collectId' => '0',
   ),
   1412 => 
   array (
@@ -39133,6 +40882,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1297 => 
   array (
@@ -39151,6 +40901,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1239 => 
   array (
@@ -39193,6 +40944,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1238 => 
   array (
@@ -39211,6 +40963,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1240 => 
   array (
@@ -39253,6 +41006,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 5,
       ),
     ),
+    'collectId' => '0',
   ),
   1247 => 
   array (
@@ -39271,6 +41025,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1333 => 
   array (
@@ -39289,6 +41044,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1334 => 
   array (
@@ -39307,6 +41063,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1335 => 
   array (
@@ -39325,6 +41082,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1327 => 
   array (
@@ -39343,6 +41101,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1325 => 
   array (
@@ -39361,6 +41120,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1326 => 
   array (
@@ -39379,6 +41139,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1316 => 
   array (
@@ -39397,6 +41158,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1236 => 
   array (
@@ -39433,6 +41195,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1235 => 
   array (
@@ -39451,6 +41214,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1237 => 
   array (
@@ -39487,6 +41251,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1300 => 
   array (
@@ -39505,6 +41270,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1411 => 
   array (
@@ -39601,6 +41367,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
   1301 => 
   array (
@@ -39619,6 +41386,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1331 => 
   array (
@@ -39637,6 +41405,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1257 => 
   array (
@@ -39661,6 +41430,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1328 => 
   array (
@@ -39679,6 +41449,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1340 => 
   array (
@@ -39763,6 +41534,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1321 => 
   array (
@@ -39811,6 +41583,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1323 => 
   array (
@@ -39835,6 +41608,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1322 => 
   array (
@@ -39883,6 +41657,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1241 => 
   array (
@@ -39901,6 +41676,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1242 => 
   array (
@@ -39919,6 +41695,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1243 => 
   array (
@@ -39937,6 +41714,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1244 => 
   array (
@@ -39955,6 +41733,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1245 => 
   array (
@@ -39973,6 +41752,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1250 => 
   array (
@@ -40105,6 +41885,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 20,
       ),
     ),
+    'collectId' => '0',
   ),
   1324 => 
   array (
@@ -40237,6 +42018,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 20,
       ),
     ),
+    'collectId' => '0',
   ),
   1320 => 
   array (
@@ -40351,6 +42133,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 17,
       ),
     ),
+    'collectId' => '0',
   ),
   1302 => 
   array (
@@ -40369,6 +42152,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1267 => 
   array (
@@ -40387,6 +42171,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1122 => 
   array (
@@ -40423,6 +42208,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Tower White-Gold',
+    'dyeColor' => '97999b',
+    'collectId' => '0',
   ),
   1268 => 
   array (
@@ -40441,6 +42229,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1271 => 
   array (
@@ -40459,6 +42248,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1272 => 
   array (
@@ -40477,6 +42267,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1278 => 
   array (
@@ -40495,6 +42286,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1142 => 
   array (
@@ -40513,6 +42305,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1280 => 
   array (
@@ -40531,6 +42324,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1275 => 
   array (
@@ -40549,6 +42343,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1277 => 
   array (
@@ -40567,6 +42362,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1174 => 
   array (
@@ -40651,6 +42447,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'dyeName' => 'Dusky Bronze',
+    'dyeColor' => '5e3d2a',
+    'collectId' => '0',
   ),
   1184 => 
   array (
@@ -40687,6 +42486,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1186 => 
   array (
@@ -40771,6 +42571,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1132 => 
   array (
@@ -40819,6 +42620,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '163',
   ),
   1307 => 
   array (
@@ -40843,6 +42645,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectId' => '0',
   ),
   1171 => 
   array (
@@ -40891,6 +42694,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   880 => 
   array (
@@ -40939,6 +42743,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'dyeName' => 'Putrid Flesh Teal',
+    'dyeColor' => '418b60',
+    'collectId' => '0',
   ),
   1345 => 
   array (
@@ -40987,6 +42794,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1176 => 
   array (
@@ -41005,6 +42813,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1177 => 
   array (
@@ -41023,6 +42832,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1178 => 
   array (
@@ -41041,6 +42851,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Somber Cerise',
+    'dyeColor' => '833045',
+    'collectId' => '0',
   ),
   1160 => 
   array (
@@ -41131,6 +42944,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 13,
       ),
     ),
+    'collectId' => '0',
   ),
   1273 => 
   array (
@@ -41149,6 +42963,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Transliminal Violet',
+    'dyeColor' => '41387c',
+    'collectId' => '0',
   ),
   1169 => 
   array (
@@ -41197,6 +43014,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
+    'collectId' => '0',
   ),
   1281 => 
   array (
@@ -41227,6 +43045,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 3,
       ),
     ),
+    'dyeName' => 'Tainted Turquoise',
+    'dyeColor' => '13376b',
+    'collectId' => '0',
   ),
   1279 => 
   array (
@@ -41245,6 +43066,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1172 => 
   array (
@@ -41263,6 +43085,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1129 => 
   array (
@@ -41281,6 +43104,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1303 => 
   array (
@@ -41299,6 +43123,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1131 => 
   array (
@@ -41317,6 +43142,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1128 => 
   array (
@@ -41335,6 +43161,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1133 => 
   array (
@@ -41353,6 +43180,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1306 => 
   array (
@@ -41371,6 +43199,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1185 => 
   array (
@@ -41389,6 +43218,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1109 => 
   array (
@@ -41473,6 +43303,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 12,
       ),
     ),
+    'collectId' => '0',
   ),
   1314 => 
   array (
@@ -41491,6 +43322,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1315 => 
   array (
@@ -41509,6 +43341,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1179 => 
   array (
@@ -41527,6 +43360,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1311 => 
   array (
@@ -41545,6 +43379,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1312 => 
   array (
@@ -41563,6 +43398,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1313 => 
   array (
@@ -41581,6 +43417,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1175 => 
   array (
@@ -41635,6 +43472,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 7,
       ),
     ),
+    'dyeName' => 'Antique Brass',
+    'dyeColor' => 'ba7e2e',
+    'collectId' => '0',
   ),
   1276 => 
   array (
@@ -41653,6 +43493,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1182 => 
   array (
@@ -41671,6 +43512,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1269 => 
   array (
@@ -41689,6 +43531,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1270 => 
   array (
@@ -41707,6 +43550,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1130 => 
   array (
@@ -41725,6 +43569,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1120 => 
   array (
@@ -41761,6 +43606,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'dyeName' => 'Magnus Setting Red',
+    'dyeColor' => '7c1e1a',
+    'collectId' => '0',
   ),
   1346 => 
   array (
@@ -41797,6 +43645,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectId' => '0',
   ),
   1261 => 
   array (
@@ -41815,6 +43664,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1262 => 
   array (
@@ -41833,6 +43683,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1263 => 
   array (
@@ -41851,6 +43702,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectId' => '0',
   ),
   1181 => 
   array (
@@ -41947,6 +43799,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+    'collectId' => '0',
   ),
 );
 $ESO_ACHIEVEMENT_TREE = array (
@@ -42471,9 +44324,6 @@ $ESO_ACHIEVEMENT_TREE = array (
   ),
   'Alliance War' => 
   array (
-    'General' => 
-    array (
-    ),
     'Cyrodiil' => 
     array (
       1 => 
@@ -46193,9 +48043,6 @@ $ESO_ACHIEVEMENT_TREE = array (
   ),
   'Holiday Events' => 
   array (
-    'General' => 
-    array (
-    ),
     'Witches Festival' => 
     array (
       1 => 
@@ -46310,9 +48157,6 @@ $ESO_ACHIEVEMENT_TREE = array (
   ),
   'DLC' => 
   array (
-    'General' => 
-    array (
-    ),
     'Shadows of the Hist' => 
     array (
       1 => 
