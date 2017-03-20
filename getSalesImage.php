@@ -605,13 +605,15 @@ class EsoGetSalesImage
 		
 		if ($this->viewData != "list") 
 		{
-			$this->PrintText($image, "Sales", self::TICK_FONT_SIZE, $this->saleColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_BOTTOM);
+			$count = count($this->soldData);
+			$this->PrintText($image, "Sales ($count)", self::TICK_FONT_SIZE, $this->saleColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_BOTTOM);
 			$y -= 15;
 		}
 		
 		if ($this->viewData != "sold") 
 		{
-			$this->PrintText($image, "Listed", self::TICK_FONT_SIZE, $this->listColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_BOTTOM);
+			$count = count($this->listData);
+			$this->PrintText($image, "Listed ($count)", self::TICK_FONT_SIZE, $this->listColor, $x, $y, self::ALIGN_LEFT, self::ALIGN_BOTTOM);
 		}
 	}
 	
