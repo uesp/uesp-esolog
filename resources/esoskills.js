@@ -1258,8 +1258,12 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			{
 				if (target == "enemy") 
 				{
-					baseFactor += Math.round(inputValues.Damage.SingleTarget*100)/100;
-					newRawOutput.singleTargetDamageDone = +inputValues.Damage.SingleTarget;
+							/* Special case for overload */
+					if (skillData.baseAbilityId != 24785)
+					{
+						baseFactor += Math.round(inputValues.Damage.SingleTarget*100)/100;
+						newRawOutput.singleTargetDamageDone = +inputValues.Damage.SingleTarget;
+					}
 				}
 			}
 			
@@ -1267,8 +1271,12 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 			{
 				if (target == "area" || target == "cone" || target == "self" || target == "ground")
 				{
-					baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
-					newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
+							/* Special case for overload */
+					if (skillData.baseAbilityId != 24785)
+					{
+						baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
+						newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
+					}
 				}
 			}
 			
