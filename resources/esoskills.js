@@ -1212,7 +1212,8 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 
 			if (inputValues.SkillDamage != null && inputValues.SkillDamage[skillData.baseName] != null)
 			{
-				newRawOutput.mainDamageDone += inputValues.SkillDamage[skillData.baseName];
+				baseFactor += inputValues.SkillDamage[skillData.baseName];
+				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.baseName]; 
 			}
 			
 			if (isDot || p1 == "additional " || p5 != "")
@@ -1298,6 +1299,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 		var output = "";
 				
 		if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + RoundEsoSkillPercent(rawData.modDuration) + " sec ";
+		if (rawData.skillDamageDone != null && rawData.skillDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDamageDone*100) + "% Skill ";
 		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.mainDamageDone*100) + "% " + rawData.damageId;
 		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeDamageDone*100) + "% AoE";
 		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetDamageDone*100) + "% Target";
