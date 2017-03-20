@@ -977,7 +977,7 @@ function UpdateEsoSkillDamageShieldDescription(skillData, skillDesc, inputValues
 		var rawData = rawOutput[i];
 		var output = "";
 		
-		if (rawData.shieldBonus != null && rawData.shieldBonus != 0) output += " + " + (rawData.shieldBonus*100) + "% ";
+		if (rawData.shieldBonus != null && rawData.shieldBonus != 0) output += " + " + RoundEsoSkillPercent(rawData.shieldBonus*100) + "% ";
 		
 		if (output == "")
 			output = "" + rawData.baseShield + " (unmodified)";
@@ -1120,7 +1120,7 @@ function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 		var rawData = rawOutput[i];
 		var output = "";
 				
-		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + (rawData.healDone*100) + "% " + rawData.healId;
+		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + RoundEsoSkillPercent(rawData.healDone*100) + "% " + rawData.healId;
 		//TODO: healId2?
 		
 		if (output == "")
@@ -1289,12 +1289,12 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 		var rawData = rawOutput[i];
 		var output = "";
 				
-		if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + rawData.modDuration + " sec ";
-		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + (rawData.mainDamageDone*100) + "% " + rawData.damageId;
-		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + (rawData.aoeDamageDone*100) + "% AoE";
-		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + (rawData.singleTargetDamageDone*100) + "% Target";
-		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + (rawData.dotDamageDone*100) + "% DoT";
-		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + (rawData.damageDone*100) + "% All";
+		if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + RoundEsoSkillPercent(rawData.modDuration) + " sec ";
+		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.mainDamageDone*100) + "% " + rawData.damageId;
+		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeDamageDone*100) + "% AoE";
+		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetDamageDone*100) + "% Target";
+		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
+		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
@@ -1305,6 +1305,12 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 	}
 	
 	return newDesc;
+}
+
+
+function RoundEsoSkillPercent(value)
+{
+	return Math.round(value*10)/10;
 }
 
 
