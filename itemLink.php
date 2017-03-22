@@ -1737,7 +1737,9 @@ class CEsoItemLink
 		
 		if ($abilityDesc == "") return "";
 		
-		$output = "<div class='esoil_white esoil_small'>$ability</div><br/>$abilityDesc";
+		$output = "";
+		if ($ability != "") $output .= "<div class='esoil_white esoil_small'>$ability</div><br/>";
+		$output .= "$abilityDesc";
 		if ($cooldown > 0) $output .= " ($cooldown second cooldown)";
 		return $output;
 	}
@@ -1792,7 +1794,7 @@ class CEsoItemLink
 		$level = $this->itemRecord['level'];
 		if ($level <= 0) return "none";
 		
-		if ($this->showSummary) return "none";
+		//if ($this->showSummary) return "none";
 		
 		switch ($this->itemRecord['type'])
 		{
@@ -1845,8 +1847,8 @@ class CEsoItemLink
 			case 20:
 			case 21:
 			case 30:	// Poison
-			case 51:
 			case 7:		// Potion
+			case 51:
 			case 9:		// Repair Kit
 				return "inline-block";
 		}
@@ -1870,6 +1872,7 @@ class CEsoItemLink
 		
 		$level = $this->itemRecord['level'];
 		
+		if ($this->showSummary) return "none";		
 		if ($this->GetItemLevelBlockDisplay() == "none") return "none";
 		
 		if ($level > 50) return "inline-block";
