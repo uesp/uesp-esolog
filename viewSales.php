@@ -595,6 +595,28 @@ class EsoViewSalesData
 	}
 	
 	
+	public function GetPotionDataSummary($potionData)
+	{
+		global $ESO_POTIONEFFECT_DATA;
+		
+		$potionData = intval($potionData);
+		$effect1 = $potionData & 255;
+		$effect2 = ($potionData >> 8) & 255;
+		$effect3 = ($potionData >> 16) & 255;
+		
+		$effectData1 = $ESO_POTIONEFFECT_DATA[$effect1];
+		$effectData2 = $ESO_POTIONEFFECT_DATA[$effect2];
+		$effectData3 = $ESO_POTIONEFFECT_DATA[$effect3];
+		
+		$effects = array();
+		if ($effectData1) $effects[] = $effectData1['name'];
+		if ($effectData2) $effects[] = $effectData2['name'];
+		if ($effectData3) $effects[] = $effectData3['name'];
+			
+		return $effects;
+	}
+	
+	
 	public function GetItemSearchResultsHtml()
 	{
 		if (!$this->hasSearchData) return "";
@@ -692,7 +714,22 @@ class EsoViewSalesData
 			}
 			else if ($item['itemType'] == 7 || $item['itemType'] == 30)
 			{
-				
+				if ($item['potionData'] > 0)
+				{
+					$type1 = "Crafted";
+					$type2 = implode("<br/>", $this->GetPotionDataSummary($item['potionData']));
+				}
+				else
+				{
+					$type1 = "Store";
+					$type2 = "";
+				}
+			}
+			else if ($item['itemType'] == 60)
+			{
+				$vouchers = round($item['potionData'] / 10000);
+				$type1 = "$vouchers vouchers";
+				$type2 = "";
 			}
 		
 			$output .= "<tr>";
@@ -712,8 +749,7 @@ class EsoViewSalesData
 		
 		$output .= "</table>";
 		return $output;
-	}
-	
+	}	
 	
 	
 	public function FormatTimeStamp ($timestamp)
@@ -2140,6 +2176,24 @@ class EsoViewSalesData
 		$details[] = GetEsoItemArmorTypeText($this->singleItemData['armorType']);
 		$details[] = GetEsoItemEquipTypeText($this->singleItemData['equipType']);
 		$details[] = $this->Escape($item['setName']);
+		
+		if ($this->singleItemData['itemType'] == 7 || $this->singleItemData['itemType'] == 30)
+		{
+			if ($this->singleItemData['potionData'] > 0)
+			{
+				$details[] = "Crafted";
+				$details[] = implode(" + ", $this->GetPotionDataSummary($this->singleItemData['potionData']));
+			}
+			else
+			{
+				$details[] = "Store";
+			}
+		}
+		else if ($this->singleItemData['itemType'] == 60)
+		{
+			$vouchers = round($this->singleItemData['potionData'] / 10000);
+			$details[] = "$vouchers vouchers";
+		}
 		
 		$details = array_filter($details);
 		
