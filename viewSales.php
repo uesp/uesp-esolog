@@ -603,11 +603,10 @@ class EsoViewSalesData
 		$output .= "<tr>";
 		$output .= "<th>Item</th>";
 		$output .= "<th>Level</th>";
-		$output .= "<th>Trait</th>";
-		$output .= "<th>Type</th>";
-		$output .= "<th>Equip</th>";
-		$output .= "<th>Armor</th>";
-		$output .= "<th>Weapon</th>";
+		$output .= "<th>Item Type</th>";
+		$output .= "<th>Trait</th>";		
+		$output .= "<th>Type 1</th>";
+		$output .= "<th>Type 2</th>";
 		$output .= "<th>Set Name</th>";
 		$output .= "<th>#</th>";
 		$output .= "<th>Avg Price</th>";
@@ -675,15 +674,35 @@ class EsoViewSalesData
 			
 			$extraData = $this->Escape($item['extraData']);
 			
+			$type1 = "";
+			$type2 = "";
+			
+			if ($armorType != "")
+			{
+				$type1 = $armorType;
+				$type2 = $equipType;
+			}
+			else if ($weaponType != "")
+			{
+				$type1 = $weaponType;
+			}
+			else if ($equipType != "")
+			{
+				$type1 = $equipType;
+			}
+			else if ($item['itemType'] == 7 || $item['itemType'] == 30)
+			{
+				
+			}
+		
 			$output .= "<tr>";
 			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}' extradata='$extraData'>";
 			$output .= "<img src='$iconURL' class='esovsd_itemicon'>$itemName</div></td>";
 			$output .= "<td>$levelText</td>";
-			$output .= "<td>$traitText</td>";
 			$output .= "<td>$itemType</td>";
-			$output .= "<td>$equipType</td>";
-			$output .= "<td>$armorType</td>";
-			$output .= "<td>$weaponType</td>";
+			$output .= "<td>$traitText</td>";
+			$output .= "<td>$type1</td>";
+			$output .= "<td>$type2</td>";
 			$output .= "<td>$setName</td>";
 			$output .= "<td>$totalCountText</td>";
 			$output .= "<td>$avgPrice gp$copyPriceHtml</td>";
