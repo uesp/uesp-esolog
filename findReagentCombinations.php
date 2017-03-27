@@ -8,6 +8,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 $USE_THREE_REAGENTS = true;
 $USE_TWO_REAGENT_UPTO = 36;
+//$USE_TWO_REAGENT_UPTO = 0.5;
 
 
 function GetCombinedEffects($reagent1, $reagent2, $reagent3, $known1, $known2, $known3)
