@@ -223,9 +223,8 @@ class CEsoViewAchievements
 			$output .= "</div>";
 		}
 		
-		$pointsAllChar = $this->GetCharStatField("AchievementEarnedPoints", 0);
+		$pointsAll = $this->GetCharStatField("AchievementEarnedPoints", 0);
 		$totalAllChar = $this->GetCharStatField("AchievementTotalPoints", 0);
-		
 		if ($totalAllChar == 0) $pointsAll = $totalAll;
 		
 		if ($totalAll > 0)
