@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Achievement Browser {versionTitle}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoachievement.css" />
+		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoachievement_embed.css" />
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoachievement.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+<h1>UESP:ESO Achievement Browser</h1>
+
+<div id="ecdAchRoot">
+	<div id='ecdAchievementTree'>
+		<div class='ecdFindAchTextBox'>
+			<input type="text" size="16" maxsize="32" value="" id='ecdFindAchInput' placeholder="Find Achievement" />
+			<button onclick="OnFindEsoCharAchievement(this);">Find...</button> 
+		</div>
+		{achievementTree}
+	</div>
+	<div id='ecdAchievementContents'>{achievementContents}</div>
+</div>
+
+<div class="ecdAchBlockClear"></div>
+
+<div class="ecdAchUpdateDate">Achievement data last updated on {updateDate}.</div>
+<hr>
+<div id="ecdAchFooter">
+This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</div>
+</body>
+</html>
