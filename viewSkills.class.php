@@ -1195,12 +1195,7 @@ class CEsoViewSkills
 	{
 		$this->OutputHtmlHeader();
 		
-		if (!$this->dataLoaded)
-		{
-			$this->LoadTemplate();
-			$this->LoadSkills();
-			$this->dataLoaded = true;
-		}
+		if (!$this->dataLoaded)	$this->LoadData();
 		
 		$this->SetupHighlightSkill();
 		$this->OutputHtml();
@@ -1217,12 +1212,7 @@ class CEsoViewSkills
 	
 	public function GetOutputHtml()
 	{
-		if (!$this->dataLoaded)
-		{
-			$this->LoadTemplate();
-			$this->LoadSkills();
-			$this->dataLoaded = true;
-		}
+		if (!$this->dataLoaded)	$this->LoadData();
 		
 		$this->SetupHighlightSkill();
 		return $this->CreateOutputHtml();

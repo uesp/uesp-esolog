@@ -1,0 +1,558 @@
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+#ecdAchFooter {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#ecdAchFooter a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#ecdAchFooter a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+.ecdAchBlockClear {
+	float: none;
+	clear: both;
+}
+
+.ecdAchUpdateDate {
+	color: #777;
+	font-style: italic;
+}
+
+#ecdAchRoot {
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
+	color: black;
+	font-size: 15px;
+	font-weight: normal;
+}
+
+#ecdAchievementTree {
+	width: 220px;
+    margin-top: 5px;
+	padding: 10px;
+	float: left;
+}
+
+#ecdAchievementContents {
+	min-width: 420px;
+	width: 600px;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+.ecdAchTree1 {
+}
+
+.ecdAchTreeName1 {
+	font-size: 20px;
+    font-weight: bold;
+    color: black;
+    padding: 5px;
+    padding-left: 0px;
+    margin-left: 0px;
+    cursor: pointer;
+    border-radius: 15px;
+    height: 22px;
+	padding-bottom: 10px;
+}
+
+.ecdAchTreeName1 img {
+	width: 32px;
+	height: 32px;
+	position: relative;
+	top: -2px;
+	vertical-align: middle;
+}
+
+.ecdAchTreeNameHighlight {
+    color: black;
+    background-color: yellow;
+}
+
+.ecdAchTreeContent1 {
+	margin-left: 30px;
+}
+
+.ecdAchTree2 {
+}
+
+.ecdAchTreeName2 {
+	font-size: 17px;
+    font-weight: bold;
+    color: black;
+    padding: 2px;
+    cursor: pointer;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.ecdAchTreeNameHighlight2 {
+    color: black;
+    background-color: #9999ff;
+    border-radius: 10px;
+}
+
+.ecdAchTreeName1:hover,
+.ecdAchTreeName2:hover {
+	color: white;
+	background-color: blue;
+}
+
+.ecdAchContentTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    float: none;
+    text-align: left;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 5px;	
+}
+
+.ecdAchData {
+	position: relative;
+}
+
+.ecdAchievement1 {
+	padding: 3px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	min-height: 70px;
+	position: relative;
+	border-radius: 5px;
+}
+
+.ecdAchievement1:hover {
+	background-color: #9999ff;
+	cursor: pointer;	
+}
+
+.ecdAchMidBlock {
+	display: inline-block;
+	width: 450px;
+    padding-left: 5px;
+}
+
+.ecdAchRightBlock {
+	float: right;
+	display: inline-block;
+	width: 75px;
+    text-align: center;
+    padding-top: 10px;    
+}
+
+.ecdAchIcon {
+	width: 48px;
+	height: 48px;
+	float: left;
+	display: inline-block;
+}
+
+.ecdAchName {
+	color: black;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.ecdAchDesc {
+	color: black;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.ecdAchPoints {
+	color: black;
+	font-weight: bold;
+	font-size: 36px;
+}
+
+.ecdAchDate {
+	color: black;
+	font-weight: bold;
+	font-size: 16px;
+	padding-top: 5px;
+}
+
+.ecdAchUnknown .ecdAchIcon {
+	opacity: 0.4;
+}
+
+.ecdAchUnknown .ecdAchName {
+	color: #888;
+}
+
+.ecdAchUnknown .ecdAchDesc {
+	color: #888;
+}
+
+.ecdAchUnknown .ecdAchPoints {
+	color: #888;	
+}
+
+.ecdAchUnknown .ecdAchDate {
+	color: #888;
+}
+
+.ecdAchList {
+	width: 100%;
+	text-align:center;
+}
+
+.ecdAchList img {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	padding: 3px;
+}
+
+.ecdAchList .ecdAchUnknown {
+	opacity: 0.4;	
+}
+
+.ecdAchCriteriaList {
+	padding-left: 40px;
+    clear: both;
+    padding-top: 5px;
+}
+
+.ecdAchCriteria {
+	font-weight: bold;
+	font-size: 15px;
+	padding-bottom: 5px;
+	white-space: nowrap;
+}
+
+.ecdAchCriteria.ecdAchUnknown {
+	color: #888;
+}
+
+.ecdAchDataBlock {
+	clear: both;
+}
+
+.ecdAchCriteriaCheck {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	-webkit-filter: drop-shadow(1px 1px 2px black);
+    filter: drop-shadow(1px 1px 2px black);
+}
+
+.ecdAchCriteriaCheck.ecdAchUnknown {
+	opacity: 0;
+}
+
+.ecdAchStatusBar {
+	width: 300px;
+	height: 19px;
+	display: inline-block;	
+	background-image: url('achstatusbar-inside1.png');
+	background-size: 300px 19px;
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	text-align: center;	
+}
+
+.ecdAchStatusBarFrame {
+	width: 300px;
+	height: 19px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-image: url('achstatusbar-frame1.png');
+	background-size: 300px 19px;
+	z-index: 10;
+}
+
+.ecdAchCriteriaPoints {
+	display: inline-block;
+	z-index: 20;
+	font-size: 16px;
+	color: white;
+	text-shadow: 2px 2px 3px black;
+	position: relative;
+	top: 2px;
+}
+
+.ecdAchRewardList {
+	padding-left: 40px;
+	clear: both;
+    padding-top: 10px;
+}
+
+.ecdAchReward {
+	font-weight: bold;
+	font-size: 15px;
+	color: black;
+}
+
+.ecdAchReward.ecdAchUnknown {
+	color: #888 !important;
+}
+
+.ecdAchRewardDye {
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+    position: relative;
+    top: 1px;
+}
+
+.ecdAchIconFrame {
+	display: inline-block;
+    width: 52px;
+    height: 52px;
+    background-image: url(eso_ability_frame.png);
+    background-size: 100% 100%;
+    vertical-align: middle;
+    text-align: center;
+    opacity: 1 !important;
+    vertical-align: top !important;
+	background-color: black;    
+}
+
+.ecdAchIconFrame img {
+	left: 2px;
+    top: 2px;
+    position: relative;
+}
+
+.ecdAchSmallIconFrame {
+	display: inline-block;
+    width: 34px;
+    height: 34px;
+    background-image: url(eso_ability_frame.png);
+    background-size: 100% 100%;
+    vertical-align: middle;
+    text-align: center;
+    opacity: 1 !important;
+}
+
+.ecdAchSmallIconFrame img {
+	left: -2px;
+    top: -2px;
+    position: relative;	
+}
+
+.ecdAchListItem {
+	display: inline-block;
+	color: black !important;
+	font-weight: bold;
+	font-size: 14px;
+	padding: 3px;
+}
+
+.ecdAchRewardDyeFrame {
+	display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url(eso_ability_frame.png);
+    background-size: 100% 100%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.ecdAchCatePoints {
+	font-size: 16px;
+    font-weight: bold;
+    color: black;
+	padding-bottom: 10px;
+}
+
+.ecdAchCatePointsText {
+	z-index: 15;
+	display: inline-block;
+	color: white;
+	text-shadow: 2px 2px 3px black;
+	position: relative;
+	top: 2px;
+}
+
+.achAchRewardIcon1 {
+	width: 32px;
+	height: 32px;
+	text-align: left;
+	position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.ecdAchRewardItemIcon {
+	width: 24px;
+	height: 24px;
+}
+
+.ecdAchLargeStatusBar {
+	width: 400px;
+	height: 19px;
+	display: inline-block;	
+	background-image: url('achstatusbar-inside1.png');
+	background-size: 400px 19px;
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	text-align: center;	
+}
+
+.ecdAchLargeStatusBarFrame {
+	width: 400px;
+	height: 19px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-image: url('achstatusbar-frame1.png');
+	background-size: 400px 19px;
+	z-index: 10;
+}
+
+.ecdAchStatusBarLargePoints {
+	display: inline-block;
+	z-index: 15;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 2px 2px 3px black;
+	position: relative;
+    top: 2px;
+}
+
+.ecdAchSmallStatusBar {
+	width: 190px;
+	height: 19px;
+	display: inline-block;	
+	background-image: url('achstatusbar-inside1.png');
+	background-size: 190px 19px;
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	text-align: center;	
+}
+
+.ecdAchSmallStatusBarFrame {
+	width: 190px;
+	height: 19px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-image: url('achstatusbar-frame1.png');
+	background-size: 190px 19px;
+	z-index: 10;
+}
+
+.ecdAchStatusBarSmallPoints {
+	display: inline-block;
+	z-index: 15;
+	font-weight: bold;
+	font-size: 16px;
+	color: white;
+	text-shadow: 2px 2px 3px black;
+	position: relative;
+    top: 2px;
+}
+
+.ecdAchSummaryName {
+	font-weight: bold;
+	color: black;
+	font-size: 18px;
+}
+
+.ecdAchSummaryBlock {
+	display: inline-block;
+	padding-top: 15px;
+    padding-right: 20px;
+}
+
+.ecdFindAchTextBox {
+	padding-bottom: 10px;
+}
+
+.ecdFindAchTextBox input {
+    width: 140px;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
+.ecdFindAchTextBox button {
+    width: 70px;
+    height: 23px;
+    font-size: 12px;
+	vertical-align: top;
+}
+
+.ecdFindAchTextBox button:hover {
+}
+
+.ecdFindAchTextBox button:active {
+	position:relative;
+	top:1px;
+}
+
+.ecdFindAchTextBox button:focus {
+	outline: 0;
+}
+
+.ecdAchSearchHighlight {
+	background-color: #9999ff;
+}
+
+.ecdAchSearchHighlight:hover {
+	background-color: #bbbbff;
+}

@@ -4645,6 +4645,8 @@ class EsoLogParser
 		$this->lastQuery = "DELETE FROM achievementCriteria;";
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return $this->reportLogParseError("Failed to clear achievementCriteria table!");
+		
+		$this->logInfos['lastAchievementUpdate'] = date("Y-M-d H:i:s");
 				
 		return true;
 	}
