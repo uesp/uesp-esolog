@@ -18,6 +18,8 @@ class CEsoViewAchievements
 	public $htmlTemplate = "";
 	public $dataLoaded = false;
 	
+	public $characterData = null;
+	
 	
 	public function __construct ($parseParams = true)
 	{
@@ -123,6 +125,54 @@ class CEsoViewAchievements
 	}
 	
 	
+	public function GetCharStatField($field, $default = "")
+	{
+		if ($this->characterData == null) return $default;
+		if (!array_key_exists($field, $this->characterData['stats'])) return $default;
+		return $this->escape($this->characterData['stats'][$field]['value']);
+	}
+	
+	
+	public function GetCharAchievementData($achId)
+	{
+		$charAchData = $this->GetCharStatField("Achievement:$achId", "");
+		if ($charAchData == "") return false;
+	
+		$data = explode(",", $charAchData);
+		$progress = $data[0];
+		$timestamp = intval($data[1]);
+		if ($progress === null) $progress = "";
+	
+		return array($progress, $timestamp);
+	}
+	
+	
+	public function ParseCharAchievementProgress($achId, $progress)
+	{
+		global $ESO_ACHIEVEMENT_DATA;
+	
+		$achData = $ESO_ACHIEVEMENT_DATA[$achId];
+		if ($achData == null) return array(0);
+	
+		if ($progress === null || $progress === "") return array_fill(1, count($achData['criteria']), 0);
+		if (count($achData['criteria']) == 1) return array( 1 => intval($progress));
+	
+		$progressResult = array();
+	
+		foreach ($achData['criteria'] as $index => $criteria)
+		{
+			$value = $criteria['value'];
+				
+			$nextPowerof2 = ceil(log($value + 1, 2));
+				
+			$progressResult[$index] = $progress & (pow(2, $nextPowerof2) - 1);
+			$progress = $progress >> $nextPowerof2;
+		}
+	
+		return $progressResult;
+	}
+	
+	
 	public function GetAchievementSummaryContentHtml()
 	{
 		global $ESO_ACHIEVEMENT_CATEGORIES, $ESO_ACHIEVEMENT_DATA, $ESO_ACHIEVEMENT_TREE;
@@ -147,8 +197,7 @@ class CEsoViewAchievements
 			$points = 1;
 			$total = 1;
 			
-			//$pointsData = $this->GetCharStatField("AchievementPoints:$index", "");
-			$pointsData = "";
+			$pointsData = $this->GetCharStatField("AchievementPoints:$index", "");
 			
 			if ($pointsData != "")
 			{
@@ -174,9 +223,10 @@ class CEsoViewAchievements
 			$output .= "</div>";
 		}
 		
-		//$pointsAll = $this->GetCharStatField("AchievementEarnedPoints", 0);
-		//$totalAll = $this->GetCharStatField("AchievementTotalPoints", 0);
-		$pointsAll = $totalAll;
+		$pointsAllChar = $this->GetCharStatField("AchievementEarnedPoints", 0);
+		$totalAllChar = $this->GetCharStatField("AchievementTotalPoints", 0);
+		
+		if ($totalAllChar == 0) $pointsAll = $totalAll;
 		
 		if ($totalAll > 0)
 		{
@@ -217,8 +267,7 @@ class CEsoViewAchievements
 			
 			if ($displayId <= 0) $displayId = $achId;
 			
-			//$charAchData = $this->GetCharAchievementData($achId);
-			$charAchData = null;
+			$charAchData = $this->GetCharAchievementData($achId);
 			
 			if ($charAchData)
 			{
@@ -302,8 +351,7 @@ class CEsoViewAchievements
 			$achData = $ESO_ACHIEVEMENT_DATA[$achId];
 			if ($achData == null) continue;
 			
-			//$charAchData = $this->GetCharAchievementData($achId);
-			$charAchData = null;
+			$charAchData = $this->GetCharAchievementData($achId);
 			$isKnown = false;
 			
 			if ($charAchData)
@@ -394,8 +442,7 @@ class CEsoViewAchievements
 					$index = $catData['index'];
 					$subIndex = $catData['subIndex'];
 					
-					//$pointsData = $this->GetCharStatField("AchievementPoints:$index:$subIndex", "");
-					$pointsData = "";
+					$pointsData = $this->GetCharStatField("AchievementPoints:$index:$subIndex", "");
 					
 					if ($pointsData !== "")
 					{
@@ -434,7 +481,7 @@ class CEsoViewAchievements
 	}
 	
 	
-	public function getAchievementCriteriaHtml($achId)
+	public function GetAchievementCriteriaHtml($achId)
 	{
 		global $ESO_ACHIEVEMENT_DATA;
 	
@@ -450,8 +497,8 @@ class CEsoViewAchievements
 	
 		$charAchData = null;
 		$progressData = array();
-		//$charAchData = $this->GetCharAchievementData($achId);
-		//$progressData = $this->ParseCharAchievementProgress($achId, $charAchData[0]);
+		$charAchData = $this->GetCharAchievementData($achId);
+		if ($charAchData) $progressData = $this->ParseCharAchievementProgress($achId, $charAchData[0]);
 	
 		foreach ($achData['criteria'] as $index => $criteria)
 		{
@@ -515,8 +562,7 @@ class CEsoViewAchievements
 			$isKnown = false;
 			if ($displayId <= 0) $displayId = $achId;
 	
-			//$charAchData = $this->GetCharAchievementData($achId);
-			$charAchData = null;
+			$charAchData = $this->GetCharAchievementData($achId);
 			
 			if ($charAchData && $charAchData[1] > 0) $isKnown = true;
 			$completeText = "Not Completed";

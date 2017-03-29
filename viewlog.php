@@ -2718,6 +2718,7 @@ If you do not understand what this information means, or how to use this webpage
 		<li><a href="http://www.uesp.net/wiki/Special:EsoBuildEditor">Build Editor</a></li>
 		<li><a href="/viewPotions.php">Alchemy Calculator</a></li>
 		<li><a href="http://esosales.uesp.net/viewSales.php">Sales Data</a></li>
+		<li><a href="/viewAchievements.php">Achievement Viewer</a></li>
 		<li><a href="http://esoapi.uesp.net">API Information</a></li>
 		<li><a href="http://esofiles.uesp.net/">ESO Raw File Download</a></li>
 		<li><a href="https://github.com/esoui/esoui">ESO UI Source Code on GitHub</a></li>
