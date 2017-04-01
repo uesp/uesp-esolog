@@ -748,3 +748,33 @@
 	float: right;
     margin: 10px;
 }
+
+.esovsSkillAcceptHover {
+	border: solid 2px yellow;
+}
+
+.esovsSkillDraggableBad {
+}
+
+.esovsSkillDraggableGood {
+	display: none;
+}
+
+.esovsSkillDraggable {
+	width: 64px !important;
+	height: 64px !important;
+	z-index: 20;
+}
+
+.esovsSkillDraggable img {
+	width: 64px !important;
+	height: 64px !important;
+}
+
+.esovsSkillDraggable .esovsAbilityBlockIconLevel {
+	display: none !important;
+}
+
+.esovsSkillDraggable.esovsAbilityBlockIcon:after {
+	background-image: none;
+}
