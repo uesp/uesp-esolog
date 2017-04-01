@@ -10,6 +10,8 @@ var g_EsoSkillDragData = {};
 
 var g_EsoSkillUpdateEnable = true;
 
+var g_EsoSkillIsMobile = false;
+
 
 ESO_SKILL_TYPES = {
 		0 : "",
@@ -313,7 +315,7 @@ function EsoShowPopupSkillTooltip(skillData, parent)
 {
 	var popupElement = $("#esovsPopupSkillTooltip");
 	
-	if (g_EsoSkillDragData.isDragging)
+	if (g_EsoSkillDragData.isDragging || $(".ui-draggable-dragging").length > 0)
 	{
 		popupElement.hide();
 		return;
@@ -408,12 +410,31 @@ function EsoViewSkillShowTooltip(skillData)
 }
 
 
+function OnEsoSkillBlockClickMobile(event)
+{
+	var skillId = $(this).attr('skillid');
+	if (skillId == null || skillId == "") return;
+	
+	var skillData = g_SkillsData[skillId];
+	
+	EsoViewSkillShowTooltip(skillData);
+	EsoShowPopupSkillTooltip(skillData, $(this)[0]);
+	
+	UpdateEsoSkillTooltipDescription();
+	UpdateEsoSkillTooltipCost();
+	UpdateEsoSkillRawData();
+	UpdateEsoSkillCoefData();
+	UpdateSkillLink();
+}
+
+
 function OnEsoSkillBlockClick(event)
 {
 	var skillId = $(this).attr('skillid');
 	if (skillId == null || skillId == "") return;
 	
 	EsoViewSkillShowTooltip(g_SkillsData[skillId]);
+	
 	UpdateEsoSkillTooltipDescription();
 	UpdateEsoSkillTooltipCost();
 	UpdateEsoSkillRawData();
@@ -2233,6 +2254,8 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 
 function OnAbilityBlockPurchase(e)
 {
+	$("#esovsPopupSkillTooltip").hide();
+	
 	var skillId = $(this).attr("skillid");
 	var parentSkillId = $(this).parent().prev(".esovsAbilityBlock").attr("skillid");
 	
@@ -2242,6 +2265,24 @@ function OnAbilityBlockPurchase(e)
 		PurchaseEsoSkill(skillId);
 	
 	$(this).parent().slideUp();
+}
+
+
+function OnEsoSkillIconBlockClickMobile(event)
+{
+	$("#esovsPopupSkillTooltip").hide();
+	
+	var $this = $(this).parent();
+	var $parent = $this.parent();
+	var skillId = $this.attr("skillid");
+	var parentSkillId = $parent.prev(".esovsAbilityBlock").attr("skillid");
+	
+	if (skillId <= 0)
+		ResetEsoPurchasedSkill(parentSkillId);
+	else
+		PurchaseEsoSkill(skillId);
+	
+	$parent.slideUp();
 }
 
 
@@ -2608,6 +2649,210 @@ function OnSkillBarDrop(e)
 }
 
 
+function OnSkillBarRevertDraggable(droppableObj)
+{
+	//console.log("OnSkillBarRevertDraggable", $(this), droppableObj);
+	
+	if (droppableObj !== false) return false;
+	
+	var sourceBlockIcon = $(this);
+	if (!sourceBlockIcon.hasClass("esovsSkillBarIcon")) return false;
+	
+	var sourceAbilityId = sourceBlockIcon.attr("skillid");
+	var sourceOrigAbilityId = sourceBlockIcon.attr("origskillid");
+	var sourceIconUrl = sourceBlockIcon.attr("src");
+	var skillBar = sourceBlockIcon.attr("skillBar");
+	
+	if (sourceAbilityId <= 0) return false;
+	
+	RemoveSkillBarAbility(sourceAbilityId, skillBar );
+	UpdateEsoSkillBarData();		
+	
+	return false;
+}
+
+
+function OnSkillBarDroppableOut(event, ui)
+{
+	var $this = $(this);
+	var realDraggable = $(".ui-draggable-dragging");
+	var currentImage = $this.find("img");
+	var oldSrc = currentImage.attr("oldsrc");
+	
+	realDraggable.addClass("esovsSkillDraggableBad");
+	realDraggable.removeClass("esovsSkillDraggableGood");
+	
+	if (oldSrc != null) currentImage.attr("src", oldSrc);
+	
+	//console.log("OnSkillBarDroppableOut");
+}
+
+
+function OnSkillBarDroppableOver(event, ui)
+{
+	var $this = $(this);
+	var realDraggable = $(".ui-draggable-dragging");
+	var currentImage = $this.find("img");
+	var src = currentImage.attr("src");
+	var newSrc = "";
+	
+	realDraggable.removeClass("esovsSkillDraggableBad");
+	realDraggable.addClass("esovsSkillDraggableGood");
+	
+	if (realDraggable.hasClass("esovsAbilityBlockIcon"))
+	{
+		newSrc = realDraggable.find("img").attr("src");
+	}
+	else if (realDraggable.hasClass("esovsSkillBarIcon"))
+	{
+		newSrc = realDraggable.attr("src");
+	}
+	
+	if (src == null) src == "";
+	currentImage.attr("oldsrc", src);
+	if (newSrc) currentImage.attr("src", newSrc);
+	
+	//console.log("OnSkillBarDroppableOver");
+}
+
+
+function OnSkillBarDraggableStart(event, ui) 
+{ 
+	$(".ui-draggable-dragging").addClass('esovsSkillDraggableBad').addClass('esovsSkillDraggable');
+	
+	$("#esovsPopupSkillTooltip").hide();
+	//console.log("OnSkillBarDraggableStart");
+	
+	$("#esovsSkillBar").find(".esovsSkillBarIcon").removeAttr("oldsrc");
+}
+
+
+function OnSkillBarDroppableAccept(draggable)
+{
+	var $this = $(this);
+	draggable = $(draggable);
+		
+	//console.log("OnSkillBarAccept", $this, draggable, realDraggable);
+	
+	var sourceAbilityId = -1;
+	var sourceSkillIndex = -1;
+	
+	if (draggable.hasClass("esovsAbilityBlockIcon"))
+	{
+		var sourceSkill = draggable.parent(".esovsAbilityBlock");
+		sourceAbilityId = sourceSkill.attr("skillid");
+	}
+	else if (draggable.hasClass("esovsSkillBarIcon"))
+	{
+		sourceAbilityId = parseInt(draggable.attr("skillid"));
+	}
+	else
+	{
+		return false;
+	}
+	
+	if ($this.hasClass('esovsSkillBarItem'))
+	{
+		var barImage = $this.find("img");
+		sourceSkillIndex = barImage.attr("skillindex");
+	}
+	else
+	{
+		return false;
+	}
+	
+	var skillData = g_SkillsData[sourceAbilityId];
+	
+	if (skillData == null) return false;
+	
+	if (skillData.type == "Ultimate" && sourceSkillIndex != 6) return false;
+	if (skillData.type != "Ultimate" && sourceSkillIndex == 6) return false; 
+	
+	return true;
+}
+
+
+function OnSkillBarDroppable(event, ui)
+{
+	var $this = $(this);
+	
+	//console.log("OnSkillBarDroppable", $(this), ui, event);
+	
+	var sourceBlockIcon = $(ui.draggable);
+	var sourceSkill = sourceBlockIcon.parent(".esovsAbilityBlock");
+	
+	var sourceAbilityId = -1;
+	var sourceOrigAbilityId = -1;
+	var sourceIconUrl = -1;
+	var isSkillSwap = false;
+	
+	if (sourceSkill.length > 0) 
+	{
+		sourceAbilityId = sourceSkill.attr("skillid");
+		sourceOrigAbilityId = sourceSkill.attr("origskillid");
+		sourceIconUrl = sourceBlockIcon.find("img").attr("src");
+	}
+	else if (sourceBlockIcon.hasClass("esovsSkillBarIcon"))
+	{
+		sourceAbilityId = sourceBlockIcon.attr("skillid");
+		sourceOrigAbilityId = sourceBlockIcon.attr("origskillid");
+		sourceIconUrl = sourceBlockIcon.attr("src");
+		isSkillSwap = true;
+	}
+	
+	if (sourceAbilityId <= 0) return false;	
+	
+	if (!$this.hasClass("esovsSkillBarIcon"))
+	{
+		$this = $(this).find(".esovsSkillBarIcon");
+		if ($this.length == 0) return false;
+	}
+	
+	var skillBar = $this.attr("skillbar");
+	var skillIndex = $this.attr("skillindex");
+		
+	if (isSkillSwap)
+	{
+		var swapId = $this.attr("skillid");
+		var swapOrigId = $this.attr("origskillid");
+		var sourceSkillBar = sourceBlockIcon.attr("skillbar");;
+		var sourceSkillIndex = sourceBlockIcon.attr("skillindex");
+		
+		if (sourceSkillBar == skillBar && sourceSkillIndex == skillIndex) return;
+		
+		if (swapId != sourceAbilityId && swapOrigId != sourceOrigAbilityId && sourceSkillBar != skillBar)
+		{
+			RemoveSkillBarAbility(sourceAbilityId, skillBar);
+			RemoveSkillBarAbility(sourceOrigAbilityId, skillBar);
+			RemoveSkillBarAbility(swapId, sourceSkillBar);
+			RemoveSkillBarAbility(swapOrigId, sourceSkillBar);
+		}
+		
+		sourceBlockIcon.attr("origskillid", swapOrigId);
+		sourceBlockIcon.attr("skillid", swapId);
+		sourceBlockIcon.attr("src", $this.attr("oldsrc"));
+	}
+	else 
+	{
+		RemoveSkillBarAbility(sourceAbilityId, skillBar);
+		RemoveSkillBarAbility(sourceOrigAbilityId, skillBar);
+	}
+	
+	$this.attr("origskillid", sourceOrigAbilityId);
+	$this.attr("skillid", sourceAbilityId);
+	$this.attr("src", sourceIconUrl);
+	$this.attr("draggable", "true");
+	
+	$("#esovsSkillBar").find(".esovsSkillBarIcon").removeAttr("oldsrc");
+	
+	UpdateEsoSkillBarData();
+	
+		// Fix for Firefox
+	event.preventDefault();
+	event.stopPropagation();
+}
+
+
 function RemoveSkillBarAbility(abilityId, skillBar)
 {
 	if (skillBar == null)
@@ -2809,13 +3054,27 @@ function EsoSkillLog()
 
 function esovsOnDocReady()
 {
+		/* TODO: Need better way to detect mobile view */
+	if (skin == "minerva") g_EsoSkillIsMobile = true;
+	
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
 	$('.esovsSkillLineTitle').click(OnEsoSkillLineTitleClick);
 	
-	$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
-	$('.esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
-	$('.esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
-	$('.esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
+	if (g_EsoSkillIsMobile)
+	{
+		$('.esovsAbilityBlock').click(OnEsoSkillBlockClickMobile);
+		$('.esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
+		$('.esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
+		$('.esovsAbilityBlockList').find('.esovsAbilityBlockIcon').click(OnEsoSkillIconBlockClickMobile);
+		$('.esovsAbilityNone').click(OnAbilityBlockPurchase);
+	}
+	else
+	{
+		$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
+		$('.esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
+		$('.esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
+		$(".esovsAbilityBlockSelect").click(OnAbilityBlockPurchase);
+	}
 	
 	$('#esovsControlLevel').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Level'); });
 	$('#esovsInputLevel').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Level');	});
@@ -2844,27 +3103,71 @@ function esovsOnDocReady()
 	
 	$("#esovsSearchButton").click(OnSkillSearch);
 	
-	$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
-	$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
-	$(".esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
+	if (g_EsoSkillIsMobile)
+	{
+		$(".esovsAbilityBlockIcon").click(function(e) {
+			setTimeout(function() {	OnHoverEsoIcon.bind(this, e); }, 250); 
+			e.preventDefault(); 
+			e.stopPropagation(); 
+			return false; });
 	
-	$(".esovsAbilityBlockSelect").click(OnAbilityBlockPurchase);
-	
+		$(".esovsAbilityBlockPassiveIcon").click(function(e) {
+			setTimeout(function() { OnHoverEsoIcon.bind(this, e); }, 250);
+			e.preventDefault(); 
+			e.stopPropagation(); 
+			return false; });
+		
+		$(".esovsSkillBarItem").click(function(e) { 
+			setTimeout(function() { OnHoverEsoSkillBarIcon.bind(this, e); }, 250); 
+			e.preventDefault(); 
+			e.stopPropagation(); 
+			return false; });
+	}
+	else
+	{
+		$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+		$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+		$(".esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
+	}
+		
 	$(".esovsSkillBar").click(OnSkillBarSelect)
 	
-	$(".esovsAbilityBlockIcon").on('dragstart', OnAbilityDragStart);
-	$(".esovsSkillBarIcon").on('dragstart', OnSkillBarDragStart);
+	//$(".esovsAbilityBlockIcon").on('dragstart', OnAbilityDragStart);
+	//$(".esovsSkillBarIcon").on('dragstart', OnSkillBarDragStart);
+	//$(".esovsSkillBarItem").on('dragover', OnSkillBarDragOver);
+	//$(".esovsSkillBarItem").on('drop', OnSkillBarDrop);
+	//$(document).on('dragend', OnSkillBarDragEnd);
 	
-	//$(".esovsSkillBarIcon").on('dragover', OnSkillBarDragOver);
-	//$(".esovsSkillBarIcon").on('drop', OnSkillBarDrop);
+	$(".esovsAbilityBlockIcon").draggable({ 
+			//containment: $('#esovsRightBlock'),
+			//appendTo: $('#esovsRightBlock'),
+			containment: false,
+			appendTo: $('body'),
+			helper: 'clone',
+			start: OnSkillBarDraggableStart,
+			classes: { },
+	});
 	
-	$(".esovsSkillBarItem").on('dragover', OnSkillBarDragOver);
-	$(".esovsSkillBarItem").on('drop', OnSkillBarDrop);
+	$(".esovsSkillBarIcon").draggable({ 
+			//containment: $('#esovsRightBlock'),
+			//appendTo: $('#esovsRightBlock'),
+			containment: false,
+			appendTo: $('body'),
+			helper: 'clone',
+			revert: OnSkillBarRevertDraggable,
+			start: OnSkillBarDraggableStart,
+			classes: { },
+	});
 	
-	//$(document).on('dragover', function(e) { EsoSkillLog("DragOver", e); } );
-	//$(".esovsSkillBarIcon").on('dragenter', function(e) { EsoSkillLog("DragEnter", e); e.preventDefault(); } );
-	//$(".esovsSkillBarIcon").on('dragleave', function(e) { EsoSkillLog("DragLeave", e); e.preventDefault(); } );
-	$(document).on('dragend', OnSkillBarDragEnd);
+	$(".esovsSkillBarItem").droppable({ 
+			drop: OnSkillBarDroppable, 
+			accept: OnSkillBarDroppableAccept,
+			out: OnSkillBarDroppableOut,
+			over: function(event, ui) { setTimeout(OnSkillBarDroppableOver.bind(this, event, ui), 0); },
+			classes: {
+				//'ui-droppable-hover': 'esovsSkillAcceptHover'
+			},
+	});		
 	
 	$("#esovsSkillReset").click(OnEsoSkillReset);
 	
