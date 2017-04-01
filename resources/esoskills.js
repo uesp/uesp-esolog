@@ -1105,8 +1105,12 @@ ESO_SKILL_HEALINGMATCHES =
 function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
+	var isAoE = false;
+	
 	if (inputValues == null) return newDesc;
 	if (inputValues.Healing == null) return newDesc;
+	
+	if ((skillData.target == "Ground" || skillData.target == "Area") && skillData.radius > 0) isAoE = true;
 	
 	var rawOutput = [];
 	var newRawOutput = {};
@@ -1129,6 +1133,14 @@ function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 			modHealing *= 1 + inputValues.Healing[matchData.healId];
 			modHealing = Math.round(modHealing);
 			
+			if (isAoE && inputValues.Healing.AOE != null && inputValues.Healing.AOE != 0)
+			{
+				newRawOutput.aoeHeal = inputValues.Healing.AOE;
+				
+				modHealing *= 1 + inputValues.Healing.AOE;
+				modHealing = Math.round(modHealing);
+			}
+			
 			newRawOutput.finalHeal = modHealing;
 			rawOutput.push(newRawOutput);
 			
@@ -1142,6 +1154,7 @@ function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 		var output = "";
 				
 		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + RoundEsoSkillPercent(rawData.healDone*100) + "% " + rawData.healId;
+		if (rawData.aoeHeal  != null && rawData.aoeHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeHeal*100) + "% AOE";
 		//TODO: healId2?
 		
 		if (output == "")
