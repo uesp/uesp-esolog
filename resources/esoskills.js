@@ -3055,7 +3055,7 @@ function EsoSkillLog()
 function esovsOnDocReady()
 {
 		/* TODO: Need better way to detect mobile view */
-	if (skin == "minerva") g_EsoSkillIsMobile = true;
+	if (window.skin == "minerva") g_EsoSkillIsMobile = true;
 	
 	$('.esovsSkillTypeTitle').click(OnEsoSkillTypeTitleClick);
 	$('.esovsSkillLineTitle').click(OnEsoSkillLineTitleClick);
@@ -3063,6 +3063,7 @@ function esovsOnDocReady()
 	if (g_EsoSkillIsMobile)
 	{
 		$('.esovsAbilityBlock').click(OnEsoSkillBlockClickMobile);
+		$('.esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
 		$('.esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
 		$('.esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
 		$('.esovsAbilityBlockList').find('.esovsAbilityBlockIcon').click(OnEsoSkillIconBlockClickMobile);
@@ -3073,6 +3074,7 @@ function esovsOnDocReady()
 		$('.esovsAbilityBlock').click(OnEsoSkillBlockClick);
 		$('.esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
 		$('.esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
+		$('.esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
 		$(".esovsAbilityBlockSelect").click(OnAbilityBlockPurchase);
 	}
 	

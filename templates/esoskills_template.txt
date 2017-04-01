@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoskills.css" />
 		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoskills_embed.css" />
 		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script src='http://esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
+		<script src='http://esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>		
 		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoskills.js"></script>
 	</head>
 <body>
