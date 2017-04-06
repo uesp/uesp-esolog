@@ -3,11 +3,11 @@
 	<head>
 		<title>UESP:ESO Champion Point Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esocp.css" />
-		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esocp_embed.css" />
-		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
-		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esocp.js"></script>
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp.css" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp_embed.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esocp.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
@@ -56,7 +56,7 @@
 <div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>
 <hr>
 <div id="esovcpFooter">
-This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
 Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
 </div>
 </div>

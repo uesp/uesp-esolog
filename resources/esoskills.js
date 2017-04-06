@@ -210,7 +210,7 @@ function GetEsoSkillTooltipHtml(skillData)
 	if (angleDistance > 0) area = (radius) + " x " + (angleDistance/50) + " meters"
 		
 	output += "<div class='esovsSkillTooltipTitle'>" + safeName + rankStr + "</div>\n";
-	output += "<img src='http://esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
+	output += "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	
 	if (skillType != 'Passive')
 	{
@@ -291,7 +291,7 @@ function GetEsoSkillTooltipHtml(skillData)
 			output += "<div class='esovsSkillTooltipName'>Cost</div>";			
 		}
 		
-		output += "<img src='http://esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
+		output += "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	}
 
 	output += "<div id='esovsSkillTooltipDesc' class='esovsSkillTooltipDesc'>" + desc + "</div>\n";
@@ -1864,7 +1864,7 @@ function UpdateEsoSkillRawDataLink(skillId)
 		return;
 	}
 	
-	linkElement.attr("href", "http://esoitem.uesp.net/viewlog.php?action=view&record=minedSkills&id=" + skillId);
+	linkElement.attr("href", "//esoitem.uesp.net/viewlog.php?action=view&record=minedSkills&id=" + skillId);
 }
 
 
