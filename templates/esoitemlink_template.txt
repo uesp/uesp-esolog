@@ -3,10 +3,10 @@
 	<head>
 		<title>UESP:ESO {itemTypeTitle}Item{versionTitle} -- {itemName}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink.css" />
-		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink_embed.css" />
-		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="http://esolog-static.uesp.net/resources/esoitemlink.js"></script>
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink.css" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoitemlink.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
@@ -80,7 +80,7 @@
 </script>
 <hr>
 <div id="esoil_footer">
-This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
 Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
 </div>
 </body>

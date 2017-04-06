@@ -3,22 +3,22 @@
 	<head>
 		<title>UESP:ESO Sales Data:Guilds</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="http://esolog-static.uesp.net/resources/esoitemlink_embed.css" />
-		<link rel="stylesheet" href="http://esolog.uesp.net/resources/esosales.css" />
-		<script type="text/javascript" src="http://esolog.uesp.net/resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="http://esolog.uesp.net/resources/esosales.js"></script>
-		<script type="text/javascript" src="http://www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esosales.css" />
+		<script type="text/javascript" src="//esolog.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esosales.js"></script>
+		<script type="text/javascript" src="//www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
 <a href="/viewSales.php">Back to Item Sales Search</a>
-<a class="esovsd_rightheaderlink" href="http://www.uesp.net/wiki/UESPWiki:EsoSalesData">Help</a>
-<a class="esovsd_rightheaderlink" href="http://www.uesp.net/wiki/UESPWiki_talk:EsoSalesData">Feedback</a>
+<a class="esovsd_rightheaderlink" href="//www.uesp.net/wiki/UESPWiki:EsoSalesData">Help</a>
+<a class="esovsd_rightheaderlink" href="//www.uesp.net/wiki/UESPWiki_talk:EsoSalesData">Feedback</a>
 <a class="esovsd_rightheaderlink" href="/salesPrices.shtml">Download Prices</a>
 <br/>
 <div class="esosalesnote">
 	<b>Note:</b> The sales data collector and viewer are in early beta and may not work perfectly. User discretion is advised. See 
-	<a href='http://www.uesp.net/wiki/UESPWiki:EsoSalesData'>here</a> for more information on using and contributing sales data and feel free to 
-	<a href='http://www.uesp.net/wiki/UESPWiki_talk:EsoSalesData'>report feedback and issues</a>. 
+	<a href='//www.uesp.net/wiki/UESPWiki:EsoSalesData'>here</a> for more information on using and contributing sales data and feel free to 
+	<a href='//www.uesp.net/wiki/UESPWiki_talk:EsoSalesData'>report feedback and issues</a>. 
 </div>
 <h1>ESO Sales Data: Guilds</h1>
 
@@ -48,7 +48,7 @@
 
 <hr>
 <div id="esovsd_footer">
-This content is made available by the <a href="http://www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
 Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
 </div>
 </body>

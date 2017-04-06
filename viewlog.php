@@ -2475,8 +2475,8 @@ class EsoLogViewer
 <head>
 	<title>UESP:ESO Log Data Viewer</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	<link rel="stylesheet" href="http://esolog-static.uesp.net/viewlog.css" />
-	<script type="text/javascript" src="http://esolog-static.uesp.net/viewlog.js"></script>
+	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css" />
+	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
 </head>
 <body>
 <?php

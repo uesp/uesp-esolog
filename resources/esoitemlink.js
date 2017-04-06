@@ -98,7 +98,7 @@ function GetEsoItemFullLevelHtml(level)
 		return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
 	}
 	
-	if (level > 50) return "<img src='http://esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 50) + "</div>"
+	if (level > 50) return "<img src='//esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>" + (level - 50) + "</div>"
 	return "LEVEL <div id='esoil_itemlevel'>" + level + "</div>";
 }
 
@@ -108,7 +108,7 @@ function GetEsoItemCPHtml(level)
 	if (itemRawVersion >= 10) 
 	{
 		if (level <= 50) return "";
-		return "<img src='http://esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP <div id='esoil_itemlevel'>" + ((level - 50)*10) + "</div>"
+		return "<img src='//esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP <div id='esoil_itemlevel'>" + ((level - 50)*10) + "</div>"
 	}
 
 	return "";
@@ -362,7 +362,7 @@ function UpdateEsoItemImageLink(itemData)
 	else if (itemData.version != "")
 		itemLinkURL = "itemLinkImage.php?itemid=" + itemData.itemId + "&level=" + itemData.level + "&quality=" + itemData.quality + "&version=" + itemData.version;
 	else
-		itemLinkURL = "http://esoitem.uesp.net/item-" + itemData.itemId + "-" + itemData.level + "-" + itemData.quality + ".png";
+		itemLinkURL = "//esoitem.uesp.net/item-" + itemData.itemId + "-" + itemData.level + "-" + itemData.quality + ".png";
 	
 	$('#esoil_itemimagelink').attr('href', itemLinkURL);
 }
@@ -376,7 +376,7 @@ function MakeEsoItemIconImageLink(itemData)
 	icon = icon.replace(/dds$/, 'png');
 	icon = icon.replace('/^\//', '');
 	
-	return "http://esoicons.uesp.net/" + icon;
+	return "//esoicons.uesp.net/" + icon;
 }
 
 
