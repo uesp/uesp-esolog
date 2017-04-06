@@ -367,11 +367,11 @@ class CEsoDumpMinedItems {
 	{
 		if ($this->outputType == "html")
 		{
-			return "<a href='http://esoitem.uesp.net/itemLink.php?itemid=$itemId'>$itemId</a>";
+			return "<a href='//esoitem.uesp.net/itemLink.php?itemid=$itemId'>$itemId</a>";
 		}
 		elseif ($this->outputType == "wiki")
 		{
-			return "[http://esoitem.uesp.net/itemLink.php?itemid=$itemId $itemId]";
+			return "[//esoitem.uesp.net/itemLink.php?itemid=$itemId $itemId]";
 		}
 		
 		return $itemId;
@@ -384,11 +384,11 @@ class CEsoDumpMinedItems {
 		
 		if ($this->outputType == "html")
 		{
-			return "<a href='http://esoitem.uesp.net/itemLink.php?itemid=$itemId'>$itemName</a>";
+			return "<a href='//esoitem.uesp.net/itemLink.php?itemid=$itemId'>$itemName</a>";
 		}
 		elseif ($this->outputType == "wiki")
 		{
-			return "[http://esoitem.uesp.net/itemLink.php?itemid=$itemId $itemName]";
+			return "[//esoitem.uesp.net/itemLink.php?itemid=$itemId $itemName]";
 		}
 		
 		$itemName = $this->EscapeQuotes($itemName);

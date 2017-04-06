@@ -17,7 +17,7 @@ require("esoCommon.php");
 class CEsoSkillTooltip
 {
 	
-	const TOOLTIP_DIVIDER = "<img src='http://esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
+	const TOOLTIP_DIVIDER = "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
 	const MAX_SKILL_COEF = 6;
 	
 	public $inputParams = array();

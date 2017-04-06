@@ -8,7 +8,7 @@
 		<div id="esoil_itemstolen">{itemStolen}</div>
 		<div id="esoil_itembindtype">{itemBindType}</div>
 		<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
-		<img src="http://esoitem.uesp.net/resources/eso_item_hr.png" id="esoil_item_hr"/>
+		<img src="//esoitem.uesp.net/resources/eso_item_hr.png" id="esoil_item_hr"/>
 		<div id="esoil_datablock">
 			<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
 			<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>

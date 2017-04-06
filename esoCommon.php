@@ -1,6 +1,6 @@
 <?php
 
-const UESP_ESO_ICON_URL = "http://esoicons.uesp.net";
+const UESP_ESO_ICON_URL = "//esoicons.uesp.net";
 
 const ENABLE_ESO_PAGEVIEW_UPDATES = true;
 

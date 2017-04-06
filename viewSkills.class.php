@@ -845,11 +845,11 @@ class CEsoViewSkills
 		{
 			if ($this->displayType == "select")
 			{
-				$output .= "<img class='esovsAbilityBlockPlusSelect' src='http://esolog.uesp.net/resources/pointsplus_up.png' />";
+				$output .= "<img class='esovsAbilityBlockPlusSelect' src='//esolog.uesp.net/resources/pointsplus_up.png' />";
 			}
 			else if ($maxRank > 1)
 			{
-				$output .= "<img class='esovsAbilityBlockPlus' src='http://esolog.uesp.net/resources/pointsplus_up.png' />";
+				$output .= "<img class='esovsAbilityBlockPlus' src='//esolog.uesp.net/resources/pointsplus_up.png' />";
 			}
 			else
 			{
@@ -935,7 +935,7 @@ class CEsoViewSkills
 		if ($this->displayType == "select")
 		{
 			$output .= "<div class='esovsAbilityBlock esovsAbilityBlockHover esovsAbilityBlockSelect esovsAbilityNone' skillid='-1'>";
-			$output .= "<img src='http://esolog.uesp.net/resources/edit_cancel_up.png'> Refund Ability";
+			$output .= "<img src='//esolog.uesp.net/resources/edit_cancel_up.png'> Refund Ability";
 			$output .= "</div>";
 		}
 

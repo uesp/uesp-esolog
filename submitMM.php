@@ -174,7 +174,7 @@ class CEsoMMLogSubmitter
 </tr><tr>
 	<td>
 		<p><br/>
-		Successfully uploaded files will be parsed within 24 hours and can be viewed at <a href='http://esosales.uesp.net/'>//http://esosales.uesp.net/</a>.
+		Successfully uploaded files will be parsed within 24 hours and can be viewed at <a href='//esosales.uesp.net/'>esosales.uesp.net</a>.
 	</td>
 </table>
 
@@ -204,7 +204,7 @@ class CEsoMMLogSubmitter
 	<td>
 		<h1>uespLog -- Submit MasterMerchant Data</h1>
 		
-		Submit your MasterMerchant add-on data to the UESP and view the <a href='http://esosales.uesp.net/'>collected sales data</a>.
+		Submit your MasterMerchant add-on data to the UESP and view the <a href='//esosales.uesp.net/'>collected sales data</a>.
 		<p />
 		Upload Steps:
 		<ul>
@@ -214,7 +214,7 @@ class CEsoMMLogSubmitter
 			<li>Select the ESO server where the MM data comes from.</li>
 			<li>Submit files.</li>
 			<li>You can upload the same MM files multiple times and only new sales will be added to our database.</li>
-			<li>You can also use the <a href='http://www.esoui.com/downloads/info1257-uespLog.html'>uespLog add-on</a> to automatically download all
+			<li>You can also use the <a href='//www.esoui.com/downloads/info1257-uespLog.html'>uespLog add-on</a> to automatically download all
 					guild trader searches, listed and purchased items.</li>
 		</ul>
 		<p />
