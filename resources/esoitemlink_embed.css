@@ -37,7 +37,7 @@
 #esoil_itembox {
 	background-color: #000;
 	border: solid 3px #C5C29E;
-	border-image: url(http://esoitem.uesp.net/resources/eso_item_border.png) 5 5 5 5 repeat;
+	border-image: url(//esoitem.uesp.net/resources/eso_item_border.png) 5 5 5 5 repeat;
 	border-width: 5px 5px 5px 5px;
 	font-family: "EsoFontStyle", "Arial", sans-serif;
 	font-size: 16px;
@@ -396,7 +396,7 @@
 }
 
 .esoil_dyecolorbox {
-	background-image: url(http://esoitem.uesp.net/resources/dyeStampBox.png);
+	background-image: url(//esoitem.uesp.net/resources/dyeStampBox.png);
 	width: 24px;
 	height: 24px;
 	display: inline-block;

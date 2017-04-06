@@ -333,7 +333,7 @@ class CEsoViewAchievements
 		
 		if ($rewardOutput != "")
 		{
-			$output .= "<img src='http://esoicons.uesp.net/esoui/art/achievements/achievements_reward_earned.png' class='achAchRewardIcon1'>";
+			$output .= "<img src='//esoicons.uesp.net/esoui/art/achievements/achievements_reward_earned.png' class='achAchRewardIcon1'>";
 		}
 
 		$output .= "</div>";
@@ -512,7 +512,7 @@ class CEsoViewAchievements
 			{
 				if ($progress >= 1)	$knownClass = "";
 	
-				$img = "<img src='http://esoicons.uesp.net/esoui/art/cadwell/check.png' class='ecdAchCriteriaCheck $knownClass'>";
+				$img = "<img src='//esoicons.uesp.net/esoui/art/cadwell/check.png' class='ecdAchCriteriaCheck $knownClass'>";
 				$output .= "<div class='ecdAchCriteria $knownClass'>$img $name</div>";
 			}
 			else
@@ -596,7 +596,7 @@ class CEsoViewAchievements
 	
 		$output .= "<div class='ecdAchTree1'>";
 		$output .= "<div class='ecdAchTreeName1 ecdAchTreeNameHighlight' achcategory='Summary'>";
-		$output .= "<img src='http://esoicons.uesp.net/esoui/art/treeicons/achievements_indexicon_summary_up.dds'>";
+		$output .= "<img src='//esoicons.uesp.net/esoui/art/treeicons/achievements_indexicon_summary_up.dds'>";
 		$output .= "SUMMARY</div></div>";
 	
 		foreach ($ESO_ACHIEVEMENT_TREE as $catName => $catData)

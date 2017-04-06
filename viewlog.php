@@ -2688,9 +2688,9 @@ class EsoLogViewer
 	{
 ?>
 	<h1>ESO: Record Types</h1>
-The ESO log viewer displays the raw game data for Elder Scrolls Online as collected by the <a href="http://www.uesp.net/wiki/User:Daveh/uespLog_Addon">uespLog add-on</a>. It was created to be a tool for UESP editors and patrollers to
-use as part of improving and maintaining <a href="http://www.uesp.net/">UESPWiki</a>. It is not intended to be a user-friendly way to learn about the Elder Scrolls games.
-If you do not understand what this information means, or how to use this webpage, then go to <a href="http://www.uesp.net/"><b>UESPWiki</b></a> for user-friendly game information.
+The ESO log viewer displays the raw game data for Elder Scrolls Online as collected by the <a href="//www.uesp.net/wiki/User:Daveh/uespLog_Addon">uespLog add-on</a>. It was created to be a tool for UESP editors and patrollers to
+use as part of improving and maintaining <a href="//www.uesp.net/">UESPWiki</a>. It is not intended to be a user-friendly way to learn about the Elder Scrolls games.
+If you do not understand what this information means, or how to use this webpage, then go to <a href="//www.uesp.net/"><b>UESPWiki</b></a> for user-friendly game information.
 	<ul class='elvRecordTypeList'>
 <?php
 	
@@ -2715,12 +2715,12 @@ If you do not understand what this information means, or how to use this webpage
 		<li><a href="/viewSkills.php">Skill Browser</a></li>
 		<li><a href="/viewCps.php">Champion Point Browser</a></li>
 		<li><a href="/viewSkillCoef.php">Skill Coefficients</a></li>
-		<li><a href="http://www.uesp.net/wiki/Special:EsoBuildEditor">Build Editor</a></li>
+		<li><a href="//www.uesp.net/wiki/Special:EsoBuildEditor">Build Editor</a></li>
 		<li><a href="/viewPotions.php">Alchemy Calculator</a></li>
-		<li><a href="http://esosales.uesp.net/viewSales.php">Sales Data</a></li>
+		<li><a href="//esosales.uesp.net/viewSales.php">Sales Data</a></li>
 		<li><a href="/viewAchievements.php">Achievement Viewer</a></li>
-		<li><a href="http://esoapi.uesp.net">API Information</a></li>
-		<li><a href="http://esofiles.uesp.net/">ESO Raw File Download</a></li>
+		<li><a href="//esoapi.uesp.net">API Information</a></li>
+		<li><a href="//esofiles.uesp.net/">ESO Raw File Download</a></li>
 		<li><a href="https://github.com/esoui/esoui">ESO UI Source Code on GitHub</a></li>
 		<li><a href="/submit.php">Submit Logs</a></li>
 	</ul>
