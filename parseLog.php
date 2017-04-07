@@ -1707,9 +1707,9 @@ class EsoLogParser
 		$query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			itemId INTEGER NOT NULL,
-			version TINYTEXT NOT NULL,
+			`version` TINYTEXT NOT NULL,
 			INDEX index_itemId (itemId),
-			INDEX index_version (version(8))
+			INDEX index_version (`version`(8))
 		);";
 		
 		$this->lastQuery = $query;
@@ -3713,7 +3713,7 @@ class EsoLogParser
 		
 		for ($id = $startId; $id <= $endId; ++$id)
 		{
-			$query = "INSERT INTO itemIdCheck(itemId, version) VALUES($id, '$version')";
+			$query = "INSERT INTO itemIdCheck(itemId, `version`) VALUES($id, '$version')";
 			$this->lastQuery = $query;
 			
 			$result = $this->db->query($query);
