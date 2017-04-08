@@ -31,10 +31,12 @@ body {
 
 .elvFilterLink {
 	padding-right: 8px;
+	white-space: nowrap;
 }
 
 .elvRecordLink {
 	padding-right: 8px;
+	white-space: nowrap;
 }
 
 .elvLastUpdate {
