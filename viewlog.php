@@ -132,7 +132,7 @@ class EsoLogViewer
 			'itemId' => self::FIELD_INTID,
 	);
 	
-	public static $QUEST_FIELDS = array(
+	public static $OLDQUEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
@@ -140,10 +140,67 @@ class EsoLogViewer
 			'objective' => self::FIELD_STRING,
 	);
 	
+	
+	public static $QUEST_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'locationId' => self::FIELD_INTID,
+			'name' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'repeatType' => self::FIELD_INT,
+			'displayType' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'objective' => self::FIELD_STRING,
+			'poiIndex' => self::FIELD_INT,
+			'goalText' => self::FIELD_STRING,
+			'confirmText' => self::FIELD_STRING,
+			'declineText' => self::FIELD_STRING,
+			'endDialogText' => self::FIELD_STRING,
+			'endJournalText' => self::FIELD_STRING,
+			'endBackgroundText' => self::FIELD_STRING,
+			'isShareable' => self::FIELD_INT,
+			'numTools' => self::FIELD_INT,
+			'hasTimer' => self::FIELD_INT,
+			'timerCaption' => self::FIELD_STRING,
+			'timerDuration' => self::FIELD_FLOAT,
+			'numSteps' => self::FIELD_INT,
+	);
+	
+	public static $QUESTSTEP_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'locationId' => self::FIELD_INTID,
+			'questId' => self::FIELD_INTID,
+			'stepIndex' => self::FIELD_INT,
+			'text' => self::FIELD_STRING,
+			'type' => self::FIELD_INT,
+			'overrideText' => self::FIELD_STRING,
+			'isVisible' => self::FIELD_INT,
+			'numConditions' => self::FIELD_INT,
+	);
+	
+	public static $QUESTCONDITION_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'questId' => self::FIELD_INTID,
+			'questStepId' => self::FIELD_INTID,
+			'stepIndex' => self::FIELD_INT,
+			'conditionIndex' => self::FIELD_INT,
+			'type1' => self::FIELD_INT,
+			'type2' => self::FIELD_INT,
+			'text' => self::FIELD_STRING,
+			'maxValue' => self::FIELD_INT,
+			'isFail' => self::FIELD_INT,
+			'isVisible' => self::FIELD_INT,
+			'isComplete' => self::FIELD_INT,
+			'isShared' => self::FIELD_INT,
+	);
+	
 	public static $QUESTITEM_FIELDS = array(
-			'id' => self::FIELD_INT,
-			'logId' => self::FIELD_INT,
-			'questId' => self::FIELD_INT,
+			'id' => self::FIELD_INTID,
+			'logId' => self::FIELD_INTID,
+			'questId' => self::FIELD_INTID,
 			'itemLink' => self::FIELD_STRING,
 			'questName' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
@@ -153,9 +210,10 @@ class EsoLogViewer
 			'description' => self::FIELD_STRING,
 			'stepIndex' => self::FIELD_INT,
 			'conditionIndex' => self::FIELD_INT,
+			'duration' => self::FIELD_FLOAT,
 	);
 		
-	public static $QUESTSTAGE_FIELDS = array(
+	public static $OLDQUESTSTAGE_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'questId' => self::FIELD_INTID,
 			'locationId' => self::FIELD_INTID,
@@ -726,11 +784,11 @@ class EsoLogViewer
 					),
 			),
 			
-			'quest' => array(
-					'displayName' => 'Quests',
-					'displayNameSingle' => 'Quest',
-					'record' => 'quest',
-					'table' => 'quest',
+			'oldQuest' => array(
+					'displayName' => 'Old Quests',
+					'displayNameSingle' => 'Old Quest',
+					'record' => 'oldQuest',
+					'table' => 'oldQuest',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
 						
@@ -747,7 +805,7 @@ class EsoLogViewer
 					
 					'filters' => array(
 							array(
-									'record' => 'queststage',
+									'record' => 'oldQuestStage',
 									'field' => 'questId',
 									'thisField' => 'id',
 									'displayName' => 'View Stages',
@@ -763,12 +821,12 @@ class EsoLogViewer
 					),
 			),
 			
-			'queststage' => array(
+			'oldQuestStage' => array(
 					'message' => 'Note: Quest stages are not necessarily in the correct order yet.',
-					'displayName' => 'Quest Stages',
-					'displayNameSingle' => 'Quest Stage',
-					'record' => 'queststage',
-					'table' => 'questStage',
+					'displayName' => 'Old Quest Stages',
+					'displayNameSingle' => 'Old Quest Stage',
+					'record' => 'oldQuestStage',
+					'table' => 'oldQuestStage',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'questId, orderIndex',
 					
@@ -785,7 +843,7 @@ class EsoLogViewer
 					
 					'filters' => array(
 							array(
-									'record' => 'quest',
+									'record' => 'oldQuest',
 									'field' => 'id',
 									'thisField' => 'questId',
 									'displayName' => 'View Quest',
@@ -801,6 +859,119 @@ class EsoLogViewer
 					),
 			),
 			
+			'quest' => array(
+					'displayName' => 'Quests',
+					'displayNameSingle' => 'Quest',
+					'record' => 'quest',
+					'table' => 'quest',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+			
+					'transform' => array(
+					),
+						
+					'join' => array(
+							'locationId' => array(
+									'joinField' => 'id',
+									'table' => 'location',
+									'fields' => array('x', 'y', 'zone'),
+							),
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'questStep',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Steps',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'location',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Locations',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'questStep' => array(
+					'displayName' => 'Quest Steps',
+					'displayNameSingle' => 'Quest Step',
+					'record' => 'questStep',
+					'table' => 'questStep',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'questId, stepIndex',
+						
+					'transform' => array(
+					),
+						
+					'join' => array(
+							'locationId' => array(
+									'joinField' => 'id',
+									'table' => 'location',
+									'fields' => array('x', 'y', 'zone'),
+							),
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'quest',
+									'field' => 'id',
+									'thisField' => 'questId',
+									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'questCondition',
+									'field' => 'questId',
+									'thisField' => 'questId',
+									'displayName' => 'View Conditions',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'location',
+									'field' => 'id',
+									'thisField' => 'locationId',
+									'displayName' => 'View Location',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			
+			'questCondition' => array(
+					'displayName' => 'Quest Conditions',
+					'displayNameSingle' => 'Quest Condition',
+					'record' => 'questCondition',
+					'table' => 'questCondition',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'questId, stepIndex, conditionIndex',
+			
+					'transform' => array(
+					),
+			
+					'join' => array(
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'quest',
+									'field' => 'id',
+									'thisField' => 'questId',
+									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'questStep',
+									'field' => 'id',
+									'thisField' => 'questStepId',
+									'displayName' => 'View Step',
+									'type' => 'viewRecord',
+							),
+					),
+			),
 			
 			'questitem' => array(
 					'message' => '',
@@ -819,7 +990,7 @@ class EsoLogViewer
 						
 					'filters' => array(
 							array(
-									'record' => 'quest',
+									'record' => 'oldQuest',
 									'field' => 'id',
 									'thisField' => 'questId',
 									'displayName' => 'View Quest',
@@ -1864,8 +2035,11 @@ class EsoLogViewer
 			'Items 13-PTS' => 'minedItemSummary13pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
+			'Old Quests' => 'oldQuest',
+			'Old Quest Stages' => 'oldQuestStage',
 			'Quests' => 'quest',
-			'Quest Stages' => 'questStage',
+			'Quest Steps' => 'questStep',
+			'Quest Conditions' => 'questCondition',
 			'Quest Item' => 'questItem',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
@@ -1923,19 +2097,42 @@ class EsoLogViewer
 							'name' => 'name',
 					),
 			),
-			'quest' => array(
+			'oldQuest' => array(
 					'searchFields' => array('name', 'objective'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
 					),
 			),
-			'questStage' => array(
+			'oldQuestStage' => array(
 					'searchFields' => array('objective', 'overrideText'),
 					'fields' => array(
 							'id' => 'id',
 							'questId' => 'questId',
 							'objective' => 'name',
+					),
+			),
+			'quest' => array(
+					'searchFields' => array('name', 'objective', 'backgroundText'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+					),
+			),
+			'questStep' => array(
+					'searchFields' => array('text', 'overrideText'),
+					'fields' => array(
+							'id' => 'id',
+							'questId' => 'questId',
+							'text' => 'name',
+					),
+			),
+			'questCondition' => array(
+					'searchFields' => array('text'),
+					'fields' => array(
+							'id' => 'id',
+							'questId' => 'questId',
+							'text' => 'name',
 					),
 			),
 			'questItem' => array(
@@ -2148,9 +2345,12 @@ class EsoLogViewer
 		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
 		self::$RECORD_TYPES['item']['fields'] = self::$ITEM_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
+		self::$RECORD_TYPES['oldQuest']['fields'] = self::$OLDQUEST_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
+		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
+		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
 		self::$RECORD_TYPES['questitem']['fields'] = self::$QUESTITEM_FIELDS;
-		self::$RECORD_TYPES['queststage']['fields'] = self::$QUESTSTAGE_FIELDS;
+		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
 		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
 		self::$RECORD_TYPES['ingredient']['fields'] = self::$INGREDIENT_FIELDS;
@@ -3689,11 +3889,13 @@ If you do not understand what this information means, or how to use this webpage
 				$output .= $this->GetViewRecordLink('book', 'id', $result['id'], 'View Book');
 				break;
 			case 'quest':
-				$output .= $this->GetViewRecordLink('quest', 'id', $result['id'], 'View Quest');
+			case 'oldQuest':
+				$output .= $this->GetViewRecordLink('oldQuest', 'id', $result['id'], 'View Quest');
 				break;
 			case 'questStage':
-				$output .= $this->GetViewRecordLink('quest', 'id', $result['questId'], 'View Quest') . " ";
-				$output .= $this->GetViewRecordLink('queststage','id', $result['id'], 'View Quest Stage');
+			case 'oldQuestStage':
+				$output .= $this->GetViewRecordLink('oldQuest', 'id', $result['questId'], 'View Quest') . " ";
+				$output .= $this->GetViewRecordLink('oldQuestStage','id', $result['id'], 'View Quest Stage');
 				break;
 			case 'questItem':
 				$output .= $this->GetViewRecordLink('questItem', 'id', $result['id'], 'View Quest Item') . " ";
@@ -3870,6 +4072,7 @@ If you do not understand what this information means, or how to use this webpage
 				}
 				
 				$method = $value['method'];
+				error_log("Method: $key: $method");
 				$this->$method($value);
 				$this->WritePageFooter();
 				return true;
