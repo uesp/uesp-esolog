@@ -2971,7 +2971,7 @@ class EsoLogParser
 		$questCondRecord['conditionIndex'] = $logEntry['condition'];
 		$questCondRecord['type1'] = $logEntry['condType'];
 		$questCondRecord['type2'] = $logEntry['condType'];
-		$questCondRecord['text'] = $logEntry['text'];
+		$questCondRecord['text'] = preg_replace("#:[\xC2\xA0\s]*[0-9]+[\xC2\xA0\s]*/[\xC2\xA0\s]*[0-9]+[\xC2\xA0\s]*#", ":", $logEntry['text']);
 		$questCondRecord['maxValue'] = $logEntry['maxValue'];
 		$questCondRecord['isShared'] = $logEntry['isShared'];
 		$questCondRecord['isFail'] = $logEntry['isFail'];
@@ -2980,7 +2980,7 @@ class EsoLogParser
 		$questCondRecord['isVisible'] = $logEntry['isVisible'];
 		$questCondRecord['count'] = 0;
 		$questCondRecord['__isNew'] = true;
-	
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
 		
@@ -3272,7 +3272,6 @@ class EsoLogParser
 		}
 		
 		$questStageRecord['stepIndex'] = $logEntry['step'];
-		$questStageRecord['text'] = $logEntry['text'];
 		$questStageRecord['type'] = $logEntry['stepType'];
 		$questStageRecord['overrideText'] = $logEntry['overrideText'];
 		$questStageRecord['count'] += 1 ;
@@ -3313,7 +3312,7 @@ class EsoLogParser
 		$questStageRecord = $this->FindQuestStep($questRecord['id'], $logEntry['stageIndex'], $logEntry['step']);
 		if ($questStageRecord == null) return $this->reportError("Failed to find matching quest step for {$logEntry['quest']}:{$logEntry['stageIndex']}:{$logEntry['step']}!");
 		
-		$questCondRecord = $this->FindQuestCondition($questRecord['id'], $logEntry['stageIndex'], $logEntry['step'], $logEntry['condition']);
+		$questCondRecord = $this->FindQuestCondition($questRecord['id'], $logEntry['stageIndex'], $logEntry['step'], $logEntry['condition'], $logEntry['text']);
 				
 		if ($questCondRecord == null)
 		{
@@ -3324,7 +3323,6 @@ class EsoLogParser
 		
 		$questCondRecord['type1'] = $logEntry['condType'];
 		$questCondRecord['type2'] = $logEntry['condType'];
-		$questCondRecord['text'] = $logEntry['text'];
 		$questCondRecord['maxValue'] = $logEntry['maxValue'];
 		$questCondRecord['isShared'] = $logEntry['isShared'];
 		$questCondRecord['isFail'] = $logEntry['isFail'];
@@ -3704,13 +3702,17 @@ class EsoLogParser
 	}
 	
 	
-	public function FindQuestCondition ($questId, $stageIndex, $stepIndex, $conditionIndex)
+	public function FindQuestCondition ($questId, $stageIndex, $stepIndex, $conditionIndex, $text)
 	{
 		$safeIndex = (int) $stepIndex;
 		$safeCond = (int) $conditionIndex;
 		$safeStage = (int) $stageIndex;
 		$safeId = (int) $questId;
-		$query = "SELECT * FROM questCondition WHERE questId=$safeId AND stageIndex=$safeStage AND stepIndex=$safeIndex AND conditionIndex=$safeCond;";
+		
+		$text = preg_replace("#:[\xC2\xA0\s]*[0-9]+[\xC2\xA0\s]*/[\xC2\xA0\s]*[0-9]+[\xC2\xA0\s]*#", ":", $text);
+		$safeText = $this->db->real_escape_string($text);
+		
+		$query = "SELECT * FROM questCondition WHERE questId=$safeId AND stageIndex=$safeStage AND stepIndex=$safeIndex AND conditionIndex=$safeCond AND text='$safeText';";
 		$this->lastQuery = $query;
 	
 		$result = $this->db->query($query);
