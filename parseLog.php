@@ -346,6 +346,8 @@ class EsoLogParser
 			'timerCaption' => self::FIELD_STRING,
 			'timerDuration' => self::FIELD_FLOAT,
 			'numSteps' => self::FIELD_INT,
+			'numRewards' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
@@ -353,12 +355,14 @@ class EsoLogParser
 			'logId' => self::FIELD_INT,
 			'locationId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
+			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'text' => self::FIELD_STRING,
 			'type' => self::FIELD_INT,
 			'overrideText' => self::FIELD_STRING,
 			'isVisible' => self::FIELD_INT,
 			'numConditions' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $QUESTCONDITION_FIELDS = array(
@@ -366,6 +370,7 @@ class EsoLogParser
 			'logId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
 			'questStepId' => self::FIELD_INT,
+			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'conditionIndex' => self::FIELD_INT,
 			'type1' => self::FIELD_INT,
@@ -376,6 +381,22 @@ class EsoLogParser
 			'isVisible' => self::FIELD_INT,
 			'isComplete' => self::FIELD_INT,
 			'isShared' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+	);
+	
+	public static $QUESTREWARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'quantity' => self::FIELD_INT,
+			'icon' => self::FIELD_STRING,
+			'quality' => self::FIELD_INT,
+			'itemType' => self::FIELD_INT,
+			'itemId' => self::FIELD_INT,
+			'collectId' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
 	);
 		
 	public static $QUESTITEM_FIELDS = array(
@@ -392,6 +413,7 @@ class EsoLogParser
 			'stepIndex' => self::FIELD_INT,
 			'conditionIndex' => self::FIELD_INT,
 			'duration' => self::FIELD_FLOAT,
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $NPC_FIELDS = array(
@@ -1376,6 +1398,12 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveQuestReward (&$record)
+	{
+		return $this->saveRecord('questReward', $record, 'id', self::$QUESTREWARD_FIELDS);
+	}
+	
+	
 	public function SaveLocation (&$record)
 	{
 		return $this->saveRecord('location', $record, 'id', self::$LOCATION_FIELDS);
@@ -1649,6 +1677,7 @@ class EsoLogParser
 						timerCaption TINYTEXT NOT NULL,
 						timerDuration FLOAT NOT NULL,
 						numSteps SMALLINT NOT NULL,				
+						numRewards TINYINT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_name(name(32)),
 						FULLTEXT(backgroundText, objective, goalText, confirmText, declineText, endDialogText, endBackgroundText, endJournalText)
@@ -1663,12 +1692,14 @@ class EsoLogParser
 						logId BIGINT NOT NULL,
 						locationId BIGINT NOT NULL,
 						questId BIGINT NOT NULL,
+						stageIndex SMALLINT NOT NULL,
 						stepIndex SMALLINT NOT NULL,
 						text TEXT NOT NULL,
 						type SMALLINT NOT NULL,
 						overrideText TEXT NOT NULL,
 						isVisible TINYINT NOT NULL,
 						numConditions TINYINT NOT NULL,
+						count INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_quest(questId),
 						FULLTEXT(text, overrideText)
@@ -1683,6 +1714,7 @@ class EsoLogParser
 						logId BIGINT NOT NULL,
 						questId BIGINT NOT NULL,
 						questStepId BIGINT NOT NULL,
+						stageIndex SMALLINT NOT NULL,
 						stepIndex SMALLINT NOT NULL,
 						conditionIndex TINYINT NOT NULL,
 						type1 SMALLINT NOT NULL,
@@ -1692,15 +1724,38 @@ class EsoLogParser
 						isFail TINYINT NOT NULL,
 						isComplete TINYINT NOT NULL,
 						isShared TINYINT NOT NULL,
-						isVisible TINYINT NOT NULL,						
+						isVisible TINYINT NOT NULL,
+						count INTEGER NOT NULL,
 						PRIMARY KEY (id),
-						INDEX index_quest(questId, stepIndex, conditionIndex),
+						INDEX index_quest(questId, stageIndex, stepIndex, conditionIndex),
 						FULLTEXT(text)
 					);";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questCondition table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS questReward (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						questId BIGINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						type SMALLINT NOT NULL,
+						itemId INTEGER NOT NULL,
+						collectId INTEGER NOT NULL,
+						icon TINYTEXT NOT NULL,
+						quantity INTEGER NOT NULL,
+						quality TINYINT NOT NULL,
+						itemType SMALLINT NOT NULL,
+						count INTEGER NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name),
+						INDEX index_questId(questId)
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create questReward table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS questItem (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -1716,6 +1771,7 @@ class EsoLogParser
 						stepIndex INTEGER NOT NULL,
 						conditionIndex INTEGER NOT NULL,
 						duration FLOAT NOT NULL,
+						count INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name),
 						FULLTEXT(description),
@@ -2842,6 +2898,8 @@ class EsoLogParser
 		$questRecord['timerCaption'] = $logEntry['timerCaption'];
 		$questRecord['timerDuration'] = floatval($logEntry['timerEnd']) - floatval($logEntry['timerStart']);
 		$questRecord['numSteps'] = $logEntry['numSteps'];
+		$questRecord['numRewards'] = $logEntry['numRewards'];
+		$questRecord['count'] = 0;
 		$questRecord['__isNew'] = true;
 	
 		++$this->currentUser['newCount'];
@@ -2868,10 +2926,12 @@ class EsoLogParser
 	
 		$questStageRecord['locationId'] = -1;
 		$questStageRecord['questId'] = $questRecord['id'];
+		$questStageRecord['stageIndex'] = $logEntry['stageIndex'];
 		$questStageRecord['stepIndex'] = $logEntry['step'];
 		$questStageRecord['text'] = $logEntry['text'];
 		$questStageRecord['type'] = $logEntry['stepType'];
 		$questStageRecord['overrideText'] = $logEntry['overrideText'];
+		$questStageRecord['count'] = 0;
 		
 		if ($logEntry['visible'] == null)
 			$questStageRecord['isVisible'] = 0;
@@ -2886,6 +2946,14 @@ class EsoLogParser
 	
 		$result = $this->SaveQuestStep($questStageRecord);
 		if (!$result) return null;
+		
+		$questLocation = $this->CreateLocation("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
+		$result = $this->SaveLocation($questLocation);
+		if (!$result) return null;
+		
+		$questStageRecord['locationId'] = $questLocation['id'];
+		$result = $this->SaveQuest($questRecord);
+		if (!$result) return null;
 	
 		return $questStageRecord;
 	}
@@ -2897,7 +2965,8 @@ class EsoLogParser
 	
 		$questCondRecord['questId'] = $questRecord['id'];
 		$questCondRecord['questStepId'] = $stepRecord['id'];
-		
+				
+		$questCondRecord['stageIndex'] = $logEntry['stageIndex'];
 		$questCondRecord['stepIndex'] = $logEntry['step'];
 		$questCondRecord['conditionIndex'] = $logEntry['condition'];
 		$questCondRecord['type1'] = $logEntry['condType'];
@@ -2909,6 +2978,7 @@ class EsoLogParser
 		$questCondRecord['isComplete'] = $logEntry['isComplete'];
 		$questCondRecord['isShared'] = $logEntry['isShared'];
 		$questCondRecord['isVisible'] = $logEntry['isVisible'];
+		$questCondRecord['count'] = 0;
 		$questCondRecord['__isNew'] = true;
 	
 		++$this->currentUser['newCount'];
@@ -2918,6 +2988,32 @@ class EsoLogParser
 		if (!$result) return null;
 	
 		return $questCondRecord;
+	}
+	
+	
+	public function CreateQuestReward ($questRecord, $logEntry)
+	{
+		$rewardRecord = $this->createNewRecord(self::$QUESTREWARD_FIELDS);
+	
+		$rewardRecord['questId'] = $questRecord['id'];
+		$rewardRecord['type'] = $logEntry['type'];
+		$rewardRecord['name'] = $logEntry['name'];
+		$rewardRecord['quantity'] = $logEntry['count'];
+		$rewardRecord['icon'] = $logEntry['icon'];
+		$rewardRecord['quality'] = $logEntry['quality'];
+		$rewardRecord['itemType'] = $logEntry['itemType'];
+		$rewardRecord['itemId'] = $logEntry['itemId'];
+		$rewardRecord['collectId'] = $logEntry['collectId'];
+		$rewardRecord['count'] = 0;
+		$rewardRecord['__isNew'] = true;
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveQuestReward($rewardRecord);
+		if (!$result) return null;
+	
+		return $rewardRecord;
 	}
 	
 	
@@ -2936,6 +3032,7 @@ class EsoLogParser
 		$questItemRecord['stepIndex'] = -1;
 		$questItemRecord['conditionIndex'] = -1;
 		$questItemRecord['duration'] = -1;
+		$questItemRecord['count'] = -1;
 		
 		if ($logEntry['stepIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['stepIndex'];
 		if ($logEntry['conditionIndex'] != null) $questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
@@ -2988,6 +3085,39 @@ class EsoLogParser
 		if (!$result) return null;
 	
 		return $questStageRecord;
+	}
+	
+	
+	public function OnQuestComplete ($logEntry)
+	{
+		$questRecord = $this->FindQuest($logEntry['quest']);
+		if ($questRecord == null) return $this->reportError("No quest found matching '{$logEntry['quest']}' in quest complete event!");
+		
+		if ($logEntry['xp'] == null) return true;
+		
+		$rewardRecord = $this->FindQuestReward($questRecord['id'], -1, "Experience");
+		
+		if ($rewardRecord == null)
+		{
+			$rewardRecord = $this->CreateQuestReward($questRecord, $logEntry);
+			if ($rewardRecord == null) return false;
+		}
+		
+		$rewardRecord['name'] = "Experience";
+		$rewardRecord['type'] = -1;
+		$rewardRecord['quantity'] = $logEntry['xp'];
+		$rewardRecord['icon'] = '';
+		$rewardRecord['quality'] = 0;
+		$rewardRecord['itemType'] = 0;
+		$rewardRecord['itemId'] = 0;
+		$rewardRecord['collectId'] = 0;
+		$rewardRecord['count'] += 1;
+		$rewardRecord['__dirty'] = true;
+		
+		$result = $this->SaveQuestReward($rewardRecord);
+		if (!$result) return false;
+		
+		return true;
 	}
 	
 	
@@ -3052,6 +3182,7 @@ class EsoLogParser
 		$questItemRecord['description'] = $logEntry['desc'];
 		$questItemRecord['header'] = $logEntry['header'];
 		$questItemRecord['icon'] = $logEntry['texture'];
+		$questItemRecord['count'] += 1;
 		
 		if ($logEntry['duration']       != null) $questItemRecord['duration'] = $logEntry['duration'];
 		if ($logEntry['stepIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['stepIndex'];
@@ -3078,6 +3209,7 @@ class EsoLogParser
 		{
 			$questRecord = $this->CreateQuest($logEntry['quest'], $logEntry);
 			if ($questRecord == null) return false;
+			return true;
 		}
 		
 		$questRecord['level'] = $logEntry['level'];
@@ -3086,26 +3218,35 @@ class EsoLogParser
 		$questRecord['displayType'] = $logEntry['displayType'];
 		$questRecord['backgroundText'] = $logEntry['bgText'];
 		$questRecord['poiIndex'] = $logEntry['poiIndex'];
-		$questRecord['goalText'] = $logEntry['goal'];
 		$questRecord['objective'] = $logEntry['objective'];
-		$questRecord['confirmText'] = $logEntry['confirm'];
-		$questRecord['declineText'] = $logEntry['decline'];
-		$questRecord['endDialogText'] = $logEntry['endDialog'];
-		$questRecord['endBackgroundText'] = $logEntry['endBgText'];
-		$questRecord['endJournalText'] = $logEntry['endJournalText'];
+		
+		if ($logEntry['goal']) $questRecord['goalText'] = $logEntry['goal'];
+		if ($logEntry['confirm']) $questRecord['confirmText'] = $logEntry['confirm'];
+		if ($logEntry['decline']) $questRecord['declineText'] = $logEntry['decline'];
+		if ($logEntry['endDialog']) $questRecord['endDialogText'] = $logEntry['endDialog'];
+		if ($logEntry['endBgText']) $questRecord['endBackgroundText'] = $logEntry['endBgText'];
+		if ($logEntry['endJournalText']) $questRecord['endJournalText'] = $logEntry['endJournalText'];
+		
 		$questRecord['isShareable'] = $logEntry['shareable'];
 		$questRecord['numTools'] = $logEntry['numTools'];
 		$questRecord['hasTimer'] = $logEntry['timerVisible'];
 		$questRecord['timerCaption'] = $logEntry['timerCaption'];
 		$questRecord['timerDuration'] = floatval($logEntry['timerEnd']) - floatval($logEntry['timerStart']);
 		$questRecord['numSteps'] = $logEntry['numSteps'];
+		$questRecord['numRewards'] = $logEntry['numRewards'];
+		$questRecord['count'] += 1;
 		$questRecord['__dirty'] = true;
 		
-		$locationId = $this->CheckLocationId("quest", $name, $logEntry, array('questId' => $questRecord['id']));
+		$locationId = $this->CheckLocationId("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id']));
 		
 		if ($locationId > 0)
 		{
 			$questRecord['locationId'] = $locationId;
+			$questRecord['__dirty'] = true;
+		}
+		
+		if ($questRecord['__dirty'])
+		{
 			$result = $this->SaveQuest($questRecord);
 			if (!$result) return false;
 		}
@@ -3116,21 +3257,25 @@ class EsoLogParser
 	
 	public function OnQuestStep ($logEntry)
 	{
+		if ($logEntry['stageIndex'] == null || $logEntry['stageIndex'] <= 0) return true;
+		
 		$questRecord = $this->FindQuest($logEntry['quest']);
 		if ($questRecord == null) return false;
 		
-		$questStageRecord = $this->FindQuestStep($questRecord, $logEntry['step']);
+		$questStageRecord = $this->FindQuestStep($questRecord['id'], $logEntry['stageIndex'], $logEntry['step']);
 		
 		if ($questStageRecord == null)
 		{
 			$questStageRecord = $this->CreateQuestStep($questRecord, $logEntry);
 			if ($questStageRecord == null) return false;
+			return true;
 		}
 		
 		$questStageRecord['stepIndex'] = $logEntry['step'];
 		$questStageRecord['text'] = $logEntry['text'];
 		$questStageRecord['type'] = $logEntry['stepType'];
 		$questStageRecord['overrideText'] = $logEntry['overrideText'];
+		$questStageRecord['count'] += 1 ;
 		
 		if ($logEntry['visible'] == null)
 			$questStageRecord['isVisible'] = 0;
@@ -3139,9 +3284,20 @@ class EsoLogParser
 		
 		$questStageRecord['numConditions'] = $logEntry['numCond'];
 		$questStageRecord['__dirty'] = true;
+				
+		$locationId = $this->CheckLocationId("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
 		
-		$result = $this->SaveQuestStep($questStageRecord);
-		if (!$result) return false;
+		if ($locationId > 0)
+		{
+			$questStageRecord['locationId'] = $locationId;
+			$questStageRecord['__dirty'] = true;
+		}
+		
+		if ($questStageRecord['__dirty'])
+		{
+			$result = $this->SaveQuestStep($questStageRecord);
+			if (!$result) return false;
+		}
 		
 		return true;
 	}
@@ -3149,18 +3305,21 @@ class EsoLogParser
 	
 	public function OnQuestCondition ($logEntry)
 	{
+		if ($logEntry['stageIndex'] == null || $logEntry['stageIndex'] <= 0) return true;
+		
 		$questRecord = $this->FindQuest($logEntry['quest']);
-		if ($questRecord == null) return $this->reportError("Failed to find matching quest for {$logEntry['quest']}!");
+		if ($questRecord == null) return $this->reportError("Failed to find matching quest for {$logEntry['quest']} in condition!");
 		
-		$questStageRecord = $this->FindQuestStep($questRecord, $logEntry['step']);
-		if ($questStageRecord == null) return $this->reportError("Failed to find matching quest step for {$logEntry['quest']}:{$logEntry['step']}!");
+		$questStageRecord = $this->FindQuestStep($questRecord['id'], $logEntry['stageIndex'], $logEntry['step']);
+		if ($questStageRecord == null) return $this->reportError("Failed to find matching quest step for {$logEntry['quest']}:{$logEntry['stageIndex']}:{$logEntry['step']}!");
 		
-		$questCondRecord = $this->FindQuestCondition($questRecord, $logEntry['step'], $logEntry['condition']);
+		$questCondRecord = $this->FindQuestCondition($questRecord['id'], $logEntry['stageIndex'], $logEntry['step'], $logEntry['condition']);
 				
 		if ($questCondRecord == null)
 		{
 			$questCondRecord = $this->CreateQuestCondition($questRecord, $questStageRecord, $logEntry);
 			if ($questCondRecord == null) return false;
+			return true;
 		}
 		
 		$questCondRecord['type1'] = $logEntry['condType'];
@@ -3172,9 +3331,43 @@ class EsoLogParser
 		$questCondRecord['isComplete'] = $logEntry['isComplete'];
 		$questCondRecord['isShared'] = $logEntry['isShared'];
 		$questCondRecord['isVisible'] = $logEntry['isVisible'];
+		$questCondRecord['count'] += 1;
 		$questCondRecord['__dirty'] = true;
 		
 		$result = $this->SaveQuestCondition($questCondRecord);
+		if (!$result) return false;
+		
+		return true;
+	}
+	
+	
+	public function OnQuestReward ($logEntry)
+	{
+		$questRecord = $this->FindQuest($logEntry['quest']);
+		if ($questRecord == null) return $this->reportError("Failed to find matching quest for {$logEntry['quest']} in reward!");
+		
+		if ($logEntry['name'] == "" && $logEntry['type'] == 1) $logEntry['name'] = "Gold";
+		
+		$rewardRecord = $this->FindQuestReward($questRecord['id'], $logEntry['type'], $logEntry['name']);
+		
+		if ($rewardRecord == null)
+		{
+			$rewardRecord = $this->CreateQuestReward($questRecord, $logEntry);
+			if ($rewardRecord == null) return false;
+			return true;
+		}
+		
+		$rewardRecord['name'] = $logEntry['name'];
+		$rewardRecord['quantity'] = $logEntry['count'];
+		$rewardRecord['icon'] = $logEntry['icon'];
+		$rewardRecord['quality'] = $logEntry['quality'];
+		$rewardRecord['itemType'] = $logEntry['itemType'];
+		$rewardRecord['itemId'] = $logEntry['itemId'];
+		$rewardRecord['collectId'] = $logEntry['collectId'];
+		$rewardRecord['count'] += 1;
+		$rewardRecord['__dirty'] = true;
+		
+		$result = $this->SaveQuestReward($rewardRecord);
 		if (!$result) return false;
 		
 		return true;
@@ -3213,6 +3406,47 @@ class EsoLogParser
 		//event{QuestAdvanced}  isPushed{false}  quest{The Nameless Soldier}  isComplete{true}  mainStepChanged{true}  
 		//y{0.48894619941711}  zone{Glenumbra}  x{0.51565104722977}  timeStamp{4743643893159952384}  gameTime{456839} 
 		//userName{...}  ipAddress{...}  logTime{1396487061}  end{}
+		
+		$questRecord = $this->FindQuest($logEntry['quest']);
+		if ($questRecord == null) return $this->reportError("Failed to find matching quest for '{$logEntry['quest']}' in advanced quest step!");
+		
+		if ($logEntry['goal']) 
+		{
+			$questRecord['goalText'] = $logEntry['goal'];
+			$questRecord["__dirty"] = true;
+		}
+		
+		if ($logEntry['confirm']) 
+		{
+			$questRecord['confirmText'] = $logEntry['confirm'];
+			$questRecord["__dirty"] = true;
+		}
+		
+		if ($logEntry['decline']) 
+		{
+			$questRecord['declineText'] = $logEntry['decline'];
+			$questRecord["__dirty"] = true;
+		}
+		
+		if ($logEntry['endDialog']) 
+		{
+			$questRecord['endDialogText'] = $logEntry['endDialog'];
+			$questRecord["__dirty"] = true;
+		}
+		
+		if ($logEntry['endBgText']) 
+		{
+			$questRecord['endBackgroundText'] = $logEntry['endBgText'];
+			$questRecord["__dirty"] = true;
+		}
+		
+		if ($logEntry['endJournalText']) 
+		{
+			$questRecord['endJournalText'] = $logEntry['endJournalText'];
+			$questRecord["__dirty"] = true;
+		}
+		
+		if ($questRecord["__dirty"]) $this->SaveQuest($questRecord);
 		
 		return true;
 	}
@@ -3414,18 +3648,22 @@ class EsoLogParser
 			return null;
 		}
 	
-		if ($result->num_rows == 0) return null;
+		if ($result->num_rows == 0) 
+		{
+			return null;
+		}
 	
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUEST_FIELDS);
 	}
 	
 	
-	public function FindQuestStep ($questId, $stepIndex)
+	public function FindQuestStep ($questId, $stageIndex, $stepIndex)
 	{
 		$safeIndex = (int) $stepIndex;
+		$safeStage = (int) $stageIndex;
 		$safeId = (int) $questId;
-		$query = "SELECT * FROM questStep WHERE questId=$safeId AND stepIndex=$safeIndex;";
+		$query = "SELECT * FROM questStep WHERE questId=$safeId AND stageIndex=$safeStage and stepIndex=$safeIndex;";
 		$this->lastQuery = $query;
 	
 		$result = $this->db->query($query);
@@ -3443,12 +3681,36 @@ class EsoLogParser
 	}
 	
 	
-	public function FindQuestCondition ($questId, $stepIndex, $conditionIndex)
+	public function FindQuestReward ($questId, $type, $rewardName)
+	{
+		$safeId = (int) $questId;
+		$safeType = (int) $type;
+		$safeName = $this->db->real_escape_string($rewardName);
+		$query = "SELECT * FROM questReward WHERE questId=$safeId AND type=$safeType AND name='$safeName';";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve quest reward!");
+			return null;
+		}
+		
+		if ($result->num_rows == 0) return null;
+		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$QUESTREWARD_FIELDS);
+	}
+	
+	
+	public function FindQuestCondition ($questId, $stageIndex, $stepIndex, $conditionIndex)
 	{
 		$safeIndex = (int) $stepIndex;
 		$safeCond = (int) $conditionIndex;
+		$safeStage = (int) $stageIndex;
 		$safeId = (int) $questId;
-		$query = "SELECT * FROM questCondition WHERE questId=$safeId AND stepIndex=$safeIndex AND conditionIndex=$safeCond;";
+		$query = "SELECT * FROM questCondition WHERE questId=$safeId AND stageIndex=$safeStage AND stepIndex=$safeIndex AND conditionIndex=$safeCond;";
 		$this->lastQuery = $query;
 	
 		$result = $this->db->query($query);
@@ -3696,7 +3958,7 @@ class EsoLogParser
 			if (array_key_exists('npcId',   $extraIds)) $locationRecord['npcId']   = $extraIds['npcId'];
 			if (array_key_exists('questId', $extraIds)) $locationRecord['questId'] = $extraIds['questId'];
 			if (array_key_exists('questStageId', $extraIds)) $locationRecord['questStageId'] = $extraIds['questStageId'];
-			if (array_key_exists('itemId',  $extraIds)) $locationRecord['itemId']  = $$extraIds['itemId'];
+			if (array_key_exists('itemId',  $extraIds)) $locationRecord['itemId']  = $extraIds['itemId'];
 		}
 		
 		++$this->currentUser['newCount'];
@@ -5797,6 +6059,7 @@ class EsoLogParser
 			case "QuestAdvanced":				$result = $this->OnQuestAdvanced($logEntry); break;
 			case "QuestOffered":				$result = $this->OnQuestOffered($logEntry); break;
 			case "QuestRemoved":				$result = $this->OnQuestRemoved($logEntry); break;
+			case "QuestComplete":				$result = $this->OnQuestComplete($logEntry); break;
 			case "QuestObjComplete":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestOptionalStep":			$result = $this->OnNullEntry($logEntry); break;
 			case "QuestCompleteExperience":		$result = $this->OnNullEntry($logEntry); break;
@@ -5806,6 +6069,7 @@ class EsoLogParser
 			case "Quest::Start":				$result = $this->OnQuestStart($logEntry); break;
 			case "Quest::Step":					$result = $this->OnQuestStep($logEntry); break;
 			case "Quest::Condition":			$result = $this->OnQuestCondition($logEntry); break;
+			case "Quest::Reward":				$result = $this->OnQuestReward($logEntry); break;
 			
 			case "CraftComplete":				$result = $this->OnNullEntry($logEntry); break;
 			case "CraftComplete::Result":		$result = $this->OnNullEntry($logEntry); break;
