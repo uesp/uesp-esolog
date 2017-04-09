@@ -917,6 +917,13 @@ class EsoLogViewer
 									'type' => 'filter',
 							),
 							array(
+									'record' => 'questCondition',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Conditions',
+									'type' => 'filter',
+							),
+							array(
 									'record' => 'location',
 									'field' => 'questId',
 									'thisField' => 'id',
@@ -955,8 +962,8 @@ class EsoLogViewer
 							),
 							array(
 									'record' => 'questCondition',
-									'field' => 'questId',
-									'thisField' => 'questId',
+									'field' => 'questStepId',
+									'thisField' => 'id',
 									'displayName' => 'View Conditions',
 									'type' => 'filter',
 							),
