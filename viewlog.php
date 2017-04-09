@@ -138,13 +138,12 @@ class EsoLogViewer
 			'zone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'objective' => self::FIELD_STRING,
-	);
-	
+	);	
 	
 	public static $QUEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
-			'locationId' => self::FIELD_INTID,
+			//'locationId' => self::FIELD_INTID,
+			'zone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
 			'type' => self::FIELD_INT,
@@ -165,19 +164,25 @@ class EsoLogViewer
 			'timerCaption' => self::FIELD_STRING,
 			'timerDuration' => self::FIELD_FLOAT,
 			'numSteps' => self::FIELD_INT,
+			'numRewards' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
 			'id' => self::FIELD_INTID,
-			'logId' => self::FIELD_INTID,
-			'locationId' => self::FIELD_INTID,
+			//'locationId' => self::FIELD_INTID,
+			'zone' => self::FIELD_STRING,
+			'x' => self::FIELD_POSITION,
+			'y' => self::FIELD_POSITION,			
 			'questId' => self::FIELD_INTID,
+			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'text' => self::FIELD_STRING,
 			'type' => self::FIELD_INT,
 			'overrideText' => self::FIELD_STRING,
 			'isVisible' => self::FIELD_INT,
 			'numConditions' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $QUESTCONDITION_FIELDS = array(
@@ -185,6 +190,7 @@ class EsoLogViewer
 			'logId' => self::FIELD_INTID,
 			'questId' => self::FIELD_INTID,
 			'questStepId' => self::FIELD_INTID,
+			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'conditionIndex' => self::FIELD_INT,
 			'type1' => self::FIELD_INT,
@@ -195,6 +201,22 @@ class EsoLogViewer
 			'isVisible' => self::FIELD_INT,
 			'isComplete' => self::FIELD_INT,
 			'isShared' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+	);
+	
+	public static $QUESTREWARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'quantity' => self::FIELD_INT,
+			'icon' => self::FIELD_STRING,
+			'quality' => self::FIELD_INT,
+			'itemType' => self::FIELD_INT,
+			'itemId' => self::FIELD_INT,
+			'collectId' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $QUESTITEM_FIELDS = array(
@@ -211,6 +233,7 @@ class EsoLogViewer
 			'stepIndex' => self::FIELD_INT,
 			'conditionIndex' => self::FIELD_INT,
 			'duration' => self::FIELD_FLOAT,
+			'count' => self::FIELD_INT,
 	);
 		
 	public static $OLDQUESTSTAGE_FIELDS = array(
@@ -887,6 +910,13 @@ class EsoLogViewer
 									'type' => 'filter',
 							),
 							array(
+									'record' => 'questReward',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Rewards',
+									'type' => 'filter',
+							),
+							array(
 									'record' => 'location',
 									'field' => 'questId',
 									'thisField' => 'id',
@@ -902,7 +932,7 @@ class EsoLogViewer
 					'record' => 'questStep',
 					'table' => 'questStep',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId, stepIndex',
+					'sort' => 'questId, stageIndex, stepIndex',
 						
 					'transform' => array(
 					),
@@ -932,9 +962,9 @@ class EsoLogViewer
 							),
 							array(
 									'record' => 'location',
-									'field' => 'id',
-									'thisField' => 'locationId',
-									'displayName' => 'View Location',
+									'field' => 'questStageId',
+									'thisField' => 'id',
+									'displayName' => 'View Locations',
 									'type' => 'filter',
 							),
 					),
@@ -947,7 +977,7 @@ class EsoLogViewer
 					'record' => 'questCondition',
 					'table' => 'questCondition',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId, stepIndex, conditionIndex',
+					'sort' => 'questId, stageIndex, stepIndex, conditionIndex',
 			
 					'transform' => array(
 					),
@@ -973,6 +1003,32 @@ class EsoLogViewer
 					),
 			),
 			
+			'questReward' => array(
+					'message' => '',
+					'displayName' => 'Quest Rewards',
+					'displayNameSingle' => 'Quest Reward',
+					'record' => 'questReward',
+					'table' => 'questReward',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+			
+					'transform' => array(
+					),
+			
+					'join' => array(
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'quest',
+									'field' => 'id',
+									'thisField' => 'questId',
+									'displayName' => 'View Quest',
+									'type' => 'viewRecord',
+							),
+					),
+			),
+			
 			'questitem' => array(
 					'message' => '',
 					'displayName' => 'Quest Items',
@@ -990,7 +1046,7 @@ class EsoLogViewer
 						
 					'filters' => array(
 							array(
-									'record' => 'oldQuest',
+									'record' => 'quest',
 									'field' => 'id',
 									'thisField' => 'questId',
 									'displayName' => 'View Quest',
@@ -2041,6 +2097,7 @@ class EsoLogViewer
 			'Quest Steps' => 'questStep',
 			'Quest Conditions' => 'questCondition',
 			'Quest Item' => 'questItem',
+			'Quest Reward' => 'questReward',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
 			'Sets 13-PTS' => 'setSummary13pts',
@@ -2136,6 +2193,14 @@ class EsoLogViewer
 					),
 			),
 			'questItem' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
+			'questReward' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -2349,6 +2414,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
 		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
+		self::$RECORD_TYPES['questReward']['fields'] = self::$QUESTREWARD_FIELDS;
 		self::$RECORD_TYPES['questitem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
@@ -3299,7 +3365,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case self::FIELD_INTID:
 				if ($this->displayRawValues) return $value;
-				if ((int) $value > 0) $output = $value;
+				if ((int) $value != 0) $output = $value;
 				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
@@ -3358,7 +3424,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case self::FIELD_INTID:
 				if ($this->displayRawValues) return $value;
-				if ((int) $value > 0) $output = $value;
+				if ((int) $value != 0) $output = $value;
 				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
@@ -3412,7 +3478,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case self::FIELD_INTID:
 				if ($this->displayRawValues) return $value;
-				if ((int) $value > 0) $output = $value;
+				if ((int) $value != 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
 			case self::FIELD_TEXTTRANSFORM:
@@ -3470,7 +3536,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case self::FIELD_INTID:
 				if ($this->displayRawValues) return $value;
-				if ((int) $value > 0) $output = $value;
+				if ((int) $value != 0) $output = $value;
 				break;
 			case self::FIELD_INTTRANSFORM:
 			case self::FIELD_TEXTTRANSFORM:
@@ -3898,7 +3964,11 @@ If you do not understand what this information means, or how to use this webpage
 				$output .= $this->GetViewRecordLink('oldQuestStage','id', $result['id'], 'View Quest Stage');
 				break;
 			case 'questItem':
+			case 'questitem':
 				$output .= $this->GetViewRecordLink('questItem', 'id', $result['id'], 'View Quest Item') . " ";
+				break;
+			case 'questReward':
+				$output .= $this->GetViewRecordLink('questReward', 'id', $result['id'], 'View Quest Reward') . " ";
 				break;
 			case 'item':
 				$output .= $this->GetViewRecordLink('item', 'id', $result['id'], 'View Item');
@@ -4072,7 +4142,6 @@ If you do not understand what this information means, or how to use this webpage
 				}
 				
 				$method = $value['method'];
-				error_log("Method: $key: $method");
 				$this->$method($value);
 				$this->WritePageFooter();
 				return true;
