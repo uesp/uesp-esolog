@@ -355,6 +355,7 @@ class EsoLogParser
 			'logId' => self::FIELD_INT,
 			'locationId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
 			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'text' => self::FIELD_STRING,
@@ -369,6 +370,7 @@ class EsoLogParser
 			'id' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
 			'questStepId' => self::FIELD_INT,
 			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
@@ -388,6 +390,7 @@ class EsoLogParser
 			'id' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
 			'type' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'quantity' => self::FIELD_INT,
@@ -1700,6 +1703,7 @@ class EsoLogParser
 						isVisible TINYINT NOT NULL,
 						numConditions TINYINT NOT NULL,
 						count INTEGER NOT NULL,
+						uniqueId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_quest(questId),
 						FULLTEXT(text, overrideText)
@@ -1726,6 +1730,7 @@ class EsoLogParser
 						isShared TINYINT NOT NULL,
 						isVisible TINYINT NOT NULL,
 						count INTEGER NOT NULL,
+						uniqueId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_quest(questId, stageIndex, stepIndex, conditionIndex),
 						FULLTEXT(text)
@@ -1748,6 +1753,7 @@ class EsoLogParser
 						quality TINYINT NOT NULL,
 						itemType SMALLINT NOT NULL,
 						count INTEGER NOT NULL,
+						uniqueId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name),
 						INDEX index_questId(questId)
@@ -2932,6 +2938,7 @@ class EsoLogParser
 		$questStageRecord['type'] = $logEntry['stepType'];
 		$questStageRecord['overrideText'] = $logEntry['overrideText'];
 		$questStageRecord['count'] = 0;
+		$questStageRecord['uniqueId'] = $logEntry['uniqueId'];
 		
 		if ($logEntry['visible'] == null)
 			$questStageRecord['isVisible'] = 0;
@@ -2952,7 +2959,7 @@ class EsoLogParser
 		if (!$result) return null;
 		
 		$questStageRecord['locationId'] = $questLocation['id'];
-		$result = $this->SaveQuest($questRecord);
+		$result = $this->SaveQuestStep($questStageRecord);
 		if (!$result) return null;
 	
 		return $questStageRecord;
@@ -2979,6 +2986,7 @@ class EsoLogParser
 		$questCondRecord['isShared'] = $logEntry['isShared'];
 		$questCondRecord['isVisible'] = $logEntry['isVisible'];
 		$questCondRecord['count'] = 0;
+		$questCondRecord['uniqueId'] = $logEntry['uniqueId'];
 		$questCondRecord['__isNew'] = true;
 		
 		++$this->currentUser['newCount'];
@@ -3004,6 +3012,7 @@ class EsoLogParser
 		$rewardRecord['itemType'] = $logEntry['itemType'];
 		$rewardRecord['itemId'] = $logEntry['itemId'];
 		$rewardRecord['collectId'] = $logEntry['collectId'];
+		$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
 		$rewardRecord['count'] = 0;
 		$rewardRecord['__isNew'] = true;
 	
@@ -3111,6 +3120,7 @@ class EsoLogParser
 		$rewardRecord['itemType'] = 0;
 		$rewardRecord['itemId'] = 0;
 		$rewardRecord['collectId'] = 0;
+		$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
 		$rewardRecord['count'] += 1;
 		$rewardRecord['__dirty'] = true;
 		
@@ -3219,7 +3229,7 @@ class EsoLogParser
 		$questRecord['backgroundText'] = $logEntry['bgText'];
 		$questRecord['poiIndex'] = $logEntry['poiIndex'];
 		$questRecord['objective'] = $logEntry['objective'];
-		
+				
 		if ($logEntry['goal']) $questRecord['goalText'] = $logEntry['goal'];
 		if ($logEntry['confirm']) $questRecord['confirmText'] = $logEntry['confirm'];
 		if ($logEntry['decline']) $questRecord['declineText'] = $logEntry['decline'];
@@ -3274,7 +3284,8 @@ class EsoLogParser
 		$questStageRecord['stepIndex'] = $logEntry['step'];
 		$questStageRecord['type'] = $logEntry['stepType'];
 		$questStageRecord['overrideText'] = $logEntry['overrideText'];
-		$questStageRecord['count'] += 1 ;
+		$questStageRecord['count'] += 1;
+		$questStageRecord['uniqueId'] = $logEntry['uniqueId'];
 		
 		if ($logEntry['visible'] == null)
 			$questStageRecord['isVisible'] = 0;
@@ -3330,6 +3341,7 @@ class EsoLogParser
 		$questCondRecord['isShared'] = $logEntry['isShared'];
 		$questCondRecord['isVisible'] = $logEntry['isVisible'];
 		$questCondRecord['count'] += 1;
+		$questCondRecord['uniqueId'] = $logEntry['uniqueId'];
 		$questCondRecord['__dirty'] = true;
 		
 		$result = $this->SaveQuestCondition($questCondRecord);
@@ -3363,6 +3375,7 @@ class EsoLogParser
 		$rewardRecord['itemId'] = $logEntry['itemId'];
 		$rewardRecord['collectId'] = $logEntry['collectId'];
 		$rewardRecord['count'] += 1;
+		$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
 		$rewardRecord['__dirty'] = true;
 		
 		$result = $this->SaveQuestReward($rewardRecord);
