@@ -1159,6 +1159,29 @@ $ESO_CHESTTYPE_TEXTS = array(
 );
 
 
+$ESO_QUESTREWARDTYPE_TEXTS = array(
+		-2 => "",
+		-1 => "Experience",	//Custom
+		0 => "None",
+		1 => "Money",
+		2 => "Alliance Points",
+		3 => "Writ Vouchers",
+		4 => "Telvar Stones",
+		5 => "Inspiration",
+		6 => "Unused",
+		7 => "Auto Item",
+		8 => "Unused3",
+		9 => "Partial Skill Points",
+);
+
+
+$ESO_QUESTREWARDITEMTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Item",
+		1 => "Collectible",
+);
+
+
 $ESO_ITEMINTTYPE_QUALITYMAP = array(
 		0 => 1,
 		1 => 0,
@@ -2238,6 +2261,26 @@ function GetEsoChestTypeText($value)
 
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_CHESTTYPE_TEXTS)) return $ESO_CHESTTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoQuestRewardTypeText($value)
+{
+	global $ESO_QUESTREWARDTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_QUESTREWARDTYPE_TEXTS)) return $ESO_QUESTREWARDTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoQuestRewardItemTypeText($value)
+{
+	global $ESO_QUESTREWARDITEMTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_QUESTREWARDITEMTYPE_TEXTS)) return $ESO_QUESTREWARDITEMTYPE_TEXTS[$key];
 	return "Unknown ($key)";
 }
 
