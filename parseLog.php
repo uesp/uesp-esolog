@@ -361,7 +361,7 @@ class EsoLogParser
 			'text' => self::FIELD_STRING,
 			'type' => self::FIELD_INT,
 			'overrideText' => self::FIELD_STRING,
-			'isVisible' => self::FIELD_INT,
+			'visiblity' => self::FIELD_INT,
 			'numConditions' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 	);
@@ -1700,7 +1700,7 @@ class EsoLogParser
 						text TEXT NOT NULL,
 						type SMALLINT NOT NULL,
 						overrideText TEXT NOT NULL,
-						isVisible TINYINT NOT NULL,
+						visibility TINYINT NOT NULL,
 						numConditions TINYINT NOT NULL,
 						count INTEGER NOT NULL,
 						uniqueId INTEGER NOT NULL,
@@ -2941,9 +2941,9 @@ class EsoLogParser
 		$questStageRecord['uniqueId'] = $logEntry['uniqueId'];
 		
 		if ($logEntry['visible'] == null)
-			$questStageRecord['isVisible'] = 0;
+			$questStageRecord['visibility'] = -1;
 		else 
-			$questStageRecord['isVisible'] = $logEntry['visible'];
+			$questStageRecord['visibility'] = $logEntry['visible'];
 		
 		$questStageRecord['numConditions'] = $logEntry['numCond'];
 		$questStageRecord['__isNew'] = true;
@@ -3049,7 +3049,7 @@ class EsoLogParser
 		
 		$questItemRecord['__isNew'] = true;
 		
-		$questRecord = $this->FindOldQuest($logEntry['questName']);
+		$questRecord = $this->FindQuest($logEntry['questName']);
 		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
 	
 		++$this->currentUser['newCount'];
@@ -3175,6 +3175,8 @@ class EsoLogParser
 		//header{Quest Item}  questId{5625}  name{Durzog Feed}  questName{Getting a Bellyful}  journalIndex{7}  
 		//desc{This meat is surprisingly fresh and carries a robust, heady odor.}  texture{/esoui/art/icons/quest_food_003.dds}  
 		//gameTime{845859763}  timeStamp{4743895467916525568}  lang{en}  userName{...}  ipAddress{...}  logTime{1396487061}  end{}
+				
+		$logEntry['itemLink'] = preg_replace("#\|h([^|]+)\|h#", "|h|h", $logEntry['itemLink']);
 		
 		$questItemRecord = $this->FindQuestItem($logEntry['itemLink']);
 		
@@ -3193,16 +3195,15 @@ class EsoLogParser
 		$questItemRecord['header'] = $logEntry['header'];
 		$questItemRecord['icon'] = $logEntry['texture'];
 		$questItemRecord['count'] += 1;
+		$questItemRecord['__dirty'] = true;
 		
 		if ($logEntry['duration']       != null) $questItemRecord['duration'] = $logEntry['duration'];
 		if ($logEntry['stepIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['stepIndex'];
 		if ($logEntry['conditionIndex'] != null) $questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
 		if ($logEntry['toolIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['toolIndex'];
 		
-		$questRecord = $this->FindOldQuest($logEntry['questName']);
+		$questRecord = $this->FindQuest($logEntry['questName']);
 		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
-		
-		$this->currentUser['__dirty'] = true;
 		
 		$result = $this->SaveQuestItem($questItemRecord);
 		if (!$result) return false;
@@ -3288,9 +3289,9 @@ class EsoLogParser
 		$questStageRecord['uniqueId'] = $logEntry['uniqueId'];
 		
 		if ($logEntry['visible'] == null)
-			$questStageRecord['isVisible'] = 0;
+			$questStageRecord['visibility'] = -1;
 		else 
-			$questStageRecord['isVisible'] = $logEntry['visible'];
+			$questStageRecord['visibility'] = $logEntry['visible'];
 		
 		$questStageRecord['numConditions'] = $logEntry['numCond'];
 		$questStageRecord['__dirty'] = true;
