@@ -211,12 +211,12 @@ class EsoLogViewer
 			'logId' => self::FIELD_INT,
 			'questId' => self::FIELD_INT,
 			'uniqueId' => self::FIELD_INT,
-			'type' => self::FIELD_INT,
+			'type' => self::FIELD_INTTRANSFORM,
 			'name' => self::FIELD_STRING,
 			'quantity' => self::FIELD_INT,
 			'icon' => self::FIELD_STRING,
-			'quality' => self::FIELD_INT,
-			'itemType' => self::FIELD_INT,
+			'quality' => self::FIELD_INTTRANSFORM,
+			'itemType' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'collectId' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
@@ -1034,6 +1034,9 @@ class EsoLogViewer
 					'sort' => 'name',
 			
 					'transform' => array(
+							'quality' => 'GetItemQualityText',
+							'type' => 'GetEsoQuestRewardTypeText',
+							'itemType' => 'GetEsoQuestRewardItemTypeText',
 					),
 			
 					'join' => array(
@@ -2743,10 +2746,22 @@ class EsoLogViewer
 	}
 		
 	
-	public function GetChestQualityText ($value)
+	public function GetChestQualityText($value)
 	{
 		return GetEsoChestTypeText($value);
 	}
+	
+	
+	public function GetEsoQuestRewardTypeText($value)
+	{
+		return GetEsoQuestRewardTypeText($value);
+	}	
+	
+	
+	public function GetEsoQuestRewardItemTypeText($value)
+	{
+		return GetEsoQuestRewardItemTypeText($value);
+	}	
 	
 	
 	public function RemoveTextFormats ($text)

@@ -3117,7 +3117,7 @@ class EsoLogParser
 		$rewardRecord['quantity'] = $logEntry['xp'];
 		$rewardRecord['icon'] = '';
 		$rewardRecord['quality'] = 0;
-		$rewardRecord['itemType'] = 0;
+		$rewardRecord['itemType'] = -1;
 		$rewardRecord['itemId'] = 0;
 		$rewardRecord['collectId'] = 0;
 		$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
