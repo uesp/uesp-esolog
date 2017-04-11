@@ -146,8 +146,8 @@ class EsoLogViewer
 			'zone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
-			'type' => self::FIELD_INT,
-			'repeatType' => self::FIELD_INT,
+			'type' => self::FIELD_INTTRANSFORM,
+			'repeatType' => self::FIELD_INTTRANSFORM,
 			'displayType' => self::FIELD_STRING,
 			'backgroundText' => self::FIELD_STRING,
 			'objective' => self::FIELD_STRING,
@@ -179,9 +179,9 @@ class EsoLogViewer
 			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'text' => self::FIELD_STRING,
-			'type' => self::FIELD_INT,
+			'type' => self::FIELD_INTTRANSFORM,
 			'overrideText' => self::FIELD_STRING,
-			'isVisible' => self::FIELD_INT,
+			'visibility' => self::FIELD_INTTRANSFORM,
 			'numConditions' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 	);
@@ -195,10 +195,10 @@ class EsoLogViewer
 			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'conditionIndex' => self::FIELD_INT,
-			'type1' => self::FIELD_INT,
-			'type2' => self::FIELD_INT,
 			'text' => self::FIELD_STRING,
 			'maxValue' => self::FIELD_INT,
+			'type1' => self::FIELD_INTTRANSFORM,
+			'type2' => self::FIELD_INTTRANSFORM,
 			'isFail' => self::FIELD_INT,
 			'isVisible' => self::FIELD_INT,
 			'isComplete' => self::FIELD_INT,
@@ -894,6 +894,8 @@ class EsoLogViewer
 					'sort' => 'name',
 			
 					'transform' => array(
+							'type' => 'GetEsoQuestTypeText',
+							'repeatType' => 'GetEsoQuestRepeatTypeText',
 					),
 						
 					'join' => array(
@@ -942,9 +944,11 @@ class EsoLogViewer
 					'record' => 'questStep',
 					'table' => 'questStep',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId, stageIndex, stepIndex',
+					'sort' => 'questId, uniqueId, stageIndex, stepIndex',
 						
 					'transform' => array(
+							'type' => 'GetEsoQuestStepTypeText',
+							'visibility' => 'GetEsoQuestStepVisibilityTypeText',
 					),
 						
 					'join' => array(
@@ -987,9 +991,16 @@ class EsoLogViewer
 					'record' => 'questCondition',
 					'table' => 'questCondition',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId, stageIndex, stepIndex, conditionIndex',
+					'sort' => 'questId, uniqueId, stageIndex, stepIndex, conditionIndex',
+					
+					'columnNames' => array(
+							'type1' => 'Map Pin Type 1',
+							'type2' => 'Map Pin Type 2',
+					),
 			
 					'transform' => array(
+							'type1' => 'GetEsoMapPinTypeText',
+							'type2' => 'GetEsoMapPinTypeText',
 					),
 			
 					'join' => array(
@@ -2702,24 +2713,39 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetEsoQuestRepeatTypeText($value)
+	{
+		return GetEsoQuestRepeatTypeText($value);
+	}
+	
+	
+	public function GetEsoQuestStepTypeText($value)
+	{
+		return GetEsoQuestStepTypeText($value);
+	}
+	
+	
+	public function GetEsoQuestStepVisibilityTypeText($value)
+	{
+		return GetEsoQuestStepVisibilityTypeText($value);
+	}
+	
+	
+	public function GetEsoQuestTypeText($value)
+	{
+		return GetEsoQuestTypeText($value);
+	}
+	
+	
+	public function GetEsoMapPinTypeText($value)
+	{
+		return GetEsoMapPinTypeText($value);
+	}
+		
+	
 	public function GetChestQualityText ($value)
 	{
-			// TODO: Move to EsoCommon.php
-		static $VALUES = array(
-				-1 => "",
-				0 => "None",
-				1 => "Simple",
-				2 => "Intermediate",
-				3 => "Advanced",
-				4 => "Master",
-				5 => "Impossible",
-				7 => "Trivial",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
+		return GetEsoChestTypeText($value);
 	}
 	
 	
@@ -3308,13 +3334,16 @@ If you do not understand what this information means, or how to use this webpage
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
+			$colName = $key;
+			
+			if ($recordInfo['columnNames'] != null && $recordInfo['columnNames'][$colName] != null) $colName = $recordInfo['columnNames'][$colName];
 			
 			if ($this->IsOutputHTML())
 			{
 				if (!$this->IsValidSortField($recordInfo, $key))
 					$sortLink = $key;
 				else
-					$sortLink = $this->GetSortRecordLink($key, $key);
+					$sortLink = $this->GetSortRecordLink($key, $colName);
 				
 				$output .= "\t\t<th>$sortLink</th>\n";
 			}
@@ -3664,8 +3693,8 @@ If you do not understand what this information means, or how to use this webpage
 		else
 			$sortOrder = "a";
 		
-		$link = "<a href='?sort=$sortField&sortorder=$sortOrder&$oldQuery'>$link</a>";
-		return $link;
+		$output = "<a href='?sort=$sortField&sortorder=$sortOrder&$oldQuery'>$link</a>";
+		return $output;
 	}
 	
 	

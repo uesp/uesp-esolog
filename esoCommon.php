@@ -127,6 +127,21 @@ $ESO_CRAFTTYPES = array(
 );
 
 
+$ESO_SKILLTYPES = array(
+		-1 => "",
+		0 => "",
+		1 => "Class",
+		2 => "Weapon",
+		3 => "Armor",
+		4 => "World",
+		5 => "Guild",
+		6 => "Alliance War",
+		7 => "Racial",
+		8 => "Craft",
+		9 => "Champion",
+);
+
+
 $ESO_CRAFT_REQUIRESKILLS = array(
 		-1 => "",
 		0 => "",
@@ -936,6 +951,211 @@ $ESO_ITEMBINDTYPE_TEXTS = array(
 		1 => "Bind on Pickup",
 		2 => "Bind on Equip",
 		3 => "Backpack Bind on Pickup",
+);
+
+
+$ESO_QUEST_REPEATTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Not Repeatable",
+		1 => "Repeatable",
+		2 => "Daily",
+);
+
+
+$ESO_QUEST_STEPTYPE_TEXTS = array(
+		-1 => "",
+		0 => "",
+		1 => "And",
+		2 => "Or",
+		3 => "End",
+		4 => "Branch",
+);
+
+
+$ESO_QUEST_STEPVISIBILITYTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Hint",
+		1 => "Optional",
+		2 => "Hidden",
+);
+
+
+$ESO_QUESTTYPE_TEXTS = array(
+		-1 => "",
+		0 => "None",
+		1 => "Group",
+		2 => "Main Story",
+		3 => "Guild",
+		4 => "Crafting",
+		5 => "Dungeon",
+		6 => "Raid",
+		7 => "PVP",
+		8 => "Class",
+		9 => "QA Test",
+		10 => "PVP Group",
+		11 => "PVP Grand",
+		12 => "Holiday Event",
+);
+
+
+$ESO_MAPPINTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Player",
+		1 => "Group",
+		2 => "Group Leader",
+		3 => "Quest Offer",
+		4 => "Quest Offer Repeatable",
+		5 => "Quest Complete",
+		6 => "Quest Talk To",
+		7 => "Quest Interact",
+		8 => "Quest Give Item",
+		9 => "Assisted Quest Condition",
+		10 => "Assisted Quest Optional Condition",
+		11 => "Assisted Quest Ending",
+		12 => "Assisted Quest Repeatable Condition",
+		13 => "Assisted Quest Repeatable Optional Condition",
+		14 => "Assisted Quest Repeatable Ending",
+		15 => "Tracked Quest Condition",
+		16 => "Tracked Quest Optional Condition",
+		17 => "Tracked Quest Ending",
+		18 => "Tracked Quest Repeatable Condition",
+		19 => "Tracked Quest Repeatable Optional Condition",
+		20 => "Tracked Quest Repeatable Ending",
+		21 => "Poi Seen",
+		22 => "Poi Complete",
+		23 => "Flag Aldmeri Dominion",
+		24 => "Flag Ebonheart Pact",
+		25 => "Flag Daggerfall Covenant",
+		26 => "Flag Neutral",
+		27 => "Flag Base Aldmeri Dominion",
+		28 => "Flag Base Ebonheart Pact",
+		29 => "Flag Base Daggerfall Covenant",
+		30 => "Flag Base Neutral",
+		31 => "Return Aldmeri Dominion",
+		32 => "Return Ebonheart Pact",
+		33 => "Return Daggerfall Covenant",
+		34 => "Return Neutral",
+		35 => "Ball Aldmeri Dominion",
+		36 => "Ball Ebonheart Pact",
+		37 => "Ball Daggerfall Covenant",
+		38 => "Ball Neutral",
+		39 => "Capture Flag Aldmeri Dominion",
+		40 => "Capture Flag Ebonheart Pact",
+		41 => "Capture Flag Daggerfall Covenant",
+		42 => "Capture Flag Neutral",
+		43 => "Half Capture Flag Aldmeri Dominion",
+		44 => "Half Capture Flag Ebonheart Pact",
+		45 => "Half Capture Flag Daggerfall Covenant",
+		46 => "Artifact Aldmeri Offensive",
+		47 => "Artifact Aldmeri Defensive",
+		48 => "Artifact Ebonheart Offensive",
+		49 => "Artifact Ebonheart Defensive",
+		50 => "Artifact Daggerfall Offensive",
+		51 => "Artifact Daggerfall Defensive",
+		52 => "Artifact Return Aldmeri",
+		53 => "Artifact Return Daggerfall",
+		54 => "Artifact Return Ebonheart",
+		55 => "Keep Neutral",
+		56 => "Keep Aldmeri Dominion",
+		57 => "Keep Ebonheart Pact",
+		58 => "Keep Daggerfall Covenant",
+		59 => "Outpost Neutral",
+		60 => "Outpost Aldmeri Dominion",
+		61 => "Outpost Ebonheart Pact",
+		62 => "Outpost Daggerfall Covenant",
+		63 => "Farm Neutral",
+		64 => "Farm Aldmeri Dominion",
+		65 => "Farm Ebonheart Pact",
+		66 => "Farm Daggerfall Covenant",
+		67 => "Mine Neutral",
+		68 => "Mine Aldmeri Dominion",
+		69 => "Mine Ebonheart Pact",
+		70 => "Mine Daggerfall Covenant",
+		71 => "Mill Neutral",
+		72 => "Mill Aldmeri Dominion",
+		73 => "Mill Ebonheart Pact",
+		74 => "Mill Daggerfall Covenant",
+		75 => "Border Keep Aldmeri Dominion",
+		76 => "Border Keep Ebonheart Pact",
+		77 => "Border Keep Daggerfall Covenant",
+		78 => "Artifact Keep Aldmeri Dominion",
+		79 => "Artifact Keep Ebonheart Pact",
+		80 => "Artifact Keep Daggerfall Covenant",
+		81 => "Artifact Gate Open Aldmeri Dominion",
+		82 => "Artifact Gate Open Ebonheart Pact",
+		83 => "Artifact Gate Open Daggerfall Covenant",
+		84 => "Artifact Gate Closed Aldmeri Dominion",
+		85 => "Artifact Gate Closed Ebonheart Pact",
+		86 => "Artifact Gate Closed Daggerfall Covenant",
+		87 => "Imperial District Neutral",
+		88 => "Imperial District Aldmeri Dominion",
+		89 => "Imperial District Ebonheart Pact",
+		90 => "Imperial District Daggerfall Covenant",
+		91 => "Ava Town Neutral",
+		92 => "Ava Town Aldmeri Dominion",
+		93 => "Ava Town Ebonheart Pact",
+		94 => "Ava Town Daggerfall Covenant",
+		95 => "Keep Attacked Large",
+		96 => "Keep Attacked Small",
+		97 => "Flag Attacked",
+		98 => "Location",
+		99 => "Harvest Node",
+		100 => "Vendor",
+		101 => "Trainer",
+		102 => "Npc Follower",
+		103 => "Ping",
+		104 => "Rally Point",
+		105 => "Player Waypoint",
+		106 => "Tri Battle Small",
+		107 => "Tri Battle Medium",
+		108 => "Tri Battle Large",
+		109 => "Aldmeri Vs Ebonheart Small",
+		110 => "Aldmeri Vs Ebonheart Medium",
+		111 => "Aldmeri Vs Ebonheart Large",
+		112 => "Aldmeri Vs Daggerfall Small",
+		113 => "Aldmeri Vs Daggerfall Medium",
+		114 => "Aldmeri Vs Daggerfall Large",
+		115 => "Ebonheart Vs Daggerfall Small",
+		116 => "Ebonheart Vs Daggerfall Medium",
+		117 => "Ebonheart Vs Daggerfall Large",
+		118 => "Fast Travel Keep Accessible",
+		119 => "Fast Travel Border Keep Accessible",
+		120 => "Fast Travel Outpost Accessible",
+		121 => "Fast Travel Wayshrine",
+		122 => "Fast Travel Wayshrine Undiscovered",
+		123 => "Fast Travel Wayshrine Current Loc",
+		124 => "Forward Camp Aldmeri Dominion",
+		125 => "Forward Camp Ebonheart Pact",
+		126 => "Forward Camp Daggerfall Covenant",
+		127 => "Forward Camp Accessible",
+		128 => "Keep Graveyard Accessible",
+		129 => "Respawn Border Keep Accessible",
+		130 => "Imperial District Graveyard Accessible",
+		131 => "Ava Town Graveyard Accessible",
+		132 => "Imperial City Open",
+		133 => "Imperial City Closed",
+		134 => "Restricted Link Aldmeri Dominion",
+		135 => "Restricted Link Ebonheart Pact",
+		136 => "Restricted Link Daggerfall Covenant",
+		137 => "Aggro",
+		138 => "Timely Escape Npc",
+		139 => "Dark Brotherhood Target",
+		140 => "Player Camera",
+		141 => "Count",
+		142 => "Invalid",
+);
+
+
+$ESO_CHESTTYPE_TEXTS = array(
+		-1 => "",
+		0 => "None",
+		1 => "Simple",
+		2 => "Intermediate",
+		3 => "Advanced",
+		4 => "Master",
+		5 => "Impossible",
+		6 => "Unknown (6)",
+		7 => "Trivial",
 );
 
 
@@ -1962,6 +2182,66 @@ function GetEsoMechanicTypeText($mechanicType)
 }
 
 
+function GetEsoQuestRepeatTypeText($value)
+{
+	global $ESO_QUEST_REPEATTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_QUEST_REPEATTYPE_TEXTS)) return $ESO_QUEST_REPEATTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoQuestStepTypeText($value)
+{
+	global $ESO_QUEST_STEPTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_QUEST_STEPTYPE_TEXTS)) return $ESO_QUEST_STEPTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoQuestStepVisibilityTypeText($value)
+{
+	global $ESO_QUEST_STEPVISIBILITYTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_QUEST_STEPVISIBILITYTYPE_TEXTS)) return $ESO_QUEST_STEPVISIBILITYTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoQuestTypeText($value)
+{
+	global $ESO_QUESTTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_QUESTTYPE_TEXTS)) return $ESO_QUESTTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoMapPinTypeText($value)
+{
+	global $ESO_MAPPINTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_MAPPINTYPE_TEXTS)) return $ESO_MAPPINTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoChestTypeText($value)
+{
+	global $ESO_CHESTTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_CHESTTYPE_TEXTS)) return $ESO_CHESTTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
 function GetEsoCustomMechanicTypeText($mechanicType)
 {
 	static $VALUES = array(
@@ -1991,23 +2271,11 @@ function GetEsoCustomMechanicTypeText($mechanicType)
 
 function GetEsoSkillTypeText ($value)
 {
-	static $VALUES = array(
-			-1 => "",
-			0 => "",
-			1 => "Class",
-			2 => "Weapon",
-			3 => "Armor",
-			4 => "World",
-			5 => "Guild",
-			6 => "Alliance War",
-			7 => "Racial",
-			8 => "Craft",
-			9 => "Champion",
-	);
-
+	global $ESO_SKILLTYPES;
+	
 	$key = (int) $value;
 
-	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	if (array_key_exists($key, $ESO_SKILLTYPES)) return $ESO_SKILLTYPES[$key];
 	return "Unknown ($key)";
 }
 
