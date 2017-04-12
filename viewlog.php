@@ -1185,6 +1185,14 @@ class EsoLogViewer
 									'displayName' => 'View Locations',
 									'type' => 'filter',
 							),
+							array(
+									'fields' => array(
+											"name" => "npc",
+									),
+									'url' => '/viewNpcLoot.php',
+									'displayName' => 'View Loots',
+									'type' => 'external',
+							),
 					),
 					
 					'join' => array(
@@ -1211,6 +1219,14 @@ class EsoLogViewer
 									'thisField' => 'npcId',
 									'displayName' => 'View NPC',
 									'type' => 'viewRecord',
+							),
+							array(
+									'fields' => array(
+											"name" => "npc",
+									),
+									'url' => '/viewNpcLoot.php',
+									'displayName' => 'View NPC Loots',
+									'type' => 'external',
 							),
 					),
 						
@@ -3322,6 +3338,8 @@ If you do not understand what this information means, or how to use this webpage
 				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 			elseif ($value['type'] == 'viewRecord')
 				$output .= $this->GetViewRecordLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
+			elseif ($value['type'] == 'external')
+				$output .= $this->GetViewExternalRecordLink($value['url'], $value['fields'], $recordData, $value['displayName']);
 			else
 				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 		}
@@ -3329,6 +3347,25 @@ If you do not understand what this information means, or how to use this webpage
 		return $output;
 	}
 	
+	
+	public function GetViewExternalRecordLink($url, $fields, $recordData, $displayName)
+	{
+		$queries = array();
+		
+		foreach ($fields as $source => $dest)
+		{
+			$value = $recordData[$source];
+			if ($value == null) continue;
+			
+			$value = urlencode($value);
+			$queries[] = "$dest=$value";
+		}
+		
+		$query = implode("&", $queries);
+		
+		$output = "<a class='elvExternalLink' href='$url?$query'>$displayName</a>";
+		return $output;
+	}
 	
 	public function CreateSelectQuery ($recordInfo)
 	{

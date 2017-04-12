@@ -2841,7 +2841,6 @@ class EsoLogParser
 		
 		if ($lootRecord == null)
 		{
-			//if ($logEntry['itemName'] == null) $logEntry['itemName'] = $this->FindItemName($logEntry['itemLink']);
 			$itemData = $this->FindMinedItemData($logEntry['itemLink']);
 			
 			if ($itemData)
@@ -2850,6 +2849,10 @@ class EsoLogParser
 				$logEntry['icon'] = $itemData['icon'];
 				$logEntry['quality'] = $itemData['quality'];
 				$logEntry['itemType'] = $itemData['type'];
+			}
+			else if ($itemData['itemName'] = "")
+			{
+				$logEntry['itemName'] = $logEntry['itemLink'];
 			}
 			
 			$lootRecord = $this->CreateNPCLoot($npcRecord, $zone, $logEntry);
