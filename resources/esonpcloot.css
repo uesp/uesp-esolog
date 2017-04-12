@@ -1,0 +1,119 @@
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyle';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontregular-webfont.eot');
+	src: url('esofontregular-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontregular-webfont.woff2') format('woff2'),
+		url('esofontregular-webfont.woff') format('woff'),
+		url('esofontregular-webfont.ttf') format('truetype'),
+		url('esofontregular-webfont.svg#esofontregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EsoFontStyleAlt';
+	src: url('esofontbold-webfont.eot');
+	src: url('esofontbold-webfont.eot?#iefix') format('embedded-opentype'),
+		url('esofontbold-webfont.woff2') format('woff2'),
+		url('esofontbold-webfont.woff') format('woff'),
+		url('esofontbold-webfont.ttf') format('truetype'),
+		url('esofontbold-webfont.svg#esofontbold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+body {
+	background-color: #FBEFD5;
+	font-family: sans-serif;
+	font-size: 13px;
+}
+
+h1, h2, h3 {
+	margin: 5px;
+}
+
+#eso_footer {
+	color: #777;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+#eso_footer a {
+	text-decoration: none;
+	color: #6666ff;
+}
+
+#eso_footer a:visited {
+	text-decoration: none;
+	color: #996699;
+}
+
+a:hover {
+	background-color: #ccc;
+}
+
+#esonplResultsTable {
+	margin-left: 0px;
+    border-collapse: collapse;
+    text-align: center;
+	border: solid 1px lightgray;
+}
+
+#esonplResultsTable tr {
+	border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+}
+
+#esonplResultsTable tr:hover {
+	background-color: #ccc;
+}
+
+#esonplResultsTable td {
+	padding: 2px 10px;
+}
+
+#esonplResultsTable th {
+	padding: 2px 10px;
+}
+
+#esonplResultsTable td:nth-child(2) {
+}
+
+.esonplItemLink  {
+	vertical-align: middle;
+	display: inline-block;
+	font-family: "Arial", sans-serif;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.esonplItemIcon {
+	width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    padding-right: 5px;
+}
