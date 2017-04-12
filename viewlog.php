@@ -265,6 +265,21 @@ class EsoLogViewer
 			'difficulty' => self::FIELD_INT,
 			'ppClass' => self::FIELD_STRING,
 			'ppDifficulty' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+	);
+	
+	public static $NPCLOOT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'zone' => self::FIELD_STRING,
+			'icon' => self::FIELD_GAMEICON,
+			'itemLink' => self::FIELD_TEXTTRANSFORM,
+			'itemName' => self::FIELD_STRING,
+			'quality' => self::FIELD_INT,
+			'itemType' => self::FIELD_INTTRANSFORM,
+			'itemId' => self::FIELD_INT,
+			'qnt' => self::FIELD_INT,
+			'count' => self::FIELD_INT,			
 	);
 	
 	public static $RECIPE_FIELDS = array(
@@ -1173,6 +1188,38 @@ class EsoLogViewer
 					),
 					
 					'join' => array(
+					),
+			),
+			
+			'npcLoot' => array(
+					'displayName' => 'NPC Loots',
+					'displayNameSingle' => 'NPC Loot',
+					'record' => 'npcLoot',
+					'table' => 'npcLoot',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name, zone, itemName',
+						
+					'transform' => array(
+							'itemLink' => 'MakeItemLink',
+							'itemType' => 'GetItemTypeText',
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'npc',
+									'field' => 'id',
+									'thisField' => 'npcId',
+									'displayName' => 'View NPC',
+									'type' => 'viewRecord',
+							),
+					),
+						
+					'join' => array(
+							'npcId' => array(
+									'joinField' => 'id',
+									'table' => 'npc',
+									'fields' => array('name'),
+							),
 					),
 			),
 			
@@ -2115,6 +2162,7 @@ class EsoLogViewer
 			'Items 13-PTS' => 'minedItemSummary13pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
+			'NPC Loots' => 'npcLoot',
 			'Old Quests' => 'oldQuest',
 			'Old Quest Stages' => 'oldQuestStage',
 			'Quests' => 'quest',
@@ -2237,6 +2285,13 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+					),
+			),
+			'npcLoot' => array(
+					'searchFields' => array('itemName'),
+					'fields' => array(
+							'id' => 'id',
+							'itemName' => 'name',
 					),
 			),
 			'recipe' => array(
@@ -2442,6 +2497,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['questitem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
+		self::$RECORD_TYPES['npcLoot']['fields'] = self::$NPCLOOT_FIELDS;
 		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
 		self::$RECORD_TYPES['ingredient']['fields'] = self::$INGREDIENT_FIELDS;
 		self::$RECORD_TYPES['user']['fields'] = self::$USER_FIELDS;
@@ -2575,7 +2631,7 @@ class EsoLogViewer
 		if ($this->dbReadInitialized) return true;
 		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
-		if ($db->connect_error) return $this->ReportError("Could not connect to mysql database!");
+		if ($this->db->connect_error) return $this->ReportError("Could not connect to mysql database!");
 		
 		UpdateEsoPageViews("logViews", $this->db);
 		
@@ -2834,6 +2890,18 @@ class EsoLogViewer
 		$row = $result->fetch_row();
 		return $row[0];
 	}
+	
+	
+	public function MakeItemLink($itemLink)
+	{
+		if (!$this->IsOutputHTML()) return $itemLink;
+		
+		if (substr($itemLink, 0, 2) != "|H") return $itemLink;
+		
+		$urlLink = urlencode($itemLink);
+		$output = "<a href=\"itemLink.php?link=$urlLink\">" . $itemLink . "</a>";
+		return $output;
+	}	
 	
 	
 	public function MakeMinedItemLink ($value, $itemData)

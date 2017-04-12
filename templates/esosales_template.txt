@@ -21,7 +21,7 @@
 	<a href='//www.uesp.net/wiki/UESPWiki:EsoSalesData'>here</a> for more information on using and contributing sales data and feel free to 
 	<a href='//www.uesp.net/wiki/UESPWiki_talk:EsoSalesData'>report feedback and issues</a>. 
 </div>
-<h1>ESO Sales Data</h1>
+<h1>UESP:ESO Sales Data</h1>
 
 <div id="esovsd_root">
 	<div class="esovsd_searchoptionheader">

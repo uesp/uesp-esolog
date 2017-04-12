@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO NPC Loot Data</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esonpcloot.css" />
+		<script type="text/javascript" src="//esolog.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esonpcloot.js"></script>
+		<script type="text/javascript" src="//en.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+<h1>UESP: ESO NPC Loot Data</h1>
+
+{npcLootResults}
+
+<hr>
+<div id="eso_footer">
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>

@@ -82,6 +82,8 @@ class EsoLogParser
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
 	const ONLY_PARSE_MINEDITEMS = false;
+	const ONLY_PARSE_NPCLOOT = false;
+	const ONLY_PARSE_MAILITEM = false;
 	
 		// Start of log09100.log: 1487204716 / 4744024596682899456
 	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1487204716;
@@ -361,7 +363,7 @@ class EsoLogParser
 			'text' => self::FIELD_STRING,
 			'type' => self::FIELD_INT,
 			'overrideText' => self::FIELD_STRING,
-			'visiblity' => self::FIELD_INT,
+			'visibility' => self::FIELD_INT,
 			'numConditions' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 	);
@@ -428,6 +430,22 @@ class EsoLogParser
 			'difficulty' => self::FIELD_INT,
 			'ppClass' => self::FIELD_STRING,
 			'ppDifficulty' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+	);
+	
+	public static $NPCLOOT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'npcId' => self::FIELD_INT,
+			'zone' => self::FIELD_STRING,
+			'itemLink' => self::FIELD_STRING,
+			'itemName' => self::FIELD_STRING,
+			'itemId' => self::FIELD_INT,
+			'qnt' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+			'icon' => self::FIELD_STRING,
+			'quality' => self::FIELD_INT,
+			'itemType' => self::FIELD_INT,			
 	);
 	
 	public static $RECIPE_FIELDS = array(
@@ -1079,7 +1097,7 @@ class EsoLogParser
 			
 			if (!array_key_exists($key, $record))
 			{
-				$this->reportError("Missing value for $key field in $table table!");
+				$this->reportError("Missing value for $key field in $table table update!");
 				continue;
 			}
 			
@@ -1149,7 +1167,7 @@ class EsoLogParser
 			
 			if (!array_key_exists($key, $record))
 			{
-				$this->reportError("Missing value for $key field in $table table!");
+				$this->reportError("Missing value for $key field in $table table insert!");
 				continue;
 			}
 				
@@ -1422,6 +1440,12 @@ class EsoLogParser
 	public function SaveNPC (&$record)
 	{
 		return $this->saveRecord('npc', $record, 'id', self::$NPC_FIELDS);
+	}
+	
+	
+	public function SaveNPCLoot (&$record)
+	{
+		return $this->saveRecord('npcLoot', $record, 'id', self::$NPCLOOT_FIELDS);
 	}
 	
 	
@@ -1797,15 +1821,40 @@ class EsoLogParser
 						gender TINYINT NOT NULL,
 						difficulty TINYINT NOT NULL,
 						ppClass TINYTEXT NOT NULL,
-						ppDifficulty TINYINT NOT NULL,						
+						ppDifficulty TINYINT NOT NULL,
+						count INTEGER NOT NULL,
 						PRIMARY KEY (id),
-						FULLTEXT(name),
-						FULLTEXT(ppClass)
+						FULLTEXT(name, ppClass)
 					);";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
+
+		$query = "CREATE TABLE IF NOT EXISTS npcLoot (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						npcId BIGINT NOT NULL,
+						zone TINYTEXT NOT NULL,
+						itemLink TINYTEXT NOT NULL,
+						itemName TINYTEXT NOT NULL,
+						itemId INTEGER NOT NULL,
+						qnt INTEGER NOT NULL,
+						count INTEGER NOT NULL,
+						icon TINYTEXT NOT NULL,
+						itemType SMALLINT NOT NULL,
+						quality TINYINT NOT NULL,
+						PRIMARY KEY (id),
+						INDEX index_itemLink(itemLink(64)),
+						INDEX index_itemId(itemId),
+						INDEX index_npcId(npcId),
+						INDEX index_zone(zone(24)),
+						INDEX index_itemName(itemName(24))
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create npcLoot table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS recipe (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -2247,6 +2296,10 @@ class EsoLogParser
 		$this->users[$userName]['__lastSackFoundGameTime'] = 0;
 		$this->users[$userName]['__lastTroveFoundGameTime'] = 0;
 		$this->users[$userName]['__lastBookGameTime'] = 0;
+		$this->users[$userName]['__lastLootGainedTarget'] = '';
+		$this->users[$userName]['__lastLootGainedGameTime'] = 0;
+		$this->users[$userName]['__lastFootlockerOpenedName'] = $footLockerName;
+		$this->users[$userName]['__lastFootlockerOpenedGameTime'] = $gameTime;
 		$this->users[$userName]['lastQuestOffered'] = null;
 		
 		return $this->users[$userName];
@@ -2535,7 +2588,7 @@ class EsoLogParser
 		if ($this->dbReadInitialized || $this->dbWriteInitialized) return true;
 	
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
-		if ($db->connect_error) return $this->reportError("Could not connect to mysql database!");
+		if ($this->db->connect_error) return $this->reportError("Could not connect to mysql database!");
 	
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
@@ -2559,7 +2612,7 @@ class EsoLogParser
 		}
 	
 		$this->db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
-		if ($db->connect_error) return $this->reportError("Could not connect to mysql database!");
+		if ($this->db->connect_error) return $this->reportError("Could not connect to mysql database!");
 	
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = true;
@@ -2591,17 +2644,13 @@ class EsoLogParser
 		
 		return true;
 	}
-		
 	
-	public function OnLootGainedEntry ($logEntry)
+	
+	public function ParseLootGainedEntry ($logEntry)
 	{
-		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
-		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
-		//ppBonus, ppIsHostile, ppChance, ppDifficulty, ppEmpty, ppResult, ppClassString, ppClass
-		
 		++$this->currentUser['itemsLooted'];
 		$this->currentUser['__dirty'] = true;
-		
+			
 		if ($logEntry['lastTarget'] == "Thieves Trove" && $logEntry['timeStamp'] < self::ELP_THIEVESTROVE_LASTFIXTIMESTAMP)
 		{
 			$diff = $logEntry['gameTime'] - $this->currentUser['__lastTroveFoundGameTime'];
@@ -2613,23 +2662,23 @@ class EsoLogParser
 				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
 			}
 		}
-		
+			
 		$npcId = 0;
-		
+			
 		if ($logEntry['ppClassString'] != null && $logEntry['ppDifficulty'] != null)
 		{
 			$name = $logEntry['lastTarget'];
-			
-			if ($name != "") 
+		
+			if ($name != "")
 			{
 				$logEntry['name'] = $name;
 				$npcRecord = $this->FindNPC($name);
-				
+					
 				if ($npcRecord == null) {
 					$npcRecord = $this->CreateNPC($logEntry);
 				}
 				else {
-					
+		
 					if ($npcRecord['ppClass'] == "" && $logEntry['ppClassString'] != "")
 					{
 						$npcRecord['ppClass'] = $logEntry['ppClassString'];
@@ -2637,48 +2686,303 @@ class EsoLogParser
 						$this->SaveNPC($npcRecord);
 					}
 				}
-				
+					
 				if ($npcRecord != null) $npcId = $npcRecord['id'];
 			}
 		}
-		
+			
 		if ($logEntry['rvcType'] == "stole" || $logEntry['rcvType'] == "stole")
 		{
 			++$this->currentUser['itemsStolen'];
 			$this->currentUser['__dirty'] = true;
 		}
-		
+			
 		if ($this->IsTargetResource($logEntry['lastTarget']))
 		{
 			//$this->log("\tFound user node harvest...");
 			++$this->currentUser['nodesHarvested'];
 			$this->currentUser['__dirty'] = true;
 		}
-		
+			
 		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
-		
+			
 		if ($itemRecord == null)
 		{
 			$itemRecord = $this->CreateItem($logEntry);
 			if ($itemRecord == null) return false;
 		}
+			
+		$this->CheckLocation("item", $itemRecord['name'], $logEntry, array('itemId' => $itemRecord['id']));
 		
-		$itemLocation = $this->FindLocation("item", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('itemId' => $itemRecord['id']));
+		return true;
+	}
 		
-		if ($itemLocation == null)
+	
+	public function OnLootGainedEntry ($logEntry)
+	{
+		//event{LootGained}  itemLink{|H2DC50E:item:30159:1:16:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hwormwood|h}  lootType{1}  qnt{1}
+		//lastTarget{Wormwood}  zone{Wayrest}  x{0.50276911258698}  y{0.073295257985592}  gameTime{65831937}  timeStamp{4743645111026450432}  userName{Reorx}  end{}
+		//ppBonus, ppIsHostile, ppChance, ppDifficulty, ppEmpty, ppResult, ppClassString, ppClass
+		
+		if ($logEntry['itemName']) $logEntry['itemName'] = MakeEsoTitleCaseName($logEntry['itemName']);
+		
+		if (!self::ONLY_PARSE_NPCLOOT && !self::ONLY_PARSE_MAILITEM)
 		{
-			$itemLocation = $this->CreateLocation("item", $itemRecord['name'], $logEntry, array('itemId' => $itemRecord['id']));
-			if ($itemLocation == null) return false;
+			$this->ParseLootGainedEntry($logEntry);
+		}
+		
+		return $this->UpdateNpcLoot($logEntry);
+	}
+	
+	
+	public function FindItemName ($itemLink)
+	{
+		$matches = ParseEsoItemLink($itemLink);
+		if ($matches === false) return "";
+		
+		$itemId = (int) $matches['itemId'];
+		$itemLevel = (int) $matches['level'];
+		$itemSubtype = (int) $matches['subtype'];
+		
+		$query = "SELECT name FROM minedItem WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubtype='$itemSubtype';";
+		$result = $this->db->query($query);
+		if (!$result) return "";
+		
+		if ($result->num_rows == 0)
+		{
+			$query = "SELECT name FROM minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubtype='1';";
+			$result = $this->db->query($query);
+			if (!$result) return "";
+			
+			if ($result->num_rows == 0) return "";
+		}
+		
+		$row = $result->fetch_assoc();
+		$name =  $row['name'];
+		
+		return $name;
+	}
+	
+	
+	public function FindMinedItemData ($itemLink)
+	{
+		$matches = ParseEsoItemLink($itemLink);
+		if ($matches === false) return false;
+	
+		$itemId = (int) $matches['itemId'];
+		$itemLevel = (int) $matches['level'];
+		$itemSubtype = (int) $matches['subtype'];
+	
+		$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubtype='$itemSubtype';";
+		$result = $this->db->query($query);
+		if (!$result) return false;
+	
+		if ($result->num_rows == 0)
+		{
+			$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubtype='1';";
+			$result = $this->db->query($query);
+			if (!$result) return false;
+				
+			if ($result->num_rows == 0) return false;
+		}
+	
+		$row = $result->fetch_assoc();
+		return $row;
+	}
+	
+	
+	public function UpdateNpcLoot ($logEntry)
+	{
+		$logEntry['zone'] = preg_replace("#\^.*#", "", $logEntry['zone']);
+		
+		$zone = $logEntry['zone'];
+		$gameTime = (int) $logEntry['gameTime'];
+		$npcName = $logEntry['lastTarget'];
+		$qnt = intval($logEntry['qnt']);
+				
+		if ($npcName == null || $npcName == "") return false;
+		
+		if ($logEntry['event'] == 'MoneyGained')
+		{
+			$logEntry['itemLink'] = "__gold";
+			$logEntry['itemName'] = "Gold";
+			$logEntry['itemId'] = "-101";
+			$logEntry['icon'] = "/esoui/art/currency/currency_gold_32.dds";
+			$logEntry['itemType'] = "-1";
+			$logEntry['quality'] = "1";
+		}
+		else if ($logEntry['event'] == 'TelvarUpdate')
+		{
+			$logEntry['itemLink'] = "__telvar";
+			$logEntry['itemName'] = "Telvar";
+			$logEntry['itemId'] = "-201";
+			$logEntry['icon'] = "/esoui/art/currency/currency_telvar_32.dds";
+			$logEntry['itemType'] = "-1";
+			$logEntry['quality'] = "1";
+		}
+		
+		if ($npcName == "footlocker" && $this->currentUser['__lastFootlockerOpenedName'] != null)
+		{	
+			$npcName = $this->currentUser['__lastFootlockerOpenedName'];
+		}
+		
+		$npcRecord = $this->FindNPC($npcName);
+		
+		if ($npcRecord == null)
+		{
+			$logEntry['name'] = $npcName;
+			$npcRecord = $this->CreateNPC($logEntry);
+			if ($npcRecord == null) return false;
+			
+			$this->CheckLocation("npc", $npcName, $logEntry, array('npcId' => $npcRecord['id']));
+		}
+				
+		$lootRecord = $this->FindNPCLoot($npcRecord['id'], $zone, $logEntry['itemLink']);
+		
+		if ($lootRecord == null)
+		{
+			//if ($logEntry['itemName'] == null) $logEntry['itemName'] = $this->FindItemName($logEntry['itemLink']);
+			$itemData = $this->FindMinedItemData($logEntry['itemLink']);
+			
+			if ($itemData)
+			{
+				$logEntry['itemName'] = MakeEsoTitleCaseName($itemData['name']);
+				$logEntry['icon'] = $itemData['icon'];
+				$logEntry['quality'] = $itemData['quality'];
+				$logEntry['itemType'] = $itemData['type'];
+			}
+			
+			$lootRecord = $this->CreateNPCLoot($npcRecord, $zone, $logEntry);
+			if ($lootRecord == null) return false;
 		}
 		else
 		{
-			++$itemLocation['counter'];
+			if ($qnt > 0) $lootRecord['qnt'] += $qnt;
+			$lootRecord['count'] += 1;
+			
+			$this->SaveNPCLoot($lootRecord);
+		}
 		
-			$result = $this->SaveLocation($itemLocation);
-			if (!$result) return false;
+		$diffTime = $gameTime - $this->currentUser['__lastLootGainedGameTime'];
+		
+		if ($this->currentUser['__lastLootGainedTarget'] != $npcName || $diffTime > 1000 || $this->currentUser['__lastLootGainedGameTime'] <= 0)
+		{
+			$npcRecord['count']++;
+			$this->SaveNPC($npcRecord);
+			//print("Updating NPC Totals: $npcName, $diffTime, $gameTime, {$this->currentUser['__lastLootGainedTarget']}, {$this->currentUser['__lastLootGainedGameTime']}\n");
+			
+			$lootRecord = $this->FindNPCLoot($npcRecord['id'], $zone, "__totalCount");
+			
+			if ($lootRecord == null)
+			{
+				$lootRecord = $this->CreateNPCLoot($npcRecord, $zone, $logEntry);
+				if ($lootRecord == null) return false;
+				
+				$lootRecord['itemLink'] = "__totalCount";
+				$lootRecord['itemName'] = "__totalCount";
+				$lootRecord['itemId'] = -1;
+				$lootRecord['qnt'] = 0;
+				$lootRecord['__dirty'] = true;
+			}
+			else
+			{
+				$lootRecord['count'] += 1;
+				$lootRecord['__dirty'] = true;
+			}
+			
+			$this->SaveNPCLoot($lootRecord);
+			
+			$lootRecord = $this->FindNPCLoot($npcRecord['id'], "", "__totalCount");
+				
+			if ($lootRecord == null)
+			{
+				$lootRecord = $this->CreateNPCLoot($npcRecord, "", $logEntry);
+				if ($lootRecord == null) return false;
+			
+				$lootRecord['itemLink'] = "__totalCount";
+				$lootRecord['itemName'] = "__totalCount";
+				$lootRecord['itemId'] = -1;
+				$lootRecord['qnt'] = 0;
+				$lootRecord['__dirty'] = true;
+			}
+			else
+			{
+				$lootRecord['count'] += 1;
+				$lootRecord['__dirty'] = true;
+			}
+				
+			$this->SaveNPCLoot($lootRecord);
+		}
+		
+		$this->currentUser['__lastLootGainedTarget'] = $npcName;
+		$this->currentUser['__lastLootGainedGameTime'] = $gameTime;
+				
+		return true;
+	}
+	
+	
+	public function OnMoneyGained($logEntry)
+	{
+		return $this->UpdateNpcLoot($logEntry);
+	}
+	
+	
+	public function OnOpenFootlocker($logEntry)
+	{
+		$gameTime = (int) $logEntry['gameTime'];
+		$footLockerName = MakeEsoTitleCaseName($logEntry['itemName']);
+		
+		$this->currentUser['__lastLootGainedGameTime'] = 0;
+		$this->currentUser['__lastLootGainedTarget'] = "";
+		
+		$this->currentUser['__lastFootlockerOpenedName'] = $footLockerName;
+		$this->currentUser['__lastFootlockerOpenedGameTime'] = $gameTime;
+		
+		return true;
+	}
+	
+	
+	public function OnTelvarUpdate($logEntry)
+	{
+		if ($logEntry['reason'] == 0 && $logEntry['qnt'] > 0)
+		{
+			return $this->UpdateNpcLoot($logEntry);
 		}
 		
 		return true;
+	}
+	
+	
+	public function OnMailItem($logEntry)
+	{
+		static $ROMAN_NUMBERS = array(
+				0 => "",		
+				1 => " I",
+				2 => " II",
+				3 => " III",
+				4 => " IV",
+				5 => " V",
+				6 => " VI",
+				7 => " VII",
+				8 => " VIII",
+				9 => " IX",
+				10 => " X",
+		);
+		
+		if ($logEntry['tradeType'] == null) return true;
+		if ($logEntry['tradeType'] <= 0) return true;
+		if ($logEntry['subject'] == null) return true;
+		if ($logEntry['subject'] == "") return true;
+		
+		$logEntry['zone'] = "";
+		$suffix = $ROMAN_NUMBERS[intval($logEntry['craftLevel'])];
+		
+		if ($suffix != null)
+			$logEntry['lastTarget'] = $logEntry['subject'] . $suffix;
+		else
+			$logEntry['lastTarget'] = $logEntry['subject'];
+		
+	 	return $this->UpdateNpcLoot($logEntry);	
 	}
 	
 	
@@ -2752,10 +3056,11 @@ class EsoLogParser
 	{
 		$npcRecord = $this->createNewRecord(self::$NPC_FIELDS);
 		
-		$npcRecord['name'] = $logEntry['name'];;
+		$npcRecord['name'] = $logEntry['name'];
 		$npcRecord['gender'] = $logEntry['gender'];
 		$npcRecord['level'] = $logEntry['level'];
 		$npcRecord['difficulty'] = $logEntry['difficulty'];
+		$npcRecord['count'] = 0;
 		$npcRecord['__isNew'] = true;
 		
 		if ($logEntry['ppClassString'] != "") $npcRecord['ppClass']      = $logEntry['ppClassString'];
@@ -2768,6 +3073,44 @@ class EsoLogParser
 		if (!$result) return null;
 		
 		return $npcRecord;
+	}
+	
+	
+	public function CreateNPCLoot ($npcRecord, $zone, $logEntry)
+	{
+		$lootRecord = $this->createNewRecord(self::$NPCLOOT_FIELDS);
+	
+		$lootRecord['zone'] = $zone;
+		$lootRecord['npcId'] = $npcRecord['id'];
+		$lootRecord['itemName'] = $logEntry['itemName'];
+		$lootRecord['itemLink'] = $logEntry['itemLink'];
+		$lootRecord['quality'] = -1;
+		$lootRecord['itemType'] = -1;
+		$lootRecord['icon'] = "";
+		
+		if ($logEntry['quality']) $lootRecord['quality'] = $logEntry['quality'];
+		if ($logEntry['itemType']) $lootRecord['itemType'] = $logEntry['itemType'];
+		if ($logEntry['icon']) $lootRecord['icon'] = $logEntry['icon'];
+		
+		$lootRecord['itemId'] = 0;
+		if ($logEntry['itemId'] != null) $lootRecord['itemId'] = $logEntry['itemId'];
+		$itemLinkMatches = ParseEsoItemLink($logEntry['itemLink']);
+		if ($itemLinkMatches && $itemLinkMatches['itemId']) $lootRecord['itemId'] = $itemLinkMatches['itemId'];
+		 
+		$lootRecord['count'] = 1;
+		$lootRecord['qnt'] = 0;
+		$qnt = intval($logEntry['qnt']);
+		if ($qnt > 0) $lootRecord['qnt'] = $qnt;
+		
+		$lootRecord['__isNew'] = true;
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveNPCLoot($lootRecord);
+		if (!$result) return null;
+	
+		return $lootRecord;
 	}
 	
 	
@@ -2795,7 +3138,8 @@ class EsoLogParser
 	
 	public function CreateIngredient ($recipeId, $itemId, $logEntry)
 	{
-		//event{Recipe::Ingredient}  icon{/esoui/art/icons/crafting_cloth_pollen.dds}  qnt{1}  name{shornhelm grains^p}  value{0}  quality{1}  itemLink{|HFFFFFF:item:33767:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hshornhelm grains^p|h}
+		//event{Recipe::Ingredient}  icon{/esoui/art/icons/crafting_cloth_pollen.dds}  qnt{1}  name{shornhelm grains^p}  value{0}  quality{1}  
+		//itemLink{|HFFFFFF:item:33767:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|hshornhelm grains^p|h}
 		
 		$ingredientRecord = $this->createNewRecord(self::$INGREDIENT_FIELDS);
 		
@@ -3807,6 +4151,30 @@ class EsoLogParser
 	}
 	
 	
+	public function FindNPCLoot ($npcId, $zone, $itemLink)
+	{
+		$safeLink = $this->db->real_escape_string($itemLink);
+		$safeZone = $this->db->real_escape_string($zone);
+		$safeId = (int) $npcId;
+		
+		$query = "SELECT * FROM npcLoot WHERE npcId=$safeId AND zone='$safeZone' AND itemLink='$safeLink';";
+		$this->lastQuery = $query;
+	
+		$result = $this->db->query($query);
+	
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve NPC loot!");
+			return null;
+		}
+	
+		if ($result->num_rows == 0) return null;
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$NPCLOOT_FIELDS);
+	}
+	
+	
 	public function FindRecipe ($name)
 	{
 		$safeName = $this->db->real_escape_string($name);
@@ -4217,6 +4585,9 @@ class EsoLogParser
 		
 		$result = $this->CheckLocation("treasure", $logEntry['name'], $logEntry, null);
 		
+		$this->currentUser['__lastTreasureFoundName'] = $logEntry['name'];
+		$this->currentUser['__lastTreasureFoundGameTime'] = $logEntry['gameTime'];
+				
 		if ($logEntry['name'] == "Chest")
 		{
 			$chestRecord = $this->createNewRecord(self::$CHEST_FIELDS);
@@ -4301,6 +4672,9 @@ class EsoLogParser
 	{
 		//event{LockPick}  quality{1}  x{0.25767278671265}  y{0.77135974168777}  zone{Wayrest}  gameTime{336988}  timeStamp{4743645698686189568}  userName{Reorx}  end{}
 		
+		$this->currentUser['__lastLockPickQuality'] = $logEntry['quality'];
+		$this->currentUser['__lastLockPickGameTime'] = $logEntry['gameTime'];
+		
 		$locationId = $this->currentUser['lastLocationRecordId'];
 		if ($locationId == null) $locationId = 0;
 		
@@ -4311,7 +4685,7 @@ class EsoLogParser
 		
 		$chestRecord['locationId'] = (int) $locationId;
 		$chestRecord['quality'] = (int) $logEntry['quality'];
-		
+							
 		$result = $this->saveChest($chestRecord);
 		return $result;
 	}
@@ -4401,21 +4775,10 @@ class EsoLogParser
 			if ($npcRecord == null) return false;
 		}
 		
-		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
+		$npcRecord['count'] += 1;
+		$this->SaveNPC($npcRecord);
 		
-		if ($npcLocation == null)
-		{
-			$npcLocation = $this->CreateLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
-			if ($npcLocation == null) return false;
-		}
-		else
-		{
-			++$npcLocation['counter'];
-			
-			$result = $this->SaveLocation($npcLocation);
-			if (!$result) return false;
-		}
-		
+		$this->CheckLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
 		return true;
 	}
 	
@@ -5948,6 +6311,7 @@ class EsoLogParser
 	
 	public function handleLogEntry ($logEntry)
 	{
+		$skipLogEntryCreate = false;
 		
 		if ($this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 > 0 && $logEntry['timeStamp1'] > 0)
 		{
@@ -6002,6 +6366,31 @@ class EsoLogParser
 					return true;
 			}
 		}
+		else if (self::ONLY_PARSE_NPCLOOT)
+		{
+			$skipLogEntryCreate = true;
+			
+			switch ($logEntry['event'])
+			{
+				case "LootGained":
+				case "OpenFootLocker":
+				case "MoneyGained":
+				case "TelvarUpdate":
+					break;
+				default:
+					return true;
+			}
+		}
+		else if (self::ONLY_PARSE_MAILITEM)
+		{
+			switch ($logEntry['event'])
+			{
+				case "MailItem":
+					break;
+				default:
+					return true;
+			}
+		}
 		
 		if (!$this->isValidLogEntry($logEntry)) return false;
 		
@@ -6019,7 +6408,9 @@ class EsoLogParser
 		$createLogEntry = $this->checkLogEntryRecordCreate($logEntry);
 		$isDuplicate = false;
 		
-		if ($createLogEntry)
+		if ($skipLogEntryCreate) $createLogEntry = false;
+		
+		if ($createLogEntry && $skipLogEntryCreate)
 		{
 			$isDuplicate = $this->isDuplicateLogEntry($logEntry);
 		}
@@ -6055,7 +6446,7 @@ class EsoLogParser
 		
 		switch($logEntry['event'])
 		{
-			case "OpenFootLocker":				$result = $this->OnNullEntry($logEntry); break;
+			case "OpenFootLocker":				$result = $this->OnOpenFootlocker($logEntry); break;
 			case "LootGained":					$result = $this->OnLootGainedEntry($logEntry); break;
 			case "SlotUpdate":					$result = $this->OnSlotUpdateEntry($logEntry); break;
 			case "InvDump":						$result = $this->OnInvDump($logEntry); break;
@@ -6063,7 +6454,7 @@ class EsoLogParser
 			case "InvDumpStart":				$result = $this->OnInvDumpStart($logEntry); break;
 			case "InvDump::End":
 			case "InvDumpEnd":					$result = $this->OnInvDumpEnd($logEntry); break;
-			case "MoneyGained":					$result = $this->OnNullEntry($logEntry); break;
+			case "MoneyGained":					$result = $this->OnMoneyGained($logEntry); break;
 			case "TargetChange":				$result = $this->OnTargetChange($logEntry); break;
 			case "ChatterBegin":				$result = $this->OnNullEntry($logEntry); break;
 			case "ChatterBegin::Option":		$result = $this->OnNullEntry($logEntry); break;
@@ -6139,10 +6530,10 @@ class EsoLogParser
 			case "mi":							$result = $this->OnMineItemShort($logEntry); break;
 			
 			case "ItemLink":					$result = $this->OnNullEntry($logEntry); break;		//TODO
-			case "MailItem":					$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "MailItem":					$result = $this->OnMailItem($logEntry); break;
 			case "VeteranXPUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
-			case "TelvarUpdate":				$result = $this->OnNullEntry($logEntry); break;		//TODO
+			case "TelvarUpdate":				$result = $this->OnTelvarUpdate($logEntry); break;
 			case "Stolen":						$result = $this->OnStolen($logEntry); break;
 			case "SkillCoef::Start":			$result = $this->OnSkillCoefStart($logEntry); break;
 			case "SkillCoef":					$result = $this->OnSkillCoef($logEntry); break;

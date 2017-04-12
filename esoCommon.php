@@ -1182,6 +1182,77 @@ $ESO_QUESTREWARDITEMTYPE_TEXTS = array(
 );
 
 
+$ESO_CURRENCYCHANGEREASON_TEXTS = array(
+		-1 => "",
+		0 => "Loot",
+		1 => "Vendor",
+		2 => "Mail",
+		3 => "Trade",
+		4 => "Questreward",
+		5 => "Conversation",
+		6 => "Action",
+		7 => "Command",
+		8 => "Bagspace",
+		9 => "Bankspace",
+		10 => "Soulweary",
+		12 => "Battleground",
+		13 => "Kill",
+		14 => "Keep Reward",
+		15 => "Keep Upgrade",
+		16 => "Deconstruct",
+		18 => "Soul Heal",
+		19 => "Travel Graveyard",
+		20 => "Cash On Delivery",
+		21 => "Medal",
+		22 => "Ability Upgrade Purchase",
+		23 => "Hookpoint Store",
+		24 => "Craft",
+		25 => "Stablespace",
+		26 => "Achievement",
+		27 => "Reward",
+		28 => "Feed Mount",
+		29 => "Vendor Repair",
+		30 => "Trait Reveal",
+		31 => "Tradinghouse Purchase",
+		32 => "Tradinghouse Refund",
+		33 => "Tradinghouse Listing",
+		34 => "Reforge",
+		35 => "Player Init",
+		36 => "Recipe",
+		37 => "Consume Food Drink",
+		38 => "Consume Potion",
+		39 => "Harvest Reagent",
+		40 => "Keep Repair",
+		41 => "Pvp Resurrect",
+		42 => "Bank Deposit",
+		43 => "Bank Withdrawal",
+		44 => "Respec Skills",
+		45 => "Respec Attributes",
+		46 => "Research Trait",
+		47 => "Bounty Paid Guard",
+		48 => "Stuck",
+		49 => "Edit Guild Heraldry",
+		50 => "Guild Tabard",
+		51 => "Guild Bank Deposit",
+		52 => "Guild Bank Withdrawal",
+		53 => "Guild Standard",
+		54 => "Jump Failure Refund",
+		55 => "Respec Morphs",
+		56 => "Bounty Paid Fence",
+		57 => "Bounty Confiscated",
+		58 => "Guild Forward Camp",
+		59 => "Pickpocket",
+		60 => "Vendor Launder",
+		61 => "Respec Champion",
+		62 => "Loot Stolen",
+		63 => "Sell Stolen",
+		64 => "Buyback",
+		65 => "Pvp Kill Transfer",
+		66 => "Bank Fee",
+		67 => "Death",
+);
+
+
 $ESO_ITEMINTTYPE_QUALITYMAP = array(
 		0 => 1,
 		1 => 0,
@@ -2285,6 +2356,17 @@ function GetEsoQuestRewardItemTypeText($value)
 }
 
 
+function GetEsoCurrencyChangeReasonText($value)
+{
+	global $ESO_CURRENCYCHANGEREASON_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_CURRENCYCHANGEREASON_TEXTS)) return $ESO_CURRENCYCHANGEREASON_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+
 function GetEsoCustomMechanicTypeText($mechanicType)
 {
 	static $VALUES = array(
@@ -2843,6 +2925,7 @@ function EsoNameMatchUpper($matches)
 function MakeEsoTitleCaseName($name)
 {
 	$newName = preg_replace("#\^.*#", "", $name);
+	$newName = preg_replace("#\|\|.*#", "", $newName);
 	
 	$newName = ucwords($newName);
 	
