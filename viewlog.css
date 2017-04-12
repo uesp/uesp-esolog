@@ -39,6 +39,11 @@ body {
 	white-space: nowrap;
 }
 
+.elvExternalLink {
+	padding-right: 8px;
+	white-space: nowrap;
+}
+
 .elvLastUpdate {
 	font-size: 11px;
 }
