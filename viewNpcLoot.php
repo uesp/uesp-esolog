@@ -110,7 +110,8 @@ class CEsoViewNpcLoot
 	{
 		$safeName = $this->db->real_escape_string($this->viewItemName);
 		
-		$query = "SELECT *, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE itemName='$safeName' ORDER BY npc.name, zone, itemName;";
+		//$query = "SELECT *, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE itemName='$safeName' ORDER BY npc.name, zone, itemName;";
+		$query = "SELECT *, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE itemName LIKE '%$safeName%';";
 		return $query;
 	}
 	
@@ -196,7 +197,7 @@ class CEsoViewNpcLoot
 	}
 	
 	
-	public function ParseItemResults()
+	public function ParseNpcItemResults()
 	{
 		$totalCount = 1;
 		$totalQnt = 1;
@@ -349,11 +350,11 @@ class CEsoViewNpcLoot
 			}			
 		}
 		
-		usort($this->searchResults, array('CEsoViewNpcLoot', 'SortItemSearchResults'));
+		usort($this->searchResults, array('CEsoViewNpcLoot', 'SortNpcItemSearchResults'));
 	}
 	
 	
-	public function SortItemSearchResults($a, $b)
+	public function SortNpcItemSearchResults($a, $b)
 	{
 		$zone1 = $a['zone'];
 		$zone2 = $b['zone'];
@@ -375,7 +376,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcResultsHtml()
 	{
-		$this->ParseItemResults();
+		$this->ParseNpcItemResults();
 		
 		$npcName = $this->npcRecord['name'];
 		
@@ -419,8 +420,6 @@ class CEsoViewNpcLoot
 				$output .= "</tr>";
 			}
 			
-			if (substr($itemLink, 2) != "|H")
-			
 			$output .= "<tr>";
 			$output .= "<td>$zone</td>";
 			
@@ -445,9 +444,69 @@ class CEsoViewNpcLoot
 	}
 	
 	
+	public function SortItemSearchResults($a, $b)
+	{
+		$compare = strcasecmp($a['name'], $b['name']);
+		if ($compare != 0) return $compare;
+		
+		$compare = strcasecmp($a['zone'], $b['zone']);
+		if ($compare != 0) return $compare;
+		
+		$compare = strcasecmp($a['itemName'], $b['itemName']);
+		return $compare;
+	}
+	
+	
 	public function GetItemResultsHtml() 
 	{
-		$output = "<table class='esonplResults'>";
+		usort($this->searchResults, array('CEsoViewNpcLoot', 'SortItemSearchResults'));
+		
+		$output = "Showing NPC loot drop data for item search string '<b>{$this->viewItemName}</b>':<p>";
+		
+		$output .= "<table id='esonplResultsTable'>";
+		$output .= "<tr>";
+		$output .= "<th>NPC</th>";
+		$output .= "<th>Zone</th>";
+		$output .= "<th>Item</th>";
+		$output .= "<th>Item Type</th>";
+		$output .= "<th>Qnt</th>";
+		$output .= "<th></th>";
+		$output .= "</tr>";
+		
+		foreach ($this->searchResults as $result)
+		{
+			$npcName = $result['name'];
+			$safeName = urlencode($npcName);
+			$npcId = $result['npcId'];
+			$zone = $result['zone'];
+			$itemName = $result['itemName'];
+			$itemLink = $result['itemLink'];
+			$itemType = GetEsoItemTypeText($result['itemType']);
+			$qnt = $result['qnt'];
+			$quality = $result['quality'];
+			
+			$iconUrl = "";
+			if ($result['icon']) $iconUrl = MakeEsoIconLink($result['icon']);
+			
+			$links  = "<a href='/viewlog.php?action=view&record=npc&id=$npcId'>View NPC</a>";
+			$links .= " <a href='/viewNpcLoot.php?npc=$safeName'>View NPC Loots</a>";
+			
+			$output .= "<tr>";
+			$output .= "<td>$npcName</td>";
+			$output .= "<td>$zone</td>";
+			
+			if ($iconUrl == "")
+				$output .= "<td><div class='esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'>$itemName</div></td>";
+			elseif (substr($itemLink, 0, 2) != "|H")
+				$output .= "<td><div class='esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'><img src='$iconUrl' class='esonplItemIcon'>$itemName</div></td>";
+			else
+				$output .= "<td><div class='eso_item_link esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'><img src='$iconUrl' class='esonplItemIcon'>$itemName</div></td>";
+				
+			$output .= "<td>$itemType</td>";
+			$output .= "<td>$qnt</td>";
+			$output .= "<td>$links</td>";
+			$output .= "</tr>";
+		}
 		
 		$output .= "</table>";
 		return $output;
