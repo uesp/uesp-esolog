@@ -2289,7 +2289,7 @@ class EsoLogViewer
 					),
 			),
 			'questReward' => array(
-					'searchFields' => array('name', 'description'),
+					'searchFields' => array('name'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -3794,7 +3794,7 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function GetViewRecordLink ($record, $targetId, $id, $link)
 	{
-		if ($id == '' || $id <= 0) return "";
+		if ($id == '' || $id == 0) return "";
 		
 		$link = "<a class='elvRecordLink' href='?action=view&record=$record&$targetId=$id'>$link</a>";
 		
@@ -3931,7 +3931,7 @@ If you do not understand what this information means, or how to use this webpage
 		$output .= "<h1>ESO: Viewing $displayName: ID#$id</h1>\n";
 		
 		if (!$this->InitDatabase()) return false;
-		if ($this->recordID < 0) return $this->ReportError("Invalid record ID received!");
+		if ($this->recordID == 0) return $this->ReportError("Invalid record ID received!");
 		
 		$table = $recordInfo['table'];
 		
