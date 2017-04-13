@@ -1228,6 +1228,15 @@ class EsoLogViewer
 									'displayName' => 'View NPC Loots',
 									'type' => 'external',
 							),
+							array(
+									'fields' => array(
+											"itemName" => "item",
+									),
+									'url' => '/viewNpcLoot.php',
+									'displayName' => 'View Item Loots',
+									'type' => 'external',
+							),
+								
 					),
 						
 					'join' => array(
@@ -3335,13 +3344,13 @@ If you do not understand what this information means, or how to use this webpage
 		foreach ($recordInfo['filters'] as $key => $value)
 		{
 			if ($value['type'] == 'filter')
-				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " ";
 			elseif ($value['type'] == 'viewRecord')
-				$output .= $this->GetViewRecordLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
+				$output .= $this->GetViewRecordLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " ";
 			elseif ($value['type'] == 'external')
-				$output .= $this->GetViewExternalRecordLink($value['url'], $value['fields'], $recordData, $value['displayName']);
+				$output .= $this->GetViewExternalRecordLink($value['url'], $value['fields'], $recordData, $value['displayName']) . " ";
 			else
-				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " ";
 		}
 		
 		return $output;
