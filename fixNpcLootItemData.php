@@ -27,6 +27,7 @@ while (($row = $result->fetch_assoc()))
 		$row['itemId'] = "-101";
 		$row['icon'] = "/esoui/art/currency/currency_gold_32.dds";
 		$row['itemType'] = "-1";
+		$row['trait'] = "-1";
 		$row['quality'] = "1";
 	}
 	elseif ($itemLink == "__telvar")
@@ -35,6 +36,7 @@ while (($row = $result->fetch_assoc()))
 		$row['itemId'] = "-201";
 		$row['icon'] = "/esoui/art/currency/currency_telvar_32.dds";
 		$row['itemType'] = "-1";
+		$row['trait'] = "-1";
 		$row['quality'] = "1";		
 	}
 	else
@@ -65,6 +67,7 @@ while (($row = $result->fetch_assoc()))
 		$row['icon'] = $itemData['icon'];
 		$row['itemType'] = $itemData['type'];
 		$row['quality'] = $itemData['quality'];
+		$row['trait'] = $itemData['trait'];
 	}
 	
 	$totalCount++;
@@ -74,11 +77,11 @@ while (($row = $result->fetch_assoc()))
 	$icon = $db->real_escape_string($row['icon']);
 	$quality = $row['quality'];
 	$itemType = $row['itemType'];
+	$trait = $row['trait'];
 	
-	$query = "UPDATE npcLoot SET itemName='$itemName', icon='$icon', quality='$quality', itemType='$itemType' WHERE id=$id;";
+	$query = "UPDATE npcLoot SET itemName='$itemName', icon='$icon', quality='$quality', itemType='$itemType', trait='$trait' WHERE id=$id;";
 	$saveResult = $db->query($query);
 	if (!$saveResult) print("\tError: Failed to save npcLoot $id!{$db->error}\n");
 }
-
 
 print ("Done, updated and saved $totalCount records!\n");
