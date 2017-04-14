@@ -324,8 +324,8 @@ class EsoViewSalesData
 				
 			if ($this->inputParams['output'] == 'csv')
 				$this->outputType = "csv";
-				else if ($this->inputParams['output'] == 'html')
-					$this->outputType = "html";
+			else if ($this->inputParams['output'] == 'html')
+				$this->outputType = "html";
 		}
 		
 		if (array_key_exists("view", $this->inputParams))
