@@ -326,6 +326,7 @@ class EsoLogParser
 	
 	public static $QUEST_FIELDS = array(
 			'id' => self::FIELD_INT,
+			'internalId' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
 			'locationId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
@@ -350,6 +351,7 @@ class EsoLogParser
 			'numSteps' => self::FIELD_INT,
 			'numRewards' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
+			'zone' => self::FIELD_STRING,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
@@ -1682,9 +1684,11 @@ class EsoLogParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS quest (
 						id BIGINT NOT NULL AUTO_INCREMENT,
+						internalId INTEGER NOT NULL,
 						logId BIGINT NOT NULL,
 						locationId BIGINT NOT NULL,
-						name TINYTEXT NOT NULL,	
+						name TINYTEXT NOT NULL,
+						zone TINYTEXT NOT NULL,
 						level TINYINT NOT NULL,
 						type SMALLINT NOT NULL,
 						repeatType SMALLINT NOT NULL,
@@ -3252,6 +3256,8 @@ class EsoLogParser
 		$questRecord['timerDuration'] = floatval($logEntry['timerEnd']) - floatval($logEntry['timerStart']);
 		$questRecord['numSteps'] = $logEntry['numSteps'];
 		$questRecord['numRewards'] = $logEntry['numRewards'];
+		$questRecord['zone'] = $logEntry['zone'];
+		if ($logEntry['questZone'] !== null) $questRecord['zone'] = $logEntry['questZone']; 
 		$questRecord['count'] = 0;
 		$questRecord['__isNew'] = true;
 	
@@ -3584,6 +3590,7 @@ class EsoLogParser
 		if ($logEntry['endDialog']) $questRecord['endDialogText'] = $logEntry['endDialog'];
 		if ($logEntry['endBgText']) $questRecord['endBackgroundText'] = $logEntry['endBgText'];
 		if ($logEntry['endJournalText']) $questRecord['endJournalText'] = $logEntry['endJournalText'];
+		if ($logEntry['questZone'] !== null) $questRecord['zone'] = $logEntry['questZone'];
 		
 		$questRecord['isShareable'] = $logEntry['shareable'];
 		$questRecord['numTools'] = $logEntry['numTools'];
