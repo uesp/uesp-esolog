@@ -166,6 +166,7 @@ class EsoLogViewer
 			'numSteps' => self::FIELD_INT,
 			'numRewards' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
+			'internalId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
@@ -914,11 +915,6 @@ class EsoLogViewer
 					),
 						
 					'join' => array(
-							'locationId' => array(
-									'joinField' => 'id',
-									'table' => 'location',
-									'fields' => array('x', 'y', 'zone'),
-							),
 					),
 						
 					'filters' => array(
