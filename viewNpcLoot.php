@@ -23,6 +23,7 @@ class CEsoViewNpcLoot
 	
 	public $viewNpcName = "";
 	public $viewItemName = "";
+	public $viewExtra = "";
 	public $output = "html";
 	
 	
@@ -78,7 +79,12 @@ class CEsoViewNpcLoot
 		if ($this->inputParams['item'] != null)
 		{
 			$this->viewItemName = $this->inputParams['item'];
-		}		
+		}
+		
+		if ($this->inputParams['extra'] != null)
+		{
+			$this->viewExtra = strtolower($this->inputParams['extra']);
+		}
 		
 		if ($this->inputParams['output'] != null)
 		{
@@ -254,6 +260,10 @@ class CEsoViewNpcLoot
 					$this->zoneQntTotals['All'] = $result['qnt'];
 					$this->zoneCountTotals['Summary'] = $result['count'];
 					$this->zoneQntTotals['Summary'] = $result['qnt'];
+					$this->zoneCountTotals['Writ Summary'] = $result['count'];
+					$this->zoneQntTotals['Writ Summary'] = $result['qnt'];
+					$this->zoneCountTotals['Hireling Summary'] = $result['count'];
+					$this->zoneQntTotals['Hireling Summary'] = $result['qnt'];
 				}
 				
 				continue;
@@ -301,14 +311,37 @@ class CEsoViewNpcLoot
 			
 			$itemType = $result['itemType'];
 			$quality = $result['quality'];
+			$trait = $result['trait'];
 			
 			if ($this->itemSummary[$itemType] == null) $this->itemSummary[$itemType] = array();
-			if ($this->itemSummary[$itemType][$quality] == null) $this->itemSummary[$itemType][$quality] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
 			if ($this->itemSummary[$itemType]["all"] == null) $this->itemSummary[$itemType]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
 			
-			$this->itemSummary[$itemType][$quality]['count'] += $result['count'];
-			$this->itemSummary[$itemType][$quality]['qnt'] += $result['qnt'];
-			$this->itemSummary[$itemType][$quality]['numItems'] += 1;
+			if ($quality >= 0)
+			{
+				if ($this->itemSummary[$itemType][$quality] == null) $this->itemSummary[$itemType][$quality] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+				$this->itemSummary[$itemType][$quality]['count'] += $result['count'];
+				$this->itemSummary[$itemType][$quality]['qnt'] += $result['qnt'];
+				$this->itemSummary[$itemType][$quality]['numItems'] += 1;
+			}
+			
+			if ($trait > 0)
+			{				
+				$traitName = GetEsoItemTraitText($trait);
+				$trait = $trait + 1000;
+				
+				if ($this->itemSummary[$itemType][$trait] == null) $this->itemSummary[$itemType][$trait] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+				$this->itemSummary[$itemType][$trait]['count'] += $result['count'];
+				$this->itemSummary[$itemType][$trait]['qnt'] += $result['qnt'];
+				$this->itemSummary[$itemType][$trait]['numItems'] += 1;
+
+				if ($this->itemSummary[$traitName] == null) $this->itemSummary[$traitName] = array();
+				if ($this->itemSummary[$traitName]["all"] == null) $this->itemSummary[$traitName]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+				
+				$this->itemSummary[$traitName]["all"]['trait'] = $result['trait'];
+				$this->itemSummary[$traitName]["all"]['count'] += $result['count'];
+				$this->itemSummary[$traitName]["all"]['qnt'] += $result['qnt'];
+				$this->itemSummary[$traitName]["all"]['numItems'] += 1;
+			}
 			
 			$this->itemSummary[$itemType]["all"]['count'] += $result['count'];
 			$this->itemSummary[$itemType]["all"]['qnt'] += $result['qnt'];
@@ -352,28 +385,55 @@ class CEsoViewNpcLoot
 			$newResult['totalCount'] = $totalCount;
 			
 			$this->searchResults[] = $newResult;
-		} 
+		}
 		
 		foreach ($this->itemSummary as $itemType => $data1)
 		{
 			$typeName = GetEsoItemTypeText($itemType);
 			
-			foreach ($data1 as $quality => $data2)
+			foreach ($data1 as $dataValue => $data2)
 			{
-				if ($quality == "all")
-					$qualityName = " (All)";
+				if ($dataValue == "all")
+				{
+					if (!is_numeric($itemType))
+					{
+						$itemSuffix = " (All)";
+						$trait = $data2['trait'];
+						$typeName = $itemType;
+						$itemType = -1;
+						$qualityValue = -1;
+					}
+					else
+					{
+						$qualityValue = $dataValue;
+						$itemSuffix = " (All)";
+						$trait = -1;
+					}
+				}
+				else if ($dataValue > 900)
+				{
+					//continue;
+					
+					$qualityValue = -1;
+					$trait = $dataValue - 1000;
+					$itemSuffix = " (".GetEsoItemTraitText($trait).")";
+				}
 				else
-					$qualityName = " (".GetEsoItemQualityText($quality).")";
+				{
+					$qualityValue = $dataValue;
+					$itemSuffix = " (".GetEsoItemQualityText($dataValue).")";
+					$trait = -1;
+				}
 				
 				$newResult = array();
 				
 				$newResult['zone'] = "Summary";
-				$newResult['itemName'] = "$typeName$qualityName";
+				$newResult['itemName'] = "$typeName$itemSuffix";
 				$newResult['itemLink'] = "";
 								
 				$newResult['itemType'] = $itemType;
-				$newResult['quality'] = $quality;
-				$newResult['trait'] = -1;
+				$newResult['quality'] = $qualityValue;
+				$newResult['trait'] = $trait;
 				$newResult['icon'] = "";
 				
 				$newResult['qnt'] = $data2['qnt'];
@@ -387,7 +447,87 @@ class CEsoViewNpcLoot
 			}			
 		}
 		
+		if ($this->viewExtra == "writ")
+		{
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Master Writ", array(60), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Survey Map", array(5), array(3), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Fragment", array(5), array(4), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Gold Temper", array(41, 43, 42), array(5, 5, 5), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Material Shipment", array(18), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Ornate Item", array('Ornate'), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Intricate Item", array('Intricate'), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Repair Kit", array(9), array(2), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Trait Stone", array(45, 46), array('all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Solvent", array(33, 58), array('all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Reagent", array(31), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Recipe (Epic)", array(29), array(4), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Recipe (Superior)", array(29), array(3), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Recipe (Fine)", array(29), array(2), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Ingredient (Normal)", array(10), array(1), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Ingredient (Epic)", array(10), array(4), $this->itemSummary, $totalQnt, $totalCount);
+			
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Glyph", array(21, 26, 20), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Soul Gem", array(19), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Kuta", array(52), array(5), $this->itemSummary, $totalQnt, $totalCount);	
+		}
+		else if ($this->viewExtra == "hireling")
+		{
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Style Material", array(44), array('all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Trait Stone", array(45, 46), array('all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Refined Material", array(38, 36, 40), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Raw Material", array(35, 39, 37), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (All)", array(41, 43, 42), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Fine)", array(41, 43, 42), array(2, 2, 2), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Superior)", array(41, 43, 42), array(3 , 3, 3), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Epic)", array(41, 43, 42), array(4, 4, 4), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Legendary)", array(41, 43, 42), array(5, 5, 5), $this->itemSummary, $totalQnt, $totalCount);
+		}
+		
 		usort($this->searchResults, array('CEsoViewNpcLoot', 'SortNpcItemSearchResults'));
+	}
+	
+	
+	public function MakeNpcSummaryResult($zone, $itemName, $itemType, $quality, $itemSummary, $totalQnt, $totalCount)
+	{
+		$newResult = array();
+		$qnt = 0;
+		$count = 0;
+		
+		for ($i = 0; $i < count($itemType); ++$i)
+		{
+			if ($i > count($quality)) break;
+			
+			$sumData1 = $itemSummary[$itemType[$i]];
+			if ($sumData1 == null) continue;
+		
+			$sumData2 = $sumData1[$quality[$i]];
+			if ($sumData2 == null) continue;
+		
+			$qnt += $sumData2['qnt'];
+			$count += $sumData2['count'];
+		}
+		
+		if ($qnt == 0 || $count == 0) return null;
+		 
+		$newResult['zone'] = $zone;
+		$newResult['itemName'] = $itemName;
+		$newResult['itemLink'] = "";
+		
+		$newResult['itemType'] = -1;
+		$newResult['quality'] = -1;
+		$newResult['trait'] = -1;
+		$newResult['icon'] = "";
+		
+		$newResult['qnt'] = $qnt;
+		$newResult['count'] = $count;
+		$newResult['dropZoneRatio'] = $qnt / $totalCount;
+		$newResult['dropRatio'] = $qnt / $totalCount;
+		$newResult['totalQnt'] = $totalQnt;
+		$newResult['totalCount'] = $totalCount;
+		
+		return $newResult;
 	}
 	
 	
@@ -399,10 +539,14 @@ class CEsoViewNpcLoot
 		if ($zone1 == "") $zone1 = "ZZZZ";
 		if ($zone2 == "") $zone2 = "ZZZZ";
 		
-		if ($zone1 == "All") $zone1 = " 2";
-		if ($zone2 == "All") $zone2 = " 2";
-		if ($zone1 == "Summary") $zone1 = " 1";
-		if ($zone2 == "Summary") $zone2 = " 1";
+		if ($zone1 == "All") $zone1 = " 3";
+		if ($zone2 == "All") $zone2 = " 3";
+		if ($zone1 == "Summary") $zone1 = " 2";
+		if ($zone2 == "Summary") $zone2 = " 2";
+		if ($zone1 == "Writ Summary") $zone1 = " 1";
+		if ($zone2 == "Writ Summary") $zone2 = " 1";
+		if ($zone1 == "Hireling Summary") $zone1 = " 1";
+		if ($zone2 == "Hireling Summary") $zone2 = " 1";
 		
 		$compare = strcasecmp($zone1, $zone2);
 		if ($compare != 0) return $compare;
@@ -431,13 +575,14 @@ class CEsoViewNpcLoot
 			$dropChance = round($result['dropZoneRatio'] * 100, 4);
 			$itemType = GetEsoItemTypeText($result['itemType']);
 			$quality = $result['quality'];
+			if ($quality < 0) $quality = "";
 			$trait = GetEsoItemTraitText($result['trait']);
 			
 			$stackSize = round($qnt/$count, 2);
 			//if ($quality == "all") $stackSize = "";
 			$stackChance = round($count / $totalZoneQnt * 100, 4);
 			
-			$output .= "\"$zone\",\"$itemLink\",\"$itemName\",\"$itemType\",$quality,\"$trait\",$qnt,$count,\"$stackSize\",$totalZoneQnt,$dropChance%,$stackChance%\n";
+			$output .= "\"$zone\",\"$itemLink\",\"$itemName\",\"$itemType\",\"$quality\",\"$trait\",$qnt,$count,\"$stackSize\",$totalZoneQnt,$dropChance%,$stackChance%\n";
 		}
 		
 		return $output;
@@ -491,7 +636,7 @@ class CEsoViewNpcLoot
 			$quality = $result['quality'];
 			$trait = GetEsoItemTraitText($result['trait']);
 			
-			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary"))
+			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary"))
 			{
 				$output .= "<tr>";
 				$output .= "<td colspan='6'></td>";
@@ -590,16 +735,36 @@ class CEsoViewNpcLoot
 		foreach ($this->searchResults as $result)
 		{
 			$npcName = $result['name'];
-			$itemLink = $result['itemLink'];
+			$safeName = urlencode($npcName);
+			$npcId = $result['npcId'];
+			$zone = $result['zone'];
 			$itemName = $result['itemName'];
-			$qnt = $result['qnt'];
-			$totalZoneQnt = $this->zoneCountTotals[$zone];
-			$dropChance = $result['dropZoneRatio'];
+			$itemLink = $result['itemLink'];
 			$itemType = GetEsoItemTypeText($result['itemType']);
+			$qnt = $result['qnt'];
 			$quality = $result['quality'];
-			$trait = GetEsoItemTraitText($result['trait']);
 			
-			$output .= "\"$npc\",\"$zone\",\"$itemName\",\"$itemType\",$quality,\"$trait\",$qnt,$totalZoneQnt,$dropChance%\n";
+			$iconUrl = "";
+			if ($result['icon']) $iconUrl = MakeEsoIconLink($result['icon']);
+			
+			$links  = "<a href='/viewlog.php?action=view&record=npc&id=$npcId'>View NPC</a>";
+			$links .= " <a href='/viewNpcLoot.php?npc=$safeName'>View NPC Loots</a>";
+			
+			$output .= "<tr>";
+			$output .= "<td>$npcName</td>";
+			$output .= "<td>$zone</td>";
+			
+			if ($iconUrl == "")
+				$output .= "<td><div class='esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'>$itemName</div></td>";
+			elseif (substr($itemLink, 0, 2) != "|H")
+				$output .= "<td><div class='esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'><img src='$iconUrl' class='esonplItemIcon'>$itemName</div></td>";
+			else
+				$output .= "<td><div class='eso_item_link esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'><img src='$iconUrl' class='esonplItemIcon'>$itemName</div></td>";
+				
+			$output .= "<td>$itemType</td>";
+			$output .= "<td>$qnt</td>";
+			$output .= "<td>$links</td>";
+			$output .= "</tr>";
 		}
 		
 		$output .= "</table>";
@@ -660,4 +825,6 @@ class CEsoViewNpcLoot
 
 $viewNpcLoot = new CEsoViewNpcLoot();
 $viewNpcLoot->Render();
+
+
 
