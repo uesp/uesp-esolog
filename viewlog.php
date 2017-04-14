@@ -166,7 +166,6 @@ class EsoLogViewer
 			'numSteps' => self::FIELD_INT,
 			'numRewards' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
-			'internalId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
@@ -277,6 +276,7 @@ class EsoLogViewer
 			'itemLink' => self::FIELD_TEXTTRANSFORM,
 			'itemName' => self::FIELD_STRING,
 			'quality' => self::FIELD_INT,
+			'trait' => self::FIELD_INTTRANSFORM,
 			'itemType' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'qnt' => self::FIELD_INT,
@@ -915,6 +915,11 @@ class EsoLogViewer
 					),
 						
 					'join' => array(
+							'locationId' => array(
+									'joinField' => 'id',
+									'table' => 'location',
+									'fields' => array('x', 'y', 'zone'),
+							),
 					),
 						
 					'filters' => array(
@@ -1206,6 +1211,7 @@ class EsoLogViewer
 					'transform' => array(
 							'itemLink' => 'MakeItemLink',
 							'itemType' => 'GetItemTypeText',
+							'trait' => 'GetItemTraitText',
 					),
 						
 					'filters' => array(
@@ -1224,15 +1230,6 @@ class EsoLogViewer
 									'displayName' => 'View NPC Loots',
 									'type' => 'external',
 							),
-							array(
-									'fields' => array(
-											"itemName" => "item",
-									),
-									'url' => '/viewNpcLoot.php',
-									'displayName' => 'View Item Loots',
-									'type' => 'external',
-							),
-								
 					),
 						
 					'join' => array(
@@ -3340,13 +3337,13 @@ If you do not understand what this information means, or how to use this webpage
 		foreach ($recordInfo['filters'] as $key => $value)
 		{
 			if ($value['type'] == 'filter')
-				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " ";
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 			elseif ($value['type'] == 'viewRecord')
-				$output .= $this->GetViewRecordLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " ";
+				$output .= $this->GetViewRecordLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 			elseif ($value['type'] == 'external')
-				$output .= $this->GetViewExternalRecordLink($value['url'], $value['fields'], $recordData, $value['displayName']) . " ";
+				$output .= $this->GetViewExternalRecordLink($value['url'], $value['fields'], $recordData, $value['displayName']);
 			else
-				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']) . " ";
+				$output .= $this->CreateFilterLink($value['record'], $value['field'], $recordData[$value['thisField']], $value['displayName']);
 		}
 		
 		return $output;

@@ -448,6 +448,7 @@ class EsoLogParser
 			'icon' => self::FIELD_STRING,
 			'quality' => self::FIELD_INT,
 			'itemType' => self::FIELD_INT,			
+			'trait' => self::FIELD_INT,
 	);
 	
 	public static $RECIPE_FIELDS = array(
@@ -1847,6 +1848,7 @@ class EsoLogParser
 						count INTEGER NOT NULL,
 						icon TINYTEXT NOT NULL,
 						itemType SMALLINT NOT NULL,
+						trait TINYINT NOT NULL,
 						quality TINYINT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_itemLink(itemLink(64)),
@@ -2813,6 +2815,7 @@ class EsoLogParser
 			$logEntry['itemId'] = "-101";
 			$logEntry['icon'] = "/esoui/art/currency/currency_gold_32.dds";
 			$logEntry['itemType'] = "-1";
+			$logEntry['trait'] = "-1";
 			$logEntry['quality'] = "1";
 		}
 		else if ($logEntry['event'] == 'TelvarUpdate')
@@ -2822,6 +2825,7 @@ class EsoLogParser
 			$logEntry['itemId'] = "-201";
 			$logEntry['icon'] = "/esoui/art/currency/currency_telvar_32.dds";
 			$logEntry['itemType'] = "-1";
+			$logEntry['trait'] = "-1";
 			$logEntry['quality'] = "1";
 		}
 		
@@ -2853,6 +2857,7 @@ class EsoLogParser
 				$logEntry['icon'] = $itemData['icon'];
 				$logEntry['quality'] = $itemData['quality'];
 				$logEntry['itemType'] = $itemData['type'];
+				$logEntry['trait'] = $itemData['trait'];
 			}
 			else if ($itemData['itemName'] = "")
 			{
@@ -3093,10 +3098,12 @@ class EsoLogParser
 		$lootRecord['itemLink'] = $logEntry['itemLink'];
 		$lootRecord['quality'] = -1;
 		$lootRecord['itemType'] = -1;
+		$lootRecord['trait'] = -1;
 		$lootRecord['icon'] = "";
 		
 		if ($logEntry['quality']) $lootRecord['quality'] = $logEntry['quality'];
 		if ($logEntry['itemType']) $lootRecord['itemType'] = $logEntry['itemType'];
+		if ($logEntry['trait']) $lootRecord['trait'] = $logEntry['trait'];
 		if ($logEntry['icon']) $lootRecord['icon'] = $logEntry['icon'];
 		
 		$lootRecord['itemId'] = 0;
