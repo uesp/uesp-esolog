@@ -277,6 +277,7 @@ class EsoLogViewer
 			'itemName' => self::FIELD_STRING,
 			'quality' => self::FIELD_INT,
 			'trait' => self::FIELD_INTTRANSFORM,
+			'value' => self::FIELD_INT,
 			'itemType' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'qnt' => self::FIELD_INT,

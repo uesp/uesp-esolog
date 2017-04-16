@@ -449,6 +449,7 @@ class EsoLogParser
 			'quality' => self::FIELD_INT,
 			'itemType' => self::FIELD_INT,			
 			'trait' => self::FIELD_INT,
+			'value' => self::FIELD_INT,
 	);
 	
 	public static $RECIPE_FIELDS = array(
@@ -1850,6 +1851,7 @@ class EsoLogParser
 						itemType SMALLINT NOT NULL,
 						trait TINYINT NOT NULL,
 						quality TINYINT NOT NULL,
+						value SMALLINT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_itemLink(itemLink(64)),
 						INDEX index_itemId(itemId),
@@ -2817,6 +2819,7 @@ class EsoLogParser
 			$logEntry['itemType'] = "-1";
 			$logEntry['trait'] = "-1";
 			$logEntry['quality'] = "1";
+			$logEntry['value'] = "1";
 		}
 		else if ($logEntry['event'] == 'TelvarUpdate')
 		{
@@ -2827,6 +2830,7 @@ class EsoLogParser
 			$logEntry['itemType'] = "-1";
 			$logEntry['trait'] = "-1";
 			$logEntry['quality'] = "1";
+			$logEntry['value'] = "-1";
 		}
 		
 		if ($npcName == "footlocker" && $this->currentUser['__lastFootlockerOpenedName'] != null)
@@ -2858,6 +2862,7 @@ class EsoLogParser
 				$logEntry['quality'] = $itemData['quality'];
 				$logEntry['itemType'] = $itemData['type'];
 				$logEntry['trait'] = $itemData['trait'];
+				$logEntry['value'] = $itemData['value'];
 			}
 			else if ($itemData['itemName'] = "")
 			{
@@ -3099,6 +3104,7 @@ class EsoLogParser
 		$lootRecord['quality'] = -1;
 		$lootRecord['itemType'] = -1;
 		$lootRecord['trait'] = -1;
+		$lootRecord['value'] = -1;
 		$lootRecord['icon'] = "";
 		
 		if ($logEntry['quality']) $lootRecord['quality'] = $logEntry['quality'];

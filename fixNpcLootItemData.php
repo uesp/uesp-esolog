@@ -29,6 +29,7 @@ while (($row = $result->fetch_assoc()))
 		$row['itemType'] = "-1";
 		$row['trait'] = "-1";
 		$row['quality'] = "1";
+		$row['value'] = "1";
 	}
 	elseif ($itemLink == "__telvar")
 	{
@@ -38,6 +39,7 @@ while (($row = $result->fetch_assoc()))
 		$row['itemType'] = "-1";
 		$row['trait'] = "-1";
 		$row['quality'] = "1";		
+		$row['value'] = "-1";
 	}
 	else
 	{
@@ -68,6 +70,7 @@ while (($row = $result->fetch_assoc()))
 		$row['itemType'] = $itemData['type'];
 		$row['quality'] = $itemData['quality'];
 		$row['trait'] = $itemData['trait'];
+		$row['value'] = $itemData['value'];
 	}
 	
 	$totalCount++;
@@ -78,8 +81,9 @@ while (($row = $result->fetch_assoc()))
 	$quality = $row['quality'];
 	$itemType = $row['itemType'];
 	$trait = $row['trait'];
+	$value = $row['value'];
 	
-	$query = "UPDATE npcLoot SET itemName='$itemName', icon='$icon', quality='$quality', itemType='$itemType', trait='$trait' WHERE id=$id;";
+	$query = "UPDATE npcLoot SET itemName='$itemName', icon='$icon', quality='$quality', itemType='$itemType', trait='$trait', value='$value' WHERE id=$id;";
 	$saveResult = $db->query($query);
 	if (!$saveResult) print("\tError: Failed to save npcLoot $id!{$db->error}\n");
 }
