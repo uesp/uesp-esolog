@@ -2085,12 +2085,16 @@ $ESO_ITEMQUALITYLEVEL_INTTYPEMAP = array(
 
 
 
-function GetEsoLevelFromIntType($intType)
+function GetEsoLevelFromIntType($intType, $intLevel = 1)
 {
 	global $ESO_ITEMINTTYPE_LEVELMAP;
 	
-	if (!array_key_exists($intType, $ESO_ITEMINTTYPE_LEVELMAP)) return 1;
-	return $ESO_ITEMINTTYPE_LEVELMAP[$intType];
+	if (!array_key_exists($intType, $ESO_ITEMINTTYPE_LEVELMAP)) return $intLevel;
+	
+	$level = $ESO_ITEMINTTYPE_LEVELMAP[$intType];
+	if ($level == 1) return $intLevel;
+	
+	return $level;
 }
 
 

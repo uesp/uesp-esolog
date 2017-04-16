@@ -21,9 +21,13 @@ class CEsoViewNpcLoot
 	public $itemCountTotals = array();
 	public $itemLinkData = array();
 	
+	public $salesPrices = null;
+	
 	public $viewNpcName = "";
 	public $viewItemName = "";
+	public $viewGroup = "";
 	public $viewExtra = "";
+	public $salesPriceServer = "";
 	public $output = "html";
 	
 	
@@ -81,11 +85,33 @@ class CEsoViewNpcLoot
 			$this->viewItemName = $this->inputParams['item'];
 		}
 		
+		if ($this->inputParams['group'] != null)
+		{
+			$group = strtolower($this->inputParams['group']);
+			
+			if ($group == "reagent")
+				$this->viewGroup = "Reagent";
+		}
+		
 		if ($this->inputParams['extra'] != null)
 		{
 			$this->viewExtra = strtolower($this->inputParams['extra']);
 		}
 		
+		if ($this->inputParams['prices'] != null)
+		{
+			$server = strtoupper($this->inputParams['prices']);
+			
+			if ($server == "NA")
+				$this->salesPriceServer = "NA";
+			else if ($server == "EU")
+				$this->salesPriceServer = "EU";
+			else if ($server == "PTS")
+				$this->salesPriceServer = "PTS";
+			else if ($server == "OTHER")
+				$this->salesPriceServer = "Other";
+		}
+				
 		if ($this->inputParams['output'] != null)
 		{
 			$output = strtolower($this->inputParams['output']);
@@ -120,6 +146,437 @@ class CEsoViewNpcLoot
 	}
 	
 	
+	public function LoadSalesPrices()
+	{
+		if ($this->salesPriceServer == "") return true;
+		
+		if ($this->salesPriceServer == "NA")
+		{
+			include "pricesNA/uespSalesPrices.php";
+		}
+		else if ($this->salesPriceServer == "EU")
+		{
+			include "pricesEU/uespSalesPrices.php";
+		}
+		else if ($this->salesPriceServer == "PTS")
+		{
+			include "pricesPTS/uespSalesPrices.php";
+		}
+		else if ($this->salesPriceServer == "Other")
+		{
+			include "pricesOther/uespSalesPrices.php";
+		}
+		else
+		{
+			return false;
+		}
+		
+		if ($uespSalesPrices == null) return false;
+		
+		$this->salesPrices = &$uespSalesPrices;		
+		
+		return true;
+	}
+	
+	
+	public $MODIFY_PRICE_DATA = array(
+			"Blacksmith Survey:" => array(
+					'itemId' => array(71198),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(126),
+					'extraValue' => 500,
+			),
+			"Clothier Survey:" => array(
+					'itemId' => array(71200, 71239),
+					'level' => array(1, 1),
+					'quality' => array(1, 1),
+					'extraQnt' => array(84, 58),
+			),
+			"Woodworker Survey:" => array(
+					'itemId' => array(71199),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(126),
+			),
+			"Alchemist Survey:" => array(
+					'itemId' => array(30157, 30160, 30164, 30161, 30162, 30158, 30163, 30159, 42871, 42869),
+					'level' => array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+					'quality' => array(2, 2, 2, 2, 2, 2, 2, 2, 1, 1),
+					'extraQnt' => array(3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 1.2, 1.2),
+			),
+			"Enchanter Survey:" => array(
+					'value' => 575,
+			),
+			"Shipment of Calcinium Ingots" => array(
+					'itemId' => array(46127),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Dwarven Ingots" => array(
+					'itemId' => array(6000),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Ebony Ingots" => array(
+					'itemId' => array(6001),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Galatite Ingots" => array(
+					'itemId' => array(46128),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Iron Ingots" => array(
+					'itemId' => array(5413),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Orichalcum" => array(
+					'itemId' => array(23107),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Quicksilver Ingots" => array(
+					'itemId' => array(46129),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Steel Ingots" => array(
+					'itemId' => array(4487),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Voidstone Ingots" => array(
+					'itemId' => array(46130),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Cotton Cloth" => array(
+					'itemId' => array(23125),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Ebonthread Cloth" => array(
+					'itemId' => array(23127),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Flax Cloth" => array(
+					'itemId' => array(4463),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Ironthread Cloth" => array(
+					'itemId' => array(46132),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Jute Cloth" => array(
+					'itemId' => array(811),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Kresh Cloth" => array(
+					'itemId' => array(46131),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Silverweave Cloth" => array(
+					'itemId' => array(46133),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Spidersilk Cloth" => array(
+					'itemId' => array(23126),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Spidersilk Cloth" => array(
+					'itemId' => array(23126),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Voidcloth" => array(
+					'itemId' => array(46134),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Fell Hide" => array(
+					'itemId' => array(23101),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Hide" => array(
+					'itemId' => array(4447),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Iron Hide" => array(
+					'itemId' => array(46136),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Leather" => array(
+					'itemId' => array(23099),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Rawhide" => array(
+					'itemId' => array(794),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Shadowhide" => array(
+					'itemId' => array(46138),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Superb Hide" => array(
+					'itemId' => array(46137),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Thick Leather" => array(
+					'itemId' => array(23100),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Topgrain Hide" => array(
+					'itemId' => array(46135),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Ash" => array(
+					'itemId' => array(46140),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Beech" => array(
+					'itemId' => array(23121),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Birch" => array(
+					'itemId' => array(46139),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Hickory" => array(
+					'itemId' => array(23122),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Mahogany" => array(
+					'itemId' => array(46141),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Maple" => array(
+					'itemId' => array(803),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Nightwood" => array(
+					'itemId' => array(46142),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Oak" => array(
+					'itemId' => array(533),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+			"Shipment of Yew" => array(
+					'itemId' => array(23123),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(25),
+			),
+	);
+	
+	
+	public function FindModifySalesPriceMatch($itemName)
+	{
+		foreach ($this->MODIFY_PRICE_DATA as $matchName => $matchData)
+		{
+			if (strpos($itemName, $matchName) !== false) return $matchData;
+		}
+		
+		return null;
+	}
+	
+	
+	public function FindModifySalesPrice($itemName, $itemId, $level, $quality, $trait, $potionData)
+	{
+		$matchData = $this->FindModifySalesPriceMatch($itemName);
+		if (!$matchData) return -1;
+		
+		if ($matchData['value'] != null) return $matchData['value'];
+		
+		$price = 0;
+		if ($matchData['extraValue'] != null) $price = $matchData['extraValue'];
+		
+		foreach ($matchData['itemId'] as $i => $itemId)
+		{
+			$level = $matchData['level'][$i];
+			$quality = $matchData['quality'][$i];
+			
+			$newPrice = $this->FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData);
+			
+			if ($newPrice > 0) 
+			{
+				$qnt = $matchData['extraQnt'][$i];
+				$price += $newPrice * $qnt;
+				//$this->ReportError("ModifySalesPrice: Found price $newPrice * $qnt for item $itemId:$level:$quality:$trait:$potionData!");
+			}
+			else
+			{
+				//$this->ReportError("ModifySalesPrice: Did not find price for item $itemId:$level:$quality:$trait:$potionData!");
+			}
+		}
+		
+		return $price;
+	}
+	
+	
+	public function FindSalesPrice($itemLink, $quality, $trait, $itemName)
+	{
+		if ($this->salesPrices == null) return -1;
+		
+		$matches = ParseEsoItemLink($itemLink);
+		if (!$matches) return -1;
+		
+		$itemId = intVal($matches['itemId']);
+		$intLevel = intVal($matches['level']);
+		$intSubtype = intVal($matches['subtype']);
+		$potionData = intVal($matches['potionData']);
+		$quality = intVal($quality);
+		$trait = intVal($trait);
+		if ($trait < 0) $trait = 0;
+		if ($quality < 0) $quality = 0;
+		$extraQnt = 1;
+		
+		$level = GetEsoLevelFromIntType($intSubtype, $intLevel);
+		
+		$price = $this->FindModifySalesPrice($itemName, $itemId, $level, $quality, $trait, $potionData);
+		if ($price > 0) return $price;
+		
+		return $this->FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData);
+	}
+	
+	
+	public function FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData)
+	{
+		
+		$data1 = $this->salesPrices[$itemId];
+		if ($data1 == null) return -2;
+		
+		$data2 = $data1[$level];
+		
+		if ($data2 == null)
+		{
+			$data2 = $data1[1];
+			if ($data2 == null) return -3;
+		}
+		
+		$data3 = $data2[$quality];
+		
+		if ($data3 == null) 
+		{
+			$data3 = $data2[1];
+			if ($data2 == null) return -4;
+		}
+		
+		$data4 = $data3[$trait];
+		if ($data4 == null) return -5;
+		
+		$data5 = $data4[$potionData];
+		if ($data5 == null) return -6;
+		
+		if ($data5[0] == null) return -7;
+		
+		return $data5[0];
+	}
+	
+	
+	public function FindAllSalesPrice()
+	{
+		if ($this->salesPrices == null) return;
+		
+		foreach ($this->searchResults as $i => $result)
+		{
+			if ($result['itemName'] == "Gold" || $result['itemName'] == "__gold")
+			{
+				$this->searchResults[$i]['salePrice'] = 1;
+				$this->searchResults[$i]['totalPrice'] = $result['qnt'];
+				continue;
+			}
+			
+			if (substr($result['itemLink'], 0, 2) != "|H") continue;
+				
+			$salesPrice = $this->FindSalesPrice($result['itemLink'], $result['quality'], $result['trait'], $result['itemName']);
+			
+			if ($salesPrice > 0) 
+			{
+				if ($salesPrice < $result['value']) $salesPrice = $result['value'];
+				
+				$this->searchResults[$i]['salesPrice'] = $salesPrice;
+				$this->searchResults[$i]['totalPrice'] = $salesPrice * $result['qnt'];
+				//$this->ReportError("{$result['itemName']} found sales price data ($salesPrice)");
+			}
+			else
+			{
+				if ($result['value'] > 0)
+				{
+					$this->searchResults[$i]['salesPrice'] = $result['value'];
+					$this->searchResults[$i]['totalPrice'] = $result['value'] * $result['qnt'];
+				}
+				
+				$this->ReportError("{$result['itemName']} no sales price data found ($salesPrice) {$result['itemLink']}!");
+			}
+		}
+		
+	}
+	
+	
 	public function GetNpcSearchQuery()
 	{
 		$safeName = $this->db->real_escape_string($this->viewNpcName);
@@ -140,6 +597,48 @@ class CEsoViewNpcLoot
 	}
 	
 	
+	public function GetNpcGroupAlchemyReagentQuery()
+	{
+		$query = "SELECT id from npc WHERE name='Beetle Scuttle' or name='Blessed Thistle' or name='Bugloss' or name='Butterfly Wing' or ";
+		$query .= "name='Columbine' or name='Corn Flower' or name='Dragonthorn' or name='Emetic Russula' or name='Fleshfly Larva' or ";
+		$query .= "name='Imp Stool' or name='Lady''s Smock' or name='Luminous Russula' or name='Mudcrab Chitin' or name='Namira''s Rot' or ";
+		$query .= "name='Nightshade' or name='Nirnroot' or name='Scrib Jelly' or name='Spider Egg' or name='Stinkhorn' or name='Torchbug Thorax' or ";
+		$query .= "name='Violet Coprinus' or name='Water Hyacinth' or name='White Cap' or name='Wormwood';";
+		
+		//$query = "SELECT id from npc WHERE name='Columbine' or name='Bugloss';";
+		return $query;
+	}
+	
+	
+	public function GetNpcGroupSearchQuery()
+	{
+		if ($this->viewGroup == "Reagent") 
+			$this->lastQuery = $this->GetNpcGroupAlchemyReagentQuery();
+		
+		if ($this->lastQuery == "") return $this->ReportError("No valid NPC group specified!");
+		
+		$result = $this->db->query($this->lastQuery);
+		
+		if (!$result || $result->num_rows <= 0)
+		{
+			$this->ReportError("Failed to find any records for NPC Group '{$this->viewGroup}'!");
+			return "";
+		}
+		
+		$npcIds = array();
+		
+		while ($row = $result->fetch_assoc())
+		{
+			$npcIds[] = $row['id'];
+		}
+		
+		$npcIds = implode(",", $npcIds);
+		
+		$query = "SELECT * FROM npcLoot WHERE npcId in ($npcIds);";
+		return $query;
+	}
+	
+	
 	public function GetItemSearchQuery()
 	{
 		$safeName = $this->db->real_escape_string($this->viewItemName);
@@ -151,6 +650,7 @@ class CEsoViewNpcLoot
 	
 	public function GetSearchQuery()
 	{
+		if ($this->viewGroup != "") return $this->GetNpcGroupSearchQuery();
 		if ($this->viewNpcName != "") return $this->GetNpcSearchQuery();
 		if ($this->viewItemName != "") return $this->GetItemSearchQuery();
 		
@@ -174,7 +674,9 @@ class CEsoViewNpcLoot
 			$this->searchResults[] = $row;
 		}
 		
+		$this->FindAllSalesPrice();
 		//$this->LoadItemData();
+		
 		return true;
 	}
 	
@@ -244,6 +746,15 @@ class CEsoViewNpcLoot
 		
 		if (count($this->searchResults) <= 0) return false;
 		
+		$this->zoneCountTotals['All'] = 0;
+		$this->zoneQntTotals['All'] = 0;
+		$this->zoneCountTotals['Summary'] = 0;
+		$this->zoneQntTotals['Summary'] = 0;
+		$this->zoneCountTotals['Writ Summary'] = 0;
+		$this->zoneQntTotals['Writ Summary'] = 0;
+		$this->zoneCountTotals['Hireling Summary'] = 0;
+		$this->zoneQntTotals['Hireling Summary'] = 0;
+		
 		foreach ($this->searchResults as $i => $result)
 		{
 			$itemName = $result['itemName'];
@@ -251,19 +762,22 @@ class CEsoViewNpcLoot
 			
 			if ($itemName == "__totalCount")
 			{
-				$this->zoneCountTotals[$result['zone']] = $result['count'];
-				$this->zoneQntTotals[$result['zone']] = $result['qnt'];
+				if ($this->zoneCountTotals[$result['zone']] == null) $this->zoneCountTotals[$result['zone']] = 0;
+				if ($this->zoneQntTotals[$result['zone']] == null) $this->zoneQntTotals[$result['zone']] = 0;
+				
+				$this->zoneCountTotals[$result['zone']] += $result['count'];
+				$this->zoneQntTotals[$result['zone']] += $result['qnt'];
 				
 				if ($result['zone'] == "")
 				{
-					$this->zoneCountTotals['All'] = $result['count'];
-					$this->zoneQntTotals['All'] = $result['qnt'];
-					$this->zoneCountTotals['Summary'] = $result['count'];
-					$this->zoneQntTotals['Summary'] = $result['qnt'];
-					$this->zoneCountTotals['Writ Summary'] = $result['count'];
-					$this->zoneQntTotals['Writ Summary'] = $result['qnt'];
-					$this->zoneCountTotals['Hireling Summary'] = $result['count'];
-					$this->zoneQntTotals['Hireling Summary'] = $result['qnt'];
+					$this->zoneCountTotals['All'] += $result['count'];
+					$this->zoneQntTotals['All'] += $result['qnt'];
+					$this->zoneCountTotals['Summary'] += $result['count'];
+					$this->zoneQntTotals['Summary'] += $result['qnt'];
+					$this->zoneCountTotals['Writ Summary'] += $result['count'];
+					$this->zoneQntTotals['Writ Summary'] += $result['qnt'];
+					$this->zoneCountTotals['Hireling Summary'] += $result['count'];
+					$this->zoneQntTotals['Hireling Summary'] += $result['qnt'];
 				}
 				
 				continue;
@@ -283,6 +797,8 @@ class CEsoViewNpcLoot
 			{
 				$this->itemQntTotals[$itemName] = array();
 				$this->itemQntTotals[$itemName]['count'] = 0;
+				$this->itemQntTotals[$itemName]['totalPrice'] = 0;
+				$this->itemQntTotals[$itemName]['salesPrice'] = $result['salesPrice'];
 				$this->itemQntTotals[$itemName]['itemName'] = $itemName;
 				$this->itemQntTotals[$itemName]['itemLink'] = $result['itemLink'];
 				$this->itemQntTotals[$itemName]['icon'] = $result['icon'];
@@ -295,6 +811,8 @@ class CEsoViewNpcLoot
 			{
 				$this->itemCountTotals[$itemName] = array();
 				$this->itemCountTotals[$itemName]['count'] = 0;
+				$this->itemCountTotals[$itemName]['totalPrice'] = 0;
+				$this->itemCountTotals[$itemName]['salesPrice'] = $result['salesPrice'];
 				$this->itemCountTotals[$itemName]['itemName'] = $itemName;
 				$this->itemCountTotals[$itemName]['itemLink'] = $result['itemLink'];
 				$this->itemCountTotals[$itemName]['icon'] = $result['icon'];
@@ -305,6 +823,12 @@ class CEsoViewNpcLoot
 			
 			$this->itemQntTotals[$itemName]['count']   += $result['qnt'];
 			$this->itemCountTotals[$itemName]['count'] += $result['count'];
+			
+			if ($result['totalPrice'])
+			{
+				$this->itemQntTotals[$itemName]['totalPrice']   += $result['totalPrice'];
+				$this->itemCountTotals[$itemName]['totalPrice'] += $result['totalPrice'];
+			}			
 				
 			if ($result['itemType'] < 0) continue;
 			if ($result['quality'] < 0) continue;
@@ -314,14 +838,19 @@ class CEsoViewNpcLoot
 			$trait = $result['trait'];
 			
 			if ($this->itemSummary[$itemType] == null) $this->itemSummary[$itemType] = array();
-			if ($this->itemSummary[$itemType]["all"] == null) $this->itemSummary[$itemType]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+			if ($this->itemSummary[$itemType]["all"] == null) $this->itemSummary[$itemType]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0, 'totalPrice' => 0);
 			
 			if ($quality >= 0)
 			{
-				if ($this->itemSummary[$itemType][$quality] == null) $this->itemSummary[$itemType][$quality] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+				if ($this->itemSummary[$itemType][$quality] == null) $this->itemSummary[$itemType][$quality] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0, 'totalPrice' => 0);
 				$this->itemSummary[$itemType][$quality]['count'] += $result['count'];
 				$this->itemSummary[$itemType][$quality]['qnt'] += $result['qnt'];
 				$this->itemSummary[$itemType][$quality]['numItems'] += 1;
+				
+				if ($result['totalPrice'])
+				{
+					$this->itemSummary[$itemType][$quality]['totalPrice'] += $result['totalPrice'];
+				}
 			}
 			
 			if ($trait > 0)
@@ -329,23 +858,34 @@ class CEsoViewNpcLoot
 				$traitName = GetEsoItemTraitText($trait);
 				$trait = $trait + 1000;
 				
-				if ($this->itemSummary[$itemType][$trait] == null) $this->itemSummary[$itemType][$trait] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+				if ($this->itemSummary[$itemType][$trait] == null) $this->itemSummary[$itemType][$trait] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0, 'totalPrice' => 0);
 				$this->itemSummary[$itemType][$trait]['count'] += $result['count'];
 				$this->itemSummary[$itemType][$trait]['qnt'] += $result['qnt'];
 				$this->itemSummary[$itemType][$trait]['numItems'] += 1;
 
 				if ($this->itemSummary[$traitName] == null) $this->itemSummary[$traitName] = array();
-				if ($this->itemSummary[$traitName]["all"] == null) $this->itemSummary[$traitName]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0);
+				if ($this->itemSummary[$traitName]["all"] == null) $this->itemSummary[$traitName]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0, 'totalPrice' => 0);
 				
 				$this->itemSummary[$traitName]["all"]['trait'] = $result['trait'];
 				$this->itemSummary[$traitName]["all"]['count'] += $result['count'];
 				$this->itemSummary[$traitName]["all"]['qnt'] += $result['qnt'];
 				$this->itemSummary[$traitName]["all"]['numItems'] += 1;
+				
+				if ($result['totalPrice'])
+				{
+					$this->itemSummary[$itemType][$trait]['totalPrice'] += $result['qnt'];
+					$this->itemSummary[$traitName]["all"]['totalPrice'] += $result['totalPrice'];
+				}
 			}
 			
 			$this->itemSummary[$itemType]["all"]['count'] += $result['count'];
 			$this->itemSummary[$itemType]["all"]['qnt'] += $result['qnt'];
 			$this->itemSummary[$itemType]["all"]['numItems'] += 1;
+			
+			if ($result['totalPrice'])
+			{
+				$this->itemSummary[$itemType]["all"]['totalPrice'] += $result['totalPrice'];
+			}
 		}
 		
 		if ($this->zoneQntTotals['']   != null) $totalQnt   = $this->zoneQntTotals[''];
@@ -376,6 +916,8 @@ class CEsoViewNpcLoot
 			$newResult['quality'] = $qntData['quality'];
 			$newResult['trait'] = $qntData['trait'];
 			$newResult['icon'] = $qntData['icon'];
+			$newResult['salesPrice'] = $qntData['salesPrice'];
+			$newResult['totalPrice'] = $qntData['totalPrice'];
 			
 			$newResult['qnt'] = $qntData['count'];
 			$newResult['count'] = $countData['count'];
@@ -390,6 +932,7 @@ class CEsoViewNpcLoot
 		foreach ($this->itemSummary as $itemType => $data1)
 		{
 			$typeName = GetEsoItemTypeText($itemType);
+			if ($typeName == "") $typeName = "None";
 			
 			foreach ($data1 as $dataValue => $data2)
 			{
@@ -435,6 +978,8 @@ class CEsoViewNpcLoot
 				$newResult['quality'] = $qualityValue;
 				$newResult['trait'] = $trait;
 				$newResult['icon'] = "";
+				//$newResult['salesPrice'] = $data2['salesPrice'];
+				$newResult['totalPrice'] = $data2['totalPrice'];
 				
 				$newResult['qnt'] = $data2['qnt'];
 				$newResult['count'] = $data2['count'];
@@ -470,7 +1015,12 @@ class CEsoViewNpcLoot
 			
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Glyph", array(21, 26, 20), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Soul Gem", array(19), array('all'), $this->itemSummary, $totalQnt, $totalCount);
-			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Kuta", array(52), array(5), $this->itemSummary, $totalQnt, $totalCount);	
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Writ Summary", "Kuta", array(52), array(5), $this->itemSummary, $totalQnt, $totalCount);
+			
+			if ($this->salesPriceServer != "")
+			{
+				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Writ Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
+			}
 		}
 		else if ($this->viewExtra == "hireling")
 		{
@@ -483,6 +1033,15 @@ class CEsoViewNpcLoot
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Superior)", array(41, 43, 42), array(3 , 3, 3), $this->itemSummary, $totalQnt, $totalCount);
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Epic)", array(41, 43, 42), array(4, 4, 4), $this->itemSummary, $totalQnt, $totalCount);
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Legendary)", array(41, 43, 42), array(5, 5, 5), $this->itemSummary, $totalQnt, $totalCount);
+			
+			if ($this->salesPriceServer != "")
+			{
+				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Hireling Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
+			}
+		}
+		else if ($this->salesPriceServer != "")
+		{
+			$this->searchResults[] = $this->MakeNpcSummaryResultAll("Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
 		}
 		
 		usort($this->searchResults, array('CEsoViewNpcLoot', 'SortNpcItemSearchResults'));
@@ -494,6 +1053,7 @@ class CEsoViewNpcLoot
 		$newResult = array();
 		$qnt = 0;
 		$count = 0;
+		$totalPrice = 0 ;
 		
 		for ($i = 0; $i < count($itemType); ++$i)
 		{
@@ -504,6 +1064,8 @@ class CEsoViewNpcLoot
 		
 			$sumData2 = $sumData1[$quality[$i]];
 			if ($sumData2 == null) continue;
+			
+			if ($sumData2['totalPrice']) $totalPrice += $sumData2['totalPrice']; 
 		
 			$qnt += $sumData2['qnt'];
 			$count += $sumData2['count'];
@@ -519,6 +1081,7 @@ class CEsoViewNpcLoot
 		$newResult['quality'] = -1;
 		$newResult['trait'] = -1;
 		$newResult['icon'] = "";
+		$newResult['totalPrice'] = $totalPrice;		
 		
 		$newResult['qnt'] = $qnt;
 		$newResult['count'] = $count;
@@ -527,6 +1090,49 @@ class CEsoViewNpcLoot
 		$newResult['totalQnt'] = $totalQnt;
 		$newResult['totalCount'] = $totalCount;
 		
+		return $newResult;
+	}
+	
+	
+	public function MakeNpcSummaryResultAll($zone, $itemName, $itemSummary, $totalQnt, $totalCount)
+	{
+		$newResult = array();
+		$qnt = 0;
+		$count = 0;
+		$totalPrice = 0 ;
+	
+		foreach ($itemSummary as $itemType => $sumData1)
+		{
+			if (!is_numeric($itemType)) continue;
+			
+			$sumData2 = $sumData1['all'];
+			if ($sumData2 == null) continue;
+				
+			if ($sumData2['totalPrice']) $totalPrice += $sumData2['totalPrice'];
+	
+			$qnt += $sumData2['qnt'];
+			$count += $sumData2['count'];
+		}
+	
+		if ($qnt == 0 || $count == 0) return null;
+			
+		$newResult['zone'] = $zone;
+		$newResult['itemName'] = $itemName;
+		$newResult['itemLink'] = "";
+	
+		$newResult['itemType'] = -1;
+		$newResult['quality'] = -1;
+		$newResult['trait'] = -1;
+		$newResult['icon'] = "";
+		$newResult['totalPrice'] = $totalPrice;
+	
+		$newResult['qnt'] = $qnt;
+		$newResult['count'] = $count;
+		$newResult['dropZoneRatio'] = 0;
+		$newResult['dropRatio'] = 0;
+		$newResult['totalQnt'] = -1;
+		$newResult['totalCount'] = $totalCount;
+	
 		return $newResult;
 	}
 	
@@ -574,6 +1180,7 @@ class CEsoViewNpcLoot
 			$totalZoneQnt = $this->zoneCountTotals[$zone];
 			$dropChance = round($result['dropZoneRatio'] * 100, 4);
 			$itemType = GetEsoItemTypeText($result['itemType']);
+			if ($itemType == "") $itemType = "None";
 			$quality = $result['quality'];
 			if ($quality < 0) $quality = "";
 			$trait = GetEsoItemTraitText($result['trait']);
@@ -593,15 +1200,18 @@ class CEsoViewNpcLoot
 	{
 		$this->ParseNpcItemResults();
 		
-		$npcName = $this->viewNpcName;
+		if ($this->viewGroup != "")
+			$npcName = "<b>Group {$this->viewGroup}</b>";
+		else
+			$npcName = "<b>{$this->viewNpcName}</b>";
 		
 		if (count($this->searchResults) <= 0)
 		{
-			$output = "No loot data found for NPC <b>$npcName</b>!<p>";
+			$output = "No loot data found for $npcName!<p>";
 			return $output;
 		}
 		
-		$output = "Showing NPC loot drop data for <b>$npcName</b>:<p>";
+		$output = "Showing NPC loot drop data for $npcName:<p>";
 		$output .= "<table id='esonplResultsTable'>";
 		
 		$output .= "<tr>";
@@ -609,9 +1219,18 @@ class CEsoViewNpcLoot
 		$output .= "<th>Item Name</th>";
 		$output .= "<th>Item Type</th>";
 		$output .= "<th>Trait</th>";
+		$output .= "<th>Count</th>";
 		$output .= "<th>Qnt</th>";
 		$output .= "<th>Total</th>";
 		$output .= "<th>Drop Chance</th>";
+		
+		if ($this->salesPriceServer != "") 
+		{
+			$output .= "<th>Unit Value</th>";
+			$output .= "<th>Total Value</th>";
+			$output .= "<th>Avg Value</th>";
+		}
+		
 		$output .= "</tr>";
 		
 		$totalQnt = 0;
@@ -620,21 +1239,25 @@ class CEsoViewNpcLoot
 		
 		foreach ($this->searchResults as $result)
 		{
-			if ($result['itemName'] == "__totalCount") continue;
+			if ($result['itemName'] == "__totalCount" || $result['itemName'] == "") continue;
 			
 			$zone = $result['zone'];
 			$itemLink = $result['itemLink'];
 			$itemName = $result['itemName'];
+			$count = $result['count'];
 			$qnt = $result['qnt'];
 			$totalZoneQnt = $this->zoneCountTotals[$zone];
-			$dropChance = round($result['dropZoneRatio'] * 100, 1);
+			$dropChance = "";
+			if ($result['dropZoneRatio'] > 0) $dropChance = "" . round($result['dropZoneRatio'] * 100, 1) . "%";
 			$itemType = "";
 			$quality = "";
 			$iconUrl = "";
 			if ($result['icon']) $iconUrl = MakeEsoIconLink($result['icon']);
 			$itemType = GetEsoItemTypeText($result['itemType']);
+			if ($itemType == "") $itemType = "None";
 			$quality = $result['quality'];
 			$trait = GetEsoItemTraitText($result['trait']);
+			$totalPrice = $result['totalPrice'];
 			
 			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary"))
 			{
@@ -655,9 +1278,32 @@ class CEsoViewNpcLoot
 			
 			$output .= "<td>$itemType</td>";
 			$output .= "<td>$trait</td>";
+			$output .= "<td>$count</td>";
 			$output .= "<td>$qnt</td>";
 			$output .= "<td>$totalZoneQnt</td>";
-			$output .= "<td>$dropChance%</td>";
+			$output .= "<td>$dropChance</td>";
+			
+			if ($this->salesPriceServer != "")
+			{
+				if ($totalPrice == null)
+				{
+					$output .= "<td></td>";
+					$output .= "<td></td>";
+					$output .= "<td></td>";
+				}
+				else
+				{
+					$avgPrice = number_format($totalPrice / $totalZoneQnt, 2);
+					$totalPrice = number_format($totalPrice);
+					
+					$unitPrice = "";
+					if ($result['salesPrice'] > 0)	$unitPrice = number_format($result['salesPrice'], 2) . " gp";
+					$output .= "<td>$unitPrice</td>";
+					$output .= "<td>$totalPrice gp</td>";
+					$output .= "<td>$avgPrice gp</td>";
+				}
+			}
+			
 			$output .= "</tr>";
 			
 			$lastZone = $zone;
@@ -697,6 +1343,7 @@ class CEsoViewNpcLoot
 			$count = $result['count'];
 			$totalZoneQnt = $this->zoneCountTotals[$zone];
 			$itemType = GetEsoItemTypeText($result['itemType']);
+			if ($itemType == "") $itemType = "None";
 			$quality = $result['quality'];
 			$trait = GetEsoItemTraitText($result['trait']);
 	
@@ -741,6 +1388,7 @@ class CEsoViewNpcLoot
 			$itemName = $result['itemName'];
 			$itemLink = $result['itemLink'];
 			$itemType = GetEsoItemTypeText($result['itemType']);
+			if ($itemType == "") $itemType = "None";
 			$qnt = $result['qnt'];
 			$quality = $result['quality'];
 			
@@ -774,7 +1422,7 @@ class CEsoViewNpcLoot
 	
 	public function GetResultsHtml()
 	{
-		if ($this->viewNpcName != "") return $this->GetNpcResultsHtml();
+		if ($this->viewNpcName != "" || $this->viewGroup != "") return $this->GetNpcResultsHtml();
 		if ($this->viewItemName != "") return $this->GetItemResultsHtml();
 		
 		return "No NPC or item specified!";
@@ -795,7 +1443,7 @@ class CEsoViewNpcLoot
 	
 	public function GetOutputCsv()
 	{
-		if ($this->viewNpcName != "") return $this->GetNpcResultsCsv();
+		if ($this->viewNpcName != "" || $this->viewGroup != "") return $this->GetNpcResultsCsv();
 		if ($this->viewItemName != "") return $this->GetItemResultsCsv();
 		
 		return "No NPC or item specified!";
@@ -804,6 +1452,7 @@ class CEsoViewNpcLoot
 		
 	public function Render()
 	{
+		$this->LoadSalesPrices();
 		$this->LoadResults();
 		
 		if ($this->output == "csv")
@@ -817,7 +1466,6 @@ class CEsoViewNpcLoot
 			print($this->GetOutputHtml());
 		}
 		
-		
 	}
 	
 };
@@ -825,6 +1473,9 @@ class CEsoViewNpcLoot
 
 $viewNpcLoot = new CEsoViewNpcLoot();
 $viewNpcLoot->Render();
+
+
+
 
 
 
