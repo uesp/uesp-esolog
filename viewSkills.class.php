@@ -92,6 +92,8 @@ class CEsoViewSkills
 
 	public function __construct ($isEmbedded = false, $displayType = "summary", $parseParams = true)
 	{
+		SetupUespSession();		
+		
 		$this->ESOVS_HTML_TEMPLATE = __DIR__."/templates/esoskills_template.txt";
 		$this->ESOVS_HTML_TEMPLATE_EMBED = __DIR__."/templates/esoskills_embed_template.txt";
 		
@@ -1183,10 +1185,59 @@ class CEsoViewSkills
 				'{passiveDataJson}' => json_encode($this->passiveData),
 				'{skillBarJson}'  => json_encode($this->initialSkillBarData),
 		);
+		
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			return $this->CreateErrorOutputHtml();
+		}
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
 	
 		$this->LogProfile("OutputHtml():Transform", $startTime);
+		return $output;
+	}
+	
+	
+	public function CreateErrorOutputHtml()
+	{
+		$startTime = microtime(true);
+	
+		$replacePairs = array(
+				'{skillTree}' => "",
+				'{skillContent}'  => "Permission Denied!",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{rawSkillData}' => "",
+				'{coefSkillData}' => "",
+				'{skillsJson}' => "{}",
+				'{skillSearchIdJson}' => "{}",
+				'{skillHighlightId}' => $this->highlightSkillId,
+				'{skillHighlightType}' => $this->highlightSkillType,
+				'{skillHighlightLine}' => $this->highlightSkillLine,
+				'{level}' => $this->skillLevel,
+				'{fmtLevel}' => $this->FormatLevel($this->skillLevel),
+				'{health}' => $this->skillHealth,
+				'{magicka}' => $this->skillMagicka,
+				'{stamina}' => $this->skillStamina,
+				'{spellDamage}' => $this->skillSpellDamage,
+				'{weaponDamage}' => $this->skillWeaponDamage,
+				'{skillShowAll}' => $this->showAll ? "true" : "false",
+				'{updateDate}' => $this->GetUpdateDate(),
+				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,
+				'{leftBlockDisplay}' => $this->GetLeftBlockDisplay(),
+				'{rightBlockMargin}' => $this->GetRightBlockMargin(),
+				'{menuBarDisplay}' => $this->GetMenuBarDisplay(),
+				'{displayType}' => $this->displayType,
+				'{skillBar}' => "",
+				'{usedPoints}' => $this->GetUsedSkillPoints(),
+				'{activeDataJson}' => "{}",
+				'{passiveDataJson}' => "{}",
+				'{skillBarJson}'  => "{}",
+		);
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+	
+		$this->LogProfile("OutputHtml():Error:Transform", $startTime);
 		return $output;
 	}
 

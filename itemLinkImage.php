@@ -141,6 +141,8 @@ class CEsoItemLinkImage
 	
 	public function __construct ()
 	{
+		SetupUespSession();
+		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		
@@ -2533,6 +2535,14 @@ class CEsoItemLinkImage
 	public function MakeImage()
 	{
 		$this->OutputHtmlHeader();
+		
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			$this->LoadItemErrorData();
+			$this->itemRecord['name'] = "Permission Denied!";
+			$this->OutputImage();
+			return true;
+		}
 		
 		if ($this->ServeCachedImage(false)) 
 		{

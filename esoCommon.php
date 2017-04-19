@@ -1,5 +1,10 @@
 <?php
 
+require_once("UespMemcachedSession.php");
+
+$canViewEsoMorrowindPts = false;
+
+
 const UESP_ESO_ICON_URL = "//esoicons.uesp.net";
 
 const ENABLE_ESO_PAGEVIEW_UPDATES = true;
@@ -35,6 +40,7 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100016" => "11",
 		"100017" => "12",
 		"100018" => "13",
+		"100019" => "14",
 );
 
 
@@ -48,6 +54,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100016" => "2.5",
 		"100017" => "2.6",
 		"100018" => "2.7",
+		"100019" => "3.0",
 );
 
 
@@ -2476,19 +2483,19 @@ function GetEsoItemTableSuffix($version)
 	switch ($version)
 	{
 		case '1.5':
-		case '15':
+		//case '15':
 		case '5':
 			return "5";
 		case '1.6':
-		case '16':
+		//case '16':
 		case '6':
 			return "6";
 		case '1.7':
-		case '17':
+		//case '17':
 		case '7':
 			return "7";
 		case '1.8':
-		case '18':
+		//case '18':
 		case '8':
 			return "8";
 		case '1.8pts':
@@ -2498,7 +2505,7 @@ function GetEsoItemTableSuffix($version)
 		case '19pts':
 			return "9pts";
 		case '1.9':
-		case '19':
+		//case '19':
 		case '9':
 			return "9";
 		case '1.10pts':
@@ -2532,6 +2539,10 @@ function GetEsoItemTableSuffix($version)
 		case '113':
 		case '13':
 			return "";
+		case '1.4pts':
+		case '114pts':
+		case '14pts':
+			return "14pts";
 	}
 
 	return "";
@@ -2941,4 +2952,64 @@ function MakeEsoTitleCaseName($name)
 	$newName = preg_replace_callback("/\[vix]+$/", 'EsoNameMatchUpper', $newName);
 	
 	return $newName;
+}
+
+
+function IsSessionStarted()
+{
+	if ( php_sapi_name() !== 'cli' ) {
+		if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+			return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+		} else {
+			return session_id() === '' ? FALSE : TRUE;
+		}
+	}
+	return FALSE;
+}
+
+
+function SetupUespSession()
+{
+	global $canViewEsoMorrowindPts;
+	
+	if (!IsSessionStarted())
+	{
+		if (class_exists("UespMemcachedSession"))
+		{
+			UespMemcachedSession::install();
+		}
+		
+		session_name('uesp_net_wiki5_session');
+	
+		$startedSession = session_start();
+		//if (!$startedSession) error_log("Failed to start session!");
+	}
+
+	if ($_SESSION['uesp_eso_morrowind'] == 654321)
+	{
+		$canViewEsoMorrowindPts = true;
+	}
+	
+}
+
+
+function CanViewEsoLogVersion($version)
+{
+	global $canViewEsoMorrowindPts;
+	
+	$tableSuffix = GetEsoItemTableSuffix($version);
+	if ($tableSuffix != "14pts") return true;
+	
+	return $canViewEsoMorrowindPts;
+}
+
+
+function CanViewEsoLogTable($table)
+{
+	global $canViewEsoMorrowindPts;
+	
+	$index = strpos($table, "14pts");
+	if ($index === false) return true;
+	
+	return $canViewEsoMorrowindPts;
 }

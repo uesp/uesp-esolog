@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "14pts";
 
 $FIELDS = array(
 		"itemId",
@@ -118,7 +118,7 @@ $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
-$LASTID = 130000;
+$LASTID = 150000;
 $MINSUBTYPE = 1;
 $MAXSUBTYPE = 370;
 
@@ -255,4 +255,4 @@ $result = $db->query($query);
 
 $query = "RENAME TABLE minedItemSummaryTmp to minedItemSummary$TABLE_SUFFIX;";
 $result = $db->query($query);
-if (!$result) print("Error: Failed to rename temp table to minedItemSummary$TABLE_SUFFIX!");
+if (!$result) print("Error: Failed to rename temp table to minedItemSummary$TABLE_SUFFIX!\n{$db->error}");

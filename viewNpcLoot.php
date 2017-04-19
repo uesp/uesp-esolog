@@ -91,6 +91,21 @@ class CEsoViewNpcLoot
 			
 			if ($group == "reagent")
 				$this->viewGroup = "Reagent";
+			else if ($group == "solvent")
+				$this->viewGroup = "Solvent";
+			else if ($group == "ore")
+				$this->viewGroup = "Ore";
+			else if ($group == "silk")
+				$this->viewGroup = "Silk";
+			else if ($group == "scraps")
+				$this->viewGroup = "Scraps";
+			else if ($group == "wood")
+				$this->viewGroup = "Wood";
+			else if ($group == "container")
+				$this->viewGroup = "Container";
+			else if ($group == "provision")
+				$this->viewGroup = "Provisioning Container";
+				
 		}
 		
 		if ($this->inputParams['extra'] != null)
@@ -603,9 +618,75 @@ class CEsoViewNpcLoot
 		$query .= "name='Columbine' or name='Corn Flower' or name='Dragonthorn' or name='Emetic Russula' or name='Fleshfly Larva' or ";
 		$query .= "name='Imp Stool' or name='Lady''s Smock' or name='Luminous Russula' or name='Mudcrab Chitin' or name='Namira''s Rot' or ";
 		$query .= "name='Nightshade' or name='Nirnroot' or name='Scrib Jelly' or name='Spider Egg' or name='Stinkhorn' or name='Torchbug Thorax' or ";
-		$query .= "name='Violet Coprinus' or name='Water Hyacinth' or name='White Cap' or name='Wormwood';";
+		$query .= "name='Violet Coprinus' or name='Water Hyacinth' or name='White Cap' or name='Wormwood' or name='Torchbug' or name='Butterfly';";
 		
 		//$query = "SELECT id from npc WHERE name='Columbine' or name='Bugloss';";
+		return $query;
+	}
+	
+	
+	public function GetNpcGroupAlchemySolventQuery()
+	{
+		$query = "SELECT id from npc WHERE name='Water Skin' or name='Pure Water';";
+	
+		return $query;
+	}
+	
+	public function GetNpcGroupOreQuery()
+	{
+		$query = "SELECT id from npc WHERE name LIKE '% Ore' AND name NOT LIKE 'Rich %';";
+
+		return $query;
+	}
+	
+	
+	public function GetNpcGroupScrapsQuery()
+	{
+		$query = "SELECT npcId as id FROM npcLoot where itemName LIKE '% Scraps' GROUP BY npcId;";
+	
+		return $query;
+	}
+	
+	
+	public function GetNpcGroupSilkQuery()
+	{
+		$query = "SELECT id from npc WHERE name='Ancestor Silk' or name='Cotton' or name='Ebonthread' or name='Flax' or name='Ironthread' or ";
+		$query .= "name='Jute' or name='Kresh' or name='Silverweave' or name='Spidersilk' or name='Void Cloth';";
+		
+		return $query;
+	}
+
+	
+	public function GetNpcGroupWoodQuery()
+	{
+		$query = "SELECT id from npc WHERE name='Ruby Ash Wood' or name='Ash' or name='Beech' or name='Birch' or name='Hickory' or ";
+		$query .= "name='Mahogany' or name='Maple' or name='Nightwood' or name='Oak' or name='Yew';";
+	
+		return $query;
+	}
+	
+	
+	public function GetNpcGroupContainerQuery()
+	{
+		$query = "SELECT id FROM npc where ";
+		$query .= "name='Backpack' or name='Trunk' or ";
+		$query .= "name='Urn' or name='Wardrobe' or name='Dwemer Jug' or name='Dwemer Pot' or ";
+		$query .= "name='Dresser' or name='Large Dwemer Jug' or ";
+		$query .= "name='Large Dwemer Pot' or name='Nightstand' or name='Tomb Urn';";
+	
+		return $query;
+	}
+	
+	
+	public function GetNpcGroupProvisioningQuery()
+	{
+		$query = "SELECT id FROM npc where name='Barrel' or name='Barrels' or name='Crate' or name='Crates' or ";
+		$query .= "name='Bag' or name='Sack' or name='Jug' or name='Basket' or ";
+		$query .= "name='Burnt Barrel' or ";
+		$query .= "name='Burnt Barrels' or name='Burnt Crate' or name='Burnt Crates' or ";
+		$query .= "name='Saltrice Sack' or name='Apple Basket' or ";
+		$query .= "name='Corn Basket' or name='Flour Sack' or name='Millet Sack';";
+	
 		return $query;
 	}
 	
@@ -614,6 +695,20 @@ class CEsoViewNpcLoot
 	{
 		if ($this->viewGroup == "Reagent") 
 			$this->lastQuery = $this->GetNpcGroupAlchemyReagentQuery();
+		else if ($this->viewGroup == "Solvent")
+			$this->lastQuery = $this->GetNpcGroupAlchemySolventQuery();
+		else if ($this->viewGroup == "Ore")
+			$this->lastQuery = $this->GetNpcGroupOreQuery();
+		else if ($this->viewGroup == "Scraps")
+			$this->lastQuery = $this->GetNpcGroupScrapsQuery();
+		else if ($this->viewGroup == "Silk")
+			$this->lastQuery = $this->GetNpcGroupSilkQuery();
+		else if ($this->viewGroup == "Wood")
+			$this->lastQuery = $this->GetNpcGroupWoodQuery();
+		else if ($this->viewGroup == "Container")
+			$this->lastQuery = $this->GetNpcGroupContainerQuery();
+		else if ($this->viewGroup == "Provisioning Container")
+			$this->lastQuery = $this->GetNpcGroupProvisioningQuery();
 		
 		if ($this->lastQuery == "") return $this->ReportError("No valid NPC group specified!");
 		
@@ -634,7 +729,7 @@ class CEsoViewNpcLoot
 		
 		$npcIds = implode(",", $npcIds);
 		
-		$query = "SELECT * FROM npcLoot WHERE npcId in ($npcIds);";
+		$query = "SELECT npcLoot.*, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE npcId in ($npcIds);";
 		return $query;
 	}
 	
@@ -643,7 +738,7 @@ class CEsoViewNpcLoot
 	{
 		$safeName = $this->db->real_escape_string($this->viewItemName);
 		
-		$query = "SELECT *, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE itemName LIKE '%$safeName%';";
+		$query = "SELECT npcLoot.*, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE itemName LIKE '%$safeName%';";
 		return $query;
 	}
 	
@@ -754,6 +849,8 @@ class CEsoViewNpcLoot
 		$this->zoneQntTotals['Writ Summary'] = 0;
 		$this->zoneCountTotals['Hireling Summary'] = 0;
 		$this->zoneQntTotals['Hireling Summary'] = 0;
+		$this->zoneCountTotals['Item Summary'] = 0;
+		$this->zoneQntTotals['Item Summary'] = 0;
 		
 		foreach ($this->searchResults as $i => $result)
 		{
@@ -778,6 +875,8 @@ class CEsoViewNpcLoot
 					$this->zoneQntTotals['Writ Summary'] += $result['qnt'];
 					$this->zoneCountTotals['Hireling Summary'] += $result['count'];
 					$this->zoneQntTotals['Hireling Summary'] += $result['qnt'];
+					$this->zoneCountTotals['Item Summary'] += $result['count'];
+					$this->zoneQntTotals['Item Summary'] += $result['qnt'];
 				}
 				
 				continue;
@@ -936,7 +1035,7 @@ class CEsoViewNpcLoot
 			
 			foreach ($data1 as $dataValue => $data2)
 			{
-				if ($dataValue == "all")
+				if ($dataValue === "all")
 				{
 					if (!is_numeric($itemType))
 					{
@@ -955,8 +1054,6 @@ class CEsoViewNpcLoot
 				}
 				else if ($dataValue > 900)
 				{
-					//continue;
-					
 					$qualityValue = -1;
 					$trait = $dataValue - 1000;
 					$itemSuffix = " (".GetEsoItemTraitText($trait).")";
@@ -1038,6 +1135,24 @@ class CEsoViewNpcLoot
 			{
 				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Hireling Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
 			}
+		}
+		else if ($this->viewExtra == "item")
+		{
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Armor / Weapons (All)", array(1, 2), array('all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Armor / Weapons (Normal)", array(1, 2), array(1, 1), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Armor / Weapons (Fine)", array(1, 2), array(2, 2), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Armor / Weapons (Superior)", array(1, 2), array(3, 3), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Armor / Weapons (Epic)", array(1, 2), array(4, 4), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Armor / Weapons (Legendary)", array(1, 2), array(5, 5), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Paintings", array(61), array(4), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Treasure Maps", array(5), array(3), $this->itemSummary, $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Glyphs (All)", array(21, 26, 20), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			//$this->searchResults[] = $this->MakeNpcSummaryResult("Item Summary", "Gold", array(21, 26, 20), array('all', 'all', 'all'), $this->itemSummary, $totalQnt, $totalCount);
+			
+			if ($this->salesPriceServer != "")
+			{
+				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Item Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
+			}				
 		}
 		else if ($this->salesPriceServer != "")
 		{
@@ -1153,6 +1268,8 @@ class CEsoViewNpcLoot
 		if ($zone2 == "Writ Summary") $zone2 = " 1";
 		if ($zone1 == "Hireling Summary") $zone1 = " 1";
 		if ($zone2 == "Hireling Summary") $zone2 = " 1";
+		if ($zone1 == "Item Summary") $zone1 = " 1";
+		if ($zone2 == "Item Summary") $zone2 = " 1";
 		
 		$compare = strcasecmp($zone1, $zone2);
 		if ($compare != 0) return $compare;
@@ -1166,11 +1283,13 @@ class CEsoViewNpcLoot
 		$this->ParseNpcItemResults();
 		$npcName = $this->npcRecord['name'];
 		
-		$output = "\"Zone\",\"Item Link\",\"Item Name\",\"Item Type\",\"Quality\",\"Trait\",\"Qnt\",\"Count\",\"Stack Size\",\"Total\",\"Drop Chance\",\"Stack Chance\"\n";
+		$output = "\"Zone\",\"NPC\",\"Item Link\",\"Item Name\",\"Item Type\",\"Quality\",\"Trait\",\"Qnt\",\"Count\",\"Stack Size\",\"Total\",\"Drop Chance\",\"Stack Chance\"\n";
 		
 		foreach ($this->searchResults as $result)
 		{
 			//if ($result['itemName'] == "__totalCount") continue;
+			
+			if ($result['name'] != null) $npcName = $result['name'];
 				
 			$zone = $this->EscapeStringCsv($result['zone']);
 			$itemLink = $this->EscapeStringCsv($result['itemLink']);
@@ -1189,7 +1308,7 @@ class CEsoViewNpcLoot
 			//if ($quality == "all") $stackSize = "";
 			$stackChance = round($count / $totalZoneQnt * 100, 4);
 			
-			$output .= "\"$zone\",\"$itemLink\",\"$itemName\",\"$itemType\",\"$quality\",\"$trait\",$qnt,$count,\"$stackSize\",$totalZoneQnt,$dropChance%,$stackChance%\n";
+			$output .= "\"$zone\",\"$npcName\"\"$itemLink\",\"$itemName\",\"$itemType\",\"$quality\",\"$trait\",$qnt,$count,\"$stackSize\",$totalZoneQnt,$dropChance%,$stackChance%\n";
 		}
 		
 		return $output;
@@ -1216,6 +1335,7 @@ class CEsoViewNpcLoot
 		
 		$output .= "<tr>";
 		$output .= "<th>Zone</th>";
+		if ($this->viewGroup != "") $output .= "<th>NPC</th>";
 		$output .= "<th>Item Name</th>";
 		$output .= "<th>Item Type</th>";
 		$output .= "<th>Trait</th>";
@@ -1236,10 +1356,13 @@ class CEsoViewNpcLoot
 		$totalQnt = 0;
 		if ($this->zoneCountTotals[''] != null) $totalQnt = $this->zoneCountTotals[''];
 		$lastZone = "";
-		
+		$npcName = $this->viewNpcName;
+				
 		foreach ($this->searchResults as $result)
 		{
 			if ($result['itemName'] == "__totalCount" || $result['itemName'] == "") continue;
+			
+			if ($result['name'] != null) $npcName = $result['name'];
 			
 			$zone = $result['zone'];
 			$itemLink = $result['itemLink'];
@@ -1249,8 +1372,6 @@ class CEsoViewNpcLoot
 			$totalZoneQnt = $this->zoneCountTotals[$zone];
 			$dropChance = "";
 			if ($result['dropZoneRatio'] > 0) $dropChance = "" . round($result['dropZoneRatio'] * 100, 1) . "%";
-			$itemType = "";
-			$quality = "";
 			$iconUrl = "";
 			if ($result['icon']) $iconUrl = MakeEsoIconLink($result['icon']);
 			$itemType = GetEsoItemTypeText($result['itemType']);
@@ -1259,7 +1380,7 @@ class CEsoViewNpcLoot
 			$trait = GetEsoItemTraitText($result['trait']);
 			$totalPrice = $result['totalPrice'];
 			
-			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary"))
+			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary" || $lastZone == "Item Summary"))
 			{
 				$output .= "<tr>";
 				$output .= "<td colspan='6'></td>";
@@ -1268,6 +1389,7 @@ class CEsoViewNpcLoot
 			
 			$output .= "<tr>";
 			$output .= "<td>$zone</td>";
+			if ($this->viewGroup != "") $output .= "<td>$npcName</td>";
 			
 			if ($iconUrl == "")
 				$output .= "<td><div class='esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'>$itemName</div></td>";
@@ -1473,6 +1595,7 @@ class CEsoViewNpcLoot
 
 $viewNpcLoot = new CEsoViewNpcLoot();
 $viewNpcLoot->Render();
+
 
 
 
