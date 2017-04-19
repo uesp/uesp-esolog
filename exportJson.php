@@ -58,6 +58,8 @@ class CEsoLogJsonExport
 	
 	public function __construct()
 	{
+		SetupUespSession();
+		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
@@ -304,6 +306,12 @@ class CEsoLogJsonExport
 	public function Export()
 	{
 		$this->OutputHeader();
+		
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			return " 'Permission Denied!' ";
+		}
+		
 		$this->ExportTables();
 		
 		$this->outputJson = json_encode($this->outputData);
