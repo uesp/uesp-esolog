@@ -103,6 +103,8 @@ class CEsoDumpMinedItems {
 	
 	public function __construct()
 	{
+		SetupUespSession();
+		
 		$this->TRANSFORM_FIELDS = array(
 				"trait" => array($this, MakeItemTraitText),
 				"weaponType" => GetEsoItemWeaponTypeText,
@@ -739,6 +741,12 @@ class CEsoDumpMinedItems {
 	
 	public function Output()
 	{
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			print("Permission Denied!");
+			return;
+		}
+		
 		if (!$this->LoadFields()) return false;
 		$this->SetTableFields();
 		$this->CheckSortFields();
@@ -762,5 +770,3 @@ class CEsoDumpMinedItems {
 $g_EsoDumpMinedItems = new CEsoDumpMinedItems();
 $g_EsoDumpMinedItems->Output();
 
-
-?>

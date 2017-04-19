@@ -41,11 +41,12 @@ class CEsoViewCP
 
 	public function __construct ($isEmbedded = false, $parseParams = true)
 	{
+		SetupUespSession();
+		
 		$this->ESOVCP_HTML_TEMPLATE = __DIR__."/templates/esocp_template.txt";
 		$this->ESOVCP_HTML_TEMPLATE_EMBED = __DIR__."/templates/esocp_embed_template.txt";
 		$this->ESOVCP_HTML_SIMPLE_TEMPLATE = __DIR__."/templates/esocp_simple_template.txt";
-		$this->ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED = __DIR__."/templates/esocp_simple_embed_template.txt";
-		
+		$this->ESOVCP_HTML_SIMPLE_TEMPLATE_EMBED = __DIR__."/templates/esocp_simple_embed_template.txt";		
 		
 		$this->isEmbedded = $isEmbedded;
 	
@@ -530,6 +531,32 @@ class CEsoViewCP
 				'{cpDisciplines}' => $this->GetCpDisciplinesHtml(),
 				'{skillDescJson}' => $this->GetCpSkillDescJson(),
 				'{cpDataJson}' => json_encode($this->cpDataArray),
+				'{topBarDisplay}' => $this->GetTopBarDisplay(),
+				'{discWidth}' => $this->GetDiscWidth(),
+		);
+		
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			return $this->CreateErrorOutputHtml();
+		}
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+		return $output;
+	}
+	
+	
+	public function CreateErrorOutputHtml()
+	{
+		$this->LoadTemplate();
+	
+		$replacePairs = array(
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{updateDate}' => $this->GetUpdateDate(),
+				'{cpSkills}' => "",
+				'{cpDisciplines}' => "Permission Denied!",
+				'{skillDescJson}' => "{}",
+				'{cpDataJson}' => "{}",
 				'{topBarDisplay}' => $this->GetTopBarDisplay(),
 				'{discWidth}' => $this->GetDiscWidth(),
 		);

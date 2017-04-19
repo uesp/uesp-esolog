@@ -76,14 +76,16 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "14pts";
+	const SKILLS_TABLESUFFIX   = "14pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
 	const ONLY_PARSE_MINEDITEMS = false;
 	const ONLY_PARSE_NPCLOOT = false;
+	const ONLY_PARSE_NPCLOOT_CHESTS = false;
 	const ONLY_PARSE_MAILITEM = false;
+	const ONLY_PARSE_SAFEBOXES_FOUND = false;
 	
 		// Start of log09100.log: 1487204716 / 4744024596682899456
 	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1487204716;
@@ -1395,7 +1397,7 @@ class EsoLogParser
 	
 	public function SaveOldQuestStage (&$record)
 	{
-		return $this->saveRecord('questStage', $record, 'id', self::$OLDQUESTSTAGE_FIELDS);
+		return $this->saveRecord('oldQuestStage', $record, 'id', self::$OLDQUESTSTAGE_FIELDS);
 	}
 	
 	
@@ -1528,6 +1530,7 @@ class EsoLogParser
 						chestsFound INTEGER NOT NULL,
 						sacksFound INTEGER NOT NULL,
 						trovesFound INTEGER NOT NULL,
+						safeBoxesFound INTEGER NOT NULL,
 						booksRead INTEGER NOT NULL,
 						nodesHarvested INTEGER NOT NULL,
 						itemsLooted INTEGER NOT NULL,
@@ -2282,6 +2285,7 @@ class EsoLogParser
 		$this->users[$userName]['sacksFound'] = 0;
 		$this->users[$userName]['trovesFound'] = 0;
 		$this->users[$userName]['booksRead'] = 0;
+		$this->users[$userName]['safeBoxesFound'] = 0;
 		$this->users[$userName]['itemsLooted'] = 0;
 		$this->users[$userName]['itemsStolen'] = 0;
 		$this->users[$userName]['nodesHarvested'] = 0;
@@ -2367,6 +2371,7 @@ class EsoLogParser
 		settype($row['trovesFound'], "integer");
 		settype($row['sacksFound'], "integer");
 		settype($row['booksRead'], "integer");
+		settype($row['safeBoxesFound'], "integer");
 		settype($row['itemsLooted'], "integer");
 		settype($row['itemsStolen'], "integer");
 		settype($row['nodesHarvested'], "integer");
@@ -2382,6 +2387,7 @@ class EsoLogParser
 		$this->users[$userName]['trovesFound'] = $row['trovesFound'];
 		$this->users[$userName]['sacksFound'] = $row['sacksFound'];
 		$this->users[$userName]['booksRead'] = $row['booksRead'];
+		$this->users[$userName]['safeBoxesFound'] = $row['safeBoxesFound'];
 		$this->users[$userName]['itemsLooted'] = $row['itemsLooted'];
 		$this->users[$userName]['itemsStolen'] = $row['itemsStolen'];
 		$this->users[$userName]['nodesHarvested'] = $row['nodesHarvested'];
@@ -2494,11 +2500,14 @@ class EsoLogParser
 		$query .= ", chestsFound={$user['chestsFound']}";
 		$query .= ", trovesFound={$user['trovesFound']}";
 		$query .= ", sacksFound={$user['sacksFound']}";
+		$query .= ", safeBoxesFound={$user['safeBoxesFound']}";
 		$query .= ", booksRead={$user['booksRead']}";
 		$query .= ", nodesHarvested={$user['nodesHarvested']}";
 		$query .= ", mobsKilled={$user['mobsKilled']}";
 		$query .= ", language='{$user['language']}'";
 		$query .= " WHERE name='{$safeName}';";
+		$this->lastQuery = $query;
+		
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to save user '{$safeName}'!");
 		
@@ -2734,7 +2743,7 @@ class EsoLogParser
 		
 		if ($logEntry['itemName']) $logEntry['itemName'] = MakeEsoTitleCaseName($logEntry['itemName']);
 		
-		if (!self::ONLY_PARSE_NPCLOOT && !self::ONLY_PARSE_MAILITEM)
+		if (!self::ONLY_PARSE_NPCLOOT && !self::ONLY_PARSE_MAILITEM && !self::ONLY_PARSE_NPCLOOT_CHESTS)
 		{
 			$this->ParseLootGainedEntry($logEntry);
 		}
@@ -2809,6 +2818,18 @@ class EsoLogParser
 		$qnt = intval($logEntry['qnt']);
 				
 		if ($npcName == null || $npcName == "") return false;
+		
+		if (($npcName == "Chest" || $npcName == "Safebox") && $this->currentUser['__lastLockPickQuality'] != null)
+		{
+			$deltaTime = $logEntry['gameTime'] - $this->currentUser['__lastLockPickGameTime'];
+			//print("\tChest: $deltaTime, {$this->currentUser['__lastLockPickQuality']}\n");
+			
+			if ($deltaTime < 15000)
+			{
+				$chestType = GetEsoChestTypeText($this->currentUser['__lastLockPickQuality']);
+				if ($chestType != "") $npcName = "$npcName ($chestType)";
+			}
+		}
 		
 		if ($logEntry['event'] == 'MoneyGained')
 		{
@@ -4670,6 +4691,17 @@ class EsoLogParser
 				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
 			}
 		}
+		else if ($logEntry['name'] == "Safebox")
+		{
+			$diff = $logEntry['gameTime'] - $this->currentUser['__lastSafeboxFoundGameTime'];
+				
+			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
+			{
+				++$this->currentUser['safeBoxesFound'];
+				$this->currentUser['__dirty'] = true;
+				$this->currentUser['__lastSafeboxFoundGameTime'] = $logEntry['gameTime'];
+			}
+		}
 		
 		return $result;
 	}
@@ -4697,6 +4729,10 @@ class EsoLogParser
 		
 		$this->currentUser['__lastLockPickQuality'] = $logEntry['quality'];
 		$this->currentUser['__lastLockPickGameTime'] = $logEntry['gameTime'];
+		
+		//print("\tLockPick: {$logEntry['quality']}\n");
+		
+		if (self::ONLY_PARSE_NPCLOOT_CHESTS || self::ONLY_PARSE_NPCLOOT) return true;
 		
 		$locationId = $this->currentUser['lastLocationRecordId'];
 		if ($locationId == null) $locationId = 0;
@@ -6399,6 +6435,25 @@ class EsoLogParser
 				case "OpenFootLocker":
 				case "MoneyGained":
 				case "TelvarUpdate":
+				case "LockPick":
+					break;
+				default:
+					return true;
+			}
+		}
+		else if (self::ONLY_PARSE_NPCLOOT_CHESTS)
+		{
+			$skipLogEntryCreate = true;
+				
+			switch ($logEntry['event'])
+			{
+				case "LootGained":
+				case "MoneyGained":
+					if ($logEntry['lastTarget'] != "Chest" && $logEntry['lastTarget'] != "Safebox") return true;
+				case "LockPick":
+					break;
+				case 'FoundTreasure':
+					if ($logEntry['lastTarget'] != "Safebox") return true;
 					break;
 				default:
 					return true;
@@ -6413,6 +6468,20 @@ class EsoLogParser
 				default:
 					return true;
 			}
+		}
+		else if (self::ONLY_PARSE_SAFEBOXES_FOUND)
+		{
+			$skipLogEntryCreate = true;
+			
+			switch ($logEntry['event'])
+			{
+				case "FoundTreasure":
+					break;
+				default:
+					return true;
+			}
+			
+			if ($logEntry['name'] != "Safebox") return true;
 		}
 		
 		if (!$this->isValidLogEntry($logEntry)) return false;
@@ -6433,9 +6502,10 @@ class EsoLogParser
 		
 		if ($skipLogEntryCreate) $createLogEntry = false;
 		
-		if ($createLogEntry && $skipLogEntryCreate)
+		if ($createLogEntry && !$skipLogEntryCreate)
 		{
 			$isDuplicate = $this->isDuplicateLogEntry($logEntry);
+			//print("\tLogEntry: {$logEntry['event']} = $isDuplicate\n");
 		}
 		
 		if ($this->skipDuplicates && $isDuplicate)

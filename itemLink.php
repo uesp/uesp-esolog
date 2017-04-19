@@ -211,6 +211,8 @@ class CEsoItemLink
 	
 	public function __construct ()
 	{
+		SetupUespSession();
+		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
@@ -1085,7 +1087,7 @@ class CEsoItemLink
 		
 		$origin = $_SERVER['HTTP_ORIGIN'];
 		
-		if (substr($origin, -8) == "uesp.net")
+		//if (substr($origin, -8) == "uesp.net")
 		{
 			header("Access-Control-Allow-Origin: $origin");
 		}
@@ -2726,6 +2728,23 @@ class CEsoItemLink
 	public function ShowItem()
 	{
 		$this->OutputHtmlHeader();
+		
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			$this->LoadItemErrorData();
+			$this->itemRecord['name'] = "Permission Denied!";
+			
+			if ($this->outputRaw)
+				$this->OutputRawData();
+			else if ($this->outputType == "html")
+				$this->OutputHtml();
+			elseif ($this->outputType == "text")
+				$this->DumpItem();
+			else
+				print("Permission Denied!");
+			
+			return;
+		}
 		
 		if ($this->questItemId > 0) return $this->ShowQuestItem();
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();

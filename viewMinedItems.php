@@ -53,6 +53,8 @@ class CEsoViewMinedItems
 	
 	public function __construct()
 	{
+		SetupUespSession();
+		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
@@ -538,8 +540,31 @@ class CEsoViewMinedItems
 				'{breadCrumb}' => $this->MakeBreadCrumbBlock(),
 		);
 		
+		if (!CanViewEsoLogVersion($this->version))
+		{
+			return $this->ViewErrorItems();
+		}
+		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		print($output);
+	}
+	
+	
+	public function ViewErrorItems()
+	{
+		$this->OutputHtmlHeader();
+	
+		$replacePairs = array(
+				'{title}' => $this->MakeTitleString(),
+				'{content}' => "Permission Denied!",
+				'{search}' => $this->viewSearch,
+				'{breadCrumb}' => $this->MakeBreadCrumbBlock(),
+		);
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+		print($output);
+		
+		return true;
 	}
 	
 	
@@ -547,5 +572,3 @@ class CEsoViewMinedItems
 
 $g_EsoViewMinedItems = new CEsoViewMinedItems();
 $g_EsoViewMinedItems->ViewItems();
-
-?>

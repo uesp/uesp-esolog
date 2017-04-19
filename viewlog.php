@@ -17,6 +17,7 @@ class EsoLogViewer
 	const ENABLE_11PTS = false;
 	const ENABLE_12PTS = false;
 	const ENABLE_13PTS = false;
+	const ENABLE_14PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -311,6 +312,7 @@ class EsoLogViewer
 			'chestsFound' => self::FIELD_INT,
 			'sacksFound' => self::FIELD_INT,
 			'trovesFound' => self::FIELD_INT,
+			'safeBoxesFound' => self::FIELD_INT,
 			'booksRead' => self::FIELD_INT,
 			'nodesHarvested' => self::FIELD_INT,
 			'itemsLooted' => self::FIELD_INT,
@@ -1468,6 +1470,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem14pts' => array(
+					'displayName' => 'Update 14-PTS: Mined Items',
+					'displayNameSingle' => 'Update 14-PTS: Mined Item',
+					'record' => 'minedItem14pts',
+					'table' => 'minedItem14pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 14 (Morrowind) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink14pts',
+							'link' => 'MakeMinedItemLink14pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -1646,6 +1678,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItemSummary14pts' => array(
+					'displayName' => 'Update 14-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 14-PTS: Mined Item Summary',
+					'record' => 'minedItemSummary14pts',
+					'table' => 'minedItemSummary14pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 14 (Morrowind) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+						
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink14pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'setSummary' => array(
 					'displayName' => 'Set Summaries',
 					'displayNameSingle' => 'Set Item Summary',
@@ -1806,6 +1868,30 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'record' => 'minedItemSummary13pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'setSummary14pts' => array(
+					'displayName' => 'Update 14-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 14-PTS: Set Item Summary',
+					'record' => 'setSummary14pts',
+					'table' => 'setSummary14pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update 14 (Homestead) as logged from the PTS server.",
+						
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'minedItemSummary14pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -1977,6 +2063,34 @@ class EsoLogViewer
 							'upgradeLines' => 'RemoveTextFormats',
 					),
 						
+					'filters' => array(
+					),
+			),
+			
+			'minedSkills14pts' => array(
+					'displayName' => 'Update 14-PTS: Mined Skills',
+					'displayNameSingle' => 'Update 14-PTS: Mined Skill',
+					'record' => 'minedSkills14pts',
+					'table' => 'minedSkills14pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are sets for update 14 (Morrowind) as logged from the PTS server.",
+			
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+			
 					'filters' => array(
 					),
 			),
@@ -2178,7 +2292,7 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			'Items 13-PTS' => 'minedItemSummary13pts',
+			'Items 14-PTS' => 'minedItemSummary14pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'NPC Loots' => 'npcLoot',
@@ -2191,9 +2305,9 @@ class EsoLogViewer
 			'Quest Reward' => 'questReward',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			'Sets 13-PTS' => 'setSummary13pts',
+			'Sets 14-PTS' => 'setSummary14pts',
 			'Skills' => 'minedSkills',
-			'Skills 13-PTS' => 'minedSkills13pts',
+			'Skills 14-PTS' => 'minedSkills14pts',
 	);
 	
 	
@@ -2392,6 +2506,14 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary14pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -2448,6 +2570,14 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
+			'setSummary14pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
 			'minedSkills' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
@@ -2488,6 +2618,14 @@ class EsoLogViewer
 							'description' => 'note',
 					),
 			),
+			'minedSkills14pts' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
 	);
 	
 	
@@ -2501,6 +2639,8 @@ class EsoLogViewer
 	
 	public function __construct ()
 	{
+		SetupUespSession();
+		
 		uasort(self::$RECORD_TYPES, CompareRecordTypeByDisplayName);
 		
 			// TODO: Static initialization?
@@ -2634,6 +2774,27 @@ class EsoLogViewer
 			unset(self::$SEARCH_DATA['minedItemSummary13pts']);
 			unset(self::$SEARCH_DATA['setSummary13pts']);
 			unset(self::$SEARCH_DATA['minedSkills13pts']);
+		}
+		
+		if (self::ENABLE_14PTS && CanViewEsoLogVersion("14pts"))
+		{
+			self::$RECORD_TYPES['minedItem14pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary14pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary14pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedSkills14pts']['fields'] = self::$SKILLDUMP_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary14pts']);
+			unset(self::$RECORD_TYPES['minedItem14pts']);
+			unset(self::$RECORD_TYPES['setSummary14pts']);
+			unset(self::$RECORD_TYPES['minedSkills14pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary14pts']);
+			unset(self::$SEARCH_DATA['setSummary14pts']);
+			unset(self::$SEARCH_DATA['minedSkills14pts']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Items 14-PTS']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Sets 14-PTS']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Skills 14-PTS']);
 		}
 		
 		$this->InitDatabase();
@@ -2884,6 +3045,8 @@ class EsoLogViewer
 		if ($lastUpdate == null) $lastUpdate = '?';
 		
 		$output = "<hr>\n<div class=\"elvLastUpdate\">Data last updated on $lastUpdate</div>";
+		$output .= "<br>{$_SESSION['uesp_eso_morrowind']}";
+		
 		print($output);
 		
 		?>
@@ -3895,6 +4058,8 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function DoRecordDisplay ($recordInfo)
 	{
+		if (!CanViewEsoLogTable($recordInfo['table'])) return $this->ReportError("Permission denied!");
+		
 		$this->OutputRecordHeader($recordInfo);
 		$this->PrintRecords($recordInfo);
 		
@@ -3923,6 +4088,7 @@ If you do not understand what this information means, or how to use this webpage
 	public function DoViewRecord ($recordInfo)
 	{
 		if (!$this->IsOutputHTML()) return $this->ReportError("Cannot output record in {$this->outputFormat} format!");
+		if (!CanViewEsoLogTable($recordInfo['table'])) return $this->ReportError("Permission denied!");
 		
 		if ($this->recordField != '') return $this->DoViewRecordField($recordInfo);
 		
