@@ -1883,7 +1883,7 @@ class EsoLogViewer
 					'table' => 'setSummary14pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'setName',
-					'message' => "These are sets for update 14 (Homestead) as logged from the PTS server.",
+					'message' => "These are sets for update 14 (Morrowind) as logged from the PTS server.",
 						
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
@@ -3177,6 +3177,19 @@ class EsoLogViewer
 	}
 	
 	
+	public function MakeMinedItemLink14pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=14pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
 	public function MakeMinedItemSummaryLink ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
@@ -3239,6 +3252,17 @@ class EsoLogViewer
 		$itemId = $itemData['itemId'];
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=13pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink14pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=14pts\">" . $value . "</a>";
 		return $output;
 	}
 	

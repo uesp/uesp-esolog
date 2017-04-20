@@ -444,6 +444,7 @@ class CEsoViewSkills
 		$output .= $this->GetSkillTreeTypeHtml("Nightblade", true);
 		$output .= $this->GetSkillTreeTypeHtml("Sorcerer", true);
 		$output .= $this->GetSkillTreeTypeHtml("Templar", true);
+		if (IsEsoVersionAtLeast($this->version, "14") && CanViewEsoLogVersion("14pts")) $output .= $this->GetSkillTreeTypeHtml("Warden", true);
 		$output .= $this->GetSkillTreeTypeHtml("Weapon", false);
 		$output .= $this->GetSkillTreeTypeHtml("Armor", false);
 		$output .= $this->GetSkillTreeTypeHtml("World", false);
