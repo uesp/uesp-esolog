@@ -94,7 +94,8 @@ class CEsoViewCP
 	
 	private function LoadCpDisciplines()
 	{
-		$query = "SELECT * FROM cpDisciplines;";
+		$suffix = $this->GetTableSuffix();
+		$query = "SELECT * FROM cpDisciplines$suffix;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load cpDisciplines records!");
 		
@@ -120,7 +121,8 @@ class CEsoViewCP
 	
 	private function LoadCpSkills()
 	{
-		$query = "SELECT * FROM cpSkills;";
+		$suffix = $this->GetTableSuffix();
+		$query = "SELECT * FROM cpSkills$suffix;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load cpSkills records!");
 		
@@ -142,7 +144,8 @@ class CEsoViewCP
 	
 	private function LoadCpSkillDescriptions()
 	{
-		$query = "SELECT * FROM cpSkillDescriptions;";
+		$suffix = $this->GetTableSuffix();
+		$query = "SELECT * FROM cpSkillDescriptions$suffix;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load cpSkillDescriptions records!");
 		

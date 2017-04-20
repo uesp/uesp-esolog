@@ -1,1 +1,0 @@
-viewSkills.php

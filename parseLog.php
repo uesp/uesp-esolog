@@ -157,6 +157,7 @@ class EsoLogParser
 			"minedSkills12pts",
 			"minedSkills13",
 			"minedSkills13pts",
+			"minedSkills14pts",
 			"collectibles",
 			"achievements",
 	);
@@ -5160,12 +5161,28 @@ class EsoLogParser
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
 			}
+			else if ($minedItem['setName'] == "Shacklebreaker")
+			{
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+			}
 			else
 			{
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 			}
 			
 			$minedItem['__dirty'] = true;
+		}
+		
+		if (array_key_exists('setDesc7', $logEntry))
+		{
+			if ($minedItem['itemId'] != $this->lastSetCount7WarningItemId)
+			{
+				$setName = $logEntry['setName'];
+				$setCount = $logEntry['setBonusCount'];
+				$itemId = $minedItem['itemId'];
+				print("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!\n");
+				$this->lastSetCount7WarningItemId = $minedItem['itemId'];
+			}
 		}
 		
 		$result = true;

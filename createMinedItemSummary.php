@@ -250,8 +250,9 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	if (!$result) print("ERROR: Database query error (writing item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
 }
 
-$query = "DROP TABLE minedItemSummary$TABLE_SUFFIX IF EXISTS;";
+$query = "DROP TABLE IF EXISTS minedItemSummary$TABLE_SUFFIX;";
 $result = $db->query($query);
+if (!$result) print("Error: Failed to delete table to minedItemSummary$TABLE_SUFFIX!\n{$db->error}");
 
 $query = "RENAME TABLE minedItemSummaryTmp to minedItemSummary$TABLE_SUFFIX;";
 $result = $db->query($query);
