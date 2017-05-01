@@ -3045,7 +3045,7 @@ class EsoLogViewer
 		if ($lastUpdate == null) $lastUpdate = '?';
 		
 		$output = "<hr>\n<div class=\"elvLastUpdate\">Data last updated on $lastUpdate</div>";
-		$output .= "<br>{$_SESSION['uesp_eso_morrowind']}";
+		//$output .= "<br>{$_SESSION['uesp_eso_morrowind']}";
 		
 		print($output);
 		

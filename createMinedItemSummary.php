@@ -14,7 +14,7 @@ $FIELDS = array(
 		"style",
 		"trait",
 		"type",
-		//"specialType",	//Update13
+		"specialType",	//Update13
 		"equipType",
 		"weaponType",
 		"armorType",
