@@ -63,6 +63,7 @@ class CEsoViewAchievements
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
+		header("content-type: text/html");
 	
 		$origin = $_SERVER['HTTP_ORIGIN'];
 	
