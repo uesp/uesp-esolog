@@ -217,6 +217,7 @@ function CombineEsoReagentEffects(effects1, effects2, effects3)
 		if (count > 1) combinedEffects.push(effectId);
 	}
 	
+	//return combinedEffects.sort((a, b) => a - b);
 	return combinedEffects;
 }
 
