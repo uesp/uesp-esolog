@@ -217,8 +217,19 @@ function CombineEsoReagentEffects(effects1, effects2, effects3)
 		if (count > 1) combinedEffects.push(effectId);
 	}
 	
+	return combinedEffects.sort(SortEffectByIndex);
 	//return combinedEffects.sort((a, b) => a - b);
-	return combinedEffects;
+	//return combinedEffects;
+}
+
+
+function SortEffectByIndex(a, b)
+{
+	var eff1 = g_EsoPotionEffects[a];
+	var eff2 = g_EsoPotionEffects[b];
+	
+	if (eff1 == null || eff2 == null) return a - b;
+	return eff1.index - eff2.index;
 }
 
 
@@ -236,13 +247,13 @@ function UpdateEsoPotion()
 	for (var i = 0; i < combinedEffects.length; i++) 
 	{
 		potionData = potionData * 256 + combinedEffects[i];
-		
-		if (i == 0 && g_EsoPotionEffects[combinedEffects[i]] != null)
-		{
-			var effectData = g_EsoPotionEffects[combinedEffects[i]];
-			potionBaseId = effectData.potionBaseId;
-			poisonBaseId = effectData.poisonBaseId;
-		}
+	}
+	
+	if (combinedEffects[0] != null && g_EsoPotionEffects[combinedEffects[0]] != null)
+	{
+		var effectData = g_EsoPotionEffects[combinedEffects[0]];
+		potionBaseId = effectData.potionBaseId;
+		poisonBaseId = effectData.poisonBaseId;
 	}
 	
 	UpdateEsoPotionTooltip(potionData, potionBaseId, poisonBaseId);
