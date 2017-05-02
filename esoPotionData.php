@@ -53,6 +53,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76827,
 				"icon" => "resources/crafting_alchemy_trait_restorehealth.png",
 				"isPositive" => true,
+				"index" => 18,
 			),
 	2 =>  array(
 				"id" => 2,
@@ -63,6 +64,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76826,
 				"icon" => "resources/crafting_alchemy_trait_ravagehealth.png",
 				"isPositive" => false,
+				"index" => 5,
 			),
 	3 =>  array(
 				"id" => 3,
@@ -73,6 +75,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76829,
 				"icon" => "resources/crafting_alchemy_trait_restoremagicka.png",
 				"isPositive" => true,
+				"index" => 19,
 			),
 	4 =>  array(
 				"id" => 4,
@@ -83,6 +86,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76828,
 				"icon" => "resources/crafting_alchemy_trait_ravagemagicka.png",
 				"isPositive" => false,
+				"index" => 6,
 			),
 	5 =>  array(
 				"id" => 5,
@@ -93,6 +97,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76829,
 				"icon" => "resources/crafting_alchemy_trait_restorestamina.png",
 				"isPositive" => true,
+				"index" => 20,
 			),
 	6 =>  array(
 				"id" => 6,
@@ -103,6 +108,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76830,
 				"icon" => "resources/crafting_alchemy_trait_ravagestamina.png",
 				"isPositive" => false,
+				"index" => 7,
 			),
 	7 =>  array(
 				"id" => 7,
@@ -113,6 +119,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76832,
 				"icon" => "resources/crafting_alchemy_trait_increasespellresist.png",
 				"isPositive" => true,
+				"index" => 23,
 			),
 	8 =>  array(
 				"id" => 8,
@@ -124,6 +131,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76833,
 				"icon" => "resources/crafting_alchemy_trait_lowerspellresist.png",
 				"isPositive" => false,
+				"index" => 25,
 			),
 	9 =>  array(
 				"id" => 9,
@@ -134,6 +142,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76837,
 				"icon" => "resources/crafting_alchemy_trait_increasearmor.png",
 				"isPositive" => true,
+				"index" => 24,
 			),
 	10 =>  array(
 				"id" => 10,
@@ -145,6 +154,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76835,
 				"icon" => "resources/crafting_alchemy_trait_lowerarmor.png",
 				"isPositive" => false,
+				"index" => 26,
 			),
 	11 =>  array(
 				"id" => 11,
@@ -155,6 +165,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76840,
 				"icon" => "resources/crafting_alchemy_trait_increasespellpower.png",
 				"isPositive" => true,
+				"index" => 12,
 			),
 	12 =>  array(
 				"id" => 12,
@@ -166,6 +177,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76834,
 				"icon" => "resources/crafting_alchemy_trait_lowerspellpower.png",
 				"isPositive" => false,
+				"index" => 14,
 			),
 	13 =>  array(
 				"id" => 13,
@@ -176,6 +188,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76838,
 				"icon" => "resources/crafting_alchemy_trait_increaseweaponpower.png",
 				"isPositive" => true,
+				"index" => 13,
 			),
 	14 =>  array(
 				"id" => 14,
@@ -187,6 +200,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76839,
 				"icon" => "resources/crafting_alchemy_trait_lowerweaponpower.png",
 				"isPositive" => false,
+				"index" => 15,
 			),
 	15 =>  array(
 				"id" => 15,
@@ -197,6 +211,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76836,
 				"icon" => "resources/crafting_alchemy_trait_spellcrit.png",
 				"isPositive" => true,
+				"index" => 16,
 			),
 	16 =>  array(
 				"id" => 16,
@@ -208,6 +223,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76841,
 				"icon" => "resources/crafting_alchemy_trait_lowerspellcrit.png",
 				"isPositive" => false,
+				"index" => 8,
 			),
 	17 =>  array(
 				"id" => 17,
@@ -218,6 +234,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76842,
 				"icon" => "resources/crafting_alchemy_trait_weaponcrit.png",
 				"isPositive" => true,
+				"index" => 17,
 			),
 	18 =>  array(
 				"id" => 18,
@@ -229,6 +246,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76843,
 				"icon" => "resources/crafting_alchemy_trait_lowerweaponcrit.png",
 				"isPositive" => false,
+				"index" => 9,
 			),
 	19 =>  array(
 				"id" => 19,
@@ -239,6 +257,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 81196,
 				"icon" => "resources/crafting_alchemy_trait_unstoppable.png",
 				"isPositive" => true,
+				"index" => 2,
 			),
 	20 =>  array(
 				"id" => 20,
@@ -250,6 +269,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76845,
 				"icon" => "resources/crafting_alchemy_trait_stun.png",
 				"isPositive" => false,
+				"index" => 4,
 			),
 	21 =>  array(
 				"id" => 21,
@@ -260,6 +280,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76847,
 				"icon" => "resources/crafting_alchemy_trait_detection.png",
 				"isPositive" => true,
+				"index" => 3,
 			),
 	22 =>  array(
 				"id" => 22,
@@ -270,6 +291,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 76844, //76846?
 				"icon" => "resources/crafting_alchemy_trait_invisible.png",
 				"isPositive" => true,
+				"index" => 10,
 			),
 	23 =>  array(
 				"id" => 23,
@@ -280,6 +302,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 0,
 				"icon" => "resources/crafting_alchemy_trait_speed.png",
 				"isPositive" => true,
+				"index" => 11,
 			),
 	24 =>  array(
 				"id" => 24,
@@ -291,6 +314,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 81196, //76849?
 				"icon" => "resources/crafting_alchemy_trait_reducespeed.png",
 				"isPositive" => false,
+				"index" => 1,
 			),
 	
 					/* Update 10 */
@@ -303,6 +327,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 77597,
 				"icon" => "resources/crafting_poison_trait_protection.png",
 				"isPositive" => true,
+				"index" => 27,
 			),
 	26 =>  array(
 				"id" => 26,
@@ -313,6 +338,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 77599,
 				"icon" => "resources/crafting_poison_trait_damage.png",
 				"isPositive" => false,
+				"index" => 28,
 			),
 	27 =>  array(
 				"id" => 27,
@@ -323,6 +349,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 77593,
 				"icon" => "resources/crafting_poison_trait_hot.png",
 				"isPositive" => true,
+				"index" => 21,
 			),
 	28 =>  array(
 				"id" => 28,
@@ -333,6 +360,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 81195, //77595?
 				"icon" => "resources/crafting_poison_trait_dot.png",
 				"isPositive" => false,
+				"index" => 22,
 			),
 	29 =>  array(
 				"id" => 29,
@@ -344,6 +372,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 77601,
 				"icon" => "resources/crafting_poison_trait_increasehealing.png",
 				"isPositive" => true,
+				"index" => 29,
 			),
 	30 =>  array(
 				"id" => 30,
@@ -355,6 +384,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"poisonBaseId" => 77603,
 				"icon" => "resources/crafting_poison_trait_decreasehealing.png",
 				"isPositive" => false,
+				"index" => 30,
 			),		
 );
 
