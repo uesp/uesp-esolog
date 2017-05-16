@@ -477,7 +477,8 @@ class EsoLogParser
 	public static $CHEST_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'locationId' => self::FIELD_INT,
-			'quality' => self::FIELD_INT
+			'quality' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
 	);
 	
 	public static $MINEDITEM_FIELDS = array(
@@ -1617,6 +1618,7 @@ class EsoLogParser
 						locationId BIGINT NOT NULL,
 						logId BIGINT NOT NULL,
 						quality TINYINT NOT NULL,
+						name TINYTEXT NOT NULL,
 						PRIMARY KEY (id)
 					);";
 		
@@ -4642,6 +4644,8 @@ class EsoLogParser
 			
 			$chestRecord['locationId'] = (int) $locationId;
 			$chestRecord['quality'] = -1;
+			$chestRecord['name'] = "Chest";
+			if ($logEntry['lockQuality'] > 0) $chestRecord['quality'] = $logEntry['lockQuality'];
 			
 			$result &= $this->saveChest($chestRecord);
 			$this->currentUser['lastChestRecord'] = $chestRecord;
@@ -4694,6 +4698,18 @@ class EsoLogParser
 		}
 		else if ($logEntry['name'] == "Safebox")
 		{
+			$chestRecord = $this->createNewRecord(self::$CHEST_FIELDS);
+				
+			$locationId = $this->currentUser['lastLocationRecordId'];
+			if ($locationId == null) $locationId = 0;
+				
+			$chestRecord['locationId'] = (int) $locationId;
+			$chestRecord['quality'] = -1;
+			$chestRecord['name'] = "Safebox";
+			if ($logEntry['lockQuality'] > 0) $chestRecord['quality'] = $logEntry['lockQuality'];
+				
+			$result &= $this->saveChest($chestRecord);
+			
 			$diff = $logEntry['gameTime'] - $this->currentUser['__lastSafeboxFoundGameTime'];
 				
 			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
