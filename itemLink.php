@@ -1552,7 +1552,7 @@ class CEsoItemLink
         		$newDesc);
 
 		}
-		else if ($weaponType > 0 && $weaponType != 14 && $weaponFactor != 1)
+		else if ($weaponType > 0 && $weaponType != 14 && $weaponFactor != 1 && !$isDefaultEnchant)
 		{
 			
 			foreach ($WEAPON_MATCHES as $match)
