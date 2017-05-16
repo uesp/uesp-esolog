@@ -91,7 +91,8 @@ class EsoLogViewer
 			'zone' => self::FIELD_STRING,
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
-			'quality' => self::FIELD_INTTRANSFORM,
+			'name' => self::FIELD_STRING,
+			'quality' => self::FIELD_INTTRANSFORM,			
 	);
 	
 	public static $ITEM_FIELDS = array(
