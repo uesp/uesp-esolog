@@ -695,6 +695,13 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	if (type == -2) // Health
 	{
 		value = a * values.Health + c;
+		
+			// Special case for equilibrim and morphs
+		if (skillData.baseName == "Equilibrium" && valueIndex == 1 && g_LastSkillInputValues.SkillLineCost.Mages_Guild_Cost != 0)
+		{
+			skillData.rawOutput["$1 Health Cost"] = "" + Math.round(value) + " Base + " + (g_LastSkillInputValues.SkillLineCost.Mages_Guild_Cost*100) + "% Mages Guild Cost";
+			value = value * (1 + g_LastSkillInputValues.SkillLineCost.Mages_Guild_Cost);
+		}
 	}
 	else if (type == 0) // Magicka
 	{
@@ -1419,7 +1426,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		if (inputValues.StaminaCost.Buff  != null) SkillFactor += inputValues.StaminaCost.Buff;
 	}
 	else if (mechanic == 10 && inputValues.UltimateCost != null)
-{
+	{
 		if (inputValues.UltimateCost.CP    != null) CPFactor    += inputValues.UltimateCost.CP;
 		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
 		if (inputValues.UltimateCost.Skill != null) SkillFactor += inputValues.UltimateCost.Skill;
