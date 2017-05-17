@@ -1297,6 +1297,11 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				baseFactor += +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
 				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
 			}
+			else if (inputValues.Damage.Direct != null && inputValues.Damage.Dot !== 0)
+			{
+				baseFactor += +inputValues.Damage.Direct + +newRawOutput.mainDamageDone;
+				newRawOutput.directDamageDone = inputValues.Damage.Direct;
+			}
 			else
 			{
 				baseFactor += +newRawOutput.mainDamageDone;
@@ -1355,6 +1360,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.mainDamageDone*100) + "% " + rawData.damageId;
 		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeDamageDone*100) + "% AoE";
 		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetDamageDone*100) + "% Target";
+		if (rawData.directDamageDone  != null && rawData.directDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.directDamageDone*100) + "% Direct";
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		
