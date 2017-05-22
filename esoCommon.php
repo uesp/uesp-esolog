@@ -2997,6 +2997,8 @@ function CanViewEsoLogVersion($version)
 {
 	global $canViewEsoMorrowindPts;
 	
+	return true;
+	
 	$tableSuffix = GetEsoItemTableSuffix($version);
 	if ($tableSuffix != "14pts") return true;
 	
@@ -3007,6 +3009,8 @@ function CanViewEsoLogVersion($version)
 function CanViewEsoLogTable($table)
 {
 	global $canViewEsoMorrowindPts;
+	
+	return true;
 	
 	$index = strpos($table, "14pts");
 	if ($index === false) return true;
