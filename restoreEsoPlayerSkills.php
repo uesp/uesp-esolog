@@ -1,8 +1,8 @@
 <?php
 
-$TABLE_SUFFIX = "14pts";
-$SOURCE_DATA1 = "playerSkills13.php";
-$SOURCE_DATA2 = "playerSkills14.php";
+$TABLE_SUFFIX = "14";
+$SOURCE_DATA1 = "playerSkills14pts.php";
+$SOURCE_DATA2 = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -54,36 +54,39 @@ foreach ($ESO_PLAYER_SKILLS as $skillId => $skill)
 }
 
 
-foreach ($ESO_PLAYER_SKILLS14 as $skillId => $skill)
+if ($ESO_PLAYER_SKILLS14)
 {
-	// isPlayer
-	// rank
-	// learnedLevel
-	// skillIndex
-	// skillType
-	// skillLine
-	// raceType
-	// classType
-	// prevSkill
-	// nextSkill
-	// nextSkill2
-	// baseAbilityId
+	foreach ($ESO_PLAYER_SKILLS14 as $skillId => $skill)
+	{
+		// isPlayer
+		// rank
+		// learnedLevel
+		// skillIndex
+		// skillType
+		// skillLine
+		// raceType
+		// classType
+		// prevSkill
+		// nextSkill
+		// nextSkill2
+		// baseAbilityId
+		
+		$skill['skillLine'] = $db->real_escape_string($skill['skillLine']);
+		$skill['skillType'] = $db->real_escape_string($skill['skillType']);
 	
-	$skill['skillLine'] = $db->real_escape_string($skill['skillLine']);
-	$skill['skillType'] = $db->real_escape_string($skill['skillType']);
-
-	$query = "UPDATE minedSkills$TABLE_SUFFIX SET ";
-	$query .= "isPlayer=1, rank='{$skill['rank']}', learnedLevel='{$skill['learnedLevel']}', skillIndex='{$skill['skillIndex']}', ";
-	$query .= "skillType='{$skill['skillType']}', skillLine='{$skill['skillLine']}', raceType='{$skill['raceType']}', classType='{$skill['classType']}', ";
-	$query .= "prevSkill='{$skill['prevSkill']}', nextSkill='{$skill['nextSkill']}', nextSkill2='{$skill['nextSkill2']}', baseAbilityId='{$skill['baseAbilityId']}' ";
-	$query .= "WHERE id=$skillId;";
-
-	$result = $db->query($query);
-
-	if (!$result)
-		print("\t$skillId: Failed to save skill!\n$db->error\n");
-	else
-		$count++;
+		$query = "UPDATE minedSkills$TABLE_SUFFIX SET ";
+		$query .= "isPlayer=1, rank='{$skill['rank']}', learnedLevel='{$skill['learnedLevel']}', skillIndex='{$skill['skillIndex']}', ";
+		$query .= "skillType='{$skill['skillType']}', skillLine='{$skill['skillLine']}', raceType='{$skill['raceType']}', classType='{$skill['classType']}', ";
+		$query .= "prevSkill='{$skill['prevSkill']}', nextSkill='{$skill['nextSkill']}', nextSkill2='{$skill['nextSkill2']}', baseAbilityId='{$skill['baseAbilityId']}' ";
+		$query .= "WHERE id=$skillId;";
+	
+		$result = $db->query($query);
+	
+		if (!$result)
+			print("\t$skillId: Failed to save skill!\n$db->error\n");
+		else
+			$count++;
+	}
 }
 
 print("\tUpdated $count skills!\n");

@@ -1,7 +1,7 @@
 <?php
 
 $TABLE_SUFFIX = "14pts";
-$OUTPUT_FILE = "wardenSkills14.php";
+$OUTPUT_FILE = "playerSkills14pts.php";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -20,7 +20,7 @@ $skills = array();
 
 while ($row = $result->fetch_assoc())
 {
-	if ($row['classType'] != "Warden") continue;
+	//if ($row['classType'] != "Warden") continue;
 	// isPlayer
 	// rank
 	// learnedLevel
@@ -52,6 +52,6 @@ while ($row = $result->fetch_assoc())
 	$skills[$row['id']] = $newSkill;
 }
 
-$output = '$ESO_PLAYER_SKILLS = ' . var_export($skills, true) . ';';
+$output = '<?php' . "\n" . '$ESO_PLAYER_SKILLS = ' . var_export($skills, true) . ';';
 
 file_put_contents($OUTPUT_FILE, $output);
