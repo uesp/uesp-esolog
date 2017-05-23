@@ -79,7 +79,7 @@ class EsoLogParser
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
 	const MINEITEM_TABLESUFFIX = "14";
-	const SKILLS_TABLESUFFIX   = "14";
+	const SKILLS_TABLESUFFIX   = "";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -88,6 +88,7 @@ class EsoLogParser
 	const ONLY_PARSE_NPCLOOT_CHESTS = false;
 	const ONLY_PARSE_MAILITEM = false;
 	const ONLY_PARSE_SAFEBOXES_FOUND = false;
+	const ONLY_PARSE_SHOWBOOK = false;
 	
 		// Start of log09100.log: 1487204716 / 4744024596682899456
 	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1487204716;
@@ -4457,7 +4458,7 @@ class EsoLogParser
 		if ($bookRecord['__isNew'] === true)
 		{
 			$bookRecord['title'] = $bookTitle;
-			$bookRecord['bookId'] = $body;
+			$bookRecord['body'] = $body;
 			$bookRecord['mediumIndex'] = $medium;
 			$bookRecord['isLore'] = 0;
 			$bookRecord['__dirty'] = true;
@@ -5184,7 +5185,8 @@ class EsoLogParser
 			}
 			else if ($minedItem['setName'] == "Shacklebreaker")
 			{
-				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 			}
 			else
 			{
@@ -6399,6 +6401,9 @@ class EsoLogParser
 			case 'mineBook:End':
 			case 'mineBook:Category':
 			case 'mineBook:Collection':
+			//case 'SkillCoef':
+			//case 'SkillCoef::Start':
+			//case 'SkillCoef::End':
 				return false;
 		}
 		
@@ -6520,6 +6525,18 @@ class EsoLogParser
 			}
 			
 			if ($logEntry['name'] != "Safebox") return true;
+		}
+		else if (self::ONLY_PARSE_SHOWBOOK)
+		{
+			switch ($logEntry['event'])
+			{
+				case "ShowBook":
+					break;
+				default:
+					return true;
+			}
+			
+			$skipLogEntryCreate = true;
 		}
 		
 		if (!$this->isValidLogEntry($logEntry)) return false;
