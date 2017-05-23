@@ -2473,7 +2473,7 @@ function IsEsoVersionAtLeast($version, $checkVersion)
 
 function GetEsoUpdateVersion()
 {
-	return 13;
+	return 14;
 }
 
 
@@ -2538,7 +2538,7 @@ function GetEsoItemTableSuffix($version)
 		case '1.13':
 		case '113':
 		case '13':
-			return "";
+			return "13";
 		case '1.4pts':
 		case '114pts':
 		case '14pts':
