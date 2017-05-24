@@ -25,6 +25,9 @@ const UESP_POWERTYPE_SIPHONING = -61;
 const UESP_POWERTYPE_SORCERER = -62;
 const UESP_POWERTYPE_MAGESGUILD = -63;
 const UESP_POWERTYPE_SUPPORT = -64;
+const UESP_POWERTYPE_ANIMALCOMPANION = -65;
+const UESP_POWERTYPE_GREENBALANCE = -66;
+const UESP_POWERTYPE_WINTERSEMBRACE = -67;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -2396,6 +2399,9 @@ function GetEsoCustomMechanicTypeText($mechanicType)
 			UESP_POWERTYPE_SORCERER => "Sorcerer Skills Slotted",
 			UESP_POWERTYPE_MAGESGUILD => "Mages Guild Skills Slotted",
 			UESP_POWERTYPE_SUPPORT => "Support Skills Slotted",
+			UESP_POWERTYPE_ANIMALCOMPANION => "Animal Companion Skills Slotted",
+			UESP_POWERTYPE_GREENBALANCE => "Green Balance Skills Slotted",
+			UESP_POWERTYPE_WINTERSEMBRACE => "Winter's Embrace Skills Slotted",
 	);
 
 	$key = (int) $mechanicType;

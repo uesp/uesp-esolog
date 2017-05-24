@@ -577,6 +577,9 @@ function GetEsoSkillInputValues()
 			 SorcererSkills: 0,
 			 MagesGuildSkills: 0,
 			 SupportSkills: 0,
+			 AnimalCompanionSkills: 0,
+			 GreenBalanceSkills: 0,
+			 WintersEmbraceSkills: 0,
 		};
 	
 	return g_LastSkillInputValues; 
@@ -761,6 +764,18 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	else if (type == -64)
 	{
 		value = a * values.SupportSkills;
+	}
+	else if (type == -65)
+	{
+		value = a * values.AnimalCompanionSkills;
+	}
+	else if (type == -66)
+	{
+		value = a * values.GreenBalanceSkills;
+	}
+	else if (type == -67)
+	{
+		value = a * values.WintersEmbraceSkills;
 	}
 	else if (type == -51)
 	{
@@ -1116,7 +1131,43 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(healing yourself and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
-
+	{
+		healId: "Done",
+		match: /(that heals you and all allies in your frontal cone for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing you and alllies in the area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(Allies may activate the Healing Seed synergy to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heal the target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(causing Light Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and your Heavy Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(continue to receive \|c[a-fA-F0-9]{6})([0-9]+)(\|r healing)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(to heal you and all allies in the area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing you and them for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	
 ];                     
 
 
@@ -1159,6 +1210,13 @@ function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 				modHealing = Math.round(modHealing);
 			}
 			
+			if (inputValues.SkillHealing != null && inputValues.SkillHealing[skillData.skillLine] != null)
+			{
+				modHealing *= 1 + inputValues.SkillHealing[skillData.skillLine];
+				modHealing = Math.round(modHealing);
+				newRawOutput.skillHealingDone = inputValues.SkillHealing[skillData.skillLine]; 
+			}
+			
 			newRawOutput.finalHeal = modHealing;
 			rawOutput.push(newRawOutput);
 			
@@ -1173,6 +1231,7 @@ function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
 				
 		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + RoundEsoSkillPercent(rawData.healDone*100) + "% " + rawData.healId;
 		if (rawData.aoeHeal  != null && rawData.aoeHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeHeal*100) + "% AOE";
+		if (rawData.skillHealingDone != null && rawData.skillHealingDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillHealingDone*100) + "% SkillLine";
 		//TODO: healId2?
 		
 		if (output == "")
@@ -1831,6 +1890,24 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 		output += srcString + " = " + a + " SupportSkills";
 		typeString = "Support Skills Slotted";
 	}
+	else if (type == -65)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " AnimalCompanionSkills";
+		typeString = "Animal Companion Skills Slotted";
+	}	
+	else if (type == -66)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " GreenBalanceSkills";
+		typeString = "Green Balance Skills Slotted";
+	}
+	else if (type == -67)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " WintersEmbraceSkills";
+		typeString = "Winter's Embrace Slotted";
+	}
 	else
 	{
 		output += srcString + " = ?";
@@ -2334,6 +2411,7 @@ function EnableEsoClassSkills(className)
 	$(".esovsSkillTypeTitle:contains('NIGHTBLADE')").hide();
 	$(".esovsSkillTypeTitle:contains('SORCERER')").hide();
 	$(".esovsSkillTypeTitle:contains('TEMPLAR')").hide();
+	$(".esovsSkillTypeTitle:contains('WARDEN')").hide();
 	$(".esovsSkillContentBlock").hide();
 	$(".esovsSkillType").hide();
 	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
