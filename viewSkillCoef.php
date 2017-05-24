@@ -29,8 +29,8 @@ class CEsoViewSkillCoef
 	public $extraQueryString = "";
 	public $minR2 = 0;
 	public $maxR2 = 1;
-	public $minRatio = -100;
-	public $maxRatio = 100;
+	public $minRatio = -1000000;
+	public $maxRatio = 1000000;
 	
 	
 	public function __construct()
