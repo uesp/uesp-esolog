@@ -4463,6 +4463,10 @@ class EsoLogParser
 			$bookRecord['isLore'] = 0;
 			$bookRecord['__dirty'] = true;
 			
+			if ($logEntry['categoryIndex'] != null) $bookRecord['categoryIndex'] = (int) $logEntry['categoryIndex'];
+			if ($logEntry['collectionIndex'] != null) $bookRecord['collectionIndex'] = (int) $logEntry['collectionIndex'];
+			if ($logEntry['bookIndex'] != null) $bookRecord['bookIndex'] = (int) $logEntry['bookIndex'];
+			
 			++$this->currentUser['newCount'];
 			$this->currentUser['__dirty'] = true;
 		}
@@ -4471,6 +4475,10 @@ class EsoLogParser
 			if ($bookRecord['body'] == '') $bookRecord['body'] = $body;
 			$bookRecord['mediumIndex'] = $medium;
 			$bookRecord['__dirty'] = true;
+			
+			if ($logEntry['categoryIndex'] != null) $bookRecord['categoryIndex'] = (int) $logEntry['categoryIndex'];
+			if ($logEntry['collectionIndex'] != null) $bookRecord['collectionIndex'] = (int) $logEntry['collectionIndex'];
+			if ($logEntry['bookIndex'] != null) $bookRecord['bookIndex'] = (int) $logEntry['bookIndex'];
 			
 			++$this->currentUser['newCount'];
 			$this->currentUser['__dirty'] = true;
