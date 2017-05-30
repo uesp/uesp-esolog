@@ -2552,7 +2552,7 @@ function GetEsoItemTableSuffix($version)
 		case '1.4':
 		case '114':
 		case '14':
-			return "14";
+			return "";
 	}
 
 	return "";

@@ -118,7 +118,7 @@
 				<li reagent1="Torchbug Thorax" reagent2="Violet Coprinus" reagent3="Corn Flower">Torchbug Thorax + Violet Coprinus + Corn Flower</li>
 				<li reagent1="Nightshade" reagent2="Imp Stool" reagent3="Mudcrab Chitin">Nightshade + Imp Stool + Mudcrab Chitin</li>
 				<li reagent1="Nightshade" reagent2="Blessed Thistle" reagent3="Dragonthorn">Nightshade + Blessed Thistle + Dragonthorn</li>
-				<li reagent1="Nightshade" reagent2="Fleshfly Larva" reagent3="Nightshade">Nightshade + Fleshfly Larva + Nightshade</li>
+				<li reagent1="Nightshade" reagent2="Fleshfly Larva" reagent3="Stinkhorn">Nightshade + Fleshfly Larva + Stinkhorn</li>
 				<li reagent1="Violet Coprinus" reagent2="Emetic Russula" reagent3="Imp Stool">Violet Coprinus + Emetic Russula + Imp Stool</li>
 				<li reagent1="Violet Coprinus" reagent2="Lady's Smock" reagent3="Nightshade">Violet Coprinus + Lady's Smock + Nightshade</li>
 				<li reagent1="Violet Coprinus" reagent2="Beetle Scuttle" reagent3="Nightshade">Violet Coprinus + Beetle Scuttle + Nightshade</li>
