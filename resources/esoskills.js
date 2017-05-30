@@ -1356,7 +1356,7 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				baseFactor += +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
 				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
 			}
-			else if (inputValues.Damage.Direct != null && inputValues.Damage.Dot !== 0)
+			else if (inputValues.Damage.Direct != null && inputValues.Damage.Direct !== 0)
 			{
 				baseFactor += +inputValues.Damage.Direct + +newRawOutput.mainDamageDone;
 				newRawOutput.directDamageDone = inputValues.Damage.Direct;
