@@ -1504,7 +1504,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
 	if (SkillFactor != 1) output += " + " + Math.round(SkillFactor*1000 - 1000)/10 + "% Skill";
 	
-	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null)
+	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Active")
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
 		SkillFactor += SkillLineFactor;
