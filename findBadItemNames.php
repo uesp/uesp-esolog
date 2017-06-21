@@ -15,7 +15,7 @@ $luaFunctionCount = 1;
 $START_ID = 3;
 $END_ID = 150000;
 
-$START_ID = 116747;
+//$START_ID = 116747;
 
 for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 {

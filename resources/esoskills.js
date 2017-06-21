@@ -561,6 +561,13 @@ function GetEsoSkillInputValues()
 	var weaponDamage = parseInt($('#esovsInputWeaponDamage').val());
 	var level = ParseEsoLevel($('#esovsInputLevel').val());
 	
+	if (isNaN(health)) health = 20000;
+	if (isNaN(magicka)) magicka = 20000;
+	if (isNaN(stamina)) stamina = 20000;
+	if (isNaN(spellDamage)) spellDamage = 2000;
+	if (isNaN(weaponDamage)) weaponDamage = 2000;
+	if (isNaN(level)) level = 66;
+	
 	g_LastSkillInputValues = { Magicka: magicka,
 			 Stamina: stamina,
 			 Health: health,
@@ -612,6 +619,8 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	var WeaponDamageType = [];
 	var includeSpellRawOutput = 0;
 	var includeWeaponRawOutput = 0;
+	
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
 	if (matchResults != null && matchResults[1] != null) damageType = matchResults[1].toLowerCase();
 	if (matchResults != null && matchResults[2] != null && matchResults[2] != "") isDot = true;

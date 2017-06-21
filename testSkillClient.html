@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Skill Browser </title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoskills_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoSkillClient.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
+		<script src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>		
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esoskills.js"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esoSkillClient.js"></script>
+		<script type="text/javascript">
+		
+				// Override/alter this function to set custom stat values for all skill tooltips
+			function GetEsoSkillInputValues()
+			{
+				g_LastSkillInputValues = { 
+						 Magicka: 20000,
+						 Stamina: 20000,
+						 Health: 20000,
+						 SpellDamage: 2000,
+						 WeaponDamage: 2000,
+						 MaxStat: 20000,
+						 MaxDamage: 2000,
+						 EffectiveLevel: 66,
+						 AssassinSkills: 0,
+						 FightersGuildSkills: 0,
+						 DraconicPowerSkills: 0,
+						 ShadowSkills: 0,
+						 SiphoningSkills: 0,
+						 SorcererSkills: 0,
+						 MagesGuildSkills: 0,
+						 SupportSkills: 0,
+						 AnimalCompanionSkills: 0,
+						 GreenBalanceSkills: 0,
+						 WintersEmbraceSkills: 0,
+						 //...see http://en.uesp.net/wiki/Special:EsoBuildEditor for more details on variables/parameters
+					};
+				
+				return g_LastSkillInputValues;
+			} 
+		</script> 
+	</head>
+<body>
+
+<h2>UESP: Test Eso Skill Tooltips</h2>
+
+
+<ul>
+	<li>Standalone Skill: 
+		<div class="eso_skill_tooltip" skillid="33963">
+			<img alt="" src="//esoicons.uesp.net/esoui/art/icons/ability_dragonknight_006.png">
+		</div>
+	</li>
+	<li>Skill Bar:
+		<div id="esovsSkillBar"><div id="esovsSkillBar1" class="esovsSkillBar esovsSkillBarHighlight" skillbar="1" activeweaponbar="1">
+			<div class="esovsSkillBarTitle">Bar 1</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon11" skillindex="1" skillbar="1" skillid="27207" origskillid="27186" src="//esoicons.uesp.net/esoui/art/icons/ability_templar_reckless_attacks.png">
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon12" skillindex="2" skillbar="1" skillid="42240" origskillid="42207" src="//esoicons.uesp.net/esoui/art/icons/ability_mageguild_004_b.png">            
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon13" skillindex="3" skillbar="1" skillid="63075" origskillid="63058" src="//esoicons.uesp.net/esoui/art/icons/ability_templar_stendarr_aura.png"> 
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon14" skillindex="4" skillbar="1" skillid="41380" origskillid="41351" src="//esoicons.uesp.net/esoui/art/icons/ability_1handed_004_b.png"> 
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon15" skillindex="5" skillbar="1" skillid="42430" origskillid="42418" src="//esoicons.uesp.net/esoui/art/icons/ability_mageguild_002_b.png"> 
+			</div>
+			&nbsp; &nbsp; &nbsp; &nbsp;
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon16" skillindex="6" skillbar="1" skillid="42492" origskillid="42467" src="//esoicons.uesp.net/esoui/art/icons/ability_mageguild_005_a.png">	
+			</div>
+		</div>
+		<div id="esovsSkillBar2" class="esovsSkillBar" skillbar="2" activeweaponbar="2">
+			<div class="esovsSkillBarTitle">Bar 2</div>
+			<div class="esovsSkillBarItem ui-droppable">		
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon21" skillindex="1" skillbar="2" skillid="27207" origskillid="27186" src="//esoicons.uesp.net/esoui/art/icons/ability_templar_reckless_attacks.png">
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon22" skillindex="2" skillbar="2" skillid="42240" origskillid="42207" src="//esoicons.uesp.net/esoui/art/icons/ability_mageguild_004_b.png">  
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon23" skillindex="3" skillbar="2" skillid="63075" origskillid="63058" src="//esoicons.uesp.net/esoui/art/icons/ability_templar_stendarr_aura.png">
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon24" skillindex="4" skillbar="2" skillid="41121" origskillid="41108" src="//esoicons.uesp.net/esoui/art/icons/ability_armor_003_b.png">	
+			</div>
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon25" skillindex="5" skillbar="2" skillid="42430" origskillid="42418" src="//esoicons.uesp.net/esoui/art/icons/ability_mageguild_002_b.png">	
+			</div>
+			&nbsp; &nbsp; &nbsp; &nbsp;
+			<div class="esovsSkillBarItem ui-droppable">
+				<img class="esovsSkillBarIcon ui-draggable ui-draggable-handle" alt="" draggable="true" id="esovsSkillIcon26" skillindex="6" skillbar="2" skillid="42492" origskillid="42467" src="//esoicons.uesp.net/esoui/art/icons/ability_mageguild_005_a.png">
+			</div>
+		</div>
+	</li>
+			
+</ul>
+
+
+</body>
+</html>
