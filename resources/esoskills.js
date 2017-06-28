@@ -1267,7 +1267,7 @@ ESO_SKILL_DAMAGEMATCHES =
 [
 	{
 		damageId: "Magic",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Magic", // Blazing Shield
@@ -1275,31 +1275,31 @@ ESO_SKILL_DAMAGEMATCHES =
 	},
 	{
 		damageId: "Physical",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Flame",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Shock",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Cold",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Cold",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Frost Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Frost Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Poison",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Disease",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over| each| every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 ];
 
@@ -1344,7 +1344,8 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.baseName]; 
 			}
 			
-			if (isDot || p1 == "additional " || p5 != "")
+			//if (isDot || p1 == "additional " || p5 != "")
+			if (isDot || p5 != "")
 			{
 				thisEffectIsDot = true;
 				
