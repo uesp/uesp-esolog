@@ -4308,10 +4308,15 @@ If you do not understand what this information means, or how to use this webpage
 				$output .= $this->GetViewRecordLink('book', 'id', $result['id'], 'View Book');
 				break;
 			case 'quest':
+				$output .= $this->GetViewRecordLink('quest', 'id', $result['id'], 'View Quest');
+				break;
 			case 'oldQuest':
 				$output .= $this->GetViewRecordLink('oldQuest', 'id', $result['id'], 'View Quest');
 				break;
 			case 'questStage':
+				$output .= $this->GetViewRecordLink('quest', 'id', $result['questId'], 'View Quest') . " ";
+				$output .= $this->GetViewRecordLink('questStage','id', $result['id'], 'View Quest Stage');
+				break;
 			case 'oldQuestStage':
 				$output .= $this->GetViewRecordLink('oldQuest', 'id', $result['questId'], 'View Quest') . " ";
 				$output .= $this->GetViewRecordLink('oldQuestStage','id', $result['id'], 'View Quest Stage');
