@@ -464,6 +464,8 @@ $DUPLICATE_SKILLS = array(
 				"race2" => "High Elf",
 				"index1" => 2,
 				"index2" => 3,
+				"req1" => array(5, 15, 30),
+				"req2" => array(10, 20, 40),
 		),
 		array(		// Steathly
 				"id" => array(36022, 45295, 45296),
@@ -471,6 +473,8 @@ $DUPLICATE_SKILLS = array(
 				"race2" => "Khajiit",
 				"index1" => 4,
 				"index2" => 3,
+				"req1" => array(25, 35, 50),
+				"req2" => array(10, 20, 40),
 		),
 		/*
 		array(		// Shield Affinity
@@ -498,10 +502,13 @@ foreach ($DUPLICATE_SKILLS as $dupSkill)
 	$race2 = $dupSkill['race2'];
 	$index1 = $dupSkill['index1'];
 	$index2 = $dupSkill['index2'];
+	$req1 = $dupSkill['req1'];
+	$req2 = $dupSkill['req2'];
 	
 	foreach ($ids as $id)
 	{
 		$passive = $passiveIds[$id];
+		$rank = intval($passive['rank']);
 		
 		if ($passive == null) 
 		{
@@ -516,8 +523,11 @@ foreach ($DUPLICATE_SKILLS as $dupSkill)
 			$newPassive['skillLine'] = $race1 . " Skills";
 			$newPassive['skillTypeName'] = "Racial::" . $newPassive['skillLine'];
 			$newPassive['skillIndex'] = $index1;
+			if ($req1 && $req1[$rank-1]) $newPassive['learnedLevel'] = $req1[$rank-1];
 			$newPassives[] = $newPassive;
 			print("\tAdded skill $id for $race1\n");
+						
+			if ($req2 && $req2[$rank-1]) $passiveSkills[$id]['learnedLevel'] = $req2[$rank-1];
 		}
 		
 		if ($passive['raceType'] != $race2)
@@ -527,8 +537,11 @@ foreach ($DUPLICATE_SKILLS as $dupSkill)
 			$newPassive['skillLine'] = $race2 . " Skills";
 			$newPassive['skillTypeName'] = "Racial::" . $newPassive['skillLine'];
 			$newPassive['skillIndex'] = $index2;
+			if ($req2 && $req2[$rank-1]) $newPassive['learnedLevel'] = $req2[$rank-1];
 			$newPassives[] = $newPassive;
 			print("\tAdded skill $id for $race2\n");
+			
+			if ($req1 && $req1[$rank-1]) $passiveSkills[$id]['learnedLevel'] = $req1[$rank-1];
 		}
 	}
 }

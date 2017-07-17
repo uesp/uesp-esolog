@@ -772,6 +772,7 @@ class CEsoViewSkills
 
 		$cost = $abilityData['cost'];
 		$learnedLevel = $abilityData['learnedLevel'];
+		if ($learnedLevel > 50) $learnedLevel = 50;
 		$costDesc = "";
 		$rank = $abilityData['rank'];
 		$origRank = $rank;
