@@ -1521,7 +1521,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 	if (CPFactor != 1) output += " + " + Math.round(CPFactor*1000 - 1000)/10 + "% CP";
 	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
 	if (SkillFactor != 1) output += " + " + Math.round(SkillFactor*1000 - 1000)/10 + "% Skill";
-	
+		
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Active")
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
@@ -3118,7 +3118,7 @@ function OnEsoSkillReset(e)
 		attr("draggable", "false").
 		attr("origskillid", "0");
 	
-	$("#esovsSkillBar .esovsSkillContentBlock").children(".esovsAbilityBlock").each(function(i, e) {
+	$("#esovsSkillContent .esovsSkillContentBlock").children(".esovsAbilityBlock").each(function(i, e) {
 		var selectBlock = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").eq(1);
 		var displayBlock = $(this);
 		var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
