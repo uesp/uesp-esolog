@@ -66,14 +66,14 @@ class CEsoItemSearchPopup
 	{
 		if (array_key_exists('text', $this->inputParams)) $this->inputText = urldecode($this->inputParams['text']);
 		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = urldecode($this->inputParams['type']);
-		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
-		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
-		if (array_key_exists('trait', $this->inputParams)) $this->inputItemTrait = (int) $this->inputParams['trait'];
-		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
-		if (array_key_exists('level', $this->inputParams)) $this->inputItemLevel = (int) $this->inputParams['level'];
-		if (array_key_exists('quality', $this->inputParams)) $this->inputItemQuality = (int) $this->inputParams['quality'];
-		if (array_key_exists('intlevel', $this->inputParams)) $this->inputIntLevel = (int) $this->inputParams['intlevel'];
-		if (array_key_exists('intype', $this->inputParams)) $this->inputIntType = (int) $this->inputParams['intype'];
+		if (array_key_exists('equiptype', $this->inputParams) && $this->inputParams['equiptype'] !== "") $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
+		if (array_key_exists('weapontype', $this->inputParams) && $this->inputParams['weapontype'] !== "") $this->inputWeaponType = (int) $this->inputParams['weapontype'];
+		if (array_key_exists('trait', $this->inputParams) && $this->inputParams['trait'] !== "") $this->inputItemTrait = (int) $this->inputParams['trait'];
+		if (array_key_exists('armortype', $this->inputParams) && $this->inputParams['armortype'] !== "") $this->inputArmorType = (int) $this->inputParams['armortype'];
+		if (array_key_exists('level', $this->inputParams) && $this->inputParams['level'] !== "") $this->inputItemLevel = (int) $this->inputParams['level'];
+		if (array_key_exists('quality', $this->inputParams) && $this->inputParams['quality'] !== "") $this->inputItemQuality = (int) $this->inputParams['quality'];
+		if (array_key_exists('intlevel', $this->inputParams) && $this->inputParams['intlevel'] !== "") $this->inputIntLevel = (int) $this->inputParams['intlevel'];
+		if (array_key_exists('intype', $this->inputParams) && $this->inputParams['intype'] !== "") $this->inputIntType = (int) $this->inputParams['intype'];
 	}
 	
 	
