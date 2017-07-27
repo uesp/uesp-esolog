@@ -88,6 +88,7 @@ class CEsoViewSkills
 	
 	public $dataLoaded = false;	
 	public $activeSkillBar = 1;
+	
 
 
 	public function __construct ($isEmbedded = false, $displayType = "summary", $parseParams = true)
@@ -193,6 +194,8 @@ class CEsoViewSkills
 			$this->skills[] = $row;
 			$this->skillIds[$id] = $row;
 		}
+		
+			/* Destruction skills */
 
 		$this->LogProfile("LoadSkills()", $startTime);
 
@@ -706,6 +709,7 @@ class CEsoViewSkills
 		foreach ($skillLineData as $abilityName => $abilityData)
 		{
 			if ($abilityData['type'] != $type) continue;
+			if ($abilityData['skillIndex'] < 0) continue;
 				
 			$baseAbility = $this->FindFirstAbility($abilityData);
 			if ($baseAbility == null) continue;
@@ -1153,6 +1157,8 @@ class CEsoViewSkills
 	
 	public function CreateOutputHtml()
 	{
+		global $ESO_DESTRUCTION_SKILLS;
+		
 		$startTime = microtime(true);
 	
 		$replacePairs = array(
@@ -1186,6 +1192,7 @@ class CEsoViewSkills
 				'{activeDataJson}' => json_encode($this->activeData),
 				'{passiveDataJson}' => json_encode($this->passiveData),
 				'{skillBarJson}'  => json_encode($this->initialSkillBarData),
+				'{destructionDataJson}'  => json_encode($ESO_DESTRUCTION_SKILLS), 
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))

@@ -77,4 +77,6 @@
 	var g_EsoSkillPassiveData = {passiveDataJson};
 	var g_EsoSkillActiveData = {activeDataJson};
 	var g_EsoSkillBarData = {skillBarJson};
+	var g_EsoSkillDestructionData = {destructionDataJson};
+	var g_EsoSkillDestructionElement = "";
 </script>

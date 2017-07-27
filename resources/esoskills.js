@@ -2933,7 +2933,26 @@ function OnSkillBarDroppable(event, ui)
 		isSkillSwap = true;
 	}
 	
-	if (sourceAbilityId <= 0) return false;	
+	if (sourceAbilityId <= 0) return false;
+	
+		/* Fix for destruction skills elemental versions */
+	if (g_EsoSkillDestructionData && g_EsoSkillDestructionData[sourceAbilityId] != null)
+	{
+		//console.log("Destruction skill swap", sourceAbilityId);
+		
+		if (g_EsoSkillDestructionData[sourceAbilityId][g_EsoSkillDestructionElement] != null)
+		{
+			sourceAbilityId = g_EsoSkillDestructionData[sourceAbilityId][g_EsoSkillDestructionElement];
+			
+			if (g_SkillsData[sourceAbilityId] != null)
+			{
+				sourceIconUrl = "//esoicons.uesp.net" + g_SkillsData[sourceAbilityId]['icon'];
+				sourceIconUrl.replace("\.dds", ".png");
+			}
+			
+			//console.log("Switched destruction skill to element", g_EsoSkillDestructionElement, sourceAbilityId);
+		}
+	}
 	
 	if (!$this.hasClass("esovsSkillBarIcon"))
 	{
