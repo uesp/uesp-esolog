@@ -2095,6 +2095,438 @@ $ESO_ITEMQUALITYLEVEL_INTTYPEMAP = array(
 
 
 
+$ESO_DESTRUCTION_SKILLS = array(
+		 	
+			/* Blockade */
+		39011 => array(
+				"flame" => 39012, 
+				"shock" => 39018, 
+				"frost" => 39028,
+				"flameName" => "Blockade of Flame",
+				"shockName" => "Blockade of Storms",
+				"frostName" => "Blockade of Frost",
+		),
+		
+		41738 => array(
+				"flame" => 41739, 
+				"shock" => 41748, 
+				"frost" => 41743,
+				"flameName" => "Blockade of Flame",
+				"shockName" => "Blockade of Storms",
+				"frostName" => "Blockade of Frost",
+		),
+		41754 => array(
+				"flame" => 41755, 
+				"shock" => 41757, 
+				"frost" => 41756,
+				"flameName" => "Blockade of Flame",
+				"shockName" => "Blockade of Storms",
+				"frostName" => "Blockade of Frost",
+		),
+		41769 => array(
+				"flame" => 41770, 
+				"shock" => 41772, 
+				"frost" => 41771,
+				"flameName" => "Blockade of Flame",
+				"shockName" => "Blockade of Storms",
+				"frostName" => "Blockade of Frost",
+		),
+		
+			/* Destructive Touch */
+		29091 => array(
+				"flame" => 29073,
+				"shock" => 29089,
+				"frost" => 29078,
+				"flameName" => "Flame Touch",
+				"shockName" => "Shock Touch",
+				"frostName" => "Frost Touch",
+		),
+		40947 => array(
+				"flame" => 40948,
+				"shock" => 40953,
+				"frost" => 40950,
+				"flameName" => "Flame Touch",
+				"shockName" => "Shock Touch",
+				"frostName" => "Frost Touch",
+		),
+		40956 => array(
+				"flame" => 40957,
+				"shock" => 40962,
+				"frost" => 40959,
+				"flameName" => "Flame Touch",
+				"shockName" => "Shock Touch",
+				"frostName" => "Frost Touch",
+		),
+		40964 => array(
+				"flame" => 40965,
+				"shock" => 40970,
+				"frost" => 40967,
+				"flameName" => "Flame Touch",
+				"shockName" => "Shock Touch",
+				"frostName" => "Frost Touch",
+		),
+		
+			/* Destructive Reach */
+		38937 => array(
+				"flame" => 38944,
+				"shock" => 38978,
+				"frost" => 38970,
+				"flameName" => "Flame Reach",
+				"shockName" => "Shock Reach",
+				"frostName" => "Frost Reach",
+		),
+		41029 => array(
+				"flame" => 41030,
+				"shock" => 41036,
+				"frost" => 41033,
+				"flameName" => "Flame Reach",
+				"shockName" => "Shock Reach",
+				"frostName" => "Frost Reach",
+		),
+		41038 => array(
+				"flame" => 41039,
+				"shock" => 41045,
+				"frost" => 41042,
+				"flameName" => "Flame Reach",
+				"shockName" => "Shock Reach",
+				"frostName" => "Frost Reach",
+		),
+		41047 => array(
+				"flame" => 41048,
+				"shock" => 41054,
+				"frost" => 41051,
+				"flameName" => "Flame Reach",
+				"shockName" => "Shock Reach",
+				"frostName" => "Frost Reach",
+		),
+		
+			/* Destructive Clench */
+		38984 => array(
+				"flame" => 38985,
+				"shock" => 38993,
+				"frost" => 38989,
+				"flameName" => "Flame Clench",
+				"shockName" => "Shock Clench",
+				"frostName" => "Frost Clench",
+		),
+		40977 => array(
+				"flame" => 40984,
+				"shock" => 40991,
+				"frost" => 40988,
+				"flameName" => "Flame Clench",
+				"shockName" => "Shock Clench",
+				"frostName" => "Frost Clench",
+		),
+		40995 => array(
+				"flame" => 40996,
+				"shock" => 41003,
+				"frost" => 41000,
+				"flameName" => "Flame Clench",
+				"shockName" => "Shock Clench",
+				"frostName" => "Frost Clench",
+		),
+		41006 => array(
+				"flame" => 41009,
+				"shock" => 41016,
+				"frost" => 41013,
+				"flameName" => "Flame Clench",
+				"shockName" => "Shock Clench",
+				"frostName" => "Frost Clench",
+		),
+		
+			/* Impulse */
+		28800 => array(
+				"flame" => 28794,
+				"shock" => 28799,
+				"frost" => 28798,
+				"flameName" => "Fire Impulse",
+				"shockName" => "Shock Impulse",
+				"frostName" => "Frost Impulse",
+		),
+		42949 => array(
+				"flame" => 42950,
+				"shock" => 42952,
+				"frost" => 42951,
+				"flameName" => "Fire Impulse",
+				"shockName" => "Shock Impulse",
+				"frostName" => "Frost Impulse",
+		),
+		42953 => array(
+				"flame" => 42954,
+				"shock" => 42956,
+				"frost" => 42955,
+				"flameName" => "Fire Impulse",
+				"shockName" => "Shock Impulse",
+				"frostName" => "Frost Impulse",
+		),
+		42957 => array(
+				"flame" => 42958,
+				"shock" => 42960,
+				"frost" => 42959,
+				"flameName" => "Fire Impulse",
+				"shockName" => "Shock Impulse",
+				"frostName" => "Frost Impulse",
+		),
+		
+			/* Wall of Elements */
+		28858 => array(
+				"flame" => 28807,
+				"shock" => 28849,
+				"frost" => 28854,
+				"flameName" => "Wall of Fire",
+				"shockName" => "Wall of Storms",
+				"frostName" => "Wall of Frost",
+		),
+		41627 => array(
+				"flame" => 41628,
+				"shock" => 41637,
+				"frost" => 41632,
+				"flameName" => "Wall of Fire",
+				"shockName" => "Wall of Storms",
+				"frostName" => "Wall of Frost",
+		),
+		41642 => array(
+				"flame" => 41643,
+				"shock" => 41652,
+				"frost" => 41647,
+				"flameName" => "Wall of Fire",
+				"shockName" => "Wall of Storms",
+				"frostName" => "Wall of Frost",
+		),
+		41658 => array(
+				"flame" => 41659,
+				"shock" => 41668,
+				"frost" => 41663,
+				"flameName" => "Wall of Fire",
+				"shockName" => "Wall of Storms",
+				"frostName" => "Wall of Frost",
+		),
+		
+			/* Unstable wall of Elements */
+		39052 => array(
+				"flame" => 39053,
+				"shock" => 39073,
+				"frost" => 39067,
+				"flameName" => "Unstable Wall of Fire",
+				"shockName" => "Unstable Wall of Storms",
+				"frostName" => "Unstable Wall of Frost",
+		),
+		41673 => array(
+				"flame" => 41674,
+				"shock" => 41685,
+				"frost" => 41679,
+				"flameName" => "Unstable Wall of Fire",
+				"shockName" => "Unstable Wall of Storms",
+				"frostName" => "Unstable Wall of Frost",
+		),
+		41691 => array(
+				"flame" => 41692,
+				"shock" => 41705,
+				"frost" => 41697,
+				"flameName" => "Unstable Wall of Fire",
+				"shockName" => "Unstable Wall of Storms",
+				"frostName" => "Unstable Wall of Frost",
+		),
+		41711 => array(
+				"flame" => 41712,
+				"shock" => 41723,
+				"frost" => 41717,
+				"flameName" => "Unstable Wall of Fire",
+				"shockName" => "Unstable Wall of Storms",
+				"frostName" => "Unstable Wall of Frost",
+		),
+		
+		
+			/* Elemental Ring */
+		39143 => array(
+				"flame" => 39145,
+				"shock" => 39147,
+				"frost" => 39146,
+				"flameName" => "Fire Ring",
+				"shockName" => "Shock Ring",
+				"frostName" => "Frost Ring",
+		),
+		42961 => array(
+				"flame" => 42962,
+				"shock" => 42966,
+				"frost" => 42964,
+				"flameName" => "Fire Ring",
+				"shockName" => "Shock Ring",
+				"frostName" => "Frost Ring",
+		),
+		42968 => array(
+				"flame" => 42969,
+				"shock" => 42973,
+				"frost" => 42971,
+				"flameName" => "Fire Ring",
+				"shockName" => "Shock Ring",
+				"frostName" => "Frost Ring",
+		),
+		42975 => array(
+				"flame" => 42976,
+				"shock" => 42980,
+				"frost" => 42978,
+				"flameName" => "Fire Ring",
+				"shockName" => "Shock Ring",
+				"frostName" => "Frost Ring",
+		),
+		
+			/* Pulsar */
+		39161 => array(
+				"flame" => 39162,
+				"shock" => 39167,
+				"frost" => 39163,
+				"flameName" => "Flame Pulsar",
+				"shockName" => "Storm Pulsar",
+				"frostName" => "Frost Pulsar",
+		),
+		42982 => array(
+				"flame" => 42983,
+				"shock" => 42987,
+				"frost" => 42985,
+				"flameName" => "Flame Pulsar",
+				"shockName" => "Storm Pulsar",
+				"frostName" => "Frost Pulsar",
+		),
+		42989 => array(
+				"flame" => 42990,
+				"shock" => 42994,
+				"frost" => 42992,
+				"flameName" => "Flame Pulsar",
+				"shockName" => "Storm Pulsar",
+				"frostName" => "Frost Pulsar",
+		),
+		42996 => array(
+				"flame" => 42997,
+				"shock" => 43001,
+				"frost" => 42999,
+				"flameName" => "Flame Pulsar",
+				"shockName" => "Storm Pulsar",
+				"frostName" => "Frost Pulsar",
+		),
+		
+			/* Elemental Storm */
+		83619 => array(
+				"flame" => 83625,
+				"shock" => 83630,
+				"frost" => 83628,
+				"flameName" => "Fire Storm",
+				"shockName" => "Thunder Storm",
+				"frostName" => "Ice Storm",
+		),
+		86481 => array(
+				"flame" => 86488,
+				"shock" => 86500,
+				"frost" => 86494,
+				"flameName" => "Fire Storm",
+				"shockName" => "Thunder Storm",
+				"frostName" => "Ice Storm",
+		),
+		86483 => array(
+				"flame" => 86490,
+				"shock" => 86502,
+				"frost" => 86495,
+				"flameName" => "Fire Storm",
+				"shockName" => "Thunder Storm",
+				"frostName" => "Ice Storm",
+		),
+		86485 => array(
+				"flame" => 86492,
+				"shock" => 86504,
+				"frost" => 86496,
+				"flameName" => "Fire Storm",
+				"shockName" => "Thunder Storm",
+				"frostName" => "Ice Storm",
+		),
+		
+			/* Elemental Rage */
+		84434 => array(
+				"flame" => 85126,
+				"shock" => 85130,
+				"frost" => 85128,
+				"flameName" => "Fiery Rage",
+				"shockName" => "Thunderous Rage",
+				"frostName" => "Icy Rage",
+		),
+		86506 => array(
+				"flame" => 86512,
+				"shock" => 86524,
+				"frost" => 86518,
+				"flameName" => "Fiery Rage",
+				"shockName" => "Thunderous Rage",
+				"frostName" => "Icy Rage",
+		),
+		86508 => array(
+				"flame" => 86513,
+				"shock" => 86526,
+				"frost" => 86520,
+				"flameName" => "Fiery Rage",
+				"shockName" => "Thunderous Rage",
+				"frostName" => "Icy Rage",
+		),
+		86510 => array(
+				"flame" => 86515,
+				"shock" => 86528,
+				"frost" => 86522,
+				"flameName" => "Fiery Rage",
+				"shockName" => "Thunderous Rage",
+				"frostName" => "Icy Rage",
+		),
+		
+			/* Eye of the Storm */
+		83642 => array(
+				"flame" => 83682,
+				"shock" => 83686,
+				"frost" => 83684,
+				"flameName" => "Eye of Flame",
+				"shockName" => "Eye of Lightning",
+				"frostName" => "Eye of Frost",
+		),
+		86530 => array(
+				"flame" => 86536,
+				"shock" => 86548,
+				"frost" => 86542,
+				"flameName" => "Eye of Flame",
+				"shockName" => "Eye of Lightning",
+				"frostName" => "Eye of Frost",
+		),
+		86532 => array(
+				"flame" => 86538,
+				"shock" => 86550,
+				"frost" => 86544,
+				"flameName" => "Eye of Flame",
+				"shockName" => "Eye of Lightning",
+				"frostName" => "Eye of Frost",
+		),
+		86534 => array(
+				"flame" => 86540,
+				"shock" => 86552,
+				"frost" => 86546,
+				"flameName" => "Eye of Flame",
+				"shockName" => "Eye of Lightning",
+				"frostName" => "Eye of Frost",
+		),		
+	
+);
+
+
+$ESO_SKILLTYPES = array(
+		0 => "Class",
+		1 => "Dragonknight",
+		2 => "Nightblade",
+		3 => "Sorcerer",
+		4 => "Templar",
+		5 => "Weapon",
+		6 => "Armor",
+		7 => "World",
+		8 => "Guild",
+		9 => "Alliance War",
+		10 => "Racial",
+		11 => "Craft",
+);
+
+
+
 function GetEsoLevelFromIntType($intType, $intLevel = 1)
 {
 	global $ESO_ITEMINTTYPE_LEVELMAP;
@@ -2158,6 +2590,16 @@ function GetEsoItemCraftTypeText($value)
 
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_CRAFTTYPES)) return $ESO_CRAFTTYPES[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoSkillTypeTypeText($value)
+{
+	global $ESO_SKILLTYPES;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_SKILLTYPES)) return $ESO_SKILLTYPES[$key];
 	return "Unknown ($key)";
 }
 
