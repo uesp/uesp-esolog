@@ -598,7 +598,7 @@ foreach ($passiveSkills as $passive)
 	$nextSkill = $passive['nextSkill'];
 	$prevSkill = $passive['prevSkill'];
 	
-	$query = "UPDATE minedSkills$TABLE_SUFFIX SET nextSkill=$nextSkill, prevSkill=$prevSkill WHERE id=$id;";
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET nextSkill='$nextSkill', prevSkill='$prevSkill' WHERE id='$id';";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error updating minedSkill table!\n" . $db->error . "\n" . $query);
 }
