@@ -172,6 +172,7 @@ class CEsoItemLink
 	public $enchantIntLevel1 = 0;
 	public $enchantIntType1 = 0;
 	public $enchantFactor = 0;
+	public $extraArmor = 0;
 	public $inputIntType = -1;
 	public $inputIntLevel = -1;
 	public $inputLevel = -1;
@@ -312,6 +313,7 @@ class CEsoItemLink
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
+		if (array_key_exists('extraarmor', $this->inputParams)) $this->extraArmor = (int) $this->inputParams['extraarmor'];
 		
 		if (array_key_exists('extradata', $this->inputParams)) 
 		{
@@ -523,6 +525,8 @@ class CEsoItemLink
 			
 			$row['version'] = $this->version;
 			$row['name'] = preg_replace("#\|.*#", "", $row['name']);
+			
+			if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
 			
 			$this->itemAllData[] = $row;
 		}
@@ -762,6 +766,8 @@ class CEsoItemLink
 		
 		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
 		
+		if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
+		
 		$this->itemRecord = $row;
 		
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
@@ -814,6 +820,8 @@ class CEsoItemLink
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
 		if ($result->num_rows === 0) $this->ReportError("ERROR: No result item found matching '$itemLink'!");
+		
+		if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
 		
 		$this->resultItemRecord = $row;
 		

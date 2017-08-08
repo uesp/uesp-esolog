@@ -465,6 +465,8 @@ class CEsoItemLinkImage
 		
 		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
 		
+		if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
+		
 		$this->itemRecord = $row;
 		
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
