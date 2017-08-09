@@ -127,6 +127,38 @@ $ESO_ITEMTRAIT10_FULLTEXTS = array(
 );
 
 
+$ESO_ITEMTRAIT15_FULLTEXTS = array(
+		-1 => "",
+		18 => "Armor Divines",
+		17 => "Armor Invigorating",
+		12 => "Armor Impenetrable",
+		16 => "Armor Infused",
+		20 => "Armor Intricate",
+		19 => "Armor Ornate",
+		13 => "Armor Reinforced",
+		11 => "Armor Sturdy",
+		15 => "Armor Training",
+		14 => "Armor Well Fitted",
+		22 => "Jewelry Arcane",
+		21 => "Jewelry Healthy",
+		24 => "Jewelry Ornate",
+		23 => "Jewelry Robust",
+		0 => "",
+		2 => "Weapon Charged",
+		5 => "Weapon Defending",
+		4 => "Weapon Infused",
+		9 => "Weapon Intricate",
+		10 => "Weapon Ornate",
+		1 => "Weapon Powered",
+		3 => "Weapon Precise",
+		7 => "Weapon Sharpened",
+		6 => "Weapon Training",
+		8 => "Weapon Decisive",
+		25 => "Armor Nirnhoned",
+		26 => "Weapon Nirnhoned",
+);
+
+
 $ESO_CRAFTTYPES = array(
 		-1 => "",
 		0 => "",
@@ -211,6 +243,38 @@ $ESO_ITEMTRAIT10_TEXTS = array(
 		-1 => "",
 		18 => "Divines",
 		17 => "Prosperous",
+		12 => "Impenetrable",
+		16 => "Infused",
+		20 => "Intricate",
+		19 => "Ornate",
+		13 => "Reinforced",
+		11 => "Sturdy",
+		15 => "Training",
+		14 => "Well Fitted",
+		22 => "Arcane",
+		21 => "Healthy",
+		24 => "Ornate",
+		23 => "Robust",
+		0 => "",
+		2 => "Charged",
+		5 => "Defending",
+		4 => "Infused",
+		9 => "Intricate",
+		10 => "Ornate",
+		1 => "Powered",
+		3 => "Precise",
+		7 => "Sharpened",
+		6 => "Training",
+		8 => "Decisive",
+		25 => "Nirnhoned",
+		26 => "Nirnhoned",
+);
+
+
+$ESO_ITEMTRAIT15_TEXTS = array(
+		-1 => "",
+		18 => "Divines",
+		17 => "Invigorating",
 		12 => "Impenetrable",
 		16 => "Infused",
 		20 => "Intricate",
@@ -2572,8 +2636,15 @@ function GetEsoItemTraitFullText($trait, $version = "")
 {
 	global $ESO_ITEMTRAIT_FULLTEXTS;
 	global $ESO_ITEMTRAIT10_FULLTEXTS;
+	global $ESO_ITEMTRAIT15_FULLTEXTS;
 	
 	$key = (int) $trait;
+	
+	if (IsEsoVersionAtLeast($version, 15))
+	{
+		if (array_key_exists($key, $ESO_ITEMTRAIT15_FULLTEXTS)) return $ESO_ITEMTRAIT15_FULLTEXTS[$key];
+		return "Unknown ($key)";
+	}
 	
 	if (IsEsoVersionAtLeast($version, 10))
 	{
@@ -2620,8 +2691,15 @@ function GetEsoItemTraitText($trait, $version = "")
 {
 	global $ESO_ITEMTRAIT_TEXTS;
 	global $ESO_ITEMTRAIT10_TEXTS;
+	global $ESO_ITEMTRAIT15_TEXTS;
 	
 	$key = (int) $trait;
+	
+	if (IsEsoVersionAtLeast($version, 15))
+	{
+		if (array_key_exists($key, $ESO_ITEMTRAIT15_TEXTS)) return $ESO_ITEMTRAIT15_TEXTS[$key];
+		return "Unknown ($key)";
+	}
 	
 	if (IsEsoVersionAtLeast($version, 10))
 	{
