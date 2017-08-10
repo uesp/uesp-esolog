@@ -1082,6 +1082,10 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
