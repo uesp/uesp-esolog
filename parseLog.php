@@ -74,12 +74,15 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744021174005006336; //v13 1486388686
 														  //v14pts ? 
 	const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v14 1495461433
+														  //v15pts?
+	//const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v15 
+														  
 	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "15pts";
-	const SKILLS_TABLESUFFIX   = "15pts";
+	const MINEITEM_TABLESUFFIX = "15";
+	const SKILLS_TABLESUFFIX   = "15";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -164,6 +167,8 @@ class EsoLogParser
 			"minedSkills14",
 			"minedSkills15pts",
 			"minedSkills15",
+			"minedSkills16pts",
+			"minedSkills16",
 			"collectibles",
 			"achievements",
 	);
