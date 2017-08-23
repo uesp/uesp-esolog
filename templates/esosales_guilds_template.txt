@@ -24,7 +24,10 @@
 
 <div id="esovsd_root">
 	<div class="">
-		Viewing guild data collected from the Elder Scrolls Online from all collected sales.
+		Viewing guild data collected from the Elder Scrolls Online from all collected sales. &nbsp; 
+		<a href="?view=guilds">All Guilds</a> &nbsp; &nbsp; 
+		<a href="?view=guilds&server=na">PC-NA Guilds</a> &nbsp; &nbsp; 
+		<a href="?view=guilds&server=eu">PC-EU Guilds</a>
 	</div>
 	<br/>
 	{errorMessages}
