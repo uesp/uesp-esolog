@@ -1137,7 +1137,18 @@ class EsoViewSalesData
 	{
 		$startTime = microtime(true);
 		
-		$this->lastQuery = "SELECT * FROM guilds;";
+		$server = strtoupper($this->GetFormValue('server'));
+		
+		if ($server != "")
+		{
+			$server = $this->Escape($server);
+			$this->lastQuery = "SELECT * FROM guilds WHERE server='$server' ORDER BY name;";
+		}
+		else
+		{
+			$this->lastQuery = "SELECT * FROM guilds ORDER BY name;";
+		}
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to load guild data!");
 
@@ -1977,6 +1988,7 @@ class EsoViewSalesData
 	{
 		$output  = "<table id='esovsd_guildresults_table'>";
 		$output .= "<tr>";
+		$output .= "<th></th>";
 		$output .= "<th>Guild</th>";
 		$output .= "<th>Server</th>";
 		$output .= "<th>Members</th>";
@@ -1985,6 +1997,9 @@ class EsoViewSalesData
 		$output .= "<th>Kiosk Location</th>";
 		$output .= "<th>Listed / Sold</th>";
 		$output .= "</tr>";
+		
+		$matchServer = strtoupper($this->GetFormValue('server'));
+		$count = 0;
 	
 		foreach ($this->guildData as $key => $guild)
 		{
@@ -1994,6 +2009,8 @@ class EsoViewSalesData
 			$founder = $this->Escape($guild['leader']);
 			$numSales = $this->Escape($guild['totalSales']);
 			$numPurchases = $this->Escape($guild['totalPurchases']);
+			
+			if (!($matchServer == "" || $matchServer == $server)) continue;
 			
 			if ($guild['foundedDate'] <= 0) 
 				$foundedDate = "";
@@ -2006,8 +2023,10 @@ class EsoViewSalesData
 			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
 			if ($lastStoreLocTime != "") $lastStoreLocTime = "<small>updated " . $lastStoreLocTime . "</small>";
 						
+			$count++;
 			$output .= "<tr>";
 			
+			$output .= "<td>$count</td>";
 			$output .= "<td>$name</td>";
 			$output .= "<td>$server</td>";
 			$output .= "<td>$numMembers</td>";
@@ -2280,7 +2299,13 @@ class EsoViewSalesData
 		if ($this->showForm == "ViewGuilds")
 		{
 			$count = count($this->guildData);
-			$output .= "Showing data from all $count guilds.";
+			$server = strtoupper($this->GetFormValue('server'));
+			
+			if ($server)
+				$output .= "Showing data from $count $server guilds.";
+			else
+				$output .= "Showing data from all $count guilds.";
+			
 			$output .= "<br/><br/>";
 			return $output;
 		}
@@ -2527,11 +2552,13 @@ class EsoViewSalesData
 	public function CreateGuildsOutputCsv()
 	{
 		$output = "";
+		$count = 0;
 		
-		$output .= "\"ID\",\"Guild\",\"Server\",\"Members\",\"Founder\",\"Founded Date\",\"Kisok Location\",\"Last Updated\",\"Listed\",\"Sold\"\n";
+		$output .= "\"#\",\"ID\",\"Guild\",\"Server\",\"Members\",\"Founder\",\"Founded Date\",\"Kisok Location\",\"Last Updated\",\"Listed\",\"Sold\"\n";
 		
 		foreach ($this->guildData as $key => $guild)
 		{
+			$count++;
 			$name = $this->CsvEscape($guild['name']);
 			$server = $this->CsvEscape($guild['server']);
 			$numMembers = $guild['numMembers'];
@@ -2549,6 +2576,7 @@ class EsoViewSalesData
 				
 			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
 
+			$output .= "\"$count\",";
 			$output .= "\"{$guild['id']}\",";
 			$output .= "\"$name\",";
 			$output .= "\"$server\",";
