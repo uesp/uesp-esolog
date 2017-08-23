@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "15";
+$TABLE_SUFFIX = "";
 
 $FIELDS = array(
 		"itemId",
@@ -119,7 +119,7 @@ if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error)
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
 $LASTID = 150000;
-$MINSUBTYPE = 1;
+$MINSUBTYPE = 0;
 $MAXSUBTYPE = 370;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)

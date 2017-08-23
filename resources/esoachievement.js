@@ -16,7 +16,8 @@ function OnEsoAchievementTreeName1Click(e)
 	EsoAchTree_LastOpenTreeName.removeClass('ecdAchTreeNameHighlight');
 		
 	EsoAchTree_LastContentName = $('.ecdAchTreeNameHighlight2').first();
-	EsoAchTree_LastContentName.removeClass('ecdAchTreeNameHighlight2');
+	//EsoAchTree_LastContentName.removeClass('ecdAchTreeNameHighlight2');
+	$(".ecdAchTreeNameHighlight2").removeClass("ecdAchTreeNameHighlight2");
 	EsoAchTree_LastContent = $('.ecdAchData:visible').first();
 	EsoAchTree_LastContent.hide();
 		
@@ -41,7 +42,8 @@ function SelectEsoAchievementTreeContents(object)
 	EsoAchTree_LastContentName = $('.ecdAchTreeNameHighlight2').first();
 	EsoAchTree_LastContent = $('.ecdAchData:visible').first();
 	
-	EsoAchTree_LastContentName.removeClass('ecdAchTreeNameHighlight2');
+	//EsoAchTree_LastContentName.removeClass('ecdAchTreeNameHighlight2');
+	$(".ecdAchTreeNameHighlight2").removeClass("ecdAchTreeNameHighlight2");
 	EsoAchTree_LastContent.hide();
 	
 	EsoAchTree_LastContentName = object;
@@ -141,7 +143,7 @@ function FindEsoCharNextAchievement()
 	
 	$(".ecdAchSearchHighlight").removeClass("ecdAchSearchHighlight");
 		
-	$(".ecdAchName, .ecdAchDesc, .ecdAchReward, .ecdAchListItem img").each(function(index) {
+	$(".ecdAchName, .ecdAchDesc, .ecdAchReward, .ecdAchCriteria, .ecdAchListItem img").each(function(index) {
 		if (index <= lastAchSearchPos) return true;
 		var $this = $(this);
 		var text = $this.text().toLowerCase();
@@ -236,7 +238,7 @@ function OnEsoAchievementDocReady()
 	EsoAchTree_LastContentName = $('.ecdAchTreeNameHighlight2').first();
 	EsoAchTree_LastContent = $('.ecdAchData:visible').first();
 	
-	$(".ecdAchievement1").click(OnAchievementClick);
+	$(".ecdSelectAchievement1").click(OnAchievementClick);
 	
 	$("#ecdFindAchInput").keyup(function(e) {
 		if (e.keyCode == 13) 

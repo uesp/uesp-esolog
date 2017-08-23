@@ -1550,7 +1550,7 @@ class CEsoItemLink
 
 		if (($armorType > 0 || $weaponType == 14) && $armorFactor != 1)
 		{
-			$newDesc = preg_replace_callback("#(Adds \|c[0-9a-fA-F]{6})([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
+			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?:Adds up to \|c[0-9a-fA-F]{6}))([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
 					
 				function ($matches) use ($armorFactor) {
 					$result = floor($matches[2] * $armorFactor);

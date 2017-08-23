@@ -307,9 +307,16 @@ class CEsoViewAchievements
 		$name = $this->escape($name);
 		
 		$desc = $this->escape($achData['desc']);
-		$points = $this->escape($achData['points']);		
+		$points = $this->escape($achData['points']);
 		
-		$output .= "<div class='ecdAchievement1 $knownClass' achieveid='$achId'>";
+		$blockOutput  = $this->GetAchievementCriteriaHtml($displayId);
+		$blockOutput .= $this->GetAchievementSubBlockHtml($achList);
+		$rewardOutput = $this->GetAchievementRewardBlockHtml($achList);
+		
+		$extraClass = "";
+		if ($blockOutput != "" || $rewardOutput != "") $extraClass = "ecdSelectAchievement1";
+		
+		$output .= "<div class='ecdAchievement1 $knownClass $extraClass' achieveid='$achId'>";
 		$output .= "<div class='ecdAchIconFrame'><img src='$iconUrl' class='ecdAchIcon'></div>";
 		$output .= "<div class='ecdAchMidBlock'>";
 		$output .= "<div class='ecdAchName'>$name</div>";
@@ -319,11 +326,7 @@ class CEsoViewAchievements
 		$output .= "<div class='ecdAchPoints'>$points</div>";
 		$output .= "<div class='ecdAchDate'>$displayDate</div>";
 		$output .= "</div>";
-		
-		$blockOutput  = $this->GetAchievementCriteriaHtml($displayId);
-		$blockOutput .= $this->GetAchievementSubBlockHtml($achList);
-		$rewardOutput = $this->GetAchievementRewardBlockHtml($achList);
-		
+				
 		if ($blockOutput != "" || $rewardOutput != "")
 		{
 			$output .= "<div class='ecdAchDataBlock' style='display: none;' >";

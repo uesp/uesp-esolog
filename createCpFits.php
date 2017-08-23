@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "14";
+$TABLE_SUFFIX = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Creating CP data fits...\n");

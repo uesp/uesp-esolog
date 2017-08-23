@@ -73,16 +73,16 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744009321690431488;	//v13pts 1483541100
 	//const START_MINEITEM_TIMESTAMP = 4744021174005006336; //v13 1486388686
 														  //v14pts ? 
-	const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v14 1495461433
+	//const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v14 1495461433
 														  //v15pts?
-	//const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v15 
+	const START_MINEITEM_TIMESTAMP = 4744089672613888000; //v15 1502720027
 														  
 	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "15";
-	const SKILLS_TABLESUFFIX   = "15";
+	const MINEITEM_TABLESUFFIX = "";
+	const SKILLS_TABLESUFFIX   = "";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -1125,12 +1125,12 @@ class EsoLogParser
 			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
 			{
 				if ($record[$key] === null || $record[$key] === '' )
-					$query .= "{$key}=-1";
+					$query .= "`{$key}`=-1";
 				else
-					$query .= "{$key}={$record[$key]}";
+					$query .= "`{$key}`={$record[$key]}";
 			}
 			elseif ($value == self::FIELD_STRING)
-				$query .= "{$key}='". $this->db->real_escape_string($record[$key]) ."'";
+				$query .= "`{$key}`='". $this->db->real_escape_string($record[$key]) ."'";
 			else
 				$this->reportError("Unknown ID type $value found for $key field in $table table!");
 			
@@ -1138,11 +1138,11 @@ class EsoLogParser
 		}
 		
 		if ($idType == self::FIELD_INT)
-			$query .= " WHERE $idField=$id;";
+			$query .= " WHERE `$idField`=$id;";
 		elseif ($idType == self::FIELD_FLOAT)
-			$query .= " WHERE $idField=$id;";
+			$query .= " WHERE `$idField`=$id;";
 		elseif ($idType == self::FIELD_STRING)
-			$query .= " WHERE $idField='". $this->db->real_escape_string($id) ."';";
+			$query .= " WHERE `$idField`='". $this->db->real_escape_string($id) ."';";
 		else
 			return $this->reportError("Unknown ID type $idType in $table table!");
 	
@@ -1196,7 +1196,7 @@ class EsoLogParser
 				$values  .= ', ';
 			}
 			
-			$columns .= $key;
+			$columns .= "`" . $key . "`";
 				
 			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
 			{
@@ -1771,7 +1771,7 @@ class EsoLogParser
 						type1 SMALLINT NOT NULL,
 						type2 SMALLINT NOT NULL,
 						text TEXT NOT NULL,
-						maxValue INTEGER NOT NULL,
+						`maxValue` INTEGER NOT NULL,
 						isFail TINYINT NOT NULL,
 						isComplete TINYINT NOT NULL,
 						isShared TINYINT NOT NULL,
@@ -2123,7 +2123,7 @@ class EsoLogParser
 			name TINYTEXT NOT NULL,
 			minDescription TEXT NOT NULL,
 			maxDescription TEXT NOT NULL,
-			maxValue FLOAT NOT NULL,
+			`maxValue` FLOAT NOT NULL,
 			x FLOAT NOT NULL,
 			y FLOAT NOT NULL,
 			a FLOAT NOT NULL,
@@ -5191,15 +5191,17 @@ class EsoLogParser
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
 			
-			if ($minedItem['setName'] == "Amberplasm")
+			if ($minedItem['setName'] == "Amberplasm" || $logEntry['setName'] == "Amberplasm")
 			{
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
 			}
-			else if ($minedItem['setName'] == "Shacklebreaker")
+			else if ($minedItem['setName'] == "Shacklebreaker" || $logEntry['setName'] == "Shacklebreaker")
 			{
-				$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
-				$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				//$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
+				//$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				//$logEntry['setDesc5'] = "";
 			}
 			else
 			{
