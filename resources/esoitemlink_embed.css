@@ -142,7 +142,7 @@
 	font-size: 0.9em;
 	font-weight: bold;
 	height: 30px;
-	width: 120px;
+	width: 140px;
 	line-height: 1.6em;
 	vertical-align: middle;
 	white-space: nowrap;
@@ -150,7 +150,8 @@
 
 #esoil_itemrightblock {
 	margin-left: 10px;
-	margin-right: 10px;	
+	margin-right: 10px;
+	width: 90px;
 }
 
 #esoil_itemnewvalueblock {

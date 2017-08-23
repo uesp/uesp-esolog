@@ -28,7 +28,8 @@ UESP.ESO_TRAIT_TYPES = {
 		"-1" : "",
 		"0"	 : "",
 		"18" : "Divines",
-		"17" : "Prosperous",
+		//"17" : "Prosperous",
+		"17" : "Invigorating",
 		"12" : "Impenetrable",
 		"16" : "Infused",
 		"20" : "Intricate",
@@ -336,8 +337,8 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='18'>Divines</option>" +
 		"		<option value='12'>Impenetrable</option>" +
 		"		<option value='16'>Infused</option>" +
-		"		<option value='25'>Nirnhoned</option>" +
-		"		<option value='17'>Prosperous</option>" +
+		"		<option value='17'>Invigorating</option>" +
+		"		<option value='25'>Nirnhoned</option>" +		
 		"		<option value='13'>Reinforced</option>" +
 		"		<option value='11'>Sturdy</option>" +
 		"		<option value='15'>Training</option>" +
