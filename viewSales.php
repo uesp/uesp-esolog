@@ -2010,6 +2010,8 @@ class EsoViewSalesData
 			$numSales = $this->Escape($guild['totalSales']);
 			$numPurchases = $this->Escape($guild['totalPurchases']);
 			
+			if ($numMembers <= 0) $numMembers = "";
+			
 			if (!($matchServer == "" || $matchServer == $server)) continue;
 			
 			if ($guild['foundedDate'] <= 0) 
