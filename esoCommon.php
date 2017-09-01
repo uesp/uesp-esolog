@@ -2576,7 +2576,7 @@ $ESO_DESTRUCTION_SKILLS = array(
 );
 
 
-$ESO_SKILLTYPES = array(
+$ESO_SKILLTYPESTYPE = array(
 		0 => "Class",
 		1 => "Dragonknight",
 		2 => "Nightblade",
@@ -2669,10 +2669,10 @@ function GetEsoItemCraftTypeText($value)
 
 function GetEsoSkillTypeTypeText($value)
 {
-	global $ESO_SKILLTYPES;
+	global $ESO_SKILLTYPESTYPE;
 
 	$key = (int) $value;
-	if (array_key_exists($key, $ESO_SKILLTYPES)) return $ESO_SKILLTYPES[$key];
+	if (array_key_exists($key, $ESO_SKILLTYPESTYPE)) return $ESO_SKILLTYPESTYPE[$key];
 	return "Unknown ($key)";
 }
 

@@ -2577,7 +2577,7 @@ function RemovePurchasedEsoRaceSkills()
 
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
-		ResetEsoPurchasedSkill(skillId);		
+		ResetEsoPurchasedSkill(skillId);
 	});
 	
 	g_EsoSkillUpdateEnable = initialUpdate;
