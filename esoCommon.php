@@ -3083,6 +3083,14 @@ function GetEsoItemTableSuffix($version)
 		case '115':
 		case '15':
 			return "";
+		case '1.6pts':
+		case '116pts':
+		case '16pts':
+			return "16pts";
+		case '1.6':
+		case '116':
+		case '16':
+			return "16";
 	}
 
 	return "";

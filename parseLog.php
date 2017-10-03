@@ -81,8 +81,8 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "16pts";
+	const SKILLS_TABLESUFFIX   = "16pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -745,6 +745,8 @@ class EsoLogParser
 			'y' => self::FIELD_FLOAT,
 			'a' => self::FIELD_FLOAT,
 			'b' => self::FIELD_FLOAT,
+			'c' => self::FIELD_FLOAT,
+			'd' => self::FIELD_FLOAT,
 			'r2' => self::FIELD_FLOAT,
 			'fitDescription' => self::FIELD_STRING,
 	);
@@ -2126,9 +2128,11 @@ class EsoLogParser
 			`maxValue` FLOAT NOT NULL,
 			x FLOAT NOT NULL,
 			y FLOAT NOT NULL,
-			a FLOAT NOT NULL,
-			b FLOAT NOT NULL,
-			r2 FLOAT NOT NULL,
+			a FLOAT NOT NULL DEFAULT -1,
+			b FLOAT NOT NULL DEFAULT -1,
+			c FLOAT NOT NULL DEFAULT -1,
+			d FLOAT NOT NULL DEFAULT -1,
+			r2 FLOAT NOT NULL DEFAULT -1,
 			fitDescription TEXT NOT NULL,
 			INDEX index_abilityId(abilityId)
 		);";
