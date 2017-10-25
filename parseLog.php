@@ -75,14 +75,14 @@ class EsoLogParser
 														  //v14pts ? 
 	//const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v14 1495461433
 														  //v15pts?
-	const START_MINEITEM_TIMESTAMP = 4744089672613888000; //v15 1502720027
-														  
+	//const START_MINEITEM_TIMESTAMP = 4744089672613888000; //v15 1502720027
+	  const START_MINEITEM_TIMESTAMP = 4744115047104512000; //v16 1508769777
 	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "16pts";
-	const SKILLS_TABLESUFFIX   = "16pts";
+	const MINEITEM_TABLESUFFIX = "16";
+	const SKILLS_TABLESUFFIX   = "";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -5744,6 +5744,8 @@ class EsoLogParser
 		$cpDisc['maxValue'] = 0;
 		$cpDisc['a'] = -1;
 		$cpDisc['b'] = -1;
+		$cpDisc['c'] = -1;
+		$cpDisc['d'] = -1;
 		$cpDisc['r2'] = -1;
 		$cpDisc['fitDescription'] = "";
 		
