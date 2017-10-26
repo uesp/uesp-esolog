@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "16";
+$TABLE_SUFFIX = "";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -85,7 +85,13 @@ foreach ($skillsData as $skillId => &$skill)
 	$index = 1;
 	if ($ESO_COEF_INDEX[$skillId] != null) $index = $ESO_COEF_INDEX[$skillId];
 	
-	$result = preg_match("#([0-9]+)#", $skill['description'], $matches);
+	$coefDescription = $skill['coefDescription'];
+	if ($coefDescription == "") $coefDescription = $skill['description'];
+	
+	//$coefDescription = $skill['description'];
+	//$coefDescription = preg_replace("#1005#", '\$1', $coefDescription);
+	
+	$result = preg_match("#([0-9]+)#", $coefDescription, $matches);
 	
 	if (!$result) 
 	{
@@ -104,7 +110,7 @@ foreach ($skillsData as $skillId => &$skill)
 	$skill['avg' . $index] = 0;
 	$skill['R' . $index] = 1;
 	$skill['numCoefVars'] = $index;
-	$skill['coefDescription'] = preg_replace("#Current bonus: \|cffffff[0-9]+\|r#i", 'Current bonus: |cffffff\$'. $index . '|r', $skill['description']);
+	$skill['coefDescription'] = preg_replace("#Current bonus: \|cffffff[0-9]+\|r#i", 'Current bonus: |cffffff\$'. $index . '|r', $coefDescription);
 	$type = $skill['type' + $index];
 	
 	print("\tCoef Description: {$skill['coefDescription']}\n");
