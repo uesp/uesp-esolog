@@ -47,8 +47,7 @@ var RAWDATA_KEYS =
 		"angleDistance",
 		"isPassive",
 		"skillType",
-		"isPlayer",
-		
+		"isPlayer",		
 		"numCoefVars",
 		"coefDescription",
 		"type1",
@@ -632,17 +631,28 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	if (values.SkillWeaponDamage == null || values.SkillSpellDamage == null)
 	{
 	}
-	else if (skillData['castTime'] > 0 || skillData['channelTime'] > 0)
+	else if (skillData['classType'] != "")
 	{
-		skillWeaponValues = values.SkillWeaponDamage['Channel'];
-		skillSpellValues  = values.SkillSpellDamage['Channel'];
-		SpellDamageType.push("Channel/Cast Time");
-		WeaponDamageType.push("Channel/Cast Time");
+		skillWeaponValues = values.SkillWeaponDamage['Class'];
+		skillSpellValues  = values.SkillSpellDamage['Class'];
+		SpellDamageType.push("Class");
+		WeaponDamageType.push("Class");
 	}
 	else
 	{
 		skillWeaponValues = values.SkillWeaponDamage;
 		skillSpellValues  = values.SkillSpellDamage;
+	}
+	
+	if (values.SkillWeaponDamage == null || values.SkillSpellDamage == null)
+	{
+	}
+	else if (skillData['castTime'] > 0 || skillData['channelTime'] > 0)
+	{
+		skillWeaponValues = skillWeaponValues['Channel'];
+		skillSpellValues  = skillWeaponValues['Channel'];
+		SpellDamageType.push("Channel/Cast Time");
+		WeaponDamageType.push("Channel/Cast Time");
 	}
 	
 	if (values.useMaelstromDamage && isDot && skillWeaponValues != null && skillSpellValues != null)
