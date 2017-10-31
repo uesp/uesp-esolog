@@ -9,6 +9,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
+$TABLE_SUFFIX = "16";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
@@ -21,7 +22,7 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 {
 	if (($itemId % 1000) == 0) print("\t$itemId: Checking for mismatched item names.\n");
 	
-	$query = "SELECT name, internalLevel, internalSubtype from minedItem WHERE itemId=$itemId;";
+	$query = "SELECT name, internalLevel, internalSubtype from minedItem$TABLE_SUFFIX WHERE itemId=$itemId;";
 	$result = $db->query($query);
 	
 	if ($result->num_rows <= 1) continue;
