@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "15";
+$TABLE_SUFFIX = "16";
 
 $subType1 = 307;
 $subType2 = 364;

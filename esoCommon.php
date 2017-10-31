@@ -3001,7 +3001,7 @@ function IsEsoVersionAtLeast($version, $checkVersion)
 
 function GetEsoUpdateVersion()
 {
-	return 15;
+	return 16;
 }
 
 
@@ -3082,7 +3082,7 @@ function GetEsoItemTableSuffix($version)
 		case '1.5':
 		case '115':
 		case '15':
-			return "";
+			return "15";
 		case '1.6pts':
 		case '116pts':
 		case '16pts':
@@ -3090,7 +3090,7 @@ function GetEsoItemTableSuffix($version)
 		case '1.6':
 		case '116':
 		case '16':
-			return "16";
+			return "";
 	}
 
 	return "";
