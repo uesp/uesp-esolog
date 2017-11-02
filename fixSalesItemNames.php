@@ -33,6 +33,8 @@ while (($item = $itemResult->fetch_assoc()))
 	if ($result === false) 
 	{
 		print("\t$count: Error loading item $itemId:$intType:$intLevel data! " . $result->error . "\n");
+		print("\t\tQuery: $query\n");
+		print("\t\tError: {$db->error}\n");
 		continue;	
 	}
 	

@@ -977,6 +977,10 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 		},
 		{
 			type: "flat",
+			match: /(gaining a damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
 			match: /(Invoke defensive tactics to protect yourself and nearby allies with wards that each absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
