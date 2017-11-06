@@ -346,15 +346,27 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		40 => "Ebony",
 		41 => "Abah's Watch",
 		42 => "Skinchanger",
+		43 => "Morag Tong",
 		44 => "Ra Gada",
 		45 => "Dro-m'Athra",
 		46 => "Assassin's League",
 		47 => "Outlaw",
-		53 => "Shalhrim Frostcaster",
+		48 => "Redoran",
+		49 => "Hlaalu",
+		50 => "Militant Ordinator",
+		51 => "Telvanni",
+		52 => "Buoyant Armiger",
+		53 => "Stalhrim Frostcaster",
+		54 => "Ashlander",
 		56 => "Silken Ring",
 		57 => "Mazzatun",
 		58 => "Grim Arlequin",
 		59 => "Hollowjack",
+		61 => "Bloodforge",
+		62 => "Dreadhorn",
+		65 => "Apostle",
+		66 => "Ebonshadow",
+	
 );
 
 
