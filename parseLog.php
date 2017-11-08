@@ -5165,12 +5165,22 @@ class EsoLogParser
 	}
 	
 	
+	public function FixItemLink ($itemLink)
+	{
+		$itemLink = preg_replace("#(.*):(0|1):(0|1):(0|1):([0-9]+:[0-9]+\|h.*\|h)#", '$1:0:0:0:$5', $itemLink);
+		
+		return $itemLink;
+	}
+	
+	
 	public function OnMineItem ($logEntry)
 	{
 		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
 		
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
+		
+		$itemLink = $this->FixItemLink($itemLink);
 		
 		$minedItem = $this->LoadMinedItemLink($itemLink);
 		if ($minedItem === false) return false;
@@ -5277,6 +5287,8 @@ class EsoLogParser
 		
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
+		
+		$itemLink = $this->FixItemLink($itemLink);
 		
 		$minedItem = $this->LoadMinedItemLink($itemLink);
 		if ($minedItem === false) return false;
