@@ -1084,6 +1084,10 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(healing you or up to 2 nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r over)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(healing nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
@@ -1127,7 +1131,7 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
-		match: /(healing you or up to 2 nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+		match: /(healing you or up to .*? nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
 	{
 		healId: "Done",
