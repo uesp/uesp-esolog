@@ -126,6 +126,30 @@ var ROMAN_NUMERALS =
 };
 
 
+var ESO_FREE_PASSIVES = {
+		78219 : 1,
+		74580 : 1,
+		45542 : 1,
+		47276 : 1,
+		47288 : 1,
+		46727 : 1,
+		44590 : 1,
+		47282 : 1,
+		46758 : 1,
+		44625 : 1,
+		36582 : 1,
+		36247 : 1,
+		36588 : 1,
+		35965 : 1,
+		36312 : 1,
+		36063 : 1,
+		36626 : 1,
+		33293 : 1,
+		84680 : 1,
+		36008 : 1,
+};
+
+
 function EsoConvertDescToHTML(desc)
 {
 	return EsoConvertDescToHTMLClass(desc, "esovsWhite");
@@ -2338,10 +2362,16 @@ function OnLeaveEsoSkillBarIcon(e)
 }
 
 
+function IsEsoSkillFree(skillId)
+{
+	return ESO_FREE_PASSIVES[skillId] != null
+}
+
+
 function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 {
 	//EsoSkillLog("UpdateEsoSkillPassiveData", origAbilityId, abilityId, rank);
-	
+		
 	rank = parseInt(rank); 
 		
 	if (g_EsoSkillPassiveData[origAbilityId] == null)
@@ -2351,16 +2381,21 @@ function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 		g_EsoSkillPassiveData[origAbilityId].rank = 0;
 	}
 	
+	var origRank = parseInt(g_EsoSkillPassiveData[origAbilityId].rank);
+	
 	if (rank <= 0)
 	{
-		g_EsoSkillPointsUsed -= parseInt(g_EsoSkillPassiveData[origAbilityId].rank);
+		g_EsoSkillPointsUsed -= origRank;
+		if (origRank >= 1 && rank < 1 && IsEsoSkillFree(origAbilityId)) g_EsoSkillPointsUsed += 1;
+		
 		delete g_EsoSkillPassiveData[origAbilityId];
 		
 		if (g_EsoSkillUpdateEnable) UpdateEsoSkillTotalPoints();
 		return true;
 	}
 	
-	g_EsoSkillPointsUsed += rank - parseInt(g_EsoSkillPassiveData[origAbilityId].rank);
+	g_EsoSkillPointsUsed += rank - origRank;
+	if (origRank < 1 && rank >= 1 && IsEsoSkillFree(origAbilityId)) g_EsoSkillPointsUsed -= 1;
 	
 	g_EsoSkillPassiveData[origAbilityId].rank = rank;
 	g_EsoSkillPassiveData[origAbilityId].abilityId = abilityId;
@@ -2399,6 +2434,7 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 	}
 	
 	if (morph > 0) ++newPoints;
+	
 	g_EsoSkillPointsUsed += newPoints - origPoints;
 	
 	g_EsoSkillActiveData[origAbilityId].abilityType = abilityType;
