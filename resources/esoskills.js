@@ -2577,10 +2577,67 @@ function RemovePurchasedEsoClassSkills()
 		ResetEsoPurchasedSkill(skillId);		
 	});
 	
+	RemoveEsoClassSkillsFromPassiveData();
+	
 	g_EsoSkillUpdateEnable = initialUpdate;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
+}
+
+
+function RemoveEsoRaceSkillsFromPassiveData()
+{
+	var deleteSkillIds = [];
+	
+	for (var skillId in g_EsoSkillPassiveData)
+	{
+		var skill = g_SkillsData[skillId]
+		
+		if (skill == null) continue;
+		if (skill.raceType != "") deleteSkillIds.push(skillId);
+	}
+	
+	for (var index in deleteSkillIds)
+	{
+		var skillId = deleteSkillIds[index];
+		delete g_EsoSkillPassiveData[skillId];
+	}
+}
+
+
+function RemoveEsoClassSkillsFromPassiveData()
+{
+	var deletePassiveIds = [];
+	var deleteActiveIds = [];
+	
+	for (var skillId in g_EsoSkillPassiveData)
+	{
+		var skill = g_SkillsData[skillId]
+		
+		if (skill == null) continue;
+		if (skill.classType != "") deletePassiveIds.push(skillId);
+	}
+	
+	for (var skillId in g_EsoSkillActiveData)
+	{
+		var skill = g_SkillsData[skillId]
+		
+		if (skill == null) continue;
+		if (skill.classType != "") deleteActiveIds.push(skillId);
+	}	
+	
+	for (var index in deletePassiveIds)
+	{
+		var skillId = deleteSkillIds[index];
+		delete g_EsoSkillPassiveData[skillId];
+	}
+	
+	for (var index in deleteActiveIds)
+	{
+		var skillId = deleteSkillIds[index];
+		delete g_EsoSkillActiveData[skillId];
+	}
 }
 
 
@@ -2591,12 +2648,15 @@ function RemovePurchasedEsoRaceSkills()
 				not(".esovsAbilityBlockNotPurchase");
 	
 	var initialUpdate = g_EsoSkillUpdateEnable;
+	
 	g_EsoSkillUpdateEnable = false;
 
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		ResetEsoPurchasedSkill(skillId);
 	});
+	
+	RemoveEsoRaceSkillsFromPassiveData();	
 	
 	g_EsoSkillUpdateEnable = initialUpdate;
 	
