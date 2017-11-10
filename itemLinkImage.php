@@ -82,8 +82,10 @@ class CEsoItemLinkImage
 	public $itemCrafted = -1;
 	public $itemCharges = -1;
 	public $itemSetCount = -1;
+	public $itemTrait = 0;
 	public $itemPotionData = -1;
 	public $itemStolen = -1;
+	public $transmuteTrait = 0;
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
 	public $enchantIntType1 = -1;
@@ -217,6 +219,8 @@ class CEsoItemLinkImage
 		$this->writData5 = (int) $matches['writ5'];
 		$this->writData6 = (int) $matches['writ6'];
 		
+		$this->transmuteTrait = $this->writData1;
+		
 		return true;
 	}
 	
@@ -298,6 +302,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];;
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (int) $this->inputParams['enchantfactor'];
+		if (array_key_exists('trait', $this->inputParams)) $this->transmuteTrait = (int) $this->inputParams['trait'];
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
@@ -472,7 +477,22 @@ class CEsoItemLinkImage
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
 		
-		if ($this->itemRecord['type'] == 60) $this->CreateMasterWritData();
+		if ($this->itemRecord['type'] == 60)
+		{
+			$this->transmuteTrait = 0;
+			$this->CreateMasterWritData();
+		}
+		
+		$this->itemTrait = $this->itemRecord['trait'];
+		
+		if ($this->itemRecord['type'] == 2 || $this->itemRecord['type'] == 1)
+		{
+			if ($this->transmuteTrait > 0) $this->itemTrait = $this->transmuteTrait;
+		}
+		else
+		{
+			$this->transmuteTrait = 0;
+		}
 		
 		$this->LoadEnchantMaxCharges();
 		
@@ -517,7 +537,7 @@ class CEsoItemLinkImage
 		if ($row['maxCharges'] == "") return true;
 		
 		$maxCharges = $row['maxCharges'];
-		if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+		if ($this->itemTrait == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
 		
 		$this->itemRecord['maxCharges'] = $maxCharges;
 	
@@ -1663,7 +1683,7 @@ class CEsoItemLinkImage
 		{
 				// TODO: This is a rough Estimate
 			$maxCharges = $this->itemRecord['weaponPower'] / 2;
-			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+			if ($this->itemTrait == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
 		}
 		
 		if ($type == 1 && $maxCharges > 0 && $this->itemRecord['weaponType'] != 14)
@@ -1719,7 +1739,7 @@ class CEsoItemLinkImage
 		);
 	
 		$newDesc = $desc;
-		$trait = $this->itemRecord['trait'];
+		$trait = $this->itemTrait;
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
 	
 		$armorFactor = 1 + $this->enchantFactor;
@@ -1894,14 +1914,32 @@ class CEsoItemLinkImage
 	
 	private function OutputItemTraitBlock($image, $y)
 	{
-		$trait = $this->itemRecord['trait'];
+		$trait = $this->itemTrait;
 		if ($trait <= 0) return 0;
 		
 		$printData = array();
-		$this->AddPrintData($printData,strtoupper(GetEsoItemTraitText($trait, $this->version)), $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData, strtoupper(GetEsoItemTraitText($trait, $this->version)), $this->printOptionsSmallWhite, array('br' => true));
 		$this->AddPrintData($printData, $this->itemRecord['traitDesc'], $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
+				
+		$deltaY = $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 		
-		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+		if ($this->transmuteTrait > 0)
+		{
+			$lineWidth = 100;
+			if ($printData[0] != null && $printData[0]['width'] > 0) $lineWidth = $printData[0]['lineWidth'];
+		
+			$imageX = self::ESOIL_IMAGE_WIDTH/2 - $lineWidth/2 - 36 - 22;
+			
+			$transmuteImage = imagecreatefrompng("./resources/transmute_icon.png");
+			
+			if ($transmuteImage)
+			{
+				$size = 32;
+				imagecopyresized($image, $transmuteImage, $imageX, $y - 12, 0, 0, $size, $size, imagesx($transmuteImage), imagesy($transmuteImage));
+			}
+		}
+				
+		return $deltaY;
 	}
 	
 	
@@ -2492,6 +2530,7 @@ class CEsoItemLinkImage
 		if ($this->version != "") return false;
 		if ($this->itemSetCount >= 0) return false;
 		if ($this->itemStolen > 0) return false;
+		if ($this->transmuteTrait > 0) return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";

@@ -167,6 +167,7 @@ class CEsoItemLink
 	public $itemPotionData = -1;
 	public $itemStolen = -1;
 	public $itemSetCount = -1;
+	public $itemTrait = 0;
 	public $showStyle = true;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
@@ -178,6 +179,7 @@ class CEsoItemLink
 	public $inputLevel = -1;
 	public $inputQuality = -1;
 	public $itemRecord = array();
+	public $transmuteTrait = 0;
 	public $writData1 = 0;
 	public $writData2 = 0;
 	public $writData3 = 0;
@@ -257,6 +259,8 @@ class CEsoItemLink
 		$this->writData4 = (int) $matches['writ4'];
 		$this->writData5 = (int) $matches['writ5'];
 		$this->writData6 = (int) $matches['writ6'];
+		
+		$this->transmuteTrait = $this->writData1;
 				
 		return true;
 	}
@@ -314,6 +318,7 @@ class CEsoItemLink
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
 		if (array_key_exists('extraarmor', $this->inputParams)) $this->extraArmor = (int) $this->inputParams['extraarmor'];
+		if (array_key_exists('trait', $this->inputParams)) $this->transmuteTrait = (int) $this->inputParams['trait'];
 		
 		if (array_key_exists('extradata', $this->inputParams)) 
 		{
@@ -773,7 +778,22 @@ class CEsoItemLink
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
 		
-		if ($this->itemRecord['type'] == 60) $this->CreateMasterWritData();
+		if ($this->itemRecord['type'] == 60) 
+		{
+			$this->transmuteTrait = 0;
+			$this->CreateMasterWritData();
+		}
+		
+		$this->itemTrait = $this->itemRecord['trait'];
+		
+		if ($this->itemRecord['type'] == 2 || $this->itemRecord['type'] == 1) 
+		{
+			if ($this->transmuteTrait > 0) $this->itemTrait = $this->transmuteTrait;
+		}
+		else
+		{
+			$this->transmuteTrait = 0;
+		}
 		
 		$this->LoadEnchantMaxCharges();
 		return true;
@@ -993,7 +1013,7 @@ class CEsoItemLink
 		if ($row['maxCharges'] == "") return true;
 		
 		$maxCharges = $row['maxCharges'];
-		if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+		if ($this->itemTrait == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
 		
 		$this->itemRecord['maxCharges'] = $maxCharges; 
 		return true;
@@ -1473,7 +1493,7 @@ class CEsoItemLink
 					// $maxCharges = $this->itemRecord['weaponPower'] / 2;
 			$wp = intval($this->itemRecord['weaponPower']);
 			$maxCharges = -108.8146179 + 0.6707490449 * $wp - 6.371375423E-005 * $wp * $wp - 7.121772545E-008 * $wp * $wp * $wp;
-			if ($this->itemRecord['trait'] == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
+			if ($this->itemTrait == 2) $maxCharges *= $this->itemRecord['quality']*0.25 + 2;
 			
 			$this->itemRecord['estimatedMaxCharges'] = $maxCharges;
 			$this->itemAllData[0]['estimatedMaxCharges'] = $maxCharges;
@@ -1518,7 +1538,7 @@ class CEsoItemLink
 		);
 		
 		$newDesc = $desc;
-		$trait = $this->itemRecord['trait'];
+		$trait = $this->itemTrait;
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
 		
 		$armorFactor = 1 + $this->enchantFactor;
@@ -1623,12 +1643,16 @@ class CEsoItemLink
 	
 	private function MakeItemTraitBlock()
 	{
-		$trait = $this->itemRecord['trait'];
+		$transmuteIcon = "";
+		$trait = $this->itemTrait;
 		$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
 		$traitName = strtoupper(GetEsoItemTraitText($trait, $this->version));
 		
 		if ($trait <= 0) return "";
-		return "<div class='esoil_white esoil_small'>$traitName</div><br />$traitDesc";
+		
+		if ($this->transmuteTrait > 0) $transmuteIcon = "<img src='//esoitem.uesp.net/resources/transmute_icon.png' class='esoil_transmute_icon'>";
+		
+		return "$transmuteIcon<div class='esoil_white esoil_small'>$traitName</div><br />$traitDesc";
 	}
 	
 	
@@ -1972,14 +1996,15 @@ class CEsoItemLink
 		
 		if ($this->version != '' || $this->showSummary || $this->enchantId1 > 0 ||
 			$this->itemPotionData > 0 || $this->itemCharges >= 0 || $this->itemStolen > 0 ||
-			$this->writData1 > 0 || $this->writData2 > 0 || $this->writData3 > 0 || $this->writData4 > 0 || $this->writData5 > 0 || $this->writData6 > 0)
+			$this->writData1 > 0 || $this->writData2 > 0 || $this->writData3 > 0 || $this->writData4 > 0 || $this->writData5 > 0 || $this->writData6 > 0 ||
+			$this->transmuteTrait > 0)
 		{
 			$showSummary = $this->showSummary ? 'summary' : '';
 			$itemLinkURL = 	"itemLinkImage.php?itemid={$this->itemRecord['itemId']}&level={$this->itemRecord['level']}&" .
 							"quality={$this->itemRecord['quality']}&enchantid={$this->enchantId1}&enchantintlevel={$this->enchantIntLevel1}&" .
 							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}&potiondata={$this->itemPotionData}&stolen={$this->itemStolen}&" .
 							"writ1={$this->writData1}&writ2={$this->writData2}&writ3={$this->writData3}&writ4={$this->writData4}&writ5={$this->writData5}&writ6={$this->writData6}&" .
-							"itemlink={$this->itemLink}";			
+							"itemlink={$this->itemLink}&trait={$this->transmuteTrait}";			
 		}
 		else 
 		{
