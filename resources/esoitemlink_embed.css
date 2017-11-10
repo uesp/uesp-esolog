@@ -420,3 +420,11 @@
 	position: relative !important;
 	top: -1px !important;
 }
+
+.esoil_transmute_icon {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 2px;
+}
