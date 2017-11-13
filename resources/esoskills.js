@@ -647,6 +647,7 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	
 	if (matchResults != null && matchResults[1] != null) damageType = matchResults[1].toLowerCase();
 	if (matchResults != null && matchResults[2] != null && matchResults[2] != "") isDot = true;
+	if (damageType == "frost") damageType = "cold";
 	
 	if (IsEsoSkillParameterDot(skillData, valueIndex)) isDot = true;
 	
@@ -668,7 +669,7 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 		skillSpellValues  = values.SkillSpellDamage;
 	}
 	
-	if (values.SkillWeaponDamage == null || values.SkillSpellDamage == null)
+	if (skillWeaponValues == null || skillSpellValues == null)
 	{
 	}
 	else if (skillData['castTime'] > 0 || skillData['channelTime'] > 0)
