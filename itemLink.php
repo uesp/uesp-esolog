@@ -645,6 +645,13 @@ class CEsoItemLink
 	}
 	
 	
+	private function LoadItemSummaryTransmuteTraitData()
+	{
+		$this->itemSummary['origTraitDesc'] = $this->itemSummary['traitDesc']; 
+		$this->itemSummary['traitDesc'] = LoadEsoTraitSummaryDescription($this->itemTrait, $this->itemSummary['equipType'], $this->db);
+	}
+	
+	
 	private function LoadItemSummaryData()
 	{
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-85000)!");
@@ -658,6 +665,24 @@ class CEsoItemLink
 		
 		$this->itemSummary = $row;
 		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
+		
+		$this->itemTrait = $this->itemSummary['trait'];
+		
+		if ($this->itemSummary['type'] == 2 || $this->itemSummary['type'] == 1)
+		{
+			if ($this->transmuteTrait > 0) 
+			{
+				$this->itemTrait = $this->transmuteTrait;
+				
+					/* TODO: Transmute trait modification? */
+				
+				$this->LoadItemSummaryTransmuteTraitData();
+			}
+		}
+		else
+		{
+			$this->transmuteTrait = 0;
+		}
 		
 		if ($this->itemSummary['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemSummary['type'] == 30) $this->LoadItemPoisonData();
@@ -778,7 +803,7 @@ class CEsoItemLink
 		if ($this->itemRecord['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemRecord['type'] == 30) $this->LoadItemPoisonData();
 		
-		if ($this->itemRecord['type'] == 60) 
+		if ($this->itemRecord['type'] == 60)
 		{
 			$this->transmuteTrait = 0;
 			$this->CreateMasterWritData();
@@ -788,7 +813,86 @@ class CEsoItemLink
 		
 		if ($this->itemRecord['type'] == 2 || $this->itemRecord['type'] == 1) 
 		{
-			if ($this->transmuteTrait > 0) $this->itemTrait = $this->transmuteTrait;
+			if ($this->transmuteTrait > 0)
+			{
+				$this->itemTrait = $this->transmuteTrait;
+				
+				$this->itemRecord['origTrait'] = $this->itemRecord['trait'];
+				$this->itemRecord['origTraitDesc'] = $this->itemRecord['traitDesc'];
+				$this->itemRecord['origArmorRating'] = $this->itemRecord['armorRating'];
+				$this->itemRecord['origWeaponPower'] = $this->itemRecord['armorWeaponPower'];
+				$this->itemRecord['origEnchantDesc'] = $this->itemRecord['enchantDesc'];
+					
+				if ($this->itemRecord['trait'] == 13)		/* Original Reinforced */
+				{
+					$factor = 1;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['origTraitDesc'], $matches);
+					
+					if ($result)
+					{
+						$factor = 1 + floatval($matches[1])/100;
+						$this->itemRecord['armorRating'] = round($this->itemRecord['armorRating'] / $factor);
+					}
+				}
+				else if ($this->itemRecord['trait'] == 25)	/* Original armor nirnhoned */
+				{
+					$amount = 0;
+					$result = preg_match("#by ([0-9.]+)#", $this->itemRecord['origTraitDesc'], $matches);
+						
+					if ($result)
+					{
+						$amount = intval($matches[1]);
+						$this->itemRecord['armorRating'] -= $amount;
+					}
+				}
+				else if ($this->itemRecord['trait'] == 26)	/* Original weapon nirnhoned */
+				{
+					$factor = 0;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['origTraitDesc'], $matches);
+				
+					if ($result)
+					{
+						$factor = 1 + floatval($matches[1])/100;
+						$this->itemRecord['weaponPower'] = round($this->itemRecord['weaponPower'] / $factor);
+					}
+				}
+				
+				$this->LoadItemTransmuteTraitData();
+					
+				if ($this->transmuteTrait == 13)		/* Transmuted Reinforced */
+				{
+					$factor = 1;
+					$result = preg_match("#by ([0-9.]+)\%#", $this->itemRecord['traitDesc'], $matches);
+						
+					if ($result)
+					{
+						$factor = 1 + floatval($matches[1])/100;
+						$this->itemRecord['armorRating'] = floor($this->itemRecord['armorRating'] * $factor);
+					}
+				}
+				else if ($this->transmuteTrait == 25)	/* Transmuted armor nirnhoned */
+				{
+					$amount = 0;
+					$result = preg_match("#by ([0-9.]+)#", $this->itemRecord['traitDesc'], $matches);
+				
+					if ($result)
+					{
+						$amount = intval($matches[1]);
+						$this->itemRecord['armorRating'] += $amount;
+					}
+				}
+				else if ($this->transmuteTrait == 26)	/* Transmuted weapon nirnhoned */
+				{
+					$factor = 0;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
+				
+					if ($result)
+					{
+						$factor = 1 + floatval($matches[1])/100;
+						$this->itemRecord['weaponPower'] = round($this->itemRecord['weaponPower'] * $factor);
+					}
+				}
+			}
 		}
 		else
 		{
@@ -798,6 +902,13 @@ class CEsoItemLink
 		$this->LoadEnchantMaxCharges();
 		return true;
 	}
+	
+	
+	private function LoadItemTransmuteTraitData()
+	{
+		$this->itemRecord['origTraitDesc'] = $this->itemRecord['traitDesc'];
+		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $this->itemRecord['internalLevel'], $this->itemRecord['internalSubtype'], $this->itemRecord['equipType'], $this->db);
+	}	
 	
 	
 	public function CreateMasterWritData()
@@ -1540,7 +1651,7 @@ class CEsoItemLink
 		$newDesc = $desc;
 		$trait = $this->itemTrait;
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
-		
+				
 		$armorFactor = 1 + $this->enchantFactor;
 		$weaponFactor = 1 + $this->enchantFactor;
 		
@@ -1557,6 +1668,55 @@ class CEsoItemLink
 				if ($trait ==  4) $weaponFactor *= $traitValue;
 			}
 		}
+		else if ($isDefaultEnchant && $this->transmuteTrait > 0)
+		{
+			$origTraitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['origTraitDesc']);
+			
+			if ($this->transmuteTrait != 16 && $this->itemRecord['origTrait'] == 16)
+			{
+				$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $origTraitDesc, $matches);
+				
+				if ($result && $matches[1])
+				{
+					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$armorFactor /= $traitValue;
+				}
+			}
+			else if ($this->transmuteTrait != 4 && $this->itemRecord['origTrait'] == 4)
+			{
+				$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $origTraitDesc, $matches);
+			
+				if ($result && $matches[1])
+				{
+					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$weaponFactor /= $traitValue;
+				}
+			}
+			
+			if ($this->transmuteTrait == 16 && $this->itemRecord['origTrait'] != 16)
+			{
+				$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
+			
+				if ($result && $matches[1])
+				{
+					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$armorFactor *= $traitValue;
+				}
+			}
+			else if ($this->transmuteTrait == 4 && $this->itemRecord['origTrait'] != 4)
+			{
+				$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
+					
+				if ($result && $matches[1])
+				{
+					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$weaponFactor *= $traitValue;
+				}
+			}
+			
+			//error_log("Transmute Infused $armorFactor, $newDesc");
+			//error_log("Transmute Infused $weaponFactor, $newDesc");
+		} 
 		
 		$armorType = $this->itemRecord['armorType'];
 		$weaponType = $this->itemRecord['weaponType'];
@@ -1570,7 +1730,7 @@ class CEsoItemLink
 
 		if (($armorType > 0 || $weaponType == 14) && $armorFactor != 1)
 		{
-			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?:Adds up to \|c[0-9a-fA-F]{6}))([0-9]+)(\|r Maximum)|(Adds )([0-9]+)( Maximum)#",
+			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?:Adds up to \|c[0-9a-fA-F]{6})|(?:Adds ))([0-9]+)((?:\|r)? Maximum)#",
 					
 				function ($matches) use ($armorFactor) {
 					$result = floor($matches[2] * $armorFactor);

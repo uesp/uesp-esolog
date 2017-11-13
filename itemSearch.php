@@ -159,12 +159,12 @@ class EsoItemSearcher
 	
 	public function __construct ()
 	{
-		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTYPE_TEXTS, $ESO_ITEMEQUIPTYPE_TEXTS;
+		global $ESO_ITEMTRAIT15_TEXTS, $ESO_ITEMTYPE_TEXTS, $ESO_ITEMEQUIPTYPE_TEXTS;
 		global $ESO_ITEMARMORTYPE_TEXTS, $ESO_ITEMWEAPONTYPE_TEXTS, $ESO_ITEMQUALITY_TEXTS;
 		global $ESO_ITEMSTYLE_TEXTS, $ESO_ITEMTRAIT10_TEXTS;
 		
 		self::$ESOIS_STYLES = self::MakeUniqueArray($ESO_ITEMSTYLE_TEXTS);
-		self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT_TEXTS);
+		self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT15_TEXTS);
 		self::$ESOIS_QUALITIES = self::MakeUniqueArray($ESO_ITEMQUALITY_TEXTS, true);
 		self::$ESOIS_ITEMTYPES = self::MakeUniqueArray($ESO_ITEMTYPE_TEXTS);
 		self::$ESOIS_EQUIPTYPES = self::MakeUniqueArray($ESO_ITEMEQUIPTYPE_TEXTS);
@@ -290,9 +290,11 @@ class EsoItemSearcher
 	
 	public function GetItemTraitValue($text)
 	{
-		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTRAIT10_TEXTS;
+		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTRAIT10_TEXTS, $ESO_ITEMTRAIT15_TEXTS;
 		
-		if (IsEsoVersionAtLeast($this->version, 10))
+		if (IsEsoVersionAtLeast($this->version, 15))
+			$value = array_search($text, $ESO_ITEMTRAIT15_TEXTS);
+		elseif (IsEsoVersionAtLeast($this->version, 10))
 			$value = array_search($text, $ESO_ITEMTRAIT10_TEXTS);
 		else
 			$value = array_search($text, $ESO_ITEMTRAIT_TEXTS);
@@ -861,8 +863,8 @@ class EsoItemSearcher
 		
 		if (IsEsoVersionAtLeast($this->version, 10))
 		{
-			global $ESO_ITEMTRAIT10_TEXTS;
-			self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT10_TEXTS);
+			global $ESO_ITEMTRAIT15_TEXTS;
+			self::$ESOIS_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT15_TEXTS);
 		}
 	}
 	
