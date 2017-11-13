@@ -19,6 +19,7 @@ class CEsoLogJsonExport
 	public $inputArmorType = "";
 	public $inputIntLevel = "";
 	public $inputIntType = "";
+	public $inputTransmuteTrait = "";
 	public $inputLimit = -1;
 	public $exportTables = array();
 	public $outputData = array();
@@ -122,6 +123,7 @@ class CEsoLogJsonExport
 		if (array_key_exists('weapontype', $this->inputParams)) $this->inputWeaponType = (int) $this->inputParams['weapontype'];
 		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
 		if (array_key_exists('limit', $this->inputParams)) $this->inputLimit = (int) $this->inputParams['limit'];
+		if (array_key_exists('transmutetrait', $this->inputParams)) $this->inputTransmuteTrait = (int) $this->inputParams['transmutetrait'];
 	
 		return true;
 	}
@@ -204,6 +206,17 @@ class CEsoLogJsonExport
 			//if ($this->inputLevel != "" && $this->inputQuality != "") $isValid = true;
 				
 			if (!$isValid) return $this->ReportError("Error: Missing required item id!", 400);
+			
+			if ($this->inputTransmuteTrait != "")
+			{
+				global $ESO_ITEMTRANSMUTETRAIT_IDS;
+				
+				$itemId = $ESO_ITEMTRANSMUTETRAIT_IDS[$this->inputTransmuteTrait];
+				if ($itemId == null) $this->ReportError("Error: Unknown trait {$this->inputTransmuteTrait} found!");
+				
+				$query = "SELECT traitDesc, trait, internalLevel, internalSubtype FROM minedItem WHERE itemId='$itemId' AND internalLevel='{$this->inputIntLevel}' AND internalSubtype='{$this->inputIntType}' LIMIT 1;";
+				return $query;
+			}
 			
 			if ($this->inputId != "")
 			{

@@ -20,6 +20,7 @@ class CEsoItemSearchPopup
 	public $inputItemQuality = -1;
 	public $inputItemIntLevel = -1;
 	public $inputItemIntType = -1;
+	public $inputItemTransmuteTrait = -1;
 	public $inputLimit = 100;
 	
 	public $resultItems = array();
@@ -72,8 +73,10 @@ class CEsoItemSearchPopup
 		if (array_key_exists('armortype', $this->inputParams) && $this->inputParams['armortype'] !== "") $this->inputArmorType = (int) $this->inputParams['armortype'];
 		if (array_key_exists('level', $this->inputParams) && $this->inputParams['level'] !== "") $this->inputItemLevel = (int) $this->inputParams['level'];
 		if (array_key_exists('quality', $this->inputParams) && $this->inputParams['quality'] !== "") $this->inputItemQuality = (int) $this->inputParams['quality'];
-		if (array_key_exists('intlevel', $this->inputParams) && $this->inputParams['intlevel'] !== "") $this->inputIntLevel = (int) $this->inputParams['intlevel'];
-		if (array_key_exists('intype', $this->inputParams) && $this->inputParams['intype'] !== "") $this->inputIntType = (int) $this->inputParams['intype'];
+		if (array_key_exists('intlevel', $this->inputParams) && $this->inputParams['intlevel'] !== "") $this->inputItemIntLevel = (int) $this->inputParams['intlevel'];
+		if (array_key_exists('intype', $this->inputParams) && $this->inputParams['inttype'] !== "") $this->inputItemIntType = (int) $this->inputParams['intype'];
+		if (array_key_exists('inttype', $this->inputParams) && $this->inputParams['inttype'] !== "") $this->inputItemIntType = (int) $this->inputParams['inttype'];
+		if (array_key_exists('transmutetrait', $this->inputParams) && $this->inputParams['transmutetrait'] !== "") $this->inputItemTransmuteTrait = (int) $this->inputParams['transmutetrait'];
 	}
 	
 	

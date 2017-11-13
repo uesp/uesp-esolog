@@ -303,6 +303,92 @@ $ESO_ITEMTRAIT15_TEXTS = array(
 );
 
 
+$ESO_ITEMTRAIT_DESCRIPTIONS = array(
+		-1 => "",
+		0 => "",
+		
+		18 => "Increases Mundus Stone effects by |cffffff{value}|r%.",
+		17 => "Increases Health, Magicka, and Stamina Recovery |cffffff{value}|r.",
+		12 => "Increases critical resistance by |cffffff{value}|r and this item takes |cffffff50|r% less durability damage.",
+		16 => "Increase armor enchantment effect by |cffffff{value}|r%.",
+		20 => "Increases inspiration gained from deconstruction of this item by |cffffff{value}|r%, and gain additional refined material upon deconstruction of this item.",
+		19 => "This item sells to merchants for |cffffff{value}|r% more.",
+		13 => "Increases this item's Armor value by |cffffff{value}|r%.",
+		11 => "Reduces the cost of Block by |cffffff{value}|r%.",
+		15 => "Increases experience gained from kills by |cffffff{value}|r%.",
+		14 => "Increases the cost of Roll Dodge and Sprint by |cffffff{value}|r%.",
+		25 => "Increases Physical and Spell Resistance by |cffffff{value}|r.",
+		
+		22 => "Increases Maximum Magicka by |cffffff{value}|r.",
+		21 => "Increases Maximum Health by |cffffff{value}|r.",
+		24 => "This item sells to merchants for |cffffff{value}|r% more.",
+		23 => "Increases Maximum Stamina by |cffffff{value}|r.",
+		
+		2 => "Increases change to apply status effects by |cffffff{value}|r%.",
+		5 => "Increases Physical and Spell Resistance by |cffffff{value}|r.",
+		4 => "Increases weapon enchantment effect by |cffffff{value}|r% and reduces enchantment cooldown by |cffffff50|r%.",
+		9 => "Increases inspiration gained from deconstruction of this item by |cffffff{value}|r%, and gain additional refined material upon deconstruction of this item.",
+		10 => "This item sells to merchants for |cffffff{value}|r% more.",
+		1 => "Increases healing done by |cffffff{value}|r%.",
+		3 => "Increases Weapon and Spell Critical by |cffffff{value}|r%.",
+		7 => "Increases Physical and Spell Penetration by |cffffff{value}|r.",
+		6 => "Increases experience gained from kills by |cffffff{value}|r%.",
+		8 => "When you gain Ultimate you have a |cffffff{value}|r% chance to gain 1 additional Ultimate.",
+		26 => "Increases Damage of this weapon by |cffffff{value}|r%.",
+);
+
+
+$ESO_ITEMTRANSMUTETRAIT_IDS = array(
+		
+		18 => 4610,		// Armor
+		17 => 88106,
+		12 => 61001,
+		16 => 89276,
+		20 => 7556,
+		19 => 7321,
+		13 => 5832,
+		11 => 1759,
+		15 => 26139,
+		14 => 44259,
+		25 => 89434,
+		
+		22 => 29461,	// Jewelry
+		21 => 54476,
+		24 => 15765,
+		23 => 55373,
+		
+		5 => 89327,		// 1H Weapons (double for 2H)
+		1 => 89281,
+		3 => 88033,
+		7 => 89341,
+		6 => 89401,
+		8 => 89381,
+	
+		9 => 46281,		// Weapons
+		10 => 49399,
+		2 => 89368,
+		4 => 89267,
+		26 => 89422,
+);
+
+
+$ESO_ITEMTRANSMUTETRAIT_2H_IDS = array(
+		
+		5 => 89332,		// 2H Weapons		
+		1 => 89285,
+		3 => 88036,
+		7 => 89352,
+		6 => 88136,
+		8 => 88112,
+				
+		9 => 46281,		// Normal Weapons
+		10 => 49399,
+		2 => 89368,
+		4 => 89267,
+		26 => 89422,
+);
+
+
 $ESO_ITEMSTYLE_TEXTS = array(
 		-1 => "",
 		0 => "",
@@ -3576,4 +3662,56 @@ function CanViewEsoLogTable($table)
 	if ($index === false) return true;
 	
 	return $canViewEsoMorrowindPts;
+}
+
+
+function GetEsoTransmuteTraitItemId ($trait, $equipType)
+{
+	global $ESO_ITEMTRANSMUTETRAIT_IDS, $ESO_ITEMTRANSMUTETRAIT_2H_IDS;
+	
+	$traitId = intval($trait);
+	if ($traitId <= 0) return -1;
+	
+	if ($equipType == 6)
+		$itemId = $ESO_ITEMTRANSMUTETRAIT_2H_IDS[$traitId];
+	else
+		$itemId = $ESO_ITEMTRANSMUTETRAIT_IDS[$traitId];
+	
+	if ($itemId == null) return -1;
+	return $itemId;
+}
+
+
+function LoadEsoTraitDescription ($trait, $intLevel, $intSubtype, $equipType, $db)
+{
+	$itemId = GetEsoTransmuteTraitItemId($trait, $equipType);
+	if ($itemId < 0) return "Unknown trait $trait found!";
+	
+	$intLevel = intval($intLevel);
+	$intSubtype = intval($intSubtype);
+		
+	$query = "SELECT traitDesc from minedItem WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype' LIMIT 1;";
+	
+	$result = $db->query($query);
+	if ($result === false) return "Failed to load trait description for $trait!"; 
+	
+	$row = $result->fetch_assoc();
+	
+	return $row['traitDesc'];
+}
+
+
+function LoadEsoTraitSummaryDescription ($trait, $equipType, $db)
+{
+	$itemId = GetEsoTransmuteTraitItemId($trait, $equipType);
+	if ($itemId < 0) return "Unknown trait $trait found!";
+
+	$query = "SELECT traitDesc from minedItemSummary WHERE itemId=$itemId LIMIT 1;";
+
+	$result = $db->query($query);
+	if ($result === false) return "Failed to load trait description for $trait!";
+
+	$row = $result->fetch_assoc();
+
+	return $row['traitDesc'];
 }
