@@ -119,35 +119,35 @@ class CEsoItemSearchPopup
 				// Do nothing
 			}
 			else if ($level < 2)
-				$whereQuery[] = "((level = 1) OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level = 1) OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 5)
-				$whereQuery[] = "((level >= 1 AND level < 5) OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= 1 AND level < 5) OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 10)
-				$whereQuery[] = "((level >= 5 AND level <= 9) OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= 5 AND level <= 9) OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 15)
-				$whereQuery[] = "((level >= '10' AND level < '15') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '10' AND level < '15') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 20)
-				$whereQuery[] = "((level >= '15' AND level < '20') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '15' AND level < '20') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 25)
-				$whereQuery[] = "((level >= '20' AND level < '25') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '20' AND level < '25') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 30)
-				$whereQuery[] = "((level >= '25' AND level < '30') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '25' AND level < '30') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 35)
-				$whereQuery[] = "((level >= '30' AND level < '35') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '30' AND level < '35') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 40)
-				$whereQuery[] = "((level >= '35' AND level < '40') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '35' AND level < '40') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 45)
-				$whereQuery[] = "((level >= '40' AND level < '45') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '40' AND level < '45') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 50)
-				$whereQuery[] = "((level >= '45' AND level < '50') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= '45' AND level < '50') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 55)
-				$whereQuery[] = "((level >= 'CP10' AND level < 'CP50') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= 'CP10' AND level < 'CP50') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 60)
-				$whereQuery[] = "((level >= 'CP50' AND level <= 'CP90') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= 'CP50' AND level <= 'CP90') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level < 65)
-				$whereQuery[] = "((level >= 'CP100' AND level < 'CP150') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= 'CP100' AND level < 'CP150') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			else if ($level <= 66)
-				$whereQuery[] = "((level >= 'CP150' AND level <= 'CP160') OR name LIKE \"Orzorga%\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = "((level >= 'CP150' AND level <= 'CP160') OR specialType = 8 OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 
 		}
 		
