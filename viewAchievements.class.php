@@ -50,7 +50,7 @@ class CEsoViewAchievements
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
 	
-		UpdateEsoPageViews("achievementViews", $this->db);
+		UpdateEsoPageViews("achievementViews");
 	
 		return true;
 	}

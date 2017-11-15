@@ -1359,7 +1359,9 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 	
 	var rawOutput = [];
 	var newRawOutput = {};
-	var target = skillData.target.toLowerCase();
+	var target = "";
+	
+	if (skillData.target) target = skillData.target.toLowerCase();
 	
 	var isDot = false;
 	
