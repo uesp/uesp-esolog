@@ -213,7 +213,7 @@ class EsoItemSearcher
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($db->connect_error) return $this->ReportError("Could not connect to mysql database!");
 		
-		UpdateEsoPageViews("advancedItemSearchViews", $this->db);
+		UpdateEsoPageViews("advancedItemSearchViews");
 	
 		$this->dbReadInitialized = true;
 		return true;

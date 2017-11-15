@@ -268,7 +268,7 @@ class EsoViewSalesData
 		$this->dbLog = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->dbLog->connect_error) return $this->ReportError("Could not connect to esolog mysql database!");
 		
-		UpdateEsoPageViews("salesDataViews", $this->dbLog);
+		UpdateEsoPageViews("salesDataViews");
 	
 		return true;
 	}

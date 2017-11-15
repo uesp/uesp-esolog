@@ -3134,7 +3134,7 @@ class EsoLogViewer
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("Could not connect to mysql database!");
 		
-		UpdateEsoPageViews("logViews", $this->db);
+		UpdateEsoPageViews("logViews");
 		
 		$this->dbReadInitialized = true;
 		return true;

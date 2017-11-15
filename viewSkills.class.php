@@ -134,7 +134,7 @@ class CEsoViewSkills
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
 		
-		UpdateEsoPageViews("skillViews", $this->db);
+		UpdateEsoPageViews("skillViews");
 
 		return true;
 	}
