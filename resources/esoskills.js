@@ -1578,7 +1578,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 	}
-	else if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Ultimate" && skillData.baseName == "Bat Swarm")
+	else if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Ultimate" /* && skillData.baseName == "Bat Swarm" */)
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
 		SkillFactor += SkillLineFactor;
