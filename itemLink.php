@@ -2570,6 +2570,7 @@ class CEsoItemLink
 				'{similarItemBlockDisplay}' => "none",
 				'{itemTypeTitle}' => "Collectible ",
 				'{itemDescClass}' => "esoil_itemdescQuest",
+				'{itemDyeStampBlock}' => '',
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -2614,6 +2615,7 @@ class CEsoItemLink
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{itemLinkURL}' => $this->GetQuestItemLinkURL(),
 				'{rawItemData}' => $this->GetRawQuestItemDataHtml(),
+				'{itemDyeStampBlock}' => '',
 		);
 		
 		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
@@ -2635,6 +2637,7 @@ class CEsoItemLink
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{itemLinkURL}' => $this->GetCollectibleItemLinkURL(),
 				'{rawItemData}' => $this->GetRawCollectibleItemDataHtml(),
+				'{itemDyeStampBlock}' => '',
 		);
 		
 		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
@@ -2656,6 +2659,7 @@ class CEsoItemLink
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{itemLinkURL}' => $this->GetItemLinkURL(),
 				'{rawItemData}' => $this->GetRawItemDataHtml(),
+				'{itemDyeStampBlock}' => '',
 		);		
 		
 		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
