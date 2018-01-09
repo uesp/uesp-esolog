@@ -77,12 +77,13 @@ class EsoLogParser
 														  //v15pts?
 	//const START_MINEITEM_TIMESTAMP = 4744089672613888000; //v15 1502720027
 	  const START_MINEITEM_TIMESTAMP = 4744115047104512000; //v16 1508769777
+	//const START_MINEITEM_TIMESTAMP = ?; //v17pts ?
 	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "17pts";
+	const SKILLS_TABLESUFFIX   = "17pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -169,6 +170,8 @@ class EsoLogParser
 			"minedSkills15",
 			"minedSkills16pts",
 			"minedSkills16",
+			"minedSkills17pts",
+			"minedSkills17",
 			"collectibles",
 			"achievements",
 	);
@@ -5819,9 +5822,9 @@ class EsoLogParser
 		
 		$collectible = $this->LoadCollectible($id);
 		
-		$collectible['name'] = $logEntry['name'];
-		$collectible['nickname'] = $logEntry['nickname'];
-		$collectible['description'] = $logEntry['description'];
+		$collectible['name'] = preg_replace("#\^.*#", "", $logEntry['name']);
+		$collectible['description'] = FormatRemoveEsoItemDescriptionText($logEntry['description']);
+		$collectible['nickname'] = preg_replace("#\^.*#", "", $logEntry['nickname']);
 		$collectible['itemLink'] = $logEntry['itemLink'];
 		$collectible['hint'] = $logEntry['hint'];
 		$collectible['icon'] = $logEntry['icon'];
