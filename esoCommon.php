@@ -3189,6 +3189,10 @@ function GetEsoItemTableSuffix($version)
 		case '116':
 		case '16':
 			return "";
+		case '1.7pts':
+		case '117pts':
+		case '17pts':
+			return "17pts";
 	}
 
 	return "";
@@ -3231,7 +3235,9 @@ function FormatEsoItemDescriptionText($desc)
 	$output = preg_replace("| by ([0-9\-\.]+)|s", " by <div class='esoil_white'>$1</div>", $desc);
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)|s", "for <div class='esoil_white'>$1</div>", $output);
+	
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([^|]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})(.*)#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
 		//EsoUI/Art/champion/champion_icon.dds
@@ -3251,6 +3257,10 @@ function FormatRemoveEsoItemDescriptionText($desc)
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $output);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $output);
+	
+	$output = preg_replace("#\|c[0-9a-fA-F]{6}#s", "", $output);
+	$output = preg_replace("#\|r#s", "", $output);
+	
 	$output = str_replace("\n", " ", $output);
 
 	return $output;
