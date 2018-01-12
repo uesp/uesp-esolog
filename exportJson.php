@@ -209,9 +209,7 @@ class CEsoLogJsonExport
 			
 			if ($this->inputTransmuteTrait != "")
 			{
-				global $ESO_ITEMTRANSMUTETRAIT_IDS;
-				
-				$itemId = $ESO_ITEMTRANSMUTETRAIT_IDS[$this->inputTransmuteTrait];
+				$itemId = GetEsoTransmuteTraitItemId($this->inputTransmuteTrait, $this->inputEquipType);
 				if ($itemId == null) $this->ReportError("Error: Unknown trait {$this->inputTransmuteTrait} found!");
 				
 				$query = "SELECT traitDesc, trait, internalLevel, internalSubtype FROM minedItem WHERE itemId='$itemId' AND internalLevel='{$this->inputIntLevel}' AND internalSubtype='{$this->inputIntType}' LIMIT 1;";
