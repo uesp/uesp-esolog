@@ -12776,7 +12776,7 @@ $ESO_PLAYER_SKILLS = array (
     'raceType' => 'High Elf',
     'classType' => '',
     'prevSkill' => '0',
-    'nextSkill' => '0',
+    'nextSkill' => '45273',
     'nextSkill2' => '-1',
     'baseAbilityId' => '35993',
   ),
@@ -12791,7 +12791,7 @@ $ESO_PLAYER_SKILLS = array (
     'raceType' => 'Breton',
     'classType' => '',
     'prevSkill' => '0',
-    'nextSkill' => '0',
+    'nextSkill' => '45259',
     'nextSkill2' => '-1',
     'baseAbilityId' => '35995',
   ),
@@ -12806,7 +12806,7 @@ $ESO_PLAYER_SKILLS = array (
     'raceType' => 'High Elf',
     'classType' => '',
     'prevSkill' => '0',
-    'nextSkill' => '0',
+    'nextSkill' => '45275',
     'nextSkill2' => '-1',
     'baseAbilityId' => '35998',
   ),
@@ -26485,10 +26485,10 @@ $ESO_PLAYER_SKILLS = array (
     'skillLine' => 'Breton Skills',
     'raceType' => 'Breton',
     'classType' => '',
-    'prevSkill' => '-1',
+    'prevSkill' => '35995',
     'nextSkill' => '45260',
     'nextSkill2' => '-1',
-    'baseAbilityId' => '0',
+    'baseAbilityId' => '35995',
   ),
   45260 => 
   array (
@@ -26503,7 +26503,7 @@ $ESO_PLAYER_SKILLS = array (
     'prevSkill' => '45259',
     'nextSkill' => '0',
     'nextSkill2' => '-1',
-    'baseAbilityId' => '0',
+    'baseAbilityId' => '35995',
   ),
   45261 => 
   array (
@@ -26665,10 +26665,10 @@ $ESO_PLAYER_SKILLS = array (
     'skillLine' => 'High Elf Skills',
     'raceType' => 'High Elf',
     'classType' => '',
-    'prevSkill' => '-1',
+    'prevSkill' => '35993',
     'nextSkill' => '45274',
     'nextSkill2' => '-1',
-    'baseAbilityId' => '0',
+    'baseAbilityId' => '35993',
   ),
   45274 => 
   array (
@@ -26683,7 +26683,7 @@ $ESO_PLAYER_SKILLS = array (
     'prevSkill' => '45273',
     'nextSkill' => '0',
     'nextSkill2' => '-1',
-    'baseAbilityId' => '0',
+    'baseAbilityId' => '35993',
   ),
   45275 => 
   array (
@@ -26695,10 +26695,10 @@ $ESO_PLAYER_SKILLS = array (
     'skillLine' => 'High Elf Skills',
     'raceType' => 'High Elf',
     'classType' => '',
-    'prevSkill' => '-1',
+    'prevSkill' => '35998',
     'nextSkill' => '45276',
     'nextSkill2' => '-1',
-    'baseAbilityId' => '0',
+    'baseAbilityId' => '35998',
   ),
   45276 => 
   array (
@@ -26713,7 +26713,7 @@ $ESO_PLAYER_SKILLS = array (
     'prevSkill' => '45275',
     'nextSkill' => '0',
     'nextSkill2' => '-1',
-    'baseAbilityId' => '0',
+    'baseAbilityId' => '35998',
   ),
   45277 => 
   array (
