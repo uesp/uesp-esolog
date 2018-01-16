@@ -794,6 +794,8 @@ class EsoLogParser
 			'questName' => self::FIELD_STRING,
 			'backgroundText' => self::FIELD_STRING,
 			'cooldown' => self::FIELD_INT,
+			'furnCategory' => self::FIELD_STRING,
+			'furnSubcategory' => self::FIELD_STRING,
 	);
 	
 	public static $ACHIEVEMENTCATEGORY_FIELDS = array(
@@ -2192,6 +2194,8 @@ class EsoLogParser
 			questName TINYTEXT NOT NULL,
 			backgroundText MEDIUMTEXT NOT NULL,
 			cooldown INTEGER NOT NULL,
+			furnCategory TINYTEXT NOT NULL,
+			furnSubcategory TINYTEXT NOT NULL,
 			FULLTEXT(name),
 			FULLTEXT(nickname),
 			FULLTEXT(description),
@@ -5852,6 +5856,8 @@ class EsoLogParser
 		$collectible['questName'] = $logEntry['questName'];
 		$collectible['backgroundText'] = $logEntry['backgroundText'];
 		$collectible['cooldown'] = $logEntry['cooldown'];
+		$collectible['furnCategory'] = $logEntry['furnCateName'];
+		$collectible['furnSubcategory'] = $logEntry['furnSubcateName'];
 		$collectible['__dirty'] = true;
 		
 		return $this->SaveCollectible($collectible);

@@ -615,6 +615,8 @@ class EsoLogViewer
 			'achievementIndex' => self::FIELD_INT,
 			'categoryName' => self::FIELD_STRING,
 			'subCategoryName' => self::FIELD_STRING,
+			'furnCategory' => self::FIELD_STRING,
+			'furnSubcategory' => self::FIELD_STRING,
 			'isUnlocked' => self::FIELD_INT,
 			'isActive' => self::FIELD_INT,
 			'isSlottable' => self::FIELD_INT,
