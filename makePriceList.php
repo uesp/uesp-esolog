@@ -19,6 +19,8 @@ class CEsoSalesMakePriceList
 	public $updateTime = 0;
 	public $outputPath = "";
 	
+	public $MAXITEMSPERFUNCTION = 10000;
+	
 	
 	public function __construct()
 	{
@@ -135,17 +137,30 @@ class CEsoSalesMakePriceList
 	{
 		$output = "";
 		$dataCount = 0;
+		$itemOutputCount = 0;
 		$updateDate = date("Y-m-d H:i:s");
 		
 		$output .= "function uespLog.InitSalesPrices()\n";
 		$output .= "uespLog.SalesPricesServer = '$server'\n";
 		$output .= "uespLog.SalesPricesVersion = {$this->VERSION}\n";
 		$output .= "uespLog.SalesPricesLastUpdate = '$updateDate'\n";
-		$output .= "uespLog.SalesPrices = {\n";
+		$output .= "uespLog.SalesPrices = {}\n";
+		$output .= "local SetPriceFunc = function(a)\n";		
 		
 		foreach ($itemData as $itemId => $levelData)
 		{
-			$output .= "[$itemId]={\n";
+			$itemOutputCount++;
+				
+			if ($itemOutputCount >= $this->MAXITEMSPERFUNCTION)
+			{
+				$itemOutputCount = 0;
+				$output .= "end\n";
+				$output .= "SetPriceFunc(uespLog.SalesPrices)\n";
+				$output .= "SetPriceFunc = function(a)\n";
+			}
+			
+			$output .= "a[$itemId]={\n";
+			
 		
 			foreach ($levelData as $level => $qualityData)
 			{
@@ -179,10 +194,12 @@ class CEsoSalesMakePriceList
 				$output .= "},";
 			}
 		
-			$output .= "},\n";
+			$output .= "}\n";
 		}
 		
-		$output .= "}\n";
+		$output .= "end\n";
+		$output .= "SetPriceFunc(uespLog.SalesPrices)\n";
+		
 		$output .= "uespLog.SalesPricesDataCount = $dataCount\n";
 		$output .= "end\n";
 		
