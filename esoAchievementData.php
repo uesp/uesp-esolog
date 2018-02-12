@@ -105,7 +105,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 3,
     'subIndex' => 0,
-    'points' => 2500,
+    'points' => 2695,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_crafting_up.dds',
   ),
   'Crafting' => 
@@ -114,7 +114,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 3,
     'subIndex' => 0,
-    'points' => 2500,
+    'points' => 2695,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_crafting_up.dds',
   ),
   'Crafting::Alchemy' => 
@@ -169,6 +169,15 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'index' => 3,
     'subIndex' => 6,
     'points' => 200,
+    'icon' => '',
+  ),
+  'Crafting::Outfitting' => 
+  array (
+    'name' => 'Crafting',
+    'subName' => 'Outfitting',
+    'index' => 3,
+    'subIndex' => 7,
+    'points' => 95,
     'icon' => '',
   ),
   'Dungeons::General' => 
@@ -537,7 +546,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 10,
     'subIndex' => 0,
-    'points' => 1560,
+    'points' => 1510,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_morrowind_up.dds',
   ),
   'Morrowind' => 
@@ -546,7 +555,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 10,
     'subIndex' => 0,
-    'points' => 1560,
+    'points' => 1510,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_morrowind_up.dds',
   ),
   'Morrowind::Exploration' => 
@@ -573,7 +582,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'Halls of Fabrication',
     'index' => 10,
     'subIndex' => 3,
-    'points' => 525,
+    'points' => 475,
     'icon' => '',
   ),
   'DLC::General' => 
@@ -582,7 +591,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 11,
     'subIndex' => 0,
-    'points' => 6750,
+    'points' => 7525,
     'icon' => '/esoui/art/treeicons/store_indexicon_dlc_up.dds',
   ),
   'DLC' => 
@@ -591,15 +600,24 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 11,
     'subIndex' => 0,
-    'points' => 6750,
+    'points' => 7525,
     'icon' => '/esoui/art/treeicons/store_indexicon_dlc_up.dds',
+  ),
+  'DLC::Dragon Bones' => 
+  array (
+    'name' => 'DLC',
+    'subName' => 'Dragon Bones',
+    'index' => 11,
+    'subIndex' => 1,
+    'points' => 775,
+    'icon' => '',
   ),
   'DLC::Clockwork City' => 
   array (
     'name' => 'DLC',
     'subName' => 'Clockwork City',
     'index' => 11,
-    'subIndex' => 1,
+    'subIndex' => 2,
     'points' => 945,
     'icon' => '',
   ),
@@ -608,7 +626,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'DLC',
     'subName' => 'Horns of the Reach',
     'index' => 11,
-    'subIndex' => 2,
+    'subIndex' => 3,
     'points' => 760,
     'icon' => '',
   ),
@@ -617,7 +635,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'DLC',
     'subName' => 'Shadows of the Hist',
     'index' => 11,
-    'subIndex' => 3,
+    'subIndex' => 4,
     'points' => 785,
     'icon' => '',
   ),
@@ -626,7 +644,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'DLC',
     'subName' => 'Dark Brotherhood',
     'index' => 11,
-    'subIndex' => 4,
+    'subIndex' => 5,
     'points' => 785,
     'icon' => '',
   ),
@@ -635,7 +653,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'DLC',
     'subName' => 'Thieves Guild',
     'index' => 11,
-    'subIndex' => 5,
+    'subIndex' => 6,
     'points' => 1255,
     'icon' => '',
   ),
@@ -644,7 +662,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'DLC',
     'subName' => 'Orsinium',
     'index' => 11,
-    'subIndex' => 6,
+    'subIndex' => 7,
     'points' => 995,
     'icon' => '',
   ),
@@ -653,7 +671,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'DLC',
     'subName' => 'Imperial City',
     'index' => 11,
-    'subIndex' => 7,
+    'subIndex' => 8,
     'points' => 1225,
     'icon' => '',
   ),
@@ -10419,6 +10437,114 @@ Long may you reign!',
     'dyeName' => 'Mastic Yellow',
     'dyeColor' => 'cc9b5b',
   ),
+  2113 => 
+  array (
+    'id' => 2113,
+    'name' => 'Fully Styled',
+    'desc' => 'Fill any 8 slots of an Outfit using the Outfit System.',
+    'icon' => '/esoui/art/icons/achievement_my_disguise.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fully Styled',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2114 => 
+  array (
+    'id' => 2114,
+    'name' => 'Prisoner On The Loose',
+    'desc' => 'Use the "Prisoner\'s Chains" Style in an Outfit.',
+    'icon' => '/esoui/art/icons/achievement_manacles.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Prisoner On The Loose',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2109 => 
+  array (
+    'id' => 2109,
+    'name' => 'Novice Outfitter',
+    'desc' => 'Change the look of a part of an Outfit using the Outfit System.',
+    'icon' => '/esoui/art/icons/achievement_transmog_easy.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Novice Outfitter',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2110 => 
+  array (
+    'id' => 2110,
+    'name' => 'Adept Outfitter',
+    'desc' => 'Change the look of a piece of equipment using the Outfit System 10 times.',
+    'icon' => '/esoui/art/icons/achievement_transmog_medium.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Adept Outfitter',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2111 => 
+  array (
+    'id' => 2111,
+    'name' => 'Expert Outfitter',
+    'desc' => 'Change the look of a piece of equipment using the Outfit System 50 times.',
+    'icon' => '/esoui/art/icons/achievement_transmog_medium.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Adept Outfitter',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2112 => 
+  array (
+    'id' => 2112,
+    'name' => 'Master Outfitter',
+    'desc' => 'Change the look of a piece of equipment using the Outfit System 100 times.',
+    'icon' => '/esoui/art/icons/achievement_transmog_hard.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Adept Outfitter',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
   1030 => 
   array (
     'id' => 1030,
@@ -11857,6 +11983,102 @@ Long may you reign!',
       ),
     ),
   ),
+  2120 => 
+  array (
+    'id' => 2120,
+    'name' => 'Worm Cult Style Master',
+    'desc' => 'Learn every chapter in the Worm Cult style book, occasionally found in Anniversary Jubilee Gift Boxes.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   1713 => 
   array (
     'id' => 1713,
@@ -11864,7 +12086,7 @@ Long may you reign!',
     'desc' => 'Learn every chapter in the Yokudan style book, occasionally found in repeatable quest reward containers in Craglorn.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 19,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -11960,7 +12182,7 @@ Long may you reign!',
     'desc' => 'Refine raw materials 30 times.',
     'icon' => '/esoui/art/icons/crafting_leather_base_boiled_leather_r2.dds',
     'points' => 5,
-    'index' => 20,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -11980,7 +12202,7 @@ Long may you reign!',
     'desc' => 'Refine raw materials 300 times.',
     'icon' => '/esoui/art/icons/crafting_wood_base_beech_r3.dds',
     'points' => 5,
-    'index' => 20,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -12000,7 +12222,7 @@ Long may you reign!',
     'desc' => 'Refine raw materials 3000 times.',
     'icon' => '/esoui/art/icons/crafting_ore_base_iron_r3.dds',
     'points' => 10,
-    'index' => 20,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -12020,7 +12242,7 @@ Long may you reign!',
     'desc' => 'Learn all Rare Racial Styles.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 21,
+    'index' => 22,
     'criteria' => 
     array (
       1 => 
@@ -12064,7 +12286,7 @@ Long may you reign!',
     'desc' => 'Collect and learn from every Akaviri Style book.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 22,
+    'index' => 23,
     'criteria' => 
     array (
       1 => 
@@ -12160,7 +12382,7 @@ Long may you reign!',
     'desc' => 'Collect and learn from every Dwemer Style book.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 23,
+    'index' => 24,
     'criteria' => 
     array (
       1 => 
@@ -12258,7 +12480,7 @@ Long may you reign!',
     'desc' => 'Collect and learn from every Glass Style book.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 24,
+    'index' => 25,
     'criteria' => 
     array (
       1 => 
@@ -12354,7 +12576,7 @@ Long may you reign!',
     'desc' => 'Collect and learn from every Mercenary Style book.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 25,
+    'index' => 26,
     'criteria' => 
     array (
       1 => 
@@ -12450,7 +12672,7 @@ Long may you reign!',
     'desc' => 'Have a character apply a Legendary Enchantment that they created, to a Legendary piece of gear that they created.',
     'icon' => '/esoui/art/icons/perks_fighters_guild_003.dds',
     'points' => 50,
-    'index' => 26,
+    'index' => 27,
     'criteria' => 
     array (
       1 => 
@@ -12462,6 +12684,206 @@ Long may you reign!',
     ),
     'dyeName' => 'Entoloma Blue',
     'dyeColor' => '549994',
+  ),
+  2121 => 
+  array (
+    'id' => 2121,
+    'name' => 'Rank 1 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Iron, Rawhide, Jute, or Maple equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 1 Materials',
+    'dyeColor' => '414d59',
+  ),
+  2122 => 
+  array (
+    'id' => 2122,
+    'name' => 'Rank 2 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Steel, Cotton, Hide, or Oak equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 2 Materials',
+    'dyeColor' => '666666',
+  ),
+  2123 => 
+  array (
+    'id' => 2123,
+    'name' => 'Rank 3 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Orichalcum, Spidersilk, Leather, or Beech equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 3 Materials',
+    'dyeColor' => '4f5231',
+  ),
+  2124 => 
+  array (
+    'id' => 2124,
+    'name' => 'Rank 4 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Dwarven, Ebonthread, Thick Leather, or Hickory equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 4 Materials',
+    'dyeColor' => '7c5b2d',
+  ),
+  2125 => 
+  array (
+    'id' => 2125,
+    'name' => 'Rank 5 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Ebony, Ebonthread, Fell Hide, or Yew equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 5 Materials',
+    'dyeColor' => '5b6466',
+  ),
+  2126 => 
+  array (
+    'id' => 2126,
+    'name' => 'Rank 6 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Calcinium, Kresh, Topgrain, or Birch equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 33,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 6 Materials',
+    'dyeColor' => '72593b',
+  ),
+  2127 => 
+  array (
+    'id' => 2127,
+    'name' => 'Rank 7 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Galatite, Ironthread, Iron Hide, or Ash equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 34,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 7 Materials',
+    'dyeColor' => '4b311c',
+  ),
+  2128 => 
+  array (
+    'id' => 2128,
+    'name' => 'Rank 8 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Quicksilver, Silverweave, Superb Hide, or Mahogany equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 35,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 8 Materials',
+    'dyeColor' => '3f5952',
+  ),
+  2129 => 
+  array (
+    'id' => 2129,
+    'name' => 'Rank 9 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Voidstone, Void Cloth, Shadowhide, or Nightwood equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 36,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 9 Materials',
+    'dyeColor' => '28a15',
+  ),
+  2130 => 
+  array (
+    'id' => 2130,
+    'name' => 'Rank 10 Deconstruction Analyst',
+    'desc' => 'Deconstruct a piece of Rubedite, Ancestor Silk, Rubedo Leather, or Ruby Ash equipment.',
+    'icon' => '/esoui/art/icons/ability_warrior_034.dds',
+    'points' => 5,
+    'index' => 37,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct a piece of equipment of the listed materials.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Rank 10 Materials',
+    'dyeColor' => '66ea',
   ),
   1503 => 
   array (
@@ -15821,9 +16243,6 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
-    'itemName' => 'Undaunted Enclave Invitation',
-    'itemLink' => '|H0:item:59731:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h',
-    'itemIcon' => '/esoui/art/icons/quest_letter_001.dds',
   ),
   1707 => 
   array (
@@ -34095,24 +34514,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1737 => 
-  array (
-    'id' => 1737,
-    'name' => 'Hearth Decorator',
-    'desc' => 'Decorate a home you own with at least 50 Hearth furnishings.',
-    'icon' => '/esoui/art/icons/achievement_housing_014.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 50 Hearth Furnishings',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   1745 => 
   array (
     'id' => 1745,
@@ -34120,7 +34521,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 50 objects.',
     'icon' => '/esoui/art/icons/achievement_housing_dining-items.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -34138,7 +34539,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 100 objects.',
     'icon' => '/esoui/art/icons/achievement_housing_gallery-items.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -34156,7 +34557,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 200 objects.',
     'icon' => '/esoui/art/icons/achievement_housing_courtyard-items.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -34174,7 +34575,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 300 objects.',
     'icon' => '/esoui/art/icons/achievement_housing_suite-items.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -34192,12 +34593,48 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 350 objects. Truly, a hoard to rival those of legend.',
     'icon' => '/esoui/art/icons/achievement_housing_library-items.dds',
     'points' => 50,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Decorate with 350 Objects',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1740 => 
+  array (
+    'id' => 1740,
+    'name' => 'Lighting Decorator',
+    'desc' => 'Decorate a home you own with at least 20 Lighting furnishings.',
+    'icon' => '/esoui/art/icons/achievement_housing_078.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 20 Lighting Furnishings',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1737 => 
+  array (
+    'id' => 1737,
+    'name' => 'Hearth Decorator',
+    'desc' => 'Decorate a home you own with at least 50 Hearth furnishings.',
+    'icon' => '/esoui/art/icons/achievement_housing_014.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 50 Hearth Furnishings',
         'value' => 1,
         'index' => 1,
       ),
@@ -34210,7 +34647,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 100 Conservatory furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_018.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -34228,7 +34665,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 30 Courtyard furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_012.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -34246,7 +34683,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 50 Dining Room furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_011.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -34264,7 +34701,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 20 Miscellaneous furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_020.dds',
     'points' => 5,
-    'index' => 6,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -34282,7 +34719,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 40 Gallery furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_015.dds',
     'points' => 5,
-    'index' => 7,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -34300,30 +34737,12 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 50 Library furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_010.dds',
     'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 50 Library Furnishings',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1740 => 
-  array (
-    'id' => 1740,
-    'name' => 'Lighting Decorator',
-    'desc' => 'Decorate a home you own with at least 20 Lighting furnishings.',
-    'icon' => '/esoui/art/icons/achievement_housing_078.dds',
-    'points' => 5,
     'index' => 9,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Decorate with 20 Lighting Furnishings',
+        'name' => 'Decorate with 50 Library Furnishings',
         'value' => 1,
         'index' => 1,
       ),
@@ -34707,6 +35126,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Star-Made Knight',
+    'collectIcon' => '/esoui/art/icons/hat_midyearvictorslaurelwreath.dds',
+    'collectName' => 'Midyear Victor\'s Laurel Wreath',
     'collectId' => '1248',
   ),
   1888 => 
@@ -36972,102 +37393,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2024 => 
-  array (
-    'id' => 2024,
-    'name' => 'Clockwork Style Master',
-    'desc' => 'Collect and learn every chapter in the Clockwork style book.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Clockwork Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
   1836 => 
   array (
     'id' => 1836,
@@ -37075,7 +37400,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete each of the following achievements related to defeating the Assembly General:',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_050.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -37130,7 +37455,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication without any group member dying to traps and hazards.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_047.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -37148,7 +37473,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Assembly General and assist Divayth Fyr in stopping the flood of animunculi coming from the Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_035.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -37169,7 +37494,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_036.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -37191,7 +37516,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Assembly General after empowering it by resetting the circuit breaker in Veteran Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_038.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -37209,7 +37534,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat one Hunter-Killer Fabricant while the other still has at least half of its health remaining, before defeating the remaining Fabricant in Veteran Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_043.dds',
     'points' => 10,
-    'index' => 9,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -37227,7 +37552,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete Veteran Halls of Fabrication after resetting the circuit breaker and empowering the Assembly General, all within 40 minutes of entering Abanabi Cave and without suffering a group member death.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_041.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -37246,7 +37571,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Refabrication Committee in Veteran Halls of Fabrication without ever allowing the Reclaimer to overcharge a Ruined Factotum.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_046.dds',
     'points' => 15,
-    'index' => 11,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -37264,7 +37589,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Pinnacle Factotum without ever using energy from the generator to break a Refabricated Sphere\'s shield, in Veteran Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_044.dds',
     'points' => 15,
-    'index' => 12,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -37282,7 +37607,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat 100 Calefactors, Capacitors, or Dissectors in the Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_042.dds',
     'points' => 10,
-    'index' => 13,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -37300,7 +37625,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all the notes scattered throughout the Halls of Fabrication.',
     'icon' => '/esoui/art/icons/achievement_vvardenfell_027.dds',
     'points' => 10,
-    'index' => 14,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -37336,7 +37661,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete Veteran Halls of Fabrication after resetting the circuit breaker and empowering the Assembly General, all without suffering a group member death.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_040.dds',
     'points' => 50,
-    'index' => 15,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -37355,7 +37680,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication without letting any Terminals complete their activation sequence.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_048.dds',
     'points' => 15,
-    'index' => 16,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -37373,7 +37698,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete Veteran Halls of Fabrication within a time limit of 40 minutes. Your trial begins when you enter Abanabi Cave beneath Tel Fyr.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_037.dds',
     'points' => 50,
-    'index' => 17,
+    'index' => 16,
     'criteria' => 
     array (
       1 => 
@@ -37391,7 +37716,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete Veteran Halls of Fabrication without suffering a group member death.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_039.dds',
     'points' => 50,
-    'index' => 18,
+    'index' => 17,
     'criteria' => 
     array (
       1 => 
@@ -38784,6 +39109,831 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2104 => 
+  array (
+    'id' => 2104,
+    'name' => 'Dragon Bones Explorer',
+    'desc' => 'Enter either Fang Lair or Scalecaller Peak for the first time.',
+    'icon' => '/esoui/art/icons/achievement_loyalty_dragonbones.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Fang Lair or Scalecaller Peak',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/hat_fanglairhood_03.dds',
+    'collectName' => 'Renegade Dragon Priest Mask',
+    'collectId' => '4692',
+  ),
+  2103 => 
+  array (
+    'id' => 2103,
+    'name' => 'Dragon Bones Delver',
+    'desc' => 'Complete Veteran Fang Lair and Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_metaplus.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Veteran Fang Lair',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Veteran Scalecaller Peak',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'dyeName' => 'Nacreous Purple',
+    'dyeColor' => '826989',
+  ),
+  1966 => 
+  array (
+    'id' => 1966,
+    'name' => 'Fang Lair Challenger',
+    'desc' => 'Complete the listed achievements for Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_dungeonmeta.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fang Lair Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Let Bygones Be Bygones',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Not a Statistic',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'The Quick and the Dead',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/personality_necromancer.dds',
+    'collectName' => 'Worm Wizard',
+    'collectId' => '4725',
+  ),
+  2102 => 
+  array (
+    'id' => 2102,
+    'name' => 'Leave No Bone Unbroken',
+    'desc' => 'Defeat all encounters in addition to Lizabet Charnis, the Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus, and Orryn the Black and Thurvokun in Hard Mode Veteran Fang Lair in under 30 minutes without suffering a party member death.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_metaplus.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Leave No Bone Unbroken',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1959 => 
+  array (
+    'id' => 1959,
+    'name' => 'Fang Lair Vanquisher',
+    'desc' => 'Defeat Lizabet Charnis, the Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus, and Orryn the Black and Thurvokun in Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_normal.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Lizabet Charnis',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Cadaverous Guar, Senche-Tiger, Dire Wolf, and Bear',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Caluurion',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Ulfnor and Sabina Cedus',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Orryn the Black and Thurvokun',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1960 => 
+  array (
+    'id' => 1960,
+    'name' => 'Fang Lair Conqueror',
+    'desc' => 'Defeat Lizabet Charnis, The Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus, and Orryn the Black and Thurvokun in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_veteran.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Lizabet Charnis',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Cadaverous Guar, Senche-Tiger, Dire Wolf, and Bear',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Caluurion',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Ulfnor and Sabina Cedus',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Orryn the Black and Thurvokun',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+    'title' => 'Blackmarrow\'s Bane',
+  ),
+  1964 => 
+  array (
+    'id' => 1964,
+    'name' => 'Not a Statistic',
+    'desc' => 'Defeat Lizabet Charnis, the Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus, Orryn the Black and Thurvokun, and all of their minions in Veteran Fang Lair, without suffering a group member death.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_deathless.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Not a Statistic',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1963 => 
+  array (
+    'id' => 1963,
+    'name' => 'The Quick and the Dead',
+    'desc' => 'Defeat all encounters in addition to Lizabet Charnis, the Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus and Orryn the Black and Thurvokun in Veteran Fang Lair in under 30 minutes. Timer starts upon engaging the first group of Blackmarrow necromancers.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_time.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Quick and the Dead',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1965 => 
+  array (
+    'id' => 1965,
+    'name' => 'Let Bygones Be Bygones',
+    'desc' => 'Defeat Orryn the Black and Thurvokun after reading the incantation in Orryn\'s Notes in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_bosseshard.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Let Bygones Be Bygones',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Dovahkriid',
+  ),
+  1962 => 
+  array (
+    'id' => 1962,
+    'name' => 'Veteran Necromancer Slayer',
+    'desc' => 'Defeat 350 Blackmarrow Necromancers in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglair_killmonstershard.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Veteran Necromancer Slayer',
+        'value' => 350,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1961 => 
+  array (
+    'id' => 1961,
+    'name' => 'Veteran Skeleton Slayer',
+    'desc' => 'Defeat 500 Skeletons in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglair_killmonsterseasy.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Veteran Skeleton Slayer',
+        'value' => 500,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1968 => 
+  array (
+    'id' => 1968,
+    'name' => 'Fungi Free',
+    'desc' => 'Defeat the Cadaverous Menagerie without anyone in your group taking damage from Volatile Fungi in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairflavor_medium.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fungi Free',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1967 => 
+  array (
+    'id' => 1967,
+    'name' => 'Minimal Animosity',
+    'desc' => 'Defeat Orryn the Black and Thurvokun while only destroying a maximum of one Animus Crystal before Orryn merges with Thurvokun in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairflavor_easy.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Minimal Animosity',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1969 => 
+  array (
+    'id' => 1969,
+    'name' => 'Starved Scarabs',
+    'desc' => 'Defeat Orryn the Black and Thurvokun without any party members being hit by a Giant Scarab\'s Degenerative Acid in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairflavor_hard.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hold the Juice',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1973 => 
+  array (
+    'id' => 1973,
+    'name' => 'Cold Pursuit',
+    'desc' => 'After reciting the incantations in Orryn\'s Notes, defeat Orryn the Black and Thurvokun without any party members being hit by Orryn\'s Wraith Thralls in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_hard.dds',
+    'points' => 10,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Cold Pursuit',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1971 => 
+  array (
+    'id' => 1971,
+    'name' => 'Elementary Anatomy',
+    'desc' => 'Deactivate each of Caluurion\'s Relics using elemental Bonefiends in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_easy.dds',
+    'points' => 10,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deactivate the Mammoth Relic',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Deactivate the Wamasu Relic',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Deactivate the Serpent Relic',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Deactivate the Lurcher Relic',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Deactivate the Shalk Relic',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1974 => 
+  array (
+    'id' => 1974,
+    'name' => 'Horrific Halitosis',
+    'desc' => 'When hit by Thurvokun\'s Plague Breath in Fang Lair, be under the protection of Yisareh\'s Life Ward while standing in direct contact with three other party members who also have Yisareh\'s Life Ward.',
+    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_hard.dds',
+    'points' => 10,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Horrific Halitosis',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1972 => 
+  array (
+    'id' => 1972,
+    'name' => 'Nonplussed',
+    'desc' => 'Defeat Ulfnor and Sabina Cedus without a party member being affected by Sabina Cedus\'s Haunting Spectre in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_easy.dds',
+    'points' => 10,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Nonplussed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1970 => 
+  array (
+    'id' => 1970,
+    'name' => 'Obedience Maiming',
+    'desc' => 'Defeat the Cadaverous Menagerie without a party member being killed by the Cadaverous Senche-Tiger\'s Death Grip in Veteran Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_hard.dds',
+    'points' => 10,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Obedience Maiming',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1982 => 
+  array (
+    'id' => 1982,
+    'name' => 'Scalecaller Peak Challenger',
+    'desc' => 'Complete the listed achievements for Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_dungeon_meta.dds',
+    'points' => 50,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Scalecaller Peak Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Breaker of Spells',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'On Top',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Peak Performance',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/skin_dreadhornglimmer.dds',
+    'collectName' => 'Blackmarrow Necromancer Skin',
+    'collectId' => '4793',
+  ),
+  1983 => 
+  array (
+    'id' => 1983,
+    'name' => 'Mountain God',
+    'desc' => 'Defeat all encounters in addition to Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller after reading Zaan\'s Ritual Scroll in Veteran Scalecaller Peak in under 30 minutes without dying.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_metaplus.dds',
+    'points' => 50,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Mountain God',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1975 => 
+  array (
+    'id' => 1975,
+    'name' => 'Scalecaller Peak Vanquisher',
+    'desc' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller in Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_normal.dds',
+    'points' => 5,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Doylemish Ironheart',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Matriarch Aldis',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Plague Concocter Mortieu',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Zaan the Scalecaller',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1976 => 
+  array (
+    'id' => 1976,
+    'name' => 'Scalecaller Peak Conqueror',
+    'desc' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_veteran.dds',
+    'points' => 5,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Doylemish Ironheart',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Matriarch Aldis',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Plague Concocter Mortieu',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Zaan the Scalecaller',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+    'title' => 'Peak Scaler',
+  ),
+  1980 => 
+  array (
+    'id' => 1980,
+    'name' => 'On Top',
+    'desc' => 'Defeat all encounters in addition to Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller in Veteran Scalecaller Peak, without suffering a group member death.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_deathless.dds',
+    'points' => 50,
+    'index' => 24,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'On Top',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1979 => 
+  array (
+    'id' => 1979,
+    'name' => 'Peak Performance',
+    'desc' => 'Defeat all encounters in addition to Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller in Veteran Scalecaller Peak in under 30 minutes. Timer starts when players engage the first group of Scalecaller creatures.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_time.dds',
+    'points' => 50,
+    'index' => 25,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Peak Performance',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1981 => 
+  array (
+    'id' => 1981,
+    'name' => 'Breaker of Spells',
+    'desc' => 'Defeat Zaan the Scalecaller after reading Zaan\'s Ritual Scroll in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_bosseshard.dds',
+    'points' => 50,
+    'index' => 26,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Breaker of Spells',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Plague of Peryite',
+  ),
+  1978 => 
+  array (
+    'id' => 1978,
+    'name' => 'Veteran Cultist Slayer',
+    'desc' => 'Defeat 120 Cultists in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_killmonstershard.dds',
+    'points' => 10,
+    'index' => 27,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Veteran Cultist Slayer',
+        'value' => 120,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1977 => 
+  array (
+    'id' => 1977,
+    'name' => 'Veteran Ogre Slayer',
+    'desc' => 'Defeat 50 Ogres in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_killmonsterseasy.dds',
+    'points' => 10,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Veteran Ogre Slayer',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1984 => 
+  array (
+    'id' => 1984,
+    'name' => 'Pustulent Problems',
+    'desc' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller without a single group member taking damage from a Skeever\'s Pestilent Pus in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_bossflavoreasy.dds',
+    'points' => 10,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Pustulent Problems',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1985 => 
+  array (
+    'id' => 1985,
+    'name' => 'Scalecaller Savior',
+    'desc' => 'Help Jorvuld Davaux find a cure to the cult\'s plague within Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_bossflavoreasy.dds',
+    'points' => 10,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Scalecaller Savior',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1986 => 
+  array (
+    'id' => 1986,
+    'name' => 'Stony Situation',
+    'desc' => 'Defeat Doylemish Ironheart in Veteran Scalecaller Peak without a single group member becoming Petrified by Stony Gaze.',
+    'icon' => '/esoui/art/icons/achievement_bossflavorhard.dds',
+    'points' => 10,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stony Situation',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1991 => 
+  array (
+    'id' => 1991,
+    'name' => 'Daedric Deflector',
+    'desc' => 'Defeat Zaan the Scalecaller without taking damage from her Pestilent Breath attack and without using the same avoidance method twice after reading Zaan\'s Ritual Scroll in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_hard.dds',
+    'points' => 10,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Daedric Deflector',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1988 => 
+  array (
+    'id' => 1988,
+    'name' => 'Doctor\'s Orders',
+    'desc' => 'Defeat Plague Concocter Mortieu in Veteran Scalecaller Peak with four living group members all suffering from two of Mortieu\'s infections simultaneously.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_medium.dds',
+    'points' => 10,
+    'index' => 33,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Doctor\'s Orders',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1990 => 
+  array (
+    'id' => 1990,
+    'name' => 'Stand Your Ground',
+    'desc' => 'Defeat Zaan the Scalecaller without being knocked back by her shield.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_easy.dds',
+    'points' => 10,
+    'index' => 34,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stand Your Ground',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1987 => 
+  array (
+    'id' => 1987,
+    'name' => 'Tremor Trouble',
+    'desc' => 'Defeat Orzun the Foul-Smelling and Rinaerus the Rancid in Veteran Scalecaller Peak without a single group member being killed by a Terrorizing Tremor.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_easy.dds',
+    'points' => 10,
+    'index' => 35,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Tremor Trouble',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1989 => 
+  array (
+    'id' => 1989,
+    'name' => 'Watch Your Step',
+    'desc' => 'Defeat Matriarch Aldis without any member of your group taking damage from the water that surrounds her during the fight in Veteran Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_medium.dds',
+    'points' => 10,
+    'index' => 36,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Watch Your Step',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   2048 => 
   array (
     'id' => 2048,
@@ -38801,6 +39951,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/pet_167.dds',
+    'collectName' => 'Scintillant Dovah-Fly',
+    'collectId' => '4659',
   ),
   2049 => 
   array (
@@ -38844,6 +39997,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Hero of Clockwork City',
+    'collectIcon' => '/esoui/art/icons/collectible_memento_photooscillator.dds',
+    'collectName' => 'Umbral Projector',
     'collectId' => '4663',
   ),
   2068 => 
@@ -39899,6 +41054,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Voice of Reason',
+    'collectIcon' => '/esoui/art/icons/skin_sanctifiedsilver.dds',
+    'collectName' => 'Sanctified Silver',
     'collectId' => '4661',
   ),
   2080 => 
@@ -39941,7 +41098,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2082,
     'name' => 'Beatific Beatdown',
-    'desc' => 'Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold at the same time without allowing Saint Felms or Saint Llothis to enrage during the fight.',
+    'desc' => 'Defeat Saint Olms the Just, Saint Llothis the Pious, and Saint Felms the Bold at the same time without allowing Saint Felms or Saint Llothis to enrage during the fight in Veteran Asylum Sanctorium.',
     'icon' => '/esoui/art/icons/achievement_update16_032.dds',
     'points' => 50,
     'index' => 30,
@@ -40123,6 +41280,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/hat_keptuhornsallet.dds',
+    'collectName' => 'Keptu-Horn Skull Sallet',
     'collectId' => '1368',
   ),
   1691 => 
@@ -40383,6 +41542,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 4,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/skin_bloodforged.dds',
+    'collectName' => 'Dreadhorn Shaman Skin',
     'collectId' => '1316',
   ),
   1699 => 
@@ -40531,6 +41692,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/emote_bullhorns.dds',
+    'collectName' => 'Bull Horns',
+    'collectId' => '1334',
   ),
   1817 => 
   array (
@@ -40572,7 +41736,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1947,
     'name' => 'Oathbreaker',
-    'desc' => 'While fighting Cernunnon and his oath-bound, banish all three of the spiritmasters\' souls within two seconds of each other throughout the fight in Veteran Falkreath Hold.',
+    'desc' => 'While fighting Cernunnon and his oath-bound, banish all three of the spiritmasters\' souls within five seconds of each other throughout the fight in Veteran Falkreath Hold.',
     'icon' => '/esoui/art/icons/achievement_update15_029.dds',
     'points' => 5,
     'index' => 21,
@@ -50020,37 +51184,81 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       19 => 
       array (
-        0 => 1713,
+        0 => 2120,
       ),
       20 => 
+      array (
+        0 => 1713,
+      ),
+      21 => 
       array (
         0 => 1020,
         1 => 1021,
         2 => 1022,
       ),
-      21 => 
+      22 => 
       array (
         0 => 1043,
       ),
-      22 => 
+      23 => 
       array (
         0 => 1318,
       ),
-      23 => 
+      24 => 
       array (
         0 => 1144,
       ),
-      24 => 
+      25 => 
       array (
         0 => 1319,
       ),
-      25 => 
+      26 => 
       array (
         0 => 1348,
       ),
-      26 => 
+      27 => 
       array (
         0 => 1042,
+      ),
+      28 => 
+      array (
+        0 => 2121,
+      ),
+      29 => 
+      array (
+        0 => 2122,
+      ),
+      30 => 
+      array (
+        0 => 2123,
+      ),
+      31 => 
+      array (
+        0 => 2124,
+      ),
+      32 => 
+      array (
+        0 => 2125,
+      ),
+      33 => 
+      array (
+        0 => 2126,
+      ),
+      34 => 
+      array (
+        0 => 2127,
+      ),
+      35 => 
+      array (
+        0 => 2128,
+      ),
+      36 => 
+      array (
+        0 => 2129,
+      ),
+      37 => 
+      array (
+        0 => 2130,
       ),
     ),
     'Alchemy' => 
@@ -50337,6 +51545,24 @@ $ESO_ACHIEVEMENT_TREE = array (
       4 => 
       array (
         0 => 1044,
+      ),
+    ),
+    'Outfitting' => 
+    array (
+      1 => 
+      array (
+        0 => 2113,
+      ),
+      2 => 
+      array (
+        0 => 2114,
+      ),
+      3 => 
+      array (
+        0 => 2109,
+        1 => 2110,
+        2 => 2111,
+        3 => 2112,
       ),
     ),
   ),
@@ -53464,43 +54690,43 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1737,
-      ),
-      2 => 
-      array (
         0 => 1745,
         1 => 1746,
         2 => 1747,
         3 => 1748,
         4 => 1749,
       ),
+      2 => 
+      array (
+        0 => 1740,
+      ),
       3 => 
       array (
-        0 => 1741,
+        0 => 1737,
       ),
       4 => 
       array (
-        0 => 1735,
+        0 => 1741,
       ),
       5 => 
       array (
-        0 => 1734,
+        0 => 1735,
       ),
       6 => 
       array (
-        0 => 1744,
+        0 => 1734,
       ),
       7 => 
       array (
-        0 => 1738,
+        0 => 1744,
       ),
       8 => 
       array (
-        0 => 1733,
+        0 => 1738,
       ),
       9 => 
       array (
-        0 => 1740,
+        0 => 1733,
       ),
       10 => 
       array (
@@ -53920,65 +55146,61 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       3 => 
       array (
-        0 => 2024,
+        0 => 1836,
       ),
       4 => 
       array (
-        0 => 1836,
+        0 => 1833,
       ),
       5 => 
       array (
-        0 => 1833,
+        0 => 1808,
       ),
       6 => 
       array (
-        0 => 1808,
+        0 => 1810,
       ),
       7 => 
       array (
-        0 => 1810,
+        0 => 1829,
       ),
       8 => 
       array (
-        0 => 1829,
+        0 => 1839,
       ),
       9 => 
       array (
-        0 => 1839,
+        0 => 1838,
       ),
       10 => 
       array (
-        0 => 1838,
+        0 => 1832,
       ),
       11 => 
       array (
-        0 => 1832,
+        0 => 1831,
       ),
       12 => 
       array (
-        0 => 1831,
+        0 => 1830,
       ),
       13 => 
       array (
-        0 => 1830,
+        0 => 1841,
       ),
       14 => 
       array (
-        0 => 1841,
+        0 => 1837,
       ),
       15 => 
       array (
-        0 => 1837,
+        0 => 1834,
       ),
       16 => 
       array (
-        0 => 1834,
-      ),
-      17 => 
-      array (
         0 => 1809,
       ),
-      18 => 
+      17 => 
       array (
         0 => 1811,
       ),
@@ -53986,6 +55208,153 @@ $ESO_ACHIEVEMENT_TREE = array (
   ),
   'DLC' => 
   array (
+    'Dragon Bones' => 
+    array (
+      1 => 
+      array (
+        0 => 2104,
+      ),
+      2 => 
+      array (
+        0 => 2103,
+      ),
+      3 => 
+      array (
+        0 => 1966,
+      ),
+      4 => 
+      array (
+        0 => 2102,
+      ),
+      5 => 
+      array (
+        0 => 1959,
+      ),
+      6 => 
+      array (
+        0 => 1960,
+      ),
+      7 => 
+      array (
+        0 => 1964,
+      ),
+      8 => 
+      array (
+        0 => 1963,
+      ),
+      9 => 
+      array (
+        0 => 1965,
+      ),
+      10 => 
+      array (
+        0 => 1962,
+      ),
+      11 => 
+      array (
+        0 => 1961,
+      ),
+      12 => 
+      array (
+        0 => 1968,
+      ),
+      13 => 
+      array (
+        0 => 1967,
+      ),
+      14 => 
+      array (
+        0 => 1969,
+      ),
+      15 => 
+      array (
+        0 => 1973,
+      ),
+      16 => 
+      array (
+        0 => 1971,
+      ),
+      17 => 
+      array (
+        0 => 1974,
+      ),
+      18 => 
+      array (
+        0 => 1972,
+      ),
+      19 => 
+      array (
+        0 => 1970,
+      ),
+      20 => 
+      array (
+        0 => 1982,
+      ),
+      21 => 
+      array (
+        0 => 1983,
+      ),
+      22 => 
+      array (
+        0 => 1975,
+      ),
+      23 => 
+      array (
+        0 => 1976,
+      ),
+      24 => 
+      array (
+        0 => 1980,
+      ),
+      25 => 
+      array (
+        0 => 1979,
+      ),
+      26 => 
+      array (
+        0 => 1981,
+      ),
+      27 => 
+      array (
+        0 => 1978,
+      ),
+      28 => 
+      array (
+        0 => 1977,
+      ),
+      29 => 
+      array (
+        0 => 1984,
+      ),
+      30 => 
+      array (
+        0 => 1985,
+      ),
+      31 => 
+      array (
+        0 => 1986,
+      ),
+      32 => 
+      array (
+        0 => 1991,
+      ),
+      33 => 
+      array (
+        0 => 1988,
+      ),
+      34 => 
+      array (
+        0 => 1990,
+      ),
+      35 => 
+      array (
+        0 => 1987,
+      ),
+      36 => 
+      array (
+        0 => 1989,
+      ),
+    ),
     'Clockwork City' => 
     array (
       1 => 
