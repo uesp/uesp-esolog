@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "17pts";
+$TABLE_SUFFIX = "17";
 $SOURCE_DATA1 = "playerSkills16.php";
 $SOURCE_DATA2 = "";
 

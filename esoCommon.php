@@ -45,6 +45,8 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100018" => "13",
 		"100019" => "14",
 		"100020" => "15",
+		"100021" => "16",
+		"100022" => "17",
 );
 
 
@@ -60,6 +62,8 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100018" => "2.7",
 		"100019" => "3.0",
 		"100020" => "3.1",
+		"100021" => "3.2",
+		"100022" => "3.3",
 );
 
 
@@ -444,6 +448,7 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		52 => "Buoyant Armiger",
 		53 => "Stalhrim Frostcaster",
 		54 => "Ashlander",
+		55 => "Worm Cult",
 		56 => "Silken Ring",
 		57 => "Mazzatun",
 		58 => "Grim Arlequin",
@@ -3250,6 +3255,10 @@ function GetEsoItemTableSuffix($version)
 		case '117pts':
 		case '17pts':
 			return "17pts";
+		case '1.7':
+		case '117':
+		case '17':
+			return "17";
 	}
 
 	return "";
