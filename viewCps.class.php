@@ -41,7 +41,7 @@ class CEsoViewCP
 
 	public function __construct ($isEmbedded = false, $parseParams = true)
 	{
-		SetupUespSession();
+		//SetupUespSession();
 		
 		$this->ESOVCP_HTML_TEMPLATE = __DIR__."/templates/esocp_template.txt";
 		$this->ESOVCP_HTML_TEMPLATE_EMBED = __DIR__."/templates/esocp_embed_template.txt";

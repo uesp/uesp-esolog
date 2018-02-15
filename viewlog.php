@@ -3057,7 +3057,7 @@ class EsoLogViewer
 	
 	public function __construct ()
 	{
-		SetupUespSession();
+		//SetupUespSession();
 		
 		uasort(self::$RECORD_TYPES, CompareRecordTypeByDisplayName);
 		
