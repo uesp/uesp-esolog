@@ -93,7 +93,7 @@ class CEsoViewSkills
 
 	public function __construct ($isEmbedded = false, $displayType = "summary", $parseParams = true)
 	{
-		SetupUespSession();		
+		//SetupUespSession();
 		
 		$this->ESOVS_HTML_TEMPLATE = __DIR__."/templates/esoskills_template.txt";
 		$this->ESOVS_HTML_TEMPLATE_EMBED = __DIR__."/templates/esoskills_embed_template.txt";

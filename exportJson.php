@@ -59,7 +59,7 @@ class CEsoLogJsonExport
 	
 	public function __construct()
 	{
-		SetupUespSession();
+		//SetupUespSession();
 		
 		$this->SetInputParams();
 		$this->ParseInputParams();

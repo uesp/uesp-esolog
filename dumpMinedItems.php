@@ -103,7 +103,7 @@ class CEsoDumpMinedItems {
 	
 	public function __construct()
 	{
-		SetupUespSession();
+		//SetupUespSession();
 		
 		$this->TRANSFORM_FIELDS = array(
 				"trait" => array($this, MakeItemTraitText),
