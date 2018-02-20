@@ -1606,17 +1606,17 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 	}
-	/* Skill line cost modifiers generally do not affect ultimates (manually add ultimates as needed)
+		/* Skill line cost modifiers generally do not affect ultimates (manually add ultimates as needed) */
 	else if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Ultimate")
 	{
-		if (skillData.skillLine != "Dual Wield" && skillData.skillLine != "Two Handed" && skillData.skillLine != "One Hand and Shield" && skillData.skillLine != "Bow" && skillData.skillLine != "Mages Guild")
+		if (skillData.skillLine == "Vampire")
 		{
 			var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
 			SkillFactor += SkillLineFactor;
 		
 			if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 		}
-	} //*/
+	} 
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillNameId] != null)
 	{
