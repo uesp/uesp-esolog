@@ -1156,7 +1156,27 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(healing you and allies in the area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(healing you or up to .*? nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(instantly healing the most injured friendly target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(The forest continues to heal you and your allies in the area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and your fully charged Heavy Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
