@@ -11,6 +11,7 @@ class CEsoItemSearchPopup
 	public $inputParams = array();
 	
 	public $inputText = "";
+	public $inputItemSet = "";
 	public $inputItemType = "";
 	public $inputEquipType = "";
 	public $inputWeaponType = "";
@@ -20,6 +21,7 @@ class CEsoItemSearchPopup
 	public $inputItemQuality = -1;
 	public $inputItemIntLevel = -1;
 	public $inputItemIntType = -1;
+	
 	public $inputItemTransmuteTrait = -1;
 	public $inputLimit = 100;
 	
@@ -66,6 +68,7 @@ class CEsoItemSearchPopup
 	public function ParseInputParams ()
 	{
 		if (array_key_exists('text', $this->inputParams)) $this->inputText = urldecode($this->inputParams['text']);
+		if (array_key_exists('set', $this->inputParams)) $this->inputItemSet = urldecode($this->inputParams['set']);
 		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = urldecode($this->inputParams['type']);
 		if (array_key_exists('equiptype', $this->inputParams) && $this->inputParams['equiptype'] !== "") $this->inputEquipType =  urldecode($this->inputParams['equiptype']);
 		if (array_key_exists('weapontype', $this->inputParams) && $this->inputParams['weapontype'] !== "") $this->inputWeaponType = (int) $this->inputParams['weapontype'];
@@ -172,6 +175,12 @@ class CEsoItemSearchPopup
 		{
 			$safeText = $this->db->real_escape_string($this->inputText);
 			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%' OR setName LIKE '%$safeText%')";
+		}
+		
+		if ($this->inputItemSet != "")
+		{
+			$safeText = $this->db->real_escape_string($this->inputItemSet);
+			$whereQuery[] = "(setName LIKE '%$safeText%')";
 		}
 				
 		if (count($whereQuery) > 0)
