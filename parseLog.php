@@ -136,6 +136,8 @@ class EsoLogParser
 	
 	public $logInfos = array();
 	
+	public $startMicroTime = 0;
+	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
 	const FIELD_FLOAT = 3;
@@ -866,6 +868,8 @@ class EsoLogParser
 		ini_set('mysql.connect_timeout', 1000);
 		ini_set('mysql.wait_timeout', 1000);
 		ini_set('default_socket_timeout', 1000);
+		
+		$this->startMicroTime = microtime(true);
 				
 		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
 		{
@@ -878,11 +882,21 @@ class EsoLogParser
 		}
 		
 		$this->salesData = new EsoSalesDataParser();
+		$this->salesData->startMicroTime = $this->startMicroTime;
 		
 		$this->initDatabaseWrite();
 		$this->setInputParams();
 		$this->parseInputParams();
 		$this->readParseIndexFile();
+	}
+	
+	
+	public function PrintLine($text)
+	{
+		$currentMicroTime = microtime(true);
+		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		
+		print("\t$diffTime: $text\n");
 	}
 	
 	
@@ -2293,7 +2307,7 @@ class EsoLogParser
 	
 	public function &addNewUserRecord ($userName)
 	{
-		print("Adding new user $userName...\n");
+		$this->log("Adding new user $userName...");
 		
 		$safeName = $this->db->real_escape_string($userName);
 		
@@ -2375,7 +2389,7 @@ class EsoLogParser
 	
 	public function &getUserRecord ($userName)
 	{
-		//print ("Getting data for user $userName...\n");
+		//$this->log("Getting data for user $userName...");
 		if (array_key_exists($userName, $this->users)) return $this->users[$userName];
 		
 		$safeName = $this->db->real_escape_string($userName);
@@ -2489,7 +2503,7 @@ class EsoLogParser
 	public function saveUsers ()
 	{
 		$result = true;
-		print("Saving users...\n");
+		$this->log("Saving users...");
 		
 		foreach ($this->users as $key => $value)
 		{
@@ -2522,7 +2536,7 @@ class EsoLogParser
 	
 	public function saveUser ($user)
 	{
-		print("\tSaving user {$user['name']}...\n");
+		$this->log("\tSaving user {$user['name']}...");
 		
 		$safeName = $this->db->real_escape_string($user['name']);
 		
@@ -2854,7 +2868,7 @@ class EsoLogParser
 		if (($npcName == "Chest" || $npcName == "Safebox") && $this->currentUser['__lastLockPickQuality'] != null)
 		{
 			$deltaTime = $logEntry['gameTime'] - $this->currentUser['__lastLockPickGameTime'];
-			//print("\tChest: $deltaTime, {$this->currentUser['__lastLockPickQuality']}\n");
+			//$this->log("\tChest: $deltaTime, {$this->currentUser['__lastLockPickQuality']}");
 			
 			if ($deltaTime < 15000)
 			{
@@ -2939,7 +2953,7 @@ class EsoLogParser
 		{
 			$npcRecord['count']++;
 			$this->SaveNPC($npcRecord);
-			//print("Updating NPC Totals: $npcName, $diffTime, $gameTime, {$this->currentUser['__lastLootGainedTarget']}, {$this->currentUser['__lastLootGainedGameTime']}\n");
+			//$this->log("Updating NPC Totals: $npcName, $diffTime, $gameTime, {$this->currentUser['__lastLootGainedTarget']}, {$this->currentUser['__lastLootGainedGameTime']}");
 			
 			$lootRecord = $this->FindNPCLoot($npcRecord['id'], $zone, "__totalCount");
 			
@@ -3574,7 +3588,7 @@ class EsoLogParser
 			
 			if ($deltaQuestOfferTime < self::QUESTOFFERED_DELTA_TIME && $deltaQuestOfferTime >= 0)
 			{
-				//print("\tSaving QuestOffer Data (" . $questRecord['name'] . ")\n");
+				//$this->log("\tSaving QuestOffer Data (" . $questRecord['name'] . ")");
 				
 				$questStageRecord = $this->FindOldQuestStageByType($questId, -123);
 				if ($questStageRecord != null) return true;
@@ -4523,7 +4537,7 @@ class EsoLogParser
 		//gameTime{11874643}  timeStamp{4743642846001627136}  userName{...}  ipAddress{...}  logTime{1396193303}  end{}
 		
 		$bookTitle = $logEntry['bookTitle'];
-		//print("\tLoreBook: $bookTitle\n");
+		//$this->log("\tLoreBook: $bookTitle");
 		
 		if ($bookTitle == null) return $this->reportLogParseError("Missing book title!");
 	
@@ -4640,7 +4654,7 @@ class EsoLogParser
 		
 		if ($lastBookRecord['skill'] == '')
 		{
-			//print("\t\tFound {$logEntry['name']} skill update for book {$lastBookRecord['title']}...\n");
+			//$this->log("\t\tFound {$logEntry['name']} skill update for book {$lastBookRecord['title']}...");
 			$lastBookRecord['skill'] = $logEntry['name'];
 			$this->SaveBook($lastBookRecord);
 		}
@@ -4654,7 +4668,7 @@ class EsoLogParser
 		//event{Skyshard}  y{0.43859297037125}  zone{Portdun Watch}  x{0.68326634168625}  lastTarget{Skyshard} 
 		//timeStamp{4743645430720495616}  gameTime{56651357}  userName{Reorx}  end{}
 		
-		//print("\t\tFound Skyshard...\n");
+		//$this->log("\t\tFound Skyshard...");
 		
 		return $this->CheckLocation("skyshard", "Skyshard", $logEntry, null);
 	}
@@ -4665,7 +4679,7 @@ class EsoLogParser
 		//event{FoundTreasure}  name{Chest}  x{0.25863909721375}  y{0.76831662654877}  lastTarget{Chest}  zone{Wayrest}  
 		//gameTime{336361}  timeStamp{4743645698686189568}  userName{Reorx}  end{}  
 		
-		//print("\t\tFound Treasure...\n");
+		//$this->log("\t\tFound Treasure...");
 		
 		$result = $this->CheckLocation("treasure", $logEntry['name'], $logEntry, null);
 		
@@ -4688,7 +4702,7 @@ class EsoLogParser
 			$this->currentUser['lastChestRecord'] = $chestRecord;
 			
 			$diff = $logEntry['gameTime'] - $this->currentUser['__lastChestFoundGameTime'];
-			//print("Chest Diff = $diff\n");
+			//$this->log("Chest Diff = $diff");
 			
 			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
 			{
@@ -4784,7 +4798,7 @@ class EsoLogParser
 		$this->currentUser['__lastLockPickQuality'] = $logEntry['quality'];
 		$this->currentUser['__lastLockPickGameTime'] = $logEntry['gameTime'];
 		
-		//print("\tLockPick: {$logEntry['quality']}\n");
+		//$this->log("\tLockPick: {$logEntry['quality']}");
 		
 		if (self::ONLY_PARSE_NPCLOOT_CHESTS || self::ONLY_PARSE_NPCLOOT) return true;
 		
@@ -5215,7 +5229,7 @@ class EsoLogParser
 				$setName = $logEntry['setName'];
 				$setCount = $logEntry['setBonusCount'];
 				$itemId = $minedItem['itemId'];
-				print("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!\n");
+				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
 			
@@ -5246,7 +5260,7 @@ class EsoLogParser
 				$setName = $logEntry['setName'];
 				$setCount = $logEntry['setBonusCount'];
 				$itemId = $minedItem['itemId'];
-				print("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!\n");
+				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
 				$this->lastSetCount7WarningItemId = $minedItem['itemId'];
 			}
 		}
@@ -5255,7 +5269,7 @@ class EsoLogParser
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
 		
 		$this->currentUser['lastMinedItemLogEntry'] = $logEntry;
-		//print("Found mined item $itemLink\n");
+		//$this->log("Found mined item $itemLink");
 		return $result;
 	}
 	
@@ -5324,7 +5338,7 @@ class EsoLogParser
 				$setName = $mergedLogEntry['setName'];
 				$setCount = $mergedLogEntry['setBonusCount'];
 				$itemId = $minedItem['itemId'];
-				print("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!\n");
+				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
 				
@@ -5345,7 +5359,7 @@ class EsoLogParser
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
 		
 		$this->currentUser['lastMinedItemLogEntry'] = $mergedLogEntry;
-		//print("Found mined item $itemLink\n");
+		//$this->log("Found mined item $itemLink");
 		return $result;
 	}
 	
@@ -5881,7 +5895,7 @@ class EsoLogParser
 	{		
 		if (!$this->IsValidUser($logEntry)) return false;
 		
-		print("\tFound Achievement::Start...\n");
+		$this->log("\tFound Achievement::Start...");
 				
 		$this->lastQuery = "DELETE FROM achievementCategories;";
 		$result = $this->db->query($this->lastQuery);
@@ -6066,7 +6080,7 @@ class EsoLogParser
 		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['name']);
 		
-		//print("OnGuildSummary");
+		//$this->log("OnGuildSummary");
 		//print_r($logEntry);
 		
 		if ($guildData['__new'] === true || true)
@@ -6088,7 +6102,7 @@ class EsoLogParser
 		}
 		else if ($guildData['lastStoreLocTime'] <= 0 || intval($guildData['lastStoreLocTime']) < intval($logEntry['timeStamp1']))
 		{
-			//print("Updating Guild Data...\n");
+			//$this->log("Updating Guild Data...");
 			$guildData['storeLocation'] = $logEntry['kiosk'];
 			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
 			$guildData['numMembers'] = $logEntry['numMembers'];
@@ -6112,7 +6126,7 @@ class EsoLogParser
 		 logData.kiosk = GetGuildOwnedKioskInfo(guildId)
 		 */
 		
-		//print("OnGuildSaleSearchInfo");
+		//$this->("OnGuildSaleSearchInfo");
 		
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		
@@ -6209,7 +6223,7 @@ class EsoLogParser
 		}
 		else
 		{
-			//print("Found duplicate sale: {$itemData['id']}:{$guildData['id']}:{$logEntry['eventId']}\n");
+			//$this->log("Found duplicate sale: {$itemData['id']}:{$guildData['id']}:{$logEntry['eventId']}");
 		}
 		
 		return true;
@@ -6609,7 +6623,7 @@ class EsoLogParser
 		if ($createLogEntry && !$skipLogEntryCreate)
 		{
 			$isDuplicate = $this->isDuplicateLogEntry($logEntry);
-			//print("\tLogEntry: {$logEntry['event']} = $isDuplicate\n");
+			//$this->log("\tLogEntry: {$logEntry['event']} = $isDuplicate");
 		}
 		
 		if ($this->skipDuplicates && $isDuplicate)
@@ -6639,7 +6653,7 @@ class EsoLogParser
 		++$user['entryCount'];
 		$user['__dirty'] = true;
 		
-		//print($logEntry['event'] . "\n");
+		//$this->log($logEntry['event'] . "");
 		
 		switch($logEntry['event'])
 		{
@@ -6928,7 +6942,7 @@ class EsoLogParser
 			
 			if ($totalLineCount >= $nextLineUpdate && self::SHOW_PARSE_LINENUMBERS)
 			{
-				print("\tParsing line $totalLineCount...\n");
+				$this->log("\tParsing line $totalLineCount...");
 				$nextLineUpdate += 1000;
 			}
 		}
@@ -7051,8 +7065,12 @@ class EsoLogParser
 	
 	public function log ($msg)
 	{
-		print($msg . "\n");
-		$result = file_put_contents($this->logFilePath . self::ELP_OUTPUTLOG_FILENAME, $msg . "\n", FILE_APPEND | LOCK_EX);
+		$currentMicroTime = microtime(true);
+		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		
+		print("$diffTime: $msg\n");
+		
+		$result = file_put_contents($this->logFilePath . self::ELP_OUTPUTLOG_FILENAME, "$diffTime: $msg\n", FILE_APPEND | LOCK_EX);
 		return TRUE;
 	}
 	
