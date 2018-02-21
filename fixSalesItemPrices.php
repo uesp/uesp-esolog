@@ -6,7 +6,7 @@ require_once("parseSalesData.php");
 
 $parser = new EsoSalesDataParser();
 
-$query = "SELECT * FROM items;";
+$query = "SELECT * FROM items WHERE countSales=0 and countPurchases=0;";
 $result = $parser->db->query($query);
 if (!$result) die("Failed to load items!");
 
@@ -17,7 +17,7 @@ while (($item = $result->fetch_assoc()))
 {
 	++$itemCount;
 	
-	$parser->UpdateItemGoodPrice($item, false);
+	$parser->UpdateItemGoodPrice($item, true);
 	
 	$saleCount = 0;
 	$listCount = 0;
@@ -30,7 +30,7 @@ while (($item = $result->fetch_assoc()))
 	
 	foreach ($parser->lastLoadedSalesData as $sale)
 	{
-		if ($sale['buyTimestamp'] > 0)
+		if ($sale['buyTimestamp'] > 0 || $sale['eventId'] > 0)
 		{
 			++$saleCount;
 			$saleSum += $sale['price'];

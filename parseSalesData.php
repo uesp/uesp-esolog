@@ -39,10 +39,14 @@ class EsoSalesDataParser
 	
 	public $lastLoadedSalesData = array();
 	
+	public $startMicroTime = 0;
+	
 	
 	public function __construct ()
 	{
 		$this->Lua = new Lua();
+		
+		$this->startMicroTime = microtime(true);
 				
 		$this->initDatabaseWrite();
 		$this->InitLogDatabaseRead();
@@ -54,8 +58,12 @@ class EsoSalesDataParser
 	
 	public function log ($msg)
 	{
-		print($msg . "\n");
-		$result = file_put_contents(self::ESD_OUTPUTLOG_FILENAME, $msg . "\n", FILE_APPEND | LOCK_EX);
+		$currentMicroTime = microtime(true);
+		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		
+		print("\t$diffTime: $msg\n");
+		
+		$result = file_put_contents(self::ESD_OUTPUTLOG_FILENAME, "$diffTime: $msg\n", FILE_APPEND | LOCK_EX);
 		return TRUE;
 	}
 	
@@ -406,18 +414,23 @@ class EsoSalesDataParser
 			}
 		}
 		
-		print ("Saved $guildCount updated guild data...\n");
+		$this->log("Saved $guildCount updated guild data...\n");
 		return true;
 	}
 	
 	
 	public function LoadSalesForItem($server, $itemId)
 	{
-		$query = "SELECT price, qnt, listTimestamp, buyTimestamp FROM sales WHERE server='$server' AND itemId=$itemId;";
+		$query = "SELECT price, qnt, listTimestamp, buyTimestamp, eventId FROM sales WHERE server='$server' AND itemId='$itemId';";
 		
 		$result = $this->db->query($query);
-		if ($result === false) return $this->reportError("Failed to load sales for item $itemId!");
-		if ($result->num_rows == 0) return $this->reportError("No sales found for item $itemId!");
+		if ($result === false) return $this->reportError("Failed to load sales for item $server:$itemId!");
+		
+		if ($result->num_rows == 0) 
+		{
+			$this->reportError("No sales found for item $server:$itemId!");
+			return false;
+		}
 		
 		$salesData = array();
 		
@@ -531,7 +544,7 @@ class EsoSalesDataParser
 		if (count($salesData) < 1) return false;
 		
 		$result = array();
-	
+		
 		$listSum = 0;
 		$soldSum = 0;
 		$listCount = 0;
@@ -548,8 +561,9 @@ class EsoSalesDataParser
 			$unitPrice = $sale['unitPrice'];
 			$soldTime = intval($sale['buyTimestamp']);
 			$listTime = intval($sale['listTimestamp']);
-	
-			if ($soldTime > 0)
+			$eventId = $sale['eventId'];
+			
+			if ($soldTime > 0 || $eventId > 0)
 			{
 				$soldSum += $price;
 				$soldCount += $qnt;
@@ -702,21 +716,21 @@ class EsoSalesDataParser
 	{
 		$itemCount = 0;
 		
-		print ("Updating all modified items...\n");
+		$this->log("Updating all modified items...");
 		
 		foreach ($this->itemData as $cacheId => &$itemData)
 		{
 			if ($itemData['__dirty'] !== true) continue;
 			++$itemCount;
 			
-			print("\tUpdating item {$itemData['id']}...\n");
+			$this->log("\tUpdating item {$itemData['id']}...");
 			
 			$this->UpdateItemGoodPrice($itemData, false);
 			
 			$this->SaveItemStats($itemData);			
 		}
 		
-		print ("Saved $itemCount updated item data...\n");
+		$this->log("Saved $itemCount updated item data...");
 		return true;
 	}
 	
@@ -762,7 +776,7 @@ class EsoSalesDataParser
 		$rowData['sumSales'] = floatval($rowData['sumSales']);
 		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
 		
-		$itemData['extraData'] = $extraData;
+		$rowData['extraData'] = $extraData;
 		
 		return $rowData;
 	}
@@ -793,7 +807,7 @@ class EsoSalesDataParser
 		$rowData['sumSales'] = floatval($rowData['sumSales']);
 		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
 		
-		$itemData['extraData'] = $extraData;
+		$rowData['extraData'] = $extraData;
 		
 		return $rowData;
 	}
@@ -894,10 +908,11 @@ class EsoSalesDataParser
 		$itemData['quality'] = $quality;
 		$itemData['itemType'] = $itemType;
 		$itemData['trait'] = $trait;
-		$itemData['weaponType'] = @weaponType;
+		$itemData['weaponType'] = $weaponType;
 		$itemData['armorType'] = $armorType;
 		$itemData['equipType'] = $equipType;
 		$itemData['name'] = $name;
+		$itemData['server'] = $server;
 		$itemData['setName'] = $setName;
 		$itemData['potionData'] = $potionData;
 		$itemData['extraData'] = $extraData;
@@ -1003,9 +1018,10 @@ class EsoSalesDataParser
 		$itemData['quality'] = $quality;
 		$itemData['itemType'] = $itemType;
 		$itemData['trait'] = $trait;
-		$itemData['weaponType'] = @weaponType;
+		$itemData['weaponType'] = $weaponType;
 		$itemData['armorType'] = $armorType;
 		$itemData['equipType'] = $equipType;
+		$itemData['server'] = $server;
 		$itemData['name'] = $name;
 		$itemData['setName'] = $setName;
 		$itemData['potionData'] = $itemPotionData;
@@ -1104,12 +1120,12 @@ class EsoSalesDataParser
 		}
 		else
 		{
-			print("\tError: Couldn't load or create new item $itemId!\n");
+			$this->log("\tError: Couldn't load or create new item $itemId!");
 			
 			$this->itemData[$cacheId] = array();
 			$this->itemData[$cacheId] = $name;
 			$this->itemData[$cacheId]['id'] = -1;
-			$this->itemData[$cacheId]['server'] = $this->server;
+			$this->itemData[$cacheId]['server'] = $server;
 			$this->itemData[$cacheId]['itemId'] = $itemId;
 			$this->itemData[$cacheId]['level'] = $level;
 			$this->itemData[$cacheId]['quality'] = $quality;
@@ -1367,13 +1383,14 @@ class EsoSalesDataParser
 			$this->ParseMMItemData($itemId, $itemData);
 		}
 		
-		print ("$name: Found {$this->localItemCount} items ({$this->localNewItemCount} new) and {$this->localSalesCount} sales ({$this->localNewSalesCount} new) in MM data!\n");
+		$this->log("$name: Found {$this->localItemCount} items ({$this->localNewItemCount} new) and {$this->localSalesCount} sales ({$this->localNewSalesCount} new) in MM data!");
 		return true;
 	}
 	
+	
 	public function ParseMMItemData($itemId, &$itemData)
 	{
-		//print ("Parsing item ID #$itemId...\n");
+		//$this->log("Parsing item ID #$itemId...");
 		
 		foreach ($itemData as $key => &$subItemData)
 		{
@@ -1402,7 +1419,7 @@ class EsoSalesDataParser
 		++$this->localSalesCount;
 		
 		$itemLink = $saleData['itemLink'];
-		//print("\tFound sale for item $itemLink\n");
+		//$this->log("\tFound sale for item $itemLink");
 		
 		$itemParsedData = array();
 		$itemParsedData['name'] = $subItemData['itemDesc'];
@@ -1438,7 +1455,7 @@ class EsoSalesDataParser
 		}
 		else
 		{
-			//print("Found duplicate sale: {$itemData['id']}:{$guildData['id']}:{$saleData['id']}\n");
+			//$this->log("Found duplicate sale: {$itemData['id']}:{$guildData['id']}:{$saleData['id']}");
 		}
 		
 		return true;
@@ -1447,7 +1464,7 @@ class EsoSalesDataParser
 	
 	public function ShowParseSummary()
 	{
-		print("Found {$this->localNewSalesCount} new sales and {$this->localNewItemCount} new items!\n");
+		$this->log("Found {$this->localNewSalesCount} new sales and {$this->localNewItemCount} new items!");
 	}
 	
 };
