@@ -168,7 +168,7 @@
 	text-align: center;
 	float: left;
 	position: relative;
-    top: -3px;	
+    top: -8px;	
 }
 
 .esovcpSkillControls {
@@ -238,8 +238,18 @@
 	padding-top: 2px;
 }
 
-.esovcpPassiveUnlocked {
+.esovcpSkillLevel.esovcpPassiveUnlocked {
 	color: lightgray;
+}
+
+.esovcpSkill.esovcpPassiveUnlocked .esovcpSkillName,
+.esovcpSkill.esovcpPassiveUnlocked .esovcpSkillDesc {
+	color: #000;
+} 
+
+.esovcpSkill.esovcpPassiveLocked .esovcpSkillName,
+.esovcpSkill.esovcpPassiveLocked .esovcpSkillDesc {
+	color: #aaa;
 }
 
 #esovcpSearchBlock {
