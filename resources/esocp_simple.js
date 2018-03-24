@@ -313,15 +313,20 @@ function UpdateEsoCPUnlockLevels(discId)
 	
 	passives.each(function() {
 		var unlockLevel = $(this).parent().attr("unlocklevel");
+		var parent = $(this).parent(); 
 		
 		if (unlockLevel <= points)
 		{
-			$(this).parent().attr("unlocked", "1");
+			parent.addClass("esovcpPassiveUnlocked");
+			parent.removeClass("esovcpPassiveLocked");
+			parent.attr("unlocked", "1");
 			$(this).addClass("esovcpPassiveUnlocked");
 		}
 		else
 		{
-			$(this).parent().attr("unlocked", "0");
+			parent.addClass("esovcpPassiveLocked");
+			parent.removeClass("esovcpPassiveUnlocked");
+			parent.attr("unlocked", "0");
 			$(this).removeClass("esovcpPassiveUnlocked");
 		}
 	});
