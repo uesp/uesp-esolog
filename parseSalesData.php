@@ -41,6 +41,11 @@ class EsoSalesDataParser
 	
 	public $startMicroTime = 0;
 	
+	public $dbWriteCount = 0;
+	public $dbWriteCountPeriod = 1000;
+	public $dbWriteNextSleepCount = 1000;
+	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
+	
 	
 	public function __construct ()
 	{
@@ -288,6 +293,8 @@ class EsoSalesDataParser
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create guilds record!");
 		
+		$this->dbWriteCount++;
+		
 		$guildData = array();
 		
 		$guildData['name'] = $name;
@@ -357,6 +364,8 @@ class EsoSalesDataParser
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to save guild record!");
+		
+		$this->dbWriteCount++;
 	
 		$guildData['__dirty'] = false;
 	
@@ -391,6 +400,8 @@ class EsoSalesDataParser
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to save item stats data!");
+		
+		$this->dbWriteCount++;
 		
 		$itemData['__dirty'] = false;
 		
@@ -727,7 +738,9 @@ class EsoSalesDataParser
 			
 			$this->UpdateItemGoodPrice($itemData, false);
 			
-			$this->SaveItemStats($itemData);			
+			$this->SaveItemStats($itemData);
+			
+			$this->CheckDbWriteSleep();
 		}
 		
 		$this->log("Saved $itemCount updated item data...");
@@ -898,6 +911,8 @@ class EsoSalesDataParser
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
 		
+		$this->dbWriteCount++;
+		
 		$itemData = array();
 		$itemData['__dirty'] = false;
 		$itemData['__new'] = true;
@@ -1007,6 +1022,8 @@ class EsoSalesDataParser
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$itemPotionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$extraData\");";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
+		
+		$this->dbWriteCount++;
 		
 		$itemData = array();
 		$itemData['__dirty'] = false;
@@ -1219,6 +1236,8 @@ class EsoSalesDataParser
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$buyTimestamp');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
+		
+		$this->dbWriteCount++;
 
 		++$guildData['totalPurchases'];
 		$guildData['__dirty'] = true;
@@ -1260,6 +1279,8 @@ class EsoSalesDataParser
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$timestamp');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
+		
+		$this->dbWriteCount++;
 	
 		$guildData['totalPurchases'] += 1;
 		$guildData['__dirty'] = true;
@@ -1299,6 +1320,8 @@ class EsoSalesDataParser
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp);";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");
+		
+		$this->dbWriteCount++;
 	
 		$guildData['totalSales'] += 1;
 		$guildData['__dirty'] = true;
@@ -1459,6 +1482,18 @@ class EsoSalesDataParser
 		}
 		
 		return true;
+	}
+	
+	
+	public function CheckDbWriteSleep()
+	{
+		
+		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount)
+		{
+			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
+			sleep($this->dbWriteCountSleep);
+		}
 	}
 	
 	
