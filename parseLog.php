@@ -141,6 +141,11 @@ class EsoLogParser
 	
 	public $startMicroTime = 0;
 	
+	public $dbWriteCount = 0;
+	public $dbWriteCountPeriod = 1000;
+	public $dbWriteNextSleepCount = 1000;
+	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
+	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
 	const FIELD_FLOAT = 3;
@@ -1121,8 +1126,12 @@ class EsoLogParser
 			$query = "INSERT INTO logInfo(id, value) VALUES('$safeKey', '$safeValue') ON DUPLICATE KEY UPDATE id='$safeKey', value='$safeValue';";
 			$this->lastQuery = $query;
 			
+			$this->dbWriteCount++;
+			
 			$result = $this->db->query($query);
 			if ($result === false) return $this->reportError("Failed to save record info logInfo table!");
+			
+			$this->dbWriteCount++;
 		}
 		
 		return true;
@@ -1262,6 +1271,8 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to save record {$record[$idField]} to {$table} table!");
 		
+		$this->dbWriteCount++;
+		
 		if ($record['__isNew']) $record['id'] = $this->db->insert_id;
 		$record['__isNew'] = false;
 		$record['__dirty'] = false;
@@ -1380,6 +1391,8 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportError("Failed to save skill coefficient data!");
+		
+		$this->dbWriteCount++;
 	
 		return true;
 	}
@@ -2318,6 +2331,8 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		
+		$this->dbWriteCount++;
+		
 		if ($result === FALSE)
 		{
 			$this->reportError("Failed to add user '{$userName}'!");
@@ -2374,6 +2389,8 @@ class EsoLogParser
 		$query = "INSERT INTO ipAddress(ipAddress) VALUES('{$safeIP}');";
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
+				
+		$this->dbWriteCount++;
 	
 		if ($result === FALSE)
 		{
@@ -2560,6 +2577,8 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to save user '{$safeName}'!");
 		
+		$this->dbWriteCount++;
+		
 		return true;
 	}
 	
@@ -2573,6 +2592,8 @@ class EsoLogParser
 		$query = "UPDATE ipAddress SET enabled={$enabled} WHERE ipAddress='{$safeName}';";
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to save IP address '{$safeName}'!");
+		
+		$this->dbWriteCount++;
 		
 		return true;
 	}
@@ -2636,6 +2657,8 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create logEntry record!");
+		
+		$this->dbWriteCount++;
 	
 		return $this->db->insert_id;
 	}
@@ -6606,6 +6629,13 @@ class EsoLogParser
 		}
 		
 		if (!$this->isValidLogEntry($logEntry)) return false;
+		
+		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount)
+		{
+			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
+			sleep($this->dbWriteCountSleep);
+		}
 		
 		$user = &$this->getUserRecord($logEntry['userName']);
 		$ipAddress = &$this->getIPAddressRecord($logEntry['ipAddress']);
