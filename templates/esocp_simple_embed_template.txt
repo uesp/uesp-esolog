@@ -8,7 +8,7 @@
 <div id="esovcpContainer">
 	<div id="esovcpDisciplines" style="width:{discWidth};">
 		{cpDisciplines}
-		<button id="esotvcpResetCP">Reset All</button>
+		<button id="esotvcpResetCP" style="display: {displayResetAllButton} ;">Reset All</button>
 	</div>
 	<div id="esovcpSkills">{cpSkills}</div>
 </div>
@@ -19,4 +19,4 @@
 
 <div class="esovpBlockClear"></div>
 <p/>
-<div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>
+<div class="esovcpUpdateDate" style='display: {footerDisplay};'>Champion Point data last updated on {updateDate}.</div>
