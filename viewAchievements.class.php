@@ -543,6 +543,40 @@ class CEsoViewAchievements
 	}
 	
 	
+	public function GetSkyshardsFound()
+	{
+		global $ESO_ACHIEVEMENT_DATA;
+		
+		$skyshardsTotal = 1;	// One in wailing prison not in achievements
+		$skyshardsFound = 0;
+		
+		foreach ($ESO_ACHIEVEMENT_DATA as $achId => $achData)
+		{
+			$name = $achData['name'];
+			$index = strpos($name, 'Skyshard');
+			if ($index === false) continue;
+			if ($achId == 989) continue;	// Tamriel skyshard hunter
+			
+			$numSkyshards = count($achData['criteria']);
+			$skyshardsTotal += $numSkyshards;
+			
+			$charAchData = $this->GetCharAchievementData($achId);
+			
+			if ($charAchData)
+			{
+				$progressBits = $charAchData[0];
+				$skyshardsFound += substr_count(decbin($progressBits), '1'); 
+			}
+		}
+		
+			/* Check for wailing prison done */
+		$charAchData = $this->GetCharAchievementData(993);
+		if ($charAchData && $charAchData[0]) $skyshardsFound++;
+		
+		return array("skyshardsFound" => $skyshardsFound, "skyshardsTotal" => $skyshardsTotal);
+	}
+	
+	
 	public function FormatAchievementValue($value)
 	{
 		return number_format($value);

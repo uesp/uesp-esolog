@@ -19,6 +19,9 @@ class CEsoViewCP
 	public $viewSimpleOutput = true;
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
+	public $showEdit = true;
+	public $showFooter = true;
+	public $showTitleonLeft = false;
 	public $rawCpData = "";
 	public $decodedCpData = "";
 	public $cpDataArray = array();
@@ -294,10 +297,14 @@ class CEsoViewCP
 	{
 		$output = "";
 		
+		$showEdit = "";
+		if (!$this->showEdit) $showEdit = " style='display: none;' ";
+		
 		foreach ($this->cpData as &$discipline)
 		{
 			$name = $discipline['name'];
 			$index = $discipline['disciplineIndex'];
+			$attr = $discipline['attribute'];
 			$id = str_replace(" ", "_", strtolower($name));
 			
 			$display = "none";
@@ -306,8 +313,8 @@ class CEsoViewCP
 			$totalPoints = $this->GetInitialDisciplinePoints($name);
 			
 			$output .= "<div id='skills_$id' disciplineid='$id' disciplineindex='$index' class='esovcpDiscSkills' style='display: $display;'>";
-			$output .= "<div class='esovcpDiscSkillTitle'>$name</div>";
-			$output .= "<div class='esovcpDiscTitlePoints'>$totalPoints</div>";
+			$output .= "<div class='esovcpDiscSkillTitle  esovpcDiscTitle$attr'>$name</div>";
+			$output .= "<div class='esovcpDiscTitlePoints  esovpcDiscTitle$attr'>$totalPoints</div>";
 			//$output .= "<hr>";
 			
 			foreach ($discipline['skills'] as $skill)
@@ -315,7 +322,7 @@ class CEsoViewCP
 				$output .= $this->GetCpSkillSectionHtml($skill, "");
 			}
 		
-			$output .= "<button class='esotvcpResetDisc'>Reset Discipline</button>";
+			$output .= "<button class='esotvcpResetDisc' $showEdit>Reset Discipline</button>";
 			$output .= "</div>";			
 		}
 		
@@ -409,6 +416,15 @@ class CEsoViewCP
 		$desc = $this->FormatDescriptionHtml($skill['minDescription']);
 		$isUnlocked = 0;
 		
+		$showEdit = "";
+		$inputReadOnly = "";
+		
+		if (!$this->showEdit) 
+		{
+			$inputReadOnly = " readonly = 'readonly' ";
+			$showEdit = " style='display: none;' ";
+		}
+		
 		$initialValue = $this->GetInitialSkillValue($skill);
 		if ($initialValue < 0) $isUnlocked = 1;
 		
@@ -416,7 +432,7 @@ class CEsoViewCP
 		
 		if ($unlockLevel > 0)
 		{
-			$output .= "<div class='esovcpSkillLevel'>Unlocked at <br/>$unlockLevel</div>";
+			$output .= "<div class='esovcpSkillLevel'>Unlocked<br/>at $unlockLevel</div>";
 		}
 		else
 		{
@@ -427,9 +443,9 @@ class CEsoViewCP
 			if ($rawDesc != null && $rawDesc != "") $desc = $this->FormatDescriptionHtml($rawDesc);
 			
 			$output .= "<div class='esovcpSkillControls'>";
-			$output .= "<button skillid='$id' class='esovcpMinusButton'>-</button>";
-			$output .= "<input skillid='$id' class='esovcpPointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3'>";
-			$output .= "<button skillid='$id' class='esovcpPlusButton'>+</button>";
+			$output .= "<button skillid='$id' class='esovcpMinusButton' $showEdit>-</button>";
+			$output .= "<input skillid='$id' class='esovcpPointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3' $inputReadOnly>";
+			$output .= "<button skillid='$id' class='esovcpPlusButton' $showEdit>+</button>";
 			$output .= "</div>";	
 		}
 		
@@ -444,6 +460,11 @@ class CEsoViewCP
 	public function GetCpDisciplinesHtml()
 	{
 		$output = "";
+		
+		if ($this->showTitleonLeft) 
+		{
+			$output .= "<div class='esovcpDiscSkillTitle'>CHAMPION POINTS</div>";
+		}
 		
 		$totalPoints = $this->GetInitialTotalPoints();
 		$totalPoints1 = $this->GetInitialAttributePoints(1);
@@ -522,6 +543,20 @@ class CEsoViewCP
 	}
 	
 	
+	public function GetDisplayResetAllButton()
+	{
+		if ($this->showEdit) return "block";
+		return "none";
+	}
+	
+	
+	public function GetDisplayFooter()
+	{
+		if ($this->showFooter) return "block";
+		return "none";
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		$this->LoadTemplate();
@@ -536,6 +571,8 @@ class CEsoViewCP
 				'{cpDataJson}' => json_encode($this->cpDataArray),
 				'{topBarDisplay}' => $this->GetTopBarDisplay(),
 				'{discWidth}' => $this->GetDiscWidth(),
+				'{displayResetAllButton}' => $this->GetDisplayResetAllButton(),
+				'{footerDisplay}' => $this->GetDisplayFooter(),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -562,6 +599,8 @@ class CEsoViewCP
 				'{cpDataJson}' => "{}",
 				'{topBarDisplay}' => $this->GetTopBarDisplay(),
 				'{discWidth}' => $this->GetDiscWidth(),
+				'{displayResetAllButton}' => "block",
+				'{footerDisplay}' => "block",
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
