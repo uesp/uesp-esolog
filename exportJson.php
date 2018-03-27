@@ -39,6 +39,7 @@ class CEsoLogJsonExport
 			"achievementCategories",
 			"achievementCriteria",
 			"achievements",
+			"book",
 	);
 	
 	public $TABLE_IDS = array(
@@ -54,6 +55,7 @@ class CEsoLogJsonExport
 			"achievementCategories" => "name",
 			"achievementCriteria" => "achievementId",
 			"achievements" => "id",
+			"book" => "bookId",
 	);
 	
 	
