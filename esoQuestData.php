@@ -103,7 +103,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Legacy of the Three",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5500 => array(
 			'name'    => "Dousing the Fires of Industry",
@@ -111,7 +111,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "IC Elven Rep Q5500",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 7,
 		),
 	3902 => array(
 			'name'    => "A Son's Promise",
@@ -247,7 +247,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4787 Mourning the Lost",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	45 => array(
 			'name'    => "Aldcroft Manor",
@@ -263,7 +263,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4779 Wispmother",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	1615 => array(
 			'name'    => "Next of Kin",
@@ -399,7 +399,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "V5052 An Offering to Azura",
 			'zoneId' => 19,
 			'zone' => "Stormhaven",
-			'type' => 50,
+			'type' => 0,
 		),
 	61 => array(
 			'name'    => "The Lost Courier",
@@ -583,7 +583,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Coral Heart",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	142 => array(
 			'name'    => "Peering Into Darkness",
@@ -615,7 +615,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Wyrd Sisters",
 			'zoneId' => 3,
 			'zone' => "Glenumbra",
-			'type' => 50,
+			'type' => 0,
 		),
 	2809 => array(
 			'name'    => "Scout Dragonclaw Farm",
@@ -703,7 +703,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Undermined",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	80 => array(
 			'name'    => "Failing Crops",
@@ -823,7 +823,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL Elemental Army",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	123 => array(
 			'name'    => "Find Werewolf Evidence",
@@ -1023,7 +1023,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Prisoners of the Sphinx",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3416 => array(
 			'name'    => "Signals of Dominion",
@@ -1031,7 +1031,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Signals of Dominion",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4476 => array(
 			'name'    => "Tip of the Spearhead",
@@ -1303,7 +1303,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5556 TG4 A Flawless Plan",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	3050 => array(
 			'name'    => "Cursed Treasure",
@@ -1319,7 +1319,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Mystery of Othrenis",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	405 => array(
 			'name'    => "Vestrial's Research Book",
@@ -1359,7 +1359,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Rally Cry",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4145 => array(
 			'name'    => "Mine All Mine",
@@ -1447,7 +1447,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4649  The Sorcerer Division",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	424 => array(
 			'name'    => "In Crucial Need",
@@ -1575,7 +1575,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Shornhelm Divided",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3280 => array(
 			'name'    => "Imperial Infiltration",
@@ -1607,7 +1607,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4981 Conflicted Emotions",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3610 => array(
 			'name'    => "For Their Own Protection",
@@ -1615,7 +1615,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "For Their Own Protection",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	1383 => array(
 			'name'    => "The Perfect Burial",
@@ -1655,7 +1655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4917 Cormount",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5206 => array(
 			'name'    => "Rest in Peace",
@@ -1751,7 +1751,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Repair Koeglin Lighthouse",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2975 => array(
 			'name'    => "Capture Ash Lumbermill",
@@ -1791,7 +1791,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Will of the Council",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	730 => array(
 			'name'    => "Blightbane",
@@ -1799,7 +1799,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Blightbane",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5629 => array(
 			'name'    => "Contract: Rivenspire",
@@ -1831,7 +1831,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Ravaged Village",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4449 => array(
 			'name'    => "Carzog's Demise",
@@ -1847,7 +1847,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q736 The Flame of Dissent",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	737 => array(
 			'name'    => "Retaking Firebrand Keep",
@@ -1863,7 +1863,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Peril at the Pools",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3337 => array(
 			'name'    => "Legitimate Interests",
@@ -1919,7 +1919,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A Duke in Exile",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2701 => array(
 			'name'    => "Scout Kingscrest Mine",
@@ -2127,7 +2127,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Sounds of Alarm",
 			'zoneId' => 101,
 			'zone' => "Eastmarch",
-			'type' => 50,
+			'type' => 0,
 		),
 	2715 => array(
 			'name'    => "Scout Farm 5",
@@ -2175,7 +2175,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-COV-AvA Tutorial 2",
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
-			'type' => 50,
+			'type' => 0,
 		),
 	1216 => array(
 			'name'    => "Sealed Spirits",
@@ -2255,7 +2255,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DUN-VoM Mind of Madness",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	3198 => array(
 			'name'    => "Capture Aleswell Farm",
@@ -2319,7 +2319,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Storming the Hall",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3099 => array(
 			'name'    => "Capture Castle Black Boot",
@@ -2351,7 +2351,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4436 Luck of the Albatross",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3978 => array(
 			'name'    => "Tomb Beneath the Mountain",
@@ -2407,7 +2407,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Tracking the Plague",
 			'zoneId' => 57,
 			'zone' => "Deshaan",
-			'type' => 50,
+			'type' => 0,
 		),
 	1437 => array(
 			'name'    => "General Godrun's Orders",
@@ -2415,7 +2415,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "General Godrun's Orders",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4569 => array(
 			'name'    => "Enemy Reinforcements",
@@ -2543,7 +2543,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4720 The Den of Lorkhaj",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5565 => array(
 			'name'    => "A Secret Shame",
@@ -2551,7 +2551,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5565 A Secret Shame",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5772 => array(
 			'name'    => "Uncaged",
@@ -2575,7 +2575,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4385 Lost in Study",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	1517 => array(
 			'name'    => "To Loqueach",
@@ -2655,7 +2655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A King-Sized Problem",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2758 => array(
 			'name'    => "Scout Bloodmayne Lumbermill",
@@ -2799,7 +2799,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Blood Revenge",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5093 => array(
 			'name'    => "Moons Over Grimwatch",
@@ -2831,7 +2831,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4620 Cast Adrift",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3784 => array(
 			'name'    => "Repairing the Cage",
@@ -2855,7 +2855,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Alasan's Plot",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5099 => array(
 			'name'    => "Trial of Martial Knowledge",
@@ -2887,7 +2887,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4606 Keepers of the Shell",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	1633 => array(
 			'name'    => "The Return of the Dream Shard",
@@ -3015,7 +3015,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4395 - Enemies at the Gate",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	1706 => array(
 			'name'    => "Slay the Summoner",
@@ -3103,7 +3103,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Unanswered Questions",
 			'zoneId' => 19,
 			'zone' => "Stormhaven",
-			'type' => 50,
+			'type' => 0,
 		),
 	5305 => array(
 			'name'    => "Pledge: Blackheart Haven",
@@ -3135,7 +3135,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A City in Black",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	1802 => array(
 			'name'    => "Mistress of the Lake",
@@ -3167,7 +3167,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4982 We Live In Fear",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3333 => array(
 			'name'    => "Risen From the Depths",
@@ -3231,7 +3231,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5552 The Shark's Teeth",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5318 => array(
 			'name'    => "The Hidden Harvest",
@@ -3287,7 +3287,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5569 Cordial Collaboration",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3688 => array(
 			'name'    => "Unwelcome Guests",
@@ -3335,7 +3335,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5068 Quest for the Cure",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3399 => array(
 			'name'    => "Kill a Daggerfall Player",
@@ -3359,7 +3359,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Alcaire Castle",
 			'zoneId' => 19,
 			'zone' => "Stormhaven",
-			'type' => 50,
+			'type' => 0,
 		),
 	2853 => array(
 			'name'    => "Scout Castle Faregyl",
@@ -3399,7 +3399,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Proving the Deed",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	3745 => array(
 			'name'    => "Stolen Crystal",
@@ -3431,7 +3431,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Dreams to Nightmares",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4151 => array(
 			'name'    => "A Bitter Pill",
@@ -3527,7 +3527,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Farlivere's Gambit",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4858 => array(
 			'name'    => "Hope Lost",
@@ -3615,7 +3615,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Spearhead's Crew",
 			'zoneId' => 534,
 			'zone' => "Stros M'Kai",
-			'type' => 50,
+			'type' => 0,
 		),
 	3040 => array(
 			'name'    => "Vital Inheritance",
@@ -3647,7 +3647,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Shiri's Research",
 			'zoneId' => 104,
 			'zone' => "Alik'r Desert",
-			'type' => 50,
+			'type' => 0,
 		),
 	2251 => array(
 			'name'    => "Gone Missing",
@@ -3655,7 +3655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Gone Missing",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5006 => array(
 			'name'    => "To Velyn Harbor",
@@ -3663,7 +3663,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5006 To Velyn Harbor",
 			'zoneId' => 108,
 			'zone' => "Greenshade",
-			'type' => 50,
+			'type' => 0,
 		),
 	4898 => array(
 			'name'    => "Rising Against Onsi's Breath",
@@ -3671,7 +3671,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Rising Against Onsi's Breath",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3757 => array(
 			'name'    => "Rescuing Leonar",
@@ -3719,7 +3719,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q2364 Feathered Fiends",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2403 => array(
 			'name'    => "The Search for Shiri",
@@ -3727,7 +3727,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Search for Shiri",
 			'zoneId' => 104,
 			'zone' => "Alik'r Desert",
-			'type' => 50,
+			'type' => 0,
 		),
 	5793 => array(
 			'name'    => "Dark Anchors in Auridon",
@@ -3751,7 +3751,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Event - New Life Intro",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 12,
 		),
 	0 => array(
 			'name'    => "",
@@ -3815,7 +3815,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "MQ1.5 The Harborage",
 			'zoneId' => 199,
 			'zone' => "The Harborage",
-			'type' => 50,
+			'type' => 2,
 		),
 	2451 => array(
 			'name'    => "A Ransom for Miranda",
@@ -3831,7 +3831,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q3533 The Waking Darkness",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2688 => array(
 			'name'    => "Scout Castle Brindle",
@@ -3903,7 +3903,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-PAC-AvA Tutorial 1",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2801 => array(
 			'name'    => "Scout Brindle Mine",
@@ -3935,7 +3935,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4994 Imperial Curiosity",
 			'zoneId' => 92,
 			'zone' => "Bangkorai",
-			'type' => 50,
+			'type' => 0,
 		),
 	2496 => array(
 			'name'    => "Evidence Against Adima",
@@ -3991,7 +3991,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Circus of Cheerful Slaughter",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5259 => array(
 			'name'    => "Crafting Certification",
@@ -4063,7 +4063,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4277 Silent Village",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4335 => array(
 			'name'    => "Pride of the Lion Guard",
@@ -4071,7 +4071,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4335 Pride of the Lion Guard",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2729 => array(
 			'name'    => "Scout Arrius Farm",
@@ -4143,7 +4143,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5441 The Hand of Morkul",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3232 => array(
 			'name'    => "Capture Rayles Lumbermill",
@@ -4343,7 +4343,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Mathiisen",
 			'zoneId' => 381,
 			'zone' => "Auridon",
-			'type' => 50,
+			'type' => 0,
 		),
 	2638 => array(
 			'name'    => "The Elder Scroll of Mnem",
@@ -4383,7 +4383,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4338 Eye of the Ancients",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3126 => array(
 			'name'    => "Capture Chalman Mine",
@@ -4431,7 +4431,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Wicked Trade",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4256 => array(
 			'name'    => "A Hostile Situation",
@@ -4439,7 +4439,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4256 A Hostile Situation",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2658 => array(
 			'name'    => "The Elder Scroll of Ghartok",
@@ -4583,7 +4583,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Ripple Effect",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2679 => array(
 			'name'    => "Scout Arrius Keep",
@@ -4599,7 +4599,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Taking Precautions",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	3397 => array(
 			'name'    => "Scout the Lumbermill",
@@ -4679,7 +4679,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Wyrd and Coven",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3231 => array(
 			'name'    => "Capture Warden Lumbermill",
@@ -4823,7 +4823,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Of Councils and Kings",
 			'zoneId' => 101,
 			'zone' => "Eastmarch",
-			'type' => 50,
+			'type' => 0,
 		),
 	2703 => array(
 			'name'    => "Scout Blue Road Mine",
@@ -4871,7 +4871,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4951 - Fit to Rule",
 			'zoneId' => 383,
 			'zone' => "Grahtwood",
-			'type' => 50,
+			'type' => 0,
 		),
 	5203 => array(
 			'name'    => "The Serpent's Fang",
@@ -4911,7 +4911,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4575 The Flooded Grove",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5329 => array(
 			'name'    => "For King and Glory",
@@ -4991,7 +4991,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Hidden in Flames",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2856 => array(
 			'name'    => "Scout Castle Black Boot",
@@ -5015,7 +5015,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Aid for Bramblebreach",
 			'zoneId' => 108,
 			'zone' => "Greenshade",
-			'type' => 50,
+			'type' => 0,
 		),
 	2714 => array(
 			'name'    => "Scout Farm 4",
@@ -5047,7 +5047,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5476 Awaken the Past",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5315 => array(
 			'name'    => "Alchemist Certification",
@@ -5303,7 +5303,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5104 The Shards of Wuuthrad",
 			'zoneId' => 103,
 			'zone' => "The Rift",
-			'type' => 50,
+			'type' => 0,
 		),
 	3461 => array(
 			'name'    => "Kill Thirty Ebonheart Players",
@@ -5359,7 +5359,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Wayward Scouts",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2749 => array(
 			'name'    => "Scout Kingscrest Lumbermill",
@@ -5463,7 +5463,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5499 Wrecked",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5434 => array(
 			'name'    => "Battleground",
@@ -5559,7 +5559,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4648 The Summoner Division",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5493 => array(
 			'name'    => "City on the Brink",
@@ -5607,7 +5607,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4365 To Dawnbreak",
 			'zoneId' => 381,
 			'zone' => "Auridon",
-			'type' => 50,
+			'type' => 0,
 		),
 	3464 => array(
 			'name'    => "Scout the Lumbermill",
@@ -5751,7 +5751,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4915-Blood Hunt",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3441 => array(
 			'name'    => "Capture Fort Balfiera",
@@ -5863,7 +5863,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DUN-RoM Sap and Stone",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	3449 => array(
 			'name'    => "Scout the Mine",
@@ -5895,7 +5895,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5479 Skull of Bonegrinder",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2790 => array(
 			'name'    => "Scout Aleswell Mine",
@@ -6159,7 +6159,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Haunted Grounds",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2844 => array(
 			'name'    => "Scout Fort Aleswell",
@@ -6207,7 +6207,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "[OLD] CL Dawn of the Exalted V",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2838 => array(
 			'name'    => "Scout Black Boot Lumbermill",
@@ -6359,7 +6359,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Word from the Throne",
 			'zoneId' => 104,
 			'zone' => "Alik'r Desert",
-			'type' => 50,
+			'type' => 0,
 		),
 	2840 => array(
 			'name'    => "Scout Fort Warden",
@@ -6471,7 +6471,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4463 Lost Treasures",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	2857 => array(
 			'name'    => "Scout Castle Bloodmayne",
@@ -6511,7 +6511,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The White Mask of Merien",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2863 => array(
 			'name'    => "Scout Dragonclaw Mine",
@@ -6575,7 +6575,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Lion Guard's Stand",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2875 => array(
 			'name'    => "Scout Bloodmayne Mine",
@@ -6767,7 +6767,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4361 Rightful Inheritance",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2895 => array(
 			'name'    => "Scout Chalman Lumbermill",
@@ -6831,7 +6831,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DB6 A Ghost From the Past",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	2903 => array(
 			'name'    => "Scout Faregyl Lumbermill",
@@ -6959,7 +6959,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Awakening",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2927 => array(
 			'name'    => "Capture Castle Alessia",
@@ -7351,7 +7351,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "4693 The Family Business",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3445 => array(
 			'name'    => "Kill Thirty Enemy Players",
@@ -7383,7 +7383,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4816 Blessing for the Dead",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3121 => array(
 			'name'    => "Capture Rayles Mine",
@@ -7503,7 +7503,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q3317 Tongues of Stone",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2984 => array(
 			'name'    => "Capture Alessia Lumbermill",
@@ -7535,7 +7535,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "IC Arena Repeatable 5492",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 7,
 		),
 	2986 => array(
 			'name'    => "Capture Roebeck Lumbermill",
@@ -7575,7 +7575,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q2997 Amputating the Hand",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4854 => array(
 			'name'    => "Eyes of Azura",
@@ -7583,7 +7583,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4854 Eyes of Azura",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	2998 => array(
 			'name'    => "Restoring the Ansei Wards",
@@ -7599,7 +7599,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-COV-AvA Tutorial 1",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 7,
 		),
 	5416 => array(
 			'name'    => "Alchemist Writ",
@@ -7639,7 +7639,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Firsthold",
 			'zoneId' => 381,
 			'zone' => "Auridon",
-			'type' => 50,
+			'type' => 0,
 		),
 	3003 => array(
 			'name'    => "Disorganized Crime",
@@ -7655,7 +7655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Into the Hills",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3004 => array(
 			'name'    => "Lady Eloise's Lockbox",
@@ -7663,7 +7663,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Lady Eloise's Lockbox",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3006 => array(
 			'name'    => "Bloodthorn Assassins",
@@ -7679,7 +7679,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Event - Jester Emeric Royal Re",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 12,
 		),
 	3013 => array(
 			'name'    => "Wolves in the Fold",
@@ -7815,7 +7815,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "IC Temple Repeatable",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 7,
 		),
 	4311 => array(
 			'name'    => "A Ritual in the Ragged Hills",
@@ -7879,7 +7879,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Suspicious Silence",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3088 => array(
 			'name'    => "Capture Fort Dragonclaw",
@@ -8047,7 +8047,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4525 Tormented Souls",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3106 => array(
 			'name'    => "Capture Dragonclaw Farm",
@@ -8343,7 +8343,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4868 The Grip of Madness",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5760 => array(
 			'name'    => "The Missing Guardian",
@@ -8351,7 +8351,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CL The Missing Guardian",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4557 => array(
 			'name'    => "Will of the Broken",
@@ -8391,7 +8391,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4993 Report to Evermore",
 			'zoneId' => 92,
 			'zone' => "Bangkorai",
-			'type' => 50,
+			'type' => 0,
 		),
 	3143 => array(
 			'name'    => "Capture Aleswell Lumbermill",
@@ -8471,7 +8471,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6047-CCQ7-Shadows",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3154 => array(
 			'name'    => "Capture Brindle Lumbermill",
@@ -8519,7 +8519,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "[OLD] CL The Corrupted Stone",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3183 => array(
 			'name'    => "To the Wyrd Tree",
@@ -8527,7 +8527,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To the Wyrd Tree",
 			'zoneId' => 3,
 			'zone' => "Glenumbra",
-			'type' => 50,
+			'type' => 0,
 		),
 	3184 => array(
 			'name'    => "The Glenumbra Moors",
@@ -8599,7 +8599,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A Poisoned Heart",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	0 => array(
 			'name'    => "",
@@ -8639,7 +8639,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4923 Archaic Relics",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3203 => array(
 			'name'    => "Capture Farragut Farm",
@@ -8735,7 +8735,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4817 Tracking the Hand",
 			'zoneId' => 104,
 			'zone' => "Alik'r Desert",
-			'type' => 50,
+			'type' => 0,
 		),
 	3219 => array(
 			'name'    => "Capture Arrius Keep",
@@ -8855,7 +8855,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-PAC-AvA Tutorial 3",
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
-			'type' => 50,
+			'type' => 0,
 		),
 	3242 => array(
 			'name'    => "Capture Blue Road Lumbermill",
@@ -8895,7 +8895,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-PAC-AvA Tutorial 2",
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
-			'type' => 50,
+			'type' => 0,
 		),
 	3249 => array(
 			'name'    => "Capture Bloodmayne Lumbermill",
@@ -9095,7 +9095,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Leading the Stand",
 			'zoneId' => 92,
 			'zone' => "Bangkorai",
-			'type' => 50,
+			'type' => 0,
 		),
 	5034 => array(
 			'name'    => "A Grave Situation",
@@ -9119,7 +9119,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Werewolves to the North",
 			'zoneId' => 3,
 			'zone' => "Glenumbra",
-			'type' => 50,
+			'type' => 0,
 		),
 	3947 => array(
 			'name'    => "Kill the Leader",
@@ -9135,7 +9135,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Under Siege",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4680 => array(
 			'name'    => "Storm on the Horizon",
@@ -9151,7 +9151,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Returned",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4967 => array(
 			'name'    => "One of the Undaunted",
@@ -9223,7 +9223,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Retaking Camlorn",
 			'zoneId' => 3,
 			'zone' => "Glenumbra",
-			'type' => 50,
+			'type' => 0,
 		),
 	3305 => array(
 			'name'    => "The Oldest Orc",
@@ -9247,7 +9247,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Taking the Tower",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4509 => array(
 			'name'    => "Harvest Time",
@@ -9311,7 +9311,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Troubleshooter",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3818 => array(
 			'name'    => "A Saint Asunder",
@@ -9367,7 +9367,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4977 Ancient Words",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3379 => array(
 			'name'    => "Angof the Gravesinger",
@@ -9391,7 +9391,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Whispers of the Wisps",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3383 => array(
 			'name'    => "Badwater Mine",
@@ -9407,7 +9407,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5053 The Lost Patrol",
 			'zoneId' => 3,
 			'zone' => "Glenumbra",
-			'type' => 50,
+			'type' => 0,
 		),
 	5232 => array(
 			'name'    => "Kill Enemy Sorcerers",
@@ -9551,7 +9551,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL Dawn of the Exalted Vip",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3406 => array(
 			'name'    => "Kill Ten Enemy Players",
@@ -9671,7 +9671,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4802 To Moonmont",
 			'zoneId' => 382,
 			'zone' => "Reaper's March",
-			'type' => 50,
+			'type' => 0,
 		),
 	3452 => array(
 			'name'    => "Kill an Enemy Guard",
@@ -9687,7 +9687,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4295 The Wayward Dagger",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6041 => array(
 			'name'    => "Enchanted Accumulation",
@@ -9783,7 +9783,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Recovering the Guar",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3466 => array(
 			'name'    => "Scout Fort Balfiera",
@@ -9831,7 +9831,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Restoring Order",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4285 => array(
 			'name'    => "A Father's Promise",
@@ -9919,7 +9919,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Vines and Villains",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5366 => array(
 			'name'    => "Group Layering Test",
@@ -9943,7 +9943,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5012 - Rusty Daggers",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3530 => array(
 			'name'    => "Destroying the Dark Witnesses",
@@ -9975,7 +9975,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Kingdom in Mourning",
 			'zoneId' => 104,
 			'zone' => "Alik'r Desert",
-			'type' => 50,
+			'type' => 0,
 		),
 	3595 => array(
 			'name'    => "Wayward Son",
@@ -9999,7 +9999,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4968 Caring for Kwama",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5301 => array(
 			'name'    => "Pledge: Tempest Island",
@@ -10015,7 +10015,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Legacy of the Ancestors",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3588 => array(
 			'name'    => "City Under Siege",
@@ -10047,7 +10047,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Quiet the Ringing Bell",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	3590 => array(
 			'name'    => "Through the Aftermath",
@@ -10127,7 +10127,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Oath Breaker",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3602 => array(
 			'name'    => "Percussive Ranching",
@@ -10207,7 +10207,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q3977 To Vernim Wood",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5037 => array(
 			'name'    => "Stem the Tide",
@@ -10223,7 +10223,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Ash Mountain",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	4610 => array(
 			'name'    => "The Army of Meridia",
@@ -10239,7 +10239,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Taarengrav",
 			'zoneId' => 103,
 			'zone' => "The Rift",
-			'type' => 50,
+			'type' => 0,
 		),
 	3622 => array(
 			'name'    => "The Brothers Will Rise",
@@ -10279,7 +10279,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Protecting the Hall",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3632 => array(
 			'name'    => "Breaking Fort Virak",
@@ -10287,7 +10287,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Breaking Fort Virak",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5624 => array(
 			'name'    => "Contract: Alik'r Desert",
@@ -10319,7 +10319,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4209 Teldur's End",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3635 => array(
 			'name'    => "City at the Spire",
@@ -10327,7 +10327,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "City at the Spire",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	3637 => array(
 			'name'    => "Godrun's Dream",
@@ -10383,7 +10383,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "An Unwanted Twin",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3648 => array(
 			'name'    => "A Story Told in Footprints",
@@ -10471,7 +10471,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DUN-FD Falkreath's Demise",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	3660 => array(
 			'name'    => "Hiding in Plain Sight",
@@ -10535,7 +10535,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Night of the Soul",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3671 => array(
 			'name'    => "To Fort Virak",
@@ -10551,7 +10551,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4317 Where the Frostheart Gro",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3672 => array(
 			'name'    => "The Game of Chance",
@@ -10591,7 +10591,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Warm Welcome",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3676 => array(
 			'name'    => "A Pirate Parley",
@@ -10687,7 +10687,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Three Tender Souls",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3687 => array(
 			'name'    => "Getting to the Truth",
@@ -10719,7 +10719,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Shackled Guardian",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3697 => array(
 			'name'    => "A Gathering of Guar",
@@ -10735,7 +10735,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To the Tormented Spire",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	5567 => array(
 			'name'    => "Dark Revelations",
@@ -10743,7 +10743,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DB5 Dark Revelations",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	4273 => array(
 			'name'    => "To the King",
@@ -10751,7 +10751,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To the King",
 			'zoneId' => 103,
 			'zone' => "The Rift",
-			'type' => 50,
+			'type' => 0,
 		),
 	3699 => array(
 			'name'    => "From the Wastes",
@@ -10759,7 +10759,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "From the Wastes",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6064 => array(
 			'name'    => "Casting the Bones",
@@ -10767,7 +10767,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DUN-FL Q6064",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	3703 => array(
 			'name'    => "Honor Bound",
@@ -10775,7 +10775,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Honor Bound",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4349 => array(
 			'name'    => "Kill Enemy Players",
@@ -10967,7 +10967,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "SN V Hissmir to Murkwater",
 			'zoneId' => 117,
 			'zone' => "Shadowfen",
-			'type' => 50,
+			'type' => 0,
 		),
 	5973 => array(
 			'name'    => "A Masterful Glyph",
@@ -10999,7 +10999,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A Blow for Order",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3735 => array(
 			'name'    => "The Death of Balreth",
@@ -11095,7 +11095,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Hunting Invaders",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5987 => array(
 			'name'    => "A Masterful Concoction",
@@ -11143,7 +11143,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4211 To Tanzelwil",
 			'zoneId' => 381,
 			'zone' => "Auridon",
-			'type' => 50,
+			'type' => 0,
 		),
 	3761 => array(
 			'name'    => "Escape Quest",
@@ -11175,7 +11175,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4330 Lifting the Veil",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3764 => array(
 			'name'    => "Free Harvey",
@@ -11247,7 +11247,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4988 Rendezvous at the Pass",
 			'zoneId' => 92,
 			'zone' => "Bangkorai",
-			'type' => 50,
+			'type' => 0,
 		),
 	5667 => array(
 			'name'    => "Contract: Eastmarch",
@@ -11351,7 +11351,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Message to Mournhold",
 			'zoneId' => 57,
 			'zone' => "Deshaan",
-			'type' => 50,
+			'type' => 0,
 		),
 	3795 => array(
 			'name'    => "Deep Disturbance",
@@ -11367,7 +11367,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Nothing Left to Waste",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5389 => array(
 			'name'    => "Clothier Writ",
@@ -11447,7 +11447,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "SN V Cracking the Egg TMW HP",
 			'zoneId' => 117,
 			'zone' => "Shadowfen",
-			'type' => 50,
+			'type' => 0,
 		),
 	4652 => array(
 			'name'    => "The Colovian Occupation",
@@ -11471,7 +11471,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Restless Spirits",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3822 => array(
 			'name'    => "Schism",
@@ -11583,7 +11583,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Saving the Relics",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3841 => array(
 			'name'    => "The Mystery of Razak",
@@ -11655,7 +11655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Dangerous Past",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5718 => array(
 			'name'    => "Sacrament: Smuggler's Den",
@@ -11711,7 +11711,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Prismatic Core",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	3886 => array(
 			'name'    => "The Fetish",
@@ -11767,7 +11767,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "By Invitation Only",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3900 => array(
 			'name'    => "Into the Mire",
@@ -11855,7 +11855,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4372 Goblin Marq",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3914 => array(
 			'name'    => "Missing Son",
@@ -11911,7 +11911,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Unearthed",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4371 => array(
 			'name'    => "Wisdom of the Ages",
@@ -11975,7 +11975,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "In His Wake",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4573 => array(
 			'name'    => "Frighten the Fearsome",
@@ -11983,7 +11983,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Frighten the Fearsome",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5786 => array(
 			'name'    => "Dark Anchors in Alik'r Desert",
@@ -12127,7 +12127,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4404 Lost Treasures",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	3946 => array(
 			'name'    => "Killing Dreams",
@@ -12191,7 +12191,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Chateau of the Ravenous Rodent",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5814 => array(
 			'name'    => "Madness in Alik'r Desert",
@@ -12223,7 +12223,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Llodos Plague",
 			'zoneId' => 57,
 			'zone' => "Deshaan",
-			'type' => 50,
+			'type' => 0,
 		),
 	5808 => array(
 			'name'    => "Darkness Blooms in Rivenspire",
@@ -12231,7 +12231,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Darkness Blooms in Ri",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	3959 => array(
 			'name'    => "Smoke on the Horizon",
@@ -12247,7 +12247,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Hollow City",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5818 => array(
 			'name'    => "Madness in Bangkorai",
@@ -12343,7 +12343,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4435 Simply Misplaced",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	3985 => array(
 			'name'    => "Tracking the Game",
@@ -12423,7 +12423,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "What Waits Beneath",
 			'zoneId' => 280,
 			'zone' => "Bleakrock Isle",
-			'type' => 50,
+			'type' => 0,
 		),
 	3993 => array(
 			'name'    => "Kings of the Grotto",
@@ -12455,7 +12455,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Frozen Man",
 			'zoneId' => 280,
 			'zone' => "Bleakrock Isle",
-			'type' => 50,
+			'type' => 0,
 		),
 	5470 => array(
 			'name'    => "A Healthy Choice",
@@ -12479,7 +12479,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Mad God's Bargain",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	3999 => array(
 			'name'    => "Lost on Bleakrock",
@@ -12511,7 +12511,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Giant Problems",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5749 => array(
 			'name'    => "The Seeker's Archive",
@@ -12535,7 +12535,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Truth, Lies, and Prisoners",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5872 => array(
 			'name'    => "A Melodic Mistake",
@@ -12551,7 +12551,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "If By Sea",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4024 => array(
 			'name'    => "Finding the Family",
@@ -12583,7 +12583,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A Friend in Mead",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4219 => array(
 			'name'    => "The Serpent's Beacon",
@@ -12687,7 +12687,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A Cure For Droi",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4056 => array(
 			'name'    => "For Kyne's Honor",
@@ -12695,7 +12695,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "For Kyne's Honor",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5785 => array(
 			'name'    => "Dark Anchors in Rivenspire",
@@ -12711,7 +12711,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Shadows Over Windhelm",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4696 => array(
 			'name'    => "The High Cost of Travel",
@@ -12759,7 +12759,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Blindsided",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4065 => array(
 			'name'    => "An Evil Presence",
@@ -12815,7 +12815,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Making Amends",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4199 => array(
 			'name'    => "A Tangled Net",
@@ -12855,7 +12855,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4908 Rare Imports",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4072 => array(
 			'name'    => "Rock Bone Diplomacy",
@@ -12879,7 +12879,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4646 The Mnemic Egg",
 			'zoneId' => 117,
 			'zone' => "Shadowfen",
-			'type' => 50,
+			'type' => 0,
 		),
 	4532 => array(
 			'name'    => "Take Me Home",
@@ -12887,7 +12887,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Take Me Home",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4074 => array(
 			'name'    => "For a Friend",
@@ -12927,7 +12927,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-DOM-AvA-Tutorial 3",
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
-			'type' => 50,
+			'type' => 0,
 		),
 	4077 => array(
 			'name'    => "The Dreamers",
@@ -12943,7 +12943,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5545 All Hands On Deck",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	4079 => array(
 			'name'    => "Essence of Flame",
@@ -13047,7 +13047,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5445 A Treasure All Her Own",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4091 => array(
 			'name'    => "Fulfilling One's Fate",
@@ -13055,7 +13055,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Fulfilling One's Fate",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5566 => array(
 			'name'    => "A Faded Flower",
@@ -13087,7 +13087,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4096 Merriment and Mystery",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4099 => array(
 			'name'    => "A Dying Wish",
@@ -13175,7 +13175,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Storm's Call",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4124 => array(
 			'name'    => "The Prisoner of Jathsogur",
@@ -13191,7 +13191,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Labor Dispute",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4129 => array(
 			'name'    => "Shipwrecked Sailors",
@@ -13215,7 +13215,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Soul Harvest",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4134 => array(
 			'name'    => "Something Rotten",
@@ -13223,7 +13223,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Something Rotten",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4135 => array(
 			'name'    => "Pulled Under",
@@ -13271,7 +13271,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Restore the Silvenar",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4144 => array(
 			'name'    => "The Misfortunate Minstrels",
@@ -13319,7 +13319,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Approaching Thunder",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4161 => array(
 			'name'    => "A Novel Idea",
@@ -13335,7 +13335,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Onward to Shadowfen",
 			'zoneId' => 57,
 			'zone' => "Deshaan",
-			'type' => 50,
+			'type' => 0,
 		),
 	4164 => array(
 			'name'    => "A Giant in Smokefrost Peaks",
@@ -13391,7 +13391,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Victory at Morvunskar",
 			'zoneId' => 101,
 			'zone' => "Eastmarch",
-			'type' => 50,
+			'type' => 0,
 		),
 	6053 => array(
 			'name'    => "Pledge: Bloodroot Forge",
@@ -13407,7 +13407,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Pinepeak Caverns",
 			'zoneId' => 103,
 			'zone' => "The Rift",
-			'type' => 50,
+			'type' => 0,
 		),
 	4185 => array(
 			'name'    => "To Honrich Tower",
@@ -13455,7 +13455,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "House and Home",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4194 => array(
 			'name'    => "One Fell Swoop",
@@ -13479,7 +13479,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Enemy of my Enemy",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4201 => array(
 			'name'    => "A Walk Above the Clouds",
@@ -13487,7 +13487,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "A Walk Above the Clouds",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4202 => array(
 			'name'    => "Force of Nature",
@@ -13519,7 +13519,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CC-GrB2",
 			'zoneId' => 980,
 			'zone' => "The Clockwork City",
-			'type' => 50,
+			'type' => 1,
 		),
 	4208 => array(
 			'name'    => "Silsailen Rescue",
@@ -13551,7 +13551,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "In the Name of the Queen",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4218 => array(
 			'name'    => "Best of the Best",
@@ -13735,7 +13735,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Long Road Back",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4282 => array(
 			'name'    => "The Skald and the Scholar",
@@ -13791,7 +13791,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4307 Returning Winter's Bite",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6024 => array(
 			'name'    => "Glitter and Gleam",
@@ -13799,7 +13799,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6024 Glitter and Gleam 1",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 0,
 		),
 	4309 => array(
 			'name'    => "Eye Spy",
@@ -13831,7 +13831,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4322 Lost Crown",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	4327 => array(
 			'name'    => "Preventative Measure",
@@ -13951,7 +13951,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Through the Ashes",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4358 => array(
 			'name'    => "Between Blood and Bone",
@@ -14031,7 +14031,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4382 00 Moment of Truth",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4387 => array(
 			'name'    => "Forbidden Love",
@@ -14071,7 +14071,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Into the Woods",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4405 => array(
 			'name'    => "A Little on the Side",
@@ -14111,7 +14111,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5312 DQ-Onramp",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	4411 => array(
 			'name'    => "Final Blows",
@@ -14247,7 +14247,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Innocent Scoundrel",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4455 => array(
 			'name'    => "Trade Negotiations",
@@ -14271,7 +14271,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4458 The Drublog of Dra'bul",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4459 => array(
 			'name'    => "The Mournhold Underground",
@@ -14319,7 +14319,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Unearthing the Past",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5672 => array(
 			'name'    => "Contract: Grahtwood",
@@ -14519,7 +14519,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4506 Tarnish the Crown",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4508 => array(
 			'name'    => "Washed Ashore",
@@ -14543,7 +14543,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Dead Man's Wrist",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5869 => array(
 			'name'    => "A Friend In Need",
@@ -14567,7 +14567,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4515 The Ties that Bind",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4519 => array(
 			'name'    => "Word from the Dead",
@@ -14583,7 +14583,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5877 An Armigers Duty",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4520 => array(
 			'name'    => "Bloody Hand Spies!",
@@ -14679,7 +14679,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Mascot Theft in Reape",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	4541 => array(
 			'name'    => "Soul Survivors",
@@ -14711,7 +14711,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4549 Back to Skywatch",
 			'zoneId' => 381,
 			'zone' => "Auridon",
-			'type' => 50,
+			'type' => 0,
 		),
 	4550 => array(
 			'name'    => "The Fires of Dune",
@@ -14719,7 +14719,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4550 The Fires of Dune",
 			'zoneId' => 382,
 			'zone' => "Reaper's March",
-			'type' => 50,
+			'type' => 0,
 		),
 	4552 => array(
 			'name'    => "Chasing Shadows",
@@ -14751,7 +14751,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Taking the Fight to the Enemy",
 			'zoneId' => 3,
 			'zone' => "Glenumbra",
-			'type' => 50,
+			'type' => 0,
 		),
 	4560 => array(
 			'name'    => "Riches Beyond Measure",
@@ -14783,7 +14783,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL Q5768 Slithering Brood",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4565 => array(
 			'name'    => "Do as I Say",
@@ -14855,7 +14855,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Witch of Silatar",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4588 => array(
 			'name'    => "Land Dispute",
@@ -14911,7 +14911,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Cursed Baubles of Sto",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	4597 => array(
 			'name'    => "The Plan",
@@ -14959,7 +14959,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4621 The Tempest Unleashed",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4622 => array(
 			'name'    => "The Search is Over",
@@ -14975,7 +14975,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4623 The Soul-Meld Mage",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4624 => array(
 			'name'    => "The Perils of Diplomacy",
@@ -15047,7 +15047,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5485 Those Truly Favored",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4641 => array(
 			'name'    => "What Was Lost",
@@ -15079,7 +15079,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4650  The Swordmaster Divisio",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4655 => array(
 			'name'    => "Hadran's Fall",
@@ -15103,7 +15103,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "IC Noble Rep Q5501",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 7,
 		),
 	4658 => array(
 			'name'    => "Misplaced Knowledge",
@@ -15119,7 +15119,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4659 Lady Laurent's Favor",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4660 => array(
 			'name'    => "The Devils You Know",
@@ -15135,7 +15135,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4664 Moon-Sugar Medicament",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5381 => array(
 			'name'    => "Pledge: City of Ash II",
@@ -15199,7 +15199,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4672 Morwha's Curse",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4673 => array(
 			'name'    => "The Root of the Problem",
@@ -15207,7 +15207,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4673 The Root of the Problem",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4674 => array(
 			'name'    => "Spoils of War",
@@ -15255,7 +15255,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4687 A Traitor's Luck",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4690 => array(
 			'name'    => "Striking at the Heart",
@@ -15271,7 +15271,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4699 The Fading Tree",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4701 => array(
 			'name'    => "Crossing the Chasm",
@@ -15279,7 +15279,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Crossing the Chasm",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5392 => array(
 			'name'    => "Blacksmith Writ",
@@ -15295,7 +15295,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-DOM-Tutorial 1",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5549 => array(
 			'name'    => "Forever Hold Your Peace",
@@ -15303,7 +15303,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5549 TG5 Forever Hold Your Pe",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	4705 => array(
 			'name'    => "Siege Warfare",
@@ -15311,7 +15311,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-DOM-AvA-Tutorial 2",
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
-			'type' => 50,
+			'type' => 0,
 		),
 	4709 => array(
 			'name'    => "The Path to Moonmont",
@@ -15359,7 +15359,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4719 The Moonlit Path",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4727 => array(
 			'name'    => "Reporting for Duty",
@@ -15367,7 +15367,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CYR-COV-AvA Tutorial 3",
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
-			'type' => 50,
+			'type' => 0,
 		),
 	4731 => array(
 			'name'    => "Malignant Militia",
@@ -15423,7 +15423,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4744 Before the Storm",
 			'zoneId' => 108,
 			'zone' => "Greenshade",
-			'type' => 50,
+			'type' => 0,
 		),
 	4747 => array(
 			'name'    => "The Anguish Gem",
@@ -15447,7 +15447,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Throne of the Wilderking",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4754 => array(
 			'name'    => "Master of Leki's Blade",
@@ -15455,7 +15455,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4754 Master of Leki's Blade",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4757 => array(
 			'name'    => "What the Heart Wants",
@@ -15463,7 +15463,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4757 What the Heart Wants",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5448 => array(
 			'name'    => "Maelstrom Arena",
@@ -15487,7 +15487,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5605 Looming Shadows",
 			'zoneId' => 823,
 			'zone' => "The Gold Coast",
-			'type' => 50,
+			'type' => 1,
 		),
 	4760 => array(
 			'name'    => "Whose Wedding?",
@@ -15503,7 +15503,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Trouble at Tava's Blessing",
 			'zoneId' => 104,
 			'zone' => "Alik'r Desert",
-			'type' => 50,
+			'type' => 0,
 		),
 	4764 => array(
 			'name'    => "The Tharn Speaks",
@@ -15559,7 +15559,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5464 Forcing the Faith",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4775 => array(
 			'name'    => "A Night to Forget",
@@ -15591,7 +15591,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4783 The Weight of Three Crow",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 2,
 		),
 	4786 => array(
 			'name'    => "The Innkeeper's Daughter",
@@ -15615,7 +15615,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4791 The Artisan",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4792 => array(
 			'name'    => "A Tangled Knot",
@@ -15647,7 +15647,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4798 Eye on Arenthia",
 			'zoneId' => 382,
 			'zone' => "Reaper's March",
-			'type' => 50,
+			'type' => 0,
 		),
 	4799 => array(
 			'name'    => "To Saifa in Rawl'kha",
@@ -15655,7 +15655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4799 To Saifa in Rawl'kha",
 			'zoneId' => 382,
 			'zone' => "Reaper's March",
-			'type' => 50,
+			'type' => 0,
 		),
 	4808 => array(
 			'name'    => "Test of Faith",
@@ -15703,7 +15703,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4815-PactAdvocate",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4818 => array(
 			'name'    => "To Auridon",
@@ -15711,7 +15711,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "To Auridon",
 			'zoneId' => 537,
 			'zone' => "Khenarthi's Roost",
-			'type' => 50,
+			'type' => 0,
 		),
 	4821 => array(
 			'name'    => "Report to Marbruk",
@@ -15719,7 +15719,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4821 Report to Marbruk",
 			'zoneId' => 108,
 			'zone' => "Greenshade",
-			'type' => 50,
+			'type' => 0,
 		),
 	5512 => array(
 			'name'    => "Scouting the Nobles District",
@@ -15759,7 +15759,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4833 Bosmer Insight",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4834 => array(
 			'name'    => "A Past Remembered",
@@ -15799,7 +15799,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4841 Trouble at the Rain Catc",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4843 => array(
 			'name'    => "A Traitor's Tale",
@@ -15807,7 +15807,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4843 A Traitor's Tale",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4846 => array(
 			'name'    => "The Misuses of Knowledge",
@@ -15855,7 +15855,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4853 Woodhearth (Vector from",
 			'zoneId' => 108,
 			'zone' => "Greenshade",
-			'type' => 50,
+			'type' => 0,
 		),
 	5544 => array(
 			'name'    => "A Profitable Venture",
@@ -15983,7 +15983,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4885 A Lasting Winter",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4888 => array(
 			'name'    => "The Emerald Chalice",
@@ -16007,7 +16007,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4891 The Parley",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4893 => array(
 			'name'    => "Flipping the Coin",
@@ -16031,7 +16031,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4895-Phantom Guilt",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4896 => array(
 			'name'    => "The Great Tree",
@@ -16071,7 +16071,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Road to Rivenspire",
 			'zoneId' => 20,
 			'zone' => "Rivenspire",
-			'type' => 50,
+			'type' => 0,
 		),
 	4906 => array(
 			'name'    => "A Quest",
@@ -16087,7 +16087,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Present in Memory",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4912 => array(
 			'name'    => "Storming the Garrison",
@@ -16103,7 +16103,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "[OLD] CL Holding Court",
 			'zoneId' => 603,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4914 => array(
 			'name'    => "The Wakening Dark",
@@ -16183,7 +16183,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Crown of Shornhelm",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4937 => array(
 			'name'    => "The Sanctifying Flames",
@@ -16255,7 +16255,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4950-Storgh's Bow",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4952 => array(
 			'name'    => "Dearly Departed",
@@ -16351,7 +16351,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4969 A Marriage in Ruins",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4970 => array(
 			'name'    => "To Aid the Enemy",
@@ -16359,7 +16359,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4970 To Aid the Enemy",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	4971 => array(
 			'name'    => "The Arch-Mage's Boon",
@@ -16367,7 +16367,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "The Arch-Mage's Boon",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	4972 => array(
 			'name'    => "The Liberation of Northpoint",
@@ -16383,7 +16383,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4974 Brackenleaf's Briars",
 			'zoneId' => 383,
 			'zone' => "Grahtwood",
-			'type' => 50,
+			'type' => 0,
 		),
 	4975 => array(
 			'name'    => "The Wounded Wood",
@@ -16399,7 +16399,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4976-CarnivalConundrum",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5309 => array(
 			'name'    => "Pledge: Vaults of Madness",
@@ -16471,7 +16471,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4991 Dark Wings",
 			'zoneId' => 92,
 			'zone' => "Bangkorai",
-			'type' => 50,
+			'type' => 0,
 		),
 	4992 => array(
 			'name'    => "Searching for the Searchers",
@@ -16479,7 +16479,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q4992 Searching for the Search",
 			'zoneId' => 92,
 			'zone' => "Bangkorai",
-			'type' => 50,
+			'type' => 0,
 		),
 	4997 => array(
 			'name'    => "One of the Undaunted",
@@ -16495,7 +16495,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Cadwell's Silver",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 2,
 		),
 	5000 => array(
 			'name'    => "Cadwell's Gold",
@@ -16503,7 +16503,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Cadwell's Gold",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 2,
 		),
 	5004 => array(
 			'name'    => "Test",
@@ -16527,7 +16527,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5007",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5008 => array(
 			'name'    => "A Diamond in the Root",
@@ -16567,7 +16567,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5016 Children of the Hist",
 			'zoneId' => 117,
 			'zone' => "Shadowfen",
-			'type' => 50,
+			'type' => 0,
 		),
 	5349 => array(
 			'name'    => "The King's Gambit",
@@ -16615,7 +16615,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5024 Puzzle of the Pass",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5028 => array(
 			'name'    => "South Winds Derby",
@@ -16631,7 +16631,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "[OLD] CL The Stargazers",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5035 => array(
 			'name'    => "Calling Hakra",
@@ -16671,7 +16671,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5043 Fort Virak to Vivec's AN",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	5044 => array(
 			'name'    => "To the Mountain",
@@ -16679,7 +16679,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5044 Vivec's Antlers Reverse",
 			'zoneId' => 41,
 			'zone' => "Stonefalls",
-			'type' => 50,
+			'type' => 0,
 		),
 	5050 => array(
 			'name'    => "Waiting for Word",
@@ -16687,7 +16687,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "V5050 Waiting for Word",
 			'zoneId' => 19,
 			'zone' => "Stormhaven",
-			'type' => 50,
+			'type' => 0,
 		),
 	5051 => array(
 			'name'    => "The Last of Them",
@@ -16735,7 +16735,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5075 Hilan's Invitation",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5076 => array(
 			'name'    => "Nemarc's Invitation",
@@ -16751,7 +16751,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5077 Basile's Invitation",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5079 => array(
 			'name'    => "The Seeker's Archive",
@@ -16815,7 +16815,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5092 ToRawlWChamps",
 			'zoneId' => 382,
 			'zone' => "Reaper's March",
-			'type' => 50,
+			'type' => 0,
 		),
 	5098 => array(
 			'name'    => "The Trial of Air",
@@ -16839,7 +16839,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5103 Mournhold RevVec",
 			'zoneId' => 57,
 			'zone' => "Deshaan",
-			'type' => 50,
+			'type' => 0,
 		),
 	5106 => array(
 			'name'    => "Waters Run Foul",
@@ -16895,7 +16895,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "VDUN-CoH Edge of Darkness",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	5115 => array(
 			'name'    => "The Missing Guardian",
@@ -16911,7 +16911,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "VDUN-CoA Return to Ash",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	5130 => array(
 			'name'    => "The Shattered and the Lost",
@@ -16999,7 +16999,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "[OLD] CL A Leaf in the Wind",
 			'zoneId' => 603,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5246 => array(
 			'name'    => "Pledge: Banished Cells II",
@@ -17103,7 +17103,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5316 An Unexpected Fall",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5320 => array(
 			'name'    => "The Durzog Whistle",
@@ -17111,7 +17111,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5320 The Durzog Whistler",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5321 => array(
 			'name'    => "A Heart of Brass",
@@ -17127,7 +17127,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5326 Quarry Conundrum",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5328 => array(
 			'name'    => "Hidden History",
@@ -17271,7 +17271,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5439 Draugr Dilemma",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5446 => array(
 			'name'    => "Where Loyalty Lies",
@@ -17295,7 +17295,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5452 Corgrak's Cairn",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5454 => array(
 			'name'    => "Kindred Spirits",
@@ -17311,7 +17311,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5458 In the Name of the King",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5468 => array(
 			'name'    => "The Anger of a King",
@@ -17335,7 +17335,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5474 One Ugly Mug",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5480 => array(
 			'name'    => "The Bleeding Temple",
@@ -17351,7 +17351,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Blood on a King's Hands",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5483 => array(
 			'name'    => "The Imperial Standard",
@@ -17383,7 +17383,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "IC Memorial Repeatable",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 7,
 		),
 	5496 => array(
 			'name'    => "City on the Brink",
@@ -17399,7 +17399,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "IC Arbor Rep 5498",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 7,
 		),
 	5505 => array(
 			'name'    => "Fire in the Hold",
@@ -17471,7 +17471,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5532 TG3 The Long Game",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5538 => array(
 			'name'    => "Voices in the Dark",
@@ -17479,7 +17479,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DB0-Q5538-Voices in the Dark",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5540 => array(
 			'name'    => "Signed in Blood",
@@ -17559,7 +17559,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5582 Heist Tutorial",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5586 => array(
 			'name'    => "The Lost Pearls",
@@ -17615,7 +17615,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DB4 - A Special Request",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5598 => array(
 			'name'    => "The Wrath of Sithis",
@@ -17623,7 +17623,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DB7 Q5598 The Wrath of Sithis",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5600 => array(
 			'name'    => "Filling the Void",
@@ -17631,7 +17631,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DB8 Filling the Void",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 3,
 		),
 	5602 => array(
 			'name'    => "City on the Brink",
@@ -17647,7 +17647,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5603 Buried Evil",
 			'zoneId' => 823,
 			'zone' => "The Gold Coast",
-			'type' => 50,
+			'type' => 1,
 		),
 	5604 => array(
 			'name'    => "The Common Good",
@@ -17655,7 +17655,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5604 Common Good",
 			'zoneId' => 823,
 			'zone' => "The Gold Coast",
-			'type' => 50,
+			'type' => 1,
 		),
 	5606 => array(
 			'name'    => "The Roar of the Crowds",
@@ -17663,7 +17663,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5606 KvatchArena",
 			'zoneId' => 823,
 			'zone' => "The Gold Coast",
-			'type' => 50,
+			'type' => 1,
 		),
 	5609 => array(
 			'name'    => "Plucking Fingers",
@@ -18119,7 +18119,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "VDUN-CoS Cradle of Shadows",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	5703 => array(
 			'name'    => "Contract: Greenshade Spree",
@@ -18207,7 +18207,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Ancient Armaments in",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5734 => array(
 			'name'    => "The Spirit Trap in Malabal Tor",
@@ -18215,7 +18215,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily The Spirit Trap in Ma",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5735 => array(
 			'name'    => "Ancestor Wards in Deshaan",
@@ -18223,7 +18223,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Ancestor Wards in Des",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5737 => array(
 			'name'    => "Dwarven Relics of Stonefalls",
@@ -18231,7 +18231,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Dwarven Relics of Sto",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5738 => array(
 			'name'    => "Ayleid Trinkets in Grahtwood",
@@ -18239,7 +18239,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Ayleid Trinkets in Gr",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5739 => array(
 			'name'    => "Red Rook Ransack in Glenumbra",
@@ -18247,7 +18247,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Red Rook Ransack in G",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5742 => array(
 			'name'    => "The Witchmother's Bargain",
@@ -18263,7 +18263,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "TRIAL_SO Sanctum Ophidia Norm",
 			'zoneId' => 1,
 			'zone' => "",
-			'type' => 50,
+			'type' => 6,
 		),
 	5745 => array(
 			'name'    => "Molten Pearls of Alik'r Desert",
@@ -18271,7 +18271,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Molten Pearls of Alik",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5746 => array(
 			'name'    => "The Corrupted Stone",
@@ -18279,7 +18279,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL The Corrupted Sto",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 1,
 		),
 	5747 => array(
 			'name'    => "The Star-Gazers",
@@ -18287,7 +18287,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL Q5747 The Stargazers",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5748 => array(
 			'name'    => "The Warrior's Call",
@@ -18295,7 +18295,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL The Warrior's Call",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5754 => array(
 			'name'    => "Waters Run Foul",
@@ -18391,7 +18391,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL Q5774 A Leaf in the Wind",
 			'zoneId' => 888,
 			'zone' => "Craglorn",
-			'type' => 50,
+			'type' => 0,
 		),
 	5775 => array(
 			'name'    => "Holding Court",
@@ -18399,7 +18399,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "NCL Q5775 Holding Court VECTOR",
 			'zoneId' => 888,
 			'zone' => "Craglorn",
-			'type' => 50,
+			'type' => 0,
 		),
 	5777 => array(
 			'name'    => "The Gray Passage",
@@ -18415,7 +18415,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Give and Take in Shad",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5779 => array(
 			'name'    => "Icy Intrigue in Eastmarch",
@@ -18423,7 +18423,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Icy Intrigue in Eastm",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5780 => array(
 			'name'    => "Pledge: Cradle of Shadows",
@@ -18487,7 +18487,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Veiled Darkness in Au",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5799 => array(
 			'name'    => "A Hireling of House Telvanni",
@@ -18503,7 +18503,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Inflamed Pyres of the",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	0 => array(
 			'name'    => "",
@@ -18647,7 +18647,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "UD Daily Culinary Justice in G",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 3,
 		),
 	5856 => array(
 			'name'    => "Stonetooth Bash",
@@ -18671,7 +18671,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5859 Rising to Retainer",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	0 => array(
 			'name'    => "",
@@ -18687,7 +18687,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5862 TheScarletJudge",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5864 => array(
 			'name'    => "Nothing to Sneeze At",
@@ -18727,7 +18727,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Event - New Life Intro",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 12,
 		),
 	5881 => array(
 			'name'    => "A Hidden Harvest",
@@ -18775,7 +18775,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DUN-BRF Blood for Blood",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	0 => array(
 			'name'    => "",
@@ -18815,7 +18815,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5900 VV-PUB2-FW",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5901 => array(
 			'name'    => "Objections and Obstacles",
@@ -18911,7 +18911,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Event - Jester Ayrenn Springti",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 12,
 		),
 	5922 => array(
 			'name'    => "The Heart of a Telvanni",
@@ -18919,7 +18919,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Telvanni Q5922",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	5923 => array(
 			'name'    => "The Lost Library",
@@ -18967,7 +18967,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Event - Jester Jorunn Noble Gu",
 			'zoneId' => 2,
 			'zone' => "Clean Test",
-			'type' => 50,
+			'type' => 12,
 		),
 	5933 => array(
 			'name'    => "A Purposeful Writ",
@@ -19271,7 +19271,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6023 CCTeaser",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6025 => array(
 			'name'    => "Deepening Shadows",
@@ -19327,7 +19327,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6046-CCQ6-Dark",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6049 => array(
 			'name'    => "The Shadow Cleft",
@@ -19407,7 +19407,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "DUN-SP Scalecaller Peak",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 5,
 		),
 	6066 => array(
 			'name'    => "The Precursor",
@@ -19415,7 +19415,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6066 The Precursor",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	0 => array(
 			'name'    => "",
@@ -19447,7 +19447,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "CC-GrB1",
 			'zoneId' => 980,
 			'zone' => "The Clockwork City",
-			'type' => 50,
+			'type' => 1,
 		),
 	6078 => array(
 			'name'    => "Family Feud",
@@ -19519,7 +19519,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6097 SU Teaser",
 			'zoneId' => 0,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6098 => array(
 			'name'    => "Alchemist Writ",
@@ -19591,7 +19591,7 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q6024 Glitter and Gleam 1",
 			'zoneId' => 1,
 			'zone' => "",
-			'type' => 50,
+			'type' => 0,
 		),
 	6130 => array(
 			'name'    => "Room to Spare",
@@ -19610,4 +19610,3 @@ $ESO_QUEST_DATA = array(
 			'type' => 12,
 		),
 );
-
