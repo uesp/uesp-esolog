@@ -11,6 +11,7 @@ class CEsoViewAchievements
 	public $ESOVA_HTML_TEMPLATE_EMBED = "";
 	
 	public $isEmbedded = false;
+	public $useSprites = false;
 	
 	public $db = null;
 	
@@ -317,7 +318,12 @@ class CEsoViewAchievements
 		if ($blockOutput != "" || $rewardOutput != "") $extraClass = "ecdSelectAchievement1";
 		
 		$output .= "<div class='ecdAchievement1 $knownClass $extraClass' achieveid='$achId'>";
-		$output .= "<div class='ecdAchIconFrame'><img src='$iconUrl' class='ecdAchIcon'></div>";
+		$output .= "<div class='ecdAchIconFrame'>";
+		
+		$output .= $this->MakeIconTag($achData['icon'], "esoachsprite", "ecdAchIcon");
+		//<img src='$iconUrl' class='ecdAchIcon'>
+		$output .= "</div>";
+		
 		$output .= "<div class='ecdAchMidBlock'>";
 		$output .= "<div class='ecdAchName'>$name</div>";
 		$output .= "<div class='ecdAchDesc'>$desc</div>";
@@ -664,6 +670,31 @@ class CEsoViewAchievements
 			$output .= "</div></div>";
 		}
 	
+		return $output;
+	}
+	
+	
+	public function MakeIconTag($icon, $spriteClass, $extraClass = "")
+	{
+		if (!$this->useSprites)	
+		{
+			$output = "<img src='" . MakeEsoIconLink($icon) . "' ";
+			if ($extraClass) $output .= "class='$extraClass' ";
+			$output .= "/>";
+			return $output;
+		}
+				
+			/* Use background div to let images load only when first displayed */
+		$iconUrl = MakeEsoIconLink($icon);
+		$output = "<div class='$extraClass' style=\"background-image: url('$iconUrl');\" ></div>";
+		return $output;
+
+			/* Normal CSS sprites */
+ 		$imageParts = pathinfo($icon);
+ 		$imageFilename = $imageParts['filename'];
+		
+		$output = "<div class='$spriteClass-$imageFilename $extraClass'></div>";
+		
 		return $output;
 	}
 	
