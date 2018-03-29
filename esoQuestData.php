@@ -1,0 +1,9753 @@
+<?php
+
+$ESO_QUEST_DATA = array(
+	2955 => array(
+			'name'    => "Capture Glademist Farm",
+			'journal' => "I accepted a mission to help capture Glademist Farm for the Dominion.",
+		),
+	4174 => array(
+			'name'    => "Scouting the Mine",
+			'journal' => "Tovisa wants help at Northwind Mine. The Reachmen have taken over the mine and we need to find out why.",
+		),
+	5529 => array(
+			'name'    => "Sacrament: Trader's Cove",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	30 => array(
+			'name'    => "Dark Brotherhood Assassination",
+			'journal' => "Gotta kill 'em all.",
+		),
+	4303 => array(
+			'name'    => "Lighting the Shadows",
+			'journal' => "The Spider Cult has come to Fungal Grotto. Members of the Fighters Guild, led by Defender Two-Blades, are determined to stop the Cult from raising an army of shadows that will destabilize the region.",
+		),
+	2697 => array(
+			'name'    => "Scout Aleswell Mine",
+			'journal' => "I accepted a mission to scout Aleswell Mine for the Dominion.",
+		),
+	4448 => array(
+			'name'    => "Kalodar's Farewell",
+			'journal' => "I met a Nord woman who's searching for her father in the northern hills of the Rift.",
+		),
+	2850 => array(
+			'name'    => "Scout Blue Road Keep",
+			'journal' => "I accepted a mission to scout Blue Road Keep for the Pact.",
+		),
+	304 => array(
+			'name'    => "The Thaw After the Frieze",
+			'journal' => "",
+		),
+	4030 => array(
+			'name'    => "Shrine of Corruption",
+			'journal' => "I met two Nord soldiers near the shrine of Kynesgrove. They claim that the shrine has been taken over by evil witches and that the rest of their brigade never returned from the shrine. Now they just wait, afraid to enter the shrine.",
+		),
+	5677 => array(
+			'name'    => "Contract: Greenshade",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3572 => array(
+			'name'    => "Kill Twenty Daggerfall Guards",
+			'journal' => "",
+		),
+	2569 => array(
+			'name'    => "Legacy of the Three",
+			'journal' => "I've discovered evidence of something amiss at the Windridge Caves in Alcaire. The fates of a knight and his comrades seem inexorably tied to the existence of The Three, a trio of bandit chieftains who once dwelled in these caves.",
+		),
+	5500 => array(
+			'name'    => "Dousing the Fires of Industry",
+			'journal' => "<<1>>, a former Legionary engineer, wants to slow down the bombardment of Imperial City from the Elven Gardens District.",
+		),
+	3902 => array(
+			'name'    => "A Son's Promise",
+			'journal' => "I met a Dark Elf named Telbaril in a pocket of Evergloam known as Crow's Wood. He's trying to find his missing father, Rulantaril. He asked for my help.",
+		),
+	3749 => array(
+			'name'    => "Into the Mouth of Madness",
+			'journal' => "Blessed by Veloth, I've come to Eidolon's Hollow to confront Magistrix Vox. It's time to end her threat once and for all.",
+		),
+	31 => array(
+			'name'    => "TM01_OUTOFDATE",
+			'journal' => "I must inform Lord Vincintian of an assassin in Camlorn.",
+		),
+	3344 => array(
+			'name'    => "Satak was the First Serpent",
+			'journal' => "I've come upon <<1>>, a sun-baked wanderer. He inhabits a murky oasis near Tu'whacca's Throne. The wanderer seems to be speaking in fables regarding Sep's Hunger and a pearl.",
+		),
+	51 => array(
+			'name'    => "In Pursuit of Gargast",
+			'journal' => "Countess Virolynn believes Gargast is bound for a town called Crosswych in Dwynnen.  Who ever he reports to, likely tied to this Shourded Thone, wait in Crosswych.",
+		),
+	35 => array(
+			'name'    => "Example Strings",
+			'journal' => "",
+		),
+	2637 => array(
+			'name'    => "The Elder Scroll of Altadoon",
+			'journal' => "Grand Warlord Dortene wants the <<1>> captured and brought into Covenant hands.",
+		),
+	3675 => array(
+			'name'    => "Last One Standing",
+			'journal' => "<<1>> wants to get rid of <<2>>, the Khajiit in Alten Corimont. Since the Khajiit is running Dominion supply lines, her sudden demise would benefit both <<1>> and the rest of Shadowfen.",
+		),
+	57 => array(
+			'name'    => "JR_NMSQ1",
+			'journal' => "",
+		),
+	4679 => array(
+			'name'    => "The Shadow's Embrace",
+			'journal' => "I decided to ask Faraniel for help getting into the tower. Before she shows me the secret, however, she wants me to help her convince the Wood Elves to leave the forest and stop working for Molag Bal.",
+		),
+	2687 => array(
+			'name'    => "Scout Castle Roebeck",
+			'journal' => "I accepted a mission to scout Castle Roebeck for the Dominion.",
+		),
+	105 => array(
+			'name'    => "A Family Divided",
+			'journal' => "While detouring through the swamp, the Bagot family was attacked by a powerful Bog Lurker. Their daughter Isabelle went missing in the chaos. Tristan, wounded, limped to the caravan to find help, while his wife, Aurore, left to look for Isabelle.",
+		),
+	3659 => array(
+			'name'    => "Unwanted Guests",
+			'journal' => "I shared everything I learned with Councilor Ralden. He plans to seal Narsis so that no one can enter or leave. I've been granted an exception while I work for the councilor.",
+		),
+	41 => array(
+			'name'    => "Thieving from Thieves",
+			'journal' => "Jes of Wayrest told me a shipment of weapons he sent to Eagle's Watch was taken by who bandits who prey on travelers near Camlorn. Jes doesn't want his weapons in the hands of these villains.",
+		),
+	3338 => array(
+			'name'    => "Mists of Corruption",
+			'journal' => "Sir Lanis and the Knights of the Dragon are ready to march into Cath Bedraud to deal with Angof, but the mist rising from Angof's vines creates a hazard they can't overcome.",
+		),
+	53 => array(
+			'name'    => "A Crossroad",
+			'journal' => "Oron awaits word from High King Fahara'jad as how to proceed with King Sebastien.  While he waits he asked me to ask Sebastien about the Shrouded Throne.",
+		),
+	4787 => array(
+			'name'    => "Mourning the Lost",
+			'journal' => "",
+		),
+	45 => array(
+			'name'    => "Aldcroft Manor",
+			'journal' => "Katarin delivered Ranser's murder weapon to Countess Virolynn in Aldcroft manor.",
+		),
+	4779 => array(
+			'name'    => "The Amronal of Valenwood",
+			'journal' => "It appears a hunting band was overcome by a powerful wispmother, as their frozen forms are scattered about the mire.",
+		),
+	1615 => array(
+			'name'    => "Next of Kin",
+			'journal' => "I found a letter on a dead man in Bearclaw Mine.",
+		),
+	423 => array(
+			'name'    => "Missing Soldiers",
+			'journal' => "Commander Lafavre has asked you to find some of his soldiers who have not reported back. He is afraid they are in danger.",
+		),
+	3009 => array(
+			'name'    => "Turning of the Trees",
+			'journal' => "The forest itself seems to have turned against the village of Deleyn's Mill and the villagers are in danger. I should see if I can help.",
+		),
+	56 => array(
+			'name'    => "Spirits of the Forgotten",
+			'journal' => "Abelard Yves has asked me to look into the issue of spirits who are haunting the roads outside Camlorn and disrupting trade. Camlorn is a big city, but the townspeople should be able to point me in the right direction.",
+		),
+	3262 => array(
+			'name'    => "Capture Alessia Mine",
+			'journal' => "I accepted a mission to help capture Alessia Mine for the Covenant.",
+		),
+	560 => array(
+			'name'    => "dummyQuest",
+			'journal' => "",
+		),
+	2776 => array(
+			'name'    => "Scout Farragut Keep",
+			'journal' => "I accepted a mission to scout Farragut Keep for the Covenant.",
+		),
+	4369 => array(
+			'name'    => "The Will of the Worm",
+			'journal' => "To save the members of the Mages Guild that were forced to compete in the Observer's game, I decided to side with Thallik. Now I just need to find a way to win the game.",
+		),
+	58 => array(
+			'name'    => "KG The Knowledge of Age",
+			'journal' => "",
+		),
+	2823 => array(
+			'name'    => "Scout Rayles Lumbermill",
+			'journal' => "I accepted a mission to scout Rayles Lumbermill  for the Covenant.",
+		),
+	406 => array(
+			'name'    => "Crypt Cleansing",
+			'journal' => "Vestrial asked you to cleanse the Crypt of all evil.",
+		),
+	2771 => array(
+			'name'    => "Scout Fort Aleswell",
+			'journal' => "I accepted a mission to scout Fort Aleswell for the Covenant.",
+		),
+	5546 => array(
+			'name'    => "Honest Work",
+			'journal' => "Raynor and Kireth Vanos were recently marooned on the Gold Coast. The captain they hired to sail them to Sentinel delivered them to Anvil instead, and now they lack the funds to finish their journey. They asked me to help them find work.",
+		),
+	2932 => array(
+			'name'    => "Capture Castle Bloodmayne",
+			'journal' => "I accepted a mission to help re- capture Castle Bloodmayne for the Dominion.",
+		),
+	189 => array(
+			'name'    => "Out of Darkness, Light OLD",
+			'journal' => "",
+		),
+	2558 => array(
+			'name'    => "The Slavers",
+			'journal' => "Margot Oscent has a son named Lucas who's missing, and she's worried he may have been taken by the slavers.",
+		),
+	5052 => array(
+			'name'    => "An Offering to Azura",
+			'journal' => "Sergeant Oorga is afraid she will die in her next battle and asked me to deliver an offering to Azura for her.",
+		),
+	61 => array(
+			'name'    => "The Lost Courier",
+			'journal' => "Roche suggested I hurry to find the courier, as the Spriggans are exceptionally dangerous.",
+		),
+	2987 => array(
+			'name'    => "Capture Brindle Lumbermill",
+			'journal' => "I accepted a mission to help capture Brindle Lumbermill for the Dominion.",
+		),
+	4206 => array(
+			'name'    => "Nature's Accord",
+			'journal' => "Inside a broken tower, I found a wounded woman named Imwyn Frost-Tree. She told me of a powerful symbol of her faith, the Sigil of Nature's Accord.",
+		),
+	62 => array(
+			'name'    => "Glenumbra Conclusion",
+			'journal' => "",
+		),
+	3322 => array(
+			'name'    => "The Dresan Index",
+			'journal' => "The spirit of Richard Dusant said I should take the Dresan Index to someone in the Mages Guild.",
+		),
+	3653 => array(
+			'name'    => "Ratting Them Out",
+			'journal' => "Guard Rila wants me to slow down a group of agitated citizens to keep them from getting killed. She asked me to disrupt their meeting by using something they fear. I need rats.",
+		),
+	63 => array(
+			'name'    => "Simple Kill Quest",
+			'journal' => "I met a strange man who dislikes bears.",
+		),
+	5833 => array(
+			'name'    => "Dark Anchors in Glenumbra",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Glenumbra.",
+		),
+	67 => array(
+			'name'    => "Ear to the Ground",
+			'journal' => "Baron Winoc tells me that Camlorn is in an uneasy state of truce between his Hands of Northmoor and the Magis Order. He is unsure where public opinion lies, and is too high-profile to ask around himself. He's asked me to ask around for him.",
+		),
+	2822 => array(
+			'name'    => "Scout Warden Lumbermill",
+			'journal' => "I accepted a mission to scout Warden Lumbermill  for the Covenant.",
+		),
+	2797 => array(
+			'name'    => "Scout Blue Road Mine",
+			'journal' => "I accepted a mission to scout Blue Road Mine for the Covenant.",
+		),
+	1079 => array(
+			'name'    => "Join the Tavern Brawl",
+			'journal' => "",
+		),
+	5118 => array(
+			'name'    => "The Reason We Fight",
+			'journal' => "",
+		),
+	5924 => array(
+			'name'    => "Relics of Yasammidan",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Yasammidan and gather as many historic relics as I can find.",
+		),
+	418 => array(
+			'name'    => "Choice Quest",
+			'journal' => "Disheveled NPC asked me to find a magical tome and bring it back to him. He says when I find it, I should quickly deliver it to him - there's no telling the evils abound...",
+		),
+	4345 => array(
+			'name'    => "The Veil Falls",
+			'journal' => "I'm now a full member of the Veiled Heritance. I've been told of a grand hall where their leadership council meets. And they are meeting with the Veiled Queen herself!",
+		),
+	3133 => array(
+			'name'    => "Capture Alessia Mine",
+			'journal' => "I accepted a mission to help capture Alessia Mine for the Pact.",
+		),
+	2655 => array(
+			'name'    => "The Elder Scroll of Altadoon",
+			'journal' => "The Elder Scroll of Altadoon has been stolen by the enemy.",
+		),
+	4370 => array(
+			'name'    => "A Bargain With Shadows",
+			'journal' => "To save the Mages Guild members that were forced to compete in the Observer's game, I decided to side with Kinlady Estre. Now I just need to find a way to win the game.",
+		),
+	3852 => array(
+			'name'    => "Rescue and Revenge",
+			'journal' => "The Forlorn One asked me to use the decanter of holy water to rescue two people trapped by the fires.",
+		),
+	73 => array(
+			'name'    => "Incidental Damage",
+			'journal' => "The lumberjacks are fine for now, but many of their tools were damaged.",
+		),
+	3819 => array(
+			'name'    => "Healing Hearts",
+			'journal' => "Acolyte Eldri collected Dremora hearts for Healer Dalen. He can turn the hearts into healing potions and wanted them to help the troops at Eidolon's Hollow. Unfortunately, Dalen departed before Eldri could give him the hearts.",
+		),
+	3584 => array(
+			'name'    => "The Coral Heart",
+			'journal' => "Captain Noris came to Vivec's Antlers to defend against an incursion by Alexandra Conele of the Covenant. Alexandra wants to retrieve an artifact known as the Coral Heart from Vivec's Antlers. The Pact is barely holding its ground.",
+		),
+	142 => array(
+			'name'    => "Peering Into Darkness",
+			'journal' => "There appears to be more to the Bloody Eye then it seems. Their leader keeps speaking of the battle against the flesh and the spirit, as if two different sources of a fight. I must find out what their true purpose is in order to get their assistance.",
+		),
+	78 => array(
+			'name'    => "Warn Sebastien",
+			'journal' => "Lord Drugo has requested that I travel to Camlorn to warn Lord Sebastien of a possible assassination in his court.",
+		),
+	657 => array(
+			'name'    => "Fadeel's Freedom",
+			'journal' => "I found the last wishes of someone named Handre. He was going to use a gem he stole from the bandits to buy Fadeel's freedom.",
+		),
+	3026 => array(
+			'name'    => "The Wyrd Sisters",
+			'journal' => "<<1>> discovered that Reach magic has somehow corrupted the forest and silenced the elemental guardians.",
+		),
+	2809 => array(
+			'name'    => "Scout Dragonclaw Farm",
+			'journal' => "I accepted a mission to scout Dragonclaw Farm for the Covenant.",
+		),
+	2834 => array(
+			'name'    => "Scout Alessia Lumbermill",
+			'journal' => "I accepted a mission to scout Alessia Lumbermill  for the Covenant.",
+		),
+	5388 => array(
+			'name'    => "Clothier Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Clothier goods to an interested organization.",
+		),
+	143 => array(
+			'name'    => "Embracing the Darkness",
+			'journal' => "I have simply sampled a taste of the spirit world known as the Veil as it seems I would be set to return on a journey into the darkness. Before I enter this realm, I must find what I must do in order to succeed in my goals.",
+		),
+	2504 => array(
+			'name'    => "Azura's Relics",
+			'journal' => "Supernal Dreamers attacked Azura's shrine at Weeping Giant, killed the Spirit Wardens, and stole many relics. The young novice, Sister Tabakah, asked me to help her recover them and look for a captured warden.",
+		),
+	2745 => array(
+			'name'    => "Scout Aleswell Lumbermill",
+			'journal' => "I accepted a mission to scout Aleswell Lumbermill  for the Dominion.",
+		),
+	3950 => array(
+			'name'    => "Kill the Boss!",
+			'journal' => "",
+		),
+	5291 => array(
+			'name'    => "Pledge: Direfrost Keep I",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the frosty ruin of Direfrost Keep, which lies flush against the mountains of Eastmarch.",
+		),
+	3797 => array(
+			'name'    => "Plague Bringer",
+			'journal' => "The Llodos plague has been unleashed and it's spreading through the gorge. Despite this, some Hlaalu guards are searching for the Maulborn alchemist.",
+		),
+	79 => array(
+			'name'    => "Murder In Camlorn",
+			'journal' => "There's been a murder in Camlorn. Someone named Ranser was killed, and because a neutral party is hard to find, they've asked me to investigate.",
+		),
+	3806 => array(
+			'name'    => "Undermined",
+			'journal' => "The renegade Ashlanders have broken through a storage tunnel beneath Iliath Temple, taking the monks and their defenders by surprise. If the attack can't be repelled, the monastery is sure to fall.",
+		),
+	80 => array(
+			'name'    => "Failing Crops",
+			'journal' => "Tarrant Circe, a local farmer, is having a bad year. His crops are failing and he can't figure out why. He thinks he may be the victim of sabotage from a neighboring farmer.",
+		),
+	5041 => array(
+			'name'    => "To Aid Davon's Watch",
+			'journal' => "I met an Argonian named Onuja at Othrenis. He asked me to aid Davon's Watch in their battle against the Daggerfall Covenant.",
+		),
+	3443 => array(
+			'name'    => "Capture BalfieraMine",
+			'journal' => "",
+		),
+	3296 => array(
+			'name'    => "Trials of the Hero",
+			'journal' => "The spirits of four legendary Redguards stand around the central shrine atop HoonDing's Watch. Each poses a challenging choice based on a difficult decision they once had to make.",
+		),
+	387 => array(
+			'name'    => "Breaking Bones",
+			'journal' => "The Ashen Order have asked me to break the will of the undead skeletons infesting Silvermist Castle. Their camp is just inside the Silvermist Castle entrance, but they are unable to move further forward.",
+		),
+	100 => array(
+			'name'    => "Shornhelm",
+			'journal' => "",
+		),
+	5383 => array(
+			'name'    => "The Deal's Not Dead",
+			'journal' => "",
+		),
+	2694 => array(
+			'name'    => "Scout Ash Mine",
+			'journal' => "I accepted a mission to scout Ash Mine for the Dominion.",
+		),
+	2958 => array(
+			'name'    => "Capture Dragonclaw Farm",
+			'journal' => "I accepted a mission to help capture Dragonclaw Farm for the Dominion.",
+		),
+	4637 => array(
+			'name'    => "The Message",
+			'journal' => "I've agreed to deliver a letter for a mysterious Imperial named <<1>>.",
+		),
+	412 => array(
+			'name'    => "Lost and Found",
+			'journal' => "Find Quest NPC's midget.  Apparently he likes to go and play with a 'puppy' somewhere in the zone.",
+		),
+	3223 => array(
+			'name'    => "Capture Drakelowe Keep",
+			'journal' => "I accepted a mission to help capture Drakelowe Keep for the Covenant.",
+		),
+	5584 => array(
+			'name'    => "The Covetous Countess",
+			'journal' => "A wealthy patron of the Thieves Guild takes a peculiar pleasure in owning stolen goods. Her tastes are mercurial, but her payments are like Dwarven clockwork.",
+		),
+	2677 => array(
+			'name'    => "Scout Fort Dragonclaw",
+			'journal' => "I accepted a mission to scout Fort Dragonclaw for the Dominion.",
+		),
+	5761 => array(
+			'name'    => "Elemental Army",
+			'journal' => "The Celestial Thief appeared to me and asked for my help discovering why the atronachs that were summoned to destroy the Dark Anchors turned against the mages of Craglorn.",
+		),
+	123 => array(
+			'name'    => "Find Werewolf Evidence",
+			'journal' => "Dr. Holcombe has asked me to find clues to the source of the werewolf attack on Northmoor. I should return to him once I have gathered enough information.",
+		),
+	3385 => array(
+			'name'    => "Undying Loyalty",
+			'journal' => "I met a sad looking dog beside a path in the Alik'r Desert. She seems to want my help.",
+		),
+	5242 => array(
+			'name'    => "Q5242 Example Theater Quest",
+			'journal' => "",
+		),
+	198 => array(
+			'name'    => "Rallying Cries of Northmoor",
+			'journal' => "",
+		),
+	2724 => array(
+			'name'    => "Scout Ash Farm",
+			'journal' => "I accepted a mission to scout Ash Farm for the Dominion.",
+		),
+	134 => array(
+			'name'    => "Rallying for the Next Wave",
+			'journal' => "",
+		),
+	3011 => array(
+			'name'    => "Swine Thief",
+			'journal' => "Glutton, the prized pig that belongs to the Daggerfall swineherd Wickton, is missing. Wickton suspects pig thieves, or at least one particular pig thief.",
+		),
+	2660 => array(
+			'name'    => "The Elder Scroll of Ni-Mohk",
+			'journal' => "Grand Warlord Sorcalin needs vounteers to capture the <<1>>.",
+		),
+	5537 => array(
+			'name'    => "His Greatest Treasure",
+			'journal' => "<<1>> deciphered her father's ledger. She asked for my help with what she uncovered.",
+		),
+	1489 => array(
+			'name'    => "Waylaid Wine Merchant",
+			'journal' => "A wine merchant named <<1>> was robbed on the road to Ebonheart. Now he's deep in his cups, and he wants help getting his shipment back.",
+		),
+	5406 => array(
+			'name'    => "Enchanter Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Enchanter glyphs to an interested organization.",
+		),
+	3932 => array(
+			'name'    => "Stolen Dream Crystal",
+			'journal' => "Julian Kalere told me that Supernal Dreamers have stolen his Crystal of Power and shattered it into five shards. They plan to use the shards as foci for daedric summoning rituals.",
+		),
+	153 => array(
+			'name'    => "On the Tail of a Wolf",
+			'journal' => "Caldrun has tasked me with destroying the abomination that is Gargast. I must track him down and rid the world of him",
+		),
+	5514 => array(
+			'name'    => "Getting a Bellyful",
+			'journal' => "An Orcish animal handler named Arushna is desperate to get her hands on special durzog feed that can only be found in the Kennel.",
+		),
+	523 => array(
+			'name'    => "The Blood-Cursed Town",
+			'journal' => "The town of Crestshade has been subjected to a blood-curse that turned the townsfolk feral. While some refugees were able to escape to the south, the mayor remained behind to aid any survivors.",
+		),
+	2900 => array(
+			'name'    => "Scout Blue Road Lumbermill",
+			'journal' => "I accepted a mission to scout Blue Road Lumbermill for the Pact.",
+		),
+	157 => array(
+			'name'    => "Trouble in Grayborne",
+			'journal' => "Brennoc has asked me to speak to Inquisitor Roche about a troublesome villager.",
+		),
+	2675 => array(
+			'name'    => "Scout Fort Ash",
+			'journal' => "I accepted a mission to scout Fort Ash for the Dominion.",
+		),
+	701 => array(
+			'name'    => "Queen's Emissary - Isque",
+			'journal' => "I visited all the High Kinlords and Kinladies of Summerset, seeking their support for Queen Ayrenn's invasion of Tamriel. This approval was symbolized in the forms of Batons of Fidelity, which I entrusted to Canonreeve Lefalto's safekeeping.",
+		),
+	2789 => array(
+			'name'    => "Scout Ash Mine",
+			'journal' => "I accepted a mission to scout Ash Mine for the Covenant.",
+		),
+	4540 => array(
+			'name'    => "Timberscar Troubles",
+			'journal' => "Ufgra is worried about a tribe of Goblins that has moved into Timberscar Hollow.",
+		),
+	2942 => array(
+			'name'    => "Capture Farragut Mine",
+			'journal' => "I accepted a mission to help capture Farragut Mine for the Dominion.",
+		),
+	3657 => array(
+			'name'    => "Carving Cuttle",
+			'journal' => "Orona, one of the Deepcrag miners, mentioned that killing the kwama and letting them rot is a waste. She'd much rather harvest their cuttle, which apparently has a lot of profitable uses.",
+		),
+	235 => array(
+			'name'    => "Binding the Grave",
+			'journal' => "Cleric Sellan has armed me with a blessed chain with which to bind the evil in Silvermist Castle. He believes the source is a crypt in the graveyard.",
+		),
+	4717 => array(
+			'name'    => "Prisoners of the Sphinx",
+			'journal' => "Within Fort Sphinxmoth I encountered one of the chapel guards. She believes more of her companions were still alive elsewhere in the complex.",
+		),
+	3416 => array(
+			'name'    => "Signals of Dominion",
+			'journal' => "Aldmeri Dominion forces have captured Farwatch Tower. They're using the tower to signal their fleet at sea.",
+		),
+	4476 => array(
+			'name'    => "Tip of the Spearhead",
+			'journal' => "Now that I've recruited at least one of the people Kaleen wanted, we can pull off her heist whenever I'm ready.",
+		),
+	2878 => array(
+			'name'    => "Scout Glademist Farm",
+			'journal' => "I accepted a mission to scout Glademist Farm for the Pact.",
+		),
+	3593 => array(
+			'name'    => "Intruders in Deshaan",
+			'journal' => "Dark Elves have been disappearing along the road to Narsis, near the western mountains. An incursion of Orcs may be responsible. I offered a Dark Elf scout my assistance.",
+		),
+	171 => array(
+			'name'    => "Artifacts of the Mundus",
+			'journal' => "I've agreed to help Oron, High King Fahara'jad's emissary, prove King Sebastien is innocent of Ranser's murder. I'm to work with High Priest Canning of the Order of Arkay to summon Ranser's spirit, so Ranser's shade can name his killer.",
+		),
+	4653 => array(
+			'name'    => "Stonefire Machinations",
+			'journal' => "According to Centurion Gavo's confession, the Stonefire cult plans to summon a Dark Anchor within Arenthia.",
+		),
+	3120 => array(
+			'name'    => "Capture Warden Mine",
+			'journal' => "I accepted a mission to help capture Warden Mine for the Pact.",
+		),
+	702 => array(
+			'name'    => "Queen's Emissary - Orrery",
+			'journal' => "I visited all the High Kinlords and Kinladies of Summerset, seeking their support for Queen Ayrenn's invasion of Tamriel. This approval was symbolized in the forms of Batons of Fidelity, which I entrusted to Canonreeve Lefalto's safekeeping.",
+		),
+	2941 => array(
+			'name'    => "Capture Kingscrest Mine",
+			'journal' => "I accepted a mission to help capture Kingscrest Mine for the Dominion.",
+		),
+	467 => array(
+			'name'    => "Sir Hughes' Fate",
+			'journal' => "After murdering Duchess Lakana, Sir Hughes fled to Firebrand Keep. I've come to confront him and if necessary, bring him to justice for his crimes.",
+		),
+	2710 => array(
+			'name'    => "Scout Bloodmayne Mine",
+			'journal' => "I accepted a mission to scout Bloodmayne Mine for the Dominion.",
+		),
+	4949 => array(
+			'name'    => "Favor for the Queen",
+			'journal' => "Queen Maraya has asked a personal favor. She's heard disturbing rumors about some of her father's enemies returning, so she's asked me to go to Sentinel in the Alik'r Desert and ensure that both the kingdom and her father are safe.",
+		),
+	180 => array(
+			'name'    => "A Ritual in Camlorn",
+			'journal' => "High Priest Canning is almost ready to complete the ceremony to summon Ranser's spirit. I must be ready for whatever comes next.",
+		),
+	4654 => array(
+			'name'    => "An Unusual Circumstance",
+			'journal' => "I decided to ask Tzik'nith for help getting into the tower. Before she shows me the secret, however, she wants me to help her against the Wood Elves.",
+		),
+	2774 => array(
+			'name'    => "Scout Arrius Keep",
+			'journal' => "I accepted a mission to scout Arrius Keep for the Covenant.",
+		),
+	5013 => array(
+			'name'    => "Hushed Whispers",
+			'journal' => "I've found a scroll bearing marks from the Aldmeri Dominion. It details a series of unsolved murders in <<1>>.",
+		),
+	1339 => array(
+			'name'    => "A Predator's Heart",
+			'journal' => "Knarstygg and Dro-Dara have decided it would be wise to go to Wayrest until the bandits clear out of the plantation. Knarstygg is concerned that Murk-Watcher might not want to leave.",
+		),
+	4929 => array(
+			'name'    => "A Dagger to the Heart",
+			'journal' => "Using the codebook I discovered, Adusa has determined that Montclair's nephew, Rohlbert, is behind the assassination plot. She believes that if we eliminate Rohlbert, we can end this part of the Montclair threat once and for all.",
+		),
+	192 => array(
+			'name'    => "Murder on the Docks",
+			'journal' => "I found a body weighted with heavy rocks in the sea beneath Camlorn's docks. I've decided to investigate the murder.",
+		),
+	5240 => array(
+			'name'    => "Uncaged",
+			'journal' => "Outside the ancient ruins of Skyreach Pinnacle, I met a member of the Scaled Court. He told me that the Court accidentally released creatures from magical wards the Nedes set up long ago. He plans to reestablish the wards, but he needs help.",
+		),
+	196 => array(
+			'name'    => "The Third Squad",
+			'journal' => "Captain Blanche Geves sent me to look for the Third Squad soldiers who were scattered after a vicious undead attack. They are near the Redoubt and may be pinned down, unable to escape.",
+		),
+	2924 => array(
+			'name'    => "Capture Farragut Keep",
+			'journal' => "I accepted a mission to help capture Farragut Keep for the Dominion.",
+		),
+	197 => array(
+			'name'    => "Rallying the Redoubt",
+			'journal' => "Inquisitor Blarae has seen Morholdt as well - he has attacked the Redoubt many times. Also, the failed ritual in Camlorn caused the number of undead attacking the Redoubt to greatly increase. They threaten to overrun the Redoubt and destroy Camlorn.",
+		),
+	5490 => array(
+			'name'    => "Knowledge is Power",
+			'journal' => "The Drake of Blades wants me to recover a book that the Daedra refuse to burn and whose contents must therefore be very important.",
+		),
+	3142 => array(
+			'name'    => "Capture Ash Lumbermill",
+			'journal' => "I accepted a mission to help capture Ash Lumbermill for the Pact.",
+		),
+	2784 => array(
+			'name'    => "Scout Castle Bloodmayne",
+			'journal' => "I accepted a mission to scout Castle Bloodmayne for the Covenant.",
+		),
+	210 => array(
+			'name'    => "Cleansing the Lake",
+			'journal' => "Thetis has finished mixing a remedy he believes will clean out the lake.",
+		),
+	3211 => array(
+			'name'    => "Capture Bloodmayne Farm",
+			'journal' => "I accepted a mission to help capture Bloodmayne Farm for the Covenant.",
+		),
+	4584 => array(
+			'name'    => "Pilfered Urn",
+			'journal' => "I found an exquisitely carved urn within Old Sord's Cave. It appears to belong to <<1>> of Windhelm.",
+		),
+	617 => array(
+			'name'    => "Meeting of the Minds",
+			'journal' => "",
+		),
+	231 => array(
+			'name'    => "Quelling the Dead",
+			'journal' => "The Ashen Order (a.k.a. the Gravebinders) have asked me to help cull the horde of undead infesting Silvermist Castle. Their camp is just inside the Silvermist Castle entrance, but they are unable to move further forward.",
+		),
+	2970 => array(
+			'name'    => "Capture Bloodmayne Farm",
+			'journal' => "I accepted a mission to help capture Bloodmayne Farm for the Dominion.",
+		),
+	4697 => array(
+			'name'    => "To Rawl'kha",
+			'journal' => "Clanmother Kazirra told me to travel to the city of Rawl'kha, to bring word of the Mane's change of heart.",
+		),
+	328 => array(
+			'name'    => "Serpent Slayer",
+			'journal' => "",
+		),
+	5556 => array(
+			'name'    => "A Flawless Plan",
+			'journal' => "<<1>> wants to know what really happened to <<2>>'s dowry. She has a plan to uncover the truth of what happened during the guild's failed heist.",
+		),
+	3050 => array(
+			'name'    => "Cursed Treasure",
+			'journal' => "The Bloodthorn cult is attempting to take control of the spirits of High Rock knights laid to rest at the Burial Mounds. They also seek to control the ancient kings buried there, and have stolen their regalia for some dark purpose.",
+		),
+	3855 => array(
+			'name'    => "Mystery of Othrenis",
+			'journal' => "<<1>> believes the spirit of a long-dead mage may know the secret to imprisoning Balreth again. An Argonian scout named <<2>> has already left for Othrenis.",
+		),
+	405 => array(
+			'name'    => "Vestrial's Research Book",
+			'journal' => "Vestrial has asked you to recover the missing pages of his research book.",
+		),
+	3422 => array(
+			'name'    => "Capture the Farm",
+			'journal' => "",
+		),
+	3269 => array(
+			'name'    => "Capture Bloodmayne Mine",
+			'journal' => "I accepted a mission to help capture Bloodmayne Mine for the Covenant.",
+		),
+	703 => array(
+			'name'    => "Queen's Emissary - Dusk",
+			'journal' => "I visited all the High Kinlords and Kinladies of Summerset, seeking their support for Queen Ayrenn's invasion of Tamriel. This approval was symbolized in the forms of Batons of Fidelity, which I entrusted to Canonreeve Lefalto's safekeeping.",
+		),
+	3064 => array(
+			'name'    => "Rally Cry",
+			'journal' => "The city of Camlorn has fallen to Faolchu and his werewolf legion. The Lion Guard struggles to retake the city, but the odds are against them.",
+		),
+	4145 => array(
+			'name'    => "Mine All Mine",
+			'journal' => "Tervur Sadri, the co-owner of the Darkshade mine, wants me to help him find his partner, Selos, and get rid of the thugs who've displaced his miners.",
+		),
+	3141 => array(
+			'name'    => "Capture Glademist Lumbermill",
+			'journal' => "I accepted a mission to help capture Glademist Lumbermill for the Pact.",
+		),
+	575 => array(
+			'name'    => "Vaermina's Gambit",
+			'journal' => "Vaermina's ultimate plan has been revealed. Her consort, the Night Terror, has seized High King Emeric's mind and trapped him in a nightmare. I must face the Night Terror and save the king.",
+		),
+	2936 => array(
+			'name'    => "Capture Ash Mine",
+			'journal' => "I accepted a mission to help capture Ash Mine for the Dominion.",
+		),
+	5916 => array(
+			'name'    => "The Anxious Apprentice",
+			'journal' => "Dubdil Alar's apprentice has hired me to stop one of her former master's experiments. I'm also required to gather his research notes for further study.",
+		),
+	410 => array(
+			'name'    => "A Royal Summons",
+			'journal' => "The Numinous are to report to Queen Ayrenn for a Royal Fete. Proceed to the Immaculate Tabernacle in the Turquoise district.",
+		),
+	2791 => array(
+			'name'    => "Scout Dragonclaw Mine",
+			'journal' => "I accepted a mission to scout Dragonclaw Mine for the Covenant.",
+		),
+	422 => array(
+			'name'    => "The Largest Threats",
+			'journal' => "Commander Lafavre has asked you to kill the bosses controlling the Halls of the Damned.\n- Nazgol the Undying\n- General Ripfang\n- Bone Colossus\n- Orutu\n- Anarose Direblood\n- Therion Direblood",
+		),
+	2787 => array(
+			'name'    => "Scout Rayles Mine",
+			'journal' => "I accepted a mission to scout Rayles Mine for the Covenant.",
+		),
+	2820 => array(
+			'name'    => "Scout Black Boot Farm",
+			'journal' => "I accepted a mission to scout Black Boot Farm for the Covenant.",
+		),
+	4649 => array(
+			'name'    => "The Sorcerer Division",
+			'journal' => "I am competing in the Sorcerer Division of Thizzrini Arena. I must fight through the ranks in order to fight Malarel, the Sorcerer Division Champion.",
+		),
+	424 => array(
+			'name'    => "In Crucial Need",
+			'journal' => "High Mage Dilborn has asked me to find him some Nightmare Dust. He says it drops from the spectres that roam the lowest depths of the keep.",
+		),
+	5524 => array(
+			'name'    => "Reeking of Foul Play",
+			'journal' => "Riekrs have been raiding caravans throughout Wrothgar, plundering cargo and taking travelers prisoners. The Riekrs, led by King-Chief Edu, must be dealt with.",
+		),
+	3018 => array(
+			'name'    => "Lineage of Tooth and Claw",
+			'journal' => "The Duke told me that Gloria has a plan to learn more about Faolchu and how to defeat him. She wants me to capture a living werewolf for the ritual she needs to perform.",
+		),
+	3527 => array(
+			'name'    => "Sample Escort",
+			'journal' => "Sample Escort",
+		),
+	4220 => array(
+			'name'    => "The Mallari-Mora",
+			'journal' => "I discovered a Mages Guild expedition at the ruins of Ezduiin. A scholar named Telenger is in charge.",
+		),
+	4571 => array(
+			'name'    => "Fang Collector",
+			'journal' => "I've found the body of a hunter in the wilds. Nearby was a notice he dropped detailing a bounty on senche-tiger fangs.",
+		),
+	2981 => array(
+			'name'    => "Capture Farragut Lumbermill",
+			'journal' => "I accepted a mission to help capture Farragut Lumbermill for the Dominion.",
+		),
+	5455 => array(
+			'name'    => "Q5455 Orsinium Stateful",
+			'journal' => "",
+		),
+	3849 => array(
+			'name'    => "A Final Release",
+			'journal' => "<<1>> believes his mother's remains lie in <<2>>, away from the swamp waters. Her spirit is unable to return to the Hist.",
+		),
+	427 => array(
+			'name'    => "Blackmoore's End",
+			'journal' => "My long pursuit of Baron Blackmoore ends here, in his own keep. His crimes will not go unpunished, and his death will be a message to all. Time for me to hunt him down in his own home.",
+		),
+	669 => array(
+			'name'    => "Caught in the Web",
+			'journal' => "",
+		),
+	4572 => array(
+			'name'    => "Requests for Aid",
+			'journal' => "<<1>> asked me to leave supplies at a cache for messengers who're going for help.",
+		),
+	2974 => array(
+			'name'    => "Capture Glademist Lumbermill",
+			'journal' => "I accepted a mission to help capture Glademist Lumbermill for the Dominion.",
+		),
+	3817 => array(
+			'name'    => "The Seal of Three",
+			'journal' => "A large Maulborn force used the sewers to sneak into Mournhold. I need to find them before they can complete their nefarious plan.",
+		),
+	428 => array(
+			'name'    => "Exposing the Baron",
+			'journal' => "While I pursue the Baron through his keep, I need to keep watch for evidence of his dark magic.",
+		),
+	4902 => array(
+			'name'    => "Shornhelm Divided",
+			'journal' => "Shornhelm, the largest city in Rivenspire, is a city divided. House Montclair has annexed part of the city. Darien Gautier suggested I go to Shornhelm and help Countess Tamrith and Baron Dorell deal with the situation.",
+		),
+	3280 => array(
+			'name'    => "Imperial Infiltration",
+			'journal' => "The city of Evermore is in dire straits. King Eamond is dead and Reachmen are bearing down on the city from the north. Duke Renchant plans to hand the city over to Imperial control, but I have agreed to work with Queen Arzhela to stop him.",
+		),
+	499 => array(
+			'name'    => "Pursuing the Shard",
+			'journal' => "King Emeric believes Count Hosni has the Dream Shard stolen from Pariah Abbey. He wants me to ingratiate myself with the count in hopes of retrieving the shard.",
+		),
+	2742 => array(
+			'name'    => "Scout Rayles Lumbermill",
+			'journal' => "I accepted a mission to scout Rayles Lumbermill  for the Dominion.",
+		),
+	4981 => array(
+			'name'    => "Conflicted Emotions",
+			'journal' => "<<1>> of the Dragonstar Caravan Company asked for my assistance in fulfilling a contract for a mage in the Silaseli ruins.",
+		),
+	3610 => array(
+			'name'    => "For Their Own Protection",
+			'journal' => "The threat of the Llodos plague has allowed paranoia to run rampant. Many people in Narsis claim that friends and family members have vanished in the night.",
+		),
+	1383 => array(
+			'name'    => "The Perfect Burial",
+			'journal' => "<<1>> had a Bosmer wife named Breloth who died recently. He's asked me to help him get things to give her a befitting burial.",
+		),
+	3216 => array(
+			'name'    => "Capture Fort Aleswell",
+			'journal' => "I accepted a mission to help regain Fort Aleswell for the Covenant.",
+		),
+	435 => array(
+			'name'    => "Treasure Beyond Wonder",
+			'journal' => "",
+		),
+	2678 => array(
+			'name'    => "Scout Chalman Keep",
+			'journal' => "I accepted a mission to scout Chalman Keep for the Dominion.",
+		),
+	4917 => array(
+			'name'    => "The Blacksap's Hold",
+			'journal' => "The Vinedusk Rangers want me to help quash the remnants of the Blacksap Rebellion, the Wood Elf civil war that ended with the Dominion's formation.",
+		),
+	5206 => array(
+			'name'    => "Rest in Peace",
+			'journal' => "The Keeper has an intriguing contract that he feels I am just right for.",
+		),
+	465 => array(
+			'name'    => "The Blood-Splattered Shield",
+			'journal' => "Captain Janeve, the shield of the Shornhelm Guard and Countess Tamrith's younger sister, has established a camp for refugees displaced by the vampiric menace.",
+		),
+	3243 => array(
+			'name'    => "Capture Drakelowe Lumbermill",
+			'journal' => "I accepted a mission to help capture Drakelowe Lumbermill for the Covenant.",
+		),
+	5845 => array(
+			'name'    => "Castle Charm Challenge",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Stormhaven.",
+		),
+	4488 => array(
+			'name'    => "Gentle Gardener",
+			'journal' => "I met a Bosmer named Ongalion at the Falinesti Autumn site. He's a tree-steward, helping to tend the site while the city is away.",
+		),
+	521 => array(
+			'name'    => "Azura's Aid",
+			'journal' => "Vaermina has taken control of King Emeric's dreams and Abbot Durak says we need Azura's guidance.",
+		),
+	614 => array(
+			'name'    => "A Look in the Mirror",
+			'journal' => "<<1>> met me on the road into Wind Keep and asked me to help the countess. She's acting strangely and it's put the entire town on edge.",
+		),
+	4332 => array(
+			'name'    => "Prisoner Dilemma",
+			'journal' => "Three Pact soldiers were kidnapped in the Lion's Den: Hilka, Hald, and Fjar. Their commander, Thragof, is certain one of them is a traitor. He has tasked me with identifying the traitor and freeing the others.",
+		),
+	973 => array(
+			'name'    => "Weller's Counter Offer",
+			'journal' => "",
+		),
+	3453 => array(
+			'name'    => "KIll an Aldmeri Guard",
+			'journal' => "",
+		),
+	2608 => array(
+			'name'    => "The Elder Scroll of Ghartok",
+			'journal' => "The Elder Scroll of Ghartok is being held by the enemy.",
+		),
+	728 => array(
+			'name'    => "Repair Koeglin Lighthouse",
+			'journal' => "The lighthouse south of Koeglin Village was attacked, and its signal fires were extinguished. Until someone repairs it, ship captains will have difficulty navigating the harbor.",
+		),
+	2975 => array(
+			'name'    => "Capture Ash Lumbermill",
+			'journal' => "I accepted a mission to help capture Ash Lumbermill for the Dominion.",
+		),
+	4178 => array(
+			'name'    => "Lost Companions",
+			'journal' => "<<1>>, <<2>>, and <<3>> are missing and likely in trouble. Snorrvild has asked me to help find them.",
+		),
+	4527 => array(
+			'name'    => "Securing Knowledge",
+			'journal' => "<<1>> is worried about Cropsford's books being destroyed in a Goblin attack.",
+		),
+	2921 => array(
+			'name'    => "Capture Chalman Keep",
+			'journal' => "I accepted a mission to help capture Chalman Keep for the Dominion.",
+		),
+	3973 => array(
+			'name'    => "Will of the Council",
+			'journal' => "The Fighters Guild has sentenced <<1>> to death for the murder of <<2>>.",
+		),
+	730 => array(
+			'name'    => "Blightbane",
+			'journal' => "The Quarantine Master in Davon's Watch wants me to discover the fate of Fort Arand, which was recently engulfed in a Blightstorm.\n\nHe says this will prove that I am immune to the Blight, if I returned uninfected.",
+		),
+	5629 => array(
+			'name'    => "Contract: Rivenspire",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	2935 => array(
+			'name'    => "Capture Glademist Mine",
+			'journal' => "I accepted a mission to help capture Glademist Mine for the Dominion.",
+		),
+	4784 => array(
+			'name'    => "Swift Justice",
+			'journal' => "Sorderion has charged me with apprehending Aldolin, a traitor to the Dominion who has been giving aid to the Ebonheart Pact.",
+		),
+	3620 => array(
+			'name'    => "The Ravaged Village",
+			'journal' => "",
+		),
+	4449 => array(
+			'name'    => "Carzog's Demise",
+			'journal' => "My investigations of the Bloodthorn Cult's activities have convinced Chief Tazgol that they threaten the Orcs on Betnikh.",
+		),
+	736 => array(
+			'name'    => "The Flame of Dissent",
+			'journal' => "The Knights of the Flame are divided over whether to attack the redguard army at Alcaire Castle. Sir Croix and other knights would potentially destroy the Covenant. They need to be stopped. I've agreed to rally knights to Sir Edmund's cause.",
+		),
+	737 => array(
+			'name'    => "Retaking Firebrand Keep",
+			'journal' => "Sir Edmund and the knights who have rallied to our cause are prepared to attack. We must retake Firebrand Keep and put an end to the plan that would threaten the Daggerfall Covenant.",
+		),
+	3621 => array(
+			'name'    => "Peril at the Pools",
+			'journal' => "Forces of the Daggerfall Covenant are occupying the volcanic sulfur pools east of Heimlyn Keep. The Othrys family worked the site, but they've been run off their property.",
+		),
+	3337 => array(
+			'name'    => "Legitimate Interests",
+			'journal' => "The Red Rook bandits have taken control of the town of Crosswych. Some of the townsfolk are trying to organize a resistance, but the bandits are determined to use the town as a base.",
+		),
+	939 => array(
+			'name'    => "History of the Mad Architect",
+			'journal' => "While searching for an exit to the Bone Vaults, I have uncovered a hidden library.",
+		),
+	2804 => array(
+			'name'    => "Scout Warden Farm",
+			'journal' => "I accepted a mission to scout Warden Farm for the Covenant.",
+		),
+	4397 => array(
+			'name'    => "The Enemy Within",
+			'journal' => "I've helped track down the source of the poison in <<1>>, but the poisoner still remains to be found. I should work with <<2>> to bring the culprit to justice.",
+		),
+	966 => array(
+			'name'    => "The Dwemer Ruins",
+			'journal' => "I seem to have found some Dwemer ruins.  I should explore and see what I can find.",
+		),
+	3392 => array(
+			'name'    => "Capture the Mine",
+			'journal' => "",
+		),
+	974 => array(
+			'name'    => "A Duke in Exile",
+			'journal' => "Duke Sebastien of Camlorn has been kidnapped by Bloodthorn cultists.",
+		),
+	2701 => array(
+			'name'    => "Scout Kingscrest Mine",
+			'journal' => "I accepted a mission to scout Kingscrest Mine for the Dominion.",
+		),
+	5865 => array(
+			'name'    => "Culling the Swarm",
+			'journal' => "The Missir-Dadalit Egg Mine has been overrun with kwama. I've been hired to clear out the infestation to help re-balance the colony. I'm also required to defeat a large kwama warrior who guards the queen.",
+		),
+	2854 => array(
+			'name'    => "Scout Castle Roebeck",
+			'journal' => "I accepted a mission to scout Castle Roebeck for the Pact.",
+		),
+	1058 => array(
+			'name'    => "Spy Hunter",
+			'journal' => "Kill the Red Rook Spy before he can report to his superior.",
+		),
+	1070 => array(
+			'name'    => "Killed Lumpy",
+			'journal' => "",
+		),
+	2831 => array(
+			'name'    => "Scout Farragut Lumbermill",
+			'journal' => "I accepted a mission to scout Farragut Lumbermill  for the Covenant.",
+		),
+	2977 => array(
+			'name'    => "Capture Dragonclaw Lumbermill",
+			'journal' => "I accepted a mission to help capture Dragonclaw Lumbermill for the Dominion.",
+		),
+	5220 => array(
+			'name'    => "Kill Enemy Templars",
+			'journal' => "Grand Warlord Sorcalin has authorized a reward for any Dominion soldier who slays 20 enemy Templars.",
+		),
+	5909 => array(
+			'name'    => "Writhing Sveeth Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the deadly greater hive golem they call Writhing Sveeth.",
+		),
+	3670 => array(
+			'name'    => "Desperate Souls",
+			'journal' => "Rogue Dark Elves flaunting the Pact are enslaving Argonians at a mine near Ash Mountain. A powerful Daedra rebelled against the mine's master. Then the Daedra took most of the people at the mine into Oblivion.",
+		),
+	4535 => array(
+			'name'    => "The Dagger's Edge",
+			'journal' => "Lord Diel of Daggerfall and his sons are investigating the recent harpy attacks all along the coast. They hired a group of mercenaries called the Daggers to help them with their research, but the Daggers never returned from the Shrieking Scar.",
+		),
+	1076 => array(
+			'name'    => "The Battlebarge",
+			'journal' => "",
+		),
+	3454 => array(
+			'name'    => "Kill Ten Enemy Players",
+			'journal' => "",
+		),
+	1085 => array(
+			'name'    => "What Little Aid",
+			'journal' => "Sister Alarvyne would like me to collect Mountain Tail to use in tea she makes to soothe the blighted.",
+		),
+	2968 => array(
+			'name'    => "Capture Brindle Farm",
+			'journal' => "I accepted a mission to help capture Brindle Farm for the Dominion.",
+		),
+	4751 => array(
+			'name'    => "Warship Designs",
+			'journal' => "A Breton shipbuilder named Jeromec Lemal has asked me to help him recover the warship designs from three ships under construction in the docks at Tava's Blessing.",
+		),
+	1804 => array(
+			'name'    => "Sunken Knowledge",
+			'journal' => "I've agreed to help the Hermaeus Mora cult of Primeval Seekers to prevent the nereid of Halcyon Lake from using forbidden secrets to subvert the laws of nature.",
+		),
+	1097 => array(
+			'name'    => "Out of the Camp",
+			'journal' => "",
+		),
+	2828 => array(
+			'name'    => "Scout Chalman Lumbermill",
+			'journal' => "I accepted a mission to scout Chalman Lumbermill  for the Covenant.",
+		),
+	2795 => array(
+			'name'    => "Scout Kingscrest Mine",
+			'journal' => "I accepted a mission to scout Kingscrest Mine for the Covenant.",
+		),
+	4526 => array(
+			'name'    => "Lost Bet",
+			'journal' => "I've found a strange glowing artifact from the age of the Altmeri deep within the ruins of Bewan.",
+		),
+	5767 => array(
+			'name'    => "The Blood of Nirn",
+			'journal' => "The scholar Nendirume warned me that the Scaled Court has taken over the ruined city of Skyreach. She believes they're searching Skyreach Hold for more of the nirncrux element, which they refer to as \"the blood of Nirn.\"",
+		),
+	1145 => array(
+			'name'    => "Cleansing Spirits",
+			'journal' => "",
+		),
+	2876 => array(
+			'name'    => "Scout Warden Farm",
+			'journal' => "I accepted a mission to scout Warden Farm for the Pact.",
+		),
+	5912 => array(
+			'name'    => "Old Stomper Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the dangerous cliff strider they call Old Stomper.",
+		),
+	4197 => array(
+			'name'    => "Sounds of Alarm",
+			'journal' => "A runner arrived from Fort Morvunskar, an installation to the west. Thane Mera believes Fildgor's forces have launched an attack against the fort.",
+		),
+	2715 => array(
+			'name'    => "Scout Farm 5",
+			'journal' => "",
+		),
+	6060 => array(
+			'name'    => "Tasty Tongue Varnish",
+			'journal' => "Brengolin, the cook in Slag Town, needs some assistance in creating some unconventional cuisine. This time he's asked me to procure him some Bosmer Root Liqueur.",
+		),
+	3683 => array(
+			'name'    => "What Lies Beneath",
+			'journal' => "I volunteered to enter the ruined crypts beneath the fort to look for the retainer, Durel Gilveni, and the mysterious others mentioned in the General's dispatch. The entrance is by the river.",
+		),
+	1165 => array(
+			'name'    => "A Greater Threat than Vignette",
+			'journal' => "",
+		),
+	2869 => array(
+			'name'    => "Scout Drakelowe Mine",
+			'journal' => "I accepted a mission to scout Drakelowe Mine for the Pact.",
+		),
+	4726 => array(
+			'name'    => "Siege Warfare",
+			'journal' => "I've reached the siege range. Bugbesh told me to try each weapon. I should also talk to Marc and Jaleel to learn more about the weapons.",
+		),
+	1216 => array(
+			'name'    => "Sealed Spirits",
+			'journal' => "",
+		),
+	4547 => array(
+			'name'    => "Prove Your Worth",
+			'journal' => "Garnikh bet his axe that I can't best the Seamount hunters in duels.",
+		),
+	3642 => array(
+			'name'    => "The Curse of Heimlyn Keep",
+			'journal' => "Heimlyn Keep is under a terrible curse. A group of Covenant soldiers attacked, thinking they were assaulting a military target. Instead they loosed an ancient magic hidden beneath in the vaults.",
+		),
+	1287 => array(
+			'name'    => "Forbidden Worship - Old Ver.",
+			'journal' => "Thorkan is worried that Normar's rumors of necromancy in Fell's Run will cause bloodshed between Orcs and Bretons. To keep the peace, he wants to stop to the necromantic rituals and put Normar's fears to rest.",
+		),
+	6036 => array(
+			'name'    => "Most Complicated Machine",
+			'journal' => "Proctor Sovor Saryoni, a ranking Clockwork Apostle, is dying and has asked me to help save his life. He believes his only hope to continue his existence lies in an experiment conducted by a former apostle, but she was exiled long ago because of it.",
+		),
+	1294 => array(
+			'name'    => "The Wizard's Tome",
+			'journal' => "The wizard <<1>> in Davon's Watch told me his apprentice has stolen his spellbook. I offered to help find him, but there's a problem. To punish him for a previous theft, the wizard changed the warding rune on the book.",
+		),
+	3144 => array(
+			'name'    => "Capture Dragonclaw Lumbermill",
+			'journal' => "I accepted a mission to help capture Dragonclaw Lumbermill for the Pact.",
+		),
+	1295 => array(
+			'name'    => "Merchant Matters",
+			'journal' => "",
+		),
+	2965 => array(
+			'name'    => "Capture  Farm",
+			'journal' => "I accepted a mission to help capture Alessia Farm for the Dominion.",
+		),
+	4822 => array(
+			'name'    => "Mind of Madness",
+			'journal' => "Gasteau Chamrond knows how to escape the structure I've fallen into. He'll help me get out if I lend him my strength.",
+		),
+	3198 => array(
+			'name'    => "Capture Aleswell Farm",
+			'journal' => "I accepted a mission to help capture Aleswell Farm for the Covenant.",
+		),
+	1341 => array(
+			'name'    => "Ogre Teeth",
+			'journal' => "A glory-seeking Orc warrior asked me to help him gather ogre teeth for a trophy necklace from the battle. Why not?",
+		),
+	2712 => array(
+			'name'    => "Scout Farm 2",
+			'journal' => "",
+		),
+	1346 => array(
+			'name'    => "Ending the Ogre Threat",
+			'journal' => "General Godrun is counting on me to finish this battle with the Ironhand Ogres. If I can collapse the cavern they're using to get through the mountain, that should solve the ogre problem for good.",
+		),
+	2769 => array(
+			'name'    => "Scout Fort Glademist",
+			'journal' => "I accepted a mission to scout Fort Glademist for the Covenant.",
+		),
+	2922 => array(
+			'name'    => "Capture Arrius Keep",
+			'journal' => "I accepted a mission to help capture Arrius Keep for the Dominion.",
+		),
+	4103 => array(
+			'name'    => "Z'en and Mauloch",
+			'journal' => "I found a journal written by a priest of Z'en, which details part of Bloodtoil Valley's history. The local spinner may find this information valuable if I can find the rest of the journals.",
+		),
+	3974 => array(
+			'name'    => "Storming the Hall",
+			'journal' => "The Reachmen attacked Shor's Stone and brought the giant Sinmur back to life. Now they've overrun Fallowstone Hall, an ancient seat of the Companions. Vigrod wants my help regaining the Hall.",
+		),
+	3099 => array(
+			'name'    => "Capture Castle Black Boot",
+			'journal' => "I accepted a mission to help capture Castle Black Boot for the Pact.",
+		),
+	1380 => array(
+			'name'    => "Divide and Conquer",
+			'journal' => "",
+		),
+	6155 => array(
+			'name'    => "Pledge: Fang Lair",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Fang Lair.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	4436 => array(
+			'name'    => "Luck of the Albatross",
+			'journal' => "<<1>> led a mutiny against the captain and crew of the Albatross as they searched <<Ac:2>> for ancient treasure.",
+		),
+	3978 => array(
+			'name'    => "Tomb Beneath the Mountain",
+			'journal' => "Netapatuu and his colleagues came to Pinepeak Caverns to consult with the spirit of Hakra, one of Ysgramor's Companions. Worm Cultists attacked and drove them out. The cultists cannot be allowed to gain control of Hakra's spirit.",
+		),
+	3119 => array(
+			'name'    => "Capture Bloodmayne Farm",
+			'journal' => "I accepted a mission to help capture Bloodmayne Farm for the Pact.",
+		),
+	1384 => array(
+			'name'    => "Old Adventurers",
+			'journal' => "The owners of the Dro-Dara Plantation have lost everything. First ogres attacked, and now bandits. The plantation was owned by a group of retired adventurers. The thief, Janne, asked me to rescue the others.",
+		),
+	5906 => array(
+			'name'    => "Siren's Song",
+			'journal' => "A Gold Coast Trading Company ship was lured ashore by a powerful Nereid. I've been hired to defeat the Nereid and recover the cargo in the wreckage. She's protected by a group of sailors who she controls through a magical song.",
+		),
+	1432 => array(
+			'name'    => "Clean Up the Dead",
+			'journal' => "Clear the graveyard of zombies, making sure you check the crypt.",
+		),
+	4529 => array(
+			'name'    => "Red Rook Resources",
+			'journal' => "A note in Ilessan Tower has informed me that the Red Rooks are amassing resources for their allies. It also mentioned an attack on a manor north of Deleyn's Mill.",
+		),
+	3955 => array(
+			'name'    => "Tracking the Plague",
+			'journal' => "The mysterious operative called Naryu has been investigating the evidence I discovered at the Maulborn camp.",
+		),
+	1437 => array(
+			'name'    => "General Godrun's Orders",
+			'journal' => "The Clan Murtag Orcs are fighting the Ironhand ogres in Shinji's Scarp. They've asked for my help.",
+		),
+	4569 => array(
+			'name'    => "Enemy Reinforcements",
+			'journal' => "<<1>> has received word that more Dremora are entering the city from the north.",
+		),
+	3357 => array(
+			'name'    => "The Labyrinth",
+			'journal' => "The final battle against Angof begins now. I need to get inside and navigate the labyrinth of catacombs to find a safe place for Gabrielle and the soldiers to teleport into.",
+		),
+	1477 => array(
+			'name'    => "Waste of the Wood",
+			'journal' => "Collect Wayward Branches for Alreal outside Elden Root.",
+		),
+	4210 => array(
+			'name'    => "Real Marines",
+			'journal' => "While in Silsailen, I learned that the imposters have taken real Auridon Marines captive.",
+		),
+	2839 => array(
+			'name'    => "Scout Bloodmayne Lumbermill",
+			'journal' => "I accepted a mission to scout Bloodmayne Lumbermill  for the Covenant.",
+		),
+	1485 => array(
+			'name'    => "They Dragged Him Away",
+			'journal' => "Adiel Charnis is distraught. Dreugh attacked her home in the Dreughside district, and her husband fought back. They wounded him and dragged him off toward their spawning pools. Adiel holds out hope her husband still lives.",
+		),
+	3912 => array(
+			'name'    => "Vigil's End",
+			'journal' => "After picking up an ancient sword in <<1>>, I learned an Ayleid knight's spirit haunts the ruins.",
+		),
+	4566 => array(
+			'name'    => "On to Glenumbra",
+			'journal' => "My actions have convinced Chief Tazgol to join the Daggerfall Covenant.",
+		),
+	4715 => array(
+			'name'    => "The Harvest Heart",
+			'journal' => "Vampires occupy the Orchard beyond the Chasm, somehow empowered by Molag Bal's Harvest Heart. The vampires need to be dealt with before our forces can push forward toward the planar vortex.",
+		),
+	1514 => array(
+			'name'    => "To Bug Musk Screal",
+			'journal' => "",
+		),
+	1515 => array(
+			'name'    => "To Nocent Abad",
+			'journal' => "",
+		),
+	4128 => array(
+			'name'    => "Mystery Metal",
+			'journal' => "Foreman Jomund discovered a mysterious metal in the mine. He hastily hid their research notes and the ore sample just as the Stormfists began taking over the mine.",
+		),
+	4495 => array(
+			'name'    => "A Service for the Dead",
+			'journal' => "I found the body of a House Redoran soldier. He carried a medallion inscribed with instructions for his retainer, Lladrelo.",
+		),
+	2889 => array(
+			'name'    => "Scout Warden Lumbermill",
+			'journal' => "I accepted a mission to scout Warden Lumbermill for the Pact.",
+		),
+	2871 => array(
+			'name'    => "Scout Faregyl Mine",
+			'journal' => "I accepted a mission to scout Faregyl Mine for the Pact.",
+		),
+	4720 => array(
+			'name'    => "The Den of Lorkhaj",
+			'journal' => "I have completed the first part of the Two Moons Path with the Lunar Champion. Now we must venture into the Den of Lorkhaj and complete the mystical journey.",
+		),
+	5565 => array(
+			'name'    => "A Secret Shame",
+			'journal' => "Treasure-hunting pirates have disturbed the undead necromancers in <<1>>. Now the great seal that kept them trapped has been weakened and the necromancers may soon be free to threaten all of Hew's Bane.",
+		),
+	5772 => array(
+			'name'    => "Uncaged",
+			'journal' => "Outside the ancient ruins of Skyreach Pinnacle, I met a member of the Scaled Court. He told me that the Court accidentally released creatures from magical wards the Nedes set up long ago. He plans to reestablish the wards, but he needs help.",
+		),
+	3907 => array(
+			'name'    => "Contract: Armando",
+			'journal' => "The Dark Brotherhood has given me a contract.",
+		),
+	4385 => array(
+			'name'    => "Lost in Study",
+			'journal' => "The Mages Guild is investigating a strange Ayleid ruin, which has recently become much more active than in years past.",
+		),
+	1517 => array(
+			'name'    => "To Loqueach",
+			'journal' => "",
+		),
+	4386 => array(
+			'name'    => "Heart of the Matter",
+			'journal' => "<<1>> uncovered information proving <<Ac:2>> is definitely located within <<Ac:3>>. She needs my help in recovering it.",
+		),
+	3245 => array(
+			'name'    => "Capture Faregyl Lumbermill",
+			'journal' => "I accepted a mission to help capture Faregyl Lumbermill for the Covenant.",
+		),
+	1518 => array(
+			'name'    => "To Nocent Abad",
+			'journal' => "",
+		),
+	2767 => array(
+			'name'    => "Scout Fort Warden",
+			'journal' => "I accepted a mission to scout Fort Warden for the Covenant.",
+		),
+	4204 => array(
+			'name'    => "Bath Time",
+			'journal' => "Dralof Waterwalker and his friends bathe in the hot springs south of Wittestadr. Their friend, Grida, went off to gather bath salts for the water, but she never returned.",
+		),
+	1519 => array(
+			'name'    => "To Sylvan Upland",
+			'journal' => "",
+		),
+	2702 => array(
+			'name'    => "Scout Farragut Mine",
+			'journal' => "I accepted a mission to scout Farragut Mine for the Dominion.",
+		),
+	4555 => array(
+			'name'    => "Blood Relations",
+			'journal' => "<<1>> and his cohorts have taken up residence in Spindleclutch. <<1>> has returned to find his home overrun, and his son <<2>> missing.",
+		),
+	5447 => array(
+			'name'    => "A King-Sized Problem",
+			'journal' => "King Kurog has given me a standing invitation to drink with him at the King's Cornerclub in Orsinium. I seemed to have impressed him, and he obviously needs someone to handle the more delicate problems facing his kingdom.",
+		),
+	2758 => array(
+			'name'    => "Scout Bloodmayne Lumbermill",
+			'journal' => "I accepted a mission to scout Bloodmayne Lumbermill  for the Dominion.",
+		),
+	4212 => array(
+			'name'    => "Torn Asunder",
+			'journal' => "I wandered into a strange rift between the living world and the land of the dead. Here, I met the spirit of Sonya Lastblood, who said that her husband killed her and her three daughters.",
+		),
+	1527 => array(
+			'name'    => "The Sower Reaps",
+			'journal' => "Arcady Charnis believes someone ordered men to plant dreugh eggs in the Dreughside neigborhood to cause the dreugh to attack.",
+		),
+	4222 => array(
+			'name'    => "Rites of the Queen",
+			'journal' => "Queen Ayrenn must perform the final ritual at Tanzelwil in the ancestral crypts. Malicious spirits plague this holy shrine and the traitorous Norion lurks somewhere in the shadows.",
+		),
+	1529 => array(
+			'name'    => "Azura's Guardian",
+			'journal' => "Abbot Durak took some Spirit Wardens up to the Cave of Dreams to find a way to deal with the largest fire in the fields. I should check up on them.",
+		),
+	2748 => array(
+			'name'    => "Scout Arrius Lumbermill",
+			'journal' => "I accepted a mission to scout Arrius Lumbermill  for the Dominion.",
+		),
+	1536 => array(
+			'name'    => "Fire in the Fields",
+			'journal' => "Bandits attacked Pariah Abbey and set its crops on fire.",
+		),
+	5067 => array(
+			'name'    => "Proprietary Formula",
+			'journal' => "Alchemist Nilyne Hlor doesn't trust the proprietary formula the Maulborn use to make their curative. She wants to examine a few bottles so she can determine how the elixir is made.",
+		),
+	2851 => array(
+			'name'    => "Scout Drakelowe Keep",
+			'journal' => "I accepted a mission to scout Drakelowe Keep for the Pact.",
+		),
+	4716 => array(
+			'name'    => "The Shurgak Job",
+			'journal' => "<<1>> asked me to deliver a message to his brother <<2>> in <<3>>.",
+		),
+	2753 => array(
+			'name'    => "Scout Alessia Lumbermill",
+			'journal' => "I accepted a mission to scout Alessia Lumbermill  for the Dominion.",
+		),
+	5508 => array(
+			'name'    => "Scouting the Arboretum",
+			'journal' => "My Alliance needs scouts to secure rally points across the Imperial City.",
+		),
+	1541 => array(
+			'name'    => "A Prison of Sleep",
+			'journal' => "Bandits set fires in the fields to distract the Spirit Wardens. While the wardens were outside fighting the fires, the thieves stole a priceless relic: the Dream Shard.",
+		),
+	2906 => array(
+			'name'    => "Scout Black Boot Lumbermill",
+			'journal' => "I accepted a mission to scout Black Boot Lumbermill for the Pact.",
+		),
+	3471 => array(
+			'name'    => "Kill twenty Enemy Guards",
+			'journal' => "",
+		),
+	3104 => array(
+			'name'    => "Capture Ash Farm",
+			'journal' => "I accepted a mission to help capture Ash Farm for the Pact.",
+		),
+	2925 => array(
+			'name'    => "Capture Blue Road Keep",
+			'journal' => "I accepted a mission to help capture Blue Road Keep for the Dominion.",
+		),
+	1554 => array(
+			'name'    => "Blood Revenge",
+			'journal' => "A Goblin tribe has invaded Cumberland's Watch. A soldier asked me to help fight them off.",
+		),
+	5093 => array(
+			'name'    => "Moons Over Grimwatch",
+			'journal' => "A moon priest named Thalinfar told me that I was needed at Fort Grimwatch, to the north of Rawl'kha.",
+		),
+	2068 => array(
+			'name'    => "The Dreugh Threat",
+			'journal' => "Dreugh are mysteriously attacking the Dreughside district. Sergeant Stegine is organizing a defense. I should lend my aid.",
+		),
+	1562 => array(
+			'name'    => "A Father's Plea",
+			'journal' => "A few days ago some men attacked Jordel Trueblade and his family.  They killed his wife, took his children and left him for dead.  You must find his children.",
+		),
+	4620 => array(
+			'name'    => "Cast Adrift",
+			'journal' => "The shoreline of <<1>> is lined with the shattered hulls of Aldmeri Dominion sailing vessels. Equipment and personnel are scattered along the beach.",
+		),
+	3784 => array(
+			'name'    => "Repairing the Cage",
+			'journal' => "A Daedric creature is loose in Bonesnap Ruins, and <<1>> has found a way to contain the creature by repairing a Welkynd Stone that's been damaged by invading Goblins.",
+		),
+	1568 => array(
+			'name'    => "A Means to an End",
+			'journal' => "The Goblins attacked Cumberland's Watch because Captain Rama raised their sacred totem over one of the towers as a challenge. Commander Kurt has sent me to take it down.",
+		),
+	2222 => array(
+			'name'    => "Alasan's Plot",
+			'journal' => "An army of Withered Hand soldiers necromancers attacked Tava's Blessing and killed everyone. Whatever they are planning here, I plan to stop them.",
+		),
+	5099 => array(
+			'name'    => "Trial of Martial Knowledge",
+			'journal' => "",
+		),
+	3153 => array(
+			'name'    => "Capture Roebeck Lumbermill",
+			'journal' => "I accepted a mission to help capture Roebeck Lumbermill for the Pact.",
+		),
+	1591 => array(
+			'name'    => "Injured Spirit Wardens",
+			'journal' => "I found an injured Spirit Warden in Pariah Abbey's fields. Falice Menoit said she was attacked by Midnight Union outlaws. She'll be fine, but she's worried about others who were injured in the attack.",
+		),
+	4606 => array(
+			'name'    => "Keepers of the Shell",
+			'journal' => "",
+		),
+	1633 => array(
+			'name'    => "The Return of the Dream Shard",
+			'journal' => "Now that I've retrieved the Dream Shard, I can finally return it to the Spirit Wardens at Pariah Abbey.",
+		),
+	4002 => array(
+			'name'    => "Sparking the Flame",
+			'journal' => "I've helped the community leaders of Bleakrock Village. Rana's preparing the villagers to evacuate.",
+		),
+	1637 => array(
+			'name'    => "Divert and Deliver",
+			'journal' => "Slavers are using Steelheart Moorings as their base of operations and they're holding some sailors who they recently captured. The first mate has asked me to help free the sailors from the slavers' clutches.",
+		),
+	3201 => array(
+			'name'    => "Capture Arrius Farm",
+			'journal' => "I accepted a mission to help capture Arrius Farm for the Covenant.",
+		),
+	1639 => array(
+			'name'    => "Another Omen",
+			'journal' => "After I returned the Dream Shard to Pariah Abbey, Abbot Durak told me of concerns that Vaermina also works to destabilize the eastern region of Gavaudon. I'm to warn High King Emeric and then meet Durak at Shinjis's Scarp.",
+		),
+	3228 => array(
+			'name'    => "Capture Castle Black Boot",
+			'journal' => "I accepted a mission to help capture Castle Black Boot for the Covenant.",
+		),
+	2865 => array(
+			'name'    => "Scout Arrius Mine",
+			'journal' => "I accepted a mission to scout Arrius Mine for the Pact.",
+		),
+	4344 => array(
+			'name'    => "Like Moths to a Candle",
+			'journal' => "The Sea Drakes have captured friends of <<1>>. They're being held at <<2>>.",
+		),
+	3917 => array(
+			'name'    => "Enlightenment Needs Salt",
+			'journal' => "Nojaxia wants to join the Mages Guild in Ebonheart. She's trying to create an elixir that replicates the visions an Argonian receives after licking a Hist Tree.",
+		),
+	1678 => array(
+			'name'    => "The Slumbering Farmer",
+			'journal' => "Supernal Dreamers have attacked the Vanne Farm and captured the owner, Ingride Vanne, with the intention of subjecting her to some dark ritual.",
+		),
+	2683 => array(
+			'name'    => "Scout Blue Road Keep",
+			'journal' => "I accepted a mission to scout Blue Road Keep for the Dominion.",
+		),
+	5570 => array(
+			'name'    => "Everyone Has A Price",
+			'journal' => "Walks-Softly wants some more of my help with the situation involving his old friend, Anais Velmont. The letter he left indicates he's come up with a solution that he wants to run by me.",
+		),
+	4884 => array(
+			'name'    => "The Lightless Remnant",
+			'journal' => "We've taken control of the Shrouded Pass and the way to the Doomcrag is open. The time has come to make our final assault and reach Montclair and  the cursed relic known as the Lightless Remnant.",
+		),
+	3402 => array(
+			'name'    => "Kill an Ebonheart Player",
+			'journal' => "",
+		),
+	1687 => array(
+			'name'    => "False Knights",
+			'journal' => "Bandits are disguising themselves as Knights of the Flame and robbing people on the road to Wrothgar. I promised Sir Graham I'd get the tabards back.",
+		),
+	4395 => array(
+			'name'    => "Enemies at the Gate",
+			'journal' => "I met the Wood Orcs of <<1>> in <<2>>. They have come under attack from raiders and gradually weakened by an unknown source. I should work with <<3>> to track down the source.",
+		),
+	1706 => array(
+			'name'    => "Slay the Summoner",
+			'journal' => "A daedric cultist is summoning scamps in the vault directly west of King Faume's grave.",
+		),
+	2901 => array(
+			'name'    => "Scout Drakelowe Lumbermill",
+			'journal' => "I accepted a mission to scout Drakelowe Lumbermill for the Pact.",
+		),
+	4758 => array(
+			'name'    => "The Final Assault",
+			'journal' => "The final assault to end the Planemeld is at hand. We need to fight our way through Molag Bal's defenses and reach the portal to the planar vortex. Only then can we end this threat and save our world.",
+		),
+	2898 => array(
+			'name'    => "Scout Kingscrest Lumbermill",
+			'journal' => "I accepted a mission to scout Kingscrest Lumbermill for the Pact.",
+		),
+	4255 => array(
+			'name'    => "Ensuring Security",
+			'journal' => "I arrived in the city of Vulkhel Guard, gateway to Auridon. Security is tight as Queen Ayrenn, the new leader of the Aldmeri Dominion, prepares to make a public appearance.",
+		),
+	1709 => array(
+			'name'    => "Rozenn's Dream",
+			'journal' => "The Supernal Dreamers also took Ingride's daughter, <<1>>, and they're apparently planning a similar ritual using her as the vessel for some daedric spirit. I promised Ingride I would stop them.",
+		),
+	4078 => array(
+			'name'    => "A Council of Thanes",
+			'journal' => "The Dark Elves and Argonians are finally willing to work with Prince Irnskar and meet in a council of war. Now the Prince wants me to convince the Eastmarch thanes to attend the war council as well.",
+		),
+	2731 => array(
+			'name'    => "Scout Farragut Farm",
+			'journal' => "I accepted a mission to scout Farragut Farm for the Dominion.",
+		),
+	4462 => array(
+			'name'    => "The Dead King",
+			'journal' => "The Worm Cult has invaded the ruins of Rulanyil's Fall, intent on raising an Ayleid warlord from the dead. <<1>> wants to ensure the body is not disturbed.",
+		),
+	3615 => array(
+			'name'    => "Wake the Dead",
+			'journal' => "An Argonian named Onuja has come to Othrenis. He wants to know how to rebind the Brother of Strife. He's hoping to contact the spirit of Mavos Siloreth, an ancient Dunmer scribe buried in the area.",
+		),
+	1735 => array(
+			'name'    => "Unanswered Questions",
+			'journal' => "Though the Omen of Fear has been dealt with and Alcaire is free of its influence, Duke Nathaniel is concerned. He's asked me to go seek the counsel of a Spirit Warden named Muran-to see if he can explain what happened.",
+		),
+	5305 => array(
+			'name'    => "Pledge: Blackheart Haven",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the island of Blackheart Haven in Iliac Bay.",
+		),
+	1749 => array(
+			'name'    => "A Miner's Vengeance",
+			'journal' => "I am to summon and kill the Dremora that slayed the miners, then report to Brek after the deed is done. The artifact to summon it should be near the tower on the hill. I can navigate through the mines to find a way there.",
+		),
+	3130 => array(
+			'name'    => "Capture Farragut Mine",
+			'journal' => "I accepted a mission to help capture Farragut Mine for the Pact.",
+		),
+	1799 => array(
+			'name'    => "A City in Black",
+			'journal' => "The city of Evermore is in dire straits. King Eamond is dead, and a Reachmen army marches toward the city gates even now. The people of Evermore need help, and they need hope.",
+		),
+	1802 => array(
+			'name'    => "Mistress of the Lake",
+			'journal' => "Followers of Hermaeus Mora have come to secure the ancient Ayleid ruins at Lake Halcyon, but they say a mysterious entity inhabiting the ruins has enslaved local villagers and is trying to subvert the laws of nature.",
+		),
+	5520 => array(
+			'name'    => "Flames of Forge and Fallen",
+			'journal' => "Before he died, I met an Orc named <<1>>. He belonged to a holy order that lights Malacath's pyre once every decade, but was ambushed before he could do so. I swore to head to the heart of Old Orsinium and light Malacath's pyre.",
+		),
+	2613 => array(
+			'name'    => "The Elder Scroll of Alma Ruma",
+			'journal' => "Grand Warlord Zimmeron is ordering Pact soldiers to capture the <<1>>.",
+		),
+	4982 => array(
+			'name'    => "We Live In Fear",
+			'journal' => "",
+		),
+	3333 => array(
+			'name'    => "Risen From the Depths",
+			'journal' => "The Sentinel Docks have been overrun with undead and the guards don't appear to be doing anything in response. I told Captain Marck I would try to find out what's going on.",
+		),
+	2983 => array(
+			'name'    => "Capture Drakelowe Lumbermill",
+			'journal' => "I accepted a mission to help capture Drakelowe Lumbermill for the Dominion.",
+		),
+	1803 => array(
+			'name'    => "The Water Stone",
+			'journal' => "The nereid of Halcyon Lake is trying to save the lake from eventually drying up by using ancient and forbidden secrets to create a Water Stone. Hermaeus Mora cultists called Primeval Seekers are trying to stop her, but I've agreed to help her.",
+		),
+	1815 => array(
+			'name'    => "Greg's Training Quest",
+			'journal' => "So-and-so has asked that you do something cool. Won't you do something cool.",
+		),
+	4318 => array(
+			'name'    => "Into the Outside",
+			'journal' => "I found a note on the charred corpse of an assassin who was sent to kill a mage named Malsia. She stole Dwarven artifacts and plans to open a portal to someplace. The Mages Guild wants her dead.",
+		),
+	3191 => array(
+			'name'    => "Reclaiming the Elements",
+			'journal' => "Angof's Bloodthorn cultists threaten the Wyrd Tree. I should help the Beldama Wyrd save the tree.",
+		),
+	1834 => array(
+			'name'    => "Heart of Evil",
+			'journal' => "The only way to ensure Evermore's security and drive the Reachmen from northern Bangkorai is to defeat their leader, the Hagraven Uela. I have agreed to help the Wyresses in Jackdaw Cove toward this end.",
+		),
+	5552 => array(
+			'name'    => "The Shark's Teeth",
+			'journal' => "Shark's Teeth Grotto has been overrun by pirates and Shalug needs some help dealing with them.",
+		),
+	5318 => array(
+			'name'    => "The Hidden Harvest",
+			'journal' => "The Orsimer army needs to get into Frostbreak Fortress to find and destroy the source of the briarheart warriors, but the Winterborn's defense are too strong. Between the briarhearts and the harpies, they can't breach the walls.",
+		),
+	2887 => array(
+			'name'    => "Scout Black Boot Farm",
+			'journal' => "I accepted a mission to scout Black Boot Farm for the Pact.",
+		),
+	4266 => array(
+			'name'    => "The First Patient",
+			'journal' => "Velatosse is suspicious about the plague's origins. She's asked me to look into the source of this mysterious illness.",
+		),
+	1835 => array(
+			'name'    => "The Last Spriggan",
+			'journal' => "The Reachmen at Jackdaw Cove are corrupting the spriggans and transforming them into monstrous lurchers.",
+		),
+	3353 => array(
+			'name'    => "The Nature of Fate",
+			'journal' => "An old Redguard sitting in the desert is contemplating fate. He believes all of our actions are predetermined.",
+		),
+	2692 => array(
+			'name'    => "Scout Rayles Mine",
+			'journal' => "I accepted a mission to scout Rayles Mine for the Dominion.",
+		),
+	5569 => array(
+			'name'    => "A Cordial Collaboration",
+			'journal' => "The assassin Naryu Virian must kill a Dark Elf noble in Kvatch to fulfill a contract for her shadowy organization. However, she doesn't want to attract the attention of the Dark Brotherhood as she completes her work, so she asked for my help.",
+		),
+	3688 => array(
+			'name'    => "Unwelcome Guests",
+			'journal' => "<<1>> says some mercenaries in Stormhold are stirring up trouble between the Dark Elves and Argonians.",
+		),
+	1839 => array(
+			'name'    => "Box Clicking For the Win!",
+			'journal' => "So and so has asked that you travel to the big red box and do some stuff!",
+		),
+	2852 => array(
+			'name'    => "Scout Castle Alessia",
+			'journal' => "I accepted a mission to scout Castle Alessia for the Pact.",
+		),
+	2016 => array(
+			'name'    => "Hallin's Burden",
+			'journal' => "Hallin's Stand is under the control of the Seventh Legion, an Imperial military force.",
+		),
+	2691 => array(
+			'name'    => "Scout Warden Mine",
+			'journal' => "I accepted a mission to scout Warden Mine  for the Dominion.",
+		),
+	5068 => array(
+			'name'    => "Quest for the Cure",
+			'journal' => "",
+		),
+	3399 => array(
+			'name'    => "Kill a Daggerfall Player",
+			'journal' => "",
+		),
+	2017 => array(
+			'name'    => "The Lion's Den",
+			'journal' => "Yarah needs to discover the identity of whomever betrayed Hallin's Stand and allowed the Seventh Legion to enter the city.",
+		),
+	4443 => array(
+			'name'    => "To Alcaire Castle",
+			'journal' => "<<1>> has expressed concerns about events unfolding at Alcaire Castle. She asked me to go there and see if I can help.",
+		),
+	2853 => array(
+			'name'    => "Scout Castle Faregyl",
+			'journal' => "I accepted a mission to scout Castle Faregyl for the Pact.",
+		),
+	2902 => array(
+			'name'    => "Scout Alessia Lumbermill",
+			'journal' => "I accepted a mission to scout Alessia Lumbermill for the Pact.",
+		),
+	4629 => array(
+			'name'    => "Secrets Revealed",
+			'journal' => "I found a letter on the body of a bounty hunter. It mentions a woman named Wardiya in Bruma.",
+		),
+	4291 => array(
+			'name'    => "The Summer Site",
+			'journal' => "Falinesti Summer Site is a legendary seasonal location for the Wood Elves' Walking City. But the city hasn't been seen in Tamriel for centuries. Now, something is happening at the Summer Site.",
+		),
+	3898 => array(
+			'name'    => "Proving the Deed",
+			'journal' => "The Council of Province Generals has ordered an investigation into the death of the former Guildmaster, Jofnir Iceblade.",
+		),
+	3745 => array(
+			'name'    => "Stolen Crystal",
+			'journal' => "Supernal Dreamers stole a crystal from Geoffrey Stictal and broke it into multiple pieces. He wants me to retrieve the pieces from them.",
+		),
+	2018 => array(
+			'name'    => "A Thirst for Revolution",
+			'journal' => "Ufa the Red Asp and I must work together to locate the traitor identified by Captain Dhakir's men in order to save the grandeya of Hallin's Stand from execution.",
+		),
+	4452 => array(
+			'name'    => "Reap What Is Sown",
+			'journal' => "<<1>> has come to <<2>> to find out why the Drublog attacked Velyn Harbor.",
+		),
+	2046 => array(
+			'name'    => "Dreams to Nightmares",
+			'journal' => "Cultists called Supernal Dreamers are up to no good in Moonlit Maw. Master Muzgu, a monk from Pariah Abbey, led other monks here to stop them. But they were ambushed by the cultists.",
+		),
+	4151 => array(
+			'name'    => "A Bitter Pill",
+			'journal' => "<<1>> does not believe <<2>>'s story about <<3>> becoming infected. Something isn't right.",
+		),
+	2047 => array(
+			'name'    => "The Gate to Quagmire",
+			'journal' => "The Supernal Dreamers performed a ritual on Muzgu that infused a Daedric spirit into his body. He's contained it for now, but it's gaining strength. If the spirit takes control of him, it will combine its powerful magic with his own. Many will die.",
+		),
+	5489 => array(
+			'name'    => "The Lock and the Legion",
+			'journal' => "The Drake of Blades' contact in Legion Zero has not checked in for weeks. The Drake has requested that I go try to establish contact myself.",
+		),
+	2867 => array(
+			'name'    => "Scout Farragut Mine",
+			'journal' => "I accepted a mission to scout Farragut Mine for the Pact.",
+		),
+	2130 => array(
+			'name'    => "Rise of the Dead",
+			'journal' => "An army of undead swarmed from the sea and attacked the Sentinel Docks. Watch Captain Zafira has asked me to inform King Fahara'jad.",
+		),
+	4768 => array(
+			'name'    => "Scars Never Fade",
+			'journal' => "Dominion soldiers erected barricades around a tribe of Argonian refugees living in <<c:1>>. <<2>> needs help resolving the Argonians' situation.",
+		),
+	2146 => array(
+			'name'    => "The Impervious Vault",
+			'journal' => "Prince Azah says the necromancers of the Withered Hand are tunneling into the Impervious Vault to steal powerful relics known as the Ansei Wards. We must try to stop them.",
+		),
+	4354 => array(
+			'name'    => "The Endless War",
+			'journal' => "I discovered the Cliffs of Failure, where Molag Bal's failed servants compete to get back into his good graces. Lost members of the Mages Guild have been ensnared in this twisted game, and I need to join in to save them.",
+		),
+	3213 => array(
+			'name'    => "Capture Fort Rayles",
+			'journal' => "I accepted a mission to help re-capture Fort Rayles for the Covenant.",
+		),
+	2880 => array(
+			'name'    => "Scout Aleswell Farm",
+			'journal' => "I accepted a mission to scout Aleswell Farm for the Pact.",
+		),
+	2161 => array(
+			'name'    => "Monkey Magic",
+			'journal' => "I met a talking monkey in Sentinel. The monkey claims he's really an Orc and that he was tricked by a Khajiit potion-maker named Unishi. He wants to be changed back.",
+		),
+	3001 => array(
+			'name'    => "Farlivere's Gambit",
+			'journal' => "The Red Rooks attacked a caravan and escaped to a noble's house on the outskirts of Daggerfall, where they've taken hostages. Captain Farlivere of the Daggerfall Guard has ordered her soldiers to surround the estate.",
+		),
+	4858 => array(
+			'name'    => "Hope Lost",
+			'journal' => "The hamlet of Moira's Hope has met with disaster. Bloodfiends fill the streets, and the few survivors that remain are trying desperately to stay alive. I agreed to help Adusa-daro provide aid and find out who is behind this attack.",
+		),
+	2184 => array(
+			'name'    => "Tu'whacca's Breath",
+			'journal' => "The Withered Hand has taken over Tu'whacca's Throne and begun using the Ansei Wards to raise the consecrated remains of fallen heroes. I agreed to help the Throne Keeper activate defenses to cleanse the temple.",
+		),
+	2187 => array(
+			'name'    => "Revered Ancestors",
+			'journal' => "The dead have risen at Tu'whacca's Throne, and an Ash'abah here is particularly worried that three ancient heroes have been raised. I agreed to visit their graves, and if they have been raised, then I will kill them.",
+		),
+	4942 => array(
+			'name'    => "The Spider's Cocoon",
+			'journal' => "I met a man named Beryn in the woods, recovering from an epic drinking bout at his camp. He's worried because he fears his friend <<1>> has wandered into a nearby spider cave on a dare.",
+		),
+	2881 => array(
+			'name'    => "Scout Dragonclaw Farm",
+			'journal' => "I accepted a mission to scout Dragonclaw Farm for the Pact.",
+		),
+	5941 => array(
+			'name'    => "The Jester's Festival",
+			'journal' => "I received an invitation to celebrate a festival of fools and foolishness across Tamriel.",
+		),
+	3702 => array(
+			'name'    => "The Soldier's Alibi",
+			'journal' => "I encountered a captive Dark Elf soldier named Saryvn in the ruins beneath Tal'Deic Fortress. He was captured by the Maulborn while he was avoiding his duties.",
+		),
+	2192 => array(
+			'name'    => "A Reckoning with Uwafa",
+			'journal' => "The Throne Keeper and I have lit the sacred braziers at the cardinal points of the temple. When we light the final brazier, Tu'whacca should send his \"Breath\" to come and help us cleanse the temple. Then we can kill Uwafa and recover the Ansei Wards.",
+		),
+	4061 => array(
+			'name'    => "One Victor, One King",
+			'journal' => "Fildgor, King Jorunn's exiled brother, has returned to Skyrim. Nords from the Stormfist clan, loyal to Fildgor, have infiltrated the Konunleikar to get close to King Jorunn.",
+		),
+	3398 => array(
+			'name'    => "Scout the Mine",
+			'journal' => "",
+		),
+	4514 => array(
+			'name'    => "The Spearhead's Crew",
+			'journal' => "Captain Kaleen's cabin girl, Nicolene, informed me that Kaleen's crew is ready to start the heist as soon as I'm done recruiting.",
+		),
+	3040 => array(
+			'name'    => "Vital Inheritance",
+			'journal' => "<<1>> was the sole survivor of the Bloodthorn cult's attack on the Aldcroft lighthouse. She asked me to retrieve her father's pipe from his cottage so she will have something to remember him by.",
+		),
+	2193 => array(
+			'name'    => "The Scholar of Bergama",
+			'journal' => "Throne Keeper Farvad says I should continue my search for the remaining Ansei Wards in Bergama to the east.",
+		),
+	4738 => array(
+			'name'    => "Song of the Spinner",
+			'journal' => "I discovered a Spinner named Melrethel imprisoned in the cellars of the Vile Manse. She claims to be from the Wood Elf village that Graccus razed and built his manor upon.",
+		),
+	2240 => array(
+			'name'    => "Shiri's Research",
+			'journal' => "The scholar's apprentice Shiri has studied a book from among Alasan's possessions. Shiri suggests I begin my search for the third Ansei Ward in HoonDing's Watch.",
+		),
+	2251 => array(
+			'name'    => "Gone Missing",
+			'journal' => "People are disappearing from the streets of Bergama, and I've decided to help investigate the matter.",
+		),
+	5006 => array(
+			'name'    => "To Velyn Harbor",
+			'journal' => "With <<1>> dead-again-and the new Silvenar revealed, <<2>> asked me to head to <<3>> in <<4>>. The Aldmeri Dominion needs to prepare for the wedding between the Green Lady and the newly-discovered Silvenar.",
+		),
+	4898 => array(
+			'name'    => "Rising Against Onsi's Breath",
+			'journal' => "Onsi's Breath was captured by Imperial soldiers who hold its inhabitants captive.",
+		),
+	3757 => array(
+			'name'    => "Rescuing Leonar",
+			'journal' => "I found Lord Geoffroi's son trapped in a cage.",
+		),
+	2255 => array(
+			'name'    => "Crawling Chaos",
+			'journal' => "Once the mines were a prime spot for prospectors, but with the influx of spiders, they've been shut down for safety reasons.",
+		),
+	6070 => array(
+			'name'    => "Nibbles and Bits",
+			'journal' => "The Bursar of Tributes seeks items of flesh to add to the Blackfeather Court's hoard.",
+		),
+	2344 => array(
+			'name'    => "Snakes in the Sands",
+			'journal' => "A caravan was attacked by snakes at the oasis near Ogre's Bluff. The caravan guard is afraid of snakes and asked me to return and help the members of the caravan.",
+		),
+	2356 => array(
+			'name'    => "March of the Ra Gada",
+			'journal' => "The spirits of HoonDing's Watch have awoken to test me. I must vanquish the spirits of the Redguards' ancient foes and claim their essence to summon their leaders.",
+		),
+	2364 => array(
+			'name'    => "Feathered Fiends",
+			'journal' => "Kozanset, a small settlement in the deserts of Alik'r, is having harpy troubles.",
+		),
+	2403 => array(
+			'name'    => "The Search for Shiri",
+			'journal' => "Shiri, the scholar's apprentice, has disappeared along with the text she recovered from Tava's Blessing. I've agreed to help find Shiri … and the text.",
+		),
+	5793 => array(
+			'name'    => "Dark Anchors in Auridon",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Auridon.",
+		),
+	2404 => array(
+			'name'    => "Imperial Incursion",
+			'journal' => "Imperial forces have seized control of Satakalaam. King Fahara'jad's army is here to take the city back, but General Thoda needs to rescue four hostages the Imperials are holding first.",
+		),
+	6134 => array(
+			'name'    => "The New Life Festival",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of the New Life Festival celebrated across Tamriel.",
+		),
+	2408 => array(
+			'name'    => "In Search of the Ash'abah",
+			'journal' => "The Withered Hand stole the Ansei Wards, ancient swords that protect Alik'r from necromancy. King Fahara'jad has asked me to enlist the aid of the Ash'abah, a tribe of dishonored warriors who fight the undead.",
+		),
+	2741 => array(
+			'name'    => "Scout Warden Lumbermill",
+			'journal' => "I accepted a mission to scout Warden Lumbermill  for the Dominion.",
+		),
+	5110 => array(
+			'name'    => "Gem of the Stars",
+			'journal' => "",
+		),
+	5825 => array(
+			'name'    => "Madness in Malabal Tor",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Malabal Tor.",
+		),
+	2436 => array(
+			'name'    => "One Last Game",
+			'journal' => "In the Wayrest graveyard, I found the last Will and Testament of a scholar named Frodibert Fontbonne. Frodibert challenged his son Donel to solve a riddle to claim his inheritance. Donel gave up, but maybe I can solve the riddle.",
+		),
+	2450 => array(
+			'name'    => "A Woman Wronged",
+			'journal' => "Serge Arcole asked me to help him incapacitate the smugglers. Then I'm to search the counting house for clues as to where Miranda's being held.",
+		),
+	4831 => array(
+			'name'    => "The Harborage",
+			'journal' => "The Prophet contacted me through a magical projection. He asked me to seek out a place called the Harborage, where he has taken refuge. I should go to him and ensure that he is safe.",
+		),
+	2451 => array(
+			'name'    => "A Ransom for Miranda",
+			'journal' => "Serge Arcole says the Midnight Union is holding his wife, Miranda, for ransom. He wants me to collect some items and bring them to him so he can bargain from a position of strength.",
+		),
+	3533 => array(
+			'name'    => "The Waking Darkness",
+			'journal' => "Corpses are crawling out of the ground at Pelin Graveyard and taking up arms. Prince Adrien was to be entombed here.",
+		),
+	2688 => array(
+			'name'    => "Scout Castle Brindle",
+			'journal' => "I accepted a mission to scout Castle Brindle for the Dominion.",
+		),
+	3174 => array(
+			'name'    => "A Lingering Hope",
+			'journal' => "General Gautier believes his son Darien, the Captain of the Camlorn Guard is still alive inside the city. He hopes to use Darien's master key to unlock the Camlorn gates. Then the Lion Guard can surround Faolchu's werewolves and retake the city.",
+		),
+	2481 => array(
+			'name'    => "The Debt Collector's Debts",
+			'journal' => "S'rashi works for the Midnight Union in Wayrest, but he's gotten himself in trouble. He owes money to his boss and needs help getting the gold together as fast as possible.",
+		),
+	3717 => array(
+			'name'    => "King of Dust",
+			'journal' => "The Dominion is searching for a keystone in <<1>>. I need to find it before they do.",
+		),
+	2488 => array(
+			'name'    => "A Gang of Thugs",
+			'journal' => "I stopped some thugs from robbing an innocent man in Wayrest. I found a bag of stolen items on them.",
+		),
+	5116 => array(
+			'name'    => "Elemental Army",
+			'journal' => "The Celestial Thief appeared to me and asked for my help discovering why the atronachs that were summoned to destroy the Dark Anchors turned against the mages of Craglorn.",
+		),
+	2494 => array(
+			'name'    => "Can't Leave Without Her",
+			'journal' => "The Vanne Farm has been overrun by Supernal Dreamer cultists and daedra. Phinis Vanne is simply trying to escape, but his sister has barricaded herself in the house. He asked me to persuade her to leave.",
+		),
+	2495 => array(
+			'name'    => "The Signet Ring",
+			'journal' => "<<1>> wants his father's signet ring, and he's tasked me with getting it. If I can retrieve the ring, he says I can name my reward. The Dream Shard, perhaps?",
+		),
+	4722 => array(
+			'name'    => "Welcome to Cyrodiil",
+			'journal' => "I've arrived in Cyrodiil, ready to help the Pact win the war.",
+		),
+	2801 => array(
+			'name'    => "Scout Brindle Mine",
+			'journal' => "I accepted a mission to scout Brindle Mine for the Covenant.",
+		),
+	2826 => array(
+			'name'    => "Scout Aleswell Lumbermill",
+			'journal' => "I accepted a mission to scout Aleswell Lumbermill  for the Covenant.",
+		),
+	3131 => array(
+			'name'    => "Capture Blue Road Mine",
+			'journal' => "I accepted a mission to help capture Blue Road Mine for the Pact.",
+		),
+	4994 => array(
+			'name'    => "Imperial Curiosity",
+			'journal' => "The Imperials in Southern Bangkorai have set up some sort of dig around an ancient Redguard ruin called the Hall of Heroes.",
+		),
+	2496 => array(
+			'name'    => "Evidence Against Adima",
+			'journal' => "<<1>> believes that <<2>> is controlling her son, Hosni. If she can get proof that Adima is behind his actions, then she'll have the evidence she needs to prove her son's innocence.",
+		),
+	5764 => array(
+			'name'    => "The Truer Fangs",
+			'journal' => "Safa al-Satakalaam, a priest of Satakal, is at odds with the Scaled Court. Three of her most powerful acolytes have deserted her to worship the Celestial Serpent. She wants me to punish these traitors and deny their power to the Scaled Court.",
+		),
+	2497 => array(
+			'name'    => "Saving Hosni",
+			'journal' => "<<1>> believes Adima controls Hosni through his dreams. She thinks I can save her son, Hosni, by entering his dreams as well.",
+		),
+	2713 => array(
+			'name'    => "Scout Farm 3",
+			'journal' => "",
+		),
+	2866 => array(
+			'name'    => "Scout Kingscrest Mine",
+			'journal' => "I accepted a mission to scout Kingscrest Mine for the Pact.",
+		),
+	4223 => array(
+			'name'    => "Corruption Stones",
+			'journal' => "Strange stones emanating necromantic energy have appeared on the sacred grounds of Tanzelwil. Priestess Langwe believes they might be tied to the disturbed demeanor of the Ancestral Spirits.",
+		),
+	3918 => array(
+			'name'    => "Circus of Cheerful Slaughter",
+			'journal' => "Sheogorath's book is supposed to lead me to the next trial, the \"<<1>>.\" Let's see what the Mad God has planned for me this time.",
+		),
+	5259 => array(
+			'name'    => "Crafting Certification",
+			'journal' => "Master crafters are offering free training and certification in their professions. Crafting certification will allow me to fulfill crafting writs.",
+		),
+	2536 => array(
+			'name'    => "Plowshares to Swords",
+			'journal' => "Dro-Dara asked me to talk to the warrior Knarstygg about abandoning the plantation.",
+		),
+	2537 => array(
+			'name'    => "King Aphren's Sword",
+			'journal' => "The mage Blaise Pamarc asked me to recover the artifact, King Aphren's Sword, from the ruins. There's just one problem: the spirits have awakened and block my path.",
+		),
+	2538 => array(
+			'name'    => "Gift from a Suitor",
+			'journal' => "After escaping from the mirror, the countess is asking me to help her uncover which of her suitors actually gave her a gift that turned out to be a trap.",
+		),
+	2756 => array(
+			'name'    => "Scout Brindle Lumbermill",
+			'journal' => "I accepted a mission to scout Brindle Lumbermill  for the Dominion.",
+		),
+	3752 => array(
+			'name'    => "A Storm Broken",
+			'journal' => "Pash-Riha hasn't returned to town yet. She's still hunting a Covenant lieutenant. Seven-Bellies is concerned for her safety. He believes she may be hunting southwest of the town.",
+		),
+	2549 => array(
+			'name'    => "Abominations from Beyond",
+			'journal' => "I encountered a Priestess of Stendarr who said yonder rocky hill crowned with ruins has been occupied by infernal abominations. They've captured several locals for nefarious purposes; I volunteered to rescue them.",
+		),
+	2550 => array(
+			'name'    => "Curse of Skulls",
+			'journal' => "I found a skull in some old ruins on a hill outside Wayrest. It spoke to me. It claims to be cursed, forced to serve as the eyes of Molag Bal. It begged me to destroy it and all others like it upon the charnel heap in the tower.",
+		),
+	4277 => array(
+			'name'    => "Silent Village",
+			'journal' => "I discovered a statue outside the small town of Shattered Grove. The statue is remarkably lifelike and warm to the touch.",
+		),
+	4335 => array(
+			'name'    => "Pride of the Lion Guard",
+			'journal' => "",
+		),
+	2729 => array(
+			'name'    => "Scout Arrius Farm",
+			'journal' => "I accepted a mission to scout Arrius Farm for the Dominion.",
+		),
+	2552 => array(
+			'name'    => "Army at the Gates",
+			'journal' => "King Fahara'jad of Alik'r has sent an army to Alcaire Castle. They claim to be on a diplomatic mission, but the Knights of the Flame believe otherwise. This situation could threaten the very fabric of the Daggerfall Covenant.",
+		),
+	4657 => array(
+			'name'    => "The Spinner's Tale",
+			'journal' => "Though Aranias was sent by the Veiled Heritance to kill him, the Wilderking believes she has actually come for another reason, and that our destinies are intertwined.",
+		),
+	2553 => array(
+			'name'    => "Bones of a Ghost",
+			'journal' => "The miner Gathan was trapped inside <<1>> when the Daedra suddenly appeared. Unable to escape, he was caught by the creatures and dismembered. His restless ghost is now bound to haunt the cavern where he died so long as his body remains unburied.",
+		),
+	2733 => array(
+			'name'    => "Scout Drakelowe Farm",
+			'journal' => "I accepted a mission to scout Drakelowe Farm for the Dominion.",
+		),
+	2556 => array(
+			'name'    => "False Accusations",
+			'journal' => "A Knight of the Flame claims to have been put in the stocks unjustly. I need to convince the constable to release her.",
+		),
+	2561 => array(
+			'name'    => "A Family Affair",
+			'journal' => "The Nurin family needs help. They awoke this morning to find their farm burning, overrun by dremora, and the father, William Nurin, is missing. I volunteered to help find him.",
+		),
+	2564 => array(
+			'name'    => "Two Sides to Every Coin",
+			'journal' => "<<1>> needs someone to take a message to the leader of the Redguard camp outside  the gates. Sir Hughes suggested I act as her messenger and report on what she reveals.",
+		),
+	5441 => array(
+			'name'    => "The Hand of Morkul",
+			'journal' => "All is not right in Morkul Stronghold. <<1>>, the chief's eldest daughter, ran off to <<2>> without explanation.",
+		),
+	3232 => array(
+			'name'    => "Capture Rayles Lumbermill",
+			'journal' => "I accepted a mission to help capture Rayles Lumbermill for the Covenant.",
+		),
+	6089 => array(
+			'name'    => "Replacing the Commutators",
+			'journal' => "The Clockwork Apostles have tasked me to continue maintenance in the Halls of Regulation. I need to replace several brass commutators to prevent the galvanic engine from shutting down.",
+		),
+	2566 => array(
+			'name'    => "Life of the Duchess",
+			'journal' => "<<1>> was apparently behind the assassination attempts on <<2>>. We must apprehend her quickly to ensure the duchess's safety.",
+		),
+	5510 => array(
+			'name'    => "Scouting the Arena District",
+			'journal' => "My Alliance needs scouts to secure rally points across the Imperial City.",
+		),
+	2567 => array(
+			'name'    => "The Safety of the Kingdom",
+			'journal' => "<<1>> is dead, and the threat against <<2>> is over, at least for the moment.",
+		),
+	3421 => array(
+			'name'    => "Capture the Farm",
+			'journal' => "",
+		),
+	2576 => array(
+			'name'    => "Tracking Sir Hughes",
+			'journal' => "Sir Hughes murdered Duchess Lakana in Alcaire Castle. I promised Duke Nathaniel that I will track Sir Hughes down to answer for his crimes.",
+		),
+	2578 => array(
+			'name'    => "Scamp Invasion",
+			'journal' => "The Supernal Dreamers have apparently built a few portals on the Nurin's farm through which they are summoning scamps and possibly other Daedra. I've agreed to destroy these portals.",
+		),
+	4447 => array(
+			'name'    => "Yngrel the Bloody",
+			'journal' => "A wanted bandit named Yngrel the Bloody has been causing trouble along the northern road in the Rift. I've been offered a reward to bring him down.",
+		),
+	5542 => array(
+			'name'    => "Welcome Home",
+			'journal' => "I gained access to the Dark Brotherhood Sanctuary and met the Matron of this chapter, Astara Caerellius. She welcomed me into the family and suggested I meet the rest of my brothers and sisters in the guild.",
+		),
+	2599 => array(
+			'name'    => "Ash and Reprieve",
+			'journal' => "The village of Deleyn's Mill is under siege. Fire threatens to burn the village to the ground while enraged forest creatures attack the remaining villagers. The witches of the Beldama Wyrd are trying to contain the situation. I should help them.",
+		),
+	5829 => array(
+			'name'    => "Madness in Stonefalls",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Stonefalls.",
+		),
+	2609 => array(
+			'name'    => "The Elder Scroll of Chim",
+			'journal' => "The Elder Scroll of Chim has been stolen by the enemy.",
+		),
+	2610 => array(
+			'name'    => "The Elder Scroll of Altadoon",
+			'journal' => "Grand Warlord Zimmeron wants the <<1>> to be captured for the Pact.",
+		),
+	4479 => array(
+			'name'    => "Motes in the Moonlight",
+			'journal' => "After the ritual at Rawl'kha, I traveled to meet the Lunar Champions at the temple called Moonmont. Here I'm told the Dark Mane has holed up. After what it did to Mane Akkhuz-ri, we must destroy it.",
+		),
+	2969 => array(
+			'name'    => "Capture Black Boot Farm",
+			'journal' => "I accepted a mission to help capture Black Boot Farm for the Dominion.",
+		),
+	4826 => array(
+			'name'    => "Hunting the Mammoth",
+			'journal' => "",
+		),
+	5233 => array(
+			'name'    => "Kill Enemy Sorcerers",
+			'journal' => "Grand Warlord Dortene has authorized a reward for any Covenant soldier who slays 20 enemy Sorcerers.",
+		),
+	2611 => array(
+			'name'    => "The Elder Scroll of Mnem",
+			'journal' => "The <<1>> must be taken from the enemy.",
+		),
+	5226 => array(
+			'name'    => "Kill Enemy Dragonknights",
+			'journal' => "Grand Warlord Sorcalin has authorized a reward for any Dominion soldier who slays 20 enemy Dragonknights.",
+		),
+	2612 => array(
+			'name'    => "The Elder Scroll of Ni-Mohk",
+			'journal' => "The Pact plans to steal the <<1>>.",
+		),
+	2963 => array(
+			'name'    => "Capture Blue Road Farm",
+			'journal' => "I accepted a mission to help capture Blue Road Farm for the Dominion.",
+		),
+	2634 => array(
+			'name'    => "The Elder Scroll of Ni-Mohk",
+			'journal' => "Grand Warlord Dortene reports that the Elder Scroll of Ni-Mohk is now in enemy hands.",
+		),
+	2635 => array(
+			'name'    => "The Elder Scroll of Alma Ruma",
+			'journal' => "Grand Warlord Dortene reports that the Elder Scroll of Alma Ruma is being held by the enemy.",
+		),
+	4366 => array(
+			'name'    => "To Mathiisen",
+			'journal' => "Battlereeve Urcelmo has asked that I meet with Razum-dar near the town of Mathiisen. Raz is apparently investigating more threads in the Veiled Heritance plot.",
+		),
+	2638 => array(
+			'name'    => "The Elder Scroll of Mnem",
+			'journal' => "Grand Warlord Dortene asked for warriors to help capture the <<1>>.",
+		),
+	3117 => array(
+			'name'    => "Capture Brindle Farm",
+			'journal' => "I accepted a mission to help capture Brindle Farm for the Pact.",
+		),
+	4105 => array(
+			'name'    => "Kireth's Amazing Plan",
+			'journal' => "Kireth Vanos has been exploring the ruins of Mzulft, looking for a valuable piece of forgotten lore. Her brother Raynor and her plan to use their findings to get invited into either Shad Astula or the Mages Guild.",
+		),
+	2639 => array(
+			'name'    => "The Elder Scroll of Ghartok",
+			'journal' => "Covenant soldiers are seeking the <<1>>.",
+		),
+	4338 => array(
+			'name'    => "Eye of the Ancients",
+			'journal' => "The Maormer struck <<1>>, and now lay waste to the town. Auridon troops tried and failed to retake the area, and now await reinforcements before trying again. I've been tasked with reactivating an ancient Aldmeri device on the nearby cliffs.",
+		),
+	3126 => array(
+			'name'    => "Capture Chalman Mine",
+			'journal' => "I accepted a mission to help capture Chalman Mine for the Pact.",
+		),
+	2640 => array(
+			'name'    => "The Elder Scroll of Chim",
+			'journal' => "Covenant forces are gathering to capture the <<1>>.",
+		),
+	4887 => array(
+			'name'    => "Back in Time",
+			'journal' => "A novice from the Mages Guild named Gahgdar was duped by a witch into giving her a valuable book from the guildhall in Hallin's Stand. He asked me to help him get the book back.",
+		),
+	4130 => array(
+			'name'    => "The Captain's Honor",
+			'journal' => "Though the <<C:1>> had been destroyed, the Maormer still hold <<2>> captive at <<3>>.",
+		),
+	2656 => array(
+			'name'    => "The Elder Scroll of Mnem",
+			'journal' => "The Elder Scroll of Mnem has been taken by enemy soldiers.",
+		),
+	3023 => array(
+			'name'    => "Wicked Trade",
+			'journal' => "Bloodthorn cultists attacked a group of Camlorn refugees. They kidnapped the group's women and dragged them into the Fens.",
+		),
+	4256 => array(
+			'name'    => "A Hostile Situation",
+			'journal' => "At the request of the captain of the Vulkhel Watch, I've been running errands all over Auridon's port city. I even helped deal with a criminal named Fasion who claimed that Captain Astanya is working with a group called the Veiled Heritance.",
+		),
+	2658 => array(
+			'name'    => "The Elder Scroll of Ghartok",
+			'journal' => "Grand Warlord Sorcalin needs soldiers to capture the Elder Scroll of Ghartok.",
+		),
+	5638 => array(
+			'name'    => "Under Our Thumb",
+			'journal' => "Some law-abiding citizens have been meddling in the affairs of the Thieves Guild. The guild wants its pickpockets to teach the meddlers to mind their own business. I should look for ornaments, writings, or other oddities, but any treasures will do.",
+		),
+	3017 => array(
+			'name'    => "Back-Alley Murders",
+			'journal' => "Someone's murdering Daggerfall's poor. A beggar named Matthew thinks he's going to be the next one to die. He asked me to find the killer before that happens.",
+		),
+	2659 => array(
+			'name'    => "The Elder Scroll of Chim",
+			'journal' => "Plans are being made to capture the <<1>> from the enemy.",
+		),
+	5036 => array(
+			'name'    => "Honrich Tower",
+			'journal' => "<<1>> has been saved and Pinepeak is secure, but it seems Honrich Tower has been taken by the Worm Cult.",
+		),
+	3207 => array(
+			'name'    => "Capture Faregyl Farm",
+			'journal' => "I accepted a mission to help capture Faregyl Farm for the Covenant.",
+		),
+	4251 => array(
+			'name'    => "Trial of the Spirit",
+			'journal' => "Widulf, a priest of Kyne, proctors the Trial of Spirit. It apparently involves drinking a somewhat poisonous mead and then running around the island. Widulf assures me the poison will connect me with my inner spirit.",
+		),
+	2661 => array(
+			'name'    => "The Elder Scroll of Alma Ruma",
+			'journal' => "The <<1>> must be taken from the enemy and delivered into Dominion hands. So says Grand Warlord Sorcalin.",
+		),
+	2672 => array(
+			'name'    => "Scout Fort Warden",
+			'journal' => "I have accepted a mission to travel to Fort Warden and scout that stronghold for the Dominion.",
+		),
+	3039 => array(
+			'name'    => "Crocodile Bounty",
+			'journal' => "I found a dead Orc in the bog. He carried a broadsheet, as well as a handful of sharp crocodile teeth.",
+		),
+	4242 => array(
+			'name'    => "The Lich",
+			'journal' => "A Shadowed Path necromancer has transformed into a lich in <<1>>.",
+		),
+	5171 => array(
+			'name'    => "The Oldest Ghost",
+			'journal' => "",
+		),
+	2673 => array(
+			'name'    => "Scout Fort Rayles",
+			'journal' => "I accepted a mission to scout Fort Rayles for the Dominion.",
+		),
+	2674 => array(
+			'name'    => "Scout Fort Glademist",
+			'journal' => "I accepted a mission to scout Fort Glademist for the Dominion.",
+		),
+	4543 => array(
+			'name'    => "Holes in the World",
+			'journal' => "Mezha-dro, a Khajiit servant of Meridia, asked for help sealing tears in Oblivion before more material from Tamriel falls through.",
+		),
+	5290 => array(
+			'name'    => "Pledge: City of Ash I",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the City of Ash, a Wood Elf village in Greenshade.",
+		),
+	2676 => array(
+			'name'    => "Scout Fort Aleswell",
+			'journal' => "I accepted a mission to scout Fort Aleswell for the Dominion.",
+		),
+	3027 => array(
+			'name'    => "Ripple Effect",
+			'journal' => "The Mages Guild is studying the site of the Battle of Glenumbra Moors. It's said that Faolchu, the invader of Camlorn, was originally slain here. They hope to find out what killed him in the past.",
+		),
+	2679 => array(
+			'name'    => "Scout Arrius Keep",
+			'journal' => "I accepted a mission to scout Arrius Keep for the Dominion.",
+		),
+	5040 => array(
+			'name'    => "Taking Precautions",
+			'journal' => "A Pact Mage named Sees-Many-Paths is examining the wards at Tormented Spire. She wants word sent to her egg-sister, Walks-in-Ash, that they are unstable.",
+		),
+	3397 => array(
+			'name'    => "Scout the Lumbermill",
+			'journal' => "",
+		),
+	2680 => array(
+			'name'    => "Scout Kingscrest Keep",
+			'journal' => "I accepted a mission to scout Kingscrest Keep for the Dominion.",
+		),
+	5660 => array(
+			'name'    => "Contract: Grahtwood",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3047 => array(
+			'name'    => "A Step Back in Time",
+			'journal' => "The spirit of Alana Relin has led me to a crypt that will provide a doorway to the past. Now we'll finally learn how Faolchu was originally killed.",
+		),
+	2682 => array(
+			'name'    => "Scout Farragut Keep",
+			'journal' => "I accepted a mission to scout Farragut Keep for the Dominion.",
+		),
+	4158 => array(
+			'name'    => "The Pride of a Prince",
+			'journal' => "Stormfist spies have used Daedric alchemy to infiltrate Fort Amol. The King and the Pact delegates are in danger. I need to convince someone that the threat is real before it's too late.",
+		),
+	2684 => array(
+			'name'    => "Scout Drakelowe Keep",
+			'journal' => "I accepted a mission to scout Drakelowe Keep for the Dominion.",
+		),
+	5720 => array(
+			'name'    => "Sacrament: Smuggler's Den",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	4517 => array(
+			'name'    => "Crown Point",
+			'journal' => "Prefect Antias asked me to re-light the flame atop Crown Point tower.",
+		),
+	3035 => array(
+			'name'    => "Wyrd and Coven",
+			'journal' => "To stop the hags, I need to defeat the coven's leader, Mother Murk. Otherwise, other refugees will be in danger.",
+		),
+	3231 => array(
+			'name'    => "Capture Warden Lumbermill",
+			'journal' => "I accepted a mission to help capture Warden Lumbermill for the Covenant.",
+		),
+	2685 => array(
+			'name'    => "Scout Castle Alessia",
+			'journal' => "I accepted a mission to scout Castle Alessia for the Dominion.",
+		),
+	3224 => array(
+			'name'    => "Capture Castle Alessia",
+			'journal' => "I accepted a mission to help capture Castle Alessia for the Covenant.",
+		),
+	2686 => array(
+			'name'    => "Scout Castle Faregyl",
+			'journal' => "I accepted a mission to scout Castle Faregyl for the Dominion.",
+		),
+	2689 => array(
+			'name'    => "Scout Castle Black Boot",
+			'journal' => "I accepted a mission to scout Castle Black Boot for the Dominion.",
+		),
+	5444 => array(
+			'name'    => "Sorrow's Kiss",
+			'journal' => "Lady Laurent and Stibbons have been hired by the House of Orsimer Glories to locate the shrine of Torug gro-Igron, which supposedly sits at the top of the mountain named Sorrow.",
+		),
+	2842 => array(
+			'name'    => "Scout Fort Glademist",
+			'journal' => "I accepted a mission to scout Fort Glademist for the Pact.",
+		),
+	4288 => array(
+			'name'    => "Blind Man's Bluff",
+			'journal' => "A blind Redguard pirate is willing to share his treasure with anyone who can transport him to Anvil, even the Wood Elves harassing him.",
+		),
+	2690 => array(
+			'name'    => "Scout Castle Bloodmayne",
+			'journal' => "I accepted a mission to scout Castle Bloodmayne for the Dominion.",
+		),
+	2693 => array(
+			'name'    => "Scout Glademist Mine",
+			'journal' => "I accepted a mission to scout Glademist Mine for the Dominion.",
+		),
+	2846 => array(
+			'name'    => "Scout Chalman Keep",
+			'journal' => "I accepted a mission to scout Chalman Keep for the Pact.",
+		),
+	2698 => array(
+			'name'    => "Scout Dragonclaw Mine",
+			'journal' => "I accepted a mission to scout Dragonclaw Mine for the Dominion.",
+		),
+	2699 => array(
+			'name'    => "Scout Chalman Mine",
+			'journal' => "I accepted a mission to scout Chalman Mine for the Dominion.",
+		),
+	4430 => array(
+			'name'    => "The Burned Estate",
+			'journal' => "The Shadowed Path has taken over an estate southwest of Cheydinhal. They are using Daedric stones to summon atronachs.",
+		),
+	2860 => array(
+			'name'    => "Scout Glademist Mine",
+			'journal' => "I accepted a mission to scout Glademist Mine for the Pact.",
+		),
+	2700 => array(
+			'name'    => "Scout Arrius Mine",
+			'journal' => "I accepted a mission to scout Arrius Mine for the Dominion.",
+		),
+	4931 => array(
+			'name'    => "Frightened Folk",
+			'journal' => "Constable Agazu says the mayor of Fell's Run fired her for no reason and appointed a new constable. She says all the townspeople are acting strange as well, but no one's talking. She wants me to help find out what's going on.",
+		),
+	4169 => array(
+			'name'    => "Of Councils and Kings",
+			'journal' => "Stormy-Eyes seems to be recovering from the Dreamstride experience. King Jorunn and Prince Irnskar have gone ahead to Jorunn's Stand, a large encampment near Skuldafn.",
+		),
+	2703 => array(
+			'name'    => "Scout Blue Road Mine",
+			'journal' => "I accepted a mission to scout Blue Road Mine for the Dominion.",
+		),
+	2848 => array(
+			'name'    => "Scout Kingscrest Keep",
+			'journal' => "I accepted a mission to scout Kingscrest Keep for the Pact.",
+		),
+	3190 => array(
+			'name'    => "Ash'abah Rising",
+			'journal' => "I am now officially a member of the Ash'abah, and I am setting forth to destroy the Withered Hand. Talia suggested I visit Tu'whacca's Throne to see if the Withered Hand has been there.",
+		),
+	6154 => array(
+			'name'    => "Pledge: Scalecaller Peak",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Scalecaller Peak.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	2704 => array(
+			'name'    => "Scout Drakelowe Mine",
+			'journal' => "I accepted a mission to scout Drakelowe Mine for the Dominion.",
+		),
+	4951 => array(
+			'name'    => "Fit to Rule",
+			'journal' => "<<1>> must complete the ratification ceremony if her allies are to accept her as leader of the Aldmeri Dominion. At the heart of the ceremony is <<c:2>>, an ancient Ayleid artifact.",
+		),
+	5203 => array(
+			'name'    => "The Serpent's Fang",
+			'journal' => "A Wood Elf named Little Leaf claims she's on a mission to stop the Iron Orcs from building a troll army. She tried to appeal to the Orc leaders, but diplomacy didn't work. Now she wants me to come along and try a more forceful approach.",
+		),
+	2705 => array(
+			'name'    => "Scout Alessia Mine",
+			'journal' => "I accepted a mission to scout Alessia Mine for the Dominion.",
+		),
+	2858 => array(
+			'name'    => "Scout Warden Mine",
+			'journal' => "I accepted a mission to scout Warden Mine for the Pact.",
+		),
+	2706 => array(
+			'name'    => "Scout Faregyl Mine",
+			'journal' => "I accepted a mission to scout Faregyl Mine for the Dominion.",
+		),
+	4575 => array(
+			'name'    => "The Flooded Grove",
+			'journal' => "I'm helping the Wooded Eye prevent Daedra from escaping Rootwater Grove into Greenshade.",
+		),
+	5329 => array(
+			'name'    => "For King and Glory",
+			'journal' => "King Kurog of Orsinium struggles to defeat the Winterborn threat. His mother, Forge-Mother Alga, asked me to go to Frostbreak Fortress to aid the king.",
+		),
+	2707 => array(
+			'name'    => "Scout Roebeck Mine",
+			'journal' => "I accepted a mission to scout Roebeck Mine for the Dominion.",
+		),
+	5482 => array(
+			'name'    => "The Sublime Brazier",
+			'journal' => "Molag Bal seeks to destroy the Sublime Brazier-the key to rekindling the Dragonfires. Working with The Drake of Blades, Captain Caudex, and Father Egnatius, I must find a way to protect the Dragonfire Cathedral, and the brazier within.",
+		),
+	2868 => array(
+			'name'    => "Scout Blue Road Mine",
+			'journal' => "I accepted a mission to scout Blue Road Mine for the Pact.",
+		),
+	2708 => array(
+			'name'    => "Scout Brindle Mine",
+			'journal' => "I accepted a mission to scout Brindle Mine for the Dominion.",
+		),
+	3400 => array(
+			'name'    => "Scout Fort Balfiera",
+			'journal' => "",
+		),
+	2709 => array(
+			'name'    => "Scout Black Boot Mine",
+			'journal' => "I accepted a mission to scout Black Boot Mine for the Dominion.",
+		),
+	2862 => array(
+			'name'    => "Scout Aleswell Mine",
+			'journal' => "I accepted a mission to scout Aleswell Mine for the Pact.",
+		),
+	4203 => array(
+			'name'    => "Lifeline",
+			'journal' => "Thane Oda Wolf-Sister believes that the Ternion monks might be able to heal King Jorunn. But their complex rituals require special components.",
+		),
+	3189 => array(
+			'name'    => "Hidden in Flames",
+			'journal' => "",
+		),
+	2856 => array(
+			'name'    => "Scout Castle Black Boot",
+			'journal' => "I accepted a mission to scout Castle Black Boot for the Pact.",
+		),
+	2711 => array(
+			'name'    => "Scout Farm 1",
+			'journal' => "",
+		),
+	5072 => array(
+			'name'    => "Aid for Bramblebreach",
+			'journal' => "A Hollow Guardian accosted me deep in the Valenwood. He asked me to go north and offer my assistance to the Bramblebreach clan.",
+		),
+	2714 => array(
+			'name'    => "Scout Farm 4",
+			'journal' => "",
+		),
+	4953 => array(
+			'name'    => "Trouble at the Tree",
+			'journal' => "I was approached shortly after saving <<1>> from the Jackdaw attack. <<2>> approached me and revealed she works for the Wood Elf king. She said he needs the aid of impressive people such as myself.",
+		),
+	2721 => array(
+			'name'    => "Scout Warden Farm",
+			'journal' => "I accepted a mission to scout Warden Farm for the Dominion.",
+		),
+	5476 => array(
+			'name'    => "Awaken the Past",
+			'journal' => "The House of Orsimer Glories, a museum in the rebuilt city of Orsinium, seeks to fill its displays with relics and other items of historic importance to both the Orcs and the land of Wrothgar.",
+		),
+	5315 => array(
+			'name'    => "Alchemist Certification",
+			'journal' => "If I can prove I know my way around an alchemy table, <<1>> will certify me as an alchemist.",
+		),
+	2874 => array(
+			'name'    => "Scout Black Boot Mine",
+			'journal' => "I accepted a mission to scout Black Boot Mine for the Pact.",
+		),
+	4320 => array(
+			'name'    => "Fierce Beasts of Ivarstead",
+			'journal' => "Nilwen is living in a shack outside Ivarstead. She tells of fierce beasts nearby and needs someone to slay them.",
+		),
+	2722 => array(
+			'name'    => "Scout Rayles Farm",
+			'journal' => "I accepted a mission to scout Rayles Farm for the Dominion.",
+		),
+	2723 => array(
+			'name'    => "Scout Glademist Farm",
+			'journal' => "I accepted a mission to scout Glademist Farm for the Dominion.",
+		),
+	5100 => array(
+			'name'    => "Trial of the True Path",
+			'journal' => "",
+		),
+	5415 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	2726 => array(
+			'name'    => "Scout Aleswell Farm",
+			'journal' => "I accepted a mission to scout Aleswell Farm for the Dominion.",
+		),
+	2727 => array(
+			'name'    => "Scout Dragonclaw Farm",
+			'journal' => "I accepted a mission to scout Dragonclaw Farm for the Dominion.",
+		),
+	2872 => array(
+			'name'    => "Scout Roebeck Mine",
+			'journal' => "I accepted a mission to scout Roebeck Mine for the Pact.",
+		),
+	3086 => array(
+			'name'    => "Capture Fort Ash",
+			'journal' => "I accepted a mission to help capture Fort Ash for the Pact.",
+		),
+	2728 => array(
+			'name'    => "Scout Chalman Farm",
+			'journal' => "I accepted a mission to scout Chalman Farm for the Dominion.",
+		),
+	5236 => array(
+			'name'    => "Souls of the Betrayed",
+			'journal' => "A devout knight of the Divines discovered that the dead have awakened in the depths of Skyreach Catacombs. If the legend of Virmaril is true, then a powerful Elven necromancer could be the source of the trouble.",
+		),
+	2730 => array(
+			'name'    => "Scout Kingscrest Farm",
+			'journal' => "I accepted a mission to scout Kingscrest Farm for the Dominion.",
+		),
+	2732 => array(
+			'name'    => "Scout Blue Road Farm",
+			'journal' => "I accepted a mission to scout Blue Road Farm for the Dominion.",
+		),
+	4963 => array(
+			'name'    => "Passage Denied",
+			'journal' => "Redguard forces are massing inside an old Ayleid ruin, and the Dominion believes they've opened up a magical gateway from Alik'r to transport their troops into the heart of Grahtwood unopposed.",
+		),
+	2734 => array(
+			'name'    => "Scout Alessia Farm",
+			'journal' => "I accepted a mission to scout Alessia Farm for the Dominion.",
+		),
+	4587 => array(
+			'name'    => "Trail of the Skin-Stealer",
+			'journal' => "The vicecanons of Shadowfen tracked the Dominion's forces to the ancient Daedric ruin of <<1>>.",
+		),
+	3581 => array(
+			'name'    => "Cleansing the Past",
+			'journal' => "Priestess Brela believes the tormented spirits of a Dark Elf army haunt Vivec's Antlers. They died in a great conflict with the Akaviri. She was captured while consecrating their bones.",
+		),
+	2736 => array(
+			'name'    => "Scout Faregyl Farm",
+			'journal' => "I accepted a mission to scout Faregyl Farm for the Dominion.",
+		),
+	4306 => array(
+			'name'    => "Finding Winter's Hammer",
+			'journal' => "Sage Svari has asked me to recover <<1>> from bandits at Fort Greenwall.",
+		),
+	3094 => array(
+			'name'    => "Capture Drakelowe Keep",
+			'journal' => "I accepted a mission to help re-capture Drakelowe Keep for the Pact.",
+		),
+	5235 => array(
+			'name'    => "Defend Fort Warden",
+			'journal' => "Defend this keep to the last warrior standing! Kill any who dare assault Fort Warden!",
+		),
+	2737 => array(
+			'name'    => "Scout Roebeck Farm",
+			'journal' => "I accepted a mission to scout Roebeck Farm for the Dominion.",
+		),
+	2738 => array(
+			'name'    => "Scout Brindle Farm",
+			'journal' => "I accepted a mission to scout Brindle Farm for the Dominion.",
+		),
+	4607 => array(
+			'name'    => "Castle of the Worm",
+			'journal' => "I must find a way into the Castle of the Worm. There will be many dangers ahead, so I must make sure I am prepared.",
+		),
+	2739 => array(
+			'name'    => "Scout Black Boot Farm",
+			'journal' => "I accepted a mission to scout Black Boot Farm for the Dominion.",
+		),
+	2740 => array(
+			'name'    => "Scout Bloodmayne Farm",
+			'journal' => "I accepted a mission to scout Bloodmayne Farm for the Dominion.",
+		),
+	3093 => array(
+			'name'    => "Capture Blue Road Keep",
+			'journal' => "I accepted a mission to help re-capture Blue Road Keep for the Pact.",
+		),
+	5462 => array(
+			'name'    => "The Ashes of Our Fathers",
+			'journal' => "<<1>> and <<2>> discovered a lost tomb, but they disagree on who rests within.",
+		),
+	2743 => array(
+			'name'    => "Scout Glademist Lumbermill",
+			'journal' => "I accepted a mission to scout Glademist Lumbermill  for the Dominion.",
+		),
+	5104 => array(
+			'name'    => "The Shards of Wuuthrad",
+			'journal' => "The Worm Cult has stolen the legendary axe Wuuthrad and plans to perform dark deeds with it. There are even rumors it was shattered, in which case we must find the shards of Wuuthrad wherever they may be.",
+		),
+	3461 => array(
+			'name'    => "Kill Thirty Ebonheart Players",
+			'journal' => "",
+		),
+	2744 => array(
+			'name'    => "Scout Ash Lumbermill",
+			'journal' => "I accepted a mission to scout Ash Lumbermill  for the Dominion.",
+		),
+	3102 => array(
+			'name'    => "Capture Rayles Farm",
+			'journal' => "I accepted a mission to help capture Rayles Farm for the Pact.",
+		),
+	2746 => array(
+			'name'    => "Scout Dragonclaw Lumbermill",
+			'journal' => "I accepted a mission to scout Dragonclaw Lumbermill  for the Dominion.",
+		),
+	4101 => array(
+			'name'    => "Payment In Kind",
+			'journal' => "A recent conflict between the Wood Elves and Drublog Orcs of Bloodtoil Valley threatens to end in bloodshed.",
+		),
+	2747 => array(
+			'name'    => "Scout Chalman Lumbermill",
+			'journal' => "I accepted a mission to scout Chalman Lumbermill  for the Dominion.",
+		),
+	3440 => array(
+			'name'    => "Wayward Scouts",
+			'journal' => "A Lion Guard scouting party, made up mostly of new recruits, has gone missing near Farwatch Tower.",
+		),
+	2749 => array(
+			'name'    => "Scout Kingscrest Lumbermill",
+			'journal' => "I accepted a mission to scout Kingscrest Lumbermill  for the Dominion.",
+		),
+	5175 => array(
+			'name'    => "Iron and Scales",
+			'journal' => "I met an Iron Orc shaman who had been banished by a younger rival. What's more, this rival, named Agganor, seems to be responsible for the Iron Orc and Scaled Court alliance. The old shaman wants me to avenge him.",
+		),
+	4348 => array(
+			'name'    => "A Graveyard of Ships",
+			'journal' => "The pirate captain One-Eye and her crew reached Coldharbour through a whirlpool while searching for a legend called the Lost Fleet. They seem intent on investigating the nearby wrecks.",
+		),
+	2750 => array(
+			'name'    => "Scout Farragut Lumbermill",
+			'journal' => "I accepted a mission to scout Farragut Lumbermill  for the Dominion.",
+		),
+	3101 => array(
+			'name'    => "Capture Warden Farm",
+			'journal' => "I accepted a mission to help capture Warden Farm for the Pact.",
+		),
+	2751 => array(
+			'name'    => "Scout Blue Road Lumbermill",
+			'journal' => "I accepted a mission to scout Blue Road Lumbermill  for the Dominion.",
+		),
+	4466 => array(
+			'name'    => "The Broken Spearhead",
+			'journal' => "",
+		),
+	4903 => array(
+			'name'    => "Dream-Walk Into Darkness",
+			'journal' => "I need to locate Verandis Ravenwatch and find out if he can tell me more about Baron Montclair and where he might be hiding. He may also know more about what set Montclair on this path of destruction.",
+		),
+	3238 => array(
+			'name'    => "Capture Chalman Lumbermill",
+			'journal' => "I accepted a mission to help capture Chalman Lumbermill for the Covenant.",
+		),
+	4226 => array(
+			'name'    => "Death to the Black Daggers!",
+			'journal' => "<<1>> asked me to travel to <<2>> and take revenge on the Black Dagger bandits for the deaths of her friends.",
+		),
+	2752 => array(
+			'name'    => "Scout Drakelowe Lumbermill",
+			'journal' => "I accepted a mission to scout Drakelowe Lumbermill  for the Dominion.",
+		),
+	2754 => array(
+			'name'    => "Scout Faregyl Lumbermill",
+			'journal' => "I accepted a mission to scout Faregyl Lumbermill  for the Dominion.",
+		),
+	5499 => array(
+			'name'    => "Wrecked",
+			'journal' => "",
+		),
+	5434 => array(
+			'name'    => "Battleground",
+			'journal' => "",
+		),
+	2755 => array(
+			'name'    => "Scout Roebeck Lumbermill",
+			'journal' => "I accepted a mission to scout Roebeck Lumbermill  for the Dominion.",
+		),
+	2916 => array(
+			'name'    => "Capture Fort Rayles",
+			'journal' => "I accepted a mission to help capture Fort Rayles for the Dominion.",
+		),
+	5681 => array(
+			'name'    => "Contract: Shadowfen",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	2757 => array(
+			'name'    => "Scout Black Boot Lumbermill",
+			'journal' => "I accepted a mission to scout Black Boot Lumbermill  for the Dominion.",
+		),
+	6012 => array(
+			'name'    => "Kill Enemy Wardens",
+			'journal' => "Grand Warlord Dortene has authorized a reward for any Covenant soldier who slays 20 enemy Wardens.",
+		),
+	2759 => array(
+			'name'    => "Kill Enemy Players",
+			'journal' => "Grand Warlord Dortene has authorized a bonus for any Covenant soldier who slays 20 enemy combatants.",
+		),
+	3390 => array(
+			'name'    => "Capture Fort Balfiera",
+			'journal' => "",
+		),
+	3237 => array(
+			'name'    => "Capture Dragonclaw Lumbermill",
+			'journal' => "I accepted a mission to help capture Dragonclaw Lumbermill for the Covenant.",
+		),
+	2904 => array(
+			'name'    => "Scout Roebeck Lumbermill",
+			'journal' => "I accepted a mission to scout Roebeck Lumbermill for the Pact.",
+		),
+	3254 => array(
+			'name'    => "Capture Aleswell Mine",
+			'journal' => "I accepted a mission to help capture Aleswell Mine for the Covenant.",
+		),
+	4648 => array(
+			'name'    => "The Summoner Division",
+			'journal' => "I am competing in the Summoner Division of Thizzrini Arena. I need to work my way through the ranks in this division before I can challenge Tholbor, the Division Champion, in the main arena.",
+		),
+	5493 => array(
+			'name'    => "City on the Brink",
+			'journal' => "The Daggerfall Covenant is locked in an epic struggle for control of the Imperial City. The forces of Molag Bal hold the city in an iron grip, but enemy bannermen also vie for power. The Covenant needs my help.",
+		),
+	2768 => array(
+			'name'    => "Scout Fort Rayles",
+			'journal' => "I accepted a mission to scout Fort Rayles for the Covenant.",
+		),
+	5015 => array(
+			'name'    => "Eyes of the Enemy",
+			'journal' => "",
+		),
+	2770 => array(
+			'name'    => "Scout Fort Ash",
+			'journal' => "I accepted a mission to scout Fort Ash for the Covenant.",
+		),
+	2772 => array(
+			'name'    => "Scout Fort Dragonclaw",
+			'journal' => "I accepted a mission to scout Fort Dragonclaw for the Covenant.",
+		),
+	4365 => array(
+			'name'    => "To Dawnbreak",
+			'journal' => "I revealed High Kinlady Estre is the Veiled Queen. Queen Ayrenn wants me to make sure Dawnbreak is safe for her to continue her campaign.",
+		),
+	3464 => array(
+			'name'    => "Scout the Lumbermill",
+			'journal' => "",
+		),
+	2773 => array(
+			'name'    => "Scout Chalman Keep",
+			'journal' => "I accepted a mission to scout Chalman Keep for the Covenant.",
+		),
+	2926 => array(
+			'name'    => "Capture Drakelowe Keep",
+			'journal' => "I accepted a mission to help capture Drakelowe Keep for the Dominion.",
+		),
+	4267 => array(
+			'name'    => "All's Fair",
+			'journal' => "The Rothalens have fallen on hard times. Sarisa has designs on Bar-Neeus's stall in the central market.",
+		),
+	5622 => array(
+			'name'    => "Contract: Alik'r Desert",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3253 => array(
+			'name'    => "Capture Ash Mine",
+			'journal' => "I accepted a mission to help capture Ash Mine for the Covenant.",
+		),
+	2920 => array(
+			'name'    => "Capture Fort Dragonclaw",
+			'journal' => "I accepted a mission to help capture Fort Dragonclaw for the Dominion.",
+		),
+	2775 => array(
+			'name'    => "Scout Kingscrest Keep",
+			'journal' => "I accepted a mission to scout Kingscrest Keep for the Covenant.",
+		),
+	2777 => array(
+			'name'    => "Scout Blue Road Keep",
+			'journal' => "I accepted a mission to scout Blue Road Keep for the Covenant.",
+		),
+	2930 => array(
+			'name'    => "Capture Castle Brindle",
+			'journal' => "I accepted a mission to help re-capture Castle Brindle for the Dominion.",
+		),
+	4287 => array(
+			'name'    => "Ritual at the Dragonshrine",
+			'journal' => "The Worm Cult is up at the top of the dragonshrine. I'm not sure what they're doing, but it can't be good.",
+		),
+	2778 => array(
+			'name'    => "Scout Drakelowe Keep",
+			'journal' => "I accepted a mission to scout Drakelowe Keep for the Covenant.",
+		),
+	5976 => array(
+			'name'    => "A Masterful Shield",
+			'journal' => "",
+		),
+	4261 => array(
+			'name'    => "Sever All Ties",
+			'journal' => "In order to save Firsthold and all of Auridon from High Kinlady Estre, the Oblivion portals must be closed and Estre defeated for good.",
+		),
+	2779 => array(
+			'name'    => "Scout Castle Alessia",
+			'journal' => "I accepted a mission to scout Castle Alessia for the Covenant.",
+		),
+	5831 => array(
+			'name'    => "Madness in the Rift",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from the Rift.",
+		),
+	2940 => array(
+			'name'    => "Capture Arrius Mine",
+			'journal' => "I accepted a mission to help capture Arrius Mine for the Dominion.",
+		),
+	4915 => array(
+			'name'    => "Blood Hunt",
+			'journal' => "A group of vampire hunters has come to this area to cleanse it of its infestation, including a powerful vampire lord. They've asked for my assistance.",
+		),
+	3441 => array(
+			'name'    => "Capture Fort Balfiera",
+			'journal' => "",
+		),
+	4254 => array(
+			'name'    => "Those She Devours",
+			'journal' => "Necromancer Gullveig has captives imprisoned at the Worm Cult camp. I should try to rescue them.",
+		),
+	2780 => array(
+			'name'    => "Scout Castle Faregyl",
+			'journal' => "I accepted a mission to scout Castle Faregyl for the Covenant.",
+		),
+	3472 => array(
+			'name'    => "Kill an Aldmeri Guard.",
+			'journal' => "",
+		),
+	2781 => array(
+			'name'    => "Scout Castle Roebeck",
+			'journal' => "I accepted a mission to scout Castle Roebeck for the Covenant.",
+		),
+	2934 => array(
+			'name'    => "Capture Rayles Mine",
+			'journal' => "I accepted a mission to help capture Rayles Mine for the Dominion.",
+		),
+	2782 => array(
+			'name'    => "Scout Castle Brindle",
+			'journal' => "I accepted a mission to scout Castle Brindle for the Covenant.",
+		),
+	3261 => array(
+			'name'    => "Capture Drakelowe Mine",
+			'journal' => "I accepted a mission to help capture Drakelowe Mine for the Covenant.",
+		),
+	2928 => array(
+			'name'    => "Capture Castle Faregyl",
+			'journal' => "I accepted a mission to help regain Castle Faregyl for the Dominion.",
+		),
+	4663 => array(
+			'name'    => "Out for a Walk",
+			'journal' => "<<1>> is out in the wilds, looking for his son, Donus.",
+		),
+	2783 => array(
+			'name'    => "Scout Castle Black Boot",
+			'journal' => "I accepted a mission to scout Castle Black Boot for the Covenant.",
+		),
+	4498 => array(
+			'name'    => "Waypoint Test",
+			'journal' => "",
+		),
+	2786 => array(
+			'name'    => "Scout Warden Mine",
+			'journal' => "I accepted a mission to scout Warden Mine for the Covenant.",
+		),
+	5403 => array(
+			'name'    => "Sap and Stone",
+			'journal' => "The peaceful Argonians of the Su-Zahleel tribe have been abducted and pressed into slavery by the Xit-Xaht-warrior fanatics that have been driven mad by their psychotic Hist. I must rescue the captives and put an end to the Xit-Xaht threat.",
+		),
+	3449 => array(
+			'name'    => "Scout the Mine",
+			'journal' => "",
+		),
+	5306 => array(
+			'name'    => "Pledge: Blessed Crucible I",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to survive the Blessed Crucible, an unforgiving arena deep in The Rift.",
+		),
+	2788 => array(
+			'name'    => "Scout Glademist Mine",
+			'journal' => "I accepted a mission to scout Glademist Mine for the Covenant.",
+		),
+	5479 => array(
+			'name'    => "A Cold Wind From the Mountain",
+			'journal' => "I accomplished much since coming to Wrothgar. Now, it seems <<1>> has one final request from the House of Orsimer Glories.",
+		),
+	2790 => array(
+			'name'    => "Scout Aleswell Mine",
+			'journal' => "I accepted a mission to scout Aleswell Mine for the Covenant.",
+		),
+	5926 => array(
+			'name'    => "Relics of Maelkashishi",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Maelkashishi and gather as many historic relics as I can find.",
+		),
+	2793 => array(
+			'name'    => "Scout Chalman Mine",
+			'journal' => "I accepted a mission to scout Chalman Mine for the Covenant.",
+		),
+	2818 => array(
+			'name'    => "Scout Roebeck Farm",
+			'journal' => "I accepted a mission to scout Roebeck Farm for the Covenant.",
+		),
+	2794 => array(
+			'name'    => "Scout Arrius Mine",
+			'journal' => "I accepted a mission to scout Arrius Mine for the Covenant.",
+		),
+	2796 => array(
+			'name'    => "Scout Farragut Mine",
+			'journal' => "I accepted a mission to scout Farragut Mine for the Covenant.",
+		),
+	5027 => array(
+			'name'    => "A Change of Heart",
+			'journal' => "<<1>>, the betrothed of Arlie Edrald, has asked for my assistance in locating the Edrald family. He returned to prepare for his wedding to find that they had mysteriously vanished from their estate.",
+		),
+	2798 => array(
+			'name'    => "Scout Drakelowe Mine",
+			'journal' => "I accepted a mission to scout Drakelowe Mine for the Covenant.",
+		),
+	3149 => array(
+			'name'    => "Capture Blue Road Lumbermill",
+			'journal' => "I accepted a mission to help capture Blue Road Lumbermill for the Pact.",
+		),
+	2816 => array(
+			'name'    => "Scout Alessia Farm",
+			'journal' => "I accepted a mission to scout Alessia Farm for the Covenant.",
+		),
+	4265 => array(
+			'name'    => "The High Cost of Lying",
+			'journal' => "Lliae asked me to trigger a Black Dagger ambush north of Chorrol.",
+		),
+	2799 => array(
+			'name'    => "Scout Alessia Mine",
+			'journal' => "I accepted a mission to scout Alessia Mine for the Covenant.",
+		),
+	2800 => array(
+			'name'    => "Scout Roebeck Mine",
+			'journal' => "I accepted a mission to scout Roebeck Mine for the Covenant.",
+		),
+	2802 => array(
+			'name'    => "Scout Black Boot Mine",
+			'journal' => "I accepted a mission to scout Black Boot Mine for the Covenant.",
+		),
+	2803 => array(
+			'name'    => "Scout Bloodmayne Mine",
+			'journal' => "I accepted a mission to scout Bloodmayne Mine for the Covenant.",
+		),
+	5450 => array(
+			'name'    => "Invitation to Orsinium",
+			'journal' => "I received an invitation to go to Wrothgar and present myself to Forge-Mother Alga in the city of Orsinium. It appears that the Orcs of Wrothgar need some sort of assistance.",
+		),
+	2836 => array(
+			'name'    => "Scout Roebeck Lumbermill",
+			'journal' => "I accepted a mission to scout Roebeck Lumbermill  for the Covenant.",
+		),
+	3496 => array(
+			'name'    => "Scavenging for a Scarab",
+			'journal' => "I have run into a strange man called <<1>> who was injured. He asked me to search Imperials for documents which are important.",
+		),
+	2805 => array(
+			'name'    => "Scout Rayles Farm",
+			'journal' => "I accepted a mission to scout Rayles Farm for the Covenant.",
+		),
+	2830 => array(
+			'name'    => "Scout Kingscrest Lumbermill",
+			'journal' => "I accepted a mission to scout Kingscrest Lumbermill  for the Covenant.",
+		),
+	4171 => array(
+			'name'    => "The Rise of Sage Svari",
+			'journal' => "Skald Svari has been proposed as the next Sage of Fallowstone Hall. She must pray at Fallowstone's shrines to ask the approval of the Companion spirits. I've been asked to accompany her.",
+		),
+	2806 => array(
+			'name'    => "Scout Glademist Farm",
+			'journal' => "I accepted a mission to scout Glademist Farm for the Covenant.",
+		),
+	5045 => array(
+			'name'    => "The Fate of a Friend",
+			'journal' => "I met an Ashlander hunter named Shuldrashi looking for her Argonian friend.",
+		),
+	3157 => array(
+			'name'    => "Kill Enemy Players",
+			'journal' => "Grand Warlord Zimmeron has authorized a bonus for any Pact soldier who slays 20 enemy combatants.",
+		),
+	2824 => array(
+			'name'    => "Scout Glademist Lumbermill",
+			'journal' => "I accepted a mission to scout Glademist Lumbermill  for the Covenant.",
+		),
+	2807 => array(
+			'name'    => "Scout Ash Farm",
+			'journal' => "I accepted a mission to scout Ash Farm for the Covenant.",
+		),
+	2808 => array(
+			'name'    => "Scout Aleswell Farm",
+			'journal' => "I accepted a mission to scout Aleswell Farm for the Covenant.",
+		),
+	4401 => array(
+			'name'    => "Lighthouse Attack Plans",
+			'journal' => "I've discovered the Ember-Eye's plans for an assault on Koeglin Lighthouse. I should bring these to Koeglin Village.",
+		),
+	2810 => array(
+			'name'    => "Scout Chalman Farm",
+			'journal' => "I accepted a mission to scout Chalman Farm for the Covenant.",
+		),
+	6008 => array(
+			'name'    => "Ashlander Relations",
+			'journal' => "The Zainab tribe has encouraged other Ashlanders to seek a positive relationship with outlanders. Because I've shown respect for the Ashlander culture, I've been encouraged to help build that relationship.",
+		),
+	4165 => array(
+			'name'    => "The Dark Night of the Soul",
+			'journal' => "<<1>> must take root in Treehenge before the Worm Cult can corrupt her soul.",
+		),
+	2811 => array(
+			'name'    => "Scout Arrius Farm",
+			'journal' => "I accepted a mission to scout Arrius Farm for the Covenant.",
+		),
+	5863 => array(
+			'name'    => "Haunted Grounds",
+			'journal' => "A group of ghost hunters hired me to protect them on their current job. They've been contracted to clear out a fortress to the north that's infested with spirits. I need to keep them safe while they do whatever they do.",
+		),
+	2844 => array(
+			'name'    => "Scout Fort Aleswell",
+			'journal' => "I accepted a mission to scout Fort Aleswell for the Pact.",
+		),
+	3345 => array(
+			'name'    => "The End of Extortion",
+			'journal' => "Red Rook enforcers are extorting gold from the citizens of Crosswych. They claim it's to pay for the protection they're providing, but that's just an excuse.",
+		),
+	4286 => array(
+			'name'    => "Pinepeak Caverns",
+			'journal' => "A group of researchers were ambushed by the Worm Cult at Pinepeak Caverns.",
+		),
+	2812 => array(
+			'name'    => "Scout Kingscrest Farm",
+			'journal' => "I accepted a mission to scout Kingscrest Farm for the Covenant.",
+		),
+	2813 => array(
+			'name'    => "Scout Farragut Farm",
+			'journal' => "I accepted a mission to scout Farragut Farm for the Covenant.",
+		),
+	5239 => array(
+			'name'    => "Dawn of the Exalted Viper",
+			'journal' => "I met Titus Valerius in Belkarth. He was hoping to find Kelmen to assist him and the Thief with a ritual to locate a magical disturbance near Skyreach, but the mage is nowhere to be found.",
+		),
+	2838 => array(
+			'name'    => "Scout Black Boot Lumbermill",
+			'journal' => "I accepted a mission to scout Black Boot Lumbermill  for the Covenant.",
+		),
+	2814 => array(
+			'name'    => "Scout Blue Road Farm",
+			'journal' => "I accepted a mission to scout Blue Road Farm for the Covenant.",
+		),
+	2815 => array(
+			'name'    => "Scout Drakelowe Farm",
+			'journal' => "I accepted a mission to scout Drakelowe Farm for the Covenant.",
+		),
+	4530 => array(
+			'name'    => "Goblin's Delight",
+			'journal' => "I agreed to help <<1>> kill a Goblin that <<2>> has been feeding.",
+		),
+	2832 => array(
+			'name'    => "Scout Blue Road Lumbermill",
+			'journal' => "I accepted a mission to scout Blue Road Lumbermill  for the Covenant.",
+		),
+	2817 => array(
+			'name'    => "Scout Faregyl Farm",
+			'journal' => "I accepted a mission to scout Faregyl Farm for the Covenant.",
+		),
+	2819 => array(
+			'name'    => "Scout Brindle Farm",
+			'journal' => "I accepted a mission to scout Brindle Farm for the Covenant.",
+		),
+	4684 => array(
+			'name'    => "Congratulations!",
+			'journal' => "Apphia Matia asked me to let Brielus Colus of Cheydinhal know that she is bearing his child.",
+		),
+	3128 => array(
+			'name'    => "Capture Kingscrest Mine",
+			'journal' => "I accepted a mission to help capture Kingscrest Mine for the Pact.",
+		),
+	2821 => array(
+			'name'    => "Scout Bloodmayne Farm",
+			'journal' => "I accepted a mission to scout Bloodmayne Farm for the Covenant.",
+		),
+	4431 => array(
+			'name'    => "Buried Secrets",
+			'journal' => "A researcher by the name of Neramo is exploring the Dwemer ruins of Bthzark, looking for a way inside.",
+		),
+	2825 => array(
+			'name'    => "Scout Ash Lumbermill",
+			'journal' => "I accepted a mission to scout Ash Lumbermill  for the Covenant.",
+		),
+	2827 => array(
+			'name'    => "Scout Dragonclaw Lumbermill",
+			'journal' => "I accepted a mission to scout Dragonclaw Lumbermill  for the Covenant.",
+		),
+	3503 => array(
+			'name'    => "Generic Defend NPC Event",
+			'journal' => "",
+		),
+	2829 => array(
+			'name'    => "Scout Arrius Lumbermill",
+			'journal' => "I accepted a mission to scout Arrius Lumbermill  for the Covenant.",
+		),
+	2833 => array(
+			'name'    => "Scout Drakelowe Lumbermill",
+			'journal' => "I accepted a mission to scout Drakelowe Lumbermill  for the Covenant.",
+		),
+	2835 => array(
+			'name'    => "Scout Faregyl Lumbermill",
+			'journal' => "I accepted a mission to scout Faregyl Lumbermill  for the Covenant.",
+		),
+	2837 => array(
+			'name'    => "Scout Brindle Lumbermill",
+			'journal' => "I accepted a mission to scout Brindle Lumbermill  for the Covenant.",
+		),
+	4694 => array(
+			'name'    => "Word from the Throne",
+			'journal' => "The dead have risen at Tu'whacca's Throne. Throne Keeper Farvard insists we consult the king before taking any action. I have agreed to take word back to the palace in Sentinel.",
+		),
+	2840 => array(
+			'name'    => "Scout Fort Warden",
+			'journal' => "I accepted a mission to scout Fort Warden for the Pact.",
+		),
+	3204 => array(
+			'name'    => "Capture Blue Road Farm",
+			'journal' => "I accepted a mission to help capture Blue Road Farm for the Covenant.",
+		),
+	5057 => array(
+			'name'    => "Bad Medicine",
+			'journal' => "The virulent Llodos plague spreads throughout Deshaan, and the town known as the Serk suffers under the effects of the ravaging disease. A group known as the Maulborn arrived to help, but some of the townsfolk are dubious about their true intentions.",
+		),
+	2841 => array(
+			'name'    => "Scout Fort Rayles",
+			'journal' => "I accepted a mission to scout Fort Rayles for the Pact.",
+		),
+	2843 => array(
+			'name'    => "Scout Fort Ash",
+			'journal' => "I accepted a mission to scout Fort Ash for the Pact.",
+		),
+	2845 => array(
+			'name'    => "Scout Fort Dragonclaw",
+			'journal' => "I accepted a mission to scout Fort Dragonclaw for the Pact.",
+		),
+	2847 => array(
+			'name'    => "Scout Arrius Keep",
+			'journal' => "I accepted a mission to scout Arrius Keep for the Pact.",
+		),
+	3212 => array(
+			'name'    => "Capture Fort Warden",
+			'journal' => "I accepted a mission to help re-capture Fort Warden for the Covenant.",
+		),
+	5443 => array(
+			'name'    => "Thukhozod the Eternal",
+			'journal' => "I met a pair of adventurers outside a ruin who offered me a share of their gold if I help them complete a job. They've been hired to find a missing young Orc inside the ruins known as Thukhozod's Sanctum.",
+		),
+	2849 => array(
+			'name'    => "Scout Farragut Keep",
+			'journal' => "I accepted a mission to scout Farragut Keep for the Pact.",
+		),
+	2855 => array(
+			'name'    => "Scout Castle Brindle",
+			'journal' => "I accepted a mission to scout Castle Brindle for the Pact.",
+		),
+	4810 => array(
+			'name'    => "Nirnroot Wine",
+			'journal' => "I agreed to gather Red Mountain Ash for <<1>>, so he can make Nirnroot wine.",
+		),
+	3220 => array(
+			'name'    => "Capture Kingscrest Keep",
+			'journal' => "I accepted a mission to help capture Kingscrest Keep for the Covenant.",
+		),
+	4463 => array(
+			'name'    => "The Merethic Collection",
+			'journal' => "The Merethic Society hid several of its most valuable treasures throughout the ruins of Runanyil's Fall.",
+		),
+	2857 => array(
+			'name'    => "Scout Castle Bloodmayne",
+			'journal' => "I accepted a mission to scout Castle Bloodmayne for the Pact.",
+		),
+	2859 => array(
+			'name'    => "Scout Rayles Mine",
+			'journal' => "I accepted a mission to scout Rayles Mine for the Pact.",
+		),
+	3407 => array(
+			'name'    => "Kill Twenty Guards",
+			'journal' => "",
+		),
+	2861 => array(
+			'name'    => "Scout Ash Mine",
+			'journal' => "I accepted a mission to scout Ash Mine for the Pact.",
+		),
+	4340 => array(
+			'name'    => "The White Mask of Merien",
+			'journal' => "Tamien, an ex-Red Rook bandit, claims he wants to save the town of Eagle's Brook. The Lion Guard, however, don't trust him. Tamien says the Bloodthorns are turning townfolk into zombies. He wants my help to prepare a spell to protect the villagers.",
+		),
+	2863 => array(
+			'name'    => "Scout Dragonclaw Mine",
+			'journal' => "I accepted a mission to scout Dragonclaw Mine for the Pact.",
+		),
+	3197 => array(
+			'name'    => "Capture Ash Farm",
+			'journal' => "I accepted a mission to help capture Ash Farm for the Covenant.",
+		),
+	2864 => array(
+			'name'    => "Scout Chalman Mine",
+			'journal' => "I accepted a mission to scout Chalman Mine for the Pact.",
+		),
+	2870 => array(
+			'name'    => "Scout Alessia Mine",
+			'journal' => "I accepted a mission to scout Alessia Mine for the Pact.",
+		),
+	3236 => array(
+			'name'    => "Capture Aleswell Lumbermill",
+			'journal' => "I accepted a mission to help capture Aleswell Lumbermill for the Covenant.",
+		),
+	2873 => array(
+			'name'    => "Scout Brindle Mine",
+			'journal' => "I accepted a mission to scout Brindle Mine for the Pact.",
+		),
+	4730 => array(
+			'name'    => "Breaking the Shackle",
+			'journal' => "I restored Vanus Galerion and disrupted activities at the Black Forge. Now we need to assault the Great Shackle and end the threat of the Planemeld once and for all.",
+		),
+	3082 => array(
+			'name'    => "The Lion Guard's Stand",
+			'journal' => "To hold back Angof's undead army, the Lion Guard built a redoubt on a hill outside Cath Bedraud. As they struggle to find a way to breech Angof's defenses, they have to fend off hordes of Bloodthorn cultists and zombie thralls.",
+		),
+	2875 => array(
+			'name'    => "Scout Bloodmayne Mine",
+			'journal' => "I accepted a mission to scout Bloodmayne Mine for the Pact.",
+		),
+	2877 => array(
+			'name'    => "Scout Rayles Farm",
+			'journal' => "I accepted a mission to scout Rayles Farm for the Pact.",
+		),
+	2879 => array(
+			'name'    => "Scout Ash Farm",
+			'journal' => "I accepted a mission to scout Ash Farm for the Pact.",
+		),
+	5837 => array(
+			'name'    => "Lava Foot Stomp",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Stonefalls.",
+		),
+	4480 => array(
+			'name'    => "Oath of Excision",
+			'journal' => "The Vinedusk Rangers are under siege by an invading Colovian force. They've offered me a chance to join the fight.",
+		),
+	2882 => array(
+			'name'    => "Scout Chalman Farm",
+			'journal' => "I accepted a mission to scout Chalman Farm for the Pact.",
+		),
+	2883 => array(
+			'name'    => "Scout Arrius Farm",
+			'journal' => "I accepted a mission to scout Arrius Farm for the Pact.",
+		),
+	4748 => array(
+			'name'    => "Saving Stibbons",
+			'journal' => "I found a hastily written note from Lady Laurent's servant, Stibbons. He was captured by Daedra after we arrived in Coldharbour and is being held in a nearby tower.",
+		),
+	2884 => array(
+			'name'    => "Scout Faregyl Farm",
+			'journal' => "I accepted a mission to scout Faregyl Farm for the Pact.",
+		),
+	5249 => array(
+			'name'    => "Blacksmith Certification",
+			'journal' => "If I can prove I know my way around a forge, <<1>> will certify me as a blacksmith.",
+		),
+	3192 => array(
+			'name'    => "Forgotten Ancestry",
+			'journal' => "I met Harald Winvale, a repentant Bloodthorn cultist who is being haunted by ancestral spirits for desecrating his family tombs. He asked me to help him demonstrate that he still honors and respects his ancestors.",
+		),
+	2885 => array(
+			'name'    => "Scout Roebeck Farm",
+			'journal' => "I accepted a mission to scout Roebeck Farm for the Pact.",
+		),
+	2886 => array(
+			'name'    => "Scout Brindle Farm",
+			'journal' => "I accepted a mission to scout Brindle Farm for the Pact.",
+		),
+	5590 => array(
+			'name'    => "Contract: Glenumbra",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3221 => array(
+			'name'    => "Capture Farragut Keep",
+			'journal' => "I accepted a mission to help capture Farragut Keep for the Covenant.",
+		),
+	2888 => array(
+			'name'    => "Scout Bloodmayne Farm",
+			'journal' => "I accepted a mission to scout Bloodmayne Farm for the Pact.",
+		),
+	5396 => array(
+			'name'    => "Woodworker Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Woodworker goods to an interested organization.",
+		),
+	2890 => array(
+			'name'    => "Scout Rayles Lumbermill",
+			'journal' => "I accepted a mission to scout Rayles Lumbermill for the Pact.",
+		),
+	2891 => array(
+			'name'    => "Scout Glademist Lumbermill",
+			'journal' => "I accepted a mission to scout Glademist Lumbermill for the Pact.",
+		),
+	2892 => array(
+			'name'    => "Scout Ash Lumbermill",
+			'journal' => "I accepted a mission to scout Ash Lumbermill for the Pact.",
+		),
+	4611 => array(
+			'name'    => "Mist and Shadow",
+			'journal' => "Something strange is happening in Shademist Moors. The village of Longhaven needs someone who can uncover what might be behind it.",
+		),
+	2893 => array(
+			'name'    => "Scout Aleswell Lumbermill",
+			'journal' => "I accepted a mission to scout Aleswell Lumbermill for the Pact.",
+		),
+	2894 => array(
+			'name'    => "Scout Dragonclaw Lumbermill",
+			'journal' => "I accepted a mission to scout Dragonclaw Lumbermill for the Pact.",
+		),
+	4361 => array(
+			'name'    => "Rightful Inheritance",
+			'journal' => "Elanwe's son, Sorondil, is the illegitimate son of the deceased High Kinsman Rilis XII. Sorondil has come to these ruins to retrieve a great treasure and his inheritance.",
+		),
+	2895 => array(
+			'name'    => "Scout Chalman Lumbermill",
+			'journal' => "I accepted a mission to scout Chalman Lumbermill for the Pact.",
+		),
+	3229 => array(
+			'name'    => "Capture Castle Bloodmayne",
+			'journal' => "I accepted a mission to help capture Castle Bloodmayne for the Covenant.",
+		),
+	2896 => array(
+			'name'    => "Scout Arrius Lumbermill",
+			'journal' => "I accepted a mission to scout Arrius Lumbermill for the Pact.",
+		),
+	4631 => array(
+			'name'    => "Past Due",
+			'journal' => "I found a note of debt in Coldrock Diggings.",
+		),
+	5521 => array(
+			'name'    => "Nature's Bounty",
+			'journal' => "A foul corruption besets the Wrothgar wilderness. This dark sorcery has blighted the land and driven wild animals mad. The Orcish shaman, Ushang, believes that we can cleanse the corruption through old magic and force of arms.",
+		),
+	2899 => array(
+			'name'    => "Scout Farragut Lumbermill",
+			'journal' => "I accepted a mission to scout Farragut Lumbermill for the Pact.",
+		),
+	3381 => array(
+			'name'    => "A Winner for Onwyn",
+			'journal' => "I've decided to help <<1>> find a lizard who can win in the local lizard races. Breeders specialize in providing varieties of racing reptiles.",
+		),
+	5597 => array(
+			'name'    => "A Ghost from the Past",
+			'journal' => "Green-Venom-Tongue learned a few things from the Black Dragon's journal that seem to point to his former Sanctuary. He wants to go back there and try to confirm the Black Dragon's claims.",
+		),
+	2903 => array(
+			'name'    => "Scout Faregyl Lumbermill",
+			'journal' => "I accepted a mission to scout Faregyl Lumbermill for the Pact.",
+		),
+	3268 => array(
+			'name'    => "Capture Black Boot Mine",
+			'journal' => "I accepted a mission to help capture Black Boot Mine for the Covenant.",
+		),
+	2905 => array(
+			'name'    => "Scout Brindle Lumbermill",
+			'journal' => "I accepted a mission to scout Brindle Lumbermill for the Pact.",
+		),
+	2907 => array(
+			'name'    => "Scout Bloodmayne Lumbermill",
+			'journal' => "I accepted a mission to scout Bloodmayne Lumbermill for the Pact.",
+		),
+	2915 => array(
+			'name'    => "Capture Fort Warden",
+			'journal' => "I accepted a mission to capture Fort Warden for the Dominion.",
+		),
+	4780 => array(
+			'name'    => "Messages Across Tamriel",
+			'journal' => "Vanus Galerion of the Mages Guild has a plan to stop Molag Bal's incursion of Tamriel. It requires convincing the three alliances to join forces with the Mages Guild and Fighters Guild to assault Coldharbour.",
+		),
+	3463 => array(
+			'name'    => "Scout the Farm",
+			'journal' => "",
+		),
+	4156 => array(
+			'name'    => "The Soul Trap",
+			'journal' => "Someone's soul is trapped in an Ayleid tomb within Abamath. A puzzle lock prevents her from escaping.",
+		),
+	4507 => array(
+			'name'    => "Offerings to Zenithar",
+			'journal' => "<<1>> has asked me to collect offerings to Zenithar from several villagers around Cropsford.",
+		),
+	3096 => array(
+			'name'    => "Capture Castle Faregyl",
+			'journal' => "I accepted a mission to help capture Castle Faregyl for the Pact.",
+		),
+	2917 => array(
+			'name'    => "Capture Fort Glademist",
+			'journal' => "I accepted a mission to help capture Fort Glademist for the Dominion.",
+		),
+	3456 => array(
+			'name'    => "Kill Twenty Guards",
+			'journal' => "",
+		),
+	2918 => array(
+			'name'    => "Capture Fort Ash",
+			'journal' => "I accepted a mission to help capture Fort Ash for the Dominion.",
+		),
+	2919 => array(
+			'name'    => "Capture Fort Aleswell",
+			'journal' => "I accepted a mission to help capture Fort Aleswell for the Dominion.",
+		),
+	2923 => array(
+			'name'    => "Capture Kingscrest Keep",
+			'journal' => "I accepted a mission to help capture Kingscrest Keep for the Dominion.",
+		),
+	4142 => array(
+			'name'    => "Awakening",
+			'journal' => "<<1>> needs to join her fellow spirits in Treehenge, but something prevents her.",
+		),
+	2927 => array(
+			'name'    => "Capture Castle Alessia",
+			'journal' => "I accepted a mission to help regain Castle Alessia for the Dominion.",
+		),
+	2929 => array(
+			'name'    => "Capture Castle Roebeck",
+			'journal' => "I accepted a mission to help re-capture Castle Roebeck for the Dominion.",
+		),
+	5553 => array(
+			'name'    => "The One That Got Away",
+			'journal' => "A matter involving <<1>> requires the guild's attention, and <<2>> wants me to handle it personally.",
+		),
+	2931 => array(
+			'name'    => "Capture Castle Black Boot",
+			'journal' => "I accepted a mission to help regain Castle Black Boot for the Dominion.",
+		),
+	3112 => array(
+			'name'    => "Capture Blue Road Farm",
+			'journal' => "I accepted a mission to help capture Blue Road Farm for the Pact.",
+		),
+	2933 => array(
+			'name'    => "Capture Warden Mine",
+			'journal' => "I accepted a mission to help capture Warden Mine for the Dominion.",
+		),
+	4790 => array(
+			'name'    => "Breaking the Ward",
+			'journal' => "The Vinedusks are spread thin and need my assistance.",
+		),
+	2937 => array(
+			'name'    => "Capture Aleswell Mine",
+			'journal' => "I accepted a mission to help capture Aleswell Mine for the Dominion.",
+		),
+	4794 => array(
+			'name'    => "In the Belly of the Sea Hawk",
+			'journal' => "A Khajiit trader was tricked by an Altmer merchant captain who gave her low quality fabric in place of the rare silks she traded for.",
+		),
+	2938 => array(
+			'name'    => "Capture Dragonclaw Mine",
+			'journal' => "I accepted a mission to help capture Dragonclaw Mine for the Dominion.",
+		),
+	4665 => array(
+			'name'    => "Ezreba's Fate",
+			'journal' => "Bowenas, the Treethane of Greenhill, is having trouble deciding what to do with Ezreba. The Khajiit helped the cultists to subvert the town, but she was forced to do so against her will.",
+		),
+	2939 => array(
+			'name'    => "Capture Chalman Mine",
+			'journal' => "I accepted a mission to help capture Chalman Mine for the Dominion.",
+		),
+	5314 => array(
+			'name'    => "Enchanter Certification",
+			'journal' => "If I can prove I know my way around an enchanting table, <<1>> will certify me as an enchanter.",
+		),
+	2943 => array(
+			'name'    => "Capture Blue Road Mine",
+			'journal' => "I accepted a mission to help capture Blue Road Mine for the Dominion.",
+		),
+	4146 => array(
+			'name'    => "A Family Divided",
+			'journal' => "Survivors of the plague from Narsis have built a refugee camp inside long-abandoned crypts. <<1>> and her husband came to join the group, but became separated.",
+		),
+	3277 => array(
+			'name'    => "Mastering the Talisman",
+			'journal' => "The wizard Gabrielle Benele asked me to help her recharge the Midnight Talisman. It could be a powerful weapon in the battle against Angof the Gravesinger.",
+		),
+	2944 => array(
+			'name'    => "Capture Drakelowe Mine",
+			'journal' => "I accepted a mission to help capture Drakelowe Mine for the Dominion.",
+		),
+	2945 => array(
+			'name'    => "Capture Alessia Mine",
+			'journal' => "I accepted a mission to help capture Alessia Mine for the Dominion.",
+		),
+	4544 => array(
+			'name'    => "The Dark Mane",
+			'journal' => "The Mane, on his way to the Handfasting in Silvenar, suddenly attacked his entourage and fled. Lord Gharesh-ri, the Speaker of the Mane, asked me to find him.",
+		),
+	2946 => array(
+			'name'    => "Capture Faregyl Mine",
+			'journal' => "I accepted a mission to help capture Faregyl Mine for the Dominion.",
+		),
+	2947 => array(
+			'name'    => "Capture Roebeck Mine",
+			'journal' => "I accepted a mission to help capture Roebeck Mine for the Dominion.",
+		),
+	4812 => array(
+			'name'    => "History's Song",
+			'journal' => "I was lead to an old instrument in the ruins of Thibaut's Cairn by a spectral woman. The recoder was engraved with \"Valencia Nasica, the Exalted Bard of Dune.\"",
+		),
+	2950 => array(
+			'name'    => "Capture Brindle Mine",
+			'journal' => "I accepted a mission to help capture Brindle Mine for the Dominion.",
+		),
+	5692 => array(
+			'name'    => "Contract: The Rift",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	2951 => array(
+			'name'    => "Capture Black Boot Mine",
+			'journal' => "I accepted a mission to help capture Black Boot Mine for the Dominion.",
+		),
+	5803 => array(
+			'name'    => "Divine Conundrum",
+			'journal' => "I encountered a priest of the Tribunal and a wounded Buoyant Armiger on a holy mission for Lord Vivec. They were attacked by Daedra while seeking guidance at an ancestral tomb and weren't able to complete their mission.",
+		),
+	3438 => array(
+			'name'    => "Past in Ruins",
+			'journal' => "<<1>>, a scholar from Cyrodiil, asked me to search the Yokudan ruins at Ancestor's Landing for an ancient sword.",
+		),
+	3285 => array(
+			'name'    => "The Jeweled Crown of Anton",
+			'journal' => "A Daggerfall noble named Lady Laurent seems to be some kind of treasure hunter. She's exploring the Tomb of Lost Kings to find something to add to her collection.",
+		),
+	2952 => array(
+			'name'    => "Capture Bloodmayne Mine",
+			'journal' => "I accepted a mission to help capture Bloodmayne Mine for the Dominion.",
+		),
+	4559 => array(
+			'name'    => "Daughter of Seamount",
+			'journal' => "The hunt-wife of the Seamount clan thinks the chief's daughter is not mindful of her duties to the clan. She believes I could help sort things out.",
+		),
+	2953 => array(
+			'name'    => "Capture Warden Farm",
+			'journal' => "I accepted a mission to help capture Warden Farm for the Dominion.",
+		),
+	2954 => array(
+			'name'    => "Capture Rayles Farm",
+			'journal' => "I accepted a mission to help capture Rayles Farm for the Dominion.",
+		),
+	3105 => array(
+			'name'    => "Capture Aleswell Farm",
+			'journal' => "I accepted a mission to help capture Aleswell Farm for the Pact.",
+		),
+	2956 => array(
+			'name'    => "Capture Ash Farm",
+			'journal' => "I accepted a mission to help capture Ash Farm for the Dominion.",
+		),
+	4675 => array(
+			'name'    => "Consuming Darkness",
+			'journal' => "",
+		),
+	3136 => array(
+			'name'    => "Capture Brindle Mine",
+			'journal' => "I accepted a mission to help capture Brindle Mine for the Pact.",
+		),
+	2957 => array(
+			'name'    => "Capture Aleswell Farm",
+			'journal' => "I accepted a mission to help capture Aleswell Farm for the Dominion.",
+		),
+	3437 => array(
+			'name'    => "A Mysterious Curio",
+			'journal' => "I found a dusty old scroll beside an ancient Ayleid coffer in the vault beneath Dresan Keep.",
+		),
+	4425 => array(
+			'name'    => "Prisoners of War",
+			'journal' => "The Imperials have captured two of Vyctoria Girien's soldiers.",
+		),
+	2959 => array(
+			'name'    => "Capture Chalman Farm",
+			'journal' => "I accepted a mission to help capture Chalman Farm for the Dominion.",
+		),
+	3446 => array(
+			'name'    => "Kill Thirty Daggerfall Players",
+			'journal' => "",
+		),
+	2960 => array(
+			'name'    => "Capture Arrius Farm",
+			'journal' => "I accepted a mission to help capture Arrius Farm for the Dominion.",
+		),
+	4695 => array(
+			'name'    => "Homeward",
+			'journal' => "<<1>> asked me to travel to <<2>> and look for her sister, <<3>>.",
+		),
+	2961 => array(
+			'name'    => "Capture Kingscrest Farm",
+			'journal' => "I accepted a mission to help capture Kingscrest Farm for the Dominion.",
+		),
+	2962 => array(
+			'name'    => "Capture Farragut Farm",
+			'journal' => "I accepted a mission to help capture Farragut Farm for the Dominion.",
+		),
+	3113 => array(
+			'name'    => "Capture Drakelowe Farm",
+			'journal' => "I accepted a mission to help capture Drakelowe Farm for the Pact.",
+		),
+	2964 => array(
+			'name'    => "Capture Drakelowe Farm",
+			'journal' => "I accepted a mission to help capture Drakelowe Farm for the Dominion.",
+		),
+	2966 => array(
+			'name'    => "Capture Faregyl Farm",
+			'journal' => "I accepted a mission to help capture Faregyl Farm for the Dominion.",
+		),
+	4693 => array(
+			'name'    => "The Family Business",
+			'journal' => "A moon-sugar plantation suffered a terrible fire. The family in charge of the plantation needs a hand to recover from their tragedy.",
+		),
+	3445 => array(
+			'name'    => "Kill Thirty Enemy Players",
+			'journal' => "",
+		),
+	5302 => array(
+			'name'    => "Woodworker Certification",
+			'journal' => "If I can prove I know my way around a workbench, <<1>> will certify me as a woodworker.",
+		),
+	2967 => array(
+			'name'    => "Capture Roebeck Farm",
+			'journal' => "I accepted a mission to help capture Roebeck Farm for the Dominion.",
+		),
+	4816 => array(
+			'name'    => "A Blessing for the Dead",
+			'journal' => "A villager from Tava's Blessing asked that I seek out a Thronekeeper named Luala al-Tava.",
+		),
+	3121 => array(
+			'name'    => "Capture Rayles Mine",
+			'journal' => "I accepted a mission to help capture Rayles Mine for the Pact.",
+		),
+	4293 => array(
+			'name'    => "Putting the Pieces Together",
+			'journal' => "I'm working with Razum-dar, at the town of Mathiisen. He's looking into reports of the Veiled Heritance in the area for Queen Ayrenn.",
+		),
+	4446 => array(
+			'name'    => "Aiding Sigunn",
+			'journal' => "The traveling merchant Sigunn has asked for help retrieving supplies he lost after a giant attack.",
+		),
+	2972 => array(
+			'name'    => "Capture Warden Lumbermill",
+			'journal' => "I accepted a mission to help capture Warden Lumbermill for the Dominion.",
+		),
+	3152 => array(
+			'name'    => "Capture Faregyl Lumbermill",
+			'journal' => "I accepted a mission to help capture Faregyl Lumbermill for the Pact.",
+		),
+	2973 => array(
+			'name'    => "Capture Rayles Lumbermill",
+			'journal' => "I accepted a mission to help capture Rayles Lumbermill for the Dominion.",
+		),
+	4450 => array(
+			'name'    => "Well-Armed Savages",
+			'journal' => "I ran into a captive Khajiit in Toothmaul Gully. I've opted to free him and entertain his offer.",
+		),
+	2976 => array(
+			'name'    => "Capture Aleswell Lumbermill",
+			'journal' => "I accepted a mission to help capture Aleswell Lumbermill for the Dominion.",
+		),
+	2978 => array(
+			'name'    => "Capture Chalman Lumbermill",
+			'journal' => "I accepted a mission to help capture Chalman Lumbermill for the Dominion.",
+		),
+	2979 => array(
+			'name'    => "Capture Arrius Lumbermill",
+			'journal' => "I accepted a mission to help capture Arrius Lumbermill for the Dominion.",
+		),
+	4844 => array(
+			'name'    => "The Price of Longevity",
+			'journal' => "I found a strange sapling that spoke to me, confused about its own ability to think and feel. It has vague memories of walking and a nearby cave. I agreed to help the sapling get some answers.",
+		),
+	2980 => array(
+			'name'    => "Capture Kingscrest Lumbermill",
+			'journal' => "I accepted a mission to help capture Kingscrest Lumbermill for the Dominion.",
+		),
+	3520 => array(
+			'name'    => "Window on the Past",
+			'journal' => "Sorcerer Vunal at the Brothers of Strife monument says he can teach me about the past. The Brothers were apparently once mortal leaders of the citizens of Stonefalls. The past may hold clues about these powerful creatures.",
+		),
+	2982 => array(
+			'name'    => "Capture Blue Road Lumbermill",
+			'journal' => "I accepted a mission to help capture Blue Road Lumbermill for the Dominion.",
+		),
+	3317 => array(
+			'name'    => "Tongues of Stone",
+			'journal' => "Lady Laurent, a traveling archeologist, has \"lost\" her assistant, Stibbons. She is trying to recover him from her research site.",
+		),
+	2984 => array(
+			'name'    => "Capture Alessia Lumbermill",
+			'journal' => "I accepted a mission to help capture Alessia Lumbermill for the Dominion.",
+		),
+	4591 => array(
+			'name'    => "Timely Intervention",
+			'journal' => "<<1>> asked that I search for <<2>> and <<3>>.",
+		),
+	2985 => array(
+			'name'    => "Capture Faregyl Lumbermill",
+			'journal' => "I accepted a mission to help capture Faregyl Lumbermill for the Dominion.",
+		),
+	5492 => array(
+			'name'    => "The Lifeblood of an Empire",
+			'journal' => "Valga Atrius, an Imperial freedom fighter, has asked for my help in rescuing Imperial citizens held captive by the Daedra in the Arena District.",
+		),
+	2986 => array(
+			'name'    => "Capture Roebeck Lumbermill",
+			'journal' => "I accepted a mission to help capture Roebeck Lumbermill for the Dominion.",
+		),
+	2988 => array(
+			'name'    => "Capture Black Boot Lumbermill",
+			'journal' => "I accepted a mission to help capture Black Boot Lumbermill for the Dominion.",
+		),
+	4707 => array(
+			'name'    => "Best Left Unknown",
+			'journal' => "I found a note meant for <<1>>, who apparently lives in <<2>>. He might appreciate getting it.",
+		),
+	2989 => array(
+			'name'    => "Capture Bloodmayne Lumbermill",
+			'journal' => "I accepted a mission to help capture Bloodmayne Lumbermill for the Dominion.",
+		),
+	2997 => array(
+			'name'    => "Amputating the Hand",
+			'journal' => "The final Ansei Ward has been tracked to the Motalion Necropolis. I must help Prince Azah recover the Ward and put an end to the Withered Hand's plot.",
+		),
+	4854 => array(
+			'name'    => "Eyes of Azura",
+			'journal' => "<<1>>, a priestess of Azura, has long suffered at the hands of Molag Bal. Her pain is so great it has torn a hole between <<2>> and <<3>>, an Ayleid ruin in <<4>>.",
+		),
+	2998 => array(
+			'name'    => "Restoring the Ansei Wards",
+			'journal' => "I recovered all three Ansei Wards and defeated the heirs of Suturah. The Withered Hand is broken. Their campaign of terror has ended. All that remains is to restore the Ansei Wards to safekeeping in Sentinel.",
+		),
+	4725 => array(
+			'name'    => "Welcome to Cyrodiil",
+			'journal' => "I've entered Cyrodiil, ready to help the Covenant win the war.",
+		),
+	5416 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	3205 => array(
+			'name'    => "Capture Drakelowe Farm",
+			'journal' => "I accepted a mission to help capture Drakelowe Farm for the Covenant.",
+		),
+	3000 => array(
+			'name'    => "Blood and the Crescent Moon",
+			'journal' => "The bustling city of Daggerfall holds many mysteries. It appears that I stumbled right into one of them.",
+		),
+	5688 => array(
+			'name'    => "Contract: Gold Coast Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of the Gold Coast.",
+		),
+	4357 => array(
+			'name'    => "To Firsthold",
+			'journal' => "After aiding the people of Dawnbreak, Landare asked me to move down the road to Firsthold. If Dawnbreak faced the Daedra, chances are the city of Firsthold has as well.",
+		),
+	3003 => array(
+			'name'    => "Disorganized Crime",
+			'journal' => "The nobles now have the wolf's woe plants. Unfortunately, the bandits set traps all around the estate. The nobles will never be able to slip out past those traps or the bandits.",
+		),
+	4478 => array(
+			'name'    => "Into the Hills",
+			'journal' => "Laganakh senses evil spreading on Betnikh. We need to know what we're facing before we can fight it. A totem may grant me visions that will help us.",
+		),
+	3004 => array(
+			'name'    => "Lady Eloise's Lockbox",
+			'journal' => "The Red Rook leader, Tharkul, stole Lady Noellaume's jewelry box. She's grateful that her family is safe, but she would love to have her lockbox returned to her once she's safely away from the bandits.",
+		),
+	3006 => array(
+			'name'    => "Bloodthorn Assassins",
+			'journal' => "Bloodthorn assassins plan to kill King Casimir. If the King dies, the entire Daggerfall Covenant could fall apart.",
+		),
+	5937 => array(
+			'name'    => "Royal Revelry",
+			'journal' => "Jester King Emeric has asked for my help in impressing his subjects and visiting guests with a display using his illusion dazzlers. Unfortunately, his stock was confiscated and he needs my help to create replacements.",
+		),
+	3013 => array(
+			'name'    => "Wolves in the Fold",
+			'journal' => "<<1>> thinks that werewolves may be trying to infiltrate and take over Aldcroft, just as they overthrew Camlorn.",
+		),
+	3016 => array(
+			'name'    => "The Wyrd Tree's Roots",
+			'journal' => "The Beldama Wyrd want to use the roots of the Wyrd Tree to help the villagers get away. But the same corruption that caused all this trouble has sapped the roots of their power.",
+		),
+	3019 => array(
+			'name'    => "The Ghosts of Westtry",
+			'journal' => "The town of Westtry is cursed, haunted by the spirits of its inhabitants and the raiders who slaughtered them. The spirit of Leon Milielle, Westtry's priest, asked me to lift the curse.",
+		),
+	4238 => array(
+			'name'    => "Overdue Supplies",
+			'journal' => "<<1>> asked me to find his friend <<2>>, who was carrying supplies for Weynon Priory.",
+		),
+	3020 => array(
+			'name'    => "Memento Mori",
+			'journal' => "Leon made a pact with Molag Bal that placed a curse upon Westtry. The final twist was when Molag Bal turned Leon's wife and the captain of the guard, Rosalind, into a vengeful shade. She may hold the key to ending this curse.",
+		),
+	4739 => array(
+			'name'    => "A Storm Upon the Shore",
+			'journal' => "Vicereeve Pelidil and his Maormer allies have attacked and seized control of Seaside Sanctuary.",
+		),
+	3208 => array(
+			'name'    => "Capture Roebeck Farm",
+			'journal' => "I accepted a mission to help capture Roebeck Farm for the Covenant.",
+		),
+	3029 => array(
+			'name'    => "Temple's Treasures",
+			'journal' => "Imperial invaders ransacked the Temple of Satakalaam, killing the priests, defiling the temple, and stealing the relics. High Priest Zuladr has asked me to reclaim the relics so he can restore the temple.",
+		),
+	5670 => array(
+			'name'    => "Contract: Eastmarch",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3049 => array(
+			'name'    => "The Nameless Soldier",
+			'journal' => "Alana and her soldiers were ambushed on their way to confront Faolchu. Now Alana has been taken captive and the remaining soldiers are too few to divide their attention. Moreover, I still need to figure out how Faolchu was killed in this time period.",
+		),
+	3059 => array(
+			'name'    => "Servants of Ancient Kings",
+			'journal' => "The dead lords and ladies of the mounds can't rest knowing the Bloodthorn cult has enthralled their servants.",
+		),
+	3060 => array(
+			'name'    => "Seeking the Guardians",
+			'journal' => "The Beldama Wyrd asked for my help. The Wyrd rely on the elemental guardians for guidance and counsel, but the spirits have become mysteriously silent.",
+		),
+	4141 => array(
+			'name'    => "Do Kill the Messenger",
+			'journal' => "Magister Osanne may have sent word to the Orcthane about the mysterious ore found in Lost Knife Cave. Tridi decided to scout the area on her own for any signs of a messenger.",
+		),
+	3063 => array(
+			'name'    => "Champion of the Guardians",
+			'journal' => "Angof Gravesinger has imprisoned the elemental guardians that the Beldama Wyrd rely on for protection and counsel. I agreed to help the Wyrd set the guardians free.",
+		),
+	3248 => array(
+			'name'    => "Capture Black Boot Lumbermill",
+			'journal' => "I accepted a mission to help capture Black Boot Lumbermill for the Covenant.",
+		),
+	3069 => array(
+			'name'    => "Kill 50 Aldmeri Players",
+			'journal' => "",
+		),
+	5495 => array(
+			'name'    => "Priceless Treasures",
+			'journal' => "<<1>> is looking for aid to protect the valuable artifacts scattered and defenseless across the Temple District.",
+		),
+	4311 => array(
+			'name'    => "A Ritual in the Ragged Hills",
+			'journal' => "There's a Worm Cult ritual going on in the Ragged Hills. Amitra needs my help in stopping it.",
+		),
+	3083 => array(
+			'name'    => "Capture Fort Warden",
+			'journal' => "I accepted a mission to help capture Fort Warden for the Pact.",
+		),
+	4296 => array(
+			'name'    => "Soul Shriven in Coldharbour",
+			'journal' => "I died, but that was only the beginning ….\n\nI awoke in Oblivion. My body is intact, but my soul has been torn from my body. I must find a way out of this nightmare place to reclaim what was lost to me, or I will be damned for all eternity.",
+		),
+	3084 => array(
+			'name'    => "Capture Fort Rayles",
+			'journal' => "I accepted a mission to help capture Fort Rayles for the Pact.",
+		),
+	6100 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	3085 => array(
+			'name'    => "Capture Fort Glademist",
+			'journal' => "I accepted a mission to help capture Fort Glademist for the Pact.",
+		),
+	3087 => array(
+			'name'    => "Capture Fort Aleswell",
+			'journal' => "I accepted a mission to help capture Fort Aleswell for the Pact.",
+		),
+	3583 => array(
+			'name'    => "Suspicious Silence",
+			'journal' => "Covenant troops are massing to the north of Fort Arand. They don't have the numbers for a frontal assault, but Fort Captain Hjolm believes they may be coordinating an attack with a second flank.",
+		),
+	3088 => array(
+			'name'    => "Capture Fort Dragonclaw",
+			'journal' => "I accepted a mission to help capture Fort Dragonclaw for the Pact.",
+		),
+	6104 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	3089 => array(
+			'name'    => "Capture Chalman Keep",
+			'journal' => "I accepted a mission to help re-capture Chalman Keep for the Pact.",
+		),
+	5983 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	3090 => array(
+			'name'    => "Capture Arrius Keep",
+			'journal' => "I accepted a mission to help re-capture Arrius Keep for the Pact.",
+		),
+	4689 => array(
+			'name'    => "A Door Into Moonlight",
+			'journal' => "I have been sent to the Moonlit Clearing to meet with a member of the lunar clergy. I'm supposed to find out if I am the Moon Hallowed.",
+		),
+	3091 => array(
+			'name'    => "Capture Kingscrest Keep",
+			'journal' => "I accepted a mission to help re-capture Kingscrest Keep for the Pact.",
+		),
+	4682 => array(
+			'name'    => "The Doctor's Bag",
+			'journal' => "I have a doctor's bag belonging to <<1>>, who may be in <<2>>.",
+		),
+	3092 => array(
+			'name'    => "Capture Farragut Keep",
+			'journal' => "I accepted a mission to help re-capture Farragut Keep for the Pact.",
+		),
+	3095 => array(
+			'name'    => "Capture Castle Alessia",
+			'journal' => "I accepted a mission to help capture Castle Alessia for the Pact.",
+		),
+	4765 => array(
+			'name'    => "Pelidil's End",
+			'journal' => "Seaside Sanctuary is back in the control of the Aldmeri Dominion, but Vicereeve Pelidil has escaped aboard a Maormer vessel.",
+		),
+	3097 => array(
+			'name'    => "Capture Castle Roebeck",
+			'journal' => "I accepted a mission to help capture Castle Roebeck for the Pact.",
+		),
+	5466 => array(
+			'name'    => "Tinker Trouble",
+			'journal' => "It seems that Raynor Vanos used the Dwarven power core I acquired for him in Zthenganaz to rebuild and modify a Dwarven Sphere. The construct went crazy and knocked out Kireth, and when she woke up both it and her brother were missing.",
+		),
+	3457 => array(
+			'name'    => "Capture Fort Balfiera",
+			'journal' => "",
+		),
+	4676 => array(
+			'name'    => "An Affront to Mara",
+			'journal' => "Bandits attacked a chapel just over the border from Reaper's March. A group of temple guards and their priestess tracked them to the ruins of Fort Sphinxmoth.",
+		),
+	3098 => array(
+			'name'    => "Capture Castle Brindle",
+			'journal' => "I accepted a mission to help capture Castle Brindle for the Pact.",
+		),
+	3100 => array(
+			'name'    => "Capture Castle Bloodmayne",
+			'journal' => "I accepted a mission to help capture Castle Bloodmayne for the Pact.",
+		),
+	4583 => array(
+			'name'    => "Dear Cousins",
+			'journal' => "I found a diary on a dead man in Icehammer's Vault. It described how the man and his family took refuge from a storm in Icehammer's Vault. They were eventually killed by the draugr that roam the burial chambers.",
+		),
+	3103 => array(
+			'name'    => "Capture Glademist Farm",
+			'journal' => "I accepted a mission to help capture Glademist Farm for the Pact.",
+		),
+	3465 => array(
+			'name'    => "Scout the Mine",
+			'journal' => "",
+		),
+	4525 => array(
+			'name'    => "Tormented Souls",
+			'journal' => "Orc spirits have risen around Moriseli. I've been asked to investigate the source of this disturbance.",
+		),
+	3106 => array(
+			'name'    => "Capture Dragonclaw Farm",
+			'journal' => "I accepted a mission to help capture Dragonclaw Farm for the Pact.",
+		),
+	3459 => array(
+			'name'    => "Capture the Mine",
+			'journal' => "",
+		),
+	3108 => array(
+			'name'    => "Capture Chalman Farm",
+			'journal' => "I accepted a mission to help capture Chalman Farm for the Pact.",
+		),
+	4961 => array(
+			'name'    => "Hircine's Gift",
+			'journal' => "A strange woman met me at the gates to the city. She may be a werewolf. She told me I am on my way to becoming one as well.",
+		),
+	3109 => array(
+			'name'    => "Capture Arrius Farm",
+			'journal' => "I accepted a mission to help capture Arrius Farm for the Pact.",
+		),
+	3469 => array(
+			'name'    => "Kill an Enemy Guard",
+			'journal' => "",
+		),
+	3110 => array(
+			'name'    => "Capture Kingscrest Farm",
+			'journal' => "I accepted a mission to help capture Kingscrest Farm for the Pact.",
+		),
+	4585 => array(
+			'name'    => "Relative Matters",
+			'journal' => "I encountered a Nord in the Bastard's Tomb. He had been captured by the Stormfist Brigade on his way to his sister's wedding. He promised me a reward if I rescued him.",
+		),
+	3970 => array(
+			'name'    => "An Ill-Fated Venture",
+			'journal' => "I found a letter on a dead man named Tavo in the Lost City of the Na-Totambu. His wife, Nahrina, wanted him to recover some Yokudan relics  and return to Sentinel to pay off a debt. I can recover the relics in his stead.",
+		),
+	4155 => array(
+			'name'    => "Arithiel",
+			'journal' => "The Worm Cult ambushed and captured several Wood Elves in <<1>>. The Cult may be preparing for a dark ritual.",
+		),
+	3111 => array(
+			'name'    => "Capture Farragut Farm",
+			'journal' => "I accepted a mission to help capture Farragut Farm for the Pact.",
+		),
+	3473 => array(
+			'name'    => "Kill an Ebonheart Guard",
+			'journal' => "",
+		),
+	3114 => array(
+			'name'    => "Capture Alessia Farm",
+			'journal' => "I accepted a mission to help capture Alessia Farm for the Pact.",
+		),
+	3115 => array(
+			'name'    => "Capture Faregyl Farm",
+			'journal' => "I accepted a mission to help capture Faregyl Farm for the Pact.",
+		),
+	5710 => array(
+			'name'    => "Contract: Stormhaven Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Stormhaven.",
+		),
+	3467 => array(
+			'name'    => "Kill an Aldmeri Player.",
+			'journal' => "",
+		),
+	3116 => array(
+			'name'    => "Capture Roebeck Farm",
+			'journal' => "I accepted a mission to help capture Roebeck Farm for the Pact.",
+		),
+	3477 => array(
+			'name'    => "Scout Drakelowe Farm",
+			'journal' => "I accepted a mission to scout Drakelowe Farm for the Pact.",
+		),
+	3118 => array(
+			'name'    => "Capture Black Boot Farm",
+			'journal' => "I accepted a mission to help capture Black Boot Farm for the Pact.",
+		),
+	3481 => array(
+			'name'    => "Scout Faregyl Mine",
+			'journal' => "I accepted a mission to scout Faregyl Mine for the Covenant.",
+		),
+	3122 => array(
+			'name'    => "Capture Glademist Mine",
+			'journal' => "I accepted a mission to help capture Glademist Mine for the Pact.",
+		),
+	4721 => array(
+			'name'    => "Honoring the Dishonored",
+			'journal' => "Honorless criminals are left in the Tears of the Dishonored. Darius begged me to find the remains of his wife, Zariya, and consecrate them as he believes she was innocent.",
+		),
+	3123 => array(
+			'name'    => "Capture Ash Mine",
+			'journal' => "I accepted a mission to help capture Ash Mine for the Pact.",
+		),
+	5073 => array(
+			'name'    => "Aicessar's Invitation",
+			'journal' => "",
+		),
+	3475 => array(
+			'name'    => "Scout Farragut Farm",
+			'journal' => "I accepted a mission to scout Farragut Farm for the Pact.",
+		),
+	4714 => array(
+			'name'    => "The Changing Kind",
+			'journal' => "<<1>> in <<2>> is wanted by a pack of werewolves.",
+		),
+	3124 => array(
+			'name'    => "Capture Aleswell Mine",
+			'journal' => "I accepted a mission to help capture Aleswell Mine for the Pact.",
+		),
+	3125 => array(
+			'name'    => "Capture Dragonclaw Mine",
+			'journal' => "I accepted a mission to help capture Dragonclaw Mine for the Pact.",
+		),
+	5494 => array(
+			'name'    => "Long Live the King",
+			'journal' => "Chief Bazrag wants to honor the memory of Kurog with a traditional Orc requiem for the dead. He believes such a ceremony will help heal the wounds Kurog inflicted on Orsinium and the clans.",
+		),
+	3127 => array(
+			'name'    => "Capture Arrius Mine",
+			'journal' => "I accepted a mission to help capture Arrius Mine for the Pact.",
+		),
+	3132 => array(
+			'name'    => "Capture Drakelowe Mine",
+			'journal' => "I accepted a mission to help capture Drakelowe Mine for the Pact.",
+		),
+	4487 => array(
+			'name'    => "The Arbordawn Cult",
+			'journal' => "Telenger the Artificer, a reknowned sage, has come to the Falinesti Autumn Site in search of answers.",
+		),
+	3134 => array(
+			'name'    => "Capture Faregyl Mine",
+			'journal' => "I accepted a mission to help capture Faregyl Mine for the Pact.",
+		),
+	4548 => array(
+			'name'    => "Farsight",
+			'journal' => "An Orc named Magula has seen visions at three shrines around the island. I should visit these shrines and see the visions.",
+		),
+	3135 => array(
+			'name'    => "Capture Roebeck Mine",
+			'journal' => "I accepted a mission to help capture Roebeck Mine for the Pact.",
+		),
+	3137 => array(
+			'name'    => "Capture Black Boot Mine",
+			'journal' => "I accepted a mission to help capture Black Boot Mine for the Pact.",
+		),
+	4868 => array(
+			'name'    => "The Grip of Madness",
+			'journal' => "<<1>>'s citizens are killing one another in the streets. Dominion soldiers cordoned off the town, but are in dire need of assistance.",
+		),
+	5760 => array(
+			'name'    => "The Missing Guardian",
+			'journal' => "Hara has decided it's time to do something about the third guardian, the Thief. The Thief has been mysteriously absent except for when she appears to speak to me in private.",
+		),
+	4557 => array(
+			'name'    => "Will of the Broken",
+			'journal' => "In the depths of <<1>>, I found a <<2>> surrounded by bodies. One of them stirred when I took the urn.",
+		),
+	3138 => array(
+			'name'    => "Capture Bloodmayne Mine",
+			'journal' => "I accepted a mission to help capture Bloodmayne Mine for the Pact.",
+		),
+	3139 => array(
+			'name'    => "Capture Warden Lumbermill",
+			'journal' => "I accepted a mission to help capture Warden Lumbermill for the Pact.",
+		),
+	3140 => array(
+			'name'    => "Capture Rayles Lumbermill",
+			'journal' => "I accepted a mission to help capture Rayles Lumbermill for the Pact.",
+		),
+	4993 => array(
+			'name'    => "Report to Evermore",
+			'journal' => "The garrison at Bangkorai Pass asked that a deliver a message to Evermore Castle.",
+		),
+	3143 => array(
+			'name'    => "Capture Aleswell Lumbermill",
+			'journal' => "I accepted a mission to help capture Aleswell Lumbermill for the Pact.",
+		),
+	3145 => array(
+			'name'    => "Capture Chalman Lumbermill",
+			'journal' => "I accepted a mission to help capture Chalman Lumbermill for the Pact.",
+		),
+	4628 => array(
+			'name'    => "Supplies for Applewatch",
+			'journal' => "<<1>> of Applewatch asked me to deliver a list of supplies he needs for his inn.",
+		),
+	3146 => array(
+			'name'    => "Capture Arrius Lumbermill",
+			'journal' => "I accepted a mission to help capture Arrius Lumbermill for the Pact.",
+		),
+	5902 => array(
+			'name'    => "Divine Disaster",
+			'journal' => "The Daedric hound Barbas tricked us into depleting Lord Vivec's energy so he could determine the location of Clockwork City. Before we deal with Barbas, we need to restore enough energy to Vivec to keep the moonlet from plummeting out of the sky.",
+		),
+	3147 => array(
+			'name'    => "Capture Kingscrest Lumbermill",
+			'journal' => "I accepted a mission to help capture Kingscrest Lumbermill for the Pact.",
+		),
+	3148 => array(
+			'name'    => "Capture Farragut Lumbermill",
+			'journal' => "I accepted a mission to help capture Farragut Lumbermill for the Pact.",
+		),
+	3150 => array(
+			'name'    => "Capture Drakelowe Lumbermill",
+			'journal' => "I accepted a mission to help capture Drakelowe Lumbermill for the Pact.",
+		),
+	3151 => array(
+			'name'    => "Capture Alessia Lumbermill",
+			'journal' => "I accepted a mission to help capture Alessia Lumbermill for the Pact.",
+		),
+	6047 => array(
+			'name'    => "Where Shadows Lie",
+			'journal' => "Luciana and I cleared the way to the Cogitum Centralis. Now we must delve deep into the core of the Clockwork City to stop the Shadow of Sotha Sil.",
+		),
+	3154 => array(
+			'name'    => "Capture Brindle Lumbermill",
+			'journal' => "I accepted a mission to help capture Brindle Lumbermill for the Pact.",
+		),
+	3155 => array(
+			'name'    => "Capture Black Boot Lumbermill",
+			'journal' => "I accepted a mission to help capture Black Boot Lumbermill for the Pact.",
+		),
+	4746 => array(
+			'name'    => "A Misplaced Pendant",
+			'journal' => "I found a pendant with the names <<1>> and <<2>> engraved upon it while exploring the Cave of Trophies.",
+		),
+	3156 => array(
+			'name'    => "Capture Bloodmayne Lumbermill",
+			'journal' => "I accepted a mission to help capture Bloodmayne Lumbermill for the Pact.",
+		),
+	3172 => array(
+			'name'    => "Left at the Altar",
+			'journal' => "A Crown bride, Tiela, has been left at the altar because the Forebear groom, Casnar, hasn't shown up for the wedding. Both families are angry, and I've agreed to help settle the matter.",
+		),
+	5025 => array(
+			'name'    => "The Corrupted Stone",
+			'journal' => "The guardian star sign of the Warrior has failed to appear to protect the mortal world from the Serpent. One of the Star-Gazers needs help uncovering what might be happening.",
+		),
+	3183 => array(
+			'name'    => "To the Wyrd Tree",
+			'journal' => "The elemental guardian asked me to head for the Wyrd Tree. I need to find Wyress Gwen and help save the Wyrd Tree.",
+		),
+	3184 => array(
+			'name'    => "The Glenumbra Moors",
+			'journal' => "The Mages Guild has researchers looking into the details surrounding the way Faolchu originally died. It happened at an ancient battle site called the Glenumbra Moors.",
+		),
+	5431 => array(
+			'name'    => "Pledge: White-Gold Tower",
+			'journal' => "<<1>> has challenged me to explore the White-Gold Tower in the Imperial City.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	4785 => array(
+			'name'    => "The Senche",
+			'journal' => "",
+		),
+	3187 => array(
+			'name'    => "Seize the Moment",
+			'journal' => "A Khajiit named Ildani was apparently caught trying to smuggle her wares into Sentinel. She's asked me to help her recover the confiscated goods.",
+		),
+	3194 => array(
+			'name'    => "Capture Warden Farm",
+			'journal' => "I accepted a mission to help capture Warden Farm for the Covenant.",
+		),
+	3195 => array(
+			'name'    => "Capture Rayles Farm",
+			'journal' => "I accepted a mission to help capture Rayles Farm for the Covenant.",
+		),
+	5058 => array(
+			'name'    => "All the Fuss",
+			'journal' => "A bored member of the Queen's entourage let me know Her Majesty plans to speak soon in the city of Vulkhel Guard.",
+		),
+	3196 => array(
+			'name'    => "Capture Glademist Farm",
+			'journal' => "I accepted a mission to help capture Glademist Farm for the Covenant.",
+		),
+	4551 => array(
+			'name'    => "A Poisoned Heart",
+			'journal' => "While wading through the swamp, I stumbled into a cloud of roaming poison gas and passed out. Two Imperials rescued me and asked me to help them clean it up.",
+		),
+	3199 => array(
+			'name'    => "Capture Dragonclaw Farm",
+			'journal' => "I accepted a mission to help capture Dragonclaw Farm for the Covenant.",
+		),
+	3200 => array(
+			'name'    => "Capture Chalman Farm",
+			'journal' => "I accepted a mission to help capture Chalman Farm for the Covenant.",
+		),
+	3202 => array(
+			'name'    => "Capture Kingscrest Farm",
+			'journal' => "I accepted a mission to help capture Kingscrest Farm for the Covenant.",
+		),
+	4923 => array(
+			'name'    => "Archaic Relics",
+			'journal' => "Knights of Arkay search for holy relics to help combat the rising undead threat spreading throughout Rivenspire. So far, the knights have yet to return.",
+		),
+	3203 => array(
+			'name'    => "Capture Farragut Farm",
+			'journal' => "I accepted a mission to help capture Farragut Farm for the Covenant.",
+		),
+	4871 => array(
+			'name'    => "Bounty: Shadowed Path",
+			'journal' => "I accepted a Fighters Guild contract from Sebazi in Cyrodiil.",
+		),
+	3206 => array(
+			'name'    => "Capture Alessia Farm",
+			'journal' => "I accepted a mission to help capture Alessia Farm for the Covenant.",
+		),
+	3209 => array(
+			'name'    => "Capture Brindle Farm",
+			'journal' => "I accepted a mission to help capture Brindle Farm for the Covenant.",
+		),
+	4692 => array(
+			'name'    => "A Pinch of Sugar",
+			'journal' => "Awash in a sea of rats, Laughing Moons Plantation is in dire need of assistance. <<1>> asked me to help deal with the infestation.",
+		),
+	3210 => array(
+			'name'    => "Capture Black Boot Farm",
+			'journal' => "I accepted a mission to help capture Black Boot Farm for the Covenant.",
+		),
+	3214 => array(
+			'name'    => "Capture Fort Glademist",
+			'journal' => "I accepted a mission to help re-capture Fort Glademist for the Covenant.",
+		),
+	3215 => array(
+			'name'    => "Capture Fort Ash",
+			'journal' => "I accepted a mission to help re-capture Fort Ash for the Covenant.",
+		),
+	4691 => array(
+			'name'    => "Cause and Effect",
+			'journal' => "I found a letter from someone named Iocundus in <<1>>.",
+		),
+	3217 => array(
+			'name'    => "Capture Fort Dragonclaw",
+			'journal' => "I accepted a mission to help regain Fort Dragonclaw for the Covenant.",
+		),
+	3218 => array(
+			'name'    => "Capture Chalman Keep",
+			'journal' => "I accepted a mission to help capture Chalman Keep for the Covenant.",
+		),
+	4817 => array(
+			'name'    => "Tracking the Hand",
+			'journal' => "Scout Yanul says Prince Azah has his soldiers searching the desert for the Withered Hand.",
+		),
+	3219 => array(
+			'name'    => "Capture Arrius Keep",
+			'journal' => "I accepted a mission to help capture Arrius Keep for the Covenant.",
+		),
+	3222 => array(
+			'name'    => "Capture Blue Road Keep",
+			'journal' => "I accepted a mission to help capture Blue Road Keep for the Covenant.",
+		),
+	5594 => array(
+			'name'    => "Contract: Glenumbra",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3225 => array(
+			'name'    => "Capture Castle Faregyl",
+			'journal' => "I accepted a mission to help capture Castle Faregyl for the Covenant.",
+		),
+	3903 => array(
+			'name'    => "School Daze",
+			'journal' => "Arch-Mage Valeyn believes I'm here to help protect the Academy against some unnamed threat. While he determines what this threat is, he asked me to help him with another matter.",
+		),
+	3226 => array(
+			'name'    => "Capture Castle Roebeck",
+			'journal' => "I accepted a mission to help capture Castle Roebeck for the Covenant.",
+		),
+	3227 => array(
+			'name'    => "Capture Castle Brindle",
+			'journal' => "I accepted a mission to help capture Castle Brindle for the Covenant.",
+		),
+	3233 => array(
+			'name'    => "Capture Glademist Lumbermill",
+			'journal' => "I accepted a mission to help capture Glademist Lumbermill for the Covenant.",
+		),
+	4964 => array(
+			'name'    => "Scion of the Blood Matron",
+			'journal' => "I was bitten by a vampire. I have the option of embracing the disease or receiving the cure.",
+		),
+	3234 => array(
+			'name'    => "Capture Ash Lumbermill",
+			'journal' => "I accepted a mission to help capture Ash Lumbermill for the Covenant.",
+		),
+	3235 => array(
+			'name'    => "Purifying the Wyrd Tree",
+			'journal' => "The guardians wait inside the Wyrd Tree, ready to assist me against the <<1>>. Once the <<1>> is destroyed, the Wyrd Tree will be purified. Then the corruption will start to fade.",
+		),
+	3239 => array(
+			'name'    => "Capture Arrius Lumbermill",
+			'journal' => "I accepted a mission to help capture Arrius Lumbermill for the Covenant.",
+		),
+	3240 => array(
+			'name'    => "Capture Kingscrest Lumbermill",
+			'journal' => "I accepted a mission to help capture Kingscrest Lumbermill for the Covenant.",
+		),
+	3241 => array(
+			'name'    => "Capture Farragut Lumbermill",
+			'journal' => "I accepted a mission to help capture Farragut Lumbermill for the Covenant.",
+		),
+	4724 => array(
+			'name'    => "Reporting for Duty",
+			'journal' => "Galsi Mavani says I have more to learn about the conflict in Cyrodiil.",
+		),
+	3242 => array(
+			'name'    => "Capture Blue Road Lumbermill",
+			'journal' => "I accepted a mission to help capture Blue Road Lumbermill for the Covenant.",
+		),
+	3244 => array(
+			'name'    => "Capture Alessia Lumbermill",
+			'journal' => "I accepted a mission to help capture Alessia Lumbermill for the Covenant.",
+		),
+	3246 => array(
+			'name'    => "Capture Roebeck Lumbermill",
+			'journal' => "I accepted a mission to help capture Roebeck Lumbermill for the Covenant.",
+		),
+	3247 => array(
+			'name'    => "Capture Brindle Lumbermill",
+			'journal' => "I accepted a mission to help capture Brindle Lumbermill for the Covenant.",
+		),
+	4723 => array(
+			'name'    => "Siege Warfare",
+			'journal' => "I've reached the siege range. Adalmor advised me to try each weapon. I should also talk to Looks-Forward and Lirtis to learn more about the weapons.",
+		),
+	3249 => array(
+			'name'    => "Capture Bloodmayne Lumbermill",
+			'journal' => "I accepted a mission to help capture Bloodmayne Lumbermill for the Covenant.",
+		),
+	3250 => array(
+			'name'    => "Capture Warden Mine",
+			'journal' => "I accepted a mission to help capture Warden Mine for the Covenant.",
+		),
+	4849 => array(
+			'name'    => "The Unfilled Order",
+			'journal' => "I found a dead adventurer in Barrow Trench. They entered the mine to collect rare ingredients for an alchemist in Woodhearth.",
+		),
+	3251 => array(
+			'name'    => "Capture Rayles Mine",
+			'journal' => "I accepted a mission to help capture Rayles Mine for the Covenant.",
+		),
+	4842 => array(
+			'name'    => "The Unquiet Dead",
+			'journal' => "Explorers from the Mages Guild awoke an ancient threat at <<Ac:1>>. Undead creatures have slain or captured many within their expedition.",
+		),
+	3252 => array(
+			'name'    => "Capture Glademist Mine",
+			'journal' => "I accepted a mission to help capture Glademist Mine for the Covenant.",
+		),
+	5616 => array(
+			'name'    => "Contract: Rivenspire",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3255 => array(
+			'name'    => "Capture Dragonclaw Mine",
+			'journal' => "I accepted a mission to help capture Dragonclaw Mine for the Covenant.",
+		),
+	3256 => array(
+			'name'    => "Capture Chalman Mine",
+			'journal' => "I accepted a mission to help capture Chalman Mine for the Covenant.",
+		),
+	5626 => array(
+			'name'    => "Contract: Rivenspire",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3257 => array(
+			'name'    => "Capture Arrius Mine",
+			'journal' => "I accepted a mission to help capture Arrius Mine for the Covenant.",
+		),
+	3258 => array(
+			'name'    => "Capture Kingscrest Mine",
+			'journal' => "I accepted a mission to help capture Kingscrest Mine for the Covenant.",
+		),
+	5497 => array(
+			'name'    => "Atypical Artistry",
+			'journal' => "<<1>>, an artist, believes the ogres of Wrothgar possess a misunderstood artistic genius. He wishes to create a replica of ogre artwork for the House of Orsimer Glories.",
+		),
+	5637 => array(
+			'name'    => "Veteran Maelstrom Arena",
+			'journal' => "I have been welcomed into the bizarre realm of the Daedric Demiprince Fa-Nuit-Hen. In order to test my mettle and demonstrate my skills, I've agreed to enter the Maelstrom Arena, where deadly challenges created by Fa-Nuit-Hen's Barons await me.",
+		),
+	4408 => array(
+			'name'    => "Spirited Away",
+			'journal' => "Ancalin, an old Altmer woman, asked me to pray at the grave markers of her four children. She hopes my travels around the island will give them some peace.",
+		),
+	3259 => array(
+			'name'    => "Capture Farragut Mine",
+			'journal' => "I accepted a mission to help capture Farragut Mine for the Covenant.",
+		),
+	3260 => array(
+			'name'    => "Capture Blue Road Mine",
+			'journal' => "I accepted a mission to help capture Blue Road Mine for the Covenant.",
+		),
+	3263 => array(
+			'name'    => "Capture Faregyl Mine",
+			'journal' => "I accepted a mission to help capture Faregyl Mine for the Covenant.",
+		),
+	3265 => array(
+			'name'    => "Capture Roebeck Mine",
+			'journal' => "I accepted a mission to help capture Roebeck Mine for the Covenant.",
+		),
+	4326 => array(
+			'name'    => "The Veiled Choice",
+			'journal' => "I met a mer named <<1>> near the ruin known as Quendeluun. He claims the Veiled Heritance took his daughter. He tracked them to the site.",
+		),
+	3943 => array(
+			'name'    => "The Prisoner",
+			'journal' => "",
+		),
+	3266 => array(
+			'name'    => "Capture Brindle Mine",
+			'journal' => "I accepted a mission to help capture Brindle Mine for the Covenant.",
+		),
+	4922 => array(
+			'name'    => "The Orrery of Elden Root",
+			'journal' => "If <<1>> is to prove herself worthy of leading the Aldmeri Dominion to glory, she must complete the ratification ceremony in <<c:2>> of <<3>>. Legends say it can reveal those worthy of becoming emperor … or empress.",
+		),
+	3267 => array(
+			'name'    => "The Fall of Faolchu",
+			'journal' => "I stand with Captain Darien Gautier and the rescued Camlorn citizens. The time to retake Camlorn from Faolchu has arrived.",
+		),
+	3281 => array(
+			'name'    => "Leading the Stand",
+			'journal' => "After we thwarted the Imperial plot in Evermore, Uela the crow paid me another visit to say we're enemies again now and that her Reachmen army is going to kill everyone in Evermore.",
+		),
+	5034 => array(
+			'name'    => "A Grave Situation",
+			'journal' => "With Honrich Tower secure, <<1>> asked that I seek out <<2>> in Taarengrav. The tomb holds one of Ysgramor's great companions and must be protected from the Worm Cult.",
+		),
+	3444 => array(
+			'name'    => "Kill Thirty Aldmeri Players",
+			'journal' => "",
+		),
+	3283 => array(
+			'name'    => "Werewolves to the North",
+			'journal' => "<<1>> said that the Wyrd Tree will recover, but another danger has appeared in the north.",
+		),
+	3947 => array(
+			'name'    => "Kill the Leader",
+			'journal' => "Geoffroi has asked me to kill Remelie Frinck, the Fire Mage leading the Supernal Dreamers.",
+		),
+	3286 => array(
+			'name'    => "Under Siege",
+			'journal' => "A contingent of Shornhelm Guard soldiers was on patrol when it was attacked by House Montclair troops. The Guard survivors have taken refuge in an old tower on Hinault Farm, where they continue to be under siege by Montclair's forces.",
+		),
+	4680 => array(
+			'name'    => "Storm on the Horizon",
+			'journal' => "An Aldmeri Dominion fleet was shipwrecked here by a hurricane. I wasn't part of the wreck, but perhaps I can use the chaos as cover.",
+		),
+	3963 => array(
+			'name'    => "The Returned",
+			'journal' => "In the wake on an Imperial attack, homes are on fire and Daedric creatures are shambling through the village.",
+		),
+	4967 => array(
+			'name'    => "One of the Undaunted",
+			'journal' => "The Khajiit, <<1>>, has invited me to join a group of adventurers called the Undaunted.",
+		),
+	3302 => array(
+			'name'    => "The Miners' Lament",
+			'journal' => "The Red Rooks have taken over the Crosswych Mines, turning the miners into slaves. Further, anyone who resists them are sent into the mines as prisoners.",
+		),
+	4347 => array(
+			'name'    => "Special Blend",
+			'journal' => "I came across a dead body on the path to the Everfull Flagon. The dead body clutches a note.",
+		),
+	3448 => array(
+			'name'    => "Scout the Lumbermill",
+			'journal' => "",
+		),
+	3303 => array(
+			'name'    => "Thwarting the Aldmeri Dominion",
+			'journal' => "While exploring, Lady Clarisse Laurent mistakenly opened a portal allowing Aldmeri Dominion soldiers to invade the ruins of Salas En. I've agreed to help her close the portal.",
+		),
+	4380 => array(
+			'name'    => "Last Night",
+			'journal' => "I stumbled onto the ruins of a campsite by the beach. Sea Drakes attacked and kidnapped two people last night.",
+		),
+	5952 => array(
+			'name'    => "To the Victor",
+			'journal' => "Battlemaster Rivyn has challenged me to win three Battleground matches.",
+		),
+	4237 => array(
+			'name'    => "Life of the Party",
+			'journal' => "<<1>> has been trapped in Sanguine's celebration for four years. He's convinced he can only escape if the other party goers are distracted by an entertainment troupe from Morrowind.",
+		),
+	3330 => array(
+			'name'    => "Retaking Camlorn",
+			'journal' => "I returned from the past with the knowledge we need to defeat Faolchu. Fire weakens him and makes him vulnerable.",
+		),
+	3305 => array(
+			'name'    => "The Oldest Orc",
+			'journal' => "I discovered an Orc imprisoned in the dungeons below Salas En. He claims to have lived there for centuries, kept alive by Aldmeri enchantment. The stones of his prison glow with mysterious energies.",
+		),
+	4390 => array(
+			'name'    => "Unbridled Wealth",
+			'journal' => "<<1>>, a traveling Argonian merchant, lost her guar and a valuable ruby to crocodiles in the swamp. She's too hurt to round them up, so she asked me to search for the ruby and her favorite guar, <<2>>.",
+		),
+	3863 => array(
+			'name'    => "Taking the Tower",
+			'journal' => "<<1>> turned up again in Ebonheart looking to collaborate on another \"business venture.\" He wants me to procure a bottle of <<2>> from an innkeeper.",
+		),
+	4509 => array(
+			'name'    => "Harvest Time",
+			'journal' => "Produce around Cropsford is not being harvested. It's going to go bad unless something's done soon.",
+		),
+	4150 => array(
+			'name'    => "Sleeping on the Job",
+			'journal' => "Something is definitely happening at Fort Amol. Groups of high-ranking Nords, Argonians, and Dark Elves are on hand, and the guards are turning travelers away from the inn. I should try to figure out what's going on.",
+		),
+	3314 => array(
+			'name'    => "The Corpse Horde",
+			'journal' => "I encountered an injured Lion Guard knight named Sir Malik Nasir in Merovec's Folly. He wants to stop the Bloodthorn cultists from desecrating the dead Lion Guard soldiers.",
+		),
+	3315 => array(
+			'name'    => "The Hidden Treasure",
+			'journal' => "I encountered the spirit of Richard Dusant, who died searching for the hidden treasure of Dresan Keep. He wants me to finish his search for the Keep's ancient secrets.",
+		),
+	3810 => array(
+			'name'    => "Motive for Heresy",
+			'journal' => "With Vox's wards shattered, the path to her lair is open. Aspera the Forgotten suggests this creates an opportunity to defeat Vox, but I'm not sure I can trust this strange projection.",
+		),
+	4379 => array(
+			'name'    => "Lover's Torment",
+			'journal' => "Alanwe lives a tortured existence in the Crypt of Hearts. Her soul has been shattered, and the pieces strewn throughout the Crypt. I have promised to help her.",
+		),
+	3335 => array(
+			'name'    => "The Charge of Evermore",
+			'journal' => "Soldiers from Evermore were defeated at Murcien's Hamlet by a Reachman attack.",
+		),
+	4276 => array(
+			'name'    => "The Troubleshooter",
+			'journal' => "",
+		),
+	3818 => array(
+			'name'    => "A Saint Asunder",
+			'journal' => "The Shrine of Saint Veloth has been desecrated by Magistrix Vox. This Daedric attack has left the spirit of Veloth in a weakened state.",
+		),
+	3343 => array(
+			'name'    => "Crosswych Reclaimed",
+			'journal' => "<<1>> says the Crosswych resistance has gained enough momentum. It's time to deal with the Red Rooks' leader, <<2>> himself.",
+		),
+	4774 => array(
+			'name'    => "The Citadel Must Fall",
+			'journal' => "King Dynar has devised a two-pronged attack to take control of the Reaver Citadel. It utilizes the old Fighters and Mages Guilds' halls located in this ancient Nirn city.",
+		),
+	3367 => array(
+			'name'    => "The Nature of Fate: Part Two",
+			'journal' => "A Redguard named Hadoon believes ones fate is not predetermined. He believes one can break from destiny but needs help proving his theory.",
+		),
+	5340 => array(
+			'name'    => "Blood and the Sacred Words",
+			'journal' => "The Vosh Rakh attacked Fharun Stronghold, killing people in Trinimac's name. A dying archivist claimed they sought a secret sanctuary and the sacred words of Malacath that are hidden within.",
+		),
+	3742 => array(
+			'name'    => "Geoffroi's Shattered Pride",
+			'journal' => "Lord Geoffroi Stictal wants the shards of his Crystal of Power back so his wizard can repair it.",
+		),
+	4977 => array(
+			'name'    => "Ancient Stones, Ancient Words",
+			'journal' => "",
+		),
+	3379 => array(
+			'name'    => "Angof the Gravesinger",
+			'journal' => "Darien discovered that we need three shard-keys to open the three locks that protect Angof's inner sanctum.",
+		),
+	5599 => array(
+			'name'    => "Questions of Faith",
+			'journal' => "Hildegard never returned to the Sanctuary after going out to pray for Tanek. Kor asked me to help him find her.",
+		),
+	3730 => array(
+			'name'    => "Whispers of the Wisps",
+			'journal' => "<<1>> is plagued by wisps. They're stealing away travelers at the gravesite. No one is sure what caused their sudden aggression.",
+		),
+	3383 => array(
+			'name'    => "Badwater Mine",
+			'journal' => "I met a miner named Samsi at the Badwater mine. She tells me that the mine is collapsing and her partner is trapped inside. I told her I would go in and find her partner. If he's dead, she still needs his supply pack.",
+		),
+	5053 => array(
+			'name'    => "The Lost Patrol",
+			'journal' => "In the tangled paths of <<1>>, I found the bodies of a Lion Guard officer and his patrol.",
+		),
+	5232 => array(
+			'name'    => "Kill Enemy Sorcerers",
+			'journal' => "Grand Warlord Sorcalin has authorized a reward for any Dominion soldier who slays 20 enemy Sorcerers.",
+		),
+	4601 => array(
+			'name'    => "Right of Theft",
+			'journal' => "The Shade of Prince Naemon and the Veiled Heritance have somehow raised the infamous warriors of the Blackroot Clan from the dead.",
+		),
+	3389 => array(
+			'name'    => "Capture the Farm",
+			'journal' => "",
+		),
+	4292 => array(
+			'name'    => "A Ritual in Smokefrost Peaks",
+			'journal' => "The Worm Cult is performing a ritual at an altar somewhere in the Smokefrost Peaks.",
+		),
+	3391 => array(
+			'name'    => "Capture the Lumbermill",
+			'journal' => "",
+		),
+	3393 => array(
+			'name'    => "Kill Thirty Enemy Players",
+			'journal' => "",
+		),
+	6016 => array(
+			'name'    => "A Masterful Weapon",
+			'journal' => "",
+		),
+	4301 => array(
+			'name'    => "Relic Rescue",
+			'journal' => "Torinaan's strange little relic-keeper worries the holy relics will be corrupted by Daedric energies.",
+		),
+	3394 => array(
+			'name'    => "Kill Thirty Ebonheart Players",
+			'journal' => "",
+		),
+	3395 => array(
+			'name'    => "Kill Thirty Daggerfall Players",
+			'journal' => "",
+		),
+	5260 => array(
+			'name'    => "Pledge: Spindleclutch I",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the cavern called Spindleclutch beneath Glenumbra.",
+		),
+	3396 => array(
+			'name'    => "Scout the Farm",
+			'journal' => "",
+		),
+	4737 => array(
+			'name'    => "The Waking Dreamer",
+			'journal' => "I found the journal of Graccus, an Imperial who destroyed a Bosmer village to find a treasure buried below.",
+		),
+	5646 => array(
+			'name'    => "Crime Spree",
+			'journal' => "Rumors are floating around that the Thieves Guild isn't a threat anymore. The Thieves Guild wants to quash the rumors with a series of conspicuous thefts.",
+		),
+	3403 => array(
+			'name'    => "Kill an Enemy Guard",
+			'journal' => "",
+		),
+	3404 => array(
+			'name'    => "Kill a Daggerfall Guard",
+			'journal' => "",
+		),
+	3405 => array(
+			'name'    => "Kill an Ebonheart Guard",
+			'journal' => "",
+		),
+	5771 => array(
+			'name'    => "Dawn of the Exalted Viper",
+			'journal' => "I met Titus Valerius in Belkarth. He was hoping to find Kelmen to assist him and the Thief with a ritual to locate a magical disturbance near Skyreach, but the mage is nowhere to be found.",
+		),
+	3406 => array(
+			'name'    => "Kill Ten Enemy Players",
+			'journal' => "",
+		),
+	3412 => array(
+			'name'    => "A Dangerous Dream",
+			'journal' => "A Lion Guard patrol on its way from Daggerfall to Wayrest was attacked by Daedric Cultists who referred to themselves as 'Supernal Dreamers'. The cultists kidnapped the guard captain.",
+		),
+	3414 => array(
+			'name'    => "Legacy of Baelborne Rock",
+			'journal' => "<<1>> just learned that he inherited an estate. Unfortunately, the estate appears to be haunted and is overrun by imps.",
+		),
+	5141 => array(
+			'name'    => "DEPRECATED",
+			'journal' => "",
+		),
+	3782 => array(
+			'name'    => "JB - Generic Wave Event - Surv",
+			'journal' => "",
+		),
+	3419 => array(
+			'name'    => "Kill Ten Enemy players",
+			'journal' => "",
+		),
+	3436 => array(
+			'name'    => "Foul Deeds in the Deep",
+			'journal' => "I found <<1>> within the tunnels of <<2>>. She claims she and her husband, <<3>>, were kidnapped by the Oathbound, at the behest of an Orc named <<4>>. She managed to escape, but needs help rescuing her husband.",
+		),
+	5823 => array(
+			'name'    => "Madness in Grahtwood",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Grahtwood.",
+		),
+	3442 => array(
+			'name'    => "Capture Balfiera Lumbermill",
+			'journal' => "",
+		),
+	4630 => array(
+			'name'    => "Regret",
+			'journal' => "I found a note on the body of an Ebonheart Pact soldier. It mentions an egg brother named Bosekus in the town of Cropsford.",
+		),
+	3794 => array(
+			'name'    => "Divine Favor",
+			'journal' => "<<1>> knows his monks cannot defend <<2>> against a determined assault from the Kasgesh Ashlanders. He's asked me to appeal to the Tribunal for aid.",
+		),
+	3447 => array(
+			'name'    => "Scout the Farm",
+			'journal' => "",
+		),
+	3450 => array(
+			'name'    => "Scout Fort Balfiera",
+			'journal' => "",
+		),
+	3451 => array(
+			'name'    => "Kill a Daggerfall Player",
+			'journal' => "",
+		),
+	4802 => array(
+			'name'    => "To Moonmont",
+			'journal' => "A mysterious Khajiit named Hunal spoke to me outside of the city of Dune. He told me some important task awaits me at the temple known as Moonmont.",
+		),
+	3452 => array(
+			'name'    => "Kill an Enemy Guard",
+			'journal' => "",
+		),
+	4295 => array(
+			'name'    => "The Wayward Dagger",
+			'journal' => "A Covenant officer and her husband attempted to defect to the Aldmeri Dominion. Covenant troops pursued the Orc couple all the way to Auridon, and they've taken North Beacon in an attempt to capture the Orcs.",
+		),
+	6041 => array(
+			'name'    => "Enchanted Accumulation",
+			'journal' => "<<1>> requested I gather a magical substance from the runestones in Clockwork City. I'll also need to collect a special crystal that causes the residue to glow.",
+		),
+	3802 => array(
+			'name'    => "What Happened at Murkwater",
+			'journal' => "<<1>> wants me to take word of our accomplishments to Hissmir.",
+		),
+	5682 => array(
+			'name'    => "Contract: Shadowfen",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3455 => array(
+			'name'    => "Kill a Daggerfall Guard",
+			'journal' => "",
+		),
+	3458 => array(
+			'name'    => "Capture the Lumbermill",
+			'journal' => "",
+		),
+	4667 => array(
+			'name'    => "Dark Knowledge",
+			'journal' => "A spirit named <<1>> warned me of dark knowledge sealed in three forbidden tomes. She asked me to find all three and destroy them in a shrine on <<2>>.",
+		),
+	3460 => array(
+			'name'    => "Kill Thirty Enemy Players",
+			'journal' => "",
+		),
+	3611 => array(
+			'name'    => "Burning Revenge",
+			'journal' => "",
+		),
+	4578 => array(
+			'name'    => "Over the Edge",
+			'journal' => "An associate of Cariel's stopped me outside of Arenthia to ask for help. She's lost some critical supplies and letters, and wants my help in retrieving them.",
+		),
+	4615 => array(
+			'name'    => "Lost in the Mist",
+			'journal' => "Destroying the cursed skull held by the Shademist vampires has cleared the moors of corruption, but Thorinor says his wife was among the missing and never returned.",
+		),
+	3462 => array(
+			'name'    => "Kill Thirty Aldmeri Players",
+			'journal' => "",
+		),
+	3631 => array(
+			'name'    => "Recovering the Guar",
+			'journal' => "The herd of guar at the sulfur pools stampeded during the Covenant attack. Now they're scattered. If I can calm them and fit them with the proper harnesses, the animals should return to the stable on their own.",
+		),
+	3466 => array(
+			'name'    => "Scout Fort Balfiera",
+			'journal' => "",
+		),
+	3468 => array(
+			'name'    => "Kill an Ebonheart Player",
+			'journal' => "",
+		),
+	5835 => array(
+			'name'    => "If the Spell Fits",
+			'journal' => "A naked Nord stands frozen in place in the wilds of Vvardenfell. He claims a Dark Elf witch cast a spell on him, and only she can remove it. He asked me to find her and get her to set him free.",
+		),
+	3470 => array(
+			'name'    => "Kill an Ebonheart Guard",
+			'journal' => "",
+		),
+	6000 => array(
+			'name'    => "To Tel Fyr",
+			'journal' => "I met an apprentice to Divayth Fyr in Vivec City, she mentioned an incident at her master's tower involving some kind of rift.",
+		),
+	3639 => array(
+			'name'    => "Restoring Order",
+			'journal' => "A strong Covenant raiding force landed west of Ebonheart. The citizens are too busy with their own internal squabbles to unite against invaders. <<1>> fears the town may fall to Alexandra Conele's forces.",
+		),
+	4285 => array(
+			'name'    => "A Father's Promise",
+			'journal' => "Drublog Orcs attacked the village of Tanglehaven. <<1>> said the survivors barely managed to fend them off. After the massacre, the surviving Tanglehaven militia chased the Drublog into the forest-including <<2>>, <<1>>'s daughter.",
+		),
+	5855 => array(
+			'name'    => "Fish Boon Feast",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Shadowfen.",
+		),
+	3474 => array(
+			'name'    => "Scout Kingscrest Farm",
+			'journal' => "I accepted a mission to scout Kingscrest Farm for the Pact.",
+		),
+	3476 => array(
+			'name'    => "Scout Blue Road Farm",
+			'journal' => "I accepted a mission to scout Blue Road Farm for the Pact.",
+		),
+	3627 => array(
+			'name'    => "Kinsman's Revenge",
+			'journal' => "<<1>> has been taken captive by the Goblins, and Fafnyr was wounded in the fighting. The Nord warrior seeks revenge against the hated Goblins and their spider allies.",
+		),
+	3478 => array(
+			'name'    => "Scout Alessia Farm",
+			'journal' => "I accepted a mission to scout Alessia Farm for the Pact.",
+		),
+	4872 => array(
+			'name'    => "Bounty: Goblins",
+			'journal' => "I accepted a Fighters Guild contract in Cyrodiil.",
+		),
+	3647 => array(
+			'name'    => "Shattering Mirror",
+			'journal' => "Ra'shadda, the Khajiiti shaman who summoned the monster, didn't leave the plantation. Ruvali speculates that he wanted to stay behind to watch the monster tear them apart.",
+		),
+	3482 => array(
+			'name'    => "Trapped in the Bluffs",
+			'journal' => "<<1>> tells me his son, <<2>>, has gone missing somewhere in the oasis near Bergama.",
+		),
+	3497 => array(
+			'name'    => "Wave Event Template Quest",
+			'journal' => "",
+		),
+	3509 => array(
+			'name'    => "Vines and Villains",
+			'journal' => "A Red Rook messenger was captured near the Dwynnarth Ruins Lion Guard camp while he was on his way to a secret meeting between the Red Rooks and the Bloodthorn cult.",
+		),
+	5366 => array(
+			'name'    => "Group Layering Test",
+			'journal' => "",
+		),
+	3695 => array(
+			'name'    => "Aggressive Negotiations",
+			'journal' => "Tanval Indoril has fled towards the Tormented Spire with the Coral Heart in hand. He wants to unleash Sadal, the Brother of Strife, from his imprisonment. Kragenmoor's <<1>> is the only one who can allow me access to the mountain.",
+		),
+	5012 => array(
+			'name'    => "Rusty Daggers",
+			'journal' => "",
+		),
+	3530 => array(
+			'name'    => "Destroying the Dark Witnesses",
+			'journal' => "Defeating the Dark Witnesses can only be accomplished by killing the Hagraven, Uela. Some of the Wyrd Sisters up near Jackdaw Cove have been searching for where Uela is hiding, but they need help.",
+		),
+	5964 => array(
+			'name'    => "A Web of Troubles",
+			'journal' => "Lady Clarisse Laurent and her man-servant Stibbons, along with a number of research assistants on loan from the Mages Guild, have been studying the ruins of Bal Fell. Now, everyone but Lady Laurent has disappeared.",
+		),
+	3587 => array(
+			'name'    => "Delaying the Daggers",
+			'journal' => "<<1>> asked me to help slow the Covenant's siege of Davon's Watch.",
+		),
+	3566 => array(
+			'name'    => "Kingdom in Mourning",
+			'journal' => "King Fahara'jad has informed me of dire circumstances in Bangkorai. King Eamond is dead and the Reachmen are marching on the kingdom's capital of Evermore. He has asked me to go there and try to rally the city's defenses.",
+		),
+	3595 => array(
+			'name'    => "Wayward Son",
+			'journal' => "Furon is worried that his brother Giron has joined a \"circle of mages.\" He wants my help to understand what they're doing.",
+		),
+	3574 => array(
+			'name'    => "Demo OR Quest",
+			'journal' => "I met a man who had a wife, said he would keep her all his life. The one day he met a girl.",
+		),
+	4968 => array(
+			'name'    => "Caring for Kwama",
+			'journal' => "",
+		),
+	5301 => array(
+			'name'    => "Pledge: Tempest Island",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore Tempest Island, a storm-tossed outcropping off the coast of Malabal Tor.",
+		),
+	3585 => array(
+			'name'    => "Legacy of the Ancestors",
+			'journal' => "",
+		),
+	3588 => array(
+			'name'    => "City Under Siege",
+			'journal' => "Covenant forces have scaled the walls of Davon's Watch. Now they're threatening to take the city from within its walls. Tanval's ritual may be our only hope to end the assault.",
+		),
+	4417 => array(
+			'name'    => "Bloodied Waters",
+			'journal' => "Imperial archers are preventing rebel troops from crossing the river.",
+		),
+	5307 => array(
+			'name'    => "Pledge: Selene's Web",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore Selene's Web, a spider-haunted grove in Reaper's March.",
+		),
+	3589 => array(
+			'name'    => "Quiet the Ringing Bell",
+			'journal' => "With the Covenant driven from Davon's Watch, <<1>> has asked me to return the living weapon known as Balreth to its cell.",
+		),
+	3590 => array(
+			'name'    => "Through the Aftermath",
+			'journal' => "The remnants of a broken siege lie outside Davon's Watch, broken by the appearance of an army of ghosts. A sergeant at the front, a Nord named Rhorlak, has asked me to decide how best to deal with the spirits.",
+		),
+	4486 => array(
+			'name'    => "Down the Skeever Hole",
+			'journal' => "With the Colovians removed from the village, Captain Odreth has planned a counterattack with his Rangers. We are to use a secret tunnel to gain access to the Colovian camp and take them out.",
+		),
+	3591 => array(
+			'name'    => "The Venom of Ahknara",
+			'journal' => "Covenant troops have killed Captain Hjolm of Fort Arand, and they're threatening the safety of the recruits within the fort. Captain Llaari hatched a plan to respond to the threat.",
+		),
+	3592 => array(
+			'name'    => "Proving Trust",
+			'journal' => "A volcanic eruption and an infestation of shalks have devastated the town of Senie. The townsfolk are wounded, but distrust between Dark Elves and Argonians delay efforts to heal them.",
+		),
+	4246 => array(
+			'name'    => "Deception in the Dark",
+			'journal' => "",
+		),
+	3594 => array(
+			'name'    => "Enslaved in Death",
+			'journal' => "Even though they're dead, Ix-Utha's Argonian brethren still act as slaves to the risen Chimer. They've returned to serve their cruel spectral masters.",
+		),
+	3597 => array(
+			'name'    => "Generic Escort Quest",
+			'journal' => "",
+		),
+	5588 => array(
+			'name'    => "Memories of Youth",
+			'journal' => "<<1>> runs a finder's business and uses the Thieves Guild to track down his quarries. Helping him will surely reflect well on your skill as a thief, and be lucrative to boot.",
+		),
+	3598 => array(
+			'name'    => "Giving for the Greater Good",
+			'journal' => "<<1>> is grateful the dead have been put to rest. She wants to give of herself to restore the Starved Plain. She's proposed a sacrifice from herself and her students that will allow plants to grow again on the plain.",
+		),
+	3600 => array(
+			'name'    => "Oath Breaker",
+			'journal' => "",
+		),
+	3602 => array(
+			'name'    => "Percussive Ranching",
+			'journal' => "<<1>> lost most of his kwama in a mine collapse. He asked me to help round up the survivors and convince them to return home.",
+		),
+	5471 => array(
+			'name'    => "Thicker Than Water",
+			'journal' => "<<1>> continues to restore the long-lost reputation of Orc cuisine. She needs additional rare ingredients for a special dessert.",
+		),
+	3604 => array(
+			'name'    => "Challenge the Tide",
+			'journal' => "Svanhildr wants to break the Oathbound offensive once and for all.",
+		),
+	5974 => array(
+			'name'    => "A Masterful Plate",
+			'journal' => "",
+		),
+	3605 => array(
+			'name'    => "Ritual of Anguish",
+			'journal' => "I encountered a tormented Dark Elf spirit in the Orc camp at Malak's Maw. She asked for aid in easing her torment.",
+		),
+	3608 => array(
+			'name'    => "The Medallions of Saint Veloth",
+			'journal' => "Healer Ravel asked me to collect Saint Veloth medallions. As long as the monks are allowed to pray in peace, the medallions allow the power of the Tear of Saint Veloth to keep the Llodos plague in check on whoever wears one.",
+		),
+	3612 => array(
+			'name'    => "The Naked Nord",
+			'journal' => "I met a confused Nord named Norgred on the road outside of Quarantine Serk. He said he was escorting a witch. Apparently, she turned on him and stole a valuable axe. He's anxious to get it back.",
+		),
+	3616 => array(
+			'name'    => "Rending Flames",
+			'journal' => "I awakened the spirit of an ancient Dark Elf scribe named Mavos Siloreth. Mavos's spirit can't remember how he bound Balreth in the original ceremony. To help me, he's going to perform a ritual and show me a vision of the past.",
+		),
+	3617 => array(
+			'name'    => "Quieting a Heart",
+			'journal' => "Bala, an Ashlander, is searching for her deceased lover, Eanen Varam. In life, he was part of House Dunmer, so their status kept them apart. They promised each other to unite in death, but now, she can't find his tomb.",
+		),
+	3977 => array(
+			'name'    => "To Vernim Woods",
+			'journal' => "A scout sent by Centurion Gjakil has found me near Fallowstone Hall. The scout reports Reachmen movement near <<1>>.",
+		),
+	5037 => array(
+			'name'    => "Stem the Tide",
+			'journal' => "Covenant soldiers are massing within Softloam Cavern. It won't be long before they have the numbers to launch an attack on Kragenmoor and the rest of Stonefalls.",
+		),
+	3618 => array(
+			'name'    => "To Ash Mountain",
+			'journal' => "I've learned all I can at Othrenis. Onuja says that Balreth is somewhere near Ash Mountain. <<1>> has led many Pact soldiers there with hopes of containing the Brother of Strife.",
+		),
+	4610 => array(
+			'name'    => "The Army of Meridia",
+			'journal' => "I need to rebuild my army if we're going to have any chance of confronting Molag Bal and stopping the Planemeld. The mysterious Groundskeeper suggests I rescue as many people as I can and send them to the Hollow City.",
+		),
+	3981 => array(
+			'name'    => "To Taarengrav",
+			'journal' => "Netapatuu fears the Worm Cult may try to enslave Valdur's spirit, much as they tried with Hakra's.",
+		),
+	3622 => array(
+			'name'    => "The Brothers Will Rise",
+			'journal' => "<<1>> sent me into a deep vision with the help of an ancient ritual site. In this vision of the past, I should be able to interact with Balreth and Sadal. Then I can learn how the Brothers of Strife were born.",
+		),
+	5097 => array(
+			'name'    => "The Beast Pits",
+			'journal' => "",
+		),
+	3624 => array(
+			'name'    => "The Saving of Silent Mire",
+			'journal' => "Leel-Vata asked me to rescue the captured Argonian villagers from the Khajiiti pirates.",
+		),
+	4278 => array(
+			'name'    => "A Village Awakened",
+			'journal' => "<<1>> senses that a powerful Daedra has wrested control of the animals. As long as the Daedra remains, Merormo won't free the villagers.",
+		),
+	3626 => array(
+			'name'    => "Protecting the Hall",
+			'journal' => "The lands of the mighty Hrogar are overrun with Goblins and spiders. The Nord has lost many men to the beasts, and he's under siege.",
+		),
+	3632 => array(
+			'name'    => "Breaking Fort Virak",
+			'journal' => "The Covenant has seized Fort Virak. They're serving under the command of General Serien. The Pact's army-led by the Indorils, <<1>>, and Walks-in-Ash-has besieged the fort in an attempt to retake it.",
+		),
+	5624 => array(
+			'name'    => "Contract: Alik'r Desert",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3633 => array(
+			'name'    => "Evening the Odds",
+			'journal' => "I've infiltrated the ruins beneath Fort Virak. <<1>> asked me to help secure our foothold within the fort's main courtyard.",
+		),
+	3634 => array(
+			'name'    => "The General's Demise",
+			'journal' => "Fort Virak is ours. All that remains is to kill General Serien, the leader of the Covenant forces in Stonefalls.",
+		),
+	4209 => array(
+			'name'    => "Teldur's End",
+			'journal' => "Teldur has kidnapped Canonreeve Valano and taken him into the manor.",
+		),
+	3635 => array(
+			'name'    => "City at the Spire",
+			'journal' => "<<1>> warned me that Tanval will likely try to release the second Brother of Strife from Tormented Spire. To ascend the spire I'll need to speak to the grandmaster of House Dres in Kragenmoor.",
+		),
+	3637 => array(
+			'name'    => "Godrun's Dream",
+			'journal' => "The Omen of Betrayal failed to manipulate General Godrun into attacking Wayrest, but has now trapped General Godrun within his dream. Abbot Durak has asked me to enter the dream and kill the Omen to save Godrun.",
+		),
+	3643 => array(
+			'name'    => "What Was Done Must Be Undone",
+			'journal' => "I've helped the survivors at Heimlyn Keep. Now I need to end the curse. Its mystical corruption emanates from a Telvanni reliquary.",
+		),
+	4482 => array(
+			'name'    => "Rat Problems",
+			'journal' => "<<1>> has been having problems with rats down his well.",
+		),
+	4857 => array(
+			'name'    => "The Concealing Veil",
+			'journal' => "Verandis completed his research and discovered that his missing memories lead to an ancient ruin in the Lorkrata Hills. He needs my help to discover the secret hidden within the ruins.",
+		),
+	3645 => array(
+			'name'    => "The Sapling",
+			'journal' => "<<1>> fears for the survival of the Hist Tree the Argonians transplated from Black Marsh to Ebonheart. He thinks the Dark Elves of House Dres poisoned it, so he wants to fertilize it to encourage its growth.",
+		),
+	5244 => array(
+			'name'    => "Pledge: Banished Cells I",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to delve the Banished Cells beneath Auridon.",
+		),
+	3646 => array(
+			'name'    => "An Unwanted Twin",
+			'journal' => "A frightened soldier on the road told me about a slave revolt at Sathram Plantation. Ulov Stormwall led troops to the plantation, intending to suppress the revolt. Mysterious circumstances induced him to turn his blade on his own troops.",
+		),
+	3648 => array(
+			'name'    => "A Story Told in Footprints",
+			'journal' => "I found a note on a dead Khajiit with plans for the riot. Apparently, the riot started with fires, followed by the freeing of prisoners.",
+		),
+	5069 => array(
+			'name'    => "The Warrior's Call",
+			'journal' => "I met a strange Imperial who was being held captive by the Daggerfall Covenant. He believes he knows how to defeat the cursed army of Anka-Ra that has laid siege to Craglorn since the Celestials appeared.",
+		),
+	5248 => array(
+			'name'    => "Pledge: Fungal Grotto II",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to brave Fungal Grotto in the caverns beneath Stonefalls.",
+		),
+	3650 => array(
+			'name'    => "Cold-Blooded Vengeance",
+			'journal' => "An extremely angry Argonian named Azeenus has asked me to seek vengeance against the Khajiiti pirates in his name.",
+		),
+	3651 => array(
+			'name'    => "The Trial of the Ghost Snake",
+			'journal' => "Farseer Bodani has placed the fate of Raston Vendil in my hands. I agreed to undertake a trial and see if the Ghost Snake will counsel me on this matter.",
+		),
+	3652 => array(
+			'name'    => "Fighting Back",
+			'journal' => "Minister Ralden and Giron are missing. Advisor Varon believes that Giron is working with the Maulborn and has abducted Ralden.",
+		),
+	4481 => array(
+			'name'    => "Small Town Problems",
+			'journal' => "Clanmother Shuzura has apparently been very hard on her assistants. There are problems in the little town of S'ren-ja. Perhaps I can help out.",
+		),
+	3656 => array(
+			'name'    => "Search and Rescue",
+			'journal' => "Noxious fumes have leaked into Deepcrag Den, a kwama mine. The workers fell ill and the normally docile kwama became enraged.",
+		),
+	4116 => array(
+			'name'    => "Snow and Flame",
+			'journal' => "Fildgor the usurper fled to the ancient dragonshrine of Skuldafn to steal Queen Nurnhilde's spirit and force the Crown of Freydis to recognize him. I need to stop him.",
+		),
+	3658 => array(
+			'name'    => "A Timely Matter",
+			'journal' => "I agreed to help Madras rescue the missing villagers. However, I need to prove myself to him before he'll tell me where they're being held.",
+		),
+	5891 => array(
+			'name'    => "Falkreath's Demise",
+			'journal' => "Falkreath Hold is under siege by an army of Reachmen and minotaurs. It may well fall without outside intervention, and soon.",
+		),
+	3660 => array(
+			'name'    => "Hiding in Plain Sight",
+			'journal' => "Councilor Ralden and Giron are missing, along with many villagers. Varon Davel believes Giron is working with the Maulborn. Apparently, Giron abducted Ralden. I need to find them before it's too late.",
+		),
+	3661 => array(
+			'name'    => "Mechanical Murder",
+			'journal' => "I came across the wreckage of a trade caravan on the road between Mournhold and Narsis. Attacks on caravans don't usually occur this close to Mournhold, and the presence of a Dwarven construct makes this incident even more unusual.",
+		),
+	3662 => array(
+			'name'    => "A Bit of Sport",
+			'journal' => "The Covenant landed west of Ebonheart, but a band of Nord sawyers have refused to join the general defense. They sneeringly refer to the town's Dark Elves as \"fancy lads.\"",
+		),
+	5515 => array(
+			'name'    => "Free Spirits",
+			'journal' => "The vile sorcerer, Gorlar the Dark, continues to terrorize the people of Wrothgar. He has raised countless Orcs as undead thralls and trapped their spirits in Mundus. I must set their spirits free and put this necromancer to the sword.",
+		),
+	3663 => array(
+			'name'    => "That Which Matters Most",
+			'journal' => "House Dres raiders and Dwarven constructs attacked a caravan carrying valuable cargo. The House Hlaalu noble who sponsored this caravan will want it back.",
+		),
+	3666 => array(
+			'name'    => "Rules and Regulations",
+			'journal' => "General Gavryn Redoran is acting erratically and completely out of character. Something has changed. I get the impression that Tal'Deic Fortress is in some kind of trouble.",
+		),
+	5535 => array(
+			'name'    => "A Double Life",
+			'journal' => "<<1>> asked me for help in dealing with a personal matter.",
+		),
+	3667 => array(
+			'name'    => "Night of the Soul",
+			'journal' => "The Dunmer of Ebonheart have turned to <<1>> for comfort in the face of an expected assault by Covenant forces. Disciple Sildras, however, believes the Tribunal has rejected the town. His gloom is affecting the citizens' morale.",
+		),
+	3671 => array(
+			'name'    => "To Fort Virak",
+			'journal' => "The Covenant has taken Fort Virak, a vital strategic chokepoint.",
+		),
+	4317 => array(
+			'name'    => "Where the Frostheart Grows",
+			'journal' => "",
+		),
+	3672 => array(
+			'name'    => "The Game of Chance",
+			'journal' => "I met a strange little man who requested that I engage him in a game. He proposes that I acquire three items from some of his fellow carnival members. Once I acquire the items, he will take one from me and turn it into something amazing.",
+		),
+	6042 => array(
+			'name'    => "A Bitter Pill",
+			'journal' => "<<1>> requested I gather herbalist's satchels which contain alchemical plants in Clockwork City. I'll also need to collect a sweet syrup to help subdue the bitterness of the tonic created from the satchel's plants.",
+		),
+	3673 => array(
+			'name'    => "Death Trap",
+			'journal' => "The Maulborn have occupied the Obsidian Gorge, the pass to Mournhold. House Hlaalu guards have cordoned off the area to keep anyone else from walking into a trap.",
+		),
+	5913 => array(
+			'name'    => "King Razor-Tusk Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the powerful kagouti called King Razor-Tusk.",
+		),
+	3674 => array(
+			'name'    => "Warm Welcome",
+			'journal' => "Shadowfen's Vicecanons are concerned about the Dominion running supply lines for their troops through Alten Corimont.",
+		),
+	3676 => array(
+			'name'    => "A Pirate Parley",
+			'journal' => "<<1>> has a plan to steal treasure from Dominion troops before they find out what happened to <<2>>, their contact in <<3>>.",
+		),
+	5276 => array(
+			'name'    => "Pledge: Elden Hollow I",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the ancient complex beneath Elden Root, the Elden Hollow, in the center of Grahtwood.",
+		),
+	3678 => array(
+			'name'    => "Trials of the Burnished Scales",
+			'journal' => "Due to archaic rules, <<1>> of the Aldmeri Dominion is allowed to undergo sacred Argonian trials at Hissmir. Success will allow him to commune with the Hist. To determine his true plans, I must pass the trials myself.",
+		),
+	3679 => array(
+			'name'    => "Dreams From the Hist",
+			'journal' => "I completed the Trials of the Burnished Scales at Hissmir, which allows me to commune with the Hist. Doing so will give me insight why Captain Henaamo, a Dominion soldier, would undertake the trials.",
+		),
+	5394 => array(
+			'name'    => "Woodworker Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Woodworker goods to an interested organization.",
+		),
+	3680 => array(
+			'name'    => "Of Dubious Value",
+			'journal' => "Someone stole several relics from a cart in Hissmir. I offered to help <<1>> find the culprit.",
+		),
+	3681 => array(
+			'name'    => "Lost Pilgrimage",
+			'journal' => "A group of pilgrims failed to arrive in Hissmir as scheduled. <<1>> fears something has happened to them.",
+		),
+	4388 => array(
+			'name'    => "A Life of Privilege",
+			'journal' => "I met a Breton in the middle of the swamps of Shadowfen. She seems to be lost.",
+		),
+	3684 => array(
+			'name'    => "Bad Soldiers",
+			'journal' => "It appears that soldiers known as Sentinels are terrorizing the fortress.",
+		),
+	5275 => array(
+			'name'    => "Pledge: Darkshade II",
+			'journal' => "Maj al-Ragath has challenged me to explore the kwama mines of Darkshade Caverns beneath Deshaan.",
+		),
+	3685 => array(
+			'name'    => "The Thin Ones",
+			'journal' => "I met Kothringi from <<1>> who told me Worm Cult necromancers plague their village.",
+		),
+	3686 => array(
+			'name'    => "Three Tender Souls",
+			'journal' => "The town of Stormhold is plagued with murders and abductions.",
+		),
+	3687 => array(
+			'name'    => "Getting to the Truth",
+			'journal' => "<<1>> wants me to look into the disappearance of <<2>>.",
+		),
+	3690 => array(
+			'name'    => "Scouring the Mire",
+			'journal' => "<<1>> suspects the Dominion skin-stealers are based out of <<2>>.",
+		),
+	3696 => array(
+			'name'    => "Saving the Son",
+			'journal' => "I've discovered where Grandmaster Omin Dres' son is being held captive. The Vanguard is holding his son, Sen, in the tombs west of Kragenmoor.",
+		),
+	4147 => array(
+			'name'    => "The Shackled Guardian",
+			'journal' => "",
+		),
+	3697 => array(
+			'name'    => "A Gathering of Guar",
+			'journal' => "A guar herder named <<1>> has lost control of his herd. Tanval's Vanguard drove them out of their pen, and Ral now fears for their safety.",
+		),
+	3698 => array(
+			'name'    => "To the Tormented Spire",
+			'journal' => "The grandmaster of House Dres has given me a key that should see me past the wards at Tormented Spire. Now all that remains is to make my way there.",
+		),
+	5567 => array(
+			'name'    => "Dark Revelations",
+			'journal' => "Count Carolus still owes us what he promised for taking on his contract-information concerning the Black Dragon. Astara wants to find out what the Count knows.",
+		),
+	4273 => array(
+			'name'    => "To the King",
+			'journal' => "<<1>> is encamped at Trolhetta with the bulk of the Ebonheart Pact's army. The Worm Cult is dug in, and hoping to hold on until they can gather the shards of Wuuthrad for some nefarious purpose.",
+		),
+	3699 => array(
+			'name'    => "From the Wastes",
+			'journal' => "",
+		),
+	6064 => array(
+			'name'    => "Casting the Bones",
+			'journal' => "According to the Undaunted Trailblazer, Yisareh, the ruins of Fang Lair have been taken over by a cult of necromancers who are preparing for something big. She's enlisted my help in discovering and foiling their plans.",
+		),
+	3703 => array(
+			'name'    => "Honor Bound",
+			'journal' => "The monastery of Muth Gnaar was attacked by the Vereansu, a violent tribe of Ashlanders. The peaceful monks were caring for the afflicted using an ancient relic called the Tear of Saint Veloth when the Ashlanders attacked.",
+		),
+	4349 => array(
+			'name'    => "Kill Enemy Players",
+			'journal' => "Grand Warlord Sorcalin has authorized a bonus for any Dominion soldier who slays 20 enemy combatants.",
+		),
+	6074 => array(
+			'name'    => "Cogs of Fate",
+			'journal' => "The people of Slag Town apparently seek predictions about the future from a factotum known as the Grand Prognosticator. Kamid, whose mother died during the last pilgrimage, plans to prove that the oracle is a fraud.",
+		),
+	3705 => array(
+			'name'    => "Payback",
+			'journal' => "Scout Kanat says that the rest of the scouting party is dead or afflicted, too far gone to be saved. He also says the Maulborn are protected from the Llodos plague by arcane wards.",
+		),
+	3708 => array(
+			'name'    => "Wave Combat Quest",
+			'journal' => "",
+		),
+	5063 => array(
+			'name'    => "Stone Cold",
+			'journal' => "Fleeing undead to the north, a clan of Bosmer refugees wants to settle in Shadows Crawl, but stone men, known as Hollow, rose from the ground and attacked.",
+		),
+	3709 => array(
+			'name'    => "The Bargain's End",
+			'journal' => "After returning the <<z:1>>, <<2>> made me the arbiter over the fate of <<3>>. Destroying the <<z:1>> will allow the villagers to die, but preserving it will trap them in their lifeless state.",
+		),
+	5186 => array(
+			'name'    => "The Blood of Nirn",
+			'journal' => "The scholar Nendirume warned me that the Scaled Court has taken over the ruined city of Skyreach. She believes they're searching Skyreach Hold for more of the nirncrux element, which they refer to as \"the blood of Nirn.\"",
+		),
+	3712 => array(
+			'name'    => "Captive Souls",
+			'journal' => "A traveling merchant named <<1>> fell prey to Worm Cult necromancers camped below <<2>>. His guards were killed, and their souls are now trapped in animus geodes throughout the cultists' camp.",
+		),
+	6092 => array(
+			'name'    => "The Merchant's Heirloom",
+			'journal' => "I found the abandoned journal of Dulza, an Orc merchant who somehow entered the Clockwork City during a fierce storm in Craglorn. Her greatest regret is that her clan in Fell's Run will never see their ancestral sword again.",
+		),
+	3715 => array(
+			'name'    => "Strange Guard Beasts",
+			'journal' => "Churasu has a way to turn the giant wasps into an army to use against the Khajiiti pirates. She needs my help to make an alchemical concoction.",
+		),
+	3718 => array(
+			'name'    => "Into the Temple",
+			'journal' => "After Drillk's memory returned, he told me how to obtain the keystone. It's locked away in the Temple of Sul.",
+		),
+	3864 => array(
+			'name'    => "The Dungeon Delvers",
+			'journal' => "Sibling explorers Raynor and Kireth Vanos are investigating the Dwarven ruins of Bthanual.",
+		),
+	3719 => array(
+			'name'    => "Captured Time",
+			'journal' => "I've found a book about Ayleid 'Alasil pilasters' within the Temple of Sul. Beside it was a small Ayleid relic that may be able to awaken the pilasters.",
+		),
+	4924 => array(
+			'name'    => "The Barefoot Breton",
+			'journal' => "I met a somewhat drunk and totally bootless Breton named Parquier Gimbert outside of Northpoint. He said he lost a valuable mace while hunting for mudcrabs along the shore. He thinks that maybe a Hagraven was involved. Also, he has no shoes.",
+		),
+	5472 => array(
+			'name'    => "A Feast To Remember",
+			'journal' => "<<1>> has nearly restored the long-lost reputation of Orc cuisine. She needs a few more rare ingredients to complete her masterpiece.",
+		),
+	3874 => array(
+			'name'    => "The Light Fantastic",
+			'journal' => "A Dwarven device fills a chamber deep within the ruins of Bthanual. Kireth has repaired it. Beams of light now shine through prisms set around the room.",
+		),
+	3721 => array(
+			'name'    => "Dissonant Commands",
+			'journal' => "I met an artificer who's trying to learn more about the mysterious rod that was used to control Dwarven constructs from Mzithumz.",
+		),
+	3724 => array(
+			'name'    => "Lost to the Mire",
+			'journal' => "<<1>> went to the <<2>>. He has yet to reply to <<3>>'s correspondence.",
+		),
+	5975 => array(
+			'name'    => "A Masterful Weapon",
+			'journal' => "",
+		),
+	3728 => array(
+			'name'    => "Remembering Risa",
+			'journal' => "I found a battered journal while walking the Coiled Path. A young woman named Risa did not survive this place. She lost her amulet fighting one of the snakes.",
+		),
+	3882 => array(
+			'name'    => "Placeholder Start",
+			'journal' => "",
+		),
+	3729 => array(
+			'name'    => "A Stranger Uninvited",
+			'journal' => "<<1>> welcomed a traveling High Elf to <<2>>, but she believes he has something to do with the wisps' recent aggression.",
+		),
+	3731 => array(
+			'name'    => "Broken Apart",
+			'journal' => "To rid the area of her corrupting influence, <<1>> and I cleansed the ancient vessel. We need it capture the wispmother in <<2>>.",
+		),
+	3732 => array(
+			'name'    => "Overrun",
+			'journal' => "The Aldmeri Dominion has set up a staging area south of Hissmir in a fishing village called <<1>>.",
+		),
+	5973 => array(
+			'name'    => "A Masterful Glyph",
+			'journal' => "",
+		),
+	3734 => array(
+			'name'    => "Restoring the Guardians",
+			'journal' => "<<1>> led a force of Pact soldiers to Ash Mountain. They were following the Brother of Strife, Balreth. Using the information I learned from Mavos at Othrenis, we're going to imprison the Brother of Strife again.",
+		),
+	4104 => array(
+			'name'    => "In Search of Kireth Vanos",
+			'journal' => "Raynor and Kireth Vanos, self-proclaimed Dwemer experts, left Morrowind to look for long lost knowledge and lore within Skyrim's Dwarven ruins.",
+		),
+	3880 => array(
+			'name'    => "A Blow for Order",
+			'journal' => "The Ordinators are outnumbered. They asked me to reduce Vox's forces to help even things up a bit.",
+		),
+	3735 => array(
+			'name'    => "The Death of Balreth",
+			'journal' => "I've defeated Ash Mountain's guardians. Now I must enter Ash Mountain's caldera, defeat Balreth, and imprison him again.",
+		),
+	3736 => array(
+			'name'    => "Close the Scamp Caves",
+			'journal' => "Scamps are boiling up out of the ground, no doubt excited by the freeing of Balreth. <<1>> asked for my help dealing with them. Collapsing the entrances to caves in <<2>> should do the job.",
+		),
+	3890 => array(
+			'name'    => "Pull the Last Fang",
+			'journal' => "I left the ancient Argonian ruins with a single Fang of Sithis. According to <<1>>, the Renrijra pirates are in an uproar. They may be feeling the effects of the other Fang in their midst.",
+		),
+	5247 => array(
+			'name'    => "Pledge: Fungal Grotto I",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the Fungal Grotto beneath Stonefalls.",
+		),
+	6106 => array(
+			'name'    => "A Matter of Tributes",
+			'journal' => "The Bursar of Tribute demands compensation for the Blackfeather Court from mortals who insult them and chase them away.",
+		),
+	3737 => array(
+			'name'    => "In With the Tide",
+			'journal' => "<<1>> told me of an assault force landing in the Ashlands west of Ebonheart. She's asked me to make for the land coral maze known as Vivec's Antlers.",
+		),
+	3744 => array(
+			'name'    => "Shattered Stones",
+			'journal' => "Lord Stictal had a unique power crystal that was stolen by Supernal Dreamers. They have shattered the crystal in order to use the pieces for daedric summoning ritual.",
+		),
+	3747 => array(
+			'name'    => "Crystal Capture",
+			'journal' => "I have been tasked by Lord <<1>> to recover shards of a crystal of power from the Supernal Dreamers who have stolen it.",
+		),
+	3748 => array(
+			'name'    => "The Shattered Crystal",
+			'journal' => "",
+		),
+	4795 => array(
+			'name'    => "Scaled Captors",
+			'journal' => "A Bosmer scout claims her band was ambushed by Argoninan invaders. She managed to get away in the scuffle, but her allies are now captives of the Argonians.",
+		),
+	3896 => array(
+			'name'    => "Devotees of Knowledge",
+			'journal' => "I met a Dunmer named <<1>> in Apocrypha's Gate. He's a devotee of Hermaeus Mora. He and his fellows were attacked by rival cultists of Mehrunes Dagon, and their sanctum was put to the torch.",
+		),
+	3751 => array(
+			'name'    => "Hunting Invaders",
+			'journal' => "The Covenant attacked the Argonian town of Lukiul Uxith. The residents repelled the attack. They seem to be quite confident about their safety.",
+		),
+	5987 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	3756 => array(
+			'name'    => "Q3756 Save the Son",
+			'journal' => "Save Geoffroi's Son.",
+		),
+	3759 => array(
+			'name'    => "The Rescue",
+			'journal' => "",
+		),
+	6007 => array(
+			'name'    => "A Call For Aid",
+			'journal' => "I found a notice stating that adventurers looking for rewarding work should report to the Hall of Justice.",
+		),
+	3760 => array(
+			'name'    => "Kill the Boss!",
+			'journal' => "",
+		),
+	4211 => array(
+			'name'    => "To Tanzelwil",
+			'journal' => "Queen Ayrenn asked me to join her at the ancient site Tanzelwil where she must commune with the dead. She's worried there may be … complications.",
+		),
+	3761 => array(
+			'name'    => "Escape Quest",
+			'journal' => "The son of Lord Strictal was taken captive by the Supernal dreamers.",
+		),
+	5631 => array(
+			'name'    => "Contract: Bangkorai",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3762 => array(
+			'name'    => "Free Steve",
+			'journal' => "The Supernal Dreamers imprisoned Steve Stictal.",
+		),
+	4330 => array(
+			'name'    => "Lifting the Veil",
+			'journal' => "I arrived in Skywatch to find a festival in honor of the High Kinlady Estre in full swing.",
+		),
+	3764 => array(
+			'name'    => "Free Harvey",
+			'journal' => "Harvey was attempting to steal back his fathers shards when he was captured. He needs help escaping.",
+		),
+	3766 => array(
+			'name'    => "Dealing with the Dreadlord",
+			'journal' => "",
+		),
+	4136 => array(
+			'name'    => "Shoot the Messenger",
+			'journal' => "",
+		),
+	3767 => array(
+			'name'    => "Revenge on Remelie",
+			'journal' => "",
+		),
+	3769 => array(
+			'name'    => "Crystal Champion",
+			'journal' => "",
+		),
+	4827 => array(
+			'name'    => "Hunting the Troll",
+			'journal' => "Ledronor, a member of a hunting order called the Hounds, asked for my help in hunting a troll.",
+		),
+	3928 => array(
+			'name'    => "Dangerous Union",
+			'journal' => "The military has tracked Stral Blackthroat, the leader of the Reachmen, to Vernim Wood. When they arrived, they found Worm Cultists performing dark rituals with his warriors.",
+		),
+	3783 => array(
+			'name'    => "Lost Lions",
+			'journal' => "I encountered a wounded Lion Guard member named <<1>> in the Bonesnap Ruins. He and his soldiers were sent to retrieve pieces of an artifact, but were ambushed.",
+		),
+	4988 => array(
+			'name'    => "Rendezvous at the Pass",
+			'journal' => "High King Emeric has arrived with the Lion Guard to help retake Bangkorai Garrison from the Imperial forces.",
+		),
+	5667 => array(
+			'name'    => "Contract: Eastmarch",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3948 => array(
+			'name'    => "Stop the Dream",
+			'journal' => "After retriving the crystal shards, <<1>> wants me to defeat the leader of the Supernal Dreamers.",
+		),
+	3787 => array(
+			'name'    => "Vengeance of the Oppressed",
+			'journal' => "I met a pair of Argonians, former slaves. They want revenge upon Betina Volek, the last surviving descendant of the family that once owned them.",
+		),
+	5518 => array(
+			'name'    => "Meat for the Masses",
+			'journal' => "The laborers helping to rebuild Orsinium need supplies, specifically fresh meat. The hills and valleys of Wrothgar are typically filled with beasts to hunt, but their numbers are dwindling due to poaching. I must help feed the city's workers.",
+		),
+	6019 => array(
+			'name'    => "A Masterful Weapon",
+			'journal' => "",
+		),
+	3788 => array(
+			'name'    => "Vengeance for House Dres",
+			'journal' => "The grandmaster of House Dres wants revenge against the Vanguard troops outside Kragenmoor. He's commanded me to slay their leader.",
+		),
+	3942 => array(
+			'name'    => "To the Rescue",
+			'journal' => "Marcus has told me that he was captured by Supernal Dreamers. I have freed him.",
+		),
+	4930 => array(
+			'name'    => "Shedding the Past",
+			'journal' => "Teeba-Ja was a member of the Bitterhand Bandits, but when they became more violent, she decided to leave. She wants to start a new life in Shornhelm.",
+		),
+	3789 => array(
+			'name'    => "This One's a Classic",
+			'journal' => "<<1>> is struggling to understand humor. He heard a rumor about a sacred Dark Elf performance from the distant past.",
+		),
+	5257 => array(
+			'name'    => "BAR Switch Howto Example",
+			'journal' => "",
+		),
+	3791 => array(
+			'name'    => "Outside Interference",
+			'journal' => "I found a strange device in the Dominion camps at <<1>>. The instructions for its use were signed \"Alchemist <<2>>.\"",
+		),
+	4522 => array(
+			'name'    => "The Hedoran Estate",
+			'journal' => "The Hedorans were killed by bandits. <<1>> has asked me to recover anything I find in the remains of their home.",
+		),
+	3956 => array(
+			'name'    => "Message to Mournhold",
+			'journal' => "Varon asked me to travel to Mournhold. I should inform the Ordinators about the events at the Obsidian Gorge.",
+		),
+	3795 => array(
+			'name'    => "Deep Disturbance",
+			'journal' => "Something caused the creatures in Xal Ithix's swamps to become aggressive and attack the villagers.",
+		),
+	3796 => array(
+			'name'    => "Nothing Left to Waste",
+			'journal' => "Kotholl, a hired hand from the merchants' camp, was ordered to guard three specific chests with his life. He states it would be bad for the contents to fall into the hands of the Maulborn.",
+		),
+	5389 => array(
+			'name'    => "Clothier Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Clothier goods to an interested organization.",
+		),
+	3944 => array(
+			'name'    => "Kidnapped!",
+			'journal' => "Kidnapped Guy has been kidnapped.",
+		),
+	4598 => array(
+			'name'    => "Into the Vice Den",
+			'journal' => "A Khajiit named <<1>> has disappeared at the notorious Hadran's Caravan. The people who love him are losing hope of seeing him again. They have turned to me for help.",
+		),
+	4619 => array(
+			'name'    => "Colorbox Dummy",
+			'journal' => "",
+		),
+	3799 => array(
+			'name'    => "Scales of Retribution",
+			'journal' => "The Dominion established a foothold in the small town of <<1>>. The Argonian Shadowscales intend to take back the town by force.",
+		),
+	5278 => array(
+			'name'    => "Pledge: Wayrest Sewers I",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the complex of sewers beneath Wayrest, dead center in the region called Stormhaven.",
+		),
+	3804 => array(
+			'name'    => "Missing in the Mire",
+			'journal' => "The Argonians in Xal Ithix have been picking through trash piles. Now normally docile creatures from the swamp are attacking them.",
+		),
+	3809 => array(
+			'name'    => "Cultural Exchange",
+			'journal' => "Rigurt the Brash, leader of the Expedition for Nord Cultural Exchange, has asked for my assistance. I've agreed to trade a Nord book, clothes, and relic for similar Dark Elf items.",
+		),
+	4516 => array(
+			'name'    => "Stolen Ashes",
+			'journal' => "I found a stolen item with the name <<1>> etched on it, as well as an address.",
+		),
+	3815 => array(
+			'name'    => "Cracking the Egg",
+			'journal' => "<<1>> wants to find out more about <<A:2>>. Until the vicecanons understand its danger, they can't root out the Dominion in Shadowfen.",
+		),
+	4652 => array(
+			'name'    => "The Colovian Occupation",
+			'journal' => "The town of Arenthia has been occupied by a Colovian force. I've been tapped to help retake the city alongside a Khajiiti resistance force.",
+		),
+	3816 => array(
+			'name'    => "Mercenaries Astray",
+			'journal' => "I found a Redguard mercenary named Ragara near the entrance to Zehtswater Cave. Her band was bitten and carried off by Lamias.",
+		),
+	3820 => array(
+			'name'    => "Restless Spirits",
+			'journal' => "Some terrible catastrophe has befallen Selfora, and now hostile spirits overrun the place.",
+		),
+	3822 => array(
+			'name'    => "Schism",
+			'journal' => "An Argonian outside <<1>> asked me to find his brother, <<2>>. He was in the nearby mine when Goblins overran it.",
+		),
+	6071 => array(
+			'name'    => "Morsels and Pecks",
+			'journal' => "The Bursar of Tributes seeks items of flesh to add to the Blackfeather Court's hoard.",
+		),
+	3824 => array(
+			'name'    => "A Last Reminder",
+			'journal' => "While in the Goblin camp, I found a Nord corpse clutching a runestone that bears the name \"Hodmar Iron-Kettle.\"",
+		),
+	4662 => array(
+			'name'    => "Articles of Faith",
+			'journal' => "I found a set of robes in a bandit camp.",
+		),
+	3826 => array(
+			'name'    => "Climbing the Spire",
+			'journal' => "Tanval Indoril is inside the Tormented Spire working to unleash the Brother of Strife. Tanval's Vanguard holds the approach. If we don't stop Tanval, he'll unleash Sadal and destroy Stonefalls.",
+		),
+	4426 => array(
+			'name'    => "Stacking the Odds",
+			'journal' => "<<1>> asked me to deliver orders to a rebel spy in Imperial-held Cheydinhal.",
+		),
+	3860 => array(
+			'name'    => "Exquisite Tears",
+			'journal' => "A shady character named <<1>> contacted me at Davon's Watch. He said we could both profit if I \"procured\" a rare and expensive bottle of wine for him.",
+		),
+	3827 => array(
+			'name'    => "The Tree-Minder's Fate",
+			'journal' => "Mystery surrounds Forsaken Hamlet. An Argonian tree-minder lies murdered at the edge of her village.",
+		),
+	3828 => array(
+			'name'    => "Cold-Blooded Revenge",
+			'journal' => "The Dominion slaughtered the Argonians living in a small hamlet in Shadowfen. Only one remains alive to take his vengeance.",
+		),
+	4651 => array(
+			'name'    => "The Champion Division",
+			'journal' => "I have defeated the champions of the three major divisions in Thizzrini Arena. Now I am ready to face Ishalga and become the Grand Champion of Thizzrini Arena.",
+		),
+	3831 => array(
+			'name'    => "The Judgment of Veloth",
+			'journal' => "The time to confront Vox has arrived-but it seems that to defeat her, I need to die by her hammer. The Blessing of Veloth should protect me, but can I return from the dead?",
+		),
+	3837 => array(
+			'name'    => "Opening the Portal",
+			'journal' => "With Tanval's help, we've lowered the final ward guarding the prison of Sadal, the Brother of Strife. The mages who originally imprisoned Sadal linger on the Tormented Spire as spirits, angered by Tanval's ritual.",
+		),
+	3838 => array(
+			'name'    => "The Wounds in the World",
+			'journal' => "Priest Dilyne asked me to close the Daedric portals that Vox opened within the shrine. All kinds of vile creatures are emerging from these blasphemous wounds in the world.",
+		),
+	3840 => array(
+			'name'    => "Saving the Relics",
+			'journal' => "Shadowfen's Vicecanon Hrondar sent Saervild Steel-Wind to Bogmother's ruins to collect Argonian relics.",
+		),
+	3841 => array(
+			'name'    => "The Mystery of Razak",
+			'journal' => "I discovered a battered Dwarven construct that seems to have killed its Imperial caretaker. The Imperial's notes imply that they are searching for something within the Dwemer ruin at <<1>>.",
+		),
+	3845 => array(
+			'name'    => "And Throw Away The Key",
+			'journal' => "The vicecanons tracked an ancient keystone to <<1>>. This artifact would be a major boon to Pact forces in <<2>>. However, the prisoners seem unwilling to negotiate directly with the vicecanons.",
+		),
+	3846 => array(
+			'name'    => "The Keystone",
+			'journal' => "The keystone is located within the White Rose Prison Dungeon. I've agreed to find it and use it to free the prisoners here.",
+		),
+	4809 => array(
+			'name'    => "Nirnroot Wine",
+			'journal' => "I agreed to gather Red Mountain Ash for <<1>>, so she can make Nirnroot wine.",
+		),
+	3847 => array(
+			'name'    => "The Ones Left Behind",
+			'journal' => "<<1>>, a former prisoner of White Rose Prison, is dead, but her grieving spirit lingers on.",
+		),
+	3850 => array(
+			'name'    => "The Covenant Infiltrator",
+			'journal' => "I've encountered a Covenant scout named <<1>> in <<2>>. She was captured by Imperials and has asked for my aid.",
+		),
+	3854 => array(
+			'name'    => "A Goblin's Affection",
+			'journal' => "While attempting to test a new spell, <<1>> transformed his brother, Dithis, into a female Goblin. The Goblin lass has been kidnapped by a local Goblin warlord named <<2>>.",
+		),
+	3856 => array(
+			'name'    => "Anchors from the Harbour",
+			'journal' => "The Guildmaster of the Fighters Guild wants me to perform a task for her.",
+		),
+	3858 => array(
+			'name'    => "The Dangerous Past",
+			'journal' => "Sees-All-Colors has had Doshia's journal translated. From it she believes she may have discovered information relating to the mysterious Mortuum Vivicus.",
+		),
+	5718 => array(
+			'name'    => "Sacrament: Smuggler's Den",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	3861 => array(
+			'name'    => "QUEST IO BUG CHECK",
+			'journal' => "",
+		),
+	3865 => array(
+			'name'    => "Savages of Stonefalls",
+			'journal' => "The wilderness of Stonefalls is filled with predators and hostile creatures. The citizens of the region would sleep better knowing the worst ones are dead.",
+		),
+	3868 => array(
+			'name'    => "Sadal's Final Defeat",
+			'journal' => "I've accomplished great deeds with Tanval Indoril, <<1>>, and Walks-in-Ash. We've returned Tanval's Vanguard to the Ebonheart Pact, and convinced the spirits of Tormented Spire to open Sadal's prison.",
+		),
+	4839 => array(
+			'name'    => "Love Lost",
+			'journal' => "While exploring Hildune's Secret Refuge, I found a journal written by Nadafa. It tells the story of how she was seduced by a vampire. The journal mentions that her husband, Giran, works in Northpoint at the cemetery and lives in the fishing village.",
+		),
+	3872 => array(
+			'name'    => "The Talking Quest",
+			'journal' => "This is the Talking Quest.  The purpose of this quest is to talk to people and things, to  make sure the conversation system is still working.  Tally-ho!",
+		),
+	3885 => array(
+			'name'    => "The Prismatic Core",
+			'journal' => "Guildmaster Sees-All-Colors has plans to make use of the crystal and tome we found in the depths of Mzeneldt.",
+		),
+	3886 => array(
+			'name'    => "The Fetish",
+			'journal' => "I purchased a strange statue from an Ashlander merchant in the wilderness. It may be a religious fetish.",
+		),
+	5227 => array(
+			'name'    => "Kill Enemy Dragonknights",
+			'journal' => "Grand Warlord Dortene has authorized a reward for any Covenant soldier who slays 20 enemy Dragonknights.",
+		),
+	3888 => array(
+			'name'    => "Buried in the Past",
+			'journal' => "Researchers seeking ancient relics around the xanmeers found Renrijra pirates camped in the Argonian ruins they were planning to search.",
+		),
+	3889 => array(
+			'name'    => "The Fangs of Sithis",
+			'journal' => "The artifacts buried beneath Sunscale Strand are dangerous. <<1>> warns that we may have trouble with them. I need to be careful when searching the ruins.",
+		),
+	5368 => array(
+			'name'    => "Blacksmith Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Blacksmith goods to an interested organization.",
+		),
+	5750 => array(
+			'name'    => "The Fallen City of Shada",
+			'journal' => "I found the ruins of a city called Shada's Tear in the middle of the Craglorn desert. A mercenary told me that some researchers from Belkarth went into the ruins, but that strange things started happening when they did.",
+		),
+	3893 => array(
+			'name'    => "By Invitation Only",
+			'journal' => "Deshaan's Academy of Magic, Shad Astula, trains only the most promising mages to become leaders of the Ebonheart Pact. However, the Academy only accepts those who've received a special invitation.",
+		),
+	3900 => array(
+			'name'    => "Into the Mire",
+			'journal' => "Dominion troops invaded <<1>>'s village, trapping her husband and the other villagers. Whatever the soldiers are doing in <<2>>, they must be stopped.",
+		),
+	4743 => array(
+			'name'    => "The Lost Lute",
+			'journal' => "I found Minstrel Idria's lute abandoned in the Grotto of Depravity.",
+		),
+	3904 => array(
+			'name'    => "Supply Run",
+			'journal' => "Aamela Rethandus needs healing supplies to treat Selfora's wounded.",
+		),
+	3905 => array(
+			'name'    => "Clarity",
+			'journal' => "<<1>>'s husband <<2>> won't speak since his ordeal with the Dominion. I must find a way to heal him.",
+		),
+	3908 => array(
+			'name'    => "Vision Quest",
+			'journal' => "Arch-Mage Valeyn thinks his visions are somehow connected to the evil Magistrix Vox. Unfortunately, before he could learn more, something blocked his magic.",
+		),
+	4225 => array(
+			'name'    => "To Nimalten",
+			'journal' => "I've put a stop to the threat of the Reachmen, but the threat to the Rift is far from over. The Worm Cult is massing in force, and the settlements west of Nimalten need to be warned.",
+		),
+	3909 => array(
+			'name'    => "The Dominion's Alchemist",
+			'journal' => "<<1>> tracked the Dominion's movement to <<2>>, where she hopes to end the Dominion invasion of Shadowfen.",
+		),
+	3910 => array(
+			'name'    => "The Dream of the Hist",
+			'journal' => "<<1>> asked me to retreive <<A:2>> from <<3>>, the architect of the Dominion invasion in Shadowfen.",
+		),
+	4294 => array(
+			'name'    => "The Unveiling",
+			'journal' => "I uncovered evidence linking important community members in Mathiisen to the Veiled Heritance. Now Raz has asked me to take the fight to them directly.",
+		),
+	3911 => array(
+			'name'    => "The Swamp's Embrace",
+			'journal' => "<<1>> is one of the few surviving prisoners from the Dominion's march into Loriasel.",
+		),
+	4372 => array(
+			'name'    => "Goblin Marq",
+			'journal' => "<<1>> wants me to look for his friend, Marq, who seems to think he's a Goblin.",
+		),
+	3914 => array(
+			'name'    => "Missing Son",
+			'journal' => "<<1>> asked me to find his son who hasn't returned to the village.",
+		),
+	3915 => array(
+			'name'    => "Decree of the Court",
+			'journal' => "A talking crow claims to represent the Blackfeather Court. It says I must pay a toll to pass safely through the court's domain.",
+		),
+	5635 => array(
+			'name'    => "Ache For Cake",
+			'journal' => "I received a voucher for a special-occasion cake from the renowned master baker, Chef Donolon.",
+		),
+	3916 => array(
+			'name'    => "Long Lost Lore",
+			'journal' => "A high-ranking member of the Mages Guild, <<1>> wants me to perform a task for her.",
+		),
+	3919 => array(
+			'name'    => "Beneath the Stone",
+			'journal' => "I've traveled to Shor's Stone, which is under attack by Reachmen. The Companions and Pact military have marshaled a defense.",
+		),
+	5655 => array(
+			'name'    => "Contract: Auridon",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3920 => array(
+			'name'    => "Unearthed",
+			'journal' => "I've breached the barrier to the mine beneath Shor's Stone. The Reachmen have assaulted the foreman and his crew. I need to find the foreman, Gandis, and figure out what the Reachmen are doing here.",
+		),
+	4371 => array(
+			'name'    => "Wisdom of the Ages",
+			'journal' => "An ancient Argonian settlement called Haj Uxith occupies a dark corner of Coldharbour. The Argonians want to help me in my quest, but they seem to be divided over something related to their Hist tree.",
+		),
+	3921 => array(
+			'name'    => "Move out Miners",
+			'journal' => "Some of the miners beneath Shor's Stone still live!",
+		),
+	4497 => array(
+			'name'    => "Lost Daughter",
+			'journal' => "While exploring <<A:1>> I came across a campsite with an inscribed vase. The inscription read as if it was given to someone, but I only found skeletons in the tomb.",
+		),
+	3923 => array(
+			'name'    => "The Farmer's Champion",
+			'journal' => "The residents of Treva's Farm have fled. A Worm Cult attack drew the attention of nearby giants. The besieged farmers ran for their lives.",
+		),
+	3924 => array(
+			'name'    => "Song of Awakening",
+			'journal' => "The sky over the bardic college of Skald's Retreat is something out of nightmares, and monsters stalk its paths.",
+		),
+	3925 => array(
+			'name'    => "Guard the Knowledge",
+			'journal' => "There are tomes scattered across the islands of Skald's Retreat that all have something to do with Vaermina.",
+		),
+	5776 => array(
+			'name'    => "The Time-Lost Warrior",
+			'journal' => "The Celestial Warrior is worried about his champion, Titus Valerius. Lost in time, Titus' memory has begun to break apart. He no longer remembers who he is or his connection to the Warrior. Without his memory, the Warrior can't send him home.",
+		),
+	3927 => array(
+			'name'    => "In His Wake",
+			'journal' => "The city of Riften has been devastated by Sinmur's assault. The town guard is overwhelmed trying to help all the refugees. They're asking everyone to help with the recovery effort.",
+		),
+	4573 => array(
+			'name'    => "Frighten the Fearsome",
+			'journal' => "The Wood Elves in this part of the Valenwood are opposed to the Dominion. I agreed to negotiate and attempt to convince them to swear allegiance to Queen Ayrenn.",
+		),
+	5786 => array(
+			'name'    => "Dark Anchors in Alik'r Desert",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Alik'r Desert.",
+		),
+	3929 => array(
+			'name'    => "Shattered Realm",
+			'journal' => "The Crystal of Power has been stolen and shattered, and  Geoffroi wants me to help him retrieve it.",
+		),
+	5657 => array(
+			'name'    => "Contract: Auridon",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3930 => array(
+			'name'    => "Slaying the Dreamers",
+			'journal' => "I'm helping Geoffroi restore his Crystal of Power. The Supernal Dreamers have stolen and shattered his Crystal of Power into five pieces.",
+		),
+	5413 => array(
+			'name'    => "Provisioner Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver food and drink to an interested organization.",
+		),
+	3931 => array(
+			'name'    => "Eternal Quest",
+			'journal' => "I met a noble, B. Stower, who's power crystal was stolen by the Supernal Dreamers and broken in 5 shards.",
+		),
+	3933 => array(
+			'name'    => "Murder for Crystals",
+			'journal' => "Distraught noble Geoffroi's antique crystal was stolen by Supernal Dreamers and split it into shards for their daedric rituals.",
+		),
+	3937 => array(
+			'name'    => "Captive Son",
+			'journal' => "Geoffroi's son has been kidnapped by Supernal Dreamers. I need to make sure he gets back safely.",
+		),
+	5536 => array(
+			'name'    => "Heist: Deadhollow Halls",
+			'journal' => "I was tipped off about a stash of Daedric treasures ripe for the taking in the Deadhollow Halls. I don't have much time to secure the goods before they're moved, so I should act quickly on this lead.",
+		),
+	3938 => array(
+			'name'    => "Prisoner",
+			'journal' => "I'm helping a young man escape from captivity. The Dreamers have chained him in a cage.",
+		),
+	5804 => array(
+			'name'    => "Broken Bonds",
+			'journal' => "Vvardenfell promises new experiences and new adventures. I can't wait to see what the land of the Dark Elves has in store for me.",
+		),
+	3939 => array(
+			'name'    => "About a Prisoner",
+			'journal' => "I found a guy tied up in a cage. He wanted to be free.",
+		),
+	3940 => array(
+			'name'    => "Rescue Bob",
+			'journal' => "I met a prisoner held by the Supernal Dreamers, who asked that I set him free.",
+		),
+	4257 => array(
+			'name'    => "Unaccounted Crew",
+			'journal' => "Captain Erronfaire is desperate to leave port, but she's lost track of some of her crew. She needs them found so she can set sail for Velyn Harbor.",
+		),
+	5531 => array(
+			'name'    => "Partners in Crime",
+			'journal' => "A thief named <<1>> needs a partner for a difficult job. I took her up on the offer.",
+		),
+	3941 => array(
+			'name'    => "Bob's Dramatic Escape",
+			'journal' => "I guess I should let this guy go.",
+		),
+	3945 => array(
+			'name'    => "Wreck Up the Place",
+			'journal' => "Geoffroi wants me to murder the leader of the supernal dreamers.",
+		),
+	4404 => array(
+			'name'    => "Lost Treasures",
+			'journal' => "<<1>> and some of his inn workers were meeting a trader to restock supplies when pirates invaded <<2>>. Everyone scattered, and now his workers are lost in the marsh.",
+		),
+	3946 => array(
+			'name'    => "Killing Dreams",
+			'journal' => "Julia Kalere has told me that I must kill the Twilight Boss to put an end to this madness.",
+		),
+	3949 => array(
+			'name'    => "Kill Remelie",
+			'journal' => "Geoffroi has asked me to kill Remelie, the leader of the cultists. This should send them fleeing back to Stormhaven. She should be near one of the Dreamer camps.",
+		),
+	5417 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	3951 => array(
+			'name'    => "Kill the Beast",
+			'journal' => "I need to kill the Beast to stop the Dreamers once and for all.",
+		),
+	5687 => array(
+			'name'    => "Contract: Stonefalls",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3952 => array(
+			'name'    => "Bongo Boss Beatdown",
+			'journal' => "Troggg has discovered that it was his brother, Clogg, who stole the bongos.",
+		),
+	4403 => array(
+			'name'    => "Captive Crewmembers",
+			'journal' => "The slavers have captured the crew of a ship that crashed on the rocks. <<1>> has asked me to free them.",
+		),
+	3953 => array(
+			'name'    => "Chateau of the Ravenous Rodent",
+			'journal' => "I've been tasked with finding another book for the Mages Guild. Once again I need to return to the Shivering Isles, to a place called the Chateau of the Ravenous Rodent.",
+		),
+	5814 => array(
+			'name'    => "Madness in Alik'r Desert",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Alik'r Desert.",
+		),
+	3957 => array(
+			'name'    => "Gift of the Worm",
+			'journal' => "The Reachmen are being magically augmented by the Worm Cult. They must be stopped.",
+		),
+	5685 => array(
+			'name'    => "Contract: Stonefalls",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	3958 => array(
+			'name'    => "The Llodos Plague",
+			'journal' => "Maulborn cultists are causing trouble throughout Deshaan. Quarantine Serk was only the beginning. A House Hlaalu guard asked me to take word of what happened to Narsis, a town south of the Serk.",
+		),
+	5808 => array(
+			'name'    => "Darkness Blooms in Rivenspire",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Orc's Finger Ruins, located in Rivenspire.",
+		),
+	3959 => array(
+			'name'    => "Smoke on the Horizon",
+			'journal' => "Boulderfall Pass has been attacked by Sinmur and the Reachmen. The soldiers defending this area need my help.",
+		),
+	4605 => array(
+			'name'    => "The Hollow City",
+			'journal' => "",
+		),
+	5818 => array(
+			'name'    => "Madness in Bangkorai",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Bangkorai.",
+		),
+	3961 => array(
+			'name'    => "Raise the Colors",
+			'journal' => "A dying soldier named <<1>> has asked me to avenge his death.",
+		),
+	3964 => array(
+			'name'    => "Secrets of the Lost City",
+			'journal' => "I met a Redguard named Paldeen, held prisoner by the Khajiit bandits in the Lost City of the Na-Totambu. He asked for my help in opening the sealed inner chamber.",
+		),
+	3966 => array(
+			'name'    => "Chasing the Magistrix",
+			'journal' => "Magister Vox stole an item of power from the Tribunal Temple-the hammer known as Veloth's Judgment. She fled east, away from Mournhold. Almalexia asked me to track her down before she gains the full power of the artifact.",
+		),
+	5442 => array(
+			'name'    => "Cultural Affections",
+			'journal' => "Rigurt the Brash, an odd Nord ambassador, presides over the Ebonheart Pact's diplomatic mission to Wrothgar. But Rigurt has a problem. He's fallen in love with his Orc counterpart, Ambassador Lazdutha.",
+		),
+	3968 => array(
+			'name'    => "Through the Shroud",
+			'journal' => "Our final goal at Vernim must be to kill Stral and end the threat of the Reachmen. Unfortunately he's protected by a death shroud in the central ruin.",
+		),
+	5699 => array(
+			'name'    => "Contract: Eastmarch Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of East March.",
+		),
+	3980 => array(
+			'name'    => "Research Subject",
+			'journal' => "A researcher named Nila feels terrible about her colleague's capture. The Worm Cult was torturing him at the far end of the cavern.",
+		),
+	3982 => array(
+			'name'    => "Bound to the Bog",
+			'journal' => "<<1>>, an agent of the Vicecanons, asked me to join the expedition to <<2>>. They'll be searching for Argonian relics.",
+		),
+	5719 => array(
+			'name'    => "Sacrament: Smuggler's Den",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	3984 => array(
+			'name'    => "Forgotten Heroes",
+			'journal' => "I'd been told previously Ulrich, a former Lion Guard soldier, died at the hands of the cultists. <<1>> believes he may actually be imprisoned somewhere within Silaseli instead.",
+		),
+	4435 => array(
+			'name'    => "Simply Misplaced",
+			'journal' => "My first trial in Sheogorath's realm awaits. Valaste and Shalidor have uncovered what they need to get me where I need to go.",
+		),
+	3985 => array(
+			'name'    => "Tracking the Game",
+			'journal' => "I've encountered a wounded hunter in the wilds near Bleakrock Village. <<1>> is seriously wounded. He wants some help killing his prey.",
+		),
+	3986 => array(
+			'name'    => "Underfoot",
+			'journal' => "A strange woman came up to me as I was walking through the woods. She said something about skeevers before leading me into the hills.",
+		),
+	4561 => array(
+			'name'    => "Dangerously Low",
+			'journal' => "<<1>> is running low on supplies to help the many wounded in his care.",
+		),
+	3987 => array(
+			'name'    => "Hozzin's Folly",
+			'journal' => "I met up with Seyne near Hozzin's Folly. Bandits have landed on the island. They're exploring an abandoned mine that was once home to Daedra worshippers.",
+		),
+	4554 => array(
+			'name'    => "Shadowfen Smorgasbord",
+			'journal' => "The drunken cook, <<1>>, is in trouble. She bet her hunter friend that she'd collect ingredients from beasts all over Shadowfen and cook him a feast in Hissmir. Now sober, she is afraid to venture out into the fen, for fear of these same creatures.",
+		),
+	3988 => array(
+			'name'    => "Dangerous Webs",
+			'journal' => "I found a Fighters Guild camp where an Argonian soldier is recovering from a fierce battle with spiders.",
+		),
+	3990 => array(
+			'name'    => "A Beginning at Bleakrock",
+			'journal' => "",
+		),
+	5840 => array(
+			'name'    => "Reclaiming Vos",
+			'journal' => "The powerful Telvanni mage, Mistress Dratha, teeters on the brink of death. Now her replacement, Master Savarak, rules Vos with an iron fist. The situation seems dire.",
+		),
+	3991 => array(
+			'name'    => "Escape from Bleakrock",
+			'journal' => "The Daggerfall Covenant has assaulted Bleakrock Village. Captain Rana sent the surviving refugees to Last Rest, a tomb near the town. Rana and I must clear a path through the tomb for the refugees.",
+		),
+	3992 => array(
+			'name'    => "What Waits Beneath",
+			'journal' => "I caught up with Darj near Skyshroud Barrow. Skeletons attacked and wounded him before he could find a way to get its door open.",
+		),
+	3993 => array(
+			'name'    => "Kings of the Grotto",
+			'journal' => "I met a group of Dunmer in the Fungal Grotto. They want to reach a shrine within the caves. A tribe of hostile Goblins has occupied most of the area, pushing out a colony of dreugh. The two fighting sides are blocking access to the rest of the cave.",
+		),
+	4632 => array(
+			'name'    => "Special Delivery",
+			'journal' => "I've agreed to deliver a sack of fertilizer for <<1>>.",
+		),
+	5477 => array(
+			'name'    => "The Watcher in the Walls",
+			'journal' => "Someone calling themselves The Rat left a note claiming that the Daedra are slaughtering people in the Imperial Arena. If I slay the Daedra, instead, The Rat promised to reward me with a secret about Molag Bal's plan for Imperial City.",
+		),
+	3995 => array(
+			'name'    => "The Frozen Man",
+			'journal' => "Rolunda came to Orkey's Hollow looking for her brother, Eiman. The cave is said to be haunted, and young Nords on the island sometimes enter it to prove their bravery. Eiman went in, but he hasn't come out.",
+		),
+	5470 => array(
+			'name'    => "A Healthy Choice",
+			'journal' => "<<1>> continues to restore the long-lost reputation of Orc cuisine. She hired me to collect additional rare ingredients throughout Wrothgar.",
+		),
+	3996 => array(
+			'name'    => "At Frost's Edge",
+			'journal' => "I found a note on a dead bandit. Their leader, a man named Oath-Breaker, has orders to capture villagers, so he can trade them for supplies.",
+		),
+	3997 => array(
+			'name'    => "The Mad God's Bargain",
+			'journal' => "Valaste and Shalidor have finished analysis of Sheogorath's books. Now I need to help them take possession of Eyevea, the Mages Guild Sanctuary.",
+		),
+	3999 => array(
+			'name'    => "Lost on Bleakrock",
+			'journal' => "<<1>> has lost track of her husband and her dog. I've offered to help her look for both of them.",
+		),
+	5751 => array(
+			'name'    => "The Trials of Rahni'Za",
+			'journal' => "Outside the school of blades called Rahni'Za, I encountered an intiate of the school who told me that the Sword-Disciples have been turned into thralls by a traitor. This betrayer now hides in the cavern at the end of the school's five trials.",
+		),
+	4016 => array(
+			'name'    => "The Missing of Bleakrock",
+			'journal' => "I've found evidence that the Daggerfall Covenant may soon attack Bleakrock and the rest of the Pact. We need to evacuate as soon as possible, but anyone who doesn't rally to the village will be left behind.",
+		),
+	4018 => array(
+			'name'    => "Giant Problems",
+			'journal' => "Giants have attacked the village of Lower Yorgrim, destroying everything in their path.",
+		),
+	5749 => array(
+			'name'    => "The Seeker's Archive",
+			'journal' => "I met Ibrula, a friend of the Star-Gazers who is trying to get into a ruined temple called the Seeker's Archive. She hopes to discover information inside that will help defeat the Celestials.",
+		),
+	4022 => array(
+			'name'    => "Salt of the Earth",
+			'journal' => "The Covenant sent an advance force into Bal Foyen. They're destroying the fields behind Dhalmora.",
+		),
+	4392 => array(
+			'name'    => "Truth, Lies, and Prisoners",
+			'journal' => "While exploring Coldharbour, I came across the Tower of Lies. Instead of a tower, the place is actually a hole in the ground where members of the Fighters Guild have been imprisoned.",
+		),
+	5872 => array(
+			'name'    => "A Melodic Mistake",
+			'journal' => "The Gnisis Egg Mine has been shuttered. Some kind of mysterious illness has taken hold there. Unfortunately, many workers remain trapped inside.",
+		),
+	4023 => array(
+			'name'    => "If By Sea",
+			'journal' => "We've landed safely. Captain Rana is going to muster the remaining Bleakrock villagers and the people of Dhalmora. She wants me to ensure the fires are lit in the nearby watchtower so we can warn Davon's Watch, the port city in Stonefalls.",
+		),
+	4024 => array(
+			'name'    => "Finding the Family",
+			'journal' => "An Argonian named <<1>> lost most of his guar herd. They were spooked by scary noises in the fields behind Dhalmora. He wants me to collect the missing ones.",
+		),
+	4026 => array(
+			'name'    => "Zeren in Peril",
+			'journal' => "I've made my decision. I'm standing with <<1>> and defending Fort Zeren.",
+		),
+	4028 => array(
+			'name'    => "Breaking the Tide",
+			'journal' => "The Daggerfall Covenant has siezed control of Foyen Docks. An injured Argonian fisherman saw Rana fighting through their ranks.",
+		),
+	4034 => array(
+			'name'    => "A Friend in Mead",
+			'journal' => "Stormfist soldiers ransacked Voljar's Meadery and slaughtered the family-all because they wanted free mead. Haraldar's wife was one of the Voljars killed in the attack. He wants to reopen the meadery, and he recruited his four brothers to help.",
+		),
+	4219 => array(
+			'name'    => "The Serpent's Beacon",
+			'journal' => "Maormer pirates took the lighthouse at South Beacon and are signalling more pirate ships to come into port. If they're not stopped, they'll have the numbers they need to move on the port of Vulkhel Guard.",
+		),
+	4037 => array(
+			'name'    => "A Brother's Revenge",
+			'journal' => "Yraldar Snowpeak was wounded trying to drive the Stormfist soldiers away from the meadery. He wants their leader, an Orc named Kazok, dead and his head on a pike. He asked for my help.",
+		),
+	4167 => array(
+			'name'    => "A Business Proposition",
+			'journal' => "A merchant in Nimalten claims his silk was stolen by bandits. I've been asked to retrieve it for the angry businessman.",
+		),
+	4038 => array(
+			'name'    => "Unorthodox Tactics",
+			'journal' => "<<1>> thinks he's found a way to use the otherwise docile netch against the Daggerfall Covenant.",
+		),
+	4041 => array(
+			'name'    => "Crossroads",
+			'journal' => "I returned to Dhalmora. All of the Bleakrock villagers are gone. Aera informed me of a large Covenant attack on Bal Foyen. Darj has lead some of the non-combatants to Fort Zeren. Captain Rana is leading a defense of the docks.",
+		),
+	4043 => array(
+			'name'    => "Collector of Pelts",
+			'journal' => "After giants and wolves overran the village of Lower Yorgrim, the survivors found shelter in a tiny fishing camp outside the village walls.",
+		),
+	4048 => array(
+			'name'    => "The Direct Approach",
+			'journal' => "<<1>> says that Shadowed Path cultists have taken over Haynote Cave, north of Vlastarus.",
+		),
+	4051 => array(
+			'name'    => "Warning Davon's Watch",
+			'journal' => "I should head to Davon's Watch, so I can ensure the troops have been warned about the Covenant.",
+		),
+	4052 => array(
+			'name'    => "Death to the Crone",
+			'journal' => "Nisin Cave is now a danger to Vlastarus. Shadowed Path necromancers and a Dremora named <<1>> have taken up residence.",
+		),
+	4054 => array(
+			'name'    => "Deadly Whispers",
+			'journal' => "Praxin and his comrades from the Fighters Guild explained that spiders infest the Spindleclutch caves. And maybe something else. It whispers in the darkness.",
+		),
+	4424 => array(
+			'name'    => "A Debt Come Due",
+			'journal' => "<<1>> wants an Imperial lieutentant killed, to hurt their army's morale and readiness.",
+		),
+	4875 => array(
+			'name'    => "Bounty: Shadowed Path",
+			'journal' => "I accepted the Fighters Guild contract Arkas offered.",
+		),
+	4055 => array(
+			'name'    => "A Cure For Droi",
+			'journal' => "The Nord soldier Droi burns with fever from a witch's curse. I need to collect a plant called Kyne's Breath to help reduce his fever.",
+		),
+	4056 => array(
+			'name'    => "For Kyne's Honor",
+			'journal' => "The Keepers of the Kynesgrove shrine have become Daedric witches. The loss of their loved ones to war has made them lash out against Kyne. I need to find a way to resolve this.",
+		),
+	5785 => array(
+			'name'    => "Dark Anchors in Rivenspire",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Rivenspire.",
+		),
+	4058 => array(
+			'name'    => "Shadows Over Windhelm",
+			'journal' => "I arrived in Eastmarch, in the Nord city of Windhelm. The place bustles with revelers as a celebration honoring the Skald-King is underway.",
+		),
+	4696 => array(
+			'name'    => "The High Cost of Travel",
+			'journal' => "<<1>> has asked that I travel to <<2>> and inform his brother <<3>> that his wife is dead.",
+		),
+	5541 => array(
+			'name'    => "Pious Intervention",
+			'journal' => "The pirate captain Crafty Lerisa has come to Kvatch to convince her sister, Josseline, to abandon the Society of the Dragon, a cult headed by the Grand Chanter of the Akatosh Cathedral for believers not ready to commit to the priesthood.",
+		),
+	4059 => array(
+			'name'    => "The Konunleikar",
+			'journal' => "Thane Mera has named me the Champion of Windhelm and wants me to enter the Footrace of the Nine Holds.",
+		),
+	5534 => array(
+			'name'    => "Cleaning House",
+			'journal' => "<<1>>, the guildmaster of the Abah's Landing Thieves Guild, believes someone sold out the guild to the Iron Wheel. She needs my help to deal with the matter.",
+		),
+	4060 => array(
+			'name'    => "Windhelm's Champion",
+			'journal' => "Thane Mera, enraged by the death of the racer Hadring, demands that the assassins pay for this crime. She wants me, Windhelm's Champion, to deal with this-personally.",
+		),
+	4062 => array(
+			'name'    => "Blindsided",
+			'journal' => "A renegade clan of Nords known as the Stormfists launched a surprise attack against Fort Morvunskar.",
+		),
+	4065 => array(
+			'name'    => "An Evil Presence",
+			'journal' => "<<1>> says a skeleton invaded Vlastarus a few days ago. She thinks it came from a graveyard to the southwest.",
+		),
+	4260 => array(
+			'name'    => "Breaking the Barrier",
+			'journal' => "Firsthold is under assault by High Kinlady Estre. The First Auridon Marines have arrived to try and save the city, but the city is overrun with Daedra and the castle proper is surrounded by a magical barrier.",
+		),
+	4066 => array(
+			'name'    => "Bear Essentials",
+			'journal' => "A giant bear named <<1>> has been attacking travellers near Vlastrus.",
+		),
+	4123 => array(
+			'name'    => "Gods Save the King",
+			'journal' => "The Dreamwalker is lost in King Jorunn's nightmares. I must enter the Dreamstride and try to rescue both of them before the Daedric poison kills the King.",
+		),
+	4067 => array(
+			'name'    => "The Bard of Hounds",
+			'journal' => "An Argonian named Bishalus is afraid that nix-hounds have devoured her friend, Gena. She claimed to have made a flute that could tame the beasts, but she has yet to return.",
+		),
+	4068 => array(
+			'name'    => "Mementos",
+			'journal' => "Refugees fleeing the war were often preyed upon by bandits. Many of their possessions were stolen on the way to Vlastarus.",
+		),
+	4069 => array(
+			'name'    => "Making Amends",
+			'journal' => "The Skald-King and the other Ebonheart Pact leaders have established a base at Jorunn's Stand. While the Skald-King recovers, the leaders need to decide how to deal with Fildgor Orcthane.",
+		),
+	4199 => array(
+			'name'    => "A Tangled Net",
+			'journal' => "<<1>> wants to neutralize the Gold Coast mercenaries in Malabal Tor so his people will be safe from reprisal.",
+		),
+	4070 => array(
+			'name'    => "Security Details",
+			'journal' => "The sentry captain, Ula-Reen, keeps the camp secure. She asked me to help.",
+		),
+	4071 => array(
+			'name'    => "Sleep for the Dead",
+			'journal' => "The orders from Fildgor Orcthane suggest that the Stormfists are after something precious in the royal tomb. The spirit of Queen Nurnhilde and Lieutenant Koruni both asked me to return the relics. While I'm at it, I'll see what else is going on.",
+		),
+	4636 => array(
+			'name'    => "Moonhenge's Tear",
+			'journal' => "I need to halt the Daedric invasion from Moonhenge.",
+		),
+	4908 => array(
+			'name'    => "Rare Imports",
+			'journal' => "<<1>> needs couriers to make deliveries around <<2>>.",
+		),
+	4072 => array(
+			'name'    => "Rock Bone Diplomacy",
+			'journal' => "Rock Bone Goblins have made camp to the northeast of Vlastarus.",
+		),
+	4073 => array(
+			'name'    => "Stolen Banner",
+			'journal' => "<<1>>'s family banner has been stolen. He believes it was taken by bandits who visited Vlastarus.",
+		),
+	4646 => array(
+			'name'    => "The Mnemic Egg",
+			'journal' => "The Dominion took <<A:1>> to the Ayleid ruin of <<2>>. There they used its power to sever the Argonian connection with the Hist. As long as it remains in their possession, no Argonian eggs can hatch.",
+		),
+	4532 => array(
+			'name'    => "Take Me Home",
+			'journal' => "Deep inside a dungeon called Mehrunes' Spite, I found a scamp with a labeled choker. It apparently belongs to a mage in Skywatch.",
+		),
+	4074 => array(
+			'name'    => "For a Friend",
+			'journal' => "To the east of Vlastarus lies Juras Falls, home to the restless undead, including the former Captain Juras.",
+		),
+	4075 => array(
+			'name'    => "A Right to Live",
+			'journal' => "I met a frightened young woman. Her and her friend were attacked by monsters on their way back to Windhelm.",
+		),
+	5795 => array(
+			'name'    => "Dark Anchors in Malabal Tor",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Malabal Tor.",
+		),
+	4076 => array(
+			'name'    => "To the Front",
+			'journal' => "The Ebonheart Pact is at war with the Daggerfall Covenant and the Aldmeri Dominion for control of Cyrodiil.\n\nEveryone is needed in the war effort.",
+		),
+	4706 => array(
+			'name'    => "Reporting for Duty",
+			'journal' => "Taralin says there is much more for me to learn about the war in Cyrodiil.",
+		),
+	4077 => array(
+			'name'    => "The Dreamers",
+			'journal' => "A Daedric cult called the Supernal Dreamers stole a Crystal of Power from <<1>>.  The cult shattered the Crystal in five <<m:2>> and are using them in Daedric rituals.  <<1>> has asked me to kill the cultists and bring back the shards.",
+		),
+	5545 => array(
+			'name'    => "Prison Break",
+			'journal' => "<<1>> found out the Iron Wheel is planning to ship <<2>> to Taneth. As acting guildmaster, I've called on the Thieves Guild to do something about it.",
+		),
+	4079 => array(
+			'name'    => "Essence of Flame",
+			'journal' => "Flame atronachs are plaguing the Ayleid ruins at <<1>>.",
+		),
+	4080 => array(
+			'name'    => "Season of Harvest",
+			'journal' => "I entered a secluded grove near Daggerfall Harbor called Bad Man's Hallows. The people here are engaged in a festival honoring the Bad Man, an ancient harvest god.",
+		),
+	4531 => array(
+			'name'    => "A Brush With Death",
+			'journal' => "I found a journal within the Mines of Khuras. It contained a message addressed to Odette Vinielle.",
+		),
+	4081 => array(
+			'name'    => "Silver Scales",
+			'journal' => "<<1>> asked me to gather some silver scales for the local artist to use in her next project.",
+		),
+	4083 => array(
+			'name'    => "Caged Heat",
+			'journal' => "The Supernal Dreamers have retaliated against <<1>> for having me steal back his Crystal of Power.  The Daedric cult captured him and threw him into a cage.",
+		),
+	4085 => array(
+			'name'    => "A Tale Forever Told",
+			'journal' => "I've found the temple of the spinners of Malabal Tor, where their \"story\" has gotten away from them.",
+		),
+	4086 => array(
+			'name'    => "Strange Allies",
+			'journal' => "Aspera Giant-Friend says the giants are about to go to war against the Stormfists that hold Cradlecrush because their mammoths were stolen. As long as I oppose the Stormfists, these giants will consider me to be an ally.",
+		),
+	4456 => array(
+			'name'    => "The Hound's Plan",
+			'journal' => "<<1>> told me his clan had a hand in the Silvenar's alleged kidnapping by the Hound.",
+		),
+	4087 => array(
+			'name'    => "Sneak Peak",
+			'journal' => "King Jorunn wants me to make my way to Skuldafn. He wants to deal with Fildgor Orcthane and then bring the rest of the Pact leaders to the ancient dragonshrine.",
+		),
+	4088 => array(
+			'name'    => "Can't Take It With Them",
+			'journal' => "<<1>>, a Wood Elf down in the Bad Man's tunnels, claims he is one of the mages that originally summoned the Dremora Lord now posing as the Bad Man.",
+		),
+	4925 => array(
+			'name'    => "Urenenya's Lament",
+			'journal' => "In ruined Klathzgar, I found a note from an Altmeri scholar investigating an ancient mystery. An Ayleid princess named Urenenya vanished centuries ago, and the scholar came here after learning of her connection to the Dwemer architect Klazthgar.",
+		),
+	4089 => array(
+			'name'    => "The Hound's Men",
+			'journal' => "The Green Lady's sister, <<1>>, may have been kidnapped from <<2>>, a village famous for being the birthplace of several previous incarnations of the Green Lady as well.",
+		),
+	5445 => array(
+			'name'    => "A Treasure in Need of a Home",
+			'journal' => "I found some ancient Nord relics. I'm sure someone will want to examine these. I'll take them with me and try to locate an interested party.",
+		),
+	4091 => array(
+			'name'    => "Fulfilling One's Fate",
+			'journal' => "The Worm Cult invaded Ouze and captured its primary protector, <<1>>.",
+		),
+	5566 => array(
+			'name'    => "A Faded Flower",
+			'journal' => "Velsa left a note, asking that I come to visit her at her garden. She has something she wants to discuss.",
+		),
+	4092 => array(
+			'name'    => "Back to Rest",
+			'journal' => "The Worm Cult is trying to enslave the spirits of Ouze.",
+		),
+	4095 => array(
+			'name'    => "The Siege of Cradlecrush",
+			'journal' => "Aspera and the giants are ready to begin the siege of Cradlecrush. Using the documents I recovered from the Stormfist scouts, they formulated a plan of battle.",
+		),
+	4096 => array(
+			'name'    => "Merriment and Mystery",
+			'journal' => "I wandered into Cragwallow, a small settlement used by the Skald-King's royal work crews. After a lot of hard work maintaining the roads, they're preparing to throw a party.",
+		),
+	4099 => array(
+			'name'    => "A Dying Wish",
+			'journal' => "Lothgar Steady-Hand was grievously wounded by the creatures that attacked Cragwallow. He appears to be dying.",
+		),
+	4106 => array(
+			'name'    => "The Better of Two Evils",
+			'journal' => "Valeric believes vampires don't have to be monsters. He wants my help to stop his father, Majorn, who plans to create an army of bloodfiends.",
+		),
+	4107 => array(
+			'name'    => "Banishing the Banished",
+			'journal' => "The Banished Cells have been overrun by Daedra. They have set free the immortal High Kinlord Rilis, an evil being of great magical power. I have agreed to help Keeper Cirion, the warden of the Banished Cells, deal with this crisis.",
+		),
+	4108 => array(
+			'name'    => "The Tale of the Green Lady",
+			'journal' => "<<1>> offered to tell me the story of the Green Lady and show me the most sacred sites of Deepwoods.",
+		),
+	4111 => array(
+			'name'    => "The Show Must Go On",
+			'journal' => "Vicious raiders known as the Steel Shrikes attacked a troupe of traveling entertainers. They hold several performers captive at Fuller's Break.",
+		),
+	5981 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	4112 => array(
+			'name'    => "Raise the Curtain",
+			'journal' => "<<1>> wants to take his own type of revenge against the Steel Shrikes who destroyed his troupe's ship and livelihood.",
+		),
+	4115 => array(
+			'name'    => "Eternal Slumber",
+			'journal' => "Jorunn the Skald-King has been poisoned. Now he lies in an eternal slumber. The Ternion monks, who revere the Three Old Gods, attempt to cure him. But time is running out.",
+		),
+	4117 => array(
+			'name'    => "Songs of Sovngarde",
+			'journal' => "Inside the tombs of Skuldafn, I discovered that Fildgor Orcthane crossed into Sovngarde. To defeat Fildgor, I must follow him there.",
+		),
+	4118 => array(
+			'name'    => "Dark Deeds",
+			'journal' => "Draugr have spilled from the barrow beneath Bonestrewn Crest. Now they roam the area, attacking the living.",
+		),
+	4119 => array(
+			'name'    => "The Storm's Call",
+			'journal' => "Maormer Sea Vipers invaded Ilayas Ruins, searching for a weather-controlling relic called the Sphere of Storms. I've been asked to help the stormwardens defend the sphere until reinforcements arrive.",
+		),
+	4124 => array(
+			'name'    => "The Prisoner of Jathsogur",
+			'journal' => "The Drublog clan of Wood Orcs captured <<c:1>>. I need to infiltrate Jathsogur and do whatever's necessary to free him.",
+		),
+	4126 => array(
+			'name'    => "Labor Dispute",
+			'journal' => "The Orcthane's troops have taken control of the mine in Lost Knife Cave. They're forcing the miners to produce ore to equip Fildgor's army.",
+		),
+	4129 => array(
+			'name'    => "Shipwrecked Sailors",
+			'journal' => "Maormer attacked an Aldmeri Dominion ship off the coast of <<1>> and captured several members of its crew.",
+		),
+	4131 => array(
+			'name'    => "The Maormer's Vessels",
+			'journal' => "<<1>> asked me to burn the Maormer sailboats in <<2>> to prevent further ambushes.",
+		),
+	4133 => array(
+			'name'    => "Soul Harvest",
+			'journal' => "Worm Cultists have attacked <<1>>.",
+		),
+	4134 => array(
+			'name'    => "Something Rotten",
+			'journal' => "Someone is stirring up chaos in <<1>>, and <<2>> asked me to help put a stop to it.",
+		),
+	4135 => array(
+			'name'    => "Pulled Under",
+			'journal' => "The people of Riften have been brought inside their shattered walls. While Sinmur is gone, however, Riften's people may face other threats.",
+		),
+	4137 => array(
+			'name'    => "For Everything a Season",
+			'journal' => "Though most of the rotmeth was stolen, an unfinished batch remains. <<1>> needs some special ingredients to complete what's left of the brew.",
+		),
+	4138 => array(
+			'name'    => "Alchemical Analysis",
+			'journal' => "Jomund and his miners have no idea what to make of the mysterious metal they found. However, Jomund has a friend at Fort Amol who might be able to help.",
+		),
+	4139 => array(
+			'name'    => "Shattered Hopes",
+			'journal' => "The Ebonheart Pact has come together under King Jorunn's command to battle the Worm Cult at the ruins of Honrich Tower.",
+		),
+	4140 => array(
+			'name'    => "Soldier Down",
+			'journal' => "<<1>>, an Argonian healer, told me that many Pact soldiers lie wounded around Honrich Tower.",
+		),
+	4143 => array(
+			'name'    => "Restore the Silvenar",
+			'journal' => "Indaenir, the new Silvenar, traveled across Malabal Tor to marry the Green Lady and fulfill his role as the spiritual leader of the Wood Elves. But the Hound arrived first and is trying to usurp his position.",
+		),
+	4144 => array(
+			'name'    => "The Misfortunate Minstrels",
+			'journal' => "People from across the Aldmeri Dominion gather to celebrate the handfast of the Silvenar and the Green Lady. The Hound, however, caused many of them trouble. Among these are a group of minstrels led by <<1>>.",
+		),
+	4149 => array(
+			'name'    => "Party Planning",
+			'journal' => "Rigurt the Brash has been named Master of Ceremonies for the celebration of King Jorunn's anniversary. Rigurt has many organizational duties to attend to and needs a little help.",
+		),
+	5893 => array(
+			'name'    => "Divine Intervention",
+			'journal' => "Lord Vivec's condition continues to deteriorate as his energy drains away. Archcanon Tarvus believes that Chodala's staff holds the key to saving the Warrior-Poet. However, it also makes the Ashlander practically impervious to harm.",
+		),
+	4152 => array(
+			'name'    => "Swamp to Snow",
+			'journal' => "After events in Shadowfen, Vicecanon Heita-Meen and I must travel to Eastmarch, in Skyrim.",
+		),
+	4153 => array(
+			'name'    => "Concealed Weapons",
+			'journal' => "I've arrived in Nimalten to find the city under threat. Thane Fjora was attacked by her houscarl. Aera Earth-Turner, my old friend from Bleakrock Isle, is leading an investigation.",
+		),
+	4160 => array(
+			'name'    => "Approaching Thunder",
+			'journal' => "I've received a chilly welcome at Fullhelm Fort. The garrison is beset by undead, and the old Thane is not welcoming strangers.",
+		),
+	4161 => array(
+			'name'    => "A Novel Idea",
+			'journal' => "A spinner in Valeguard wants to finally transcribe a story into written word, but is having difficulties.",
+		),
+	4163 => array(
+			'name'    => "Onward to Shadowfen",
+			'journal' => "<<1>>, an agent of Shadowfen's leadership, asked me to help <<2>> investigate a number of murders in Stormhold.",
+		),
+	4164 => array(
+			'name'    => "A Giant in Smokefrost Peaks",
+			'journal' => "Even though we've won a victory over the Worm Cult, <<1>> tells me that <<2>> is headed toward Riften. I should follow in the wake of the giant.",
+		),
+	4166 => array(
+			'name'    => "The War Council",
+			'journal' => "Thane Harvald want Lord Vurlop and I to go into the keep and check on King Jorunn. We need to make sure that the King and his war council are safe.",
+		),
+	5888 => array(
+			'name'    => "Divine Delusions",
+			'journal' => "Archcanon Tarvus agrees that Chodala is somehow involved in Lord Vivec's loss of power. He wants me to confirm his involvement and find a way to get his staff without starting a war with the Ashlanders.",
+		),
+	4173 => array(
+			'name'    => "The Thunder Breaks",
+			'journal' => "Preparations were completed just in time - the undead are attacking Fullhelm Fort! <<1>> has asked me to help defeat the attack.",
+		),
+	6045 => array(
+			'name'    => "Oasis in a Metal Desert",
+			'journal' => "Lector Naril oversees the Everwound Wellspring, an oasis in the mechanical desert that is the Clockwork City. He has found a way to grow plants in the metallic soil. Once every year, he shares his harvest and selects a new apprentice.",
+		),
+	4176 => array(
+			'name'    => "Breaking the Coven",
+			'journal' => "There's a coven of Hagravens in Northwind Mine. They need to die.",
+		),
+	4177 => array(
+			'name'    => "Victory at Morvunskar",
+			'journal' => "Lieutenant Koruni asked me to deliver a dispatch detailing Fort Morvunskar's status to Thane Oda Wolf-Sister at Fort Amol.",
+		),
+	6053 => array(
+			'name'    => "Pledge: Bloodroot Forge",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore the Bloodroot Forge.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	4184 => array(
+			'name'    => "To Pinepeak Caverns",
+			'journal' => "The spirit Valdur worries about his fellow companion spirit, bound to Pinepeak Cavern. He's asked me to check on her.",
+		),
+	4185 => array(
+			'name'    => "To Honrich Tower",
+			'journal' => "Valdur spoke of a dark gathering at Honrich Tower.",
+		),
+	4186 => array(
+			'name'    => "Securing the Pass",
+			'journal' => "The Worm Cult has barred the route to <<1>>. King Jorunn has asked me to clear the way.",
+		),
+	4188 => array(
+			'name'    => "Stomping Sinmur",
+			'journal' => "We're almost there. We must fight through Worm Cultists to reach Sinmur and defeat him!",
+		),
+	5904 => array(
+			'name'    => "Salothan's Curse",
+			'journal' => "I've been hired to defeat the spirits which haunt Salothan Tomb.",
+		),
+	4189 => array(
+			'name'    => "Names of the Fallen",
+			'journal' => "Ebonheart Pact soldiers carry amulets into battle, so they can be identified if they die. Collecting these amulets may bring solace to the families of the dead.",
+		),
+	4193 => array(
+			'name'    => "House and Home",
+			'journal' => "Redguard invaders attacked Velyn Harbor, while Drublog Wood Orcs entered the town from the hills. With the harbor's defenders either killed or scattered in the attack, only a few Fists of Thalmor continue the defense.",
+		),
+	4194 => array(
+			'name'    => "One Fell Swoop",
+			'journal' => "The battle for Velyn Harbor continues. With a little luck and a lot of effort, the Redguard invaders and Drublog Wood Orcs can be driven from the town.",
+		),
+	4195 => array(
+			'name'    => "The Unkindest Cut",
+			'journal' => "<<1>> isn't a resident of Velyn Harbor, but he's been caught up in their problems.",
+		),
+	4196 => array(
+			'name'    => "Enemy of My Enemy",
+			'journal' => "<<1>> hired Gold Coast mercenaries from Colovia to protect his tradepost, but suspects they will turn on him.",
+		),
+	4201 => array(
+			'name'    => "A Walk Above the Clouds",
+			'journal' => "I've discovered a Worm Cult cell has come to the ruins of a Dragon Cult stronghold. No good can come of this.",
+		),
+	4202 => array(
+			'name'    => "Force of Nature",
+			'journal' => "",
+		),
+	5920 => array(
+			'name'    => "Breaking Through the Fog",
+			'journal' => "Someone extinguished Seyda Neen's lighthouse to cause a shipwreck. Deputy Governor Deminah Salvi suspects slavers and asked me to help her investigate the matter.",
+		),
+	4205 => array(
+			'name'    => "Our Poor Town",
+			'journal' => "Trolls overran the town of Darkwater Crossing and now the Argonians who lived there have taken refuge in a nearby cave.",
+		),
+	6077 => array(
+			'name'    => "A Fine-Feathered Foe",
+			'journal' => "I have accepted a contract to defeat the creature Wraith-of-Crows and other Daedric incursions in Clockwork City's Radius.",
+		),
+	4208 => array(
+			'name'    => "Silsailen Rescue",
+			'journal' => "The town of Silsailen is under attack by imposters disguised as First Auridon Marines. The townspeople suspect these men and woman are a part of a group called the Veiled Heritance.",
+		),
+	5928 => array(
+			'name'    => "Relics of Ebernanit",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Ebernanit and gather as many historic relics as I can find.",
+		),
+	4213 => array(
+			'name'    => "EM IND CONTENT 2",
+			'journal' => "",
+		),
+	4217 => array(
+			'name'    => "In the Name of the Queen",
+			'journal' => "Queen Ayrenn seeks to perform rituals honoring her ancestors. When she arrived at Tanzelwil, however, she found the spirits angered and violent.",
+		),
+	4218 => array(
+			'name'    => "Best of the Best",
+			'journal' => "The Argonian Steady-Hand believes he's the best hunter in Eastmarch, better than any Nord or Dark Elf alive. He's challenged me to a hunting contest. If I can shoot a number of rabbits in one minute, or catch the rabbit called Golden Jack, I win.",
+		),
+	5936 => array(
+			'name'    => "Ache for Cake",
+			'journal' => "I received a voucher for a special-occasion cake from the renowned master baker, Chef Donolon.",
+		),
+	4221 => array(
+			'name'    => "An Act of Kindness",
+			'journal' => "In the ruins of Ezduiin, I found an enterprising researcher working with Telenger. She's concerned about the recent appearance of the spirits. She seeks a way to lay them to rest.",
+		),
+	6093 => array(
+			'name'    => "The Mage's Dog",
+			'journal' => "I found the journal of Orinol, a dead mage from the city of Cormount, in Grahtwood. He arrived in Clockwork City by accident and died in the Radius sometime later. His dying wish was that someone would care for his dog, Jona.",
+		),
+	4224 => array(
+			'name'    => "Abominations",
+			'journal' => "Two Weynon villagers were taken by the vampires of <<1>>. <<2>> fears they are dead and about to rise as bloodfiends.",
+		),
+	4228 => array(
+			'name'    => "Claw of Akatosh",
+			'journal' => "The Claw of Akatosh has been stolen from Weynon Priory by the Black Dagger gang. I've been asked to recover it.",
+		),
+	6072 => array(
+			'name'    => "A Matter of Respect",
+			'journal' => "The Bursar of Tribute demands compensation for the Blackfeather Court from mortals who refuse to die so they can be pecked apart and eaten.",
+		),
+	4229 => array(
+			'name'    => "Sacred Prey, Hunt Profane",
+			'journal' => "An Altmer doing research in Treehenge found some cultists poaching mammoths at the shrine.",
+		),
+	4244 => array(
+			'name'    => "Black Dagger Supplies",
+			'journal' => "The Black Daggers are using an abandoned house west of Weynon to store supplies.",
+		),
+	4247 => array(
+			'name'    => "Guard Work is Never Done",
+			'journal' => "<<1>> has asked me to travel to <<2>> and return <<3>> to rest.",
+		),
+	4248 => array(
+			'name'    => "Geirmund's Guardian",
+			'journal' => "Geirmund's Hall hosts a festival, and Thane Vofknir is looking for brave souls willing to participate in an epic challenge. Those who pass the tests are named Geirmund's Guardian.",
+		),
+	4249 => array(
+			'name'    => "Trial of the Body",
+			'journal' => "The warrior Daljari Half-Troll oversees the Trial of the Body, a test of brawn over brain.",
+		),
+	4250 => array(
+			'name'    => "Trial of the Mind",
+			'journal' => "Iroda, a member of the Thane's household, proctors the Trial of the Mind. She's going to pose riddles to me. I need to seek out the answers to each on the island, then return to her.",
+		),
+	4252 => array(
+			'name'    => "Save Your Voice",
+			'journal' => "A bunch of dumb, drunken bards have gotten themselves stuck in a giant camp near Ivarstead. They tried to charm the giants with music. Now I need to run over there and save them.",
+		),
+	4253 => array(
+			'name'    => "Geirmund's Oath",
+			'journal' => "I met a Nord named Eirfa at Geirmund's Hall. She asked if I'd be interested in participating in a drinking contest. Let's see how this goes.",
+		),
+	4259 => array(
+			'name'    => "Foreign Vintage",
+			'journal' => "Spies from the Aldmeri Dominion have infiltrated Sanguine's celebration. <<1>> gave me Sanguine's goblet and wants me to find the spies.",
+		),
+	4263 => array(
+			'name'    => "Field of Fire",
+			'journal' => "<<1>> asked that I eliminate four flame atronachs issuing from the lava fissure in Chorrol.",
+		),
+	4264 => array(
+			'name'    => "Plague of Phaer",
+			'journal' => "The town of Phaer is beset by a mysterious plague. The town alchemist, Hendil, has taken steps to treat the ill.",
+		),
+	4270 => array(
+			'name'    => "The Cache",
+			'journal' => "Lliae asked me to bring supplies to one of her caches out in Cyrodiil.",
+		),
+	4272 => array(
+			'name'    => "Depths of Madness",
+			'journal' => "I found a lost member of the Queen's entourage near the entrance to a hidden Vale. She told me that her fellow entourage members have been taken. A mad mage apparently holds them in the Vale.",
+		),
+	4274 => array(
+			'name'    => "Read Two Books",
+			'journal' => "I need to test out a quest where someone reads two books. Fortunately, Jacques know where I can find them. He's lost, but he knows where to find books.",
+		),
+	4275 => array(
+			'name'    => "The Long Road Back",
+			'journal' => "This is the Background Journal Text",
+		),
+	4282 => array(
+			'name'    => "The Skald and the Scholar",
+			'journal' => "",
+		),
+	4283 => array(
+			'name'    => "River of Names",
+			'journal' => "Svein fears that the fate of the dead in <<1>> will never be known to their families in Riften.",
+		),
+	4289 => array(
+			'name'    => "Blood Upon the Soil",
+			'journal' => "Frostmoon Farmstead has been attacked, resulting in several grisly murders. Guard Jorald needs help uncovering the killer or killers.",
+		),
+	4300 => array(
+			'name'    => "Blessings of the Eight",
+			'journal' => "Torinaan is a holy site dedicated to the Divines. It's been corrupted by Daedra. The loyal clergy there want my aid in cleansing the area.",
+		),
+	4302 => array(
+			'name'    => "Worm Cult Summoner",
+			'journal' => "The Worm Cult is raising dead giants to fight Pact soldiers.",
+		),
+	4304 => array(
+			'name'    => "Redguard on the Run",
+			'journal' => "",
+		),
+	4307 => array(
+			'name'    => "Returning Winter's Bite",
+			'journal' => "Sage Svari has asked me to find and return <<1>>. She believes it's being held at Faldar's Tooth.",
+		),
+	6024 => array(
+			'name'    => "Glitter and Gleam",
+			'journal' => "The Bursar of Tributes seeks a particular treasure to add to the Blackfeather Court's hoard.",
+		),
+	4309 => array(
+			'name'    => "Eye Spy",
+			'journal' => "I met Arfanel, a member of the Eyes of the Queen at North Beacon. He's tracking an elite Covenant soldier and wants my assistance supporting the troops in the field.",
+		),
+	4316 => array(
+			'name'    => "On a Dare",
+			'journal' => "Three friends have drunkenly wandered into the catacombs beneath Windhelm after having a good time at the Konunleikar. They won't leave the catacombs until they're reunited, but it's not safe for them to search the tunnels alone.",
+		),
+	4321 => array(
+			'name'    => "Problems Into Profit",
+			'journal' => "The farmer <<1>> requested my help in dealing with a glowfly infestation in his hay at Ivarstead.",
+		),
+	4322 => array(
+			'name'    => "Lost Crown",
+			'journal' => "In the Hall of the Dead beneath Windhelm I met <<1>>. She plans to gain favor in King Jorunn's court by eliminating <<2>>, an ancient necromancer entombed in the Merethic Era.",
+		),
+	4327 => array(
+			'name'    => "Preventative Measure",
+			'journal' => "I met an Argonian named <<1>> in the ruins of Quendeluun. She's asked me to help me secure her freedom.",
+		),
+	4329 => array(
+			'name'    => "Harsh Lesson",
+			'journal' => "I arrived at a place called the College of Aldmeri Propriety. One of the students claims this Thalmor training ground heaps hardship and abuse upon the Wood Elf and Khajiit students. She's asked me to investigate.",
+		),
+	4331 => array(
+			'name'    => "Wearing the Veil",
+			'journal' => "I've been taken to the secret island stronghold of the Veiled Heritance. If I can pass their trials, I may be able to discover the true leader behind the Veil.",
+		),
+	6048 => array(
+			'name'    => "The Light of Knowledge",
+			'journal' => "My companions and I turned back the Daedric incursion into the Clockwork City and rescued Sotha Sil from his own shadow. Now, the Clockwork God has some wisdom to share before he leaves.",
+		),
+	4333 => array(
+			'name'    => "A Valuable Distraction",
+			'journal' => "<<1>>, a member of a Pact scouting party, barely escaped capture after discovering a hidden Lion Guard base in the mountains of the Rift. She needs a distraction to buy some time, so she can return with reinforcements.",
+		),
+	4336 => array(
+			'name'    => "Ancient Remains",
+			'journal' => "A tribe of Wood Orcs is protecting Canonreeve Oraneth in <<1>> . <<2>>, a member of the Mages Guild, wants to stop them, but can't attack the Orcs directly due to their association with <<3>>, who is a member of the Thalmor.",
+		),
+	4337 => array(
+			'name'    => "Buyer Beware",
+			'journal' => "A Khajiiti merchant calling himself <<1>> claims to have found a way inside Belarata, a long-sealed Ayleid ruin.",
+		),
+	4339 => array(
+			'name'    => "If the Dead Could Talk",
+			'journal' => "A research team from <<1>> has rediscovered the ancient city of Root Sunder. Unfortuanely they've also been mauled by wild animals. <<2>>, the last survivor of the research team, needs the journals of her dead comrades.",
+		),
+	6056 => array(
+			'name'    => "The Astronomer's Apprentice",
+			'journal' => "Cultists have attacked the Mnemonic Planisphere in order to steal Sotha Sil's memories, manifested as glowing stars. Amili Lloryn has tasked me to rescue these stars and return them to the Planisphere's sky.",
+		),
+	4341 => array(
+			'name'    => "Cutting Off the Source",
+			'journal' => "I cast Merien's White Mask, a spell to hide the villagers from the Bloodthorn invaders. Now Merien wants my help to stop the Bloodthorn activity in Eagle's Brook.",
+		),
+	4346 => array(
+			'name'    => "Nobles' Rest",
+			'journal' => "I must discover what has happened to the missing nobles of Direfrost Keep.",
+		),
+	4351 => array(
+			'name'    => "Through the Daedric Lens",
+			'journal' => "I discovered the Library of Dusk, an Ayleid ruin, just beyond the Hollow City. Several treasure-hunters and scholars in the service of the Mages Guild have been trapped within the ruins by Daedra.",
+		),
+	5709 => array(
+			'name'    => "Contract: Stonefalls Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Stonefalls.",
+		),
+	4352 => array(
+			'name'    => "The Library of Dusk",
+			'journal' => "The Mages Guild hired dungeon-delvers and scholars to bolster their expedition force. A group of these treasure hunters are trapped in the Library of Dusk, including Kireth Vanos' brother, Raynor.",
+		),
+	4355 => array(
+			'name'    => "Through the Ashes",
+			'journal' => "The town of Dawnbreak has been overrun by Daedra. In response, First Auridon Marines have arrived to aid the town.",
+		),
+	4358 => array(
+			'name'    => "Between Blood and Bone",
+			'journal' => "Captain One-Eye was forced to kill her own crew, and now she's vowed to destroy the apparition that controlled the cursed sailors.",
+		),
+	4362 => array(
+			'name'    => "The Jester's Joke",
+			'journal' => "A restless spirit of Castle Rilis named Lisondor has asked me to retrieve his soul from a mad jester's playroom.",
+		),
+	4364 => array(
+			'name'    => "A Thorn in Your Side",
+			'journal' => "To save the Mages Guild members that were forced to compete in the Observer's game, I decided to side with Angof. Now I just need to find a way to win the game.",
+		),
+	5725 => array(
+			'name'    => "Sacrament: Sewer Tenement",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	4368 => array(
+			'name'    => "To Skywatch",
+			'journal' => "I have purged the Veiled Heritance from Mathiisen. Now I should meet up with Razum-dar in Skywatch to learn what other plans the Veiled Heritance has.",
+		),
+	4373 => array(
+			'name'    => "Export Business",
+			'journal' => "A Bosmer named Peras escaped from bandits hiding in the Crimson Cove. He claims his ship was boarded by the raiders, and he has friends still inside the cove.",
+		),
+	4374 => array(
+			'name'    => "Old Bones",
+			'journal' => "I encountered a talking skull in the Lost Fleet. It seems  he can resist the power of the Crown of Bones, but was broken to bits because of this.",
+		),
+	4378 => array(
+			'name'    => "Naval Intelligence",
+			'journal' => "<<1>> is a Proctor for the Aldmeri Dominion. He has tracked a bandit group known as the Crimson Raiders to their hideout. The Raiders have been causing trouble for the Dominion fleet.",
+		),
+	4381 => array(
+			'name'    => "Sphere Assembly",
+			'journal' => "Rulorn in <<1>> has offered a bounty for Dwarven parts.",
+		),
+	4382 => array(
+			'name'    => "Moment of Truth",
+			'journal' => "<<1>> was sent by his mother to prove his courage. He'd like me to help him.",
+		),
+	4387 => array(
+			'name'    => "Forbidden Love",
+			'journal' => "I found an ancient letter in <<Ac:1>>. It speaks of an ancient, forbidden love.",
+		),
+	4391 => array(
+			'name'    => "Catch the Lightning",
+			'journal' => "A researcher and his apprentice are experimenting with an amulet that protects the wearer from wamasu lightning.",
+		),
+	4396 => array(
+			'name'    => "Unsafe Haven",
+			'journal' => "<<1>>, the largest port on the Long Coast, has been taken by a powerful band of pirates!",
+		),
+	4398 => array(
+			'name'    => "A Chief Concern",
+			'journal' => "<<1>> has asked me to find and deal with <<2>>, the real force behind the attacks on <<3>>.",
+		),
+	4399 => array(
+			'name'    => "Into the Woods",
+			'journal' => "I came across an abandoned pack at the edge of a dark forest. The pack suggests that members of the Fighters Guild might have been here.",
+		),
+	4405 => array(
+			'name'    => "A Little on the Side",
+			'journal' => "<<1>> wants my help to keep her \"side business\" going. She assures me it isn't technically illegal.",
+		),
+	4406 => array(
+			'name'    => "Forgotten Soul",
+			'journal' => "A researcher named <<1>> is trapped in the ruins of Root Sunder.",
+		),
+	4409 => array(
+			'name'    => "The Racer",
+			'journal' => "<<1>> has offered me a chance to enter the frog race. If my frog wins, we'll split the prize.",
+		),
+	4410 => array(
+			'name'    => "Assisting the Assistant",
+			'journal' => "<<1>>'s pet-a Dwarven construct-has broken down. She wants me to steal parts so that she can repair it.",
+		),
+	5312 => array(
+			'name'    => "Taking the Undaunted Pledge",
+			'journal' => "Maj al-Ragath wants to introduce me to the Undaunted pledge.",
+		),
+	4411 => array(
+			'name'    => "Final Blows",
+			'journal' => "A list of various Veiled Heritance members was found. Egranor is ensuring the people listed are brought to justice.",
+		),
+	4420 => array(
+			'name'    => "Keepsake",
+			'journal' => "In the confusion of battle, Sylvian Herius left a family heirloom in the Imperial-held cathedral across the river.",
+		),
+	4421 => array(
+			'name'    => "Thorns in Our Side",
+			'journal' => "Bandits called The Thorns stole all the Cheydinhal rebels' valuables when war broke out.",
+		),
+	4422 => array(
+			'name'    => "Spice",
+			'journal' => "Vyctoria Girien asked me to taint Imperial food stores with a special spice.",
+		),
+	5632 => array(
+			'name'    => "Contract: Bangkorai",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	4429 => array(
+			'name'    => "Last Rites",
+			'journal' => "",
+		),
+	5789 => array(
+			'name'    => "Dark Anchors in Deshaan",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Deshaan.",
+		),
+	4432 => array(
+			'name'    => "Blood and Sand",
+			'journal' => "",
+		),
+	4433 => array(
+			'name'    => "Ayleid Treasure",
+			'journal' => "<<1>> collects Ayleid items. She hasn't been able to search for any since the war started.",
+		),
+	4434 => array(
+			'name'    => "For Piety's Sake",
+			'journal' => "Sylvian Herius's troops have written petitions, asking the gods' intervention on the rebel side.",
+		),
+	5797 => array(
+			'name'    => "Dark Anchors in Reaper's March",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Reaper's March.",
+		),
+	4440 => array(
+			'name'    => "Baan Dar's Boast",
+			'journal' => "I met a strange old Wood Elf outside the ancient ruin known as Thormar. She's invited me to a party she calls \"the greatest in all the worlds.\"",
+		),
+	4441 => array(
+			'name'    => "The Toothmaul Ploy",
+			'journal' => "I stumbled onto an investigator named Pirondil being threatened by an unknown Altmer assailant in a Goblin cave. He's enlisted me to help get to the bottom of the situation.",
+		),
+	4445 => array(
+			'name'    => "Forever Bound",
+			'journal' => "A polite spirit named <<1>> haunts <<Ac:2>>. He asked for my help in stopping the necromantic ritual that binds him to this place.",
+		),
+	5656 => array(
+			'name'    => "Contract: Auridon",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	4453 => array(
+			'name'    => "A Favor Returned",
+			'journal' => "I arrived in Mournhold, the capital city of the Ebonheart Pact. As the seat of Dunmer power, it is home to the Tribunal Temple. Due to recent events, the city is bustling with visitors.",
+		),
+	4454 => array(
+			'name'    => "Innocent Scoundrel",
+			'journal' => "A man named Jakarn was thrown into the Grave, a prison below <<1>>. Apparently the headman of the town accused him of stealing a valuable gem.",
+		),
+	4455 => array(
+			'name'    => "Trade Negotiations",
+			'journal' => "Merchants from House Hlaalu are worried about their leader, Raston Vendil. He went to negotiate a trade agreement with the isolated Mabrigash tribe in the Vale of the Ghost Snake. He never returned.",
+		),
+	4457 => array(
+			'name'    => "Box of Riddles",
+			'journal' => "<<1>> wants my help to prank her Subtle Knife rival, <<2>>, who has won their trickster duels for the last four years.",
+		),
+	4458 => array(
+			'name'    => "The Drublog of Dra'bul",
+			'journal' => "<<1>> believes the Wood Orc clan of Dra'bul, the Drublog, would not have attacked Velyn Harbor under normal circumstances.\n\nShe needs to take some time to visit with local leaders in Velyn Harbor before going to Dra'bul.",
+		),
+	4459 => array(
+			'name'    => "The Mournhold Underground",
+			'journal' => "I used the key to search the House Dres farmhouses outside Mournhold. I found a suspicious-looking trap door hidden under a rug. Naryu thinks we'll discover a connection to the Maulborn down there.",
+		),
+	4460 => array(
+			'name'    => "Grim Situation",
+			'journal' => "The Mane has released Dro-m'athra spirits on Fort Grimwatch! Twins <<1>> and <<2>>, Khajiit Champions, lead the fight against the creatures.",
+		),
+	5664 => array(
+			'name'    => "The Sweetroll Killer",
+			'journal' => "A flier indicates that an Imperial named Reman Mevavius seeks someone for an urgent and dangerous job in the Gold Coast.",
+		),
+	4461 => array(
+			'name'    => "Grimmer Still",
+			'journal' => "I've worked with the Lunar Champion Shazah to seal up corruption wells inside of Fort Grimwatch. Now I've met up with her sister Khali to explore an unearthed Khajiiti temple.",
+		),
+	4464 => array(
+			'name'    => "Nature's Best Friend",
+			'journal' => "After eating too many moon-sugar candies, <<1>>'s Khajiit husband, <<2>>, ran screaming into the forest.",
+		),
+	4468 => array(
+			'name'    => "Unearthing the Past",
+			'journal' => "",
+		),
+	5672 => array(
+			'name'    => "Contract: Grahtwood",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	4469 => array(
+			'name'    => "Fires of Battle",
+			'journal' => "I have entered the Blessed Crucible to test my strength and take the Brimstone Crown. Talres Voren has financially backed my bid to become champion with the promise of riches and rewards.",
+		),
+	4471 => array(
+			'name'    => "Izad's Treasure",
+			'journal' => "I dug up a chest by the shipwreck near Saintsport. It contained a shovel and directions written by a Captain Izad. It supposedly contains clues to a treasure buried on Stros M'Kai.",
+		),
+	5701 => array(
+			'name'    => "Contract: Grahtwood Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Grahtwood.",
+		),
+	4472 => array(
+			'name'    => "Rat in a Trap",
+			'journal' => "<<1>> got locked in a cage just before the Goblin invasion of Cumberland's Watch.",
+		),
+	4473 => array(
+			'name'    => "Revenge Against Rama",
+			'journal' => "<<1>> has asked me to track down Rama and make him pay for his crimes.",
+		),
+	4474 => array(
+			'name'    => "Daughter of Giants",
+			'journal' => "The Prophet has contacted me across great distance for some important purpose.",
+		),
+	4475 => array(
+			'name'    => "Shock to the System",
+			'journal' => "While exploring along the river, I found an Argonian enveloped in lightning. I found a journal nearby his body. It contained instructions on how to help him.",
+		),
+	5680 => array(
+			'name'    => "Contract: Reaper's March",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	4477 => array(
+			'name'    => "A Wedding to Attend",
+			'journal' => "The Silvenar assures me he will recover from his imprisonment in Jathsogur and I should not wait for him. He wants me to meet him in the city of Silvenar where he will marry the Green Lady.",
+		),
+	4483 => array(
+			'name'    => "Ezzag's Bandits",
+			'journal' => "Word around town is that the farmer Ezzag is having trouble in his fields.",
+		),
+	4484 => array(
+			'name'    => "Haunting of Kalari",
+			'journal' => "The rumor around town is that Kalari's new house is haunted.",
+		),
+	5816 => array(
+			'name'    => "Madness in Auridon",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Auridon.",
+		),
+	4485 => array(
+			'name'    => "Loose Ends",
+			'journal' => "I helped the people of S'ren-ja with their many and varied problems.",
+		),
+	4492 => array(
+			'name'    => "Desecrated Ground",
+			'journal' => "In the wake of a Dro-m'Athra attack, a lunar priest has asked me to save a priceless relic from the vault behind Moonmont.",
+		),
+	5696 => array(
+			'name'    => "Contract: Bangkorai Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Bangkorai.",
+		),
+	4493 => array(
+			'name'    => "A Fair Warning",
+			'journal' => "A note posted at the entrance to Knife Ear Grotto by a scholar warns of danger inside.",
+		),
+	4494 => array(
+			'name'    => "You Have to Break a Few",
+			'journal' => "I discovered the body of a Dark Elf in a cave. There's a note next to the body.",
+		),
+	4499 => array(
+			'name'    => "Baan Dar's Bash",
+			'journal' => "After our tricks at Thormar, Aniel has ushered me into Baan Dar's realm: The Five Finger Dance.",
+		),
+	4500 => array(
+			'name'    => "A Nord in Need",
+			'journal' => "While exploring <<1>> I came across a battered Nord shield.",
+		),
+	5704 => array(
+			'name'    => "Contract: Malabal Tor Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Malabal Tor.",
+		),
+	4501 => array(
+			'name'    => "Gates of Fire",
+			'journal' => "I've come upon an active battlefield, as Colovian forces attempt to take an Ayleid ruin from Dominion soldiers.",
+		),
+	4503 => array(
+			'name'    => "Brothers and Bandits",
+			'journal' => "<<1>> and his brother, <<2>>, came to the ruins in search of a plant which grows in the light of an Ayleid well. Its sap is rumored to cure any malady.",
+		),
+	4505 => array(
+			'name'    => "Seeds of Hope",
+			'journal' => "The Bloody Hand Goblins have stolen Cropsford's seeds, needed for next season's crops.",
+		),
+	4506 => array(
+			'name'    => "Tarnish the Crown",
+			'journal' => "<<1>> and his Goblins killed Gugnir's brothers and left him for dead. He asked me to avenge his brothers by killing the Goblin king.",
+		),
+	4508 => array(
+			'name'    => "Washed Ashore",
+			'journal' => "A drunk named Shazeem seems to have lost his memory. He offered to sell me a trained monkey, claiming it can find buried treasure.",
+		),
+	4510 => array(
+			'name'    => "The Spearhead's Captain",
+			'journal' => "",
+		),
+	4511 => array(
+			'name'    => "Dead Man's Wrist",
+			'journal' => "In a cave full of plunder, I found a dead man clutching a note to his sister. Though the bracelet accompanying the note has little monetary value, his sister may be glad to have it back.",
+		),
+	5869 => array(
+			'name'    => "A Friend In Need",
+			'journal' => "<<1>> is willing to give me some property if I help resolve a personal matter.",
+		),
+	4512 => array(
+			'name'    => "The Dead of Culotte",
+			'journal' => "Ufgra gra-Gum says that undead creatures infest the ruins of Culotte to the southwest of Cropsford.",
+		),
+	4515 => array(
+			'name'    => "The Ties that Bind",
+			'journal' => "Fists of Thalmor were attacked by strange creatures in <<1>>. While many were slain, there may be survivors.",
+		),
+	4519 => array(
+			'name'    => "Word from the Dead",
+			'journal' => "A mortally wounded man in <<1>> asked me to take word of his death to his wife.",
+		),
+	5877 => array(
+			'name'    => "An Armiger's Duty",
+			'journal' => "Captain Naros, a Buoyant Armiger, is investigating a rash of disappearances near Molag Mar. I agreed to assist her in getting to the root of the cause.",
+		),
+	4520 => array(
+			'name'    => "Bloody Hand Spies!",
+			'journal' => "Bloody Hand skirmishers are lurking on the outskirts of town. Ufgra is very worried about them.",
+		),
+	4523 => array(
+			'name'    => "The Bloodthorn Plot",
+			'journal' => "The Bloodthorn Cult recently attacked Stonetooth Fortress. The Orcs repelled the attack but something was stolen.",
+		),
+	4524 => array(
+			'name'    => "Repentant Son",
+			'journal' => "I found the journal of a young man named Vareldur in the mine called Del's Claim. He died trying to stop the Heritance from killing the miners there.",
+		),
+	5885 => array(
+			'name'    => "Ancestral Ties",
+			'journal' => "A Dark Elf named Drelyth Hleran requested my aid in finding his family's lost grave site. He believes the Ashlanders camped near Ald'ruhn might know more about the lost tomb, but the tribes only share their secrets with those who earn their respect.",
+		),
+	4528 => array(
+			'name'    => "Garments by Odei",
+			'journal' => "A tailor tried to take a shortcut through Cambray Pass and was attacked by a pack of wild wolves. He lost the tools of his trade as he fled. He asked me to retrieve his possessions and meet him at the northern end of the pass.",
+		),
+	4533 => array(
+			'name'    => "Fortune in Failure",
+			'journal' => "I found a message within Cryptwatch Fort indicating that the Red Rooks are worried the Bloodthorn cult will turn against them. The note also contains recipes for salves and potions to combat the Bloodthorns' festering magic.",
+		),
+	5765 => array(
+			'name'    => "Taken Alive",
+			'journal' => "Iron Orcs, who usually don't take prisoners, have started abducting travelers near the Valley of Scars. I encountered a caravan master who survived an attack, though a number of his guards were dragged off by the Orcs.",
+		),
+	4536 => array(
+			'name'    => "The Golden Claw",
+			'journal' => "The lunar priests at the Do'Krin Monastery have been attacked by the Stonefire cult. The survivors fear the cultists mean to steal a sacred relic: The Golden Claw.",
+		),
+	4537 => array(
+			'name'    => "An Offering",
+			'journal' => "I found the body of a Khajiiti woman on the terrace of Do'Krin Monastery. She was still clutching a letter and a small offering to the Bright Moons.",
+		),
+	4538 => array(
+			'name'    => "Eye of the Storm",
+			'journal' => "Battlereeve Alduril would like me to assist her in her assault on Tempest Island.",
+		),
+	5744 => array(
+			'name'    => "Mascot Theft in Reaper's March",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Claw's Strike, located in Reaper's March.",
+		),
+	4541 => array(
+			'name'    => "Soul Survivors",
+			'journal' => "Three villages were absorbed into a plane of Oblivion, in an attempt to bring them into Coldharbour: one Dunmer, one Khajiit, and one Orc. The Dunmer <<1>> has a plan to help herself and the other village leaders escape.",
+		),
+	4546 => array(
+			'name'    => "Retaking the Pass",
+			'journal' => "An undead army surges through Driladan Pass and assaults Marbruk on the command of the Shade of Prince Naemon.",
+		),
+	5880 => array(
+			'name'    => "Divine Inquiries",
+			'journal' => "Lord Vivec fears that the mysterious affliction that drains his divine energy may be the result of an enemy's attack. He asked me to work with Archcanon Tarvus to determine the source of the attack by conducting investigations throughout Vvardenfell.",
+		),
+	4549 => array(
+			'name'    => "Back to Skywatch",
+			'journal' => "<<1>> is under siege, but the commander at the gate doesn't seem worried.",
+		),
+	4550 => array(
+			'name'    => "The Fires of Dune",
+			'journal' => "I've arrived at the city of Dune to find it under siege by Daedra and the forces of Javad Tharn.",
+		),
+	4552 => array(
+			'name'    => "Chasing Shadows",
+			'journal' => "The Prophet and I are seeking a way to rescue Sai Sahan, the Redguard who hid away the Amulet of Kings.",
+		),
+	4553 => array(
+			'name'    => "Threefold Folly",
+			'journal' => "<<1>> lost his lute in a riddle game with <<2>>.",
+		),
+	4556 => array(
+			'name'    => "Strength of the Father",
+			'journal' => "In the depths of <<1>> I came across the corpse of <<2>>, cooked in his armor by a beast that dwells there.",
+		),
+	4558 => array(
+			'name'    => "Taking the Fight to the Enemy",
+			'journal' => "Darien mentioned that a small group of Lion Guard soldiers went to search for Angof in the north. I should head in that direction and attempt to find them.",
+		),
+	4560 => array(
+			'name'    => "Riches Beyond Measure",
+			'journal' => "<<1>>, a Khajiit investigating <<2>>, has asked for my assistance.",
+		),
+	4563 => array(
+			'name'    => "Capstone Caps",
+			'journal' => "<<1>> needs special mushrooms found only in <<2>> to help the wounded.",
+		),
+	4564 => array(
+			'name'    => "Lost and Alone",
+			'journal' => "Many of Bruma's citizens are lost or missing in the ruins.",
+		),
+	5768 => array(
+			'name'    => "Slithering Brood",
+			'journal' => "A woman claiming to be the leader of the Scaled Court requested my help. This Regent Cassipia wants me to help her stop the Scaled Court's process for creating a new type of creature for the Serpent's growing army-the mantikora.",
+		),
+	4565 => array(
+			'name'    => "Do as I Say",
+			'journal' => "I've found a scared bandit trying to hide in Portdun Watch. He wants me to take a token to his brother, though he was too frightened to tell me much more.",
+		),
+	4568 => array(
+			'name'    => "The Standing Stones",
+			'journal' => "<<1>> needs his restoration scrolls charged.",
+		),
+	4570 => array(
+			'name'    => "Know thy Enemy",
+			'journal' => "<<1>> challenged me to learn more about the enemy so I can appreciate the dangers the folk of Bruma face.",
+		),
+	4574 => array(
+			'name'    => "Veil of Illusion",
+			'journal' => "After the death of Prince Naemon, Vicereeve Pelidil assumed leadership of the Veiled Heritance and stole the Staff of Magnus. Razum-dar has tracked him to somewhere in the area of Woodhearth.",
+		),
+	4579 => array(
+			'name'    => "Bring Down the Magister",
+			'journal' => "<<1>> believes a Shadowed Path Magister is leading Bruma's intruders.",
+		),
+	4580 => array(
+			'name'    => "Double Jeopardy",
+			'journal' => "Evidence suggests that Vicereeve Pelidil and the Veiled Heritance are planning to attack the city of Woodhearth.",
+		),
+	5784 => array(
+			'name'    => "Dark Anchors in Stormhaven",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Stormhaven.",
+		),
+	4581 => array(
+			'name'    => "The Unseen",
+			'journal' => "<<1>> asked me to search the manor for hidden Dremora portals.",
+		),
+	4586 => array(
+			'name'    => "The Witch of Silatar",
+			'journal' => "The Veiled Heritants plan to harm the Wilderking. If I enter Aranias' past through Maruin's story, I can change her future.",
+		),
+	4588 => array(
+			'name'    => "Land Dispute",
+			'journal' => "Thulvald's logging camp has been overrun by spriggans and trolls. He came to check on his workers and was chased off by the hostile creatures. Now he's worried about his workers and expects that his business is ruined.",
+		),
+	5792 => array(
+			'name'    => "Dark Anchors in the Rift",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in the Rift.",
+		),
+	4589 => array(
+			'name'    => "Jumping Ship",
+			'journal' => "Shifty Tom, one of Captain Blackheart's underlings, wants to give up the pirate's life. He plans to leave Blackheart Haven, the Captain's island fortress, but wants me to help him steal two magical relics from the Captain, first.",
+		),
+	4590 => array(
+			'name'    => "The Skin-Stealer's Lair",
+			'journal' => "<<1>> was replaced by a Dominion skin-stealer. I need to find the imposter and stop the remaining skin-stealers in <<2>>.",
+		),
+	4593 => array(
+			'name'    => "Audience with the Wilderking",
+			'journal' => "To learn why the Wood Elves in this part of the Valenwood are opposed to the Dominion and to convince them to change their mind, I must negotiate with the Wilderking.",
+		),
+	4596 => array(
+			'name'    => "Handmade Guardian",
+			'journal' => "A Wood Elf named Benduin wants to show me how to build a guardian with special powers.",
+		),
+	5800 => array(
+			'name'    => "Cursed Baubles of Stormhaven",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Norvulk Ruins, located in Stormhaven.",
+		),
+	4597 => array(
+			'name'    => "The Plan",
+			'journal' => "The Ancient Keepers, sworn to imprison the spirit of High Kinlord Rilis, have taken to forming Daedric pacts. Keeper Cirion has asked for help in defeating the corrupting force of Rilis, but will require fighting the Keepers directly.",
+		),
+	4599 => array(
+			'name'    => "On the Doorstep",
+			'journal' => "As I arrived at the town of Greenhill, a very drunk man ran up to me and began raving about evil strangers in town.",
+		),
+	4602 => array(
+			'name'    => "Light from the Darkness",
+			'journal' => "This tower is a lightless oubliette, a prison of darkness that binds King Laloriaran Dynar, the last Ayleid King.",
+		),
+	4608 => array(
+			'name'    => "The Blight of the Bosmer",
+			'journal' => "Most of the Bosmer entering Verrant Morass are being corrupted by a blight that turns them into feral beasts. Indaenir believes the corruption comes from the Shade of Naemon.",
+		),
+	5453 => array(
+			'name'    => "A Khajiit's Tale",
+			'journal' => "I met a Khajiit named Zhasim who was raised as part of an Orc clan. An old pack within the ancient ruins inside Bonerock Cavern contained a Khajiit medallion. Could it be a clue to Zhasim's origin?",
+		),
+	4621 => array(
+			'name'    => "The Tempest Unleashed",
+			'journal' => "The Maormer seek to prevent the Dominion from establishing themselves on <<1>>. They've launched a full-scale attack on <<2>>.",
+		),
+	4622 => array(
+			'name'    => "The Search is Over",
+			'journal' => "I met a man named Armin in the bottom of Divad's Chagrin mine. After seven years searching, he found his ancestors remains and wants to send word to his wife that he will soon return home.",
+		),
+	4623 => array(
+			'name'    => "The Soul-Meld Mage",
+			'journal' => "I met Gadris the Dark Elf and Zur the Khajiit. These two mages share a single body, as their souls were melded at this Vile Laboratory when they arrived in Coldharbour. This soul-meld has weakened them. If they remain combined, they will surely die.",
+		),
+	4624 => array(
+			'name'    => "The Perils of Diplomacy",
+			'journal' => "The Aldmeri Dominion seeks to secure the loyalty of <<1>>, but an old treaty with the Maormer prevents this.",
+		),
+	5469 => array(
+			'name'    => "Blood Price",
+			'journal' => "<<1>>, the hearth-wife to <<2>>, believes he was murdered. She suspects <<3>>, <<2>>'s hunt-wife, conspired to kill him. <<1>> is convinced <<3>> secretly worships Boethiah, the Daedric Prince of Treachery.",
+		),
+	4625 => array(
+			'name'    => "Tears of the Two Moons",
+			'journal' => "A powerful mage named <<1>> went missing in the Temple of the Mourning Springs. I agreed to help his apprentice <<2>> search the temple for signs of her master.",
+		),
+	4626 => array(
+			'name'    => "Vanus Unleashed",
+			'journal' => "I came across a magical recording of Vanus Galerion. The message says that the mage decided to enter the Black Forge on his own. He plans to reach the Great Shackle and destroy it, thus completing our mission in Coldharbour.",
+		),
+	4635 => array(
+			'name'    => "Heirloom",
+			'journal' => "I found a broken cart with a list of items that were supposed to be delivered to Lorene Menillet of Cropsford.",
+		),
+	4638 => array(
+			'name'    => "The Real Snake",
+			'journal' => "",
+		),
+	4639 => array(
+			'name'    => "Better Late Than Never",
+			'journal' => "I found a bundle of damaged gifts meant for <<1>> who lives in <<2>>.",
+		),
+	4640 => array(
+			'name'    => "Sands of Sentinel",
+			'journal' => "Rasha has asked me to deliver a small pouch of sand to an old friend.",
+		),
+	5485 => array(
+			'name'    => "Those Truly Favored",
+			'journal' => "<<1>>, one of the Malacath faithful, learned Winterborn raiders seek the <<2>>, an old relic of Malacath. She wants me to recover it before they can.",
+		),
+	4641 => array(
+			'name'    => "What Was Lost",
+			'journal' => "I met a mage named <<1>> in Darkshade Caverns. She has asked for help investigating the Dwemer ruins beneath the mines.",
+		),
+	4642 => array(
+			'name'    => "Hall of Judgment",
+			'journal' => "Some of the mages who helped open the initial portal to Coldharbour were captured when they arrived. Now they're prisoners in the Daedric Court of Contempt, awaiting the verdict of Judge Xiven in the Hall of Judgment.",
+		),
+	4647 => array(
+			'name'    => "A Foot in the Door",
+			'journal' => "Thizzrini Arena is host to numerous arena games in a sprawling complex outside of Dune. To compete in the games, I must speak with the three Division Champions and earn the proper credentials.",
+		),
+	4650 => array(
+			'name'    => "The Swordmaster Division",
+			'journal' => "I am competing in the Swordmaster Division of Thizzrini Arena. I must rise through the ranks of contenders before I can battle Zara, the Swordmaster Division Champion.",
+		),
+	4655 => array(
+			'name'    => "Hadran's Fall",
+			'journal' => "<<1>>, the slave dealer who runs <<2>>, sent his thugs to kill me and failed. His business partner, <<3>>, has grown tired of his slave-trading operation and wants me to eliminate him.",
+		),
+	4656 => array(
+			'name'    => "Tharayya's Trail",
+			'journal' => "I've found a note from a Dwemer researcher's journal named Tharayya. She appears to have been searching for an ancient artifact referred to as the \"Guardian's Eye.\"",
+		),
+	5501 => array(
+			'name'    => "Watch Your Step",
+			'journal' => "<<1>> has taken to hunting Daedra for sport and profit. She's asked for my help in exchange for a cut of the earnings.",
+		),
+	4658 => array(
+			'name'    => "Misplaced Knowledge",
+			'journal' => "I found a notebook full of observations about the Ayleid wells around Cyrodiil. The book's owner may want it back.",
+		),
+	4659 => array(
+			'name'    => "Lady Laurent's Favor",
+			'journal' => "Lady Laurent is displeased with her butler, Stibbons, for leading the Elves to Salas En. To get back in her good favor, he's asked me to help him by gathering Laurent's tools from among the ruins.",
+		),
+	4660 => array(
+			'name'    => "The Devils You Know",
+			'journal' => "A suspicious woman asked me to relay a message to <<1>> in Bruma.",
+		),
+	4664 => array(
+			'name'    => "Moon-Sugar Medicament",
+			'journal' => "I found a note in a smuggler camp. A young Khajiit was captured and taken to <<1>> by the <<m:2>>.",
+		),
+	5381 => array(
+			'name'    => "Pledge: City of Ash II",
+			'journal' => "Glirion the Redbeard has challenged me to explore beyond the portal in Veteran City of Ash in Greenshade.",
+		),
+	4666 => array(
+			'name'    => "The Silver Flute",
+			'journal' => "I found a small silver flute in a crate. An inscription on the flute reads, \"Halion of Chorrol.\" There might be a reward for the flute's return.",
+		),
+	4668 => array(
+			'name'    => "Lizard Racing",
+			'journal' => "I'm now partcipating in Lizard Racing, where I place bets on which lizard finishes the race first.",
+		),
+	4669 => array(
+			'name'    => "Spikeball",
+			'journal' => "I'm now participating in Spikeball, a foot race where I can throw a Spikeball to stun opponents.",
+		),
+	5575 => array(
+			'name'    => "Heist: Glittering Grotto",
+			'journal' => "I was tipped off about rare gems stashed in the Glittering Grotto. I don't have much time to secure the goods before they're moved, so I should act quickly on this lead.",
+		),
+	4670 => array(
+			'name'    => "Troll Arena",
+			'journal' => "I'm now betting on the Troll Arena, where I place bets on which Troll wins the fight.",
+		),
+	4671 => array(
+			'name'    => "Distant Relatives",
+			'journal' => "<<1>> at the <<2>> asked me to deliver a letter to his cousin Asvorn in <<3>>.",
+		),
+	4672 => array(
+			'name'    => "Morwha's Curse",
+			'journal' => "The chief of the Ash'abah and many of the tribe's warriors have been poisoned, most likely by the Withered Hand. I agreed to help Talia at-Marimah gather ingredients for an antidote.",
+		),
+	4673 => array(
+			'name'    => "The Root of the Problem",
+			'journal' => "There's a crisis at <<1>>. Something is wrong with their Great Tree, and the locals believe it has something to do with the tree's roots, which can be accessed from a cave below it.",
+		),
+	4674 => array(
+			'name'    => "Spoils of War",
+			'journal' => "Someone named Jena is being threatened. She apparently lives in Cheydinhal.",
+		),
+	4678 => array(
+			'name'    => "Catch of the Day",
+			'journal' => "I met <<1>> fishing in the cold waters of northern Cyrodiil. She asked if I could bring some of her catch to her friend <<2>> in <<3>>.",
+		),
+	4681 => array(
+			'name'    => "The Serpent Lord",
+			'journal' => "Sea Elves have entered Serpent's Grotto, and one of the Maormer mages has broken the seals that bound a massive sea serpent here for centuries.",
+		),
+	4683 => array(
+			'name'    => "Medicinal Herbs",
+			'journal' => "<<1>> needs herbs delivered to <<2>> in <<3>>.",
+		),
+	4686 => array(
+			'name'    => "The Initiation",
+			'journal' => "On his deathbed, the chief of the Ash'abah says he has foreseen that I must join the tribe and defeat the Withered Hand. I must participate in an initiation ritual to become an Ash'abah.",
+		),
+	4687 => array(
+			'name'    => "A Traitor's Luck",
+			'journal' => "The Eye of the Queen, Cariel, wants my help to uncover corruption in the little town of Pa'alat. She suspects a former Eye of the Queen has gone rogue.",
+		),
+	4690 => array(
+			'name'    => "Striking at the Heart",
+			'journal' => "The Shade of Prince Naemon has seized control of Hectahame where he is corrupting the Heart of the Valenwood. I must assist Queen Ayrenn and Indaenir in defeating him.",
+		),
+	4699 => array(
+			'name'    => "The Fading Tree",
+			'journal' => "A merchant in the Shrouded Vale reports seeing a village that has mysteriously and suddenly appeared in a nearby cave.",
+		),
+	4701 => array(
+			'name'    => "Crossing the Chasm",
+			'journal' => "The army has been gathered and the time has come to take the battle to Molag Bal! But to reach the planar vortex at the heart of the Dark Lord's inner sanctum, we have to cross the well-defended Chasm.",
+		),
+	5392 => array(
+			'name'    => "Blacksmith Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Blacksmith goods to an interested organization.",
+		),
+	4704 => array(
+			'name'    => "Welcome to Cyrodiil",
+			'journal' => "I've entered Cyrodiil, eager to help the Dominion win the war.",
+		),
+	5549 => array(
+			'name'    => "Forever Hold Your Peace",
+			'journal' => "The merchant lord <<1>> claims to have found <<2>>'s dowry, and for his trouble she has agreed to marry him. <<3>> suspects <<4>>, the treacherous former guildmaster of the Thieves Guild, is behind it all. She wants him to pay for his betrayal.",
+		),
+	4705 => array(
+			'name'    => "Siege Warfare",
+			'journal' => "I've reached the siege range. Zan advised me to try each weapon. I should also talk to Firamo and Miniel to learn more about the weapons.",
+		),
+	4709 => array(
+			'name'    => "The Path to Moonmont",
+			'journal' => "Lunar Priestess Kauzanabi-jo has indicated I should make for the temple of Moonmont. The Champions, the new candidates for the Mane, will join me there.",
+		),
+	5400 => array(
+			'name'    => "Enchanter Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Enchanter glyphs to an interested organization.",
+		),
+	4710 => array(
+			'name'    => "Hallowed To Arenthia",
+			'journal' => "The priestess Kauzanabi-jo told me my next goal should be to help the people of Arenthia. Apparently Mane Akkhuz-ri is somewhere amid the Colovian invaders of the city.",
+		),
+	4711 => array(
+			'name'    => "To Dune",
+			'journal' => "",
+		),
+	4712 => array(
+			'name'    => "The First Step",
+			'journal' => "I traveled to the city of Rawl'kha, where I'm to help the Lunar Champions begin their spiritual journey.",
+		),
+	4719 => array(
+			'name'    => "The Moonlit Path",
+			'journal' => "I saved Dune from the plots of Javad Tharn. Now I must aid the Lunar Champion as she walks the Two Moons Path, a mystical Khajiit ritual used to annoint a new Mane.",
+		),
+	4727 => array(
+			'name'    => "Reporting for Duty",
+			'journal' => "Aurorelle Varin says there is much more for me to learn about the war in Cyrodiil.",
+		),
+	4731 => array(
+			'name'    => "Malignant Militia",
+			'journal' => "",
+		),
+	4732 => array(
+			'name'    => "To Honor the Fallen",
+			'journal' => "I've been asked by a moon priestess named Felari to help with a project that could help firm up relations between the Khajiit and Wood Elves. They are working to return home relics and bones from ancient battle sites.",
+		),
+	4733 => array(
+			'name'    => "Knowledge Gained",
+			'journal' => "The Mages Guild has launched an expedition into Selene's Web to seek out and study an ancient forest spirit rumored to live here.",
+		),
+	4735 => array(
+			'name'    => "The Staff of Magnus",
+			'journal' => "Queen Ayrenn must deal with the aftermath of her brother's betrayal and settle matters in Grahtwood. In the meantime, she asked me to travel to Marbruk, in Greenshade, and secure the Staff of Magnus from its vault.",
+		),
+	4740 => array(
+			'name'    => "Questionable Contract",
+			'journal' => "The Wood Elf brewing town of Willowgrove is trying to expand their beehives. They've hired help to clear the forest. This help appears to have suffered some difficulties.",
+		),
+	4744 => array(
+			'name'    => "Before the Storm",
+			'journal' => "Pelidil's plans to lead the Maormer in attack against Valenwood have been exposed and Treethane Fariel suggests I go to Seaside Sanctuary to try to repel the Maormer invasion.",
+		),
+	5589 => array(
+			'name'    => "The Sailor's Pipe",
+			'journal' => "<<1>> runs a finder's business and uses the Thieves Guild to track down his quarries. Helping him will surely reflect well on your skill as a thief, and be lucrative to boot.",
+		),
+	4747 => array(
+			'name'    => "The Anguish Gem",
+			'journal' => "I met a Dark Elf named Dralnas who claims that Dremora have taken his soul to feed to something he calls the Anguish Gem.",
+		),
+	4749 => array(
+			'name'    => "How Few Remain",
+			'journal' => "The mine called Kuna's Delve has been assaulted by a pack of bloodthirsty trolls.",
+		),
+	4750 => array(
+			'name'    => "Throne of the Wilderking",
+			'journal' => "Aranias and Andur were sent by the Veiled Heritance to kill the Wilderking. They are now forcing their way through Greenheart towards the Wilderking's throne.",
+		),
+	4754 => array(
+			'name'    => "Master of Leki's Blade",
+			'journal' => "I've arrived at Leki's Blade, a school of swordsmanship in the sands of Alik'r.",
+		),
+	4757 => array(
+			'name'    => "What the Heart Wants",
+			'journal' => "I met a Soul Shriven named Fatahala. She claims that this Manor of Revelry isn't what it appears to be. Furthermore, she wants me to help Stibbons, who she tells me is in mortal danger here.",
+		),
+	5448 => array(
+			'name'    => "Maelstrom Arena",
+			'journal' => "I have been welcomed into the bizarre realm of the Daedric Demiprince Fa-Nuit-Hen. In order to test my mettle and demonstrate my skills, I've agreed to enter the Maelstrom Arena, where deadly challenges created by Fa-Nuit-Hen's Barons await me.",
+		),
+	4759 => array(
+			'name'    => "Hallowed to Rawl'kha",
+			'journal' => "The priestess Kauzanabi-jo told me my next goal should be to make for the temple in Rawl'kha. I need to aid the Lunar Champions in their journey.",
+		),
+	5605 => array(
+			'name'    => "Looming Shadows",
+			'journal' => "I accepted a bounty to investigate unnatural phenomena preventing the excavation of Tribune's Folly.",
+		),
+	4760 => array(
+			'name'    => "Whose Wedding?",
+			'journal' => "The bandits at Sep's Spine have canceled hostilities for sake of the boss's daughter's wedding.",
+		),
+	4761 => array(
+			'name'    => "Trouble at Tava's Blessing",
+			'journal' => "A courier came to me with an urgent request to go help Prince Azah fight in the small town of Tava's Blessing and to send the Scholar's apprentice, Shiri, back to Bergama.",
+		),
+	4764 => array(
+			'name'    => "The Tharn Speaks",
+			'journal' => "Abnur Tharn seeks an audience with me away from the Harborage. I should see what he wants.",
+		),
+	4766 => array(
+			'name'    => "Freedom's Chains",
+			'journal' => "<<1>> is a town in Bangkorai fabled to have the power to cure any disease. <<2>> and his husband Draven seek whatever cure the village offers, though they don't know what the cost may be.",
+		),
+	4767 => array(
+			'name'    => "One of the Undaunted",
+			'journal' => "Mighty Mordra, an Orc woman, has invited me to join a group of adventurers called the Undaunted.",
+		),
+	4770 => array(
+			'name'    => "Forthor's Cursed Axe",
+			'journal' => "I found an odd, glowing handaxe in a pack at the bottom of Gurzag's Mine. A note of sale indicated a Bosmer named Forthor sold it to the Orcs. He's part of the Marbruk Mages Guild.",
+		),
+	4771 => array(
+			'name'    => "Beasts of Falinesti",
+			'journal' => "Thonoras and his wife, Pariel, were captured and tortured by Wood Orcs. Pariel begged Hircine to save them, and Hircine \"changed her.\" After helping her husband escape, Pariel disappeared into a cave beneath the Falinesti Spring Site.",
+		),
+	4773 => array(
+			'name'    => "Keeper of Bones",
+			'journal' => "I found a talking skull named <<1>> near <<Ac:2>>. He wants me to piece him together so he can help thwart Worm Cultists in the area.",
+		),
+	5464 => array(
+			'name'    => "Forcing the Faith",
+			'journal' => "A group of Orc artisans was heading to the new city of Orsinium when they were attacked by members of the Trinimac cult known as the Vosh Rakh and taken prisoner in the ruins of Paragon's Remembrance.",
+		),
+	4775 => array(
+			'name'    => "A Night to Forget",
+			'journal' => "I ran into a very hung-over mage in Rawl'kha. He had too much to drink, lost several magical relics, and now fears he'll never gain an apprenticeship to Telenger the Artificer.",
+		),
+	4777 => array(
+			'name'    => "The List",
+			'journal' => "Tappo's journal details his victims. He kept a keepsake from each.",
+		),
+	4778 => array(
+			'name'    => "Razor's Edge",
+			'journal' => "Whisper Grove has been turned to a City of Ash by the forces of Mehrunes Dagon. If I don't intervene, the remaining Bosmer will be slaughtered.",
+		),
+	4783 => array(
+			'name'    => "The Weight of Three Crowns",
+			'journal' => "I convinced the leaders of the three alliances to meet to discuss a plan to attack Molag Bal's realm of Coldharbour. The meeting takes place on the historic island of Stirk. Hopefully, the meeting will go smoothly.",
+		),
+	4786 => array(
+			'name'    => "The Innkeeper's Daughter",
+			'journal' => "<<1>>, an innkeeper in <<2>>, informed me of bandits who kidnapped his daughter <<3>>. He asked me to bring her home safely.",
+		),
+	4788 => array(
+			'name'    => "The Falinesti Faithful",
+			'journal' => "A small group of Wood Elves entered the Falinesti Spring Site, which has been taken over by Wood Orcs. When they petitioned the Wood Orcs to leave, they were taken prisoner. Egannor managed to escape, but his friends are still in the camp.",
+		),
+	4791 => array(
+			'name'    => "The Artisan",
+			'journal' => "",
+		),
+	4792 => array(
+			'name'    => "A Tangled Knot",
+			'journal' => "A stone being named Sumiril carries a book that contains a story about how he came to be.",
+		),
+	5509 => array(
+			'name'    => "Parts of the Whole",
+			'journal' => "The eccentric artificer and dungeon-delver, Raynor Vanos, needs more data for his experiments. He's certain that the information he requires can be found in a Dwarven ruin called Zthenganaz.",
+		),
+	4793 => array(
+			'name'    => "Manthir's Debt",
+			'journal' => "I met a Khajiit called Cold-Eyes who is looking to collect a debt. He'll give me a cut if I help him.",
+		),
+	4798 => array(
+			'name'    => "Eye on Arenthia",
+			'journal' => "A shady character told me I was needed at the city of Arenthia. This Orthoron said someone of my prowess would come in handy.",
+		),
+	4799 => array(
+			'name'    => "To Saifa in Rawl'kha",
+			'journal' => "A strange priest at an old Khajiiti ruin told me that my path is laid out before him. He suggests I go to the city of Rawl'kha to learn more.",
+		),
+	4808 => array(
+			'name'    => "Test of Faith",
+			'journal' => "I found a journal that belonged to a monk of the Lunar faith named Yenadar. The journal mentions that he has a sister named Kala in S'ren-ja. I should return the journal to her.",
+		),
+	4811 => array(
+			'name'    => "Nirnroot Wine",
+			'journal' => "I agreed to gather Red Mountain Ash for <<1>>, so he can make Nirnroot wine.",
+		),
+	4813 => array(
+			'name'    => "No Second Chances",
+			'journal' => "Master Pellingare, a Wayrest nobleman, has gone missing. His guards, Yahyif and Gedric, have come to the sewers looking for him after he was last seen heading into the undercity tunnels.",
+		),
+	5504 => array(
+			'name'    => "The Skin Trade",
+			'journal' => "The Dragonstar Caravan Company's job broker, Guruzug, has tasked me with traveling to Argent Mine to slay werewolves. A wealthy client will pay handsomely for their skins.",
+		),
+	4814 => array(
+			'name'    => "News of Fallen Kin",
+			'journal' => "I discovered the body of one of the Fighters Guild soldiers in Mal Sorra's Tomb. She started writing a note to her cousin, Grundskar, another soldier.",
+		),
+	4815 => array(
+			'name'    => "Pact Advocate",
+			'journal' => "Nature itself has turned against the Bosmer village of Karthdar and its citizens are desperate to restore peace.",
+		),
+	4818 => array(
+			'name'    => "To Auridon",
+			'journal' => "After defeating the Maormer assault on Khenarthi's Roost, Razum-dar has asked me to report to <<1>> in the Auridon city of Vulkhel Guard.",
+		),
+	4821 => array(
+			'name'    => "Report to Marbruk",
+			'journal' => "I've been given a letter to deliver to Queen Ayrenn to bring her up to speed on the events that have occurred and inform her of our victory over Vicereeve Pelidil.",
+		),
+	5512 => array(
+			'name'    => "Scouting the Nobles District",
+			'journal' => "My Alliance needs scouts to secure rally points across the Imperial City.",
+		),
+	4824 => array(
+			'name'    => "Troublemakers",
+			'journal' => "A Bosmer named Adamir, and his associate Timiwe, are attempting to animate an assemblage of rodent parts.",
+		),
+	4828 => array(
+			'name'    => "Hunting the Wasp",
+			'journal' => "Radreth, a new member of the hunting company the Hounds, asked for my help in hunting a giant wasp.",
+		),
+	4832 => array(
+			'name'    => "Council of the Five Companions",
+			'journal' => "I've been summoned back to the Harborage in preparation for our battle against Molag Bal.",
+		),
+	4833 => array(
+			'name'    => "Bosmer Insight",
+			'journal' => "I've discovered an order of hunters called Brackenleaf's Briars. They protect a tree they say was planted by Y'ffre at the creation of the world.",
+		),
+	4834 => array(
+			'name'    => "A Past Remembered",
+			'journal' => "While exploring the Tribulation Crypt, I encountered a ghost that beckoned me deeper into the tomb. The ghost led me to an ancient sword engraved with the following message: \"Marcelle Stenric of Shornhelm.",
+		),
+	4836 => array(
+			'name'    => "Halls of Torment",
+			'journal' => "Varen Aquilarios and Abnur Tharn have found the location of Sai Sahan within the Halls of Torment. I need to venture into these halls and save the final, missing companion.",
+		),
+	4837 => array(
+			'name'    => "Valley of Blades",
+			'journal' => "Varen Aquilarios asked me to accompany Sai Sahan on a trip back to his ancestral home. An old friend, Kasura, may have knowledge of how to sneak into Sancre Tor.",
+		),
+	4840 => array(
+			'name'    => "Ancient Power",
+			'journal' => "I met a Mages Guild novice named Anenya just inside the Erokii Ruins. She was sent here on an assignment to recover a relic called the Tear of Anurraame, but she can't carry it out. I agreed to recover the relic and bring it back to Shornhelm.",
+		),
+	4841 => array(
+			'name'    => "Trouble at the Rain Catchers",
+			'journal' => "The Rain Catcher Fields, a sandy expanse of johads gathering water in large pools, has recently been overrun by beetles from the desert.",
+		),
+	4843 => array(
+			'name'    => "A Traitor's Tale",
+			'journal' => "Undead soldiers have been haunting Traitor's Tor ever since the end of Ranser's War, but no one's ever been able to find out why.",
+		),
+	4846 => array(
+			'name'    => "The Misuses of Knowledge",
+			'journal' => "I have found the notes of a mage named Mercano from Woodhearth in the depths of an Ayleid ruin where the Veiled Heritants were raising undead.",
+		),
+	4847 => array(
+			'name'    => "God of Schemes",
+			'journal' => "The time has come to confront Molag Bal and reclaim my soul.",
+		),
+	4848 => array(
+			'name'    => "Deadly Ambition",
+			'journal' => "I discovered the remains of a mage outside a cave in Shademist Moors. While there are no shortage of victims around here, the presence of the Mages Guild urges me to investigate what might have happened to the rest of them.",
+		),
+	4850 => array(
+			'name'    => "Shades of Green",
+			'journal' => "The Shade of Prince Naemon is spreading corruption across Greenshade. I must help Indaenir cleanse the corruption.",
+		),
+	4852 => array(
+			'name'    => "Claim to Fame",
+			'journal' => "The Torog's Spite Bandits are dedicated to profit and vengeance from targeting families descended from those who sacked Orsinium. An Orc historian named Maaga wants to record the bandits' deeds but needs to know which Orc clan deserves credit.",
+		),
+	4853 => array(
+			'name'    => "Woodhearth",
+			'journal' => "Before losing Aranias' memories, the Wilderqueen told me that she knew about the Veiled Heritance plot to steal the Staff of Magnus. She suggested I go to the city of Woodhearth.",
+		),
+	5544 => array(
+			'name'    => "A Profitable Venture",
+			'journal' => "Captain Jimila has been suffering under the oppressive dock fees in Anvil. She asked for my help in stealing the dock master's private stash to pay off her debts.",
+		),
+	4863 => array(
+			'name'    => "Troll's Dessert",
+			'journal' => "I met a Bosmer Adventurer named Gluineth locked in a cell in Troll's Toothpick. I've agreed to spring her from the cell and escort her out of the cave.",
+		),
+	4864 => array(
+			'name'    => "A Favor Between Kings",
+			'journal' => "I found a Knight of St. Pelin in the Crypt of the Exiles who died while on an important quest. She sought to recover a sacred Redguard artifact, the Memory Stone of Makela Leki, and return it to a Redguard scholar.",
+		),
+	4867 => array(
+			'name'    => "Shadow of Sancre Tor",
+			'journal' => "Sai Sahan has recovered from his experiences in the the Halls of Torment and is ready to guide me to the Amulet of Kings. He hid the artifact in Sancre Tor, an ancient Imperial catacomb.",
+		),
+	4869 => array(
+			'name'    => "Bounty: Black Daggers",
+			'journal' => "I accepted a Fighters Guild contract in Cyrodiil.",
+		),
+	4870 => array(
+			'name'    => "Bounty: Gray Vipers",
+			'journal' => "I accepted a Fighters Guild contract in Cyrodiil.",
+		),
+	4873 => array(
+			'name'    => "Bounty: Black Daggers",
+			'journal' => "I accepted a Fighters Guild contract from Arkas at the Southern Morrowind gate.",
+		),
+	4874 => array(
+			'name'    => "Bounty: Gray Vipers",
+			'journal' => "I accepted a Fighters Guild contract in Cyrodiil.",
+		),
+	4876 => array(
+			'name'    => "Bounty: Goblins",
+			'journal' => "I accepted a Fighters Guild contract from Arkas at the Southern Morrowind gate.",
+		),
+	4877 => array(
+			'name'    => "Bounty: Black Daggers",
+			'journal' => "I accepted a Fighters Guild contract from Ikran at the Northern High Rock gate in Cyrodiil.",
+		),
+	4878 => array(
+			'name'    => "Bounty: Gray Vipers",
+			'journal' => "I accepted a Fighters Guild contract in Cyrodiil.",
+		),
+	4879 => array(
+			'name'    => "Bounty: Shadowed Path",
+			'journal' => "I accepted a Fighters Guild contract in Cyrodiil.",
+		),
+	4880 => array(
+			'name'    => "Bounty: Goblins",
+			'journal' => "I accepted a Fighters Guild contract from Ikran at the Northern High Rock gate.",
+		),
+	4881 => array(
+			'name'    => "The Will of the Woods",
+			'journal' => "The princess of Evermore is being cared for in the Viridian Woods, but her future is uncertain.",
+		),
+	4882 => array(
+			'name'    => "The Wandering Minstrel",
+			'journal' => "<<1>>'s husband, a minstrel named Sorion, went missing after going on tour through <<2>>. I agreed to help track him down.",
+		),
+	4885 => array(
+			'name'    => "A Lasting Winter",
+			'journal' => "The <<1>>, one of the legendary resting places of the Walking City of Falinesti, is buzzing with activity. It seems <<2>> has begun an excavation.",
+		),
+	4888 => array(
+			'name'    => "The Emerald Chalice",
+			'journal' => "Lady Clarisse Laurent is on the trail of the Emerald Chalice, a relic stolen from the Mages Guild by the exiled Nord mage, Malofar. She tracked him here to Breagha-Fin.",
+		),
+	5221 => array(
+			'name'    => "Kill Enemy Templars",
+			'journal' => "Grand Warlord Dortene has authorized a reward for any Covenant soldier who slays 20 enemy Templars.",
+		),
+	4891 => array(
+			'name'    => "The Parley",
+			'journal' => "The Reachmen threat has been averted, but Evermore is still in danger, and Queen Arzhela needs my help.",
+		),
+	4893 => array(
+			'name'    => "Flipping the Coin",
+			'journal' => "On approaching <<1>>, I came upon <<2>>, a Khajiit in trouble with the local authorities.",
+		),
+	4894 => array(
+			'name'    => "A Letter for Deshaan",
+			'journal' => "The Llodos plague is ravaging the Deshaan countryside. I met someone from a town known as the Serk. He's on his way to warn people about the plague.",
+		),
+	4895 => array(
+			'name'    => "Phantom Guilt",
+			'journal' => "I found a strange glowing amulet on a corpse in the woods.",
+		),
+	4896 => array(
+			'name'    => "The Great Tree",
+			'journal' => "<<1>> has heard rumblings of discontent in <<2>>, the Aldmeri Dominion's capital. She wants me to travel ahead of her and assess the situation.",
+		),
+	5229 => array(
+			'name'    => "Kill Enemy Nightblades",
+			'journal' => "Grand Warlord Sorcalin has authorized a reward for any Dominion soldier who slays 20 enemy Nightblades.",
+		),
+	4899 => array(
+			'name'    => "Beyond the Call",
+			'journal' => "Reachmen attacked Northglen. They must be stopped before they can attack the city of Evermore.",
+		),
+	4900 => array(
+			'name'    => "Raiders at the Crossing",
+			'journal' => "Imperials have been raiding Martyr's Crossing, and the Knights of Saint Pelin have wound up having to depend on the help of Baandari merchants for assistance.",
+		),
+	4901 => array(
+			'name'    => "The Road to Rivenspire",
+			'journal' => "A bloody conflict has erupted between the noble houses of Rivenspire and High King Emeric has asked me to go there on his authority and attempt to restore order.",
+		),
+	4906 => array(
+			'name'    => "A Quest",
+			'journal' => "",
+		),
+	4911 => array(
+			'name'    => "Present in Memory",
+			'journal' => "Scholar <<1>> and his guide, <<2>> became separated in the Sunken Road.",
+		),
+	4912 => array(
+			'name'    => "Storming the Garrison",
+			'journal' => "Imperial forces have taken control of Bangkorai Garrison, the strategic keep that divides northern and southern Bangkorai. King Emeric and the Lion Guard have come to aid Queen Arzhela and the Knights of Saint Pelin in reconquering the garrison.",
+		),
+	5245 => array(
+			'name'    => "Holding Court",
+			'journal' => "Little Leaf has asked me to find her friend, Regent Cassipia, in Dragonstar. She claims that the two of them are working from the inside to stop the Scaled Court.",
+		),
+	4914 => array(
+			'name'    => "The Wakening Dark",
+			'journal' => "The ruins of the ancient Wood Elf village of Gil-Var-Delle is under the corrupting influence of Molag Bal. The Worm Cult is active here, and my help is needed to put an end to their schemes.",
+		),
+	4916 => array(
+			'name'    => "Guar Gone",
+			'journal' => "<<1>> is distraught. Her adorable pet, Puddles, ran away, and she's afraid that the little creature is lost.",
+		),
+	4918 => array(
+			'name'    => "The Shifting Sands of Fate",
+			'journal' => "Hallin's Stand is ready to take back their town from the Imperial's Seventh Legion.",
+		),
+	4920 => array(
+			'name'    => "The Lady's Keepsake",
+			'journal' => "I met <<1>> and <<2>> at their camp along the roadside. They're fleeing for their lives from their ransacked farmstead.",
+		),
+	5319 => array(
+			'name'    => "Birdsong's Curse",
+			'journal' => "According to a note I discovered in Coldperch Cavern, a hagraven named Kraala uses a totem to transform people into birds.",
+		),
+	4926 => array(
+			'name'    => "Assassin Hunter",
+			'journal' => "Adusa has further need of my help. She's learned of another plot, an assassin contracted by allies of House Montclair.",
+		),
+	4927 => array(
+			'name'    => "The Assassin's List",
+			'journal' => "Adusa has discovered that the Montclairs have assembled a list of targets they have marked for elimination.",
+		),
+	4928 => array(
+			'name'    => "Threat of Death",
+			'journal' => "I returned to find Adusa and Castle Ravenwatch under attack. The list of targets puts Adusa right at the top.",
+		),
+	4934 => array(
+			'name'    => "In the Doghouse",
+			'journal' => "<<1>> has asked me to find her husband Ignobert, who went missing after a vampire attack.",
+		),
+	4936 => array(
+			'name'    => "The Crown of Shornhelm",
+			'journal' => "Now that the threat to Rivenspire has been dealt with, there's still the matter of crowning a true ruler for the region.",
+		),
+	4937 => array(
+			'name'    => "The Sanctifying Flames",
+			'journal' => "Countess Tamrith has sent a priest to sanctify her dead soldiers at Camp Tamrith. Those particularly devoted to the Light of Arkay have a profound fear of turning into undead creatures.",
+		),
+	4938 => array(
+			'name'    => "The Heart of the Beast",
+			'journal' => "Fallen Grotto is under the control of <<1>> and his Reachmen.",
+		),
+	4939 => array(
+			'name'    => "Until Death",
+			'journal' => "<<1>> has lost track of her husband and her dog. I've offered to help her look for both of them.",
+		),
+	4943 => array(
+			'name'    => "The Honor of the Queen",
+			'journal' => "All is not well in <<1>>. The Khajiit lack an embassy, which is the cause of tensions in the capital city of the Aldmeri Dominion.",
+		),
+	4944 => array(
+			'name'    => "Friend of Trolls",
+			'journal' => "I discovered a research journal kept by an Orc named Grularz in Crestshade Mine. She was apparently studying the trolls until they decided to kill her. The journal referred to a brother named Gothurg in Shornhelm.",
+		),
+	5277 => array(
+			'name'    => "Pledge: Elden Hollow II",
+			'journal' => "Maj al-Ragath has challenged me to explore the ruins beneath Grahtwood, the Veteran Elden Hollow.",
+		),
+	4945 => array(
+			'name'    => "A Spy in Shornhelm",
+			'journal' => "Adusa fears that Montclair agents still operate out of Shornhelm. She wants me to follow a courier in hopes the courier will lead me to the Montclair informer.",
+		),
+	4946 => array(
+			'name'    => "A Silken Garb",
+			'journal' => "<<1>> is concerned for her friend <<2>>. He recently entered a cave full of deadly spiders and hasn't been seen since.",
+		),
+	4950 => array(
+			'name'    => "Storgh's Bow",
+			'journal' => "",
+		),
+	4952 => array(
+			'name'    => "Dearly Departed",
+			'journal' => "Jowan and Mayla want to give their family a proper burial. They asked me to accompany them.",
+		),
+	4954 => array(
+			'name'    => "Light in the Darkness",
+			'journal' => "I met an old scholar near the Ayleid ruins who came to power a crystal for his research, but found the ruins swarming with Worm Cultists.",
+		),
+	4955 => array(
+			'name'    => "A Lucky Break",
+			'journal' => "I found a journal that belonged to a thief called Nedras the Sly. He apparently turned to crime in order to support his ailing sister in Northpoint.",
+		),
+	4956 => array(
+			'name'    => "Last Words",
+			'journal' => "I found a journal on the body of Klaandor Axe-Bearer. It details his transformation into a vampire. Seems like he was looking for someone to kill him.",
+		),
+	4957 => array(
+			'name'    => "Breaking the News",
+			'journal' => "I found a journal that belonged to a monk of the lunar faith named Yenadar. The journal mentions that he has a sister named <<1>> in S'ren-ja. I should return the journal to her.",
+		),
+	5136 => array(
+			'name'    => "Summary Execution",
+			'journal' => "",
+		),
+	4958 => array(
+			'name'    => "Northpoint in Peril",
+			'journal' => "Lleraya Montclair and her forces have taken control of Northpoint. They've sealed the gates and locked out the legitimate city guards. But Baron Dorell has a plan to liberate Northpoint. It just requires a small group willing to infiltrate the city.",
+		),
+	4959 => array(
+			'name'    => "Trials and Tribulations",
+			'journal' => "After their defeat at Bangkorai Garrison, the Imperial forces retreated south, and King Emeric believes they will make their last stand here at the ancient temple known as the Hall of Heroes.",
+		),
+	4960 => array(
+			'name'    => "To Walk on Far Shores",
+			'journal' => "Imperial Magus-General Septima Tharn captured King Emeric and took him into the Chamber of Passage. It's apparently a gateway to the plane known as the Far Shores, where Redguards go in the afterlife.",
+		),
+	4965 => array(
+			'name'    => "Children of Yokuda",
+			'journal' => "I met Nicolene in the Dead Wolf Inn in Shornhelm. She and Captain Kaleen are here looking for one of King Fahara'jad's former spies, Naruk. Naruk has turned against the Daggerfall Covenant and is now inciting war, but Kaleen is missing.",
+		),
+	4966 => array(
+			'name'    => "Wanted: Sgolag",
+			'journal' => "I found a wanted poster offering a reward for the head of an Orc called Sgolag.",
+		),
+	4969 => array(
+			'name'    => "A Marriage in Ruins",
+			'journal' => "A Daedra has taken over Nilata Ruins. Having possessed a farmer's wife, the Daedra is luring travelers into her lair-likely to their doom.",
+		),
+	4970 => array(
+			'name'    => "To Aid the Enemy",
+			'journal' => "Something has been luring Imperial soldiers into the ruins. Many have been captured by the giant spiders lurking there.",
+		),
+	4971 => array(
+			'name'    => "The Arch-Mage's Boon",
+			'journal' => "",
+		),
+	4972 => array(
+			'name'    => "The Liberation of Northpoint",
+			'journal' => "We found a way to sneak into the sealed city of Northpoint-a tunnel used by smugglers and black marketeers. Now we need to head inside and find a way to free the city from Lleraya Montclair's grasp.",
+		),
+	4974 => array(
+			'name'    => "Brackenleaf's Briars",
+			'journal' => "While traveling in <<1>>, I found a shrine dedicated to the animals of the Valenwood. <<2>> said the shrine was created by <<3>>'s Briars, an elite group of hunters.",
+		),
+	4975 => array(
+			'name'    => "The Wounded Wood",
+			'journal' => "I met a priest of Y'ffre who seeks to heal the scarred ruin of Gil-Var-Delle by mixing blessed water into the falls that feed into the river of the vale. She asked me to help her in her task.",
+		),
+	4976 => array(
+			'name'    => "Carnival Conundrum",
+			'journal' => "<<1>>'s Carnival came from the Summerset Isle to spread High Elf culture. Unfortunately, they've suffered numerous setbacks in performing for the Wood Elves of <<2>>.",
+		),
+	5309 => array(
+			'name'    => "Pledge: Vaults of Madness",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the Vaults of Madness, a dark labyrinth at the heart of Coldharbour.",
+		),
+	4978 => array(
+			'name'    => "Striking Back",
+			'journal' => "High King Emeric wants to liberate southern Bangkorai from Imperial control. He believes the key to that is tracking down Imperial Magus General Septima Tharn.",
+		),
+	4979 => array(
+			'name'    => "Publish or Perish",
+			'journal' => "<<1>> asked me to search the ruins for texts from other scholars who may have previously studied here.",
+		),
+	4980 => array(
+			'name'    => "A Grave Matter",
+			'journal' => "Llotha asked me to help her unlock a lockbox by solving an old mystery about the Blacklight Raiders. The password to the lock is a combination of the Raiders' names and professions.",
+		),
+	4984 => array(
+			'name'    => "A Lucrative Scheme",
+			'journal' => "I found a journal in a bandit camp. It detailed the murder of an Orc chieftan's two wives. It also mentioned a third wife named <<1>> who lives in a place called Barkbite.",
+		),
+	5189 => array(
+			'name'    => "derp",
+			'journal' => "",
+		),
+	4986 => array(
+			'name'    => "A Token Trophy",
+			'journal' => "<<1>>, an injured Orcish scout near <<2>>, seeks to rally others to his banner by acquiring Captain Helenus's Helm from the Seventh Legion <<3>> who devastated his Orcish brethren.",
+		),
+	4989 => array(
+			'name'    => "A Handful of Stolen Dreams",
+			'journal' => "As <<1>> and a group of refugees traveled through southern Bangkorai, they were attacked by Imperials. Several of them lost priceless heirlooms.",
+		),
+	4991 => array(
+			'name'    => "Dark Wings",
+			'journal' => "The Wyress Freyda warned me away from Jackdaw Cove as dark forces are at work in northern Bangkorai.",
+		),
+	4992 => array(
+			'name'    => "Searching for the Searchers",
+			'journal' => "A group of soldiers from Bangkorai Garrison lead by Sir Dubroc went out in search of the Reachman leader in Jackdaw Cove.",
+		),
+	4997 => array(
+			'name'    => "One of the Undaunted",
+			'journal' => "<<1>> has invited me to join a group of adventurers called the Undaunted.",
+		),
+	4998 => array(
+			'name'    => "Cadwell's Silver",
+			'journal' => "Cadwell has turned the Harborage into his new home-for the time being, at any rate.",
+		),
+	5000 => array(
+			'name'    => "Cadwell's Gold",
+			'journal' => "",
+		),
+	5004 => array(
+			'name'    => "Test",
+			'journal' => "",
+		),
+	5005 => array(
+			'name'    => "Drink, Drink, and Be Merry",
+			'journal' => "I found a keg containing wine with magical properties.",
+		),
+	5007 => array(
+			'name'    => "Shroud Hearth Barrow",
+			'journal' => "Something strange is happening inside Shroud Hearth Barrow that is frightening the villagers of Ivarstead.",
+		),
+	5008 => array(
+			'name'    => "A Diamond in the Root",
+			'journal' => "I found an abandoned campfire at the entrance to <<1>>. I should figure out what happened to the campers.",
+		),
+	5009 => array(
+			'name'    => "The Siege of Velyn Harbor",
+			'journal' => "The Dominion's lifeline to Malabal Tor is under siege. If I want to assist in the defense of <<1>>, I should speak with <<2>> near the gate to <<3>>.",
+		),
+	5011 => array(
+			'name'    => "Beneath the Surface",
+			'journal' => "A Pact soldier and his brother were captured by bandits after being caught spying. They were investigating the cult-like activity of the bandits.",
+		),
+	5014 => array(
+			'name'    => "Crimes of the Past",
+			'journal' => "The Ring of Daggers has tracked down a war criminal named Gerard Althen, who once served as King Ranser's spymaster. He's hiding somewhere in Sanguine Barrows and I've agreed to find him and bring him out.",
+		),
+	5016 => array(
+			'name'    => "Children of the Hist",
+			'journal' => "<<1>> overheard Dominion soldiers brag of capturing <<Ac:2>>, where Argonian children in <<3>> are born.",
+		),
+	5349 => array(
+			'name'    => "The King's Gambit",
+			'journal' => "At Paragon's Remembrance, I learned that the Vosh Rakh plan to harm Chief Bazrag and High Priestess Solgra before they attack the chiefs at the king's moot in Orsinium. I need to find a way to stop them.",
+		),
+	5018 => array(
+			'name'    => "Fell's Justice",
+			'journal' => "I managed to drive the bandits from Fell's Run, but the bandit's leader, Leonce Gavendien, escaped with the stolen jewels.",
+		),
+	5020 => array(
+			'name'    => "The Wayward Son",
+			'journal' => "Captain Thayer is having a difficult time recruiting new soldiers for the Shornhelm Guard. She asked me to help convince a man in the stocks to enlist.",
+		),
+	5021 => array(
+			'name'    => "The Lover",
+			'journal' => "Captain Thayer thinks her last prospect will pose the greatest challenge of all. His name is Julien Rissiel and he's reluctant to enlist because he's in love.",
+		),
+	5022 => array(
+			'name'    => "The Bandit",
+			'journal' => "Captain Thayer has asked me to recruit a woman named Shuga into the Shornhelm Guard. Thayer suspects Shuga is actually a bandit who doesn't have much respect for the guard.",
+		),
+	5024 => array(
+			'name'    => "Puzzle of the Pass",
+			'journal' => "We put an end to Reezal-Jul and Lleraya. Now we need to deal with Baron Montclair. But to reach Montclair in his citadel atop the Doomcrag, we first need to find a way through the Shrouded Pass.",
+		),
+	5028 => array(
+			'name'    => "South Winds Derby",
+			'journal' => "As part of the South Winds Festival, there is a mounted race being proctored by the priests of Kynareth. Participants of the derby will be rewarded with a blessing of good health if they can prove themselves worthy by beating a timed trial.",
+		),
+	5033 => array(
+			'name'    => "The Star-Gazers",
+			'journal' => "A Herald has come with tales of a dire threat in the distant land of Craglorn.",
+		),
+	5035 => array(
+			'name'    => "Calling Hakra",
+			'journal' => "Lieutenant Slonn led a team of scholars to Pinepeak Caverns to awaken the spirit of Hakra, one of the five hundred companions, but the team hasn't returned.",
+		),
+	5038 => array(
+			'name'    => "The Truth about Spiders",
+			'journal' => "I found a soldier outside a spider cave in Stonefalls. She's suffering from a spider bite she received while trying to search the Hollow.",
+		),
+	5039 => array(
+			'name'    => "Darkvale Brews",
+			'journal' => "A High Elf named Caalorne was ambushed by a group of Argonians on the road to Kragenmoor. They stole a number of potions from him, and he wants them back.",
+		),
+	5042 => array(
+			'name'    => "Assisting Davon's Watch",
+			'journal' => "I met a soldier at Ash Mountain who said the defense of Davon's Watch could use some help.",
+		),
+	5043 => array(
+			'name'    => "A Higher Priority",
+			'journal' => "A soldier at Fort Virak told me the Pact military is focusing their efforts at the land coral maze known as Vivec's Antlers.",
+		),
+	5044 => array(
+			'name'    => "To the Mountain",
+			'journal' => "A Pact officer at Vivec's Antlers suggested I assist the generals at Ash Mountain.",
+		),
+	5050 => array(
+			'name'    => "Waiting for Word",
+			'journal' => "Captain Ronag at Shinji's Scarp asked me to deliver a dispatch to Clan Murtag soldiers near the at-Tura estate.",
+		),
+	5051 => array(
+			'name'    => "The Last of Them",
+			'journal' => "I ran into Blademaster Qariar in Northpoint's back alleys. He's hunting down the remaining vampires that were working with Lady Lleraya Montclair.",
+		),
+	5055 => array(
+			'name'    => "Missive to the Queen",
+			'journal' => "A guardswoman in Skywatch has asked me to deliver a sealed message scroll to Vulkhel Guard for her.",
+		),
+	5070 => array(
+			'name'    => "Broken Gazer",
+			'journal' => "Something about the way the book was placed in front of the statue makes it appear to be an offering.",
+		),
+	5071 => array(
+			'name'    => "Curinure's Invitation",
+			'journal' => "",
+		),
+	5074 => array(
+			'name'    => "Rudrasa's Invitation",
+			'journal' => "",
+		),
+	5075 => array(
+			'name'    => "Hilan's Invitation",
+			'journal' => "",
+		),
+	5076 => array(
+			'name'    => "Nemarc's Invitation",
+			'journal' => "",
+		),
+	5077 => array(
+			'name'    => "Basile's Invitation",
+			'journal' => "",
+		),
+	5079 => array(
+			'name'    => "The Seeker's Archive",
+			'journal' => "I met Ibrula, a friend of the Star-Gazers who is trying to get into a ruined temple called the Seeker's Archive. She hopes to discover information inside that will help defeat the Celestials.",
+		),
+	5080 => array(
+			'name'    => "The Flower of Youth",
+			'journal' => "An aging Bosmer named Hartmin brought his dying husband to a grove near Greenheart where they share memories from their youth.",
+		),
+	5081 => array(
+			'name'    => "The Fallen City of Shada",
+			'journal' => "I found the ruins of a city called Shada's Tear in the middle of the Craglorn desert. A mercenary told me that some researchers from Belkarth went into the ruins, but that strange things started happening when they did.",
+		),
+	5085 => array(
+			'name'    => "The Trials of Rahni'Za",
+			'journal' => "Outside the school of blades called Rahni'Za, I encountered an intiate of the school who told me that the Sword-Disciples have been turned into thralls by a traitor. This betrayer now hides in the cavern at the end of the school's five trials.",
+		),
+	5087 => array(
+			'name'    => "Assaulting the Citadel",
+			'journal' => "People venturing into Hel Ra Citadel have mysteriously vanished, including a group of Undaunted led by Kailstig the Axe. I should enter the Citadel to find out what happened to them.",
+		),
+	5088 => array(
+			'name'    => "Naemon's Return",
+			'journal' => "It seems that Prince Naemon has indeed returned from the dead and now leads an undead army that's pushed its way to the city gates of Marbruk.",
+		),
+	5091 => array(
+			'name'    => "Hallowed To Grimwatch",
+			'journal' => "The priestess Kauzanabi-jo told me my next goal should be to help the Lunar Champions Rid-Thar spoke of. I should seek them out at the fort known as Grimwatch.",
+		),
+	5092 => array(
+			'name'    => "The Champions at Rawl'kha",
+			'journal' => "Shazah told me to travel to the city of Rawl'kha. There the next steps can be taken to name a new Mane.",
+		),
+	5098 => array(
+			'name'    => "The Trial of Air",
+			'journal' => "",
+		),
+	5102 => array(
+			'name'    => "The Mage's Tower",
+			'journal' => "I've discovered the Aetherian Archive, an enigmatic tower that had previously been sealed. Mighty Mordra and her Undaunted had planned to climb the Archive, but her allies are missing. If I choose to, I could explore it and reach the top before them.",
+		),
+	5103 => array(
+			'name'    => "Mournhold Market Misery",
+			'journal' => "A shipment from Artisans Craftworks in Mournhold never made it to the merchant, Blivisi Beleth.",
+		),
+	5106 => array(
+			'name'    => "Waters Run Foul",
+			'journal' => "",
+		),
+	5107 => array(
+			'name'    => "Supreme Power",
+			'journal' => "Refugees outside of Elinhir told me that the city has been ransacked by mad mages. They sent me to Minerva Lauzon, who is gathering survivors in the sewers.",
+		),
+	5108 => array(
+			'name'    => "Critical Mass",
+			'journal' => "A giant object fell from the heavens when the Mage constellation disappeared. Sara Benele is examining the object, which she calls the \"Mage's Staff.\" She believes the staff is unstable and needs my help to fix it.",
+		),
+	5111 => array(
+			'name'    => "Strange Lexicon",
+			'journal' => "",
+		),
+	5112 => array(
+			'name'    => "Message Unknown",
+			'journal' => "Hermaeus Mora asked me to bring him unique relics from across Craglorn in exchange for knowledge of the Celestials. Perhaps he'll be interested in this strange writing.",
+		),
+	5317 => array(
+			'name'    => "Broken Promises",
+			'journal' => "I found a letter from High-King Emeric offering amnesty to the bandits who reside in the ruins of Watcher's Hold. The <<z:1>> also brought a chest of gold as a sign of the king's good faith.",
+		),
+	5113 => array(
+			'name'    => "Edge of Darkness",
+			'journal' => "Nerien'eth the lich has returned to the Crypt of Hearts to find the ghosts he imprisoned there arrayed against him.",
+		),
+	5115 => array(
+			'name'    => "The Missing Guardian",
+			'journal' => "Hara has decided it's time to do something about the third guardian, the Thief. The Thief has been mysteriously absent except for when she appears to speak to me in private.",
+		),
+	5120 => array(
+			'name'    => "Return to Ash",
+			'journal' => "<<1>> attempted to enter an Oblivion Gate with a group of Undaunted to save his wife, <<2>>. He failed. I'm to help him get her back-if she still lives.",
+		),
+	5130 => array(
+			'name'    => "The Shattered and the Lost",
+			'journal' => "I encountered a Star-Gazer who told me that two High Elf women inside the Crossroad Tavern claim to be aspects of the Celestial Mage. I should talk to them and investigate their claims.",
+		),
+	5151 => array(
+			'name'    => "The Truer Fangs",
+			'journal' => "Safa al-Satakalaam, a priest of Satakal, is at odds with the Scaled Court. Three of her most powerful acolytes have deserted her to worship the Celestial Serpent. She wants me to punish these traitors and deny their power to the Scaled Court.",
+		),
+	5174 => array(
+			'name'    => "Taken Alive",
+			'journal' => "Iron Orcs, who usually don't take prisoners, have started abducting travelers near the Valley of Scars. I encountered a caravan master who survived an attack, though a number of his guards were dragged off by the Orcs.",
+		),
+	5194 => array(
+			'name'    => "Slithering Brood",
+			'journal' => "A woman claiming to be the leader of the Scaled Court requested my help. This Regent Cassipia wants me to help her stop the Scaled Court's process for creating a new type of creature for the Serpent's growing army-the mantikora.",
+		),
+	5222 => array(
+			'name'    => "Kill Enemy Templars",
+			'journal' => "Grand Warlord Zimmeron has authorized a reward for any Pact soldier who slays 20 enemy Templars.",
+		),
+	5228 => array(
+			'name'    => "Kill Enemy Dragonknights",
+			'journal' => "Grand Warlord Zimmeron has authorized a reward for any Pact soldier who slays 20 enemy Dragonknights.",
+		),
+	5230 => array(
+			'name'    => "Kill Enemy Nightblades",
+			'journal' => "Grand Warlord Dortene has authorized a reward for any Covenant soldier who slays 20 enemy Nightblades.",
+		),
+	5231 => array(
+			'name'    => "Kill Enemy Nightblades",
+			'journal' => "Grand Warlord Zimmeron has authorized a reward for any Pact soldier who slays 20 enemy Nightblades.",
+		),
+	5234 => array(
+			'name'    => "Kill Enemy Sorcerers",
+			'journal' => "Grand Warlord Zimmeron has authorized a reward for any Pact soldier who slays 20 enemy Sorcerers.",
+		),
+	5237 => array(
+			'name'    => "Instance Example",
+			'journal' => "",
+		),
+	5243 => array(
+			'name'    => "A Leaf in the Wind",
+			'journal' => "Regent Cassipia has asked me to find her seneschal, Little Leaf, somewhere along the road through the northeast passage. She wants me to offer my aid to Little Leaf and help her foil another one of the Scaled Court's plans.",
+		),
+	5246 => array(
+			'name'    => "Pledge: Banished Cells II",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to delve the Banished Cells beneath Auridon.",
+		),
+	5258 => array(
+			'name'    => "The Time-Lost Warrior",
+			'journal' => "The Celestial Warrior is worried about his champion, Titus Valerius. Lost in time, Titus' memory has begun to break apart. He no longer remembers who he is or his connection to the Warrior. Without his memory, the Warrior can't send him home.",
+		),
+	5273 => array(
+			'name'    => "Pledge: Spindleclutch II",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the cavern called Spindleclutch beneath Glenumbra.",
+		),
+	5274 => array(
+			'name'    => "Pledge: Darkshade Caverns I",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the kwama mine called Darkshade Caverns, which lies beneath Deshaan.",
+		),
+	5282 => array(
+			'name'    => "Pledge: Wayrest Sewers II",
+			'journal' => "Maj al-Ragath of the Undaunted has challenged me to explore the tunnels and caverns that lie beneath Wayrest, the Veteran Wayrest Sewers.",
+		),
+	5283 => array(
+			'name'    => "Pledge: Crypt of Hearts I",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the ruined halls of the Crypt of Hearts. It lies beneath the stones of Rivenspire, a former school for might and magic.",
+		),
+	5284 => array(
+			'name'    => "Pledge: Crypt of Hearts II",
+			'journal' => "Glirion the Redbeard has challenged me to explore the ruins and hallways of Veteran Crypt of Hearts, beneath Rivenspire.",
+		),
+	5288 => array(
+			'name'    => "Pledge: Arx Corinium",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the ruins of Arx Corinium, the old Imperial pile sinking into the marsh of Shadowfen.",
+		),
+	5289 => array(
+			'name'    => "Provisioner Certification",
+			'journal' => "If I can prove I know my way around a cooking fire, <<1>> will certify me as a provisioner.",
+		),
+	5303 => array(
+			'name'    => "Pledge: Volenfell",
+			'journal' => "Glirion the Redbeard of the Undaunted has challenged me to explore the Dwemer tunnels of Volenfell, deep beneath the stones of Bangkorai.",
+		),
+	5310 => array(
+			'name'    => "Clothier Certification",
+			'journal' => "If I can prove I know how to use a needle and thread, <<1>> will certify me as a clothier.",
+		),
+	5313 => array(
+			'name'    => "The Gray Passage",
+			'journal' => "I found a book describing an ancient Nedic hero named Ranev the Coal-Eyed Wanderer and her legendary pilgrimage along \"The Gray Passage.\" According to the text, those who complete the pilgrimage in the allotted time gain the favor of the Stars.",
+		),
+	5316 => array(
+			'name'    => "An Unexpected Fall",
+			'journal' => "",
+		),
+	5320 => array(
+			'name'    => "The Durzog Whistle",
+			'journal' => "",
+		),
+	5321 => array(
+			'name'    => "A Heart of Brass",
+			'journal' => "I met <<1>>, a member of a research expedition looking into the Dwarven ruin of Rkindaleft. While exploring the ruin, they were attacked by strange creatures. I told her I would look for any survivors.",
+		),
+	5326 => array(
+			'name'    => "Quarry Conundrum",
+			'journal' => "Several Orc miners in the Graystone Quarry have vanished under mysterious circumstances. A High Elf researcher likely holds the key to unraveling the mystery.",
+		),
+	5328 => array(
+			'name'    => "Hidden History",
+			'journal' => "I met a researcher named <<1>>. He's interested in learning what fundamentally altered the Orcs in <<2>>.",
+		),
+	5335 => array(
+			'name'    => "Silver Linings",
+			'journal' => "I met a member of the Silver Dawn werewolf hunters who might possibly be the last surviving member of the group. She barely escaped an attack on their headquarters in the Argent Mine by the werewolves of the Magnar Pack.",
+		),
+	5337 => array(
+			'name'    => "A Question of Succession",
+			'journal' => "A mortal wound to <<1>> has thrown Shatul clan into crisis.",
+		),
+	5342 => array(
+			'name'    => "Planemeld Obverse",
+			'journal' => "The Daedra have occupied the White-Gold Tower, and I have agreed to help Moth Priest Terran Arminus retrieve an Elder Scroll left inside the Tower Library.",
+		),
+	5348 => array(
+			'name'    => "To Save a Chief",
+			'journal' => "High Priestess Solgra sent Eveli to recruit me for some sort of secret mission. It appears to involve a rescue, but she wants to give me the details in person.",
+		),
+	5352 => array(
+			'name'    => "Into the Maw",
+			'journal' => "The Khajiit's ancient enemy, the dro-m'Athra, have emerged from the Dark Behind the World and claimed the Temple of Seven Riddles for the Ghost Moon, Lorkhaj.",
+		),
+	5367 => array(
+			'name'    => "AvA Quest Branch Example",
+			'journal' => "",
+		),
+	5374 => array(
+			'name'    => "Clothier Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Clothier goods to an interested organization.",
+		),
+	5377 => array(
+			'name'    => "Blacksmith Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Blacksmith goods to an interested organization.",
+		),
+	5382 => array(
+			'name'    => "Pledge: Imperial City Prison",
+			'journal' => "<<1>> has challenged me to explore the Imperial City Prison in the Imperial City.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	5395 => array(
+			'name'    => "Woodworker Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Woodworker goods to an interested organization.",
+		),
+	5407 => array(
+			'name'    => "Enchanter Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Enchanter glyphs to an interested organization.",
+		),
+	5409 => array(
+			'name'    => "Provisioner Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver food and drink to an interested organization.",
+		),
+	5412 => array(
+			'name'    => "Provisioner Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver food and drink to an interested organization.",
+		),
+	5414 => array(
+			'name'    => "Provisioner Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver food and drink to an interested organization.",
+		),
+	5418 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	5422 => array(
+			'name'    => "Sightseeing TEST",
+			'journal' => "Find the thing for the thing.",
+		),
+	5439 => array(
+			'name'    => "Draugr Dilemma",
+			'journal' => "Draugr from a nearby barrow harass the Orcs of Gloorot's clan. A legendary hero named Narsis Dren agreed to help them, but he has yet to return from the ancient barrow.",
+		),
+	5446 => array(
+			'name'    => "Where Loyalty Lies",
+			'journal' => "Lady Sovelle, an ambassador from Daggerfall, was sent to negotiate a trade agreement with the Orcs. But the fleet was blown off course and wrecked on the ice, and now Lady Sovelle is missing.",
+		),
+	5449 => array(
+			'name'    => "Riekr Revenge",
+			'journal' => "Novice hunters from an Orc clan ran into an unusually organized band of Riekrs. Some hunters were captured, while others went to attempt a rescue and never returned. The hunt leader asked me to find the hunters and acquire the Riekr chief's totem.",
+		),
+	5452 => array(
+			'name'    => "Corgrak's Cairn",
+			'journal' => "<<1>> built a cairn for his grandfather Corgrak, but couldn't retrieve Corgrak's helm from <<2>>.",
+		),
+	5454 => array(
+			'name'    => "Kindred Spirits",
+			'journal' => "<<1>> wants to restore the long-lost reputation of Orc cuisine, but her assistant is missing. I agreed to help her until he arrives.",
+		),
+	5458 => array(
+			'name'    => "In the Name of the King",
+			'journal' => "",
+		),
+	5468 => array(
+			'name'    => "The Anger of a King",
+			'journal' => "King Kurog seems to be in a foul mood, which has affected everyone in the royal court. His shield-wife indicates that tensions at the keep are on the verge of boiling over. I wonder what happened to darken the king's usually boisterous spirits?",
+		),
+	5473 => array(
+			'name'    => "Of Brands and Bones",
+			'journal' => "Worm Cultists are digging up skeletons in the Memorial District and raising them as undead thralls. Some of these skeletons appear to be searching for something underground. I've agreed to help the Drake of Blades find out what they're looking for.",
+		),
+	5474 => array(
+			'name'    => "One Ugly Mug",
+			'journal' => "",
+		),
+	5480 => array(
+			'name'    => "The Bleeding Temple",
+			'journal' => "The minions of Molag Bal are rounding up the Imperial City's clergy and mercilessly torturing them. The Drake of Blades has asked for my help in rescuing one of these prisoners-a priest named Egnatius.",
+		),
+	5481 => array(
+			'name'    => "Blood on a King's Hands",
+			'journal' => "All of the paths into the moot have been sealed except the one through the temple in Orsinium. Chief Bazrag wants me to get to the temple, help High Priestess Solgra, and then reach the moot before Kurog assassinates the clan chiefs.",
+		),
+	5483 => array(
+			'name'    => "The Imperial Standard",
+			'journal' => "I met a scout who serves an Imperial resistance fighter named Captain Caudex. The captain, and a small group of legionary loyalists, have held a garrison at the heart of the Nobles District for nearly two months.",
+		),
+	5484 => array(
+			'name'    => "Of Sentimental Value",
+			'journal' => "One of the survivors of the frozen fleet asked me to keep an eye open for a gold pendant he lost. It was meant to be a gift for his betrothed when they are finally reunited.",
+		),
+	5487 => array(
+			'name'    => "City on the Brink",
+			'journal' => "The Ebonheart Pact is locked in an epic struggle for control of the Imperial City. The forces of Molag Bal hold the city in an iron grip, but enemy bannermen also vie for power. The Pact needs my help.",
+		),
+	5491 => array(
+			'name'    => "Speaking For The Dead",
+			'journal' => "<<1>> has a strange plan to spy on the Worm Cult, but he needs help to see it through.",
+		),
+	5496 => array(
+			'name'    => "City on the Brink",
+			'journal' => "The Aldmeri Dominion is locked in an epic struggle for control of the Imperial City. The forces of Molag Bal hold the city in an iron grip, but enemy bannermen also vie for power. The Dominion needs my help.",
+		),
+	5498 => array(
+			'name'    => "Historical Accuracy",
+			'journal' => "A concerned clerk named <<1>> believes there is a grave threat to the well-being of future generations if the Imperial recordkeeping falls to war.",
+		),
+	5505 => array(
+			'name'    => "Fire in the Hold",
+			'journal' => "The perfidious occupants of Watcher's Hold have regrouped. Even now, they stockpile supplies in preparation for more attacks on the people of Wrothgar. Sergeant Oufa has signed a contract to ensure that the situation is dealt with.",
+		),
+	5506 => array(
+			'name'    => "Scouting the Memorial District",
+			'journal' => "My Alliance needs scouts to secure rally points across the Imperial City.",
+		),
+	5507 => array(
+			'name'    => "Breakfast of the Bizarre",
+			'journal' => "The Dragonstar Caravan Company job broker, Guruzug, has tasked me with retrieving some mysterious eggs from Coldperch Cavern.",
+		),
+	5511 => array(
+			'name'    => "Scouting the Elven Gardens",
+			'journal' => "My Alliance needs scouts to secure rally points across the Imperial City.",
+		),
+	5513 => array(
+			'name'    => "Scouting the Temple District",
+			'journal' => "My Alliance needs scouts to secure rally points across the Imperial City.",
+		),
+	5519 => array(
+			'name'    => "Scholarly Salvage",
+			'journal' => "A caravan bringing books to Orsinium has been waylaid by ogres. The books have likely been torn to pieces. If I'm to reassemble them for their rightful owner, these creatures will need to be dealt with.",
+		),
+	5522 => array(
+			'name'    => "Heresy of Ignorance",
+			'journal' => "The Worm Cult has established a foothold in Wrothgar and seeks to summon a beast called Zandadunoz the Reborn. The king's servant, Arzorag, demands that I disrupt their scheme.",
+		),
+	5523 => array(
+			'name'    => "Snow and Steam",
+			'journal' => "A Khajiit named Birkhu the Bold has stumbled upon a number of dangerous Dwarven mechanisms, including the massive Dwarven Centurion, Nyzchaleft. These machines pose a threat to Wrothgar and must be dealt with.",
+		),
+	5532 => array(
+			'name'    => "The Long Game",
+			'journal' => "<<1>> has concerns about an ambitious merchant lord named <<2>>. She wants to learn if his interests overlap with those of the Thieves Guild.",
+		),
+	5538 => array(
+			'name'    => "Voices in the Dark",
+			'journal' => "Rumors abound that the Dark Brotherhood, assassins of legend, are on the lookout for members worthy to wield their killing blade. This might be why so many innocents have been murdered of late.",
+		),
+	5540 => array(
+			'name'    => "Signed in Blood",
+			'journal' => "To prove myself to the Dark Brotherhood, Speaker Terenus wants me to murder the Imperial noble named Quintus Jarol.",
+		),
+	5543 => array(
+			'name'    => "Shell Game",
+			'journal' => "Walks-Softly needs help dealing with a personal and delicate situation that involves an old friend from his past.",
+		),
+	5547 => array(
+			'name'    => "The Vampire's Prey",
+			'journal' => "Vampire hunter Mel Adrys has come to Hrota Cave to track down the dangerous vampire lord Zalar-do, who has been preying on the people of Anvil. I promised to help him slay the vampire and rescue the victims she kidnapped.",
+		),
+	5548 => array(
+			'name'    => "Debts of War",
+			'journal' => "Razum-dar tracked an Imperial war criminal to the Garlas Agea ruins to make her pay for attacking innocent noncombatants in Bravil. I agreed to help him dispatch this Captain Jena Apinia and recover the items they stole.",
+		),
+	5554 => array(
+			'name'    => "The Dark Moon's Jaws",
+			'journal' => "A Khajiit named Bakhum is worried about a family member who has been writing him unsettling letters about the \"Maw of Lorkhaj.\" He has asked me and eleven friends to help escort him to the Temple of Seven Riddles to make sure everything is all right.",
+		),
+	5572 => array(
+			'name'    => "Heist: The Hideaway",
+			'journal' => "I was tipped off about treasures stashed in The Hideaway. I don't have much time to secure the goods before they're moved, so I should act quickly on this lead.",
+		),
+	5573 => array(
+			'name'    => "Heist: Underground Sepulcher",
+			'journal' => "I was tipped off about treasures stashed in Underground Sepulcher. I don't have much time to secure the goods before they're moved, so I should act quickly on this lead.",
+		),
+	5577 => array(
+			'name'    => "Heist: Secluded Sewers",
+			'journal' => "I was tipped off about treasures stashed in the Secluded Sewers. I don't have much time to secure the goods before they're moved, so I should act quickly on this lead.",
+		),
+	5581 => array(
+			'name'    => "That Which Was Lost",
+			'journal' => "Another note from Velsa. It seems Narahni is in need of assistance.",
+		),
+	5582 => array(
+			'name'    => "Master of Heists",
+			'journal' => "Velsa let me in on one of the perks of being a member of the Thieves Guild: Heists. She's sending me to the guild's heist master to get vetted for work.",
+		),
+	5586 => array(
+			'name'    => "The Lost Pearls",
+			'journal' => "<<1>> runs a finder's business and uses the Thieves Guild to track down his quarries. Helping him will surely reflect well on your skill as a thief, and be lucrative to boot.",
+		),
+	5587 => array(
+			'name'    => "Thrall Cove",
+			'journal' => "<<1>> runs a finder's business and uses the Thieves Guild to track down his quarries. Helping him will surely reflect well on your skill as a thief, and be lucrative to boot.",
+		),
+	5591 => array(
+			'name'    => "Contract: Glenumbra",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5592 => array(
+			'name'    => "Contract: Glenumbra",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5593 => array(
+			'name'    => "Contract: Glenumbra",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5595 => array(
+			'name'    => "A Lesson in Silence",
+			'journal' => "Recent lectures in Kvatch by the Grand Sermonizer of Akatosh and her priests paint the Dark Brotherhood as powerless pretenders not to be feared. Astara wants the Grand Sermonizer dealt with-permanently.",
+		),
+	5596 => array(
+			'name'    => "A Special Request",
+			'journal' => "Governor Fortunata of Anvil has taken a contract with the Dark Brotherhood. She's added a special request, however. She wants to meet with the assassin personally before completing the deal.",
+		),
+	5598 => array(
+			'name'    => "The Wrath of Sithis",
+			'journal' => "The Black Hand has decreed that Lyra the Black Dragon must die for her crimes against the Brotherhood. Green-Venom-Tongue has gone to Knightsgrave to perform the task. Astara has asked me to back him up.",
+		),
+	5600 => array(
+			'name'    => "Filling the Void",
+			'journal' => "Speaker Terenus wants to cut off the head of the group that has been moving against the Dark Brotherhood-he wants us to kill Artorius, the Primate of Akatosh. He wants the death to happen quickly, before the Order of the Hour attacks the Sanctuary.",
+		),
+	5602 => array(
+			'name'    => "City on the Brink",
+			'journal' => "",
+		),
+	5603 => array(
+			'name'    => "Buried Evil",
+			'journal' => "Cleric Arvina in Anvil has posted a bounty for any group brave enough to enter Hrota Cave and destroy Exulus, a wispmother claiming the cave as her own. He also asked that the pauldrons of his fallen warriors be retrieved.",
+		),
+	5604 => array(
+			'name'    => "The Common Good",
+			'journal' => "I accepted a contract to destroy the beast named <<1>>. It's being held captive deep in the ruins of Garlas Agea by the Gold Coast Trading Company. Additionally, the job calls for me to appropriate company ledgers from their operation there.",
+		),
+	5606 => array(
+			'name'    => "The Roar of the Crowds",
+			'journal' => "The arena master has posted an open challenge for warriors brave enough to fight one of the top gladiators to the death in Kvatch Arena.",
+		),
+	5609 => array(
+			'name'    => "Plucking Fingers",
+			'journal' => "Bards and entertainers are failing to pay their dues and badmouthing the guild's members. The Thieves Guild wants to remind them why they pay protection. I should look for games, musical instruments, or children's toys, but any treasures will do.",
+		),
+	5610 => array(
+			'name'    => "Idle Hands",
+			'journal' => "The guild has had laborers around their territory failing to pay their dues and badmouthing its members. The Thieves Guild wants to remind them why they pay protection. I should look for smithing, fishing, or other tools, but any treasures will do.",
+		),
+	5614 => array(
+			'name'    => "Contract: Stormhaven",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5617 => array(
+			'name'    => "Contract: Rivenspire",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5618 => array(
+			'name'    => "Contract: Stormhaven",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5619 => array(
+			'name'    => "Contract: Stormhaven",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5620 => array(
+			'name'    => "Contract: Stormhaven",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5621 => array(
+			'name'    => "Contract: Stormhaven",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5623 => array(
+			'name'    => "Brotherhood Contract",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5625 => array(
+			'name'    => "Contract: Alik'r Desert",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5627 => array(
+			'name'    => "Contract: Alik'r Desert",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5630 => array(
+			'name'    => "Contract: Bangkorai",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5633 => array(
+			'name'    => "Contract: Bangkorai",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5634 => array(
+			'name'    => "Litany of Blood",
+			'journal' => "The Listener sent a mysterious Dark Elf to the Sanctuary to deliver a strange tome by the statue of the Night Mother. She mentioned that it was meant for the killer who tasted death.",
+		),
+	5636 => array(
+			'name'    => "Pledge: Ruins of Mazzatun",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore the Ruins of Mazzatun.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	5639 => array(
+			'name'    => "Idle Hands",
+			'journal' => "The guild has had laborers around their territory failing to pay their dues and badmouthing its members. The Thieves Guild wants to remind them why they pay protection. I should look for smithing, fishing, or other tools, but any treasures will do.",
+		),
+	5640 => array(
+			'name'    => "Idle Hands",
+			'journal' => "The guild has had laborers around their territory failing to pay their dues and badmouthing its members. The Thieves Guild wants to remind them why they pay protection. I should look for smithing, fishing, or other tools, but any treasures will do.",
+		),
+	5641 => array(
+			'name'    => "Plucking Fingers",
+			'journal' => "Bards and entertainers are failing to pay their dues and badmouthing the guild's members. The Thieves Guild wants to remind them why they pay protection. I should look for games, musical instruments, or children's toys, but any treasures will do.",
+		),
+	5642 => array(
+			'name'    => "Plucking Fingers",
+			'journal' => "Bards and entertainers are failing to pay their dues and badmouthing the guild's members. The Thieves Guild wants to remind them why they pay protection. I should look for games, musical instruments, or children's toys, but any treasures will do.",
+		),
+	5643 => array(
+			'name'    => "Under Our Thumb",
+			'journal' => "Some law-abiding citizens have been meddling in the affairs of the Thieves Guild. The guild wants its pickpockets to teach the meddlers to mind their own business. I should look for ornaments, writings, or other oddities, but any treasures will do.",
+		),
+	5644 => array(
+			'name'    => "Under Our Thumb",
+			'journal' => "Some law-abiding citizens have been meddling in the affairs of the Thieves Guild. The guild wants its pickpockets to teach the meddlers to mind their own business. I should look for ornaments, writings, or other oddities, but any treasures will do.",
+		),
+	5645 => array(
+			'name'    => "Crime Spree",
+			'journal' => "Rumors are floating around that the Thieves Guild isn't a threat anymore. The Thieves Guild wants to quash the rumors with a series of conspicuous thefts.",
+		),
+	5647 => array(
+			'name'    => "Crime Spree",
+			'journal' => "Rumors are floating around that the Thieves Guild isn't a threat anymore. The Thieves Guild wants to quash the rumors with a series of conspicuous thefts.",
+		),
+	5649 => array(
+			'name'    => "Contract: Deshaan",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5650 => array(
+			'name'    => "Contract: Deshaan",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5651 => array(
+			'name'    => "Contract: Deshaan",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5652 => array(
+			'name'    => "Contract: Deshaan",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5653 => array(
+			'name'    => "Contract: Eastmarch",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5654 => array(
+			'name'    => "Contract: Auridon",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5658 => array(
+			'name'    => "Contract: Auridon",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5659 => array(
+			'name'    => "Contract: Grahtwood",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5661 => array(
+			'name'    => "Contract: Grahtwood",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5662 => array(
+			'name'    => "Contract: Malabal Tor",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5663 => array(
+			'name'    => "Contract: Malabal Tor",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5665 => array(
+			'name'    => "Contract: Malabal Tor",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5666 => array(
+			'name'    => "Contract: Malabal Tor",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5668 => array(
+			'name'    => "The Cutpurse's Craft",
+			'journal' => "Before the Thieves Guild sends me after more lucrative targets, I need to prove I know how to pick pockets.",
+		),
+	5669 => array(
+			'name'    => "Contract: Eastmarch",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5671 => array(
+			'name'    => "Contract: Grahtwood",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5673 => array(
+			'name'    => "Contract: Greenshade",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5674 => array(
+			'name'    => "Contract: Greenshade",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5675 => array(
+			'name'    => "Contract: Reaper's March",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5676 => array(
+			'name'    => "Contract: Greenshade",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5678 => array(
+			'name'    => "Contract: Reaper's March",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5679 => array(
+			'name'    => "Contract: Reaper's March",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5683 => array(
+			'name'    => "Contract: Shadowfen",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5684 => array(
+			'name'    => "Contract: Shadowfen",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5689 => array(
+			'name'    => "Contract: Stonefalls",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5690 => array(
+			'name'    => "Contract: Stonefalls",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5691 => array(
+			'name'    => "Contract: The Rift",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5693 => array(
+			'name'    => "Contract: Alik'r Desert Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of the Alik'r Desert.",
+		),
+	5694 => array(
+			'name'    => "Contract: Auridon Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Auridon.",
+		),
+	5695 => array(
+			'name'    => "Contract: The Rift",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5697 => array(
+			'name'    => "Contract: The Rift",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5698 => array(
+			'name'    => "Contract: Deshaan Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Deshaan.",
+		),
+	5700 => array(
+			'name'    => "Contract: Glenumbra Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Glenumbra.",
+		),
+	5702 => array(
+			'name'    => "Silk and Shadow",
+			'journal' => "An Argonian Shadowscale named Tsatva-Lan went missing while investigating the lair of a rival group of assassins known as the Silken Ring. His former student, Hides-the-Ashes, asked me to help her track down her mentor and rescue him.",
+		),
+	5703 => array(
+			'name'    => "Contract: Greenshade Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Greenshade.",
+		),
+	5705 => array(
+			'name'    => "Contract: Reaper's March Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Reaper's March.",
+		),
+	5706 => array(
+			'name'    => "Contract: Rivenspire Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Rivenspire.",
+		),
+	5707 => array(
+			'name'    => "Contract: Shadowfen Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Shadowfen.",
+		),
+	5708 => array(
+			'name'    => "Contract: Kvatch",
+			'journal' => "I agreed to be initiated into the ways of the Dark Brotherhood's murder-for-hire contracts. There are no stipulations regarding methods or timing, so I may execute the target at my discretion.",
+		),
+	5711 => array(
+			'name'    => "Contract: The Rift Spree",
+			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of the Rift.",
+		),
+	5713 => array(
+			'name'    => "Sacrament: Trader's Cove",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	5714 => array(
+			'name'    => "Sacrament: Trader's Cove",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	5724 => array(
+			'name'    => "Sacrament: Sewer Tenement",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	5726 => array(
+			'name'    => "Sacrament: Sewer Tenement",
+			'journal' => "I received a contract from the Speaker.",
+		),
+	5733 => array(
+			'name'    => "Ancient Armaments in Bangkorai",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in the Crypt of the Exiles, located in Bangkorai.",
+		),
+	5734 => array(
+			'name'    => "The Spirit Trap in Malabal Tor",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Shael Ruins, located in Malabal Tor.",
+		),
+	5735 => array(
+			'name'    => "Ancestor Wards in Deshaan",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in the Corpse Garden, located in Deshaan.",
+		),
+	5737 => array(
+			'name'    => "Dwarven Relics of Stonefalls",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in the Inner Sea Armature, located in Stonefalls.",
+		),
+	5738 => array(
+			'name'    => "Ayleid Trinkets in Grahtwood",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Wormroot Depths, located in Grahtwood.",
+		),
+	5739 => array(
+			'name'    => "Red Rook Ransack in Glenumbra",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Ilessan Tower, located in Glenumbra.",
+		),
+	5742 => array(
+			'name'    => "The Witchmother's Bargain",
+			'journal' => "I have summoned one of the fabled witchmothers, who are rumored to appear only during the Witches Festival! Legends say these strange beings can be bargained with for power.",
+		),
+	5743 => array(
+			'name'    => "The Oldest Ghost",
+			'journal' => "",
+		),
+	5745 => array(
+			'name'    => "Molten Pearls of Alik'r Desert",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Aldunz, located in Alik'r Desert.",
+		),
+	5746 => array(
+			'name'    => "The Corrupted Stone",
+			'journal' => "The guardian star sign of the Warrior has failed to appear to protect the mortal world from the Serpent. One of the Star-Gazers needs help uncovering what might be happening.",
+		),
+	5747 => array(
+			'name'    => "The Star-Gazers",
+			'journal' => "A Herald has come with tales of a dire threat in the distant land of Craglorn.",
+		),
+	5748 => array(
+			'name'    => "The Warrior's Call",
+			'journal' => "I met a strange Imperial who was being held captive by the Daggerfall Covenant. He believes he knows how to defeat the cursed army of Anka-Ra that has laid siege to Craglorn since the Celestials appeared.",
+		),
+	5754 => array(
+			'name'    => "Waters Run Foul",
+			'journal' => "",
+		),
+	5755 => array(
+			'name'    => "Supreme Power",
+			'journal' => "Refugees outside of Elinhir told me that the city has been ransacked by mad mages. They sent me to Minerva Lauzon, who is gathering survivors in the sewers.",
+		),
+	5756 => array(
+			'name'    => "Critical Mass",
+			'journal' => "A giant object fell from the heavens when the Mage constellation disappeared. Sara Benele is examining the object, which she calls the \"Mage's Staff.\" She believes the staff is unstable and needs my help to fix it.",
+		),
+	5757 => array(
+			'name'    => "Gem of the Stars",
+			'journal' => "",
+		),
+	5758 => array(
+			'name'    => "Strange Lexicon",
+			'journal' => "",
+		),
+	5759 => array(
+			'name'    => "Message Unknown",
+			'journal' => "Hermaeus Mora asked me to bring him unique relics from across Craglorn in exchange for knowledge of the Celestials. Perhaps he'll be interested in this strange writing.",
+		),
+	5762 => array(
+			'name'    => "The Reason We Fight",
+			'journal' => "",
+		),
+	5763 => array(
+			'name'    => "The Shattered and the Lost",
+			'journal' => "I encountered a Star-Gazer who told me that two High Elf women inside the Crossroad Tavern claim to be aspects of the Celestial Mage. I should talk to them and investigate their claims.",
+		),
+	5766 => array(
+			'name'    => "Iron and Scales",
+			'journal' => "I met an Iron Orc shaman who had been banished by a younger rival. What's more, this rival, named Agganor, seems to be responsible for the Iron Orc and Scaled Court alliance. The old shaman wants me to avenge him.",
+		),
+	5769 => array(
+			'name'    => "The Serpent's Fang",
+			'journal' => "A Wood Elf named Little Leaf claims she's on a mission to stop the Iron Orcs from building a troll army. She tried to appeal to the Orc leaders, but diplomacy didn't work. Now she wants me to come along and try a more forceful approach.",
+		),
+	5770 => array(
+			'name'    => "Souls of the Betrayed",
+			'journal' => "A devout knight of the Divines discovered that the dead have awakened in the depths of Skyreach Catacombs. If the legend of Virmaril is true, then a powerful Elven necromancer could be the source of the trouble.",
+		),
+	5774 => array(
+			'name'    => "A Leaf in the Wind",
+			'journal' => "Regent Cassipia has asked me to find her seneschal, Little Leaf, somewhere along the road through the northeast passage. She wants me to offer my aid to Little Leaf and help her foil another one of the Scaled Court's plans.",
+		),
+	5775 => array(
+			'name'    => "Holding Court",
+			'journal' => "Little Leaf has asked me to find her friend, Regent Cassipia, in Dragonstar. She claims that the two of them are working from the inside to stop the Scaled Court.",
+		),
+	5777 => array(
+			'name'    => "The Gray Passage",
+			'journal' => "I found a book describing an ancient Nedic hero named Ranev the Coal-Eyed Wanderer and her legendary pilgrimage along \"The Gray Passage.\" According to the text, those who complete the pilgrimage in the allotted time gain the favor of the Stars.",
+		),
+	5778 => array(
+			'name'    => "Give and Take in Shadowfen",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Atanaz Ruins, located in Shadowfen.",
+		),
+	5779 => array(
+			'name'    => "Icy Intrigue in Eastmarch",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Chill Hollow, located in Eastmarch.",
+		),
+	5780 => array(
+			'name'    => "Pledge: Cradle of Shadows",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore the Cradle of Shadows.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	5787 => array(
+			'name'    => "Dark Anchors in Bangkorai",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Bangkorai.",
+		),
+	5788 => array(
+			'name'    => "Dark Anchors in Stonefalls",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Stonefalls.",
+		),
+	5790 => array(
+			'name'    => "Dark Anchors in Shadowfen",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Shadowfen.",
+		),
+	5791 => array(
+			'name'    => "Dark Anchors in Eastmarch",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Eastmarch.",
+		),
+	5794 => array(
+			'name'    => "Dark Anchors in Grahtwood",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Grahtwood.",
+		),
+	5796 => array(
+			'name'    => "Dark Anchors in Greenshade",
+			'journal' => "<<1>> of the Fighters Guild learned of Worm Cult activity in Greenshade.",
+		),
+	5798 => array(
+			'name'    => "Veiled Darkness in Auridon",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in <<2>>, located in Auridon.",
+		),
+	5799 => array(
+			'name'    => "A Hireling of House Telvanni",
+			'journal' => "Two Argonian slaves named Eoki and Sun-in-Shadow have hatched a plot to win their freedom from the Dark Elves of House Telvanni.",
+		),
+	5802 => array(
+			'name'    => "Inflamed Pyres of the Rift",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Shroud Hearth Barrow, located in the Rift.",
+		),
+	5811 => array(
+			'name'    => "Snow Bear Plunge",
+			'journal' => "<<1>>, a New Life Herald, spoke of <<2>>'s New Life Festival in Eastmarch.",
+		),
+	5819 => array(
+			'name'    => "Madness in Deshaan",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Deshaan.",
+		),
+	5820 => array(
+			'name'    => "Madness in Eastmarch",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Eastmarch.",
+		),
+	5822 => array(
+			'name'    => "Madness in Glenumbra",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Glenumbra.",
+		),
+	5824 => array(
+			'name'    => "Madness in Greenshade",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Greenshade.",
+		),
+	5826 => array(
+			'name'    => "Madness in Reaper's March",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Reaper's March.",
+		),
+	5827 => array(
+			'name'    => "Madness in Rivenspire",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Rivenspire.",
+		),
+	5828 => array(
+			'name'    => "Madness in Shadowfen",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Shadowfen.",
+		),
+	5830 => array(
+			'name'    => "Madness in Stormhaven",
+			'journal' => "<<1>> of the Mages Guild wants me to recover a dangerous relic from Stormhaven.",
+		),
+	5832 => array(
+			'name'    => "Like Blood from a Stone",
+			'journal' => "A Dark Elf businessman named Malur Rethan is convinced that his brother and partner, Benar, is hiding something in the Vassir-Didanat ebony mine. He asked me to investigate.",
+		),
+	5834 => array(
+			'name'    => "The Trial of Five-Clawed Guile",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Reaper's March.",
+		),
+	5836 => array(
+			'name'    => "Bound by Love",
+			'journal' => "Llonas Givyn desires to marry his love, Tirwin. Unfortunately, Tirwin is a slave belonging to Llonas's mother, Faras, who disapproves of the pairing.",
+		),
+	5838 => array(
+			'name'    => "Mud Ball Merriment",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Auridon.",
+		),
+	5839 => array(
+			'name'    => "Signal Fire Sprint",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Alik'r Desert.",
+		),
+	5841 => array(
+			'name'    => "At Any Cost",
+			'journal' => "Mistress Dratha, having woken from a crippling illness, made it clear that she wants to beat death. Seven Daedric relics called the Stones of Cold Fire may be the key to achieving immortality.",
+		),
+	5852 => array(
+			'name'    => "War Orphan's Sojourn",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of <<2>>'s New Life Festival in Grahtwood.",
+		),
+	5853 => array(
+			'name'    => "Culinary Justice in Greenshade",
+			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Naril Nagaia, located in Greenshade.",
+		),
+	5856 => array(
+			'name'    => "Stonetooth Bash",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of the New Life Festival in Betnikh.",
+		),
+	5857 => array(
+			'name'    => "A Smuggler's Last Stand",
+			'journal' => "The feared Camonna Tong crime syndicate attacked a group of people smugglers at Khartag Point. Khartag and a group of slaves retreated to a nearby cavern. They'll be killed if help doesn't arrive soon.",
+		),
+	5859 => array(
+			'name'    => "Rising to Retainer",
+			'journal' => "The recently freed Argonian slave, Sun-in-Shadow, seeks to continue her climb through the ranks of House Telvanni. She needs my help to claim the next title.",
+		),
+	5862 => array(
+			'name'    => "The Scarlet Judge",
+			'journal' => "According to a masked vigilante known as the Scarlet Judge, a corrupt marshal named Hlaren is oppressing the citizens of Suran. I must aid the Judge in rooting out this corruption.",
+		),
+	5864 => array(
+			'name'    => "Nothing to Sneeze At",
+			'journal' => "",
+		),
+	5866 => array(
+			'name'    => "Oxen Free",
+			'journal' => "I've been hired to defeat a nix-ox that has been eating mushrooms the wizard Bravosi Felder is attempting to research. I'm also required to collect samples of the mushrooms while in the area.",
+		),
+	5876 => array(
+			'name'    => "A Dangerous Breed",
+			'journal' => "A mad breedsman named Drovos Nelvayn has created a dangerous new genus of kwama. These insects attack without provocation and resist any attempts at domestication. If the creatures escape, native kwama and the miners that tend them will suffer.",
+		),
+	5879 => array(
+			'name'    => "The New Life Festival",
+			'journal' => "<<1>>, a New Life Herald in Eastmarch, spoke of the New Life Festival celebrated across Tamriel.",
+		),
+	5881 => array(
+			'name'    => "A Hidden Harvest",
+			'journal' => "According to a Khajiiti farmer named Halinjirr, a flock of bandits claimed the cavern of Zainsipilu and seized his stock of valuable crops.",
+		),
+	5882 => array(
+			'name'    => "Ancestral Adversity",
+			'journal' => "Elfbetta, personal assistant to the famed explorer Narsis Dren, informed me that the adventurer is investigating the ancestral tombs that dot the Vvardenfell landscape. They apparently uncovered an old scroll that hints at hidden treasure.",
+		),
+	5883 => array(
+			'name'    => "Hatching a Plan",
+			'journal' => "Another crisis looms in the Gnisis Egg Mine. Kwama workers, driven mad by the tonal magicks of the Dwarven resonator, killed their queen. Without the queen, the colony dies. If I do not act, the mining town of Gnisis will die along with it.",
+		),
+	5886 => array(
+			'name'    => "The Heart's Desire",
+			'journal' => "The scholar, Neramo, has a problem. One of his less savory competitors, Artisan Lenarmen, stole his Dwemer control rod, and seeks to use it to find an ancient artifact. I must stop Lenarmen before he discovers the secret of Nchulefthingth.",
+		),
+	5887 => array(
+			'name'    => "Fleeing the Past",
+			'journal' => "A House Redoran Councilor seeks information regarding his missing daughter, Veya Releth. After exhausting House resources, he's turned to outside help in a concerted effort to find her.",
+		),
+	5889 => array(
+			'name'    => "Blood for Blood",
+			'journal' => "I encountered an escaped captive named Filand who warned me that the Reachmen are kidnapping people to labor at a strange, ancient Forge in this valley. He asked me to help rescue the other prisoners before the Reachmen work them to death, or worse.",
+		),
+	5894 => array(
+			'name'    => "Forging the Future",
+			'journal' => "Strange contraptions have emerged from a rift in the caverns beneath Tel Fyr and killed most of the Telvanni who were growing the tower. The renowned mage Divayth Fyr has asked me to accompany him in investigating this threat.",
+		),
+	5900 => array(
+			'name'    => "Echoes of a Fallen House",
+			'journal' => "",
+		),
+	5901 => array(
+			'name'    => "Objections and Obstacles",
+			'journal' => "With my help, Sun-in-Shadow achieved the rank of retainer in the Great House Telvanni. If she is to help free Eoki, she will need to climb the ranks even further. Unfortunately, becoming an oathman may present a greater challenge than she expects.",
+		),
+	5903 => array(
+			'name'    => "The Memory Stone",
+			'journal' => "An elderly Dark Elf named <<1>> contracted me to transport a memory stone to locations across Vvardenfell. He wishes to archive his memories for future generations.",
+		),
+	5905 => array(
+			'name'    => "Divine Restoration",
+			'journal' => "Archcanon Tarvus revealed himself to be Barbas, the hound of Clavicus Vile. In an effort to locate and take control of Clockwork City, he tricked me into helping him drain Lord Vivec's energy. I need to stop Barbas and recover Lord Vivec's energy.",
+		),
+	5907 => array(
+			'name'    => "Great Zexxin Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the deadly nix-ox called Great Zexxin.",
+		),
+	5908 => array(
+			'name'    => "Tarra-Suj Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the deadly nix-hound called Tarra-Suj.",
+		),
+	5910 => array(
+			'name'    => "Mother Jagged-Claw Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the giant mudcrab called Mother Jagged-Claw.",
+		),
+	5911 => array(
+			'name'    => "Ash-Eater Hunt",
+			'journal' => "Huntmaster Sorim-Nakar of the Erabenimsun Ashlander tribe has given me a challenge. He wants me to hunt the dire ash beetle called Ash-Eater.",
+		),
+	5914 => array(
+			'name'    => "The Magister Makes a Move",
+			'journal' => "My ambitious companion, Sun-in-Shadow, succeeded in replacing Magister Gothren's Mouth, Ralasa Delvi. But even success carries risk in Sadrith Mora. Rumor has it that Magister Gothren leaves no slight unpunished.",
+		),
+	5915 => array(
+			'name'    => "Tribal Troubles",
+			'journal' => "The Ashlanders of Zainab have been run out of Nchuleft, stopping them from scavenging the ruins for items to trade. The Temple wishes to better their relations with the tribe by gathering tools and parts which were left behind.",
+		),
+	5918 => array(
+			'name'    => "A Creeping Hunger",
+			'journal' => "I've been hired by researchers to defeat a Hunger that's protecting a ruin they wish to study. I'm also required to gather relics scattered around the ruin.",
+		),
+	5919 => array(
+			'name'    => "Of Faith and Family",
+			'journal' => "Even though I confirmed that Veya is safe, Councilor Eris continues to press me to arrange a meeting between him and his daughter.",
+		),
+	5921 => array(
+			'name'    => "Springtime Flair",
+			'journal' => "Jester Queen Ayrenn has tasked me with enforcing cheer at her festivities by finding any festival goers who aren't acting the spirit of things and pelting them with flower petals.",
+		),
+	5922 => array(
+			'name'    => "The Heart of a Telvanni",
+			'journal' => "After a harrowing experience at the hands of Magister Gothren, Sun-in-Shadow finds herself at a crossroads-torn between a mage's ambition and the fruits of companionship. Dedicating herself to one may well destroy her chances at the other.",
+		),
+	5923 => array(
+			'name'    => "The Lost Library",
+			'journal' => "The miniature model of Vvardenfell is nearly complete. One section remains missing, which Librarian Bradyn believes is the key to finding the lost Library of Andule.",
+		),
+	5925 => array(
+			'name'    => "Relics of Assarnatamat",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Assarnatamat and gather as many historic relics as I can find.",
+		),
+	5927 => array(
+			'name'    => "Relics of Ashurnabitashpi",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Ashurnabitashpi and gather as many historic relics as I can find.",
+		),
+	5929 => array(
+			'name'    => "Relics of Dushariran",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Dushariran and gather as many historic relics as I can find.",
+		),
+	5930 => array(
+			'name'    => "Relics of Ashalmawia",
+			'journal' => "Numani-Rasi of the Urshilaku Ashlander tribe has requested that I explore the ruins of the Daedric shrine Ashalmawia and gather as many historic relics as I can find.",
+		),
+	5931 => array(
+			'name'    => "A Noble Guest",
+			'journal' => "Jester King Jorunn requested that I steal his bride-to-be away from her minders, so she may join him in his Feast of Fools.",
+		),
+	5933 => array(
+			'name'    => "A Purposeful Writ",
+			'journal' => "With the revelation that Veya's brother is dead, Councilor Eris has asked me to keep his daughter away from Balmora and House Redoran while he looks into what happened. In the meantime, Ashur asked me to talk to Veya.",
+		),
+	5934 => array(
+			'name'    => "Tax Deduction",
+			'journal' => "I have been asked to retrieve taxes and records stolen by bandits.",
+		),
+	5935 => array(
+			'name'    => "The Missing Prophecy",
+			'journal' => "An oracle of Azura named Rhea Opacarius needs my help. Some malevolent force conspires to destroy her order and, perhaps, all of Tamriel.",
+		),
+	5948 => array(
+			'name'    => "Family Reunion",
+			'journal' => "Veya thinks we should go and find Vatola Telem's squad that's scouting the old fort outside of Balmora. She said the fort's overrun with cultists and we need to reach the soldiers before anything happens to them.",
+		),
+	5949 => array(
+			'name'    => "For Glory",
+			'journal' => "I found a pamphlet describing the Battlegrounds, a place where contests of strategy and skill are held daily.",
+		),
+	5950 => array(
+			'name'    => "The Ancestral Tombs",
+			'journal' => "Librarian Bradyn seeks the location of the lost Library of Andule, the secret repository of knowledge of the ancient Great Houses, by building a miniature reproduction of Vvardenfell.",
+		),
+	5953 => array(
+			'name'    => "Let the Games Begin",
+			'journal' => "Battlemaster Rivyn has challenged me to participate in five Battlegrounds matches.",
+		),
+	5954 => array(
+			'name'    => "Test of Mettle",
+			'journal' => "Battlemaster Rivyn has challenged me to show my individual skill as a player by earning Battleground Medals.",
+		),
+	5956 => array(
+			'name'    => "Daedric Disruptions",
+			'journal' => "The Sunken Vaults of Ashalmawia are infested with Worm Cultists performing unclean rites to summon Daedra.",
+		),
+	5958 => array(
+			'name'    => "Unsettled Syndicate",
+			'journal' => "The Camonna Tong are thought to be active in the illegal slave trade at Khartag Point. Their efforts need to be disrupted.",
+		),
+	5961 => array(
+			'name'    => "Planting Misinformation",
+			'journal' => "A faction of bandits in a cavern called Zainsipilu are attempting to grow moon-sugar grass. I've been asked to re-direct their methods through misinformation.",
+		),
+	5962 => array(
+			'name'    => "Kwama Conundrum",
+			'journal' => "Through unknown breeding and feeding practices, the kwama miners of Matus-Akin have been developing a new, more aggressive breed of kwama. Though this breed needs to be contained, the Temple also wishes to learn more about their breeding methods.",
+		),
+	5972 => array(
+			'name'    => "A Masterful Weapon",
+			'journal' => "",
+		),
+	5977 => array(
+			'name'    => "A Masterful Feast",
+			'journal' => "",
+		),
+	5978 => array(
+			'name'    => "Masterful Tailoring",
+			'journal' => "",
+		),
+	5979 => array(
+			'name'    => "Masterful Leatherwear",
+			'journal' => "",
+		),
+	5980 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5982 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5984 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5985 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5986 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5988 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5989 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5990 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	5991 => array(
+			'name'    => "A Masterful Concoction",
+			'journal' => "",
+		),
+	6001 => array(
+			'name'    => "A Friend In Need",
+			'journal' => "<<1>> is willing to give me some property if I help resolve a personal matter.",
+		),
+	6003 => array(
+			'name'    => "Divine Blessings",
+			'journal' => "Lord Vivec wants to reward those who helped restore his power and save Vvardenfell from Barbas and Clavicus Vile. He asked me to help him accomplish that.",
+		),
+	6004 => array(
+			'name'    => "A Late Delivery",
+			'journal' => "<<1>>, a merchant, was late delivering a shipment of rare mushrooms to the Telvanni mage Divayth Fyr. Though she now has the mushrooms, she fears Fyr may still punish her for delivering them late.",
+		),
+	6010 => array(
+			'name'    => "Kill Enemy Wardens",
+			'journal' => "Grand Warlord Sorcalin has authorized a reward for any Dominion soldier who slays 20 enemy Wardens.",
+		),
+	6011 => array(
+			'name'    => "Kill Enemy Wardens",
+			'journal' => "Grand Warlord Zimmeron has authorized a reward for any Pact soldier who slays 20 enemy Wardens.",
+		),
+	6014 => array(
+			'name'    => "Midyear Mayhem",
+			'journal' => "I've run into a group of priests sermonizing about a holiday in Cyrodiil.",
+		),
+	6017 => array(
+			'name'    => "A Masterful Glyph",
+			'journal' => "",
+		),
+	6018 => array(
+			'name'    => "A Masterful Plate",
+			'journal' => "",
+		),
+	6020 => array(
+			'name'    => "A Masterful Shield",
+			'journal' => "",
+		),
+	6021 => array(
+			'name'    => "Masterful Tailoring",
+			'journal' => "",
+		),
+	6022 => array(
+			'name'    => "Masterful Leatherwear",
+			'journal' => "",
+		),
+	6023 => array(
+			'name'    => "Of Knives and Long Shadows",
+			'journal' => "A junior member of the Mages Guild named Skaldir insists that he and his associates have made a significant magical discovery-one that could prove disastrous if left uninvestigated.",
+		),
+	6025 => array(
+			'name'    => "Deepening Shadows",
+			'journal' => "In the wake of the Shadow of Sotha Sil's attack, Gascone has gone missing.  I should find him and see if he has any insight into what the shadow is and why it was in the Brass Fortress.",
+		),
+	6037 => array(
+			'name'    => "Fuel for our Fires",
+			'journal' => "<<1>> requested I gather oil from the water within Clockwork City. I'll also need to gather supplies to create more tools for future collecting.",
+		),
+	6038 => array(
+			'name'    => "A Daily Grind",
+			'journal' => "<<1>> requested I gather a strange material called flash stone which can be turned into a useful powder. I'll also need to collect metal pellets that help in the grinding process.",
+		),
+	6039 => array(
+			'name'    => "Loose Strands",
+			'journal' => "<<1>> requested I gather the metal strands weaved within cloths in Clockwork City. I also need to collect components for an artificial lodestone that is used in harvesting the metal strands.",
+		),
+	6040 => array(
+			'name'    => "A Sticky Solution",
+			'journal' => "<<1>> requested I gather gather the husks of Clockwork trees for an adhesive. I'll also need to collect artificial coal to help keep the sap warm.",
+		),
+	6046 => array(
+			'name'    => "Unto the Dark",
+			'journal' => "The Shadow of Sotha Sil, having claimed the Skeleton Key from the Blackfeather Court, is making his way to the center of the Clockwork City-The Cogitum Centralis. Proctor Luciana and I must find some way to follow him.",
+		),
+	6049 => array(
+			'name'    => "The Shadow Cleft",
+			'journal' => "One of Sotha Sil's Clockwork Apostles, an adjunct named Daro, asked me to use an unusual device called a perception tabulator to find his associate and investigate a mysterious portal that appeared in the Radius.",
+		),
+	6050 => array(
+			'name'    => "To The Clockwork City",
+			'journal' => "",
+		),
+	6052 => array(
+			'name'    => "Lost in the Gloam",
+			'journal' => "According to Gascone, a murder of crows stole a mysterious key from his office in the Clockwork Basilica-the same key that Clavicus Vile and the mysterious shadow cultists seek. I must find this key before the enemy does.",
+		),
+	6054 => array(
+			'name'    => "Pledge: Falkreath Hold",
+			'journal' => "<<1>> of the Undaunted has challenged me to defend the besieged city of Falkreath Hold.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+		),
+	6057 => array(
+			'name'    => "In Search of a Sponsor",
+			'journal' => "The High Elf explorer, Neramo, and his two associates, Kireth and Raynor, have a plan to win the sponsorship of an influential Clockwork Apostle named Varuni Arvel. We'll need her support to become bonafide citizens of the Clockwork City.",
+		),
+	6058 => array(
+			'name'    => "The Halls of Regulation",
+			'journal' => "The Halls of Regulation have begun to break down, threatening the water supply throughout Clockwork City. I've agreed to help <<1>> make repairs by protecting her as we gather parts and fix machinery.",
+		),
+	6059 => array(
+			'name'    => "Tarnished Truffles",
+			'journal' => "Brengolin, the cook in Slag Town, needs some assistance in creating some unconventional cuisine and I have agreed to lend him a hand.",
+		),
+	6061 => array(
+			'name'    => "A Matter of Tenderness",
+			'journal' => "Brengolin, the cook in Slag Town, needs some assistance in creating some unconventional cuisine. His meat stores are presently empty, so I agreed to assist him with restocking.",
+		),
+	6063 => array(
+			'name'    => "The Strangeness of Seht",
+			'journal' => "Divayth Fyr is convinced that something sinister is driving Sotha Sil's recent change of character. He asked me to help him root out the cause of the Clockwork God's new and peculiar behavior.",
+		),
+	6065 => array(
+			'name'    => "Plans of Pestilence",
+			'journal' => "<<1>> has requested my aid in helping him journey through a disease infested temple, located within the hazards of Scalecaller Peak.",
+		),
+	6066 => array(
+			'name'    => "The Precursor",
+			'journal' => "Associate Zanon has asked for my assistance in rebuilding an ancient factotum. Doing so will allow him to better understand the creation of factotums, a mystery to all but Sotha Sil.",
+		),
+	6073 => array(
+			'name'    => "A Shadow Misplaced",
+			'journal' => "The Clockwork Apostles have sent explorers into the Shadow Cleft to find out more about the mysterious realm and the reason it's connected to Clockwork City. One explorer hasn't returned, and I agreed to try to find him.",
+		),
+	6075 => array(
+			'name'    => "The Oscillating Son",
+			'journal' => "Now that I found all of the Precursor's parts, Associate Zanon wishes to present the factotum to his mentor.",
+		),
+	6076 => array(
+			'name'    => "Inciting the Imperfect",
+			'journal' => "I've accepted a contract to defeat Sotha Sil's creation, the Imperfect, in order to test its capabilities. I've also been asked to gather its lost sequence plaques.",
+		),
+	6078 => array(
+			'name'    => "Family Feud",
+			'journal' => "After an argument with his sister Kireth concerning Raynor's behavior during the Shadow Crisis, the young artificer stormed off and vowed to finish exploring the Clockwork City on his own. Kireth asked me to go help him.",
+		),
+	6079 => array(
+			'name'    => "Again Into the Shadows",
+			'journal' => "The Clockwork Apostles sent a member of the Mages Guild through the portal to explore the Shadow Cleft. She hasn't returned.",
+		),
+	6080 => array(
+			'name'    => "A Shadow Malfunction",
+			'journal' => "A Clockwork Apostle entered the Shadow Cleft and hasn't returned. What's worse, he forgot to take his perception tabulator with him.",
+		),
+	6081 => array(
+			'name'    => "Oiling the Fans",
+			'journal' => "The Clockwork Apostles have tasked me to continue maintenance in the Halls of Regulation. I need to grease a ventilation fan using oil found within the repair factotums.",
+		),
+	6088 => array(
+			'name'    => "Changing the Filters",
+			'journal' => "The Clockwork Apostles have tasked me to continue maintenance in the Halls of Regulation. I need to replace several water filters in order to stop the possibility of contamination.",
+		),
+	6090 => array(
+			'name'    => "Saints' Mercy",
+			'journal' => "Three Dark Elf Saints were granted the gift of immortality, in the form of ageless mechanical bodies created by the god Sotha Sil, at the price of their sanity. Now their madness poses a significant threat to the Clockwork City.",
+		),
+	6094 => array(
+			'name'    => "The Broken Brassilisk",
+			'journal' => "I found an inactive brassilisk in the Radius of the Clockwork City with the name \"Frynga\" carved into its jaw. If I find Frynga and return her mechanical pet, perhaps she will reward me.",
+		),
+	6095 => array(
+			'name'    => "The Registrar's Request",
+			'journal' => "I found a sequence plaque on the road in the Clockwork City Radius. An engraving on the plaque asks that it be returned to the Clockwork Registrar in the Brass Fortress.",
+		),
+	6097 => array(
+			'name'    => "Through a Veil Darkly",
+			'journal' => "I received an enchanted stone from the Mages Guild that contains an important message from Vanus Galerion.",
+		),
+	6098 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	6099 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	6101 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	6102 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	6103 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	6105 => array(
+			'name'    => "Alchemist Writ",
+			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver alchemical products to an interested organization.",
+		),
+	6107 => array(
+			'name'    => "A Matter of Leisure",
+			'journal' => "The Bursar of Tribute demands compensation for the Blackfeather Court from mortals who refuse to allow them to play with their games and toys.",
+		),
+	6110 => array(
+			'name'    => "Glitter and Gleam",
+			'journal' => "The Bursar of Tributes seeks ornate items to add to the Blackfeather Court's hoard.",
+		),
+	6130 => array(
+			'name'    => "Room to Spare",
+			'journal' => "Felande Demarie, a friendly landlord, is looking for a tenant of good reputation to give her inn room to.",
+		),
+	6168 => array(
+			'name'    => "Ache for Cake",
+			'journal' => "I received a voucher for a special-occasion cake from the renowned master baker, Chef Donolon.",
+		),
+);
+
