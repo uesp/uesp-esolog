@@ -102,6 +102,8 @@ class EsoLogParser
 	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1519327044;
 	
 	public $db = null;
+	public $dbSlave = null;
+	private $dbSlaveInitialized  = false;
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
@@ -141,10 +143,13 @@ class EsoLogParser
 	
 	public $startMicroTime = 0;
 	
+	public $waitForSlave = true;
 	public $dbWriteCount = 0;
-	public $dbWriteCountPeriod = 1000;
-	public $dbWriteNextSleepCount = 1000;
+	public $dbWriteCountPeriod = 100;
+	public $dbWriteNextSleepCount = 100;
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
+	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced
+	public $maxSlaveLagChecks = 10;
 	
 	const FIELD_INT = 1;
 	const FIELD_STRING = 2;
@@ -893,6 +898,8 @@ class EsoLogParser
 		$this->salesData->startMicroTime = $this->startMicroTime;
 		
 		$this->initDatabaseWrite();
+		if ($this->waitForSlave) $this->initSlaveDatabase();
+		
 		$this->setInputParams();
 		$this->parseInputParams();
 		$this->readParseIndexFile();
@@ -2681,6 +2688,23 @@ class EsoLogParser
 	
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
+	
+		return true;
+	}
+	
+	
+	private function initSlaveDatabase ()
+	{
+		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
+	
+		if ($this->dbSlaveInitialized) return true;
+	
+		$this->dbSlave = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
+		if ($this->dbSlave->connect_error) return $this->reportError("Could not connect to mysql slave database!");
+	
+		$this->dbSlaveInitialized = true;
+		
+		$this->salesData->dbSlave = $this->dbSlave;
 	
 		return true;
 	}
@@ -4972,6 +4996,8 @@ class EsoLogParser
 			
 			$result = $this->db->query($query);
 			if ($result === false) return $this->reportError("Failed to create itemIdCheck record!");
+			
+			$this->dbWriteCount++;
 		}
 		
 		return true;
@@ -5773,6 +5799,8 @@ class EsoLogParser
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return $this->reportLogParseError("Failed to clear cpSkillDescriptions table!");
 		
+		$this->dbWriteCount += 3;
+		
 		return true;
 	}
 	
@@ -5934,6 +5962,8 @@ class EsoLogParser
 		$this->lastQuery = "DELETE FROM achievementCriteria;";
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return $this->reportLogParseError("Failed to clear achievementCriteria table!");
+		
+		$this->dbWriteCount += 3;
 		
 		$this->logInfos['lastAchievementUpdate'] = date("Y-M-d H:i:s");
 				
@@ -6410,6 +6440,55 @@ class EsoLogParser
 	}
 	
 	
+	public function WaitForSlaveDatabase()
+	{
+
+		if (!$this->waitForSlave)
+		{
+			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
+			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+			sleep($this->dbWriteCountSleep);
+			return;
+		}
+		
+		$checkCount = 0;
+		$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...checking slave lag...");
+		$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+		
+		do {
+			$query = "SHOW SLAVE STATUS;";
+			$result = $this->dbSlave->query($query);
+			if ($result === false) return $this->reportLogParseError("Failed to query database slave for status!");
+			
+			$slaveData = $result->fetch_assoc();
+			
+			$query = "SHOW MASTER STATUS;";
+			$result = $this->db->query($query);
+			if ($result === false) return $this->reportLogParseError("Failed to query database master for status!");
+			
+			$masterData = $result->fetch_assoc();
+			
+			$masterPos = $masterData['Position'];
+			$slavePos = $slaveData['Exec_Master_Log_Pos'];
+			$slaveLag = $slaveData['Seconds_Behind_Master'];
+
+			
+			if ($slaveLag < $this->maxAllowedSlaveLag) 
+			{
+				$this->log("Slave database lag is $slaveLag sec...resuming writes!");
+				return true;
+			}
+			
+			$this->log("Slave lag is $slaveLag. Master position is $masterPos. Slave position is $slavePos.");
+			$this->log("Waiting for slave database lag to be under {$this->maxAllowedSlaveLag} sec!");
+			sleep($this->dbWriteCountSleep);
+		} while ($checkCount < $this->maxSlaveLagChecks);
+		
+		$this->log("Exceeded {$this->maxSlaveLagChecks} slave database lag checks...resuming writes!");
+		return true;
+	}
+	
+	
 	public function checkLanguage ($logEntry)
 	{
 		$language = $logEntry['lang'];
@@ -6632,9 +6711,7 @@ class EsoLogParser
 		
 		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount)
 		{
-			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
-			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
-			sleep($this->dbWriteCountSleep);
+			$this->WaitForSlaveDatabase();
 		}
 		
 		$user = &$this->getUserRecord($logEntry['userName']);
