@@ -22,6 +22,7 @@ class EsoSalesDataParser
 	public $server = "NA";
 	
 	public $db = null;
+	public $dbSlave = null;
 	public $dbLog = null;
 	private $dbReadInitialized  = false;
 	private $dbWriteInitialized = false;
@@ -41,10 +42,13 @@ class EsoSalesDataParser
 	
 	public $startMicroTime = 0;
 	
+	public $waitForSlave = true;
 	public $dbWriteCount = 0;
-	public $dbWriteCountPeriod = 1000;
-	public $dbWriteNextSleepCount = 1000;
+	public $dbWriteCountPeriod = 100;
+	public $dbWriteNextSleepCount = 100;
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
+	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced
+	public $maxSlaveLagChecks = 10;
 	
 	
 	public function __construct ()
@@ -1490,10 +1494,9 @@ class EsoSalesDataParser
 		
 		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount)
 		{
-			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
-			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
-			sleep($this->dbWriteCountSleep);
+			$this->WaitForSlaveDatabase();
 		}
+		
 	}
 	
 	
@@ -1501,6 +1504,55 @@ class EsoSalesDataParser
 	{
 		$this->log("Found {$this->localNewSalesCount} new sales and {$this->localNewItemCount} new items!");
 	}
+	
+	
+	public function WaitForSlaveDatabase()
+	{
+
+		if (!$this->waitForSlave)
+		{
+			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
+			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+			sleep($this->dbWriteCountSleep);
+			return;
+		}
+		
+		$checkCount = 0;
+		$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...checking slave lag...");
+		$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+		
+		do {
+			$query = "SHOW SLAVE STATUS;";
+			$result = $this->dbSlave->query($query);
+			if ($result === false) return $this->reportError("Failed to query database slave for status!");
+			
+			$slaveData = $result->fetch_assoc();
+			
+			$query = "SHOW MASTER STATUS;";
+			$result = $this->db->query($query);
+			if ($result === false) return $this->reportError("Failed to query database master for status!");
+			
+			$masterData = $result->fetch_assoc();
+			
+			$masterPos = $masterData['Position'];
+			$slavePos = $slaveData['Exec_Master_Log_Pos'];
+			$slaveLag = $slaveData['Seconds_Behind_Master'];
+			
+			if ($slaveLag < $this->maxAllowedSlaveLag) 
+			{
+				$this->log("Slave database lag is $slaveLag sec...resuming writes!");
+				return true;
+			}
+			
+			$this->log("Slave lag is $slaveLag. Master position is $masterPos. Slave position is $slavePos.");
+			$this->log("Waiting for slave database lag to be under {$this->maxAllowedSlaveLag} sec!");
+			sleep($this->dbWriteCountSleep);
+		} while ($checkCount < $this->maxSlaveLagChecks);
+		
+		$this->log("Exceeded {$this->maxSlaveLagChecks} slave database lag checks...resuming writes!");
+		return true;
+	}
+	
 	
 };
 
