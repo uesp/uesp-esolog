@@ -140,13 +140,13 @@ class EsoLogSubmitter
 	
 	if ($this->fileError != 0)
 	{
-		$output = "<b>Error: Failed to upload file!</b><br />";
+		$output = "<b>Error: Failed to upload file!</b><br /><br/>";
 		$output .= $this->fileErrorMsg . "<br />";
 		$output .= "Error Code: " . $this->fileError . "<br />";
 	}
 	else
 	{
-		$output  = "<b>Successfully uploaded file!</b><br />";
+		$output  = "<b>Successfully uploaded file!</b><br /><br/>";
 		$output .= "Filename: {$this->fileName}<br />";
 		$output .= "File Size: {$this->fileSize} bytes<br />";
 		$output .= "Local Filename: {$this->fileMoveName}<br />";
@@ -223,7 +223,7 @@ class EsoLogSubmitter
 	</td>
 </tr><tr>
 	<td>
-		<input type="submit" id="submitbutton"  onclick="return OnSubmitEsoMMData();"/>
+		<input type="submit" id="submitbutton" onclick="return OnSubmitEsoMMData();"/>
 	</td>
 	
 </table>
