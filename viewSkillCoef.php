@@ -199,14 +199,15 @@ class CEsoViewSkillCoef
 	
 	public function ShouldOutputCoef($a, $b, $c, $R2)
 	{
+		if ($a == 0) return false; 
+			
 		$ratio = $b / $a;
 		
 		if ($ratio < $this->minRatio) return false;
 		if ($ratio > $this->maxRatio) return false;
 		
 		if ($R2 < $this->minR2) return false;
-		if ($R2 > $this->maxR2) return false;
-		
+		if ($R2 > $this->maxR2) return false;		
 		
 		return true;
 	}
@@ -249,7 +250,11 @@ class CEsoViewSkillCoef
 			$type = $skill['type'.$i];
 			if ($type == -1) $type = $skill['mechanic'];
 			$typeName = GetEsoCustomMechanicTypeText($type);
-			$ratio = sprintf("%0.2f", $b / $a);
+			
+			if ($a == 0)
+				$ratio = "NAN";
+			else
+				$ratio = sprintf("%0.2f", $b / $a);
 			
 			$statNames = $this->GetStatNames($type);
 			$name1 = $statNames[0];
