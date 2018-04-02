@@ -44,8 +44,8 @@ class EsoSalesDataParser
 	
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
-	public $dbWriteCountPeriod = 100;
-	public $dbWriteNextSleepCount = 100;
+	public $dbWriteCountPeriod = 200;
+	public $dbWriteNextSleepCount = 200;
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
 	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced
 	public $maxSlaveLagChecks = 10;
@@ -1520,6 +1520,7 @@ class EsoSalesDataParser
 		$checkCount = 0;
 		$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...checking slave lag...");
 		$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+		sleep($this->dbWriteCountSleep);
 		
 		do {
 			$query = "SHOW SLAVE STATUS;";
