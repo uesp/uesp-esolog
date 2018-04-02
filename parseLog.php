@@ -145,8 +145,12 @@ class EsoLogParser
 	
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
-	public $dbWriteCountPeriod = 100;
-	public $dbWriteNextSleepCount = 100;
+	public $dbReadCount = 0;
+	public $dbReadCountPeriod = 500;
+	public $dbReadNextSleepCount = 500;
+	public $dbWriteCountPeriod = 200;
+	public $dbWriteNextSleepCount = 200;
+	public $dbReadCountSleep = 5;		// Period in seconds for sleep()
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
 	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced
 	public $maxSlaveLagChecks = 10;
@@ -1071,6 +1075,8 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to load record $id from $table table!");
 		
+		++$this->dbReadCount;
+		
 		if ($result->num_rows === 0) return $this->createNewRecordID($idField, $id, $fieldDef);
 		
 		$result->data_seek(0);
@@ -1089,6 +1095,8 @@ class EsoLogParser
 	
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to load record $id from $table table!");
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows === 0) return $this->createNewRecordID2($idField, $id, $idField2, $id2, $fieldDef);
 	
@@ -1106,6 +1114,8 @@ class EsoLogParser
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to load records from logInfo table!");
+		
+		++$this->dbReadCount;
 		
 		$records = array();
 		if ($result->num_rows === 0) return true;
@@ -2431,6 +2441,8 @@ class EsoLogParser
 			return null;
 		}
 		
+		++$this->dbReadCount;
+		
 		if ($result->num_rows === 0) return $this->addNewUserRecord($userName);
 		
 		$result->data_seek(0);
@@ -2497,6 +2509,8 @@ class EsoLogParser
 			$this->reportError("Failed to get data for ipAddress '{$ipAddress}'!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows === 0) return $this->addNewIPAddressRecord($ipAddress);
 		
@@ -2626,6 +2640,8 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		
 		if ($result === false) return $this->reportLogParseError("Failed to check logEntry table!");
+		
+		++$this->dbReadCount;
 		return ($result->num_rows > 0);
 	}
 	
@@ -2870,6 +2886,8 @@ class EsoLogParser
 			if ($result->num_rows == 0) return "";
 		}
 		
+		++$this->dbReadCount;
+		
 		$row = $result->fetch_assoc();
 		$name =  $row['name'];
 		
@@ -2898,6 +2916,8 @@ class EsoLogParser
 				
 			if ($result->num_rows == 0) return false;
 		}
+		
+		++$this->dbReadCount;
 	
 		$row = $result->fetch_assoc();
 		return $row;
@@ -4036,6 +4056,8 @@ class EsoLogParser
 			return null;
 		}
 		
+		++$this->dbReadCount;
+		
 		if ($result->num_rows == 0) return null;
 		
 		$row = $result->fetch_assoc();
@@ -4059,6 +4081,8 @@ class EsoLogParser
 			return null;
 		}
 		
+		++$this->dbReadCount;
+		
 		if ($result->num_rows == 0) return null;
 		
 		$row = $result->fetch_assoc();
@@ -4079,6 +4103,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve item!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 		
 		if ($result->num_rows == 0) return null;
 		
@@ -4101,6 +4127,8 @@ class EsoLogParser
 			return null;
 		}
 		
+		++$this->dbReadCount;
+		
 		if ($result->num_rows == 0) return null;
 		
 		$row = $result->fetch_assoc();
@@ -4122,6 +4150,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve old quest stage!");
 			return null;
 		}
+
+		++$this->dbReadCount;
 		
 		if ($result->num_rows == 0) return null;
 		
@@ -4143,6 +4173,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve quest!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) 
 		{
@@ -4169,6 +4201,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve quest step!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4192,6 +4226,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve quest reward!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 		
 		if ($result->num_rows == 0) return null;
 		
@@ -4220,6 +4256,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve quest condition!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4240,6 +4278,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve quest item!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4262,6 +4302,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve old quest stage by type!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4283,6 +4325,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve NPC!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 		
 		if ($result->num_rows == 0) return null;
 		
@@ -4307,6 +4351,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve NPC loot!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4328,6 +4374,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve recipe!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4351,6 +4399,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve ingredient!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 	
 		if ($result->num_rows == 0) return null;
 	
@@ -4399,6 +4449,8 @@ class EsoLogParser
 			$this->reportError("Failed to retrieve location!");
 			return null;
 		}
+		
+		++$this->dbReadCount;
 		
 		//$this->reportError("query({$result->num_rows}): $query");
 		if ($result->num_rows == 0) return null;
@@ -4503,6 +4555,8 @@ class EsoLogParser
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to retrieve book locations!");
+		
+		++$this->dbReadCount;
 		
 		return ($result->num_rows > 0);
 	}
@@ -6442,18 +6496,22 @@ class EsoLogParser
 	
 	public function WaitForSlaveDatabase()
 	{
+		$origWriteCount = $this->dbWriteNextSleepCount;
+		$origReadCount = $this->dbReadNextSleepCount;
+		
+		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount) $this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+		if ($this->dbReadCount >= $this->dbReadNextSleepCount) $this->dbReadNextSleepCount = $this->dbReadCount + $this->dbReadCountPeriod;
 
 		if (!$this->waitForSlave)
 		{
-			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
-			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+			$this->log("Exceeded $origWriteCount DB writes or $origReadCount DB reads...sleeping for {$this->dbWriteCountSleep} sec...");
 			sleep($this->dbWriteCountSleep);
 			return;
 		}
 		
 		$checkCount = 0;
-		$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...checking slave lag...");
-		$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+		$this->log("Exceeded $origWriteCount DB writes or $origReadCount DB reads...checking slave lag...");
+		sleep($this->dbWriteCountSleep);
 		
 		do {
 			$query = "SHOW SLAVE STATUS;";
@@ -6709,7 +6767,7 @@ class EsoLogParser
 		
 		if (!$this->isValidLogEntry($logEntry)) return false;
 		
-		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount)
+		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount || $this->dbReadCount >= $this->dbReadNextSleepCount)
 		{
 			$this->WaitForSlaveDatabase();
 		}
