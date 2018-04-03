@@ -171,6 +171,7 @@ class EsoViewSalesData
 
 	public function __construct ()
 	{
+		global $ESO_ITEMTRAIT15_TEXTS;
 		global $ESO_ITEMTRAIT10_TEXTS, $ESO_ITEMTYPE_TEXTS, $ESO_ITEMEQUIPTYPE_TEXTS;
 		global $ESO_ITEMARMORTYPE_TEXTS, $ESO_ITEMWEAPONTYPE_TEXTS, $ESO_ITEMQUALITY_TEXTS;
 		
@@ -183,7 +184,7 @@ class EsoViewSalesData
 		$this->ESOVSD_HTML_GUILDS_TEMPLATE = __DIR__."/templates/esosales_guilds_template.txt";
 		$this->ESOVSD_HTML_GUILDS_TEMPLATE_EMBED = __DIR__."/templates/esosales_guilds_embed_template.txt";
 		
-		self::$ESOVSD_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT10_TEXTS);
+		self::$ESOVSD_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT15_TEXTS);
 		self::$ESOVSD_QUALITIES = self::MakeUniqueArray($ESO_ITEMQUALITY_TEXTS, true);
 		self::$ESOVSD_ITEMTYPES = self::MakeUniqueArray($ESO_ITEMTYPE_TEXTS);
 		self::$ESOVSD_EQUIPTYPES = self::MakeUniqueArray($ESO_ITEMEQUIPTYPE_TEXTS);
@@ -476,9 +477,9 @@ class EsoViewSalesData
 	
 	public function GetItemTraitValue($text)
 	{
-		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTRAIT10_TEXTS;
+		global $ESO_ITEMTRAIT_TEXTS, $ESO_ITEMTRAIT10_TEXTS, $ESO_ITEMTRAIT15_TEXTS;
 	
-		$value = array_search($text, $ESO_ITEMTRAIT10_TEXTS);
+		$value = array_search($text, $ESO_ITEMTRAIT15_TEXTS);
 	
 		if ($value === FALSE) return -1;
 		return $value;
