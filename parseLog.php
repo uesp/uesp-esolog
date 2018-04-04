@@ -117,8 +117,10 @@ class EsoLogParser
 	public $currentParseLine = 0;
 	public $currentParseFile = "";
 	public $startFileIndex = -1;
+	public $startFileLine = 0;
 	public $usingManualStartIndex = false;
-	public $lastFileIndexParsed;
+	public $lastFileIndexParsed = 0;
+	public $lastFileLineParsed = 0;
 	
 	public $duplicateCount = 0;
 	public $fileDuplicateCount = 0;
@@ -7077,6 +7079,7 @@ class EsoLogParser
 		$this->log("Parsing entire log file $logFilename...");
 		
 		$this->lastFileIndexParsed = $fileIndex;
+		$this->lastFileLineParsed = 0;
 		
 		$logEntries = array();
 		$entryCount = 0;
@@ -7099,6 +7102,12 @@ class EsoLogParser
 			$totalLineCount += $lineCount;
 			$this->currentParseLine = $totalLineCount;
 			
+			if ($this->startFileIndex == $fileIndex && $totalLineCount < $this->startFileLine)
+			{
+				continue;
+			}
+		
+			
 			$entryLog = $this->parseLogEntry($value);
 			
 			if (!$this->handleLogEntry($entryLog))
@@ -7115,7 +7124,9 @@ class EsoLogParser
 			}
 		}
 		
-		$this->log("\tParsed {$entryCount} log entries from file.");
+		$this->lastFileLineParsed = $totalLineCount;
+		
+		$this->log("\tParsed {$entryCount} log entries in {$totalLineCount} lines from file.");
 		$this->log("\tFound {$errorCount} entries with errors.");
 		$this->log("\tSkipped {$this->fileDuplicateCount} duplicate log entries.");
 		return TRUE;
@@ -7163,7 +7174,7 @@ class EsoLogParser
 		
 		if ($this->lastFileIndexParsed > 0 && !$this->usingManualStartIndex)
 		{
-			$this->writeParseIndexFile($this->lastFileIndexParsed);
+			$this->writeParseIndexFile($this->lastFileIndexParsed, $this->lastFileLineParsed);
 		}
 		
 		$this->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
@@ -7249,16 +7260,19 @@ class EsoLogParser
 		
 		if ($indexData !== false && !$this->usingManualStartIndex)
 		{
-			$this->startFileIndex = (int) $indexData;
-			$this->log("Starting log parsing at automatic file index {$this->startFileIndex}.");
+			$splitData = explode(",", $indexData);
+			$this->startFileIndex = intval($splitData[0]);
+			$this->startFileLine = intval($splitData[1]);
+			$this->log("Starting log parsing at automatic file index {$this->startFileIndex} line {$this->startFileLine}.");
 		}
 		
 	}
 	
 	
-	private function writeParseIndexFile ($index)
+	private function writeParseIndexFile ($index, $line)
 	{
-		file_put_contents($this->logFilePath . self::ELP_PARSE_INDEXFILE, (string)$index);
+		$output = "$index, $line";
+		file_put_contents($this->logFilePath . self::ELP_PARSE_INDEXFILE, $output);
 	}
 	
 	
@@ -7267,6 +7281,7 @@ class EsoLogParser
 		if (array_key_exists('start', $this->inputParams))
 		{
 			$this->startFileIndex = (int) $this->inputParams['start'];
+			$this->startFileLine = 0;
 			$this->usingManualStartIndex = true;
 			$this->log("Starting log parsing at manual file index {$this->startFileIndex}.");
 		}
