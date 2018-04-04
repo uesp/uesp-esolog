@@ -545,6 +545,7 @@ $ESO_ITEMTYPE_TEXTS = array(
 		28 => "Flavoring",
 		4 => "Food",
 		61 => "Furnishing",
+		62 => "Furnishing Material",
 		21 => "Armor Glyph",
 		26 => "Jewelry Glyph",
 		20 => "Weapon Glyph",
