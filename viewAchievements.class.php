@@ -137,6 +137,8 @@ class CEsoViewAchievements
 	
 	public function GetCharAchievementData($achId)
 	{
+		if ($this->characterData == null) return array(0, 0);
+		
 		$charAchData = $this->GetCharStatField("Achievement:$achId", "");
 		if ($charAchData == "") return false;
 	
@@ -292,12 +294,12 @@ class CEsoViewAchievements
 			}
 			else
 			{
-				$displayIsKnown = true;
+				$displayIsKnown = false;
 			}
 		}
 		
 		$knownClass = "ecdAchUnknown";
-		if ($displayIsKnown) $knownClass = "";
+		if ($displayIsKnown || $this->characterData == null) $knownClass = "";
 		
 		$achData = $ESO_ACHIEVEMENT_DATA[$displayId];
 		
@@ -361,14 +363,10 @@ class CEsoViewAchievements
 			
 			$charAchData = $this->GetCharAchievementData($achId);
 			$isKnown = false;
-			
-			if ($charAchData)
-			{
-				$isKnown = $charAchData[1] > 0;
-			}
-			
+			if ($charAchData) $isKnown = $charAchData[1] > 0;
+						
 			$knownClass = "ecdAchUnknown";
-			if ($isKnown || $charAchData == null) $knownClass = "ecdAchKnown";
+			if ($isKnown || $this->characterData == null) $knownClass = "ecdAchKnown";
 			
 			if ($achData['title'] != null)
 			{
@@ -514,7 +512,7 @@ class CEsoViewAchievements
 			$value = $criteria['value'];
 			$progress = $progressData[$index] ? : 0;
 			
-			$knownClass = $charAchData ? "ecdAchUnknown" : "ecdAchKnown";
+			$knownClass = (($charAchData && $charAchData[1] > 0) || $this->characterData == null) ? "ecdAchKnown" : "ecdAchUnknown";
 			$img = "";
 				
 			if ($value == 1)
@@ -526,7 +524,7 @@ class CEsoViewAchievements
 			}
 			else
 			{
-				if ($charAchData == null) $progress = $value;
+				if (!$charAchData) $progress = $value;
 				if ($progress >= $value) $knownClass = "";
 				
 				$percentWidth = 100;
@@ -608,7 +606,7 @@ class CEsoViewAchievements
 			
 			if ($charAchData && $charAchData[1] > 0) $isKnown = true;
 			$completeText = "Not Completed";
-			$knownClass = $charAchData ? "ecdAchUnknown" : "ecdAchKnown";
+			$knownClass = (($charAchData && $charAchData[1] > 0) || $this->characterData == null) ? "ecdAchKnown" : "ecdAchUnknown";
 				
 			if ($isKnown)
 			{
@@ -620,7 +618,7 @@ class CEsoViewAchievements
 			$title = $this->escape($achData['name'] . "\nPoints " . $achData['points'] . "\n" . $achData['desc'] . "\n" . $completeText);
 				
 			$iconUrl = MakeEsoIconLink($achData['icon']);
-			$output .= "<div class='ecdAchListItem'>";
+			$output .= "<div class='ecdAchListItem $knownClass'>";
 			$output .= "<div class='ecdAchSmallIconFrame'><img title=\"$title\" src='$iconUrl' class='$knownClass'></div>";
 			$output .= "<br/>{$achData['points']}";
 			$output .= "</div>";
