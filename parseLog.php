@@ -7095,7 +7095,7 @@ class EsoLogParser
 		
 		$totalLineCount = 0;
 		$nextLineUpdate = 1000;
-		if ($this->startFileIndex == $fileIndex) $nextLineUpdate = intval($this->startFileLine/1000) + 1000;
+		if ($this->startFileIndex == $fileIndex) $nextLineUpdate = intval($this->startFileLine/1000)*1000 + 1000;
 		
 		foreach ($logEntries[1] as $key => $value)
 		{
