@@ -62,6 +62,8 @@ class CEsoViewNpcLoot
 	public function ReportError ($errorMsg)
 	{
 		error_log($errorMsg);
+		error_log("Last Query: " . $this->lastQuery);
+		error_log("DB Error: " . $this->db->error);
 	
 		return false;
 	}
@@ -105,6 +107,8 @@ class CEsoViewNpcLoot
 				$this->viewGroup = "Container";
 			else if ($group == "provision")
 				$this->viewGroup = "Provisioning Container";
+			else if ($group == "alchemysurvey")
+				$this->viewGroup = "Alchemy Survey";
 				
 		}
 		
@@ -199,20 +203,22 @@ class CEsoViewNpcLoot
 					'itemId' => array(71198),
 					'level' => array(1),
 					'quality' => array(1),
-					'extraQnt' => array(126),
-					'extraValue' => 500,
+					'extraQnt' => array(129),
+					'extraValue' => 120,
 			),
 			"Clothier Survey:" => array(
 					'itemId' => array(71200, 71239),
 					'level' => array(1, 1),
 					'quality' => array(1, 1),
-					'extraQnt' => array(84, 58),
+					'extraQnt' => array(88, 73),
+					'extraValue' => 150,
 			),
 			"Woodworker Survey:" => array(
 					'itemId' => array(71199),
 					'level' => array(1),
 					'quality' => array(1),
-					'extraQnt' => array(126),
+					'extraQnt' => array(118),
+					'extraValue' => 100,
 			),
 			"Alchemist Survey:" => array(
 					'itemId' => array(30157, 30160, 30164, 30161, 30162, 30158, 30163, 30159, 42871, 42869),
@@ -221,7 +227,7 @@ class CEsoViewNpcLoot
 					'extraQnt' => array(3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 3.75, 1.2, 1.2),
 			),
 			"Enchanter Survey:" => array(
-					'value' => 575,
+					'value' => 3200,
 			),
 			"Shipment of Calcinium Ingots" => array(
 					'itemId' => array(46127),
@@ -691,6 +697,22 @@ class CEsoViewNpcLoot
 	}
 	
 	
+	public function GetNpcGroupAlchemySurveyQuery()
+	{
+		$query = "SELECT id FROM npc WHERE ";
+		$query .= "name='Lush Columbine' or ";
+		$query .= "name='Lush Mountain Flower' or ";
+		$query .= "name='Lush Corn Flower' or ";
+		$query .= "name='Lush Dragonthorn' or ";
+		$query .= "name='Lush Bugloss' or ";
+		$query .= "name='Lush Lady''s Smock' or ";
+		$query .= "name='Lush Wormwood' or ";
+		$query .= "name='Lush Blessed Thistle';";
+	
+		return $query;
+	}	
+	
+	
 	public function GetNpcGroupSearchQuery()
 	{
 		if ($this->viewGroup == "Reagent") 
@@ -709,6 +731,8 @@ class CEsoViewNpcLoot
 			$this->lastQuery = $this->GetNpcGroupContainerQuery();
 		else if ($this->viewGroup == "Provisioning Container")
 			$this->lastQuery = $this->GetNpcGroupProvisioningQuery();
+		else if ($this->viewGroup == "Alchemy Survey")
+			$this->lastQuery = $this->GetNpcGroupAlchemySurveyQuery();
 		
 		if ($this->lastQuery == "") return $this->ReportError("No valid NPC group specified!");
 		
@@ -851,6 +875,8 @@ class CEsoViewNpcLoot
 		$this->zoneQntTotals['Hireling Summary'] = 0;
 		$this->zoneCountTotals['Item Summary'] = 0;
 		$this->zoneQntTotals['Item Summary'] = 0;
+		$this->zoneCountTotals['Survey Summary'] = 0;
+		$this->zoneQntTotals['Survey Summary'] = 0;
 		
 		foreach ($this->searchResults as $i => $result)
 		{
@@ -877,6 +903,8 @@ class CEsoViewNpcLoot
 					$this->zoneQntTotals['Hireling Summary'] += $result['qnt'];
 					$this->zoneCountTotals['Item Summary'] += $result['count'];
 					$this->zoneQntTotals['Item Summary'] += $result['qnt'];
+					$this->zoneCountTotals['Survey Summary'] += $result['count'];
+					$this->zoneQntTotals['Survey Summary'] += $result['qnt'];
 				}
 				
 				continue;
@@ -1131,6 +1159,7 @@ class CEsoViewNpcLoot
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Epic)", array(41, 43, 42), array(4, 4, 4), $this->itemSummary, $totalQnt, $totalCount);
 			$this->searchResults[] = $this->MakeNpcSummaryResult("Hireling Summary", "Improvement Material (Legendary)", array(41, 43, 42), array(5, 5, 5), $this->itemSummary, $totalQnt, $totalCount);
 			
+			
 			if ($this->salesPriceServer != "")
 			{
 				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Hireling Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
@@ -1154,12 +1183,64 @@ class CEsoViewNpcLoot
 				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Item Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
 			}				
 		}
+		else if ($this->viewExtra == "alchemysurvey")
+		{
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Columbine", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Mountain Flower",  $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Corn Flower", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Dragonthorn", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Bugloss", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Lady's Smock", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Wormwood", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Blessed Thistle", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Worms", $totalQnt, $totalCount);
+			$this->searchResults[] = $this->MakeNpcSummaryResultName("Survey Summary", "Crawlers", $totalQnt, $totalCount);
+			
+			if ($this->salesPriceServer != "")
+			{
+				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Survey Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
+			}
+		}
 		else if ($this->salesPriceServer != "")
 		{
 			$this->searchResults[] = $this->MakeNpcSummaryResultAll("Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
 		}
 		
 		usort($this->searchResults, array('CEsoViewNpcLoot', 'SortNpcItemSearchResults'));
+	}
+	
+	
+	public function MakeNpcSummaryResultName($zone, $itemName, $totalQnt, $totalCount)
+	{
+		$qntData = $this->itemQntTotals[$itemName];
+		$countData = $this->itemCountTotals[$itemName];
+		
+		if ($qntData == null || $countData == null) return null;
+		
+		$qnt = $qntData['count'];
+		$count = $countData['count'];
+		
+		$newResult = array();
+		
+		$newResult['zone'] = $zone;
+		$newResult['itemName'] = $itemName;
+		$newResult['itemLink'] = "";
+		
+		$newResult['itemType'] = -1;
+		$newResult['quality'] = -1;
+		$newResult['trait'] = -1;
+		$newResult['icon'] = "";
+		$newResult['salesPrice'] = $qntData['salesPrice'];
+		$newResult['totalPrice'] = $qntData['totalPrice'];
+		
+		$newResult['qnt'] = $qnt;
+		$newResult['count'] = $count;
+		$newResult['dropZoneRatio'] = $qnt / $totalCount;
+		$newResult['dropRatio'] = $qnt / $totalCount;
+		$newResult['totalQnt'] = $totalQnt;
+		$newResult['totalCount'] = $totalCount;
+		
+		return $newResult;
 	}
 	
 	
@@ -1270,6 +1351,8 @@ class CEsoViewNpcLoot
 		if ($zone2 == "Hireling Summary") $zone2 = " 1";
 		if ($zone1 == "Item Summary") $zone1 = " 1";
 		if ($zone2 == "Item Summary") $zone2 = " 1";
+		if ($zone1 == "Survey Summary") $zone1 = " 1";
+		if ($zone2 == "Survey Summary") $zone2 = " 1";
 		
 		$compare = strcasecmp($zone1, $zone2);
 		if ($compare != 0) return $compare;
@@ -1283,7 +1366,16 @@ class CEsoViewNpcLoot
 		$this->ParseNpcItemResults();
 		$npcName = $this->npcRecord['name'];
 		
-		$output = "\"Zone\",\"NPC\",\"Item Link\",\"Item Name\",\"Item Type\",\"Quality\",\"Trait\",\"Qnt\",\"Count\",\"Stack Size\",\"Total\",\"Drop Chance\",\"Stack Chance\"\n";
+		$output = "\"Zone\",\"NPC\",\"Item Link\",\"Item Name\",\"Item Type\",\"Quality\",\"Trait\",\"Count\",\"Qnt\",\"Stack Size\",\"Total\",\"Drop Chance\",\"Stack Chance\"";
+		
+		if ($this->salesPriceServer != "") 
+		{
+			$output .= ",\"Unit Value\",";
+			$output .= "\"Total Value\",";
+			$output .= "\"Avg Value\"";
+		}
+		
+		$output .= "\n";
 		
 		foreach ($this->searchResults as $result)
 		{
@@ -1303,12 +1395,36 @@ class CEsoViewNpcLoot
 			$quality = $result['quality'];
 			if ($quality < 0) $quality = "";
 			$trait = GetEsoItemTraitText($result['trait']);
+			$totalPrice = $result['totalPrice'];
 			
 			$stackSize = round($qnt/$count, 2);
 			//if ($quality == "all") $stackSize = "";
 			$stackChance = round($count / $totalZoneQnt * 100, 4);
 			
-			$output .= "\"$zone\",\"$npcName\"\"$itemLink\",\"$itemName\",\"$itemType\",\"$quality\",\"$trait\",$qnt,$count,\"$stackSize\",$totalZoneQnt,$dropChance%,$stackChance%\n";
+			$output .= "\"$zone\",\"$npcName\"\"$itemLink\",\"$itemName\",\"$itemType\",\"$quality\",\"$trait\",$count,$qnt,\"$stackSize\",$totalZoneQnt,$dropChance%,$stackChance%";
+			
+			if ($this->salesPriceServer != "")
+			{
+				if ($totalPrice == null)
+				{
+					$output .= ",0,";
+					$output .= "0,";
+					$output .= "0";
+				}
+				else
+				{
+					$avgPrice = number_format($totalPrice / $totalZoneQnt, 2);
+					$totalPrice = number_format($totalPrice);
+					
+					$unitPrice = "";
+					if ($result['salesPrice'] > 0)	$unitPrice = number_format($result['salesPrice'], 2) . "";
+					$output .= ",$unitPrice,";
+					$output .= "$totalPrice,";
+					$output .= "$avgPrice";
+				}
+			}
+			
+			$output .= "\n";
 		}
 		
 		return $output;
@@ -1380,7 +1496,7 @@ class CEsoViewNpcLoot
 			$trait = GetEsoItemTraitText($result['trait']);
 			$totalPrice = $result['totalPrice'];
 			
-			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary" || $lastZone == "Item Summary"))
+			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary" || $lastZone == "Item Summary" || $lastZone == "Survey Summary"))
 			{
 				$output .= "<tr>";
 				$output .= "<td colspan='6'></td>";
