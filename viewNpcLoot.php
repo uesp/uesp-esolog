@@ -7,6 +7,8 @@ require("esoCommon.php");
 
 class CEsoViewNpcLoot 
 {
+	public $USE_CONSTANT_WRITVOUCHER_PRICE = true; 
+	
 	public $db = null;
 	public $dbReadInitialized = false;
 	public $lastQuery = "";
@@ -140,6 +142,15 @@ class CEsoViewNpcLoot
 			else if ($output == "csv")
 				$this->output = "csv";
 		}
+		
+		if ($this->inputParams['voucher'] == 'constant')
+		{
+			$this->USE_CONSTANT_WRITVOUCHER_PRICE = true;	
+		}
+		else if ($this->inputParams['voucher'] == 'variable')
+		{
+			$this->USE_CONSTANT_WRITVOUCHER_PRICE = false;	
+		}
 	}
 	
 	
@@ -194,6 +205,7 @@ class CEsoViewNpcLoot
 		
 		$this->salesPrices = &$uespSalesPrices;		
 		
+		$this->UpdateWritVoucherValue();
 		return true;
 	}
 	
@@ -451,11 +463,87 @@ class CEsoViewNpcLoot
 					'quality' => array(1),
 					'extraQnt' => array(25),
 			),
+			"Writ Voucher" => array(
+					'value' => 750,
+			),
 	);
 	
 	
-	public function FindModifySalesPriceMatch($itemName)
+	public $WRITVOUCHER_UPDATE_ITEMIDS = array(
+			119696,	// Alchemy
+			119698,
+			119699,
+			119700,
+			119701,
+			119702,
+			119703,
+			119704,
+			119705,
+			119818,
+			119820,
+			119564,	// Enchanting
+			121528,
+			119693,	// Provisioning
+	);
+	
+	
+	public function UpdateWritVoucherValue()
 	{
+		if ($this->salesPrices == null) return false;
+		
+		$sumPrices = 0;
+		$sumVouchers = 0;
+		$totalPrices = 0;
+		
+		foreach ($this->WRITVOUCHER_UPDATE_ITEMIDS as $itemId)
+		{
+			$data1 = $this->salesPrices[$itemId];
+			if ($data1 == null) continue;
+		
+			$data2 = $data1[30];
+			
+			if ($data2 == null) 
+			{
+				$data2 = $data1[1];
+				if ($data2 == null) continue;
+			}
+		
+			$data3 = $data2[5];
+			if ($data2 == null) continue;
+		
+			$data4 = $data3[0];
+			if ($data4 == null) continue;
+		
+			foreach ($data4 as $potionData => $data5)
+			{
+				if ($data5[0] == null || $data5[0] <= 0) continue;
+				if ($data5[7] == null || $data5[7] <= 0) continue;
+			
+				$sumPrices += $data5[0];
+				$sumVouchers += $data5[7];
+				$totalPrices += 1;
+			}
+		}
+		
+		$newPrice = 0;
+		
+		if ($totalPrices > 0)
+		{
+			$numVouchers = $sumVouchers / 10000 / $totalPrices;
+			$newPrice = $sumPrices / $totalPrices / $numVouchers;
+			$this->MODIFY_PRICE_DATA['Writ Voucher']['value'] = $newPrice; 
+		}
+			
+		//error_log("Updating Writ Voucher: $sumPrices, $sumVouchers, $totalPrices, $newPrice");
+		
+		return true;
+	}
+	
+	
+	public function FindModifySalesPriceMatch($itemName, $itemType)
+	{
+		if ($this->USE_CONSTANT_WRITVOUCHER_PRICE && $itemType == 60) return $this->MODIFY_PRICE_DATA['Writ Voucher'];
+		
 		foreach ($this->MODIFY_PRICE_DATA as $matchName => $matchData)
 		{
 			if (strpos($itemName, $matchName) !== false) return $matchData;
@@ -465,12 +553,16 @@ class CEsoViewNpcLoot
 	}
 	
 	
-	public function FindModifySalesPrice($itemName, $itemId, $level, $quality, $trait, $potionData)
+	public function FindModifySalesPrice($itemName, $itemId, $level, $quality, $trait, $potionData, $itemType, $extraData)
 	{
-		$matchData = $this->FindModifySalesPriceMatch($itemName);
+		$matchData = $this->FindModifySalesPriceMatch($itemName, $itemType);
 		if (!$matchData) return -1;
 		
-		if ($matchData['value'] != null) return $matchData['value'];
+		if ($matchData['value'] != null) 
+		{
+			if ($itemType == 60 && $potionData > 0) return floor($matchData['value'] * $potionData / 10000); 
+			return $matchData['value'];
+		}
 		
 		$price = 0;
 		if ($matchData['extraValue'] != null) $price = $matchData['extraValue'];
@@ -480,7 +572,7 @@ class CEsoViewNpcLoot
 			$level = $matchData['level'][$i];
 			$quality = $matchData['quality'][$i];
 			
-			$newPrice = $this->FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData);
+			$newPrice = $this->FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData, $extraData);
 			
 			if ($newPrice > 0) 
 			{
@@ -498,7 +590,7 @@ class CEsoViewNpcLoot
 	}
 	
 	
-	public function FindSalesPrice($itemLink, $quality, $trait, $itemName)
+	public function FindSalesPrice($itemLink, $quality, $trait, $itemName, $itemType)
 	{
 		if ($this->salesPrices == null) return -1;
 		
@@ -509,24 +601,41 @@ class CEsoViewNpcLoot
 		$intLevel = intVal($matches['level']);
 		$intSubtype = intVal($matches['subtype']);
 		$potionData = intVal($matches['potionData']);
+		$writ1 = intVal($matches['writ1']);
+		$writ2 = intVal($matches['writ2']);
+		$writ3 = intVal($matches['writ3']);
+		$writ4 = intVal($matches['writ4']);
+		$writ5 = intVal($matches['writ5']);
+		$writ6 = intVal($matches['writ6']);
 		$quality = intVal($quality);
 		$trait = intVal($trait);
 		if ($trait < 0) $trait = 0;
 		if ($quality < 0) $quality = 0;
 		$extraQnt = 1;
 		
+		$extraData = "";
+		if ($writ1 > 0) $extraData = "$writ1:$writ2:$writ3:$writ4:$writ5:$writ6";
+		
 		$level = GetEsoLevelFromIntType($intSubtype, $intLevel);
 		
-		$price = $this->FindModifySalesPrice($itemName, $itemId, $level, $quality, $trait, $potionData);
+		$price = $this->FindModifySalesPrice($itemName, $itemId, $level, $quality, $trait, $potionData, $itemType, $extraData);
 		if ($price > 0) return $price;
 		
-		return $this->FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData);
+		$price = $this->FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData, $extraData);
+		if ($price > 0) return $price;
+		
+		if ($itemType == 60 && $potionData > 0)
+		{
+			$priceData = $this->MODIFY_PRICE_DATA['Writ Voucher'];
+			 return floor($priceData['value'] * $potionData / 10000);
+		}
+		
+		return -1;
 	}
 	
 	
-	public function FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData)
+	public function FindSalesPriceRaw($itemId, $level, $quality, $trait, $potionData, $extraData)
 	{
-		
 		$data1 = $this->salesPrices[$itemId];
 		if ($data1 == null) return -2;
 		
@@ -549,7 +658,11 @@ class CEsoViewNpcLoot
 		$data4 = $data3[$trait];
 		if ($data4 == null) return -5;
 		
-		$data5 = $data4[$potionData];
+		if ($extraData != "")
+			$data5 = $data4[$extraData];
+		else
+			$data5 = $data4[$potionData];
+		
 		if ($data5 == null) return -6;
 		
 		if ($data5[0] == null) return -7;
@@ -573,7 +686,7 @@ class CEsoViewNpcLoot
 			
 			if (substr($result['itemLink'], 0, 2) != "|H") continue;
 				
-			$salesPrice = $this->FindSalesPrice($result['itemLink'], $result['quality'], $result['trait'], $result['itemName']);
+			$salesPrice = $this->FindSalesPrice($result['itemLink'], $result['quality'], $result['trait'], $result['itemName'], $result['itemType']);
 			
 			if ($salesPrice > 0) 
 			{
