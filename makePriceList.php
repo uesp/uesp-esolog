@@ -120,6 +120,7 @@ class CEsoSalesMakePriceList
 			$saleData[4] = $row['countSales'];
 			$saleData[5] = $row['countItemPurchases'];
 			$saleData[6] = $row['countItemSales'];
+			if ($extraData != "") $saleData[7] = $row['potionData'];
 			
 			$totalSales += $row['countSales'];
 			$totalPurchases += $row['countPurchases'];
@@ -237,7 +238,8 @@ class CEsoSalesMakePriceList
 		
 						foreach ($potionData as $potion => $salesData)
 						{
-							$output[$itemId][$level][$quality][$trait][$potion] = array($salesData[0], $salesData[1], $salesData[2], $salesData[3], $salesData[4], $salesData[5], $salesData[6]);
+							$output[$itemId][$level][$quality][$trait][$potion] = array($salesData[0], $salesData[1], $salesData[2], $salesData[3], $salesData[4], $salesData[5], $salesData[6], $salesData[7]);
+							if ($salesData[7] > 0) $output[$itemId][$level][$quality][$trait][$potion][7] = $salesData[7];  
 							++$dataCount;
 						}
 					}
