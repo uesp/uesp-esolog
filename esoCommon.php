@@ -47,6 +47,7 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100020" => "15",
 		"100021" => "16",
 		"100022" => "17",
+		"100023" => "18",
 );
 
 
@@ -64,6 +65,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100020" => "3.1",
 		"100021" => "3.2",
 		"100022" => "3.3",
+		"100024" => "4.0",
 );
 
 
@@ -2753,6 +2755,119 @@ $ESO_SKILLTYPESTYPE = array(
 );
 
 
+function GetEsoUpdateVersion()
+{
+	return 17;
+}
+
+
+function GetEsoItemTableSuffix($version)
+{
+
+	switch ($version)
+	{
+		case '1.5':
+		//case '15':
+		case '5':
+			return "5";
+		case '1.6':
+		//case '16':
+		case '6':
+			return "6";
+		case '1.7':
+		//case '17':
+		case '7':
+			return "7";
+		case '1.8':
+		//case '18':
+		case '8':
+			return "8";
+		case '1.8pts':
+		//case '18pts':
+			return "8pts";					
+		case '1.9pts':
+		//case '19pts':
+			return "9pts";
+		case '1.9':
+		//case '19':
+		case '9':
+			return "9";
+		case '1.10pts':
+		case '10pts':
+			return "10pts";
+		case '1.10':
+		case '110':
+		case '10':
+			return "10";
+		case '1.11pts':
+		case '111pts':
+		case '11pts':
+			return "11pts";
+		case '1.11':
+		case '111':
+		case '11':
+			return "11";
+		case '1.12pts':
+		case '112pts':
+		case '12pts':
+			return "12pts";
+		case '1.12':
+		case '112':
+		case '12':
+			return "12";
+		case '1.13pts':
+		case '113pts':
+		case '13pts':
+			return "13pts";
+		case '1.13':
+		case '113':
+		case '13':
+			return "13";
+		case '1.4pts':
+		case '114pts':
+		case '14pts':
+			return "14pts";
+		case '1.4':
+		case '114':
+		case '14':
+			return "14";
+		case '1.5pts':
+		case '115pts':
+		case '15pts':
+			return "15pts";
+		case '1.5':
+		case '115':
+		case '15':
+			return "15";
+		case '1.6pts':
+		case '116pts':
+		case '16pts':
+			return "16pts";
+		case '1.6':
+		case '116':
+		case '16':
+			return "16";
+		case '1.7pts':
+		case '117pts':
+		case '17pts':
+			return "17pts";
+		case '1.7':
+		case '117':
+		case '17':
+			return "";
+		case '1.8pts':
+		case '118pts':
+		case '18pts':
+			return "18pts";
+		case '1.8':
+		case '118':
+		case '18':
+			return "18";
+	}
+
+	return "";
+}
+
 
 function GetEsoLevelFromIntType($intType, $intLevel = 1)
 {
@@ -3157,112 +3272,6 @@ function IsEsoVersionAtLeast($version, $checkVersion)
 		$suffix = intval(GetEsoItemTableSuffix($version));
 	
 	return ($suffix >= $checkVersion);
-}
-
-
-function GetEsoUpdateVersion()
-{
-	return 16;
-}
-
-
-function GetEsoItemTableSuffix($version)
-{
-
-	switch ($version)
-	{
-		case '1.5':
-		//case '15':
-		case '5':
-			return "5";
-		case '1.6':
-		//case '16':
-		case '6':
-			return "6";
-		case '1.7':
-		//case '17':
-		case '7':
-			return "7";
-		case '1.8':
-		//case '18':
-		case '8':
-			return "8";
-		case '1.8pts':
-		case '18pts':
-			return "8pts";					
-		case '1.9pts':
-		case '19pts':
-			return "9pts";
-		case '1.9':
-		//case '19':
-		case '9':
-			return "9";
-		case '1.10pts':
-		case '10pts':
-			return "10pts";
-		case '1.10':
-		case '110':
-		case '10':
-			return "10";
-		case '1.11pts':
-		case '111pts':
-		case '11pts':
-			return "11pts";
-		case '1.11':
-		case '111':
-		case '11':
-			return "11";
-		case '1.12pts':
-		case '112pts':
-		case '12pts':
-			return "12pts";
-		case '1.12':
-		case '112':
-		case '12':
-			return "12";
-		case '1.13pts':
-		case '113pts':
-		case '13pts':
-			return "13pts";
-		case '1.13':
-		case '113':
-		case '13':
-			return "13";
-		case '1.4pts':
-		case '114pts':
-		case '14pts':
-			return "14pts";
-		case '1.4':
-		case '114':
-		case '14':
-			return "14";
-		case '1.5pts':
-		case '115pts':
-		case '15pts':
-			return "15pts";
-		case '1.5':
-		case '115':
-		case '15':
-			return "15";
-		case '1.6pts':
-		case '116pts':
-		case '16pts':
-			return "16pts";
-		case '1.6':
-		case '116':
-		case '16':
-			return "";
-		case '1.7pts':
-		case '117pts':
-		case '17pts':
-			return "17pts";
-		case '1.7':
-		case '117':
-		case '17':
-			return "17";
-	}
-
-	return "";
 }
 
 

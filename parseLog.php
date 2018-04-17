@@ -78,13 +78,14 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744089672613888000; //v15 1502720027
 	//const START_MINEITEM_TIMESTAMP = 4744115047104512000; //v16 1508769777
 	//const START_MINEITEM_TIMESTAMP = ?; //v17pts ?
-	  const START_MINEITEM_TIMESTAMP = 4744155630808000000; //v17 1518445680
-	
+	//const START_MINEITEM_TIMESTAMP = 4744155630808000000; //v17 1518445680
+	  const START_MINEITEM_TIMESTAMP = 4744146619023228928; //v18pts 1516297109
+	  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "18pts";
+	const SKILLS_TABLESUFFIX   = "18pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -148,10 +149,10 @@ class EsoLogParser
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
 	public $dbReadCount = 0;
-	public $dbReadCountPeriod = 500;
-	public $dbReadNextSleepCount = 500;
-	public $dbWriteCountPeriod = 200;
-	public $dbWriteNextSleepCount = 200;
+	public $dbReadCountPeriod = 1000;
+	public $dbReadNextSleepCount = 1000;
+	public $dbWriteCountPeriod = 400;
+	public $dbWriteNextSleepCount = 400;
 	public $dbReadCountSleep = 5;		// Period in seconds for sleep()
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
 	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced

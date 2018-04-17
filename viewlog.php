@@ -20,7 +20,8 @@ class EsoLogViewer
 	const ENABLE_14PTS = false;
 	const ENABLE_15PTS = false;
 	const ENABLE_16PTS = false;
-	const ENABLE_17PTS = true;
+	const ENABLE_17PTS = false;
+	const ENABLE_18PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -1598,6 +1599,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem18pts' => array(
+					'displayName' => 'Update 18-PTS: Mined Items',
+					'displayNameSingle' => 'Update 18-PTS: Mined Item',
+					'record' => 'minedItem18pts',
+					'table' => 'minedItem18pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 18 (Summerset) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink18pts',
+							'link' => 'MakeMinedItemLink18pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -1898,6 +1929,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItemSummary18pts' => array(
+					'displayName' => 'Update 18-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 18-PTS: Mined Item Summary',
+					'record' => 'minedItemSummary18pts',
+					'table' => 'minedItemSummary18pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 18 (Summerset) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink18pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'setSummary' => array(
 					'displayName' => 'Set Summaries',
 					'displayNameSingle' => 'Set Item Summary',
@@ -2154,6 +2215,30 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'record' => 'minedItemSummary17pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'setSummary18pts' => array(
+					'displayName' => 'Update 18-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 18-PTS: Set Item Summary',
+					'record' => 'setSummary18pts',
+					'table' => 'setSummary18pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update 18 (Summerset) as logged from the PTS server.",
+			
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'minedItemSummary18pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -2441,6 +2526,34 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedSkills18pts' => array(
+					'displayName' => 'Update 18-PTS: Mined Skills',
+					'displayNameSingle' => 'Update 18-PTS: Mined Skill',
+					'record' => 'minedSkills18pts',
+					'table' => 'minedSkills18pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are sets for update 18 (Summerset) as logged from the PTS server.",
+						
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'minedSkillLines' => array(
 					'displayName' => 'Mined Skill Lines',
 					'displayNameSingle' => 'Mined Skill Line',
@@ -2638,7 +2751,7 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			'Items 17-PTS' => 'minedItemSummary17pts',
+			//'Items 18-PTS' => 'minedItemSummary18pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'NPC Loots' => 'npcLoot',
@@ -2651,9 +2764,9 @@ class EsoLogViewer
 			'Quest Reward' => 'questReward',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			'Sets 17-PTS' => 'setSummary17pts',
+			//'Sets 18-PTS' => 'setSummary18pts',
 			'Skills' => 'minedSkills',
-			'Skills 17-PTS' => 'minedSkills17pts',
+			'Skills 18-PTS' => 'minedSkills18pts',
 	);
 	
 	
@@ -2884,6 +2997,14 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary18pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -2972,6 +3093,14 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
+			'setSummary18pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
 			'minedSkills' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
@@ -3037,6 +3166,14 @@ class EsoLogViewer
 					),
 			),
 			'minedSkills17pts' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
+			'minedSkills18pts' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -3276,6 +3413,27 @@ class EsoLogViewer
 			unset(self::$SEARCH_TYPE_OPTIONS['Items 17-PTS']);
 			unset(self::$SEARCH_TYPE_OPTIONS['Sets 17-PTS']);
 			unset(self::$SEARCH_TYPE_OPTIONS['Skills 17-PTS']);
+		}
+		
+		if (self::ENABLE_18PTS)
+		{
+			self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary18pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedSkills18pts']['fields'] = self::$SKILLDUMP_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary18pts']);
+			unset(self::$RECORD_TYPES['minedItem18pts']);
+			unset(self::$RECORD_TYPES['setSummary18pts']);
+			unset(self::$RECORD_TYPES['minedSkills18pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary18pts']);
+			unset(self::$SEARCH_DATA['setSummary18pts']);
+			unset(self::$SEARCH_DATA['minedSkills18pts']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Items 18-PTS']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Sets 18-PTS']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Skills 18-PTS']);
 		}
 		
 		$this->InitDatabase();
@@ -3710,6 +3868,19 @@ class EsoLogViewer
 	}
 	
 	
+	public function MakeMinedItemLink18pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=18pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
 	public function MakeMinedItemSummaryLink ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
@@ -3816,6 +3987,17 @@ class EsoLogViewer
 		$itemId = $itemData['itemId'];
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=17pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink18pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=18pts\">" . $value . "</a>";
 		return $output;
 	}
 	

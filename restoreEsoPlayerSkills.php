@@ -1,7 +1,7 @@
 <?php
 
-$TABLE_SUFFIX = "17";
-$SOURCE_DATA1 = "playerSkills16.php";
+$TABLE_SUFFIX = "18pts";
+$SOURCE_DATA1 = "playerSkills17.php";
 $SOURCE_DATA2 = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
