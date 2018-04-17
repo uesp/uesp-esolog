@@ -80,6 +80,8 @@ class CEsoSalesMakePriceList
 		
 			$count = intval($row['countPurchases']) + intval($row['countSales']);
 			$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
+			if ($itemCount == 0) continue;
+			
 			$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
 			$avgPrice = $sumPrice / $itemCount;
 			if ($goodPrice > 0) $avgPrice = $goodPrice;
@@ -141,6 +143,7 @@ class CEsoSalesMakePriceList
 		$itemOutputCount = 0;
 		$updateDate = date("Y-m-d H:i:s");
 		
+		$output .= "uespLog = uespLog or {}\n";
 		$output .= "function uespLog.InitSalesPrices()\n";
 		$output .= "uespLog.SalesPricesServer = '$server'\n";
 		$output .= "uespLog.SalesPricesVersion = {$this->VERSION}\n";
@@ -256,6 +259,8 @@ class CEsoSalesMakePriceList
 	public function OutputPriceList($server, $luaData, $baseFilename)
 	{
 		$outputFile = $this->outputPath . $this->OUTPUT_BASEPATH . "$server/$baseFilename";
+		$outputZip  = $this->outputPath . $this->OUTPUT_BASEPATH . "$server/$baseFilename.zip";
+		$outputGzip = $this->outputPath . $this->OUTPUT_BASEPATH . "$server/$baseFilename.gz";
 		
 		$tmpFile = $outputFile . ".tmp";
 		print("Saving $server price list to '$outputFile'...\n");
@@ -270,6 +275,16 @@ class CEsoSalesMakePriceList
 		
 		$this->indexData[$server]['fileSize'] = strlen($luaData);
 		$this->indexData[$server]['updateDate'] = date('Y-m-d H:i:s', $this->updateTime);
+		
+		$zip = new ZipArchive();
+		
+		if ($zip->open($outputZip, ZipArchive::OVERWRITE)!== TRUE) return $this->ReportError("Cannot create ZIP file $outputZip!");
+    	$zip->addFile($outputFile, $baseFilename);
+		$zip->close();
+		
+		$gz = gzopen($outputGzip, 'w9');
+		gzwrite($gz, $luaData);
+		gzclose($gz);
 		
 		return true;
 	}
