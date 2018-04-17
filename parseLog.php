@@ -149,8 +149,8 @@ class EsoLogParser
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
 	public $dbReadCount = 0;
-	public $dbReadCountPeriod = 1000;
-	public $dbReadNextSleepCount = 1000;
+	public $dbReadCountPeriod = 2000;
+	public $dbReadNextSleepCount = 2000;
 	public $dbWriteCountPeriod = 400;
 	public $dbWriteNextSleepCount = 400;
 	public $dbReadCountSleep = 5;		// Period in seconds for sleep()
