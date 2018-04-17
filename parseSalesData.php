@@ -44,8 +44,8 @@ class EsoSalesDataParser
 	
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
-	public $dbWriteCountPeriod = 200;
-	public $dbWriteNextSleepCount = 200;
+	public $dbWriteCountPeriod = 400;
+	public $dbWriteNextSleepCount = 400;
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
 	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced
 	public $maxSlaveLagChecks = 10;
