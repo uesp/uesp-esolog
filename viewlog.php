@@ -2751,7 +2751,7 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			//'Items 18-PTS' => 'minedItemSummary18pts',
+			'Items 18-PTS' => 'minedItemSummary18pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'NPC Loots' => 'npcLoot',
@@ -2764,7 +2764,7 @@ class EsoLogViewer
 			'Quest Reward' => 'questReward',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			//'Sets 18-PTS' => 'setSummary18pts',
+			'Sets 18-PTS' => 'setSummary18pts',
 			'Skills' => 'minedSkills',
 			'Skills 18-PTS' => 'minedSkills18pts',
 	);
