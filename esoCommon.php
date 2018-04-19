@@ -459,6 +459,13 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		62 => "Dreadhorn",
 		65 => "Apostle",
 		66 => "Ebonshadow",
+		69 => "Fang Lair",
+		70 => "Scalecaller",
+		71 => "Psijic Order",
+		72 => "Sapiarch",
+		73 => "Welkynar",
+		74 => "Dremora",
+		75 => "Pyandonean",
 	
 );
 
