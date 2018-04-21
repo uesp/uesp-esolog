@@ -165,7 +165,6 @@ class CEsoSalesMakePriceList
 			
 			$output .= "a[$itemId]={\n";
 			
-		
 			foreach ($levelData as $level => $qualityData)
 			{
 				$output .= "[$level]={";
@@ -177,6 +176,7 @@ class CEsoSalesMakePriceList
 					foreach ($traitData as $trait => $potionData)
 					{
 						$output .= "[$trait]={";
+						$outputCount = 0;
 		
 						foreach ($potionData as $potion => $salesData)
 						{
@@ -187,6 +187,13 @@ class CEsoSalesMakePriceList
 								
 							$output .= "{{$salesData[0]},{$salesData[1]},{$salesData[2]},{$salesData[3]},{$salesData[4]},{$salesData[5]},{$salesData[6]}},";
 							++$dataCount;
+							++$outputCount;
+							
+							if ($outputCount > 40)
+							{
+								$outputCount = 0;
+								$output .= "\n";
+							}
 						}
 		
 						$output .= "},\n";
