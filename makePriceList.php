@@ -80,7 +80,7 @@ class CEsoSalesMakePriceList
 		
 			$count = intval($row['countPurchases']) + intval($row['countSales']);
 			$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
-			if ($itemCount == 0) continue;
+			if ($count == 0 || $itemCount == 0) continue;
 			
 			$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
 			$avgPrice = $sumPrice / $itemCount;
@@ -180,6 +180,8 @@ class CEsoSalesMakePriceList
 		
 						foreach ($potionData as $potion => $salesData)
 						{
+							if ($salesData[0] == "") continue;
+							
 							if (is_string($potion))
 								$output .= "[\"$potion\"]=";
 							else 
