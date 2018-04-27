@@ -146,6 +146,7 @@ class EsoLogParser
 	
 	public $startMicroTime = 0;
 	
+	public $limitDbReadsWrites = false;
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
 	public $dbReadCount = 0;
@@ -683,6 +684,7 @@ class EsoLogParser
 			'radius' => self::FIELD_INT,
 			'isPassive' => self::FIELD_INT,
 			'isChanneled' => self::FIELD_INT,
+			'isPermanent' => self::FIELD_INT,
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
@@ -694,10 +696,12 @@ class EsoLogParser
 			'isPlayer'  => self::FIELD_INT,
 			'raceType'  => self::FIELD_STRING,
 			'classType'  => self::FIELD_STRING,
+			'baseAbilityId'  => self::FIELD_INT,
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,
-			'nextSkill2'  => self::FIELD_INT,
+			'nextSkill2'  => self::FIELD_INT,			
 			'rank'  => self::FIELD_INT,
+			'morph'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
 			'skillLine' => self::FIELD_STRING,
 			'skillIndex' => self::FIELD_INT,
@@ -917,31 +921,9 @@ class EsoLogParser
 	{
 		$currentMicroTime = microtime(true);
 		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		$diffTime = number_format($diffTime, 3);
 		
 		print("\t$diffTime: $text\n");
-	}
-	
-	
-	public function GetSkillTypeText ($value)
-	{
-		static $VALUES = array(
-				-1 => "",
-				0 => "",
-				1 => "Class",
-				2 => "Weapon",
-				3 => "Armor",
-				4 => "World",
-				5 => "Guild",
-				6 => "Alliance War",
-				7 => "Racial",
-				8 => "Craft",
-				9 => "Champion",
-		);
-		
-		$key = (int) $value;
-		
-		if (array_key_exists($key, $VALUES)) return $VALUES[$key];
-		return "Unknown ($key)";
 	}
 	
 	
@@ -2084,6 +2066,7 @@ class EsoLogParser
 			radius INTEGER NOT NULL DEFAULT -1,
 			isPassive TINYINT NOT NULL DEFAULT 0,
 			isChanneled TINYINT NOT NULL DEFAULT 0,
+			isPermanent TINYINT NOT NULL DEFAULT 0,
 			castTime INTEGER NOT NULL DEFAULT -1,
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
@@ -2099,6 +2082,7 @@ class EsoLogParser
 			baseAbilityId INTEGER NOT NULL DEFAULT 0,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
 			rank TINYINT NOT NULL DEFAULT 0,		
+			morph TINYINT NOT NULL DEFAULT -1,
 			skillIndex TINYINT NOT NULL DEFAULT -1,
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL,
@@ -5569,7 +5553,7 @@ class EsoLogParser
 	}
 	
 	
-	public function OnSkill ($logEntry)
+	public function OnSkill18 ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
 		
@@ -5589,6 +5573,113 @@ class EsoLogParser
 		$skill['maxRange'] = $logEntry['maxRange'];
 		$skill['radius'] = $logEntry['radius'];
 		$skill['isPassive'] = $logEntry['passive'];
+		$skill['isPermanent'] = $logEntry['perm'];
+		$skill['isChanneled'] = $logEntry['channel'];
+		$skill['castTime'] = $logEntry['castTime'];
+		$skill['channelTime'] = $logEntry['channelTime'];
+		$skill['angleDistance'] = $logEntry['angleDistance'];
+		$skill['mechanic'] = $logEntry['mechanic'];
+		$skill['upgradeLines'] = $logEntry['upgradeLines'];
+		$skill['effectLines'] = $logEntry['effectLines'];
+		$skill['texture'] = $logEntry['icon'];
+		
+		if ($logEntry['skillType'] > 0)
+		{
+			$skill['isUltimate'] = $logEntry['ultimate'];
+			$skill['skillType'] = $logEntry['skillType'];
+			$skill['skillLine'] = $logEntry['skillLineName'];
+			$skill['skillIndex'] = $logEntry['abilityIndex'];
+				
+			$skill['morph'] = $logEntry['morph'];
+			$skill['learnedLevel'] = $logEntry['earnedLevel'];
+			
+			$skillLineId = $logEntry['skillLineId'];
+			
+			if ($this->CLASS_SKILLLINE_IDS[$skillLineId])
+				$skill['classType'] = $this->CLASS_SKILLLINE_IDS[$skillLineId];
+			elseif ($this->RACE_SKILLLINE_IDS[$skillLineId])
+				$skill['raceType'] = $this->RACE_SKILLLINE_IDS[$skillLineId];
+			
+			$id1 = $logEntry['id1'];
+			$id2 = $logEntry['id2'];
+			$id3 = $logEntry['id3'];
+			
+			if ($id1 > 0 && ($id1 == $abilityId || $id2 == $abilityId || $id3 == $abilityId))
+			{
+				$skill['isPlayer'] = 1;
+				$morph = $logEntry['morph'];
+				$rank = $logEntry['rank'];
+				$skill['rank'] = 4;
+				$skill['baseAbilityId'] = $logEntry['id1'];
+				
+				if ($morph == 0)
+				{
+					$skill['prevSkill'] = 0;
+					$skill['nextSkill'] = $logEntry['id2'];
+					$skill['nextSkill2'] = $logEntry['id3'];
+				}
+				elseif ($morph == 1)
+				{
+					$skill['prevSkill'] = $logEntry['id1'];
+					$skill['nextSkill'] = 0;
+					$skill['nextSkill2'] = 0;
+				}
+				elseif ($morph == 2)
+				{
+					$skill['prevSkill'] = $logEntry['id1'];
+					$skill['nextSkill'] = 0;
+					$skill['nextSkill2'] = 0;
+				}
+			}
+			else if ($logEntry['passive1'] > 0)
+			{
+				$skill['isPlayer'] = 1;
+				$currentRank = $logEntry['rank'];
+				$skill['rank'] = $currentRank;
+				$nextRank = $currentRank + 1;
+				$prevRank = $currentRank - 1;
+				
+				$skill['isPassive'] = 1;
+				$skill['baseAbilityId'] = $logEntry['passive1'];
+				$skill['learnedLevel'] = $logEntry['rank' . $currentRank];
+				$skill['prevSkill'] = $logEntry['passive' . $prevRank];
+				$skill['nextSkill'] = $logEntry['passive' . $nextRank];
+				$skill['nextSkill2'] = -1;
+				if ($skill['prevSkill'] == null) $skill['prevSkill'] = -1;
+				if ($skill['nextSkill'] == null) $skill['nextSkill'] = -1;
+			}
+		}
+		
+		$this->SaveSkillDump($skill);
+		
+		return true;
+	}
+	
+	
+	public function OnSkill ($logEntry)
+	{
+		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 18)) return $this->OnSkill18($logEntry);
+		
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$version = $this->currentUser['lastSkillDumpNote'];
+		$abilityId = $logEntry['id'];
+		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
+		
+		$skill = $this->LoadSkillDump($abilityId);
+		if ($skill === false) return false;
+  	
+		$skill['name'] = $logEntry['name'];
+		$skill['description'] = $logEntry['desc'];
+		$skill['duration'] = $logEntry['duration'];
+		$skill['cost'] = $logEntry['cost'];
+		$skill['target'] = $logEntry['target'];
+		$skill['minRange'] = $logEntry['minRange'];
+		$skill['maxRange'] = $logEntry['maxRange'];
+		$skill['radius'] = $logEntry['radius'];
+		$skill['isPassive'] = $logEntry['passive'];
+		$skill['isPermanent'] = $logEntry['perm'];
+		if ($skill['isPermanent'] == null) $skill['isPermanent'] = 0;
 		$skill['isChanneled'] = $logEntry['channel'];
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
@@ -5639,6 +5730,9 @@ class EsoLogParser
 	
 	public function OnSkillLearned ($logEntry)
 	{
+			// No longer need to parse this
+		return true;
+		
 		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
@@ -5667,6 +5761,39 @@ class EsoLogParser
 	}
 	
 	
+	public $CLASS_SKILLLINE_IDS = array(
+			129 => "Warden",
+			128 => "Warden",
+			127 => "Warden",			
+			38 => "Nightblade",
+			39 => "Nightblade",
+			40 => "Nightblade",			
+			43 => "Sorcerer",
+			42 => "Sorcerer",
+			41 => "Sorcerer",			
+			37 => "Dragonknight",
+			36 => "Dragonknight",
+			35 => "Dragonknight",			
+			28 => "Templar",
+			27 => "Templar",
+			22 => "Templar",
+	);
+	
+	
+	public $RACE_SKILLLINE_IDS = array(
+			63 => "Argonian",
+			60 => "Breton",
+			64 => "Dark Elf",
+			56 => "High Elf",
+			59 => "Imperial",
+			58 => "Khajiit",
+			65 => "Nord",
+			52 => "Orc",
+			62 => "Redguard",
+			57 => "Wood Elf",
+	);
+	
+	
 	public function OnSkillLine ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
@@ -5677,10 +5804,19 @@ class EsoLogParser
 		$skillLine = $this->LoadSkillLine($logEntry['name']);
 		if ($skillLine === false) return false;
 		
+		$skillLineId = $logEntry['skillLineId'];
 		$skillLine['xp'] = $logEntry['xpString'];
 		$skillLine['totalXp'] = $logEntry['totalXp'];
-		if (array_key_exists('race', $logEntry)) $skillLine['raceType'] = $logEntry['race'];
-		if (array_key_exists('class', $logEntry)) $skillLine['classType'] = $logEntry['class'];
+		
+			// Doesn't work from update 17
+		//if (array_key_exists('race', $logEntry)) $skillLine['raceType'] = $logEntry['race'];
+		//if (array_key_exists('class', $logEntry)) $skillLine['classType'] = $logEntry['class'];
+		
+		if ($this->CLASS_SKILLLINE_IDS[$skillLineId])
+			$skillLine['classType'] = $this->CLASS_SKILLLINE_IDS[$skillLineId];
+		elseif ($this->RACE_SKILLLINE_IDS[$skillLineId])
+			$skillLine['raceType'] = $this->RACE_SKILLLINE_IDS[$skillLineId];			
+		
 		$skillLine['skillType'] = $logEntry['skillType'];
 		
 		if (array_key_exists('numRanks', $logEntry))
@@ -5702,7 +5838,7 @@ class EsoLogParser
 		}
 		else
 		{
-			$skillLine['fullName'] = $this->GetSkillTypeText($skillLine['skillType']) . '::' . $logEntry['name'];
+			$skillLine['fullName'] = GetEsoSkillTypeText($skillLine['skillType']) . '::' . $logEntry['name'];
 		}
 		
 		$this->SaveSkillLine($skillLine);
@@ -6499,6 +6635,8 @@ class EsoLogParser
 	
 	public function WaitForSlaveDatabase()
 	{
+		if (!$this->limitDbReadsWrites) return;
+		
 		$origWriteCount = $this->dbWriteNextSleepCount;
 		$origReadCount = $this->dbReadNextSleepCount;
 		
@@ -7354,6 +7492,7 @@ $g_EsoLogParser->ParseAllLogs();
 $g_EsoLogParser->saveData();
 
 $g_EsoLogParser->salesData->ShowParseSummary();
+
 
 
 

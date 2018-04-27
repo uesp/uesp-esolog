@@ -42,6 +42,15 @@ UESP.ESO_TRAIT_TYPES = {
 		"21" : "Healthy",
 		"24" : "Ornate",
 		"23" : "Robust",
+		
+		"31" : "Bloodthirsty",	// Update 18
+		"29" : "Harmony",
+		"33" : "Infused",
+		"27" : "Intricate",
+		"32" : "Protective",
+		"28" : "Swift",
+		"30" : "Triune",
+		
 		"0"  : "",
 		"2"  : "Charged",
 		"5"  : "Defending",
@@ -286,8 +295,14 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='-1'>Any</option>" +
 		"		<option value='0'>None</option>" +
 		"		<option value='22'>Arcane</option>" +
+		"		<option value='31'>Bloodthirsty</option>" +
+		"		<option value='29'>Harmony</option>" +
 		"		<option value='21'>Healthy</option>" +
+		"		<option value='33'>Infused</option>" +
+		"		<option value='32'>Protective</option>" +
 		"		<option value='23'>Robust</option>" +
+		"		<option value='28'>Swift</option>" +
+		"		<option value='30'>Triune</option>" +
 		"	</select>" +
 		"	<div class='esoispInputLabel' id='esoispWeaponTraitLabel'>Weapon Traits</div> <select id='esoispWeaponTrait' type='text' name='WeaponTrait'>" +
 		"		<option value='-1'>Any</option>" +

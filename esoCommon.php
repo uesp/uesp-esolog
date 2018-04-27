@@ -65,7 +65,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100020" => "3.1",
 		"100021" => "3.2",
 		"100022" => "3.3",
-		"100024" => "4.0",
+		"100023" => "4.0",
 );
 
 
@@ -149,6 +149,15 @@ $ESO_ITEMTRAIT15_FULLTEXTS = array(
 		21 => "Jewelry Healthy",
 		24 => "Jewelry Ornate",
 		23 => "Jewelry Robust",
+		
+		31 => "Jewelry Bloodthirsty",	// Update 18
+		29 => "Jewelry Harmony",
+		33 => "Jewelry Infused",
+		27 => "Jewelry Intricate",
+		32 => "Jewelry Protective",
+		28 => "Jewelry Swift",
+		30 => "Jewelry Triune",
+ 	
 		0 => "",
 		2 => "Weapon Charged",
 		5 => "Weapon Defending",
@@ -173,7 +182,23 @@ $ESO_CRAFTTYPES = array(
 		3 => "Enchanting",
 		4 => "Alchemy",
 		5 => "Provisioning",
-		6 => "Woodworking",		
+		6 => "Woodworking",
+		7 => "Jewelry Crafting",	
+);
+
+
+$ESO_COMBATMECHANICS = array(
+		-2 => "Health",
+		-1 => "Invalid",
+		0 => "Magicka",
+		1 => "Werewolf",
+		4 => "Power",
+		6 => "Stamina",
+		7 => "Momentum",
+		9 => "Finesse",
+		10 => "Ultimate",
+		11 => "Mount Stamina",
+		12 => "Health Bonus",
 );
 
 
@@ -201,6 +226,7 @@ $ESO_CRAFT_REQUIRESKILLS = array(
 		4 => "Solvent Proficiency",
 		5 => "Recipe Improvement",
 		6 => "Woodworking",
+		//7 => "Engraver", //TODO18
 );
 
 
@@ -293,6 +319,15 @@ $ESO_ITEMTRAIT15_TEXTS = array(
 		21 => "Healthy",
 		24 => "Ornate",
 		23 => "Robust",
+		
+		31 => "Bloodthirsty",	// Update 18
+		29 => "Harmony",
+		33 => "Infused",
+		27 => "Intricate",
+		32 => "Protective",
+		28 => "Swift",
+		30 => "Triune",
+		
 		0 => "",
 		2 => "Charged",
 		5 => "Defending",
@@ -330,6 +365,15 @@ $ESO_ITEMTRAIT_DESCRIPTIONS = array(
 		24 => "This item sells to merchants for |cffffff{value}|r% more.",
 		23 => "Increases Maximum Stamina by |cffffff{value}|r.",
 		
+			// Update 18 
+		31 => "Increases damage against enemies under |cFFFFFF25|r% health by |cffffff{value}|r%.",	
+		29 => "Increases damage, healing, resource restore, and damage shield strength of synergies you activate by |cffffff{value}|r%.",
+		33 => "Increases jewelry enchantment effectiveness by |cffffff{value}|r%.",
+		27 => "Increases inspiration gained from deconstruction of this item by |cffffff{value}|r%, and gain additional refined material upon deconstruction of this item.",
+		32 => "Increases Spell Resistance and Physical Resistance by |cffffff{value}|r.",
+		28 => "Increases movement speed by |cffffff{value}|r%.",
+		30 => "Increases Health, Magicka, and Stamina. by |cffffff{value}|r.",
+		
 		2 => "Increases change to apply status effects by |cffffff{value}|r%.",
 		5 => "Increases Physical and Spell Resistance by |cffffff{value}|r.",
 		4 => "Increases weapon enchantment effect by |cffffff{value}|r% and reduces enchantment cooldown by |cffffff50|r%.",
@@ -362,6 +406,14 @@ $ESO_ITEMTRANSMUTETRAIT_IDS = array(
 		21 => 54476,
 		24 => 15765,
 		23 => 55373,
+ 
+		31 => 139761,	// Update 18	
+		29 => 140031,
+		33 => 140120,
+		27 => 138796,
+		32 => 140211,
+		28 => 139941,
+		30 => 139851,
 		
 		5 => 89327,		// 1H Weapons (double for 2H)
 		1 => 89281,
@@ -434,6 +486,7 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		34 => "Imperial",
 		35 => "Yokudan",
 		36 => "Universal",
+		38 => "Tsaesci",
 		39 => "Minotaur",
 		40 => "Ebony",
 		41 => "Abah's Watch",
@@ -532,6 +585,7 @@ $ESO_ITEMWEAPONTYPE_TEXTS = array(
 
 $ESO_ITEMTYPE_TEXTS = array(
 		-1 => "",
+		0 => "None",
 		11 => "Additive",
 		2 => "Armor",
 		24 => "Armor Booster",
@@ -562,7 +616,6 @@ $ESO_ITEMTYPE_TEXTS = array(
 		22 => "Lockpick",
 		16 => "Lure",
 		60 => "Master Writ",		// Update 13
-		0 => "",
 		3 => "Plug",
 		30 => "Poison",
 		58 => "Poison Base",		// New in update 10
@@ -595,6 +648,14 @@ $ESO_ITEMTYPE_TEXTS = array(
 		55 => "Crown Repair",
 		56 => "Treasure",
 		57 => "Crown Store",
+		
+		65 => "Jewelry Booster",	// Update 18
+		64 => "Jewelry Material",
+		67 => "Jewelry Raw Booster",
+		63 => "Jewelry Raw Material",
+		68 => "Jewelry Raw Trait",
+		66 => "Jewelry Trait",
+		
 );
 
 
@@ -713,7 +774,16 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		81 => "Monster Trophy",
 		850 => "Container",
 		900 => "Soul Gem",
-	950 => "Weapon Glyph",
+		950 => "Weapon Glyph",
+		
+		2860 => "Jewelry Furnishing Material",	// Update 18
+		2900 => "Jewelry Booster",
+		2850 => "Jewelry Material",
+		3000 => "Jewelry Raw Booster",
+		2800 => "Jewelry Raw Material",
+		3050 => "Jewelry Raw Trait",
+		2950 => "Jewelry Trait",
+		178 => "Jewelry Furnishing Sketch",
 );
 
 
@@ -835,6 +905,37 @@ $ESO_ITEMSPECIALTYPE_RAW_TEXTS = array(
 		1850 => "Booster",
 		1650 => "Material",
 		1600 => "Raw Material",
+		
+		2860 => "Jewelry Furnishing Material",	// Update 18
+		2900 => "Jewelry Booster",
+		2850 => "Jewelry Material",
+		3000 => "Jewelry Raw Booster",
+		2800 => "Jewelry Raw Material",
+		3050 => "Jewelry Raw Trait",
+		2950 => "Jewelry Trait",
+		178 => "Jewelry Furnishing Sketch",
+);
+
+
+$ESO_CUSTOM_MECHANICS = array(
+		UESP_POWERTYPE_SOULTETHER => "Ulimate (ignore WD)",
+		UESP_POWERTYPE_LIGHTARMOR => "Light Armor",
+		UESP_POWERTYPE_MEDIUMARMOR => "Medium Armor",
+		UESP_POWERTYPE_HEAVYARMOR => "Heavy Armor",
+		UESP_POWERTYPE_WEAPONDAGGER => "Daggers",
+		UESP_POWERTYPE_ARMORTYPE => "Armor Types",
+		UESP_POWERTYPE_DAMAGE => "Spell + Weapon Damage",
+		UESP_POWERTYPE_ASSASSINATION => "Assassination Skills Slotted",
+		UESP_POWERTYPE_FIGHTERSGUILD => "Fighters Guild Skills Slotted",
+		UESP_POWERTYPE_DRACONICPOWER => "Draconic Power Skills Slotted",
+		UESP_POWERTYPE_SHADOW => "Shadow Skills Slotted",
+		UESP_POWERTYPE_SIPHONING => "Siphoning Skills Slotted",
+		UESP_POWERTYPE_SORCERER => "Sorcerer Skills Slotted",
+		UESP_POWERTYPE_MAGESGUILD => "Mages Guild Skills Slotted",
+		UESP_POWERTYPE_SUPPORT => "Support Skills Slotted",
+		UESP_POWERTYPE_ANIMALCOMPANION => "Animal Companion Skills Slotted",
+		UESP_POWERTYPE_GREENBALANCE => "Green Balance Skills Slotted",
+		UESP_POWERTYPE_WINTERSEMBRACE => "Winter's Embrace Skills Slotted",
 );
 
 
@@ -1007,8 +1108,8 @@ $ESO_SET_INDEXES = array(
 		199 => "Shield Breaker",
 		200 => "Phoenix",
 		201 => "Reactive Armor",
-		204 => "Endurance Mini-Set",
-		205 => "Willpower Mini-Set",
+		204 => "Endurance",
+		205 => "Willpower",
 		206 => "Agility",
 		207 => "Law of Julianos",
 		208 => "Trial by Fire",
@@ -1026,7 +1127,7 @@ $ESO_SET_INDEXES = array(
 		224 => "Tava's Favor",
 		225 => "Clever Alchemist",
 		226 => "Eternal Hunt",
-		227 => "Bahraha's Curse (aka Bahara)",
+		227 => "Bahraha's Curse",
 		228 => "Syvarra's Scales",
 		229 => "Twilight Remedy",
 		230 => "Moondancer",
@@ -1103,13 +1204,13 @@ $ESO_SET_INDEXES = array(
 		309 => "Knight-errant's Mail",
 		310 => "Sword Dancer",
 		311 => "Rattlecage",
-		312 => "Volenfell Tremorscale Mask",
-		313 => "Titanic Cleave (Master)",
-		314 => "Puncturing Remedy (Master)",
-		315 => "Stinging Slashes (Master)",
-		316 => "Caustic Arrow (Master)",
-		317 => "Destructive Impact (Master)",
-		318 => "Grand Rejuvenation (Master)",
+		312 => "Tremorscale",
+		313 => "Titanic Cleave",
+		314 => "Puncturing Remedy",
+		315 => "Stinging Slashes",
+		316 => "Caustic Arrow",
+		317 => "Destructive Impact",
+		318 => "Grand Rejuvenation",
 		320 => "War Maiden",
 		321 => "Defiler",
 		322 => "Warrior-Poet",
@@ -1147,26 +1248,40 @@ $ESO_SET_INDEXES = array(
 		354 => "Mad Tinkerer",
 		355 => "Unfathomable Darkness",
 		356 => "Livewire",
-		357 => "P Disciplined Slash (Asylum)",
-		358 => "P Defensive Position (Asylum)",
-		359 => "P Chaotic Whirlwind (Asylum)",
-		360 => "P Piercing Spray (Asylum)",
-		361 => "P Concentrated Force (Asylum)",
-		362 => "P Timeless Blessing (Asylum)",
-		363 => "Disciplined Slash (Asylum)",
-		364 => "Defensive Position (Asylum)",
-		365 => "Chaotic Whirlwind (Asylum)",
-		366 => "Piercing Spray (Asylum)",
-		367 => "Concentrated Force (Asylum)",
-		368 => "Timeless Blessing (Asylum)",
-		369 => "Merciless Charge (Maelstrom)",
-		370 => "Rampaging Slash (Maelstrom)",
-		371 => "Cruel Flurry (Maelstrom)",
-		372 => "Thunderous Volley (Maelstrom)",
-		373 => "Crushing Wall (Maelstrom)",
-		374 => "Precise Regen (Maelstrom)",
+		357 => "Disciplined Slash (Perfected)",
+		358 => "Defensive Position (Perfected)",
+		359 => "Chaotic Whirlwind (Perfected)",
+		360 => "Piercing Spray (Perfected)",
+		361 => "Concentrated Force (Perfected)",
+		362 => "Timeless Blessing (Perfected)",
+		363 => "Disciplined Slash",
+		364 => "Defensive Position",
+		365 => "Chaotic Whirlwind",
+		366 => "Piercing Spray",
+		367 => "Concentrated Force",
+		368 => "Timeless Blessing",
+		369 => "Merciless Charge",
+		370 => "Rampaging Slash",
+		371 => "Cruel Flurry",
+		372 => "Thunderous Volley",
+		373 => "Crushing Wall",
+		374 => "Precise Regeneration",
 		380 => "Prophet's",
 		381 => "Broken Soul",
+		382 => "Grace of Gloom",
+		383 => "Gryphon's Ferocity",
+		384 => "Wisdom of Vanus",
+		385 => "Adept Rider",
+		386 => "Sload's Semblance",
+		387 => "Nocturnal's Favor",
+		388 => "Aegis of Galenwe",
+		389 => "Arms of Relequen",
+		390 => "Mantle of Siroria",
+		391 => "Vestment of Olorime",
+		392 => "Perfect Aegis of Galenwe",
+		393 => "Perfect Arms of Relequen",
+		394 => "Perfect Mantle of Siroria",
+		395 => "Perfect Vestment of Olorime",
 );
 
 
@@ -2331,6 +2446,7 @@ $ESO_ITEMQUALITYLEVEL_INTTYPEMAP = array(
 
 
 
+	//TODO18 Check IDs
 $ESO_DESTRUCTION_SKILLS = array(
 		 	
 			/* Blockade */
@@ -2940,6 +3056,16 @@ function GetEsoItemTraitFullText($trait, $version = "")
 }
 
 
+function GetEsoCombatMechanicText($value)
+{
+	global $ESO_COMBATMECHANICS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_COMBATMECHANICS)) return $ESO_COMBATMECHANICS[$key];
+	return "Unknown ($key)";
+}
+
+
 function GetEsoItemCraftTypeText($value)
 {
 	global $ESO_CRAFTTYPES;
@@ -3188,29 +3314,10 @@ function GetEsoCurrencyChangeReasonText($value)
 
 function GetEsoCustomMechanicTypeText($mechanicType)
 {
-	static $VALUES = array(
-			UESP_POWERTYPE_SOULTETHER => "Ulimate (ignore WD)",
-			UESP_POWERTYPE_LIGHTARMOR => "Light Armor",
-			UESP_POWERTYPE_MEDIUMARMOR => "Medium Armor",
-			UESP_POWERTYPE_HEAVYARMOR => "Heavy Armor",
-			UESP_POWERTYPE_WEAPONDAGGER => "Daggers",
-			UESP_POWERTYPE_ARMORTYPE => "Armor Types",
-			UESP_POWERTYPE_DAMAGE => "Spell + Weapon Damage",
-			UESP_POWERTYPE_ASSASSINATION => "Assassination Skills Slotted",
-			UESP_POWERTYPE_FIGHTERSGUILD => "Fighters Guild Skills Slotted",
-			UESP_POWERTYPE_DRACONICPOWER => "Draconic Power Skills Slotted",
-			UESP_POWERTYPE_SHADOW => "Shadow Skills Slotted",
-			UESP_POWERTYPE_SIPHONING => "Siphoning Skills Slotted",
-			UESP_POWERTYPE_SORCERER => "Sorcerer Skills Slotted",
-			UESP_POWERTYPE_MAGESGUILD => "Mages Guild Skills Slotted",
-			UESP_POWERTYPE_SUPPORT => "Support Skills Slotted",
-			UESP_POWERTYPE_ANIMALCOMPANION => "Animal Companion Skills Slotted",
-			UESP_POWERTYPE_GREENBALANCE => "Green Balance Skills Slotted",
-			UESP_POWERTYPE_WINTERSEMBRACE => "Winter's Embrace Skills Slotted",
-	);
-
+	global $ESO_CUSTOM_MECHANICS;
+	
 	$key = (int) $mechanicType;
-	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
+	if (array_key_exists($key, $ESO_CUSTOM_MECHANICS)) return $ESO_CUSTOM_MECHANICS[$key];
 	
 	return GetEsoMechanicTypeText($mechanicType);
 }
@@ -3230,8 +3337,10 @@ function GetEsoSkillTypeText ($value)
 function GetEsoAttributeText($attribute)
 {
 	global $ESO_ATTRIBUTES;
+	
 	$attribute = intval($attribute);
 	if (array_key_exists($attribute, $ESO_ATTRIBUTES)) return $ESO_ATTRIBUTES[$attribute];
+	
 	return "Unknown ($attribute)";
 }
 
@@ -3265,7 +3374,7 @@ function GetEsoItemFullLevelText($level)
 
 function MakeEsoIconLink($icon)
 {
-	$icon = preg_replace("#\.dds#", ".png", $icon);
+	$icon = preg_replace('#\.dds$#', ".png", $icon);
 	if ($icon[0] == '/') return UESP_ESO_ICON_URL . $icon;
 	return UESP_ESO_ICON_URL . "/" . $icon;
 }
@@ -3553,6 +3662,7 @@ function CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4
 
 function CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
 {
+		//TODO18
 	static $ESO_SMITHING_CRAFTTYPE = array(
 			188 => "Rubedite",
 			190 => "Rubedo Leather",
