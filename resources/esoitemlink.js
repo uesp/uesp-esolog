@@ -9,7 +9,6 @@ var ESO_ITEM_QUALITIES = {
 };
 
 
-	// TODO: Update 10 changes
 var ESO_ITEM_TRAITS = {
 		'-1': "",
 		18: "Divines",
@@ -26,6 +25,15 @@ var ESO_ITEM_TRAITS = {
 		21: "Health",
 		24: "Ornate",
 		23: "Robust",
+		
+		31: "Bloodthirsty",	// Update 18
+		29: "Harmony",
+		33: "Infused",
+		27: "Intricate",
+		32: "Protective",
+		28: "Swift",
+		30: "Triune",
+		
 		0: "None",
 		2: "Charged",
 		5: "Defending",

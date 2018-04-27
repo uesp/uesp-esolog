@@ -447,11 +447,11 @@ class EsoItemSearcher
 			}
 			else if ($lowerTrait == "infused")
 			{
-				$where[] = "(trait=4 or trait=16)";
+				$where[] = "(trait=4 or trait=16 or trait=33)";
 			}
 			else if ($lowerTrait == "intricate")
 			{
-				$where[] = "(trait=9 or trait=20)";
+				$where[] = "(trait=9 or trait=20 or trait=27)";
 			}
 			else if ($lowerTrait == "ornate")
 			{

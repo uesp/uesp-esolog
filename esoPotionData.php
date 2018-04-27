@@ -430,6 +430,13 @@ $ESO_REAGENT_DATA = array(
 				"icon" => "resources/reagent_butterfly_wing.png",
 				"effects" => array(ESO_POTIONEFFECT_RESTOREHEALTH, ESO_POTIONEFFECT_LOWERSPELLCRIT, ESO_POTIONEFFECT_SUSTAINRESTOREHEALTH, ESO_POTIONEFFECT_VITALITY),
 		),
+		"Clam Gall" => array(
+				"name" => "Clam Gall",
+				"itemId" => 139020,
+				"icon" => "resources/reagent_clam_gall.png",
+				"effects" => array(ESO_POTIONEFFECT_RAVAGEMAGICKA, ESO_POTIONEFFECT_BREACH, ESO_POTIONEFFECT_VULNERABILITY, ESO_POTIONEFFECT_SUSTAINRESTOREHEALTH),
+		),
+		
 		"Columbine" => array(
 				"name" => "Columbine",
 				"itemId" => 30164,
@@ -507,6 +514,12 @@ $ESO_REAGENT_DATA = array(
 				"itemId" => 30165,
 				"icon" => "resources/plant_nirnroot_r1.png",
 				"effects" => array(ESO_POTIONEFFECT_RAVAGEHEALTH, ESO_POTIONEFFECT_LOWERSPELLCRIT, ESO_POTIONEFFECT_LOWERWEAPONCRIT, ESO_POTIONEFFECT_INVISIBLE),
+		),
+		"Powdered Mother of Pearl" => array(
+				"name" => "Powdered Mother of Pearl",
+				"itemId" => 139019,
+				"icon" => "resources/reagent_scrib_powered_pearl.png",
+				"effects" => array(ESO_POTIONEFFECT_RESTOREHEALTH, ESO_POTIONEFFECT_SPELLRESIST, ESO_POTIONEFFECT_VITALITY, ESO_POTIONEFFECT_PROTECTION),
 		),
 		"Scrib Jelly" => array(
 				"name" => "Scrib Jelly",
