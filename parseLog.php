@@ -5572,8 +5572,8 @@ class EsoLogParser
 		$skill['minRange'] = $logEntry['minRange'];
 		$skill['maxRange'] = $logEntry['maxRange'];
 		$skill['radius'] = $logEntry['radius'];
-		$skill['isPassive'] = $logEntry['passive'];
-		$skill['isPermanent'] = $logEntry['perm'];
+		$skill['isPassive'] = $logEntry['passive'] == "true" ? 1 : 0;
+		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
 		$skill['isChanneled'] = $logEntry['channel'];
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
@@ -5607,6 +5607,7 @@ class EsoLogParser
 			if ($id1 > 0 && ($id1 == $abilityId || $id2 == $abilityId || $id3 == $abilityId))
 			{
 				$skill['isPlayer'] = 1;
+				$skill['isPassive'] = 0;
 				$morph = $logEntry['morph'];
 				$rank = $logEntry['rank'];
 				$skill['rank'] = 4;
@@ -5631,22 +5632,41 @@ class EsoLogParser
 					$skill['nextSkill2'] = 0;
 				}
 			}
-			else if ($logEntry['passive1'] > 0)
+			else if ($logEntry['passive1'] > 0 || $logEntry['passive'] == "true")
 			{
 				$skill['isPlayer'] = 1;
+				$skill['isPassive'] = 1;
 				$currentRank = $logEntry['rank'];
 				$skill['rank'] = $currentRank;
-				$nextRank = $currentRank + 1;
-				$prevRank = $currentRank - 1;
 				
-				$skill['isPassive'] = 1;
-				$skill['baseAbilityId'] = $logEntry['passive1'];
-				$skill['learnedLevel'] = $logEntry['rank' . $currentRank];
-				$skill['prevSkill'] = $logEntry['passive' . $prevRank];
-				$skill['nextSkill'] = $logEntry['passive' . $nextRank];
-				$skill['nextSkill2'] = -1;
-				if ($skill['prevSkill'] == null) $skill['prevSkill'] = -1;
-				if ($skill['nextSkill'] == null) $skill['nextSkill'] = -1;
+				if ($$currentRank == 0)
+				{
+					$skill['rank'] = 1;
+					$currentRank = 1;
+				}
+				
+				$nextRank = $currentRank + 1;
+				$prevRank = $currentRank - 1;				
+				
+				if ($logEntry['passive1'] == 0)
+				{
+					$skill['learnedLevel'] = $logEntry['earnedLevel'];
+					$skill['baseAbilityId'] = $abilityId;
+					$skill['prevSkill'] = -1;
+					$skill['nextSkill'] = -1;
+					$skill['nextSkill2'] = -1;
+				}
+				else
+				{
+					$skill['baseAbilityId'] = $logEntry['passive1'];					
+					$skill['prevSkill'] = $logEntry['passive' . $prevRank];
+					$skill['nextSkill'] = $logEntry['passive' . $nextRank];
+					$skill['nextSkill2'] = -1;
+					if ($skill['prevSkill'] == null) $skill['prevSkill'] = -1;
+					if ($skill['nextSkill'] == null) $skill['nextSkill'] = -1;
+					$skill['learnedLevel'] = $logEntry['rank' . $currentRank];
+				}				
+				
 			}
 		}
 		
@@ -5678,7 +5698,7 @@ class EsoLogParser
 		$skill['maxRange'] = $logEntry['maxRange'];
 		$skill['radius'] = $logEntry['radius'];
 		$skill['isPassive'] = $logEntry['passive'];
-		$skill['isPermanent'] = $logEntry['perm'];
+		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
 		if ($skill['isPermanent'] == null) $skill['isPermanent'] = 0;
 		$skill['isChanneled'] = $logEntry['channel'];
 		$skill['castTime'] = $logEntry['castTime'];

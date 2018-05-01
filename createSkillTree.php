@@ -760,16 +760,23 @@ class CEsoCreateSkillTree
 	
 function ComparePassives($a, $b)
 {
-	//$compare = strcmp($a['skillTypeName'], $b['skillTypeName']);
-	$compare = 0;
+	$compare = strcmp($a['skillTypeName'], $b['skillTypeName']);
+	$compare = $a['skillIndex'] - $b['skillIndex'];
+	$compare = $a['learnedLevel'] - $b['learnedLevel'];
+	return $compare;
 	
 	if ($compare == 0)
 	{
-		$compare = strcmp($a['name'], $b['name']);
+		$compare = $a['skillIndex'] - $b['skillIndex'];
 		
 		if ($compare == 0)
 		{
-			$compare = $a['rank'] - $b['rank'];
+			$compare = $a['learnedLevel'] - $b['learnedLevel'];
+			
+			if ($compare == 0)
+			{
+				$compare = $a['rank'] - $b['rank'];
+			}
 		}
 	}
 	
