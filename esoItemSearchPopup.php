@@ -116,42 +116,47 @@ class CEsoItemSearchPopup
 		if ($this->inputItemType == "4,12" || $this->inputItemType == "4" || $this->inputItemType == "12")
 		{
 			$level = (int) $this->inputItemLevel;
+			$where = "";
 			
 			if ($level <= 0)
 			{
 				// Do nothing
 			}
 			else if ($level < 2)
-				$whereQuery[] = "((level = 1) OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level = 1)";
 			else if ($level < 5)
-				$whereQuery[] = "((level >= 1 AND level < 5) OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= 1 AND level < 5)";
 			else if ($level < 10)
-				$whereQuery[] = "((level >= 5 AND level <= 9) OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= 5 AND level <= 9)";
 			else if ($level < 15)
-				$whereQuery[] = "((level >= '10' AND level < '15') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '10' AND level < '15')";
 			else if ($level < 20)
-				$whereQuery[] = "((level >= '15' AND level < '20') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '15' AND level < '20')";
 			else if ($level < 25)
-				$whereQuery[] = "((level >= '20' AND level < '25') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '20' AND level < '25')";
 			else if ($level < 30)
-				$whereQuery[] = "((level >= '25' AND level < '30') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '25' AND level < '30')";
 			else if ($level < 35)
-				$whereQuery[] = "((level >= '30' AND level < '35') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '30' AND level < '35')";
 			else if ($level < 40)
-				$whereQuery[] = "((level >= '35' AND level < '40') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '35' AND level < '40')";
 			else if ($level < 45)
-				$whereQuery[] = "((level >= '40' AND level < '45') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '40' AND level < '45')";
 			else if ($level < 50)
-				$whereQuery[] = "((level >= '45' AND level < '50') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= '45' AND level < '50')";
 			else if ($level < 55)
-				$whereQuery[] = "((level >= 'CP10' AND level < 'CP50') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= 'CP10' AND level < 'CP50')";
 			else if ($level < 60)
-				$whereQuery[] = "((level >= 'CP50' AND level <= 'CP90') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= 'CP50' AND level <= 'CP90')";
 			else if ($level < 65)
-				$whereQuery[] = "((level >= 'CP100' AND level < 'CP150') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= 'CP100' AND level < 'CP150')";
 			else if ($level <= 66)
-				$whereQuery[] = "((level >= 'CP150' AND level <= 'CP160') OR specialType = 8 OR name=\"Orzorga's Red Frothgar\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$where = "((level >= 'CP150' AND level <= 'CP160')";
 
+			if ($where != "") 
+			{
+				$whereQuery[] = $where . " OR specialType=8 OR name=\"Orzorga's Red Frothgar\" OR name=\"Spring-Loaded Infusion\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+			}
 		}
 		
 		if ($this->inputEquipType != "")
