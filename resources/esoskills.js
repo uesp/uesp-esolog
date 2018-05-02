@@ -678,7 +678,7 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	else if (skillData['castTime'] > 0 || skillData['channelTime'] > 0)
 	{
 		skillWeaponValues = skillWeaponValues['Channel'];
-		skillSpellValues  = skillWeaponValues['Channel'];
+		skillSpellValues  = skillSpellValues['Channel'];
 		SpellDamageType.push("Channel/Cast Time");
 		WeaponDamageType.push("Channel/Cast Time");
 	}
