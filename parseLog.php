@@ -5297,7 +5297,7 @@ class EsoLogParser
 	public function OnMineItem ($logEntry)
 	{
 		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
-		
+				
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
 		
