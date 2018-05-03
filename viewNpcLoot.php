@@ -990,6 +990,8 @@ class CEsoViewNpcLoot
 		$this->zoneQntTotals['Item Summary'] = 0;
 		$this->zoneCountTotals['Survey Summary'] = 0;
 		$this->zoneQntTotals['Survey Summary'] = 0;
+		$this->zoneCountTotals['Motif Summary'] = 0;
+		$this->zoneQntTotals['Motif Summary'] = 0;
 		
 		foreach ($this->searchResults as $i => $result)
 		{
@@ -1018,6 +1020,8 @@ class CEsoViewNpcLoot
 					$this->zoneQntTotals['Item Summary'] += $result['qnt'];
 					$this->zoneCountTotals['Survey Summary'] += $result['count'];
 					$this->zoneQntTotals['Survey Summary'] += $result['qnt'];
+					$this->zoneCountTotals['Motif Summary'] += $result['count'];
+					$this->zoneQntTotals['Motif Summary'] += $result['qnt'];
 				}
 				
 				continue;
@@ -1314,6 +1318,21 @@ class CEsoViewNpcLoot
 				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Survey Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
 			}
 		}
+		else if ($this->viewExtra == "motif")
+		{
+			for ($i = 15; $i < 100; ++$i)
+			{
+				//$motifResult = $this->MakeNpcSummaryResultNamePrefix("Motif Summary", "Crafting Motif $i:", $totalQnt, $totalCount);
+				$motifResult = $this->MakeNpcSummaryResultNameMatch("Motif Summary", "/(Crafting Motif $i: .*)\b\w+/", $totalQnt, $totalCount);
+				if ($motifResult) $this->searchResults[] = $motifResult;
+			}			
+			
+			if ($this->salesPriceServer != "")
+			{
+				//$this->searchResults[] = $this->MakeNpcSummaryResultAll("Motif Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
+				$this->searchResults[] = $this->MakeNpcSummaryResultAll("Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
+			}
+		}
 		else if ($this->salesPriceServer != "")
 		{
 			$this->searchResults[] = $this->MakeNpcSummaryResultAll("Summary", "All", $this->itemSummary, $totalQnt, $totalCount);
@@ -1350,6 +1369,110 @@ class CEsoViewNpcLoot
 		$newResult['count'] = $count;
 		$newResult['dropZoneRatio'] = $qnt / $totalCount;
 		$newResult['dropRatio'] = $qnt / $totalCount;
+		$newResult['totalQnt'] = $totalQnt;
+		$newResult['totalCount'] = $totalCount;
+		
+		return $newResult;
+	}
+	
+	
+	public function MakeNpcSummaryResultNamePrefix($zone, $namePrefix, $totalQnt, $totalCount)
+	{
+		$totalPrefixQnt = 0;
+		$totalPrefixCount = 0;
+		$totalMotifSalesPrice = 0;
+		$totalMotifPrice = 0;
+		$motifCount = 0;
+		
+		foreach ($this->itemQntTotals as $itemName => $qntData)
+		{
+			if (strncmp($itemName, $namePrefix, strlen($namePrefix)) !== 0) continue;
+				
+			$countData = $this->itemCountTotals[$itemName];
+			if ($countData == null) continue;
+			
+			++$motifCount;
+			
+			$totalPrefixQnt += $qntData['count'];
+			$totalPrefixCount += $countData['count'];
+			
+			$totalMotifSalesPrice += $qntData['salesPrice'];
+			$totalMotifPrice += $qntData['totalPrice'];
+		}
+		
+		if ($motifCount == 0) return null;
+						
+		$newResult = array();
+		
+		$newResult['zone'] = $zone;
+		$newResult['itemName'] = $namePrefix;
+		$newResult['itemLink'] = "";
+		
+		$newResult['itemType'] = -1;
+		$newResult['quality'] = -1;
+		$newResult['trait'] = -1;
+		$newResult['icon'] = "";
+		$newResult['salesPrice'] = $totalMotifSalesPrice / $motifCount;
+		$newResult['totalPrice'] = $totalMotifPrice;
+		
+		$newResult['qnt'] = $totalPrefixQnt;
+		$newResult['count'] = $totalPrefixCount;
+		$newResult['dropZoneRatio'] = $totalPrefixQnt / $totalCount;
+		$newResult['dropRatio'] = $totalPrefixQnt / $totalCount;
+		$newResult['totalQnt'] = $totalQnt;
+		$newResult['totalCount'] = $totalCount;
+		
+		return $newResult;
+	}
+	
+	
+	public function MakeNpcSummaryResultNameMatch($zone, $nameRegex, $totalQnt, $totalCount)
+	{
+		$totalPrefixQnt = 0;
+		$totalPrefixCount = 0;
+		$totalMotifSalesPrice = 0;
+		$totalMotifPrice = 0;
+		$motifCount = 0;
+		$matchName = $nameRegex;
+		
+		foreach ($this->itemQntTotals as $itemName => $qntData)
+		{
+			//if (strncmp($itemName, $namePrefix, strlen($namePrefix)) !== 0) continue;
+			$result = preg_match($nameRegex, $itemName, $matches);
+			if (!$result) continue;
+			if ($matches[1]) $matchName = $matches[1]; 
+				
+			$countData = $this->itemCountTotals[$itemName];
+			if ($countData == null) continue;
+			
+			++$motifCount;
+			
+			$totalPrefixQnt += $qntData['count'];
+			$totalPrefixCount += $countData['count'];
+			
+			$totalMotifSalesPrice += $qntData['salesPrice'];
+			$totalMotifPrice += $qntData['totalPrice'];
+		}
+		
+		if ($motifCount == 0) return null;
+						
+		$newResult = array();
+		
+		$newResult['zone'] = $zone;
+		$newResult['itemName'] = $matchName;
+		$newResult['itemLink'] = "";
+		
+		$newResult['itemType'] = -1;
+		$newResult['quality'] = -1;
+		$newResult['trait'] = -1;
+		$newResult['icon'] = "";
+		$newResult['salesPrice'] = $totalMotifSalesPrice / $motifCount;
+		$newResult['totalPrice'] = $totalMotifPrice;
+		
+		$newResult['qnt'] = $totalPrefixQnt;
+		$newResult['count'] = $totalPrefixCount;
+		$newResult['dropZoneRatio'] = $totalPrefixQnt / $totalCount;
+		$newResult['dropRatio'] = $totalPrefixQnt / $totalCount;
 		$newResult['totalQnt'] = $totalQnt;
 		$newResult['totalCount'] = $totalCount;
 		
@@ -1466,6 +1589,8 @@ class CEsoViewNpcLoot
 		if ($zone2 == "Item Summary") $zone2 = " 1";
 		if ($zone1 == "Survey Summary") $zone1 = " 1";
 		if ($zone2 == "Survey Summary") $zone2 = " 1";
+		if ($zone1 == "Motif Summary") $zone1 = " 1";
+		if ($zone2 == "Motif Summary") $zone2 = " 1";
 		
 		$compare = strcasecmp($zone1, $zone2);
 		if ($compare != 0) return $compare;
@@ -1609,7 +1734,7 @@ class CEsoViewNpcLoot
 			$trait = GetEsoItemTraitText($result['trait']);
 			$totalPrice = $result['totalPrice'];
 			
-			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary" || $lastZone == "Item Summary" || $lastZone == "Survey Summary"))
+			if ($lastZone != $zone && ($lastZone == "All" || $lastZone == "Summary" || $lastZone == "Writ Summary" || $lastZone == "Hireling Summary" || $lastZone == "Item Summary" || $lastZone == "Survey Summary" || $lastZone == "Motif Summary"))
 			{
 				$output .= "<tr>";
 				$output .= "<td colspan='6'></td>";
