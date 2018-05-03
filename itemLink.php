@@ -1656,15 +1656,16 @@ class CEsoItemLink
 		$weaponFactor = 1 + $this->enchantFactor;
 		
 				/* Infused */
-		if (!$isDefaultEnchant && ($trait == 16 || $trait == 4))
+		if (!$isDefaultEnchant && ($trait == 16 || $trait == 4 || $trait == 33))
 		{
-			$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
+			$result = preg_match("#effect(?:iveness|) by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
 			$traitValue = 0;
 			
 			if ($result && $matches[1]) 
 			{
 				$traitValue = 1 + ((float) $matches[1]) / 100;
 				if ($trait == 16) $armorFactor *= $traitValue;
+				if ($trait == 33) $armorFactor *= $traitValue;
 				if ($trait ==  4) $weaponFactor *= $traitValue;
 			}
 		}
@@ -1682,7 +1683,17 @@ class CEsoItemLink
 					$armorFactor /= $traitValue;
 				}
 			}
-			else if ($this->transmuteTrait != 4 && $this->itemRecord['origTrait'] == 4)
+			elseif ($this->transmuteTrait != 33 && $this->itemRecord['origTrait'] == 33)
+			{
+				$result = preg_match("#effectiveness by ([0-9]\.?[0-9]*)#", $origTraitDesc, $matches);
+				
+				if ($result && $matches[1])
+				{
+					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$armorFactor /= $traitValue;
+				}
+			}
+			elseif ($this->transmuteTrait != 4 && $this->itemRecord['origTrait'] == 4)
 			{
 				$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $origTraitDesc, $matches);
 			
@@ -1703,7 +1714,17 @@ class CEsoItemLink
 					$armorFactor *= $traitValue;
 				}
 			}
-			else if ($this->transmuteTrait == 4 && $this->itemRecord['origTrait'] != 4)
+			elseif ($this->transmuteTrait == 33 && $this->itemRecord['origTrait'] != 33)
+			{
+				$result = preg_match("#effectiveness by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
+			
+				if ($result && $matches[1])
+				{
+					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$armorFactor *= $traitValue;
+				}
+			}
+			elseif ($this->transmuteTrait == 4 && $this->itemRecord['origTrait'] != 4)
 			{
 				$result = preg_match("#effect by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
 					
@@ -1721,6 +1742,7 @@ class CEsoItemLink
 		$armorType = $this->itemRecord['armorType'];
 		$weaponType = $this->itemRecord['weaponType'];
 		$equipType = $this->itemRecord['equipType'];
+		$itemType = $this->itemRecord['type'];
 		
 			/* Modify enchants of small armor pieces */
 		if (!$isDefaultEnchant && $armorType > 0 && ($equipType == 4 || $equipType == 8 || $equipType == 10 || $equipType == 13))
@@ -1728,9 +1750,9 @@ class CEsoItemLink
 			$armorFactor *= 0.405; 
 		}
 
-		if (($armorType > 0 || $weaponType == 14) && $armorFactor != 1)
+		if (($itemType == 2 || $weaponType == 14) && $armorFactor != 1)
 		{
-			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?:Adds up to \|c[0-9a-fA-F]{6})|(?:Adds ))([0-9]+)((?:\|r)? Maximum)#",
+			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?:Adds up to \|c[0-9a-fA-F]{6})|(?:Adds ))([0-9]+)((?:\|r)? )#",
 					
 				function ($matches) use ($armorFactor) {
 					$result = floor($matches[2] * $armorFactor);
