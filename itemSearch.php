@@ -673,6 +673,13 @@ class EsoItemSearcher
 			}
 		}
 		
+		if ($this->version != "") 
+		{
+			$imageLinkUrl .= "&version=" . rawurlencode($this->version);
+			$linkToItem .= "&version=" . rawurlencode($this->version);
+			$toolTipParams .= " version='" . htmlspecialchars($this->version) . "'";
+		}
+		
 		if (is_numeric($quality))
 		{
 			$extraClass = "eso_item_link_q" . intval($quality);
