@@ -11,7 +11,7 @@ class CEsoCreateSkillTree
 {
 	public $TABLE_SUFFIX = "18pts";
 	public $PRINT_TABLE = false;
-	public $USE_UPDATE18 = true;
+	public $USE_UPDATE18 = false;
 
 	public $db = null;
 	
@@ -96,6 +96,7 @@ class CEsoCreateSkillTree
 		$query = "CREATE TABLE IF NOT EXISTS skillTree" . $this->TABLE_SUFFIX . "(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			abilityId BIGINT NOT NULL,
+			displayId BIGINT NOT NULL,
 			skillTypeName TINYTEXT NOT NULL,
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
 			maxRank TINYINT NOT NULL DEFAULT -1,
@@ -260,43 +261,43 @@ class CEsoCreateSkillTree
 			$skillId1 = $skillTreeLine[1];
 			$skillId2 = $skillTreeLine[5];
 			$skillId3 = $skillTreeLine[9];
-			$line = $skills[$skillId1]['skillLine'];
-			$type = $skills[$skillId1]['skillType'];
-			$class = $skills[$skillId1]['classType'];
-			$race = $skills[$skillId1]['raceType'];
-			$skillIndex = $skills[$skillId1]['skillIndex'];
-			$name1 = $skills[$skillId1]['name'];
-			$name2 = $skills[$skillId2]['name'];
-			$name3 = $skills[$skillId3]['name'];
+			$line = $this->skills[$skillId1]['skillLine'];
+			$type = $this->skills[$skillId1]['skillType'];
+			$class = $this->skills[$skillId1]['classType'];
+			$race = $this->skills[$skillId1]['raceType'];
+			$skillIndex = $this->skills[$skillId1]['skillIndex'];
+			$name1 = $this->skills[$skillId1]['name'];
+			$name2 = $this->skills[$skillId2]['name'];
+			$name3 = $this->skills[$skillId3]['name'];
 			
-			$desc1 = $skills[$skillTreeLine[1]]['description'];
-			$desc2 = $skills[$skillTreeLine[2]]['description'];
-			$desc3 = $skills[$skillTreeLine[3]]['description'];
-			$desc4 = $skills[$skillTreeLine[4]]['description'];
+			$desc1 = $this->skills[$skillTreeLine[1]]['description'];
+			$desc2 = $this->skills[$skillTreeLine[2]]['description'];
+			$desc3 = $this->skills[$skillTreeLine[3]]['description'];
+			$desc4 = $this->skills[$skillTreeLine[4]]['description'];
 			
-			print("\t$name1: $type $line $class $race $skillIndex\n");
+			print("\t$name1 $skillId1: $type $line $class $race $skillIndex\n");
 			//print("\t\t Rank 1: $desc1\n");
 			//print("\t\t Rank 2: $desc2\n");
 			//print("\t\t Rank 3: $desc3\n");
 			//print("\t\t Rank 4: $desc4\n");
 			
-			$desc1 = $skills[$skillTreeLine[5]]['description'];
-			$desc2 = $skills[$skillTreeLine[6]]['description'];
-			$desc3 = $skills[$skillTreeLine[7]]['description'];
-			$desc4 = $skills[$skillTreeLine[8]]['description'];
+			$desc1 = $this->skills[$skillTreeLine[5]]['description'];
+			$desc2 = $this->skills[$skillTreeLine[6]]['description'];
+			$desc3 = $this->skills[$skillTreeLine[7]]['description'];
+			$desc4 = $this->skills[$skillTreeLine[8]]['description'];
 			
-			print("\t\t$name2\n");
+			print("\t\t$name2 $skillId2\n");
 			//print("\t\t Rank 1: $desc1\n");
 			//print("\t\t Rank 2: $desc2\n");
 			//print("\t\t Rank 3: $desc3\n");
 			//print("\t\t Rank 4: $desc4\n");
 			
-			$desc1 = $skills[$skillTreeLine[9]]['description'];
-			$desc2 = $skills[$skillTreeLine[10]]['description'];
-			$desc3 = $skills[$skillTreeLine[11]]['description'];
-			$desc4 = $skills[$skillTreeLine[12]]['description'];
+			$desc1 = $this->skills[$skillTreeLine[9]]['description'];
+			$desc2 = $this->skills[$skillTreeLine[10]]['description'];
+			$desc3 = $this->skills[$skillTreeLine[11]]['description'];
+			$desc4 = $this->skills[$skillTreeLine[12]]['description'];
 			
-			print("\t\t$name3\n");
+			print("\t\t$name3 $skillId3\n");
 			//print("\t\t Rank 1: $desc1\n");
 			//print("\t\t Rank 2: $desc2\n");
 			//print("\t\t Rank 3: $desc3\n");
@@ -346,7 +347,7 @@ class CEsoCreateSkillTree
 	{
 		print("Updating skill data...\n");
 		
-		foreach($this->skills as $id => $skill)
+		foreach ($this->skills as $id => $skill)
 		{
 			$classType = $this->db->real_escape_string($skill['classType']);
 			$raceType = $this->db->real_escape_string($skill['raceType']);
@@ -356,9 +357,9 @@ class CEsoCreateSkillTree
 			$skillIndex = $this->db->real_escape_string($skill['skillIndex']);
 			$effectLines = $this->db->real_escape_string($skill['effectLines']);
 			
-			$query = "UPDATE minedSkills" . $this->TABLE_SUFFIX . " SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\", effectLines=\"$effectLines\"  WHERE id=$id;";
+			$query = "UPDATE minedSkills" . $this->TABLE_SUFFIX . " SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\", effectLines=\"$effectLines\" WHERE id=$id;";
 			$result = $this->db->query($query);
-			if (!$result) return $this->ReportError("ERROR: Database query error updating skills table!");
+			if (!$result) return $this->ReportError("ERROR: Database query error updating skills table!\n$query");
 		}
 		
 		return true;
@@ -399,6 +400,7 @@ class CEsoCreateSkillTree
 			{
 				$skillLineId = $skillTreeLine[$index];
 				$thisSkill = $this->skills[$skillLineId];
+				$displayId = $thisSkill['displayId'];
 				$name = $this->db->real_escape_string($thisSkill['name']);
 				$desc = $this->db->real_escape_string($thisSkill['description']);
 				$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText($thisSkill['mechanic']);
@@ -407,8 +409,8 @@ class CEsoCreateSkillTree
 				$abilityIndex = $thisSkill['skillIndex'];
 				$maxLevel = $thisSkill['maxLevel'];
 				
-				$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) ";
-				$query .= " VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\")";
+				$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank,displayId) ";
+				$query .= " VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\", \"$displayId\")";
 				$result = $this->db->query($query);
 				if (!$result) $this->ReportError("ERROR: Database query error inserting into skillTree database!");
 			}
@@ -657,6 +659,7 @@ class CEsoCreateSkillTree
 			$count++;
 			
 			$id = $passive['id'];
+			$displayId = $passive['displayId'];
 			$name = $this->db->real_escape_string($passive['name']);
 			$baseName = $name;
 			$desc = $this->db->real_escape_string($passive['description']);
@@ -670,8 +673,8 @@ class CEsoCreateSkillTree
 			
 			$skillTypeName = $this->db->real_escape_string($passive['skillTypeName']);
 			
-			$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank) ";
-			$query .= " VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'Passive','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\")";
+			$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank,displayId) ";
+			$query .= " VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'Passive','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\", \"$displayId\")";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error inserting into skillTree table!");
 			
@@ -695,14 +698,15 @@ class CEsoCreateSkillTree
 		if (!$this->ClearTables()) return false;
 		if (!$this->LoadActiveSkills()) return false;
 		
-		$this->FindRootActiveSkills18();
+		//$this->FindRootActiveSkills18();
+		$this->FindRootActiveSkills();
 		$this->CreateSkillRootData();
 		$this->PropagateActiveSkillData();
 		$this->PropagateActiveSkillEffects();
 		
 		if ($this->PRINT_TABLE) $this->PrintSkillTree();
 		
-		if (!$this->SaveActiveSkills()) return false;
+		//if (!$this->SaveActiveSkills()) return false;
 		if (!$this->SaveActiveSkillTree()) return false;
 		
 		if (!$this->LoadPassives()) return false;

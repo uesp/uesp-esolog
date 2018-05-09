@@ -29,7 +29,7 @@ ESO_SKILL_TYPES = {
 
 var RAWDATA_KEYS = 
 [
- 		"abilityId",
+ 		"displayId",
 		"name",
 		"type",
 		"skillTypeName",
@@ -1845,6 +1845,7 @@ function UpdateEsoSkillRawData(skillId)
 		keysOutput[key] = true;
 		
 		var value = skillData[key];
+		if (key == "displayId") key = "abilityId";
 		
 		output += "<div class='esovsRawDataRow'>";
 		output += "<div class='esovsRawDataName'>" + key + "</div> ";
@@ -1862,6 +1863,7 @@ function UpdateEsoSkillRawData(skillId)
 		keysOutput[key] = true;
 		
 		var value = skillData[key];
+		if (key == "abilityId") key = "interalAbilityId";
 		
 		output += "<div class='esovsRawDataRow'>";
 		output += "<div class='esovsRawDataName'>" + key + "</div> ";
