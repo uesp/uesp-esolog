@@ -329,7 +329,7 @@ foreach ($EXTRA_SKILLRANK_DATA as $baseId => $rankData)
 	$rankSkills[$id4] = array($baseId, 4);
 }
 
-$phpOutput  = '<?php\n\n$ESO_BASESKILL_RANKDATA = ';
+$phpOutput  = "<?php\n\n" . '$ESO_BASESKILL_RANKDATA = ';
 $phpOutput .= var_export($baseRankSkills, true);
 $phpOutput .= ";\n";
 $phpOutput .= '$ESO_SKILL_RANKDATA = ';
