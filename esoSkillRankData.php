@@ -1,4 +1,5 @@
-<?php\n\n$ESO_BASESKILL_RANKDATA = array (
+<?php
+$ESO_BASESKILL_RANKDATA = array (
   15540 => 
   array (
     1 => 15540,
