@@ -421,9 +421,25 @@ Uploading Data...
 			$extraData .= "logTime{" . time() . "}  ";
 			$extraData .= "end{}  ";
 			
-			if (substr_compare($value, "#STR#", strlen($str)-5, 5) !== 0)
+			if (substr_compare($value, "#STR#", 0, 5) === 0)
 			{
-				$logData .= $value . $extraData . "\n";
+				if (substr_compare($value, "#STR#", -5, 5) === 0)
+				{
+					$logData .= substr($value, 5, -5);
+				}
+				else
+				{
+					$logData .= substr($value, 5);
+					$logData .= $value . $extraData . "\n";
+				}
+			}
+			elseif (substr_compare($value, "#STR#", -5, 5) === 0)
+			{
+				$logData .= substr($value, 0, -5);
+			}
+			else
+			{
+				$logData .= $value . $extraData . "\n";				
 			}
 			
 			++$this->parsedRecords;
