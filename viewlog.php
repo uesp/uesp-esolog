@@ -461,6 +461,7 @@ class EsoLogViewer
 	
 	public static $SKILLDUMP_FIELDS = array(
 			'id' => self::FIELD_INT,
+			'displayId' => self::FIELD_INT,
 			'version' => self::FIELD_STRING,
 			'texture'  => self::FIELD_GAMEICON,
 			'name' => self::FIELD_STRING,

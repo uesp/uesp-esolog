@@ -34,6 +34,7 @@ require("/home/uesp/secrets/esolog.secrets");
 require_once("parseSalesData.php");
 require_once("esoCommon.php");
 require_once("esoPotionData.php");
+require_once("esoSkillRankData.php");
 
 
 class EsoLogParser
@@ -674,6 +675,7 @@ class EsoLogParser
 	
 	public static $SKILLDUMP_FIELDS = array(
 			'id' => self::FIELD_INT,
+			'displayId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_STRING,
 			'duration' => self::FIELD_INT,
@@ -2053,6 +2055,7 @@ class EsoLogParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS minedSkills".self::SKILLS_TABLESUFFIX."(
 			id INTEGER NOT NULL PRIMARY KEY,
+			displayId INTEGER NOT NULL DEFAULT -1,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			target TINYTEXT NOT NULL,
@@ -5562,9 +5565,12 @@ class EsoLogParser
 		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
 		
 		$skill = $this->LoadSkillDump($abilityId);
-		if ($skill === false) return false;
+		if ($skill === false) return $this->reportLogParseError("Failed to load skill $abilityId!");
   	
+		$skill['displayId'] = $logEntry['id'];
 		$skill['name'] = $logEntry['name'];
+		
+			/* Rank dependent parameters */
 		$skill['description'] = $logEntry['desc'];
 		$skill['duration'] = $logEntry['duration'];
 		$skill['cost'] = $logEntry['cost'];
@@ -5572,16 +5578,19 @@ class EsoLogParser
 		$skill['minRange'] = $logEntry['minRange'];
 		$skill['maxRange'] = $logEntry['maxRange'];
 		$skill['radius'] = $logEntry['radius'];
+		$skill['castTime'] = $logEntry['castTime'];
+		$skill['channelTime'] = $logEntry['channelTime'];
+		
 		$skill['isPassive'] = $logEntry['passive'] == "true" ? 1 : 0;
 		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
 		$skill['isChanneled'] = $logEntry['channel'];
-		$skill['castTime'] = $logEntry['castTime'];
-		$skill['channelTime'] = $logEntry['channelTime'];
+		
 		$skill['angleDistance'] = $logEntry['angleDistance'];
 		$skill['mechanic'] = $logEntry['mechanic'];
 		$skill['upgradeLines'] = $logEntry['upgradeLines'];
 		$skill['effectLines'] = $logEntry['effectLines'];
 		$skill['texture'] = $logEntry['icon'];
+		$skill['isPlayer'] = 0;
 		
 		if ($logEntry['skillType'] > 0)
 		{
@@ -5636,22 +5645,23 @@ class EsoLogParser
 			{
 				$skill['isPlayer'] = 1;
 				$skill['isPassive'] = 1;
-				$currentRank = $logEntry['rank'];
-				$skill['rank'] = $currentRank;
+				$maxLevel = intval($logEntry['maxLevel']);
+				$currentRank = 0;
 				
-				if ($$currentRank == 0)
+				for ($i = 1; $i <= $maxLevel; ++$i)
 				{
-					$skill['rank'] = 1;
-					$currentRank = 1;
+					if ($abilityId == $logEntry["passive$i"]) $currentRank = $i;
 				}
 				
+				$skill['rank'] = $currentRank;
 				$nextRank = $currentRank + 1;
 				$prevRank = $currentRank - 1;				
 				
-				if ($logEntry['passive1'] == 0)
+				if ($logEntry['passive1'] == 0 || $currentRank == 0)
 				{
 					$skill['learnedLevel'] = $logEntry['earnedLevel'];
 					$skill['baseAbilityId'] = $abilityId;
+					$skill['rank'] = 1;
 					$skill['prevSkill'] = -1;
 					$skill['nextSkill'] = -1;
 					$skill['nextSkill2'] = -1;
@@ -5670,9 +5680,142 @@ class EsoLogParser
 			}
 		}
 		
+		if ($logEntry['skillType'] <= 0 || $skill['isPassive'] || $logEntry['desc1'] == null || $skill['isPlayer'] == 0)
+		{
+			$this->SaveSkillDump($skill);
+			return true;
+		}
+		
+		$id1 = $abilityId;
+		$id2 = $this->GetCustomAbilityId($abilityId, 2);
+		$id3 = $this->GetCustomAbilityId($abilityId, 3);
+		$id4 = $this->GetCustomAbilityId($abilityId, 4);
+		
+		//print("SkillDump18: $id1, $id2, $id3, $id4\n");
+		
+		$skill2 = $this->LoadSkillDump($id2);
+		$skill3 = $this->LoadSkillDump($id3);
+		$skill4 = $this->LoadSkillDump($id4);
+		
+		$this->MergeSkillData($skill2, $skill);
+		$this->MergeSkillData($skill3, $skill);
+		$this->MergeSkillData($skill4, $skill);
+		
+		$origPrevSkill  = $skill['prevSkill'];
+		$origNextSkill  = $skill['nextSkill'];
+		$origNextSkill2 = $skill['nextSkill2'];
+		
+		$skill['displayId'] = $abilityId;
+		$skill['description'] = $logEntry['desc1'];
+		$skill['duration'] = $logEntry['duration1'];
+		$skill['cost'] = $logEntry['cost1'];
+		$skill['target'] = $logEntry['target1'];
+		$skill['minRange'] = $logEntry['minRange1'];
+		$skill['maxRange'] = $logEntry['maxRange1'];
+		$skill['radius'] = $logEntry['radius1'];
+		$skill['castTime'] = $logEntry['castTime1'];
+		$skill['channelTime'] = $logEntry['channelTime1'];
+		$skill['rank'] = 1;
+		$skill['nextSkill'] = $id2;
+		$skill['nextSkill2'] = 0;
+		$skill['prevSkill'] = $origPrevSkill;
+						
 		$this->SaveSkillDump($skill);
 		
+		$skill2['displayId'] = $abilityId;
+		$skill2['description'] = $logEntry['desc2'];
+		$skill2['duration'] = $logEntry['duration2'];
+		$skill2['cost'] = $logEntry['cost2'];
+		$skill2['target'] = $logEntry['target2'];
+		$skill2['minRange'] = $logEntry['minRange2'];
+		$skill2['maxRange'] = $logEntry['maxRange2'];
+		$skill2['radius'] = $logEntry['radius2'];
+		$skill2['castTime'] = $logEntry['castTime2'];
+		$skill2['channelTime'] = $logEntry['channelTime2'];
+		$skill2['rank'] = 2;
+		$skill2['nextSkill'] = $id3;
+		$skill2['nextSkill2'] = 0;
+		$skill2['prevSkill'] = $id1;
+		
+		$this->SaveSkillDump($skill2);
+		
+		$skill3['displayId'] = $abilityId;
+		$skill3['description'] = $logEntry['desc3'];
+		$skill3['duration'] = $logEntry['duration3'];
+		$skill3['cost'] = $logEntry['cost3'];
+		$skill3['target'] = $logEntry['target3'];
+		$skill3['minRange'] = $logEntry['minRange3'];
+		$skill3['maxRange'] = $logEntry['maxRange3'];
+		$skill3['radius'] = $logEntry['radius3'];
+		$skill3['castTime'] = $logEntry['castTime3'];
+		$skill3['channelTime'] = $logEntry['channelTime3'];
+		$skill3['rank'] = 3;
+		$skill3['nextSkill'] = $id4;
+		$skill3['nextSkill2'] = 0;
+		$skill3['prevSkill'] = $id2;
+			
+		$this->SaveSkillDump($skill3);
+			
+		$skill4['displayId'] = $abilityId;
+		$skill4['description'] = $logEntry['desc4'];
+		$skill4['duration'] = $logEntry['duration4'];
+		$skill4['cost'] = $logEntry['cost4'];
+		$skill4['target'] = $logEntry['target4'];
+		$skill4['minRange'] = $logEntry['minRange4'];
+		$skill4['maxRange'] = $logEntry['maxRange4'];
+		$skill4['radius'] = $logEntry['radius4'];
+		$skill4['castTime'] = $logEntry['castTime4'];
+		$skill4['channelTime'] = $logEntry['channelTime4'];
+		$skill4['rank'] = 4;
+		$skill4['nextSkill'] = $origNextSkill;
+		$skill4['nextSkill2'] = $origNextSkill2;
+		$skill4['prevSkill'] = $id3;
+			
+		$this->SaveSkillDump($skill4);
+		
 		return true;
+	}
+	
+	
+	public function GetCustomAbilityId($abilityId, $rank)
+	{
+		global $ESO_BASESKILL_RANKDATA;
+		
+		if ($rank <= 1) return $abilityId;
+		
+		$skillRankData = $ESO_BASESKILL_RANKDATA[$abilityId];
+		
+		if ($skillRankData == null || $skillRankData[$rank] == null) return $abilityId + 10000000*$rank; 
+		return $skillRankData[$rank];		
+	}
+	
+	
+	public function MergeSkillData (&$skill1, $skill2)
+	{
+		static $FIELDS = array(
+				'name',
+				'isPassive',
+				'isPermanent',
+				'isChanneled',
+				'angleDistance',
+				'mechanic',
+				'upgradeLines',
+				'effectLines',
+				'texture',
+				'isUltimate',
+				'skillType',
+				'skillLine',
+				'skillIndex',
+				'morph',
+				'learnedLevel',
+				'isPlayer',
+				'baseAbilityId',
+		);
+		
+		foreach ($FIELDS as $field)
+		{
+			$skill1[$field] = $skill2[$field];
+		}
 	}
 	
 	
@@ -5690,6 +5833,7 @@ class EsoLogParser
 		if ($skill === false) return false;
   	
 		$skill['name'] = $logEntry['name'];
+		$skill['displayId'] = $logEntry['id'];
 		$skill['description'] = $logEntry['desc'];
 		$skill['duration'] = $logEntry['duration'];
 		$skill['cost'] = $logEntry['cost'];
