@@ -2476,7 +2476,7 @@ $ESO_DESTRUCTION_SKILLS = array(
 				"frostName" => "Blockade of Frost",
 		),
 		41769 => array(
-				"flame" => 41770, 
+				"flame" => 41770,
 				"shock" => 41772, 
 				"frost" => 41771,
 				"flameName" => "Blockade of Flame",
