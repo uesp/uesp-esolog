@@ -5592,13 +5592,13 @@ class EsoLogParser
 		$skill['texture'] = $logEntry['icon'];
 		$skill['isPlayer'] = 0;
 		
-		if ($logEntry['skillType'] > 0)
+		if ($logEntry['skillType'] > 0 || $logEntry['desc1'] != null)
 		{
 			$skill['isUltimate'] = $logEntry['ultimate'];
 			$skill['skillType'] = $logEntry['skillType'];
 			$skill['skillLine'] = $logEntry['skillLineName'];
 			$skill['skillIndex'] = $logEntry['abilityIndex'];
-				
+			$skill['isPlayer'] = 1;
 			$skill['morph'] = $logEntry['morph'];
 			$skill['learnedLevel'] = $logEntry['earnedLevel'];
 			
@@ -5615,7 +5615,6 @@ class EsoLogParser
 			
 			if ($id1 > 0 && ($id1 == $abilityId || $id2 == $abilityId || $id3 == $abilityId))
 			{
-				$skill['isPlayer'] = 1;
 				$skill['isPassive'] = 0;
 				$morph = $logEntry['morph'];
 				$rank = $logEntry['rank'];
@@ -5643,7 +5642,6 @@ class EsoLogParser
 			}
 			else if ($logEntry['passive1'] > 0 || $logEntry['passive'] == "true")
 			{
-				$skill['isPlayer'] = 1;
 				$skill['isPassive'] = 1;
 				$maxLevel = intval($logEntry['maxLevel']);
 				$currentRank = 0;
@@ -5680,7 +5678,7 @@ class EsoLogParser
 			}
 		}
 		
-		if ($logEntry['skillType'] <= 0 || $skill['isPassive'] || $logEntry['desc1'] == null || $skill['isPlayer'] == 0)
+		if (($logEntry['skillType'] <= 0 && $logEntry['desc2'] == null) || $skill['isPassive'] || $logEntry['desc1'] == null || ($skill['isPlayer'] == 0 && $logEntry['desc2'] == null))
 		{
 			$this->SaveSkillDump($skill);
 			return true;

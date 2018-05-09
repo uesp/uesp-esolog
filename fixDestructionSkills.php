@@ -17,6 +17,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newName)
 {
 	global $db;
+	global $TABLE_SUFFIX;
 	
 	$query = "DELETE FROM skillTree$TABLE_SUFFIX where abilityId=$elementAbilityId;";
 	$result = $db->query($query);
@@ -97,6 +98,8 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	$result = $db->query($query);
 	if ($result === false) print("\tError updating element $elementAbilityId base ability ID!\n");
 	
+	print("\tUpdated element $elementAbilityId base ability ID!\n");
+		
 	return true;
 }
 

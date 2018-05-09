@@ -198,7 +198,7 @@ class CEsoViewSkills
 			/* Destruction skills */
 
 		$this->LogProfile("LoadSkills()", $startTime);
-
+		
 		$this->CreateSkillTree();
 		$this->CreateSkillSearchIds();
 		//$this->FindBaseAbilityForInitialActiveData();
