@@ -1,7 +1,7 @@
 <?php 
 
-$TABLE_SUFFIX1 = "";
-$TABLE_SUFFIX2 = "18pts";
+$TABLE_SUFFIX1 = "17";
+$TABLE_SUFFIX2 = "";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Finding updated player skills...\n");
