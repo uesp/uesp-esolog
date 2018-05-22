@@ -226,7 +226,7 @@ $ESO_CRAFT_REQUIRESKILLS = array(
 		4 => "Solvent Proficiency",
 		5 => "Recipe Improvement",
 		6 => "Woodworking",
-		//7 => "Engraver", //TODO18
+		7 => "Engraver",
 );
 
 
@@ -2445,8 +2445,6 @@ $ESO_ITEMQUALITYLEVEL_INTTYPEMAP = array(
 );			//	1  360  361  362  363  364  // Jewelry?
 
 
-
-	//TODO18 Check IDs
 $ESO_DESTRUCTION_SKILLS = array(
 		 	
 			/* Blockade */
@@ -3535,6 +3533,7 @@ function CreateEsoMasterWritText($db, $name, $writ1, $writ2, $writ3, $writ4, $wr
 	if (stripos($name, "enchant")) return CreateEsoMasterWritEnchantingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
 	if (stripos($name, "provision")) return CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
 	if (stripos($name, "woodwork")) return CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
+	if (stripos($name, "jewelry")) return CreateEsoMasterWritJewelryText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers);
 	
 	return "";
 }
@@ -3639,7 +3638,7 @@ function FixVowelArticles($text)
 
 function CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
 {
-	$query = "SELECT * FROM minedItem WHERE itemId='$writ1' AND internalLevel='1' AND internalSubtype='1';";
+	$query = "SELECT name FROM minedItem WHERE itemId='$writ1' AND internalLevel='1' AND internalSubtype='1';";
 	$result = $db->query($query);
 	$name = "Unknown Food";
 	
@@ -3660,9 +3659,22 @@ function CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4
 }
 
 
+		//TODO18
+function CreateEsoMasterWritJewelryText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
+{
+	if ($rawVouchers < 0) $rawVouchers = 0;
+	$vouchers = round($rawVouchers/10000);
+	
+	$text  = "Consume to start quest:\n";
+	$text .= "Unknown Jewelry Item; ";
+	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+	
+	return $text;
+}
+
+
 function CreateEsoMasterWritSmithingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
 {
-		//TODO18
 	static $ESO_SMITHING_CRAFTTYPE = array(
 			188 => "Rubedite",
 			190 => "Rubedo Leather",
