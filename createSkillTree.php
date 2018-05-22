@@ -327,12 +327,12 @@ class CEsoCreateSkillTree
 				$skill = $this->skills[$skillLineId];
 				$rank = $index;
 		
-				if ($rank > 5 && $rank < 9)
+				if ($skillLineId != "" && $rank > 5 && $rank < 9)
 				{
 					//print("\tSetting effect line for $id morph 1\n");
 					$this->skills[$skillLineId]['effectLines'] = $effectLine1;
 				}
-				elseif ($rank > 9 && $rank < 13)
+				elseif ($skillLineId != "" && $rank > 9 && $rank < 13)
 				{
 					//print("\tSetting effect line for $id morph 2\n");
 					$this->skills[$skillLineId]['effectLines'] = $effectLine2;
@@ -349,6 +349,13 @@ class CEsoCreateSkillTree
 		
 		foreach ($this->skills as $id => $skill)
 		{
+			
+			if ($id == "")
+			{
+				print_r($skill);
+				continue;
+			}
+			
 			$classType = $this->db->real_escape_string($skill['classType']);
 			$raceType = $this->db->real_escape_string($skill['raceType']);
 			$skillType = $this->db->real_escape_string($skill['skillType']);
@@ -638,7 +645,7 @@ class CEsoCreateSkillTree
 			}
 		}
 		
-		$passiveSkills = array_merge($this->passiveSkills, $newPassives);
+		$this->passiveSkills = array_merge($this->passiveSkills, $newPassives);
 	}
 
 	
