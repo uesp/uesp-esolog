@@ -826,18 +826,32 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 	}
 	else if (type == -51)
 	{
-		if (values.LightArmor == null) return '(' + a + ' * LIGHTARMOR)';
-		value = a * values.LightArmor;
+		if (values.LightArmor == null) 
+		{
+			if (c == 0)	return '(' + a + ' * LIGHTARMOR)';
+			return '(' + c + ' + ' + a + ' * LIGHTARMOR)';
+		}
+		value = a * values.LightArmor + c;
 	}
 	else if (type == -52)
 	{
-		if (values.MediumArmor == null) return '(' + a + ' * MEDIUMARMOR)';
-		value = a * values.MediumArmor;
+		if (values.MediumArmor == null) 
+		{
+			if (c == 0)	return '(' + a + ' * MEDIUMARMOR)';
+			return '(' + c + ' + ' + a + ' * MEDIUMARMOR)';
+		}
+		
+		value = a * values.MediumArmor + c;
 	}
 	else if (type == -53)
 	{
-		if (values.HeavyArmor == null) return '(' + a + ' * HEAVYARMOR)';
-		value = a * values.HeavyArmor;
+		if (values.HeavyArmor == null) 
+		{
+			if (c == 0)	return '(' + a + ' * HEAVYARMOR)';
+			return '(' + c + ' + ' + a + ' * HEAVYARMOR)';
+		}
+		
+		value = a * values.HeavyArmor + c;
 	}
 	else if (type == -54)
 	{

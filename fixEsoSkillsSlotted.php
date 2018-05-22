@@ -39,6 +39,16 @@ $ESO_SLOTTED_SKILLS = array(
 		
 		86189 => -67,	//Warden: Frozen Armor
 		86190 => -67,
+		
+		39197 => -53,	//Heavy Armor: Unstoppable
+		41097 => -53,
+		41100 => -53,
+		41103 => -53,
+		
+		39192 => -52,	//Medium Armor: Elude
+		41133 => -52,
+		41135 => -52,
+		41137 => -52,
 );
 
 $ESO_COEF_INDEX = array(
@@ -49,6 +59,30 @@ $ESO_COEF_INDEX = array(
 $ESO_COEF_VALUE = array(
 		30893 => 547,		//DW: Twin Blade and Blunt
 		45482 => 1095,
+		
+		39197 => array(0.25, 0, 5),		//Heavy Armor: Unstoppable
+		41097 => array(0.25, 0, 5),
+		41100 => array(0.25, 0, 5),
+		41103 => array(0.25, 0, 5),
+		
+		39192 => array(0.9, 0, 18),		//Medium Armor: Elude
+		41133 => array(0.9, 0, 18),
+		41135 => array(0.9, 0, 18),
+		41136 => array(0.9, 0, 18),
+);
+
+
+	// 1-based counting (1 == first number in tooltip)
+$ESO_COEF_NUMBER_INDEX = array(
+		39197 => 4,		//Heavy Armor: Unstoppable
+		41097 => 4,
+		41100 => 4,
+		41103 => 4,
+		
+		39192 => 3,		//Medium Armor: Elude
+		41133 => 3,
+		41135 => 3,
+		41137 => 3,
 );
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -86,10 +120,32 @@ foreach ($skillsData as $skillId => &$skill)
 	if ($ESO_COEF_INDEX[$skillId] != null) $index = $ESO_COEF_INDEX[$skillId];
 	
 	$coefDescription = $skill['coefDescription'];
-	if ($coefDescription == "") $coefDescription = $skill['description'];
+	$fixupCoefDesc = false;
 	
-	//$coefDescription = $skill['description'];
-	//$coefDescription = preg_replace("#1005#", '\$1', $coefDescription);
+	if ($coefDescription == "")
+	{
+		$coefDescription = $skill['description'];
+		$fixupCoefDesc = true;
+	}
+	
+	$numberIndex = $ESO_COEF_NUMBER_INDEX[$skillId];
+	
+	if ($fixupCoefDesc || $numberIndex != null)
+	{
+		$coefDescription = $skill['description'];
+		$foundCount = 0;
+		
+		$coefDescription = preg_replace_callback('|([0-9]+(?:\.\d+)?)|', function($matches) {
+			global $foundCount, $numberIndex, $index;
+			++$foundCount;
+			if ($foundCount == $numberIndex) return '$' . $index;
+			return $matches[0];					
+		}, $coefDescription);
+	}
+	elseif ($fixupCoefDesc)
+	{
+		print("\t{$skill['name']} ($skillId): Skill has no coefficient description!\n");
+	}
 	
 	$result = preg_match("#([0-9]+)#", $coefDescription, $matches);
 	
@@ -99,14 +155,27 @@ foreach ($skillsData as $skillId => &$skill)
 		continue;	
 	}
 	
-	$value = $matches[1];
+	$valueA = $matches[1];
+	$valueB = 0;
+	$valueC = 0;
+	$coefValue = $ESO_COEF_VALUE[$skillId];
 	
-	if ($ESO_COEF_VALUE[$skillId] != null) $value = $ESO_COEF_VALUE[$skillId];
-	print("\t{$skill['name']} ($skillId): Found value $value\n");
+	if (is_numeric($coefValue)) 
+	{
+		$valueA = $coefValue;
+	}
+	elseif (is_array($coefValue)) 
+	{
+		$valueA = $coefValue[0];
+		$valueB = $coefValue[1];
+		$valueC = $coefValue[2];
+	}
 	
-	$skill['a' . $index] = $value;
-	$skill['b' . $index] = 0;
-	$skill['c' . $index] = 0;
+	print("\t{$skill['name']} ($skillId): Found value $valueA:$valueB:$valueC\n");
+	
+	$skill['a' . $index] = $valueA;
+	$skill['b' . $index] = $valueB;
+	$skill['c' . $index] = $valueC;
 	$skill['avg' . $index] = 0;
 	$skill['R' . $index] = 1;
 	$skill['numCoefVars'] = $index;
@@ -117,7 +186,7 @@ foreach ($skillsData as $skillId => &$skill)
 	
 	$coef = $db->real_escape_string($skill['coefDescription']);
 	
-	$query = "UPDATE minedSkills$TABLE_SUFFIX SET type$index=$type, a$index={$skill['a'.$index]}, b$index=0, c$index=0, avg$index=0, R$index=1, numCoefVars=$index, coefDescription='$coef' WHERE id=$skillId;";
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET type$index=$type, a$index={$skill['a'.$index]}, b$index={$skill['b'.$index]}, c$index={$skill['c'.$index]}, avg$index=0, R$index=1, numCoefVars=$index, coefDescription='$coef' WHERE id=$skillId;";
 	$result = $db->query($query);
 	if (!$result) print("\tError saving skill $skillId!\n");
 }
