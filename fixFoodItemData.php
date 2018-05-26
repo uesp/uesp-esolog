@@ -25,7 +25,7 @@ print("Found " . count($foodIds) . " food/drink items!\n");
 foreach ($foodIds as $i => $id)
 {
 	print("Updating item $id...\n");
-	$query = "UPDATE minedItem$TABLE_SUFFIX SET enchantDesc='', enchantName='', traitDesc='' WHERE itemId=$id;";
+	$query = "UPDATE minedItem$TABLE_SUFFIX SET enchantDesc='', enchantName='', traitDesc='', setName='', setBonusCount=-1,setMaxEquipCount=-1, setBonusCount1=-1,setBonusCount2=-1,setBonusCount3=-1,setBonusCount4=-1,setBonusCount5=-1, setBonusDesc1='', setBonusDesc2='', setBonusDesc3='', setBonusDesc4='', setBonusDesc5='' WHERE itemId=$id;";
 	$result = $db->query($query);
 	if ($result === false) exit("Failed to update minedItem!");
 }
