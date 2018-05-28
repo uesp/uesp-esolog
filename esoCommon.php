@@ -3435,6 +3435,7 @@ function FormatEsoItemDescriptionText($desc)
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $output);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $output);
 	
+	$output = str_replace("|o", "", $output);
 	$output = str_replace("\n", "<br />", $output);
 
 	return $output;
@@ -3451,6 +3452,7 @@ function FormatRemoveEsoItemDescriptionText($desc)
 	$output = preg_replace("#\|c[0-9a-fA-F]{6}#s", "", $output);
 	$output = preg_replace("#\|r#s", "", $output);
 	
+	$output = str_replace("|o", "", $output);
 	$output = str_replace("\n", " ", $output);
 
 	return $output;
