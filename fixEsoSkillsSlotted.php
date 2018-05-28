@@ -68,7 +68,7 @@ $ESO_COEF_VALUE = array(
 		39192 => array(0.9, 0, 18),		//Medium Armor: Elude
 		41133 => array(0.9, 0, 18),
 		41135 => array(0.9, 0, 18),
-		41136 => array(0.9, 0, 18),
+		41137 => array(0.9, 0, 18),
 );
 
 
