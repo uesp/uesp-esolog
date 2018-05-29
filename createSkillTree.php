@@ -67,6 +67,26 @@ class CEsoCreateSkillTree
 			),
 	);
 	
+	
+	public $IGNORE_SKILLS = array(
+			"Wall of Storms",
+			"Wall of Flame",
+			"Wall of Frost",
+			"Flame Impulse",
+			"Frost Impulse",
+			"Shock Impulse",
+			"Flame Touch",
+			"Frost Touch",
+			"Shock Touch",
+			"Fire Impulse",
+			"Frost Impulse",
+			"Shock Impulse",
+			"Fire Storm",
+			"Thunder Storm",
+			"Ice Storm",
+			
+	);
+	
 		
 	public function __construct()
 	{
@@ -397,6 +417,8 @@ class CEsoCreateSkillTree
 			$rootSkill = $this->skills[$skillTreeLine[1]];
 			$skillTypeName = $this->db->real_escape_string($skillTypeName);
 			$baseName = $this->db->real_escape_string($rootSkill['name']);
+			
+			if ($this->IGNORE_SKILLS[$baseName] != null) continue;
 			 
 			$type = "Active";
 			
