@@ -1569,6 +1569,7 @@ function UpdateEsoSkillTooltipDescription()
 
 function CreateEsoSkillLineId(skillLine)
 {
+	if (skillLine == null) return "";
 	return skillLine.replace(/ /g, "_");
 }
 

@@ -89,6 +89,31 @@ class CEsoViewSkills
 	public $dataLoaded = false;	
 	public $activeSkillBar = 1;
 	
+	
+	public $IGNORE_SKILLS = array(
+			"Wall of Storms" => 1,
+			"Wall of Flame" => 1,
+			"Wall of Frost" => 1,
+			"Flame Impulse" => 1,
+			"Frost Impulse" => 1,
+			"Shock Impulse" => 1,
+			"Flame Touch" => 1,
+			"Frost Touch" => 1,
+			"Shock Touch" => 1,
+			"Fire Impulse" => 1,
+			"Frost Impulse" => 1,
+			"Shock Impulse" => 1,
+			"Fire Storm" => 1,
+			"Thunder Storm" => 1,
+			"Ice Storm" => 1,
+			"Fiery Rage" => 1,
+			"Thunderous Rage" => 1,
+			"Icy Rage" => 1,
+			"Eye of Flame" => 1,
+			"Eye of Lightning" => 1,
+			"Eye of Frost" => 1,
+	);
+	
 
 
 	public function __construct ($isEmbedded = false, $displayType = "summary", $parseParams = true)
@@ -710,7 +735,7 @@ class CEsoViewSkills
 		{
 			if ($abilityData['type'] != $type) continue;
 			if ($abilityData['skillIndex'] < 0) continue;
-				
+			
 			$baseAbility = $this->FindFirstAbility($abilityData);
 			if ($baseAbility == null) continue;
 			
@@ -755,7 +780,7 @@ class CEsoViewSkills
 	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel, $isPurchased, $baseAbilityId)
 	{
 		$output = "";
-			
+					
 		if ($baseAbilityId == null) 
 			$baseId = $baseAbility['abilityId'];
 		else
@@ -763,8 +788,11 @@ class CEsoViewSkills
 		
 		$id = $abilityData['abilityId'];
 		$index = $abilityData['__index'];
-
 		$name = $baseAbility['name'];
+		$baseName = $abilityData['baseName'];
+		
+		if ($baseName != "" && $this->IGNORE_SKILLS[$baseName] != null) return "";
+		
 		$type = $baseAbility['type'];
 		$icon = $this->GetIconURL($baseAbility['icon']);
 		$effectLines = $abilityData['effectLines'];
