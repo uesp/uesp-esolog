@@ -92,7 +92,7 @@ class CEsoViewSkills
 	
 	public $IGNORE_SKILLS = array(
 			"Wall of Storms" => 1,
-			"Wall of Flame" => 1,
+			"Wall of Fire" => 1,
 			"Wall of Frost" => 1,
 			"Flame Impulse" => 1,
 			"Frost Impulse" => 1,
