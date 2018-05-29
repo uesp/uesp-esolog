@@ -155,7 +155,7 @@ class CEsoItemSearchPopup
 
 			if ($where != "") 
 			{
-				$whereQuery[] = $where . " OR specialType=8 OR name=\"Orzorga's Red Frothgar\" OR name=\"Spring-Loaded Infusion\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
+				$whereQuery[] = $where . " OR specialType=8 OR name=\"Orzorga's Red Frothgar\" OR name=\"Spring-Loaded Infusion\" OR name=\"Artaeum Picked Fish Bowl\"  OR name=\"Artaeum Takeaway Broth\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
 			}
 		}
 		

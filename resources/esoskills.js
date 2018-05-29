@@ -3471,7 +3471,7 @@ function esovsOnDocReady()
 	//$(".esovsSkillBarItem").on('drop', OnSkillBarDrop);
 	//$(document).on('dragend', OnSkillBarDragEnd);
 	
-	$(".esovsAbilityBlockIcon").draggable({ 
+	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").children(".esovsAbilityBlockIcon").draggable({ 
 			//containment: $('#esovsRightBlock'),
 			//appendTo: $('#esovsRightBlock'),
 			containment: false,
