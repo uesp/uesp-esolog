@@ -2878,7 +2878,7 @@ $ESO_SKILLTYPESTYPE = array(
 
 function GetEsoUpdateVersion()
 {
-	return 17;
+	return 18;
 }
 
 
