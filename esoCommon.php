@@ -2975,7 +2975,7 @@ function GetEsoItemTableSuffix($version)
 		case '1.7':
 		case '117':
 		case '17':
-			return "";
+			return "17";
 		case '1.8pts':
 		case '118pts':
 		case '18pts':
@@ -2983,7 +2983,7 @@ function GetEsoItemTableSuffix($version)
 		case '1.8':
 		case '118':
 		case '18':
-			return "18";
+			return "";
 	}
 
 	return "";
