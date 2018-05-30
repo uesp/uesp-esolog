@@ -148,6 +148,10 @@ var ESO_FREE_PASSIVES = {
 		84680 : 1,
 		36008 : 1,
 		
+		43056 : 1,
+		//41920 : 1,  // Bat Swarm not free?
+		42358 : 1,
+		
 		103632 : 1, // Update 18
 		103793 : 1,
 };
@@ -2466,6 +2470,7 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 {
 	var origPoints = 0;
 	var newPoints = 1;
+	var isFree = IsEsoSkillFree(origAbilityId);
 	
 	if (g_EsoSkillActiveData[origAbilityId] == null)
 	{
@@ -2477,6 +2482,7 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 	{
 		origPoints = 1;
 		if (g_EsoSkillActiveData[origAbilityId].morph > 0) ++origPoints;
+		if (isFree) origPoints -= 1;
 	}
 	
 	if (rank <= 0)
@@ -2489,8 +2495,9 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 	}
 	
 	if (morph > 0) ++newPoints;
+	if (isFree) newPoints -= 1;
 	
-	g_EsoSkillPointsUsed += newPoints - origPoints;
+	g_EsoSkillPointsUsed += newPoints - origPoints;	
 	
 	g_EsoSkillActiveData[origAbilityId].abilityType = abilityType;
 	g_EsoSkillActiveData[origAbilityId].morph = morph;
