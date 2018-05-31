@@ -3655,21 +3655,38 @@ function CreateEsoMasterWritProvisioningText($db, $writ1, $writ2, $writ3, $writ4
 	
 	$text  = "Consume to start quest:\n";
 	$text .= FixVowelArticles("Craft a $name\n\n");
-	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+	$text .= " Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
 		
 	return $text;
 }
 
 
-		//TODO18
 function CreateEsoMasterWritJewelryText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
 {
 	if ($rawVouchers < 0) $rawVouchers = 0;
 	$vouchers = round($rawVouchers/10000);
 	
+	$itemType = "Unknown";
+	
+		//TODO18 Confirm types
+	if ($writ1 == 18)
+		$itemType = "Ring";
+	elseif ($writ1 == 24)
+		$itemType = "Necklace";
+		
+	$quality = GetEsoItemQualityText($writ3);
+	$set = GetEsoSetIndexText($writ4);
+	$trait = GetEsoItemTraitText($writ5);
+		
+	if ($rawVouchers < 0) $rawVouchers = 0;
+	$vouchers = round($rawVouchers/10000);
+	
 	$text  = "Consume to start quest:\n";
-	$text .= "Unknown Jewelry Item; ";
-	$text .= "Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
+	$text .= "Craft a $itemType;";
+	$text .= " Quality: $quality;";
+	$text .= " Trait: $trait;";
+	if ($set) $text .= " Set: $set;";
+	$text .= " Reward: $vouchers|t16:16:esoui/art/currency/currency_writvoucher.dds|t Writ Vouchers";
 	
 	return $text;
 }
