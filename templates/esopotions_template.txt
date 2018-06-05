@@ -97,113 +97,117 @@
 		<div id="esopdLearn" style="display: none;">
 			Level up Alchemy and learn the traits of all reagents by using one of the following guides.
 			<p/>
-			From level 1 Alchemy you can learn all traits in 25 different combinations:
+			From level 1 Alchemy you can learn all traits in 27 different combinations:
 			<ol class="esopdLearnList">
-				<li reagent1="Spider Egg" reagent2="Mudcrab Chitin" reagent3="">Spider Egg + Mudcrab Chitin (Repeat until Level 15 Alchemy and purchase Laboratory Use)</li>
-				<li reagent1="Spider Egg" reagent2="Blue Entoloma" reagent3="Scrib Jelly">Spider Egg + Blue Entoloma + Scrib Jelly</li>
-				<li reagent1="Spider Egg" reagent2="Butterfly Wing" reagent3="Nirnroot">Spider Egg + Butterfly Wing + Nirnroot</li>
-				<li reagent1="Spider Egg" reagent2="Imp Stool" reagent3="Luminous Russula">Spider Egg + Imp Stool + Luminous Russula</li>
-				<li reagent1="Beetle Scuttle" reagent2="Butterfly Wing" reagent3="Mountain Flower">Beetle Scuttle + Butterfly Wing + Mountain Flower</li>
-				<li reagent1="Blessed Thistle" reagent2="Fleshfly Larva" reagent3="Scrib Jelly">Blessed Thistle + Fleshfly Larva + Scrib Jelly</li>
-				<li reagent1="Blue Entoloma" reagent2="Mudcrab Chitin" reagent3="White Cap">Blue Entoloma + Mudcrab Chitin + White Cap</li>
-				<li reagent1="Columbine" reagent2="Blue Entoloma" reagent3="Namira's Rot">Columbine + Blue Entoloma + Namira's Rot</li>
-				<li reagent1="Columbine" reagent2="Corn Flower" reagent3="Wormwood">Columbine + Corn Flower + Wormwood</li>
-				<li reagent1="Columbine" reagent2="Lady's Smock" reagent3="Mountain Flower">Columbine + Lady's Smock + Mountain Flower</li>
-				<li reagent1="Dragonthorn" reagent2="Emetic Russula" reagent3="Water Hyacinth">Dragonthorn + Emetic Russula + Water Hyacinth</li>
-				<li reagent1="Lady's Smock" reagent2="Bugloss" reagent3="Water Hyacinth">Lady's Smock + Bugloss + Water Hyacinth</li>
-				<li reagent1="Lady's Smock" reagent2="Namira's Rot" reagent3="Scrib Jelly">Lady's Smock + Namira's Rot + Scrib Jelly</li>
-				<li reagent1="Torchbug Thorax" reagent2="Bugloss" reagent3="White Cap">Torchbug Thorax + Bugloss + White Cap</li>
-				<li reagent1="Torchbug Thorax" reagent2="Fleshfly Larva" reagent3="Imp Stool">Torchbug Thorax + Fleshfly Larva + Imp Stool</li>
-				<li reagent1="Torchbug Thorax" reagent2="Nirnroot" reagent3="Stinkhorn">Torchbug Thorax + Nirnroot + Stinkhorn</li>
-				<li reagent1="Torchbug Thorax" reagent2="Violet Coprinus" reagent3="Corn Flower">Torchbug Thorax + Violet Coprinus + Corn Flower</li>
-				<li reagent1="Nightshade" reagent2="Imp Stool" reagent3="Mudcrab Chitin">Nightshade + Imp Stool + Mudcrab Chitin</li>
-				<li reagent1="Nightshade" reagent2="Blessed Thistle" reagent3="Dragonthorn">Nightshade + Blessed Thistle + Dragonthorn</li>
-				<li reagent1="Nightshade" reagent2="Fleshfly Larva" reagent3="Stinkhorn">Nightshade + Fleshfly Larva + Stinkhorn</li>
-				<li reagent1="Violet Coprinus" reagent2="Emetic Russula" reagent3="Imp Stool">Violet Coprinus + Emetic Russula + Imp Stool</li>
-				<li reagent1="Violet Coprinus" reagent2="Lady's Smock" reagent3="Nightshade">Violet Coprinus + Lady's Smock + Nightshade</li>
-				<li reagent1="Violet Coprinus" reagent2="Beetle Scuttle" reagent3="Nightshade">Violet Coprinus + Beetle Scuttle + Nightshade</li>
-				<li reagent1="Wormwood" reagent2="Luminous Russula" reagent3="Mountain Flower">Wormwood + Luminous Russula + Mountain Flower</li>
-				<li reagent1="Wormwood" reagent2="Dragonthorn" reagent3="Stinkhorn">Wormwood + Dragonthorn + Stinkhorn</li>
+				<li reagent1="Mountain Flower" reagent2="Imp Stool" reagent3="">Imp Stool + Mountain Flower (Repeat until Level 15 Alchemy and purchase Laboratory Use)</li>
+				<li reagent1="Bugloss" reagent2="Imp Stool" reagent3="Luminous Russula">Bugloss + Imp Stool + Luminous Russula</li>
+				<li reagent1="Beetle Scuttle" reagent2="Imp Stool" reagent3="Powdered Mother of Pearl">Beetle Scuttle + Imp Stool + Powdered Mother of Pearl</li>
+				<li reagent1="Imp Stool" reagent2="Mudcrab Chitin" reagent3="Nightshade">Imp Stool + Mudcrab Chitin + Nightshade</li>
+				<li reagent1="Fleshfly Larva" reagent2="Imp Stool" reagent3="Torchbug Thorax">Fleshfly Larva + Imp Stool + Torchbug Thorax</li>
+				<li reagent1="Blue Entoloma" reagent2="Bugloss" reagent3="Namira's Rot">Blue Entoloma + Bugloss + Namira's Rot</li>
+				<li reagent1="Bugloss" reagent2="Columbine" reagent3="Namira's Rot">Bugloss + Columbine + Namira's Rot</li>
+				<li reagent1="Butterfly Wing" reagent2="Namira's Rot" reagent3="Powdered Mother of Pearl">Butterfly Wing + Namira's Rot + Powdered Mother of Pearl</li>
+				<li reagent1="Blessed Thistle" reagent2="Dragonthorn" reagent3="Namira's Rot">Blessed Thistle + Dragonthorn + Namira's Rot</li>
+				<li reagent1="Lady's Smock" reagent2="Namira's Rot" reagent3="Violet Coprinus">Lady's Smock + Namira's Rot + Violet Coprinus</li>
+				<li reagent1="Bugloss" reagent2="Butterfly Wing" reagent3="White Cap">Bugloss + Butterfly Wing + White Cap</li>
+				<li reagent1="Powdered Mother of Pearl" reagent2="Scrib Jelly" reagent3="Violet Coprinus">Powdered Mother of Pearl + Scrib Jelly + Violet Coprinus</li>
+				<li reagent1="Emetic Russula" reagent2="Fleshfly Larva" reagent3="Scrib Jelly">Emetic Russula + Fleshfly Larva + Scrib Jelly</li>
+				<li reagent1="Beetle Scuttle" reagent2="Corn Flower" reagent3="Lady's Smock">Beetle Scuttle + Corn Flower + Lady's Smock</li>
+				<li reagent1="Butterfly Wing" reagent2="Nirnroot" reagent3="Spider Egg">Butterfly Wing + Nirnroot + Spider Egg</li>
+				<li reagent1="Columbine" reagent2="Mountain Flower" reagent3="Wormwood">Columbine + Mountain Flower + Wormwood</li>
+				<li reagent1="Luminous Russula" reagent2="Water Hyacinth" reagent3="Wormwood">Luminous Russula + Water Hyacinth + Wormwood</li>
+				<li reagent1="Dragonthorn" reagent2="Stinkhorn" reagent3="Wormwood">Dragonthorn + Stinkhorn + Wormwood</li>
+				<li reagent1="Clam Gall" reagent2="White Cap" reagent3="Wormwood">Clam Gall + White Cap + Wormwood</li>
+				<li reagent1="Fleshfly Larva" reagent2="Nightshade" reagent3="Stinkhorn">Fleshfly Larva + Nightshade + Stinkhorn</li>
+				<li reagent1="Corn Flower" reagent2="Stinkhorn" reagent3="Torchbug Thorax">Corn Flower + Stinkhorn + Torchbug Thorax</li>
+				<li reagent1="Imp Stool" reagent2="Nirnroot" reagent3="Violet Coprinus">Imp Stool + Nirnroot + Violet Coprinus</li>
+				<li reagent1="Emetic Russula" reagent2="Nightshade" reagent3="Spider Egg">Emetic Russula + Nightshade + Spider Egg</li>
+				<li reagent1="Emetic Russula" reagent2="Lady's Smock" reagent3="Water Hyacinth">Emetic Russula + Lady's Smock + Water Hyacinth</li>
+				<li reagent1="Blue Entoloma" reagent2="Clam Gall" reagent3="Scrib Jelly">Blue Entoloma + Clam Gall + Scrib Jelly</li>
+				<li reagent1="Clam Gall" reagent2="Mudcrab Chitin" reagent3="Spider Egg">Clam Gall + Mudcrab Chitin + Spider Egg</li>
+				<li reagent1="Blessed Thistle" reagent2="Violet Coprinus" reagent3="White Cap">Blessed Thistle + Violet Coprinus + White Cap</li>
 			</ol>
 			<p/><br/>
-			Alternatively, you can use the following 44 combinations to level Alchemy from 1 to 18+ and learn all traits in the process. Use the highest possible
+			Alternatively, you can use the following 45 combinations to level Alchemy from 1 to 18+ and learn all traits in the process. Use the highest possible
 			solvent at all times to maximize inspiration gain. Characters with bonus inspiration (ESO+, CP Inspiration Boost, Orc Passive) will require fewer 
 			combinations to reach the specific Alchemy levels indicated below. Once you've learned all traits use any 2 reagents to continue levelling with
 			the highest possible solvent level.
 			<ol class="esopdLearnList">
-				<li reagent1="Beetle Scuttle" reagent2="Violet Coprinus" reagent3="">Beetle Scuttle + Violet Coprinus (use level 10 solvents)</li>
-				<li reagent1="Beetle Scuttle" reagent2="Mudcrab Chitin" reagent3="">Beetle Scuttle + Mudcrab Chitin</li>
-				<li reagent1="Butterfly Wing" reagent2="Luminous Russula" reagent3="">Butterfly Wing + Luminous Russula</li>
-				<li reagent1="Butterfly Wing" reagent2="Nirnroot" reagent3="">Butterfly Wing + Nirnroot</li>
-				<li reagent1="Butterfly Wing" reagent2="Beetle Scuttle" reagent3="">Butterfly Wing + Beetle Scuttle</li>
-				<li reagent1="Butterfly Wing" reagent2="Spider Egg" reagent3="">Butterfly Wing + Spider Egg</li>
-				<li reagent1="Butterfly Wing" reagent2="Scrib Jelly" reagent3="">Butterfly Wing + Scrib Jelly</li>
-				<li reagent1="Columbine" reagent2="Bugloss" reagent3="">Columbine + Bugloss</li>
-				<li reagent1="Columbine" reagent2="Mountain Flower" reagent3="">Columbine + Mountain Flower</li>
-				<li reagent1="Dragonthorn" reagent2="Blessed Thistle" reagent3="">Dragonthorn + Blessed Thistle</li>
-				<li reagent1="Dragonthorn" reagent2="Stinkhorn" reagent3="">Dragonthorn + Stinkhorn</li>
-				<li reagent1="Emetic Russula" reagent2="Violet Coprinus" reagent3="">Emetic Russula + Violet Coprinus</li>
+				<li reagent1="Imp Stool" reagent2="Mountain Flower" reagent3="">Imp Stool + Mountain Flower  (use level 10 solvents)</li>
 				<li reagent1="Imp Stool" reagent2="Luminous Russula" reagent3="">Imp Stool + Luminous Russula</li>
-				<li reagent1="Imp Stool" reagent2="Mountain Flower" reagent3="">Imp Stool + Mountain Flower</li>
-				<li reagent1="Imp Stool" reagent2="Mudcrab Chitin" reagent3="">Imp Stool + Mudcrab Chitin</li>
-				<li reagent1="Imp Stool" reagent2="Nirnroot" reagent3="">Imp Stool + Nirnroot</li>
-				<li reagent1="Lady's Smock" reagent2="Corn Flower" reagent3="">Lady's Smock + Corn Flower</li>
+				<li reagent1="Beetle Scuttle" reagent2="Imp Stool" reagent3="">Beetle Scuttle + Imp Stool</li>
+				<li reagent1="Imp Stool" reagent2="Torchbug Thorax" reagent3="">Imp Stool + Torchbug Thorax</li>
+				<li reagent1="Beetle Scuttle" reagent2="Powdered Mother of Pearl" reagent3="">Beetle Scuttle + Powdered Mother of Pearl</li>
+				<li reagent1="Beetle Scuttle" reagent2="Mudcrab Chitin" reagent3="">Beetle Scuttle + Mudcrab Chitin</li>
+				<li reagent1="Beetle Scuttle" reagent2="Lady's Smock" reagent3="">Beetle Scuttle + Lady's Smock</li>
+				<li reagent1="Corn Flower" reagent2="Lady's Smock" reagent3="">Corn Flower + Lady's Smock</li>
+				<li reagent1="Lady's Smock" reagent2="Violet Coprinus" reagent3="">Lady's Smock + Violet Coprinus</li>
 				<li reagent1="Lady's Smock" reagent2="Namira's Rot" reagent3="">Lady's Smock + Namira's Rot</li>
-				<li reagent1="Lady's Smock" reagent2="Violet Coprinus" reagent3="">Lady's Smock + Violet Coprinus (use level 20 solvents)</li>
-				<li reagent1="Mudcrab Chitin" reagent2="Spider Egg" reagent3="">Mudcrab Chitin + Spider Egg</li>
-				<li reagent1="Mudcrab Chitin" reagent2="Nightshade" reagent3="">Mudcrab Chitin + Nightshade</li>
-				<li reagent1="Mudcrab Chitin" reagent2="White Cap" reagent3="">Mudcrab Chitin + White Cap</li>
+				<li reagent1="Beetle Scuttle" reagent2="Torchbug Thorax" reagent3="">Beetle Scuttle + Torchbug Thorax</li>
+				<li reagent1="Dragonthorn" reagent2="Torchbug Thorax" reagent3="">Dragonthorn + Torchbug Thorax</li>
+				<li reagent1="Torchbug Thorax" reagent2="White Cap" reagent3="">Torchbug Thorax + White Cap</li>
+				<li reagent1="Columbine" reagent2="Mountain Flower" reagent3="">Columbine + Mountain Flower</li>
+				<li reagent1="Clam Gall" reagent2="Spider Egg" reagent3="">Clam Gall + Spider Egg</li>
 				<li reagent1="Namira's Rot" reagent2="Spider Egg" reagent3="">Namira's Rot + Spider Egg</li>
-				<li reagent1="Namira's Rot" reagent2="Scrib Jelly" reagent3="">Namira's Rot + Scrib Jelly</li>
-				<li reagent1="Nirnroot" reagent2="Violet Coprinus" reagent3="">Nirnroot + Violet Coprinus</li>
-				<li reagent1="Nirnroot" reagent2="Nightshade" reagent3="">Nirnroot + Nightshade</li>
-				<li reagent1="Nirnroot" reagent2="Namira's Rot" reagent3="">Nirnroot + Namira's Rot</li>
-				<li reagent1="Scrib Jelly" reagent2="Violet Coprinus" reagent3="">Scrib Jelly + Violet Coprinus</li>
-				<li reagent1="Scrib Jelly" reagent2="Fleshfly Larva" reagent3="">Scrib Jelly + Fleshfly Larva</li>
-				<li reagent1="White Cap" reagent2="Bugloss" reagent3="">White Cap + Bugloss</li>
-				<li reagent1="White Cap" reagent2="Blue Entoloma" reagent3="">White Cap + Blue Entoloma</li>
-				<li reagent1="Wormwood" reagent2="Luminous Russula" reagent3="">Wormwood + Luminous Russula</li>
-				<li reagent1="Wormwood" reagent2="Namira's Rot" reagent3="">Wormwood + Namira's Rot</li>
-				<li reagent1="Wormwood" reagent2="White Cap" reagent3="">Wormwood + White Cap</li>
-				<li reagent1="Wormwood" reagent2="Spider Egg" reagent3="">Wormwood + Spider Egg</li>
-				<li reagent1="Wormwood" reagent2="Columbine" reagent3="">Wormwood + Columbine</li>
-				<li reagent1="Wormwood" reagent2="Dragonthorn" reagent3="">Wormwood + Dragonthorn (at level 15 Alchemy purchase Laboratory Use)</li>
-				<li reagent1="Blessed Thistle" reagent2="Namira's Rot" reagent3="Nirnroot">Blessed Thistle + Namira's Rot + Nirnroot</li>
-				<li reagent1="Blue Entoloma" reagent2="Namira's Rot" reagent3="Water Hyacinth">Blue Entoloma + Namira's Rot + Water Hyacinth</li>
-				<li reagent1="Corn Flower" reagent2="Water Hyacinth" reagent3="Wormwood">Corn Flower + Water Hyacinth + Wormwood</li>
-				<li reagent1="Corn Flower" reagent2="Stinkhorn" reagent3="Torchbug Thorax">Corn Flower + Stinkhorn + Torchbug Thorax</li>
-				<li reagent1="Fleshfly Larva" reagent2="Nightshade" reagent3="Stinkhorn">Fleshfly Larva + Nightshade + Stinkhorn</li>
-				<li reagent1="Fleshfly Larva" reagent2="Imp Stool" reagent3="Torchbug Thorax">Fleshfly Larva + Imp Stool + Torchbug Thorax</li>
-				<li reagent1="Emetic Russula" reagent2="Imp Stool" reagent3="Water Hyacinth">Emetic Russula + Imp Stool + Water Hyacinth</li>
+				<li reagent1="Spider Egg" reagent2="Wormwood" reagent3="">Spider Egg + Wormwood</li>
+				<li reagent1="Powdered Mother of Pearl" reagent2="Spider Egg" reagent3="">Powdered Mother of Pearl + Spider Egg</li>
+				<li reagent1="Dragonthorn" reagent2="Stinkhorn" reagent3="">Dragonthorn + Stinkhorn (use level 20 solvents)</li>
+				<li reagent1="Blessed Thistle" reagent2="Dragonthorn" reagent3="">Blessed Thistle + Dragonthorn</li>
+				<li reagent1="Dragonthorn" reagent2="Water Hyacinth" reagent3="">Dragonthorn + Water Hyacinth</li>
+				<li reagent1="Namira's Rot" reagent2="Water Hyacinth" reagent3="">Namira's Rot + Water Hyacinth</li>
+				<li reagent1="Namira's Rot" reagent2="Wormwood" reagent3="">Namira's Rot + Wormwood</li>
+				<li reagent1="Namira's Rot" reagent2="Powdered Mother of Pearl" reagent3="">Namira's Rot + Powdered Mother of Pearl</li>
+				<li reagent1="Bugloss" reagent2="White Cap" reagent3="">Bugloss + White Cap</li>
+				<li reagent1="Blue Entoloma" reagent2="White Cap" reagent3="">Blue Entoloma + White Cap</li>
+				<li reagent1="Mountain Flower" reagent2="Water Hyacinth" reagent3="">Mountain Flower + Water Hyacinth</li>
+				<li reagent1="Water Hyacinth" reagent2="Wormwood" reagent3="">Water Hyacinth + Wormwood</li>
+				<li reagent1="Emetic Russula" reagent2="Water Hyacinth" reagent3="">Emetic Russula + Water Hyacinth</li>
+				<li reagent1="Torchbug Thorax" reagent2="Wormwood" reagent3="">Torchbug Thorax + Wormwood</li>
+				<li reagent1="Clam Gall" reagent2="Mudcrab Chitin" reagent3="">Clam Gall + Mudcrab Chitin</li>
+				<li reagent1="Clam Gall" reagent2="Scrib Jelly" reagent3="">Clam Gall + Scrib Jelly</li>
+				<li reagent1="Emetic Russula" reagent2="Stinkhorn" reagent3="">Emetic Russula + Stinkhorn</li>
+				<li reagent1="Emetic Russula" reagent2="Violet Coprinus" reagent3="">Emetic Russula + Violet Coprinus</li>
+				<li reagent1="Corn Flower" reagent2="Torchbug Thorax" reagent3="">Corn Flower + Torchbug Thorax</li>
+				<li reagent1="Corn Flower" reagent2="Stinkhorn" reagent3="">Corn Flower + Stinkhorn</li>
+				<li reagent1="Bugloss" reagent2="Columbine" reagent3="">Bugloss + Columbine (at level 15 Alchemy purchase Laboratory Use)</li>
+				<li reagent1="Blue Entoloma" reagent2="Columbine" reagent3="Namira's Rot">Blue Entoloma + Columbine + Namira's Rot</li>
+				<li reagent1="Powdered Mother of Pearl" reagent2="Scrib Jelly" reagent3="White Cap">Powdered Mother of Pearl + Scrib Jelly + White Cap</li>
+				<li reagent1="Butterfly Wing" reagent2="Luminous Russula" reagent3="Spider Egg">Butterfly Wing + Luminous Russula + Spider Egg</li>
+				<li reagent1="Nightshade" reagent2="Nirnroot" reagent3="Spider Egg">Nightshade + Nirnroot + Spider Egg</li>
+				<li reagent1="Blessed Thistle" reagent2="Nightshade" reagent3="Powdered Mother of Pearl">Blessed Thistle + Nightshade + Powdered Mother of Pearl</li>
+				<li reagent1="Fleshfly Larva" reagent2="Imp Stool" reagent3="Nightshade">Fleshfly Larva + Imp Stool + Nightshade</li>
+				<li reagent1="Butterfly Wing" reagent2="Nirnroot" reagent3="Torchbug Thorax">Butterfly Wing + Nirnroot + Torchbug Thorax</li>
+				<li reagent1="Fleshfly Larva" reagent2="Scrib Jelly" reagent3="Torchbug Thorax">Fleshfly Larva + Scrib Jelly + Torchbug Thorax</li>
 			</ol>
 			<p/><br/>
-			The minimum number of combinations to learn all traits appears to be 25:
+			The minimum number of combinations to learn all traits appears to be 26:
 			<ol class="esopdLearnList">
-				<li reagent1="Bugloss" reagent2="White Cap" reagent3="Wormwood">Bugloss + White Cap + Wormwood </li>
-				<li reagent1="Bugloss" reagent2="Columbine" reagent3="Wormwood">Bugloss + Columbine + Wormwood </li>
-				<li reagent1="Butterfly Wing" reagent2="Nirnroot" reagent3="Torchbug Thorax">Butterfly Wing + Nirnroot + Torchbug Thorax </li>
-				<li reagent1="Butterfly Wing" reagent2="Luminous Russula" reagent3="Spider Egg">Butterfly Wing + Luminous Russula + Spider Egg </li>
-				<li reagent1="Fleshfly Larva" reagent2="Scrib Jelly" reagent3="Stinkhorn">Fleshfly Larva + Scrib Jelly + Stinkhorn </li>
-				<li reagent1="Imp Stool" reagent2="Mountain Flower" reagent3="Nirnroot">Imp Stool + Mountain Flower + Nirnroot </li>
-				<li reagent1="Mudcrab Chitin" reagent2="Blue Entoloma" reagent3="White Cap">Mudcrab Chitin + Blue Entoloma + White Cap </li>
-				<li reagent1="Mudcrab Chitin" reagent2="Imp Stool" reagent3="Luminous Russula">Mudcrab Chitin + Imp Stool + Luminous Russula </li>
-				<li reagent1="Namira's Rot" reagent2="Beetle Scuttle" reagent3="Mudcrab Chitin">Namira's Rot + Beetle Scuttle + Mudcrab Chitin</li>
-				<li reagent1="Namira's Rot" reagent2="Blessed Thistle" reagent3="Dragonthorn">Namira's Rot + Blessed Thistle + Dragonthorn</li>
-				<li reagent1="Namira's Rot" reagent2="Blue Entoloma" reagent3="Water Hyacinth">Namira's Rot + Blue Entoloma + Water Hyacinth </li>
-				<li reagent1="Namira's Rot" reagent2="Butterfly Wing" reagent3="Scrib Jelly">Namira's Rot + Butterfly Wing + Scrib Jelly </li>
-				<li reagent1="Namira's Rot" reagent2="Columbine" reagent3="Mountain Flower">Namira's Rot + Columbine + Mountain Flower</li>
-				<li reagent1="Namira's Rot" reagent2="Lady's Smock" reagent3="Violet Coprinus">Namira's Rot + Lady's Smock + Violet Coprinus </li>
-				<li reagent1="Nightshade" reagent2="Corn Flower" reagent3="Lady's Smock">Nightshade + Corn Flower + Lady's Smock</li>
-				<li reagent1="Nightshade" reagent2="Dragonthorn" reagent3="Stinkhorn">Nightshade + Dragonthorn + Stinkhorn </li>
-				<li reagent1="Nightshade" reagent2="Emetic Russula" reagent3="Fleshfly Larva">Nightshade + Emetic Russula + Fleshfly Larva</li>
-				<li reagent1="Nightshade" reagent2="Nirnroot" reagent3="Spider Egg">Nightshade + Nirnroot + Spider Egg </li>
-				<li reagent1="Violet Coprinus" reagent2="Beetle Scuttle" reagent3="Fleshfly Larva">Violet Coprinus + Beetle Scuttle + Fleshfly Larva</li>
-				<li reagent1="Violet Coprinus" reagent2="Blessed Thistle" reagent3="Scrib Jelly">Violet Coprinus + Blessed Thistle + Scrib Jelly</li>
-				<li reagent1="Violet Coprinus" reagent2="Emetic Russula" reagent3="Water Hyacinth">Violet Coprinus + Emetic Russula + Water Hyacinth</li>
-				<li reagent1="Violet Coprinus" reagent2="Mudcrab Chitin" reagent3="Nightshade">Violet Coprinus + Mudcrab Chitin + Nightshade</li>
-				<li reagent1="Wormwood" reagent2="Corn Flower" reagent3="Dragonthorn">Wormwood + Corn Flower + Dragonthorn</li>
-				<li reagent1="Wormwood" reagent2="Dragonthorn" reagent3="Torchbug Thorax">Wormwood + Dragonthorn + Torchbug Thorax</li>
-				<li reagent1="Wormwood" reagent2="Luminous Russula" reagent3="Water Hyacinth">Wormwood + Luminous Russula + Water Hyacinth</li>
+				<li reagent1="Mountain Flower" reagent2="Mudcrab Chitin" reagent3="Nightshade">Mountain Flower + Mudcrab Chitin + Nightshade</li>
+				<li reagent1="Blue Entoloma" reagent2="Mountain Flower" reagent3="White Cap">Blue Entoloma + Mountain Flower + White Cap</li>
+				<li reagent1="Columbine" reagent2="Mountain Flower" reagent3="Namira's Rot">Columbine + Mountain Flower + Namira's Rot</li>
+				<li reagent1="Imp Stool" reagent2="Mountain Flower" reagent3="Nirnroot">Imp Stool + Mountain Flower + Nirnroot</li>
+				<li reagent1="Emetic Russula" reagent2="Fleshfly Larva" reagent3="Scrib Jelly">Emetic Russula + Fleshfly Larva + Scrib Jelly</li>
+				<li reagent1="Fleshfly Larva" reagent2="Nightshade" reagent3="Stinkhorn">Fleshfly Larva + Nightshade + Stinkhorn</li>
+				<li reagent1="Fleshfly Larva" reagent2="Imp Stool" reagent3="Torchbug Thorax">Fleshfly Larva + Imp Stool + Torchbug Thorax</li>
+				<li reagent1="Powdered Mother of Pearl" reagent2="Scrib Jelly" reagent3="Torchbug Thorax">Powdered Mother of Pearl + Scrib Jelly + Torchbug Thorax</li>
+				<li reagent1="Blue Entoloma" reagent2="Bugloss" reagent3="Namira's Rot">Blue Entoloma + Bugloss + Namira's Rot</li>
+				<li reagent1="Blessed Thistle" reagent2="Namira's Rot" reagent3="Nirnroot">Blessed Thistle + Namira's Rot + Nirnroot</li>
+				<li reagent1="Lady's Smock" reagent2="Namira's Rot" reagent3="Violet Coprinus">Lady's Smock + Namira's Rot + Violet Coprinus</li>
+				<li reagent1="Corn Flower" reagent2="Torchbug Thorax" reagent3="Violet Coprinus">Corn Flower + Torchbug Thorax + Violet Coprinus</li>
+				<li reagent1="Blessed Thistle" reagent2="Dragonthorn" reagent3="Torchbug Thorax">Blessed Thistle + Dragonthorn + Torchbug Thorax</li>
+				<li reagent1="Columbine" reagent2="Corn Flower" reagent3="Wormwood">Columbine + Corn Flower + Wormwood</li>
+				<li reagent1="Butterfly Wing" reagent2="Nirnroot" reagent3="Powdered Mother of Pearl">Butterfly Wing + Nirnroot + Powdered Mother of Pearl</li>
+				<li reagent1="Beetle Scuttle" reagent2="Emetic Russula" reagent3="Violet Coprinus">Beetle Scuttle + Emetic Russula + Violet Coprinus</li>
+				<li reagent1="Beetle Scuttle" reagent2="Emetic Russula" reagent3="Powdered Mother of Pearl">Beetle Scuttle + Emetic Russula + Powdered Mother of Pearl</li>
+				<li reagent1="Dragonthorn" reagent2="Emetic Russula" reagent3="Water Hyacinth">Dragonthorn + Emetic Russula + Water Hyacinth</li>
+				<li reagent1="Beetle Scuttle" reagent2="Luminous Russula" reagent3="Mountain Flower">Beetle Scuttle + Luminous Russula + Mountain Flower</li>
+				<li reagent1="Bugloss" reagent2="Lady's Smock" reagent3="Water Hyacinth">Bugloss + Lady's Smock + Water Hyacinth</li>
+				<li reagent1="Bugloss" reagent2="Clam Gall" reagent3="Spider Egg">Bugloss + Clam Gall + Spider Egg</li>
+				<li reagent1="Clam Gall" reagent2="White Cap" reagent3="Wormwood">Clam Gall + White Cap + Wormwood</li>
+				<li reagent1="Bugloss" reagent2="Butterfly Wing" reagent3="Mudcrab Chitin">Bugloss + Butterfly Wing + Mudcrab Chitin</li>
+				<li reagent1="Clam Gall" reagent2="Fleshfly Larva" reagent3="Luminous Russula">Clam Gall + Fleshfly Larva + Luminous Russula</li>
+				<li reagent1="Blue Entoloma" reagent2="Scrib Jelly" reagent3="Spider Egg">Blue Entoloma + Scrib Jelly + Spider Egg</li>
+				<li reagent1="Dragonthorn" reagent2="Stinkhorn" reagent3="Wormwood">Dragonthorn + Stinkhorn + Wormwood</li>
 			  </ol>
 		</div>
 	</div>
