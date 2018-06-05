@@ -59,6 +59,7 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	$prevSkill  = $baseRow['prevSkill'];
 	$nextSkill  = $baseRow['nextSkill'];
 	$nextSkill2 = $baseRow['nextSkill2'];
+	$displayId = $baseRow['displayId'];
 	
 	$type = "Active";
 	if ($row['mechanic']  == 10) $type = "Ultimate";
@@ -85,6 +86,7 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	$query .= "type='$type', ";
 	$query .= "cost='$cost', ";
 	$query .= "icon='$icon', ";
+	$query .= "displayId='$displayId', ";
 	$query .= "skillIndex='-1' ";
 	$query .= ";";
 	
