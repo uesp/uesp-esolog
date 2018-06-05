@@ -3668,7 +3668,6 @@ function CreateEsoMasterWritJewelryText($db, $writ1, $writ2, $writ3, $writ4, $wr
 	
 	$itemType = "Unknown";
 	
-		//TODO18 Confirm types
 	if ($writ1 == 24)
 		$itemType = "Ring";
 	elseif ($writ1 == 18)
