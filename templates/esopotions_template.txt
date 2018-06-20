@@ -128,6 +128,14 @@
 				<li reagent1="Blessed Thistle" reagent2="Violet Coprinus" reagent3="White Cap">Blessed Thistle + Violet Coprinus + White Cap</li>
 			</ol>
 			<p/><br/>
+			To learn the 2 new reagents from the Summerset chapter in as few combinations as possible (4):
+			<ol class="esopdLearnList">
+				<li reagent1="Clam Gall" reagent2="Mudcrab Chitin" reagent3="Spider Egg">Clam Gall + Mudcrab Chitin + Spider Egg</li>
+				<li reagent1="Clam Gall" reagent2="Fleshfly Larva" reagent3="">Clam Gall + Fleshfly Larva</li>
+				<li reagent1="Powdered Mother of Pearl" reagent2="Butterfly Wing" reagent3="Scrib Jelly">Powdered Mother of Pearl + Butterfly Wing + Scrib Jelly</li>
+				<li reagent1="Powdered Mother of Pearl" reagent2="Beetle Scuttle" reagent3="">Powdered Mother of Pearl + Beetle Scuttle</li>
+			</ol>
+			<p/><br/>
 			Alternatively, you can use the following 45 combinations to level Alchemy from 1 to 18+ and learn all traits in the process. Use the highest possible
 			solvent at all times to maximize inspiration gain. Characters with bonus inspiration (ESO+, CP Inspiration Boost, Orc Passive) will require fewer 
 			combinations to reach the specific Alchemy levels indicated below. Once you've learned all traits use any 2 reagents to continue levelling with
