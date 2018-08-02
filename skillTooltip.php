@@ -310,19 +310,27 @@ class CEsoSkillTooltip
 		$newDesc = $this->GetSkillDescription();
 		$mechanic = $this->skillData['mechanic'];
 		$effectLines = $this->skillData['effectLines'];
+		$nextSkill = $this->skillData['nextSkill'];
 		
 		$realRank = $rank;
-		if ($realRank >= 9) $realRank -= 8;
-		if ($realRank >= 5) $realRank -= 4;
-		
 		$fullName = $name;
-		if ($realRank > 0) $fullName .= " " . $this->GetRomanNumeral($realRank);
-		
-		$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
-		$output .= self::TOOLTIP_DIVIDER;
-		
-		if ($skillType != 'passive')
+				
+		if ($skillType == 'passive' || $skillType == 'Passive')
 		{
+			if ($realRank > 0 && !($realRank == 1 && $nextSkill <= 0)) $fullName .= " " . $this->GetRomanNumeral($realRank);
+			
+			$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
+			$output .= self::TOOLTIP_DIVIDER;
+		}
+		else
+		{
+			if ($realRank >= 9) $realRank -= 8;
+			if ($realRank >= 5) $realRank -= 4;
+			if ($realRank > 0) $fullName .= " " . $this->GetRomanNumeral($realRank);
+		
+			$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
+			$output .= self::TOOLTIP_DIVIDER;
+		
 			$costStr = "$cost ";
 			$costClass = "";
 			
