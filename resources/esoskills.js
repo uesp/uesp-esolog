@@ -2401,6 +2401,32 @@ function OnHoverEsoIcon(e)
 }
 
 
+function OnHoverEsoPassiveIcon(e)
+{
+	var parentBlock = $(this).parent(".esovsAbilityBlock");
+	var skillid = parentBlock.attr("skillid");
+	
+	if (skillid == null || skillid == "") return;
+	
+	var parentBlockAttr = parentBlock.parents(".esovsSkillContentBlock").attr("id");
+	var raceType = "";
+	if (parentBlockAttr) raceType = parentBlockAttr.replace("_Skills", "").replace("_", " ");
+	var learnedLevel = $(this).find(".esovsAbilityBlockIconLevel").text();
+	
+	var skillData = g_SkillsData[parseInt(skillid)];
+	
+	if (raceType != null && raceType != "") 
+	{
+		skillData['raceType'] = raceType;
+		skillData['skillLine'] = "" + raceType + " Skills";
+	}
+	
+	if (learnedLevel > 0) skillData['learnedLevel'] = learnedLevel;
+		
+	EsoShowPopupSkillTooltip(skillData, $(this)[0]);
+}
+
+
 function OnLeaveEsoIcon(e)
 {
 	var popupElement = $("#esovsPopupSkillTooltip");
@@ -3457,7 +3483,7 @@ function esovsOnDocReady()
 			return false; });
 	
 		$(".esovsAbilityBlockPassiveIcon").click(function(e) {
-			setTimeout(function() { OnHoverEsoIcon.bind(this, e); }, 250);
+			setTimeout(function() { OnHoverEsoPassiveIcon.bind(this, e); }, 250);
 			e.preventDefault(); 
 			e.stopPropagation(); 
 			return false; });
@@ -3471,7 +3497,7 @@ function esovsOnDocReady()
 	else
 	{
 		$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
-		$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+		$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoPassiveIcon, OnLeaveEsoIcon);
 		$(".esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
 	}
 		
