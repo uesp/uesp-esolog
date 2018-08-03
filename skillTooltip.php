@@ -24,6 +24,8 @@ class CEsoSkillTooltip
 	public $db = null;
 	
 	public $skillId = 0;
+	public $skillName = "";
+	public $skillLine = "";
 	public $skillLevel = 66;
 	public $skillMagicka = 20000;
 	public $skillHealth = 20000;
@@ -94,6 +96,9 @@ class CEsoSkillTooltip
 		if (array_key_exists('skillid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
 		if (array_key_exists('abilityid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
 		
+		if (array_key_exists('skillname', $this->inputParams)) $this->skillName = $this->inputParams['skillname'];
+		if (array_key_exists('skillline', $this->inputParams)) $this->skillLine = $this->inputParams['skillline'];
+		
 		if (array_key_exists('level', $this->inputParams)) $this->skillLevel = $this->ParseLevel($this->inputParams['level']);
 		
 		if (array_key_exists('health', $this->inputParams)) $this->skillHealth = intval($this->inputParams['health']);
@@ -108,6 +113,74 @@ class CEsoSkillTooltip
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
 	
 		return true;
+	}
+	
+	
+	public $fixupSkills = array(
+				35995 => array(
+						"altmer" => 10,
+						"high elf" => 10,
+						"breton" => 5,
+				),
+				45259 => array(
+						"altmer" => 20,
+						"high elf" => 20,
+						"breton" => 15,						
+				),
+				45260 => array(
+						"altmer" => 40,
+						"high elf" => 40,
+						"breton" => 30,
+				),
+			
+				36022 => array(
+						"khajiit" => 10,
+						"bosmer" => 25,
+						"wood elf" => 25,
+				),
+				45295 => array(
+						"khajiit" => 20,
+						"bosmer" => 35,
+						"wood elf" => 35,
+				),
+				45296 => array(
+						"khajiit" => 40,
+						"bosmer" => 50,
+						"wood elf" => 50,
+				),
+			
+				36153 => array(
+						"imperial" => 10,
+						"redguard" => 10,
+				),
+				45279 => array(
+						"imperial" => 20,
+						"redguard" => 20,
+				),
+				45280 => array(
+						"imperial" => 40,
+						"redguard" => 40,
+				),
+			
+			
+			);
+	
+	
+	private function FixupSkills()
+	{
+		$skillId = $this->skillId;
+		$fixupData = $this->fixupSkills[$skillId];
+		if ($fixupData == null) return false;
+		if ($this->skillLine == "") return false;
+		
+		$this->skillData['skillLine'] = $this->skillLine;
+		
+		$skillLine = strtolower($this->skillLine);
+		$learnedLevel = $fixupData[$skillLine];
+		
+		if ($learnedLevel != null) $this->skillData['learnedLevel'] = $learnedLevel;
+		
+		return true;		
 	}
 	
 	
@@ -442,6 +515,8 @@ class CEsoSkillTooltip
 		$this->OutputHtmlHeader();
 		
 		if (!$this->LoadSkill()) return "Unknown skill {$this->skillId}!";
+		
+		$this->FixupSkills();
 
 		$this->OutputHtml();
 		
