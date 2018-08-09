@@ -1276,6 +1276,16 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(heals for \|c[a-fA-F0-9]{6})([0-9]+)(\|r health)/gi,
 	},
+	{
+		healId: "Done",
+		match: /(causing it to heal the matriarch and up to \|c[a-fA-F0-9]{6}[0-9]+\|r other friendly targets for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(causing it to heal the winged twilight and \|c[a-fA-F0-9]{6}[0-9]+\|r other friendly target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	//causing it to heal the winged twilight and 1 other friendly target for 3200 Health
+	//causing it to heal the matriarch and up to 2 other friendly targets for 4000 Health
 	
 ];                     
 
