@@ -986,14 +986,16 @@ class EsoViewSalesData
 		
 		if ($traitValue > 0) 
 		{
-			if ($traitValue == 20 || $traitValue == 9)
-				$where[] = "(trait=9 OR trait=20)";
+			if ($traitValue == 20 || $traitValue == 9 || $traitValue == 27)
+				$where[] = "(trait=9 OR trait=20 or trait=27)";
 			elseif ($traitValue == 19 || $traitValue == 24 || $traitValue == 10)
 				$where[] = "(trait=10 OR trait=19 or trait=24)";
 			elseif ($traitValue == 6 || $traitValue == 15)
 				$where[] = "(trait=6 OR trait=15)";
 			elseif ($traitValue == 25 || $traitValue == 26)
 				$where[] = "(trait=25 OR trait=26)";
+			elseif ($traitValue == 16 || $traitValue == 4 || $traitValue == 33)
+				$where[] = "(trait=4 OR trait=16 or trait=33)";
 			else
 			{
 				$safeValue = $this->db->real_escape_string($traitValue);
