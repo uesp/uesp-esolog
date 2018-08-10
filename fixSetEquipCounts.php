@@ -9,7 +9,7 @@ $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWriteP
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
 $TABLE_SUFFIX = "";
-$itemId = 50000;
+$itemId = 1;
 $totalFixed = 0;
 $totalFound = 0;
 

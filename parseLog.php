@@ -86,7 +86,7 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "19pts";
+	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "19pts";
 	
 		/* Parse or skip certain types of log entries. */
@@ -5146,6 +5146,39 @@ class EsoLogParser
 		if ($logEntry['type'] >= 35 && $logEntry['type'] <= 40)
 		{
 			$logEntry['useAbilityDesc'] = "";
+		}
+		
+			/* Don't update set data for invalid types */
+		if ($logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 18)
+		{
+			$logEntry['setBonus1'] = "";
+			$logEntry['setBonus2'] = "";
+			$logEntry['setBonus3'] = "";
+			$logEntry['setBonus4'] = "";
+			$logEntry['setBonus5'] = "";
+			$logEntry['setBonus6'] = "";
+			
+			$logEntry['setDesc1'] = "";
+			$logEntry['setDesc2'] = "";
+			$logEntry['setDesc3'] = "";
+			$logEntry['setDesc4'] = "";
+			$logEntry['setDesc5'] = "";
+			
+			$logEntry['setName'] = "";
+			$logEntry['setBonusCount'] = "";
+			$logEntry['setMaxCount'] = "";
+		}
+		
+		if ($logEntry['setMaxCount'] == 4)
+		{
+			$logEntry['setMaxCount'] = 5;
+		}
+		
+			/* Don't update enchantment for invalid types */
+		if ($logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 14 && $logEntry['type'] != 20 && $logEntry['type'] != 26)
+		{
+			$logEntry['enchantName'] = "";
+			$logEntry['enchantDesc'] = "";
 		}
 		
 		if ($logEntry['materialLevelDesc'] != null)
