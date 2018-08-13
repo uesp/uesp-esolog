@@ -1284,6 +1284,14 @@ $ESO_SET_INDEXES = array(
 		393 => "Perfect Arms of Relequen",
 		394 => "Perfect Mantle of Siroria",
 		395 => "Perfect Vestment of Olorime",
+		397 => "Balorgh",
+		398 => "Vykosa",
+		399 => "Hanu's Compassion",
+		400 => "Blood Moon",
+		401 => "Haven of Ursus",
+		402 => "Moon Hunter",
+		403 => "Savage Werewolf",
+		404 => "Jailer's Tenacity",
 );
 
 
@@ -2990,6 +2998,10 @@ function GetEsoItemTableSuffix($version)
 		case '119pts':
 		case '19pts':
 			return "19pts";
+		case '1.9':
+		case '119':
+		case '19':
+			return "19";
 	}
 
 	return "";
