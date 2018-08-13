@@ -313,6 +313,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	6226 => array(
+			'name'    => "Ruthless Competition",
+			'journal' => "Cyrodilic Collections, a society dedicated to locating and restoring Argonian antiquities, seeks help in its mission. They want to stay ahead of their competition and preserve every piece of Argonian culture they can.",
+			'internalName' => "Q6226 Acquisitions Unlimited",
+			'zoneId' => 3,
+			'zone' => "Glenumbra",
+			'type' => 0,
+		),
 	2776 => array(
 			'name'    => "Scout Farragut Keep",
 			'journal' => "I accepted a mission to scout Farragut Keep for the Covenant.",
@@ -2355,7 +2363,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6155 => array(
 			'name'    => "Pledge: Fang Lair",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore Fang Lair.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Fang Lair.",
 			'internalName' => "Q6155 Pledge Fang Lair",
 			'zoneId' => 1009,
 			'zone' => "Fang Lair",
@@ -2583,6 +2591,14 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Contract: Armando",
 			'zoneId' => 0,
 			'zone' => "",
+			'type' => 0,
+		),
+	6242 => array(
+			'name'    => "The Cursed Skull",
+			'journal' => "Concordia Mercius of Cyrodilic Collections needs my help to stop Margus Derius and the Blackguards from obtaining the Golden Skull of Beela-Kaar.",
+			'internalName' => "Q6242 The Cursed Skull",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
 			'type' => 0,
 		),
 	4385 => array(
@@ -3041,6 +3057,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "Stormhaven",
 			'type' => 0,
 		),
+	6260 => array(
+			'name'    => "Salty Meats",
+			'journal' => "Cyrodilic Collections' operation in Murkmire is growing, and more explorers mean more mouths to feed. With my help, Jee-Lar plans to send cured meats to Black Marsh.",
+			'internalName' => "MMT Daily Q6260",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
+			'type' => 0,
+		),
 	4395 => array(
 			'name'    => "Enemies at the Gate",
 			'journal' => "I met the Wood Orcs of <<1>> in <<2>>. They have come under attack from raiders and gradually weakened by an unknown source. I should work with <<3>> to track down the source.",
@@ -3104,6 +3128,14 @@ $ESO_QUEST_DATA = array(
 			'zoneId' => 101,
 			'zone' => "Eastmarch",
 			'type' => 0,
+		),
+	6189 => array(
+			'name'    => "Pledge: March of Sacrifices",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Hircine's March of Sacrifices.",
+			'internalName' => "u19-DUN2 MoS Pledge",
+			'zoneId' => 1055,
+			'zone' => "March of Sacrifices",
+			'type' => 5,
 		),
 	2731 => array(
 			'name'    => "Scout Farragut Farm",
@@ -4931,7 +4963,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6154 => array(
 			'name'    => "Pledge: Scalecaller Peak",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore Scalecaller Peak.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Scalecaller Peak.",
 			'internalName' => "Q6154 Pledge Scalecaller Peak",
 			'zoneId' => 973,
 			'zone' => "Bloodroot Forge",
@@ -5296,6 +5328,14 @@ $ESO_QUEST_DATA = array(
 			'zoneId' => 117,
 			'zone' => "Shadowfen",
 			'type' => 0,
+		),
+	6186 => array(
+			'name'    => "Moonlight Ascent",
+			'journal' => "Adonatus Varian, member of the Silver Dawn, has tasked me with taking down the werewolf pack within Moon Hunter Keep. I'll need to work my way through the keep in order to reach the pack's leader, Vykosa.",
+			'internalName' => "u19-DUN1 Moon Hunter Keep",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 5,
 		),
 	3581 => array(
 			'name'    => "Cleansing the Past",
@@ -6169,6 +6209,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "Cyrodiil",
 			'type' => 7,
 		),
+	6261 => array(
+			'name'    => "The Winds of Kyne",
+			'journal' => "Jee-Lar's associates in Murkmire need accurate weather predictions to plan their expeditions. Luckily, a priestess of Kyne named Hodyette can supply them with accurate forecasts. I can find this mysterious prophetess in Eastmarch.",
+			'internalName' => "Q6261 MMTD5 WindsOfKyne",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
+			'type' => 0,
+		),
 	2803 => array(
 			'name'    => "Scout Bloodmayne Mine",
 			'journal' => "I accepted a mission to scout Bloodmayne Mine for the Covenant.",
@@ -6384,6 +6432,14 @@ $ESO_QUEST_DATA = array(
 			'zoneId' => 181,
 			'zone' => "Cyrodiil",
 			'type' => 7,
+		),
+	6257 => array(
+			'name'    => "Bug Off!",
+			'journal' => "Jee-Lar needs bug repellent candles for Cyrodilic Collections' explorers in Murkmire. He requested that I gather materials so his contact, Tamira Dobar, can create these candles.",
+			'internalName' => "Q6257BugOff",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
+			'type' => 0,
 		),
 	2815 => array(
 			'name'    => "Scout Drakelowe Farm",
@@ -8723,7 +8779,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5431 => array(
 			'name'    => "Pledge: White-Gold Tower",
-			'journal' => "<<1>> has challenged me to explore the White-Gold Tower in the Imperial City.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> has challenged me to explore the White-Gold Tower in the Imperial City.",
 			'internalName' => "Q5431 Pledge White-Gold",
 			'zoneId' => 688,
 			'zone' => "White-Gold Tower",
@@ -10241,6 +10297,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	0 => array(
+			'name'    => "",
+			'journal' => "",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	3588 => array(
 			'name'    => "City Under Siege",
 			'journal' => "Covenant forces have scaled the walls of Davon's Watch. Now they're threatening to take the city from within its walls. Tanval's ritual may be our only hope to end the assault.",
@@ -11236,7 +11300,7 @@ $ESO_QUEST_DATA = array(
 	6096 => array(
 			'name'    => "The Queen's Decree",
 			'journal' => "Queen Ayrenn ordered the once-forbidden island of Summerset to open its borders and welcome outsiders to its expansive shores. Razum-dar, an agent of the Queen, has come to the island to make sure the decree is followed to the letter.",
-			'internalName' => "The Queen's Decree",
+			'internalName' => "SQ1 The Queen's Decree",
 			'zoneId' => 7413,
 			'zone' => "",
 			'type' => 0,
@@ -13659,7 +13723,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6053 => array(
 			'name'    => "Pledge: Bloodroot Forge",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore the Bloodroot Forge.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore the Bloodroot Forge.",
 			'internalName' => "Q6053 Pledge Bloodroot Forge",
 			'zoneId' => 973,
 			'zone' => "Bloodroot Forge",
@@ -14475,7 +14539,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6175 => array(
 			'name'    => "Lost Libations",
-			'journal' => "Alamar has lost several bottles of wine while on a winery tour. He's hired me to find and collect them.",
+			'journal' => "Alamar has lost several bottles of wine while on a winery tour. He hired me to find and collect them.",
 			'internalName' => "Q6175 Lost Libations",
 			'zoneId' => 1011,
 			'zone' => "Summerset",
@@ -14600,6 +14664,14 @@ $ESO_QUEST_DATA = array(
 			'zoneId' => 58,
 			'zone' => "Malabal Tor",
 			'type' => 0,
+		),
+	6187 => array(
+			'name'    => "Pledge: Moon Hunter Keep",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Moon Hunter Keep.",
+			'internalName' => "u19-DUN1 Pledge",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 5,
 		),
 	4468 => array(
 			'name'    => "Unearthing the Past",
@@ -14895,6 +14967,14 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Word from the Dead",
 			'zoneId' => 19,
 			'zone' => "Stormhaven",
+			'type' => 0,
+		),
+	6255 => array(
+			'name'    => "Anti-Venom Agitation",
+			'journal' => "Jee-Lar informed me that a Wood Elf named Mindileth knows the recipe for a particularly potent anti-venom. This brew may prove vital for the company's explorers in Murkmire. Apparently, the ingredients-and Mindileth-can be found in Grahtwood.",
+			'internalName' => "MMT Daily Q6255",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
 			'type' => 0,
 		),
 	5877 => array(
@@ -16409,6 +16489,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "Rivenspire",
 			'type' => 0,
 		),
+	6263 => array(
+			'name'    => "A Taste for Toxins",
+			'journal' => "According to Jee-Lar, poison-sniffing skinks can provide some much-needed security in the wilds of Murkmire. He needs me to acquire one of these valuable lizards in Alik'r.",
+			'internalName' => "Q6263PoisonDetection",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
+			'type' => 0,
+		),
 	4906 => array(
 			'name'    => "A Quest",
 			'journal' => "",
@@ -17555,7 +17643,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5382 => array(
 			'name'    => "Pledge: Imperial City Prison",
-			'journal' => "<<1>> has challenged me to explore the Imperial City Prison in the Imperial City.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> has challenged me to explore the Imperial City Prison in the Imperial City.",
 			'internalName' => "Q5382 Pledge Imp City Prison",
 			'zoneId' => 678,
 			'zone' => "Imperial City Prison",
@@ -18131,7 +18219,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5636 => array(
 			'name'    => "Pledge: Ruins of Mazzatun",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore the Ruins of Mazzatun.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore the Ruins of Mazzatun.",
 			'internalName' => "Q5636 Pledge Ruins Mazzatun",
 			'zoneId' => 843,
 			'zone' => "Ruins of Mazzatun",
@@ -18795,7 +18883,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5780 => array(
 			'name'    => "Pledge: Cradle of Shadows",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore the Cradle of Shadows.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore the Cradle of Shadows.",
 			'internalName' => "Q5780 Pledge Cradle of Shadow",
 			'zoneId' => 848,
 			'zone' => "Cradle of Shadows",
@@ -19143,6 +19231,14 @@ $ESO_QUEST_DATA = array(
 			'internalName' => "Q5883 - Hatching a Plan",
 			'zoneId' => 849,
 			'zone' => "Vvardenfell",
+			'type' => 0,
+		),
+	6256 => array(
+			'name'    => "Reeling in Recruits",
+			'journal' => "Jee-Lar asked me to help recruit adventurers to join Cyrodilic Collections' expedition to Murkmire. Posting recruitment handbills and performing a traditional Argonian dance will help drum up interest.",
+			'internalName' => "6256 Recruitment",
+			'zoneId' => 117,
+			'zone' => "Shadowfen",
 			'type' => 0,
 		),
 	5886 => array(
@@ -19779,7 +19875,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6054 => array(
 			'name'    => "Pledge: Falkreath Hold",
-			'journal' => "<<1>> of the Undaunted has challenged me to defend the besieged city of Falkreath Hold.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
+			'journal' => "<<1>> of the Undaunted has challenged me to defend the besieged city of Falkreath Hold.",
 			'internalName' => "Q6054 Pledge Falkreath Hold",
 			'zoneId' => 974,
 			'zone' => "Falkreath Hold",
@@ -20313,6 +20409,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "Summerset",
 			'type' => 3,
 		),
+	6188 => array(
+			'name'    => "The Great Hunt",
+			'journal' => "The Ashlander Hanu has recruited me to join her hunting team within Hircine's Hunting Grounds. We must hunt down an indrik and present its heart to Hircine in order for Hanu to win a boon from the Daedric Prince and save her father.",
+			'internalName' => "u19-DUN2 March of Sacrifices",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 5,
+		),
 	6195 => array(
 			'name'    => "Time in Doomcrag's Shadow",
 			'journal' => "Even with all eight fragments of the Staff of Towers collected, time breaches continue to open all across Tamriel. I must seal a new cluster of these rifts in the land of Rivenspire.",
@@ -20410,5 +20514,3 @@ $ESO_QUEST_DATA = array(
 			'type' => 4,
 		),
 );
-
-
