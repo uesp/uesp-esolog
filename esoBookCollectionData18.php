@@ -1432,8 +1432,2033 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 50,
-						'numBooks' => 682 
+						'numCollect' => 48,
+						'numBooks' => 0 
+				),
+				1 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				2 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				3 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				4 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				5 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				6 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				7 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				8 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				9 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				10 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				11 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				12 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				13 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				14 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				15 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				16 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				17 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				18 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				19 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				20 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				21 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				22 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				23 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				24 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				25 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				26 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				27 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				28 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				29 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				30 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				31 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				32 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				33 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				34 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				35 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				36 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				37 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				38 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				39 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				40 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				41 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				42 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				43 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				44 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				45 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				46 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				47 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				48 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				) 
+		),
+		3 => array (
+				0 => array (
+						'id' => 2,
+						'name' => 'Eidetic Memory',
+						'numCollect' => 35,
+						'numBooks' => 0 
+				),
+				1 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				2 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				3 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				4 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				5 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				6 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				7 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				8 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				9 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				10 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				11 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				12 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				13 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				14 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				15 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				16 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				17 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				18 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				19 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				20 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				21 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				22 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				23 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				24 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				25 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				26 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				27 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				28 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				29 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				30 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				31 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				32 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				33 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				34 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				),
+				35 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
+				) 
+		),
+		1 => array (
+				0 => array (
+						'id' => 1,
+						'name' => 'Shalidor`s Library',
+						'numCollect' => 29,
+						'numBooks' => 297 
+				),
+				1 => array (
+						'id' => 3,
+						'name' => 'Glenumbra Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								7 => array (
+										'title' => 'The Code of Mauloch',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color3.dds' 
+								),
+								8 => array (
+										'title' => 'A Warning to the Aldmeri Dominion',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color4.dds' 
+								),
+								9 => array (
+										'title' => 'True Heirs of the Empire',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								11 => array (
+										'title' => 'The Werewolf`s Hide',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								12 => array (
+										'title' => 'Guide to the Daggerfall Covenant',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
+								),
+								13 => array (
+										'title' => 'The True Nature of Orcs (Banned Ed.)',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
+								),
+								14 => array (
+										'title' => 'Varieties of Faith: The Bretons',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color1.dds' 
+								),
+								15 => array (
+										'title' => 'Varieties of Faith: The Orcs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color4.dds' 
+								),
+								16 => array (
+										'title' => 'Wyresses: The Name-Daughters',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color4.dds' 
+								),
+								17 => array (
+										'title' => 'Schemes of the Reachmage',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color4.dds' 
+								) 
+						) 
+				),
+				2 => array (
+						'id' => 5,
+						'name' => 'Stormhaven Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								22 => array (
+										'title' => 'Once',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color4.dds' 
+								),
+								23 => array (
+										'title' => 'Founding of the Spirit Wardens',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color4.dds' 
+								),
+								24 => array (
+										'title' => 'The Knightly Orders of High Rock',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color3.dds' 
+								),
+								25 => array (
+										'title' => 'The Bretons: Mongrels or Paragons?',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color3.dds' 
+								),
+								26 => array (
+										'title' => 'Sacred Rites of the Stonechewers',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color5.dds' 
+								),
+								27 => array (
+										'title' => 'Orcs: The Vermin Among Us',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								28 => array (
+										'title' => 'Our Calling, Our Pledge',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
+								),
+								29 => array (
+										'title' => 'To Dream Beyond Dreams',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color2.dds' 
+								),
+								30 => array (
+										'title' => 'Tower of Adamant',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								31 => array (
+										'title' => 'Wayrest, Jewel of the Bay',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color2.dds' 
+								) 
+						) 
+				),
+				3 => array (
+						'id' => 6,
+						'name' => 'Rivenspire Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								32 => array (
+										'title' => 'The Barrows of Westmark Moor',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color5.dds' 
+								),
+								33 => array (
+										'title' => 'The Story of Princess Eselde',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color5.dds' 
+								),
+								34 => array (
+										'title' => 'Bloodfiends of Rivenspire',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color4.dds' 
+								),
+								35 => array (
+										'title' => 'The Remnant of Light',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color1.dds' 
+								),
+								36 => array (
+										'title' => 'The Horse-Folk of Silverhoof',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color2.dds' 
+								),
+								37 => array (
+										'title' => 'Dire Legends of the Doomcrag',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color4.dds' 
+								),
+								38 => array (
+										'title' => 'House Tamrith: A Recent History',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color5.dds' 
+								),
+								39 => array (
+										'title' => 'Shornhelm, Crown City of the North',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color1.dds' 
+								),
+								40 => array (
+										'title' => 'Northpoint: An Assessment',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color1.dds' 
+								),
+								41 => array (
+										'title' => 'House Ravenwatch Proclamation',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color4.dds' 
+								) 
+						) 
+				),
+				4 => array (
+						'id' => 7,
+						'name' => 'Bangkorai Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								42 => array (
+										'title' => 'The Legend of Fallen Grotto',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color3.dds' 
+								),
+								43 => array (
+										'title' => 'Living with Lycanthropy',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color3.dds' 
+								),
+								44 => array (
+										'title' => 'Bangkorai, Shield of High Rock',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color2.dds' 
+								),
+								45 => array (
+										'title' => 'The Posting of the Hunt',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								46 => array (
+										'title' => 'Aspects of Lord Hircine',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
+								),
+								47 => array (
+										'title' => 'The Viridian Sentinel',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
+								),
+								48 => array (
+										'title' => 'The True-Told Tale of Hallin, Pt. 1',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
+								),
+								49 => array (
+										'title' => 'The True-Told Tale of Hallin, Pt 2',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
+								),
+								50 => array (
+										'title' => 'A Life Barbaric and Brutal',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								51 => array (
+										'title' => 'The Glenmoril Wyrd',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								) 
+						) 
+				),
+				5 => array (
+						'id' => 8,
+						'name' => 'Alik`r Desert Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								52 => array (
+										'title' => 'Redguards, History and Heroes, V. 1',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								53 => array (
+										'title' => 'Redguards, History and Heroes, V. 2',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color1.dds' 
+								),
+								54 => array (
+										'title' => 'Redguards, History and Heroes, V. 3',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color3.dds' 
+								),
+								55 => array (
+										'title' => 'Tu`whacca`s Prayer',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								56 => array (
+										'title' => 'Varieties of Faith, Crown Redguards',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								57 => array (
+										'title' => 'Varieties of Faith, The Forebears',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								58 => array (
+										'title' => 'Motalion Necropolis Report',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color5.dds' 
+								),
+								59 => array (
+										'title' => 'The Salas En Expedition',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color4.dds' 
+								),
+								60 => array (
+										'title' => 'Sentinel, the Jewel of Alik`r',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								61 => array (
+										'title' => 'Sacrilege and Mayhem in the Alik`r',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								) 
+						) 
+				),
+				6 => array (
+						'id' => 9,
+						'name' => 'Shadowfen Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								289 => array (
+										'title' => 'Suril`s Journal',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color4.dds' 
+								),
+								290 => array (
+										'title' => 'The Right Mattock for the Job',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								291 => array (
+										'title' => 'Dust`s Shadow',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
+								),
+								292 => array (
+										'title' => 'Remember Me',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
+								),
+								293 => array (
+										'title' => 'Fair Argonian Maiden',
+										'icon' => '/esoui/art/icons/quest_plans_001.dds' 
+								),
+								294 => array (
+										'title' => 'A Shallow Pool',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								295 => array (
+										'title' => 'Freedom`s Price',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color1.dds' 
+								),
+								296 => array (
+										'title' => 'A Mother`s Nursery Rhyme',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
+								),
+								297 => array (
+										'title' => 'The Ruby Necklace',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color5.dds' 
+								),
+								298 => array (
+										'title' => 'On the Knahaten Flu',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color2.dds' 
+								) 
+						) 
+				),
+				7 => array (
+						'id' => 10,
+						'name' => 'The Trial of Eyevea',
+						'numBooks' => 4,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_magic.dds',
+						'books' => array (
+								136 => array (
+										'title' => 'How the Kwama Lost His Shoes',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								),
+								117 => array (
+										'title' => 'A Gift of Sanctuary',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color1.dds' 
+								),
+								119 => array (
+										'title' => 'Robier`s Vegetable Garden',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								101 => array (
+										'title' => 'Circus of Cheerful Slaughter',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								) 
+						) 
+				),
+				8 => array (
+						'id' => 12,
+						'name' => 'Daedric Princes',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_daedric.dds',
+						'books' => array (
+								163 => array (
+										'title' => 'Aedra and Daedra',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book1.dds' 
+								),
+								164 => array (
+										'title' => 'Boethiah`s Proving',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book2.dds' 
+								),
+								165 => array (
+										'title' => 'The Dreamstride',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book3.dds' 
+								),
+								166 => array (
+										'title' => 'The House of Troubles',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book4.dds' 
+								),
+								167 => array (
+										'title' => 'Invocation of Azura',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book5.dds' 
+								),
+								168 => array (
+										'title' => 'Modern Heretics',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book6.dds' 
+								),
+								169 => array (
+										'title' => 'Opusculus Lamae Bal ta Mezzamortie',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book7.dds' 
+								),
+								170 => array (
+										'title' => 'The Totems of Hircine',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book8.dds' 
+								),
+								171 => array (
+										'title' => 'Fragmentae Abyssum Hermaeus Morus',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book9.dds' 
+								),
+								172 => array (
+										'title' => 'The Spawn of Molag Bal',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book10.dds' 
+								) 
+						) 
+				),
+				9 => array (
+						'id' => 13,
+						'name' => 'Biographies',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								153 => array (
+										'title' => 'Galerion the Mystic',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color5.dds' 
+								),
+								154 => array (
+										'title' => 'Great Harbingers of the Companions',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color5.dds' 
+								),
+								155 => array (
+										'title' => 'The Illusion of Death',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color3.dds' 
+								),
+								156 => array (
+										'title' => 'Jorunn the Skald-King',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color4.dds' 
+								),
+								157 => array (
+										'title' => 'Triumphs of a Monarch, Ch. 3',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								158 => array (
+										'title' => 'Triumphs of a Monarch, Ch. 6',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color5.dds' 
+								),
+								159 => array (
+										'title' => 'Triumphs of a Monarch, Ch. 10',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color4.dds' 
+								),
+								160 => array (
+										'title' => 'Trials of Saint Alessia',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								161 => array (
+										'title' => 'The All-Beneficent King Fahara`jad',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color3.dds' 
+								),
+								162 => array (
+										'title' => 'Ayrenn: The Unforeseen Queen',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color5.dds' 
+								) 
+						) 
+				),
+				10 => array (
+						'id' => 14,
+						'name' => 'Divines and Deities',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_divine.dds',
+						'books' => array (
+								173 => array (
+										'title' => 'The Anuad Paraphrased',
+										'icon' => '/esoui/art/icons/divineslore_book1.dds' 
+								),
+								174 => array (
+										'title' => 'The Lunar Lorkhan',
+										'icon' => '/esoui/art/icons/divineslore_book2.dds' 
+								),
+								175 => array (
+										'title' => 'Monomyth: Dragon God & Missing God',
+										'icon' => '/esoui/art/icons/divineslore_book3.dds' 
+								),
+								176 => array (
+										'title' => 'Monomyth: Lorkhan and Satakal',
+										'icon' => '/esoui/art/icons/divineslore_book4.dds' 
+								),
+								177 => array (
+										'title' => 'Monomyth: \"Shezarr`s Song\"',
+										'icon' => '/esoui/art/icons/divineslore_book5.dds' 
+								),
+								178 => array (
+										'title' => 'Monomyth: The Myth of Aurbis',
+										'icon' => '/esoui/art/icons/divineslore_book6.dds' 
+								),
+								179 => array (
+										'title' => 'Monomyth: The Heart of the World',
+										'icon' => '/esoui/art/icons/divineslore_book7.dds' 
+								),
+								180 => array (
+										'title' => 'Nine Commands of the Eight Divines',
+										'icon' => '/esoui/art/icons/divineslore_book8.dds' 
+								),
+								181 => array (
+										'title' => 'Gods and Worship In Tamriel',
+										'icon' => '/esoui/art/icons/divineslore_book9.dds' 
+								),
+								182 => array (
+										'title' => 'Vivec and Mephala',
+										'icon' => '/esoui/art/icons/divineslore_book10.dds' 
+								) 
+						) 
+				),
+				11 => array (
+						'id' => 15,
+						'name' => 'Dungeon Lore',
+						'numBooks' => 17,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
+						'books' => array (
+								183 => array (
+										'title' => 'With Regards to the Ebony Blade',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color1.dds' 
+								),
+								184 => array (
+										'title' => 'What is Volendrung?',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								185 => array (
+										'title' => 'The Thief God`s Treasures',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color3.dds' 
+								),
+								186 => array (
+										'title' => 'War Weather',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color1.dds' 
+								),
+								187 => array (
+										'title' => 'Civility and Etiquette: Wood Orcs I',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
+								),
+								188 => array (
+										'title' => 'The Art of Kwama Egg Cooking',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color4.dds' 
+								),
+								189 => array (
+										'title' => 'The Binding Stone',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color2.dds' 
+								),
+								190 => array (
+										'title' => 'Where Magical Paths Meet',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color4.dds' 
+								),
+								191 => array (
+										'title' => 'Wayrest Sewers: A Short History',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								192 => array (
+										'title' => 'To Posterity',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color5.dds' 
+								),
+								1505 => array (
+										'title' => 'Arx Corinium: First Seed Report',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color3.dds' 
+								),
+								1506 => array (
+										'title' => 'Burning Vestige, Vol. I',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color3.dds' 
+								),
+								1507 => array (
+										'title' => 'Civility and Etiquette V. 5: Undead',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color3.dds' 
+								),
+								1508 => array (
+										'title' => 'Tempest Island Briefing',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								1509 => array (
+										'title' => 'Soul-Trapping I: An Introduction',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color3.dds' 
+								),
+								1510 => array (
+										'title' => 'To All Who Pass Through',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
+								),
+								2293 => array (
+										'title' => 'Josef the Intolerant',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color5.dds' 
+								) 
+						) 
+				),
+				12 => array (
+						'id' => 16,
+						'name' => 'Dwemer',
+						'numBooks' => 16,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dwemer.dds',
+						'books' => array (
+								193 => array (
+										'title' => 'Ancient Scrolls of the Dwemer I-A',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								195 => array (
+										'title' => 'Ancient Scrolls of the Dwemer II',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								196 => array (
+										'title' => 'Ancient Scrolls of the Dwemer III',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								197 => array (
+										'title' => 'Ancient Scrolls of the Dwemer V',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								198 => array (
+										'title' => 'Ancient Scrolls of the Dwemer VI',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								199 => array (
+										'title' => 'Ancient Scrolls of the Dwemer X',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								200 => array (
+										'title' => 'Ancient Scrolls of the Dwemer XI',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								201 => array (
+										'title' => 'Antecedents of Dwemer Law',
+										'icon' => '/esoui/art/icons/dwemerlore_book1.dds' 
+								),
+								202 => array (
+										'title' => 'Dwarven Automatons',
+										'icon' => '/esoui/art/icons/dwemerlore_book2.dds' 
+								),
+								203 => array (
+										'title' => 'Ancient Scrolls of the Dwemer I-B',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								204 => array (
+										'title' => 'Guylaine`s Dwemer Architecture',
+										'icon' => '/esoui/art/icons/dwemerlore_book3.dds' 
+								),
+								205 => array (
+										'title' => 'Ancient Scrolls of the Dwemer VIII',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								206 => array (
+										'title' => 'Dwemer Inquiries Volume I',
+										'icon' => '/esoui/art/icons/dwemerlore_book4.dds' 
+								),
+								207 => array (
+										'title' => 'Dwemer Inquiries Volume II',
+										'icon' => '/esoui/art/icons/dwemerlore_book5.dds' 
+								),
+								208 => array (
+										'title' => 'Dwemer Inquiries Volume III',
+										'icon' => '/esoui/art/icons/dwemerlore_book6.dds' 
+								),
+								209 => array (
+										'title' => 'Ancient Scrolls of the Dwemer IV',
+										'icon' => '/esoui/art/icons/dwemerlore_book7.dds' 
+								) 
+						) 
+				),
+				13 => array (
+						'id' => 17,
+						'name' => 'Legends of Nirn',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								210 => array (
+										'title' => 'An Accounting of the Elder Scrolls',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color4.dds' 
+								),
+								211 => array (
+										'title' => 'The Adabal-a',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color4.dds' 
+								),
+								212 => array (
+										'title' => 'The Amulet of Kings',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color4.dds' 
+								),
+								213 => array (
+										'title' => 'The Cleansing of the Fane',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color2.dds' 
+								),
+								214 => array (
+										'title' => 'The Exclusionary Mandates',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color4.dds' 
+								),
+								215 => array (
+										'title' => 'The Last King of the Ayleids',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color3.dds' 
+								),
+								216 => array (
+										'title' => 'The Order of the Ancestor Moth',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								217 => array (
+										'title' => 'Tamrielic Artifacts, Part One',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								218 => array (
+										'title' => 'Tamrielic Artifacts, Part Two',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								219 => array (
+										'title' => 'Tamrielic Artifacts, Part Three',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color1.dds' 
+								) 
+						) 
+				),
+				14 => array (
+						'id' => 18,
+						'name' => 'Literature',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								222 => array (
+										'title' => 'The Homilies of Blessed Almalexia',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color4.dds' 
+								),
+								223 => array (
+										'title' => 'The Legendary Scourge',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color5.dds' 
+								),
+								224 => array (
+										'title' => 'The Lusty Argonian Maid, Volume 1',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color4.dds' 
+								),
+								225 => array (
+										'title' => 'The Lusty Argonian Maid, Volume 2',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color2.dds' 
+								),
+								226 => array (
+										'title' => 'Myths of Sheogorath, Volume 1',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color2.dds' 
+								),
+								227 => array (
+										'title' => 'Myths of Sheogorath, Volume 2',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color4.dds' 
+								),
+								228 => array (
+										'title' => 'The Red Book of Riddles',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color2.dds' 
+								),
+								230 => array (
+										'title' => '16 Accords of Madness, Vol. VI',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color2.dds' 
+								),
+								231 => array (
+										'title' => 'Crow and Raven: Three Short Fables',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color3.dds' 
+								),
+								232 => array (
+										'title' => 'Wabbajack',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color1.dds' 
+								) 
+						) 
+				),
+				15 => array (
+						'id' => 19,
+						'name' => 'Magic and Magicka',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_magic.dds',
+						'books' => array (
+								233 => array (
+										'title' => 'Arcana Restored',
+										'icon' => '/esoui/art/icons/magickalore_book1.dds' 
+								),
+								234 => array (
+										'title' => 'Liminal Bridges',
+										'icon' => '/esoui/art/icons/magickalore_book2.dds' 
+								),
+								235 => array (
+										'title' => 'Magic from the Sky',
+										'icon' => '/esoui/art/icons/magickalore_book3.dds' 
+								),
+								236 => array (
+										'title' => 'Manual of Spellcraft',
+										'icon' => '/esoui/art/icons/magickalore_book4.dds' 
+								),
+								237 => array (
+										'title' => 'The Old Ways',
+										'icon' => '/esoui/art/icons/magickalore_book5.dds' 
+								),
+								238 => array (
+										'title' => 'On the Detachment of the Sheath',
+										'icon' => '/esoui/art/icons/magickalore_book6.dds' 
+								),
+								239 => array (
+										'title' => 'Reality and Other Falsehoods',
+										'icon' => '/esoui/art/icons/magickalore_book7.dds' 
+								),
+								240 => array (
+										'title' => 'Guild Memo on Soul Trapping',
+										'icon' => '/esoui/art/icons/magickalore_book8.dds' 
+								),
+								241 => array (
+										'title' => 'Wayshrines of Tamriel',
+										'icon' => '/esoui/art/icons/magickalore_book9.dds' 
+								),
+								242 => array (
+										'title' => 'Proposal: Schools of Magic',
+										'icon' => '/esoui/art/icons/magickalore_book10.dds' 
+								) 
+						) 
+				),
+				16 => array (
+						'id' => 20,
+						'name' => 'Myths of the Mundus',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								243 => array (
+										'title' => 'Before the Ages of Man: Dawn Era',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color2.dds' 
+								),
+								244 => array (
+										'title' => 'Before the Ages of Man: Merethic Era',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								245 => array (
+										'title' => 'Ebony Blade History',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color5.dds' 
+								),
+								246 => array (
+										'title' => 'Noxiphilic Sanguivoria',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color2.dds' 
+								),
+								247 => array (
+										'title' => 'A Werewolf`s Confession',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color4.dds' 
+								),
+								248 => array (
+										'title' => 'The Firmament',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color1.dds' 
+								),
+								249 => array (
+										'title' => 'The Pig Children',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color5.dds' 
+								),
+								250 => array (
+										'title' => 'Ruminations on the Elder Scrolls',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								251 => array (
+										'title' => 'Sithis',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color1.dds' 
+								),
+								252 => array (
+										'title' => 'The Consecrations of Arkay',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color2.dds' 
+								) 
+						) 
+				),
+				17 => array (
+						'id' => 21,
+						'name' => 'Oblivion Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_daedric.dds',
+						'books' => array (
+								253 => array (
+										'title' => 'The Book of Daedra',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color3.dds' 
+								),
+								254 => array (
+										'title' => 'Darkest Darkness',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
+								),
+								255 => array (
+										'title' => 'The Doors of Oblivion, Part 1',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								),
+								256 => array (
+										'title' => 'The Doors of Oblivion, Part 2',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								),
+								257 => array (
+										'title' => 'On Oblivion',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color1.dds' 
+								),
+								258 => array (
+										'title' => 'Spirit of the Daedra',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								259 => array (
+										'title' => 'Varieties of Daedra, Part 1',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color3.dds' 
+								),
+								260 => array (
+										'title' => 'Varieties of Daedra, Part 2',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
+								),
+								261 => array (
+										'title' => 'The Slave Pits of Coldharbour',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color4.dds' 
+								),
+								262 => array (
+										'title' => 'On the Nature of Coldharbour',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color5.dds' 
+								) 
+						) 
+				),
+				18 => array (
+						'id' => 22,
+						'name' => 'Poetry and Song',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								263 => array (
+										'title' => 'The Battle of Glenumbria Moors',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
+								),
+								264 => array (
+										'title' => 'The Book of Dawn and Dusk',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color2.dds' 
+								),
+								265 => array (
+										'title' => 'The Cantatas of Vivec',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color5.dds' 
+								),
+								266 => array (
+										'title' => 'The Five Far Stars',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								),
+								267 => array (
+										'title' => 'Flesh to Cut from Bone',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color5.dds' 
+								),
+								268 => array (
+										'title' => 'Ode to the Tundrastriders',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color2.dds' 
+								),
+								269 => array (
+										'title' => 'Proper-Life: Three Chants',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								270 => array (
+										'title' => 'Song of the Askelde Men',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								271 => array (
+										'title' => 'The Warrior`s Charge',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								272 => array (
+										'title' => 'Words of the Wind',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color5.dds' 
+								) 
+						) 
+				),
+				19 => array (
+						'id' => 23,
+						'name' => 'Tamriel History',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								273 => array (
+										'title' => 'Ayleid Inscriptions Translated',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color1.dds' 
+								),
+								274 => array (
+										'title' => 'Frontier, Conquest',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color3.dds' 
+								),
+								275 => array (
+										'title' => 'History of the Fighters Guild Pt. 1',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color2.dds' 
+								),
+								276 => array (
+										'title' => 'History of the Fighters Guild Pt. 2',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color3.dds' 
+								),
+								277 => array (
+										'title' => 'Origin of the Mages Guild',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
+								),
+								278 => array (
+										'title' => 'Eulogy for Emperor Varen',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color3.dds' 
+								),
+								279 => array (
+										'title' => 'House Tharn of Nibenay',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
+								),
+								280 => array (
+										'title' => 'The Order of the Black Worm',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color3.dds' 
+								),
+								281 => array (
+										'title' => 'Return to Orsinium',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color5.dds' 
+								),
+								282 => array (
+										'title' => 'The Second Akaviri Invasion',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								) 
+						) 
+				),
+				20 => array (
+						'id' => 24,
+						'name' => 'Stonefalls Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								311 => array (
+										'title' => 'Ancestors and the Dunmer (Abridged)',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color4.dds' 
+								),
+								312 => array (
+										'title' => 'The Brothers of Strife',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
+								),
+								313 => array (
+										'title' => 'The Great Houses and Their Uses',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color4.dds' 
+								),
+								315 => array (
+										'title' => 'Argonians Among Us',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
+								),
+								316 => array (
+										'title' => 'Nords of Skyrim',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
+								),
+								317 => array (
+										'title' => 'Mottos of the Dunmeri Great Houses',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
+								),
+								318 => array (
+										'title' => 'Varieties of Faith: The Argonians',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								319 => array (
+										'title' => 'Varieties of Faith: The Dark Elves',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
+								),
+								320 => array (
+										'title' => 'Varieties of Faith: The Nords',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color2.dds' 
+								),
+								364 => array (
+										'title' => 'Guide to the Ebonheart Pact',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color2.dds' 
+								) 
+						) 
+				),
+				21 => array (
+						'id' => 26,
+						'name' => 'Malabal Tor Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								354 => array (
+										'title' => 'The Voice of the People',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
+								),
+								355 => array (
+										'title' => 'The Woodsmer',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color2.dds' 
+								),
+								356 => array (
+										'title' => 'Green Lady, My Lady',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color5.dds' 
+								),
+								357 => array (
+										'title' => 'Valenwood: A Study',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color4.dds' 
+								),
+								358 => array (
+										'title' => 'The Humor of Wood Elves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color4.dds' 
+								),
+								359 => array (
+										'title' => 'Pirates of the Abecean',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color4.dds' 
+								),
+								360 => array (
+										'title' => 'The Wedding Feast: A Memoir',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color3.dds' 
+								),
+								361 => array (
+										'title' => 'A Nereid Stole My Husband',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								),
+								362 => array (
+										'title' => 'The Red Paint',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color5.dds' 
+								),
+								363 => array (
+										'title' => 'Ayleid Cities of Valenwood',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
+								) 
+						) 
+				),
+				22 => array (
+						'id' => 27,
+						'name' => 'Eastmarch Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								471 => array (
+										'title' => 'The Brothers` War',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color1.dds' 
+								),
+								472 => array (
+										'title' => 'Second Invasion: Reports',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color3.dds' 
+								),
+								473 => array (
+										'title' => 'The Ternion Monks',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color1.dds' 
+								),
+								474 => array (
+										'title' => 'Orcs of Skyrim',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color4.dds' 
+								),
+								475 => array (
+										'title' => 'The Crown of Freydis',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color1.dds' 
+								),
+								476 => array (
+										'title' => 'Spirits of Skyrim',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
+								),
+								477 => array (
+										'title' => 'All About Giants',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
+								),
+								478 => array (
+										'title' => 'The Stormfist Clan',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color2.dds' 
+								),
+								479 => array (
+										'title' => 'On Stepping Lightly',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								),
+								480 => array (
+										'title' => 'Dreamwalkers',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color2.dds' 
+								) 
+						) 
+				),
+				23 => array (
+						'id' => 28,
+						'name' => 'Deshaan Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								570 => array (
+										'title' => 'The Living Gods',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color5.dds' 
+								),
+								571 => array (
+										'title' => 'The Judgment of Saint Veloth',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color5.dds' 
+								),
+								572 => array (
+										'title' => 'Kwama Mining for Fun and Profit',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color1.dds' 
+								),
+								573 => array (
+										'title' => 'Shad Astula Academy Handbook',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color1.dds' 
+								),
+								574 => array (
+										'title' => 'Dwemer Dungeons: What I Know',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color1.dds' 
+								),
+								575 => array (
+										'title' => 'Legend of the Ghost Snake',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color3.dds' 
+								),
+								576 => array (
+										'title' => 'War of Two Houses',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color3.dds' 
+								),
+								577 => array (
+										'title' => 'A Pocket Guide to Mournhold',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color2.dds' 
+								),
+								578 => array (
+										'title' => 'Sanctioned Murder',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color2.dds' 
+								),
+								579 => array (
+										'title' => 'Dark Ruins',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								) 
+						) 
+				),
+				24 => array (
+						'id' => 29,
+						'name' => 'The Rift Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								698 => array (
+										'title' => 'Songs of the Return, Volume 49',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								697 => array (
+										'title' => 'Songs of the Return, Volume 27',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color2.dds' 
+								),
+								696 => array (
+										'title' => 'The Wandering Skald',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color5.dds' 
+								),
+								695 => array (
+										'title' => 'Thenephan`s Mysteries of Mead',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								),
+								694 => array (
+										'title' => 'Unexpected Allies',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color1.dds' 
+								),
+								693 => array (
+										'title' => 'The Road to Sovngarde',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								692 => array (
+										'title' => 'Songs of the Return, Volume 5',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color4.dds' 
+								),
+								691 => array (
+										'title' => 'Touch of the Worm`s Tongue',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color2.dds' 
+								),
+								690 => array (
+										'title' => 'Rivers of Profit in Riften',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								),
+								689 => array (
+										'title' => 'Clans of the Reach: A Guide',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color2.dds' 
+								) 
+						) 
+				),
+				25 => array (
+						'id' => 30,
+						'name' => 'Auridon Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								897 => array (
+										'title' => 'Crimes of the Daggerfall Covenant',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color4.dds' 
+								),
+								898 => array (
+										'title' => 'Regarding the Ebonheart Pact',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color4.dds' 
+								),
+								899 => array (
+										'title' => 'The Lay of Firsthold',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
+								),
+								900 => array (
+										'title' => 'Varieties of Faith: The High Elves',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
+								),
+								905 => array (
+										'title' => 'Why Don the Veil?',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color4.dds' 
+								),
+								906 => array (
+										'title' => 'Fang of the Sea Vipers',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color4.dds' 
+								),
+								907 => array (
+										'title' => 'The Rise of Queen Ayrenn',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								908 => array (
+										'title' => 'Kinlord Rilis and the Mages Guild',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color5.dds' 
+								),
+								909 => array (
+										'title' => 'Life in the Eagle`s Shadow',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color1.dds' 
+								),
+								910 => array (
+										'title' => 'Thalmor Handbill',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color3.dds' 
+								) 
+						) 
+				),
+				26 => array (
+						'id' => 32,
+						'name' => 'Grahtwood Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								1414 => array (
+										'title' => 'Varieties of Faith: The Khajiit',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color4.dds' 
+								),
+								1415 => array (
+										'title' => 'Varieties of Faith: The Wood Elves',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
+								),
+								1416 => array (
+										'title' => 'The Book of the Great Tree',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color3.dds' 
+								),
+								1417 => array (
+										'title' => 'Common Arms of Valenwood',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color5.dds' 
+								),
+								1418 => array (
+										'title' => 'War Customs of the Tribal Bosmer',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color1.dds' 
+								),
+								1419 => array (
+										'title' => 'The Devouring of Gil-Var-Delle',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color2.dds' 
+								),
+								1420 => array (
+										'title' => 'Ayleid Survivals in Valenwood',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color2.dds' 
+								),
+								1421 => array (
+										'title' => 'Aurbic Enigma 4: The Elden Tree',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
+								),
+								1422 => array (
+										'title' => 'The Legend of Vastarie',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								1423 => array (
+										'title' => 'In the Company of Wood Orcs',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
+								) 
+						) 
+				),
+				27 => array (
+						'id' => 38,
+						'name' => 'Greenshade Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								1424 => array (
+										'title' => 'Words of Clan Mother Ahnissi, Pt. 1',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
+								),
+								1425 => array (
+										'title' => 'Words of Clan Mother Ahnissi, Pt. 2',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color4.dds' 
+								),
+								1426 => array (
+										'title' => 'The Ooze: A Fable',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color5.dds' 
+								),
+								1427 => array (
+										'title' => 'The Wilderking Legend',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								1428 => array (
+										'title' => 'Visions of the Green Pact Bosmer',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color4.dds' 
+								),
+								1429 => array (
+										'title' => 'Woodhearth: A Pocket Guide',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color2.dds' 
+								),
+								1430 => array (
+										'title' => 'The Eldest: A Pilgrim`s Tale',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								1431 => array (
+										'title' => 'The Green Pact and the Dominion',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color2.dds' 
+								),
+								1432 => array (
+										'title' => 'Gifts of the Nereids',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								1433 => array (
+										'title' => 'The Wood Elf Gourmet, Ch. 1',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color4.dds' 
+								) 
+						) 
+				),
+				28 => array (
+						'id' => 39,
+						'name' => 'Reaper`s March Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
+						'books' => array (
+								1434 => array (
+										'title' => 'The Moon Cats and their Dance',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
+								),
+								1435 => array (
+										'title' => 'Litter-Mates of Darkness',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color1.dds' 
+								),
+								1436 => array (
+										'title' => 'Yours for the Taking!',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color3.dds' 
+								),
+								1437 => array (
+										'title' => 'A Looter`s Paradise',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color4.dds' 
+								),
+								1438 => array (
+										'title' => 'The Eagle and the Cat',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color4.dds' 
+								),
+								1439 => array (
+										'title' => 'Elven Eyes, Elven Spies',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color1.dds' 
+								),
+								1440 => array (
+										'title' => 'Moon-Sugar for Glossy Fur? Yes!',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								1441 => array (
+										'title' => 'Master Zoaraym`s Tale, Part 1',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color1.dds' 
+								),
+								1442 => array (
+										'title' => 'Master Zoaraym`s Tale, Part 2',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								1443 => array (
+										'title' => 'Cohort Briefing: Arenthia',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
+								) 
+						) 
+				),
+				29 => array (
+						'id' => 40,
+						'name' => 'Coldharbour Lore',
+						'numBooks' => 10,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_daedric.dds',
+						'books' => array (
+								1465 => array (
+										'title' => 'Exegesis of Merid-Nunda',
+										'icon' => '/esoui/art/icons/coldharborlore_book1.dds' 
+								),
+								1466 => array (
+										'title' => 'The Whithering of Delodiil',
+										'icon' => '/esoui/art/icons/coldharborlore_book2.dds' 
+								),
+								1467 => array (
+										'title' => 'Chaotic Creatia: The Azure Plasm',
+										'icon' => '/esoui/art/icons/coldharborlore_book3.dds' 
+								),
+								1468 => array (
+										'title' => 'I was Summoned by a Mortal',
+										'icon' => '/esoui/art/icons/coldharborlore_book4.dds' 
+								),
+								1469 => array (
+										'title' => 'A Life of Strife and Struggle',
+										'icon' => '/esoui/art/icons/coldharborlore_book5.dds' 
+								),
+								1470 => array (
+										'title' => 'The Black Forge',
+										'icon' => '/esoui/art/icons/coldharborlore_book6.dds' 
+								),
+								1471 => array (
+										'title' => 'The Lightless Oubliette',
+										'icon' => '/esoui/art/icons/coldharborlore_book7.dds' 
+								),
+								1472 => array (
+										'title' => 'The Library of Dusk: Rare Books',
+										'icon' => '/esoui/art/icons/coldharborlore_book8.dds' 
+								),
+								1473 => array (
+										'title' => 'Oath of a Dishonored Clan',
+										'icon' => '/esoui/art/icons/coldharborlore_book9.dds' 
+								),
+								1474 => array (
+										'title' => 'Protocols of the Court of Contempt',
+										'icon' => '/esoui/art/icons/coldharborlore_book10.dds' 
+								) 
+						) 
+				) 
+		),
+		2 => array (
+				0 => array (
+						'id' => 4,
+						'name' => 'Crafting Motifs',
+						'numCollect' => 48,
+						'numBooks' => 654 
 				),
 				1 => array (
 						'id' => 43,
@@ -4432,134 +6457,6 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
 								) 
 						) 
-				),
-				49 => array (
-						'id' => 138,
-						'name' => 'Dremora Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5206 => array (
-										'title' => 'Crafting Motif 63: Dremora Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5207 => array (
-										'title' => 'Crafting Motif 63: Dremora Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5208 => array (
-										'title' => 'Crafting Motif 63: Dremora Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5209 => array (
-										'title' => 'Crafting Motif 63: Dremora Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5210 => array (
-										'title' => 'Crafting Motif 63: Dremora Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5211 => array (
-										'title' => 'Crafting Motif 63: Dremora Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5212 => array (
-										'title' => 'Crafting Motif 63: Dremora Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5213 => array (
-										'title' => 'Crafting Motif 63: Dremora Helmets',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5214 => array (
-										'title' => 'Crafting Motif 63: Dremora Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5215 => array (
-										'title' => 'Crafting Motif 63: Dremora Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5216 => array (
-										'title' => 'Crafting Motif 63: Dremora Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5217 => array (
-										'title' => 'Crafting Motif 63: Dremora Shoulders',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5218 => array (
-										'title' => 'Crafting Motif 63: Dremora Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5219 => array (
-										'title' => 'Crafting Motif 63: Dremora Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								) 
-						) 
-				),
-				50 => array (
-						'id' => 141,
-						'name' => 'Welkynar Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5251 => array (
-										'title' => 'Crafting Motif 67, Welkynar Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5252 => array (
-										'title' => 'Crafting Motif 67, Welkynar Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5253 => array (
-										'title' => 'Crafting Motif 67, Welkynar Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5254 => array (
-										'title' => 'Crafting Motif 67, Welkynar Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5255 => array (
-										'title' => 'Crafting Motif 67, Welkynar Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5256 => array (
-										'title' => 'Crafting Motif 67, Welkynar Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5257 => array (
-										'title' => 'Crafting Motif 67, Welkynar Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5258 => array (
-										'title' => 'Crafting Motif 67, Welkynar Helmets',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5259 => array (
-										'title' => 'Crafting Motif 67, Welkynar Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5260 => array (
-										'title' => 'Crafting Motif 67, Welkynar Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5261 => array (
-										'title' => 'Crafting Motif 67, Welkynar Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5262 => array (
-										'title' => 'Crafting Motif 67, Welkynar Shoulders',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5263 => array (
-										'title' => 'Crafting Motif 67, Welkynar Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5264 => array (
-										'title' => 'Crafting Motif 67, Welkynar Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								) 
-						) 
 				) 
 		),
 		3 => array (
@@ -4567,7 +6464,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 35,
-						'numBooks' => 2962 
+						'numBooks' => 2937 
 				),
 				1 => array (
 						'id' => 44,
@@ -5048,7 +6945,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				2 => array (
 						'id' => 45,
 						'name' => 'Criminal Correspondence',
-						'numBooks' => 97,
+						'numBooks' => 94,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								75 => array (
@@ -5426,18 +7323,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								4903 => array (
 										'title' => 'Scrawled Note to Lorne',
 										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5267 => array (
-										'title' => 'Blackguard Instructions, One',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
-								),
-								5268 => array (
-										'title' => 'Blackguard Instructions, Two',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
-								),
-								5269 => array (
-										'title' => 'Blackguard Instructions, Two',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
@@ -7292,7 +9177,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_book_002.dds' 
 								),
 								4525 => array (
-										'title' => 'Molag Mar\tTax Records',
+										'title' => 'Molag Mar	Tax Records',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
 								),
 								4527 => array (
@@ -8684,7 +10569,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				11 => array (
 						'id' => 54,
 						'name' => 'Mysteries and Clues',
-						'numBooks' => 89,
+						'numBooks' => 86,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								120 => array (
@@ -9023,25 +10908,13 @@ $ESO_BOOK_COLLECTIONS = array (
 										'title' => 'Message in a Bottle',
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
 								),
-								5091 => array (
-										'title' => 'Message in a Bottle',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5193 => array (
-										'title' => 'Blackguard Note',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
-								),
 								5090 => array (
 										'title' => 'Message in a Bottle',
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
 								),
-								5092 => array (
+								5091 => array (
 										'title' => 'Message in a Bottle',
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5173 => array (
-										'title' => 'List of Argonians',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
 								) 
 						) 
 				),
@@ -9544,7 +11417,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				13 => array (
 						'id' => 56,
 						'name' => 'Personal Journals',
-						'numBooks' => 107,
+						'numBooks' => 106,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								108 => array (
@@ -9970,10 +11843,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								4435 => array (
 										'title' => 'Page from Sun-in-Shadow`s Journal',
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5265 => array (
-										'title' => 'The Journal of Margus Derius',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
 								) 
 						) 
 				),
@@ -10340,7 +12209,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				15 => array (
 						'id' => 58,
 						'name' => 'Research Notes',
-						'numBooks' => 100,
+						'numBooks' => 97,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								69 => array (
@@ -10730,25 +12599,13 @@ $ESO_BOOK_COLLECTIONS = array (
 								4119 => array (
 										'title' => 'Proven Moon Sugar Fertilization Techniques',
 										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
-								),
-								5086 => array (
-										'title' => 'Findings on the Elemental Volatility of Imps',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
-								),
-								5087 => array (
-										'title' => 'Fellrunner Failure?',
-										'icon' => '/esoui/art/icons/notes_003.dds' 
-								),
-								5088 => array (
-										'title' => 'Report on Wing Rot Curative Trials',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
 								) 
 						) 
 				),
 				16 => array (
 						'id' => 59,
 						'name' => 'Rituals and Revelations',
-						'numBooks' => 93,
+						'numBooks' => 92,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_magic.dds',
 						'books' => array (
 								71 => array (
@@ -11118,10 +12975,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								4563 => array (
 										'title' => 'Neelo`s Notes',
 										'icon' => '/esoui/art/icons/lore_book1_detail5_color2.dds' 
-								),
-								5266 => array (
-										'title' => 'The Curse of Beela-Kaar',
-										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
 								) 
 						) 
 				),
@@ -15532,7 +17385,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				31 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 50,
+						'numBooks' => 36,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -15678,62 +17531,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								4919 => array (
 										'title' => 'Cadaver Preparation Findings',
 										'icon' => '/esoui/art/icons/daedricprinceslore_book1.dds' 
-								),
-								5037 => array (
-										'title' => 'By Order of the Silver Dawn',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5038 => array (
-										'title' => 'Rolea`s Journal',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5039 => array (
-										'title' => 'The Hedge Maze',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5040 => array (
-										'title' => 'Letter to Mylenne',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5041 => array (
-										'title' => 'Log #321: Unexpected Results',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5042 => array (
-										'title' => 'A Cure for Lycanthropy',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
-								),
-								5043 => array (
-										'title' => 'The Hungry Cat`s Curse',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
-								),
-								5044 => array (
-										'title' => 'The Huntsman Prince',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5045 => array (
-										'title' => 'Letter to Balorgh',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5046 => array (
-										'title' => 'A Boon for the Tribe',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5047 => array (
-										'title' => 'An Unusual Hare',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5048 => array (
-										'title' => 'The Glory of the Hunt',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5049 => array (
-										'title' => 'Concerning Balorgh',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5050 => array (
-										'title' => 'Balorgh`s Plan',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
 								) 
 						) 
 				),
