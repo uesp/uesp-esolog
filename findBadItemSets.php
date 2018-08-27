@@ -9,12 +9,12 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item set names in mined item data...\n");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "19";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
 $START_ID = 1;
-$END_ID = 150000;
+$END_ID = 160000;
 
 $output = "function uespminetest1()\n";
 file_put_contents("fixitems.lua", $output, FILE_APPEND);

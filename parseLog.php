@@ -88,7 +88,7 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "19";
+	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "";
 	
 		/* Parse or skip certain types of log entries. */
@@ -5151,7 +5151,7 @@ class EsoLogParser
 		}
 		
 			/* Don't update set data for invalid types */
-		if ($logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 18)
+		if (array_key_exists('type', $logEntry) && $logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 18)
 		{
 			$logEntry['setBonus1'] = "";
 			$logEntry['setBonus2'] = "";
@@ -5177,7 +5177,7 @@ class EsoLogParser
 		}
 		
 			/* Don't update enchantment for invalid types */
-		if ($logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 14 && $logEntry['type'] != 20 && $logEntry['type'] != 26)
+		if (array_key_exists('type', $logEntry) && $logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 14 && $logEntry['type'] != 20 && $logEntry['type'] != 26)
 		{
 			$logEntry['enchantName'] = "";
 			$logEntry['enchantDesc'] = "";
@@ -5199,7 +5199,7 @@ class EsoLogParser
 			$logEntry['useAbilityDesc'] = "|cffffffTRAITS|r\n{$logEntry["reagentTrait1"]}\n{$logEntry["reagentTrait2"]}\n{$logEntry["reagentTrait3"]}\n{$logEntry["reagentTrait4"]}";
 		}
 		
-		if ($logEntry["runeName"] != "" && $logEntry["type"] >= 51 && $logEntry["type"] <= 53)
+		if (array_key_exists('type', $logEntry) && $logEntry["runeName"] != "" && $logEntry["type"] >= 51 && $logEntry["type"] <= 53)
 		{
 			$skillName = "Aspect Improvement";
 			if ($logEntry["type"] == 51) $skillName = "Potency Improvement";
@@ -5460,8 +5460,9 @@ class EsoLogParser
 			$this->currentUser['__dirty'] = true;
 		}
 		
-		$this->ParseMinedItemLog($logEntry);
 		$mergedLogEntry = $this->MergeMineItemLogs($logEntry, $this->currentUser['lastMinedItemLogEntry']);
+		$this->ParseMinedItemLog($mergedLogEntry);
+		
 		$this->MergeMineItemLogToDb($minedItem, $mergedLogEntry);
 		
 		if (array_key_exists('setDesc6', $mergedLogEntry))
