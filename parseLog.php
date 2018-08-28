@@ -5177,7 +5177,7 @@ class EsoLogParser
 		}
 		
 			/* Don't update enchantment for invalid types */
-		if (array_key_exists('type', $logEntry) && $logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 14 && $logEntry['type'] != 20 && $logEntry['type'] != 26)
+		if (array_key_exists('type', $logEntry) && $logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 14 && $logEntry['type'] != 20  && $logEntry['type'] != 21 && $logEntry['type'] != 26)
 		{
 			$logEntry['enchantName'] = "";
 			$logEntry['enchantDesc'] = "";
