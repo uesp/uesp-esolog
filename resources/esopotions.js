@@ -1,8 +1,8 @@
-var EsoPotionItemLinkPopup = null;
-var EsoPotionNextFreeReagent = 1;
-var EsoPotionItemLinkCache = {};
-var EsoPotionLastItemLink = "";
-var EsoPotionLastPotionData = "";
+window.EsoPotionItemLinkPopup = null;
+window.EsoPotionNextFreeReagent = 1;
+window.EsoPotionItemLinkCache = {};
+window.EsoPotionLastItemLink = "";
+window.EsoPotionLastPotionData = "";
 
 
 function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)

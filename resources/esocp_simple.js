@@ -1,8 +1,11 @@
-var g_EsoCpDisableUpdates = false;
-var g_EsoCpData = {};
+window.g_EsoCpDisableUpdates = false;
+window.g_EsoCpData = {};
+
+window.g_EsoCPSearchText = "";
+window.g_EsoCPSearchLastIndex = -1;
 
 
-function UpdateEsoCpData()
+window.UpdateEsoCpData = function()
 {
 	var cpSkills = $(".esovcpSkill");
 	var cpDiscs = $(".esovcpDiscipline");
@@ -71,7 +74,7 @@ function UpdateEsoCpData()
 }
 
 
-function OnEsoCpDisciplineClick(e)
+window.OnEsoCpDisciplineClick = function (e)
 {
 	var id = $(this).attr('id');
 	
@@ -86,7 +89,7 @@ function OnEsoCpDisciplineClick(e)
 }
 
 
-function OnEsoCPPlusButtonClick(e)
+window.OnEsoCPPlusButtonClick = function (e)
 {
 	var isShift = false;
 	if (e.shiftKey) isShift = true;
@@ -112,7 +115,7 @@ function OnEsoCPPlusButtonClick(e)
 }
 
 
-function OnEsoCPMinusButtonClick(e)
+window.OnEsoCPMinusButtonClick = function (e)
 {
 	var isShift = false;
 	if (e.shiftKey) isShift = true;
@@ -138,7 +141,7 @@ function OnEsoCPMinusButtonClick(e)
 }
 
 
-function OnEsoCPPointInputChange(e)
+window.OnEsoCPPointInputChange = function (e)
 {
 	var skillId = $(this).attr('skillid');
 	var value = parseInt($(this).val()) || 0;
@@ -152,7 +155,7 @@ function OnEsoCPPointInputChange(e)
 }
 
 
-function OnEsoCPPointInputScrollUp(e)
+window.OnEsoCPPointInputScrollUp = function (e)
 {
 	var inputControl = $(this);
 	var skillId = inputControl.parent().parent().attr('skillid');
@@ -171,7 +174,7 @@ function OnEsoCPPointInputScrollUp(e)
 }
 
 
-function OnEsoCPPointInputScrollDown(e)
+window.OnEsoCPPointInputScrollDown = function (e)
 {
 	var inputControl = $(this);
 	var skillId = inputControl.parent().parent().attr('skillid');
@@ -190,7 +193,7 @@ function OnEsoCPPointInputScrollDown(e)
 }
 
 
-function UpdateEsoCPSkillDesc(skillId, points)
+window.UpdateEsoCPSkillDesc = function(skillId, points)
 {
 	var descControl = $("#descskill_" + skillId);
 	
@@ -201,7 +204,7 @@ function UpdateEsoCPSkillDesc(skillId, points)
 }
 
 
-function UpdateEsoCPDiscSkillDesc(discId)
+window.UpdateEsoCPDiscSkillDesc = function(discId)
 {
 	var discElement = $("#skills_" + discId);
 	
@@ -214,7 +217,7 @@ function UpdateEsoCPDiscSkillDesc(discId)
 }
 
 
-function UpdateEsoCPDiscPoints(discId)
+window.UpdateEsoCPDiscPoints = function(discId)
 {
 	var skillInputs = $("#skills_" + discId + " .esovcpPointInput");
 	var totalPoints = 0;
@@ -232,7 +235,7 @@ function UpdateEsoCPDiscPoints(discId)
 }
 
 
-function UpdateEsoCPDiscAttrPoints(attributeIndex)
+window.UpdateEsoCPDiscAttrPoints = function(attributeIndex)
 {
 	var discPoints = $(".esovcpDiscAttrGroup[attributeindex='" + attributeIndex + "'] .esovcpDiscPoints");
 	var totalPoints = 0;
@@ -247,7 +250,7 @@ function UpdateEsoCPDiscAttrPoints(attributeIndex)
 }
 
 
-function UpdateEsoCPTotalCPPoints()
+window.UpdateEsoCPTotalCPPoints = function()
 {	var attrPoints = $(".esovcpDiscAttrPoints");
 	var totalPoints = 0;
 	
@@ -264,7 +267,7 @@ function UpdateEsoCPTotalCPPoints()
 }
 
 
-function EncodeEsoCPSkillData64(skillData)
+window.EncodeEsoCPSkillData64 = function (skillData)
 {
 	var rawData = new Uint8Array(skillData);
 	var result = btoa(String.fromCharCode.apply(null, rawData));
@@ -273,7 +276,7 @@ function EncodeEsoCPSkillData64(skillData)
 }
 
 
-function DecodeEsoCPSkillData64(rawData)
+window.DecodeEsoCPSkillData64 = function (rawData)
 {
 	var result = new Uint8Array(atob(decodeURIComponent(rawData)).split("").map(function(c) {
 		return c.charCodeAt(0); 
@@ -283,7 +286,7 @@ function DecodeEsoCPSkillData64(rawData)
 }
 
 
-function UpdateEsoCPLink()
+window.UpdateEsoCPLink = function()
 {
 	var link = $("#esovcpLinkBlock");
 	var inputControls = $(".esovcpPointInput");
@@ -306,7 +309,7 @@ function UpdateEsoCPLink()
 }
 
 
-function UpdateEsoCPUnlockLevels(discId)
+window.UpdateEsoCPUnlockLevels = function(discId)
 {
 	var points = parseInt($("#skills_" + discId + " .esovcpDiscTitlePoints").text()) || 0;
 	var passives = $("#skills_" + discId + " .esovcpSkillLevel");
@@ -333,18 +336,14 @@ function UpdateEsoCPUnlockLevels(discId)
 }
 
 
-function OnEsoCPSearch(e)
+window.OnEsoCPSearch = function (e)
 {
 	var text = $("#esovcpSearchText").val().trim();
 	DoEsoCPSearch(text);
 }
 
 
-var g_EsoCPSearchText = "";
-var g_EsoCPSearchLastIndex = -1;
-
-
-function DoEsoCPSearch(text)
+window.DoEsoCPSearch = function (text)
 {
 	var newSearch = false;
 	
@@ -374,7 +373,7 @@ function DoEsoCPSearch(text)
 }
 
 
-function SelectEsoCPSkillElement(element)
+window.SelectEsoCPSkillElement = function (element)
 {
 	if (element == null || element.length == 0) return;
 	
@@ -396,7 +395,7 @@ function SelectEsoCPSkillElement(element)
 }
 
 
-function FindNextEsoCPText()
+window.FindNextEsoCPText = function ()
 {
 	var searchElements = $(".esovcpSkill");
 	var searchText = g_EsoCPSearchText.toLowerCase();
@@ -418,14 +417,14 @@ function FindNextEsoCPText()
 }
 
 
-function OnEsoCPResetAll(e)
+window.OnEsoCPResetAll = function (e)
 {
 	$(".esovcpPointInput").val(0);
 	EsoCpUpdateAll();
 }
 
 
-function OnEsoCPResetDisc(e)
+window.OnEsoCPResetDisc = function (e)
 {
 	var parent = $(this).parent();
 	var discId = parent.attr("disciplineid");
@@ -438,7 +437,7 @@ function OnEsoCPResetDisc(e)
 }
 
 
-function EsoCpUpdateAll()
+window.EsoCpUpdateAll = function ()
 {
 	UpdateEsoCPDiscSkillDesc('the_lord');
 	UpdateEsoCPDiscSkillDesc('the_lady');
@@ -466,7 +465,7 @@ function EsoCpUpdateAll()
 }
 
 
-function esovcpOnDocReady()
+window.esovcpOnDocReady = function ()
 {
 	$(".esovcpDiscipline").click(OnEsoCpDisciplineClick);
 	$(".esovcpMinusButton").click(OnEsoCPMinusButtonClick);

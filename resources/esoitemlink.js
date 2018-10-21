@@ -1,4 +1,4 @@
-var ESO_ITEM_QUALITIES = {
+window.ESO_ITEM_QUALITIES = {
 		'-1': "",
 		0: "Trash",
 		1: "Normal",
@@ -9,7 +9,7 @@ var ESO_ITEM_QUALITIES = {
 };
 
 
-var ESO_ITEM_TRAITS = {
+window.ESO_ITEM_TRAITS = {
 		'-1': "",
 		18: "Divines",
 		17: "Exploration",
