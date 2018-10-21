@@ -1,17 +1,17 @@
-var g_SkillsData = {};	// Loaded asynchronously at load time
-var g_SkillSearchIds = [];
-var g_SkillHighlightId = 0;
-var g_SkillHighlightType = "";
-var g_SkillHighlightLine = "";
-var g_SkillShowAll = false;
-var g_SkillUseUpdate10Cost = true;
+window.g_SkillsData = {};	// Loaded asynchronously at load time
+window.g_SkillSearchIds = [];
+window.g_SkillHighlightId = 0;
+window.g_SkillHighlightType = "";
+window.g_SkillHighlightLine = "";
+window.g_SkillShowAll = false;
+window.g_SkillUseUpdate10Cost = true;
 
 g_SkillDisplayType = "summary";
 
-var g_EsoSkillPointsUsed = 0;
-var g_EsoSkillPassiveData = [];
-var g_EsoSkillActiveData = [];
-var g_EsoSkillBarData = [[[],[],[],[],[],[]],[[],[],[],[],[],[]],[[],[],[],[],[],[]],[[],[],[],[],[],[]]];
+window.g_EsoSkillPointsUsed = 0;
+window.g_EsoSkillPassiveData = [];
+window.g_EsoSkillActiveData = [];
+window.g_EsoSkillBarData = [[[],[],[],[],[],[]],[[],[],[],[],[],[]],[[],[],[],[],[],[]],[[],[],[],[],[],[]]];
 
 
 function OnReceiveEsoSkillClientData(skillData)

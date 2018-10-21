@@ -1,5 +1,8 @@
 	/* Global namespace */
-var UESP = UESP || {};
+if (window.UESP == null)
+{
+	window.UESP = {};
+}
 
 UESP.esoItemSearchPopup = null;
 

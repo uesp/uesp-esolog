@@ -1,7 +1,12 @@
-var EsoAchTree_LastOpenTree = null;
-var EsoAchTree_LastOpenTreeName = null;
-var EsoAchTree_LastContentName = null;
-var EsoAchTree_LastContent = null;
+window.EsoAchTree_LastOpenTree = null;
+window.EsoAchTree_LastOpenTreeName = null;
+window.EsoAchTree_LastContentName = null;
+window.EsoAchTree_LastContent = null;
+
+
+window.lastAchSearchText = "";
+window.lastAchSearchPos = -1;
+window.lastAchSearchElement = null;
 
 
 
@@ -114,11 +119,6 @@ function OnAchievementClick()
 	
 	//if (dataBlock.length == 0) SlideAchievementIntoView($(this));
 }
-
-
-var lastAchSearchText = "";
-var lastAchSearchPos = -1;
-var lastAchSearchElement = null;
 
 
 function OnFindEsoCharAchievement(element)

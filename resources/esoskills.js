@@ -1,16 +1,16 @@
-var g_LastSkillId = 0;
-var g_LastSkillInputValues = {};
-var MAX_SKILL_COEF = 6;
+window.g_LastSkillId = 0;
+window.g_LastSkillInputValues = {};
+window.MAX_SKILL_COEF = 6;
 
-var g_SkillDisplayType = "summary";
-var g_EsoSkillSearchText = "";
-var g_EsoSkillSearchLastIndex = -1;
+window.g_SkillDisplayType = "summary";
+window.g_EsoSkillSearchText = "";
+window.g_EsoSkillSearchLastIndex = -1;
 
-var g_EsoSkillDragData = {};
+window.g_EsoSkillDragData = {};
 
-var g_EsoSkillUpdateEnable = true;
+window.g_EsoSkillUpdateEnable = true;
 
-var g_EsoSkillIsMobile = false;
+window.g_EsoSkillIsMobile = false;
 
 
 ESO_SKILL_TYPES = {
@@ -27,7 +27,7 @@ ESO_SKILL_TYPES = {
 };
 
 
-var RAWDATA_KEYS = 
+window.RAWDATA_KEYS = 
 [
  		"displayId",
 		"name",
@@ -103,13 +103,13 @@ var RAWDATA_KEYS =
 		"upgradeLines",
 ];
 
-var RAWDATA_IGNORE_KEYS =
+window.RAWDATA_IGNORE_KEYS =
 {
 		"id" : true,
 		"texture" : true,
 };
 
-var ROMAN_NUMERALS = 
+window.ROMAN_NUMERALS = 
 {
 		1 : 'I',
 		2 : 'II',
@@ -126,7 +126,7 @@ var ROMAN_NUMERALS =
 };
 
 
-var ESO_FREE_PASSIVES = {
+window.ESO_FREE_PASSIVES = {
 		78219 : 1,
 		74580 : 1,
 		45542 : 1,
@@ -157,13 +157,13 @@ var ESO_FREE_PASSIVES = {
 };
 
 
-function EsoConvertDescToHTML(desc)
+window.EsoConvertDescToHTML = function(desc)
 {
 	return EsoConvertDescToHTMLClass(desc, "esovsWhite");
 }
 
 
-function EsoConvertDescToHTMLClass(desc, className)
+window.EsoConvertDescToHTMLClass = function(desc, className)
 {
 	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '<div class="' + className + '">$1</div>');
 	newDesc = newDesc.replace(/\n/g, '<br />');
@@ -171,7 +171,7 @@ function EsoConvertDescToHTMLClass(desc, className)
 }
 
 
-function EsoConvertDescToText(desc)
+window.EsoConvertDescToText = function(desc)
 {
 	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '$1');
 	//newDesc = newDesc.replace(/\n/g, '<br />');
@@ -179,7 +179,7 @@ function EsoConvertDescToText(desc)
 }
 
 
-function GetRomanNumeral(value)
+window.GetRomanNumeral = function(value)
 {
 	if (value <= 0) return '';
 	
@@ -190,7 +190,7 @@ function GetRomanNumeral(value)
 }
 
 
-function GetEsoSkillTooltipHtml(skillData)
+window.GetEsoSkillTooltipHtml = function(skillData)
 {
 	if (skillData == null) return "";
 
@@ -341,7 +341,7 @@ function GetEsoSkillTooltipHtml(skillData)
 }
 
 
-function EsoShowPopupSkillTooltip(skillData, parent)
+window.EsoShowPopupSkillTooltip = function(skillData, parent)
 {
 	var popupElement = $("#esovsPopupSkillTooltip");
 	
@@ -372,7 +372,7 @@ function EsoShowPopupSkillTooltip(skillData, parent)
 }
 
 
-function AdjustEsoSkillPopupTooltipPosition(tooltip, parent)
+window.AdjustEsoSkillPopupTooltipPosition = function (tooltip, parent)
 {
 	if (tooltip == null) return;
 	if (tooltip[0] == null) return;
@@ -424,7 +424,7 @@ function AdjustEsoSkillPopupTooltipPosition(tooltip, parent)
 }
 
 
-function EsoViewSkillShowTooltip(skillData)
+window.EsoViewSkillShowTooltip = function(skillData)
 {
 	var element = $('#esovsSkillTooltipRoot');
 		
@@ -440,7 +440,7 @@ function EsoViewSkillShowTooltip(skillData)
 }
 
 
-function OnEsoSkillBlockClickMobile(event)
+window.OnEsoSkillBlockClickMobile = function(event)
 {
 	var skillId = $(this).attr('skillid');
 	if (skillId == null || skillId == "") return;
@@ -458,7 +458,7 @@ function OnEsoSkillBlockClickMobile(event)
 }
 
 
-function OnEsoSkillBlockClick(event)
+window.OnEsoSkillBlockClick = function(event)
 {
 	var skillId = $(this).attr('skillid');
 	if (skillId == null || skillId == "") return;
@@ -473,7 +473,7 @@ function OnEsoSkillBlockClick(event)
 }
 
 
-function EsoSkillShowSkillLine(skillLine)
+window.EsoSkillShowSkillLine = function(skillLine)
 {
 	var id = skillLine.replace(/[ '"]/g, '_');
 	
@@ -482,7 +482,7 @@ function EsoSkillShowSkillLine(skillLine)
 }
 
 
-function OnEsoSkillTypeTitleClick(event, noUpdate)
+window.OnEsoSkillTypeTitleClick = function (event, noUpdate)
 {
 	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillTypeTitleHighlight");
 	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
@@ -514,7 +514,7 @@ function OnEsoSkillTypeTitleClick(event, noUpdate)
 }
 
 
-function OnEsoSkillLineTitleClick(event, noUpdate)
+window.OnEsoSkillLineTitleClick = function (event, noUpdate)
 {
 	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
 	
@@ -537,13 +537,13 @@ function OnEsoSkillLineTitleClick(event, noUpdate)
 }
 
 
-function OnEsoSkillBlockPlusClick(event)
+window.OnEsoSkillBlockPlusClick = function (event)
 {
 	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
 }
 
 
-function OnEsoSkillBlockPlusSelectClick(e)
+window.OnEsoSkillBlockPlusSelectClick = function (e)
 {
 	var $openList = $('.esovsAbilityBlockList:visible');
 	var $parent = $(this).parent();
@@ -576,13 +576,13 @@ function OnEsoSkillBlockPlusSelectClick(e)
 }
 
 
-function OnEsoSkillBlockMinusSelectClick(event)
+window.OnEsoSkillBlockMinusSelectClick = function (event)
 {
 	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
 }
 
 
-function GetEsoSkillInputValues()
+window.GetEsoSkillInputValues = function ()
 {
 	var magicka = parseInt($('#esovsInputMagicka').val());
 	var stamina = parseInt($('#esovsInputStamina').val());
@@ -623,14 +623,14 @@ function GetEsoSkillInputValues()
 }
 
 
-function IsEsoSkillParameterDot(skillData, valueIndex)
+window.IsEsoSkillParameterDot = function (skillData, valueIndex)
 {
 	if (skillData.baseName == "Drain Essence" && valueIndex == 1) return true;
 	return false;
 }
 
 
-function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skillData)
+window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIndex, skillData)
 {
 	var value = 0;
 	var SpellDamage = values.SpellDamage;
@@ -882,7 +882,7 @@ function ComputeEsoSkillValue(values, type, a, b, c, coefDesc, valueIndex, skill
 }
 
 
-function IsEsoSkillValidForMaelstromDWEnchant(skillData)
+window.IsEsoSkillValidForMaelstromDWEnchant = function (skillData)
 {
 	if (skillData.baseName == "Soul Strike") return true;
 	if (skillData.baseName == "Rapid Fire") return true;
@@ -933,7 +933,7 @@ function IsEsoSkillValidForMaelstromDWEnchant(skillData)
 }
 
 
-function GetEsoSkillDescription(skillId, inputValues, useHtml, noEffectLines, outputRaw)
+window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffectLines, outputRaw)
 {
 	var output = "";
 	var skillData = g_SkillsData[skillId];
@@ -1064,7 +1064,7 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 ];
 
 
-function UpdateEsoSkillDamageShieldDescription(skillData, skillDesc, inputValues)
+window.UpdateEsoSkillDamageShieldDescription = function (skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
 	if (inputValues == null) return newDesc;
@@ -1290,7 +1290,7 @@ ESO_SKILL_HEALINGMATCHES =
 ];                     
 
 
-function UpdateEsoSkillHealingDescription(skillData, skillDesc, inputValues)
+window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
 	var isAoE = false;
@@ -1406,7 +1406,7 @@ ESO_SKILL_DAMAGEMATCHES =
 ];
 
 
-function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
+window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
 	if (inputValues == null) return newDesc;
@@ -1565,34 +1565,34 @@ function UpdateEsoSkillDamageDescription(skillData, skillDesc, inputValues)
 }
 
 
-function RoundEsoSkillPercent(value)
+window.RoundEsoSkillPercent = function (value)
 {
 	return Math.round(value*10)/10;
 }
 
 
-function UpdateEsoSkillDescription(skillId, descElement, inputValues, useHtml)
+window.UpdateEsoSkillDescription = function (skillId, descElement, inputValues, useHtml)
 {
 	var html = GetEsoSkillDescription(skillId, inputValues, useHtml);
 	descElement.html(html);
 }
 
 
-function UpdateEsoSkillTooltipDescription()
+window.UpdateEsoSkillTooltipDescription = function ()
 {
 	if (g_LastSkillId <= 0) return;
 	UpdateEsoSkillDescription(g_LastSkillId, $("#esovsSkillTooltipDesc"), GetEsoSkillInputValues(), true)
 }
 
 
-function CreateEsoSkillLineId(skillLine)
+window.CreateEsoSkillLineId = function (skillLine)
 {
 	if (skillLine == null) return "";
 	return skillLine.replace(/ /g, "_");
 }
 
 
-function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
+window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 {
 	if (skillData == null) return cost;
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
@@ -1677,7 +1677,7 @@ function ComputeEsoSkillCostExtra(cost, level, inputValues, skillData)
 }
 
 
-function ComputeEsoSkillCost(maxCost, level, inputValues, skillData)
+window.ComputeEsoSkillCost = function (maxCost, level, inputValues, skillData)
 {
 	if (!g_SkillUseUpdate10Cost) return ComputeEsoSkillCostOld(maxCost, level, inputValues, skillData)
 	if (inputValues == null) inputValues = GetEsoSkillInputValues();
@@ -1699,7 +1699,7 @@ function ComputeEsoSkillCost(maxCost, level, inputValues, skillData)
 }
 
 
-function ComputeEsoSkillCostOld(maxCost, level, inputValues, skillData)
+window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData)
 {
 	if (inputValues == null) inputValues = GetEsoSkillInputValues();
 	
@@ -1723,14 +1723,14 @@ function ComputeEsoSkillCostOld(maxCost, level, inputValues, skillData)
 }
 
 
-function UpdateEsoSkillTooltipCost()
+ window.UpdateEsoSkillTooltipCost = function()
 {		
 	if (g_LastSkillId <= 0) return;
 	UpdateEsoSkillCost(g_LastSkillId, $("#esovsSkillTooltipCost"), GetEsoSkillInputValues());
 }
 
 
-function GetEsoSkillCost(skillId, inputValues)
+window.GetEsoSkillCost = function(skillId, inputValues)
 {
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
@@ -1759,14 +1759,14 @@ function GetEsoSkillCost(skillId, inputValues)
 }
 
 
-function UpdateEsoSkillTooltipDuration()
+window.UpdateEsoSkillTooltipDuration = function()
 {		
 	if (g_LastSkillId <= 0) return;
 	UpdateEsoSkillDuration(g_LastSkillId, $("#esovsSkillTooltipDuration"), GetEsoSkillInputValues());
 }
 
 
-function GetEsoSkillDuration(skillId, inputValues)
+window.GetEsoSkillDuration = function(skillId, inputValues)
 {
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
@@ -1795,7 +1795,7 @@ function GetEsoSkillDuration(skillId, inputValues)
 }
 
 
-function UpdateEsoSkillCost(skillId, costElement, inputValues)
+window.UpdateEsoSkillCost = function(skillId, costElement, inputValues)
 {
 	var costStr = GetEsoSkillCost(skillId, inputValues);
 	
@@ -1803,7 +1803,7 @@ function UpdateEsoSkillCost(skillId, costElement, inputValues)
 }
 
 
-function UpdateEsoSkillDuration(skillId, durationElement, inputValues)
+window.UpdateEsoSkillDuration = function(skillId, durationElement, inputValues)
 {
 	var duration = GetEsoSkillDuration(skillId, inputValues);
 	var durationStr = "";
@@ -1814,7 +1814,7 @@ function UpdateEsoSkillDuration(skillId, durationElement, inputValues)
 }
 
 
-function UpdateEsoSkillCost_ForEach(index, element)
+window.UpdateEsoSkillCost_ForEach = function (index, element)
 {
 	var skillId = $(this).attr('skillid');
 	if (skillId == null || skillId == '') return;
@@ -1823,7 +1823,7 @@ function UpdateEsoSkillCost_ForEach(index, element)
 }
 
 
-function UpdateEsoSkillDescription_ForEach(index, element)
+window.UpdateEsoSkillDescription_ForEach = function (index, element)
 {
 	var skillId = $(this).attr('skillid');
 	if (skillId == null || skillId == '') return;
@@ -1832,14 +1832,14 @@ function UpdateEsoSkillDescription_ForEach(index, element)
 }
 
 
-function UpdateEsoAllSkillDescription()
+window.UpdateEsoAllSkillDescription = function()
 {
 	var inputValues = GetEsoSkillInputValues();
 	$(".esovsSkillContentBlock:visible .esovsAbilityBlockDesc").each(UpdateEsoSkillDescription_ForEach);
 }
 
 
-function UpdateEsoAllSkillCost(onlyVisible)
+window.UpdateEsoAllSkillCost = function(onlyVisible)
 {
 	var inputValues = GetEsoSkillInputValues();
 	
@@ -1852,7 +1852,7 @@ function UpdateEsoAllSkillCost(onlyVisible)
 }
 
 
-function UpdateEsoSkillRawData(skillId)
+window.UpdateEsoSkillRawData = function(skillId)
 {
 	var rawDataElement = $("#esovsRawDataContent");
 	
@@ -1908,7 +1908,7 @@ function UpdateEsoSkillRawData(skillId)
 }
 
 
-function GetEsoSkillCoefDataHtml(skillData, i)
+window.GetEsoSkillCoefDataHtml = function(skillData, i)
 {
 	var type  = skillData['type' + i];
 	if (type == -1) return "";
@@ -2067,7 +2067,7 @@ function GetEsoSkillCoefDataHtml(skillData, i)
 }
 
 
-function UpdateEsoSkillCoefData(skillId)
+window.UpdateEsoSkillCoefData = function(skillId)
 {
 	var skillCoefElement = $("#esovsSkillCoefContent");
 	
@@ -2097,7 +2097,7 @@ function UpdateEsoSkillCoefData(skillId)
 }
 
 
-function UpdateEsoSkillRawDataLink(skillId)
+window.UpdateEsoSkillRawDataLink = function(skillId)
 {
 	var linkElement = $("#esovsRawDataSkillLink");
 	
@@ -2113,7 +2113,7 @@ function UpdateEsoSkillRawDataLink(skillId)
 }
 
 
-function ParseEsoLevel(level)
+window.ParseEsoLevel = function (level)
 {
 	if (level == null) return 66;
 	
@@ -2155,7 +2155,7 @@ function ParseEsoLevel(level)
 }
 
 
-function FormatEsoLevel(level)
+window.FormatEsoLevel = function (level)
 {
 	if (level <= 0 || level > 66) return level;
 	if (level <= 50) return level;
@@ -2165,7 +2165,7 @@ function FormatEsoLevel(level)
 }
 
 
-function OnChangeEsoSkillData(dataName)
+window.OnChangeEsoSkillData = function (dataName)
 {
 	var rangeControl = $('#esovsControl' + dataName);
 	var inputControl = $('#esovsInput'   + dataName);
@@ -2192,7 +2192,7 @@ function OnChangeEsoSkillData(dataName)
 }
 
 
-function OnToggleSkillCoef(event)
+window.OnToggleSkillCoef = function (event)
 {
 	var object = $("#esovsSkillCoefContent");
 	var isVisible = object.is(":visible");
@@ -2206,7 +2206,7 @@ function OnToggleSkillCoef(event)
 }
 
 
-function OnToggleRawDataCoef(event)
+window.OnToggleRawDataCoef = function (event)
 {
 	var object = $("#esovsRawDataContent");
 	var isVisible = object.is(":visible");
@@ -2220,7 +2220,7 @@ function OnToggleRawDataCoef(event)
 }
 
 
-function FindNextEsoSkillText()
+window.FindNextEsoSkillText = function ()
 {
 	var searchText = g_EsoSkillSearchText.toLowerCase();
 	
@@ -2242,7 +2242,7 @@ function FindNextEsoSkillText()
 }
 
 
-function SelectEsoSkillLine(skillType, skillLine)
+window.SelectEsoSkillLine = function (skillType, skillLine)
 {
 	var currentSkillType = $(".esovsSkillTypeTitle.esovsSkillTypeTitleHighlight");
 	var currentSkillLine = $(".esovsSkillLineTitle.esovsSkillLineTitleHighlight");
@@ -2277,14 +2277,14 @@ function SelectEsoSkillLine(skillType, skillLine)
 }
 
 
-function DoesEsoSkillBlockExist(id)
+window.DoesEsoSkillBlockExist = function (id)
 {
 	var objects = $(".esovsAbilityBlock[skillid='" + id + "']");
 	return objects.length != 0;
 }
 
 
-function IsScrolledIntoView($elem)
+window.IsScrolledIntoView = function ($elem)
 {
     var $window = $(window);
 
@@ -2298,7 +2298,7 @@ function IsScrolledIntoView($elem)
 }
 
 
-function HighlightEsoSkill(id)
+window.HighlightEsoSkill = function (id)
 {
 	var skillData = g_SkillsData[id];
 	if (skillData == null) return false;
@@ -2342,7 +2342,7 @@ function HighlightEsoSkill(id)
 }
 
 
-function UpdateSkillLink()
+window.UpdateSkillLink = function ()
 {
 	var linkElement = $("#esovsLinkBlock");
 	var inputValues = GetEsoSkillInputValues();
@@ -2362,7 +2362,7 @@ function UpdateSkillLink()
 }
 
 
-function DoEsoSkillSearch(text)
+window.DoEsoSkillSearch = function (text)
 {
 	var newSearch = false;
 	
@@ -2392,14 +2392,14 @@ function DoEsoSkillSearch(text)
 }
 
 
-function OnSkillSearch(event)
+window.OnSkillSearch = function (event)
 {
 	var text = $("#esovsSearchText").val().trim();
 	DoEsoSkillSearch(text);
 }
 
 
-function OnHoverEsoIcon(e)
+window.OnHoverEsoIcon = function (e)
 {
 	var parentBlock = $(this).parent(".esovsAbilityBlock");
 	var skillid = parentBlock.attr("skillid");
@@ -2411,7 +2411,7 @@ function OnHoverEsoIcon(e)
 }
 
 
-function OnHoverEsoPassiveIcon(e)
+window.OnHoverEsoPassiveIcon = function (e)
 {
 	var parentBlock = $(this).parent(".esovsAbilityBlock");
 	var skillid = parentBlock.attr("skillid");
@@ -2437,14 +2437,14 @@ function OnHoverEsoPassiveIcon(e)
 }
 
 
-function OnLeaveEsoIcon(e)
+window.OnLeaveEsoIcon = function (e)
 {
 	var popupElement = $("#esovsPopupSkillTooltip");
 	popupElement.hide();
 }
 
 
-function OnHoverEsoSkillBarIcon(e)
+window.OnHoverEsoSkillBarIcon = function(e)
 {
 	var skillid = $(this).attr("skillid");
 	if (skillid == null || skillid == "") return;
@@ -2454,20 +2454,20 @@ function OnHoverEsoSkillBarIcon(e)
 }
 
 
-function OnLeaveEsoSkillBarIcon(e)
+window.OnLeaveEsoSkillBarIcon = function(e)
 {
 	var popupElement = $("#esovsPopupSkillTooltip");
 	popupElement.hide();
 }
 
 
-function IsEsoSkillFree(skillId)
+window.IsEsoSkillFree = function (skillId)
 {
 	return ESO_FREE_PASSIVES[skillId] != null
 }
 
 
-function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
+window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank)
 {
 	//EsoSkillLog("UpdateEsoSkillPassiveData", origAbilityId, abilityId, rank);
 		
@@ -2506,7 +2506,7 @@ function UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank)
 }
 
 
-function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, morph)
+window.UpdateEsoSkillActiveData = function (origAbilityId, abilityId, rank, abilityType, morph)
 {
 	var origPoints = 0;
 	var newPoints = 1;
@@ -2551,7 +2551,7 @@ function UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, m
 }
 
 
-function OnAbilityBlockPurchase(e)
+window.OnAbilityBlockPurchase = function (e)
 {
 	$("#esovsPopupSkillTooltip").hide();
 	
@@ -2567,7 +2567,7 @@ function OnAbilityBlockPurchase(e)
 }
 
 
-function OnEsoSkillIconBlockClickMobile(event)
+window.OnEsoSkillIconBlockClickMobile = function (event)
 {
 	$("#esovsPopupSkillTooltip").hide();
 	
@@ -2585,7 +2585,7 @@ function OnEsoSkillIconBlockClickMobile(event)
 }
 
 
-function EnableEsoClassSkills(className)
+window.EnableEsoClassSkills = function(className)
 {
 	className = className.toUpperCase();
 	var classElement = $(".esovsSkillTypeTitle:contains('" + className + "')");
@@ -2616,7 +2616,7 @@ function EnableEsoClassSkills(className)
 }
 
 
-function PurchaseEsoSkill(abilityId)
+window.PurchaseEsoSkill = function(abilityId)
 {
 	var skillElement = $(".esovsAbilityBlockList").
 				children(".esovsAbilityBlock[skillid='" + abilityId + "']");
@@ -2664,7 +2664,7 @@ function PurchaseEsoSkill(abilityId)
 }
 
 
-function ResetEsoPurchasedSkill(abilityId)
+window.ResetEsoPurchasedSkill = function(abilityId)
 {
 	var skillElement = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skillid='" + abilityId + "']");
@@ -2701,7 +2701,7 @@ function ResetEsoPurchasedSkill(abilityId)
 }
 
 
-function RemovePurchasedEsoClassSkills()
+window.RemovePurchasedEsoClassSkills = function ()
 {
 	var skillElements = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skilltype='Class']").
@@ -2724,7 +2724,7 @@ function RemovePurchasedEsoClassSkills()
 }
 
 
-function RemoveEsoRaceSkillsFromPassiveData()
+window.RemoveEsoRaceSkillsFromPassiveData = function()
 {
 	var deleteSkillIds = [];
 	
@@ -2744,7 +2744,7 @@ function RemoveEsoRaceSkillsFromPassiveData()
 }
 
 
-function RemoveEsoClassSkillsFromPassiveData()
+window.RemoveEsoClassSkillsFromPassiveData = function()
 {
 	var deletePassiveIds = [];
 	var deleteActiveIds = [];
@@ -2779,7 +2779,7 @@ function RemoveEsoClassSkillsFromPassiveData()
 }
 
 
-function RemovePurchasedEsoRaceSkills()
+window.RemovePurchasedEsoRaceSkills = function()
 {
 	var skillElements = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skilltype='Racial']").
@@ -2803,7 +2803,7 @@ function RemovePurchasedEsoRaceSkills()
 }
 
 
-function EnableEsoRaceSkills(raceName)
+window.EnableEsoRaceSkills = function(raceName)
 {
 	var raceId = raceName + " Skills";
 	var raceElement = $(".esovsSkillLineTitle:contains('" + raceId + "')")
@@ -2827,7 +2827,7 @@ function EnableEsoRaceSkills(raceName)
 }
 
 
-function SetEsoSkillBarSelect(skillBarIndex, weaponBarIndex)
+window.SetEsoSkillBarSelect = function(skillBarIndex, weaponBarIndex)
 {
 	$(".esovsSkillBar").removeClass("esovsSkillBarHighlight");
 	
@@ -2850,7 +2850,7 @@ function SetEsoSkillBarSelect(skillBarIndex, weaponBarIndex)
 }
 
 
-function OnSkillBarSelect(e)
+window.OnSkillBarSelect = function(e)
 {
 	var skillBar = $(this).attr("skillbar");
 	var weaponBar = $(this).attr("activeweaponbar");
@@ -2861,7 +2861,7 @@ function OnSkillBarSelect(e)
 }
 
 
-function OnAbilityDragStart(e)
+window.OnAbilityDragStart = function (e)
 {
 	//EsoSkillLog("OnAbilityDragStart", e);
 	
@@ -2893,7 +2893,7 @@ function OnAbilityDragStart(e)
 }
 
 
-function OnSkillBarDragStart(e)
+window.OnSkillBarDragStart = function (e)
 {
 	//EsoSkillLog("OnSkillBarDragStart", e);
 	
@@ -2928,7 +2928,7 @@ function OnSkillBarDragStart(e)
 }
 
 
-function OnSkillBarDragOver(e)
+window.OnSkillBarDragOver = function (e)
 {
 	var $this = $(this);
 	
@@ -2953,7 +2953,7 @@ function OnSkillBarDragOver(e)
 }
 
 
-function OnSkillBarDrop(e)
+window.OnSkillBarDrop = function (e)
 {
 	var $this = $(this);
 	
@@ -3009,7 +3009,7 @@ function OnSkillBarDrop(e)
 }
 
 
-function OnSkillBarRevertDraggable(droppableObj)
+window.OnSkillBarRevertDraggable = function (droppableObj)
 {
 	//console.log("OnSkillBarRevertDraggable", $(this), droppableObj);
 	
@@ -3032,7 +3032,7 @@ function OnSkillBarRevertDraggable(droppableObj)
 }
 
 
-function OnSkillBarDroppableOut(event, ui)
+window.OnSkillBarDroppableOut = function (event, ui)
 {
 	var $this = $(this);
 	var realDraggable = $(".ui-draggable-dragging");
@@ -3048,7 +3048,7 @@ function OnSkillBarDroppableOut(event, ui)
 }
 
 
-function OnSkillBarDroppableOver(event, ui)
+window.OnSkillBarDroppableOver = function (event, ui)
 {
 	var $this = $(this);
 	var realDraggable = $(".ui-draggable-dragging");
@@ -3076,7 +3076,7 @@ function OnSkillBarDroppableOver(event, ui)
 }
 
 
-function OnSkillBarDraggableStart(event, ui) 
+window.OnSkillBarDraggableStart = function (event, ui) 
 { 
 	$(".ui-draggable-dragging").addClass('esovsSkillDraggableBad').addClass('esovsSkillDraggable');
 	
@@ -3087,7 +3087,7 @@ function OnSkillBarDraggableStart(event, ui)
 }
 
 
-function OnSkillBarDroppableAccept(draggable)
+window.OnSkillBarDroppableAccept = function (draggable)
 {
 	var $this = $(this);
 	draggable = $(draggable);
@@ -3132,7 +3132,7 @@ function OnSkillBarDroppableAccept(draggable)
 }
 
 
-function OnSkillBarDroppable(event, ui)
+window.OnSkillBarDroppable = function (event, ui)
 {
 	var $this = $(this);
 	
@@ -3232,7 +3232,7 @@ function OnSkillBarDroppable(event, ui)
 }
 
 
-function RemoveSkillBarAbility(abilityId, skillBar)
+window.RemoveSkillBarAbility = function (abilityId, skillBar)
 {
 	if (skillBar == null)
 	{
@@ -3258,7 +3258,7 @@ function RemoveSkillBarAbility(abilityId, skillBar)
 }
 
 
-function OnSkillBarDragEnd(e)
+window.OnSkillBarDragEnd = function (e)
 {
 	//EsoSkillLog("OnSkillBarDragEnd", e);
 	
@@ -3272,7 +3272,7 @@ function OnSkillBarDragEnd(e)
 }
 
 
-function UpdateEsoSkillBarData()
+window.UpdateEsoSkillBarData = function ()
 {
 	g_EsoSkillBarData = [];
 	
@@ -3313,7 +3313,7 @@ function UpdateEsoSkillBarData()
 }
 
 
-function UpdateEsoSkillBarSkill(skillBar, skillIndex)
+window.UpdateEsoSkillBarSkill = function (skillBar, skillIndex)
 {
 	var iconElement = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[skillindex='" + skillIndex + "']");
 	var skillId = iconElement.attr("skillid");
@@ -3336,13 +3336,13 @@ function UpdateEsoSkillBarSkill(skillBar, skillIndex)
 }
 
 
-function GetEsoCurrentSkillDescription(abilityId)
+window.GetEsoCurrentSkillDescription = function (abilityId)
 {
 	 return $(".esovsAbilityBlockDesc[skillid='" + abilityId + "']").text();
 }
 
 
-function UpdateEsoSkillTotalPoints()
+window.UpdateEsoSkillTotalPoints = function ()
 {
 	var element = $("#esovsSkillPoints");
 	element.text(g_EsoSkillPointsUsed);
@@ -3351,7 +3351,7 @@ function UpdateEsoSkillTotalPoints()
 }
 
 
-function OnEsoSkillReset(e)
+window.OnEsoSkillReset = function (e)
 {
 	g_EsoSkillPassiveData = {};
 	g_EsoSkillActiveData = {};
@@ -3388,7 +3388,7 @@ function OnEsoSkillReset(e)
 }
 
 
-function OnEsoSkillLinePurchaseAll()
+window.OnEsoSkillLinePurchaseAll = function ()
 {
 	var skillElements = $(this).parent().children(".esovsAbilityBlock");
 	
@@ -3406,7 +3406,7 @@ function OnEsoSkillLinePurchaseAll()
 }
 
 
-function OnEsoSkillLineResetAll()
+window.OnEsoSkillLineResetAll = function ()
 {
 	var skillElements = $(this).parent().children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
 	
@@ -3422,7 +3422,7 @@ function OnEsoSkillLineResetAll()
 }
 
 
-function EsoSkillLog()
+window.EsoSkillLog = function ()
 {
 	if (console == null) return;
 	if (console.log == null) return;
@@ -3431,7 +3431,7 @@ function EsoSkillLog()
 }
 
 
-function esovsOnDocReady()
+window.esovsOnDocReady = function ()
 {
 		/* TODO: Need better way to detect mobile view */
 	if (window.skin == "minerva") g_EsoSkillIsMobile = true;
