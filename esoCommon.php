@@ -28,6 +28,7 @@ const UESP_POWERTYPE_SUPPORT = -64;
 const UESP_POWERTYPE_ANIMALCOMPANION = -65;
 const UESP_POWERTYPE_GREENBALANCE = -66;
 const UESP_POWERTYPE_WINTERSEMBRACE = -67;
+const UESP_POWERTYPE_MAGICHEALTHCAP = -68;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -50,6 +51,9 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100023" => "18",
 		"100024" => "19",
 		"100025" => "20",
+		"100026" => "21",
+		"100027" => "22",
+		"100028" => "23",
 );
 
 
@@ -1294,6 +1298,30 @@ $ESO_SET_INDEXES = array(
 		402 => "Moon Hunter",
 		403 => "Savage Werewolf",
 		404 => "Jailer's Tenacity",
+		405 => "Bright-Throat's Boast",
+		406 => "Dead-Water's Guile",
+		407 => "Champion of the Hist",
+		408 => "Grave-Stake Collector",
+		409 => "Naga Shaman",
+		410 => "Might of the Lost Legion",
+		411 => "Gallant Charge",
+		412 => "Radial Uppercut",
+		413 => "Spectral Cloak",
+		414 => "Virulent Shot",
+		415 => "Wild Impulse",
+		416 => "Mender's Ward",
+		417 => "Indomitable Fury",
+		418 => "Spell Strategist",
+		419 => "Battlefield Acrobat",
+		420 => "Soldier of Anguish",
+		421 => "Steadfast Hero",
+		422 => "Battalion Defender",
+		423 => "Perfect Gallant Charge",
+		424 => "Perfect Radial Uppercut",
+		425 => "Perfect Spectral Cloak",
+		426 => "Perfect Virulent Shot",
+		427 => "Perfect Wild Impulse",
+		428 => "Perfect Mender's Ward",
 );
 
 
@@ -3007,6 +3035,9 @@ function GetEsoItemTableSuffix($version)
 		case '120pts':
 		case '20pts':
 			return "20pts";
+		case '120':
+		case '20':
+			return "20";
 	}
 
 	return "";

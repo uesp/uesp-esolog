@@ -83,14 +83,15 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744146619023228928; //v18pts 1516297109
 	//const START_MINEITEM_TIMESTAMP = 4744191147415437312; //v18 1526913505
 															//v19pts?
-	  const START_MINEITEM_TIMESTAMP = 4744221569218248704; //v19 1534166628
+	//const START_MINEITEM_TIMESTAMP = 4744221569218248704; //v19 1534166628
 	//const START_MINEITEM_TIMESTAMP = ; //v20pts ?
+	const START_MINEITEM_TIMESTAMP = 4744246935181852672; //v20 1540214345
 	  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "20pts";
-	const SKILLS_TABLESUFFIX   = "20pts";
+	const MINEITEM_TABLESUFFIX = "20";
+	const SKILLS_TABLESUFFIX   = "20";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -178,6 +179,7 @@ class EsoLogParser
 	const RESOURCE_RUNESTONE = 5;
 	const RESOURCE_REAGENT = 6;
 	const RESOURCE_INGREDIENT = 7;
+	const RESOURCE_JEWELRY = 8;
 	
 	
 	public static $TABLES_WITH_IDFIELD = array(
@@ -208,6 +210,12 @@ class EsoLogParser
 			"minedSkills19",
 			"minedSkills20pts",
 			"minedSkills20",
+			"minedSkills21pts",
+			"minedSkills21",
+			"minedSkills22pts",
+			"minedSkills22",
+			"minedSkills23pts",
+			"minedSkills23",
 			"collectibles",
 			"achievements",
 	);
@@ -279,6 +287,8 @@ class EsoLogParser
 		'Water Hyacinth'		=> self::RESOURCE_REAGENT,
 		'White Cap'				=> self::RESOURCE_REAGENT,
 		'Wormwood'				=> self::RESOURCE_REAGENT,
+			
+		//'Barrel'				=> self::RESOURCE_JEWELRY,
 			
 		'Barrel'				=> self::RESOURCE_INGREDIENT,
 		'Crate'					=> self::RESOURCE_INGREDIENT,
@@ -6829,7 +6839,7 @@ class EsoLogParser
 	
 	public function IsValidUser ($logEntry)
 	{
-		if ($this->currentUser['name'] != "Reorx") return $this->reportLogParseError("Ignoring {$logEntry['event']} from user ".$this->currentUser['name']."!");
+		if ($this->currentUser['name'] != "Reorx" && $this->currentUser['name'] != "Reorx2") return $this->reportLogParseError("Ignoring {$logEntry['event']} from user ".$this->currentUser['name']."!");
 		return true;
 	}
 	
