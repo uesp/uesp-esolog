@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "20pts";
+	public $TABLE_SUFFIX = "20";
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
 

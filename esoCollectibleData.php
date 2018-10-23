@@ -12,8 +12,8 @@ $ESO_COLLECTIBLE_DATA = array (
 				),
 				1 => array (
 						'subCategoryIndex' => 1,
-						'name' => 'Chapters',
-						'numCollectibles' => 1,
+						'name' => 'Chapter',
+						'numCollectibles' => 2,
 						'collectibles' => array (
 								1 => array (
 										'id' => 5107,
@@ -22,6 +22,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'desc' => 'By royal decree, the once-forbidden island of the High Elves has been opened, its Crystal Tower drawing travelers to its light. But dark forces from beyond and below are also interested in the mystic location in this new chapter set in the Summerset Isle.',
 										'type' => 22,
 										'image' => '/esoui/art/store/pc_collections_dlc_su_keyart_2x1.dds',
+										'nickname' => '' 
+								),
+								2 => array (
+										'id' => 5843,
+										'name' => 'Mesa',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'FILL ME IN',
+										'type' => 1,
+										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								) 
 						) 
@@ -108,7 +117,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Zone DLC',
-						'numCollectibles' => 6,
+						'numCollectibles' => 7,
 						'collectibles' => array (
 								1 => array (
 										'id' => 154,
@@ -162,6 +171,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'desc' => 'Reports of mysterious shadow assassins draw you into Sotha Sil`s Clockwork City to investigate a new Daedric threat. Uncover the secrets of this strange new zone, take on a new 12-player trial, earn powerful new armor sets and items, and more.',
 										'type' => 1,
 										'image' => '/esoui/art/store/pc_collections_dlc_cc_keyart_2x1.dds',
+										'nickname' => '' 
+								),
+								7 => array (
+										'id' => 5755,
+										'name' => 'Murkmire',
+										'icon' => '/esoui/art/icons/store_murkmiredlc_collectable.dds',
+										'desc' => 'Travel to Murkmire, the southernmost region of mysterious Black Marsh, and venture into the deep swamps to learn some of the most hidden secrets of the Argonians!',
+										'type' => 1,
+										'image' => '/esoui/art/store/pc_collections_dlc_mm_keyart_2x1.dds',
 										'nickname' => '' 
 								) 
 						) 
@@ -246,7 +264,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Hats',
-						'numCollectibles' => 106,
+						'numCollectibles' => 107,
 						'collectibles' => array (
 								1 => array (
 										'id' => 174,
@@ -1198,6 +1216,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Han Helsing Tier 2',
 										'icon' => '/esoui/art/icons/hat_helsing-vampire_02.dds',
 										'desc' => '',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								107 => array (
+										'id' => 5730,
+										'name' => 'Bonding Rite Headdress',
+										'icon' => '/esoui/art/icons/hat_argceremonial_01.dds',
+										'desc' => 'For the Argonian tribes that follow the custom, the Bonding Rite is a significant ceremony that requires an appropriately gaudy headdress to mark its importance.',
 										'type' => 10,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -2411,7 +2438,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Head Markings',
-						'numCollectibles' => 184,
+						'numCollectibles' => 188,
 						'collectibles' => array (
 								1 => array (
 										'id' => 445,
@@ -4061,10 +4088,46 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								184 => array (
+										'id' => 5566,
+										'name' => 'Bright-Throat Chalk Face Tattoo',
+										'icon' => '/esoui/art/icons/marking_face_both_all_brightthroat_white.dds',
+										'desc' => 'Cheerful face daubings in the Bright-Throat style, in sharp white chalk dye.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								185 => array (
+										'id' => 5568,
+										'name' => 'Bright-Throat Woad Face Tattoo',
+										'icon' => '/esoui/art/icons/marking_face_both_all_brightthroat_blue.dds',
+										'desc' => 'Cheerful face daubings in the Bright-Throat style, in colorful blue woad dye.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								186 => array (
+										'id' => 5591,
+										'name' => 'Bright-Throat Algae Face Tattoo',
+										'icon' => '/esoui/art/icons/marking_face_both_all_brightthroat_green.dds',
+										'desc' => 'Cheerful face daubings in the Bright-Throat style, in colorful green algae dye.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								187 => array (
+										'id' => 5593,
+										'name' => 'Bright-Throat Yolk Face Tattoo',
+										'icon' => '/esoui/art/icons/marking_face_both_all_brightthroat_yellow.dds',
+										'desc' => 'Cheerful face daubings in the Bright-Throat style, in colorful hackwing egg-yolk dye.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								188 => array (
 										'id' => 5617,
-										'name' => 'FM: Dead-Water Tribal Tattoos',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'FM: Dead-Water Tribal Tattoos',
+										'name' => 'Dead-Water Blood Face Tattoos',
+										'icon' => '/esoui/art/icons/marking_face_both_all_deadwatertribal.dds',
+										'desc' => 'When the fierce Dead-Water tribe goes to a formal declaration of conflict, the warriors daub themselves with red dye that resembles smears of blood.',
 										'type' => 17,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -4864,7 +4927,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Major Adornments',
-						'numCollectibles' => 65,
+						'numCollectibles' => 67,
 						'collectibles' => array (
 								1 => array (
 										'id' => 414,
@@ -5450,13 +5513,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 15,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								66 => array (
+										'id' => 5728,
+										'name' => 'Dead-Water Tooth-and-Tusk Tiara',
+										'icon' => '/esoui/art/icons/adornment_tusktiara.dds',
+										'desc' => 'The Dead-Water Tribe of Naga Argonians are a spiky lot to begin with, and when they want to look tough, they just pile on more spikes. This trick works for just about anyone, really.',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								67 => array (
+										'id' => 5918,
+										'name' => 'Nibenese Laurel Coronet',
+										'icon' => '/esoui/art/icons/adornment_both_all_kassandracirclet.dds',
+										'desc' => 'Wear the haughty golden laurels of the Nibenese aristocracy with this Coronet and look down your noble nose at lesser mortals!',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Minor Adornments',
-						'numCollectibles' => 38,
+						'numCollectibles' => 39,
 						'collectibles' => array (
 								1 => array (
 										'id' => 587,
@@ -5799,13 +5880,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 16,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								39 => array (
+										'id' => 5729,
+										'name' => 'Dead-Water Jaw-Fin Fringe',
+										'icon' => '/esoui/art/icons/adornment_jawfringefin.dds',
+										'desc' => 'It`s said that a warrior of the Dead-Water Tribe saw the impressive sideburns on a Breton general and decided it was a look that could be improved upon with Jaw-Fins. Wise decision.',
+										'type' => 16,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Costumes',
-						'numCollectibles' => 178,
+						'numCollectibles' => 183,
 						'collectibles' => array (
 								1 => array (
 										'id' => 38,
@@ -7231,18 +7321,18 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								159 => array (
 										'id' => 4764,
-										'name' => 'Nord Female Mid',
+										'name' => 'Bardic Tavern-Singer`s Dress',
 										'icon' => '/esoui/art/icons/costume_cosnordfem_mid.dds',
-										'desc' => '',
+										'desc' => '\"Whether you`re belting out `Ragnar the Red` in the tavern, or just down there for the Loredas evening dance, all eyes will be on you in this free-swinging layered dress!\" —Jork the Tailor-Thane',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
 								160 => array (
 										'id' => 4765,
-										'name' => 'Nord Female High',
+										'name' => 'Jarl`s Justice Formal Frock',
 										'icon' => '/esoui/art/icons/costume_cosnordfem_high.dds',
-										'desc' => '',
+										'desc' => '\"We Nords tend to be an informal people at most times, but when a Jarl sits to decide a legal case, it`s important that our system of law be honored with the proper attire!\" —Jork, the Tailor-Thane of Windhelm',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -7338,6 +7428,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								171 => array (
+										'id' => 5015,
+										'name' => 'Priestess of Mara',
+										'icon' => '/esoui/art/icons/costume_priestofmara.dds',
+										'desc' => 'Show your devotion to the Goddess of Love and Nurture with these Priestess of Mara vestments. Across Tamriel, even cultures that don`t regard Mara as a major Divine recognize her as the patroness of marriage, invoked at every mortal wedding.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								172 => array (
 										'id' => 5189,
 										'name' => 'Firedrakes Outfit',
 										'icon' => '/esoui/art/icons/costume_firedrake_01.dds',
@@ -7346,7 +7445,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								172 => array (
+								173 => array (
 										'id' => 5215,
 										'name' => 'Forge-Wife`s Impervious Frock',
 										'icon' => '/esoui/art/icons/costume_orcculturalfem_low.dds',
@@ -7355,16 +7454,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								173 => array (
+								174 => array (
 										'id' => 5216,
 										'name' => 'Vengeance Day Dress',
 										'icon' => '/esoui/art/icons/costume_orcculturalfem_mid.dds',
-										'desc' => '\"Malacath`s Vengeance Day is coming up soon, and you`ll want to look your best for it!\" says Borzighu of Orsinium. \"Though as Orcs, of course, we think about revenge every day, Vengeance Day is still our favorite!\"',
+										'desc' => '\"Malacath`s Vengeance Day is coming up soon, and you`ll want to look your best for it!\" says Borzighu of Orsinium. \"Being Orcs, naturally we think about revenge every day, but Vengeance Day is still our favorite!\"',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								174 => array (
+								175 => array (
 										'id' => 5217,
 										'name' => 'Orc Wise Woman`s Vestment',
 										'icon' => '/esoui/art/icons/costume_orcculturalfem_high.dds',
@@ -7373,7 +7472,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								175 => array (
+								176 => array (
 										'id' => 5220,
 										'name' => 'Pit Daemon Outfit',
 										'icon' => '/esoui/art/icons/costume_pitdaemon_01.dds',
@@ -7382,29 +7481,65 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								176 => array (
+								177 => array (
 										'id' => 5221,
-										'name' => 'Stormlords Outfit',
+										'name' => 'Stormlord Outfit',
 										'icon' => '/esoui/art/icons/costume_stormlords_01.dds',
 										'desc' => 'Wear the Outfit of the Stormlords, those triumphant tempest terrors of the no-holds-barred Battlegrounds!',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								177 => array (
+								178 => array (
 										'id' => 5585,
-										'name' => 'Kassandra',
-										'icon' => '/esoui/art/icons/costume_weddingdress.dds',
-										'desc' => '',
+										'name' => 'Nibenese Noble`s Shawled Robe',
+										'icon' => '/esoui/art/icons/costume_kassandra.dds',
+										'desc' => 'This versatile ensemble designed by Diocletia of Skingrad doubles as both active wear and an elegant evening gown.',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								178 => array (
+								179 => array (
 										'id' => 5589,
 										'name' => 'Arena Gladiator',
 										'icon' => '/esoui/art/icons/costume_gladiator_01.dds',
 										'desc' => 'The Arena Gladiators of Tamriel`s pit-fighting circuit wear armor that exemplifies the sport`s ancient tradition of a fighter`s protection balanced with the crowd appeal of risk. Why else would one wear heavy armor with significant gaps in it?',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								180 => array (
+										'id' => 5700,
+										'name' => 'Deepwoods Pod-Singer Tunic',
+										'icon' => '/esoui/art/icons/costume_bosmermasc_a.dds',
+										'desc' => 'Non-Wood Elves might think it strange that Bosmeri Pod-Singers, who magically persuade Valenwood trees to grow into houses, wear clothes entirely made of animal leather and quills, but such is the mandate of the Green Pact.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								181 => array (
+										'id' => 5701,
+										'name' => 'Ranger`s Crocskin Overkilt',
+										'icon' => '/esoui/art/icons/costume_bosmermasc_b.dds',
+										'desc' => '\"Durable, flexible, mudproof, and stylish,\" says the latest missive from designer Jaxa the Hermit delivered by his mute daughter. \"What more could a Saxhleel want from a Crocskin Overklit? Glowing torchbug buttons? Actually, that`s not a bad idea….\"',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								182 => array (
+										'id' => 5702,
+										'name' => 'Treethane`s Mosaic Jerkin',
+										'icon' => '/esoui/art/icons/costume_bosmermasc_c.dds',
+										'desc' => 'The thousands of small shiny particles that decorate the Treethane`s Mosaic Jerkin may appear at first glance to be of turquoise or other precious stones, but they are actually the iridescent carapaces of deep forest beetles.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								183 => array (
+										'id' => 5703,
+										'name' => 'Bonding Rite Vestment',
+										'icon' => '/esoui/art/icons/costume_argceremonial_bondingritual.dds',
+										'desc' => 'For the Argonian tribes that follow the custom, the Bonding Rite is a significant ceremony that requires an appropriately gaudy attire to mark its importance.',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -7414,7 +7549,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Body Markings',
-						'numCollectibles' => 165,
+						'numCollectibles' => 169,
 						'collectibles' => array (
 								1 => array (
 										'id' => 444,
@@ -8893,10 +9028,46 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								165 => array (
+										'id' => 5567,
+										'name' => 'Bright-Throat Chalk Body Tattoo',
+										'icon' => '/esoui/art/icons/marking_body_both_all_brightthroat_white.dds',
+										'desc' => 'Cheerful body daubings in the Bright-Throat style, in sharp white chalk dye.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								166 => array (
+										'id' => 5569,
+										'name' => 'Bright-Throat Woad Body Tattoo',
+										'icon' => '/esoui/art/icons/marking_body_both_all_brightthroat_blue.dds',
+										'desc' => 'Cheerful body daubings in the Bright-Throat style, in colorful blue woad dye.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								167 => array (
+										'id' => 5592,
+										'name' => 'Bright-Throat Algae Body Tattoo',
+										'icon' => '/esoui/art/icons/marking_body_both_all_brightthroat_green.dds',
+										'desc' => 'Cheerful body daubings in the Bright-Throat style, in colorful green algae dye.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								168 => array (
+										'id' => 5594,
+										'name' => 'Bright-Throat Yolk Body Tattoo',
+										'icon' => '/esoui/art/icons/marking_body_both_all_brightthroat_yellow.dds',
+										'desc' => 'Cheerful body daubings in the Bright-Throat style, in colorful hackwing egg-yolk dye.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								169 => array (
 										'id' => 5618,
-										'name' => 'BM: Dead-Water Tribal Tattoos',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'BM: Dead-Water Tribal Tattoos',
+										'name' => 'Dead-Water Blood Body Tattoos',
+										'icon' => '/esoui/art/icons/marking_body_both_all_deadwatertribal.dds',
+										'desc' => 'When the fierce Dead-Water tribe goes to a formal declaration of conflict, the warriors daub themselves with red dye that resembles smears of blood.',
 										'type' => 18,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -8906,7 +9077,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				9 => array (
 						'subCategoryIndex' => 9,
 						'name' => 'Skins',
-						'numCollectibles' => 16,
+						'numCollectibles' => 20,
 						'collectibles' => array (
 								1 => array (
 										'id' => 161,
@@ -9048,6 +9219,42 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Sable Man-Beast Skin',
 										'icon' => '/esoui/art/icons/skin_werewolf.dds',
 										'desc' => 'As a murderous beast who lurks in the darkness, to become the color of shadows is only natural. As natural as the blood of the innocents that drips from your claws.',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								17 => array (
+										'id' => 5724,
+										'name' => 'Bright-Throat Scale',
+										'icon' => '/esoui/art/icons/skin_brightthroat.dds',
+										'desc' => '\"Kaoc! That luridly patterned Scale Skin style worn by the Bright-Throats is far too gaudy. Could a serious person appear in public like that? I think not.\" —Jaxsik-Orrn of the Dead-Water Tribe',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								18 => array (
+										'id' => 5725,
+										'name' => 'Crystalfrost',
+										'icon' => '/esoui/art/icons/skin_crystalfrost.dds',
+										'desc' => '\"The Crystalfrost skin is a cosmetic Alteration spell that gives a mortal the appearance of a Frost Atronach. Why would a mortal want to look like a Frost Atronach? Don`t ask me, I don`t even like putting on makeup.\" —Gabrielle Benele, Mages Guild',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								19 => array (
+										'id' => 5726,
+										'name' => 'Dead-Water Scale',
+										'icon' => '/esoui/art/icons/skin_deadwater.dds',
+										'desc' => '\"Not to be overly critical, but in my opinion the shadowy Scale Skin of the Dead-Waters is entirely too austere. Though it is, I admit, simple and elegant.\" —Xukas',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								20 => array (
+										'id' => 5727,
+										'name' => 'Marshmist Palescale',
+										'icon' => '/esoui/art/icons/skin_paleskin.dds',
+										'desc' => 'Most Argonians live above ground, where the sun can shine on the leaves of their Hists, but some, strange and reclusive, live in subterranean caverns. Over time their scales grow as pale as marsh mist.',
 										'type' => 11,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -9575,7 +9782,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Classic Homes',
-						'numCollectibles' => 24,
+						'numCollectibles' => 25,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1067,
@@ -9792,13 +9999,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 19,
 										'image' => '/esoui/art/store/pchousing/pc_collections_housing_sum_alinortownhouse.dds',
 										'nickname' => 'Alinor House' 
+								),
+								25 => array (
+										'id' => 5756,
+										'name' => 'Enchanted Snow Globe Home',
+										'icon' => '/esoui/art/icons/housing_snowglobe001.dds',
+										'desc' => 'Get small to go large: this miniature Snow Globe Home is tiny on the outside but expansive on the inside, proving shrunken real estate is a big bargain! And to make the interior cozier, the exterior features an eternally-festive gentle snowfall. Magical!',
+										'type' => 19,
+										'image' => '/esoui/art/store/pc_collections_hsg_snowglobe00_1x1.dds',
+										'nickname' => 'New Life Snow Globe' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Notable Homes',
-						'numCollectibles' => 16,
+						'numCollectibles' => 17,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1096,
@@ -9943,6 +10159,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 19,
 										'image' => '/esoui/art/store/pc_collections_housing_sum_artaeummanor.dds',
 										'nickname' => 'Artaeum Manor' 
+								),
+								17 => array (
+										'id' => 5757,
+										'name' => 'Lakemire Xanmeer Manor',
+										'icon' => '/esoui/art/icons/housing_murkmiremanor001.dds',
+										'desc' => 'Stay moist in an underwater Xanmeer Manor with its own submerged picture windows! Gaze into the depths of a lush Murkmire lake from the sunken interior of this capacious Argonian edifice, where comfort mixes casually with the bizarre. Xuth!',
+										'type' => 19,
+										'image' => '/esoui/art/store/pc_collections_murkmiremanor001_1x1.dds',
+										'nickname' => 'Murkmire Pyramid' 
 								) 
 						) 
 				) 
@@ -9960,7 +10185,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'General',
-						'numCollectibles' => 4,
+						'numCollectibles' => 11,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1171,
@@ -9994,6 +10219,69 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Augur of the Obscure',
 										'icon' => '/esoui/art/icons/quest_crystalskull001.dds',
 										'desc' => 'This headstrong crystal skull ignored your decision to give it away and elected to stay with you instead. It could tell you all about the sublime mysteries of creation, but would much rather rant, joke, and complain.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								5 => array (
+										'id' => 5930,
+										'name' => 'Replica of the Xinchei-Konu',
+										'icon' => '/esoui/art/icons/housing_arg_run_floorcalendar001.dds',
+										'desc' => 'This meticulous reproduction of the ancient Argonian calendar may not have the storied history of the original, but is a masterpiece of stonework in its own right.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								6 => array (
+										'id' => 6053,
+										'name' => 'Statuette: Azura, Moon and Star',
+										'icon' => '/esoui/art/icons/housing_vrd_inc_housingstatueazura002.dds',
+										'desc' => 'A miniature statue of the Daedric Prince Azura, bearing Moon and Star sigils.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								7 => array (
+										'id' => 6054,
+										'name' => 'Statuette: Hircine, the Huntsman',
+										'icon' => '/esoui/art/icons/housing_vrd_inc_housingstatuehircine001.dds',
+										'desc' => 'A miniature statue of the Daedric Prince Hircine, the Huntsman.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								8 => array (
+										'id' => 6055,
+										'name' => 'Statuette: Molag Bal, the Brutal',
+										'icon' => '/esoui/art/icons/housing_vrd_inc_housingstatuemolagbal001.dds',
+										'desc' => 'A miniature statue of the Daedric Prince Molag Bal, Lord of Brutality.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								9 => array (
+										'id' => 6056,
+										'name' => 'Statuette: Vivec, Warrior-Poet',
+										'icon' => '/esoui/art/icons/housing_vrd_inc_housingstatuevivec002.dds',
+										'desc' => 'A miniature statue of the living god Lord Vivec, Warrior-Poet.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								10 => array (
+										'id' => 6057,
+										'name' => 'Statuette: Clavicus Vile, Masque',
+										'icon' => '/esoui/art/icons/housing_uni_inc_housingclavicusvileshrine001.dds',
+										'desc' => 'A miniature statue of the Daedric Prince Clavicus Vile, holding aloft his Masque.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								11 => array (
+										'id' => 6058,
+										'name' => 'Statuette: Sheogorath, the Mad',
+										'icon' => '/esoui/art/icons/housing_vrd_inc_housingstatuesheogorath001.dds',
+										'desc' => 'A miniature statue of the Daedric Prince Sheogorath, the Mad God.',
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -10082,7 +10370,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Undaunted Busts',
-						'numCollectibles' => 43,
+						'numCollectibles' => 44,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1110,
@@ -10470,13 +10758,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								44 => array (
+										'id' => 6013,
+										'name' => 'Bust: Drakeeh the Unchained',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veterandrakeeh001.dds',
+										'desc' => 'Bronze bust commemorating an Undaunted victory in Blackrose Prison.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Undaunted Trophies',
-						'numCollectibles' => 43,
+						'numCollectibles' => 44,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1265,
@@ -10864,6 +11161,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								44 => array (
+										'id' => 6014,
+										'name' => 'Trophy: Drakeeh the Unchained',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophydrakeeh001.dds',
+										'desc' => 'Trophy taken from Drakeeh the Unchained in honor of an Undaunted victory in Blackrose Prison.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -10941,7 +11247,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_trophy_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 75,
+						'numCollectibles' => 80,
 						'collectibles' => array (
 								1 => array (
 										'id' => 335,
@@ -11241,6 +11547,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								34 => array (
+										'id' => 602,
+										'name' => 'Fire Rock',
+										'icon' => '/esoui/art/icons/quest_vvardenfell_fire_bomb.dds',
+										'desc' => 'When used near a friendly strangler, can cause the plant to pull you to its location.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								35 => array (
 										'id' => 758,
 										'name' => 'Floral Swirl Aura',
 										'icon' => '/esoui/art/icons/collectible_memento_sprigganaura002.dds',
@@ -11249,7 +11564,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								35 => array (
+								36 => array (
 										'id' => 759,
 										'name' => 'Wild Hunt Transform',
 										'icon' => '/esoui/art/icons/collectible_memento_spriggantransform.dds',
@@ -11258,7 +11573,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								36 => array (
+								37 => array (
 										'id' => 760,
 										'name' => 'Wild Hunt Leaf-Dance Aura',
 										'icon' => '/esoui/art/icons/collectible_memento_sprigganaura001.dds',
@@ -11267,7 +11582,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								37 => array (
+								38 => array (
 										'id' => 1108,
 										'name' => 'Cherry Blossom Branch',
 										'icon' => '/esoui/art/icons/event_jestersfestival_2016_cherry_blossom_branch.dds',
@@ -11276,7 +11591,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								38 => array (
+								39 => array (
 										'id' => 1109,
 										'name' => '2nd Annual Jubilee Cake',
 										'icon' => '/esoui/art/icons/collectable_memento_2ndanniversarycake.dds',
@@ -11285,7 +11600,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								39 => array (
+								40 => array (
 										'id' => 1156,
 										'name' => 'NOT IN USE',
 										'icon' => '/esoui/art/icons/icon_missing.dds',
@@ -11294,7 +11609,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								40 => array (
+								41 => array (
 										'id' => 1158,
 										'name' => 'Twilight Shard',
 										'icon' => '/esoui/art/icons/collectable_memento_dawnshard.dds',
@@ -11303,7 +11618,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								41 => array (
+								42 => array (
 										'id' => 1167,
 										'name' => 'The Pie of Misrule',
 										'icon' => '/esoui/art/icons/housing_bre_inc_pie001.dds',
@@ -11312,7 +11627,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								42 => array (
+								43 => array (
 										'id' => 1168,
 										'name' => 'Breda`s Bottomless Mead Mug',
 										'icon' => '/esoui/art/icons/housing_gen_inc_mugwood001.dds',
@@ -11321,7 +11636,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								43 => array (
+								44 => array (
 										'id' => 1181,
 										'name' => 'Dwarven Puzzle Orb',
 										'icon' => '/esoui/art/icons/memento_puzzleball.dds',
@@ -11330,7 +11645,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								44 => array (
+								45 => array (
 										'id' => 1182,
 										'name' => 'Dwarven Tonal Forks',
 										'icon' => '/esoui/art/icons/memento_tuningfork.dds',
@@ -11339,7 +11654,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								45 => array (
+								46 => array (
 										'id' => 1183,
 										'name' => 'Dwemervamidium Mirage',
 										'icon' => '/esoui/art/icons/memento_ironmanxform_01.dds',
@@ -11348,7 +11663,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								46 => array (
+								47 => array (
 										'id' => 1228,
 										'name' => 'Neramo`s Lightning Stick',
 										'icon' => '/esoui/art/icons/memento_dwarvenlightningstaff.dds',
@@ -11357,7 +11672,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								47 => array (
+								48 => array (
 										'id' => 1229,
 										'name' => 'Dreamer`s Chime',
 										'icon' => '/esoui/art/icons/memento_bell.dds',
@@ -11366,7 +11681,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								48 => array (
+								49 => array (
 										'id' => 1236,
 										'name' => 'Replica Tonal Inverter',
 										'icon' => '/esoui/art/icons/memento_dwemertonalinverter.dds',
@@ -11375,7 +11690,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								49 => array (
+								50 => array (
 										'id' => 1382,
 										'name' => 'Clockwork Obscuros',
 										'icon' => '/esoui/art/icons/quest_anuiclantern.dds',
@@ -11384,7 +11699,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								50 => array (
+								51 => array (
 										'id' => 1383,
 										'name' => 'Crow`s Calling',
 										'icon' => '/esoui/art/icons/memento_death_01.dds',
@@ -11393,7 +11708,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								51 => array (
+								52 => array (
 										'id' => 1384,
 										'name' => 'Swarm of Crows',
 										'icon' => '/esoui/art/icons/memento_death_02.dds',
@@ -11402,7 +11717,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								52 => array (
+								53 => array (
 										'id' => 1385,
 										'name' => 'Murderous Strike',
 										'icon' => '/esoui/art/icons/memento_death_03.dds',
@@ -11411,7 +11726,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								53 => array (
+								54 => array (
 										'id' => 1481,
 										'name' => 'Fiery Orb',
 										'icon' => '/esoui/art/icons/collectible_memento_flameatronach_sigilstone.dds',
@@ -11420,7 +11735,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								54 => array (
+								55 => array (
 										'id' => 1482,
 										'name' => 'Flame Pixie',
 										'icon' => '/esoui/art/icons/collectible_memento_flameatronach_atronach.dds',
@@ -11429,7 +11744,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								55 => array (
+								56 => array (
 										'id' => 1483,
 										'name' => 'Flame Eruption',
 										'icon' => '/esoui/art/icons/collectible_memento_flameatronach_volcanoshard.dds',
@@ -11438,7 +11753,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								56 => array (
+								57 => array (
 										'id' => 4663,
 										'name' => 'Umbral Projector',
 										'icon' => '/esoui/art/icons/collectible_memento_photooscillator.dds',
@@ -11447,7 +11762,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								57 => array (
+								58 => array (
 										'id' => 4706,
 										'name' => 'Scalecaller Rune of Levitation',
 										'icon' => '/esoui/art/icons/quest_glenumbra_daedric_rune.dds',
@@ -11456,7 +11771,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								58 => array (
+								59 => array (
 										'id' => 4707,
 										'name' => 'Scalecaller Frost Shard',
 										'icon' => '/esoui/art/icons/collectible_memento_icecyclone.dds',
@@ -11465,7 +11780,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								59 => array (
+								60 => array (
 										'id' => 4708,
 										'name' => 'Bone Dragon Summons Focus',
 										'icon' => '/esoui/art/icons/housing_uni_inc_dragonpriestebony001.dds',
@@ -11474,7 +11789,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								60 => array (
+								61 => array (
 										'id' => 4786,
 										'name' => '3rd Annual Jubilee Cake',
 										'icon' => '/esoui/art/icons/collectable_memento_3ndanniversarycake.dds',
@@ -11483,7 +11798,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								61 => array (
+								62 => array (
 										'id' => 4789,
 										'name' => 'Wyrd Elemental Plume',
 										'icon' => '/esoui/art/icons/justice_stolen_feather_001.dds',
@@ -11492,7 +11807,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								62 => array (
+								63 => array (
 										'id' => 4797,
 										'name' => 'Jester`s Scintillator',
 										'icon' => '/esoui/art/icons/collectible_memento_jesterscintillator.dds',
@@ -11501,7 +11816,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								63 => array (
+								64 => array (
 										'id' => 5031,
 										'name' => 'Psijic Celestial Orb',
 										'icon' => '/esoui/art/icons/collectible_memento_pearlsummon.dds',
@@ -11510,7 +11825,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								64 => array (
+								65 => array (
 										'id' => 5032,
 										'name' => 'Psijic Tautology Glass',
 										'icon' => '/esoui/art/icons/justice_stolen_hourglass_001.dds',
@@ -11519,7 +11834,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								65 => array (
+								66 => array (
 										'id' => 5033,
 										'name' => 'Sapiarchic Discorporation Lens',
 										'icon' => '/esoui/art/icons/collectible_memento_discorporationlens.dds',
@@ -11528,7 +11843,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								66 => array (
+								67 => array (
 										'id' => 5034,
 										'name' => 'Psijic Scrying Talisman',
 										'icon' => '/esoui/art/icons/collectible_memento_psijicscryingtalisman.dds',
@@ -11537,7 +11852,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								67 => array (
+								68 => array (
 										'id' => 5035,
 										'name' => 'Gryphon Feather Talisman',
 										'icon' => '/esoui/art/icons/collectible_memento_welkynarfeathertalisman.dds',
@@ -11546,7 +11861,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								68 => array (
+								69 => array (
 										'id' => 5036,
 										'name' => 'Sea Sload Dorsal Fin',
 										'icon' => '/esoui/art/icons/collectible_memento_sloaddorsalfin.dds',
@@ -11555,7 +11870,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								69 => array (
+								70 => array (
 										'id' => 5121,
 										'name' => 'Psijic Scrying',
 										'icon' => '/esoui/art/icons/icon_missing.dds',
@@ -11564,7 +11879,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								70 => array (
+								71 => array (
 										'id' => 5210,
 										'name' => 'Gourd-Gallows Stump',
 										'icon' => '/esoui/art/icons/collectible_memento_pumpkinsmash.dds',
@@ -11573,7 +11888,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								71 => array (
+								72 => array (
 										'id' => 5211,
 										'name' => 'Rind-Renewing Pumpkin',
 										'icon' => '/esoui/art/icons/collectible_memento_pumpkincarving.dds',
@@ -11582,7 +11897,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								72 => array (
+								73 => array (
 										'id' => 5212,
 										'name' => 'Ghost Lantern',
 										'icon' => '/esoui/art/icons/collectible_memento_spiritlantern.dds',
@@ -11591,16 +11906,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								73 => array (
+								74 => array (
 										'id' => 5234,
-										'name' => 'Murkmire Grave Stake',
+										'name' => 'Murkmire Grave-Stake',
 										'icon' => '/esoui/art/icons/collectible_memento_gravestick.dds',
-										'desc' => 'Like most adventurers, you`re probably worried that no one will remember you when you`re gone. Create your own momentary memorial with the Murkmire Grave Stake! Because you deserve it, hero.',
+										'desc' => 'Like most adventurers, you`re probably worried that no one will remember you when you`re gone. Create your own momentary memorial with the Murkmire Grave-Stake! Because you deserve it, hero.',
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								74 => array (
+								75 => array (
 										'id' => 5242,
 										'name' => 'Werewolf Behemoth Sigil',
 										'icon' => '/esoui/art/icons/collectible_memento_werewolfbehemoth.dds',
@@ -11609,11 +11924,47 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								75 => array (
+								76 => array (
 										'id' => 5590,
 										'name' => 'Apple-Bobbing Cauldron',
 										'icon' => '/esoui/art/icons/collectible_memento_applebobbing.dds',
 										'desc' => 'As a reminder that death awaits even the mightiest, at the Witches Festival heroes and adventurers are invited to humble themselves with juvenile games like bobbing for gorapples. Open wide!',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								77 => array (
+										'id' => 5732,
+										'name' => 'Dream Amulet of Argon',
+										'icon' => '/esoui/art/icons/collectible_memento_dreamamuletofargon.dds',
+										'desc' => 'When invoked, this creates a brief, ephemeral image of the Remnant of Argon.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								78 => array (
+										'id' => 5733,
+										'name' => 'Kick Ball',
+										'icon' => '/esoui/art/icons/collectible_memento_kickball.dds',
+										'desc' => 'Kick a sports ball like an Argonian!',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								79 => array (
+										'id' => 5734,
+										'name' => 'Mire Drum',
+										'icon' => '/esoui/art/icons/collectible_memento_tribaldrumming.dds',
+										'desc' => 'Of the many instruments used by the Argonians of Murkmire, the drum is the simplest and most common.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								80 => array (
+										'id' => 5735,
+										'name' => 'Vossa-satl',
+										'icon' => '/esoui/art/icons/quest_arg_inc_mrkfrogbagpipe001.dds',
+										'desc' => 'This memento enables one to play the bizarre Argonian vossa-satl, or Frog-Pipes. Party in the swamp!',
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -11628,7 +11979,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_mounts_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 185,
+						'numCollectibles' => 205,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1,
@@ -12371,11 +12722,11 @@ $ESO_COLLECTIBLE_DATA = array (
 								83 => array (
 										'id' => 1174,
 										'name' => 'Ebon Dwarven Wolf',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'icon' => '/esoui/art/icons/mounticon_dwarven_ebon_wolf.dds',
+										'desc' => '\"There is no evidence that the Dwemer kept dogs, or pets of any other kind, for that matter, but like their neighbors the Nords they did seem to have some affection for the Wolves of northern Tamriel. One sees this in their mounts.\" —Thelwe Ghelein',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Blackwolf' 
 								),
 								84 => array (
 										'id' => 1184,
@@ -12434,7 +12785,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								90 => array (
 										'id' => 1190,
 										'name' => 'Adamant Dwarven Senche',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/mounticon_dwarven_adament_senche.dds',
 										'desc' => 'There have long been unconfirmed reports of Dwarven Senche vamidiums with key parts made of the extremely rare and super-hard Dwarven Adamant metal. At long last, these reports have been substantiated.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -12443,7 +12794,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								91 => array (
 										'id' => 1191,
 										'name' => 'Adamant Dwarven Wolf',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/mounticon_dwarven_adament_wolf.dds',
 										'desc' => 'The shining metal known as Dwarven Adamant is an alloy melding ores of unknown origin into the most durable material ever made. Though found in parts of the ultra-rare Adamant Dwarven Wolf, the secret of its forging seems as lost as the Dwemer themselves.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -12452,20 +12803,20 @@ $ESO_COLLECTIBLE_DATA = array (
 								92 => array (
 										'id' => 1250,
 										'name' => 'Ebon Dwarven Horse',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'icon' => '/esoui/art/icons/mounticon_dwarven_ebon_horse.dds',
+										'desc' => 'Though most ancient Dwemer automata are constructed primarily of the so-called Dwarven Metal, some rare and special animunculus mounts use a preponderance of Ebony. Creations like the Ebon Dwarven Horse are especially durable.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Metalmane' 
 								),
 								93 => array (
 										'id' => 1251,
 										'name' => 'Vitrine Dwarven Horse',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'icon' => '/esoui/art/icons/mounticon_dwarven_vitrine_horse.dds',
+										'desc' => '\"A horse-shaped Dwarven mount constructed of Ebony, Adamant, Dwarven Metal, and Glass? Sure, why not? The Dwemer could build almost anything, and  seemed determined to prove it.\" —Herebane, Nord \"Scholar of the Vanished\"',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Glossy' 
 								),
 								94 => array (
 										'id' => 1252,
@@ -12479,11 +12830,11 @@ $ESO_COLLECTIBLE_DATA = array (
 								95 => array (
 										'id' => 1253,
 										'name' => 'Vitrine Dwarven Senche',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'icon' => '/esoui/art/icons/mounticon_dwarven_vitrine_senche.dds',
+										'desc' => '\"When considering the Dwarven automaton mounts, the so-called vamidiums, one gets the sense that the Deep Elves were not attempting to replicate nature, but to improve upon it. Case in point: the Vitrine Senche.\" —Thelwe Ghelein, Scholar of the Dwemer',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Glasscat' 
 								),
 								96 => array (
 										'id' => 1254,
@@ -13216,23 +13567,140 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								177 => array (
 										'id' => 5470,
-										'name' => 'Auroran Warhorse Palomino',
-										'icon' => '/esoui/art/icons/mounticon_horse_brownauroran.dds',
-										'desc' => '',
+										'name' => 'Auroran Zenith Warhorse',
+										'icon' => '/esoui/art/icons/mounticon_horse_zenithauroran.dds',
+										'desc' => 'It`s said that when Meridia`s Aurorans need mounts in Tamriel they conjure these shining Warhorses out of pure light. Perhaps so, but they`re certainly solid enough to support a heavily armed warrior at the charge!',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Nimbus' 
 								),
 								178 => array (
 										'id' => 5471,
-										'name' => 'Auroran Warhorse Black',
-										'icon' => '/esoui/art/icons/mounticon_horse_blackauroran.dds',
-										'desc' => '',
+										'name' => 'Auroran Twilight Warhorse',
+										'icon' => '/esoui/art/icons/mounticon_horse_twilightauroran.dds',
+										'desc' => 'Like their mistress, the Daedric Prince Meridia, Aurorans have magical control over color and hue, so when they need a mount in Tamriel after dark it`s no surprise that they conjure Warhorses that are as dark as night itself.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Shadowshade' 
 								),
 								179 => array (
+										'id' => 5549,
+										'name' => 'Onyx Indrik',
+										'icon' => '/esoui/art/icons/mounticon_indrik_onyx.dds',
+										'desc' => 'It`s believed by some of the Sapiarchs of the High Elves that an Onyx Indrik comes about when a Nascent Indrik is exposed to certain berries imbued with geological Earthbones essences.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Anthracite' 
+								),
+								180 => array (
+										'id' => 5550,
+										'name' => 'Pure-Snow Indrik',
+										'icon' => '/esoui/art/icons/mounticon_indrik_snow.dds',
+										'desc' => 'Some find it strange that the Pure-Snow Indrik should exist in Summerset, where winter never comes, but as the Sapiarch of Elemental Arcana points out, \"Frost magic works everywhere.\"',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Frost-Antler' 
+								),
+								181 => array (
+										'id' => 5551,
+										'name' => 'Black Fredas Soot Stallion',
+										'icon' => '/esoui/art/icons/mounticon_horse_blackfredas.dds',
+										'desc' => 'Calamity and mischance seem to follow in the hoofprints of this dark charger—but not for its rider! Gallop into battle on the back of this Soot Stallion and curse your opponents with all the ill luck of Black Fredas!',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Evil Eye' 
+								),
+								182 => array (
+										'id' => 5552,
+										'name' => 'Rahd-m`Athra',
+										'icon' => '/esoui/art/icons/mounticon_horse_rahdmanthra.dds',
+										'desc' => 'When the dro-m`Athra ride from the Dark Behind the World, they go mounted on these dread steeds: the Rahd-m`Athra! Are they spirits from the Dark Moons, or tangible creatures of evil?',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bent Horse' 
+								),
+								183 => array (
+										'id' => 5553,
+										'name' => 'Wolf-Lizard Steed',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_wolf.dds',
+										'desc' => '\"Almost every stablemaster of the Marsh has fine, scaly lizard mounts available for purchase in various forms, all familiar to dryskins but specifically adapted to deep swamp conditions. So convenient, our lizard-steeds, so scaly and personable!\" —Ukaspa',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scaly-Wolf' 
+								),
+								184 => array (
+										'id' => 5554,
+										'name' => 'Senche-Lizard Steed',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_senche.dds',
+										'desc' => '\"More than once I have been asked, `Ukaspa, why are your lizard-steeds shaped like mounts from other parts of Tamriel? Why aren`t your so-very-handsome mounts shaped like, well, lizards?` These are good questions!\" —Ukaspa of Lilmoth',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Kitty Lizard' 
+								),
+								185 => array (
+										'id' => 5555,
+										'name' => 'Guar-Lizard Steed',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_guar.dds',
+										'desc' => '\"Some dryskins ask, `Since a Guar is already a swamp reptile mount, why create Lizard-Steeds shaped like Guar? Isn`t that somewhat redundant?` These dryskins are unusually perceptive!\" —Ukaspa of Lilmoth',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Jaunty' 
+								),
+								186 => array (
+										'id' => 5556,
+										'name' => 'Camel-Lizard Steed',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_camel.dds',
+										'desc' => '\"Maybe the Camel-Lizard was created so we heroic Argonian adventurers could travel in arid climes like Anequina—or maybe it was so heroic Khajiiti adventurers could have something to ride in Black Marsh. I don`t know, I just want one.\" —Heem-Jas',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Moss-Spitter' 
+								),
+								187 => array (
+										'id' => 5557,
+										'name' => 'Bear-Lizard Steed',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_bear.dds',
+										'desc' => '\"So, it`s a Bear. Only it`s a Lizard. And you can ride it? Shor`s bones! That`s all I need to know. I`ll take it!\" —Celebrated Nord Envoy Rigurt the Brash',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Roly-Scaly' 
+								),
+								188 => array (
+										'id' => 5558,
+										'name' => 'Horse-Lizard Steed',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_horse.dds',
+										'desc' => '\"Sometimes Argonians want to travel a long way for a long time, and how do people do that? On mounts! And so useful lizards become Lizard Steeds of proven shapes, and then Argonians can ride, tall in the saddle and proud!\" —Ukaspa of Lilmoth',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lizardhoof' 
+								),
+								189 => array (
+										'id' => 5559,
+										'name' => 'Sabre Cat Frost Atronach',
+										'icon' => '/esoui/art/icons/mounticon_senche_frost.dds',
+										'desc' => 'A Frost Mage of Clan Direnni spent her entire life perfecting a spell to permanently summon a Frost Atronach in the shape of a Sabre Cat. (Why? Who knows? Balfiera Island is a strange place.)',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Icicle Cat' 
+								),
+								190 => array (
+										'id' => 5560,
+										'name' => 'Shellback Warhorse',
+										'icon' => '/esoui/art/icons/mounticon_horse_shellback.dds',
+										'desc' => 'Argonian heavy troops are informally known as Shellbacks—so inevitably, their heavy cavalry mounts are called Shellback Warhorses. They are among the strongest breeds known.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Muscles' 
+								),
+								191 => array (
+										'id' => 5561,
+										'name' => 'Glowgill Guar',
+										'icon' => '/esoui/art/icons/mounticon_guar_glowgill.dds',
+										'desc' => '\"These Glowgill Guar mounts come from a coastal tribe over near Archon. Handsome, are they not? I`ve been told they can breathe underwater through those gills, though personally, I have never tested this.\" —Ukaspa, Stablemaster of Lilmoth',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Swimmer' 
+								),
+								192 => array (
 										'id' => 5635,
 										'name' => 'Psijic Camel v2',
 										'icon' => '/esoui/art/icons/mounticon_camel_psijicv2.dds',
@@ -13241,7 +13709,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								180 => array (
+								193 => array (
 										'id' => 5636,
 										'name' => 'Psijic Guar v2',
 										'icon' => '/esoui/art/icons/mounticon_guar_psijicv2.dds',
@@ -13250,7 +13718,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								181 => array (
+								194 => array (
 										'id' => 5637,
 										'name' => 'Psijic Bear v2',
 										'icon' => '/esoui/art/icons/mounticon_bear_psijicv2.dds',
@@ -13259,7 +13727,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								182 => array (
+								195 => array (
 										'id' => 5638,
 										'name' => 'Psijic Wolf v2',
 										'icon' => '/esoui/art/icons/mounticon_wolf_psijicv2.dds',
@@ -13268,7 +13736,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								183 => array (
+								196 => array (
 										'id' => 5639,
 										'name' => 'Psijic Senche v2',
 										'icon' => '/esoui/art/icons/mounticon_senche_psijicv2.dds',
@@ -13277,7 +13745,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								184 => array (
+								197 => array (
 										'id' => 5640,
 										'name' => 'Psijic Escort Charger',
 										'icon' => '/esoui/art/icons/mounticon_horse_psijicv2.dds',
@@ -13286,7 +13754,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Blue Streak' 
 								),
-								185 => array (
+								198 => array (
 										'id' => 5641,
 										'name' => 'Corrupted Indrik',
 										'icon' => '/esoui/art/icons/mounticon_indrik_corrupted.dds',
@@ -13294,6 +13762,69 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								199 => array (
+										'id' => 5697,
+										'name' => 'Scorching Horse-Lizard',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_apex_horse.dds',
+										'desc' => '\"It is hard to start a campfire in the damps of the deep marsh, yes? Not when you have a Scorching Horse-Lizard! With one of these as your mount, you will never again have to eat cold eel stew!\" —Ukaspa, Stablemaster of Lilmoth',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Firebrand' 
+								),
+								200 => array (
+										'id' => 5698,
+										'name' => 'Infernium Dwarven Spider',
+										'icon' => '/esoui/art/icons/mounticon_dwarvenspider_flame..dds',
+										'desc' => '\"The Dwarven Spider Mounts from the Infernium Forge are unusual and distinctive, indicating to this Dwemer scholar that they all come from the hand of a single Deep Elf artisan.\" —Guylaine Marilie',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Big Emberlegs' 
+								),
+								201 => array (
+										'id' => 5705,
+										'name' => 'Chilling Senche-Lizard',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_apex_senche.dds',
+										'desc' => '\"This Chilling Senche-Lizard is quite rare; it comes from very deep in the swamp, from a tribe said to be dedicated to Frost spells as a means of living longer by living slower. Their Hist tree even drips with icicles (whatever they are)!\" —Ukaspa',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Frost-on-Scales' 
+								),
+								202 => array (
+										'id' => 5706,
+										'name' => 'Venomous Wolf-Lizard',
+										'icon' => '/esoui/art/icons/mounticon_murkmire_apex_wolf.dds',
+										'desc' => '\"Nothing says `Back off!` like riding into town on a mount so seething with poison that it glows in the dark. When one comes from a place as bizarre as Black Marsh, one really has to go over the top to be impressive.\" —Ukaspa of Lilmoth',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nightlight' 
+								),
+								203 => array (
+										'id' => 5707,
+										'name' => 'Rimmen Ringtailed Wolf',
+										'icon' => '/esoui/art/icons/mounticon_wolf_ringtail.dds',
+										'desc' => 'When Imperials of Akaviri descent settled in and around Rimmen toward the end of the Potentate, something about these local Ringtailed Wolves found favor with them, and they domesticated and bred them into distinctive mounts.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Longloper' 
+								),
+								204 => array (
+										'id' => 5709,
+										'name' => 'Sapiarchic Senche-Serval',
+										'icon' => '/esoui/art/icons/mounticon_senche_summersetserval.dds',
+										'desc' => '\"As the Sub-Sapiarch of Domestic Livestock, I was assigned by Larnatille to breed an appropriate mount for our sages to ride upon when working in the field. I proudly present my result: the loyal and majestic Senche-Serval!\" —Corderil of Sunhold',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Darling' 
+								),
+								205 => array (
+										'id' => 5710,
+										'name' => 'Nascent Indrik',
+										'icon' => '/esoui/art/icons/mounticon_indrik_nascent.dds',
+										'desc' => 'As an incarnate nature spirit, an Indrik first appears in its comparatively drab Nascent form before somehow differentiating into one of their more splendid variations.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Quiescence' 
 								) 
 						) 
 				) 
@@ -13305,7 +13836,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_vanitypets_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 229,
+						'numCollectibles' => 245,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7,
@@ -15137,7 +15668,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								204 => array (
 										'id' => 5176,
 										'name' => 'Daemon Cockerel',
-										'icon' => '/esoui/art/icons/pet_203_blackchicken.dds',
+										'icon' => '/esoui/art/icons/pet_229_blackrooster.dds',
 										'desc' => 'The hissing and twitching farmer who sells these claims they`re just ordinary black roosters. And probably they are. You must have just imagined that this Cockerel`s eyes glow after dark. You must have!',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -15244,23 +15775,41 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								216 => array (
 										'id' => 5562,
-										'name' => 'Frost Nixad',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'name' => 'Ice Nixad',
+										'icon' => '/esoui/art/icons/pet_235_icenixad.dds',
+										'desc' => 'There is some debate among naturalists as to whether the Ice Nixad is a separate breed that is mainly seen in the winter because it hibernates during the warm months, or whether it`s just a winter phase of ordinary Nixads that sometimes stays year-round.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Chilblain' 
 								),
 								217 => array (
 										'id' => 5563,
-										'name' => 'Swamp Jelly 001',
-										'icon' => '/esoui/art/icons/pet_206_swampjelly.dds',
-										'desc' => '',
+										'name' => 'Cantaloupe Swamp Jelly',
+										'icon' => '/esoui/art/icons/pet_233_yellowjelly.dds',
+										'desc' => 'Though Argonians do relish the elastic flesh of the Black Marsh Swamp Jellies, the whimsical names they give them refer more to their appearance than to their flavor.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Melonbobber' 
 								),
 								218 => array (
+										'id' => 5564,
+										'name' => 'Mint Swamp Jelly',
+										'icon' => '/esoui/art/icons/pet_226_tealswampjelly.dds',
+										'desc' => 'Though the Argonians claim that they name each breed of Black Marsh Swamp Jelly for its hue rather than its taste, there`s no denying that the Mint Jelly does have a gratifyingly refreshing flavor.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Freshbreath' 
+								),
+								219 => array (
+										'id' => 5565,
+										'name' => 'Plum Swamp Jelly',
+										'icon' => '/esoui/art/icons/pet_227_pinkswampjelly.dds',
+										'desc' => 'The Plum Swamp Jelly is the rarest of the so-called \"Flavor\" Jellies, and seeing one is considered by many Argonians to be a sign of good fortune. It`s not at all unusual for an Argonian to wear a Plum Jelly`s feeler as a \"Good Luck Tentacle.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mulberry' 
+								),
+								220 => array (
 										'id' => 5600,
 										'name' => 'Hollowjack Netch',
 										'icon' => '/esoui/art/icons/pet_205_pumpkinnetch.dds',
@@ -15269,34 +15818,34 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'The Sticky One' 
 								),
-								219 => array (
+								221 => array (
 										'id' => 5601,
-										'name' => 'Snowy Owl Gryphon',
-										'icon' => '/esoui/art/icons/pet_187_eaglegryphon.dds',
-										'desc' => '',
+										'name' => 'Snowcap Fledgling Gryphon',
+										'icon' => '/esoui/art/icons/pet_234_snowgryphon.dds',
+										'desc' => 'On the highest pinnacles of Eton Nir, where the snow never melts, live the pale Snowcap Gryphons. Perfectly camouflaged for a life in the clouds, for most of the First Era they were considered to be a myth.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Peaky' 
 								),
-								220 => array (
+								222 => array (
 										'id' => 5619,
 										'name' => 'Daemon Chicken',
 										'icon' => '/esoui/art/icons/pet_203_blackchicken.dds',
-										'desc' => '',
+										'desc' => 'Is this just a dark fowl, mere poultry of sinister visage—or does it hail from realms beyond Nirn, mayhap from the Deadlands of Mehrunes Dagon or the Ashpit of Malacath? Dare you ask yourself the dread question: Which came first?',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Horror Hen!' 
 								),
-								221 => array (
+								223 => array (
 										'id' => 5620,
-										'name' => 'Chicken White',
+										'name' => 'Riverwood White Hen',
 										'icon' => '/esoui/art/icons/pet_215_roosterwhite.dds',
-										'desc' => '',
+										'desc' => 'A hardy domestic chicken found all along Skyrim`s White River, said to have been originally bred in the old town of Riverwood. Owners grow extremely attached to them, and become outraged if they`re harmed.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Pecky' 
 								),
-								222 => array (
+								224 => array (
 										'id' => 5642,
 										'name' => 'Wild Chicken Color',
 										'icon' => '/esoui/art/icons/pet_216_coloredchicken.dds',
@@ -15305,28 +15854,10 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								223 => array (
+								225 => array (
 										'id' => 5643,
 										'name' => 'Wild Rooster Color',
-										'icon' => '/esoui/art/icons/pet_216_coloredchicken.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								224 => array (
-										'id' => 5652,
-										'name' => 'Pet Scruffy Skyrim Paint Pony',
-										'icon' => '/esoui/art/icons/pet_213_paintedpony.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								225 => array (
-										'id' => 5653,
-										'name' => 'Pale Pass Pony',
-										'icon' => '/esoui/art/icons/pet_212_spottedpony.dds',
+										'icon' => '/esoui/art/icons/pet_231_colorrooster.dds',
 										'desc' => '',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -15335,7 +15866,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								226 => array (
 										'id' => 5654,
 										'name' => 'Rooster White',
-										'icon' => '/esoui/art/icons/pet_215_roosterwhite.dds',
+										'icon' => '/esoui/art/icons/pet_230_whiterooster.dds',
 										'desc' => '',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -15351,6 +15882,51 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Marsh Gas' 
 								),
 								228 => array (
+										'id' => 5657,
+										'name' => 'Kaleidotropic Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_211_kaleidascope.dds',
+										'desc' => 'This little critter`s bright, beautiful colors are actually a warning to predators that it`s a potent mouthful of poison. Fortunately for Tamriel`s humanoid mortals, its venom affects them as no more than a mild hallucinogen.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Touch-Me-Not' 
+								),
+								229 => array (
+										'id' => 5658,
+										'name' => 'Butterscotch Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_207_butterscotch.dds',
+										'desc' => '\"The Butterscotch Dragon Frog presumably got its name from the Argonian practice of naming creatures after flavors, whether those things taste like that or not. This one has no intention of finding out whether it does.\" —M`aiq the Liar',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bug-Biter' 
+								),
+								230 => array (
+										'id' => 5659,
+										'name' => 'Flame Skin Salamander^n',
+										'icon' => '/esoui/art/icons/pet_208_orangesalamander.dds',
+										'desc' => 'All the large Salamanders of southern Tamriel have elemental powers, but some specialize in particular forces; the Flame Skin breed, for example, almost ripples with fire.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Steamy' 
+								),
+								231 => array (
+										'id' => 5660,
+										'name' => 'Toxin Skin Salamander^n',
+										'icon' => '/esoui/art/icons/pet_210_greensalamander.dds',
+										'desc' => 'The large, lumbering Salamanders of southern Tamriel are known for defending themselves with various elemental busts—all but one, the Toxin Skin variety, which relies on venom instead. Not even the Sapiarchs of the Crystal Tower can account for it.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Poisontail' 
+								),
+								232 => array (
+										'id' => 5661,
+										'name' => 'Shock Skin Salamander^n',
+										'icon' => '/esoui/art/icons/pet_209_bluesalamander.dds',
+										'desc' => 'The lumbering great Salamanders of southern Tamriel all defend themselves with bursts of elemental power, but the Shock Skin variety specializes in electrical discharges. Fortunately, they can be trained not to zap their masters!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Zapnewt' 
+								),
+								233 => array (
 										'id' => 5662,
 										'name' => 'Prong-Eared Odd-Eyed Cat^n',
 										'icon' => '/esoui/art/icons/pet_182_grimalkin.dds',
@@ -15359,7 +15935,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								229 => array (
+								234 => array (
 										'id' => 5663,
 										'name' => 'Prong-Eared Forge Mouser^n',
 										'icon' => '/esoui/art/icons/pet_214_blackprongearred.dds',
@@ -15367,6 +15943,105 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Earzles' 
+								),
+								235 => array (
+										'id' => 5699,
+										'name' => 'Infernium Dwarven Spiderling',
+										'icon' => '/esoui/art/icons/pet_219_flamedwarvenspider.dds',
+										'desc' => '\"The Dwarven Spiderlings from the Infernium Forge are unusual and distinctive, indicating to this Dwemer scholar that they all come from the hand of a single Deep Elf artisan.\" —Guylaine Marilie',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Emberlegs' 
+								),
+								236 => array (
+										'id' => 5712,
+										'name' => 'Slateback Haj Mota',
+										'icon' => '/esoui/art/icons/pet_hajmota_slateback.dds',
+										'desc' => 'This smaller breed of Haj Mota lurks in the brackish estuaries of Black Marsh`s southern coast, camouflaged by the gray color of the murky tidewater. When hand-raised from hatching, they make surprisingly pleasant pets.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shelby' 
+								),
+								237 => array (
+										'id' => 5713,
+										'name' => 'Verdigris Haj Mota',
+										'icon' => '/esoui/art/icons/pet_hajmota_verdigris.dds',
+										'desc' => 'A Haj Mota is an ambush predator, waiting patiently in concealment until its prey should come into attack range. The Verdigris breed tends to hide in algae-covered pools where its color acts as camouflage.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Burrower' 
+								),
+								238 => array (
+										'id' => 5714,
+										'name' => 'Bear-Lizard Cub',
+										'icon' => '/esoui/art/icons/pet_221_murkmirebearcub.dds',
+										'desc' => 'Though the adult Bear-Lizards can be quite intimidating, even fearsome, the roly-poly lizard cubs are disarmingly cute. (For reptiles, that is.)',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scaly-Boo' 
+								),
+								239 => array (
+										'id' => 5715,
+										'name' => 'Pony-Lizard',
+										'icon' => '/esoui/art/icons/pet_223_murkmirepony.dds',
+										'desc' => 'When young Argonian egg-siblings tell their creche-parents they want a pony, this is what they mean. And now that you`ve seen it, don`t you want one, too?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Spinemane' 
+								),
+								240 => array (
+										'id' => 5716,
+										'name' => 'Senche-Lizard Cub',
+										'icon' => '/esoui/art/icons/pet_224_murkmiresenchecub.dds',
+										'desc' => 'True, it does hiss rather than meow, and has shiny scales rather than soft fur, but otherwise the Senche-Lizard Cub is just as adorable as any other kitten.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Kitty Lizard' 
+								),
+								241 => array (
+										'id' => 5717,
+										'name' => 'Wolf-Lizard Pup',
+										'icon' => '/esoui/art/icons/pet_225_murkmirewolfpup.dds',
+										'desc' => 'The Wolf-Lizard Pup is simply adorable when it tries to howl, just hisses instead, and looks ever so confused.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Hissy Howl' 
+								),
+								242 => array (
+										'id' => 5718,
+										'name' => 'Guar-Lizard Calf',
+										'icon' => '/esoui/art/icons/pet_222_murkmireguar.dds',
+										'desc' => 'Though you know it`s just going to grow up and become big, dumb, scaly livestock, how can you resist those lizard-calf eyes?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Googly' 
+								),
+								243 => array (
+										'id' => 5719,
+										'name' => 'Badger Ruff Echalette',
+										'icon' => '/esoui/art/icons/pet_217_badgerechelette.dds',
+										'desc' => 'Most Echalettes are docile and fawn-like, but not the Badger Ruff breed, which are strangely fierce and irritable. They`re so ornery they`ve been known to chase away inquisitive Sabre Cats.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Feisty' 
+								),
+								244 => array (
+										'id' => 5720,
+										'name' => 'Monarch Butterfly',
+										'icon' => '/esoui/art/icons/pet_232_monarchorange.dds',
+										'desc' => 'The migratory Monarch Butterfly is a common sight across all of southern Tamriel, and it`s seen in the northern provinces during summer. The Monarch is said to represent the souls of the present, in contrast to the Ancestor Moth that represents the past.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Thronebug' 
+								),
+								245 => array (
+										'id' => 5723,
+										'name' => 'Brimstone Nixad',
+										'icon' => '/esoui/art/icons/pet_218_brimstonenixad.dds',
+										'desc' => 'The legend among the underworld explorers of the Undaunted is that these little incendiary sprites are responsible for lighting all the candles, torches, and lanterns found burning underground, flying ahead of adventurers to ignite them in the dark.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Torchy' 
 								) 
 						) 
 				) 
@@ -15378,7 +16053,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/tutorial_idexicon_emotes_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 30,
+						'numCollectibles' => 44,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1255,
@@ -15649,6 +16324,132 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 21,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								31 => array (
+										'id' => 5736,
+										'name' => 'Commune with Hist',
+										'icon' => '/esoui/art/icons/emote_communehist.dds',
+										'desc' => 'The user enters a brief posture evocative of an Argonian communing with their tribe`s Hist tree.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								32 => array (
+										'id' => 5737,
+										'name' => 'Whittling',
+										'icon' => '/esoui/art/icons/emote_whittlewood.dds',
+										'desc' => 'Just a-whittling away on a piece of swamp wood, yes, indeed.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								33 => array (
+										'id' => 5738,
+										'name' => 'Argonian Greeting',
+										'icon' => '/esoui/art/icons/emote_arggreet.dds',
+										'desc' => 'Displays a typical Black Marsh greeting gesture between tribal Argonians.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								34 => array (
+										'id' => 5739,
+										'name' => 'Cardsharp',
+										'icon' => '/esoui/art/icons/emote_cardsharp.dds',
+										'desc' => 'A dextrous display of deck division and distribution!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								35 => array (
+										'id' => 5740,
+										'name' => 'Argonian Soccer 1',
+										'icon' => '/esoui/art/icons/emote_soccer1.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								36 => array (
+										'id' => 5741,
+										'name' => 'Argonian Soccer 2',
+										'icon' => '/esoui/art/icons/emote_soccer2.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								37 => array (
+										'id' => 5742,
+										'name' => 'Argonian Soccer 3',
+										'icon' => '/esoui/art/icons/emote_soccer3.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								38 => array (
+										'id' => 5743,
+										'name' => 'Greeting Hist',
+										'icon' => '/esoui/art/icons/emote_greethist.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								39 => array (
+										'id' => 5744,
+										'name' => 'Greeting Dead Water',
+										'icon' => '/esoui/art/icons/emote_greetdeadwater.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								40 => array (
+										'id' => 5745,
+										'name' => 'Greeting Bright Throat',
+										'icon' => '/esoui/art/icons/emote_greetbrightthroat.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								41 => array (
+										'id' => 5746,
+										'name' => 'Gladiator Emote',
+										'icon' => '/esoui/art/icons/emote_gladiatortaunt.dds',
+										'desc' => 'This unusual emote displays an aggressive \"Gladiator\" gesture that varies depending upon what kind of weapon the user has equipped. All indicate a warrior who`s ready for action!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								42 => array (
+										'id' => 5752,
+										'name' => 'Mistletoe',
+										'icon' => '/esoui/art/icons/emote_mistletoe.dds',
+										'desc' => 'This emote requests a festive and seasonal public display of affection. Use with care!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								43 => array (
+										'id' => 5753,
+										'name' => 'Mistletoe Posterior',
+										'icon' => '/esoui/art/icons/emote_mistletoepost.dds',
+										'desc' => '',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								44 => array (
+										'id' => 5754,
+										'name' => 'Bell Ring',
+										'icon' => '/esoui/art/icons/emote_festivebell.dds',
+										'desc' => 'Ring in New Life with this festive bell-ringing emote!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -15687,7 +16488,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Head',
-						'numCollectibles' => 274,
+						'numCollectibles' => 289,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1598,
@@ -18154,13 +18955,148 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								275 => array (
+										'id' => 5763,
+										'name' => 'Sellistrix`s Mask',
+										'icon' => '/esoui/art/icons/gear_undauntedlamia_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Arx Corinium.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								276 => array (
+										'id' => 5767,
+										'name' => 'Huntsman Hat',
+										'icon' => '/esoui/art/icons/gear_hircine_light_head_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								277 => array (
+										'id' => 5775,
+										'name' => 'Huntsman Helm',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_head_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								278 => array (
+										'id' => 5782,
+										'name' => 'Huntsman Helmet',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_head_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								279 => array (
+										'id' => 5799,
+										'name' => 'Silver Dawn Hat',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_head_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								280 => array (
+										'id' => 5807,
+										'name' => 'Silver Dawn Helm',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_head_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								281 => array (
+										'id' => 5814,
+										'name' => 'Silver Dawn Helmet',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_head_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								282 => array (
+										'id' => 5924,
+										'name' => 'Bloodspawn`s Mask',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Spindleclutch II.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								283 => array (
+										'id' => 5926,
+										'name' => 'Swarm Mother`s Mask',
+										'icon' => '/esoui/art/icons/gear_undauntedgiantspider_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Spindleclutch I.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								284 => array (
+										'id' => 5940,
+										'name' => 'Dead-Water Helm',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_head_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								285 => array (
+										'id' => 5947,
+										'name' => 'Dead-Water Helmet',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_head_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								286 => array (
+										'id' => 5954,
+										'name' => 'Dead-Water Hat',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_head_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								287 => array (
+										'id' => 5972,
+										'name' => 'Elder Argonian Helm',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_head_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								288 => array (
+										'id' => 5979,
+										'name' => 'Elder Argonian Helmet',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_head_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								289 => array (
+										'id' => 5986,
+										'name' => 'Elder Argonian Hat',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_head_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Chest',
-						'numCollectibles' => 397,
+						'numCollectibles' => 413,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1488,
@@ -21734,13 +22670,157 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								398 => array (
+										'id' => 5766,
+										'name' => 'Huntsman Jerkin',
+										'icon' => '/esoui/art/icons/gear_hircine_light_chest_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								399 => array (
+										'id' => 5772,
+										'name' => 'Huntsman Robe',
+										'icon' => '/esoui/art/icons/gear_hircine_light_robe_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								400 => array (
+										'id' => 5774,
+										'name' => 'Huntsman Jack',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_chest_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								401 => array (
+										'id' => 5781,
+										'name' => 'Huntsman Cuirass',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_chest_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								402 => array (
+										'id' => 5798,
+										'name' => 'Silver Dawn Jerkin',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_chest_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								403 => array (
+										'id' => 5804,
+										'name' => 'Silver Dawn Robe',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_robe_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								404 => array (
+										'id' => 5806,
+										'name' => 'Silver Dawn Jack',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_chest_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								405 => array (
+										'id' => 5813,
+										'name' => 'Silver Dawn Cuirass',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_chest_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								406 => array (
+										'id' => 5939,
+										'name' => 'Dead-Water Cuirass',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_chest_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								407 => array (
+										'id' => 5946,
+										'name' => 'Dead-Water Jack',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_chest_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								408 => array (
+										'id' => 5953,
+										'name' => 'Dead-Water Jerkin',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_chest_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								409 => array (
+										'id' => 5960,
+										'name' => 'Dead-Water Robe',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_robe_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								410 => array (
+										'id' => 5971,
+										'name' => 'Elder Argonian Cuirass',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_chest_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								411 => array (
+										'id' => 5978,
+										'name' => 'Elder Argonian Jack',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_chest_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								412 => array (
+										'id' => 5985,
+										'name' => 'Elder Argonian Jerkin',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_chest_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								413 => array (
+										'id' => 5992,
+										'name' => 'Elder Argonian Robe',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_robe_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Legs',
-						'numCollectibles' => 299,
+						'numCollectibles' => 311,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1491,
@@ -24432,13 +25512,121 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								300 => array (
+										'id' => 5768,
+										'name' => 'Huntsman Breeches',
+										'icon' => '/esoui/art/icons/gear_hircine_light_legs_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								301 => array (
+										'id' => 5776,
+										'name' => 'Huntsman Guards',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_legs_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								302 => array (
+										'id' => 5783,
+										'name' => 'Huntsman Greaves',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_legs_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								303 => array (
+										'id' => 5800,
+										'name' => 'Silver Dawn Breeches',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_legs_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								304 => array (
+										'id' => 5808,
+										'name' => 'Silver Dawn Guards',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_legs_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								305 => array (
+										'id' => 5815,
+										'name' => 'Silver Dawn Greaves',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_legs_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								306 => array (
+										'id' => 5942,
+										'name' => 'Dead-Water Greaves',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_legs_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								307 => array (
+										'id' => 5948,
+										'name' => 'Dead-Water Guards',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_legs_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								308 => array (
+										'id' => 5955,
+										'name' => 'Dead-Water Breeches',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_legs_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								309 => array (
+										'id' => 5974,
+										'name' => 'Elder Argonian Greaves',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_legs_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								310 => array (
+										'id' => 5980,
+										'name' => 'Elder Argonian Guards',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_legs_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								311 => array (
+										'id' => 5987,
+										'name' => 'Elder Argonian Breeches',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_legs_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Shoulders',
-						'numCollectibles' => 303,
+						'numCollectibles' => 318,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1496,
@@ -27166,13 +28354,148 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								304 => array (
+										'id' => 5764,
+										'name' => 'Sellistrix`s Shoulder',
+										'icon' => '/esoui/art/icons/gear_undauntedlamia_shoulders_a.dds',
+										'desc' => 'Obtained rarely by unlocking Glirion the Redbeard`s reward chest at an Undaunted Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								305 => array (
+										'id' => 5769,
+										'name' => 'Huntsman Epaulets',
+										'icon' => '/esoui/art/icons/gear_hircine_light_shoulders_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								306 => array (
+										'id' => 5777,
+										'name' => 'Huntsman Arm Cops',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_shoulder_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								307 => array (
+										'id' => 5784,
+										'name' => 'Huntsman Pauldrons',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_shoulder_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								308 => array (
+										'id' => 5801,
+										'name' => 'Silver Dawn Epaulets',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_shoulder_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								309 => array (
+										'id' => 5809,
+										'name' => 'Silver Dawn Arm Cops',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_shoulder_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								310 => array (
+										'id' => 5816,
+										'name' => 'Silver Dawn Pauldrons',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_shoulder_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								311 => array (
+										'id' => 5925,
+										'name' => 'Bloodspawn`s Shoulder',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_shoulders_a.dds',
+										'desc' => 'Obtained rarely by unlocking Maj al-Ragath`s reward chest at an Undaunted Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								312 => array (
+										'id' => 5927,
+										'name' => 'Swarm Mother`s Shoulder',
+										'icon' => '/esoui/art/icons/gear_undauntedgiantspider_shoulders_a.dds',
+										'desc' => 'Obtained rarely by unlocking Maj al-Ragath`s reward chest at an Undaunted Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								313 => array (
+										'id' => 5941,
+										'name' => 'Dead-Water Pauldrons',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_shoulder_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								314 => array (
+										'id' => 5950,
+										'name' => 'Dead-Water Arm Cops',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_shoulder_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								315 => array (
+										'id' => 5956,
+										'name' => 'Dead-Water Epaulets',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_shoulder_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								316 => array (
+										'id' => 5973,
+										'name' => 'Elder Argonian Pauldrons',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_shoulder_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								317 => array (
+										'id' => 5982,
+										'name' => 'Elder Argonian Arm Cops',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_shoulder_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								318 => array (
+										'id' => 5988,
+										'name' => 'Elder Argonian Epaulets',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_shoulder_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Feet',
-						'numCollectibles' => 299,
+						'numCollectibles' => 311,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1489,
@@ -29864,13 +31187,121 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								300 => array (
+										'id' => 5770,
+										'name' => 'Huntsman Shoes',
+										'icon' => '/esoui/art/icons/gear_hircine_light_feet_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								301 => array (
+										'id' => 5778,
+										'name' => 'Huntsman Boots',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_feet_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								302 => array (
+										'id' => 5785,
+										'name' => 'Huntsman Sabatons',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_feet_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								303 => array (
+										'id' => 5802,
+										'name' => 'Silver Dawn Shoes',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_feet_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								304 => array (
+										'id' => 5810,
+										'name' => 'Silver Dawn Boots',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_feet_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								305 => array (
+										'id' => 5817,
+										'name' => 'Silver Dawn Sabatons',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_feet_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								306 => array (
+										'id' => 5945,
+										'name' => 'Dead-Water Sabatons',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_feet_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								307 => array (
+										'id' => 5951,
+										'name' => 'Dead-Water Boots',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_feet_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								308 => array (
+										'id' => 5958,
+										'name' => 'Dead-Water Shoes',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_feet_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								309 => array (
+										'id' => 5977,
+										'name' => 'Elder Argonian Sabatons',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_feet_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								310 => array (
+										'id' => 5983,
+										'name' => 'Elder Argonian Boots',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_feet_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								311 => array (
+										'id' => 5990,
+										'name' => 'Elder Argonian Shoes',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_feet_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Hands',
-						'numCollectibles' => 302,
+						'numCollectibles' => 314,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1490,
@@ -32589,13 +34020,121 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								303 => array (
+										'id' => 5771,
+										'name' => 'Huntsman Gloves',
+										'icon' => '/esoui/art/icons/gear_hircine_light_hand_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								304 => array (
+										'id' => 5779,
+										'name' => 'Huntsman Bracers',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_hand_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								305 => array (
+										'id' => 5786,
+										'name' => 'Huntsman Gauntlets',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_hand_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								306 => array (
+										'id' => 5803,
+										'name' => 'Silver Dawn Gloves',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_hands_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								307 => array (
+										'id' => 5811,
+										'name' => 'Silver Dawn Bracers',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_hand_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								308 => array (
+										'id' => 5818,
+										'name' => 'Silver Dawn Gauntlets',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_hand_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								309 => array (
+										'id' => 5944,
+										'name' => 'Dead-Water Gauntlets',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_hand_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								310 => array (
+										'id' => 5952,
+										'name' => 'Dead-Water Bracers',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_hand_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								311 => array (
+										'id' => 5959,
+										'name' => 'Dead-Water Gloves',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_hand_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								312 => array (
+										'id' => 5976,
+										'name' => 'Elder Argonian Gauntlets',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_hand_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								313 => array (
+										'id' => 5984,
+										'name' => 'Elder Argonian Bracers',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_hand_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								314 => array (
+										'id' => 5991,
+										'name' => 'Elder Argonian Gloves',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_hand_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Waist',
-						'numCollectibles' => 297,
+						'numCollectibles' => 309,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1502,
@@ -35269,6 +36808,114 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								298 => array (
+										'id' => 5773,
+										'name' => 'Huntsman Sash',
+										'icon' => '/esoui/art/icons/gear_hircine_light_belt_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								299 => array (
+										'id' => 5780,
+										'name' => 'Huntsman Belt',
+										'icon' => '/esoui/art/icons/gear_hircine_medium_belt_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								300 => array (
+										'id' => 5787,
+										'name' => 'Huntsman Girdle',
+										'icon' => '/esoui/art/icons/gear_hircine_heavy_belt_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								301 => array (
+										'id' => 5805,
+										'name' => 'Silver Dawn Sash',
+										'icon' => '/esoui/art/icons/gear_silverdawn_light_belt_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								302 => array (
+										'id' => 5812,
+										'name' => 'Silver Dawn Belt',
+										'icon' => '/esoui/art/icons/gear_silverdawn_medium_belt_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								303 => array (
+										'id' => 5819,
+										'name' => 'Silver Dawn Girdle',
+										'icon' => '/esoui/art/icons/gear_silverdawn_heavy_belt_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								304 => array (
+										'id' => 5943,
+										'name' => 'Dead-Water Girdle',
+										'icon' => '/esoui/art/icons/gear_deadwater_heavy_waist_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								305 => array (
+										'id' => 5949,
+										'name' => 'Dead-Water Belt',
+										'icon' => '/esoui/art/icons/gear_deadwater_medium_waist_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								306 => array (
+										'id' => 5957,
+										'name' => 'Dead-Water Sash',
+										'icon' => '/esoui/art/icons/gear_deadwater_light_waist_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								307 => array (
+										'id' => 5975,
+										'name' => 'Elder Argonian Girdle',
+										'icon' => '/esoui/art/icons/gear_elderarg_heavy_waist_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								308 => array (
+										'id' => 5981,
+										'name' => 'Elder Argonian Belt',
+										'icon' => '/esoui/art/icons/gear_elderarg_medium_waist_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								309 => array (
+										'id' => 5989,
+										'name' => 'Elder Argonian Sash',
+										'icon' => '/esoui/art/icons/gear_elderarg_light_waist_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -35286,7 +36933,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Two-Handed',
-						'numCollectibles' => 340,
+						'numCollectibles' => 356,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1558,
@@ -38055,7 +39702,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5123,
 										'name' => 'Molag Kena Maul',
 										'icon' => '/esoui/art/icons/gear_molagkena_2hmace_001.dds',
-										'desc' => 'An electrified maul, in the idiom of Molag Kena.',
+										'desc' => 'An Outfit look for two-handed weapons in the Molag Kena style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -38064,7 +39711,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5162,
 										'name' => 'Ilambris Battle Axe',
 										'icon' => '/esoui/art/icons/gear_undllambris_2haxe_001.dds',
-										'desc' => 'A fiery battle axe, in the idiom of Ilambris.',
+										'desc' => 'An Outfit look for two-handed weapons in the Ilambris style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -38262,7 +39909,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5463,
 										'name' => 'Shadowrend Greatsword',
 										'icon' => '/esoui/art/icons/gear_undshadowrend_2hsword_001.dds',
-										'desc' => 'A shadowy greatsword, in the idiom of Shadowrend.',
+										'desc' => 'An Outfit look for two-handed weapons in the Shadowrend style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -38322,6 +39969,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								338 => array (
+										'id' => 5570,
+										'name' => 'Bloodspawn Battle Axe',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Bloodspawn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								339 => array (
+										'id' => 5575,
+										'name' => 'Swarm Mother Greatsword',
+										'icon' => '/esoui/art/icons/gear_undgiantspider_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Swarm Mother style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								340 => array (
+										'id' => 5580,
+										'name' => 'Sellistrix Battle Axe',
+										'icon' => '/esoui/art/icons/gear_undsellistrix_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Sellistrix style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								341 => array (
 										'id' => 5687,
 										'name' => 'Welkynar Battle Axe',
 										'icon' => '/esoui/art/icons/gear_welkynar_2haxe_001.dds',
@@ -38330,7 +40004,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								339 => array (
+								342 => array (
 										'id' => 5688,
 										'name' => 'Welkynar Maul',
 										'icon' => '/esoui/art/icons/gear_welkynar_2hmace_001.dds',
@@ -38339,11 +40013,128 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								340 => array (
+								343 => array (
 										'id' => 5689,
 										'name' => 'Welkynar Greatsword',
 										'icon' => '/esoui/art/icons/gear_welkynar_2hsword_001.dds',
 										'desc' => 'Learned from the Welkynar Crafting Style, acquired by combining Motif Fragments found in Cloudrest using Welkynar Bindings.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								344 => array (
+										'id' => 5788,
+										'name' => 'Huntsman Battle Axe',
+										'icon' => '/esoui/art/icons/gear_hircine_2haxe_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								345 => array (
+										'id' => 5789,
+										'name' => 'Huntsman Maul',
+										'icon' => '/esoui/art/icons/gear_hircine_2hmace_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								346 => array (
+										'id' => 5790,
+										'name' => 'Huntsman Greatsword',
+										'icon' => '/esoui/art/icons/gear_hircine_2hsword_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								347 => array (
+										'id' => 5820,
+										'name' => 'Silver Dawn Battle Axe',
+										'icon' => '/esoui/art/icons/gear_silverdawn_2haxe_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								348 => array (
+										'id' => 5821,
+										'name' => 'Silver Dawn Maul',
+										'icon' => '/esoui/art/icons/gear_silverdawn_2hmace_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								349 => array (
+										'id' => 5822,
+										'name' => 'Silver Dawn Greatsword',
+										'icon' => '/esoui/art/icons/gear_silverdawn_2hsword_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								350 => array (
+										'id' => 5961,
+										'name' => 'Dead-Water Battle Axe',
+										'icon' => '/esoui/art/icons/gear_deadwater_2haxe_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								351 => array (
+										'id' => 5962,
+										'name' => 'Dead-Water Maul',
+										'icon' => '/esoui/art/icons/gear_deadwater_2hmace_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								352 => array (
+										'id' => 5963,
+										'name' => 'Dead-Water Greatsword',
+										'icon' => '/esoui/art/icons/gear_deadwater_2hsword_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								353 => array (
+										'id' => 5993,
+										'name' => 'Elder Argonian Battle Axe',
+										'icon' => '/esoui/art/icons/gear_elderarg_2haxe_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								354 => array (
+										'id' => 5994,
+										'name' => 'Elder Argonian Maul',
+										'icon' => '/esoui/art/icons/gear_elderarg_2hmace_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								355 => array (
+										'id' => 5995,
+										'name' => 'Elder Argonian Greatsword',
+										'icon' => '/esoui/art/icons/gear_elderarg_2hsword_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								356 => array (
+										'id' => 6003,
+										'name' => 'Voriplasm Battle Axe',
+										'icon' => '/esoui/art/icons/gear_voriplasm_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Voriplasm style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -38353,7 +40144,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'One-Handed',
-						'numCollectibles' => 451,
+						'numCollectibles' => 471,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1563,
@@ -42031,7 +43822,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5118,
 										'name' => 'Molag Kena Sword',
 										'icon' => '/esoui/art/icons/gear_molagkena_sword_001.dds',
-										'desc' => 'An electrified sword, in the idiom of Molag Kena.',
+										'desc' => 'An Outfit look for one-handed weapons in the Molag Kena style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -42040,7 +43831,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5166,
 										'name' => 'Ilambris Sword',
 										'icon' => '/esoui/art/icons/gear_undllambris_sword_001.dds',
-										'desc' => 'A fiery sword, in the idiom of Ilambris.',
+										'desc' => 'An Outfit look for one-handed weapons in the Ilambris style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -42111,7 +43902,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								418 => array (
 										'id' => 5295,
 										'name' => 'Psijic Order Axe',
-										'icon' => '/esoui/art/icons/gear_psijicorder_axe_a_2.dds',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
 										'desc' => 'Learned from the Psijic Order Motif, acquired from various activities in Summerset.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -42292,7 +44083,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5467,
 										'name' => 'Shadowrend Axe',
 										'icon' => '/esoui/art/icons/gear_undshadowrend_axe_001.dds',
-										'desc' => 'A shadowy axe, in the idiom of Shadowrend.',
+										'desc' => 'An Outfit look for one-handed weapons in the Shadowrend style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -42379,6 +44170,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								448 => array (
+										'id' => 5574,
+										'name' => 'Bloodspawn Mace',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_1hmace_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Bloodspawn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								449 => array (
+										'id' => 5579,
+										'name' => 'Swarm Mother Mace',
+										'icon' => '/esoui/art/icons/gear_undgiantspider_1hmace_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Swarm Mother style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								450 => array (
+										'id' => 5584,
+										'name' => 'Sellistrix Mace',
+										'icon' => '/esoui/art/icons/gear_undsellistrix_1hmace_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Sellistrix style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								451 => array (
 										'id' => 5690,
 										'name' => 'Welkynar Axe',
 										'icon' => '/esoui/art/icons/gear_welkynar_axe_001.dds',
@@ -42387,7 +44205,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								449 => array (
+								452 => array (
 										'id' => 5692,
 										'name' => 'Welkynar Mace',
 										'icon' => '/esoui/art/icons/gear_welkynar_mace_001.dds',
@@ -42396,7 +44214,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								450 => array (
+								453 => array (
 										'id' => 5695,
 										'name' => 'Welkynar Sword',
 										'icon' => '/esoui/art/icons/gear_welkynar_sword_001.dds',
@@ -42405,11 +44223,164 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								451 => array (
+								454 => array (
 										'id' => 5696,
 										'name' => 'Welkynar Dagger',
 										'icon' => '/esoui/art/icons/gear_welkynar_dagger_001.dds',
 										'desc' => 'Learned from the Welkynar Crafting Style, acquired by combining Motif Fragments found in Cloudrest using Welkynar Bindings.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								455 => array (
+										'id' => 5791,
+										'name' => 'Huntsman Axe',
+										'icon' => '/esoui/art/icons/gear_hircine_1haxe_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								456 => array (
+										'id' => 5793,
+										'name' => 'Huntsman Dagger',
+										'icon' => '/esoui/art/icons/gear_hircine_dagger_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								457 => array (
+										'id' => 5794,
+										'name' => 'Huntsman Mace',
+										'icon' => '/esoui/art/icons/gear_hircine_1hmace_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								458 => array (
+										'id' => 5797,
+										'name' => 'Huntsman Sword',
+										'icon' => '/esoui/art/icons/gear_hircine_1hsword_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								459 => array (
+										'id' => 5823,
+										'name' => 'Silver Dawn Axe',
+										'icon' => '/esoui/art/icons/gear_silverdawn_1haxe_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								460 => array (
+										'id' => 5825,
+										'name' => 'Silver Dawn Dagger',
+										'icon' => '/esoui/art/icons/gear_silverdawn_dagger_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								461 => array (
+										'id' => 5826,
+										'name' => 'Silver Dawn Mace',
+										'icon' => '/esoui/art/icons/gear_silverdawn_1hmace_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								462 => array (
+										'id' => 5829,
+										'name' => 'Silver Dawn Sword',
+										'icon' => '/esoui/art/icons/gear_silverdawn_1hsword_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								463 => array (
+										'id' => 5964,
+										'name' => 'Dead-Water Axe',
+										'icon' => '/esoui/art/icons/gear_deadwater_1haxe_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								464 => array (
+										'id' => 5966,
+										'name' => 'Dead-Water Mace',
+										'icon' => '/esoui/art/icons/gear_deadwater_1hmace_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								465 => array (
+										'id' => 5969,
+										'name' => 'Dead-Water Sword',
+										'icon' => '/esoui/art/icons/gear_deadwater_1hsword_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								466 => array (
+										'id' => 5970,
+										'name' => 'Dead-Water Dagger',
+										'icon' => '/esoui/art/icons/gear_deadwater_dagger_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								467 => array (
+										'id' => 5996,
+										'name' => 'Elder Argonian Axe',
+										'icon' => '/esoui/art/icons/gear_elderarg_1haxe_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								468 => array (
+										'id' => 5998,
+										'name' => 'Elder Argonian Mace',
+										'icon' => '/esoui/art/icons/gear_elderarg_1hmace_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								469 => array (
+										'id' => 6001,
+										'name' => 'Elder Argonian Sword',
+										'icon' => '/esoui/art/icons/gear_elderarg_1hsword_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								470 => array (
+										'id' => 6002,
+										'name' => 'Elder Argonian Dagger',
+										'icon' => '/esoui/art/icons/gear_elderarg_dagger_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								471 => array (
+										'id' => 6011,
+										'name' => 'Voriplasm Sword',
+										'icon' => '/esoui/art/icons/gear_voriplasm_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Voriplasm style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -42419,7 +44390,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Shield',
-						'numCollectibles' => 117,
+						'numCollectibles' => 124,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1554,
@@ -43343,7 +45314,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5124,
 										'name' => 'Molag Kena Shield',
 										'icon' => '/esoui/art/icons/gear_molagkena_shield_001.dds',
-										'desc' => 'An electrified shield, in the idiom of Molag Kena.',
+										'desc' => 'An Outfit look for shields in the Molag Kena style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -43352,7 +45323,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5164,
 										'name' => 'Ilambris Shield',
 										'icon' => '/esoui/art/icons/gear_undllambris_shield_001.dds',
-										'desc' => 'A fiery shield, in the idiom of Ilambris.',
+										'desc' => 'An Outfit look for shields in the Ilambris style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -43442,7 +45413,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5465,
 										'name' => 'Shadowrend Shield',
 										'icon' => '/esoui/art/icons/gear_undshadowrend_shield_001.dds',
-										'desc' => 'A shadowy shield, in the idiom of Shadowrend.',
+										'desc' => 'An Outfit look for shields in the Shadowrend style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -43466,10 +45437,73 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								117 => array (
+										'id' => 5572,
+										'name' => 'Bloodspawn Shield',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Bloodspawn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								118 => array (
+										'id' => 5577,
+										'name' => 'Swarm Mother Shield',
+										'icon' => '/esoui/art/icons/gear_undgiantspider_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Swarm Mother style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								119 => array (
+										'id' => 5582,
+										'name' => 'Sellistrix Shield',
+										'icon' => '/esoui/art/icons/gear_undsellistrix_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Sellistrix style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								120 => array (
 										'id' => 5693,
 										'name' => 'Welkynar Shield',
 										'icon' => '/esoui/art/icons/gear_welkynar_shield_001.dds',
 										'desc' => 'Learned from the Welkynar Crafting Style, acquired by combining Motif Fragments found in Cloudrest using Welkynar Bindings.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								121 => array (
+										'id' => 5795,
+										'name' => 'Huntsman Shield',
+										'icon' => '/esoui/art/icons/gear_hircine_shield_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								122 => array (
+										'id' => 5827,
+										'name' => 'Silver Dawn Shield',
+										'icon' => '/esoui/art/icons/gear_silverdawn_shield_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								123 => array (
+										'id' => 5967,
+										'name' => 'Dead-Water Shield',
+										'icon' => '/esoui/art/icons/gear_deadwater_shield_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								124 => array (
+										'id' => 5999,
+										'name' => 'Elder Argonian Shield',
+										'icon' => '/esoui/art/icons/gear_elderarg_shield_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -43479,7 +45513,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bow',
-						'numCollectibles' => 117,
+						'numCollectibles' => 125,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1587,
@@ -44403,7 +46437,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5125,
 										'name' => 'Molag Kena Bow',
 										'icon' => '/esoui/art/icons/gear_molagkena_bow_001.dds',
-										'desc' => 'An electrified bow, in the idiom of Molag Kena.',
+										'desc' => 'An Outfit look for bows in the Molag Kena style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44412,7 +46446,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5163,
 										'name' => 'Ilambris Bow',
 										'icon' => '/esoui/art/icons/gear_undllambris_bow_001.dds',
-										'desc' => 'A fiery bow, in the idiom of Ilambris.',
+										'desc' => 'An Outfit look for bows in the Ilambris style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44502,7 +46536,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5464,
 										'name' => 'Shadowrend Bow',
 										'icon' => '/esoui/art/icons/gear_undshadowrend_bow_001.dds',
-										'desc' => 'A shadowy bow, in the idiom of Shadowrend.',
+										'desc' => 'An Outfit look for bows in the Shadowrend style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44526,10 +46560,82 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								117 => array (
+										'id' => 5571,
+										'name' => 'Bloodspawn Bow',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Bloodspawn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								118 => array (
+										'id' => 5576,
+										'name' => 'Swarm Mother Bow',
+										'icon' => '/esoui/art/icons/gear_undgiantspider_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Swarm Mother style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								119 => array (
+										'id' => 5581,
+										'name' => 'Sellistrix Bow',
+										'icon' => '/esoui/art/icons/gear_undsellistrix_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Sellistrix style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								120 => array (
 										'id' => 5691,
 										'name' => 'Welkynar Bow',
 										'icon' => '/esoui/art/icons/gear_welkynar_bow_001.dds',
 										'desc' => 'Learned from the Welkynar Crafting Style, acquired by combining Motif Fragments found in Cloudrest using Welkynar Bindings.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								121 => array (
+										'id' => 5792,
+										'name' => 'Huntsman Bow',
+										'icon' => '/esoui/art/icons/gear_hircine_bow_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								122 => array (
+										'id' => 5824,
+										'name' => 'Silver Dawn Bow',
+										'icon' => '/esoui/art/icons/gear_silverdawn_bow_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								123 => array (
+										'id' => 5965,
+										'name' => 'Dead-Water Bow',
+										'icon' => '/esoui/art/icons/gear_deadwater_bow_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								124 => array (
+										'id' => 5997,
+										'name' => 'Elder Argonian Bow',
+										'icon' => '/esoui/art/icons/gear_elderarg_bow_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								125 => array (
+										'id' => 6007,
+										'name' => 'Voriplasm Bow',
+										'icon' => '/esoui/art/icons/gear_voriplasm_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Voriplasm style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44539,7 +46645,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Staff',
-						'numCollectibles' => 118,
+						'numCollectibles' => 126,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1583,
@@ -45472,7 +47578,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5126,
 										'name' => 'Molag Kena Staff',
 										'icon' => '/esoui/art/icons/gear_molagkena_staff_001.dds',
-										'desc' => 'An electrified staff, in the idiom of Molag Kena.',
+										'desc' => 'An Outfit look for staves in the Molag Kena style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45481,7 +47587,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5165,
 										'name' => 'Ilambris Staff',
 										'icon' => '/esoui/art/icons/gear_undllambris_staff_001.dds',
-										'desc' => 'A fiery staff, in the idiom of Ilambris.',
+										'desc' => 'An Outfit look for staves in the Ilambris style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45571,7 +47677,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5466,
 										'name' => 'Shadowrend Staff',
 										'icon' => '/esoui/art/icons/gear_undshadowrend_staff_001.dds',
-										'desc' => 'A shadowy staff, in the idiom of Shadowrend.',
+										'desc' => 'An Outfit look for staves in the Shadowrend style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45595,10 +47701,82 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								118 => array (
+										'id' => 5573,
+										'name' => 'Bloodspawn Staff',
+										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Bloodspawn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								119 => array (
+										'id' => 5578,
+										'name' => 'Swarm Mother Staff',
+										'icon' => '/esoui/art/icons/gear_undgiantspider_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Swarm Mother style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								120 => array (
+										'id' => 5583,
+										'name' => 'Sellistrix Staff',
+										'icon' => '/esoui/art/icons/gear_undsellistrix_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Sellistrix style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								121 => array (
 										'id' => 5694,
 										'name' => 'Welkynar Staff',
 										'icon' => '/esoui/art/icons/gear_welkynar_staff_001.dds',
 										'desc' => 'Learned from the Welkynar Crafting Style, acquired by combining Motif Fragments found in Cloudrest using Welkynar Bindings.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								122 => array (
+										'id' => 5796,
+										'name' => 'Huntsman Staff',
+										'icon' => '/esoui/art/icons/gear_hircine_staff_a.dds',
+										'desc' => 'Learned from the Huntsman Motif, acquired by completing the March of Sacrifices Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								123 => array (
+										'id' => 5828,
+										'name' => 'Silver Dawn Staff',
+										'icon' => '/esoui/art/icons/gear_silverdawn_staff_a.dds',
+										'desc' => 'Learned from the Silver Dawn Motif, acquired by completing the Moon Hunter Keep Dungeon.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								124 => array (
+										'id' => 5968,
+										'name' => 'Dead-Water Staff',
+										'icon' => '/esoui/art/icons/gear_deadwater_staff_a.dds',
+										'desc' => 'Learned from the Dead-Water Crafting Style, acquired from completing daily quests in Murkmire.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								125 => array (
+										'id' => 6000,
+										'name' => 'Elder Argonian Staff',
+										'icon' => '/esoui/art/icons/gear_elderarg_staff_a.dds',
+										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								126 => array (
+										'id' => 6010,
+										'name' => 'Voriplasm Staff',
+										'icon' => '/esoui/art/icons/gear_voriplasm_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Voriplasm style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 

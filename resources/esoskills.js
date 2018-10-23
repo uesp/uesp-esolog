@@ -828,6 +828,12 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	{
 		value = a * values.WintersEmbraceSkills;
 	}
+	else if (type == -68)
+	{
+		value = a * values.Magicka;
+		maxValue = b * values.Health;
+		if (value > maxValue) value = maxValue;
+	}
 	else if (type == -51)
 	{
 		if (values.LightArmor == null) 
@@ -2051,6 +2057,12 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		a = Math.round(a);
 		output += srcString + " = " + a + " WintersEmbraceSkills";
 		typeString = "Winter's Embrace Slotted";
+	}
+	else if (type == -68)
+	{
+		b = Math.round(b * 100);
+		output += srcString + " = " + a + " Magicka    (Capped at " + b + "% Health)";
+		typeString = "Magicka with Health Cap";
 	}
 	else
 	{
