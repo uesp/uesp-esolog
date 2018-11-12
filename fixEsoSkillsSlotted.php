@@ -55,10 +55,10 @@ $ESO_SLOTTED_SKILLS = array(
 		30460 => -68,
 		30463 => -68,
 		
-		29489 => -69,	//Sorcerer: Hardened Ward
-		30466 => -69,
-		30470 => -69,
-		30474 => -69,
+		29489 => -68,	//Sorcerer: Hardened Ward
+		30466 => -68,
+		30470 => -68,
+		30474 => -68,
 		
 		29482 => -68,	//Sorcerer: Empowered Ward
 		30478 => -68,
@@ -135,25 +135,25 @@ $ESO_COEF_VALUE = array(
 		41121 => array(0.3410, 0.4, 0),
 		
 		29665 => array(						//Light Armor: Evocation
-					array(0.02, 0, 0),
-					array(0.01, 0, 0) 
+					array(2, 0, 0),
+					array(1, 0, 0) 
 				),
 		45557 => array(
-					array(0.04, 0, 0),
-					array(0.02, 0, 0) 
+					array(4, 0, 0),
+					array(2, 0, 0) 
 				),
 		
 		29639 => array(						//Light Armor: Grace
-					array(0.01, 0, 0),
-					array(0.01, 0, 0) 
+					array(1, 0, 0),
+					array(1, 0, 0) 
 				),
 		45548 => array(
-					array(0.02, 0, 0),
-					array(0.02, 0, 0)
+					array(2, 0, 0),
+					array(2, 0, 0)
 				),
 		45549 => array(
-					array(0.04, 0, 0),
-					array(0.03, 0, 0)
+					array(4, 0, 0),
+					array(3, 0, 0)
 				),
 		
 		28418 => array(0.3655, 0.4, 0),		//Sorcerer: Conjured Ward

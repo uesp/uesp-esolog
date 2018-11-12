@@ -23,7 +23,7 @@ class CEsoItemSearchPopup
 	public $inputItemIntType = -1;
 	
 	public $inputItemTransmuteTrait = -1;
-	public $inputLimit = 100;
+	public $inputLimit = 150;
 	
 	public $resultItems = array();
 	public $resultError = array("error" => true);

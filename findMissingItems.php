@@ -7,13 +7,17 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "19";
-$VERSION = "19";
+$TABLEPREFIX = "20";
+$VERSION = "20";
 $FIRSTID = 3;
 $LASTID = 160000;
-$checkData = array();
 $MAGICCOUNT = 1483;
 $MAGICCOUNT = 1533;
+
+$luaFunctionCount = 1;
+$MAX_ITEMS_PER_FUNCTION = 1;
+
+$checkData = array();
 
 $query = "SELECT * FROM itemIdCheck WHERE version='$VERSION';";
 $result = $db->query($query);
@@ -26,6 +30,7 @@ while ($row = $result->fetch_assoc())
 
 print("Found ".count($checkData)." check item rows!\n");
 
+$output = "function uespminetest$luaFunctionCount()\n";
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
@@ -38,23 +43,45 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	if (!$result) exit("ERROR: Database query error (finding item count)!\n" . $db->error);
 	$itemData = $result->fetch_assoc();
 	$itemCount = $itemData['count'];
+	$fixItem = false;
 	
 	if ($idCheck != null)
 	{
 		if ($itemCount == 0)
 		{
 			print("\t$id: Missing complete item!\n");
+			$fixItem = true;
 		}
 		else if ($itemCount != 1 && $itemCount < $MAGICCOUNT)
 		{
 			print("\t$id: Missing partial item data ($itemCount records)!\n");
+			$fixItem = true;
 		}
 	}
 	else if ($idCheck == null && $itemCount > 0)
 	{
 		print("\t$id: Item data where it should be missing ($itemCount)!\n");
 	}
-	
+		
+	if ($fixItem)
+	{
+		$output .= "\tuespLog.MineItems($id, $id) \n";
+		++$linesOutput;
+				
+		if (($linesOutput % $MAX_ITEMS_PER_FUNCTION) == 0)
+		{
+			$output .= "\tuespLog.Msg('Done uespminetest$luaFunctionCount...')\n";
+			++$luaFunctionCount;			
+			$output .= "\tzo_callLater(uespminetest$luaFunctionCount, 1000)\n";
+			$output .= "end\n";
+			$output .= "function uespminetest$luaFunctionCount()\n";					
+		}
+		
+	}
 	
 }
+
+$output .= "\tuespLog.Msg('Done fixing mined items...')\n";
+$output .= "end\n";
+file_put_contents("fixitems.lua", $output, 0);
 
