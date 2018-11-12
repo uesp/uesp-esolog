@@ -9,7 +9,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "19";
+$TABLE_SUFFIX = "20";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
@@ -98,5 +98,5 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 	
 }
 
-
-				
+$output = "end\n";
+file_put_contents("fixitems.lua", $output, FILE_APPEND);				

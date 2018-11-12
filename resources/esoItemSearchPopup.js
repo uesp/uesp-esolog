@@ -154,7 +154,7 @@ UESP.ESO_ITEMQUALITYLEVEL_INTTYPEMAP_JEWELRY =
 	/* Class Constructor */
 UESP.EsoItemSearchPopup = function () 
 {
-	this.ROW_LIMIT = 100;
+	this.ROW_LIMIT = 150;
 	
 	this.iconURL = "//esoicons.uesp.net";
 	this.queryURL = "//esolog.uesp.net/esoItemSearchPopup.php";
@@ -732,7 +732,7 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 			}
 			else if (rowCount > this.ROW_LIMIT)
 			{
-				rowCount -= 100;
+				rowCount -= this.ROW_LIMIT;
 				newResults += "Found " + rowCount + " more results! Try a more specific search query.";
 			}
 			

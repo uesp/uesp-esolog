@@ -2918,7 +2918,7 @@ $ESO_SKILLTYPESTYPE = array(
 
 function GetEsoUpdateVersion()
 {
-	return 19;
+	return 20;
 }
 
 
@@ -3031,13 +3031,13 @@ function GetEsoItemTableSuffix($version)
 		case '1.9':
 		case '119':
 		case '19':
-			return "";
+			return "19";
 		case '120pts':
 		case '20pts':
 			return "20pts";
 		case '120':
 		case '20':
-			return "20";
+			return "";
 	}
 
 	return "";

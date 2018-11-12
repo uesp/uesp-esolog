@@ -925,6 +925,10 @@ class EsoLogViewer
 					'table' => 'quest',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
+					
+					'sortTranslate' => array(
+								'zone' => 'location.zone',
+							),
 			
 					'transform' => array(
 							'type' => 'GetEsoQuestTypeText',
@@ -4563,8 +4567,10 @@ If you do not understand what this information means, or how to use this webpage
 		$sortFields = $recordInfo['sort'];
 		if ($customSort != '') $sortFields = $customSort;
 		
+		if ($recordInfo['sortTranslate'] != null && $recordInfo['sortTranslate'][$sortFields] != null) $sortFields = $recordInfo['sortTranslate'][$sortFields];
+		
 		if (is_array($sortFields)) $sortFields = implode(",", $sortFields);
-			
+					
 		$sort = " ORDER BY {$sortFields} ";
 		
 		if ($this->recordSortOrder != '')
