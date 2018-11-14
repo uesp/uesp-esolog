@@ -939,6 +939,61 @@ window.IsEsoSkillValidForMaelstromDWEnchant = function (skillData)
 }
 
 
+ESO_SKILL_DURATION_MATCHINDEXES = {
+		"Veiled Strike": [ 0 ],
+		"Surprise Attack": [ 0, 1 ],
+		"Concealed Weapon": [ 0 ],
+		"Shadow Cloak": [ 0 ],
+		"Shadowy Disguise": [ 0 ],
+		"Dark Cloak": [ 0 ],
+		"Aspect of Terror": [ 0 ],
+		"Mass Hysteria": [ 0 ],
+		"Manifestation of Terror": [ 0 ],
+		"Summon Shade": [ 0 ],
+		"Dark Shade": [ 0 ],
+		"Shadow Image": [ 0 ],
+};
+
+
+window.UpdateEsoSkillDurationDescription = function(skillData, coefDesc, inputValues)
+{
+	var modDuration = 0;
+	var newDesc = coefDesc;
+	
+	if (inputValues == null) inputValues = g_LastSkillInputValues;
+	
+	if (inputValues.SkillDuration != null && inputValues.SkillDuration[skillData.baseName] != null) 
+	{
+		modDuration = +inputValues.SkillDuration[skillData.baseName];
+	}
+	
+	if (modDuration == 0) return newDesc;
+	
+	var durationData = ESO_SKILL_DURATION_MATCHINDEXES[skillData.name]
+	if (durationData == null) return newDesc;
+	
+	for (var i = 0; i < durationData.length; i++) 
+	{
+		var durationIndex = durationData[i] + 1;
+		var matchIndex = 0;
+		
+		newDesc = newDesc.replace(/(\|c[a-fA-F0-9]{6})([0-9\.]+)(\|r)( seconds| minutes| minute)/gi, function(match, p1, p2, p3, p4, offset, string)
+				{
+					++matchIndex; 
+					if (durationIndex != matchIndex) return p1 + p2 + p3 + p4;
+					
+					var newDuration = Math.floor(parseFloat(p2) * (1 + modDuration)*10)/10;
+
+					skillData.rawOutput["Tooltip Duration #" + matchIndex] = "" + p2 + " Base x " + Math.floor(modDuration*100) + "% = " + newDuration + p4;
+					
+					return p1 + newDuration + p3 + p4;
+				});
+	}
+	
+	return newDesc;
+}
+
+
 window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffectLines, outputRaw)
 {
 	var output = "";
@@ -980,6 +1035,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 	coefDesc = UpdateEsoSkillDamageDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillHealingDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillDamageShieldDescription(skillData, coefDesc, inputValues);	
+	coefDesc = UpdateEsoSkillDurationDescription(skillData, coefDesc, inputValues);
 	
 	if (useHtml)
 	{
