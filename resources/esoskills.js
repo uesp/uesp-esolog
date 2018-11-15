@@ -152,8 +152,12 @@ window.ESO_FREE_PASSIVES = {
 		//41920 : 1,  // Bat Swarm not free?
 		42358 : 1,
 		
+		32455 : 1,		// Werewolf Transformation 1
+		
 		103632 : 1, // Update 18
 		103793 : 1,
+		
+		32634 : 1,	// Update 20: Devour
 };
 
 
