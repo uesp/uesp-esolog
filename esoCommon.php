@@ -2916,6 +2916,41 @@ $ESO_SKILLTYPESTYPE = array(
 );
 
 
+$ESO_FREE_SKILLS = array(
+		78219 => "passive",
+		74580 => "passive",
+		45542 => "passive",
+		47276 => "passive",
+		47288 => "passive",
+		46727 => "passive",
+		44590 => "passive",
+		47282 => "passive",
+		46758 => "passive",
+		44625 => "passive",
+		36582 => "passive",
+		36247 => "passive",
+		36588 => "passive",
+		35965 => "passive",
+		36312 => "passive",
+		36063 => "passive",
+		36626 => "passive",
+		33293 => "passive",
+		84680 => "passive",
+		36008 => "passive",
+		
+		43056 => "active",
+		//41920 => "ultimate",  // Bat Swarm not free?
+		
+		42358 => "ultimate",
+		32455 => "ultimate",		// Werewolf Transformation 1
+		
+		103632 => "passive", // Update 18
+		103793 => "passive",
+		
+		32634 => "passive",	// Update 20: Devour
+);
+
+
 function GetEsoUpdateVersion()
 {
 	return 20;
