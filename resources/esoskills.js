@@ -1142,10 +1142,13 @@ window.UpdateEsoSkillDamageShieldDescription = function (skillData, skillDesc, i
 	for (var i = 0; i < ESO_SKILL_DAMAGESHIELDMATCHES.length; ++i)
 	{
 		var matchData = ESO_SKILL_DAMAGESHIELDMATCHES[i];
+		var matchIndex = 0;
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
 		{			
 			var modDamageShield = parseFloat(p2);
+			
+			matchIndex = matchIndex + 1;
 			
 			newRawOutput = {};
 			newRawOutput.baseShield = p2;
@@ -1153,6 +1156,13 @@ window.UpdateEsoSkillDamageShieldDescription = function (skillData, skillDesc, i
 			
 			modDamageShield *= 1 + newRawOutput.shieldBonus;
 			modDamageShield = Math.floor(modDamageShield);
+			
+				/* Cap shield if possible */
+			if (inputValues.Health && skillData["b" + matchIndex])
+			{
+				var maxShield = Math.floor(skillData["b" + matchIndex] * inputValues.Health);
+				if (modDamageShield > maxShield) modDamageShield = maxShield;
+			}
 			
 			newRawOutput.finalShield = modDamageShield;
 			rawOutput.push(newRawOutput);
