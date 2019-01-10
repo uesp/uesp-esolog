@@ -2900,6 +2900,59 @@ $ESO_DESTRUCTION_SKILLS = array(
 );
 
 
+	/* Skills that are classed as "Poison based" for the DK's World in Ruin Passive. */
+$ESO_POISON_SKILLS = array(
+		20668 => 1,		// Venemous Claw 		
+		41990 => 1,		// Shadow Silk 		
+		42012 => 1,		// Tangling Webs 		
+		38645 => 1,		// Venom Arrow 		
+		38660 => 1,		// Poison Injection 	
+		38685 => 1,		// Lethal Arrow 		
+		28869 => 1,		// Poison Arrow 		
+		38701 => 1,		// Acid Spray 			
+		20944 => 1,		// Noxious Breath 		
+		39425 => 1,		// Trapping Webs 	
+);
+
+
+	/* Skills that are have flame AOE damage for the DK's World in Ruin Passive.
+	 * Empty arrays mean all flame damage in the skill tooltip is increased. Otherwise
+	 * only the listed skill coefficient indices are affected. */
+$ESO_FLAMEAOE_SKILLS = array(
+		83625 => array(),	// Fire Storm	 			
+		83682 => array(),	// Eye of Flame 			
+		85126 => array(),	// Fiery Rage 				
+		28807 => array(),	// Wall of Fire 			
+		39012 => array(),	// Blockade of Fire 		
+		39053 => array(),	// Unstable Wall of Fire 	
+		28794 => array(),	// Fire Impluse 			
+		39145 => array(),	// Fire Ring 				
+		39162 => array(),	// Flame Pulsar
+		20917 => array(),	// Fiery Breath, DoT Component confirmed update 20
+		20930 => array(),	// Engulfing Flames, DoT Component confirmed update 20
+		28967 => array(),	// Inferno 
+		32853 => array(),	// Flames of Oblivion, confirmed update 20
+		31837 => array(2 => 1),	// Inhale 					
+		32785 => array(2 => 1),	// Draw Essence 			
+		32792 => array(2 => 1),	// Deep Breath 			
+		15957 => array(),	// Magma Armor 			
+		17874 => array(),	// Magma Shell			
+		20252 => array(2 => 1),	// Burning Talons, confirmed update 20 			
+		32710 => array(),	// Eruption, confirmed update 20				
+		32715 => array(),	// Ferocious Leap 			
+		32947 => array(),	// Standard of Might, confirmed update 20 		
+		32958 => array(),	// Shifting Standard, confirmed update 20 		
+		28988 => array(),	// Dragonknight Standard, confirmed update 20 	
+		16536 => array(),	// Meteor, confirmed update 20 					
+		40493 => array(),	// Shooting Star, confirmed update 20
+		31632 => array(),	// Fire Rune 				
+		40465 => array(1 => 1),	// Scalding Rune, confirmed update 20 			
+		40470 => array(),	// Volcanic Rune
+		21732 => array(1 => 1),	// Reflective Light, confirmed update 20	
+		
+);
+
+
 $ESO_SKILLTYPESTYPE = array(
 		0 => "Class",
 		1 => "Dragonknight",
