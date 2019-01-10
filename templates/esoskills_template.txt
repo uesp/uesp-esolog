@@ -94,7 +94,9 @@
 	var g_EsoSkillActiveData = {activeDataJson};
 	var g_EsoSkillBarData = {skillBarJson};
 	var g_EsoSkillDestructionData = {destructionDataJson};
-	var g_EsoSkillDestructionElement = "";	
+	var g_EsoSkillDestructionElement = "";
+	var g_EsoSkillPoisonSkills = {poisonSkillsJson};
+	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};	
 </script>
 <div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>
 <hr>

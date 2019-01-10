@@ -1186,6 +1186,8 @@ class CEsoViewSkills
 	public function CreateOutputHtml()
 	{
 		global $ESO_DESTRUCTION_SKILLS;
+		global $ESO_POISON_SKILLS;
+		global $ESO_FLAMEAOE_SKILLS;
 		
 		$startTime = microtime(true);
 	
@@ -1220,7 +1222,9 @@ class CEsoViewSkills
 				'{activeDataJson}' => json_encode($this->activeData),
 				'{passiveDataJson}' => json_encode($this->passiveData),
 				'{skillBarJson}'  => json_encode($this->initialSkillBarData),
-				'{destructionDataJson}'  => json_encode($ESO_DESTRUCTION_SKILLS), 
+				'{destructionDataJson}'  => json_encode($ESO_DESTRUCTION_SKILLS),
+				'{poisonSkillsJson}' => json_encode($ESO_POISON_SKILLS),
+				'{flameAOESkillsJson}' => json_encode($ESO_FLAMEAOE_SKILLS),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))

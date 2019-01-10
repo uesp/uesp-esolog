@@ -1496,9 +1496,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	{
 		var matchData = ESO_SKILL_DAMAGEMATCHES[i];
 		var thisEffectIsDot = isDot;
+		var matchIndex = 0;
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, p6, p7, p8, offset, string) 
 		{
+			matchIndex = matchIndex + 1;
+			
 			if (inputValues.Damage[matchData.damageId] == null) return string;
 			
 			var modDamage = parseFloat(p3);
@@ -1588,6 +1591,23 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 					{
 						baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
 						newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
+					}
+				}
+			}
+			
+			
+			if (g_EsoSkillFlameAOESkills && inputValues.FlameAOEDamageDone)
+			{
+				var flameData = g_EsoSkillFlameAOESkills[skillData.abilityId];
+				if (flameData == null) flameData = g_EsoSkillFlameAOESkills[skillData.displayId];
+				
+				if (flameData)
+				{
+					if (flameData.length === 0 || flameData[matchIndex])
+					{
+						baseFactor += Math.round(inputValues.FlameAOEDamageDone*100)/100;
+						if (newRawOutput.aoeDamageDone == null) newRawOutput.aoeDamageDone = 0;
+						newRawOutput.aoeDamageDone += inputValues.FlameAOEDamageDone;
 					}
 				}
 			}
@@ -1694,6 +1714,18 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.Skill != null) SkillFactor += inputValues.UltimateCost.Skill;
 		if (inputValues.UltimateCost.Set   != null) SkillFactor += inputValues.UltimateCost.Set;
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor += inputValues.UltimateCost.Buff;
+	}
+	
+		/* DK World in Ruins Passive */
+	if (g_EsoSkillPoisonSkills && inputValues.PoisonStaminaCost)
+	{
+		var poisonData = g_EsoSkillPoisonSkills[skillData.abilityId];
+		if (poisonData == null) poisonData = g_EsoSkillPoisonSkills[skillData.displayId];
+		
+		if (poisonData)
+		{
+			SkillFactor += inputValues.PoisonStaminaCost;
+		}		
 	}
 	
 	var output = "";
