@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "20";
+	public $TABLE_SUFFIX = "21pts";
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
 
@@ -32,6 +32,7 @@ class CEsoCreateSkillTree
 					"index1" => 2,
 					"index2" => 3,
 			), //*/	
+/*					// Changed in update 21
 			array(		// Magnus
 					"id" => array(35995, 45259, 45260),
 					"race1" => "Breton",
@@ -40,7 +41,7 @@ class CEsoCreateSkillTree
 					"index2" => 3,
 					"req1" => array(5, 15, 30),
 					"req2" => array(10, 20, 40),
-			),
+			), 
 			array(		// Steathly
 					"id" => array(36022, 45295, 45296),
 					"race1" => "Wood Elf",
@@ -49,7 +50,7 @@ class CEsoCreateSkillTree
 					"index2" => 3,
 					"req1" => array(25, 35, 50),
 					"req2" => array(10, 20, 40),
-			),
+			), //*/
 			/*
 			array(		// Shield Affinity
 					"id" => array(36312),
@@ -57,14 +58,14 @@ class CEsoCreateSkillTree
 					"race2" => "Redguard",
 					"index1" => 1,
 					"index2" => 1,
-			), //*/
+			), 
 			array(		// Conditioning
 					"id" => array(36153, 45279, 45280),
 					"race1" => "Imperial",
 					"race2" => "Redguard",
 					"index1" => 3,
 					"index2" => 3,
-			),
+			),//*/
 	);
 	
 		
