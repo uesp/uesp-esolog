@@ -86,12 +86,13 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744221569218248704; //v19 1534166628
 	//const START_MINEITEM_TIMESTAMP = ; //v20pts ?
 	const START_MINEITEM_TIMESTAMP = 4744246935181852672; //v20 1540214345
-	  	
+	//const START_MINEITEM_TIMESTAMP = ;	// v21pts 1548072000
+		  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "21pts";
+	const SKILLS_TABLESUFFIX   = "21pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;

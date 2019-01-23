@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "20";
+$TABLE_SUFFIX = "21pts";
 $PRINT_TABLE = false;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");

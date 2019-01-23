@@ -74,6 +74,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100023" => "4.0",
 		"100024" => "4.1",
 		"100025" => "4.2",
+		"100026" => "4.3",
 );
 
 
@@ -527,6 +528,11 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		73 => "Welkynar",
 		74 => "Dremora",
 		75 => "Pyandonean",
+		77 => "Huntsman",
+		78 => "Silver Dawn",
+		79 => "Dead-Water",
+		80 => "Honor Guard",
+		81 => "Elder Argonian",
 	
 );
 
@@ -682,7 +688,11 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		1050 => "Lockpick",
 		106 => "Material Upgrader",
 		107 => "Key",
+		108 => "Runebox Fragment",
+		109 => "Collectible Fragment",
+		110 => "Upgrade Fragment",
 		1100 => "Weapon Booster",
+		111 => "Toy",
 		1150 => "Armor Booster",
 		1200 => "Enchantment Booster",
 		1250 => "Jewelry Glyph",
@@ -690,6 +700,8 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		1350 => "Flavoring",
 		1400 => "Poison",
 		1450 => "Potion Solvent",
+		1460 => "Furnishing Material",
+		1465 => "Furnishing Material",
 		150 => "Herb",
 		1500 => "Raw Material",
 		151 => "Fungus",
@@ -707,6 +719,7 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		1750 => "Material",
 		176 => "Furnishing Design",
 		177 => "Furnishing Blueprint",
+		178 => "Furnishing Sketch",
 		1800 => "Temper",
 		1850 => "Resin",
 		1900 => "Tannin",
@@ -722,6 +735,7 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		212 => "Seating",
 		213 => "Crafting Station",
 		214 => "Target Dummy",
+		215 => "Attunable Station",
 		2150 => "Trash",
 		22 => "Tonic Beverage",
 		2200 => "Tablet",
@@ -731,6 +745,7 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		2350 => "Aspect Runestone",
 		24 => "Tincture Beverage",
 		2400 => "Essence Runestone",
+		2410 => "Furnishing Material",
 		2450 => "Fish",
 		25 => "Cordial Tea Beverage",
 		250 => "Weapon",
@@ -742,8 +757,10 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		27 => "Drink",
 		2700 => "Dye Stamp",
 		2750 => "Master Writ",
+		2760 => "Holiday Writ",
 		3 => "Vegetable Dish",
 		300 => "Armor",
+		3100 => "Keep Recall Stone",		
 		350 => "Augment",
 		4 => "Savoury Dish",
 		40 => "Meat Ingredient",
@@ -781,6 +798,8 @@ $ESO_ITEMSPECIALTYPE_TEXTS = array(
 		800 => "Raw Material",
 		81 => "Monster Trophy",
 		850 => "Container",
+		851 => "Event Container",
+		852 => "Style Page Container",
 		900 => "Soul Gem",
 		950 => "Weapon Glyph",
 		
@@ -922,6 +941,21 @@ $ESO_ITEMSPECIALTYPE_RAW_TEXTS = array(
 		3050 => "Jewelry Raw Trait",
 		2950 => "Jewelry Trait",
 		178 => "Jewelry Furnishing Sketch",
+			
+		107 => "Key",				// Update 21
+		108 => "Runebox Fragment",
+		109 => "Collectible Fragment",
+		110 => "Upgrade Fragment",
+		111 => "Toy",
+		1460 => "Furnishing Material",
+		1465 => "Furnishing Material",
+		178 => "Furnishing Sketch",
+		215 => "Attunable Station",
+		2410 => "Furnishing Material",
+		2760 => "Holiday Writ",
+		3100 => "Keep Recall Stone",
+		851 => "Event Container",
+		852 => "Style Page Container",
 );
 
 
@@ -1322,6 +1356,14 @@ $ESO_SET_INDEXES = array(
 		426 => "Perfect Virulent Shot",
 		427 => "Perfect Wild Impulse",
 		428 => "Perfect Mender's Ward",
+		429 => "Mighty Glacier",
+		430 => "Tzogvin's Warband",
+		431 => "Icy Conjuror",
+		432 => "Stonekeeper",
+		433 => "Frozen Watcher",
+		434 => "Scavenging Demise",
+		435 => "Auroran's Thunder",
+		436 => "Symphony of Blades",
 );
 
 
@@ -3126,6 +3168,9 @@ function GetEsoItemTableSuffix($version)
 		case '120':
 		case '20':
 			return "";
+		case '121pts':
+		case '21pts':
+			return "21pts";
 	}
 
 	return "";

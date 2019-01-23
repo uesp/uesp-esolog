@@ -2934,14 +2934,13 @@ window.EnableEsoRaceSkills = function(raceName)
 	
 	raceId = raceId.replace(/ /g, "_");
 	
-	var skillElements = $("#" + raceName + "_Skills").children(".esovsAbilityBlock");
+	var skillElements = $("#" + raceId).children(".esovsAbilityBlock");
 
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		
 		if (ESO_FREE_PASSIVES[skillId]) PurchaseEsoSkill(skillId);		
-	});
-	
+	});	
 
 	classElement.next(".esovsSkillType").show();
 	raceElement.show();
