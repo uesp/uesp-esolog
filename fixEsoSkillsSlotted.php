@@ -49,7 +49,7 @@ $ESO_SLOTTED_SKILLS = array(
 		41133 => -52,
 		41135 => -52,
 		41137 => -52,
-		
+		/*
 		28418 => -68,	//Sorcerer: Conjured Ward
 		30457 => -68,
 		30460 => -68,
@@ -78,7 +78,7 @@ $ESO_SLOTTED_SKILLS = array(
 		39182 => -68,	//Light Armor: Harness Magicka
 		41115 => -68,
 		41118 => -68,
-		41121 => -68,
+		41121 => -68, */
 		
 		29665 => -51,	//Light Armor: Evocation
 		45557 => -51,
@@ -119,6 +119,7 @@ $ESO_COEF_VALUE = array(
 		41135 => array(0.9, 0, 18),
 		41137 => array(0.9, 0, 18),
 		
+	/* Old Values
 		29338 => array(0.3300, 0.4, 0),		//Light Armor: Annulment
 		41106 => array(0.3336, 0.4, 0),
 		41107 => array(0.3372, 0.4, 0),
@@ -132,7 +133,7 @@ $ESO_COEF_VALUE = array(
 		39182 => array(0.3410, 0.4, 0),		//Light Armor: Harness Magicka
 		41115 => array(0.3410, 0.4, 0),
 		41118 => array(0.3410, 0.4, 0),
-		41121 => array(0.3410, 0.4, 0),
+		41121 => array(0.3410, 0.4, 0), */
 		
 		29665 => array(						//Light Armor: Evocation
 					array(2, 0, 0),
@@ -156,6 +157,7 @@ $ESO_COEF_VALUE = array(
 					array(3, 0, 0)
 				),
 		
+/* Old Values		
 		28418 => array(0.3655, 0.4, 0),		//Sorcerer: Conjured Ward
 		30457 => array(0.3694, 0.4, 0),
 		30460 => array(0.3735, 0.4, 0),
@@ -169,7 +171,7 @@ $ESO_COEF_VALUE = array(
 		29482 => array(0.3775, 0.4, 0),		//Sorcerer: Empowered Ward
 		30478 => array(0.3817, 0.4, 0),
 		30482 => array(0.3858, 0.4, 0),
-		30486 => array(0.3900, 0.4, 0),
+		30486 => array(0.3900, 0.4, 0), */
 );
 
 
