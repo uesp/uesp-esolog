@@ -3037,12 +3037,26 @@ $ESO_FREE_SKILLS = array(
 		//41920 => "ultimate",  // Bat Swarm not free?
 		
 		42358 => "ultimate",
-		32455 => "ultimate",		// Werewolf Transformation 1
+		32455 => "ultimate",	// Werewolf Transformation 1
 		
 		103632 => "passive", // Update 18
 		103793 => "passive",
 		
 		32634 => "passive",	// Update 20: Devour
+);
+
+
+$ESO_FREE_RACIAL_SKILLS = array(
+		36582 => "Argonian",
+		36247 => "Breton",
+		36588 => "Dark Elf",
+		35965 => "High Elf",
+		36312 => "Imperial",
+		36063 => "Khajiit",
+		36626 => "Nord",
+		33293 => "Orc",
+		84680 => "Redguard",
+		36008 => "Wood Elf",		
 );
 
 
