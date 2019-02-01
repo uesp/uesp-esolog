@@ -2845,9 +2845,15 @@ window.RemoveEsoRaceSkillsFromPassiveData = function()
 	for (var skillId in g_EsoSkillPassiveData)
 	{
 		var skill = g_SkillsData[skillId]
+		var skillId1 = g_EsoSkillPassiveData[skillId].abilityId;
 		
 		if (skill == null) continue;
-		if (skill.raceType != "") deleteSkillIds.push(skillId);
+		
+		if (skill.raceType != "") 
+		{
+			deleteSkillIds.push(skillId);
+			if (skillId != skillId1) deleteSkillIds.push(skillId1);
+		}
 	}
 	
 	for (var index in deleteSkillIds)
@@ -3531,6 +3537,7 @@ window.OnEsoSkillLinePurchaseAll = function ()
 window.OnEsoSkillLineResetAll = function ()
 {
 	var skillElements = $(this).parent().children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
+	var skillType = $(this).parent(".esovsSkillContentBlock").attr("skilltype");
 	
 	g_EsoSkillUpdateEnable = false;
 	
@@ -3538,6 +3545,8 @@ window.OnEsoSkillLineResetAll = function ()
 		var skillId = $(this).attr("skillid");
 		ResetEsoPurchasedSkill(skillId);
 	});
+	
+	if (skillType == "Racial") RemoveEsoRaceSkillsFromPassiveData();
 	
 	g_EsoSkillUpdateEnable = true;
 	UpdateEsoSkillTotalPoints();
