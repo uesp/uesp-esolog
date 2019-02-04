@@ -81,4 +81,5 @@
 	var g_EsoSkillDestructionElement = "";
 	var g_EsoSkillPoisonSkills = {poisonSkillsJson};
 	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};
+	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};
 </script>

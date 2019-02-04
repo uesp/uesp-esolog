@@ -1188,6 +1188,7 @@ class CEsoViewSkills
 		global $ESO_DESTRUCTION_SKILLS;
 		global $ESO_POISON_SKILLS;
 		global $ESO_FLAMEAOE_SKILLS;
+		global $ESO_ELFBANE_SKILLS;
 		
 		$startTime = microtime(true);
 	
@@ -1225,6 +1226,7 @@ class CEsoViewSkills
 				'{destructionDataJson}'  => json_encode($ESO_DESTRUCTION_SKILLS),
 				'{poisonSkillsJson}' => json_encode($ESO_POISON_SKILLS),
 				'{flameAOESkillsJson}' => json_encode($ESO_FLAMEAOE_SKILLS),
+				'{elfBaneSkillsJson}' => json_encode($ESO_ELFBANE_SKILLS),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))

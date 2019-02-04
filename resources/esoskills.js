@@ -1040,6 +1040,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 	coefDesc = UpdateEsoSkillHealingDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillDamageShieldDescription(skillData, coefDesc, inputValues);	
 	coefDesc = UpdateEsoSkillDurationDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillElfBaneDurationDescription(skillData, coefDesc, inputValues);
 	
 	if (useHtml)
 	{
@@ -1661,6 +1662,63 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 }
 
 
+// 1537 Flame Damage every 1 second for 15 seconds
+// 5605 Flame Damage over 8.5 seconds
+// 613 Flame Damage to nearby enemies each second for 9 seconds.
+
+ESO_SKILL_ELFBANEDURATIONMATCHES = 
+[
+		/( Flame Damage every \|c[a-fA-F0-9]{6}[^|]*\|r second for )(\|c[a-fA-F0-9]{6})([^|]*)(\|r seconds)/gi,
+		/( Flame Damage over )(\|c[a-fA-F0-9]{6})([^|]*)(\|r seconds)/gi,
+		/( Flame Damage to nearby enemies each second for )(\|c[a-fA-F0-9]{6})([^|]*)(\|r seconds)/gi,
+];
+
+
+window.UpdateEsoSkillElfBaneDurationDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	var displayId = skillData['displayId'];
+	var skillId = skillData['abilityId'];
+	var elfBaneSkill = null;
+	
+	if (inputValues == null) return newDesc;
+	if (inputValues.ElfBaneDuration == null || inputValues.ElfBaneDuration == 0) return newDesc;
+	
+	elfBaneSkill = g_EsoSkillElfBaneSkills[skillId];
+	if (elfBaneSkill == null) elfBaneSkill = g_EsoSkillElfBaneSkills[displayId];
+	if (elfBaneSkill == null) return newDesc;
+	
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
+	
+	for (var i = 0; i < ESO_SKILL_ELFBANEDURATIONMATCHES.length; ++i)
+	{
+		var match = ESO_SKILL_ELFBANEDURATIONMATCHES[i];
+		
+		newDesc = newDesc.replace(match, function(match, p1, p2, p3, p4, offset, string) 
+				{
+					var newDuration = +p3 + inputValues.ElfBaneDuration;
+					
+					if (elfBaneSkill == 2 && skillData['newDuration'])
+					{	
+						newDuration = +skillData['newDuration'] / 1000;
+						newDuration = newDuration.toFixed(1);
+						skillData.rawOutput["Tooltip Flame Damage Duration (Elf Bane)"] = "Ability Duration of " + newDuration + " secs";
+					}
+					else
+					{
+						newDuration = newDuration.toFixed(1);
+						skillData.rawOutput["Tooltip Flame Damage Duration (Elf Bane)"] = "" + p3 + " + " + inputValues.ElfBaneDuration + " = " + newDuration + " secs";	
+					}					
+			
+					return p1 + p2 + newDuration + p4;
+				});		
+	}
+	
+	return newDesc;
+}
+
+
+
 window.RoundEsoSkillPercent = function (value)
 {
 	return Math.round(value*10)/10;
@@ -1863,6 +1921,8 @@ window.GetEsoSkillCost = function(skillId, inputValues)
 	else if (mechanic == 10)
 		costStr += "Ultimate";
 	
+	skillData.newCost = cost;
+	skillData.newCostText = costStr;
 	return costStr;
 }
 
@@ -1876,29 +1936,42 @@ window.UpdateEsoSkillTooltipDuration = function()
 
 window.GetEsoSkillDuration = function(skillId, inputValues)
 {
+	var modDuration = 0;
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
+	
+	var displayId = skillData['displayId'];
+	var newDuration = +skillData.duration;
 	
 	if (skillData.duration == 0) return 0;
 	
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
-	if (inputValues.SkillDuration == null) return skillData.duration;
-	if (inputValues.SkillDuration[skillData.baseName] == null) return skillData.duration;
-	
-	var modDuration = +inputValues.SkillDuration[skillData.baseName];
-	var newDuration = 0;
-	
-	if (modDuration >= 1) 
+		
+	if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null) 
 	{
-		newDuration = +skillData.duration + modDuration*1000;
-		skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base + " + modDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+		modDuration = +inputValues.SkillDuration[skillData.baseName];
+		newDuration = 0;
+		
+		if (modDuration >= 1) 
+		{
+			newDuration = +skillData.duration + modDuration*1000;
+			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base + " + modDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+		}
+		else 
+		{
+			newDuration = Math.floor(+skillData.duration * (1 + modDuration));
+			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base x " + Math.floor(modDuration*100) + "% = " + (Math.floor(newDuration/100)/10) + " secs";
+		}
 	}
-	else 
-	{
-		newDuration = Math.floor(+skillData.duration * (1 + modDuration));
-		skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base x " + Math.floor(modDuration*100) + "% = " + (Math.floor(newDuration/100)/10) + " secs";
-	}	
 	
+	if (inputValues.ElfBaneDuration && (g_EsoSkillElfBaneSkills[skillId] || g_EsoSkillElfBaneSkills[displayId]))
+	{
+		var origDuration = newDuration;
+		newDuration += inputValues.ElfBaneDuration*1000;
+		skillData.rawOutput["Elf Bane Duration"] = "" + (Math.floor(origDuration/100)/10) + " + " + inputValues.ElfBaneDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+	}
+	
+	skillData.newDuration = newDuration;
 	return newDuration;
 }
 
@@ -2297,9 +2370,9 @@ window.OnChangeEsoSkillData = function (dataName)
 		inputControl.val(value);
 	}	
 	
-	UpdateEsoSkillTooltipDescription();
-	UpdateEsoSkillTooltipCost();
 	UpdateEsoSkillTooltipDuration();
+	UpdateEsoSkillTooltipCost();
+	UpdateEsoSkillTooltipDescription();
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
 	UpdateSkillLink();
