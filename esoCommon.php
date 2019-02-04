@@ -2956,6 +2956,69 @@ $ESO_POISON_SKILLS = array(
 		39425 => 1,		// Trapping Webs 	
 );
 
+	/* Skills that are classed as "Flame AOE" for the Elf Bane set.
+	 * 		0 = Only affect description durations. 
+	 *		1 = Reduce duration of entire ability in addition to description durations.
+	 *		2 = Match description duration to skill duration.
+	 */
+$ESO_ELFBANE_SKILLS = array(
+		61524 => 0, // Scorching Flare
+		28988 => 2,	// Dragonknight Standard
+		32958 => 2,	// Shifting Standard
+		32947 => 2,	// Standard of Might
+		20660 => 1,	// Burning Embers
+		20657 => 1,	// Searing Strike
+		20930 => 1,	// Engulfing Flames
+		20917 => 1,	// Fiery Breath
+		20252 => 1,	// Burning Talons
+		15957 => 1,	// Magma Armor
+		17874 => 1,	// Magma Shell
+		20779 => 1,	// Cinder Storm
+		32710 => 1,	// Eruption
+		29059 => 1,	// Ash Cloud
+		40493 => 1,	// Shooting Star
+		16536 => 0,	// Meteor
+		40465 => 0,	// Scalding Rune
+		21729 => 0,	// Vampire's Bane
+		21732 => 0,	// Reflective Light
+		39053 => 1,	// Unstable Wall of Fire
+		41674 => 1,
+		41692 => 1,
+		41712 => 1,
+		28807 => 1,	// Wall of Fire
+		41628 => 1,
+		41643 => 1,
+		41659 => 1,
+		85126 => 1,	// Fiery Rage
+		86512 => 1,
+		86513 => 1,
+		86515 => 1,
+		38944 => 0,	// Flame Reach
+		41030 => 0,
+		41039 => 0,
+		41048 => 0,
+		83625 => 1,	// Fire Storm
+		86488 => 1,
+		86490 => 1,
+		86491 => 1,
+		39012 => 1,	// Blockade of Fire
+		41739 => 1,
+		41755 => 1,
+		41770 => 1,
+		38985 => 0,	// Flame Clench
+		40984 => 0,
+		40996 => 0,
+		41009 => 0,
+		29073 => 0,	// Flame Touch
+		40948 => 0,
+		40957 => 0,
+		40965 => 0,
+		83682 => 1,	// Eye of Flame
+		86536 => 1,
+		86538 => 1,
+		86540 => 1,
+);
+
 
 	/* Skills that are have flame AOE damage for the DK's World in Ruin Passive.
 	 * Empty arrays mean all flame damage in the skill tooltip is increased. Otherwise
