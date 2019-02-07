@@ -3341,7 +3341,8 @@ window.OnSkillBarDroppable = function (event, ui)
 	
 	var sourceBlockIcon = $(ui.draggable);
 	var sourceSkill = sourceBlockIcon.parent(".esovsAbilityBlock");
-	
+	var skillBarParent = $this.parent(".esovsSkillBar"); 
+		
 	var sourceAbilityId = -1;
 	var sourceOrigAbilityId = -1;
 	var sourceIconUrl = -1;
@@ -3366,11 +3367,14 @@ window.OnSkillBarDroppable = function (event, ui)
 		/* Fix for destruction skills elemental versions */
 	if (g_EsoSkillDestructionData && g_EsoSkillDestructionData[sourceAbilityId] != null)
 	{
+		var element = g_EsoSkillDestructionElement;
+		if (!skillBarParent.hasClass("esovsSkillBarHighlight")) element = g_EsoSkillDestructionOffHandElement;
+				
 		//console.log("Destruction skill swap", sourceAbilityId);
 		
-		if (g_EsoSkillDestructionData[sourceAbilityId][g_EsoSkillDestructionElement] != null)
+		if (g_EsoSkillDestructionData[sourceAbilityId][element] != null)
 		{
-			sourceAbilityId = g_EsoSkillDestructionData[sourceAbilityId][g_EsoSkillDestructionElement];
+			sourceAbilityId = g_EsoSkillDestructionData[sourceAbilityId][element];
 			
 			if (g_SkillsData[sourceAbilityId] != null)
 			{
@@ -3378,7 +3382,7 @@ window.OnSkillBarDroppable = function (event, ui)
 				sourceIconUrl.replace("\.dds", ".png");
 			}
 			
-			//console.log("Switched destruction skill to element", g_EsoSkillDestructionElement, sourceAbilityId);
+			//console.log("Switched destruction skill to element", element, sourceAbilityId);
 		}
 	}
 	
@@ -3386,7 +3390,7 @@ window.OnSkillBarDroppable = function (event, ui)
 	{
 		$this = $(this).find(".esovsSkillBarIcon");
 		if ($this.length == 0) return false;
-	}
+	}	
 	
 	var skillBar = $this.attr("skillbar");
 	var skillIndex = $this.attr("skillindex");

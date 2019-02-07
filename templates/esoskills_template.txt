@@ -95,6 +95,7 @@
 	var g_EsoSkillBarData = {skillBarJson};
 	var g_EsoSkillDestructionData = {destructionDataJson};
 	var g_EsoSkillDestructionElement = "";
+	var g_EsoSkillDestructionOffHandElement = "";
 	var g_EsoSkillPoisonSkills = {poisonSkillsJson};
 	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};
 	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};	
