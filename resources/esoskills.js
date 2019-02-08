@@ -1406,11 +1406,14 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 				modHealing = Math.round(modHealing);
 			}
 			
-			if (inputValues.SkillHealing != null && inputValues.SkillHealing[skillData.skillLine] != null)
+			var skillHealing = inputValues.SkillHealing[skillData.skillLine];
+			if (skillHealing == null) skillHealing = inputValues.SkillHealing[skillData.skillLine + " Healing"]
+			
+			if (inputValues.SkillHealing != null && skillHealing != null)
 			{
-				modHealing *= 1 + inputValues.SkillHealing[skillData.skillLine];
+				modHealing *= 1 + skillHealing;
 				modHealing = Math.round(modHealing);
-				newRawOutput.skillHealingDone = inputValues.SkillHealing[skillData.skillLine]; 
+				newRawOutput.skillHealingDone = skillHealing; 
 			}
 			
 			newRawOutput.finalHeal = modHealing;
