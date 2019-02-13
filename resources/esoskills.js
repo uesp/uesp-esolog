@@ -658,7 +658,6 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	
 	if (matchResults != null && matchResults[1] != null) damageType = matchResults[1].toLowerCase();
 	if (matchResults != null && matchResults[2] != null && matchResults[2] != "") isDot = true;
-	if (damageType == "frost") damageType = "cold";
 	
 	if (IsEsoSkillParameterDot(skillData, valueIndex)) isDot = true;
 	
@@ -1468,11 +1467,11 @@ ESO_SKILL_DAMAGEMATCHES =
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
-		damageId: "Cold",
+		damageId: "Frost",
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
-		damageId: "Cold",
+		damageId: "Frost",
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Frost Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
@@ -1630,6 +1629,13 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			
 			if (amountAll != 0)	modDamage *= 1 + amountAll;
 			newRawOutput.damageDone = amountAll;
+			
+			if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage > 0 && matchIndex == 2)
+			{
+				modDamage += inputValues.TwinSlashBleedDamage;
+				newRawOutput.twinSlashBleedDamage = inputValues.TwinSlashBleedDamage;
+			}			
+			
 			newRawOutput.finalDamage = Math.round(modDamage);
 			
 			rawOutput.push(newRawOutput);
@@ -1652,6 +1658,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.directDamageDone  != null && rawData.directDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.directDamageDone*100) + "% Direct";
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
+		if (rawData.twinSlashBleedDamage != null && rawData.twinSlashBleedDamage     != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashBleedDamage) + " BleedDmg";
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
