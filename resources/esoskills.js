@@ -1198,11 +1198,15 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(Heals you or an ally near the enemy for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},	
+	{
+		healId: "Done",
 		match: /(heals one other injured target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+		match: /(and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1221,6 +1225,7 @@ ESO_SKILL_HEALINGMATCHES =
 		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
+		display: "%",
 		healId: "Done",
 		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
 	},
@@ -1302,10 +1307,6 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
-		match: /(healing yourself and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
-	},
-	{
-		healId: "Done",
 		match: /(that heals you and all allies in your frontal cone for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
@@ -1342,15 +1343,22 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		healId2: "Received",  // TODO: ?
 		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
-		match: /(Also heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
+		healId2: "Received",  // TODO: ?
+		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
 	},
 	{
 		healId: "Done",
 		match: /(heals for \|c[a-fA-F0-9]{6})([0-9]+)(\|r health)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",  // TODO: ?
+		match: /(heal you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1360,10 +1368,138 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(causing it to heal the winged twilight and \|c[a-fA-F0-9]{6}[0-9]+\|r other friendly target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
-	//causing it to heal the winged twilight and 1 other friendly target for 3200 Health
-	//causing it to heal the matriarch and up to 2 other friendly targets for 4000 Health
-	
-];                     
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the total damage)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the total damage)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r, )/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(and healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage caused)/gi,
+	}, 
+	{
+		healId: "Done",
+		match: /(heals its target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(You heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health every)/gi,
+	}, 
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healing for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage caused)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing you or an ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing you or a nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the shield's remaining strength)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(heal yourself or a nearby ally to the target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted by the final hit)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(Heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the Disease Damage done)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(to heal you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage caused)/gi,
+	}, 
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(You heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the amount of healing done)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healing for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of their Max Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(healing yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heal you and your allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(you heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r and)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(the target is healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r of their Max Health)/gi,
+	},
+ 
+];
 
 
 window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputValues)
@@ -1415,6 +1551,7 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 				newRawOutput.skillHealingDone = skillHealing; 
 			}
 			
+			newRawOutput.display = matchData.display;
 			newRawOutput.finalHeal = modHealing;
 			rawOutput.push(newRawOutput);
 			
@@ -1426,6 +1563,9 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 	{
 		var rawData = rawOutput[i];
 		var output = "";
+		var percent = "";
+		
+		if (newRawOutput.display == "%") percent = "%";
 				
 		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + RoundEsoSkillPercent(rawData.healDone*100) + "% " + rawData.healId;
 		if (rawData.aoeHeal  != null && rawData.aoeHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeHeal*100) + "% AOE";
@@ -1433,9 +1573,9 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 		//TODO: healId2?
 		
 		if (output == "")
-			output = "" + rawData.baseHeal + " Health (unmodified)";
+			output = "" + rawData.baseHeal + percent + " Health (unmodified)";
 		else
-			output = "" + rawData.baseHeal + " Health " + output + " = " + rawData.finalHeal + " final";
+			output = "" + rawData.baseHeal + percent + " Health " + output + " = " + rawData.finalHeal + percent + " final";
 		
 		skillData.rawOutput["Tooltip Healing " + (i+1)] = output;
 	}
@@ -1813,6 +1953,23 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		}		
 	}
 	
+	if (inputValues.HealingAbilityCost)
+	{
+		var skillDesc = skillData.description;
+		
+		for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
+		{
+			var matchData = ESO_SKILL_HEALINGMATCHES[i].match;
+			
+			if (skillDesc.match(matchData) != null)
+			{
+				SkillFactor += inputValues.HealingAbilityCost;
+				break;
+			}
+		}
+		
+	}
+	
 	var output = "";
 	if (CPFactor != 1) output += " + " + Math.round(CPFactor*1000 - 1000)/10 + "% CP";
 	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
@@ -1919,7 +2076,7 @@ window.GetEsoSkillCost = function(skillId, inputValues)
 	if (skillData == null) return "";
 	
 	var mechanic = skillData['mechanic'];
-	if (mechanic != 0 && mechanic != 6 && mechanic != 10) return "";
+	if (mechanic != 0 && mechanic != 6 && mechanic != 10 && mechanic != -2) return "";
 	
 	var passive = skillData['isPassive'];
 	if (passive != 0) return "";
@@ -1937,6 +2094,8 @@ window.GetEsoSkillCost = function(skillId, inputValues)
 		costStr += "Stamina";
 	else if (mechanic == 10)
 		costStr += "Ultimate";
+	else if (mechanic == -2)
+		costStr += "Health";
 	
 	skillData.newCost = cost;
 	skillData.newCostText = costStr;
