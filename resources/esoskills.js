@@ -1496,7 +1496,7 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		display: "%",
 		healId: "Done",
-		match: /(the target is healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r of their Max Health)/gi,
+		match: /(the target is healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of their Max Health)/gi,
 	},
  
 ];
