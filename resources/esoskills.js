@@ -1625,6 +1625,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				}
 			}
 			
+			if (skillData.mechanic == 0 && inputValues.MagickaAbilityDamageDone)
+			{
+				baseFactor += Math.round(inputValues.MagickaAbilityDamageDone*100)/100;
+				newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;
+			}			
+			
 			modDamage *= baseFactor;
 			
 			if (amountAll != 0)	modDamage *= 1 + amountAll;
@@ -1658,7 +1664,8 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.directDamageDone  != null && rawData.directDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.directDamageDone*100) + "% Direct";
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
-		if (rawData.twinSlashBleedDamage != null && rawData.twinSlashBleedDamage     != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashBleedDamage) + " BleedDmg";
+		if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
+		if (rawData.twinSlashBleedDamage != null && rawData.twinSlashBleedDamage     != 0) output += " + " + rawData.twinSlashBleedDamage + " Bleed";		
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
