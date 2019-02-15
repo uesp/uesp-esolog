@@ -1039,6 +1039,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 	coefDesc = UpdateEsoSkillHealingDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillDamageShieldDescription(skillData, coefDesc, inputValues);	
 	coefDesc = UpdateEsoSkillDurationDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillBleedDamageDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillElfBaneDurationDescription(skillData, coefDesc, inputValues);
 	
 	if (useHtml)
@@ -1848,13 +1849,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			
 			if (amountAll != 0)	modDamage *= 1 + amountAll;
 			newRawOutput.damageDone = amountAll;
-			
-			if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage > 0 && matchIndex == 2)
-			{
-				modDamage += inputValues.TwinSlashBleedDamage;
-				newRawOutput.twinSlashBleedDamage = inputValues.TwinSlashBleedDamage;
-			}			
-			
+						
 			newRawOutput.finalDamage = Math.round(modDamage);
 			
 			rawOutput.push(newRawOutput);
@@ -1878,7 +1873,6 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
-		if (rawData.twinSlashBleedDamage != null && rawData.twinSlashBleedDamage     != 0) output += " + " + rawData.twinSlashBleedDamage + " Bleed";		
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
@@ -1891,11 +1885,70 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	return newDesc;
 }
 
+//and causing them to bleed for an additional 3699 Physical Damage over 10 seconds
+//apply a bleed dealing 4410 Physical Damage
+//bleed for an additional 5115 Physical Damage (Twin Slashes)
+//bleed enemies for 4410 Physical Damage
+//Light Attacks apply a bleed for 5888 Physical Damage
+ESO_SKILL_BLEEDMATCHES = 
+[
+		/(bleed dealing \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
+		/(bleed for an additional \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
+		/(bleed enemies for \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
+		/(bleed for \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
+];
+
+
+window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	var displayId = skillData['displayId'];
+	var skillId = skillData['abilityId'];
+	var elfBaneSkill = null;
+	
+	if (inputValues == null) return newDesc;
+	if ((inputValues.TwinSlashBleedDamage == null || inputValues.TwinSlashBleedDamage == 0) && inputValues.BleedDamage == 0) return newDesc;
+	
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
+	
+	for (var i = 0; i < ESO_SKILL_BLEEDMATCHES.length; ++i)
+	{
+		var match = ESO_SKILL_BLEEDMATCHES[i];
+		var matchIndex = 0;
+		
+		newDesc = newDesc.replace(match, function(match, p1, p2, p3, offset, string) 
+				{
+					var newDamage = +p2;
+					var output = "";
+					
+					matchIndex++;
+					
+					if (inputValues.BleedDamage != 0)
+					{	
+						newDamage = Math.floor(newDamage * (1 + inputValues.BleedDamage));
+						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.BleedDamage*100) + "%";
+					}
+					
+					if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage > 0)
+					{
+						newDamage += inputValues.TwinSlashBleedDamage;
+						output += " + " + inputValues.TwinSlashBleedDamage + " TwinSlash";
+					}
+					
+					output += " = " + newDamage + " final";
+					skillData.rawOutput["Bleed Damage " + matchIndex] = output;
+			
+					return p1 + newDamage + p3;
+				});		
+	}
+	
+	return newDesc;
+}
+
 
 // 1537 Flame Damage every 1 second for 15 seconds
 // 5605 Flame Damage over 8.5 seconds
 // 613 Flame Damage to nearby enemies each second for 9 seconds.
-
 ESO_SKILL_ELFBANEDURATIONMATCHES = 
 [
 		/( Flame Damage every \|c[a-fA-F0-9]{6}[^|]*\|r second for )(\|c[a-fA-F0-9]{6})([^|]*)(\|r seconds)/gi,
