@@ -1082,15 +1082,11 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 		},
 		{
 			type: "flat",
-			match: /(Surround yourself with a net of magic negation to absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+			match: /(absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
-			match: /(Invoke defensive tactics to protect yourself and nearby allies with wards that each absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
-		},
-		{
-			type: "flat",
-			match: /(absorbing up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r Damage from the next spell projectile cast at you)/gi,
+			match: /(absorbing up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
@@ -1279,6 +1275,10 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(and your fully-charged Heavy Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(healing for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
@@ -1325,6 +1325,10 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		healId: "Done",
 		match: /(causing Light Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(causing your Light Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1572,7 +1576,26 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(Heals a nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your max Health)/gi,
 	},
-	
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healing you and the clannfear for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Maximum Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r\.)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(heal you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
+	},
+		
 ];
 
 
