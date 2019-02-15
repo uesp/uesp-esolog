@@ -1073,7 +1073,7 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 		},
 		{
 			type: "flat",
-			match: /(You also gain a damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+			match: /(damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
@@ -1081,15 +1081,7 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 		},
 		{
 			type: "flat",
-			match: /(Fully charged heavy frost attacks grant a damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
-		},
-		{
-			type: "flat",
 			match: /(Surround yourself with a net of magic negation to absorb up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
-		},
-		{
-			type: "flat",
-			match: /(gaining a damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
@@ -1117,15 +1109,15 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 		},
 		{
 			type: "%",
-			match: /(granting a damage shield equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
-		},
-		{
-			type: "%",
-			match: /(You also gain a damage shield equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
-		},
-		{
-			type: "%",
 			match: /(nearby allies gain a damage shield for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of their Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+		},
+		{
+			type: "%",
+			match: /(damage shield equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
 		},
 ];
 
@@ -1148,19 +1140,23 @@ window.UpdateEsoSkillDamageShieldDescription = function (skillData, skillDesc, i
 		{			
 			var modDamageShield = parseFloat(p2);
 			
+				// TODO: Technically not the same as the skill coefficient index.
 			matchIndex = matchIndex + 1;
 			
 			newRawOutput = {};
 			newRawOutput.baseShield = p2;
 			newRawOutput.shieldBonus = inputValues.DamageShield;
+			newRawOutput.type = matchData.type;
+			newRawOutput.maxShield = -1;
 			
 			modDamageShield *= 1 + newRawOutput.shieldBonus;
 			modDamageShield = Math.floor(modDamageShield);
 			
 				/* Cap shield if possible */
-			if (inputValues.Health && skillData["b" + matchIndex])
+			if (newRawOutput.type == "flat" && inputValues.Health && skillData["type" + matchIndex] == -68 && skillData["b" + matchIndex])
 			{
 				var maxShield = Math.floor(skillData["b" + matchIndex] * inputValues.Health);
+				newRawOutput.maxShield = maxShield;
 				if (modDamageShield > maxShield) modDamageShield = maxShield;
 			}
 			
@@ -1175,13 +1171,17 @@ window.UpdateEsoSkillDamageShieldDescription = function (skillData, skillDesc, i
 	{
 		var rawData = rawOutput[i];
 		var output = "";
+		var percent = "";
+		if (rawData.type == "%") percent = "%";
 		
 		if (rawData.shieldBonus != null && rawData.shieldBonus != 0) output += " + " + RoundEsoSkillPercent(rawData.shieldBonus*100) + "% ";
 		
 		if (output == "")
-			output = "" + rawData.baseShield + " (unmodified)";
+			output = "" + rawData.baseShield + percent + " (unmodified)";
 		else
-			output = "" + rawData.baseShield + " " + output + " = " + rawData.finalShield + " final";
+			output = "" + rawData.baseShield + percent + " " + output + " = " + rawData.finalShield + percent + " final";
+		
+		if (newRawOutput.maxShield > 0) output += " (" + newRawOutput.maxShield + " cap)";
 		
 		skillData.rawOutput["Tooltip Damage Shield " + (i+1)] = output;
 	}
@@ -1378,12 +1378,6 @@ ESO_SKILL_HEALINGMATCHES =
 		display: "%",
 		healId: "Done",
 		healId2: "Received",
-		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the total damage)/gi,
-	},
-	{
-		display: "%",
-		healId: "Done",
-		healId2: "Received",
 		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
 	},
 	{
@@ -1498,7 +1492,86 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(the target is healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of their Max Health)/gi,
 	},
- 
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(Heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(Heals \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health to you and allies)/gi,
+	},
+	{
+		healId: "Done",		// Soul Tether: Healing Taken?
+		healId2: "Received",
+		match: /(you siphon \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health from them)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healing you or a nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healing you and \|c[a-fA-F0-9]{6}[0-9]\|r other nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing an ally in front of you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heals you and your allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(Bargain with darkness to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(You heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
+	},
+	{
+		healId: "Done",
+		healId2: "Received",
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r each time)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(You heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing yourself or a wounded ally in front of you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(Heals a nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your max Health)/gi,
+	},
+	
 ];
 
 
