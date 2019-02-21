@@ -1217,10 +1217,10 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
-	{
+	/* {
 		healId: "Done",
 		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
-	},
+	}, //*/
 	{
 		display: "%",
 		healId: "Done",
@@ -1400,11 +1400,6 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		match: /(heals its target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
-	{
-		healId: "Done",
-		healId2: "Received",
-		match: /(You heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health every)/gi,
-	}, 
 	{
 		display: "%",
 		healId: "Done",
@@ -1774,7 +1769,6 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.skillLineDamageDone = inputValues.SkillLineDamage[skillLineName]; 
 			}
 			
-			//if (isDot || p1 == "additional " || p5 != "")
 			if (isDot || p5 != "")
 			{
 				thisEffectIsDot = true;
@@ -1803,6 +1797,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				
 				baseFactor += +inputValues.Damage.Dot + +newRawOutput.mainDamageDone;
 				newRawOutput.dotDamageDone = inputValues.Damage.Dot;
+				
+				if (inputValues.DotDamageDone && inputValues.DotDamageDone[matchData.damageId])
+				{
+					newRawOutput.dotDamageDone += inputValues.DotDamageDone[matchData.damageId];
+				}
 			}
 			else if (inputValues.Damage.Direct != null && inputValues.Damage.Direct !== 0)
 			{
@@ -1845,7 +1844,6 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				}
 			}
 			
-			
 			if (g_EsoSkillFlameAOESkills && inputValues.FlameAOEDamageDone)
 			{
 				var flameData = g_EsoSkillFlameAOESkills[skillData.abilityId];
@@ -1872,6 +1870,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			
 			if (amountAll != 0)	modDamage *= 1 + amountAll;
 			newRawOutput.damageDone = amountAll;
+			
+			if (!thisEffectIsDot && inputValues.SkillDirectDamage && inputValues.SkillDirectDamage[skillData.baseName])
+			{
+				modDamage += inputValues.SkillDirectDamage[skillData.baseName];
+				newRawOutput.skillDirectDamage = inputValues.SkillDirectDamage[skillData.baseName];
+			}
 						
 			newRawOutput.finalDamage = Math.round(modDamage);
 			
@@ -1896,6 +1900,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
+		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
