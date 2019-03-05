@@ -1935,7 +1935,8 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	var elfBaneSkill = null;
 	
 	if (inputValues == null) return newDesc;
-	if ((inputValues.TwinSlashBleedDamage == null || inputValues.TwinSlashBleedDamage == 0) && inputValues.BleedDamage == 0) return newDesc;
+	if ((inputValues.TwinSlashBleedDamage == null || inputValues.TwinSlashBleedDamage == 0) && 
+			(inputValues.BleedDamage == null || inputValues.BleedDamage == 0)) return newDesc;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
@@ -1951,7 +1952,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 					
 					matchIndex++;
 					
-					if (inputValues.BleedDamage != 0)
+					if (inputValues.BleedDamage != null && inputValues.BleedDamage != 0)
 					{	
 						newDamage = Math.floor(newDamage * (1 + inputValues.BleedDamage));
 						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.BleedDamage*100) + "%";

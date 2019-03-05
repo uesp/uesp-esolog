@@ -26,10 +26,10 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								2 => array (
 										'id' => 5843,
-										'name' => 'Elsweyr',
-										'icon' => '/esoui/art/icons/store_elsweyer_collectable.dds',
+										'name' => 'Mesa',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
 										'desc' => 'FILL ME IN',
-										'type' => 22,
+										'type' => 1,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								) 
@@ -38,7 +38,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Dungeon DLC',
-						'numCollectibles' => 10,
+						'numCollectibles' => 8,
 						'collectibles' => array (
 								1 => array (
 										'id' => 375,
@@ -111,31 +111,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 1,
 										'image' => '/esoui/art/store/pc_collections_dlc_wh_marchofsacrifice_2x1.dds',
 										'nickname' => '' 
-								),
-								9 => array (
-										'id' => 5473,
-										'name' => 'Frostvault',
-										'icon' => '/esoui/art/icons/store_wrathstone_collectable.dds',
-										'desc' => 'After millennia buried under the ice, the lost Vault of Mhuvnak is once again within the reach of the people of Tamriel. Join the treasure hunter, Tharayya, on a daring expedition into the ancient Dwemer Frostvault and reveal the secrets buried there!',
-										'type' => 1,
-										'image' => '/esoui/art/store/pc_collections_dlc_ws_frostvault_2x1.dds',
-										'nickname' => '' 
-								),
-								10 => array (
-										'id' => 5474,
-										'name' => 'Depths of Malatar',
-										'icon' => '/esoui/art/icons/store_wrathstone_collectable.dds',
-										'desc' => 'Centuries ago, the Empire made an ill-fated foray into the ruins an ancient Ayleid city. Follow in their footsteps with the treasure hunter, Tharayya, to discover what they sought and why they disappeared in the Depths of Malatar.',
-										'type' => 1,
-										'image' => '/esoui/art/store/pc_collections_dlc_ws_depthsofmalatar_2x1.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Zone DLC',
-						'numCollectibles' => 8,
+						'numCollectibles' => 7,
 						'collectibles' => array (
 								1 => array (
 										'id' => 154,
@@ -199,15 +181,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 1,
 										'image' => '/esoui/art/store/pc_collections_dlc_mm_keyart_2x1.dds',
 										'nickname' => '' 
-								),
-								8 => array (
-										'id' => 6017,
-										'name' => 'Summerset',
-										'icon' => '/esoui/art/icons/store_summerset_collectable.dds',
-										'desc' => 'By royal decree, the once-forbidden island of the High Elves has been opened, its Crystal Tower drawing travelers to its light. But dark forces from beyond and below are also interested in the mystic location in this new chapter set in the Summerset Isle.',
-										'type' => 1,
-										'image' => '/esoui/art/store/pc_collections_dlc_su_keyart_2x1.dds',
-										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -219,7 +192,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/collection_indexicon_upgrade_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 7,
+						'numCollectibles' => 6,
 						'collectibles' => array (
 								1 => array (
 										'id' => 60,
@@ -274,15 +247,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 6,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								7 => array (
-										'id' => 6043,
-										'name' => 'Dragon Bone Conversion',
-										'icon' => '/esoui/art/icons/housing_bre_inc_book_closed002.dds',
-										'desc' => 'Allows you to convert your gear to the Dragon Bone style.',
-										'type' => 6,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -300,7 +264,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Hats',
-						'numCollectibles' => 108,
+						'numCollectibles' => 107,
 						'collectibles' => array (
 								1 => array (
 										'id' => 174,
@@ -1261,15 +1225,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Bonding Rite Headdress',
 										'icon' => '/esoui/art/icons/hat_argceremonial_01.dds',
 										'desc' => 'For the Argonian tribes that follow the custom, the Bonding Rite is a significant ceremony that requires an appropriately gaudy headdress to mark its importance.',
-										'type' => 10,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								108 => array (
-										'id' => 5911,
-										'name' => 'Ayleid Royal Crown',
-										'icon' => '/esoui/art/icons/hat_ayleidcrown_01.dds',
-										'desc' => 'A replica of the First Era royal crown of one of the last Ayleid kingdoms in Cyrodiil.',
 										'type' => 10,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -2483,7 +2438,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Head Markings',
-						'numCollectibles' => 196,
+						'numCollectibles' => 188,
 						'collectibles' => array (
 								1 => array (
 										'id' => 445,
@@ -4176,78 +4131,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 17,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								189 => array (
-										'id' => 5897,
-										'name' => 'Dwarven Geometry Face Markings',
-										'icon' => '/esoui/art/icons/marking_face_both_all_dwarvengeometry.dds',
-										'desc' => 'These geometrical face markings emphasize the lost Dwemer`s obsession with numerical precision, and make their wearer look as tough as a Dwarven mechanism.',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								190 => array (
-										'id' => 5899,
-										'name' => 'Alftand Glacial Face Tattoos',
-										'icon' => '/esoui/art/icons/marking_face_both_all_dwarvensnow.dds',
-										'desc' => 'Tattoos that replicate the distinctive iconography of Alftand, the only known Dwarven site built partially inside an active, moving glacier.',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								191 => array (
-										'id' => 5901,
-										'name' => 'Dwarven Centurion Face Tattoos',
-										'icon' => '/esoui/art/icons/marking_face_both_all_dwarvencenturion.dds',
-										'desc' => 'An impressive set of face markings inspired by that giant mechanical guardian of Dwemer ruins, the Dwarven Centurion!',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								192 => array (
-										'id' => 5904,
-										'name' => 'Meridian Radiance Face Tattoos',
-										'icon' => '/esoui/art/icons/marking_face_both_all_meridialradiance.dds',
-										'desc' => '\"The Light of Meridia bursts into your chest and then seems to come alive, coiling and burning throughout your body and head, illuminating you from within.\" —The Sayings of Valasha',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								193 => array (
-										'id' => 5906,
-										'name' => 'Meridian Sunburst Face Tattoos',
-										'icon' => '/esoui/art/icons/marking_face_both_all_meridiansunburst.dds',
-										'desc' => 'Celebrate the brightest light of all the Lady`s Infinite Energies with these glowing Meridian Sunburst Tattoos.',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								194 => array (
-										'id' => 5908,
-										'name' => 'Meridian War Burst Face Markings',
-										'icon' => '/esoui/art/icons/marking_face_both_all_meridianwarburst.dds',
-										'desc' => 'Before battle, warriors consecrated to Meridia often paint their faces with these energetic \"War Burst\" markings.',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								195 => array (
-										'id' => 5910,
-										'name' => 'Obnoxious Mute Face Paint',
-										'icon' => '/esoui/art/icons/marking_face_both_all_obnoxiousmute.dds',
-										'desc' => 'In recent years, irritating voiceless street performers with painted faces have begun appearing in all the plazas and market squares of Tamriel, begging for coin while pretending to be trapped in invisible boxes. Are you obnoxious enough for Mime Time?',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								196 => array (
-										'id' => 5915,
-										'name' => 'Ghost Goblin Face War Paint',
-										'icon' => '/esoui/art/icons/marking_face_both_all_goblinpaint.dds',
-										'desc' => 'Certain Goblin tribes instill fierce recklessness in their warriors by encouraging them to think of themselves as already dead, chalking their forms before battle with what their adversaries refer to as Ghost Goblin War Paint.',
-										'type' => 17,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
@@ -5654,7 +5537,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Minor Adornments',
-						'numCollectibles' => 41,
+						'numCollectibles' => 39,
 						'collectibles' => array (
 								1 => array (
 										'id' => 587,
@@ -6006,31 +5889,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 16,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								40 => array (
-										'id' => 5912,
-										'name' => '\"Chained Wrath\" Piercings',
-										'icon' => '/esoui/art/icons/adornment_chainedwrath.dds',
-										'desc' => 'This intimidating facial jewelry, a favorite with adherents of the Daedric Prince Boethiah, conveys the idea that its wearer seethes with barely contained fury that might erupt at any provocation.',
-										'type' => 16,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								41 => array (
-										'id' => 5913,
-										'name' => 'Dwarven Sprocket Earrings',
-										'icon' => '/esoui/art/icons/adornment_gearearrings.dds',
-										'desc' => 'On Vvardenfell, home to so many Dwarven ruins, treasure hunters scavenge the ancient sites for whatever they find that might be useful. Some Dark Elves in Balmora have built a cottage industry out of making jewelry from the parts of old Dwemer mechanisms.',
-										'type' => 16,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Costumes',
-						'numCollectibles' => 189,
+						'numCollectibles' => 183,
 						'collectibles' => array (
 								1 => array (
 										'id' => 38,
@@ -7656,7 +7521,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5701,
 										'name' => 'Ranger`s Crocskin Overkilt',
 										'icon' => '/esoui/art/icons/costume_bosmermasc_b.dds',
-										'desc' => '\"Durable, flexible, mudproof, and stylish,\" says the latest missive from designer Jaxa the Hermit delivered by his mute daughter. \"What more could a Saxhleel want from a Crocskin Overkilt? Glowing torchbug buttons? Actually, that`s not a bad idea….\"',
+										'desc' => '\"Durable, flexible, mudproof, and stylish,\" says the latest missive from designer Jaxa the Hermit delivered by his mute daughter. \"What more could a Saxhleel want from a Crocskin Overklit? Glowing torchbug buttons? Actually, that`s not a bad idea….\"',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -7678,67 +7543,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								184 => array (
-										'id' => 5830,
-										'name' => 'Tavern Maid',
-										'icon' => '/esoui/art/icons/costume_barmaid_red.dds',
-										'desc' => 'An outfit both pretty and practical for working the common room of the local tavern.',
-										'type' => 4,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								185 => array (
-										'id' => 5881,
-										'name' => 'Ancient Sites Explorer',
-										'icon' => '/esoui/art/icons/costume_tharayya_001.dds',
-										'desc' => 'Some scholars study the ancient history of Tamriel from libraries and archives, but the more active investigators do their studies in the field, exploring ancient ruins that are often both dirty and deadly dangerous.',
-										'type' => 4,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								186 => array (
-										'id' => 5882,
-										'name' => 'Fisherfolk Work Wear',
-										'icon' => '/esoui/art/icons/costume_fisherman_001.dds',
-										'desc' => 'You might think the profession of Fisher is one that`s simple, slow, or easy. You`d change your mind fast the first time you hauled in a net full of slaughterfish!',
-										'type' => 4,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								187 => array (
-										'id' => 6038,
-										'name' => 'Sentinel Vest and Salvar',
-										'icon' => '/esoui/art/icons/costume_redguardnoble_a.dds',
-										'desc' => '\"To those who do not live in the desert heat, it seems strange that we wear long sleeves and trousers,\" says Sar`aq of Sentinel, \"but really, nothing is more practical than a long, billowing pair of salvar breeches.\"',
-										'type' => 4,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								188 => array (
-										'id' => 6039,
-										'name' => 'Magnifica`s Sundas Wear',
-										'icon' => '/esoui/art/icons/costume_redguardnoble_b.dds',
-										'desc' => '\"In Hammerfell, our Crown nobility prefer clothing simple and traditional in cut, but rich and varied in material,\" says designer Sar`aq of Sentinel. \"This ensemble is appropriate for both receiving noble guests and visiting others.\"',
-										'type' => 4,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								189 => array (
-										'id' => 6258,
-										'name' => 'Innkeeper',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
-										'type' => 4,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Body Markings',
-						'numCollectibles' => 176,
+						'numCollectibles' => 169,
 						'collectibles' => array (
 								1 => array (
 										'id' => 444,
@@ -9260,76 +9071,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 18,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								170 => array (
-										'id' => 5898,
-										'name' => 'Dwarven Geometry Body Markings',
-										'icon' => '/esoui/art/icons/marking_body_both_all_dwarvengeometry.dds',
-										'desc' => 'These repeating geometrical body markings emphasize the lost Dwemer`s obsession with numerical precision, and make their wearer look as tough as a Dwarven mechanism.',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								171 => array (
-										'id' => 5900,
-										'name' => 'Alftand Glacial Body Tattoos',
-										'icon' => '/esoui/art/icons/marking_body_both_all_dwarvensnow.dds',
-										'desc' => 'Tattoos that replicate the distinctive iconography of Alftand, the only known Dwarven site built partially inside an active, moving glacier.',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								172 => array (
-										'id' => 5903,
-										'name' => 'Dwarven Centurion Body Tattoos',
-										'icon' => '/esoui/art/icons/marking_body_both_all_dwarvencenturion.dds',
-										'desc' => 'An impressive set of body markings inspired by that giant mechanical guardian of Dwemer ruins, the Dwarven Centurion!',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								173 => array (
-										'id' => 5905,
-										'name' => 'Meridian Radiance Body Tattoos',
-										'icon' => '/esoui/art/icons/marking_body_both_all_meridialradiance.dds',
-										'desc' => '\"The Light of Meridia bursts into your chest and then seems to come alive, coiling and burning throughout your body and head, illuminating you from within.\" —The Sayings of Valasha',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								174 => array (
-										'id' => 5907,
-										'name' => 'Meridian Sunburst Body Tattoos',
-										'icon' => '/esoui/art/icons/marking_body_both_all_meridiansunburst.dds',
-										'desc' => 'Celebrate the brightest light of all the Lady`s Infinite Energies with these glowing Meridian Sunburst Tattoos.',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								175 => array (
-										'id' => 5909,
-										'name' => 'Meridian War Burst Body Markings',
-										'icon' => '/esoui/art/icons/marking_body_both_all_meridianwarburst.dds',
-										'desc' => 'Before battle, warriors consecrated to Meridia often paint their bodies with these energetic \"War Burst\" markings.',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								176 => array (
-										'id' => 6019,
-										'name' => 'Ghost Goblin Body War Paint',
-										'icon' => '/esoui/art/icons/marking_body_both_all_goblinpaint.dds',
-										'desc' => 'Certain Goblin tribes instill fierce recklessness in their warriors by encouraging them to think of themselves as already dead, chalking their forms before battle with what their adversaries refer to as Ghost Goblin War Paint.',
-										'type' => 18,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				9 => array (
 						'subCategoryIndex' => 9,
 						'name' => 'Skins',
-						'numCollectibles' => 22,
+						'numCollectibles' => 20,
 						'collectibles' => array (
 								1 => array (
 										'id' => 161,
@@ -9450,7 +9198,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								14 => array (
 										'id' => 5108,
-										'name' => 'Maormer Fish',
+										'name' => 'Maormer Fish Skin',
 										'icon' => '/esoui/art/icons/skin_maormer.dds',
 										'desc' => 'It`s said that under certain conditions the Maormer, like chameleons, can change the appearance of their skin. Emulate that legendary ability with this blue-scaled Fish Skin.',
 										'type' => 11,
@@ -9459,7 +9207,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								15 => array (
 										'id' => 5109,
-										'name' => 'Z`Maja`s Shadow',
+										'name' => 'Z`Maja`s Shadow Skin',
 										'icon' => '/esoui/art/icons/skin_shadow.dds',
 										'desc' => 'Z`Maja`s powerful magic infuses those it touches with a tinge of shadow. Commemorate your encounter with this darkest darkness by wearing this Shadow Skin.',
 										'type' => 11,
@@ -9468,7 +9216,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								16 => array (
 										'id' => 5241,
-										'name' => 'Sable Man-Beast',
+										'name' => 'Sable Man-Beast Skin',
 										'icon' => '/esoui/art/icons/skin_werewolf.dds',
 										'desc' => 'As a murderous beast who lurks in the darkness, to become the color of shadows is only natural. As natural as the blood of the innocents that drips from your claws.',
 										'type' => 11,
@@ -9510,31 +9258,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 11,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								21 => array (
-										'id' => 5914,
-										'name' => 'Meridian Purified',
-										'icon' => '/esoui/art/icons/skin_purified.dds',
-										'desc' => '\"Those who betray their oaths to the Lady of Infinite Energies will be purged of their corruption, lustrated and Purified so they can endure to fulfill their vows … forever.\" —Sayings of Valasha',
-										'type' => 11,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								22 => array (
-										'id' => 5916,
-										'name' => 'Arctic Rime Skin',
-										'icon' => '/esoui/art/icons/skin_articrime.dds',
-										'desc' => '\"I found the shipwreck locked in ice. The crew were all frozen and frostbitten, and I thought they were dead … until they rose, frost-crusted and icy, and picked up their weapons.\" —Aelfrydda of Dawnstar',
-										'type' => 11,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				10 => array (
 						'subCategoryIndex' => 10,
 						'name' => 'Personalities',
-						'numCollectibles' => 22,
+						'numCollectibles' => 21,
 						'collectibles' => array (
 								1 => array (
 										'id' => 368,
@@ -9721,15 +9451,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Beast Personality',
 										'icon' => '/esoui/art/icons/personality_beast.dds',
 										'desc' => 'Sometimes the tiresome constraints of civilized behavior just … become … too confining! Must stretch, must hunch over, must snarl and snap. Must be … a Beast!',
-										'type' => 9,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								22 => array (
-										'id' => 5884,
-										'name' => 'Treasure Hunter',
-										'icon' => '/esoui/art/icons/personality_treasurehunter.dds',
-										'desc' => 'As a Treasure Hunter, forever poking around in shadowy nooks and crannies for loose gems, lost journals, and hidden levers, what could be more important to you than your trusty ever-burning torch? Never again be lost in the dark without it!',
 										'type' => 9,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -10061,7 +9782,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Classic Homes',
-						'numCollectibles' => 26,
+						'numCollectibles' => 25,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1067,
@@ -10287,22 +10008,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 19,
 										'image' => '/esoui/art/store/pc_collections_hsg_snowglobe00_1x1.dds',
 										'nickname' => 'New Life Snow Globe' 
-								),
-								26 => array (
-										'id' => 6139,
-										'name' => 'Frostvault Chasm',
-										'icon' => '/esoui/art/icons/housing_frostvault001.dds',
-										'desc' => 'This side entrance to Frostvault leads down to a deep and spacious side grotto that was cut off from the main caverns long ago, though power still flows into it through conduits from the central source. Careful, those platforms have no handrails!',
-										'type' => 19,
-										'image' => '/esoui/art/store/pc_collections_hsg_frostvault001_1x1.dds',
-										'nickname' => 'Dwarven Home' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Notable Homes',
-						'numCollectibles' => 18,
+						'numCollectibles' => 17,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1096,
@@ -10456,15 +10168,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 19,
 										'image' => '/esoui/art/store/pc_collections_murkmiremanor001_1x1.dds',
 										'nickname' => 'Murkmire Pyramid' 
-								),
-								18 => array (
-										'id' => 6140,
-										'name' => 'Elinhir Private Arena',
-										'icon' => '/esoui/art/icons/housing_elinhirarena001.dds',
-										'desc' => 'Pit Fighting promoter Crottus \"Thumbs-Down\" Lycus built this private arena atop the haunted ruins of Molavar because the land was cheap, and what could go wrong? He vanished mysteriously some time ago, and now his unique Arena Home is back on the market.',
-										'type' => 19,
-										'image' => '/esoui/art/store/pc_collections_housing_elinhirarena001.dds',
-										'nickname' => 'Craglorn Arena' 
 								) 
 						) 
 				) 
@@ -10482,7 +10185,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'General',
-						'numCollectibles' => 12,
+						'numCollectibles' => 11,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1171,
@@ -10582,15 +10285,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								12 => array (
-										'id' => 6294,
-										'name' => 'Statuette: Malacath, Orc-Father',
-										'icon' => '/esoui/art/icons/housing_vrd_inc_housingstatuemalacath002.dds',
-										'desc' => 'A miniature statue of the Daedric Prince Malacath, the Orc-Father.',
-										'type' => 20,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
@@ -10676,7 +10370,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Undaunted Busts',
-						'numCollectibles' => 46,
+						'numCollectibles' => 44,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1110,
@@ -11073,31 +10767,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								45 => array (
-										'id' => 6061,
-										'name' => 'Bust: King Narilmor',
-										'icon' => '/esoui/art/icons/housing_uni_inc_veterankingnarilmor001.dds',
-										'desc' => 'Bronze bust commemorating an Undaunted victory in Depths of Malatar.',
-										'type' => 20,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								46 => array (
-										'id' => 6063,
-										'name' => 'Bust: The Stonekeeper',
-										'icon' => '/esoui/art/icons/housing_uni_inc_veteranstonekeeper001.dds',
-										'desc' => 'Bronze bust commemorating an Undaunted victory in Frostvault.',
-										'type' => 20,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Undaunted Trophies',
-						'numCollectibles' => 46,
+						'numCollectibles' => 44,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1265,
@@ -11494,24 +11170,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								45 => array (
-										'id' => 6060,
-										'name' => 'Trophy: King Narilmor',
-										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophykingnarilmor001.dds',
-										'desc' => 'Trophy taken from King Narilmor in honor of an Undaunted victory in Depths of Malatar.',
-										'type' => 20,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								46 => array (
-										'id' => 6062,
-										'name' => 'Trophy: The Stonekeeper',
-										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophystonekeeper001.dds',
-										'desc' => 'Trophy taken from The Stonekeeper in honor of an Undaunted victory in Frostvault.',
-										'type' => 20,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -11589,7 +11247,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_trophy_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 85,
+						'numCollectibles' => 80,
 						'collectibles' => array (
 								1 => array (
 										'id' => 335,
@@ -11773,7 +11431,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								21 => array (
 										'id' => 356,
-										'name' => 'Jubilee Cake 2016',
+										'name' => 'Jubilee Cake',
 										'icon' => '/esoui/art/icons/store_cake_01.dds',
 										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. It`s a festival for your taste buds!',
 										'type' => 5,
@@ -11935,7 +11593,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								39 => array (
 										'id' => 1109,
-										'name' => 'Jubilee Cake 2017',
+										'name' => '2nd Annual Jubilee Cake',
 										'icon' => '/esoui/art/icons/collectable_memento_2ndanniversarycake.dds',
 										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. It`s a festival for your taste buds!',
 										'type' => 5,
@@ -12133,7 +11791,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								61 => array (
 										'id' => 4786,
-										'name' => 'Jubilee Cake 2018',
+										'name' => '3rd Annual Jubilee Cake',
 										'icon' => '/esoui/art/icons/collectable_memento_3ndanniversarycake.dds',
 										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. It`s a festival for your taste buds!',
 										'type' => 5,
@@ -12310,51 +11968,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								81 => array (
-										'id' => 5885,
-										'name' => 'Festive Noise Maker',
-										'icon' => '/esoui/art/icons/collectible_memento_noisemaker.dds',
-										'desc' => 'Whoop it up to celebrate whatever Tamrielic festival is going on or just make a nuisance of yourself in the tavern common room with this Festive Noise Maker!',
-										'type' => 5,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								82 => array (
-										'id' => 5886,
-										'name' => 'Jubilee Cake 2019',
-										'icon' => '/esoui/art/icons/collectible_memento_jubileecake2019.dds',
-										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. It`s like a sweetroll mountain, a festival for your taste buds!\n\n|cFFFFFFEat this cake, once per day, to earn Event Tickets.|r',
-										'type' => 5,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								83 => array (
-										'id' => 5887,
-										'name' => 'Jester`s Festival Joke Popper',
-										'icon' => '/esoui/art/icons/housing_bre_con_barrel001.dds',
-										'desc' => 'What is this? A tiny cask? How intriguing! What can possibly be in it? Maybe if I shake it near my ear I can hear—WHOA!',
-										'type' => 5,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								84 => array (
-										'id' => 5889,
-										'name' => 'Prismatic Banner Ribbon',
-										'icon' => '/esoui/art/icons/memento_prismaticribbon.dds',
-										'desc' => 'This enchanted Ribbon briefly unfurls a Prismatic Banner over the head of its user.',
-										'type' => 5,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								85 => array (
-										'id' => 6046,
-										'name' => 'Dragon Flight Illusion Gem',
-										'icon' => '/esoui/art/icons/quest_gemstone_round_001.dds',
-										'desc' => 'Use of this enchanted gemstone casts a brief illusion of a flight of Dragons.',
-										'type' => 5,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -12366,7 +11979,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_mounts_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 227,
+						'numCollectibles' => 205,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1,
@@ -13767,7 +13380,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5072,
 										'name' => 'Badger Bear',
 										'icon' => '/esoui/art/icons/mount_badgerbear.dds',
-										'desc' => 'The Badger Bears of southern Blackwood were nearly extinct in the wild when they were saved by the intervention from an unlikely source, an Imperial noble, when Viscount Glorion of Leyawiin rescued the species by breeding them as mounts.',
+										'desc' => 'The Badger Bears of southern Blackwood were nearly extinct in the wild when they were saved by the intervention from an unlikely source, an Imperial noble. Viscount Glorion of Leyawiin rescued the species by breeding them as mounts.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Honey' 
@@ -13792,9 +13405,9 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								159 => array (
 										'id' => 5076,
-										'name' => 'Noweyr Steed',
+										'name' => 'Realm of T`Which Horse',
 										'icon' => '/esoui/art/icons/mounticon_psijichorse_twitch.dds',
-										'desc' => 'The thief-god Rajhin is said to have stolen these enchanted purple steeds from somewhere in Oblivion, but when his worshipers are asked where he got them, they just laugh and say, \"Noweyr!\"',
+										'desc' => 'This Daedric companion, conjured by Psijic magic in shape of a glowing Horse, was summoned from the little-known and possibly imaginary Oblivion demi-plane of T`Which.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Violet' 
@@ -14212,204 +13825,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Quiescence' 
-								),
-								206 => array (
-										'id' => 5854,
-										'name' => 'Treasure Hunter`s Horse',
-										'icon' => '/esoui/art/icons/mounticon_horse_treasurehunter.dds',
-										'desc' => 'Stolid, careful, sturdy, and long-suffering, the Treasure Hunter`s Horse is resigned to a life of being ridden into crumbling ruins by a reckless master who`s searching for wealth but often finds only danger.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Surefoot' 
-								),
-								207 => array (
-										'id' => 5858,
-										'name' => 'Dragonscale Frost Senche',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_apexsenche.dds',
-										'desc' => 'According to the notebooks of Corvus Direnni, the Frost Senche-Panther may actually be a form of atronach summoned from a plane known as the Fourth Sinus of Takubar. Why it remains in Tamriel where it willingly submits to the orders of mortals is unknown.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ice Panther' 
-								),
-								208 => array (
-										'id' => 5859,
-										'name' => 'Dragonscale Solar Horse',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_apexhorse.dds',
-										'desc' => '\"I have been fortunate enough to have personally glimpsed a Solar Horse on an Anequine morning, and I say with conviction that it must be a creature of Magrus, the Cat`s Eye, and no other.\" —Moon Bishop Hunal',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sunny' 
-								),
-								209 => array (
-										'id' => 5865,
-										'name' => 'Dragonscale Storm Wolf',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_apexwolf.dds',
-										'desc' => '\"I would speculate that the Storm Wolf is the result of an experiment by a powerful Destruction mage in which a wild canine was subjected to prolonged exposure to a Meip Glyph of Shock.\" —Gabrielle Benele, Wizard',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Thunderwolf' 
-								),
-								210 => array (
-										'id' => 5866,
-										'name' => 'Sweetroll Grizzly',
-										'icon' => '/esoui/art/icons/mounticon_bear_sweetroll.dds',
-										'desc' => 'The rare Sweetroll Grizzly Bears prowl the golden forests of the Rift on the northern slopes of the Jerall Mountains. They`re big strong cuddly hug machines—except when they`re angry.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pastry Paws' 
-								),
-								211 => array (
-										'id' => 5867,
-										'name' => 'Tenmar Senche-Tiger',
-										'icon' => '/esoui/art/icons/mounticon_senche_tenmartiger.dds',
-										'desc' => 'Deep in the shadows of the Tenmar Forest, hidden by its camouflaged coat and stealthy stalking, the Senche-Tiger is a nearly invisible jungle predator. Even as a mount, it retains something of the air of mystery it wears in the wild.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Camo Cat' 
-								),
-								212 => array (
-										'id' => 5868,
-										'name' => 'Glenumbra Border Wolf',
-										'icon' => '/esoui/art/icons/mounticon_wolf_glennumbra.dds',
-										'desc' => 'Though in coloration the Glenumbra Border Wolf resembles certain Breton dog breeds, this sturdy and stoic mount is no dog, and will carry a High Rock courier for leagues through dark night and heavy weather.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Moor-Rover' 
-								),
-								213 => array (
-										'id' => 5869,
-										'name' => 'Meridian Sabre Cat',
-										'icon' => '/esoui/art/icons/mounticon_senche_purified.dds',
-										'desc' => '\"Some accounts of Meridia`s plane of the Colored Rooms describe a menagerie of light-imbued spectral beasts elevated from Nirn and `purified` by the Lady`s holy light.\" —Sayings of Valasha',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Saffron' 
-								),
-								214 => array (
-										'id' => 5870,
-										'name' => 'Novelty Stick Horse',
-										'icon' => '/esoui/art/icons/mounticon_stick_horse.dds',
-										'desc' => 'During the Jester`s Festival even the lowliest of commoners can pretend to be a mounted knight with a whimsical Novelty Stick steed. Horses are popular in the Daggerfall Covenant.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Charger Lord' 
-								),
-								215 => array (
-										'id' => 5871,
-										'name' => 'Verdant Tattoo Shorn Camel',
-										'icon' => '/esoui/art/icons/mounticon_camel_verdantshorn.dds',
-										'desc' => 'Shorn Camels are desert mounts with elaborate Tattoos on their hide where once there were wiry bristles. The \"Verdant,\" with its repeating floral designs, may be the most beautiful of them all.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Desert Blossom' 
-								),
-								216 => array (
-										'id' => 5872,
-										'name' => 'Dragonscale Barded Camel',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_camel.dds',
-										'desc' => 'Frankly, compared to war horses, bear mounts, and even saddle guars, it`s hard for Camels to look magnificent—until you dress them in Dragonscale Bard. Then look out!',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Humpty' 
-								),
-								217 => array (
-										'id' => 5873,
-										'name' => 'Dragonscale Barded Guar',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_guar.dds',
-										'desc' => '\"This one doesn`t sell many Guars here at the Riverhold Stables because Khajiit are folk who value their natural dignity and prefer not to ride so silly a beast. But a Guar in Dragonscale Bard is a thing of beauty!\" — Master Groom Zarbi`dahuz',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Guargoth' 
-								),
-								218 => array (
-										'id' => 5874,
-										'name' => 'Dragonscale Barded Senche',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_senche.dds',
-										'desc' => '\"Our distant cousins, the Senche-Mounts, look so majestic in Dragonscale Bard, like creatures who`ve just stepped out of an ancient wall-frieze in Dune. Perhaps these pesky Dragons have a use after all, yes?\" — Master Groom Zarbi`dahuz',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Clanky-Cat' 
-								),
-								219 => array (
-										'id' => 5875,
-										'name' => 'Dragonscale Barded Wolf',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_wolf.dds',
-										'desc' => '\"I had always thought the Helkarn Wolf to be Elsweyr`s finest Wolf mount, but that was before I saw a cavalry Wolf in Dragonscale Bard. Could a mount look any more martial?\" — Master Groom Zarbi`dahuz',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'War-Wolf' 
-								),
-								220 => array (
-										'id' => 5876,
-										'name' => 'Dragonscale Barded Bear',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_bear.dds',
-										'desc' => 'Dragonscale bard is just about the heaviest armor one can put on a mount, but bears bred as mounts are so strong they scarcely seem to notice it.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bruno' 
-								),
-								221 => array (
-										'id' => 5877,
-										'name' => 'Dragonscale Barded War-Horse',
-										'icon' => '/esoui/art/icons/mounticon_dragonscale_horse.dds',
-										'desc' => '\"Dragons are a pain in the tailbones, yes? But their scales make such superb steed armor! The Dragonscale Barded War-Horse may be the sharpest mount this one has ever seen!\" — Master Groom Zarbi`dahuz',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Superbo' 
-								),
-								222 => array (
-										'id' => 5878,
-										'name' => 'Daggerfall Dapple Horse',
-										'icon' => '/esoui/art/icons/mounticon_horse_speckled.dds',
-										'desc' => 'The Daggerfall Dapple is a hardy horse breed that comes from the Farwatch region of Glenumbra between Daggerfall and Camlorn. Known for its endurance, it`s a favorite of long-distance riders.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mudpie' 
-								),
-								223 => array (
-										'id' => 5879,
-										'name' => 'Novelty Stick Guar',
-										'icon' => '/esoui/art/icons/mounticon_stick_guar.dds',
-										'desc' => 'During the Jester`s Festival even the lowliest of commoners can pretend to be a mounted knight with a whimsical Novelty Stick steed. Guars are popular in the Aldmeri Dominion.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Guar Sticklord' 
-								),
-								224 => array (
-										'id' => 5880,
-										'name' => 'Novelty Stick Dragon',
-										'icon' => '/esoui/art/icons/mounticon_stick_dragon.dds',
-										'desc' => 'During the Jester`s Festival even the lowliest of commoners can pretend to be a mounted knight with a whimsical Novelty Stick steed. Dragons are popular in the Ebonheart Pact.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mightyscales' 
-								),
-								225 => array (
-										'id' => 6032,
-										'name' => 'Gloam Wolf',
-										'icon' => '/esoui/art/icons/mounticon_wolf_nocturnal.dds',
-										'desc' => 'The uncanny Gloam Wolf hails from the Oblivion plane of the Daedric Prince Nocturnal. Sometimes, the Night Mistress will reward a loyal Tamrielic worshiper with a Gloam Wolf Mount sent permanently to Nirn.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Blackshadow' 
-								),
-								226 => array (
-										'id' => 6033,
-										'name' => 'Egg Hunter`s Horse',
-										'icon' => '/esoui/art/icons/mounticon_horse_easter.dds',
-										'desc' => 'The many multicolored eggs of Tamriel are valuable for their differing alchemical properties, and this makes the Egg Hunter`s job a profitable one, especially in the spring.',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Dobbin' 
-								),
-								227 => array (
-										'id' => 6036,
-										'name' => 'Eerie Elk of Dread',
-										'icon' => '/esoui/art/icons/mounticon_elk_ghost.dds',
-										'desc' => 'Is this ghostly Elk an antlered mount from the spirit world, or is it a sending from Lord Hircine`s Oblivion plane of the Hunting Grounds? It seems solid enough, and doesn`t disappear in broad daylight, so it must be more than just a haunt!',
-										'type' => 2,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Spook-Antlers' 
 								) 
 						) 
 				) 
@@ -14421,7 +13836,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_vanitypets_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 266,
+						'numCollectibles' => 245,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7,
@@ -15631,12 +15046,12 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								135 => array (
 										'id' => 1378,
-										'name' => 'Skeletal Cat^n',
+										'name' => 'Reanimated Cat^n',
 										'icon' => '/esoui/art/icons/pet_1378.dds',
-										'desc' => 'Even dark necromancers have feelings—some of them, anyway—and love their companion pets. Some love them so much they reanimate them after they pass away.',
+										'desc' => '',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Meowbones' 
+										'nickname' => '' 
 								),
 								136 => array (
 										'id' => 1379,
@@ -16207,9 +15622,9 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								199 => array (
 										'id' => 5101,
-										'name' => 'Noweyr Pony^n',
+										'name' => 'Realm of T`Which Pony^n',
 										'icon' => '/esoui/art/icons/pet_psijicpony_twitch.dds',
-										'desc' => 'The thief-god Rajhin is said to have stolen these enchanted purple Ponies from somewhere in Oblivion, but when his worshipers are asked where he got them, they just laugh and say, \"Noweyr!\"',
+										'desc' => 'This Daedric companion, conjured by Psijic magic in shape of a glowing Pony, was summoned from the little-known and possibly imaginary Oblivion demi-plane of T`Which.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Neigh-Neigh' 
@@ -16432,12 +15847,12 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								224 => array (
 										'id' => 5642,
-										'name' => 'Mara`s Spring Chicken',
+										'name' => 'Wild Chicken Color',
 										'icon' => '/esoui/art/icons/pet_216_coloredchicken.dds',
-										'desc' => 'As a sign of the blessing of Mara, Goddess of Fertility, in spring certain breeds of Tamriel`s hens lay eggs with shells in a variety of colors.',
+										'desc' => '',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Egwina' 
+										'nickname' => '' 
 								),
 								225 => array (
 										'id' => 5643,
@@ -16449,24 +15864,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								226 => array (
-										'id' => 5652,
-										'name' => 'Scruffy Skyrim Paint Pony',
-										'icon' => '/esoui/art/icons/pet_213_paintedpony.dds',
-										'desc' => 'Hardy and good-natured, the faithful Skyrim Paint Pony wants to be near its master regardless of the weather, leaning into the wind even in a tundra blizzard.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ponytail' 
-								),
-								227 => array (
-										'id' => 5653,
-										'name' => 'Pale Pass Pony',
-										'icon' => '/esoui/art/icons/pet_212_spottedpony.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								228 => array (
 										'id' => 5654,
 										'name' => 'Rooster White',
 										'icon' => '/esoui/art/icons/pet_230_whiterooster.dds',
@@ -16475,7 +15872,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								229 => array (
+								227 => array (
 										'id' => 5656,
 										'name' => 'Swamp Jelly',
 										'icon' => '/esoui/art/icons/pet_206_swampjelly.dds',
@@ -16484,7 +15881,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Marsh Gas' 
 								),
-								230 => array (
+								228 => array (
 										'id' => 5657,
 										'name' => 'Kaleidotropic Dragon Frog',
 										'icon' => '/esoui/art/icons/pet_211_kaleidascope.dds',
@@ -16493,7 +15890,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Touch-Me-Not' 
 								),
-								231 => array (
+								229 => array (
 										'id' => 5658,
 										'name' => 'Butterscotch Dragon Frog',
 										'icon' => '/esoui/art/icons/pet_207_butterscotch.dds',
@@ -16502,7 +15899,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Bug-Biter' 
 								),
-								232 => array (
+								230 => array (
 										'id' => 5659,
 										'name' => 'Flame Skin Salamander^n',
 										'icon' => '/esoui/art/icons/pet_208_orangesalamander.dds',
@@ -16511,16 +15908,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Steamy' 
 								),
-								233 => array (
+								231 => array (
 										'id' => 5660,
 										'name' => 'Toxin Skin Salamander^n',
 										'icon' => '/esoui/art/icons/pet_210_greensalamander.dds',
-										'desc' => 'The large, lumbering Salamanders of southern Tamriel are known for defending themselves with various elemental bursts—all but one, the Toxin Skin variety, which relies on venom instead. Not even the Sapiarchs of the Crystal Tower can account for it.',
+										'desc' => 'The large, lumbering Salamanders of southern Tamriel are known for defending themselves with various elemental busts—all but one, the Toxin Skin variety, which relies on venom instead. Not even the Sapiarchs of the Crystal Tower can account for it.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Poisontail' 
 								),
-								234 => array (
+								232 => array (
 										'id' => 5661,
 										'name' => 'Shock Skin Salamander^n',
 										'icon' => '/esoui/art/icons/pet_209_bluesalamander.dds',
@@ -16529,7 +15926,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Zapnewt' 
 								),
-								235 => array (
+								233 => array (
 										'id' => 5662,
 										'name' => 'Prong-Eared Odd-Eyed Cat^n',
 										'icon' => '/esoui/art/icons/pet_182_grimalkin.dds',
@@ -16538,7 +15935,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								236 => array (
+								234 => array (
 										'id' => 5663,
 										'name' => 'Prong-Eared Forge Mouser^n',
 										'icon' => '/esoui/art/icons/pet_214_blackprongearred.dds',
@@ -16547,7 +15944,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Earzles' 
 								),
-								237 => array (
+								235 => array (
 										'id' => 5699,
 										'name' => 'Infernium Dwarven Spiderling',
 										'icon' => '/esoui/art/icons/pet_219_flamedwarvenspider.dds',
@@ -16556,7 +15953,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Emberlegs' 
 								),
-								238 => array (
+								236 => array (
 										'id' => 5712,
 										'name' => 'Slateback Haj Mota',
 										'icon' => '/esoui/art/icons/pet_hajmota_slateback.dds',
@@ -16565,7 +15962,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Shelby' 
 								),
-								239 => array (
+								237 => array (
 										'id' => 5713,
 										'name' => 'Verdigris Haj Mota',
 										'icon' => '/esoui/art/icons/pet_hajmota_verdigris.dds',
@@ -16574,7 +15971,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Burrower' 
 								),
-								240 => array (
+								238 => array (
 										'id' => 5714,
 										'name' => 'Bear-Lizard Cub',
 										'icon' => '/esoui/art/icons/pet_221_murkmirebearcub.dds',
@@ -16583,7 +15980,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Scaly-Boo' 
 								),
-								241 => array (
+								239 => array (
 										'id' => 5715,
 										'name' => 'Pony-Lizard',
 										'icon' => '/esoui/art/icons/pet_223_murkmirepony.dds',
@@ -16592,7 +15989,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Spinemane' 
 								),
-								242 => array (
+								240 => array (
 										'id' => 5716,
 										'name' => 'Senche-Lizard Cub',
 										'icon' => '/esoui/art/icons/pet_224_murkmiresenchecub.dds',
@@ -16601,7 +15998,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Kitty Lizard' 
 								),
-								243 => array (
+								241 => array (
 										'id' => 5717,
 										'name' => 'Wolf-Lizard Pup',
 										'icon' => '/esoui/art/icons/pet_225_murkmirewolfpup.dds',
@@ -16610,7 +16007,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Hissy Howl' 
 								),
-								244 => array (
+								242 => array (
 										'id' => 5718,
 										'name' => 'Guar-Lizard Calf',
 										'icon' => '/esoui/art/icons/pet_222_murkmireguar.dds',
@@ -16619,7 +16016,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Googly' 
 								),
-								245 => array (
+								243 => array (
 										'id' => 5719,
 										'name' => 'Badger Ruff Echalette',
 										'icon' => '/esoui/art/icons/pet_217_badgerechelette.dds',
@@ -16628,7 +16025,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Feisty' 
 								),
-								246 => array (
+								244 => array (
 										'id' => 5720,
 										'name' => 'Monarch Butterfly',
 										'icon' => '/esoui/art/icons/pet_232_monarchorange.dds',
@@ -16637,7 +16034,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Thronebug' 
 								),
-								247 => array (
+								245 => array (
 										'id' => 5723,
 										'name' => 'Brimstone Nixad',
 										'icon' => '/esoui/art/icons/pet_218_brimstonenixad.dds',
@@ -16645,177 +16042,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Torchy' 
-								),
-								248 => array (
-										'id' => 5765,
-										'name' => 'Blue Shock Nixad',
-										'icon' => '/esoui/art/icons/pet_228_stormnixad.dds',
-										'desc' => 'The rare and colorful Shock Nixad looks rather like a tiny, winged Storm Atronach, though without the whirling electric rocks. They make loyal companions—though they may also make your hair stand on end!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Joltie' 
-								),
-								249 => array (
-										'id' => 5846,
-										'name' => 'Hot Pepper Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_236_hotpepperbantam.dds',
-										'desc' => 'The Hot Pepper Bantam Guar breed is native to the \"spice island\" of Esroniet, the source of much of Tamriel`s nutmeg, cloves, mace, and hot peppers. And the Pepper Guar has a spicy little personality to go with its name!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Blisters' 
-								),
-								250 => array (
-										'id' => 5848,
-										'name' => 'Hot-Blooded Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_250_bloodbuddybantam.dds',
-										'desc' => 'When asked about the rumor that the Hot-Blooded Bantam Guar had been bred as a vampiric sub-species by the disgraced mage Darvasen before he was exiled from Shad Astula, Arch-Mage Valeyn replied, \"What nonsense! They just like to eat tomatoes. Trust me.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Gory-Guar' 
-								),
-								251 => array (
-										'id' => 5850,
-										'name' => 'Atmoran Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_237_atmoranbantam.dds',
-										'desc' => '\"A fur-less, cold-blooded reptile with icy blue eyes that comes from the frozen, far-north, and in-all-likelihood legendary continent of Atmora? Bah. I refuse to believe it.\" —Phrastus of Elinhir',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snow-on-Scales' 
-								),
-								252 => array (
-										'id' => 5851,
-										'name' => 'Deadlands Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_247_deadlandbantam.dds',
-										'desc' => 'It may look cute, but this volcanic little pest comes from Mehrunes Dagon`s Oblivion plane of the Deadlands: it`s got lava in its blood and fire in its eyes, so keep it away from the curtains.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pumice' 
-								),
-								253 => array (
-										'id' => 5852,
-										'name' => 'Explorer`s Pack Donkey',
-										'icon' => '/esoui/art/icons/pet_253_donkey.dds',
-										'desc' => 'A donkey might not be the most glamorous pack animal, but it`s certainly the hardiest and most sure-footed, toting heavy loads through desert, mountains, and tundra without complaint … though it will give you a dirty look, and might nip if you turn away!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Haul Ass' 
-								),
-								254 => array (
-										'id' => 5853,
-										'name' => 'Atmoran Chub Loon',
-										'icon' => '/esoui/art/icons/pet_240_atmoranchubloon.dds',
-										'desc' => 'According to Nord legend, in its native land of Atmora this Chub Loon is much larger, as tall as two warriors and with a squawk that starts avalanches. It took mighty Ysgramor a day and a night to wrestle one down from Shivering Glacier. What, you doubt?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Doom Loon' 
-								),
-								255 => array (
-										'id' => 5855,
-										'name' => 'Winterhold Wolfhound',
-										'icon' => '/esoui/art/icons/pet_254_winterholdwolfhound.dds',
-										'desc' => 'North of Windhelm in Skyrim, where the snow on the heights never melts, the Nords` great Wolfhounds have lighter and fluffier fur coats. In addition to barking, they even howl a bit like the wolves they pursue.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Drift Dog' 
-								),
-								256 => array (
-										'id' => 5856,
-										'name' => 'Icebound Dwarven Spider',
-										'icon' => '/esoui/art/icons/pet_257_dwarvenice.dds',
-										'desc' => 'One might think that being frozen in a glacier for several thousand years would damage a delicate mechanism like a Dwarven Spider, but in the case of the Icebound units it seems instead to have preserved them in perfect working order.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Skidley' 
-								),
-								257 => array (
-										'id' => 5857,
-										'name' => 'Lustrated Daedrat',
-										'icon' => '/esoui/art/icons/pet_239_purifieddaedrat.dds',
-										'desc' => '\"The forces of Nocturnal`s attempted invasion of the Colored Rooms were inadvertently accompanied by some Evergloam Daedrats, which afterward were rounded up, Lustrated for purification, and then banished to Nirn.\" —Sapiarch Galaadil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Purity' 
-								),
-								258 => array (
-										'id' => 5861,
-										'name' => 'Meridian Sabre Cub',
-										'icon' => '/esoui/art/icons/pet_244_purifiedsenchecub.dds',
-										'desc' => '\"Our Lady of the Infinite Energies, Strict but Fair Arbiter of Inner Luminance, grant unto thy most devoted worshiper a sign of thy radiant favor, mayhap a loveable, glowing Sabre Cat cub.\" —Sayings of Valasha',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shinypaws' 
-								),
-								259 => array (
-										'id' => 5862,
-										'name' => 'Pebble Pal',
-										'icon' => '/esoui/art/icons/pet_258_pebblepal.dds',
-										'desc' => 'Tired of pets that follow you everywhere? Fed up with feeding them? Step up to Pebble Pal, the pet that`s a … rock.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rocky' 
-								),
-								260 => array (
-										'id' => 5863,
-										'name' => 'Pink Pearl Pig',
-										'icon' => '/esoui/art/icons/pet_238_pinkpig.dds',
-										'desc' => 'Pining for a perfect pet? Perhaps you`re a person who`d prefer a pleasantly playful piglet, pearly-white, pretty, and partial to paladins and protectors!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Fuchsia' 
-								),
-								261 => array (
-										'id' => 5864,
-										'name' => 'Carnelian Theodolite',
-										'icon' => '/esoui/art/icons/pet_248_redtheodolite.dds',
-										'desc' => 'The Dwarven Theodolite was a sort of automated measuring device designed to explore and survey subterranean areas; this version is notable for its distinctive red \"eye.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rufus' 
-								),
-								262 => array (
-										'id' => 6018,
-										'name' => 'Rihad Coffee Scorpion',
-										'icon' => '/esoui/art/icons/pet_243_coffeescorpion.dds',
-										'desc' => 'The Coffee Scorpion gets its name from the way they like their kaveh in Rihad: strong, dark, and sweet. (Well, I guess two out of three isn`t bad.)',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Kaveh' 
-								),
-								263 => array (
-										'id' => 6034,
-										'name' => 'Gloam Wolf Cub',
-										'icon' => '/esoui/art/icons/pet_246_nocturnalpup.dds',
-										'desc' => 'Hailing from Nocturnal`s Oblivion realm of Evergloam, the Gloam Wolf Cub seems to oscillate like an optical illusion between adorable and sinister.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pupshadow' 
-								),
-								264 => array (
-										'id' => 6035,
-										'name' => 'Ghostly Housecat',
-										'icon' => '/esoui/art/icons/pet_241_ghostcat.dds',
-										'desc' => 'According to Nibenese legend, a house where its owner was murdered will by haunted by the shade of their cat, sent from beyond by Lord Hollowjack to torment the killer with eternal shame and guilt.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rue' 
-								),
-								265 => array (
-										'id' => 6037,
-										'name' => 'Fledgling Vulture Gryphon',
-										'icon' => '/esoui/art/icons/pet_249_vulturegryphon.dds',
-										'desc' => 'Unlike most Gryphons, which catch live prey, the Vulture Gryphons subsist primarily on carrion. But they`re still majestic, and their young Fledglings still make adorable pets!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Buzzard' 
-								),
-								266 => array (
-										'id' => 6064,
-										'name' => 'Elinhir Arena Lion',
-										'icon' => '/esoui/art/icons/pet_256_gladiatorlion.dds',
-										'desc' => 'Arena Lions are trained to absolute obedience, whether as sturdy and savage Craglorn companions or as pit-fighting beasts taught to drag out a kill for the entertainment of an audience.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pit Cat' 
 								) 
 						) 
 				) 
@@ -16827,7 +16053,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/tutorial_idexicon_emotes_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 50,
+						'numCollectibles' => 44,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1255,
@@ -17173,7 +16399,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								39 => array (
 										'id' => 5744,
-										'name' => 'Greeting Dead-Water',
+										'name' => 'Greeting Dead Water',
 										'icon' => '/esoui/art/icons/emote_greetdeadwater.dds',
 										'desc' => '',
 										'type' => 21,
@@ -17182,7 +16408,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								40 => array (
 										'id' => 5745,
-										'name' => 'Greeting Bright-Throat',
+										'name' => 'Greeting Bright Throat',
 										'icon' => '/esoui/art/icons/emote_greetbrightthroat.dds',
 										'desc' => '',
 										'type' => 21,
@@ -17211,70 +16437,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5753,
 										'name' => 'Mistletoe Posterior',
 										'icon' => '/esoui/art/icons/emote_mistletoepost.dds',
-										'desc' => 'A cheeky request for a rude public display of affection!',
+										'desc' => '',
 										'type' => 21,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
 								44 => array (
 										'id' => 5754,
-										'name' => 'Festive Bell Ring',
+										'name' => 'Bell Ring',
 										'icon' => '/esoui/art/icons/emote_festivebell.dds',
 										'desc' => 'Ring in New Life with this festive bell-ringing emote!',
-										'type' => 21,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								45 => array (
-										'id' => 5891,
-										'name' => 'Pantomime Tug-of-War',
-										'icon' => '/esoui/art/icons/emote_mimeropepull.dds',
-										'desc' => 'Imitate an obnoxious mute comedian who imitates pulling on a nonexistent rope to imitate an invisible game of Tug of War!',
-										'type' => 21,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								46 => array (
-										'id' => 5892,
-										'name' => 'Chatty Hand Puppet',
-										'icon' => '/esoui/art/icons/emote_talkhand.dds',
-										'desc' => 'Sometimes the only way to have a decent conversation and get a straight answer is to talk to your own hand. Right?',
-										'type' => 21,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								47 => array (
-										'id' => 5893,
-										'name' => 'Wall Pantomime',
-										'icon' => '/esoui/art/icons/emote_mimewall.dds',
-										'desc' => '(Silent scream.) \"Let me out! I`m trapped behind an invisible wall! Help! No, really—invisible walls! Get me out of here! Isn`t this convincing? Just look!\"',
-										'type' => 21,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								48 => array (
-										'id' => 5895,
-										'name' => 'Warm Hands',
-										'icon' => '/esoui/art/icons/emote_warmhands.dds',
-										'desc' => 'There`s a bitter wind blowing in off the Sea of Ghosts—better warm your hands!',
-										'type' => 21,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								49 => array (
-										'id' => 5896,
-										'name' => 'Kiss the Frog',
-										'icon' => '/esoui/art/icons/emote_lickfrog.dds',
-										'desc' => 'There are various fairy-tale reasons for kissing a frog. Argonians prefer to taste them, to savor what they call \"amphibian brandy.\"',
-										'type' => 21,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								50 => array (
-										'id' => 6197,
-										'name' => 'Guar Stomp',
-										'icon' => '/esoui/art/icons/emote_terrorbird.dds',
-										'desc' => 'Do the Guar Stomp! Rahrr! Wave your tiny hands! Grahrr! Stomp your reptile feet! GUAR!',
 										'type' => 21,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -17316,7 +16488,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Head',
-						'numCollectibles' => 297,
+						'numCollectibles' => 289,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1598,
@@ -19918,85 +19090,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								290 => array (
-										'id' => 6044,
-										'name' => 'Engine Guardian`s Mask',
-										'icon' => '/esoui/art/icons/gear_undaunteddwemer_head_a.dds',
-										'desc' => 'Obtained rarely by completing the dungeon Darkshade Caverns II.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								291 => array (
-										'id' => 6118,
-										'name' => 'Honor Guard Helmet',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_head_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								292 => array (
-										'id' => 6125,
-										'name' => 'Honor Guard Helm',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_head_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								293 => array (
-										'id' => 6132,
-										'name' => 'Honor Guard Hat',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_head_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								294 => array (
-										'id' => 6141,
-										'name' => 'Prophet`s Hood',
-										'icon' => '/esoui/art/icons/gear_prophet_head_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								295 => array (
-										'id' => 6174,
-										'name' => 'Valkyn Skoria`s Mask',
-										'icon' => '/esoui/art/icons/gear_undaunted_magma_head_a.dds',
-										'desc' => 'Obtained rarely by completing the dungeon City of Ash II.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								296 => array (
-										'id' => 6240,
-										'name' => 'Cadwell`s \"Helmet\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_head_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								297 => array (
-										'id' => 6251,
-										'name' => 'Nightflame`s Mask',
-										'icon' => '/esoui/art/icons/gear_undaunted_titan_head_a.dds',
-										'desc' => 'Obtained rarely by completing the dungeon Elden Hollow II.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Chest',
-						'numCollectibles' => 423,
+						'numCollectibles' => 413,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1488,
@@ -23714,103 +22814,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								414 => array (
-										'id' => 6117,
-										'name' => 'Honor Guard Jerkin',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_chest_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								415 => array (
-										'id' => 6124,
-										'name' => 'Honor Guard Cuirass',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_chest_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								416 => array (
-										'id' => 6131,
-										'name' => 'Honor Guard Jerkin',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_chest_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								417 => array (
-										'id' => 6138,
-										'name' => 'Honor Guard Robe',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_robe_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								418 => array (
-										'id' => 6145,
-										'name' => 'Prophet`s Robe',
-										'icon' => '/esoui/art/icons/gear_prophet_robe_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								419 => array (
-										'id' => 6155,
-										'name' => 'Lyris Titanborn`s Cuirass',
-										'icon' => '/esoui/art/icons/gear_titanborn_chest_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								420 => array (
-										'id' => 6157,
-										'name' => 'Sai Sahan`s Jack',
-										'icon' => '/esoui/art/icons/gear_saisahan_chest_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								421 => array (
-										'id' => 6165,
-										'name' => 'Abnur Tharn`s Jerkin',
-										'icon' => '/esoui/art/icons/gear_atharn_chest_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								422 => array (
-										'id' => 6239,
-										'name' => 'Cadwell`s \"Cuirass\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_chest_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								423 => array (
-										'id' => 6366,
-										'name' => 'Prophet`s Jerkin',
-										'icon' => '/esoui/art/icons/gear_prophet_chest_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Legs',
-						'numCollectibles' => 319,
+						'numCollectibles' => 311,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1491,
@@ -26610,85 +25620,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								312 => array (
-										'id' => 6119,
-										'name' => 'Honor Guard Guards',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_legs_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								313 => array (
-										'id' => 6126,
-										'name' => 'Honor Guard Greaves',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_legs_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								314 => array (
-										'id' => 6133,
-										'name' => 'Honor Guard Breeches',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_legs_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								315 => array (
-										'id' => 6153,
-										'name' => 'Lyris Titanborn`s Greaves',
-										'icon' => '/esoui/art/icons/gear_titanborn_legs_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								316 => array (
-										'id' => 6158,
-										'name' => 'Sai Sahan`s Guards',
-										'icon' => '/esoui/art/icons/gear_saisahan_legs_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								317 => array (
-										'id' => 6167,
-										'name' => 'Abnur Tharn`s Breeches',
-										'icon' => '/esoui/art/icons/gear_atharn_legs_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								318 => array (
-										'id' => 6241,
-										'name' => 'Cadwell`s \"Greaves\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_legs_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								319 => array (
-										'id' => 6295,
-										'name' => 'Prophet`s Breeches',
-										'icon' => '/esoui/art/icons/gear_prophet_legs_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Shoulders',
-						'numCollectibles' => 329,
+						'numCollectibles' => 318,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1496,
@@ -29551,112 +28489,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								319 => array (
-										'id' => 6045,
-										'name' => 'Engine Guardian`s Shoulder',
-										'icon' => '/esoui/art/icons/gear_undaunteddwemer_shoulders_a.dds',
-										'desc' => 'Obtained rarely by unlocking Maj al-Ragath`s reward chest at an Undaunted Enclave.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								320 => array (
-										'id' => 6120,
-										'name' => 'Honor Guard Arm Cops',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_shoulder_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								321 => array (
-										'id' => 6127,
-										'name' => 'Honor Guard Pauldrons',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_shoulder_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								322 => array (
-										'id' => 6134,
-										'name' => 'Honor Guard Epaulets',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_shoulder_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								323 => array (
-										'id' => 6142,
-										'name' => 'Prophet`s Shawl',
-										'icon' => '/esoui/art/icons/gear_prophet_shoulder_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								324 => array (
-										'id' => 6152,
-										'name' => 'Lyris Titanborn`s Pauldrons',
-										'icon' => '/esoui/art/icons/gear_titanborn_shoulders_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								325 => array (
-										'id' => 6159,
-										'name' => 'Sai Sahan`s Arm Cops',
-										'icon' => '/esoui/art/icons/gear_saisahan_shoulders_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								326 => array (
-										'id' => 6168,
-										'name' => 'Abnur Tharn`s Epaulets',
-										'icon' => '/esoui/art/icons/gear_atharn_shoulders_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								327 => array (
-										'id' => 6175,
-										'name' => 'Valkyn Skoria`s Shoulder',
-										'icon' => '/esoui/art/icons/gear_undaunted_magma_shoulders_a.dds',
-										'desc' => 'Obtained rarely by unlocking Glirion the Redbeard`s reward chest at an Undaunted Enclave.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								328 => array (
-										'id' => 6242,
-										'name' => 'Cadwell`s \"Pauldrons\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_shoulder_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								329 => array (
-										'id' => 6252,
-										'name' => 'Nightflame`s Shoulder',
-										'icon' => '/esoui/art/icons/gear_undaunted_titan_shoulders_a.dds',
-										'desc' => 'Obtained rarely by unlocking Maj al-Ragath`s reward chest at an Undaunted Enclave.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Feet',
-						'numCollectibles' => 319,
+						'numCollectibles' => 311,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1489,
@@ -32456,85 +31295,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								312 => array (
-										'id' => 6121,
-										'name' => 'Honor Guard Boots',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_feet_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								313 => array (
-										'id' => 6128,
-										'name' => 'Honor Guard Sabatons',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_feet_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								314 => array (
-										'id' => 6135,
-										'name' => 'Honor Guard Shoes',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_feet_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								315 => array (
-										'id' => 6143,
-										'name' => 'Prophet`s Sandals',
-										'icon' => '/esoui/art/icons/gear_prophet_feet_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								316 => array (
-										'id' => 6151,
-										'name' => 'Lyris Titanborn`s Sabatons',
-										'icon' => '/esoui/art/icons/gear_titanborn_feet_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								317 => array (
-										'id' => 6160,
-										'name' => 'Sai Sahan`s Boots',
-										'icon' => '/esoui/art/icons/gear_saisahan_feet_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								318 => array (
-										'id' => 6169,
-										'name' => 'Abnur Tharn`s Shoes',
-										'icon' => '/esoui/art/icons/gear_atharn_feet_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								319 => array (
-										'id' => 6243,
-										'name' => 'Cadwell`s \"Sabatons\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_feet_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Hands',
-						'numCollectibles' => 322,
+						'numCollectibles' => 314,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1490,
@@ -35361,85 +34128,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								315 => array (
-										'id' => 6122,
-										'name' => 'Honor Guard Bracers',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_hand_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								316 => array (
-										'id' => 6129,
-										'name' => 'Honor Guard Gauntlets',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_hand_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								317 => array (
-										'id' => 6136,
-										'name' => 'Honor Guard Gloves',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_hand_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								318 => array (
-										'id' => 6144,
-										'name' => 'Prophet`s Wraps',
-										'icon' => '/esoui/art/icons/gear_prophetplayer_hands_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								319 => array (
-										'id' => 6150,
-										'name' => 'Lyris Titanborn`s Gauntlets',
-										'icon' => '/esoui/art/icons/gear_titanborn_hands_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								320 => array (
-										'id' => 6161,
-										'name' => 'Sai Sahan`s Bracers',
-										'icon' => '/esoui/art/icons/gear_saisahan_hands_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								321 => array (
-										'id' => 6170,
-										'name' => 'Abnur Tharn`s Gloves',
-										'icon' => '/esoui/art/icons/gear_atharn_hands_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								322 => array (
-										'id' => 6244,
-										'name' => 'Cadwell`s \"Gauntlets\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_hand_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Waist',
-						'numCollectibles' => 316,
+						'numCollectibles' => 309,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1502,
@@ -38221,69 +36916,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								310 => array (
-										'id' => 6123,
-										'name' => 'Honor Guard Belt',
-										'icon' => '/esoui/art/icons/gear_honorguard_medium_waist_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								311 => array (
-										'id' => 6130,
-										'name' => 'Honor Guard Girdle',
-										'icon' => '/esoui/art/icons/gear_honorguard_heavy_waist_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								312 => array (
-										'id' => 6137,
-										'name' => 'Honor Guard Sash',
-										'icon' => '/esoui/art/icons/gear_honorguard_light_waist_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								313 => array (
-										'id' => 6149,
-										'name' => 'Lyris Titanborn`s Girdle',
-										'icon' => '/esoui/art/icons/gear_titanborn_waist_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								314 => array (
-										'id' => 6162,
-										'name' => 'Sai Sahan`s Belt',
-										'icon' => '/esoui/art/icons/gear_saisahan_waist_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								315 => array (
-										'id' => 6171,
-										'name' => 'Abnur Tharn`s Sash',
-										'icon' => '/esoui/art/icons/gear_atharn_waist_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								316 => array (
-										'id' => 6245,
-										'name' => 'Cadwell`s \"Girdle\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_waist_a.dds',
-										'desc' => 'Learned from the Cadwell`s Kitchen Style Pack, acquired by seasonal purchase from the Crown Store.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -38301,7 +36933,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Two-Handed',
-						'numCollectibles' => 379,
+						'numCollectibles' => 356,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1558,
@@ -41506,220 +40138,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								357 => array (
-										'id' => 6049,
-										'name' => 'Engine Guardian Greatsword',
-										'icon' => '/esoui/art/icons/gear_unddwemer_2hsword_a.dds',
-										'desc' => 'An Outfit look for two-handed weapons in the Engine Guardian style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								358 => array (
-										'id' => 6097,
-										'name' => 'Cadwell`s \"Battle Axe\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_2haxe_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								359 => array (
-										'id' => 6098,
-										'name' => 'Cadwell`s \"Maul\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_2hmace_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								360 => array (
-										'id' => 6099,
-										'name' => 'Cadwell`s \"Greatsword\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_2hsword_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								361 => array (
-										'id' => 6107,
-										'name' => 'Honor Guard Battle Axe',
-										'icon' => '/esoui/art/icons/gear_honorguard_2haxe_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								362 => array (
-										'id' => 6108,
-										'name' => 'Honor Guard Maul',
-										'icon' => '/esoui/art/icons/gear_honorguard_2hmace_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								363 => array (
-										'id' => 6109,
-										'name' => 'Honor Guard Greatsword',
-										'icon' => '/esoui/art/icons/gear_honorguard_2hsword_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								364 => array (
-										'id' => 6148,
-										'name' => 'Lyris Titanborn`s Battle Axe',
-										'icon' => '/esoui/art/icons/gear_titanborn_2haxe_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								365 => array (
-										'id' => 6163,
-										'name' => 'Sai Sahan`s Greatsword',
-										'icon' => '/esoui/art/icons/gear_saisahan_2hsword_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								366 => array (
-										'id' => 6176,
-										'name' => 'Valkyn Skoria Greatsword',
-										'icon' => '/esoui/art/icons/gear_undvalkyn_2hsword_a.dds',
-										'desc' => 'An Outfit look for two-handed weapons in the Valkyn Skoria style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								367 => array (
-										'id' => 6209,
-										'name' => 'Stormlord Battle Axe',
-										'icon' => '/esoui/art/icons/gear_stormlord_2haxe_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								368 => array (
-										'id' => 6210,
-										'name' => 'Stormlord Maul',
-										'icon' => '/esoui/art/icons/gear_stormlord_2hmace_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								369 => array (
-										'id' => 6211,
-										'name' => 'Stormlord Greatsword',
-										'icon' => '/esoui/art/icons/gear_stormlord_2hsword_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								370 => array (
-										'id' => 6219,
-										'name' => 'Firedrake Battle Axe',
-										'icon' => '/esoui/art/icons/gear_firedrake_2haxe_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								371 => array (
-										'id' => 6220,
-										'name' => 'Firedrake Maul',
-										'icon' => '/esoui/art/icons/gear_firedrake_2hmace_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								372 => array (
-										'id' => 6221,
-										'name' => 'Firedrake Greatsword',
-										'icon' => '/esoui/art/icons/gear_firedrake_2hsword_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								373 => array (
-										'id' => 6229,
-										'name' => 'Pit Daemon Battle Axe',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_2haxe_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								374 => array (
-										'id' => 6230,
-										'name' => 'Pit Daemon Maul',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_2hmace_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								375 => array (
-										'id' => 6231,
-										'name' => 'Pit Daemon Greatsword',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_2hsword_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								376 => array (
-										'id' => 6247,
-										'name' => 'Dwarven Remnant Battle Axe',
-										'icon' => '/esoui/art/icons/gear_dwarvenremnant_2haxe_a.dds',
-										'desc' => 'An Outfit look for two-handed weapons in the Dwarven Remnant style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								377 => array (
-										'id' => 6253,
-										'name' => 'Nightflame Greatsword',
-										'icon' => '/esoui/art/icons/gear_undtitan_2hsword_a.dds',
-										'desc' => 'An Outfit look for two-handed weapons in the Nightflame style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								378 => array (
-										'id' => 6285,
-										'name' => 'Sinweaver',
-										'icon' => '/esoui/art/icons/gear_daedricartifact_2hsword_sinweaver.dds',
-										'desc' => 'This includes a two-handed Outfit style replicating the Sinweaver Elder Scrolls Artifact, an ancient Elven sword possibly Ayleid in origin, though it`s endowed with powers often associated with Daedric weapons.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								379 => array (
-										'id' => 6354,
-										'name' => 'Chrysamere',
-										'icon' => '/esoui/art/icons/gear_daedricartifact_2hsword_chrysamere.dds',
-										'desc' => 'This includes a two-handed Outfit style replicating the Chrysamere Elder Scrolls Artifact, a sword also known as the Paladin`s Blade.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'One-Handed',
-						'numCollectibles' => 498,
+						'numCollectibles' => 471,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1563,
@@ -45477,7 +43902,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								418 => array (
 										'id' => 5295,
 										'name' => 'Psijic Order Axe',
-										'icon' => '/esoui/art/icons/gear_psijicorder_axe_a.dds',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
 										'desc' => 'Learned from the Psijic Order Motif, acquired from various activities in Summerset.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -45959,256 +44384,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								472 => array (
-										'id' => 6047,
-										'name' => 'Engine Guardian Dagger',
-										'icon' => '/esoui/art/icons/gear_unddwemer_dagger_a.dds',
-										'desc' => 'An Outfit look for one-handed weapons in the Engine Guardian style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								473 => array (
-										'id' => 6100,
-										'name' => 'Cadwell`s \"Axe\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_1haxe_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								474 => array (
-										'id' => 6102,
-										'name' => 'Cadwell`s \"Dagger\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_dagger_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								475 => array (
-										'id' => 6103,
-										'name' => 'Cadwell`s \"Mace\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_1hmace_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								476 => array (
-										'id' => 6106,
-										'name' => 'Cadwell`s \"Sword\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_1hsword_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								477 => array (
-										'id' => 6110,
-										'name' => 'Honor Guard Axe',
-										'icon' => '/esoui/art/icons/gear_honorguard_1haxe_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								478 => array (
-										'id' => 6112,
-										'name' => 'Honor Guard Dagger',
-										'icon' => '/esoui/art/icons/gear_honorguard_dagger_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								479 => array (
-										'id' => 6113,
-										'name' => 'Honor Guard Mace',
-										'icon' => '/esoui/art/icons/gear_honorguard_1hmace_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								480 => array (
-										'id' => 6116,
-										'name' => 'Honor Guard Sword',
-										'icon' => '/esoui/art/icons/gear_honorguard_1hsword_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								481 => array (
-										'id' => 6164,
-										'name' => 'Sai Sahan`s Sword',
-										'icon' => '/esoui/art/icons/gear_saisahan_1hsword_a.dds',
-										'desc' => 'Part of Sai Sahan`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								482 => array (
-										'id' => 6172,
-										'name' => 'Abnur Tharn`s Dagger',
-										'icon' => '/esoui/art/icons/gear_atharn_dagger_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								483 => array (
-										'id' => 6180,
-										'name' => 'Valkyn Skoria Mace',
-										'icon' => '/esoui/art/icons/gear_undvalkyn_1hmace_a.dds',
-										'desc' => 'An Outfit look for one-handed weapons in the Valkyn Skoria style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								484 => array (
-										'id' => 6212,
-										'name' => 'Stormlord Axe',
-										'icon' => '/esoui/art/icons/gear_stormlord_1haxe_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								485 => array (
-										'id' => 6214,
-										'name' => 'Stormlord Dagger',
-										'icon' => '/esoui/art/icons/gear_stormlord_dagger_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								486 => array (
-										'id' => 6215,
-										'name' => 'Stormlord Mace',
-										'icon' => '/esoui/art/icons/gear_stormlord_1hmace_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								487 => array (
-										'id' => 6218,
-										'name' => 'Stormlord Sword',
-										'icon' => '/esoui/art/icons/gear_stormlord_1hsword_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								488 => array (
-										'id' => 6222,
-										'name' => 'Firedrake Axe',
-										'icon' => '/esoui/art/icons/gear_firedrake_1haxe_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								489 => array (
-										'id' => 6224,
-										'name' => 'Firedrake Dagger',
-										'icon' => '/esoui/art/icons/gear_firedrake_dagger_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								490 => array (
-										'id' => 6225,
-										'name' => 'Firedrake Mace',
-										'icon' => '/esoui/art/icons/gear_firedrake_1hmace_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								491 => array (
-										'id' => 6228,
-										'name' => 'Firedrake Sword',
-										'icon' => '/esoui/art/icons/gear_firedrake_1hsword_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								492 => array (
-										'id' => 6232,
-										'name' => 'Pit Daemon Axe',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_1haxe_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								493 => array (
-										'id' => 6234,
-										'name' => 'Pit Daemon Dagger',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_dagger_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								494 => array (
-										'id' => 6235,
-										'name' => 'Pit Daemon Mace',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_1hmace_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								495 => array (
-										'id' => 6238,
-										'name' => 'Pit Daemon Sword',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_1hsword_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								496 => array (
-										'id' => 6250,
-										'name' => 'Dwarven Remnant Sword',
-										'icon' => '/esoui/art/icons/gear_dwarvenremnant_1hsword_a.dds',
-										'desc' => 'An Outfit look for one-handed weapons in the Dwarven Remnant style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								497 => array (
-										'id' => 6257,
-										'name' => 'Nightflame Mace',
-										'icon' => '/esoui/art/icons/gear_undtitan_1hmace_a.dds',
-										'desc' => 'An Outfit look for one-handed weapons in the Nightflame style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								498 => array (
-										'id' => 6287,
-										'name' => 'Firstblade',
-										'icon' => '/esoui/art/icons/gear_daedricartifact_1hsword_miraak.dds',
-										'desc' => 'This includes a sword Outfit style replicating the Firstblade Elder Scrolls Artifact, a strange sword the Skaal of Solstheim say belonged to a renegade Dragon Priest named Miraak far in the distant past.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Shield',
-						'numCollectibles' => 134,
+						'numCollectibles' => 124,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1554,
@@ -47111,15 +45293,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								101 => array (
-										'id' => 4781,
-										'name' => 'Spellbreaker Shield',
-										'icon' => '/esoui/art/icons/gear_daedricartifact_shield_spellbreaker.dds',
-										'desc' => 'This includes a shield Outfit style replicating the Spellbreaker Elder Scrolls Artifact, a Dwarven shield associated with the Daedric Prince Peryite. Sometime in the early First Era it was granted for a time to the Dragon Priest Zaan the Scalecaller.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								102 => array (
 										'id' => 4929,
 										'name' => 'Apostle Shield',
 										'icon' => '/esoui/art/icons/gear_apostle_shield_a.dds',
@@ -47128,7 +45301,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								103 => array (
+								102 => array (
 										'id' => 4983,
 										'name' => 'Ebonshadow Shield',
 										'icon' => '/esoui/art/icons/gear_nocturnal_shield_a.dds',
@@ -47137,7 +45310,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								104 => array (
+								103 => array (
 										'id' => 5124,
 										'name' => 'Molag Kena Shield',
 										'icon' => '/esoui/art/icons/gear_molagkena_shield_001.dds',
@@ -47146,7 +45319,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								105 => array (
+								104 => array (
 										'id' => 5164,
 										'name' => 'Ilambris Shield',
 										'icon' => '/esoui/art/icons/gear_undllambris_shield_001.dds',
@@ -47155,7 +45328,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								106 => array (
+								105 => array (
 										'id' => 5195,
 										'name' => 'Grothdarr Shield',
 										'icon' => '/esoui/art/icons/gear_undgrothdarr_shield_a.dds',
@@ -47164,7 +45337,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								107 => array (
+								106 => array (
 										'id' => 5209,
 										'name' => 'Iceheart Shield',
 										'icon' => '/esoui/art/icons/gear_undiceheart_shield_a.dds',
@@ -47173,7 +45346,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								108 => array (
+								107 => array (
 										'id' => 5231,
 										'name' => 'Troll King`s Shield',
 										'icon' => '/esoui/art/icons/gear_undtrollking_shield_a.dds',
@@ -47182,7 +45355,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								109 => array (
+								108 => array (
 										'id' => 5289,
 										'name' => 'Divine Prosecution Shield',
 										'icon' => '/esoui/art/icons/gear_divinepros_shield_a.dds',
@@ -47191,7 +45364,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								110 => array (
+								109 => array (
 										'id' => 5299,
 										'name' => 'Psijic Order Shield',
 										'icon' => '/esoui/art/icons/gear_psijicorder_shield_a.dds',
@@ -47200,7 +45373,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								111 => array (
+								110 => array (
 										'id' => 5352,
 										'name' => 'Fang Lair Shield',
 										'icon' => '/esoui/art/icons/gear_fanglair_shield_a.dds',
@@ -47209,7 +45382,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								112 => array (
+								111 => array (
 										'id' => 5385,
 										'name' => 'Fanged Worm Shield',
 										'icon' => '/esoui/art/icons/gear_fanglairbg_shield_a.dds',
@@ -47218,7 +45391,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								113 => array (
+								112 => array (
 										'id' => 5417,
 										'name' => 'Scalecaller Shield',
 										'icon' => '/esoui/art/icons/gear_scalecaller_shield_a.dds',
@@ -47227,7 +45400,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								114 => array (
+								113 => array (
 										'id' => 5427,
 										'name' => 'Horned Dragon Shield',
 										'icon' => '/esoui/art/icons/gear_scalecallerbg_shield_a.dds',
@@ -47236,7 +45409,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								115 => array (
+								114 => array (
 										'id' => 5465,
 										'name' => 'Shadowrend Shield',
 										'icon' => '/esoui/art/icons/gear_undshadowrend_shield_001.dds',
@@ -47245,7 +45418,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								116 => array (
+								115 => array (
 										'id' => 5482,
 										'name' => 'Pyandonean Shield',
 										'icon' => '/esoui/art/icons/gear_pyandonean_shield_001.dds',
@@ -47254,7 +45427,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								117 => array (
+								116 => array (
 										'id' => 5514,
 										'name' => 'Sapiarch Shield',
 										'icon' => '/esoui/art/icons/gear_sapiarch_shield_a.dds',
@@ -47263,7 +45436,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								118 => array (
+								117 => array (
 										'id' => 5572,
 										'name' => 'Bloodspawn Shield',
 										'icon' => '/esoui/art/icons/gear_undauntedgargoyle_shield_a.dds',
@@ -47272,7 +45445,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								119 => array (
+								118 => array (
 										'id' => 5577,
 										'name' => 'Swarm Mother Shield',
 										'icon' => '/esoui/art/icons/gear_undgiantspider_shield_a.dds',
@@ -47281,7 +45454,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								120 => array (
+								119 => array (
 										'id' => 5582,
 										'name' => 'Sellistrix Shield',
 										'icon' => '/esoui/art/icons/gear_undsellistrix_shield_a.dds',
@@ -47290,7 +45463,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								121 => array (
+								120 => array (
 										'id' => 5693,
 										'name' => 'Welkynar Shield',
 										'icon' => '/esoui/art/icons/gear_welkynar_shield_001.dds',
@@ -47299,7 +45472,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								122 => array (
+								121 => array (
 										'id' => 5795,
 										'name' => 'Huntsman Shield',
 										'icon' => '/esoui/art/icons/gear_hircine_shield_a.dds',
@@ -47308,7 +45481,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								123 => array (
+								122 => array (
 										'id' => 5827,
 										'name' => 'Silver Dawn Shield',
 										'icon' => '/esoui/art/icons/gear_silverdawn_shield_a.dds',
@@ -47317,7 +45490,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								124 => array (
+								123 => array (
 										'id' => 5967,
 										'name' => 'Dead-Water Shield',
 										'icon' => '/esoui/art/icons/gear_deadwater_shield_a.dds',
@@ -47326,92 +45499,11 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								125 => array (
+								124 => array (
 										'id' => 5999,
 										'name' => 'Elder Argonian Shield',
 										'icon' => '/esoui/art/icons/gear_elderarg_shield_a.dds',
 										'desc' => 'Learned from the Elder Argonian Crafting Style, acquired by completing daily quests in Murkmire after a certain date.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								126 => array (
-										'id' => 6051,
-										'name' => 'Engine Guardian Shield',
-										'icon' => '/esoui/art/icons/gear_unddwemer_shield_a.dds',
-										'desc' => 'An Outfit look for shields in the Engine Guardian style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								127 => array (
-										'id' => 6104,
-										'name' => 'Cadwell`s \"Shield\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_shield_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								128 => array (
-										'id' => 6114,
-										'name' => 'Honor Guard Shield',
-										'icon' => '/esoui/art/icons/gear_honorguard_shield_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								129 => array (
-										'id' => 6147,
-										'name' => 'Lyris Titanborn`s Shield',
-										'icon' => '/esoui/art/icons/gear_titanborn_shield_a.dds',
-										'desc' => 'Part of Lyris Titanborn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								130 => array (
-										'id' => 6178,
-										'name' => 'Valkyn Skoria Shield',
-										'icon' => '/esoui/art/icons/gear_undvalkyn_shield_a.dds',
-										'desc' => 'An Outfit look for shields in the Valkyn Skoria style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								131 => array (
-										'id' => 6216,
-										'name' => 'Stormlord Shield',
-										'icon' => '/esoui/art/icons/gear_stormlord_shield_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								132 => array (
-										'id' => 6226,
-										'name' => 'Firedrake Shield',
-										'icon' => '/esoui/art/icons/gear_firedrake_shield_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								133 => array (
-										'id' => 6236,
-										'name' => 'Pit Daemon Shield',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_shield_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								134 => array (
-										'id' => 6255,
-										'name' => 'Nightflame Shield',
-										'icon' => '/esoui/art/icons/gear_undtitan_shield_a.dds',
-										'desc' => 'An Outfit look for shields in the Nightflame style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -47421,7 +45513,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bow',
-						'numCollectibles' => 134,
+						'numCollectibles' => 125,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1587,
@@ -48547,94 +46639,13 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
-								),
-								126 => array (
-										'id' => 6050,
-										'name' => 'Engine Guardian Bow',
-										'icon' => '/esoui/art/icons/gear_unddwemer_bow_a.dds',
-										'desc' => 'An Outfit look for bows in the Engine Guardian style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								127 => array (
-										'id' => 6101,
-										'name' => 'Cadwell`s \"Bow\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_bow_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								128 => array (
-										'id' => 6111,
-										'name' => 'Honor Guard Bow',
-										'icon' => '/esoui/art/icons/gear_honorguard_bow_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								129 => array (
-										'id' => 6177,
-										'name' => 'Valkyn Skoria Bow',
-										'icon' => '/esoui/art/icons/gear_undvalkyn_bow_a.dds',
-										'desc' => 'An Outfit look for bows in the Valkyn Skoria style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								130 => array (
-										'id' => 6213,
-										'name' => 'Stormlord Bow',
-										'icon' => '/esoui/art/icons/gear_stormlord_bow_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								131 => array (
-										'id' => 6223,
-										'name' => 'Firedrake Bow',
-										'icon' => '/esoui/art/icons/gear_firedrake_bow_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								132 => array (
-										'id' => 6233,
-										'name' => 'Pit Daemon Bow',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_bow_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								133 => array (
-										'id' => 6248,
-										'name' => 'Dwarven Remnant Bow',
-										'icon' => '/esoui/art/icons/gear_dwarvenremnant_bow_a.dds',
-										'desc' => 'An Outfit look for bows in the Dwarven Remnant style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								134 => array (
-										'id' => 6254,
-										'name' => 'Nightflame Bow',
-										'icon' => '/esoui/art/icons/gear_undtitan_bow_a.dds',
-										'desc' => 'An Outfit look for bows in the Nightflame style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Staff',
-						'numCollectibles' => 138,
+						'numCollectibles' => 126,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1583,
@@ -49766,114 +47777,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Voriplasm Staff',
 										'icon' => '/esoui/art/icons/gear_voriplasm_staff_a.dds',
 										'desc' => 'An Outfit look for staves in the Voriplasm style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								127 => array (
-										'id' => 6048,
-										'name' => 'Engine Guardian Staff',
-										'icon' => '/esoui/art/icons/gear_unddwemer_staff_a.dds',
-										'desc' => 'An Outfit look for staves in the Engine Guardian style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								128 => array (
-										'id' => 6105,
-										'name' => 'Cadwell`s \"Staff\"',
-										'icon' => '/esoui/art/icons/gear_cadwell_staff_a.dds',
-										'desc' => 'Acquired as part of the Cadwell`s Kitchen Arms Pack. Only the most violent of kitchenware will do for an adventurer such as yourself, of course.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								129 => array (
-										'id' => 6115,
-										'name' => 'Honor Guard Staff',
-										'icon' => '/esoui/art/icons/gear_honorguard_staff_a.dds',
-										'desc' => 'Learned from the Honor Guard Crafting Style, acquired by completing the Black Rose Prison Arena. Odds favor the Veteran combatant.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								130 => array (
-										'id' => 6146,
-										'name' => 'Prophet`s Staff',
-										'icon' => '/esoui/art/icons/gear_prophet_staff_a.dds',
-										'desc' => 'Part of the Prophet`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								131 => array (
-										'id' => 6173,
-										'name' => 'Abnur Tharn`s Staff',
-										'icon' => '/esoui/art/icons/gear_atharn_staff_a.dds',
-										'desc' => 'Part of Abnur Tharn`s style, obtained from Anniversary Jubilee Gift Boxes.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								132 => array (
-										'id' => 6179,
-										'name' => 'Valkyn Skoria Staff',
-										'icon' => '/esoui/art/icons/gear_undvalkyn_staff_a.dds',
-										'desc' => 'An Outfit look for staves in the Valkyn Skoria style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								133 => array (
-										'id' => 6217,
-										'name' => 'Stormlord Staff',
-										'icon' => '/esoui/art/icons/gear_stormlord_staff_a.dds',
-										'desc' => 'Stormlord outfits! Learned from participating in Flag Games Battlegrounds—odds of acquiring it favor the victor and one versed in Stormlord armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								134 => array (
-										'id' => 6227,
-										'name' => 'Firedrake Staff',
-										'icon' => '/esoui/art/icons/gear_firedrake_staff_a.dds',
-										'desc' => 'Firedrake outfits! Learned from participating in Land Grab Battlegrounds—odds of acquiring it favor the victor and one versed in Firedrake armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								135 => array (
-										'id' => 6237,
-										'name' => 'Pit Daemon Staff',
-										'icon' => '/esoui/art/icons/gear_pitdaemon_staff_a.dds',
-										'desc' => 'Pit Daemon outfits! Learned from participating in Deathmatch Battlegrounds—odds of acquiring it favor the victor and one versed in Pit Daemon armor styles.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								136 => array (
-										'id' => 6249,
-										'name' => 'Dwarven Remnant Staff',
-										'icon' => '/esoui/art/icons/gear_dwarvenremnant_staff_a.dds',
-										'desc' => 'An Outfit look for staves in the Dwarven Remnant style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								137 => array (
-										'id' => 6256,
-										'name' => 'Nightflame Staff',
-										'icon' => '/esoui/art/icons/gear_undtitan_staff_a.dds',
-										'desc' => 'An Outfit look for staves in the Nightflame style.',
-										'type' => 24,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								138 => array (
-										'id' => 6286,
-										'name' => 'Spear of Bitter Mercy',
-										'icon' => '/esoui/art/icons/gear_daedricartifact_staff_spearofmercy.dds',
-										'desc' => 'This includes a staff Outfit style replicating the Spear of Bitter Mercy Elder Scrolls Artifact, a mighty weapon from Oblivion usually associated with the Daedric Prince Hircine.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
