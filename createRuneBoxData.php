@@ -1,18 +1,36 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "20";
+$TABLE_SUFFIX = "";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
 		"Fire Drake" => "Firedrake", 
 		"Dwemer Theodolite Pet" => "Dwarven Theodolite",
+		"Dwarven Theodolite Pet" => "Dwarven Theodolite",
 		"Sixth House Robe Costume" => "Sixth House Robe",
 		"Clockwork Reliquary" => "Clockwork Curator",
 		"Soul-Shriven Skin" => "Soul-Shriven",
 		"Big-Eared Ginger Kitten Pet" => "Big-Eared Ginger Kitten",
 		"Psijic Glowglobe Emote" => "Psijic Glowglobe",
-		"Arena Gladiator Costume" => "Arena Gladiator",	
+		"Arena Gladiator Costume" => "Arena Gladiator",
+		"Arena Gladiator Emote" => "Gladiator Emote",
+		"Blood Spawn's Shoulder" => "Bloodspawn's Shoulder",
+		"Blood Spawn's Mask" => "Bloodspawn's Mask",
+		"Sellistrix' Shoulder" => "Sellistrix's Shoulder",
+		"Sellistrix' Mask" => "Sellistrix's Mask",
+		"Engine Guardian Shoulder" => "Engine Guardian's Shoulder",
+		"Engine Guardian Mask" => "Engine Guardian's Mask",
+		"Abner Tharn's Jerkin" => "Abnur Tharn's Jerkin",
+		"Abner Tharn's Hat" => "Abnur Tharn's Hat",
+		"Abner Tharn's Breeches" => "Abnur Tharn's Breeches",
+		"Abner Tharn's Epaulets" => "Abnur Tharn's Epaulets",
+		"Abner Tharn's Shoes" => "Abnur Tharn's Shoes",
+		"Abner Tharn's Gloves" => "Abnur Tharn's Gloves",
+		"Abner Tharn's Sash" => "Abnur Tharn's Sash",
+		"Abner Tharn's Dagger" => "Abnur Tharn's Dagger",
+		"Abner Tharn's Staff" => "Abnur Tharn's Staff",
+		"Guar Stomp Emote" => "Guar Stomp",		
 );
 
 require("/home/uesp/secrets/esolog.secrets");
