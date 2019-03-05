@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 55,
-						'numBooks' => 752 
+						'numCollect' => 54,
+						'numBooks' => 738 
 				),
 				1 => array (
 						'id' => 43,
@@ -4504,59 +4504,59 @@ $ESO_BOOK_COLLECTIONS = array (
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
 						'books' => array (
 								5221 => array (
-										'title' => 'Crafting Motif 65: Huntsman Axes',
+										'title' => 'Crafting Motif 65, Huntsman Axes',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5222 => array (
-										'title' => 'Crafting Motif 65: Huntsman Belts',
+										'title' => 'Crafting Motif 65, Huntsman Belts',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5223 => array (
-										'title' => 'Crafting Motif 65: Huntsman Boots',
+										'title' => 'Crafting Motif 65, Huntsman Boots',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5224 => array (
-										'title' => 'Crafting Motif 65: Huntsman Bows',
+										'title' => 'Crafting Motif 65, Huntsman Bows',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5225 => array (
-										'title' => 'Crafting Motif 65: Huntsman Chests',
+										'title' => 'Crafting Motif 65, Huntsman Chests',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5226 => array (
-										'title' => 'Crafting Motif 65: Huntsman Daggers',
+										'title' => 'Crafting Motif 65, Huntsman Daggers',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5227 => array (
-										'title' => 'Crafting Motif 65: Huntsman Gloves',
+										'title' => 'Crafting Motif 65, Huntsman Gloves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5228 => array (
-										'title' => 'Crafting Motif 65: Huntsman Helmets',
+										'title' => 'Crafting Motif 65, Huntsman Helmets',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5229 => array (
-										'title' => 'Crafting Motif 65: Huntsman Legs',
+										'title' => 'Crafting Motif 65, Huntsman Legs',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5230 => array (
-										'title' => 'Crafting Motif 65: Huntsman Maces',
+										'title' => 'Crafting Motif 65, Huntsman Maces',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5231 => array (
-										'title' => 'Crafting Motif 65: Huntsman Shields',
+										'title' => 'Crafting Motif 65, Huntsman Shields',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5232 => array (
-										'title' => 'Crafting Motif 65: Huntsman Shoulders',
+										'title' => 'Crafting Motif 65, Huntsman Shoulders',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5233 => array (
-										'title' => 'Crafting Motif 65: Huntsman Staves',
+										'title' => 'Crafting Motif 65, Huntsman Staves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5234 => array (
-										'title' => 'Crafting Motif 65: Huntsman Swords',
+										'title' => 'Crafting Motif 65, Huntsman Swords',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
@@ -4632,192 +4632,128 @@ $ESO_BOOK_COLLECTIONS = array (
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
 						'books' => array (
 								5251 => array (
-										'title' => 'Crafting Motif 67: Welkynar Axes',
+										'title' => 'Crafting Motif 67, Welkynar Axes',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5252 => array (
-										'title' => 'Crafting Motif 67: Welkynar Belts',
+										'title' => 'Crafting Motif 67, Welkynar Belts',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5253 => array (
-										'title' => 'Crafting Motif 67: Welkynar Boots',
+										'title' => 'Crafting Motif 67, Welkynar Boots',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5254 => array (
-										'title' => 'Crafting Motif 67: Welkynar Bows',
+										'title' => 'Crafting Motif 67, Welkynar Bows',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5255 => array (
-										'title' => 'Crafting Motif 67: Welkynar Chests',
+										'title' => 'Crafting Motif 67, Welkynar Chests',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5256 => array (
-										'title' => 'Crafting Motif 67: Welkynar Daggers',
+										'title' => 'Crafting Motif 67, Welkynar Daggers',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5257 => array (
-										'title' => 'Crafting Motif 67: Welkynar Gloves',
+										'title' => 'Crafting Motif 67, Welkynar Gloves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5258 => array (
-										'title' => 'Crafting Motif 67: Welkynar Helmets',
+										'title' => 'Crafting Motif 67, Welkynar Helmets',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5259 => array (
-										'title' => 'Crafting Motif 67: Welkynar Legs',
+										'title' => 'Crafting Motif 67, Welkynar Legs',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5260 => array (
-										'title' => 'Crafting Motif 67: Welkynar Maces',
+										'title' => 'Crafting Motif 67, Welkynar Maces',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5261 => array (
-										'title' => 'Crafting Motif 67: Welkynar Shields',
+										'title' => 'Crafting Motif 67, Welkynar Shields',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5262 => array (
-										'title' => 'Crafting Motif 67: Welkynar Shoulders',
+										'title' => 'Crafting Motif 67, Welkynar Shoulders',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5263 => array (
-										'title' => 'Crafting Motif 67: Welkynar Staves',
+										'title' => 'Crafting Motif 67, Welkynar Staves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5264 => array (
-										'title' => 'Crafting Motif 67: Welkynar Swords',
+										'title' => 'Crafting Motif 67, Welkynar Swords',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
 				),
 				53 => array (
-						'id' => 143,
-						'name' => 'Honor Guard Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5317 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5318 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5319 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5320 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5321 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5322 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5323 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5324 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Helms',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5325 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5326 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5327 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5328 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Cops',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5329 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5330 => array (
-										'title' => 'Crafting Motif 68: Honor Guard Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								) 
-						) 
-				),
-				54 => array (
 						'id' => 144,
 						'name' => 'Dead-Water Style',
 						'numBooks' => 14,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
 						'books' => array (
 								5331 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Axes',
+										'title' => 'Crafting Motif 69, Dead-Water Axes',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5332 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Belts',
+										'title' => 'Crafting Motif 69, Dead-Water Belts',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5333 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Boots',
+										'title' => 'Crafting Motif 69, Dead-Water Boots',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5334 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Bows',
+										'title' => 'Crafting Motif 69, Dead-Water Bows',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5335 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Chest Pieces',
+										'title' => 'Crafting Motif 69, Dead-Water Chest Pieces',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5336 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Daggers',
+										'title' => 'Crafting Motif 69, Dead-Water Daggers',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5337 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Gloves',
+										'title' => 'Crafting Motif 69, Dead-Water Gloves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5338 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Helmets',
+										'title' => 'Crafting Motif 69, Dead-Water Helmets',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5339 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Leg Greaves',
+										'title' => 'Crafting Motif 69, Dead-Water Leg Greaves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5340 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Maces',
+										'title' => 'Crafting Motif 69, Dead-Water Maces',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5341 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Shields',
+										'title' => 'Crafting Motif 69, Dead-Water Shields',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5342 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Shoulders',
+										'title' => 'Crafting Motif 69, Dead-Water Shoulders',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5343 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Staves',
+										'title' => 'Crafting Motif 69, Dead-Water Staves',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								),
 								5344 => array (
-										'title' => 'Crafting Motif 69: Dead-Water Swords',
+										'title' => 'Crafting Motif 69, Dead-Water Swords',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
 				),
-				55 => array (
+				54 => array (
 						'id' => 145,
 						'name' => 'Elder Argonian Style',
 						'numBooks' => 14,
@@ -4887,7 +4823,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 36,
-						'numBooks' => 3113 
+						'numBooks' => 3093 
 				),
 				1 => array (
 						'id' => 44,
@@ -5756,7 +5692,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/notes_002.dds' 
 								),
 								5269 => array (
-										'title' => 'Blackguard Instructions, Three',
+										'title' => 'Blackguard Instructions, Two',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
@@ -8592,7 +8528,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				10 => array (
 						'id' => 53,
 						'name' => 'Military Orders and Reports',
-						'numBooks' => 104,
+						'numBooks' => 103,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								83 => array (
@@ -9006,17 +8942,13 @@ $ESO_BOOK_COLLECTIONS = array (
 								4987 => array (
 										'title' => 'Indirim`s Report, Part 5',
 										'icon' => '/esoui/art/icons/scroll_003.dds' 
-								),
-								5464 => array (
-										'title' => 'Letter from Queen Euraxia',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
 				11 => array (
 						'id' => 54,
 						'name' => 'Mysteries and Clues',
-						'numBooks' => 96,
+						'numBooks' => 90,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								120 => array (
@@ -9378,30 +9310,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5203 => array (
 										'title' => 'Dead-Water Riddle Fragment',
 										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5378 => array (
-										'title' => 'Khunzar-ri and the Full Moons',
-										'icon' => '/esoui/art/icons/quest_stormhaven_003.dds' 
-								),
-								5422 => array (
-										'title' => 'Khunzar-ri and the Dark Moons',
-										'icon' => '/esoui/art/icons/quest_stormhaven_003.dds' 
-								),
-								5423 => array (
-										'title' => 'Khunzar-ri and — — Moons',
-										'icon' => '/esoui/art/icons/quest_stormhaven_003.dds' 
-								),
-								5416 => array (
-										'title' => 'Slivers in a Dark Sky',
-										'icon' => '/esoui/art/icons/quest_stormhaven_003.dds' 
-								),
-								5414 => array (
-										'title' => 'Jode`s Blessing',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5415 => array (
-										'title' => 'Jone`s Blessing',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
 								) 
 						) 
 				),
@@ -11488,7 +11396,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				17 => array (
 						'id' => 60,
 						'name' => 'Tales of Tamriel',
-						'numBooks' => 118,
+						'numBooks' => 114,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								72 => array (
@@ -11946,22 +11854,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5172 => array (
 										'title' => 'Sotha Sil and the Scribe',
 										'icon' => '/esoui/art/icons/lore_book3_detail5_color4.dds' 
-								),
-								5405 => array (
-										'title' => 'Khunzar-ri and the Demon: Part One',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
-								),
-								5418 => array (
-										'title' => 'Khunzar-ri and the Demon: Part Two',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
-								),
-								5420 => array (
-										'title' => 'Khunzar-ri and the Demon: Part Three',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
-								),
-								5465 => array (
-										'title' => 'Khunzar-ri and the Demons',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
 								) 
 						) 
 				),
@@ -16424,7 +16316,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				32 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 58,
+						'numBooks' => 50,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -16626,45 +16518,13 @@ $ESO_BOOK_COLLECTIONS = array (
 								5050 => array (
 										'title' => 'Balorgh`s Plan',
 										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5474 => array (
-										'title' => 'Picking up the Pieces',
-										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
-								),
-								5475 => array (
-										'title' => 'In Pursuit of Mhuvnak',
-										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
-								),
-								5476 => array (
-										'title' => 'Skeevaton Modification and Operation',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5477 => array (
-										'title' => 'Burr`s Writing Practice',
-										'icon' => '/esoui/art/icons/event_jestersday_2017_note.dds' 
-								),
-								5181 => array (
-										'title' => 'Unearthing Garlas Malatar',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5182 => array (
-										'title' => 'Frostbitten Journal',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5183 => array (
-										'title' => 'Umaril is Undone',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
-								),
-								5184 => array (
-										'title' => 'Send Your Forces, Narilmor',
-										'icon' => '/esoui/art/icons/scroll_002.dds' 
 								) 
 						) 
 				),
 				33 => array (
 						'id' => 115,
 						'name' => 'Adventurer`s Almanac',
-						'numBooks' => 3,
+						'numBooks' => 2,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								4116 => array (
@@ -16673,10 +16533,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								4911 => array (
 										'title' => 'Adventurer`s Almanac, 2nd Edition',
-										'icon' => '/esoui/art/icons/quest_book_001.dds' 
-								),
-								5625 => array (
-										'title' => 'Adventurer`s Almanac, 3rd Edition',
 										'icon' => '/esoui/art/icons/quest_book_001.dds' 
 								) 
 						) 

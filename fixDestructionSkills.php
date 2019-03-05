@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "21pts";
+$TABLE_SUFFIX = "21";
 $PRINT_TABLE = false;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -26,9 +26,10 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	$query = "SELECT * FROM minedSkills$TABLE_SUFFIX WHERE id=$baseAbilityId;";
 	$result = $db->query($query);
 	
-	if ($result === false || $result->num_rows <= 0) 
+	if ($result === false || $result->num_rows <= 0)
 	{
-		print("\tError loading base ability ability $baseAbilityId!\n");
+		print("\t{$result->num_rows}\n");
+		print("\tError loading base ability $baseAbilityId!\n");
 		return false;
 	}
 	
@@ -39,7 +40,7 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	
 	if ($result === false || $result->num_rows <= 0)
 	{
-		print("\tError loading base ability ability $baseAbilityId!\n");
+		print("\tError loading ability $baseAbilityId!\n");
 		return false;
 	}
 	

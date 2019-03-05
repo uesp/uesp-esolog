@@ -151,6 +151,7 @@ class EsoLogViewer
 	
 	public static $QUEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
+			'internalId' => self::FIELD_INTID,
 			//'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
@@ -3185,6 +3186,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+							'internalId' => 'note',
 					),
 			),
 			'questStep' => array(
