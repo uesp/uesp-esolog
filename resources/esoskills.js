@@ -1681,7 +1681,7 @@ ESO_SKILL_DAMAGEMATCHES =
 [
 	{
 		damageId: "Magic",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Magic Damage)( over| each| every| to them every| to them over| to enemies in the target area every|to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Magic", // Blazing Shield
@@ -1689,33 +1689,77 @@ ESO_SKILL_DAMAGEMATCHES =
 	},
 	{
 		damageId: "Physical",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Flame",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Flame Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Shock",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Shock Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Frost",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Cold Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Frost",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Frost Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Frost Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Poison",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Poison Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 	{
 		damageId: "Disease",
-		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over| each| every| to enemies in the target area every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
 ];
+
+
+/*
+ * True means that particular skill/number is an AOE effect. Indexes start at 1 (first damage number in tooltip).
+ */
+ESO_SKILL_TARGETYPE_OVERRIDES = 
+{
+		16536 : true,	// Meteor
+		29012 : true,  	// Dragon Leap
+		"Lotus Fan" : { 2 : true },	// Lotus Fan
+		"Dark Shade" : { 2 : true },	// Dark Shade
+		24326 : { 2 : true },	// Daedric Curse
+		"Crystal Blast" : { 2 : true }, // Crystal Blast
+		18718 : { 3 : true }, 	// Mages' Fury
+		"Unstable Core" : { 2 : true }, // Unstable Core
+		"Deep Slash" : { 2 : true }, // Deep Slash
+		"Brutal Pounce" : { 2 : true }, // Brutal Pounce
+		39475 : { 3 : true }, // Inner Fire
+		
+		"Spiked Armor" : false, 	// Spiked Armor
+		"Hardened Armor" : false, 	// Hardened Armor
+		"Volatile Armor" : { 2 : false }, 	// Volatile Armor
+		61902 : false, 	// Grim Focus
+		23634 : { 2 : false }, 	// Summon Storm Atronach
+		23304 : { 1 : false }, 	// Summon Unstable Familiar
+		24613 : { 1 : false },	// Summon Winged Twilight
+		24785 : { 1 : false },	// Overload
+		85986 : { 1 : false, 3 : false },	// Feral Guardian
+		86135 : false,	// Crystallized Slab
+		86175 : false,	// Frozen Gate
+		"Clouding Swarm" : { 2 : false }, // Clouding Swarm
+		35750 : false,	// Trap Beast
+		103483 : false,	// Imbue Weapon
+		85986 : { 3 : false, 4 : false },	// Trapping Webs 
+		
+			// Passives
+		"Heavy Weapons" : false,		// Heavy Weapons
+		"Twin Blade and Blunt" : false,	// Twin Blade and Blunt
+		
+			// Bugged Cases?
+		"Burning Light" : "none",		// Burning Light, Not affected by either?
+		"Reflective Light" : { 1 : true, 2 : false }, 	// Reflective Light, #2 should be AOE?
+		"Force Pulse" : { 4 : "none" },			// Force Pulse, Not affected by either?
+};
 
 
 window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputValues)
@@ -1728,6 +1772,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	var newRawOutput = {};
 	var target = "";
 	var skillLineName = skillData.skillLine + ' Damage';
+	var overrideAoe = null;
 	
 	if (skillData.target) target = skillData.target.toLowerCase();
 	
@@ -1737,6 +1782,10 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	if (inputValues.Damage.Dot == null || isNaN(inputValues.Damage.Dot)) isDot = false;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
+	
+	overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.name];
+	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.abilityId];
+	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.baseAbilityId];
 	
 	for (var i = 0; i < ESO_SKILL_DAMAGEMATCHES.length; ++i)
 	{
@@ -1752,6 +1801,33 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			
 			var modDamage = parseFloat(p3);
 			var baseFactor = 1;
+			var iAOE = false;
+			var isSingleTarget = false;
+			
+			if (target == "area" || target == "cone" || target == "self" || target == "ground") iAOE = true;
+			if (target == "enemy") isSingleTarget = true;
+			
+			if (overrideAoe)
+			{
+				var overrideValue = overrideAoe;
+				if (typeof(overrideAoe) == "object") overrideValue = overrideAoe[matchIndex];
+				
+				if (overrideValue === true)
+				{
+					iAOE = true;
+					isSingleTarget = false;
+				}
+				else if (overrideValue === false)
+				{
+					iAOE = false;
+					isSingleTarget = true;
+				}
+				else if (overrideValue === "none")
+				{
+					iAOE = false;
+					isSingleTarget = false;
+				}
+			}
 			
 			newRawOutput = {};
 			newRawOutput.damageId = matchData.damageId;
@@ -1819,30 +1895,16 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			if (inputValues.Damage.All != null) amountAll += Math.round(inputValues.Damage.All*100)/100;
 			if (inputValues.Damage.Empower != null && !thisEffectIsDot && skillData.mechanic != 10) amountAll += Math.round(inputValues.Damage.Empower*100)/100;
 			
-			if (inputValues.Damage.SingleTarget != null) 
+			if (isSingleTarget && inputValues.Damage.SingleTarget != null) 
 			{
-				if (target == "enemy") 
-				{
-							/* Special case for overload */
-					if (skillData.baseAbilityId != 24785)
-					{
-						baseFactor += Math.round(inputValues.Damage.SingleTarget*100)/100;
-						newRawOutput.singleTargetDamageDone = +inputValues.Damage.SingleTarget;
-					}
-				}
+				baseFactor += Math.round(inputValues.Damage.SingleTarget*100)/100;
+				newRawOutput.singleTargetDamageDone = +inputValues.Damage.SingleTarget;
 			}
 			
-			if (inputValues.Damage.AOE != null) 
+			if (iAOE && inputValues.Damage.AOE != null && inputValues.Damage.AOE != 0) 
 			{
-				if (target == "area" || target == "cone" || target == "self" || target == "ground")
-				{
-							/* Special case for overload */
-					if (skillData.baseAbilityId != 24785)
-					{
-						baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
-						newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
-					}
-				}
+				baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
+				newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
 			}
 			
 			if (g_EsoSkillFlameAOESkills && inputValues.FlameAOEDamageDone)
