@@ -1610,6 +1610,7 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 	for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
 	{
 		var matchData = ESO_SKILL_HEALINGMATCHES[i];
+		var healingFactor = 1;
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
 		{
@@ -1622,15 +1623,13 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 			newRawOutput.baseHeal = p2;
 			newRawOutput.healDone = inputValues.Healing[matchData.healId];
 			
-			modHealing *= 1 + inputValues.Healing[matchData.healId];
-			modHealing = Math.round(modHealing);
+			healingFactor += inputValues.Healing[matchData.healId];
 			
 			if (isAoE && inputValues.Healing.AOE != null && inputValues.Healing.AOE != 0)
 			{
 				newRawOutput.aoeHeal = inputValues.Healing.AOE;
 				
-				modHealing *= 1 + inputValues.Healing.AOE;
-				modHealing = Math.round(modHealing);
+				healingFactor += inputValues.Healing.AOE;
 			}
 			
 			var skillHealing = inputValues.SkillHealing[skillData.skillLine];
@@ -1638,10 +1637,12 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 			
 			if (inputValues.SkillHealing != null && skillHealing != null)
 			{
-				modHealing *= 1 + skillHealing;
-				modHealing = Math.round(modHealing);
+				healingFactor += skillHealing;
 				newRawOutput.skillHealingDone = skillHealing; 
 			}
+			
+			modHealing *= healingFactor;
+			modHealing = Math.round(modHealing);
 			
 			newRawOutput.display = matchData.display;
 			newRawOutput.finalHeal = modHealing;
@@ -1866,10 +1867,10 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;
 			}			
 			
-			modDamage *= baseFactor;
-			
-			if (amountAll != 0)	modDamage *= 1 + amountAll;
+			if (amountAll != 0)	baseFactor += amountAll;
 			newRawOutput.damageDone = amountAll;
+			
+			modDamage *= baseFactor;
 			
 			if (!thisEffectIsDot && inputValues.SkillDirectDamage && inputValues.SkillDirectDamage[skillData.baseName])
 			{
