@@ -3125,7 +3125,7 @@ $ESO_FREE_RACIAL_SKILLS = array(
 
 function GetEsoUpdateVersion()
 {
-	return 20;
+	return 21;
 }
 
 
@@ -3244,13 +3244,13 @@ function GetEsoItemTableSuffix($version)
 			return "20pts";
 		case '120':
 		case '20':
-			return "";
+			return "20";
 		case '121pts':
 		case '21pts':
 			return "21pts";
 		case '121':
 		case '21':
-			return "21";
+			return "";
 	}
 
 	return "";
