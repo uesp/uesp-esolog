@@ -656,7 +656,12 @@ class EsoViewSalesData
 			$sumPurchases = floatval($item['sumPurchases']);
 			$totalCount = $totalSales + $totalPurchases;
 			$totalItems = floatval($item['countItemPurchases']) + floatval($item['countItemSales']);
-			$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
+			
+			if ($totalItems > 0)
+				$avgPrice = ($sumSales + $sumPurchases) / $totalItems;
+			else
+				$avgPrice = 0;
+			
 			$goodPrice = floatval($item['goodPrice']);
 			$extraQuery = "";
 			
@@ -664,7 +669,12 @@ class EsoViewSalesData
 			{
 				$totalCount = $totalPurchases;
 				$totalItems = floatval($item['countItemPurchases']);
-				$avgPrice = $sumPurchases / $totalItems;
+				
+				if ($totalItems > 0)
+					$avgPrice = $sumPurchases / $totalItems;
+				else
+					$avgPrice = 0;
+				
 				$extraQuery .= "&saletype=sold";
 				$goodPrice = floatval($item['goodSoldPrice']);
 			}
@@ -672,7 +682,12 @@ class EsoViewSalesData
 			{
 				$totalCount = $totalSales;
 				$totalItems = floatval($item['countItemSales']);
-				$avgPrice = $sumSales / $totalItems;
+				
+				if ($totalItems > 0)
+					$avgPrice = $sumSales / $totalItems;
+				else
+					$avgPrice = 0;
+				
 				$extraQuery .= "&saletype=listed";
 				$goodPrice = floatval($item['goodListPrice']);
 			}
