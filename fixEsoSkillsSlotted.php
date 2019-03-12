@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "21";
+$TABLE_SUFFIX = "";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -44,6 +44,10 @@ $ESO_SLOTTED_SKILLS = array(
 		41097 => -53,
 		41100 => -53,
 		41103 => -53,
+		
+		39197 => -53,	//Heavy Armor: Resolve
+		41097 => -53,
+		41100 => -53,
 		
 		39192 => -52,	//Medium Armor: Elude
 		41133 => -52,
@@ -195,6 +199,23 @@ $ESO_COEF_NUMBER_INDEX = array(
 		45549 => array(2, 4),
 );
 
+
+$ESO_EXACT_SKILL_VALUES = array(
+		
+		29825 => 1,		// Heavy Armor: Resolve
+		45531 => 1,
+		45533 => 1,
+		
+		29743 => 1,		// Medium Armor: Dexterity
+		45563 => 1,
+		45564 => 1,
+		
+		29663 => 1,		// Light Armor: Spell Warding
+		45559 => 1,
+	
+);
+
+
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Fixing slotted skills data...\n");
 
@@ -343,11 +364,45 @@ foreach ($skillsData as $skillId => &$skill)
 		$coef = $db->real_escape_string($skill['coefDescription']);
 		
 		$query = "UPDATE minedSkills$TABLE_SUFFIX SET type$indexValue=$type, a$indexValue={$skill['a'.$indexValue]}, b$indexValue={$skill['b'.$indexValue]}, c$indexValue={$skill['c'.$indexValue]}, avg$indexValue=0, R$indexValue=1, numCoefVars=$indexValue, coefDescription='$coef' WHERE id=$skillId;";
-		print("\t$query\n");
+		//print("\t$query\n");
 		$result = $db->query($query);
 		if (!$result) print("\tError saving skill $skillId!\n");
 	}
 }
 
 
+foreach ($ESO_EXACT_SKILL_VALUES as $skillId => $indexValue)
+{
+	$query = "SELECT * FROM minedSkills$TABLE_SUFFIX WHERE id=$skillId;";
+	$result = $db->query($query);
+	
+	if (!$result) 
+	{
+		print("Failed to load skill $skillId!\n");
+		continue;
+	}
+	
+	$skill = $result->fetch_assoc();
+	$coefDescription = $skill['description'];
+	
+	$result = preg_match("#by \|cffffff([0-9]+)\|r#", $coefDescription, $matches);
+	
+	if (!$result) 
+	{
+		print("Failed to find exact skill value match for $skillId!\n");
+		continue;
+	}
+	
+	$exactValue = $matches[1];
+	
+	$a = $db->real_escape_string($exactValue);
+	$b = 0;
+	$c = 0;
+	$R = 1;
+	
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET a$indexValue='$a', b$indexValue=0, c$indexValue=0, R$indexValue=1 WHERE id=$skillId;";
+	
+	$result = $db->query($query);
+	if (!$result) print("\tError saving skill $skillId!\n{$db->error}\n");	
+}
 
