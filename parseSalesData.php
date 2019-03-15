@@ -244,6 +244,7 @@ class EsoSalesDataParser
 						buyerName TINYTEXT NOT NULL,
 						buyTimestamp INT UNSIGNED NOT NULL,
 						eventId BIGINT NOT NULL,
+						uniqueId BIGINT NOT NULL DEFAULT 0,
 						price INTEGER NOT NULL,
 						qnt INTEGER NOT NULL,
 						itemLink TINYTEXT NOT NULL,
@@ -251,6 +252,7 @@ class EsoSalesDataParser
 						PRIMARY KEY (id),
 						INDEX unique_entry1(server(3), itemId, guildId, listTimestamp, sellerName(24)),
 						INDEX unique_entry2(server(3), itemId, guildId, eventId),
+						INDEX unique_entry3(uniqueId),
 						INDEX unique_itemid(itemId)
 					);";
 		
@@ -344,7 +346,7 @@ class EsoSalesDataParser
 		
 		return $this->guildData[$server][$name];
 	}
-	
+
 	
 	public function SaveGuild(&$guildData)
 	{
@@ -1201,6 +1203,57 @@ class EsoSalesDataParser
 	}
 	
 	
+	
+	public function UpdateSearchEntryId($searchEntry)
+	{
+		$safeTime = intval($searchEntry['listTimestamp']);
+		$itemMyId = $this->db->real_escape_string($searchEntry['itemId']);
+		$guildId = $this->db->real_escape_string($searchEntry['guildId']);
+		$uniqueId = $this->db->real_escape_string($searchEntry['uniqueId']);
+		$safeName = $this->db->real_escape_string($searchEntry['sellerName']);
+		$server = $this->db->real_escape_string($this->server);
+		
+		if (self::ESD_LISTTIME_RANGE > 0) 
+		{
+			$minTime = $safeTime - self::ESD_LISTTIME_RANGE;
+			$maxTime = $safeTime + self::ESD_LISTTIME_RANGE;
+			
+			$this->lastQuery = "UPDATE sales SET uniqueId='$uniqueId' WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp>='$minTime' AND listTimestamp<='$maxTime' AND sellerName=\"$safeName\" LIMIT 1;";
+		}
+		else
+		{
+			$this->lastQuery = "UPDATE sales SET uniqueId='$uniqueId' WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\" LIMIT 1;";
+		}
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to update uniqueId '$uniqueId' sales entry matching $itemMyId:$guildId:$safeTime:$safeName!");
+		
+		return true;
+	}
+		
+	
+	public function LoadSaleSearchEntryById($itemMyId, $guildId, $uniqueId)
+	{
+		$itemMyId = $this->db->real_escape_string($itemMyId);
+		$guildId = $this->db->real_escape_string($guildId);
+		$uniqueId = $this->db->real_escape_string($uniqueId);
+		$server = $this->db->real_escape_string($this->server);
+		
+		//$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND sellerName=\"$uniqueId\" LIMIT 1;";
+		$this->lastQuery = "SELECT * FROM sales WHERE uniqueId=\"$uniqueId\" LIMIT 1;";
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$uniqueId!");
+		
+		if ($result->num_rows == 0) return false;
+		
+		$rowData = $result->fetch_assoc();
+		$rowData['__dirty'] = false;
+	
+		return $rowData;
+	}
+	
+	
 	public function LoadSale($itemMyId, $guildId, $eventId)
 	{
 		$safeEventId = $this->db->real_escape_string($eventId);
@@ -1320,8 +1373,11 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 		
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp);";
+		$uniqueId = 0;
+		if ($saleData['uniqueId']) $uniqueId = $this->db->real_escape_string($saleData['uniqueId']);
+		
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink, lastSeen, uniqueId) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp, '$uniqueId');";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");
 		

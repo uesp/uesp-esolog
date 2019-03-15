@@ -6718,12 +6718,41 @@ class EsoLogParser
 		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
 		$itemData = &$this->salesData->GetItemDataByKey($server, $logEntry["itemLink"], $logEntry);
+		$hasUniqueId = false;
+		$salesData = false;
 		
-		$salesData = $this->salesData->LoadSaleSearchEntry($itemData['id'], $guildData['id'], $logEntry['listTimestamp'], $logEntry['seller']);
+		if ($logEntry['uniqueId'])
+		{
+			//print("\t\t{$logEntry['uniqueId']}: UniqueId\n");
+			$salesData = $this->salesData->LoadSaleSearchEntryById($itemData['id'], $guildData['id'], $logEntry['uniqueId']);
+			
+			if ($salesData)
+			{
+				$hasUniqueId = true;
+				
+				if ($salesData['server'] != $server || $salesData['itemId'] != $itemData['id'] || $salesData['guildId'] != $guildData['id'] || $salesData['sellerName'] != $logEntry['seller'])
+				{
+					print("\t\tSales Entry UniqueId mismatch: {$logEntry['uniqueId']}, {$salesData['server']}:$server, {$salesData['itemId']}:{$itemData['id']}, {$salesData['guildId']}:{$guildData['id']}, {$salesData['sellerName']}:{$logEntry['seller']}  \n");
+					$hasUniqueId = false;
+					$salesData = false;
+				}
+			}
+		}		
+		
+		if (!$salesData)
+		{
+			$salesData = $this->salesData->LoadSaleSearchEntry($itemData['id'], $guildData['id'], $logEntry['listTimestamp'], $logEntry['seller']);
+		}
 		
 		if ($salesData === false)
 		{
 			$salesData = $this->salesData->CreateNewSaleSearchEntry($itemData, $guildData, $logEntry);
+		}
+		else if ($logEntry['uniqueId'] && !$hasUniqueId)
+		{
+			//print("\t\tUpdating Unique ID\n");
+			$salesData['uniqueId'] = $logEntry['uniqueId'];
+			$this->salesData->UpdateSearchEntryId($salesData);
 		}
 		
 		return true;
@@ -7637,7 +7666,14 @@ class EsoLogParser
 			$this->startFileIndex = (int) $this->inputParams['start'];
 			$this->startFileLine = 0;
 			$this->usingManualStartIndex = true;
-			$this->log("Starting log parsing at manual file index {$this->startFileIndex}.");
+			$this->log("Starting log parsing at manual file index {$this->startFileIndex} line 1.");
+		}
+		
+		if (array_key_exists('startline', $this->inputParams))
+		{
+			$this->startFileLine = (int) $this->inputParams['startline'];
+			$this->usingManualStartIndex = true;
+			$this->log("Starting log parsing at manual file index {$this->startFileIndex} line {$this->startFileLine}.");
 		}
 		
 		return true;
