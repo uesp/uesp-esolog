@@ -211,7 +211,7 @@ class EsoItemSearcher
 		if ($this->dbReadInitialized) return true;
 	
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
-		if ($db->connect_error) return $this->ReportError("Could not connect to mysql database!");
+		if ($this->db->connect_error) return $this->ReportError("Could not connect to mysql database!");
 		
 		UpdateEsoPageViews("advancedItemSearchViews");
 	
@@ -617,7 +617,8 @@ class EsoItemSearcher
 		$output = "";
 		
 		$itemName = ucfirst($result['name']);
-		$itemLink = $result['link'];
+		$itemLink = "";
+		if (array_key_exists('link', $result)) $itemLink = $result['link'];
 		$itemId = $result['itemId'];
 		$quality = $result['quality'];
 		$level = $result['level'];

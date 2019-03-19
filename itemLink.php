@@ -280,6 +280,7 @@ class CEsoItemLink
 		}
 		
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
+		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		
 		if (array_key_exists('level', $this->inputParams)) 
 		{
@@ -298,18 +299,17 @@ class CEsoItemLink
 				$this->itemLevel = (int) $level;
 			}
 			
-			$this->itemQuality = 1;
+			if (!$this->showSummary) $this->itemQuality = 1;
 		}
 		
 		if (array_key_exists('quality', $this->inputParams))
 		{
 			$this->itemQuality = (int) $this->inputParams['quality'];
-			if ($this->itemLevel < 0) $this->itemLevel = 1;
+			if (!$this->showSummary && $this->itemLevel < 0) $this->itemLevel = 1;
 		}
 		
 		if (array_key_exists('show', $this->inputParams) || array_key_exists('showall', $this->inputParams)) $this->showAll = true;
 		if (array_key_exists('rawdata', $this->inputParams)) $this->outputRaw = true;
-		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
@@ -550,6 +550,17 @@ class CEsoItemLink
 		$this->itemRecord['level'] = $this->itemLevel;
 		$this->itemRecord['internalSubtype'] = $this->itemIntType;
 		$this->itemRecord['internalLevel'] = $this->itemIntLevel;
+		$this->itemRecord['link'] = "";
+		$this->itemRecord['secBonusCount1'] = -1;
+		$this->itemRecord['secBonusCount2'] = -1;
+		$this->itemRecord['secBonusCount3'] = -1;
+		$this->itemRecord['secBonusCount4'] = -1;
+		$this->itemRecord['secBonusCount5'] = -1;
+		$this->itemRecord['enchantId1'] = 0;
+		$this->itemRecord['enchantIntLevel1'] = 0;
+		$this->itemRecord['enchantIntType1'] = 0;
+		$this->itemRecord['traitAbilityDescArray'] = array();
+		$this->itemRecord['traitCooldownArray'] = array();
 		
 		if ($this->itemLevel > 0 && $this->itemQuality >= 0)
 			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}, level {$this->itemLevel}, and quality {$this->itemQuality}!";
@@ -654,7 +665,7 @@ class CEsoItemLink
 	
 	private function LoadItemSummaryData()
 	{
-		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-85000)!");
+		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified!");
 		$query = "SELECT * FROM minedItemSummary". $this->GetTableSuffix() ." WHERE itemId={$this->itemId};";
 		
 		$result = $this->db->query($query);
@@ -662,6 +673,28 @@ class CEsoItemLink
 		
 		$row = $result->fetch_assoc();
 		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
+		
+		$row['traitAbilityDescArray'] = array();
+		$row['traitCooldownArray'] = array();
+		$row['setBonusCount1'] = "";
+		$row['setBonusCount2'] = "";
+		$row['setBonusCount3'] = "";
+		$row['setBonusCount4'] = "";
+		$row['setBonusCount5'] = "";
+		$row['internalSubtype'] = "";
+		$row['internalLevel'] = "";
+		$row['abilityCooldown'] = "";
+		$row['maxCharges'] = "";
+		$row['enchantId1'] = "";
+		$row['enchantIntLevel1'] = "";
+		$row['enchantIntType1'] = "";
+		$row['link'] = "";
+		
+		if ($row['traitAbilityDesc'] != "")
+		{
+			$row['traitAbilityDescArray'][] = $row['traitAbilityDesc'];
+			$row['traitCooldownArray'][] = $row['traitCooldown'];
+		}
 		
 		$this->itemSummary = $row;
 		if (!$this->itemSummary) $this->ReportError("ERROR: No item summary found matching ID {$this->itemId}!");
@@ -673,8 +706,6 @@ class CEsoItemLink
 			if ($this->transmuteTrait > 0) 
 			{
 				$this->itemTrait = $this->transmuteTrait;
-				
-					/* TODO: Transmute trait modification? */
 				
 				$this->LoadItemSummaryTransmuteTraitData();
 			}
@@ -688,6 +719,8 @@ class CEsoItemLink
 		if ($this->itemSummary['type'] == 30) $this->LoadItemPoisonData();
 		
 		if ($this->itemSummary['type'] == 60) $this->CreateMasterWritData();
+		
+		
 		
 		return true;
 	}
@@ -785,8 +818,8 @@ class CEsoItemLink
 		$row['enchantIntLevel1'] = $this->enchantIntLevel1;
 		$row['enchantIntType1'] = $this->enchantIntType1;
 		
-		$row['traitAbilityDescs'] = array();
-		$row['traitCooldowns'] = array();
+		$row['traitAbilityDescArray'] = array();
+		$row['traitCooldownArray'] = array();
 		
 		if ($row['traitAbilityDesc'] != "")
 		{
@@ -820,7 +853,7 @@ class CEsoItemLink
 				$this->itemRecord['origTrait'] = $this->itemRecord['trait'];
 				$this->itemRecord['origTraitDesc'] = $this->itemRecord['traitDesc'];
 				$this->itemRecord['origArmorRating'] = $this->itemRecord['armorRating'];
-				$this->itemRecord['origWeaponPower'] = $this->itemRecord['armorWeaponPower'];
+				$this->itemRecord['origWeaponPower'] = $this->itemRecord['weaponPower'];
 				$this->itemRecord['origEnchantDesc'] = $this->itemRecord['enchantDesc'];
 					
 				if ($this->itemRecord['trait'] == 13)		/* Original Reinforced */
@@ -1224,12 +1257,7 @@ class CEsoItemLink
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
 		
-		$origin = $_SERVER['HTTP_ORIGIN'];
-		
-		//if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}
+		header("Access-Control-Allow-Origin: *");
 		
 		if ($this->outputType == "html")
 			header("content-type: text/html");
@@ -1390,6 +1418,7 @@ class CEsoItemLink
 		//if (!$this->ShouldShowLevel()) return "";
 		
 		$level = $this->itemRecord['level'];
+
 		if ($level <= 0) return "";
 		
 		if ($level > 50) 
