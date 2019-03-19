@@ -210,7 +210,7 @@ class EsoGetSalesImage
 		
 		foreach ($this->salesData as $sale)
 		{
-			if ($sale['outlier'] === true) continue;
+			if (array_key_exists('outlier', $sale) && $sale['outlier'] === true) continue;
 			
 			++$numPoints;
 			$this->validSalesData[] = $sale;
@@ -302,10 +302,12 @@ class EsoGetSalesImage
 		$savePrices = array_fill(0, $numPoints, 0);
 		$saveIndex = 0;
 		$lastPrice = 0;
+		$lastTimestamp = 0;
 				
 		foreach ($orig as $timestamp => $price)
 		{
 			$lastPrice = $price;
+			$lastTimestamp = $timestamp;
 			
 			if ($count < $numPoints)
 			{
@@ -330,7 +332,7 @@ class EsoGetSalesImage
 			}
 		}
 		
-		$weighted[$timestamp] = $lastPrice;
+		$weighted[$lastTimestamp] = $lastPrice;
 	}
 	
 	
@@ -538,13 +540,7 @@ class EsoGetSalesImage
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
 		header("content-type: image/png");
-	
-		$origin = $_SERVER['HTTP_ORIGIN'];
-	
-		if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}
+		header("Access-Control-Allow-Origin: *");
 	}
 	
 	
@@ -723,7 +719,7 @@ class EsoGetSalesImage
 	{
 		foreach ($this->salesData as $sale)
 		{
-			if ($sale['outlier'] === true) continue;
+			if (array_key_exists('outlier', $sale) && $sale['outlier'] === true) continue;
 			
 			$price = intval($sale['price']);
 			$qnt = intval($sale['qnt']);

@@ -44,8 +44,8 @@ class CEsoViewPotions
 		if (array_key_exists("s", $this->inputParams)) $this->inputSolvent = $this->inputParams['s'];
 		if (array_key_exists("solvent", $this->inputParams)) $this->inputSolvent = $this->inputParams['solvent'];
 		
-		if ($ESO_SOLVENT_DATA[$this->inputSolvent] == null) $this->inputSolvent = "Lorkhan's Tears";
-		if ($ESO_SOLVENT_DATA[$this->inputSolvent]['isPoison']) $this->inputIsPoison = true;
+		if (!array_key_exists($this->inputSolvent, $ESO_SOLVENT_DATA)) $this->inputSolvent = "Lorkhan's Tears";
+		if (array_key_exists($this->inputSolvent, $ESO_SOLVENT_DATA) && $ESO_SOLVENT_DATA[$this->inputSolvent]['isPoison']) $this->inputIsPoison = true;
 				
 		if (array_key_exists("r1", $this->inputParams)) $this->inputReagents[0] = $this->inputParams['r1'];
 		if (array_key_exists("r2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['r2'];
@@ -55,9 +55,9 @@ class CEsoViewPotions
 		if (array_key_exists("reagent2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['reagent2'];
 		if (array_key_exists("reagent3", $this->inputParams)) $this->inputReagents[2] = $this->inputParams['reagent3'];
 		
-		if ($ESO_REAGENT_DATA[$this->inputReagents[0]] == null) $this->inputReagents[0] = "";
-		if ($ESO_REAGENT_DATA[$this->inputReagents[1]] == null) $this->inputReagents[1] = "";
-		if ($ESO_REAGENT_DATA[$this->inputReagents[2]] == null) $this->inputReagents[2] = "";
+		if ($this->inputReagents[0] && $ESO_REAGENT_DATA[$this->inputReagents[0]] == null) $this->inputReagents[0] = "";
+		if ($this->inputReagents[1] && $ESO_REAGENT_DATA[$this->inputReagents[1]] == null) $this->inputReagents[1] = "";
+		if ($this->inputReagents[2] && $ESO_REAGENT_DATA[$this->inputReagents[2]] == null) $this->inputReagents[2] = "";
 		
 		return true;
 	}
@@ -77,12 +77,7 @@ class CEsoViewPotions
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Content-Type: text/html");
 	
-		$origin = $_SERVER['HTTP_ORIGIN'];
-	
-		if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}
+		header("Access-Control-Allow-Origin: *");
 	}
 	
 	
@@ -139,16 +134,14 @@ class CEsoViewPotions
 		
 		$output = "";
 		$sortedEffects = $ESO_POTIONEFFECT_DATA;
-		usort($sortedEffects, EsoSortPotionDataName);
+		usort($sortedEffects, 'EsoSortPotionDataName');
 				
 		foreach ($sortedEffects as $effect)
 		{
 			$effectIndex = $effect['id'];
 			$icon = $effect['icon'];
 			$name = $effect['name'];
-			$name1 = $effect['name1'];
 			$name2 = $effect['name2'];
-			$name3 = $effect['name3'];
 			$isPositive = $effect['isPositive'];
 			
 			$extraClass = "esopdEffectPositive";
@@ -278,9 +271,8 @@ class CEsoViewPotions
 		global $ESO_REAGENT_DATA;
 		
 		$reagent = $this->inputReagents[$i];
-		if ($reagent == null) $reagent = "";
 		
-		if ($ESO_REAGENT_DATA[$reagent] == null) return "resources/alchemy_emptyslot_reagent.png";
+		if ($reagent == null || $ESO_REAGENT_DATA[$reagent] == null) return "resources/alchemy_emptyslot_reagent.png";
 		
 		return $ESO_REAGENT_DATA[$reagent]['icon'];
 	}

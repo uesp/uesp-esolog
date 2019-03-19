@@ -169,6 +169,8 @@ class CEsoSkillTooltip
 	private function FixupSkills()
 	{
 		$skillId = $this->skillId;
+		if (!array_key_exists($skillId, $this->fixupSkills)) return false;
+		
 		$fixupData = $this->fixupSkills[$skillId];
 		if ($fixupData == null) return false;
 		if ($this->skillLine == "") return false;
@@ -360,30 +362,44 @@ class CEsoSkillTooltip
 	}
 	
 	
+	public function GetSkillData($key, $default = '')
+	{
+		if (!array_key_exists($key, $this->skillData)) return $default;
+		return $this->skillData[$key];
+	}
+	
+	
+	public function EscapeSkill($key, $default = '')
+	{
+		if (!array_key_exists($key, $this->skillData)) return $default;
+		return $this->escape($this->skillData[$key]);
+	}
+	
+	
 	public function OutputHtml()
 	{
 		$output = "";
 		
-		$name = $this->escape($this->skillData['name']);
-		$rank = $this->skillData['rank'];
-		$learnedLevel = $this->skillData['learnedLevel'];
-		$skillLine = $this->skillData['skillLine'];
-		$desc = $this->ConvertDescriptionToHtml($this->skillData['description']);
-		$coefDesc = $this->skillData['coefDescription'];
-		$channelTime = intval($this->skillData['channelTime']) / 1000;
-		$castTime = intval($this->skillData['castTime']) / 1000;
-		$radius = intval($this->skillData['radius']) / 100;
-		$duration = intval($this->skillData['duration']) / 1000;
-		$target = $this->escape($this->skillData['target']);
-		$area = $this->escape($this->skillData['area']);
-		$range = $this->escape($this->skillData['range']);
-		$cost = $this->ComputeEsoSkillCost(intval($this->skillData['cost']), $this->skillLevel);
+		$name = $this->EscapeSkill('name');
+		$rank = $this->GetSkillData('rank');
+		$learnedLevel = $this->GetSkillData('learnedLevel');
+		$skillLine = $this->GetSkillData('skillLine');
+		$desc = $this->ConvertDescriptionToHtml($this->GetSkillData('description'));
+		$coefDesc = $this->GetSkillData('coefDescription');
+		$channelTime = intval($this->GetSkillData('channelTime')) / 1000;
+		$castTime = intval($this->GetSkillData('castTime')) / 1000;
+		$radius = intval($this->GetSkillData('radius')) / 100;
+		$duration = intval($this->GetSkillData('duration')) / 1000;
+		$target = $this->escape($this->GetSkillData('target'));
+		$area = $this->escape($this->GetSkillData('area'));
+		$range = $this->escape($this->GetSkillData('range'));
+		$cost = $this->ComputeEsoSkillCost(intval($this->GetSkillData('cost')), $this->skillLevel);
 		$castTimeStr = $castTime . " seconds";
-		$skillType = $this->skillData['type'];
+		$skillType = $this->GetSkillData('type');
 		$newDesc = $this->GetSkillDescription();
-		$mechanic = $this->skillData['mechanic'];
-		$effectLines = $this->skillData['effectLines'];
-		$nextSkill = $this->skillData['nextSkill'];
+		$mechanic = $this->GetSkillData('mechanic');
+		$effectLines = $this->GetSkillData('effectLines');
+		$nextSkill = $this->GetSkillData('nextSkill');
 		
 		$realRank = $rank;
 		$fullName = $name;
@@ -501,12 +517,7 @@ class CEsoSkillTooltip
 		header("Pragma: no-cache");
 		header("content-type: text/html");
 		
-		$origin = $_SERVER['HTTP_ORIGIN'];
-		
-		if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}		
+		header("Access-Control-Allow-Origin: *");
 	}
 	
 	

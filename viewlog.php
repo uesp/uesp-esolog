@@ -3617,7 +3617,7 @@ class EsoLogViewer
 	{
 		//SetupUespSession();
 		
-		uasort(self::$RECORD_TYPES, CompareRecordTypeByDisplayName);
+		uasort(self::$RECORD_TYPES, 'CompareRecordTypeByDisplayName');
 		
 			// TODO: Static initialization?
 		self::$RECORD_TYPES['book']['fields'] = self::$BOOK_FIELDS;
@@ -4670,7 +4670,7 @@ If you do not understand what this information means, or how to use this webpage
 			if ($this->IsOutputHTML()) $output .= "<h2>Showing for {$this->recordFilter}:{$this->recordFilterId}</h2>";
 		}
 		
-		if ($recordInfo['message'] != null)
+		if (array_key_exists('message', $recordInfo))
 		{
 			if ($this->IsOutputHTML()) $output .= $recordInfo['message'] ."<p />\n";
 		}
@@ -4752,7 +4752,7 @@ If you do not understand what this information means, or how to use this webpage
 		$sortFields = $recordInfo['sort'];
 		if ($customSort != '') $sortFields = $customSort;
 		
-		if ($recordInfo['sortTranslate'] != null && $recordInfo['sortTranslate'][$sortFields] != null) $sortFields = $recordInfo['sortTranslate'][$sortFields];
+		if (array_key_exists('sortTranslate', $recordInfo) && array_key_exists($sortFields, $recordInfo['sortTranslate'])) $sortFields = $recordInfo['sortTranslate'][$sortFields];
 		
 		if (is_array($sortFields)) $sortFields = implode(",", $sortFields);
 					
@@ -4760,7 +4760,7 @@ If you do not understand what this information means, or how to use this webpage
 		
 		if ($this->recordSortOrder != '')
 			$sort .= $this->recordSortOrder . ' ';
-		elseif ($recordInfo['sortOrder'] != '')
+		elseif (array_key_exists('sortOrder', $recordInfo) && $recordInfo['sortOrder'] != '')
 			$sort .= $recordInfo['sortOrder'] . ' ';
 		
 		return $sort;
@@ -4939,7 +4939,7 @@ If you do not understand what this information means, or how to use this webpage
 		{
 			$colName = $key;
 			
-			if ($recordInfo['columnNames'] != null && $recordInfo['columnNames'][$colName] != null) $colName = $recordInfo['columnNames'][$colName];
+			if (array_key_exists('columnNames', $recordInfo) && array_key_exists($colName, $recordInfo['columnNames'])) $colName = $recordInfo['columnNames'][$colName];
 			
 			if ($this->IsOutputHTML())
 			{
@@ -5702,7 +5702,8 @@ If you do not understand what this information means, or how to use this webpage
 			
 			foreach (self::$SEARCH_FIELDS as $key => $value)
 			{
-				$fmtValue = $this->SimpleFormatField($result[$key], $value);
+				$fmtValue = "";
+				if (array_key_exists($key, $result)) $fmtValue = $this->SimpleFormatField($result[$key], $value);
 				
 				if ($this->IsOutputHTML())
 					$output .= "\t<td>$fmtValue</td>\n";
@@ -5733,6 +5734,7 @@ If you do not understand what this information means, or how to use this webpage
 		if ($this->searchType == '') return true;
 		if ($this->searchType == $table) return true;
 		
+		if (!array_key_exists($this->searchType, self::$SEARCH_TYPE_EXTRAS)) return false;
 		$extraTypes = self::$SEARCH_TYPE_EXTRAS[$this->searchType];
 		if ($extraTypes != null && in_array($table, $extraTypes)) return true;
 		

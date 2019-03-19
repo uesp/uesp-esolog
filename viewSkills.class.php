@@ -172,13 +172,7 @@ class CEsoViewSkills
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
-		
-		$origin = $_SERVER['HTTP_ORIGIN'];
-		
-		if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}
+		header("Access-Control-Allow-Origin: *");
 	}
 
 
@@ -666,9 +660,9 @@ class CEsoViewSkills
 		
 		for ($i = -1; $i <= 12; ++$i)
 		{
-			if ($abilityData[$i] == null) continue;
+			if (!array_key_exists($i, $abilityData) || $abilityData[$i] == null) continue;
 			$abilityId = $abilityData[$i]['abilityId'];
-			if ($this->initialData[$abilityId] == null) continue;
+			if (!array_key_exists($abilityId, $this->initialData) || $this->initialData[$abilityId] == null) continue;
 			
 			return $abilityData[$i];
 		}
@@ -734,7 +728,7 @@ class CEsoViewSkills
 		foreach ($skillLineData as $abilityName => $abilityData)
 		{
 			if ($abilityData['type'] != $type) continue;
-			if ($abilityData['skillIndex'] < 0) continue;
+			if (array_key_exists('skillIndex', $abilityData) && $abilityData['skillIndex'] < 0) continue;
 			
 			$baseAbility = $this->FindFirstAbility($abilityData);
 			if ($baseAbility == null) continue;
@@ -791,7 +785,7 @@ class CEsoViewSkills
 		$name = $baseAbility['name'];
 		$baseName = $abilityData['baseName'];
 		
-		if ($baseName != "" && $this->IGNORE_SKILLS[$baseName] != null) return "";
+		if ($baseName != "" && array_key_exists($baseName, $this->IGNORE_SKILLS) && $this->IGNORE_SKILLS[$baseName] != null) return "";
 		
 		$type = $baseAbility['type'];
 		$icon = $this->GetIconURL($baseAbility['icon']);

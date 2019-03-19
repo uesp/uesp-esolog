@@ -107,6 +107,8 @@ class CEsoItemLinkImage
 	public $itemRecord = array();
 	public $itemSummary = array();
 	public $db = null;
+	public $enchantRecord1 = null;
+	public $enchantRecord2 = null;
 	
 	public $image = null;
 	public $background;
@@ -478,6 +480,15 @@ class CEsoItemLinkImage
 		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
 		
 		if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
+		
+		$row['traitAbilityDescArray'] = array();
+		$row['traitCooldownArray'] = array();
+		
+		if ($row['traitAbilityDesc'] != "")
+		{
+			$row['traitAbilityDescArray'][] = $row['traitAbilityDesc'];
+			$row['traitCooldownArray'][] = $row['traitCooldown'];
+		}
 		
 		$this->itemRecord = $row;
 		
@@ -881,13 +892,7 @@ class CEsoItemLinkImage
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Pragma: no-cache");
 		header("content-type: image/png");
-		
-		$origin = $_SERVER['HTTP_ORIGIN'];
-		
-		if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}
+		header("Access-Control-Allow-Origin: *");
 	}
 	
 	
@@ -2457,7 +2462,7 @@ class CEsoItemLinkImage
 	{
 		$image = imagecreatetruecolor(self::ESOIL_IMAGE_WIDTH, self::ESOIL_IMAGE_MAXHEIGHT);
 		if ($image == null) return false;
-		$this->image = image;
+		$this->image = $image;
 		
 		imageantialias($image, true);
 		imagealphablending($image, true);
@@ -2548,11 +2553,6 @@ class CEsoItemLinkImage
 		$this->AddPrintData($printData, $itemName, $namePrintOptions, array('br' => true, 'lineBreak' => true));
 		$y += $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $this->medFontLineHeight, 'center') + 10;
 		
-		$printData = array();
-		$this->AddPrintData($printData, $label, $this->printOptionsMedBeige);
-		$this->AddPrintData($printData, $valueText, $this->printOptionsLargeWhite);
-		$this->PrintDataText($image, $printData, $this->dataBlockMargin, $y + 4, 'left');
-		
 		$this->OutputItemStolenBlock($image);
 		
 		$y += 6;
@@ -2570,8 +2570,7 @@ class CEsoItemLinkImage
 		else
 		{
 			$y += 5;
-		}
-			
+		}			
 		
 		$y += $this->OutputItemAbilityBlock($image, $y);
 		$y += $this->OutputItemEnchantBlock($image, $y);

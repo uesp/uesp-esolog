@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="//esolog.uesp.net/resources/esopotions.css" />
 		<script type="text/javascript" src="//esolog.uesp.net/resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src="//esolog.uesp.net/resources/esopotions.js"></script>
-		<script type="text/javascript" src="//www.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+		<script type="text/javascript" src="//en.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 	</head>
 <body>
 <a href="" id="esopdPotionLink">Link to Potion</a>

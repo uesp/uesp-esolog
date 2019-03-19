@@ -279,7 +279,7 @@ class EsoViewSalesData
 	{
 		$this->ParseFormParam('text');
 		$this->ParseFormParam('trait');
-		$this->ParseFormParam('quality');+
+		$this->ParseFormParam('quality');
 		$this->ParseFormParam('itemtype');
 		$this->ParseFormParam('equiptype');
 		$this->ParseFormParam('armortype');
@@ -292,6 +292,10 @@ class EsoViewSalesData
 		if ($this->formValues['saletype'] != null)
 		{
 			$this->formValues['saletype'] = strtolower($this->formValues['saletype']);
+		}
+		else
+		{
+			$this->formValues['saletype'] = "";
 		}
 		
 		if ($this->formValues['server'] != null)
@@ -319,7 +323,7 @@ class EsoViewSalesData
 			$this->sortOrder = 0;
 		}
 		
-		if ($this->inputParams['output'] != null)
+		if (array_key_exists('output', $this->inputParams) && $this->inputParams['output'] != null)
 		{
 			$this->inputParams['output'] = strtolower($this->inputParams['output']);
 				
@@ -361,6 +365,8 @@ class EsoViewSalesData
 			return true;
 		}
 	
+		$this->formValues[$name] = "";
+		
 		return false;
 	}
 
@@ -382,13 +388,7 @@ class EsoViewSalesData
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Content-Type: text/html");
-		
-		$origin = $_SERVER['HTTP_ORIGIN'];
-		
-		if (substr($origin, -8) == "uesp.net")
-		{
-			header("Access-Control-Allow-Origin: $origin");
-		}
+		header("Access-Control-Allow-Origin: *");
 	}
 	
 	
@@ -400,11 +400,11 @@ class EsoViewSalesData
 		header("Cache-Control: no-cache, no-store, must-revalidate");
 		header("Content-Type: text/plain");
 	
-		$origin = $_SERVER['HTTP_ORIGIN'];
+		$origin = $_SERVER['HTTP_REFERER'];
 	
 		if (substr($origin, -8) == "uesp.net")
 		{
-			header("Access-Control-Allow-Origin: $origin");
+			header("Access-Control-Allow-Origin: *");
 		}
 	}
 
@@ -848,7 +848,7 @@ class EsoViewSalesData
 			if ($lastStoreLocTime != "") $kiosk .= "<br/><small>updated " . $lastStoreLocTime . "</small>";
 			
 			$extraClass = "";
-			if ($row['outlier'] === true) $extraClass = "esovsd_outlier";
+			if (array_key_exists('outlier', $row) && $row['outlier'] === true) $extraClass = "esovsd_outlier";
 			
 			$output .= "<tr class='$extraClass'>";
 			$output .= "<td>{$guild['name']}</td>";
@@ -1791,7 +1791,7 @@ class EsoViewSalesData
 	
 		foreach ($this->searchResults as $sale)
 		{
-			if ($sale['outlier'] === true) continue;
+			if (array_key_exists('outlier', $sale) && $sale['outlier'] === true) continue;
 	
 			$validSalesData[] = $sale;
 			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
@@ -2537,7 +2537,7 @@ class EsoViewSalesData
 			if ($kiosk == "") $kiosk = "None";
 			
 			$outlier = "0";
-			if ($row['outlier'] === true) $outlier = "1";
+			if (array_key_exists('outlier', $row) && $row['outlier'] === true) $outlier = "1";
 			
 			$output .= "\"{$row['id']}\",";
 			$output .= "\"{$row['guildId']}\",";

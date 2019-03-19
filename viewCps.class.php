@@ -163,7 +163,7 @@ class CEsoViewCP
 			$this->cpAbilityIds[$abilityId] = $index;
 			$this->cpData[$index]['skills'][$abilityId]['descriptions'][$points] = $row;
 			
-			if ($this->cpSkillDesc[$abilityId] == null) $this->cpSkillDesc[$abilityId] = array();
+			if (!array_key_exists($abilityId, $this->cpSkillDesc) || $this->cpSkillDesc[$abilityId] == null) $this->cpSkillDesc[$abilityId] = array();
 			$this->cpSkillDesc[$abilityId][$points] = $this->FormatDescriptionHtml($row['description']);
 		}
 	
@@ -365,8 +365,8 @@ class CEsoViewCP
 	{
 		if ($this->initialData == null) return 0;
 		
-		if ($this->initialData[$discipline] == null) return 0;
-		if ($this->initialData[$discipline]['points'] == null) return 0;
+		if (!array_key_exists($discipline, $this->initialData) || $this->initialData[$discipline] == null) return 0;
+		if (!array_key_exists('points', $this->initialData[$discipline]) || $this->initialData[$discipline]['points'] == null) return 0;
 		
 		return $this->initialData[$discipline]['points'];
 	}
@@ -383,8 +383,8 @@ class CEsoViewCP
 		
 		if ($discName == null) return 0;
 		
-		if ($this->initialData[$discName] == null) return 0;
-		if ($this->initialData[$discName][$skillName] == null) return 0;
+		if (!array_key_exists($discName, $this->initialData) || $this->initialData[$discName] == null) return 0;
+		if (!array_key_exists($skillName, $this->initialData[$discName]) || $this->initialData[$discName][$skillName] == null) return 0;
 		
 		return $this->initialData[$discName][$skillName];
 	}
@@ -499,6 +499,8 @@ class CEsoViewCP
 	
 	public function GetCpDisciplineTitleHtml($discipline, $extraClass = "")
 	{
+		$output = "";
+		
 		if ($discipline == null) return "";
 		
 		$name = $discipline['name'];
