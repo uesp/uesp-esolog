@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Sales Data -- Recent Deals</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esosales.css" />
+		<script type="text/javascript" src="//esolog.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esosales.js"></script>
+		<script type="text/javascript" src="//en.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
+	</head>
+<body>
+<a href="/viewSales.php">Back to Item Sales Search</a>
+<div id="esovsd_searchformheader">
+	<form id="eso_sales_search" action="" method="get">
+		<label for="text" class="esovsd_headerlabel1">Find Item:</label>
+		<input type="text" name="text" id="esovsd_headertext" value="" size="24" maxlength="100" />
+		<select name="server" id="esovsd_server" class="esovsdHeaderServer">
+			{listServer}
+		</select>
+		<input type="submit" value="Find" size="24" />
+	</form>
+</div>
+<a class="esovsd_rightheaderlink" href="//www.uesp.net/wiki/UESPWiki:EsoSalesData">Help</a>
+<a class="esovsd_rightheaderlink" href="//www.uesp.net/wiki/UESPWiki_talk:EsoSalesData">Feedback</a>
+<a class="esovsd_rightheaderlink" href="/viewSales.php?view=guilds">View Guilds</a>
+<a class="esovsd_rightheaderlink" href="/salesPrices.shtml">Download Prices</a>
+
+<div class="esosalesnote">
+	<b>Note:</b> The sales data collector and viewer are in early beta and may not work perfectly. User discretion is advised. See 
+	<a href='//www.uesp.net/wiki/UESPWiki:EsoSalesData'>here</a> for more information on using and contributing sales data and feel free to 
+	<a href='//www.uesp.net/wiki/UESPWiki_talk:EsoSalesData'>report feedback and issues</a>. 
+</div>
+<h1>UESP:ESO Sales Data -- Recent Deals</h1>
+
+<div id="esovsd_root">
+	<div class="">
+		{searchResultMessage}
+	</div>
+	<br/>
+
+	<div id="esovsd_results">
+		{dealResults}
+	</div>
+	<p />
+	{viewCsvLink}
+</div>
+
+<script type="text/javascript">
+</script>
+
+<!--
+{itemQuery}
+{salesQuery}
+
+{saleStats}
+-->
+<hr>
+<div id="esovsd_footer">
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>
