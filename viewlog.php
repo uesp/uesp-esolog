@@ -1253,6 +1253,14 @@ class EsoLogViewer
 									'displayName' => 'View NPC Loots',
 									'type' => 'external',
 							),
+							array(
+									'fields' => array(
+											"itemName" => "item",
+									),
+									'url' => '/viewNpcLoot.php',
+									'displayName' => 'View Item Sources',
+									'type' => 'external',
+							),
 					),
 						
 					'join' => array(
