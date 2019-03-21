@@ -1867,6 +1867,7 @@ class CEsoViewNpcLoot
 			if ($itemType == "") $itemType = "None";
 			$qnt = $result['qnt'];
 			$quality = $result['quality'];
+			$trait = GetEsoItemTraitText($result['trait']);
 			
 			$iconUrl = "";
 			if ($result['icon']) $iconUrl = MakeEsoIconLink($result['icon']);
@@ -1886,6 +1887,7 @@ class CEsoViewNpcLoot
 				$output .= "<td><div class='eso_item_link esonplItemLink eso_item_link_q$quality' itemlink='$itemLink'><img src='$iconUrl' class='esonplItemIcon'>$itemName</div></td>";
 				
 			$output .= "<td>$itemType</td>";
+			$output .= "<td>$trait</td>";
 			$output .= "<td>$qnt</td>";
 			$output .= "<td>$links</td>";
 			$output .= "</tr>";
