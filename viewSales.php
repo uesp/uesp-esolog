@@ -24,23 +24,24 @@ class EsoViewSalesData
 	
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
-	const WEIGHTED_SMOOTH_INTERVAL = 21;	
+	const WEIGHTED_SMOOTH_INTERVAL = 21;
+	
+	const DEFAULT_SHOWDEAL_TIMEPERIOD = 3600;
+	const SHOWDEAL_LIMIT = 1000;
 		
 	public $OMIT_BUYER_INFO = true;
 	public $OMIT_SELLER_INFO = true;
 		
 	public $ESOVSD_HTML_TEMPLATE = "";
-	public $ESOVSD_HTML_TEMPLATE_EMBED = "";
 	public $ESOVSD_HTML_SALES_TEMPLATE = "";
-	public $ESOVSD_HTML_SALES_TEMPLATE_EMBED = "";
 	public $ESOVSD_HTML_GUILDS_TEMPLATE = "";
-	public $ESOVSD_HTML_GUILDS_TEMPLATE_EMBED = "";
+	public $ESOVSD_HTML_DEALS_TEMPLATE = "";
 	
 	public $MAX_SALES_RECORD_DISPLAYED = 1000;
+	public $MAX_DEAL_RECORD_DISPLAYED = 1000;
 	public $ESOVSD_MAX_LISTING_TIME = 2592000;
 	
 	public $server = "NA";
-	public $isEmbedded = false;
 	
 	public $db = null;
 	public $dbLog = null;
@@ -62,6 +63,8 @@ class EsoViewSalesData
 	public $viewRawData = false;
 	public $hasSearchData = false;
 	public $outputType = "html";
+	public $showDeal = "";
+	public $dealLastSeenTime = 3600;	
 	
 	public $guildData = array();
 	public $searchCount = 0;
@@ -79,6 +82,8 @@ class EsoViewSalesData
 	public $totalListedCount = 0;
 	public $allItemsCount = 0;
 	public $allSalesCount = 0;
+	
+	public $dealResults = array();
 	
 	public $salePriceAverageAll = 0;
 	public $salePriceAverageCountAll = 0;
@@ -176,13 +181,9 @@ class EsoViewSalesData
 		global $ESO_ITEMARMORTYPE_TEXTS, $ESO_ITEMWEAPONTYPE_TEXTS, $ESO_ITEMQUALITY_TEXTS;
 		
 		$this->ESOVSD_HTML_TEMPLATE = __DIR__."/templates/esosales_template.txt";
-		$this->ESOVSD_HTML_TEMPLATE_EMBED = __DIR__."/templates/esosales_embed_template.txt";
-		
 		$this->ESOVSD_HTML_SALES_TEMPLATE = __DIR__."/templates/esosales_sales_template.txt";
-		$this->ESOVSD_HTML_SALES_TEMPLATE_EMBED = __DIR__."/templates/esosales_sales_embed_template.txt";
-		
 		$this->ESOVSD_HTML_GUILDS_TEMPLATE = __DIR__."/templates/esosales_guilds_template.txt";
-		$this->ESOVSD_HTML_GUILDS_TEMPLATE_EMBED = __DIR__."/templates/esosales_guilds_embed_template.txt";
+		$this->ESOVSD_HTML_DEALS_TEMPLATE = __DIR__."/templates/esosales_deals_template.txt";
 		
 		self::$ESOVSD_TRAITS = self::MakeUniqueArray($ESO_ITEMTRAIT15_TEXTS);
 		self::$ESOVSD_QUALITIES = self::MakeUniqueArray($ESO_ITEMQUALITY_TEXTS, true);
@@ -288,6 +289,7 @@ class EsoViewSalesData
 		$this->ParseFormParam('timeperiod');
 		$this->ParseFormParam('server');
 		$this->ParseFormParam('saletype');
+		$this->ParseFormParam('showdeal');
 		
 		if ($this->formValues['saletype'] != null)
 		{
@@ -350,6 +352,12 @@ class EsoViewSalesData
 				
 		if (array_key_exists("sort", $this->inputParams)) $this->sortField = $this->inputParams['sort'];
 		if (array_key_exists("order", $this->inputParams)) $this->sortOrder = intval($this->inputParams['order']);
+		
+		if (array_key_exists("showdeal", $this->inputParams))
+		{
+			$this->showDeal = floatval($this->inputParams['showdeal']);
+			$this->showForm = "ViewDeals";
+		}
 		
 		return true;
 	}
@@ -415,24 +423,19 @@ class EsoViewSalesData
 		
 		if ($this->showForm == "ViewSales")
 		{
-			if ($this->isEmbedded)
-				$templateFile = $this->ESOVSD_HTML_SALES_TEMPLATE_EMBED;
-			else
-				$templateFile = $this->ESOVSD_HTML_SALES_TEMPLATE;
+			$templateFile = $this->ESOVSD_HTML_SALES_TEMPLATE;
 		}
 		elseif ($this->showForm == "ViewGuilds")
 		{
-			if ($this->isEmbedded)
-				$templateFile = $this->ESOVSD_HTML_GUILDS_TEMPLATE_EMBED;
-			else
-				$templateFile = $this->ESOVSD_HTML_GUILDS_TEMPLATE;
+			$templateFile = $this->ESOVSD_HTML_GUILDS_TEMPLATE;
+		}
+		elseif ($this->showForm == "ViewDeals")
+		{
+			$templateFile = $this->ESOVSD_HTML_DEALS_TEMPLATE;
 		}
 		else
 		{
-			if ($this->isEmbedded)
-				$templateFile = $this->ESOVSD_HTML_TEMPLATE_EMBED;
-			else
-				$templateFile = $this->ESOVSD_HTML_TEMPLATE;
+			$templateFile = $this->ESOVSD_HTML_TEMPLATE;
 		}
 		
 		$this->htmlTemplate = file_get_contents($templateFile);
@@ -873,6 +876,121 @@ class EsoViewSalesData
 	}
 	
 	
+	public function GetDealResultsHtml()
+	{
+		$output  = "<table id='esovsd_searchresults_table' class='esovsd_salesresults'>";
+		$output .= "<tr>";
+		$output .= "<th>Item</th>";
+		$output .= "<th>Item Details</th>";
+		$output .= "<th>Guild</th>";
+		$output .= "<th>Kiosk Location</th>";
+		$output .= "<th>Last Seen</th>";
+		$output .= "<th>Price</th>";
+		$output .= "<th>Qnt</th>";
+		$output .= "<th>Unit Price</th>";
+		$output .= "<th>Good Price</th>";
+		$output .= "<th>Deal</th>";
+		$output .= "</tr>";
+		
+		$outputCount = 0;
+		
+		foreach ($this->dealResults as $row)
+		{
+			++$outputCount;
+			
+			if ($outputCount > $this->MAX_DEAL_RECORD_DISPLAYED) 
+			{
+				$moreRows = count($this->dealResults) - $outputCount; 
+				$output .= "<tr class='esovsdMoreSalesHidden'><td colspan='7'>";
+				$output .= "Not displaying $moreRows more deals for performance reasons...";
+				$output .= "</td></tr>";
+				break;
+			}
+			
+			$guild = $this->guildData[$row['guildId']];
+			$item = $row;
+			$buyDate = $this->FormatTimeStamp($row['buyTimestamp']);
+			$listDate = $this->FormatTimeStamp($row['listTimestamp']);
+			$lastSeen = $this->FormatTimeStamp($row['lastSeen']);
+			$unitPrice = number_format(floatval($row['price']) / floatval($row['qnt']), 2, ".", '');
+			$deal = $row['deal'];
+			if ($deal < -100 || $deal > 100) $deal = round($deal);
+			$goodPrice = $this->FormatPrice($row['goodPrice']);
+			
+			$kiosk = $guild['storeLocation'];
+			if ($kiosk == "") $kiosk = "None";
+	
+			$lastStoreLocTime = $this->FormatTimeStamp($guild['lastStoreLocTime']);
+			if ($lastStoreLocTime != "") $kiosk .= "<br/><small>updated " . $lastStoreLocTime . "</small>";
+			
+			$iconURL = $this->GetIconUrl($item['icon']);
+			$trait = $item['trait'];
+			$itemName = $this->Escape($item['name']);
+			$levelText = GetEsoItemLevelText($item['level']);
+			$itemType = GetEsoItemTypeText($item['itemType']);
+			$weaponType = GetEsoItemWeaponTypeText($item['weaponType']);
+			$armorType = GetEsoItemArmorTypeText($item['armorType']);
+			$equipType = GetEsoItemEquipTypeText($item['equipType']);
+			$setName = $this->Escape($item['setName']);
+			$extraData = $this->Escape($item['extraData']);
+			$itemInfos = array();
+			
+			if ($trait > 0) $itemInfos[] = GetEsoItemTraitText($trait);
+			
+			if ($armorType != "")
+			{
+				$itemInfos[] = $armorType;
+				$itemInfos[] = $equipType;
+			}
+			else if ($weaponType != "")
+			{
+				$itemInfos[] = $weaponType;
+			}
+			else if ($equipType != "")
+			{
+				$itemInfos[] = $equipType;
+			}
+			else if ($item['itemType'] == 7 || $item['itemType'] == 30)
+			{
+				if ($item['potionData'] > 0)
+				{
+					$itemInfos[] = "Crafted";
+					$itemInfos[] = implode("<br/>", $this->GetPotionDataSummary($item['potionData']));
+				}
+				else
+				{
+					$itemInfos[] = "Store";
+				}
+			}
+			else if ($item['itemType'] == 60)
+			{
+				$vouchers = round($item['potionData'] / 10000);
+				$itemInfos[] = "$vouchers vouchers";
+			}
+			
+			if ($setName != "") $itemInfos[] = $setName;
+			$itemInfo = implode(", ", $itemInfos);
+			
+			$output .= "<tr class='$extraClass'>";
+			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}' extradata='$extraData'>";
+			$output .= "<img src='$iconURL' class='esovsd_itemicon'>$itemName</div></td>";
+			$output .= "<td>$itemInfo</td>";
+			$output .= "<td>{$guild['name']}</td>";
+			$output .= "<td>$kiosk</td>";
+			$output .= "<td>$lastSeen</td>";
+			$output .= "<td>{$row['price']} gp</td>";
+			$output .= "<td>{$row['qnt']}</td>";
+			$output .= "<td>{$unitPrice} gp</td>";
+			$output .= "<td>{$goodPrice} gp</td>";
+			$output .= "<td>{$deal}%</td>";
+			$output .= "</tr>\n";
+		}
+	
+		$output .= "</table>";
+		return $output;
+	}
+	
+	
 	public function GetSearchResultsHtml()
 	{
 		if ($this->viewSalesItemId > 0) return $this->GetSalesSearchResultsHtml();
@@ -981,6 +1099,20 @@ class EsoViewSalesData
 	}
 	
 	
+	public function GetFindDealQuery()
+	{
+		$safeServer = $this->db->real_escape_string($this->server);
+		$timePeriod = intval($this->formValues['timeperiod']);
+		if ($timePeriod <= 0) $timePeriod = self::DEFAULT_SHOWDEAL_TIMEPERIOD;
+		$lastSeen = time() - $timePeriod;
+		
+		$query = "SELECT * FROM sales LEFT JOIN items ON sales.itemId = items.id WHERE sales.server='$safeServer' AND sales.lastSeen > '$lastSeen' and sales.listTimestamp > 0 LIMIT " . self::SHOWDEAL_LIMIT . ";";
+				
+		$this->salesQuery = $query;
+		return $query;
+	}
+	
+	
 	public function GetFindItemQuery()
 	{
 		$itemLinkData = $this->ParseItemLink($this->formValues['text']);
@@ -1080,6 +1212,57 @@ class EsoViewSalesData
 		
 		$row = $result->fetch_assoc();
 		$this->allSalesCount = $row['count'];
+		
+		return true;
+	}
+	
+	
+	public function LoadDealData()
+	{
+		$this->lastQuery = $this->GetFindDealQuery();
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return false;
+		
+		if ($result->num_rows == 0)
+		{
+			return false;
+		}
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$goodPrice = $row['goodPrice'];
+			$price = $row['price'];
+			$qnt = $row['qnt'];
+			
+			if ($qnt > 1) $price = $price / $qnt;
+			
+			if ($goodPrice <= 0)
+			{
+				$goodPrice = 0;
+				$totalCount = $row['countPurchases'] + $row['countSales'];
+				$totalPrice = $row['sumPurchases'] + $row['sumSales'];
+				
+				if ($totalCount > 0) 
+				{
+					$goodPrice = $totalPrice / $totalCount;
+					$row['goodPrice'] = $goodPrice;
+				}
+			}
+
+			if ($goodPrice <= 0 || $price <= 0)
+			{
+				$row['deal'] = 0;
+			}
+			else
+			{
+				$row['deal'] = round($goodPrice / $price * 100, 1); 
+			}
+			
+			$this->dealResults[] = $row;
+		}
+		
+		usort($this->dealResults, array('EsoViewSalesData', 'SalesDataSortDeal'));
 		
 		return true;
 	}
@@ -1783,6 +1966,12 @@ class EsoViewSalesData
 	}
 	
 	
+	public function SalesDataSortDeal($a, $b)
+	{
+		return $b['deal'] - $a['deal'];
+	}
+	
+	
 	public function ComputeItemGoodPrice()
 	{
 		$soldData = array();
@@ -1860,7 +2049,7 @@ class EsoViewSalesData
 		}
 		elseif ($this->showForm == "ViewGuilds")
 		{
-			
+			// Already loaded
 		}
 		elseif ($this->showForm == "ItemSearch")
 		{
@@ -1893,6 +2082,10 @@ class EsoViewSalesData
 				$this->ComputeSaleStatistics();
 				$this->LoadTemplate();
 			}
+		}
+		elseif ($this->showForm == "ViewDeals")
+		{
+			$this->LoadDealData();
 		}
 		else
 		{
@@ -2329,6 +2522,31 @@ class EsoViewSalesData
 			$output .= "<br/><br/>";
 			return $output;
 		}
+		elseif ($this->showForm == "ViewDeals")
+		{
+			$timePeriod = intval($this->formValues['timeperiod']);
+			if ($timePeriod <= 0) $timePeriod = self::DEFAULT_SHOWDEAL_TIMEPERIOD;
+			
+			$timeMsg = "";
+			
+			if ($timePeriod >= 86400)
+			{
+				$timePeriod = round($timePeriod/86400, 1);
+				$timeMsg = "$timePeriod days";
+			}
+			else if ($timePeriod >= 3600)
+			{
+				$timePeriod = round($timePeriod/3600, 1);
+				$timeMsg = "$timePeriod hours";
+			}
+			else
+			{
+				$timePeriod = round($timePeriod/60, 1);
+				$timeMsg = "$timePeriod minutes";
+			}
+			
+			$output .= "Showing good deals seen in the last $timeMsg better than {$this->showDeal}%.";
+		}
 		elseif ($this->viewSalesItemId > 0)
 		{
 			$output .= "";
@@ -2356,7 +2574,7 @@ class EsoViewSalesData
 			$output .= "<br/><br/>";
 		}
 		
-		if ($this->formValues['timeperiod'] > 0)
+		if ($this->showForm != "ViewDeals" && $this->formValues['timeperiod'] > 0)
 		{
 			$output .= "Note: The displayed sale # and average price are for all time. View the item sale details for more accurate values.";
 			$output .= "<br/><br/>";
@@ -2478,6 +2696,7 @@ class EsoViewSalesData
 				'{listSaleType}' => $this->GetGeneralListHtml(self::$ESOVSD_SALETYPES, 'saletype', true),
 				
 				'{searchResults}' => $this->GetSearchResultsHtml(),
+				'{dealResults}' => $this->GetDealResultsHtml(),
 				'{errorMessages}' => $this->GetErrorMessagesHtml(),
 				'{searchResultMessage}' => $this->GetSearchResultMessageHtml(),
 				'{itemQuery}' => $this->itemQuery,
@@ -2614,6 +2833,15 @@ class EsoViewSalesData
 	}
 	
 	
+	public function CreateDealsOutputCsv()
+	{
+		$output = "TODO";
+		
+
+		return $output;
+	}
+	
+	
 	public function CreateItemsOutputCsv()
 	{
 		$output = "";
@@ -2724,6 +2952,10 @@ class EsoViewSalesData
 		elseif ($this->showForm == "ViewGuilds")
 		{
 			$output = $this->CreateGuildsOutputCsv();
+		}
+		elseif ($this->showForm == "ViewDeals")
+		{
+			$output = $this->CreateDealsOutputCsv();
 		}
 		else
 		{
