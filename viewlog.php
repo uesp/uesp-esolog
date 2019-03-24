@@ -5831,9 +5831,14 @@ If you do not understand what this information means, or how to use this webpage
 		if (array_key_exists('id', $this->inputParams)) $this->recordID = $this->db->real_escape_string($this->inputParams['id']);
 		if (array_key_exists('action', $this->inputParams)) $this->action = $this->db->real_escape_string($this->inputParams['action']);
 		if (array_key_exists('start', $this->inputParams)) $this->displayStart = (int) $this->inputParams['start'];
-		if (array_key_exists('sort', $this->inputParams)) $this->recordSort = $this->db->real_escape_string($this->inputParams['sort']);
 		if (array_key_exists('filter', $this->inputParams)) $this->recordFilter = $this->db->real_escape_string($this->inputParams['filter']);
 		if (array_key_exists('filterid', $this->inputParams)) $this->recordFilterId = $this->db->real_escape_string($this->inputParams['filterid']);
+		
+		if (array_key_exists('sort', $this->inputParams)) 
+		{
+			$result = preg_match("|^([a-zA-Z0-9_]+)|s", trim($this->inputParams['sort']), $matches);
+			if ($result) $this->recordSort = $matches[1];
+		}
 		
 		if (array_key_exists('raw', $this->inputParams))
 		{
@@ -5852,10 +5857,14 @@ If you do not understand what this information means, or how to use this webpage
 				default:
 				case 'a':
 				case 'A':
+				case 'ASC';
+				case 'asc':
 					$this->recordSortOrder = 'ASC';
 					break;
 				case 'd':
 				case 'D':
+				case 'DESC':
+				case 'desc':
 					$this->recordSortOrder = 'DESC';
 					break;
 			}
