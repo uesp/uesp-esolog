@@ -1338,11 +1338,11 @@ class EsoViewSalesData
 	{
 		$startTime = microtime(true);
 		
-		$server = strtoupper($this->GetFormValue('server'));
+		$server = strtoupper($this->server);
 		
 		if ($server != "")
 		{
-			$server = $this->Escape($server);
+			$server = $this->db->real_escape_string($server);
 			$this->lastQuery = "SELECT * FROM guilds WHERE server='$server' ORDER BY name;";
 		}
 		else
@@ -2209,7 +2209,7 @@ class EsoViewSalesData
 		$output .= "<th>Listed / Sold</th>";
 		$output .= "</tr>";
 		
-		$matchServer = strtoupper($this->GetFormValue('server'));
+		$matchServer = strtoupper($this->server);
 		$count = 0;
 	
 		foreach ($this->guildData as $key => $guild)
@@ -2512,7 +2512,7 @@ class EsoViewSalesData
 		if ($this->showForm == "ViewGuilds")
 		{
 			$count = count($this->guildData);
-			$server = strtoupper($this->GetFormValue('server'));
+			$server = strtoupper($this->server);
 			
 			if ($server)
 				$output .= "Showing data from $count $server guilds.";
@@ -2679,7 +2679,7 @@ class EsoViewSalesData
 				'{formArmorType}' => $this->GetFormValue('armortype'),
 				'{formWeaponType}' => $this->GetFormValue('weapontype'),
 				'{formTimePeriod}' => $this->GetFormValue('timeperiod'),
-				'{formServer}' => $this->GetFormValue('server'),
+				'{formServer}' => $this->server,
 				'{formSaleType}' => $this->GetFormValue('saletype'),
 				'{formLevel}' => $this->GetOutputFormLevel(),
 				'{itemId}' => $this->viewSalesItemId,
