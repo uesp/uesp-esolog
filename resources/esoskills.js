@@ -1877,6 +1877,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				
 				if (inputValues.DotDamageDone && inputValues.DotDamageDone[matchData.damageId])
 				{
+					baseFactor += +inputValues.DotDamageDone[matchData.damageId];
 					newRawOutput.dotDamageDone += inputValues.DotDamageDone[matchData.damageId];
 				}
 			}
@@ -1999,7 +2000,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	
 	if (inputValues == null) return newDesc;
 	if ((inputValues.TwinSlashBleedDamage == null || inputValues.TwinSlashBleedDamage == 0) && 
-			(inputValues.BleedDamage == null || inputValues.BleedDamage == 0)) return newDesc;
+		(inputValues.BleedDamage == null || inputValues.BleedDamage == 0)) return newDesc;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	

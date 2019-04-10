@@ -1949,6 +1949,12 @@ class CEsoItemLinkImage
 		$equipType = $this->itemRecord['equipType'];
 		$weaponType = $this->itemRecord['weaponType'];
 		$itemType = $this->itemRecord['type'];
+		
+			/* Half-enchants on 1H weapons, update 21 */
+		if ($weaponType == 1 || $weaponType == 2 || $weaponType == 3 || $weaponType == 11)
+		{
+			$weaponFactor *= 0.5;
+		}
 	
 			/* Modify enchants of small armor pieces */
 		if (!$isDefaultEnchant && $armorType > 0 && ($equipType == 4 || $equipType == 8 || $equipType == 10 || $equipType == 13))
