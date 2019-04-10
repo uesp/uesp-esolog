@@ -1092,11 +1092,11 @@ class EsoLogViewer
 					),
 			),
 			
-			'questitem' => array(
+			'questItem' => array(
 					'message' => '',
 					'displayName' => 'Quest Items',
 					'displayNameSingle' => 'Quest Item',
-					'record' => 'questitem',
+					'record' => 'questItem',
 					'table' => 'questItem',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
@@ -3637,7 +3637,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
 		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
 		self::$RECORD_TYPES['questReward']['fields'] = self::$QUESTREWARD_FIELDS;
-		self::$RECORD_TYPES['questitem']['fields'] = self::$QUESTITEM_FIELDS;
+		self::$RECORD_TYPES['questItem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
 		self::$RECORD_TYPES['npcLoot']['fields'] = self::$NPCLOOT_FIELDS;
