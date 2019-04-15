@@ -232,6 +232,13 @@ class CEsoViewNpcLoot
 					'extraQnt' => array(118),
 					'extraValue' => 100,
 			),
+			"Jewelry Crafting Survey:" => array(
+					'itemId' => array(135145, 139416),
+					'level' => array(1, 1),
+					'quality' => array(1, 1),
+					'extraQnt' => array(125, 2),
+					'extraValue' => 100,
+			),
 			"Alchemist Survey:" => array(
 					'itemId' => array(30157, 30160, 30164, 30161, 30162, 30158, 30163, 30159, 42871, 42869),
 					'level' => array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
@@ -466,6 +473,61 @@ class CEsoViewNpcLoot
 			"Writ Voucher" => array(
 					'value' => 750,
 			),
+			"Shipment of Copper" => array(
+					'itemId' => array(135140),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(5),
+			),
+			"Shipment of Electrum" => array(
+					'itemId' => array(135144),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(5),
+			),
+			"Shipment of Pewter" => array(
+					'itemId' => array(135138),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(5),
+			),
+			"Shipment of Silver" => array(
+					'itemId' => array(135142),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(5),
+			),
+			
+			"Shipment of Ingots X" => array(
+					'itemId' => array(64489, 46127, 6000, 6001, 46128, 5413, 23107, 46129, 4487, 46130),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(15, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11),
+			),
+			"Shipment of Cloth X" => array(
+					'itemId' => array(64504, 23125, 23127, 4463, 46132, 811, 46131, 46133, 23126, 46134),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(15, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11),
+			),
+			"Shipment of Leather X" => array(
+					'itemId' => array(64506, 23101, 23099, 46138, 4447, 46136, 794, 46137, 23100, 46135),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(15, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11),
+			),
+			"Shipment of Planks X" => array(
+					'itemId' => array(64502, 46140, 23121, 46139, 23122, 46141, 803, 46142, 533, 23123),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(15, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11, 1.11),
+			),			
+			"Shipment of Ounces V" => array(
+					'itemId' => array(135146, 135140, 135144, 135138, 135142),
+					'level' => array(1),
+					'quality' => array(1),
+					'extraQnt' => array(15, 2.5, 2.5, 2.5, 2.5),
+			),
 	);
 	
 	
@@ -484,6 +546,8 @@ class CEsoViewNpcLoot
 			119564,	// Enchanting
 			121528,
 			119693,	// Provisioning
+			138798, // Jewelry
+			138799,
 	);
 	
 	
