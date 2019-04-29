@@ -163,13 +163,24 @@ window.ESO_FREE_PASSIVES = {
 
 window.EsoConvertDescToHTML = function(desc)
 {
-	return EsoConvertDescToHTMLClass(desc, "esovsWhite");
+	//return EsoConvertDescToHTMLClass(desc, "esovsWhite");
+	return EsoConvertDescToHTMLColor(desc);
 }
 
 
 window.EsoConvertDescToHTMLClass = function(desc, className)
 {
-	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '<div class="' + className + '">$1</div>');
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}\|c[a-fA-F0-9]{6}([^|]*)\|r\|r/g, '<div class="' + className + '">$1</div>'); 
+	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '<div class="' + className + '">$1</div>');
+	newDesc = newDesc.replace(/\n/g, '<br />');
+	return newDesc;
+}
+
+
+window.EsoConvertDescToHTMLColor = function(desc)
+{
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}\|c([a-fA-F0-9]{6})([^|]*)\|r\|r/g, '<div style="color:#$1; display:inline;">$2</div>'); 
+	newDesc = newDesc.replace(/\|c([a-fA-F0-9]{6})([^|]*)\|r/g, '<div style="color:#$1; display:inline;">$2</div>');
 	newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -177,7 +188,8 @@ window.EsoConvertDescToHTMLClass = function(desc, className)
 
 window.EsoConvertDescToText = function(desc)
 {
-	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '$1');
+	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}\|c[a-fA-F0-9]{6}([^|]*)\|r\|r/g, '$1');
+	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '$1');
 	//newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -621,6 +633,8 @@ window.GetEsoSkillInputValues = function ()
 			 AnimalCompanionSkills: 0,
 			 GreenBalanceSkills: 0,
 			 WintersEmbraceSkills: 0,
+			 BoneTyrantSkills: 0,
+			 GraveLordSkills: 0,
 		};
 	
 	return g_LastSkillInputValues; 
@@ -830,6 +844,14 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	else if (type == -67)
 	{
 		value = a * values.WintersEmbraceSkills;
+	}
+	else if (type == -69)
+	{
+		value = a * values.BoneTyrantSkills;
+	}
+	else if (type == -70)
+	{
+		value = a * values.GraveLordSkills;
 	}
 	else if (type == -68)
 	{
@@ -2628,6 +2650,18 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		output += srcString + " = " + a + " WintersEmbraceSkills";
 		typeString = "Winter's Embrace Slotted";
 	}
+	else if (type == -69)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " BoneTyrantSkills";
+		typeString = "Bone Tyrant Slotted";
+	}
+	else if (type == -70)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " GraveLordSkills";
+		typeString = "Grave Lord Slotted";
+	}
 	else if (type == -68)
 	{
 		b = Math.round(b * 100);
@@ -3179,6 +3213,7 @@ window.EnableEsoClassSkills = function(className)
 	$(".esovsSkillTypeTitle:contains('SORCERER')").hide();
 	$(".esovsSkillTypeTitle:contains('TEMPLAR')").hide();
 	$(".esovsSkillTypeTitle:contains('WARDEN')").hide();
+	$(".esovsSkillTypeTitle:contains('NECROMANCER')").hide();
 	$(".esovsSkillContentBlock").hide();
 	$(".esovsSkillType").hide();
 	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");

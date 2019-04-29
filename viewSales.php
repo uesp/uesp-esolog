@@ -2932,7 +2932,7 @@ class EsoViewSalesData
 			$output .= "\"{$item['lastSaleTimestamp']}\",";
 			$output .= "\"{$item['lastSeen']}\",";
 			$output .= "\"$goodPrice\",";
-			$output .= "\"$goodSoldPrice\",";
+			$output .= "\"$goodSalesPrice\",";
 			$output .= "\"$goodListPrice\"";
 			$output .= "\n";
 		}

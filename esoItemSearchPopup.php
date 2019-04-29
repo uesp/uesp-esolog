@@ -179,7 +179,7 @@ class CEsoItemSearchPopup
 		if ($this->inputText != "")
 		{
 			$safeText = $this->db->real_escape_string($this->inputText);
-			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%' OR setName LIKE '%$safeText%')";
+			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%' OR setName LIKE '%$safeText%' OR allNames LIKE '%$safeText%')";
 		}
 		
 		if ($this->inputItemSet != "")

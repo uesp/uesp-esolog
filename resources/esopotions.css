@@ -139,7 +139,6 @@ a:hover {
 
 .esopdReagent, .esopdSolvent {
 	width: 110px;
-	height: 110px;
 	display: inline-block;
 	text-align: center;
 	border: 2px solid transparent;
@@ -163,6 +162,7 @@ a:hover {
 	font-family: "Arial", sans-serif;
 	font-size: 12px;
 	font-weight: bold;
+	height: 2.3em;
 }
 
 .esopdTraits {

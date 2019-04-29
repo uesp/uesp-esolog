@@ -41,6 +41,7 @@ const ESO_POTIONEFFECT_GRADUALRAVAGEHEALTH = 28;
 const ESO_POTIONEFFECT_CREEPINGRAVAGEHEALTH = 28;
 const ESO_POTIONEFFECT_VITALITY = 29;
 const ESO_POTIONEFFECT_DEFILE = 30;
+const ESO_POTIONEFFECT_HEROISM = 31;
 
 
 $ESO_POTIONEFFECT_DATA = array(
@@ -385,7 +386,20 @@ $ESO_POTIONEFFECT_DATA = array(
 				"icon" => "resources/crafting_poison_trait_decreasehealing.png",
 				"isPositive" => false,
 				"index" => 30,
-			),		
+			),
+	31 =>  array(
+			"id" => 31,
+			"oppositeId" => -1,
+			"name" => "Heroism",		
+			"name2" => "Heal Absorption",
+			//"potionBaseId" => 151969,	// TODO
+			//"poisonBaseId" => 152151,
+			"potionBaseId" => 54339,
+			"poisonBaseId" => 76827,
+			"icon" => "resources/crafting_alchemy_trait_increasespellresist.png",	// TODO
+			"isPositive" => true,
+			"index" => 31,
+		),		
 );
 
 
@@ -448,6 +462,18 @@ $ESO_REAGENT_DATA = array(
 				"itemId" => 30161,
 				"icon" => "resources/corn_flower_r1.png",
 				"effects" => array(ESO_POTIONEFFECT_RESTOREMAGICKA, ESO_POTIONEFFECT_SPELLPOWER, ESO_POTIONEFFECT_RAVAGEHEALTH, ESO_POTIONEFFECT_DETECTION),
+		),
+		"Dragon's Bile" => array(
+				"name" => "Dragon's Bile",
+				"itemId" => 150789,
+				"icon" => "resources/dragonsbile.png",
+				"effects" => array(ESO_POTIONEFFECT_HEROISM, ESO_POTIONEFFECT_VULNERABILITY, ESO_POTIONEFFECT_INVISIBLE, ESO_POTIONEFFECT_VITALITY),
+		),
+		"Dragon's Blood" => array(
+				"name" => "Dragon's Blood",
+				"itemId" => 150731,
+				"icon" => "resources/dragonsblood.png",
+				"effects" => array(ESO_POTIONEFFECT_SUSTAINRESTOREHEALTH, ESO_POTIONEFFECT_RESTORESTAMINA, ESO_POTIONEFFECT_HEROISM, ESO_POTIONEFFECT_DEFILE),
 		),
 		"Dragonthorn" => array(
 				"name" => "Dragonthorn",

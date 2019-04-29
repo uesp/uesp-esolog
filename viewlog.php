@@ -24,7 +24,8 @@ class EsoLogViewer
 	const ENABLE_18PTS = false;
 	const ENABLE_19PTS = false;
 	const ENABLE_20PTS = false;
-	const ENABLE_21PTS = true;
+	const ENABLE_21PTS = false;
+	const ENABLE_22PTS = true;
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -1738,6 +1739,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItem22pts' => array(
+					'displayName' => 'Update 22-PTS: Mined Items',
+					'displayNameSingle' => 'Update 22-PTS: Mined Item',
+					'record' => 'minedItem22pts',
+					'table' => 'minedItem22pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 22 (Elsweyr) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLink22pts',
+							'link' => 'MakeMinedItemLink22pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -2158,6 +2189,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedItemSummary22pts' => array(
+					'displayName' => 'Update 22-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update 22-PTS: Mined Item Summary',
+					'record' => 'minedItemSummary22pts',
+					'table' => 'minedItemSummary22pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update 22 (Elsweyr) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLink22pts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'setSummary' => array(
 					'displayName' => 'Set Summaries',
 					'displayNameSingle' => 'Set Item Summary',
@@ -2518,6 +2579,30 @@ class EsoLogViewer
 					),
 			),
 			
+			'setSummary22pts' => array(
+					'displayName' => 'Update 22-PTS: Set Summaries',
+					'displayNameSingle' => 'Update 22-PTS: Set Item Summary',
+					'record' => 'setSummary22pts',
+					'table' => 'setSummary22pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update 22 (Elsweyr) as logged from the PTS server.",
+			
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'minedItemSummary22pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
 			'minedSkills' => array(
 					'displayName' => 'Mined Skills',
 					'displayNameSingle' => 'Mined Skill',
@@ -2607,7 +2692,7 @@ class EsoLogViewer
 					'table' => 'minedSkills11pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 11 (Shadows of the Hist) as logged from the PTS server.",
+					'message' => "These are skills for update 11 (Shadows of the Hist) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2636,7 +2721,7 @@ class EsoLogViewer
 					'table' => 'minedSkills12pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 12 (One Tamriel) as logged from the PTS server.",
+					'message' => "These are skills for update 12 (One Tamriel) as logged from the PTS server.",
 			
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2664,7 +2749,7 @@ class EsoLogViewer
 					'table' => 'minedSkills13pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 13 (Homestead) as logged from the PTS server.",
+					'message' => "These are skills for update 13 (Homestead) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2692,7 +2777,7 @@ class EsoLogViewer
 					'table' => 'minedSkills14pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 14 (Morrowind) as logged from the PTS server.",
+					'message' => "These are skills for update 14 (Morrowind) as logged from the PTS server.",
 			
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2720,7 +2805,7 @@ class EsoLogViewer
 					'table' => 'minedSkills15pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 15 (Horns of the Reach) as logged from the PTS server.",
+					'message' => "These are skills for update 15 (Horns of the Reach) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2748,7 +2833,7 @@ class EsoLogViewer
 					'table' => 'minedSkills16pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 16 (Clockwork City) as logged from the PTS server.",
+					'message' => "These are skills for update 16 (Clockwork City) as logged from the PTS server.",
 			
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2776,7 +2861,7 @@ class EsoLogViewer
 					'table' => 'minedSkills17pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 17 (Dragon Bones) as logged from the PTS server.",
+					'message' => "These are skills for update 17 (Dragon Bones) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2804,7 +2889,7 @@ class EsoLogViewer
 					'table' => 'minedSkills18pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 18 (Summerset) as logged from the PTS server.",
+					'message' => "These are skills for update 18 (Summerset) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2832,7 +2917,7 @@ class EsoLogViewer
 					'table' => 'minedSkills19pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 19 (Wolfhunter) as logged from the PTS server.",
+					'message' => "These are skills for update 19 (Wolfhunter) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2860,7 +2945,7 @@ class EsoLogViewer
 					'table' => 'minedSkills20pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 20 (Murkmire) as logged from the PTS server.",
+					'message' => "These are skills for update 20 (Murkmire) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2888,7 +2973,7 @@ class EsoLogViewer
 					'table' => 'minedSkills21pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-					'message' => "These are sets for update 21 (Wrathstone) as logged from the PTS server.",
+					'message' => "These are skills for update 21 (Wrathstone) as logged from the PTS server.",
 						
 					'transform' => array(
 							'mechanic' => 'GetCombatMechanicText',
@@ -2909,6 +2994,33 @@ class EsoLogViewer
 					),
 			),
 			
+			'minedSkills22pts' => array(
+					'displayName' => 'Update 22-PTS: Mined Skills',
+					'displayNameSingle' => 'Update 22-PTS: Mined Skill',
+					'record' => 'minedSkills22pts',
+					'table' => 'minedSkills22pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are skills for update 22 (Elsweyr) as logged from the PTS server.",
+						
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),			
 			
 			'minedSkillLines' => array(
 					'displayName' => 'Mined Skill Lines',
@@ -3107,7 +3219,7 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			'Items 21-PTS' => 'minedItemSummary21pts',
+			'Items 22-PTS' => 'minedItemSummary22pts',
 			'Logged Items' => 'item',
 			'NPCs' => 'npc',
 			'NPC Loots' => 'npcLoot',
@@ -3120,9 +3232,9 @@ class EsoLogViewer
 			'Quest Reward' => 'questReward',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			'Sets 21-PTS' => 'setSummary21pts',
+			'Sets 22-PTS' => 'setSummary22pts',
 			'Skills' => 'minedSkills',
-			'Skills 21-PTS' => 'minedSkills21pts',
+			'Skills 22-PTS' => 'minedSkills22pts',
 	);
 	
 	
@@ -3386,6 +3498,14 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
+			'minedItemSummary22pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -3506,6 +3626,14 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
+			'setSummary22pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
 			'minedSkills' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
@@ -3603,6 +3731,14 @@ class EsoLogViewer
 					),
 			),
 			'minedSkills21pts' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
+			'minedSkills22pts' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -3926,6 +4062,27 @@ class EsoLogViewer
 			unset(self::$SEARCH_TYPE_OPTIONS['Items 21-PTS']);
 			unset(self::$SEARCH_TYPE_OPTIONS['Sets 21-PTS']);
 			unset(self::$SEARCH_TYPE_OPTIONS['Skills 21-PTS']);
+		}
+		
+		if (self::ENABLE_22PTS)
+		{
+			self::$RECORD_TYPES['minedItem22pts']['fields'] = self::$MINEDITEM_FIELDS;
+			self::$RECORD_TYPES['setSummary22pts']['fields'] = self::$SETSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedItemSummary22pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			self::$RECORD_TYPES['minedSkills22pts']['fields'] = self::$SKILLDUMP_FIELDS;
+		}
+		else
+		{
+			unset(self::$RECORD_TYPES['minedItemSummary22pts']);
+			unset(self::$RECORD_TYPES['minedItem22pts']);
+			unset(self::$RECORD_TYPES['setSummary22pts']);
+			unset(self::$RECORD_TYPES['minedSkills22pts']);
+			unset(self::$SEARCH_DATA['minedItemSummary22pts']);
+			unset(self::$SEARCH_DATA['setSummary22pts']);
+			unset(self::$SEARCH_DATA['minedSkills22pts']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Items 22-PTS']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Sets 22-PTS']);
+			unset(self::$SEARCH_TYPE_OPTIONS['Skills 22-PTS']);
 		}
 		
 		$this->InitDatabase();
@@ -4412,6 +4569,19 @@ class EsoLogViewer
 	}
 	
 	
+	public function MakeMinedItemLink22pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+		$itemIntLevel = $itemData['internalLevel'];
+		$itemIntType = $itemData['internalSubtype'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=22pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
 	public function MakeMinedItemSummaryLink ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
@@ -4562,6 +4732,17 @@ class EsoLogViewer
 		$itemId = $itemData['itemId'];
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=21pts\">" . $value . "</a>";
+		return $output;
+	}
+	
+	
+	public function MakeMinedItemSummaryLink22pts ($value, $itemData)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+	
+		$itemId = $itemData['itemId'];
+	
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=22pts\">" . $value . "</a>";
 		return $output;
 	}
 	

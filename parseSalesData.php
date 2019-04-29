@@ -1239,8 +1239,8 @@ class EsoSalesDataParser
 		$uniqueId = $this->db->real_escape_string($uniqueId);
 		$server = $this->db->real_escape_string($this->server);
 		
-		//$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND sellerName=\"$uniqueId\" LIMIT 1;";
-		$this->lastQuery = "SELECT * FROM sales WHERE uniqueId=\"$uniqueId\" LIMIT 1;";
+		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND sellerName=\"$uniqueId\" LIMIT 1;";
+		//$this->lastQuery = "SELECT * FROM sales WHERE uniqueId=\"$uniqueId\" LIMIT 1;";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$uniqueId!");
