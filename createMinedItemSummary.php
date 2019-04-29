@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "21pts";
+$TABLE_SUFFIX = "";
 
 $FIELDS = array(
 		"itemId",
@@ -67,6 +67,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			itemId INTEGER NOT NULL,
 			name TINYTEXT NOT NULL,
+			allNames TEXT NOT NULL,
 			description TEXT NOT NULL,
 			materialLevelDesc TEXT NOT NULL,
 			style TINYINT NOT NULL DEFAULT -1,
@@ -111,7 +112,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 			INDEX index_armortype (armorType),
 			INDEX index_equiptype (equipType),
 			INDEX index_crafttype (craftType),
-			FULLTEXT(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, tags)
+			FULLTEXT(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, tags, allNames)
 		);";
 
 $result = $db->query($query);
@@ -151,6 +152,24 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error (finding max item v2)!\n" . $db->error);
 		$maxItemData = $result->fetch_assoc();
+	}
+	
+	$allNames = array();
+	$query = "SELECT name from minedItem".$TABLE_SUFFIX." where itemId=$id;";
+	$result = $db->query($query);
+	if (!$result) exit("ERROR: Database query error (finding all item names)!\n" . $db->error);
+	
+	while (($row = $result->fetch_assoc()))
+	{
+		$name = $row['name'];
+		$allNames[$name] = 1;
+	}
+	
+	$allNameValue = "";
+	
+	foreach ($allNames as $name => $value)
+	{
+		$allNameValue .= $name . "\n";
 	}
 	
 	$columns = array();
@@ -244,6 +263,9 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		
 		$columns[] = $field;
 	}
+	
+	$columns[] = "allNames";
+	$values[] = "'" . $db->real_escape_string($allNameValue) . "'";;
 	
 	$query  = "INSERT INTO minedItemSummaryTmp(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);

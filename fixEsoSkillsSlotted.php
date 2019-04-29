@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "22pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -83,6 +83,12 @@ $ESO_SLOTTED_SKILLS = array(
 		41115 => -68,
 		41118 => -68,
 		41121 => -68, */
+		
+		116269 => -69,	//Necromancer: Health Avarice
+		116270 => -69,		
+			
+		116197 => -70,	//Necromancer: Death Knell
+		116198 => -70,
 		
 		29665 => -51,	//Light Armor: Evocation
 		45557 => -51,

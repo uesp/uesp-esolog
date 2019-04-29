@@ -29,6 +29,8 @@ const UESP_POWERTYPE_ANIMALCOMPANION = -65;
 const UESP_POWERTYPE_GREENBALANCE = -66;
 const UESP_POWERTYPE_WINTERSEMBRACE = -67;
 const UESP_POWERTYPE_MAGICHEALTHCAP = -68;
+const UESP_POWERTYPE_BONETYRANT = -69;
+const UESP_POWERTYPE_GRAVELORD = -70;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -54,6 +56,8 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100026" => "21",
 		"100027" => "22",
 		"100028" => "23",
+		"100029" => "24",
+		"100030" => "25",
 );
 
 
@@ -75,6 +79,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100024" => "4.1",
 		"100025" => "4.2",
 		"100026" => "4.3",
+		"100027" => "5.0",
 );
 
 
@@ -978,6 +983,8 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_ANIMALCOMPANION => "Animal Companion Skills Slotted",
 		UESP_POWERTYPE_GREENBALANCE => "Green Balance Skills Slotted",
 		UESP_POWERTYPE_WINTERSEMBRACE => "Winter's Embrace Skills Slotted",
+		UESP_POWERTYPE_BONETYRANT => "Bone Tyrant Skills Slotted",
+		UESP_POWERTYPE_GRAVELORD => "Grave Lord Skills Slotted",
 );
 
 
@@ -3251,6 +3258,10 @@ function GetEsoItemTableSuffix($version)
 		case '121':
 		case '21':
 			return "";
+		case '22pts':
+			return "22pts";
+		case '22':
+			return "22";
 	}
 
 	return "";
@@ -3693,6 +3704,7 @@ function FormatEsoItemDescriptionText($desc)
 	$output = preg_replace("|Adds ([0-9\-\.]+)|s", "Adds <div class='esoil_white'>$1</div>", $output);
 	$output = preg_replace("|for ([0-9\-\.]+)|s", "for <div class='esoil_white'>$1</div>", $output);
 	
+	$output = preg_replace("#\|c[0-9a-fA-F]{6}\|c([0-9a-fA-F]{6})([^|]+)\|r\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([^|]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})(.*)#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	
@@ -3711,6 +3723,7 @@ function FormatEsoItemDescriptionText($desc)
 
 function FormatRemoveEsoItemDescriptionText($desc)
 {
+	$output = preg_replace("#\|c[0-9a-fA-F]{6}\|c([0-9a-fA-F]{6})([^|]+)\|r\|r#s", "$2", $desc);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([^|]+)\|r#s", "$2", $desc);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $output);

@@ -179,6 +179,11 @@ class EsoItemSearcher
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		
+		if (IsEsoVersionAtLeast($this->version, 15))
+		{
+			self::$ESOIS_SEARCH_FIELDS[] = 'allNames';
+		}
+		
 		$this->LoadHtmlTemplate();		
 	}
 	

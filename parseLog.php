@@ -80,20 +80,20 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744115047104512000; //v16 1508769777
 	//const START_MINEITEM_TIMESTAMP = ?; //v17pts ?
 	//const START_MINEITEM_TIMESTAMP = 4744155630808000000; //v17 1518445680
-	//const START_MINEITEM_TIMESTAMP = 4744146619023228928; //v18pts 1516297109
 	//const START_MINEITEM_TIMESTAMP = 4744191147415437312; //v18 1526913505
 															//v19pts?
 	//const START_MINEITEM_TIMESTAMP = 4744221569218248704; //v19 1534166628
 	//const START_MINEITEM_TIMESTAMP = ; //v20pts ?
-	const START_MINEITEM_TIMESTAMP = 4744246935181852672; //v20 1540214345
-	//const START_MINEITEM_TIMESTAMP = ;	// v21pts 1548072000
-	//const START_MINEITEM_TIMESTAMP = ;	// v21
+	//const START_MINEITEM_TIMESTAMP = 4744246935181852672; //v20 1540214345
+	//const START_MINEITEM_TIMESTAMP = ;	//v21pts 1548072000
+	//const START_MINEITEM_TIMESTAMP = ;	//v21
+	const START_MINEITEM_TIMESTAMP = 4744307872848936960;	//v22pts 1554743017
 		  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "22pts";
+	const SKILLS_TABLESUFFIX   = "22pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -219,6 +219,10 @@ class EsoLogParser
 			"minedSkills22",
 			"minedSkills23pts",
 			"minedSkills23",
+			"minedSkills24pts",
+			"minedSkills24",
+			"minedSkills25pts",
+			"minedSkills25",
 			"collectibles",
 			"achievements",
 	);
@@ -5976,6 +5980,9 @@ class EsoLogParser
 	
 	
 	public $CLASS_SKILLLINE_IDS = array(
+			133 => "Necromancer",
+			132 => "Necromancer",
+			131 => "Necromancer",
 			129 => "Warden",
 			128 => "Warden",
 			127 => "Warden",			

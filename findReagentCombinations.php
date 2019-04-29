@@ -2,19 +2,57 @@
 
 require_once(__DIR__."/esoCommon.php");
 require_once(__DIR__."/esoPotionData.php");
+//require_once("/home/uesp/www/esolog/pricesNA/uespSalesPrices.php");
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 
 $USE_THREE_REAGENTS = true;
 $USE_TWO_REAGENT_UPTO = 36;
-//$USE_TWO_REAGENT_UPTO = 0.5;
+$USE_TWO_REAGENT_UPTO = 0.5;
+$USE_TWO_REAGENT_UPTO = -1;
 
+$CHEAPEST_PRICE_COUNT = 10;
+
+
+$REAGENT_PRICES = array(
+		"Beetle Scuttle" => 237.895,
+		"Blessed Thistle" => 137.112,
+		"Blue Entoloma" => 37.0988,
+		"Bugloss" => 77.6813,
+		"Butterfly Wing" => 51.9211,
+		"Clam Gall" => 576.022,
+		"Columbine" => 185.602,
+		"Corn Flower" => 394.861,
+		"Dragon's Blood" => 1000, //Estimate
+		"Dragon's Bile" => 1000, //Estimate
+		"Dragonthorn" => 54.5996,
+		"Emetic Russula" => 46.2189,
+		"Fleshfly Larva" => 25.872,
+		"Imp Stool" => 42.4445,
+		"Lady's Smock" => 115.07,
+		"Luminous Russula" => 44.4697,
+		"Mountain Flower" => 60.4472,
+		"Mudcrab Chitin" => 58.7275,
+		"Namira's Rot" => 126.285,
+		"Nightshade" => 49.8426,
+		"Nirnroot" => 43.032,
+		"Powdered Mother of Pearl" => 3764.85,
+		"Scrib Jelly" => 68.4118,
+		"Spider Egg" => 39.3862,
+		"Stinkhorn" => 43.913,
+		"Torchbug Thorax" => 243.768,
+		"Violet Coprinus" => 52.25,
+		"Water Hyacinth" => 129.221,
+		"White Cap" => 37.3834,
+		"Wormwood" => 60.6312,
+);
+	
 
 function GetCombinedEffects($reagent1, $reagent2, $reagent3, $known1, $known2, $known3)
 {
 	global $ESO_POTIONEFFECT_DATA, $USE_THREE_REAGENTS;
-	
+		
 	$combinedEffects = array();
 	$effectCounts = array();
 	$knownEffects = array();
@@ -111,6 +149,7 @@ function LearnAllTraits($use2ReagentsUpTo)
 	global $knownReagents, $knownEffects;
 	global $totalReagents, $totalEffects;
 	global $USE_THREE_REAGENTS, $USE_TWO_REAGENT_UPTO;
+	global $REAGENT_PRICES;
 	
 	$output = "Learning all reagent traits...\n";
 	
@@ -288,6 +327,69 @@ function FindMinCombinations($runCount)
 }
 
 
-FindMinCombinations(10000);
+function FindCheapestCombination()
+{
+	global $REAGENT_PRICES;
+	global $CHEAPEST_PRICE_COUNT;
+	
+	$output = "Finding cheapest combinations...\n";
+	
+	$combinations = array();
+	$prices = array();
+	$reagents = CreateReagents();
+	
+	foreach ($reagents as $name1 => $reagent1)
+	{
+		$combinations[$name1] = array();
+		
+		foreach ($reagents as $name2 => $reagent2)
+		{
+			if ($combinations[$name2] == null) $combinations[$name2] = array();
+			
+			if ($name1 == $name2) continue;
+			if ($combinations[$name1][$name2] > 0 || $combinations[$name2][$name1] > 0) continue;
+			$combinations[$name1][$name2] = 1;
+			
+			$effects = GetCombinedEffects($reagent1, $reagent2, null, null, null, null);
+			if (count($effects) <= 0) continue;
+		
+			$price1 = $REAGENT_PRICES[$name1];
+			$price2 = $REAGENT_PRICES[$name2];
+			$price = $price1 + $price2;
+			
+			$prices[] = array(
+					"name1" => $name1,
+					"name2" => $name2,
+					"price" => $price,
+			);
+			
+			//print("$price = $name1 + $name2\n");			
+		}
+	}
+		
+	usort($prices, "SortCombinationsByPrice");
+	
+	print("$CHEAPEST_PRICE_COUNT cheapest combinations:\n");
+	
+	for ($i = 0; $i < $CHEAPEST_PRICE_COUNT; ++$i)
+	{
+		$j = $i + 1;
+		$row = $prices[$i];
+		$price = round($row['price']);
+		$name1 = $row['name1'];
+		$name2 = $row['name2'];
+		print("\t$j) $name1 + $name2 = $price gp\n");
+	}
+}
+
+
+function SortCombinationsByPrice($a, $b)
+{
+	return $a['price'] - $b['price'];
+}
+
+
+FindCheapestCombination();
+//FindMinCombinations(10000);
 
 
