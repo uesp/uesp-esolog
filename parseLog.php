@@ -505,10 +505,16 @@ class EsoLogParser
 			'count' => self::FIELD_INT,
 	);
 	
+	public static $LOOTSOURCE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'count' => self::FIELD_INT,
+	);
+	
 	public static $NPCLOOT_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
-			'npcId' => self::FIELD_INT,
+			'lootSourceId' => self::FIELD_INT,
 			'zone' => self::FIELD_STRING,
 			'itemLink' => self::FIELD_STRING,
 			'itemName' => self::FIELD_STRING,
@@ -1532,6 +1538,12 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveLootSource (&$record)
+	{
+		return $this->saveRecord('lootSources', $record, 'id', self::$LOOTSOURCE_FIELDS);
+	}	
+	
+	
 	public function SaveNPCLoot (&$record)
 	{
 		return $this->saveRecord('npcLoot', $record, 'id', self::$NPCLOOT_FIELDS);
@@ -1923,11 +1935,23 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS lootSources (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						name TINYTEXT NOT NULL,
+						count INTEGER NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name)
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create lootSources table!");
 
 		$query = "CREATE TABLE IF NOT EXISTS npcLoot (
 						id BIGINT NOT NULL AUTO_INCREMENT,
 						logId BIGINT NOT NULL,
-						npcId BIGINT NOT NULL,
+						lootSourceId BIGINT NOT NULL,
 						zone TINYTEXT NOT NULL,
 						itemLink TINYTEXT NOT NULL,
 						itemName TINYTEXT NOT NULL,
@@ -1942,7 +1966,7 @@ class EsoLogParser
 						PRIMARY KEY (id),
 						INDEX index_itemLink(itemLink(64)),
 						INDEX index_itemId(itemId),
-						INDEX index_npcId(npcId),
+						INDEX index_lootSourceId(lootSourceId),
 						INDEX index_zone(zone(24)),
 						INDEX index_itemName(itemName(24))
 					);";
@@ -2987,18 +3011,18 @@ class EsoLogParser
 			$npcName = $this->currentUser['__lastFootlockerOpenedName'];
 		}
 		
-		$npcRecord = $this->FindNPC($npcName);
+		$lootSourceRecord = $this->FindLootSource($npcName);
 		
-		if ($npcRecord == null)
+		if ($lootSourceRecord == null)
 		{
 			$logEntry['name'] = $npcName;
-			$npcRecord = $this->CreateNPC($logEntry);
-			if ($npcRecord == null) return false;
+			$lootSourceRecord = $this->CreateLootSource($logEntry);
+			if ($lootSourceRecord == null) return false;
 			
-			$this->CheckLocation("npc", $npcName, $logEntry, array('npcId' => $npcRecord['id']));
+			//$this->CheckLocation("lootSource", $npcName, $logEntry, array('lootSourceId' => $lootSourceRecord['id']));
 		}
 				
-		$lootRecord = $this->FindNPCLoot($npcRecord['id'], $zone, $logEntry['itemLink']);
+		$lootRecord = $this->FindNPCLoot($lootSourceRecord['id'], $zone, $logEntry['itemLink']);
 		
 		if ($lootRecord == null)
 		{
@@ -3018,7 +3042,7 @@ class EsoLogParser
 				$logEntry['itemName'] = $logEntry['itemLink'];
 			}
 			
-			$lootRecord = $this->CreateNPCLoot($npcRecord, $zone, $logEntry);
+			$lootRecord = $this->CreateNPCLoot($lootSourceRecord, $zone, $logEntry);
 			if ($lootRecord == null) return false;
 		}
 		else
@@ -3033,15 +3057,15 @@ class EsoLogParser
 		
 		if ($this->currentUser['__lastLootGainedTarget'] != $npcName || $diffTime > 1000 || $this->currentUser['__lastLootGainedGameTime'] <= 0)
 		{
-			$npcRecord['count']++;
-			$this->SaveNPC($npcRecord);
+			$lootSourceRecord['count']++;
+			$this->SaveLootSource($lootSourceRecord);
 			//$this->log("Updating NPC Totals: $npcName, $diffTime, $gameTime, {$this->currentUser['__lastLootGainedTarget']}, {$this->currentUser['__lastLootGainedGameTime']}");
 			
-			$lootRecord = $this->FindNPCLoot($npcRecord['id'], $zone, "__totalCount");
+			$lootRecord = $this->FindNPCLoot($lootSourceRecord['id'], $zone, "__totalCount");
 			
 			if ($lootRecord == null)
 			{
-				$lootRecord = $this->CreateNPCLoot($npcRecord, $zone, $logEntry);
+				$lootRecord = $this->CreateNPCLoot($lootSourceRecord, $zone, $logEntry);
 				if ($lootRecord == null) return false;
 				
 				$lootRecord['itemLink'] = "__totalCount";
@@ -3058,11 +3082,11 @@ class EsoLogParser
 			
 			$this->SaveNPCLoot($lootRecord);
 			
-			$lootRecord = $this->FindNPCLoot($npcRecord['id'], "", "__totalCount");
+			$lootRecord = $this->FindNPCLoot($lootSourceRecord['id'], "", "__totalCount");
 				
 			if ($lootRecord == null)
 			{
-				$lootRecord = $this->CreateNPCLoot($npcRecord, "", $logEntry);
+				$lootRecord = $this->CreateNPCLoot($lootSourceRecord, "", $logEntry);
 				if ($lootRecord == null) return false;
 			
 				$lootRecord['itemLink'] = "__totalCount";
@@ -3242,12 +3266,30 @@ class EsoLogParser
 	}
 	
 	
-	public function CreateNPCLoot ($npcRecord, $zone, $logEntry)
+	public function CreateLootSource ($logEntry)
+	{
+		$lootSourceRecord = $this->createNewRecord(self::$LOOTSOURCE_FIELDS);
+		
+		$lootSourceRecord['name'] = $logEntry['name'];
+		$lootSourceRecord['count'] = 0;
+		$lootSourceRecord['__isNew'] = true;
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+		
+		$result = $this->SaveLootSource($lootSourceRecord);
+		if (!$result) return null;
+		
+		return $lootSourceRecord;
+	}
+	
+	
+	public function CreateNPCLoot ($lootSource, $zone, $logEntry)
 	{
 		$lootRecord = $this->createNewRecord(self::$NPCLOOT_FIELDS);
 	
 		$lootRecord['zone'] = $zone;
-		$lootRecord['npcId'] = $npcRecord['id'];
+		$lootRecord['lootSourceId'] = $lootSource['id'];
 		$lootRecord['itemName'] = $logEntry['itemName'];
 		$lootRecord['itemLink'] = $logEntry['itemLink'];
 		$lootRecord['quality'] = -1;
@@ -4347,13 +4389,36 @@ class EsoLogParser
 	}
 	
 	
-	public function FindNPCLoot ($npcId, $zone, $itemLink)
+	public function FindLootSource ($name)
+	{
+		$safeName = $this->db->real_escape_string($name);
+		$query = "SELECT * FROM lootSources WHERE name='$safeName';";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve lootSource!");
+			return null;
+		}
+		
+		++$this->dbReadCount;
+		
+		if ($result->num_rows == 0) return null;
+		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$LOOTSOURCE_FIELDS);
+	}
+	
+	
+	public function FindNPCLoot ($lootSourceId, $zone, $itemLink)
 	{
 		$safeLink = $this->db->real_escape_string($itemLink);
 		$safeZone = $this->db->real_escape_string($zone);
-		$safeId = (int) $npcId;
+		$safeId = (int) $lootSourceId;
 		
-		$query = "SELECT * FROM npcLoot WHERE npcId=$safeId AND zone='$safeZone' AND itemLink='$safeLink';";
+		$query = "SELECT * FROM npcLoot WHERE lootSourceId=$safeId AND zone='$safeZone' AND itemLink='$safeLink';";
 		$this->lastQuery = $query;
 	
 		$result = $this->db->query($query);
