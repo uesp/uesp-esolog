@@ -84,6 +84,16 @@ class CEsoViewNpcLoot
 			$this->viewNpcName = $this->inputParams['npc'];
 		}
 		
+		if ($this->inputParams['lootsource'] != null)
+		{
+			$this->viewNpcName = $this->inputParams['lootsource'];
+		}
+		
+		if ($this->inputParams['source'] != null)
+		{
+			$this->viewNpcName = $this->inputParams['source'];
+		}
+		
 		if ($this->inputParams['item'] != null)
 		{
 			$this->viewItemName = $this->inputParams['item'];
@@ -778,7 +788,7 @@ class CEsoViewNpcLoot
 	public function GetNpcSearchQuery()
 	{
 		$safeName = $this->db->real_escape_string($this->viewNpcName);
-		$this->lastQuery = "SELECT * FROM npc WHERE name='$safeName';";
+		$this->lastQuery = "SELECT * FROM lootSources WHERE name='$safeName';";
 		$result = $this->db->query($this->lastQuery);
 		
 		if (!$result || $result->num_rows <= 0) 
@@ -790,34 +800,34 @@ class CEsoViewNpcLoot
 		$this->npcRecord = $result->fetch_assoc();
 		$npcId = $this->npcRecord['id']; 
 		
-		$query = "SELECT * FROM npcLoot WHERE npcId=$npcId;";
+		$query = "SELECT * FROM npcLoot WHERE lootSourceId=$npcId;";
 		return $query;
 	}
 	
 	
 	public function GetNpcGroupAlchemyReagentQuery()
 	{
-		$query = "SELECT id from npc WHERE name='Beetle Scuttle' or name='Blessed Thistle' or name='Bugloss' or name='Butterfly Wing' or ";
+		$query = "SELECT id from lootSources WHERE name='Beetle Scuttle' or name='Blessed Thistle' or name='Bugloss' or name='Butterfly Wing' or ";
 		$query .= "name='Columbine' or name='Corn Flower' or name='Dragonthorn' or name='Emetic Russula' or name='Fleshfly Larva' or ";
 		$query .= "name='Imp Stool' or name='Lady''s Smock' or name='Luminous Russula' or name='Mudcrab Chitin' or name='Namira''s Rot' or ";
 		$query .= "name='Nightshade' or name='Nirnroot' or name='Scrib Jelly' or name='Spider Egg' or name='Stinkhorn' or name='Torchbug Thorax' or ";
 		$query .= "name='Violet Coprinus' or name='Water Hyacinth' or name='White Cap' or name='Wormwood' or name='Torchbug' or name='Butterfly';";
 		
-		//$query = "SELECT id from npc WHERE name='Columbine' or name='Bugloss';";
+		//$query = "SELECT id from lootSources WHERE name='Columbine' or name='Bugloss';";
 		return $query;
 	}
 	
 	
 	public function GetNpcGroupAlchemySolventQuery()
 	{
-		$query = "SELECT id from npc WHERE name='Water Skin' or name='Pure Water';";
+		$query = "SELECT id from lootSources WHERE name='Water Skin' or name='Pure Water';";
 	
 		return $query;
 	}
 	
 	public function GetNpcGroupOreQuery()
 	{
-		$query = "SELECT id from npc WHERE name LIKE '% Ore' AND name NOT LIKE 'Rich %';";
+		$query = "SELECT id from lootSources WHERE name LIKE '% Ore' AND name NOT LIKE 'Rich %';";
 
 		return $query;
 	}
@@ -825,7 +835,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcGroupScrapsQuery()
 	{
-		$query = "SELECT npcId as id FROM npcLoot where itemName LIKE '% Scraps' GROUP BY npcId;";
+		$query = "SELECT lootSourceId as id FROM npcLoot where itemName LIKE '% Scraps' GROUP BY lootSourceId;";
 	
 		return $query;
 	}
@@ -833,7 +843,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcGroupSilkQuery()
 	{
-		$query = "SELECT id from npc WHERE name='Ancestor Silk' or name='Cotton' or name='Ebonthread' or name='Flax' or name='Ironthread' or ";
+		$query = "SELECT id from lootSources WHERE name='Ancestor Silk' or name='Cotton' or name='Ebonthread' or name='Flax' or name='Ironthread' or ";
 		$query .= "name='Jute' or name='Kresh' or name='Silverweave' or name='Spidersilk' or name='Void Cloth';";
 		
 		return $query;
@@ -842,7 +852,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcGroupWoodQuery()
 	{
-		$query = "SELECT id from npc WHERE name='Ruby Ash Wood' or name='Ash' or name='Beech' or name='Birch' or name='Hickory' or ";
+		$query = "SELECT id from lootSources WHERE name='Ruby Ash Wood' or name='Ash' or name='Beech' or name='Birch' or name='Hickory' or ";
 		$query .= "name='Mahogany' or name='Maple' or name='Nightwood' or name='Oak' or name='Yew';";
 	
 		return $query;
@@ -851,7 +861,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcGroupContainerQuery()
 	{
-		$query = "SELECT id FROM npc where ";
+		$query = "SELECT id FROM lootSources where ";
 		$query .= "name='Backpack' or name='Trunk' or ";
 		$query .= "name='Urn' or name='Wardrobe' or name='Dwemer Jug' or name='Dwemer Pot' or ";
 		$query .= "name='Dresser' or name='Large Dwemer Jug' or ";
@@ -863,7 +873,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcGroupProvisioningQuery()
 	{
-		$query = "SELECT id FROM npc where name='Barrel' or name='Barrels' or name='Crate' or name='Crates' or ";
+		$query = "SELECT id FROM lootSources where name='Barrel' or name='Barrels' or name='Crate' or name='Crates' or ";
 		$query .= "name='Bag' or name='Sack' or name='Jug' or name='Basket' or ";
 		$query .= "name='Burnt Barrel' or ";
 		$query .= "name='Burnt Barrels' or name='Burnt Crate' or name='Burnt Crates' or ";
@@ -876,7 +886,7 @@ class CEsoViewNpcLoot
 	
 	public function GetNpcGroupAlchemySurveyQuery()
 	{
-		$query = "SELECT id FROM npc WHERE ";
+		$query = "SELECT id FROM lootSources WHERE ";
 		$query .= "name='Lush Columbine' or ";
 		$query .= "name='Lush Mountain Flower' or ";
 		$query .= "name='Lush Corn Flower' or ";
@@ -930,7 +940,7 @@ class CEsoViewNpcLoot
 		
 		$npcIds = implode(",", $npcIds);
 		
-		$query = "SELECT npcLoot.*, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE npcId in ($npcIds);";
+		$query = "SELECT npcLoot.*, lootSources.name FROM npcLoot LEFT JOIN lootSources on lootSourceId=lootSources.id WHERE lootSourceId in ($npcIds);";
 		return $query;
 	}
 	
@@ -939,7 +949,7 @@ class CEsoViewNpcLoot
 	{
 		$safeName = $this->db->real_escape_string($this->viewItemName);
 		
-		$query = "SELECT npcLoot.*, npc.name FROM npcLoot LEFT JOIN npc on npcId=npc.id WHERE itemName LIKE '%$safeName%';";
+		$query = "SELECT npcLoot.*, lootSources.name FROM npcLoot LEFT JOIN lootSources on lootSourceId=lootSources.id WHERE itemName LIKE '%$safeName%';";
 		return $query;
 	}
 	
@@ -1923,7 +1933,7 @@ class CEsoViewNpcLoot
 		{
 			$npcName = $result['name'];
 			$safeName = urlencode($npcName);
-			$npcId = $result['npcId'];
+			$npcId = $result['lootSourceId'];
 			$zone = $result['zone'];
 			$itemName = $result['itemName'];
 			$itemLink = $result['itemLink'];
@@ -1936,8 +1946,9 @@ class CEsoViewNpcLoot
 			$iconUrl = "";
 			if ($result['icon']) $iconUrl = MakeEsoIconLink($result['icon']);
 			
-			$links  = "<a href='/viewlog.php?action=view&record=npc&id=$npcId'>View NPC</a>";
-			$links .= " <a href='/viewNpcLoot.php?npc=$safeName'>View NPC Loots</a>";
+			$links = "";
+			//$links  = "<a href='/viewlog.php?action=view&record=lootSources&id=$npcId'>Sources</a>";
+			$links .= " <a href='/viewNpcLoot.php?npc=$safeName'>View Loots</a>";
 			
 			$output .= "<tr>";
 			$output .= "<td>$npcName</td>";

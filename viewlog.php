@@ -279,6 +279,12 @@ class EsoLogViewer
 			'count' => self::FIELD_INT,
 	);
 	
+	public static $LOOTSOURCE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'count' => self::FIELD_INT,
+	);
+	
 	public static $NPCLOOT_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
@@ -1210,6 +1216,25 @@ class EsoLogViewer
 									'displayName' => 'View Locations',
 									'type' => 'filter',
 							),
+							
+					),
+					
+					'join' => array(
+					),
+			),
+			
+			'lootSources' => array(
+					'displayName' => 'Loot Sources',
+					'displayNameSingle' => 'Loot Source',
+					'record' => 'lootSources',
+					'table' => 'lootSources',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
 							array(
 									'fields' => array(
 											"name" => "npc",
@@ -1219,14 +1244,14 @@ class EsoLogViewer
 									'type' => 'external',
 							),
 					),
-					
+						
 					'join' => array(
 					),
 			),
 			
 			'npcLoot' => array(
-					'displayName' => 'NPC Loots',
-					'displayNameSingle' => 'NPC Loot',
+					'displayName' => 'Loots',
+					'displayNameSingle' => 'Loot',
 					'record' => 'npcLoot',
 					'table' => 'npcLoot',
 					'method' => 'DoRecordDisplay',
@@ -1240,10 +1265,10 @@ class EsoLogViewer
 						
 					'filters' => array(
 							array(
-									'record' => 'npc',
+									'record' => 'lootSources',
 									'field' => 'id',
-									'thisField' => 'npcId',
-									'displayName' => 'View NPC',
+									'thisField' => 'lootSourceId',
+									'displayName' => 'View Source',
 									'type' => 'viewRecord',
 							),
 							array(
@@ -1251,7 +1276,7 @@ class EsoLogViewer
 											"name" => "npc",
 									),
 									'url' => '/viewNpcLoot.php',
-									'displayName' => 'View NPC Loots',
+									'displayName' => 'View Loots',
 									'type' => 'external',
 							),
 							array(
@@ -1265,9 +1290,9 @@ class EsoLogViewer
 					),
 						
 					'join' => array(
-							'npcId' => array(
+							'lootSourceId' => array(
 									'joinField' => 'id',
-									'table' => 'npc',
+									'table' => 'lootSources',
 									'fields' => array('name'),
 							),
 					),
@@ -3221,8 +3246,9 @@ class EsoLogViewer
 			'Items' => 'minedItemSummary',
 			'Items 22-PTS' => 'minedItemSummary22pts',
 			'Logged Items' => 'item',
-			'NPCs' => 'npc',
-			'NPC Loots' => 'npcLoot',
+			'Loot' => 'npcLoot',
+			'Loot Sources' => 'lootSources',
+			'NPCs' => 'npc',			
 			'Old Quests' => 'oldQuest',
 			'Old Quest Stages' => 'oldQuestStage',
 			'Quests' => 'quest',
@@ -3346,6 +3372,14 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+					),
+			),
+			'lootSources' => array(
+					'searchFields' => array('name'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'count' => 'note',
 					),
 			),
 			'npcLoot' => array(
@@ -3776,6 +3810,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['questItem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
+		self::$RECORD_TYPES['lootSources']['fields'] = self::$LOOTSOURCE_FIELDS;
 		self::$RECORD_TYPES['npcLoot']['fields'] = self::$NPCLOOT_FIELDS;
 		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
 		self::$RECORD_TYPES['ingredient']['fields'] = self::$INGREDIENT_FIELDS;
