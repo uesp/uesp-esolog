@@ -1237,7 +1237,7 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'fields' => array(
-											"name" => "npc",
+											"name" => "source",
 									),
 									'url' => '/viewNpcLoot.php',
 									'displayName' => 'View Loots',
@@ -1273,7 +1273,7 @@ class EsoLogViewer
 							),
 							array(
 									'fields' => array(
-											"name" => "npc",
+											"name" => "source",
 									),
 									'url' => '/viewNpcLoot.php',
 									'displayName' => 'View Loots',
@@ -3387,6 +3387,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'itemName' => 'name',
+							'zone' => 'note',
 					),
 			),
 			'recipe' => array(

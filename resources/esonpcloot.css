@@ -117,3 +117,9 @@ a:hover {
     vertical-align: middle;
     padding-right: 5px;
 }
+
+.esonplPriceLinks {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}

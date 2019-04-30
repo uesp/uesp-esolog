@@ -1743,6 +1743,30 @@ class CEsoViewNpcLoot
 	}
 	
 	
+	public function GetPrintLinks()
+	{
+		$output = "";
+		$requestURI = $_SERVER["REQUEST_URI"];
+		
+		$hasNAPrices = stripos($requestURI, 'prices=NA') !== false;
+		$hasEUPrices = stripos($requestURI, 'prices=EU') !== false;
+		$hasNoPrices = !$hasNAPrices && !$hasEUPrices;
+		
+		$requestURI = str_ireplace('prices=NA', '', $requestURI);
+		$requestURI = str_ireplace('prices=EU', '', $requestURI);
+		$requestURI = str_ireplace('prices=PTS', '', $requestURI);
+		$requestURI = str_ireplace('prices=Other', '', $requestURI);
+		$requestURI = str_replace('?&', '?', $requestURI);
+		$requestURI = str_replace('&&', '&', $requestURI);
+		
+		if (!$hasNoPrices) $output .= "<a href='$requestURI'>Show No Prices</a> &nbsp; ";
+		if (!$hasNAPrices) $output .= " &nbsp; <a href='$requestURI&prices=NA'>Show PC-NA Prices</a> &nbsp; ";
+		if (!$hasEUPrices) $output .= " &nbsp; <a href='$requestURI&prices=EU'>Show PC-EU Prices</a>";
+		
+		return $output;
+	}
+	
+	
 	public function GetNpcResultsHtml()
 	{
 		$this->ParseNpcItemResults();
@@ -1758,7 +1782,14 @@ class CEsoViewNpcLoot
 			return $output;
 		}
 		
-		$output = "Showing NPC loot drop data for $npcName:<p>";
+		$output = "";
+		
+		$priceLinks = $this->GetPrintLinks();
+		$output .= "<div class='esonplPriceLinks'>$priceLinks</div>";
+		
+		$output .= "Showing NPC loot drop data for $npcName";
+		if ($this->salesPriceServer != "") $output .= " using price data from the PC {$this->salesPriceServer} server";
+		$output .= ":<p>";				
 		$output .= "<table id='esonplResultsTable'>";
 		
 		$output .= "<tr>";
@@ -1948,7 +1979,7 @@ class CEsoViewNpcLoot
 			
 			$links = "";
 			//$links  = "<a href='/viewlog.php?action=view&record=lootSources&id=$npcId'>Sources</a>";
-			$links .= " <a href='/viewNpcLoot.php?npc=$safeName'>View Loots</a>";
+			$links .= " <a href='/viewNpcLoot.php?source=$safeName'>View Loots</a>";
 			
 			$output .= "<tr>";
 			$output .= "<td>$npcName</td>";
