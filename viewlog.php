@@ -3376,6 +3376,12 @@ class EsoLogViewer
 			),
 			'lootSources' => array(
 					'searchFields' => array('name'),
+					'view' => array(
+								'url' => '/viewNpcLoot.php',
+								'parameter' => 'source',
+								'column' => 'name',
+								'title' => 'View Loot',
+					),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -3384,6 +3390,12 @@ class EsoLogViewer
 			),
 			'npcLoot' => array(
 					'searchFields' => array('itemName'),
+					'view' => array(
+								'url' => '/viewNpcLoot.php',
+								'parameter' => 'item',
+								'column' => 'name',
+								'title' => 'View Loot Sources',
+					),
 					'fields' => array(
 							'id' => 'id',
 							'itemName' => 'name',
@@ -4353,6 +4365,7 @@ class EsoLogViewer
 	<title>UESP:ESO Log Data Viewer</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css" />
+	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
 </head>
 <body>
@@ -5819,6 +5832,20 @@ If you do not understand what this information means, or how to use this webpage
 	{
 		$output = "";
 		
+		$searchData = self::$SEARCH_DATA[$result['type']];
+		
+		if ($searchData && $searchData['view'])
+		{
+			$url = $searchData['view']['url'];
+			$parameter = $searchData['view']['parameter'];
+			$column = urlencode($result[$searchData['view']['column']]);
+			$title = $searchData['view']['title'];
+			if ($title == null) $title = "View";
+			
+			$output = "<a href='$url?$parameter=$column'>$title</a>";
+			return $output;
+		}
+		
 		switch ($result['type'])
 		{
 			case 'book':
@@ -5857,10 +5884,6 @@ If you do not understand what this information means, or how to use this webpage
 			case 'ingredient':
 				$output .= $this->GetViewRecordLink('ingredient', 'id', $result['id'], 'View Ingredient');
 				break;
-			default:
-				//$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View ' . ucwords($result['type']));
-				$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View');
-				break;
 			case 'minedItem':
 				$output .= $this->GetViewRecordLink('minedItem', 'id', $result['id'], 'View Item');
 				break;
@@ -5875,6 +5898,10 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'skillTree':
 				$output .= $this->GetViewRecordLink('skillTree', 'id', $result['id'], 'View Skill Tree');
+				break;
+			default:
+				//$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View ' . ucwords($result['type']));
+				$output .= $this->GetViewRecordLink($result['type'], 'id', $result['id'], 'View');
 				break;
 		};
 		
@@ -5921,7 +5948,7 @@ If you do not understand what this information means, or how to use this webpage
 			
 			if ($this->IsOutputHTML())
 			{
-				$output .= "<tr>\n";
+				$output .= "<tr class='esologSearchRow'>\n";
 				$output .= "\t<td>$viewLink</td>\n";
 			}
 			

@@ -75,3 +75,8 @@ body {
 	display: inline-block;
 	border: solid 1px gray;
 }
+
+.esologSearchRow:hover {
+	cursor: pointer;
+	background-color: #ccc;
+}
