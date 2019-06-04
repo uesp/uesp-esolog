@@ -1092,11 +1092,23 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 		},
 		{
 			type: "flat",
+			match: /( a damage shield for nearby allies that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /( own damage absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
 			match: /( a damage shield for you and your pets that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
 			match: /(damage shield that absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
+		{
+			type: "flat",
+			match: /(damage shield that absorbs up to \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
 		},
 		{
 			type: "flat",
@@ -1218,7 +1230,7 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		healId: "Done",
 		match: /(Heals you or an ally near the enemy for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
-	},	
+	},
 	{
 		healId: "Done",
 		match: /(heals one other injured target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
@@ -1233,16 +1245,20 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(healing you or other \|c[a-fA-F0-9]{6}[0-9]+\|r nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(healing nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
 		match: /(additional \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
-	/* {
+	{
 		healId: "Done",
-		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
-	}, //*/
+		match: /(, restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
 	{
 		display: "%",
 		healId: "Done",
@@ -1350,6 +1366,14 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(Light Attacks heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r\.)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(Heavy Attacks heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(causing your Light Attacks to restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
@@ -1381,6 +1405,10 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		healId: "Done",
 		match: /(heals for \|c[a-fA-F0-9]{6})([0-9]+)(\|r health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r if the enemy dies)/gi,
 	},
 	{
 		healId: "Done",
@@ -1419,6 +1447,12 @@ ESO_SKILL_HEALINGMATCHES =
 		match: /(and healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage caused)/gi,
 	}, 
 	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(and heals for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage dealt)/gi,
+	},
+	{
 		healId: "Done",
 		match: /(heals its target for \|c[a-fA-F0-9]{6})([0-9]+)(\|r)/gi,
 	},
@@ -1437,6 +1471,12 @@ ESO_SKILL_HEALINGMATCHES =
 		display: "%",
 		healId: "Done",
 		healId2: "Received",
+		match: /(healing for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage dealt)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
 		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage caused)/gi,
 	},
 	{
@@ -1450,7 +1490,15 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(healing you or an ally in front of you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(healing you or a nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and healing \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		display: "%",
@@ -1543,7 +1591,7 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		display: "%",
 		healId: "Done",
-		match: /(healing you and \|c[a-fA-F0-9]{6}[0-9]\|r other nearby ally for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted)/gi,
+		match: /(healing you or .*? other nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage inflicted)/gi,
 	},
 	{
 		display: "%",
@@ -1557,6 +1605,14 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		healId: "Done",
 		match: /(heals you and your allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(your Light Attacks restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(fully charged Heavy Attacks restore \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1601,11 +1657,25 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		display: "%",
 		healId: "Done",
+		match: /(healing you and the clannfear for \|c[a-fA-F0-9]{6})([0-9]+)(\|r\.)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
 		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
 		healId: "Done",
 		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r\.)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r,)/gi,
 	},
 	{
 		display: "%",
@@ -1771,7 +1841,8 @@ ESO_SKILL_TARGETYPE_OVERRIDES =
 		"Clouding Swarm" : { 2 : false }, // Clouding Swarm
 		35750 : false,	// Trap Beast
 		103483 : false,	// Imbue Weapon
-		85986 : { 3 : false, 4 : false },	// Trapping Webs 
+		85986 : { 3 : false, 4 : false },	// Trapping Webs
+		103483 : { 1: false }, // Imbue Weapon		
 		
 			// Passives
 		"Heavy Weapons" : false,		// Heavy Weapons
@@ -1829,7 +1900,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			if (target == "area" || target == "cone" || target == "self" || target == "ground") iAOE = true;
 			if (target == "enemy") isSingleTarget = true;
 			
-			if (overrideAoe)
+			if (overrideAoe != null)
 			{
 				var overrideValue = overrideAoe;
 				if (typeof(overrideAoe) == "object") overrideValue = overrideAoe[matchIndex];

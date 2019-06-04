@@ -7,10 +7,10 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "21pts";
+$TABLEPREFIX = "22";
 $VERSION = "21";
 $FIRSTID = 3;
-$LASTID = 160000;
+$LASTID = 170000;
 $MAGICCOUNT = 1483;
 $MAGICCOUNT = 1533;
 $MAGICCOUNT = 1532;
@@ -31,7 +31,9 @@ while ($row = $result->fetch_assoc())
 
 print("Found ".count($checkData)." check item rows!\n");
 
-$output = "function uespminetest$luaFunctionCount()\n";
+$output = "";
+$output .= "uespLog.MineSingleItemSafe_FinishCallback = uespLog.StartNextMineTest\n";
+$output .= "function uespminetest$luaFunctionCount()\n";
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
@@ -66,14 +68,14 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		
 	if ($fixItem)
 	{
-		$output .= "\tuespLog.MineItems($id, $id) \n";
+		$output .= "\tuespLog.MineSingleItemSafe($id) \n";
 		++$linesOutput;
 				
 		if (($linesOutput % $MAX_ITEMS_PER_FUNCTION) == 0)
 		{
-			$output .= "\tuespLog.Msg('Done uespminetest$luaFunctionCount...')\n";
+			//$output .= "\tuespLog.Msg('Done uespminetest$luaFunctionCount...')\n";
 			++$luaFunctionCount;			
-			$output .= "\tzo_callLater(uespminetest$luaFunctionCount, 1000)\n";
+			//$output .= "\tzo_callLater(uespminetest$luaFunctionCount, 1000)\n";
 			$output .= "end\n";
 			$output .= "function uespminetest$luaFunctionCount()\n";					
 		}

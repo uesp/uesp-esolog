@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "22pts";
+$TABLE_SUFFIX = "";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -187,6 +187,10 @@ $ESO_COEF_VALUE = array(
 
 	// 1-based counting (1 == first number in tooltip)
 $ESO_COEF_NUMBER_INDEX = array(
+		
+		30893 => 6,		//DW: Twin Blade and Blunt
+		45482 => 6,
+		
 		39197 => 4,		//Heavy Armor: Unstoppable
 		41097 => 4,
 		41100 => 4,
@@ -296,11 +300,15 @@ foreach ($skillsData as $skillId => &$skill)
 	
 		if ($fixupCoefDesc || $niValue != null)
 		{
-			if (!is_array( $ESO_COEF_NUMBER_INDEX[$skillId])) $coefDescription = $skill['description'];
+			if (!is_array( $ESO_COEF_NUMBER_INDEX[$skillId])) 
+			{
+				$coefDescription = $skill['description'];
+				if ($coefDescription == "")	$coefDescription = $skill['description'];
+			}
 			
 			$foundCount = 0;
 			
-			$coefDescription = preg_replace_callback('|([0-9]+(?:\.\d+)?)|', function($matches) {
+			$coefDescription = preg_replace_callback('|(\$?[0-9]+(?:\.\d+)?)|', function($matches) {
 				global $foundCount, $niValue, $indexValue;
 				++$foundCount;
 				if ($foundCount == $niValue) return '$' . $indexValue;
