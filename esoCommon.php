@@ -1124,7 +1124,7 @@ $ESO_SET_INDEXES = array(
 		160 => "Burning Spellweave",
 		161 => "Twice-Born Star",
 		162 => "Spawn of Mephala",
-		163 => "Blood Spawn",
+		163 => "Bloodspawn",
 		164 => "Lord Warden",
 		165 => "Scourge Harvester",
 		166 => "Engine Guardian",
@@ -1371,6 +1371,20 @@ $ESO_SET_INDEXES = array(
 		434 => "Scavenging Demise",
 		435 => "Auroran's Thunder",
 		436 => "Symphony of Blades",
+		437 => "Coldharbour's Favorite",
+		438 => "Senche-raht's Grit",
+		439 => "Vastarie's Tutelage",
+		440 => "Crafty Alfiq",
+		441 => "Vesture of Darloc Brae",
+		442 => "Call of the Undertaker",
+		443 => "Eye of Nahviintaas",
+		444 => "False God's Devotion",
+		445 => "Tooth of Lokkestiiz",
+		446 => "Claw of Yolnahkriin",
+		448 => "Perfected Eye of Nahviintaas",
+		449 => "Perfected False God's Devotion",
+		450 => "Perfected Tooth of Lokkestiiz",
+		451 => "Perfected Claw of Yolnahkriin",
 );
 
 
@@ -3132,7 +3146,7 @@ $ESO_FREE_RACIAL_SKILLS = array(
 
 function GetEsoUpdateVersion()
 {
-	return 21;
+	return 22;
 }
 
 
@@ -3257,11 +3271,11 @@ function GetEsoItemTableSuffix($version)
 			return "21pts";
 		case '121':
 		case '21':
-			return "";
+			return "21";
 		case '22pts':
 			return "22pts";
 		case '22':
-			return "22";
+			return "";
 	}
 
 	return "";

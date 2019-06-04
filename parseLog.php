@@ -87,13 +87,14 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744246935181852672; //v20 1540214345
 	//const START_MINEITEM_TIMESTAMP = ;	//v21pts 1548072000
 	//const START_MINEITEM_TIMESTAMP = ;	//v21
-	const START_MINEITEM_TIMESTAMP = 4744307872848936960;	//v22pts 1554743017
+	//const START_MINEITEM_TIMESTAMP = 4744307872848936960;	//v22pts 1554743017
+	const START_MINEITEM_TIMESTAMP = 4744323044049158144;	//v22 1558360113
 		  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "22pts";
-	const SKILLS_TABLESUFFIX   = "22pts";
+	const MINEITEM_TABLESUFFIX = "22";
+	const SKILLS_TABLESUFFIX   = "22";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -110,7 +111,8 @@ class EsoLogParser
 		// 4744159327491719168 = 1519327044
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1519327044;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1526912000;
-	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1551540983;
+	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1551540983;
+	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1558361897;
 	
 	public $db = null;
 	public $dbSlave = null;
@@ -2419,8 +2421,8 @@ class EsoLogParser
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
 		$this->users[$userName]['lastSkillDumpNote'] = null;
 		$this->users[$userName]['lastMinedItemIdCheckNote'] = null;
-		$this->users[$userName]['mineItemStartGameTime'] = 1;
-		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
+		$this->users[$userName]['mineItemStartGameTime'] = 0;
+		$this->users[$userName]['mineItemStartTimeStamp'] = 0;
 		$this->users[$userName]['__lastChestFoundGameTime'] = 0;
 		$this->users[$userName]['__lastSackFoundGameTime'] = 0;
 		$this->users[$userName]['__lastTroveFoundGameTime'] = 0;
@@ -2521,9 +2523,9 @@ class EsoLogParser
 		$this->users[$userName]['lastBookLogEntry'] = null;
 		$this->users[$userName]['lastMinedItemLogEntry'] = null;
 		$this->users[$userName]['lastSkillDumpNote'] = null;
-		$this->users[$userName]['mineItemStartGameTime'] = 1;
+		$this->users[$userName]['mineItemStartGameTime'] = 0;
 		$this->users[$userName]['lastMinedItemIdCheckNote'] = null;
-		$this->users[$userName]['mineItemStartTimeStamp'] = 1;
+		$this->users[$userName]['mineItemStartTimeStamp'] = 0;
 		$this->users[$userName]['lastQuestOffered'] = null;
 		
 		return $this->users[$userName];
@@ -2695,6 +2697,11 @@ class EsoLogParser
 		);
 		
 		if ($logEntry === null) return $this->reportLogParseError("NULL log entry received!");
+		
+		if ($logEntry['event'] == 'mi' || $logEntry['event'] == 'mineitem') 
+		{
+			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
+		}
 		
 		foreach ($VALID_FIELDS as $key => $field)
 		{
@@ -5419,15 +5426,15 @@ class EsoLogParser
 	
 	public function OnMineItem ($logEntry)
 	{
-		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
-				
+		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp!" .  $logEntry['timeStamp']);
+						
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
 		
 		$itemLink = $this->FixItemLink($itemLink);
 		
 		$minedItem = $this->LoadMinedItemLink($itemLink);
-		if ($minedItem === false) return false;
+		if ($minedItem === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize item data!");
 		
 		if ($minedItem['__isNew'] === true)
 		{
@@ -5461,6 +5468,13 @@ class EsoLogParser
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 				//$logEntry['setDesc5'] = "";
 			}
+			else if ($minedItem['setName'] == "Vastarie's Tutelage" || $logEntry['setName'] == "Vastarie's Tutelage")
+			{
+				//$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
+				//$logEntry['setDesc5'] = "";
+			}
 			else
 			{
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
@@ -5483,6 +5497,8 @@ class EsoLogParser
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
+		
+		if (!$result) $this->reportLogParseError("\tError: Failed to save item data!");
 		
 		$this->currentUser['lastMinedItemLogEntry'] = $logEntry;
 		//$this->log("Found mined item $itemLink");
@@ -5527,7 +5543,7 @@ class EsoLogParser
 	
 	public function OnMineItemShort ($logEntry)
 	{
-		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
+		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp! ". $logEntry['timeStamp']);
 		
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
@@ -5535,7 +5551,7 @@ class EsoLogParser
 		$itemLink = $this->FixItemLink($itemLink);
 		
 		$minedItem = $this->LoadMinedItemLink($itemLink);
-		if ($minedItem === false) return false;
+		if ($minedItem === false) return $this->reportLogParseError("\tError: Failed to load or initialize item data!");
 		
 		if ($minedItem['__isNew'] === true)
 		{
@@ -5574,6 +5590,8 @@ class EsoLogParser
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
+		
+		if (!$result) $this->reportLogParseError("\tError: Failed to save item data!");
 		
 		$this->currentUser['lastMinedItemLogEntry'] = $mergedLogEntry;
 		//$this->log("Found mined item $itemLink");
@@ -7476,7 +7494,7 @@ class EsoLogParser
 			$this->lastValidUserName = $logEntry['userName'];
 		}
 		
-/*		if ($logEntry['event'] == "mi" || $logEntry['event'] == "mineitem" || $logEntry['event'] == "mineItem")
+		if ($logEntry['event'] == "mi" || $logEntry['event'] == "mineitem" || $logEntry['event'] == "mineItem")
 		{
 			if (!array_key_exists('gameTime', $logEntry))
 			{
@@ -7487,7 +7505,7 @@ class EsoLogParser
 			{
 				$logEntry['timeStamp'] = $this->currentUser['mineItemStartTimeStamp'];
 			}
-		} */
+		}
 		
 		$ipAddress = $logEntry['ipAddress'];
 		
@@ -7562,11 +7580,11 @@ class EsoLogParser
 				continue;
 			}
 		
-			
 			$entryLog = $this->parseLogEntry($value);
 			
 			if (!$this->handleLogEntry($entryLog))
 			{
+				$this->log("\t$totalLineCount: Failed to handle log entry!");
 				++$errorCount;
 			}
 			

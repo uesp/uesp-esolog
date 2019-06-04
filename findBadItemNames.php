@@ -9,14 +9,16 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "21pts";
+$TABLE_SUFFIX = "22";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
 $START_ID = 3;
-$END_ID = 160000;
+$END_ID = 170000;
 
 $MAXBADITEMCOUNT = 1450;
+
+$NUMCALLSPERFUNCTION = 300;
 
 $SUFFIXES = array(
 		"arm cops" => 1,
@@ -311,6 +313,7 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 
 	print($badOutput);
 	$output = "";
+	//$output .= "uespLog.MineSingleItemSafe_FinishCallback = uespLog.StartNextMineTest\n";
 	
 	if ($linesOutput == 0)
 	{
@@ -329,7 +332,7 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 			$output .= "\tuespLog.MineItemSingle($itemId, {$data['internalLevel']}, {$data['internalSubtype']}) \n";
 			++$linesOutput;
 			
-			if (($linesOutput % 1500) == 0)
+			if (($linesOutput % $NUMCALLSPERFUNCTION) == 0)
 			{
 				++$luaFunctionCount;
 				$output .= "end\nfunction uespminetest$luaFunctionCount()\n";					

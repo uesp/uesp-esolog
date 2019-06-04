@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "22pts";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -330,7 +330,7 @@ while (($row = $rowResult->fetch_assoc()))
 	if ($regResult) $setMaxEquipCount = $matches[1];
 	
 	print("\tUpdating set $setName with $setMaxEquipCount items...\n");
-	print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
+	//print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
 	
 	$query = "SELECT * FROM setSummary".$TABLE_SUFFIX." WHERE setName=\"$setName\";";
 	$result = $db->query($query);
