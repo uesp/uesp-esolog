@@ -149,15 +149,23 @@ window.ESO_FREE_PASSIVES = {
 		36008 : 1,
 		
 		43056 : 1,
-		//41920 : 1,  // Bat Swarm not free?
+		//41920 : 1,  	// Bat Swarm not free?
 		42358 : 1,
 		
 		32455 : 1,		// Werewolf Transformation 1
 		
-		103632 : 1, // Update 18
+		103632 : 1, 	// Update 18
 		103793 : 1,
 		
-		32634 : 1,	// Update 20: Devour
+		32634 : 1,		// Update 20: Devour
+		
+		116096 : 1,		// Update 22: Volendrung
+		116093 : 1,
+		116094 : 1,
+		117979 : 1,
+		116095 : 1,
+		117985 : 1,
+		
 };
 
 
@@ -2021,7 +2029,14 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			{
 				baseFactor += Math.round(inputValues.MagickaAbilityDamageDone*100)/100;
 				newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;
-			}			
+			}
+			
+				// Overload special case
+			if (skillData.baseName == "Overload" && inputValues.Damage.Overload != null && inputValues.Damage.Overload != 0)
+			{
+				baseFactor += inputValues.Damage.Overload;
+				newRawOutput.overloadDamage = inputValues.Damage.Overload;
+			}
 			
 			if (amountAll != 0)	baseFactor += amountAll;
 			newRawOutput.damageDone = amountAll;
@@ -2057,7 +2072,8 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
-		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";
+		if (rawData.overloadDamage != null && rawData.overloadDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.overloadDamage*100) + "% Overload";
+		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";		
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
