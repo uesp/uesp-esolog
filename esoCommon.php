@@ -3123,10 +3123,18 @@ $ESO_FREE_SKILLS = array(
 		42358 => "ultimate",
 		32455 => "ultimate",	// Werewolf Transformation 1
 		
-		103632 => "passive", // Update 18
+		103632 => "passive", 	// Update 18
 		103793 => "passive",
 		
-		32634 => "passive",	// Update 20: Devour
+		32634 => "passive",		// Update 20: Devour
+		
+		116096 => "ultimate",	// Update 22: Volendrung
+		116093 => "active",
+		116094 => "active",
+		117979 => "active",
+		116095 => "active",
+		117985 => "active",
+		
 );
 
 
