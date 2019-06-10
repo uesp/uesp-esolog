@@ -975,8 +975,8 @@ class CEsoViewSkills
 			if (!is_numeric($rank)) continue;
 			
 			if (!$this->showAll && $ability['type'] != "Passive")
-			{
-				if (!($rank == 8 || $rank == 12 || ($rank == 4 && $this->displayType == "select") || ($rank == 1 && $abilityData['maxRank'] == 0)) ) continue;
+			{																																		// TODO: Volendrung skills
+				if (!($rank == 8 || $rank == 12 || ($rank == 4 && $this->displayType == "select")) ) continue;
 			}
 			
 			if ($baseId == "") $baseId = $ability['abilityId'];
