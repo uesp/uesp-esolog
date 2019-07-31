@@ -3282,6 +3282,8 @@ function GetEsoItemTableSuffix($version)
 			return "21";
 		case '22pts':
 			return "22pts";
+		case '23pts':
+			return "23pts";
 		case '22':
 			return "";
 	}
@@ -3681,9 +3683,14 @@ function MakeEsoIconLink($icon)
 function IsEsoVersionAtLeast($version, $checkVersion)
 {
 	if ($version === null || $version == "" || $version == GetEsoUpdateVersion())
+	{
 		$suffix = GetEsoUpdateVersion();
+	}
 	else
+	{
+		//$version = str_replace("pts", "", $version);
 		$suffix = intval(GetEsoItemTableSuffix($version));
+	}
 	
 	return ($suffix >= $checkVersion);
 }

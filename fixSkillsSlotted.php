@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "23pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -166,6 +166,9 @@ $ESO_COEF_VALUE = array(
 					array(4, 0, 0),
 					array(3, 0, 0)
 				),
+		
+		116197 => 5,	//Necromancer: Death Knell
+		116198 => 10,
 		
 /* Old Values		
 		28418 => array(0.3655, 0.4, 0),		//Sorcerer: Conjured Ward
