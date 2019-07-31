@@ -1016,9 +1016,18 @@ window.UpdateEsoSkillDurationDescription = function(skillData, coefDesc, inputVa
 					if (durationIndex != matchIndex) return p1 + p2 + p3 + p4;
 					
 					var newDuration = Math.floor(parseFloat(p2) * (1 + modDuration)*10)/10;
-
-					skillData.rawOutput["Tooltip Duration #" + matchIndex] = "" + p2 + " Base x " + Math.floor(modDuration*100) + "% = " + newDuration + p4;
 					
+					if (modDuration >= 1)
+					{
+						newDuration = Math.floor(parseFloat(p2) + modDuration);
+						skillData.rawOutput["Tooltip Duration #" + matchIndex] = "" + p2 + " Base + " + modDuration + " = " + newDuration + p4;
+					}
+					else
+					{
+						newDuration = Math.floor(parseFloat(p2) * (1 + modDuration)*10)/10;
+						skillData.rawOutput["Tooltip Duration #" + matchIndex] = "" + p2 + " Base x " + Math.floor(modDuration*100) + "% = " + newDuration + p4;
+					}
+										
 					return p1 + newDuration + p3 + p4;
 				});
 	}
