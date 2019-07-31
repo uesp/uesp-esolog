@@ -1071,6 +1071,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 	coefDesc = UpdateEsoSkillDurationDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillBleedDamageDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillElfBaneDurationDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillRapidStrikesDescription(skillData, coefDesc, inputValues);
 	
 	if (useHtml)
 	{
@@ -2202,6 +2203,45 @@ window.UpdateEsoSkillElfBaneDurationDescription = function (skillData, skillDesc
 	return newDesc;
 }
 
+
+window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	var extraDesc = "";
+	var name = skillData['name'];
+	
+	if (inputValues == null) return newDesc;
+	if (name != "Rapid Strikes") return newDesc;
+	
+	extraDesc = "\n\n";
+	
+	var numbers = newDesc.match(/([0-9]+)/g);
+	if (numbers == null) return newDesc;
+	
+	var baseDmg = parseFloat(numbers[0]);
+	if (baseDmg == null) return newDesc;
+	
+	var hitExtraDmg = 0.03;
+	var finalExtraDmg = 3.00;
+	
+	if (numbers[1] != null) hitExtraDmg = parseFloat(numbers[1]) / 100;
+	if (numbers[2] != null) finalExtraDmg = parseFloat(numbers[2]) / 100;
+	
+	hitExtraDmg += 1;
+	finalExtraDmg += 1;
+	
+	var hit1 = baseDmg;
+	var hit2 = Math.floor(hit1 * hitExtraDmg);
+	var hit3 = Math.floor(hit2 * hitExtraDmg);
+	var hit4 = Math.floor(hit3 * hitExtraDmg);
+	var hit5 = Math.floor(hit1 * hitExtraDmg * finalExtraDmg);
+	var totalDmg = hit1 + hit2 + hit3 + hit4 + hit5;
+	
+	extraDesc += "Hits: " + hit1 + ", " + hit2 + ", " + hit3 + ", " + hit4 + ", " + hit5;
+	extraDesc += "  (Total " + totalDmg + ")";
+			
+	return newDesc + extraDesc;
+}
 
 
 window.RoundEsoSkillPercent = function (value)
