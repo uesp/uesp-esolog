@@ -93,8 +93,8 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "22";
-	const SKILLS_TABLESUFFIX   = "22";
+	const MINEITEM_TABLESUFFIX = "23pts";
+	const SKILLS_TABLESUFFIX   = "23pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -5698,7 +5698,7 @@ class EsoLogParser
 	public function OnSkill18 ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
-		
+				
 		$version = $this->currentUser['lastSkillDumpNote'];
 		$abilityId = $logEntry['id'];
 		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
@@ -5994,7 +5994,7 @@ class EsoLogParser
 		if (array_key_exists('learnedLevel', $logEntry)) $skill['learnedLevel'] = $logEntry['learnedLevel'];
 		if (array_key_exists('abilityIndex', $logEntry)) $skill['skillIndex'] = $logEntry['abilityIndex'];
 		
-		if (array_key_exists('skillLine', $logEntry)) 
+		if (array_key_exists('skillLine', $logEntry) || $logEntry['skillLineId'] > 0) 
 		{
 			static $SKILL_TYPES = array(
 					"Legerdemain" => 4,
@@ -7719,6 +7719,7 @@ class EsoLogParser
 	{
 		$currentMicroTime = microtime(true);
 		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		$diffTime = number_format($diffTime, 3);
 		
 		print("$diffTime: $msg\n");
 		
