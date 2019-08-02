@@ -1950,6 +1950,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				baseFactor += inputValues.SkillDamage[skillData.baseName];
 				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.baseName]; 
 			}
+			else if (inputValues.SkillDamage != null && inputValues.SkillDamage[skillData.name] != null)
+			{
+				baseFactor += inputValues.SkillDamage[skillData.name];
+				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.name]; 
+			}
 			
 			if (inputValues.SkillLineDamage != null && inputValues.SkillLineDamage[skillLineName] != null)
 			{
