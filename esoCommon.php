@@ -80,6 +80,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100025" => "4.2",
 		"100026" => "4.3",
 		"100027" => "5.0",
+		"100028" => "5.1",
 );
 
 
@@ -3154,7 +3155,7 @@ $ESO_FREE_RACIAL_SKILLS = array(
 
 function GetEsoUpdateVersion()
 {
-	return 22;
+	return 23;
 }
 
 
@@ -3282,9 +3283,11 @@ function GetEsoItemTableSuffix($version)
 			return "21";
 		case '22pts':
 			return "22pts";
+		case '22':
+			return "22";
 		case '23pts':
 			return "23pts";
-		case '22':
+		case '23':
 			return "";
 	}
 

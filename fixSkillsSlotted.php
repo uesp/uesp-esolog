@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "23pts";
+$TABLE_SUFFIX = "23";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -96,6 +96,9 @@ $ESO_SLOTTED_SKILLS = array(
 		29639 => -51,	//Light Armor: Grace
 		45548 => -51,
 		45549 => -51,
+		
+		29742 => -52,	//Medium Armor: Athletics
+		45574 => -52,
 );
 
 $ESO_COEF_INDEX = array(
@@ -113,6 +116,14 @@ $ESO_COEF_INDEX = array(
 		29639 => array(1, 2),	//Light Armor: Grace
 		45548 => array(1, 2),
 		45549 => array(1, 2),
+		
+		29742 => array(1, 2),	//Medium Armor: Athletics
+		45574 => array(1, 2),
+		
+		39192 => array(1, 2),	// Medium Armor: Elude
+		41133 => array(1, 2),
+		41135 => array(1, 2),
+		41137 => array(1, 2),
 );
 
 $ESO_COEF_VALUE = array(
@@ -124,10 +135,22 @@ $ESO_COEF_VALUE = array(
 		41100 => array(0.25, 0, 5),
 		41103 => array(0.25, 0, 5),
 		
-		39192 => array(0.9, 0, 18),		//Medium Armor: Elude
-		41133 => array(0.9, 0, 18),
-		41135 => array(0.9, 0, 18),
-		41137 => array(0.9, 0, 18),
+		39192 => array(					//Medium Armor: Elude
+					array(2, 0, 16),	
+					array(1, 0, 0),
+				),
+		41133 => array(
+					array(2, 0, 16),	
+					array(1, 0, 0),
+				),
+		41135 => array(
+					array(2, 0, 16),	
+					array(1, 0, 0),
+				),
+		41137 => array(
+					array(2, 0, 16),	
+					array(1, 0, 0),
+				),
 		
 	/* Old Values
 		29338 => array(0.3300, 0.4, 0),		//Light Armor: Annulment
@@ -167,6 +190,15 @@ $ESO_COEF_VALUE = array(
 					array(3, 0, 0)
 				),
 		
+		29742 => array(						//Medium Armor: Athletics
+					array(2, 0, 0),
+					array(2, 0, 0) 
+				),
+		45574 => array(
+					array(3, 0, 0),
+					array(4, 0, 0) 
+				),
+		
 		116197 => 5,	//Necromancer: Death Knell
 		116198 => 10,
 		
@@ -199,10 +231,10 @@ $ESO_COEF_NUMBER_INDEX = array(
 		41100 => 4,
 		41103 => 4,
 		
-		39192 => 3,		//Medium Armor: Elude
-		41133 => 3,
-		41135 => 3,
-		41137 => 3,
+		39192 => array(3, 4),		//Medium Armor: Elude
+		41133 => array(3, 4),
+		41135 => array(3, 4),
+		41137 => array(3, 4),
 		
 		29665 => array(2, 4),	//Light Armor: Evocation
 		45557 => array(2, 4),
@@ -210,6 +242,9 @@ $ESO_COEF_NUMBER_INDEX = array(
 		29639 => array(2, 4),	//Light Armor: Grace
 		45548 => array(2, 4),
 		45549 => array(2, 4),
+		
+		29742 => array(2, 4),	//Medium Armor: Athletics
+		45574 => array(2, 4),
 );
 
 

@@ -106,7 +106,8 @@
     cursor: pointer;
     border-radius: 15px;
     height: 14px;
-	padding-bottom: 10px;
+	padding: 0;
+    padding-bottom: 15px;
 }
 
 .ecdAchTreeName1 img {
