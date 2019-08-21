@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 60,
-						'numBooks' => 822 
+						'numCollect' => 59,
+						'numBooks' => 808 
 				),
 				1 => array (
 						'id' => 43,
@@ -5136,70 +5136,6 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book3_detail5_color3.dds' 
 								) 
 						) 
-				),
-				60 => array (
-						'id' => 150,
-						'name' => 'Sunspire Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5572 => array (
-										'title' => 'Crafting Motif 75: Sunspire Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5573 => array (
-										'title' => 'Crafting Motif 75: Sunspire Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5574 => array (
-										'title' => 'Crafting Motif 75: Sunspire Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5575 => array (
-										'title' => 'Crafting Motif 75: Sunspire Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5576 => array (
-										'title' => 'Crafting Motif 75: Sunspire Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5577 => array (
-										'title' => 'Crafting Motif 75: Sunspire Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5578 => array (
-										'title' => 'Crafting Motif 75: Sunspire Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5579 => array (
-										'title' => 'Crafting Motif 75: Sunspire Helmets',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5580 => array (
-										'title' => 'Crafting Motif 75: Sunspire Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5581 => array (
-										'title' => 'Crafting Motif 75: Sunspire Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5582 => array (
-										'title' => 'Crafting Motif 75: Sunspire Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5583 => array (
-										'title' => 'Crafting Motif 75: Sunspire Shoulders',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5584 => array (
-										'title' => 'Crafting Motif 75: Sunspire Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5585 => array (
-										'title' => 'Crafting Motif 75: Sunspire Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								) 
-						) 
 				) 
 		),
 		3 => array (
@@ -5207,7 +5143,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 37,
-						'numBooks' => 3259 
+						'numBooks' => 3229 
 				),
 				1 => array (
 						'id' => 44,
@@ -7280,7 +7216,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				6 => array (
 						'id' => 49,
 						'name' => 'Hearts and Flowers',
-						'numBooks' => 79,
+						'numBooks' => 78,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								118 => array (
@@ -7593,10 +7529,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								4975 => array (
 										'title' => 'Nafarion`s Note',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
-								),
-								5271 => array (
-										'title' => 'For My Beloved Kud-Nakal',
 										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
 								) 
 						) 
@@ -9340,7 +9272,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				11 => array (
 						'id' => 54,
 						'name' => 'Mysteries and Clues',
-						'numBooks' => 110,
+						'numBooks' => 96,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								120 => array (
@@ -9726,62 +9658,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5415 => array (
 										'title' => 'Jone`s Blessing',
 										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5696 => array (
-										'title' => 'Tombstone of Naio-Bhefeo',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5645 => array (
-										'title' => 'Searching for the Horn of Ja`darri, Part 1',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
-								),
-								5650 => array (
-										'title' => 'Searching for the Horn of Ja`darri, Part 2',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
-								),
-								5655 => array (
-										'title' => 'Letter to Marillan',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
-								),
-								5656 => array (
-										'title' => 'Searching for the Horn of Ja`darri, Part 3',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
-								),
-								5668 => array (
-										'title' => 'Final Letter of Sergeant Berarah',
-										'icon' => '/esoui/art/icons/lore_book2_detail4_color4.dds' 
-								),
-								5704 => array (
-										'title' => 'Sealed Letter',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5680 => array (
-										'title' => 'Enzamir`s Note',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5637 => array (
-										'title' => 'Grandmaster Ghelin-Brol (1E 2703 - 2734)',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5638 => array (
-										'title' => 'Grandmaster Vashu-Pir (1E 2734 - 2758)',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5639 => array (
-										'title' => 'Grandmaster Jaiv-Yora (1E 2808 -  2835)',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5640 => array (
-										'title' => 'Grandmaster Ettiene Volusus (1E 2879 - 2902)',
-										'icon' => '/esoui/art/icons/quest_stormhaven_item_003.dds' 
-								),
-								5698 => array (
-										'title' => 'The Illustrious Azashig`s Letter',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
-								),
-								5699 => array (
-										'title' => 'Letter to Halakaku',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
 								) 
 						) 
 				),
@@ -10720,7 +10596,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				14 => array (
 						'id' => 57,
 						'name' => 'Plots and Schemes',
-						'numBooks' => 89,
+						'numBooks' => 88,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								88 => array (
@@ -11074,17 +10950,13 @@ $ESO_BOOK_COLLECTIONS = array (
 								4926 => array (
 										'title' => 'To the Villainous Manacar',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
-								),
-								5279 => array (
-										'title' => 'Vanthongar`s Letter',
-										'icon' => '/esoui/art/icons/quest_book_002.dds' 
 								) 
 						) 
 				),
 				15 => array (
 						'id' => 58,
 						'name' => 'Research Notes',
-						'numBooks' => 101,
+						'numBooks' => 100,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								69 => array (
@@ -11486,10 +11358,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5088 => array (
 										'title' => 'Report on Wing Rot Curative Trials',
 										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5634 => array (
-										'title' => 'Kasura`s Notes',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
 								) 
 						) 
 				),
@@ -12356,7 +12224,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				18 => array (
 						'id' => 61,
 						'name' => 'The Devoted and the Deranged',
-						'numBooks' => 95,
+						'numBooks' => 94,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								70 => array (
@@ -12734,10 +12602,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								2749 => array (
 										'title' => 'The Raneviad, Volume II',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
-								),
-								5701 => array (
-										'title' => 'On Plunder Skulls',
-										'icon' => '/esoui/art/icons/housing_bre_inc_scroll_closed002.dds' 
 								) 
 						) 
 				),
@@ -12828,7 +12692,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				20 => array (
 						'id' => 63,
 						'name' => 'The World and Its Creatures',
-						'numBooks' => 79,
+						'numBooks' => 78,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								300 => array (
@@ -13142,10 +13006,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								2994 => array (
 										'title' => 'How to Train Your Guar',
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5403 => array (
-										'title' => 'Memorandum: Indrik Emergence & Formal Development',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
@@ -16820,7 +16680,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				32 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 69,
+						'numBooks' => 58,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -17054,50 +16914,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5184 => array (
 										'title' => 'Send Your Forces, Narilmor',
 										'icon' => '/esoui/art/icons/scroll_002.dds' 
-								),
-								5436 => array (
-										'title' => 'Nisaazda`s Journal',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5437 => array (
-										'title' => 'Enough Kitten Play!',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
-								),
-								5438 => array (
-										'title' => 'Burnt Scripture',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5439 => array (
-										'title' => 'Leave the Dragons Where they Lie',
-										'icon' => '/esoui/art/icons/scroll_002.dds' 
-								),
-								5443 => array (
-										'title' => 'Observations on the Changeling',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5444 => array (
-										'title' => 'Observations on Tenmar Valley',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5445 => array (
-										'title' => 'No! No! No!',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5446 => array (
-										'title' => 'Maarselok Reconnaissance Log One',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
-								),
-								5447 => array (
-										'title' => 'Maarselok Reconnaissance Log Two',
-										'icon' => '/esoui/art/icons/scroll_005.dds' 
-								),
-								5448 => array (
-										'title' => 'Maarselok Reconnaissance Log Three',
-										'icon' => '/esoui/art/icons/scroll_003.dds' 
-								),
-								5449 => array (
-										'title' => 'Maarselok Reconnaissance Log Four',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
@@ -18071,7 +17887,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				),
 				37 => array (
 						'id' => 142,
-						'name' => 'Anequina Archives',
+						'name' => 'Elsweyr Epistles and Almanacs',
 						'numBooks' => 116,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
@@ -18257,7 +18073,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								5452 => array (
 										'title' => 'A Window for Escape',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								),
 								5497 => array (
 										'title' => 'Unsent Letter to Zazazrala',
@@ -18542,5 +18358,4 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				) 
 		) 
-)
-;
+);

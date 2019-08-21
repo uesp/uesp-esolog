@@ -4560,14 +4560,6 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 7,
 		),
-	6352 => array(
-			'name'    => "Pledge: Lair of Maarselok",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore the Lair of Maarselok.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
-			'internalName' => "u23-DUN2 LoM Pledge",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 5,
-		),
 	2634 => array(
 			'name'    => "The Elder Scroll of Ni-Mohk",
 			'journal' => "Grand Warlord Dortene reports that the Elder Scroll of Ni-Mohk is now in enemy hands.",
@@ -8080,14 +8072,6 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 4,
 		),
-	6450 => array(
-			'name'    => "Masterful Jewelry",
-			'journal' => "",
-			'internalName' => "Q6450-MWRIT GOLD JEWELRY-STAR",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 4,
-		),
 	3205 => array(
 			'name'    => "Capture Drakelowe Farm",
 			'journal' => "I accepted a mission to help capture Drakelowe Farm for the Covenant.",
@@ -8807,14 +8791,6 @@ $ESO_QUEST_DATA = array(
 			'zoneId' => 0,
 			'zone' => "",
 			'type' => 7,
-		),
-	6395 => array(
-			'name'    => "The Dragonguard's Legacy",
-			'journal' => "Blademaster Kasura has agreed to search a nearby Dragonguard tomb for a former student interested in finding some way to fight back against the Dragons in Elsweyr. I agreed to help her in this endeavor.",
-			'internalName' => "DGT1 Q6395",
-			'zoneId' => 3,
-			'zone' => "Glenumbra",
-			'type' => 0,
 		),
 	4548 => array(
 			'name'    => "Farsight",
@@ -14184,14 +14160,6 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
-	6427 => array(
-			'name'    => "Witches Festival Writ",
-			'journal' => "I accepted a crafting contract related to the Witches Festival.",
-			'internalName' => "Q6427-MWRIT Witch Provision",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 4,
-		),
 	4196 => array(
 			'name'    => "Enemy of My Enemy",
 			'journal' => "<<1>> hired Gold Coast mercenaries from Colovia to protect his tradepost, but suspects they will turn on him.",
@@ -15288,14 +15256,6 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
-	6350 => array(
-			'name'    => "Pledge: Moongrave Fane",
-			'journal' => "<<1>> of the Undaunted has challenged me to explore Moongrave Fane.\n\nYou can only complete the Gold Key Challenge in Veteran Mode.",
-			'internalName' => "u23-DUN1 MGF Pledge",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 5,
-		),
 	5696 => array(
 			'name'    => "Contract: Bangkorai Spree",
 			'journal' => "I accepted one of the Dark Brotherhood's murder-for-hire contracts, which requests the indiscriminate slaughter of citizens of Bangkorai.",
@@ -15575,14 +15535,6 @@ $ESO_QUEST_DATA = array(
 			'zoneId' => 0,
 			'zone' => "",
 			'type' => 5,
-		),
-	6398 => array(
-			'name'    => "The Horn of Ja'darri",
-			'journal' => "Sai Sahan and I discovered the location of the Horn of Ja'darri, a powerful Dragonhorn made by the Dragonguard. It awaits us in a Dragon's lair, nestled within a dormant volcano in Southern Elsweyr.",
-			'internalName' => "DGT2 Q6398",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 0,
 		),
 	5744 => array(
 			'name'    => "Mascot Theft in Reaper's March",
@@ -16850,7 +16802,7 @@ $ESO_QUEST_DATA = array(
 		),
 	4867 => array(
 			'name'    => "Shadow of Sancre Tor",
-			'journal' => "Sai Sahan has recovered from his experiences in the Halls of Torment and is ready to guide me to the Amulet of Kings. He hid the artifact in Sancre Tor, an ancient Imperial catacomb.",
+			'journal' => "Sai Sahan has recovered from his experiences in the the Halls of Torment and is ready to guide me to the Amulet of Kings. He hid the artifact in Sancre Tor, an ancient Imperial catacomb.",
 			'internalName' => "MQ5 Shadow of Sancre Tor",
 			'zoneId' => 0,
 			'zone' => "",
@@ -19410,7 +19362,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5742 => array(
 			'name'    => "The Witchmother's Bargain",
-			'journal' => "I summoned one of the fabled witchmothers, who are rumored to appear only during the Witches Festival! Legends say these strange beings can be bargained with for power.",
+			'journal' => "I have summoned one of the fabled witchmothers, who are rumored to appear only during the Witches Festival! Legends say these strange beings can be bargained with for power.",
 			'internalName' => "Event - Witches Festival",
 			'zoneId' => 0,
 			'zone' => "",
@@ -19418,7 +19370,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6389 => array(
 			'name'    => "Ruddy Fang Retrieval",
-			'journal' => "An Imperial named <<1>> asked me to recover her stolen belongings from a nearby camp of Ruddy Fang bandits.",
+			'journal' => "An Imperial woman named <<1>> asked me to recover her stolen belongings from a nearby camp of Ruddy Fang bandits.",
 			'internalName' => "Q6389 Riverhold Vector",
 			'zoneId' => 0,
 			'zone' => "",
@@ -21480,22 +21432,6 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
-	6349 => array(
-			'name'    => "The Sanguine Successor",
-			'journal' => "Chevalier Renald enlisted my aid in stopping his comrade, Grundwulf, from consuming the blood of a Dragon that he's trapped inside a ruined Khajiiti temple with the help of the Hollowfang vampire clan.",
-			'internalName' => "u23-DUN1 Moongrave Fane",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 5,
-		),
-	6351 => array(
-			'name'    => "The Azure Blight",
-			'journal' => "I met a couple of Wood Elves who want to enlist a mage's and a nature spirit's help to kill a Dragon that threatens Elden Root.",
-			'internalName' => "u23-DUN2 Lair of Maarselok",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 5,
-		),
 	6353 => array(
 			'name'    => "The Return of Alkosh",
 			'journal' => "Word has spread that the Divine Alkosh has descended to his mountain temple of Sunspire to be the Khajiits' savior in these troubled times.",
@@ -21608,29 +21544,4 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 7,
 		),
-	6439 => array(
-			'name'    => "Witches Festival Writ",
-			'journal' => "I accepted a crafting writ related to the Witches Festival.",
-			'internalName' => "Q6439-MWRIT Witch Potion",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 4,
-		),
-	6451 => array(
-			'name'    => "Masterful Jewelry",
-			'journal' => "",
-			'internalName' => "Q6451-MWRIT PURPLE JEWELRY",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 4,
-		),
-	6452 => array(
-			'name'    => "Masterful Jewelry",
-			'journal' => "",
-			'internalName' => "Q6452-MWRIT BLUE JEWELRY",
-			'zoneId' => 0,
-			'zone' => "",
-			'type' => 4,
-		),
 );
-

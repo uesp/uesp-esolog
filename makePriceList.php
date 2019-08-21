@@ -333,9 +333,9 @@ class CEsoSalesMakePriceList
 		
 		$luaData = $this->MakeLuaData($itemData, $server);
 		$phpData = $this->MakePhpData($itemData, $server);
-		
-		$this->OutputPriceList($server, $luaData, $this->OUTPUT_LUAFILENAME);
+				
 		$this->OutputPriceList($server, $phpData, $this->OUTPUT_PHPFILENAME);
+		$this->OutputPriceList($server, $luaData, $this->OUTPUT_LUAFILENAME);
 		
 		return true;
 	}
