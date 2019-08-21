@@ -667,6 +667,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	var damageType = "base";
 	var isDot = false;
 	var skillLine = skillData['skillLine'].toLowerCase();
+	var skillBaseName = skillData['baseName'].toLowerCase();
 	var skillWeaponValues = null;
 	var skillSpellValues = null;
 	var typeWeaponValues = null;
@@ -729,6 +730,11 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 			typeWeaponValues = skillWeaponValues[skillLine];
 			WeaponDamageType.push(skillLine);
 		}
+		else if (skillWeaponValues[skillBaseName] != null) 
+		{
+			typeWeaponValues = skillWeaponValues[skillBaseName];
+			WeaponDamageType.push(skillBaseName);
+		}
 		
 		WeaponDamage = typeWeaponValues['base'];
 
@@ -749,6 +755,11 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		{
 			typeSpellValues = skillSpellValues[skillLine];
 			SpellDamageType.push(skillLine);
+		}
+		else if (skillSpellValues[skillBaseName] != null) 
+		{
+			typeSpellValues = skillSpellValues[skillBaseName];
+			SpellDamageType.push(skillBaseName);
 		}
 		
 		SpellDamage = typeSpellValues['base'];
@@ -1699,6 +1710,30 @@ ESO_SKILL_HEALINGMATCHES =
 		display: "%",
 		healId: "Done",
 		match: /(heal you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heal you and your allies around you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(you are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r the next time)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r when Rally ends)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r\.)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 		
 ];
