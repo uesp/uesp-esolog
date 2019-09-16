@@ -81,7 +81,39 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100026" => "4.3",
 		"100027" => "5.0",
 		"100028" => "5.1",
+		"100029" => "5.2",
 );
+
+
+$GAMEUPDATE_TO_GAMENAME = array(
+		"1" => "Craglorn",
+		"2" => "Veteran Crypt of Hearts",
+		"3" => "Dye Stations",
+		"4" => "Upper Craglorn",
+		"5" => "Veteran City of Ash",
+		"6" => "Justice and CP",
+		"7" => "Combat/PVP Rebalance",
+		"8" => "Orsinium",
+		"9" => "Hew's Bane",
+		"10" => "Gold Coast",
+		"11" => "Shadows of the Hist",
+		"12" => "One Tamriel",
+		"13" => "Homestead",
+		"14" => "Morrowind",
+		"15" => "Horns of the Reach",
+		"16" => "Clockwork City",
+		"17" => "Dragon Bones",
+		"18" => "Summerset",
+		"19" => "Wolfhunter",
+		"20" => "Murkmire",
+		"21" => "Wrathstone",
+		"22" => "Elsweyr",
+		"23" => "Scalebreaker",
+		"24" => "Dragonhold",
+		"25" => "Unknown",
+		"26" => "Unknown",
+		"27" => "Unknown",
+	);
 
 
 $ESO_ITEMTRAIT_FULLTEXTS = array(
@@ -3334,6 +3366,15 @@ function FindEsoItemLevelIntTypeMap($inLevel)
 }
 
 
+function GetEsoUpdateName($update)
+{
+	global $GAMEUPDATE_TO_GAMENAME;
+	
+	if (array_key_exists($update, $GAMEUPDATE_TO_GAMENAME)) return $GAMEUPDATE_TO_GAMENAME[$update];
+	return "Unknown Update $update";
+}
+
+
 function GetEsoItemTraitFullText($trait, $version = "")
 {
 	global $ESO_ITEMTRAIT_FULLTEXTS;
@@ -3813,13 +3854,13 @@ function FormatEsoCriticalDescriptionText($desc, $level)
 
 function startsWith($haystack, $needle) 
 {
-	return strncmp($haystack, $needle, count($needle));
+	return strncmp($haystack, $needle, strlen($needle)) === 0;
 }
 
 
 function startsWithNoCase($haystack, $needle)
 {
-	return strncasecmp($haystack, $needle, count($needle));
+	return strncasecmp($haystack, $needle, strlen($needle)) === 0;
 }
 
 
