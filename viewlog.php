@@ -11,21 +11,8 @@ class EsoLogViewer
 {
 	const PRINT_DB_ERRORS = true;
 	
-	const ENABLE_8PTS = false;
-	const ENABLE_9PTS = false;
-	const ENABLE_10PTS = false;
-	const ENABLE_11PTS = false;
-	const ENABLE_12PTS = false;
-	const ENABLE_13PTS = false;
-	const ENABLE_14PTS = false;
-	const ENABLE_15PTS = false;
-	const ENABLE_16PTS = false;
-	const ENABLE_17PTS = false;
-	const ENABLE_18PTS = false;
-	const ENABLE_19PTS = false;
-	const ENABLE_20PTS = false;
-	const ENABLE_21PTS = false;
-	const ENABLE_22PTS = true;
+		/* Which PTS version to enable. Blank for none */
+	const ENABLE_PTS_VERSION = "23";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -57,6 +44,7 @@ class EsoLogViewer
 	public $displayLimit = 500;
 	public $displayStart = 0;
 	public $displayRawValues = false;
+	public $PTS_VERSION_NAME = "Unknown";
 	
 		// TODO: Use same definitions as parseLog.php?
 	const FIELD_INT = 1;
@@ -706,6 +694,129 @@ class EsoLogViewer
 	);
 	
 	
+	public static $PTS_SEARCH_TYPE_OPTIONS = array(
+			'Items ##-PTS' => 'minedItemSummary##pts',
+			'Sets ##-PTS' => 'setSummary##pts',
+			'Skills ##-PTS' => 'minedSkills##pts',
+	);	
+	
+	
+	public static $PTS_RECORD_TYPES = array(
+			'minedItem##pts' => array(
+					'displayName' => 'Update ##-PTS: Mined Items',
+					'displayNameSingle' => 'Update ##-PTS: Mined Item',
+					'record' => 'minedItem##pts',
+					'table' => 'minedItem##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update ## (__NAME__) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemLinkPts',
+							'link' => 'MakeMinedItemLinkPts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
+			
+			'minedItemSummary##pts' => array(
+					'displayName' => 'Update ##-PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update ##-PTS: Mined Item Summary',
+					'record' => 'minedItemSummary##pts',
+					'table' => 'minedItemSummary##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'itemId',
+					'message' => 'These are items for update ## (__NAME__) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
+			
+					'transform' => array(
+							'type' => 'GetItemTypeText',
+							'specialType' => 'GetItemSpecialTypeText',
+							'style' => 'GetItemStyleText',
+							'trait' => 'GetItemTraitText',
+							'quality' => 'GetItemQualityText',
+							'equipType' => 'GetItemEquipTypeText',
+							'craftType' => 'GetItemTypeText',
+							'armorType' => 'GetItemArmorTypeText',
+							'weaponType' => 'GetItemWeaponTypeText',
+							'name' => 'MakeMinedItemSummaryLinkPts',
+							'description' => 'RemoveTextFormats',
+							'abilityDesc' => 'RemoveTextFormats',
+							'enchantDesc' => 'RemoveTextFormats',
+							'materialLevelDesc' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
+			'setSummary##pts' => array(
+					'displayName' => 'Update ##-PTS: Set Summaries',
+					'displayNameSingle' => 'Update ##-PTS: Set Item Summary',
+					'record' => 'setSummary##pts',
+					'table' => 'setSummary##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					'message' => "These are sets for update ## (__NAME__) as logged from the PTS server.",
+			
+					'transform' => array(
+							'setBonusDesc' => 'TransformSetBonusDesc',
+					),
+			
+					'filters' => array(
+							array(
+									'record' => 'minedItemSummary##pts',
+									'field' => 'setName',
+									'thisField' => 'setName',
+									'displayName' => 'View&nbsp;Items',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'minedSkills##pts' => array(
+					'displayName' => 'Update ##-PTS: Mined Skills',
+					'displayNameSingle' => 'Update ##-PTS: Mined Skill',
+					'record' => 'minedSkills##pts',
+					'table' => 'minedSkills##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are skills for update ## (__NAME__) as logged from the PTS server.",
+						
+					'transform' => array(
+							'mechanic' => 'GetCombatMechanicText',
+							'type1' => 'GetCustomCombatMechanicText',
+							'type2' => 'GetCustomCombatMechanicText',
+							'type3' => 'GetCustomCombatMechanicText',
+							'type4' => 'GetCustomCombatMechanicText',
+							'type5' => 'GetCustomCombatMechanicText',
+							'type6' => 'GetCustomCombatMechanicText',
+							'skillType' => 'GetSkillTypeText',
+							'description' => 'RemoveTextFormats',
+							'coefDescription' => 'RemoveTextFormats',
+							'effectLines' => 'RemoveTextFormats',
+							'upgradeLines' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+	);	
+	
+	
 	public static $RECORD_TYPES = array(
 			
 			'book' => array(
@@ -1349,451 +1460,6 @@ class EsoLogViewer
 					),
 			),
 			
-			'minedItem8pts' => array(
-					'displayName' => 'Update 8-PTS: Mined Items',
-					'displayNameSingle' => 'Update 8-PTS: Mined Item',
-					'record' => 'minedItem8pts',
-					'table' => 'minedItem8pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => "These are new items for update 8 (Orsinium) as logged from the PTS server.",
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink8pts',
-							'link' => 'MakeMinedItemLink8pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItem9pts' => array(
-					'displayName' => 'Update 9-PTS: Mined Items',
-					'displayNameSingle' => 'Update 9-PTS: Mined Item',
-					'record' => 'minedItem9pts',
-					'table' => 'minedItem9pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 9 (Thieves Guild) as logged from the PTS server. Note that only Level 1 (White) and v16 (Gold) items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink9pts',
-							'link' => 'MakeMinedItemLink9pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem10pts' => array(
-					'displayName' => 'Update 10-PTS: Mined Items',
-					'displayNameSingle' => 'Update 10-PTS: Mined Item',
-					'record' => 'minedItem10pts',
-					'table' => 'minedItem10pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 10 (Dark Brotherhood) as logged from the PTS server. Note that only CP160 (Gold) items have been exported.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink10pts',
-							'link' => 'MakeMinedItemLink10pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItem11pts' => array(
-					'displayName' => 'Update 11-PTS: Mined Items',
-					'displayNameSingle' => 'Update 11-PTS: Mined Item',
-					'record' => 'minedItem11pts',
-					'table' => 'minedItem11pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 11 (Shadows of the Hist) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink11pts',
-							'link' => 'MakeMinedItemLink11pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem12pts' => array(
-					'displayName' => 'Update 12-PTS: Mined Items',
-					'displayNameSingle' => 'Update 12-PTS: Mined Item',
-					'record' => 'minedItem12pts',
-					'table' => 'minedItem12pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 12 (One Tamriel) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink12pts',
-							'link' => 'MakeMinedItemLink12pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItem13pts' => array(
-					'displayName' => 'Update 13-PTS: Mined Items',
-					'displayNameSingle' => 'Update 13-PTS: Mined Item',
-					'record' => 'minedItem13pts',
-					'table' => 'minedItem13pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 13 (Homestead) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink13pts',
-							'link' => 'MakeMinedItemLink13pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem14pts' => array(
-					'displayName' => 'Update 14-PTS: Mined Items',
-					'displayNameSingle' => 'Update 14-PTS: Mined Item',
-					'record' => 'minedItem14pts',
-					'table' => 'minedItem14pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 14 (Morrowind) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink14pts',
-							'link' => 'MakeMinedItemLink14pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItem15pts' => array(
-					'displayName' => 'Update 15-PTS: Mined Items',
-					'displayNameSingle' => 'Update 15-PTS: Mined Item',
-					'record' => 'minedItem15pts',
-					'table' => 'minedItem15pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 15 (Horns of the Reach) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink15pts',
-							'link' => 'MakeMinedItemLink15pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem16pts' => array(
-					'displayName' => 'Update 16-PTS: Mined Items',
-					'displayNameSingle' => 'Update 16-PTS: Mined Item',
-					'record' => 'minedItem16pts',
-					'table' => 'minedItem16pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 16 (Clockwork City) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink16pts',
-							'link' => 'MakeMinedItemLink16pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItem17pts' => array(
-					'displayName' => 'Update 17-PTS: Mined Items',
-					'displayNameSingle' => 'Update 17-PTS: Mined Item',
-					'record' => 'minedItem17pts',
-					'table' => 'minedItem17pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 17 (Dragon Bones) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink17pts',
-							'link' => 'MakeMinedItemLink17pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem18pts' => array(
-					'displayName' => 'Update 18-PTS: Mined Items',
-					'displayNameSingle' => 'Update 18-PTS: Mined Item',
-					'record' => 'minedItem18pts',
-					'table' => 'minedItem18pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 18 (Summerset) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink18pts',
-							'link' => 'MakeMinedItemLink18pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem19pts' => array(
-					'displayName' => 'Update 19-PTS: Mined Items',
-					'displayNameSingle' => 'Update 19-PTS: Mined Item',
-					'record' => 'minedItem19pts',
-					'table' => 'minedItem19pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 19 (Wolfhunter) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink19pts',
-							'link' => 'MakeMinedItemLink19pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem20pts' => array(
-					'displayName' => 'Update 20-PTS: Mined Items',
-					'displayNameSingle' => 'Update 20-PTS: Mined Item',
-					'record' => 'minedItem20pts',
-					'table' => 'minedItem20pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 20 (Murkmire) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink20pts',
-							'link' => 'MakeMinedItemLink20pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem21pts' => array(
-					'displayName' => 'Update 21-PTS: Mined Items',
-					'displayNameSingle' => 'Update 21-PTS: Mined Item',
-					'record' => 'minedItem21pts',
-					'table' => 'minedItem21pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 21 (Wrathstone) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink21pts',
-							'link' => 'MakeMinedItemLink21pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItem22pts' => array(
-					'displayName' => 'Update 22-PTS: Mined Items',
-					'displayNameSingle' => 'Update 22-PTS: Mined Item',
-					'record' => 'minedItem22pts',
-					'table' => 'minedItem22pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 22 (Elsweyr) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemLink22pts',
-							'link' => 'MakeMinedItemLink22pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
 			'minedItemSummary' => array(
 					'displayName' => 'Mined Item Summaries',
 					'displayNameSingle' => 'Mined Item Summary',
@@ -1824,426 +1490,6 @@ class EsoLogViewer
 					),
 			),
 			
-			
-			'minedItemSummary9pts' => array(
-					'displayName' => 'Update 9-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 9-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary9pts',
-					'table' => 'minedItemSummary9pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 9 (Thieves Guild) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink9pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary10pts' => array(
-					'displayName' => 'Update 10-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 10-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary10pts',
-					'table' => 'minedItemSummary10pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 10 (Dark Brotherhood) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink10pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary11pts' => array(
-					'displayName' => 'Update 11-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 11-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary11pts',
-					'table' => 'minedItemSummary11pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 11 (Shadows of the Hist) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink11pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			
-			'minedItemSummary12pts' => array(
-					'displayName' => 'Update 12-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 12-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary12pts',
-					'table' => 'minedItemSummary12pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 12 (One Tamriel) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink12pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary13pts' => array(
-					'displayName' => 'Update 13-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 13-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary13pts',
-					'table' => 'minedItemSummary13pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 13 (Homestead) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink13pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary14pts' => array(
-					'displayName' => 'Update 14-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 14-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary14pts',
-					'table' => 'minedItemSummary14pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 14 (Morrowind) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink14pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			
-			'minedItemSummary15pts' => array(
-					'displayName' => 'Update 15-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 15-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary15pts',
-					'table' => 'minedItemSummary15pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 15 (Horns of the Reach) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink15pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			
-			'minedItemSummary16pts' => array(
-					'displayName' => 'Update 16-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 16-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary16pts',
-					'table' => 'minedItemSummary16pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 16 (Clockwork City) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-						
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink16pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary17pts' => array(
-					'displayName' => 'Update 17-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 17-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary17pts',
-					'table' => 'minedItemSummary17pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 17 (Dragon Bones) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink17pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary18pts' => array(
-					'displayName' => 'Update 18-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 18-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary18pts',
-					'table' => 'minedItemSummary18pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 18 (Summerset) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink18pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary19pts' => array(
-					'displayName' => 'Update 19-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 19-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary19pts',
-					'table' => 'minedItemSummary19pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 19 (Wolfhunter) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink19pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary20pts' => array(
-					'displayName' => 'Update 20-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 20-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary20pts',
-					'table' => 'minedItemSummary20pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 20 (Murkmire) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink20pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary21pts' => array(
-					'displayName' => 'Update 21-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 21-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary21pts',
-					'table' => 'minedItemSummary21pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 21 (Wrathstone) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink21pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedItemSummary22pts' => array(
-					'displayName' => 'Update 22-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update 22-PTS: Mined Item Summary',
-					'record' => 'minedItemSummary22pts',
-					'table' => 'minedItemSummary22pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'itemId',
-					'message' => 'These are items for update 22 (Elsweyr) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
-					'transform' => array(
-							'type' => 'GetItemTypeText',
-							'specialType' => 'GetItemSpecialTypeText',
-							'style' => 'GetItemStyleText',
-							'trait' => 'GetItemTraitText',
-							'quality' => 'GetItemQualityText',
-							'equipType' => 'GetItemEquipTypeText',
-							'craftType' => 'GetItemTypeText',
-							'armorType' => 'GetItemArmorTypeText',
-							'weaponType' => 'GetItemWeaponTypeText',
-							'name' => 'MakeMinedItemSummaryLink22pts',
-							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',
-							'enchantDesc' => 'RemoveTextFormats',
-							'materialLevelDesc' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
 			'setSummary' => array(
 					'displayName' => 'Set Summaries',
 					'displayNameSingle' => 'Set Item Summary',
@@ -2259,367 +1505,6 @@ class EsoLogViewer
 					'filters' => array(
 							array(
 									'record' => 'minedItemSummary',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary8pts' => array(
-					'displayName' => 'Update 8-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 8-PTS: Set Item Summary',
-					'record' => 'setSummary8pts',
-					'table' => 'setSummary8pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are new sets for update 8 (Orsinium) as logged from the PTS server.",
-						
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-						
-					'filters' => array(
-							array(
-									'record' => 'minedItem8pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary9pts' => array(
-					'displayName' => 'Update 9-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 9-PTS: Set Item Summary',
-					'record' => 'setSummary9pts',
-					'table' => 'setSummary9pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 9 (Thieves Guild) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItem9pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary10pts' => array(
-					'displayName' => 'Update 10-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 10-PTS: Set Item Summary',
-					'record' => 'setSummary10pts',
-					'table' => 'setSummary10pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 10 (Dark Brotherhood) as logged from the PTS server.",
-						
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-						
-					'filters' => array(
-							array(
-									'record' => 'minedItem10pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary11pts' => array(
-					'displayName' => 'Update 11-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 11-PTS: Set Item Summary',
-					'record' => 'setSummary11pts',
-					'table' => 'setSummary11pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 11 (Shadows of the Hist) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary11pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			
-			'setSummary12pts' => array(
-					'displayName' => 'Update 12-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 12-PTS: Set Item Summary',
-					'record' => 'setSummary12pts',
-					'table' => 'setSummary12pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 12 (One Tamriel) as logged from the PTS server.",
-						
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-						
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary12pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary13pts' => array(
-					'displayName' => 'Update 13-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 13-PTS: Set Item Summary',
-					'record' => 'setSummary13pts',
-					'table' => 'setSummary13pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 13 (Homestead) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary13pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary14pts' => array(
-					'displayName' => 'Update 14-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 14-PTS: Set Item Summary',
-					'record' => 'setSummary14pts',
-					'table' => 'setSummary14pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 14 (Morrowind) as logged from the PTS server.",
-						
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-						
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary14pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary15pts' => array(
-					'displayName' => 'Update 15-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 15-PTS: Set Item Summary',
-					'record' => 'setSummary15pts',
-					'table' => 'setSummary15pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 15 (Horns of the Reach) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary15pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary16pts' => array(
-					'displayName' => 'Update 16-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 16-PTS: Set Item Summary',
-					'record' => 'setSummary16pts',
-					'table' => 'setSummary16pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 16 (Clockwork City) as logged from the PTS server.",
-						
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-						
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary16pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary17pts' => array(
-					'displayName' => 'Update 17-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 17-PTS: Set Item Summary',
-					'record' => 'setSummary17pts',
-					'table' => 'setSummary17pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 17 (Dragon Bones) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary17pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary18pts' => array(
-					'displayName' => 'Update 18-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 18-PTS: Set Item Summary',
-					'record' => 'setSummary18pts',
-					'table' => 'setSummary18pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 18 (Summerset) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary18pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary19pts' => array(
-					'displayName' => 'Update 19-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 19-PTS: Set Item Summary',
-					'record' => 'setSummary19pts',
-					'table' => 'setSummary19pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 19 (Wolfhunter) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary19pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary20pts' => array(
-					'displayName' => 'Update 20-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 20-PTS: Set Item Summary',
-					'record' => 'setSummary20pts',
-					'table' => 'setSummary20pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 20 (Murkmire) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary20pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary21pts' => array(
-					'displayName' => 'Update 21-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 21-PTS: Set Item Summary',
-					'record' => 'setSummary21pts',
-					'table' => 'setSummary21pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 21 (Wrathstone) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary21pts',
-									'field' => 'setName',
-									'thisField' => 'setName',
-									'displayName' => 'View&nbsp;Items',
-									'type' => 'filter',
-							),
-					),
-			),
-			
-			'setSummary22pts' => array(
-					'displayName' => 'Update 22-PTS: Set Summaries',
-					'displayNameSingle' => 'Update 22-PTS: Set Item Summary',
-					'record' => 'setSummary22pts',
-					'table' => 'setSummary22pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'setName',
-					'message' => "These are sets for update 22 (Elsweyr) as logged from the PTS server.",
-			
-					'transform' => array(
-							'setBonusDesc' => 'TransformSetBonusDesc',
-					),
-			
-					'filters' => array(
-							array(
-									'record' => 'minedItemSummary22pts',
 									'field' => 'setName',
 									'thisField' => 'setName',
 									'displayName' => 'View&nbsp;Items',
@@ -2682,370 +1567,6 @@ class EsoLogViewer
 							),
 					),
 			),
-			
-			'minedSkills10pts' => array(
-					'displayName' => 'Update 10-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 10-PTS: Mined Skill',
-					'record' => 'minedSkills10pts',
-					'table' => 'minedSkills10pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-			
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills11pts' => array(
-					'displayName' => 'Update 11-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 11-PTS: Mined Skill',
-					'record' => 'minedSkills11pts',
-					'table' => 'minedSkills11pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 11 (Shadows of the Hist) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			
-			'minedSkills12pts' => array(
-					'displayName' => 'Update 12-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 12-PTS: Mined Skill',
-					'record' => 'minedSkills12pts',
-					'table' => 'minedSkills12pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 12 (One Tamriel) as logged from the PTS server.",
-			
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills13pts' => array(
-					'displayName' => 'Update 13-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 13-PTS: Mined Skill',
-					'record' => 'minedSkills13pts',
-					'table' => 'minedSkills13pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 13 (Homestead) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills14pts' => array(
-					'displayName' => 'Update 14-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 14-PTS: Mined Skill',
-					'record' => 'minedSkills14pts',
-					'table' => 'minedSkills14pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 14 (Morrowind) as logged from the PTS server.",
-			
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills15pts' => array(
-					'displayName' => 'Update 15-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 15-PTS: Mined Skill',
-					'record' => 'minedSkills15pts',
-					'table' => 'minedSkills15pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 15 (Horns of the Reach) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills16pts' => array(
-					'displayName' => 'Update 16-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 16-PTS: Mined Skill',
-					'record' => 'minedSkills16pts',
-					'table' => 'minedSkills16pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 16 (Clockwork City) as logged from the PTS server.",
-			
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-			
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills17pts' => array(
-					'displayName' => 'Update 17-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 17-PTS: Mined Skill',
-					'record' => 'minedSkills17pts',
-					'table' => 'minedSkills17pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 17 (Dragon Bones) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills18pts' => array(
-					'displayName' => 'Update 18-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 18-PTS: Mined Skill',
-					'record' => 'minedSkills18pts',
-					'table' => 'minedSkills18pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 18 (Summerset) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills19pts' => array(
-					'displayName' => 'Update 19-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 19-PTS: Mined Skill',
-					'record' => 'minedSkills19pts',
-					'table' => 'minedSkills19pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 19 (Wolfhunter) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills20pts' => array(
-					'displayName' => 'Update 20-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 20-PTS: Mined Skill',
-					'record' => 'minedSkills20pts',
-					'table' => 'minedSkills20pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 20 (Murkmire) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills21pts' => array(
-					'displayName' => 'Update 21-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 21-PTS: Mined Skill',
-					'record' => 'minedSkills21pts',
-					'table' => 'minedSkills21pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 21 (Wrathstone) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),
-			
-			'minedSkills22pts' => array(
-					'displayName' => 'Update 22-PTS: Mined Skills',
-					'displayNameSingle' => 'Update 22-PTS: Mined Skill',
-					'record' => 'minedSkills22pts',
-					'table' => 'minedSkills22pts',
-					'method' => 'DoRecordDisplay',
-					'sort' => 'name',
-					'message' => "These are skills for update 22 (Elsweyr) as logged from the PTS server.",
-						
-					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
-							'skillType' => 'GetSkillTypeText',
-							'description' => 'RemoveTextFormats',
-							'coefDescription' => 'RemoveTextFormats',
-							'effectLines' => 'RemoveTextFormats',
-							'upgradeLines' => 'RemoveTextFormats',
-					),
-						
-					'filters' => array(
-					),
-			),			
 			
 			'minedSkillLines' => array(
 					'displayName' => 'Mined Skill Lines',
@@ -3244,7 +1765,6 @@ class EsoLogViewer
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
-			'Items 22-PTS' => 'minedItemSummary22pts',
 			'Logged Items' => 'item',
 			'Loot' => 'npcLoot',
 			'Loot Sources' => 'lootSources',
@@ -3258,14 +1778,40 @@ class EsoLogViewer
 			'Quest Reward' => 'questReward',
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
-			'Sets 22-PTS' => 'setSummary22pts',
 			'Skills' => 'minedSkills',
-			'Skills 22-PTS' => 'minedSkills22pts',
 	);
 	
 	
 	public static $SEARCH_TYPE_EXTRAS = array(
 			'achievements' => array('achievementCriteria', 'achievementCategories'),
+	);
+	
+	
+	public static $PTS_SEARCH_DATA = array(
+			'minedItemSummary##pts' => array(
+					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'itemId' => 'note',
+					),
+			),
+			'setSummary##pts' => array(
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'fields' => array(
+							'id' => 'id',
+							'setName' => 'name',
+							'setBonusDesc' => 'note',
+					),
+			),
+			'minedSkills##pts' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
 	);
 	
 	
@@ -3433,126 +1979,6 @@ class EsoLogViewer
 							'itemId' => 'note',
 					),
 			),
-			'minedItemSummary8pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary9pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary10pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary11pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary12pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary13pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary14pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary15pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary16pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary17pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary18pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary19pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary20pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary21pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
-			'minedItemSummary22pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'itemId' => 'note',
-					),
-			),
 			'setSummary' => array(
 					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
@@ -3561,231 +1987,7 @@ class EsoLogViewer
 							'setBonusDesc' => 'note',
 					),
 			),
-			'setSummary8pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary9pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary10pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary11pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary12pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary13pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary14pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary15pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary16pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary17pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary18pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary19pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary20pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary21pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
-			'setSummary22pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
-					'fields' => array(
-							'id' => 'id',
-							'setName' => 'name',
-							'setBonusDesc' => 'note',
-					),
-			),
 			'minedSkills' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills10pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills11pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills12pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills13pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills14pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills15pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills16pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills17pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills18pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills19pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills20pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills21pts' => array(
-					'searchFields' => array('name', 'description'),
-					'fields' => array(
-							'id' => 'id',
-							'name' => 'name',
-							'description' => 'note',
-					),
-			),
-			'minedSkills22pts' => array(
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
@@ -3807,6 +2009,8 @@ class EsoLogViewer
 	public function __construct ()
 	{
 		//SetupUespSession();
+		
+		$this->PTS_VERSION_NAME = GetEsoUpdateName(self::ENABLE_PTS_VERSION);
 		
 		uasort(self::$RECORD_TYPES, 'CompareRecordTypeByDisplayName');
 		
@@ -3843,300 +2047,78 @@ class EsoLogViewer
 		self::$RECORD_TYPES['achievementCriteria']['fields'] = self::$ACHIEVEMENTCRITERIA_FIELDS;
 		self::$RECORD_TYPES['logInfo']['fields'] = self::$LOGINFO_FIELDS;
 		
-		if (self::ENABLE_8PTS) 
-		{
-			self::$RECORD_TYPES['minedItem8pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary8pts']['fields'] = self::$SETSUMMARY_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary8pts']);
-			unset(self::$RECORD_TYPES['minedItem8pts']);
-			unset(self::$RECORD_TYPES['setSummary8pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary8pts']);
-			unset(self::$SEARCH_DATA['setSummary8pts']);
-		}
-		
-		if (self::ENABLE_9PTS)
-		{
-			self::$RECORD_TYPES['minedItem9pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary9pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary9pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary9pts']);
-			unset(self::$RECORD_TYPES['minedItem9pts']);
-			unset(self::$RECORD_TYPES['setSummary9pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary9pts']);
-			unset(self::$SEARCH_DATA['setSummary9pts']);
-		}
-		
-		if (self::ENABLE_10PTS)
-		{
-			self::$RECORD_TYPES['minedItem10pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary10pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary10pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills10pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary10pts']);
-			unset(self::$RECORD_TYPES['minedItem10pts']);
-			unset(self::$RECORD_TYPES['setSummary10pts']);
-			unset(self::$RECORD_TYPES['minedSkills10pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary10pts']);
-			unset(self::$SEARCH_DATA['setSummary10pts']);
-			unset(self::$SEARCH_DATA['minedSkills10pts']);
-		}
-		
-		if (self::ENABLE_11PTS)
-		{
-			self::$RECORD_TYPES['minedItem11pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary11pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary11pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills11pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary11pts']);
-			unset(self::$RECORD_TYPES['minedItem11pts']);
-			unset(self::$RECORD_TYPES['setSummary11pts']);
-			unset(self::$RECORD_TYPES['minedSkills11pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary11pts']);
-			unset(self::$SEARCH_DATA['setSummary11pts']);
-			unset(self::$SEARCH_DATA['minedSkills11pts']);
-		}
-		
-		if (self::ENABLE_12PTS)
-		{
-			self::$RECORD_TYPES['minedItem12pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary12pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary12pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills12pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary12pts']);
-			unset(self::$RECORD_TYPES['minedItem12pts']);
-			unset(self::$RECORD_TYPES['setSummary12pts']);
-			unset(self::$RECORD_TYPES['minedSkills12pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary12pts']);
-			unset(self::$SEARCH_DATA['setSummary12pts']);
-			unset(self::$SEARCH_DATA['minedSkills12pts']);
-		}
-		
-		if (self::ENABLE_13PTS)
-		{
-			self::$RECORD_TYPES['minedItem13pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary13pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary13pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills13pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary13pts']);
-			unset(self::$RECORD_TYPES['minedItem13pts']);
-			unset(self::$RECORD_TYPES['setSummary13pts']);
-			unset(self::$RECORD_TYPES['minedSkills13pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary13pts']);
-			unset(self::$SEARCH_DATA['setSummary13pts']);
-			unset(self::$SEARCH_DATA['minedSkills13pts']);
-		}
-		
-		if (self::ENABLE_14PTS && CanViewEsoLogVersion("14pts"))
-		{
-			self::$RECORD_TYPES['minedItem14pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary14pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary14pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills14pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary14pts']);
-			unset(self::$RECORD_TYPES['minedItem14pts']);
-			unset(self::$RECORD_TYPES['setSummary14pts']);
-			unset(self::$RECORD_TYPES['minedSkills14pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary14pts']);
-			unset(self::$SEARCH_DATA['setSummary14pts']);
-			unset(self::$SEARCH_DATA['minedSkills14pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 14-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 14-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 14-PTS']);
-		}
-		
-		if (self::ENABLE_15PTS)
-		{
-			self::$RECORD_TYPES['minedItem15pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary15pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary15pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills15pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary15pts']);
-			unset(self::$RECORD_TYPES['minedItem15pts']);
-			unset(self::$RECORD_TYPES['setSummary15pts']);
-			unset(self::$RECORD_TYPES['minedSkills15pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary15pts']);
-			unset(self::$SEARCH_DATA['setSummary15pts']);
-			unset(self::$SEARCH_DATA['minedSkills15pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 15-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 15-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 15-PTS']);
-		}
-		
-		if (self::ENABLE_16PTS)
-		{
-			self::$RECORD_TYPES['minedItem16pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary16pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary16pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills16pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary16pts']);
-			unset(self::$RECORD_TYPES['minedItem16pts']);
-			unset(self::$RECORD_TYPES['setSummary16pts']);
-			unset(self::$RECORD_TYPES['minedSkills16pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary16pts']);
-			unset(self::$SEARCH_DATA['setSummary16pts']);
-			unset(self::$SEARCH_DATA['minedSkills16pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 16-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 16-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 16-PTS']);
-		}
-		
-		if (self::ENABLE_17PTS)
-		{
-			self::$RECORD_TYPES['minedItem17pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary17pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary17pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills17pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary17pts']);
-			unset(self::$RECORD_TYPES['minedItem17pts']);
-			unset(self::$RECORD_TYPES['setSummary17pts']);
-			unset(self::$RECORD_TYPES['minedSkills17pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary17pts']);
-			unset(self::$SEARCH_DATA['setSummary17pts']);
-			unset(self::$SEARCH_DATA['minedSkills17pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 17-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 17-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 17-PTS']);
-		}
-		
-		if (self::ENABLE_18PTS)
-		{
-			self::$RECORD_TYPES['minedItem18pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary18pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary18pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills18pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary18pts']);
-			unset(self::$RECORD_TYPES['minedItem18pts']);
-			unset(self::$RECORD_TYPES['setSummary18pts']);
-			unset(self::$RECORD_TYPES['minedSkills18pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary18pts']);
-			unset(self::$SEARCH_DATA['setSummary18pts']);
-			unset(self::$SEARCH_DATA['minedSkills18pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 18-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 18-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 18-PTS']);
-		}
-		
-		if (self::ENABLE_19PTS)
-		{
-			self::$RECORD_TYPES['minedItem19pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary19pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary19pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills19pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary19pts']);
-			unset(self::$RECORD_TYPES['minedItem19pts']);
-			unset(self::$RECORD_TYPES['setSummary19pts']);
-			unset(self::$RECORD_TYPES['minedSkills19pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary19pts']);
-			unset(self::$SEARCH_DATA['setSummary19pts']);
-			unset(self::$SEARCH_DATA['minedSkills19pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 19-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 19-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 19-PTS']);
-		}
-		
-		if (self::ENABLE_20PTS)
-		{
-			self::$RECORD_TYPES['minedItem20pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary20pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary20pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills20pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary20pts']);
-			unset(self::$RECORD_TYPES['minedItem20pts']);
-			unset(self::$RECORD_TYPES['setSummary20pts']);
-			unset(self::$RECORD_TYPES['minedSkills20pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary20pts']);
-			unset(self::$SEARCH_DATA['setSummary20pts']);
-			unset(self::$SEARCH_DATA['minedSkills20pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 20-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 20-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 20-PTS']);
-		}
-		
-		if (self::ENABLE_21PTS)
-		{
-			self::$RECORD_TYPES['minedItem21pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary21pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary21pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills21pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary21pts']);
-			unset(self::$RECORD_TYPES['minedItem21pts']);
-			unset(self::$RECORD_TYPES['setSummary21pts']);
-			unset(self::$RECORD_TYPES['minedSkills21pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary21pts']);
-			unset(self::$SEARCH_DATA['setSummary21pts']);
-			unset(self::$SEARCH_DATA['minedSkills21pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 21-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 21-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 21-PTS']);
-		}
-		
-		if (self::ENABLE_22PTS)
-		{
-			self::$RECORD_TYPES['minedItem22pts']['fields'] = self::$MINEDITEM_FIELDS;
-			self::$RECORD_TYPES['setSummary22pts']['fields'] = self::$SETSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedItemSummary22pts']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
-			self::$RECORD_TYPES['minedSkills22pts']['fields'] = self::$SKILLDUMP_FIELDS;
-		}
-		else
-		{
-			unset(self::$RECORD_TYPES['minedItemSummary22pts']);
-			unset(self::$RECORD_TYPES['minedItem22pts']);
-			unset(self::$RECORD_TYPES['setSummary22pts']);
-			unset(self::$RECORD_TYPES['minedSkills22pts']);
-			unset(self::$SEARCH_DATA['minedItemSummary22pts']);
-			unset(self::$SEARCH_DATA['setSummary22pts']);
-			unset(self::$SEARCH_DATA['minedSkills22pts']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Items 22-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Sets 22-PTS']);
-			unset(self::$SEARCH_TYPE_OPTIONS['Skills 22-PTS']);
-		}
-		
+		$this->EnablePtsRecords();
+				
 		$this->InitDatabase();
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->LoadLogInfo();
+	}
+
+	
+	public function EnablePtsRecords()
+	{
+		if (self::ENABLE_PTS_VERSION == "") return false;
+		
+		foreach (self::$PTS_RECORD_TYPES as $key => $records)
+		{
+			$newKey = $this->TransformPtsRecordString($key);
+			
+			self::$RECORD_TYPES[$newKey] = $this->TransformPtsRecordTypes($records);
+			
+			if (startsWith($key, "minedItem##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$MINEDITEM_FIELDS;
+			if (startsWith($key, "setSummary##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$SETSUMMARY_FIELDS;
+			if (startsWith($key, "minedItemSummary##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
+			if (startsWith($key, "minedSkills##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$SKILLDUMP_FIELDS;
+		}
+		
+		foreach (self::$PTS_SEARCH_TYPE_OPTIONS as $key => $name)
+		{
+			$newKey = $this->TransformPtsRecordString($key);
+			self::$SEARCH_TYPE_OPTIONS[$newKey] = $this->TransformPtsRecordString($name);
+		}
+		
+		foreach (self::$PTS_SEARCH_DATA as $key => $records)
+		{
+			$newKey = $this->TransformPtsRecordString($key);
+			self::$SEARCH_DATA[$newKey] = $records;
+		}
+		
+		return true;
+	}
+	
+	
+	public function TransformPtsRecordTypes($records)
+	{
+		$newRecords = $records;
+		
+		$newRecords['displayName'] = $this->TransformPtsRecordString($newRecords['displayName']);
+		$newRecords['displayNameSingle'] = $this->TransformPtsRecordString($newRecords['displayNameSingle']);
+		$newRecords['record'] = $this->TransformPtsRecordString($newRecords['record']);
+		$newRecords['table'] = $this->TransformPtsRecordString($newRecords['table']);
+		$newRecords['message'] = $this->TransformPtsRecordString($newRecords['message']);
+		
+		if ($newRecords['transform']) 
+		{
+		}
+		
+		if ($newRecords['filters']) 
+		{
+			$newRecords['filters']['record'] = $this->TransformPtsRecordString($newRecords['filters']['record']);
+		}
+		
+		return $newRecords;
+	}
+	
+	
+	public function TransformPtsRecordString($string)
+	{
+		if ($string === null) return null;
+		
+		$newString = str_replace("##", self::ENABLE_PTS_VERSION, $string);
+		$newString = str_replace("__NAME__", $this->PTS_VERSION_NAME, $newString);
+		
+		return $newString;
 	}
 	
 	
@@ -4434,199 +2416,19 @@ class EsoLogViewer
 		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType\">" . $value . "</a>";
 		return $output;
 	}
+
 	
-	
-	public function MakeMinedItemLink8pts ($value, $itemData)
+	public function MakeMinedItemLinkPts ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
 	
 		$itemId = $itemData['itemId'];
 		$itemIntLevel = $itemData['internalLevel'];
 		$itemIntType = $itemData['internalSubtype'];
+		
+		$ptsVersion = self::ENABLE_PTS_VERSION . "pts";
 	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=8pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink9pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=9pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink10pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=10pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink11pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=11pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink12pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=12pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink13pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=13pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink14pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=14pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink15pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=15pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink16pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=16pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink17pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=17pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink18pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=18pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink19pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=19pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink20pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=20pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink21pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=21pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemLink22pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-		$itemIntLevel = $itemData['internalLevel'];
-		$itemIntType = $itemData['internalSubtype'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=22pts\">" . $value . "</a>";
+		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=$ptsVersion\">" . $value . "</a>";
 		return $output;
 	}
 	
@@ -4642,156 +2444,14 @@ class EsoLogViewer
 	}
 	
 	
-	public function MakeMinedItemSummaryLink9pts ($value, $itemData)
+	public function MakeMinedItemSummaryLinkPts ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
-	
+		
 		$itemId = $itemData['itemId'];
+		$ptsVersion = self::$ENABLE_PTS_VERSION . "pts";
 	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=9pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink10pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=10pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink11pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=11pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink12pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=12pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink13pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=13pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink14pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=14pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink15pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=15pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink16pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=16pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink17pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=17pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink18pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=18pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink19pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=19pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink20pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=20pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink21pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=21pts\">" . $value . "</a>";
-		return $output;
-	}
-	
-	
-	public function MakeMinedItemSummaryLink22pts ($value, $itemData)
-	{
-		if (!$this->IsOutputHTML()) return $value;
-	
-		$itemId = $itemData['itemId'];
-	
-		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=22pts\">" . $value . "</a>";
+		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=$ptsVersion\">" . $value . "</a>";
 		return $output;
 	}
 	
