@@ -536,9 +536,10 @@ class CEsoViewSkills
 		{
 			$isRaceVisible = true;
 			
-			if ($skillType == "Racial" && $this->displayRace != "all" && !startsWithNoCase($this->displayRace, $skillLine))
+			if ($skillType == "Racial")
 			{
 				$isRaceVisible = false;
+				if ($this->displayRace != "all" && startsWithNoCase($skillLine, $this->displayRace)) $isRaceVisible = true;				
 			}
 			
 			if ($displayType != "none" && ($this->highlightSkillLine == $skillLine || ($this->highlightSkillLine == "" && $isFirstSkillLine)))

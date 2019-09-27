@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "23";
+$TABLE_SUFFIX = "24pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -99,6 +99,11 @@ $ESO_SLOTTED_SKILLS = array(
 		
 		29742 => -52,	//Medium Armor: Athletics
 		45574 => -52,
+		
+		20930 => -71,
+		34042 => -71,
+		34045 => -71,
+		34048 => -71,
 );
 
 $ESO_COEF_INDEX = array(
@@ -124,6 +129,11 @@ $ESO_COEF_INDEX = array(
 		41133 => array(1, 2),
 		41135 => array(1, 2),
 		41137 => array(1, 2),
+		
+		20930 => 3,
+		34042 => 3,
+		34045 => 3,
+		34048 => 3,
 );
 
 $ESO_COEF_VALUE = array(
@@ -151,6 +161,11 @@ $ESO_COEF_VALUE = array(
 					array(2, 0, 16),	
 					array(1, 0, 0),
 				),
+		
+		20930 => array(0.00264, 1, 10),
+		34042 => array(0.00264, 1, 10),
+		34045 => array(0.00264, 1, 10),
+		34048 => array(0.00264, 1, 10),
 		
 	/* Old Values
 		29338 => array(0.3300, 0.4, 0),		//Light Armor: Annulment

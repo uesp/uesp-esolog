@@ -872,6 +872,18 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	{
 		value = a * values.GraveLordSkills;
 	}
+	else if (type == -71)
+	{
+		value = a * values.SpellDamage + b;
+		maxValue = c;
+		if (value > maxValue) value = maxValue;
+	}	
+	else if (type == -72)
+	{
+		value = a * values.Magicka + b * values.WeaponDamage + c;
+		++includeSpellRawOutput;
+		++includeWeaponRawOutput;
+	}
 	else if (type == -68)
 	{
 		value = a * values.Magicka;
@@ -2837,6 +2849,17 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		a = Math.round(a);
 		output += srcString + " = " + a + " GraveLordSkills";
 		typeString = "Grave Lord Slotted";
+	}
+	else if (type == -71)
+	{
+		output += srcString + " = " + a + " SpellDamage " + bOp + " " + b + "    (Capped at " + c + "%)";
+		typeString = "Spell Damage Capped";
+	}
+	else if (type == -72)
+	{
+		output += srcString + " = " + a + " Magicka " + bOp + " " + b + " WeaponDamage " + cOp + " " + c;
+		typeString = "Magicka and Weapon Damage";
+		ratio = (b/a).toFixed(2);
 	}
 	else if (type == -68)
 	{

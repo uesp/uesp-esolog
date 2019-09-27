@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "23";
+	const ENABLE_PTS_VERSION = "24";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -265,6 +265,13 @@ class EsoLogViewer
 			'ppClass' => self::FIELD_STRING,
 			'ppDifficulty' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
+			'reaction' => self::FIELD_INTTRANSFORM,
+	);
+	
+	public static $NPC_LOCATION_FIELDS = array(
+			'npcId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'zone' => self::FIELD_STRING,
 	);
 	
 	public static $LOOTSOURCE_FIELDS = array(
@@ -695,16 +702,16 @@ class EsoLogViewer
 	
 	
 	public static $PTS_SEARCH_TYPE_OPTIONS = array(
-			'Items ##-PTS' => 'minedItemSummary##pts',
-			'Sets ##-PTS' => 'setSummary##pts',
-			'Skills ##-PTS' => 'minedSkills##pts',
+			'Items Update ## PTS' => 'minedItemSummary##pts',
+			'Sets Update ## PTS' => 'setSummary##pts',
+			'Skills Update ## PTS' => 'minedSkills##pts',
 	);	
 	
 	
 	public static $PTS_RECORD_TYPES = array(
 			'minedItem##pts' => array(
-					'displayName' => 'Update ##-PTS: Mined Items',
-					'displayNameSingle' => 'Update ##-PTS: Mined Item',
+					'displayName' => 'Update ## PTS: Mined Items',
+					'displayNameSingle' => 'Update ## PTS: Mined Item',
 					'record' => 'minedItem##pts',
 					'table' => 'minedItem##pts',
 					'method' => 'DoRecordDisplay',
@@ -734,8 +741,8 @@ class EsoLogViewer
 			
 			
 			'minedItemSummary##pts' => array(
-					'displayName' => 'Update ##-PTS: Mined Item Summaries',
-					'displayNameSingle' => 'Update ##-PTS: Mined Item Summary',
+					'displayName' => 'Update ## PTS: Mined Item Summaries',
+					'displayNameSingle' => 'Update ## PTS: Mined Item Summary',
 					'record' => 'minedItemSummary##pts',
 					'table' => 'minedItemSummary##pts',
 					'method' => 'DoRecordDisplay',
@@ -764,8 +771,8 @@ class EsoLogViewer
 			),
 			
 			'setSummary##pts' => array(
-					'displayName' => 'Update ##-PTS: Set Summaries',
-					'displayNameSingle' => 'Update ##-PTS: Set Item Summary',
+					'displayName' => 'Update ## PTS: Set Summaries',
+					'displayNameSingle' => 'Update ## PTS: Set Item Summary',
 					'record' => 'setSummary##pts',
 					'table' => 'setSummary##pts',
 					'method' => 'DoRecordDisplay',
@@ -788,8 +795,8 @@ class EsoLogViewer
 			),
 			
 			'minedSkills##pts' => array(
-					'displayName' => 'Update ##-PTS: Mined Skills',
-					'displayNameSingle' => 'Update ##-PTS: Mined Skill',
+					'displayName' => 'Update ## PTS: Mined Skills',
+					'displayNameSingle' => 'Update ## PTS: Mined Skill',
 					'record' => 'minedSkills##pts',
 					'table' => 'minedSkills##pts',
 					'method' => 'DoRecordDisplay',
@@ -1317,6 +1324,7 @@ class EsoLogViewer
 					'sort' => 'name',
 					
 					'transform' => array(
+							'reaction' => 'GetEsoReactionText',
 					),
 					
 					'filters' => array(
@@ -1327,10 +1335,46 @@ class EsoLogViewer
 									'displayName' => 'View Locations',
 									'type' => 'filter',
 							),
-							
+							array(
+									'record' => 'npcLocations',
+									'field' => 'npcId',
+									'thisField' => 'id',
+									'displayName' => 'View Zones',
+									'type' => 'filter',
+							),							
 					),
 					
 					'join' => array(
+					),
+			),
+			
+			'npcLocations' => array(
+					'displayName' => 'NPC Zones',
+					'displayNameSingle' => 'NPC Zones',
+					'record' => 'npcLocations',
+					'table' => 'npcLocations',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('npcId', 'zone'),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'npc',
+									'field' => 'id',
+									'thisField' => 'npcId',
+									'displayName' => 'View NPC',
+									'type' => 'viewRecord',
+							),		
+					),
+					
+					'join' => array(
+							'npcId' => array(
+								'joinField' => 'id',
+								'table' => 'npc',
+								'fields' => array('name'),
+							),
 					),
 			),
 			
@@ -2027,6 +2071,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['questItem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
+		self::$RECORD_TYPES['npcLocations']['fields'] = self::$NPC_LOCATION_FIELDS;
 		self::$RECORD_TYPES['lootSources']['fields'] = self::$LOOTSOURCE_FIELDS;
 		self::$RECORD_TYPES['npcLoot']['fields'] = self::$NPCLOOT_FIELDS;
 		self::$RECORD_TYPES['recipe']['fields'] = self::$RECIPE_FIELDS;
@@ -2255,6 +2300,12 @@ class EsoLogViewer
 	public function GetItemTypeText ($value)
 	{
 		return GetEsoItemTypeText($value);
+	}
+	
+	
+	public function GetEsoReactionText ($value)
+	{
+		return GetEsoReactionText($value);
 	}
 	
 	
