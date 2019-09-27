@@ -226,6 +226,8 @@ class EsoLogParser
 			"minedSkills24",
 			"minedSkills25pts",
 			"minedSkills25",
+			"minedSkills26pts",
+			"minedSkills26",
 			"collectibles",
 			"achievements",
 	);
@@ -506,6 +508,12 @@ class EsoLogParser
 			'ppClass' => self::FIELD_STRING,
 			'ppDifficulty' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
+			'reaction' => self::FIELD_INT,
+	);
+	
+	public static $NPC_LOCATION_FIELDS = array(
+			'npcId' => self::FIELD_INT,
+			'zone' => self::FIELD_STRING,
 	);
 	
 	public static $LOOTSOURCE_FIELDS = array(
@@ -1160,8 +1168,6 @@ class EsoLogParser
 			$safeValue = $this->db->real_escape_string($value);
 			$query = "INSERT INTO logInfo(id, value) VALUES('$safeKey', '$safeValue') ON DUPLICATE KEY UPDATE id='$safeKey', value='$safeValue';";
 			$this->lastQuery = $query;
-			
-			$this->dbWriteCount++;
 			
 			$result = $this->db->query($query);
 			if ($result === false) return $this->reportError("Failed to save record info logInfo table!");
@@ -1931,6 +1937,7 @@ class EsoLogParser
 						ppClass TINYTEXT NOT NULL,
 						ppDifficulty TINYINT NOT NULL,
 						count INTEGER NOT NULL,
+						reaction TINYINT NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name, ppClass)
 					);";
@@ -1938,6 +1945,16 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS npcLocations (
+						npcId BIGINT NOT NULL,
+						zone TINYTEXT NOT NULL,
+						PRIMARY KEY (npcId, zone(64))
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create npcLocations table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS lootSources (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -2837,6 +2854,7 @@ class EsoLogParser
 		}
 			
 		$npcId = 0;
+		$updateNpcZone = false;
 			
 		if ($logEntry['ppClassString'] != null && $logEntry['ppDifficulty'] != null)
 		{
@@ -2862,7 +2880,9 @@ class EsoLogParser
 					
 				if ($npcRecord != null) $npcId = $npcRecord['id'];
 			}
-		}
+			
+			$updateNpcZone = true;			
+		}		
 			
 		if ($logEntry['rvcType'] == "stole" || $logEntry['rcvType'] == "stole")
 		{
@@ -2884,8 +2904,11 @@ class EsoLogParser
 			$itemRecord = $this->CreateItem($logEntry);
 			if ($itemRecord == null) return false;
 		}
-			
-		$this->CheckLocation("item", $itemRecord['name'], $logEntry, array('itemId' => $itemRecord['id']));
+		
+		$isNewLocation = false;
+		$this->CheckLocation("item", $itemRecord['name'], $logEntry, array('itemId' => $itemRecord['id']), $isNewLocation);
+		
+		if ($updateNpcZone) $this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
 		
 		return true;
 	}
@@ -3263,6 +3286,7 @@ class EsoLogParser
 		
 		if ($logEntry['ppClassString'] != "") $npcRecord['ppClass']      = $logEntry['ppClassString'];
 		if ($logEntry['ppDifficulty']  != "") $npcRecord['ppDifficulty'] = $logEntry['ppDifficulty'];
+		if ($logEntry['reaction']      != "") $npcRecord['reaction']     = $logEntry['reaction'];
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
@@ -3271,6 +3295,31 @@ class EsoLogParser
 		if (!$result) return null;
 		
 		return $npcRecord;
+	}
+	
+	
+	public function UpdateNpcZone ($npcId, $zone, $isNewLocation)
+	{
+		if ($npcId === null || $npcId <= 0) return false;
+		if ($zone === null || $zone == "") return false;
+		
+		$safeZone = $this->db->real_escape_string($zone);
+		
+		if ($isNewLocation)
+		{
+			$query = "INSERT INTO npcLocations(npcId, zone, locCount) VALUES($npcId, '$safeZone', 1) ON DUPLICATE KEY UPDATE locCount = locCount + 1;";
+		}
+		else
+		{
+			$query = "INSERT IGNORE INTO npcLocations(npcId, zone, locCount) VALUES($npcId, '$safeZone', 1);";
+		}		
+		
+		$this->lastQuery = $query;
+			
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to insert/update npcLocations record!");
+		
+		return true;
 	}
 	
 	
@@ -4547,12 +4596,18 @@ class EsoLogParser
 	}
 	
 	
-	public function CheckLocation ($type, $name, $logEntry, $extraIds = null)
+	public function CheckLocation ($type, $name, $logEntry, $extraIds = null, &$isNew = null)
 	{
-		if ($this->IncrementLocationCounter($type, $name, $logEntry, $extraIds)) return true;
+		if ($this->IncrementLocationCounter($type, $name, $logEntry, $extraIds)) 
+		{
+			$isNew = true;
+			return true;
+		}
+		
+		$isNew = false;
 		return $this->CreateLocation($type, $name, $logEntry, $extraIds) != null;
 	}
-	
+
 	
 	public function CheckLocationId ($type, $name, $logEntry, $extraIds = null)
 	{
@@ -5094,7 +5149,12 @@ class EsoLogParser
 		$npcRecord['count'] += 1;
 		$this->SaveNPC($npcRecord);
 		
-		$this->CheckLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
+		$isNewLocation = false;
+		$this->CheckLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']), $isNewLocation);
+		
+		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
+		
+		
 		return true;
 	}
 	
@@ -6927,10 +6987,12 @@ class EsoLogParser
 			}
 		}
 		
+		$isNewLocation = false;		
 		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
 		
 		if ($npcLocation == null)
 		{
+			$isNewLocation = true;
 			$npcLocation = $this->CreateLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']));
 			if ($npcLocation == null) return false;
 		}
@@ -6941,6 +7003,8 @@ class EsoLogParser
 			$result = $this->SaveLocation($npcLocation);
 			if (!$result) return false;
 		}
+		
+		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
 		
 		return true;
 	}

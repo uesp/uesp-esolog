@@ -31,6 +31,8 @@ const UESP_POWERTYPE_WINTERSEMBRACE = -67;
 const UESP_POWERTYPE_MAGICHEALTHCAP = -68;
 const UESP_POWERTYPE_BONETYRANT = -69;
 const UESP_POWERTYPE_GRAVELORD = -70;
+const UESP_POWERTYPE_SPELLDAMAGECAPPED = -71;
+const UESP_POWERTYPE_MAGICKAWITHWD = -72;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -1018,6 +1020,8 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_WINTERSEMBRACE => "Winter's Embrace Skills Slotted",
 		UESP_POWERTYPE_BONETYRANT => "Bone Tyrant Skills Slotted",
 		UESP_POWERTYPE_GRAVELORD => "Grave Lord Skills Slotted",
+		UESP_POWERTYPE_SPELLDAMAGECAPPED => "Spell Damage Capped",
+		UESP_POWERTYPE_MAGICKAWITHWD => "Magicka and Weapon Damage",
 );
 
 
@@ -1286,7 +1290,7 @@ $ESO_SET_INDEXES = array(
 		309 => "Knight-errant's Mail",
 		310 => "Sword Dancer",
 		311 => "Rattlecage",
-		312 => "Tremorscale",
+		312 => "UNUSED",
 		313 => "Titanic Cleave",
 		314 => "Puncturing Remedy",
 		315 => "Stinging Slashes",
@@ -1418,6 +1422,20 @@ $ESO_SET_INDEXES = array(
 		449 => "Perfected False God's Devotion",
 		450 => "Perfected Tooth of Lokkestiiz",
 		451 => "Perfected Claw of Yolnahkriin",
+		452 => "Hollowfang Thirst",
+		453 => "Dro'Zakar's Claws",
+		454 => "Renald's Resolve",
+		455 => "Z'en's Redress",
+		456 => "Azureblight Reaper",
+		457 => "Dragon's Defilement",
+		458 => "Grundwulf",
+		459 => "Maarselok",
+		465 => "Senchal Defender",
+		466 => "Marauder's Haste",
+		467 => "Dragonguard Elite",
+		468 => "Daring Corsair",
+		469 => "Ancient Dragonguard",
+		470 => "New Moon Acolyte",
 );
 
 
@@ -1439,6 +1457,16 @@ $ESO_ITEMEQUIPTYPE_TEXTS = array(
 		13 => "Hand",
 		14 => "Main Hand",
 		15 => "Poison",
+);
+
+$ESO_REACTION_TEXTS = array(
+		-1 => "",
+		0 => "None",
+		1 => "Hostile",
+		2 => "Neutral",
+		3 => "Friendly",
+		4 => "Player Ally",
+		5 => "NPC Ally",
 );
 
 
@@ -2562,7 +2590,7 @@ $ESO_ITEMQUALITYLEVEL_INTTYPEMAP = array(
 	 1 => array(1,  30,  31,  32,  33,  34),
 	 4 => array(1,  25,  26,  27,  28,  29),
 	 6 => array(1,  20,  21,  22,  23,  24),
-	51 => array(1, 125, 135, 145, 155, 156),
+	51 => array(1, 125, 135, 145, 155, 165),
 	52 => array(1, 126, 136, 146, 156, 166),
 	53 => array(1, 127, 137, 147, 157, 167),
 	54 => array(1, 128,	138, 148, 158, 168),
@@ -3319,6 +3347,10 @@ function GetEsoItemTableSuffix($version)
 			return "22";
 		case '23pts':
 			return "23pts";
+		case '24pts':
+			return "24pts";
+		case '24':
+			return "24";
 		case '23':
 			return "";
 	}
@@ -3551,6 +3583,16 @@ function GetEsoItemBindTypeText($bindType)
 	
 	$key = (int) $bindType;
 	if (array_key_exists($key, $ESO_ITEMBINDTYPE_TEXTS)) return $ESO_ITEMBINDTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoReactionText($bindType)
+{
+	global $ESO_REACTION_TEXTS;
+	
+	$key = (int) $bindType;
+	if (array_key_exists($key, $ESO_REACTION_TEXTS)) return $ESO_REACTION_TEXTS[$key];
 	return "Unknown ($key)";
 }
 
