@@ -175,6 +175,7 @@ UESP.EsoItemSearchPopup = function ()
 	this.itemTrait = "-1";
 	this.xoffset = 0;
 	this.yoffset = 0;
+	this.version = "";
 };
 
 
@@ -570,6 +571,23 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 		$("#esoispArmorType").hide();
 		$("#esoispArmorTypeLabel").hide();
 	}
+	
+	if (this.version != "")
+	{
+		$("#esoispLevel").val("CP160");
+		$("#esoispLevelSlider").val(66);
+		$('#esoispQuality').val(5);
+		
+		$('#esoispLevel').prop('readonly', true);
+		$('#esoispLevelSlider').prop('disabled', true);
+		$('#esoispQuality').prop('disabled', true);
+	}
+	else
+	{
+		$('#esoispLevel').prop('readonly', false);
+		$('#esoispLevelSlider').prop('disabled', false);
+		$('#esoispQuality').prop('disabled', false);
+	}
 }
 
 
@@ -808,6 +826,11 @@ UESP.EsoItemSearchPopup.prototype.createSearchResult = function(itemData, itemIn
 						"";
 	var itemQualityClass = "eso_item_link_q" + quality;
 	
+	if (this.version != "")
+	{
+		itemLinkData += " version='" + this.version + "' ";
+	}
+	
 	resultHtml = 	"<div class='esoispResultRow eso_item_link " + itemQualityClass + "' " + itemLinkData + ">" + 
 						"<img class='esoispResultIcon' src='" + iconUrl + "'>" +
 						"" + niceName +
@@ -995,6 +1018,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	
 	data = data || {};
 		
+	this.version = data.version || "";
 	this.sourceElement = sourceElement;
 	this.onSelectItem = data.onSelectItem;
 	
