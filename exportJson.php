@@ -186,8 +186,8 @@ class CEsoLogJsonExport
 	public function GetQuery($table)
 	{
 		$where = array();
-		$query = "SELECT * FROM $table";
-		
+		$query = "";
+				
 		if ($table == "playerSkills")
 		{
 			$table = "minedSkills";
@@ -214,7 +214,7 @@ class CEsoLogJsonExport
 				$itemId = GetEsoTransmuteTraitItemId($this->inputTransmuteTrait, $this->inputEquipType);
 				if ($itemId == null) $this->ReportError("Error: Unknown trait {$this->inputTransmuteTrait} found!");
 				
-				$query = "SELECT traitDesc, trait, internalLevel, internalSubtype FROM minedItem WHERE itemId='$itemId' AND internalLevel='{$this->inputIntLevel}' AND internalSubtype='{$this->inputIntType}' LIMIT 1;";
+				$query = "SELECT traitDesc, trait, internalLevel, internalSubtype FROM minedItem{$this->GetTableSuffix()} WHERE itemId='$itemId' AND internalLevel='{$this->inputIntLevel}' AND internalSubtype='{$this->inputIntType}' LIMIT 1;";
 				return $query;
 			}
 			
@@ -259,7 +259,7 @@ class CEsoLogJsonExport
 			if ($idField != "") $where[] = "$idField='$id'";
 		}
 		
-		$query = "SELECT * FROM $table";
+		$query = "SELECT * FROM $table{$this->GetTableSuffix()}";
 		if (count($where) > 0) $query .= " WHERE " . implode(" AND ", $where);
 		if ($this->inputLimit > 0) $query .= " LIMIT ".$this->inputLimit." ";
 		$query .= ";";

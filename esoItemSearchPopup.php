@@ -21,6 +21,7 @@ class CEsoItemSearchPopup
 	public $inputItemQuality = -1;
 	public $inputItemIntLevel = -1;
 	public $inputItemIntType = -1;
+	public $inputVersion = "";
 	
 	public $inputItemTransmuteTrait = -1;
 	public $inputLimit = 150;
@@ -47,6 +48,12 @@ class CEsoItemSearchPopup
 	}
 	
 	
+	public function GetTableSuffix()
+	{
+		return GetEsoItemTableSuffix($this->inputVersion);
+	}
+	
+	
 	public function OutputHeader()
 	{
 		ob_start("ob_gzhandler");
@@ -67,6 +74,7 @@ class CEsoItemSearchPopup
 	
 	public function ParseInputParams ()
 	{
+		if (array_key_exists('version', $this->inputParams)) $this->inputVersion = urldecode($this->inputParams['version']);
 		if (array_key_exists('text', $this->inputParams)) $this->inputText = urldecode($this->inputParams['text']);
 		if (array_key_exists('set', $this->inputParams)) $this->inputItemSet = urldecode($this->inputParams['set']);
 		if (array_key_exists('type', $this->inputParams)) $this->inputItemType = urldecode($this->inputParams['type']);
@@ -96,8 +104,9 @@ class CEsoItemSearchPopup
 	
 	public function CreateQuery()
 	{
+		$suffix = $this->GetTableSuffix();
 		$rows = implode(",", $this->itemRows);
-		$query = "SELECT SQL_CALC_FOUND_ROWS $rows FROM minedItemSummary ";
+		$query = "SELECT SQL_CALC_FOUND_ROWS $rows FROM minedItemSummary$suffix ";
 		$whereQuery = array();
 				
 		if ($this->inputItemType != "")

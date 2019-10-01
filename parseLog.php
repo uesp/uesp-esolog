@@ -5136,8 +5136,28 @@ class EsoLogParser
 		//event{TargetChange}  level{19}  gender{2}  difficulty{1}  name{Stonechewer Skirmisher}  lastTarget{Aspect Rune}  
 		//x{0.45511141419411}  zone{Stormhaven}  y{0.47166284918785}  timeStamp{4743643569678450688}  gameTime{2655510}  
 		//userName{...}  ipAddress{...}  logTime{1396487115}  end{}
+				
+		$logEntry['rawName'] = $logEntry['name'];
+		$splitName = explode('^', $logEntry['name']);
+		$logEntry['name'] = $splitName[0];
+		$name = $logEntry['name']; 
 		
-		$name = $logEntry['name'];
+		if ($logEntry['gender'] != null)
+		{
+		}
+		else if ($splitName[1] == 'm' || $splitName[1] == 'M')
+		{
+			$logEntry['gender'] = 2;
+		}
+		else if ($splitName[1] == 'f' || $splitName[1] == 'F')
+		{
+			$logEntry['gender'] = 1;
+		}
+		else if ($splitName[1] == 'n' || $splitName[1] == 'N')
+		{
+			$logEntry['gender'] = 0;
+		}
+		
 		$npcRecord = $this->FindNPC($name);
 		
 		if ($npcRecord == null)
