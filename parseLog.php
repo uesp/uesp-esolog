@@ -94,8 +94,8 @@ class EsoLogParser
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "24pts";
+	const SKILLS_TABLESUFFIX   = "24pts";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -5544,17 +5544,22 @@ class EsoLogParser
 			}
 			else if ($minedItem['setName'] == "Shacklebreaker" || $logEntry['setName'] == "Shacklebreaker")
 			{
-				//$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
-				//$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
-				//$logEntry['setDesc5'] = "";
+			}
+			else if ($minedItem['setName'] == "Ancient Dragonguard" || $logEntry['setName'] == "Ancient Dragonguard")
+			{
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
+			}
+			else if ($minedItem['setName'] == "Perfected False God's Devotion" || $logEntry['setName'] == "Perfected False God's Devotion")
+			{
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
 			}
 			else if ($minedItem['setName'] == "Vastarie's Tutelage" || $logEntry['setName'] == "Vastarie's Tutelage")
 			{
-				//$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
-				//$logEntry['setDesc5'] = "";
 			}
 			else
 			{
@@ -5574,6 +5579,10 @@ class EsoLogParser
 				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
 				$this->lastSetCount7WarningItemId = $minedItem['itemId'];
 			}
+			
+			$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+			$minedItem['setBonusDesc5'] = $logEntry['setDesc6'] . "\n" . $logEntry['setDesc7'];
+			$minedItem['__dirty'] = true;
 		}
 		
 		$result = true;
