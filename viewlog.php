@@ -454,14 +454,14 @@ class EsoLogViewer
 			'setName' => self::FIELD_STRING,
 			'setMaxEquipCount' => self::FIELD_INT,
 			'setBonusCount' => self::FIELD_INT,
-			'setBonusDesc' => self::FIELD_INTTRANSFORM,
+			'setBonusDesc' => self::FIELD_TEXTTRANSFORM,
 			'itemSlots' => self::FIELD_STRING,
 			'itemCount' => self::FIELD_INT,
-			'setBonusDesc1' => self::FIELD_STRING,
-			'setBonusDesc2' => self::FIELD_STRING,
-			'setBonusDesc3' => self::FIELD_STRING,
-			'setBonusDesc4' => self::FIELD_STRING,
-			'setBonusDesc5' => self::FIELD_STRING,
+			'setBonusDesc1' => self::FIELD_TEXTTRANSFORM,
+			'setBonusDesc2' => self::FIELD_TEXTTRANSFORM,
+			'setBonusDesc3' => self::FIELD_TEXTTRANSFORM,
+			'setBonusDesc4' => self::FIELD_TEXTTRANSFORM,
+			'setBonusDesc5' => self::FIELD_TEXTTRANSFORM,
 	);
 	
 	
@@ -781,6 +781,11 @@ class EsoLogViewer
 			
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
+							'setBonusDesc1' => 'TransformSetBonusDesc',
+							'setBonusDesc2' => 'TransformSetBonusDesc',
+							'setBonusDesc3' => 'TransformSetBonusDesc',
+							'setBonusDesc4' => 'TransformSetBonusDesc',
+							'setBonusDesc5' => 'TransformSetBonusDesc',
 					),
 			
 					'filters' => array(
@@ -1544,6 +1549,11 @@ class EsoLogViewer
 					
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
+							'setBonusDesc1' => 'TransformSetBonusDesc',
+							'setBonusDesc2' => 'TransformSetBonusDesc',
+							'setBonusDesc3' => 'TransformSetBonusDesc',
+							'setBonusDesc4' => 'TransformSetBonusDesc',
+							'setBonusDesc5' => 'TransformSetBonusDesc',
 					),
 					
 					'filters' => array(
@@ -2149,7 +2159,13 @@ class EsoLogViewer
 		
 		if ($newRecords['filters']) 
 		{
-			$newRecords['filters']['record'] = $this->TransformPtsRecordString($newRecords['filters']['record']);
+			foreach ($newRecords['filters'] as $i => $filter)
+			{
+				if ($filter['record'] != null)
+				{
+					$newRecords['filters'][$i]['record'] = $this->TransformPtsRecordString($filter['record']);
+				}
+			}
 		}
 		
 		return $newRecords;
@@ -2500,7 +2516,7 @@ class EsoLogViewer
 		if (!$this->IsOutputHTML()) return $value;
 		
 		$itemId = $itemData['itemId'];
-		$ptsVersion = self::$ENABLE_PTS_VERSION . "pts";
+		$ptsVersion = self::ENABLE_PTS_VERSION . "pts";
 	
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=$ptsVersion\">" . $value . "</a>";
 		return $output;
