@@ -577,17 +577,17 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 	{
 		$("#esoispLevel").val("CP160");
 		$("#esoispLevelSlider").val(66);
-		$('#esoispQuality').val(5);
+		//$('#esoispQuality').val(5);
 		
 		$('#esoispLevel').prop('readonly', true);
 		$('#esoispLevelSlider').prop('disabled', true);
-		$('#esoispQuality').prop('disabled', true);
+		//$('#esoispQuality').prop('disabled', true);
 	}
 	else
 	{
 		$('#esoispLevel').prop('readonly', false);
 		$('#esoispLevelSlider').prop('disabled', false);
-		$('#esoispQuality').prop('disabled', false);
+		//$('#esoispQuality').prop('disabled', false);
 	}
 }
 
