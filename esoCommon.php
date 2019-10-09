@@ -3214,6 +3214,15 @@ $ESO_FREE_RACIAL_SKILLS = array(
 );
 
 
+if (!function_exists('imageantialias'))
+{
+	function imageantialias($image, $enabled)
+	{
+		return false;
+	}
+}
+
+
 function GetEsoUpdateVersion()
 {
 	return 23;
