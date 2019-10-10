@@ -975,6 +975,7 @@ class EsoLogViewer
 					),
 			),
 			
+			/*
 			'oldQuest' => array(
 					'displayName' => 'Old Quests',
 					'displayNameSingle' => 'Old Quest',
@@ -1048,7 +1049,7 @@ class EsoLogViewer
 									'type' => 'viewRecord',
 							),
 					),
-			),
+			), //*/
 			
 			'quest' => array(
 					'displayName' => 'Quests',
@@ -1823,8 +1824,8 @@ class EsoLogViewer
 			'Loot' => 'npcLoot',
 			'Loot Sources' => 'lootSources',
 			'NPCs' => 'npc',			
-			'Old Quests' => 'oldQuest',
-			'Old Quest Stages' => 'oldQuestStage',
+			//'Old Quests' => 'oldQuest',
+			//'Old Quest Stages' => 'oldQuestStage',
 			'Quests' => 'quest',
 			'Quest Steps' => 'questStep',
 			'Quest Conditions' => 'questCondition',
@@ -2073,13 +2074,13 @@ class EsoLogViewer
 		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
 		self::$RECORD_TYPES['item']['fields'] = self::$ITEM_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
-		self::$RECORD_TYPES['oldQuest']['fields'] = self::$OLDQUEST_FIELDS;
+		//self::$RECORD_TYPES['oldQuest']['fields'] = self::$OLDQUEST_FIELDS;
+		//self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
 		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
 		self::$RECORD_TYPES['questReward']['fields'] = self::$QUESTREWARD_FIELDS;
 		self::$RECORD_TYPES['questItem']['fields'] = self::$QUESTITEM_FIELDS;
-		self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
 		self::$RECORD_TYPES['npcLocations']['fields'] = self::$NPC_LOCATION_FIELDS;
 		self::$RECORD_TYPES['lootSources']['fields'] = self::$LOOTSOURCE_FIELDS;
