@@ -61,7 +61,7 @@ class CEsoLogJsonExport
 			"achievementCriteria" => "achievementId",
 			"achievements" => "id",
 			"book" => "bookId",
-			"quest" => "id",
+			"quest" => "internalId",
 			"questCondition" => "id",
 			"questItem" => "id",
 			"questReward" => "id",
