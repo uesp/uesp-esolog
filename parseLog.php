@@ -946,6 +946,8 @@ class EsoLogParser
 			unset(self::$MINEDITEM_FIELDS['specialType']);
 		}
 		
+		$this->log("Current date is " . date('Y-m-d H:i:s'));
+		
 		$this->salesData = new EsoSalesDataParser();
 		$this->salesData->startMicroTime = $this->startMicroTime;
 		

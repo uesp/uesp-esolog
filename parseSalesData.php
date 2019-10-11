@@ -59,6 +59,8 @@ class EsoSalesDataParser
 				
 		$this->initDatabaseWrite();
 		$this->InitLogDatabaseRead();
+		
+		$this->log("Current date is " . date('Y-m-d H:i:s'));
 				
 		$this->setInputParams();
 		$this->parseInputParams();
