@@ -1671,12 +1671,12 @@ class CEsoItemLink
 	{
 		static $WEAPON_MATCHES = array
 		(
-			"#(Deals \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",		
-			"#(restores \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
-			"#(by \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
-			"#(Grants a \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#",
+			"#(Deals \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",		
+			"#(restores \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
+			"#(by \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
+			"#(Grants a \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 		);
-		
+	
 		$newDesc = $desc;
 		$trait = $this->itemTrait;
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
@@ -1787,7 +1787,7 @@ class CEsoItemLink
 
 		if (($itemType == 2 || $weaponType == 14) && $armorFactor != 1)
 		{
-			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?:Adds up to \|c[0-9a-fA-F]{6})|(?:Adds ))([0-9]+)((?:\|r)? )#",
+			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?: by \|c[0-9a-fA-F]{6})|)([0-9\.]+)((?:\|r))#i",
 					
 				function ($matches) use ($armorFactor) {
 					$result = floor($matches[2] * $armorFactor);

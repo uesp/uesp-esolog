@@ -31,7 +31,7 @@ class EsoGetSalesImage
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
 	const WEIGHTED_SMOOTH_INTERVAL = 21;
 	
-	const MAX_ZSCORE = 3;
+	const MAX_ZSCORE = 2;
 	
 	public $db = null;
 	public $dbReadInitialized = false;
@@ -232,15 +232,15 @@ class EsoGetSalesImage
 		usort($this->soldData, array('EsoGetSalesImage','SalesDataSortSoldTimestamp'));
 		usort($this->listData, array('EsoGetSalesImage','SalesDataSortListTimestamp'));
 		
-		$this->avgData = $this->ComputeWeightedAverage($this->validSalesData);
-		$this->avgSoldData = $this->ComputeWeightedAverage($this->soldData);
-		$this->avgListData = $this->ComputeWeightedAverage($this->listData);
+		$this->avgData = $this->ComputeWeightedAverageData($this->validSalesData);
+		$this->avgSoldData = $this->ComputeWeightedAverageData($this->soldData);
+		$this->avgListData = $this->ComputeWeightedAverageData($this->listData);
 		
 		return true;
 	}
 	
 	
-	public function ComputeWeightedAverage($dataArray)
+	public function ComputeWeightedAverageData($dataArray)
 	{
 		$weighted = array();
 		$count = 0;
@@ -490,7 +490,7 @@ class EsoGetSalesImage
 			$zScoreListed = 1;
 			$isOK = true;
 			
-			if ($zScoreAll > self::MAX_ZSCORE) $isOk = false;
+			if ($zScoreAll > self::MAX_ZSCORE) $isOK = false;
 						
 			if ($sale['buyTimestamp'] > 0 && $this->soldPriceStdDev != 0)
 			{
@@ -803,7 +803,7 @@ class EsoGetSalesImage
 		
 		$lastValue = end($data);
 		
-		$x1 = self::BORDER_LEFT_MARGIN;
+		$x1 = 2;
 		$y = $this->ConvertGraphToPixelY($lastValue);
 		$x2 = $this->outputWidth - self::BORDER_RIGHT_MARGIN;
 		
@@ -821,7 +821,11 @@ class EsoGetSalesImage
 			$roundValue = round($lastValue, 2);
 		
 		imageline($image, $x1, $y, $x2, $y, $color);
-		$this->PrintText($image, $roundValue . "gp", 10, $color, $x1 + 2, $y + 2, self::ALIGN_LEFT, self::ALIGN_TOP);
+		//$this->PrintText($image, $roundValue . "gp", 10, $color, $x1 + 2, $y + 2, self::ALIGN_LEFT, self::ALIGN_TOP);
+		
+		$textBox = $this->PrintText($image, $roundValue . "gp", 10, $color, $x1, $y, self::ALIGN_LEFT, self::ALIGN_TOP);
+		imagefilledrectangle($image, $x1, $y, $x + $textBox['width'], $y + $textBox['height']);
+		$this->PrintText($image, $roundValue . "gp", 10, $color, $x1, $y, self::ALIGN_LEFT, self::ALIGN_TOP);
 		
 		return true;
 	}

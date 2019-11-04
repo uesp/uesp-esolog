@@ -18,8 +18,8 @@ class EsoViewSalesData
 	
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
-	const ESOVSD_MAXZSCORE = 3.0;
-	const ESOVSD_MAXZSCORE_WEIGHTED = 3.0;
+	const ESOVSD_MAXZSCORE = 2.0;
+	const ESOVSD_MAXZSCORE_WEIGHTED = 2.0;
 	const ESOVSD_WEIGHTED_CONSTANT = 30.0;
 	
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
@@ -1998,13 +1998,16 @@ class EsoViewSalesData
 		}
 	
 		usort($validSalesData, array('EsoViewSalesData', 'SalesDataSortTimestamp'));
-		$this->singleItemData['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
+		$price = $this->ComputeWeightedAverage($validSalesData);
+		if ($price > 0) $this->singleItemData['goodPrice'] = $price;
 			
 		usort($soldData, array('EsoViewSalesData', 'SalesDataSortSoldTimestamp'));
-		$this->singleItemData['goodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
+		$price  = $this->ComputeWeightedAverage($soldData);
+		if ($price > 0) $this->singleItemData['goodSoldPrice'] = $price;
 	
 		usort($listData, array('EsoViewSalesData', 'SalesDataSortListTimestamp'));
-		$this->singleItemData['goodListPrice'] = $this->ComputeWeightedAverage($listData);
+		$price  = $this->ComputeWeightedAverage($listData);
+		if ($price > 0) $this->singleItemData['goodListPrice'] = $price;
 		
 		$this->goodPriceAll = $this->singleItemData['goodPrice'];
 		$this->goodPriceListed = $this->singleItemData['goodListPrice'];
@@ -2016,6 +2019,8 @@ class EsoViewSalesData
 	
 	public function ComputeWeightedAverage($salesData)
 	{
+		if (count($salesData) <= 0) return -1;
+		
 		$numPoints = intval(count($salesData) / self::WEIGHTED_AVERAGE_BUCKETS);
 		if ($numPoints < self::MIN_WEIGHTED_AVERAGE_INTERVAL) $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL;
 	
@@ -2664,6 +2669,13 @@ class EsoViewSalesData
 		$output = "<a href=\"?" . $_SERVER['QUERY_STRING'] . "&output=csv\">View Data as CSV</a>";
 		return $output;
 	}
+	
+	
+	public function GetMaintenanceHtml()
+	{
+		$output = strtr(file_get_contents(__DIR__."/templates/esosales_maintenance.txt"), array());
+		return $output;
+	}
 		
 	
 	public function CreateOutputHtml()
@@ -2996,6 +3008,12 @@ class EsoViewSalesData
 	
 	public function Render()
 	{
+		/*
+		$this->OutputHtmlHeader();
+		$output = $this->GetMaintenanceHtml();
+		print ($output);
+		return; //*/
+		
 		if ($this->outputType == "csv")
 		{
 			$this->RenderCsv();

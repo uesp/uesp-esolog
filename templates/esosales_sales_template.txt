@@ -45,7 +45,8 @@
 	</div>
 	<br/>
 	<div id="esovsdSalesImage">
-		<img src="getSalesImage.php?id={itemId}&width=1024&height=600&view={viewType}&timeperiod={formTimePeriod}" width="1024" height="600">
+		<p>Creating graph sales image (this may take a while for items with many points)...</p>
+		<img src="getSalesImage.php?id={itemId}&width=1024&height=600&view={viewType}&timeperiod={formTimePeriod}" onload="onSalesImageLoad();" onerror="onSalesImageError();" width="1024" height="600">
 	</div>
 	<br/>
 	{showSalesType}

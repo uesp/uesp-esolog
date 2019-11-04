@@ -59,7 +59,6 @@ foreach ($npcIds as $i => $npcId)
 		$locCount = $row['locCount'];
 		$query = "INSERT IGNORE INTO npcLocations(npcId, zone, locCount) VALUES($npcId, '$safeZone', $locCount);";
 		$writeResult = $dbWrite->query($query);
-		
 		if (!$writeResult) print("\tError: " . $dbWrite->error . "\n");
 	}
 }

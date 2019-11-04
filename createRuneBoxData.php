@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "22pts";
+$TABLE_SUFFIX = "24pts";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
@@ -14,7 +14,7 @@ $REPLACE_PAIRS = array(
 		"Big-Eared Ginger Kitten Pet" => "Big-Eared Ginger Kitten",
 		"Psijic Glowglobe Emote" => "Psijic Glowglobe",
 		"Arena Gladiator Costume" => "Arena Gladiator",
-		"Arena Gladiator Emote" => "Gladiator Emote",
+		"Arena Gladiator Emote" => "Gladiator Taunt",
 		"Blood Spawn's Shoulder" => "Bloodspawn's Shoulder",
 		"Blood Spawn's Mask" => "Bloodspawn's Mask",
 		"Sellistrix' Shoulder" => "Sellistrix's Shoulder",
@@ -35,6 +35,7 @@ $REPLACE_PAIRS = array(
 		"Mummified Alfiq Pet" => "Grisly Mummy Tabby",
 		"Banner Emote" => "Banner",
 		"Siegemaster's" => "Siegemaster",
+		"Opal Ilambris' " => "Opal Ilambris ",
 );
 
 require("/home/uesp/secrets/esolog.secrets");
@@ -65,7 +66,10 @@ while (($row = $result->fetch_assoc()))
 		
 		if ($result2->num_rows == 0)
 		{
+			$oldSuffix = $suffix;
 			$suffix = strtr($suffix, $REPLACE_PAIRS);
+			//print("\tNew Suffix: '$oldSuffix' => '$suffix'\n");
+			
 			$safeName = $db->real_escape_string($suffix);
 			$query = "SELECT * FROM collectibles WHERE name='$safeName' LIMIT 1;";
 			$result2 = $db->query($query);

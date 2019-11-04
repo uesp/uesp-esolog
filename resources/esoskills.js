@@ -995,6 +995,8 @@ window.IsEsoSkillValidForMaelstromDWEnchant = function (skillData)
 }
 
 
+	/* Index values represent the index of the duration within the tooltip you wish to have modified.
+	 * 0 = First duration in toolip.  */
 ESO_SKILL_DURATION_MATCHINDEXES = {
 		"Veiled Strike": [ 0 ],
 		"Surprise Attack": [ 0, 1 ],
@@ -1008,6 +1010,8 @@ ESO_SKILL_DURATION_MATCHINDEXES = {
 		"Summon Shade": [ 0 ],
 		"Dark Shade": [ 0 ],
 		"Shadow Image": [ 0 ],
+		"Stonefist" : [ 0, 1 ],
+		"Stone Giant" : [ 0, 1 ],
 };
 
 
@@ -1282,7 +1286,7 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
-		match: /(healing you or up to 2 nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r over)/gi,
+		match: /(healing you or up to \|c[a-fA-F0-9]{6}[0-9]+\|r nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r over)/gi,
 	},
 	{
 		healId: "Done",
@@ -1322,6 +1326,10 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		healId2: "Received",  // TODO: ?
 		match: /(heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heal yourself or up to \|c[a-fA-F0-9]{6}[0-9]+\|r allies near the enemy for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1729,7 +1737,19 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(heal you and your group members for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(heals you and your group members for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
 		match: /(you are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r the next time)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(you are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1746,6 +1766,11 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		healId: "Done",
 		match: /(and healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
+	},
+	
+	{		//TODO: Check
+		healId: "Done",
+		match: /(you are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage)/gi,
 	},
 		
 ];
@@ -1948,11 +1973,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	for (var i = 0; i < ESO_SKILL_DAMAGEMATCHES.length; ++i)
 	{
 		var matchData = ESO_SKILL_DAMAGEMATCHES[i];
-		var thisEffectIsDot = isDot;
 		var matchIndex = 0;
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, p6, p7, p8, offset, string) 
 		{
+			var thisEffectIsDot = false;
 			matchIndex = matchIndex + 1;
 			
 			if (inputValues.Damage[matchData.damageId] == null) return string;
@@ -2008,11 +2033,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				baseFactor += inputValues.SkillLineDamage[skillLineName];
 				newRawOutput.skillLineDamageDone = inputValues.SkillLineDamage[skillLineName]; 
 			}
-			
+						
 			if (isDot || p5 != "")
 			{
-				thisEffectIsDot = true;
-				
+				thisEffectIsDot = (p5 != "");
+								
 				if (p5 == " over" && p7 != "" && inputValues.SkillDuration != null && inputValues.SkillDuration[skillData.baseName] != null)
 				{
 					var modDuration = inputValues.SkillDuration[skillData.baseName];
@@ -2099,6 +2124,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				baseFactor += inputValues.Damage.Overload;
 				newRawOutput.overloadDamage = inputValues.Damage.Overload;
 			}
+		
+			if (thisEffectIsDot && inputValues.SkillDotDamage && inputValues.SkillDotDamage[skillData.baseName])
+			{
+				baseFactor += inputValues.SkillDotDamage[skillData.baseName];
+				newRawOutput.skillDotDamage = inputValues.SkillDotDamage[skillData.baseName];
+			}
 			
 			if (amountAll != 0)	baseFactor += amountAll;
 			newRawOutput.damageDone = amountAll;
@@ -2110,7 +2141,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				modDamage += inputValues.SkillDirectDamage[skillData.baseName];
 				newRawOutput.skillDirectDamage = inputValues.SkillDirectDamage[skillData.baseName];
 			}
-						
+				
 			newRawOutput.finalDamage = Math.round(modDamage);
 			
 			rawOutput.push(newRawOutput);
@@ -2135,6 +2166,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
 		if (rawData.overloadDamage != null && rawData.overloadDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.overloadDamage*100) + "% Overload";
+		if (rawData.skillDotDamage != null && rawData.skillDotDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDotDamage*100) + "% SkillDot";
 		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";		
 		
 		if (output == "")
@@ -2170,8 +2202,10 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	var elfBaneSkill = null;
 	
 	if (inputValues == null) return newDesc;
-	if ((inputValues.TwinSlashBleedDamage == null || inputValues.TwinSlashBleedDamage == 0) && 
-		(inputValues.BleedDamage == null || inputValues.BleedDamage == 0)) return newDesc;
+	
+	if (inputValues.TwinSlashBleedDamage == 0 && 
+		inputValues.BleedDamage == 0 &&
+		inputValues.DotDamageDone.Bleed == 0) return newDesc;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
@@ -2184,13 +2218,25 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 				{
 					var newDamage = +p2;
 					var output = "";
+					var modDamage = 0;
 					
 					matchIndex++;
 					
-					if (inputValues.BleedDamage != null && inputValues.BleedDamage != 0)
-					{	
-						newDamage = Math.floor(newDamage * (1 + inputValues.BleedDamage));
-						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.BleedDamage*100) + "%";
+					if (inputValues.BleedDamage != 0)
+					{
+						modDamage += inputValues.BleedDamage;
+						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.BleedDamage*100) + "% Bleed";
+					}
+					
+					if (inputValues.DotDamageDone.Bleed != 0)
+					{
+						modDamage += inputValues.DotDamageDone.Bleed;
+						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.DotDamageDone.Bleed*100) + "% BleedDOT";
+					}
+					
+					if (modDamage != 0)
+					{
+						newDamage = Math.floor(newDamage * (1 + modDamage));
 					}
 					
 					if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage > 0)
@@ -2369,7 +2415,12 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.Set   != null) SkillFactor += inputValues.UltimateCost.Set;
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor += inputValues.UltimateCost.Buff;
 	}
-	
+	else if (mechanic == -2 && inputValues.HealthCost != null)
+	{
+		if (inputValues.HealthCost.Skill != null) SkillFactor += inputValues.HealthCost.Skill;
+		if (inputValues.HealthCost.Set   != null) SkillFactor += inputValues.HealthCost.Set;
+	}
+
 		/* DK World in Ruins Passive */
 	if (g_EsoSkillPoisonSkills && inputValues.PoisonStaminaCost)
 	{

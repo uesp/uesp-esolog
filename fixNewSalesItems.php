@@ -7,7 +7,7 @@ require_once("/home/uesp/secrets/esosalesdata.secrets");
 $db = new mysqli($uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase);
 if ($db->connect_error) die("Could not connect to mysql database!");
 
-$query = "SELECT * FROM items WHERE itemType=0;";
+$query = "SELECT * FROM items WHERE itemType=0 or name='';";
 $result = $db->query($query);
 $items = array();
 
@@ -16,13 +16,14 @@ while (($row = $result->fetch_assoc()))
 	$items[] = $row;
 }
 
-print ("Loaded ".count($items)." new items that need updating!\n");
+$totalCount = count($items);
+print ("Loaded $totalCount new items that need updating!\n");
 $count = 0;
 
 foreach ($items as $item)
 {
 	++$count;
-	if (($count % 1000) == 0) print("$count: Updating item...\n");
+	if (($count % 1000) == 0) print("$count/$totalCount: Updating item...\n");
 		
 	$itemId = $item['itemId'];
 	$intLevel = $item['internalLevel'];

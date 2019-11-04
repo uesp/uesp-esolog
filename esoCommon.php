@@ -574,7 +574,14 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		79 => "Dead-Water",
 		80 => "Honor Guard",
 		81 => "Elder Argonian",
-	
+		82 => "Coldsnap",
+		83 => "Meridian",
+		84 => "Anequina",
+		85 => "Pellitine",
+		86 => "Sunspire",
+		87 => "Moongrave Fane",
+		88 => "Stags of Z'en",
+		89 => "Dragonguard",	
 );
 
 
@@ -3225,7 +3232,7 @@ if (!function_exists('imageantialias'))
 
 function GetEsoUpdateVersion()
 {
-	return 23;
+	return 24;
 }
 
 
@@ -3357,11 +3364,11 @@ function GetEsoItemTableSuffix($version)
 			return "22";
 		case '23pts':
 			return "23pts";
+		case '23':
+			return "23";
 		case '24pts':
 			return "24pts";
 		case '24':
-			return "24";
-		case '23':
 			return "";
 	}
 

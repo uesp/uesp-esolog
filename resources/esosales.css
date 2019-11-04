@@ -252,3 +252,16 @@ a:hover {
 .esovsdMoreSalesHidden td{
 	text-align: center !important;
 }
+
+#esovsdSalesImage {
+	background-color: black;
+	position: relative;
+}
+
+#esovsdSalesImage > p {
+  position: absolute;
+  text-align: center;
+  top: 290px;
+  left: 300px;
+  color: white;
+}
