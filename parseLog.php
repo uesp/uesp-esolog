@@ -89,13 +89,14 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = ;	//v21
 	//const START_MINEITEM_TIMESTAMP = 4744307872848936960;	//v22pts 1554743017
 	//const START_MINEITEM_TIMESTAMP = 4744323044049158144;	//v22 1558360113
-	const START_MINEITEM_TIMESTAMP = 4744353489713364992;	//v23 1565618406
+	//const START_MINEITEM_TIMESTAMP = 4744353489713364992;	//v23 1565618406
+	const START_MINEITEM_TIMESTAMP = 4744378899046072320;	//v24 1571677300
 			  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "24pts";
-	const SKILLS_TABLESUFFIX   = "24pts";
+	const MINEITEM_TABLESUFFIX = "";
+	const SKILLS_TABLESUFFIX   = "";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -106,6 +107,9 @@ class EsoLogParser
 	const ONLY_PARSE_SAFEBOXES_FOUND = false;
 	const ONLY_PARSE_SHOWBOOK = false;
 	
+	public $SKIP_SALES = false;
+	public $SALES_LOG_OUTPUT = "/home/uesp/esolog/salesdata.log";
+	
 		// Start of log09100.log: 1487204716 / 4744024596682899456
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1487204716;
 	
@@ -113,7 +117,8 @@ class EsoLogParser
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1519327044;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1526912000;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1551540983;
-	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1558361897;
+	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1558361897;
+	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1572485666;	 
 	
 	public $db = null;
 	public $dbSlave = null;
@@ -129,6 +134,7 @@ class EsoLogParser
 	
 	public $logFilePath = "";
 	public $currentParseLine = 0;
+	public $currentLine = "";
 	public $currentParseFile = "";
 	public $startFileIndex = -1;
 	public $startFileLine = 0;
@@ -160,6 +166,9 @@ class EsoLogParser
 	public $startMicroTime = 0;
 	
 	public $limitDbReadsWrites = false;
+	public $PING_SALES_DB = true;
+	public $PING_SALES_DB_TIME = 30;		/* Time in seconds between pings */
+	public $lastSalesDBPingTime = 0;
 	public $waitForSlave = true;
 	public $dbWriteCount = 0;
 	public $dbReadCount = 0;
@@ -228,6 +237,12 @@ class EsoLogParser
 			"minedSkills25",
 			"minedSkills26pts",
 			"minedSkills26",
+			"minedSkills27pts",
+			"minedSkills27",
+			"minedSkills28pts",
+			"minedSkills28",
+			"minedSkills29pts",
+			"minedSkills29",
 			"collectibles",
 			"achievements",
 	);
@@ -946,9 +961,7 @@ class EsoLogParser
 			unset(self::$MINEDITEM_FIELDS['specialType']);
 		}
 		
-		$this->log("Current date is " . date('Y-m-d H:i:s'));
-		
-		$this->salesData = new EsoSalesDataParser();
+		$this->salesData = new EsoSalesDataParser(true);
 		$this->salesData->startMicroTime = $this->startMicroTime;
 		
 		$this->initDatabaseWrite();
@@ -957,6 +970,8 @@ class EsoLogParser
 		$this->setInputParams();
 		$this->parseInputParams();
 		$this->readParseIndexFile();
+		
+		$this->log("Current date is " . date('Y-m-d H:i:s'));
 	}
 	
 	
@@ -2101,8 +2116,7 @@ class EsoLogParser
 			dyeData TEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
-			INDEX index_itemId (itemId, internalLevel, internalSubtype),
-			INDEX index_enchantId (enchantId)
+			INDEX index_itemId (itemId, internalLevel, internalSubtype)
 		);";
 		
 		$this->lastQuery = $query;
@@ -2592,6 +2606,7 @@ class EsoLogParser
 		$result &= $this->saveUsers();
 		$result &= $this->saveIPAddresses();
 		$result &= $this->SaveLogInfo();
+		
 		$result &= $this->salesData->SaveUpdatedGuilds();
 		$result &= $this->salesData->SaveUpdatedItems();		
 				
@@ -2864,6 +2879,7 @@ class EsoLogParser
 		
 			if ($name != "")
 			{
+				$name = explode('^', $name)[0];
 				$logEntry['name'] = $name;
 				$npcRecord = $this->FindNPC($name);
 					
@@ -4427,6 +4443,7 @@ class EsoLogParser
 	
 	public function FindNPC ($name)
 	{
+		
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM npc WHERE name='$safeName';";
 		$this->lastQuery = $query;
@@ -5290,6 +5307,7 @@ class EsoLogParser
 			if (array_key_exists('setDesc4', $logEntry) && $logEntry['setDesc4'] != "") $highestSetDesc = $logEntry['setDesc4'];
 			if (array_key_exists('setDesc5', $logEntry) && $logEntry['setDesc5'] != "") $highestSetDesc = $logEntry['setDesc5'];
 			if (array_key_exists('setDesc6', $logEntry) && $logEntry['setDesc6'] != "") $highestSetDesc = $logEntry['setDesc6'];
+			if (array_key_exists('setDesc7', $logEntry) && $logEntry['setDesc7'] != "") $highestSetDesc = $logEntry['setDesc7'];
 			
 			if ($highestSetDesc != "")
 			{
@@ -5528,7 +5546,32 @@ class EsoLogParser
 		$this->ParseMinedItemLog($logEntry);
 		$this->MergeMineItemLogToDb($minedItem, $logEntry);
 		
-		if (array_key_exists('setDesc6', $logEntry))
+		if (array_key_exists('setDesc7', $logEntry))
+		{
+			if ($minedItem['itemId'] != $this->lastSetCount7WarningItemId)
+			{
+				$setName = $logEntry['setName'];
+				$setCount = $logEntry['setBonusCount'];
+				$itemId = $minedItem['itemId'];
+				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
+				$this->lastSetCount7WarningItemId = $minedItem['itemId'];
+			}
+			
+			if ($minedItem['setName'] == "New Moon Acolyte" || $logEntry['setName'] == "New Moon Acolyte")
+			{
+				$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc7'];
+			}
+			else
+			{
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'] . "\n" . $logEntry['setDesc7'];
+			}
+			
+			$minedItem['__dirty'] = true;
+		}
+		else if (array_key_exists('setDesc6', $logEntry))
 		{
 			if ($minedItem['itemId'] != $this->lastSetCount6WarningItemId)
 			{
@@ -5568,22 +5611,6 @@ class EsoLogParser
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 			}
 			
-			$minedItem['__dirty'] = true;
-		}
-		
-		if (array_key_exists('setDesc7', $logEntry))
-		{
-			if ($minedItem['itemId'] != $this->lastSetCount7WarningItemId)
-			{
-				$setName = $logEntry['setName'];
-				$setCount = $logEntry['setBonusCount'];
-				$itemId = $minedItem['itemId'];
-				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
-				$this->lastSetCount7WarningItemId = $minedItem['itemId'];
-			}
-			
-			$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
-			$minedItem['setBonusDesc5'] = $logEntry['setDesc6'] . "\n" . $logEntry['setDesc7'];
 			$minedItem['__dirty'] = true;
 		}
 		
@@ -5656,7 +5683,32 @@ class EsoLogParser
 		
 		$this->MergeMineItemLogToDb($minedItem, $mergedLogEntry);
 		
-		if (array_key_exists('setDesc6', $mergedLogEntry))
+	 	if (array_key_exists('setDesc7', $mergedLogEntry))
+		{
+			if ($minedItem['itemId'] != $this->lastSetCount7WarningItemId)
+			{
+				$setName = $mergedLogEntry['setName'];
+				$setCount = $mergedLogEntry['setBonusCount'];
+				$itemId = $minedItem['itemId'];
+				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
+				$this->lastSetCount7WarningItemId = $minedItem['itemId'];
+			}
+			
+			if ($minedItem['setName'] == "New Moon Acolyte" || $mergedLogEntry['setName'] == "New Moon Acolyte")
+			{
+				$minedItem['setBonusDesc3'] = $mergedLogEntry['setDesc3'] . "\n" . $mergedLogEntry['setDesc4'];
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc7'];
+			}
+			else
+			{
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'] . "\n" . $mergedLogEntry['setDesc7'];
+			}
+			
+			$minedItem['__dirty'] = true;
+		}
+		else if (array_key_exists('setDesc6', $mergedLogEntry))
 		{
 			if ($minedItem['itemId'] != $this->lastSetCount6WarningItemId)
 			{
@@ -5667,7 +5719,26 @@ class EsoLogParser
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
 				
-			if ($minedItem['setName'] == "Amberplasm")
+			if ($minedItem['setName'] == "Amberplasm" || $mergedLogEntry['setName'] == "Amberplasm")
+			{
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+			}
+			else if ($minedItem['setName'] == "Shacklebreaker" || $mergedLogEntry['setName'] == "Shacklebreaker")
+			{
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
+			}
+			else if ($minedItem['setName'] == "Ancient Dragonguard" || $mergedLogEntry['setName'] == "Ancient Dragonguard")
+			{
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+			}
+			else if ($minedItem['setName'] == "Perfected False God's Devotion" || $mergedLogEntry['setName'] == "Perfected False God's Devotion")
+			{
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+			}
+			else if ($minedItem['setName'] == "Vastarie's Tutelage" || $mergedLogEntry['setName'] == "Vastarie's Tutelage")
 			{
 				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
@@ -5676,9 +5747,12 @@ class EsoLogParser
 			{
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
 			}
+			
 				
 			$minedItem['__dirty'] = true;
 		}
+		
+		
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
@@ -7003,6 +7077,9 @@ class EsoLogParser
 		$name = $logEntry['target'];
 		if ($name == "") return false;
 		
+		$name = explode('^', $name)[0];
+		$logEntry['name'] = $name;
+		
 		$npcRecord = $this->FindNPC($name);
 		
 		if ($npcRecord == null)
@@ -7058,6 +7135,23 @@ class EsoLogParser
 	public function IsValidUser ($logEntry)
 	{
 		if ($this->currentUser['name'] != "Reorx" && $this->currentUser['name'] != "Reorx2") return $this->reportLogParseError("Ignoring {$logEntry['event']} from user ".$this->currentUser['name']."!");
+		return true;
+	}
+	
+	
+	public function CheckPingSalesDB()
+	{
+		if (!$this->PING_SALES_DB) return false;
+			
+		$now = time();
+		$diffTime = $now - $this->lastSalesDBPingTime;
+		
+		if ($diffTime < $this->PING_SALES_DB_TIME) return false;
+		
+		$this->salesData->Ping();
+		$this->log("\t{$this->currentParseLine}: Pinged sales db.");
+		
+		$this->lastSalesDBPingTime = $now;
 		return true;
 	}
 	
@@ -7213,9 +7307,12 @@ class EsoLogParser
 		
 		if ($this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 > 0 && $logEntry['timeStamp1'] > 0)
 		{
-			if ($logEntry['timeStamp1'] < $this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1) return false;
+			if ($logEntry['timeStamp1'] < $this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1) 
+			{
+				return $this->reportLogParseError("Skipping old log entry ({$logEntry['timeStamp1']})!");
+			}
 		}
-				
+		
 		if (self::ONLY_PARSE_MINEDITEMS)
 		{
 			switch ($logEntry['event'])
@@ -7334,6 +7431,23 @@ class EsoLogParser
 			
 			$skipLogEntryCreate = true;
 		}
+		else if ($this->SKIP_SALES)
+		{
+			switch ($logEntry['event'])
+			{
+				case "GuildSummary":
+				case "GuildSale":
+				case "GuildSaleSearchInfo":
+				case "GuildSaleSearchEntry":
+				case "GuildSaleListingEntry::Cancel":
+				case "GuildSaleListingInfo":
+				case "GuildSaleListingEntry":
+					file_put_contents($this->SALES_LOG_OUTPUT, $this->currentLine, FILE_APPEND | LOCK_EX);
+					return true;
+				default:
+					break;
+			}
+		}
 		
 		if (!$this->isValidLogEntry($logEntry)) return false;
 		
@@ -7341,6 +7455,8 @@ class EsoLogParser
 		{
 			$this->WaitForSlaveDatabase();
 		}
+		
+		if ($this->PING_SALES_DB) $this->CheckPingSalesDB();
 		
 		$user = &$this->getUserRecord($logEntry['userName']);
 		$ipAddress = &$this->getIPAddressRecord($logEntry['ipAddress']);
@@ -7670,6 +7786,7 @@ class EsoLogParser
 			$lineCount = substr_count($value, "\n") + 1;
 			$totalLineCount += $lineCount;
 			$this->currentParseLine = $totalLineCount;
+			$this->currentLine = $value;
 			
 			if ($this->startFileIndex == $fileIndex && $totalLineCount < $this->startFileLine)
 			{
@@ -7893,6 +8010,7 @@ class EsoLogParser
 				{
 					$this->logFilePath = rtrim($e[0], '/') . '/';
 					$foundPath = true;
+					print("Using log file path: {$this->logFilePath}\n");
 				}
 				else
 				{

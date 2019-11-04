@@ -14,7 +14,7 @@ class EsoSalesDataParser
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
 	const ESD_LISTTIME_RANGE = 10;
 	
-	const MAX_ZSCORE = 3.0;
+	const MAX_ZSCORE = 2.0;
 	
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
@@ -22,6 +22,7 @@ class EsoSalesDataParser
 	public $server = "NA";
 	
 	public $db = null;
+	public $dbRead = null;
 	public $dbSlave = null;
 	public $dbLog = null;
 	private $dbReadInitialized  = false;
@@ -51,19 +52,32 @@ class EsoSalesDataParser
 	public $maxSlaveLagChecks = 10;
 	
 	
-	public function __construct ()
+	public function __construct ($quiet)
 	{
 		$this->Lua = new Lua();
 		
 		$this->startMicroTime = microtime(true);
-				
+		
+		$this->initDatabaseRead();
 		$this->initDatabaseWrite();
 		$this->InitLogDatabaseRead();
 		
-		$this->log("Current date is " . date('Y-m-d H:i:s'));
+		if ($quiet)
+			$this->logQuiet("Current date is " . date('Y-m-d H:i:s'));
+		else
+			$this->log("Current date is " . date('Y-m-d H:i:s'));
 				
 		$this->setInputParams();
 		$this->parseInputParams();
+	}
+	
+	
+	public function Ping()
+	{
+		if ($this->db) $this->db->ping();
+		if ($this->dbRead) $this->dbRead->ping();
+		if ($this->dbSlave) $this->dbSlave->ping();
+		if ($this->dbLog) $this->dbLog->ping();
 	}
 	
 	
@@ -79,6 +93,16 @@ class EsoSalesDataParser
 	}
 	
 	
+	public function logQuiet ($msg)
+	{
+		$currentMicroTime = microtime(true);
+		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		
+		$result = file_put_contents(self::ESD_OUTPUTLOG_FILENAME, "$diffTime: $msg\n", FILE_APPEND | LOCK_EX);
+		return TRUE;
+	}
+	
+	
 	public function reportError ($errorMsg)
 	{
 		$this->log($errorMsg);
@@ -88,6 +112,19 @@ class EsoSalesDataParser
 			$this->log("\tDB Error:" . $this->db->error);
 			$this->log("\tLast Query:" . $this->lastQuery);
 		}
+		
+		if ($this->dbRead != null && $this->dbRead->error)
+		{
+			$this->log("\tDB Read Error:" . $this->dbRead->error);
+			$this->log("\tLast Query:" . $this->lastQuery);
+		}
+		
+		if ($this->dbLog != null && $this->dbLog->error)
+		{
+			$this->log("\tDB Log Error:" . $this->dbLog->error);
+			$this->log("\tLast Query:" . $this->lastQuery);
+		}
+		
 		return false;
 	}
 	
@@ -95,28 +132,31 @@ class EsoSalesDataParser
 	private function initDatabaseWrite ()
 	{
 		global $uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase;
-		global $uespEsoSalesDataDatabase;
 		
-		$database = $uespEsoSalesDataDatabase;
-	
 		if ($this->dbWriteInitialized) return true;
 	
-		if ($this->dbReadInitialized)
-		{
-			$this->db->close();
-			unset($this->db);
-			$this->db = null;
-			$this->dbReadInitialized = false;
-		}
-	
-		$this->db = new mysqli($uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $database);
+		$this->db = new mysqli($uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase);
 		if ($db->connect_error) return $this->reportError("Could not connect to mysql database!");
 	
-		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = true;
 			
 		if (self::SKIP_CREATE_TABLES) return true;
 		return $this->createTables();
+	}
+	
+	
+	private function initDatabaseRead ()
+	{
+		global $uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase;
+		
+		if ($this->dbReadInitialized) return true;
+	
+		$this->dbRead = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase);
+		if ($db->connect_error) return $this->reportError("Could not connect to mysql read database!");
+	
+		$this->dbReadInitialized = true;
+
+		return true;
 	}
 	
 	
@@ -245,6 +285,7 @@ class EsoSalesDataParser
 						listTimestamp INT UNSIGNED NOT NULL,
 						buyerName TINYTEXT NOT NULL,
 						buyTimestamp INT UNSIGNED NOT NULL,
+						timestamp INT UNSIGNED NOT NULL,
 						eventId BIGINT NOT NULL,
 						uniqueId BIGINT NOT NULL DEFAULT 0,
 						price INTEGER NOT NULL,
@@ -255,7 +296,8 @@ class EsoSalesDataParser
 						INDEX unique_entry1(server(3), itemId, guildId, listTimestamp, sellerName(24)),
 						INDEX unique_entry2(server(3), itemId, guildId, eventId),
 						INDEX unique_entry3(uniqueId),
-						INDEX unique_itemid(itemId)
+						INDEX unique_itemid(itemId),
+						INDEX timestamp(itemId, timestamp)
 					);";
 		
 		$this->lastQuery = $query;
@@ -278,7 +320,7 @@ class EsoSalesDataParser
 		$safeServer = $this->db->real_escape_string($server);
 		
 		$this->lastQuery = "SELECT * FROM guilds WHERE server=\"$safeServer\" AND name=\"$safeName\" LIMIT 1;";
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbRead->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load guilds record!");
 		if ($result->num_rows == 0) return false;
 		
@@ -298,6 +340,7 @@ class EsoSalesDataParser
 		$safeServer = $this->db->real_escape_string($server);
 		
 		$this->lastQuery = "INSERT INTO guilds(server, name) VALUES(\"$server\", \"$safeName\");";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create guilds record!");
 		
@@ -369,7 +412,7 @@ class EsoSalesDataParser
 		$this->lastQuery .= "numMembers=$numMembers, lastStoreLocTime=$lastStoreLocTime, foundedDate=$foundedDate, description=\"$desc\", ";
 		$this->lastQuery .= "totalPurchases=$totalPurchases, totalSales=$totalSales ";
 		$this->lastQuery .= "WHERE id=$id;";
-		
+				
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to save guild record!");
 		
@@ -438,11 +481,12 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function LoadSalesForItem($server, $itemId)
+	public function LoadAllSalesForItem($server, $itemId)
 	{
-		$query = "SELECT price, qnt, listTimestamp, buyTimestamp, eventId FROM sales WHERE server='$server' AND itemId='$itemId';";
+		//$query = "SELECT price, qnt, listTimestamp, buyTimestamp, eventId FROM sales WHERE server='$server' AND itemId='$itemId';";
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND server='$server';";
 		
-		$result = $this->db->query($query);
+		$result = $this->dbRead->query($query);
 		if ($result === false) return $this->reportError("Failed to load sales for item $server:$itemId!");
 		
 		if ($result->num_rows == 0) 
@@ -456,11 +500,99 @@ class EsoSalesDataParser
 		while (($row = $result->fetch_assoc()))
 		{
 			$row['unitPrice'] = $row['price'] / $row['qnt'];
-			if ($row['buyTimestamp']  > 0) $row['timestamp'] = $row['buyTimestamp'];
-			if ($row['listTimestamp'] > 0) $row['timestamp'] = $row['listTimestamp'];
+			//if ($row['buyTimestamp']  > 0) $row['timestamp'] = $row['buyTimestamp'];
+			//if ($row['listTimestamp'] > 0) $row['timestamp'] = $row['listTimestamp'];
 
 			$salesData[] = $row;
 		}
+		
+		return $salesData;
+	}
+	
+	
+	public function Load30DaysSalesForItem($server, $itemId)
+	{
+		$timestamp = time() - 30*86400;
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND timestamp>'$timestamp' AND server='$server';";
+		
+		$result = $this->dbRead->query($query);
+		if ($result === false) return $this->reportError("Failed to load 30 days of sales for item $server:$itemId!");
+		
+		if ($result->num_rows == 0) 
+		{
+			$this->reportError("No sales found for item $server:$itemId!");
+			return false;
+		}
+		
+		$salesData = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			$salesData[] = $row;
+		}
+		
+		return $salesData;
+	}
+	
+	
+	public function LoadDaysSalesForItem($server, $itemId, $days)
+	{
+		if ($days <= 0) $days = 1;
+		$timestamp = time() - $days*86400;
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND timestamp>'$timestamp' AND server='$server';";
+		
+		$result = $this->dbRead->query($query);
+		if ($result === false) return $this->reportError("Failed to load $days days of sales for item $server:$itemId!");
+		
+		if ($result->num_rows == 0) 
+		{
+			$this->reportError("No sales found for item $server:$itemId!");
+			return false;
+		}
+		
+		$salesData = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			$salesData[] = $row;
+		}
+		
+		return $salesData;
+	}
+	
+	
+	public function LoadCountSalesForItem($server, $itemId, $count = 100)
+	{
+		$salesData = array();
+		if ($count <= 0) $count = 1;
+		
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND server='$server' AND listTimestamp>0 ORDER BY timestamp DESC LIMIT $count;";
+		$result = $this->dbRead->query($query);
+		if ($result === false) return $this->reportError("Failed to load latest #$count sales for item $server:$itemId!");
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			$salesData[] = $row;
+		}
+		
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND server='$server' AND buyTimestamp>0 ORDER BY timestamp DESC LIMIT $count;";
+		$result = $this->dbRead->query($query);
+		if ($result === false) return $this->reportError("Failed to load latest #$count sales for item $server:$itemId!");
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			$salesData[] = $row;
+		}
+			
+		if (count($salesData) == 0) 
+		{
+			$this->reportError("No sales found for item $server:$itemId!");
+			return false;
+		}		
 		
 		return $salesData;
 	}
@@ -484,10 +616,18 @@ class EsoSalesDataParser
 	}
 	
 	
-	public function UpdateItemGoodPrice(&$item, $output = false)
+	public function UpdateItemGoodPrice(&$item, $output = false, $days = 30)
 	{
-		$salesData = $this->LoadSalesForItem($item['server'], $item['id']);
-		if ($salesData === false) return false;
+		//$salesData = $this->LoadAllSalesForItem($item['server'], $item['id']);
+		//$salesData = $this->Load30DaysSalesForItem($item['server'], $item['id']);
+		$salesData = $this->LoadDaysSalesForItem($item['server'], $item['id'], $days);
+		//$salesData = $this->LoadCountSalesForItem($item['server'], $item['id'], $days);
+		
+		if ($salesData === false) 
+		{
+			$salesData = $this->LoadCountSalesForItem($item['server'], $item['id'], 100);
+			if ($salesData === false) return false;
+		}
 		
 		$this->lastLoadedSalesData = $salesData;
 		
@@ -521,13 +661,16 @@ class EsoSalesDataParser
 		}
 		
 		usort($validSalesData, array('EsoSalesDataParser', 'SalesDataSortTimestamp'));
-		$item['goodPrice'] = $this->ComputeWeightedAverage($validSalesData);
+		$price = $this->ComputeWeightedAverage($validSalesData);
+		if ($price > 0) $item['goodPrice'] = $price;
 		
 		usort($soldData, array('EsoSalesDataParser', 'SalesDataSortSoldTimestamp'));
-		$item['goodSoldPrice'] = $this->ComputeWeightedAverage($soldData);
+		$price = $this->ComputeWeightedAverage($soldData);
+		if ($price > 0) $item['goodSoldPrice'] = $price;
 		
 		usort($listData, array('EsoSalesDataParser', 'SalesDataSortListTimestamp'));
-		$item['goodListPrice'] = $this->ComputeWeightedAverage($listData);
+		$price = $this->ComputeWeightedAverage($listData);
+		if ($price > 0) $item['goodListPrice'] = $price;
 		
 		if ($output) print("\t\tGood Prices: {$item['goodPrice']}, {$item['goodSoldPrice']}, {$item['goodListPrice']} \n");
 		
@@ -537,6 +680,8 @@ class EsoSalesDataParser
 	
 	public function ComputeWeightedAverage($salesData)
 	{
+		if (count($salesData) <= 0) return -1;
+		
 		$numPoints = intval(count($salesData) / self::WEIGHTED_AVERAGE_BUCKETS); 
 		if ($numPoints < self::MIN_WEIGHTED_AVERAGE_INTERVAL) $numPoints = self::MIN_WEIGHTED_AVERAGE_INTERVAL;
 		
@@ -697,8 +842,8 @@ class EsoSalesDataParser
 			$zScoreListed = 1;
 			$isOK = true;
 				
-			if ($zScoreAll > self::MAX_ZSCORE) $isOk = false;
-	
+			if ($zScoreAll > self::MAX_ZSCORE) $isOK = false;
+			
 			if ($sale['buyTimestamp'] > 0 && $stats['soldPriceStdDev'] != 0)
 			{
 				$zScoreSold = abs(($unitPrice - $stats['soldAvgPrice']) / $stats['soldPriceStdDev']);
@@ -734,15 +879,16 @@ class EsoSalesDataParser
 	public function SaveUpdatedItems()
 	{
 		$itemCount = 0;
+		$totalCount = count($this->itemData);
 		
-		$this->log("Updating all modified items...");
+		$this->log("Updating all modified items...");		
 		
 		foreach ($this->itemData as $cacheId => &$itemData)
 		{
 			if ($itemData['__dirty'] !== true) continue;
 			++$itemCount;
 			
-			$this->log("\tUpdating item {$itemData['id']}...");
+			$this->log("\t$itemCount/$totalCount) Updating item {$itemData['id']}...");
 			
 			$this->UpdateItemGoodPrice($itemData, false);
 			
@@ -767,21 +913,21 @@ class EsoSalesDataParser
 		$extraData = $this->db->real_escape_string($extraData);
 		
 		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='$level' AND quality='$quality' AND trait='$trait' AND potionData='$potionData' AND extraData='$extraData' LIMIT 1;";
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbRead->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
 		
 			/* Check for recipe with a forced level of 1 */
 		if ($result->num_rows == 0) 
 		{
 			$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='1' AND quality='$quality' AND trait='$trait' AND potionData='$potionData' AND extraData='$extraData' AND itemType=29 LIMIT 1;";
-			$result = $this->db->query($this->lastQuery);
+			$result = $this->dbRead->query($this->lastQuery);
 			if ($result === FALSE) return $this->reportError("Failed to load recipe record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
 			
 				/* Check for potion/poison with a forced quality of 1 */
 			if ($result->num_rows == 0)
 			{
 				$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND level='$level' AND quality='1' AND trait='$trait' AND potionData='$potionData' AND extraData='$extraData' AND (itemType=7 OR itemType=30) LIMIT 1;";
-				$result = $this->db->query($this->lastQuery);
+				$result = $this->dbRead->query($this->lastQuery);
 				if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$level:$quality:$trait:$potionData:$extraData!");
 				if ($result->num_rows == 0) return false;
 			}
@@ -813,8 +959,34 @@ class EsoSalesDataParser
 		$extraData = $this->db->real_escape_string($extraData);
 		
 		$this->lastQuery = "SELECT * FROM items WHERE server='$server' AND itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' and potionData='$itemPotionData' AND extraData='$extraData' LIMIT 1;";
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbRead->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load items record matching $server:$itemId:$itemIntLevel:$itemIntType:$itemPotionData:$extraData!");
+		
+		if ($result->num_rows == 0) return false;
+			
+		$rowData = $result->fetch_assoc();
+		$rowData['__dirty'] = false;
+		
+		$rowData['countPurchases'] = intval($rowData['countPurchases']);
+		$rowData['countSales'] = intval($rowData['countSales']);
+		$rowData['countItemPurchases'] = intval($rowData['countItemPurchases']);
+		$rowData['countItemSales'] = intval($rowData['countItemSales']);
+		$rowData['sumSales'] = floatval($rowData['sumSales']);
+		$rowData['sumPurchases'] = floatval($rowData['sumPurchases']);
+		
+		$rowData['extraData'] = $extraData;
+		
+		return $rowData;
+	}
+	
+	
+	public function LoadItemById($itemId, $extraData = "")
+	{
+		$itemId = $this->db->real_escape_string($itemId);
+		
+		$this->lastQuery = "SELECT * FROM items WHERE id='$itemId';";
+		$result = $this->dbRead->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to load items record with id #$itemId!");
 		
 		if ($result->num_rows == 0) return false;
 			
@@ -916,9 +1088,10 @@ class EsoSalesDataParser
 		
 		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, internalLevel, internalSubType, extraData) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$potionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$internalLevel\", \"$internalSubType\", \"$extraData\");";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
-		
+				
 		$this->dbWriteCount++;
 		
 		$itemData = array();
@@ -1028,9 +1201,10 @@ class EsoSalesDataParser
 		
 		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, extraData,) ";
 		$this->lastQuery .= "VALUES('$server', '$itemId', '$itemPotionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$extraData\");";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
-		
+				
 		$this->dbWriteCount++;
 		
 		$itemData = array();
@@ -1193,7 +1367,7 @@ class EsoSalesDataParser
 			$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\" LIMIT 1;";
 		}
 		
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbRead->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$safeTime:$safeName!");
 		
 		if ($result->num_rows == 0) return false;
@@ -1229,7 +1403,7 @@ class EsoSalesDataParser
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to update uniqueId '$uniqueId' sales entry matching $itemMyId:$guildId:$safeTime:$safeName!");
-		
+				
 		return true;
 	}
 		
@@ -1244,7 +1418,7 @@ class EsoSalesDataParser
 		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND sellerName=\"$uniqueId\" LIMIT 1;";
 		//$this->lastQuery = "SELECT * FROM sales WHERE uniqueId=\"$uniqueId\" LIMIT 1;";
 		
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbRead->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$uniqueId!");
 		
 		if ($result->num_rows == 0) return false;
@@ -1258,13 +1432,13 @@ class EsoSalesDataParser
 	
 	public function LoadSale($itemMyId, $guildId, $eventId)
 	{
-		$safeEventId = $this->db->real_escape_string($eventId);
-		$server = $this->db->real_escape_string($this->server);
-		$itemMyId = $this->db->real_escape_string($itemMyId);
-		$guildId = $this->db->real_escape_string($guildId);
+		$safeEventId = $this->dbRead->real_escape_string($eventId);
+		$server = $this->dbRead->real_escape_string($this->server);
+		$itemMyId = $this->dbRead->real_escape_string($itemMyId);
+		$guildId = $this->dbRead->real_escape_string($guildId);
 				
 		$this->lastQuery = "SELECT * FROM sales WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND eventId='$safeEventId' LIMIT 1;";
-		$result = $this->db->query($this->lastQuery);
+		$result = $this->dbRead->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load sales record matching $itemMyId:$guildId:$eventId!");
 	
 		if ($result->num_rows == 0) return false;
@@ -1291,11 +1465,12 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 		
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$buyTimestamp');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$buyTimestamp');";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
-		
+				
 		$this->dbWriteCount++;
 
 		++$guildData['totalPurchases'];
@@ -1334,11 +1509,12 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 	
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, eventId, price, qnt, itemLink, lastSeen) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$timestamp');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$timestamp');";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
-		
+				
 		$this->dbWriteCount++;
 	
 		$guildData['totalPurchases'] += 1;
@@ -1378,11 +1554,12 @@ class EsoSalesDataParser
 		$uniqueId = 0;
 		if ($saleData['uniqueId']) $uniqueId = $this->db->real_escape_string($saleData['uniqueId']);
 		
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, eventId, price, qnt, itemLink, lastSeen, uniqueId) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp, '$uniqueId');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen, uniqueId) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp, '$uniqueId');";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");
-		
+				
 		$this->dbWriteCount++;
 	
 		$guildData['totalSales'] += 1;
@@ -1583,13 +1760,13 @@ class EsoSalesDataParser
 		do {
 			$query = "SHOW SLAVE STATUS;";
 			$result = $this->dbSlave->query($query);
-			if ($result === false) return $this->reportError("Failed to query database slave for status!");
+			if ($result === false) return $this->reportError("Failed to query database slave for status!\n" . $this->dbSlave->error);
 			
 			$slaveData = $result->fetch_assoc();
 			
 			$query = "SHOW MASTER STATUS;";
 			$result = $this->db->query($query);
-			if ($result === false) return $this->reportError("Failed to query database master for status!");
+			if ($result === false) return $this->reportError("Failed to query database master for status!\n" . $this->db->error);
 			
 			$masterData = $result->fetch_assoc();
 			

@@ -38,10 +38,21 @@ function EsoSalesCopyToClipboard(self)
 }
 
 
+function onSalesImageLoad(e)
+{
+	$("#esovsdSalesImage p").hide();
+}
+
+
+function onSalesImageError(e)
+{
+	$("#esovsdSalesImage p").text("Failed to load sales graph image!");
+}
+
 
 $( document ).ready(function() 
 {
-
+	
 	$('.esovsd_copyprice').click(function() {
 		EsoSalesCopyToClipboard(this);
 	});

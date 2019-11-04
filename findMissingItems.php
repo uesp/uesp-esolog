@@ -7,12 +7,12 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "23";
-$VERSION = "23";
+$TABLEPREFIX = "24";
+$VERSION = "24";
 $FIRSTID = 3;
 $LASTID = 170000;
-$MAGICCOUNT = 1483;
-$MAGICCOUNT = 1533;
+//$MAGICCOUNT = 1483;
+//$MAGICCOUNT = 1533;
 $MAGICCOUNT = 1532;
 
 $luaFunctionCount = 1;
@@ -32,6 +32,7 @@ while ($row = $result->fetch_assoc())
 print("Found ".count($checkData)." check item rows!\n");
 
 $output = "";
+$del_output = "";
 $output .= "uespLog.MineSingleItemSafe_FinishCallback = uespLog.StartNextMineTest\n";
 $output .= "function uespminetest$luaFunctionCount()\n";
 
@@ -64,6 +65,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	else if ($idCheck == null && $itemCount > 0)
 	{
 		print("\t$id: Item data where it should be missing ($itemCount)!\n");
+		$del_output .= "$id\n";
 	}
 		
 	if ($fixItem)
@@ -87,4 +89,9 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 $output .= "\tuespLog.Msg('Done fixing mined items...')\n";
 $output .= "end\n";
 file_put_contents("fixitems.lua", $output, 0);
+
+if ($del_output != "")
+{
+	file_put_contents("delitems.txt", $del_output, 0);
+}
 

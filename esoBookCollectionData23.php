@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 64,
-						'numBooks' => 878 
+						'numCollect' => 60,
+						'numBooks' => 822 
 				),
 				1 => array (
 						'id' => 43,
@@ -3794,70 +3794,6 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				),
 				39 => array (
-						'id' => 124,
-						'name' => 'Refabricated Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								4665 => array (
-										'title' => 'Crafting Motif 53: Refabricated Axes',
-										'icon' => '/esoui/art/icons/lore_book2_detail1_color2.dds' 
-								),
-								4666 => array (
-										'title' => 'Crafting Motif 53: Refabricated Belts',
-										'icon' => '/esoui/art/icons/lore_book2_detail3_color1.dds' 
-								),
-								4667 => array (
-										'title' => 'Crafting Motif 53: Refabricated Boots',
-										'icon' => '/esoui/art/icons/lore_book2_detail5_color4.dds' 
-								),
-								4668 => array (
-										'title' => 'Crafting Motif 53: Refabricated Bows',
-										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
-								),
-								4669 => array (
-										'title' => 'Crafting Motif 53: Refabricated Chests',
-										'icon' => '/esoui/art/icons/lore_book1_detail5_color2.dds' 
-								),
-								4670 => array (
-										'title' => 'Crafting Motif 53: Refabricated Daggers',
-										'icon' => '/esoui/art/icons/lore_book2_detail2_color4.dds' 
-								),
-								4671 => array (
-										'title' => 'Crafting Motif 53: Refabricated Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail5_color3.dds' 
-								),
-								4672 => array (
-										'title' => 'Crafting Motif 53: Refabricated Helms',
-										'icon' => '/esoui/art/icons/lore_book4_detail5_color2.dds' 
-								),
-								4673 => array (
-										'title' => 'Crafting Motif 53: Refabricated Legs',
-										'icon' => '/esoui/art/icons/lore_book2_detail2_color2.dds' 
-								),
-								4674 => array (
-										'title' => 'Crafting Motif 53: Refabricated Maces',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
-								),
-								4675 => array (
-										'title' => 'Crafting Motif 53: Refabricated Shields',
-										'icon' => '/esoui/art/icons/lore_book5_detail2_color5.dds' 
-								),
-								4676 => array (
-										'title' => 'Crafting Motif 53: Refabricated Shoulders',
-										'icon' => '/esoui/art/icons/lore_book3_detail5_color1.dds' 
-								),
-								4677 => array (
-										'title' => 'Crafting Motif 53: Refabricated Staves',
-										'icon' => '/esoui/art/icons/lore_book1_detail4_color5.dds' 
-								),
-								4678 => array (
-										'title' => 'Crafting Motif 53: Refabricated Swords',
-										'icon' => '/esoui/art/icons/lore_book5_detail2_color4.dds' 
-								) 
-						) 
-				),
-				40 => array (
 						'id' => 125,
 						'name' => 'Bloodforge Style',
 						'numBooks' => 14,
@@ -3921,7 +3857,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				41 => array (
+				40 => array (
 						'id' => 126,
 						'name' => 'Dreadhorn Style',
 						'numBooks' => 14,
@@ -3985,7 +3921,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				42 => array (
+				41 => array (
 						'id' => 127,
 						'name' => 'Apostle Style',
 						'numBooks' => 14,
@@ -4049,7 +3985,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				43 => array (
+				42 => array (
 						'id' => 128,
 						'name' => 'Ebonshadow Style',
 						'numBooks' => 14,
@@ -4113,7 +4049,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				44 => array (
+				43 => array (
 						'id' => 130,
 						'name' => 'Worm Cult Style',
 						'numBooks' => 14,
@@ -4177,7 +4113,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				45 => array (
+				44 => array (
 						'id' => 131,
 						'name' => 'Fang Lair Style',
 						'numBooks' => 14,
@@ -4241,7 +4177,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				46 => array (
+				45 => array (
 						'id' => 132,
 						'name' => 'Scalecaller Style',
 						'numBooks' => 14,
@@ -4305,7 +4241,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				47 => array (
+				46 => array (
 						'id' => 133,
 						'name' => 'Psijic Style',
 						'numBooks' => 14,
@@ -4369,7 +4305,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				48 => array (
+				47 => array (
 						'id' => 134,
 						'name' => 'Sapiarch Style',
 						'numBooks' => 14,
@@ -4433,7 +4369,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				49 => array (
+				48 => array (
 						'id' => 137,
 						'name' => 'Pyandonean Style',
 						'numBooks' => 14,
@@ -4497,7 +4433,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				50 => array (
+				49 => array (
 						'id' => 138,
 						'name' => 'Dremora Style',
 						'numBooks' => 14,
@@ -4561,7 +4497,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				51 => array (
+				50 => array (
 						'id' => 139,
 						'name' => 'Huntsman Style',
 						'numBooks' => 14,
@@ -4625,7 +4561,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				52 => array (
+				51 => array (
 						'id' => 140,
 						'name' => 'Silver Dawn Style',
 						'numBooks' => 14,
@@ -4689,7 +4625,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				53 => array (
+				52 => array (
 						'id' => 141,
 						'name' => 'Welkynar Style',
 						'numBooks' => 14,
@@ -4753,7 +4689,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				54 => array (
+				53 => array (
 						'id' => 143,
 						'name' => 'Honor Guard Style',
 						'numBooks' => 14,
@@ -4817,7 +4753,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				55 => array (
+				54 => array (
 						'id' => 144,
 						'name' => 'Dead-Water Style',
 						'numBooks' => 14,
@@ -4881,7 +4817,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				56 => array (
+				55 => array (
 						'id' => 145,
 						'name' => 'Elder Argonian Style',
 						'numBooks' => 14,
@@ -4945,7 +4881,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				57 => array (
+				56 => array (
 						'id' => 146,
 						'name' => 'Coldsnap Style',
 						'numBooks' => 14,
@@ -5009,7 +4945,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				58 => array (
+				57 => array (
 						'id' => 147,
 						'name' => 'Meridian Style',
 						'numBooks' => 14,
@@ -5073,7 +5009,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				59 => array (
+				58 => array (
 						'id' => 148,
 						'name' => 'Anequina Style',
 						'numBooks' => 14,
@@ -5137,7 +5073,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				60 => array (
+				59 => array (
 						'id' => 149,
 						'name' => 'Pellitine Style',
 						'numBooks' => 14,
@@ -5201,7 +5137,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				61 => array (
+				60 => array (
 						'id' => 150,
 						'name' => 'Sunspire Style',
 						'numBooks' => 14,
@@ -5264,206 +5200,14 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
 								) 
 						) 
-				),
-				62 => array (
-						'id' => 153,
-						'name' => 'Dragonguard Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5793 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5794 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5795 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5796 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5797 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5798 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5799 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5800 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Helmets',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5801 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5802 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5803 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5804 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Shoulders',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5805 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5806 => array (
-										'title' => 'Crafting Motif 76: Dragonguard Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								) 
-						) 
-				),
-				63 => array (
-						'id' => 154,
-						'name' => 'Stags of Z`en Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5821 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5822 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5823 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5824 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5825 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5826 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5827 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5828 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Helmets',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5829 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5830 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5831 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5832 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Shoulders',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5833 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5834 => array (
-										'title' => 'Crafting Motif 77: Stags of Z`en Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								) 
-						) 
-				),
-				64 => array (
-						'id' => 155,
-						'name' => 'Moongrave Fane Style',
-						'numBooks' => 14,
-						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
-						'books' => array (
-								5836 => array (
-										'title' => 'Crafting Motif 78: Moongrave Axes',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5837 => array (
-										'title' => 'Crafting Motif 78: Moongrave Belts',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5838 => array (
-										'title' => 'Crafting Motif 78: Moongrave Boots',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5839 => array (
-										'title' => 'Crafting Motif 78: Moongrave Bows',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5840 => array (
-										'title' => 'Crafting Motif 78: Moongrave Chests',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5841 => array (
-										'title' => 'Crafting Motif 78: Moongrave Daggers',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5842 => array (
-										'title' => 'Crafting Motif 78: Moongrave Gloves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5843 => array (
-										'title' => 'Crafting Motif 78: Moongrave Helmets',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5844 => array (
-										'title' => 'Crafting Motif 78: Moongrave Legs',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5845 => array (
-										'title' => 'Crafting Motif 78: Moongrave Maces',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5846 => array (
-										'title' => 'Crafting Motif 78: Moongrave Shields',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5847 => array (
-										'title' => 'Crafting Motif 78: Moongrave Shoulders',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5848 => array (
-										'title' => 'Crafting Motif 78: Moongrave Staves',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5849 => array (
-										'title' => 'Crafting Motif 78: Moongrave Swords',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								) 
-						) 
 				) 
 		),
 		3 => array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 38,
-						'numBooks' => 3338 
+						'numCollect' => 37,
+						'numBooks' => 3259 
 				),
 				1 => array (
 						'id' => 44,
@@ -14028,7 +13772,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				23 => array (
 						'id' => 66,
 						'name' => 'Skill Books',
-						'numBooks' => 89,
+						'numBooks' => 86,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								1123 => array (
@@ -14374,18 +14118,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5105 => array (
 										'title' => 'Jewels of Yokuda',
 										'icon' => '/esoui/art/icons/lore_book2_detail1_color2.dds' 
-								),
-								5733 => array (
-										'title' => 'Achieving Harmony with Death',
-										'icon' => '/esoui/art/icons/lore_book4_detail4_color1.dds' 
-								),
-								5718 => array (
-										'title' => 'Benevolent Necromancy, it Exists',
-										'icon' => '/esoui/art/icons/lore_book3_detail5_color2.dds' 
-								),
-								5719 => array (
-										'title' => 'A World of Corpses',
-										'icon' => '/esoui/art/icons/lore_book5_detail5_color3.dds' 
 								) 
 						) 
 				),
@@ -18769,7 +18501,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								5453 => array (
 										'title' => 'The Blessings of Jone and Jode',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
 								),
 								5626 => array (
 										'title' => 'Guide to Northern Elsweyr',
@@ -18808,318 +18540,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book5_detail5_color4.dds' 
 								) 
 						) 
-				),
-				38 => array (
-						'id' => 151,
-						'name' => 'Pellitine Postings',
-						'numBooks' => 76,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
-						'books' => array (
-								5660 => array (
-										'title' => 'Restored Tablet',
-										'icon' => '/esoui/art/icons/quest_murkmire_xal_toh_tablet.dds' 
-								),
-								5706 => array (
-										'title' => 'Moon-Sugar Plans',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5716 => array (
-										'title' => 'Moon-Sugar: A Better Plan',
-										'icon' => '/esoui/art/icons/notes_005.dds' 
-								),
-								5707 => array (
-										'title' => 'Lost Cat',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
-								),
-								5709 => array (
-										'title' => 'J`saad`s Note',
-										'icon' => '/esoui/art/icons/notes_002.dds' 
-								),
-								5736 => array (
-										'title' => 'Ra`khajin`s Orders',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
-								),
-								5665 => array (
-										'title' => 'Letter to Shirnama',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5666 => array (
-										'title' => 'The Pride of Alkosh',
-										'icon' => '/esoui/art/icons/scroll_001.dds' 
-								),
-								5667 => array (
-										'title' => 'Letter from Clan Mother Tadali',
-										'icon' => '/esoui/art/icons/notes_005.dds' 
-								),
-								5661 => array (
-										'title' => 'The Colorful Khajiit',
-										'icon' => '/esoui/art/icons/quest_book_003.dds' 
-								),
-								5664 => array (
-										'title' => 'Mantra of Redemption',
-										'icon' => '/esoui/art/icons/scroll_002.dds' 
-								),
-								5671 => array (
-										'title' => 'The Many Threads',
-										'icon' => '/esoui/art/icons/quest_book_001.dds' 
-								),
-								5672 => array (
-										'title' => 'Nishzo`s Journal',
-										'icon' => '/esoui/art/icons/lore_book3_detail3_color1.dds' 
-								),
-								5674 => array (
-										'title' => 'Song of Alkosh`s Champion',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
-								),
-								5676 => array (
-										'title' => 'Singed Lady G Note',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5678 => array (
-										'title' => 'Invitation to the Hunt',
-										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
-								),
-								5700 => array (
-										'title' => 'How We Came to Fly',
-										'icon' => '/esoui/art/icons/lore_book2_detail1_color3.dds' 
-								),
-								5702 => array (
-										'title' => 'Vijari is Unwell',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5703 => array (
-										'title' => 'Children of the Wind',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
-								),
-								5711 => array (
-										'title' => 'Ja`darri the Endless',
-										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
-								),
-								5714 => array (
-										'title' => 'Letter to Selloe',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
-								),
-								5722 => array (
-										'title' => 'Battle of the Black Beast',
-										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
-								),
-								5723 => array (
-										'title' => 'Letter from Turo',
-										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
-								),
-								5730 => array (
-										'title' => 'By Gentle Winds',
-										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
-								),
-								5731 => array (
-										'title' => 'Through Doom and Darkness',
-										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
-								),
-								5732 => array (
-										'title' => 'Mend the Threads',
-										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
-								),
-								5734 => array (
-										'title' => 'To Sai Sahan',
-										'icon' => '/esoui/art/icons/notes_004.dds' 
-								),
-								5710 => array (
-										'title' => 'Soul of the Sword',
-										'icon' => '/esoui/art/icons/scroll_002.dds' 
-								),
-								5764 => array (
-										'title' => 'Ra`khajin`s Journal, Page 3',
-										'icon' => '/esoui/art/icons/lore_book2_detail2_color2.dds' 
-								),
-								5765 => array (
-										'title' => 'Survivor`s Guilt',
-										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
-								),
-								5766 => array (
-										'title' => 'The Burning of Senchal',
-										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
-								),
-								5767 => array (
-										'title' => 'Fleeing Senchal',
-										'icon' => '/esoui/art/icons/lore_book3_detail4_color5.dds' 
-								),
-								5769 => array (
-										'title' => 'History of Senchal: An Overview',
-										'icon' => '/esoui/art/icons/lore_book3_detail2_color3.dds' 
-								),
-								5774 => array (
-										'title' => 'Ra`khajin`s Journal, Page 12',
-										'icon' => '/esoui/art/icons/lore_book2_detail2_color2.dds' 
-								),
-								5776 => array (
-										'title' => 'History of Pellitine: An Overview',
-										'icon' => '/esoui/art/icons/lore_book5_detail4_color5.dds' 
-								),
-								5808 => array (
-										'title' => 'J`daththarr`s Letter',
-										'icon' => '/esoui/art/icons/notes_003.dds' 
-								),
-								5812 => array (
-										'title' => 'The Gambler`s Art',
-										'icon' => '/esoui/art/icons/lore_book1_detail5_color2.dds' 
-								),
-								5715 => array (
-										'title' => 'Terror from the East',
-										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
-								),
-								5813 => array (
-										'title' => 'Demon from the East',
-										'icon' => '/esoui/art/icons/lore_book3_detail2_color5.dds' 
-								),
-								5775 => array (
-										'title' => 'Ra`khajin`s Journal, Page 25',
-										'icon' => '/esoui/art/icons/lore_book2_detail2_color2.dds' 
-								),
-								5809 => array (
-										'title' => 'The Bounty and the Shields',
-										'icon' => '/esoui/art/icons/lore_book5_detail1_color3.dds' 
-								),
-								5810 => array (
-										'title' => 'Sacred Waters of the Shining Sea',
-										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
-								),
-								5811 => array (
-										'title' => 'The Marriage of Moon and Tide',
-										'icon' => '/esoui/art/icons/lore_book5_detail2_color4.dds' 
-								),
-								5814 => array (
-										'title' => 'Twilight Cantors: The Exorcists of Azurah',
-										'icon' => '/esoui/art/icons/lore_book2_detail1_color5.dds' 
-								),
-								5815 => array (
-										'title' => 'Pridehome: A Place Outside Time?',
-										'icon' => '/esoui/art/icons/lore_book4_detail3_color5.dds' 
-								),
-								5850 => array (
-										'title' => 'New Moon Obligations',
-										'icon' => '/esoui/art/icons/lore_book4_detail3_color5.dds' 
-								),
-								5851 => array (
-										'title' => 'Dragons of Southern Elsweyr',
-										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
-								),
-								5819 => array (
-										'title' => 'Topal Legionary Academy: A Khajiit`s Summary',
-										'icon' => '/esoui/art/icons/lore_book2_detail1_color5.dds' 
-								),
-								5869 => array (
-										'title' => 'Black Kiergo: Primed for Peryite?',
-										'icon' => '/esoui/art/icons/lore_book1_detail5_color3.dds' 
-								),
-								5751 => array (
-										'title' => 'Elsweyr My Love, Page 1',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5752 => array (
-										'title' => 'Elsweyr My Love, Page 5',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5753 => array (
-										'title' => 'Elsweyr My Love, Page 9',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5754 => array (
-										'title' => 'Elsweyr My Love, Page 16',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5755 => array (
-										'title' => 'Elsweyr My Love, Page 19',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5756 => array (
-										'title' => 'Elsweyr My Love, Page 26',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5757 => array (
-										'title' => 'Elsweyr My Love, Page 36',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5758 => array (
-										'title' => 'Elsweyr My Love, Page 42',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5759 => array (
-										'title' => 'Elsweyr My Love, Page 44',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5760 => array (
-										'title' => 'Elsweyr My Love, Page 52',
-										'icon' => '/esoui/art/icons/quest_murkmire_aguide_to_gathering.dds' 
-								),
-								5728 => array (
-										'title' => 'The Wandering Spirits',
-										'icon' => '/esoui/art/icons/lore_book2_detail3_color1.dds' 
-								),
-								5725 => array (
-										'title' => 'The Sky Spirits',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color1.dds' 
-								),
-								5726 => array (
-										'title' => 'The Dark Spirits',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
-								),
-								5727 => array (
-										'title' => 'The Worldly Spirits',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
-								),
-								5729 => array (
-										'title' => 'The Adversarial Spirits',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5870 => array (
-										'title' => 'The Shields of Senchal',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
-								),
-								5735 => array (
-										'title' => 'The Good Bits',
-										'icon' => '/esoui/art/icons/scroll_004.dds' 
-								),
-								5877 => array (
-										'title' => 'Khunzar-ri and the Lost Alfiq',
-										'icon' => '/esoui/art/icons/lore_book1_detail4_color4.dds' 
-								),
-								5875 => array (
-										'title' => 'New Cult or Ancient Religion?',
-										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
-								),
-								5876 => array (
-										'title' => 'Varieties of Dragons: An Initial Exploration',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
-								),
-								5873 => array (
-										'title' => 'Azurah`s Crossing',
-										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
-								),
-								5878 => array (
-										'title' => 'The Favored Daughter of Fadomai',
-										'icon' => '/esoui/art/icons/lore_book2_detail3_color1.dds' 
-								),
-								5874 => array (
-										'title' => 'Secrets of the Riddle`Thar',
-										'icon' => '/esoui/art/icons/lore_book5_detail3_color4.dds' 
-								),
-								5879 => array (
-										'title' => 'Epistle on the Spirits of Amun-dro Vol 1',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
-								),
-								5880 => array (
-										'title' => 'Epistle on the Spirits of Amun-dro Vol 2',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
-								),
-								5881 => array (
-										'title' => 'Epistle on the Spirits of Amun-dro Vol 3',
-										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
-								),
-								5705 => array (
-										'title' => 'Turo`s Cargo Manifest',
-										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
-								) 
-						) 
 				) 
 		) 
-);
+)
+;

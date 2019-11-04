@@ -19,10 +19,12 @@ class CEsoLogJsonExport
 	public $inputArmorType = "";
 	public $inputIntLevel = "";
 	public $inputIntType = "";
+	public $inputFields = "";
 	public $inputTransmuteTrait = "";
 	public $inputLimit = -1;
 	public $exportTables = array();
 	public $outputData = array();
+	public $tableFields = array();
 	public $outputJson = "";
 	
 	
@@ -136,6 +138,20 @@ class CEsoLogJsonExport
 		if (array_key_exists('armortype', $this->inputParams)) $this->inputArmorType = (int) $this->inputParams['armortype'];
 		if (array_key_exists('limit', $this->inputParams)) $this->inputLimit = (int) $this->inputParams['limit'];
 		if (array_key_exists('transmutetrait', $this->inputParams)) $this->inputTransmuteTrait = (int) $this->inputParams['transmutetrait'];
+		
+		if (array_key_exists('fields', $this->inputParams)) 
+		{
+			$this->inputFields = $this->inputParams['fields'];
+			$tableFields = explode(",", $this->inputFields);
+			
+			$this->tableFields = array();
+			
+			foreach ($tableFields as $field)
+			{
+				$result = preg_match("|^([a-zA-Z0-9_]+)|s", trim($field), $matches);
+				if ($result && $matches[1] != "") $this->tableFields[] = $matches[1];
+			}
+		}
 	
 		return true;
 	}
@@ -269,7 +285,14 @@ class CEsoLogJsonExport
 			if ($idField != "") $where[] = "$idField='$id'";
 		}
 		
-		$query = "SELECT * FROM $table{$this->GetTableSuffix()}";
+		$fields = "*";
+		
+		if (count($this->tableFields) > 0)
+		{
+			$fields = implode(",", $this->tableFields);
+		}
+		
+		$query = "SELECT $fields FROM $table{$this->GetTableSuffix()}";
 		if (count($where) > 0) $query .= " WHERE " . implode(" AND ", $where);
 		if ($this->inputLimit > 0) $query .= " LIMIT ".$this->inputLimit." ";
 		$query .= ";";
