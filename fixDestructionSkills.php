@@ -19,9 +19,14 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	global $db;
 	global $TABLE_SUFFIX;
 	
-	$query = "DELETE FROM skillTree$TABLE_SUFFIX where abilityId=$elementAbilityId;";
+	$query = "DELETE FROM skillTree$TABLE_SUFFIX WHERE abilityId=$elementAbilityId;";
 	$result = $db->query($query);
 	if ($result === false) print("\tError deleting element ability $elementAbilityId!\n");
+	
+	$name = $db->real_escape_string($newName);
+	$query = "DELETE FROM skillTree$TABLE_SUFFIX WHERE baseName='$name';";
+	$result = $db->query($query);
+	if ($result === false) print("\tError deleting element baseName '$name'!\n");
 	
 	$query = "SELECT * FROM minedSkills$TABLE_SUFFIX WHERE id=$baseAbilityId;";
 	$result = $db->query($query);
