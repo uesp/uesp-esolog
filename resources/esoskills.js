@@ -1945,6 +1945,14 @@ ESO_SKILL_TARGETYPE_OVERRIDES =
 };
 
 
+ESO_SKILL_DOT_OVERRIDES = 
+{
+		"Puncturing Strikes" : false,
+		"Biting Jabs" : false,
+		"Puncturing Sweep" : false,
+};
+
+
 window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
@@ -1956,6 +1964,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	var target = "";
 	var skillLineName = skillData.skillLine + ' Damage';
 	var overrideAoe = null;
+	var overrideDot = null;
 	
 	if (skillData.target) target = skillData.target.toLowerCase();
 	
@@ -1963,6 +1972,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	
 	if (skillData.channelTime > 0) isDot = true;
 	if (inputValues.Damage.Dot == null || isNaN(inputValues.Damage.Dot)) isDot = false;
+	
+	overrideDot = ESO_SKILL_DOT_OVERRIDES[skillData.name];
+	if (overrideDot == null) overrideDot = ESO_SKILL_DOT_OVERRIDES[skillData.abilityId];
+	if (overrideDot == null) overrideDot = ESO_SKILL_DOT_OVERRIDES[skillData.baseAbilityId];
+	if (overrideDot != null) isDot = overrideDot;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	

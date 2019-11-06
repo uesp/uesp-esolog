@@ -1114,7 +1114,7 @@ class EsoLogViewer
 					'record' => 'questStep',
 					'table' => 'questStep',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId, uniqueId, stageIndex, stepIndex',
+					'sort' => 'questId, stageIndex, stepIndex',
 						
 					'transform' => array(
 							'type' => 'GetEsoQuestStepTypeText',
@@ -1161,7 +1161,7 @@ class EsoLogViewer
 					'record' => 'questCondition',
 					'table' => 'questCondition',
 					'method' => 'DoRecordDisplay',
-					'sort' => 'questId, uniqueId, stageIndex, stepIndex, conditionIndex',
+					'sort' => 'questId, stageIndex, stepIndex, conditionIndex',
 					
 					'columnNames' => array(
 							'type1' => 'Map Pin Type 1',
