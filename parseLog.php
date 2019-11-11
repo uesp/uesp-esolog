@@ -503,6 +503,14 @@ class EsoLogParser
 			'gold' => self::FIELD_INT,
 			'playerLevel' => self::FIELD_INT,
 	);
+	
+	public static $QUESTXPREWARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questName' => self::FIELD_STRING,
+			'experience' => self::FIELD_INT,
+			'playerLevel' => self::FIELD_INT,
+	);
 		
 	public static $QUESTITEM_FIELDS = array(
 			'id' => self::FIELD_INT,
@@ -1559,6 +1567,11 @@ class EsoLogParser
 		return $this->saveRecord('questGoldReward', $record, 'id', self::$QUESTGOLDREWARD_FIELDS);
 	}
 	
+public function SaveQuestXPReward (&$record)
+	{
+		return $this->saveRecord('questXPReward', $record, 'id', self::$QUESTXPREWARD_FIELDS);
+	}
+	
 	
 	public function SaveLocation (&$record)
 	{
@@ -1944,6 +1957,19 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questGoldReward table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS questXPReward (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						questName TINYTEXT NOT NULL,
+						experience INTEGER NOT NULL,
+						playerLevel TINYINT NOT NULL,
+						PRIMARY KEY (id)
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create questXPReward table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS questItem (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -3703,6 +3729,25 @@ class EsoLogParser
 	}
 	
 	
+	public function CreateQuestXPReward ($logEntry)
+	{
+		$rewardRecord = $this->createNewRecord(self::$QUESTXPREWARD_FIELDS);
+	
+		$rewardRecord['questName'] = $logEntry['quest'];
+		$rewardRecord['experience'] = $logEntry['xp'];
+		$rewardRecord['playerLevel'] = $logEntry['effLevel'];
+		$rewardRecord['__isNew'] = true;
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveQuestXPReward($rewardRecord);
+		if (!$result) return null;
+	
+		return $rewardRecord;
+	}
+	
+	
 	public function CreateQuestItem ($logEntry)
 	{
 		$questItemRecord = $this->createNewRecord(self::$QUESTITEM_FIELDS);
@@ -4076,6 +4121,23 @@ class EsoLogParser
 		}
 		
 		$result = $this->CreateQuestGoldReward($logEntry);
+
+		return $result != null;
+	}
+	
+	
+	public function OnQuestXPReward($logEntry)
+	{
+
+		if ($logEntry['esoPlus'] == 'true' || $logEntry['esoPlus'] == 1)
+		{
+			$xp = intval($logEntry['xp']);
+			$logEntry['origXP'] = $logEntry['xp'];
+			$newXP = ceil($xp / 1.1);
+			$logEntry['xp'] = $newXP;
+		}
+		
+		$result = $this->CreateQuestXPReward($logEntry);
 
 		return $result != null;
 	}
@@ -7610,6 +7672,8 @@ class EsoLogParser
 			case "Quest::Reward":				$result = $this->OnQuestReward($logEntry); break;
 			case "QuestGoldReward":				$result = $this->OnQuestGoldReward($logEntry); break;
 			case "questGoldReward":				$result = $this->OnQuestGoldReward($logEntry); break;
+			case "QuestXPReward":				$result = $this->OnQuestXPReward($logEntry); break;
+			case "questXPReward":				$result = $this->OnQuestXPReward($logEntry); break;
 			
 			case "CraftComplete":				$result = $this->OnNullEntry($logEntry); break;
 			case "CraftComplete::Result":		$result = $this->OnNullEntry($logEntry); break;
