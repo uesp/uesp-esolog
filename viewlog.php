@@ -229,6 +229,14 @@ class EsoLogViewer
 			'playerLevel' => self::FIELD_INT,
 	);
 	
+	public static $QUESTXPREWARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questName' => self::FIELD_STRING,
+			'experience' => self::FIELD_INT,
+			'playerLevel' => self::FIELD_INT,
+	);
+	
 	public static $QUESTITEM_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'logId' => self::FIELD_INTID,
@@ -1250,6 +1258,25 @@ class EsoLogViewer
 					),
 			),
 			
+			'questXPReward' => array(
+					'message' => '',
+					'displayName' => 'Quest Experience Rewards',
+					'displayNameSingle' => 'Quest Experience Reward',
+					'record' => 'questXPReward',
+					'table' => 'questXPReward',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'playerLevel, questName, experience',
+			
+					'transform' => array(
+					),
+			
+					'join' => array(
+					),
+			
+					'filters' => array(
+					),
+			),
+			
 			'questItem' => array(
 					'message' => '',
 					'displayName' => 'Quest Items',
@@ -2002,6 +2029,13 @@ class EsoLogViewer
 							'questName' => 'name',
 					),
 			),
+			'questXPReward' => array(
+					'searchFields' => array('questName'),
+					'fields' => array(
+							'id' => 'id',
+							'questName' => 'name',
+					),
+			),
 			'npc' => array(
 					'searchFields' => array('name'),
 					'fields' => array(
@@ -2115,6 +2149,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
 		self::$RECORD_TYPES['questReward']['fields'] = self::$QUESTREWARD_FIELDS;
 		self::$RECORD_TYPES['questGoldReward']['fields'] = self::$QUESTGOLDREWARD_FIELDS;		
+		self::$RECORD_TYPES['questXPReward']['fields'] = self::$QUESTXPREWARD_FIELDS;
 		self::$RECORD_TYPES['questItem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
 		self::$RECORD_TYPES['npcLocations']['fields'] = self::$NPC_LOCATION_FIELDS;
