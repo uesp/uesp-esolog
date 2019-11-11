@@ -495,6 +495,14 @@ class EsoLogParser
 			'collectId' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 	);
+	
+	public static $QUESTGOLDREWARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
+			'questName' => self::FIELD_STRING,
+			'gold' => self::FIELD_INT,
+			'playerLevel' => self::FIELD_INT,
+	);
 		
 	public static $QUESTITEM_FIELDS = array(
 			'id' => self::FIELD_INT,
@@ -1545,6 +1553,12 @@ class EsoLogParser
 		return $this->saveRecord('questReward', $record, 'id', self::$QUESTREWARD_FIELDS);
 	}
 	
+
+	public function SaveQuestGoldReward (&$record)
+	{
+		return $this->saveRecord('questGoldReward', $record, 'id', self::$QUESTGOLDREWARD_FIELDS);
+	}
+	
 	
 	public function SaveLocation (&$record)
 	{
@@ -1917,6 +1931,19 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questReward table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS questGoldReward (
+						id BIGINT NOT NULL AUTO_INCREMENT,
+						logId BIGINT NOT NULL,
+						questName TINYTEXT NOT NULL,
+						gold INTEGER NOT NULL,
+						playerLevel TINYINT NOT NULL,
+						PRIMARY KEY (id)
+					);";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create questGoldReward table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS questItem (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -2741,8 +2768,7 @@ class EsoLogParser
 		foreach ($VALID_FIELDS as $key => $field)
 		{
 			if (!array_key_exists($field, $logEntry)) return $this->reportLogParseError("Missing $field in log entry!");
-			if ($logEntry[$field] == '') return false; 
-				//return $this->reportLogParseError("\tFound empty $field in log entry!");
+			if ($logEntry[$field] == '') return $this->reportLogParseError("\tFound empty $field in log entry!");
 		}
 		
 		return true;
@@ -3658,6 +3684,25 @@ class EsoLogParser
 	}
 	
 	
+	public function CreateQuestGoldReward ($logEntry)
+	{
+		$rewardRecord = $this->createNewRecord(self::$QUESTGOLDREWARD_FIELDS);
+	
+		$rewardRecord['questName'] = $logEntry['quest'];
+		$rewardRecord['gold'] = $logEntry['gold'];
+		$rewardRecord['playerLevel'] = $logEntry['effLevel'];
+		$rewardRecord['__isNew'] = true;
+	
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
+	
+		$result = $this->SaveQuestGoldReward($rewardRecord);
+		if (!$result) return null;
+	
+		return $rewardRecord;
+	}
+	
+	
 	public function CreateQuestItem ($logEntry)
 	{
 		$questItemRecord = $this->createNewRecord(self::$QUESTITEM_FIELDS);
@@ -4016,6 +4061,23 @@ class EsoLogParser
 		if (!$result) return false;
 		
 		return true;
+	}
+	
+	
+	public function OnQuestGoldReward($logEntry)
+	{
+
+		if ($logEntry['esoPlus'] == 'true' || $logEntry['esoPlus'] == 1)
+		{
+			$gold = intval($logEntry['gold']);
+			$logEntry['origGold'] = $logEntry['gold'];
+			$newGold = ceil($gold / 1.1);
+			$logEntry['gold'] = $newGold;
+		}
+		
+		$result = $this->CreateQuestGoldReward($logEntry);
+
+		return $result != null;
 	}
 	
 	
@@ -7449,7 +7511,11 @@ class EsoLogParser
 			}
 		}
 		
-		if (!$this->isValidLogEntry($logEntry)) return false;
+		if (!$this->isValidLogEntry($logEntry)) 
+		{
+			//print ("Not valid log entry\n");			
+			return false;
+		}
 		
 		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount || $this->dbReadCount >= $this->dbReadNextSleepCount)
 		{
@@ -7542,6 +7608,8 @@ class EsoLogParser
 			case "Quest::Step":					$result = $this->OnQuestStep($logEntry); break;
 			case "Quest::Condition":			$result = $this->OnQuestCondition($logEntry); break;
 			case "Quest::Reward":				$result = $this->OnQuestReward($logEntry); break;
+			case "QuestGoldReward":				$result = $this->OnQuestGoldReward($logEntry); break;
+			case "questGoldReward":				$result = $this->OnQuestGoldReward($logEntry); break;
 			
 			case "CraftComplete":				$result = $this->OnNullEntry($logEntry); break;
 			case "CraftComplete::Result":		$result = $this->OnNullEntry($logEntry); break;
