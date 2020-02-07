@@ -1,4 +1,3 @@
-window.g_LastSkillId = 0;
 window.g_LastSkillInputValues = {};
 window.MAX_SKILL_COEF = 6;
 
@@ -2218,9 +2217,9 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	
 	if (inputValues == null) return newDesc;
 	
-	if (inputValues.TwinSlashBleedDamage == 0 && 
-		inputValues.BleedDamage == 0 &&
-		inputValues.DotDamageDone.Bleed == 0) return newDesc;
+	if (!inputValues.TwinSlashBleedDamage && 
+		!inputValues.BleedDamage &&
+		!inputValues.DotDamageDone.Bleed) return newDesc;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
@@ -2237,13 +2236,13 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 					
 					matchIndex++;
 					
-					if (inputValues.BleedDamage != 0)
+					if (inputValues.BleedDamage)
 					{
 						modDamage += inputValues.BleedDamage;
 						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.BleedDamage*100) + "% Bleed";
 					}
 					
-					if (inputValues.DotDamageDone && inputValues.DotDamageDone.Bleed != 0)
+					if (inputValues.DotDamageDone && inputValues.DotDamageDone.Bleed)
 					{
 						modDamage += inputValues.DotDamageDone.Bleed;
 						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.DotDamageDone.Bleed*100) + "% BleedDOT";
@@ -2254,7 +2253,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 						newDamage = Math.floor(newDamage * (1 + modDamage));
 					}
 					
-					if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage > 0)
+					if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage)
 					{
 						newDamage += inputValues.TwinSlashBleedDamage;
 						output += " + " + inputValues.TwinSlashBleedDamage + " TwinSlash";
