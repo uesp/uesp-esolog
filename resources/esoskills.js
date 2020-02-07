@@ -643,6 +643,7 @@ window.GetEsoSkillInputValues = function ()
 			 WintersEmbraceSkills: 0,
 			 BoneTyrantSkills: 0,
 			 GraveLordSkills: 0,
+			 DotDamageDone: {},
 		};
 	
 	return g_LastSkillInputValues; 
@@ -2242,7 +2243,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.BleedDamage*100) + "% Bleed";
 					}
 					
-					if (inputValues.DotDamageDone.Bleed != 0)
+					if (inputValues.DotDamageDone && inputValues.DotDamageDone.Bleed != 0)
 					{
 						modDamage += inputValues.DotDamageDone.Bleed;
 						output = "" + p2 + " + " + RoundEsoSkillPercent(inputValues.DotDamageDone.Bleed*100) + "% BleedDOT";
@@ -2330,9 +2331,22 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	var newDesc = skillDesc;
 	var extraDesc = "";
 	var name = skillData['name'];
+	var hitExtraDmg = 0.03;
+	var finalExtraDmg = 3.00;
+	var skipExtraDmgParse = false;
 	
 	if (inputValues == null) return newDesc;
-	if (name != "Rapid Strikes") return newDesc;
+	
+	if (name == "Rapid Strikes") {
+		// Do nothing
+	}
+	else if (name == "Bloodthirst" || name == "Flurry") {
+		hitExtraDmg = 0;
+		skipExtraDmgParse = true;
+	}
+	else {
+		return newDesc;
+	}
 	
 	extraDesc = "\n\n";
 	
@@ -2341,12 +2355,14 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	
 	var baseDmg = parseFloat(numbers[0]);
 	if (baseDmg == null) return newDesc;
-	
-	var hitExtraDmg = 0.03;
-	var finalExtraDmg = 3.00;
-	
-	if (numbers[1] != null) hitExtraDmg = parseFloat(numbers[1]) / 100;
-	if (numbers[2] != null) finalExtraDmg = parseFloat(numbers[2]) / 100;
+		
+	if (!skipExtraDmgParse) {
+		if (numbers[1] != null) hitExtraDmg = parseFloat(numbers[1]) / 100;
+		if (numbers[2] != null) finalExtraDmg = parseFloat(numbers[2]) / 100;
+	}
+	else {
+		if (numbers[1] != null) finalExtraDmg = parseFloat(numbers[1]) / 100;
+	}	
 	
 	hitExtraDmg += 1;
 	finalExtraDmg += 1;

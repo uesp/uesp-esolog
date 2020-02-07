@@ -60,6 +60,7 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100028" => "23",
 		"100029" => "24",
 		"100030" => "25",
+		"100031" => "26",
 );
 
 
@@ -85,6 +86,7 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100028" => "5.1",
 		"100029" => "5.2",
 		"100030" => "5.3",
+		"100031" => "6.0",	//?
 );
 
 
@@ -3468,6 +3470,10 @@ function GetEsoItemTableSuffix($version)
 			return "24pts";
 		case '24':
 			return "";
+		case '25pts':
+			return "25pts";
+		case '25':
+			return "25";
 	}
 
 	return "";
