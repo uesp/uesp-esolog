@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "25pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -139,6 +139,8 @@ $ESO_COEF_INDEX = array(
 $ESO_COEF_VALUE = array(
 		30893 => 547,		//DW: Twin Blade and Blunt
 		45482 => 1095,
+
+		//45533 => array(362.4, 0, 0),	// Heavy Armor: Resolve
 		
 		39197 => array(0.25, 0, 5),		//Heavy Armor: Unstoppable
 		41097 => array(0.25, 0, 5),
@@ -276,6 +278,12 @@ $ESO_EXACT_SKILL_VALUES = array(
 		29663 => 1,		// Light Armor: Spell Warding
 		45559 => 1,
 	
+);
+
+
+$ESO_EXACT_SKILL_VALUES_OVERWRITE = array(
+		
+		45533 => 362.4,		// Heavy Armor: Resolve
 );
 
 
@@ -460,7 +468,8 @@ foreach ($ESO_EXACT_SKILL_VALUES as $skillId => $indexValue)
 		continue;
 	}
 	
-	$exactValue = $matches[1];
+	$exactValue = $ESO_EXACT_SKILL_VALUES_OVERWRITE[$skillId];
+	if ($exactValue == null) $exactValue = $matches[1];
 	
 	$a = $db->real_escape_string($exactValue);
 	$b = 0;
