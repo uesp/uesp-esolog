@@ -50,3 +50,11 @@ ol#esovmi_itemlist li {
 a:hover {
 	background-color: #ccc;
 }
+
+form { 
+	display: inline-block;
+}
+
+#esovmi_versionlist {
+	display: inline-block;
+}
