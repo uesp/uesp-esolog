@@ -418,6 +418,8 @@ class CEsoViewMinedItems
 			$count = $record['count'];
 			$totalItems += $count;
 			
+			if ($armorTypeName == "") $armorTypeName = "(None)";
+			
 			$output .= "<li><a href='?type=$type&equiptype=$equipType&armortype=$armorType{$this->extraQueryString}'>$armorTypeName ($count items)</a></li>";
 		}
 	
@@ -444,6 +446,7 @@ class CEsoViewMinedItems
 			$weaponTypeName = $record['weaponTypeName'];
 			$count = $record['count'];
 			$totalItems += $count;
+			if ($weaponTypeName == "") $weaponTypeName = "(None)";
 				
 			$output .= "<li><a href='?type=$type&equiptype=$equipType&weapontype=$weaponType{$this->extraQueryString}'>$weaponTypeName ($count items)</a></li>";
 		}
@@ -470,6 +473,8 @@ class CEsoViewMinedItems
 			$count = $record['count'];
 			$totalItems += $count;
 			
+			if ($equipTypeName == "") $equipTypeName = "(None)";
+			
 			$output .= "<li><a href='?type=$type&equiptype=$equipType{$this->extraQueryString}'>$equipTypeName ($count items)</a></li>";
 		}
 		
@@ -492,6 +497,8 @@ class CEsoViewMinedItems
 			$typeName = $record['typeName'];
 			$count = $record['count'];
 			$totalItems += $count;
+			
+			if ($typeName == "") $typeName = "(None)";
 			
 			$output .= "<li><a href='?type=$type{$this->extraQueryString}'>$typeName ($count items)</a></li>";
 		}
@@ -516,14 +523,86 @@ class CEsoViewMinedItems
 			$output .= ": <a href='?type=$type{$this->extraQueryString}'>$typeName</a>";
 		}
 		
-		if ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewWeaponType >= 0 ||
-		    $this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewArmorType >= 0)
+		if (($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewWeaponType >= 0) ||
+		    ($this->viewType >= 0 && $this->viewEquipType >= 0 && $this->viewArmorType >= 0))
 		{
 			$type = $this->viewType;
 			$equipType = $this->viewEquipType;
 			$equipTypeName = GetEsoItemEquipTypeText($this->viewEquipType);
 			$output .= ": <a href='?type=$type&equiptype=$equipType{$this->extraQueryString}'>$equipTypeName</a>";
 		}
+		
+		return $output;
+	}
+	
+	
+	public function GetQueryString() 
+	{
+		$query = array();
+		
+		if ($this->viewType >= 0) {
+			$query['type'] = $this->viewType;
+		}
+		
+		if ($this->viewEquipType >= 0) {
+			$query['equiptype'] = $this->viewEquipType;
+		}
+		
+		if ($this->viewWeaponType >= 0) {
+			$query['weapontype'] = $this->viewEquipType;
+		}
+		
+		if ($this->viewArmorType >= 0) {
+			$query['armortype'] = $this->viewEquipType;
+		}		
+		
+		$queryString = "";
+		
+		foreach ($query as $k => $v) {
+			$queryString .= "$k=$v&";
+		}
+				
+		return $queryString;
+	}
+	
+	
+	public function GetCurrentVersion() 
+	{
+		return GetEsoDisplayVersion($this->version);
+	}
+	
+	
+	public function GetVersionList($currentVersion) 
+	{
+		$output = "";
+		
+		$query = "SHOW TABLES LIKE 'minedItemSummary%';";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to list all minedItemSummary table versions!");
+		
+		$tables = array();
+		$output .= "<form action='?' method='get'>";
+		if ($this->viewType >= 0) $output .= "<input type='hidden' name='type' value='{$this->viewType}'>";
+		if ($this->viewEquipType >= 0) $output .= "<input type='hidden' name='equiptype' value='{$this->viewEquipType}'>";
+		if ($this->viewWeaponType >= 0) $output .= "<input type='hidden' name='weapontype' value='{$this->viewWeaponType}'>";
+		if ($this->viewArmorType >= 0) $output .= "<input type='hidden' name='armortype' value='{$this->viewArmorType}'>";
+		$output .= "<select name='version'>";
+		
+		while (($row = $result->fetch_row())) 
+		{
+			$table = $row[0];
+			$version = substr($table, 16);
+			
+			$select = "";
+			if ($version == "") $version = GetEsoUpdateVersion();
+			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";			
+						
+			$output .= "<option $select>$version</option>";
+		}
+		
+		$output .= "</select>";
+		$output .= "<input type='submit' value='Go'>";
+		$output .= "</form>";
 		
 		return $output;
 	}
@@ -538,6 +617,8 @@ class CEsoViewMinedItems
 				'{content}' => $this->MakeContentBlock(),
 				'{search}' => $this->viewSearch,
 				'{breadCrumb}' => $this->MakeBreadCrumbBlock(),
+				'{version}' => $this->GetCurrentVersion(),
+				'{versionList}' => $this->GetVersionList($this->GetCurrentVersion()),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))

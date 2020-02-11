@@ -1,15 +1,16 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>UESP:ESO Browsing Mined Items</title>
+		<title>UESP:ESO Mined Items by Category</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoviewmineditems.css" />
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
-<h1>ESO Browsing Mined Items</h1>
-This is a list of Elder Scrolls Online item data mined from the game sorted by item category. Return to the <a href="//esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
+<h1>ESO Mined Items by Category</h1>
+This is a list of Elder Scrolls Online item data mined from the game sorted by item category for update {version}. Return to the <a href="//esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
+<div id="esovmi_versionlist">View data for update {versionList}</div> 
 <h2>{title}</h2>
 <div id="esovmi_searchbox">
 	<form action="" method="get">

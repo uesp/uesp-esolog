@@ -3330,6 +3330,14 @@ if (!function_exists('imageantialias'))
 }
 
 
+function GetEsoDisplayVersion($version)
+{
+	$version = GetEsoItemTableSuffix($version);
+	if ($version == '') $version = GetEsoUpdateVersion();
+	return strtoupper($version);
+}
+
+
 function GetEsoUpdateVersion()
 {
 	return 24;
