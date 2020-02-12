@@ -596,7 +596,7 @@ class CEsoViewMinedItems
 			$version = substr($table, 16);
 			if ($version == "") $version = GetEsoUpdateVersion();
 						
-			$tables[] = $version;
+			$tables[$version] = $version;
 		}
 		
 		natsort($tables);

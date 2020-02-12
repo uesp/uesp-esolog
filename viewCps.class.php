@@ -44,8 +44,6 @@ class CEsoViewCP
 
 	public function __construct ($isEmbedded = false, $parseParams = true)
 	{
-		//SetupUespSession();
-		
 		$this->ESOVCP_HTML_TEMPLATE = __DIR__."/templates/esocp_template.txt";
 		$this->ESOVCP_HTML_TEMPLATE_EMBED = __DIR__."/templates/esocp_embed_template.txt";
 		$this->ESOVCP_HTML_SIMPLE_TEMPLATE = __DIR__."/templates/esocp_simple_template.txt";
@@ -559,12 +557,67 @@ class CEsoViewCP
 	}
 	
 	
+	public function GetCurrentVersion() 
+	{
+		return GetEsoDisplayVersion($this->version);
+	}
+	
+	
+	public function GetVersionList($currentVersion) 
+	{
+		$output = "";
+		
+		$query = "SHOW TABLES LIKE 'cpSkills%';";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to list all cpSkills table versions!");
+		
+		$tables = array();
+		$output .= "<form action='?' method='get'>";
+		
+		if ($this->rawCpData != "") 
+		{
+			$output .= "<input type='hidden' name='cp' value='{$this->rawCpData}'>";
+			if ($this->selectedDiscId != "") $output .= "<input type='hidden' name='disc' value='{$this->selectedDiscId}'>";
+		}
+		
+		$output .= "<select name='version'>";
+		
+		$tables = array();
+		
+		while (($row = $result->fetch_row())) 
+		{
+			$table = $row[0];
+			$version = substr($table, 8);
+			if ($version == "") $version = GetEsoUpdateVersion();
+						
+			$tables[$version] = $version;
+		}
+		
+		natsort($tables);
+		
+		foreach ($tables as $version) 
+		{
+			$select = "";
+			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";
+			$output .= "<option $select>$version</option>";
+		}
+		
+		$output .= "</select>";
+		$output .= "<input type='submit' value='Go'>";
+		$output .= "</form>";
+		
+		return $output;
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		$this->LoadTemplate();
 		
 		$replacePairs = array(
 				'{version}' => $this->version,
+				'{niceVersion}' => $this->GetCurrentVersion(),
+				'{versionList}' => $this->GetVersionList($this->GetCurrentVersion()),
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{updateDate}' => $this->GetUpdateDate(),
 				'{cpSkills}' => $this->GetCpSkillsHtml(),
