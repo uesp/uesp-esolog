@@ -304,6 +304,7 @@ window.UpdateEsoCPLink = function()
 	
 	cpQueryData = EncodeEsoCPSkillData64(skillData);
 	if (selectDiscId != "") cpQueryData += "&disc=" + selectDiscId;
+	if (g_EsoCpVersion != "") cpQueryData += "&version=" + g_EsoCpVersion;
 	
 	link.attr("href", "?cp=" + cpQueryData);
 }

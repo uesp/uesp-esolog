@@ -10,3 +10,7 @@ h1, h2, h3 {
 
 a:hover {
 }
+
+form {
+	display: inline-block;
+}
