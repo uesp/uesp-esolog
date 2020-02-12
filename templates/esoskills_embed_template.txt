@@ -65,6 +65,7 @@
 
 <div class="esovsBlockClear"></div>
 <script type="text/javascript">
+	var g_SkillsVersion = '{version}';
 	var g_SkillsData = {skillsJson};
 	var g_SkillSearchIds = {skillSearchIdJson};
 	var g_SkillHighlightId = {skillHighlightId};

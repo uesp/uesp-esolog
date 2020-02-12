@@ -1179,6 +1179,61 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetCurrentVersion() 
+	{
+		return GetEsoDisplayVersion($this->version);
+	}
+	
+	
+	public function GetVersionList($currentVersion) 
+	{
+		$output = "";
+		
+		$query = "SHOW TABLES LIKE 'minedSkills%';";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to list all minedSkills table versions!");
+		
+		$tables = array();
+		$output .= "<form action='?' method='get'>";
+		if ($this->showall) $output .= "<input type='hidden' name='showall' value='1'>";
+		if ($this->highlightSkillId) $output .= "<input type='hidden' name='id' value='{$this->highlightSkillId}'>";
+		if ($this->skillLevel) $output .= "<input type='hidden' name='level' value='{$this->skillLevel}'>";
+		if ($this->skillHealth) $output .= "<input type='hidden' name='health' value='{$this->skillHealth}'>";
+		if ($this->skillMagicka) $output .= "<input type='hidden' name='magicka' value='{$this->skillMagicka}'>";
+		if ($this->skillStamina) $output .= "<input type='hidden' name='stamina' value='{$this->skillStamina}'>";
+		if ($this->skillSpellDamage) $output .= "<input type='hidden' name='spelldamage' value='{$this->skillSpellDamage}'>";
+		if ($this->skillWeaponDamage) $output .= "<input type='hidden' name='weapondamage' value='{$this->skillWeaponDamage}'>";
+		if ($this->displayType) $output .= "<input type='hidden' name='display' value='{$this->displayType}'>";
+		$output .= "<select name='version'>";
+		
+		$tables = array();
+		
+		while (($row = $result->fetch_row())) 
+		{
+			$table = $row[0];
+			$version = substr($table, 11);
+			if ($version == "") $version = GetEsoUpdateVersion();
+						
+			$tables[$version] = $version;
+		}
+		
+		natsort($tables);
+		
+		foreach ($tables as $version) 
+		{
+			$select = "";
+			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";
+			$output .= "<option $select>$version</option>";
+		}
+		
+		$output .= "</select>";
+		$output .= "<input type='submit' value='Go'>";
+		$output .= "</form>";
+		
+		return $output;
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		global $ESO_DESTRUCTION_SKILLS;
@@ -1192,6 +1247,8 @@ class CEsoViewSkills
 				'{skillTree}' => $this->GetSkillTreeHtml(),
 				'{skillContent}'  => $this->GetSkillContentHtml(),
 				'{version}' => $this->version,
+				'{niceVersion}' => $this->GetCurrentVersion(),
+				'{versionList}' => $this->GetVersionList($this->GetCurrentVersion()),
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{rawSkillData}' => "",
 				'{coefSkillData}' => "",

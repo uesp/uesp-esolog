@@ -3251,6 +3251,7 @@ window.UpdateSkillLink = function ()
 	params += "&spelldamage=" + inputValues.SpellDamage;
 	params += "&weapondamage=" + inputValues.WeaponDamage;
 	
+	if (g_SkillsVersion != "") params += "&version=" + g_SkillsVersion;
 	if (g_SkillShowAll) params += "&showall";
 	
 	linkElement.attr("href", "?" + params);
