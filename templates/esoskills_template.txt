@@ -20,6 +20,7 @@
 	</div> 
 </div>
 <h1>UESP:ESO Skill Browser {versionTitle}</h1>
+<div id="esovsVersion">Showing skills for update {niceVersion}. Show data for update {versionList}</div>
 <div id="esovsLeftBlock" style="display: {leftBlockDisplay};">
 	<div id="esovsSkillTooltipRoot">
 		<div class='esovsSkillTooltip'>
@@ -81,6 +82,7 @@
 
 <div class="esovsBlockClear"></div>
 <script type="text/javascript">
+	var g_SkillsVersion = '{version}';
 	var g_SkillsData = {skillsJson};
 	var g_SkillSearchIds = {skillSearchIdJson};
 	var g_SkillHighlightId = {skillHighlightId};
