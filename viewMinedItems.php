@@ -588,15 +588,23 @@ class CEsoViewMinedItems
 		if ($this->viewArmorType >= 0) $output .= "<input type='hidden' name='armortype' value='{$this->viewArmorType}'>";
 		$output .= "<select name='version'>";
 		
+		$tables = array();
+		
 		while (($row = $result->fetch_row())) 
 		{
 			$table = $row[0];
 			$version = substr($table, 16);
-			
-			$select = "";
 			if ($version == "") $version = GetEsoUpdateVersion();
-			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";			
 						
+			$tables[] = $version;
+		}
+		
+		natsort($tables);
+		
+		foreach ($tables as $version) 
+		{
+			$select = "";
+			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";
 			$output .= "<option $select>$version</option>";
 		}
 		
