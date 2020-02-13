@@ -4,6 +4,10 @@ body {
 	font-size: 13px;
 }
 
+form {
+	display: inline-block;
+}
+
 #esovsc_footer {
 	color: #777;
 	font-style: italic;
