@@ -7,16 +7,15 @@
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 	</head>
 <body>
-<a href="/viewlog.php">Back to Home</a>
+<a href="/viewlog.php">Back to Home</a>{trail}
 <h1>ESO Skill Coefficients</h1>
-<div>This is a list of skill coefficients currently available. Return to the <a href="//esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
-Found {count} skills with valid coefficients.</div>
 {pageHeader}
+<br>
 <table class="esovsc_table">
 {content}
 </table>
 <hr>
-<div id="esovmi_footer">
+<div id="esovsc_footer">
 This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
 Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
 </div>

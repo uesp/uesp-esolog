@@ -31,6 +31,10 @@ class CEsoViewSkillCoef
 	public $maxR2 = 1;
 	public $minRatio = -1000000;
 	public $maxRatio = 1000000;
+	public $showSkillId = -1;
+	
+	public $skillVersions = array();
+	public $skillResults = array();
 	
 	
 	public function __construct()
@@ -53,6 +57,10 @@ class CEsoViewSkillCoef
 	
 	public function ParseInputParams ()
 	{
+		if (array_key_exists('id', $this->inputParams)) $this->showSkillId = intval($this->inputParams['id']);
+		if (array_key_exists('skillid', $this->inputParams)) $this->showSkillId = intval($this->inputParams['skillid']);
+		if (array_key_exists('abilityid', $this->inputParams)) $this->showSkillId = intval($this->inputParams['abilityid']);
+		
 		if (array_key_exists('output', $this->inputParams)) $this->rawOutput = strtoupper($this->inputParams['output']);
 		if (array_key_exists('format', $this->inputParams)) $this->rawOutput = strtoupper($this->inputParams['format']);
 			
@@ -126,6 +134,45 @@ class CEsoViewSkillCoef
 	}
 	
 	
+	public function LoadSkillHistory() 
+	{
+		$query = "SHOW TABLES LIKE 'minedSkills%';";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to list all minedSkills table versions!");
+		
+		$tables = array();
+		
+		while (($row = $result->fetch_row())) 
+		{
+			$tables[] = $row[0];
+		}
+		
+		$this->skillResults = array();
+		$this->skillVersions = array();
+		
+		foreach ($tables as $table) 
+		{
+			$query = "SELECT * FROM $table WHERE id={$this->showSkillId};";
+			$result = $this->db->query($query);
+			if ($result === false || $result->num_rows == 0) continue;
+
+			$row = $result->fetch_assoc();
+			
+			$version = substr($table, 11);
+			if ($version == "") $version = GetEsoUpdateVersion();
+			$this->skillVersions[$version] = $version;
+			
+			$row['version'] = $version;			
+			
+			$this->skillResults[$version] = $row;				
+		}
+		
+		natsort($this->skillVersions);
+		
+		return true;
+	}
+	
+	
 	public function LoadSkillCoef()
 	{
 		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1 > 0.9;";
@@ -164,9 +211,23 @@ class CEsoViewSkillCoef
 	}
 	
 	
+	public function MakeHistoryPageHeaderHtml() 
+	{
+		$count = count($this->skillResults);
+		
+		if ($count == 0) return "<div>Error: No skill history found for skill ID {$this->showSkillId}!</div>";
+		
+		$output = "<div>This is a history of coefficients for skill ID {$this->showSkillId}. Found $count instances with valid coefficients.</div>";
+		
+		return $output;
+	}
+	
+	
 	public function MakePageHeaderHtml()
 	{
-		$output = "<div>";
+		$count = count($this->coefData);
+		$output = "<div>This is a list of skill coefficients currently available. Found $count skills with valid coefficients.</div>";
+		$output .= "<div>";
 
 		if ($this->minR2 > 0 || $this->maxR2 < 1)
 		{
@@ -191,6 +252,23 @@ class CEsoViewSkillCoef
 				'{pageHeader}' => $this->MakePageHeaderHtml(),
 				'{content}' => $this->MakeContentHtml(),
 				'{count}' => count($this->coefData),
+				'{trail}' => "",
+		);
+		
+		$output = strtr($this->htmlTemplate, $replacePairs);
+		print($output);
+		
+		return true;
+	}
+	
+	
+	public function OutputSkillHistory() 
+	{
+		$replacePairs = array(
+				'{pageHeader}' => $this->MakeHistoryPageHeaderHtml(),
+				'{content}' => $this->MakeHistoryContentHtml(),
+				'{count}' => count($this->skillResults),
+				'{trail}' => " : <a href='?'>All Skills</a>",
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -375,6 +453,55 @@ class CEsoViewSkillCoef
 	}
 	
 	
+	public function MakeHistoryContentHtml() 
+	{
+		$output = "";
+		
+		$output .= "<tr>";
+		$output .= "<th>Update</th>";
+		$output .= "<th>Skill Name</th>";
+		$output .= "<th>Mechanic</th>";
+		$output .= "<th>Class</th>";
+		$output .= "<th>Skill Line</th>";
+		$output .= "<th>#</th>";
+		$output .= "<th>Description</th>";
+		$output .= "<th>Equations</th>";
+		$output .= "</tr>\n";
+		
+		foreach ($this->skillVersions as $version)
+		{
+			$skill = $this->skillResults[$version];
+					
+			$desc = FormatRemoveEsoItemDescriptionText($skill['coefDescription']);
+			
+			$equationData = $this->MakeEquationDataHtml($skill);
+			if ($equationData == "") continue;
+			
+			$skillLine = $skill['skillLine'];
+			$skillType = $skill['classType'];
+			$rank = $skill['rank'];
+			if ($rank <= 0) $rank = '';
+			if ($skillType == "") $skillType = $skill['raceType'];
+			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
+			
+			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
+			
+			$output .= "<tr>";
+			$output .= "<td><b>$version</b></td>";
+			$output .= "<td><nobr>{$skill['name']} $rank</nobr></td>";
+			$output .= "<td>$mechanic</td>";
+			$output .= "<td>$skillType</td>";
+			$output .= "<td>$skillLine</td>";
+			$output .= "<td>{$skill['numCoefVars']}</td>";
+			$output .= "<td>$desc</td>";
+			$output .= "<td class='esovsc_nobreak'>$equationData</td>";
+			$output .= "</tr>\n";
+		}
+				
+		return $output;
+	}
+	
+	
 	public function MakeContentHtml()
 	{
 		$output = "";
@@ -405,9 +532,10 @@ class CEsoViewSkillCoef
 			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
 			
 			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
+			$link = "?abilityid={$skill['id']}";
 			
 			$output .= "<tr>";
-			$output .= "<td><nobr>{$skill['name']} $rank</nobr></td>";
+			$output .= "<td><nobr><a href='$link'>{$skill['name']} $rank</a></nobr></td>";
 			$output .= "<td>{$skill['id']}</td>";
 			$output .= "<td>$mechanic</td>";
 			$output .= "<td>$skillType</td>";
@@ -472,6 +600,12 @@ class CEsoViewSkillCoef
 	public function ViewData()
 	{
 		$this->OutputHeader();
+		
+		if ($this->showSkillId > 0) 
+		{
+			$this->LoadSkillHistory();
+			return $this->OutputSkillHistory();
+		}
 		
 		$this->LoadSkillCoef();
 	
