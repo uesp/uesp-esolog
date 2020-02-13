@@ -166,7 +166,7 @@ class CEsoViewSkillCoef
 	
 	public function MakePageHeaderHtml()
 	{
-		$output = "";
+		$output = "<div>";
 
 		if ($this->minR2 > 0 || $this->maxR2 < 1)
 		{
@@ -177,6 +177,9 @@ class CEsoViewSkillCoef
 		{
 			$output .= "Showing skill coefficients with a ratio value between ".$this->minRatio." - ".$this->maxRatio.". ";
 		}
+		
+		$output .= "Show data for update " . $this->GetVersionList($this->GetCurrentVersion()) . "";
+		$output .= "</div>";
 		
 		return $output;
 	}
@@ -318,6 +321,56 @@ class CEsoViewSkillCoef
 			$output .= "\$$i = {$a} Stat $bop {$b} Power $cop $c ($typeName, R2 = $R, ratio = $ratio)   ";
 		}
 	
+		return $output;
+	}
+	
+	
+	public function GetCurrentVersion() 
+	{
+		return GetEsoDisplayVersion($this->version);
+	}
+	
+	
+	public function GetVersionList($currentVersion) 
+	{
+		$output = "";
+		
+		$query = "SHOW TABLES LIKE 'minedSkills%';";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to list all minedSkills table versions!");
+		
+		$tables = array();
+		$output .= "<form action='?' method='get'>";
+		if ($this->minR2 > 0) $output .= "<input type='hidden' name='minr2' value='{$this->minR2}'>";
+		if ($this->maxR2 < 1) $output .= "<input type='hidden' name='maxr2' value='{$this->maxR2}'>";
+		if ($this->minRatio != -1000000) $output .= "<input type='hidden' name='minratio' value='{$this->minRatio}'>";
+		if ($this->maxRatio != 1000000) $output .= "<input type='hidden' name='maxratio' value='{$this->maxRatio}'>";
+		$output .= "<select name='version'>";
+		
+		$tables = array();
+		
+		while (($row = $result->fetch_row())) 
+		{
+			$table = $row[0];
+			$version = substr($table, 11);
+			if ($version == "") $version = GetEsoUpdateVersion();
+						
+			$tables[$version] = $version;
+		}
+		
+		natsort($tables);
+		
+		foreach ($tables as $version) 
+		{
+			$select = "";
+			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";
+			$output .= "<option $select>$version</option>";
+		}
+		
+		$output .= "</select>";
+		$output .= "<input type='submit' value='Go'>";
+		$output .= "</form>";
+		
 		return $output;
 	}
 	
