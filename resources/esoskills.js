@@ -3237,6 +3237,14 @@ window.HighlightEsoSkill = function (id)
 }
 
 
+window.UpdateSkillCoefHistoryLink = function ()
+{
+	var linkElement = $("#esovsSkillHistoryLink");
+	
+	linkElement.attr("href", "//esolog.uesp.net/viewSkillCoef.php?abilityid=" + g_LastSkillId);
+}
+
+
 window.UpdateSkillLink = function ()
 {
 	var linkElement = $("#esovsLinkBlock");
@@ -3255,6 +3263,8 @@ window.UpdateSkillLink = function ()
 	if (g_SkillShowAll) params += "&showall";
 	
 	linkElement.attr("href", "?" + params);
+	
+	UpdateSkillCoefHistoryLink();
 }
 
 

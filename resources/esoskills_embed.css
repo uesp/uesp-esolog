@@ -525,6 +525,14 @@
 	right: 2px;
 }
 
+#esovsSkillHistoryLink {
+	float: right;
+	font-size: 12px;
+	font-weight: normal;
+	position: absolute;
+	right: 2px;
+}
+
 #esovsSkillCoefData {
 	font-size: 13px;
 }
