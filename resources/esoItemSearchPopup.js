@@ -632,6 +632,7 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	if (this.weaponType >= 0) queryParams['weapontype'] = this.weaponType;
 	if (this.armorType != null) queryParams['armortype'] = this.armorType;
 	if (this.itemTrait >= 0) queryParams['trait'] = this.itemTrait;
+	if (g_EsoBuildPtsVersion != "") queryParams['version'] = g_EsoBuildPtsVersion; 
 	
 	this.updateLevelQuality();
 	

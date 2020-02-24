@@ -1234,6 +1234,13 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetSkillHistoryLink()
+	{
+		if ($this->highlightSkillId <= 0) return "";
+		return "//esolog.uesp.net/viewSkillCoef.php?abilityid={$this->highlightSkillId}";
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		global $ESO_DESTRUCTION_SKILLS;
@@ -1280,6 +1287,7 @@ class CEsoViewSkills
 				'{poisonSkillsJson}' => json_encode($ESO_POISON_SKILLS),
 				'{flameAOESkillsJson}' => json_encode($ESO_FLAMEAOE_SKILLS),
 				'{elfBaneSkillsJson}' => json_encode($ESO_ELFBANE_SKILLS),
+				'{skillHistoryLink}' => $this->GetSkillHistoryLink(),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1329,6 +1337,7 @@ class CEsoViewSkills
 				'{activeDataJson}' => "{}",
 				'{passiveDataJson}' => "{}",
 				'{skillBarJson}'  => "{}",
+				'{skillHistoryLink}' => "",
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);

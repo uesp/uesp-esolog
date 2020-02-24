@@ -58,6 +58,7 @@
 	</div>
 	<hr />
 	<div id="esovsSkillCoefData">
+		<a id="esovsSkillHistoryLink" href="{skillHistoryLink}">Skill Coefficient History</a>
 		<h2>Skill Coefficients</h2>		
 		<div id="esovsSkillCoefContent" style="display: none;">
 			{coefSkillData}
