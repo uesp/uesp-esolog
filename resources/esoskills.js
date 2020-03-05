@@ -11,6 +11,8 @@ window.g_EsoSkillUpdateEnable = true;
 
 window.g_EsoSkillIsMobile = false;
 
+window.g_LastSkillId = -1;
+
 
 ESO_SKILL_TYPES = {
 		0 : "",
@@ -884,6 +886,19 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		++includeSpellRawOutput;
 		++includeWeaponRawOutput;
 	}
+	else if (type == -73)
+	{
+		var value1 = a * values.Magicka;
+		var value2 = b * values.SpellDamage;
+		maxValue = c;
+		var halfMax = maxValue/2;
+		
+		if (value1 > halfMax) value1 = halfMax;
+		if (value2 > halfMax) value2 = halfMax;
+		
+		value = value1 + value2;
+		if (value > maxValue) value = maxValue;
+	}	
 	else if (type == -68)
 	{
 		value = a * values.Magicka;
@@ -2424,30 +2439,30 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	{
 		if (inputValues.MagickaCost.CP    != null) CPFactor    += inputValues.MagickaCost.CP;
 		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
-		if (inputValues.MagickaCost.Set   != null) SkillFactor += inputValues.MagickaCost.Set;
-		if (inputValues.MagickaCost.Skill != null) SkillFactor += inputValues.MagickaCost.Skill;
-		if (inputValues.MagickaCost.Buff  != null) SkillFactor += inputValues.MagickaCost.Buff;
+		if (inputValues.MagickaCost.Set   != null) SkillFactor *= 1 + inputValues.MagickaCost.Set;
+		if (inputValues.MagickaCost.Skill != null) SkillFactor *= 1 + inputValues.MagickaCost.Skill;
+		if (inputValues.MagickaCost.Buff  != null) SkillFactor *= 1 + inputValues.MagickaCost.Buff;
 	}
 	else if (mechanic == 6 && inputValues.StaminaCost != null)
 	{
 		if (inputValues.StaminaCost.CP    != null) CPFactor    += inputValues.StaminaCost.CP;
 		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
-		if (inputValues.StaminaCost.Set   != null) SkillFactor += inputValues.StaminaCost.Set;
-		if (inputValues.StaminaCost.Skill != null) SkillFactor += inputValues.StaminaCost.Skill;
-		if (inputValues.StaminaCost.Buff  != null) SkillFactor += inputValues.StaminaCost.Buff;
+		if (inputValues.StaminaCost.Set   != null) SkillFactor *= 1 + inputValues.StaminaCost.Set;
+		if (inputValues.StaminaCost.Skill != null) SkillFactor *= 1 + inputValues.StaminaCost.Skill;
+		if (inputValues.StaminaCost.Buff  != null) SkillFactor *= 1 + inputValues.StaminaCost.Buff;
 	}
 	else if (mechanic == 10 && inputValues.UltimateCost != null)
 	{
 		if (inputValues.UltimateCost.CP    != null) CPFactor    += inputValues.UltimateCost.CP;
 		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
-		if (inputValues.UltimateCost.Skill != null) SkillFactor += inputValues.UltimateCost.Skill;
-		if (inputValues.UltimateCost.Set   != null) SkillFactor += inputValues.UltimateCost.Set;
-		if (inputValues.UltimateCost.Buff  != null) SkillFactor += inputValues.UltimateCost.Buff;
+		if (inputValues.UltimateCost.Skill != null) SkillFactor *= 1 + inputValues.UltimateCost.Skill;
+		if (inputValues.UltimateCost.Set   != null) SkillFactor *= 1 + inputValues.UltimateCost.Set;
+		if (inputValues.UltimateCost.Buff  != null) SkillFactor *= 1 + inputValues.UltimateCost.Buff;
 	}
 	else if (mechanic == -2 && inputValues.HealthCost != null)
 	{
-		if (inputValues.HealthCost.Skill != null) SkillFactor += inputValues.HealthCost.Skill;
-		if (inputValues.HealthCost.Set   != null) SkillFactor += inputValues.HealthCost.Set;
+		if (inputValues.HealthCost.Skill != null) SkillFactor *= 1 + inputValues.HealthCost.Skill;
+		if (inputValues.HealthCost.Set   != null) SkillFactor *= 1 + inputValues.HealthCost.Set;
 	}
 
 		/* DK World in Ruins Passive */
@@ -2458,7 +2473,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		
 		if (poisonData)
 		{
-			SkillFactor += inputValues.PoisonStaminaCost;
+			SkillFactor *= 1 + inputValues.PoisonStaminaCost;
 		}		
 	}
 	
@@ -2472,7 +2487,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 			
 			if (skillDesc.match(matchData) != null)
 			{
-				SkillFactor += inputValues.HealingAbilityCost;
+				SkillFactor *= 1 + inputValues.HealingAbilityCost;
 				break;
 			}
 		}
@@ -2487,7 +2502,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Active")
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
-		SkillFactor += SkillLineFactor;
+		SkillFactor *= 1 + SkillLineFactor;
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 	}
@@ -2497,7 +2512,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (skillData.skillLine == "Vampire")
 		{
 			var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
-			SkillFactor += SkillLineFactor;
+			SkillFactor *= 1 + SkillLineFactor;
 		
 			if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
 		}
@@ -2506,7 +2521,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillNameId] != null)
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillNameId]);
-		SkillFactor += SkillLineFactor;
+		SkillFactor *= 1 + SkillLineFactor;
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
 	}
@@ -2940,6 +2955,11 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		output += srcString + " = " + a + " Magicka " + bOp + " " + b + " WeaponDamage " + cOp + " " + c;
 		typeString = "Magicka and Weapon Damage";
 		ratio = (b/a).toFixed(2);
+	}
+	else if (type == -73)
+	{
+		output += srcString + " = " + a + " Magicka " + bOp + " " + b + " SpellDamage    (Capped at " + c + "%)";
+		typeString = "Magicka Capped";
 	}
 	else if (type == -68)
 	{
