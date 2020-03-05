@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "25pts";
+$TABLE_SUFFIX = "";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -100,10 +100,10 @@ $ESO_SLOTTED_SKILLS = array(
 		29742 => -52,	//Medium Armor: Athletics
 		45574 => -52,
 		
-		20930 => -71,
-		34042 => -71,
-		34045 => -71,
-		34048 => -71,
+		20930 => -73,
+		34042 => -73,
+		34045 => -73,
+		34048 => -73,
 );
 
 $ESO_COEF_INDEX = array(
@@ -164,10 +164,10 @@ $ESO_COEF_VALUE = array(
 					array(1, 0, 0),
 				),
 		
-		20930 => array(0.00264, 1, 10),
-		34042 => array(0.00264, 1, 10),
-		34045 => array(0.00264, 1, 10),
-		34048 => array(0.00264, 1, 10),
+		20930 => array(1/6300, 1/600, 10),	// Engulfing Flames, updated 27 Feb 2020, PTS v5.3.3
+		34042 => array(1/6300, 1/600, 10),  // Technically Ranks 1-3 are 1 less than Rank 4 for both Magicka and Spell Damage
+		34045 => array(1/6300, 1/600, 10),
+		34048 => array(1/6300, 1/600, 10),
 		
 	/* Old Values
 		29338 => array(0.3300, 0.4, 0),		//Light Armor: Annulment

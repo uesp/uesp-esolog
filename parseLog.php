@@ -90,13 +90,14 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744307872848936960;	//v22pts 1554743017
 	//const START_MINEITEM_TIMESTAMP = 4744323044049158144;	//v22 1558360113
 	//const START_MINEITEM_TIMESTAMP = 4744353489713364992;	//v23 1565618406
-	const START_MINEITEM_TIMESTAMP = 4744378899046072320;	//v24 1571677300
+	//const START_MINEITEM_TIMESTAMP = 4744378899046072320;	//v24 1571677300
+	const START_MINEITEM_TIMESTAMP = 4744424545732001792; // v25 1582560000;	                                 
 			  	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
 	
-	const MINEITEM_TABLESUFFIX = "25pts";
-	const SKILLS_TABLESUFFIX   = "25pts";
+	const MINEITEM_TABLESUFFIX = "25";
+	const SKILLS_TABLESUFFIX   = "25";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -243,6 +244,8 @@ class EsoLogParser
 			"minedSkills28",
 			"minedSkills29pts",
 			"minedSkills29",
+			"minedSkills30pts",
+			"minedSkills30",
 			"collectibles",
 			"achievements",
 	);

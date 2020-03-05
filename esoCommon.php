@@ -33,6 +33,7 @@ const UESP_POWERTYPE_BONETYRANT = -69;
 const UESP_POWERTYPE_GRAVELORD = -70;
 const UESP_POWERTYPE_SPELLDAMAGECAPPED = -71;
 const UESP_POWERTYPE_MAGICKAWITHWD = -72;
+const UESP_POWERTYPE_MAGICKACAPPED = -73;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -1032,11 +1033,12 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_GRAVELORD => "Grave Lord Skills Slotted",
 		UESP_POWERTYPE_SPELLDAMAGECAPPED => "Spell Damage Capped",
 		UESP_POWERTYPE_MAGICKAWITHWD => "Magicka and Weapon Damage",
+		UESP_POWERTYPE_MAGICKACAPPED => "Magicka Capped",
 );
 
 
 $ESO_SET_INDEXES = array(
-		19 => "Vestments of the Warlock",
+				19 => "Vestments of the Warlock",
 		20 => "Witchman Armor",
 		21 => "Akaviri Dragonguard",
 		22 => "Dreamer's Mantle",
@@ -1300,7 +1302,6 @@ $ESO_SET_INDEXES = array(
 		309 => "Knight-errant's Mail",
 		310 => "Sword Dancer",
 		311 => "Rattlecage",
-		312 => "UNUSED",
 		313 => "Titanic Cleave",
 		314 => "Puncturing Remedy",
 		315 => "Stinging Slashes",
@@ -1446,6 +1447,17 @@ $ESO_SET_INDEXES = array(
 		468 => "Daring Corsair",
 		469 => "Ancient Dragonguard",
 		470 => "New Moon Acolyte",
+		471 => "Hiti's Hearth",
+		472 => "Titanborn Strength",
+		473 => "Bani's Torment",
+		474 => "Draugrkin's Grip",
+		475 => "Aegis Caller",
+		476 => "Grave Guardian",
+		478 => "Mother Ciannait",
+		479 => "Kjalnar's Nightmare",
+		480 => "Critical Riposte",
+		481 => "Unchained Aggressor",
+		482 => "Dauntless Combatant",
 );
 
 
@@ -3340,7 +3352,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 24;
+	return 25;
 }
 
 
@@ -3477,11 +3489,11 @@ function GetEsoItemTableSuffix($version)
 		case '24pts':
 			return "24pts";
 		case '24':
-			return "";
+			return "24";
 		case '25pts':
 			return "25pts";
 		case '25':
-			return "25";
+			return "";
 	}
 
 	return "";

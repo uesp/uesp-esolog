@@ -475,6 +475,12 @@ $ESO_REAGENT_DATA = array(
 				"icon" => "resources/dragonsblood.png",
 				"effects" => array(ESO_POTIONEFFECT_SUSTAINRESTOREHEALTH, ESO_POTIONEFFECT_RESTORESTAMINA, ESO_POTIONEFFECT_HEROISM, ESO_POTIONEFFECT_DEFILE),
 		),
+		"Dragon Rheum" => array(
+				"name" => "Dragon Rheum",
+				"itemId" => 150671,
+				"icon" => "resources/dragonrheum.png",
+				"effects" => array(ESO_POTIONEFFECT_RESTOREMAGICKA, ESO_POTIONEFFECT_HEROISM, ESO_POTIONEFFECT_ENERVATION, ESO_POTIONEFFECT_SPEED),
+		),
 		"Dragonthorn" => array(
 				"name" => "Dragonthorn",
 				"itemId" => 30162,
