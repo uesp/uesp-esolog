@@ -1965,6 +1965,9 @@ ESO_SKILL_DOT_OVERRIDES =
 		"Puncturing Strikes" : false,
 		"Biting Jabs" : false,
 		"Puncturing Sweep" : false,
+		"Flurry" : false,
+		"Rapid Strikes" : false,
+		"Bloodthirst" : false,
 };
 
 
@@ -1994,10 +1997,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	if (overrideDot != null) isDot = overrideDot;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
-	
+
 	overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.name];
 	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.abilityId];
 	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.baseAbilityId];
+	
+	skillData.baseTooltips = {};
 	
 	for (var i = 0; i < ESO_SKILL_DAMAGEMATCHES.length; ++i)
 	{
@@ -2009,9 +2014,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			var thisEffectIsDot = false;
 			matchIndex = matchIndex + 1;
 			
+			var modDamage = parseFloat(p3);
+			skillData.baseTooltips[matchIndex] = modDamage;
+			
 			if (inputValues.Damage[matchData.damageId] == null) return string;
 			
-			var modDamage = parseFloat(p3);
 			var baseFactor = 1;
 			var iAOE = false;
 			var isSingleTarget = false;
@@ -2368,7 +2375,13 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	if (numbers == null) return newDesc;
 	
 	var baseDmg = parseFloat(numbers[0]);
+	var modDmg = 1;
 	if (baseDmg == null) return newDesc;
+	
+	if (skillData.baseTooltips && skillData.baseTooltips[1]) {
+		modDmg = baseDmg / skillData.baseTooltips[1];
+		baseDmg = skillData.baseTooltips[1];		
+	}
 		
 	if (!skipExtraDmgParse) {
 		if (numbers[1] != null) hitExtraDmg = parseFloat(numbers[1]) / 100;
@@ -2378,14 +2391,11 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 		if (numbers[1] != null) finalExtraDmg = parseFloat(numbers[1]) / 100;
 	}	
 	
-	hitExtraDmg += 1;
-	finalExtraDmg += 1;
-	
-	var hit1 = baseDmg;
-	var hit2 = Math.floor(hit1 * hitExtraDmg);
-	var hit3 = Math.floor(hit2 * hitExtraDmg);
-	var hit4 = Math.floor(hit3 * hitExtraDmg);
-	var hit5 = Math.floor(hit1 * hitExtraDmg * finalExtraDmg);
+	var hit1 = Math.floor(baseDmg * modDmg);
+	var hit2 = Math.floor(baseDmg * (hitExtraDmg*1 + modDmg));
+	var hit3 = Math.floor(baseDmg * (hitExtraDmg*2 + modDmg));
+	var hit4 = Math.floor(baseDmg * (hitExtraDmg*3 + modDmg));
+	var hit5 = Math.floor(baseDmg * (hitExtraDmg + modDmg) + baseDmg * finalExtraDmg * (1 + hitExtraDmg));
 	var totalDmg = hit1 + hit2 + hit3 + hit4 + hit5;
 	
 	extraDesc += "Hits: " + hit1 + ", " + hit2 + ", " + hit3 + ", " + hit4 + ", " + hit5;
