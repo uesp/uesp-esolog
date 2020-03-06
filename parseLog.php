@@ -5686,6 +5686,11 @@ public function SaveQuestXPReward (&$record)
 			
 			if ($minedItem['setName'] == "New Moon Acolyte" || $logEntry['setName'] == "New Moon Acolyte")
 			{
+				$minedItem['setBonusCount1'] = 2;
+				$minedItem['setBonusCount2'] = 2;
+				$minedItem['setBonusCount3'] = 3;
+				$minedItem['setBonusCount4'] = 4;
+				$minedItem['setBonusCount5'] = 5;
 				$minedItem['setBonusDesc3'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc7'];
@@ -5720,6 +5725,7 @@ public function SaveQuestXPReward (&$record)
 			}
 			else if ($minedItem['setName'] == "Ancient Dragonguard" || $logEntry['setName'] == "Ancient Dragonguard")
 			{
+				$minedItem['setBonusCount5'] = 5;
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
 			}
@@ -5823,6 +5829,11 @@ public function SaveQuestXPReward (&$record)
 			
 			if ($minedItem['setName'] == "New Moon Acolyte" || $mergedLogEntry['setName'] == "New Moon Acolyte")
 			{
+				$minedItem['setBonusCount1'] = 2;
+				$minedItem['setBonusCount2'] = 2;
+				$minedItem['setBonusCount3'] = 3;
+				$minedItem['setBonusCount4'] = 4;
+				$minedItem['setBonusCount5'] = 5;
 				$minedItem['setBonusDesc3'] = $mergedLogEntry['setDesc3'] . "\n" . $mergedLogEntry['setDesc4'];
 				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc7'];
@@ -5857,6 +5868,7 @@ public function SaveQuestXPReward (&$record)
 			}
 			else if ($minedItem['setName'] == "Ancient Dragonguard" || $mergedLogEntry['setName'] == "Ancient Dragonguard")
 			{
+				$minedItem['setBonusCount5'] = 5;
 				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
 			}
