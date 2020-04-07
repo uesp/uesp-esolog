@@ -32,7 +32,7 @@ $query = "CREATE TABLE IF NOT EXISTS npcLocations (
 						zone TINYTEXT NOT NULL,
 						locCount INTEGER NOT NULL,
 						PRIMARY KEY (npcId, zone(64))
-					);";
+					) ENGINE=MYISAM;";
 $result = $dbWrite->query($query);
 if (!$result) exit("Failed to create npcLocations table!");
 

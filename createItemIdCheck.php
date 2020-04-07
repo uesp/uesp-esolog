@@ -13,7 +13,7 @@ $query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
 			version TINYTEXT NOT NULL,
 			INDEX index_itemId (itemId),
 			INDEX index_version (version(8))
-		);";
+		) ENGINE=MYISAM;";
 
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);

@@ -112,7 +112,7 @@ class CEsoCreateSkillTree
 			INDEX index_abilityId(abilityId),
 			INDEX index_skillTypeName(skillTypeName(20)),
 			INDEX index_type(type(8))
-		);";
+		) ENGINE=MYISAM;";
 
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error creating table!");

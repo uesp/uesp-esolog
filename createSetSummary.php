@@ -273,7 +273,7 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			setBonusDesc TEXT NOT NULL,
 			itemSlots TEXT NOT NULL,
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5)
-		);";
+		) ENGINE=MYISAM;";
 
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);

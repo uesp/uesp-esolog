@@ -113,7 +113,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 			INDEX index_equiptype (equipType),
 			INDEX index_crafttype (craftType),
 			FULLTEXT(name, description, abilityName, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, tags, allNames)
-		);";
+		) ENGINE=MYISAM;";
 
 $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);

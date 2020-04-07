@@ -1651,7 +1651,7 @@ public function SaveQuestXPReward (&$record)
 						id TINYTEXT NOT NULL,
 						value TINYTEXT NOT NULL,
 						PRIMARY KEY (id(64))
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1666,7 +1666,7 @@ public function SaveQuestXPReward (&$record)
 						ipAddress TINYTEXT NOT NULL,
 						PRIMARY KEY (id),
 						INDEX unique_entry (gameTime, timeStamp, entryHash)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1690,7 +1690,7 @@ public function SaveQuestXPReward (&$record)
 						enabled TINYINT NOT NULL DEFAULT 1,
 						language TINYTEXT NOT NULL,
 						PRIMARY KEY (name(64))
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1700,7 +1700,7 @@ public function SaveQuestXPReward (&$record)
 						ipaddress TINYTEXT NOT NULL,
 						enabled TINYINT NOT NULL DEFAULT 1,
 						PRIMARY KEY (ipaddress(64))
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1724,7 +1724,7 @@ public function SaveQuestXPReward (&$record)
 						FULLTEXT(title),
 						FULLTEXT(body),
 						INDEX index_bookId(bookId)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1756,7 +1756,7 @@ public function SaveQuestXPReward (&$record)
 						INDEX find_questloc (questId, zone(64), x, y),
 						INDEX find_queststageloc (questStageId, zone(64), x, y),
 						FULLTEXT(name)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1769,7 +1769,7 @@ public function SaveQuestXPReward (&$record)
 						quality TINYINT NOT NULL,
 						name TINYTEXT NOT NULL,
 						PRIMARY KEY (id)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1794,7 +1794,7 @@ public function SaveQuestXPReward (&$record)
 						PRIMARY KEY (id),
 						INDEX index_link (link(64)),
 						FULLTEXT(name)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1809,7 +1809,7 @@ public function SaveQuestXPReward (&$record)
 						PRIMARY KEY (id),
 						FULLTEXT(name),
 						FULLTEXT(objective)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1833,7 +1833,7 @@ public function SaveQuestXPReward (&$record)
 						INDEX index_quest(questId),
 						FULLTEXT(objective),
 						FULLTEXT(overrideText)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1869,7 +1869,7 @@ public function SaveQuestXPReward (&$record)
 						PRIMARY KEY (id),
 						INDEX index_name(name(32)),
 						FULLTEXT(backgroundText, objective, goalText, confirmText, declineText, endDialogText, endBackgroundText, endJournalText)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1892,7 +1892,7 @@ public function SaveQuestXPReward (&$record)
 						PRIMARY KEY (id),
 						INDEX index_quest(questId),
 						FULLTEXT(text, overrideText)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1919,7 +1919,7 @@ public function SaveQuestXPReward (&$record)
 						PRIMARY KEY (id),
 						INDEX index_quest(questId, stageIndex, stepIndex, conditionIndex),
 						FULLTEXT(text)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1942,7 +1942,7 @@ public function SaveQuestXPReward (&$record)
 						PRIMARY KEY (id),
 						FULLTEXT(name),
 						INDEX index_questId(questId)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1955,7 +1955,7 @@ public function SaveQuestXPReward (&$record)
 						gold INTEGER NOT NULL,
 						playerLevel TINYINT NOT NULL,
 						PRIMARY KEY (id)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1968,7 +1968,7 @@ public function SaveQuestXPReward (&$record)
 						experience INTEGER NOT NULL,
 						playerLevel TINYINT NOT NULL,
 						PRIMARY KEY (id)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -1994,7 +1994,7 @@ public function SaveQuestXPReward (&$record)
 						FULLTEXT(description),
 						INDEX index_questId(questId),
 						INDEX index_link (itemLink(64))
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2013,7 +2013,7 @@ public function SaveQuestXPReward (&$record)
 						reaction TINYINT NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name, ppClass)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2023,7 +2023,7 @@ public function SaveQuestXPReward (&$record)
 						npcId BIGINT NOT NULL,
 						zone TINYTEXT NOT NULL,
 						PRIMARY KEY (npcId, zone(64))
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2035,7 +2035,7 @@ public function SaveQuestXPReward (&$record)
 						count INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2062,7 +2062,7 @@ public function SaveQuestXPReward (&$record)
 						INDEX index_lootSourceId(lootSourceId),
 						INDEX index_zone(zone(24)),
 						INDEX index_itemName(itemName(24))
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2078,7 +2078,7 @@ public function SaveQuestXPReward (&$record)
 						quality TINYINT NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2093,7 +2093,7 @@ public function SaveQuestXPReward (&$record)
 						quantity INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2173,7 +2173,7 @@ public function SaveQuestXPReward (&$record)
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId, internalLevel, internalSubtype)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2185,7 +2185,7 @@ public function SaveQuestXPReward (&$record)
 			`version` TINYTEXT NOT NULL,
 			INDEX index_itemId (itemId),
 			INDEX index_version (`version`(8))
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2267,7 +2267,7 @@ public function SaveQuestXPReward (&$record)
 			FULLTEXT(description),
 			FULLTEXT(upgradeLines),
 			FULLTEXT(effectLines)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2285,7 +2285,7 @@ public function SaveQuestXPReward (&$record)
 			totalXp INTEGER NOT NULL DEFAULT 0,
 			INDEX index_name (name(16)),
 			INDEX index_fullName (fullName(32))
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2297,7 +2297,7 @@ public function SaveQuestXPReward (&$record)
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			attribute TINYINT NOT NULL
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2322,7 +2322,7 @@ public function SaveQuestXPReward (&$record)
 			r2 FLOAT NOT NULL DEFAULT -1,
 			fitDescription TEXT NOT NULL,
 			INDEX index_abilityId(abilityId)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2334,7 +2334,7 @@ public function SaveQuestXPReward (&$record)
 			points INTEGER NOT NULL,
 			description TEXT NOT NULL,
 			INDEX index_abilityId(abilityId)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2382,7 +2382,7 @@ public function SaveQuestXPReward (&$record)
 			FULLTEXT(nickname),
 			FULLTEXT(description),
 			FULLTEXT(hint)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2406,7 +2406,7 @@ public function SaveQuestXPReward (&$record)
 			INDEX index_subCategoryIndex(subCategoryIndex),
 			FULLTEXT(categoryName),
 			FULLTEXT(subCategoryName)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2442,7 +2442,7 @@ public function SaveQuestXPReward (&$record)
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(title)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -2456,7 +2456,7 @@ public function SaveQuestXPReward (&$record)
 			criteriaIndex INTEGER NOT NULL,
 			INDEX index_achievmentId(achievementId),
 			FULLTEXT(description)
-		);";
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);

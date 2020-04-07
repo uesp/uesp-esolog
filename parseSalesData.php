@@ -231,7 +231,7 @@ class EsoSalesDataParser
 						totalPurchases INT UNSIGNED NOT NULL, 
 						PRIMARY KEY (id),
 						INDEX name_index(server(3), name(24))
-					);";
+					) ENGINE=MYISAM;";
 	
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -270,7 +270,7 @@ class EsoSalesDataParser
 						PRIMARY KEY (id),
 						INDEX unique_index1(server(3), itemId, level, quality, trait, potionData),
 						INDEX unique_index2(server(3), itemId, internalLevel, internalSubType, potionData)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
@@ -298,7 +298,7 @@ class EsoSalesDataParser
 						INDEX unique_entry3(uniqueId),
 						INDEX unique_itemid(itemId),
 						INDEX timestamp(itemId, timestamp)
-					);";
+					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
