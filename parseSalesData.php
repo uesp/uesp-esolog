@@ -52,7 +52,7 @@ class EsoSalesDataParser
 	public $maxSlaveLagChecks = 10;
 	
 	
-	public function __construct ($quiet)
+	public function __construct ($quiet = false)
 	{
 		$this->Lua = new Lua();
 		
