@@ -807,10 +807,6 @@ class EsoGetSalesImage
 		$y = $this->ConvertGraphToPixelY($lastValue);
 		$x2 = $this->outputWidth - self::BORDER_RIGHT_MARGIN;
 		
-		//$c = $color;
-		//$t = IMG_COLOR_TRANSPARENT;
-		//imagesetstyle($image, array($c, $t));
-		
 		$roundValue = $lastValue;
 		
 		if ($lastValue > 100)
@@ -820,12 +816,11 @@ class EsoGetSalesImage
 		else 
 			$roundValue = round($lastValue, 2);
 		
-		imageline($image, $x1, $y, $x2, $y, $color);
-		//$this->PrintText($image, $roundValue . "gp", 10, $color, $x1 + 2, $y + 2, self::ALIGN_LEFT, self::ALIGN_TOP);
-		
 		$textBox = $this->PrintText($image, $roundValue . "gp", 10, $color, $x1, $y, self::ALIGN_LEFT, self::ALIGN_TOP);
-		imagefilledrectangle($image, $x1, $y, $x + $textBox['width'], $y + $textBox['height']);
+		imagefilledrectangle($image, $x1, $y, $x1 + $textBox['width'], $y + $textBox['height'], $this->backgroundColor);
 		$this->PrintText($image, $roundValue . "gp", 10, $color, $x1, $y, self::ALIGN_LEFT, self::ALIGN_TOP);
+		
+		imageline($image, $x1, $y, $x2, $y, $color);
 		
 		return true;
 	}
