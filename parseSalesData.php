@@ -1394,11 +1394,11 @@ class EsoSalesDataParser
 			$minTime = $safeTime - self::ESD_LISTTIME_RANGE;
 			$maxTime = $safeTime + self::ESD_LISTTIME_RANGE;
 			
-			$this->lastQuery = "UPDATE sales SET uniqueId='$uniqueId' WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp>='$minTime' AND listTimestamp<='$maxTime' AND sellerName=\"$safeName\" LIMIT 1;";
+			$this->lastQuery = "UPDATE sales SET uniqueId='$uniqueId' WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp>='$minTime' AND listTimestamp<='$maxTime' AND sellerName=\"$safeName\";";
 		}
 		else
 		{
-			$this->lastQuery = "UPDATE sales SET uniqueId='$uniqueId' WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\" LIMIT 1;";
+			$this->lastQuery = "UPDATE sales SET uniqueId='$uniqueId' WHERE server='$server' AND itemId='$itemMyId' AND guildId='$guildId' AND listTimestamp='$safeTime' AND sellerName=\"$safeName\";";
 		}
 		
 		$result = $this->db->query($this->lastQuery);
