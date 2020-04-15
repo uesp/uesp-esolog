@@ -310,7 +310,7 @@ class EsoViewSalesData
 				$this->server = "PTS";
 			
 			$this->displayServer = $this->server;
-			$this->salesData->server = $this->server; 
+			//$this->salesData->server = $this->server; 
 		}
 		
 		$this->finalItemQuality = $this->GetItemQualityValue($this->formValues['quality']);
@@ -1493,7 +1493,7 @@ class EsoViewSalesData
 		}
 		
 		$this->displayServer = $this->server;
-		$this->salesData->server = $this->server;
+		//$this->salesData->server = $this->server;
 		
 		if ($result->num_rows >= $this->searchLimitCount)
 		{
@@ -1538,7 +1538,7 @@ class EsoViewSalesData
 		
 		$this->server = $row['server'];
 		$this->displayServer = $this->server;
-		$this->salesData->server = $this->server;
+		//$this->salesData->server = $this->server;
 		
 		$this->itemCount = 1;
 		
@@ -2075,7 +2075,7 @@ class EsoViewSalesData
 				
 				$this->server = $this->singleItemData['server'];
 				$this->displayServer = $this->server;
-				$this->salesData->server = $this->server;
+				//$this->salesData->server = $this->server;
 				
 				if ($this->sortField == "itemname") 
 				{
