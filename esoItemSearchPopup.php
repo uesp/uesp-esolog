@@ -184,6 +184,7 @@ class CEsoItemSearchPopup
 		if ($this->inputWeaponType != "") $whereQuery[] = "weaponType=".$this->inputWeaponType;
 		if ($this->inputItemTrait >= 0)	$whereQuery[] = "trait=".$this->inputItemTrait;
 		if ($this->inputArmorType >= 0)	$whereQuery[] = "armorType=".$this->inputArmorType;
+		//if ($this->inputItemQuality >= 0) $whereQuery[] = "quality=".$this->inputItemQuality;
 		
 		if ($this->inputText != "")
 		{
@@ -196,7 +197,7 @@ class CEsoItemSearchPopup
 			$safeText = $this->db->real_escape_string($this->inputItemSet);
 			$whereQuery[] = "(setName LIKE '%$safeText%')";
 		}
-				
+		
 		if (count($whereQuery) > 0)
 		{
 			$query .= "WHERE " . implode(" AND ", $whereQuery) . " ";
@@ -217,7 +218,20 @@ class CEsoItemSearchPopup
 		
 		while (($row = $result->fetch_assoc()))
 		{
-			$this->resultItems[] = $row;	
+			if ($this->inputItemQuality >= 0) 
+			{
+				$splitQuality = explode("-", $row['quality']);
+				$minQuality = $splitQuality[0];
+				$maxQuality = $splitQuality[1];
+				if ($maxQuality == null) $maxQuality = $minQuality;
+				
+				if ($this->inputItemQuality < $minQuality || $this->inputItemQuality > $maxQuality) {
+					//error_log("Skipping Item: {$this->inputItemQuality} : $minQuality : $maxQuality");
+					continue;
+				}
+			}
+			
+			$this->resultItems[] = $row;
 		}
 		
 		$result = $this->db->query("SELECT FOUND_ROWS() as rowCount;");

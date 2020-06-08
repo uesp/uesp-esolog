@@ -136,6 +136,17 @@ class CEsoItemLink
 			"cooldown" => "",
 	);
 	
+	static public $ESOIL_ERROR_ANTIQUITYITEM_DATA = array(
+			"name" => "Unknown",
+			"itemLink" => "",
+			"itemId" => "",
+			"header" => "",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
+			"description" => "Unknown antiquity lead!",
+			"stepIndex" => "",
+			"conditionIndex" => "",
+	);
+	
 	static public $ESOIL_ITEM_SUMMARY_FIELDS = array(
 			"level",
 			"value",
@@ -211,11 +222,12 @@ class CEsoItemLink
 	public $collectibleItemId = -1;
 	public $collectibleItemData = array();
 	
+	public $antiquityItemId = -1;
+	public $antiquityItemData = array();
+	
 	
 	public function __construct ()
 	{
-		//SetupUespSession();
-		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
@@ -232,9 +244,6 @@ class CEsoItemLink
 	
 	public function ParseItemLink($itemLink)
 	{
-		//$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<enchantId2>[0-9]*)\:(?P<enchantSubtype2>[0-9]*)\:(?P<enchantLevel2>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', $itemLink, $matches);
-		//if (!$result) return $this->ReportError("Failed to parse item link: $itemLink");
-		
 		$matches = ParseEsoItemLink($itemLink);
 		if (!$matches) return $this->ReportError("Failed to parse item link: $itemLink");
 		
@@ -388,14 +397,17 @@ class CEsoItemLink
 		if (array_key_exists('cid', $this->inputParams)) $this->collectibleItemId = (int) $this->inputParams['cid'];
 		if (array_key_exists('collectid', $this->inputParams)) $this->collectibleItemId = (int) $this->inputParams['collectid'];
 		if (array_key_exists('collectibleid', $this->inputParams)) $this->collectibleItemId = (int) $this->inputParams['collectibleid'];
-				
+		if (array_key_exists('aid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['aid'];
+		if (array_key_exists('antiid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['antiid'];
+		if (array_key_exists('antiquityid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['antiquityid'];
+		
 		$this->useUpdate10Display = IsEsoVersionAtLeast($this->version, 10);
 		
 		$this->inputIntType = $this->itemIntType;
 		$this->inputIntLevel = $this->itemIntLevel;
 		$this->inputLevel = $this->itemLevel;
 		$this->inputQuality = $this->itemQuality;
-				
+		
 		return true;
 	}
 	
@@ -589,6 +601,16 @@ class CEsoItemLink
 		$this->collectibleItemData['name'] = "Unknown Collectible";
 		$this->collectibleItemData['id'] = $this->collectibleItemId;
 		$this->collectibleItemData['description'] = "No collectible item found matching ID# {$this->collectibleItemId}!";
+	}
+	
+	
+	private function LoadAntiquityItemErrorData()
+	{
+		$this->antiquityItemData = self::$ESOIL_ERROR_ANTIQUITYITEM_DATA;
+	
+		$this->antiquityItemData['name'] = "Unknown Antiquity";
+		$this->antiquityItemData['id'] = $this->antiquityItemId;
+		$this->antiquityItemData['description'] = "No antiquity lead found matching ID# {$this->antiquityItemId}!";
 	}
 	
 	
@@ -940,7 +962,17 @@ class CEsoItemLink
 	private function LoadItemTransmuteTraitData()
 	{
 		$this->itemRecord['origTraitDesc'] = $this->itemRecord['traitDesc'];
-		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $this->itemRecord['internalLevel'], $this->itemRecord['internalSubtype'], $this->itemRecord['equipType'], $this->db);
+		
+		$intLevel = $this->itemRecord['internalLevel'];
+		$intSubtype = $this->itemRecord['internalSubtype'];
+		
+			/* Special case for mythic items */
+		if ($this->itemRecord['quality'] == 6) {
+			$intLevel = 50;
+			$intSubtype = 370;
+		}
+		
+		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $intLevel, $intSubtype, $this->itemRecord['equipType'], $this->db);
 	}	
 	
 	
@@ -970,13 +1002,13 @@ class CEsoItemLink
 		if ($resultItemLevel == null || $resultItemLevel == "") return true;
 		if ($resultItemSubType == null || $resultItemSubType == "") return true;
 		
-		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId=$resultItemId AND internalLevel=$resultItemLevel AND internalSubType=$resultItemSubType LIMIT 1;";
+		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='$resultItemId' AND internalLevel='$resultItemLevel' AND internalSubType='$resultItemSubType' LIMIT 1;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
 		if ($result->num_rows === 0)
 		{
-			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId=$resultItemId AND internalLevel=1 AND internalSubType=1 LIMIT 1;";
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='$resultItemId' AND internalLevel=1 AND internalSubType=1 LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		}
@@ -998,7 +1030,7 @@ class CEsoItemLink
 		if ($this->questItemId <= 0) return $this->ReportError("ERROR: Missing or invalid quest item ID specified (1-85000)!");
 		$query = "";
 	
-		$query = "SELECT * FROM questItem". $this->GetTableSuffix() ." WHERE itemId={$this->questItemId} LIMIT 1;";
+		$query = "SELECT * FROM questItem". $this->GetTableSuffix() ." WHERE itemId='{$this->questItemId}' LIMIT 1;";
 		$this->itemErrorDesc = "qid={$this->questItemId}";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
@@ -1022,7 +1054,7 @@ class CEsoItemLink
 		if ($this->collectibleItemId <= 0) return $this->ReportError("ERROR: Missing or invalid collectible item ID specified (1-85000)!");
 		$query = "";
 	
-		$query = "SELECT * FROM collectibles". $this->GetTableSuffix() ." WHERE id={$this->collectibleItemId} LIMIT 1;";
+		$query = "SELECT * FROM collectibles". $this->GetTableSuffix() ." WHERE id='{$this->collectibleItemId}' LIMIT 1;";
 		$this->itemErrorDesc = "cid={$this->collectibleItemId}";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
@@ -1034,6 +1066,30 @@ class CEsoItemLink
 		{
 			$this->ReportError("ERROR: No collectible item found matching {$this->itemErrorDesc}!");
 			$this->collectibleItemData = array();
+			return false;
+		}
+	
+		return true;
+	}
+	
+	
+	private function LoadAntiquityItemRecord()
+	{
+		if ($this->antiquityItemId <= 0) return $this->ReportError("ERROR: Missing or invalid collectible item ID specified (1-85000)!");
+		$query = "";
+	
+		$query = "SELECT * FROM antiquityLeads". $this->GetTableSuffix() ." WHERE id='{$this->antiquityItemId}' LIMIT 1;";
+		$this->itemErrorDesc = "aid={$this->antiquityItemId}";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+	
+		$result->data_seek(0);
+		$this->antiquityItemData = $result->fetch_assoc();
+		
+		if (!$this->antiquityItemData) 
+		{
+			$this->ReportError("ERROR: No antiquity item found matching {$this->itemErrorDesc}!");
+			$this->antiquityItemData = array();
 			return false;
 		}
 	
@@ -1343,6 +1399,27 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeAntiquityItemRawDataList()
+	{
+		$output = "";
+		$this->antiquityItemData['version'] = $this->version;
+	
+		foreach ($this->antiquityItemData as $key => $value)
+		{
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
+			$id = "esoil_rawdata_" . $key;
+				
+			if ($key == "icon")
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeAntiquityItemIconImageLink()}' /> $value</td></tr>\n";
+			else
+				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+	
+		}
+	
+		return $output;
+	}
+	
+	
 	private function MakeIconImageLink($icon)
 	{
 		if ($icon == null || $icon == "") $icon = self::ESOIL_ICON_UNKNOWN;
@@ -1371,6 +1448,13 @@ class CEsoItemLink
 	private function MakeCollectibleItemIconImageLink()
 	{
 		$icon = $this->collectibleItemData['icon'];
+		return $this->MakeIconImageLink($icon);
+	}
+	
+	
+	private function MakeAntiquityItemIconImageLink()
+	{
+		$icon = $this->antiquityItemData['icon'];
 		return $this->MakeIconImageLink($icon);
 	}
 	
@@ -1671,10 +1755,11 @@ class CEsoItemLink
 	{
 		static $WEAPON_MATCHES = array
 		(
-			"#(Deals \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",		
+			"#(Deals \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 			"#(restores \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 			"#(by \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 			"#(Grants a \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
+			"#(maximum of \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 		);
 	
 		$newDesc = $desc;
@@ -1784,18 +1869,17 @@ class CEsoItemLink
 		{
 			$armorFactor *= 0.405; 
 		}
-
+		
 		if (($itemType == 2 || $weaponType == 14) && $armorFactor != 1)
 		{
-			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?: by \|c[0-9a-fA-F]{6})|)([0-9\.]+)((?:\|r))#i",
-					
+			$newDesc = preg_replace_callback("#((?:Adds \|c[0-9a-fA-F]{6})|(?: by \|c[0-9a-fA-F]{6})|)([0-9]+)((?:\|r)|)#i",
+				
 				function ($matches) use ($armorFactor) {
 					$result = floor($matches[2] * $armorFactor);
             		return $matches[1] . $result . $matches[3];
         		},
         		
         		$newDesc);
-
 		}
 		else if ($weaponType > 0 && $weaponType != 14 && $weaponFactor != 1)
 		{
@@ -1814,6 +1898,7 @@ class CEsoItemLink
 		}
 		
 		$newDesc = $this->FormatDescriptionText($newDesc);
+		
 		return $newDesc;
 	}	
 
@@ -2370,6 +2455,38 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeAntiquityItemDescription()
+	{
+		$desc = "";
+		
+		if ($this->antiquityItemData['loreName1'] != "") {
+			$desc .= "<b>" . $this->antiquityItemData['loreName1'] . "</b>\n" . $this->antiquityItemData['loreDescription1'];
+		}
+		
+		if ($this->antiquityItemData['loreName2'] != "") {
+			$desc .= "\n\n<b>" . $this->antiquityItemData['loreName2'] . "</b>\n" . $this->antiquityItemData['loreDescription2'];
+		}
+		
+		if ($this->antiquityItemData['loreName3'] != "") {
+			$desc .= "\n\n<b>" . $this->antiquityItemData['loreName3'] . "</b>\n" . $this->antiquityItemData['loreDescription3'];
+		}
+		
+		return FormatEsoItemDescriptionText($desc);
+	}
+	
+	
+	private function MakeAntiquitySetDescription()
+	{
+		$desc = "";
+		
+		if ($this->antiquityItemData['setName']  == "") return "";
+		if ($this->antiquityItemData['setCount'] == 0) return "";
+		
+		$desc = "One of the " . $this->antiquityItemData['setCount'] . " pieces of the " . $this->antiquityItemData['setName'] . ".";
+		return $desc;
+	}
+	
+	
 	private function GetItemRawVersion()
 	{
 		if ($this->version == "")
@@ -2574,6 +2691,13 @@ class CEsoItemLink
 	}		
 	
 	
+	private function MakeAntiquityItemName()
+	{
+		$name = strtoupper($this->antiquityItemData['name']);
+		return $name;
+	}
+	
+	
 	private function OutputCollectibleItemHtml()
 	{
 		$replacePairs = array(
@@ -2636,6 +2760,68 @@ class CEsoItemLink
 	}
 	
 	
+	private function OutputAntiquityItemHtml()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->antiquityItemData['name'],
+				'{itemNameUpper}' => $this->MakeAntiquityItemName(),
+				'{itemDesc}' => $this->MakeAntiquityItemDescription(),
+				'{itemLink}' => $this->antiquityItemData['itemLink'],
+				'{itemStyle}' => "",
+				'{itemId}' => $this->antiquityItemId,
+				'{itemType1}' => "Antiquity",
+				'{itemType2}' => $this->antiquityItemData['categoryName'],
+				'{itemStolen}' => "",
+				'{itemBindType}' => "",
+				'{itemValue}' => "",
+				'{itemLevel}' => "",
+				'{itemLevelRaw}' => "",
+				'{itemQualityRaw}' => $this->antiquityItemData['quality'],
+				'{itemLevelBlock}' => "",
+				'{itemQuality}' => GetEsoItemQualityText($this->antiquityItemData['quality']),
+				'{iconLink}' => $this->MakeAntiquityItemIconImageLink(),
+				'{itemLeftBlock}' => "",
+				'{itemRightBlock}' => "",
+				'{itemNewValueBlock}' => "",
+				'{itemBar}' => "",
+				'{itemBarClass}' => "esoilHidden",
+				'{itemEnchantBlock}' => "",
+				'{itemTraitBlock}' => "",
+				'{itemSetBlock}' => $this->MakeAntiquitySetDescription(),
+				'{itemAbilityBlock}' => "",
+				'{itemTraitAbilityBlock}' => "",
+				'{itemLeftBlockDisplay}' => "none",
+				'{itemLevelBlockDisplay}' => "none",
+				'{itemRightBlockDisplay}' => "none",
+				'{itemNewValueBlockDisplay}' => "none",
+				'{itemCraftedBlock}' => "",
+				'{itemTags}' => "",
+				'{itemDataJson}' => "{}",
+				'{itemSimilarBlock}' => "",
+				'{itemEnchantId1}' => "",
+				'{itemEnchantIntLevel1}' => "",
+				'{itemEnchantIntType1}' => "",
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => "",
+				'{viewSumDataExtraQuery}' => "",
+				'{itemRawDataList}' => $this->MakeAntiquityItemRawDataList(),
+				'{rawItemVersion}' => $this->GetItemRawVersion(),
+				'{extraDataLinkDisplay}' => "none",
+				'{controlBlockDisplay}' => "none",
+				'{similarItemBlockDisplay}' => "none",
+				'{itemTypeTitle}' => "Antiquity ",
+				'{itemDescClass}' => "esoil_itemdescQuest",
+				'{itemDyeStampBlock}' => '',
+		);
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+	
+		print ($output);
+	}
+	
+	
 	public function GetSummaryDataExtraQuery()
 	{
 		$output = "";
@@ -2670,7 +2856,6 @@ class CEsoItemLink
 				'{showSummary}' => "",
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
-				'{itemLinkURL}' => $this->GetQuestItemLinkURL(),
 				'{rawItemData}' => $this->GetRawQuestItemDataHtml(),
 				'{itemDyeStampBlock}' => '',
 		);
@@ -2692,8 +2877,28 @@ class CEsoItemLink
 				'{showSummary}' => "",
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
-				'{itemLinkURL}' => $this->GetCollectibleItemLinkURL(),
 				'{rawItemData}' => $this->GetRawCollectibleItemDataHtml(),
+				'{itemDyeStampBlock}' => '',
+		);
+		
+		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
+		
+		$output = strtr($rawDataTemplate, $replacePairs);
+		print ($output);
+	}
+	
+	
+	public function OutputAntiquityItemRawData()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->antiquityItemData['name'],
+				'{itemNameUpper}' => strtoupper($this->antiquityItemData['name']),
+				'{itemId}' => $this->antiquityItemId,
+				'{iconLink}' => $this->MakeAntiquityItemIconImageLink(),
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{rawItemData}' => $this->GetRawAntiquityItemDataHtml(),
 				'{itemDyeStampBlock}' => '',
 		);
 		
@@ -2780,6 +2985,30 @@ class CEsoItemLink
 		$output .= "</tr>\n";
 	
 		foreach ($this->collectibleItemData as $key => $value)
+		{
+			$output .= "<tr>";
+			$output .= "<td>$value</td>\n";
+			$output .= "</tr>\n";
+		}
+	
+		$output .= "</table>\n";
+		return $output;
+	}
+	
+	
+	public function GetRawAntiquityItemDataHtml()
+	{
+		$output  = "<table class='esoil_rawitemdata_table'>\n";
+		$output .= "<tr>";
+		
+		foreach ($this->antiquityItemData as $key => $value)
+		{
+			$output .= "<th>$key</th>\n";
+		}
+		
+		$output .= "</tr>\n";
+	
+		foreach ($this->antiquityItemData as $key => $value)
 		{
 			$output .= "<tr>";
 			$output .= "<td>$value</td>\n";
@@ -2945,6 +3174,15 @@ class CEsoItemLink
 	}
 	
 	
+	public function DumpAntiquityItem()
+	{
+		foreach ($this->antiquityItemData as $key => $value)
+		{
+			print("$key = $value\n");
+		}
+	}
+	
+	
 	public function ShowQuestItem()
 	{
 		if (!$this->LoadQuestItemRecord()) $this->LoadQuestItemErrorData();
@@ -2979,6 +3217,23 @@ class CEsoItemLink
 	}
 	
 	
+	public function ShowAntiquityItem()
+	{
+		if (!$this->LoadAntiquityItemRecord()) $this->LoadAntiquityItemErrorData();
+		
+		if ($this->outputRaw)
+			$this->OutputAntiquityItemRawData();
+		else if ($this->outputType == "html")
+			$this->OutputAntiquityItemHtml();
+		elseif ($this->outputType == "text")
+			$this->DumpAntiquityItem();
+		else
+			return $this->ReportError("Error: Unknown output type '{$this->outputType}' specified!");
+		
+		return true;
+	}
+	
+	
 	public function ShowItem()
 	{
 		$this->OutputHtmlHeader();
@@ -3002,6 +3257,7 @@ class CEsoItemLink
 		
 		if ($this->questItemId > 0) return $this->ShowQuestItem();
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
+		if ($this->antiquityItemId > 0) return $this->ShowAntiquityItem();
 		
 		if ($this->version != "" && $this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		
@@ -3045,7 +3301,6 @@ class CEsoItemLink
 	}
 	
 };
-
 
 $g_EsoItemLink = new CEsoItemLink();
 $g_EsoItemLink->ShowItem();

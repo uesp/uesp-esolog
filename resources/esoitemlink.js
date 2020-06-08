@@ -6,6 +6,7 @@ window.ESO_ITEM_QUALITIES = {
 		3: "Superior",
 		4: "Epic",
 		5: "Legendary",
+		6: "Mythic",
 };
 
 
@@ -305,7 +306,7 @@ function UpdateEsoItemData(level, quality)
 	if (itemData == null) return false;
 	
 	$('#esoil_itemname').text(itemData.name.toUpperCase());
-	$('#esoil_itemname').removeClass("esoil_quality_None esoil_quality_Normal esoil_quality_Fine esoil_quality_Superior esoil_quality_Epic esoil_quality_Legendary");
+	$('#esoil_itemname').removeClass("esoil_quality_None esoil_quality_Normal esoil_quality_Fine esoil_quality_Superior esoil_quality_Epic esoil_quality_Legendary esoil_quality_Mythic");
 	$('#esoil_itemname').addClass("esoil_quality_" + GetEsoItemQualityText(itemData['quality']));
 	
 	$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level'])).show();

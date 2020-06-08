@@ -9,12 +9,12 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "25";
+$TABLE_SUFFIX = "26";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
 $START_ID = 3;
-$END_ID = 170000;
+$END_ID = 180000;
 
 $MAXBADITEMCOUNT = 1450;
 
@@ -266,6 +266,18 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 			if ($maxCount > $MAXBADITEMCOUNT) 
 			{
 				$errMsg = "\t\t$id: Low item count $count!\n";
+				$data['isBad'] = true;
+			}
+			
+			if ($data['weaponPower'] > 0 && $data['type'] == 2) 
+			{
+				$errMsg = "\t\t$id: Found armor with weaponPower set!\n";
+				$data['isBad'] = true;
+			}
+			
+			if ($data['armorRating'] > 0 && $data['type'] == 1 && $data['weaponType'] != 14) 
+			{
+				$errMsg = "\t\t$id: Found weapon with armorRating set!\n";
 				$data['isBad'] = true;
 			}
 			

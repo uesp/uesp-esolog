@@ -1,6 +1,6 @@
 <div id="esoil_outeritembox">
 	<div id="esoil_itembox">
-		<div id="esoil_watermark">www.uesp.net</div>
+		<div id="esoil_watermark">uesp.net</div>
 		<div id="esoil_itemstyle">{itemStyle}</div>
 		<img src="{iconLink}" id="esoil_itemicon"/>
 		<div id="esoil_itemtype1">{itemType1}</div>

@@ -39,6 +39,9 @@ require_once("esoSkillRankData.php");
 
 class EsoLogParser
 {
+	const MINEITEM_TABLESUFFIX = "";
+	const SKILLS_TABLESUFFIX   = "";
+	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
 	const ELP_INPUT_LOG_PATH = "";
@@ -91,13 +94,11 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744323044049158144;	//v22 1558360113
 	//const START_MINEITEM_TIMESTAMP = 4744353489713364992;	//v23 1565618406
 	//const START_MINEITEM_TIMESTAMP = 4744378899046072320;	//v24 1571677300
-	const START_MINEITEM_TIMESTAMP = 4744424545732001792; // v25 1582560000;	                                 
-			  	
+	//const START_MINEITEM_TIMESTAMP = 4744424545732001792; //v25 1582560000
+	const START_MINEITEM_TIMESTAMP = 4744457841815846912; //v26 1590498405
+	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
-	
-	const MINEITEM_TABLESUFFIX = "25";
-	const SKILLS_TABLESUFFIX   = "25";
 	
 		/* Parse or skip certain types of log entries. */
 	const ONLY_PARSE_SALES = false;
@@ -119,7 +120,8 @@ class EsoLogParser
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1526912000;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1551540983;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1558361897;
-	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1572485666;	 
+	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1572485666;
+	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1590498405;
 	
 	public $db = null;
 	public $dbSlave = null;
@@ -199,6 +201,8 @@ class EsoLogParser
 	
 	
 	public static $TABLES_WITH_IDFIELD = array(
+			"uniqueQuest",
+			"antiquityLeads",
 			"minedSkills",
 			"minedSkills8",
 			"minedSkills8pts",
@@ -261,7 +265,7 @@ class EsoLogParser
 		'Galatite Ore'			=> self::RESOURCE_ORE,
 		'Quicksilver Ore'		=> self::RESOURCE_ORE,
 		'Voidstone Ore'			=> self::RESOURCE_ORE,
-			
+		
 		'Rough Maple'			=> self::RESOURCE_WOOD,
 		'Rough Oak'				=> self::RESOURCE_WOOD,
 		'Rough Beech'			=> self::RESOURCE_WOOD,
@@ -271,7 +275,7 @@ class EsoLogParser
 		'Rough Ash'				=> self::RESOURCE_WOOD,
 		'Rough Mahogany'		=> self::RESOURCE_WOOD,
 		'Rough Nightwood'		=> self::RESOURCE_WOOD,
-			
+		
 		'Raw Jute'				=> self::RESOURCE_CLOTH,
 		'Raw Flax'				=> self::RESOURCE_CLOTH,
 		'Raw Cotton'			=> self::RESOURCE_CLOTH,
@@ -281,7 +285,7 @@ class EsoLogParser
 		'Ironweed'				=> self::RESOURCE_CLOTH,
 		'Saint\'s Hair'			=> self::RESOURCE_CLOTH,
 		'Void Bloom'			=> self::RESOURCE_CLOTH,
-			
+		
 		'Rawhide Scraps'		=> self::RESOURCE_LEATHER,
 		'Leather Scraps'		=> self::RESOURCE_LEATHER,
 		'Thick Leather Scraps'	=> self::RESOURCE_LEATHER,
@@ -291,7 +295,7 @@ class EsoLogParser
 		'Iron Hide Scraps'		=> self::RESOURCE_LEATHER,
 		'Superb Scraps'			=> self::RESOURCE_LEATHER,
 		'Shadowhide Scraps'		=> self::RESOURCE_LEATHER,
-			
+		
 		'Aspect Rune'			=> self::RESOURCE_RUNESTONE,
 		'Potency Rune'			=> self::RESOURCE_RUNESTONE,
 		'Essence Rune'			=> self::RESOURCE_RUNESTONE,
@@ -317,9 +321,9 @@ class EsoLogParser
 		'Water Hyacinth'		=> self::RESOURCE_REAGENT,
 		'White Cap'				=> self::RESOURCE_REAGENT,
 		'Wormwood'				=> self::RESOURCE_REAGENT,
-			
+		
 		//'Barrel'				=> self::RESOURCE_JEWELRY,
-			
+		
 		'Barrel'				=> self::RESOURCE_INGREDIENT,
 		'Crate'					=> self::RESOURCE_INGREDIENT,
 		'Barrels'				=> self::RESOURCE_INGREDIENT,
@@ -445,6 +449,7 @@ class EsoLogParser
 			'numRewards' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 			'zone' => self::FIELD_STRING,
+			'uniqueId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
@@ -505,6 +510,8 @@ class EsoLogParser
 			'questName' => self::FIELD_STRING,
 			'gold' => self::FIELD_INT,
 			'playerLevel' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTXPREWARD_FIELDS = array(
@@ -513,6 +520,8 @@ class EsoLogParser
 			'questName' => self::FIELD_STRING,
 			'experience' => self::FIELD_INT,
 			'playerLevel' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
 	);
 		
 	public static $QUESTITEM_FIELDS = array(
@@ -530,6 +539,11 @@ class EsoLogParser
 			'conditionIndex' => self::FIELD_INT,
 			'duration' => self::FIELD_FLOAT,
 			'count' => self::FIELD_INT,
+	);
+	
+	public static $UNIQUEQUESTID_FIELDS = array(
+			'questId' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
 	);
 	
 	public static $NPC_FIELDS = array(
@@ -774,12 +788,15 @@ class EsoLogParser
 			'baseAbilityId'  => self::FIELD_INT,
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,
-			'nextSkill2'  => self::FIELD_INT,			
+			'nextSkill2'  => self::FIELD_INT,
 			'rank'  => self::FIELD_INT,
 			'morph'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
 			'skillLine' => self::FIELD_STRING,
 			'skillIndex' => self::FIELD_INT,
+			'buffType' => self::FIELD_INT,
+			'isToggle' => self::FIELD_INT,
+			'chargeFreq' => self::FIELD_INT,
 			'numCoefVars' => self::FIELD_INT,
 			'coefDescription' =>  self::FIELD_STRING,
 			'type1' => self::FIELD_INT,
@@ -959,6 +976,40 @@ class EsoLogParser
 			'description' => self::FIELD_STRING,
 			'numRequired' => self::FIELD_INT,
 			'criteriaIndex' => self::FIELD_INT,
+	);
+	
+	
+	public static $ANTIQUITYLEAD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'quality' => self::FIELD_INT,
+			'difficulty' => self::FIELD_INT,
+			'requiresLead' => self::FIELD_INT,
+			'isRepeatable' => self::FIELD_INT,
+			'rewardId' => self::FIELD_INT,
+			'zoneId' => self::FIELD_INT,
+			'setId' => self::FIELD_INT,
+			'setName' => self::FIELD_STRING,
+			'setIcon' => self::FIELD_STRING,
+			'setQuality' => self::FIELD_INT,
+			'setRewardId' => self::FIELD_INT,
+			'setCount' => self::FIELD_INT,
+			'categoryId' => self::FIELD_INT,
+			'categoryOrder' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
+			'categoryIcon' => self::FIELD_STRING,
+			'categoryCount' => self::FIELD_INT,
+			'loreName1' => self::FIELD_STRING,
+			'loreDescription1' => self::FIELD_STRING,
+			'loreName2' => self::FIELD_STRING,
+			'loreDescription2' => self::FIELD_STRING,
+			'loreName3' => self::FIELD_STRING,
+			'loreDescription3' => self::FIELD_STRING,
+			'loreName4' => self::FIELD_STRING,
+			'loreDescription4' => self::FIELD_STRING,
+			'loreName5' => self::FIELD_STRING,
+			'loreDescription5' => self::FIELD_STRING,
 	);
 	
 	
@@ -1291,7 +1342,7 @@ class EsoLogParser
 	}
 	
 	
-	public function createInsertQuery ($table, $record, $fieldDef)
+	public function createInsertQuery ($table, $record, $fieldDef, $insertIgnore = false)
 	{
 		$columns = "";
 		$values = "";
@@ -1330,16 +1381,20 @@ class EsoLogParser
 			$isFirst = false;
 		}
 		
-		$query = "INSERT INTO $table($columns) VALUES($values);";
+		if ($insertIgnore)
+			$query = "INSERT IGNORE INTO $table($columns) VALUES($values);";
+		else
+			$query = "INSERT INTO $table($columns) VALUES($values);";
+		
 		$this->lastQuery = $query;
 		return $query;
 	}
 	
 	
-	public function saveRecord ($table, &$record, $idField, $fieldDef)
+	public function saveRecord ($table, &$record, $idField, $fieldDef, $insertIgnore = false)
 	{
 		if ($record['__isNew'])
-			$query = $this->createInsertQuery($table, $record, $fieldDef);
+			$query = $this->createInsertQuery($table, $record, $fieldDef, $insertIgnore);
 		else
 			$query = $this->createUpdateQuery($table, $record, $idField, $fieldDef);
 		
@@ -1409,6 +1464,15 @@ class EsoLogParser
 		if ($record === false) return false;
 	
 		return $record;
+	}
+	
+	
+	public function LoadAntiquity ($id)
+	{
+		$minedItem = $this->loadRecord('antiquityLeads', 'id', $id, self::$ANTIQUITYLEAD_FIELDS);
+		if ($minedItem === false) return false;
+	
+		return $minedItem;
 	}
 	
 	
@@ -1511,6 +1575,12 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveAntiquity (&$record)
+	{
+		return $this->saveRecord('antiquityLeads', $record, 'id', self::$ANTIQUITYLEAD_FIELDS);
+	}
+	
+	
 	public function SaveBook (&$record)
 	{
 		return $this->saveRecord('book', $record, 'id', self::$BOOK_FIELDS);
@@ -1564,15 +1634,27 @@ class EsoLogParser
 		return $this->saveRecord('questReward', $record, 'id', self::$QUESTREWARD_FIELDS);
 	}
 	
-
 	public function SaveQuestGoldReward (&$record)
 	{
 		return $this->saveRecord('questGoldReward', $record, 'id', self::$QUESTGOLDREWARD_FIELDS);
 	}
 	
-public function SaveQuestXPReward (&$record)
+	
+	public function SaveQuestXPReward (&$record)
 	{
 		return $this->saveRecord('questXPReward', $record, 'id', self::$QUESTXPREWARD_FIELDS);
+	}
+	
+	
+	public function SaveUniqueQuestId (&$record)
+	{
+		return $this->saveRecord('uniqueQuestId', $record, 'id', self::$UNIQUEQUESTID_FIELDS, true);
+	}
+	
+	
+	public function SaveUniqueQuest (&$record)
+	{
+		return $this->saveRecord('uniqueQuest', $record, 'id', self::$QUEST_FIELDS);
 	}
 	
 	
@@ -1864,16 +1946,23 @@ public function SaveQuestXPReward (&$record)
 						hasTimer TINYINT NOT NULL,
 						timerCaption TINYTEXT NOT NULL,
 						timerDuration FLOAT NOT NULL,
-						numSteps SMALLINT NOT NULL,				
+						numSteps SMALLINT NOT NULL,
 						numRewards TINYINT NOT NULL,
+						uniqueId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_name(name(32)),
+						INDEX index_internalId(internalId),
 						FULLTEXT(backgroundText, objective, goalText, confirmText, declineText, endDialogText, endBackgroundText, endJournalText)
 					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create quest table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS uniqueQuest LIKE quest;";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create uniqueQuest table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS questStep (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -1954,6 +2043,8 @@ public function SaveQuestXPReward (&$record)
 						questName TINYTEXT NOT NULL,
 						gold INTEGER NOT NULL,
 						playerLevel TINYINT NOT NULL,
+						uniqueId INTEGER NOT NULL,
+						questId BIGINT NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MYISAM;";
 		
@@ -1967,6 +2058,8 @@ public function SaveQuestXPReward (&$record)
 						questName TINYTEXT NOT NULL,
 						experience INTEGER NOT NULL,
 						playerLevel TINYINT NOT NULL,
+						uniqueId INTEGER NOT NULL,
+						questId BIGINT NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MYISAM;";
 		
@@ -1999,6 +2092,16 @@ public function SaveQuestXPReward (&$record)
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create questItem table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS uniqueQuestId (
+						questId BIGINT NOT NULL,
+						uniqueId BIGINT NOT NULL,
+						PRIMARY KEY (questId, uniqueId)
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create questId table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS npc (
 						id BIGINT NOT NULL AUTO_INCREMENT,
@@ -2225,6 +2328,9 @@ public function SaveQuestXPReward (&$record)
 			rank TINYINT NOT NULL DEFAULT 0,		
 			morph TINYINT NOT NULL DEFAULT -1,
 			skillIndex TINYINT NOT NULL DEFAULT -1,
+			buffType TINYINT NOT NULL DEFAULT -1,
+			isToggle TINYINT NOT NULL DEFAULT 0,
+			chargeFreq INTEGER NOT NULL DEFAULT -1,
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL,
 			type1 TINYINT NOT NULL DEFAULT -1,
@@ -2462,6 +2568,48 @@ public function SaveQuestXPReward (&$record)
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create achievementCriteria table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS antiquityLeads (
+						id INTEGER NOT NULL,
+						logId BIGINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						icon TINYTEXT NOT NULL,
+						quality TINYINT NOT NULL,
+						difficulty TINYINT NOT NULL,
+						requiresLead TINYINT NOT NULL,
+						isRepeatable TINYINT NOT NULL,
+						rewardId INTEGER NOT NULL,
+						zoneId INTEGER NOT NULL,
+						setId INTEGER NOT NULL,
+						setName TINYTEXT NOT NULL,
+						setIcon TINYTEXT NOT NULL,
+						setQuality TINYINT NOT NULL,
+						setRewardId INTEGER NOT NULL,
+						setCount TINYINT NOT NULL,
+						categoryId INTEGER NOT NULL,
+						categoryOrder TINYINT NOT NULL,
+						categoryName TINYTEXT NOT NULL,
+						categoryIcon TINYTEXT NOT NULL,
+						categoryCount TINYINT NOT NULL,
+						parentCategoryId INTEGER NOT NULL,
+						loreName1 TINYTEXT NOT NULL,
+						loreDescription1 MEDIUMTEXT NOT NULL,
+						loreName2 TINYTEXT NOT NULL,
+						loreDescription2 MEDIUMTEXT NOT NULL,
+						loreName3 TINYTEXT NOT NULL,
+						loreDescription3 MEDIUMTEXT NOT NULL,
+						loreName4 TINYTEXT NOT NULL,
+						loreDescription4 MEDIUMTEXT NOT NULL,
+						loreName5 TINYTEXT NOT NULL,
+						loreDescription5 MEDIUMTEXT NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name, loreName1, loreDescription1, loreName2, loreDescription2, loreName3, loreDescription3, loreName4, loreDescription4, loreName5, loreDescription5)
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
+		
+		
 		return true;
 	}
 	
@@ -2664,7 +2812,7 @@ public function SaveQuestXPReward (&$record)
 		$result &= $this->SaveLogInfo();
 		
 		$result &= $this->salesData->SaveUpdatedGuilds();
-		$result &= $this->salesData->SaveUpdatedItems();		
+		$result &= $this->salesData->SaveUpdatedItems();
 				
 		return $result;
 	}
@@ -3591,8 +3739,9 @@ public function SaveQuestXPReward (&$record)
 		$questRecord['numSteps'] = $logEntry['numSteps'];
 		$questRecord['numRewards'] = $logEntry['numRewards'];
 		$questRecord['zone'] = $logEntry['zone'];
+		$questRecord['uniqueId'] = $logEntry['uniqueId'];
 		if ($logEntry['questZone'] !== null) $questRecord['zone'] = $logEntry['questZone']; 
-		$questRecord['count'] = 0;
+		$questRecord['count'] = 1;
 		$questRecord['__isNew'] = true;
 	
 		++$this->currentUser['newCount'];
@@ -3600,7 +3749,7 @@ public function SaveQuestXPReward (&$record)
 	
 		$result = $this->SaveQuest($questRecord);
 		if (!$result) return null;
-	
+		
 		$questLocation = $this->CreateLocation("quest", $name, $logEntry, array('questId' => $questRecord['id']));
 		$result = $this->SaveLocation($questLocation);
 		if (!$result) return null;
@@ -3721,13 +3870,19 @@ public function SaveQuestXPReward (&$record)
 		$rewardRecord['gold'] = $logEntry['gold'];
 		$rewardRecord['playerLevel'] = $logEntry['effLevel'];
 		$rewardRecord['__isNew'] = true;
-	
+		
+		if ($logEntry['uniqueId']) {
+			$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
+			$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
+			if ($questRecord) $rewardRecord['questId'] = $questRecord['id'];
+		}
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
-	
+		
 		$result = $this->SaveQuestGoldReward($rewardRecord);
 		if (!$result) return null;
-	
+		
 		return $rewardRecord;
 	}
 	
@@ -3735,18 +3890,24 @@ public function SaveQuestXPReward (&$record)
 	public function CreateQuestXPReward ($logEntry)
 	{
 		$rewardRecord = $this->createNewRecord(self::$QUESTXPREWARD_FIELDS);
-	
+
 		$rewardRecord['questName'] = $logEntry['quest'];
 		$rewardRecord['experience'] = $logEntry['xp'];
 		$rewardRecord['playerLevel'] = $logEntry['effLevel'];
 		$rewardRecord['__isNew'] = true;
-	
+		
+		if ($logEntry['uniqueId']) {
+			$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
+			$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
+			if ($questRecord) $rewardRecord['questId'] = $questRecord['id'];
+		}
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
-	
+		
 		$result = $this->SaveQuestXPReward($rewardRecord);
 		if (!$result) return null;
-	
+		
 		return $rewardRecord;
 	}
 	
@@ -3774,7 +3935,7 @@ public function SaveQuestXPReward (&$record)
 		
 		$questItemRecord['__isNew'] = true;
 		
-		$questRecord = $this->FindQuest($logEntry['questName']);
+		$questRecord = $this->FindQuest($logEntry['questName'], $logEntry['uniqueId']);
 		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
 	
 		++$this->currentUser['newCount'];
@@ -3824,7 +3985,7 @@ public function SaveQuestXPReward (&$record)
 	
 	public function OnQuestComplete ($logEntry)
 	{
-		$questRecord = $this->FindQuest($logEntry['quest']);
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		if ($questRecord == null) return $this->reportError("No quest found matching '{$logEntry['quest']}' in quest complete event!");
 		
 		if ($logEntry['xp'] == null) return true;
@@ -3900,7 +4061,9 @@ public function SaveQuestXPReward (&$record)
 		//header{Quest Item}  questId{5625}  name{Durzog Feed}  questName{Getting a Bellyful}  journalIndex{7}  
 		//desc{This meat is surprisingly fresh and carries a robust, heady odor.}  texture{/esoui/art/icons/quest_food_003.dds}  
 		//gameTime{845859763}  timeStamp{4743895467916525568}  lang{en}  userName{...}  ipAddress{...}  logTime{1396487061}  end{}
-				
+		
+		if ($logEntry['uniqueId'] == null) return true;
+		
 		$logEntry['itemLink'] = preg_replace("#\|h([^|]+)\|h#", "|h|h", $logEntry['itemLink']);
 		
 		$questItemRecord = $this->FindQuestItem($logEntry['itemLink']);
@@ -3927,7 +4090,7 @@ public function SaveQuestXPReward (&$record)
 		if ($logEntry['conditionIndex'] != null) $questItemRecord['conditionIndex'] = $logEntry['conditionIndex'];
 		if ($logEntry['toolIndex']      != null) $questItemRecord['stepIndex'] = $logEntry['toolIndex'];
 		
-		$questRecord = $this->FindQuest($logEntry['questName']);
+		$questRecord = $this->FindQuest($logEntry['questName'], $logEntry['uniqueId']);
 		if ($questRecord != null) $questItemRecord['questId'] = $questRecord['id'];
 		
 		$result = $this->SaveQuestItem($questItemRecord);
@@ -3939,7 +4102,7 @@ public function SaveQuestXPReward (&$record)
 	
 	public function OnQuestStart ($logEntry)
 	{
-		$questRecord = $this->FindQuest($logEntry['quest']);
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		
 		if ($questRecord == null)
 		{
@@ -3996,7 +4159,7 @@ public function SaveQuestXPReward (&$record)
 	{
 		if ($logEntry['stageIndex'] == null || $logEntry['stageIndex'] <= 0) return true;
 		
-		$questRecord = $this->FindQuest($logEntry['quest']);
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		if ($questRecord == null) return false;
 		
 		$questStageRecord = $this->FindQuestStep($questRecord['id'], $logEntry['stageIndex'], $logEntry['step']);
@@ -4044,7 +4207,7 @@ public function SaveQuestXPReward (&$record)
 	{
 		if ($logEntry['stageIndex'] == null || $logEntry['stageIndex'] <= 0) return true;
 		
-		$questRecord = $this->FindQuest($logEntry['quest']);
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		if ($questRecord == null) return $this->reportError("Failed to find matching quest for {$logEntry['quest']} in condition!");
 		
 		$questStageRecord = $this->FindQuestStep($questRecord['id'], $logEntry['stageIndex'], $logEntry['step']);
@@ -4080,7 +4243,7 @@ public function SaveQuestXPReward (&$record)
 	
 	public function OnQuestReward ($logEntry)
 	{
-		$questRecord = $this->FindQuest($logEntry['quest']);
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		if ($questRecord == null) return $this->reportError("Failed to find matching quest for {$logEntry['quest']} in reward!");
 		
 		if ($logEntry['name'] == "" && $logEntry['type'] == 1) $logEntry['name'] = "Gold";
@@ -4179,7 +4342,7 @@ public function SaveQuestXPReward (&$record)
 		//y{0.48894619941711}  zone{Glenumbra}  x{0.51565104722977}  timeStamp{4743643893159952384}  gameTime{456839} 
 		//userName{...}  ipAddress{...}  logTime{1396487061}  end{}
 		
-		$questRecord = $this->FindQuest($logEntry['quest']);
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		if ($questRecord == null) return $this->reportError("Failed to find matching quest for '{$logEntry['quest']}' in advanced quest step!");
 		
 		if ($logEntry['goal']) 
@@ -4240,7 +4403,74 @@ public function SaveQuestXPReward (&$record)
 	{
 		//event{QuestRemoved}  completed{true}  poiIndex{12}  quest{The White Mask of Merien}  zoneIndex{2}
 		//y{0.31489595770836}  zone{Glenumbra}  x{0.43005546927452}  timeStamp{4743643932582215680}
+		//stageIndex{}  uniqueId{}
 		//gameTime{7603682}  userName{...}  ipAddress{...}  logTime{1396487065}  end{}
+		
+		if ($logEntry['questId']  == null) return true;
+		if ($logEntry['questId']  <= 0) return true;
+		if ($logEntry['uniqueId'] == null) return true;
+		if ($logEntry['uniqueId'] == 0) return true;
+		
+		$questIdRecord = $this->createNewRecord(self::$UNIQUEQUESTID_FIELDS);
+		$questIdRecord['questId'] = $logEntry['questId'];
+		$questIdRecord['uniqueId'] = $logEntry['uniqueId'];
+		$questIdRecord['__isNew'] = true;
+		$result = $this->SaveUniqueQuestId($questIdRecord);
+		
+		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
+		
+		if ($questRecord == null) {
+			$this->reportError("Failed to load quest {$logEntry['quest']}::{$logEntry['uniqueId']}!");
+			return false;
+		}
+		
+		$questRecord["internalId"] = $logEntry['questId'];
+		$questRecord["__dirty"] = true;
+		$this->SaveQuest($questRecord);
+		
+		$uniqueQuestRecord = $this->FindUniqueQuest($logEntry['questId']);
+		
+		if ($uniqueQuestRecord == null) {
+			$uniqueQuestRecord = $questRecord;
+			$uniqueQuestRecord['__isNew'] = true;
+		}
+		else {
+			$uniqueQuestRecord['id'] = $questRecord['id'];
+			$uniqueQuestRecord['name'] = $questRecord['name'];
+			$uniqueQuestRecord['locationId'] = $questRecord['locationId'];
+			$uniqueQuestRecord['level'] = $questRecord['level'];
+			$uniqueQuestRecord['type'] = $questRecord['type'];
+			$uniqueQuestRecord['repeatType'] = $questRecord['repeatType'];
+			$uniqueQuestRecord['displayType'] = $questRecord['displayType'];
+			$uniqueQuestRecord['backgroundText'] = $questRecord['backgroundText'];
+			$uniqueQuestRecord['poiIndex'] = $questRecord['poiIndex'];
+			$uniqueQuestRecord['goalText'] = $questRecord['goalText'];
+			$uniqueQuestRecord['objective'] = $questRecord['objective'];
+			$uniqueQuestRecord['confirmText'] = $questRecord['confirmText'];
+			$uniqueQuestRecord['declineText'] = $questRecord['declineText'];
+			$uniqueQuestRecord['endDialogText'] = $questRecord['endDialogText'];
+			$uniqueQuestRecord['endBackgroundText'] = $questRecord['endBackgroundText'];
+			$uniqueQuestRecord['endJournalText'] = $questRecord['endJournalText'];
+			$uniqueQuestRecord['isShareable'] = $questRecord['isShareable'];
+			$uniqueQuestRecord['numTools'] = $questRecord['numTools'];
+			$uniqueQuestRecord['hasTimer'] = $questRecord['hasTimer'];
+			$uniqueQuestRecord['timerCaption'] = $questRecord['timerCaption'];
+			$uniqueQuestRecord['timerDuration'] = $questRecord['timerDuration'];
+			$uniqueQuestRecord['numSteps'] = $questRecord['numSteps'];
+			$uniqueQuestRecord['numRewards'] = $questRecord['numRewards'];
+			$uniqueQuestRecord['zone'] = $questRecord['zone'];
+			$uniqueQuestRecord['uniqueId'] = $questRecord['uniqueId'];
+			$uniqueQuestRecord['zone'] = $questRecord['questZone']; 
+			$uniqueQuestRecord['count'] = $questRecord['count'];
+		}
+		
+		$uniqueQuestRecord['internalId'] = $logEntry['questId'];
+		$uniqueQuestRecord['__dirty'] = true;
+		
+		$this->SaveUniqueQuest($uniqueQuestRecord);
+		
+		++$this->currentUser['newCount'];
+		$this->currentUser['__dirty'] = true;
 		
 		return true;
 	}
@@ -4416,17 +4646,54 @@ public function SaveQuestXPReward (&$record)
 	}
 	
 	
-	public function FindQuest ($name)
+	public function FindQuest ($name, $uniqueId)
 	{
+		if ($uniqueId == null) {
+			$this->reportError("Skipping quest load with no uniqueId!");
+			return null;
+		}
+		
 		$safeName = $this->db->real_escape_string($name);
-		$query = "SELECT * FROM quest WHERE name='$safeName';";
+		$safeId = $this->db->real_escape_string($uniqueId);
+		$query = "SELECT * FROM quest WHERE name='$safeName' AND uniqueId='$safeId';";
+		$this->lastQuery = $query;
+		
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve quest!");
+			return null;
+		}
+		
+		++$this->dbReadCount;
+	
+		if ($result->num_rows == 0) 
+		{
+			return null;
+		}
+	
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$QUEST_FIELDS);
+	}
+	
+	
+	public function FindUniqueQuest ($internalId)
+	{
+		if ($internalId == null || $internalId == 0) {
+			$this->reportError("Skipping uniqueQuest load with no ID!");
+			return null;
+		}
+		
+		$safeId = $this->db->real_escape_string($internalId);
+		$query = "SELECT * FROM uniqueQuest WHERE internalId='$safeId';";
 		$this->lastQuery = $query;
 	
 		$result = $this->db->query($query);
 	
 		if ($result === false)
 		{
-			$this->reportError("Failed to retrieve quest!");
+			$this->reportError("Failed to retrieve uniqueQuest!");
 			return null;
 		}
 		
@@ -5385,6 +5652,71 @@ public function SaveQuestXPReward (&$record)
 	}
 	
 	
+	public function OnMineAntiquityStart ($logEntry)
+	{
+		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
+	}
+	
+	
+	public function OnMineAntiquityEnd ($logEntry)
+	{
+		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
+	}
+	
+	
+	public function OnMineAntiquity ($logEntry)
+	{
+		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
+		
+		$antiquity = $this->LoadAntiquity($logEntry['id']);
+		if ($antiquity === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize antiquity data!");
+		
+		if ($antiquity['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		$antiquity['name'] = $logEntry['name'];
+		$antiquity['requiresLead'] = $logEntry['requiresLead'] == 'true' ? "1" : "0";
+		$antiquity['icon'] = $logEntry['icon'];
+		$antiquity['quality'] = $logEntry['quality'];
+		if ($antiquity['quality'] > 0) $antiquity['quality'] += 1;
+		$antiquity['difficulty'] = $logEntry['difficulty'];
+		$antiquity['rewardId'] = $logEntry['rewardId'];
+		$antiquity['isRepeatable'] = $logEntry['isRepeatable'] == 'true' ? "1" : "0";
+		$antiquity['zoneId'] = $logEntry['zoneId'];
+		$antiquity['setId'] = $logEntry['setId'];
+		$antiquity['setName'] = $logEntry['setName'];
+		$antiquity['setIcon'] = $logEntry['setIcon'];
+		$antiquity['setQuality'] = $logEntry['setQuality'];
+		if ($antiquity['setQuality'] > 0) $antiquity['setQuality'] += 1;
+		$antiquity['setRewardId'] = $logEntry['setRewardId'];
+		$antiquity['setCount'] = $logEntry['setCount'];
+		$antiquity['categoryId'] = $logEntry['categoryId'];
+		$antiquity['categoryOrder'] = $logEntry['categoryOrder'];
+		$antiquity['categoryName'] = $logEntry['categoryName'];
+		$antiquity['categoryIcon'] = $logEntry['cateNormalIcon'];
+		$antiquity['parentCategoryId'] = $logEntry['parentCategoryId'];
+		$antiquity['categoryCount'] = $logEntry['categoryCount'];
+		$antiquity['loreName1'] = $logEntry['loreName1'];
+		$antiquity['loreDescription1'] = $logEntry['loreDesc1'];
+		$antiquity['loreName2'] = $logEntry['loreName2'];
+		$antiquity['loreDescription2'] = $logEntry['loreDesc2'];
+		$antiquity['loreName3'] = $logEntry['loreName3'];
+		$antiquity['loreDescription3'] = $logEntry['loreDesc3'];
+		$antiquity['loreName4'] = $logEntry['loreName4'];
+		$antiquity['loreDescription4'] = $logEntry['loreDesc4'];
+		$antiquity['loreName5'] = $logEntry['loreName5'];
+		$antiquity['loreDescription5'] = $logEntry['loreDesc5'];
+		$antiquity['__dirty'] = true;
+		
+		$this->SaveAntiquity($antiquity);
+		
+		return true;
+	}	
+	
+	
 	public function ParseMinedItemLog (&$logEntry)
 	{
 		$itemLink = $logEntry['itemLink'];
@@ -5408,6 +5740,7 @@ public function SaveQuestXPReward (&$record)
 			$matchData = array();
 			$result = preg_match("|(.*)(\^[a-zA-Z0-9]*)|s", $logEntry['name'], $matchData);
 			if ($result) $logEntry['name'] = $matchData[1];
+			$logEntry['name'] = explode('||', $logEntry['name'])[0];
 		}
 		
 		if (array_key_exists('reqVetLevel', $logEntry) && $logEntry['reqVetLevel'] > 0)
@@ -5695,6 +6028,19 @@ public function SaveQuestXPReward (&$record)
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc7'];
 			}
+			else if ($minedItem['setName'] == "Stuhn's Favor" || $logEntry['setName'] == "Stuhn's Favor")
+			{
+				$minedItem['setBonusCount1'] = 2;
+				$minedItem['setBonusCount2'] = 3;
+				$minedItem['setBonusCount3'] = 4;
+				$minedItem['setBonusCount4'] = 5;
+				$minedItem['setBonusCount5'] = -1;
+				$minedItem['setBonusDesc1'] = $logEntry['setDesc1'] . "\n" . $logEntry['setDesc2'];
+				$minedItem['setBonusDesc2'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
+				$minedItem['setBonusDesc3'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc7'];
+				$minedItem['setBonusDesc5'] = "";
+			}
 			else
 			{
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
@@ -5837,6 +6183,19 @@ public function SaveQuestXPReward (&$record)
 				$minedItem['setBonusDesc3'] = $mergedLogEntry['setDesc3'] . "\n" . $mergedLogEntry['setDesc4'];
 				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc7'];
+			}
+			else if ($minedItem['setName'] == "Stuhn's Favor" || $logEntry['setName'] == "Stuhn's Favor")
+			{
+				$minedItem['setBonusCount1'] = 2;
+				$minedItem['setBonusCount2'] = 3;
+				$minedItem['setBonusCount3'] = 4;
+				$minedItem['setBonusCount4'] = 5;
+				$minedItem['setBonusCount5'] = -1;
+				$minedItem['setBonusDesc1'] = $logEntry['setDesc1'] . "\n" . $logEntry['setDesc2'];
+				$minedItem['setBonusDesc2'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
+				$minedItem['setBonusDesc3'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc7'];
+				$minedItem['setBonusDesc5'] = "";
 			}
 			else
 			{
@@ -6003,7 +6362,8 @@ public function SaveQuestXPReward (&$record)
 	public function OnSkill18 ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
-				
+		//print("OnSkill18\n");
+		
 		$version = $this->currentUser['lastSkillDumpNote'];
 		$abilityId = $logEntry['id'];
 		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing abilityId in skill!");
@@ -6024,7 +6384,7 @@ public function SaveQuestXPReward (&$record)
 		$skill['radius'] = $logEntry['radius'];
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
-		
+				
 		$skill['isPassive'] = $logEntry['passive'] == "true" ? 1 : 0;
 		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
 		$skill['isChanneled'] = $logEntry['channel'];
@@ -6035,6 +6395,15 @@ public function SaveQuestXPReward (&$record)
 		$skill['effectLines'] = $logEntry['effectLines'];
 		$skill['texture'] = $logEntry['icon'];
 		$skill['isPlayer'] = 0;
+		
+		$skill['buffType'] = $logEntry['buffType'];
+		$skill['isToggle'] = $logEntry['isToggle'] == "true" ? 1 : 0;
+		$skill['chargeFreq'] = $logEntry['chargeFreqMS'];
+		
+		if ($logEntry['costTime'] > 0) {
+			$skill['cost'] = $logEntry['costTime'];
+			$skill['mechanic'] = $logEntry['mechanicTime'];
+		}
 		
 		if ($logEntry['skillType'] > 0 || $logEntry['desc1'] != null)
 		{
@@ -6097,7 +6466,7 @@ public function SaveQuestXPReward (&$record)
 				
 				$skill['rank'] = $currentRank;
 				$nextRank = $currentRank + 1;
-				$prevRank = $currentRank - 1;				
+				$prevRank = $currentRank - 1;
 				
 				if ($logEntry['passive1'] == 0 || $currentRank == 0)
 				{
@@ -6110,7 +6479,7 @@ public function SaveQuestXPReward (&$record)
 				}
 				else
 				{
-					$skill['baseAbilityId'] = $logEntry['passive1'];					
+					$skill['baseAbilityId'] = $logEntry['passive1'];
 					$skill['prevSkill'] = $logEntry['passive' . $prevRank];
 					$skill['nextSkill'] = $logEntry['passive' . $nextRank];
 					$skill['nextSkill2'] = -1;
@@ -6124,6 +6493,7 @@ public function SaveQuestXPReward (&$record)
 		
 		if (($logEntry['skillType'] <= 0 && $logEntry['desc2'] == null) || $skill['isPassive'] || $logEntry['desc1'] == null || ($skill['isPlayer'] == 0 && $logEntry['desc2'] == null))
 		{
+			//print("Saving Single Skill\n");
 			$this->SaveSkillDump($skill);
 			return true;
 		}
@@ -6157,12 +6527,21 @@ public function SaveQuestXPReward (&$record)
 		$skill['radius'] = $logEntry['radius1'];
 		$skill['castTime'] = $logEntry['castTime1'];
 		$skill['channelTime'] = $logEntry['channelTime1'];
+		$skill['chargeFreq'] = $logEntry['chargeFreqMS1'];
 		$skill['rank'] = 1;
 		$skill['nextSkill'] = $id2;
 		$skill['nextSkill2'] = 0;
 		$skill['prevSkill'] = $origPrevSkill;
+		if ($origPrevSkill == $abilityId) $skill['prevSkill'] = 0;
+		if ($origPrevSkill == $id1) $skill['prevSkill'] = 0;
+		
+		if ($logEntry['costTime1'] > 0) {
+			$skill['cost'] = $logEntry['costTime1'];
+			$skill['mechanic'] = $logEntry['mechanicTime1'];
+		}
 						
 		$this->SaveSkillDump($skill);
+		//print("Skill1: " . $this->lastQuery . "\n");
 		
 		$skill2['displayId'] = $abilityId;
 		$skill2['description'] = $logEntry['desc2'];
@@ -6174,12 +6553,19 @@ public function SaveQuestXPReward (&$record)
 		$skill2['radius'] = $logEntry['radius2'];
 		$skill2['castTime'] = $logEntry['castTime2'];
 		$skill2['channelTime'] = $logEntry['channelTime2'];
+		$skill2['chargeFreq'] = $logEntry['chargeFreqMS2'];
 		$skill2['rank'] = 2;
 		$skill2['nextSkill'] = $id3;
 		$skill2['nextSkill2'] = 0;
 		$skill2['prevSkill'] = $id1;
 		
+		if ($logEntry['costTime2'] > 0) {
+			$skill2['cost'] = $logEntry['costTime2'];
+			$skill2['mechanic'] = $logEntry['mechanicTime2'];
+		}
+		
 		$this->SaveSkillDump($skill2);
+		//print("Skill2: " . $this->lastQuery . "\n");
 		
 		$skill3['displayId'] = $abilityId;
 		$skill3['description'] = $logEntry['desc3'];
@@ -6191,12 +6577,19 @@ public function SaveQuestXPReward (&$record)
 		$skill3['radius'] = $logEntry['radius3'];
 		$skill3['castTime'] = $logEntry['castTime3'];
 		$skill3['channelTime'] = $logEntry['channelTime3'];
+		$skill3['chargeFreq'] = $logEntry['chargeFreqMS3'];
 		$skill3['rank'] = 3;
 		$skill3['nextSkill'] = $id4;
 		$skill3['nextSkill2'] = 0;
 		$skill3['prevSkill'] = $id2;
+		
+		if ($logEntry['costTime3'] > 0) {
+			$skill3['cost'] = $logEntry['costTime3'];
+			$skill3['mechanic'] = $logEntry['mechanicTime3'];
+		}
 			
 		$this->SaveSkillDump($skill3);
+		//print("Skill3: " . $this->lastQuery . "\n");
 			
 		$skill4['displayId'] = $abilityId;
 		$skill4['description'] = $logEntry['desc4'];
@@ -6208,12 +6601,19 @@ public function SaveQuestXPReward (&$record)
 		$skill4['radius'] = $logEntry['radius4'];
 		$skill4['castTime'] = $logEntry['castTime4'];
 		$skill4['channelTime'] = $logEntry['channelTime4'];
+		$skill4['chargeFreq'] = $logEntry['chargeFreqMS4'];
 		$skill4['rank'] = 4;
 		$skill4['nextSkill'] = $origNextSkill;
 		$skill4['nextSkill2'] = $origNextSkill2;
 		$skill4['prevSkill'] = $id3;
+		
+		if ($logEntry['costTime4'] > 0) {
+			$skill4['cost'] = $logEntry['costTime4'];
+			$skill4['mechanic'] = $logEntry['mechanicTime4'];
+		}
 			
 		$this->SaveSkillDump($skill4);
+		//print("Skill4: " . $this->lastQuery . "\n");
 		
 		return true;
 	}
@@ -6240,6 +6640,10 @@ public function SaveQuestXPReward (&$record)
 				'isPermanent',
 				'isChanneled',
 				'angleDistance',
+				'cost',
+				'buffType',
+				'isToggle',
+				'chargeFreq',
 				'mechanic',
 				'upgradeLines',
 				'effectLines',
@@ -6264,6 +6668,7 @@ public function SaveQuestXPReward (&$record)
 	public function OnSkill ($logEntry)
 	{
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 18)) return $this->OnSkill18($logEntry);
+		//print("OnSkill\n");
 		
 		if (!$this->IsValidUser($logEntry)) return false;
 		
@@ -7381,6 +7786,9 @@ public function SaveQuestXPReward (&$record)
 			case "mineItem::Start":
 			case "mineItem::AutoEnd":
 			case "mineItem::End":
+			case 'mineanti':
+			case 'mineanti::end':
+			case "mineanti::start":
 			case "skill":
 			case "skillDump::Start":
 			case "skillDump::StartProgression":
@@ -7615,6 +8023,9 @@ public function SaveQuestXPReward (&$record)
 		$createLogEntry = $this->checkLogEntryRecordCreate($logEntry);
 		$isDuplicate = false;
 		
+			/* For debugging/testing only (permits parsing of the same record logs multiple times) */
+		//if ($logEntry['userName'] == 'Reorx') $skipLogEntryCreate = true;
+		
 		if ($skipLogEntryCreate) $createLogEntry = false;
 		
 		if ($createLogEntry && !$skipLogEntryCreate)
@@ -7773,6 +8184,10 @@ public function SaveQuestXPReward (&$record)
 			case "CP":							$result = $this->OnCPSkill($logEntry); break;
 			case "CP::desc":					$result = $this->OnCPDescription($logEntry); break;
 			case "CP::end":						$result = $this->OnCPEnd($logEntry); break;
+			
+			case "mineanti::start":				$result = $this->OnMineAntiquityStart($logEntry); break;
+			case "mineanti::end":				$result = $this->OnMineAntiquityEnd($logEntry); break;
+			case "mineanti":					$result = $this->OnMineAntiquity($logEntry); break;
 			
 			case "MineCollect::Start":
 			case "MineCollect::Category":

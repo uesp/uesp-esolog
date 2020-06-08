@@ -142,6 +142,8 @@ a:hover {
 	display: inline-block;
 	text-align: center;
 	border: 2px solid transparent;
+	margin: 3px;
+	position: relative;
 }
 
 .esopdReagentIcon, .esopdSolventIcon {
@@ -242,8 +244,16 @@ a:hover {
     top: 3px;
 }
 
-.esopdEffectHighlighted {
+.esopdEffectHighlight1 {
 	border: 2px solid #77f;
+}
+
+.esopdEffectHighlight2 {
+	border: 2px solid #f77;
+}
+
+.esopdEffectHighlight3 {
+	border: 2px solid #0e0;
 }
 
 .esopdReagentDisable {
@@ -254,9 +264,47 @@ a:hover {
 	opacity: 0.5;
 }
 
-.esopdReagentHighlight {
+.esopdReagentHighlight1 {
 	border: 2px solid #77f;
-    border-radius: 5px;
+	border-radius: 5px;
+}
+
+.esopdReagentHighlight2 {
+	position: relative;
+}
+
+.esopdReagentHighlight2:before {
+	background: none;
+	border: 2px solid #f77;
+	border-radius: 3px;
+	content: "";
+	display: block;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	right: 1px;
+	bottom: 1px;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.esopdReagentHighlight3 {
+	position: relative;
+}
+
+.esopdReagentHighlight3:after {
+	background: none;
+	border: 2px solid #0e0;
+	border-radius: 7px;
+	content: "";
+	display: block;
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	pointer-events: none;
+	z-index: -1;
 }
 
 #esopdResetEffects {

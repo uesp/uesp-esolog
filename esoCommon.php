@@ -62,6 +62,8 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100029" => "24",
 		"100030" => "25",
 		"100031" => "26",
+		"100032" => "27",
+		"100033" => "28",
 );
 
 
@@ -87,7 +89,8 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100028" => "5.1",
 		"100029" => "5.2",
 		"100030" => "5.3",
-		"100031" => "6.0",	//?
+		"100031" => "6.0",
+		"100032" => "6.1",
 );
 
 
@@ -116,8 +119,8 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"22" => "Elsweyr",
 		"23" => "Scalebreaker",
 		"24" => "Dragonhold",
-		"25" => "Unknown",
-		"26" => "Unknown",
+		"25" => "Harrowstorm",
+		"26" => "Greymoor",
 		"27" => "Unknown",
 	);
 
@@ -582,9 +585,22 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		84 => "Anequina",
 		85 => "Pellitine",
 		86 => "Sunspire",
-		87 => "Moongrave Fane",
+		87 => "Dragon Bone",
 		88 => "Stags of Z'en",
-		89 => "Dragonguard",	
+		89 => "Dragonguard",
+		92 => "Dragonguard",
+		93 => "Moongrave Fane",
+		94 => "New Moon Priest",
+		95 => "Shield of Senchal",
+		97 => "Icereach Coven",
+		98 => "Pyre Watch",
+		99 => "Swordthane",
+		100 => "Blacreach Vanguard",
+		101 => "Greymoore",
+		102 => "Sea Giant",
+		103 => "Ancestral Nord",
+		104 => "Ancestral High Elf",
+		105 => "Ancestral Orc",
 );
 
 
@@ -596,6 +612,7 @@ $ESO_ITEMQUALITY_TEXTS = array(
 		3 => "Superior",
 		4 => "Epic",
 		5 => "Legendary",
+		6 => "Mythic",
 );
 
 
@@ -1038,7 +1055,7 @@ $ESO_CUSTOM_MECHANICS = array(
 
 
 $ESO_SET_INDEXES = array(
-				19 => "Vestments of the Warlock",
+		19 => "Vestments of the Warlock",
 		20 => "Witchman Armor",
 		21 => "Akaviri Dragonguard",
 		22 => "Dreamer's Mantle",
@@ -1345,12 +1362,12 @@ $ESO_SET_INDEXES = array(
 		354 => "Mad Tinkerer",
 		355 => "Unfathomable Darkness",
 		356 => "Livewire",
-		357 => "Disciplined Slash (Perfected)",
-		358 => "Defensive Position (Perfected)",
-		359 => "Chaotic Whirlwind (Perfected)",
-		360 => "Piercing Spray (Perfected)",
-		361 => "Concentrated Force (Perfected)",
-		362 => "Timeless Blessing (Perfected)",
+		357 => "Perfected Disciplined Slash",
+		358 => "Perfected Defensive Position",
+		359 => "Perfected Chaotic Whirlwind",
+		360 => "Perfected Piercing Spray",
+		361 => "Perfected Concentrated Force",
+		362 => "Perfected Timeless Blessing",
 		363 => "Disciplined Slash",
 		364 => "Defensive Position",
 		365 => "Chaotic Whirlwind",
@@ -1375,10 +1392,10 @@ $ESO_SET_INDEXES = array(
 		389 => "Arms of Relequen",
 		390 => "Mantle of Siroria",
 		391 => "Vestment of Olorime",
-		392 => "Perfect Aegis of Galenwe",
-		393 => "Perfect Arms of Relequen",
-		394 => "Perfect Mantle of Siroria",
-		395 => "Perfect Vestment of Olorime",
+		392 => "Perfected Aegis of Galenwe",
+		393 => "Perfected Arms of Relequen",
+		394 => "Perfected Mantle of Siroria",
+		395 => "Perfected Vestment of Olorime",
 		397 => "Balorgh",
 		398 => "Vykosa",
 		399 => "Hanu's Compassion",
@@ -1405,12 +1422,12 @@ $ESO_SET_INDEXES = array(
 		420 => "Soldier of Anguish",
 		421 => "Steadfast Hero",
 		422 => "Battalion Defender",
-		423 => "Perfect Gallant Charge",
-		424 => "Perfect Radial Uppercut",
-		425 => "Perfect Spectral Cloak",
-		426 => "Perfect Virulent Shot",
-		427 => "Perfect Wild Impulse",
-		428 => "Perfect Mender's Ward",
+		423 => "Perfected Gallant Charge",
+		424 => "Perfected Radial Uppercut",
+		425 => "Perfected Spectral Cloak",
+		426 => "Perfected Virulent Shot",
+		427 => "Perfected Wild Impulse",
+		428 => "Perfected Mender's Ward",
 		429 => "Mighty Glacier",
 		430 => "Tzogvin's Warband",
 		431 => "Icy Conjuror",
@@ -1458,6 +1475,49 @@ $ESO_SET_INDEXES = array(
 		480 => "Critical Riposte",
 		481 => "Unchained Aggressor",
 		482 => "Dauntless Combatant",
+		483 => "Template_Drop_Magi",
+		484 => "Template_Drop_Stamina",
+		485 => "Template_Drop_Tank",
+		486 => "Template_Drop_Healer",
+		487 => "Winter's Respite",
+		488 => "Venomous Smite",
+		489 => "Eternal Vigor",
+		490 => "Stuhn's Favor",
+		491 => "Dragon's Appetite",
+		492 => "Kyne's Wind",
+		493 => "Perfected Kyne's Wind",
+		494 => "Vrol's Command",
+		495 => "Perfected Vrol's Command",
+		496 => "Roaring Opportunist",
+		497 => "Perfected Roaring Opportunist",
+		498 => "Yandir's Might",
+		499 => "Perfected Yandir's Might",
+		500 => "Bloodlord's Embrace (OLD)",
+		501 => "Thrassian Stranglers",
+		502 => "Snow Treaders (OLD)",
+		503 => "Ring of the Wild Hunt",
+		504 => "Malacath's Band of Brutality X",
+		505 => "Torc of Tonal Constancy",
+		506 => "Spell Parasite",
+		509 => "Template_Drop_Healer P",
+		510 => "Template_Drop_Tank P",
+		511 => "Template_Drop_Stamina P",
+		512 => "Template_Drop_Magi P",
+		519 => "Snow Treaders",
+		520 => "Malacath's Band of Brutality",
+		521 => "Bloodlord's Embrace",
+		522 => "Perfected Merciless Charge",
+		523 => "Perfected Rampaging Slash",
+		524 => "Perfected Cruel Flurry",
+		525 => "Perfected Thunderous Volley",
+		526 => "Perfected Crushing Wall",
+		527 => "Perfected Precise Regeneration",
+		528 => "Perfected Titanic Cleave",
+		529 => "Perfected Puncturing Remedy",
+		530 => "Perfected Stinging Slashes",
+		531 => "Perfected Caustic Arrow",
+		532 => "Perfected Destructive Impact",
+		533 => "Perfected Grand Rejuvenation",
 );
 
 
@@ -1895,6 +1955,62 @@ $ESO_CURRENCYCHANGEREASON_TEXTS = array(
 		65 => "Pvp Kill Transfer",
 		66 => "Bank Fee",
 		67 => "Death",
+);
+
+
+$ESO_BUFFTYPE_TEXTS = array(
+		-1 => "",
+		0 => "",
+		1 => "Minor Brutality",
+		2 => "Major Brutality",
+		3 => "Minor Savagery",
+		4 => "Major Savagery",
+		5 => "Minor Sorcery",
+		6 => "Major Sorcery",
+		7 => "Minor Prophecy",
+		8 => "Major Prophecy",
+		9 => "Minor Resolve",
+		10 => "Major Resolve",
+		11 => "Minor Ward",
+		12 => "Major Ward",
+		13 => "Minor Fortitude",
+		14 => "Major Fortitude",
+		15 => "Minor Endurance",
+		16 => "Major Endurance",
+		17 => "Minor Intellect",
+		18 => "Major Intellect",
+		19 => "Minor Heroism",
+		20 => "Major Heroism",
+		21 => "Minor Mending",
+		22 => "Major Mending",
+		23 => "Minor Vitality",
+		24 => "Major Vitality",
+		25 => "Minor Evasion",
+		26 => "Major Evasion",
+		27 => "Minor Protection",
+		28 => "Major Protection",
+		29 => "Minor Maim",
+		30 => "Major Maim",
+		31 => "Minor Defile",
+		32 => "Major Defile",
+		33 => "Minor Mangle",
+		34 => "Major Mangle",
+		35 => "Minor Expedition",
+		36 => "Major Expedition",
+		37 => "Empower",
+		38 => "Minor Fracture",
+		39 => "Major Fracture",
+		40 => "Minor Spell Shatter",
+		41 => "Major Spell Shatter",
+		42 => "Minor Berserk",
+		43 => "Major Berserk",
+		44 => "Minor Force",
+		45 => "Major Force",
+		46 => "Minor Erosion",
+		47 => "Major Erosion",
+		48 => "Minor Courage",
+		49 => "Major Courage",
+		50 => "Minor Toughness",
 );
 
 
@@ -3329,7 +3445,7 @@ $ESO_FREE_RACIAL_SKILLS = array(
 		36626 => "Nord",
 		33293 => "Orc",
 		84680 => "Redguard",
-		36008 => "Wood Elf",		
+		36008 => "Wood Elf",
 );
 
 
@@ -3352,7 +3468,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 25;
+	return 26;
 }
 
 
@@ -3379,7 +3495,7 @@ function GetEsoItemTableSuffix($version)
 			return "8";
 		case '1.8pts':
 		//case '18pts':
-			return "8pts";					
+			return "8pts";
 		case '1.9pts':
 		//case '19pts':
 			return "9pts";
@@ -3493,6 +3609,10 @@ function GetEsoItemTableSuffix($version)
 		case '25pts':
 			return "25pts";
 		case '25':
+			return "25";
+		case '26pts':
+			return "26pts";
+		case '26':
 			return "";
 	}
 
@@ -3744,6 +3864,16 @@ function GetEsoMechanicTypeText($mechanicType)
 
 	$key = (int) $mechanicType;
 	if (array_key_exists($key, $ESO_MECHANIC_TEXTS)) return $ESO_MECHANIC_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoBuffTypeText($value)
+{
+	global $ESO_BUFFTYPE_TEXTS;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_BUFFTYPE_TEXTS)) return $ESO_BUFFTYPE_TEXTS[$key];
 	return "Unknown ($key)";
 }
 

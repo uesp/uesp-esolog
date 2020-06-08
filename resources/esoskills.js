@@ -242,10 +242,12 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	var learnedLevel = skillData['learnedLevel'];
 	var effectLines = skillData['effectLines'];
 	var skillLine = skillData['skillLine'];
+	var isToggle = skillData['isToggle'];
 	var area = "";
 	var range = "";
 	var rankStr = "";
 	var realRank = rank;
+	var chargeFreqMS = parseInt(skillData['chargeFreq']);
 	
 	if (skillType != 'Passive')
 	{
@@ -288,7 +290,17 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 			costStr += "Ultimate";
 			costClass = "esovsUltimate";
 		}
-		else
+		else if (mechanic == -2)
+		{
+			costStr += "Health";
+			costClass = "esovsHealth";
+		}
+		else if (mechanic == null)
+		{
+			cost = "";
+			costStr = "";
+		}
+		else 
 		{
 			costStr = cost;
 		}
@@ -307,50 +319,62 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 		if (castTimeStr != '')
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + castTimeStr + "</div>";
-			output += "<div class='esovsSkillTooltipName'>Cast Time</div>";			
+			output += "<div class='esovsSkillTooltipName'>Cast Time</div>";
 		}
 		
-		if (target != '')
+		if (target != null && target != '')
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + target +"</div>";
-			output += "<div class='esovsSkillTooltipName'>Target</div>";			
+			output += "<div class='esovsSkillTooltipName'>Target</div>";
 		}
 		
-		if (area != '')
+		if (area != null && area != '')
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + area + "</div>";
-			output += "<div class='esovsSkillTooltipName'>Area</div>";			
+			output += "<div class='esovsSkillTooltipName'>Area</div>";
 		}
 		
 		if (radius > 0)
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + radius + " meters</div>";
-			output += "<div class='esovsSkillTooltipName'>Radius</div>";			
+			output += "<div class='esovsSkillTooltipName'>Radius</div>";
 		}
 		
-		if (range != "")
+		if (range != null && range != "")
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + range + "</div>";
-			output += "<div class='esovsSkillTooltipName'>Range</div>";			
+			output += "<div class='esovsSkillTooltipName'>Range</div>";
 		}
 		
 		if (duration > 0)
 		{
 			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipDuration'>" + duration + " seconds</div>";
-			output += "<div class='esovsSkillTooltipName'>Duration</div>";			
+			output += "<div class='esovsSkillTooltipName'>Duration</div>";
+		}
+		else if (isToggle == 1)
+		{
+			output += "<div class='esovsSkillTooltipValue' id='esovsSkillTooltipDuration'>Toggle</div>";
+			output += "<div class='esovsSkillTooltipName'>Duration</div>";
 		}
 		
 		if (cost != '')
 		{
-			output += "<div class='esovsSkillTooltipValue " + costClass + "' id='esovsSkillTooltipCost'>" + costStr + "</div>";
-			output += "<div class='esovsSkillTooltipName'>Cost</div>";			
+			if (chargeFreqMS > 0) {
+				chargeFreq = chargeFreqMS/1000;
+				output += "<div class='esovsSkillTooltipValue " + costClass + "' id='esovsSkillTooltipCost'>" + costStr + "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div></div>";
+			}
+			else {
+				output += "<div class='esovsSkillTooltipValue " + costClass + "' id='esovsSkillTooltipCost'>" + costStr + "</div>";
+			}
+			
+			output += "<div class='esovsSkillTooltipName'>Cost</div>";
 		}
 		
 		output += "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	}
 
 	output += "<div id='esovsSkillTooltipDesc' class='esovsSkillTooltipDesc'>" + desc + "</div>\n";
-	if (effectLines != "") output += " <div class='esovsSkillTooltipEffectLines'><b>NEW EFFECT</b><br/>" + effectLines + "</div>";
+	if (effectLines != null && effectLines != "") output += " <div class='esovsSkillTooltipEffectLines'><b>NEW EFFECT</b><br/>" + effectLines + "</div>";
 	
 	if (learnedLevel > 0)
 	{
@@ -645,6 +669,7 @@ window.GetEsoSkillInputValues = function ()
 			 BoneTyrantSkills: 0,
 			 GraveLordSkills: 0,
 			 DotDamageDone: {},
+			 ChannelDamageDone: {},
 		};
 	
 	return g_LastSkillInputValues; 
@@ -1694,6 +1719,18 @@ ESO_SKILL_HEALINGMATCHES =
 		match: /(You heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
 	},
 	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(You heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of all damage)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		healId2: "Received",
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% f your missing Health)/gi,
+	},
+	{
 		healId: "Done",
 		healId2: "Received",
 		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r each time)/gi,
@@ -1960,6 +1997,24 @@ ESO_SKILL_TARGETYPE_OVERRIDES =
 };
 
 
+/*
+ * Skill ID/Name followed by:
+ * 		True : All damages in the ability are pet damage
+ * 		False: No damages in the ability are pet damage
+ * 		array(1 : true, 2: false, ...)		Only the specified match indexes are considered
+ */
+ESO_SKILL_PETDAMAGE_OVERRIDES = 
+{
+		"Summon Storm Atronach" : true,
+		"Summon Unstable Familiar" : true,
+		"Summon Winged Twilight" : true,
+		"Summon Shade" : true,
+		"Frozen Colossus" : true,
+		"Skeletal Mage" : true,
+		"Feral Guardian" : true,
+};
+
+
 ESO_SKILL_DOT_OVERRIDES = 
 {
 		"Puncturing Strikes" : false,
@@ -1983,6 +2038,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	var skillLineName = skillData.skillLine + ' Damage';
 	var overrideAoe = null;
 	var overrideDot = null;
+	var overridePet = null;
 	
 	if (skillData.target) target = skillData.target.toLowerCase();
 	
@@ -2002,6 +2058,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.abilityId];
 	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.baseAbilityId];
 	
+	overridePet = ESO_SKILL_PETDAMAGE_OVERRIDES[skillData.name];
+	if (overridePet == null) overridePet = ESO_SKILL_PETDAMAGE_OVERRIDES[skillData.baseName];
+	if (overridePet == null) overridePet = ESO_SKILL_PETDAMAGE_OVERRIDES[skillData.abilityId];
+	if (overridePet == null) overridePet = ESO_SKILL_PETDAMAGE_OVERRIDES[skillData.baseAbilityId];
+	
 	skillData.baseTooltips = {};
 	
 	for (var i = 0; i < ESO_SKILL_DAMAGEMATCHES.length; ++i)
@@ -2011,6 +2072,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, p4, p5, p6, p7, p8, offset, string) 
 		{
+			var addedDotDamageDone = false;
 			var thisEffectIsDot = false;
 			matchIndex = matchIndex + 1;
 			
@@ -2020,10 +2082,11 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			if (inputValues.Damage[matchData.damageId] == null) return string;
 			
 			var baseFactor = 1;
-			var iAOE = false;
+			var isAOE = false;
 			var isSingleTarget = false;
+			var isPet = false;
 			
-			if (target == "area" || target == "cone" || target == "self" || target == "ground") iAOE = true;
+			if (target == "area" || target == "cone" || target == "self" || target == "ground") isAOE = true;
 			if (target == "enemy") isSingleTarget = true;
 			
 			if (overrideAoe != null)
@@ -2033,19 +2096,26 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				
 				if (overrideValue === true)
 				{
-					iAOE = true;
+					isAOE = true;
 					isSingleTarget = false;
 				}
 				else if (overrideValue === false)
 				{
-					iAOE = false;
+					isAOE = false;
 					isSingleTarget = true;
 				}
 				else if (overrideValue === "none")
 				{
-					iAOE = false;
+					isAOE = false;
 					isSingleTarget = false;
 				}
+			}
+			
+			if (overridePet != null)
+			{
+				var overrideValue = overridePet;
+				if (typeof(overridePet) == "object") overrideValue = overridePet[matchIndex];
+				if (overrideValue === true) isPet = true;
 			}
 			
 			newRawOutput = {};
@@ -2103,6 +2173,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				{
 					baseFactor += +inputValues.DotDamageDone[matchData.damageId];
 					newRawOutput.dotDamageDone += inputValues.DotDamageDone[matchData.damageId];
+					addedDotDamageDone = true;
 				}
 			}
 			else if (inputValues.Damage.Direct != null && inputValues.Damage.Direct !== 0)
@@ -2113,6 +2184,13 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			else
 			{
 				baseFactor += +newRawOutput.mainDamageDone;
+			}
+			
+				//TODO: Double factor for dots that are channels?
+			if (skillData.channelTime > 0 && inputValues.ChannelDamageDone && inputValues.ChannelDamageDone[matchData.damageId] && !addedDotDamageDone)
+			{
+				baseFactor += +inputValues.ChannelDamageDone[matchData.damageId];
+				newRawOutput.channelDamageDone = inputValues.ChannelDamageDone[matchData.damageId];
 			}
 			
 			var amountAll = 0;
@@ -2126,7 +2204,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.singleTargetDamageDone = +inputValues.Damage.SingleTarget;
 			}
 			
-			if (iAOE && inputValues.Damage.AOE != null && inputValues.Damage.AOE != 0) 
+			if (isAOE && inputValues.Damage.AOE != null && inputValues.Damage.AOE != 0) 
 			{
 				baseFactor += Math.round(inputValues.Damage.AOE*100)/100;
 				newRawOutput.aoeDamageDone = +inputValues.Damage.AOE;
@@ -2154,6 +2232,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;
 			}
 			
+			if (isPet && inputValues.Damage.Pet) 
+			{
+				baseFactor += Math.round(inputValues.Damage.Pet*100)/100;
+				newRawOutput.PetDamageDone = inputValues.Damage.Pet;
+			}
+			
 				// Overload special case
 			if (skillData.baseName == "Overload" && inputValues.Damage.Overload != null && inputValues.Damage.Overload != 0)
 			{
@@ -2177,7 +2261,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				modDamage += inputValues.SkillDirectDamage[skillData.baseName];
 				newRawOutput.skillDirectDamage = inputValues.SkillDirectDamage[skillData.baseName];
 			}
-				
+			
+			if (skillData.baseName == "Twin Slashes" && inputValues.TwinSlashInitialDamage) {
+				modDamage += inputValues.TwinSlashInitialDamage;
+				newRawOutput.twinSlashInitialDamage = inputValues.TwinSlashInitialDamage;
+			}
+			
 			newRawOutput.finalDamage = Math.round(modDamage);
 			
 			rawOutput.push(newRawOutput);
@@ -2195,15 +2284,18 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.skillLineDamageDone != null && rawData.skillLineDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDamageDone*100) + "% Skill Line ";
 		if (rawData.skillDamageDone != null && rawData.skillDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDamageDone*100) + "% Skill ";
 		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.mainDamageDone*100) + "% " + rawData.damageId;
-		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeDamageDone*100) + "% AoE";
+		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeDamageDone*100) + "% AOE";
 		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetDamageDone*100) + "% Target";
 		if (rawData.directDamageDone  != null && rawData.directDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.directDamageDone*100) + "% Direct";
-		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DoT";
+		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DOT";
+		if (rawData.channelDamageDone  != null && rawData.channelDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.channelDamageDone*100) + "% Channel";
+		if (rawData.PetDamageDone  != null && rawData.PetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.PetDamageDone*100) + "% Pet";
 		if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 		if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
 		if (rawData.overloadDamage != null && rawData.overloadDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.overloadDamage*100) + "% Overload";
 		if (rawData.skillDotDamage != null && rawData.skillDotDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDotDamage*100) + "% SkillDot";
-		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";		
+		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";
+		if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";
@@ -2235,7 +2327,6 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	var newDesc = skillDesc;
 	var displayId = skillData['displayId'];
 	var skillId = skillData['abilityId'];
-	var elfBaneSkill = null;
 	
 	if (inputValues == null) return newDesc;
 	
@@ -2255,6 +2346,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 					var newDamage = +p2;
 					var output = "";
 					var modDamage = 0;
+					var flatDamage = 0;
 					
 					matchIndex++;
 					
@@ -2272,7 +2364,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 					
 					if (modDamage != 0)
 					{
-						newDamage = Math.floor(newDamage * (1 + modDamage));
+						newDamage = Math.floor((newDamage + flatDamage) * (1 + modDamage));
 					}
 					
 					if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage)
@@ -2428,7 +2520,7 @@ window.UpdateEsoSkillTooltipDescription = function ()
 window.CreateEsoSkillLineId = function (skillLine)
 {
 	if (skillLine == null) return "";
-	return skillLine.replace(/ /g, "_");
+	return skillLine.replace(/["' ]/g, "_");
 }
 
 
@@ -2444,19 +2536,20 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	var SkillFactor = 1;
 	var skillLineId = CreateEsoSkillLineId(skillData.skillLine) + "_Cost";
 	var skillNameId = CreateEsoSkillLineId(skillData.baseName) + "_Cost";
+	var skillNameId2 = CreateEsoSkillLineId(skillData.name) + "_Cost";
 	
 	if (mechanic == 0 && inputValues.MagickaCost != null)
 	{
-		if (inputValues.MagickaCost.CP    != null) CPFactor    += inputValues.MagickaCost.CP;
 		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
+		if (inputValues.MagickaCost.CP    != null) SkillFactor *= 1 + inputValues.MagickaCost.CP;
 		if (inputValues.MagickaCost.Set   != null) SkillFactor *= 1 + inputValues.MagickaCost.Set;
 		if (inputValues.MagickaCost.Skill != null) SkillFactor *= 1 + inputValues.MagickaCost.Skill;
 		if (inputValues.MagickaCost.Buff  != null) SkillFactor *= 1 + inputValues.MagickaCost.Buff;
 	}
 	else if (mechanic == 6 && inputValues.StaminaCost != null)
 	{
-		if (inputValues.StaminaCost.CP    != null) CPFactor    += inputValues.StaminaCost.CP;
 		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
+		if (inputValues.StaminaCost.CP    != null) SkillFactor *= 1 + inputValues.StaminaCost.CP;
 		if (inputValues.StaminaCost.Set   != null) SkillFactor *= 1 + inputValues.StaminaCost.Set;
 		if (inputValues.StaminaCost.Skill != null) SkillFactor *= 1 + inputValues.StaminaCost.Skill;
 		if (inputValues.StaminaCost.Buff  != null) SkillFactor *= 1 + inputValues.StaminaCost.Buff;
@@ -2471,6 +2564,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	}
 	else if (mechanic == -2 && inputValues.HealthCost != null)
 	{
+		if (inputValues.HealthCost.Item  != null) FlatCost    +=  inputValues.HealthCost.Item;
 		if (inputValues.HealthCost.Skill != null) SkillFactor *= 1 + inputValues.HealthCost.Skill;
 		if (inputValues.HealthCost.Set   != null) SkillFactor *= 1 + inputValues.HealthCost.Set;
 	}
@@ -2508,7 +2602,14 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	if (CPFactor != 1) output += " + " + Math.round(CPFactor*1000 - 1000)/10 + "% CP";
 	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
 	if (SkillFactor != 1) output += " + " + Math.round(SkillFactor*1000 - 1000)/10 + "% Skill";
-		
+	
+	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost['Regular_Ability_Cost'] && skillLineId != "Vampire_Cost")
+	{
+		var factor = parseFloat(inputValues.SkillLineCost['Regular_Ability_Cost']);
+		SkillFactor *= 1 + factor;
+		if (factor != 0) output += " + " + Math.round(factor*1000)/10 + "% Regular Ability Cost";
+	}
+	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Active")
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
@@ -2535,8 +2636,15 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
 	}
-				
-	//cost = Math.floor((cost * CPFactor + FlatCost) * SkillFactor);
+	
+	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillNameId2] != null && skillNameId != skillNameId2)
+	{
+		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillNameId2]);
+		SkillFactor *= 1 + SkillLineFactor;
+		
+		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
+	}
+	
 	cost = Math.ceil((cost * CPFactor + FlatCost) * SkillFactor);
 	if (cost < 0) cost = 0;
 	
@@ -2558,7 +2666,7 @@ window.ComputeEsoSkillCost = function (maxCost, level, inputValues, skillData)
 	
 	var cost = parseInt(maxCost);
 	
-	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6))
+	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6 || skillData.mechanic == -2))
 	{
 		if (maxCost == 0) return 0;
 		if (level == null) level = inputValues.EffectiveLevel;
@@ -2598,13 +2706,13 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 
 
  window.UpdateEsoSkillTooltipCost = function()
-{		
+{	
 	if (g_LastSkillId <= 0) return;
 	UpdateEsoSkillCost(g_LastSkillId, $("#esovsSkillTooltipCost"), GetEsoSkillInputValues());
 }
 
 
-window.GetEsoSkillCost = function(skillId, inputValues)
+window.GetEsoSkillCost = function(skillId, inputValues, useHtml = true)
 {
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
@@ -2618,6 +2726,7 @@ window.GetEsoSkillCost = function(skillId, inputValues)
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
 	
 	var baseCost = parseInt(skillData['cost']);
+	var chargeFreq = parseInt(skillData['chargeFreq'])/1000;
 	var cost = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, skillData);
 	
 	var costStr = "" + cost + " ";
@@ -2633,12 +2742,19 @@ window.GetEsoSkillCost = function(skillId, inputValues)
 	
 	skillData.newCost = cost;
 	skillData.newCostText = costStr;
-	return costStr;
+	
+	if (chargeFreq > 0) {
+		costStr += "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div>";
+		skillData.newCostText += " / " + chargeFreq + "s";
+	}
+	
+	skillData.newCostHtml = costStr;
+	return useHtml ? skillData.newCostHtml : skillData.newCostText;
 }
 
 
 window.UpdateEsoSkillTooltipDuration = function()
-{		
+{	
 	if (g_LastSkillId <= 0) return;
 	UpdateEsoSkillDuration(g_LastSkillId, $("#esovsSkillTooltipDuration"), GetEsoSkillInputValues());
 }
@@ -2653,6 +2769,7 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 	var displayId = skillData['displayId'];
 	var newDuration = +skillData.duration;
 	
+	if (skillData.isToggle == 1) return "Toggle";
 	if (skillData.duration == 0) return 0;
 	
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
@@ -2688,9 +2805,9 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 
 window.UpdateEsoSkillCost = function(skillId, costElement, inputValues)
 {
-	var costStr = GetEsoSkillCost(skillId, inputValues);
+	var costStr = GetEsoSkillCost(skillId, inputValues, true);
 	
-	costElement.text(costStr);
+	costElement.html(costStr);
 }
 
 
@@ -2698,9 +2815,12 @@ window.UpdateEsoSkillDuration = function(skillId, durationElement, inputValues)
 {
 	var duration = GetEsoSkillDuration(skillId, inputValues);
 	var durationStr = "";
-
-	if (duration > 0) durationStr = "" + Math.round(duration/100)/10 + " seconds";
-
+	
+	if (duration > 0)
+		durationStr = "" + Math.round(duration/100)/10 + " seconds";
+	else if (isNaN(duration))
+		durationStr = duration;
+	
 	durationElement.text(durationStr);
 }
 
@@ -3034,7 +3154,11 @@ window.UpdateEsoSkillRawDataLink = function(skillId)
 		return;
 	}
 	
-	linkElement.attr("href", "//esoitem.uesp.net/viewlog.php?action=view&record=minedSkills&id=" + skillId);
+	table = 'minedSkills';
+	if (g_SkillsVersion != '') table += g_SkillsVersion;
+	query = "action=view&record=" + table + "&id=" + skillId;
+	
+	linkElement.attr("href", "//esoitem.uesp.net/viewlog.php?" + query);
 }
 
 
@@ -3580,8 +3704,10 @@ window.PurchaseEsoSkill = function(abilityId)
 	
 	if (origPurchased && abilityId != origSkillId1)
 	{
-		RemoveSkillBarAbility(origSkillId1);
-		RemoveSkillBarAbility(origSkillId2);
+		//RemoveSkillBarAbility(origSkillId1);
+		//RemoveSkillBarAbility(origSkillId2);
+		ChangeEsoSkillBarAbility(origSkillId1, abilityId);
+		ChangeEsoSkillBarAbility(origSkillId2, abilityId);
 		UpdateEsoSkillBarData();
 	}
 	
@@ -3649,7 +3775,7 @@ window.RemovePurchasedEsoClassSkills = function ()
 	
 	skillElements.each(function(){
 		var skillId = $(this).attr("skillid");
-		ResetEsoPurchasedSkill(skillId);		
+		ResetEsoPurchasedSkill(skillId);
 	});
 	
 	RemoveEsoClassSkillsFromPassiveData();
@@ -4047,6 +4173,7 @@ window.OnSkillBarDroppableAccept = function (draggable)
 	
 	var sourceAbilityId = -1;
 	var sourceSkillIndex = -1;
+	var skillBarIndex = -1;
 	
 	if (draggable.hasClass("esovsAbilityBlockIcon"))
 	{
@@ -4066,6 +4193,7 @@ window.OnSkillBarDroppableAccept = function (draggable)
 	{
 		var barImage = $this.find("img");
 		sourceSkillIndex = barImage.attr("skillindex");
+		skillBarIndex = parseInt(barImage.attr("skillbar"));
 	}
 	else
 	{
@@ -4073,8 +4201,13 @@ window.OnSkillBarDroppableAccept = function (draggable)
 	}
 	
 	var skillData = g_SkillsData[sourceAbilityId];
-	
 	if (skillData == null) return false;
+	
+		/* Werewolf active skills only allowed on the werewolf skill bar */
+	if (skillData.skillLine == "Werewolf")
+	{
+		if (skillData.type != "Ultimate" && skillBarIndex != 4) return false;
+	} 
 	
 	if (skillData.type == "Ultimate" && sourceSkillIndex != 6) return false;
 	if (skillData.type != "Ultimate" && sourceSkillIndex == 6) return false; 
@@ -4187,6 +4320,36 @@ window.OnSkillBarDroppable = function (event, ui)
 }
 
 
+window.ChangeEsoSkillBarAbility = function(oldAbilityId, newAbilityId, skillBar)
+{
+	var skillData = g_SkillsData[newAbilityId];
+	if (skillData == null) return;
+	
+	if (skillBar == null)
+	{
+		ChangeEsoSkillBarAbility(oldAbilityId, newAbilityId, 1);
+		ChangeEsoSkillBarAbility(oldAbilityId, newAbilityId, 2);
+		ChangeEsoSkillBarAbility(oldAbilityId, newAbilityId, 3);
+		ChangeEsoSkillBarAbility(oldAbilityId, newAbilityId, 4);
+		return;
+	}
+	
+	var skillBarIcons  = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[skillid='" + oldAbilityId + "']");
+	var skillBarIcons2 = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[origskillid='" + oldAbilityId + "']");
+		
+	var iconUrl = "//esoicons.uesp.net" + skillData.icon;
+	iconUrl.replace("\.dds", ".png");
+	
+	skillBarIcons.attr("skillid", newAbilityId);
+	skillBarIcons.attr("src", iconUrl);
+	
+	skillBarIcons2.attr("skillid", newAbilityId);
+	skillBarIcons2.attr("src", iconUrl);
+	
+	if (window.EsoBuildCombatChangeSkillId) EsoBuildCombatChangeSkillId(oldAbilityId, newAbilityId);
+}
+
+
 window.RemoveSkillBarAbility = function (abilityId, skillBar)
 {
 	if (skillBar == null)
@@ -4222,7 +4385,7 @@ window.OnSkillBarDragEnd = function (e)
 	if (g_EsoSkillDragData.fromSkillBar && !g_EsoSkillDragData.wasDropped) 
 	{
 		RemoveSkillBarAbility(g_EsoSkillDragData.abilityId, g_EsoSkillDragData.skillBar );
-		UpdateEsoSkillBarData();		
+		UpdateEsoSkillBarData();
 	}
 }
 
@@ -4380,6 +4543,27 @@ window.OnEsoSkillLineResetAll = function ()
 }
 
 
+window.EsoResetSkillLine = function (skillLine)
+{
+	var skillLineId = CreateEsoSkillLineId(skillLine);
+	var skillLineBlock = $("#esovsSkillContent").children("#" + skillLineId);
+	var skillElements = skillLineBlock.children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
+	var skillType = skillLineBlock.attr("skilltype");
+	
+	g_EsoSkillUpdateEnable = false;
+	
+	skillElements.each(function() {
+		var skillId = $(this).attr("skillid");
+		ResetEsoPurchasedSkill(skillId);
+	});
+	
+	if (skillType == "Racial") RemoveEsoRaceSkillsFromPassiveData();
+	
+	g_EsoSkillUpdateEnable = true;
+	UpdateEsoSkillTotalPoints();
+}
+
+
 window.EsoSkillLog = function ()
 {
 	if (console == null) return;
@@ -4498,7 +4682,7 @@ window.esovsOnDocReady = function ()
 			classes: { },
 	});
 	
-	$(".esovsSkillBarItem").droppable({ 
+	$(".esovsSkillBarItem").not(".esovsCombatSkillBarItem").droppable({ 
 			drop: OnSkillBarDroppable, 
 			accept: OnSkillBarDroppableAccept,
 			out: OnSkillBarDroppableOut,
@@ -4506,7 +4690,7 @@ window.esovsOnDocReady = function ()
 			classes: {
 				//'ui-droppable-hover': 'esovsSkillAcceptHover'
 			},
-	});		
+	});
 	
 	$("#esovsSkillReset").click(OnEsoSkillReset);
 	

@@ -174,6 +174,8 @@ UESP.EsoItemSearchPopup = function ()
 	this.weaponType = "-1";
 	this.armorType = "-1";
 	this.itemTrait = "-1";
+	this.foodQuality = "-1";
+	this.foodType = "4,12";
 	this.xoffset = 0;
 	this.yoffset = 0;
 	this.version = "";
@@ -201,7 +203,9 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	$("#esoispJewelryTrait").change(function(e) { self.onJewelryTraitChange(e); });
 	$("#esoispWeaponTrait").change(function(e) { self.onWeaponTraitChange(e); });
 	$("#esoispWeaponType1").change(function(e) { self.onWeaponType1Change(e); });
-	$("#esoispWeaponType2").change(function(e) { self.onWeaponType2Change(e); });	
+	$("#esoispWeaponType2").change(function(e) { self.onWeaponType2Change(e); });
+	$("#esoispFoodQuality").change(function(e) { self.onFoodQualityChange(e); });
+	$("#esoispFoodType").change(function(e) { self.onFoodTypeChange(e); });
 	
 	$("#esoispInputText").keyup(function (e) {
 	    if (e.keyCode == 13) {
@@ -364,6 +368,19 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='15'>Training</option>" +
 		"		<option value='14'>Well Fitted</option>" +
 		"	</select>" +
+		"	<div class='esoispInputLabel' id='esoispFoodQualityLabel'>Quality</div> <select id='esoispFoodQuality' type='text' name='foodQuality'>" +
+		"		<option value='-1'>Any</option>" +
+		"		<option value='1'>Normal</option>" +
+		"		<option value='2'>Fine</option>" +
+		"		<option value='3'>Superior</option>" +
+		"		<option value='4'>Epic</option>" +
+		"		<option value='5'>Legendary</option>" +
+		"	</select>" +
+		"	<div class='esoispInputLabel' id='esoispFoodTypeLabel'>Food Type</div> <select id='esoispFoodType' type='text' name='foodType'>" +
+		"		<option value='4,12'>Any</option>" +
+		"		<option value='4'>Food</option>" +
+		"		<option value='12'>Drink</option>" +
+		"	</select>" +
 		"	<br/>" +
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='CP160'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
@@ -437,6 +454,10 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 		$("#esoispJewelryTraitLabel").hide();
 		$("#esoispWeaponTrait").show();
 		$("#esoispWeaponTraitLabel").show();
+		$("#esoispFoodType").hide();
+		$("#esoispFoodTypeLabel").hide();
+		$("#esoispFoodQuality").hide();
+		$("#esoispFoodQualityLabel").hide();
 		$("#esoispWeaponTrait").val(this.itemTrait);
 		
 		if ($("#esoispWeaponTrait").val() == null) 
@@ -493,6 +514,10 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 		$("#esoispWeaponTypeLabel1").hide();
 		$("#esoispWeaponType2").hide();
 		$("#esoispWeaponTypeLabel2").hide();
+		$("#esoispFoodType").hide();
+		$("#esoispFoodTypeLabel").hide();
+		$("#esoispFoodQuality").hide();
+		$("#esoispFoodQualityLabel").hide();
 		
 		if (this.equipType == 2 || this.equipType == 12)
 		{
@@ -553,7 +578,11 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 		$("#esoispWeaponType2").hide();
 		$("#esoispWeaponTypeLabel2").hide();
 		$("#esoispArmorType").hide();
-		$("#esoispArmorTypeLabel").hide();	
+		$("#esoispArmorTypeLabel").hide();
+		$("#esoispFoodType").show();
+		$("#esoispFoodTypeLabel").show();
+		$("#esoispFoodQuality").show();
+		$("#esoispFoodQualityLabel").show();
 	}
 	else
 	{
@@ -571,6 +600,10 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 		$("#esoispWeaponTypeLabel2").hide();
 		$("#esoispArmorType").hide();
 		$("#esoispArmorTypeLabel").hide();
+		$("#esoispFoodType").hide();
+		$("#esoispFoodTypeLabel").hide();
+		$("#esoispFoodQuality").hide();
+		$("#esoispFoodQualityLabel").hide();
 	}
 	
 	if (this.version != "")
@@ -632,14 +665,16 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	if (this.weaponType >= 0) queryParams['weapontype'] = this.weaponType;
 	if (this.armorType != null) queryParams['armortype'] = this.armorType;
 	if (this.itemTrait >= 0) queryParams['trait'] = this.itemTrait;
-	if (g_EsoBuildPtsVersion != "") queryParams['version'] = g_EsoBuildPtsVersion; 
+	if (this.version != "") queryParams['version'] = this.version;
 	
 	this.updateLevelQuality();
 	
 	if (this.itemType == 4 || this.itemType == 12 || this.itemType == "4,12")
 	{
+		queryParams['type'] = this.foodType;
 		queryParams['level'] = this.parseLevel(this.itemLevel);
-		queryParams['quality'] = this.itemQuality;
+		if (this.foodQuality > 0) queryParams['quality'] = this.foodQuality;
+		//queryParams['quality'] = this.itemQuality;
 	}
 	else
 	{
@@ -942,12 +977,24 @@ UESP.EsoItemSearchPopup.prototype.onQualityChange = function(e)
 	var itemQualityClass = "eso_item_link_q" + this.itemQuality;
 	$(".esoispResultRow").removeClass(itemQualityClass);
 	itemQualityClass = "eso_item_link_q" + newQuality;
-	$(".esoispResultRow").addClass(itemQualityClass);
+	$(".esoispResultRow").not(".eso_item_link_q6").addClass(itemQualityClass);
 		
 	this.updateLevelQuality();
 	
 	$(".esoispResultRow").attr("intlevel", this.itemIntLevel);
 	$(".esoispResultRow").attr("inttype", this.itemIntType);
+}
+
+
+UESP.EsoItemSearchPopup.prototype.onFoodQualityChange = function(e)
+{
+	this.foodQuality = $("#esoispFoodQuality").val();
+}
+
+
+UESP.EsoItemSearchPopup.prototype.onFoodTypeChange = function(e)
+{
+	this.foodType = $("#esoispFoodType").val();
 }
 
 

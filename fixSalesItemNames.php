@@ -54,6 +54,8 @@ while (($item = $itemResult->fetch_assoc()))
 	
 	$minedItem = $result->fetch_assoc();
 	
+	$minedItem['name'] = explode('||', $minedItem['name'])[0];
+	
 	$name1 = MakeEsoTitleCaseName($item['name']);
 	$name2 = MakeEsoTitleCaseName($minedItem['name']);
 

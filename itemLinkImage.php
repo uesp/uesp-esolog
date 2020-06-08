@@ -390,7 +390,17 @@ class CEsoItemLinkImage
 	private function LoadItemTransmuteTraitData()
 	{
 		$this->itemRecord['origTraitDesc'] = $this->itemRecord['traitDesc'];
-		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $this->itemRecord['internalLevel'], $this->itemRecord['internalSubtype'], $this->itemRecord['equipType'], $this->db);
+		
+		$intLevel = $this->itemRecord['internalLevel'];
+		$intSubtype = $this->itemRecord['internalSubtype'];
+		
+			/* Special case for mythic items */
+		if ($this->itemRecord['quality'] == 6) {
+			$intLevel = 50;
+			$intSubtype = 370;
+		}
+		
+		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $intLevel, $intSubtype, $this->itemRecord['equipType'], $this->db);
 	}
 	
 	

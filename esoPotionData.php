@@ -42,6 +42,7 @@ const ESO_POTIONEFFECT_CREEPINGRAVAGEHEALTH = 28;
 const ESO_POTIONEFFECT_VITALITY = 29;
 const ESO_POTIONEFFECT_DEFILE = 30;
 const ESO_POTIONEFFECT_HEROISM = 31;
+const ESO_POTIONEFFECT_TIMIDITY = 32;
 
 
 $ESO_POTIONEFFECT_DATA = array(
@@ -73,7 +74,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"name" => "Restore Magicka",
 				"name2" => "Drain Magicka",
 				"potionBaseId" => 54340,
-				"poisonBaseId" => 76829,
+				"poisonBaseId" => 76828,
 				"icon" => "resources/crafting_alchemy_trait_restoremagicka.png",
 				"isPositive" => true,
 				"index" => 19,
@@ -84,7 +85,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"name" => "Ravage Magicka",
 				"name2" => "Increase Magicka Cost",
 				"potionBaseId" => 44815,
-				"poisonBaseId" => 76828,
+				"poisonBaseId" => 76829,
 				"icon" => "resources/crafting_alchemy_trait_ravagemagicka.png",
 				"isPositive" => false,
 				"index" => 6,
@@ -95,7 +96,7 @@ $ESO_POTIONEFFECT_DATA = array(
 				"name" => "Restore Stamina",
 				"name2" => "Drain Stamina",
 				"potionBaseId" => 54341,
-				"poisonBaseId" => 76829,
+				"poisonBaseId" => 76830,
 				"icon" => "resources/crafting_alchemy_trait_restorestamina.png",
 				"isPositive" => true,
 				"index" => 20,
@@ -389,17 +390,28 @@ $ESO_POTIONEFFECT_DATA = array(
 			),
 	31 =>  array(
 			"id" => 31,
-			"oppositeId" => -1,
-			"name" => "Heroism",		
+			"oppositeId" => 32,
+			"name" => "Heroism",
 			"name2" => "Heal Absorption",
-			//"potionBaseId" => 151969,	// TODO
-			//"poisonBaseId" => 152151,
-			"potionBaseId" => 54339,
-			"poisonBaseId" => 76827,
-			"icon" => "resources/crafting_alchemy_trait_increasespellresist.png",	// TODO
+			"potionBaseId" => 151969,
+			"poisonBaseId" => 152151,
+			"icon" => "resources/crafting_alchemy_trait_heroism.png",
 			"isPositive" => true,
 			"index" => 31,
 		),		
+	32 =>  array(
+			"id" => 32,
+			"oppositeId" => 31,
+			"name" => "Timidity",
+			"name2" => "Timidity",
+			//"potionBaseId" => 158308,	// TODO: Update 26
+			//"poisonBaseId" => 158309,
+			"potionBaseId" => 151969,
+			"poisonBaseId" => 152151,
+			"icon" => "resources/crafting_alchemy_trait_timidity.png",
+			"isPositive" => false,
+			"index" => 32,
+		),
 );
 
 
@@ -444,6 +456,12 @@ $ESO_REAGENT_DATA = array(
 				"icon" => "resources/reagent_butterfly_wing.png",
 				"effects" => array(ESO_POTIONEFFECT_RESTOREHEALTH, ESO_POTIONEFFECT_LOWERSPELLCRIT, ESO_POTIONEFFECT_SUSTAINRESTOREHEALTH, ESO_POTIONEFFECT_VITALITY),
 		),
+		"Chaurus Egg" => array(
+				"name" => "Chaurus Egg",
+				"itemId" => 150669,
+				"icon" => "resources/crafting_chaurus_eggs.png",
+				"effects" => array(ESO_POTIONEFFECT_TIMIDITY, ESO_POTIONEFFECT_RAVAGEMAGICKA, ESO_POTIONEFFECT_RESTORESTAMINA, ESO_POTIONEFFECT_DETECTION),
+		),
 		"Clam Gall" => array(
 				"name" => "Clam Gall",
 				"itemId" => 139020,
@@ -462,6 +480,12 @@ $ESO_REAGENT_DATA = array(
 				"itemId" => 30161,
 				"icon" => "resources/corn_flower_r1.png",
 				"effects" => array(ESO_POTIONEFFECT_RESTOREMAGICKA, ESO_POTIONEFFECT_SPELLPOWER, ESO_POTIONEFFECT_RAVAGEHEALTH, ESO_POTIONEFFECT_DETECTION),
+		),
+		"Crimson Nirnroot" => array(
+				"name" => "Crimson Nirnroot",
+				"itemId" => 150672,
+				"icon" => "resources/crafting_water_plant_nirnroot_crimson.png",
+				"effects" => array(ESO_POTIONEFFECT_TIMIDITY, ESO_POTIONEFFECT_SPELLCRIT, ESO_POTIONEFFECT_GRADUALRAVAGEHEALTH, ESO_POTIONEFFECT_RESTOREHEALTH),
 		),
 		"Dragon's Bile" => array(
 				"name" => "Dragon's Bile",
@@ -577,6 +601,12 @@ $ESO_REAGENT_DATA = array(
 				"itemId" => 77581,
 				"icon" => "resources/reagent_torchbug_thorax.png",
 				"effects" => array(ESO_POTIONEFFECT_LOWERARMOR, ESO_POTIONEFFECT_LOWERWEAPONCRIT, ESO_POTIONEFFECT_DETECTION, ESO_POTIONEFFECT_VITALITY),
+		),
+		"Vile Coagulant" => array(
+				"name" => "Vile Coagulant",
+				"itemId" => 150670,
+				"icon" => "resources/crafting_vile_coagula.png",
+				"effects" => array(ESO_POTIONEFFECT_TIMIDITY, ESO_POTIONEFFECT_RAVAGEHEALTH, ESO_POTIONEFFECT_RESTOREMAGICKA, ESO_POTIONEFFECT_PROTECTION),
 		),
 		"Violet Coprinus" => array(
 				"name" => "Violet Coprinus",

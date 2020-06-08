@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "24pts";
+$TABLE_SUFFIX = "26pts";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
@@ -36,6 +36,8 @@ $REPLACE_PAIRS = array(
 		"Banner Emote" => "Banner",
 		"Siegemaster's" => "Siegemaster",
 		"Opal Ilambris' " => "Opal Ilambris ",
+		"Snowhawk Mage " => "Snowhawk Mage's ",
+		"Balorgh's " => "Balorgh ",
 );
 
 require("/home/uesp/secrets/esolog.secrets");

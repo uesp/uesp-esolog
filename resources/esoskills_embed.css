@@ -163,7 +163,7 @@
 }
 
 .esovsAbilityBlockHover:hover {
-    background-color: #E3d5c0;
+	background-color: #E3d5c0;
 	cursor: pointer;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
@@ -633,6 +633,23 @@
 	color: #96DA43;
 }
 
+.esovsUltimate {
+	color: #FFFFFF;
+}
+
+.esovsHealth {
+	color: #C84831;
+}
+
+.esovsChargeFreq {
+	color: #FFFFFF;
+	display: inline-block;
+}
+
+.esovsAbilityBlockCost .esovsChargeFreq {
+	color: #000;
+}
+
 .esovsAbilityNone {
 	padding: 10px;
 	font-weight: bold;
@@ -662,35 +679,14 @@
 }
 
 .esovsSkillBar {
+	border: solid 2px rgba(0,0,0,0);
+	padding: 2px;
+	text-align: left;
 }
 
 .esovsSkillBar:hover {
 	cursor: pointer;
 	background-color: #ffff99;
-}
-
-#esovsSkillBar1 {
-	border: solid 2px rgba(0,0,0,0);
-    padding: 2px;
-    text-align: left;
-}
-
-#esovsSkillBar2 {
-	border: solid 2px rgba(0,0,0,0);
-    padding: 2px;
-    text-align: left;
-}
-
-#esovsSkillBar3 {
-	border: solid 2px rgba(0,0,0,0);
-    padding: 2px;
-    text-align: left;
-}
-
-#esovsSkillBar4 {
-	border: solid 2px rgba(0,0,0,0);
-    padding: 2px;
-    text-align: left;
 }
 
 .esovsSkillBarHighlight {

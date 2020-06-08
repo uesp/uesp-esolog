@@ -3,6 +3,21 @@ window.EsoPotionNextFreeReagent = 1;
 window.EsoPotionItemLinkCache = {};
 window.EsoPotionLastItemLink = "";
 window.EsoPotionLastPotionData = "";
+window.EsoPotionAvailableHighlights = [ 3, 2, 1 ]; 
+
+
+function GetEsoPotionAvailableHighlight() 
+{
+	if (EsoPotionAvailableHighlights.length == 0) return -1;
+	
+	return EsoPotionAvailableHighlights.pop();
+}
+
+
+function RestoreEsoPotionAvailableHighlight(index)
+{
+	 EsoPotionAvailableHighlights.push(index);
+}
 
 
 function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
@@ -323,6 +338,8 @@ function OnClickEsoSolventSlot(e)
 
 function HasArrayCommonValues(a1, a2)
 {
+	if (a1 == null || a2 == null) return false;
+	
 	for (var i = 0; i < a1.length; ++i)
 	{
 		for (var j = 0; j < a2.length; ++j)
@@ -335,7 +352,7 @@ function HasArrayCommonValues(a1, a2)
 }
 
 
-function EnableEsoReagentEffect(reagentSlot, effects)
+function EnableEsoReagentEffect(reagentSlot, effects, highlightIndexes)
 {
 	var reagentName = reagentSlot.attr("reagent");
 	var reagentData = g_EsoPotionReagents[reagentName];
@@ -344,18 +361,50 @@ function EnableEsoReagentEffect(reagentSlot, effects)
 	
 	if (effects.length == 0) {
 		reagentSlot.removeClass("esopdReagentDisable");
-		reagentSlot.removeClass("esopdReagentHighlight");
+		reagentSlot.removeClass("esopdReagentHighlight1");
+		reagentSlot.removeClass("esopdReagentHighlight2");
+		reagentSlot.removeClass("esopdReagentHighlight3");
 	}
 	else if (HasArrayCommonValues(reagentData.effects, effects))
 	{
+		var hasEffect1 = HasArrayCommonValues(reagentData.effects, [effects[0]]);
+		var hasEffect2 = HasArrayCommonValues(reagentData.effects, [effects[1]]);
+		var hasEffect3 = HasArrayCommonValues(reagentData.effects, [effects[2]]);
+		
+		for (var i = 0; i < EsoPotionAvailableHighlights.length; ++i) 
+		{
+			var highlightIndex = EsoPotionAvailableHighlights[i];
+			reagentSlot.removeClass("esopdReagentHighlight" + highlightIndex);
+		}
+		
+		if (hasEffect1) {
+			var highlightIndex = highlightIndexes[effects[0]];
+			reagentSlot.removeClass("esopdReagentDisable");
+			reagentSlot.addClass("esopdReagentHighlight" + highlightIndex);
+		}
+		
+		if (hasEffect2) {
+			var highlightIndex = highlightIndexes[effects[1]];
+			reagentSlot.removeClass("esopdReagentDisable");
+			reagentSlot.addClass("esopdReagentHighlight" + highlightIndex);
+		}
+		
+		if (hasEffect3) {
+			var highlightIndex = highlightIndexes[effects[2]];
+			reagentSlot.removeClass("esopdReagentDisable");
+			reagentSlot.addClass("esopdReagentHighlight" + highlightIndex);
+		}
+		
 		reagentSlot.removeClass("esopdReagentDisable");
-		reagentSlot.addClass("esopdReagentHighlight");		
 	}
 	else
 	{
 		reagentSlot.addClass("esopdReagentDisable");
-		reagentSlot.removeClass("esopdReagentHighlight");
+		reagentSlot.removeClass("esopdReagentHighlight1");
+		reagentSlot.removeClass("esopdReagentHighlight2");
+		reagentSlot.removeClass("esopdReagentHighlight3");
 	}
+	
 
 }
 
@@ -363,10 +412,11 @@ function EnableEsoReagentEffect(reagentSlot, effects)
 function UpdateEnabledEsoReagentEffects()
 {
 	var effects = GetEsoPotionSelectedEffects();
+	var highlightIndexes = GetEsoPotionSelectedEffectsWithHighlightIndex();
 	var reagents = $(".esopdReagent");
 	
 	reagents.each(function(i) {
-		EnableEsoReagentEffect($(this), effects);
+		EnableEsoReagentEffect($(this), effects, highlightIndexes);
 	});
 	
 	if (effects.length == 0)
@@ -375,27 +425,52 @@ function UpdateEnabledEsoReagentEffects()
 	}
 	else
 	{
-		$(".esopdEffect.esopdEffectHighlighted").removeClass("esopdEffectDisable");
-		$(".esopdEffect").not(".esopdEffectHighlighted").addClass("esopdEffectDisable");
+		$(".esopdEffect").addClass("esopdEffectDisable");
+		$(".esopdEffect.esopdEffectHighlight1").removeClass("esopdEffectDisable");
+		$(".esopdEffect.esopdEffectHighlight2").removeClass("esopdEffectDisable");
+		$(".esopdEffect.esopdEffectHighlight3").removeClass("esopdEffectDisable");
 	}
 }
 
 
 function OnEsoPotionEffectReset()
 {
-	$(".esopdEffectHighlighted").removeClass("esopdEffectHighlighted");
+	$(".esopdEffectHighlight1").removeClass("esopdEffectHighlight1");
+	$(".esopdEffectHighlight2").removeClass("esopdEffectHighlight2");
+	$(".esopdEffectHighlight3").removeClass("esopdEffectHighlight3");
+	
+	RestoreEsoPotionAvailableHighlight(3);
+	RestoreEsoPotionAvailableHighlight(2);
+	RestoreEsoPotionAvailableHighlight(1);
+	
 	UpdateEnabledEsoReagentEffects();
 }
 
 
 function GetEsoPotionSelectedEffects()
 {
-	var enabledEffects = $(".esopdEffectHighlighted");
+	var enabledEffects = $(".esopdEffectHighlight1, .esopdEffectHighlight3, .esopdEffectHighlight2");
 	var effects = [];
 	
 	enabledEffects.each(function() {
 		effects.push(parseInt($(this).attr("effectindex")));
 	});
+	
+	return effects;
+}
+
+
+function GetEsoPotionSelectedEffectsWithHighlightIndex()
+{
+	var enabledEffects = $(".esopdEffectHighlight1, .esopdEffectHighlight3, .esopdEffectHighlight2");
+	var effect1 = $(".esopdEffectHighlight1");
+	var effect2 = $(".esopdEffectHighlight2");
+	var effect3 = $(".esopdEffectHighlight3");
+	var effects = {};
+	
+	if (effect1.length) effects[parseInt(effect1.attr("effectindex"))] = 1;
+	if (effect2.length) effects[parseInt(effect2.attr("effectindex"))] = 2;
+	if (effect3.length) effects[parseInt(effect3.attr("effectindex"))] = 3;
 	
 	return effects;
 }
@@ -652,15 +727,27 @@ function OnClickEsoEffect(e)
 {
 	var $this = $(this);
 	var effectIndex = $this.attr("effectindex");
-	var isHighlighted = $this.hasClass("esopdEffectHighlighted");
+	var hasHighlight1 = $this.hasClass("esopdEffectHighlight1");
+	var hasHighlight2 = $this.hasClass("esopdEffectHighlight2");
+	var hasHighlight3 = $this.hasClass("esopdEffectHighlight3");
+	var isHighlighted = hasHighlight1 || hasHighlight2 || hasHighlight3;
 	
-	if (isHighlighted)
+	if (isHighlighted) 
 	{
-		$this.removeClass("esopdEffectHighlighted");
+		var highlightIndex = -1;
+		if (hasHighlight1) highlightIndex = 1;
+		if (hasHighlight2) highlightIndex = 2;
+		if (hasHighlight3) highlightIndex = 3;
+		
+		$this.removeClass("esopdEffectHighlight" + highlightIndex);
+		RestoreEsoPotionAvailableHighlight(highlightIndex);
 	}
-	else
+	else 
 	{
-		$this.addClass("esopdEffectHighlighted");
+		var highlightIndex = GetEsoPotionAvailableHighlight();
+		if (highlightIndex <= 0) return;
+		
+		$this.addClass("esopdEffectHighlight" + highlightIndex);
 	}
 	
 	UpdateEnabledEsoReagentEffects();
@@ -903,11 +990,25 @@ function FindPotionItemLinkEffects(itemLink)
 		return false;
 	}
 	
-	if (effect1 > 0) $(".esopdEffect[effectindex='" + effect1 + "']").addClass("esopdEffectHighlighted");
-	if (effect2 > 0) $(".esopdEffect[effectindex='" + effect2 + "']").addClass("esopdEffectHighlighted");
-	if (effect3 > 0) $(".esopdEffect[effectindex='" + effect3 + "']").addClass("esopdEffectHighlighted");
+	if (effect1 > 0) {
+		var highlightIndex = GetEsoPotionAvailableHighlight();
+		$(".esopdEffect[effectindex='" + effect1 + "']").addClass("esopdEffectHighlight" + highlightIndex);
+	}
 	
-	$(".esopdEffect").not(".esopdEffectHighlighted").addClass("esopdEffectDisable");
+	if (effect2 > 0) {
+		var highlightIndex = GetEsoPotionAvailableHighlight();
+		$(".esopdEffect[effectindex='" + effect2 + "']").addClass("esopdEffectHighlight" + highlightIndex);
+	}
+	
+	if (effect3 > 0) {
+		var highlightIndex = GetEsoPotionAvailableHighlight();
+		$(".esopdEffect[effectindex='" + effect3 + "']").addClass("esopdEffectHighlight" + highlightIndex);
+	}
+	
+	$(".esopdEffect").addClass("esopdEffectDisable");
+	$(".esopdEffectHighlight1").removeClass("esopdEffectDisable");
+	$(".esopdEffectHighlight2").removeClass("esopdEffectDisable");
+	$(".esopdEffectHighlight3").removeClass("esopdEffectDisable");
 	
 	if (itemData.writ1 == 239)
 	{
@@ -918,6 +1019,7 @@ function FindPotionItemLinkEffects(itemLink)
 		UpdateEsoPotionSolvent("Lorkhan's Tears");
 	}
 	
+	UpdateEnabledEsoReagentEffects();
 	OnEsoPotionEffectFind();
 	return true;
 }

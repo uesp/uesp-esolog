@@ -7,10 +7,10 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "25";
-$VERSION = "25";
+$TABLEPREFIX = "26";
+$VERSION = "26";
 $FIRSTID = 3;
-$LASTID = 170000;
+$LASTID = 180000;
 //$MAGICCOUNT = 1483;
 //$MAGICCOUNT = 1533;
 $MAGICCOUNT = 1532;
@@ -79,7 +79,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 			++$luaFunctionCount;			
 			//$output .= "\tzo_callLater(uespminetest$luaFunctionCount, 1000)\n";
 			$output .= "end\n";
-			$output .= "function uespminetest$luaFunctionCount()\n";					
+			$output .= "function uespminetest$luaFunctionCount()\n";
 		}
 		
 	}

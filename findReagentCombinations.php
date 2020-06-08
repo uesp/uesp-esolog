@@ -12,42 +12,48 @@ $USE_TWO_REAGENT_UPTO = 36;
 $USE_TWO_REAGENT_UPTO = 0.5;
 $USE_TWO_REAGENT_UPTO = -1;
 
+$NUM_COMBINATIONS_CHECKED = 100000;
+
+$FIND_CHEAPEST_COMBINATION = false;
 $CHEAPEST_PRICE_COUNT = 10;
 
 
-	// Updated 24 Feb 2020
+	// Updated 4 May 2020
 $REAGENT_PRICES = array(
-		"Beetle Scuttle" => 191.7,
-		"Blessed Thistle" => 177.8,
-		"Blue Entoloma" => 66.5,
-		"Bugloss" => 178.1,
-		"Butterfly Wing" => 82.9,
-		"Clam Gall" => 3272,
-		"Columbine" => 485,
-		"Corn Flower" => 487,
-		"Dragon Rheum" => 1291,
-		"Dragon's Bile" => 162,
-		"Dragon's Blood" => 559,		
-		"Dragonthorn" => 81.8,
-		"Emetic Russula" => 70.3,
-		"Fleshfly Larva" => 33.9,
-		"Imp Stool" => 71.9,
-		"Lady's Smock" => 203,
-		"Luminous Russula" => 68.5,
-		"Mountain Flower" => 100.6,
-		"Mudcrab Chitin" => 186.4,
-		"Namira's Rot" => 171.3,
-		"Nightshade" => 200,
-		"Nirnroot" => 99.2,
-		"Powdered Mother of Pearl" => 4097,
-		"Scrib Jelly" => 220.9,
-		"Spider Egg" => 51.9,
-		"Stinkhorn" => 78.6,
-		"Torchbug Thorax" => 252,
-		"Violet Coprinus" => 256.6,
-		"Water Hyacinth" => 191.4,
-		"White Cap" => 61.8,
-		"Wormwood" => 118.3,
+		"Beetle Scuttle" => 174,
+		"Blessed Thistle" => 154,
+		"Blue Entoloma" => 49,
+		"Bugloss" => 164,
+		"Butterfly Wing" => 63,
+		"Chaurus Eggs" => 5000,
+		"Clam Gall" => 2637,
+		"Columbine" => 373,
+		"Corn Flower" => 592,
+		"Crimson Nirnroot" => 5000,
+		"Dragon Rheum" => 866,
+		"Dragon's Bile" => 113,
+		"Dragon's Blood" => 512,
+		"Dragonthorn" => 67,
+		"Emetic Russula" => 60,
+		"Fleshfly Larva" => 39,
+		"Imp Stool" => 51,
+		"Lady's Smock" => 214,
+		"Luminous Russula" => 58,
+		"Mountain Flower" => 77,
+		"Mudcrab Chitin" => 114,
+		"Namira's Rot" => 153,
+		"Nightshade" => 171,
+		"Nirnroot" => 79,
+		"Powdered Mother of Pearl" => 2909,
+		"Scrib Jelly" => 180,
+		"Spider Egg" => 47,
+		"Stinkhorn" => 64,
+		"Torchbug Thorax" => 235,
+		"Vile Coagulant" => 5000,
+		"Violet Coprinus" => 191,
+		"Water Hyacinth" => 163,
+		"White Cap" => 43,
+		"Wormwood" => 91,
 );
 	
 
@@ -249,6 +255,9 @@ function LearnAllTraits($use2ReagentsUpTo)
 			$output .= "\t" . implode(" + ", $names) . " = $maxCount2 effects (";
 			$output .= implode(", ", $maxEffects);
 			$output .= ")\n";
+			
+			//print $output;
+			//$output = "";
 		}
 	}
 	
@@ -391,7 +400,9 @@ function SortCombinationsByPrice($a, $b)
 }
 
 
-FindCheapestCombination();
-//FindMinCombinations(10000);
+if ($FIND_CHEAPEST_COMBINATION)
+	FindCheapestCombination();
+else
+	FindMinCombinations($NUM_COMBINATIONS_CHECKED);
 
 

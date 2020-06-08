@@ -1032,6 +1032,7 @@ class EsoSalesDataParser
 	
 	public function MakeNiceItemName($name)
 	{
+		$name = explode('||', $name)[0];
 		return MakeEsoTitleCaseName($name);
 	}
 	
@@ -1291,6 +1292,7 @@ class EsoSalesDataParser
 				$trait = $minedItemData['trait'];
 				$level = $minedItemData['level'];
 				$itemType = $minedItemData['type'];
+				$name = $minedItemData['name'];
 			}
 			else
 			{

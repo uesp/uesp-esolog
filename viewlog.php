@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "25";
+	const ENABLE_PTS_VERSION = "26";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -165,6 +165,7 @@ class EsoLogViewer
 			'numSteps' => self::FIELD_INT,
 			'numRewards' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTSTEP_FIELDS = array(
@@ -227,6 +228,8 @@ class EsoLogViewer
 			'questName' => self::FIELD_STRING,
 			'gold' => self::FIELD_INT,
 			'playerLevel' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTXPREWARD_FIELDS = array(
@@ -235,6 +238,8 @@ class EsoLogViewer
 			'questName' => self::FIELD_STRING,
 			'experience' => self::FIELD_INT,
 			'playerLevel' => self::FIELD_INT,
+			'uniqueId' => self::FIELD_INT,
+			'questId' => self::FIELD_INT,
 	);
 	
 	public static $QUESTITEM_FIELDS = array(
@@ -505,6 +510,9 @@ class EsoLogViewer
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
 			'mechanic' =>self::FIELD_INTTRANSFORM,
+			'buffType' => self::FIELD_INTTRANSFORM,
+			'isToggle' => self::FIELD_INT,
+			'chargeFreq' => self::FIELD_INTTRANSFORM,
 			'skillIndex' => self::FIELD_INT,
 			'skillType'  => self::FIELD_INTTRANSFORM,
 			'skillLine' => self::FIELD_STRING,
@@ -717,6 +725,40 @@ class EsoLogViewer
 	);
 	
 	
+	public static $ANTIQUITYLEAD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'icon' => self::FIELD_GAMEICON,
+			'quality' => self::FIELD_INT,
+			'difficulty' => self::FIELD_INT,
+			'requiresLead' => self::FIELD_INT,
+			'isRepeatable' => self::FIELD_INT,
+			'rewardId' => self::FIELD_INT,
+			'zoneId' => self::FIELD_INT,
+			'setId' => self::FIELD_INT,
+			'setName' => self::FIELD_STRING,
+			'setIcon' => self::FIELD_GAMEICON,
+			'setQuality' => self::FIELD_INT,
+			'setRewardId' => self::FIELD_INT,
+			'setCount' => self::FIELD_INT,
+			'categoryId' => self::FIELD_INT,
+			'categoryOrder' => self::FIELD_INT,
+			'categoryName' => self::FIELD_STRING,
+			'categoryIcon' => self::FIELD_GAMEICON,
+			'categoryCount' => self::FIELD_INT,
+			'loreName1' => self::FIELD_STRING,
+			'loreDescription1' => self::FIELD_STRING,
+			'loreName2' => self::FIELD_STRING,
+			'loreDescription2' => self::FIELD_STRING,
+			'loreName3' => self::FIELD_STRING,
+			'loreDescription3' => self::FIELD_STRING,
+			'loreName4' => self::FIELD_STRING,
+			'loreDescription4' => self::FIELD_STRING,
+			'loreName5' => self::FIELD_STRING,
+			'loreDescription5' => self::FIELD_STRING,
+	);
+	
+	
 	public static $PTS_SEARCH_TYPE_OPTIONS = array(
 			'Items Update ## PTS' => 'minedItemSummary##pts',
 			'Sets Update ## PTS' => 'setSummary##pts',
@@ -837,6 +879,8 @@ class EsoLogViewer
 							'coefDescription' => 'RemoveTextFormats',
 							'effectLines' => 'RemoveTextFormats',
 							'upgradeLines' => 'RemoveTextFormats',
+							'chargeFreq' => 'ConvertSkillChargeFreq',
+							'buffType' => 'GetBuffTypeText',
 					),
 						
 					'filters' => array(
@@ -1072,6 +1116,63 @@ class EsoLogViewer
 					'displayNameSingle' => 'Quest',
 					'record' => 'quest',
 					'table' => 'quest',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'sortTranslate' => array(
+								'zone' => 'location.zone',
+							),
+			
+					'transform' => array(
+							'type' => 'GetEsoQuestTypeText',
+							'repeatType' => 'GetEsoQuestRepeatTypeText',
+					),
+						
+					'join' => array(
+							'locationId' => array(
+									'joinField' => 'id',
+									'table' => 'location',
+									'fields' => array('x', 'y', 'zone'),
+							),
+					),
+						
+					'filters' => array(
+							array(
+									'record' => 'questStep',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Steps',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'questReward',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Rewards',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'questCondition',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Conditions',
+									'type' => 'filter',
+							),
+							array(
+									'record' => 'location',
+									'field' => 'questId',
+									'thisField' => 'id',
+									'displayName' => 'View Locations',
+									'type' => 'filter',
+							),
+					),
+			),
+			
+			'uniqueQuest' => array(
+					'displayName' => 'Unique Quests',
+					'displayNameSingle' => 'Unique Quest',
+					'record' => 'uniqueQuest',
+					'table' => 'uniqueQuest',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
 					
@@ -1643,6 +1744,8 @@ class EsoLogViewer
 							'coefDescription' => 'RemoveTextFormats',
 							'effectLines' => 'RemoveTextFormats',
 							'upgradeLines' => 'RemoveTextFormats',
+							'chargeFreq' => 'ConvertSkillChargeFreq',
+							'buffType' => 'GetBuffTypeText',
 					),
 						
 					'filters' => array(
@@ -1849,10 +1952,10 @@ class EsoLogViewer
 									'fields' => array('name'),
 							),
 					),
-			
+					
 					'transform' => array(
 					),
-			
+					
 					'filters' => array(
 							array(
 									'record' => 'achievements',
@@ -1863,13 +1966,32 @@ class EsoLogViewer
 							),
 					),
 			),
-				
+			
+			'antiquityLeads' => array(
+					'displayName' => 'Antiquity Lead',
+					'displayNameSingle' => 'Antiquity Leads',
+					'record' => 'antiquityLeads',
+					'table' => 'antiquityLeads',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('name'),
+					
+					'join' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 	);
 	
 	
 	public static $SEARCH_TYPE_OPTIONS = array(
 			'All' => '',
 			'Achievements' => 'achievements',
+			'Antiquity Leads' => 'antiquityLeads',
 			'Books' => 'book',
 			'Collectibles' => 'collectibles',
 			'Ingredients' => 'ingredient',
@@ -1881,6 +2003,7 @@ class EsoLogViewer
 			//'Old Quests' => 'oldQuest',
 			//'Old Quest Stages' => 'oldQuestStage',
 			'Quests' => 'quest',
+			'Quests (Unique)' => 'uniqueQuest',
 			'Quest Steps' => 'questStep',
 			'Quest Conditions' => 'questCondition',
 			'Quest Item' => 'questItem',
@@ -1919,6 +2042,7 @@ class EsoLogViewer
 							'id' => 'id',
 							'name' => 'name',
 							'description' => 'note',
+							'texture' => 'icon',
 					),
 			),
 	);
@@ -1937,6 +2061,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+							'icon' => 'icon',
 					),
 			),
 			'achievementCriteria' => array(
@@ -1945,12 +2070,21 @@ class EsoLogViewer
 							'id' => 'id',
 							'description' => 'name',
 					),
-			),			
+			),
+			'antiquityLeads' => array(
+					'searchFields' => array('name', 'loreName1', 'loreDescription1', 'loreName2', 'loreDescription2', 'loreName3', 'loreDescription3', 'loreName4', 'loreDescription4', 'loreName5', 'loreDescription5'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'icon' => 'icon',
+					),
+			),
 			'book' => array(
 					'searchFields' => array('title', 'body'),
 					'fields' => array(
 							'id' => 'id',
 							'title' => 'name',
+							'icon' => 'icon',
 					),
 			),
 			'collectibles' => array(
@@ -1958,6 +2092,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+							'icon' => 'icon',
 					),
 			),
 			'item' => array(
@@ -1965,6 +2100,7 @@ class EsoLogViewer
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
+							'icon' => 'icon',
 					),
 			),
 			'oldQuest' => array(
@@ -1983,6 +2119,14 @@ class EsoLogViewer
 					),
 			),
 			'quest' => array(
+					'searchFields' => array('name', 'objective', 'backgroundText'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'internalId' => 'note',
+					),
+			),
+			'uniqueQuest' => array(
 					'searchFields' => array('name', 'objective', 'backgroundText'),
 					'fields' => array(
 							'id' => 'id',
@@ -2069,6 +2213,7 @@ class EsoLogViewer
 							'id' => 'id',
 							'itemName' => 'name',
 							'zone' => 'note',
+							'icon' => 'icon',
 					),
 			),
 			'recipe' => array(
@@ -2100,6 +2245,7 @@ class EsoLogViewer
 							'id' => 'id',
 							'name' => 'name',
 							'itemId' => 'note',
+							'icon' => 'icon',
 					),
 			),
 			'setSummary' => array(
@@ -2116,6 +2262,7 @@ class EsoLogViewer
 							'id' => 'id',
 							'name' => 'name',
 							'description' => 'note',
+							'texture' => 'icon',
 					),
 			),
 	);
@@ -2123,6 +2270,7 @@ class EsoLogViewer
 	
 	public static $SEARCH_FIELDS = array(
 			'id' => self::FIELD_INTID,
+			'icon' => self::FIELD_GAMEICON,
 			'type' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'note' => self::FIELD_STRING,
@@ -2145,6 +2293,7 @@ class EsoLogViewer
 		//self::$RECORD_TYPES['oldQuest']['fields'] = self::$OLDQUEST_FIELDS;
 		//self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
+		self::$RECORD_TYPES['uniqueQuest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
 		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
 		self::$RECORD_TYPES['questReward']['fields'] = self::$QUESTREWARD_FIELDS;
@@ -2172,6 +2321,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['achievements']['fields'] = self::$ACHIEVEMENT_FIELDS;
 		self::$RECORD_TYPES['achievementCriteria']['fields'] = self::$ACHIEVEMENTCRITERIA_FIELDS;
 		self::$RECORD_TYPES['logInfo']['fields'] = self::$LOGINFO_FIELDS;
+		self::$RECORD_TYPES['antiquityLeads']['fields'] = self::$ANTIQUITYLEAD_FIELDS;
 		
 		$this->EnablePtsRecords();
 				
@@ -2336,6 +2486,16 @@ class EsoLogViewer
 	public function GetSkillTypeText ($value)
 	{
 		return GetEsoSkillTypeText($value);
+	}
+	
+	
+	public function GetBuffTypeText ($value) {
+		return GetEsoBuffTypeText($value);
+	}
+	
+	
+	public function ConvertSkillChargeFreq($value) {
+		return intval($value) / 1000;
 	}
 	
 	
@@ -3031,7 +3191,7 @@ If you do not understand what this information means, or how to use this webpage
 			case self::FIELD_STRING:
 			case self::FIELD_COLORBOX:
 			case self::FIELD_LARGESTRING:
-				$output = $value;
+				$output = $this->EscapeStringHtml($value);
 				break;
 			case self::FIELD_POSITION:
 				if ($this->displayRawValues) return $value;
@@ -3056,11 +3216,19 @@ If you do not understand what this information means, or how to use this webpage
 				
 				break;
 			case self::FIELD_GAMEICON:
-				$output = $value;
+				//$output =  $this->EscapeStringHtml($value);
+				$url = self::GAME_ICON_URL . preg_replace("/\.dds/", ".png", $value);
+				$output = "<a href='$url'><img src='$url' title='$value'/ width='32'></a>";
 				break;
 		}
 		
 		return $output;
+	}
+	
+	
+	public function EscapeStringHtml($value)
+	{
+		return htmlspecialchars($value);
 	}
 	
 	
@@ -3140,7 +3308,7 @@ If you do not understand what this information means, or how to use this webpage
 				break;	
 			default:
 			case self::FIELD_STRING:
-				$output = $value;
+				$output = $this->EscapeStringHtml($value);
 				break;
 			case self::FIELD_LARGESTRING:
 				$link = "View (". strlen($value) ." bytes)";
@@ -3252,7 +3420,8 @@ If you do not understand what this information means, or how to use this webpage
 		switch ($type)
 		{
 			case self::FIELD_LARGESTRING:
-				$output = "<div class='elvLargeStringView'>$value</div>";
+				$safeValue =  $this->EscapeStringHtml($value);
+				$output = "<div class='elvLargeStringView'>$safeValue</div>";
 				return $output;
 		}
 		
@@ -3651,6 +3820,9 @@ If you do not understand what this information means, or how to use this webpage
 				break;
 			case 'quest':
 				$output .= $this->GetViewRecordLink('quest', 'id', $result['id'], 'View Quest');
+				break;
+			case 'uniqueQuest':
+				$output .= $this->GetViewRecordLink('uniqueQuest', 'id', $result['id'], 'View Unique Quest');
 				break;
 			case 'oldQuest':
 				$output .= $this->GetViewRecordLink('oldQuest', 'id', $result['id'], 'View Quest');

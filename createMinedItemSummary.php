@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "25";
+$TABLE_SUFFIX = "26";
 
 $FIELDS = array(
 		"itemId",
@@ -119,8 +119,9 @@ $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
-$LASTID = 170000;
-$MINSUBTYPE = 0;
+$LASTID = 180000;
+$MINSUBTYPE = 0;		// Has problems with item enchantments missing
+$MINSUBTYPE = 2;
 $MAXSUBTYPE = 370;
 
 for ($id = $FIRSTID; $id <= $LASTID; $id++)
@@ -134,10 +135,19 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	
 	if (!$minItemData)
 	{
-		$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id LIMIT 1;";
+		$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=1 AND internalSubtype=1 LIMIT 1;";
 		$result = $db->query($query);
-		if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
+		if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
+		
+		if (!$minItemData) 
+		{
+			$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id LIMIT 1;";
+			$result = $db->query($query);
+			if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
+			$minItemData = $result->fetch_assoc();
+		}
+		
 		if (!$minItemData) continue;
 	}
 	

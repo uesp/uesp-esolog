@@ -529,7 +529,7 @@ class CEsoViewSkills
 		
 		$output  = "";
 		$output .= "<div class='esovsSkillTypeTitle' style=\"display: $titleDisplayType;\">$skillTypeUpper</div>\n";
-		$output .= "<div class='esovsSkillType' style=\"display: $displayType;\">\n";
+		$output .= "<div class='esovsSkillType' skilltypeid=\"$skillType\" style=\"display: $displayType;\">\n";
 		$isFirstSkillLine = true;
 
 		foreach ($this->skillTree[$skillType] as $skillLine => $skillLineData)
@@ -565,7 +565,7 @@ class CEsoViewSkills
 			$extraClass .= " esovsSkillLineDisabled";
 		}
 		
-		$output  = "<div class='esovsSkillLineTitle $extraClass' style=\"display: $displayType;\">$skillLine</div>";
+		$output  = "<div class='esovsSkillLineTitle $extraClass' skilllineid=\"$skillLine\" style=\"display: $displayType;\">$skillLine</div>";
 
 		return $output;
 	}
@@ -695,7 +695,7 @@ class CEsoViewSkills
 	public function GetIconURL($icon)
 	{
 		$icon = preg_replace('/dds$/', 'png', $icon);
-		$iconLink = self::ESOVS_ICON_URL . $icon;
+		$iconLink = self::ESOVS_ICON_URL . "/" . $icon;
 		return $iconLink;
 	}
 

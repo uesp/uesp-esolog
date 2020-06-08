@@ -250,6 +250,10 @@
 	color: #EECA2A !important;
 }
 
+.esoil_quality_Mythic {
+	color: #FF8200 !important;
+}
+
 #esoil_item_hr {
 	display: block;
 	margin-left: auto;
@@ -354,6 +358,7 @@
 .eso_item_link_q3 { color: #3A92FF !important; }
 .eso_item_link_q4 { color: #A02EF7 !important; }
 .eso_item_link_q5 { color: #CCAA1A !important; }
+.eso_item_link_q6 { color: #FF8200 !important; }
 
 .esoil_itemsetdisabled {
 	color: #666 !important;
