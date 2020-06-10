@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Collectibles by Category</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoviewmineditems.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php">Back to Home</a>
+<h1>ESO Collectibles by Category</h1>
+This is a list of Elder Scrolls Online collectible data mined from the game sorted by category for update {version}. Return to the <a href="//esoitem.uesp.net/viewlog.php">Main Log Page</a> to view other data.
+<h2>{title}</h2>
+<div id="esovmi_breadcrumb">{breadCrumb}</div>
+{content}
+<hr>
+<div id="esovmi_footer">
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</body>
+</html>

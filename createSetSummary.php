@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "26";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;

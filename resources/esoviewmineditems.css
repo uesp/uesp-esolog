@@ -58,3 +58,8 @@ form {
 #esovmi_versionlist {
 	display: inline-block;
 }
+
+.esovmiCategoryItem {
+	font-size: 15px;
+	font-weight: bold;
+}
