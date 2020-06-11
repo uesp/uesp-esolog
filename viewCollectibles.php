@@ -203,7 +203,8 @@ class CEsoViewCollectibles
 			}
 			else
 			{
-				$output .= "<li><a href='viewlog.php?action=view&record=collectibles&id=$itemId{$this->extraQueryString}'>$safeName</a></li>";
+				//$output .= "<li><a href='viewlog.php?action=view&record=collectibles&id=$itemId{$this->extraQueryString}'>$safeName</a></li>";
+				$output .= "<li><a href='itemLink.php?collectid=$itemId{$this->extraQueryString}'>$safeName</a></li>";
 			}
 		}
 		
