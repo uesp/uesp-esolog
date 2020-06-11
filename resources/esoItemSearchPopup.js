@@ -783,7 +783,11 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 			
 			if (rowCount == 0)
 			{
-				newResults += "No items found matching the input values!";
+				
+				if (this.itemTrait <= 0)
+					newResults += "No items found matching the input values!";
+				else
+					newResults += "No items found matching the input values!<br/><br/>If you can't find the desired trait choose any trait and then \"Transmute\" it.";
 			}
 			else if (rowCount > this.ROW_LIMIT)
 			{
