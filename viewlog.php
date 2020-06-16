@@ -3229,12 +3229,14 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function EscapeStringHtml($value)
 	{
-		return htmlspecialchars($value);
+		$value = str_replace("—", "-", $value);
+		return htmlspecialchars($value, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE);
 	}
 	
 	
 	public function EscapeStringCSV($value)
 	{
+		$newValue = str_replace("—", "-", $value);
 		$newValue = str_replace("\\", "\\\\", $value);
 		$newValue = str_replace("\"", "\\\"", $value);
 		return $newValue;
