@@ -2644,6 +2644,7 @@ class EsoLogViewer
 <head>
 	<title>UESP:ESO Log Data Viewer</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta charset="utf-8" />
 	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css" />
 	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
@@ -3229,8 +3230,11 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function EscapeStringHtml($value)
 	{
-		$value = str_replace("—", "-", $value);
-		return htmlspecialchars($value, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE);
+		$value = str_replace("—", "&mdash;", $value);
+		$value = htmlentities($value, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE);
+		$value = str_replace("&amp;mdash;", "&mdash;", $value);
+		
+		return $value;
 	}
 	
 	
