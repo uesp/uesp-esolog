@@ -3230,9 +3230,14 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function EscapeStringHtml($value)
 	{
+		$value = str_replace("…", "&hellip;", $value);
 		$value = str_replace("—", "&mdash;", $value);
+		
 		$value = htmlentities($value, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE);
+		//$value = htmlspecialchars($value, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE);
+		
 		$value = str_replace("&amp;mdash;", "&mdash;", $value);
+		$value = str_replace("&amp;hellip;", "&hellip;", $value);
 		
 		return $value;
 	}
