@@ -2023,6 +2023,7 @@ ESO_SKILL_DOT_OVERRIDES =
 		"Flurry" : false,
 		"Rapid Strikes" : false,
 		"Bloodthirst" : false,
+		"Bound Armaments" : false,
 };
 
 
@@ -2140,7 +2141,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.skillLineDamageDone = inputValues.SkillLineDamage[skillLineName]; 
 			}
 						
-			if (isDot || p5 != "")
+			if ((isDot || p5 != "") && overrideDot !== false)
 			{
 				thisEffectIsDot = (p5 != "");
 								
