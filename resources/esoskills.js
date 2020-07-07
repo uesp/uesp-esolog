@@ -3873,7 +3873,7 @@ window.RemovePurchasedEsoRaceSkills = function()
 }
 
 
-window.EnableEsoRaceSkills = function(raceName)
+window.EnableEsoRaceSkills = function(raceName, purchaseAll)
 {
 	var raceId = raceName + " Skills";
 	var raceElement = $(".esovsSkillLineTitle:contains('" + raceId + "')")
@@ -3894,8 +3894,10 @@ window.EnableEsoRaceSkills = function(raceName)
 
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
+		var lastSkill = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").last();
+		var lastSkillId = lastSkill.attr("skillid");
 		
-		if (ESO_FREE_PASSIVES[skillId]) PurchaseEsoSkill(skillId);		
+		if (purchaseAll || ESO_FREE_PASSIVES[lastSkillId]) PurchaseEsoSkill(lastSkillId);
 	});	
 
 	classElement.next(".esovsSkillType").show();
