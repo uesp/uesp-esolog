@@ -606,7 +606,7 @@ class CEsoViewSkills
 	{
 		$displayType = "none";
 
-		if (($this->isFirstSkill && $this->highlightSkillLine  == "") || $this->highlightSkillLine == $skillLine)
+		if (($this->isFirstSkill && $this->highlightSkillLine == "") || $this->highlightSkillLine == $skillLine)
 		{
 			$displayType = "block";
 			$this->isFirstSkill = false;
