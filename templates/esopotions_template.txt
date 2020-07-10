@@ -142,8 +142,10 @@
 			To learn just the 2 new reagents from the Elsweyr chapter in as few combinations as possible (3):
 			<ol class="esopdLearnList">
 				<li reagent1="Dragon's Blood" reagent2="Dragon's Bile" reagent3="Spider Egg">Dragon's Blood + Dragon's Bile + Spider Egg</li>
-				<li reagent1="Dragon's Blood" reagent2="Blessed Thistle" reagent3="">Dragon's Blood + Blessed Thistle</li>
+				<li reagent1="Dragon's Blood" reagent2="Blessed Thistle" reagent3="">Dragon's Blood + Blessed Thistle + Nightshade</li>
 				<li reagent1="Dragon's Bile" reagent2="Fleshfly Larva" reagent3="">Dragon's Bile + Fleshfly Larva</li>
+				<li reagent1="Dragon Rheum" reagent2="Dragon's Blood" reagent3="Corn Flower">Dragon Rheum + Dragon's Blood + Corn Flower</li>
+				<li reagent1="Dragon Rheum" reagent2="Blessed Thistle" reagent3="Imp Stool">Dragon Rheum + Blessed Thistle + Imp Stool</li>
 			</ol>
 			<p/><br/>
 			To learn just the 3 new reagents from the Greymoor chapter in as few combinations as possible (5):
