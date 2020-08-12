@@ -39,8 +39,8 @@ require_once("esoSkillRankData.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "27pts";
+	const SKILLS_TABLESUFFIX   = "27pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -3740,7 +3740,7 @@ class EsoLogParser
 		$questRecord['numRewards'] = $logEntry['numRewards'];
 		$questRecord['zone'] = $logEntry['zone'];
 		$questRecord['uniqueId'] = $logEntry['uniqueId'];
-		if ($logEntry['questZone'] !== null) $questRecord['zone'] = $logEntry['questZone']; 
+		if ($logEntry['questZone'] !== null && $logEntry['questZone'] != "") $questRecord['zone'] = $logEntry['questZone']; 
 		$questRecord['count'] = 1;
 		$questRecord['__isNew'] = true;
 	
@@ -4125,7 +4125,7 @@ class EsoLogParser
 		if ($logEntry['endDialog']) $questRecord['endDialogText'] = $logEntry['endDialog'];
 		if ($logEntry['endBgText']) $questRecord['endBackgroundText'] = $logEntry['endBgText'];
 		if ($logEntry['endJournalText']) $questRecord['endJournalText'] = $logEntry['endJournalText'];
-		if ($logEntry['questZone'] !== null) $questRecord['zone'] = $logEntry['questZone'];
+		if ($logEntry['questZone'] !== null && $logEntry['questZone'] != "") $questRecord['zone'] = $logEntry['questZone'];
 		
 		$questRecord['isShareable'] = $logEntry['shareable'];
 		$questRecord['numTools'] = $logEntry['numTools'];

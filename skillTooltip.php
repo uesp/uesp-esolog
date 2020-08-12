@@ -18,6 +18,7 @@ class CEsoSkillTooltip
 {
 	
 	const TOOLTIP_DIVIDER = "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
+	const ICON_URL = "//esoicons.uesp.net";
 	const MAX_SKILL_COEF = 6;
 	
 	public $inputParams = array();
@@ -34,6 +35,7 @@ class CEsoSkillTooltip
 	public $skillWeaponDamage = 2000;
 	public $skillMaxStat = 20000;
 	public $skillMaxDamage = 2000;
+	public $skillShowThumb = false;
 	public $version = "";
 	public $useUpdate10Costs = false;
 	
@@ -107,6 +109,8 @@ class CEsoSkillTooltip
 		if (array_key_exists('spelldamage', $this->inputParams)) $this->skillSpellDamage = intval($this->inputParams['spelldamage']);
 		if (array_key_exists('weapondamage', $this->inputParams)) $this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
 		
+		if (array_key_exists('thumb', $this->inputParams)) $this->skillShowThumb = true;
+		
 		$this->skillMaxStat = max($this->skillMagicka, $this->skillStamina);
 		$this->skillMaxDamage = max($this->skillSpellDamage, $this->skillWeaponDamage);
 		
@@ -125,7 +129,7 @@ class CEsoSkillTooltip
 				45259 => array(
 						"altmer" => 20,
 						"high elf" => 20,
-						"breton" => 15,						
+						"breton" => 15,
 				),
 				45260 => array(
 						"altmer" => 40,
@@ -400,10 +404,18 @@ class CEsoSkillTooltip
 		$mechanic = $this->GetSkillData('mechanic');
 		$effectLines = $this->GetSkillData('effectLines');
 		$nextSkill = $this->GetSkillData('nextSkill');
+		$icon = $this->GetSkillData('icon');
 		
 		$realRank = $rank;
 		$fullName = $name;
-				
+		
+		if ($this->skillShowThumb)
+		{
+			$realIcon = str_replace(".dds", ".png", self::ICON_URL . $icon);
+			$output .=  "<img src='$realIcon' class='esoSkillPopupIcon' />";
+			$output .= "<div style='height: 32px;'></div>";
+		}
+		
 		if ($skillType == 'passive' || $skillType == 'Passive')
 		{
 			if ($realRank > 0 && !($realRank == 1 && $nextSkill <= 0)) $fullName .= " " . $this->GetRomanNumeral($realRank);

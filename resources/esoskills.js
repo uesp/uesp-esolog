@@ -2263,6 +2263,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.skillDirectDamage = inputValues.SkillDirectDamage[skillData.baseName];
 			}
 			
+			if (!thisEffectIsDot && inputValues.SkillDirectDamage && inputValues.SkillDirectDamage[skillData.skillLine])
+			{
+				modDamage += inputValues.SkillDirectDamage[skillData.skillLine];
+				newRawOutput.skillLineDirectDamage = inputValues.SkillDirectDamage[skillData.skillLine];
+			}
+			
 			if (skillData.baseName == "Twin Slashes" && inputValues.TwinSlashInitialDamage) {
 				modDamage += inputValues.TwinSlashInitialDamage;
 				newRawOutput.twinSlashInitialDamage = inputValues.TwinSlashInitialDamage;
@@ -2296,6 +2302,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.overloadDamage != null && rawData.overloadDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.overloadDamage*100) + "% Overload";
 		if (rawData.skillDotDamage != null && rawData.skillDotDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDotDamage*100) + "% SkillDot";
 		if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";
+		if (rawData.skillLineDirectDamage != null && rawData.skillLineDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDirectDamage) + " SkillLineDirect";
 		if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
 		
 		if (output == "")

@@ -48,6 +48,7 @@ class CEsoLogJsonExport
 			"questReward",
 			"questStep",
 			"uniqueQuest",
+			"skillTree",
 	);
 	
 	public $TABLE_IDS = array(
@@ -69,7 +70,8 @@ class CEsoLogJsonExport
 			"questItem" => "id",
 			"questReward" => "id",
 			"questStep" => "id",
-			"unqiueQuest" => "internalId",
+			"uniqueQuest" => "internalId",
+			"skillTree" => "abilityId",
 	);
 	
 	

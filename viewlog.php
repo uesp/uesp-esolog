@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "26";
+	const ENABLE_PTS_VERSION = "27";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -143,6 +143,7 @@ class EsoLogViewer
 			'internalId' => self::FIELD_INTID,
 			//'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
+			'locationZone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
 			'type' => self::FIELD_INTTRANSFORM,
@@ -173,7 +174,7 @@ class EsoLogViewer
 			//'locationId' => self::FIELD_INTID,
 			'zone' => self::FIELD_STRING,
 			'x' => self::FIELD_POSITION,
-			'y' => self::FIELD_POSITION,			
+			'y' => self::FIELD_POSITION,
 			'questId' => self::FIELD_INTID,
 			'uniqueId' => self::FIELD_INT,
 			'stageIndex' => self::FIELD_INT,
@@ -1189,7 +1190,7 @@ class EsoLogViewer
 							'locationId' => array(
 									'joinField' => 'id',
 									'table' => 'location',
-									'fields' => array('x', 'y', 'zone'),
+									'fields' => array('x', 'y', 'locationZone' => 'zone'),
 							),
 					),
 						

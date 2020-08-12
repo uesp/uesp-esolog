@@ -681,7 +681,7 @@ class CEsoItemLink
 	private function LoadItemSummaryTransmuteTraitData()
 	{
 		$this->itemSummary['origTraitDesc'] = $this->itemSummary['traitDesc']; 
-		$this->itemSummary['traitDesc'] = LoadEsoTraitSummaryDescription($this->itemTrait, $this->itemSummary['equipType'], $this->db);
+		$this->itemSummary['traitDesc'] = LoadEsoTraitSummaryDescription($this->itemTrait, $this->itemSummary['equipType'], $this->db, $this->version);
 	}
 	
 	
@@ -972,7 +972,7 @@ class CEsoItemLink
 			$intSubtype = 370;
 		}
 		
-		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $intLevel, $intSubtype, $this->itemRecord['equipType'], $this->db);
+		$this->itemRecord['traitDesc'] = LoadEsoTraitDescription($this->itemTrait, $intLevel, $intSubtype, $this->itemRecord['equipType'], $this->db, $this->version);
 	}	
 	
 	

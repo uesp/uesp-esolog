@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "27pts";
 
 $FIELDS = array(
 		"itemId",
@@ -49,8 +49,6 @@ $RANGE_FIELDS = array(
 		"setBonusDesc4",
 		"setBonusDesc5",
 );
-
-
 
 if (intval($TABLE_SUFFIX) <= 8)
 {

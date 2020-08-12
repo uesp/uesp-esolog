@@ -3614,6 +3614,10 @@ function GetEsoItemTableSuffix($version)
 			return "26pts";
 		case '26':
 			return "";
+		case '27pts':
+			return "27pts";
+		case '27':
+			return "27";
 	}
 
 	return "";
@@ -4581,15 +4585,17 @@ function GetEsoTransmuteTraitItemId ($trait, $equipType)
 }
 
 
-function LoadEsoTraitDescription ($trait, $intLevel, $intSubtype, $equipType, $db)
+function LoadEsoTraitDescription ($trait, $intLevel, $intSubtype, $equipType, $db, $version="")
 {
 	$itemId = GetEsoTransmuteTraitItemId($trait, $equipType);
 	if ($itemId < 0) return "Unknown trait $trait found!";
 	
 	$intLevel = intval($intLevel);
 	$intSubtype = intval($intSubtype);
-		
-	$query = "SELECT traitDesc from minedItem WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype' LIMIT 1;";
+	
+	$tableSuffix = GetEsoItemTableSuffix($version);
+	
+	$query = "SELECT traitDesc from minedItem$tableSuffix WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype' LIMIT 1;";
 	
 	$result = $db->query($query);
 	if ($result === false) return "Failed to load trait description for $trait!"; 
@@ -4600,12 +4606,14 @@ function LoadEsoTraitDescription ($trait, $intLevel, $intSubtype, $equipType, $d
 }
 
 
-function LoadEsoTraitSummaryDescription ($trait, $equipType, $db)
+function LoadEsoTraitSummaryDescription ($trait, $equipType, $db, $version="")
 {
 	$itemId = GetEsoTransmuteTraitItemId($trait, $equipType);
 	if ($itemId < 0) return "Unknown trait $trait found!";
+	
+	$tableSuffix = GetEsoItemTableSuffix($version);
 
-	$query = "SELECT traitDesc from minedItemSummary WHERE itemId=$itemId LIMIT 1;";
+	$query = "SELECT traitDesc from minedItemSummary$tableSuffix WHERE itemId=$itemId LIMIT 1;";
 
 	$result = $db->query($query);
 	if ($result === false) return "Failed to load trait description for $trait!";
