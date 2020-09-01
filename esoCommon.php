@@ -1503,6 +1503,12 @@ $ESO_SET_INDEXES = array(
 		510 => "Template_Drop_Tank P",
 		511 => "Template_Drop_Stamina P",
 		512 => "Template_Drop_Magi P",
+		513 => "Talfyg's Treachery",
+		514 => "Unleashed Terror",
+		515 => "Crimson Twilight",
+		516 => "Elemental Catalyst",
+		517 => "Kraglen's Howl",
+		518 => "Arkasis's Genius",
 		519 => "Snow Treaders",
 		520 => "Malacath's Band of Brutality",
 		521 => "Bloodlord's Embrace",
@@ -1518,6 +1524,8 @@ $ESO_SET_INDEXES = array(
 		531 => "Perfected Caustic Arrow",
 		532 => "Perfected Destructive Impact",
 		533 => "Perfected Grand Rejuvenation",
+		534 => "Stone Husk",
+		535 => "Lady Thorn",
 );
 
 
@@ -3468,7 +3476,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 26;
+	return 27;
 }
 
 
@@ -3613,11 +3621,11 @@ function GetEsoItemTableSuffix($version)
 		case '26pts':
 			return "26pts";
 		case '26':
-			return "";
+			return "26";
 		case '27pts':
 			return "27pts";
 		case '27':
-			return "27";
+			return "";
 	}
 
 	return "";
