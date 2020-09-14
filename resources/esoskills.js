@@ -1235,6 +1235,10 @@ ESO_SKILL_DAMAGESHIELDMATCHES =
 			type: "%",
 			match: /(damage shield equal to \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your Max Health)/gi,
 		},
+		{
+			type: "flat",
+			match: /(own damage shield absorbs \|c[a-fA-F0-9]{6})([0-9]+)(\|r damage)/gi,
+		},
 ];
 
 

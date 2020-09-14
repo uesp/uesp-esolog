@@ -39,7 +39,7 @@ require_once("esoSkillRankData.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "27";
+	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "27";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
@@ -6061,7 +6061,17 @@ class EsoLogParser
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
 			
-			if ($minedItem['setName'] == "Amberplasm" || $logEntry['setName'] == "Amberplasm")
+			if ($minedItem['setName'] == "New Moon Acolyte" || $mergedLogEntry['setName'] == "New Moon Acolyte")
+			{
+				$minedItem['setBonusCount1'] = 2;
+				$minedItem['setBonusCount2'] = 2;
+				$minedItem['setBonusCount3'] = 3;
+				$minedItem['setBonusCount4'] = 4;
+				$minedItem['setBonusCount5'] = 5;
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+			}	
+			else if ($minedItem['setName'] == "Amberplasm" || $logEntry['setName'] == "Amberplasm")
 			{
 				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
@@ -6216,8 +6226,18 @@ class EsoLogParser
 				$this->log("\tWarning: item #$itemId, set $setName has $setCount set bonus elements!");
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
-				
-			if ($minedItem['setName'] == "Amberplasm" || $mergedLogEntry['setName'] == "Amberplasm")
+			
+			if ($minedItem['setName'] == "New Moon Acolyte" || $mergedLogEntry['setName'] == "New Moon Acolyte")
+			{
+				$minedItem['setBonusCount1'] = 2;
+				$minedItem['setBonusCount2'] = 2;
+				$minedItem['setBonusCount3'] = 3;
+				$minedItem['setBonusCount4'] = 4;
+				$minedItem['setBonusCount5'] = 5;
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+			}	
+			else if ($minedItem['setName'] == "Amberplasm" || $mergedLogEntry['setName'] == "Amberplasm")
 			{
 				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
