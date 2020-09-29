@@ -1143,6 +1143,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 	
 	coefDesc = UpdateEsoSkillDamageDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillHealingDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillHealingReductionDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillDamageShieldDescription(skillData, coefDesc, inputValues);	
 	coefDesc = UpdateEsoSkillDurationDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillBleedDamageDescription(skillData, coefDesc, inputValues);
@@ -1915,6 +1916,78 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 }
 
 
+ESO_SKILL_HEALINGREDUCTIONMATCHES = 
+	[
+		{
+			display: "%",
+			match: /(reducing their healing received by \|c[a-fA-F0-9]{6})([0-9]+)(\|r%)/gi,
+		},
+		{
+			display: "%",
+			match: /(reducing their healing received and Health Recovery by \|c[a-fA-F0-9]{6})([0-9]+)(\|r%)/gi,
+		},
+		{
+			display: "%",
+			match: /(reducing their healing received by [0-9]+% and Health Recovery by \|c[a-fA-F0-9]{6})([0-9]+)(\|r%)/gi,
+		},
+		{
+			display: "%",
+			match: /(reducing your healing received and Health Recovery by \|c[a-fA-F0-9]{6})([0-9]+)(\|r%)/gi,
+		},
+];
+
+window.UpdateEsoSkillHealingReductionDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	
+	if (inputValues == null) return newDesc;
+	if (inputValues.Healing == null) return newDesc;
+	if (inputValues.Healing.Reduction == null) return newDesc;
+	if (inputValues.Healing.Reduction == 0) return newDesc;
+	
+	var rawOutput = [];
+	var newRawOutput = {};
+	
+	for (var i = 0; i < ESO_SKILL_HEALINGREDUCTIONMATCHES.length; ++i)
+	{
+		var matchData = ESO_SKILL_HEALINGREDUCTIONMATCHES[i];
+		var reductionFactor = inputValues.Healing.Reduction;
+		
+		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
+		{
+			var modHealing = parseFloat(p2);
+			
+			newRawOutput = {};
+			newRawOutput.baseHeal = p2;
+			newRawOutput.reductionFactor = reductionFactor;
+			
+			modHealing *= (1 + reductionFactor);
+			modHealing = Math.round(modHealing);
+			
+			newRawOutput.display = matchData.display;
+			newRawOutput.finalHeal = modHealing;
+			rawOutput.push(newRawOutput);
+			
+			return p1 + modHealing + p3;
+		});
+	}
+	
+	for (var i = 0; i < rawOutput.length; ++i)
+	{
+		var rawData = rawOutput[i];
+		var output = "";
+		var percent = "";
+		
+		if (newRawOutput.display == "%") percent = "%";
+		output = "" + rawData.baseHeal + percent + " Healing " + " = " + rawData.finalHeal + percent + " final";
+		
+		skillData.rawOutput["Tooltip Healing Reduction " + (i+1)] = output;
+	}
+	
+	return newDesc;
+}
+
+
 ESO_SKILL_DAMAGEMATCHES = 
 [
 	{
@@ -2614,6 +2687,12 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	if (CPFactor != 1) output += " + " + Math.round(CPFactor*1000 - 1000)/10 + "% CP";
 	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
 	if (SkillFactor != 1) output += " + " + Math.round(SkillFactor*1000 - 1000)/10 + "% Skill";
+	
+	if (skillData.skillType != 2 && inputValues.NonWeaponAbilityCost != null && inputValues.NonWeaponAbilityCost != 0) {
+		var factor = parseFloat(inputValues.NonWeaponAbilityCost);
+		SkillFactor *= 1 + factor;
+		if (factor != 0) output += " + " + Math.round(factor*1000)/10 + "% Non-Weapon Ability Cost";
+	}
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost['Regular_Ability_Cost'] && skillLineId != "Vampire_Cost")
 	{

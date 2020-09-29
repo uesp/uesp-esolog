@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "27";
+$TABLE_SUFFIX = "28pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -40,7 +40,7 @@ $ESO_SLOTTED_SKILLS = array(
 		86189 => -67,	//Warden: Frozen Armor
 		86190 => -67,
 		
-		39197 => -53,	//Heavy Armor: Unstoppable
+		39197 => -53,	//Heavy Armor: Immovable
 		41097 => -53,
 		41100 => -53,
 		41103 => -53,

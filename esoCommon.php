@@ -64,6 +64,8 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100031" => "26",
 		"100032" => "27",
 		"100033" => "28",
+		"100034" => "29",
+		"100035" => "30",
 );
 
 
@@ -91,6 +93,8 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100030" => "5.3",
 		"100031" => "6.0",
 		"100032" => "6.1",
+		"100033" => "6.2",
+		"100034" => "6.3",
 );
 
 
@@ -121,7 +125,8 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"24" => "Dragonhold",
 		"25" => "Harrowstorm",
 		"26" => "Greymoor",
-		"27" => "Unknown",
+		"27" => "Harrowstorm",
+		"28" => "Markarth",
 	);
 
 
@@ -3626,6 +3631,10 @@ function GetEsoItemTableSuffix($version)
 			return "27pts";
 		case '27':
 			return "";
+		case '28pts':
+			return "28pts";
+		case '28':
+			return "28";
 	}
 
 	return "";

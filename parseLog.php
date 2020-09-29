@@ -39,8 +39,8 @@ require_once("esoSkillRankData.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "27";
+	const MINEITEM_TABLESUFFIX = "28pts";
+	const SKILLS_TABLESUFFIX   = "28pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -6061,15 +6061,15 @@ class EsoLogParser
 				$this->lastSetCount6WarningItemId = $minedItem['itemId'];
 			}
 			
-			if ($minedItem['setName'] == "New Moon Acolyte" || $mergedLogEntry['setName'] == "New Moon Acolyte")
+			if ($minedItem['setName'] == "New Moon Acolyte" || $logEntry['setName'] == "New Moon Acolyte")
 			{
 				$minedItem['setBonusCount1'] = 2;
 				$minedItem['setBonusCount2'] = 2;
 				$minedItem['setBonusCount3'] = 3;
 				$minedItem['setBonusCount4'] = 4;
 				$minedItem['setBonusCount5'] = 5;
-				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc4'] . "\n" . $mergedLogEntry['setDesc5'];
-				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc6'];
+				$minedItem['setBonusDesc4'] = $logEntry['setDesc4'] . "\n" . $logEntry['setDesc5'];
+				$minedItem['setBonusDesc5'] = $logEntry['setDesc6'];
 			}	
 			else if ($minedItem['setName'] == "Amberplasm" || $logEntry['setName'] == "Amberplasm")
 			{
@@ -6195,17 +6195,17 @@ class EsoLogParser
 				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
 				$minedItem['setBonusDesc5'] = $mergedLogEntry['setDesc7'];
 			}
-			else if ($minedItem['setName'] == "Stuhn's Favor" || $logEntry['setName'] == "Stuhn's Favor")
+			else if ($minedItem['setName'] == "Stuhn's Favor" || $mergedLogEntry['setName'] == "Stuhn's Favor")
 			{
 				$minedItem['setBonusCount1'] = 2;
 				$minedItem['setBonusCount2'] = 3;
 				$minedItem['setBonusCount3'] = 4;
 				$minedItem['setBonusCount4'] = 5;
 				$minedItem['setBonusCount5'] = -1;
-				$minedItem['setBonusDesc1'] = $logEntry['setDesc1'] . "\n" . $logEntry['setDesc2'];
-				$minedItem['setBonusDesc2'] = $logEntry['setDesc3'] . "\n" . $logEntry['setDesc4'];
-				$minedItem['setBonusDesc3'] = $logEntry['setDesc5'] . "\n" . $logEntry['setDesc6'];
-				$minedItem['setBonusDesc4'] = $logEntry['setDesc7'];
+				$minedItem['setBonusDesc1'] = $mergedLogEntry['setDesc1'] . "\n" . $mergedLogEntry['setDesc2'];
+				$minedItem['setBonusDesc2'] = $mergedLogEntry['setDesc3'] . "\n" . $mergedLogEntry['setDesc4'];
+				$minedItem['setBonusDesc3'] = $mergedLogEntry['setDesc5'] . "\n" . $mergedLogEntry['setDesc6'];
+				$minedItem['setBonusDesc4'] = $mergedLogEntry['setDesc7'];
 				$minedItem['setBonusDesc5'] = "";
 			}
 			else
@@ -6689,7 +6689,7 @@ class EsoLogParser
 	public function OnSkill ($logEntry)
 	{
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 18)) return $this->OnSkill18($logEntry);
-		//print("OnSkill\n");
+		print("OnSkill (you shouldn't see this for recent parses)\n");
 		
 		if (!$this->IsValidUser($logEntry)) return false;
 		

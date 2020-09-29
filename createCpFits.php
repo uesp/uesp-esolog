@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "27";
+$TABLE_SUFFIX = "28pts";
 $USE_CUBIC_FIT = true;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
