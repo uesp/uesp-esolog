@@ -974,8 +974,15 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		return '?';
 	}
 	
-	if (includeSpellRawOutput  >= 2) skillData.rawOutput["$" + valueIndex + " Spell Damage Used"] = "" + SpellDamage + " " + SpellDamageType.join("+") + "";
-	if (includeWeaponRawOutput >= 2) skillData.rawOutput["$" + valueIndex + " Weapon Damage Used"] = "" + WeaponDamage + " " + WeaponDamageType.join("+") + "";
+	if (includeSpellRawOutput  >= 2) 
+		skillData.rawOutput["$" + valueIndex + " Spell Damage Used"] = "" + SpellDamage + " " + SpellDamageType.join("+") + "";
+	else
+		delete skillData.rawOutput["$" + valueIndex + " Spell Damage Used"];
+		
+	if (includeWeaponRawOutput >= 2) 
+		skillData.rawOutput["$" + valueIndex + " Weapon Damage Used"] = "" + WeaponDamage + " " + WeaponDamageType.join("+") + "";
+	else
+		delete skillData.rawOutput["$" + valueIndex + " Weapon Damage Used"];
 	
 	value = Math.round(value);
 	
@@ -4248,6 +4255,12 @@ window.OnSkillBarDroppableOver = function (event, ui)
 
 window.OnSkillBarDraggableStart = function (event, ui) 
 { 
+	var $this = $(this);
+	var src = $this.attr("src");
+	var abilityId = $this.attr("skillid");
+	
+	//if (abilityId == null || abilityId <= 0) return false;
+	
 	$(".ui-draggable-dragging").addClass('esovsSkillDraggableBad').addClass('esovsSkillDraggable');
 	
 	$("#esovsPopupSkillTooltip").hide();
@@ -4459,12 +4472,12 @@ window.RemoveSkillBarAbility = function (abilityId, skillBar)
 	
 	skillBars1.attr("skillid", "0");
 	skillBars1.attr("origskillid", "0");
-	skillBars1.attr("src", "");
+	skillBars1.attr("src", "//esoicons.uesp.net/blank.png");
 	skillBars1.attr("draggable", "true");
 	
 	skillBars2.attr("skillid", "0");
 	skillBars2.attr("origskillid", "0");
-	skillBars2.attr("src", "");
+	skillBars2.attr("src", "//esoicons.uesp.net/blank.png");
 	skillBars2.attr("draggable", "true");
 }
 
@@ -4571,7 +4584,7 @@ window.OnEsoSkillReset = function (e)
 	g_EsoSkillUpdateEnable = false;
 	
 	$("#esovsSkillBar .esovsSkillBarIcon").attr("skillid", "0").
-		attr("src", "").
+		attr("src", "//esoicons.uesp.net/blank.png").
 		attr("draggable", "false").
 		attr("origskillid", "0");
 	

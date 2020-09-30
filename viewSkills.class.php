@@ -14,6 +14,7 @@ class CEsoViewSkills
 	public $ESOVS_HTML_TEMPLATE_EMBED = "";
 	
 	const ESOVS_ICON_URL = UESP_ESO_ICON_URL;
+	const ESOVS_BLANK_ICON = "blank.png";
 
 	public $version = "";
 	public $showAll = false;
@@ -694,6 +695,8 @@ class CEsoViewSkills
 
 	public function GetIconURL($icon)
 	{
+		if ($icon == null || $icon == "") return self::ESOVS_ICON_URL . "/" . self::ESOVS_BLANK_ICON;
+		
 		$icon = preg_replace('/dds$/', 'png', $icon);
 		$iconLink = self::ESOVS_ICON_URL . "/" . $icon;
 		return $iconLink;
@@ -1153,7 +1156,7 @@ class CEsoViewSkills
 		$draggable = "false";
 		$skillId = "0";
 		$origSkillId = "0";
-		$imageSrc = "";
+		$imageSrc = $this->GetIconURL("");
 		
 		if ($this->initialSkillBarData[$barIndex] != null && $this->initialSkillBarData[$barIndex][$slotIndex] != null)
 		{
@@ -1170,7 +1173,7 @@ class CEsoViewSkills
 				if ($abilityData != null) $imageSrc = $this->GetIconURL($abilityData['texture']);
 			}
 		}
-						
+		
 		$output = "<div class='esovsSkillBarItem'>";
 		$output .= "	<img class='esovsSkillBarIcon' alt='' draggable='$draggable' id='esovsSkillIcon$classSuffix' skillindex='$outSlotIndex' skillbar='$outBarIndex' skillid='$skillId' origskillid='$origSkillId' src='$imageSrc'>";
 		$output .= "</div>";
