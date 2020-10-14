@@ -760,6 +760,55 @@ class EsoLogViewer
 	);
 	
 	
+	public static $ZONE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'zoneId' => self::FIELD_INT,
+			'zoneIndex' => self::FIELD_INT,
+			'zoneName' => self::FIELD_STRING,
+			'subZoneName' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'mapName' => self::FIELD_STRING,
+			'mapType' => self::FIELD_INT,
+			'mapContentType' => self::FIELD_INT,
+			'mapFilterType' => self::FIELD_INT,
+			'numPOIs' => self::FIELD_INT,
+			'allowsScaling' => self::FIELD_INT,
+			'allowsBattleScaling' => self::FIELD_INT,
+			'minLevel' => self::FIELD_INT,
+			'maxLevel' => self::FIELD_INT,
+			'isAvA1' => self::FIELD_INT,
+			'isAvA2' => self::FIELD_INT,
+			'isBattleground' => self::FIELD_INT,
+			'telvarBehavior' => self::FIELD_INT,
+			'isOutlaw' => self::FIELD_INT,
+			'isJustice' => self::FIELD_INT,
+			'isTutorial' => self::FIELD_INT,
+			'isGroupOwnable' => self::FIELD_INT,
+			'isDungeon' => self::FIELD_INT,
+			'dungeonDifficulty' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+	);
+	
+	public static $ZONEPOI_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'zoneId' => self::FIELD_INT,
+			'zoneName' => self::FIELD_STRING,
+			'subZoneName' => self::FIELD_STRING,
+			'poiIndex' => self::FIELD_INT,
+			'normX' => self::FIELD_FLOAT,
+			'normY' => self::FIELD_FLOAT,
+			'pinType' => self::FIELD_INT,
+			'mapIcon' => self::FIELD_STRING,
+			'isShown' => self::FIELD_INT,
+			'poiType' => self::FIELD_INT,
+			'objName' => self::FIELD_STRING,
+			'objLevel' => self::FIELD_INT,
+			'objStartDesc' => self::FIELD_STRING,
+			'objEndDesc' => self::FIELD_STRING,
+			'count' => self::FIELD_INT,
+	);
+	
+	
 	public static $PTS_SEARCH_TYPE_OPTIONS = array(
 			'Items Update ## PTS' => 'minedItemSummary##pts',
 			'Sets Update ## PTS' => 'setSummary##pts',
@@ -1970,11 +2019,47 @@ class EsoLogViewer
 			
 			'antiquityLeads' => array(
 					'displayName' => 'Antiquity Lead',
-					'displayNameSingle' => 'Antiquity Leads',
+					'displayNameSingle' => 'Antiquity Lead',
 					'record' => 'antiquityLeads',
 					'table' => 'antiquityLeads',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('name'),
+					
+					'join' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'zones' => array(
+					'displayName' => 'Zones',
+					'displayNameSingle' => 'Zone',
+					'record' => 'zones',
+					'table' => 'zones',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('zoneName', 'subZoneName'),
+					
+					'join' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'zonePois' => array(
+					'displayName' => 'Zone POIs',
+					'displayNameSingle' => 'Zone POI',
+					'record' => 'zonePois',
+					'table' => 'zonePois',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('zoneName', 'subZoneName', 'poiIndex'),
 					
 					'join' => array(
 					),
@@ -2012,6 +2097,8 @@ class EsoLogViewer
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
 			'Skills' => 'minedSkills',
+			'Zones' => 'zones',
+			'Zone POIs' => 'zonePois',
 	);
 	
 	
@@ -2261,9 +2348,26 @@ class EsoLogViewer
 					'searchFields' => array('name', 'description'),
 					'fields' => array(
 							'id' => 'id',
-							'name' => 'name',
+							'zoneName' => 'name',
 							'description' => 'note',
 							'texture' => 'icon',
+					),
+			),
+			'zones' => array(
+					'searchFields' => array('zoneName', 'subZoneName', 'description', 'mapName'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+					),
+			),
+			'zonePois' => array(
+					'searchFields' => array('zoneName', 'subZoneName', 'mapIcon', 'objName', 'objStartDesc', 'objEndDesc'),
+					'fields' => array(
+							'id' => 'id',
+							'zoneName' => 'name',
+							'description' => 'note',
+							'mapIcon' => 'icon',
 					),
 			),
 	);
@@ -2323,6 +2427,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['achievementCriteria']['fields'] = self::$ACHIEVEMENTCRITERIA_FIELDS;
 		self::$RECORD_TYPES['logInfo']['fields'] = self::$LOGINFO_FIELDS;
 		self::$RECORD_TYPES['antiquityLeads']['fields'] = self::$ANTIQUITYLEAD_FIELDS;
+		self::$RECORD_TYPES['zones']['fields'] = self::$ZONE_FIELDS;
+		self::$RECORD_TYPES['zonePois']['fields'] = self::$ZONEPOI_FIELDS;
 		
 		$this->EnablePtsRecords();
 				

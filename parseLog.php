@@ -1013,6 +1013,54 @@ class EsoLogParser
 			'loreDescription5' => self::FIELD_STRING,
 	);
 	
+	public static $ZONE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'zoneId' => self::FIELD_INT,
+			'zoneIndex' => self::FIELD_INT,
+			'zoneName' => self::FIELD_STRING,
+			'subZoneName' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'mapName' => self::FIELD_STRING,
+			'mapType' => self::FIELD_INT,
+			'mapContentType' => self::FIELD_INT,
+			'mapFilterType' => self::FIELD_INT,
+			'numPOIs' => self::FIELD_INT,
+			'allowsScaling' => self::FIELD_INT,
+			'allowsBattleScaling' => self::FIELD_INT,
+			'minLevel' => self::FIELD_INT,
+			'maxLevel' => self::FIELD_INT,
+			'isAvA1' => self::FIELD_INT,
+			'isAvA2' => self::FIELD_INT,
+			'isBattleground' => self::FIELD_INT,
+			'telvarBehavior' => self::FIELD_INT,
+			'isOutlaw' => self::FIELD_INT,
+			'isJustice' => self::FIELD_INT,
+			'isTutorial' => self::FIELD_INT,
+			'isGroupOwnable' => self::FIELD_INT,
+			'isDungeon' => self::FIELD_INT,
+			'dungeonDifficulty' => self::FIELD_INT,
+			'count' => self::FIELD_INT,
+	);
+	
+	public static $ZONEPOI_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'zoneId' => self::FIELD_INT,
+			'zoneName' => self::FIELD_STRING,
+			'subZoneName' => self::FIELD_STRING,
+			'poiIndex' => self::FIELD_INT,
+			'normX' => self::FIELD_FLOAT,
+			'normY' => self::FIELD_FLOAT,
+			'pinType' => self::FIELD_INT,
+			'mapIcon' => self::FIELD_STRING,
+			'isShown' => self::FIELD_INT,
+			'poiType' => self::FIELD_INT,
+			'objName' => self::FIELD_STRING,
+			'objLevel' => self::FIELD_INT,
+			'objStartDesc' => self::FIELD_STRING,
+			'objEndDesc' => self::FIELD_STRING,
+			'count' => self::FIELD_INT,
+	);
+	
 	
 	public function __construct ()
 	{
@@ -1579,6 +1627,18 @@ class EsoLogParser
 	public function SaveAntiquity (&$record)
 	{
 		return $this->saveRecord('antiquityLeads', $record, 'id', self::$ANTIQUITYLEAD_FIELDS);
+	}
+	
+	
+	public function SaveZone (&$record)
+	{
+		return $this->saveRecord('zones', $record, 'id', self::$ZONE_FIELDS);
+	}
+	
+	
+	public function SaveZonePoi (&$record)
+	{
+		return $this->saveRecord('zonePois', $record, 'id', self::$ZONEPOI_FIELDS);
 	}
 	
 	
@@ -2610,6 +2670,63 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create npc table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS zones(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			zoneId INTEGER NOT NULL,
+			zoneIndex INTEGER NOT NULL,
+			zoneName TINYTEXT NOT NULL,
+			subZoneName TINYTEXT NOT NULL,
+			description TEXT NOT NULL,
+			mapName TINYTEXT NOT NULL,
+			mapType INTEGER NOT NULL,
+			mapContentType INTEGER NOT NULL,
+			mapFilterType INTEGER NOT NULL,
+			numPOIs INTEGER NOT NULL,
+			allowsScaling TINYINT NOT NULL,
+			allowsBattleScaling TINYINT NOT NULL,
+			minLevel TINYINT NOT NULL,
+			maxLevel TINYINT NOT NULL,
+			isAvA1 TINYINT NOT NULL,
+			isAvA2 TINYINT NOT NULL,
+			isBattleground TINYINT NOT NULL,
+			telvarBehavior TINYINT NOT NULL,
+			isOutlaw TINYINT NOT NULL,
+			isJustice TINYINT NOT NULL,
+			isTutorial TINYINT NOT NULL,
+			isGroupOwnable TINYINT NOT NULL,
+			isDungeon TINYINT NOT NULL,
+			dungeonDifficulty TINYINT NOT NULL,
+			count INTEGER NOT NULL,
+			FULLTEXT(zoneName, subZoneName, description, mapName)
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create zones table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS zonePois(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			zoneId INTEGER NOT NULL,
+			zoneName TINYTEXT NOT NULL,
+			subZoneName TINYTEXT NOT NULL,
+			poiIndex INTEGER NOT NULL,
+			normX FLOAT NOT NULL,
+			normY FLOAT NOT NULL,
+			pinType TINYINT NOT NULL,
+			mapIcon TINYTEXT NOT NULL,
+			isShown TINYINT NOT NULL,
+			poiType TINYINT NOT NULL,
+			objName TINYTEXT NOT NULL,
+			objLevel INTEGER NOT NULL,
+			objStartDesc TEXT NOT NULL,
+			objEndDesc TEXT NOT NULL,
+			count INTEGER NOT NULL,
+			FULLTEXT(zoneName, subZoneName, objName, objStartDesc, objEndDesc, mapIcon)
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create zonePois table!");
 		
 		return true;
 	}
@@ -4647,6 +4764,63 @@ class EsoLogParser
 	}
 	
 	
+	public function FindZone ($zoneId, $name, $subzoneName)
+	{
+		$safeSubName = $this->db->real_escape_string($subzoneName);
+		$safeName = $this->db->real_escape_string($name);
+		$safeId = $this->db->real_escape_string($zoneId);
+		
+		$query = "SELECT * FROM zones WHERE zoneId='$safeId' AND zoneName='$safeName' AND subzoneName='$safeSubName';";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve zone!");
+			return null;
+		}
+		
+		++$this->dbReadCount;
+		
+		if ($result->num_rows == 0) 
+		{
+			return $this->createNewRecord(self::$ZONE_FIELDS);
+		}
+		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$ZONE_FIELDS);
+	}
+	
+	
+	public function FindZonePoi ($zoneId, $name, $subzoneName, $poiIndex)
+	{
+		$safeSubName = $this->db->real_escape_string($subzoneName);
+		$safeName = $this->db->real_escape_string($name);
+		$safeId = $this->db->real_escape_string($zoneId);
+		$safePoiIndex = $this->db->real_escape_string($poiIndex);
+		
+		$query = "SELECT * FROM zonePois WHERE zoneId='$safeId' AND zoneName='$safeName' AND subzoneName='$safeSubName' AND poiIndex='$safePoiIndex';";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		
+		if ($result === false)
+		{
+			$this->reportError("Failed to retrieve zonePoi!");
+			return null;
+		}
+		
+		++$this->dbReadCount;
+		
+		if ($result->num_rows == 0) 
+		{
+			return $this->createNewRecord(self::$ZONEPOI_FIELDS);
+		}
+		
+		$row = $result->fetch_assoc();
+		return $this->createRecordFromRow($row, self::$ZONE_FIELDS);
+	}
+	
+	
 	public function FindQuest ($name, $uniqueId)
 	{
 		if ($uniqueId == null) {
@@ -4668,12 +4842,12 @@ class EsoLogParser
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows == 0) 
 		{
 			return null;
 		}
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUEST_FIELDS);
 	}
@@ -7633,6 +7807,81 @@ class EsoLogParser
 	}
 	
 	
+	public function OnLogLocation ($logEntry)
+	{
+		print("\t\tOnLogLocation...\n");
+		
+		$zoneId = intval($logEntry['zoneId']);
+		$zoneName = $logEntry['zoneName'];
+		$subZoneName = $logEntry['subZoneName'];
+		if ($subZoneName == null) $subZoneName = "";
+		$poiIndex = intval($logEntry['poiIndex']);
+		
+		if ($zoneId == null || $zoneId < 0 || $zoneName == "" || $zoneName == null) return false;
+		
+		$zoneRecord = $this->FindZone($zoneId, $zoneName, $subZoneName);
+		if (!$zoneRecord) return false;
+		
+		$zoneRecord['zoneId'] = $zoneId;
+		$zoneRecord['zoneName'] = $zoneName;
+		$zoneRecord['subZoneName'] = $subZoneName;
+		$zoneRecord['zoneIndex'] = $logEntry['zoneIndex'];
+		$zoneRecord['description'] = $logEntry['zoneDesc'];
+		$zoneRecord['mapName'] = $logEntry['mapName'];
+		$zoneRecord['mapType'] = $logEntry['mapType'];
+		$zoneRecord['mapContentType'] = $logEntry['mapContentType'];
+		$zoneRecord['mapFilterType'] = $logEntry['mapFilterType'];
+		$zoneRecord['numPOIs'] = $logEntry['numPOIs'];
+		$zoneRecord['allowsScaling'] = ($logEntry['allowsScaling'] == 'true') ? 1 : 0;
+		$zoneRecord['allowsBattleScaling'] = ($logEntry['allowsBattleScaling'] == 'true') ? 1 : 0;
+		$zoneRecord['minLevel'] = $logEntry['minLevel'];
+		$zoneRecord['maxLevel'] = $logEntry['maxLevel'];
+		$zoneRecord['isAvA1'] = ($logEntry['isAvA1'] == 'true') ? 1 : 0;
+		$zoneRecord['isAvA2'] = ($logEntry['isAvA2'] == 'true') ? 1 : 0;
+		$zoneRecord['isBattleground'] = ($logEntry['isBattleground'] == 'true') ? 1 : 0;
+		$zoneRecord['telvarBehavior'] = ($logEntry['telvarBehavior'] == 'true') ? 1 : 0;
+		$zoneRecord['isOutlaw'] = ($logEntry['isOutlaw'] == 'true') ? 1 : 0;
+		$zoneRecord['isJustice'] = ($logEntry['isJustice'] == 'true') ? 1 : 0;
+		$zoneRecord['isTutorial'] = ($logEntry['isTutorial'] == 'true') ? 1 : 0;
+		$zoneRecord['isGroupOwnable'] = ($logEntry['isGroupOwnable'] == 'true') ? 1 : 0;
+		$zoneRecord['isDungeon'] = ($logEntry['isDungeon'] == 'true') ? 1 : 0;
+		$zoneRecord['dungeonDifficulty'] = $logEntry['dungeonDifficulty'];
+		$zoneRecord['count'] = intval($zoneRecord['count']) + 1;
+		
+		$zoneRecord["__dirty"] = true;
+		
+		$this->SaveZone($zoneRecord);
+		
+		if ($poiIndex != null && $poiIndex > 0) 
+		{
+			$zonePoiRecord = $this->FindZonePoi($zoneId, $zoneName, $subZoneName, $poiIndex);
+			if (!$zonePoiRecord) return false;
+			
+			$zonePoiRecord['zoneId'] = $zoneId;
+			$zonePoiRecord['zoneName'] = $zoneName;
+			$zonePoiRecord['subZoneName'] = $subZoneName;
+			$zonePoiRecord['poiIndex'] = $poiIndex;
+			$zonePoiRecord['normX'] = floatval($logEntry['normX']);
+			$zonePoiRecord['normY'] = floatval($logEntry['normY']);
+			$zonePoiRecord['pinType'] = $logEntry['pinType'];
+			$zonePoiRecord['mapIcon'] = $logEntry['mapIcon'];
+			$zonePoiRecord['isShown'] = ($logEntry['isShown'] == 'true') ? 1 : 0;
+			$zonePoiRecord['poiType'] = $logEntry['poiType'];
+			$zonePoiRecord['objName'] = $logEntry['objName'];
+			$zonePoiRecord['objLevel'] = $logEntry['objLevel'];
+			$zonePoiRecord['objStartDesc'] = $logEntry['objStartDesc'];
+			$zonePoiRecord['objEndDesc'] = $logEntry['objEndDesc'];
+			$zonePoiRecord['count'] = intval($zonePoiRecord['count']) + 1;
+					
+			$zonePoiRecord["__dirty"] = true;
+		
+			$this->SaveZonePoi($zonePoiRecord);
+		}
+		
+		return true;
+	}
+	
+	
 	public function OnPickPocketFailed ($logEntry)
 	{
 		//logData.ppBonus, logData.ppIsHostile, logData.ppChance, logData.ppDifficulty, logData.ppEmpty, 
@@ -7862,6 +8111,7 @@ class EsoLogParser
 			//case 'SkillCoef':
 			//case 'SkillCoef::Start':
 			//case 'SkillCoef::End':
+			//case 'loglocation':
 				return false;
 		}
 		
@@ -8228,6 +8478,8 @@ class EsoLogParser
 			case "GuildSaleListingEntry":		$result = $this->OnGuildSaleListingEntry($logEntry); break;
 			
 			case "PickpocketFailed":			$result = $this->OnPickPocketFailed($logEntry); break;
+			
+			case "loglocation":					$result = $this->OnLogLocation($logEntry); break;
 			
 			case "Test":
 			case "TEST":
