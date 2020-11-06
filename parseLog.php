@@ -39,8 +39,8 @@ require_once("esoSkillRankData.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "28pts";
-	const SKILLS_TABLESUFFIX   = "28pts";
+	const MINEITEM_TABLESUFFIX = "28";
+	const SKILLS_TABLESUFFIX   = "28";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -96,7 +96,8 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744378899046072320;	//v24 1571677300
 	//const START_MINEITEM_TIMESTAMP = 4744424545732001792; //v25 1582560000
 	//const START_MINEITEM_TIMESTAMP = 4744457841815846912; //v26 1590498405
-	const START_MINEITEM_TIMESTAMP = 4744490265023086592; //v27 1598228700
+	//const START_MINEITEM_TIMESTAMP = 4744490265023086592; //v27 1598228700
+	const START_MINEITEM_TIMESTAMP = 4744515836478226432; //v28 1604325410
 	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
@@ -3056,6 +3057,11 @@ class EsoLogParser
 		if ($logEntry === null) return $this->reportLogParseError("NULL log entry received!");
 		
 		if ($logEntry['event'] == 'mi' || $logEntry['event'] == 'mineitem') 
+		{
+			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
+		}
+		
+		if ($logEntry['event'] == 'skill')
 		{
 			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
 		}
@@ -7809,7 +7815,7 @@ class EsoLogParser
 	
 	public function OnLogLocation ($logEntry)
 	{
-		print("\t\tOnLogLocation...\n");
+		//print("\t\tOnLogLocation...\n");
 		
 		$zoneId = intval($logEntry['zoneId']);
 		$zoneName = $logEntry['zoneName'];
@@ -8269,7 +8275,7 @@ class EsoLogParser
 		
 		if (!$this->isValidLogEntry($logEntry)) 
 		{
-			//print ("Not valid log entry\n");			
+			//print ("Not valid log entry\n");
 			return false;
 		}
 		

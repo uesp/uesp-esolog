@@ -1531,6 +1531,29 @@ $ESO_SET_INDEXES = array(
 		533 => "Perfected Grand Rejuvenation",
 		534 => "Stone Husk",
 		535 => "Lady Thorn",
+		536 => "Radiant Bastion",
+		537 => "Voidcaller",
+		538 => "Witch-Knight's Defiance",
+		539 => "Red Eagle's Fury",
+		540 => "Legacy of Karth",
+		541 => "Aetherial Ascension",
+		542 => "Hex Siphon",
+		543 => "Pestilent Host",
+		544 => "Explosive Rebuke",
+		557 => "Executioner's Blade",
+		558 => "Void Bash",
+		559 => "Frenzied Momentum",
+		560 => "Point-Blank Snipe",
+		561 => "Wrath of Elements",
+		562 => "Force Overflow",
+		563 => "Perfected Executioner's Blade",
+		564 => "Perfected Void Bash",
+		565 => "Perfected Frenzied Momentum",
+		566 => "Perfected Point-Blank Snipe",
+		567 => "Perfected Wrath of Elements",
+		568 => "Perfected Force Overflow",
+		575 => "Ring of the Pale Order",
+		576 => "Pearls of Ehlnofey",
 );
 
 
@@ -3481,7 +3504,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 27;
+	return 28;
 }
 
 
@@ -3630,11 +3653,11 @@ function GetEsoItemTableSuffix($version)
 		case '27pts':
 			return "27pts";
 		case '27':
-			return "";
+			return "27";
 		case '28pts':
 			return "28pts";
 		case '28':
-			return "28";
+			return "";
 	}
 
 	return "";
