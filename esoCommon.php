@@ -3450,6 +3450,12 @@ $ESO_FREE_SKILLS = array(
 		84680 => "passive",
 		36008 => "passive",
 		
+		152778 => "passive",		// Armor bonuses/penalties (Update 29)
+		150185 => "passive",
+		150181 => "passive",
+		152780 => "passive",
+		150184 => "passive",
+		
 		43056 => "active",
 		//41920 => "ultimate",  // Bat Swarm not free?
 		
@@ -3658,6 +3664,10 @@ function GetEsoItemTableSuffix($version)
 			return "28pts";
 		case '28':
 			return "";
+		case '29pts':
+			return "29pts";
+		case '29':
+			return "29";
 	}
 
 	return "";

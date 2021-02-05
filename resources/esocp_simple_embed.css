@@ -76,9 +76,23 @@
 	margin-left: 460px;	
 }
 
+.esovcp2Skills {
+	margin-left: 220px !important;
+}
+
+.esovcp2SkillsStar {
+	height: 600px;
+	width: 700px;
+}
+
 #esovcpDisciplines {
 	float: left;
 	width: 450px;
+}
+
+#esovcp2Disciplines {
+	float: left;
+	width: 200px;
 }
 
 .esovcpDiscHea {
@@ -103,7 +117,27 @@
 	margin-left: 50px;
 }
 
+.esovcp2Discipline {
+	padding: 3px;
+	font-size: 20px;
+	font-weight: bold;
+	border: solid 4px rgba(0,0,0,0);
+	height: 50px;
+	overflow: hidden;
+}
+
+.esovcp2DiscCluster {
+	font-size: 16px;
+	margin-left: 30px;
+	height: 30px;
+}
+
 .esovcpDiscipline:hover {
+	cursor: pointer;
+	background: white;	
+}
+
+.esovcp2Discipline:hover {
 	cursor: pointer;
 	background: white;	
 }
@@ -111,7 +145,7 @@
 .esovcpDiscDesc {
 	margin-left: 25px;
 	font-size: 14px;
-	font-weight: normal;	
+	font-weight: normal;
 }
 
 .esovcpDiscHighlight {
@@ -119,6 +153,7 @@
 }
 
 .esovcpDiscSkills {
+	position: relative;
 }
 
 .esovcpDiscSkillTitle {
@@ -142,8 +177,7 @@
 .esovcpSkillDesc {
 	font-size: 16px;
 	font-weight: normal;
-	display: block;
-	margin-left: 140px;
+	display: inline-block;
 	padding: 4px;
 }
 
@@ -183,12 +217,26 @@
 	margin: 4px;
 }
 
+.esovcp2PointInput {
+	width: 24px;
+	vertical-align: middle;
+	margin: 0px;
+	font-size: 12px;
+	padding: 0px;
+	border: none;
+	background: none;
+	text-align: center;
+	pointer-events: auto;
+	height: 21px;
+}
+
 .esovcpMinusButton {
 	width: 21px;
 	height: 21px;
 	vertical-align: middle;
 	margin: 0;
-    padding: 0 !important;
+	padding: 0 !important;
+	pointer-events: auto;
 }
 
 .esovcpPlusButton {
@@ -196,7 +244,8 @@
 	height: 21px;
 	vertical-align: middle;
 	margin: 0;
-    padding: 0 !important;
+	padding: 0 !important;
+	pointer-events: auto;
 }
 
 .esovcpDiscPoints {
@@ -232,8 +281,8 @@
 }
 
 .esovcpLinkBlock {
-    float: right;
-    background-color: #FBEFD5;
+	float: right;
+	background-color: #FBEFD5;
 	padding-right: 20px;
 	padding-top: 2px;
 }
@@ -250,6 +299,14 @@
 .esovcpSkill.esovcpPassiveLocked .esovcpSkillName,
 .esovcpSkill.esovcpPassiveLocked .esovcpSkillDesc {
 	color: #aaa;
+}
+
+.esovcp2Skill {
+	position: absolute;
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	pointer-events: none;
 }
 
 #esovcpSearchBlock {
@@ -278,4 +335,100 @@
 
 .esotvcpResetDisc {
 	float: right;
+}
+
+.esovcpSkillMaxPoints {
+	font-size: 14px;
+	font-weight: normal;
+	margin-left: 80px;
+}
+
+.esovcp2SkillStar {
+	width: 24px;
+	height: 24px;
+	margin: auto;
+	pointer-events: auto;
+}
+
+#esovcp2Tooltip {
+	position: absolute;
+	width: 300px;
+	min-height: 150px;
+	background-color: black;
+	border: solid 2px #c5c29e;
+	padding: 12px;
+	color: white;
+	font-family: "EsoFontStyle", "Arial", sans-serif;
+}
+
+#esovcp2TooltipName {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+#esovcp2TooltipDesc {
+	font-size: 16px;
+	text-align: center;
+	color: #c5c29e;
+	padding: 5px;
+}
+
+#esovcp2TooltipPoints {
+	font-size: 16px;
+	text-align: center;
+	color: #c5c29e;
+	padding: 5px;
+	display: inline-block;
+}
+
+#esovcp2TooltipCenter {
+	text-align: center;
+}
+
+#esovcp2TooltipJump {
+	font-size: 16px;
+	text-align: center;
+	color: #c5c29e;
+	padding: 5px;
+	display: inline-block;
+}
+
+#esovcp2TooltipEquip {
+	font-size: 16px;
+	text-align: center;
+	color: #c5c29e;
+	padding: 5px;
+}
+
+#esovcp2Tooltip #esoil_item_hr {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+	width: 100%;
+}
+
+#esovcp2Tooltip .esovcpDescWhite {
+	color: white;
+}
+
+.esovcpEquipCheckDiv {
+	width: 50px;
+	display: inline-block;
+	position: relative;
+	top: 4px;
+}
+
+.esovcpEquipCheckDiv input {
+	width: 20px;
+	height: 20px;
+	margin: 0;
+}
+
+.esovcp2SkillControls {
+	width: 150px;
 }

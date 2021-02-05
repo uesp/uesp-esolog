@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "28";
+	const ENABLE_PTS_VERSION = "29";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -631,6 +631,70 @@ class EsoLogViewer
 			'points' => self::FIELD_INT,
 	);
 	
+	public static $CP2DISCIPLINE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'disciplineId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'bgTexture' => self::FIELD_STRING,
+			'glowTexture' => self::FIELD_STRING,
+			'selectTexture' => self::FIELD_STRING,
+			'discType' => self::FIELD_INT,
+			'numSkills' => self::FIELD_INT,
+	);
+	
+	public static $CP2SKILL_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'parentSkillId' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'disciplineId' => self::FIELD_INT,
+			'skillIndex' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'skillType' => self::FIELD_INT,
+			'numJumpPoints' => self::FIELD_INT,
+			'jumpPoints' => self::FIELD_STRING,
+			'jumpPointDelta' => self::FIELD_INT,
+			'isRoot' => self::FIELD_INT,
+			'isClusterRoot' => self::FIELD_INT,
+			'maxPoints' => self::FIELD_INT,
+			'minDescription' => self::FIELD_TEXTTRANSFORM,
+			'maxDescription' => self::FIELD_TEXTTRANSFORM,
+			'maxValue' => self::FIELD_FLOAT,
+			'x' => self::FIELD_FLOAT,
+			'y' => self::FIELD_FLOAT,
+			'a' => self::FIELD_FLOAT,
+			'b' => self::FIELD_FLOAT,
+			'c' => self::FIELD_FLOAT,
+			'd' => self::FIELD_FLOAT,
+			'r2' => self::FIELD_FLOAT,
+			'fitDescription' => self::FIELD_STRING,
+	);
+	
+	public static $CP2SKILLDESCRIPTION_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'description' => self::FIELD_TEXTTRANSFORM,
+			'points' => self::FIELD_INT,
+	);
+	
+	public static $CP2CLUSTERROOT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'texture' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'skills' => self::FIELD_STRING,
+			'disciplineIndex' => self::FIELD_INT,
+			'disciplineId' => self::FIELD_INT,
+	);
+	
+	public static $CP2SKILLLINK_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'parentSkillId' => self::FIELD_INT,
+	);
 	
 	public static $COLLECTIBLE_FIELDS = array(
 			'id' => self::FIELD_INT,
@@ -1928,6 +1992,84 @@ class EsoLogViewer
 					),
 			),
 			
+			'cp2Disciplines' => array(
+					'displayName' => 'Champion Point v2 Disciplines',
+					'displayNameSingle' => 'Champion Point v2 Discipline',
+					'record' => 'cp2Disciplines29pts',
+					'table' => 'cp2Disciplines29pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'disciplineId',
+					
+					'transform' => array(
+					),
+			
+					'filters' => array(
+					),
+			),
+			
+			'cp2Skills' => array(
+					'displayName' => 'Champion Point v2 Skills',
+					'displayNameSingle' => 'Champion Point v2 Skill',
+					'record' => 'cp2Skills29pts',
+					'table' => 'cp2Skills29pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('disciplineIndex', 'skillIndex'),
+						
+					'transform' => array(
+							'minDescription' => 'RemoveTextFormats',
+							'maxDescription' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
+			'cp2SkillLinks' => array(
+					'displayName' => 'Champion Point v2 Skill Links',
+					'displayNameSingle' => 'Champion v2 Point Skill Link',
+					'record' => 'cp2SkillLinks29pts',
+					'table' => 'cp2SkillLinks29pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('parentSkillId'),
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+					),
+			),
+			
+			'cp2ClusterRoots' => array(
+					'displayName' => 'Champion Point v2 Cluster Roots',
+					'displayNameSingle' => 'Champion Point v2 Cluster Root',
+					'record' => 'cp2ClusterRoots29pts',
+					'table' => 'cp2ClusterRoots29pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('name'),
+						
+					'transform' => array(
+					),
+						
+					'filters' => array(
+					),
+			),
+			
+			'cp2SkillDescriptions' => array(
+					'displayName' => 'Champion Point v2 Skill Descriptions',
+					'displayNameSingle' => 'Champion Point v2 Skill Description',
+					'record' => 'cp2SkillDescriptions29pts',
+					'table' => 'cp2SkillDescriptions29pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('skillId', 'points'),
+						
+					'transform' => array(
+							'description' => 'RemoveTextFormats',
+					),
+						
+					'filters' => array(
+					),
+			),
+			
 			'collectibles' => array(
 					'displayName' => 'Collectibles',
 					'displayNameSingle' => 'Collectible',
@@ -2421,6 +2563,11 @@ class EsoLogViewer
 		self::$RECORD_TYPES['cpDisciplines']['fields'] = self::$CPDISCIPLINE_FIELDS;
 		self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
 		self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
+		self::$RECORD_TYPES['cp2Disciplines']['fields'] = self::$CP2DISCIPLINE_FIELDS;
+		self::$RECORD_TYPES['cp2Skills']['fields'] = self::$CP2SKILL_FIELDS;
+		self::$RECORD_TYPES['cp2SkillLinks']['fields'] = self::$CP2SKILLLINK_FIELDS;
+		self::$RECORD_TYPES['cp2ClusterRoots']['fields'] = self::$CP2CLUSTERROOT_FIELDS;
+		self::$RECORD_TYPES['cp2SkillDescriptions']['fields'] = self::$CP2SKILLDESCRIPTION_FIELDS;
 		self::$RECORD_TYPES['collectibles']['fields'] = self::$COLLECTIBLE_FIELDS;
 		self::$RECORD_TYPES['achievementCategories']['fields'] = self::$ACHIEVEMENTCATEGORY_FIELDS;
 		self::$RECORD_TYPES['achievements']['fields'] = self::$ACHIEVEMENT_FIELDS;

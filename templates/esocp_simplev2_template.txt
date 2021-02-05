@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Champion Point v2 Browser {versionTitle}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp.css" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp_simple_embed.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esocp_simple.js"></script>
+	</head>
+<body>
+<a href="/viewlog.php" style="display:{topBarDisplay};">Back to Home</a>
+<div id="esovcpSearchBlockFloat" style="display:{topBarDisplay};">
+	<input type="search" id="esovcpSearchText" value="" size="30" /> 
+	<button id="esovcpSearchButton">Find CP</button>
+	<div id="esovcpSearchResult"></div> 
+</div>
+<a id="esovcpLinkBlock" class="esovcpLinkBlock" href="" style="display:{topBarDisplay};">Link to CP Setup</a>
+<h1>ESO Champion Point v2 Browser {versionTitle}</h1>
+<div id="esovcpVersion">Showing Champion Point data for update {niceVersion}.  View data for update {versionList}</div>
+<p/>
+<div id="esovcpContainer">
+	<div id="esovcp2Disciplines" style="width:{discWidth};">
+		{cpDisciplines}
+		<button id="esotvcpResetCP">Reset All</button>
+	</div>
+	<div id="esovcpSkills" class="esovcp2Skills">{cpSkills}</div>
+</div>
+
+<div id="esovcp2Tooltip" style="display: none;">
+	<div id="esovcp2TooltipName">Name</div>
+	<img src="resources/eso_item_hr.png" id="esoil_item_hr">
+	<div id="esovcp2TooltipDesc">Description</div>
+	<div id="esovcp2TooltipCenter"><div id="esovcp2TooltipPoints">Points</div><div id="esovcp2TooltipJump">Jump</div></div>
+	<div id="esovcp2TooltipEquip">Equip</div>
+</div>
+
+<script type="text/javascript">
+	var g_EsoCpSkillDesc = {skillDescJson};
+	var g_EsoCpSkills = {skillsJson};
+	var g_EsoCpRawData = {cpDataJson};
+	var g_EsoCpVersion = '{version}';
+	var g_EsoCpIsV2 = true;
+</script>
+
+<div class="esovpBlockClear"></div>
+<p/>
+<div class="esovcpUpdateDate">Champion Point data last updated on {updateDate}.</div>
+<hr>
+<div id="esovcpFooter">
+This content is made available by the <a href="//www.uesp.net">Unofficial Elder Scrolls Pages (UESP)</a>. Contact <a href="mailto:dave@uesp.net">Daveh</a> for information regarding this page.
+Source code for this project is available at <a href="https://bitbucket.org/uesp/esolog">Bitbucket</a>.
+</div>
+</div>
+</body>
+</html>

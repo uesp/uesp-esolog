@@ -149,6 +149,12 @@ window.ESO_FREE_PASSIVES = {
 		84680 : 1,
 		36008 : 1,
 		
+		152778 : 1,		// Armor bonuses/penalties (Update 29)
+		150185 : 1,
+		150181 : 1,
+		152780 : 1,
+		150184 : 1,
+		
 		43056 : 1,
 		//41920 : 1,  	// Bat Swarm not free?
 		42358 : 1,
@@ -1880,7 +1886,7 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 			if (inputValues.SkillHealing != null && skillHealing != null)
 			{
 				healingFactor += skillHealing;
-				newRawOutput.skillHealingDone = skillHealing; 
+				newRawOutput.skillHealingDone = skillHealing;
 			}
 			
 			modHealing *= healingFactor;
@@ -3643,6 +3649,7 @@ window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank)
 	}
 	
 	var origRank = parseInt(g_EsoSkillPassiveData[origAbilityId].rank);
+	if (origRank == rank) return true;
 	
 	if (rank <= 0)
 	{
@@ -3821,7 +3828,7 @@ window.PurchaseEsoSkill = function(abilityId)
 	iconDisplayBlock.html(skillElement.children(".esovsAbilityBlockIcon").html());
 	titleDisplayBlock.html(skillElement.children(".esovsAbilityBlockTitle").html());
 	passiveIconDisplayBlock.html(skillElement.children(".esovsAbilityBlockPassiveIcon").html());
-			
+	
 	if (abilityType == "Passive")
 		UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank);
 	else
@@ -3852,17 +3859,18 @@ window.ResetEsoPurchasedSkill = function(abilityId)
 
 	displayBlock.addClass('esovsAbilityBlockNotPurchase');
 	iconDisplayBlock.attr("draggable", "false");
-	displayBlock.attr("skillid", origAbilityId);	
+	displayBlock.attr("skillid", origAbilityId);
 	
 	iconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockIcon").html());
 	titleDisplayBlock.html(selectBlock.children(".esovsAbilityBlockTitle").html());
 	passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
-			
+	
 	if (abilityType == "Passive")
 		UpdateEsoSkillPassiveData(origAbilityId, origAbilityId, -1);
 	else
 		UpdateEsoSkillActiveData(origAbilityId, origAbilityId, -1, abilityType, morph);
- 
+	
+	if (IsEsoSkillFree(origAbilityId)) PurchaseEsoSkill(origAbilityId);
 }
 
 

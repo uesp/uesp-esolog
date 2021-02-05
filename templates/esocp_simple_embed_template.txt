@@ -16,6 +16,7 @@
 <script type="text/javascript">
 	var g_EsoCpSkillDesc = {skillDescJson};
 	var g_EsoCpVersion = '{version}';
+	var g_EsoCpIsV2 = false;
 </script>
 
 <div class="esovpBlockClear"></div>

@@ -20,6 +20,7 @@
 
 <h1>ESO Champion Point Browser {versionTitle}</h1>
 <div id="esovcpVersion">Showing Champion Point data for update {niceVersion}.  View data for update {versionList}</div>
+<p/>
 <div id="esovcpContainer">
 	<div id="esovcpDisciplines" style="width:{discWidth};">
 		{cpDisciplines}
@@ -32,6 +33,7 @@
 	var g_EsoCpSkillDesc = {skillDescJson};
 	var g_EsoCpRawData = {cpDataJson};
 	var g_EsoCpVersion = '{version}';
+	var g_EsoCpIsV2 = false;
 </script>
 
 <div class="esovpBlockClear"></div>

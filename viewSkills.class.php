@@ -778,6 +778,8 @@ class CEsoViewSkills
 
 	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel, $isPurchased, $baseAbilityId)
 	{
+		global $ESO_FREE_SKILLS;
+		
 		$output = "";
 					
 		if ($baseAbilityId == null) 
@@ -873,9 +875,12 @@ class CEsoViewSkills
 		}
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
-			
-		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$baseId' rank='$rank' origrank='$origRank' maxrank='$maxRank' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
-
+		
+		$isFree = "0";
+		if ($ESO_FREE_SKILLS[$id]) $isFree = "1";
+		
+		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$baseId' rank='$rank' origrank='$origRank' maxrank='$maxRank' isfree='$isFree' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
+		
 		if ($topLevel)
 		{
 			if ($this->displayType == "select")

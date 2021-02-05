@@ -39,8 +39,8 @@ require_once("esoSkillRankData.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "28";
-	const SKILLS_TABLESUFFIX   = "28";
+	const MINEITEM_TABLESUFFIX = "29pts";
+	const SKILLS_TABLESUFFIX   = "29pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -165,7 +165,7 @@ class EsoLogParser
 	public $currentIpAddress = null;
 	
 	public $skillInfo = array();
-	
+	public $cp2ClusterParents = array();
 	public $logInfos = array();
 	
 	public $startMicroTime = 0;
@@ -888,6 +888,70 @@ class EsoLogParser
 			'points' => self::FIELD_INT,
 	);
 	
+	public static $CP2DISCIPLINE_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'disciplineId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'bgTexture' => self::FIELD_STRING,
+			'glowTexture' => self::FIELD_STRING,
+			'selectTexture' => self::FIELD_STRING,
+			'discType' => self::FIELD_INT,
+			'numSkills' => self::FIELD_INT,
+	);
+	
+	public static $CP2SKILL_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'parentSkillId' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'disciplineIndex' => self::FIELD_INT,
+			'disciplineId' => self::FIELD_INT,
+			'skillIndex' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'skillType' => self::FIELD_INT,
+			'numJumpPoints' => self::FIELD_INT,
+			'jumpPoints' => self::FIELD_STRING,
+			'jumpPointDelta' => self::FIELD_INT,
+			'isRoot' => self::FIELD_INT,
+			'isClusterRoot' => self::FIELD_INT,
+			'maxPoints' => self::FIELD_INT,
+			'minDescription' => self::FIELD_STRING,
+			'maxDescription' => self::FIELD_STRING,
+			'maxValue' => self::FIELD_FLOAT,
+			'x' => self::FIELD_FLOAT,
+			'y' => self::FIELD_FLOAT,
+			'a' => self::FIELD_FLOAT,
+			'b' => self::FIELD_FLOAT,
+			'c' => self::FIELD_FLOAT,
+			'd' => self::FIELD_FLOAT,
+			'r2' => self::FIELD_FLOAT,
+			'fitDescription' => self::FIELD_STRING,
+	);
+	
+	public static $CP2SKILLDESCRIPTION_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'description' => self::FIELD_STRING,
+			'points' => self::FIELD_INT,
+	);
+	
+	public static $CP2CLUSTERROOT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'texture' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'skills' => self::FIELD_STRING,
+			'disciplineIndex' => self::FIELD_INT,
+			'disciplineId' => self::FIELD_INT,
+	);
+	
+	public static $CP2SKILLLINK_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'skillId' => self::FIELD_INT,
+			'parentSkillId' => self::FIELD_INT,
+	);
 	
 	public static $COLLECTIBLE_FIELDS = array(
 			'id' => self::FIELD_INT,
@@ -1595,15 +1659,45 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveCP2Skill (&$record)
+	{
+		return $this->saveRecord('cp2Skills'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CP2SKILL_FIELDS);
+	}
+	
+	
+	public function SaveCP2SkillLink (&$record)
+	{
+		return $this->saveRecord('cp2SkillLinks'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CP2SKILLLINK_FIELDS);
+	}
+	
+	
+	public function SaveCP2ClusterRoot (&$record)
+	{
+		return $this->saveRecord('cp2ClusterRoots'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CP2CLUSTERROOT_FIELDS);
+	}
+	
+	
 	public function SaveCPDiscipline (&$record)
 	{
 		return $this->saveRecord('cpDisciplines'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPDISCIPLINE_FIELDS);
 	}
 	
 	
+	public function SaveCP2Discipline (&$record)
+	{
+		return $this->saveRecord('cp2Disciplines'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CP2DISCIPLINE_FIELDS);
+	}
+	
+	
 	public function SaveCPSkillDescription (&$record)
 	{
 		return $this->saveRecord('cpSkillDescriptions'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CPSKILLDESCRIPTION_FIELDS);
+	}
+	
+	
+	public function SaveCP2SkillDescription (&$record)
+	{
+		return $this->saveRecord('cp2SkillDescriptions'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CP2SKILLDESCRIPTION_FIELDS);
 	}
 	
 	
@@ -2459,6 +2553,7 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedSkillLines table!");
 		
+		/*		Old CP system not used since update 29
 		$query = "CREATE TABLE IF NOT EXISTS cpDisciplines".self::SKILLS_TABLESUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			disciplineIndex INTEGER NOT NULL,
@@ -2506,11 +2601,100 @@ class EsoLogParser
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create cpSkillDescriptions table!");
+		if ($result === FALSE) return $this->reportError("Failed to create cpSkillDescriptions table!"); */
+		
+		$query = "CREATE TABLE IF NOT EXISTS cp2Disciplines".self::SKILLS_TABLESUFFIX."(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			disciplineIndex INTEGER NOT NULL,
+			disciplineId INTEGER NOT NULL,
+			name TINYTEXT NOT NULL,
+			discType INTEGER NOT NULL,
+			numSkills INTEGER NOT NULL,
+			bgTexture TINYTEXT NOT NULL,
+			glowTexture TINYTEXT NOT NULL,
+			selectTexture TINYTEXT NOT NULL
+		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create cpSkills table!");
+		if ($result === FALSE) return $this->reportError("Failed to create cp2Disciplines table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cp2Skills".self::SKILLS_TABLESUFFIX."(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			skillId INTEGER NOT NULL,
+			parentSkillId INTEGER NOT NULL,
+			abilityId INTEGER NOT NULL,
+			disciplineIndex INTEGER NOT NULL,
+			disciplineId INTEGER NOT NULL,
+			skillIndex INTEGER NOT NULL,
+			name TINYTEXT NOT NULL,
+			skillType TINYINT NOT NULL,
+			minDescription TEXT NOT NULL,
+			maxDescription TEXT NOT NULL,
+			`maxValue` FLOAT NOT NULL,
+			isRoot TINYINT NOT NULL,
+			isClusterRoot TINYINT NOT NULL,
+			maxPoints INTEGER NOT NULL,
+			jumpPoints MEDIUMTEXT NOT NULL,
+			jumpPointDelta INTEGER NOT NULL,
+			numJumpPoints INTEGER NOT NULL,
+			x FLOAT NOT NULL,
+			y FLOAT NOT NULL,
+			a FLOAT NOT NULL DEFAULT -1,
+			b FLOAT NOT NULL DEFAULT -1,
+			c FLOAT NOT NULL DEFAULT -1,
+			d FLOAT NOT NULL DEFAULT -1,
+			r2 FLOAT NOT NULL DEFAULT -1,
+			fitDescription TEXT NOT NULL,
+			INDEX index_abilityId(abilityId),
+			INDEX index_skillId(skillId)
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cp2Skills table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cp2SkillLinks".self::SKILLS_TABLESUFFIX."(
+				id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				parentSkillId INTEGER NOT NULL,
+				skillId INTEGER NOT NULL,
+				INDEX index_parentSkillId(parentSkillId),
+				INDEX index_skillId(skillId)
+			) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cp2SkillLinks table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cp2ClusterRoots".self::SKILLS_TABLESUFFIX."(
+				id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				skillId INTEGER NOT NULL,
+				texture TINYTEXT NOT NULL,
+				name TINYTEXT NOT NULL,
+				skills MEDIUMTEXT NOT NULL,
+				disciplineIndex INTEGER NOT NULL,
+				disciplineId INTEGER NOT NULL,
+				INDEX index_skillId(skillId),
+				INDEX index_discId(disciplineId)
+			) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cp2ClusterRoots table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS cp2SkillDescriptions".self::SKILLS_TABLESUFFIX."(
+			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			abilityId INTEGER NOT NULL,
+			skillId INTEGER NOT NULL,
+			points INTEGER NOT NULL,
+			description TEXT NOT NULL,
+			INDEX index_abilityId(abilityId),
+			INDEX index_skillId(skillId)
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create cp2SkillDescriptions table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS collectibles(
 			id BIGINT NOT NULL PRIMARY KEY,
@@ -7292,6 +7476,237 @@ class EsoLogParser
 	}
 	
 	
+	public function OnCP2Start ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$this->cp2ClusterParents = array();
+		
+		if ($logEntry['note'] != null)
+			$this->logInfos['lastCPNote'] = $logEntry['note'];
+		else
+			$this->logInfos['lastCPNote'] = '';
+
+		$this->log("\tFound CP2Start(".$logEntry['note'].")...");
+		$this->logInfos['lastCPUpdate'] = date("Y-M-d H:i:s");
+		
+		$this->lastQuery = "DELETE FROM cp2Disciplines".self::SKILLS_TABLESUFFIX.";";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cp2Disciplines table!");
+		
+		$this->lastQuery = "DELETE FROM cp2Skills".self::SKILLS_TABLESUFFIX.";";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cp2Skills table!");
+		
+		$this->lastQuery = "DELETE FROM cp2SkillDescriptions".self::SKILLS_TABLESUFFIX.";";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cp2SkillDescriptions table!");
+		
+		$this->lastQuery = "DELETE FROM cp2ClusterRoots".self::SKILLS_TABLESUFFIX.";";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cp2ClusterRoots table!");
+		
+		$this->lastQuery = "DELETE FROM cp2SkillLinks".self::SKILLS_TABLESUFFIX.";";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to clear cp2SkillLinks table!");
+		
+		$this->dbWriteCount += 3;
+		
+		return true;
+	}
+	
+	
+	public function OnCP2Discipline ($logEntry)
+	{
+		/*
+		 * event{CP2::disc}  discIndex{1}  name{Craft}  discId{3}  bgTexture{/esoui/art/champion/thief_normal.dds}  numSkills{28}  
+		 * glowTexture{/esoui/art/champion/thief_insideconstellation.dds}  selTexture{/esoui/art/champion/thief_selected.dds}  type{2}  lang{en}
+		 */
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$cp = array();
+		$cp['disciplineIndex'] = $logEntry['discIndex'];
+		$cp['disciplineId'] = $logEntry['discId'];
+		$cp['glowTexture'] = $logEntry['glowTexture'];
+		$cp['selectTexture'] = $logEntry['selTexture'];
+		$cp['bgTexture'] = $logEntry['bgTexture'];
+		$cp['numSkills'] = $logEntry['numSkills'];
+		$cp['name'] = $logEntry['name'];
+		$cp['discType'] = $logEntry['type'];
+		
+		$cp['__isNew'] = true;
+		$cp['__dirty'] = true;
+		
+		return $this->SaveCP2Discipline($cp);
+	}
+	
+	
+	public function OnCP2Skill ($logEntry)
+	{
+		/*
+		 * event{CP2}  discIndex{1}  desc{Increases the cost which merchants buy goods from you by |cffffff2|r% per stage.\n\nCurrent bonus: |cffffff0|r%}  isRoot{true}  
+		 * maxPoints{50}  abilityId{142210}  isClusterRoot{false}  skillIndex{1}  linkedIds{71}  
+		 * maxDesc{Increases the cost which merchants buy goods from you by |cffffff2|r% per stage.\n\nCurrent bonus: |cffffff10|r%}  skillId{74}  rootName{}  
+		 * x{-47.885982513428}  y{-210.69747924805}  name{Haggler}  discId{3}  jumpPoints{0,10,20,30,40,50}  lang{en}
+		 * clusterSkills{17,21,18,22}  clusterName{Extended Might}  clusterTexture{/esoui/art/champion/subcon_mage1.dds}  linkedIds{27,28}
+		 */ 
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$cpSkill = array();
+		$cpSkill['abilityId'] = $logEntry['abilityId'];
+		$cpSkill['skillId'] = $logEntry['skillId'];
+		$cpSkill['disciplineIndex'] = $logEntry['discIndex'];
+		$cpSkill['disciplineId'] = $logEntry['discId'];
+		$cpSkill['skillIndex'] = $logEntry['skillIndex'];
+		$cpSkill['minDescription'] = $logEntry['desc'];
+		$cpSkill['maxDescription'] = $logEntry['maxDesc'];
+		$cpSkill['name'] = $logEntry['name'];
+		$cpSkill['skillType'] = $logEntry['skillType'];
+		$cpSkill['x'] = $logEntry['x'];
+		$cpSkill['y'] = $logEntry['y'];
+		$cpSkill['maxPoints'] = $logEntry['maxPoints'];
+		$cpSkill['jumpPoints'] = $logEntry['jumpPoints'];
+		$cpSkill['numJumpPoints'] = 0;
+		$cpSkill['jumpPointDelta'] = 1;
+		$cpSkill['parentSkillId'] = -1;
+		
+		if ($logEntry['jumpPoints'] != null && $logEntry['jumpPoints'] != "") {
+			$jumpPoints = explode(',', $logEntry['jumpPoints']);
+			$cpSkill['numJumpPoints'] = count($jumpPoints) - 1;
+			
+			$lastJumpPoint = -1;
+			$deltaSum = 0;
+			$numDeltaSum = 0;
+			
+			foreach ($jumpPoints as $jumpPoint) {
+				if ($lastJumpPoint >= 0) {
+					$deltaSum += $jumpPoint - $lastJumpPoint;
+					++$numDeltaSum;
+				}
+				$lastJumpPoint = $jumpPoint;
+			}
+			
+			if ($numDeltaSum > 0) {
+				$jumpPointDelta = $deltaSum / $numDeltaSum;
+				if ($jumpPointDelta != intval($jumpPointDelta)) $this->reportLogParseError("CP skill {$logEntry['skillId']}: Jump point delta $jumpPointDelta is not an integer value!");
+				$cpSkill['jumpPointDelta'] = intval($jumpPointDelta);
+			}
+			else {
+				$this->reportLogParseError("CP skill {$logEntry['skillId']}: Not enough jump points to calculate the jumpPointDelta!");
+			}
+		}
+		
+		if ($logEntry['linkedIds'] != null && $logEntry['linkedIds'] != "") {
+			$linkedIds = explode(',', $logEntry['linkedIds']);
+			
+			foreach ($linkedIds as $linkedId) {
+				if ($linkedId == 'nil') continue;
+				
+				$cpLink = array();
+				$cpLink['skillId'] = $linkedId;
+				$cpLink['parentSkillId'] = $logEntry['skillId'];
+				$cpLink['__isNew'] = true;
+				$cpLink['__dirty'] = true;
+				
+				$this->SaveCP2SkillLink($cpLink);
+			}
+		}
+		
+		$cpSkill['maxValue'] = 0;
+		$cpSkill['a'] = -1;
+		$cpSkill['b'] = -1;
+		$cpSkill['c'] = -1;
+		$cpSkill['d'] = -1;
+		$cpSkill['r2'] = -1;
+		$cpSkill['fitDescription'] = "";
+		
+		$cpSkill['__isNew'] = true;
+		$cpSkill['__dirty'] = true;
+		
+		$cpSkill['isRoot'] = 0;
+		if ($logEntry['isRoot'] == 'true' || intval($logEntry['isRoot'] > 0)) $cpSkill['isRoot'] = 1;
+		
+		$cpSkill['isClusterRoot'] = 0;
+		if ($logEntry['isClusterRoot'] == 'true' || intval($logEntry['isClusterRoot'] > 0)) $cpSkill['isClusterRoot'] = 1;
+		
+		if ($cpSkill['isClusterRoot'] == 1) 
+		{
+			$clusterRoot = array();
+			$clusterRoot['skillId'] = $logEntry['skillId'];
+			$clusterRoot['name'] = $logEntry['clusterName'];
+			$clusterRoot['texture'] = $logEntry['clusterTexture'];
+			$clusterRoot['skills'] = $logEntry['skillId'] . ",". $logEntry['clusterSkills'];
+			$clusterRoot['disciplineIndex'] = $logEntry['discIndex'];
+			$clusterRoot['disciplineId'] = $logEntry['discId'];
+			
+			$clusterRoot['__isNew'] = true;
+			$clusterRoot['__dirty'] = true;
+			
+			$this->SaveCP2ClusterRoot($clusterRoot);
+			
+			$skills = explode(',', $clusterRoot['skills']);
+			
+			foreach ($skills as $skillId) {
+				$this->cp2ClusterParents[$skillId] = $logEntry['skillId'];
+			}
+			
+			/*
+			$this->SaveCP2Skill($cpSkill);
+			
+			$cpSkill['name'] = $clusterRoot['name'];
+			$cpSkill['abilityId'] = -1;
+			$cpSkill['minDescription'] = "";
+			$cpSkill['maxDescription'] = "";
+			$cpSkill['maxPoints'] = "0";
+			$cpSkill['jumpPointDelta'] = "0";
+			$cpSkill['jumpPoints'] = "";
+			$cpSkill['numJumpPoints'] = "0";
+			$cpSkill['skillType'] = "-1";
+			$cpSkill['skillIndex'] = -$logEntry['skillIndex'];
+			$cpSkill['skillId'] = -$logEntry['skillId'];*/
+			
+			$clusterRoot['parentSkillId'] = $logEntry['skillId'];
+		}
+		
+		return $this->SaveCP2Skill($cpSkill);
+	}
+	
+	
+	public function OnCP2Description ($logEntry)
+	{
+		/*
+		 * event{CP2::desc}  desc{Increases your Healing Done with healing over time effects by |cffffff2|r% per stage.\n\nCurrent bonus: |cffffff0|r%}  points{50}  skillId{28}  abilityId{142002}  lang{en}
+		 */
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$cpDesc = array();
+		$cpDesc['abilityId'] = $logEntry['abilityId'];
+		$cpDesc['skillId'] = $logEntry['skillId'];
+		$cpDesc['description'] = $logEntry['desc'];
+		$cpDesc['points'] = $logEntry['points'];
+		$cpDesc['__isNew'] = true;
+		$cpDesc['__dirty'] = true;
+		
+		return $this->SaveCP2SkillDescription($cpDesc);
+	}
+	
+	
+	public function OnCP2End ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		foreach ($this->cp2ClusterParents as $skillId => $parentId)
+		{
+			$this->lastQuery = "UPDATE cp2Skills".self::SKILLS_TABLESUFFIX." SET parentSkillId='$parentId' WHERE skillId='$skillId';";
+			$result = $this->db->query($this->lastQuery);
+			if (!$result) $this->reportLogParseError("Failed to update the parentSkillId for skill $skillId!");
+		}
+		
+		$this->cp2ClusterParents = array();
+		return true;
+	}
+	
+	
 	public function OnMineCollectIDStart ($logEntry)
 	{
 		if (!$this->IsValidUser($logEntry)) return false;
@@ -7819,7 +8234,7 @@ class EsoLogParser
 		
 		$zoneId = intval($logEntry['zoneId']);
 		$zoneName = $logEntry['zoneName'];
-		$subZoneName = $logEntry['subZoneName'];
+		$subZoneName = $logEntry['subzoneName'];
 		if ($subZoneName == null) $subZoneName = "";
 		$poiIndex = intval($logEntry['poiIndex']);
 		
@@ -7875,8 +8290,8 @@ class EsoLogParser
 			$zonePoiRecord['poiType'] = $logEntry['poiType'];
 			$zonePoiRecord['objName'] = $logEntry['objName'];
 			$zonePoiRecord['objLevel'] = $logEntry['objLevel'];
-			$zonePoiRecord['objStartDesc'] = $logEntry['objStartDesc'];
-			$zonePoiRecord['objEndDesc'] = $logEntry['objEndDesc'];
+			$zonePoiRecord['objStartDesc'] = $logEntry['startDesc'];
+			$zonePoiRecord['objEndDesc'] = $logEntry['endDesc'];
 			$zonePoiRecord['count'] = intval($zonePoiRecord['count']) + 1;
 					
 			$zonePoiRecord["__dirty"] = true;
@@ -8088,6 +8503,11 @@ class EsoLogParser
 			case "CP::end":
 			case "CP::disc":
 			case "CP::desc":
+			case "CP2":
+			case "CP2::start":
+			case "CP2::end":
+			case "CP2::disc":
+			case "CP2::desc":
 			case "MineCollect::Start":
 			case "MineCollect::Category":
 			case "MineCollect::Subcategory":
@@ -8456,11 +8876,18 @@ class EsoLogParser
 			case "skillDump::StartLearned":		$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillLearned":				$result = $this->OnSkillLearned($logEntry); break;
 			case "skillDump::EndLearned":		$result = $this->OnSkillDumpEnd($logEntry); break;
+			
 			case "CP::start":					$result = $this->OnCPStart($logEntry); break;
 			case "CP::disc":					$result = $this->OnCPDiscipline($logEntry); break;
 			case "CP":							$result = $this->OnCPSkill($logEntry); break;
 			case "CP::desc":					$result = $this->OnCPDescription($logEntry); break;
 			case "CP::end":						$result = $this->OnCPEnd($logEntry); break;
+			
+			case "CP2::start":					$result = $this->OnCP2Start($logEntry); break;
+			case "CP2::disc":					$result = $this->OnCP2Discipline($logEntry); break;
+			case "CP2":							$result = $this->OnCP2Skill($logEntry); break;
+			case "CP2::desc":					$result = $this->OnCP2Description($logEntry); break;
+			case "CP2::end":					$result = $this->OnCP2End($logEntry); break;
 			
 			case "mineanti::start":				$result = $this->OnMineAntiquityStart($logEntry); break;
 			case "mineanti::end":				$result = $this->OnMineAntiquityEnd($logEntry); break;

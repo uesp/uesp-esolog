@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "28";
+$TABLE_SUFFIX = "29pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -39,6 +39,9 @@ $ESO_SLOTTED_SKILLS = array(
 		
 		86189 => -67,	//Warden: Frozen Armor
 		86190 => -67,
+		
+		29791 => -53,	//Heavy Armor: Rapid Mending
+		45529 => -53,
 		
 		39197 => -53,	//Heavy Armor: Immovable
 		41097 => -53,
@@ -141,6 +144,9 @@ $ESO_COEF_VALUE = array(
 		45482 => 1095,
 
 		//45533 => array(362.4, 0, 0),	// Heavy Armor: Resolve
+		
+		29791 => array(0.5, 0, 0),	//Heavy Armor: Rapid Mending
+		45529 => array(1, 0, 0),
 		
 		39197 => array(0.25, 0, 5),		//Heavy Armor: Unstoppable
 		41097 => array(0.25, 0, 5),
