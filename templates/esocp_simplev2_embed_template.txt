@@ -6,8 +6,9 @@
 <div id="esovcpContainer">
 	<div id="esovcp2Disciplines" style="width:{discWidth};">
 		{cpDisciplines}
-		<button id="esotvcpResetCP">Reset All</button>
+		<button id="esotvcpResetCP" style="display: {displayResetAllButton} ;">Reset All</button>
 	</div>
+	{starEquipBar}
 	<div id="esovcpSkills" class="esovcp2Skills">{cpSkills}</div>
 </div>
 
@@ -25,6 +26,10 @@
 	var g_EsoCpRawData = {cpDataJson};
 	var g_EsoCpVersion = '{version}';
 	var g_EsoCpIsV2 = true;
+	var g_EsoCpLinks = {cpLinksJson};
+	var g_EsoCpReverseLinks = {cpReverseLinksJson};
+	var g_EsoCpUnlocks = {cpUnlockJson};
+	var g_EsoCpIsEdit = {isEdit};
 </script>
 
 <div class="esovpBlockClear"></div>

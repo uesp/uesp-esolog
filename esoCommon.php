@@ -66,6 +66,8 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100033" => "28",
 		"100034" => "29",
 		"100035" => "30",
+		"100036" => "31",
+		"100037" => "32",
 );
 
 
@@ -95,6 +97,10 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"100032" => "6.1",
 		"100033" => "6.2",
 		"100034" => "6.3",
+		"100035" => "7.0",
+		"100036" => "7.1",
+		"100037" => "7.2",
+		"100038" => "7.3",
 );
 
 
@@ -1552,8 +1558,16 @@ $ESO_SET_INDEXES = array(
 		566 => "Perfected Point-Blank Snipe",
 		567 => "Perfected Wrath of Elements",
 		568 => "Perfected Force Overflow",
+		569 => "True-Sworn Fury",
+		570 => "Kinras's Wrath",
+		571 => "Drake's Rush",
+		572 => "Unleashed Ritualist",
+		573 => "Dagon's Dominion",
+		574 => "Foolkiller's Ward",
 		575 => "Ring of the Pale Order",
 		576 => "Pearls of Ehlnofey",
+		577 => "Encratis's Behemoth",
+		578 => "Baron Zaudrus",
 );
 
 
@@ -3510,7 +3524,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 28;
+	return 29;
 }
 
 
@@ -3663,11 +3677,11 @@ function GetEsoItemTableSuffix($version)
 		case '28pts':
 			return "28pts";
 		case '28':
-			return "";
+			return "28";
 		case '29pts':
 			return "29pts";
 		case '29':
-			return "29";
+			return "";
 	}
 
 	return "";

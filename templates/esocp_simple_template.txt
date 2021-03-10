@@ -6,7 +6,8 @@
 		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp.css" />
 		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp_simple_embed.css" />
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
+		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
+		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esocp_simple.js"></script>
 	</head>
 <body>
@@ -33,7 +34,9 @@
 	var g_EsoCpSkillDesc = {skillDescJson};
 	var g_EsoCpRawData = {cpDataJson};
 	var g_EsoCpVersion = '{version}';
+	var g_EsoCpSkills = {skillsJson};
 	var g_EsoCpIsV2 = false;
+	var g_EsoCpIsEdit = {isEdit};
 </script>
 
 <div class="esovpBlockClear"></div>

@@ -73,7 +73,8 @@
 }
 
 #esovcpSkills {
-	margin-left: 460px;	
+	margin-left: 460px;
+	overflow: auto;	
 }
 
 .esovcp2Skills {
@@ -81,8 +82,8 @@
 }
 
 .esovcp2SkillsStar {
+	width: 1000px;
 	height: 600px;
-	width: 700px;
 }
 
 #esovcpDisciplines {
@@ -226,8 +227,13 @@
 	border: none;
 	background: none;
 	text-align: center;
-	pointer-events: auto;
+	pointer-events: inherit;
 	height: 21px;
+	background-color: white;
+}
+
+.esovcpPointInput[readonly] {
+	cursor: default;
 }
 
 .esovcpMinusButton {
@@ -236,7 +242,7 @@
 	vertical-align: middle;
 	margin: 0;
 	padding: 0 !important;
-	pointer-events: auto;
+	pointer-events: inherit;
 }
 
 .esovcpPlusButton {
@@ -245,7 +251,7 @@
 	vertical-align: middle;
 	margin: 0;
 	padding: 0 !important;
-	pointer-events: auto;
+	pointer-events: inherit;
 }
 
 .esovcpDiscPoints {
@@ -285,6 +291,9 @@
 	background-color: #FBEFD5;
 	padding-right: 20px;
 	padding-top: 2px;
+	position: absolute;
+	right: 350px;
+}
 }
 
 .esovcpSkillLevel.esovcpPassiveUnlocked {
@@ -303,10 +312,11 @@
 
 .esovcp2Skill {
 	position: absolute;
-	width: 100px;
+	width: 70px;
 	height: 50px;
 	text-align: center;
 	pointer-events: none;
+	touch-action: pinch-zoom;
 }
 
 #esovcpSearchBlock {
@@ -321,6 +331,11 @@
 #esovcpSearchBlockFloat {
 	float: right;
 	background-color: #FBEFD5;
+	right: 10px;
+	top: 10px;
+	padding: 10px;
+	z-index: 10;
+	position: fixed;
 }
 
 .esovcpHighlightSkill {
@@ -329,25 +344,68 @@
 	box-shadow: 0px 0px 6px rgba(0,0,0,0.7);
 }
 
+.esovcp2Skill.esovcpHighlightSkill {
+	border-radius: 4px;
+}
+
 #esotvcpResetCP {
 	float: right;
 }
 
 .esotvcpResetDisc {
-	float: right;
+	pointer-events: auto;
+	margin-left: 50px;
 }
 
-.esovcpSkillMaxPoints {
+.esotvcpResetDisc2 {
+	margin-top: 10px;
+	display: block;
+}
+
+.esovcpSkillSuffix {
 	font-size: 14px;
 	font-weight: normal;
 	margin-left: 80px;
 }
 
+.esovcpSkillMaxPoints {
+	display: inline-block;
+}
+
+.esovcpSkillChildren {
+	display: inline-block;
+	margin-left: 50px;
+}
+
+.esovcpSkillChildLink {
+	display: inline-block;
+	color: #00c;
+	text-decoration: underline;
+	pointer-events: auto;
+}
+
+.esovcpSkillChildLink:hover {
+	cursor: pointer;
+	background-color: #ccc;
+}
+
 .esovcp2SkillStar {
 	width: 24px;
 	height: 24px;
-	margin: auto;
 	pointer-events: auto;
+	display: inline-block;
+	z-index: 10;
+}
+
+.esovcp2SkillStar:hover {
+	cursor: pointer;
+	background-color: gray;
+}
+
+.esovcp2Skill.esovcp2SkillStar {
+}
+
+.ui-draggable-dragging.esovcp2SkillStar {
 }
 
 #esovcp2Tooltip {
@@ -359,6 +417,7 @@
 	padding: 12px;
 	color: white;
 	font-family: "EsoFontStyle", "Arial", sans-serif;
+	z-index: 50;
 }
 
 #esovcp2TooltipName {
@@ -374,6 +433,7 @@
 	text-align: center;
 	color: #c5c29e;
 	padding: 5px;
+	line-height: 1.4em;
 }
 
 #esovcp2TooltipPoints {
@@ -429,6 +489,97 @@
 	margin: 0;
 }
 
+.esovcp2StarControls {
+	pointer-events: auto;
+	width: 70px;
+	z-index: 10;
+}
+
 .esovcp2SkillControls {
 	width: 150px;
+	z-index: 10;
+}
+
+.esovcpNotPurchaseable {
+	color: #999;
+	pointer-events: none !important;
+	opacity: 50%;
+}
+
+.esovcpNotPurchaseable .esovcpMinusButton,
+.esovcpNotPurchaseable .esovcpPlusButton,
+.esovcpNotPurchaseable .esovcp2PointInput {
+	opacity: 0%;
+}
+
+.esovcp2SkillsStar_craft {
+	
+}
+
+.esovcp2StarSvg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1000px;
+	height: 600px;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.esovcpSkillCluster {
+}
+
+.esovcpSkillCluster .esovcp2SkillStar:hover {
+	cursor: pointer;
+	background-color: gray;
+}
+
+.esovcp2SkillEquippable {
+	cursor: pointer;
+}
+
+#esovcpSkillEquipBar {
+	margin-left: 400px;
+}
+
+.esovcpSkillEquipBarSlot {
+	width: 32px;
+	height: 32px;
+	border: solid gray 2px;
+	background-image: url("cpstar_gray.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: top;
+	touch-action: touch-action;
+}
+
+.esovcpSkillEquipBarSlot img {
+	width: 32px;
+	height: 32px;
+}
+
+.esovcpSkillEquipBarDisc {
+	display: inline-block;
+	vertical-align: top;
+	margin: 4px;
+}
+
+.esovcpSkillEquipBarDisc1 .esovcpSkillEquipBarSlot {
+	background-color: #bbffbb;
+}
+
+.esovcpSkillEquipBarDisc2 .esovcpSkillEquipBarSlot {
+	background-color: #aaaaff;
+}
+
+.esovcpSkillEquipBarDisc3 .esovcpSkillEquipBarSlot {
+	background-color: #ffcc88;
+}
+
+.esovcpSkillDraggableBad {
+}
+
+.esovcpSkillDraggableGood {
+	display: none !important;
 }

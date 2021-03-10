@@ -9,7 +9,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item set names in mined item data...\n");
 
-$TABLE_SUFFIX = "28";
+$TABLE_SUFFIX = "29pts";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
@@ -25,7 +25,7 @@ file_put_contents("fixitems.lua", $output, FILE_APPEND);
 
 $query = "SELECT itemId, setName from minedItemSummary$TABLE_SUFFIX;";
 $result = $db->query($query);
-	
+
 if ($result->num_rows < 1) exit("Error querying mineditem data!\n");
 $setNames = array();
 
@@ -60,22 +60,21 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 		
 		$output = "\tuespLog.MineItemSingle($itemId, {$row['internalLevel']}, {$row['internalSubtype']}) \n";
 		++$linesOutput;
-				
+		
 		if (($linesOutput % $NUMCALLSPERFUNCTION) == 0)
 		{
 			++$luaFunctionCount;
-			$output .= "end\nfunction uespminetest$luaFunctionCount()\n";					
+			$output .= "end\nfunction uespminetest$luaFunctionCount()\n";
 		}
 		
 		file_put_contents("fixitems.lua", $output, FILE_APPEND);
 	}
 	
 	$diffLinesOutput = $linesOutput - $prelinesOutput; 
-	if ($diffLinesOutput > 0) print("\t$itemId: found $diffLinesOutput bad records!\n");	
+	if ($diffLinesOutput > 0) print("\t$itemId: found $diffLinesOutput bad records!\n");
 }
 
 $output = "end\n";
 file_put_contents("fixitems.lua", $output, FILE_APPEND);
 
 
-				

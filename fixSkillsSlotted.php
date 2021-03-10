@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "29pts";
+$TABLE_SUFFIX = "29";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -289,7 +289,7 @@ $ESO_EXACT_SKILL_VALUES = array(
 
 $ESO_EXACT_SKILL_VALUES_OVERWRITE = array(
 		
-		45533 => 362.4,		// Heavy Armor: Resolve
+		//45533 => 362.4,		// Heavy Armor: Resolve
 );
 
 

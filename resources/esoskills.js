@@ -699,6 +699,8 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	var matchResults = coefDesc.match(matchRegex);
 	var damageType = "base";
 	var isDot = false;
+	var isHealing = false;
+	var isAOE = false;
 	var skillLine = skillData['skillLine'].toLowerCase();
 	var skillBaseName = skillData['baseName'].toLowerCase();
 	var skillWeaponValues = null;
@@ -716,6 +718,14 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	if (matchResults != null && matchResults[2] != null && matchResults[2] != "") isDot = true;
 	
 	if (IsEsoSkillParameterDot(skillData, valueIndex)) isDot = true;
+	
+	var aoeMatchRegex = new RegExp("\\|c[a-fA-F0-9]{6}\\$" + valueIndex + "\\|r [A-Za-z]+ Damage( to enemies| to nearby enemies)", "i");
+	var aoeMatchResults = coefDesc.match(aoeMatchRegex);
+	if (skillData['radius'] > 0 || skillData['angleDistance'] > 0 || (aoeMatchResults != null && aoeMatchResults[1] != null)) isAOE = true;
+	
+	var healingMatchRegex = new RegExp("\\|c[a-fA-F0-9]{6}\\$" + valueIndex + "\\|r(?:%|) Health", "i");
+	var healingMatchResults = coefDesc.match(healingMatchRegex);
+	if (healingMatchResults != null) isHealing = true;
 	
 	//EsoSkillLog("ComputeEsoSkillValue", skillData.name, valueIndex, damageType, isDot, values.useMaelstromDamage);
 	
@@ -752,6 +762,22 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		skillSpellValues  = skillSpellValues['Maelstrom'];
 		SpellDamageType.push("Maelstrom");
 		WeaponDamageType.push("Maelstrom");
+	}
+	
+	if (isHealing && skillWeaponValues != null && skillSpellValues != null) 
+	{
+		skillWeaponValues = skillWeaponValues['Healing'];
+		skillSpellValues  = skillSpellValues['Healing'];
+		SpellDamageType.push("Healing");
+		WeaponDamageType.push("Healing");
+	}
+	
+	if (isAOE && skillWeaponValues != null && skillSpellValues != null) 
+	{
+		skillWeaponValues = skillWeaponValues['AOE'];
+		skillSpellValues  = skillSpellValues['AOE'];
+		SpellDamageType.push("AOE");
+		WeaponDamageType.push("AOE");
 	}
 	
 	if (skillWeaponValues != null) 
@@ -1344,6 +1370,11 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		match: /(you and allies are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health)/gi,
+	},
+	{
+		healId: "Done",
+		isDOT: true,
 		match: /(healing you or up to \|c[a-fA-F0-9]{6}[0-9]+\|r nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r over)/gi,
 	},
 	{
@@ -1368,7 +1399,13 @@ ESO_SKILL_HEALINGMATCHES =
 		match: /(restoring \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
 	},
 	{
+		display: "%",
 		healId: "Done",
+		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
+	},
+	{
+		healId: "Done",
+		isDOT: true,
 		match: /(healing you and nearby allies for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
@@ -1473,6 +1510,7 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		isDOT: true,
 		match: /(Heavy Attacks heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
@@ -1504,6 +1542,14 @@ ESO_SKILL_HEALINGMATCHES =
 		healId: "Done",
 		healId2: "Received",  // TODO: ?
 		match: /(heals you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage done)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r and the clannfear)/gi,
+	},
+	{
+		healId: "Done",
+		match: /(and the clannfear for \|c[a-fA-F0-9]{6})([0-9]+)(\|r\.)/gi,
 	},
 	{
 		healId: "Done",
@@ -1657,6 +1703,11 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		isDOT : true,
+		match: /(heal you and your allies in the area for \|c[a-fA-F0-9]{6})([0-9]+)(\|r Health over)/gi,
+	},
+	{
+		healId: "Done",
 		healId2: "Received",
 		match: /(you heal yourself for \|c[a-fA-F0-9]{6})([0-9]+)(\|r and)/gi,
 	},
@@ -1742,7 +1793,7 @@ ESO_SKILL_HEALINGMATCHES =
 		display: "%",
 		healId: "Done",
 		healId2: "Received",
-		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% f your missing Health)/gi,
+		match: /(healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of your missing Health)/gi,
 	},
 	{
 		healId: "Done",
@@ -1782,6 +1833,7 @@ ESO_SKILL_HEALINGMATCHES =
 	{
 		display: "%",
 		healId: "Done",
+		isDOT: true,
 		match: /(to heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
@@ -1823,6 +1875,7 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		isDOT: true,
 		match: /(are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
 	{
@@ -1831,9 +1884,19 @@ ESO_SKILL_HEALINGMATCHES =
 	},
 	{
 		healId: "Done",
+		isDOT: true,
 		match: /(and healing you for \|c[a-fA-F0-9]{6})([0-9]+)(\|r every)/gi,
 	},
-	
+	{
+		display: "%",
+		healId: "Done",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the total Health cost you spent)/gi,
+	},
+	{
+		display: "%",
+		healId: "Done",
+		match: /(you heal for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the total Health cost you spent)/gi,
+	},
 	{		//TODO: Check
 		healId: "Done",
 		match: /(you are healed for \|c[a-fA-F0-9]{6})([0-9]+)(\|r% of the damage)/gi,
@@ -1842,26 +1905,266 @@ ESO_SKILL_HEALINGMATCHES =
 ];
 
 
+ESO_SKILL_HEALINGOVERRIDES =
+{
+		"Cauterize" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Dragon Blood" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Coagulating Blood" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Inhale" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Bitter Harvest" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Restoring Tether" : {
+			isAOE : true,
+			isDOT : true,
+		},
+		"Grim Focus" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Soul Siphon" : {
+			1 : {
+				isAOE : true,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : true,
+				isDOT : true,
+			},
+		},
+		"Soul Tether" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Funnel Health" : {
+			isAOE : true,
+			isDOT : true,
+		},
+		"Sap Essence" : {
+			isAOE : true,
+			isDOT : true,
+		},
+		"Surge" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Puncturing Sweep" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Purifying Light" : {
+			isAOE : true,
+			isDOT : true,
+		},
+		"Living Dark" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Ritual of Rebirth" : {
+			1 : {
+				isAOE : true,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : false,
+				isDOT : false,
+			},
+		},
+		"Cleansing Ritual" : {
+			1 : {
+				isAOE : true,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : false,
+				isDOT : false,
+			},
+		},
+		"Secluded Grove" : {
+			1 : {
+				isAOE : false,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : true,
+				isDOT : true,
+			},
+		},
+		"Healing Seed" : {
+			1 : {
+				isAOE : true,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : false,
+				isDOT : true,
+			},
+		},
+		"Budding Seeds" : {
+			1 : {
+				isAOE : true,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : true,
+				isDOT : true,
+			},
+			3 : {
+				isAOE : false,
+				isDOT : true,
+			},
+		},
+		"Living Vines" : {
+			1 : {
+				isAOE : false,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : false,
+				isDOT : false,
+			},
+		},
+		"Lotus Flower" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Artic Wind" : {
+			1 : {
+				isAOE : false,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : false,
+				isDOT : true,
+			},
+			3 : {
+				isAOE : false,
+				isDOT : false,
+			},
+		},
+		"Lacerate" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Panacea" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Grand Healing" : {
+			1 : {
+				isAOE : true,
+				isDOT : false,
+			},
+			2 : {
+				isAOE : true,
+				isDOT : true,
+			},
+		},
+		"Regeneration" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Radiating Regeneration" : {
+			isAOE : true,
+			isDOT : true,
+		},
+		"Blessing of Protection" : {
+			isAOE : true,
+			isDOT : false,
+		},
+		"Healing Ward" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Force Siphon" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Blood Scion" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Meditate" : {
+			isAOE : false,
+			isDOT : true,
+		},
+		"Blood Altar" : {
+			isAOE : false,
+			isDOT : false,
+		},
+		"Energy Orb" : {
+			1 : {
+				isAOE : true,
+				isDOT : true,
+			},
+			2 : {
+				isAOE : true,
+				isDOT : false,
+			},
+		},
+		"Burning Embers" : {
+			isAOE : false,
+			isDOT : false,
+		},
+};
+
+
 window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
-	var isAoE = false;
+	var isAOE = false;
+	var isDOT = false;
 	
 	if (inputValues == null) return newDesc;
 	if (inputValues.Healing == null) return newDesc;
 	
-	if ((skillData.target == "Ground" || skillData.target == "Area") && skillData.radius > 0) isAoE = true;
-	
 	var rawOutput = [];
 	var newRawOutput = {};
+	var matchCount = 0;
 	
 	for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
 	{
 		var matchData = ESO_SKILL_HEALINGMATCHES[i];
 		var healingFactor = 1;
+		var overrideData = ESO_SKILL_HEALINGOVERRIDES[skillData['name']];
+		if (overrideData == null) overrideData = ESO_SKILL_HEALINGOVERRIDES[skillData['baseName']];
+		
+		isAOE = false;
+		if ((skillData.target == "Ground" || skillData.target == "Area") && skillData.radius > 0) isAOE = true;
+		if (matchData.isAOE != null) isAOE = matchData.isAOE;
+		
+		isDOT = false;
+		if (skillData.duration > 0) isDOT = true;
+		if (matchData.isDOT != null) isDOT = matchData.isDOT;
+		
+		if (overrideData != null)
+		{
+			if (overrideData[matchCount + 1] != null)
+			{
+				overrideData = overrideData[matchCount + 1];
+			}
+			
+			if (overrideData.isDOT != null) isDOT = overrideData.isDOT;
+			if (overrideData.isAOE != null) isAOE = overrideData.isAOE;
+		}
 		
 		newDesc = newDesc.replace(matchData.match, function(match, p1, p2, p3, offset, string)
 		{
+			++matchCount;
+		
 			if (inputValues.Healing[matchData.healId] == null) return string;
 			
 			var modHealing = parseFloat(p2);
@@ -1873,11 +2176,21 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 			
 			healingFactor += inputValues.Healing[matchData.healId];
 			
-			if (isAoE && inputValues.Healing.AOE != null && inputValues.Healing.AOE != 0)
+			if (isAOE && inputValues.Healing.AOE != null && inputValues.Healing.AOE != 0)
 			{
 				newRawOutput.aoeHeal = inputValues.Healing.AOE;
-				
 				healingFactor += inputValues.Healing.AOE;
+			}
+			else if (!isAOE && inputValues.Healing.SingleTarget != null && inputValues.Healing.SingleTarget != 0)
+			{
+				newRawOutput.singleTargetHeal = inputValues.Healing.SingleTarget;
+				healingFactor += inputValues.Healing.SingleTarget;
+			}
+			
+			if (isDOT && inputValues.Healing.DOT != null && inputValues.Healing.DOT != 0)
+			{
+				newRawOutput.dotHeal = inputValues.Healing.DOT;
+				healingFactor += inputValues.Healing.DOT;
 			}
 			
 			var skillHealing = inputValues.SkillHealing[skillData.skillLine];
@@ -1909,7 +2222,9 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 		if (newRawOutput.display == "%") percent = "%";
 				
 		if (rawData.healDone != null && rawData.healDone != 0) output += " + " + RoundEsoSkillPercent(rawData.healDone*100) + "% " + rawData.healId;
+		if (rawData.dotHeal  != null && rawData.dotHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotHeal*100) + "% DOT";
 		if (rawData.aoeHeal  != null && rawData.aoeHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeHeal*100) + "% AOE";
+		if (rawData.singleTargetHeal  != null && rawData.singleTargetHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetHeal*100) + "% SingleTarget";
 		if (rawData.skillHealingDone != null && rawData.skillHealingDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillHealingDone*100) + "% SkillLine";
 		//TODO: healId2?
 		
@@ -1944,6 +2259,7 @@ ESO_SKILL_HEALINGREDUCTIONMATCHES =
 			match: /(reducing your healing received and Health Recovery by \|c[a-fA-F0-9]{6})([0-9]+)(\|r%)/gi,
 		},
 ];
+
 
 window.UpdateEsoSkillHealingReductionDescription = function (skillData, skillDesc, inputValues)
 {
@@ -2070,7 +2386,9 @@ ESO_SKILL_TARGETYPE_OVERRIDES =
 		35750 : false,	// Trap Beast
 		103483 : false,	// Imbue Weapon
 		85986 : { 3 : false, 4 : false },	// Trapping Webs
-		103483 : { 1: false }, // Imbue Weapon		
+		103483 : { 1: false }, // Imbue Weapon
+		
+		85982 : { 1 : false, 2 : true, 3 : false },	// Feral Guardian
 		
 			// Passives
 		"Heavy Weapons" : false,		// Heavy Weapons
@@ -2421,6 +2739,10 @@ ESO_SKILL_BLEEDMATCHES =
 		/(bleed for an additional \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
 		/(bleed enemies for \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
 		/(bleed for \|c[a-fA-F0-9]{6})([^|]*)(\|r Physical Damage)/,
+		/(bleed dealing \|c[a-fA-F0-9]{6})([^|]*)(\|r Bleed Damage)/,
+		/(bleed for an additional \|c[a-fA-F0-9]{6})([^|]*)(\|r Bleed Damage)/,
+		/(bleed enemies for \|c[a-fA-F0-9]{6})([^|]*)(\|r Bleed Damage)/,
+		/(bleed for \|c[a-fA-F0-9]{6})([^|]*)(\|r Bleed Damage)/,
 ];
 
 
@@ -2626,6 +2948,21 @@ window.CreateEsoSkillLineId = function (skillLine)
 }
 
 
+
+window.g_EsoSkill_DamageShieldSkills = {
+		"Hardened Armor" : 1,
+		"Obsidian Shield" : 1,
+		"Conjured Ward" : 1,
+		"Sun Shield" : 1,
+		"Annulment" : 1,
+		"Brawler" : 1,
+		"Defensive Posture" : 1,
+		"Shield Assault" : 1,
+		"Steadfast Ward" : 1,
+		"Bone Shield" : 1,
+};
+
+
 window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 {
 	if (skillData == null) return cost;
@@ -2751,6 +3088,14 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		SkillFactor *= 1 + SkillLineFactor;
 		
 		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
+	}
+	
+	if ((g_EsoSkill_DamageShieldSkills[skillData['name']] != null || g_EsoSkill_DamageShieldSkills[skillData['baseName']] != null) && inputValues.DamageShieldCost != null && inputValues.DamageShieldCost != 1)
+	{
+		var DSFactor = parseFloat(inputValues.DamageShieldCost);
+		SkillFactor *= DSFactor;
+		
+		output += " + " + Math.round((inputValues.DamageShieldCost - 1)*1000)/10 + "% DamageShieldCost";
 	}
 	
 	cost = Math.ceil((cost * CPFactor + FlatCost) * SkillFactor);
@@ -3478,10 +3823,15 @@ window.HighlightEsoSkill = function (id)
 	UpdateSkillLink();
 	
 	var abilityBlock = $(".esovsAbilityBlock[skillid='" + id + "']");
+	var abilityParent = abilityBlock.parent(".esovsAbilityBlockList");
+	
+	//$(".esovsSearchHighlight").removeClass("esovsSearchHighlight").parent(".esovsAbilityBlockList").slideUp();
+	$(".esovsSearchHighlight").removeClass("esovsSearchHighlight");
 	
 	if (!abilityBlock.is(':visible'))
 	{
-		abilityBlock.parent(".esovsAbilityBlockList").slideDown();
+		$(".esovsAbilityBlockList:visible").slideUp();
+		abilityParent.slideDown();
 	}
 	
 	abilityBlock.addClass("esovsSearchHighlight");
@@ -4215,7 +4565,7 @@ window.OnSkillBarRevertDraggable = function (droppableObj)
 	if (sourceAbilityId <= 0) return false;
 	
 	RemoveSkillBarAbility(sourceAbilityId, skillBar );
-	UpdateEsoSkillBarData();		
+	UpdateEsoSkillBarData();
 	
 	return false;
 }

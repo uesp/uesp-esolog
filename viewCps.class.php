@@ -18,14 +18,19 @@ class CEsoViewCP
 	
 	public $POSITION_FACTORX_V2 = 0.5;
 	public $POSITION_FACTORY_V2 = -0.5;
-	public $POSITION_OFFSETX_V2 = 850.0;
+	public $GLOBAL_SCALE = 1.0;
+	public $POSITION_OFFSETX_V2 = 870.0;
 	public $POSITION_OFFSETY_V2 = -750.0;
+	public $POSITION_LINE_OFFSETX = 35;
+	public $POSITION_LINE_OFFSETY = 12;
+	public $SVG_WIDTH = 1000;
+	public $SVG_HEIGHT = 600;
 	
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResourceUrl = "";
 	
-	public $showFlatV2 = true;
+	public $showFlatV2 = false;
 	public $useVersion2 = false;
 	public $autoUseVersion2 = true;
 	public $htmlTemplate = "";
@@ -38,6 +43,8 @@ class CEsoViewCP
 	public $cpDataArray = array();
 	public $hasPackedCpData = false;
 	public $selectedDiscId = "the_lord";
+	public $shortDiscWidth = "210px";
+	public $isDataLoaded = false;
 	
 	public $version = "";
 	
@@ -48,7 +55,11 @@ class CEsoViewCP
 	public $cpSkillDesc = array();
 	public $cpTotalPoints = array(0, 0, 0, 0);
 	public $cpClusters = array();
+	public $cpSkillsIdMap = array();
 	public $cpLinks = array();
+	public $cpLinksData = array();
+	public $cpReverseLinksData = array();
+	public $cpSkillIsPurchaseable = array();
 	
 	public $shortDiscDisplay = false;
 	public $hideTopBar = false;
@@ -95,13 +106,24 @@ class CEsoViewCP
 	}
 	
 	
-	private function LoadCpData()
+	private function EscapeHtml($string)
 	{
+		return htmlspecialchars ($string);
+	}
+	
+	
+	public function LoadCpData()
+	{
+		if ($this->useVersion2) return $this->LoadCp2Data();
+		if ($this->isDataLoaded) return true;
+		
 		$result = true;
 		
 		$result &= $this->LoadCpDisciplines();
 		$result &= $this->LoadCpSkills();
 		$result &= $this->LoadCpSkillDescriptions();
+		
+		$this->isDataLoaded = true;
 		
 		return $result;
 	}
@@ -109,6 +131,8 @@ class CEsoViewCP
 	
 	private function LoadCp2Data()
 	{
+		if ($this->isDataLoaded) return true;
+		
 		$result = true;
 		
 		$result &= $this->LoadCp2Disciplines();
@@ -117,7 +141,160 @@ class CEsoViewCP
 		$result &= $this->LoadCp2Skills();
 		$result &= $this->LoadCp2SkillDescriptions();
 		
+		$this->CreateCp2LinksData();
+		$this->CreateCp2UnlockData();
+		
+		$this->isDataLoaded = true;
+		
 		return $result;
+	}
+	
+	
+	private function CreateCp2LinksData()
+	{
+		$this->cpLinksData = array();
+		$this->cpReverseLinksData = array();
+		
+		foreach ($this->cpLinks as $link)
+		{
+			$parentId = $link['parentSkillId'];
+			$skillId  = $link['skillId'];
+			
+			$abilityId1 = $this->cpSkillsIdMap[$parentId];
+			$abilityId2 = $this->cpSkillsIdMap[$skillId];
+			if ($abilityId1 == null || $abilityId2 == null) { error_log("CreateCp2LinksData: Null ability ID!"); continue; }
+			
+			$skill1 = $this->cpSkills[$abilityId1];
+			$skill2 = $this->cpSkills[$abilityId2];
+			if ($skill1 == null || $skill2 == null) { error_log("CreateCp2LinksData: Null skill data!"); continue; }
+			
+			if ($this->cpLinksData[$abilityId1] == null) $this->cpLinksData[$abilityId1] = array();
+			$this->cpLinksData[$abilityId1][] = $abilityId2;
+			
+			if ($this->cpReverseLinksData[$abilityId2] == null) $this->cpReverseLinksData[$abilityId2] = array();
+			$this->cpReverseLinksData[$abilityId2][] = $abilityId1;
+		}
+		
+	}
+	
+	
+	private function UpdateCP2SkillPurchaseableChildren($abilityId)
+	{
+		if ($this->skillVisited[$abilityId]) return;
+		
+		$this->skillVisited[$abilityId] = true;
+		$this->skillPurchaseTemp[$abilityId] = 1;
+		
+		$links = $this->cpLinksData[$abilityId];
+		if ($links == null) return;
+		
+		$skillData = $this->cpSkills[$abilityId];
+		$skillValue = $this->GetInitialSkillValue($skillData);
+		$jumpPointDelta = $skillData['jumpPointDelta'];
+		
+		if ($skillValue < $jumpPointDelta) return;
+		
+		foreach ($links as $linkId)
+		{
+			$this->UpdateCP2SkillPurchaseableChildren($linkId);
+		}
+	}
+	
+	
+	private function CreateCp2UnlockData()
+	{
+		$this->skillVisited = array();
+		$this->skillPurchaseTemp = array();
+		
+		foreach ($this->cpSkills as $abilityId => $skillData) 
+		{
+			$this->cpSkillIsPurchaseable[$abilityId] = false;
+			
+			if ($skillData['isRoot'] > 0)
+			{
+				$this->skillVisited = array();
+				$this->UpdateCP2SkillPurchaseableChildren($abilityId);
+				continue;
+			}
+		}
+		
+		foreach ($this->skillPurchaseTemp as $abilityId => $tempPurchase)
+		{
+			$this->cpSkillIsPurchaseable[$abilityId] = true;
+		}
+	}
+	
+	
+	private function CreateCp2UnlockData_Old()
+	{
+		$this->cpSkillIsPurchaseable = array();
+		$cpSkillVisited = array();
+		$cpSkillsToVisit = array();
+		$loopCount = 0;
+		
+		foreach ($this->cpSkills as $abilityId => $skillData)
+		{
+			$skillData = $this->cpSkills[$abilityId];
+			
+			if ($skillData['isRoot'] > 0) 
+			{
+				$cpSkillVisited[$abilityId] = true;
+				$this->cpSkillIsPurchaseable[$abilityId] = true;
+				continue;
+			}
+			
+			$cpSkillsToVisit[] = $abilityId;
+		}
+		
+		while (count($cpSkillsToVisit) > 0 && $loopCount < 1000)
+		{
+			$abilityId = array_shift($cpSkillsToVisit);
+			$skillData = $this->cpSkills[$abilityId];
+			++$loopCount;
+			
+			$jumpPointDelta = $skillData['jumpPointDelta'];
+			$childSkills = $this->cpLinksData[$abilityId];
+			$parentSkills = $this->cpReverseLinksData[$abilityId];
+			
+			if ($parentSkills == null)
+			{
+				$this->cpSkillIsPurchaseable[$abilityId] = true;
+				$cpSkillVisited[$abilityId] = true;
+				continue;
+			}
+			
+			$hasParentVisited = false;
+			$hasAllParentVisited = true;
+			$hasParentUnlocked = false;
+			
+			foreach ($parentSkills as $parentSkill)
+			{
+				if (!$cpSkillVisited[$parentSkill]) 
+				{
+					$hasAllParentVisited = false;
+					continue;
+				}
+				
+				$hasParentVisited = true;
+				
+				if ($this->cpSkillIsPurchaseable[$parentSkill]) 
+				{
+					$parentSkillData = $this->cpSkills[$parentSkill];
+					$parentValue = $this->GetInitialSkillValue($parentSkillData);
+					if ($parentValue >= $parentSkillData['jumpPointDelta'])	$hasParentUnlocked = true;
+				}
+			}
+			
+			if (!$hasParentUnlocked && !$hasAllParentVisited)
+			{
+				$cpSkillsToVisit[] = $abilityId;
+				continue;
+			}
+			
+			$this->cpSkillIsPurchaseable[$abilityId] = $hasParentUnlocked;
+			$cpSkillVisited[$abilityId] = true;
+		}
+		
 	}
 	
 	
@@ -207,6 +384,7 @@ class CEsoViewCP
 		
 		$this->cpAbilityIds = array();
 		$this->cpSkills = array();
+		$this->cpSkillsIdMap = array();
 		
 		while (($row = $result->fetch_assoc()))
 		{
@@ -230,7 +408,9 @@ class CEsoViewCP
 			$this->cpData[$index]['skills'][$abilityId] = $row;
 			$this->cpData[$index]['skills'][$abilityId]['descriptions'] = array();
 			$this->cpSkills[$abilityId] = $row;
-			$this->cpSkills[$skillId] = $row;
+			
+			//$this->cpSkills[$skillId] = $row;
+			$this->cpSkillsIdMap[$skillId] = $abilityId;
 		}
 		
 		foreach ($this->cpData as $discIndex => &$cpData)
@@ -395,10 +575,16 @@ class CEsoViewCP
 			if ($forcev2 != 0) $this->useVersion2 = true;
 		}
 		
-		if (array_key_exists('forcev2', $this->inputParams))
+		if (array_key_exists('forceflat', $this->inputParams))
 		{
 			$showFlat = intval($this->inputParams['forceflat']);
 			if ($showFlat != 0) $this->showFlatV2 = true;
+		}
+		
+		if (array_key_exists('forcestar', $this->inputParams))
+		{
+			$showStar = intval($this->inputParams['forcestar']);
+			if ($showStar != 0) $this->showFlatV2 = false;
 		}
 		
 		if ($this->useVersion2) $this->selectedDiscId = "fitness";
@@ -474,6 +660,7 @@ class CEsoViewCP
 	
 	public function FormatDescriptionHtml($description)
 	{
+		$description = $this->EscapeHtml($description);
 		$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z\$ \-0-9\.%]+)\|r#s", "<div class='esovcpDescWhite'>$2</div>", $description);
 		return $output;
 	}
@@ -488,9 +675,9 @@ class CEsoViewCP
 		
 		foreach ($this->cpData as &$discipline)
 		{
-			$name = $discipline['name'];
+			$name = $this->EscapeHtml($discipline['name']);
 			$index = $discipline['disciplineIndex'];
-			$attr = $discipline['attribute'];
+			$attr = $this->EscapeHtml($discipline['attribute']);
 			$id = str_replace(" ", "_", strtolower($name));
 			
 			$display = "none";
@@ -534,7 +721,9 @@ class CEsoViewCP
 			
 			foreach ($skillIds as $skillId) 
 			{
-				$skillsData[$skillId] = $this->cpSkills[$skillId];
+				$abilityId = $this->cpSkillsIdMap[$skillId];
+				if ($abilityId == null) continue;
+				$skillsData[$skillId] = $this->cpSkills[$abilityId];
 			}
 			
 			uasort($skillsData, ['CEsoViewCP', 'sortSkillsName']);
@@ -545,11 +734,57 @@ class CEsoViewCP
 	}
 	
 	
+	public function GetCp2SvgBlock($discipline, $skillsData, $isCluster)
+	{
+		$name = $this->EscapeHtml($discipline['name']);
+		$index = $discipline['disciplineIndex'];
+		$discId = str_replace(" ", "_", strtolower($name));
+		
+		$output = "";
+		
+		$width  = $this->SVG_WIDTH * $this->GLOBAL_SCALE;
+		$height = $this->SVG_HEIGHT * $this->GLOBAL_SCALE;
+		
+		$output .= "<svg id='esovcp2StarSvg_$discId' class='esovcp2StarSvg' viewBox='0 0 $width $height' xmlns='http://www.w3.org/2000/svg'>";
+		
+		foreach ($skillsData as $skill)
+		{
+			if (!$isCluster && $skill['parentSkillId'] > 0) continue;
+			
+			$id = $skill['abilityId'];
+			$links = $this->cpLinksData[$id];
+			if ($links == null) continue;
+			
+			foreach ($links as $linkId)
+			{
+				$linkSkill = $this->cpSkills[$linkId];
+				if ($linkSkill == null) continue;
+				
+				if ($isCluster && $linkSkill['parentSkillId'] <= 0) continue;
+				
+				$x1 = intval($skill['x']     + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETX;
+				$y1 = intval($skill['y']     + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETY;
+				$x2 = intval($linkSkill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETX;
+				$y2 = intval($linkSkill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETY;
+				//$x1 = intval($skill['x']     + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 + $this->POSITION_LINE_OFFSETX;
+				//$y1 = intval($skill['y']     + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 + $this->POSITION_LINE_OFFSETY;
+				//$x2 = intval($linkSkill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 + $this->POSITION_LINE_OFFSETX;
+				//$y2 = intval($linkSkill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 + $this->POSITION_LINE_OFFSETY;
+				
+				$output .= "<line x1='$x1' y1='$y1' x2='$x2' y2='$y2' stroke='#999999' />";
+			}
+		}
+		
+		$output .= "</svg>";
+		return $output;
+	}
+	
+	
 	public function GetCp2SkillBlockHtml($discipline, $skillsData, $showEdit, $extraClass, $isCluster)
 	{
 		$output = "";
 		
-		$name = $discipline['name'];
+		$name = $this->EscapeHtml($discipline['name']);
 		$index = $discipline['disciplineIndex'];
 		$id = str_replace(" ", "_", strtolower($name));
 		
@@ -558,26 +793,41 @@ class CEsoViewCP
 		
 		$totalPoints  = $this->GetInitialDisciplinePointsV2($index, true);
 		
-		if (!$this->showFlatV2) $extraClass .= " esovcp2SkillsStar";
+		if (!$this->showFlatV2) 
+		{
+			$extraClass .= " esovcp2SkillsStar";
+			//$extraClass .= " esovcp2SkillsStar_" . $id;
+		}
+		
+		if ($isCluster) $extraClass .= " esovcp2SkillsCluster";
 		
 		$output .= "<div id='skills_$id' disciplineid='$id' disciplineindex='$index' class='esovcpDiscSkills $extraClass' initialpoints='$totalPoints' style='display: $display;'>";
+		
+		if (!$this->showFlatV2)
+		{
+			//$output .= "<canvas class='esovcp2StarCanvas' id='canvas_$id'></canvas>";
+			$output .= $this->GetCp2SvgBlock($discipline, $skillsData, $isCluster);
+		}
+		
 		$output .= "<div class='esovcpDiscSkillTitle  esovpcDiscTitle'>$name</div>";
 		$output .= "<div class='esovcpDiscTitlePoints  esovpcDiscTitle'>$totalPoints</div>";
-		$output .= "<button class='esotvcpResetDisc' $showEdit>Reset Discipline</button>";
+		$output .= "<button class='esotvcpResetDisc esotvcpResetDisc2' $showEdit>Reset Discipline</button>";
 		
 		foreach ($skillsData as $skill)
 		{
-			if (!$isCluster && $skill['parentSkillId'] > 0) continue;
+			if (!$isCluster && $skill['parentSkillId'] > 0) 
+			{
+				if ($skill['isClusterRoot'] == 0) continue;
+			}
 			
 			if ($this->showFlatV2) {
 				$output .= $this->GetCpSkillSectionHtml($skill, "");
 			}
 			else {
-				$output .= $this->GetCp2SkillSectionHtml($skill, "");
+				$output .= $this->GetCp2SkillSectionHtml($skill, "", $isCluster);
 			}
 		}
 		
-		//$output .= "<button class='esotvcpResetDisc' $showEdit>Reset Discipline</button>";
 		$output .= "</div>";
 		
 		return $output;
@@ -779,13 +1029,14 @@ class CEsoViewCP
 	
 	public function GetCpSkillSectionHtml($skill, $extraClass = "")
 	{
-		$name = $skill['name'];
+		$name = $this->EscapeHtml($skill['name']);
 		$id = $skill['abilityId'];
 		$unlockLevel = $skill['unlockLevel'];
 		$disciplineIndex = $skill['disciplineIndex'];
 		$skillIndex = $skill['skillIndex'];
 		$desc = $this->FormatDescriptionHtml($skill['minDescription']);
 		$isUnlocked = 0;
+		$isPurchaseable = 1;
 		$maxPoints = $skill['maxPoints'];
 		$skillType = $skill['skillType'];
 		$numJumpPoints = $skill['numJumpPoints'];
@@ -808,10 +1059,22 @@ class CEsoViewCP
 		{
 			$unlockLevel = $jumpPointDelta;
 			$isUnlocked = 0;
-			if ($initialValue > $unlockLevel) $isUnlocked = 1; 
+			if ($initialValue > $unlockLevel) $isUnlocked = 1;
+			if ($skillType >= 1 && $isUnlocked > 0 && !$this->GetInitialEquippedValue($skill)) $isUnlocked = 0; 
+			
+			$isPurchaseable = $this->cpSkillIsPurchaseable[$id];
+			if (!$isPurchaseable) $extraClass .= " esovcpNotPurchaseable"; 
 		}
 		
-		$output = "<div id='skill_$id' skillid='$id' unlocklevel='$unlockLevel' unlocked='$isUnlocked' skilltype='$skillType' class='esovcpSkill $extraClass'>";
+		if ($skillType <= 0)
+			$extraClass .= " esovcpPassive";
+		else
+			$extraClass .= " esovcpEquippable";
+		
+		$isRoot = "0";
+		if ($skill['isRoot'] > 0) $isRoot = "1";
+		
+		$output = "<div id='skill_$id' skillid='$id' unlocklevel='$unlockLevel' unlocked='$isUnlocked' isroot='$isRoot' skilltype='$skillType' class='esovcpSkill $extraClass'>";
 		
 		if ($unlockLevel > 0 && !$this->useVersion2)
 		{
@@ -822,8 +1085,8 @@ class CEsoViewCP
 			if ($initialValue < 0) $initialValue = 0;
 			if ($initialValue > $maxPoints) $initialValue = $maxPoints;
 				
-			$rawDesc = $skill['descriptions'][$initialValue]['description'];
-			if ($rawDesc != null && $rawDesc != "") $desc = $this->FormatDescriptionHtml($rawDesc);
+			//$rawDesc = $skill['descriptions'][$initialValue]['description'];
+			$desc = $this->cpSkillDesc[$id][$initialValue];
 			
 			if ($this->useVersion2) 
 			{
@@ -841,7 +1104,7 @@ class CEsoViewCP
 			}
 			
 			$output .= "<button skillid='$id' class='esovcpMinusButton' $showEdit>-</button>";
-			$output .= "<input skillid='$id' class='esovcpPointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3' maxpoints='$maxPoints' $inputReadOnly>";
+			$output .= "<input id='cpinput_$id' skillid='$id' class='esovcpPointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3' jumpdelta='$jumpPointDelta' maxpoints='$maxPoints' $inputReadOnly>";
 			$output .= "<button skillid='$id' class='esovcpPlusButton' $showEdit>+</button>";
 			$output .= "</div>";
 		}
@@ -851,6 +1114,8 @@ class CEsoViewCP
 		
 		if ($this->useVersion2) 
 		{
+			$output .= "<div class='esovcpSkillSuffix'>";
+			
 			$equippable = "";
 			if ($skillType > 0) $equippable = ", Equip to Activate";
 			
@@ -858,6 +1123,9 @@ class CEsoViewCP
 				$output .= "<div class='esovcpSkillMaxPoints'>$maxPoints pts, $numJumpPoints stages, $jumpPointDelta pts/stage$equippable</div> ";
 			else
 				$output .= "<div class='esovcpSkillMaxPoints'>$maxPoints pts$equippable</div> ";
+			
+			$output .= $this->GetCp2SkillChildLinks($skill);
+			$output .= "</div>";
 		}
 		
 		$output .= "</div>";
@@ -866,9 +1134,35 @@ class CEsoViewCP
 	}
 	
 	
-	public function GetCp2SkillSectionHtml($skill, $extraClass = "") 
+	public function GetCp2SkillChildLinks($skill)
 	{
-		$name = $skill['name'];
+		$id = $skill['abilityId'];
+		$childSkills = $this->cpLinksData[$id];
+		if ($childSkills == null) return "";
+			
+		$output = "<div class='esovcpSkillChildren'>Links To: ";
+		$childCount = 0;
+		
+		foreach ($childSkills as $childSkillId)
+		{
+			$childSkill = $this->cpSkills[$childSkillId];
+			if ($childSkill == null) continue;
+			
+			if ($childCount > 0) $output .= ", ";
+			$name = $this->EscapeHtml($childSkill['name']);
+			$output .= "<div class='esovcpSkillChildLink' skillid='$childSkillId'>$name</div>";
+			
+			++$childCount;
+		}
+		
+		$output .= "</div>";
+		return $output;
+	}
+	
+	
+	public function GetCp2SkillSectionHtml($skill, $extraClass = "", $isCluster = false) 
+	{
+		$name = $this->EscapeHtml($skill['name']);
 		$id = $skill['abilityId'];
 		$disciplineIndex = $skill['disciplineIndex'];
 		$skillIndex = $skill['skillIndex'];
@@ -885,47 +1179,99 @@ class CEsoViewCP
 		$inputReadOnly = "";
 		$showPoints = "";
 		
+		$isUnlocked = 0;
+		$initialValue = $this->GetInitialSkillValue($skill);
+		if ($initialValue < 0) $initialValue = 0;
+		if ($initialValue > $maxPoints) $initialValue = $maxPoints;
+		if ($initialValue >= $unlockLevel) $isUnlocked = 1;
+		
+		//$rawDesc = $skill['descriptions'][$initialValue]['description'];
+		$desc = $this->cpSkillDesc[$id][$initialValue];
+		if ($desc == null || $desc == "") $desc = $this->FormatDescriptionHtml($skill['minDescription']);
+		
 		if (!$this->showEdit) 
 		{
 			$inputReadOnly = " readonly = 'readonly' ";
 			$showEdit = " style='display: none;' ";
 		}
 		
-		if ($parentSkillId > 0) 
+		if ($parentSkillId > 0)
 		{
-			if ($skill['isClusterRoot'] == 0) return "";
+			//if ($skill['isClusterRoot'] == 0) return "";
 			if ($this->showFlatV2) return "";
 			
 			$clusterRoot = $this->cpClusters[$skill['skillId']];
 			
-			if ($clusterRoot != null) 
+			if ($clusterRoot != null && !$isCluster)
 			{
 				$name = $clusterRoot['name'];
 				$skillType = -10;
 				$showEdit = " style='display: none;' ";
-				$inputReadOnly = " readonly = 'readonly' ";
+				$inputReadOnly = " readonly='readonly' ";
 				$showPoints = " iscluster='1' ";
 			}
 		}
 		
-		$left = intval($skill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2;
-		$top = intval($skill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2;
+		$isPurchaseable = $this->cpSkillIsPurchaseable[$id];
+		if (!$isPurchaseable) $extraClass .= " esovcpNotPurchaseable";
 		
-		$imageSrc = 'resources/YellowStar.png';
-		if ($skillType >= 1) $imageSrc = 'resources/BlueStar.png';
-		if ($skillType < 0) $imageSrc = 'resources/PurpleStar.png';
+		$left = intval($skill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE;
+		$top  = intval($skill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE;
 		
-		$isUnlocked = 0;
-		$initialValue = $this->GetInitialSkillValue($skill);
-		if ($initialValue > $unlockLevel) $isUnlocked = 1;
+		$imageSrc = '//esolog.uesp.net/resources/cpstar_yellow.png';
+		if ($skillType >= 1) $imageSrc = '//esolog.uesp.net/resources/cpstar_white.png';
+		if ($skillType < 0) $imageSrc = '//esolog.uesp.net/resources/cpstar_pink.png';
 		
-		$output = "<div id='skill_$id' skillid='$id' class='esovcp2Skill $extraClass' unlocklevel='$unlockLevel' unlocked='$isUnlocked' style='left: {$left}px; top: {$top}px;'>";
-		$output .= "<div class='esovcp2SkillStar esovcpShowTooltip'><img src='$imageSrc' /></div>";
-		//$output .= "<div class='esovcpSkillName'>$name</div><br/>";
+		$extraImgClass = "";
+		$isDraggable = "false";
 		
-		$output .= "<div class='esovcpSkillControls esovcpShowTooltip'>";
+		if ($skillType >= 1) 
+		{
+			$isDraggable = "true";
+			$extraImgClass .= " esovcp2SkillEquippable";
+			if ($isUnlocked > 0 && !$this->GetInitialEquippedValue($skill)) $isUnlocked = 0; 
+		}
+		
+		$clusterAttr = "";
+		$extraInputClass = "";
+		
+		if (!$isCluster && $skillType < 0)
+		{
+			$initialValue = $this->GetInitialClusterValueV2($skill['skillId']);
+			$id .= "_cluster";
+			$extraInputClass = " esovcpPointInputCluster";
+			$extraClass .= " esovcpSkillCluster";
+			$clusterData = $this->cpClusters[$skill['skillId']];
+			
+			if ($clusterData != null)
+			{
+				$clusterName = $this->EscapeHtml($clusterData['name']);
+				$clusterId = str_replace(" ", "_", strtolower($clusterName));
+				$clusterAttr = "clusterid='$clusterId'";
+			}
+		}
+		
+		$isRoot = "0";
+		if ($skill['isRoot'] > 0) $isRoot = "1";
+		
+		$output = "<div id='skill_$id' skillid='$id' class='esovcp2Skill $extraClass' unlocklevel='$unlockLevel' disciplineindex='$disciplineIndex' isroot='$isRoot' skilltype='$skillType' unlocked='$isUnlocked' $clusterAttr style='left: {$left}px; top: {$top}px;'>";
+		$output .= "<div class='esovcp2SkillStar esovcpShowTooltip $extraImgClass' draggable='$isDraggable'><img src='$imageSrc' draggable='$isDraggable' /></div>";
+		
+		$output .= "<div class='esovcpSkillName' style='display: none;'>$name</div>";
+		$output .= "<div class='esovcpSkillDesc' id='descskill_$id' style='display: none;'>$desc</div>";
+		
+		if ($this->showEdit)
+			$output .= "<div class='esovcpSkillControls esovcp2StarControls esovcpShowTooltip'>";
+		else
+			$output .= "<div class='esovcpSkillControls esovcp2StarControls'>";
+		
 		$output .= "<button skillid='$id' class='esovcpMinusButton' $showEdit>-</button>";
-		$output .= "<input skillid='$id' class='esovcpPointInput esovcp2PointInput' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3' maxpoints='$maxPoints' $inputReadOnly $showPoints>";
+		
+		if ($this->showEdit)
+			$output .= "<input id='cpinput_$id' skillid='$id' class='esovcpPointInput esovcp2PointInput $extraInputClass' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3' maxpoints='$maxPoints' jumpdelta='$jumpPointDelta' $inputReadOnly $showPoints>";
+		else
+			$output .= "<input id='cpinput_$id' skillid='$id' class='esovcpPointInput esovcp2PointInput esovcpShowTooltip $extraInputClass' disciplineindex='$disciplineIndex' skillindex='$skillIndex' type='text' value='$initialValue' size='3' maxlength='3' maxpoints='$maxPoints' jumpdelta='$jumpPointDelta' $inputReadOnly $showPoints>";
+		
 		$output .= "<button skillid='$id' class='esovcpPlusButton' $showEdit>+</button>";
 		$output .= "</div>";
 		
@@ -1013,7 +1359,7 @@ class CEsoViewCP
 		{
 			$index = $cluster['disciplineIndex'];
 			$skillId = $cluster['skillId'];
-			$name = $cluster['name'];
+			$name = $this->EscapeHtml($cluster['name']);
 			
 			if ($disciplineIndex != $index) continue;
 			
@@ -1036,9 +1382,9 @@ class CEsoViewCP
 		
 		if ($discipline == null) return "";
 		
-		$name = $discipline['name'];
-		$desc = $discipline['description'];
-		$attr = $discipline['attribute'];
+		$name = $this->EscapeHtml($discipline['name']);
+		$desc = $this->EscapeHtml($discipline['description']);
+		$attr = $this->EscapeHtml($discipline['attribute']);
 		$index = $discipline['disciplineIndex'];
 		$id = str_replace(" ", "_", strtolower($name));
 		
@@ -1064,7 +1410,7 @@ class CEsoViewCP
 		
 		if ($discipline == null) return "";
 		
-		$name = $discipline['name'];
+		$name = $this->EscapeHtml($discipline['name']);
 		$index = $discipline['disciplineIndex'];
 		$id = str_replace(" ", "_", strtolower($name));
 		
@@ -1081,6 +1427,53 @@ class CEsoViewCP
 		$output .= "<div class='esovcpDiscPoints' initialpoints='$totalPoints1'>$totalPoints1</div>";
 		$output .= "</div>";
 		
+		return $output;
+	}
+	
+	
+	public function GetCp2EquipBarHtml()
+	{
+		if ($this->showFlatV2) return "";
+		
+		$output = "<div id='esovcpSkillEquipBar'>";
+		
+		$output .= $this->GetCp2EquipBarDisciplineHtml(1, 1);
+		$output .= $this->GetCp2EquipBarDisciplineHtml(2, 5);
+		$output .= $this->GetCp2EquipBarDisciplineHtml(3, 9);
+		
+		if ($this->showEdit) $output .= "<br/>Drag or double-click a white star from below to equip it.";
+		
+		$output .= "</div>";
+		return $output;
+	}
+	
+	
+	public function GetCp2EquipBarDisciplineHtml($discIndex, $startSlotIndex)
+	{
+		$discName = $this->EscapeHtml($this->cpData[$discIndex]['name']);
+		$discId = str_replace(" ", "_", strtolower($discName));
+		
+		$output = "<div class='esovcpSkillEquipBarDisc esovcpSkillEquipBarDisc$discIndex' disciplineindex='$discIndex' discid='$discId'>";
+		
+		for ($i = 0; $i < 4; ++$i)
+		{
+			$slotIndex = $i + $startSlotIndex;
+			
+			$slottedAbilityId = $this->initialData['slots'][$slotIndex];
+			$imgSrc = "//esolog.uesp.net/resources/cpstar_white.png";
+			$imgDisplay = "inline";
+			
+			if ($slottedAbilityId == null) 
+			{
+				$imgDisplay = "none";
+				$imgSrc = "";
+				$slottedAbilityId = -1;
+			}
+			
+			$output .= "<div class='esovcpSkillEquipBarSlot' disciplineindex='$discIndex' skillid='$slottedAbilityId' slotindex='$slotIndex'><img src='$imgSrc' style='display:$imgDisplay;' /></div>";
+		}
+		
+		$output .= "</div>";
 		return $output;
 	}
 	
@@ -1106,7 +1499,7 @@ class CEsoViewCP
 	
 	public function GetDiscWidth()
 	{
-		if ($this->shortDiscDisplay) return "210px";
+		if ($this->shortDiscDisplay) return $this->shortDiscWidth;
 		return "";
 	}
 	
@@ -1135,7 +1528,7 @@ class CEsoViewCP
 	{
 		$output = "";
 		
-		$query = "SHOW TABLES LIKE 'cpSkills%';";
+		$query = "SHOW TABLES LIKE 'cp%Skills%';";
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to list all cpSkills table versions!");
 		
@@ -1155,7 +1548,11 @@ class CEsoViewCP
 		while (($row = $result->fetch_row())) 
 		{
 			$table = $row[0];
-			$version = substr($table, 8);
+			$matchResult = preg_match('/cp.*Skills(.*)/', $table, $matches);
+			if (!$matchResult) continue;
+			
+			//$version = substr($table, 8);
+			$version = $matches[1];
 			if ($version == "") $version = GetEsoUpdateVersion();
 						
 			$tables[$version] = $version;
@@ -1192,11 +1589,15 @@ class CEsoViewCP
 				'{cpDisciplines}' => $this->GetCpDisciplinesHtml(),
 				'{skillDescJson}' => $this->GetCpSkillDescJson(),
 				'{skillsJson}' => $this->GetCpSkillsJson(),
+				'{cpLinksJson}' => "{}",
+				'{cpReverseLinksJson}' => "{}",
+				'{cpUnlockJson}' => "{}",
 				'{cpDataJson}' => json_encode($this->cpDataArray),
 				'{topBarDisplay}' => $this->GetTopBarDisplay(),
 				'{discWidth}' => $this->GetDiscWidth(),
 				'{displayResetAllButton}' => $this->GetDisplayResetAllButton(),
 				'{footerDisplay}' => $this->GetDisplayFooter(),
+				'{isEdit}' => $this->showEdit ? "true" : "false",
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1223,11 +1624,16 @@ class CEsoViewCP
 				'{cpDisciplines}' => $this->GetCp2DisciplinesHtml(),
 				'{skillDescJson}' => $this->GetCpSkillDescJson(),
 				'{skillsJson}' => $this->GetCpSkillsJson(),
+				'{cpLinksJson}' => json_encode($this->cpLinksData),
+				'{cpReverseLinksJson}' => json_encode($this->cpReverseLinksData),
+				'{cpUnlockJson}' => json_encode($this->cpSkillIsPurchaseable),
 				'{cpDataJson}' => json_encode($this->cpDataArray),
 				'{topBarDisplay}' => $this->GetTopBarDisplay(),
 				'{discWidth}' => $this->GetDiscWidth(),
 				'{displayResetAllButton}' => $this->GetDisplayResetAllButton(),
 				'{footerDisplay}' => $this->GetDisplayFooter(),
+				'{starEquipBar}' => $this->GetCp2EquipBarHtml(),
+				'{isEdit}' => $this->showEdit ? "true" : "false",
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1252,10 +1658,15 @@ class CEsoViewCP
 				'{cpDisciplines}' => "Permission Denied!",
 				'{skillDescJson}' => "{}",
 				'{cpDataJson}' => "{}",
+				'{cpUnlockJson}' => "{}",
+				'{cpLinksJson}' => "{}",
+				'{cpReverseLinksJson}' => "{}",
 				'{topBarDisplay}' => $this->GetTopBarDisplay(),
 				'{discWidth}' => $this->GetDiscWidth(),
 				'{displayResetAllButton}' => "block",
 				'{footerDisplay}' => "block",
+				'{starEquipBar}' => "",
+				'{isEdit}' => "false",
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -1265,16 +1676,14 @@ class CEsoViewCP
 	
 	public function GetOutputHtml()
 	{
-		if ($this->useVersion2) 
+		$this->LoadCpData();
+		
+		if ($this->useVersion2)
 		{
-			//error_log("ViewCP: Version 2");
-			$this->LoadCp2Data();
 			$output = $this->CreateOutput2Html();
 		}
 		else
 		{
-			//error_log("ViewCP: Version 1");
-			$this->LoadCpData();
 			$output = $this->CreateOutputHtml();
 		}
 		

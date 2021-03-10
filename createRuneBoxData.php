@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "28pts";
+$TABLE_SUFFIX = "29pts";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
@@ -70,9 +70,12 @@ $REPLACE_PAIRS = array(
 		"Opal Bloodspawn's Mask" => "Opal Bloodspawn Mask",
 		"Opal Nightflame's Mask" => "Opal Nightflame Mask",
 		"Opal Iceheart's Mask" => "Opal Iceheart Mask",
+		"Opal Iceheart Shoulder" => "Opal Iceheart's Shoulder",
 		"Opal Lord Warden's Mask" => "Opal Lord Warden Mask",
 		"Opal Nightflame's Mask" => "Opal Nightflame Mask",
+		"Opal Nightflame Shoulder" => "Opal Nightflame's Shoulder",
 		"Opal Swarm Mother's Mask" => "Opal Swarm Mother Mask",
+		"Opal Swarm Mother Shoulder" => "Opal Swarm Mother's Shoulder",
 		"Aldmeri Breton Terrier Pet" => "Dominion Breton Terrier",
 		"Daggerfall Breton Terrier Pet" => "Covenant Breton Terrier", 
 		"Ebonheart Breton Terrier Pet" => "Pact Breton Terrier",

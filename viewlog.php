@@ -88,7 +88,7 @@ class EsoLogViewer
 			'x' => self::FIELD_POSITION,
 			'y' => self::FIELD_POSITION,
 			'name' => self::FIELD_STRING,
-			'quality' => self::FIELD_INTTRANSFORM,			
+			'quality' => self::FIELD_INTTRANSFORM,
 	);
 	
 	public static $ITEM_FIELDS = array(
@@ -315,7 +315,7 @@ class EsoLogViewer
 			'itemType' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'qnt' => self::FIELD_INT,
-			'count' => self::FIELD_INT,			
+			'count' => self::FIELD_INT,
 	);
 	
 	public static $RECIPE_FIELDS = array(
@@ -694,6 +694,8 @@ class EsoLogViewer
 			'id' => self::FIELD_INT,
 			'skillId' => self::FIELD_INT,
 			'parentSkillId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'parentName' => self::FIELD_STRING,
 	);
 	
 	public static $COLLECTIBLE_FIELDS = array(
@@ -1771,7 +1773,7 @@ class EsoLogViewer
 							'name' => 'MakeMinedItemLink',
 							'link' => 'MakeMinedItemLink',
 							'description' => 'RemoveTextFormats',
-							'abilityDesc' => 'RemoveTextFormats',							
+							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
 					),
 				
@@ -1941,8 +1943,8 @@ class EsoLogViewer
 							),
 					),
 			),
-			
-			'cpDisciplines' => array(
+			/* Old Pre Update 29
+			 'cpDisciplines' => array(
 					'displayName' => 'Champion Point Disciplines',
 					'displayNameSingle' => 'Champion Point Discipline',
 					'record' => 'cpDisciplines',
@@ -1990,7 +1992,7 @@ class EsoLogViewer
 						
 					'filters' => array(
 					),
-			),
+			), //*/
 			
 			'cp2Disciplines' => array(
 					'displayName' => 'Champion Point v2 Disciplines',
@@ -2036,6 +2038,20 @@ class EsoLogViewer
 					),
 						
 					'filters' => array(
+					),
+					
+					'join' => array(
+							'parentSkillId' => array(
+									'table' => 'cp2Skills29pts',
+									'joinField' => 'skillId',
+									'fields' => array('parentName' => 'name'),
+							),
+							'skillId' => array(
+									'table' => 'cp2Skills29pts',
+									'tableAlias' => 'cp2Skills29ptsA',
+									'joinField' => 'skillId',
+									'fields' => array('name' => 'name'),
+							),
 					),
 			),
 			
@@ -2461,7 +2477,7 @@ class EsoLogViewer
 					),
 			),
 			/*						// Far too slow with current search implementation
-			'minedItem' => array(		 
+			'minedItem' => array(
 					//'searchFields' => array('name', 'description', 'setName', 'abilityName', 'abilityDesc', 'bookTitle', 'comment', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'searchFields' => array(),
 					'fields' => array(
@@ -2544,7 +2560,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
 		self::$RECORD_TYPES['questCondition']['fields'] = self::$QUESTCONDITION_FIELDS;
 		self::$RECORD_TYPES['questReward']['fields'] = self::$QUESTREWARD_FIELDS;
-		self::$RECORD_TYPES['questGoldReward']['fields'] = self::$QUESTGOLDREWARD_FIELDS;		
+		self::$RECORD_TYPES['questGoldReward']['fields'] = self::$QUESTGOLDREWARD_FIELDS;
 		self::$RECORD_TYPES['questXPReward']['fields'] = self::$QUESTXPREWARD_FIELDS;
 		self::$RECORD_TYPES['questItem']['fields'] = self::$QUESTITEM_FIELDS;
 		self::$RECORD_TYPES['npc']['fields'] = self::$NPC_FIELDS;
@@ -2560,9 +2576,9 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
-		self::$RECORD_TYPES['cpDisciplines']['fields'] = self::$CPDISCIPLINE_FIELDS;
-		self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
-		self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
+		//self::$RECORD_TYPES['cpDisciplines']['fields'] = self::$CPDISCIPLINE_FIELDS;
+		//self::$RECORD_TYPES['cpSkills']['fields'] = self::$CPSKILL_FIELDS;
+		//self::$RECORD_TYPES['cpSkillDescriptions']['fields'] = self::$CPSKILLDESCRIPTION_FIELDS;
 		self::$RECORD_TYPES['cp2Disciplines']['fields'] = self::$CP2DISCIPLINE_FIELDS;
 		self::$RECORD_TYPES['cp2Skills']['fields'] = self::$CP2SKILL_FIELDS;
 		self::$RECORD_TYPES['cp2SkillLinks']['fields'] = self::$CP2SKILLLINK_FIELDS;
@@ -2578,7 +2594,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['zonePois']['fields'] = self::$ZONEPOI_FIELDS;
 		
 		$this->EnablePtsRecords();
-				
+		
 		$this->InitDatabase();
 		$this->SetInputParams();
 		$this->ParseInputParams();
@@ -3143,7 +3159,12 @@ If you do not understand what this information means, or how to use this webpage
 			$table2 = $value['table'];
 			$tableId1 = $key;
 			$tableId2 = $value['joinField'];
-			$query .= "LEFT JOIN $table2 on $table1.$tableId1 = $table2.$tableId2 ";
+			$alias = $value['tableAlias'];
+			
+			if ($alias != null)
+				$query .= "LEFT JOIN $table2 AS $alias on $table1.$tableId1 = $alias.$tableId2 ";
+			else
+				$query .= "LEFT JOIN $table2 on $table1.$tableId1 = $table2.$tableId2 ";
 		}
 		
 		return $query;
@@ -3159,10 +3180,13 @@ If you do not understand what this information means, or how to use this webpage
 		foreach ($recordInfo['join'] as $key => $value)
 		{
 			$tables .= ', ';
+			$tableName = $value['table'];
+			$aliasName = $value['tableAlias'];
+			if ($aliasName != null) $tableName = $aliasName;
 			
 			if ($value['fields'] == '')
 			{
-				$tables .= $value['table'] . ".*";
+				$tables .= $tableName . ".*";
 			}
 			else
 			{
@@ -3172,7 +3196,7 @@ If you do not understand what this information means, or how to use this webpage
 				{
 					if (!$isFirst) $tables .= ",";
 					
-					$tables .= " {$value['table']}.$fieldName";
+					$tables .= " {$tableName}.$fieldName";
 					if (gettype($fieldAlias) == "string") $tables .= " as $fieldAlias";
 					
 					$isFirst = false;

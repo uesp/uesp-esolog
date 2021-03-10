@@ -117,7 +117,7 @@ $result = $db->query($query);
 if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
 
 $FIRSTID = 3;		// 1/2 are potion/poison data
-$LASTID = 180000;
+$LASTID = 200000;
 $MINSUBTYPE = 0;		// Has problems with item enchantments missing
 $MINSUBTYPE = 2;
 $MAXSUBTYPE = 370;

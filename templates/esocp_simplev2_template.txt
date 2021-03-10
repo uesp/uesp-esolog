@@ -4,10 +4,11 @@
 		<title>UESP:ESO Champion Point v2 Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp.css" />
-		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp_simple_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esocp_simple_embed.css" />
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.transit.min.js"></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esocp_simple.js"></script>
+		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
+		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esocp_simple.js?24Feb2021"></script>
 	</head>
 <body>
 <a href="/viewlog.php" style="display:{topBarDisplay};">Back to Home</a>
@@ -18,13 +19,14 @@
 </div>
 <a id="esovcpLinkBlock" class="esovcpLinkBlock" href="" style="display:{topBarDisplay};">Link to CP Setup</a>
 <h1>ESO Champion Point v2 Browser {versionTitle}</h1>
-<div id="esovcpVersion">Showing Champion Point data for update {niceVersion}.  View data for update {versionList}</div>
+<div id="esovcpVersion">Showing Champion Point data for update {niceVersion}. View data for update {versionList}</div>
 <p/>
 <div id="esovcpContainer">
 	<div id="esovcp2Disciplines" style="width:{discWidth};">
 		{cpDisciplines}
-		<button id="esotvcpResetCP">Reset All</button>
+		<button id="esotvcpResetCP" style="display: {displayResetAllButton} ;">Reset All</button>
 	</div>
+	{starEquipBar}
 	<div id="esovcpSkills" class="esovcp2Skills">{cpSkills}</div>
 </div>
 
@@ -42,6 +44,10 @@
 	var g_EsoCpRawData = {cpDataJson};
 	var g_EsoCpVersion = '{version}';
 	var g_EsoCpIsV2 = true;
+	var g_EsoCpLinks = {cpLinksJson};
+	var g_EsoCpReverseLinks = {cpReverseLinksJson};
+	var g_EsoCpUnlocks = {cpUnlockJson};
+	var g_EsoCpIsEdit = {isEdit};
 </script>
 
 <div class="esovpBlockClear"></div>

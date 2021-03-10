@@ -80,7 +80,8 @@ function renameSkills() {
 	global $version;
 	global $archiveVersion;
 	
-	$tables = array("cpSkills", "cpSkillDescriptions", "cpDisciplines", "minedSkills", "skillTree", "minedSkillLines");
+	//$tables = array("cpSkills", "cpSkillDescriptions", "cpDisciplines", "minedSkills", "skillTree", "minedSkillLines");
+	$tables = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2Skills", "minedSkills", "skillTree", "minedSkillLines");
 	
 	foreach ($tables as $i => $table)
 	{

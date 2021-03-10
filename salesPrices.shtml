@@ -15,7 +15,7 @@
 <h1>ESO Sales Data: Price Files</h1>
 
 Download the latest price file below according to your ESO server and copy it over the existing <em>uespSalesPrices.lua</em> file 
-in your <em>uespLog</em> add-on directory.
+in your <em>uespLogSalesPrices</em> add-on directory.
 <br/>
 <ul id="esovsd_priceindex">
  	<!--#include virtual="priceIndex.html" -->
