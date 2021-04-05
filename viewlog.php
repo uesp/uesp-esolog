@@ -494,7 +494,10 @@ class EsoLogViewer
 			'texture'  => self::FIELD_GAMEICON,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_TEXTTRANSFORM,
+			'descHeader' => self::FIELD_TEXTTRANSFORM,
 			'duration' => self::FIELD_INT,
+			'startTime' => self::FIELD_INT,
+			'tickTime' => self::FIELD_INT,
 			'cost' => self::FIELD_INT,
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
@@ -563,6 +566,10 @@ class EsoLogViewer
 			'c6' => self::FIELD_FLOAT,
 			'R6' => self::FIELD_FLOAT,
 			'avg6' => self::FIELD_FLOAT,
+			'rawDescription' =>  self::FIELD_STRING,
+			'rawTooltip' =>  self::FIELD_STRING,
+			'rawCoef' =>  self::FIELD_STRING,
+			'coefTypes' =>  self::FIELD_STRING,
 	);
 	
 	
@@ -992,6 +999,7 @@ class EsoLogViewer
 							'type6' => 'GetCustomCombatMechanicText',
 							'skillType' => 'GetSkillTypeText',
 							'description' => 'RemoveTextFormats',
+							'descHeader' => 'RemoveTextFormats',
 							'coefDescription' => 'RemoveTextFormats',
 							'effectLines' => 'RemoveTextFormats',
 							'upgradeLines' => 'RemoveTextFormats',
@@ -1857,6 +1865,7 @@ class EsoLogViewer
 							'type6' => 'GetCustomCombatMechanicText',
 							'skillType' => 'GetSkillTypeText',
 							'description' => 'RemoveTextFormats',
+							'descHeader' => 'RemoveTextFormats',
 							'coefDescription' => 'RemoveTextFormats',
 							'effectLines' => 'RemoveTextFormats',
 							'upgradeLines' => 'RemoveTextFormats',
@@ -2283,7 +2292,7 @@ class EsoLogViewer
 					),
 			),
 			'minedSkills##pts' => array(
-					'searchFields' => array('name', 'description'),
+					'searchFields' => array('name', 'description', 'descHeader'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -2503,7 +2512,7 @@ class EsoLogViewer
 					),
 			),
 			'minedSkills' => array(
-					'searchFields' => array('name', 'description'),
+					'searchFields' => array('name', 'description', 'descHeader'),
 					'fields' => array(
 							'id' => 'id',
 							'zoneName' => 'name',
@@ -2600,7 +2609,7 @@ class EsoLogViewer
 		$this->ParseInputParams();
 		$this->LoadLogInfo();
 	}
-
+	
 	
 	public function EnablePtsRecords()
 	{

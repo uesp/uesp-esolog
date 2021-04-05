@@ -6,8 +6,8 @@ require_once("/home/uesp/secrets/esolog.secrets");
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 $TABLE_SUFFIX = "";
-$PHP_OUTPUT_FILE = "esoSkillRankData.php";
-$LUA_OUTPUT_FILE = "esoSkillRankData.lua";
+$PHP_OUTPUT_FILE = "esoSkillRankData1.php";
+$LUA_OUTPUT_FILE = "esoSkillRankData1.lua";
 
 $EXTRA_SKILLRANK_DATA = array(
 	39012 => array(	//Blockade of Flame

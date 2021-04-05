@@ -35,12 +35,13 @@ require_once("parseSalesData.php");
 require_once("esoCommon.php");
 require_once("esoPotionData.php");
 require_once("esoSkillRankData.php");
+require_once("skillTooltips.class.php");
 
 
 class EsoLogParser
 {
 	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "29";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -134,6 +135,8 @@ class EsoLogParser
 	private $dbWriteInitialized = false;
 	public $lastQuery = "";
 	public $skipCreateTables = false;
+	
+	public $skillTooltips = null;
 	
 	public $salesData = null;
 	
@@ -769,7 +772,10 @@ class EsoLogParser
 			'displayId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_STRING,
+			'descHeader' => self::FIELD_STRING,
 			'duration' => self::FIELD_INT,
+			'startTime' => self::FIELD_INT,
+			'tickTime' => self::FIELD_INT,
 			'cost' => self::FIELD_INT,
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
@@ -839,6 +845,10 @@ class EsoLogParser
 			'c6' => self::FIELD_FLOAT,
 			'R6' => self::FIELD_FLOAT,
 			'avg6' => self::FIELD_FLOAT,
+			'rawDescription' => self::FIELD_STRING,
+			'rawTooltip' => self::FIELD_STRING,
+			'rawCoef' => self::FIELD_STRING,
+			'coefTypes' => self::FIELD_STRING,
 	);
 	
 	
@@ -1146,6 +1156,8 @@ class EsoLogParser
 		{
 			unset(self::$MINEDITEM_FIELDS['specialType']);
 		}
+		
+		$this->skillTooltips = new CEsoSkillTooltips();
 		
 		$this->salesData = new EsoSalesDataParser(true);
 		$this->salesData->startMicroTime = $this->startMicroTime;
@@ -1616,7 +1628,7 @@ class EsoLogParser
 		
 		$skill = $this->loadRecord('minedSkills'.self::SKILLS_TABLESUFFIX, 'id', $abilityId, self::$SKILLDUMP_FIELDS);
 		if ($skill === false) return false;
-	
+		
 		return $skill;
 	}
 	
@@ -1627,8 +1639,21 @@ class EsoLogParser
 		
 		$skill = $this->loadRecord('minedSkillLines'.self::SKILLS_TABLESUFFIX, 'name', $name, self::$SKILLLINE_FIELDS);
 		if ($skill === false) return false;
-	
+		
 		return $skill;
+	}
+	
+	
+	public function SaveSkillCoefTypes($abilityId, $coefTypes)
+	{
+		$safeTypes = $this->db->real_escape_string($coefTypes);
+		$query = "UPDATE minedSkills".self::SKILLS_TABLESUFFIX." SET coefTypes='$safeTypes' WHERE id='$abilityId';";
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if (!$result) return $this->reportError("Failed to save skill coefficient type data!");
+		
+		$this->dbWriteCount++;
+		return true;
 	}
 	
 	
@@ -1644,13 +1669,12 @@ class EsoLogParser
 			$setQuery[] = "$key=\"$safeValue\"";
 		}
 		
-		$query = "UPDATE minedSkills".self::SKILLS_TABLESUFFIX." SET " . implode(", ", $setQuery) . " WHERE id=$abilityId";
+		$query = "UPDATE minedSkills".self::SKILLS_TABLESUFFIX." SET " . implode(", ", $setQuery) . " WHERE id='$abilityId';";
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportError("Failed to save skill coefficient data!");
 		
 		$this->dbWriteCount++;
-	
 		return true;
 	}
 	
@@ -2457,11 +2481,14 @@ class EsoLogParser
 			displayId INTEGER NOT NULL DEFAULT -1,
 			name TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
+			descHeader TEXT NOT NULL,
 			target TINYTEXT NOT NULL,
 			skillType INTEGER NOT NULL DEFAULT -1,
 			upgradeLines TEXT NOT NULL,
 			effectLines TEXT NOT NULL,
 			duration INTEGER NOT NULL DEFAULT -1,
+			startTime INTEGER NOT NULL DEFAULT -1,
+			tickTime INTEGER NOT NULL DEFAULT -1,
 			cost INTEGER NOT NULL DEFAULT -1,
 			minRange INTEGER NOT NULL DEFAULT -1,
 			maxRange INTEGER NOT NULL DEFAULT -1,
@@ -2527,8 +2554,13 @@ class EsoLogParser
 			c6 FLOAT NOT NULL DEFAULT -1,
 			R6 FLOAT NOT NULL DEFAULT -1,
 			avg6 FLOAT NOT NULL DEFAULT -1,
+			rawDescription TEXT NOT NULL,
+			rawTooltip TEXT NOT NULL,
+			rawCoef TEXT NOT NULL,
+			coefTypes TEXT NOT NULL,
 			FULLTEXT(name),
 			FULLTEXT(description),
+			FULLTEXT(descHeader),
 			FULLTEXT(upgradeLines),
 			FULLTEXT(effectLines)
 		) ENGINE=MYISAM;";
@@ -2915,6 +2947,8 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create zonePois table!");
 		
+		$this->skillTooltips->CreateTable();
+		
 		return true;
 	}
 	
@@ -3266,14 +3300,14 @@ class EsoLogParser
 	{
 		$safeName = $this->db->real_escape_string($userName);
 		$safeIp = $this->db->real_escape_string($ipAddress);
-	
+		
 		$query = "INSERT INTO logEntry(gameTime, timeStamp, entryHash, userName, ipAddress) VALUES($gameTime, $timeStamp, $entryHash, '$safeName', '$safeIp');";
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create logEntry record!");
 		
 		$this->dbWriteCount++;
-	
+		
 		return $this->db->insert_id;
 	}
 	
@@ -3287,15 +3321,15 @@ class EsoLogParser
 	private function initDatabase ()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		if ($this->dbReadInitialized || $this->dbWriteInitialized) return true;
-	
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->reportError("Could not connect to mysql database!");
-	
+		
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = false;
-	
+		
 		return true;
 	}
 	
@@ -3303,16 +3337,16 @@ class EsoLogParser
 	private function initSlaveDatabase ()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		if ($this->dbSlaveInitialized) return true;
-	
+		
 		$this->dbSlave = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->dbSlave->connect_error) return $this->reportError("Could not connect to mysql slave database!");
-	
+		
 		$this->dbSlaveInitialized = true;
 		
 		$this->salesData->dbSlave = $this->dbSlave;
-	
+		
 		return true;
 	}
 	
@@ -3320,9 +3354,9 @@ class EsoLogParser
 	private function initDatabaseWrite ()
 	{
 		global $uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase;
-	
+		
 		if ($this->dbWriteInitialized) return true;
-	
+		
 		if ($this->dbReadInitialized)
 		{
 			$this->db->close();
@@ -3330,13 +3364,15 @@ class EsoLogParser
 			$this->db = null;
 			$this->dbReadInitialized = false;
 		}
-	
+		
 		$this->db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->reportError("Could not connect to mysql database!");
-	
+		
 		$this->dbReadInitialized = true;
 		$this->dbWriteInitialized = true;
-	
+		
+		$this->skillTooltips->ConnectDB($this->db, true, self::SKILLS_TABLESUFFIX);
+		
 		if ($this->skipCreateTables) return true;
 		return $this->createTables();
 	}
@@ -6650,6 +6686,197 @@ class EsoLogParser
 	}
 	
 	
+	public function OnSkillCoefResetDesc($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$this->reportLogParseError("\tReseting all skill coefficient type data...");
+		
+		$this->skillTooltips->ResetAllTooltipFlags();
+		$this->dbWriteCount++;
+		
+		return true;
+	}
+	
+	
+	public function OnSkillCoefDuration ($logEntry)
+	{
+		//Do Nothing
+		return true;
+	}
+		
+	
+	
+	public function OnSkillCoefDesc ($logEntry)
+	{
+		global $ESO_BASESKILL_RANKDATA;
+		//event{SkillCoef::Desc}  abilityId{26821}  type{misc}  index{1}  lang{en} 
+		
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$abilityId = $logEntry['abilityId'];
+		if ($abilityId == null || $abilityId == "") return false;
+		
+		$skillData = $this->LoadSkillDump($abilityId);
+		if ($skillData === false) return $this->reportLogParseError("OnSkillCoefDesc: Failed to load skill $abilityId!");
+		
+		$skillType = $logEntry['type'];
+		if ($skillType == "misc") return true;
+		
+		$numberIndex = intval($logEntry['index']);
+		if ($numberIndex <= 0) return $this->reportLogParseError("OnSkillCoefDesc: Failed to parse number index '{$logEntry['index']}' for skill $abilityId!");
+		
+		$skillDesc = $this->skillTooltips->MakeNiceDescription($skillData['description']);
+		$rawDesc = $this->skillTooltips->MakeNiceDescription($skillData['rawDescription']);
+		$matchDesc = $this->skillTooltips->MakeMatchFromRawDescription($skillData['rawDescription']);
+		
+		$skillDesc = preg_replace('/^This effect scales from Level [0-9]+ to Level [0-9]+\.\n/i', '', $skillDesc);
+		$skillDesc = preg_replace('/^Requires [0-9]+ pieces of light armor equipped\n/i', '', $skillDesc);
+		
+		$numberIndex = 0;
+		
+		$numberDesc = preg_replace_callback('/([0-9]+(?:\.[0-9]+)?)/', function ($matches) use(&$numberIndex) {
+			$numberIndex = $numberIndex + 1;
+			return $numberIndex;
+		}, $skillDesc);
+		
+		$isMatched = preg_match($matchDesc, $rawDesc, $tooltipMatches);
+		$isNumberMatched = preg_match($matchDesc, $numberDesc, $numberMatches);
+		
+		if (!$isMatched)
+		{
+			print("NumberDesc: $numberDesc\n");
+			print("MinedDesc: $skillDesc\n");
+			print("MatchDesc: $matchDesc\n");
+			print("RawDesc: $rawDesc\n");
+			return $this->reportLogParseError("OnSkillCoefDesc: $abilityId: Failed to match raw description!");
+		}
+		
+		if (!$isNumberMatched)
+		{
+			print("NumberDesc: $numberDesc\n");
+			print("MinedDesc: $skillDesc\n");
+			print("MatchDesc: $matchDesc\n");
+			print("RawDesc: $rawDesc\n");
+			return $this->reportLogParseError("OnSkillCoefDesc: $abilityId: Failed to match number description!");
+		}
+		
+		$count1 = count($tooltipMatches);
+		$count2 = count($numberMatches);
+		if ($count1 != $count2) return $this->reportLogParseError("OnSkillCoefDesc: $abilityId: Tooltip/number mismatch ($count1 : $count2)!");
+		//$this->reportLogParseError("OnSkillCoefDesc: $abilityId: Found $count1 tooltip/number matchs!");
+		
+		$tooltipIndex = -1;
+		
+		for ($i = 1; $i < $count1; ++$i)
+		{
+			//print("\t$i: {$numberMatches[$i]} : {$tooltipMatches[$i]}\n");
+			$number = intval($numberMatches[$i]);
+			
+			if ($number == $logEntry['index'])
+			{
+				$isTooltipNumber = preg_match('/<<([0-9]+)>>/', $tooltipMatches[$i], $tooltipNumberMatch);
+				
+				if ($isTooltipNumber)
+				{
+					$tooltipIndex = intval($tooltipNumberMatch[1]);
+					//$this->reportLogParseError("OnSkillCoefDesc: $abilityId: Found tooltip/number match $number = $tooltipIndex!");
+					break;
+				}
+				else
+				{
+					$this->reportLogParseError("OnSkillCoefDesc: $abilityId: Found number match but its not a tooltip: $number = {$tooltipMatches[$i]}!");
+				}
+				
+			}
+		}
+		
+		if ($tooltipIndex < 0)
+		{
+			$this->reportLogParseError("OnSkillCoefDesc: $abilityId: No tooltip/number match found for number {$logEntry['index']}!");
+			print("NumberDesc: $numberDesc\n");
+			print("MinedDesc: $skillDesc\n");
+			print("MatchDesc: $matchDesc\n");
+			print("RawDesc: $rawDesc\n");
+			return true;
+		}
+		
+		$flags = array();
+		
+		if ($skillType == "dot")
+		{
+			$flags['isDmg'] = 1;
+			$flags['isDOT'] = 1;
+		}
+		else if ($skillType == "aoedmg")
+		{
+			$flags['isDmg'] = 1;
+			$flags['isAOE'] = 1;
+		}
+		else if ($skillType == "stdmg")
+		{
+			$flags['isDmg'] = 1;
+			$flags['isAOE'] = 0;
+		}
+		else if ($skillType == "stheal")
+		{
+			$flags['isHeal'] = 1;
+			$flags['isAOE'] = 0;
+		}
+		else if ($skillType == "aoeheal")
+		{
+			$flags['isHeal'] = 1;
+			$flags['isAOE'] = 1;
+		}
+		else if ($skillType == "hot")
+		{
+			$flags['isHeal'] = 1;
+			$flags['isDOT'] = 1;
+		}
+		else if ($skillType == "heal")
+		{
+			$flags['isHeal'] = 1;
+		}
+		else if ($skillType == "ds")
+		{
+			$flags['isDmgShield'] = 1;
+		}
+		else if ($skillType == "dmg")
+		{
+			$flags['isDmg'] = 1;
+		}
+		else if ($skillType == "flameaoe")
+		{
+			//$flags['isDmg'] = 1;
+			//$flags['isAOE'] = 1;
+			$flags['isFlameAOE'] = 1;
+		}
+		else if ($skillType == "elfbane")
+		{
+			//$flags['isDmg'] = 1;
+			//$flags['isDOT'] = 1;
+			$flags['isElfBane'] = 1;
+		}
+		
+		$this->skillTooltips->SaveTooltipFlags($abilityId, $tooltipIndex, $flags);
+		
+		if ($skillData['isPlayer'] == 1 && $skillData['isPassive'] == 0)
+		{
+			$rankData = $this->skillTooltips->GetSkillRankData($skillData);
+			
+			if ($rankData)
+			{
+				$this->skillTooltips->SaveTooltipFlags($rankData[1], $tooltipIndex, $flags);
+				$this->skillTooltips->SaveTooltipFlags($rankData[2], $tooltipIndex, $flags);
+				$this->skillTooltips->SaveTooltipFlags($rankData[3], $tooltipIndex, $flags);
+				$this->skillTooltips->SaveTooltipFlags($rankData[4], $tooltipIndex, $flags);
+			}
+		}
+		
+		return true;
+	}
+	
+	
 	public function OnSkillCoefStart ($logEntry)
 	{
 		//numSkills{169}  numPoints{5}
@@ -6659,7 +6886,7 @@ class EsoLogParser
 		$this->currentUser['lastSkillCoefIgnore'] = true;
 		$numPoints = $logEntry['numPoints'];
 		
-		if ($numPoints >= self::ELP_SKILLCOEF_MININUM_NUMPOINTS) 
+		if ($numPoints >= self::ELP_SKILLCOEF_MININUM_NUMPOINTS)
 		{
 			$this->currentUser['lastSkillCoefIgnore'] = false;
 		}
@@ -6670,8 +6897,7 @@ class EsoLogParser
 	
 	public function OnSkillCoef ($logEntry)
 	{
-		//R1{0.99999}  desc{Conjure...can absorb |cffffff$1|r damage.}  a1{0.30219}  c1{-3.29720}  
-		//name{Conjured Ward}  b1{-0.00406}  abilityId{28418}  numVars{1}  lang{en}
+		//R1{0.99999}  desc{Conjure...can absorb |cffffff$1|r damage.}  a1{0.30219}  c1{-3.29720}  name{Conjured Ward}  b1{-0.00406}  abilityId{28418}  numVars{1}  lang{en}
 		
 		if (!$this->IsValidUser($logEntry)) return false;
 		if ($this->currentUser['lastSkillCoefIgnore']) return true;
@@ -6763,6 +6989,7 @@ class EsoLogParser
 		
 			/* Rank dependent parameters */
 		$skill['description'] = $logEntry['desc'];
+		$skill['descHeader'] = $logEntry['descHeader'];
 		$skill['duration'] = $logEntry['duration'];
 		$skill['cost'] = $logEntry['cost'];
 		$skill['target'] = $logEntry['target'];
@@ -7069,6 +7296,7 @@ class EsoLogParser
 		$skill['name'] = $logEntry['name'];
 		$skill['displayId'] = $logEntry['id'];
 		$skill['description'] = $logEntry['desc'];
+		$skill['descHeader'] = $logEntry['descHeader'];
 		$skill['duration'] = $logEntry['duration'];
 		$skill['cost'] = $logEntry['cost'];
 		$skill['target'] = $logEntry['target'];
@@ -8536,6 +8764,9 @@ class EsoLogParser
 			case 'mineBook:End':
 			case 'mineBook:Category':
 			case 'mineBook:Collection':
+			case 'SkillCoef::Duration':
+			case 'SkillCoef::Desc':
+			case 'SkillCoef::Desc::Reset':
 			//case 'SkillCoef':
 			//case 'SkillCoef::Start':
 			//case 'SkillCoef::End':
@@ -8857,6 +9088,9 @@ class EsoLogParser
 			case "AllianceXPUpdate":			$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "TelvarUpdate":				$result = $this->OnTelvarUpdate($logEntry); break;
 			case "Stolen":						$result = $this->OnStolen($logEntry); break;
+			case "SkillCoef::Duration":			$result = $this->OnSkillCoefDuration($logEntry); break;
+			case "SkillCoef::Desc::Reset":		$result = $this->OnSkillCoefResetDesc($logEntry); break;
+			case "SkillCoef::Desc":				$result = $this->OnSkillCoefDesc($logEntry); break;
 			case "SkillCoef::Start":			$result = $this->OnSkillCoefStart($logEntry); break;
 			case "SkillCoef":					$result = $this->OnSkillCoef($logEntry); break;
 			case "SkillCoef::End":				$result = $this->OnSkillCoefEnd($logEntry); break;

@@ -8,13 +8,14 @@
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?7Jan2020"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?26March2021"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoSkillTooltips.js?26March2021"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
 <a id="esovsLinkBlock" class="esovsLinkBlock" href="" style="display: {menuBarDisplay};">Link to Skill</a>
 <div id="esovsSearchBlock" style="display: {menuBarDisplay};">
-	<input type="search" id="esovsSearchText" value="" size="30" /> 
+	<input type="search" id="esovsSearchText" value="" size="30" />
 	<button id="esovsSearchButton">Find Skill</button>
 	<div id="esovsSearchResult">
 	</div> 
@@ -33,11 +34,11 @@
 		<p />
 		<div class="esovsRangeLabel">Level</div>
 		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="{fmtLevel}">
-		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">		
+		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">
 		<br />
 		<div class="esovsRangeLabel">Health</div>
 		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="{health}">
-		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="{health}">		
+		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="{health}">
 		<br />
 		<div class="esovsRangeLabel">Magicka</div>
 		<input id="esovsInputMagicka" class="esovsInputControl" type="text" value="{magicka}">
@@ -49,11 +50,11 @@
 		<br />
 		<div class="esovsRangeLabel">Spell Damage</div>
 		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="{spellDamage}">
-		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="{spellDamage}">		
+		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="{spellDamage}">
 		<br />
 		<div class="esovsRangeLabel">Weapon Damage</div>
 		<input id="esovsInputWeaponDamage" class="esovsInputControl" type="text" value="{weaponDamage}">
-		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="{weaponDamage}">		
+		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="{weaponDamage}">
 		<br />
 	</div>
 	<hr />

@@ -27,6 +27,7 @@ class CEsoViewSkills
 
 	public $skills = array();
 	public $skillIds = array();
+	public $skillTooltips = array();
 	public $skillTree = array();
 	public $skillSearchIds = array();
 	public $skillHealth = 20000;
@@ -115,8 +116,7 @@ class CEsoViewSkills
 			"Eye of Frost" => 1,
 	);
 	
-
-
+	
 	public function __construct ($isEmbedded = false, $displayType = "summary", $parseParams = true)
 	{
 		//SetupUespSession();
@@ -135,37 +135,37 @@ class CEsoViewSkills
 		
 		$this->InitDatabase();
 	}
-
-
+	
+	
 	public function LogProfile($name, $startTime)
 	{
 		if (!self::ESOVS_ENABLE_PROFILE) return;
-
+		
 		$deltaTime = (microtime(true) - $startTime) * 1000.0;
 		error_log("Profile $name = $deltaTime ms");
 	}
-
-
+	
+	
 	public function ReportError($errorMsg)
 	{
 		error_log($errorMsg);
 		return false;
 	}
-
-
+	
+	
 	private function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
 		
 		UpdateEsoPageViews("skillViews");
-
+		
 		return true;
 	}
-
-
+	
+	
 	private function OutputHtmlHeader()
 	{
 		ob_start("ob_gzhandler");
@@ -175,8 +175,8 @@ class CEsoViewSkills
 		header("Pragma: no-cache");
 		header("Access-Control-Allow-Origin: *");
 	}
-
-
+	
+	
 	public function LoadTemplate()
 	{
 		//$templateFile = $this->basePath;
@@ -186,26 +186,50 @@ class CEsoViewSkills
 			$templateFile .= $this->ESOVS_HTML_TEMPLATE_EMBED;
 		else
 			$templateFile .= $this->ESOVS_HTML_TEMPLATE;
-			
+		
 		$this->htmlTemplate = file_get_contents($templateFile);
 	}
-
-
+	
+	
+	private function LoadSkillTooltips()
+	{
+		$startTime = microtime(true);
+		
+		$tooltipsTable = "skillTooltips" . $this->GetTableSuffix();
+		$query = "SELECT * FROM $tooltipsTable;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load skill tooltips data!");
+		
+		$this->skillTooltips = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$abilityId = intval($row['abilityId']);
+			$tooltipIndex = intval($row['idx']);
+			
+			if ($this->skillTooltips[$abilityId] == null) $this->skillTooltips[$abilityId] = array();
+			$this->skillTooltips[$abilityId][$tooltipIndex] = $row;
+		}
+		
+		return true;
+	}
+	
+	
 	private function LoadSkills()
 	{
 		$startTime = microtime(true);
-
+		
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
 		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load skill data!");
-
+		
 		$result->data_seek(0);
-
+		
 		while (($row = $result->fetch_assoc()))
 		{
-			$id = $row['abilityId'];
+			$id = intval($row['abilityId']);
 			$index = count($this->skills);
 				
 			$row['__isOutput'] = false;
@@ -216,7 +240,7 @@ class CEsoViewSkills
 		}
 		
 			/* Destruction skills */
-
+		
 		$this->LogProfile("LoadSkills()", $startTime);
 		
 		$this->CreateSkillTree();
@@ -230,12 +254,12 @@ class CEsoViewSkills
 	{
 		$startTime = microtime(true);
 		$this->skillTree = array();
-
+		
 		foreach($this->skills as &$skill)
 		{
 			$this->ParseSkill($skill);
 		}
-
+		
 		// Sort tree and fill in missing effectLines
 		foreach($this->skillTree as &$skillType)
 		{
@@ -244,13 +268,13 @@ class CEsoViewSkills
 			foreach($skillType as &$skillLine)
 			{
 				usort($skillLine, 'CompareEsoSkillLine_Priv');
-
+				
 				foreach ($skillLine as $baseName => &$baseAbility)
 				{
 					foreach ($baseAbility as $rank => &$ability)
 					{
 						if (!is_numeric($rank)) continue;
-
+						
 						if ($ability['effectLines'] == "")
 						{
 							if ($rank > 5 && $rank < 9 && array_key_exists(5, $baseAbility))
@@ -266,9 +290,9 @@ class CEsoViewSkills
 				}
 			}
 		}
-
+		
 		uksort($this->skillTree, 'CompareEsoSkillTypeName_Priv');
-
+		
 		$this->LogProfile("CreateSkillTree()", $startTime);
 	}
 
@@ -276,9 +300,9 @@ class CEsoViewSkills
 	private function CreateSkillSearchIds()
 	{
 		$startTime = microtime(true);
-
+		
 		$this->skillSearchIds = array();
-
+		
 		foreach($this->skillTree as &$skillType)
 		{
 			foreach($skillType as &$skillLine)
@@ -290,23 +314,23 @@ class CEsoViewSkills
 					foreach ($baseAbility as $rank => &$ability)
 					{
 						if (!is_numeric($rank)) continue;
-
+						
 						$this->skillSearchIds[] = $ability['abilityId'];
 					}
 				}
 			}
 		}
-
+		
 		$this->LogProfile("CreateSkillSearchIds()", $startTime);
 	}
-
-
+	
+	
 	private function ParseSkill(&$skill)
 	{
 		$skillTypeName = $skill['skillTypeName'];
 		$names = explode("::", $skillTypeName);
 		if (count($names) != 2) return false;
-
+		
 		$skillType = $names[0];
 		$skillLine = $names[1];
 		$abilityName = $skill['name'];
@@ -802,7 +826,7 @@ class CEsoViewSkills
 		$skillLine = $baseAbility['skillLine'];
 		$classType = $baseAbility['classType'];
 		$raceType = $baseAbility['raceType'];
-
+		
 		$cost = $abilityData['cost'];
 		$learnedLevel = $abilityData['learnedLevel'];
 		if ($learnedLevel > 50) $learnedLevel = 50;
@@ -824,12 +848,12 @@ class CEsoViewSkills
 		}
 		
 		$this->skills[$index]['__isOutput'] = true;
-			
+		
 		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
 		$extraIconAttr = "";
 		$iconClass = "esovsAbilityBlockIcon";
 		if ($type == "Passive") $iconClass = "esovsAbilityBlockPassiveIcon";
-
+		
 		if ($type == "Passive")
 		{
 			if ($rank < 0) $rank = 1;
@@ -859,9 +883,9 @@ class CEsoViewSkills
 					$extraIconAttr = "draggable='false'";
 			}
 		}
-
+		
 		if ($rank > 0 && $maxRank > 1) $rankLabel = " " . $this->GetRomanNumeral($rank);
-
+		
 		$extraClass = "esovsAbilityBlockHover";
 		
 		if ($this->displayType == "select")
@@ -958,11 +982,11 @@ class CEsoViewSkills
 			if (!is_numeric($rank)) continue;
 			if ($ability['abilityId'] == $this->highlightSkillId) return true;
 		}
-
+		
 		return false;
 	}
-
-
+	
+	
 	public function GetSkillContentHtml_AbilityList($abilityName, $abilityData)
 	{
 		$displayType = "none";
@@ -978,13 +1002,13 @@ class CEsoViewSkills
 			$output .= "<img src='//esolog.uesp.net/resources/edit_cancel_up.png'> Refund Ability";
 			$output .= "</div>";
 		}
-
+		
 		foreach ($abilityData as $rank => $ability)
 		{
 			if (!is_numeric($rank)) continue;
 			
 			if (!$this->showAll && $ability['type'] != "Passive")
-			{																																		// TODO: Volendrung skills
+			{						// TODO: Volendrung skills
 				if (!($rank == 8 || $rank == 12 || ($rank == 4 && $this->displayType == "select")) ) continue;
 			}
 			
@@ -992,50 +1016,57 @@ class CEsoViewSkills
 				
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false, false, $baseId);
 		}
-
+		
 		$output .= "</div>\n";
 		return $output;
 	}
-
-
+	
+	
 	public function GetSkillsJson()
 	{
 		$startTime = microtime(true);
 		$skillIds = array();
-
+		
 		foreach ($this->skills as $skill)
 		{
-			$skillIds[$skill['abilityId']] = $skill;
+			$abilityId = intval($skill['abilityId']);
+			$skillIds[$abilityId] = $skill;
+			
+			$tooltips = $this->skillTooltips[$abilityId];
+			
+			if ($tooltips)
+				$skillIds[$abilityId]['tooltips'] = $tooltips;
+			else
+				$skillIds[$abilityId]['tooltips'] = array();
 		}
-
+		
 		$output = json_encode($skillIds);
-
+		
 		$this->LogProfile("GetSkillsJson()", $startTime);
 		return $output;
 	}
-
-
+	
+	
 	public function GetSkillSearchIdsJson()
 	{
 		$startTime = microtime(true);
-
+		
 		$output = json_encode($this->skillSearchIds);
-
+		
 		$this->LogProfile("GetSkillSearchIdsJson()", $startTime);
-
+		
 		return $output;
-
 	}
-
-
+	
+	
 	public function OutputHtml()
 	{
 		$output = $this->CreateOutputHtml();
-
+		
 		$startTime = microtime(true);
-
+		
 		print ($output);
-
+		
 		$this->LogProfile("OutputHtml():Print", $startTime);
 	}
 	
@@ -1370,6 +1401,7 @@ class CEsoViewSkills
 	{
 		$this->LoadTemplate();
 		$this->LoadSkills();
+		$this->LoadSkillTooltips();
 		$this->dataLoaded = true;
 	}
 	
@@ -1381,7 +1413,7 @@ class CEsoViewSkills
 		$this->SetupHighlightSkill();
 		return $this->CreateOutputHtml();
 	}
-
+	
 };
 
 
@@ -1398,12 +1430,12 @@ function CompareEsoSkillLineName_Priv($a, $b)
 			"Destruction Staff" => 5,
 			"Restoration Staff" => 6,
 	);
-
+	
 	if (!array_key_exists($a, $SKILLLINES) || !array_key_exists($b, $SKILLLINES))
 	{
 		return strcmp($a, $b);
 	}
-
+	
 	return $SKILLLINES[$a] - $SKILLLINES[$b];
 }
 
@@ -1424,12 +1456,12 @@ function CompareEsoSkillTypeName_Priv($a, $b)
 			"Racial" => 10,
 			"Craft" => 11,
 	);
-
+	
 	if (!array_key_exists($a, $SKILLTYPES) || !array_key_exists($b, $SKILLTYPES))
 	{
 		return strcmp($a, $b);
 	}
-
+	
 	return $SKILLTYPES[$a] - $SKILLTYPES[$b];
 }
 
@@ -1438,21 +1470,21 @@ function CompareEsoSkillLine_Priv($a, $b)
 {
 	$a1 = null;
 	$b1 = null;
-
+	
 	if (array_key_exists(1, $a))
 		$a1 = $a[1];
 	else if (array_key_exists(-1, $a))
 		$a1 = $a[-1];
 	else
 		return 1;
-
+	
 	if (array_key_exists(1, $b))
 		$b1 = $b[1];
 	else if (array_key_exists(-1, $b))
 		$b1 = $b[-1];
 	else
 		return -1;
-
+	
 	return $a1['skillIndex'] - $b1['skillIndex'];
 }
 

@@ -13,6 +13,8 @@ window.g_EsoSkillIsMobile = false;
 
 window.g_LastSkillId = -1;
 
+window.USE_V2_TOOLTIPS = false;
+
 
 ESO_SKILL_TYPES = {
 		0 : "",
@@ -87,7 +89,7 @@ window.RAWDATA_KEYS =
 		"c6",
 		"R6",
 		"avg6",
-
+		
 		"description",
 		"baseName",
 		"effectLines",
@@ -172,7 +174,6 @@ window.ESO_FREE_PASSIVES = {
 		117979 : 1,
 		116095 : 1,
 		117985 : 1,
-		
 };
 
 
@@ -674,6 +675,7 @@ window.GetEsoSkillInputValues = function ()
 			 WintersEmbraceSkills: 0,
 			 BoneTyrantSkills: 0,
 			 GraveLordSkills: 0,
+			 WeaponPower: 0,
 			 DotDamageDone: {},
 			 ChannelDamageDone: {},
 		};
@@ -796,7 +798,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		}
 		
 		WeaponDamage = typeWeaponValues['base'];
-
+		
 		if (typeWeaponValues[damageType] != null)
 		{
 			WeaponDamage = typeWeaponValues[damageType];
@@ -822,7 +824,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		}
 		
 		SpellDamage = typeSpellValues['base'];
-
+		
 		if (typeSpellValues[damageType] != null)
 		{
 			SpellDamage = typeSpellValues[damageType];
@@ -840,7 +842,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	a = parseFloat(a);
 	b = parseFloat(b);
 	c = parseFloat(c);
-
+	
 	if (type == -2) // Health
 	{
 		value = a * values.Health + c;
@@ -873,7 +875,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		value = a * values.MaxStat + b * SpellDamage + c;
 		++includeSpellRawOutput;
 	}
-	else if (type == -56) // Spell + Weapon Damage
+	else if (type == -56 || type == 4) // Spell + Weapon Damage
 	{
 		value = a * SpellDamage + b * WeaponDamage + c;
 		++includeSpellRawOutput;
@@ -956,6 +958,10 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		value = value1 + value2;
 		if (value > maxValue) value = maxValue;
 	}	
+	else if (type == -74) 
+	{
+		value = a * values.WeaponPower + c;
+	}
 	else if (type == -68)
 	{
 		value = a * values.Magicka;
@@ -1076,7 +1082,7 @@ window.IsEsoSkillValidForMaelstromDWEnchant = function (skillData)
 
 	/* Index values represent the index of the duration within the tooltip you wish to have modified.
 	 * 0 = First duration in toolip.  */
-ESO_SKILL_DURATION_MATCHINDEXES = {
+window.ESO_SKILL_DURATION_MATCHINDEXES = {
 		"Veiled Strike": [ 0 ],
 		"Surprise Attack": [ 0, 1 ],
 		"Concealed Weapon": [ 0 ],
@@ -1111,7 +1117,7 @@ window.UpdateEsoSkillDurationDescription = function(skillData, coefDesc, inputVa
 	var durationData = ESO_SKILL_DURATION_MATCHINDEXES[skillData.name]
 	if (durationData == null) return newDesc;
 	
-	for (var i = 0; i < durationData.length; i++) 
+	for (var i = 0; i < durationData.length; i++)
 	{
 		var durationIndex = durationData[i] + 1;
 		var matchIndex = 0;
@@ -1133,7 +1139,7 @@ window.UpdateEsoSkillDurationDescription = function(skillData, coefDesc, inputVa
 						newDuration = Math.floor(parseFloat(p2) * (1 + modDuration)*10)/10;
 						skillData.rawOutput["Tooltip Duration #" + matchIndex] = "" + p2 + " Base x " + Math.floor(modDuration*100) + "% = " + newDuration + p4;
 					}
-										
+					
 					return p1 + newDuration + p3 + p4;
 				});
 	}
@@ -1144,11 +1150,16 @@ window.UpdateEsoSkillDurationDescription = function(skillData, coefDesc, inputVa
 
 window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffectLines, outputRaw)
 {
+	if (USE_V2_TOOLTIPS && window.GetEsoSkillDescription2) return GetEsoSkillDescription2(skillId, inputValues, useHtml, noEffectLines, outputRaw);
+		
 	var output = "";
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
 	
+	var descHeader = skillData['descHeader'];
 	var coefDesc = skillData['coefDescription'];
+	if (coefDesc == "") coefDesc = skillData['description'];
+	if (descHeader) coefDesc = '|cffffff' + descHeader + "|r\n" + coefDesc;
 	
 	if (inputValues == null) inputValues = GetEsoSkillInputValues()
 	inputValues.useMaelstromDamage = false;
@@ -1159,7 +1170,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 		//if (skillData.rawOutput != null) skillData.rawOutput["Maelstrom DW Enchant"] = "+" + inputValues.Damage.MaelstromDamage + " Weapon/Spell Damage";
 	}
 	
-	if (coefDesc == null || coefDesc == "") 
+	if (coefDesc == null || coefDesc == "")
 	{
 		coefDesc = skillData.description;
 	}
@@ -1174,7 +1185,7 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 			var b = skillData['b' + i];
 			var c = skillData['c' + i];
 			var srcString = "$" + i;
-						
+			
 			var value = ComputeEsoSkillValue(inputValues, type, a, b, c, coefDesc, i, skillData);
 			coefDesc = coefDesc.replace(srcString, value);
 		}
@@ -2134,6 +2145,7 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 	var rawOutput = [];
 	var newRawOutput = {};
 	var matchCount = 0;
+	var skillLineName = skillData.skillLine.replace(' ', '_');
 	
 	for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
 	{
@@ -2193,8 +2205,7 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 				healingFactor += inputValues.Healing.DOT;
 			}
 			
-			var skillHealing = inputValues.SkillHealing[skillData.skillLine];
-			if (skillHealing == null) skillHealing = inputValues.SkillHealing[skillData.skillLine + " Healing"]
+			var skillHealing = inputValues.SkillHealing[skillLineName];
 			
 			if (inputValues.SkillHealing != null && skillHealing != null)
 			{
@@ -2351,6 +2362,10 @@ ESO_SKILL_DAMAGEMATCHES =
 		damageId: "Disease",
 		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Disease Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
 	},
+	{
+		damageId: "Bleed",
+		match: /(additional |)(\|c[a-fA-F0-9]{6})([^|]*)(\|r Bleed Damage)( over| each| every| to them every| to them over| to enemies in the target area every| to nearby enemies each second for| to nearby enemies every|)( \|c[a-fA-F0-9]{6}|)([^|]*|)(\|r second|)/gi,
+	},
 ];
 
 
@@ -2387,7 +2402,7 @@ ESO_SKILL_TARGETYPE_OVERRIDES =
 		103483 : false,	// Imbue Weapon
 		85986 : { 3 : false, 4 : false },	// Trapping Webs
 		103483 : { 1: false }, // Imbue Weapon
-		
+		"Blastbones" : true,
 		85982 : { 1 : false, 2 : true, 3 : false },	// Feral Guardian
 		
 			// Passives
@@ -2398,6 +2413,8 @@ ESO_SKILL_TARGETYPE_OVERRIDES =
 		"Burning Light" : "none",		// Burning Light, Not affected by either?
 		"Reflective Light" : { 1 : true, 2 : false }, 	// Reflective Light, #2 should be AOE?
 		"Force Pulse" : { 4 : "none" },			// Force Pulse, Not affected by either?
+		
+		
 };
 
 
@@ -2440,7 +2457,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	var rawOutput = [];
 	var newRawOutput = {};
 	var target = "";
-	var skillLineName = skillData.skillLine + ' Damage';
+	var skillLineName = skillData.skillLine.replace(' ', '_');
 	var overrideAoe = null;
 	var overrideDot = null;
 	var overridePet = null;
@@ -2527,28 +2544,28 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			newRawOutput.damageId = matchData.damageId;
 			newRawOutput.baseDamage = p3;
 			newRawOutput.mainDamageDone = inputValues.Damage[matchData.damageId];
-
+			
 			if (inputValues.SkillDamage != null && inputValues.SkillDamage[skillData.baseName] != null)
 			{
 				baseFactor += inputValues.SkillDamage[skillData.baseName];
-				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.baseName]; 
+				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.baseName];
 			}
 			else if (inputValues.SkillDamage != null && inputValues.SkillDamage[skillData.name] != null)
 			{
 				baseFactor += inputValues.SkillDamage[skillData.name];
-				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.name]; 
+				newRawOutput.skillDamageDone = inputValues.SkillDamage[skillData.name];
 			}
 			
 			if (inputValues.SkillLineDamage != null && inputValues.SkillLineDamage[skillLineName] != null)
 			{
 				baseFactor += inputValues.SkillLineDamage[skillLineName];
-				newRawOutput.skillLineDamageDone = inputValues.SkillLineDamage[skillLineName]; 
+				newRawOutput.skillLineDamageDone = inputValues.SkillLineDamage[skillLineName];
 			}
-						
+			
 			if ((isDot || p5 != "") && overrideDot !== false)
 			{
 				thisEffectIsDot = (p5 != "");
-								
+				
 				if (p5 == " over" && p7 != "" && inputValues.SkillDuration != null && inputValues.SkillDuration[skillData.baseName] != null)
 				{
 					var modDuration = inputValues.SkillDuration[skillData.baseName];
@@ -2637,7 +2654,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;
 			}
 			
-			if (isPet && inputValues.Damage.Pet) 
+			if (isPet && inputValues.Damage.Pet)
 			{
 				baseFactor += Math.round(inputValues.Damage.Pet*100)/100;
 				newRawOutput.PetDamageDone = inputValues.Damage.Pet;
@@ -2649,7 +2666,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				baseFactor += inputValues.Damage.Overload;
 				newRawOutput.overloadDamage = inputValues.Damage.Overload;
 			}
-		
+			
 			if (thisEffectIsDot && inputValues.SkillDotDamage && inputValues.SkillDotDamage[skillData.baseName])
 			{
 				baseFactor += inputValues.SkillDotDamage[skillData.baseName];
@@ -2692,18 +2709,18 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			return p1 + p2 + modDamage + p4 + p5 + p6 + p7 + p8;
 		});
 	}
-		
+	
 	for (var i = 0; i < rawOutput.length; ++i)
 	{
 		var rawData = rawOutput[i];
 		var output = "";
-				
+		
 		if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + RoundEsoSkillPercent(rawData.modDuration) + " sec ";
 		if (rawData.skillLineDamageDone != null && rawData.skillLineDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDamageDone*100) + "% Skill Line ";
 		if (rawData.skillDamageDone != null && rawData.skillDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDamageDone*100) + "% Skill ";
 		if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.mainDamageDone*100) + "% " + rawData.damageId;
 		if (rawData.aoeDamageDone  != null && rawData.aoeDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeDamageDone*100) + "% AOE";
-		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetDamageDone*100) + "% Target";
+		if (rawData.singleTargetDamageDone  != null && rawData.singleTargetDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.singleTargetDamageDone*100) + "% SingleTarget";
 		if (rawData.directDamageDone  != null && rawData.directDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.directDamageDone*100) + "% Direct";
 		if (rawData.dotDamageDone  != null && rawData.dotDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotDamageDone*100) + "% DOT";
 		if (rawData.channelDamageDone  != null && rawData.channelDamageDone  != 0) output += " + " + RoundEsoSkillPercent(rawData.channelDamageDone*100) + "% Channel";
@@ -2754,8 +2771,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	
 	if (inputValues == null) return newDesc;
 	
-	if (!inputValues.TwinSlashBleedDamage && 
-		!inputValues.BleedDamage &&
+	if (!inputValues.BleedDamage &&
 		!inputValues.DotDamageDone.Bleed) return newDesc;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
@@ -2789,12 +2805,6 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 					if (modDamage != 0)
 					{
 						newDamage = Math.floor((newDamage + flatDamage) * (1 + modDamage));
-					}
-					
-					if (skillData.baseAbilityId == 28379 && inputValues.TwinSlashBleedDamage)
-					{
-						newDamage += inputValues.TwinSlashBleedDamage;
-						output += " + " + inputValues.TwinSlashBleedDamage + " TwinSlash";
 					}
 					
 					output += " = " + newDamage + " final";
@@ -2853,8 +2863,8 @@ window.UpdateEsoSkillElfBaneDurationDescription = function (skillData, skillDesc
 					{
 						newDuration = newDuration.toFixed(1);
 						skillData.rawOutput["Tooltip Flame Damage Duration (Elf Bane)"] = "" + p3 + " + " + inputValues.ElfBaneDuration + " = " + newDuration + " secs";	
-					}					
-			
+					}
+					
 					return p1 + p2 + newDuration + p4;
 				});		
 	}
@@ -2896,16 +2906,16 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	
 	if (skillData.baseTooltips && skillData.baseTooltips[1]) {
 		modDmg = baseDmg / skillData.baseTooltips[1];
-		baseDmg = skillData.baseTooltips[1];		
+		baseDmg = skillData.baseTooltips[1];
 	}
-		
+	
 	if (!skipExtraDmgParse) {
 		if (numbers[1] != null) hitExtraDmg = parseFloat(numbers[1]) / 100;
 		if (numbers[2] != null) finalExtraDmg = parseFloat(numbers[2]) / 100;
 	}
 	else {
 		if (numbers[1] != null) finalExtraDmg = parseFloat(numbers[1]) / 100;
-	}	
+	}
 	
 	var hit1 = Math.floor(baseDmg * modDmg);
 	var hit2 = Math.floor(baseDmg * (hitExtraDmg*1 + modDmg));
@@ -2914,9 +2924,9 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	var hit5 = Math.floor(baseDmg * (hitExtraDmg + modDmg) + baseDmg * finalExtraDmg * (1 + hitExtraDmg));
 	var totalDmg = hit1 + hit2 + hit3 + hit4 + hit5;
 	
-	extraDesc += "Hits: " + hit1 + ", " + hit2 + ", " + hit3 + ", " + hit4 + ", " + hit5;
-	extraDesc += "  (Total " + totalDmg + ")";
-			
+	extraDesc += "Hits: |cffffff" + hit1 + "|r, |cffffff" + hit2 + "|r, |cffffff" + hit3 + "|r, |cffffff" + hit4 + "|r, |cffffff" + hit5 + "|r";
+	extraDesc += "  (Total |cffffff" + totalDmg + "|r)";
+	
 	return newDesc + extraDesc;
 }
 
@@ -2963,51 +2973,92 @@ window.g_EsoSkill_DamageShieldSkills = {
 };
 
 
+window.AddEsoSkillCostMods = function(modValues, newMods)
+{
+	if (newMods == null) return;
+	
+	if (Array.isArray(newMods))
+	{
+		for (var i of newMods)
+		{
+			var value = parseFloat(i);
+			if (!isNaN(value)) modValues.push(value);
+		}
+	}
+	else
+	{
+		var value = parseFloat(newMods);
+		if (!isNaN(value)) modValues.push(value);
+	}
+}
+
+
+window.ComputeEsoCostModFactor = function (costMods)
+{
+	var factor = 1;
+	
+	if (costMods == null) return factor;
+	
+	for (var mod of costMods)
+	{
+		factor = Math.ceil(factor * (1 + mod) * 100) / 100;
+	}
+	
+	return factor;
+}
+
+
+window.MakeEsoSkillCostOutputLine = function(value, name, factor, percent)
+{
+	var output = "";
+	
+	if (factor == 0)
+	{
+		if (percent == "%") value *= 100;
+		
+		if (value > 0)
+		{
+			output = " + " + Math.round(value) + percent + " " + name;
+		}
+		else if (value < 0)
+		{
+			output = " - " + Math.abs(Math.round(value)) + percent + " " + name;
+		}
+	}
+	else
+	{
+		
+		if (value > 1)
+		{
+			output = " + " + Math.round(value*factor - factor) + percent + " " + name;
+		}
+		else if (value < 1)
+		{
+			output = " - " + Math.abs(Math.round(value*factor - factor)) + percent + " " + name;
+		}
+	}
+	
+	return output;
+}
+
+
 window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 {
 	if (skillData == null) return cost;
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
+	var costMods = [];
 	var baseCost = cost;
 	var mechanic = skillData.mechanic;
 	var CPFactor = 1;
 	var FlatCost = 0;
 	var SkillFactor = 1;
+	var CostFactor = 1;
+	var output = "";
 	var skillLineId = CreateEsoSkillLineId(skillData.skillLine) + "_Cost";
 	var skillNameId = CreateEsoSkillLineId(skillData.baseName) + "_Cost";
 	var skillNameId2 = CreateEsoSkillLineId(skillData.name) + "_Cost";
 	
-	if (mechanic == 0 && inputValues.MagickaCost != null)
-	{
-		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
-		if (inputValues.MagickaCost.CP    != null) SkillFactor *= 1 + inputValues.MagickaCost.CP;
-		if (inputValues.MagickaCost.Set   != null) SkillFactor *= 1 + inputValues.MagickaCost.Set;
-		if (inputValues.MagickaCost.Skill != null) SkillFactor *= 1 + inputValues.MagickaCost.Skill;
-		if (inputValues.MagickaCost.Buff  != null) SkillFactor *= 1 + inputValues.MagickaCost.Buff;
-	}
-	else if (mechanic == 6 && inputValues.StaminaCost != null)
-	{
-		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
-		if (inputValues.StaminaCost.CP    != null) SkillFactor *= 1 + inputValues.StaminaCost.CP;
-		if (inputValues.StaminaCost.Set   != null) SkillFactor *= 1 + inputValues.StaminaCost.Set;
-		if (inputValues.StaminaCost.Skill != null) SkillFactor *= 1 + inputValues.StaminaCost.Skill;
-		if (inputValues.StaminaCost.Buff  != null) SkillFactor *= 1 + inputValues.StaminaCost.Buff;
-	}
-	else if (mechanic == 10 && inputValues.UltimateCost != null)
-	{
-		if (inputValues.UltimateCost.CP    != null) CPFactor    += inputValues.UltimateCost.CP;
-		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
-		if (inputValues.UltimateCost.Skill != null) SkillFactor *= 1 + inputValues.UltimateCost.Skill;
-		if (inputValues.UltimateCost.Set   != null) SkillFactor *= 1 + inputValues.UltimateCost.Set;
-		if (inputValues.UltimateCost.Buff  != null) SkillFactor *= 1 + inputValues.UltimateCost.Buff;
-	}
-	else if (mechanic == -2 && inputValues.HealthCost != null)
-	{
-		if (inputValues.HealthCost.Item  != null) FlatCost    +=  inputValues.HealthCost.Item;
-		if (inputValues.HealthCost.Skill != null) SkillFactor *= 1 + inputValues.HealthCost.Skill;
-		if (inputValues.HealthCost.Set   != null) SkillFactor *= 1 + inputValues.HealthCost.Set;
-	}
-
 		/* DK World in Ruins Passive */
 	if (g_EsoSkillPoisonSkills && inputValues.PoisonStaminaCost)
 	{
@@ -3016,8 +3067,10 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		
 		if (poisonData)
 		{
-			SkillFactor *= 1 + inputValues.PoisonStaminaCost;
-		}		
+			CostFactor *= 1 + inputValues.PoisonStaminaCost;
+			AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.PoisonStaminaCost);
+			output += MakeEsoSkillCostOutputLine(inputValues.PoisonStaminaCost, "Poison Stamina Cost", 100, "%");
+		}
 	}
 	
 	if (inputValues.HealingAbilityCost)
@@ -3030,37 +3083,36 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 			
 			if (skillDesc.match(matchData) != null)
 			{
-				SkillFactor *= 1 + inputValues.HealingAbilityCost;
+				CostFactor *= 1 + inputValues.HealingAbilityCost;
+				AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.HealingAbilityCost);
+				output += MakeEsoSkillCostOutputLine(inputValues.HealingAbilityCos, "Healing Ability Cost", 100, "%");
 				break;
 			}
 		}
 		
 	}
 	
-	var output = "";
-	if (CPFactor != 1) output += " + " + Math.round(CPFactor*1000 - 1000)/10 + "% CP";
-	if (FlatCost != 0) output += " + " + FlatCost + " Flat";
-	if (SkillFactor != 1) output += " + " + Math.round(SkillFactor*1000 - 1000)/10 + "% Skill";
-	
 	if (skillData.skillType != 2 && inputValues.NonWeaponAbilityCost != null && inputValues.NonWeaponAbilityCost != 0) {
 		var factor = parseFloat(inputValues.NonWeaponAbilityCost);
-		SkillFactor *= 1 + factor;
-		if (factor != 0) output += " + " + Math.round(factor*1000)/10 + "% Non-Weapon Ability Cost";
+		CostFactor *= 1 + factor;
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.NonWeaponAbilityCost);
+		output += MakeEsoSkillCostOutputLine(factor, "Non-Weapon Ability Cost", 0, "%");
 	}
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost['Regular_Ability_Cost'] && skillLineId != "Vampire_Cost")
 	{
 		var factor = parseFloat(inputValues.SkillLineCost['Regular_Ability_Cost']);
-		SkillFactor *= 1 + factor;
-		if (factor != 0) output += " + " + Math.round(factor*1000)/10 + "% Regular Ability Cost";
+		CostFactor *= 1 + factor;
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Vampire.Regular_Ability_Cost);
+		output += MakeEsoSkillCostOutputLine(factor, "Regular Ability Cost", 0, "%");
 	}
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Active")
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
-		SkillFactor *= 1 + SkillLineFactor;
-		
-		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
+		CostFactor *= 1 + SkillLineFactor;
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.SkillCost[skillLineId]);
+		output += MakeEsoSkillCostOutputLine(SkillLineFactor, "SkillLine", 0, "%");
 	}
 		/* Skill line cost modifiers generally do not affect ultimates (manually add ultimates as needed) */
 	else if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillLineId] != null && skillData.type == "Ultimate")
@@ -3068,37 +3120,100 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (skillData.skillLine == "Vampire")
 		{
 			var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillLineId]);
-			SkillFactor *= 1 + SkillLineFactor;
-		
-			if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillLine";
+			CostFactor *= 1 + SkillLineFactor;
+			AddEsoSkillCostMods(costMods, inputValues.StatHistory.SkillCost[skillLineId]);
+			output += MakeEsoSkillCostOutputLine(SkillLineFactor, "SkillLine", 0, "%");
 		}
 	} 
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillNameId] != null)
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillNameId]);
-		SkillFactor *= 1 + SkillLineFactor;
-		
-		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
+		CostFactor *= 1 + SkillLineFactor;
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.SkillCost[skillNameId]);
+		output += MakeEsoSkillCostOutputLine(SkillLineFactor, "SkillCost", 0, "%");
 	}
 	
 	if (inputValues.SkillLineCost != null && inputValues.SkillLineCost[skillNameId2] != null && skillNameId != skillNameId2)
 	{
 		var SkillLineFactor = parseFloat(inputValues.SkillLineCost[skillNameId2]);
-		SkillFactor *= 1 + SkillLineFactor;
-		
-		if (SkillLineFactor != 0) output += " + " + Math.round(SkillLineFactor*1000)/10 + "% SkillCost";
+		CostFactor *= 1 + SkillLineFactor;
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.SkillCost[skillNameId2]);
+		output += MakeEsoSkillCostOutputLine(SkillLineFactor, "SkillCost", 0, "%");
 	}
 	
-	if ((g_EsoSkill_DamageShieldSkills[skillData['name']] != null || g_EsoSkill_DamageShieldSkills[skillData['baseName']] != null) && inputValues.DamageShieldCost != null && inputValues.DamageShieldCost != 1)
+	if ((g_EsoSkill_DamageShieldSkills[skillData['name']] != null || g_EsoSkill_DamageShieldSkills[skillData['baseName']] != null) && inputValues.DamageShieldCost != null && inputValues.DamageShieldCost != 0)
 	{
 		var DSFactor = parseFloat(inputValues.DamageShieldCost);
-		SkillFactor *= DSFactor;
-		
-		output += " + " + Math.round((inputValues.DamageShieldCost - 1)*1000)/10 + "% DamageShieldCost";
+		CostFactor *= 1 + DSFactor;
+		AddEsoSkillCostMods(costMods, inputValues.DamageShieldCost);
+		output += MakeEsoSkillCostOutputLine(inputValues.DamageShieldCost, "DamageShieldCost", 100, "%");
 	}
 	
-	cost = Math.ceil((cost * CPFactor + FlatCost) * SkillFactor);
+	if (mechanic == 0 && inputValues.MagickaCost != null)
+	{
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.MagickaCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.MagickaCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.MagickaCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Buff.MagickaCost);
+		
+		if (inputValues.MagickaCost.Item  != null) FlatCost    += inputValues.MagickaCost.Item;
+		if (inputValues.MagickaCost.CP    != null) SkillFactor *= 1 + inputValues.MagickaCost.CP;
+		if (inputValues.MagickaCost.Set   != null) SkillFactor *= 1 + inputValues.MagickaCost.Set;
+		if (inputValues.MagickaCost.Skill != null) SkillFactor *= 1 + inputValues.MagickaCost.Skill;
+		if (inputValues.MagickaCost.Buff  != null) SkillFactor *= 1 + inputValues.MagickaCost.Buff;
+	}
+	else if (mechanic == 6 && inputValues.StaminaCost != null)
+	{
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.StaminaCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.StaminaCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.StaminaCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Buff.StaminaCost);
+		
+		if (inputValues.StaminaCost.Item  != null) FlatCost    += inputValues.StaminaCost.Item;
+		if (inputValues.StaminaCost.CP    != null) SkillFactor *= 1 + inputValues.StaminaCost.CP;
+		if (inputValues.StaminaCost.Set   != null) SkillFactor *= 1 + inputValues.StaminaCost.Set;
+		if (inputValues.StaminaCost.Skill != null) SkillFactor *= 1 + inputValues.StaminaCost.Skill;
+		if (inputValues.StaminaCost.Buff  != null) SkillFactor *= 1 + inputValues.StaminaCost.Buff;
+	}
+	else if (mechanic == 10 && inputValues.UltimateCost != null)
+	{
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.UltimateCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.UltimateCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.UltimateCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Buff.UltimateCost);
+		
+		//if (inputValues.UltimateCost.CP    != null) CPFactor    += inputValues.UltimateCost.CP;		//Old?
+		if (inputValues.UltimateCost.Item  != null) FlatCost    += inputValues.UltimateCost.Item;
+		if (inputValues.UltimateCost.CP    != null) SkillFactor *= 1 + inputValues.UltimateCost.CP;
+		if (inputValues.UltimateCost.Skill != null) SkillFactor *= 1 + inputValues.UltimateCost.Skill;
+		if (inputValues.UltimateCost.Set   != null) SkillFactor *= 1 + inputValues.UltimateCost.Set;
+		if (inputValues.UltimateCost.Buff  != null) SkillFactor *= 1 + inputValues.UltimateCost.Buff;
+	}
+	else if (mechanic == -2 && inputValues.HealthCost != null)
+	{
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.HealthCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.HealthCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.HealthCost);
+		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Buff.HealthCost);
+		
+		if (inputValues.HealthCost.Item  != null) FlatCost    +=  inputValues.HealthCost.Item;
+		if (inputValues.HealthCost.CP    != null) SkillFactor *= 1 + inputValues.HealthCost.CP;
+		if (inputValues.HealthCost.Skill != null) SkillFactor *= 1 + inputValues.HealthCost.Skill;
+		if (inputValues.HealthCost.Set   != null) SkillFactor *= 1 + inputValues.HealthCost.Set;
+		if (inputValues.HealthCost.Buff  != null) SkillFactor *= 1 + inputValues.HealthCost.Buff;
+	}
+	
+	output += MakeEsoSkillCostOutputLine(CPFactor, "CP", 100, "%");
+	output += MakeEsoSkillCostOutputLine(FlatCost, "Flat", 0, "");
+	output += MakeEsoSkillCostOutputLine(SkillFactor, "Skill", 100, "%");
+	
+	SkillFactor *= CostFactor; 
+	
+	var newFactor = ComputeEsoCostModFactor(costMods);
+	SkillFactor = newFactor;
+	
+	cost = Math.trunc((cost * CPFactor + FlatCost) * SkillFactor);
 	if (cost < 0) cost = 0;
 	
 	if (output == "") 
@@ -3227,7 +3342,7 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 	
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
 		
-	if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null) 
+	if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null)
 	{
 		modDuration = +inputValues.SkillDuration[skillData.baseName];
 		newDuration = 0;
@@ -3299,7 +3414,7 @@ window.UpdateEsoSkillDescription_ForEach = function (index, element)
 window.UpdateEsoAllSkillDescription = function()
 {
 	var inputValues = GetEsoSkillInputValues();
-	$(".esovsSkillContentBlock:visible .esovsAbilityBlockDesc").each(UpdateEsoSkillDescription_ForEach);
+	$(".esovsSkillContentBlock:visible").find(".esovsAbilityBlockDesc").each(UpdateEsoSkillDescription_ForEach);
 }
 
 
@@ -3310,9 +3425,9 @@ window.UpdateEsoAllSkillCost = function(onlyVisible)
 	if (onlyVisible == null) onlyVisible = true;
 	
 	if (onlyVisible)
-		$(".esovsSkillContentBlock:visible .esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
+		$(".esovsSkillContentBlock:visible").find(".esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
 	else
-		$(".esovsSkillContentBlock .esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
+		$(".esovsSkillContentBlock").find(".esovsAbilityBlockCost").each(UpdateEsoSkillCost_ForEach);
 }
 
 
@@ -3445,7 +3560,7 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		output += srcString + " = " + a + " ArmorTypes " + cOp + " " + c;
 		typeString = "Armor Type #";
 	}
-	else if (type == -56) // Spell + Weapon Damage
+	else if (type == -56 || type == 4) // Spell + Weapon Damage
 	{
 		output += srcString + " = " + a + " SpellDamage " + bOp + " " + b + " WeaponDamage " + cOp + " " + c;
 		typeString = "Spell + Weapon Damage";
@@ -3516,6 +3631,12 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		output += srcString + " = " + a + " WintersEmbraceSkills";
 		typeString = "Winter's Embrace Slotted";
 	}
+	else if (type == -68)
+	{
+		b = Math.round(b * 100);
+		output += srcString + " = " + a + " Magicka    (Capped at " + b + "% Health)";
+		typeString = "Magicka with Health Cap";
+	}
 	else if (type == -69)
 	{
 		a = Math.round(a);
@@ -3544,11 +3665,15 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		output += srcString + " = " + a + " Magicka " + bOp + " " + b + " SpellDamage    (Capped at " + c + "%)";
 		typeString = "Magicka Capped";
 	}
-	else if (type == -68)
+	else if (type == -74)
 	{
-		b = Math.round(b * 100);
-		output += srcString + " = " + a + " Magicka    (Capped at " + b + "% Health)";
-		typeString = "Magicka with Health Cap";
+		output += srcString + " = " + a + " WeaponPower " + cOp + " " + c;
+		typeString = "Weapon Power";
+	}
+	else if (type == -75)
+	{
+		output += srcString + " = Constant"
+		typeString = "Constant";
 	}
 	else
 	{
@@ -3565,18 +3690,12 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 }
 
 
-window.UpdateEsoSkillCoefData = function(skillId)
+window.GetEsoSkillCoefContentHtml = function(skillId)
 {
-	var skillCoefElement = $("#esovsSkillCoefContent");
+	if (USE_V2_TOOLTIPS && window.GetEsoSkillCoefContentHtml2) return GetEsoSkillCoefContentHtml2(skillId);
 	
-	if (skillId == null) skillId = g_LastSkillId;
 	var skillData = g_SkillsData[skillId];
-	
-	if (skillData == null || skillData['numCoefVars'] <= 0) 
-	{
-		skillCoefElement.html("No known skill coefficients.");
-		return;
-	}
+	if (skillData == null || skillData['numCoefVars'] <= 0) return "No known skill coefficients.";
 	
 	var output = "";
 	
@@ -3590,7 +3709,17 @@ window.UpdateEsoSkillCoefData = function(skillId)
 	}
 	
 	output += "<div class='esovsSkillCoefDesc'>" + skillDesc + "</div>";
+	return output;
+}
+
+
+window.UpdateEsoSkillCoefData = function(skillId)
+{
+	var skillCoefElement = $("#esovsSkillCoefContent");
 	
+	if (skillId == null) skillId = g_LastSkillId;
+	
+	var output = GetEsoSkillCoefContentHtml(skillId);
 	skillCoefElement.html(output);
 }
 
@@ -3650,7 +3779,7 @@ window.ParseEsoLevel = function (level)
 		if (level < 1) return 1;
 		return level;
 	}
-		
+	
 	level = parseInt(level);
 	if (isNaN(level)) return 1;
 	return level;
@@ -3661,7 +3790,7 @@ window.FormatEsoLevel = function (level)
 {
 	if (level <= 0 || level > 66) return level;
 	if (level <= 50) return level;
-
+	
 	//return "v" + (level - 50);
 	return "CP" + (level - 50)*10;
 }
@@ -3669,6 +3798,8 @@ window.FormatEsoLevel = function (level)
 
 window.OnChangeEsoSkillData = function (dataName)
 {
+	//var startTime = performance.now();
+	
 	var rangeControl = $('#esovsControl' + dataName);
 	var inputControl = $('#esovsInput'   + dataName);
 	var value = this.value;
@@ -3691,6 +3822,9 @@ window.OnChangeEsoSkillData = function (dataName)
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
 	UpdateSkillLink();
+	
+	//var diffTime = performance.now() - startTime;
+	//console.log("OnChangeEsoSkillData", diffTime);
 }
 
 
@@ -4564,7 +4698,7 @@ window.OnSkillBarRevertDraggable = function (droppableObj)
 	
 	if (sourceAbilityId <= 0) return false;
 	
-	RemoveSkillBarAbility(sourceAbilityId, skillBar );
+	RemoveSkillBarAbility(sourceAbilityId, skillBar);
 	UpdateEsoSkillBarData();
 	
 	return false;
@@ -4581,9 +4715,13 @@ window.OnSkillBarDroppableOut = function (event, ui)
 	realDraggable.addClass("esovsSkillDraggableBad");
 	realDraggable.removeClass("esovsSkillDraggableGood");
 	
-	if (oldSrc != null) currentImage.attr("src", oldSrc);
+	if (oldSrc != null) 
+	{
+		currentImage.attr("src", oldSrc);
+		currentImage.removeAttr("oldsrc");
+	}
 	
-	//console.log("OnSkillBarDroppableOut");
+	console.log("OnSkillBarDroppableOut", currentImage.attr("skillIndex"));
 }
 
 
@@ -4611,7 +4749,7 @@ window.OnSkillBarDroppableOver = function (event, ui)
 	currentImage.attr("oldsrc", src);
 	if (newSrc) currentImage.attr("src", newSrc);
 	
-	//console.log("OnSkillBarDroppableOver");
+	//console.log("OnSkillBarDroppableOver", currentImage.attr("skillIndex"));
 }
 
 
@@ -4628,7 +4766,7 @@ window.OnSkillBarDraggableStart = function (event, ui)
 	$("#esovsPopupSkillTooltip").hide();
 	//console.log("OnSkillBarDraggableStart");
 	
-	$("#esovsSkillBar").find(".esovsSkillBarIcon").removeAttr("oldsrc");
+	//$("#esovsSkillBar").find(".esovsSkillBarIcon").removeAttr("oldsrc");
 }
 
 
@@ -4636,7 +4774,7 @@ window.OnSkillBarDroppableAccept = function (draggable)
 {
 	var $this = $(this);
 	draggable = $(draggable);
-		
+	
 	//console.log("OnSkillBarAccept", $this, draggable, realDraggable);
 	
 	var sourceAbilityId = -1;
@@ -4674,7 +4812,8 @@ window.OnSkillBarDroppableAccept = function (draggable)
 		/* Werewolf active skills only allowed on the werewolf skill bar */
 	if (skillData.skillLine == "Werewolf")
 	{
-		if (skillData.type != "Ultimate" && skillBarIndex != 4) return false;
+				// In update 29 Werewolf active skills are allowed on any bar and their passive effect seems to work.
+		//if (skillData.type != "Ultimate" && skillBarIndex != 4) return false;
 	} 
 	
 	if (skillData.type == "Ultimate" && sourceSkillIndex != 6) return false;
@@ -4720,7 +4859,7 @@ window.OnSkillBarDroppable = function (event, ui)
 	{
 		var element = g_EsoSkillDestructionElement;
 		if (!skillBarParent.hasClass("esovsSkillBarHighlight")) element = g_EsoSkillDestructionOffHandElement;
-				
+		
 		//console.log("Destruction skill swap", sourceAbilityId);
 		
 		if (g_EsoSkillDestructionData[sourceAbilityId][element] != null)
@@ -4741,11 +4880,11 @@ window.OnSkillBarDroppable = function (event, ui)
 	{
 		$this = $(this).find(".esovsSkillBarIcon");
 		if ($this.length == 0) return false;
-	}	
+	}
 	
 	var skillBar = $this.attr("skillbar");
 	var skillIndex = $this.attr("skillindex");
-		
+	
 	if (isSkillSwap)
 	{
 		var swapId = $this.attr("skillid");
@@ -4804,7 +4943,7 @@ window.ChangeEsoSkillBarAbility = function(oldAbilityId, newAbilityId, skillBar)
 	
 	var skillBarIcons  = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[skillid='" + oldAbilityId + "']");
 	var skillBarIcons2 = $("#esovsSkillBar .esovsSkillBar[skillbar='" + skillBar + "']").find(".esovsSkillBarIcon[origskillid='" + oldAbilityId + "']");
-		
+	
 	var iconUrl = "//esoicons.uesp.net" + skillData.icon;
 	iconUrl.replace("\.dds", ".png");
 	
@@ -4957,11 +5096,11 @@ window.OnEsoSkillReset = function (e)
 		var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
 		var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
 		var skillId = selectBlock.attr("skillid");
-
+		
 		displayBlock.addClass('esovsAbilityBlockNotPurchase');
 		iconDisplayBlock.attr("draggable", "false");
 		displayBlock.attr("skillid", skillId);
-	
+		
 		iconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockIcon").html());
 		titleDisplayBlock.html(selectBlock.children(".esovsAbilityBlockTitle").html());
 		passiveIconDisplayBlock.html(selectBlock.children(".esovsAbilityBlockPassiveIcon").html());
@@ -5084,7 +5223,7 @@ window.esovsOnDocReady = function ()
 	
 	$('#esovsControlWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage'); });
 	$('#esovsInputWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage');	});
-
+	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);
 	
@@ -5101,7 +5240,7 @@ window.esovsOnDocReady = function ()
 			e.preventDefault(); 
 			e.stopPropagation(); 
 			return false; });
-	
+		
 		$(".esovsAbilityBlockPassiveIcon").click(function(e) {
 			setTimeout(function() { OnHoverEsoPassiveIcon.bind(this, e); }, 250);
 			e.preventDefault(); 
@@ -5120,7 +5259,7 @@ window.esovsOnDocReady = function ()
 		$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoPassiveIcon, OnLeaveEsoIcon);
 		$(".esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
 	}
-		
+	
 	$(".esovsSkillBar").click(OnSkillBarSelect)
 	
 	//$(".esovsAbilityBlockIcon").on('dragstart', OnAbilityDragStart);
@@ -5154,7 +5293,8 @@ window.esovsOnDocReady = function ()
 			drop: OnSkillBarDroppable, 
 			accept: OnSkillBarDroppableAccept,
 			out: OnSkillBarDroppableOut,
-			over: function(event, ui) { setTimeout(OnSkillBarDroppableOver.bind(this, event, ui), 0); },
+			//over: function(event, ui) { setTimeout(OnSkillBarDroppableOver.bind(this, event, ui), 0); },
+			over: OnSkillBarDroppableOver,
 			classes: {
 				//'ui-droppable-hover': 'esovsSkillAcceptHover'
 			},

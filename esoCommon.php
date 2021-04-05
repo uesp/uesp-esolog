@@ -10,6 +10,11 @@ const UESP_ESO_ICON_URL = "//esoicons.uesp.net";
 const ENABLE_ESO_PAGEVIEW_UPDATES = true;
 
 	/* Make sure these match values used in uespLog */
+const POWERTYPE_MAGICKA = 0;
+const POWERTYPE_INVALID = -1;
+const POWERTYPE_HEALTH = -2;
+const POWERTYPE_STAMINA = 6;
+const POWERTYPE_ULTIMATE = 10;
 const UESP_POWERTYPE_SOULTETHER    = -50;
 const UESP_POWERTYPE_LIGHTARMOR    = -51;
 const UESP_POWERTYPE_MEDIUMARMOR   = -52;
@@ -34,6 +39,8 @@ const UESP_POWERTYPE_GRAVELORD = -70;
 const UESP_POWERTYPE_SPELLDAMAGECAPPED = -71;
 const UESP_POWERTYPE_MAGICKAWITHWD = -72;
 const UESP_POWERTYPE_MAGICKACAPPED = -73;
+const UESP_POWERTYPE_WEAPONPOWER = -74;
+const UESP_POWERTYPE_CONSTANTVALUE = -75;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -133,6 +140,7 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"26" => "Greymoor",
 		"27" => "Harrowstorm",
 		"28" => "Markarth",
+		"29" => "Flames of Ambition",
 	);
 
 
@@ -250,7 +258,186 @@ $ESO_CRAFTTYPES = array(
 		4 => "Alchemy",
 		5 => "Provisioning",
 		6 => "Woodworking",
-		7 => "Jewelry Crafting",	
+		7 => "Jewelry Crafting",
+);
+
+
+$ESO_STATTYPES = array(
+		0 => "None",
+		1 => "Attack Power",
+		2 => "Weapon Power",
+		3 => "Armor Rating",
+		4 => "Magicka Max",
+		5 => "Magicka Regen Combat",
+		6 => "Magicka Regen Idle",
+		7 => "Health Max",
+		8 => "Health Regen Combat",
+		9 => "Health Regen Idle",
+		10 => "Healing Taken",
+		11 => "Dodge",
+		12 => "Healing Done",
+		13 => "Spell Resist",
+		14 => "Block",
+		16 => "Critical Strike",
+		20 => "Mitigation",
+		22 => "Physical Resist",
+		23 => "Spell Critical",
+		24 => "Critical Resistance",
+		25 => "Spell Power",
+		26 => "Spell Mitigation",
+		29 => "Stamina Max",
+		30 => "Stamina Regen Combat",
+		31 => "Stamina Regen Idle",
+		32 => "Miss",
+		33 => "Physical Penetration",
+		34 => "Spell Penetration",
+		35 => "Weapon Damage",
+		36 => "Damage Resist Start",
+		37 => "Damage Resist Generic",
+		38 => "Damage Resist Physical",
+		39 => "Damage Resist Fire",
+		40 => "Damage Resist Shock",
+		41 => "Damage Resist Oblivion",
+		42 => "Damage Resist Cold",
+		43 => "Damage Resist Earth",
+		44 => "Damage Resist Magic",
+		45 => "Damage Resist Drown",
+		46 => "Damage Resist Disease",
+		47 => "Damage Resist Poison",
+		48 => "Mount Stamina Max",
+		49 => "Mount Stamina Regen Combat",
+		50 => "Mount Stamina Regen Moving",
+);
+
+
+$ESO_ABILITYTYPES = array(
+		0 => "None",
+		1 => "Damage",
+		2 => "Heal",
+		3 => "Resurrect",
+		4 => "Blink",
+		5 => "Bonus",
+		6 => "RegisterTrigger",
+		7 => "SetTarget",
+		8 => "Threat",
+		9 => "Stun",
+		10 => "Snare",
+		11 => "Silence",
+		12 => "RemoveType",
+		13 => "SeCcooldown",
+		14 => "CombatResource",
+		15 => "DamageShield",
+		16 => "MovePosition",
+		17 => "Knockback",
+		18 => "Charge",
+		19 => "Immunity",
+		20 => "Intercept",
+		21 => "Reflection",
+		22 => "AreaEffect",
+		23 => "Deprecated2",
+		24 => "CreateInventoryItem",
+		25 => "DamageLimit",
+		26 => "AreaTeleport",
+		27 => "Fear",
+		28 => "Trauma",
+		29 => "Stealth",
+		30 => "SeeStealth",
+		31 => "Flight",
+		32 => "Disorient",
+		33 => "Stagger",
+		34 => "Slowfall",
+		35 => "Jump",
+		36 => "Wind",
+		37 => "Summon",
+		38 => "Mount",
+		39 => "Charm",
+		40 => "Bladeturn",
+		41 => "Nonexistent",
+		42 => "Nokill",
+		43 => "Noaggro",
+		44 => "Dispel",
+		45 => "Vampire",
+		46 => "CreateInteractable",
+		47 => "ModifyCooldown",
+		48 => "Levitate",
+		49 => "Pacify",
+		50 => "ActionList",
+		51 => "Interrupt",
+		52 => "Block",
+		53 => "OffBalance",
+		54 => "Exhausted",
+		55 => "ModifyDuration",
+		56 => "Dodge",
+		57 => "Shownon",
+		58 => "Misdirect",
+		59 => "Freecast",
+		60 => "SiegeCreate",
+		61 => "SiegeAreaEffect",
+		62 => "Defend",
+		63 => "FreeInteract",
+		64 => "ChangeAppearance",
+		65 => "AttackerReflect",
+		66 => "AttackerIntercept",
+		67 => "Disarm",
+		68 => "Parry",
+		69 => "Pathline",
+		70 => "DoubleFire",
+		71 => "FireOroc",
+		72 => "Leap",
+		73 => "Reveal",
+		74 => "Siegepackup",
+		75 => "Recall",
+		76 => "Grantability",
+		77 => "Hide",
+		78 => "Sethotbar",
+		79 => "Nolockpick",
+		80 => "Fillsoulgem",
+		81 => "SoulgemResurrect",
+		82 => "DespawnOverride",
+		83 => "UpdateDeathDialog",
+		84 => "Clairvoyance",
+		85 => "Clientfx",
+		86 => "AvoidDeath",
+		87 => "NoncombatBonus",
+		88 => "NoSeeTarget",
+		89 => "Deprecated",
+		90 => "SetPersonality",
+		91 => "Basic",
+		92 => "RewindTime",
+		93 => "LightHeavyAttackOverride",
+		94 => "DeriveSstatCache",
+		95 => "AvaReach",
+		96 => "RandomBranch",
+		97 => "MountBlock",
+		98 => "Deprecated3",
+		99 => "HardDismount",
+		100 => "LinkTarget",
+		101 => "CustomTargetArea",
+		102 => "DamageTransfer",
+		103 => "DisableItemSets",
+		104 => "FollowWaypointPath",
+		105 => "SetAimatTarget",
+		106 => "FaceTarget",
+		107 => "LosMovePosition",
+		108 => "DisableClientTurning",
+		109 => "DamageImmune",
+		110 => "StopMoving",
+);
+
+$ESO_DAMAGETYPES = array(
+		0 => "None",
+		1 => "Generic",
+		2 => "Physical",
+		3 => "Flame",
+		4 => "Shock",
+		5 => "Oblivion",
+		6 => "Frost",
+		7 => "Earth",
+		8 => "Magic",
+		9 => "Drown",
+		10 => "Disease",
+		11 => "Poison",
+		12 => "Bleed",
 );
 
 
@@ -1039,7 +1226,7 @@ $ESO_ITEMSPECIALTYPE_RAW_TEXTS = array(
 
 
 $ESO_CUSTOM_MECHANICS = array(
-		UESP_POWERTYPE_SOULTETHER => "Ulimate (ignore WD)",
+		UESP_POWERTYPE_SOULTETHER => "Ultimate (ignore WD)",
 		UESP_POWERTYPE_LIGHTARMOR => "Light Armor",
 		UESP_POWERTYPE_MEDIUMARMOR => "Medium Armor",
 		UESP_POWERTYPE_HEAVYARMOR => "Heavy Armor",
@@ -1057,11 +1244,14 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_ANIMALCOMPANION => "Animal Companion Skills Slotted",
 		UESP_POWERTYPE_GREENBALANCE => "Green Balance Skills Slotted",
 		UESP_POWERTYPE_WINTERSEMBRACE => "Winter's Embrace Skills Slotted",
+		UESP_POWERTYPE_MAGICHEALTHCAP => "Magicka with Health Cap",
 		UESP_POWERTYPE_BONETYRANT => "Bone Tyrant Skills Slotted",
 		UESP_POWERTYPE_GRAVELORD => "Grave Lord Skills Slotted",
 		UESP_POWERTYPE_SPELLDAMAGECAPPED => "Spell Damage Capped",
 		UESP_POWERTYPE_MAGICKAWITHWD => "Magicka and Weapon Damage",
 		UESP_POWERTYPE_MAGICKACAPPED => "Magicka Capped",
+		UESP_POWERTYPE_WEAPONPOWER => "Weapon Power",
+		UESP_POWERTYPE_CONSTANTVALUE => "Constant Value",
 );
 
 
@@ -3325,63 +3515,153 @@ $ESO_POISON_SKILLS = array(
 );
 
 	/* Skills that are classed as "Flame AOE" for the Elf Bane set.
-	 * 		0 = Only affect description durations. 
-	 *		1 = Reduce duration of entire ability in addition to description durations.
+	 * 		0 = Only affect description durations.
+	 *		1 = Replace duration of entire ability in addition to all description durations.
 	 *		2 = Match description duration to skill duration.
+	 *		3 = Only replace description durations
 	 */
 $ESO_ELFBANE_SKILLS = array(
-		61524 => 0, // Scorching Flare
-		28988 => 2,	// Dragonknight Standard
-		32958 => 2,	// Shifting Standard
-		32947 => 2,	// Standard of Might
-		20660 => 1,	// Burning Embers
-		20657 => 1,	// Searing Strike
-		20930 => 1,	// Engulfing Flames
-		20917 => 1,	// Fiery Breath
-		20252 => 1,	// Burning Talons
+		3341  => 0,  // Lava Flows
+		15957 => 0,  // Magma Armor 1
+		15957 => 0,  // Magma Armor 2
+		15957 => 0,  // Magma Armor 3
+		15957 => 0,  // Magma Armor 4
+		17874 => 0,  // Magma Shell 1
+		17874 => 0,  // Magma Shell 2
+		17874 => 0,  // Magma Shell 3
+		17874 => 0,  // Magma Shell 4
+		20657 => 0,  // Searing Strike 1
+		20657 => 0,  // Searing Strike 2
+		20657 => 0,  // Searing Strike 3
+		20657 => 0,  // Searing Strike 4
+		20660 => 0,  // Burning Embers 1
+		20660 => 0,  // Burning Embers 2
+		20660 => 0,  // Burning Embers 3
+		20660 => 0,  // Burning Embers 4
+		20917 => 0,  // Fiery Breath 1
+		20917 => 0,  // Fiery Breath 2
+		20917 => 0,  // Fiery Breath 3
+		20917 => 0,  // Fiery Breath 4
+		20930 => 0,  // Engulfing Flames 1
+		20930 => 0,  // Engulfing Flames 2
+		20930 => 0,  // Engulfing Flames 3
+		20930 => 0,  // Engulfing Flames 4
+		21726 => 0,  // Sun Fire 1
+		21726 => 0,  // Sun Fire 2
+		21726 => 0,  // Sun Fire 3
+		21726 => 0,  // Sun Fire 4
+		21729 => 0,  // Vampire's Bane 1
+		21729 => 0,  // Vampire's Bane 2
+		21729 => 0,  // Vampire's Bane 3
+		21729 => 0,  // Vampire's Bane 4
+		21732 => 0,  // Reflective Light 1
+		21732 => 0,  // Reflective Light 2
+		21732 => 0,  // Reflective Light 3
+		21732 => 0,  // Reflective Light 4
+		28708 => 0,  // Empower
+		28807 => 0,  // Wall of Fire 1
+		28807 => 0,  // Wall of Fire 2
+		28807 => 0,  // Wall of Fire 3
+		28807 => 0,  // Wall of Fire 4
+		28988 => 0,  // Dragonknight Standard 1
+		28988 => 0,  // Dragonknight Standard 2
+		28988 => 0,  // Dragonknight Standard 3
+		28988 => 0,  // Dragonknight Standard 4
+		32710 => 0,  // Eruption 1
+		32710 => 0,  // Eruption 2
+		32710 => 0,  // Eruption 3
+		32710 => 0,  // Eruption 4
+		32947 => 0,  // Standard of Might 1
+		32947 => 0,  // Standard of Might 2
+		32947 => 0,  // Standard of Might 3
+		32947 => 0,  // Standard of Might 4
+		32958 => 0,  // Shifting Standard 1
+		32958 => 0,  // Shifting Standard 2
+		32958 => 0,  // Shifting Standard 3
+		32958 => 0,  // Shifting Standard 4
+		39012 => 0,  // Blockade of Fire 1
+		39012 => 0,  // Blockade of Fire 2
+		39012 => 0,  // Blockade of Fire 3
+		39012 => 0,  // Blockade of Fire 4
+		39053 => 0,  // Unstable Wall of Fire 1
+		39053 => 0,  // Unstable Wall of Fire 2
+		39053 => 0,  // Unstable Wall of Fire 3
+		39053 => 0,  // Unstable Wall of Fire 4
+		54129 => 0,  // Fire Chain
+		63198 => 0,  // Fiery Chain
+		83625 => 0,  // Fire Storm 1
+		83625 => 0,  // Fire Storm 2
+		83625 => 0,  // Fire Storm 3
+		83625 => 0,  // Fire Storm 4
+		83682 => 0,  // Eye of Flame 1
+		83682 => 0,  // Eye of Flame 2
+		83682 => 0,  // Eye of Flame 3
+		83682 => 0,  // Eye of Flame 4
+		85126 => 0,  // Fiery Rage 1
+		85126 => 0,  // Fiery Rage 2
+		85126 => 0,  // Fiery Rage 3
+		85126 => 0,  // Fiery Rage 4
+		100155 => 0,  // Crushing Wall
+
+				// Older data no longer needed (stored in skillTooltips database)
+		3341  => 2, // Lava Flows
+		15774 => 2, // Flaming Oil
 		15957 => 1,	// Magma Armor
+		//16536 => 0,	// Meteor
 		17874 => 1,	// Magma Shell
-		20779 => 1,	// Cinder Storm
-		32710 => 1,	// Eruption
-		29059 => 1,	// Ash Cloud
+		20252 => 1,	// Burning Talons
+		20657 => 1,	// Searing Strike
+		20660 => 1,	// Burning Embers
+		20917 => 1,	// Fiery Breath
+		20930 => 1,	// Engulfing Flames
+		21726 => 1, // Sun Fire
+		21729 => 1,	// Vampire's Bane
+		21732 => 1,	// Reflective Light
+		//28708 => 0, // Empower
+		//28807 => 0,	// Wall of Fire
+		28988 => 2,	// Dragonknight Standard
+		//29073 => 0,	// Flame Touch
+		29368 => 2, // Light Attack
+		//32710 => 0,	// Eruption
+		32947 => 2,	// Standard of Might
+		32958 => 2,	// Shifting Standard
+		38937 => 2, // Destructive Reach
+		38944 => 2,	// Flame Reach
+		//39012 => 0,	// Blockade of Fire
+		//39053 => 0,	// Unstable Wall of Fire
+		40465 => 3,	// Scalding Rune
 		40493 => 1,	// Shooting Star
-		16536 => 0,	// Meteor
-		40465 => 0,	// Scalding Rune
-		21729 => 0,	// Vampire's Bane
-		21732 => 0,	// Reflective Light
-		39053 => 1,	// Unstable Wall of Fire
-		41674 => 1,
-		41692 => 1,
-		41712 => 1,
-		28807 => 1,	// Wall of Fire
+		//40948 => 0,
+		//40957 => 0,
+		//40965 => 0,
+		//40984 => 0,
+		//40996 => 0,
+		//41009 => 0,
+		//41030 => 0,
+		//41039 => 0,
+		//41048 => 0,
 		41628 => 1,
 		41643 => 1,
 		41659 => 1,
-		85126 => 1,	// Fiery Rage
-		86512 => 1,
-		86513 => 1,
-		86515 => 1,
-		38944 => 0,	// Flame Reach
-		41030 => 0,
-		41039 => 0,
-		41048 => 0,
-		83625 => 1,	// Fire Storm
-		86488 => 1,
-		86490 => 1,
-		86491 => 1,
-		39012 => 1,	// Blockade of Fire
+		41674 => 1,
+		41692 => 1,
+		41712 => 1,
 		41739 => 1,
 		41755 => 1,
 		41770 => 1,
-		38985 => 0,	// Flame Clench
-		40984 => 0,
-		40996 => 0,
-		41009 => 0,
-		29073 => 0,	// Flame Touch
-		40948 => 0,
-		40957 => 0,
-		40965 => 0,
-		83682 => 1,	// Eye of Flame
+		52436 => 1, // Dragonknight Standard
+		83625 => 2,	// Fire Storm
+		83682 => 2,	// Eye of Flame
+		85126 => 1,	// Fiery Rage
+		83761 => 3, // Player Pet Defenses
+		//84492 => 3, // Grothdarr
+		85126 => 2, // Fiery Rage
+		86488 => 1,
+		86490 => 1,
+		86491 => 1,
+		86512 => 1,
+		86513 => 1,
+		86515 => 1,
 		86536 => 1,
 		86538 => 1,
 		86540 => 1,
@@ -3392,37 +3672,36 @@ $ESO_ELFBANE_SKILLS = array(
 	 * Empty arrays mean all flame damage in the skill tooltip is increased. Otherwise
 	 * only the listed skill coefficient indices are affected. */
 $ESO_FLAMEAOE_SKILLS = array(
-		83625 => array(),	// Fire Storm	 			
-		83682 => array(),	// Eye of Flame 			
-		85126 => array(),	// Fiery Rage 				
-		28807 => array(),	// Wall of Fire 			
-		39012 => array(),	// Blockade of Fire 		
-		39053 => array(),	// Unstable Wall of Fire 	
-		28794 => array(),	// Fire Impluse 			
-		39145 => array(),	// Fire Ring 				
-		39162 => array(),	// Flame Pulsar
-		20917 => array(),	// Fiery Breath, DoT Component confirmed update 20
-		20930 => array(),	// Engulfing Flames, DoT Component confirmed update 20
-		28967 => array(),	// Inferno 
-		32853 => array(),	// Flames of Oblivion, confirmed update 20
-		31837 => array(2 => 1),	// Inhale 					
-		32785 => array(2 => 1),	// Draw Essence 			
-		32792 => array(2 => 1),	// Deep Breath 			
-		15957 => array(),	// Magma Armor 			
-		17874 => array(),	// Magma Shell			
-		20252 => array(2 => 1),	// Burning Talons, confirmed update 20 			
-		32710 => array(),	// Eruption, confirmed update 20				
-		32715 => array(),	// Ferocious Leap 			
-		32947 => array(),	// Standard of Might, confirmed update 20 		
-		32958 => array(),	// Shifting Standard, confirmed update 20 		
-		28988 => array(),	// Dragonknight Standard, confirmed update 20 	
-		16536 => array(),	// Meteor, confirmed update 20 					
-		40493 => array(),	// Shooting Star, confirmed update 20
-		31632 => array(),	// Fire Rune 				
-		40465 => array(1 => 1),	// Scalding Rune, confirmed update 20 			
-		40470 => array(),	// Volcanic Rune
-		21732 => array(1 => 1),	// Reflective Light, confirmed update 20	
-		
+		15957 => array(),		// Magma Armor
+		16536 => array(),		// Meteor, confirmed update 20
+		17874 => array(),		// Magma Shell
+		20252 => array(2 => 1),	// Burning Talons, confirmed update 20
+		20917 => array(),		// Fiery Breath, DoT Component confirmed update 20
+		20930 => array(),		// Engulfing Flames, DoT Component confirmed update 20
+		21732 => array(1 => 1),	// Reflective Light, confirmed update 20
+		28794 => array(),		// Fire Impluse
+		28807 => array(),		// Wall of Fire
+		28967 => array(),		// Inferno 
+		28988 => array(),		// Dragonknight Standard, confirmed update 20
+		31632 => array(),		// Fire Rune
+		31837 => array(2 => 1),	// Inhale
+		32710 => array(),		// Eruption, confirmed update 20
+		32715 => array(),		// Ferocious Leap
+		32785 => array(2 => 1),	// Draw Essence
+		32792 => array(2 => 1),	// Deep Breath
+		32853 => array(),		// Flames of Oblivion, confirmed update 20
+		32947 => array(),		// Standard of Might, confirmed update 20
+		32958 => array(),		// Shifting Standard, confirmed update 20
+		39012 => array(),		// Blockade of Fire
+		39053 => array(),		// Unstable Wall of Fire
+		39145 => array(),		// Fire Ring
+		39162 => array(),		// Flame Pulsar
+		40465 => array(1 => 1),	// Scalding Rune, confirmed update 20
+		40470 => array(),		// Volcanic Rune
+		40493 => array(),		// Shooting Star, confirmed update 20
+		83625 => array(),		// Fire Storm
+		83682 => array(),		// Eye of Flame
+		85126 => array(),		// Fiery Rage
 );
 
 
@@ -3757,6 +4036,36 @@ function GetEsoItemTraitFullText($trait, $version = "")
 	}
 	
 	if (array_key_exists($key, $ESO_ITEMTRAIT_FULLTEXTS)) return $ESO_ITEMTRAIT_FULLTEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoStatTypeText($value)
+{
+	global $ESO_STATTYPES;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_STATTYPES)) return $ESO_STATTYPES[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoAbilityTypeText($value)
+{
+	global $ESO_ABILITYTYPES;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_ABILITYTYPES)) return $ESO_ABILITYTYPES[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoDamageTypeText($value)
+{
+	global $ESO_DAMAGETYPES;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_DAMAGETYPES)) return $ESO_DAMAGETYPES[$key];
 	return "Unknown ($key)";
 }
 

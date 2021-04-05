@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "29pts";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -443,14 +443,19 @@ if ($REMOVEDUPLICATES)
 		
 		print("\t\tFound duplicate set $setName ($c records, '{$row['ids']}', '{$row['itemCounts']}') \n");
 		
-		$minCounts = array_keys($itemCounts, min($itemCounts));
-		$minCount = $minCounts[0];
-		$minId = $ids[$minCount];
-		print("\t\t\tDeleting record {$minId} with count {$itemCounts[$minCount]}...\n");
+		$maxCount = max($itemCounts);
 		
-		$query = "DELETE FROM setSummary$TABLE_SUFFIX WHERE id=$minId;";
-		$deleteResult =	$db->query($query);
-		if (!$deleteResult) exit("ERROR: Database query error deleting duplicate sets!\n" . $db->error . "\n" . $query);
+		foreach ($itemCounts as $i => $itemCount)
+		{
+			$itemId = $ids[$i];
+			if ($itemCount >= $maxCount) continue;
+			
+			print("\t\t\tDeleting record {$itemId} with count {$itemCount}...\n");
+			
+			$query = "DELETE FROM setSummary$TABLE_SUFFIX WHERE id=$itemId;";
+			$deleteResult =	$db->query($query);
+			if (!$deleteResult) exit("ERROR: Database query error deleting duplicate sets!\n" . $db->error . "\n" . $query);
+		}
 	}
 }
 

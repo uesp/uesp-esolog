@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "29";
+	public $TABLE_SUFFIX = "";
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
 
@@ -410,7 +410,14 @@ class CEsoCreateSkillTree
 				$thisSkill = $this->skills[$skillLineId];
 				$displayId = $thisSkill['displayId'];
 				$name = $this->db->real_escape_string($thisSkill['name']);
-				$desc = $this->db->real_escape_string($thisSkill['description']);
+				
+				$desc = $thisSkill['description'];
+				
+				//$descHeader = $thisSkill['descHeader'];
+				//if ($descHeader) $desc = "|cffffff$descHeader|r\n$desc";
+				
+				$desc = $this->db->real_escape_string($desc);
+				
 				$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText($thisSkill['mechanic']);
 				$icon = $this->db->real_escape_string($thisSkill['texture']);
 				$learnedLevel = $thisSkill['learnedLevel'];
@@ -670,7 +677,14 @@ class CEsoCreateSkillTree
 			$displayId = $passive['displayId'];
 			$name = $this->db->real_escape_string($passive['name']);
 			$baseName = $name;
-			$desc = $this->db->real_escape_string($passive['description']);
+			
+			$desc = $passive['description'];
+			
+			//$descHeader = $passive['descHeader'];
+			//if ($descHeader) $desc = "|cffffff$descHeader|r\n$desc";
+			
+			$desc = $this->db->real_escape_string($desc);
+			
 			$icon = $this->db->real_escape_string($passive['texture']);
 			$rank = $passive['rank'];
 			$learnedLevel = $passive['learnedLevel'];

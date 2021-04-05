@@ -41,7 +41,7 @@ class CEsoSkillTooltip
 	
 	public $skillData = array();
 	
-
+	
 	public function __construct ()
 	{
 		$this->SetInputParams();
@@ -60,10 +60,10 @@ class CEsoSkillTooltip
 	private function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
-	
+		
 		return true;
 	}
 	
@@ -88,8 +88,8 @@ class CEsoSkillTooltip
 		
 		return 66;
 	}
-
-
+	
+	
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
@@ -258,18 +258,20 @@ class CEsoSkillTooltip
 	
 	public function GetSkillDescription()
 	{
+		$descHeader = $this->skillData['descHeader'];
 		$coefDesc = $this->skillData['coefDescription'];
-	
+		if ($descHeader) $coefDesc = "|cffffff$descHeader|r\n" . $coefDesc;
+		
 		if ($coefDesc == null || $coefDesc == "")
 		{
 			return $this->ConvertDescriptionToHtml($this->skillData['description']);
 		}
-	
+		
 		for ($i = 1; $i <= self::MAX_SKILL_COEF; ++$i)
 		{
 			$type = $this->skillData["type$i"];
 			if ($type == -1) continue;
-	
+			
 			$a = $this->skillData['a' . $i];
 			$b = $this->skillData['b' . $i];
 			$c = $this->skillData['c' . $i];
@@ -289,7 +291,7 @@ class CEsoSkillTooltip
 		
 		if ($level < 1) $level = 1;
 		if ($level >= 66) return $maxCost;
-	
+		
 		return round($maxCost * $level / 72.0 + $maxCost / 12.0);
 	}
 	
@@ -298,7 +300,7 @@ class CEsoSkillTooltip
 	{
 		if ($level < 1) $level = 1;
 		if ($level >= 66) return $maxCost;
-	
+		
 		if ($level >= 1 && $level <= 50) return round($maxCost * $level * 25.0 / 1624.0 + $maxCost * 75.0 / 812.0);
 		return round($maxCost * $level / 116.0 + $maxCost / 2.32);
 	}
@@ -388,8 +390,6 @@ class CEsoSkillTooltip
 		$rank = $this->GetSkillData('rank');
 		$learnedLevel = $this->GetSkillData('learnedLevel');
 		$skillLine = $this->GetSkillData('skillLine');
-		$desc = $this->ConvertDescriptionToHtml($this->GetSkillData('description'));
-		$coefDesc = $this->GetSkillData('coefDescription');
 		$channelTime = intval($this->GetSkillData('channelTime')) / 1000;
 		$castTime = intval($this->GetSkillData('castTime')) / 1000;
 		$radius = intval($this->GetSkillData('radius')) / 100;
