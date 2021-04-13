@@ -1340,7 +1340,7 @@ window.ModifyEsoSkillTooltipValue2 = function(value, tooltip, skillData, inputVa
 {
 	if (tooltip.isDmg  == 1) value = ModifyEsoSkillTooltipDamageValue2(value, tooltip, skillData, inputValues);
 	if (tooltip.isHeal == 1) value = ModifyEsoSkillTooltipHealValue2(value, tooltip, skillData, inputValues);
-	if (tooltip.isDamageShield == 1) value = ModifyEsoSkillTooltipDamageShieldValue2(value, tooltip, skillData, inputValues);
+	if (tooltip.isDmgShield == 1) value = ModifyEsoSkillTooltipDamageShieldValue2(value, tooltip, skillData, inputValues);
 	
 		// Does nothing at the moment
 	//value = ModifyEsoSkillTooltipHealingReductionValue2(value, tooltip, skillData, inputValues);

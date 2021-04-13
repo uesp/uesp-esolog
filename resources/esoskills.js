@@ -13,7 +13,7 @@ window.g_EsoSkillIsMobile = false;
 
 window.g_LastSkillId = -1;
 
-window.USE_V2_TOOLTIPS = false;
+window.USE_V2_TOOLTIPS = true;
 
 
 ESO_SKILL_TYPES = {

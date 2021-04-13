@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "29";
+$TABLE_SUFFIX = "";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -88,10 +88,13 @@ $ESO_SLOTTED_SKILLS = array(
 		41121 => -68, */
 		
 		116269 => -69,	//Necromancer: Health Avarice
-		116270 => -69,		
-			
+		116270 => -69,
+		
 		116197 => -70,	//Necromancer: Death Knell
 		116198 => -70,
+		
+		18866 => -53,	//Nightblade: Shadow Barrier
+		45071 => -53,
 		
 		29665 => -51,	//Light Armor: Evocation
 		45557 => -51,
@@ -112,6 +115,9 @@ $ESO_SLOTTED_SKILLS = array(
 $ESO_COEF_INDEX = array(
 		30893 => 2,		//DW: Twin Blade and Blunt
 		45482 => 2,
+		
+		18866 => array(1, 2),		//Nightblade: Shadow Barrier
+		45071 => array(1, 2),
 		
 		39182 => 1,		//Light Armor: Harness Magicka
 		41115 => 1,
@@ -142,7 +148,16 @@ $ESO_COEF_INDEX = array(
 $ESO_COEF_VALUE = array(
 		30893 => 547,		//DW: Twin Blade and Blunt
 		45482 => 1095,
-
+		
+		18866 => array(		//Nightblade: Shadow Barrier
+					array(25, 0, 0),
+					array(0.75, 0, 3),
+				),
+		45071 => array (
+					array(25, 0, 0),
+					array(1.5, 0, 6),
+				),
+		
 		//45533 => array(362.4, 0, 0),	// Heavy Armor: Resolve
 		
 		29791 => array(0.5, 0, 0),	//Heavy Armor: Rapid Mending
@@ -158,15 +173,15 @@ $ESO_COEF_VALUE = array(
 					array(1, 0, 0),
 				),
 		41133 => array(
-					array(2, 0, 16),	
+					array(2, 0, 16),
 					array(1, 0, 0),
 				),
 		41135 => array(
-					array(2, 0, 16),	
+					array(2, 0, 16),
 					array(1, 0, 0),
 				),
 		41137 => array(
-					array(2, 0, 16),	
+					array(2, 0, 16),
 					array(1, 0, 0),
 				),
 		
@@ -225,7 +240,7 @@ $ESO_COEF_VALUE = array(
 		116197 => 5,	//Necromancer: Death Knell
 		116198 => 10,
 		
-/* Old Values		
+/* Old Values
 		28418 => array(0.3655, 0.4, 0),		//Sorcerer: Conjured Ward
 		30457 => array(0.3694, 0.4, 0),
 		30460 => array(0.3735, 0.4, 0),
@@ -249,6 +264,9 @@ $ESO_COEF_NUMBER_INDEX = array(
 		30893 => 6,		//DW: Twin Blade and Blunt
 		45482 => 6,
 		
+		18866 => array(4, 5),		//Nightblade: Shadow Barrier
+		45071 => array(4, 5),
+		
 		39197 => 4,		//Heavy Armor: Unstoppable
 		41097 => 4,
 		41100 => 4,
@@ -271,11 +289,17 @@ $ESO_COEF_NUMBER_INDEX = array(
 );
 
 
+/*
+ * abilityId => Coef Index (1 = first coef)
+ */
 $ESO_EXACT_SKILL_VALUES = array(
 		
 		29825 => 1,		// Heavy Armor: Resolve
 		45531 => 1,
 		45533 => 1,
+		
+		29769 => 2,		// Heavy Armor: Constitution
+		45526 => 2,
 		
 		29743 => 1,		// Medium Armor: Dexterity
 		45563 => 1,
@@ -283,6 +307,12 @@ $ESO_EXACT_SKILL_VALUES = array(
 		
 		29663 => 1,		// Light Armor: Spell Warding
 		45559 => 1,
+		
+		29668 => 1,		// Light Armor: Prodigy
+		45561 => 1,
+		
+		29667 => 1,		// Light Armor: Concentration
+		45562 => 1,
 	
 );
 
@@ -290,6 +320,9 @@ $ESO_EXACT_SKILL_VALUES = array(
 $ESO_EXACT_SKILL_VALUES_OVERWRITE = array(
 		
 		//45533 => 362.4,		// Heavy Armor: Resolve
+		
+		29769 => 108,		// Heavy Armor: Constitution
+		45526 => 108,
 );
 
 
@@ -364,7 +397,7 @@ foreach ($skillsData as $skillId => &$skill)
 			print("\tError: {$skill['name']} ($skillId): Null coefficent index value at array index $i!\n");
 			continue;
 		}
-	
+		
 		if ($fixupCoefDesc || $niValue != null)
 		{
 			if (!is_array( $ESO_COEF_NUMBER_INDEX[$skillId])) 
@@ -379,9 +412,9 @@ foreach ($skillsData as $skillId => &$skill)
 				global $foundCount, $niValue, $indexValue;
 				++$foundCount;
 				if ($foundCount == $niValue) return '$' . $indexValue;
-				return $matches[0];					
+				return $matches[0];
 			}, $coefDescription);
-
+		
 		}
 		elseif ($fixupCoefDesc)
 		{
@@ -401,14 +434,14 @@ foreach ($skillsData as $skillId => &$skill)
 		$valueC = 0;
 		$coefValue = $ESO_COEF_VALUE[$skillId];
 		
-		if (is_numeric($coefValue)) 
+		if (is_numeric($coefValue))
 		{
 			$valueA = $coefValue;
 		}
-		elseif (is_array($coefValue)) 
+		elseif (is_array($coefValue))
 		{
 			
-			if (is_array($coefValue[0])) 
+			if (is_array($coefValue[0]))
 			{
 				$coefValue = $coefValue[$i];
 				
@@ -424,7 +457,7 @@ foreach ($skillsData as $skillId => &$skill)
 			$valueC = $coefValue[2];
 		}
 		
-		//print("\t{$skill['name']} ($skillId): Found value $valueA:$valueB:$valueC\n");
+		print("\t{$skill['name']} ($skillId): Found value $valueA:$valueB:$valueC\n");
 		
 		$skill['a' . $indexValue] = $valueA;
 		$skill['b' . $indexValue] = $valueB;
@@ -457,7 +490,7 @@ foreach ($ESO_EXACT_SKILL_VALUES as $skillId => $indexValue)
 	$query = "SELECT * FROM minedSkills$TABLE_SUFFIX WHERE id=$skillId;";
 	$result = $db->query($query);
 	
-	if (!$result) 
+	if (!$result)
 	{
 		print("Failed to load skill $skillId!\n");
 		continue;
@@ -468,7 +501,7 @@ foreach ($ESO_EXACT_SKILL_VALUES as $skillId => $indexValue)
 	
 	$result = preg_match("#by \|cffffff([0-9]+)\|r#", $coefDescription, $matches);
 	
-	if (!$result) 
+	if (!$result)
 	{
 		print("Failed to find exact skill value match for $skillId!\n");
 		continue;
@@ -485,6 +518,6 @@ foreach ($ESO_EXACT_SKILL_VALUES as $skillId => $indexValue)
 	$query = "UPDATE minedSkills$TABLE_SUFFIX SET a$indexValue='$a', b$indexValue=0, c$indexValue=0, R$indexValue=1 WHERE id=$skillId;";
 	
 	$result = $db->query($query);
-	if (!$result) print("\tError saving skill $skillId!\n{$db->error}\n");	
+	if (!$result) print("\tError saving skill $skillId!\n{$db->error}\n");
 }
 
