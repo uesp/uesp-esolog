@@ -1675,7 +1675,7 @@ window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEff
 	var skillData = g_SkillsData[abilityId];
 	if (skillData == null) return "";
 	
-	skillData.rawOutput = {};
+	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	skillData.rawTooltipOutput = {};
 	
 	if (inputValues == null) inputValues = GetEsoSkillInputValues();

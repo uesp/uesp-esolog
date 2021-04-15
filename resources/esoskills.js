@@ -2475,7 +2475,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 	if (overrideDot != null) isDot = overrideDot;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
-
+	
 	overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.name];
 	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.abilityId];
 	if (overrideAoe == null) overrideAoe = ESO_SKILL_TARGETYPE_OVERRIDES[skillData.baseAbilityId];
