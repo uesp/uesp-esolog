@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "30pts";
+	const SKILLS_TABLESUFFIX   = "30pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -257,6 +257,12 @@ class EsoLogParser
 			"minedSkills29",
 			"minedSkills30pts",
 			"minedSkills30",
+			"minedSkills31pts",
+			"minedSkills31",
+			"minedSkills32pts",
+			"minedSkills32",
+			"minedSkills33pts",
+			"minedSkills33",
 			"collectibles",
 			"achievements",
 	);
@@ -795,6 +801,7 @@ class EsoLogParser
 			'isPlayer'  => self::FIELD_INT,
 			'raceType'  => self::FIELD_STRING,
 			'classType'  => self::FIELD_STRING,
+			'setName'  => self::FIELD_STRING,
 			'baseAbilityId'  => self::FIELD_INT,
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,
@@ -2504,6 +2511,7 @@ class EsoLogParser
 			isPlayer TINYINT NOT NULL DEFAULT 0,
 			raceType TINYTEXT NOT NULL,
 			classType TINYTEXT NOT NULL,
+			setName TINYTEXT NOT NULL,
 			skillLine TINYTEXT NOT NULL,
 			prevSkill INTEGER NOT NULL DEFAULT 0,
 			nextSkill INTEGER NOT NULL DEFAULT 0,
@@ -3282,6 +3290,11 @@ class EsoLogParser
 		}
 		
 		if ($logEntry['event'] == 'skill')
+		{
+			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
+		}
+		
+		if ($logEntry['event'] == 'SkillCoef::Desc')
 		{
 			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
 		}
@@ -6808,6 +6821,11 @@ class EsoLogParser
 			$flags['isDmg'] = 1;
 			$flags['isDOT'] = 1;
 		}
+		else if ($skillType == "direct")
+		{
+			$flags['isDmg'] = 1;
+			$flags['isDOT'] = 0;
+		}
 		else if ($skillType == "aoedmg")
 		{
 			$flags['isDmg'] = 1;
@@ -6833,6 +6851,10 @@ class EsoLogParser
 			$flags['isHeal'] = 1;
 			$flags['isDOT'] = 1;
 		}
+		else if ($skillType == "damage")
+		{
+			$flags['isDmg'] = 1;
+		}
 		else if ($skillType == "heal")
 		{
 			$flags['isHeal'] = 1;
@@ -6840,6 +6862,11 @@ class EsoLogParser
 		else if ($skillType == "ds")
 		{
 			$flags['isDmgShield'] = 1;
+		}
+		else if ($skillType == "melee")
+		{
+			$flags['isMelee'] = 1;
+			$flags['isDmg'] = 1;
 		}
 		else if ($skillType == "dmg")
 		{
@@ -8182,6 +8209,7 @@ class EsoLogParser
 		*/
 		
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (!$this->salesData->IsValidSalesTimestamp($logEntry['timeStamp1'])) return $this->reportLogParseError("Ignoring old sales timestamp '{$logEntry['timeStamp1']}'!");
 		if ($logEntry['name'] == "") return false;
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
@@ -8238,6 +8266,7 @@ class EsoLogParser
 		//$this->("OnGuildSaleSearchInfo");
 		
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (!$this->salesData->IsValidSalesTimestamp($logEntry['timeStamp1'])) return $this->reportLogParseError("Ignoring old sales timestamp '{$logEntry['timeStamp1']}'!");
 		
 		if ($logEntry['name'] == "") 
 		{
@@ -8247,7 +8276,7 @@ class EsoLogParser
 		
 		$server = $this->GetGuildSaleServer($logEntry['server']);
 		$this->salesData->server = $server;
-				
+		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['name']);
 		
 		if ($guildData['__new'] === true)
@@ -8311,6 +8340,8 @@ class EsoLogParser
 		 */
 				
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (!$this->salesData->IsValidSalesTimestamp($logEntry['timeStamp1'])) return $this->reportLogParseError("Ignoring old sales timestamp '{$logEntry['timeStamp1']}'!");
+		
 		if ($logEntry["itemLink"] == null) return false;
 		if ($logEntry['guild'] == "") return false;
 		if (floatval($logEntry['eventId']) < 1) return false;
@@ -8352,6 +8383,8 @@ class EsoLogParser
 		 */
 		
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (!$this->salesData->IsValidSalesTimestamp($logEntry['timeStamp1'])) return $this->reportLogParseError("Ignoring old sales timestamp '{$logEntry['timeStamp1']}'!");
+		
 		if ($logEntry["itemLink"] == null) return false;
 		if ($logEntry['guild'] == "") return false;
 		
@@ -8383,7 +8416,7 @@ class EsoLogParser
 					$salesData = false;
 				}
 			}
-		}		
+		}
 		
 		if (!$salesData)
 		{
@@ -8421,6 +8454,7 @@ class EsoLogParser
 		 */
 		
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
+		if (!$this->salesData->IsValidSalesTimestamp($logEntry['timeStamp1'])) return $this->reportLogParseError("Ignoring old sales timestamp '{$logEntry['timeStamp1']}'!");
 		
 		return true;
 	}
@@ -8926,7 +8960,7 @@ class EsoLogParser
 			}
 		}
 		
-		if (!$this->isValidLogEntry($logEntry)) 
+		if (!$this->isValidLogEntry($logEntry))
 		{
 			//print ("Not valid log entry\n");
 			return false;

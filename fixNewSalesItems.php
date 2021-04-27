@@ -35,7 +35,7 @@ foreach ($items as $item)
 	if ($result === false) 
 	{
 		print("\t$count: Error loading item $itemId:$intType:$intLevel data! " . $result->error . "\n");
-		continue;	
+		continue;
 	}
 	
 	if ($result->num_rows == 0)
@@ -43,7 +43,7 @@ foreach ($items as $item)
 		$query = "SELECT * FROM uesp_esolog.minedItem WHERE itemId=$itemId AND internalLevel=1 AND internalSubtype=1;";
 		$result = $db->query($query);
 		
-		if ($result === false || $result->num_rows == 0) 
+		if ($result === false || $result->num_rows == 0)
 		{
 			print("\t$count: Item $itemId:$intType:$intLevel was not found!\n");
 			continue;

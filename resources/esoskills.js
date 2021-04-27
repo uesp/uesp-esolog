@@ -703,6 +703,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	var isDot = false;
 	var isHealing = false;
 	var isAOE = false;
+	var isMelee = true;
 	var skillLine = skillData['skillLine'].toLowerCase();
 	var skillBaseName = skillData['baseName'].toLowerCase();
 	var skillWeaponValues = null;
@@ -729,7 +730,11 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	var healingMatchResults = coefDesc.match(healingMatchRegex);
 	if (healingMatchResults != null) isHealing = true;
 	
+	if (skillData.maxRange > 700) isMelee = false;
+	
 	//EsoSkillLog("ComputeEsoSkillValue", skillData.name, valueIndex, damageType, isDot, values.useMaelstromDamage);
+	
+	 	// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Range, Melee
 	
 	if (values.SkillWeaponDamage == null || values.SkillSpellDamage == null)
 	{
@@ -774,12 +779,35 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		WeaponDamageType.push("Healing");
 	}
 	
-	if (isAOE && skillWeaponValues != null && skillSpellValues != null) 
+	if (isHealing && skillWeaponValues != null && skillSpellValues != null) 
 	{
-		skillWeaponValues = skillWeaponValues['AOE'];
-		skillSpellValues  = skillSpellValues['AOE'];
-		SpellDamageType.push("AOE");
-		WeaponDamageType.push("AOE");
+		skillWeaponValues = skillWeaponValues['Healing'];
+		skillSpellValues  = skillSpellValues['Healing'];
+		SpellDamageType.push("Healing");
+		WeaponDamageType.push("Healing");
+	}
+	
+	if (isDot && skillWeaponValues != null && skillSpellValues != null) 
+	{
+		skillWeaponValues = skillWeaponValues['DOT'];
+		skillSpellValues  = skillSpellValues['DOT'];
+		SpellDamageType.push("DOT");
+		WeaponDamageType.push("DOT");
+	}
+	
+	if (isMelee && skillWeaponValues != null && skillSpellValues != null) 
+	{
+		skillWeaponValues = skillWeaponValues['Melee'];
+		skillSpellValues  = skillSpellValues['Melee'];
+		SpellDamageType.push("Melee");
+		WeaponDamageType.push("Melee");
+	}
+	else if (!isMelee && skillWeaponValues != null && skillSpellValues != null) 
+	{
+		skillWeaponValues = skillWeaponValues['Range'];
+		skillSpellValues  = skillSpellValues['Range'];
+		SpellDamageType.push("Range");
+		WeaponDamageType.push("Range");
 	}
 	
 	if (skillWeaponValues != null) 
@@ -875,6 +903,45 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		value = a * values.MaxStat + b * SpellDamage + c;
 		++includeSpellRawOutput;
 	}
+	else if (type == -51)
+	{
+		if (values.LightArmor == null) 
+		{
+			if (c == 0)	return '(' + a + ' * LIGHTARMOR)';
+			return '(' + c + ' + ' + a + ' * LIGHTARMOR)';
+		}
+		value = a * values.LightArmor + c;
+	}
+	else if (type == -52)
+	{
+		if (values.MediumArmor == null) 
+		{
+			if (c == 0)	return '(' + a + ' * MEDIUMARMOR)';
+			return '(' + c + ' + ' + a + ' * MEDIUMARMOR)';
+		}
+		
+		value = a * values.MediumArmor + c;
+	}
+	else if (type == -53)
+	{
+		if (values.HeavyArmor == null) 
+		{
+			if (c == 0)	return '(' + a + ' * HEAVYARMOR)';
+			return '(' + c + ' + ' + a + ' * HEAVYARMOR)';
+		}
+		
+		value = a * values.HeavyArmor + c;
+	}
+	else if (type == -54)
+	{
+		if (values.DaggerWeapon == null) return '(' + a + ' * DAGGER)';
+		value = a * values.DaggerWeapon;
+	}
+	else if (type == -55)
+	{
+		if (values.ArmorTypes == null) return '(' + a + ' * ARMORTYPES)';
+		value = a * values.ArmorTypes;
+	}
 	else if (type == -56 || type == 4) // Spell + Weapon Damage
 	{
 		value = a * SpellDamage + b * WeaponDamage + c;
@@ -925,6 +992,12 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	{
 		value = a * values.WintersEmbraceSkills;
 	}
+	else if (type == -68)
+	{
+		value = a * values.Magicka;
+		maxValue = b * values.Health;
+		if (value > maxValue) value = maxValue;
+	}
 	else if (type == -69)
 	{
 		value = a * values.BoneTyrantSkills;
@@ -962,50 +1035,19 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	{
 		value = a * values.WeaponPower + c;
 	}
-	else if (type == -68)
+	else if (type == -75)
 	{
-		value = a * values.Magicka;
-		maxValue = b * values.Health;
-		if (value > maxValue) value = maxValue;
+		value = c;
 	}
-	else if (type == -51)
+	else if (type == -76) 
 	{
-		if (values.LightArmor == null) 
-		{
-			if (c == 0)	return '(' + a + ' * LIGHTARMOR)';
-			return '(' + c + ' + ' + a + ' * LIGHTARMOR)';
-		}
-		value = a * values.LightArmor + c;
+		var value1 = Math.floor(a * inputValues.SpellDamage) + c;
+		var value2 = Math.floor(b * inputValues.Health) + c;
+		value = Math.max(value1, value2);
 	}
-	else if (type == -52)
+	else if (type == -77) 
 	{
-		if (values.MediumArmor == null) 
-		{
-			if (c == 0)	return '(' + a + ' * MEDIUMARMOR)';
-			return '(' + c + ' + ' + a + ' * MEDIUMARMOR)';
-		}
-		
-		value = a * values.MediumArmor + c;
-	}
-	else if (type == -53)
-	{
-		if (values.HeavyArmor == null) 
-		{
-			if (c == 0)	return '(' + a + ' * HEAVYARMOR)';
-			return '(' + c + ' + ' + a + ' * HEAVYARMOR)';
-		}
-		
-		value = a * values.HeavyArmor + c;
-	}
-	else if (type == -54)
-	{
-		if (values.DaggerWeapon == null) return '(' + a + ' * DAGGER)';
-		value = a * values.DaggerWeapon;
-	}
-	else if (type == -55)
-	{
-		if (values.ArmorTypes == null) return '(' + a + ' * ARMORTYPES)';
-		value = a * values.ArmorTypes;
+		value = Math.floor(a * Math.max(inputValues.SpellResist, inputValues.PhysicalResist)) + c;
 	}
 	else
 	{
@@ -1150,8 +1192,8 @@ window.UpdateEsoSkillDurationDescription = function(skillData, coefDesc, inputVa
 
 window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffectLines, outputRaw)
 {
-	if (USE_V2_TOOLTIPS && window.GetEsoSkillDescription2) return GetEsoSkillDescription2(skillId, inputValues, useHtml, noEffectLines, outputRaw);
-		
+	if (USE_V2_TOOLTIPS && window.g_EsoSkillHasV2Tooltips && window.GetEsoSkillDescription2) return GetEsoSkillDescription2(skillId, inputValues, useHtml, noEffectLines, outputRaw);
+	
 	var output = "";
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
@@ -3675,6 +3717,16 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 		output += srcString + " = Constant"
 		typeString = "Constant";
 	}
+	else if (type == -76)
+	{
+		output += srcString + " = max(" + a + " Spell Damage, " + b + " Health) "+ cOp + " " + c;
+		typeString = "Health or Spell Damage";
+	}
+	else if (type == -77)
+	{
+		output += srcString + " = " + a + " MaxResist " + cOp + " " + c;
+		typeString = "Max Resistance";
+	}
 	else
 	{
 		output += srcString + " = ?";
@@ -3692,7 +3744,7 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 
 window.GetEsoSkillCoefContentHtml = function(skillId)
 {
-	if (USE_V2_TOOLTIPS && window.GetEsoSkillCoefContentHtml2) return GetEsoSkillCoefContentHtml2(skillId);
+	if (USE_V2_TOOLTIPS && window.g_EsoSkillHasV2Tooltips && window.GetEsoSkillCoefContentHtml2) return GetEsoSkillCoefContentHtml2(skillId);
 	
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null || skillData['numCoefVars'] <= 0) return "No known skill coefficients.";
@@ -5078,6 +5130,7 @@ window.UpdateEsoSkillTotalPoints = function ()
 
 window.OnEsoSkillReset = function (e)
 {
+	/*
 	g_EsoSkillPassiveData = {};
 	g_EsoSkillActiveData = {};
 	g_EsoSkillPointsUsed = 0;
@@ -5107,6 +5160,20 @@ window.OnEsoSkillReset = function (e)
 	});
 	
 	g_EsoSkillUpdateEnable = true;
+	
+	UpdateEsoSkillBarData();
+	UpdateEsoSkillTotalPoints(); */
+	
+	g_EsoSkillUpdateEnable = false;
+	
+	$("#esovsSkillContent .esovsSkillContentBlock").each(function(i, e) {
+		var skillLine = $(this).attr("id");
+		EsoResetSkillLine(skillLine, true);
+	});
+	
+	g_EsoSkillUpdateEnable = true;
+	g_EsoSkillActiveData = {};
+	g_EsoSkillPointsUsed = 0;
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
@@ -5150,14 +5217,14 @@ window.OnEsoSkillLineResetAll = function ()
 }
 
 
-window.EsoResetSkillLine = function (skillLine)
+window.EsoResetSkillLine = function (skillLine, noUpdate)
 {
 	var skillLineId = CreateEsoSkillLineId(skillLine);
 	var skillLineBlock = $("#esovsSkillContent").children("#" + skillLineId);
 	var skillElements = skillLineBlock.children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
 	var skillType = skillLineBlock.attr("skilltype");
 	
-	g_EsoSkillUpdateEnable = false;
+	if (noUpdate !== true) g_EsoSkillUpdateEnable = false;
 	
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
@@ -5166,8 +5233,11 @@ window.EsoResetSkillLine = function (skillLine)
 	
 	if (skillType == "Racial") RemoveEsoRaceSkillsFromPassiveData();
 	
-	g_EsoSkillUpdateEnable = true;
-	UpdateEsoSkillTotalPoints();
+	if (noUpdate !== true) 
+	{
+		g_EsoSkillUpdateEnable = true;
+		UpdateEsoSkillTotalPoints();
+	}
 }
 
 
@@ -5236,21 +5306,21 @@ window.esovsOnDocReady = function ()
 	if (g_EsoSkillIsMobile)
 	{
 		$(".esovsAbilityBlockIcon").click(function(e) {
-			setTimeout(function() {	OnHoverEsoIcon.bind(this, e); }, 250); 
-			e.preventDefault(); 
-			e.stopPropagation(); 
+			setTimeout(function() {	OnHoverEsoIcon.bind(this, e); }, 250);
+			e.preventDefault();
+			e.stopPropagation();
 			return false; });
 		
 		$(".esovsAbilityBlockPassiveIcon").click(function(e) {
 			setTimeout(function() { OnHoverEsoPassiveIcon.bind(this, e); }, 250);
-			e.preventDefault(); 
-			e.stopPropagation(); 
+			e.preventDefault();
+			e.stopPropagation();
 			return false; });
 		
-		$(".esovsSkillBarItem").click(function(e) { 
-			setTimeout(function() { OnHoverEsoSkillBarIcon.bind(this, e); }, 250); 
-			e.preventDefault(); 
-			e.stopPropagation(); 
+		$(".esovsSkillBarItem").click(function(e) {
+			setTimeout(function() { OnHoverEsoSkillBarIcon.bind(this, e); }, 250);
+			e.preventDefault();
+			e.stopPropagation();
 			return false; });
 	}
 	else
@@ -5268,7 +5338,7 @@ window.esovsOnDocReady = function ()
 	//$(".esovsSkillBarItem").on('drop', OnSkillBarDrop);
 	//$(document).on('dragend', OnSkillBarDragEnd);
 	
-	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").children(".esovsAbilityBlockIcon").draggable({ 
+	$(".esovsSkillContentBlock").children(".esovsAbilityBlock").children(".esovsAbilityBlockIcon").draggable({
 			//containment: $('#esovsRightBlock'),
 			//appendTo: $('#esovsRightBlock'),
 			containment: false,
@@ -5278,7 +5348,7 @@ window.esovsOnDocReady = function ()
 			classes: { },
 	});
 	
-	$(".esovsSkillBarIcon").draggable({ 
+	$(".esovsSkillBarIcon").draggable({
 			//containment: $('#esovsRightBlock'),
 			//appendTo: $('#esovsRightBlock'),
 			containment: false,
@@ -5289,7 +5359,7 @@ window.esovsOnDocReady = function ()
 			classes: { },
 	});
 	
-	$(".esovsSkillBarItem").not(".esovsCombatSkillBarItem").droppable({ 
+	$(".esovsSkillBarItem").not(".esovsCombatSkillBarItem").droppable({
 			drop: OnSkillBarDroppable, 
 			accept: OnSkillBarDroppableAccept,
 			out: OnSkillBarDroppableOut,

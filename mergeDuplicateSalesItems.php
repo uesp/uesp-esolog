@@ -94,7 +94,15 @@ foreach ($duplicateItems as $dupId => $dupItem) {
 		$query = "INSERT INTO duplicateItems SELECT * FROM items WHERE id='$id';";
 		//print("\t\t$query\n");
 		$result = $parser->db->query($query);
-		if ($result === false) die("\tERROR: Failed to move item #$id to duplicateItems table!\n$query\n");
+		
+		if ($result === false) 
+		{
+			print("\t\t$id: Found existing duplicate item...deleting...\n");
+			$result = $parser->db->query("DELETE FROM duplicateItems WHERE id='$id';");
+			
+			$result = $parser->db->query($query);
+			if ($result === false) die("\tERROR: Failed to move item #$id to duplicateItems table!\n$query\n");
+		}
 		
 		if ($id == $destItemId) continue;
 		

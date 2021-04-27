@@ -7,36 +7,39 @@ require_once(__DIR__."/esoCommon.php");
 
 class CEsoViewSkills
 {
-
 	const ESOVS_ENABLE_PROFILE = false;
-
+	
 	public $ESOVS_HTML_TEMPLATE = "";
 	public $ESOVS_HTML_TEMPLATE_EMBED = "";
 	
 	const ESOVS_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVS_BLANK_ICON = "blank.png";
-
+	
+	public $IMAGE_LAZY_LOADING = "lazy";
+	
 	public $version = "";
 	public $showAll = false;
 	public $highlightSkillId = 33963; // Dragonknight Standard
 	public $highlightSkillType = "";
 	public $highlightSkillLine = "";
-
+	
 	public $isFirstSkill = true;
 	public $useUpdate10Costs = true;
-
+	
 	public $skills = array();
 	public $skillIds = array();
 	public $skillTooltips = array();
+	public $hasSkillTooltips = true; 
 	public $skillTree = array();
 	public $skillSearchIds = array();
+	public $setSkills = array();
 	public $skillHealth = 20000;
 	public $skillMagicka = 20000;
 	public $skillStamina = 20000;
 	public $skillLevel = 66;
 	public $skillSpellDamage = 2000;
 	public $skillWeaponDamage = 2000;
-
+	
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
 	public $displayType = "summary";
@@ -211,6 +214,7 @@ class CEsoViewSkills
 			$this->skillTooltips[$abilityId][$tooltipIndex] = $row;
 		}
 		
+		if (count($this->skillTooltips) == 0) return false;
 		return true;
 	}
 	
@@ -239,7 +243,29 @@ class CEsoViewSkills
 			$this->skillIds[$id] = $row;
 		}
 		
-			/* Destruction skills */
+			/* Set skills */
+		$query = "SELECT * FROM $minedSkillTable WHERE setName<>'';";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load skill data!");
+		
+		$result->data_seek(0);
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$id = intval($row['abilityId']);
+			$index = count($this->skills);
+			
+			$row['abilityId'] = $row['id'];
+			$row['__isOutput'] = false;
+			$row['__index'] = $index;
+			$row['skillTypeName'] = "";
+			$row['baseName'] = $row['name'];
+			$row['maxRank'] = -1;
+			
+			$this->setSkills[$row['setName']] = $row;
+			$this->skills[] = $row;
+			$this->skillIds[$id] = $row;
+		}
 		
 		$this->LogProfile("LoadSkills()", $startTime);
 		
@@ -909,11 +935,11 @@ class CEsoViewSkills
 		{
 			if ($this->displayType == "select")
 			{
-				$output .= "<img class='esovsAbilityBlockPlusSelect' src='//esolog.uesp.net/resources/pointsplus_up.png' />";
+				$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsAbilityBlockPlusSelect' src='//esolog.uesp.net/resources/pointsplus_up.png' />";
 			}
 			else if ($maxRank > 1)
 			{
-				$output .= "<img class='esovsAbilityBlockPlus' src='//esolog.uesp.net/resources/pointsplus_up.png' />";
+				$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsAbilityBlockPlus' src='//esolog.uesp.net/resources/pointsplus_up.png' />";
 			}
 			else
 			{
@@ -921,7 +947,7 @@ class CEsoViewSkills
 			}
 		}
 		
-		$output .= "<div class='$iconClass' $extraIconAttr><img alt='' src='$icon' />";
+		$output .= "<div class='$iconClass' $extraIconAttr><img loading='{$this->IMAGE_LAZY_LOADING}' alt='' src='$icon' />";
 		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockTitle'>";
@@ -999,7 +1025,7 @@ class CEsoViewSkills
 		if ($this->displayType == "select")
 		{
 			$output .= "<div class='esovsAbilityBlock esovsAbilityBlockHover esovsAbilityBlockSelect esovsAbilityNone' skillid='-1'>";
-			$output .= "<img src='//esolog.uesp.net/resources/edit_cancel_up.png'> Refund Ability";
+			$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' src='//esolog.uesp.net/resources/edit_cancel_up.png'> Refund Ability";
 			$output .= "</div>";
 		}
 		
@@ -1043,6 +1069,32 @@ class CEsoViewSkills
 		$output = json_encode($skillIds);
 		
 		$this->LogProfile("GetSkillsJson()", $startTime);
+		return $output;
+	}
+	
+	
+	public function GetSetSkillsJson()
+	{
+		$startTime = microtime(true);
+		$skillIds = array();
+		
+		foreach ($this->setSkills as $skill)
+		{
+			$abilityId = intval($skill['abilityId']);
+			$setName = strtolower($skill['setName']);
+			$skillIds[$setName] = $skill;
+			
+			$tooltips = $this->skillTooltips[$abilityId];
+			
+			if ($tooltips)
+				$skillIds[$setName]['tooltips'] = $tooltips;
+			else
+				$skillIds[$setName]['tooltips'] = array();
+		}
+		
+		$output = json_encode($skillIds);
+		
+		$this->LogProfile("GetSetSkillsJson()", $startTime);
 		return $output;
 	}
 	
@@ -1211,7 +1263,7 @@ class CEsoViewSkills
 		}
 		
 		$output = "<div class='esovsSkillBarItem'>";
-		$output .= "	<img class='esovsSkillBarIcon' alt='' draggable='$draggable' id='esovsSkillIcon$classSuffix' skillindex='$outSlotIndex' skillbar='$outBarIndex' skillid='$skillId' origskillid='$origSkillId' src='$imageSrc'>";
+		$output .= "	<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsSkillBarIcon' alt='' draggable='$draggable' id='esovsSkillIcon$classSuffix' skillindex='$outSlotIndex' skillbar='$outBarIndex' skillid='$skillId' origskillid='$origSkillId' src='$imageSrc'>";
 		$output .= "</div>";
 		
 		return $output;
@@ -1299,6 +1351,7 @@ class CEsoViewSkills
 				'{rawSkillData}' => "",
 				'{coefSkillData}' => "",
 				'{skillsJson}' => $this->GetSkillsJson(),
+				'{setSkillsJson}' => $this->GetSetSkillsJson(),
 				'{skillSearchIdJson}' => $this->GetSkillSearchIdsJson(),
 				'{skillHighlightId}' => $this->highlightSkillId,
 				'{skillHighlightType}' => $this->highlightSkillType,
@@ -1327,6 +1380,7 @@ class CEsoViewSkills
 				'{flameAOESkillsJson}' => json_encode($ESO_FLAMEAOE_SKILLS),
 				'{elfBaneSkillsJson}' => json_encode($ESO_ELFBANE_SKILLS),
 				'{skillHistoryLink}' => $this->GetSkillHistoryLink(),
+				'{hasV2SkillTooltips}' => $this->hasSkillTooltips ? "1" : "0",
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1353,6 +1407,7 @@ class CEsoViewSkills
 				'{rawSkillData}' => "",
 				'{coefSkillData}' => "",
 				'{skillsJson}' => "{}",
+				'{setSkillsJson}' => "{}",
 				'{skillSearchIdJson}' => "{}",
 				'{skillHighlightId}' => $this->highlightSkillId,
 				'{skillHighlightType}' => $this->highlightSkillType,
@@ -1377,6 +1432,7 @@ class CEsoViewSkills
 				'{passiveDataJson}' => "{}",
 				'{skillBarJson}'  => "{}",
 				'{skillHistoryLink}' => "",
+				'{hasV2SkillTooltips}' => $this->hasSkillTooltips ? "1" : "0",
 		);
 	
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -1401,7 +1457,7 @@ class CEsoViewSkills
 	{
 		$this->LoadTemplate();
 		$this->LoadSkills();
-		$this->LoadSkillTooltips();
+		$this->hasSkillTooltips = $this->LoadSkillTooltips();
 		$this->dataLoaded = true;
 	}
 	

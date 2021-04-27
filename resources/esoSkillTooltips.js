@@ -17,7 +17,7 @@ window.ConvertEsoSkillRawDescToHtml = function(rawDesc)
 window.CountEsoSkillTooltips = function(abilityId)
 {
 	var skillData = g_SkillsData[abilityId];
-	if (skillData == null) return 0;
+	if (skillData == null || abilityId <= 0) return 0;
 	if (skillData.tooltips == null) return 0;
 	var count = 0;
 	
@@ -67,10 +67,10 @@ window.GetEsoSkillTooltipRawTypeText = function(rawType)
 		case 8: return "Ability Name";
 		case 16: return "Resource";
 		
-		case 17: 
+		case 17:
 		case 18: return "Damage";
 		
-		case 19: 
+		case 19:
 		case 57: return "Frequency";
 		
 		case 20:
@@ -85,7 +85,7 @@ window.GetEsoSkillTooltipRawTypeText = function(rawType)
 		case 22: return "Armor";
 		case 49: return "Damage/Tick";
 		
-		case 51: 
+		case 51:
 		case 52: return "Damage Short";
 		
 		case 53: return "Heal/Tick";
@@ -114,13 +114,14 @@ window.GetEsoSkillTooltipFlagText = function(tooltip)
 	
 	if (tooltip.isDmgShield == 1) flags.push("Damage Shield");
 	
-	if (tooltip.isDmg == 1) 
+	if (tooltip.isDmg == 1)
 	{
 		if (tooltip.dmgType > 0)
 			flags.push(GetEsoSkillDamageTypeText(tooltip.dmgType) + " Damage");
 		else
 			flags.push("Damage");
 	}
+	
 	if (tooltip.isHeal == 1) flags.push("Heal");
 	
 	if (tooltip.isAOE == 1)
@@ -132,7 +133,7 @@ window.GetEsoSkillTooltipFlagText = function(tooltip)
 		flags.push("Single Target");
 	}
 	
-	if (tooltip.isDOT == 1) 
+	if (tooltip.isDOT == 1)
 	{
 		if (tooltip.isDmg == 1)
 			flags.push("DOT");
@@ -151,6 +152,7 @@ window.GetEsoSkillTooltipFlagText = function(tooltip)
 			flags.push("Direct");
 	}
 	
+	if (tooltip.isMelee == 1) flags.push("Melee");
 	if (tooltip.isFlameAOE == 1) flags.push("FlameAOE");
 	if (tooltip.isElfBane == 1) flags.push("ElfBane");
 	if (tooltip.hasRankMod == 1) flags.push("RankMod");
@@ -238,8 +240,9 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 	var rawTypeText = GetEsoSkillTooltipRawTypeText(tooltip.rawType);
 	var finalDesc = tooltip.finalValue;
 	var hasOutputInitialLine = false;
-	
 	var output = "<div class='esovsSkillCoefRow'>";
+	
+	if (tooltip.r == 1) r = "1";
 	
 	if (includeTooltipData && finalDesc)
 	{
@@ -397,7 +400,7 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		output += "    (Capped at " + c + "%)";
 		typeString = "Spell Damage Capped";
 		break;
-	case 72:	// Magicka and Weapon Damage
+	case -72:	// Magicka and Weapon Damage
 		output += srcString + " = " + a + " Magicka ";
 		if (b != 0) output += bOp + " " + b + " WeaponDamage ";
 		if (c != 0) output += cOp + " " + c;
@@ -423,6 +426,15 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 			output += srcString + " = " + tooltip.value;
 			output += " &nbsp; &nbsp; " + typeString + " (" + rawTypeText + ")";
 		}
+		break;
+	case -76:	// Health or Spell Damage
+		output += srcString + " = max(" + a + " SpellDamage, " + b + " Health) ";
+		if (c != 0) output += cOp + " " + c;
+		typeString = "Health or Spell Damage";
+		break;
+	case -77: // Max Resistance
+		output += srcString + " = " + a + " MaxResist " + cOp + " " + c;
+		typeString = "Max Resistance";
 		break;
 	default:
 		output += srcString + " = ?";
@@ -468,7 +480,7 @@ window.GetEsoSkillCoefContentHtml2 = function(abilityId)
 	var output = "";
 	var skillData = g_SkillsData[abilityId];
 	
-	if (skillData == null || skillData.tooltips == null || skillData.tooltips[1] == null) return "No known skill coefficients.";
+	if (skillData == null || abilityId <= 0 || skillData.tooltips == null || skillData.tooltips[1] == null) return "No known skill coefficients.";
 	
 	var rawDesc = ConvertEsoSkillRawDescToHtml(skillData.rawDescription);
 	var numTooltips = CountEsoSkillTooltips(abilityId);
@@ -495,6 +507,8 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 	
 	var damageType = 'base';
 	if (tooltip.isDmg == 1) damageType = GetEsoSkillDamageTypeText(tooltip.dmgType).toLowerCase();
+	
+		// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Range, Melee
 	
 	if (inputValues.SkillWeaponDamage == null)
 	{
@@ -534,6 +548,23 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 	{
 		skillWeaponValues = skillWeaponValues.AOE;
 		weaponDamageTypes.push("AOE");
+	}
+	
+	if (tooltip.isDOT == 1 && skillWeaponValues != null)
+	{
+		skillWeaponValues = skillWeaponValues.DOT;
+		weaponDamageTypes.push("DOT");
+	}
+	
+	if (tooltip.isMelee == 1 && skillWeaponValues != null)
+	{
+		skillWeaponValues = skillWeaponValues.Melee;
+		weaponDamageTypes.push("Melee");
+	}
+	else if (tooltip.isMelee == 0 && skillWeaponValues != null)
+	{
+		skillWeaponValues = skillWeaponValues.Range;
+		weaponDamageTypes.push("Ranged");
 	}
 	
 	if (skillWeaponValues != null)
@@ -577,6 +608,8 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 	var damageType = 'base';
 	if (tooltip.isDmg == 1) damageType = GetEsoSkillDamageTypeText(tooltip.dmgType).toLowerCase();
 	
+		// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Range, Melee
+	
 	if (inputValues.SkillSpellDamage == null)
 	{
 	}
@@ -615,6 +648,23 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 	{
 		skillSpellValues = skillSpellValues.AOE;
 		spellDamageTypes.push("AOE");
+	}
+	
+	if (tooltip.isDOT == 1 && skillSpellValues != null)
+	{
+		skillSpellValues = skillSpellValues.DOT;
+		spellDamageTypes.push("DOT");
+	}
+	
+	if (tooltip.isMelee == 1 && skillSpellValues != null)
+	{
+		skillSpellValues = skillSpellValues.Melee;
+		spellDamageTypes.push("Melee");
+	}
+	else if (tooltip.isMelee == 0 && skillSpellValues != null)
+	{
+		skillSpellValues = skillSpellValues.Range;
+		spellDamageTypes.push("Ranged");
 	}
 	
 	if (skillSpellValues != null)
@@ -1024,8 +1074,13 @@ window.ModifyEsoSkillTooltipHealValue2 = function(baseHealing, tooltip, skillDat
 	newRawOutput.healId = "Done";
 	newRawOutput.baseHeal = baseHealing;
 	
-	healingFactor += inputValues.Healing.Done;
-	newRawOutput.healDone = inputValues.Healing.Done;
+		// Healing Done
+	if (inputValues.Healing.Done)
+	{
+		healingFactor += inputValues.Healing.Done;
+		newRawOutput.healDone = inputValues.Healing.Done;
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Done", inputValues.Healing.Done, '%');
+	}
 	
 		// AOE
 	if (tooltip.isAOE == 1 && inputValues.Healing.AOE != null && inputValues.Healing.AOE != 0)
@@ -1566,6 +1621,14 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 	case -75:	// Constant (should be handled before this point) 
 		value = tooltip.value;
 		break;
+	case -76:	// Health or Spell Damage
+		var value1 = Math.floor(a * inputValues.SpellDamage) + c;
+		var value2 = Math.floor(b * inputValues.Health) + c;
+		value = Math.max(value1, value2);
+		break;
+	case -77:	// Max Resistance
+		value = Math.floor(a * Math.max(inputValues.SpellResist, inputValues.PhysicalResist)) + c;
+		break;
 	default:
 		value = '?';
 		break;
@@ -1673,7 +1736,7 @@ window.CreateEsoSkillTooltipRawDescription2 = function(skillData, inputValues)
 window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEffectLines, outputRaw)
 {
 	var skillData = g_SkillsData[abilityId];
-	if (skillData == null) return "";
+	if (skillData == null || abilityId <= 0) return "";
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	skillData.rawTooltipOutput = {};

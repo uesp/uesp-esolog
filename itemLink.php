@@ -184,6 +184,7 @@ class CEsoItemLink
 	public $enchantIntLevel1 = 0;
 	public $enchantIntType1 = 0;
 	public $enchantFactor = 0;
+	public $weaponTraitFactor = 0;
 	public $extraArmor = 0;
 	public $inputIntType = -1;
 	public $inputIntLevel = -1;
@@ -326,6 +327,7 @@ class CEsoItemLink
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
+		if (array_key_exists('weapontraitfactor', $this->inputParams)) $this->weaponTraitFactor = (float) $this->inputParams['weapontraitfactor'];
 		if (array_key_exists('extraarmor', $this->inputParams)) $this->extraArmor = (int) $this->inputParams['extraarmor'];
 		if (array_key_exists('trait', $this->inputParams)) $this->transmuteTrait = (int) $this->inputParams['trait'];
 		
@@ -1761,11 +1763,11 @@ class CEsoItemLink
 			"#(Grants a \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 			"#(maximum of \|c[0-9a-fA-F]{6})([0-9]+)(\|r)#i",
 		);
-	
+		
 		$newDesc = $desc;
 		$trait = $this->itemTrait;
 		$traitDesc = FormatRemoveEsoItemDescriptionText($this->itemRecord['traitDesc']);
-				
+		
 		$armorFactor = 1 + $this->enchantFactor;
 		$weaponFactor = 1 + $this->enchantFactor;
 		
@@ -1780,7 +1782,11 @@ class CEsoItemLink
 				$traitValue = 1 + ((float) $matches[1]) / 100;
 				if ($trait == 16) $armorFactor *= $traitValue;
 				if ($trait == 33) $armorFactor *= $traitValue;
-				if ($trait ==  4) $weaponFactor *= $traitValue;
+				
+				if ($trait ==  4)
+				{
+					$weaponFactor *= $traitValue * (1 + $this->weaponTraitFactor);
+				}
 			}
 		}
 		else if ($isDefaultEnchant && $this->transmuteTrait > 0)
@@ -1892,7 +1898,7 @@ class CEsoItemLink
 							$result = floor($matches[2] * $weaponFactor);
 							return $matches[1] . $result . $matches[3];
 						},
-				
+						
 						$newDesc);
 			}
 		}
@@ -1947,7 +1953,23 @@ class CEsoItemLink
 	{
 		$transmuteIcon = "";
 		$trait = $this->itemTrait;
-		$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
+		
+		if ($this->weaponTraitFactor > 0 && $this->itemRecord['type'] == 1 && $this->itemRecord['weaponType'] != 14 && $this->itemRecord['trait'] != 9 && $this->itemRecord['trait'] != 10)
+		{
+			$rawDesc = $this->itemRecord['traitDesc'];
+			$rawDesc = preg_replace_callback('/by \|cffffff([0-9.]+)\|r/', function($matches) {
+				$traitValue = floatval($matches[1]);
+				$newTraitValue = $traitValue * (1 + $this->weaponTraitFactor);
+				return "by |cffffff$newTraitValue|r";
+			}, $rawDesc, 1);
+			
+			$traitDesc = $this->FormatDescriptionText($rawDesc);
+		}
+		else
+		{
+			$traitDesc = $this->FormatDescriptionText($this->itemRecord['traitDesc']);
+		}
+		
 		$traitName = strtoupper(GetEsoItemTraitText($trait, $this->version));
 		
 		if ($trait <= 0) return "";

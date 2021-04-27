@@ -55,7 +55,7 @@ class CEsoSalesMakePriceList
 		$itemData = array();
 		$totalSales = 0;
 		$totalPurchases = 0;
-				
+		
 		while (($row = $result->fetch_assoc()))
 		{
 			$itemId = $row['itemId'];
@@ -69,15 +69,15 @@ class CEsoSalesMakePriceList
 			$goodListPrice = $row['goodListPrice'];
 			
 			if ($extraData != "") $potionData = $extraData;
-		
+			
 			if (!isset($itemData[$itemId])) $itemData[$itemId] = array();
 			if (!isset($itemData[$itemId][$level])) $itemData[$itemId][$level] = array();
 			if (!isset($itemData[$itemId][$level][$quality])) $itemData[$itemId][$level][$quality] = array();
 			if (!isset($itemData[$itemId][$level][$quality][$trait])) $itemData[$itemId][$level][$quality][$trait] = array();
 			if (!isset($itemData[$itemId][$level][$quality][$trait][$potionData])) $itemData[$itemId][$level][$quality][$trait][$potionData] = array();
-		
+			
 			$saleData = &$itemData[$itemId][$level][$quality][$trait][$potionData];
-		
+			
 			$count = intval($row['countPurchases']) + intval($row['countSales']);
 			$itemCount = intval($row['countItemPurchases']) + intval($row['countItemSales']);
 			if ($count == 0 || $itemCount == 0) continue;
@@ -85,36 +85,36 @@ class CEsoSalesMakePriceList
 			$sumPrice = floatval($row['sumSales']) + floatval($row['sumPurchases']);
 			$avgPrice = $sumPrice / $itemCount;
 			if ($goodPrice > 0) $avgPrice = $goodPrice;
-		
+			
 			if ($avgPrice >= 1000)
 				$avgPrice = round($avgPrice, 0);
 			else if ($avgPrice >= 100)
 				$avgPrice = round($avgPrice, 1);
 			else
 				$avgPrice = round($avgPrice, 2);
-		
+			
 			$avgPurchasePrice = 0;
 			$avgSalePrice = 0;
-
+			
 			if ($row['countPurchases'] > 0)$avgPurchasePrice = floatval($row['sumPurchases']) / intval($row['countItemPurchases']);
 			if ($row['countSales'] > 0) $avgSalePrice = floatval($row['sumSales']) / intval($row['countItemSales']);
 			if ($goodSoldPrice > 0) $avgPurchasePrice = $goodSoldPrice;
 			if ($goodListPrice > 0) $avgSalePrice = $goodListPrice;
-
+			
 			if ($avgPurchasePrice >= 1000)
 				$avgPurchasePrice = round($avgPurchasePrice, 0);
 			else if ($avgPurchasePrice >= 100)
 				$avgPurchasePrice = round($avgPurchasePrice, 1);
 			else
 				$avgPurchasePrice = round($avgPurchasePrice, 2);
-
+			
 			if ($avgSalePrice >= 1000)
 				$avgSalePrice = round($avgSalePrice, 0);
 			else if ($avgPrice >= 100)
 				$avgSalePrice = round($avgSalePrice, 1);
 			else
 				$avgSalePrice = round($avgSalePrice, 2);
-
+			
 			$saleData[0] = $avgPrice;
 			$saleData[1] = $avgPurchasePrice;
 			$saleData[2] = $avgSalePrice;
@@ -149,7 +149,7 @@ class CEsoSalesMakePriceList
 		$output .= "uespLog.SalesPricesVersion = {$this->VERSION}\n";
 		$output .= "uespLog.SalesPricesLastUpdate = '$updateDate'\n";
 		$output .= "uespLog.SalesPrices = {}\n";
-		$output .= "local SetPriceFunc = function(a)\n";		
+		$output .= "local SetPriceFunc = function(a)\n";
 		
 		foreach ($itemData as $itemId => $levelData)
 		{
@@ -168,7 +168,7 @@ class CEsoSalesMakePriceList
 			foreach ($levelData as $level => $qualityData)
 			{
 				$output .= "[$level]={";
-		
+				
 				foreach ($qualityData as $quality => $traitData)
 				{
 					$output .= "[$quality]={";
@@ -177,7 +177,7 @@ class CEsoSalesMakePriceList
 					{
 						$output .= "[$trait]={";
 						$outputCount = 0;
-		
+						
 						foreach ($potionData as $potion => $salesData)
 						{
 							if ($salesData[0] == "") continue;

@@ -6,7 +6,6 @@
 
 require("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
-require_once("esoRawSkillData.php");
 require_once("esoSkillRankData.php");
 
 
@@ -14,6 +13,7 @@ class CEsoSkillTooltips
 {
 	protected $TABLE_SUFFIX = "";
 	protected $ONLY_DO_ABILITYID = -1;
+	protected $DONT_SAVE_TOOLTIPS = false;
 	protected $MIN_ALLOWED_ERRORPERCENT = 3;
 	protected $MIN_ALLOWED_R2 = 0.99;
 	
@@ -44,8 +44,9 @@ class CEsoSkillTooltips
 	protected $minedSkills = array();
 	
 	
-	public function __construct()
+	public function __construct($tableSuffix = "")
 	{
+		$this->TABLE_SUFFIX = $tableSuffix;
 	}
 	
 	
@@ -142,6 +143,7 @@ class CEsoSkillTooltips
 						isFlameAOE TINYINT(1) NOT NULL,
 						isElfBane TINYINT(1) NOT NULL,
 						isPlayer TINYINT(1) NOT NULL,
+						isMelee TINYINT(1) NOT NULL,
 						hasRankMod TINYINT(1) NOT NULL,
 						usesManualCoef TINYINT(1) NOT NULL,
 						PRIMARY KEY id (abilityId, idx)
@@ -175,7 +177,12 @@ class CEsoSkillTooltips
 		if ($type1 == 35 && $type2 == 29)	return POWERTYPE_STAMINA;
 		if ($type1 == 29 && $type2 == 35)	return POWERTYPE_STAMINA;
 		if ($type1 == 35 && $type2 ==  0)	return POWERTYPE_STAMINA;
+		if ($type1 == 29 && $type2 == 0)	return POWERTYPE_STAMINA;
 		if ($type1 ==  0 && $type2 ==  0) 	return UESP_POWERTYPE_CONSTANTVALUE;
+		if ($type1 == 22 && $type2 == 13) 	return UESP_POWERTYPE_RESISTANCE;
+		if ($type1 == 13 && $type2 == 22) 	return UESP_POWERTYPE_RESISTANCE;
+		if ($type1 == 13 && $type2 == 0) 	return UESP_POWERTYPE_RESISTANCE;
+		if ($type1 == 22 && $type2 == 0) 	return UESP_POWERTYPE_RESISTANCE;
 		
 		return POWERTYPE_INVALID;
 	}
@@ -277,6 +284,8 @@ class CEsoSkillTooltips
 	
 	public function SaveTooltipFlags($abilityId, $tooltipIndex, $flags)
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
 		$values = array();
 		
 		foreach ($flags as $flag => $value)
@@ -297,9 +306,11 @@ class CEsoSkillTooltips
 	
 	public function ResetAllTooltipFlags()
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
 		if (!$this->InitDatabaseWrite()) return false;
 		
-		$this->lastQuery = "UPDATE skillTooltips{$this->TABLE_SUFFIX} SET isDmg=0, isHeal=0, isDmgShield=0, isAOE=0, isDOT=0, isFlameAOE=0, isElfBane=0;";
+		$this->lastQuery = "UPDATE skillTooltips{$this->TABLE_SUFFIX} SET isDmg=0, isHeal=0, isDmgShield=0, isAOE=0, isDOT=0, isFlameAOE=0, isElfBane=0, isMelee=0;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result == false) return $this->ReportError("Error: Failed to reset all tooltip flags!");
 		
@@ -309,6 +320,8 @@ class CEsoSkillTooltips
 	
 	protected function ResetAllTooltipData()
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
 		$this->lastQuery = "TRUNCATE TABLE skillTooltips{$this->TABLE_SUFFIX};";
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to empty table skillTooltips{$this->TABLE_SUFFIX}!"); 
@@ -322,11 +335,15 @@ class CEsoSkillTooltips
 		$skillDesc = str_replace(")>>", ">>", $skillDesc);
 		$skillDesc = preg_replace("/\|c[a-fA-F0-9]{6}/", "", $skillDesc);
 		$skillDesc = str_replace("|r", "", $skillDesc);
+		$skillDesc = str_replace("    ", " ", $skillDesc);
+		$skillDesc = str_replace("   ", " ", $skillDesc);
 		$skillDesc = str_replace("  ", " ", $skillDesc);
 		$skillDesc = str_replace("  ", " ", $skillDesc);
-		$skillDesc = str_replace("\x3F", "", $skillDesc);
+		$skillDesc = str_replace("\r\n", "\n", $skillDesc);
+		$skillDesc = str_replace("\x3F\xB7", "", $skillDesc);
 		$skillDesc = str_replace("\xC2\xB7", "", $skillDesc);
 		$skillDesc = str_replace("\xB7", "", $skillDesc);
+		$skillDesc = str_replace("\x3F", "", $skillDesc);
 		$skillDesc = preg_replace('/>>%,$/i', ">>%", $skillDesc);
 		$skillDesc = preg_replace('/>>,$/i', ">>", $skillDesc);
 		
@@ -357,8 +374,11 @@ class CEsoSkillTooltips
 		return $matchCount;
 	}
 	
+	
 	protected function UpdateSkillRawTimes($abilityId, $startTime, $tickTime)
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
 		if ($startTime == null) $startTime = 0;
 		if ($tickTime == null) $tickTime = 0;
 		
@@ -376,6 +396,11 @@ class CEsoSkillTooltips
 	
 	protected function UpdateSkillRawDescription($abilityId, $rawDesc)
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
+		$rawDesc = str_replace("  ", " ", $rawDesc);
+		$rawDesc = str_replace("  ", " ", $rawDesc);
+		
 		$safeDesc = $this->db->real_escape_string($rawDesc);
 		$this->lastQuery = "UPDATE minedSkills{$this->TABLE_SUFFIX} SET rawDescription='$safeDesc' where id='$abilityId';";
 		
@@ -410,6 +435,8 @@ class CEsoSkillTooltips
 	
 	protected function SaveTooltipInfo($abilityId, $tooltipIndex, $tooltipInfo)
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
 		$cols = array(
 				'abilityId',
 				'idx',
@@ -468,6 +495,7 @@ class CEsoSkillTooltips
 	
 	protected function SaveTooltipInfos($abilityId, $tooltipInfos)
 	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
 		
 		foreach ($tooltipInfos as $i => $tooltipInfo)
 		{
@@ -524,7 +552,7 @@ class CEsoSkillTooltips
 		
 		if ($r1 < $this->MIN_ALLOWED_R2)
 		{
-			if ($this->ONLY_DO_ABILITYID > 0) print("\t$abilityId : $rank : {$newInfo['tooltipIndex']}: Not used coefficient values due to small R2 ($r1)!\n");
+			if ($this->ONLY_DO_ABILITYID > 0) print("\t$abilityId : $rank : {$newInfo['tooltipIndex']}: Not using mined coefficient values due to small R2 ($r1)!\n");
 			return false;
 		}
 		
@@ -562,7 +590,7 @@ class CEsoSkillTooltips
 	}
 	
 	
-	protected function SetTooltipInfoCoefValues($abilityId, $rank, $coefIndex, &$newInfo)
+	protected function SetTooltipInfoCoefValues($abilityId, $rank, $tooltipIndex, $coefIndex, &$newInfo)
 	{
 		$minedSkill = $this->minedSkills[$abilityId];
 		if ($coefIndex > $minedSkill['numCoefVars']) return;
@@ -581,6 +609,47 @@ class CEsoSkillTooltips
 		
 		if ($useValues)
 		{
+			global $ESO_RAWSKILL_DATA;
+			
+			$baseAbilityId = $this->GetBaseAbilityRankId($abilityId, $rank);
+			//print("\t\t$abilityId:$rank: Using manual coefficients (base $baseAbilityId)...\n");
+			
+			$rawSkillData = $ESO_RAWSKILL_DATA[$baseAbilityId];
+			if ($rawSkillData == null) $rawSkillData = array();
+			
+			$rawCoef = $rawSkillData['coef'][$tooltipIndex - 1];
+			if ($rawCoef == null) $rawCoef = array();
+			
+			$tooltipType = $rawCoef['type'];
+			$tooltipId = $rawCoef['id'];
+			
+			$rawTooltipData = $ESO_RAWSKILL_DATA[$tooltipId];
+			if ($rawTooltipData == null) $rawTooltipData = array();
+			
+			$duration = $rawTooltipData['duration']/1000;
+			$tickLength = $rawTooltipData['tick']/1000;
+			$startTime = $rawTooltipData['start']/1000;
+			
+			//print("\t\t$abilityId:$rank: Type/ID $tooltipType:$tooltipId\n");
+			
+				/* Scale back manual coefficients to ticks */
+			if (($tooltipType == 49 || $tooltipType == 53) && $duration > 0)
+			{
+				if ($tickLength > 0)
+					$coefFactor = ($duration + $tickLength) / $tickLength;
+				else
+					$coefFactor = $duration;
+				
+				//print("\t\t$abilityId:$rank: Using manual coefficient factor of $coefFactor\n");
+				
+				if ($coefFactor != 0)
+				{
+					$a = $a / $coefFactor;
+					$b = $b / $coefFactor;
+					$c = $c / $coefFactor;
+				}
+			}
+			
 			$newInfo['a'] = $a;
 			$newInfo['b'] = $b;
 			$newInfo['c'] = $c;
@@ -608,14 +677,23 @@ class CEsoSkillTooltips
 		$tooltipId = $rawCoef['id'];
 		
 		$rawTooltipData = $ESO_RAWSKILL_DATA[$tooltipId];
-		if ($rawTooltipData == null) $rawTooltipData = array();
+		
+		if ($rawTooltipData == null) 
+		{
+			//print("\t\tNo tooltip data for $tooltipId\n");
+			$rawTooltipData = array();
+		}
 		
 		$duration = $rawTooltipData['duration']/1000;
 		$tickLength = $rawTooltipData['tick']/1000;
 		$startTime = $rawTooltipData['start']/1000;
 		
+		//print("\t\tTick Coef Factor for $tooltipId: $duration x $tickLength\n");
+		
 		if (($tooltipType == 49 || $tooltipType == 53) && $duration > 0)
 		{
+			//print("\t\tHas Tick Coef Factor: $duration x $tickLength\n");
+			
 			if ($tickLength > 0)
 				$coefFactor = ($duration + $tickLength) / $tickLength;
 			else
@@ -651,6 +729,7 @@ class CEsoSkillTooltips
 			}
 		}
 		
+		//print("\t\tCoefFactor for $abilityId:$rank = $coefFactor\n");
 		return $coefFactor;
 	}
 	
@@ -693,6 +772,9 @@ class CEsoSkillTooltips
 		$coefType1 = $this->ConvertStatTypeToPowerType($rawCoef['type1'], $rawCoef['type2'], $rawCoef['coef1'], $rawCoef['coef2']);
 		$coefType2 = $this->ConvertStatTypeToPowerType($rawCoef['type3'], $rawCoef['type4'], $rawCoef['coef3'], $rawCoef['coef4']);
 		
+		if ($coefType1 == POWERTYPE_INVALID) print("\t\t$abilityId:$rank:$tooltipIndex: Invalid coefficient type found: {$rawCoef['type1']}:{$rawCoef['type2']}\n");
+		if ($coefType2 == POWERTYPE_INVALID) print("\t\t$abilityId:$rank:$tooltipIndex: Invalid coefficient type found: {$rawCoef['type3']}:{$rawCoef['type4']}\n");
+		
 		if (($coefType1 == UESP_POWERTYPE_CONSTANTVALUE && $coefType2 == UESP_POWERTYPE_CONSTANTVALUE) || ($coefType1 == POWERTYPE_INVALID && $coefType2 == POWERTYPE_INVALID))
 		{
 			if ($this->ONLY_DO_ABILITYID > 0) print("\t$abilityId : $rank : $tooltipIndex: No raw cofficient values to use!\n");
@@ -701,6 +783,8 @@ class CEsoSkillTooltips
 		
 		if (($coefType1 == POWERTYPE_MAGICKA && $coefType2 == POWERTYPE_STAMINA) || ($coefType1 == POWERTYPE_STAMINA && $coefType2 == POWERTYPE_MAGICKA))
 			$coefType = POWERTYPE_ULTIMATE;
+		else if ($coefType1 == POWERTYPE_MAGICKA && $coefType2 == POWERTYPE_HEALTH)
+			$coefType = UESP_POWERTYPE_HEALTHORSPELLDAMAGE;
 		else 
 			$coefType = $coefType1;
 		
@@ -763,10 +847,25 @@ class CEsoSkillTooltips
 		 	if ($value1) $a += $value1/100;
 		 	$b = 0;
 		}
-		else if ($rawType1 == 7)
+		else if ($rawType1 == 7 || $rawType1 == 13 || $rawType1 == 22)
 		{
 			$a = $b;
 			$b = 0;
+		}
+		
+		if ($coefType == UESP_POWERTYPE_HEALTHORSPELLDAMAGE)
+		{
+			$a = $rawCoef['coef1'];
+			$b = $rawCoef['coef3'];
+			$c = 0;
+			$rawa = $a;
+			$rawb = $b;
+			$rawc = $c;
+		}
+		
+		if ($this->ONLY_DO_ABILITYID > 0)
+		{
+			print("\tCoefType: $coefType,  RawTypes: {$rawCoef['type1']}:{$rawCoef['type2']} / {$rawCoef['type3']}:{$rawCoef['type4']}\n");
 		}
 		
 		$newInfo['a'] = $a;
@@ -835,7 +934,7 @@ class CEsoSkillTooltips
 			if ($hasCoefMatch)
 			{
 				$newInfo['coefIndex'] = $coefIndex;
-				$this->SetTooltipInfoCoefValues($abilityId, $rank, $coefIndex, $newInfo);
+				$this->SetTooltipInfoCoefValues($abilityId, $rank, $tooltipIndex, $coefIndex, $newInfo);
 				if ($minedDescMatches[$i] != null) $newInfo['value'] = $minedDescMatches[$i];
 			}
 			else
@@ -951,12 +1050,25 @@ class CEsoSkillTooltips
 		$a1 = $baseSkill['a' . $coefIndex];
 		$a2 = $rankSkill['a' . $coefIndex];
 		
-		$diff = abs($a1 - $a2);
+		$b1 = $baseSkill['b' . $coefIndex];
+		$b2 = $rankSkill['b' . $coefIndex];
 		
-		//print("\t\t\tRankMod($abilityId, $coefIndex)($baseAbilityId, $rankAbilityId): $a1 : $a2 : $diff : " . ($diff < 0.00025) . "\n");
+		$diffa = abs($a1 - $a2);
+		$diffb = abs($b1 - $b2);
+		$diffAPercent = 0;
+		$diffBPercent = 0;
+		if ($a1 != 0) $diffAPercent = $diffa / $a1 * 100;
+		if ($b1 != 0) $diffBPercent = $diffb / $b1 * 100;
 		
-		if ($diff < 0.00025) return false;
-		return true;
+		//print("\t\t\tRankMod($abilityId, $coefIndex)($baseAbilityId, $rankAbilityId): $a1 : $a2 : $diffa : $diffAPercent : " . ($diffa < 0.00025) . "\n");
+		//print("\t\t\t\t\t\t: $b1 : $b2 : $diffb : $diffBPercent : " . ($diffb < 0.00025) . "\n");
+		
+		if ($diffAPercent > 2) return true;
+		if ($diffa >= 0.00025) return true;
+		if ($diffBPercent > 2) return true;
+		if ($diffb >= 0.00025) return true;
+		
+		return false;
 	}
 	
 	
@@ -982,7 +1094,8 @@ class CEsoSkillTooltips
 		$hasNumber = preg_match(CEsoSkillTooltips::$NUMBER_REGEX, $minedDesc);
 		if (!$hasNumber) return true;
 		
-		$rawDesc = iconv('WINDOWS-1256', 'UTF-8', $rawSkillData['desc']);
+		//$rawDesc = iconv('WINDOWS-1256', 'UTF-8', $rawSkillData['desc']);		// Doesn't work for some binary character sequences
+		$rawDesc = $rawSkillData['desc'];
 		if ($rawDesc == null || $rawDesc == "") return true;
 		
 		if (!$this->UpdateSkillRawDescription($abilityId, $rawDesc)) return false;
@@ -1022,6 +1135,9 @@ class CEsoSkillTooltips
 	
 	public function UpdateAllSkillRawData()
 	{
+		global $ESO_RAWSKILL_DATA;
+		require_once("esoRawSkillData{$this->TABLE_SUFFIX}.php");
+		
 		if (!$this->InitDatabaseWrite()) return false;
 		if (!$this->LoadAllMinedSkills()) return false;
 		

@@ -16,11 +16,11 @@
 		<p />
 		<div class="esovsRangeLabel">Level</div>
 		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="{fmtLevel}">
-		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">		
+		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">
 		<br />
 		<div class="esovsRangeLabel">Health</div>
 		<input id="esovsInputHealth" class="esovsInputControl" type="text" value="{health}">
-		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="{health}">		
+		<input id="esovsControlHealth"  class="esovsRangeControl" type="range" min="1" max="50000" value="{health}">
 		<br />
 		<div class="esovsRangeLabel">Magicka</div>
 		<input id="esovsInputMagicka" class="esovsInputControl" type="text" value="{magicka}">
@@ -32,11 +32,11 @@
 		<br />
 		<div class="esovsRangeLabel">Spell Damage</div>
 		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="{spellDamage}">
-		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="{spellDamage}">		
+		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="5000" value="{spellDamage}">
 		<br />
 		<div class="esovsRangeLabel">Weapon Damage</div>
 		<input id="esovsInputWeaponDamage" class="esovsInputControl" type="text" value="{weaponDamage}">
-		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="{weaponDamage}">		
+		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="5000" value="{weaponDamage}">
 		<br />
 	</div>
 	<hr />
@@ -67,6 +67,7 @@
 <script type="text/javascript">
 	var g_SkillsVersion = '{version}';
 	var g_SkillsData = {skillsJson};
+	var g_SetSkillsData = {setSkillsJson};
 	var g_SkillSearchIds = {skillSearchIdJson};
 	var g_SkillHighlightId = {skillHighlightId};
 	var g_SkillHighlightType = "{skillHighlightType}";
@@ -84,4 +85,5 @@
 	var g_EsoSkillPoisonSkills = {poisonSkillsJson};
 	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};
 	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};
+	var g_EsoSkillHasV2Tooltips = {hasV2SkillTooltips};
 </script>

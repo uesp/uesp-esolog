@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "29";
+	const ENABLE_PTS_VERSION = "30";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -522,6 +522,7 @@ class EsoLogViewer
 			'skillLine' => self::FIELD_STRING,
 			'raceType'  => self::FIELD_STRING,
 			'classType'  => self::FIELD_STRING,
+			'setName'  => self::FIELD_STRING,
 			'baseAbilityId'  => self::FIELD_INT,
 			'prevSkill'  => self::FIELD_INT,
 			'nextSkill'  => self::FIELD_INT,

@@ -64,13 +64,15 @@ class EsoViewSalesData
 	public $hasSearchData = false;
 	public $outputType = "html";
 	public $showDeal = "";
-	public $dealLastSeenTime = 3600;	
+	public $dealLastSeenTime = 3600;
+	public $showTrends = true;
 	
 	public $guildData = array();
 	public $searchCount = 0;
 	public $itemCount = 0;
 	public $itemResults = array();
 	public $itemIds = array();
+	public $itemTrends = array();
 	public $singleItemData = null;
 	public $itemSortedKeys = array();
 	public $searchResults = array();
@@ -159,7 +161,7 @@ class EsoViewSalesData
 			2678400 => "Last Month",
 			31558150 => "Last Year",
 	);
-		
+	
 	static public $ESOVSD_SERVERS = array(
 			"NA" => "PC-NA",
 			"EU" => "PC-EU",
@@ -173,7 +175,7 @@ class EsoViewSalesData
 			"listed" => "Only Listed Items",
 	);
 	
-
+	
 	public function __construct ()
 	{
 		global $ESO_ITEMTRAIT15_TEXTS;
@@ -199,10 +201,10 @@ class EsoViewSalesData
 		{
 			error_log("Profiling Sales Request: " . $_SERVER['REQUEST_URI']);
 		}
-	
+		
 		$this->InitDatabaseRead();
 		$this->InitLogDatabaseRead();
-
+		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 	}
@@ -290,6 +292,12 @@ class EsoViewSalesData
 		$this->ParseFormParam('server');
 		$this->ParseFormParam('saletype');
 		$this->ParseFormParam('showdeal');
+		$this->ParseFormParam('trends');
+		
+		if ($this->formValues['trends'] != null && $this->formValues['trends'] > 0)
+		{+
+			$this->showTrends = true;
+		}
 		
 		if ($this->formValues['saletype'] != null)
 		{
@@ -701,12 +709,17 @@ class EsoViewSalesData
 			{
 				$extraQuery .= "&timeperiod=".intval($this->formValues['timeperiod']);
 			}
-						
+			
+			if ($this->showTrends)
+			{
+				$extraQuery .= "&trends=1";
+			}
+			
 			$totalCountText = $totalCount;
 			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
 			
 			$avgPrice = $this->FormatPrice($avgPrice);
-				
+			
 			$traitText = "";
 			if ($trait > 0) $traitText = GetEsoItemTraitText($trait);
 			
@@ -1424,11 +1437,11 @@ class EsoViewSalesData
 		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
 		//$query = "SELECT itemId, guildId, listTimestamp, buyTimestamp, price, qnt, lastSeen FROM sales ";
 		$where = array();
-	
+		
 		$where[] = "itemId={$this->viewSalesItemId}";
 		
 		$timePeriod = intval($this->formValues['timeperiod']);
-
+		
 		if ($timePeriod > 0)
 		{
 			$timestamp = time() - $timePeriod;
@@ -1444,20 +1457,20 @@ class EsoViewSalesData
 		{
 			$where[] = "listTimestamp > 0";
 		}
-
+		
 		if (count($where) > 0)
 		{
 			$query .= " WHERE " . implode(" AND ", $where);
 		}
-
+		
 		//$query .= " LIMIT 1000";
 		//$query .= " ORDER BY buyTimestamp DESC;";
 		$query .= ";";
-
+		
 		$this->salesQuery = $query;
 		return $query;
 	}
-		
+	
 	
 	public function LoadSalesSearchResults($loadSingle = false)
 	{
@@ -1476,7 +1489,7 @@ class EsoViewSalesData
 		
 		if ($this->searchCount == 0)
 		{
-			$this->errorMessages[] = "No matching sales found!";			
+			$this->errorMessages[] = "No matching sales found!";
 			return true;
 		}
 		
@@ -1511,14 +1524,16 @@ class EsoViewSalesData
 		{
 			$this->errorMessages[] = "Found {$this->totalSalesCount} matching sales for {$this->itemCount} items.";
 		}
-				
+		
 		$this->SortSalesSearchResults();
 		
 		$this->LogProfile("LoadSalesSearchResults()", $startTime);
+		
+		if ($loadSingle && $this->showTrends) return $this->LoadTrends($this->server, $this->viewSalesItemId);
 		return true;
 	}
 	
-		
+	
 	public function LoadSingleItemData()
 	{
 		$this->lastQuery = "SELECT * FROM items WHERE id={$this->viewSalesItemId};";
@@ -1541,6 +1556,27 @@ class EsoViewSalesData
 		//$this->salesData->server = $this->server;
 		
 		$this->itemCount = 1;
+		
+		return true;
+	}
+	
+	
+	public function LoadTrends($server, $itemId)
+	{
+		$safeServer = $this->db->real_escape_string($server);
+		$this->lastQuery = "SELECT * FROM trends WHERE server='$safeServer' AND itemId='{$itemId}';";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return $this->ReportError("Failed to load item trends data!");
+		
+		$this->itemTrends = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['bothCount'] = intval($row['sellCount']) + intval($row['buyCount']);
+			$row['bothItemCount'] = intval($row['sellItemCount']) + intval($row['buyItemCount']);
+			
+			$this->itemTrends[] = $row;
+		}
 		
 		return true;
 	}
@@ -1676,6 +1712,33 @@ class EsoViewSalesData
 		
 		$this->ComputeSaleAdvancedStatistics();
 		$this->ComputeItemGoodPrice();
+		
+		if (count($this->itemTrends) > 0)
+		{
+			$bothCount = 0;
+			$bothItemCount = 0;
+			$sellCount = 0;
+			$sellItemCount = 0;
+			$buyCount = 0;
+			$buyItemCount = 0;
+			
+			foreach ($this->itemTrends as $trend)
+			{
+				$bothCount += intval($trend['bothCount']);
+				$bothItemCount += intval($trend['bothItemCount']);
+				$buyCount += intval($trend['buyCount']);
+				$buyItemCount += intval($trend['buyItemCount']);
+				$sellCount += intval($trend['sellCount']);
+				$sellItemCount += intval($trend['sellItemCount']);
+			}
+			
+			$this->salePriceAverageCountAll += $bothCount;
+			$this->salePriceAverageItemsAll += $bothItemCount;
+			$this->salePriceAverageCountSold += $buyCount;
+			$this->salePriceAverageItemsSold += $buyItemCount;
+			$this->salePriceAverageCountListed += $sellCount;
+			$this->salePriceAverageItemsListed += $sellItemCount;
+		}
 		
 		$this->LogProfile("ComputeSaleStatistics()", $startTime);
 	}	
@@ -2438,72 +2501,73 @@ class EsoViewSalesData
 		$output .= implode(", ", $details);
 		$output .= "";
 		
-		return $output;				
+		return $output;
 	}
 	
-		
+	
 	public function GetSalesTypeHtml()
 	{
 		$output = "";
 		$saleType = $this->formValues['saletype'];
 		$timePeriod = intval($this->formValues['timeperiod']);
 		$itemId = $this->viewSalesItemId;
+		$showTrends = $this->showTrends;
 		
 		$output .= "View: ";
 		
 		if ($saleType == "all" || $saleType == "")
 			$output .= " <b>All Items</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=all&timeperiod=$timePeriod'>All Items</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=all&trends=$showTrends&timeperiod=$timePeriod'>All Items</a>";
 		
 		$output .= " : ";
 		
 		if ($saleType == "sold")
 			$output .= " <b>Only Sold Items</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=sold&timeperiod=$timePeriod'>Only Sold Items</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=sold&trends=$showTrends&timeperiod=$timePeriod'>Only Sold Items</a>";
 		
 		$output .= " : ";
 		
 		if ($saleType == "listed")
 			$output .= " <b>Only Listed Items</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=listed&timeperiod=$timePeriod'>Only Listed Items</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=listed&trends=$showTrends&timeperiod=$timePeriod'>Only Listed Items</a>";
 		
 		$output .= " from ";
 			
 		if ($timePeriod <= 0)
 			$output .= " <b>All Time</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=0'>All Time</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&trends=$showTrends&timeperiod=0'>All Time</a>";
 		
 		$output .= " : ";
 			
 		if ($timePeriod == 86400)
 			$output .= " <b>Last Day</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=86400'>Last Day</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&trends=$showTrends&timeperiod=86400'>Last Day</a>";
 		
 		$output .= " : ";
 			
 		if ($timePeriod == 604800)
 			$output .= " <b>Last Week</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=604800'>Last Week</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&trends=$showTrends&timeperiod=604800'>Last Week</a>";
 		
 		$output .= " : ";
 				
 		if ($timePeriod == 2678400)
 			$output .= " <b>Last Month</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=2678400'>Last Month</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&trends=$showTrends&timeperiod=2678400'>Last Month</a>";
 		
 		$output .= " : ";
 		
 		if ($timePeriod == 31558150)
 			$output .= " <b>Last Year</b> ";
 		else
-			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&timeperiod=31558150'>Last Year</a>";
+			$output .= " <a href='?viewsales=$itemId&saletype=$saleType&trends=$showTrends&timeperiod=31558150'>Last Year</a>";
 		
 		$output .= "<br/>";
 		return $output;
@@ -2594,10 +2658,10 @@ class EsoViewSalesData
 		static $VALUES = array(
 				"AvgPriceAll" => "salePriceAverageAll",
 				"CountAll" => "salePriceAverageCountAll",
-				"ItemsAll" => "salePriceAverageItemsAll",				
+				"ItemsAll" => "salePriceAverageItemsAll",
 				"AvgPriceSold" => "salePriceAverageSold",
 				"CountSold" => "salePriceAverageCountSold",
-				"ItemsSold" => "salePriceAverageItemsSold",				
+				"ItemsSold" => "salePriceAverageItemsSold",
 				"AvgPriceListed" => "salePriceAverageListed",
 				"CountListed" => "salePriceAverageCountListed",
 				"ItemsListed" => "salePriceAverageItemsListed",
@@ -2723,6 +2787,7 @@ class EsoViewSalesData
 				'{saleStats}' => $this->GetSaleStatsHtml(),
 				
 				'{viewCsvLink}' => $this->GetViewCsvLink(),
+				'{showTrends}' => $this->showTrends ? "1" : "0",
 				
 		);
 		

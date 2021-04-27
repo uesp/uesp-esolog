@@ -100,6 +100,7 @@ class CEsoItemLinkImage
 	public $inputLevel = -1;
 	public $inputQuality = -1;
 	public $enchantFactor = 0;
+	public $weaponTraitFactor = 0;
 	public $version = "";
 	public $useUpdate10Display = true;
 	public $noCache = false;
@@ -304,6 +305,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];;
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (int) $this->inputParams['enchantfactor'];
+		if (array_key_exists('weapontraitfactor', $this->inputParams)) $this->weaponTraitFactor = (int) $this->inputParams['weapontraitfactor'];
 		if (array_key_exists('trait', $this->inputParams)) $this->transmuteTrait = (int) $this->inputParams['trait'];
 		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
@@ -1882,7 +1884,11 @@ class CEsoItemLinkImage
 				$traitValue = 1 + ((float) $matches[1]) / 100;
 				if ($trait == 16) $armorFactor *= $traitValue;
 				if ($trait == 33) $armorFactor *= $traitValue;
-				if ($trait ==  4) $weaponFactor *= $traitValue;
+				
+				if ($trait ==  4)
+				{
+					$weaponFactor *= $traitValue * (1 + $this->weaponTraitFactor);
+				}
 			}
 		}
 		else if ($isDefaultEnchant && $this->transmuteTrait > 0)
@@ -2123,8 +2129,19 @@ class CEsoItemLinkImage
 		
 		$printData = array();
 		$this->AddPrintData($printData, strtoupper(GetEsoItemTraitText($trait, $this->version)), $this->printOptionsSmallWhite, array('br' => true));
-		$this->AddPrintData($printData, $this->itemRecord['traitDesc'], $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
-				
+		
+		$traitDesc = $this->itemRecord['traitDesc'];
+		
+		if ($this->weaponTraitFactor > 0 && $this->itemRecord['type'] == 1 && $this->itemRecord['weaponType'] != 14 && $this->itemRecord['trait'] != 9 && $this->itemRecord['trait'] != 10)
+		{
+			$traitDesc = preg_replace_callback('/by \|cffffff([0-9.]+)\|r/', function($matches) {
+				$traitValue = floatval($matches[1]);
+				$newTraitValue = $traitValue * (1 + $this->weaponTraitFactor);
+				return "by |cffffff$newTraitValue|r";
+			}, $traitDesc, 1);
+		}
+		
+		$this->AddPrintData($printData, $traitDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
 		$deltaY = $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
 		
 		if ($this->transmuteTrait > 0)

@@ -324,7 +324,7 @@ window.OnEsoCPPointInputScrollDown = function (e)
 	var value = oldValue - 1;
 	var disciplineId = $(this).closest(".esovcpDiscSkills").attr("disciplineid");
 	
-	var maxPoints =  inputControl.attr("maxpoints");
+	var maxPoints = inputControl.attr("maxpoints");
 	
 	if (maxPoints == null || maxPoints == "")
 		maxPoints = 100;
@@ -473,13 +473,12 @@ window.SetCP2SkillChildPurchaseable = function (skillId, isPurchaseable, isChild
 window.UpdateEsoCPSkillDesc = function(skillId, points)
 {
 	var descControl = $("#descskill_" + skillId);
-	
-	if (g_EsoCpSkillDesc[skillId] == null) return;
-	var desc = g_EsoCpSkillDesc[skillId][points];
+	var desc = esovcpGetTooltipDescription(skillId, points)
 	
 	descControl.html(desc);
+	g_EsoCpData[skillId].description = descControl.text();
 	
-	if (skillId == esovcpTooltipSkillId) 
+	if (skillId == esovcpTooltipSkillId)
 	{
 		esovcpUpdateTooltip();
 		//$("#esovcp2TooltipDesc").html(desc.replace("\n", "<p/>"));
@@ -973,11 +972,88 @@ window.esovcpShowTooltip = function(skillId, parent)
 	
 	esovcpTooltipSkillId = skillId;
 	
-	if (esovcpUpdateTooltip()) 
+	if (esovcpUpdateTooltip())
 	{
 		esovcpTooltipRoot.show();
 		esovcpAdjustTooltipPosition(parent);
 	}
+}
+
+
+window.esovcpGetTooltipDescription = function(skillId, points)
+{
+	if (skillId <= 0) return "";
+	
+	var descText = "";
+	var skillData  = g_EsoCpSkills[skillId];
+	
+	if (g_EsoCpSkillDesc[skillId] != null) descText = g_EsoCpSkillDesc[skillId][points];
+	if (descText == null) return "Unknown Skill/Description!";
+	
+		/* Enlivening Overflow */
+	if (skillId == 156008)		// equal to |cffffff.5|r% of your Max Magicka, up to a cap of |cffffff150|r, Current bonus: |cffffff60|r
+	{
+		var desc = skillData.minDescription;
+		var matchResult = desc.match(/equal to \|cffffff([0-9.]+)\|r% of your Max Magicka/);
+		var factorValue = 0.005;
+		var capValue = 150;
+		var magicka = 32000;
+		
+		if (matchResult && matchResult[1])
+		{
+			var value = parseFloat(matchResult[1]);
+			if (!isNaN(value)) factorValue = value/100;
+		}
+		
+		if (points != skillData.maxPoints) factorValue = 0;
+		
+		matchResult = desc.match(/up to a cap of \|cffffff([0-9.]+)\|r/);
+		
+		if (matchResult && matchResult[1])
+		{
+			var value = parseInt(matchResult[1]);
+			if (!isNaN(value)) capValue = value;
+		}
+		
+		if (window.g_EsoBuildLastInputValues && window.g_EsoBuildLastInputValues.Magicka > 0)
+		{
+			magicka = g_EsoBuildLastInputValues.Magicka;
+		}
+		
+		var tooltipValue = Math.floor(factorValue * magicka);
+		if (tooltipValue < 0) tooltipValue = 0;
+		if (tooltipValue > capValue) tooltipValue = capValue;
+		
+		descText = descText.replace(/Current bonus: <.*?>[0-9.]+<.*?>/, "Current bonus: <div class='esovcpDescWhite'>" + tooltipValue + "</div>")
+		
+	}	/* Hope Infusion */
+	else if (skillId == 155992)	//Minor Heroism for |cffffff1|r second for every |cffffff300|r Magicka Recovery you have. Current bonus: |cffffff1.5|r
+	{
+		var desc = skillData.minDescription;
+		var matchResult = desc.match(/for every \|cffffff([0-9.]+)\|r Magicka Recovery/);
+		var factorValue = 300;
+		var magickaRegen = 1200;
+		
+		if (matchResult && matchResult[1])
+		{
+			var value = parseInt(matchResult[1]);
+			if (!isNaN(value)) factorValue = value;
+		}
+		
+		if (window.g_EsoBuildLastInputValues && window.g_EsoBuildLastInputValues.MagickaRegen > 0)
+		{
+			magickaRegen = g_EsoBuildLastInputValues.MagickaRegen;
+		}
+		
+		var tooltipValue = Math.floor(magickaRegen / factorValue * 10) / 10;
+		if (tooltipValue < 0) tooltipValue = 0;
+		if (points != skillData.maxPoints) tooltipValue = 0;
+		
+		descText = descText.replace(/Current duration: <.*?>[0-9.]+<.*?>/, "Current duration: <div class='esovcpDescWhite'>" + tooltipValue + "</div>")
+	}
+	
+	descText = descText.replace("\n", "<p/>");
+	return descText;
 }
 
 
@@ -1018,7 +1094,7 @@ window.esovcpUpdateTooltip = function()
 		clusterSkills.each(function() {
 			var skillId = $(this).attr("skillid");
 			var inputElement = $("#cpinput_" + skillId);
-			var nameElement = $(this).find(".esovcpSkillName"); 
+			var nameElement = $(this).find(".esovcpSkillName");
 			var points = inputElement.val();
 			var maxPoints = inputElement.attr("maxpoints");
 			
@@ -1034,9 +1110,7 @@ window.esovcpUpdateTooltip = function()
 		var points = parseInt(pointsInput.val());
 		if (points == null || points < 0) points = 0;
 		
-		if (g_EsoCpSkillDesc[esovcpTooltipSkillId] != null) descText = g_EsoCpSkillDesc[esovcpTooltipSkillId][points];
-		if (descText == null) descText = "Unknown Skill/Description!";
-		descText = descText.replace("\n", "<p/>");
+		descText = esovcpGetTooltipDescription(esovcpTooltipSkillId, points);
 		
 		if (esovcpTooltipSkillId <= 0)
 		{

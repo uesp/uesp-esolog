@@ -86,6 +86,7 @@
 <script type="text/javascript">
 	var g_SkillsVersion = '{version}';
 	var g_SkillsData = {skillsJson};
+	var g_SetSkillsData = {setSkillsJson};
 	var g_SkillSearchIds = {skillSearchIdJson};
 	var g_SkillHighlightId = {skillHighlightId};
 	var g_SkillHighlightType = "{skillHighlightType}";
@@ -102,7 +103,8 @@
 	var g_EsoSkillDestructionOffHandElement = "";
 	var g_EsoSkillPoisonSkills = {poisonSkillsJson};
 	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};
-	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};	
+	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};
+	var g_EsoSkillHasV2Tooltips = {hasV2SkillTooltips};	
 </script>
 <div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>
 <hr>

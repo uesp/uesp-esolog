@@ -18,7 +18,17 @@ class EsoSalesDataParser
 	
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
-		
+	
+	const IGNORE_NEWSALES_TIMESECONDS = 86400 * 7 * 9;		// Incoming sales data older than this will be ignored and not parsed or added to database
+	const TRENDS_START_TIMESECONDS = 86400 * 7 * 9;			// Sales older than this time are converted to trends
+	const TRENDS_PERIODSECONDS = 86400 * 7;					// Create trends data over this period of time
+	const TRENDS_DO_AVERAGE = true;
+	const TRENDS_MIN_SALES_NUMBER = 500;					// Number of sales before trends are calculated
+	const TRENDS_MOVE_BATCHSIZE = 1000;						// Do database moves to oldSales in this quantity at a time
+	const TRENDS_INCLUDE_OLDSALES = true;					// If true does a full relcalculation of all trends
+	const TRENDS_START_ITEMID = 2908;						// Set to -1 for all items
+	const TRENDS_END_ITEMID = -1;
+	
 	public $server = "NA";
 	
 	public $db = null;
@@ -50,6 +60,10 @@ class EsoSalesDataParser
 	public $dbWriteCountSleep = 5;		// Period in seconds for sleep()
 	public $maxAllowedSlaveLag = 5;		// Maximum database slave lag in seconds before write delays are enforced
 	public $maxSlaveLagChecks = 10;
+	public $trendCreateCount = 0;
+	public $trendMoveCount = 0;
+	public $trendItemCount = 0;
+	public $trendItemsParsed = array();
 	
 	
 	public function __construct ($quiet = false)
@@ -66,7 +80,7 @@ class EsoSalesDataParser
 			$this->logQuiet("Current date is " . date('Y-m-d H:i:s'));
 		else
 			$this->log("Current date is " . date('Y-m-d H:i:s'));
-				
+		
 		$this->setInputParams();
 		$this->parseInputParams();
 	}
@@ -85,6 +99,7 @@ class EsoSalesDataParser
 	{
 		$currentMicroTime = microtime(true);
 		$diffTime = floor(($currentMicroTime - $this->startMicroTime)*1000)/1000;
+		$diffTime = str_pad(number_format($diffTime, 3), 10, ' ', STR_PAD_LEFT);
 		
 		print("\t$diffTime: $msg\n");
 		
@@ -134,12 +149,12 @@ class EsoSalesDataParser
 		global $uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase;
 		
 		if ($this->dbWriteInitialized) return true;
-	
+		
 		$this->db = new mysqli($uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase);
 		if ($db->connect_error) return $this->reportError("Could not connect to mysql database!");
-	
+		
 		$this->dbWriteInitialized = true;
-			
+		
 		if (self::SKIP_CREATE_TABLES) return true;
 		return $this->createTables();
 	}
@@ -150,12 +165,12 @@ class EsoSalesDataParser
 		global $uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase;
 		
 		if ($this->dbReadInitialized) return true;
-	
+		
 		$this->dbRead = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase);
 		if ($db->connect_error) return $this->reportError("Could not connect to mysql read database!");
-	
+		
 		$this->dbReadInitialized = true;
-
+		
 		return true;
 	}
 	
@@ -303,7 +318,7 @@ class EsoSalesDataParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create guilds table!");
-				
+		
 		return true;
 	}
 	
@@ -476,20 +491,49 @@ class EsoSalesDataParser
 			}
 		}
 		
-		$this->log("Saved $guildCount updated guild data...\n");
+		$this->log("Saved $guildCount updated guild data...");
 		return true;
 	}
 	
 	
-	public function LoadAllSalesForItem($server, $itemId)
+	public function LoadAllOldSalesForItem($itemId)
+	{
+		$query = "SELECT * FROM oldSales WHERE itemId='$itemId';";
+		$result = $this->dbRead->query($query);
+		if ($result === false) return $this->reportError("Failed to load old sales for item $itemId!");
+		
+		if ($result->num_rows == 0) array();
+		
+		$salesData = array();
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['unitPrice'] = $row['price'] / $row['qnt'];
+			$row['__isold'] = true;
+			$salesData[] = $row;
+		}
+		
+		return $salesData;
+	}
+	
+	
+	public function LoadAllSalesForItem($server, $itemId, $allColumns = false)
 	{
 		//$query = "SELECT price, qnt, listTimestamp, buyTimestamp, eventId FROM sales WHERE server='$server' AND itemId='$itemId';";
-		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND server='$server';";
+		
+		if ($allColumns)
+		{
+			$query = "SELECT * FROM sales WHERE itemId='$itemId';";
+		}
+		else
+		{
+			$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId';";
+		}
 		
 		$result = $this->dbRead->query($query);
 		if ($result === false) return $this->reportError("Failed to load sales for item $server:$itemId!");
 		
-		if ($result->num_rows == 0) 
+		if ($result->num_rows == 0)
 		{
 			$this->reportError("No sales found for item $server:$itemId!");
 			return false;
@@ -502,7 +546,7 @@ class EsoSalesDataParser
 			$row['unitPrice'] = $row['price'] / $row['qnt'];
 			//if ($row['buyTimestamp']  > 0) $row['timestamp'] = $row['buyTimestamp'];
 			//if ($row['listTimestamp'] > 0) $row['timestamp'] = $row['listTimestamp'];
-
+			
 			$salesData[] = $row;
 		}
 		
@@ -513,7 +557,7 @@ class EsoSalesDataParser
 	public function Load30DaysSalesForItem($server, $itemId)
 	{
 		$timestamp = time() - 30*86400;
-		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND timestamp>'$timestamp' AND server='$server';";
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND timestamp>'$timestamp';";
 		
 		$result = $this->dbRead->query($query);
 		if ($result === false) return $this->reportError("Failed to load 30 days of sales for item $server:$itemId!");
@@ -540,7 +584,7 @@ class EsoSalesDataParser
 	{
 		if ($days <= 0) $days = 1;
 		$timestamp = time() - $days*86400;
-		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND timestamp>'$timestamp' AND server='$server';";
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND timestamp>'$timestamp';";
 		
 		$result = $this->dbRead->query($query);
 		if ($result === false) return $this->reportError("Failed to load $days days of sales for item $server:$itemId!");
@@ -568,7 +612,7 @@ class EsoSalesDataParser
 		$salesData = array();
 		if ($count <= 0) $count = 1;
 		
-		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND server='$server' AND listTimestamp>0 ORDER BY timestamp DESC LIMIT $count;";
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND listTimestamp>0 ORDER BY timestamp DESC LIMIT $count;";
 		$result = $this->dbRead->query($query);
 		if ($result === false) return $this->reportError("Failed to load latest #$count sales for item $server:$itemId!");
 		
@@ -578,7 +622,7 @@ class EsoSalesDataParser
 			$salesData[] = $row;
 		}
 		
-		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND server='$server' AND buyTimestamp>0 ORDER BY timestamp DESC LIMIT $count;";
+		$query = "SELECT price, qnt, timestamp, listTimestamp, buyTimestamp, eventId FROM sales WHERE itemId='$itemId' AND buyTimestamp>0 ORDER BY timestamp DESC LIMIT $count;";
 		$result = $this->dbRead->query($query);
 		if ($result === false) return $this->reportError("Failed to load latest #$count sales for item $server:$itemId!");
 		
@@ -631,8 +675,8 @@ class EsoSalesDataParser
 		
 		$this->lastLoadedSalesData = $salesData;
 		
-		if ($output) print("{$item['id']}: Loaded " . count($salesData) . " sales for item.\n");
-				
+		if ($output) $this->log("{$item['id']}: Loaded " . count($salesData) . " sales for item.");
+		
 		$stats = $this->ComputeBasicSalesStats($salesData);
 		$this->ComputeAdvancedSalesStats($salesData, $stats);
 		$this->RecalculatePriceLimits($salesData, $stats);
@@ -672,7 +716,7 @@ class EsoSalesDataParser
 		$price = $this->ComputeWeightedAverage($listData);
 		if ($price > 0) $item['goodListPrice'] = $price;
 		
-		if ($output) print("\t\tGood Prices: {$item['goodPrice']}, {$item['goodSoldPrice']}, {$item['goodListPrice']} \n");
+		if ($output) $this->log("\t\tGood Prices: {$item['goodPrice']}, {$item['goodSoldPrice']}, {$item['goodListPrice']} ");
 		
 		return true;
 	}
@@ -1743,9 +1787,45 @@ class EsoSalesDataParser
 	}
 	
 	
+	public function WaitForSlaveMasterPos()
+	{
+		if (!$this->waitForSlave) return true;
+		
+		$query = "SHOW MASTER STATUS;";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to query database master for status!" . $this->db->error);
+		
+		$masterData = $result->fetch_assoc();
+		$masterPos = intval($masterData['Position']);
+		$checkCount = 0;
+		
+		do {
+			$query = "SHOW SLAVE STATUS;";
+			$result = $this->dbSlave->query($query);
+			if ($result === false) return $this->reportError("Failed to query database slave for status!" . $this->dbSlave->error);
+			
+			$slaveData = $result->fetch_assoc();
+			$slavePos = intval($slaveData['Exec_Master_Log_Pos']);
+			$slaveLag = $slaveData['Seconds_Behind_Master'];
+			
+			if ($slavePos >= $masterPos) return true;
+			
+			++$checkCount;
+			
+			$this->log("Slave lag is $slaveLag. Master position is $masterPos. Slave position is $slavePos.");
+			$this->log("Waiting for slave position to be reach original master position!");
+			sleep($this->dbWriteCountSleep);
+			
+		} while ($checkCount < $this->maxSlaveLagChecks);
+		
+		$this->log("Exceeded {$this->maxSlaveLagChecks} slave database lag checks...resuming writes!");
+		return true;
+	}
+	
+	
 	public function WaitForSlaveDatabase()
 	{
-
+		
 		if (!$this->waitForSlave)
 		{
 			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
@@ -1755,20 +1835,20 @@ class EsoSalesDataParser
 		}
 		
 		$checkCount = 0;
-		$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...checking slave lag...");
+		//$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...checking slave lag...");
 		$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
 		sleep($this->dbWriteCountSleep);
 		
 		do {
 			$query = "SHOW SLAVE STATUS;";
 			$result = $this->dbSlave->query($query);
-			if ($result === false) return $this->reportError("Failed to query database slave for status!\n" . $this->dbSlave->error);
+			if ($result === false) return $this->reportError("Failed to query database slave for status!" . $this->dbSlave->error);
 			
 			$slaveData = $result->fetch_assoc();
 			
 			$query = "SHOW MASTER STATUS;";
 			$result = $this->db->query($query);
-			if ($result === false) return $this->reportError("Failed to query database master for status!\n" . $this->db->error);
+			if ($result === false) return $this->reportError("Failed to query database master for status!" . $this->db->error);
 			
 			$masterData = $result->fetch_assoc();
 			
@@ -1791,6 +1871,604 @@ class EsoSalesDataParser
 		return true;
 	}
 	
+	
+	public function IsValidSalesTimestamp ($timestamp)
+	{
+		$diff = time() - intval($timestamp);
+		if ($diff > self::IGNORE_NEWSALES_TIMESECONDS) return false;
+		return true;
+	}
+	
+	
+	public function AreTrendsNeededForSalesData ($salesData)
+	{
+		$now = time();
+		
+		if (count($salesData) < self::TRENDS_MIN_SALES_NUMBER) return false;
+		
+		$thisWeekIndex = floor($now / self::TRENDS_PERIODSECONDS);
+		$trendStartWeek = $thisWeekIndex - floor(self::TRENDS_START_TIMESECONDS / self::TRENDS_PERIODSECONDS);
+		
+		foreach ($salesData as $sale)
+		{
+			$thatWeekIndex = floor(intval($sale['timestamp']) / self::TRENDS_PERIODSECONDS);
+			$weekIndex = $trendStartWeek - $thatWeekIndex;
+			if ($weekIndex >= 0) return true;
+		}
+		
+		return false;
+	}
+	
+	
+	public function ComputeTrendAverages(&$newTrend, $trendData)
+	{
+		foreach ($trendData as &$sale)
+		{
+			if ($sale['__isold'] !== true) $newTrend['ids'][] = $sale['id'];
+			
+			++$newTrend['both']['count'];
+			$newTrend['both']['itemCount'] += intval($sale['qnt']);
+			$newTrend['both']['sum'] += intval($sale['unitPrice']);
+			
+			if ($sale['listTimestamp'] > 0)
+			{
+				++$newTrend['sell']['count'];
+				$newTrend['sell']['itemCount'] += intval($sale['qnt']);
+				$newTrend['sell']['sum'] += intval($sale['unitPrice']);
+			}
+			else if ($sale['buyTimestamp'] > 0)
+			{
+				++$newTrend['buy']['count'];
+				$newTrend['buy']['itemCount'] += intval($sale['qnt']);
+				$newTrend['buy']['sum'] += intval($sale['unitPrice']);
+			}
+		}
+		
+		if ($newTrend['both']['count'] > 0) $newTrend['both']['avg'] = $newTrend['both']['sum'] / $newTrend['both']['count'];
+		if ($newTrend['buy']['count']  > 0) $newTrend['buy']['avg']  = $newTrend['buy']['sum']  / $newTrend['buy']['count'];
+		if ($newTrend['sell']['count'] > 0) $newTrend['sell']['avg'] = $newTrend['sell']['sum'] / $newTrend['sell']['count'];
+	}
+	
+	
+	public function ComputeTrendStdDev(&$newTrend, $trendData)
+	{
+		foreach ($trendData as &$sale)
+		{
+			$newTrend['both']['diffsum'] += pow(abs(intval($sale['unitPrice']) - $newTrend['both']['avg']), 2);
+			
+			if ($sale['listTimestamp'] > 0)
+			{
+				$newTrend['sell']['diffsum'] += pow(abs(intval($sale['unitPrice']) - $newTrend['sell']['avg']), 2);
+			}
+			else if ($sale['buyTimestamp'] > 0)
+			{
+				$newTrend['buy']['diffsum'] += pow(abs(intval($sale['unitPrice']) - $newTrend['buy']['avg']), 2);
+			}
+		}
+		
+		if ($newTrend['both']['count'] > 0)
+		{
+			$newTrend['both']['stddev'] = sqrt($newTrend['both']['diffsum'] / $newTrend['both']['count']);
+			$newTrend['both']['low']  = $newTrend['both']['avg'] - $newTrend['both']['stddev'];
+			$newTrend['both']['high'] = $newTrend['both']['avg'] + $newTrend['both']['stddev'];
+			if ($newTrend['both']['low'] < 0) $newTrend['both']['low'] = 0;
+		}
+		
+		if ($newTrend['buy']['count'] > 0)
+		{
+			$newTrend['buy']['stddev'] = sqrt($newTrend['buy']['diffsum'] / $newTrend['buy']['count']);
+			$newTrend['buy']['low']  = $newTrend['buy']['avg'] - $newTrend['buy']['stddev'];
+			$newTrend['buy']['high'] = $newTrend['buy']['avg'] + $newTrend['buy']['stddev'];
+			if ($newTrend['buy']['low'] < 0) $newTrend['buy']['low'] = 0;
+		}
+		
+		if ($newTrend['sell']['count'] > 0)
+		{
+			$newTrend['sell']['stddev'] = sqrt($newTrend['sell']['diffsum'] / $newTrend['sell']['count']);
+			$newTrend['sell']['low']  = $newTrend['sell']['avg'] - $newTrend['sell']['stddev'];
+			$newTrend['sell']['high'] = $newTrend['sell']['avg'] + $newTrend['sell']['stddev'];
+			if ($newTrend['sell']['low'] < 0) $newTrend['sell']['low'] = 0;
+		}
+	}
+	
+	
+	public function ComputeMedian ($values, $isSorted = false)
+	{
+		$sum = 0;
+		$count = count($values);
+		if ($count == 0) return 0;
+		
+		if (!$isSorted) sort($values);
+		
+		foreach ($values as $value)
+		{
+			$sum += $value;
+		}
+		
+		$avg = $sum / $count;
+		$middleIndex = floor(($count - 1)/2);
+		if ($count % 2) return $values[$middleIndex];
+		
+		return ($values[$middleIndex] + $values[$middleIndex+1])/2;
+	}
+	
+	
+	public function ComputeQuartiles ($values)
+	{
+		$result = array( 0 => 0, 1 => 0, 2 => 0);
+		
+		$count = count($values);
+		if ($count == 0) return $result;
+		
+		if ($count == 1)
+		{
+			$result[0] = $values[0];
+			$result[1] = $values[0];
+			$result[2] = $values[0];
+			return $result;
+		}
+		
+		sort($values);
+		
+		if ($count == 2)
+		{
+			$result[0] = $values[0];
+			$result[1] = ($values[0] + $values[1])/2;
+			$result[2] = $values[1];
+			return $result;
+		}
+		
+		$median = $this->ComputeMedian($values, true);
+		
+		if ($count == 3)
+		{
+			$result[0] = $values[0];
+			$result[1] = $median;
+			$result[2] = $values[2];
+			return $result;
+		}
+		
+		$result[1] = $median;
+		
+		$middleIndex = floor(($count - 1)/2);
+		
+		if ($count % 2)
+		{
+			$lowerHalf = array_slice($values, 0, $middleIndex + 1);
+			$upperHalf = array_slice($values, $middleIndex);
+		}
+		else
+		{
+			$lowerHalf = array_slice($values, 0, $middleIndex);
+			$upperHalf = array_slice($values, $middleIndex);
+		}
+		
+		$result[0] = $this->ComputeMedian($lowerHalf, true);
+		$result[2] = $this->ComputeMedian($upperHalf, true);
+		
+		return $result;
+	}
+	
+	
+	public function ComputeTrendQuartiles(&$newTrend, $trendData)
+	{
+		$bothSales = array();
+		$buySales = array();
+		$sellSales = array();
+		
+		foreach ($trendData as &$sale)
+		{
+			$price = intval($sale['unitPrice']);
+			$bothSales[] = $price;
+			
+			if ($sale['listTimestamp'] > 0)
+				$sellSales[] = $price;
+			else if ($sale['buyTimestamp'] > 0)
+				$buySales[] = $price;
+		}
+		
+		$quartiles = $this->ComputeQuartiles($bothSales);
+		$newTrend['both']['low']  = $quartiles[0];
+		$newTrend['both']['avg']  = $quartiles[1];
+		$newTrend['both']['high'] = $quartiles[2];
+		
+		if (count($buySales) > 0)
+		{
+			$quartiles = $this->ComputeQuartiles($buySales);
+			$newTrend['buy']['low']  = $quartiles[0];
+			$newTrend['buy']['avg']  = $quartiles[1];
+			$newTrend['buy']['high'] = $quartiles[2];
+		}
+		
+		if (count($sellSales) > 0)
+		{
+			$quartiles = $this->ComputeQuartiles($sellSales);
+			$newTrend['sell']['low']  = $quartiles[0];
+			$newTrend['sell']['avg']  = $quartiles[1];
+			$newTrend['sell']['high'] = $quartiles[2];
+		}
+	}
+	
+	
+	public function AverageTrendData($prevTrend, $currentTrend, $nextTrend)
+	{
+		if ($currentTrend == null) return $currentTrend;
+		
+		$trends = array();
+		if ($prevTrend) $trends[] = $prevTrend;
+		$trends[] = $currentTrend;
+		if ($nextTrend) $trends[] = $nextTrend;
+		
+		$newTrend = $currentTrend;
+		$newTrend['sell']['low'] = 0;
+		$newTrend['sell']['avg'] = 0;
+		$newTrend['sell']['high'] = 0;
+		$newTrend['buy']['low'] = 0;
+		$newTrend['buy']['avg'] = 0;
+		$newTrend['buy']['high'] = 0;
+		$newTrend['both']['low'] = 0;
+		$newTrend['both']['avg'] = 0;
+		$newTrend['both']['high'] = 0;
+		
+		$count = 0;
+		$buyCount = 0;
+		$sellCount = 0;
+		
+		foreach ($trends as $weekIndex => $trend)
+		{
+			if ($trend == null) continue;
+			
+			++$count;
+			$newTrend['both']['low'] += $trend['both']['low'];
+			$newTrend['both']['avg'] += $trend['both']['avg'];
+			$newTrend['both']['high'] += $trend['both']['high'];
+			
+			if ($trend['sell']['count'] > 0)
+			{
+				++$sellCount;
+				$newTrend['sell']['low'] += $trend['sell']['low'];
+				$newTrend['sell']['avg'] += $trend['sell']['avg'];
+				$newTrend['sell']['high'] += $trend['sell']['high'];
+			}
+			
+			if ($trend['buy']['count'] > 0)
+			{
+				++$buyCount;
+				$newTrend['buy']['low'] += $trend['buy']['low'];
+				$newTrend['buy']['avg'] += $trend['buy']['avg'];
+				$newTrend['buy']['high'] += $trend['buy']['high'];
+			}
+		}
+		
+		if ($count > 1)
+		{
+			$newTrend['both']['low']  = $newTrend['both']['low']  / $count;
+			$newTrend['both']['avg']  = $newTrend['both']['avg']  / $count;
+			$newTrend['both']['high'] = $newTrend['both']['high'] / $count;
+		}
+		
+		if ($sellCount > 1)
+		{
+			$newTrend['sell']['low']  = $newTrend['sell']['low']  / $count;
+			$newTrend['sell']['avg']  = $newTrend['sell']['avg']  / $count;
+			$newTrend['sell']['high'] = $newTrend['sell']['high'] / $count;
+		}
+		
+		if ($buyCount > 1)
+		{
+			$newTrend['buy']['low']  = $newTrend['buy']['low']  / $count;
+			$newTrend['buy']['avg']  = $newTrend['buy']['avg']  / $count;
+			$newTrend['buy']['high'] = $newTrend['buy']['high'] / $count;
+		}
+		
+		return $newTrend;
+	}
+	
+	
+	public function AverageTrends($trendsData)
+	{
+		$newTrends = array();
+		
+		ksort($trendsData);
+		reset($trendsData);
+		
+		$count = count($trendsData);
+		$current = current($trendsData);
+		$next = next($trendsData);
+		reset($trendsData);
+		
+		while (current($trendsData) !== false)
+		{
+			$currentTrend = current($trendsData);
+			$key = key($trendsData);
+			$prevTrend = prev($trendsData);
+			
+			if ($prevTrend === false) 
+				reset($trendsData);
+			else
+				next($trendsData);
+			
+			$nextTrend = next($trendsData);
+			
+			$newTrends[$key] = $this->AverageTrendData($prevTrend, $currentTrend, $nextTrend);
+		}
+		
+		return $newTrends;
+	}
+	
+	
+	public function ComputeTrendsForSalesData(&$salesData)
+	{
+		$trends = array();
+		$trends['ids'] = array();
+		$trends['weeks'] = array();
+		
+		$trendsData = array();
+		$now = time();
+		$thisWeekIndex = floor($now / self::TRENDS_PERIODSECONDS);
+		$trendStartWeek = $thisWeekIndex - floor(self::TRENDS_START_TIMESECONDS / self::TRENDS_PERIODSECONDS);
+		$count = 0;
+		
+		foreach ($salesData as &$sale)
+		{
+			$thatWeekIndex = floor(intval($sale['timestamp']) / self::TRENDS_PERIODSECONDS);
+			$weekIndex = $trendStartWeek - $thatWeekIndex;
+			if ($weekIndex < 0) continue;
+			
+			++$count;
+			
+			if ($trendsData[$weekIndex] == null) $trendsData[$weekIndex] = array();
+			$trendsData[$weekIndex][] = &$sale;
+			
+				// Only move original sales to oldSales table
+			if ($sale['__isold'] !== true) $trends['ids'][] = $sale['id'];
+		}
+		
+		$totalCount = count($salesData);
+		if ($totalCount <= 0) return false;
+		$count1 = count($trendsData);
+		
+		$this->log("\tUsing $count ($count1 weeks) of $totalCount sales for trends calculation...");
+		
+		foreach ($trendsData as $weekIndex => &$trendData)
+		{
+			$newTrend = array();
+			$newTrend['ids'] = array();
+			$newTrend['sell'] = array('count' => 0, 'itemCount' => 0, 'sum' => 0, 'avg' => 0, 'diffsum' => 0, 'stddev' => 0, 'low' => 0, 'high' => 0);
+			$newTrend['buy'] = array('count' => 0, 'itemCount' => 0, 'sum' => 0, 'avg' => 0, 'diffsum' => 0, 'stddev' => 0, 'low' => 0, 'high' => 0);
+			$newTrend['both'] = array('count' => 0, 'itemCount' => 0, 'sum' => 0, 'avg' => 0, 'diffsum' => 0, 'stddev' => 0, 'low' => 0, 'high' => 0);
+			
+			$newTrend['timestamp'] = ($trendStartWeek - $weekIndex) * self::TRENDS_PERIODSECONDS;
+			
+			$this->ComputeTrendAverages($newTrend, $trendData);
+			//$this->ComputeTrendStdDev($newTrend, $trendData);
+			$this->ComputeTrendQuartiles($newTrend, $trendData);
+			
+			$trends['weeks'][$weekIndex] = $newTrend;
+		}
+		
+		if (self::TRENDS_DO_AVERAGE)
+		{
+			$trends['weeks'] = $this->AverageTrends($trends['weeks']);
+		}
+		
+		if (count($trends['weeks']) <= 0) return $this->log("\tSkipping due to no trends data points!");
+		return $trends;
+	}
+	
+	
+	public function MoveTrendData($salesIds)
+	{
+		$count = count($salesIds);
+		if ($count <= 0) return true;
+		
+		$chunkedIds = array_chunk($salesIds, self::TRENDS_MOVE_BATCHSIZE);
+		
+		foreach ($chunkedIds as $tempIds)
+		{
+			$count = count($tempIds);
+			$ids = implode(",", $tempIds);
+			
+			$startTime = microtime(true);
+			
+			$this->lastQuery = "INSERT INTO oldSales SELECT * FROM sales WHERE id IN ($ids);";
+			$result = $this->db->query($this->lastQuery);
+			if ($result === false) return $this->reportError("Failed to move $count old sales data!");
+			
+			$diff = ((microtime(true) - $startTime)*1000);
+			$this->log("\t\tInserted $count old sales for item in $diff ms");
+			$startTime = microtime(true);
+			
+			$this->lastQuery = "DELETE FROM sales WHERE id IN ($ids);";
+			$result = $this->db->query($this->lastQuery);
+			if ($result === false) return $this->reportError("Failed to delete $count sales data!");
+			
+			$diff = ((microtime(true) - $startTime)*1000);
+			$this->log("\t\tDeleted $count old sales for item in $diff ms");
+			$startTime = microtime(true);
+			
+			$this->trendMoveCount += $count;
+			
+			usleep(200000);
+			$this->WaitForSlaveMasterPos();
+		}
+		
+		return true;
+	}
+	
+	
+	public function SaveTrends($trends)
+	{
+		$itemId = $trends['itemId'];
+		$server = $trends['server'];
+		$allSalesIds = array();
+		
+		$startTime = microtime(true);
+		
+		foreach ($trends['weeks'] as $trend)
+		{
+			$timestamp = $trend['timestamp'];
+			
+			$cols = array(
+					'server',
+					'itemId',
+					'timestamp',
+					'sellLow',
+					'sellMid',
+					'sellHigh',
+					'sellCount',
+					'sellItemCount',
+					'buyLow',
+					'buyMid',
+					'buyHigh',
+					'buyCount',
+					'buyItemCount',
+					'bothLow',
+					'bothMid',
+					'bothHigh',
+			);
+			
+			$values = array(
+					"'" . $this->db->real_escape_string($server) . "'",
+					$itemId,
+					$timestamp,
+					$trend['sell']['low'],
+					$trend['sell']['avg'],
+					$trend['sell']['high'],
+					$trend['sell']['count'],
+					$trend['sell']['itemCount'],
+					$trend['buy']['low'],
+					$trend['buy']['avg'],
+					$trend['buy']['high'],
+					$trend['buy']['count'],
+					$trend['buy']['itemCount'],
+					$trend['both']['low'],
+					$trend['both']['avg'],
+					$trend['both']['high'],
+			);
+			
+			$cols = implode(",", $cols);
+			$values = implode(",", $values);
+			
+			$this->lastQuery = "INSERT INTO trends($cols) VALUES($values);";
+			$result = $this->db->query($this->lastQuery);
+			
+			if ($result === false)
+			{
+				$this->reportError("Failed to update trends data for $itemId:$server:$timestamp!");
+				continue;
+			}
+			
+			++$this->trendCreateCount;
+			
+			$allSalesIds = array_merge($allSalesIds, $trend['ids']);
+		}
+		
+		$count = count($trends['weeks']);
+		$diff = ((microtime(true) - $startTime)*1000);
+		$this->log("\t\tSaved $count trends for item in $diff ms");
+		
+		return $this->MoveTrendData($allSalesIds);
+	}
+	
+	
+	public function UpdateTrendsForItem($item)
+	{
+		$uniqueId = $item['server'] . ":" . $item['id'];
+		
+		if ($this->trendItemsParsed[$uniqueId] != null)
+		{
+			$this->log("\tSkipping duplicate item {$item['server']}:{$item['id']}:{$item['name']}");
+			return true;
+		}
+		
+		$this->trendItemsParsed[$uniqueId] = 1;
+		++$this->trendItemCount;
+		$this->log("{$this->trendItemCount}: Updating trends for item {$item['server']}:{$item['id']}:{$item['name']}");
+		
+		$startTime = microtime(true);
+		
+		$salesData = $this->LoadAllSalesForItem($item['server'], $item['id'], true);
+		if ($salesData === false) return false;
+		
+		if (self::TRENDS_INCLUDE_OLDSALES)
+		{
+			$oldSalesData = $this->LoadAllOldSalesForItem($item['id']);
+			if ($oldSalesData === false) return false;
+			$salesData = array_merge($salesData, $oldSalesData);
+		}
+		
+		$count = count($salesData);
+		$diff = ((microtime(true) - $startTime)*1000);
+		$this->log("\t\tLoaded $count sales for item in $diff ms");
+		$startTime = microtime(true);
+		
+		if (!$this->AreTrendsNeededForSalesData($salesData))
+		{
+			$this->log("\tTrends are not needed for this item.");
+			return true;
+		}
+		
+		$trends = $this->ComputeTrendsForSalesData($salesData);
+		if ($trends === false) return true;
+		
+		$trends['server'] = $item['server'];
+		$trends['itemId'] = $item['id'];
+		
+		$diff = ((microtime(true) - $startTime)*1000);
+		$this->log("\t\tComputed trends for item in $diff ms");
+		$startTime = microtime(true);
+		
+		if (!$this->SaveTrends($trends)) return false;
+		
+		$diff = ((microtime(true) - $startTime)*1000);
+		$this->log("\t\tSaved trends for item in $diff ms");
+		$startTime = microtime(true);
+		
+		sleep(2);
+		
+		return true;
+	}
+	
+	
+	public function UpdateTrendsForAllItems()
+	{
+		$this->dbSlave = $this->dbRead;
+		
+		if (self::TRENDS_START_ITEMID > 0)
+		{
+			$firstId = self::TRENDS_START_ITEMID;
+			$lastId = self::TRENDS_END_ITEMID;
+			
+			if ($lastId <= 0)
+			{
+				$this->log("Updating trends for items starting at $firstId...");
+				$this->lastQuery = "SELECT * FROM items WHERE id>'$firstId';";
+			}
+			else
+			{
+				$this->log("Updating trends for items starting at $firstId to $lastId...");
+				$this->lastQuery = "SELECT * FROM items WHERE id>='$firstId' AND id<='$lastId';";
+			}
+		}
+		else
+		{
+			$this->log("Updating trends for all items...");
+			$this->lastQuery = "SELECT * FROM items;";
+		}
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return $this->reportError("Failed to load all item data!");
+		
+		while ($item = $result->fetch_assoc())
+		{
+			$this->UpdateTrendsForItem($item);
+		}
+		
+		$this->log("Checked {$this->trendItemCount} items, created {$this->trendCreateCount} trends and moved {$this->trendMoveCount}!");
+		
+		return true;
+	}
 	
 };
 

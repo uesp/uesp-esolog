@@ -44,6 +44,7 @@ class EsoGetSalesImage
 	public $outputHeight = 600;
 	public $viewData = "all";
 	public $timePeriod = 0;
+	public $showTrends = true;
 	
 	public $salesData = array();
 	public $soldData = array();
@@ -64,7 +65,9 @@ class EsoGetSalesImage
 	public $totalSoldCount = 0;
 	public $totalListCount = 0;
 	public $totalItemCount = 0;
-		
+	
+	public $trendsData = array();
+	
 	public $image = null;
 	
 	
@@ -118,7 +121,12 @@ class EsoGetSalesImage
 			$this->timePeriod = intval($this->inputParams['timeperiod']);
 			if ($this->timePeriod < 0) $this->timePeriod = 0;
 		}
-			
+		
+		if (array_key_exists('trends', $this->inputParams))
+		{
+			$this->showTrends = intval($this->inputParams['trends']);
+		}
+		
 		return true;
 	}
 	
@@ -177,6 +185,24 @@ class EsoGetSalesImage
 			if ($row['listTimestamp'] > 0) $this->listData[] = $row;
 		}
 		
+		
+		return true;
+	}
+	
+	
+	public function LoadTrends()
+	{
+		$this->lastQuery = "SELECT * FROM trends WHERE itemId='{$this->itemId}' ORDER BY timestamp;";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return $this->ReportError("Failed to load item '{$this->itemId}' trends data!");
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$row['bothCount'] = intval($row['sellCount']) + intval($row['buyCount']);
+			$row['bothItemCount'] = intval($row['sellItemCount']) + intval($row['buyItemCount']);
+			
+			$this->trendsData[] = $row;
+		}
 		
 		return true;
 	}
@@ -336,6 +362,30 @@ class EsoGetSalesImage
 	}
 	
 	
+	public function ComputeBasicTrendStats()
+	{
+		foreach ($this->trendsData as $trend)
+		{
+			if ($trend['timestamp'] < $this->minTime) $this->minTime = intval($trend['timestamp']);
+			if ($trend['bothLow']  < $this->minPrice) $this->minPrice = floatval($trend['bothLow']);
+			if ($trend['bothHigh'] > $this->maxPrice) $this->maxPrice = floatval($trend['bothHigh']);
+			
+			if ($trend['sellCount'] > 0)
+			{
+				if ($trend['sellLow']  < $this->minPrice) $this->minPrice = floatval($trend['sellLow']);
+				if ($trend['sellHigh'] > $this->maxPrice) $this->maxPrice = floatval($trend['sellHigh']);
+			}
+			
+			if ($trend['buyCount'] > 0)
+			{
+				if ($trend['buyLow']  < $this->minPrice) $this->minPrice = floatval($trend['buyLow']);
+				if ($trend['buyHigh'] > $this->maxPrice) $this->maxPrice = floatval($trend['buyHigh']);
+			}
+		}
+		
+	}
+	
+	
 	public function ComputeBasicStats()
 	{
 		if (count($this->salesData) < 1) return false;
@@ -356,7 +406,7 @@ class EsoGetSalesImage
 			$unitPrice = $sale['unitPrice'];
 			$soldTime = intval($sale['buyTimestamp']);
 			$listTime = intval($sale['listTimestamp']);
-								
+			
 			if ($soldTime > 0)
 			{
 				if ($this->viewData == "list") continue;
@@ -390,6 +440,8 @@ class EsoGetSalesImage
 		$this->maxTimeAction = $maxTime;
 		$this->minPrice = $minPrice;
 		$this->maxPrice = $maxPrice;
+		
+		if ($this->showTrends) $this->ComputeBasicTrendStats();
 		
 		if ($this->minTime == $this->maxTime)
 		{
@@ -445,30 +497,30 @@ class EsoGetSalesImage
 				$sumSquareListed += pow($unitPrice - $this->listAvgPrice, 2);
 			}
 		}
-	
+		
 		$this->totalPriceStdDev = 0;
 		$this->soldPriceStdDev = 0;
 		$this->listedPriceStdDev = 0;
-	
+		
 		if ($this->totalItemCount > 0)
 		{
 			$this->totalPriceStdDev = sqrt($sumSquareAll / floatval($this->totalItemCount));
 		}
-	
+		
 		if ($this->soldItemCount > 0)
 		{
 			$this->soldPriceStdDev = sqrt($sumSquareSold / floatval($this->soldItemCount));
 		}
-	
+		
 		if ($this->listItemCount > 0)
 		{
 			$this->listedPriceStdDev = sqrt($sumSquareListed / floatval($this->listItemCount));
 		}
-	
+		
 		return true;
 	}
 	
-		
+	
 	public function RecalculatePriceLimits()
 	{
 		if (count($this->salesData) <= 0) return false;
@@ -513,7 +565,7 @@ class EsoGetSalesImage
 			else
 			{
 				$this->salesData[$i]['outlier'] = true;
-			}			
+			}
 			
 		}
 		
@@ -665,7 +717,7 @@ class EsoGetSalesImage
 		
 		for ($value = $this->maxTime; $value >= $this->minTime; $value -= $tickRange)
 		{
-			$days = $this->FormatTimestampValue($value, $timeFactor);			
+			$days = $this->FormatTimestampValue($value, $timeFactor);
 			$x = $this->ConvertGraphToPixelX($value);
 			imageline($image, $x, $y1, $x, $y2, $this->borderColor);
 
@@ -860,7 +912,79 @@ class EsoGetSalesImage
 		
 		return array('x' => $x, 'y' => $y, 'width' => $width, 'height' => $height);
 	}
-
+	
+	
+	public function CreateTrendLines($image)
+	{
+		//$this->trendColor1 = imagecolorallocate($image, 0x77, 0x77, 0x77);
+		//$this->trendColor2 = imagecolorallocate($image, 0xcc, 0xcc, 0xcc);
+		//$this->trendColor3 = imagecolorallocate($image, 0x77, 0x77, 0x77);
+		
+		$this->trendColor2 = imagecolorallocate($image, 0xff, 0xff, 0x00);
+		$this->trendColor1 = imagecolorallocatealpha($image, 0x77, 0x77, 0x77, 64);
+		$this->trendColor3 = imagecolorallocatealpha($image, 0x77, 0x77, 0x77, 64);
+		
+		$lastX = -1;
+		$lastY1 = -1;
+		$lastY2 = -1;
+		$lastY3 = -1;
+		
+		foreach ($this->trendsData as $data)
+		{
+			$timestamp = intval($data['timestamp']);
+			
+			if ($this->viewData == "list")
+			{
+				if ($data['sellCount'] <= 0) continue;
+				$price1 = floatval($data['sellLow']);
+				$price2 = floatval($data['sellMid']);
+				$price3 = floatval($data['sellHigh']);
+			}
+			else if ($this->viewData == "sold")
+			{
+				if ($data['buyCount'] <= 0) continue;
+				$price1 = floatval($data['buyLow']);
+				$price2 = floatval($data['buyMid']);
+				$price3 = floatval($data['buyHigh']);
+			}
+			else
+			{
+				$price1 = floatval($data['bothLow']);
+				$price2 = floatval($data['bothMid']);
+				$price3 = floatval($data['bothHigh']);
+			}
+			
+			$x = $this->ConvertGraphToPixelX($timestamp);
+			$y1 = $this->ConvertGraphToPixelY($price1);
+			$y2 = $this->ConvertGraphToPixelY($price2);
+			$y3 = $this->ConvertGraphToPixelY($price3);
+			
+			if ($lastX >= 0)
+			{
+				imagefilledrectangle($image, $lastX+1, $lastY1, $x, $y3, $this->trendColor1);
+				
+				//imageline($image, $lastX, $lastY1, $x, $y1, $this->trendColor1);
+				imageline($image, $lastX, $lastY2, $x, $y2, $this->trendColor2);
+				//imageline($image, $lastX, $lastY3, $x, $y3, $this->trendColor3);
+			}
+			else
+			{
+				imagefilledrectangle($image, $x, $y1, $x, $y3, $this->trendColor1);
+				
+				//imageline($image, $x, $y1, $x, $y1, $this->trendColor1);
+				imageline($image, $x, $y2, $x, $y2, $this->trendColor2);
+				//imageline($image, $x, $y3, $x, $y3, $this->trendColor3);
+			}
+			
+			$lastX = $x;
+			$lastY1 = $y1;
+			$lastY2 = $y2;
+			$lastY3 = $y3;
+		}
+		
+		return true;
+	}
+	
 	
 	public function CreateImage()
 	{
@@ -871,7 +995,7 @@ class EsoGetSalesImage
 		imageantialias($image, true);
 		imagealphablending($image, true);
 		imagesavealpha($image, true);
-				
+		
 		$this->invis = imagecolorallocatealpha($image, 0, 0, 0, 0);
 		$this->black = imagecolorallocate($image, 0, 0, 0);
 		$this->white = imagecolorallocate($image, 255, 255, 255);
@@ -899,6 +1023,8 @@ class EsoGetSalesImage
 		else if ($this->viewData == "list")
 			$this->CreateImageWeightedAverages($image, $this->avgListData, $this->weightColor);
 		
+		if ($this->showTrends) $this->CreateTrendLines($image);
+		
 		return true;
 	}
 	
@@ -908,6 +1034,8 @@ class EsoGetSalesImage
 		$this->OutputHtmlHeader();
 		
 		$this->LoadSalesData();
+		if ($this->showTrends) $this->LoadTrends();
+		
 		$this->ComputeBasicStats();
 		$this->ComputeAdvancedStatistics();
 		$this->RecalculatePriceLimits();
