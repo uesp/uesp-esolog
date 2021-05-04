@@ -27,7 +27,8 @@ while ($row = $result->fetch_assoc())
 $count = count($sets);
 print("\tLoaded $count sets.\n");
 
-$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '%scales off%' ORDER BY id;");
+$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '%scales off%' OR description LIKE '%scaling off%' ORDER BY id;");
+//$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '%scaling off%' ORDER BY id;");
 if ($result === false) die("Failed to load set data!");
 
 $skills = array();
@@ -43,6 +44,7 @@ while ($row = $result->fetch_assoc())
 
 $count = count($skills);
 print("\tLoaded $count skills that might be set descriptions.\n");
+
 
 function FindMatchingSkill($setBonus, $setName)
 {
@@ -87,6 +89,7 @@ foreach ($sets as $set)
 		if ($setBonus == null || $setBonus == "") continue;
 		
 		$hasMatch = preg_match("/scales off/", $setBonus);
+		if (!$hasMatch) $hasMatch = preg_match("/scaling off/", $setBonus);
 		if (!$hasMatch) continue;
 		
 		$numMatches = preg_match_all("/\([0-9]+ items\) [^(]*/", $setBonus, $matches);
@@ -115,6 +118,7 @@ foreach ($sets as $set)
 		foreach ($setBonuses as $setBonus)
 		{
 			$hasMatch = preg_match("/scales off/", $setBonus);
+			if (!$hasMatch) $hasMatch = preg_match("/scaling off/", $setBonus);
 			if (!$hasMatch) continue;
 		
 			$skill = FindMatchingSkill($setBonus, $set['setName']);

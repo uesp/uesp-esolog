@@ -21,7 +21,7 @@ window.CountEsoSkillTooltips = function(abilityId)
 	if (skillData.tooltips == null) return 0;
 	var count = 0;
 	
-	for (var i in skillData.tooltips) 
+	for (var i in skillData.tooltips)
 	{
 		++count;
 	}
@@ -182,7 +182,9 @@ window.CreateEsoSkillTooltipRawOutputHtml = function(skillData, tooltipIndex)
 	
 	if (rankFactor)
 	{
-		output += "<div class='esovsSkillCoefRowDetail'>Skill Rank " + skillData.rank + " Modifier = " + Math.floor(rankFactor*1000 - 1000)/10 + "%</div>";
+		var rank = skillData.rank % 4;
+		if (rank == 0) rank = 4;
+		output += "<div class='esovsSkillCoefRowDetail'>Skill Rank " + rank + " Modifier = " + Math.floor(rankFactor*1000 - 1000)/10 + "%</div>";
 	}
 	
 	if (spellDamage && spellDamageMods)
@@ -489,7 +491,7 @@ window.GetEsoSkillCoefContentHtml2 = function(abilityId)
 		
 	for (var tooltipIndex = 1; tooltipIndex <= numTooltips; ++tooltipIndex)
 	{
-		output += CreateEsoSkillCoefContentForIndexHtml(skillData, tooltipIndex);
+		output += CreateEsoSkillCoefContentForIndexHtml(skillData, tooltipIndex, true);
 	}
 	
 	output += "<div class='esovsSkillCoefDesc'>" + rawDesc + "</div>";
@@ -1439,11 +1441,13 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 	
 	if (tooltip.hasRankMod == 1 && skillData.isPassive == 0 && skillData.isPlayer == 1)
 	{
-		if (skillData.rank == 2)
+		var rank = skillData.rank % 4;
+		
+		if (rank == 2)
 			rankFactor = 1.011;
-		else if (skillData.rank == 3)
+		else if (rank == 3)
 			rankFactor = 1.022;
-		else if (skillData.rank == 4)
+		else if (rank == 4 || rank == 0)
 			rankFactor = 1.033;
 	}
 	

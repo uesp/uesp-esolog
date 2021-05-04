@@ -380,11 +380,9 @@ class EsoLogParser
 			'link' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'icon' => self::FIELD_STRING,
-			'color' => self::FIELD_STRING,
 			'style' => self::FIELD_INT,
 			'trait' => self::FIELD_INT,
 			'quality' => self::FIELD_INT,
-			'locked' => self::FIELD_INT,
 			'type' => self::FIELD_INT,
 			'equipType' => self::FIELD_INT,
 			'craftType' => self::FIELD_INT,
@@ -595,7 +593,7 @@ class EsoLogParser
 			'count' => self::FIELD_INT,
 			'icon' => self::FIELD_STRING,
 			'quality' => self::FIELD_INT,
-			'itemType' => self::FIELD_INT,			
+			'itemType' => self::FIELD_INT,
 			'trait' => self::FIELD_INT,
 			'value' => self::FIELD_INT,
 	);
@@ -1153,12 +1151,12 @@ class EsoLogParser
 		ini_set('default_socket_timeout', 1000);
 		
 		$this->startMicroTime = microtime(true);
-				
+		
 		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
 		{
 			unset(self::$MINEDITEM_FIELDS['tags']);
 		}
-				
+		
 		if (intval(self::MINEITEM_TABLESUFFIX) < 13)
 		{
 			unset(self::$MINEDITEM_FIELDS['specialType']);
@@ -2052,11 +2050,9 @@ class EsoLogParser
 						link TINYTEXT NOT NULL,
 						name TINYTEXT NOT NULL,
 						icon TINYTEXT NOT NULL,
-						color TINYTEXT NOT NULL,
 						style TINYINT NOT NULL,
 						trait TINYINT NOT NULL,
 						quality TINYINT NOT NULL,
-						locked TINYINT NOT NULL,
 						type TINYINT NOT NULL,
 						equipType TINYINT NOT NULL,
 						craftType TINYINT NOT NULL,
@@ -2219,7 +2215,8 @@ class EsoLogParser
 						uniqueId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						FULLTEXT(name),
-						INDEX index_questId(questId)
+						INDEX index_questId(questId),
+						INDEX index_itemId(itemId)
 					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
@@ -3025,13 +3022,13 @@ class EsoLogParser
 	public function addNewIPAddressRecord ($ipAddress)
 	{
 		$safeIP = $this->db->real_escape_string($ipAddress);
-	
+		
 		$query = "INSERT INTO ipAddress(ipAddress) VALUES('{$safeIP}');";
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
-				
+		
 		$this->dbWriteCount++;
-	
+		
 		if ($result === FALSE)
 		{
 			$this->reportError("Failed to add IP Address '{$ipAddress}'!");
@@ -3042,7 +3039,7 @@ class EsoLogParser
 		$this->ipAddresses[$ipAddress]['ipAddress'] = $ipAddress;
 		$this->ipAddresses[$ipAddress]['enabled'] = true;
 		$this->ipAddresses[$ipAddress]['__dirty'] = false;
-	
+		
 		return $this->ipAddresses[$ipAddress];
 	}
 	
@@ -3419,7 +3416,7 @@ class EsoLogParser
 	{
 		++$this->currentUser['itemsLooted'];
 		$this->currentUser['__dirty'] = true;
-			
+		
 		if ($logEntry['lastTarget'] == "Thieves Trove" && $logEntry['timeStamp'] < self::ELP_THIEVESTROVE_LASTFIXTIMESTAMP)
 		{
 			$diff = $logEntry['gameTime'] - $this->currentUser['__lastTroveFoundGameTime'];
@@ -3431,10 +3428,10 @@ class EsoLogParser
 				$this->currentUser['__lastTroveFoundGameTime'] = $logEntry['gameTime'];
 			}
 		}
-			
+		
 		$npcId = 0;
 		$updateNpcZone = false;
-			
+		
 		if ($logEntry['ppClassString'] != null && $logEntry['ppDifficulty'] != null)
 		{
 			$name = $logEntry['lastTarget'];
@@ -3449,7 +3446,7 @@ class EsoLogParser
 					$npcRecord = $this->CreateNPC($logEntry);
 				}
 				else {
-		
+					
 					if ($npcRecord['ppClass'] == "" && $logEntry['ppClassString'] != "")
 					{
 						$npcRecord['ppClass'] = $logEntry['ppClassString'];
@@ -3457,28 +3454,28 @@ class EsoLogParser
 						$this->SaveNPC($npcRecord);
 					}
 				}
-					
+				
 				if ($npcRecord != null) $npcId = $npcRecord['id'];
 			}
 			
-			$updateNpcZone = true;			
-		}		
-			
+			$updateNpcZone = true;
+		}
+		
 		if ($logEntry['rvcType'] == "stole" || $logEntry['rcvType'] == "stole")
 		{
 			++$this->currentUser['itemsStolen'];
 			$this->currentUser['__dirty'] = true;
 		}
-			
+		
 		if ($this->IsTargetResource($logEntry['lastTarget']))
 		{
 			//$this->log("\tFound user node harvest...");
 			++$this->currentUser['nodesHarvested'];
 			$this->currentUser['__dirty'] = true;
 		}
-			
+		
 		$itemRecord = $this->FindItemLink($logEntry['itemLink']);
-			
+		
 		if ($itemRecord == null)
 		{
 			$itemRecord = $this->CreateItem($logEntry);
@@ -3492,7 +3489,7 @@ class EsoLogParser
 		
 		return true;
 	}
-		
+	
 	
 	public function OnLootGainedEntry ($logEntry)
 	{
@@ -3817,8 +3814,9 @@ class EsoLogParser
 	
 	public function CreateItem ($logEntry)
 	{
-		$itemRecord = $this->createNewRecord(self::$ITEM_FIELDS);
+		if ($logEntry['itemLink'] == "" && $logEntry['name'] == "") return null;
 		
+		$itemRecord = $this->createNewRecord(self::$ITEM_FIELDS);
 		$itemData = $this->ParseItemLink($logEntry['itemLink']);
 		
 		if ($itemData['error'] === true)
@@ -3830,10 +3828,13 @@ class EsoLogParser
 			$itemRecord['link'] = $logEntry['itemLink'];
 		}
 		
+		$itemId = intval($itemData['itemId']);
+		$itemLevel = intval($itemData['level']);
+		$itemSubType = intval($itemData['subtype']);
+		
 		$itemRecord['icon'] = $logEntry['icon'];
 		$itemRecord['name'] = $itemData['name'];
-		$itemRecord['level'] = $itemData['level'];
-		$itemRecord['color'] = $itemData['color'];
+		$itemRecord['level'] = GetEsoLevelFromIntType($itemSubType, $itemLevel);
 		$itemRecord['craftType'] = $logEntry['craftType'];
 		$itemRecord['type'] = $logEntry['type'];
 		$itemRecord['equipType'] = $logEntry['equipType'];
@@ -3841,7 +3842,25 @@ class EsoLogParser
 		$itemRecord['style'] = $logEntry['itemStyle'];
 		$itemRecord['value'] = $logEntry['value'];
 		$itemRecord['quality'] = $logEntry['quality'];
-		$itemRecord['locked'] = $logEntry['locked'];
+		
+		$this->lastQuery = "SELECT * from minedItem WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubType='$itemSubType';";
+		$result = $this->db->query($this->lastQuery);
+		
+		if ($result)
+		{
+			$minedItem = $result->fetch_assoc();
+			
+			$itemRecord['level'] = $minedItem['level'];
+			if ($logEntry['icon'] == null || $logEntry['icon'] == "") $itemRecord['icon'] = $minedItem['icon'];
+			if ($logEntry['name'] == null || $logEntry['name'] == "") $itemRecord['name'] = preg_replace('/\^.+$/', '', $minedItem['name']);
+			if ($logEntry['craftType'] == null) $itemRecord['craftType'] = $minedItem['craftType'];
+			if ($logEntry['type'] == null) $itemRecord['type'] = $minedItem['type'];
+			if ($logEntry['equipType'] == null) $itemRecord['equipType'] = $minedItem['equipType'];
+			if ($logEntry['trait'] == null) $itemRecord['trait'] = $minedItem['trait'];
+			if ($logEntry['itemStyle'] == null) $itemRecord['style'] = $minedItem['style'];
+			if ($logEntry['value'] == null) $itemRecord['value'] = $minedItem['value'];
+			if ($logEntry['quality'] == null) $itemRecord['quality'] = $minedItem['quality'];
+		}
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
@@ -5427,7 +5446,11 @@ class EsoLogParser
 	
 	public function CheckLocation ($type, $name, $logEntry, $extraIds = null, &$isNew = null)
 	{
-		if ($this->IncrementLocationCounter($type, $name, $logEntry, $extraIds)) 
+		$x = floatval($logEntry['x']);
+		$y = floatval($logEntry['y']);
+		if ($x == 0 && $y == 0) return true;
+		
+		if ($this->IncrementLocationCounter($type, $name, $logEntry, $extraIds))
 		{
 			$isNew = true;
 			return true;
@@ -5436,10 +5459,14 @@ class EsoLogParser
 		$isNew = false;
 		return $this->CreateLocation($type, $name, $logEntry, $extraIds) != null;
 	}
-
+	
 	
 	public function CheckLocationId ($type, $name, $logEntry, $extraIds = null)
 	{
+		$x = floatval($logEntry['x']);
+		$y = floatval($logEntry['y']);
+		if ($x == 0 && $y == 0) return 0;
+		
 		$id = $this->IncrementLocationCounterId($type, $name, $logEntry, $extraIds);
 		if ($id > 0) return $id;
 		
@@ -5482,6 +5509,10 @@ class EsoLogParser
 			return null;
 		}
 		
+		$x = floatval($logEntry['x']);
+		$y = floatval($logEntry['y']);
+		if ($x == 0 && $y == 0) return null;
+		
 		$locationRecord = $this->createNewRecord(self::$LOCATION_FIELDS);
 		
 		$x = $this->ConvertPos($logEntry['x']);
@@ -5499,11 +5530,16 @@ class EsoLogParser
 		
 		if ($extraIds != null)
 		{
-			if (array_key_exists('bookId',  $extraIds)) $locationRecord['bookId']  = $extraIds['bookId'];
-			if (array_key_exists('npcId',   $extraIds)) $locationRecord['npcId']   = $extraIds['npcId'];
+			if (array_key_exists('bookId', $extraIds)) $locationRecord['bookId'] = $extraIds['bookId'];
+			if (array_key_exists('npcId', $extraIds)) $locationRecord['npcId'] = $extraIds['npcId'];
 			if (array_key_exists('questId', $extraIds)) $locationRecord['questId'] = $extraIds['questId'];
 			if (array_key_exists('questStageId', $extraIds)) $locationRecord['questStageId'] = $extraIds['questStageId'];
-			if (array_key_exists('itemId',  $extraIds)) $locationRecord['itemId']  = $extraIds['itemId'];
+			
+			if (array_key_exists('itemId', $extraIds)) 
+			{
+				$locationRecord['itemId'] = $extraIds['itemId'];
+				if ($locationRecord['itemId'] == null || $locationRecord['itemId'] <= 0) return null;
+			}
 		}
 		
 		++$this->currentUser['newCount'];

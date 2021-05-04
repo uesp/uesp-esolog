@@ -4680,10 +4680,10 @@ function ParseEsoItemLink($itemLink)
 	$matches = array();
 	
 	$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId1>[0-9]*)\:' .
-						 '(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<writ1>[0-9]*)\:(?P<writ2>[0-9]*)\:' . 
-						 '(?P<writ3>[0-9]*)\:(?P<writ4>[0-9]*)\:(?P<writ5>[0-9]*)\:(?P<writ6>[0-9]*)\:(.*?)\:' . 
-							'(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:' . 
-						 '(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/', 
+						 '(?P<enchantSubtype1>[0-9]*)\:(?P<enchantLevel1>[0-9]*)\:(?P<writ1>[0-9]*)\:(?P<writ2>[0-9]*)\:' .
+						 '(?P<writ3>[0-9]*)\:(?P<writ4>[0-9]*)\:(?P<writ5>[0-9]*)\:(?P<writ6>[0-9]*)\:(.*?)\:' .
+							'(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:' .
+						 '(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h\[?(?P<name>[a-zA-Z0-9 %_\(\)\'\-]*)(?P<nameCode>.*?)\]?\|h/',
 						$itemLink, $matches);
 	if (!$result) return false;
 

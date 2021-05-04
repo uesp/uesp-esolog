@@ -99,11 +99,9 @@ class EsoLogViewer
 			'style' => self::FIELD_INTTRANSFORM,
 			'trait' => self::FIELD_INTTRANSFORM,
 			'quality' => self::FIELD_INTTRANSFORM,
-			'locked' => self::FIELD_INTBOOLEAN,
 			'type' => self::FIELD_INTTRANSFORM,
 			'equipType' => self::FIELD_INTTRANSFORM,
 			'craftType' => self::FIELD_INTTRANSFORM,
-			'color' => self::FIELD_STRING,
 			'icon' => self::FIELD_GAMEICON,
 			'link' => self::FIELD_STRING,
 	);

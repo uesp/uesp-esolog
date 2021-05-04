@@ -24,9 +24,9 @@ class EsoSalesDataParser
 	const TRENDS_PERIODSECONDS = 86400 * 7;					// Create trends data over this period of time
 	const TRENDS_DO_AVERAGE = true;
 	const TRENDS_MIN_SALES_NUMBER = 500;					// Number of sales before trends are calculated
-	const TRENDS_MOVE_BATCHSIZE = 1000;						// Do database moves to oldSales in this quantity at a time
+	const TRENDS_MOVE_BATCHSIZE = 100;						// Do database moves to oldSales in this quantity at a time
 	const TRENDS_INCLUDE_OLDSALES = true;					// If true does a full relcalculation of all trends
-	const TRENDS_START_ITEMID = 2908;						// Set to -1 for all items
+	const TRENDS_START_ITEMID = 2912;						// Set to -1 for all items
 	const TRENDS_END_ITEMID = -1;
 	
 	public $server = "NA";
@@ -1813,8 +1813,8 @@ class EsoSalesDataParser
 			++$checkCount;
 			
 			$this->log("Slave lag is $slaveLag. Master position is $masterPos. Slave position is $slavePos.");
-			$this->log("Waiting for slave position to be reach original master position!");
-			sleep($this->dbWriteCountSleep);
+			//$this->log("Waiting for slave position to be reach original master position!");
+			sleep(1);
 			
 		} while ($checkCount < $this->maxSlaveLagChecks);
 		
@@ -2443,7 +2443,7 @@ class EsoSalesDataParser
 			if ($lastId <= 0)
 			{
 				$this->log("Updating trends for items starting at $firstId...");
-				$this->lastQuery = "SELECT * FROM items WHERE id>'$firstId';";
+				$this->lastQuery = "SELECT * FROM items WHERE id>='$firstId';";
 			}
 			else
 			{
