@@ -4080,6 +4080,8 @@ function GetEsoItemTableSuffix($version)
 			return "";
 		case '30pts':
 			return "30pts";
+		case '30pts2':
+			return "30pts2";
 		case '30':
 			return "30";
 	}
@@ -4115,7 +4117,7 @@ function FindEsoItemLevelIntTypeMap($inLevel)
 	global $ESO_ITEMQUALITYLEVEL_INTTYPEMAP;
 	$lastMap = array();
 	
-	foreach ($ESO_ITEMQUALITYLEVEL_INTTYPEMAP as $level => $map) 
+	foreach ($ESO_ITEMQUALITYLEVEL_INTTYPEMAP as $level => $map)
 	{
 		if ($level == $inLevel) return $map;
 		if ($level >  $inLevel) return $lastMap;

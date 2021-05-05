@@ -423,7 +423,11 @@ Uploading Data...
 			
 			if (substr_compare($value, "#STR#", 0, 5) === 0)
 			{
-				if (substr_compare($value, "#STR#", -5, 5) === 0)
+				if ($value == "#STR#")
+				{
+					$logData .= $extraData . "\n";
+				}
+				else if (substr_compare($value, "#STR#", -5, 5) === 0)
 				{
 					$logData .= substr($value, 5, -5);
 				}
@@ -439,7 +443,7 @@ Uploading Data...
 			}
 			else
 			{
-				$logData .= $value . $extraData . "\n";				
+				$logData .= $value . $extraData . "\n";
 			}
 			
 			++$this->parsedRecords;

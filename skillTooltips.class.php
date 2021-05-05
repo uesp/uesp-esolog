@@ -11,7 +11,7 @@ require_once("esoSkillRankData.php");
 
 class CEsoSkillTooltips
 {
-	protected $TABLE_SUFFIX = "";
+	protected $TABLE_SUFFIX = "30pts";
 	protected $ONLY_DO_ABILITYID = -1;
 	protected $DONT_SAVE_TOOLTIPS = false;
 	protected $MIN_ALLOWED_ERRORPERCENT = 3;
@@ -403,6 +403,8 @@ class CEsoSkillTooltips
 		
 		$safeDesc = $this->db->real_escape_string($rawDesc);
 		$this->lastQuery = "UPDATE minedSkills{$this->TABLE_SUFFIX} SET rawDescription='$safeDesc' where id='$abilityId';";
+		
+		//print($this->lastQuery . "\n");
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to update raw description for skill $abilityId!");

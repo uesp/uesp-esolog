@@ -5,7 +5,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 /*
  * Input Parameters:
  * 		start=[number]
- * 				Start parsing at the given LOG index.	
+ * 				Start parsing at the given LOG index.
  * 
  * TODO:
  * 		- Add first and last timeStamp for each user
@@ -24,7 +24,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
  * 		- Rename minedItem "cond" to "condition"
  * 		- Review indexes on minedItem
  * 			- No FULLTEXT?
- * 			- Index on internalLevel/internalSubtype 
+ * 			- Index on internalLevel/internalSubtype
  *
  *
  */
@@ -41,7 +41,7 @@ require_once("skillTooltips.class.php");
 class EsoLogParser
 {
 	const MINEITEM_TABLESUFFIX = "30pts";
-	const SKILLS_TABLESUFFIX   = "30pts";
+	const SKILLS_TABLESUFFIX   = "30pts2";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -256,6 +256,7 @@ class EsoLogParser
 			"minedSkills29pts",
 			"minedSkills29",
 			"minedSkills30pts",
+			"minedSkills30pts2",
 			"minedSkills30",
 			"minedSkills31pts",
 			"minedSkills31",
@@ -1162,7 +1163,7 @@ class EsoLogParser
 			unset(self::$MINEDITEM_FIELDS['specialType']);
 		}
 		
-		$this->skillTooltips = new CEsoSkillTooltips();
+		$this->skillTooltips = new CEsoSkillTooltips(self::SKILLS_TABLESUFFIX);
 		
 		$this->salesData = new EsoSalesDataParser(true);
 		$this->salesData->startMicroTime = $this->startMicroTime;
