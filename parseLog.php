@@ -5447,6 +5447,8 @@ class EsoLogParser
 	
 	public function CheckLocation ($type, $name, $logEntry, $extraIds = null, &$isNew = null)
 	{
+		if ($logEntry['x'] == null || $logEntry['y'] == null) return true;
+		
 		$x = floatval($logEntry['x']);
 		$y = floatval($logEntry['y']);
 		if ($x == 0 && $y == 0) return true;

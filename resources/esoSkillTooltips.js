@@ -199,9 +199,12 @@ window.CreateEsoSkillTooltipRawOutputHtml = function(skillData, tooltipIndex)
 	
 	output += "<div class='esovsSkillCoefRowDetail'>Base Value = " + baseValue;
 	
-	if ((tooltip.rawType == 49 || tooltip.rawType == 53) && tooltip.duration > 0 && tooltip.tickTime > 0)
+	var duration = + tooltip.finalDuration;
+	if (isNaN(duration)) duration = + tooltip.duration;
+	
+	if ((tooltip.rawType == 49 || tooltip.rawType == 53) && duration > 0 && tooltip.tickTime > 0)
 	{
-		var numTicks = Math.floor((+tooltip.duration + +tooltip.tickTime) / +tooltip.tickTime);
+		var numTicks = Math.floor((duration + +tooltip.tickTime) / +tooltip.tickTime);
 		var totalDamage = Math.floor(baseValue * numTicks);
 		output += " x " + numTicks + " Ticks = " + totalDamage + " Overall";
 	}
@@ -458,11 +461,14 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 	if ((tooltip.rawType == 49 || tooltip.rawType == 53) && tooltip.duration > 0)
 	{
 		var duration = Math.round(tooltip.duration / 100) / 10;
+		var finalDuration = Math.round(tooltip.finalDuration / 100) / 10;
 		var startTime = Math.round(tooltip.startTime / 100) / 10;
 		var tickLength = Math.round(tooltip.tickTime) / 1000;
 		
+		if (isNaN(finalDuration)) finalDuration = duration;
+		
 		output += "<div class='esovsSkillCoefRowDetail'>";
-		output += "Duration: " + duration + " secs";
+		output += "Duration: " + finalDuration + " secs";
 		if (startTime > 0) output += ", Delay: " + startTime + " secs";
 		if (tickLength > 0) output += ", Tick: " + tickLength + " secs";
 		output += "</div>";
@@ -871,10 +877,15 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 		if (durationTooltip && IsEsoSkillTooltipRawTypeDuration(durationTooltip.rawType))
 		{
 			var modDuration = 0;
-			var oldDuration = parseFloat(durationTooltip.value);
+			var oldDuration = parseFloat(durationTooltip.value);	// Should be tooltip.duration ?
 			var durationSrcs = [];
 			
-			if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName]) 
+			if (tooltip.startTime > 0) oldDuration -= tooltip.startTime / 1000;
+			
+			tooltip.origDuration = tooltip.duration;
+			tooltip.finalDuration = tooltip.duration;
+			
+			if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName])
 			{
 				modDuration = inputValues.SkillDuration[skillData.baseName];
 				durationSrcs.push("Skill Duration");
@@ -895,24 +906,28 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 			
 			if (newDuration != oldDuration)
 			{
-				var oldTicks = Math.floor(oldDuration/tickLength + 0.01);
-				var newTicks = Math.floor(newDuration/tickLength + 0.01);
+				var oldTicks = Math.floor(oldDuration/tickLength + 0.01) + 1;
+				var newTicks = Math.floor(newDuration/tickLength + 0.01) + 1;
 				
 				if (oldTicks != newTicks && !isNaN(oldTicks) && !isNaN(newTicks) && oldTicks > 0)
 				{
-					//baseDamage = Math.round(baseDamage * newTicks / oldTicks);	// Danage is modified elsewhere 
-					newRawOutput.modDuration = Math.floor((newDuration - oldDuration)*10)/10;
-					newDuration = Math.floor(newDuration*10)/10;
+					//baseDamage = Math.round(baseDamage * newTicks / oldTicks);	// Damage is modified elsewhere 
+					newRawOutput.modDuration = Math.floor((newDuration - oldDuration));
+					newDuration = Math.floor(newDuration);
 					AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "DOT Ticks (" + durationSrcs.join(" + ") + ")", (newTicks - oldTicks), '');
 				}
 				else
 				{
-					newDuration = Math.floor(newDuration*10)/10;
+					newDuration = Math.floor(newDuration);
 				}
 				
 				tooltip.newTicks = newTicks;
+				tooltip.finalDuration = parseFloat(newDuration)*1000;
+				
+				if (tooltip.startTime > 0) newDuration += tooltip.startTime / 1000;
 				newRawOutput.dotDuration = newDuration;
 			}
+			
 		}
 		
 		if (inputValues.Damage.Dot != 0)
@@ -1345,7 +1360,12 @@ window.ModifyEsoSkillTooltipConstantDurationValue2 = function(baseDuration, tool
 	}
 	else
 	{
-		finalDuration = Math.floor(baseDuration * (1 + modDuration)*10)/10;
+		if (tooltip.startTime > 0)
+			//finalDuration = Math.floor(((baseDuration - tooltip.startTime/1000) * (1 + modDuration) + tooltip.startTime/1000)*10)/10;
+			finalDuration = Math.floor(baseDuration * (1 + modDuration));
+		else
+			finalDuration = Math.floor(baseDuration * (1 + modDuration));
+		
 		skillData.rawOutput["Tooltip Duration #" + tooltip.idx] = "" + baseDuration + " Base x " + Math.floor(modDuration*100) + "% = " + finalDuration;
 		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Skill Duration", modDuration, '%');
 	}
@@ -1682,6 +1702,41 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 	
 	if ((tooltip.rawType == 49 || tooltip.rawType == 53) && tooltip.duration > 0)
 	{
+		var duration = +tooltip.duration;
+		/*
+		tooltip.origDuration = duration;
+		
+		if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null)
+		{
+			modDuration = +inputValues.SkillDuration[skillData.baseName];
+			newDuration = 0;
+			
+			if (modDuration >= 1) 
+			{
+				newDuration = duration + modDuration*1000;
+				SetEsoSkillTooltipRawOutputValue(skillData, tooltip.idx, "modDuration", modDuration);
+			}
+			else 
+			{
+				newDuration = Math.floor(duration * (1 + modDuration));
+				SetEsoSkillTooltipRawOutputValue(skillData, tooltip.idx, "modDuration", modDuration);
+			}
+			
+			duration = newDuration;
+		}
+		
+		if (inputValues.ElfBaneDuration && (g_EsoSkillElfBaneSkills[skillId] || g_EsoSkillElfBaneSkills[displayId]))
+		{
+			var origDuration = duration;
+			newDuration += inputValues.ElfBaneDuration*1000;
+			SetEsoSkillTooltipRawOutputValue(skillData, tooltip.idx, "elfBaneDuration", inputValues.ElfBaneDuration);
+			duration = newDuration;
+		}
+		
+		tooltip.finalDuration = duration;
+		//SetEsoSkillTooltipRawOutputValue(skillData, tooltip.idx, "finalDuration", duration);
+		*/
+		
 		if (tooltip.newTicks != null)
 		{
 			dotFactor = tooltip.newTicks;
@@ -1689,14 +1744,14 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		}
 		else if (tooltip.tickTime > 0)
 		{
-			dotFactor = (+tooltip.duration + +tooltip.tickTime) / +tooltip.tickTime;
+			dotFactor = (duration + +tooltip.tickTime) / +tooltip.tickTime;
 		}
 		else
 		{
-			dotFactor = +tooltip.duration / 1000;
+			dotFactor = duration / 1000;
 		}
 		
-		if (dotFactor != 1) 
+		if (dotFactor != 1)
 		{
 			value = Math.floor(Math.floor(value) * dotFactor);
 			SetEsoSkillTooltipRawOutputValue(skillData, tooltip.idx, "dotFactor", dotFactor);
@@ -1715,6 +1770,8 @@ window.CreateEsoSkillTooltipRawDescription2 = function(skillData, inputValues)
 {
 	var descHeader = skillData.descHeader;
 	var rawDesc = skillData.rawDescription;
+	
+	if (rawDesc == "") rawDesc = skillData.description;
 	
 	for (var tooltipIndex in skillData.tooltips)
 	{
@@ -1767,7 +1824,7 @@ window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEff
 		var effectLines = skillData['effectLines'];
 		if (effectLines != "" && noEffectLines !== true) rawDesc += " <div class='esovsAbilityBlockEffectLines'>" + effectLines + "</div>";
 		
-		if (outputRaw !== true) 
+		if (outputRaw !== true)
 			output = EsoConvertDescToText(rawDesc);
 		else
 			output = rawDesc;

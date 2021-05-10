@@ -3383,7 +3383,7 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 	if (skillData.duration == 0) return 0;
 	
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
-		
+	
 	if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null)
 	{
 		modDuration = +inputValues.SkillDuration[skillData.baseName];
