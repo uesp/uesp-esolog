@@ -1881,13 +1881,13 @@ class CEsoItemLinkImage
 				
 			if ($result && $matches[1])
 			{
-				$traitValue = 1 + ((float) $matches[1]) / 100;
+				$traitValue = 1 + ((float) $matches[1]) / 100 * (1 + $this->weaponTraitFactor);
 				if ($trait == 16) $armorFactor *= $traitValue;
 				if ($trait == 33) $armorFactor *= $traitValue;
 				
 				if ($trait ==  4)
 				{
-					$weaponFactor *= $traitValue * (1 + $this->weaponTraitFactor);
+					$weaponFactor *= $traitValue;
 				}
 			}
 		}
