@@ -48,6 +48,10 @@ body {
 	font-size: 11px;
 }
 
+.elvLicense {
+	font-size: 11px;
+}
+
 #elvSearchForm {
 	position: absolute;
 	top: 20px;

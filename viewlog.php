@@ -2943,6 +2943,9 @@ class EsoLogViewer
 		$output = "<hr>\n<div class=\"elvLastUpdate\">Data last updated on $lastUpdate</div>";
 		//$output .= "<br>{$_SESSION['uesp_eso_morrowind']}";
 		
+		$output .= "<br/><div class='elvLicense'>Most content here is available under the same Attribute-ShareAlike 2.5 License as the UESP wiki. See <a href='https://en.uesp.net/wiki/UESPWiki:Copyright_and_Ownership'>Copyright and Ownership</a> for more information.";
+		$output .= " Some data is extracted directly from the ESO game data files and copyright is owned by Zenimax Online Studios.</div>";
+		
 		print($output);
 		
 		?>

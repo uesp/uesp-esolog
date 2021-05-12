@@ -6,6 +6,7 @@ name = uesp.esologcollector
 staged = true
 
 ignore = .hg*
+ignore = .git*
 ignore = *.deploy
 ignore = *.sh
 ignore = *.sql
