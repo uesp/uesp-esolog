@@ -470,7 +470,7 @@ class EsoLogViewer
 	
 	
 	public static $SETSUMMARY_FIELDS = array(
-			'id' => self::FIELD_INTID,
+			'gameId' => self::FIELD_INTID,
 			'setName' => self::FIELD_STRING,
 			'setMaxEquipCount' => self::FIELD_INT,
 			'setBonusCount' => self::FIELD_INT,
@@ -482,6 +482,7 @@ class EsoLogViewer
 			'setBonusDesc3' => self::FIELD_TEXTTRANSFORM,
 			'setBonusDesc4' => self::FIELD_TEXTTRANSFORM,
 			'setBonusDesc5' => self::FIELD_TEXTTRANSFORM,
+			'id' => self::FIELD_INTID,
 	);
 	
 	
@@ -958,7 +959,11 @@ class EsoLogViewer
 					'method' => 'DoRecordDisplay',
 					'sort' => 'setName',
 					'message' => "These are sets for update ## (__NAME__) as logged from the PTS server.",
-			
+					
+					'columnNames' => array(
+							'id' => 'Internal ID',
+					),
+					
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
 							'setBonusDesc1' => 'TransformSetBonusDesc',
@@ -967,7 +972,7 @@ class EsoLogViewer
 							'setBonusDesc4' => 'TransformSetBonusDesc',
 							'setBonusDesc5' => 'TransformSetBonusDesc',
 					),
-			
+					
 					'filters' => array(
 							array(
 									'record' => 'minedItemSummary##pts',
@@ -1245,7 +1250,7 @@ class EsoLogViewer
 					'sortTranslate' => array(
 								'zone' => 'location.zone',
 							),
-			
+					
 					'transform' => array(
 							'type' => 'GetEsoQuestTypeText',
 							'repeatType' => 'GetEsoQuestRepeatTypeText',
@@ -1407,15 +1412,15 @@ class EsoLogViewer
 							'type1' => 'Map Pin Type 1',
 							'type2' => 'Map Pin Type 2',
 					),
-			
+					
 					'transform' => array(
 							'type1' => 'GetEsoMapPinTypeText',
 							'type2' => 'GetEsoMapPinTypeText',
 					),
-			
+					
 					'join' => array(
 					),
-			
+					
 					'filters' => array(
 							array(
 									'record' => 'quest',
@@ -1442,16 +1447,16 @@ class EsoLogViewer
 					'table' => 'questReward',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-			
+					
 					'transform' => array(
 							'quality' => 'GetItemQualityText',
 							'type' => 'GetEsoQuestRewardTypeText',
 							'itemType' => 'GetEsoQuestRewardItemTypeText',
 					),
-			
+					
 					'join' => array(
 					),
-			
+					
 					'filters' => array(
 							array(
 									'record' => 'quest',
@@ -1471,13 +1476,13 @@ class EsoLogViewer
 					'table' => 'questGoldReward',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'playerLevel, questName, gold',
-			
+					
 					'transform' => array(
 					),
-			
+					
 					'join' => array(
 					),
-			
+					
 					'filters' => array(
 					),
 			),
@@ -1825,6 +1830,10 @@ class EsoLogViewer
 					'table' => 'setSummary',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'setName',
+					
+					'columnNames' => array(
+							'id' => 'Internal ID',
+					),
 					
 					'transform' => array(
 							'setBonusDesc' => 'TransformSetBonusDesc',
@@ -3242,7 +3251,7 @@ If you do not understand what this information means, or how to use this webpage
 		if (array_key_exists('sortTranslate', $recordInfo) && array_key_exists($sortFields, $recordInfo['sortTranslate'])) $sortFields = $recordInfo['sortTranslate'][$sortFields];
 		
 		if (is_array($sortFields)) $sortFields = implode(",", $sortFields);
-					
+		
 		$sort = " ORDER BY {$sortFields} ";
 		
 		if ($this->recordSortOrder != '')
@@ -3336,6 +3345,7 @@ If you do not understand what this information means, or how to use this webpage
 		$output = "<a class='elvExternalLink' href='$url?$query'>$displayName</a>";
 		return $output;
 	}
+	
 	
 	public function CreateSelectQuery ($recordInfo)
 	{
