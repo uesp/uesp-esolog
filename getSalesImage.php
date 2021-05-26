@@ -159,6 +159,13 @@ class EsoGetSalesImage
 		if ($this->itemId <= 0) return $this->ReportError("No itemId specified for sales data!");
 		
 		$this->lastQuery = "SELECT * FROM sales WHERE itemId='{$this->itemId}';";
+		
+		if ($this->timePeriod > 0)
+		{
+			$timestamp = time() - $this->timePeriod;
+			$this->lastQuery = "SELECT * FROM sales WHERE itemId='{$this->itemId}' AND timestamp>=$timestamp;";
+		}
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to load sales data records!");
 		if ($result->num_rows == 0) return $this->ReportError("No sales data found for itemId {$this->itemId}!");

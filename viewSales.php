@@ -14,13 +14,15 @@ $g_EsoItemData = null;
 
 class EsoViewSalesData
 {
-	const ESOVSD_ENABLE_PROFILE = false;
+	const ESOVSD_ENABLE_PROFILE = true;
 	
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
 	const ESOVSD_MAXZSCORE = 2.0;
 	const ESOVSD_MAXZSCORE_WEIGHTED = 2.0;
 	const ESOVSD_WEIGHTED_CONSTANT = 30.0;
+	
+	const ESOVSD_DEFAULT_SALES_PERIOD = 2678400;
 	
 	const MIN_WEIGHTED_AVERAGE_INTERVAL = 11;
 	const WEIGHTED_AVERAGE_BUCKETS = 20;
@@ -638,7 +640,7 @@ class EsoViewSalesData
 		$output .= "<th>Item</th>";
 		$output .= "<th>Level</th>";
 		$output .= "<th>Item Type</th>";
-		$output .= "<th>Trait</th>";		
+		$output .= "<th>Trait</th>";
 		$output .= "<th>Type 1</th>";
 		$output .= "<th>Type 2</th>";
 		$output .= "<th>Set Name</th>";
@@ -646,13 +648,13 @@ class EsoViewSalesData
 		$output .= "<th>Avg Price</th>";
 		$output .= "<th></th>";
 		$output .= "</tr>";
-				
+		
 		foreach ($this->itemSortedKeys as $itemId)
 		{
 			$item = $this->itemResults[$itemId];
 			
 			$iconURL = $this->Escape($this->GetIconUrl($item['icon']));
-				
+			
 			$trait = $item['trait'];
 			$itemName = $this->Escape($item['name']);
 			$levelText = GetEsoItemLevelText($item['level']);
@@ -709,6 +711,10 @@ class EsoViewSalesData
 			{
 				$extraQuery .= "&timeperiod=".intval($this->formValues['timeperiod']);
 			}
+			else
+			{
+				$extraQuery .= "&timeperiod=" . self::ESOVSD_DEFAULT_SALES_PERIOD;
+			}
 			
 			if ($this->showTrends)
 			{
@@ -716,7 +722,7 @@ class EsoViewSalesData
 			}
 			
 			$totalCountText = $totalCount;
-			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)"; 
+			if ($totalItems > $totalCount) $totalCountText = "$totalCount ($totalItems)";
 			
 			$avgPrice = $this->FormatPrice($avgPrice);
 			
@@ -763,7 +769,7 @@ class EsoViewSalesData
 				$type1 = "$vouchers vouchers";
 				$type2 = "";
 			}
-		
+			
 			$output .= "<tr>";
 			$output .= "<td><div class='esovsd_itemlink eso_item_link eso_item_link_q{$item['quality']}' itemid='{$item['itemId']}' intlevel='{$item['internalLevel']}' inttype='{$item['internalSubType']}' potiondata='{$item['potionData']}' extradata='$extraData'>";
 			$output .= "<img src='$iconURL' class='esovsd_itemicon'>$itemName</div></td>";
@@ -1026,18 +1032,19 @@ class EsoViewSalesData
 			$extraData = $this->db->real_escape_string($extraData);
 		}
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
+		$query = "SELECT * FROM items ";
 		$where = array();
 		
 		$where[] = "server='$server'";
 		$where[] = "itemId='$itemId'";
 		$where[] = "internalLevel='$intLevel'";
-		$where[] = "internalSubtype='$intSubtype'";		
-		$where[] = "potionData='$potionData'";		
+		$where[] = "internalSubtype='$intSubtype'";
+		$where[] = "potionData='$potionData'";
 		$where[] = "extraData='$extraData'";
-				
+		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
-		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
+		//$query .= " LIMIT " . $this->searchItemIdsLimit;	// Slows down query when limit is included...do limiting later
+		$query .= ";";
 		
 		$this->itemQuery = $query;
 		return $query;
@@ -1085,18 +1092,19 @@ class EsoViewSalesData
 			if ($level == 1) $level = $intLevel;
 		}
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
+		$query = "SELECT * FROM items ";
 		$where = array();
-	
+		
 		$where[] = "server='$server'";
 		$where[] = "itemId='$itemId'";
 		$where[] = "level='$level'";
 		$where[] = "quality='$quality'";
 		$where[] = "potionData='$potionData'";
 		$where[] = "extraData='$extraData'";
-	
+		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
-		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
+		//$query .= " LIMIT " . $this->searchItemIdsLimit . ";";	// Slows down query when limit is included...do limiting later
+		$query .= ";";
 		
 		$this->itemQuery = $query;
 		return $query;
@@ -1119,8 +1127,9 @@ class EsoViewSalesData
 		if ($timePeriod <= 0) $timePeriod = self::DEFAULT_SHOWDEAL_TIMEPERIOD;
 		$lastSeen = time() - $timePeriod;
 		
-		$query = "SELECT * FROM sales LEFT JOIN items ON sales.itemId = items.id WHERE sales.server='$safeServer' AND sales.lastSeen > '$lastSeen' and sales.listTimestamp > 0 LIMIT " . self::SHOWDEAL_LIMIT . ";";
-				
+		//$query = "SELECT * FROM sales LEFT JOIN items ON sales.itemId = items.id WHERE sales.server='$safeServer' AND sales.lastSeen > '$lastSeen' and sales.listTimestamp > 0 LIMIT " . self::SHOWDEAL_LIMIT . ";";
+		$query = "SELECT * FROM sales LEFT JOIN items ON sales.itemId = items.id WHERE sales.server='$safeServer' AND sales.lastSeen > '$lastSeen' and sales.listTimestamp > 0;";
+		
 		$this->salesQuery = $query;
 		return $query;
 	}
@@ -1131,9 +1140,9 @@ class EsoViewSalesData
 		$itemLinkData = $this->ParseItemLink($this->formValues['text']);
 		if ($itemLinkData) return $this->GetFindItemLinkQuery($itemLinkData);
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM items ";
+		$query = "SELECT * FROM items ";
 		$where = array();
-
+		
 		$where[] = "server='".$this->server."'";
 		
 		$itemIdValue = intval($this->formValues['text']);
@@ -1144,7 +1153,7 @@ class EsoViewSalesData
 		
 		$traitValue = $this->GetItemTraitValue($this->formValues['trait']);
 		
-		if ($traitValue > 0) 
+		if ($traitValue > 0)
 		{
 			if ($traitValue == 20 || $traitValue == 9 || $traitValue == 27)
 				$where[] = "(trait=9 OR trait=20 or trait=27)";
@@ -1184,7 +1193,7 @@ class EsoViewSalesData
 		
 		$timePeriod = intval($this->formValues['timeperiod']);
 		$timestamp = time() - $timePeriod;
-				
+		
 		if ($this->formValues['saletype'] == "sold")
 		{
 			$where[] = "countPurchases > 0";
@@ -1203,7 +1212,8 @@ class EsoViewSalesData
 		}
 		
 		if (count($where) > 0) $query .= "WHERE " . implode(" AND ", $where);
-		$query .= " LIMIT " . $this->searchItemIdsLimit . ";";
+		//$query .= " LIMIT " . $this->searchItemIdsLimit . ";";	// Slows down query when limit is included...do limiting later
+		$query .= ";";
 		
 		$this->itemQuery = $query;
 		return $query;
@@ -1262,7 +1272,7 @@ class EsoViewSalesData
 					$row['goodPrice'] = $goodPrice;
 				}
 			}
-
+			
 			if ($goodPrice <= 0 || $price <= 0)
 			{
 				$row['deal'] = 0;
@@ -1273,6 +1283,8 @@ class EsoViewSalesData
 			}
 			
 			$this->dealResults[] = $row;
+			
+			if (count($this->dealResults) >= self::SHOWDEAL_LIMIT) break;
 		}
 		
 		usort($this->dealResults, array('EsoViewSalesData', 'SalesDataSortDeal'));
@@ -1282,7 +1294,9 @@ class EsoViewSalesData
 	
 	
 	public function LoadItemData()
-	{		
+	{
+		$startTime = microtime(true);
+		
 		$this->totalItemCount = 0;
 		$this->totalListedCount = 0;
 		$this->totalSoldCount = 0;
@@ -1293,8 +1307,13 @@ class EsoViewSalesData
 		
 		$this->lastQuery = $this->GetFindItemQuery();
 		
+		$this->LogProfile("LoadItemData()::Setup", $startTime);
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return false;
+		
+		error_log($this->lastQuery);
+		$this->LogProfile("LoadItemData()::Query", $startTime);
 		
 		if ($result->num_rows == 0)
 		{
@@ -1325,7 +1344,11 @@ class EsoViewSalesData
 			
 			$this->totalListedCount += $row['countSales'];
 			$this->totalSoldCount   += $row['countPurchases'];
+			
+			if (count($this->itemResults) >= $this->searchItemIdsLimit) break;
 		}
+		
+		$this->LogProfile("LoadItemData()::Assign", $startTime);
 		
 		$this->totalSalesCount = $this->totalListedCount + $this->totalSoldCount;
 		
@@ -1340,9 +1363,16 @@ class EsoViewSalesData
 				$this->totalItemCount = $totalItems;
 				//$this->errorMessages[] = "Found $totalItems matching items which exceeds the maximum of {$this->searchItemIdsLimit}.";
 			}
+			
+			$this->LogProfile("LoadItemData()::FoundQuery", $startTime);
 		}
 		
+		$this->LogProfile("LoadItemData()::Load", $startTime);
+		
+		$startTime = microtime(true);
 		$this->SortItemSearchResults();
+		$this->LogProfile("LoadItemData()::Sort", $startTime);
+		
 		return true;
 	}
 	
@@ -1378,7 +1408,7 @@ class EsoViewSalesData
 	
 	public function GetSearchQuery()
 	{
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
+		$query = "SELECT * FROM sales ";
 		$where = array();
 		
 		$where[] = "server='".$this->server."'";
@@ -1394,7 +1424,8 @@ class EsoViewSalesData
 		{
 			$timestamp = time() - $timePeriod;
 			$minTimestamp = time() - $this->ESOVSD_MAX_LISTING_TIME;
-			$where[] = "(buyTimestamp >= $timestamp OR (listTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
+			//$where[] = "(buyTimestamp >= $timestamp OR (listTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
+			$where[] = "timestamp >= $timestamp";
 		}
 				
 		if ($this->formValues['saletype'] == "sold")
@@ -1411,7 +1442,8 @@ class EsoViewSalesData
 			$query .= " WHERE " . implode(" AND ", $where);
 		}
 		
-		$query .= " LIMIT {$this->searchLimitCount};";
+		//$query .= " LIMIT {$this->searchLimitCount};";
+		$query .= ";";
 		
 		$this->salesQuery = $query;
 		return $query;
@@ -1434,8 +1466,8 @@ class EsoViewSalesData
 		itemLink TINYTEXT NOT NULL,
 		lastSeen INT UNSIGNED NOT NULL, */
 		
-		$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
-		//$query = "SELECT itemId, guildId, listTimestamp, buyTimestamp, price, qnt, lastSeen FROM sales ";
+		//$query = "SELECT SQL_CALC_FOUND_ROWS * FROM sales ";
+		$query = "SELECT * FROM sales ";
 		$where = array();
 		
 		$where[] = "itemId={$this->viewSalesItemId}";
@@ -1446,7 +1478,8 @@ class EsoViewSalesData
 		{
 			$timestamp = time() - $timePeriod;
 			$minTimestamp = time() - $this->ESOVSD_MAX_LISTING_TIME;
-			$where[] = "(buyTimestamp >= $timestamp or (listTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
+			//$where[] = "(buyTimestamp >= $timestamp or (listTimestamp > $minTimestamp AND lastSeen >= $timestamp))";
+			$where[] = "timestamp >= $timestamp";
 		}
 		
 		if ($this->formValues['saletype'] == "sold")
@@ -1498,11 +1531,13 @@ class EsoViewSalesData
 			$row['unitPrice'] = $row['price'] / $row['qnt'];
 			if ($row['buyTimestamp']  > 0) $row['timestamp'] = $row['buyTimestamp'];
 			if ($row['listTimestamp'] > 0) $row['timestamp'] = $row['listTimestamp'];
-				
+			
 			$row['itemName'] = $this->itemResults[$row['itemId']]['name'];
 			$this->searchResults[] = $row;
 			
 			$this->server = $row['server'];
+			
+			if (count($this->searchResults) > $this->searchLimitCount) break;
 		}
 		
 		$this->displayServer = $this->server;
@@ -3057,7 +3092,7 @@ class EsoViewSalesData
 		$this->LoadGuilds();
 		
 		$this->LoadSearchResults();
-
+		
 		return $this->CreateOutputHtml();
 	}
 	
