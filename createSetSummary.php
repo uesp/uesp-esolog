@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "30pts";
+$TABLE_SUFFIX = "30";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -10,6 +10,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 print("Updating item set data from mined item summaries for version $TABLE_SUFFIX...\n");
 
 require("/home/uesp/secrets/esolog.secrets");
+require("esoCommon.php");
 
 $options = getopt("dv");
 if ($options['d'] != null || $options['v'] != null) $QUIET = false; 
@@ -259,6 +260,14 @@ function UpdateItemSlotArray (&$outputArray, $item)
 	
 }
 
+$ESO_SETINDEX_MAP = array();
+
+foreach ($ESO_SET_INDEXES as $setIndex => $setName)
+{
+	$setName = strtolower($setName);
+	if ($ESO_SETINDEX_MAP[$setName] != null) print ("\tWarning: Duplicate set index $setIndex for '$setName'!\n");
+	$ESO_SETINDEX_MAP[$setName] = $setIndex;
+}
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
@@ -290,6 +299,14 @@ if (!$result) exit("ERROR: Database query error deleting table!\n" . $db->error)
 //$query = "UPDATE setSummary".$TABLE_SUFFIX." SET itemCount=0;";
 //$result = $db->query($query);
 //if (!$result) exit("ERROR: Database query error (clearing item counts)!\n" . $db->error);
+$ESO_SETINDEX_MAP = array();
+
+foreach ($ESO_SET_INDEXES as $setIndex => $setName)
+{
+	$setName = strtolower($setName);
+	if ($ESO_SETINDEX_MAP[$setName] != null) print ("\tWarning: Duplicate set index $setIndex for '$setName'!\n");
+	$ESO_SETINDEX_MAP[$setName] = $setIndex;
+}
 
 $query = "SELECT * FROM minedItem".$SOURCEITEMTABLE.$TABLE_SUFFIX." WHERE setName!='';";
 $rowResult = $db->query($query);
@@ -381,8 +398,19 @@ while (($row = $rowResult->fetch_assoc()))
 		if ($setBonusDesc4 != "") $setBonusDesc .= "\n".$setBonusDesc4;
 		if ($setBonusDesc5 != "") $setBonusDesc .= "\n".$setBonusDesc5;
 		
-		$query  = "INSERT INTO setSummary".$TABLE_SUFFIX."(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc) ";
-		$query .= "VALUES(\"$setName\", $setMaxEquipCount, $setBonusCount, 1, \"$setBonusDesc1\", \"$setBonusDesc2\", \"$setBonusDesc3\", \"$setBonusDesc4\", \"$setBonusDesc5\", \"$setBonusDesc\");";
+		$gameIndex = $ESO_SETINDEX_MAP[strtolower($setName)];
+		if ($gameIndex == null) $gameIndex = -1;
+		
+		$setName = $db->real_escape_string($setName);
+		$setBonusDesc = $db->real_escape_string($setBonusDesc);
+		$setBonusDesc1 = $db->real_escape_string($setBonusDesc1);
+		$setBonusDesc2 = $db->real_escape_string($setBonusDesc2);
+		$setBonusDesc3 = $db->real_escape_string($setBonusDesc3);
+		$setBonusDesc4 = $db->real_escape_string($setBonusDesc4);
+		$setBonusDesc5 = $db->real_escape_string($setBonusDesc5);
+		
+		$query  = "INSERT INTO setSummary".$TABLE_SUFFIX."(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc, gameId) ";
+		$query .= "VALUES('$setName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc', $gameIndex);";
 		
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error . "\n" . $query);

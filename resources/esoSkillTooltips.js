@@ -232,10 +232,10 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 	if (tooltip == null) return "";
 	if (tooltip.coefType == -1) return "";
 	
-	var a = parseFloat(tooltip.a).toFixed(5);
-	var b = parseFloat(tooltip.b).toFixed(5);
-	var c = parseFloat(tooltip.c).toFixed(5);
-	var r = parseFloat(tooltip.r).toFixed(5);
+	var a = parseFloat(tooltip.a).toPrecision(5);
+	var b = parseFloat(tooltip.b).toPrecision(5);
+	var c = parseFloat(tooltip.c).toPrecision(5);
+	var r = parseFloat(tooltip.r).toPrecision(5);
 	var bOp = '+';
 	var cOp = '+';
 	var typeString = "";
@@ -251,12 +251,15 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 	
 	if (includeTooltipData && finalDesc)
 	{
-		output += srcString + " = " + EsoConvertDescToText(finalDesc);
-		if (tooltip.coefType == -75) output += " &nbsp; &nbsp; Constant (" + rawTypeText + ")";
-		output += "</div>";
-		output += "<div class='esovsSkillCoefRowDetail'>";
-		srcString = "";
-		hasOutputInitialLine = true;
+		if ((g_LastSkillInputValues != null && g_LastSkillInputValues.LightArmor != null) || (tooltip.coefType != -51 && tooltip.coefType != -52 && tooltip.coefType != -53 && tooltip.coefType != -54 && tooltip.coefType != -55))
+		{
+			output += srcString + " = " + EsoConvertDescToText(finalDesc);
+			if (tooltip.coefType == -75) output += " &nbsp; &nbsp; Constant (" + rawTypeText + ")";
+			output += "</div>";
+			output += "<div class='esovsSkillCoefRowDetail'>";
+			srcString = "";
+			hasOutputInitialLine = true;
+		}
 	}
 	
 	if (b < 0) { bOp = '-'; b = -b; }
@@ -1523,9 +1526,9 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		if (inputValues.LightArmor == null) 
 		{
 			if (c == 0) 
-				value = '(' + a + ' * LIGHTARMOR)';
+				value = '(' + a.toPrecision(5) + ' * LightArmor)';
 			else
-				value = '(' + c + ' + ' + a + ' * LIGHTARMOR)';
+				value = '(' + a.toPrecision(5) + ' * LightArmor + ' + c.toPrecision(5) + ')';
 		}
 		else
 		{
@@ -1536,9 +1539,9 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		if (inputValues.MediumArmor == null) 
 		{
 			if (c == 0) 
-				value = '(' + a + ' * MEDIUMARMOR)';
+				value = '(' + a + ' * MediumArmor)';
 			else
-				value = '(' + c + ' + ' + a + ' * MEDIUMARMOR)';
+				value = '(' + a.toPrecision(5) + ' * MediumArmor + ' + c.toPrecision(5) + ')';
 		}
 		else
 		{
@@ -1549,9 +1552,9 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		if (inputValues.HeavyArmor == null) 
 		{
 			if (c == 0)	
-				value = '(' + a + ' * HEAVYARMOR)';
+				value = '(' + a.toPrecision(5) + ' * HeavyArmor)';
 			else
-				value = '(' + c + ' + ' + a + ' * HEAVYARMOR)';
+				value = '(' + a.toPrecision(5) + ' * HeavyArmor + ' + c.toPrecision(5) + ')';
 		}
 		else 
 		{
@@ -1560,13 +1563,13 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		break;
 	case -54:	// Daggers
 		if (inputValues.DaggerWeapon == null) 
-			value = '(' + a + ' * DAGGER)';
+			value = '(' + a.toPrecision(5) + ' * Dagger)';
 		else
 			value = a * inputValues.DaggerWeapon;
 		break;
 	case -55:	// Armor Types
 		if (inputValues.ArmorTypes == null) 
-			value = '(' + a + ' * ARMORTYPES)';
+			value = '(' + a.toPrecision(5) + ' * ArmorTypes)';
 		else
 			value = a * inputValues.ArmorTypes;
 		break;

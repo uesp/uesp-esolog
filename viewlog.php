@@ -423,6 +423,7 @@ class EsoLogViewer
 			'isArmorDecay' => self::FIELD_INTBOOLEAN,
 			'isConsumable' => self::FIELD_INTBOOLEAN,
 			'dyeData' => self::FIELD_STRING,
+			//'actorCategory' => self::FIELD_INT,
 	);
 	
 	
@@ -466,6 +467,7 @@ class EsoLogViewer
 			'isArmorDecay' => self::FIELD_INTBOOLEAN,
 			'isConsumable' => self::FIELD_INTBOOLEAN,
 			'materialLevelDesc' => self::FIELD_TEXTTRANSFORM,
+			//'actorCategory' => self::FIELD_INT,
 	);
 	
 	

@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "30pts";
-	const SKILLS_TABLESUFFIX   = "30pts2";
+	const MINEITEM_TABLESUFFIX = "30";
+	const SKILLS_TABLESUFFIX   = "30";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -99,7 +99,8 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4744457841815846912; //v26 1590498405
 	//const START_MINEITEM_TIMESTAMP = 4744490265023086592; //v27 1598228700
 	//const START_MINEITEM_TIMESTAMP = 4744515836478226432; //v28 1604325410
-	const START_MINEITEM_TIMESTAMP = 4744561513245704192; //v29 1615215600
+	//const START_MINEITEM_TIMESTAMP = 4744561513245704192; //v29 1615215600
+	const START_MINEITEM_TIMESTAMP = 4744592286015291392; //v30 1622552400
 	
 		/* Ignore any guild sales earlier than this timestamp */
 	const START_GUILDSALESDATA_TIMESTAMP = 0;
@@ -279,6 +280,7 @@ class EsoLogParser
 		'Galatite Ore'			=> self::RESOURCE_ORE,
 		'Quicksilver Ore'		=> self::RESOURCE_ORE,
 		'Voidstone Ore'			=> self::RESOURCE_ORE,
+		'Rubedite Ore'			=> self::RESOURCE_ORE,
 		
 		'Rough Maple'			=> self::RESOURCE_WOOD,
 		'Rough Oak'				=> self::RESOURCE_WOOD,
@@ -289,46 +291,59 @@ class EsoLogParser
 		'Rough Ash'				=> self::RESOURCE_WOOD,
 		'Rough Mahogany'		=> self::RESOURCE_WOOD,
 		'Rough Nightwood'		=> self::RESOURCE_WOOD,
+		'Rough Ruby Ash'		=> self::RESOURCE_WOOD,
+		'Scrap Wood'			=> self::RESOURCE_WOOD,
 		
 		'Raw Jute'				=> self::RESOURCE_CLOTH,
 		'Raw Flax'				=> self::RESOURCE_CLOTH,
 		'Raw Cotton'			=> self::RESOURCE_CLOTH,
 		'Raw Spidersilk'		=> self::RESOURCE_CLOTH,
 		'Raw Ebonthread'		=> self::RESOURCE_CLOTH,
-		'Kreshweed'				=> self::RESOURCE_CLOTH,
-		'Ironweed'				=> self::RESOURCE_CLOTH,
-		'Saint\'s Hair'			=> self::RESOURCE_CLOTH,
-		'Void Bloom'			=> self::RESOURCE_CLOTH,
+		'Raw Kreshweed'			=> self::RESOURCE_CLOTH,
+		'Raw Ironweed'			=> self::RESOURCE_CLOTH,
+		'Raw Silverweed'		=> self::RESOURCE_CLOTH,
+		'Raw Saint\'s Hair'		=> self::RESOURCE_CLOTH,
+		'Raw Void Bloom'		=> self::RESOURCE_CLOTH,
+		'Raw Ancestor Silk'		=> self::RESOURCE_CLOTH,
+		'Torn Cloth'			=> self::RESOURCE_CLOTH,
 		
 		'Rawhide Scraps'		=> self::RESOURCE_LEATHER,
+		'Hide Scraps'			=> self::RESOURCE_LEATHER,
 		'Leather Scraps'		=> self::RESOURCE_LEATHER,
 		'Thick Leather Scraps'	=> self::RESOURCE_LEATHER,
-		'Hide Scraps'			=> self::RESOURCE_LEATHER,
 		'Fellhide Scraps'		=> self::RESOURCE_LEATHER,
+		'Fell Hide Scraps'		=> self::RESOURCE_LEATHER,
 		'Topgrain Hide Scraps'	=> self::RESOURCE_LEATHER,
 		'Iron Hide Scraps'		=> self::RESOURCE_LEATHER,
 		'Superb Scraps'			=> self::RESOURCE_LEATHER,
+		'Superb Hide Scraps'	=> self::RESOURCE_LEATHER,
 		'Shadowhide Scraps'		=> self::RESOURCE_LEATHER,
+		'Rubedo Hide Scraps'	=> self::RESOURCE_LEATHER,
+		'Furrier\'s Trap'		=> self::RESOURCE_CLOTH,
 		
 		'Aspect Rune'			=> self::RESOURCE_RUNESTONE,
 		'Potency Rune'			=> self::RESOURCE_RUNESTONE,
 		'Essence Rune'			=> self::RESOURCE_RUNESTONE,
+		'Runestone'				=> self::RESOURCE_RUNESTONE,
 		
 		'Pure Water'			=> self::RESOURCE_REAGENT,
 		'Water Skin'			=> self::RESOURCE_REAGENT,
-		'Water Skin'			=> self::RESOURCE_REAGENT,
+		'Herbalist\'s Satchel'	=> self::RESOURCE_REAGENT,
 		'Blessed Thistle'		=> self::RESOURCE_REAGENT,
 		'Blue Entoloma'			=> self::RESOURCE_REAGENT,
 		'Bugloss'				=> self::RESOURCE_REAGENT,
 		'Columbine'				=> self::RESOURCE_REAGENT,
 		'Corn Flower'			=> self::RESOURCE_REAGENT,
+		'Crimson Nirnroot'		=> self::RESOURCE_REAGENT,
 		'Dragonthorn'			=> self::RESOURCE_REAGENT,
 		'Emetic Russula'		=> self::RESOURCE_REAGENT,
+		'Giant Clam'			=> self::RESOURCE_REAGENT,
 		'Imp Stool'				=> self::RESOURCE_REAGENT,
 		'Lady\'s Smock'			=> self::RESOURCE_REAGENT,
 		'Luminous Russula'		=> self::RESOURCE_REAGENT,
 		'Mountain Flower'		=> self::RESOURCE_REAGENT,
 		'Namira\'s Rot'			=> self::RESOURCE_REAGENT,
+		'Nightshade'			=> self::RESOURCE_REAGENT,
 		'Nirnroot'				=> self::RESOURCE_REAGENT,
 		'Stinkhorn'				=> self::RESOURCE_REAGENT,
 		'Voilet Coprinus'		=> self::RESOURCE_REAGENT,
@@ -336,7 +351,11 @@ class EsoLogParser
 		'White Cap'				=> self::RESOURCE_REAGENT,
 		'Wormwood'				=> self::RESOURCE_REAGENT,
 		
-		//'Barrel'				=> self::RESOURCE_JEWELRY,
+		'Pewter Seam'			=> self::RESOURCE_JEWELRY,
+		'Copper Seam'			=> self::RESOURCE_JEWELRY,
+		'Silver Seam'			=> self::RESOURCE_JEWELRY,
+		'Electrum Seam'			=> self::RESOURCE_JEWELRY,
+		'Platinum Seam'			=> self::RESOURCE_JEWELRY,
 		
 		'Barrel'				=> self::RESOURCE_INGREDIENT,
 		'Crate'					=> self::RESOURCE_INGREDIENT,
@@ -345,6 +364,8 @@ class EsoLogParser
 		'Backpack'				=> self::RESOURCE_INGREDIENT,
 		'Sack'					=> self::RESOURCE_INGREDIENT,
 		'Bag'					=> self::RESOURCE_INGREDIENT,
+		'Jewelry Box'			=> self::RESOURCE_INGREDIENT,
+		'Trunk'					=> self::RESOURCE_INGREDIENT,
 	
 	);
 	
@@ -696,6 +717,7 @@ class EsoLogParser
 			'comment' => self::FIELD_STRING,
 			'tags' => self::FIELD_STRING,
 			'dyeData' => self::FIELD_STRING,
+			//'actorCategory' => self::FIELD_INT,
 	);
 	
 	public static $MINED_ITEMKEY_TO_DBKEY = array(
@@ -2460,6 +2482,7 @@ class EsoLogParser
 			comment TINYTEXT NOT NULL,
 			tags TINYTEXT NOT NULL,
 			dyeData TEXT NOT NULL,
+			actorCategory TINYINT NOT NULL DEFAULT 0,
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId, internalLevel, internalSubtype)
@@ -6004,11 +6027,16 @@ class EsoLogParser
 		//event{TargetChange}  level{19}  gender{2}  difficulty{1}  name{Stonechewer Skirmisher}  lastTarget{Aspect Rune}  
 		//x{0.45511141419411}  zone{Stormhaven}  y{0.47166284918785}  timeStamp{4743643569678450688}  gameTime{2655510}  
 		//userName{...}  ipAddress{...}  logTime{1396487115}  end{}
-				
-		$logEntry['rawName'] = $logEntry['name'];
+		
+		$logEntry['rawName'] = $name;
+		
+		$logEntry['name'] = preg_replace('/\|c[0-9a-fA-F]{6}/', '', $logEntry['name']);
+		$logEntry['name'] = str_replace('|r', '', $logEntry['name']);
 		$splitName = explode('^', $logEntry['name']);
 		$logEntry['name'] = $splitName[0];
-		$name = $logEntry['name']; 
+		
+			// Ignore companion names
+		if (preg_match("/.*'s Companion/i", $logEntry['name'])) return true;
 		
 		if ($logEntry['gender'] != null)
 		{
@@ -6443,7 +6471,7 @@ class EsoLogParser
 	public function OnMineItem ($logEntry)
 	{
 		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp!" .  $logEntry['timeStamp']);
-						
+		
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
 		
@@ -8377,7 +8405,7 @@ class EsoLogParser
 			logData.guild = GetGuildName(guildId)
 			logData.itemLink = itemLink
 		 */
-				
+		
 		if (intval($logEntry['timeStamp1']) < self::START_GUILDSALESDATA_TIMESTAMP) return true;
 		if (!$this->salesData->IsValidSalesTimestamp($logEntry['timeStamp1'])) return $this->reportLogParseError("Ignoring old sales timestamp '{$logEntry['timeStamp1']}'!");
 		
@@ -8393,7 +8421,7 @@ class EsoLogParser
 		
 		$guildData = &$this->salesData->GetGuildData($server, $logEntry['guild']);
 		$itemData = &$this->salesData->GetItemDataByKey($server, $logEntry["itemLink"], $logEntry);
-	
+		
 		$salesData = $this->salesData->LoadSale($itemData['id'], $guildData['id'], $logEntry['eventId']);
 		
 		if ($salesData === false)
@@ -8680,7 +8708,7 @@ class EsoLogParser
 	public function CheckPingSalesDB()
 	{
 		if (!$this->PING_SALES_DB) return false;
-			
+		
 		$now = time();
 		$diffTime = $now - $this->lastSalesDBPingTime;
 		
@@ -8688,6 +8716,9 @@ class EsoLogParser
 		
 		$this->salesData->Ping();
 		$this->log("\t{$this->currentParseLine}: Pinged sales db.");
+		
+		if ($this->db) $this->db->ping();
+		if ($this->dbSlave) $this->dbSlave->ping();
 		
 		$this->lastSalesDBPingTime = $now;
 		return true;

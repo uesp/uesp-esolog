@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "30pts";
+$TABLE_SUFFIX = "30";
 
 $FIELDS = array(
 		"itemId",
@@ -31,6 +31,7 @@ $FIELDS = array(
 		"abilityName",
 		"tags",
 		"dyeData",
+		//"actorCategory",
 );
 
 $RANGE_FIELDS = array(
@@ -102,6 +103,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 			setBonusDesc5 TEXT NOT NULL,
 			tags TINYTEXT NOT NULL,
 			dyeData TEXT NOT NULL,
+			actorCategory TINYINT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_style (style),
 			INDEX index_trait (trait),

@@ -48,6 +48,37 @@ window.ESO_ITEM_TRAITS = {
 		8: "Weighted",
 		25: "Nirnhoned",
 		26: "Nirnhoned",
+		
+		// Update 30 Companion traits
+		34: "Quickened",
+		35: "Prolific",
+		36: "Focused",
+		37: "Shattering",
+		38: "Aggressive",
+		39: "Soothing",
+		40: "Augmented",
+		41: "Bolstered",
+		42: "Vigorous",
+		
+		43: "Quickened",
+		44: "Prolific",
+		45: "Focused",
+		46: "Shattering",
+		47: "Aggressive",
+		48: "Soothing",
+		49: "Augmented",
+		50: "Bolstered",
+		51: "Vigorous",
+		
+		52: "Quickened",
+		53: "Prolific",
+		54: "Focused",
+		55: "Shattering",
+		56: "Aggressive",
+		57: "Soothing",
+		58: "Augmented",
+		59: "Bolstered",
+		60: "Vigorous",
 };
 
 

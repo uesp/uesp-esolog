@@ -81,7 +81,7 @@ function renameSkills() {
 	global $archiveVersion;
 	
 	//$tables = array("cpSkills", "cpSkillDescriptions", "cpDisciplines", "minedSkills", "skillTree", "minedSkillLines");	// Pre-update 29 skill tables
-	$tables = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2Skills", "minedSkills", "skillTree", "minedSkillLines", "skillTooltips");
+	$tables = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2SkillLinks", "minedSkills", "skillTree", "minedSkillLines", "skillTooltips");
 	
 	foreach ($tables as $i => $table)
 	{

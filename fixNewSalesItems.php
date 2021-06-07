@@ -24,7 +24,7 @@ foreach ($items as $item)
 {
 	++$count;
 	if (($count % 1000) == 0) print("$count/$totalCount: Updating item...\n");
-		
+	
 	$itemId = $item['itemId'];
 	$intLevel = $item['internalLevel'];
 	$intType = $item['internalSubType'];
@@ -32,7 +32,7 @@ foreach ($items as $item)
 	$query = "SELECT * FROM uesp_esolog.minedItem WHERE itemId=$itemId AND internalLevel=$intLevel AND internalSubtype=$intType;";
 	$result = $db->query($query);
 	
-	if ($result === false) 
+	if ($result === false)
 	{
 		print("\t$count: Error loading item $itemId:$intType:$intLevel data! " . $result->error . "\n");
 		continue;

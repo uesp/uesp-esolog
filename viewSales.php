@@ -14,7 +14,7 @@ $g_EsoItemData = null;
 
 class EsoViewSalesData
 {
-	const ESOVSD_ENABLE_PROFILE = true;
+	const ESOVSD_ENABLE_PROFILE = false;
 	
 	const ESOVSD_ICON_URL = UESP_ESO_ICON_URL;
 	const ESOVSD_ICON_UNKNOWN = "unknown.png";
@@ -1312,7 +1312,7 @@ class EsoViewSalesData
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return false;
 		
-		error_log($this->lastQuery);
+		//error_log($this->lastQuery);
 		$this->LogProfile("LoadItemData()::Query", $startTime);
 		
 		if ($result->num_rows == 0)
@@ -1546,7 +1546,7 @@ class EsoViewSalesData
 		if ($result->num_rows >= $this->searchLimitCount)
 		{
 			$result = $this->db->query("SELECT FOUND_ROWS() as rowCount;");
-				
+			
 			if ($result)
 			{
 				$row = $result->fetch_assoc();

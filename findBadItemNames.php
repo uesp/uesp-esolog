@@ -9,12 +9,12 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "29pts";
+$TABLE_SUFFIX = "30";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
 $START_ID = 3;
-$END_ID = 180000;
+$END_ID = 200000;
 
 $MAXBADITEMCOUNT = 1450;
 
@@ -158,7 +158,7 @@ $SUFFIXES = array(
 
 for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 {
-	if (($itemId % 1000) == 0) print("\t$itemId: Checking for mismatched item names.\n");
+	if (($itemId % 1000) == 0) print("\t$itemId: Checking for mismatched item names ($linesOutput bad item records found so far)...\n");
 	
 	$query = "SELECT name, internalLevel, internalSubtype, equipType, armorType, weaponType from minedItem$TABLE_SUFFIX WHERE itemId=$itemId;";
 	$result = $db->query($query);
@@ -245,43 +245,45 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 			$id = $data['internalLevel'] . ":" . $data['internalSubtype'];
 			$errMsg = "";
 			
-			if ($data['equipType'] != $maxEquipType) 
+			if ($data['equipType'] != $maxEquipType)
 			{
 				$errMsg = "\t\t$id: Bad equipType {$data['equipType']} expecting '$maxEquipType'!\n";
 				$data['isBad'] = true;
 			}
 			
-			if ($data['armorType'] != $maxArmorType) 
+			if ($data['armorType'] != $maxArmorType)
 			{
 				$errMsg = "\t\t$id: Bad armorType {$data['armorType']} expecting '$maxArmorType'!\n";
 				$data['isBad'] = true;
 			}
 			
-			if ($data['weaponType'] != $maxWeaponType) 
+			if ($data['weaponType'] != $maxWeaponType)
 			{
 				$errMsg = "\t\t$id: Bad weaponType {$data['weaponType']} expecting '$maxWeaponType'!\n";
 				$data['isBad'] = true;
 			}
 			
-			if ($maxCount > $MAXBADITEMCOUNT) 
+				/* Only flag items that are composed mostly of one name. This skips items that have a lot of names
+				 * on purpose like Gylphs and other crafted items. */
+			if ($maxCount > $MAXBADITEMCOUNT)
 			{
 				$errMsg = "\t\t$id: Low item count $count!\n";
 				$data['isBad'] = true;
 			}
 			
-			if ($data['weaponPower'] > 0 && $data['type'] == 2) 
+			if ($data['weaponPower'] > 0 && $data['type'] == 2)
 			{
 				$errMsg = "\t\t$id: Found armor with weaponPower set!\n";
 				$data['isBad'] = true;
 			}
 			
-			if ($data['armorRating'] > 0 && $data['type'] == 1 && $data['weaponType'] != 14) 
+			if ($data['armorRating'] > 0 && $data['type'] == 1 && $data['weaponType'] != 14)
 			{
 				$errMsg = "\t\t$id: Found weapon with armorRating set!\n";
 				$data['isBad'] = true;
 			}
 			
-			if ($isBad) 
+			if ($isBad)
 			{
 				//$errMsg = "\t\t$id: Bad Suffix for '$name' expecting '$suffix'!\n";
 				$data['isBad'] = true;
@@ -294,12 +296,11 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 				$items[$name][$i]['isBad'] = true;
 			}
 		}
-
-	}	
+	}
 	
 	if (!$hasBad) continue;
 	
-	print("\t$itemId: Has $numNames different names:\n");
+	print("\t$itemId: Has $numNames different names\n");
 	$maxCount = 0;
 	$maxName = "";
 	
@@ -314,7 +315,7 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 			
 			foreach ($itemData as $i => $data)
 			{
-				$ids .= $data['internalLevel'] . ":" . $data['internalSubtype'] . ", "; 
+				$ids .= $data['internalLevel'] . ":" . $data['internalSubtype'] . ", ";
 			}
 			
 			$ids .= ")";
@@ -322,7 +323,7 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 		
 		print("\t\t$count: $name $ids\n");
 	}
-
+	
 	print($badOutput);
 	$output = "";
 	//$output .= "uespLog.MineSingleItemSafe_FinishCallback = uespLog.StartNextMineTest\n";
@@ -331,12 +332,12 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 	{
 		$output .= "function uespminetest$luaFunctionCount()\n";
 	}
-
+	
 	foreach ($nameCount as $name => $count)
 	{
 		//if ($count >= $maxCount) continue;
 		$itemData = $items[$name];
-	
+		
 		foreach ($itemData as $i => $data)
 		{
 			if (!$data['isBad']) continue;
@@ -347,12 +348,12 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 			if (($linesOutput % $NUMCALLSPERFUNCTION) == 0)
 			{
 				++$luaFunctionCount;
-				$output .= "end\nfunction uespminetest$luaFunctionCount()\n";					
+				$output .= "end\nfunction uespminetest$luaFunctionCount()\n";
 			}
 		}
 	}
-
-	file_put_contents("fixitems.lua", $output, FILE_APPEND);	
+	
+	file_put_contents("fixitems.lua", $output, FILE_APPEND);
 }
 
 if ($linesOutput > 0) 

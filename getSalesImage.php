@@ -192,7 +192,6 @@ class EsoGetSalesImage
 			if ($row['listTimestamp'] > 0) $this->listData[] = $row;
 		}
 		
-		
 		return true;
 	}
 	
@@ -203,8 +202,12 @@ class EsoGetSalesImage
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to load item '{$this->itemId}' trends data!");
 		
+		$timestamp = time() - $this->timePeriod;
+		
 		while (($row = $result->fetch_assoc()))
 		{
+			if ($row['timestamp'] < $timestamp) continue;
+			
 			$row['bothCount'] = intval($row['sellCount']) + intval($row['buyCount']);
 			$row['bothItemCount'] = intval($row['sellItemCount']) + intval($row['buyItemCount']);
 			

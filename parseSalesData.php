@@ -10,6 +10,8 @@ require_once("esoPotionData.php");
 
 class EsoSalesDataParser
 {
+	const ALT_MINEDITEM_TABLE = "minedItem30pts";	// Alternate table to look for mined item data in (leave blank to ignore) 
+	
 	const SKIP_CREATE_TABLES = false;
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";
 	const ESD_LISTTIME_RANGE = 10;
@@ -631,12 +633,12 @@ class EsoSalesDataParser
 			$row['unitPrice'] = $row['price'] / $row['qnt'];
 			$salesData[] = $row;
 		}
-			
-		if (count($salesData) == 0) 
+		
+		if (count($salesData) == 0)
 		{
 			$this->reportError("No sales found for item $server:$itemId!");
 			return false;
-		}		
+		}
 		
 		return $salesData;
 	}
@@ -664,10 +666,21 @@ class EsoSalesDataParser
 	{
 		//$salesData = $this->LoadAllSalesForItem($item['server'], $item['id']);
 		//$salesData = $this->Load30DaysSalesForItem($item['server'], $item['id']);
-		$salesData = $this->LoadDaysSalesForItem($item['server'], $item['id'], $days);
 		//$salesData = $this->LoadCountSalesForItem($item['server'], $item['id'], $days);
 		
-		if ($salesData === false) 
+			/* Only load 7 days of prices at first. If there's not enough data then try to load the full 30 days.
+			 * This is an attempt to speed updates for items with 1000s of data points where loading all 30 days is quite slow (10-100 seconds). */
+		if ($days == 30)
+		{
+			$salesData = $this->LoadDaysSalesForItem($item['server'], $item['id'], 7);
+			if ($salesData === false || count($salesData) < 100) $salesData = $this->LoadDaysSalesForItem($item['server'], $item['id'], $days);
+		}
+		else
+		{
+			$salesData = $this->LoadDaysSalesForItem($item['server'], $item['id'], $days);
+		}
+		
+		if ($salesData === false)
 		{
 			$salesData = $this->LoadCountSalesForItem($item['server'], $item['id'], 100);
 			if ($salesData === false) return false;
@@ -688,7 +701,7 @@ class EsoSalesDataParser
 		foreach ($salesData as $sale)
 		{
 			if ($sale['outlier'] === true) continue;
-				
+			
 			$validSalesData[] = $sale;
 			if ($sale['listTimestamp'] > 0) $listData[] = $sale;
 			if ($sale['buyTimestamp']  > 0) $soldData[] = $sale;
@@ -739,7 +752,7 @@ class EsoSalesDataParser
 			++$i;
 			
 			$sum += $data['unitPrice'];
-			++$count;			
+			++$count;
 		}
 		
 		if ($count == 0) return 0;
@@ -761,7 +774,7 @@ class EsoSalesDataParser
 		$maxPrice = -1;
 		$minTime = time();
 		$maxTime = 0;
-	
+		
 		foreach ($salesData as $sale)
 		{
 			$price = intval($sale['price']);
@@ -775,44 +788,43 @@ class EsoSalesDataParser
 			{
 				$soldSum += $price;
 				$soldCount += $qnt;
-	
+				
 				if ($minPrice > $unitPrice) $minPrice = $unitPrice;
 				if ($maxPrice < $unitPrice) $maxPrice = $unitPrice;
 				if ($minTime > $soldTime) $minTime = $soldTime;
 				if ($maxTime < $soldTime) $maxTime = $soldTime;
 			}
-				
+			
 			if ($listTime > 0)
 			{
 				$listSum += $price;
 				$listCount += $qnt;
-	
+				
 				if ($minPrice > $unitPrice) $minPrice = $unitPrice;
 				if ($maxPrice < $unitPrice) $maxPrice = $unitPrice;
 				if ($minTime > $listTime) $minTime = $listTime;
 				if ($maxTime < $listTime) $maxTime = $listTime;
 			}
 		}
-	
-	
+		
 		$result['minTime'] = $minTime;
 		$result['maxTime'] = time();
 		$result['maxTimeAction'] = $maxTime;
 		$result['minPrice'] = $minPrice;
 		$result['maxPrice'] = $maxPrice;
-	
+		
 		$result['soldAvgPrice'] = 0;
 		$result['listAvgPrice'] = 0;
 		$result['totalAvgPrice'] = 0;
-	
+		
 		if ($soldCount > 0) $result['soldAvgPrice'] = $soldSum / $soldCount;
 		$result['soldItemCount'] = $soldCount;
 		if ($listCount > 0) $result['listAvgPrice'] = $listSum / $listCount;
 		$result['listItemCount'] = $listCount;
-	
+		
 		$result['totalItemCount'] = $soldCount + $listCount;
 		$result['totalAvgPrice'] = ($soldSum + $listSum) / $result['totalItemCount'];
-	
+		
 		$result['minPriceLimit'] = $result['minPrice'];
 		$result['maxPriceLimit'] = $result['maxPrice'];
 		
@@ -825,35 +837,35 @@ class EsoSalesDataParser
 		$sumSquareAll = 0;
 		$sumSquareListed = 0;
 		$sumSquareSold = 0;
-	
+		
 		foreach ($salesData as $sale)
 		{
 			$price = intval($sale['price']);
 			$qnt = intval($sale['qnt']);
 			$unitPrice = $sale['unitPrice'];
-	
+		
 			$sumSquareAll += pow($unitPrice - $stats['totalAvgPrice'], 2);
-	
+		
 			if ($sale['buyTimestamp']  > 0)
 			{
 				$sumSquareSold += pow($unitPrice - $stats['soldAvgPrice'], 2);
 			}
-	
+			
 			if ($sale['listTimestamp'] > 0)
 			{
 				$sumSquareListed += pow($unitPrice - $stats['listAvgPrice'], 2);
 			}
 		}
-	
+		
 		$stats['totalPriceStdDev'] = 0;
 		$stats['soldPriceStdDev'] = 0;
 		$stats['listedPriceStdDev'] = 0;
-	
+		
 		if ($stats['totalItemCount'] > 0)
 		{
 			$stats['totalPriceStdDev'] = sqrt($sumSquareAll / floatval($stats['totalItemCount']));
 		}
-	
+		
 		if ($stats['soldItemCount'] > 0)
 		{
 			$stats['soldPriceStdDev'] = sqrt($sumSquareSold / floatval($stats['soldItemCount']));
@@ -925,7 +937,7 @@ class EsoSalesDataParser
 		$itemCount = 0;
 		$totalCount = count($this->itemData);
 		
-		$this->log("Updating all modified items...");		
+		$this->log("Updating all modified items...");
 		
 		foreach ($this->itemData as $cacheId => &$itemData)
 		{
@@ -1033,7 +1045,7 @@ class EsoSalesDataParser
 		if ($result === FALSE) return $this->reportError("Failed to load items record with id #$itemId!");
 		
 		if ($result->num_rows == 0) return false;
-			
+		
 		$rowData = $result->fetch_assoc();
 		$rowData['__dirty'] = false;
 		
@@ -1061,14 +1073,29 @@ class EsoSalesDataParser
 		$result = $this->dbLog->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
 		
-		if ($result->num_rows == 0) 
+		if ($result->num_rows == 0)
 		{
 			$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
 			$result = $this->dbLog->query($this->lastQuery);
 			if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:1:1:$itemPotionData!");
+			
+			if ($result->num_rows == 0 && self::ALT_MINEDITEM_TABLE != "")
+			{
+				$table = self::ALT_MINEDITEM_TABLE;
+				$this->lastQuery = "SELECT * FROM uesp_esolog.$table WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
+				$result = $this->dbLog->query($this->lastQuery);
+				if ($result === FALSE) return $this->reportError("Failed to load mined item data record from $table matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
+				
+				if ($result->num_rows == 0)
+				{
+					$this->lastQuery = "SELECT * FROM uesp_esolog.$table WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
+					$result = $this->dbLog->query($this->lastQuery);
+					if ($result === FALSE) return $this->reportError("Failed to load mined item data record from $table matching $itemId:1:1:$itemPotionData!");
+				}
+			}
 		}
 		
-		if ($result->num_rows == 0) return $this->reportError("Failed to find mined item data record matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");;
+		if ($result->num_rows == 0) return $this->reportError("Failed to find mined item data record matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
 		
 		return $result->fetch_assoc();
 	}
@@ -1088,7 +1115,7 @@ class EsoSalesDataParser
 		if ($minedItemData === false)
 		{
 			$icon = "";
-			$name = $itemName;
+			$name = "";
 			$setName = "";
 			$equipType = "0";
 			$weaponType = "0";
@@ -1285,7 +1312,7 @@ class EsoSalesDataParser
 		$itemData['goodPrice'] = 0;
 		$itemData['goodSoldPrice'] = 0;
 		$itemData['goodListPrice'] = 0;
-				
+		
 		++$this->localNewItemCount;
 		
 		return $itemData;
@@ -1301,7 +1328,7 @@ class EsoSalesDataParser
 		$potionData = $itemRawData['potionData'];
 		$extraData = "";
 		$itemType = 0;
-				
+		
 		$itemLinkData = $this->ParseItemLink($itemLink);
 		if ($itemLinkData === false) return false;
 		
@@ -1309,7 +1336,7 @@ class EsoSalesDataParser
 		{
 			$extraData = "{$itemLinkData['writ1']}:{$itemLinkData['writ2']}:{$itemLinkData['writ3']}:{$itemLinkData['writ4']}:{$itemLinkData['writ5']}:{$itemLinkData['writ6']}";
 		}
-	
+		
 		if ($itemId == null) 
 		{
 			$itemId = intval($itemLinkData['itemId']);

@@ -8,6 +8,7 @@ require_once(__DIR__."/esoCommon.php");
 class CEsoViewSkills
 {
 	const ESOVS_ENABLE_PROFILE = false;
+	CONST ESOVS_USE_MEMCACHE = false;		// Not completely implemented or tested, does not drastically increase speed at the moment
 	
 	public $ESOVS_HTML_TEMPLATE = "";
 	public $ESOVS_HTML_TEMPLATE_EMBED = "";
@@ -29,7 +30,7 @@ class CEsoViewSkills
 	public $skills = array();
 	public $skillIds = array();
 	public $skillTooltips = array();
-	public $hasSkillTooltips = true; 
+	public $hasSkillTooltips = true;
 	public $skillTree = array();
 	public $skillSearchIds = array();
 	public $setSkills = array();
@@ -51,6 +52,7 @@ class CEsoViewSkills
 	public $baseUrl = "";
 	public $basePath = "";
 	public $baseResource = "";
+	public $isUsingCachedData = false;
 	
 	public $initialData = array();
 	public $activeData = array();
@@ -223,6 +225,24 @@ class CEsoViewSkills
 	{
 		$startTime = microtime(true);
 		
+		if (false && self::ESOVS_USE_MEMCACHE)
+		{
+			$this->skills = GetUespMemcache("uesp_skills_skills");
+			$this->skillIds = GetUespMemcache("uesp_skills_skillIds");
+			$this->setSkills = GetUespMemcache("uesp_skills_setSkills");
+			$this->skillTree = GetUespMemcache("uesp_skills_skillTree");
+			$this->skillSearchIds = GetUespMemcache("uesp_skills_skillSearchIds");
+			
+			if ($this->skills && $this->skillIds && $this->setSkills && $this->skillTree && $this->skillSearchIds)
+			{
+				$this->isUsingCachedData = true;
+				$this->LogProfile("LoadSkills(cached)", $startTime);
+				return true;
+			}
+			
+			//error_log("Skills Data: {$this->skills}:{$this->skillIds}:{$this->setSkills}:{$this->skillTree}:{$this->skillSearchIds}");
+		}
+		
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
 		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id;";
@@ -235,10 +255,10 @@ class CEsoViewSkills
 		{
 			$id = intval($row['abilityId']);
 			$index = count($this->skills);
-				
+			
 			$row['__isOutput'] = false;
 			$row['__index'] = $index;
-				
+			
 			$this->skills[] = $row;
 			$this->skillIds[$id] = $row;
 		}
@@ -262,7 +282,7 @@ class CEsoViewSkills
 			$row['baseName'] = $row['name'];
 			$row['maxRank'] = -1;
 			
-			$this->setSkills[$row['setName']] = $row;
+			if ($row['setName']) $this->setSkills[$row['setName']] = $row;
 			$this->skills[] = $row;
 			$this->skillIds[$id] = $row;
 		}
@@ -272,6 +292,16 @@ class CEsoViewSkills
 		$this->CreateSkillTree();
 		$this->CreateSkillSearchIds();
 		//$this->FindBaseAbilityForInitialActiveData();
+		
+		if (false && self::ESOVS_USE_MEMCACHE)
+		{
+			SetUespMemcache("uesp_skills_skills", $this->skills);
+			SetUespMemcache("uesp_skills_skillIds", $this->skillIds);
+			SetUespMemcache("uesp_skills_setSkills", $this->setSkills);
+			SetUespMemcache("uesp_skills_skillTree", $this->skillTree);
+			SetUespMemcache("uesp_skills_skillSearchIds", $this->skillSearchIds);
+		}
+		
 		return true;
 	}
 
@@ -290,7 +320,7 @@ class CEsoViewSkills
 		foreach($this->skillTree as &$skillType)
 		{
 			uksort($skillType, 'CompareEsoSkillLineName_Priv');
-				
+			
 			foreach($skillType as &$skillLine)
 			{
 				usort($skillLine, 'CompareEsoSkillLine_Priv');
@@ -493,14 +523,14 @@ class CEsoViewSkills
 			}
 		}
 	}
-
-
-	private function GetTableSuffix()
+	
+	
+	public function GetTableSuffix()
 	{
 		return GetEsoItemTableSuffix($this->version);
 	}
-
-
+	
+	
 	public function GetVersionTitle()
 	{
 		if ($this->GetTableSuffix() == "") return "";
@@ -889,7 +919,7 @@ class CEsoViewSkills
 		else
 		{
 			$costDesc = $cost;
-				
+			
 			if ($rank > 8)
 			{
 				$morph = 2;
@@ -1051,6 +1081,18 @@ class CEsoViewSkills
 	public function GetSkillsJson()
 	{
 		$startTime = microtime(true);
+		
+		if (self::ESOVS_USE_MEMCACHE)
+		{
+			$output = GetUespMemcache("uesp_skills_skillsjson_" . GetEsoDisplayVersion($this->version));
+			
+			if ($output)
+			{
+				$this->LogProfile("GetSkillsJson(cache)", $startTime);
+				return $output;
+			}
+		}
+		
 		$skillIds = array();
 		
 		foreach ($this->skills as $skill)
@@ -1068,6 +1110,11 @@ class CEsoViewSkills
 		
 		$output = json_encode($skillIds);
 		
+		if (self::ESOVS_USE_MEMCACHE)
+		{
+			SetUespMemcacheCompress("uesp_skills_skillsjson_" . GetEsoDisplayVersion($this->version), $output);
+		}
+		
 		$this->LogProfile("GetSkillsJson()", $startTime);
 		return $output;
 	}
@@ -1076,6 +1123,18 @@ class CEsoViewSkills
 	public function GetSetSkillsJson()
 	{
 		$startTime = microtime(true);
+		
+		if (self::ESOVS_USE_MEMCACHE)
+		{
+			$output = GetUespMemcache("uesp_skills_setskillsjson_" . GetEsoDisplayVersion($this->version));
+			
+			if ($output)
+			{
+				$this->LogProfile("GetSetSkillsJson(cache)", $startTime);
+				return $output;
+			}
+		}
+		
 		$skillIds = array();
 		
 		foreach ($this->setSkills as $skill)
@@ -1093,6 +1152,11 @@ class CEsoViewSkills
 		}
 		
 		$output = json_encode($skillIds);
+		
+		if (self::ESOVS_USE_MEMCACHE)
+		{
+			SetUespMemcacheCompress("uesp_skills_setskillsjson_".GetEsoDisplayVersion($this->version),  $output);
+		}
 		
 		$this->LogProfile("GetSetSkillsJson()", $startTime);
 		return $output;
@@ -1350,9 +1414,6 @@ class CEsoViewSkills
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{rawSkillData}' => "",
 				'{coefSkillData}' => "",
-				'{skillsJson}' => $this->GetSkillsJson(),
-				'{setSkillsJson}' => $this->GetSetSkillsJson(),
-				'{skillSearchIdJson}' => $this->GetSkillSearchIdsJson(),
 				'{skillHighlightId}' => $this->highlightSkillId,
 				'{skillHighlightType}' => $this->highlightSkillType,
 				'{skillHighlightLine}' => $this->highlightSkillLine,
@@ -1381,6 +1442,9 @@ class CEsoViewSkills
 				'{elfBaneSkillsJson}' => json_encode($ESO_ELFBANE_SKILLS),
 				'{skillHistoryLink}' => $this->GetSkillHistoryLink(),
 				'{hasV2SkillTooltips}' => $this->hasSkillTooltips ? "1" : "0",
+				'{skillSearchIdJson}' => $this->GetSkillSearchIdsJson(),
+				'{setSkillsJson}' => $this->GetSetSkillsJson(),
+				'{skillsJson}' => $this->GetSkillsJson(),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1398,7 +1462,7 @@ class CEsoViewSkills
 	public function CreateErrorOutputHtml()
 	{
 		$startTime = microtime(true);
-	
+		
 		$replacePairs = array(
 				'{skillTree}' => "",
 				'{skillContent}'  => "Permission Denied!",

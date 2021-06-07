@@ -7,10 +7,10 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "29pts";
-$VERSION = "29";
+$TABLEPREFIX = "30";
+$VERSION = "30";
 $FIRSTID = 3;
-$LASTID = 180000;
+$LASTID = 200000;
 //$MAGICCOUNT = 1483;
 //$MAGICCOUNT = 1533;
 $MAGICCOUNT = 1532;
@@ -72,7 +72,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	{
 		$output .= "\tuespLog.MineSingleItemSafe($id) \n";
 		++$linesOutput;
-				
+		
 		if (($linesOutput % $MAX_ITEMS_PER_FUNCTION) == 0)
 		{
 			//$output .= "\tuespLog.Msg('Done uespminetest$luaFunctionCount...')\n";

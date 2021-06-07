@@ -235,7 +235,7 @@ $ESO_ITEMTRAIT15_FULLTEXTS = array(
 		32 => "Jewelry Protective",
 		28 => "Jewelry Swift",
 		30 => "Jewelry Triune",
- 	
+		
 		0 => "",
 		2 => "Weapon Charged",
 		5 => "Weapon Defending",
@@ -249,6 +249,38 @@ $ESO_ITEMTRAIT15_FULLTEXTS = array(
 		8 => "Weapon Decisive",
 		25 => "Armor Nirnhoned",
 		26 => "Weapon Nirnhoned",
+		
+			// Update 30 Companion traits
+		34 => "Weapon Quickened",
+		35 => "Weapon Prolific",
+		36 => "Weapon Focused",
+		37 => "Weapon Shattering",
+		38 => "Weapon Aggressive",
+		39 => "Weapon Soothing",
+		40 => "Weapon Augmented",
+		41 => "Weapon Bolstered",
+		42 => "Weapon Vigorous",
+		
+		43 => "Armor Quickened",
+		44 => "Armor Prolific",
+		45 => "Armor Focused",
+		46 => "Armor Shattering",
+		47 => "Armor Aggressive",
+		48 => "Armor Soothing",
+		49 => "Armor Augmented",
+		50 => "Armor Bolstered",
+		51 => "Armor Vigorous",
+		
+		52 => "Jewelry Quickened",
+		53 => "Jewelry Prolific",
+		54 => "Jewelry Focused",
+		55 => "Jewelry Shattering",
+		56 => "Jewelry Aggressive",
+		57 => "Jewelry Soothing",
+		58 => "Jewelry Augmented",
+		59 => "Jewelry Bolstered",
+		60 => "Jewelry Vigorous",
+		
 );
 
 
@@ -599,6 +631,37 @@ $ESO_ITEMTRAIT15_TEXTS = array(
 		8 => "Decisive",
 		25 => "Nirnhoned",
 		26 => "Nirnhoned",
+		
+			// Update 30 Companion traits
+		34 => "Quickened",
+		35 => "Prolific",
+		36 => "Focused",
+		37 => "Shattering",
+		38 => "Aggressive",
+		39 => "Soothing",
+		40 => "Augmented",
+		41 => "Bolstered",
+		42 => "Vigorous",
+		
+		43 => "Quickened",
+		44 => "Prolific",
+		45 => "Focused",
+		46 => "Shattering",
+		47 => "Aggressive",
+		48 => "Soothing",
+		49 => "Augmented",
+		50 => "Bolstered",
+		51 => "Vigorous",
+		
+		52 => "Quickened",
+		53 => "Prolific",
+		54 => "Focused",
+		55 => "Shattering",
+		56 => "Aggressive",
+		57 => "Soothing",
+		58 => "Augmented",
+		59 => "Bolstered",
+		60 => "Vigorous",
 );
 
 
@@ -643,6 +706,37 @@ $ESO_ITEMTRAIT_DESCRIPTIONS = array(
 		6 => "Increases experience gained from kills by |cffffff{value}|r%.",
 		8 => "When you gain Ultimate you have a |cffffff{value}|r% chance to gain 1 additional Ultimate.",
 		26 => "Increases Damage of this weapon by |cffffff{value}|r%.",
+		
+			// Update 30 Companion traits
+		34 => "Reduces ability cooldowns by |cffffff5.2|r%.",
+		35 => "Increases Ultimate generation by |cffffff26|r%.",
+		36 => "Increases Critical Strike Rating by |cffffff160|r.",
+		37 => "Increases Penetration by |cffffff2600|r.",
+		38 => "Increases damage done by |cffffff3.4|r%.",
+		39 => "Increases healing done by |cffffff3.4|r%.",
+		40 => "Increases duration of buffs and debuffs by |cffffff5.2|r%.",
+		41 => "Reduces damage taken by |cffffff3.4|r%.",
+		42 => "Increases Max Health by |cffffff5.2|r%.",
+		
+		43 => "Reduces ability cooldowns by |cffffff2.6|r%.",
+		44 => "Increases Ultimate generation by |cffffff13|r%.",
+		45 => "Increases Critical Strike Rating by |cffffff130|r.",
+		46 => "Increases Penetration by |cffffff1300|r.",
+		47 => "Increases damage done by |cffffff1.7|r%.",
+		48 => "Increases healing done by |cffffff1.7|r%.",
+		49 => "Increases duration of buffs and debuffs by |cffffff2.6|r%.",
+		50 => "Reduces damage taken by |cffffff1.7|r%.",
+		51 => "Increases Max Health by |cffffff2.6|r%.",
+		
+		52 => "Reduces ability cooldowns by |cffffff2.6|r%.",
+		53 => "Increases Ultimate generation by |cffffff13|r%.",
+		54 => "Increases Critical Strike Rating by |cffffff130|r.",
+		55 => "Increases Penetration by |cffffff1300|r.",
+		56 => "Increases damage done by |cffffff1.7|r%.",
+		57 => "Increases healing done by |cffffff1.7|r%.",
+		58 => "Increases duration of buffs and debuffs by |cffffff2.6|r%.",
+		59 => "Reduces damage taken by |cffffff1.7|r%.",
+		60 => "Increases Max Health by |cffffff2.6|r%.",
 );
 
 
@@ -3920,7 +4014,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 29;
+	return 30;
 }
 
 
@@ -4077,13 +4171,13 @@ function GetEsoItemTableSuffix($version)
 		case '29pts':
 			return "29pts";
 		case '29':
-			return "";
+			return "29";
 		case '30pts':
 			return "30pts";
 		case '30pts2':
 			return "30pts2";
 		case '30':
-			return "30";
+			return "";
 	}
 
 	return "";
@@ -5117,4 +5211,57 @@ function LoadEsoTraitSummaryDescription ($trait, $equipType, $db, $version="")
 	$row = $result->fetch_assoc();
 
 	return $row['traitDesc'];
+}
+
+
+$uespMemcache = null;
+
+
+function ConnectUespMemcache()
+{
+	global $uespMemcache;
+	global $UESP_SERVER_MEMCACHED;
+	
+	if ($uespMemcache != null) return true;
+	
+	$uespMemcache = new Memcache;
+	$result = $uespMemcache->connect($UESP_SERVER_MEMCACHED, 11000);
+	
+	if (!$result)
+	{
+		$uespMemcache = null;
+		return false;
+	}
+	
+	return true;
+}
+
+
+function GetUespMemcache($objName)
+{
+	global $uespMemcache;
+	
+	if (!ConnectUespMemcache()) return false;
+	
+	return $uespMemcache->get($objName);
+}
+
+
+function SetUespMemcache($objName, $objValue)
+{
+	global $uespMemcache;
+	
+	if (!ConnectUespMemcache()) return false;
+	
+	return $uespMemcache->set($objName, $objValue);
+}
+
+
+function SetUespMemcacheCompress($objName, $objValue)
+{
+	global $uespMemcache;
+	
+	if (!ConnectUespMemcache()) return false;
+	
+	return $uespMemcache->set($objName, $objValue, MEMCACHE_COMPRESSED);
 }
