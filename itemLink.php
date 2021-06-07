@@ -1777,16 +1777,14 @@ class CEsoItemLink
 			$result = preg_match("#effect(?:iveness|) by ([0-9]\.?[0-9]*)#", $traitDesc, $matches);
 			$traitValue = 0;
 			
-			if ($result && $matches[1]) 
+			if ($result && $matches[1])
 			{
-				$traitValue = 1 + ((float) $matches[1]) / 100 * (1 + $this->weaponTraitFactor);
-				if ($trait == 16) $armorFactor *= $traitValue;
-				if ($trait == 33) $armorFactor *= $traitValue;
+				$armorTraitValue = 1 + ((float) $matches[1]) / 100;
+				$weaponTraitValue = 1 + ((float) $matches[1]) / 100 * (1 + $this->weaponTraitFactor);
 				
-				if ($trait ==  4)
-				{
-					$weaponFactor *= $traitValue;
-				}
+				if ($trait == 16) $armorFactor *= $armorTraitValue;
+				if ($trait == 33) $armorFactor *= $armorTraitValue;
+				if ($trait ==  4) $weaponFactor *= $weaponTraitValue;
 			}
 		}
 		else if ($isDefaultEnchant && $this->transmuteTrait > 0)
@@ -1850,7 +1848,7 @@ class CEsoItemLink
 					
 				if ($result && $matches[1])
 				{
-					$traitValue = 1 + ((float) $matches[1]) / 100;
+					$traitValue = 1 + ((float) $matches[1]) / 100 * (1 + $this->weaponTraitFactor);
 					$weaponFactor *= $traitValue;
 				}
 			}
@@ -1865,7 +1863,7 @@ class CEsoItemLink
 		$itemType = $this->itemRecord['type'];
 		
 			/* Half-enchants on 1H weapons, update 21 */
-		if ($weaponType == 1 || $weaponType == 2 || $weaponType == 3 || $weaponType == 11)
+		if (!$isDefaultEnchant && ($weaponType == 1 || $weaponType == 2 || $weaponType == 3 || $weaponType == 11))
 		{
 			$weaponFactor *= 0.5;
 		}
