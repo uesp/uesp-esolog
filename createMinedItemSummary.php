@@ -7,8 +7,9 @@ require("esoCommon.php");
 $TABLE_SUFFIX = "30";
 
 $FIELDS = array(
-		"itemId",
 		"name",
+		/*
+		"itemId",
 		"description",
 		"materialLevelDesc",
 		"style",
@@ -25,40 +26,42 @@ $FIELDS = array(
 		"isVendorTrash",
 		"isArmorDecay",
 		"isConsumable",
-		"icon",
 		"setName",
-		"enchantName",
 		"abilityName",
 		"tags",
-		"dyeData",
-		//"actorCategory",
+		"dyeData",*/
+		"icon",
+		"enchantName",
 );
 
 $RANGE_FIELDS = array(
 		"level",
+		"quality",
 		"value",
 		"weaponPower",
 		"armorRating",
 		"abilityDesc",
 		"enchantDesc",
+		"maxCharges",
+		"glyphMinLevel",
 		"traitDesc",
-		"quality",
-		"traitAbilityDesc",
+		//"traitAbilityDesc",
 		"setBonusDesc1",
 		"setBonusDesc2",
 		"setBonusDesc3",
 		"setBonusDesc4",
 		"setBonusDesc5",
+		"setBonusDesc6",
+		"setBonusDesc7",
 );
 
-if (intval($TABLE_SUFFIX) <= 8)
-{
-	unset($FIELDS['tags']);
-}
+// if (intval($TABLE_SUFFIX) <= 8) unset($FIELDS['tags']);
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
+/* Old method
+ * 
 $query = "DROP TABLE minedItemSummaryTmp IF EXISTS;";
 $result = $db->query($query);
 
@@ -116,9 +119,21 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 		) ENGINE=MYISAM;";
 
 $result = $db->query($query);
-if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error);
+if (!$result) exit("ERROR: Database query error creating table!\n" . $db->error); */
 
-$FIRSTID = 3;		// 1/2 are potion/poison data
+/*
+$result = $db->query("SELECT * FROM minedItemSummary$TABLE_SUFFIX;");
+if (!$result) exit("ERROR: Database query error loading existing mined item summary table!\n" . $db->error);
+
+$minedItemSummaries = array();
+
+while ($row = $result->fetch_assoc())
+{
+	$itemId = intval($row['itemId']);
+	$minedItemSummaries[$itemId] = $row;
+} */
+
+$FIRSTID = 3;			// 1/2 are potion/poison data
 $LASTID = 200000;
 $MINSUBTYPE = 0;		// Has problems with item enchantments missing
 $MINSUBTYPE = 2;
@@ -128,21 +143,30 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 {
 	if ($id % 100 == 0) print("Parsing Item $id...\n");
 	
-	$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
+	/*$minedItemSummary = $minedItemSummaries[$id];
+	
+	if ($minedItemSummary == null) 
+	{
+		$minedItemSummary = [];
+		$minedItemSummary['itemId'] = $id;
+		print("\tWarning: Found null mined\ItemSummary!\n");
+	} */
+	
+	$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 	$minItemData = $result->fetch_assoc();
 	
 	if (!$minItemData)
 	{
-		$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=1 AND internalSubtype=1 LIMIT 1;";
+		$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=1 AND internalSubtype=1 LIMIT 1;";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
 		
 		if (!$minItemData) 
 		{
-			$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id LIMIT 1;";
+			$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id LIMIT 1;";
 			$result = $db->query($query);
 			if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
 			$minItemData = $result->fetch_assoc();
@@ -151,21 +175,21 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		if (!$minItemData) continue;
 	}
 	
-	$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
+	$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (finding max item)!\n" . $db->error);
 	$maxItemData = $result->fetch_assoc();
 	
 	if (!$maxItemData)
 	{
-		$query = "SELECT * FROM minedItem".$TABLE_SUFFIX." where itemId=$id ORDER BY value DESC LIMIT 1;";
+		$query = "SELECT * FROM minedItem$TABLE_SUFFIX where itemId=$id ORDER BY value DESC LIMIT 1;";
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error (finding max item v2)!\n" . $db->error);
 		$maxItemData = $result->fetch_assoc();
 	}
 	
 	$allNames = array();
-	$query = "SELECT name from minedItem".$TABLE_SUFFIX." where itemId=$id;";
+	$query = "SELECT name from minedItem$TABLE_SUFFIX where itemId=$id;";
 	$result = $db->query($query);
 	if (!$result) exit("ERROR: Database query error (finding all item names)!\n" . $db->error);
 	
@@ -189,7 +213,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	{
 		$value = "";
 		
-		if (array_key_exists($field, $minItemData)) 
+		if (array_key_exists($field, $minItemData))
 		{
 			//$value = $db->real_escape_string($minItemData[$field]);
 			$value = $minItemData[$field];
@@ -277,11 +301,26 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	$columns[] = "allNames";
 	$values[] = "'" . $db->real_escape_string($allNameValue) . "'";;
 	
+	/*
 	$query  = "INSERT INTO minedItemSummaryTmp(" . implode(",", $columns) . ") VALUES(" . implode(",", $values) . ");";
 	$result = $db->query($query);
 	if (!$result) print("ERROR: Database query error (writing item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
+	*/
+	
+	$querySets = [];
+	
+	foreach ($columns as $i => $col)
+	{
+		$value = $values[$i];
+		$querySets[] = "$col=$value";
+	}
+	
+	$query  = "UPDATE minedItemSummary$TABLE_SUFFIX SET " . implode(",", $querySets) . " WHERE itemId='$id';";
+	$result = $db->query($query);
+	if (!$result) print("ERROR: Database query error (updating item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
 }
 
+/*
 $query = "DROP TABLE IF EXISTS minedItemSummary$TABLE_SUFFIX;";
 $result = $db->query($query);
 if (!$result) print("Error: Failed to delete table to minedItemSummary$TABLE_SUFFIX!\n{$db->error}");
@@ -289,3 +328,4 @@ if (!$result) print("Error: Failed to delete table to minedItemSummary$TABLE_SUF
 $query = "RENAME TABLE minedItemSummaryTmp to minedItemSummary$TABLE_SUFFIX;";
 $result = $db->query($query);
 if (!$result) print("Error: Failed to rename temp table to minedItemSummary$TABLE_SUFFIX!\n{$db->error}");
+*/

@@ -226,7 +226,7 @@ function UpdateItemSlotArray (&$outputArray, $item)
 	
 	$output = &$outputArray;
 	
-	if ($armorTypeText != "") 
+	if ($armorTypeText != "")
 	{
 		if (!array_key_exists($armorTypeText, $outputArray)) $outputArray[$armorTypeText] = array();
 		$output = &$outputArray[$armorTypeText];
@@ -283,6 +283,8 @@ $query = "CREATE TABLE IF NOT EXISTS setSummary".$TABLE_SUFFIX."(
 			setBonusDesc3 TEXT NOT NULL,
 			setBonusDesc4 TEXT NOT NULL,
 			setBonusDesc5 TEXT NOT NULL,
+			setBonusDesc6 TEXT NOT NULL,
+			setBonusDesc7 TEXT NOT NULL,
 			setBonusDesc TEXT NOT NULL,
 			itemSlots TEXT NOT NULL,
 			gameId INTEGER NOT NULL DEFAULT 0,

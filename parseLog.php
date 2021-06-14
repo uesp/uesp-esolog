@@ -77,15 +77,12 @@ class EsoLogParser
 	//const START_MINEITEM_TIMESTAMP = 4743975994677000000;	//v12    1475650800
 	//const START_MINEITEM_TIMESTAMP = 4744009321690431488;	//v13pts 1483541100
 	//const START_MINEITEM_TIMESTAMP = 4744021174005006336; //v13 1486388686
-														  //v14pts ? 
 	//const START_MINEITEM_TIMESTAMP = 4744059227864039424; //v14 1495461433
-														  //v15pts?
 	//const START_MINEITEM_TIMESTAMP = 4744089672613888000; //v15 1502720027
 	//const START_MINEITEM_TIMESTAMP = 4744115047104512000; //v16 1508769777
 	//const START_MINEITEM_TIMESTAMP = ?; //v17pts ?
 	//const START_MINEITEM_TIMESTAMP = 4744155630808000000; //v17 1518445680
 	//const START_MINEITEM_TIMESTAMP = 4744191147415437312; //v18 1526913505
-															//v19pts?
 	//const START_MINEITEM_TIMESTAMP = 4744221569218248704; //v19 1534166628
 	//const START_MINEITEM_TIMESTAMP = ; //v20pts ?
 	//const START_MINEITEM_TIMESTAMP = 4744246935181852672; //v20 1540214345
@@ -208,65 +205,13 @@ class EsoLogParser
 	const RESOURCE_JEWELRY = 8;
 	
 	
-	public static $TABLES_WITH_IDFIELD = array(
+	public static $TABLES_WITH_CUSTOMIDFIELD = array(
 			"uniqueQuest",
 			"antiquityLeads",
 			"minedSkills",
-			"minedSkills8",
-			"minedSkills8pts",
-			"minedSkills9",
-			"minedSkills9pts",
-			"minedSkills10pts",
-			"minedSkills10",
-			"minedSkills11",
-			"minedSkills11pts",
-			"minedSkills12",
-			"minedSkills12pts",
-			"minedSkills13",
-			"minedSkills13pts",
-			"minedSkills14pts",
-			"minedSkills14",
-			"minedSkills15pts",
-			"minedSkills15",
-			"minedSkills16pts",
-			"minedSkills16",
-			"minedSkills17pts",
-			"minedSkills17",
-			"minedSkills18pts",
-			"minedSkills18",
-			"minedSkills19pts",
-			"minedSkills19",
-			"minedSkills20pts",
-			"minedSkills20",
-			"minedSkills21pts",
-			"minedSkills21",
-			"minedSkills22pts",
-			"minedSkills22",
-			"minedSkills23pts",
-			"minedSkills23",
-			"minedSkills24pts",
-			"minedSkills24",
-			"minedSkills25pts",
-			"minedSkills25",
-			"minedSkills26pts",
-			"minedSkills26",
-			"minedSkills27pts",
-			"minedSkills27",
-			"minedSkills28pts",
-			"minedSkills28",
-			"minedSkills29pts",
-			"minedSkills29",
-			"minedSkills30pts",
-			"minedSkills30pts2",
-			"minedSkills30",
-			"minedSkills31pts",
-			"minedSkills31",
-			"minedSkills32pts",
-			"minedSkills32",
-			"minedSkills33pts",
-			"minedSkills33",
 			"collectibles",
 			"achievements",
+			"minedItemSummary",
 	);
 	
 	
@@ -646,6 +591,7 @@ class EsoLogParser
 			'name' => self::FIELD_STRING,
 	);
 	
+	/* Old Values
 	public static $MINEDITEM_FIELDS = array(
 			'id' => self::FIELD_INT,
 			'logId' => self::FIELD_INT,
@@ -694,7 +640,7 @@ class EsoLogParser
 			'setBonusDesc4' => self::FIELD_STRING,
 			'setBonusDesc5' => self::FIELD_STRING,
 			'glyphMinLevel' => self::FIELD_INT,
-			'glyphMaxLevel' => self::FIELD_INT,
+			//'glyphMaxLevel' => self::FIELD_INT,		// Old field no longer used
 			'runeType' => self::FIELD_INT,
 			'runeRank' => self::FIELD_INT,
 			'bindType' => self::FIELD_INT,
@@ -717,7 +663,115 @@ class EsoLogParser
 			'comment' => self::FIELD_STRING,
 			'tags' => self::FIELD_STRING,
 			'dyeData' => self::FIELD_STRING,
-			//'actorCategory' => self::FIELD_INT,
+	); */
+	
+	public static $MINEDITEM_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'itemId' => self::FIELD_INT,
+			'internalLevel' => self::FIELD_INT,
+			'internalSubtype' => self::FIELD_INT,
+			'potionData' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'level' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'value' => self::FIELD_INT,
+			'armorRating' => self::FIELD_INT,
+			'weaponPower' => self::FIELD_INT,
+			'traitDesc' => self::FIELD_STRING,
+			'enchantName' => self::FIELD_STRING,
+			'enchantDesc' => self::FIELD_STRING,
+			'maxCharges' => self::FIELD_INT,
+			'glyphMinLevel' => self::FIELD_INT,
+			'abilityDesc' => self::FIELD_STRING,
+			'setBonusDesc1' => self::FIELD_STRING,
+			'setBonusDesc2' => self::FIELD_STRING,
+			'setBonusDesc3' => self::FIELD_STRING,
+			'setBonusDesc4' => self::FIELD_STRING,
+			'setBonusDesc5' => self::FIELD_STRING,
+			'setBonusDesc6' => self::FIELD_STRING,
+			'setBonusDesc7' => self::FIELD_STRING,
+	);
+	
+	public static $MINEDITEMSUMMARY_FIELDS = array(
+			'itemId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'allNames' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'level' => self::FIELD_STRING,
+			'quality' => self::FIELD_STRING,
+			'value' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'style' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'specialType' => self::FIELD_INT,
+			'equipType' => self::FIELD_INT,
+			'weaponType' => self::FIELD_INT,
+			'armorType' => self::FIELD_INT,
+			'craftType' => self::FIELD_INT,
+			'bindType' => self::FIELD_INT,
+			'runeType' => self::FIELD_INT,
+			'filterTypes' => self::FIELD_STRING,
+			'isUnique' => self::FIELD_INT,
+			'isUniqueEquipped' => self::FIELD_INT,
+			'isVendorTrash' => self::FIELD_INT,
+			'isArmorDecay' => self::FIELD_INT,
+			'isConsumable' => self::FIELD_INT,
+			'armorRating' => self::FIELD_STRING,
+			'weaponPower' => self::FIELD_STRING,
+			'traitDesc' => self::FIELD_STRING,
+			'traitAbilityDesc' => self::FIELD_STRING,
+			'traitCooldown' => self::FIELD_INT,
+			'enchantName' => self::FIELD_STRING,
+			'enchantDesc' => self::FIELD_STRING,
+			'maxCharges' => self::FIELD_STRING,
+			'glyphMinLevel' => self::FIELD_STRING,
+			'abilityDesc' => self::FIELD_STRING,
+			'abilityCooldown' => self::FIELD_INT,
+			'setName' => self::FIELD_STRING,
+			'setId' => self::FIELD_INT,
+			'setMaxEquipCount' => self::FIELD_INT,
+			'setBonusCount' => self::FIELD_INT,
+			'setBonusCount1' => self::FIELD_INT,
+			'setBonusCount2' => self::FIELD_INT,
+			'setBonusCount3' => self::FIELD_INT,
+			'setBonusCount4' => self::FIELD_INT,
+			'setBonusCount5' => self::FIELD_INT,
+			'setBonusCount6' => self::FIELD_INT,
+			'setBonusCount7' => self::FIELD_INT,
+			'setBonusDesc1' => self::FIELD_STRING,
+			'setBonusDesc2' => self::FIELD_STRING,
+			'setBonusDesc3' => self::FIELD_STRING,
+			'setBonusDesc4' => self::FIELD_STRING,
+			'setBonusDesc5' => self::FIELD_STRING,
+			'setBonusDesc6' => self::FIELD_STRING,
+			'setBonusDesc7' => self::FIELD_STRING,
+			'siegeHP' => self::FIELD_INT,
+			'bookTitle' => self::FIELD_STRING,
+			'craftSkillRank' => self::FIELD_INT,
+			'recipeRank' => self::FIELD_INT,
+			'recipeQuality' => self::FIELD_INT,
+			'refinedItemLink' => self::FIELD_STRING,
+			'resultItemLink' => self::FIELD_STRING,
+			'materialLevelDesc' => self::FIELD_STRING,
+			'tags' => self::FIELD_STRING,
+			'dyeData' => self::FIELD_STRING,
+			'actorCategory' => self::FIELD_INT,
+			'useType' => self::FIELD_INT,
+			'sellInfo' => self::FIELD_INT,
+			'traitTypeCategory' => self::FIELD_INT,
+			'combinationDesc' => self::FIELD_STRING,
+			'combinationId' => self::FIELD_INT,
+			'defaultEnchantId' => self::FIELD_INT,
+			'furnLimitType' => self::FIELD_INT,
+			'furnDataId' => self::FIELD_INT,
+			'furnCategory' => self::FIELD_STRING,
+			'recipeListIndex' => self::FIELD_INT,
+			'recipeIndex' => self::FIELD_INT,
+			'containerCollectId' => self::FIELD_INT,
+			'containerSetName' => self::FIELD_STRING,
+			'containerSetId' => self::FIELD_INT,
 	);
 	
 	public static $MINED_ITEMKEY_TO_DBKEY = array(
@@ -755,6 +809,7 @@ class EsoLogParser
 			'useAbilityDesc' => 'abilityDesc',
 			'useCooldown' => 'abilityCooldown',
 			'setName' => 'setName',
+			'setId' => 'setId',
 			'setBonusCount' => 'setBonusCount',
 			'setMaxCount' => 'setMaxEquipCount',
 			'setBonus1' => 'setBonusCount1',
@@ -762,20 +817,23 @@ class EsoLogParser
 			'setBonus3' => 'setBonusCount3',
 			'setBonus4' => 'setBonusCount4',
 			'setBonus5' => 'setBonusCount5',
+			'setBonus6' => 'setBonusCount6',
+			'setBonus7' => 'setBonusCount7',
 			'setDesc1' => 'setBonusDesc1',
 			'setDesc2' => 'setBonusDesc2',
 			'setDesc3' => 'setBonusDesc3',
 			'setDesc4' => 'setBonusDesc4',
 			'setDesc5' => 'setBonusDesc5',
+			'setDesc6' => 'setBonusDesc6',
+			'setDesc7' => 'setBonusDesc7',
 			'runeType' => 'runeType',
-			'runeRank' => 'runeRank',
 			'bindType' => 'bindType',
 			'siegeHP' => 'siegeHP',
 			'bookTitle' => 'bookTitle',
 			'craftSkillRank' => 'craftSkillRank',
 			'recipeRank' => 'recipeRank',
 			'recipeQuality' => 'recipeQuality',
-			'refinedItemLink' => 'refinedItemLink',
+			'refinedMatLink' => 'refinedItemLink',
 			'recipeLink' => 'resultItemLink',
 			'traitDesc' => 'traitDesc',
 			'traitAbility1' => 'traitAbilityDesc',
@@ -789,8 +847,20 @@ class EsoLogParser
 			'comment' => 'comment',
 			'tags' => 'tags',
 			'dyeData' => 'dyeData',
-			//runeName
-			//ingrName1-N
+			'actorCategory' => 'actorCategory',
+			'useType' => 'useType',
+			'sellInfo' => 'sellInfo',
+			'traitTypeCate' => 'traitTypeCategory',
+			'combDesc' => 'combinationDesc',
+			'combId' => 'combinationId',
+			'defaultEnchantId' => 'defaultEnchantId',
+			'furnLimitType' => 'furnLimitType',
+			'furnDataID' => 'furnDataId',
+			'recipeListIndex' => 'recipeListIndex',
+			'recipeIndex' => 'recipeIndex',
+			'contCollectId' => 'containerCollectId',
+			'contSetName' => 'containerSetName',
+			'contSetId' => 'containerSetId',
 	);
 	
 	
@@ -1027,6 +1097,7 @@ class EsoLogParser
 			'cooldown' => self::FIELD_INT,
 			'furnCategory' => self::FIELD_STRING,
 			'furnSubcategory' => self::FIELD_STRING,
+			'referenceId' => self::FIELD_INT,
 	);
 	
 	public static $ACHIEVEMENTCATEGORY_FIELDS = array(
@@ -1175,15 +1246,8 @@ class EsoLogParser
 		
 		$this->startMicroTime = microtime(true);
 		
-		if (intval(self::MINEITEM_TABLESUFFIX) <= 8)
-		{
-			unset(self::$MINEDITEM_FIELDS['tags']);
-		}
-		
-		if (intval(self::MINEITEM_TABLESUFFIX) < 13)
-		{
-			unset(self::$MINEDITEM_FIELDS['specialType']);
-		}
+		//if (intval(self::MINEITEM_TABLESUFFIX) <= 8) unset(self::$MINEDITEM_FIELDS['tags']);
+		//if (intval(self::MINEITEM_TABLESUFFIX) < 13) unset(self::$MINEDITEM_FIELDS['specialType']);
 		
 		$this->skillTooltips = new CEsoSkillTooltips(self::SKILLS_TABLESUFFIX);
 		
@@ -1498,6 +1562,17 @@ class EsoLogParser
 	}
 	
 	
+	public function DoesTableHaveAutoIdField ($table)
+	{
+		$table = preg_replace("/[0-9]+$/", "", $table);
+		$table = preg_replace("/[0-9]+pts$/", "", $table);
+		
+		if (in_array($table, self::$TABLES_WITH_CUSTOMIDFIELD)) return false;
+		
+		return true;
+	}
+	
+	
 	public function createInsertQuery ($table, $record, $fieldDef, $insertIgnore = false)
 	{
 		$columns = "";
@@ -1506,14 +1581,14 @@ class EsoLogParser
 		
 		foreach ($fieldDef as $key => $value)
 		{
-			if ($key === 'id' && !in_array($table, self::$TABLES_WITH_IDFIELD)) continue;
+			if ($key === 'id' && $this->DoesTableHaveAutoIdField($table)) continue;
 			
 			if (!array_key_exists($key, $record))
 			{
 				$this->reportError("Missing value for $key field in $table table insert!");
 				continue;
 			}
-				
+			
 			if (!$isFirst)
 			{
 				$columns .= ', ';
@@ -1521,7 +1596,7 @@ class EsoLogParser
 			}
 			
 			$columns .= "`" . $key . "`";
-				
+			
 			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
 			{
 				if ($record[$key] === null || $record[$key] === '' )
@@ -1582,7 +1657,7 @@ class EsoLogParser
 	{
 		$book = $this->loadRecord('book', 'bookId', $bookId, self::$BOOK_FIELDS);
 		if ($book === false) return false;
-	
+		
 		return $book;
 	}
 	
@@ -1609,7 +1684,7 @@ class EsoLogParser
 	{
 		$record = $this->loadRecord('achievements', 'id', $id, self::$ACHIEVEMENT_FIELDS);
 		if ($record === false) return false;
-	
+		
 		return $record;
 	}
 	
@@ -1627,7 +1702,7 @@ class EsoLogParser
 	{
 		$minedItem = $this->loadRecord('antiquityLeads', 'id', $id, self::$ANTIQUITYLEAD_FIELDS);
 		if ($minedItem === false) return false;
-	
+		
 		return $minedItem;
 	}
 	
@@ -1636,14 +1711,47 @@ class EsoLogParser
 	{
 		$minedItem = $this->loadRecord('minedItem'.self::MINEITEM_TABLESUFFIX, 'id', $id, self::$MINEDITEM_FIELDS);
 		if ($minedItem === false) return false;
-	
+		
 		return $minedItem;
 	}
 	
 	
 	public function LoadMinedItemLink ($itemLink)
 	{
-		$minedItem = $this->loadRecord('minedItem'.self::MINEITEM_TABLESUFFIX, 'link', $itemLink, self::$MINEDITEM_FIELDS);
+		$link = ParseEsoItemLink($itemLink);
+		if (!link) return false;
+		
+		$itemId = intval($link['itemId']);
+		$intLevel = intval($link['level']);
+		$intSubtype = intval($link['subtype']);
+		$potionData = intval($link['potionData']);
+		
+		$this->lastQuery = "SELECT * FROM minedItem".self::MINEITEM_TABLESUFFIX." WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype' AND potionData='$potionData';";
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to load record $itemLink from minedItem".self::MINEITEM_TABLESUFFIX." table!");
+		
+		++$this->dbReadCount;
+		
+		if ($result->num_rows === 0)
+		{
+			$newItem = $this->createNewRecord(self::$MINEDITEM_FIELDS);
+			
+			$newItem['itemId'] = $itemId;
+			$newItem['internalLevel'] = $intLevel;
+			$newItem['interlaSubtype'] = $intSubtype;
+			$newItem['potionData'] = $potionData;
+			
+			return $newItem;
+		}
+		
+		return $this->createRecordFromRow($result->fetch_assoc(), self::$MINEDITEM_FIELDS);
+	}
+	
+	
+	public function LoadMinedItemSummary ($itemId)
+	{
+		$minedItem = $this->loadRecord('minedItemSummary'.self::MINEITEM_TABLESUFFIX, 'itemId', $itemId, self::$MINEDITEMSUMMARY_FIELDS);
 		if ($minedItem === false) return false;
 		
 		return $minedItem;
@@ -1770,6 +1878,12 @@ class EsoLogParser
 	public function SaveMinedItem (&$record)
 	{
 		return $this->saveRecord('minedItem'.self::MINEITEM_TABLESUFFIX, $record, 'id', self::$MINEDITEM_FIELDS);
+	}
+	
+	
+	public function SaveMinedItemSummary (&$record)
+	{
+		return $this->saveRecord('minedItemSummary'.self::MINEITEM_TABLESUFFIX, $record, 'itemId', self::$MINEDITEMSUMMARY_FIELDS);
 	}
 	
 	
@@ -2411,6 +2525,7 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ingredient table!");
 		
+		/* Old Version
 		$query = "CREATE TABLE IF NOT EXISTS minedItem".self::MINEITEM_TABLESUFFIX." (
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			logId BIGINT NOT NULL,
@@ -2486,11 +2601,137 @@ class EsoLogParser
 			PRIMARY KEY (id),
 			INDEX index_link (link(64)),
 			INDEX index_itemId (itemId, internalLevel, internalSubtype)
+		) ENGINE=MYISAM;"; */
+		
+		$query = "CREATE TABLE IF NOT EXISTS minedItem".self::MINEITEM_TABLESUFFIX." (
+			id BIGINT NOT NULL AUTO_INCREMENT,
+			itemId INTEGER NOT NULL DEFAULT 0,
+			internalLevel TINYINT NOT NULL DEFAULT 0,
+			internalSubtype INTEGER NOT NULL DEFAULT 0,
+			potionData INTEGER NOT NULL DEFAULT 0,
+			name TINYTEXT NOT NULL,
+			icon TINYTEXT NOT NULL,
+			level TINYINT NOT NULL DEFAULT 0,
+			quality TINYINT NOT NULL DEFAULT 0,
+			value INTEGER NOT NULL DEFAULT 0,
+			armorRating INTEGER NOT NULL DEFAULT 0,
+			weaponPower INTEGER NOT NULL DEFAULT 0,
+			traitDesc TINYTEXT NOT NULL,
+			enchantName TINYTEXT NOT NULL,
+			enchantDesc TEXT NOT NULL,
+			glyphMinLevel TINYINT NOT NULL DEFAULT 0,
+			maxCharges INTEGER NOT NULL DEFAULT 0,
+			abilityDesc TEXT NOT NULL,
+			setBonusDesc1 TEXT NOT NULL,
+			setBonusDesc2 TEXT NOT NULL,
+			setBonusDesc3 TEXT NOT NULL,
+			setBonusDesc4 TEXT NOT NULL,
+			setBonusDesc5 TEXT NOT NULL,
+			setBonusDesc6 TEXT NOT NULL,
+			setBonusDesc7 TEXT NOT NULL,
+			PRIMARY KEY (id),
+			INDEX index_itemId (itemId, internalLevel, internalSubtype)
 		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedItem table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS minedItemSummary".self::MINEITEM_TABLESUFFIX." (
+			itemId INTEGER NOT NULL,
+			name TINYTEXT NOT NULL,
+			allNames TEXT NOT NULL,
+			description TEXT NOT NULL,
+			icon TINYTEXT NOT NULL,
+			level TINYTEXT NOT NULL,
+			quality TINYTEXT NOT NULL,
+			value TINYTEXT NOT NULL,
+			style INTEGER NOT NULL DEFAULT 0, 
+			trait INTEGER NOT NULL DEFAULT 0,
+			type INTEGER NOT NULL DEFAULT 0,
+			specialType INTEGER NOT NULL DEFAULT 0,
+			equipType INTEGER NOT NULL DEFAULT 0,
+			weaponType INTEGER NOT NULL DEFAULT 0,
+			armorType INTEGER NOT NULL DEFAULT 0,
+			craftType INTEGER NOT NULL DEFAULT 0,
+			bindType INTEGER NOT NULL DEFAULT 0,
+			runeType INTEGER NOT NULL DEFAULT 0,
+			filterTypes TEXT NOT NULL,
+			isUnique TINYINT NOT NULL DEFAULT 0,
+			isUniqueEquipped TINYINT NOT NULL DEFAULT 0,
+			isVendorTrash TINYINT NOT NULL DEFAULT 0,
+			isArmorDecay TINYINT NOT NULL DEFAULT 0,
+			isConsumable TINYINT NOT NULL DEFAULT 0,
+			armorRating TINYTEXT NOT NULL,
+			weaponPower TINYTEXT NOT NULL,
+			traitDesc TINYTEXT NOT NULL,
+			traitAbilityDesc TEXT NOT NULL,
+			traitCooldown INTEGER NOT NULL DEFAULT 0,
+			enchantName TINYTEXT NOT NULL,
+			enchantDesc TEXT NOT NULL,
+			glyphMinLevel TINYTEXT NOT NULL,
+			maxCharges TINYTEXT NOT NULL,
+			abilityDesc TEXT NOT NULL,
+			abilityCooldown INTEGER NOT NULL DEFAULT 0,
+			setName TINYTEXT NOT NULL,
+			setId INTEGER NOT NULL DEFAULT 0,
+			setBonusCount TINYINT NOT NULL DEFAULT 0,
+			setMaxEquipCount TINYINT NOT NULL DEFAULT 0,
+			setBonusCount1 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount2 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount3 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount4 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount5 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount6 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount7 TINYINT NOT NULL DEFAULT 0,
+			setBonusDesc1 TEXT NOT NULL,
+			setBonusDesc2 TEXT NOT NULL,
+			setBonusDesc3 TEXT NOT NULL,
+			setBonusDesc4 TEXT NOT NULL,
+			setBonusDesc5 TEXT NOT NULL,
+			setBonusDesc6 TEXT NOT NULL,
+			setBonusDesc7 TEXT NOT NULL,
+			siegeHP INTEGER NOT NULL DEFAULT 0,
+			bookTitle TINYTEXT NOT NULL,
+			craftSkillRank TINYINT NOT NULL DEFAULT 0,
+			recipeRank TINYINT NOT NULL DEFAULT 0,
+			recipeQuality TINYINT NOT NULL DEFAULT 0,
+			refinedItemLink TINYTEXT NOT NULL,
+			resultItemLink TINYTEXT NOT NULL,
+			materialLevelDesc TEXT NOT NULL,
+			tags TINYTEXT NOT NULL,
+			dyeData TEXT NOT NULL,
+			actorCategory TINYINT NOT NULL DEFAULT 0,
+			useType INTEGER NOT NULL DEFAULT 0,
+			sellInfo INTEGER NOT NULL DEFAULT 0,
+			traitTypeCategory INTEGER NOT NULL DEFAULT 0,
+			combinationDesc TINYTEXT NOT NULL,
+			combinationId INTEGER NOT NULL DEFAULT 0,
+			defaultEnchantId INTEGER NOT NULL DEFAULT 0,
+			furnLimitType INTEGER NOT NULL DEFAULT 0,
+			furnDataId INTEGER NOT NULL DEFAULT 0,
+			furnCategory TINYTEXT NOT NULL,
+			recipeListIndex INTEGER NOT NULL DEFAULT 0,
+			recipeIndex INTEGER NOT NULL DEFAULT 0,
+			containerCollectId INTEGER NOT NULL DEFAULT 0,
+			containerSetName TINYTEXT NOT NULL,
+			containerSetId INTEGER NOT NULL DEFAULT 0,
+			PRIMARY KEY (itemId),
+			INDEX index_style (style),
+			INDEX index_trait (trait),
+			INDEX index_type (type),
+			INDEX index_specialtype (specialType),
+			INDEX index_weapontype (weaponType),
+			INDEX index_armortype (armorType),
+			INDEX index_equiptype (equipType),
+			INDEX index_crafttype (craftType),
+			INDEX index_setid (setId),
+			INDEX index_setname (setName(24))
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create minedItemSummary table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -2793,6 +3034,7 @@ class EsoLogParser
 			cooldown INTEGER NOT NULL,
 			furnCategory TINYTEXT NOT NULL,
 			furnSubcategory TINYTEXT NOT NULL,
+			referenceId INTEGER NOT NULL,
 			FULLTEXT(name),
 			FULLTEXT(nickname),
 			FULLTEXT(description),
@@ -3305,7 +3547,7 @@ class EsoLogParser
 		
 		if ($logEntry === null) return $this->reportLogParseError("NULL log entry received!");
 		
-		if ($logEntry['event'] == 'mi' || $logEntry['event'] == 'mineitem') 
+		if ($logEntry['event'] == 'mi' || $logEntry['event'] == 'mineitem' || $logEntry['event'] == 'mi2' || $logEntry['event'] == 'mineitem2') 
 		{
 			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
 		}
@@ -3653,7 +3895,7 @@ class EsoLogParser
 			
 			//$this->CheckLocation("lootSource", $npcName, $logEntry, array('lootSourceId' => $lootSourceRecord['id']));
 		}
-				
+		
 		$lootRecord = $this->FindNPCLoot($lootSourceRecord['id'], $zone, $logEntry['itemLink']);
 		
 		if ($lootRecord == null)
@@ -3823,7 +4065,7 @@ class EsoLogParser
 		//$result = preg_match('/\|H(?P<color>[A-Za-z0-9]*)\:item\:(?P<itemId>[0-9]*)\:(?P<subtype>[0-9]*)\:(?P<level>[0-9]*)\:(?P<enchantId>[0-9]*)\:(?P<enchantSubtype>[0-9]*)\:(?P<enchantLevel>[0-9]*)\:(.*?)\:(?P<style>[0-9]*)\:(?P<crafted>[0-9]*)\:(?P<bound>[0-9]*)\:(?P<stolen>[0-9]*)\:(?P<charges>[0-9]*)\:(?P<potionData>[0-9]*)\|h(?P<name>[^|\^]*)(?P<nameCode>.*?)\|h/', $itemLink, $matches);
 		$matches = ParseEsoItemLink($itemLink);
 		
-		if (!$matches) 
+		if (!$matches)
 		{
 			$this->ReportLogParseError("Error parsing item link '$itemLink'!");
 			$matches['name'] = $itemLink;
@@ -5296,7 +5538,6 @@ class EsoLogParser
 	
 	public function FindNPC ($name)
 	{
-		
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM npc WHERE name='$safeName';";
 		$this->lastQuery = $query;
@@ -6028,15 +6269,18 @@ class EsoLogParser
 		//x{0.45511141419411}  zone{Stormhaven}  y{0.47166284918785}  timeStamp{4743643569678450688}  gameTime{2655510}  
 		//userName{...}  ipAddress{...}  logTime{1396487115}  end{}
 		
-		$logEntry['rawName'] = $name;
+		$logEntry['rawName'] = $logEntry['name'];
 		
 		$logEntry['name'] = preg_replace('/\|c[0-9a-fA-F]{6}/', '', $logEntry['name']);
 		$logEntry['name'] = str_replace('|r', '', $logEntry['name']);
 		$splitName = explode('^', $logEntry['name']);
 		$logEntry['name'] = $splitName[0];
+		$lowerName = strtolower($logEntry['name']);
 		
 			// Ignore companion names
 		if (preg_match("/.*'s Companion/i", $logEntry['name'])) return true;
+		if ($lowerName == "mirri elendis") return true;
+		if ($lowerName == "bastian hallix") return true;
 		
 		if ($logEntry['gender'] != null)
 		{
@@ -6054,7 +6298,7 @@ class EsoLogParser
 			$logEntry['gender'] = 0;
 		}
 		
-		$npcRecord = $this->FindNPC($name);
+		$npcRecord = $this->FindNPC($logEntry['name']);
 		
 		if ($npcRecord == null)
 		{
@@ -6066,10 +6310,9 @@ class EsoLogParser
 		$this->SaveNPC($npcRecord);
 		
 		$isNewLocation = false;
-		$this->CheckLocation("npc", $name, $logEntry, array('npcId' => $npcRecord['id']), $isNewLocation);
+		$this->CheckLocation("npc", $logEntry['name'], $logEntry, array('npcId' => $npcRecord['id']), $isNewLocation);
 		
 		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
-		
 		
 		return true;
 	}
@@ -6197,7 +6440,7 @@ class EsoLogParser
 		$this->SaveAntiquity($antiquity);
 		
 		return true;
-	}	
+	}
 	
 	
 	public function ParseMinedItemLog (&$logEntry)
@@ -6238,7 +6481,9 @@ class EsoLogParser
 		{
 			$logEntry['level'] = $logEntry['reqLevel'];
 		}
-				
+		
+			// Handles old bug where setMaxCount was missing
+		/*
 		if (!array_key_exists('setMaxCount', $logEntry))
 		{
 			$logEntry['setMaxCount'] = 0;
@@ -6258,7 +6503,7 @@ class EsoLogParser
 				$result = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
 				if ($result) $logEntry['setMaxCount'] = (int) $matches[1];
 			}
-		}
+		} */
 		
 		if (array_key_exists('flag', $logEntry))
 		{
@@ -6293,21 +6538,24 @@ class EsoLogParser
 			$logEntry['setBonus4'] = "";
 			$logEntry['setBonus5'] = "";
 			$logEntry['setBonus6'] = "";
+			$logEntry['setBonus7'] = "";
 			
 			$logEntry['setDesc1'] = "";
 			$logEntry['setDesc2'] = "";
 			$logEntry['setDesc3'] = "";
 			$logEntry['setDesc4'] = "";
 			$logEntry['setDesc5'] = "";
+			$logEntry['setDesc6'] = "";
+			$logEntry['setDesc7'] = "";
 			
 			$logEntry['setName'] = "";
 			$logEntry['setBonusCount'] = "";
 			$logEntry['setMaxCount'] = "";
 		}
-		
+			// To fix old bug?
 		if ($logEntry['setMaxCount'] == 4)
 		{
-			$logEntry['setMaxCount'] = 5;
+			//$logEntry['setMaxCount'] = 5;
 		}
 		
 			/* Don't update enchantment for invalid types */
@@ -6339,7 +6587,7 @@ class EsoLogParser
 			if ($logEntry["type"] == 51) $skillName = "Potency Improvement";
 			
 			$logEntry['useAbilityDesc'] = "|cffffffTRANSLATION|r\n{$logEntry["runeName"]}";
-			if ($logEntry["runeRank"] > 0) $logEntry['useAbilityDesc'] .= "\n\n|c00ff00Requires $skillName {$logEntry["runeRank"]}|r";
+			if ($logEntry["craftSkillRank"] > 0) $logEntry['useAbilityDesc'] .= "\n\n|c00ff00Requires $skillName {$logEntry["craftSkillRank"]}|r";
 		}
 		
 		if (array_key_exists('dyeStampId', $logEntry) && $logEntry['dyeStampId'] > 0)
@@ -6450,12 +6698,15 @@ class EsoLogParser
 		
 		if (array_key_exists('furnDataID', $logEntry))
 		{
+		/*
 			$logEntry['setDesc1'] = $logEntry['furnDataID'];
 			$logEntry['setDesc2'] = $logEntry['furnCate'];
 			$logEntry['setDesc3'] = $logEntry['furnSubCate'];
 			$logEntry['setDesc4'] = $logEntry['furnCateName'];
-			$logEntry['setDesc5'] = $logEntry['furnSubCateName'];
-		}
+			$logEntry['setDesc5'] = $logEntry['furnSubCateName']; */
+			
+			$logEntry['furnCategory'] = "{$logEntry['furnCateName']}:{$logEntry['furnSubCateName']} ({$logEntry['furnCate']}:{$logEntry['furnSubCate']})";
+		} 
 		
 	}
 	
@@ -6470,7 +6721,7 @@ class EsoLogParser
 	
 	public function OnMineItem ($logEntry)
 	{
-		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp!" .  $logEntry['timeStamp']);
+		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp!" . $logEntry['timeStamp']);
 		
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
@@ -6489,6 +6740,7 @@ class EsoLogParser
 		$this->ParseMinedItemLog($logEntry);
 		$this->MergeMineItemLogToDb($minedItem, $logEntry);
 		
+		/* Old mined item was limited to 5 set descriptions 
 		if (array_key_exists('setDesc7', $logEntry))
 		{
 			if ($minedItem['itemId'] != $this->lastSetCount7WarningItemId)
@@ -6584,14 +6836,24 @@ class EsoLogParser
 			}
 			
 			$minedItem['__dirty'] = true;
+		} */
+		
+		if ($minedItem['__dirty']) 
+		{
+			$result = $this->SaveMinedItem($minedItem);
+			if (!$result) $this->reportLogParseError("\tError: Failed to save item data!");
 		}
 		
-		$result = true;
-		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
-		
-		if (!$result) $this->reportLogParseError("\tError: Failed to save item data!");
-		
 		$this->currentUser['lastMinedItemLogEntry'] = $logEntry;
+		
+		$minedItemSummary = $this->LoadMinedItemSummary($minedItem['itemId']);
+		if ($minedItemSummary === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize item summary data!");
+		
+		$this->MergeMineItemLogToDb($minedItemSummary, $logEntry);
+		
+		$result = $this->SaveMinedItemSummary($minedItemSummary);
+		if (!$result) $this->reportLogParseError("\tError: Failed to save item summary data!");
+		
 		//$this->log("Found mined item $itemLink");
 		return $result;
 	}
@@ -6655,6 +6917,7 @@ class EsoLogParser
 		
 		$this->MergeMineItemLogToDb($minedItem, $mergedLogEntry);
 		
+		/* Old mined item was limited to 5 set descriptions 
 	 	if (array_key_exists('setDesc7', $mergedLogEntry))
 		{
 			if ($minedItem['itemId'] != $this->lastSetCount7WarningItemId)
@@ -6751,9 +7014,7 @@ class EsoLogParser
 			
 				
 			$minedItem['__dirty'] = true;
-		}
-		
-		
+		} */
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
@@ -7194,7 +7455,7 @@ class EsoLogParser
 					if ($skill['prevSkill'] == null) $skill['prevSkill'] = -1;
 					if ($skill['nextSkill'] == null) $skill['nextSkill'] = -1;
 					$skill['learnedLevel'] = $logEntry['rank' . $currentRank];
-				}				
+				}
 				
 			}
 		}
@@ -7295,10 +7556,10 @@ class EsoLogParser
 			$skill3['cost'] = $logEntry['costTime3'];
 			$skill3['mechanic'] = $logEntry['mechanicTime3'];
 		}
-			
+		
 		$this->SaveSkillDump($skill3);
 		//print("Skill3: " . $this->lastQuery . "\n");
-			
+		
 		$skill4['displayId'] = $abilityId;
 		$skill4['description'] = $logEntry['desc4'];
 		$skill4['duration'] = $logEntry['duration4'];
@@ -7319,7 +7580,7 @@ class EsoLogParser
 			$skill4['cost'] = $logEntry['costTime4'];
 			$skill4['mechanic'] = $logEntry['mechanicTime4'];
 		}
-			
+		
 		$this->SaveSkillDump($skill4);
 		//print("Skill4: " . $this->lastQuery . "\n");
 		
@@ -7487,16 +7748,16 @@ class EsoLogParser
 			131 => "Necromancer",
 			129 => "Warden",
 			128 => "Warden",
-			127 => "Warden",			
+			127 => "Warden",
 			38 => "Nightblade",
 			39 => "Nightblade",
-			40 => "Nightblade",			
+			40 => "Nightblade",
 			43 => "Sorcerer",
 			42 => "Sorcerer",
-			41 => "Sorcerer",			
+			41 => "Sorcerer",
 			37 => "Dragonknight",
 			36 => "Dragonknight",
-			35 => "Dragonknight",			
+			35 => "Dragonknight",
 			28 => "Templar",
 			27 => "Templar",
 			22 => "Templar",
@@ -8080,6 +8341,7 @@ class EsoLogParser
 		$collectible['cooldown'] = $logEntry['cooldown'];
 		$collectible['furnCategory'] = $logEntry['furnCateName'];
 		$collectible['furnSubcategory'] = $logEntry['furnSubcateName'];
+		$collectible['referenceId'] = $logEntry['refId'];
 		$collectible['__dirty'] = true;
 		
 		return $this->SaveCollectible($collectible);
@@ -8806,6 +9068,8 @@ class EsoLogParser
 		{
 			case 'mi':
 			case 'mineitem':
+			case 'mi2':
+			case 'mineitem2':
 			case 'mineItem':
 			case "mineItem::AutoStart":
 			case "mineItem::Start":
@@ -8912,7 +9176,9 @@ class EsoLogParser
 				case "mineItem::End":
 				case "mineitem":
 				case "mineItem":
+				case "mineitem2":
 				case "mi":
+				case "mi2":
 				case "MineCollect::Start":
 				case "MineCollect::Category":
 				case "MineCollect::Subcategory":
@@ -9183,8 +9449,10 @@ class EsoLogParser
 			case "mineitem::End":				$result = $this->OnMineItemEnd($logEntry); break;
 			case "mineItem::End":				$result = $this->OnMineItemEnd($logEntry); break;
 			case "mineitem":					$result = $this->OnMineItem($logEntry); break;
+			case "mineitem2":					$result = $this->OnMineItem($logEntry); break;
 			case "mineItem":					$result = $this->OnMineItem($logEntry); break;
 			case "mi":							$result = $this->OnMineItemShort($logEntry); break;
+			case "mi2":							$result = $this->OnMineItemShort($logEntry); break;
 			
 			case "ItemLink":					$result = $this->OnNullEntry($logEntry); break;		//TODO
 			case "MailItem":					$result = $this->OnMailItem($logEntry); break;
@@ -9314,7 +9582,7 @@ class EsoLogParser
 			$this->lastValidUserName = $logEntry['userName'];
 		}
 		
-		if ($logEntry['event'] == "mi" || $logEntry['event'] == "mineitem" || $logEntry['event'] == "mineItem")
+		if ($logEntry['event'] == "mi" || $logEntry['event'] == "mineitem" || $logEntry['event'] == "mineItem" || $logEntry['event'] == "mi2" || $logEntry['event'] == "mineitem2")
 		{
 			if (!array_key_exists('gameTime', $logEntry))
 			{
