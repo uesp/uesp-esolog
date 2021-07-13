@@ -450,8 +450,8 @@ class EsoLogViewer
 			'weaponPower' => self::FIELD_STRING,
 			'enchantName' => self::FIELD_STRING,
 			'enchantDesc' => self::FIELD_TEXTTRANSFORM,
-			'abilityName' => self::FIELD_STRING,
-			'abilityDesc' => self::FIELD_TEXTTRANSFORM,
+			//'abilityName' => self::FIELD_STRING,
+			//'abilityDesc' => self::FIELD_TEXTTRANSFORM,
 			'setName' => self::FIELD_STRING,
 			'setBonusDesc1' => self::FIELD_STRING,
 			'setBonusDesc2' => self::FIELD_STRING,
@@ -2286,7 +2286,7 @@ class EsoLogViewer
 	
 	public static $PTS_SEARCH_DATA = array(
 			'minedItemSummary##pts' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -2505,7 +2505,7 @@ class EsoLogViewer
 					),
 			), */
 			'minedItemSummary' => array(
-					'searchFields' => array('name', 'description', 'abilityName', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -3091,6 +3091,7 @@ If you do not understand what this information means, or how to use this webpage
 		<li><a href="/viewPotions.php">Alchemy Calculator</a></li>
 		<li><a href="//esosales.uesp.net/viewSales.php">Sales Data</a></li>
 		<li><a href="/viewAchievements.php">Achievement Viewer</a></li>
+		<li><a href="/viewFurnishings.php">Furnishing Recipe List (CSV)</a></li>
 		<li><a href="//esoapi.uesp.net">API Information</a></li>
 		<li><a href="//esofiles.uesp.net/">ESO Raw File Download</a></li>
 		<li><a href="https://github.com/esoui/esoui">ESO UI Source Code on GitHub</a></li>

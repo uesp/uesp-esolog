@@ -9,7 +9,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "30";
+$TABLE_SUFFIX = "";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 
@@ -98,7 +98,7 @@ $SUFFIXES = array(
 		"glyph of disease" => 1,
 		"glyph of disease resist" => 1,
 		"glyph of flame" => 1,
-		"glyph of flame resist" => 1,		
+		"glyph of flame resist" => 1,
 		
 		"entrapment" => 1,
 		"hindering" => 1,

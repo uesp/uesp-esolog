@@ -271,7 +271,7 @@ class CEsoItemLink
 		$this->writData6 = (int) $matches['writ6'];
 		
 		$this->transmuteTrait = $this->writData1;
-				
+		
 		return true;
 	}
 	
@@ -494,7 +494,10 @@ class CEsoItemLink
 		$this->itemAllData = array();
 		if ($this->itemId <= 0) return false;
 		
-		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} ORDER BY level, quality;";
+		$minedTable = "minedItem" . $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" . $this->GetTableSuffix();
+		
+		$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' ORDER BY $minedTable.level, $minedTable.quality;";
 		
 		$result = $this->db->query($query);
 		if (!$result) return false;
@@ -508,13 +511,13 @@ class CEsoItemLink
 			if (array_key_exists('setMaxEquipCount', $row) && $row['setMaxEquipCount'] == -1)
 			{
 				$highestSetDesc = "";
-					
+				
 				if (array_key_exists('setBonusDesc1', $row) && $row['setBonusDesc1'] != "") $highestSetDesc = $row['setBonusDesc1'];
 				if (array_key_exists('setBonusDesc2', $row) && $row['setBonusDesc2'] != "") $highestSetDesc = $row['setBonusDesc2'];
 				if (array_key_exists('setBonusDesc3', $row) && $row['setBonusDesc3'] != "") $highestSetDesc = $row['setBonusDesc3'];
 				if (array_key_exists('setBonusDesc4', $row) && $row['setBonusDesc4'] != "") $highestSetDesc = $row['setBonusDesc4'];
 				if (array_key_exists('setBonusDesc5', $row) && $row['setBonusDesc5'] != "") $highestSetDesc = $row['setBonusDesc5'];
-					
+				
 				if ($highestSetDesc != "")
 				{
 					$matches = array();
@@ -535,7 +538,7 @@ class CEsoItemLink
 				$row['enchantName1'] = $this->enchantRecord1['enchantName'];
 				$row['enchantDesc1'] = $this->enchantRecord1['enchantDesc'];
 			}
-						
+			
 			if ($this->itemStyle > 0 && $this->itemStyle != $row['style'])
 			{
 				$row['origStyle'] = $row['style'];
@@ -546,6 +549,13 @@ class CEsoItemLink
 			$row['name'] = preg_replace("#\|.*#", "", $row['name']);
 			
 			if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
+			
+			if ($row['link'] == null)
+			{
+				$internalLevel = $row['internalLevel'];
+				$internalSubtype = $row['internalSubtype'];
+				$row['link'] = "|H0:item:{$this->itemId}:$internalSubtype:$internalLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
+			}
 			
 			$this->itemAllData[] = $row;
 		}
@@ -727,7 +737,7 @@ class CEsoItemLink
 		
 		if ($this->itemSummary['type'] == 2 || $this->itemSummary['type'] == 1)
 		{
-			if ($this->transmuteTrait > 0) 
+			if ($this->transmuteTrait > 0)
 			{
 				$this->itemTrait = $this->transmuteTrait;
 				
@@ -741,10 +751,7 @@ class CEsoItemLink
 		
 		if ($this->itemSummary['type'] == 7)  $this->LoadItemPotionData();
 		if ($this->itemSummary['type'] == 30) $this->LoadItemPoisonData();
-		
 		if ($this->itemSummary['type'] == 60) $this->CreateMasterWritData();
-		
-		
 		
 		return true;
 	}
@@ -752,20 +759,25 @@ class CEsoItemLink
 	
 	private function LoadItemRecord()
 	{
-		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-85000)!");
+		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-185000)!");
 		$query = "";
+		
+		$minedTable = "minedItem" . $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" . $this->GetTableSuffix();
 		
 		if ($this->itemLevel >= 1)
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
-			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
+			//$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='{$this->itemId}' AND level='{$this->itemLevel}' AND quality='{$this->itemQuality}' LIMIT 1;";
+			$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.level='{$this->itemLevel}' AND $minedTable.quality='{$this->itemQuality}' LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
 		else
 		{
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
-			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+			//$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='{$this->itemId}' AND internalLevel='{$this->itemIntLevel}' AND internalSubtype='{$this->itemIntType}' LIMIT 1;";
+			$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 		}
 		
@@ -777,7 +789,8 @@ class CEsoItemLink
 			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
 			{
 				$this->itemIntType = 2;
-				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				//$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='{$this->itemId}' AND internalLevel='{$this->itemIntLevel}' AND internalSubtype='{$this->itemIntType}' LIMIT 1;";
+				$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 				
 				$result = $this->db->query($query);
@@ -788,19 +801,21 @@ class CEsoItemLink
 					$this->itemLevel = 50;
 					$this->itemIntLevel = 50;
 					$this->itemIntType = 370;
-					$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+					//$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='{$this->itemId}' AND internalLevel='{$this->itemIntLevel}' AND internalSubtype='{$this->itemIntType}' LIMIT 1;";
+					$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 					$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 					
 					$result = $this->db->query($query);
 					if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 				}
 			}
-			else //if ($this->embedLink)
+			else
 			{
 				$this->itemIntType = 1;
 				$this->itemIntLevel = 1;
 				
-				$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				//$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='{$this->itemId}' AND internalLevel='{$this->itemIntLevel}' AND internalSubtype='{$this->itemIntType}' LIMIT 1;";
+				$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 				
 				$result = $this->db->query($query);
@@ -1004,7 +1019,8 @@ class CEsoItemLink
 		if ($resultItemLevel == null || $resultItemLevel == "") return true;
 		if ($resultItemSubType == null || $resultItemSubType == "") return true;
 		
-		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='$resultItemId' AND internalLevel='$resultItemLevel' AND internalSubType='$resultItemSubType' LIMIT 1;";
+		/*
+		 * $query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='$resultItemId' AND internalLevel='$resultItemLevel' AND internalSubType='$resultItemSubType' LIMIT 1;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 		
@@ -1017,7 +1033,10 @@ class CEsoItemLink
 		
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
-		if ($result->num_rows === 0) $this->ReportError("ERROR: No result item found matching '$itemLink'!");
+		if ($result->num_rows === 0) $this->ReportError("ERROR: No result item found matching '$itemLink'!"); */
+		
+		$row = LoadEsoMinedItem($this-db, $resultItemId, $resultItemLevel, $resultItemSubType,  $this->GetTableSuffix());
+		if (!$row) $this->ReportError("ERROR: No result item found matching '$itemLink'!");
 		
 		if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
 		
@@ -1113,7 +1132,7 @@ class CEsoItemLink
 		$this->LoadItemPotionDataEffect($potionEffect3, true);
 		
 		ksort($this->itemRecord['traitAbilityDescArray']);
-		ksort($this->itemRecord['traitCooldownArray']);		
+		ksort($this->itemRecord['traitCooldownArray']);
 		return true;
 	}
 	
@@ -1126,11 +1145,11 @@ class CEsoItemLink
 		$potionEffect1 = $potionData & 255;
 		$potionEffect2 = ($potionData >> 8) & 255;
 		$potionEffect3 = ($potionData >> 16) & 127;
-	
+		
 		$this->LoadItemPotionDataEffect($potionEffect1, false);
 		$this->LoadItemPotionDataEffect($potionEffect2, false);
 		$this->LoadItemPotionDataEffect($potionEffect3, false);
-	
+		
 		ksort($this->itemRecord['traitAbilityDescArray']);
 		ksort($this->itemRecord['traitCooldownArray']);
 		return true;
@@ -1145,31 +1164,31 @@ class CEsoItemLink
 		if ($loadPotion)
 			$itemId = self::ESOIL_POTION_MAGICITEMID;
 		else
-			$itemId = self::ESOIL_POISON_MAGICITEMID; 
+			$itemId = self::ESOIL_POISON_MAGICITEMID;
 		
 		if ($this->inputIntLevel >= 0 && $this->inputIntType >= 0)
 		{
 			$intlevel = $this->inputIntLevel;
 			$subtype = $this->inputIntType;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 		else if ($this->itemIntLevel >= 0 && $this->itemIntType >= 0)
 		{
 			$intlevel = $this->itemIntLevel;
 			$subtype = $this->itemIntType;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 		else if ($this->itemLevel >= 1)
 		{
 			$level = $this->itemLevel;
 			$quality = $this->itemQuality;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
 		}
 		else
 		{
 			$intlevel = 1;
 			$subtype = 1;
-			$query = "SELECT traitAbilityDesc, traitCooldown FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 		
 		$this->lastQuery = $query;
@@ -1196,13 +1215,13 @@ class CEsoItemLink
 		{
 			$level = $this->itemLevel;
 			$quality = $this->itemQuality;
-			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND level=$level AND quality=$quality LIMIT 1;";
+			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId='".self::ESOIL_ENCHANT_ITEMID."' AND level='$level' AND quality='$quality' LIMIT 1;";
 		}
 		else
 		{
 			$intlevel = $this->itemIntLevel;
 			$subtype = $this->itemIntType;
-			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND internalLevel=$intlevel AND internalSubtype=$type LIMIT 1;";
+			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId='".self::ESOIL_ENCHANT_ITEMID."' AND internalLevel='$intlevel' AND internalSubtype='$type' LIMIT 1;";
 		}
 		
 		$this->lastQuery = $query;
@@ -1226,21 +1245,24 @@ class CEsoItemLink
 	{
 		if ($this->enchantId1 > 0 && $this->enchantIntLevel1 > 0 && $this->enchantIntType1 > 0)
 		{
-			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->enchantId1} AND internalLevel={$this->enchantIntLevel1} AND internalSubtype={$this->enchantIntType1} LIMIT 1;";
+			$item = LoadEsoMinedItemExact($this->db, $this->enchantId1, $this->enchantIntLevel1, $this->enchantIntType1, $this->GetTableSuffix());
+			if ($item) $this->enchantRecord1 = $item;
+			/*
+			$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId='{$this->enchantId1}' AND internalLevel='{$this->enchantIntLevel1}' AND internalSubtype='{$this->enchantIntType1}' LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 			
 			$result->data_seek(0);
 			$row = $result->fetch_assoc();
-			if ($row) $this->enchantRecord1 = $row;
+			if ($row) $this->enchantRecord1 = $row; */
 		}
-				
+		
 		if ($this->enchantRecord1 != null)
 		{
 			$this->itemRecord['enchantName1'] = $this->enchantRecord1['enchantName'];
 			$this->itemRecord['enchantDesc1'] = $this->enchantRecord1['enchantDesc'];
 		}
-				
+		
 		return true;
 	}
 	
@@ -1363,7 +1385,7 @@ class CEsoItemLink
 	{
 		$output = "";
 		$this->questItemData['version'] = $this->version;
-	
+		
 		foreach ($this->questItemData as $key => $value)
 		{
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
@@ -1373,9 +1395,8 @@ class CEsoItemLink
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeQuestItemIconImageLink()}' /> $value</td></tr>\n";
 			else
 				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
-						
 		}
-	
+		
 		return $output;
 	}
 	
@@ -1384,12 +1405,12 @@ class CEsoItemLink
 	{
 		$output = "";
 		$this->collectibleItemData['version'] = $this->version;
-	
+		
 		foreach ($this->collectibleItemData as $key => $value)
 		{
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
 			$id = "esoil_rawdata_" . $key;
-				
+			
 			if ($key == "icon")
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeCollectibleItemIconImageLink()}' /> $value</td></tr>\n";
 			else
@@ -1574,6 +1595,8 @@ class CEsoItemLink
 	
 	private function MakeItemOldValueBlock()
 	{
+		if ($value <= 0) return "";
+		
 		$value = $this->itemRecord['value'];
 		$output = "VALUE <div id='esoil_itemoldvalue'>$value</div>";
 		return $output;
@@ -1582,6 +1605,8 @@ class CEsoItemLink
 	
 	private function MakeItemNewValueBlock()
 	{
+		if ($value <= 0) return "";
+		
 		$value = $this->itemRecord['value'];
 		$output = "<div id='esoil_itemnewvalue'>$value</div> <img src='//esoitem.uesp.net/resources/currency_gold_32.png' class='esoil_goldimg'>";
 		return $output;
@@ -1646,13 +1671,18 @@ class CEsoItemLink
 		}
 		elseif ($type == 29) // Recipe
 		{
-			if ($craftType == null || $craftType == "" || $craftType <= 0) return "";
+			if ($craftType == null || $craftType == "") return "";
 			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
 		}
 		elseif ($type == 61) // Furniture
 		{
-			$type1 = $this->itemRecord['setBonusDesc4'];
-			$type2 = $this->itemRecord['setBonusDesc5'];
+			$furnCate = $this->itemRecord['furnCategory'];
+			$splitCats = explode(":", explode("(", $furnCate)[0]);
+			$type1 = trim($splitCats[0]);
+			$type2 = trim($splitCats[1]);
+			
+			//$type1 = $this->itemRecord['setBonusDesc4'];
+			//$type2 = $this->itemRecord['setBonusDesc5'];
 			
 			if ($type1 != "" && $type != "") return "(" . $type1 . " / " . $type2 . ")";
 			return "(" . $type1 . $type2 . ")";
@@ -2107,8 +2137,9 @@ class CEsoItemLink
 		{
 			$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
 			if ($abilityDesc == "") return "";
-			$cooldown = round($this->itemRecord['traitCooldown'] / 1000);
-			return "$abilityDesc ($cooldown second cooldown)";
+			//$cooldown = round($this->itemRecord['traitCooldown'] / 1000);
+			//return "$abilityDesc ($cooldown second cooldown)";
+			return $abilityDesc;
 		}
 		
 		$abilityDesc = array();
@@ -2116,21 +2147,22 @@ class CEsoItemLink
 		
 		foreach ($this->itemRecord['traitAbilityDescArray'] as $index => $desc)
 		{
-			$cooldown = round($this->itemRecord['traitCooldownArray'][$index] / 1000);
 			$abilityDesc[] = $desc;
-			$cooldownDesc = " ($cooldown second cooldown)";
+			//$cooldown = round($this->itemRecord['traitCooldownArray'][$index] / 1000);
+			//$cooldownDesc = " ($cooldown second cooldown)";
 		}
 		
 		if (count($abilityDesc) == 0) return "";
 		
-		$output = implode("\n\n", $abilityDesc) . "\n" . $cooldownDesc;
+		$output = implode("\n\n", $abilityDesc);
+		//$output .= "\n" . $cooldownDesc;
 		$output = $this->FormatDescriptionText($output);
-		return $output;		
+		return $output;
 	}
 	
 	
 	private function GetItemLeftBlockDisplay()
-	{		
+	{
 		switch ($this->itemRecord['type'])
 		{
 			case 2:
@@ -2598,7 +2630,7 @@ class CEsoItemLink
 				'{iconLink}' => $this->MakeItemIconImageLink(),
 				'{itemLeftBlock}' => $this->MakeItemLeftBlock(),
 				'{itemRightBlock}' => $this->MakeItemRightBlock(),
-				'{itemNewValueBlock}' => $this->MakeItemNewValueBlock(), 
+				'{itemNewValueBlock}' => $this->MakeItemNewValueBlock(),
 				'{itemBar}' => $this->MakeItemBarLink(),
 				'{itemBarClass}' =>  $this->MakeItemBarClass(),
 				'{itemEnchantBlock}' => $this->MakeItemEnchantBlock(),
@@ -3283,7 +3315,7 @@ class CEsoItemLink
 		
 		if ($this->showSummary)
 		{
-			if ($this->version >= GetEsoUpdateVersion()) 
+			if ($this->version >= GetEsoUpdateVersion())
 			{
 				if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
 			}

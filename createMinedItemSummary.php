@@ -45,7 +45,6 @@ $RANGE_FIELDS = array(
 		"maxCharges",
 		"glyphMinLevel",
 		"traitDesc",
-		//"traitAbilityDesc",
 		"setBonusDesc1",
 		"setBonusDesc2",
 		"setBonusDesc3",
@@ -108,6 +107,7 @@ $query = "CREATE TABLE IF NOT EXISTS minedItemSummaryTmp(
 			dyeData TEXT NOT NULL,
 			actorCategory TINYINT NOT NULL,
 			PRIMARY KEY (id),
+			INDEX index_itemid (itemId),
 			INDEX index_style (style),
 			INDEX index_trait (trait),
 			INDEX index_type (type),
@@ -164,7 +164,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
 		
-		if (!$minItemData) 
+		if (!$minItemData)
 		{
 			$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id LIMIT 1;";
 			$result = $db->query($query);

@@ -61,7 +61,7 @@ class CEsoLogGetSetItemData
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
-	
+		
 		if (array_key_exists('table', $this->inputParams))
 		{
 			$table = $this->inputParams['table'];
@@ -71,15 +71,15 @@ class CEsoLogGetSetItemData
 				else
 					$this->exportTables[] = $table;
 		}
-	
+		
 		if (array_key_exists('level', $this->inputParams)) $this->inputLevel = (int) $this->inputParams['level'];
 		if (array_key_exists('quality', $this->inputParams)) $this->inputQuality = (int) $this->inputParams['quality'];
 		if (array_key_exists('equiptype', $this->inputParams)) $this->inputEquipType = (int) $this->inputParams['equiptype'];
 		if (array_key_exists('setname', $this->inputParams)) $this->inputSetName = urldecode($this->inputParams['setname']);
-	
+		
 		return true;
 	}
-		
+	
 	
 	private function SetInputParams ()
 	{
@@ -92,13 +92,13 @@ class CEsoLogGetSetItemData
 		if ($argv !== null)
 		{
 			$argIndex = 0;
-	
+			
 			foreach ($argv as $arg)
 			{
 				$argIndex += 1;
 				if ($argIndex <= 1) continue;
 				$e = explode("=", $arg);
-	
+				
 				if(count($e) == 2)
 				{
 					$this->inputParams[$e[0]] = $e[1];
@@ -134,14 +134,14 @@ class CEsoLogGetSetItemData
 		
 		if ($equipType == 14)
 		{
-			$extraEquipTypes = " OR equipType='5' OR equipType='6' ";			
+			$extraEquipTypes = " OR equipType='5' OR equipType='6' ";
 		}
 		else if ($equipType == 7)
 		{
 			$extraEquipTypes = " OR equipType='5' ";
 		}
 		
-		$query = "SELECT itemId from minedItemSummary$tableSuffix WHERE setName='$setName' AND (equipType='$equipType' $extraEquipTypes) LIMIT 1;";
+		$query = "SELECT itemId FROM minedItemSummary$tableSuffix WHERE setName='$setName' AND (equipType='$equipType' $extraEquipTypes) LIMIT 1;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Database query error trying to find set item data!");
 		if ($result->num_rows <= 0) return $this->ReportError("No item with specified set found!");
@@ -149,7 +149,7 @@ class CEsoLogGetSetItemData
 		$row = $result->fetch_assoc();
 		$this->itemId = intval($row['itemId']);
 		
-		return true;		
+		return true;
 	}	
 	
 	
@@ -165,7 +165,10 @@ class CEsoLogGetSetItemData
 		$level = $this->inputLevel;
 		$quality = $this->inputQuality;
 		
-		$query = "SELECT * from minedItem$tableSuffix WHERE itemId=$itemId AND level=$level AND quality=$quality LIMIT 1;";
+		$minedTable = "minedItem$tableSuffix";
+		$summaryTable = "minedItemSummary$tableSuffix";
+		
+		$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $minedTable.itemId=$summaryTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.level='$level' AND $minedTable.quality='$quality' LIMIT 1;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Database query error trying to load item data!");
 		if ($result->num_rows <= 0) return $this->ReportError("No item with ID $itemId found with level $level and quality $quality!");
@@ -180,7 +183,7 @@ class CEsoLogGetSetItemData
 		}
 		
 		$this->outputData['numRecords'] += $numRecords;
-				
+		
 		return true;
 	}
 	
@@ -197,6 +200,7 @@ class CEsoLogGetSetItemData
 };
 
 
-
 $g_ExportData = new CEsoLogGetSetItemData();
 $g_ExportData->Export();
+
+

@@ -111,14 +111,14 @@ class CEsoLogJsonExport
 	private function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!", 500);
 		
 		$this->db->set_charset("utf8");
 		
 		UpdateEsoPageViews("exportJsonViews");
-	
+		
 		return true;
 	}
 	
@@ -168,7 +168,7 @@ class CEsoLogJsonExport
 				if ($result && $matches[1] != "") $this->tableFields[] = $matches[1];
 			}
 		}
-	
+		
 		return true;
 	}
 	
@@ -187,18 +187,18 @@ class CEsoLogJsonExport
 		global $_REQUEST;
 		
 		$this->inputParams = $_REQUEST;
-	
+		
 			// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
 			$argIndex = 0;
-	
+			
 			foreach ($argv as $arg)
 			{
 				$argIndex += 1;
 				if ($argIndex <= 1) continue;
 				$e = explode("=", $arg);
-	
+				
 				if(count($e) == 2)
 				{
 					$this->inputParams[$e[0]] = $e[1];
@@ -216,7 +216,7 @@ class CEsoLogJsonExport
 	private function OutputHeader()
 	{
 		ob_start("ob_gzhandler");
-	
+		
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
@@ -229,7 +229,7 @@ class CEsoLogJsonExport
 	{
 		$where = array();
 		$query = "";
-				
+		
 		if ($table == "playerSkills")
 		{
 			$table = "minedSkills";
@@ -248,15 +248,18 @@ class CEsoLogJsonExport
 			
 				// Currently far too slow (2-3 minutes for a typical query with 10-100k records)
 			//if ($this->inputLevel != "" && $this->inputQuality != "") $isValid = true;
-				
+			
 			if (!$isValid) return $this->ReportError("Error: Missing required item id!", 400);
+			
+			$minedTable = "minedItem{$this->GetTableSuffix()}";
+			$summaryTable = "minedItemSummary{$this->GetTableSuffix()}";
 			
 			if ($this->inputTransmuteTrait != "")
 			{
 				$itemId = GetEsoTransmuteTraitItemId($this->inputTransmuteTrait, $this->inputEquipType);
 				if ($itemId == null) $this->ReportError("Error: Unknown trait {$this->inputTransmuteTrait} found!");
 				
-				$query = "SELECT traitDesc, trait, internalLevel, internalSubtype FROM minedItem{$this->GetTableSuffix()} WHERE itemId='$itemId' AND internalLevel='{$this->inputIntLevel}' AND internalSubtype='{$this->inputIntType}' LIMIT 1;";
+				$query = "SELECT $minedTable.traitDesc, $summaryTable.trait, $minedTable.itemId, $minedTable.internalLevel, $minedTable.internalSubtype FROM $minedTable LEFT JOIN $summaryTable ON $minedTable.itemId=$summaryTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.internalLevel='{$this->inputIntLevel}' AND $minedTable.internalSubtype='{$this->inputIntType}' LIMIT 1;";
 				return $query;
 			}
 			
@@ -266,7 +269,7 @@ class CEsoLogJsonExport
 				if ($itemId <= 0) return $this->ReportError("Error: Invalid item id '{$this->inputId} received!", 400);
 				$where[] = "itemId=$itemId";
 			}
-
+			
 			if ($this->inputIntLevel != "" && $this->inputIntType != "")
 			{
 				$where[] = "internalLevel=".(int)$this->inputIntLevel;
@@ -277,6 +280,13 @@ class CEsoLogJsonExport
 				$where[] = "level=".(int)$this->inputLevel;
 				$where[] = "quality=".(int)$this->inputQuality;
 			}
+			
+			$query = "SELECT minedItemSummary{$this->GetTableSuffix()}.*, minedItem{$this->GetTableSuffix()}.* FROM $table{$this->GetTableSuffix()} LEFT JOIN minedItemSummary{$this->GetTableSuffix()} ON minedItem{$this->GetTableSuffix()}.itemId = minedItemSummary{$this->GetTableSuffix()}.itemId ";
+			if (count($where) > 0) $query .= " WHERE minedItem{$this->GetTableSuffix()}." . implode(" AND minedItem{$this->GetTableSuffix()}.", $where);
+			if ($this->inputLimit > 0) $query .= " LIMIT ".$this->inputLimit." ";
+			$query .= ";";
+			
+			return $query;
 		}
 		else if ($table == "minedItemSummary")
 		{
@@ -330,6 +340,14 @@ class CEsoLogJsonExport
 		
 		while (($row = $result->fetch_assoc()))
 		{
+			if ($table == "minedItem" && $row['link'] == null)
+			{
+				$itemId = $row['itemId'];
+				$internalLevel = $row['internalLevel'];
+				$internalSubtype = $row['internalSubtype'];
+				$row['link'] =  "|H0:item:$itemId:$internalSubtype:$internalLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
+			}
+			
 			$this->outputData[$table][] = $row;
 			++$numRecords;
 		}

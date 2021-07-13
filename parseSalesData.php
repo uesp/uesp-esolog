@@ -55,7 +55,8 @@ class EsoSalesDataParser
 	
 	public $startMicroTime = 0;
 	
-	public $waitForSlave = true;
+	public $doWriteSleeps = false;
+	public $waitForSlave = false;
 	public $dbWriteCount = 0;
 	public $dbWriteCountPeriod = 400;
 	public $dbWriteNextSleepCount = 400;
@@ -1069,26 +1070,35 @@ class EsoSalesDataParser
 		$itemIntType = $this->dbLog->real_escape_string($itemIntType);
 		$itemPotionData = $this->dbLog->real_escape_string($itemPotionData);
 		
-		$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
+		$minedTable = "uesp_esolog.minedItem";
+		$summaryTable = "uesp_esolog.minedItemSummary";
+		
+		//$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
+		$this->lastQuery = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.internalLevel='$itemIntLevel' AND $minedTable.internalSubType='$itemIntType' AND $minedTable.potionData='$itemPotionData' LIMIT 1;";
 		$result = $this->dbLog->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
 		
 		if ($result->num_rows == 0)
 		{
-			$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
+			//$this->lastQuery = "SELECT * FROM uesp_esolog.minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
+			$this->lastQuery = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.internalLevel='1' AND $minedTable.internalSubType='1' AND $minedTable.potionData='$itemPotionData' LIMIT 1;";
 			$result = $this->dbLog->query($this->lastQuery);
 			if ($result === FALSE) return $this->reportError("Failed to load mined item data record matching $itemId:1:1:$itemPotionData!");
 			
 			if ($result->num_rows == 0 && self::ALT_MINEDITEM_TABLE != "")
 			{
 				$table = self::ALT_MINEDITEM_TABLE;
-				$this->lastQuery = "SELECT * FROM uesp_esolog.$table WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
+				$minedTable = "uesp_esolog.".self::ALT_MINEDITEM_TABLE;
+				
+				//$this->lastQuery = "SELECT * FROM uesp_esolog.$table WHERE itemId='$itemId' AND internalLevel='$itemIntLevel' AND internalSubType='$itemIntType' AND potionData='$itemPotionData' LIMIT 1;";
+				$this->lastQuery = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.internalLevel='$itemIntLevel' AND $minedTable.internalSubType='$itemIntType' AND $minedTable.potionData='$itemPotionData' LIMIT 1;";
 				$result = $this->dbLog->query($this->lastQuery);
 				if ($result === FALSE) return $this->reportError("Failed to load mined item data record from $table matching $itemId:$itemIntLevel:$itemIntType:$itemPotionData!");
 				
 				if ($result->num_rows == 0)
 				{
-					$this->lastQuery = "SELECT * FROM uesp_esolog.$table WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
+					//$this->lastQuery = "SELECT * FROM uesp_esolog.$table WHERE itemId='$itemId' AND internalLevel='1' AND internalSubType='1' LIMIT 1;";
+					$this->lastQuery = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.internalLevel='1' AND $minedTable.internalSubType='1' LIMIT 1;";
 					$result = $this->dbLog->query($this->lastQuery);
 					if ($result === FALSE) return $this->reportError("Failed to load mined item data record from $table matching $itemId:1:1:$itemPotionData!");
 				}
@@ -1799,7 +1809,6 @@ class EsoSalesDataParser
 	
 	public function CheckDbWriteSleep()
 	{
-		
 		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount)
 		{
 			$this->WaitForSlaveDatabase();
@@ -1852,9 +1861,14 @@ class EsoSalesDataParser
 	
 	public function WaitForSlaveDatabase()
 	{
-		
 		if (!$this->waitForSlave)
 		{
+			if (!$this->doWriteSleeps) 
+			{
+				$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
+				return;
+			}
+			
 			$this->log("Exceeded {$this->dbWriteNextSleepCount} DB writes...sleeping for {$this->dbWriteCountSleep} sec...");
 			$this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
 			sleep($this->dbWriteCountSleep);

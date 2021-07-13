@@ -13,7 +13,7 @@ require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
 $options = getopt("dv");
-if ($options['d'] != null || $options['v'] != null) $QUIET = false; 
+if ($options['d'] != null || $options['v'] != null) $QUIET = false;
 
 
 function TransformBonusDesc($desc)
@@ -33,9 +33,9 @@ function GetItemArmorTypeText ($value)
 			2 => "Medium",
 			3 => "Heavy",
 	);
-
+	
 	$key = (int) $value;
-
+	
 	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 	return "$key?";
 }
@@ -329,12 +329,15 @@ while (($row = $rowResult->fetch_assoc()))
 	$setBonusDesc3 = TransformBonusDesc($row['setBonusDesc3']);
 	$setBonusDesc4 = TransformBonusDesc($row['setBonusDesc4']);
 	$setBonusDesc5 = TransformBonusDesc($row['setBonusDesc5']);
+	$setBonusDesc6 = TransformBonusDesc($row['setBonusDesc6']);
+	$setBonusDesc7 = TransformBonusDesc($row['setBonusDesc7']);
 	$setBonusCount = 0;
 	$setMaxEquipCount = $row['setMaxEquipCount'];
 	if ($setMaxEquipCount == null || $setMaxEquipCount == "") $setMaxEquipCount = 1; 
 	
-	$lastBonusDesc = $setBonusDesc5;
-	
+	$lastBonusDesc = $setBonusDesc7;
+	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc6;
+	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc5;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc4;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc3;
 	if ($lastBonusDesc == "") $lastBonusDesc = $setBonusDesc2;
@@ -345,6 +348,8 @@ while (($row = $rowResult->fetch_assoc()))
 	if ($setBonusDesc3 != "") $setBonusCount = 3;
 	if ($setBonusDesc4 != "") $setBonusCount = 4;
 	if ($setBonusDesc5 != "") $setBonusCount = 5;
+	if ($setBonusDesc6 != "") $setBonusCount = 6;
+	if ($setBonusDesc7 != "") $setBonusCount = 7;
 	
 	if (!array_key_exists($setName, $setItemSlots)) $setItemSlots[$setName] = array();
 	UpdateItemSlotArray($setItemSlots[$setName], $row);
@@ -372,12 +377,16 @@ while (($row = $rowResult->fetch_assoc()))
 		$newBonusDesc3 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc3']);
 		$newBonusDesc4 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc4']);
 		$newBonusDesc5 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc5']);
+		$newBonusDesc6 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc6']);
+		$newBonusDesc7 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc7']);
 		
 		if ($newBonusDesc1 != $setBonusDesc1) { $matches = true; if (!$QUIET) print("\t\tSet bonus #1 doesn't match!\n"); }
 		if ($newBonusDesc2 != $setBonusDesc2) { $matches = true; if (!$QUIET) print("\t\tSet bonus #2 doesn't match!\n"); }
 		if ($newBonusDesc3 != $setBonusDesc3) { $matches = true; if (!$QUIET) print("\t\tSet bonus #3 doesn't match!\n"); }
 		if ($newBonusDesc4 != $setBonusDesc4) { $matches = true; if (!$QUIET) print("\t\tSet bonus #4 doesn't match!\n"); }
 		if ($newBonusDesc5 != $setBonusDesc5) { $matches = true; if (!$QUIET) print("\t\tSet bonus #5 doesn't match!\n"); }
+		if ($newBonusDesc6 != $setBonusDesc6) { $matches = true; if (!$QUIET) print("\t\tSet bonus #6 doesn't match!\n"); }
+		if ($newBonusDesc7 != $setBonusDesc7) { $matches = true; if (!$QUIET) print("\t\tSet bonus #7 doesn't match!\n"); }
 		if ($newRow['setMaxEquipCount'] != $setMaxEquipCount) { $matches = false; if (!$QUIET) print("\t\tSet max equip count doesn't match!\n"); }
 		
 		if ($matches) 
@@ -399,6 +408,8 @@ while (($row = $rowResult->fetch_assoc()))
 		if ($setBonusDesc3 != "") $setBonusDesc .= "\n".$setBonusDesc3;
 		if ($setBonusDesc4 != "") $setBonusDesc .= "\n".$setBonusDesc4;
 		if ($setBonusDesc5 != "") $setBonusDesc .= "\n".$setBonusDesc5;
+		if ($setBonusDesc6 != "") $setBonusDesc .= "\n".$setBonusDesc6;
+		if ($setBonusDesc7 != "") $setBonusDesc .= "\n".$setBonusDesc7;
 		
 		$gameIndex = $ESO_SETINDEX_MAP[strtolower($setName)];
 		if ($gameIndex == null) $gameIndex = -1;
@@ -410,9 +421,11 @@ while (($row = $rowResult->fetch_assoc()))
 		$setBonusDesc3 = $db->real_escape_string($setBonusDesc3);
 		$setBonusDesc4 = $db->real_escape_string($setBonusDesc4);
 		$setBonusDesc5 = $db->real_escape_string($setBonusDesc5);
+		$setBonusDesc6 = $db->real_escape_string($setBonusDesc6);
+		$setBonusDesc7 = $db->real_escape_string($setBonusDesc7);
 		
-		$query  = "INSERT INTO setSummary".$TABLE_SUFFIX."(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc, gameId) ";
-		$query .= "VALUES('$setName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc', $gameIndex);";
+		$query  = "INSERT INTO setSummary".$TABLE_SUFFIX."(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc, gameId) ";
+		$query .= "VALUES('$setName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc6', '$setBonusDesc7', '$setBonusDesc', $gameIndex);";
 		
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error . "\n" . $query);

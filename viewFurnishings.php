@@ -106,21 +106,20 @@ class CEsoViewFurnishings
 		{
 			$itemId = $recipe['itemId'];
 			
-			$this->lastQuery = "SELECT * FROM minedItem WHERE itemId=$itemId AND internalLevel=1 AND internalSubtype=1;";
-			$result = $this->db->query($this->lastQuery);
+			$item = LoadEsoMinedItemExact($this->db, $itemId, 1, 1);
 			
-			if (!$result || $result->num_rows == 0)
+			if (!$item)
 			{
 				$this->ReportError("Failed to load extra recipe data!");
 				$newRecipes[$itemId] = $recipe;
 			}
 			else
 			{
-				$newRecipes[$itemId] = $result->fetch_assoc();
+				$newRecipes[$itemId] = $item;
 				
 				$linkMatches = ParseEsoItemLink($newRecipes[$itemId]['resultItemLink']);
 				
-				if ($linkMatches) 
+				if ($linkMatches)
 				{
 					$newRecipes[$itemId]['resultItemId'] = $linkMatches['itemId'];
 					$newRecipes[$itemId]['resultIntLevel'] = $linkMatches['level'];

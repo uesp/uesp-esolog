@@ -156,6 +156,7 @@ class CEsoDumpMinedItems {
 	{
 		print($errorMsg);
 		error_log($errorMsg);
+		if ($this->db) error_log($this->db->error);
 		return false;
 	}
 	
@@ -454,8 +455,12 @@ class CEsoDumpMinedItems {
 		$itemId = $this->itemId;
 		if ($itemId <= 0) return $this->ReportError("ERROR: No itemid specified!");
 		
-		$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId=$itemId";
-		if (count($this->sortFields) > 0) $query .= " ORDER BY " . implode(",", $this->sortFields);
+		$minedTable = "minedItem" .  $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" .  $this->GetTableSuffix();
+		
+		$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='$itemId'";
+		
+		if (count($this->sortFields) > 0) $query .= " ORDER BY $minedTable." . implode(", $minedTable.", $this->sortFields);
 		$query .= " LIMIT " . self::SELECT_LIMIT;
 		
 		$result = $this->db->query($query);
@@ -490,16 +495,16 @@ class CEsoDumpMinedItems {
 		$query = "SELECT * FROM minedItemSummary". $this->GetTableSuffix() ." WHERE $where ORDER BY name;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
-	
+		
 		$this->itemRecords = array();
 		$result->data_seek(0);
-	
+		
 		while (($row = $result->fetch_assoc()))
 		{
 			$row['link'] = $this->MakeItemLink($row);
 			$this->itemRecords[] = $row;
 		}
-	
+		
 		$this->CheckFieldData();
 		return true;
 	}
@@ -533,7 +538,6 @@ class CEsoDumpMinedItems {
 		
 		return $itemLink;
 	}
-	
 	
 	
 	public function LoadFields()

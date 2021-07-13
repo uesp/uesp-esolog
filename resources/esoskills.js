@@ -2814,7 +2814,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 	if (inputValues == null) return newDesc;
 	
 	if (!inputValues.BleedDamage &&
-		!inputValues.DotDamageDone.Bleed) return newDesc;
+			(!inputValues.DotDamageDone || !inputValues.DotDamageDone.Bleed)) return newDesc;
 	
 	if (skillData.rawOutput == null) skillData.rawOutput = {};
 	
@@ -2823,7 +2823,7 @@ window.UpdateEsoSkillBleedDamageDescription = function (skillData, skillDesc, in
 		var match = ESO_SKILL_BLEEDMATCHES[i];
 		var matchIndex = 0;
 		
-		newDesc = newDesc.replace(match, function(match, p1, p2, p3, offset, string) 
+		newDesc = newDesc.replace(match, function(match, p1, p2, p3, offset, string)
 				{
 					var newDamage = +p2;
 					var output = "";
@@ -3102,7 +3102,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 	var skillNameId2 = CreateEsoSkillLineId(skillData.name) + "_Cost";
 	
 		/* DK World in Ruins Passive */
-	if (g_EsoSkillPoisonSkills && inputValues.PoisonStaminaCost)
+	if (window.g_EsoSkillPoisonSkills && inputValues.PoisonStaminaCost)
 	{
 		var poisonData = g_EsoSkillPoisonSkills[skillData.abilityId];
 		if (poisonData == null) poisonData = g_EsoSkillPoisonSkills[skillData.displayId];

@@ -1009,9 +1009,9 @@ class CEsoViewNpcLoot
 			if ($itemData != null)
 			{
 				$this->searchResults[$i]['itemData'] = $itemData;
-				continue;				
+				continue;
 			}
-				
+			
 			$matches = ParseEsoItemLink($itemLink);
 			if ($matches === false) continue;
 			
@@ -1019,21 +1019,11 @@ class CEsoViewNpcLoot
 			$intLevel = intval($matches['level']);
 			$intSubtype = intval($matches['subtype']);
 			
-			$this->lastQuery = "SELECT * FROM minedItem WHERE itemId=$itemId AND internalLevel=$intLevel AND internalSubtype=$intSubtype;";
-			$result = $this->db->query($this->lastQuery);
-			if (!$result) continue;
+			$itemData = LoadEsoMinedItem($this->db, $itemId, $intLevel, $intSubtype);
+			if (!$itemData) continue;
 			
-			if ($result->num_rows == 0)
-			{
-				$this->lastQuery = "SELECT * FROM minedItem WHERE itemId=$itemId AND internalLevel=1 AND internalSubtype=1;";
-				$result = $this->db->query($this->lastQuery);
-				if (!$result) continue;
-				if ($result->num_rows == 0) continue;
-			}
-			
-			$itemData = $result->fetch_assoc();
 			$this->itemLinkData[$itemLink] = $itemData;
-			$this->searchResults[$i]['itemData'] = $itemData;				
+			$this->searchResults[$i]['itemData'] = $itemData;
 		}
 		
 		return true;
@@ -2018,9 +2008,9 @@ class CEsoViewNpcLoot
 		$replacePairs = array(
 				'{npcLootResults}' => $this->GetResultsHtml(),
 		);
-	
+		
 		$output = strtr($this->htmlTemplate, $replacePairs);
-
+		
 		return $output;
 	}
 	
@@ -2033,7 +2023,7 @@ class CEsoViewNpcLoot
 		return "No NPC or item specified!";
 	}
 	
-		
+	
 	public function Render()
 	{
 		$this->LoadSalesPrices();
@@ -2057,10 +2047,5 @@ class CEsoViewNpcLoot
 
 $viewNpcLoot = new CEsoViewNpcLoot();
 $viewNpcLoot->Render();
-
-
-
-
-
 
 

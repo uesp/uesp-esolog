@@ -40,7 +40,7 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "30";
+	const MINEITEM_TABLESUFFIX = "";
 	const SKILLS_TABLESUFFIX   = "30";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
@@ -174,10 +174,11 @@ class EsoLogParser
 	public $startMicroTime = 0;
 	
 	public $limitDbReadsWrites = false;
+	public $waitForSlave = false;
+	
 	public $PING_SALES_DB = true;
 	public $PING_SALES_DB_TIME = 30;		/* Time in seconds between pings */
 	public $lastSalesDBPingTime = 0;
-	public $waitForSlave = true;
 	public $dbWriteCount = 0;
 	public $dbReadCount = 0;
 	public $dbReadCountPeriod = 2000;
@@ -679,6 +680,7 @@ class EsoLogParser
 			'armorRating' => self::FIELD_INT,
 			'weaponPower' => self::FIELD_INT,
 			'traitDesc' => self::FIELD_STRING,
+			'traitAbilityDesc' => self::FIELD_STRING,
 			'enchantName' => self::FIELD_STRING,
 			'enchantDesc' => self::FIELD_STRING,
 			'maxCharges' => self::FIELD_INT,
@@ -721,8 +723,6 @@ class EsoLogParser
 			'armorRating' => self::FIELD_STRING,
 			'weaponPower' => self::FIELD_STRING,
 			'traitDesc' => self::FIELD_STRING,
-			'traitAbilityDesc' => self::FIELD_STRING,
-			'traitCooldown' => self::FIELD_INT,
 			'enchantName' => self::FIELD_STRING,
 			'enchantDesc' => self::FIELD_STRING,
 			'maxCharges' => self::FIELD_STRING,
@@ -747,6 +747,7 @@ class EsoLogParser
 			'setBonusDesc5' => self::FIELD_STRING,
 			'setBonusDesc6' => self::FIELD_STRING,
 			'setBonusDesc7' => self::FIELD_STRING,
+			'siegeType' => self::FIELD_INT,
 			'siegeHP' => self::FIELD_INT,
 			'bookTitle' => self::FIELD_STRING,
 			'craftSkillRank' => self::FIELD_INT,
@@ -828,7 +829,8 @@ class EsoLogParser
 			'setDesc7' => 'setBonusDesc7',
 			'runeType' => 'runeType',
 			'bindType' => 'bindType',
-			'siegeHP' => 'siegeHP',
+			'siegeType' => 'siegeType',
+			'maxSiegeHP' => 'siegeHP',
 			'bookTitle' => 'bookTitle',
 			'craftSkillRank' => 'craftSkillRank',
 			'recipeRank' => 'recipeRank',
@@ -856,6 +858,8 @@ class EsoLogParser
 			'defaultEnchantId' => 'defaultEnchantId',
 			'furnLimitType' => 'furnLimitType',
 			'furnDataID' => 'furnDataId',
+			'furnDataId' => 'furnDataId',
+			'furnCategory' => 'furnCategory',
 			'recipeListIndex' => 'recipeListIndex',
 			'recipeIndex' => 'recipeIndex',
 			'contCollectId' => 'containerCollectId',
@@ -2622,6 +2626,7 @@ class EsoLogParser
 			glyphMinLevel TINYINT NOT NULL DEFAULT 0,
 			maxCharges INTEGER NOT NULL DEFAULT 0,
 			abilityDesc TEXT NOT NULL,
+			traitAbilityDesc TEXT NOT NULL,
 			setBonusDesc1 TEXT NOT NULL,
 			setBonusDesc2 TEXT NOT NULL,
 			setBonusDesc3 TEXT NOT NULL,
@@ -2665,8 +2670,6 @@ class EsoLogParser
 			armorRating TINYTEXT NOT NULL,
 			weaponPower TINYTEXT NOT NULL,
 			traitDesc TINYTEXT NOT NULL,
-			traitAbilityDesc TEXT NOT NULL,
-			traitCooldown INTEGER NOT NULL DEFAULT 0,
 			enchantName TINYTEXT NOT NULL,
 			enchantDesc TEXT NOT NULL,
 			glyphMinLevel TINYTEXT NOT NULL,
@@ -2691,6 +2694,7 @@ class EsoLogParser
 			setBonusDesc5 TEXT NOT NULL,
 			setBonusDesc6 TEXT NOT NULL,
 			setBonusDesc7 TEXT NOT NULL,
+			siegeType TINYINT NOT NULL DEFAULT 0,
 			siegeHP INTEGER NOT NULL DEFAULT 0,
 			bookTitle TINYTEXT NOT NULL,
 			craftSkillRank TINYINT NOT NULL DEFAULT 0,
@@ -4133,7 +4137,7 @@ class EsoLogParser
 		
 		$result = $this->SaveItem($itemRecord);
 		if (!$result) return null;
-	
+		
 		return $itemRecord;
 	}
 	
@@ -6696,7 +6700,7 @@ class EsoLogParser
 			$logEntry['useAbilityDesc'] = $abilityDesc;
 		}
 		
-		if (array_key_exists('furnDataID', $logEntry))
+		if (array_key_exists('furnDataID', $logEntry) || array_key_exists('furnDataId', $logEntry))
 		{
 		/*
 			$logEntry['setDesc1'] = $logEntry['furnDataID'];
@@ -6846,13 +6850,16 @@ class EsoLogParser
 		
 		$this->currentUser['lastMinedItemLogEntry'] = $logEntry;
 		
-		$minedItemSummary = $this->LoadMinedItemSummary($minedItem['itemId']);
-		if ($minedItemSummary === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize item summary data!");
-		
-		$this->MergeMineItemLogToDb($minedItemSummary, $logEntry);
-		
-		$result = $this->SaveMinedItemSummary($minedItemSummary);
-		if (!$result) $this->reportLogParseError("\tError: Failed to save item summary data!");
+		if ($minedItem['itemId'] > 10)
+		{
+			$minedItemSummary = $this->LoadMinedItemSummary($minedItem['itemId']);
+			if ($minedItemSummary === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize item summary data!");
+			
+			$this->MergeMineItemLogToDb($minedItemSummary, $logEntry);
+			
+			$result = $this->SaveMinedItemSummary($minedItemSummary);
+			if (!$result) $this->reportLogParseError("\tError: Failed to save item summary data!");
+		}
 		
 		//$this->log("Found mined item $itemLink");
 		return $result;
@@ -8996,7 +9003,7 @@ class EsoLogParser
 		
 		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount) $this->dbWriteNextSleepCount = $this->dbWriteCount + $this->dbWriteCountPeriod;
 		if ($this->dbReadCount >= $this->dbReadNextSleepCount) $this->dbReadNextSleepCount = $this->dbReadCount + $this->dbReadCountPeriod;
-
+		
 		if (!$this->waitForSlave)
 		{
 			$this->log("Exceeded $origWriteCount DB writes or $origReadCount DB reads...sleeping for {$this->dbWriteCountSleep} sec...");
@@ -9024,7 +9031,6 @@ class EsoLogParser
 			$masterPos = $masterData['Position'];
 			$slavePos = $slaveData['Exec_Master_Log_Pos'];
 			$slaveLag = $slaveData['Seconds_Behind_Master'];
-
 			
 			if ($slaveLag < $this->maxAllowedSlaveLag) 
 			{

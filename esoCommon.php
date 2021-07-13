@@ -4,6 +4,9 @@ require_once("UespMemcachedSession.php");
 
 $canViewEsoMorrowindPts = false;
 
+	/* If set to true load data from both minedItem and minedItemSummary when loading a specific item.
+	 * Introduced in update 30. */
+const UESP_ESO_USE_COMBINED_MINEDITEM = true;
 
 const UESP_ESO_ICON_URL = "//esoicons.uesp.net";
 
@@ -4845,7 +4848,7 @@ function CreateEsoMasterWritAlchemyText($db, $writ1, $writ2, $writ3, $writ4, $wr
 		$properties = implode(", ", $props);
 	}
 	
-	$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='50' AND internalSubtype='307';";
+	$query = "SELECT name FROM minedItem WHERE itemId='$itemId' AND internalLevel='50' AND internalSubtype='307';";
 	$result = $db->query($query);
 	
 	if ($result !== false && $result->num_rows > 0)
@@ -4868,7 +4871,7 @@ function CreateEsoMasterWritAlchemyText($db, $writ1, $writ2, $writ3, $writ4, $wr
 
 function CreateEsoMasterWritEnchantingText($db, $writ1, $writ2, $writ3, $writ4, $writ5, $writ6, $rawVouchers)
 {
-	$query = "SELECT * FROM minedItem WHERE itemId='$writ1' AND internalLevel='50' AND internalSubtype='307';";
+	$query = "SELECT name FROM minedItem WHERE itemId='$writ1' AND internalLevel='50' AND internalSubtype='307';";
 	$result = $db->query($query);
 	$name = "Unknown Glyph";
 	
@@ -4894,7 +4897,7 @@ function CreateEsoMasterWritEnchantingText($db, $writ1, $writ2, $writ3, $writ4, 
 
 function FixVowelArticles($text)
 {
-	return preg_replace('/(^| )a ([aeiouAEIOU])/', '$1an $2', $text);	
+	return preg_replace('/(^| )a ([aeiouAEIOU])/', '$1an $2', $text);
 }
 
 
@@ -5264,4 +5267,69 @@ function SetUespMemcacheCompress($objName, $objValue)
 	if (!ConnectUespMemcache()) return false;
 	
 	return $uespMemcache->set($objName, $objValue, MEMCACHE_COMPRESSED);
+}
+
+
+function LoadEsoMinedItem($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix = "")
+{
+	if (!UESP_ESO_USE_COMBINED_MINEDITEM) return LoadEsoMinedItemOld($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix);
+	
+	$item = LoadEsoMinedItemExact($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix);
+	if ($item) return $item;
+	
+	$item = LoadEsoMinedItemExact($db, $itemId, 1, 1, $tableSuffix);
+	if ($item) return $item;
+	
+	return false;
+}
+
+
+function LoadEsoMinedItemExact($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix = "")
+{
+	if (!UESP_ESO_USE_COMBINED_MINEDITEM) return LoadEsoMinedItemExactOld($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix);
+	
+	$itemId = intval($itemId);
+	$internalLevel = intval($internalLevel);
+	$internalSubtype = intval($internalSubtype);
+	
+	$minedTable = "minedItem$tableSuffix";
+	$summaryTable = "minedItemSummary$tableSuffix";
+	
+	$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $minedTable.itemId=$summaryTable.itemId WHERE $minedTable.itemId='$itemId' AND $minedTable.internalLevel='$internalLevel' AND $minedTable.internalSubtype='$internalSubtype';";
+	$result = $db->query($query);
+	if ($result === false) return false;
+	if ($result->num_rows <= 0) return false;
+	
+	$item = $result->fetch_assoc();
+	
+	$item['link'] = "|H0:item:$itemId:$internalSubtype:$internalLevel:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h";
+	return $item;
+}
+
+
+function LoadEsoMinedItemOld($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix = "")
+{
+	$item = LoadEsoMinedItemExactOld($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix);
+	if ($item) return $item;
+	
+	$item = LoadEsoMinedItemExactOld($db, $itemId, 1, 1, $tableSuffix);
+	if ($item) return $item;
+	
+	return false;
+}
+
+
+function LoadEsoMinedItemExactOld($db, $itemId, $internalLevel, $internalSubtype, $tableSuffix = "")
+{
+	$itemId = intval($itemId);
+	$internalLevel = intval($internalLevel);
+	$internalSubtype = intval($internalSubtype);
+	
+	$query = "SELECT * FROM minedItem$tableSuffix WHERE itemId='$itemId' AND internalLevel='$internalLevel' AND internalSubtype='$internalSubtype';";
+	$result = $db->query($query);
+	if ($result === false) return false;
+	if ($result->num_rows <= 0) return false;
+	
+	$item = $result->fetch_assoc();
+	return $item;
 }
