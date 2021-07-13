@@ -113,7 +113,7 @@ class EsoItemSearcher
 	static public $ESOIS_SEARCH_FIELDS = array(
 			'name', 
 			'description', 
-			'abilityName', 
+			//'abilityName',		//Removed in update 30 
 			'abilityDesc', 
 			'enchantName', 
 			'enchantDesc', 
