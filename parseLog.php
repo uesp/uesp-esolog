@@ -41,7 +41,7 @@ require_once("skillTooltips.class.php");
 class EsoLogParser
 {
 	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "30";
+	const SKILLS_TABLESUFFIX   = "31pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -877,6 +877,7 @@ class EsoLogParser
 			'duration' => self::FIELD_INT,
 			'startTime' => self::FIELD_INT,
 			'tickTime' => self::FIELD_INT,
+			'cooldown' => self::FIELD_INT,
 			'cost' => self::FIELD_INT,
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
@@ -2762,6 +2763,7 @@ class EsoLogParser
 			duration INTEGER NOT NULL DEFAULT -1,
 			startTime INTEGER NOT NULL DEFAULT -1,
 			tickTime INTEGER NOT NULL DEFAULT -1,
+			cooldown INTEGER NOT NULL DEFAULT -1,
 			cost INTEGER NOT NULL DEFAULT -1,
 			minRange INTEGER NOT NULL DEFAULT -1,
 			maxRange INTEGER NOT NULL DEFAULT -1,
@@ -7604,7 +7606,7 @@ class EsoLogParser
 		$skillRankData = $ESO_BASESKILL_RANKDATA[$abilityId];
 		
 		if ($skillRankData == null || $skillRankData[$rank] == null) return $abilityId + 10000000*$rank; 
-		return $skillRankData[$rank];		
+		return $skillRankData[$rank];
 	}
 	
 	
@@ -7806,7 +7808,7 @@ class EsoLogParser
 		if ($this->CLASS_SKILLLINE_IDS[$skillLineId])
 			$skillLine['classType'] = $this->CLASS_SKILLLINE_IDS[$skillLineId];
 		elseif ($this->RACE_SKILLLINE_IDS[$skillLineId])
-			$skillLine['raceType'] = $this->RACE_SKILLLINE_IDS[$skillLineId];			
+			$skillLine['raceType'] = $this->RACE_SKILLLINE_IDS[$skillLineId];
 		
 		$skillLine['skillType'] = $logEntry['skillType'];
 		

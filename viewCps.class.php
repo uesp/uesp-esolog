@@ -12,8 +12,19 @@ class CEsoViewCP
 	public $ESOVCP_HTML_SIMPLEV2_TEMPLATE = "";
 	public $ESOVCP_HTML_SIMPLEV2_TEMPLATE_EMBED = "";
 	
+		/* Use CP skill ID to adjust a single star position */
 	public $ESPVCP_POSITION_ADJUST = array(
 			63 => array(0, 50),
+		);
+	
+		/* Use parent CP skill ID to adjust an entire constellation position */
+	public $ESPVCP_PARENT_POSITION_ADJUST = array(
+			44 => array(-400, 200),		// Walking Fortress
+			53 => array(0, 200),		// Survivor's Spite
+			42 => array(-200, 400),		// Wind Chaser
+			108 => array(0, 200),		// Mastered Curation
+			10 => array(-200, 0),		// Extended Might
+			20 => array(-100, 200),		// Staving Death
 		);
 	
 	public $POSITION_FACTORX_V2 = 0.5;
@@ -386,6 +397,11 @@ class CEsoViewCP
 		$this->cpSkills = array();
 		$this->cpSkillsIdMap = array();
 		
+		$basePosAdjustX = 0;
+		$basePosAdjustY = 0;
+		
+		$posAdjust = $this->ESPVCP_POSITION_ADJUST[$skillId];
+		
 		while (($row = $result->fetch_assoc()))
 		{
 			$abilityId = $row['abilityId'];
@@ -398,7 +414,7 @@ class CEsoViewCP
 			
 			$posAdjust = $this->ESPVCP_POSITION_ADJUST[$skillId];
 			
-			if ($posAdjust != null) 
+			if ($posAdjust != null)
 			{
 				$row['x'] = floatVal($row['x']) + $posAdjust[0];
 				$row['y'] = floatVal($row['y']) + $posAdjust[1];
@@ -442,7 +458,7 @@ class CEsoViewCP
 			$abilityId = $row['abilityId'];
 			$index = $this->cpAbilityIds[$abilityId];
 			$points = $row['points'];
-				
+			
 			$this->cpAbilityIds[$abilityId] = $index;
 			$this->cpData[$index]['skills'][$abilityId]['descriptions'][$points] = $row;
 			
@@ -761,11 +777,25 @@ class CEsoViewCP
 				if ($linkSkill == null) continue;
 				
 				if ($isCluster && $linkSkill['parentSkillId'] <= 0) continue;
+				$offsetX = 0;
+				$offsetY = 0;
 				
-				$x1 = intval($skill['x']     + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETX;
-				$y1 = intval($skill['y']     + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETY;
-				$x2 = intval($linkSkill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETX;
-				$y2 = intval($linkSkill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETY;
+				if ($isCluster)
+				{
+					$parentSkillId = $skill['parentSkillId'];
+					$posAdjust = $this->ESPVCP_PARENT_POSITION_ADJUST[$parentSkillId];
+					
+					if ($posAdjust != null)
+					{
+						$offsetX = $posAdjust[0];
+						$offsetY = $posAdjust[1];
+					}
+				}
+				
+				$x1 = intval($offsetX + $skill['x']     + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETX;
+				$y1 = intval($offsetY + $skill['y']     + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETY;
+				$x2 = intval($offsetX + $linkSkill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETX;
+				$y2 = intval($offsetY + $linkSkill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE + $this->POSITION_LINE_OFFSETY;
 				//$x1 = intval($skill['x']     + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 + $this->POSITION_LINE_OFFSETX;
 				//$y1 = intval($skill['y']     + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 + $this->POSITION_LINE_OFFSETY;
 				//$x2 = intval($linkSkill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 + $this->POSITION_LINE_OFFSETX;
@@ -1215,8 +1245,23 @@ class CEsoViewCP
 		$isPurchaseable = $this->cpSkillIsPurchaseable[$id];
 		if (!$isPurchaseable) $extraClass .= " esovcpNotPurchaseable";
 		
-		$left = intval($skill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE;
-		$top  = intval($skill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE;
+		$offsetX = 0;
+		$offsetY = 0;
+		
+		if ($isCluster)
+		{
+			$parentSkillId = $skill['parentSkillId'];
+			$posAdjust = $this->ESPVCP_PARENT_POSITION_ADJUST[$parentSkillId];
+			
+			if ($posAdjust != null)
+			{
+				$offsetX = $posAdjust[0];
+				$offsetY = $posAdjust[1];
+			}
+		}
+		
+		$left = intval($offsetX + $skill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE;
+		$top  = intval($offsetY + $skill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE;
 		
 		$imageSrc = '//esolog.uesp.net/resources/cpstar_yellow.png';
 		if ($skillType >= 1) $imageSrc = '//esolog.uesp.net/resources/cpstar_white.png';

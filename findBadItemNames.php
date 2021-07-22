@@ -12,6 +12,7 @@ print("Finding all mismatched item names in mined item data...\n");
 $TABLE_SUFFIX = "";
 $linesOutput = 0;
 $luaFunctionCount = 1;
+$DO_TYPE_CHECK = false;		// Not needed after changing db tables in update 30
 
 $START_ID = 3;
 $END_ID = 200000;
@@ -160,7 +161,8 @@ for ($itemId = $START_ID; $itemId <= $END_ID; ++$itemId)
 {
 	if (($itemId % 1000) == 0) print("\t$itemId: Checking for mismatched item names ($linesOutput bad item records found so far)...\n");
 	
-	$query = "SELECT name, internalLevel, internalSubtype, equipType, armorType, weaponType from minedItem$TABLE_SUFFIX WHERE itemId=$itemId;";
+	//$query = "SELECT name, internalLevel, internalSubtype, equipType, armorType, weaponType from minedItem$TABLE_SUFFIX WHERE itemId=$itemId;";
+	$query = "SELECT name, internalLevel, internalSubtype from minedItem$TABLE_SUFFIX WHERE itemId=$itemId;";
 	$result = $db->query($query);
 	
 	if ($result->num_rows <= 1) continue;

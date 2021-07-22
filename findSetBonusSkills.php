@@ -1,8 +1,9 @@
 <?php
 
 
-$TABLE_SUFFIX = "30";
+$TABLE_SUFFIX = "31pts";
 $SHOW_SET = "";
+$MATCH_ALL_SETS = true;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -27,7 +28,11 @@ while ($row = $result->fetch_assoc())
 $count = count($sets);
 print("\tLoaded $count sets.\n");
 
-$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '%scales off%' OR description LIKE '%scaling off%' ORDER BY id;");
+if ($MATCH_ALL_SETS)
+	$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description <> '' ORDER BY id;");
+else
+	$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '% scales %' OR description LIKE '% scaling %' ORDER BY id;");
+
 //$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '%scaling off%' ORDER BY id;");
 if ($result === false) die("Failed to load set data!");
 
@@ -88,9 +93,9 @@ foreach ($sets as $set)
 		$setBonus = $set["setBonusDesc$i"];
 		if ($setBonus == null || $setBonus == "") continue;
 		
-		$hasMatch = preg_match("/scales off/", $setBonus);
-		if (!$hasMatch) $hasMatch = preg_match("/scaling off/", $setBonus);
-		if (!$hasMatch) continue;
+		$hasMatch = preg_match("/ scales /", $setBonus);
+		if (!$hasMatch) $hasMatch = preg_match("/ scaling /", $setBonus);
+		if (!$MATCH_ALL_SETS && !$hasMatch) continue;
 		
 		$numMatches = preg_match_all("/\([0-9]+ items\) [^(]*/", $setBonus, $matches);
 		$setBonuses = array();
@@ -117,9 +122,9 @@ foreach ($sets as $set)
 		
 		foreach ($setBonuses as $setBonus)
 		{
-			$hasMatch = preg_match("/scales off/", $setBonus);
-			if (!$hasMatch) $hasMatch = preg_match("/scaling off/", $setBonus);
-			if (!$hasMatch) continue;
+			$hasMatch = preg_match("/ scales /", $setBonus);
+			if (!$hasMatch) $hasMatch = preg_match("/ scaling /", $setBonus);
+			if (!$MATCH_ALL_SETS && !$hasMatch) continue;
 		
 			$skill = FindMatchingSkill($setBonus, $set['setName']);
 			

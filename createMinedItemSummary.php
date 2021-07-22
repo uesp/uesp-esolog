@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "30";
+$TABLE_SUFFIX = "";
 
 $FIELDS = array(
 		"name",
@@ -55,6 +55,9 @@ $RANGE_FIELDS = array(
 );
 
 // if (intval($TABLE_SUFFIX) <= 8) unset($FIELDS['tags']);
+
+$dbRead = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
+if ($dbRead->connect_error) exit("Could not connect to mysql database!");
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
@@ -153,21 +156,21 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	} */
 	
 	$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
-	$result = $db->query($query);
+	$result = $dbRead->query($query);
 	if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 	$minItemData = $result->fetch_assoc();
 	
 	if (!$minItemData)
 	{
 		$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=1 AND internalSubtype=1 LIMIT 1;";
-		$result = $db->query($query);
+		$result = $dbRead->query($query);
 		if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
 		
 		if (!$minItemData)
 		{
 			$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id LIMIT 1;";
-			$result = $db->query($query);
+			$result = $dbRead->query($query);
 			if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
 			$minItemData = $result->fetch_assoc();
 		}
@@ -176,21 +179,21 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 	}
 	
 	$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
-	$result = $db->query($query);
+	$result = $dbRead->query($query);
 	if (!$result) exit("ERROR: Database query error (finding max item)!\n" . $db->error);
 	$maxItemData = $result->fetch_assoc();
 	
 	if (!$maxItemData)
 	{
 		$query = "SELECT * FROM minedItem$TABLE_SUFFIX where itemId=$id ORDER BY value DESC LIMIT 1;";
-		$result = $db->query($query);
+		$result = $dbRead->query($query);
 		if (!$result) exit("ERROR: Database query error (finding max item v2)!\n" . $db->error);
 		$maxItemData = $result->fetch_assoc();
 	}
 	
 	$allNames = array();
 	$query = "SELECT name from minedItem$TABLE_SUFFIX where itemId=$id;";
-	$result = $db->query($query);
+	$result = $dbRead->query($query);
 	if (!$result) exit("ERROR: Database query error (finding all item names)!\n" . $db->error);
 	
 	while (($row = $result->fetch_assoc()))

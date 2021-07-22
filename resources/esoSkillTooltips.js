@@ -444,6 +444,12 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		output += srcString + " = " + a + " MaxResist " + cOp + " " + c;
 		typeString = "Max Resistance";
 		break;
+	case -78:	// Magicka and Light Armor (Health Capped)
+		output += srcString + " = " + a + " Magicka " + bOp + " " + b + " LightArmor ";
+		c = Math.round(c * 100);
+		output += srcString + "    (Capped at " + c + "% Health)";
+		typeString = "Magicka and Light Armor (Health Capped)";
+		break;
 	default:
 		output += srcString + " = ?";
 		typeString = "Unknown Type " + tooltip.coefType;
@@ -474,6 +480,14 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		output += "Duration: " + finalDuration + " secs";
 		if (startTime > 0) output += ", Delay: " + startTime + " secs";
 		if (tickLength > 0) output += ", Tick: " + tickLength + " secs";
+		output += "</div>";
+	}
+	
+	if (tooltip.cooldown > 0)
+	{
+		var cooldown = Math.round(tooltip.cooldown) / 1000;
+		output += "<div class='esovsSkillCoefRowDetail'>";
+		output += "Cooldown: " + cooldown + " secs";
 		output += "</div>";
 	}
 	
@@ -868,7 +882,7 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 	{
 		valueFactor += inputValues.SkillLineDamage[skillLineName];
 		newRawOutput.skillLineDamageDone = inputValues.SkillLineDamage[skillLineName];
-		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "SkillLine", inputValues.SkillDamage[skillLineName], '%');
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "SkillLine", inputValues.SkillLineDamage[skillLineName], '%');
 	}
 	
 		// DOT Damage Modifiers
@@ -1655,6 +1669,19 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		break;
 	case -77:	// Max Resistance
 		value = Math.floor(a * Math.max(inputValues.SpellResist, inputValues.PhysicalResist)) + c;
+		break;
+	case -78:	// Magicka and Light Armor (Health Capped)
+		if (inputValues.LightArmor == null) 
+		{
+			value = Math.floor(a * magicka);
+		}
+		else
+		{
+			value = Math.floor(a * magicka) * (1 + b*inputValues.LightArmor);	//TODO: Check rounding order
+		}
+		
+		var maxValue = Math.floor(c * health);
+		if (value > maxValue) value = maxValue;
 		break;
 	default:
 		value = '?';

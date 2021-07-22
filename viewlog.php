@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "30";
+	const ENABLE_PTS_VERSION = "31";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -355,7 +355,7 @@ class EsoLogViewer
 	);
 	
 	public static $MINEDITEM_FIELDS = array(
-			'id' => self::FIELD_INTID,
+			//'id' => self::FIELD_INTID,
 			'link' => self::FIELD_INTTRANSFORM,
 			'itemId' => self::FIELD_INT,
 			'internalLevel' => self::FIELD_INT,
@@ -401,6 +401,8 @@ class EsoLogViewer
 			'setBonusDesc3' => self::FIELD_STRING,
 			'setBonusDesc4' => self::FIELD_STRING,
 			'setBonusDesc5' => self::FIELD_STRING,
+			'setBonusDesc6' => self::FIELD_STRING,
+			'setBonusDesc7' => self::FIELD_STRING,
 			'glyphMinLevel' => self::FIELD_INT,
 			'glyphMaxLevel' => self::FIELD_INT,
 			'runeType' => self::FIELD_INT,				//TODO: Transform
@@ -428,7 +430,7 @@ class EsoLogViewer
 	
 	
 	public static $MINEDITEMSUMMARY_FIELDS = array(
-			'id' => self::FIELD_INTID,
+			//'id' => self::FIELD_INTID,
 			'itemId' => self::FIELD_INT,
 			'name' => self::FIELD_INTTRANSFORM,
 			'icon' => self::FIELD_GAMEICON,
@@ -458,6 +460,8 @@ class EsoLogViewer
 			'setBonusDesc3' => self::FIELD_STRING,
 			'setBonusDesc4' => self::FIELD_STRING,
 			'setBonusDesc5' => self::FIELD_STRING,
+			'setBonusDesc6' => self::FIELD_STRING,
+			'setBonusDesc7' => self::FIELD_STRING,
 			'bindType' => self::FIELD_INT,
 			'traitDesc' => self::FIELD_STRING,
 			'traitAbilityDesc' => self::FIELD_STRING,
@@ -484,6 +488,8 @@ class EsoLogViewer
 			'setBonusDesc3' => self::FIELD_TEXTTRANSFORM,
 			'setBonusDesc4' => self::FIELD_TEXTTRANSFORM,
 			'setBonusDesc5' => self::FIELD_TEXTTRANSFORM,
+			'setBonusDesc6' => self::FIELD_TEXTTRANSFORM,
+			'setBonusDesc7' => self::FIELD_TEXTTRANSFORM,
 			'id' => self::FIELD_INTID,
 	);
 	
@@ -499,6 +505,7 @@ class EsoLogViewer
 			'duration' => self::FIELD_INT,
 			'startTime' => self::FIELD_INT,
 			'tickTime' => self::FIELD_INT,
+			'cooldown' => self::FIELD_INT,
 			'cost' => self::FIELD_INT,
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
@@ -973,6 +980,8 @@ class EsoLogViewer
 							'setBonusDesc3' => 'TransformSetBonusDesc',
 							'setBonusDesc4' => 'TransformSetBonusDesc',
 							'setBonusDesc5' => 'TransformSetBonusDesc',
+							'setBonusDesc6' => 'TransformSetBonusDesc',
+							'setBonusDesc7' => 'TransformSetBonusDesc',
 					),
 					
 					'filters' => array(
@@ -1844,6 +1853,8 @@ class EsoLogViewer
 							'setBonusDesc3' => 'TransformSetBonusDesc',
 							'setBonusDesc4' => 'TransformSetBonusDesc',
 							'setBonusDesc5' => 'TransformSetBonusDesc',
+							'setBonusDesc6' => 'TransformSetBonusDesc',
+							'setBonusDesc7' => 'TransformSetBonusDesc',
 					),
 					
 					'filters' => array(
@@ -2286,7 +2297,7 @@ class EsoLogViewer
 	
 	public static $PTS_SEARCH_DATA = array(
 			'minedItemSummary##pts' => array(
-					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -2294,7 +2305,7 @@ class EsoLogViewer
 					),
 			),
 			'setSummary##pts' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
 					'fields' => array(
 							'id' => 'id',
 							'setName' => 'name',
@@ -2505,7 +2516,7 @@ class EsoLogViewer
 					),
 			), */
 			'minedItemSummary' => array(
-					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
 					'fields' => array(
 							'id' => 'id',
 							'name' => 'name',
@@ -2514,7 +2525,7 @@ class EsoLogViewer
 					),
 			),
 			'setSummary' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5'),
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
 					'fields' => array(
 							'id' => 'id',
 							'setName' => 'name',

@@ -130,6 +130,7 @@ class CEsoSkillTooltips
 						duration INTEGER NOT NULL,
 						startTime INTEGER NOT NULL,
 						tickTime INTEGER NOT NULL,
+						cooldown INTEGER NOT NULL,
 						a float NOT NULL,
 						b float NOT NULL,
 						c float NOT NULL,
@@ -375,17 +376,19 @@ class CEsoSkillTooltips
 	}
 	
 	
-	protected function UpdateSkillRawTimes($abilityId, $startTime, $tickTime)
+	protected function UpdateSkillRawTimes($abilityId, $startTime, $tickTime, $cooldown)
 	{
 		if ($this->DONT_SAVE_TOOLTIPS) return true;
 		
 		if ($startTime == null) $startTime = 0;
 		if ($tickTime == null) $tickTime = 0;
+		if ($cooldown == null) $cooldown = 0;
 		
 		$safeTime = intval($startTime);
 		$safeTick = intval($tickTime);
+		$safeCooldown = intval($cooldown);
 		
-		$this->lastQuery = "UPDATE minedSkills{$this->TABLE_SUFFIX} SET startTime='$safeTime', tickTime='$safeTick' where id='$abilityId';";
+		$this->lastQuery = "UPDATE minedSkills{$this->TABLE_SUFFIX} SET startTime='$safeTime', tickTime='$safeTick', cooldown='$safeCooldown' where id='$abilityId';";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to update raw time data for skill $abilityId!");
@@ -457,6 +460,7 @@ class CEsoSkillTooltips
 				'duration',
 				'startTime',
 				'tickTime',
+				'cooldown',
 				'rawValue1',
 				'rawValue2',
 		);
@@ -479,6 +483,7 @@ class CEsoSkillTooltips
 				$tooltipInfo['duration'],
 				$tooltipInfo['startTime'],
 				$tooltipInfo['tickTime'],
+				$tooltipInfo['cooldown'],
 				$tooltipInfo['rawValue1'],
 				$tooltipInfo['rawValue2'],
 		);
@@ -770,6 +775,7 @@ class CEsoSkillTooltips
 		$newInfo['duration'] = $rawTooltipData['duration'];
 		$newInfo['startTime'] = $rawTooltipData['start'];
 		$newInfo['tickTime'] = $rawTooltipData['tick'];
+		$newInfo['cooldown'] = $rawTooltipData['cooldown'];
 		
 		$coefType1 = $this->ConvertStatTypeToPowerType($rawCoef['type1'], $rawCoef['type2'], $rawCoef['coef1'], $rawCoef['coef2']);
 		$coefType2 = $this->ConvertStatTypeToPowerType($rawCoef['type3'], $rawCoef['type4'], $rawCoef['coef3'], $rawCoef['coef4']);
@@ -865,6 +871,26 @@ class CEsoSkillTooltips
 			$rawc = $c;
 		}
 		
+			/* Check for health capped damage shield coefficients */
+		if ($tooltipType == 16 && $coefType == POWERTYPE_MAGICKA && $b = 0)
+		{
+			$desc = FormatEsoItemDescriptionText($rawSkillData['desc']);
+			$hasMatch = preg_match('/Damage shield strength capped at ([0-9]+)%/i', $desc, $matches); 
+			
+			if ($hasMatch)
+			{
+				$capValue = intval($matches[1]);
+				
+				if ($capValue > 0 and $capValue < 100)
+				{
+					$b = $capValue / 100;
+					$rawb = $b;
+					$coefType = UESP_POWERTYPE_MAGICHEALTHCAP;
+				}
+			}
+			
+		}
+		
 		if ($this->ONLY_DO_ABILITYID > 0)
 		{
 			print("\tCoefType: $coefType,  RawTypes: {$rawCoef['type1']}:{$rawCoef['type2']} / {$rawCoef['type3']}:{$rawCoef['type4']}\n");
@@ -923,6 +949,7 @@ class CEsoSkillTooltips
 			$newInfo['duration'] = 0;
 			$newInfo['startTime'] = 0;
 			$newInfo['tickTime'] = 0;
+			$newInfo['cooldown'] = 0;
 			
 			$coefMatch = $coefMatches[$i];
 			$newInfo['value'] = $coefMatch;
@@ -1101,7 +1128,7 @@ class CEsoSkillTooltips
 		if ($rawDesc == null || $rawDesc == "") return true;
 		
 		if (!$this->UpdateSkillRawDescription($abilityId, $rawDesc)) return false;
-		if (!$this->UpdateSkillRawTimes($abilityId, $rawSkillData['start'], $rawSkillData['tick'])) return false;
+		if (!$this->UpdateSkillRawTimes($abilityId, $rawSkillData['start'], $rawSkillData['tick'],  $rawSkillData['cooldown'])) return false;
 		
 		$numTooltips = preg_match_all("/<<([0-9]+)>>/", $rawDesc, $tooltipIndexMatches);
 		if ($numTooltips == 0) return true;

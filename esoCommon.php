@@ -46,6 +46,7 @@ const UESP_POWERTYPE_WEAPONPOWER = -74;
 const UESP_POWERTYPE_CONSTANTVALUE = -75;
 const UESP_POWERTYPE_HEALTHORSPELLDAMAGE = -76;
 const UESP_POWERTYPE_RESISTANCE = -77;
+const UESP_POWERTYPE_MAGICLIGHTARMOR = -78;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -80,6 +81,9 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"100035" => "30",
 		"100036" => "31",
 		"100037" => "32",
+		"100038" => "34",
+		"100039" => "35",
+		"100040" => "36",
 );
 
 
@@ -147,6 +151,7 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"28" => "Markarth",
 		"29" => "Flames of Ambition",
 		"30" => "Blackwood",
+		"31" => "Waking Flame",
 	);
 
 
@@ -1412,6 +1417,7 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_CONSTANTVALUE => "Constant Value",
 		UESP_POWERTYPE_HEALTHORSPELLDAMAGE => "Health or Spell Damage",
 		UESP_POWERTYPE_RESISTANCE => "Max Resistance",
+		UESP_POWERTYPE_MAGICLIGHTARMOR => "Magicka and Light Armor (Health Capped)",
 );
 
 
@@ -1617,7 +1623,7 @@ $ESO_SET_INDEXES = array(
 		239 => "Warrior's Fury",
 		240 => "Kvatch Gladiator",
 		241 => "Varen's Legacy",
-		242 => "Pelinal's Aptitude",
+		242 => "Pelinal's Wrath",
 		243 => "Hide of Morihaus",
 		244 => "Flanking Strategist",
 		245 => "Sithis' Touch",
@@ -1934,12 +1940,22 @@ $ESO_SET_INDEXES = array(
 		592 => "Perfected Stone-Talker's Oath",
 		593 => "Gaze of Sithis",
 		594 => "Harpooner's Wading Kilt",
-		595 => "Harvester's Hope-Ring",
 		596 => "Death Dealer's Fete",
 		597 => "Shapeshifter's Chain",
 		598 => "Zoal the Ever-Wakeful",
 		599 => "Immolator Charr",
 		600 => "Glorgoloch the Destroyer",
+		602 => "Crimson Oath's Rive",
+		603 => "Scorion's Feast",
+		604 => "Rush of Agony",
+		605 => "Silver Rose Vigil",
+		606 => "Thunder Caller",
+		607 => "Grisly Gourmet",
+		608 => "Prior Thierric",
+		609 => "Magma Incarnate",
+		616 => "Dark Convergence",
+		617 => "Plaguebreak",
+		618 => "Hrothgar's Chill",
 );
 
 
@@ -4181,6 +4197,10 @@ function GetEsoItemTableSuffix($version)
 			return "30pts2";
 		case '30':
 			return "";
+		case '31pts':
+			return "31pts";
+		case '31':
+			return "31";
 	}
 
 	return "";
