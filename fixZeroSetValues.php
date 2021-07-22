@@ -1,4 +1,7 @@
 <?php
+/*
+ * This only had to be done for update 30 which had bugged 0 values for some sets until you equipped them.
+ */
 
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
