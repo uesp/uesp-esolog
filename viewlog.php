@@ -430,7 +430,7 @@ class EsoLogViewer
 	
 	
 	public static $MINEDITEMSUMMARY_FIELDS = array(
-			//'id' => self::FIELD_INTID,
+			//'id' => self::FIELD_INTID,		// Removed in update 30
 			'itemId' => self::FIELD_INT,
 			'name' => self::FIELD_INTTRANSFORM,
 			'icon' => self::FIELD_GAMEICON,
@@ -907,7 +907,7 @@ class EsoLogViewer
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
 					'message' => 'These are items for update ## (__NAME__) as logged from the PTS server. Note that only Level 1 White and CP160 Gold items have been exported.',
-			
+					
 					'transform' => array(
 							'type' => 'GetItemTypeText',
 							'specialType' => 'GetItemSpecialTypeText',
@@ -937,8 +937,9 @@ class EsoLogViewer
 					'table' => 'minedItemSummary##pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
+					'idField' => 'itemId',
 					'message' => 'These are items for update ## (__NAME__) as logged from the PTS server. These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
-			
+					
 					'transform' => array(
 							'type' => 'GetItemTypeText',
 							'specialType' => 'GetItemSpecialTypeText',
@@ -1506,13 +1507,13 @@ class EsoLogViewer
 					'table' => 'questXPReward',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'playerLevel, questName, experience',
-			
+					
 					'transform' => array(
 					),
-			
+					
 					'join' => array(
 					),
-			
+					
 					'filters' => array(
 					),
 			),
@@ -1525,13 +1526,13 @@ class EsoLogViewer
 					'table' => 'questItem',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-						
+					
 					'transform' => array(
 					),
-						
+					
 					'join' => array(
 					),
-						
+					
 					'filters' => array(
 							array(
 									'record' => 'quest',
@@ -1580,10 +1581,10 @@ class EsoLogViewer
 					'table' => 'ingredient',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'recipeId',
-						
+					
 					'transform' => array(
 					),
-						
+					
 					'filters' => array(
 							array(
 									'record' => 'recipe',
@@ -1641,7 +1642,7 @@ class EsoLogViewer
 									'thisField' => 'id',
 									'displayName' => 'View Zones',
 									'type' => 'filter',
-							),							
+							),
 					),
 					
 					'join' => array(
@@ -1685,10 +1686,10 @@ class EsoLogViewer
 					'table' => 'lootSources',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-						
+					
 					'transform' => array(
 					),
-						
+					
 					'filters' => array(
 							array(
 									'fields' => array(
@@ -1699,7 +1700,7 @@ class EsoLogViewer
 									'type' => 'external',
 							),
 					),
-						
+					
 					'join' => array(
 					),
 			),
@@ -1711,13 +1712,13 @@ class EsoLogViewer
 					'table' => 'npcLoot',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name, zone, itemName',
-						
+					
 					'transform' => array(
 							'itemLink' => 'MakeItemLink',
 							'itemType' => 'GetItemTypeText',
 							'trait' => 'GetItemTraitText',
 					),
-						
+					
 					'filters' => array(
 							array(
 									'record' => 'lootSources',
@@ -1743,7 +1744,7 @@ class EsoLogViewer
 									'type' => 'external',
 							),
 					),
-						
+					
 					'join' => array(
 							'lootSourceId' => array(
 									'joinField' => 'id',
@@ -1760,10 +1761,10 @@ class EsoLogViewer
 					'table' => 'user',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'name',
-						
+					
 					'transform' => array(
 					),
-						
+					
 					'filters' => array(
 					),
 			),
@@ -1782,7 +1783,7 @@ class EsoLogViewer
 							'itemId',
 							'enchantId',
 					),
-						
+					
 					'transform' => array(
 							'type' => 'GetItemTypeText',
 							'specialType' => 'GetItemSpecialTypeText',
@@ -1811,6 +1812,7 @@ class EsoLogViewer
 					'table' => 'minedItemSummary',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'itemId',
+					'idField' => 'itemId',
 					'message' => 'These are all game items, some of which may not be obtainable. See <a href="/viewlog.php?record=item">Looted Items</a> for items actually looted/seen in the game.',
 						
 					'transform' => array(
@@ -2107,11 +2109,11 @@ class EsoLogViewer
 					'table' => 'cp2SkillDescriptions29pts',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('skillId', 'points'),
-						
+					
 					'transform' => array(
 							'description' => 'RemoveTextFormats',
 					),
-						
+					
 					'filters' => array(
 					),
 			),
@@ -2123,10 +2125,10 @@ class EsoLogViewer
 					'table' => 'collectibles',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('id'),
-			
+					
 					'transform' => array(
 					),
-			
+					
 					'filters' => array(
 					),
 			),
@@ -2138,10 +2140,10 @@ class EsoLogViewer
 					'table' => 'achievementCategories',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('categoryIndex', 'subCategoryIndex'),
-						
+					
 					'transform' => array(
 					),
-						
+					
 					'filters' => array(
 							array(
 									'record' => 'achievements',
@@ -2160,10 +2162,10 @@ class EsoLogViewer
 					'table' => 'achievements',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('id'),
-			
+					
 					'transform' => array(
 					),
-			
+					
 					'filters' => array(
 							array(
 									'record' => 'achievementCriteria',
@@ -2299,9 +2301,10 @@ class EsoLogViewer
 			'minedItemSummary##pts' => array(
 					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
 					'fields' => array(
-							'id' => 'id',
+							'itemId' => 'id',
 							'name' => 'name',
-							'itemId' => 'note',
+							//'itemId' => 'note',
+							'icon' => 'icon',
 					),
 			),
 			'setSummary##pts' => array(
@@ -2518,9 +2521,9 @@ class EsoLogViewer
 			'minedItemSummary' => array(
 					'searchFields' => array('name', 'description', 'abilityDesc', 'enchantName', 'enchantDesc', 'traitDesc', 'setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
 					'fields' => array(
-							'id' => 'id',
+							'itemId' => 'id',
 							'name' => 'name',
-							'itemId' => 'note',
+							//'itemId' => 'note',
 							'icon' => 'icon',
 					),
 			),
@@ -3412,9 +3415,12 @@ If you do not understand what this information means, or how to use this webpage
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
 		$table = $recordInfo['table'];
 		
+		$idField = 'id';
+		if ($recordInfo['idField']) $idField = $recordInfo['idField'];
+		
 		$query = "SELECT $tables FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
-		$query .= " WHERE $table.id='$id'";
+		$query .= " WHERE $table.$idField='$id'";
 		$query .= " LIMIT 1 ";
 		$query .= ";";
 		
@@ -3427,10 +3433,13 @@ If you do not understand what this information means, or how to use this webpage
 	{
 		$tables = $this->GetTablesForSelectQuery($recordInfo);
 		$table = $recordInfo['table'];
+		
+		$idField = 'id';
+		if ($recordInfo['idField']) $idField = $recordInfo['idField'];
 	
 		$query = "SELECT COUNT(*) FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
-		$query .= " WHERE $table.id='$id'";
+		$query .= " WHERE $table.$idField='$id'";
 		$query .= ";";
 	
 		$this->lastQuery = $query;
@@ -3863,7 +3872,9 @@ If you do not understand what this information means, or how to use this webpage
 		
 		while ( ($row = $result->fetch_assoc()) )
 		{
-			$id = $row['id'];
+			$idField = 'id';
+			if ($recordInfo['idField']) $idField = $recordInfo['idField'];
+			$id = $row[$idField];
 			
 			if ($this->IsOutputHTML())
 			{
@@ -3966,7 +3977,11 @@ If you do not understand what this information means, or how to use this webpage
 		
 		foreach ($recordInfo['fields'] as $key => $value)
 		{
-			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $row['id'], $recordInfo, $row);
+			$idField = 'id';
+			if ($recordInfo['idField']) $idField = $recordInfo['idField'];
+			$id = $row[$idField];
+			
+			$rowValue = $this->FormatFieldAll($row[$key], $value, $recordInfo['record'], $key, $id, $recordInfo, $row);
 			
 			$output .= "\t<tr>\n";
 			$output .= "\t\t<th>$key</th>\n";
@@ -4296,7 +4311,7 @@ If you do not understand what this information means, or how to use this webpage
 		$this->searchTotalCount = 0;
 		$this->searchResults = array();
 		$this->searchTerms = explode(" ", $this->search);
-			
+		
 			/* Exact searches */
 		foreach (self::$SEARCH_DATA as $table => $searchData)
 		{
