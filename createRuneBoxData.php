@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "29pts";
+$TABLE_SUFFIX = "31pts";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
@@ -80,6 +80,7 @@ $REPLACE_PAIRS = array(
 		"Daggerfall Breton Terrier Pet" => "Covenant Breton Terrier", 
 		"Ebonheart Breton Terrier Pet" => "Pact Breton Terrier",
 		"Rage of the Reach Emote" => "Rage of the Reach",
+		"Nibenese Court Wizard Robe" => "Nibenese Court Wizard Jerkin",
 );
 
 require("/home/uesp/secrets/esolog.secrets");
@@ -90,7 +91,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Looking for all container data...\n");
 
-$query = "SELECT * FROM minedItemSummary$TABLE_SUFFIX WHERE type=18;";
+$query = "SELECT * FROM minedItemSummary$TABLE_SUFFIX WHERE type=18 or type=34;";
 $result = $db->query($query);
 if (!$result) exit("DB query error!");
 
@@ -130,6 +131,6 @@ while (($row = $result->fetch_assoc()))
 			$collectId = $row2['id'];
 			print("\t[$itemId] = $collectId, \t-- $suffix\n");
 		}
-			
+		
 	}
 }
