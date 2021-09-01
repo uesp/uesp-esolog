@@ -4033,7 +4033,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 30;
+	return 31;
 }
 
 
@@ -4196,11 +4196,11 @@ function GetEsoItemTableSuffix($version)
 		case '30pts2':
 			return "30pts2";
 		case '30':
-			return "";
+			return "30";
 		case '31pts':
 			return "31pts";
 		case '31':
-			return "31";
+			return "";
 	}
 
 	return "";

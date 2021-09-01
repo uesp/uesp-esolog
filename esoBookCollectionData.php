@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 85,
-						'numBooks' => 1172 
+						'numCollect' => 87,
+						'numBooks' => 1200 
 				),
 				1 => array (
 						'id' => 43,
@@ -6738,6 +6738,70 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				),
 				85 => array (
+						'id' => 185,
+						'name' => 'Black Fin Legion Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								6622 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6623 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6624 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6625 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6626 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6627 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6628 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6629 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6630 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6631 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6632 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6633 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6634 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6635 => array (
+										'title' => 'Crafting Motif 103: Black Fin Legion Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				86 => array (
 						'id' => 186,
 						'name' => 'Ivory Brigade Style',
 						'numBooks' => 14,
@@ -6800,6 +6864,70 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				87 => array (
+						'id' => 187,
+						'name' => 'Sul-Xan Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								6653 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6654 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6655 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6656 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6657 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6658 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6659 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6660 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6661 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6662 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6663 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6664 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6665 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6666 => array (
+										'title' => 'Crafting Motif 102: Sul-Xan Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
@@ -6807,7 +6935,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 43,
-						'numBooks' => 3732 
+						'numBooks' => 3750 
 				),
 				1 => array (
 						'id' => 44,
@@ -7684,7 +7812,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				3 => array (
 						'id' => 46,
 						'name' => 'Daedric Cults',
-						'numBooks' => 98,
+						'numBooks' => 102,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_daedric.dds',
 						'books' => array (
 								68 => array (
@@ -8075,9 +8203,25 @@ $ESO_BOOK_COLLECTIONS = array (
 										'title' => 'Order of the Waking Flame Ritual',
 										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
 								),
+								6770 => array (
+										'title' => 'Waking Flame Letter',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								6771 => array (
+										'title' => 'Waking Flame Correspondence',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
 								6512 => array (
 										'title' => 'Havocrel: Strangers from Oblivion',
 										'icon' => '/esoui/art/icons/lore_book3_detail1_color4.dds' 
+								),
+								6819 => array (
+										'title' => 'Elegian`s Notes',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								6820 => array (
+										'title' => 'Lyranth`s Letter',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
@@ -18552,7 +18696,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				32 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 82,
+						'numBooks' => 94,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -18882,6 +19026,54 @@ $ESO_BOOK_COLLECTIONS = array (
 								6269 => array (
 										'title' => 'Operations Report: West Narsis Mining Concern',
 										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								6710 => array (
+										'title' => 'Artifact Record: Groundsplitters',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color2.dds' 
+								),
+								6711 => array (
+										'title' => 'Artifact Record: Opal Charm',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
+								),
+								6712 => array (
+										'title' => 'Artifact Record: Duplici Gladio',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color2.dds' 
+								),
+								6713 => array (
+										'title' => 'Bartholomew`s Task',
+										'icon' => '/esoui/art/icons/scroll_003.dds' 
+								),
+								6714 => array (
+										'title' => 'Bartholomew`s Theory',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								6715 => array (
+										'title' => 'Bartholomew`s Discovery',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								6716 => array (
+										'title' => 'We Can`t Leave',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								6717 => array (
+										'title' => 'Leave the Crimson Oath Alone',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								6718 => array (
+										'title' => 'The Great Stain',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								6719 => array (
+										'title' => 'More Scorions',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								6720 => array (
+										'title' => 'Ambitions Realized',
+										'icon' => '/esoui/art/icons/housing_bre_inc_scroll_closed002.dds' 
+								),
+								6899 => array (
+										'title' => 'Time to Face Reality',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
 								) 
 						) 
 				),
@@ -21300,7 +21492,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				41 => array (
 						'id' => 170,
 						'name' => 'The Reach Reader',
-						'numBooks' => 70,
+						'numBooks' => 71,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								6275 => array (
@@ -21582,6 +21774,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								6397 => array (
 										'title' => 'Investigator Vale in the Reach',
 										'icon' => '/esoui/art/icons/lore_book1_detail5_color5.dds' 
+								),
+								6322 => array (
+										'title' => 'Falkfyr`s Notes, Page 7',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
@@ -21649,7 +21845,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								5427 => array (
 										'title' => 'Morgane`s Guild Orders',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+										'icon' => '/esoui/art/icons/notes_003.dds' 
 								),
 								6501 => array (
 										'title' => 'Demands of the Painted Eye',
@@ -21804,7 +22000,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
 								),
 								6453 => array (
-										'title' => 'Bazaar Directory Rubbing',
+										'title' => 'Bazaar Directory',
 										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
 								),
 								6454 => array (
@@ -22068,7 +22264,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				43 => array (
 						'id' => 188,
 						'name' => 'The Impresario`s Catalogue',
-						'numBooks' => 2,
+						'numBooks' => 3,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								6493 => array (
@@ -22078,6 +22274,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								6508 => array (
 										'title' => 'A Quest of Sand, Snow, and Blood',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								6730 => array (
+										'title' => 'Bounties of Blackwood',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 
 				) 

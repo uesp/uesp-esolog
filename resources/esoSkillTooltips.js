@@ -952,6 +952,7 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 			valueFactor += +inputValues.Damage.Dot;
 			newRawOutput.dotDamageDone = inputValues.Damage.Dot;
 			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "DOT", inputValues.Damage.Dot, '%');
+			addedDotDamageDone = true;
 		}
 		
 		if (inputValues.DotDamageDone && inputValues.DotDamageDone[damageType])
@@ -994,12 +995,22 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 		}
 	}
 	
-		// TODO: Double factor for dots that are channels?
-	if (skillData.channelTime > 0 && inputValues.ChannelDamageDone && inputValues.ChannelDamageDone[damageType] && !addedDotDamageDone)
+		// TODO: Check double factor for dots that are channels?
+	if (skillData.channelTime > 0)
 	{
-		valueFactor += +inputValues.ChannelDamageDone[damageType];
-		newRawOutput.channelDamageDone = inputValues.ChannelDamageDone[damageType];
-		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, damageType + " Channel", inputValues.ChannelDamageDone[damageType], '%');
+		if (inputValues.Damage.Channel && !addedDotDamageDone)
+		{
+			valueFactor += +inputValues.Damage.Channel;
+			newRawOutput.channelDamageDone = inputValues.Damage.Channel;
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, " Channel", inputValues.Damage.Channel, '%');
+		}
+		
+		if (inputValues.ChannelDamageDone && inputValues.ChannelDamageDone[damageType] && !addedDotDamageDone)
+		{
+			valueFactor += +inputValues.ChannelDamageDone[damageType];
+			newRawOutput.channelDamageDone += inputValues.ChannelDamageDone[damageType];
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, damageType + " Channel", inputValues.ChannelDamageDone[damageType], '%');
+		}
 	}
 	
 		// Damage Done

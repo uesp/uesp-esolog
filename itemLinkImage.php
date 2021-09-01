@@ -601,6 +601,37 @@ class CEsoItemLinkImage
 					}
 				}
 			}
+			
+			if ($this->weaponTraitFactor > 0)
+			{
+				
+				if ($this->itemRecord['trait'] == 26 && $this->transmuteTrait <= 0)
+				{
+					$factor = 0;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
+					
+					if ($result)
+					{
+						$factor = floatval($matches[1])/100;
+						$newFactor = (1 + $factor * (1 + $this->weaponTraitFactor));
+						$oldWeaponPower = round($this->itemRecord['weaponPower'] / (1 + $factor));
+						$this->itemRecord['weaponPower'] = round($this->itemRecord['weaponPower'] * $newFactor);
+					}
+				}
+				else if ($this->transmuteTrait == 26)
+				{
+					$factor = 0;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
+					
+					if ($result)
+					{
+						$factor = floatval($matches[1])/100;
+						$newFactor = (1 + $factor * (1 + $this->weaponTraitFactor));
+						$oldWeaponPower = round($this->itemRecord['weaponPower'] / (1 + $factor));
+						$this->itemRecord['weaponPower'] = round($this->itemRecord['weaponPower'] * $newFactor);
+					}
+				}
+			}
 		}
 		else
 		{

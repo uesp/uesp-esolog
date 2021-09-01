@@ -2923,13 +2923,19 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	var hitExtraDmg = 0.03;
 	var finalExtraDmg = 3.00;
 	var skipExtraDmgParse = false;
+	var finalDmgIndex = 1;
 	
 	if (inputValues == null) return newDesc;
 	
 	if (name == "Rapid Strikes") {
 		// Do nothing
 	}
-	else if (name == "Bloodthirst" || name == "Flurry") {
+	else if (name == "Bloodthirst") {
+		hitExtraDmg = 0;
+		skipExtraDmgParse = true;
+		finalDmgIndex = 2;
+	}
+	else if (name == "Flurry") {
 		hitExtraDmg = 0;
 		skipExtraDmgParse = true;
 	}
@@ -2956,7 +2962,7 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 		if (numbers[2] != null) finalExtraDmg = parseFloat(numbers[2]) / 100;
 	}
 	else {
-		if (numbers[1] != null) finalExtraDmg = parseFloat(numbers[1]) / 100;
+		if (numbers[finalDmgIndex] != null) finalExtraDmg = parseFloat(numbers[finalDmgIndex]) / 100;
 	}
 	
 	var hit1 = Math.floor(baseDmg * modDmg);
@@ -3389,12 +3395,12 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 		modDuration = +inputValues.SkillDuration[skillData.baseName];
 		newDuration = 0;
 		
-		if (modDuration >= 1) 
+		if (modDuration >= 1)
 		{
 			newDuration = +skillData.duration + modDuration*1000;
 			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base + " + modDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
 		}
-		else 
+		else
 		{
 			newDuration = Math.floor(+skillData.duration * (1 + modDuration));
 			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base x " + Math.floor(modDuration*100) + "% = " + (Math.floor(newDuration/100)/10) + " secs";
@@ -3406,6 +3412,12 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 		var origDuration = newDuration;
 		newDuration += inputValues.ElfBaneDuration*1000;
 		skillData.rawOutput["Elf Bane Duration"] = "" + (Math.floor(origDuration/100)/10) + " + " + inputValues.ElfBaneDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+	}
+	
+		// Modify Elude duration based on Medium Armor worn
+	if (skillData.baseAbilityId == 29556 && skillData.name == "Elude" && inputValues.MediumArmor > 0)
+	{
+		newDuration += skillData.a1 * inputValues.MediumArmor * 1000;
 	}
 	
 	skillData.newDuration = newDuration;

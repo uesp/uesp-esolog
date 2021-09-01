@@ -11,7 +11,7 @@ require_once("esoSkillRankData.php");
 
 class CEsoSkillTooltips
 {
-	protected $TABLE_SUFFIX = "30pts";
+	protected $TABLE_SUFFIX = "";			// Don't set here, set in constructor
 	protected $ONLY_DO_ABILITYID = -1;
 	protected $DONT_SAVE_TOOLTIPS = false;
 	protected $MIN_ALLOWED_ERRORPERCENT = 3;
@@ -547,9 +547,9 @@ class CEsoSkillTooltips
 		$coefType2 = $newInfo['coefType'];
 		
 		$errora = $this->ComputePercentError($a1, $a2, 1.0);
-		$errorb = $this->ComputePercentError($b1, $b2, 0.01);
+		$errorb = $this->ComputePercentError($b1, $b2, 0.1);
 		$errorc = 0;
-		if ($c2 != 0) $errorc = $this->ComputePercentError($c1, $c2, 0.01);
+		if ($c2 != 0) $errorc = $this->ComputePercentError($c1, $c2, 0.1);
 		
 		if ($coefType1 == UESP_POWERTYPE_MAGICHEALTHCAP) 
 		{
@@ -565,7 +565,7 @@ class CEsoSkillTooltips
 		
 		if ($errora >= $this->MIN_ALLOWED_ERRORPERCENT || $errorb >= $this->MIN_ALLOWED_ERRORPERCENT || $errorc >= $this->MIN_ALLOWED_ERRORPERCENT)
 		{
-			print("\t$abilityId: $rank: {$newInfo['tooltipIndex']}: Large difference in coefficients found ($errora%, $errorb%) TooltipType = {$newInfo['rawType']}!\n");
+			print("\t$abilityId: $rank: {$newInfo['tooltipIndex']}: Large difference in coefficients found ($errora%, $errorb%) TooltipType = {$newInfo['rawType']}, CoefType = {$newInfo['coefType']}!\n");
 			
 			$origa2 = $newInfo['rawa'];
 			$origb2 = $newInfo['rawb'];
@@ -841,8 +841,7 @@ class CEsoSkillTooltips
 		{
 			$c = ceil(($value1 + $value2)/2);
 			$a = $b;
-			$b = 0;
-		}
+			$b = 0;		}
 		else if ($rawType1 == 4 || $rawType1 == 29)
 		{
 			$tmp = $a;
@@ -872,8 +871,10 @@ class CEsoSkillTooltips
 		}
 		
 			/* Check for health capped damage shield coefficients */
-		if ($tooltipType == 16 && $coefType == POWERTYPE_MAGICKA && $b = 0)
+		if ($tooltipType == 16 && $coefType == POWERTYPE_MAGICKA && $b == 0)
 		{
+			if ($this->ONLY_DO_ABILITYID > 0) print("\t\tChecking for health capped damage shield...\n");
+			
 			$desc = FormatEsoItemDescriptionText($rawSkillData['desc']);
 			$hasMatch = preg_match('/Damage shield strength capped at ([0-9]+)%/i', $desc, $matches); 
 			
@@ -888,12 +889,13 @@ class CEsoSkillTooltips
 					$coefType = UESP_POWERTYPE_MAGICHEALTHCAP;
 				}
 			}
-			
 		}
 		
 		if ($this->ONLY_DO_ABILITYID > 0)
 		{
 			print("\tCoefType: $coefType,  RawTypes: {$rawCoef['type1']}:{$rawCoef['type2']} / {$rawCoef['type3']}:{$rawCoef['type4']}\n");
+			print("\t\t Values: $a, $b, $c\n");
+			print("\t\t    Raw: $rawa, $rawb, $rawc\n");
 		}
 		
 		$newInfo['a'] = $a;
@@ -1194,5 +1196,5 @@ class CEsoSkillTooltips
 };
 
 	// For testing only
-//$test = new CEsoSkillTooltips();
+//$test = new CEsoSkillTooltips("31");
 //$test->UpdateAllSkills();

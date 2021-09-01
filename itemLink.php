@@ -894,7 +894,7 @@ class CEsoItemLink
 				$this->itemRecord['origArmorRating'] = $this->itemRecord['armorRating'];
 				$this->itemRecord['origWeaponPower'] = $this->itemRecord['weaponPower'];
 				$this->itemRecord['origEnchantDesc'] = $this->itemRecord['enchantDesc'];
-					
+				
 				if ($this->itemRecord['trait'] == 13)		/* Original Reinforced */
 				{
 					$factor = 1;
@@ -910,7 +910,7 @@ class CEsoItemLink
 				{
 					$amount = 0;
 					$result = preg_match("#by ([0-9.]+)#", $this->itemRecord['origTraitDesc'], $matches);
-						
+					
 					if ($result)
 					{
 						$amount = intval($matches[1]);
@@ -921,7 +921,7 @@ class CEsoItemLink
 				{
 					$factor = 0;
 					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['origTraitDesc'], $matches);
-				
+					
 					if ($result)
 					{
 						$factor = 1 + floatval($matches[1])/100;
@@ -930,12 +930,12 @@ class CEsoItemLink
 				}
 				
 				$this->LoadItemTransmuteTraitData();
-					
+				
 				if ($this->transmuteTrait == 13)		/* Transmuted Reinforced */
 				{
 					$factor = 1;
 					$result = preg_match("#by ([0-9.]+)\%#", $this->itemRecord['traitDesc'], $matches);
-						
+					
 					if ($result)
 					{
 						$factor = 1 + floatval($matches[1])/100;
@@ -946,7 +946,7 @@ class CEsoItemLink
 				{
 					$amount = 0;
 					$result = preg_match("#by ([0-9.]+)#", $this->itemRecord['traitDesc'], $matches);
-				
+					
 					if ($result)
 					{
 						$amount = intval($matches[1]);
@@ -957,11 +957,42 @@ class CEsoItemLink
 				{
 					$factor = 0;
 					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
-				
+					
 					if ($result)
 					{
 						$factor = 1 + floatval($matches[1])/100;
 						$this->itemRecord['weaponPower'] = round($this->itemRecord['weaponPower'] * $factor);
+					}
+				}
+			}
+			
+			if ($this->weaponTraitFactor > 0)
+			{
+				
+				if ($this->itemRecord['trait'] == 26 && $this->transmuteTrait <= 0)
+				{
+					$factor = 0;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
+					
+					if ($result)
+					{
+						$factor = floatval($matches[1])/100;
+						$newFactor = (1 + $factor * (1 + $this->weaponTraitFactor));
+						$oldWeaponPower = round($this->itemRecord['weaponPower'] / (1 + $factor));
+						$this->itemRecord['weaponPower'] = round($this->itemRecord['weaponPower'] * $newFactor);
+					}
+				}
+				else if ($this->transmuteTrait == 26)
+				{
+					$factor = 0;
+					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
+					
+					if ($result)
+					{
+						$factor = floatval($matches[1])/100;
+						$newFactor = (1 + $factor * (1 + $this->weaponTraitFactor));
+						$oldWeaponPower = round($this->itemRecord['weaponPower'] / (1 + $factor));
+						$this->itemRecord['weaponPower'] = round($oldWeaponPower * $newFactor);
 					}
 				}
 			}
