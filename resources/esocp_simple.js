@@ -1087,7 +1087,7 @@ window.esovcpUpdateTooltip = function()
 	
 	if (showCluster)
 	{
-		var clusterId = skillData['clusterName'].toLowerCase().replace(" ", "_");
+		var clusterId = skillData['clusterName'].toLowerCase().replace(" ", "_").replace("'", "_");
 		var clusterSkills = $("#skills_" + clusterId).find(".esovcp2Skill");
 		var totalPoints = 0;
 		

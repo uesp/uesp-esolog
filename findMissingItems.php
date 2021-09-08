@@ -7,8 +7,8 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "30";
-$VERSION = "30";
+$TABLEPREFIX = "";
+$VERSION = "31";
 $FIRSTID = 3;
 $LASTID = 200000;
 //$MAGICCOUNT = 1483;
@@ -26,7 +26,7 @@ if (!$result) exit("ERROR: Database query error (finding item check data)!\n" . 
 
 while ($row = $result->fetch_assoc())
 {
-	$checkData[$row['itemId']] = $row;	
+	$checkData[$row['itemId']] = $row;
 }
 
 print("Found ".count($checkData)." check item rows!\n");

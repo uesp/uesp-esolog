@@ -695,6 +695,7 @@ class CEsoViewCP
 			$index = $discipline['disciplineIndex'];
 			$attr = $this->EscapeHtml($discipline['attribute']);
 			$id = str_replace(" ", "_", strtolower($name));
+			$id = str_replace("'", "_", $id);
 			
 			$display = "none";
 			if ($id == $this->selectedDiscId) $display = "block";
@@ -755,6 +756,7 @@ class CEsoViewCP
 		$name = $this->EscapeHtml($discipline['name']);
 		$index = $discipline['disciplineIndex'];
 		$discId = str_replace(" ", "_", strtolower($name));
+		$discId = str_replace("'", "_", $discId);
 		
 		$output = "";
 		
@@ -817,6 +819,7 @@ class CEsoViewCP
 		$name = $this->EscapeHtml($discipline['name']);
 		$index = $discipline['disciplineIndex'];
 		$id = str_replace(" ", "_", strtolower($name));
+		$id = str_replace("'", "_", $id);
 		
 		$display = "none";
 		if ($id == $this->selectedDiscId) $display = "block";
@@ -1292,6 +1295,7 @@ class CEsoViewCP
 			{
 				$clusterName = $this->EscapeHtml($clusterData['name']);
 				$clusterId = str_replace(" ", "_", strtolower($clusterName));
+				$clusterId = str_replace("'", "_", $clusterId);
 				$clusterAttr = "clusterid='$clusterId'";
 			}
 		}
@@ -1410,6 +1414,7 @@ class CEsoViewCP
 			
 			$totalPoints = $this->GetInitialClusterValueV2($skillId);
 			$id = str_replace(" ", "_", strtolower($name));
+			$id = str_replace("'", "_", $id);
 			if ($id == $this->selectedDiscId) $extraClass .= " esovcpDiscHighlight";
 			
 			$output .= "<div id='$id' clusterindex='$index' clusterid='$skillId' class='esovcp2Discipline esovcp2DiscCluster $extraClass'>";
@@ -1432,6 +1437,7 @@ class CEsoViewCP
 		$attr = $this->EscapeHtml($discipline['attribute']);
 		$index = $discipline['disciplineIndex'];
 		$id = str_replace(" ", "_", strtolower($name));
+		$id = str_replace("'", "_", $id);
 		
 		if ($id == $this->selectedDiscId) $extraClass .= " esovcpDiscHighlight";
 		
@@ -1458,6 +1464,7 @@ class CEsoViewCP
 		$name = $this->EscapeHtml($discipline['name']);
 		$index = $discipline['disciplineIndex'];
 		$id = str_replace(" ", "_", strtolower($name));
+		$id = str_replace("'", "_", $id);
 		
 		$totalPoints  = $this->GetInitialDisciplinePointsV2($index, true);
 		$totalPoints1 = $this->GetInitialDisciplinePointsV2($index, false);
@@ -1497,6 +1504,7 @@ class CEsoViewCP
 	{
 		$discName = $this->EscapeHtml($this->cpData[$discIndex]['name']);
 		$discId = str_replace(" ", "_", strtolower($discName));
+		$discId = str_replace("'", "_", $discId);
 		
 		$output = "<div class='esovcpSkillEquipBarDisc esovcpSkillEquipBarDisc$discIndex' disciplineindex='$discIndex' discid='$discId'>";
 		
