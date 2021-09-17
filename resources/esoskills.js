@@ -5262,6 +5262,17 @@ window.EsoSkillLog = function ()
 }
 
 
+window.OnClickEsoSkillBarIcon = function(e)
+{
+	e.stopPropagation();
+}
+
+window.OnClickDocument = function()
+{
+	OnLeaveEsoSkillBarIcon();
+}
+
+
 window.esovsOnDocReady = function ()
 {
 		/* TODO: Need better way to detect mobile view */
@@ -5340,6 +5351,9 @@ window.esovsOnDocReady = function ()
 		$(".esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
 		$(".esovsAbilityBlockPassiveIcon").hover(OnHoverEsoPassiveIcon, OnLeaveEsoIcon);
 		$(".esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
+		
+		$(".esovsSkillBarIcon").click(OnClickEsoSkillBarIcon);
+		$("document").click(OnClickDocument);
 	}
 	
 	$(".esovsSkillBar").click(OnSkillBarSelect)
@@ -5399,6 +5413,8 @@ window.esovsOnDocReady = function ()
 	
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
+	
+	OnLeaveEsoSkillBarIcon();
 }
 
 
