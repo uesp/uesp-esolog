@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "31";
+$TABLE_SUFFIX = "32pts";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -426,7 +426,7 @@ foreach ($skillsData as $skillId => &$skill)
 		if (!$result) 
 		{
 			print("\t{$skill['name']} ($skillId): Description does not match expected format!\n");
-			continue;	
+			continue;
 		}
 		
 		$valueA = $matches[1];

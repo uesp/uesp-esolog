@@ -580,6 +580,11 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 		skillWeaponValues = skillWeaponValues.DOT;
 		weaponDamageTypes.push("DOT");
 	}
+	else if (tooltip.isDOT == 0 && skillWeaponValues != null)
+	{
+		skillWeaponValues = skillWeaponValues.Direct;
+		weaponDamageTypes.push("Direct");
+	}
 	
 	if (tooltip.isMelee == 1 && skillWeaponValues != null)
 	{
@@ -679,6 +684,11 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 	{
 		skillSpellValues = skillSpellValues.DOT;
 		spellDamageTypes.push("DOT");
+	}
+	else if (tooltip.isDOT == 0 && skillSpellValues != null)
+	{
+		skillSpellValues = skillSpellValues.Direct;
+		spellDamageTypes.push("Direct");
 	}
 	
 	if (tooltip.isMelee == 1 && skillSpellValues != null)

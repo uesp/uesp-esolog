@@ -29,9 +29,9 @@ class CEsoLogJsonExport
 	
 	
 	public $VALID_TABLES = array(
-			"cpDisciplines",
-			"cpSkills",
-			"cpSkillDescriptions",
+			#"cpDisciplines",
+			#"cpSkills",
+			#"cpSkillDescriptions",
 			"cp2Disciplines",
 			"cp2Skills",
 			"cp2SkillLinks",
@@ -40,9 +40,11 @@ class CEsoLogJsonExport
 			"minedItem",
 			"minedItem30pts",
 			"minedItem31pts",
+			"minedItem32pts",
 			"minedItemSummary",
 			"minedItemSummary30pts",
 			"minedItemSummary31pts",
+			"minedItemSummary32pts",
 			"minedSkills",
 			"minedSkills30pts",
 			"minedSkills31pts",
@@ -51,6 +53,7 @@ class CEsoLogJsonExport
 			"setSummary",
 			"setSummary30pts",
 			"setSummary31pts",
+			"setSummary32pts",
 			"achievementCategories",
 			"achievementCriteria",
 			"achievements",
@@ -64,6 +67,7 @@ class CEsoLogJsonExport
 			"skillTree",
 			"skillTree30pts",
 			"skillTree31pts",
+			"skillTree32pts",
 	);
 	
 	public $TABLE_IDS = array(

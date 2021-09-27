@@ -1402,9 +1402,18 @@ class CEsoItemLink
 			if ($key == "link") $value = $this->MakeItemLink();
 			
 			if ($key == "icon")
+			{
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
-			else
+			}
+			elseif ($key == "furnCategory")
+			{
+				$value = str_replace(":", " : ", $value);
 				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+			}
+			else 
+			{
+				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+			}
 			
 		}
 		
@@ -2016,10 +2025,17 @@ class CEsoItemLink
 		if ($this->weaponTraitFactor > 0 && $this->itemRecord['type'] == 1 && $this->itemRecord['weaponType'] != 14 && $this->itemRecord['trait'] != 9 && $this->itemRecord['trait'] != 10)
 		{
 			$rawDesc = $this->itemRecord['traitDesc'];
+			
 			$rawDesc = preg_replace_callback('/by \|cffffff([0-9.]+)\|r/', function($matches) {
 				$traitValue = floatval($matches[1]);
 				$newTraitValue = $traitValue * (1 + $this->weaponTraitFactor);
 				return "by |cffffff$newTraitValue|r";
+			}, $rawDesc, 1);
+			
+			$rawDesc = preg_replace_callback('/a \|cffffff([0-9.]+)\|r% chance/', function($matches) {
+				$traitValue = floatval($matches[1]);
+				$newTraitValue = $traitValue * (1 + $this->weaponTraitFactor);
+				return "a |cffffff$newTraitValue|r% chance";
 			}, $rawDesc, 1);
 			
 			$traitDesc = $this->FormatDescriptionText($rawDesc);

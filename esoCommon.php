@@ -1859,11 +1859,8 @@ $ESO_SET_INDEXES = array(
 		497 => "Perfected Roaring Opportunist",
 		498 => "Yandir's Might",
 		499 => "Perfected Yandir's Might",
-		500 => "Bloodlord's Embrace (OLD)",
 		501 => "Thrassian Stranglers",
-		502 => "Snow Treaders (OLD)",
 		503 => "Ring of the Wild Hunt",
-		504 => "Malacath's Band of Brutality X",
 		505 => "Torc of Tonal Constancy",
 		506 => "Spell Parasite",
 		509 => "Template_Drop_Healer P",
@@ -1953,9 +1950,18 @@ $ESO_SET_INDEXES = array(
 		607 => "Grisly Gourmet",
 		608 => "Prior Thierric",
 		609 => "Magma Incarnate",
+		610 => "Wretched Vitality",
+		611 => "Deadlands Demolisher",
+		612 => "Iron Flask",
+		613 => "Eye of the Grasp",
+		614 => "Hexos' Ward",
+		615 => "Kynmarcher's Cruelty",
 		616 => "Dark Convergence",
 		617 => "Plaguebreak",
 		618 => "Hrothgar's Chill",
+		625 => "Markyn Ring of Majesty",
+		626 => "Belharza's Band",
+		627 => "Spaulder of Ruin",
 );
 
 
@@ -4043,29 +4049,22 @@ function GetEsoItemTableSuffix($version)
 	switch ($version)
 	{
 		case '1.5':
-		//case '15':
 		case '5':
 			return "5";
 		case '1.6':
-		//case '16':
 		case '6':
 			return "6";
 		case '1.7':
-		//case '17':
 		case '7':
 			return "7";
 		case '1.8':
-		//case '18':
 		case '8':
 			return "8";
 		case '1.8pts':
-		//case '18pts':
 			return "8pts";
 		case '1.9pts':
-		//case '19pts':
 			return "9pts";
 		case '1.9':
-		//case '19':
 		case '9':
 			return "9";
 		case '1.10pts':
@@ -4201,6 +4200,10 @@ function GetEsoItemTableSuffix($version)
 			return "31pts";
 		case '31':
 			return "";
+		case '32pts':
+			return "32pts";
+		case '32':
+			return "32";
 	}
 
 	return "";

@@ -1041,13 +1041,13 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	}
 	else if (type == -76) 
 	{
-		var value1 = Math.floor(a * inputValues.SpellDamage) + c;
-		var value2 = Math.floor(b * inputValues.Health) + c;
+		var value1 = Math.floor(a * values.SpellDamage) + c;
+		var value2 = Math.floor(b * values.Health) + c;
 		value = Math.max(value1, value2);
 	}
 	else if (type == -77) 
 	{
-		value = Math.floor(a * Math.max(inputValues.SpellResist, inputValues.PhysicalResist)) + c;
+		value = Math.floor(a * Math.max(values.SpellResist, values.PhysicalResist)) + c;
 	}
 	else
 	{

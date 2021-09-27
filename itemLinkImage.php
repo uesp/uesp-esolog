@@ -2172,6 +2172,12 @@ class CEsoItemLinkImage
 				$newTraitValue = $traitValue * (1 + $this->weaponTraitFactor);
 				return "by |cffffff$newTraitValue|r";
 			}, $traitDesc, 1);
+			
+			$traitDesc = preg_replace_callback('/a \|cffffff([0-9.]+)\|r% chance/', function($matches) {
+				$traitValue = floatval($matches[1]);
+				$newTraitValue = $traitValue * (1 + $this->weaponTraitFactor);
+				return "a |cffffff$newTraitValue|r% chance";
+			}, $traitDesc, 1);
 		}
 		
 		$this->AddPrintData($printData, $traitDesc, $this->printOptionsSmallBeige, array('format' => true, 'lineBreak' => true));
