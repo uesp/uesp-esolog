@@ -39,10 +39,11 @@ class EsoItemSearcher
 			"Magicka Recovery" => array("%Adds % Magicka Recovery%"),
 			"Stamina Recovery" => array("%Adds % Stamina Recovery%"),
 			"Physical Resistance" => array("%Physical Resistance%"),
-			"Spell Resistance" => array("%Spell Resistance%"),
+			"Spell Resistance" => array("%Spell Resistance%",
+										"%Physical and Spell Resistance%"),
 			"Critical Resistance" => array("%Increase resistance to critical hits%"),
-			"Spell Damage" => array("%Increase Spell Damage%"),
-			"Weapon Damage" => array("%Increase Weapon Damage%"),
+			"Spell Damage" => array("%Spell Damage%"),
+			"Weapon Damage" => array("%Weapon Damage%"),
 			"Spell Critical" => array("%Adds % Spell Critical%"),
 			"Weapon Critical" => array("%Adds % Weapon Critical%"),
 			"Stealth Range" => array(	"%Reduce the range you can be detected%", 
@@ -61,8 +62,8 @@ class EsoItemSearcher
 			"setBonusDesc5",
 			"enchantDesc",
 			"traitDesc",
-			"traitAbilityDesc",
-			"abilityDesc",			
+			//"traitAbilityDesc",
+			"abilityDesc",
 		);
 	
 	static public $ESOIS_ENCHANTS = array(
@@ -637,7 +638,7 @@ class EsoItemSearcher
 		$enchantDesc = FormatRemoveEsoItemDescriptionText($result['enchantDesc']);
 		$traitDesc = FormatRemoveEsoItemDescriptionText($result['traitDesc']);
 		$abilityDesc = FormatRemoveEsoItemDescriptionText($result['abilityDesc']);
-		$traitAbilityDesc = FormatRemoveEsoItemDescriptionText($result['traitAbilityDesc']);
+		//$traitAbilityDesc = FormatRemoveEsoItemDescriptionText($result['traitAbilityDesc']);
 		$setBonusDesc1 = FormatRemoveEsoItemDescriptionText($result['setBonusDesc1']);
 		$setBonusDesc2 = FormatRemoveEsoItemDescriptionText($result['setBonusDesc2']);
 		$setBonusDesc3 = FormatRemoveEsoItemDescriptionText($result['setBonusDesc3']);
@@ -753,10 +754,10 @@ class EsoItemSearcher
 			$output .= $abilityDesc . ", ";
 		}
 		
-		if ($traitAbilityDesc != "")
+		/*if ($traitAbilityDesc != "")
 		{
 			$output .= $traitAbilityDesc . ", ";
-		}
+		}*/
 		
 		if ($result['bindType'] > 0)
 		{
