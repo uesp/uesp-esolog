@@ -362,7 +362,13 @@ class CEsoSkillTooltip
 	
 	public function ConvertDescriptionToHtml($description)
 	{
-		$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r/', '<div class="esoSkillToolWhite">$1</div>', $description);
+			/* Fix for double formatted text */
+		//$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r\|r/', '<div class="esoSkillToolWhite">$1</div>', $description);
+		$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}\|c([a-fA-F0-9]{6})([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r\|r/', '<div class="esoSkillToolWhite" style="color:#$1">$2</div>', $description);
+		
+		//$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r/', '<div class="esoSkillToolWhite">$1</div>', $newDesc);
+		$newDesc = preg_replace('/\|c([a-fA-F0-9]{6})([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r/', '<div class="esoSkillToolWhite" style="color:#$1">$2</div>', $newDesc);
+		
 		$newDesc = preg_replace('/\n/', '<br />', $newDesc);
 		return $newDesc;
 	}

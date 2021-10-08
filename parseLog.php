@@ -7635,6 +7635,7 @@ class EsoLogParser
 				'learnedLevel',
 				'isPlayer',
 				'baseAbilityId',
+				'descHeader',
 		);
 		
 		foreach ($FIELDS as $field)
@@ -7657,7 +7658,7 @@ class EsoLogParser
 		
 		$skill = $this->LoadSkillDump($abilityId);
 		if ($skill === false) return false;
-  	
+		
 		$skill['name'] = $logEntry['name'];
 		$skill['displayId'] = $logEntry['id'];
 		$skill['description'] = $logEntry['desc'];
