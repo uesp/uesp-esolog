@@ -2908,7 +2908,7 @@ window.UpdateEsoSkillElfBaneDurationDescription = function (skillData, skillDesc
 					}
 					
 					return p1 + p2 + newDuration + p4;
-				});		
+				});
 	}
 	
 	return newDesc;

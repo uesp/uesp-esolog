@@ -585,12 +585,21 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'points' => 220,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_prologue_up.dds',
   ),
+  'Prologues::Deadlands' => 
+  array (
+    'name' => 'Prologues',
+    'subName' => 'Deadlands',
+    'index' => 10,
+    'subIndex' => 1,
+    'points' => 10,
+    'icon' => '',
+  ),
   'Prologues::Blackwood' => 
   array (
     'name' => 'Prologues',
     'subName' => 'Blackwood',
     'index' => 10,
-    'subIndex' => 1,
+    'subIndex' => 2,
     'points' => 10,
     'icon' => '',
   ),
@@ -599,7 +608,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Prologues',
     'subName' => 'Markarth',
     'index' => 10,
-    'subIndex' => 2,
+    'subIndex' => 3,
     'points' => 10,
     'icon' => '',
   ),
@@ -608,7 +617,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Prologues',
     'subName' => 'Greymoor',
     'index' => 10,
-    'subIndex' => 3,
+    'subIndex' => 4,
     'points' => 10,
     'icon' => '',
   ),
@@ -617,7 +626,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Prologues',
     'subName' => 'Dragonhold',
     'index' => 10,
-    'subIndex' => 4,
+    'subIndex' => 5,
     'points' => 10,
     'icon' => '',
   ),
@@ -626,7 +635,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Prologues',
     'subName' => 'Elsweyr',
     'index' => 10,
-    'subIndex' => 5,
+    'subIndex' => 6,
     'points' => 85,
     'icon' => '',
   ),
@@ -635,7 +644,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Prologues',
     'subName' => 'Murkmire',
     'index' => 10,
-    'subIndex' => 6,
+    'subIndex' => 7,
     'points' => 85,
     'icon' => '',
   ),
@@ -900,29 +909,65 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'points' => 525,
     'icon' => '',
   ),
+  'Deadlands::General' => 
+  array (
+    'name' => 'Deadlands',
+    'subName' => 'General',
+    'index' => 16,
+    'subIndex' => 0,
+    'points' => 590,
+    'icon' => '/esoui/art/treeicons/tutorial_idexicon_deadlands_up.dds',
+  ),
+  'Deadlands' => 
+  array (
+    'name' => 'Deadlands',
+    'subName' => 'General',
+    'index' => 16,
+    'subIndex' => 0,
+    'points' => 590,
+    'icon' => '/esoui/art/treeicons/tutorial_idexicon_deadlands_up.dds',
+  ),
+  'Deadlands::Exploration' => 
+  array (
+    'name' => 'Deadlands',
+    'subName' => 'Exploration',
+    'index' => 16,
+    'subIndex' => 1,
+    'points' => 160,
+    'icon' => '',
+  ),
+  'Deadlands::Quests' => 
+  array (
+    'name' => 'Deadlands',
+    'subName' => 'Quests',
+    'index' => 16,
+    'subIndex' => 2,
+    'points' => 225,
+    'icon' => '',
+  ),
   'Waking Flame::General' => 
   array (
     'name' => 'Waking Flame',
     'subName' => 'General',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 0,
-    'points' => 1045,
+    'points' => 1145,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
   ),
   'Waking Flame' => 
   array (
     'name' => 'Waking Flame',
     'subName' => 'General',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 0,
-    'points' => 1045,
+    'points' => 1145,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
   ),
   'Waking Flame::Veteran' => 
   array (
     'name' => 'Waking Flame',
     'subName' => 'Veteran',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 1,
     'points' => 890,
     'icon' => '',
@@ -931,7 +976,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'General',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -940,7 +985,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'General',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -949,7 +994,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'Veteran',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 1,
     'points' => 790,
     'icon' => '',
@@ -958,7 +1003,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'General',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 0,
     'points' => 1190,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_markarth_up.dds',
@@ -967,7 +1012,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'General',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 0,
     'points' => 1190,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_markarth_up.dds',
@@ -976,7 +1021,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Exploration',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 1,
     'points' => 115,
     'icon' => '',
@@ -985,7 +1030,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Quests',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 2,
     'points' => 295,
     'icon' => '',
@@ -994,7 +1039,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Vateshran Hollows',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 3,
     'points' => 485,
     'icon' => '',
@@ -1003,7 +1048,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'General',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 1,
     'points' => 175,
     'icon' => '',
@@ -1012,7 +1057,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'General',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 0,
     'points' => 1055,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1021,7 +1066,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'Veteran',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 2,
     'points' => 880,
     'icon' => '',
@@ -1030,7 +1075,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'General',
-    'index' => 20,
+    'index' => 21,
     'subIndex' => 1,
     'points' => 245,
     'icon' => '',
@@ -1039,7 +1084,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'General',
-    'index' => 20,
+    'index' => 21,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1048,7 +1093,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'Veteran',
-    'index' => 20,
+    'index' => 21,
     'subIndex' => 2,
     'points' => 700,
     'icon' => '',
@@ -1057,7 +1102,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'General',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 0,
     'points' => 660,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_dragonguard_up.dds',
@@ -1066,7 +1111,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'General',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 0,
     'points' => 660,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_dragonguard_up.dds',
@@ -1075,7 +1120,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'Exploration',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 1,
     'points' => 130,
     'icon' => '',
@@ -1084,7 +1129,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'Quests',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 2,
     'points' => 225,
     'icon' => '',
@@ -1093,7 +1138,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'General',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 1,
     'points' => 175,
     'icon' => '',
@@ -1102,7 +1147,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'General',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 0,
     'points' => 845,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1111,7 +1156,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'Veteran',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 2,
     'points' => 670,
     'icon' => '',
@@ -1120,7 +1165,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'General',
-    'index' => 23,
+    'index' => 24,
     'subIndex' => 1,
     'points' => 185,
     'icon' => '',
@@ -1129,7 +1174,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'General',
-    'index' => 23,
+    'index' => 24,
     'subIndex' => 0,
     'points' => 870,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1138,7 +1183,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'Veteran',
-    'index' => 23,
+    'index' => 24,
     'subIndex' => 2,
     'points' => 685,
     'icon' => '',
@@ -1147,7 +1192,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'General',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_murkmire_up.dds',
@@ -1156,7 +1201,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'General',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_murkmire_up.dds',
@@ -1165,7 +1210,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Exploration',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 1,
     'points' => 120,
     'icon' => '',
@@ -1174,7 +1219,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Quests',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 2,
     'points' => 200,
     'icon' => '',
@@ -1183,7 +1228,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Blackrose Prison',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 3,
     'points' => 445,
     'icon' => '',
@@ -1192,7 +1237,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'General',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 1,
     'points' => 155,
     'icon' => '',
@@ -1201,7 +1246,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'General',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 0,
     'points' => 840,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1210,7 +1255,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'Veteran',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 2,
     'points' => 685,
     'icon' => '',
@@ -1219,7 +1264,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'General',
-    'index' => 26,
+    'index' => 27,
     'subIndex' => 0,
     'points' => 875,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1228,7 +1273,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'General',
-    'index' => 26,
+    'index' => 27,
     'subIndex' => 0,
     'points' => 875,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1237,7 +1282,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'Veteran',
-    'index' => 26,
+    'index' => 27,
     'subIndex' => 1,
     'points' => 730,
     'icon' => '',
@@ -1246,7 +1291,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'General',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_cwc_up.dds',
@@ -1255,7 +1300,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'General',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_cwc_up.dds',
@@ -1264,7 +1309,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Exploration',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 1,
     'points' => 85,
     'icon' => '',
@@ -1273,7 +1318,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Quests',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 2,
     'points' => 215,
     'icon' => '',
@@ -1282,7 +1327,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Asylum Sanctorium',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 3,
     'points' => 425,
     'icon' => '',
@@ -1291,7 +1336,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'General',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 0,
     'points' => 760,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1300,7 +1345,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'General',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 0,
     'points' => 760,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1309,7 +1354,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'Veteran',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 1,
     'points' => 615,
     'icon' => '',
@@ -1318,7 +1363,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'General',
-    'index' => 29,
+    'index' => 30,
     'subIndex' => 0,
     'points' => 785,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1327,7 +1372,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'General',
-    'index' => 29,
+    'index' => 30,
     'subIndex' => 0,
     'points' => 785,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1336,7 +1381,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'Veteran',
-    'index' => 29,
+    'index' => 30,
     'subIndex' => 1,
     'points' => 630,
     'icon' => '',
@@ -1345,7 +1390,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'General',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 0,
     'points' => 835,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds',
@@ -1354,7 +1399,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'General',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 0,
     'points' => 835,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds',
@@ -1363,7 +1408,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'Exploration',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 1,
     'points' => 295,
     'icon' => '',
@@ -1372,7 +1417,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'Quests',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 2,
     'points' => 180,
     'icon' => '',
@@ -1381,7 +1426,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'General',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 0,
     'points' => 1305,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_thievesguild_up.dds',
@@ -1390,7 +1435,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'General',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 0,
     'points' => 1305,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_thievesguild_up.dds',
@@ -1399,7 +1444,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Exploration',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 1,
     'points' => 370,
     'icon' => '',
@@ -1408,7 +1453,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Quests',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 2,
     'points' => 275,
     'icon' => '',
@@ -1417,7 +1462,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Maw of Lorkhaj',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 3,
     'points' => 340,
     'icon' => '',
@@ -1426,7 +1471,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'General',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds',
@@ -1435,7 +1480,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'General',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds',
@@ -1444,7 +1489,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Exploration',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 1,
     'points' => 425,
     'icon' => '',
@@ -1453,7 +1498,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Quests',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 2,
     'points' => 170,
     'icon' => '',
@@ -1462,7 +1507,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Maelstrom Arena',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 3,
     'points' => 115,
     'icon' => '',
@@ -1471,7 +1516,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'General',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_ic_up.dds',
@@ -1480,7 +1525,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'General',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_ic_up.dds',
@@ -1489,7 +1534,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'Imperial City Prison',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 1,
     'points' => 300,
     'icon' => '',
@@ -1498,7 +1543,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'White Gold Tower',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 2,
     'points' => 275,
     'icon' => '',
@@ -2009,7 +2054,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1216,
     'name' => 'Vigorous Decree',
     'desc' => 'Spend 50 Champion Points in the Fitness Constellation.',
-    'icon' => '/esoui/art/icons/achievement_101.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_01.dds',
     'points' => 10,
     'index' => 1,
     'criteria' => 
@@ -2027,7 +2072,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1215,
     'name' => 'Robust Destiny',
     'desc' => 'Spend 100 Champion Points in the Fitness Constellation.',
-    'icon' => '/esoui/art/icons/achievement_96.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_02.dds',
     'points' => 15,
     'index' => 1,
     'criteria' => 
@@ -2045,7 +2090,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1217,
     'name' => 'Champion of Last Seed',
     'desc' => 'Spend 150 Champion Points in the Fitness Constellation.',
-    'icon' => '/esoui/art/icons/achievement_104.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_03.dds',
     'points' => 50,
     'index' => 1,
     'criteria' => 
@@ -2063,7 +2108,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1221,
     'name' => 'Stealthy Decree',
     'desc' => 'Spend 50 Champion Points in the Craft Constellation.',
-    'icon' => '/esoui/art/icons/achievement_95.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_01.dds',
     'points' => 10,
     'index' => 2,
     'criteria' => 
@@ -2081,7 +2126,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1222,
     'name' => 'Devious Destiny',
     'desc' => 'Spend 100 Champion Points in the Craft Constellation.',
-    'icon' => '/esoui/art/icons/achievement_99.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_02.dds',
     'points' => 15,
     'index' => 2,
     'criteria' => 
@@ -2099,7 +2144,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1223,
     'name' => 'Champion of Evening Star',
     'desc' => 'Spend 150 Champion Points in the Craft Constellation.',
-    'icon' => '/esoui/art/icons/achievement_104.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_03.dds',
     'points' => 50,
     'index' => 2,
     'criteria' => 
@@ -2117,7 +2162,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1218,
     'name' => 'Arcane Decree',
     'desc' => 'Spend 50 Champion Points in the Warfare Constellation.',
-    'icon' => '/esoui/art/icons/achievement_98.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_mage_01.dds',
     'points' => 10,
     'index' => 3,
     'criteria' => 
@@ -2135,7 +2180,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1219,
     'name' => 'Mysterious Destiny',
     'desc' => 'Spend 100 Champion Points in the Warfare Constellation.',
-    'icon' => '/esoui/art/icons/achievement_103.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_mage_02.dds',
     'points' => 15,
     'index' => 3,
     'criteria' => 
@@ -2153,7 +2198,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'id' => 1220,
     'name' => 'Champion of Rain\'s Hand',
     'desc' => 'Spend 150 Champion Points in the Warfare Constellation.',
-    'icon' => '/esoui/art/icons/achievement_104.dds',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_mage_03.dds',
     'points' => 50,
     'index' => 3,
     'criteria' => 
@@ -2889,7 +2934,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Khenarthi\'s Skyshard Hunter',
     'desc' => 'Find all 6 Skyshards in Khenarthi\'s Roost.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 5,
+    'points' => 10,
     'index' => 2,
     'criteria' => 
     array (
@@ -5554,7 +5599,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Upper Craglorn Skyshards',
     'desc' => 'Find all 6 Skyshards in Upper Craglorn.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 15,
+    'points' => 10,
     'index' => 33,
     'criteria' => 
     array (
@@ -38800,6 +38845,33 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  3095 => 
+  array (
+    'id' => 3095,
+    'name' => 'Lyranth\'s Liaison',
+    'desc' => 'Assist Lyranth in her efforts to investigate the Order of the Waking Flame and a situation that could have apocalyptic consequences for Nirn.',
+    'icon' => '/esoui/art/icons/achievement_u32_teaserprologue_in_u31.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete "An Apocalyptic Situation"',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Complete "The Key and the Cataclyst"',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/adorn_graveelegance.dds',
+    'collectName' => 'Grave Elegance Mask',
+    'collectId' => '9404',
+  ),
   2992 => 
   array (
     'id' => 2992,
@@ -39063,33 +39135,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Murkmire Prepper',
-  ),
-  3095 => 
-  array (
-    'id' => 3095,
-    'name' => 'Lyranth\'s Liaison',
-    'desc' => 'Assist Lyranth in her efforts to investigate the Order of the Waking Flame and a situation that could have apocalyptic consequences for Nirn.',
-    'icon' => '/esoui/art/icons/achievement_u32_teaserprologue_in_u31.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete "An Apocalyptic Situation"',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Complete "The Key and the Cataclyst"',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/adorn_graveelegance.dds',
-    'collectName' => 'Grave Elegance Mask',
-    'collectId' => '9404',
   ),
   3065 => 
   array (
@@ -39982,7 +40027,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   3076 => 
   array (
     'id' => 3076,
-    'name' => 'Oblivion Obliterater',
+    'name' => 'Oblivion Obliterator',
     'desc' => 'Defeat all the generals of the Oblivion Portals as they start their incursion.',
     'icon' => '/esoui/art/icons/achievement_u30_oblivionportalgenerals.dds',
     'points' => 10,
@@ -51932,126 +51977,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1843 => 
-  array (
-    'id' => 1843,
-    'name' => 'Morrowind Skyshard Hunter',
-    'desc' => 'Discover all 18 Skyshards in Vvardenfell.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'At a small shrine where the road forks.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'On an isle facing the Sea of Ghosts.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'On a Dwemer overhang, above a river of lava.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'On an outcropping overlooking a grisly scene.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'In a hollow stump on the wetlands.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Withheld at customs and stored in the yard.',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'In a stump on the northern shore of Lake Amaya.',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'In the heart of crumbling Daedric ruins.',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'On a stranded rock in a river of lava.',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Beneath the Dwarven bridge.',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'On a treacherous path overlooking a sea of fire.',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Heaped onto a cart of stone left on a precarious perch.',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Nestled with glittering treasures where the red crystals glow.',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Hidden deep within a shrine to the Prince of Corruption.',
-        'value' => 1,
-        'index' => 14,
-      ),
-      15 => 
-      array (
-        'name' => 'Where cliff-striders bask under golden rays in their den.',
-        'value' => 1,
-        'index' => 15,
-      ),
-      16 => 
-      array (
-        'name' => 'On an islet in the subterranean lake.',
-        'value' => 1,
-        'index' => 16,
-      ),
-      17 => 
-      array (
-        'name' => 'In a cozy bandit’s den.',
-        'value' => 1,
-        'index' => 17,
-      ),
-      18 => 
-      array (
-        'name' => 'In the deepest depths of a subterranean Dwemer ruin.',
-        'value' => 1,
-        'index' => 18,
-      ),
-    ),
-  ),
   1868 => 
   array (
     'id' => 1868,
@@ -52059,7 +51984,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of Morrowind.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_021.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -52114,7 +52039,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Visit the silt strider caravaner at each of the stations in Vvardenfell.',
     'icon' => '/esoui/art/icons/achievement_morrowind_029.dds',
     'points' => 5,
-    'index' => 9,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -52168,7 +52093,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Visit the Shrines of the Seven Graces and read the inscription on each shine.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_032.dds',
     'points' => 5,
-    'index' => 10,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -52222,7 +52147,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Read all 36 Sermons of Vivec scattered across Vvardenfell.',
     'icon' => '/esoui/art/icons/achievement_morrowind_037.dds',
     'points' => 5,
-    'index' => 11,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -52440,6 +52365,126 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Read Lesson 36 Near Balmora',
         'value' => 1,
         'index' => 36,
+      ),
+    ),
+  ),
+  1843 => 
+  array (
+    'id' => 1843,
+    'name' => 'Vvardenfell Skyshard Hunter',
+    'desc' => 'Discover all 18 Skyshards in Vvardenfell.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'At a small shrine where the road forks.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'On an isle facing the Sea of Ghosts.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'On a Dwemer overhang, above a river of lava.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'On an outcropping overlooking a grisly scene.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'In a hollow stump on the wetlands.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Withheld at customs and stored in the yard.',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'In a stump on the northern shore of Lake Amaya.',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'In the heart of crumbling Daedric ruins.',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'On a stranded rock in a river of lava.',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Beneath the Dwarven bridge.',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'On a treacherous path overlooking a sea of fire.',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Heaped onto a cart of stone left on a precarious perch.',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Nestled with glittering treasures where the red crystals glow.',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Hidden deep within a shrine to the Prince of Corruption.',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Where cliff-striders bask under golden rays in their den.',
+        'value' => 1,
+        'index' => 15,
+      ),
+      16 => 
+      array (
+        'name' => 'On an islet in the subterranean lake.',
+        'value' => 1,
+        'index' => 16,
+      ),
+      17 => 
+      array (
+        'name' => 'In a cozy bandit’s den.',
+        'value' => 1,
+        'index' => 17,
+      ),
+      18 => 
+      array (
+        'name' => 'In the deepest depths of a subterranean Dwemer ruin.',
+        'value' => 1,
+        'index' => 18,
       ),
     ),
   ),
@@ -52731,6 +52776,1166 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  3190 => 
+  array (
+    'id' => 3190,
+    'name' => 'Welcome to Fargrave',
+    'desc' => 'Enter Fargrave for the first time.',
+    'icon' => '/esoui/art/icons/u32_pkg_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter the Deadlands',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/hat_oblivionexplorersheadwrap.dds',
+    'collectName' => 'Oblivion Explorer\'s Headwrap',
+    'collectId' => '9411',
+  ),
+  3137 => 
+  array (
+    'id' => 3137,
+    'name' => 'Deadlands Master Explorer',
+    'desc' => 'Discover and clear all delves and striking locales in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_023.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deadlands Delver',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Deadlands Pathfinder',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3139 => 
+  array (
+    'id' => 3139,
+    'name' => 'Deadlands Pathfinder',
+    'desc' => 'Discover all of the striking locales in Fargrave and the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_045.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Tempest Engine',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Traitor\'s Ascent',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Charnel Pulpit',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Chantry of the Moon Reiver',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Ravaged Crossing',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Skein Row',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  3138 => 
+  array (
+    'id' => 3138,
+    'name' => 'Deadlands Cave Delver',
+    'desc' => 'Discover and clear both explorable delves in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_023.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Brandfire Reformatory Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'False Martyrs\' Folly Explorer',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3135 => 
+  array (
+    'id' => 3135,
+    'name' => 'Brandfire Reformatory Explorer',
+    'desc' => 'Explore and clear the Brandfire Reformatory.',
+    'icon' => '/esoui/art/icons/achievement_023.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Brandfire Reformatory Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3136 => 
+  array (
+    'id' => 3136,
+    'name' => 'False Martyrs\' Folly Explorer',
+    'desc' => 'Explore and clear the False Martyrs\' Folly.',
+    'icon' => '/esoui/art/icons/achievement_023.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'False Martyrs\' Folly Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3141 => 
+  array (
+    'id' => 3141,
+    'name' => 'Defender of the Deadlands',
+    'desc' => 'Defeat both group bosses in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_groupboss_meta_2.dds',
+    'points' => 15,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Infernium Unmaker',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Mantikora Taupezu Azzida',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3142 => 
+  array (
+    'id' => 3142,
+    'name' => 'Unmaker Unmaker',
+    'desc' => 'Defeat the Infernium Unmaker in the Den of the Unmaker',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_groupboss1.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Unmaker',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3143 => 
+  array (
+    'id' => 3143,
+    'name' => 'Scorpion Stomper',
+    'desc' => 'Defeat the Mantikora Taupezu Azzida in the Abomination Cradle',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_groupboss2.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Taupezu Azzida',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3194 => 
+  array (
+    'id' => 3194,
+    'name' => 'Havocrel Hunter',
+    'desc' => 'Find and defeat 1 Havocrel Executioner in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_havocrel_1.dds',
+    'points' => 5,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat 1 Havocrel Executioner in the Deadlands.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3195 => 
+  array (
+    'id' => 3195,
+    'name' => 'Havocrel Slayer',
+    'desc' => 'Find and defeat 10 Havocrel Executioners in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_havocrel_2.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat 10 Havocrel Executioners in the Deadlands.',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3196 => 
+  array (
+    'id' => 3196,
+    'name' => 'Havocrel Exterminator',
+    'desc' => 'Find and defeat 30 Havocrel Executioners in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_havocrel_3.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat 30 Havocrel Executioners in the Deadlands.',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3197 => 
+  array (
+    'id' => 3197,
+    'name' => 'Bane of the Havocrels',
+    'desc' => 'Defeat each of the Havocrel Executioners in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_havocrel_uniques.dds',
+    'points' => 15,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Irncifel the Despolier',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Vorsholazh the Anvil',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Kothan the Razorsworn',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'title' => 'Havocrel Hunter',
+  ),
+  3191 => 
+  array (
+    'id' => 3191,
+    'name' => 'Deadlands Portal Defender',
+    'desc' => 'Enter 1 Oblivion Portal from the Deadlands and destroy the antecedent cataclyst machine you find there.',
+    'icon' => '/esoui/art/icons/achievement_u30_obliviongate.dds',
+    'points' => 5,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Destroy Cataclyst in 1 Oblivion Portal',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3192 => 
+  array (
+    'id' => 3192,
+    'name' => 'Deadlands Portal Punisher',
+    'desc' => 'Enter 10 Oblivion Portals from the Deadlands and destroy the antecedent cataclyst machines you find there.',
+    'icon' => '/esoui/art/icons/achievement_u30_oblivionportals10.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Destroy Cataclyst in 10 Oblivion Portals',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3193 => 
+  array (
+    'id' => 3193,
+    'name' => 'Deadlands Portal Devastator',
+    'desc' => 'Enter 30 Oblivion Portals from the Deadlands and destroy the antecedent cataclyst machines you find there.',
+    'icon' => '/esoui/art/icons/achievement_u30_oblivionportals30.dds',
+    'points' => 15,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Destroy the Cataclyst in 30 Oblivion Portals',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3208 => 
+  array (
+    'id' => 3208,
+    'name' => 'Deadlands Grand Adventurer',
+    'desc' => 'Complete 14 unique quests in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_masterexplorer.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deadlands Grand Adventurer',
+        'value' => 14,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3209 => 
+  array (
+    'id' => 3209,
+    'name' => 'Stranger in Town',
+    'desc' => 'Complete "The Celestial Palanquin" quest in Fargrave.',
+    'icon' => '/esoui/art/icons/quest_u32_the_celestial_palanquin.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Celestial Palanquin',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3210 => 
+  array (
+    'id' => 3210,
+    'name' => 'Rat Catcher',
+    'desc' => 'Complete the "Destruction Incarnate" quest in Fargrave',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_mainquest_2.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Destruction Incarnate',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3211 => 
+  array (
+    'id' => 3211,
+    'name' => 'Deadlands Jailbreaker',
+    'desc' => 'Complete "The Durance Vile" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_mainquest_3.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Durance Vile',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3212 => 
+  array (
+    'id' => 3212,
+    'name' => 'Deadlands Mountaineer',
+    'desc' => 'Complete the "Born of Grief" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_mainquest_4.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Born of Grief',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3213 => 
+  array (
+    'id' => 3213,
+    'name' => 'Unmasker',
+    'desc' => 'Complete the "Deadlight" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_mainquest_5.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deadlight',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3214 => 
+  array (
+    'id' => 3214,
+    'name' => 'Hopeful Rescuer',
+    'desc' => 'Complete the "Against All Hope" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_mainquest_6.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Against All Hope',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Cataclyst Breaker',
+    'collectIcon' => '/esoui/art/icons/memento_incarnate.dds',
+    'collectName' => 'Incarnate Illusion Gem',
+    'collectId' => '9719',
+  ),
+  3215 => 
+  array (
+    'id' => 3215,
+    'name' => 'Ambition Collector',
+    'desc' => 'Complete "The Last Ambition" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_capperquest_1.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Last Ambition',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3216 => 
+  array (
+    'id' => 3216,
+    'name' => 'Dagon Defier',
+    'desc' => 'Complete the "Ambition\'s End" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_capperquest_2.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ambition\'s End',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3217 => 
+  array (
+    'id' => 3217,
+    'name' => 'Eternal Optimist',
+    'desc' => 'Complete the "Hope Springs Eternal" quest in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_capperquest_3.dds',
+    'points' => 15,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hope Springs Eternal',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Champion of the Deadlands',
+  ),
+  3198 => 
+  array (
+    'id' => 3198,
+    'name' => 'Fargrave Laborer',
+    'desc' => 'Complete your first daily job for Luna Beriel in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_quests_delvedaily_30.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fargrave Laborer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3199 => 
+  array (
+    'id' => 3199,
+    'name' => 'Fargrave Agent',
+    'desc' => 'Complete 10 daily jobs for Luna Beriel in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_quests_delvedaily_1.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fargrave Agent',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3200 => 
+  array (
+    'id' => 3200,
+    'name' => 'Fargrave Professional',
+    'desc' => 'Complete 30 daily jobs for Luna Beriel in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_quests_delvedaily_10.dds',
+    'points' => 15,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fargrave Professional',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3201 => 
+  array (
+    'id' => 3201,
+    'name' => 'Deadlands Monster Hunter',
+    'desc' => 'Complete 1 group boss daily quest for Vaveli Indavel in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_quests_gbdaily_1.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete 1 group boss daily quest for Vaveli Indavel',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3202 => 
+  array (
+    'id' => 3202,
+    'name' => 'Deadlands Monster Slayer',
+    'desc' => 'Complete 10 group boss daily quests for Vaveli Indavel in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_quests_gbdaily_10.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete 10 group boss daily quests for Vaveli Indavel',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3203 => 
+  array (
+    'id' => 3203,
+    'name' => 'Deadlands Monster Exterminator',
+    'desc' => 'Complete 30 group boss daily quests for Vaveli Indavel in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_quests_gbdaily_30.dds',
+    'points' => 15,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete 30 group boss daily quests for Vaveli Indavel',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3218 => 
+  array (
+    'id' => 3218,
+    'name' => 'Friend to the Kalmur',
+    'desc' => 'Complete the "Death Stalks the Weak" quest in the Deadlands',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_quest_kithkalmur.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Death Stalks the Weak',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Ardent Hope',
+  ),
+  3219 => 
+  array (
+    'id' => 3219,
+    'name' => 'Spire Sleuth',
+    'desc' => 'Complete the "Peace\'s Wretched Price" quest in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_u32_dl_quest_wretchedspire.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Peace\'s Wretched Price',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'The Wretched',
+  ),
+  3145 => 
+  array (
+    'id' => 3145,
+    'name' => 'Hero of Fargrave',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Fargrave.',
+    'icon' => '/esoui/art/icons/u32_pkg_both_normal_complete.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deadlands Master Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Against All Hope',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defender of the Deadlands',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Deadlands Grand Adventurer',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'dyeName' => 'Sunforge Patina',
+    'dyeColor' => 'daf671',
+    'title' => 'Hero of Fargrave',
+  ),
+  3205 => 
+  array (
+    'id' => 3205,
+    'name' => 'Hellfire and Brimstone',
+    'desc' => 'Find all of Sister Celdina\'s lectures in the Brandfire Reformatory.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor1_fireandbrimstone.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'First Lecture',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Second Lecture',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Third Lecture',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Fourth Lecture',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3206 => 
+  array (
+    'id' => 3206,
+    'name' => 'Treat Yourself',
+    'desc' => 'Partake of all the services offered by the House of Whims.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor2_treatyourself.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Constrictions of Moath',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Golden Panacea',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Spiritual Lustration',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3204 => 
+  array (
+    'id' => 3204,
+    'name' => 'The Grasp of the Stricture',
+    'desc' => 'Help the Grasp adjudicate a situation in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor3.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Grasp of the Stricture',
+        'value' => 3,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3207 => 
+  array (
+    'id' => 3207,
+    'name' => 'Keeping the Peace',
+    'desc' => 'Defeat all the bosses in the Shambles.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor4.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Boss Kezo',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Enzir of the Vanquished',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Shaermeta',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  2999 => 
+  array (
+    'id' => 2999,
+    'name' => 'Ancient Daedric Style Master',
+    'desc' => 'Learn every chapter in the Ancient Daedric style book, occasionally found when digging for Antiquities.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ancient Daedric Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2959 => 
+  array (
+    'id' => 2959,
+    'name' => 'House Hexos Style Master',
+    'desc' => 'Learn every chapter in the House Hexos style book, found through Group Boss Daily Quests in the Deadlands.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the House Hexos Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3140 => 
+  array (
+    'id' => 3140,
+    'name' => 'Deadlands Skyshard Hunter',
+    'desc' => 'Discover all 6 Skyshards in the Deadlands.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Atop a natural bridge cut in half, north of the Raging Coast.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'In a deep pit below a toiling foundry.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Looming over a small camp in the shadow of Annihilarch\'s Summit.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Resting atop the sharp teeth of a dead giant in the Shambles.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Cradled within an altar inside the Brandfire Reformatory.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'On a ledge overlooking green pools inside False Martyrs\' Folly.',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  3144 => 
+  array (
+    'id' => 3144,
+    'name' => 'Deadlands Master Angler',
+    'desc' => 'Catch all 12 rare fish in the Deadlands.',
+    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
+    'points' => 5,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dusk Angler (Foul)',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Corpus Hagfin (Foul)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Banegil (Foul)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Black-Eyed Croaker (Foul)',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Slag Eel (Foul)',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Deadlands Trout (Foul)',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Vile Crayfish (Foul)',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Ebony Mudfish (Foul)',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Needlefish (Foul)',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Rustbelly Loach (Foul)',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Molten Nudibranch (Foul)',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Ogrim Goonch (Foul)',
+        'value' => 1,
+        'index' => 12,
+      ),
+    ),
+  ),
   3033 => 
   array (
     'id' => 3033,
@@ -52957,7 +54162,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3023,
     'name' => 'Bastion Breaker',
-    'desc' => 'Defeat all encounters in addition to Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen after placing the Challenge Banners in Veteran Red Petal Bastion within 30 minutes without suffering a group member death.',
+    'desc' => 'Defeat all encounters in addition to Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen after placing the Challenge Banners in Veteran Red Petal Bastion within 25 minutes without suffering a group member death.',
     'icon' => '/esoui/art/icons/achievement_u31_dun1_perfectnonmeta.dds',
     'points' => 50,
     'index' => 11,
@@ -52976,7 +54181,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3035,
     'name' => 'Terror Billy',
-    'desc' => 'Have a member of your group aquire 25 stacks of Buck Wild while transformed into a goat while fighting Rogerain the Sly in Veteran Red Petal Bastion.',
+    'desc' => 'Have a member of your group acquire 25 stacks of Buck Wild while fighting Rogerain the Sly in Veteran Red Petal Baston.',
     'icon' => '/esoui/art/icons/u31-dun1_flavor_a.dds',
     'points' => 10,
     'index' => 12,
@@ -53640,6 +54845,198 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Warden Awarded',
         'value' => 1,
         'index' => 1,
+      ),
+    ),
+  ),
+  3094 => 
+  array (
+    'id' => 3094,
+    'name' => 'Crimson Oath Style Master',
+    'desc' => 'Learn every chapter in the Crimson Oath style book, occasionally found as rewards for completing the Dread Cellar dungeon.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Crimson Oath Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3097 => 
+  array (
+    'id' => 3097,
+    'name' => 'Silver Rose Style Master',
+    'desc' => 'Learn every chapter in the Silver Rose style book, occasionally found as rewards for completing the Red Petal Bastion dungeon.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Silver Rose Style for Swords',
+        'value' => 1,
+        'index' => 14,
       ),
     ),
   ),
@@ -81013,7 +82410,7 @@ $ESO_ACHIEVEMENT_TREE = array (
   ),
   'Prologues' => 
   array (
-    'General' => 
+    'Deadlands' => 
     array (
       1 => 
       array (
@@ -82351,23 +83748,23 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       7 => 
       array (
-        0 => 1843,
+        0 => 1868,
       ),
       8 => 
       array (
-        0 => 1868,
+        0 => 1826,
       ),
       9 => 
       array (
-        0 => 1826,
+        0 => 1827,
       ),
       10 => 
       array (
-        0 => 1827,
+        0 => 1824,
       ),
       11 => 
       array (
-        0 => 1824,
+        0 => 1843,
       ),
       12 => 
       array (
@@ -82630,6 +84027,151 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
     ),
   ),
+  'Deadlands' => 
+  array (
+    'General' => 
+    array (
+      1 => 
+      array (
+        0 => 3145,
+      ),
+      2 => 
+      array (
+        0 => 3205,
+      ),
+      3 => 
+      array (
+        0 => 3206,
+      ),
+      4 => 
+      array (
+        0 => 3204,
+      ),
+      5 => 
+      array (
+        0 => 3207,
+      ),
+      6 => 
+      array (
+        0 => 2999,
+      ),
+      7 => 
+      array (
+        0 => 2959,
+      ),
+      8 => 
+      array (
+        0 => 3140,
+      ),
+      9 => 
+      array (
+        0 => 3144,
+      ),
+    ),
+    'Exploration' => 
+    array (
+      1 => 
+      array (
+        0 => 3190,
+      ),
+      2 => 
+      array (
+        0 => 3137,
+      ),
+      3 => 
+      array (
+        0 => 3139,
+      ),
+      4 => 
+      array (
+        0 => 3138,
+      ),
+      5 => 
+      array (
+        0 => 3135,
+      ),
+      6 => 
+      array (
+        0 => 3136,
+      ),
+      7 => 
+      array (
+        0 => 3141,
+      ),
+      8 => 
+      array (
+        0 => 3142,
+      ),
+      9 => 
+      array (
+        0 => 3143,
+      ),
+      10 => 
+      array (
+        0 => 3194,
+        1 => 3195,
+        2 => 3196,
+      ),
+      11 => 
+      array (
+        0 => 3197,
+      ),
+      12 => 
+      array (
+        0 => 3191,
+        1 => 3192,
+        2 => 3193,
+      ),
+    ),
+    'Quests' => 
+    array (
+      1 => 
+      array (
+        0 => 3208,
+      ),
+      2 => 
+      array (
+        0 => 3209,
+        1 => 3210,
+      ),
+      3 => 
+      array (
+        0 => 3211,
+        1 => 3212,
+      ),
+      4 => 
+      array (
+        0 => 3213,
+        1 => 3214,
+      ),
+      5 => 
+      array (
+        0 => 3215,
+        1 => 3216,
+        2 => 3217,
+      ),
+      6 => 
+      array (
+        0 => 3198,
+        1 => 3199,
+        2 => 3200,
+      ),
+      7 => 
+      array (
+        0 => 3201,
+        1 => 3202,
+        2 => 3203,
+      ),
+      8 => 
+      array (
+        0 => 3218,
+      ),
+      9 => 
+      array (
+        0 => 3219,
+      ),
+    ),
+  ),
   'Waking Flame' => 
   array (
     'General' => 
@@ -82681,6 +84223,14 @@ $ESO_ACHIEVEMENT_TREE = array (
       12 => 
       array (
         0 => 3092,
+      ),
+      13 => 
+      array (
+        0 => 3094,
+      ),
+      14 => 
+      array (
+        0 => 3097,
       ),
     ),
     'Veteran' => 

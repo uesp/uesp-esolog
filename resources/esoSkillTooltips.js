@@ -171,6 +171,7 @@ window.CreateEsoSkillTooltipRawOutputHtml = function(skillData, tooltipIndex)
 	
 	var mods = tooltipData.mods;
 	var baseValue = tooltipData.baseValue;
+	var extraDamage = tooltipData.extraDamage;
 	var finalValue = tooltipData.finalValue;
 	var finalDesc = tooltip.finalValue;
 	var rankFactor = tooltipData.rankFactor;
@@ -220,6 +221,11 @@ window.CreateEsoSkillTooltipRawOutputHtml = function(skillData, tooltipIndex)
 	if (mods && mods.length > 0)
 	{
 		output += "<div class='esovsSkillCoefRowDetail'>Modifiers: " + mods.join(" + ") + "</div>";
+	}
+	
+	if (extraDamage)
+	{
+		output += "<div class='esovsSkillCoefRowDetail'>Extra Damage: " + extraDamage + "</div>";
 	}
 	
 	return output;
@@ -1104,6 +1110,15 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 		valueFlat += inputValues.FlatOverloadDamage;
 		newRawOutput.flatOverloadDamage = inputValues.FlatOverloadDamage;
 		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Overload", inputValues.FlatOverloadDamage, '');
+	}
+	
+		// Pummeling Goliath special case (TODO: This might fail if tooltip changes)
+	if (skillData.name == "Pummeling Goliath" && inputValues.Damage.ExtraBashDamage > 0 && tooltip.dmgType == 2 && tooltip.coefType == 10)
+	{
+		valueFlat += inputValues.Damage.ExtraBashDamage;
+		
+		newRawOutput.extraDamage = inputValues.Damage.ExtraBashDamage;
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Extra Damage", "+" + inputValues.Damage.ExtraBashDamage, '');
 	}
 	
 	var finalDamage = Math.floor(baseDamage * valueFactor + valueFlat);

@@ -8,7 +8,7 @@ $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, 
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
 $TABLEPREFIX = "";
-$VERSION = "31";
+$VERSION = "32";
 $FIRSTID = 3;
 $LASTID = 200000;
 //$MAGICCOUNT = 1483;

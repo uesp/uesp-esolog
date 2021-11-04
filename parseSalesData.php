@@ -10,7 +10,7 @@ require_once("esoPotionData.php");
 
 class EsoSalesDataParser
 {
-	const ALT_MINEDITEM_TABLE = "minedItem30pts";	// Alternate table to look for mined item data in (leave blank to ignore) 
+	const ALT_MINEDITEM_TABLE = "minedItem32pts";	// Alternate table to look for mined item data in (leave blank to ignore) 
 	
 	const SKIP_CREATE_TABLES = false;
 	const ESD_OUTPUTLOG_FILENAME = "/home/uesp/esolog/esosalesdata.log";

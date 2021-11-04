@@ -21,7 +21,7 @@ for ($i = 1; $i < $argc; ++$i) {
 	}
 }
 
-$archiveVersion = intval ($version) - 1;
+$archiveVersion = intval($version) - 1;
 
 if ($renameType == "" || $version == "") die("Missing rename type or version on the command line: [item|skill] [version]");
 if ($archiveVersion <= 0) die("Version is not a valid number!]");
@@ -43,7 +43,7 @@ function renameItems() {
 		if (!$result || $result->num_rows == 0) continue;
 		
 		$rowCount = $result->fetch_row()[0];
-		if ($rowCount > 0) die("Error: Archive table $table already exists and has $rowCount rows!");
+		if ($rowCount > 0) die("Error: Archive table $table$archiveVersion already exists and has $rowCount rows!");
 		
 		print("\tDeleting empty archive table $table$archiveVersion...\n");
 		$result = $db->query("DROP TABLE $table$archiveVersion;");

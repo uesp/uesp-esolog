@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "32pts";
+$TABLE_SUFFIX = "32";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -272,10 +272,10 @@ $ESO_COEF_NUMBER_INDEX = array(
 		41100 => 4,
 		41103 => 4,
 		
-		39192 => array(3, 4),		//Medium Armor: Elude
-		41133 => array(3, 4),
-		41135 => array(3, 4),
-		41137 => array(3, 4),
+		39192 => array(2, 3),		//Medium Armor: Elude
+		41133 => array(2, 3),
+		41135 => array(2, 3),
+		41137 => array(2, 3),
 		
 		29665 => array(2, 4),	//Light Armor: Evocation
 		45557 => array(2, 4),
