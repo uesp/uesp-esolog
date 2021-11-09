@@ -29,12 +29,17 @@ $count = count($sets);
 print("\tLoaded $count sets.\n");
 
 if ($MATCH_ALL_SETS)
-	$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description <> '' ORDER BY id;");
+{
+	print("\tTrying to match all sets...\n");
+	$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description!='' ORDER BY id;");
+}
 else
+{
 	$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '% scales %' OR description LIKE '% scaling %' ORDER BY id;");
+}
 
 //$result = $db->query("SELECT * FROM minedSkills$TABLE_SUFFIX WHERE description LIKE '%scaling off%' ORDER BY id;");
-if ($result === false) die("Failed to load set data!");
+if ($result === false) die("Failed to load skill data!");
 
 $skills = array();
 
@@ -88,10 +93,12 @@ foreach ($sets as $set)
 {
 	print("\tChecking {$set['setName']}...\n");
 	
-	for ($i = 1; $i <= 5; ++$i)
+	for ($i = 1; $i <= 7; ++$i)
 	{
 		$setBonus = $set["setBonusDesc$i"];
 		if ($setBonus == null || $setBonus == "") continue;
+		
+		//print("\t\tsetBonusDesc$i : $setBonus\n");
 		
 		$hasMatch = preg_match("/ scales /", $setBonus);
 		if (!$hasMatch) $hasMatch = preg_match("/ scaling /", $setBonus);
@@ -108,7 +115,6 @@ foreach ($sets as $set)
 		else
 		{
 			//print_r($matches);
-			
 			print("\t\tFound $numMatches set descriptions!\n");
 			
 			for ($j = 0; $j < $numMatches; ++$j)

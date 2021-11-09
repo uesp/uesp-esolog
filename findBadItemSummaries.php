@@ -37,6 +37,8 @@ while ($item = $result->fetch_assoc())
 	$weaponType = $item['weaponType'];
 	$armorType = $item['armorType'];
 	$itemType = $item['type'];
+	$setName = $item['setName'];
+	$setBonusDesc1 = $item['setBonusDesc1'];
 	/*
 	 * EquipType
 		1 => "Head",
@@ -142,6 +144,12 @@ while ($item = $result->fetch_assoc())
 			print("\t$itemId: Non-zero weaponType $weaponType found for non-weapon/armor item!\n");
 			$isBad = true;
 		}
+	}
+	
+	if ($setName != "" && $setBonusDesc1 == "")
+	{
+			print("\t$itemId: Set name with empty set bonus desc!\n");
+			$isBad = true;
 	}
 	
 	if ($isBad) 
