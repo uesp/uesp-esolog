@@ -1051,6 +1051,15 @@ window.esovcpGetTooltipDescription = function(skillId, points)
 		
 		descText = descText.replace(/Current duration: <.*?>[0-9.]+<.*?>/, "Current duration: <div class='esovcpDescWhite'>" + tooltipValue + "</div>")
 	}
+		/* Cutting Defense */
+	else if (skillId == 142012) // You deal 200 Magic Damage to attackers whenever they damage you with a Direct Damage attack within 7 meters.
+	{
+		if (window.GetEsoSkillDescription2)
+		{
+			var newDesc = GetEsoSkillDescription2(142012, null, true);
+			descText = newDesc;
+		}
+	}
 	
 	descText = descText.replace("\n", "<p/>");
 	return descText;

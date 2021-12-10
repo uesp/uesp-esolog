@@ -5,6 +5,11 @@ $TABLE_SUFFIX = "";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
+$IGNORE_SETS = [
+	"The Worm's Raiment",
+	"Ebon Armory",
+];
+
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require("/home/uesp/secrets/esolog.secrets");

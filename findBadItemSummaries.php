@@ -55,7 +55,7 @@ while ($item = $result->fetch_assoc())
 		12 => "Ring",
 		13 => "Hand",
 		14 => "Main Hand",
-	 */
+	*/
 	
 	if ($itemType == 1) // Weapon
 	{
