@@ -603,6 +603,12 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 		weaponDamageTypes.push("Ranged");
 	}
 	
+	if (tooltip.isMelee == 0 && tooltip.isDOT == 0 && skillWeaponValues != null)
+	{
+		skillWeaponValues = skillWeaponValues.DirectRange;
+		weaponDamageTypes.push("Direct-Ranged");
+	}
+	
 	if (skillWeaponValues != null)
 	{
 		var typeWeaponValues = skillWeaponValues.base;
@@ -708,6 +714,12 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 		spellDamageTypes.push("Ranged");
 	}
 	
+	if (tooltip.isMelee == 0 && tooltip.isDOT == 0 && skillSpellValues != null)
+	{
+		skillSpellValues = skillSpellValues.DirectRange;
+		spellDamageTypes.push("Direct-Ranged");
+	}
+	
 	if (skillSpellValues != null)
 	{
 		var typeSpellValues = skillSpellValues.base;
@@ -756,6 +768,9 @@ window.MakeEsoSkillTooltipDamageRawOutput = function(rawData)
 	if (rawData.damageDone     != null && rawData.damageDone     != 0) output += " + " + RoundEsoSkillPercent(rawData.damageDone*100) + "% All";
 	if (rawData.magickaAbilityDamageDone != null && rawData.magickaAbilityDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.magickaAbilityDamageDone*100) + "% Magicka";
 	if (rawData.overloadDamage != null && rawData.overloadDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.overloadDamage*100) + "% Overload";
+	if (rawData.LADamage != null && rawData.LADamage != 0) output += " + " + RoundEsoSkillPercent(rawData.LADamage*100) + "% LA";
+	if (rawData.HADamage != null && rawData.HADamage != 0) output += " + " + RoundEsoSkillPercent(rawData.HADamage*100) + "% HA";
+	if (rawData.empower != null && rawData.empower != 0) output += " + " + RoundEsoSkillPercent(rawData.empower*100) + "% Empower";
 	if (rawData.skillDotDamage != null && rawData.skillDotDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDotDamage*100) + "% SkillDot";
 	if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";
 	if (rawData.skillLineDirectDamage != null && rawData.skillLineDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDirectDamage) + " SkillLineDirect";
@@ -1116,9 +1131,40 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 	if (skillData.name == "Pummeling Goliath" && inputValues.Damage.ExtraBashDamage > 0 && tooltip.dmgType == 2 && tooltip.coefType == 10)
 	{
 		valueFlat += inputValues.Damage.ExtraBashDamage;
-		
 		newRawOutput.extraDamage = inputValues.Damage.ExtraBashDamage;
 		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Extra Damage", "+" + inputValues.Damage.ExtraBashDamage, '');
+	}
+	
+		// Overload special case
+	if (skillData.baseName == "Overload")
+	{
+				// Empower
+		if (tooltip.dmgType == 4 && tooltip.isAOE == 0 && inputValues.Damage.Empower)
+		{
+			valueFactor += inputValues.Damage.Empower;
+			newRawOutput.empower = inputValues.Damage.Empower;
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Empower", "+" + inputValues.Damage.Empower, '%');
+		}
+		else if (tooltip.dmgType == 4 && tooltip.isAOE == 1 && inputValues.Damage.Empower)
+		{
+			valueFactor += inputValues.Damage.Empower;
+			newRawOutput.Empower = inputValues.Damage.Empower;
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Empower", "+" + inputValues.Damage.Empower, '%');
+		}
+				// Single target LA
+		if (tooltip.dmgType == 4 && tooltip.isAOE == 0 && inputValues.Damage.LADamage)
+		{
+			valueFactor += inputValues.Damage.LADamage;
+			newRawOutput.LADamage = inputValues.Damage.LADamage;
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "LA Damage", "+" + inputValues.Damage.LADamage, '%');
+			
+		}		// AOE HA
+		else if (tooltip.dmgType == 4 && tooltip.isAOE == 1 && inputValues.Damage.HADamage)
+		{
+			valueFactor += inputValues.Damage.HADamage;
+			newRawOutput.HADamage = inputValues.Damage.HADamage;
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "HA Damage", "+" + inputValues.Damage.HADamage, '%');
+		}
 	}
 	
 	var finalDamage = Math.floor(baseDamage * valueFactor + valueFlat);
@@ -1190,7 +1236,7 @@ window.ModifyEsoSkillTooltipHealValue2 = function(baseHealing, tooltip, skillDat
 	var finalHealing = Math.floor(baseHealing * healingFactor);
 	
 	newRawOutput.display = '';
-	if (tooltip.rawType == 96 || tooltip.rawType == 97 || tooltip.rawType == 55 || tooltip.rawType == 92) newRawOutput.display = '%';
+	if (ooltip.rawType == 96 || tooltip.rawType == 97 || tooltip.rawType == 55 || tooltip.rawType == 92) newRawOutput.display = '%';
 	
 	newRawOutput.finalHeal = finalHealing;
 	skillData.rawOutput["Tooltip Healing " + tooltip.idx] = MakeEsoSkillTooltipHealingRawOutput(newRawOutput);
