@@ -772,6 +772,8 @@ window.MakeEsoSkillTooltipDamageRawOutput = function(rawData)
 	if (rawData.HADamage != null && rawData.HADamage != 0) output += " + " + RoundEsoSkillPercent(rawData.HADamage*100) + "% HA";
 	if (rawData.empower != null && rawData.empower != 0) output += " + " + RoundEsoSkillPercent(rawData.empower*100) + "% Empower";
 	if (rawData.skillDotDamage != null && rawData.skillDotDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDotDamage*100) + "% SkillDot";
+	if (rawData.vulnerability != null && rawData.vulnerability != 0) output += " + " + RoundEsoSkillPercent(rawData.vulnerability*100) + "% Vulnerability";
+	
 	if (rawData.skillDirectDamage != null && rawData.skillDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDirectDamage) + " SkillDirect";
 	if (rawData.skillLineDirectDamage != null && rawData.skillLineDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDirectDamage) + " SkillLineDirect";
 	if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
@@ -1165,6 +1167,14 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 			newRawOutput.HADamage = inputValues.Damage.HADamage;
 			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "HA Damage", "+" + inputValues.Damage.HADamage, '%');
 		}
+	}
+	
+		// Vulnerability
+	if (inputValues.Vulnerability)
+	{
+		valueFactor += inputValues.Vulnerability;
+		newRawOutput.Vulnerability = inputValues.Vulnerability;
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Vulnerability", "+" + inputValues.Vulnerability, '%');
 	}
 	
 	var finalDamage = Math.floor(baseDamage * valueFactor + valueFlat);
