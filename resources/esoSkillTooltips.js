@@ -1246,7 +1246,7 @@ window.ModifyEsoSkillTooltipHealValue2 = function(baseHealing, tooltip, skillDat
 	var finalHealing = Math.floor(baseHealing * healingFactor);
 	
 	newRawOutput.display = '';
-	if (ooltip.rawType == 96 || tooltip.rawType == 97 || tooltip.rawType == 55 || tooltip.rawType == 92) newRawOutput.display = '%';
+	if (tooltip.rawType == 96 || tooltip.rawType == 97 || tooltip.rawType == 55 || tooltip.rawType == 92) newRawOutput.display = '%';
 	
 	newRawOutput.finalHeal = finalHealing;
 	skillData.rawOutput["Tooltip Healing " + tooltip.idx] = MakeEsoSkillTooltipHealingRawOutput(newRawOutput);
