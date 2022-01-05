@@ -6642,6 +6642,8 @@ class EsoLogParser
 			$reqTrades = str_replace("Clothing", "Tailoring", $reqTrades);
 			$reqTrades = str_replace("Enchanting", "Potency Improvement", $reqTrades);
 			$reqTrades = str_replace("Provisioning", "Recipe Improvement", $reqTrades);
+			//$reqTrades = str_replace("Woodworking", "Woodworking", $reqTrades);
+			$reqTrades = str_replace("Jewelry Crafting", "Engraver", $reqTrades);
 			
 			$abilityDesc = $resultAbility;
 			if ($resultCooldown != "" && $resultCooldown > 0) $abilityDesc .= " (" . intval($resultCooldown/1000) . " second cooldown)";
