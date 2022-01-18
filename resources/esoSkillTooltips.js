@@ -609,7 +609,7 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 		weaponDamageTypes.push("Direct-Ranged");
 	}
 	
-	if (tooltip.isDmg == 1 && tooltip.isAOE == 0 && skillWeaponValues.EnemyTarget)
+	if (tooltip.isDmg == 1 && tooltip.isAOE == 0 && skillWeaponValues != null && skillWeaponValues.EnemyTarget != null)
 	{
 		skillWeaponValues = skillWeaponValues.EnemyTarget;
 		weaponDamageTypes.push("Enemy-Target");
@@ -726,7 +726,7 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 		spellDamageTypes.push("Direct-Ranged");
 	}
 	
-	if (tooltip.isDmg == 1 && tooltip.isAOE == 0 && skillSpellValues.EnemyTarget)
+	if (tooltip.isDmg == 1 && tooltip.isAOE == 0 && skillSpellValues != null && skillSpellValues.EnemyTarget != null)
 	{
 		skillSpellValues = skillSpellValues.EnemyTarget;
 		spellDamageTypes.push("Enemy-Target");
@@ -1522,14 +1522,21 @@ window.ModifyEsoSkillTooltipConstantValue2 = function(value, tooltip, skillData,
 {
 	var origValue = value;
 	value = parseFloat(value);
-	if (isNaN(value)) value = origValue; 
+	if (isNaN(value)) value = origValue;
 	
 	if (IsEsoSkillTooltipRawTypeDuration(tooltip.rawType))
 	{
 		value = ModifyEsoSkillTooltipConstantDurationValue2(value, tooltip, skillData, inputValues);
 		value = ModifyEsoSkillTooltipConstantElfBaneValue2(value, tooltip, skillData, inputValues);
 	}
-	
+	else if (tooltip.isHeal)
+	{
+		value = ModifyEsoSkillTooltipValue2(value, tooltip, skillData, inputValues);
+	}
+	else if (tooltip.isDmg)
+	{
+		value = ModifyEsoSkillTooltipValue2(value, tooltip, skillData, inputValues);
+	}
 	return value;
 }
 
