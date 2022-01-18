@@ -609,6 +609,12 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 		weaponDamageTypes.push("Direct-Ranged");
 	}
 	
+	if (tooltip.isDmg == 1 && tooltip.isAOE == 0 && skillWeaponValues.EnemyTarget)
+	{
+		skillWeaponValues = skillWeaponValues.EnemyTarget;
+		weaponDamageTypes.push("Enemy-Target");
+	}
+	
 	if (skillWeaponValues != null)
 	{
 		var typeWeaponValues = skillWeaponValues.base;
@@ -718,6 +724,12 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 	{
 		skillSpellValues = skillSpellValues.DirectRange;
 		spellDamageTypes.push("Direct-Ranged");
+	}
+	
+	if (tooltip.isDmg == 1 && tooltip.isAOE == 0 && skillSpellValues.EnemyTarget)
+	{
+		skillSpellValues = skillSpellValues.EnemyTarget;
+		spellDamageTypes.push("Enemy-Target");
 	}
 	
 	if (skillSpellValues != null)
