@@ -505,7 +505,8 @@ window.UpdateEsoCPDiscPoints = function(discId)
 	var totalPoints = 0;
 	var attributeIndex = $("#" + discId).parent().attr("attributeindex");
 	var discIndex = $("#" + discId).parent().attr("disciplineindex");
-	var skillInputs = $("#esovcpContainer").find("#skills_" + discId).find(".esovcpPointInput").not(".esovcpPointInputCluster");
+	//var skillInputs = $("#esovcpContainer").find("#skills_" + discId).find(".esovcpPointInput").not(".esovcpPointInputCluster");
+	var skillInputs = $("#esovcpContainer").find("#skills_" + discId).children(".esovcp2Skill").not(".esovcpNotPurchaseable").find(".esovcpPointInput").not(".esovcpPointInputCluster");
 	
 	skillInputs.each(function() {
 		var points = parseInt($(this).val()) || 0;
@@ -905,8 +906,9 @@ window.EsoCpUpdateAll = function ()
 		
 		g_EsoCpDisableUpdates = true;
 		
-		$("#esovcpDisciplines, #esovcp2Disciplines").find(".esovcp2Discipline").not(".esovcp2DiscCluster").each(function() {
+		$("#esovcpDisciplines, #esovcp2Disciplines").find(".esovcp2Discipline").each(function() {
 			var id = $(this).attr("id");
+			if (id.endsWith("_base")) return;
 			UpdateEsoCPDiscPoints(id);
 		});
 

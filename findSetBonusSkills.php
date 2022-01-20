@@ -10,6 +10,10 @@ $IGNORE_SETS = [
 	"Ebon Armory",
 ];
 
+$IGNORE_SET_BONUS = [
+	"Bahraha's Curse" => [ 4 => true ],
+];
+
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
 require("/home/uesp/secrets/esolog.secrets");
@@ -96,12 +100,19 @@ $foundCount = 0;
 
 foreach ($sets as $set)
 {
-	print("\tChecking {$set['setName']}...\n");
+	$setName = $set['setName'];
+	print("\tChecking $setName...\n");
 	
 	for ($i = 1; $i <= 7; ++$i)
 	{
 		$setBonus = $set["setBonusDesc$i"];
 		if ($setBonus == null || $setBonus == "") continue;
+		
+		if ($IGNORE_SET_BONUS[$setName])
+		{
+			$ignore = $IGNORE_SET_BONUS[$setName];
+			if ($ignore[$i] === true) continue;
+		}
 		
 		//print("\t\tsetBonusDesc$i : $setBonus\n");
 		

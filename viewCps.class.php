@@ -233,6 +233,9 @@ class CEsoViewCP
 		{
 			$this->cpSkillIsPurchaseable[$abilityId] = true;
 		}
+		
+		//$data = print_r($this->cpSkillIsPurchaseable, true);
+		//error_log("cpSkillIsPurchaseable $data");
 	}
 	
 	
@@ -932,6 +935,10 @@ class CEsoViewCP
 		{
 			$skillName = $skill['name'];
 			$clusterName = $skill['clusterName'];
+			
+			//$isPurchaseable = $this->cpSkillIsPurchaseable[$abilityId];
+			//error_log("$skillName:$clusterName:$abilityId = $isPurchaseable");
+			//if (!$isPurchaseable) continue;
 			
 			if ($clusterName!= "" && $skill['parentSkillId'] == $clusterId && $this->initialData[$clusterName][$skillName] != null) 
 			{

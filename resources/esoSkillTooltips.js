@@ -198,7 +198,17 @@ window.CreateEsoSkillTooltipRawOutputHtml = function(skillData, tooltipIndex)
 		output += "<div class='esovsSkillCoefRowDetail'>Weapon Damage Used = " + weaponDamage + " (" + weaponDamageMods.join(" + ") + ")</div>";
 	}
 	
-	output += "<div class='esovsSkillCoefRowDetail'>Base Value = " + baseValue;
+	if (tooltip.coefType == -75)
+	{
+		if (skillData.rawTooltipOutput != null && skillData.rawTooltipOutput[tooltipIndex] != null && skillData.rawTooltipOutput[tooltipIndex].baseValue != null)
+			output += "<div class='esovsSkillCoefRowDetail'>Base Value = " + skillData.rawTooltipOutput[tooltipIndex].baseValue;
+		else
+			output += "<div class='esovsSkillCoefRowDetail'>Base Value = " + baseValue;
+	}
+	else
+	{
+		output += "<div class='esovsSkillCoefRowDetail'>Base Value = " + baseValue;
+	}
 	
 	var duration = + tooltip.finalDuration;
 	if (isNaN(duration)) duration = + tooltip.duration;
@@ -437,7 +447,11 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		typeString = "Constant";
 		if (!hasOutputInitialLine)
 		{
-			output += srcString + " = " + tooltip.value;
+			if (skillData.rawTooltipOutput != null && skillData.rawTooltipOutput[tooltipIndex] != null && skillData.rawTooltipOutput.finvalValue != null)
+				output += srcString + " = " + skillData.rawTooltipOutput[tooltipIndex].finvalValue;
+			else
+				output += srcString + " = " + tooltip.value;
+			
 			output += " &nbsp; &nbsp; " + typeString + " (" + rawTypeText + ")";
 		}
 		break;
