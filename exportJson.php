@@ -11,6 +11,7 @@ class CEsoLogJsonExport
 	
 	public $version = "";
 	public $inputId = "";
+	public $inputIds = null;
 	public $inputLevel = "";
 	public $inputQuality = "";
 	public $inputItemType = "";
@@ -178,6 +179,17 @@ class CEsoLogJsonExport
 			}
 		}
 		
+		if (array_key_exists('ids', $this->inputParams)) 
+		{
+			$ids = explode(",", $this->inputParams['ids']);
+			
+			foreach ($ids as $id)
+			{
+				$safeId = intval($id);
+				if ($safeId > 0) $this->inputIds[] = $safeId;
+			}
+		}
+		
 		return true;
 	}
 	
@@ -254,6 +266,7 @@ class CEsoLogJsonExport
 		{
 			$isValid = false;
 			if ($this->inputId != "") $isValid = true;
+			if ($this->inputIds) $isValid = true;
 			
 				// Currently far too slow (2-3 minutes for a typical query with 10-100k records)
 			//if ($this->inputLevel != "" && $this->inputQuality != "") $isValid = true;
@@ -277,6 +290,12 @@ class CEsoLogJsonExport
 				$itemId = (int) $this->inputId;
 				if ($itemId <= 0) return $this->ReportError("Error: Invalid item id '{$this->inputId} received!", 400);
 				$where[] = "itemId=$itemId";
+			}
+			elseif ($this->inputIds)
+			{
+				$idField = $this->TABLE_IDS[$table];
+				$ids = implode(",", $this->inputIds);
+				$where[] = "$idField IN ($ids)";
 			}
 			
 			if ($this->inputIntLevel != "" && $this->inputIntType != "")
@@ -306,6 +325,12 @@ class CEsoLogJsonExport
 				if ($itemId <= 0) return $this->ReportError("Error: Invalid item id '{$this->inputId} received!", 400);
 				$where[] = "itemId=$itemId";
 			}
+			elseif ($this->inputIds)
+			{
+				$idField = $this->TABLE_IDS[$table];
+				$ids = implode(",", $this->inputIds);
+				$where[] = "$idField IN ($ids)";
+			}
 			
 			if ($this->inputItemType != "") $where[] = "type=".(int)$this->inputItemType;
 			if ($this->inputEquipType != "") $where[] = "equipType=".(int)$this->inputEquipType;
@@ -318,6 +343,12 @@ class CEsoLogJsonExport
 			$id = $this->db->real_escape_string($this->inputId);
 			
 			if ($idField != "") $where[] = "$idField='$id'";
+		}
+		else if ($this->inputIds != null)
+		{
+			$idField = $this->TABLE_IDS[$table];
+			$ids = implode(",", $this->inputIds);
+			$where[] = "$idField IN ($ids)";
 		}
 		
 		$fields = "*";
