@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "33pts";
+	const SKILLS_TABLESUFFIX   = "33pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
