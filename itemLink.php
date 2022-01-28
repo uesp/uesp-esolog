@@ -1379,6 +1379,32 @@ class CEsoItemLink
 	}
 	
 	
+	public function FormatResultItemLink ($link)
+	{
+		$matches = ParseEsoItemLink($link);
+		if (!$matches) return $link;
+		
+		$itemId = intval($matches['itemId']);
+		if ($itemId <= 0) return $link;
+		
+		$version = "";
+		if ($this->version != "") $version = "&version=" . $this->version;
+		$dataLink = "<a href=\"itemLink.php?itemid=$itemId&summary=1$version\">";
+		
+		$query = "SELECT name FROM minedItemSummary WHERE itemId=$itemId";
+		$result = $this->db->query($query);
+		if ($result === false) return $dataLink . $link . "</a>";
+		
+		$resultItem = $result->fetch_assoc();
+		if ($resultItem == null) return $dataLink . $link . "</a>";
+		
+		$resultName = $resultItem['name'];
+		if ($resultName == null || $resultName == '') $resultName = $link;
+		
+		return $dataLink . $resultName . "</a>";
+	}
+	
+	
 	private function MakeItemRawDataList()
 	{	
 		$output = "";
@@ -1404,6 +1430,11 @@ class CEsoItemLink
 			if ($key == "icon")
 			{
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
+			}
+			else if ($key == 'resultItemLink')
+			{
+				$newValue = $this->FormatResultItemLink($value);
+				$output .= "\t<tr><td>$key</td><td id='$id'>$newValue</td></tr>\n";
 			}
 			elseif ($key == "furnCategory")
 			{

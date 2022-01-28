@@ -471,6 +471,9 @@ class EsoLogViewer
 			'isArmorDecay' => self::FIELD_INTBOOLEAN,
 			'isConsumable' => self::FIELD_INTBOOLEAN,
 			'materialLevelDesc' => self::FIELD_TEXTTRANSFORM,
+			'resultItemLink' => self::FIELD_TEXTTRANSFORM,
+			'recipeListIndex' => self::FIELD_INT,
+			'recipeIndex' => self::FIELD_INT,
 			//'actorCategory' => self::FIELD_INT,
 	);
 	
@@ -955,6 +958,7 @@ class EsoLogViewer
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
 							'materialLevelDesc' => 'RemoveTextFormats',
+							'resultItemLink' => 'FormatResultItemLinkPts',
 					),
 						
 					'filters' => array(
@@ -1830,6 +1834,7 @@ class EsoLogViewer
 							'abilityDesc' => 'RemoveTextFormats',
 							'enchantDesc' => 'RemoveTextFormats',
 							'materialLevelDesc' => 'RemoveTextFormats',
+							'resultItemLink' => 'FormatResultItemLink',
 					),
 			
 					'filters' => array(
@@ -2916,12 +2921,43 @@ class EsoLogViewer
 	public function GetEsoQuestRewardItemTypeText($value)
 	{
 		return GetEsoQuestRewardItemTypeText($value);
-	}	
+	}
 	
 	
 	public function RemoveTextFormats ($text)
 	{
 		return FormatRemoveEsoItemDescriptionText($text);
+	}
+	
+	
+	public function FormatResultItemLinkPts ($link, $itemData)
+	{
+		return $this->FormatResultItemLink ($link, $itemData, true);
+	}
+	
+	
+	public function FormatResultItemLink ($link, $itemData, $isPts = false)
+	{
+		if (!$this->IsOutputHTML()) return $value;
+		
+		$itemId = intval($itemData['itemId']);
+		if ($itemId <= 0) return $link;
+		
+		$ptsVersion = "";
+		if ($isPts) $ptsVersion = "&version=" . self::ENABLE_PTS_VERSION . "pts";
+		$dataLink = "<a href=\"itemLink.php?itemid=$itemId&summary=1$ptsVersion\">";
+		
+		$query = "SELECT name FROM minedItemSummary WHERE itemId=$itemId";
+		$result = $this->db->query($query);
+		if ($result === false) return $dataLink . $link . "</a>";
+		
+		$resultItem = $result->fetch_assoc();
+		if ($resultItem == null) return $dataLink . $link . "</a>";
+		
+		$resultName = $resultItem['name'];
+		if ($resultName == null || $resultName == '') $resultName = $link;
+		
+		return $dataLink . $resultName . "</a>";
 	}
 	
 	
@@ -3026,13 +3062,13 @@ class EsoLogViewer
 	public function MakeMinedItemLinkPts ($value, $itemData)
 	{
 		if (!$this->IsOutputHTML()) return $value;
-	
+		
 		$itemId = $itemData['itemId'];
 		$itemIntLevel = $itemData['internalLevel'];
 		$itemIntType = $itemData['internalSubtype'];
 		
 		$ptsVersion = self::ENABLE_PTS_VERSION . "pts";
-	
+		
 		$output = "<a href=\"itemLink.php?itemid=$itemId&intlevel=$itemIntLevel&inttype=$itemIntType&version=$ptsVersion\">" . $value . "</a>";
 		return $output;
 	}
