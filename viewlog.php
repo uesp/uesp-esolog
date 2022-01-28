@@ -1123,10 +1123,11 @@ class EsoLogViewer
 					'record' => 'location',
 					'table' => 'location',
 					'method' => 'DoRecordDisplay',
-					'sort' => '',
+					'sort' => 'count',
 					
 					'validsortfields' => array(
 							'id',
+							'count',
 					),
 					
 					'join' => array(
