@@ -42,19 +42,24 @@ class CEsoLogJsonExport
 			"minedItem30pts",
 			"minedItem31pts",
 			"minedItem32pts",
+			"minedItem33pts",
 			"minedItemSummary",
 			"minedItemSummary30pts",
 			"minedItemSummary31pts",
 			"minedItemSummary32pts",
+			"minedItemSummary33pts",
 			"minedSkills",
 			"minedSkills30pts",
 			"minedSkills31pts",
+			"minedSkills32pts",
+			"minedSkills33pts",
 			"skillCoef",
 			"playerSkills",
 			"setSummary",
 			"setSummary30pts",
 			"setSummary31pts",
 			"setSummary32pts",
+			"setSummary33pts",
 			"achievementCategories",
 			"achievementCriteria",
 			"achievements",
@@ -69,6 +74,10 @@ class CEsoLogJsonExport
 			"skillTree30pts",
 			"skillTree31pts",
 			"skillTree32pts",
+			"skillTree33pts",
+			"skillTooltips",
+			"skillTooltips32pts",
+			"skillTooltips33pts",
 	);
 	
 	public $TABLE_IDS = array(
@@ -92,6 +101,7 @@ class CEsoLogJsonExport
 			"questStep" => "id",
 			"uniqueQuest" => "internalId",
 			"skillTree" => "abilityId",
+			"skillTooltips" => "id",
 	);
 	
 	
