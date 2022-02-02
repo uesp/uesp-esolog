@@ -411,6 +411,9 @@ class CEsoItemLinkImage
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
 		$query = "";
 		
+		$minedTable = "minedItem" . $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" . $this->GetTableSuffix();
+		
 		if ($this->itemLevel >= 1)
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
@@ -1537,7 +1540,7 @@ class CEsoItemLinkImage
 		{
 			imagecopy($image, $levelImage, $x, $y, 0, 0, imagesx($levelImage), imagesy($levelImage));
 			$x += $levelImageWidth;
-		}		
+		}
 		
 		$this->PrintTextAA($image, $this->medFontSize, $x, $y + $extents2[1] + 4, $this->textColor, self::ESOIL_BOLDFONT_FILE, $label);
 		$x += $extents1[0];
@@ -1551,6 +1554,7 @@ class CEsoItemLinkImage
 		
 		$level = intval($this->itemRecord['level']);
 		if ($level <= 0) return 0;
+		if ($level > 50) return 0;
 		if ($level > 50) $level = 50;
 		
 		$printData = array();
@@ -1704,7 +1708,7 @@ class CEsoItemLinkImage
 			imagealphablending($cpImage, true);
 			imagesavealpha($cpImage, true);
 			imagecopyresampled($image, $cpImage, $x - $totalWidth - 26, $y + 2, 0, 0, 24, 24, imagesx($cpImage), imagesy($cpImage));
-		}		
+		}
 		
 		return $this->PrintDataText($image, $printData, $x, $y + 4, 'right');
 	}
