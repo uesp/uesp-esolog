@@ -5,6 +5,10 @@ $TABLE_SUFFIX = "33pts";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
+$FIXED_DATA = [
+		142012 => "CP:Cutting Defense"
+];
+
 $IGNORE_SETS = [
 	"The Worm's Raiment",
 	"Ebon Armory",
@@ -168,6 +172,14 @@ foreach ($sets as $set)
 		}
 		
 	}
+}
+
+foreach ($FIXED_DATA as $id => $setName)
+{
+	$safeId = intval($id);
+	$safeSetName = $db->real_escape_string($setName);
+	$writeResult = $db->query("UPDATE minedSkills$TABLE_SUFFIX SET setName='$safeSetName' WHERE id='$safeId';");
+	if ($writeResult === false) print("\t\tFailed to update setName for skill $safeId!\n");
 }
 
 print("Found $foundCount skills matching set descriptions.\n"); 

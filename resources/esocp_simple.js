@@ -1059,7 +1059,7 @@ window.esovcpGetTooltipDescription = function(skillId, points)
 		if (window.GetEsoSkillDescription2)
 		{
 			var newDesc = GetEsoSkillDescription2(142012, null, true);
-			descText = newDesc;
+			if (newDesc != "") descText = newDesc;
 		}
 	}
 	
