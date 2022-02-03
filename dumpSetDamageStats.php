@@ -16,7 +16,7 @@ while (($set = $result->fetch_assoc()))
 	
 	//print ($set['setBonusDesc4'] . "\n");
 	
-	for ($i = 1; $i <= 5; ++$i)
+	for ($i = 1; $i <= 7; ++$i)
 	{
 		$match = preg_match("# ([A-Za-z]+) ([0-9\-]+) ((?:[a-zA-Z]+)|)( |)Damage#i", $set["setBonusDesc$i"], $matches);
 		

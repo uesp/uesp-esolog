@@ -1045,6 +1045,12 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		var value2 = Math.floor(b * values.Health) + c;
 		value = Math.max(value1, value2);
 	}
+	else if (type == -79) 
+	{
+		var value1 = Math.floor(a * values.SpellDamage) + Math.floor(b * values.WeaponDamage);
+		var value2 = Math.floor(c * values.Health);
+		value = Math.max(value1, value2);
+	}
 	else if (type == -77) 
 	{
 		value = Math.floor(a * Math.max(values.SpellResist, values.PhysicalResist)) + c;
@@ -3733,6 +3739,11 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 	{
 		output += srcString + " = max(" + a + " Spell Damage, " + b + " Health) "+ cOp + " " + c;
 		typeString = "Health or Spell Damage";
+	}
+	else if (type == -79)
+	{
+		output += srcString + " = max(" + a + " Spell Damage + " + b + " Weapon Damage, "+ cOp + " " + c + "Health)";
+		typeString = "Health or Spell/Weapon Damage";
 	}
 	else if (type == -77)
 	{

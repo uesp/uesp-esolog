@@ -175,15 +175,16 @@ class CEsoSkillTooltips
 		if ($type1 ==  1 && $type2 ==  0)	return UESP_POWERTYPE_WEAPONPOWER;
 		if ($type1 ==  2 && $type2 ==  0)	return UESP_POWERTYPE_WEAPONPOWER;
 		if ($type1 ==  7 && $type2 ==  0)	return POWERTYPE_HEALTH;
+		if ($type1 ==  7 && $type2 ==  7)	return POWERTYPE_HEALTH;	//New in update 33
 		if ($type1 == 35 && $type2 == 29)	return POWERTYPE_STAMINA;
 		if ($type1 == 29 && $type2 == 35)	return POWERTYPE_STAMINA;
 		if ($type1 == 35 && $type2 ==  0)	return POWERTYPE_STAMINA;
-		if ($type1 == 29 && $type2 == 0)	return POWERTYPE_STAMINA;
+		if ($type1 == 29 && $type2 ==  0)	return POWERTYPE_STAMINA;
 		if ($type1 ==  0 && $type2 ==  0) 	return UESP_POWERTYPE_CONSTANTVALUE;
 		if ($type1 == 22 && $type2 == 13) 	return UESP_POWERTYPE_RESISTANCE;
 		if ($type1 == 13 && $type2 == 22) 	return UESP_POWERTYPE_RESISTANCE;
-		if ($type1 == 13 && $type2 == 0) 	return UESP_POWERTYPE_RESISTANCE;
-		if ($type1 == 22 && $type2 == 0) 	return UESP_POWERTYPE_RESISTANCE;
+		if ($type1 == 13 && $type2 ==  0) 	return UESP_POWERTYPE_RESISTANCE;
+		if ($type1 == 22 && $type2 ==  0) 	return UESP_POWERTYPE_RESISTANCE;
 		
 		return POWERTYPE_INVALID;
 	}
@@ -793,6 +794,8 @@ class CEsoSkillTooltips
 			$coefType = POWERTYPE_ULTIMATE;
 		else if ($coefType1 == POWERTYPE_MAGICKA && $coefType2 == POWERTYPE_HEALTH)
 			$coefType = UESP_POWERTYPE_HEALTHORSPELLDAMAGE;
+		else if ($coefType1 == POWERTYPE_DAMAGE && $coefType2 == POWERTYPE_HEALTH)
+			$coefType = UESP_POWERTYPE_HEALTHORDAMAGE;
 		else 
 			$coefType = $coefType1;
 		
@@ -865,6 +868,15 @@ class CEsoSkillTooltips
 			$a = $rawCoef['coef1'];
 			$b = $rawCoef['coef3'];
 			$c = 0;
+			$rawa = $a;
+			$rawb = $b;
+			$rawc = $c;
+		}
+		else if ($coefType == UESP_POWERTYPE_HEALTHORDAMAGE)
+		{
+			$a = $rawCoef['coef1'];
+			$b = $rawCoef['coef2'];
+			$c = $rawCoef['coef3'];
 			$rawa = $a;
 			$rawb = $b;
 			$rawc = $c;

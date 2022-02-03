@@ -2259,10 +2259,11 @@ class CEsoItemLinkImage
 		$setLabel = "PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)";
 		$this->AddPrintData($printData, $setLabel, $this->printOptionsSmallWhite, array('br' => true));
 		
-		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
+		for ($i = 1; $i <= 7; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
 			$setDesc = $this->itemRecord['setBonusDesc' . $i];
+			if ($setDesc == null || $setDesc == "") continue;
 			
 			if ($this->itemSetCount >= 0 && $setCount > $this->itemSetCount)
 			{

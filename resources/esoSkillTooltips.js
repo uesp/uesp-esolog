@@ -460,6 +460,11 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		if (c != 0) output += cOp + " " + c;
 		typeString = "Health or Spell Damage";
 		break;
+	case -79:	// Health or Weapon/Spell Damage
+		output += srcString + " = max(" + a + " SpellDamage + " + b + " WeaponDamage, " + c + " Health)";
+		//if (c != 0) output += cOp + " " + c;
+		typeString = "Health or Spell/Weapon Damage";
+		break;
 	case -77: // Max Resistance
 		output += srcString + " = " + a + " MaxResist " + cOp + " " + c;
 		typeString = "Max Resistance";
@@ -1790,6 +1795,11 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 	case -76:	// Health or Spell Damage
 		var value1 = Math.floor(a * inputValues.SpellDamage) + c;
 		var value2 = Math.floor(b * inputValues.Health) + c;
+		value = Math.max(value1, value2);
+		break;
+	case -79:	// Health or Spell/Weapon Damage
+		var value1 = Math.floor(a * inputValues.SpellDamage) + Math.floor(b * inputValues.WeaponDamage);
+		var value2 = Math.floor(c * inputValues.Health);
 		value = Math.max(value1, value2);
 		break;
 	case -77:	// Max Resistance

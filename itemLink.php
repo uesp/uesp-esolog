@@ -2127,10 +2127,13 @@ class CEsoItemLink
 		$setBonusCount = (int) $this->itemRecord['setBonusCount'];
 		$output = "<div class='esoil_white esoil_small'>PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)</div>";
 		
-		for ($i = 1; $i <= $setBonusCount && $i <= 5; $i += 1)
+		for ($i = 1; $i <= 7; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
-			$setDesc = $this->FormatSetDescriptionText($this->itemRecord['setBonusDesc' . $i], $setCount);
+			$setDesc = $this->itemRecord['setBonusDesc' . $i];
+			if ($setDesc == null || $setDesc == "") continue;
+			
+			$setDesc = $this->FormatSetDescriptionText($setDesc, $setCount);
 			$output .= "<br />$setDesc";
 		}
 		
