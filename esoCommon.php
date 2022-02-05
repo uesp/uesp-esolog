@@ -1962,10 +1962,25 @@ $ESO_SET_INDEXES = array(
 		616 => "Dark Convergence",
 		617 => "Plaguebreak",
 		618 => "Hrothgar's Chill",
+		619 => "Maligalig's Maelstrom",
+		620 => "Gryphon's Reprisal",
+		621 => "Glacial Guardian",
+		622 => "Turning Tide",
+		623 => "Storm-Cursed's Revenge",
+		624 => "Spriggan's Vigor",
 		625 => "Markyn Ring of Majesty",
 		626 => "Belharza's Band",
 		627 => "Spaulder of Ruin",
+		629 => "Rallying Cry",
+		630 => "Hew and Sunder",
+		631 => "Enervating Aura",
+		632 => "Kargaeda",
+		633 => "Nazaray",
+		634 => "Nunatak",
+		635 => "Lady Malygda",
+		636 => "Baron Thirsk",
 );
+
 
 
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
