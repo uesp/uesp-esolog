@@ -2013,6 +2013,21 @@ $ESO_REACTION_TEXTS = array(
 		5 => "NPC Ally",
 );
 
+$ESO_FURNLIMITTYPE_RAWTEXTS = array(
+		-1 => "",
+		0 => "Low Impact Item",
+		1 => "High Impact Item",
+		2 => "Low Impact Collectible",
+		3 => "High Impact Collectible",
+);
+
+$ESO_FURNLIMITTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Traditional Furnishings",
+		1 => "Special Furnishings",
+		2 => "Collectible Furnishings",
+		3 => "Special Collectibles",
+);
 
 $ESO_ITEMBINDTYPE_TEXTS = array(
 		-1 => "",
@@ -2021,7 +2036,6 @@ $ESO_ITEMBINDTYPE_TEXTS = array(
 		2 => "Bind on Equip",
 		3 => "Backpack Bind on Pickup",
 );
-
 
 $ESO_QUEST_REPEATTYPE_TEXTS = array(
 		-1 => "",
@@ -4496,6 +4510,26 @@ function GetEsoReactionText($bindType)
 	
 	$key = (int) $bindType;
 	if (array_key_exists($key, $ESO_REACTION_TEXTS)) return $ESO_REACTION_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoFurnLimitTypeRawText($bindType)
+{
+	global $ESO_FURNLIMITTYPE_RAWTEXTS;
+	
+	$key = (int) $bindType;
+	if (array_key_exists($key, $ESO_FURNLIMITTYPE_RAWTEXTS)) return $ESO_FURNLIMITTYPE_RAWTEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoFurnLimitTypeText($bindType)
+{
+	global $ESO_FURNLIMITTYPE_TEXTS;
+	
+	$key = (int) $bindType;
+	if (array_key_exists($key, $ESO_FURNLIMITTYPE_TEXTS)) return $ESO_FURNLIMITTYPE_TEXTS[$key];
 	return "Unknown ($key)";
 }
 

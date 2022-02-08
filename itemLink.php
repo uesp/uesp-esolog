@@ -1733,17 +1733,17 @@ class CEsoItemLink
 		}
 		else if ($type == 2) //armor
 		{
-			if ($this->itemRecord['armorType'] > 0) return "(" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . ")";
+			if ($this->itemRecord['armorType'] > 0) return "" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . "";
 			return "";
 		}
 		elseif ($type == 1) //weapon
 		{
-			return "(" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . ")";
+			return "" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . "";
 		}
 		elseif ($type == 29) // Recipe
 		{
 			if ($craftType == null || $craftType == "") return "";
-			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
+			return "" . GetEsoItemCraftTypeText($craftType) . "";
 		}
 		elseif ($type == 61) // Furniture
 		{
@@ -1755,12 +1755,12 @@ class CEsoItemLink
 			//$type1 = $this->itemRecord['setBonusDesc4'];
 			//$type2 = $this->itemRecord['setBonusDesc5'];
 			
-			if ($type1 != "" && $type != "") return "(" . $type1 . " / " . $type2 . ")";
-			return "(" . $type1 . $type2 . ")";
+			if ($type1 != "" && $type != "") return "" . $type1 . " / " . $type2 . "";
+			return "" . $type1 . $type2 . "";
 		}
 		else if ($craftType > 0)
 		{
-			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
+			return "" . GetEsoItemCraftTypeText($craftType) . "";
 		}
 		
 		return "";
@@ -2417,10 +2417,25 @@ class CEsoItemLink
 	
 	private function MakeItemTagsBlock()
 	{
-		if ($this->itemRecord['tags'] == "") return "";
+		$output = "";
 		
-		$output  = "<div id='esoil_itemtags_title'>Treasure Type:</div>";
-		$output .= $this->itemRecord['tags'];
+		if ($this->itemRecord['tags'] != "") 
+		{
+			if ($this->itemRecord['type'] == 61)
+				$output .= "<div id='esoil_itemfurntype_title'>Furnishing Behavior</div>";
+			else
+				$output .= "<div id='esoil_itemtags_title'>Treasure Type:</div>";
+			
+			$output .= $this->itemRecord['tags'];
+		}
+		
+		if ($this->itemRecord['type'] == 61 && $this->itemRecord['furnLimitType'] >= 0)
+		{
+			$output .= "<div id='esoil_itemfurntype_title'>Furnishing Limit Type</div>";
+			$furnType = GetEsoFurnLimitTypeText($this->itemRecord['furnLimitType']);
+			$output .= "$furnType";
+		}
+		
 		return $output;
 	}
 	

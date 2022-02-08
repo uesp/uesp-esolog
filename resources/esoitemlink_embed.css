@@ -209,6 +209,15 @@
 	text-align: center;
 }
 
+#esoil_itemfurntype_title {
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #C5C29E;
+	margin: 10px;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
 #esoil_watermark {
 	position: absolute;
 	right: 2px;

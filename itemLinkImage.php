@@ -1416,17 +1416,17 @@ class CEsoItemLinkImage
 		}
 		else if ($type == 2) //armor
 		{
-			if ($this->itemRecord['armorType'] > 0) return "(" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . ")";
+			if ($this->itemRecord['armorType'] > 0) return "" . GetEsoItemArmorTypeText($this->itemRecord['armorType']) . "";
 			return "";
 		}
 		elseif ($type == 1) //weapon
 		{
-			return "(" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . ")";
+			return "" . GetEsoItemWeaponTypeText($this->itemRecord['weaponType']) . "";
 		}
 		elseif ($type == 29) // Recipe
 		{
 			if ($craftType == null || $craftType == "" || $craftType <= 0) return "";
-			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
+			return "" . GetEsoItemCraftTypeText($craftType) . "";
 		}
 		elseif ($type == 61) // Furniture
 		{
@@ -1438,12 +1438,12 @@ class CEsoItemLinkImage
 			//$type1 = $this->itemRecord['setBonusDesc4'];
 			//$type2 = $this->itemRecord['setBonusDesc5'];
 			
-			if ($type1 != "" && $type != "") return "(" . $type1 . " / " . $type2 . ")";
-			return "(" . $type1 . $type2 . ")";
+			if ($type1 != "" && $type != "") return "" . $type1 . " / " . $type2 . "";
+			return "" . $type1 . $type2 . "";
 		}
 		else if ($craftType > 0)
 		{
-			return "(" . GetEsoItemCraftTypeText($craftType) . ")";
+			return "" . GetEsoItemCraftTypeText($craftType) . "";
 		}
 	
 		return "";
@@ -2424,13 +2424,34 @@ class CEsoItemLinkImage
 		
 	private function OutputItemTagsBlock($image, $y)
 	{
-		if ($this->itemRecord['tags'] == "") return 0;
-	
-		$printData = array();
-		$this->AddPrintData($printData, "Treasure Type:", $this->printOptionsSmallBeige, array('br' => true));
-		$this->AddPrintData($printData, $this->itemRecord['tags'], $this->printOptionsMedWhite, array('br' => true));
+		$result = 0;
 		
-		return $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+		if ($this->itemRecord['tags'] != "") 
+		{
+			$printData = array();
+			
+			if ($this->itemRecord['type'] == 61)
+				$this->AddPrintData($printData, "Furnishing Behavior", $this->printOptionsSmallBeige, array('br' => true));
+			else
+				$this->AddPrintData($printData, "Treasure Type:", $this->printOptionsSmallBeige, array('br' => true));
+			
+			$this->AddPrintData($printData, $this->itemRecord['tags'], $this->printOptionsMedWhite, array('br' => true));
+			
+			$result = $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y, 'center') + $this->blockMargin;
+		}
+		
+		if ($this->itemRecord['type'] == 61 && $this->itemRecord['furnLimitType'] >= 0)
+		{
+			$printData = array();
+			
+			$this->AddPrintData($printData, "Furnishing Limit Type", $this->printOptionsSmallBeige, array('br' => true));
+			$furnType = GetEsoFurnLimitTypeText($this->itemRecord['furnLimitType']);
+			$this->AddPrintData($printData, $furnType, $this->printOptionsMedWhite, array('br' => true));
+			
+			$result += $this->PrintDataText($image, $printData, self::ESOIL_IMAGE_WIDTH/2, $y + $result, 'center') + $this->blockMargin;
+		}
+		
+		return $result;
 	}
 	
 	
@@ -2663,10 +2684,10 @@ class CEsoItemLinkImage
 		if ($this->useUpdate10Display)
 		{
 			$y += $this->OutputItemNewValueBlock($image, $y);
-		}			
+		}
 		
 		$this->OutputItemStyle($image, $y);
-		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "www.uesp.net");
+		$this->PrintRightText($image, $this->tinyFontSize, 390, $y, $this->darkGray, self::ESOIL_REGULARFONT_FILE, "uesp.net");
 		$y += 10;
 		
 		$imageHeight = $y + 1;
