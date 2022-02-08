@@ -1104,6 +1104,7 @@ class EsoLogParser
 			'cooldown' => self::FIELD_INT,
 			'furnCategory' => self::FIELD_STRING,
 			'furnSubcategory' => self::FIELD_STRING,
+			'furnLimitType' => self::FIELD_INT,
 			'referenceId' => self::FIELD_INT,
 	);
 	
@@ -3042,6 +3043,7 @@ class EsoLogParser
 			cooldown INTEGER NOT NULL,
 			furnCategory TINYTEXT NOT NULL,
 			furnSubcategory TINYTEXT NOT NULL,
+			furnLimitType TINYINT NOT NULL,
 			referenceId INTEGER NOT NULL,
 			FULLTEXT(name),
 			FULLTEXT(nickname),
@@ -8355,6 +8357,7 @@ class EsoLogParser
 		$collectible['cooldown'] = $logEntry['cooldown'];
 		$collectible['furnCategory'] = $logEntry['furnCateName'];
 		$collectible['furnSubcategory'] = $logEntry['furnSubcateName'];
+		$collectible['furnLimitType'] = $logEntry['furnLimitType'];
 		$collectible['referenceId'] = $logEntry['refId'];
 		$collectible['__dirty'] = true;
 		

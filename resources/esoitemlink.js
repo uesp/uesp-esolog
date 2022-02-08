@@ -497,6 +497,8 @@ function MakeItemLink(itemData, firstItem)
 function UpdateAllItemData()
 {
 	var firstItem = allItemData[0];
+	if (firstItem == null) return;
+	
 	firstItem['link'] = MakeItemLink(firstItem, firstItem);
 	
 	for (var i = 1; i < allItemData.length; i++)

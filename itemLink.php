@@ -2415,6 +2415,21 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeCollectibleItemTags()
+	{
+		$output = "";
+		
+		if ($this->collectibleItemData['furnCategory'] != "" && $this->collectibleItemData['furnLimitType'] >= 0)
+		{
+			$output .= "<div id='esoil_itemfurntype_title'>Furnishing Limit Type</div>";
+			$furnType = GetEsoFurnLimitTypeText($this->collectibleItemData['furnLimitType']);
+			$output .= "$furnType";
+		}
+		
+		return $output;
+	}
+	
+	
 	private function MakeItemTagsBlock()
 	{
 		$output = "";
@@ -2881,7 +2896,7 @@ class CEsoItemLink
 				'{itemRightBlockDisplay}' => "none",
 				'{itemNewValueBlockDisplay}' => "none",
 				'{itemCraftedBlock}' => "",
-				'{itemTags}' => "",
+				'{itemTags}' => $this->MakeCollectibleItemTags(),
 				'{itemDataJson}' => "{}",
 				'{itemSimilarBlock}' => "",
 				'{itemEnchantId1}' => "",
