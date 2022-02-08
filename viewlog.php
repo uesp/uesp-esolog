@@ -738,6 +738,7 @@ class EsoLogViewer
 			'furnCategory' => self::FIELD_STRING,
 			'furnSubcategory' => self::FIELD_STRING,
 			'furnLimitType' => self::FIELD_STRING,
+			'tags' => self::FIELD_STRING,
 			'isUnlocked' => self::FIELD_INT,
 			'isActive' => self::FIELD_INT,
 			'isSlottable' => self::FIELD_INT,

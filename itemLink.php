@@ -2419,6 +2419,16 @@ class CEsoItemLink
 	{
 		$output = "";
 		
+		if ($this->collectibleItemData['tags'] != "")
+		{
+			if ($this->collectibleItemData['furnCategory'] != "")
+				$output .= "<div id='esoil_itemfurntype_title'>Furnishing Behavior</div>";
+			else
+				$output .= "<div id='esoil_itemtag_title'>Treasure Type</div>";
+			
+			$output .= $this->collectibleItemData['tags'];
+		}
+		
 		if ($this->collectibleItemData['furnCategory'] != "" && $this->collectibleItemData['furnLimitType'] >= 0)
 		{
 			$output .= "<div id='esoil_itemfurntype_title'>Furnishing Limit Type</div>";

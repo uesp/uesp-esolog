@@ -1105,6 +1105,7 @@ class EsoLogParser
 			'furnCategory' => self::FIELD_STRING,
 			'furnSubcategory' => self::FIELD_STRING,
 			'furnLimitType' => self::FIELD_INT,
+			'tags' => self::FIELD_STRING,
 			'referenceId' => self::FIELD_INT,
 	);
 	
@@ -3045,10 +3046,12 @@ class EsoLogParser
 			furnSubcategory TINYTEXT NOT NULL,
 			furnLimitType TINYINT NOT NULL,
 			referenceId INTEGER NOT NULL,
+			tags TINYTEXT NOT NULL,
 			FULLTEXT(name),
 			FULLTEXT(nickname),
 			FULLTEXT(description),
-			FULLTEXT(hint)
+			FULLTEXT(hint),
+			FULLTEXT(tags)
 		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
@@ -8359,6 +8362,7 @@ class EsoLogParser
 		$collectible['furnSubcategory'] = $logEntry['furnSubcateName'];
 		$collectible['furnLimitType'] = $logEntry['furnLimitType'];
 		$collectible['referenceId'] = $logEntry['refId'];
+		$collectible['tags'] = $logEntry['tags'];
 		$collectible['__dirty'] = true;
 		
 		return $this->SaveCollectible($collectible);
