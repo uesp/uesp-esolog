@@ -243,6 +243,11 @@ class CEsoItemLink
 	}
 	
 	
+	public function escape($text)
+	{
+		return htmlspecialchars($text);
+	}
+	
 	public function ParseItemLink($itemLink)
 	{
 		$matches = ParseEsoItemLink($itemLink);
@@ -1090,7 +1095,7 @@ class CEsoItemLink
 		$result->data_seek(0);
 		$this->questItemData = $result->fetch_assoc();
 		
-		if (!$this->questItemData) 
+		if (!$this->questItemData)
 		{
 			$this->ReportError("ERROR: No quest item found matching {$this->itemErrorDesc}!");
 			$this->questItemData = array();
@@ -1306,15 +1311,15 @@ class CEsoItemLink
 		{
 			if ($item['id'] == $this->itemRecord['id']) continue;
 			
-			$intType = $item['internalSubtype'];
-			$intLevel = $item['internalLevel'];
-			$itemId = $this->itemId;
+			$intType = intval($item['internalSubtype']);
+			$intLevel = intval($item['internalLevel']);
+			$itemId = intval($this->itemId);
 
 			if ($this->enchantId1 > 0)
 			{
-				$enchantId = $this->enchantId1;
-				$enchantLevel = $this->enchantIntLevel1;
-				$enchantType = $this->enchantIntType1;
+				$enchantId = intval($this->enchantId1);
+				$enchantLevel = intval($this->enchantIntLevel1);
+				$enchantType = intval($this->enchantIntType1);
 				$output .= "<li><a href='itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType&enchantid=$enchantId&enchantintlevel=$enchantLevel&enchantinttype=$enchantType'>Internal Type $intLevel:$intType</a></li>";
 			}
 			else
@@ -1381,6 +1386,8 @@ class CEsoItemLink
 	
 	public function FormatResultItemLink ($link)
 	{
+		$safeLink = $this->escape($link);
+		
 		$matches = ParseEsoItemLink($link);
 		if (!$matches) return $link;
 		
@@ -1393,13 +1400,13 @@ class CEsoItemLink
 		
 		$query = "SELECT name FROM minedItemSummary WHERE itemId=$itemId";
 		$result = $this->db->query($query);
-		if ($result === false) return $dataLink . $link . "</a>";
+		if ($result === false) return $dataLink . $safeLink . "</a>";
 		
 		$resultItem = $result->fetch_assoc();
-		if ($resultItem == null) return $dataLink . $link . "</a>";
+		if ($resultItem == null) return $dataLink . $safeLink . "</a>";
 		
 		$resultName = $resultItem['name'];
-		if ($resultName == null || $resultName == '') $resultName = $link;
+		if ($resultName == null || $resultName == '') $resultName = $safeLink;
 		
 		return $dataLink . $resultName . "</a>";
 	}
@@ -1427,9 +1434,11 @@ class CEsoItemLink
 			
 			if ($key == "link") $value = $this->MakeItemLink();
 			
+			$safeValue = $this->escape($value);
+			
 			if ($key == "icon")
 			{
-				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $safeValue</td></tr>\n";
 			}
 			else if ($key == 'resultItemLink')
 			{
@@ -1438,12 +1447,12 @@ class CEsoItemLink
 			}
 			elseif ($key == "furnCategory")
 			{
-				$value = str_replace(":", " : ", $value);
-				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+				$value = str_replace(":", " : ", $safeValue);
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 			}
 			else 
 			{
-				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 			}
 			
 		}
@@ -1462,10 +1471,12 @@ class CEsoItemLink
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
 			$id = "esoil_rawdata_" . $key;
 			
+			$safeValue = $this->escape($value);
+			
 			if ($key == "icon")
-				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeQuestItemIconImageLink()}' /> $value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeQuestItemIconImageLink()}' /> $safeValue</td></tr>\n";
 			else
-				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 		}
 		
 		return $output;
@@ -1482,10 +1493,12 @@ class CEsoItemLink
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
 			$id = "esoil_rawdata_" . $key;
 			
+			$safeValue = $this->escape($value);
+			
 			if ($key == "icon")
-				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeCollectibleItemIconImageLink()}' /> $value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeCollectibleItemIconImageLink()}' /> $safeValue</td></tr>\n";
 			else
-				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 	
 		}
 	
@@ -1502,11 +1515,13 @@ class CEsoItemLink
 		{
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
 			$id = "esoil_rawdata_" . $key;
-				
+			
+			$safeValue = $this->escape($value);
+			
 			if ($key == "icon")
-				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeAntiquityItemIconImageLink()}' /> $value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeAntiquityItemIconImageLink()}' /> $safeValue</td></tr>\n";
 			else
-				$output .= "\t<tr><td>$key</td><td id='$id'>$value</td></tr>\n";
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 	
 		}
 	
@@ -1519,8 +1534,9 @@ class CEsoItemLink
 		if ($icon == null || $icon == "") $icon = self::ESOIL_ICON_UNKNOWN;
 		
 		$icon = preg_replace('/dds$/', 'png', $icon);
-
-		$iconLink = self::ESOIL_ICON_URL . $icon;
+		$safeIcon = $this->escape($icon);
+		
+		$iconLink = self::ESOIL_ICON_URL . $safeIcon;
 		return $iconLink;
 	}
 	
@@ -1554,8 +1570,8 @@ class CEsoItemLink
 	
 	
 	private function MakeItemLevelSimpleString()
-	{		
-		$level = $this->itemRecord['level'];
+	{
+		$level = intval($this->itemRecord['level']);
 		if ($level <= 0) return "Level ?";
 		
 		if ($level > 50)
@@ -1575,7 +1591,7 @@ class CEsoItemLink
 	
 	private function ShouldShowLevel()
 	{
-		$itemType = $this->itemRecord['type'];
+		$itemType = intval($this->itemRecord['type']);
 		
 		if ($itemType == 1) return true;
 		if ($itemType == 2) return true;
@@ -1595,8 +1611,8 @@ class CEsoItemLink
 	{
 		//if (!$this->ShouldShowLevel()) return "";
 		
-		$level = $this->itemRecord['level'];
-
+		$level = intval($this->itemRecord['level']);
+		
 		if ($level <= 0) return "";
 		
 		if ($level > 50) 
@@ -2002,6 +2018,7 @@ class CEsoItemLink
 			}
 		}
 		
+		$newDesc = $this->escape($newDesc);
 		$newDesc = $this->FormatDescriptionText($newDesc);
 		
 		return $newDesc;
@@ -2088,12 +2105,15 @@ class CEsoItemLink
 	
 	private function FormatDescriptionText($desc)
 	{
+		$desc = $this->escape($desc);
 		return FormatEsoItemDescriptionText($desc);
 	}
 	
 	
 	private function FormatSetDescriptionText($desc, $setCount)
 	{
+		$desc = $this->escape($desc);
+		
 		if (self::ESOIL_USEPRECENT_CRITICALVALUE)
 			$output = FormatEsoCriticalDescriptionText($desc, $this->itemRecord['level']);
 		else
@@ -2110,7 +2130,7 @@ class CEsoItemLink
 		{
 			$output = FormatEsoItemDescriptionText($desc);
 		}
-				
+		
 		return $output;
 	}
 	
@@ -2123,9 +2143,11 @@ class CEsoItemLink
 		$setName = strtoupper($this->itemRecord['setName']);
 		if ($setName == "") return "";
 		
+		$safeSetName = $this->escape($setName);
+		
 		$setMaxEquipCount = $this->itemRecord['setMaxEquipCount'];
 		$setBonusCount = (int) $this->itemRecord['setBonusCount'];
-		$output = "<div class='esoil_white esoil_small'>PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)</div>";
+		$output = "<div class='esoil_white esoil_small'>PART OF THE $safeSetName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)</div>";
 		
 		for ($i = 1; $i <= 7; $i += 1)
 		{
@@ -2146,16 +2168,18 @@ class CEsoItemLink
 		
 		if ($this->itemRecord['type'] == 60)	// Master Writs
 		{
-			$abilityDesc = FormatEsoItemDescriptionIcons($this->itemRecord['abilityDesc']);
+			$abilityDesc = $this->itemRecord['abilityDesc'];
 			$abilityDesc = $this->FormatDescriptionText($abilityDesc);
+			$abilityDesc = FormatEsoItemDescriptionIcons($abilityDesc);
 			if ($abilityDesc == "") return "";
 			return "$abilityDesc";
 		}
 		else if ($this->itemRecord['type'] == 29)	//Recipes
 		{
-			$ability = strtoupper($this->itemRecord['abilityName']);
-			$abilityDesc = FormatEsoItemDescriptionIcons($this->itemRecord['abilityDesc']);
+			$ability = $this->escape(strtoupper($this->itemRecord['abilityName']));
+			$abilityDesc = $this->itemRecord['abilityDesc'];
 			$abilityDesc = $this->FormatDescriptionText($abilityDesc);
+			$abilityDesc = FormatEsoItemDescriptionIcons($abilityDesc);
 			if ($abilityDesc == "") return "";
 			return "<div class='esoil_white esoil_small'>$ability</div> $abilityDesc";
 		}
@@ -2163,7 +2187,7 @@ class CEsoItemLink
 		{
 			$level = $this->MakeLevelTooltipText($this->itemRecord['level']);
 			$craft = $this->itemRecord['craftType'];
-			$skillRank = $this->itemRecord['craftSkillRank']; 
+			$skillRank = $this->itemRecord['craftSkillRank'];
 			$desc = "Makes a $level potion.";
 			
 			if ($craft > 0 && $skillRank > 0)
@@ -2179,7 +2203,7 @@ class CEsoItemLink
 		{
 			$level = $this->MakeLevelTooltipText($this->itemRecord['level']);
 			$craft = $this->itemRecord['craftType'];
-			$skillRank = $this->itemRecord['craftSkillRank']; 
+			$skillRank = $this->itemRecord['craftSkillRank'];
 			$desc = "Makes a $level poison.";
 			
 			if ($craft > 0 && $skillRank > 0)
@@ -2193,11 +2217,11 @@ class CEsoItemLink
 		}
 		else if (($this->itemRecord['type'] == 30 || $this->itemRecord['type'] == 7) && $this->itemPotionData > 0)
 		{
-			return "";					
+			return "";
 		}
 		else
 		{
-			$ability = strtoupper($this->itemRecord['abilityName']);
+			$ability = $this->escape(strtoupper($this->itemRecord['abilityName']));
 			$abilityDesc = $this->FormatDescriptionText($this->itemRecord['abilityDesc']);
 			$cooldown = ((int) $this->itemRecord['abilityCooldown']) / 1000;
 		}
@@ -2236,6 +2260,7 @@ class CEsoItemLink
 		if (count($abilityDesc) == 0) return "";
 		
 		$output = implode("\n\n", $abilityDesc);
+		$output = $this->escape($output);
 		//$output .= "\n" . $cooldownDesc;
 		$output = $this->FormatDescriptionText($output);
 		return $output;
@@ -2426,7 +2451,7 @@ class CEsoItemLink
 			else
 				$output .= "<div id='esoil_itemtag_title'>Treasure Type</div>";
 			
-			$output .= $this->collectibleItemData['tags'];
+			$output .= $this->escape($this->collectibleItemData['tags']);
 		}
 		
 		if ($this->collectibleItemData['furnCategory'] != "" && $this->collectibleItemData['furnLimitType'] >= 0)
@@ -2451,7 +2476,7 @@ class CEsoItemLink
 			else
 				$output .= "<div id='esoil_itemtags_title'>Treasure Type:</div>";
 			
-			$output .= $this->itemRecord['tags'];
+			$output .= $this->escape($this->itemRecord['tags']);
 		}
 		
 		if ($this->itemRecord['type'] == 61 && $this->itemRecord['furnLimitType'] >= 0)
@@ -2479,7 +2504,7 @@ class CEsoItemLink
 							"quality={$this->itemRecord['quality']}&enchantid={$this->enchantId1}&enchantintlevel={$this->enchantIntLevel1}&" .
 							"enchantinttype={$this->enchantIntType1}&v={$this->version}&{$showSummary}&potiondata={$this->itemPotionData}&stolen={$this->itemStolen}&" .
 							"writ1={$this->writData1}&writ2={$this->writData2}&writ3={$this->writData3}&writ4={$this->writData4}&writ5={$this->writData5}&writ6={$this->writData6}&" .
-							"itemlink={$this->itemLink}&trait={$this->transmuteTrait}";			
+							"itemlink={$this->itemLink}&trait={$this->transmuteTrait}";
 		}
 		else 
 		{
@@ -2517,7 +2542,7 @@ class CEsoItemLink
 		
 		$minDesc = $this->MakeLevelTooltipText($glyphMinLevel);
 		$desc = "Used to create glyphs of $minDesc and higher.";
-		return $desc;		
+		return $desc;
 	}
 	
 	
@@ -2583,8 +2608,8 @@ class CEsoItemLink
 	
 	private function MakeItemDescription()
 	{
-		$desc = $this->itemRecord['description'];
-		$matDesc = $this->itemRecord['materialLevelDesc'];
+		$desc = $this->escape($this->itemRecord['description']);
+		$matDesc = $this->escape($this->itemRecord['materialLevelDesc']);
 		
 		if ($this->itemRecord['type'] == 51)
 		{
@@ -2614,15 +2639,15 @@ class CEsoItemLink
 	
 	private function MakeQuestItemDescription()
 	{
-		$desc = $this->questItemData['description'];
-		$questName = $this->questItemData['questName'];
+		$desc = $this->escape($this->questItemData['description']);
+		$questName = $this->escape($this->questItemData['questName']);
 		return FormatEsoItemDescriptionText($desc) . "<br/><div class='esoil_itemdescQuestName'>$questName</div>";
 	}
 	
 	
 	private function MakeCollectibleItemDescription()
 	{
-		$desc = $this->collectibleItemData['description'] . "\n\n" . $this->collectibleItemData['hint'];
+		$desc = $this->escape($this->collectibleItemData['description']) . "\n\n" . $this->escape($this->collectibleItemData['hint']);
 		$desc = preg_replace("#\<\<player{his/her}\>\>#", "his", $desc);
 		return FormatEsoItemDescriptionText($desc);
 	}
@@ -2633,15 +2658,15 @@ class CEsoItemLink
 		$desc = "";
 		
 		if ($this->antiquityItemData['loreName1'] != "") {
-			$desc .= "<b>" . $this->antiquityItemData['loreName1'] . "</b>\n" . $this->antiquityItemData['loreDescription1'];
+			$desc .= "<b>" . $this->escape($this->antiquityItemData['loreName1']) . "</b>\n" . $this->escape($this->antiquityItemData['loreDescription1']);
 		}
 		
 		if ($this->antiquityItemData['loreName2'] != "") {
-			$desc .= "\n\n<b>" . $this->antiquityItemData['loreName2'] . "</b>\n" . $this->antiquityItemData['loreDescription2'];
+			$desc .= "\n\n<b>" . $this->escape($this->antiquityItemData['loreName2']) . "</b>\n" . $this->escape($this->antiquityItemData['loreDescription2']);
 		}
 		
 		if ($this->antiquityItemData['loreName3'] != "") {
-			$desc .= "\n\n<b>" . $this->antiquityItemData['loreName3'] . "</b>\n" . $this->antiquityItemData['loreDescription3'];
+			$desc .= "\n\n<b>" . $this->escape($this->antiquityItemData['loreName3']) . "</b>\n" . $this->escape($this->antiquityItemData['loreDescription3']);
 		}
 		
 		return FormatEsoItemDescriptionText($desc);
@@ -2655,7 +2680,7 @@ class CEsoItemLink
 		if ($this->antiquityItemData['setName']  == "") return "";
 		if ($this->antiquityItemData['setCount'] == 0) return "";
 		
-		$desc = "One of the " . $this->antiquityItemData['setCount'] . " pieces of the " . $this->antiquityItemData['setName'] . ".";
+		$desc = "One of the " . $this->antiquityItemData['setCount'] . " pieces of the " . $this->escape($this->antiquityItemData['setName']) . ".";
 		return $desc;
 	}
 	
@@ -2691,6 +2716,7 @@ class CEsoItemLink
 		return $output;
 	}
 	
+	
 	private function GetItemDescriptionClass()
 	{
 		$itemType = $this->itemRecord['type'];
@@ -2700,7 +2726,6 @@ class CEsoItemLink
 	}
 	
 	
-	
 	private function MakeItemDyeStampSubBlock($rawDyeData)
 	{
 		if ($rawDyeData == null) return "";
@@ -2708,9 +2733,9 @@ class CEsoItemLink
 		$result = preg_match("/(?P<dyeId>[0-9]+){(?P<dyeName>[^}]*)}{(?P<dyeColor>[0-9a-zA-Z]*)}/", $rawDyeData, $matches);
 		if (!$result) return "";
 		
-		$dyeId = $matches['dyeId'];
-		$dyeName = $matches['dyeName'];
-		$dyeColor = $matches['dyeColor'];
+		$dyeId = intval($matches['dyeId']);
+		$dyeName = $this->escape($matches['dyeName']);
+		$dyeColor = $this->escape($matches['dyeColor']);
 		
 		if ($dyeName  == null || $dyeName  == "") return "";
 		if ($dyeColor == null || $dyeColor == "") return "";
@@ -2722,7 +2747,7 @@ class CEsoItemLink
 		$output .= "<div class='esoil_dyecolor' style='background-color: #{$dyeColor}'></div>";
 		$output .= "</div>"; 
 			
-		$output .= $dyeName;  
+		$output .= $dyeName;
 		$output .= "</div>";
 		
 		return $output;
@@ -2732,8 +2757,8 @@ class CEsoItemLink
 	private function OutputHtml()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->itemRecord['name'],
-				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
+				'{itemName}' => $this->escape($this->itemRecord['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->itemRecord['name'])),
 				'{itemDesc}' => $this->MakeItemDescription(),
 				'{itemLink}' => $this->MakeItemLink(),
 				'{itemStyle}' => $this->MakeItemStyle(),
@@ -2794,13 +2819,13 @@ class CEsoItemLink
 	private function OutputQuestItemHtml()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->questItemData['name'],
-				'{itemNameUpper}' => strtoupper($this->questItemData['name']),
+				'{itemName}' => $this->escape($this->questItemData['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->questItemData['name'])),
 				'{itemDesc}' => $this->MakeQuestItemDescription(),
-				'{itemLink}' => $this->questItemData['itemLink'],
+				'{itemLink}' => $this->escape($this->questItemData['itemLink']),
 				'{itemStyle}' => "",
 				'{itemId}' => $this->questItemId,
-				'{itemType1}' => $this->questItemData['header'],
+				'{itemType1}' => $this->escape($this->questItemData['header']),
 				'{itemType2}' => "",
 				'{itemStolen}' => "",
 				'{itemBindType}' => "",
@@ -2855,8 +2880,8 @@ class CEsoItemLink
 
 	private function MakeCollectibleItemName()
 	{
-		$name = strtoupper($this->collectibleItemData['name']);
-		$nickname = strtoupper($this->collectibleItemData['nickname']);
+		$name = $this->escape(strtoupper($this->collectibleItemData['name']));
+		$nickname = $this->escape(strtoupper($this->collectibleItemData['nickname']));
 		
 		if ($nickname != "") $name .= "<div class='esoil_nickname'>\"".$nickname."\"</div>";
 		
@@ -2866,7 +2891,7 @@ class CEsoItemLink
 	
 	private function MakeAntiquityItemName()
 	{
-		$name = strtoupper($this->antiquityItemData['name']);
+		$name = $this->escape(strtoupper($this->antiquityItemData['name']));
 		return $name;
 	}
 	
@@ -2874,13 +2899,13 @@ class CEsoItemLink
 	private function OutputCollectibleItemHtml()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->collectibleItemData['name'],
+				'{itemName}' => $this->escape($this->collectibleItemData['name']),
 				'{itemNameUpper}' => $this->MakeCollectibleItemName(),
 				'{itemDesc}' => $this->MakeCollectibleItemDescription(),
-				'{itemLink}' => $this->collectibleItemData['itemLink'],
+				'{itemLink}' => $this->escape($this->collectibleItemData['itemLink']),
 				'{itemStyle}' => "",
 				'{itemId}' => $this->collectibleItemId,
-				'{itemType1}' => $this->collectibleItemData['categoryName'],
+				'{itemType1}' => $this->escape($this->collectibleItemData['categoryName']),
 				'{itemType2}' => "",
 				'{itemStolen}' => "",
 				'{itemBindType}' => "",
@@ -2936,14 +2961,14 @@ class CEsoItemLink
 	private function OutputAntiquityItemHtml()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->antiquityItemData['name'],
+				'{itemName}' => $this->escape($this->antiquityItemData['name']),
 				'{itemNameUpper}' => $this->MakeAntiquityItemName(),
 				'{itemDesc}' => $this->MakeAntiquityItemDescription(),
-				'{itemLink}' => $this->antiquityItemData['itemLink'],
+				'{itemLink}' => $this->escape($this->antiquityItemData['itemLink']),
 				'{itemStyle}' => "",
 				'{itemId}' => $this->antiquityItemId,
 				'{itemType1}' => "Antiquity",
-				'{itemType2}' => $this->antiquityItemData['categoryName'],
+				'{itemType2}' => $this->escape($this->antiquityItemData['categoryName']),
 				'{itemStolen}' => "",
 				'{itemBindType}' => "",
 				'{itemValue}' => "",
@@ -3022,8 +3047,8 @@ class CEsoItemLink
 	public function OutputQuestItemRawData()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->questItemData['name'],
-				'{itemNameUpper}' => strtoupper($this->questItemData['name']),
+				'{itemName}' => $this->escape($this->questItemData['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->questItemData['name'])),
 				'{itemId}' => $this->questItemId,
 				'{iconLink}' => $this->MakeQuestItemIconImageLink(),
 				'{showSummary}' => "",
@@ -3043,8 +3068,8 @@ class CEsoItemLink
 	public function OutputCollectibleItemRawData()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->collectibleItemData['name'],
-				'{itemNameUpper}' => strtoupper($this->collectibleItemData['name']),
+				'{itemName}' => $this->escape($this->collectibleItemData['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->collectibleItemData['name'])),
 				'{itemId}' => $this->collectibleItemId,
 				'{iconLink}' => $this->MakeCollectibleItemIconImageLink(),
 				'{showSummary}' => "",
@@ -3064,8 +3089,8 @@ class CEsoItemLink
 	public function OutputAntiquityItemRawData()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->antiquityItemData['name'],
-				'{itemNameUpper}' => strtoupper($this->antiquityItemData['name']),
+				'{itemName}' => $this->escape($this->antiquityItemData['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->antiquityItemData['name'])),
 				'{itemId}' => $this->antiquityItemId,
 				'{iconLink}' => $this->MakeAntiquityItemIconImageLink(),
 				'{showSummary}' => "",
@@ -3085,8 +3110,8 @@ class CEsoItemLink
 	public function OutputRawDataHtml()
 	{
 		$replacePairs = array(
-				'{itemName}' => $this->itemRecord['name'],
-				'{itemNameUpper}' => strtoupper($this->itemRecord['name']),
+				'{itemName}' => $this->escape($this->itemRecord['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->itemRecord['name'])),
 				'{itemId}' => $this->itemRecord['itemId'],
 				'{iconLink}' => $this->MakeItemIconImageLink(),
 				'{showSummary}' => $this->showSummary ? 'summary' : '',
@@ -3135,6 +3160,7 @@ class CEsoItemLink
 		
 		foreach ($this->questItemData as $key => $value)
 		{
+			$value = $this->escape($value);
 			$output .= "<tr>";
 			$output .= "<td>$value</td>\n";
 			$output .= "</tr>\n";
@@ -3159,6 +3185,7 @@ class CEsoItemLink
 	
 		foreach ($this->collectibleItemData as $key => $value)
 		{
+			$value = $this->escape($value);
 			$output .= "<tr>";
 			$output .= "<td>$value</td>\n";
 			$output .= "</tr>\n";
@@ -3183,6 +3210,7 @@ class CEsoItemLink
 	
 		foreach ($this->antiquityItemData as $key => $value)
 		{
+			$value = $this->escape($value);
 			$output .= "<tr>";
 			$output .= "<td>$value</td>\n";
 			$output .= "</tr>\n";
@@ -3283,6 +3311,7 @@ class CEsoItemLink
 		{
 			$value = $item[$key];
 			if ($value == null) $value = $this->itemAllData[0][$key];
+			$value = $this->escape($value);
 			$output .= "<td>$value</td>\n";
 		}
 		
