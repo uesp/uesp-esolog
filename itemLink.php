@@ -245,6 +245,7 @@ class CEsoItemLink
 	
 	public function escape($text)
 	{
+		if (gettype($text) != "string") return $text;
 		return htmlspecialchars($text);
 	}
 	
