@@ -3167,11 +3167,12 @@ If you do not understand what this information means, or how to use this webpage
 			$options .= "\t\t<option value='$value' $selected>$key</option>\n";
 		}
 		
+		$safeSearch = $this->EscapeStringHtml($this->rawSearch);
 		
 ?>
 		<div id='elvSearchForm'>
 			<form method='get' action=''>
-				<input type='search' name='search' value="<?=htmlspecialchars($this->rawSearch)?>" maxlength='64' size='32' />
+				<input type='search' name='search' value="<?=$safeSearch?>" maxlength='64' size='32' />
 				<input type='submit' value='Search...' />
 				<br/>
 				<div id='elvSearchType'>
@@ -4265,9 +4266,11 @@ If you do not understand what this information means, or how to use this webpage
 		
 		if ($this->IsOutputHTML())
 		{
+			$safeSearch = $this->EscapeStringHtml($this->search);
+			
 			$output  = "<h1>Search Results</h1>";
 			$output .= "Note: Only basic display of search results is currently supported (no paging or sorting).<p />";
-			$output .= "Displaying {$searchCount} of {$totalCount} records matching \"{$this->search}\"<p />";
+			$output .= "Displaying {$searchCount} of {$totalCount} records matching \"$safeSearch\"<p />";
 			$output .= "<table border='1' cellpadding='2' cellspacing='0'>\n";
 			$output .= "<tr>\n";
 			$output .= "\t<th></th>\n";
