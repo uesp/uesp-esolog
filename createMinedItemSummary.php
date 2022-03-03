@@ -4,7 +4,9 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "33pts";
+$TABLE_SUFFIX = "";
+
+$MAKE_NAME_TITLECASE = true;
 
 $FIELDS = array(
 		"name",
@@ -231,7 +233,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		if ($value != "" && ($field == 'name' || $field == 'setName'))
 		{
 			$value = preg_replace("#Trifling #i", "", $value);
-			$value = MakeEsoTitleCaseName($value);
+			if ($MAKE_NAME_TITLECASE) $value = MakeEsoTitleCaseName($value);
 		}
 		
 		$value = $db->real_escape_string($value);

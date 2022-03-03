@@ -5166,11 +5166,84 @@ function MakeEsoTitleCaseName($name)
 	$newName = ucwords($newName);
 	
 	$newName = preg_replace("/ In /", " in ", $newName);
+	$newName = preg_replace("/, in /", ", In ", $newName);
+	
+	$newName = preg_replace("/ As /", " as ", $newName);
 	$newName = preg_replace("/ Of /", " of ", $newName);
-	$newName = preg_replace("/ The /", " the ", $newName);
+	
 	$newName = preg_replace("/ And /", " and ", $newName);
+	$newName = preg_replace("/ To /", " to ", $newName);
+	
+	$newName = preg_replace("/ A /", " a ", $newName);
+	$newName = preg_replace("/, a /", ", A ", $newName);
+	$newName = preg_replace("/: a /", ": A ", $newName);
+	
+	$newName = preg_replace("/ At /", " at ", $newName);
+	$newName = preg_replace("/: at /", ": At ", $newName);
+	
+	$newName = preg_replace("/ On /", " on ", $newName);
+	$newName = preg_replace("/ With /", " with ", $newName);
+	
+	$newName = preg_replace("/ The /", " the ", $newName);
+	$newName = preg_replace("/, the /", ", The ", $newName);
+	$newName = preg_replace("/: the /", ": The ", $newName);
+	$newName = preg_replace("/, The Hungering Dark/", ", the Hungering Dark", $newName);
+	$newName = preg_replace("/, The Madgod/", ", the Madgod", $newName);
+	
+	$newName = preg_replace("/ the Rift/", " The Rift", $newName);
+	$newName = preg_replace("/ the Reach$/", " The Reach", $newName);
+	$newName = preg_replace("/ the Reach /", " The Reach ", $newName);
+	$newName = preg_replace("/ the Reach:/", " The Reach:", $newName);
+	$newName = preg_replace("/ the Ritual/", " The Ritual", $newName);
+	$newName = preg_replace("/ the Shadow/", " The Shadow", $newName);
+	$newName = preg_replace("/ the Tower/", " The Tower", $newName);
+	$newName = preg_replace("/ the Apprentice/", " The Apprentice", $newName);
+	$newName = preg_replace("/ the Heart of Transparent Law/", " The Heart of Transparent Law", $newName);
+	$newName = preg_replace("/, Feast of All Flames/", ", Feast of all Flames", $newName);
+	
+	//$newName = preg_replace("/ the Atronach/", " The Atronach", $newName);
+	//$newName = preg_replace("/ the Lady/", " The Lady", $newName);
+	//$newName = preg_replace("/ the Lover/", " The Lover", $newName);
+	//$newName = preg_replace("/ the Mage/", " The Mage", $newName);
+	//$newName = preg_replace("/ the Serpent/", " The Serpent", $newName);
+	//$newName = preg_replace("/ the Thief/", " The Thief", $newName);
+	//$newName = preg_replace("/ the Warrior/", " The Warrior", $newName);
+	//$newName = preg_replace("/ the Ritual/", " The Ritual", $newName);
+	//$newName = preg_replace("/ the Shadow/", " The Shadow", $newName);
+	//$newName = preg_replace("/ the Tower/", " The Tower", $newName);
+	//$newName = preg_replace("/ the Ayleids/", " The Ayleids", $newName);
+	//$newName = preg_replace("/ the Dragon's Glare/", " The Dragon's Glare", $newName);
+	//$newName = preg_replace("/ the Fish and the Unicorn/", " The Fish and the Unicorn", $newName);
+	//$newName = preg_replace("/ the Sea-Monster's Surprise/", " The Sea-Monster's Surprise", $newName);
+	//$newName = preg_replace("/ the Taming of the Gryphon/", " The Taming of the Gryphon", $newName);
+	//$newName = preg_replace("/ the Dance/", " The Dance", $newName);
+	//$newName = preg_replace("/ the Gate/", " The Gate", $newName);
+	//$newName = preg_replace("/ the Demon/", " The Demon", $newName);
+	//$newName = preg_replace("/ the Gathering/", " The Gathering", $newName);
+	//$newName = preg_replace("/ the Open Path/", " The Open Path", $newName);
+	//$newName = preg_replace("/ the Webspinner/", " The Webspinner", $newName);
+	//$newName = preg_replace("/ the Ghosts of Frostfall/", " The Ghosts of Frostfall", $newName);
+	//$newName = preg_replace("/ the Liberation of Leyawiin/", " The Liberation of Leyawiin", $newName);
+	//$newName = preg_replace("/ the Mad Harlequin's Reverie/", " The Mad Harlequin's Reverie", $newName);
+	//$newName = preg_replace("/ the Merry Meadmaker/", " The Merry Meadmaker", $newName);
+	//$newName = preg_replace("/ the Mirefrog's Hymn/", " The Mirefrog's Hymn", $newName);
+	//$newName = preg_replace("/ the Shadows Stir/", " The Shadows Stir", $newName);
+	//$newName = preg_replace("/ the Mistress of Decay/", " The Mistress of Decay", $newName);
+	//$newName = preg_replace("/ the Taskmaster/", " The Taskmaster", $newName);
+	//$newName = preg_replace("/ the Dread Father/", " The Dread Father", $newName);
+	//$newName = preg_replace("/ the Clockwork God/", " The Clockwork God", $newName);
+	
 	$newName = preg_replace_callback("/\-[a-z]/", 'EsoNameMatchUpper', $newName);
 	$newName = preg_replace_callback("/\[vix]+$/", 'EsoNameMatchUpper', $newName);
+	
+	$newName = preg_replace("/-And-/", "-and-", $newName);
+	$newName = preg_replace("/-Of-/", "-of-", $newName);
+	
+	$newName = preg_replace("/,$/", "", $newName);	//Trailing commas
+	
+	if ($newName == "Daedra Worship: The Ayleids") $newName = "Daedra Worship: the Ayleids";
+	if ($newName == "From Old Life to New") $newName = "From Old Life To New";
+	if ($newName == "Totem of The Reach") $newName = "Totem of the Reach";
 	
 	return $newName;
 }
