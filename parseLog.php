@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "33pts";
-	const SKILLS_TABLESUFFIX   = "33pts";
+	const MINEITEM_TABLESUFFIX = "33";
+	const SKILLS_TABLESUFFIX   = "33";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -6542,6 +6542,37 @@ class EsoLogParser
 			$logEntry['useAbilityDesc'] = "";
 		}
 		
+			/* Prevent bad item data for potions */
+		if ($parsedLink['itemId'] == 1 || $parsedLink['itemId'] == 2)
+		{
+			
+			$logEntry['trait'] = "";
+			$logEntry['traitDesc'] = "";
+			
+			$logEntry['enchantName'] = "";
+			$logEntry['enchantDesc'] = "";
+			
+			$logEntry['setBonus1'] = "";
+			$logEntry['setBonus2'] = "";
+			$logEntry['setBonus3'] = "";
+			$logEntry['setBonus4'] = "";
+			$logEntry['setBonus5'] = "";
+			$logEntry['setBonus6'] = "";
+			$logEntry['setBonus7'] = "";
+			
+			$logEntry['setDesc1'] = "";
+			$logEntry['setDesc2'] = "";
+			$logEntry['setDesc3'] = "";
+			$logEntry['setDesc4'] = "";
+			$logEntry['setDesc5'] = "";
+			$logEntry['setDesc6'] = "";
+			$logEntry['setDesc7'] = "";
+			
+			$logEntry['setName'] = "";
+			$logEntry['setBonusCount'] = "";
+			$logEntry['setMaxCount'] = "";
+		}
+		
 			/* Don't update set data for invalid types */
 		if (array_key_exists('type', $logEntry) && $logEntry['type'] != 1 && $logEntry['type'] != 2 && $logEntry['type'] != 18)
 		{
@@ -6565,6 +6596,7 @@ class EsoLogParser
 			$logEntry['setBonusCount'] = "";
 			$logEntry['setMaxCount'] = "";
 		}
+		
 			// To fix old bug?
 		if ($logEntry['setMaxCount'] == 4)
 		{
