@@ -1982,7 +1982,6 @@ $ESO_SET_INDEXES = array(
 );
 
 
-
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
 		-1 => "",
 		0 => "",
@@ -4071,7 +4070,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 32;
+	return 33;
 }
 
 
@@ -4235,11 +4234,11 @@ function GetEsoItemTableSuffix($version)
 		case '32pts':
 			return "32pts";
 		case '32':
-			return "";
+			return "32";
 		case '33pts':
 			return "33pts";
 		case '33':
-			return "33";
+			return "";
 	}
 
 	return "";

@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "33pts";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -307,7 +307,7 @@ foreach ($ESO_SET_INDEXES as $setIndex => $setName)
 	$ESO_SETINDEX_MAP[$setName] = $setIndex;
 }
 
-$query = "SELECT * FROM minedItem".$SOURCEITEMTABLE.$TABLE_SUFFIX." WHERE setName!='';";
+$query = "SELECT * FROM minedItem".$SOURCEITEMTABLE.$TABLE_SUFFIX." WHERE setName!='' ORDER BY itemId DESC;";
 $rowResult = $db->query($query);
 if (!$rowResult) exit("ERROR: Database query error (finding set items)!\n" . $db->error);
 $rowResult->data_seek(0);
@@ -319,6 +319,9 @@ $setItemSlots = array();
 
 while (($row = $rowResult->fetch_assoc()))
 {
+	$itemType = intval($row['type']);
+	if ($itemType == 18) continue;	//Ignore containers?
+	
 	++$itemCount;
 	$setName = $row['setName'];
 	$setBonusDesc1 = TransformBonusDesc($row['setBonusDesc1']);

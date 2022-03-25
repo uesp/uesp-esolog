@@ -26,8 +26,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								2 => array (
 										'id' => 10053,
-										'name' => 'U34',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'name' => 'High Isle',
+										'icon' => '/esoui/art/icons/u33_chap_bullet_1.dds',
 										'desc' => '',
 										'type' => 22,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -38,7 +38,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Dungeon DLC',
-						'numCollectibles' => 20,
+						'numCollectibles' => 22,
 						'collectibles' => array (
 								1 => array (
 										'id' => 375,
@@ -219,6 +219,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 1,
 										'image' => '/esoui/art/store/pc_collections_dlc_wkfm_thedreadcellar_2x1.dds',
 										'nickname' => '' 
+								),
+								21 => array (
+										'id' => 9651,
+										'name' => 'Coral Aerie',
+										'icon' => '/esoui/art/icons/icon_u33_dlc.dds',
+										'desc' => 'On an oft overlooked little islet among the Summerset Isles, big trouble is brewing. Help the cagey Captain Kaleen lead a daring rescue of one of her former crew from the dissidents of the Ascendant Order and recover what they stole.',
+										'type' => 1,
+										'image' => '/esoui/art/store/pc_collections_dlc_atd_coralaerie_loadscreen_2x1.dds',
+										'nickname' => '' 
+								),
+								22 => array (
+										'id' => 9652,
+										'name' => 'Shipwright`s Regret',
+										'icon' => '/esoui/art/icons/icon_u33_dlc.dds',
+										'desc' => 'Join Captain Za`ji`s quest to perfect the Perfect Pounce using the secrets of the finest shipbuilders in Tamriel—provided they can still be found in the rolling fog, thick overgrowth, and haunted remnants of the Shipwright`s Regret.',
+										'type' => 1,
+										'image' => '/esoui/art/store/pc_collections_dlc_atd_shipwrightsregret_loadscreen_2x1.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -354,7 +372,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/collection_indexicon_upgrade_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 13,
+						'numCollectibles' => 14,
 						'collectibles' => array (
 								1 => array (
 										'id' => 60,
@@ -472,6 +490,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 6,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								14 => array (
+										'id' => 10218,
+										'name' => 'Ascendant Outfit Style',
+										'icon' => '/esoui/art/icons/gear_ascendantlord_ce_a.dds',
+										'desc' => 'Unlocks all 7 Ascendant Knight outfit style collectibles and allows them to be applied via the outfit system without an application fee.',
+										'type' => 6,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -489,7 +516,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Hats',
-						'numCollectibles' => 139,
+						'numCollectibles' => 140,
 						'collectibles' => array (
 								1 => array (
 										'id' => 174,
@@ -1653,15 +1680,6 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								130 => array (
-										'id' => 8202,
-										'name' => 'Hat 1 U31 Fox Mask',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
-										'type' => 10,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								131 => array (
 										'id' => 8661,
 										'name' => 'Arkthzand Insight Vertex Shroud',
 										'icon' => '/esoui/art/icons/gear_arkthzandarm_bosshelmet2.dds',
@@ -1670,7 +1688,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								132 => array (
+								131 => array (
 										'id' => 8662,
 										'name' => 'Arkthzand Anfractuosity Shroud',
 										'icon' => '/esoui/art/icons/gear_arkthzandarm_bosshelmet3.dds',
@@ -1679,7 +1697,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								133 => array (
+								132 => array (
 										'id' => 8663,
 										'name' => 'Arkthzand Flanged Auspice Shroud',
 										'icon' => '/esoui/art/icons/gear_arkthzandarm_bosshelmet1.dds',
@@ -1688,7 +1706,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								134 => array (
+								133 => array (
 										'id' => 8824,
 										'name' => 'Witchwise Headdress',
 										'icon' => '/esoui/art/icons/hat_witchwise.dds',
@@ -1697,7 +1715,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								135 => array (
+								134 => array (
 										'id' => 8850,
 										'name' => 'Netch Handler Cap',
 										'icon' => '/esoui/art/icons/hat_netchhandler.dds',
@@ -1706,7 +1724,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								136 => array (
+								135 => array (
 										'id' => 8851,
 										'name' => 'Courtly Crow Mask',
 										'icon' => '/esoui/art/icons/hat_ravenmask.dds',
@@ -1715,7 +1733,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								137 => array (
+								136 => array (
 										'id' => 9237,
 										'name' => 'Helm of the Black Fin',
 										'icon' => '/esoui/art/icons/hat_keshuhelm.dds',
@@ -1724,7 +1742,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								138 => array (
+								137 => array (
 										'id' => 9393,
 										'name' => 'Ironclad Sarcoshroud',
 										'icon' => '/esoui/art/icons/hat_annihilarchbosshelmet.dds',
@@ -1733,11 +1751,29 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								139 => array (
+								138 => array (
 										'id' => 9411,
 										'name' => 'Oblivion Explorer`s Headwrap',
 										'icon' => '/esoui/art/icons/hat_oblivionexplorersheadwrap.dds',
 										'desc' => 'Originally created by a now-forgotten Breton whose search for knowledge of obscure magic led him into the Deadlands, this innovative headgear is a must-have for any wandering the unforgiving wilds of Oblivion.',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								139 => array (
+										'id' => 9506,
+										'name' => 'Nereid`s Seafoam Coiffure',
+										'icon' => '/esoui/art/icons/hat_seafoamraiment.dds',
+										'desc' => 'Born of waves and foam, saltwater Nereids clothe themselves in whatever materials lay scattered about the sea floor. They`re masters at turning coral, pearls, and kelp into stunning headdresses that anyone would be honored to wear.',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								140 => array (
+										'id' => 9522,
+										'name' => 'Savvy Scoundrel`s Mask',
+										'icon' => '/esoui/art/icons/hat_blackheartmask.dds',
+										'desc' => 'This mask and cloth cap combination became popular with pirates and invaders alike for its ability to hide the wearer`s features without sacrificing their threatening appearance.',
 										'type' => 10,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -1747,7 +1783,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Hair Styles',
-						'numCollectibles' => 136,
+						'numCollectibles' => 137,
 						'collectibles' => array (
 								1 => array (
 										'id' => 311,
@@ -2965,6 +3001,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								136 => array (
+										'id' => 8829,
+										'name' => 'Draping Locks',
+										'icon' => '/esoui/art/icons/hair_calibratedcoiffure.dds',
+										'desc' => '\"Veya`s a practical child. While others her age favor short hair or intricate braids, she merely tucks her hair behind her ears and gets on with the task at hand. She`ll excel at whatever she wants.\"—Vilyn Hlas, tutor employed by Councilor Eris',
+										'type' => 13,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								137 => array (
 										'id' => 9376,
 										'name' => 'The Adoring Stand',
 										'icon' => '/esoui/art/icons/hair_adoringflame.dds',
@@ -2978,7 +3023,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Head Markings',
-						'numCollectibles' => 261,
+						'numCollectibles' => 269,
 						'collectibles' => array (
 								1 => array (
 										'id' => 445,
@@ -5267,6 +5312,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								255 => array (
+										'id' => 9425,
+										'name' => 'Abyssal Embrace Face Markings',
+										'icon' => '/esoui/art/icons/mrf_abyssalembrace.dds',
+										'desc' => 'Hermaeus Mora watches through eyes that are dedicated to him. Those devoted to knowledge add to the Library of Apocrypha by dedicating their eyes to the Daedric Prince and painting on more to give him multiple perspectives on their adventures.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								256 => array (
 										'id' => 9427,
 										'name' => 'Crimson Trickster Face Paint',
 										'icon' => '/esoui/art/icons/mrf_crimsontrickster.dds',
@@ -5275,16 +5329,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								256 => array (
+								257 => array (
 										'id' => 9428,
 										'name' => 'Mirthless Mirror Face Paint',
 										'icon' => '/esoui/art/icons/mrf_mirthlessmirror.dds',
-										'desc' => '',
+										'desc' => 'Not all is glee and merriment as we live through our years. Wear purple and white upon your face to symbolize our tears.',
 										'type' => 17,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								257 => array (
+								258 => array (
 										'id' => 9429,
 										'name' => 'Shadows of Blackwood Face Marks',
 										'icon' => '/esoui/art/icons/mrf_blkwoodforest.dds',
@@ -5293,7 +5347,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								258 => array (
+								259 => array (
 										'id' => 9435,
 										'name' => 'Conjurer`s Eyes',
 										'icon' => '/esoui/art/icons/mrf_conjurerseyes.dds',
@@ -5302,7 +5356,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								259 => array (
+								260 => array (
+										'id' => 9453,
+										'name' => 'Ket Keptu Face Marks',
+										'icon' => '/esoui/art/icons/marking_head_hu_keptu.dds',
+										'desc' => 'Only the fiercest and most skilled warrior-smiths of the Ket Keptu earned the right to bear these two-toned face tattoos. Do you craft your own weapons and wield them in battle? If so, wear these marks proudly.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								261 => array (
 										'id' => 9518,
 										'name' => 'Fargrave Soullattice Face Marks',
 										'icon' => '/esoui/art/icons/marking_face_hu_fargravesentinel.dds',
@@ -5311,7 +5374,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								260 => array (
+								262 => array (
 										'id' => 9531,
 										'name' => 'Shattered Chivalry Face Tattoo',
 										'icon' => '/esoui/art/icons/mrf_shatteredchivalry.dds',
@@ -5320,11 +5383,65 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								261 => array (
+								263 => array (
+										'id' => 9779,
+										'name' => 'Old Salt Face Tattoos',
+										'icon' => '/esoui/art/icons/mrf_saltyseafarer.dds',
+										'desc' => 'Your tears taste like the salty waves you brave. Your muscles endure like the anchor that holds your ship fast at sea. And the moons dictate both the tides and your schedule more often than not. Honor these aspects with an artistic facial tattoo.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								264 => array (
+										'id' => 9792,
+										'name' => 'Enchanting Cherry Blossom Visage',
+										'icon' => '/esoui/art/icons/mrf_cherryblossom.dds',
+										'desc' => 'Painting a sprig of blossoms from Auridon`s fair shores on your cheek ensures the petals of your own elegance will bloom in the eyes of all who see it.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								265 => array (
+										'id' => 9815,
+										'name' => 'Anequine Oasis Eyes',
+										'icon' => '/esoui/art/icons/mrf_leafjadeeyes.dds',
+										'desc' => '\"Though many dispute whether Khenarthi, S`rendarr, or another spirit grants these jade-green eyes to blessed individuals, all agree on one thing: Those who discover and share the location of an oasis to those in need earn them.\"—Sulema, Initiate Scholar',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								266 => array (
+										'id' => 9816,
+										'name' => 'Darloc`s Golden Eyes',
+										'icon' => '/esoui/art/icons/mrf_sunrayeyes.dds',
+										'desc' => '\"Darloc Brae, warlord that he was, conquered much in his life. Those with a fiery spirit and peerless martial skills sometimes possess the same molten eyes that blazed from the Golden Beast of Anequina`s visage.\"—Sulema, Initiate Scholar',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								267 => array (
 										'id' => 9817,
 										'name' => 'Azure Eyes',
 										'icon' => '/esoui/art/icons/mrf_legionzeroeyes.dds',
 										'desc' => '\"Some claim those who ventured to Moonshadow, Azura`s realm of blinding beauty, leave with these glowing blue eyes, but I think they`re just the result of meddling with too much magic.\"—Bivale Saryoni, Scholar',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								268 => array (
+										'id' => 9877,
+										'name' => 'Battle-Scarred Visage',
+										'icon' => '/esoui/art/icons/marking_face_hu_battleworn.dds',
+										'desc' => 'The life of a fighter is fraught with danger, whether it be battling to the death in the Arena district or dealing with ambushes on the road. Scars, and proof that you have the skills to survive, are the mark of a hirable adventurer.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								269 => array (
+										'id' => 10188,
+										'name' => 'Druidic Knotwork Face Tattoos',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => '\"Use ash, root earth, or sea ink. Loop the sign of the united circles upon your face and look over the splendor of the forests and sea foam with clarity. Let Y`ffre guide your eyes to all he creates.\"—Ritual blessing of the Draoife high priests',
 										'type' => 17,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -6151,7 +6268,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Major Adornments',
-						'numCollectibles' => 101,
+						'numCollectibles' => 103,
 						'collectibles' => array (
 								1 => array (
 										'id' => 414,
@@ -7061,13 +7178,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 15,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								102 => array (
+										'id' => 9456,
+										'name' => 'Adorn: Monarch Butterfly Clip',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => '',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								103 => array (
+										'id' => 9872,
+										'name' => 'Aurelian Osprey Coronel',
+										'icon' => '/esoui/art/icons/adr_stormwing.dds',
+										'desc' => 'Ospreys are known for their precision, ruthlessness, and endurance. Wealthy mariners in Summerset believe wearing one of these bejeweled raptors gives them the insight of a seafaring predator.',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Minor Adornments',
-						'numCollectibles' => 49,
+						'numCollectibles' => 50,
 						'collectibles' => array (
 								1 => array (
 										'id' => 587,
@@ -7509,13 +7644,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 16,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								50 => array (
+										'id' => 9776,
+										'name' => 'Splendid Seabird Earring',
+										'icon' => '/esoui/art/icons/adr_treasuretroveearring.dds',
+										'desc' => 'Abecean pirates string together beads, shells, and colorful feathers to create earrings. The bead`s color is specific to each crew. The crew members of the Storm Snapper use blue beads and string the tail feathers of the Chain Skua into their jewelry.',
+										'type' => 16,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Costumes',
-						'numCollectibles' => 227,
+						'numCollectibles' => 229,
 						'collectibles' => array (
 								1 => array (
 										'id' => 38,
@@ -9527,7 +9671,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								224 => array (
 										'id' => 9241,
 										'name' => 'Wizard Robe',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/costume_wizardrobe.dds',
 										'desc' => '',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -9552,6 +9696,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								227 => array (
+										'id' => 9505,
+										'name' => 'Nereid`s Seafoam Raiment',
+										'icon' => '/esoui/art/icons/costume_seafoamraiment.dds',
+										'desc' => '\"I wrapped my body in the kelp and coral of a sea-bound Nereid and frolicked in the tidepools as I did in childhood. All should enjoy the freedom of Nereid attire as I have.\"—Oceanographic Society Director, Vaerwyeana',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								228 => array (
+										'id' => 9521,
+										'name' => 'Jakarn`s Ensemble',
+										'icon' => '/esoui/art/icons/cos_jakarn.dds',
+										'desc' => 'Jakarn is rugged, practical, and dashing. Dressing like him ensures that you never look like you`re trying too hard. His well-tailored clothes always fetch the eyes of tavern beauties and never chafe when riding a stallion into the sunset.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								229 => array (
 										'id' => 9644,
 										'name' => 'Garb of Grinning Horrors',
 										'icon' => '/esoui/art/icons/costume_garbofgrinningho.dds',
@@ -9565,7 +9727,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Body Markings',
-						'numCollectibles' => 238,
+						'numCollectibles' => 243,
 						'collectibles' => array (
 								1 => array (
 										'id' => 444,
@@ -11683,6 +11845,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								236 => array (
+										'id' => 9426,
+										'name' => 'Abyssal Embrace Body Markings',
+										'icon' => '/esoui/art/icons/mrk_abyssalembrace.dds',
+										'desc' => '\"Hermaeus Mora does not ask much, but those with the unending thirst for knowledge and secrets often wrap their bodies in his tentacles as a sign that they are pledged to Apocrypha.\"—Scholar Aia Laenius, Lillandril',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								237 => array (
 										'id' => 9430,
 										'name' => 'Shadows of Blackwood Body Marks',
 										'icon' => '/esoui/art/icons/mrk_blkwoodforest.dds',
@@ -11691,7 +11862,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								237 => array (
+								238 => array (
+										'id' => 9454,
+										'name' => 'Ket Keptu Body Marks',
+										'icon' => '/esoui/art/icons/marking_body_hu_keptu.dds',
+										'desc' => 'Originally solid colors, the markings some Ket Keptu wore to signify their status as warrior-smiths later gained a gradient of hues. Scholars claim this occurred as these pre-Alessians furthered their knowledge of ore refinement and tattoo inks.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								239 => array (
 										'id' => 9519,
 										'name' => 'Fargrave Soullattice Body Marks',
 										'icon' => '/esoui/art/icons/marking_body_hu_fargravesentinel.dds',
@@ -11700,11 +11880,38 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								238 => array (
+								240 => array (
 										'id' => 9532,
 										'name' => 'Shattered Chivalry Body Tattoo',
 										'icon' => '/esoui/art/icons/mrk_shatteredchivalry.dds',
 										'desc' => 'The whispers of Oblivion slither through the halls of Red Petal Bastion—drawing its guardians ever deeper into the Daedra`s embrace. These once-noble warriors forsook their oaths to pursue dark artifacts—but remain forever marked by their choice.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								241 => array (
+										'id' => 9780,
+										'name' => 'Old Salt Body Tattoos',
+										'icon' => '/esoui/art/icons/mrk_saltyseafarer.dds',
+										'desc' => 'After seeing you stand firm in many an Abecean squall, some claim you have brine for blood. While you wish this were true, you chose the next best thing to express your love of sailing: intricate tattoos of ships and other aspects of life on the high seas!',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								242 => array (
+										'id' => 9793,
+										'name' => 'Enchanting Cherry Blossom Marks',
+										'icon' => '/esoui/art/icons/mrk_cherryblossom.dds',
+										'desc' => '\"Cherry blossoms in Auridon art symbolize perfection that defies time`s erosion. But to paint their likeness? The temporary nature of paint and the artistry of the painting? I`ve never seen such a stunning display of elegance!\"—Idawen, Art Historian',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								243 => array (
+										'id' => 9878,
+										'name' => 'Battle-Scarred Skin',
+										'icon' => '/esoui/art/icons/marking_body_hu_battleworn.dds',
+										'desc' => '\"Mortals think they can fight Zazriz in Dredaza`s area and return unscathed and alive? Zazriz laughs. The only mortals Zazriz respects are ones who bear proof of surviving battle. Come, fools, let Zazriz give you the scars of respect.\"—Zazriz, Gladiator',
 										'type' => 18,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -11714,7 +11921,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				9 => array (
 						'subCategoryIndex' => 9,
 						'name' => 'Skins',
-						'numCollectibles' => 53,
+						'numCollectibles' => 59,
 						'collectibles' => array (
 								1 => array (
 										'id' => 161,
@@ -12185,6 +12392,60 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								53 => array (
+										'id' => 9509,
+										'name' => 'Rainsiren Nereid',
+										'icon' => '/esoui/art/icons/sko_rainsirennereid.dds',
+										'desc' => 'Dance in joyful waters and cavort in turbulent tributaries while flaunting the brilliant blues of the Riversiren Nereid. While you may not choose to live in the waters of Tamriel`s rivers, you`ll certainly make a vibrant splash wherever you go.',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								54 => array (
+										'id' => 9638,
+										'name' => 'Culanda-Born Skin',
+										'icon' => '/esoui/art/icons/sko_culandaborn.dds',
+										'desc' => '\"Grant your skin the vibrant hues of Culanda with this luminescent golden enchantment! That`s what they promised, these Summerset High Elves, and they delivered—magnificently! People`s eyes light up when I enter the room!\"—Tarquinius Truptor, Esquire',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								55 => array (
+										'id' => 9679,
+										'name' => 'Labyrinthian Luminary',
+										'icon' => '/esoui/art/icons/sko_labyrinthianluminary.dds',
+										'desc' => 'Originally gifted to students who passed his most difficult tests in Labyrinthian, the mazelike designs that the Archmage Shalidor`s magic granted lingers. To this day, worthy newcomers sometimes gain these ornate patterns.',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								56 => array (
+										'id' => 9781,
+										'name' => 'Azure Imp Epidermis',
+										'icon' => '/esoui/art/icons/sko_darkimp.dds',
+										'desc' => '\"Some, shall we say, ambitious sorts came up with a way to look a bit like those azure imps you sometimes see flitting about. No, you don`t gain wings, but you`ll very likely frighten most people out of their wits regardless.\"—Divayth Fyr',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								57 => array (
+										'id' => 9782,
+										'name' => 'Mossblood Imp Epidermis',
+										'icon' => '/esoui/art/icons/sko_greenskingoblin.dds',
+										'desc' => '\"The mossblood imp`s coloration lends itself well to walking undetected among the foliage of Valenwood. But perhaps that`s not what the mages intended given the provenance of the imp. Unintended consequences abound with imp-related projects.\"—Divayth Fyr',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								58 => array (
+										'id' => 9783,
+										'name' => 'Bargain-Marked Skaafin',
+										'icon' => '/esoui/art/icons/sko_skaafinstinger.dds',
+										'desc' => 'Whether you hope to travel safely through the Fields of Regret by looking more like a Skaafin or wish to appeal to Clavicus Vile, this skin has you covered—literally.',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								59 => array (
 										'id' => 9814,
 										'name' => 'Impish Epidermis',
 										'icon' => '/esoui/art/icons/sko_impishepidermis.dds',
@@ -13128,7 +13389,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Notable Homes',
-						'numCollectibles' => 35,
+						'numCollectibles' => 36,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1096,
@@ -13444,6 +13705,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 19,
 										'image' => '/esoui/art/store/pc_collections_hsg_agonysascent.dds',
 										'nickname' => 'Deadlands Tower' 
+								),
+								36 => array (
+										'id' => 10223,
+										'name' => 'Seaveil Spire',
+										'icon' => '/esoui/art/icons/housing_seaveilspire001.dds',
+										'desc' => 'Early in the First Era, a pious tribe of Nedes followed the Tower`s guidance to an undersea anomaly, where they built a submerged sanctuary. Millennia later, the edifice and anomaly remain, providing a secure and wondrous escape from the surface world.',
+										'type' => 19,
+										'image' => '/esoui/art/store/pc_collections_hsg_seaveilspire.dds',
+										'nickname' => 'Coral Atoll' 
 								) 
 						) 
 				) 
@@ -13461,7 +13731,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'General',
-						'numCollectibles' => 60,
+						'numCollectibles' => 63,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1171,
@@ -13979,7 +14249,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								58 => array (
 										'id' => 10181,
 										'name' => 'Statuette: Kaladas of Leyawiin',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/housing_uni_inc_statuettestkaladas001.dds',
 										'desc' => 'A miniature statue of Saint Kaladas, builder of the Great Chapel of Zenithar in Leyawiin.',
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -13988,7 +14258,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								59 => array (
 										'id' => 10182,
 										'name' => 'Statuette: Mehrunes Dagon',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/housing_uni_inc_statuettedagon001.dds',
 										'desc' => 'A miniature statue of Mehrunes Dagon, Daedric Prince of Destruction and Ambition.',
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -13997,8 +14267,35 @@ $ESO_COLLECTIBLE_DATA = array (
 								60 => array (
 										'id' => 10183,
 										'name' => 'Painting: Dagon`s Mercy',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/housing_bad_inc_housingwoodframedagonpainting001.dds',
 										'desc' => 'A painting of Mehrunes Dagon, towering over his cultists in the Deadlands.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								61 => array (
+										'id' => 10219,
+										'name' => 'Statuette: Stendarr',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'A miniature statue of',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								62 => array (
+										'id' => 10220,
+										'name' => 'Statuette: Prince Hew',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'A miniature statue of',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								63 => array (
+										'id' => 10221,
+										'name' => 'Painting: The Gates of Brass',
+										'icon' => '/esoui/art/icons/housing_uni_inc_housingpaintingcarouselclockworkcity001.dds',
+										'desc' => 'A painting of the Brass Fortress, seat of power for the Clockwork God, Sotha Sil.',
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -14087,7 +14384,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Undaunted Busts',
-						'numCollectibles' => 60,
+						'numCollectibles' => 62,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1110,
@@ -14628,13 +14925,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								61 => array (
+										'id' => 10302,
+										'name' => 'Bust: Kargaeda',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veterancoralgryphon001.dds',
+										'desc' => 'Bronze bust commemorating an Undaunted victory in Coral Aerie.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								62 => array (
+										'id' => 10303,
+										'name' => 'Bust: Nazaray',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veteranspriggan001.dds',
+										'desc' => 'Bronze bust commemorating an Undaunted victory in Shipwright`s Regret.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Undaunted Trophies',
-						'numCollectibles' => 60,
+						'numCollectibles' => 62,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1265,
@@ -15175,13 +15490,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								61 => array (
+										'id' => 10300,
+										'name' => 'Trophy: Kargaeda',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophycoralgryphon001.dds',
+										'desc' => 'Trophy taken from Varallion in honor of an Undaunted victory in Coral Aerie.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								62 => array (
+										'id' => 10301,
+										'name' => 'Trophy: Nazaray',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophyspriggan001.dds',
+										'desc' => 'Trophy taken from the Maormer Pirate in honor of an Undaunted victory in Shipwright`s Regret',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Houseguests',
-						'numCollectibles' => 25,
+						'numCollectibles' => 27,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7931,
@@ -15407,6 +15740,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								26 => array (
+										'id' => 10215,
+										'name' => 'Jakarn^m',
+										'icon' => '/esoui/art/icons/houseguest_jakarn.dds',
+										'desc' => 'Thief though he is, Jakarn promises not to steal from your house if you allow him to stay. But as to your heart? Well, that`s a different matter. After adding Jakarn to your home, you can set him on a path, plus you and your visitors can speak with him.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								27 => array (
+										'id' => 10217,
+										'name' => 'Jester Anglidor^m',
+										'icon' => '/esoui/art/icons/houseguest_jesteranglidor.dds',
+										'desc' => 'This Jester`s Fest performer brings all the joy and frivolity of that holiday to your home—perfect for when you wish to host a friendly gathering! After adding Jester Anglidor to your home, you can set him on a path and interact with him.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -15417,7 +15768,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'name' => 'Fragments',
 						'icon' => '/esoui/art/treeicons/store_indexicon_fragments_up.dds',
 						'special' => 0,
-						'numSubCategories' => 21,
+						'numSubCategories' => 22,
 						'numCollectibles' => 0,
 						'collectibles' => array () 
 				),
@@ -15722,6 +16073,40 @@ $ESO_COLLECTIBLE_DATA = array (
 				),
 				9 => array (
 						'subCategoryIndex' => 9,
+						'name' => 'Aurelic Quasigriff',
+						'numCollectibles' => 3,
+						'collectibles' => array (
+								1 => array (
+										'id' => 10232,
+										'name' => 'Aurelite Gryphon Feather',
+										'icon' => '/esoui/art/icons/u33_collectible_akatosh_mount001.dds',
+										'desc' => 'A gleaming golden gryphon feather.\n\nA component required to morph a Soulfire Dragon Illusion into the Aurelic Quasigriff mount.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								2 => array (
+										'id' => 10233,
+										'name' => 'Gilded Gryphon Barding',
+										'icon' => '/esoui/art/icons/u33_collectible_akatosh_mount002.dds',
+										'desc' => 'Gilded mount barding fitted for a quasigriff.\n\nA component required to morph a Soulfire Dragon Illusion into the Aurelic Quasigriff mount.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								3 => array (
+										'id' => 10234,
+										'name' => 'Sacred Seeds of Akatosh',
+										'icon' => '/esoui/art/icons/u33_collectible_akatosh_mount003.dds',
+										'desc' => 'Enchanted seeds fit for consumption as animal feed.\n\nA component required to morph a Soulfire Dragon Illusion into the Aurelic Quasigriff mount.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								) 
+						) 
+				),
+				10 => array (
+						'subCategoryIndex' => 10,
 						'name' => 'Dawnwood Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -15763,8 +16148,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				10 => array (
-						'subCategoryIndex' => 10,
+				11 => array (
+						'subCategoryIndex' => 11,
 						'name' => 'Luminous Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -15806,8 +16191,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				11 => array (
-						'subCategoryIndex' => 11,
+				12 => array (
+						'subCategoryIndex' => 12,
 						'name' => 'Onyx Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -15849,8 +16234,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				12 => array (
-						'subCategoryIndex' => 12,
+				13 => array (
+						'subCategoryIndex' => 13,
 						'name' => 'Pure-Snow Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -15892,8 +16277,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				13 => array (
-						'subCategoryIndex' => 13,
+				14 => array (
+						'subCategoryIndex' => 14,
 						'name' => 'Apple-Bobbing',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -15962,8 +16347,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				14 => array (
-						'subCategoryIndex' => 14,
+				15 => array (
+						'subCategoryIndex' => 15,
 						'name' => 'Spectral Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16005,8 +16390,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				15 => array (
-						'subCategoryIndex' => 15,
+				16 => array (
+						'subCategoryIndex' => 16,
 						'name' => 'Icebreath Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16048,8 +16433,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				16 => array (
-						'subCategoryIndex' => 16,
+				17 => array (
+						'subCategoryIndex' => 17,
 						'name' => 'Mossheart Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16091,8 +16476,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				17 => array (
-						'subCategoryIndex' => 17,
+				18 => array (
+						'subCategoryIndex' => 18,
 						'name' => 'Crimson Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16134,8 +16519,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				18 => array (
-						'subCategoryIndex' => 18,
+				19 => array (
+						'subCategoryIndex' => 19,
 						'name' => 'Voriplasm Pet',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -16204,8 +16589,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				19 => array (
-						'subCategoryIndex' => 19,
+				20 => array (
+						'subCategoryIndex' => 20,
 						'name' => 'Wooden Grave-Stake Memento',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -16274,8 +16659,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				20 => array (
-						'subCategoryIndex' => 20,
+				21 => array (
+						'subCategoryIndex' => 21,
 						'name' => 'Sovereign Sow',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -16344,8 +16729,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				21 => array (
-						'subCategoryIndex' => 21,
+				22 => array (
+						'subCategoryIndex' => 22,
 						'name' => 'Cartographer Fragments',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -16428,7 +16813,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Assistants',
-						'numCollectibles' => 12,
+						'numCollectibles' => 13,
 						'collectibles' => array (
 								1 => array (
 										'id' => 267,
@@ -16533,7 +16918,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9745,
 										'name' => 'Ghrasharog, Armory Assistant',
 										'icon' => '/esoui/art/icons/assistant_ghrashorogmasteratarms.dds',
-										'desc' => 'Before you fight worthy foes, check in with Ghrasharog to prepare yourself. He avoids Cyrodiil or Battlegrounds, which he swears made him complacent after winning victory upon victory.\n\nAfter he`s summoned, you and your groupmates can use his services.',
+										'desc' => 'You and your groupmates can prepare for combat by summoning Ghrasharog to change and save builds outside of your home. He avoids Cyrodiil or Battlegrounds, which he swears made him complacent after winning victory upon victory.',
+										'type' => 8,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								13 => array (
+										'id' => 10184,
+										'name' => 'Giladil the Ragpicker',
+										'icon' => '/esoui/art/icons/assistant_giladiltheragpicker.dds',
+										'desc' => 'Giladil happily trades items you don`t need for useful crafting materials! She doesn`t ply her trade in Cyrodiil or Battlegrounds because those areas aren`t lucrative enough.\n\nAfter she`s summoned, you and your groupmates can use her services.',
 										'type' => 8,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -16573,7 +16967,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_trophy_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 131,
+						'numCollectibles' => 137,
 						'collectibles' => array (
 								1 => array (
 										'id' => 335,
@@ -17497,7 +17891,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 7619,
 										'name' => 'Jubilee Cake 2020',
 										'icon' => '/esoui/art/icons/momento_jubileecake2020_02.dds',
-										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. Savor its darkly rich flavor—decadence for your taste buds!\n\n|cFFFFFFEat this cake, once per day, to earn Event Tickets.|r',
+										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. Savor its darkly rich flavor—decadence for your taste buds!',
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -17656,6 +18050,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								121 => array (
+										'id' => 9012,
+										'name' => 'Jubilee Cake 2021',
+										'icon' => '/esoui/art/icons/memento_jubileecake2021.dds',
+										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. Relish its luscious flavor—tantalizing to your taste buds!',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								122 => array (
 										'id' => 9361,
 										'name' => 'Inferno Cleats',
 										'icon' => '/esoui/art/icons/memento_flametrailboots_01.dds',
@@ -17664,7 +18067,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								122 => array (
+								123 => array (
 										'id' => 9362,
 										'name' => 'Impartial Decision Coin',
 										'icon' => '/esoui/art/icons/memento_coinflip_01.dds',
@@ -17673,7 +18076,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								123 => array (
+								124 => array (
 										'id' => 9363,
 										'name' => 'Full-Scale Golden Anvil Replica',
 										'icon' => '/esoui/art/icons/crafting_runecrafter_2h_hammer_vendor_001.dds',
@@ -17682,7 +18085,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								124 => array (
+								125 => array (
 										'id' => 9364,
 										'name' => 'Wilting Weed Killer Phial',
 										'icon' => '/esoui/art/icons/quest_dun_inc_glassbottles001.dds',
@@ -17691,7 +18094,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								125 => array (
+								126 => array (
 										'id' => 9432,
 										'name' => 'Daedroth Illusion Gem',
 										'icon' => '/esoui/art/icons/memento_puppeteerdaedroth07.dds',
@@ -17700,7 +18103,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								126 => array (
+								127 => array (
 										'id' => 9530,
 										'name' => 'Witch`s Bonfire Dust',
 										'icon' => '/esoui/art/icons/memento_witchesfest_04.dds',
@@ -17709,7 +18112,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								127 => array (
+								128 => array (
 										'id' => 9590,
 										'name' => 'Bone Colossus Illusion Gem',
 										'icon' => '/esoui/art/icons/memento_puppeteerbonecolossus03.dds',
@@ -17718,7 +18121,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								128 => array (
+								129 => array (
 										'id' => 9591,
 										'name' => 'Agonymium Stone',
 										'icon' => '/esoui/art/icons/memento_dungeonveteranreward02.dds',
@@ -17727,7 +18130,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								129 => array (
+								130 => array (
 										'id' => 9719,
 										'name' => 'Incarnate Illusion Gem',
 										'icon' => '/esoui/art/icons/memento_incarnate.dds',
@@ -17736,7 +18139,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								130 => array (
+								131 => array (
 										'id' => 9862,
 										'name' => 'Astral Aurora Projector',
 										'icon' => '/esoui/art/icons/memento_galaxy_aurora_01.dds',
@@ -17745,11 +18148,56 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								131 => array (
+								132 => array (
 										'id' => 9871,
 										'name' => 'Boomerang Blunder',
 										'icon' => '/esoui/art/icons/memento_boomerang_breaka_01.dds',
 										'desc' => 'Until you master the art of the Valenwood boomerang, expect to break a few things. Potentially including someone else`s nose.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								133 => array (
+										'id' => 10235,
+										'name' => 'Cadwell`s Surprise Box',
+										'icon' => '/esoui/art/icons/memento_cadwellssuprisebox01.dds',
+										'desc' => 'Surprise boxes are fun! Why, you never know what will pop out. But wait. Is that … Cadwell?',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								134 => array (
+										'id' => 10236,
+										'name' => 'Mariner`s Nimbus Stone',
+										'icon' => '/esoui/art/icons/memento_marinersnimbusstone02.dds',
+										'desc' => 'Whether by magic or blessing, you`ve discovered a wondrous stone that shows the world just how attuned you are to the sea.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								135 => array (
+										'id' => 10247,
+										'name' => 'Guardian`s Frozen Shard',
+										'icon' => '/esoui/art/icons/memento_chillingdevice.dds',
+										'desc' => 'A glacial fragment from the body of one of the timeless guardians found in the Coral Aerie. It freezes anything it touches.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								136 => array (
+										'id' => 10248,
+										'name' => 'Maormer Ocean Pearl',
+										'icon' => '/esoui/art/icons/memento_aquaticdevice_bubble.dds',
+										'desc' => 'This perfectly smooth, aquamarine pearl is supposedly the essence of the ocean itself. Holding it makes you feel at one with the sea.',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								137 => array (
+										'id' => 10249,
+										'name' => 'Lover`s Quandary Flower',
+										'icon' => '/esoui/art/icons/memento_loversquandaryflower01.dds',
+										'desc' => 'They love me … they love me not.',
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -17821,10 +18269,10 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								7 => array (
-										'id' => 9012,
-										'name' => 'Jubilee Cake 2021',
-										'icon' => '/esoui/art/icons/memento_jubileecake2021.dds',
-										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. Relish its luscious flavor—tantalizing to your taste buds!\n\n|cFFFFFFEat this cake, once per day, to earn Event Tickets.|r',
+										'id' => 10287,
+										'name' => 'Jubilee Cake 2022',
+										'icon' => '/esoui/art/icons/memento_jubileecake2022_02.dds',
+										'desc' => 'Chef Donolon`s Jubilee Cake is the perfect pastry to celebrate any special occasion or awesome anniversary. So zesty with a touch of heat—wake up your taste buds!\n\n|cFFFFFFEat this cake, once per day, to earn Event Tickets.|r',
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -17845,7 +18293,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Equines',
-						'numCollectibles' => 111,
+						'numCollectibles' => 113,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1,
@@ -18838,6 +19286,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Honeystar' 
 								),
 								111 => array (
+										'id' => 9459,
+										'name' => 'Reefborn Charger',
+										'icon' => '/esoui/art/icons/mount_coraldrifthorse.dds',
+										'desc' => '\"The hues on these reefborn steeds—wondrous, yes? Instead of flowing manes on these so-called equines, colorful coral grew. Just don`t try to feed them apples. They prefer to feed on algal blooms.\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Seawhip' 
+								),
+								112 => array (
 										'id' => 9512,
 										'name' => 'Star-Born Guardian Horse',
 										'icon' => '/esoui/art/icons/mount_celestialhorse.dds',
@@ -18845,13 +19302,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Quintessence' 
+								),
+								113 => array (
+										'id' => 9573,
+										'name' => 'Surfglow Courser',
+										'icon' => '/esoui/art/icons/mount_surfglowcourser.dds',
+										'desc' => 'As swift as the waves at high tide, this steed`s gallop is unmatched. With its glowing mane and shining tail, night riding on this Surfglow Courser is the most sublime experiences known to equestrians.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Seabright' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Felines',
-						'numCollectibles' => 84,
+						'numCollectibles' => 87,
 						'collectibles' => array (
 								1 => array (
 										'id' => 22,
@@ -19601,6 +20067,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Sandblossom' 
 								),
 								84 => array (
+										'id' => 9461,
+										'name' => 'Reefborn Senche-Lion',
+										'icon' => '/esoui/art/icons/mount_coraldriftsenche.dds',
+										'desc' => '\"Mages Guild scholars think someone creates these types of senches. With what magic, I don`t know. Maybe some sea-loving druid? Regardless, they`re as fierce as you`d expect for a senche mount.\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Brinefroth' 
+								),
+								85 => array (
 										'id' => 9515,
 										'name' => 'Star-Born Guardian Senche',
 										'icon' => '/esoui/art/icons/mount_celestialsenche.dds',
@@ -19608,13 +20083,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Radiance' 
+								),
+								86 => array (
+										'id' => 9574,
+										'name' => 'Cat o` War Senche Lion',
+										'icon' => '/esoui/art/icons/mount_seaorchardsenche.dds',
+										'desc' => '\"Like Spriggans roam the glades on land, so does this creature prowl around the tidepools. Its gnarled wooden bones sprout with aquatic life. If it sees me, I`m sure it`ll tear my throat out.\"—Scrap from the lost journal of Teldh',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scourge' 
+								),
+								87 => array (
+										'id' => 9784,
+										'name' => 'Piebald Senche-Serval',
+										'icon' => '/esoui/art/icons/mount_tyrigelsenche.dds',
+										'desc' => '\"Ride one of these piebalds for any travel outside Sentinel. They love the heat more than any senche-serval I`ve stabled. Makes me believe the tales of Summerset outcasts raising them out in one of the bandit caves nearby decades ago.\"—Burhan, Stablehand',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sunbeam' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Arthropods',
-						'numCollectibles' => 6,
+						'numCollectibles' => 7,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1361,
@@ -19669,13 +20162,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Tickler' 
+								),
+								7 => array (
+										'id' => 9446,
+										'name' => 'Summer`s Herald Torchnix',
+										'icon' => '/esoui/art/icons/mount_greentorchnix.dds',
+										'desc' => 'Several theories circulate on the nature of the torchnix`s light. Some scholars suggest the luminescence is a mating display, while others argue that it`s a form of communication. Children in Ahemmusa tell each other the glow is bad food in the nix`s gut.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flare' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bipedals',
-						'numCollectibles' => 40,
+						'numCollectibles' => 41,
 						'collectibles' => array (
 								1 => array (
 										'id' => 18,
@@ -20029,6 +20531,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Memento Mori' 
 								),
 								40 => array (
+										'id' => 9464,
+										'name' => 'Reefborn Guar',
+										'icon' => '/esoui/art/icons/mount_coraldriftguar.dds',
+										'desc' => '\"You`ll find few wild guars wandering Abecean shores, but these coral beasts dance in the shallows nonetheless. Wherever they came from, they still exhibit the tamed guars` playful disposition.\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Splasher' 
+								),
+								41 => array (
 										'id' => 9514,
 										'name' => 'Star-Born Guardian Guar',
 										'icon' => '/esoui/art/icons/mount_celestialguar.dds',
@@ -20283,7 +20794,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Multi-Rider',
-						'numCollectibles' => 3,
+						'numCollectibles' => 4,
 						'collectibles' => array (
 								1 => array (
 										'id' => 6972,
@@ -20311,13 +20822,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Silverfire' 
+								),
+								4 => array (
+										'id' => 9576,
+										'name' => 'Grand Pillion Draft Horse',
+										'icon' => '/esoui/art/icons/mount_pillionhorse.dds',
+										'desc' => 'Ride in style with a close friend or partner on this sturdy Skyrim-bred draft horse! With its pillion saddle crafted from genuine horker leather, this horse possesses strength to take two riders without breaking a sweat.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shieldstomper' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Canines',
-						'numCollectibles' => 69,
+						'numCollectibles' => 74,
 						'collectibles' => array (
 								1 => array (
 										'id' => 105,
@@ -20932,6 +21452,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Battle Fang' 
 								),
 								69 => array (
+										'id' => 9460,
+										'name' => 'Reefborn Wolf',
+										'icon' => '/esoui/art/icons/mount_coraldriftwolf.dds',
+										'desc' => '\"Those who love wolves may find this breed boosts their prestige in some Abecean coastal areas, especially among the druid folk. While you need stern discipline to train this one to saddle, you gain a lifelong adventuring partner.\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Jagged Tooth' 
+								),
+								70 => array (
 										'id' => 9516,
 										'name' => 'Star-Born Guardian Wolf',
 										'icon' => '/esoui/art/icons/mount_celestialwolf.dds',
@@ -20939,13 +21468,49 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sentinel' 
+								),
+								71 => array (
+										'id' => 9635,
+										'name' => 'Meadowglass Wolf',
+										'icon' => '/esoui/art/icons/mount_glassworkwolf.dds',
+										'desc' => 'Alchemists in Cey-Tarn Keep fashion mount armor out of specially treated Culanda stones. No alchemist will say exactly what properties the resulting meadowglass has, but scouts riding meadowglass armored wolves have yet to be captured.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Marver' 
+								),
+								72 => array (
+										'id' => 9639,
+										'name' => 'Voideater Durzog',
+										'icon' => '/esoui/art/icons/mount_voideaterdurzog.dds',
+										'desc' => 'No one knows how these beasts found their way into Blackreach, but it didn`t take long for them to heed the Dark Heart`s call. Drenched in the void`s corruption, this mount will chill your enemies to the bone.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bonechiller' 
+								),
+								73 => array (
+										'id' => 9680,
+										'name' => 'Dreadsail Howler',
+										'icon' => '/esoui/art/icons/mount_abeceanstriderwolf.dds',
+										'desc' => '\"Horses may be speedy enough for open roads, but they can`t board a ship in the dead of night or delight the crew when there`s nary a breeze to fill the sails. And no horse ever ripped out the throat of the night watch.\"—Kylian, Bosun of the Red Sky',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Till' 
+								),
+								74 => array (
+										'id' => 9794,
+										'name' => 'Flint-Pelt Fox',
+										'icon' => '/esoui/art/icons/mount_grayfox.dds',
+										'desc' => 'Legend tells of a Breton hunter who freed a Flint-Pelt Fox from a hagraven`s snare. Now these creatures seek out any warrior who calls hagravens \"foe,\" often lingering around areas terrorized by their hated enemies.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nimblepaw' 
 								) 
 						) 
 				),
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Cervines',
-						'numCollectibles' => 27,
+						'numCollectibles' => 29,
 						'collectibles' => array (
 								1 => array (
 										'id' => 591,
@@ -21183,19 +21748,37 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								27 => array (
 										'id' => 9510,
-										'name' => 'ElkMount003',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'name' => 'Palefrost Elk Mount',
+										'icon' => '/esoui/art/icons/mount_platinumelk.dds',
+										'desc' => 'Moonlight glints off glittering snowflakes during a ritual to imbue a white elk with the intelligence of a ghost captured from the frigid seas near Jehanna—or so claims High Rock lore. True or not, this steed understands more than most expect.',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Ghostwhisper' 
+								),
+								28 => array (
+										'id' => 9578,
+										'name' => 'Great Dark Ram',
+										'icon' => '/esoui/art/icons/mount_greatdarkram.dds',
+										'desc' => '\"The mythic texts of discredited scholars are right, the Great Dark Ram lives! Hircine appears in this form only during Rain`s Hand in the Great Forest. Soon, there will be the trials of virility. I hope my strength endures.\"—Lost Journal of Bekelva',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Hunt-Father`s Get' 
+								),
+								29 => array (
+										'id' => 9637,
+										'name' => 'Clawhorn Mountain Goat',
+										'icon' => '/esoui/art/icons/mount_clawhornmountaingoat.dds',
+										'desc' => 'Happiest when climbing their native Valus Mountains, these sure-footed mounts grudgingly accept both saddle and reins for as long as their rider allows them to keep moving—or provides them with prodigious amounts of mountain flower treats.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mountain Flower' 
 								) 
 						) 
 				),
 				9 => array (
 						'subCategoryIndex' => 9,
 						'name' => 'Constructs',
-						'numCollectibles' => 7,
+						'numCollectibles' => 8,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1185,
@@ -21259,13 +21842,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Shiverchill' 
+								),
+								8 => array (
+										'id' => 9575,
+										'name' => 'Coral Crawler Dwarven Spider',
+										'icon' => '/esoui/art/icons/mount_coralcrawler.dds',
+										'desc' => '\"Do these coral spiders simply mimic Dwarven spiders or did coral grow over a discarded animunculus? I haven`t pried one open to find out—they really don`t like that, so don`t even try.\"—Wheezing Wilren',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cruncher' 
 								) 
 						) 
 				),
 				10 => array (
 						'subCategoryIndex' => 10,
 						'name' => 'Heavyweights',
-						'numCollectibles' => 13,
+						'numCollectibles' => 14,
 						'collectibles' => array (
 								1 => array (
 										'id' => 5708,
@@ -21383,13 +21975,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Meylonaire' 
+								),
+								14 => array (
+										'id' => 9775,
+										'name' => 'Aurielic Quasigriff',
+										'icon' => '/esoui/art/icons/mount_aurielicquasigriff.dds',
+										'desc' => 'Taken from the nest almost as soon as it breaks through its shell, this quasigriff is pampered and preened as befits a creature sacred to Auriel. Its golden feathers are used as fletching by archers in Balfiera.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lapidary' 
 								) 
 						) 
 				),
 				11 => array (
 						'subCategoryIndex' => 11,
 						'name' => 'Toys',
-						'numCollectibles' => 4,
+						'numCollectibles' => 5,
 						'collectibles' => array (
 								1 => array (
 										'id' => 5870,
@@ -21426,13 +22027,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Embermane' 
+								),
+								5 => array (
+										'id' => 9829,
+										'name' => 'Stitchedwell Stick Guar',
+										'icon' => '/esoui/art/icons/mount_stitchedwellstitchguar.dds',
+										'desc' => 'Soul Shriven knights ride only the most finely stitched steeds. As one old knight proclaimed, \"Don`t mind the bit of fray at the bottom there. Or the pesky splinters sticking out of the handle. This guar is a jolly smooth ride!\"',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gallant' 
 								) 
 						) 
 				),
 				12 => array (
 						'subCategoryIndex' => 12,
 						'name' => 'Ursines',
-						'numCollectibles' => 33,
+						'numCollectibles' => 36,
 						'collectibles' => array (
 								1 => array (
 										'id' => 151,
@@ -21714,6 +22324,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Dawnglow' 
 								),
 								32 => array (
+										'id' => 9445,
+										'name' => 'Keptu Bear',
+										'icon' => '/esoui/art/icons/mount_keptubear.dds',
+										'desc' => '\"Long ago, during the annual Ket Keptu hunt, Tula the Skullcleaver and their bear Falk rose above the others in the amount of prey they killed for the shared larder. In celebration, Falk received these markings of Hircine`s favor.\"—Fori, Keptu Scholar',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Falk' 
+								),
+								33 => array (
 										'id' => 9462,
 										'name' => 'Nightmare Bear',
 										'icon' => '/esoui/art/icons/mount_nightmarebear.dds',
@@ -21722,7 +22341,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Torment' 
 								),
-								33 => array (
+								34 => array (
+										'id' => 9463,
+										'name' => 'Reefborn Bear',
+										'icon' => '/esoui/art/icons/mount_coraldriftbear.dds',
+										'desc' => '\"If you visit Abecean islands, you need to be ready to handle reefborn creatures. The bears, for example, do bear things. Mostly. But watch them near saltwater—they`ll roll in it whether you`re on them or not.\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Growler' 
+								),
+								35 => array (
 										'id' => 9513,
 										'name' => 'Star-Born Guardian Bear',
 										'icon' => '/esoui/art/icons/mount_apexcelestialbear.dds',
@@ -21730,6 +22358,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Whuffle' 
+								),
+								36 => array (
+										'id' => 9636,
+										'name' => 'Harrowstorm Bear',
+										'icon' => '/esoui/art/icons/mount_stormspawnseeker.dds',
+										'desc' => 'Tainted by proximity to active harrowstorms, these bears have become hexed abominations—perfect for warriors with cold blood and dark intentions.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Grumbler' 
 								) 
 						) 
 				) 
@@ -22007,11 +22644,11 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Flying Pets',
-						'numCollectibles' => 52,
+						'numCollectibles' => 53,
 						'collectibles' => array (
 								1 => array (
 										'id' => 36,
-										'name' => 'Dovah-Fly^n',
+										'name' => 'Dawnstar Dovah-Fly',
 										'icon' => '/esoui/art/icons/pet_106.dds',
 										'desc' => '',
 										'type' => 3,
@@ -22476,2657 +23113,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Pepper' 
+								),
+								53 => array (
+										'id' => 9451,
+										'name' => 'Mustardseed Moth',
+										'icon' => '/esoui/art/icons/pet_sungoldmoth.dds',
+										'desc' => 'Known for its brilliant yellow hues, this moth flits through the deciduous fall forests of Cyrodiil almost unseen. Each year, some fly beyond the Heartland`s borders in all directions, as if trying to escape the war-torn province.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Honeybutter' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Exotic',
-						'numCollectibles' => 293,
-						'collectibles' => array (
-								1 => array (
-										'id' => 8,
-										'name' => 'Razak`s Opus',
-										'icon' => '/esoui/art/icons/quest_dungeons_razaks_opus.dds',
-										'desc' => 'A loyal steam-powered Dwarven Spider, fueled by magicka from a soul gem that will last for eras.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cogbucket' 
-								),
-								2 => array (
-										'id' => 10,
-										'name' => 'Crony Scrib',
-										'icon' => '/esoui/art/icons/pet_004.dds',
-										'desc' => 'The caramel scrib crony is a quiet companion, devoted and easily housebroken.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Grubchum' 
-								),
-								3 => array (
-										'id' => 11,
-										'name' => 'Imgakin Monkey',
-										'icon' => '/esoui/art/icons/pet_013.dds',
-										'desc' => 'The imgakin monkey pet is lively and cheerful, even in the grimmest of dungeons.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Raisins' 
-								),
-								4 => array (
-										'id' => 15,
-										'name' => 'Frisky Scrib',
-										'icon' => '/esoui/art/icons/pet_017.dds',
-										'desc' => 'This lambent little larva loves crawling alongside valorous adventurers!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Larvie' 
-								),
-								5 => array (
-										'id' => 16,
-										'name' => 'High Hrothgar Wraith',
-										'icon' => '/esoui/art/icons/pet_018.dds',
-										'desc' => 'An ice wraith from the slopes of the highest mountain in Tamriel.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Tinsel' 
-								),
-								6 => array (
-										'id' => 17,
-										'name' => 'Loyal Dwarven Sphere',
-										'icon' => '/esoui/art/icons/pet_020.dds',
-										'desc' => 'A Dwarven Sphere of the long-lost Dwemer.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Gyro' 
-								),
-								7 => array (
-										'id' => 27,
-										'name' => 'Blackwood Monkey',
-										'icon' => '/esoui/art/icons/pet_002.dds',
-										'desc' => 'This busy little buddy is sometimes mistaken for an imgakin monkey.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Flinger' 
-								),
-								8 => array (
-										'id' => 28,
-										'name' => 'Vermilion Scuttler',
-										'icon' => '/esoui/art/icons/pet_005.dds',
-										'desc' => 'A reptilian pal from Morrowind, where they`re known for quickness, devotion, and a mildly offensive odor.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Warty' 
-								),
-								9 => array (
-										'id' => 30,
-										'name' => 'Helstrom Ancestor Lizard',
-										'icon' => '/esoui/art/icons/pet_011.dds',
-										'desc' => 'Some scholars believe Argonians are descended—or were uplifted—from these tree-dwelling swamp lizards. True or not, they make great pets, affectionate and low-maintenance.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Princess' 
-								),
-								10 => array (
-										'id' => 61,
-										'name' => 'Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_012.dds',
-										'desc' => 'According to the calculations of the sages of the Cult of the Ancestor Moth, the Bantam Guar is the cutest creature in all Tamriel.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Squee' 
-								),
-								11 => array (
-										'id' => 63,
-										'name' => 'Striped Senche-Panther',
-										'icon' => '/esoui/art/icons/pet_021.dds',
-										'desc' => 'This elegant senche-panther is a distant relative of the Khajiit, though it cannot speak like the cat-folk.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Indigo' 
-								),
-								12 => array (
-										'id' => 67,
-										'name' => 'Amber Ash Hopper^n',
-										'icon' => '/esoui/art/icons/pet_118.dds',
-										'desc' => 'Native to the upper Ashlands and the slopes of Red Mountain, the perky Amber Ash Hopper is a favorite pet of Dunmer expatriates, as it`s relatively low maintenance (it digs its own hole in the ground), and it reminds the Dark Elves of home.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ald`skippy' 
-								),
-								13 => array (
-										'id' => 68,
-										'name' => 'Deep-Moss Ash Hopper^n',
-										'icon' => '/esoui/art/icons/pet_125.dds',
-										'desc' => 'The Deep-Moss Ash Hopper is native to southern Vvardenfell, where it`s most commonly found in the fungal-forested uplands and the coastal marshes. They`ve been adopted as mascot bugs by the Buoyant Armigers, who admire their green carapaces.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wub Bug' 
-								),
-								14 => array (
-										'id' => 69,
-										'name' => 'Ruby Shroom Shalk^n',
-										'icon' => '/esoui/art/icons/pet_133.dds',
-										'desc' => 'The Ruby Shroom Shalk is a popular house pet on the Telvanni Coast; the sway of its warm red fungus caps as it waddles about in the firelight of a parlor hearth just says \"I`m home\" to Dark Elves of a sentimental nature.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Redcap' 
-								),
-								15 => array (
-										'id' => 77,
-										'name' => 'Blue-Cap Shroom Shalk^n',
-										'icon' => '/esoui/art/icons/pet_122.dds',
-										'desc' => 'For the Dark Elves, the Shroom Shalk is a companion animal that brings calm and serenity to the Dunmeri home. There`s just something so soothing about the way the blue fungal sprouts on its back gently wave and puff out spores as the beast putters about.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sporebug' 
-								),
-								16 => array (
-										'id' => 78,
-										'name' => 'Bitter Coast Cliff Strider^n',
-										'icon' => '/esoui/art/icons/pet_121.dds',
-										'desc' => 'Thetys Ramarys of Balmora says, \"I love our Bitter Coast Striders, but feel bad that they can`t fly very well. So I`m selectively breeding them into a strain that, one day, will dominate the Vvardenfell skies, pursuing its prey for great distances!\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shrieky' 
-								),
-								17 => array (
-										'id' => 88,
-										'name' => 'Freckled Guar',
-										'icon' => '/esoui/art/icons/pet_003.dds',
-										'desc' => 'Known in Deshaan as loyal pals, the Freckled is the most intelligent breed of guar.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'S`wit' 
-								),
-								18 => array (
-										'id' => 89,
-										'name' => 'Gold-Cap Shroom Shalk^n',
-										'icon' => '/esoui/art/icons/pet_134.dds',
-										'desc' => 'It isn`t well known outside financial circles, but somewhere in the basement or sub-level of every bank in Morrowind you`ll find the institution`s mascot, a sweet old waddling Gold-Cap Shroom Shalk. The symbolism, of course, is obvious.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Funguspuppy' 
-								),
-								19 => array (
-										'id' => 90,
-										'name' => 'Boralis Gray Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_083.dds',
-										'desc' => 'When the gray wolves of Rivenspire howl across the dismal moors of Boralis, it sends a chill down the spine and even the bravest look back over their shoulders—but by Kynareth, their pups sure are cute! And adorably playful into the bargain.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Darla' 
-								),
-								20 => array (
-										'id' => 91,
-										'name' => 'Striated Pony Guar',
-										'icon' => '/esoui/art/icons/pet_025.dds',
-										'desc' => 'A favorite household pet in Morrowind, the Striated Pony Guar is a glutton for affection.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wobble' 
-								),
-								21 => array (
-										'id' => 92,
-										'name' => 'White River Ice Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_085.dds',
-										'desc' => 'The Ice Wolves that lope along the White River of northeast Skyrim are associated with both the goddess Mara and the Wolf Totem of Atmora—but it`s mighty hard to think of their mythic stature when you`re rolling around in the snow with an Ice Wolf Puppy!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wurf' 
-								),
-								22 => array (
-										'id' => 102,
-										'name' => 'Doom Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_082.dds',
-										'desc' => 'When a Doom Wolf Pup looks at you with its big red eyes, you may just melt inside—but as soon as you turn your back, that little rascal will be shredding your embroidered Arenthian pillows and digging up your herbal garden.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Vandal' 
-								),
-								23 => array (
-										'id' => 103,
-										'name' => 'Solitude Silver Wolf',
-										'icon' => '/esoui/art/icons/pet_solitudewolf.dds',
-										'desc' => 'Common sights around Solitude, these steadfast and fierce wolves also adorn the heraldry of that city. All of them are, of course, good wolves, and befriending one brings you good fortune in the land of the Nords!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snowbouncer' 
-								),
-								24 => array (
-										'id' => 111,
-										'name' => 'Fennec Fox',
-										'icon' => '/esoui/art/icons/pet_027.dds',
-										'desc' => 'A native of Hammerfell, the Fennec Fox has been domesticated by many of its desert peoples, and makes an alert and loyal pet.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Vixen' 
-								),
-								25 => array (
-										'id' => 112,
-										'name' => 'Purple Daggerback',
-										'icon' => '/esoui/art/icons/pet_028.dds',
-										'desc' => 'The glowing Purple Daggerback boar is found only in Craglorn in the vicinity of the Spellscar, from which it seems to have absorbed some sort of magical aura.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pricklypear' 
-								),
-								26 => array (
-										'id' => 114,
-										'name' => 'Red Pit Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_084.dds',
-										'desc' => 'The Red Pit Wolves of southern Skyrim are known for their aggression and ferocity, and you can see that even in their puppies, adorable as they are. They love to play, but that means play-fighting, so expect to get chewed on as you tussle!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scrapper' 
-								),
-								27 => array (
-										'id' => 145,
-										'name' => 'Bal Foyen Nix-Hound',
-										'icon' => '/esoui/art/icons/pet_033.dds',
-										'desc' => 'Who says a giant, aggressive, blood-sucking insect can`t make a loveable pet? Not the Dark Elves of Bal Foyen, who breed them as trackers, watch-hounds, and netch-deflators.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Skeeter' 
-								),
-								28 => array (
-										'id' => 156,
-										'name' => 'Pocket Mammoth',
-										'icon' => '/esoui/art/icons/pet_052.dds',
-										'desc' => 'Pocket Mammoths were originally bred small in order to make them more manageable as livestock, but in Wrothgar some escaped and began breeding in the wild. However, they`re easily domesticated, especially if you get one when it`s young.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nosy' 
-								),
-								29 => array (
-										'id' => 159,
-										'name' => 'Chub Loon',
-										'icon' => '/esoui/art/icons/pet_051.dds',
-										'desc' => 'A denizen of Tamriel`s northern shores, the Chub Loon survives on the bounty of the sea, dining on small fish of all types. Though clumsy and awkward on shore, it flies gracefully and is a nimble swimmer. Best of all, they make affectionate pets.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Waddles' 
-								),
-								30 => array (
-										'id' => 160,
-										'name' => 'Echalette',
-										'icon' => '/esoui/art/icons/pet_050.dds',
-										'desc' => 'Full-grown echateres may be stubborn and ornery, but the baby Echalettes are playful and, frankly, just plain adorable. Once a young Echalette bonds with its master, it becomes a devoted companion.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Skitters' 
-								),
-								31 => array (
-										'id' => 163,
-										'name' => 'Necrotic Hoarvor',
-										'icon' => '/esoui/art/icons/pet_038.dds',
-										'desc' => 'Your new best friend is a giant blood-sucking insect bloated with pustulant, lethal contagion! It`s bursting with both infection and affection—for you!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pustule' 
-								),
-								32 => array (
-										'id' => 190,
-										'name' => 'Black Bear Cub',
-										'icon' => '/esoui/art/icons/pet_044.dds',
-										'desc' => 'The Black Bear Cub is both playful and affectionate, and is so adorable it`s quickly forgiven for whatever trouble it gets into.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Roly-Poly' 
-								),
-								33 => array (
-										'id' => 191,
-										'name' => 'Cave Bear Cub',
-										'icon' => '/esoui/art/icons/pet_045.dds',
-										'desc' => 'The Cave Bear Cub may miss its mountain home, but that just makes it twice as loyal to its mortal companion.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Honeymuzzle' 
-								),
-								34 => array (
-										'id' => 193,
-										'name' => 'Snow Bear Cub',
-										'icon' => '/esoui/art/icons/pet_046.dds',
-										'desc' => 'The Snow Bear is known for its fierceness, but its cub is as cute as a bug. Maybe even two bugs.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sugarfur' 
-								),
-								35 => array (
-										'id' => 232,
-										'name' => 'Moonlight Senche-Tiger',
-										'icon' => '/esoui/art/icons/pet_049.dds',
-										'desc' => 'The Moonlight Senche-Tigers have been the sleek and silvery guardians of the Khajiiti temples of the moons ever since the revelation of the Riddle`Thar.',
-										'type' => 3,
-										'image' => '/esoui/art/store/pc_crwn_pets_silversenchetiger_1x1.dds',
-										'nickname' => 'Secunda' 
-								),
-								36 => array (
-										'id' => 242,
-										'name' => 'Kindlespit Dragon Frog',
-										'icon' => '/esoui/art/icons/pet_054.dds',
-										'desc' => 'The common or Kindlespit Dragon Frog is an engagingly preposterous little pal whose antics never fail to amuse. Hammerfell tales say the huge Dragons of ancient legend were all turned into these tiny flame-puffing hoppers.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Heartburn' 
-								),
-								37 => array (
-										'id' => 243,
-										'name' => 'Tangerine Dragon Frog',
-										'icon' => '/esoui/art/icons/pet_053.dds',
-										'desc' => 'The slug-like Sloads of Thras bred the flame-hued Tangerine Dragon Frog so they could be spotted more easily in their archipelago`s murky lagoons. Some say they were bred to be pets, but the Sload word for them translates as \"snacks.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Flamekisser' 
-								),
-								38 => array (
-										'id' => 244,
-										'name' => 'Blue Oasis Dragon Frog',
-										'icon' => '/esoui/art/icons/pet_055.dds',
-										'desc' => 'The comical Blue Oasis Dragon Frog is native to Hew`s Bane, and before they were bred as pets could be found only on that Hammerfell peninsula. These little bug-eaters are popular mascots at open-air taverns.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Topaz' 
-								),
-								39 => array (
-										'id' => 260,
-										'name' => 'Senche-Lion Cub',
-										'icon' => '/esoui/art/icons/pet_056.dds',
-										'desc' => 'If you domesticate a Senche-Lion Cub when it`s young enough, it will follow you everywhere, no matter how dangerous. And your enemies will burn from the cuteness.',
-										'type' => 3,
-										'image' => '/esoui/art/store/pc_crwn_pets_senchecub_1x1.dds',
-										'nickname' => 'Kitty Claws' 
-								),
-								40 => array (
-										'id' => 303,
-										'name' => 'Sabre Leopard Cub^n',
-										'icon' => '/esoui/art/icons/pet_135.dds',
-										'desc' => '\"For the Mages Guild, I devised an enchanted `appealometer` that measures creatures` adorableness,\" says Researcher Neotenus. \"After tests on other pets, I tried to take a reading on a Sabre Snow Leopard Cub, but the device overloaded and shattered.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Toofums' 
-								),
-								41 => array (
-										'id' => 324,
-										'name' => 'Northern Lynx',
-										'icon' => '/esoui/art/icons/pet_061.dds',
-										'desc' => 'Native to Tamriel`s northern forests, in the wild the Lynx lives on a diet of rabbits, hares, and skeevers. Domesticated, the Lynx makes a dignified and stylish animal companion, popular with the Nord aristocracy.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Jarlcat' 
-								),
-								42 => array (
-										'id' => 325,
-										'name' => 'Colovian Badger',
-										'icon' => '/esoui/art/icons/pet_062.dds',
-										'desc' => 'Though Badgers mainly eat burrowing rodents, farmers hate them because they`ll take chickens, kwama scribs, and bantam guar if they get the chance. Cranky and irritable, they make terrible pets—which makes them a favorite among the Undaunted.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Grumps' 
-								),
-								43 => array (
-										'id' => 357,
-										'name' => 'Snowy Sabre Cat Cub',
-										'icon' => '/esoui/art/icons/pet_357.dds',
-										'desc' => 'This little cub loves to play in the snow, but don`t let it get lost in the deep drifts—and when you pull it out, be careful of those little sabre teeth!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cotton Fluff' 
-								),
-								44 => array (
-										'id' => 360,
-										'name' => 'Jackal',
-										'icon' => '/esoui/art/icons/pet_060.dds',
-										'desc' => 'The Jackal of Tamriel is called by some the \"thieves` dog\" because it`s quick to sniff out sources of food, and clever enough to figure out how to get at them. Once tamed, they serve as loyal companions.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mischief' 
-								),
-								45 => array (
-										'id' => 364,
-										'name' => 'Clockwork Shalk^n',
-										'icon' => '/esoui/art/icons/pet_124.dds',
-										'desc' => 'The Clockwork Shalk is a fabricant from the hidden laboratories of Sotha Sil. It seems programmed to obey the master it imprints upon, but who knows what secret orders it will follow if events occur to trigger them?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cogroach' 
-								),
-								46 => array (
-										'id' => 391,
-										'name' => 'Sep Adder',
-										'icon' => '/esoui/art/icons/pet_064.dds',
-										'desc' => 'These flying vipers have short tempers and nasty dispositions, but just look at those cute crimson eyes! Some of them can even be trained not to inject poison when they bite. The perfect pet!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scaly Death' 
-								),
-								47 => array (
-										'id' => 392,
-										'name' => 'Heartland Brindle Badger',
-										'icon' => '/esoui/art/icons/pet_065.dds',
-										'desc' => 'Native to the Cyrodilic Heartland, the Brindle Badger is said to be as fierce as a wolverine, yet as cunning as a fox. A Brindle Badger adorned the banners of King Hrol when he led his knights on the Quest of Sancre Tor.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sir Snarls' 
-								),
-								48 => array (
-										'id' => 393,
-										'name' => 'M`aiq the Badger',
-										'icon' => '/esoui/art/icons/pet_066.dds',
-										'desc' => 'How did this one become a so-handsome copperback Badger? M`aiq will tell you. One day near Balmora he met two Telvanni wizards, one of whom said, \"Everything I tell you is true,\" while the other said, \"Everything I tell you is a lie….\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'M`aiq?' 
-								),
-								49 => array (
-										'id' => 406,
-										'name' => 'Clouded Senche-Leopard Cub',
-										'icon' => '/esoui/art/icons/pet_068.dds',
-										'desc' => 'Of all the varieties of wild senche-cats, the Clouded Leopard may be the most beautiful. Their cubs love to play-fight, and stalk tiny bugs with the most hilariously serious expressions.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Thundercloud' 
-								),
-								50 => array (
-										'id' => 476,
-										'name' => 'Haj Mota Hatchling',
-										'icon' => '/esoui/art/icons/pet_076.dds',
-										'desc' => 'Though it may some day grow into a horrific face-eating behemoth, when it`s young the Haj Mota Hatchling is undeniably cute. For a while, they are trainable, come when called, and happily waddle after their masters wherever they may go.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shelbert' 
-								),
-								51 => array (
-										'id' => 477,
-										'name' => 'Desert Lynx',
-										'icon' => '/esoui/art/icons/pet_075.dds',
-										'desc' => 'The Desert Lynx, or caracal lynx, is native to south central Tamriel, roaming the savannahs from Corinthe in Elsweyr as far north as the West Weald in Cyrodiil. It`s the totem animal of the pastoral Khajiiti tribes, and assists with managing the herds.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Tufts' 
-								),
-								52 => array (
-										'id' => 478,
-										'name' => 'Infernal Sep Adder',
-										'icon' => '/esoui/art/icons/pet_077.dds',
-										'desc' => 'Though it may look like it just crawled from the depths of the Deadlands, the Infernal Sep Adder is actually native to the higher altitudes of Hammerfell. As pets, they are … not affectionate. Great conversation starters, though.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Atrocity' 
-								),
-								53 => array (
-										'id' => 483,
-										'name' => 'Dark Moons Lynx',
-										'icon' => '/esoui/art/icons/pet_074.dds',
-										'desc' => 'The Khajiit of Corinthe believe the all-black Dark Moons Lynx is the worldly incarnation of Southpaw, the feline companion to Rajhin the Footpad, god of thieves. It`s said Southpaw keeps watch while Rajhin is breaking and entering.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Southpaw' 
-								),
-								54 => array (
-										'id' => 484,
-										'name' => 'Dwarven War Dog',
-										'icon' => '/esoui/art/icons/pet_127.dds',
-										'desc' => 'This loyal beast has been trained for warfare, and will stick with you through every kind of conflict. As a bonus, it comes outfitted in ancient Dwarven dog armor, canine barding as durable today as it was when it was first made many centuries in the past.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bthunch' 
-								),
-								55 => array (
-										'id' => 592,
-										'name' => 'Dozen-Banded Vvardvark^n',
-										'icon' => '/esoui/art/icons/pet_139.dds',
-										'desc' => 'This creature, unusually cute for a denizen of Vvardenfell, is a newcomer to the island whose home and origin are unknown—unless the rumors are true that it`s a hybrid born from the magical laboratories of the Telvanni.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Serjo Licky' 
-								),
-								56 => array (
-										'id' => 607,
-										'name' => 'Cobalt Sep Adder',
-										'icon' => '/esoui/art/icons/pet_063.dds',
-										'desc' => 'The blue-scaled Cobalt Sep Adder is the rarest of the wild varieties, and almost never seen in captivity. They are particularly prized by the royalty of Hammerfell`s contentious city-states, as they`re said to be able to detect poison in drinks and food.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Poison Pal' 
-								),
-								57 => array (
-										'id' => 740,
-										'name' => 'Arctic Fennec Fox^n',
-										'icon' => '/esoui/art/icons/pet_092.dds',
-										'desc' => 'The Arctic Fennec is native to the snowy shores of Skyrim`s Sea of Ghosts, and the local Nords, when they spot one romping in the drifts, respond with the traditional oath of \"Shor`s Ears!\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Powder' 
-								),
-								58 => array (
-										'id' => 741,
-										'name' => 'Dusky Fennec Fox^n',
-										'icon' => '/esoui/art/icons/pet_091.dds',
-										'desc' => 'The Dusky or Midnight Fennec Fox is native to the high savannah of Northern Elsweyr, and is often domesticated by nomadic tribes of Khajiit.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Black-Ears' 
-								),
-								59 => array (
-										'id' => 743,
-										'name' => 'Senche-Tiger Cub',
-										'icon' => '/esoui/art/icons/pet_096.dds',
-										'desc' => 'It`s a striped Senche-Tiger Cub. What more could you need to know? \"Ah,\" you ask, \"but is it magical?\" Just look in those eyes for your answer.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Spot' 
-								),
-								60 => array (
-										'id' => 745,
-										'name' => 'Black Senche-Panther Kitten',
-										'icon' => '/esoui/art/icons/pet_094.dds',
-										'desc' => '\"Rajhin the Purring Liar had so many shadows that some of them took on lives of their own, becoming black senche-panthers who stalk freely through Elsweyr—just like this kitten that plays with my tail.\" —Clan-Mother Ahnissi',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Keirgo' 
-								),
-								61 => array (
-										'id' => 746,
-										'name' => 'Dro-m`Athra Senche Cub',
-										'icon' => '/esoui/art/icons/pet_098.dds',
-										'desc' => 'Combine Adorable with Abominable, and what do you get? The dro-m`Athra Senche Cub, the cutest thing ever to come out of the Dark Behind the World. Dance, kitten, dance!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Woe Kitty' 
-								),
-								62 => array (
-										'id' => 747,
-										'name' => 'Senche Cub (White Tiger)',
-										'icon' => '/esoui/art/icons/pet_099.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								63 => array (
-										'id' => 749,
-										'name' => 'Senche-Leopard Cub^n',
-										'icon' => '/esoui/art/icons/pet_100.dds',
-										'desc' => 'The senche-leopard is one of the most feared predators of the Tenmar Forest in central Elsweyr, but if one of its adorable cubs can be adopted when young, it makes a fiercely loyal companion.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Motley' 
-								),
-								64 => array (
-										'id' => 750,
-										'name' => 'Striped Senche-Panther Cub',
-										'icon' => '/esoui/art/icons/pet_097.dds',
-										'desc' => 'Striped senche-panthers are popular mascots of the Baandari Pedlars of Elsweyr. Incredibly adorable as cubs, even when small they can be trained like magpies to fetch shiny things back to their masters.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Inky' 
-								),
-								65 => array (
-										'id' => 752,
-										'name' => 'Ascadian Cliff Strider^n',
-										'icon' => '/esoui/art/icons/pet_119.dds',
-										'desc' => 'This bluish breed of Vvardenfell aerial reptile, known as the Azure or Ascadian Cliff Strider, is prized by flying-lizard fanciers as the prettiest and most ornamental of its species. Bonus: its screech terrifies crying babies into silence.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Strides-So-High' 
-								),
-								66 => array (
-										'id' => 761,
-										'name' => 'Craglorn Welwa',
-										'icon' => '/esoui/art/icons/pet_105.dds',
-										'desc' => 'Credit for the irresponsible and foolhardy project of domesticating the Craglorn Welwa is usually claimed by the Iron Orcs, who are always looking for ways to prove that they`re \"more bad-tusk\" than the Orcs of Wrothgar or Skyrim.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ears gro-Loth`Na' 
-								),
-								67 => array (
-										'id' => 764,
-										'name' => 'Sabre Cat Cub',
-										'icon' => '/esoui/art/icons/pet_114.dds',
-										'desc' => 'Sabre Cats are mighty and majestic hunters that rule the northern plains and tundra by sheer strength and savagery—but, Daedra take it, they sure are cute when they`re cubs!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Bitey' 
-								),
-								68 => array (
-										'id' => 765,
-										'name' => 'Nightfall Sabre Cat Cub',
-										'icon' => '/esoui/art/icons/pet_112.dds',
-										'desc' => '\"In my first months as a captive of the Reachmen, the only thing that made life bearable was my beloved pet, the Nightfall Sabre Cat Cub I was allowed as a companion.\" —Arthenice Belloq',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Duskitty' 
-								),
-								69 => array (
-										'id' => 769,
-										'name' => 'Hearthfire Hatchling',
-										'icon' => '/esoui/art/icons/pet_109.dds',
-										'desc' => 'Hearthfire Hatchlings, which are found only in an orphaned state, appear to be the offspring of a normal kagouti and one of the Hearthfire variety. Driven away by ordinary kagouti, these hatchlings are in grave need of adoption.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scorchy' 
-								),
-								70 => array (
-										'id' => 1144,
-										'name' => 'Molag Amur Cliff Strider^n',
-										'icon' => '/esoui/art/icons/pet_131.dds',
-										'desc' => 'The Molag Amur Cliff Strider is prized by reptilian connoisseurs because its coloration, though somber, is lightened by its subtle golden tones. And if startled, its squawk will cause passersby to jump and horses to bolt.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Leatherwing' 
-								),
-								71 => array (
-										'id' => 1148,
-										'name' => 'Shadowghost Senche-Panther^n',
-										'icon' => '/esoui/art/icons/pet_150.dds',
-										'desc' => 'In Elsweyr, being seen in the company of an uncanny Shadowghost Senche-Panther will put one under suspicion of being a Namiira cultist—or even a disguised dro-m`Athra.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nightpouncer' 
-								),
-								72 => array (
-										'id' => 1155,
-										'name' => 'Dwarven Spider',
-										'icon' => '/esoui/art/icons/pet_126.dds',
-										'desc' => 'A loyal Dwarven Spider liberated from a Dwemer ruin, converted, using the \"Neramo Method,\" to an unlocked and autonomous state that enables it to leave its original locale.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Arachnimunculus' 
-								),
-								73 => array (
-										'id' => 1169,
-										'name' => 'Ash Hopper^n',
-										'icon' => '/esoui/art/icons/pet_120.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								74 => array (
-										'id' => 1173,
-										'name' => 'Brassilisk^n',
-										'icon' => '/esoui/art/icons/pet_162.dds',
-										'desc' => '\"The Brassilisk is created from interconnected brass squares, its exposed copper wiring allowing for its snakelike movement. Popular as a pet, you`ll often see them following the quick footsteps of young scholars.\" —Endilaril, Clockwork City Naturalist',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Coppertongue' 
-								),
-								75 => array (
-										'id' => 1194,
-										'name' => 'Tuxedo Vvardvark^n',
-										'icon' => '/esoui/art/icons/pet_138.dds',
-										'desc' => 'The most popular conjecture about the origin of the Vvardvark is that it`s a magical hybrid created by a rogue Telvanni wizard. The coloration of the Tuxedo Vvardvark, according to this theory, was intended to enable it to hide in a flock of chub loons.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Stibbons' 
-								),
-								76 => array (
-										'id' => 1214,
-										'name' => 'Karthwolf Shepherd^n',
-										'icon' => '/esoui/art/icons/pet_142.dds',
-										'desc' => 'The Reachmen of Western Skyrim use their domesticated ice wolves to protect their clans` livestock. They also keep the herds healthy, as the Karthwolves themselves will cull out the weaklings.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Icepack' 
-								),
-								77 => array (
-										'id' => 1232,
-										'name' => 'Dwarven Theodolite',
-										'icon' => '/esoui/art/icons/pet_140.dds',
-										'desc' => 'This construct was a sort of automated measuring device designed to explore and survey subterranean areas, according to scholars of the lost Deep Elves—except for Narsis Dren, who insists it was an object of pursuit in Dwemeri team sports.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Busybody' 
-								),
-								78 => array (
-										'id' => 1241,
-										'name' => 'Vvardvark^n',
-										'icon' => '/esoui/art/icons/pet_137.dds',
-										'desc' => 'The Common, or Demotic Vvardvark has become, in just a few years, an everyday sight on the island of Vvardenfell. But where did they come FROM? Popular opinion points the finger at the wizards of House Telvanni—but they get blamed for everything.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Lickspittle' 
-								),
-								79 => array (
-										'id' => 1371,
-										'name' => 'Dire Pony^n',
-										'icon' => '/esoui/art/icons/pet_144.dds',
-										'desc' => 'When you always wanted a pony as a child and your parents wouldn`t let you have one so you grew up bitter and tormented and became a dark cultist but now you can finally afford a pony.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Frighthoof' 
-								),
-								80 => array (
-										'id' => 1378,
-										'name' => 'Skeletal Cat^n',
-										'icon' => '/esoui/art/icons/pet_1378.dds',
-										'desc' => 'Even dark necromancers have feelings—some of them, anyway—and love their companion pets. Some love them so much they reanimate them after they pass away.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Meowbones' 
-								),
-								81 => array (
-										'id' => 1380,
-										'name' => 'Clockwork Skeevaton^n',
-										'icon' => '/esoui/art/icons/pat_153.dds',
-										'desc' => 'Originally designed for probing tiny, inaccessible areas of the Clockwork City, the mechanical Skeevaton can be set to recognize and follow an individual mortal, replicating pet behavior on the surface of Nirn.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Skweex' 
-								),
-								82 => array (
-										'id' => 1387,
-										'name' => 'Shadowghost Pack Wolf^n',
-										'icon' => '/esoui/art/icons/pet_151.dds',
-										'desc' => 'Unlike their lone cousins, the great Shadowghost Wolf Mounts, the smaller Shadowghost Pack Wolves hunt on the darkest nights in howling groups. Separated from their packs, they make loyal companions.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mist Howler' 
-								),
-								83 => array (
-										'id' => 1396,
-										'name' => 'Shadowghost Guar^n',
-										'icon' => '/esoui/art/icons/pet_148.dds',
-										'desc' => 'Rarely seen outside the ash clouds of Vvardenfell`s great volcano, the little Shadowghost pony guar is scary cute.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shyscales' 
-								),
-								84 => array (
-										'id' => 1412,
-										'name' => 'Flame Atronach Bear Cub^n',
-										'icon' => '/esoui/art/icons/pet_160.dds',
-										'desc' => 'Summoned from the Infernace plane of Oblivion, this Flame Atronach variant is given the form of a charming little bear cub. Good for warming hearts and hands alike!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scorchcub' 
-								),
-								85 => array (
-										'id' => 1415,
-										'name' => 'Flame Atronach Senche-Jaguar^n',
-										'icon' => '/esoui/art/icons/pet_161.dds',
-										'desc' => 'The first summoner of this fiery kitten was attempting to compel the Daedra into the form of a full-grown senche-jaguar. Though initially embarrassed by her mistake, she nonetheless grew an attachment to this far more adorable form.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Inferno Kitten' 
-								),
-								86 => array (
-										'id' => 1416,
-										'name' => 'Flame Atronach Pack Wolf^n',
-										'icon' => '/esoui/art/icons/pet_158.dds',
-										'desc' => '\"Though smaller than its mount counterpart,\" wrote arch-conjurer Corvus Direnni, \"it`s necessary to take all precautions when handling the Flame Atronach Pack Wolf. I`ve found their curiosity insatiable, especially when near flammable objects.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Flameprancer' 
-								),
-								87 => array (
-										'id' => 1417,
-										'name' => 'Flame Atronach Pocket Horse^n',
-										'icon' => '/esoui/art/icons/pet_157.dds',
-										'desc' => 'Due to the unusually tame nature of the Flame Atronach Pocket Horse, it has a long tradition of being the companion of younger members of the Direnni clan. It`s a good introduction to Daedric summoning for any budding conjurer.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Embermane' 
-								),
-								88 => array (
-										'id' => 1431,
-										'name' => 'Prodigious Brass Mudcrab^n',
-										'icon' => '/esoui/art/icons/pet_156.dds',
-										'desc' => 'These perky metal creations are known to pack quite the pinch. Though their rust-resistant coatings do enable them to enter into water, they`re far better at sinking than swimming.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pincer' 
-								),
-								89 => array (
-										'id' => 1440,
-										'name' => 'Ebony Brassilisk',
-										'icon' => '/esoui/art/icons/pet_154.dds',
-										'desc' => 'This experimental variation on the standard Brassilisk has certain key components fabricated from an Ebony alloy for enhanced durability out in the storms of the Radius.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Slithershadow' 
-								),
-								90 => array (
-										'id' => 1441,
-										'name' => 'Flame Atronach Pony Guar^n',
-										'icon' => '/esoui/art/icons/pet_159.dds',
-										'desc' => 'This Flame Atronach compelled to take the form of a small guar makes for a great traveling companion, especially in colder climates. It`s best to only summon your newfound friend when outdoors, as their mischievous natures might lead to accidents.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Blazebuddy' 
-								),
-								91 => array (
-										'id' => 1447,
-										'name' => 'Spotted Snow Senche-Leopard^n',
-										'icon' => '/esoui/art/icons/pet_163.dds',
-										'desc' => 'Even for the elusive senche-leopard, the Spotted Snow is a rare variety. Despite its frosty-looking fur, this adorable companion makes for a great cuddle buddy during long winter nights.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Frostfur' 
-								),
-								92 => array (
-										'id' => 1473,
-										'name' => 'Scorpion Fabricant^n',
-										'icon' => '/esoui/art/icons/pet_164.dds',
-										'desc' => '\"Since our Incarnatoriums can be modified to produce Fabricants modeled on almost any creature of Tamriel Above, why are Scorpion Fabricants of differing sizes so popular? They`re our most-requested fabs!\" says Clockwork Apostle Dringest.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Stinger' 
-								),
-								93 => array (
-										'id' => 1485,
-										'name' => 'Psijic Brassilisk^n',
-										'icon' => '/esoui/art/icons/pet_165_ps4.dds',
-										'desc' => 'These rare Brassilisks are powered by blue soul gems brought back from the Psijic hideaway of Artaeum at the end of the First Era by Sotha Sil himself.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Psony' 
-								),
-								94 => array (
-										'id' => 1486,
-										'name' => 'Foxbat Brassilisk^n',
-										'icon' => '/esoui/art/icons/pet_165_xb1.dds',
-										'desc' => 'These mysterious green-glowing Brassilisks have been showing up in the environment outside the Brass Fortress. Some Clockwork Apostles suspect there`s a rogue Incarnatorium assembling them somewhere out in the Radius.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Brassbones' 
-								),
-								95 => array (
-										'id' => 1487,
-										'name' => 'Steam-Driven Brassilisk^n',
-										'icon' => '/esoui/art/icons/pet_165_steam.dds',
-										'desc' => 'With soul gems in short supply, the Clockwork Apostles invented this experimental Brassilisk powered by steam stored under high pressure.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pressure Valve' 
-								),
-								96 => array (
-										'id' => 4668,
-										'name' => 'Firepot Spider^n',
-										'icon' => '/esoui/art/icons/pet_4668.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								97 => array (
-										'id' => 4669,
-										'name' => 'Firepot Spider Melee^n',
-										'icon' => '/esoui/art/icons/pet_4669.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								98 => array (
-										'id' => 4726,
-										'name' => 'Small Bone Dragon Construct',
-										'icon' => '/esoui/art/icons/pet_171_bonedragon.dds',
-										'desc' => 'This construct resembles a great and fearsome Bone Dragon, but it`s actually a product of the Necromancer`s art, assembled from modern bird and reptile bones and then reanimated.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rattlewing' 
-								),
-								99 => array (
-										'id' => 4727,
-										'name' => 'Unholy Glow Bone Dragon',
-										'icon' => '/esoui/art/icons/pet_175_bonedragonvariant.dds',
-										'desc' => 'This necromantic construct of reanimated bones resembles a gruesome Bone Dragon, one so charged with unholy power that it emits an uncanny blue glow.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bluebelly' 
-								),
-								100 => array (
-										'id' => 4728,
-										'name' => 'Madcap Jester Monkey',
-										'icon' => '/esoui/art/icons/pet_178_jestermonkey.dds',
-										'desc' => 'Say, why does this little chum look at you funny? It must be your face! Ook ook! Ah, ha ha ha ha ha ha ha!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Jingles' 
-								),
-								101 => array (
-										'id' => 4729,
-										'name' => 'Karth Winter Hound^n',
-										'icon' => '/esoui/art/icons/pet_4729.dds',
-										'desc' => 'The Karth Winter Hound is the snow-white breed of the Markarth Bear Dog, snowy year-round for hunting in Skyrim`s snow-capped peaks. Some Reach clans reserve the Winter Hounds solely for chieftains.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snow Snarl' 
-								),
-								102 => array (
-										'id' => 4731,
-										'name' => 'Flameback Boar',
-										'icon' => '/esoui/art/icons/pet_170_daggerbackflameback.dds',
-										'desc' => 'Like the Purple Daggerback, the breed of Flameback Boars clearly had some kind of brush with the uncanny that imbued them with magical aspects. Regular boars just don`t have crimson glowing eyes and flame-colored bristle crests down their backs.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Barbecue' 
-								),
-								103 => array (
-										'id' => 4736,
-										'name' => 'Nightmare Senche Cub^n',
-										'icon' => '/esoui/art/icons/pet_4736.dds',
-										'desc' => 'Despite the fact that this night-black senche-tiger cub has burning paws and flaming eyes, it`s so adorable it might be a nightmare you never want to awaken from!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Vaermina' 
-								),
-								104 => array (
-										'id' => 4739,
-										'name' => 'Helkarn Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_4739.dds',
-										'desc' => 'The pups of the Helkarn Wolves from Elsweyr are almost as sociable with people as dog puppies, so they get a lot of attention when young. This probably contributes to their docility as mounts when full grown.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cuddlepaws' 
-								),
-								105 => array (
-										'id' => 4744,
-										'name' => 'Frostbane Pony Guar^n',
-										'icon' => '/esoui/art/icons/pet_172_scalecallerguar.dds',
-										'desc' => 'Though the reptilian Guar are native to the warmer climates south of Skyrim, the compact Pony Guar have long been popular pets among the aristocracy of Riften. Traditional Nords like to dress them in the Frostbane garb used on more local animals.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Jingles' 
-								),
-								106 => array (
-										'id' => 4745,
-										'name' => 'Frostbane Sabre Cat^n',
-										'icon' => '/esoui/art/icons/pet_174_scalecallersenche.dds',
-										'desc' => 'In \"The Tail of Ysgramor`s Cat,\" the Harbinger`s Sabre Cat hunting companion is described as being festooned with Atmoran Frostbane talismans, and some tradition-loving modern Nords still decorate their Sabre Cats in the same manner.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Totem-Tusk' 
-								),
-								107 => array (
-										'id' => 4746,
-										'name' => 'Frostbane Bear^n',
-										'icon' => '/esoui/art/icons/pet_176_scalecallerbear.dds',
-										'desc' => 'Nords who follow the tradition of hanging Frostbane totems and talismans on their beasts to protect them from Skyrim`s bitter cold often do it even when the animals are still young, to get them used to the idea.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pudgelocks' 
-								),
-								108 => array (
-										'id' => 4747,
-										'name' => 'Frostbane Wolf^n',
-										'icon' => '/esoui/art/icons/pet_176_scalecallerwolf.dds',
-										'desc' => 'To accustom their Frostbane Wolves to the click-clacking of dangling talismans and totems, the ancient Nords began dressing their companion wolves in Frostbane garb from an early age.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shaggypelt' 
-								),
-								109 => array (
-										'id' => 4748,
-										'name' => 'Frostbane Pony^n',
-										'icon' => '/esoui/art/icons/pet_173_scalecallerhorse.dds',
-										'desc' => 'The hardy ponies of the frozen north look even shaggier when they`re decorated with Frostbane hair-knots and ancient Nord totems. Whether the talismans keep the cold away is impossible to tell, but it`s certain these ponies never lose their good cheer.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shaggypony' 
-								),
-								110 => array (
-										'id' => 5078,
-										'name' => 'Ja`khajiit Raz^n',
-										'icon' => '/esoui/art/icons/pet_185_steve.dds',
-										'desc' => '\"Sweet young things like to give this one kittens as keepsakes,\" says Eye of the Queen Razum-dar, \"but raising a pet is not consistent with Raz`s romantic but itinerant life of intrigue. Perhaps you could give cute Ja`khajiit a good home, yes?\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'This One' 
-								),
-								111 => array (
-										'id' => 5079,
-										'name' => 'Firepet Spider^n',
-										'icon' => '/esoui/art/icons/pet_4668.dds',
-										'desc' => 'In the Clockwork City, mechanical Firepot Spiders can be programmed to follow chefs around like little walking barbecues. Someone has devised a secret method for exporting them from Sotha Sil`s hidden world—but how? Better get one while you still can.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rotisserie' 
-								),
-								112 => array (
-										'id' => 5080,
-										'name' => 'Alinor Ringtail^n',
-										'icon' => '/esoui/art/icons/pet_bassarisk_a_basic.dds',
-										'desc' => '\"Cute little thing, isn`t it? `Course, what I care about is that a Ringtail, properly trained, can get into places no one else can, and carry out small items in their cheek pouches. Lost goods, as it were, or misplaced valuables. Right?\" —Fenaanaral',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Desperado' 
-								),
-								113 => array (
-										'id' => 5083,
-										'name' => 'Prong-Eared Grimalkin^n',
-										'icon' => '/esoui/art/icons/pet_182_grimalkin.dds',
-										'desc' => 'Prong-Eared Grimalkins are widely regarded as having supernatural powers thanks to their ability to appear almost instantly when a container of cat food is opened, and to fit themselves into boxes that seem entirely too small for them.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Earzles' 
-								),
-								114 => array (
-										'id' => 5084,
-										'name' => 'Coral Mudcrab^n',
-										'icon' => '/esoui/art/icons/pet_180_coralcrab.dds',
-										'desc' => 'Native to Summerset Isle, the gaudy Coral Mudcrab has elaborate coral growths on its back, as well as a claw that looks comically over-sized, but which is surprisingly functional. Count fingers after petting.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scatheclaw' 
-								),
-								115 => array (
-										'id' => 5085,
-										'name' => 'Springtide Indrik^n',
-										'icon' => '/esoui/art/icons/pet_192_indrik-springtide-green.dds',
-										'desc' => 'For mortals good in heart and soul, being in the presence of a Springtide Indrik induces serenity and makes anger almost impossible—though paradoxically it also inspires a righteous determination to fight injustice.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Heartsease' 
-								),
-								116 => array (
-										'id' => 5086,
-										'name' => 'Longhair Welwa^n',
-										'icon' => '/esoui/art/icons/pet_longhairwelwa.dds',
-										'desc' => 'As savage as Welwas are, history indicates that every pastoral society in Craglorn`s long history—Nedes, Yokudans, Goblins, and Orcs—has domesticated them at some point. They may be ugly, but they sure are loyal.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Fell-Chaser' 
-								),
-								117 => array (
-										'id' => 5087,
-										'name' => 'Shimmering Indrik^n',
-										'icon' => '/esoui/art/icons/pet_193_indrik-illustrious-gold.dds',
-										'desc' => 'No one can look at the glistening plumage of the Shimmering Indrik and doubt its enchanted nature, for it sparkles with Magicka and virtue. Here is a creature untainted by aggression, though it will ably defend itself at need.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Night Light' 
-								),
-								118 => array (
-										'id' => 5092,
-										'name' => 'Fawn Echalette^n',
-										'icon' => '/esoui/art/icons/pet_echalette_fawn.dds',
-										'desc' => 'When spring comes to the sun-dappled forests of southern Wrothgar, Echatere babies are sometimes born with temporary spotted camouflage that fades as the Echalette matures. It`s pretty while it lasts.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Tusky' 
-								),
-								119 => array (
-										'id' => 5093,
-										'name' => 'Masked Bear Cub^n',
-										'icon' => '/esoui/art/icons/pet_1151.dds',
-										'desc' => 'The handsome breed of Masked Bears are native to the Pale Pass region of the Jerall Mountains, which has given rise to the legend that they came in the First Era with the invaders from Akavir who ended up there. Bears from Akavir? Really?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Flora' 
-								),
-								120 => array (
-										'id' => 5094,
-										'name' => 'Psijic Mascot Pony^n',
-										'icon' => '/esoui/art/icons/pet_psijicpony.dds',
-										'desc' => 'This perky but enigmatic equine glows with Magicka through the mystic runes that embellish its possibly-illusory epidermis. Enchanting!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Glony' 
-								),
-								121 => array (
-										'id' => 5095,
-										'name' => 'Psijic Mascot Wolf Pup^n',
-										'icon' => '/esoui/art/icons/pet_psijicwolfpup.dds',
-										'desc' => 'Are the Psijic Mascot pets real animals with an enchanted appearance, or illusory beast companions created from Magicka? The Psijic monks know which it is, but ask one, and all you get in reply is a smile.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Howland' 
-								),
-								122 => array (
-										'id' => 5096,
-										'name' => 'Psijic Mascot Guar Calf^n',
-										'icon' => '/esoui/art/icons/pet_psijicguar.dds',
-										'desc' => 'The first Guar came to Artaeum when a Psijic advisor to the Tribunal returned from Mournhold with a Pony Guar in the middle of the First Era, and they`ve been favorites of the Psijics ever since. There`s even a glowing Psijic Mascot Guar!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Glowy the Guar' 
-								),
-								123 => array (
-										'id' => 5097,
-										'name' => 'Psijic Mascot Bear Cub^n',
-										'icon' => '/esoui/art/icons/pet_psijicbearcub.dds',
-										'desc' => 'By tradition, the Psijic Mascot of the order`s Ritemaster is always a Bear Cub—but since there`s been only one Ritemaster, Iachesis, for over 3,000 years, the tradition hasn`t had much opportunity to change. Fortunately, others can befriend them as well!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bearmaster' 
-								),
-								124 => array (
-										'id' => 5098,
-										'name' => 'Psijic Mascot Senche Cub^n',
-										'icon' => '/esoui/art/icons/pet_psijicsenchecub.dds',
-										'desc' => '\"Some say that Psijic Mascot creatures aren`t true animals at all, but illusory constructs created by Psijic monks as portable storage batteries of Magicka,\" says Sapiarch Soraturil. \"What nonsense!\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mystikitten' 
-								),
-								125 => array (
-										'id' => 5099,
-										'name' => 'Pocket Salamander^n',
-										'icon' => '/esoui/art/icons/pet_salamander_01.dds',
-										'desc' => '\"I don`t know, something about being followed around by a tame miniature giant elemental amphibian just seems right to me, you know? Expresses my inner newt.\" —Dinuviel Darkwater of Rellenthil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Newton' 
-								),
-								126 => array (
-										'id' => 5101,
-										'name' => 'Noweyr Pony^n',
-										'icon' => '/esoui/art/icons/pet_psijicpony_twitch.dds',
-										'desc' => 'The thief-god Rajhin is said to have stolen these enchanted purple Ponies from somewhere in Oblivion, but when his worshipers are asked where he got them, they just laugh and say, \"Noweyr!\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Neigh-Neigh' 
-								),
-								127 => array (
-										'id' => 5102,
-										'name' => 'Senche Cub of Scarlet Regret^n',
-										'icon' => '/esoui/art/icons/pet_psijicsenchecub_twitch.dds',
-										'desc' => 'This ominous yet playful pet, conjured by Psijic magic in shape of a glowing senche cub, represents an Artaeum monk`s regrettable choices that may yet be reversed by proper adherence to the Old Ways.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Crimson Cat' 
-								),
-								128 => array (
-										'id' => 5105,
-										'name' => 'Fledgling Gryphon^n',
-										'icon' => '/esoui/art/icons/pet_fledgelinggryphon.dds',
-										'desc' => 'Though eventually it will grow into a massive beast with a vast wingspan, a Fledgling Gryphon is just the right size for a companion creature, and its juvenile antics are hilarious!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Beaky' 
-								),
-								129 => array (
-										'id' => 5172,
-										'name' => 'Atmoran Snow Bear Cub',
-										'icon' => '/esoui/art/icons/pet_189_atmoranbearcub.dds',
-										'desc' => 'When a cub, the young Atmoran Snow Bear is a lap-clambering cuddle bug, a friendly fuzzball whose demeanor is completely at odds with the fierce reputation of adult Snow Bears. Enjoy them while they`re still small!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Avalanche' 
-								),
-								130 => array (
-										'id' => 5176,
-										'name' => 'Daemon Cockerel',
-										'icon' => '/esoui/art/icons/pet_229_blackrooster.dds',
-										'desc' => 'The hissing and twitching farmer who sells these claims they`re just ordinary black roosters. And probably they are. You must have just imagined that this Cockerel`s eyes glow after dark. You must have!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Spurs' 
-								),
-								131 => array (
-										'id' => 5180,
-										'name' => 'Solar Arc Dwarven Spider',
-										'icon' => '/esoui/art/icons/pet_200_dwarven-ebonyyellow.dds',
-										'desc' => 'This extremely rare Dwarven Spider model is surmounted with a double golden crescent, interpreted by scholars of the Dwemer as a \"Solar Arc,\" or tribute to the sun—an iconography otherwise completely unknown among the handiworks of the Deep Elves.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sunnylegs' 
-								),
-								132 => array (
-										'id' => 5188,
-										'name' => 'Teal-Faced Fellrunner^n',
-										'icon' => '/esoui/art/icons/pet_194_teal-fellrunner.dds',
-										'desc' => 'Craglorn Companions of Belkarth had no luck at all exporting Fellrunners for the High Rock and Hammerfell pet markets—until they sold a flock of the Teal-Faced variety to Fahara`jad`s menagerie in Sentinel. Suddenly they were all the rage!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bluebird' 
-								),
-								133 => array (
-										'id' => 5196,
-										'name' => 'Azure Fledgling Gryphon^n',
-										'icon' => '/esoui/art/icons/pet_183_azuregryphon.dds',
-										'desc' => 'The Gryphons that nest on the highest pinnacles of Eton Nir, the tallest mountain on Summerset, have a distinctive bluish tint to their plumage. Some sapiarchs call this sky-blue camouflage, but the Priests of Auri-El see in it a touch of the Divine.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cerulean' 
-								),
-								134 => array (
-										'id' => 5214,
-										'name' => 'Nightmare Wolf Pup^n',
-										'icon' => '/esoui/art/icons/pet_199_nightmarepup.dds',
-										'desc' => '\"Be scared—be very scared!\" say this pup`s big fiery eyes. \"Please?\" But no matter how much it tries to frighten like a grown-up Nightmare Wolf, this flaming fuzzball is still completely adorable.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ember Pup' 
-								),
-								135 => array (
-										'id' => 5219,
-										'name' => 'Lava Line Salamander^n',
-										'icon' => '/esoui/art/icons/pet_202_lavaline.dds',
-										'desc' => 'Summerset`s Salamanders are amphibians that, when threatened, defend themselves with an impressive array of elemental powers. The bright orange Lava Line on this breed is an indicator of its reliance on natural Flame magic.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Newton' 
-								),
-								136 => array (
-										'id' => 5222,
-										'name' => 'Crested Reef Viper',
-										'icon' => '/esoui/art/icons/pet_195_seaadder-yellow.dds',
-										'desc' => 'If you`re looking for a warm and fuzzy companion animal to cuddle with, don`t start with the Crested Reef Viper. But if what you want is an intimidating reptilian monster that says \"Don`t mess with me, city boy,\" this is the ophidian follower for you.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Spines' 
-								),
-								137 => array (
-										'id' => 5223,
-										'name' => 'Noble Riverhold Senche-Lion Cub',
-										'icon' => '/esoui/art/icons/pet_201_riverholdcub.dds',
-										'desc' => 'Even as cubs, the litter-mates of the noble Riverhold senche-lion prides exhibit the breed`s hallmark attributes of courage and loyalty, bravely defending their masters against encroaching beetles and butterflies!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pride-Cub' 
-								),
-								138 => array (
-										'id' => 5244,
-										'name' => 'Goldenback Spider Lackey',
-										'icon' => '/esoui/art/icons/pet_196_giantspider-goldenback.dds',
-										'desc' => 'For most people, giant spiders are just loathsome monsters to be destroyed by fire and steel, but Mephala Cultists know that they`re highly intelligent (for, you know, arthropods) and surprisingly trainable. The Goldenbacks are by far the friendliest.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Goldielegs' 
-								),
-								139 => array (
-										'id' => 5548,
-										'name' => 'Pale-Plume Fledgling Gryphon^n',
-										'icon' => '/esoui/art/icons/pet_187_eaglegryphon.dds',
-										'desc' => 'Less common than the usual variety, the Pale-Plume Gryphons are found only along the seacoast cliffs near the Tower of Dusk in southeast Summerset. Their Fledglings make engaging pets that can be trained to follow their masters even into danger.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Baldy' 
-								),
-								140 => array (
-										'id' => 5601,
-										'name' => 'Snowcap Fledgling Gryphon',
-										'icon' => '/esoui/art/icons/pet_234_snowgryphon.dds',
-										'desc' => 'On the highest pinnacles of Eton Nir, where the snow never melts, live the pale Snowcap Gryphons. Perfectly camouflaged for a life in the clouds, for most of the First Era they were considered to be a myth.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Peaky' 
-								),
-								141 => array (
-										'id' => 5642,
-										'name' => 'Mara`s Spring Chicken',
-										'icon' => '/esoui/art/icons/pet_216_coloredchicken.dds',
-										'desc' => 'As a sign of the blessing of Mara, Goddess of Fertility, in spring certain breeds of Tamriel`s hens lay eggs with shells in a variety of colors.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Egwina' 
-								),
-								142 => array (
-										'id' => 5657,
-										'name' => 'Kaleidotropic Dragon Frog',
-										'icon' => '/esoui/art/icons/pet_211_kaleidascope.dds',
-										'desc' => 'This little critter`s bright, beautiful colors are actually a warning to predators that it`s a potent mouthful of poison. Fortunately for Tamriel`s humanoid mortals, its venom affects them as no more than a mild hallucinogen.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Touch-Me-Not' 
-								),
-								143 => array (
-										'id' => 5658,
-										'name' => 'Butterscotch Dragon Frog',
-										'icon' => '/esoui/art/icons/pet_207_butterscotch.dds',
-										'desc' => '\"The Butterscotch Dragon Frog presumably got its name from the Argonian practice of naming creatures after flavors, whether those things taste like that or not. This one has no intention of finding out whether it does.\" —M`aiq the Liar',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bug-Biter' 
-								),
-								144 => array (
-										'id' => 5659,
-										'name' => 'Flame Skin Salamander^n',
-										'icon' => '/esoui/art/icons/pet_208_orangesalamander.dds',
-										'desc' => 'All the large Salamanders of southern Tamriel have elemental powers, but some specialize in particular forces; the Flame Skin breed, for example, almost ripples with fire.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Steamy' 
-								),
-								145 => array (
-										'id' => 5660,
-										'name' => 'Toxin Skin Salamander^n',
-										'icon' => '/esoui/art/icons/pet_210_greensalamander.dds',
-										'desc' => 'The large, lumbering Salamanders of southern Tamriel are known for defending themselves with various elemental bursts—all but one, the Toxin Skin variety, which relies on venom instead. Not even the Sapiarchs of the Crystal Tower can account for it.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Poisontail' 
-								),
-								146 => array (
-										'id' => 5661,
-										'name' => 'Shock Skin Salamander^n',
-										'icon' => '/esoui/art/icons/pet_209_bluesalamander.dds',
-										'desc' => 'The lumbering great Salamanders of southern Tamriel all defend themselves with bursts of elemental power, but the Shock Skin variety specializes in electrical discharges. Fortunately, they can be trained not to zap their masters!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Zapnewt' 
-								),
-								147 => array (
-										'id' => 5662,
-										'name' => 'Prong-Eared Odd-Eyed Cat',
-										'icon' => '/esoui/art/icons/pet_prongearoddeyed-cat.dds',
-										'desc' => '\"Cats with odd-colored eyes see into the depths of those around them. Those with white fur? They see into time itself.\" —Zamarak',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Elegante' 
-								),
-								148 => array (
-										'id' => 5699,
-										'name' => 'Infernium Dwarven Spiderling',
-										'icon' => '/esoui/art/icons/pet_219_flamedwarvenspider.dds',
-										'desc' => '\"The Dwarven Spiderlings from the Infernium Forge are unusual and distinctive, indicating to this Dwemer scholar that they all come from the hand of a single Deep Elf artisan.\" —Guylaine Marilie',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Emberlegs' 
-								),
-								149 => array (
-										'id' => 5712,
-										'name' => 'Slateback Haj Mota',
-										'icon' => '/esoui/art/icons/pet_hajmota_slateback.dds',
-										'desc' => 'This smaller breed of haj mota lurks in the brackish estuaries of Black Marsh`s southern coast, camouflaged by the gray color of the murky tidewater. When hand-raised from hatching, they make surprisingly pleasant pets.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shelby' 
-								),
-								150 => array (
-										'id' => 5713,
-										'name' => 'Verdigris Haj Mota',
-										'icon' => '/esoui/art/icons/pet_hajmota_verdigris.dds',
-										'desc' => 'A haj mota is an ambush predator, waiting patiently in concealment until its prey should come into attack range. The Verdigris breed tends to hide in algae-covered pools where its color acts as camouflage.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Burrower' 
-								),
-								151 => array (
-										'id' => 5714,
-										'name' => 'Bear-Lizard Cub',
-										'icon' => '/esoui/art/icons/pet_221_murkmirebearcub.dds',
-										'desc' => 'Though the adult Bear-Lizards can be quite intimidating, even fearsome, the roly-poly lizard cubs are disarmingly cute. (For reptiles, that is.)',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scaly-Boo' 
-								),
-								152 => array (
-										'id' => 5715,
-										'name' => 'Pony-Lizard',
-										'icon' => '/esoui/art/icons/pet_223_murkmirepony.dds',
-										'desc' => 'When young Argonian egg-siblings tell their creche-parents they want a pony, this is what they mean. And now that you`ve seen it, don`t you want one, too?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Spinemane' 
-								),
-								153 => array (
-										'id' => 5716,
-										'name' => 'Senche-Lizard Cub',
-										'icon' => '/esoui/art/icons/pet_224_murkmiresenchecub.dds',
-										'desc' => 'True, it does hiss rather than meow, and has shiny scales rather than soft fur, but otherwise the Senche-Lizard Cub is just as adorable as any other kitten.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Kitty Lizard' 
-								),
-								154 => array (
-										'id' => 5717,
-										'name' => 'Wolf-Lizard Pup',
-										'icon' => '/esoui/art/icons/pet_225_murkmirewolfpup.dds',
-										'desc' => 'The Wolf-Lizard Pup is simply adorable when it tries to howl, just hisses instead, and looks ever so confused.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Hissy Howl' 
-								),
-								155 => array (
-										'id' => 5718,
-										'name' => 'Guar-Lizard Calf',
-										'icon' => '/esoui/art/icons/pet_222_murkmireguar.dds',
-										'desc' => 'Though you know it`s just going to grow up and become big, dumb, scaly livestock, how can you resist those lizard-calf eyes?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Googly' 
-								),
-								156 => array (
-										'id' => 5719,
-										'name' => 'Badger Ruff Echalette',
-										'icon' => '/esoui/art/icons/pet_217_badgerechelette.dds',
-										'desc' => 'Most Echalettes are docile and fawn-like, but not the Badger Ruff breed, which are strangely fierce and irritable. They`re so ornery they`ve been known to chase away inquisitive Sabre Cats.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Feisty' 
-								),
-								157 => array (
-										'id' => 5722,
-										'name' => 'Ashen Scar Jerboa',
-										'icon' => '/esoui/art/icons/pet_242_jerboa.dds',
-										'desc' => '\"The Jerboas, you say? Ah, yes, the little jumping skeevers with the so-big ears. There are many in the Ashen Scar, and if you catch one when it`s small, it makes for a pleasant, fuzzy friend. I had one when I was a kitten!\" —Shuzirri of Riverhold',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Hopping Bob' 
-								),
-								158 => array (
-										'id' => 5846,
-										'name' => 'Hot Pepper Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_236_hotpepperbantam.dds',
-										'desc' => 'The Hot Pepper Bantam Guar breed is native to the \"spice island\" of Esroniet, the source of much of Tamriel`s nutmeg, cloves, mace, and hot peppers. And the Pepper Guar has a spicy little personality to go with its name!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Blisters' 
-								),
-								159 => array (
-										'id' => 5847,
-										'name' => 'Eerie Violet Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_255_twitchbantam.dds',
-										'desc' => '\"The recesses of our nightmares contain horrors that we often cannot look at. Yet we must, lest these pockets of terror fester and grow. To light your path, I present this bantam guar. Please do not squeal.\" — Overheard in a dark alley',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nightguar' 
-								),
-								160 => array (
-										'id' => 5848,
-										'name' => 'Hot-Blooded Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_250_bloodbuddybantam.dds',
-										'desc' => 'When asked about the rumor that the Hot-Blooded Bantam Guar had been bred as a vampiric sub-species by the disgraced mage Darvasen before he was exiled from Shad Astula, Arch-Mage Valeyn replied, \"What nonsense! They just like to eat tomatoes. Trust me.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Gory-Guar' 
-								),
-								161 => array (
-										'id' => 5849,
-										'name' => 'Coldharbour Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_251_coldharbourbantam.dds',
-										'desc' => 'Start with a dollop of wiggly cuteness, add a dash of the Coldharbour glow, and you get a bantam guar that causes \"oohs!\" and \"ahhhs!\" wherever you go, plus helps you avoid stubbing your toe at night when you leave your bed. Genius!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wiggles' 
-								),
-								162 => array (
-										'id' => 5850,
-										'name' => 'Atmoran Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_237_atmoranbantam.dds',
-										'desc' => '\"A fur-less, cold-blooded reptile with icy blue eyes that comes from the frozen, far-north, and in-all-likelihood legendary continent of Atmora? Bah. I refuse to believe it.\" —Phrastus of Elinhir',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snow-on-Scales' 
-								),
-								163 => array (
-										'id' => 5851,
-										'name' => 'Deadlands Bantam Guar',
-										'icon' => '/esoui/art/icons/pet_247_deadlandbantam.dds',
-										'desc' => 'It may look cute, but this volcanic little pest comes from Mehrunes Dagon`s Oblivion plane of the Deadlands: it`s got lava in its blood and fire in its eyes, so keep it away from the curtains.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pumice' 
-								),
-								164 => array (
-										'id' => 5853,
-										'name' => 'Atmoran Chub Loon',
-										'icon' => '/esoui/art/icons/pet_240_atmoranchubloon.dds',
-										'desc' => 'According to Nord legend, in its native land of Atmora this Chub Loon is much larger, as tall as two warriors and with a squawk that starts avalanches. It took mighty Ysgramor a day and a night to wrestle one down from Shivering Glacier. What, you doubt?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Doom Loon' 
-								),
-								165 => array (
-										'id' => 5856,
-										'name' => 'Icebound Dwarven Spider',
-										'icon' => '/esoui/art/icons/pet_257_dwarvenice.dds',
-										'desc' => 'One might think that being frozen in a glacier for several thousand years would damage a delicate mechanism like a Dwarven Spider, but in the case of the Icebound units it seems instead to have preserved them in perfect working order.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Skidley' 
-								),
-								166 => array (
-										'id' => 5861,
-										'name' => 'Meridian Sabre Cub',
-										'icon' => '/esoui/art/icons/pet_244_purifiedsenchecub.dds',
-										'desc' => '\"Our Lady of the Infinite Energies, Strict but Fair Arbiter of Inner Luminance, grant unto thy most devoted worshiper a sign of thy radiant favor, mayhap a loveable, glowing Sabre Cat cub.\" —Sayings of Valasha',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shinypaws' 
-								),
-								167 => array (
-										'id' => 5862,
-										'name' => 'Pebble Pal',
-										'icon' => '/esoui/art/icons/pet_258_pebblepal.dds',
-										'desc' => 'Tired of pets that follow you everywhere? Fed up with feeding them? Step up to Pebble Pal, the pet that`s a … rock.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rocky' 
-								),
-								168 => array (
-										'id' => 5864,
-										'name' => 'Carnelian Theodolite',
-										'icon' => '/esoui/art/icons/pet_248_redtheodolite.dds',
-										'desc' => 'The Dwarven Theodolite was a sort of automated measuring device designed to explore and survey subterranean areas; this version is notable for its distinctive red \"eye.\"',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rufus' 
-								),
-								169 => array (
-										'id' => 6018,
-										'name' => 'Rihad Coffee Scorpion',
-										'icon' => '/esoui/art/icons/pet_243_coffeescorpion.dds',
-										'desc' => 'The Coffee Scorpion gets its name from the way they like their kaveh in Rihad: strong, dark, and sweet. (Well, I guess two out of three isn`t bad.)',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Kaveh' 
-								),
-								170 => array (
-										'id' => 6034,
-										'name' => 'Gloam Wolf Cub',
-										'icon' => '/esoui/art/icons/pet_246_nocturnalpup.dds',
-										'desc' => 'Hailing from Nocturnal`s Oblivion realm of Evergloam, the Gloam Wolf Cub seems to oscillate like an optical illusion between adorable and sinister.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pupshadow' 
-								),
-								171 => array (
-										'id' => 6035,
-										'name' => 'Ghostly Housecat',
-										'icon' => '/esoui/art/icons/pet_241_ghostcat.dds',
-										'desc' => 'According to Nibenese legend, a house where its owner was murdered will be haunted by the shade of their cat, sent from beyond by Lord Hollowjack to torment the killer with eternal shame and guilt.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rue' 
-								),
-								172 => array (
-										'id' => 6037,
-										'name' => 'Fledgling Vulture Gryphon',
-										'icon' => '/esoui/art/icons/pet_249_vulturegryphon.dds',
-										'desc' => 'Unlike most Gryphons, which catch live prey, the Vulture Gryphons subsist primarily on carrion. But they`re still majestic, and their young Fledglings still make adorable pets!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Li`l Buzzard' 
-								),
-								173 => array (
-										'id' => 6064,
-										'name' => 'Elinhir Arena Lion',
-										'icon' => '/esoui/art/icons/pet_256_gladiatorlion.dds',
-										'desc' => 'Arena Lions are trained to absolute obedience, whether as sturdy and savage Craglorn companions or as pit-fighting beasts taught to drag out a kill for the entertainment of an audience.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pit Cat' 
-								),
-								174 => array (
-										'id' => 6186,
-										'name' => 'Cerulean Scorpion',
-										'icon' => '/esoui/art/icons/pet_ceruleanscorpion.dds',
-										'desc' => 'The colors exhibited by the Cerulean Scorpion make it a creature sought after by artists and by those who prefer their companions to have a bit of a sting to them.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Clamper' 
-								),
-								175 => array (
-										'id' => 6187,
-										'name' => 'Pedlar Pack Pony',
-										'icon' => '/esoui/art/icons/bandaaripedlarpony.dds',
-										'desc' => 'In their travels, the Baandari Pedlars have shown off their pack ponies to the delight of children everywhere. Recently they began selling them, and now children put even more pressure on parents to acquire them.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Trotter' 
-								),
-								176 => array (
-										'id' => 6188,
-										'name' => 'Pedlar Pack Wolf Cub',
-										'icon' => '/esoui/art/icons/pet_pedlarwolfcub.dds',
-										'desc' => 'Even the pups receive the full Baandari Pedlar tack treatment! These wolf cubs are often seen chasing each other around those seeking wares from the Pedlars, sometimes tripping up customers until they`re trained to know better.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Tripper' 
-								),
-								177 => array (
-										'id' => 6189,
-										'name' => 'Pedlar Pack Spider',
-										'icon' => '/esoui/art/icons/pets_baandaripedlarspider.dds',
-										'desc' => 'The Baandari Pedlars first used these repurposed mechanized spiders to help retrieve things that got lost in crevices and the like. For the right price, they may sell you one.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Master Clack' 
-								),
-								178 => array (
-										'id' => 6190,
-										'name' => 'Pedlar Pack Senche-Lion Cub',
-										'icon' => '/esoui/art/icons/pet_baandaripedsenchecub.dds',
-										'desc' => 'To prepare their Senche-Lion mounts, the Baandari Pedlars train them with full gear as cubs. Despite the tack, these cubs pounce and play as kittens do.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wrigglerump' 
-								),
-								179 => array (
-										'id' => 6191,
-										'name' => 'Alabaster Jerboa',
-										'icon' => '/esoui/art/icons/pet_259_alabasterjerboa.dds',
-										'desc' => 'Need some happiness in your day? The Alabaster Jerboa is your answer. Its hopping and air-dancing acrobatics can bring a smile to even the grumpiest Dark Elf.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Oochee' 
-								),
-								180 => array (
-										'id' => 6192,
-										'name' => 'Sunspire Ice-Fire Senche-Cub',
-										'icon' => '/esoui/art/icons/sunspiresenchecub.dds',
-										'desc' => 'Before ice-fire senche-lions become mounts, they start as adorable cubs. But be careful! These cute creatures still require careful handling due to their mix of cold and flame.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Purrbringer' 
-								),
-								181 => array (
-										'id' => 6193,
-										'name' => 'Elder Dragon Hunter Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_draghunthuskypup.dds',
-										'desc' => 'A traditional gift to successful Dragon Hunters, this pup exhibits the same courage that these hunters must have, and also reminds them of the lives they`re protecting with their ongoing work.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Faith' 
-								),
-								182 => array (
-										'id' => 6195,
-										'name' => 'Senche-Serval Kitten',
-										'icon' => '/esoui/art/icons/pet_senche-serval-kitten.dds',
-										'desc' => '\"While carrying out an assignment from Larnatille in my role as Sub-Sapiarch of Domestic Livestock, I created a mount both loyal and majestic. Though the kitten stage is … a bit trying.\" —Corderil of Sunhold',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mangler' 
-								),
-								183 => array (
-										'id' => 6381,
-										'name' => 'Grisly Mummy Tabby',
-										'icon' => '/esoui/art/icons/pet_grislymummytabby.dds',
-										'desc' => 'The reason behind the creation of this tabby was simple: Cats kill rodents. Mummified and mobile cats will kill rodents indefinitely. Thus this bandage-bound pet was … born?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Mewmy' 
-								),
-								184 => array (
-										'id' => 6382,
-										'name' => 'Skyterror Dragonslayer Pup',
-										'icon' => '/esoui/art/icons/pet_skydragonslayerpup.dds',
-										'desc' => '\"Sometimes pups hear the call. To defend against claws. To rend wings. When they show up, we train them.\"—Javinda, Dragonslayer',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Glimmerfang' 
-								),
-								185 => array (
-										'id' => 6434,
-										'name' => 'Spectral Chicken^F',
-										'icon' => '/esoui/art/icons/pet_spectralchicken.dds',
-										'desc' => '\"Do not ask me how this creature came to be. Or not be. It just is. But, perhaps do not kill chickens in already-haunted places.\"—Geem-Sai, Butcher',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cock-a-doodle-Boo' 
-								),
-								186 => array (
-										'id' => 6443,
-										'name' => 'Death Hound^n',
-										'icon' => '/esoui/art/icons/pet_deathhound.dds',
-										'desc' => '\"Occasionally one grows tired of the crush of humanity. To that end, I bought this Death Hound. Now I cannot enter most taverns, but I also don`t have people crowding my space.\"—Theldyn Faden, Explorer',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Toothy' 
-								),
-								187 => array (
-										'id' => 6445,
-										'name' => 'New Moon Wolf Pup^N',
-										'icon' => '/esoui/art/icons/pet_newmoonwolf.dds',
-										'desc' => 'Cult of the New Moon pups haven`t quite grown out of their youthful exuberance, which make them fun travel companions. They often stalk shadows, seeking to destroy them.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shadowstalker' 
-								),
-								188 => array (
-										'id' => 6446,
-										'name' => 'New Moon Senche Cub^N',
-										'icon' => '/esoui/art/icons/pet_newmoonsenche.dds',
-										'desc' => 'Though this cub wears the signature barding of the Cult of the New Moon, it acts just like a kitten. Which is to say, you might need to train it to avoid rubbing its head and scratchy barding against your cheek.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cheeky' 
-								),
-								189 => array (
-										'id' => 6447,
-										'name' => 'New Moon Pony^n',
-										'icon' => '/esoui/art/icons/pet_newmoonhorse.dds',
-										'desc' => 'A handful of daring merchants stole some pack animals from the Cult of the New Moon, and they claim these ponies are as nimble as goats to the point of even climbing trees. Apple orchard farmers beware!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Treeclimber' 
-								),
-								190 => array (
-										'id' => 6448,
-										'name' => 'New Moon Guar Calf^F',
-										'icon' => '/esoui/art/icons/pet_newmoonguar.dds',
-										'desc' => 'The Cult of the New Moon keeps a number of different creatures around, including guars. Due to a peculiarity in its breeding, this guar tries to sing along whenever it hears someone singing. Only dogs can hear it do so, however.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scoundrel' 
-								),
-								191 => array (
-										'id' => 6449,
-										'name' => 'New Moon Bear Cub^n',
-										'icon' => '/esoui/art/icons/pet_newmoonbear.dds',
-										'desc' => 'This cub from the Cult of the New Moon will happily trundle along behind you as long as you keep it well-fed.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rumbleburr' 
-								),
-								192 => array (
-										'id' => 6450,
-										'name' => 'Coldsnap Durzog Pup^F',
-										'icon' => '/esoui/art/icons/pet_coldsnapdurzogpup.dds',
-										'desc' => 'Young durzogs acquired from the Coldsnap Goblin tribe are temperamental and require a firm hand. After you`ve established firm boundaries with this creature, though, its loyalty is boundless.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sludgepuppy' 
-								),
-								193 => array (
-										'id' => 6453,
-										'name' => 'Dread-Aurelian Dragonslayer Wolf',
-										'icon' => '/esoui/art/icons/pet_radiantdraghuntt2.dds',
-										'desc' => '\"This pup has lived through a Dragon attack, proving itself in front of all the Dragonslayers present. Its steadfastness should help keep you alive.\"—Javinda, Dragonslayer',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Dawnhowler' 
-								),
-								194 => array (
-										'id' => 6455,
-										'name' => 'Witch`s Infernal Familiar',
-										'icon' => '/esoui/art/icons/pet_witchesinfernal.dds',
-										'desc' => 'Equipped with a hat, this black cat makes its way in the world at your side, leaving little fiery pawprints behind as it goes.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Flamepaws' 
-								),
-								195 => array (
-										'id' => 6456,
-										'name' => 'Ancient Dragon Hunter Wolf^F',
-										'icon' => '/esoui/art/icons/pet_ancientdraghuntt2.dds',
-										'desc' => 'This wolf senses the impending arrival of Dragons, making it an excellent pet for veteran Dragon Hunters.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Intuition' 
-								),
-								196 => array (
-										'id' => 6616,
-										'name' => 'Ebon-Glow Indrik^n',
-										'icon' => '/esoui/art/icons/pet_onyxindrik.dds',
-										'desc' => 'Though many associate darkness with evil, those looking at the Ebon-Glow Indrik come to understand that darkness is simply the absence of light—neither good nor bad in itself. A soothing thought that calms fears, much like this magical indrik does.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nightbalm' 
-								),
-								197 => array (
-										'id' => 6617,
-										'name' => 'Frost-Light Indrik^n',
-										'icon' => '/esoui/art/icons/pet_puresnowindrik.dds',
-										'desc' => 'Some claim that this indrik comes into being when the first rays of the sun hit pristine snow. Whether that`s true or not, it can help you make an impression as you wander the streets of Alinor or venture beyond that.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snowpearl' 
-								),
-								198 => array (
-										'id' => 6622,
-										'name' => 'Fawn^M',
-										'icon' => '/esoui/art/icons/pet_fawn.dds',
-										'desc' => 'Nimble and fleet, this fawn sticks to your side like you`re its mother. Cute? Oh yes. Those eyes! That nose! Those spots!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sprinter' 
-								),
-								199 => array (
-										'id' => 6623,
-										'name' => 'Frost Atronach Wolf Pup^N',
-										'icon' => '/esoui/art/icons/pet_frostwolfpup.dds',
-										'desc' => 'This pup isn`t one for simple games of fetch, but it will follow you loyally through your adventures. That and its ability to chill your water simply by curling around it? Practical and cute, in its own frosty way.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snowball' 
-								),
-								200 => array (
-										'id' => 6624,
-										'name' => 'Frost Atronach Senche Cub^N',
-										'icon' => '/esoui/art/icons/pet_frostsenchecub.dds',
-										'desc' => 'Some would choose to pass on a senche cub that has sharp edges and no fur. But not you! In fact, you can look forward to its cooling nudges for attention while trudging through deserts.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Frostpurr' 
-								),
-								201 => array (
-										'id' => 6625,
-										'name' => 'Frost Atronach Pony^N',
-										'icon' => '/esoui/art/icons/pet_frostpony.dds',
-										'desc' => 'Are ponies too adorable for you? Fear not! This pony takes adorable, freezes it, and adds a hefty helping of \"don`t even think about petting my nose.\" A welcome companion to those who hate the heat, as well!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shardhoof' 
-								),
-								202 => array (
-										'id' => 6626,
-										'name' => 'Frost Atronach Kagouti Calf^N',
-										'icon' => '/esoui/art/icons/pet_frostkagouti.dds',
-										'desc' => 'A frost atronach in kagouti calf form, this companion embodies the essence of Vvardenfell`s wilds in an icy way, making it an interesting choice for heroes seeking to stop threats in that region. Native Dark Elves might look askance at you, however.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Winterstorm' 
-								),
-								203 => array (
-										'id' => 6628,
-										'name' => 'Jade-Crown Dragonslayer Wolf^F',
-										'icon' => '/esoui/art/icons/pet_jadecrowndragonslayerwolf.dds',
-										'desc' => '\"As the fiercest of the Dragonslayer wolves, this one`s eyes glow a steady green, and it remains by her owner`s side even against the most majestic of Dragons.\"—Javinda, Dragonslayer',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Dauntless' 
-								),
-								204 => array (
-										'id' => 6630,
-										'name' => 'Frost Atronach Bear Cub^N',
-										'icon' => '/esoui/art/icons/pet_frostbearcub.dds',
-										'desc' => 'You needn`t know Conjuration magic to have an atronach companion—Clan Direnni mages have gifted bear cubs of that provenance to those they deem worthy. They can be oddly heart-warming despite their frosty form.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Iceclaw' 
-								),
-								205 => array (
-										'id' => 6631,
-										'name' => 'Legendary Dragon Wolf^M',
-										'icon' => '/esoui/art/icons/pet_legenddragwolf.dds',
-										'desc' => 'This wolf`s experiences with Dragons surpasses that of many Dragon Hunters. And it has chosen to be at your side! An excellent match, indeed.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Glory' 
-								),
-								206 => array (
-										'id' => 6672,
-										'name' => 'Mudcrab of Eternal Doom^N',
-										'icon' => '/esoui/art/icons/pet_deadlandsembercrab.dds',
-										'desc' => 'Few can withstand the scorching heat and relentless desolation of the Deadlands. Those unlucky few who find themselves trapped there may encounter one of these scuttling horrors—a hideous reminder of their grim and eternal fate.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Witherhope' 
-								),
-								207 => array (
-										'id' => 6689,
-										'name' => 'Voriplasm',
-										'icon' => '/esoui/art/icons/pet_voriplasm.dds',
-										'desc' => '\"A mage from Lilmoth found a way to, ahem, `tame` these green slimes. Yes, it will follow you around, leaving a disgusting trail of slime, but it`s hardly docile. My apprentice`s so-called `pet` woke me by trying to engulf my face.\"—Aleri Andalor',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Gibblegog' 
-								),
-								208 => array (
-										'id' => 6950,
-										'name' => 'Haunting Indrik^n',
-										'icon' => '/esoui/art/icons/pet_ghostindrik.dds',
-										'desc' => 'Though some scholars in Alinor have hypotheses about why an indrik would linger after death, none have as yet proven them. Perhaps these indriks have simply picked someone worthy to follow for all time?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Requiem' 
-								),
-								209 => array (
-										'id' => 7105,
-										'name' => 'Sacrificial Pocket Mammoth',
-										'icon' => '/esoui/art/icons/pet_pocketmammoth.dds',
-										'desc' => 'Though the arcane markings on this gray pocket mammoth indicate its status as a sacrificial offering, these creatures often end up trundling along after soft-hearted souls like yourself.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Renegade' 
-								),
-								210 => array (
-										'id' => 7110,
-										'name' => 'Emberthroat Durzog',
-										'icon' => '/esoui/art/icons/pet_durzogemberthroat.dds',
-										'desc' => 'Bred for their wicked intelligence, the Emberthroat Durzog might just outwit the Netch Gouger Goblins that raised them. Only those with nimbler minds keep their loyalty—and that might just be you!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Lavajumper' 
-								),
-								211 => array (
-										'id' => 7271,
-										'name' => 'Hallin`s Jackal',
-										'icon' => '/esoui/art/icons/pet_hallinsjackal.dds',
-										'desc' => 'After news of the Seventh Legion`s presence near Hallin`s Stand spread, several Evermore citizens moved quickly to protect some at-risk fauna, among them a breed of easily domesticated jackals. Now one of these fierce companions can roam at your side.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Spiritcaller' 
-								),
-								212 => array (
-										'id' => 7273,
-										'name' => 'Gloomspore Guar Calf',
-										'icon' => '/esoui/art/icons/pet_gloomsporeguar.dds',
-										'desc' => '\"No better companion exists than my devoted Gloomspore Guar Calf. I used spores known for their calming properties to modify the guar`s temperament. Regrettably, it makes the creature gassy, but unmatched loyalty is worth opening windows.\"—Mage Naleldil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Stewbait' 
-								),
-								213 => array (
-										'id' => 7274,
-										'name' => 'Gloomspore Bear Cub',
-										'icon' => '/esoui/art/icons/pet_gloomsporebear.dds',
-										'desc' => '\"Integrating research left behind by Ahzidal the Enchanter, I crafted a bear cub from spores acquired from a well-traveled merchant. This creature bumbles around a bit more than its animal counterpart, but it glows! Perfection!\"—Mage Naleldil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bumbler' 
-								),
-								214 => array (
-										'id' => 7275,
-										'name' => 'Gloomspore Senche Cub',
-										'icon' => '/esoui/art/icons/pet_gloomsporesenche.dds',
-										'desc' => '\"To the surprise of none but the most hard-hearted, I made a tumbling ball of fungal-fur in the form of a senche cub. How could I not? And shame on any who pass this adorable bundle of spores without smiling.\"—Mage Naleldil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sporesnuggle' 
-								),
-								215 => array (
-										'id' => 7276,
-										'name' => 'Gloomspore Pony',
-										'icon' => '/esoui/art/icons/pet_gloomsporepony.dds',
-										'desc' => '\"Challenged by a colleague, I created a pony-fungus creature. The first few stood as still as statues, so I added manic morels from Dementia. That livened things up considerably. If you adopt one, I suggest keeping it out of your parlor.\"—Mage Naleldil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nuzzler' 
-								),
-								216 => array (
-										'id' => 7277,
-										'name' => 'Gloomspore Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_gloomsporewolf.dds',
-										'desc' => '\"I designed some adorable wolf pups, adding oxblood fungus spores to see if that instills fierce guardianship in them. It worked—they now guard my feet from things like boots and stockings. Consider garbing yourself out of their sight!\"—Mage Naleldil',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Waggles' 
-								),
-								217 => array (
-										'id' => 7278,
-										'name' => 'Rimedusk Indrik^n',
-										'icon' => '/esoui/art/icons/pet_rimeduskindrik.dds',
-										'desc' => 'The sound of wind gusting through dusklit, ice-laden trees heralds a Rimedust Indrik`s birth. These indriks emanate a sense of deep calm wherever they go.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Stargazer' 
-								),
-								218 => array (
-										'id' => 7279,
-										'name' => 'Coldspring Nix-Hound',
-										'icon' => '/esoui/art/icons/pet_coldspringnixhound.dds',
-										'desc' => 'Dark Elves of House Hlaalu, knowing that Vvardenfell isn`t the only place with deadly flora, fauna, and folk, bred a nix-hound that can thrive in different environments. Even with its gorgeous blue-purple shading, it still possesses a menacing air.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bugeyes' 
-								),
-								219 => array (
-										'id' => 7280,
-										'name' => 'Ice-Glow Salamander',
-										'icon' => '/esoui/art/icons/pet_iceglowsalamander.dds',
-										'desc' => 'While studying arcane husbandry, Mage Naleldil discovered a long-forgotten Ayleid ritual capable of granting luminescent qualities to common salamanders. Now, due to an unexpected population explosion, she gives them to those who impress her.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Stickytoes' 
-								),
-								220 => array (
-										'id' => 7502,
-										'name' => 'Rosethorn Indrik^n',
-										'icon' => '/esoui/art/icons/pet_rosethornindrik.dds',
-										'desc' => 'Some Alinor scholars claim these indriks form when Magicka mingles with the petals of early-blooming roses. Others note that the roses` thorns need to have drawn blood first. Regardless, this creature inspires creativity in any it follows.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Dreamchaser' 
-								),
-								221 => array (
-										'id' => 7503,
-										'name' => 'Sapling Indrik^n',
-										'icon' => '/esoui/art/icons/pet_saplingindrik.dds',
-										'desc' => 'As trees awaken in the spring, the first light of dawn sparks the formation of a Sapling Indrik from Magicka-touched acorns. Boundless hope fills those they choose to follow.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Acorn`s Promise' 
-								),
-								222 => array (
-										'id' => 7531,
-										'name' => 'Skald-Muse Fledgling Gryphon',
-										'icon' => '/esoui/art/icons/pet_bardscollegegryphon.dds',
-										'desc' => 'Legends claim that Dibella sent one of these joyful gryphon fledglings to the Bards College during the bards` opening performance, marking it as being the first creature inside the building.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Piper' 
-								),
-								223 => array (
-										'id' => 7532,
-										'name' => 'Twilight Striped Lynx',
-										'icon' => '/esoui/art/icons/pet_lynxumbral.dds',
-										'desc' => 'Decades ago, Nords whispered stories of a reclusive dark-furred lynx that ate spirits barred from Sovngarde. Imagine the Nords` surprise when they found these lynxes domesticated as tent guards during a raid on Reach natives.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shadownipper' 
-								),
-								224 => array (
-										'id' => 7534,
-										'name' => 'Frostbite Spider',
-										'icon' => '/esoui/art/icons/pet_frostbitespider.dds',
-										'desc' => '\"Though I lost many trained frostbite spiders to those who took them for an aggressive infestation of Solitude, I moved outside town and now give them away. They are trained, venomous, and ready to follow you in your travels!\"—Hlokela of Solitude',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Webby' 
-								),
-								225 => array (
-										'id' => 7738,
-										'name' => 'Vale Fawn',
-										'icon' => '/esoui/art/icons/pet_valefawn.dds',
-										'desc' => 'Though this adorable fawn`s kin shimmer with hues different than its own, the first color ever seen was the pearly white glow on this one. Give it enough care and you can help it overcome its shyness, allowing it to cavort at your side.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wetnose' 
-								),
-								226 => array (
-										'id' => 7739,
-										'name' => 'Nightrose Vale Fawn',
-										'icon' => '/esoui/art/icons/pet_valefawnred.dds',
-										'desc' => '\"The red glow of a Nightrose stems from its time of birth,\" a spelunker claims. \"If the sky above is red, so is the fawn.\" While some scoff at this, all agree on one thing: Nightroses have a sixth sense for danger, nudging awake any chosen family.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rosewater' 
-								),
-								227 => array (
-										'id' => 7740,
-										'name' => 'Ambersheen Vale Fawn',
-										'icon' => '/esoui/art/icons/pet_valefawnyellow.dds',
-										'desc' => 'Its amber-gold glimmer creates a warmth that one stablemaster states, \"Can get you through chilly nights under the Skyrim stars.\" All it takes to keep one of these vale fawns at your side is a lick of honey now and again.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Honeywine' 
-								),
-								228 => array (
-										'id' => 7741,
-										'name' => 'Emerald Vale Fawn',
-										'icon' => '/esoui/art/icons/pet_valefawngreen.dds',
-										'desc' => 'For a time, scholars thought only one type of vale fawn existed. Now, knowing better, some wonder why the variation? The fawns care not. But, ones with a green shimmer love to race. Choose one as a companion, and it might even race you!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Fleetflicker' 
-								),
-								229 => array (
-										'id' => 7742,
-										'name' => 'Orchidfall Vale Fawn',
-										'icon' => '/esoui/art/icons/pet_valefawnpurple.dds',
-										'desc' => 'One scholar studying vale fawns notes that the purple-hued Orchidfall fawn—named after a now-lost flora-filled cavern in Skyrim—enjoys eating flowers. \"Give it a flower, and it`s your friend for life!\" Do you have your flower in hand?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nectarnuzzle' 
-								),
-								230 => array (
-										'id' => 8029,
-										'name' => 'Energetic Dwarven Shock-Spider',
-										'icon' => '/esoui/art/icons/pet_alchemistdwarvenspider.dds',
-										'desc' => 'Sparks fly with this dwarven spider! Light up your life by taking this automaton for a lively jaunt around town. It`ll follow over any terrain, happily zapping away!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Zappy the Wonderbug' 
-								),
-								231 => array (
-										'id' => 8030,
-										'name' => 'Firepoint Fledgling Gryphon',
-										'icon' => '/esoui/art/icons/pet_autumngryphon.dds',
-										'desc' => 'Dramatic coloration marks this gryphon as one originally bred by Khajiit in Elsweyr. Due to some \"incidents,\" the unfortunate breeders sold their stock, making them available to fine folk such as you!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Frolicfeather' 
-								),
-								232 => array (
-										'id' => 8031,
-										'name' => 'Nightmare Firestalker Cub',
-										'icon' => '/esoui/art/icons/pet_daemoncat3.dds',
-										'desc' => 'Some may find the fiery cuteness of this horned cub unbearable, but you can handle it! Just watch out for those adorable little paws—they`re hot as coals.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Heatwave' 
-								),
-								233 => array (
-										'id' => 8034,
-										'name' => 'Graywinter Sabre Cat Cub',
-										'icon' => '/esoui/art/icons/pet_skyrimsabercat.dds',
-										'desc' => 'Though adorable, even as cubs these sabre cats seek out trolls in the White River region, hoping to nip at their flesh and bring them down by sheer force of numbers. Luckily for you, you`re not a troll! Also, we mentioned they`re adorable, yes?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Trollroller' 
-								),
-								234 => array (
-										'id' => 8035,
-										'name' => 'Sovngarde Bear Cub',
-										'icon' => '/esoui/art/icons/pet_sovngardebearcub.dds',
-										'desc' => '\"Potential. Bear cubs from Sovngarde sense it and follow those who have it—all the way back to Sovngarde. While here, they make for sometimes silly companions.\"—Clever Woman Moritra',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Rompworth' 
-								),
-								235 => array (
-										'id' => 8036,
-										'name' => 'Sovngarde Pony Guar',
-										'icon' => '/esoui/art/icons/pet_sovngardeguarcalf.dds',
-										'desc' => '\"You may laugh at the idea of a pony guar from Sovngarde, but they exist. In fact, one showed up around here, but it chose to follow a worthy traveler. Or perhaps one freer with cuddles than I am.\"—Clever Woman Moritra',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Skitterhop' 
-								),
-								236 => array (
-										'id' => 8037,
-										'name' => 'Sovngarde Pony',
-										'icon' => '/esoui/art/icons/pet_sovngardepony.dds',
-										'desc' => '\"Noble ponies trot forth from Sovngarde, seeking those who have made oaths, knowingly or not. Curiosity prompts them to follow an oathmaker to see how they fulfill their promise. If one follows you, give it an apple. They love them.\"—Clever Woman Moritra',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Oatbreaker' 
-								),
-								237 => array (
-										'id' => 8038,
-										'name' => 'Sovngarde Sabre Cat Cub',
-										'icon' => '/esoui/art/icons/pet_sovngardesabercatcub.dds',
-										'desc' => '\"Sabre cat cubs from Sovngarde might play with string, but it`s not visiting us for such trifles. Instead, they serve as the eyes and ears of Sovngarde, allowing them watch our world—while sometimes getting tangled in yarn.\"—Clever Woman Moritra',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Caprice' 
-								),
-								238 => array (
-										'id' => 8039,
-										'name' => 'Sovngarde Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_sovngardewolfpup.dds',
-										'desc' => '\"Wolf cubs from the Hall of Valor tumble into our world, ready to help catalogue knowledge for their masters. They particularly love to howl along to skalds and bards, but they`ll join up with anyone who travels widely. \"—Clever Woman Moritra',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shoestalker' 
-								),
-								239 => array (
-										'id' => 8041,
-										'name' => 'Snowsnarl Durzog',
-										'icon' => '/esoui/art/icons/pet_wrothgardurzog.dds',
-										'desc' => 'Born with a snarl, these striped durzogs tend to bite the hand that feeds them—but only gently after they get to know you.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Icescream' 
-								),
-								240 => array (
-										'id' => 8153,
-										'name' => 'Barnacle-Back Coral Crab',
-										'icon' => '/esoui/art/icons/pet_coralmudcrabb.dds',
-										'desc' => 'While many crustaceans struggle to remove clinging barnacles, the Barnacle-Back Coral Crabs appreciate the company. Some naturalists believe the crabs welcome their guests` sharpened shells as an added protective layer. But maybe they`re just gregarious!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Barnie' 
-								),
-								241 => array (
-										'id' => 8186,
-										'name' => 'Microtized Verminous Fabricant',
-										'icon' => '/esoui/art/icons/pet_verminousfabricant.dds',
-										'desc' => 'With its sharp teeth, scary spines, and enormous horn, this fabricant follower not only shows that you mean business as you go about your day, but also indicates an appreciation for the complex and refined machines of Sotha Sil.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bristlehorn' 
-								),
-								242 => array (
-										'id' => 8187,
-										'name' => 'Tawny Lambent Guar',
-										'icon' => '/esoui/art/icons/pet_glowgillguar.dds',
-										'desc' => 'Frequently seen sniffing items and creatures alike, these Murkmire guar glow a soft amber. Those with close ties to the swamp claim they feel it feeding the guar`s light, but some scholars believe the luminescence is simply an alchemical reaction.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Noggin' 
-								),
-								243 => array (
-										'id' => 8188,
-										'name' => 'Akaviri Potentate Wolf Cub',
-										'icon' => '/esoui/art/icons/pet_potentatewolfcub.dds',
-										'desc' => '\"Talking with the trainers of the wolf riders that Versidue-Shaie established in 2E 4 allowed me to see the armored pups at play. I adored how they bonelessly stretched on the ground. Hard to believe they grow to be so fierce!\"—Mirannah of Gwylim',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Puddlejumper' 
-								),
-								244 => array (
-										'id' => 8189,
-										'name' => 'Akaviri Potentate Sabre Cat Cub',
-										'icon' => '/esoui/art/icons/pet_potentatesabrecub.dds',
-										'desc' => '\"Before heading to Skyrim in 2E 7, the Potentate had to train sabre cat cubs to the saddle. Watching these cubs pounce while wearing their training barding all these many years later almost made me lose my composure and squeal.\"—Mirannah of Gwylim',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Threadchaser' 
-								),
-								245 => array (
-										'id' => 8190,
-										'name' => 'Akaviri Potentate Pony',
-										'icon' => '/esoui/art/icons/pet_potentatepony.dds',
-										'desc' => '\"In 2E 5, companies using the new enchanted barding designed by Versidue-Shaie`s battlemages received their orders: hunt and kill Reman loyalists. Though initially only horses, ponies and more earned the special barding and training.\"—Mirannah of Gwylim',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Daintyhoof' 
-								),
-								246 => array (
-										'id' => 8191,
-										'name' => 'Akaviri Potentate Guar Calf',
-										'icon' => '/esoui/art/icons/pet_potentateguarcalf.dds',
-										'desc' => '\"The Potentate first mounted up on guar steeds in 2E 27 under the Red Mountain`s shadow, but they trained guar calves to the saddle just outside Mournhold. One barded calf demanded nose-pats from me when I visited—I couldn`t resist.\"—Mirannah of Gwylim',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Scritchnose' 
-								),
-								247 => array (
-										'id' => 8192,
-										'name' => 'Akaviri Potentate Bear Cub',
-										'icon' => '/esoui/art/icons/pet_potentatebearcub.dds',
-										'desc' => '\"The cubs trained into steeds by the Potentate in 2E 23 proved so successful that this practice continues today. Seeing one melted my heart—that tail tassel! In their training barding, they walk through Leyawiin`s streets each week.\"—Mirannah of Gwylim',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Tailbobber' 
-								),
-								248 => array (
-										'id' => 8195,
-										'name' => 'Orcrest Jerboa',
-										'icon' => '/esoui/art/icons/pet_jerboiavar.dds',
-										'desc' => 'This fastidious little jerboa originated from Orcrest, but recent events saw them scurry away or go into deep hiding among the nooks and crannies of that ill-fated city. With coaxing, one of these delightful little creatures might venture forth with you!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nosenibbler' 
-								),
-								249 => array (
-										'id' => 8199,
-										'name' => 'Teacup Chaurus Chitterling',
-										'icon' => '/esoui/art/icons/pet_chaurus.dds',
-										'desc' => 'When raised from the egg, these small chaurus learn commands extraordinarily well. Some folk insist that carrying the egg near your heart helps the chitterling form an attachment to you, making it less likely to wander off and become a menace to others.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Teacup' 
-								),
-								250 => array (
-										'id' => 8200,
-										'name' => 'Karthwasten Silver Boar',
-										'icon' => '/esoui/art/icons/pet_boarvariant.dds',
-										'desc' => 'Silver hide and dark gray stripes mark these domesticated boars, which once ran wild around Karthwasten. Their stomachs run on a tight schedule, making them perfect for those who lose track of time. Nothing like waking up to boar snuffles in your ear!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snuffles' 
-								),
-								251 => array (
-										'id' => 8201,
-										'name' => 'Somnolent Void Rot',
-										'icon' => '/esoui/art/icons/pet_voidrot.dds',
-										'desc' => '\"I`m not sure why my apprentice insists on making pets of gooey creatures, but here we are, looking at a smaller void rot. So far, it seems the sleeping potion keeps it tractable. So far. Those black tendrils concern me, however.\"—Aleri Andalor',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Gogglegoo' 
-								),
-								252 => array (
-										'id' => 8219,
-										'name' => 'Jewel-Feathered Sep Adder',
-										'icon' => '/esoui/art/icons/pet_colorfulsepadder.dds',
-										'desc' => '\"As we people of the root know, the Hist provides. With this feathered sep adder, it gives us a creature who provides both loyal companionship, as well as keen eyesight and smell. It senses danger before its companion quite often.\"—Daixth',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Dreams-of-Flight' 
-								),
-								253 => array (
-										'id' => 8220,
-										'name' => 'Nightmare Bear Cub',
-										'icon' => '/esoui/art/icons/pet_nightmarebearcub.dds',
-										'desc' => 'Some say you should embrace your nightmares. With this darling little bear cub, you can do exactly that! This trundling bundle of adorable terror might have flaming eyes and fiery paws, but it loves hugs.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nightbear' 
-								),
-								254 => array (
-										'id' => 8221,
-										'name' => 'Snowball Buddy',
-										'icon' => '/esoui/art/icons/pet_snowball.dds',
-										'desc' => 'Never be without a snowball to throw at … uh, wait. It appears and goes plop onto the ground? Ah, I see! Ahem. Never be without a friendly snowball buddy as you adventure in Tamriel! Guaranteed to show up in even the hottest climates as if by magic.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snowy' 
-								),
-								255 => array (
-										'id' => 8222,
-										'name' => 'Viridescent Dragon Frog',
-										'icon' => '/esoui/art/icons/pet_greendragonfrog.dds',
-										'desc' => '\"A tale says these green frogs grew as large as Dragons, but envied the Dragons their wings. One pact with Peryite later, and they gained their wings but lost their size. So, best not to make pacts with Peryite. Yet they are amusing companions.\"—Daixth',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Happyhopper' 
-								),
-								256 => array (
-										'id' => 8223,
-										'name' => 'Deadlands Wamasu',
-										'icon' => '/esoui/art/icons/pet_daedricwamasu.dds',
-										'desc' => 'Born from wamasu taken from Shadowfen to the Deadlands, or so their vendors claim, these progeny light up with fire instead of lightning. When confronted, their fiery spines project fire, making them fierce defenders of those they choose to follow.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Flamethorn' 
-								),
-								257 => array (
-										'id' => 8520,
-										'name' => 'Nenalata Ayleid Wolf Pup',
-										'icon' => '/esoui/art/icons/pet_ayleidwolfpup.dds',
-										'desc' => '\"During the Nenalata evacuation, barded wolf pups fought off a berserking bear until a warrior could take it down. These same pups helped keep their Ayleids warm when resting. Fierce but loving little creatures.\"—Beredalmo the Signifier',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Lattakynd' 
-								),
-								258 => array (
-										'id' => 8532,
-										'name' => 'Linchal Titian Fox',
-										'icon' => '/esoui/art/icons/pet_linchaltitanfox.dds',
-										'desc' => 'Though shy, this orange and black creature fiercely defends its den, which builders of Fort Linchal noted in their records. They tamed those they displaced during construction, then took them home to the Imperial City, to the delight of many a noble.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Autumnflare' 
-								),
-								259 => array (
-										'id' => 8534,
-										'name' => 'Bal Ur Cliff Strider',
-										'icon' => '/esoui/art/icons/pet_cliffstrider.dds',
-										'desc' => '\"Everyone told me not to explore Bal Ur. Yeah, Daedric, blah blah whatever. What`s worse? Striders there go for the head in droves. Gorgeous colors, though, all red and black, so I trapped and started training them. Won`t crack your crown now!\"—Skorg',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Nogginknocker' 
-								),
-								260 => array (
-										'id' => 8536,
-										'name' => 'Lilmoth Ancestor Lizard',
-										'icon' => '/esoui/art/icons/pet_helstromlizardvar.dds',
-										'desc' => 'Striking scarlet hues mark this ancestor lizard, which some claim are the ancestors of the Bright-Throats. While this hospitality-minded tribe remains silent on this claim, these lizards are known to comfort the pain of others by nuzzling them.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Dimik' 
-								),
-								261 => array (
-										'id' => 8537,
-										'name' => 'Regal Razorback',
-										'icon' => '/esoui/art/icons/pet_princeboar.dds',
-										'desc' => 'This boar`s regal bearing and attire indicate a level of breeding that would not allow for \"cute\" or \"comical\" behavior. Nothing could be further from the truth! He digs for his own truffles, plus rumors indicate he loves batter-based treats.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Pancake' 
-								),
-								262 => array (
-										'id' => 8542,
-										'name' => 'Niben River Fellrunner',
-										'icon' => '/esoui/art/icons/pet_nibonriverfellrunner.dds',
-										'desc' => 'Those traversing the Niben River can see these fellrunners racing along the banks, avoiding dangers while seeking safe water. Enterprising merchants capture and sell them to buyers captivated by their teal-feathered, avian beauty.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Screech' 
-								),
-								263 => array (
-										'id' => 8544,
-										'name' => 'Blue Cloisonne Clockwork Shalk',
-										'icon' => '/esoui/art/icons/pet_blueclockworkshal.dds',
-										'desc' => '\"The unusual decorative touches on this clockwork creature show off the skill of its creator, which must be Sotha Sil himself. To what purpose? Well, I plan to keep one by my side to see if that ever becomes clear.\"—Journal fragment found on a skeleton',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Curiosity' 
-								),
-								264 => array (
-										'id' => 8547,
-										'name' => 'Clearspring Striped Fawn',
-										'icon' => '/esoui/art/icons/pet_clearspringstripedfawn.dds',
-										'desc' => 'Long ago, some of the striped fawns of Clearspring Tarn felt a call to migrate elsewhere, and they eventually found protection and a home with the Falinesti Wood Elves. Though you can spot them in many areas, they retain their original name.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Valedancer' 
-								),
-								265 => array (
-										'id' => 8551,
-										'name' => 'Dwarven Scarab',
-										'icon' => '/esoui/art/icons/pet_dwarvenscarab.dds',
-										'desc' => 'Some adventurers call animunculi like these nuisances since they get under foot easily. Some who prefer constructed companions recommend the Dwarven Scarab over any other type, stating that not only are they pleasing to the eye but also neat as a pin.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ambler' 
-								),
-								266 => array (
-										'id' => 8823,
-										'name' => 'Fledgling Terror Bird',
-										'icon' => '/esoui/art/icons/pet_terrorbird.dds',
-										'desc' => 'Taming even a young terror bird requires patience, full-coverage armor, and even more patience. The result, however, can put pause to any seeking to cast you in the role of victim. Plus these fledglings cuddle so nicely while making cute sleeping noises!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Cuddlemonster' 
-								),
-								267 => array (
-										'id' => 9067,
-										'name' => 'Wasten Coraldale Mudcrab',
-										'icon' => '/esoui/art/icons/pet_wastencoraldalemudcrab.dds',
-										'desc' => 'Once considered a delicacy by Maormer, these iridescent mudcrabs regard every creature a threat, even other mudcrabs. With proper handling, it probably won`t snap at your nose. Probably.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Toetugger' 
-								),
-								268 => array (
-										'id' => 9068,
-										'name' => 'Goldspine Boar',
-										'icon' => '/esoui/art/icons/pet_goldspineboar.dds',
-										'desc' => 'While Alik`r natives count this sleeping boar`s twitches to foretell of coming sandstorms, others enjoy its penchant to bob along to a drum`s beat or squeal until it gains a taste of burgundy wine. Clearly, a boar that favors festivities! Like you, maybe?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Charmer' 
-								),
-								269 => array (
-										'id' => 9069,
-										'name' => 'Iliac Spotted Goat',
-										'icon' => '/esoui/art/icons/pet_lliacspottedgoat.dds',
-										'desc' => 'Ask an Iliac Bay native what they`d miss most about their home and the answer might be the sight of tree-climbing spotted goats. Fortunately for these goat-lovers, the creatures now bleat their way from the bay to climb all manner of trees in new homes.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Timberblat' 
-								),
-								270 => array (
-										'id' => 9070,
-										'name' => 'Ja`khajiit Khamira',
-										'icon' => '/esoui/art/icons/pet_khamirasenchecub.dds',
-										'desc' => 'Ready for action? Like Khamira herself, this kitten certainly is! With a roll and a hiss, Ja`khajiit Khamira enters your life, ready to face danger at your side.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Ja`khamira' 
-								),
-								271 => array (
-										'id' => 9072,
-										'name' => 'Scutecicle Haj Mota',
-										'icon' => '/esoui/art/icons/pet_hajmotavaru30.dds',
-										'desc' => 'These cerulean-toned haj mota hatchlings learn to fend for themselves amid ice caves, frozen wastes, and crevasses early on. If you tame one, not only do you have a future terror loyal to you, but you also gain its keen survival instinct in frosty lands.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shellie' 
-								),
-								272 => array (
-										'id' => 9073,
-										'name' => 'Vale Sabre Cat',
-										'icon' => '/esoui/art/icons/pet_valesabercat.dds',
-										'desc' => 'Syliril the trapper caught a sabre cat from the Vale and presented it to Emperor Durcorach in 2E 531. Not to be outdone, Durcorach`s beastmaster created a more resplendent cat. He was fed to the hunting dogs when the color washed out of the cat`s fur.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Lilyfang' 
-								),
-								273 => array (
-										'id' => 9076,
-										'name' => 'Stitchfur Cavy',
-										'icon' => '/esoui/art/icons/pet_mara.dds',
-										'desc' => 'Visiting the Stitches requires a certain amount of fortitude and bravado. Living there, as do these cavies, involves hiding and good timing, as well. Gain a cavy`s hard-won trust, and you gain a furry friend seeking neck-snuggles for life.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Wigglerump' 
-								),
-								274 => array (
-										'id' => 9083,
-										'name' => 'Bog Dog',
-										'icon' => '/esoui/art/icons/pet_prowler.dds',
-										'desc' => '\"Blackwood has some odd creatures. Take the bog dog. Sure, it lives in bogs, but it`s no dog. That said, tame it and train it, and it`ll follow you anywhere. Just make sure the local guards know it`s yours.\"—Grelaith of White Stallion Inn',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Boggo' 
-								),
-								275 => array (
-										'id' => 9238,
-										'name' => 'Spectral Mudcrab',
-										'icon' => '/esoui/art/icons/pet_spectralmudcrab.dds',
-										'desc' => '\"If the creature following behind me truly is a ghost, then this is the gentlest haunting I have ever seen. The crustation only skitters at my feet and occasionally clacks its claws at unwelcome houseguests.\"—Bensharaz, Spirit Hunter',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Tidepool' 
-								),
-								276 => array (
-										'id' => 9240,
-										'name' => 'Sandswirl Fledgling Terror Bird',
-										'icon' => '/esoui/art/icons/pet_terrorbirdyellow.dds',
-										'desc' => 'In the wild, Sandswirl Terror Birds cloak themselves in wind-blown sand to ambush unsuspecting prey. This little fledgling is keen to practice the technique, so be sure to warn your companions before a sandstorm hits. No one wants to lose a toe!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Sandghost' 
-								),
-								277 => array (
-										'id' => 9243,
-										'name' => 'Lowland Bristleback',
-										'icon' => '/esoui/art/icons/pet_lowlandbristleback.dds',
-										'desc' => '\"Which lowland does this ornery creature call home? Why, all of them! Think I`m exaggerating? Believe what you want, but know that unless trained while young, they`ll charge you in a heartbeat. Best have them on your side.\"—Miet, Breeder',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Snortle' 
-								),
-								278 => array (
-										'id' => 9244,
-										'name' => 'Boar Snow',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								279 => array (
-										'id' => 9254,
-										'name' => 'Sapphire Sep Adder',
-										'icon' => '/esoui/art/icons/pet_sapphiresepadder.dds',
-										'desc' => 'According to the Ash`abah, if you receive one of these fierce sep adders as a gift and you both survive for a year with each other, you have passed the first trial necessary to trade in poisons. Bonus? You keep the jewel-toned creature—if you live.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Bite-Bite' 
-								),
-								280 => array (
-										'id' => 9256,
-										'name' => 'Spotted Plow Spider',
-										'icon' => '/esoui/art/icons/pet_spottedplowspider.dds',
-										'desc' => 'Farmers in Southern Cyrodiil carry an antidote to Spotted Plow Spiders since it is not uncommon to accidentally rake through a nest and be bitten by thousands of tiny hatchlings. Despite the dangers and if raised correctly, the spiders make good pets.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Poison Dancer' 
-								),
-								281 => array (
-										'id' => 9275,
-										'name' => 'Topal Durzog',
-										'icon' => '/esoui/art/icons/pet_topaldurzog.dds',
-										'desc' => 'Said to have been bred by Coral-Splitter goblins to hunt for fresh fish, these aqua-blue and coral-striped durzogs spread to the shores of Topal Bay decades ago. To this day, they still love to dive into the surf and snag aquatic bounty!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Fishhunter' 
-								),
-								282 => array (
-										'id' => 9369,
-										'name' => 'Prairie Dog',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'Template Description',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								283 => array (
-										'id' => 9378,
-										'name' => 'Mzark Jade-Cap Shroom Shalk',
-										'icon' => '/esoui/art/icons/pet_greenshroomshalk.dds',
-										'desc' => '\"My Wick and I have built many nests, felled sickened trees, and cleaned the roots of our Hist. Dryskins think shalks of her color are lucky, but Wick dirties her pinchers in rotting bark for our fortune.\"—Vunsu, Arborealist',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Shell Strong' 
-								),
-								284 => array (
-										'id' => 9379,
-										'name' => 'Sunback Bear Cub',
-										'icon' => '/esoui/art/icons/pet_sunbackbearcub.dds',
-										'desc' => 'Wardens of Morthal ride large, hulking Sunback Bears into battle. While the full-sized bears tend to scare villagers, cubs are more easily accepted. Plus, the cubs` tiny ears can get the staunchest of merchants to lower their prices.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Honey Thief' 
-								),
-								285 => array (
-										'id' => 9380,
-										'name' => 'Green Feathered Sep Adder',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'Template Description',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								286 => array (
-										'id' => 9381,
-										'name' => 'Yellow Feathered Sep Adder',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'Template Description',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								287 => array (
-										'id' => 9382,
-										'name' => 'Mind-Shriven Cat',
-										'icon' => '/esoui/art/icons/pet_mindshrivencat.dds',
-										'desc' => '\"The Mind-Shriven usually have no concept of the self, but this feline appears to be as content with its nature as always. It seems that Molag Bal himself cannot enslave a cat.\"—Warlock Aldaale',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Soot' 
-								),
-								288 => array (
-										'id' => 9388,
-										'name' => 'Wamasu Hatchling',
-										'icon' => '/esoui/art/icons/pet_wamasuhatchling.dds',
-										'desc' => 'A crackle of lightning accompanies this hatchling wherever it goes, providing a foreshadowing of what it will become in its adulthood. Before that point, though, it makes an excellent if imposing adventuring buddy!',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Stormlight' 
-								),
-								289 => array (
-										'id' => 9390,
-										'name' => 'Ironclad Senche-Serval Kitten',
-										'icon' => '/esoui/art/icons/pet_ironcladsencheserval.dds',
-										'desc' => 'Known for their prowess at sweeping an area clean of shalks, these armored kittens possess a keen sense of group tactics at an early age. So, not only do you gain an affectionate furball as a friend, but you also have fewer pests distracting you.',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Little Letale' 
-								),
-								290 => array (
-										'id' => 9401,
-										'name' => 'Gloam Gryphon Fledgling',
-										'icon' => '/esoui/art/icons/pet_gloamgryphon.dds',
-										'desc' => 'Contrary to popular belief, this cute-yet-terrifying Evergloam creature does not eat shadows to grow larger. But they definitely do win at games that involve hiding in murky places—a gift from Nocturnal herself, perhaps?',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Boo' 
-								),
-								291 => array (
-										'id' => 9406,
-										'name' => 'Shock Theodolite',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'Template Description',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								292 => array (
-										'id' => 9507,
-										'name' => 'FawnPet003',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								),
-								293 => array (
-										'id' => 9640,
-										'name' => 'Infernium',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => 'Template Description',
-										'type' => 3,
-										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
-								) 
-						) 
-				),
-				4 => array (
-						'subCategoryIndex' => 4,
-						'name' => 'Domestic',
-						'numCollectibles' => 73,
+						'numCollectibles' => 303,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7,
@@ -25138,24 +23140,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Scissors' 
 								),
 								2 => array (
-										'id' => 9,
-										'name' => 'Pony Guar',
-										'icon' => '/esoui/art/icons/pet_003.dds',
-										'desc' => 'A favorite household pet in Morrowind, the Pony Guar is a glutton for affection.',
+										'id' => 8,
+										'name' => 'Razak`s Opus',
+										'icon' => '/esoui/art/icons/quest_dungeons_razaks_opus.dds',
+										'desc' => 'A loyal steam-powered Dwarven Spider, fueled by magicka from a soul gem that will last for eras.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Coconut' 
+										'nickname' => 'Cogbucket' 
 								),
 								3 => array (
-										'id' => 12,
-										'name' => 'Whiterun Wolfhound',
-										'icon' => '/esoui/art/icons/pet_009.dds',
-										'desc' => 'The hunting dog of the Nords of Skyrim, known to face down sabre cats for their masters.',
+										'id' => 10,
+										'name' => 'Crony Scrib',
+										'icon' => '/esoui/art/icons/pet_004.dds',
+										'desc' => 'The caramel scrib crony is a quiet companion, devoted and easily housebroken.',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => 'Horker' 
+										'nickname' => 'Grubchum' 
 								),
 								4 => array (
+										'id' => 11,
+										'name' => 'Imgakin Monkey',
+										'icon' => '/esoui/art/icons/pet_013.dds',
+										'desc' => 'The imgakin monkey pet is lively and cheerful, even in the grimmest of dungeons.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Raisins' 
+								),
+								5 => array (
 										'id' => 13,
 										'name' => 'Rufous Mudcrab',
 										'icon' => '/esoui/art/icons/pet_001.dds',
@@ -25164,7 +23175,2714 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Crabcakes' 
 								),
-								5 => array (
+								6 => array (
+										'id' => 15,
+										'name' => 'Frisky Scrib',
+										'icon' => '/esoui/art/icons/pet_017.dds',
+										'desc' => 'This lambent little larva loves crawling alongside valorous adventurers!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Larvie' 
+								),
+								7 => array (
+										'id' => 16,
+										'name' => 'High Hrothgar Wraith',
+										'icon' => '/esoui/art/icons/pet_018.dds',
+										'desc' => 'An ice wraith from the slopes of the highest mountain in Tamriel.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tinsel' 
+								),
+								8 => array (
+										'id' => 17,
+										'name' => 'Loyal Dwarven Sphere',
+										'icon' => '/esoui/art/icons/pet_020.dds',
+										'desc' => 'A Dwarven Sphere of the long-lost Dwemer.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gyro' 
+								),
+								9 => array (
+										'id' => 27,
+										'name' => 'Blackwood Monkey',
+										'icon' => '/esoui/art/icons/pet_002.dds',
+										'desc' => 'This busy little buddy is sometimes mistaken for an imgakin monkey.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flinger' 
+								),
+								10 => array (
+										'id' => 28,
+										'name' => 'Vermilion Scuttler',
+										'icon' => '/esoui/art/icons/pet_005.dds',
+										'desc' => 'A reptilian pal from Morrowind, where they`re known for quickness, devotion, and a mildly offensive odor.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Warty' 
+								),
+								11 => array (
+										'id' => 30,
+										'name' => 'Helstrom Ancestor Lizard',
+										'icon' => '/esoui/art/icons/pet_011.dds',
+										'desc' => 'Some scholars believe Argonians are descended—or were uplifted—from these tree-dwelling swamp lizards. True or not, they make great pets, affectionate and low-maintenance.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Princess' 
+								),
+								12 => array (
+										'id' => 61,
+										'name' => 'Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_012.dds',
+										'desc' => 'According to the calculations of the sages of the Cult of the Ancestor Moth, the Bantam Guar is the cutest creature in all Tamriel.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Squee' 
+								),
+								13 => array (
+										'id' => 63,
+										'name' => 'Striped Senche-Panther',
+										'icon' => '/esoui/art/icons/pet_021.dds',
+										'desc' => 'This elegant senche-panther is a distant relative of the Khajiit, though it cannot speak like the cat-folk.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Indigo' 
+								),
+								14 => array (
+										'id' => 67,
+										'name' => 'Amber Ash Hopper^n',
+										'icon' => '/esoui/art/icons/pet_118.dds',
+										'desc' => 'Native to the upper Ashlands and the slopes of Red Mountain, the perky Amber Ash Hopper is a favorite pet of Dunmer expatriates, as it`s relatively low maintenance (it digs its own hole in the ground), and it reminds the Dark Elves of home.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ald`skippy' 
+								),
+								15 => array (
+										'id' => 68,
+										'name' => 'Deep-Moss Ash Hopper^n',
+										'icon' => '/esoui/art/icons/pet_125.dds',
+										'desc' => 'The Deep-Moss Ash Hopper is native to southern Vvardenfell, where it`s most commonly found in the fungal-forested uplands and the coastal marshes. They`ve been adopted as mascot bugs by the Buoyant Armigers, who admire their green carapaces.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wub Bug' 
+								),
+								16 => array (
+										'id' => 69,
+										'name' => 'Ruby Shroom Shalk^n',
+										'icon' => '/esoui/art/icons/pet_133.dds',
+										'desc' => 'The Ruby Shroom Shalk is a popular house pet on the Telvanni Coast; the sway of its warm red fungus caps as it waddles about in the firelight of a parlor hearth just says \"I`m home\" to Dark Elves of a sentimental nature.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Redcap' 
+								),
+								17 => array (
+										'id' => 77,
+										'name' => 'Blue-Cap Shroom Shalk^n',
+										'icon' => '/esoui/art/icons/pet_122.dds',
+										'desc' => 'For the Dark Elves, the Shroom Shalk is a companion animal that brings calm and serenity to the Dunmeri home. There`s just something so soothing about the way the blue fungal sprouts on its back gently wave and puff out spores as the beast putters about.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sporebug' 
+								),
+								18 => array (
+										'id' => 78,
+										'name' => 'Bitter Coast Cliff Strider^n',
+										'icon' => '/esoui/art/icons/pet_121.dds',
+										'desc' => 'Thetys Ramarys of Balmora says, \"I love our Bitter Coast Striders, but feel bad that they can`t fly very well. So I`m selectively breeding them into a strain that, one day, will dominate the Vvardenfell skies, pursuing its prey for great distances!\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shrieky' 
+								),
+								19 => array (
+										'id' => 88,
+										'name' => 'Freckled Guar',
+										'icon' => '/esoui/art/icons/pet_003.dds',
+										'desc' => 'Known in Deshaan as loyal pals, the Freckled is the most intelligent breed of guar.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'S`wit' 
+								),
+								20 => array (
+										'id' => 89,
+										'name' => 'Gold-Cap Shroom Shalk^n',
+										'icon' => '/esoui/art/icons/pet_134.dds',
+										'desc' => 'It isn`t well known outside financial circles, but somewhere in the basement or sub-level of every bank in Morrowind you`ll find the institution`s mascot, a sweet old waddling Gold-Cap Shroom Shalk. The symbolism, of course, is obvious.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Funguspuppy' 
+								),
+								21 => array (
+										'id' => 90,
+										'name' => 'Boralis Gray Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_083.dds',
+										'desc' => 'When the gray wolves of Rivenspire howl across the dismal moors of Boralis, it sends a chill down the spine and even the bravest look back over their shoulders—but by Kynareth, their pups sure are cute! And adorably playful into the bargain.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Darla' 
+								),
+								22 => array (
+										'id' => 91,
+										'name' => 'Striated Pony Guar',
+										'icon' => '/esoui/art/icons/pet_025.dds',
+										'desc' => 'A favorite household pet in Morrowind, the Striated Pony Guar is a glutton for affection.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wobble' 
+								),
+								23 => array (
+										'id' => 92,
+										'name' => 'White River Ice Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_085.dds',
+										'desc' => 'The Ice Wolves that lope along the White River of northeast Skyrim are associated with both the goddess Mara and the Wolf Totem of Atmora—but it`s mighty hard to think of their mythic stature when you`re rolling around in the snow with an Ice Wolf Puppy!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wurf' 
+								),
+								24 => array (
+										'id' => 102,
+										'name' => 'Doom Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_082.dds',
+										'desc' => 'When a Doom Wolf Pup looks at you with its big red eyes, you may just melt inside—but as soon as you turn your back, that little rascal will be shredding your embroidered Arenthian pillows and digging up your herbal garden.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Vandal' 
+								),
+								25 => array (
+										'id' => 103,
+										'name' => 'Solitude Silver Wolf',
+										'icon' => '/esoui/art/icons/pet_solitudewolf.dds',
+										'desc' => 'Common sights around Solitude, these steadfast and fierce wolves also adorn the heraldry of that city. All of them are, of course, good wolves, and befriending one brings you good fortune in the land of the Nords!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snowbouncer' 
+								),
+								26 => array (
+										'id' => 111,
+										'name' => 'Fennec Fox',
+										'icon' => '/esoui/art/icons/pet_027.dds',
+										'desc' => 'A native of Hammerfell, the Fennec Fox has been domesticated by many of its desert peoples, and makes an alert and loyal pet.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Vixen' 
+								),
+								27 => array (
+										'id' => 112,
+										'name' => 'Purple Daggerback',
+										'icon' => '/esoui/art/icons/pet_028.dds',
+										'desc' => 'The glowing Purple Daggerback boar is found only in Craglorn in the vicinity of the Spellscar, from which it seems to have absorbed some sort of magical aura.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pricklypear' 
+								),
+								28 => array (
+										'id' => 114,
+										'name' => 'Red Pit Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_084.dds',
+										'desc' => 'The Red Pit Wolves of southern Skyrim are known for their aggression and ferocity, and you can see that even in their puppies, adorable as they are. They love to play, but that means play-fighting, so expect to get chewed on as you tussle!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scrapper' 
+								),
+								29 => array (
+										'id' => 145,
+										'name' => 'Bal Foyen Nix-Hound',
+										'icon' => '/esoui/art/icons/pet_033.dds',
+										'desc' => 'Who says a giant, aggressive, blood-sucking insect can`t make a loveable pet? Not the Dark Elves of Bal Foyen, who breed them as trackers, watch-hounds, and netch-deflators.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skeeter' 
+								),
+								30 => array (
+										'id' => 156,
+										'name' => 'Pocket Mammoth',
+										'icon' => '/esoui/art/icons/pet_052.dds',
+										'desc' => 'Pocket Mammoths were originally bred small in order to make them more manageable as livestock, but in Wrothgar some escaped and began breeding in the wild. However, they`re easily domesticated, especially if you get one when it`s young.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nosy' 
+								),
+								31 => array (
+										'id' => 159,
+										'name' => 'Chub Loon',
+										'icon' => '/esoui/art/icons/pet_051.dds',
+										'desc' => 'A denizen of Tamriel`s northern shores, the Chub Loon survives on the bounty of the sea, dining on small fish of all types. Though clumsy and awkward on shore, it flies gracefully and is a nimble swimmer. Best of all, they make affectionate pets.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Waddles' 
+								),
+								32 => array (
+										'id' => 160,
+										'name' => 'Echalette',
+										'icon' => '/esoui/art/icons/pet_050.dds',
+										'desc' => 'Full-grown echateres may be stubborn and ornery, but the baby Echalettes are playful and, frankly, just plain adorable. Once a young Echalette bonds with its master, it becomes a devoted companion.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skitters' 
+								),
+								33 => array (
+										'id' => 163,
+										'name' => 'Necrotic Hoarvor',
+										'icon' => '/esoui/art/icons/pet_038.dds',
+										'desc' => 'Your new best friend is a giant blood-sucking insect bloated with pustulant, lethal contagion! It`s bursting with both infection and affection—for you!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pustule' 
+								),
+								34 => array (
+										'id' => 190,
+										'name' => 'Black Bear Cub',
+										'icon' => '/esoui/art/icons/pet_044.dds',
+										'desc' => 'The Black Bear Cub is both playful and affectionate, and is so adorable it`s quickly forgiven for whatever trouble it gets into.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Roly-Poly' 
+								),
+								35 => array (
+										'id' => 191,
+										'name' => 'Cave Bear Cub',
+										'icon' => '/esoui/art/icons/pet_045.dds',
+										'desc' => 'The Cave Bear Cub may miss its mountain home, but that just makes it twice as loyal to its mortal companion.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Honeymuzzle' 
+								),
+								36 => array (
+										'id' => 193,
+										'name' => 'Snow Bear Cub',
+										'icon' => '/esoui/art/icons/pet_046.dds',
+										'desc' => 'The Snow Bear is known for its fierceness, but its cub is as cute as a bug. Maybe even two bugs.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sugarfur' 
+								),
+								37 => array (
+										'id' => 232,
+										'name' => 'Moonlight Senche-Tiger',
+										'icon' => '/esoui/art/icons/pet_049.dds',
+										'desc' => 'The Moonlight Senche-Tigers have been the sleek and silvery guardians of the Khajiiti temples of the moons ever since the revelation of the Riddle`Thar.',
+										'type' => 3,
+										'image' => '/esoui/art/store/pc_crwn_pets_silversenchetiger_1x1.dds',
+										'nickname' => 'Secunda' 
+								),
+								38 => array (
+										'id' => 242,
+										'name' => 'Kindlespit Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_054.dds',
+										'desc' => 'The common or Kindlespit Dragon Frog is an engagingly preposterous little pal whose antics never fail to amuse. Hammerfell tales say the huge Dragons of ancient legend were all turned into these tiny flame-puffing hoppers.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Heartburn' 
+								),
+								39 => array (
+										'id' => 243,
+										'name' => 'Tangerine Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_053.dds',
+										'desc' => 'The slug-like Sloads of Thras bred the flame-hued Tangerine Dragon Frog so they could be spotted more easily in their archipelago`s murky lagoons. Some say they were bred to be pets, but the Sload word for them translates as \"snacks.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flamekisser' 
+								),
+								40 => array (
+										'id' => 244,
+										'name' => 'Blue Oasis Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_055.dds',
+										'desc' => 'The comical Blue Oasis Dragon Frog is native to Hew`s Bane, and before they were bred as pets could be found only on that Hammerfell peninsula. These little bug-eaters are popular mascots at open-air taverns.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Topaz' 
+								),
+								41 => array (
+										'id' => 260,
+										'name' => 'Senche-Lion Cub',
+										'icon' => '/esoui/art/icons/pet_056.dds',
+										'desc' => 'If you domesticate a Senche-Lion Cub when it`s young enough, it will follow you everywhere, no matter how dangerous. And your enemies will burn from the cuteness.',
+										'type' => 3,
+										'image' => '/esoui/art/store/pc_crwn_pets_senchecub_1x1.dds',
+										'nickname' => 'Kitty Claws' 
+								),
+								42 => array (
+										'id' => 303,
+										'name' => 'Sabre Leopard Cub^n',
+										'icon' => '/esoui/art/icons/pet_135.dds',
+										'desc' => '\"For the Mages Guild, I devised an enchanted `appealometer` that measures creatures` adorableness,\" says Researcher Neotenus. \"After tests on other pets, I tried to take a reading on a Sabre Snow Leopard Cub, but the device overloaded and shattered.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Toofums' 
+								),
+								43 => array (
+										'id' => 324,
+										'name' => 'Northern Lynx',
+										'icon' => '/esoui/art/icons/pet_061.dds',
+										'desc' => 'Native to Tamriel`s northern forests, in the wild the Lynx lives on a diet of rabbits, hares, and skeevers. Domesticated, the Lynx makes a dignified and stylish animal companion, popular with the Nord aristocracy.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Jarlcat' 
+								),
+								44 => array (
+										'id' => 325,
+										'name' => 'Colovian Badger',
+										'icon' => '/esoui/art/icons/pet_062.dds',
+										'desc' => 'Though Badgers mainly eat burrowing rodents, farmers hate them because they`ll take chickens, kwama scribs, and bantam guar if they get the chance. Cranky and irritable, they make terrible pets—which makes them a favorite among the Undaunted.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Grumps' 
+								),
+								45 => array (
+										'id' => 357,
+										'name' => 'Snowy Sabre Cat Cub',
+										'icon' => '/esoui/art/icons/pet_357.dds',
+										'desc' => 'This little cub loves to play in the snow, but don`t let it get lost in the deep drifts—and when you pull it out, be careful of those little sabre teeth!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cotton Fluff' 
+								),
+								46 => array (
+										'id' => 360,
+										'name' => 'Jackal',
+										'icon' => '/esoui/art/icons/pet_060.dds',
+										'desc' => 'The Jackal of Tamriel is called by some the \"thieves` dog\" because it`s quick to sniff out sources of food, and clever enough to figure out how to get at them. Once tamed, they serve as loyal companions.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mischief' 
+								),
+								47 => array (
+										'id' => 364,
+										'name' => 'Clockwork Shalk^n',
+										'icon' => '/esoui/art/icons/pet_124.dds',
+										'desc' => 'The Clockwork Shalk is a fabricant from the hidden laboratories of Sotha Sil. It seems programmed to obey the master it imprints upon, but who knows what secret orders it will follow if events occur to trigger them?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cogroach' 
+								),
+								48 => array (
+										'id' => 391,
+										'name' => 'Sep Adder',
+										'icon' => '/esoui/art/icons/pet_064.dds',
+										'desc' => 'These flying vipers have short tempers and nasty dispositions, but just look at those cute crimson eyes! Some of them can even be trained not to inject poison when they bite. The perfect pet!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scaly Death' 
+								),
+								49 => array (
+										'id' => 392,
+										'name' => 'Heartland Brindle Badger',
+										'icon' => '/esoui/art/icons/pet_065.dds',
+										'desc' => 'Native to the Cyrodilic Heartland, the Brindle Badger is said to be as fierce as a wolverine, yet as cunning as a fox. A Brindle Badger adorned the banners of King Hrol when he led his knights on the Quest of Sancre Tor.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sir Snarls' 
+								),
+								50 => array (
+										'id' => 393,
+										'name' => 'M`aiq the Badger',
+										'icon' => '/esoui/art/icons/pet_066.dds',
+										'desc' => 'How did this one become a so-handsome copperback Badger? M`aiq will tell you. One day near Balmora he met two Telvanni wizards, one of whom said, \"Everything I tell you is true,\" while the other said, \"Everything I tell you is a lie….\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'M`aiq?' 
+								),
+								51 => array (
+										'id' => 406,
+										'name' => 'Clouded Senche-Leopard Cub',
+										'icon' => '/esoui/art/icons/pet_068.dds',
+										'desc' => 'Of all the varieties of wild senche-cats, the Clouded Leopard may be the most beautiful. Their cubs love to play-fight, and stalk tiny bugs with the most hilariously serious expressions.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Thundercloud' 
+								),
+								52 => array (
+										'id' => 476,
+										'name' => 'Haj Mota Hatchling',
+										'icon' => '/esoui/art/icons/pet_076.dds',
+										'desc' => 'Though it may some day grow into a horrific face-eating behemoth, when it`s young the Haj Mota Hatchling is undeniably cute. For a while, they are trainable, come when called, and happily waddle after their masters wherever they may go.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shelbert' 
+								),
+								53 => array (
+										'id' => 477,
+										'name' => 'Desert Lynx',
+										'icon' => '/esoui/art/icons/pet_075.dds',
+										'desc' => 'The Desert Lynx, or caracal lynx, is native to south central Tamriel, roaming the savannahs from Corinthe in Elsweyr as far north as the West Weald in Cyrodiil. It`s the totem animal of the pastoral Khajiiti tribes, and assists with managing the herds.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tufts' 
+								),
+								54 => array (
+										'id' => 478,
+										'name' => 'Infernal Sep Adder',
+										'icon' => '/esoui/art/icons/pet_077.dds',
+										'desc' => 'Though it may look like it just crawled from the depths of the Deadlands, the Infernal Sep Adder is actually native to the higher altitudes of Hammerfell. As pets, they are … not affectionate. Great conversation starters, though.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Atrocity' 
+								),
+								55 => array (
+										'id' => 483,
+										'name' => 'Dark Moons Lynx',
+										'icon' => '/esoui/art/icons/pet_074.dds',
+										'desc' => 'The Khajiit of Corinthe believe the all-black Dark Moons Lynx is the worldly incarnation of Southpaw, the feline companion to Rajhin the Footpad, god of thieves. It`s said Southpaw keeps watch while Rajhin is breaking and entering.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Southpaw' 
+								),
+								56 => array (
+										'id' => 484,
+										'name' => 'Dwarven War Dog',
+										'icon' => '/esoui/art/icons/pet_127.dds',
+										'desc' => 'This loyal beast has been trained for warfare, and will stick with you through every kind of conflict. As a bonus, it comes outfitted in ancient Dwarven dog armor, canine barding as durable today as it was when it was first made many centuries in the past.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bthunch' 
+								),
+								57 => array (
+										'id' => 592,
+										'name' => 'Dozen-Banded Vvardvark^n',
+										'icon' => '/esoui/art/icons/pet_139.dds',
+										'desc' => 'This creature, unusually cute for a denizen of Vvardenfell, is a newcomer to the island whose home and origin are unknown—unless the rumors are true that it`s a hybrid born from the magical laboratories of the Telvanni.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Serjo Licky' 
+								),
+								58 => array (
+										'id' => 607,
+										'name' => 'Cobalt Sep Adder',
+										'icon' => '/esoui/art/icons/pet_063.dds',
+										'desc' => 'The blue-scaled Cobalt Sep Adder is the rarest of the wild varieties, and almost never seen in captivity. They are particularly prized by the royalty of Hammerfell`s contentious city-states, as they`re said to be able to detect poison in drinks and food.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Poison Pal' 
+								),
+								59 => array (
+										'id' => 740,
+										'name' => 'Arctic Fennec Fox^n',
+										'icon' => '/esoui/art/icons/pet_092.dds',
+										'desc' => 'The Arctic Fennec is native to the snowy shores of Skyrim`s Sea of Ghosts, and the local Nords, when they spot one romping in the drifts, respond with the traditional oath of \"Shor`s Ears!\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Powder' 
+								),
+								60 => array (
+										'id' => 741,
+										'name' => 'Dusky Fennec Fox^n',
+										'icon' => '/esoui/art/icons/pet_091.dds',
+										'desc' => 'The Dusky or Midnight Fennec Fox is native to the high savannah of Northern Elsweyr, and is often domesticated by nomadic tribes of Khajiit.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Black-Ears' 
+								),
+								61 => array (
+										'id' => 743,
+										'name' => 'Senche-Tiger Cub',
+										'icon' => '/esoui/art/icons/pet_096.dds',
+										'desc' => 'It`s a striped Senche-Tiger Cub. What more could you need to know? \"Ah,\" you ask, \"but is it magical?\" Just look in those eyes for your answer.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Spot' 
+								),
+								62 => array (
+										'id' => 745,
+										'name' => 'Black Senche-Panther Kitten',
+										'icon' => '/esoui/art/icons/pet_094.dds',
+										'desc' => '\"Rajhin the Purring Liar had so many shadows that some of them took on lives of their own, becoming black senche-panthers who stalk freely through Elsweyr—just like this kitten that plays with my tail.\" —Clan-Mother Ahnissi',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Keirgo' 
+								),
+								63 => array (
+										'id' => 746,
+										'name' => 'Dro-m`Athra Senche Cub',
+										'icon' => '/esoui/art/icons/pet_098.dds',
+										'desc' => 'Combine Adorable with Abominable, and what do you get? The dro-m`Athra Senche Cub, the cutest thing ever to come out of the Dark Behind the World. Dance, kitten, dance!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Woe Kitty' 
+								),
+								64 => array (
+										'id' => 747,
+										'name' => 'Senche Cub (White Tiger)',
+										'icon' => '/esoui/art/icons/pet_099.dds',
+										'desc' => '',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								65 => array (
+										'id' => 749,
+										'name' => 'Senche-Leopard Cub^n',
+										'icon' => '/esoui/art/icons/pet_100.dds',
+										'desc' => 'The senche-leopard is one of the most feared predators of the Tenmar Forest in central Elsweyr, but if one of its adorable cubs can be adopted when young, it makes a fiercely loyal companion.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Motley' 
+								),
+								66 => array (
+										'id' => 750,
+										'name' => 'Striped Senche-Panther Cub',
+										'icon' => '/esoui/art/icons/pet_097.dds',
+										'desc' => 'Striped senche-panthers are popular mascots of the Baandari Pedlars of Elsweyr. Incredibly adorable as cubs, even when small they can be trained like magpies to fetch shiny things back to their masters.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Inky' 
+								),
+								67 => array (
+										'id' => 752,
+										'name' => 'Ascadian Cliff Strider^n',
+										'icon' => '/esoui/art/icons/pet_119.dds',
+										'desc' => 'This bluish breed of Vvardenfell aerial reptile, known as the Azure or Ascadian Cliff Strider, is prized by flying-lizard fanciers as the prettiest and most ornamental of its species. Bonus: its screech terrifies crying babies into silence.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Strides-So-High' 
+								),
+								68 => array (
+										'id' => 761,
+										'name' => 'Craglorn Welwa',
+										'icon' => '/esoui/art/icons/pet_105.dds',
+										'desc' => 'Credit for the irresponsible and foolhardy project of domesticating the Craglorn Welwa is usually claimed by the Iron Orcs, who are always looking for ways to prove that they`re \"more bad-tusk\" than the Orcs of Wrothgar or Skyrim.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ears gro-Loth`Na' 
+								),
+								69 => array (
+										'id' => 764,
+										'name' => 'Sabre Cat Cub',
+										'icon' => '/esoui/art/icons/pet_114.dds',
+										'desc' => 'Sabre Cats are mighty and majestic hunters that rule the northern plains and tundra by sheer strength and savagery—but, Daedra take it, they sure are cute when they`re cubs!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Bitey' 
+								),
+								70 => array (
+										'id' => 765,
+										'name' => 'Nightfall Sabre Cat Cub',
+										'icon' => '/esoui/art/icons/pet_112.dds',
+										'desc' => '\"In my first months as a captive of the Reachmen, the only thing that made life bearable was my beloved pet, the Nightfall Sabre Cat Cub I was allowed as a companion.\" —Arthenice Belloq',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Duskitty' 
+								),
+								71 => array (
+										'id' => 769,
+										'name' => 'Hearthfire Hatchling',
+										'icon' => '/esoui/art/icons/pet_109.dds',
+										'desc' => 'Hearthfire Hatchlings, which are found only in an orphaned state, appear to be the offspring of a normal kagouti and one of the Hearthfire variety. Driven away by ordinary kagouti, these hatchlings are in grave need of adoption.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scorchy' 
+								),
+								72 => array (
+										'id' => 1144,
+										'name' => 'Molag Amur Cliff Strider^n',
+										'icon' => '/esoui/art/icons/pet_131.dds',
+										'desc' => 'The Molag Amur Cliff Strider is prized by reptilian connoisseurs because its coloration, though somber, is lightened by its subtle golden tones. And if startled, its squawk will cause passersby to jump and horses to bolt.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Leatherwing' 
+								),
+								73 => array (
+										'id' => 1148,
+										'name' => 'Shadowghost Senche-Panther^n',
+										'icon' => '/esoui/art/icons/pet_150.dds',
+										'desc' => 'In Elsweyr, being seen in the company of an uncanny Shadowghost Senche-Panther will put one under suspicion of being a Namiira cultist—or even a disguised dro-m`Athra.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nightpouncer' 
+								),
+								74 => array (
+										'id' => 1155,
+										'name' => 'Dwarven Spider',
+										'icon' => '/esoui/art/icons/pet_126.dds',
+										'desc' => 'A loyal Dwarven Spider liberated from a Dwemer ruin, converted, using the \"Neramo Method,\" to an unlocked and autonomous state that enables it to leave its original locale.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Arachnimunculus' 
+								),
+								75 => array (
+										'id' => 1169,
+										'name' => 'Ash Hopper^n',
+										'icon' => '/esoui/art/icons/pet_120.dds',
+										'desc' => '',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								76 => array (
+										'id' => 1173,
+										'name' => 'Brassilisk^n',
+										'icon' => '/esoui/art/icons/pet_162.dds',
+										'desc' => '\"The Brassilisk is created from interconnected brass squares, its exposed copper wiring allowing for its snakelike movement. Popular as a pet, you`ll often see them following the quick footsteps of young scholars.\" —Endilaril, Clockwork City Naturalist',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Coppertongue' 
+								),
+								77 => array (
+										'id' => 1194,
+										'name' => 'Tuxedo Vvardvark^n',
+										'icon' => '/esoui/art/icons/pet_138.dds',
+										'desc' => 'The most popular conjecture about the origin of the Vvardvark is that it`s a magical hybrid created by a rogue Telvanni wizard. The coloration of the Tuxedo Vvardvark, according to this theory, was intended to enable it to hide in a flock of chub loons.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stibbons' 
+								),
+								78 => array (
+										'id' => 1214,
+										'name' => 'Karthwolf Shepherd^n',
+										'icon' => '/esoui/art/icons/pet_142.dds',
+										'desc' => 'The Reachmen of Western Skyrim use their domesticated ice wolves to protect their clans` livestock. They also keep the herds healthy, as the Karthwolves themselves will cull out the weaklings.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Icepack' 
+								),
+								79 => array (
+										'id' => 1232,
+										'name' => 'Dwarven Theodolite',
+										'icon' => '/esoui/art/icons/pet_140.dds',
+										'desc' => 'This construct was a sort of automated measuring device designed to explore and survey subterranean areas, according to scholars of the lost Deep Elves—except for Narsis Dren, who insists it was an object of pursuit in Dwemeri team sports.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Busybody' 
+								),
+								80 => array (
+										'id' => 1241,
+										'name' => 'Vvardvark^n',
+										'icon' => '/esoui/art/icons/pet_137.dds',
+										'desc' => 'The Common, or Demotic Vvardvark has become, in just a few years, an everyday sight on the island of Vvardenfell. But where did they come FROM? Popular opinion points the finger at the wizards of House Telvanni—but they get blamed for everything.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lickspittle' 
+								),
+								81 => array (
+										'id' => 1371,
+										'name' => 'Dire Pony^n',
+										'icon' => '/esoui/art/icons/pet_144.dds',
+										'desc' => 'When you always wanted a pony as a child and your parents wouldn`t let you have one so you grew up bitter and tormented and became a dark cultist but now you can finally afford a pony.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Frighthoof' 
+								),
+								82 => array (
+										'id' => 1378,
+										'name' => 'Skeletal Cat^n',
+										'icon' => '/esoui/art/icons/pet_1378.dds',
+										'desc' => 'Even dark necromancers have feelings—some of them, anyway—and love their companion pets. Some love them so much they reanimate them after they pass away.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Meowbones' 
+								),
+								83 => array (
+										'id' => 1380,
+										'name' => 'Clockwork Skeevaton^n',
+										'icon' => '/esoui/art/icons/pat_153.dds',
+										'desc' => 'Originally designed for probing tiny, inaccessible areas of the Clockwork City, the mechanical Skeevaton can be set to recognize and follow an individual mortal, replicating pet behavior on the surface of Nirn.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skweex' 
+								),
+								84 => array (
+										'id' => 1387,
+										'name' => 'Shadowghost Pack Wolf^n',
+										'icon' => '/esoui/art/icons/pet_151.dds',
+										'desc' => 'Unlike their lone cousins, the great Shadowghost Wolf Mounts, the smaller Shadowghost Pack Wolves hunt on the darkest nights in howling groups. Separated from their packs, they make loyal companions.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mist Howler' 
+								),
+								85 => array (
+										'id' => 1396,
+										'name' => 'Shadowghost Guar^n',
+										'icon' => '/esoui/art/icons/pet_148.dds',
+										'desc' => 'Rarely seen outside the ash clouds of Vvardenfell`s great volcano, the little Shadowghost pony guar is scary cute.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shyscales' 
+								),
+								86 => array (
+										'id' => 1412,
+										'name' => 'Flame Atronach Bear Cub^n',
+										'icon' => '/esoui/art/icons/pet_160.dds',
+										'desc' => 'Summoned from the Infernace plane of Oblivion, this Flame Atronach variant is given the form of a charming little bear cub. Good for warming hearts and hands alike!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scorchcub' 
+								),
+								87 => array (
+										'id' => 1415,
+										'name' => 'Flame Atronach Senche-Jaguar^n',
+										'icon' => '/esoui/art/icons/pet_161.dds',
+										'desc' => 'The first summoner of this fiery kitten was attempting to compel the Daedra into the form of a full-grown senche-jaguar. Though initially embarrassed by her mistake, she nonetheless grew an attachment to this far more adorable form.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Inferno Kitten' 
+								),
+								88 => array (
+										'id' => 1416,
+										'name' => 'Flame Atronach Pack Wolf^n',
+										'icon' => '/esoui/art/icons/pet_158.dds',
+										'desc' => '\"Though smaller than its mount counterpart,\" wrote arch-conjurer Corvus Direnni, \"it`s necessary to take all precautions when handling the Flame Atronach Pack Wolf. I`ve found their curiosity insatiable, especially when near flammable objects.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flameprancer' 
+								),
+								89 => array (
+										'id' => 1417,
+										'name' => 'Flame Atronach Pocket Horse^n',
+										'icon' => '/esoui/art/icons/pet_157.dds',
+										'desc' => 'Due to the unusually tame nature of the Flame Atronach Pocket Horse, it has a long tradition of being the companion of younger members of the Direnni clan. It`s a good introduction to Daedric summoning for any budding conjurer.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Embermane' 
+								),
+								90 => array (
+										'id' => 1431,
+										'name' => 'Prodigious Brass Mudcrab^n',
+										'icon' => '/esoui/art/icons/pet_156.dds',
+										'desc' => 'These perky metal creations are known to pack quite the pinch. Though their rust-resistant coatings do enable them to enter into water, they`re far better at sinking than swimming.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pincer' 
+								),
+								91 => array (
+										'id' => 1440,
+										'name' => 'Ebony Brassilisk',
+										'icon' => '/esoui/art/icons/pet_154.dds',
+										'desc' => 'This experimental variation on the standard Brassilisk has certain key components fabricated from an Ebony alloy for enhanced durability out in the storms of the Radius.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Slithershadow' 
+								),
+								92 => array (
+										'id' => 1441,
+										'name' => 'Flame Atronach Pony Guar^n',
+										'icon' => '/esoui/art/icons/pet_159.dds',
+										'desc' => 'This Flame Atronach compelled to take the form of a small guar makes for a great traveling companion, especially in colder climates. It`s best to only summon your newfound friend when outdoors, as their mischievous natures might lead to accidents.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Blazebuddy' 
+								),
+								93 => array (
+										'id' => 1447,
+										'name' => 'Spotted Snow Senche-Leopard^n',
+										'icon' => '/esoui/art/icons/pet_163.dds',
+										'desc' => 'Even for the elusive senche-leopard, the Spotted Snow is a rare variety. Despite its frosty-looking fur, this adorable companion makes for a great cuddle buddy during long winter nights.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Frostfur' 
+								),
+								94 => array (
+										'id' => 1473,
+										'name' => 'Scorpion Fabricant^n',
+										'icon' => '/esoui/art/icons/pet_164.dds',
+										'desc' => '\"Since our Incarnatoriums can be modified to produce Fabricants modeled on almost any creature of Tamriel Above, why are Scorpion Fabricants of differing sizes so popular? They`re our most-requested fabs!\" says Clockwork Apostle Dringest.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stinger' 
+								),
+								95 => array (
+										'id' => 1485,
+										'name' => 'Psijic Brassilisk^n',
+										'icon' => '/esoui/art/icons/pet_165_ps4.dds',
+										'desc' => 'These rare Brassilisks are powered by blue soul gems brought back from the Psijic hideaway of Artaeum at the end of the First Era by Sotha Sil himself.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Psony' 
+								),
+								96 => array (
+										'id' => 1486,
+										'name' => 'Foxbat Brassilisk^n',
+										'icon' => '/esoui/art/icons/pet_165_xb1.dds',
+										'desc' => 'These mysterious green-glowing Brassilisks have been showing up in the environment outside the Brass Fortress. Some Clockwork Apostles suspect there`s a rogue Incarnatorium assembling them somewhere out in the Radius.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Brassbones' 
+								),
+								97 => array (
+										'id' => 1487,
+										'name' => 'Steam-Driven Brassilisk^n',
+										'icon' => '/esoui/art/icons/pet_165_steam.dds',
+										'desc' => 'With soul gems in short supply, the Clockwork Apostles invented this experimental Brassilisk powered by steam stored under high pressure.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pressure Valve' 
+								),
+								98 => array (
+										'id' => 4668,
+										'name' => 'Firepot Spider^n',
+										'icon' => '/esoui/art/icons/pet_4668.dds',
+										'desc' => '',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								99 => array (
+										'id' => 4669,
+										'name' => 'Firepot Spider Melee^n',
+										'icon' => '/esoui/art/icons/pet_4669.dds',
+										'desc' => '',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								100 => array (
+										'id' => 4726,
+										'name' => 'Small Bone Dragon Construct',
+										'icon' => '/esoui/art/icons/pet_171_bonedragon.dds',
+										'desc' => 'This construct resembles a great and fearsome Bone Dragon, but it`s actually a product of the Necromancer`s art, assembled from modern bird and reptile bones and then reanimated.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rattlewing' 
+								),
+								101 => array (
+										'id' => 4727,
+										'name' => 'Unholy Glow Bone Dragon',
+										'icon' => '/esoui/art/icons/pet_175_bonedragonvariant.dds',
+										'desc' => 'This necromantic construct of reanimated bones resembles a gruesome Bone Dragon, one so charged with unholy power that it emits an uncanny blue glow.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bluebelly' 
+								),
+								102 => array (
+										'id' => 4728,
+										'name' => 'Madcap Jester Monkey',
+										'icon' => '/esoui/art/icons/pet_178_jestermonkey.dds',
+										'desc' => 'Say, why does this little chum look at you funny? It must be your face! Ook ook! Ah, ha ha ha ha ha ha ha!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Jingles' 
+								),
+								103 => array (
+										'id' => 4729,
+										'name' => 'Karth Winter Hound^n',
+										'icon' => '/esoui/art/icons/pet_4729.dds',
+										'desc' => 'The Karth Winter Hound is the snow-white breed of the Markarth Bear Dog, snowy year-round for hunting in Skyrim`s snow-capped peaks. Some Reach clans reserve the Winter Hounds solely for chieftains.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snow Snarl' 
+								),
+								104 => array (
+										'id' => 4731,
+										'name' => 'Flameback Boar',
+										'icon' => '/esoui/art/icons/pet_170_daggerbackflameback.dds',
+										'desc' => 'Like the Purple Daggerback, the breed of Flameback Boars clearly had some kind of brush with the uncanny that imbued them with magical aspects. Regular boars just don`t have crimson glowing eyes and flame-colored bristle crests down their backs.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Barbecue' 
+								),
+								105 => array (
+										'id' => 4736,
+										'name' => 'Nightmare Senche Cub^n',
+										'icon' => '/esoui/art/icons/pet_4736.dds',
+										'desc' => 'Despite the fact that this night-black senche-tiger cub has burning paws and flaming eyes, it`s so adorable it might be a nightmare you never want to awaken from!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Vaermina' 
+								),
+								106 => array (
+										'id' => 4739,
+										'name' => 'Helkarn Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_4739.dds',
+										'desc' => 'The pups of the Helkarn Wolves from Elsweyr are almost as sociable with people as dog puppies, so they get a lot of attention when young. This probably contributes to their docility as mounts when full grown.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cuddlepaws' 
+								),
+								107 => array (
+										'id' => 4744,
+										'name' => 'Frostbane Pony Guar^n',
+										'icon' => '/esoui/art/icons/pet_172_scalecallerguar.dds',
+										'desc' => 'Though the reptilian Guar are native to the warmer climates south of Skyrim, the compact Pony Guar have long been popular pets among the aristocracy of Riften. Traditional Nords like to dress them in the Frostbane garb used on more local animals.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Jingles' 
+								),
+								108 => array (
+										'id' => 4745,
+										'name' => 'Frostbane Sabre Cat^n',
+										'icon' => '/esoui/art/icons/pet_174_scalecallersenche.dds',
+										'desc' => 'In \"The Tail of Ysgramor`s Cat,\" the Harbinger`s Sabre Cat hunting companion is described as being festooned with Atmoran Frostbane talismans, and some tradition-loving modern Nords still decorate their Sabre Cats in the same manner.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Totem-Tusk' 
+								),
+								109 => array (
+										'id' => 4746,
+										'name' => 'Frostbane Bear^n',
+										'icon' => '/esoui/art/icons/pet_176_scalecallerbear.dds',
+										'desc' => 'Nords who follow the tradition of hanging Frostbane totems and talismans on their beasts to protect them from Skyrim`s bitter cold often do it even when the animals are still young, to get them used to the idea.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pudgelocks' 
+								),
+								110 => array (
+										'id' => 4747,
+										'name' => 'Frostbane Wolf^n',
+										'icon' => '/esoui/art/icons/pet_176_scalecallerwolf.dds',
+										'desc' => 'To accustom their Frostbane Wolves to the click-clacking of dangling talismans and totems, the ancient Nords began dressing their companion wolves in Frostbane garb from an early age.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shaggypelt' 
+								),
+								111 => array (
+										'id' => 4748,
+										'name' => 'Frostbane Pony^n',
+										'icon' => '/esoui/art/icons/pet_173_scalecallerhorse.dds',
+										'desc' => 'The hardy ponies of the frozen north look even shaggier when they`re decorated with Frostbane hair-knots and ancient Nord totems. Whether the talismans keep the cold away is impossible to tell, but it`s certain these ponies never lose their good cheer.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shaggypony' 
+								),
+								112 => array (
+										'id' => 5078,
+										'name' => 'Ja`khajiit Raz^n',
+										'icon' => '/esoui/art/icons/pet_185_steve.dds',
+										'desc' => '\"Sweet young things like to give this one kittens as keepsakes,\" says Eye of the Queen Razum-dar, \"but raising a pet is not consistent with Raz`s romantic but itinerant life of intrigue. Perhaps you could give cute Ja`khajiit a good home, yes?\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'This One' 
+								),
+								113 => array (
+										'id' => 5079,
+										'name' => 'Firepet Spider^n',
+										'icon' => '/esoui/art/icons/pet_4668.dds',
+										'desc' => 'In the Clockwork City, mechanical Firepot Spiders can be programmed to follow chefs around like little walking barbecues. Someone has devised a secret method for exporting them from Sotha Sil`s hidden world—but how? Better get one while you still can.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rotisserie' 
+								),
+								114 => array (
+										'id' => 5080,
+										'name' => 'Alinor Ringtail^n',
+										'icon' => '/esoui/art/icons/pet_bassarisk_a_basic.dds',
+										'desc' => '\"Cute little thing, isn`t it? `Course, what I care about is that a Ringtail, properly trained, can get into places no one else can, and carry out small items in their cheek pouches. Lost goods, as it were, or misplaced valuables. Right?\" —Fenaanaral',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Desperado' 
+								),
+								115 => array (
+										'id' => 5083,
+										'name' => 'Prong-Eared Grimalkin^n',
+										'icon' => '/esoui/art/icons/pet_182_grimalkin.dds',
+										'desc' => 'Prong-Eared Grimalkins are widely regarded as having supernatural powers thanks to their ability to appear almost instantly when a container of cat food is opened, and to fit themselves into boxes that seem entirely too small for them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Earzles' 
+								),
+								116 => array (
+										'id' => 5084,
+										'name' => 'Coral Mudcrab^n',
+										'icon' => '/esoui/art/icons/pet_180_coralcrab.dds',
+										'desc' => 'Native to Summerset Isle, the gaudy Coral Mudcrab has elaborate coral growths on its back, as well as a claw that looks comically over-sized, but which is surprisingly functional. Count fingers after petting.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scatheclaw' 
+								),
+								117 => array (
+										'id' => 5085,
+										'name' => 'Springtide Indrik^n',
+										'icon' => '/esoui/art/icons/pet_192_indrik-springtide-green.dds',
+										'desc' => 'For mortals good in heart and soul, being in the presence of a Springtide Indrik induces serenity and makes anger almost impossible—though paradoxically it also inspires a righteous determination to fight injustice.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Heartsease' 
+								),
+								118 => array (
+										'id' => 5086,
+										'name' => 'Longhair Welwa^n',
+										'icon' => '/esoui/art/icons/pet_longhairwelwa.dds',
+										'desc' => 'As savage as Welwas are, history indicates that every pastoral society in Craglorn`s long history—Nedes, Yokudans, Goblins, and Orcs—has domesticated them at some point. They may be ugly, but they sure are loyal.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Fell-Chaser' 
+								),
+								119 => array (
+										'id' => 5087,
+										'name' => 'Shimmering Indrik^n',
+										'icon' => '/esoui/art/icons/pet_193_indrik-illustrious-gold.dds',
+										'desc' => 'No one can look at the glistening plumage of the Shimmering Indrik and doubt its enchanted nature, for it sparkles with Magicka and virtue. Here is a creature untainted by aggression, though it will ably defend itself at need.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Night Light' 
+								),
+								120 => array (
+										'id' => 5092,
+										'name' => 'Fawn Echalette^n',
+										'icon' => '/esoui/art/icons/pet_echalette_fawn.dds',
+										'desc' => 'When spring comes to the sun-dappled forests of southern Wrothgar, Echatere babies are sometimes born with temporary spotted camouflage that fades as the Echalette matures. It`s pretty while it lasts.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Tusky' 
+								),
+								121 => array (
+										'id' => 5093,
+										'name' => 'Masked Bear Cub^n',
+										'icon' => '/esoui/art/icons/pet_1151.dds',
+										'desc' => 'The handsome breed of Masked Bears are native to the Pale Pass region of the Jerall Mountains, which has given rise to the legend that they came in the First Era with the invaders from Akavir who ended up there. Bears from Akavir? Really?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flora' 
+								),
+								122 => array (
+										'id' => 5094,
+										'name' => 'Psijic Mascot Pony^n',
+										'icon' => '/esoui/art/icons/pet_psijicpony.dds',
+										'desc' => 'This perky but enigmatic equine glows with Magicka through the mystic runes that embellish its possibly-illusory epidermis. Enchanting!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Glony' 
+								),
+								123 => array (
+										'id' => 5095,
+										'name' => 'Psijic Mascot Wolf Pup^n',
+										'icon' => '/esoui/art/icons/pet_psijicwolfpup.dds',
+										'desc' => 'Are the Psijic Mascot pets real animals with an enchanted appearance, or illusory beast companions created from Magicka? The Psijic monks know which it is, but ask one, and all you get in reply is a smile.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Howland' 
+								),
+								124 => array (
+										'id' => 5096,
+										'name' => 'Psijic Mascot Guar Calf^n',
+										'icon' => '/esoui/art/icons/pet_psijicguar.dds',
+										'desc' => 'The first Guar came to Artaeum when a Psijic advisor to the Tribunal returned from Mournhold with a Pony Guar in the middle of the First Era, and they`ve been favorites of the Psijics ever since. There`s even a glowing Psijic Mascot Guar!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Glowy the Guar' 
+								),
+								125 => array (
+										'id' => 5097,
+										'name' => 'Psijic Mascot Bear Cub^n',
+										'icon' => '/esoui/art/icons/pet_psijicbearcub.dds',
+										'desc' => 'By tradition, the Psijic Mascot of the order`s Ritemaster is always a Bear Cub—but since there`s been only one Ritemaster, Iachesis, for over 3,000 years, the tradition hasn`t had much opportunity to change. Fortunately, others can befriend them as well!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bearmaster' 
+								),
+								126 => array (
+										'id' => 5098,
+										'name' => 'Psijic Mascot Senche Cub^n',
+										'icon' => '/esoui/art/icons/pet_psijicsenchecub.dds',
+										'desc' => '\"Some say that Psijic Mascot creatures aren`t true animals at all, but illusory constructs created by Psijic monks as portable storage batteries of Magicka,\" says Sapiarch Soraturil. \"What nonsense!\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mystikitten' 
+								),
+								127 => array (
+										'id' => 5099,
+										'name' => 'Pocket Salamander^n',
+										'icon' => '/esoui/art/icons/pet_salamander_01.dds',
+										'desc' => '\"I don`t know, something about being followed around by a tame miniature giant elemental amphibian just seems right to me, you know? Expresses my inner newt.\" —Dinuviel Darkwater of Rellenthil',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Newton' 
+								),
+								128 => array (
+										'id' => 5101,
+										'name' => 'Noweyr Pony^n',
+										'icon' => '/esoui/art/icons/pet_psijicpony_twitch.dds',
+										'desc' => 'The thief-god Rajhin is said to have stolen these enchanted purple Ponies from somewhere in Oblivion, but when his worshipers are asked where he got them, they just laugh and say, \"Noweyr!\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Neigh-Neigh' 
+								),
+								129 => array (
+										'id' => 5102,
+										'name' => 'Senche Cub of Scarlet Regret^n',
+										'icon' => '/esoui/art/icons/pet_psijicsenchecub_twitch.dds',
+										'desc' => 'This ominous yet playful pet, conjured by Psijic magic in shape of a glowing senche cub, represents an Artaeum monk`s regrettable choices that may yet be reversed by proper adherence to the Old Ways.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Crimson Cat' 
+								),
+								130 => array (
+										'id' => 5105,
+										'name' => 'Fledgling Gryphon^n',
+										'icon' => '/esoui/art/icons/pet_fledgelinggryphon.dds',
+										'desc' => 'Though eventually it will grow into a massive beast with a vast wingspan, a Fledgling Gryphon is just the right size for a companion creature, and its juvenile antics are hilarious!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Beaky' 
+								),
+								131 => array (
+										'id' => 5172,
+										'name' => 'Atmoran Snow Bear Cub',
+										'icon' => '/esoui/art/icons/pet_189_atmoranbearcub.dds',
+										'desc' => 'When a cub, the young Atmoran Snow Bear is a lap-clambering cuddle bug, a friendly fuzzball whose demeanor is completely at odds with the fierce reputation of adult Snow Bears. Enjoy them while they`re still small!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Avalanche' 
+								),
+								132 => array (
+										'id' => 5176,
+										'name' => 'Daemon Cockerel',
+										'icon' => '/esoui/art/icons/pet_229_blackrooster.dds',
+										'desc' => 'The hissing and twitching farmer who sells these claims they`re just ordinary black roosters. And probably they are. You must have just imagined that this Cockerel`s eyes glow after dark. You must have!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Spurs' 
+								),
+								133 => array (
+										'id' => 5180,
+										'name' => 'Solar Arc Dwarven Spider',
+										'icon' => '/esoui/art/icons/pet_200_dwarven-ebonyyellow.dds',
+										'desc' => 'This extremely rare Dwarven Spider model is surmounted with a double golden crescent, interpreted by scholars of the Dwemer as a \"Solar Arc,\" or tribute to the sun—an iconography otherwise completely unknown among the handiworks of the Deep Elves.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sunnylegs' 
+								),
+								134 => array (
+										'id' => 5188,
+										'name' => 'Teal-Faced Fellrunner^n',
+										'icon' => '/esoui/art/icons/pet_194_teal-fellrunner.dds',
+										'desc' => 'Craglorn Companions of Belkarth had no luck at all exporting Fellrunners for the High Rock and Hammerfell pet markets—until they sold a flock of the Teal-Faced variety to Fahara`jad`s menagerie in Sentinel. Suddenly they were all the rage!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bluebird' 
+								),
+								135 => array (
+										'id' => 5196,
+										'name' => 'Azure Fledgling Gryphon^n',
+										'icon' => '/esoui/art/icons/pet_183_azuregryphon.dds',
+										'desc' => 'The Gryphons that nest on the highest pinnacles of Eton Nir, the tallest mountain on Summerset, have a distinctive bluish tint to their plumage. Some sapiarchs call this sky-blue camouflage, but the Priests of Auri-El see in it a touch of the Divine.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cerulean' 
+								),
+								136 => array (
+										'id' => 5214,
+										'name' => 'Nightmare Wolf Pup^n',
+										'icon' => '/esoui/art/icons/pet_199_nightmarepup.dds',
+										'desc' => '\"Be scared—be very scared!\" say this pup`s big fiery eyes. \"Please?\" But no matter how much it tries to frighten like a grown-up Nightmare Wolf, this flaming fuzzball is still completely adorable.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ember Pup' 
+								),
+								137 => array (
+										'id' => 5219,
+										'name' => 'Lava Line Salamander^n',
+										'icon' => '/esoui/art/icons/pet_202_lavaline.dds',
+										'desc' => 'Summerset`s Salamanders are amphibians that, when threatened, defend themselves with an impressive array of elemental powers. The bright orange Lava Line on this breed is an indicator of its reliance on natural Flame magic.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Newton' 
+								),
+								138 => array (
+										'id' => 5222,
+										'name' => 'Crested Reef Viper',
+										'icon' => '/esoui/art/icons/pet_195_seaadder-yellow.dds',
+										'desc' => 'If you`re looking for a warm and fuzzy companion animal to cuddle with, don`t start with the Crested Reef Viper. But if what you want is an intimidating reptilian monster that says \"Don`t mess with me, city boy,\" this is the ophidian follower for you.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Spines' 
+								),
+								139 => array (
+										'id' => 5223,
+										'name' => 'Noble Riverhold Senche-Lion Cub',
+										'icon' => '/esoui/art/icons/pet_201_riverholdcub.dds',
+										'desc' => 'Even as cubs, the litter-mates of the noble Riverhold senche-lion prides exhibit the breed`s hallmark attributes of courage and loyalty, bravely defending their masters against encroaching beetles and butterflies!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pride-Cub' 
+								),
+								140 => array (
+										'id' => 5244,
+										'name' => 'Goldenback Spider Lackey',
+										'icon' => '/esoui/art/icons/pet_196_giantspider-goldenback.dds',
+										'desc' => 'For most people, giant spiders are just loathsome monsters to be destroyed by fire and steel, but Mephala Cultists know that they`re highly intelligent (for, you know, arthropods) and surprisingly trainable. The Goldenbacks are by far the friendliest.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Goldielegs' 
+								),
+								141 => array (
+										'id' => 5548,
+										'name' => 'Pale-Plume Fledgling Gryphon^n',
+										'icon' => '/esoui/art/icons/pet_187_eaglegryphon.dds',
+										'desc' => 'Less common than the usual variety, the Pale-Plume Gryphons are found only along the seacoast cliffs near the Tower of Dusk in southeast Summerset. Their Fledglings make engaging pets that can be trained to follow their masters even into danger.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Baldy' 
+								),
+								142 => array (
+										'id' => 5601,
+										'name' => 'Snowcap Fledgling Gryphon',
+										'icon' => '/esoui/art/icons/pet_234_snowgryphon.dds',
+										'desc' => 'On the highest pinnacles of Eton Nir, where the snow never melts, live the pale Snowcap Gryphons. Perfectly camouflaged for a life in the clouds, for most of the First Era they were considered to be a myth.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Peaky' 
+								),
+								143 => array (
+										'id' => 5642,
+										'name' => 'Mara`s Spring Chicken',
+										'icon' => '/esoui/art/icons/pet_216_coloredchicken.dds',
+										'desc' => 'As a sign of the blessing of Mara, Goddess of Fertility, in spring certain breeds of Tamriel`s hens lay eggs with shells in a variety of colors.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Egwina' 
+								),
+								144 => array (
+										'id' => 5657,
+										'name' => 'Kaleidotropic Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_211_kaleidascope.dds',
+										'desc' => 'This little critter`s bright, beautiful colors are actually a warning to predators that it`s a potent mouthful of poison. Fortunately for Tamriel`s humanoid mortals, its venom affects them as no more than a mild hallucinogen.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Touch-Me-Not' 
+								),
+								145 => array (
+										'id' => 5658,
+										'name' => 'Butterscotch Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_207_butterscotch.dds',
+										'desc' => '\"The Butterscotch Dragon Frog presumably got its name from the Argonian practice of naming creatures after flavors, whether those things taste like that or not. This one has no intention of finding out whether it does.\" —M`aiq the Liar',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bug-Biter' 
+								),
+								146 => array (
+										'id' => 5659,
+										'name' => 'Flame Skin Salamander^n',
+										'icon' => '/esoui/art/icons/pet_208_orangesalamander.dds',
+										'desc' => 'All the large Salamanders of southern Tamriel have elemental powers, but some specialize in particular forces; the Flame Skin breed, for example, almost ripples with fire.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Steamy' 
+								),
+								147 => array (
+										'id' => 5660,
+										'name' => 'Toxin Skin Salamander^n',
+										'icon' => '/esoui/art/icons/pet_210_greensalamander.dds',
+										'desc' => 'The large, lumbering Salamanders of southern Tamriel are known for defending themselves with various elemental bursts—all but one, the Toxin Skin variety, which relies on venom instead. Not even the Sapiarchs of the Crystal Tower can account for it.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Poisontail' 
+								),
+								148 => array (
+										'id' => 5661,
+										'name' => 'Shock Skin Salamander^n',
+										'icon' => '/esoui/art/icons/pet_209_bluesalamander.dds',
+										'desc' => 'The lumbering great Salamanders of southern Tamriel all defend themselves with bursts of elemental power, but the Shock Skin variety specializes in electrical discharges. Fortunately, they can be trained not to zap their masters!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Zapnewt' 
+								),
+								149 => array (
+										'id' => 5662,
+										'name' => 'Prong-Eared Odd-Eyed Cat',
+										'icon' => '/esoui/art/icons/pet_prongearoddeyed-cat.dds',
+										'desc' => '\"Cats with odd-colored eyes see into the depths of those around them. Those with white fur? They see into time itself.\" —Zamarak',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Elegante' 
+								),
+								150 => array (
+										'id' => 5699,
+										'name' => 'Infernium Dwarven Spiderling',
+										'icon' => '/esoui/art/icons/pet_219_flamedwarvenspider.dds',
+										'desc' => '\"The Dwarven Spiderlings from the Infernium Forge are unusual and distinctive, indicating to this Dwemer scholar that they all come from the hand of a single Deep Elf artisan.\" —Guylaine Marilie',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Emberlegs' 
+								),
+								151 => array (
+										'id' => 5712,
+										'name' => 'Slateback Haj Mota',
+										'icon' => '/esoui/art/icons/pet_hajmota_slateback.dds',
+										'desc' => 'This smaller breed of haj mota lurks in the brackish estuaries of Black Marsh`s southern coast, camouflaged by the gray color of the murky tidewater. When hand-raised from hatching, they make surprisingly pleasant pets.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shelby' 
+								),
+								152 => array (
+										'id' => 5713,
+										'name' => 'Verdigris Haj Mota',
+										'icon' => '/esoui/art/icons/pet_hajmota_verdigris.dds',
+										'desc' => 'A haj mota is an ambush predator, waiting patiently in concealment until its prey should come into attack range. The Verdigris breed tends to hide in algae-covered pools where its color acts as camouflage.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Burrower' 
+								),
+								153 => array (
+										'id' => 5714,
+										'name' => 'Bear-Lizard Cub',
+										'icon' => '/esoui/art/icons/pet_221_murkmirebearcub.dds',
+										'desc' => 'Though the adult Bear-Lizards can be quite intimidating, even fearsome, the roly-poly lizard cubs are disarmingly cute. (For reptiles, that is.)',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scaly-Boo' 
+								),
+								154 => array (
+										'id' => 5715,
+										'name' => 'Pony-Lizard',
+										'icon' => '/esoui/art/icons/pet_223_murkmirepony.dds',
+										'desc' => 'When young Argonian egg-siblings tell their creche-parents they want a pony, this is what they mean. And now that you`ve seen it, don`t you want one, too?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Spinemane' 
+								),
+								155 => array (
+										'id' => 5716,
+										'name' => 'Senche-Lizard Cub',
+										'icon' => '/esoui/art/icons/pet_224_murkmiresenchecub.dds',
+										'desc' => 'True, it does hiss rather than meow, and has shiny scales rather than soft fur, but otherwise the Senche-Lizard Cub is just as adorable as any other kitten.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Kitty Lizard' 
+								),
+								156 => array (
+										'id' => 5717,
+										'name' => 'Wolf-Lizard Pup',
+										'icon' => '/esoui/art/icons/pet_225_murkmirewolfpup.dds',
+										'desc' => 'The Wolf-Lizard Pup is simply adorable when it tries to howl, just hisses instead, and looks ever so confused.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Hissy Howl' 
+								),
+								157 => array (
+										'id' => 5718,
+										'name' => 'Guar-Lizard Calf',
+										'icon' => '/esoui/art/icons/pet_222_murkmireguar.dds',
+										'desc' => 'Though you know it`s just going to grow up and become big, dumb, scaly livestock, how can you resist those lizard-calf eyes?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Googly' 
+								),
+								158 => array (
+										'id' => 5719,
+										'name' => 'Badger Ruff Echalette',
+										'icon' => '/esoui/art/icons/pet_217_badgerechelette.dds',
+										'desc' => 'Most Echalettes are docile and fawn-like, but not the Badger Ruff breed, which are strangely fierce and irritable. They`re so ornery they`ve been known to chase away inquisitive Sabre Cats.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Feisty' 
+								),
+								159 => array (
+										'id' => 5722,
+										'name' => 'Ashen Scar Jerboa',
+										'icon' => '/esoui/art/icons/pet_242_jerboa.dds',
+										'desc' => '\"The Jerboas, you say? Ah, yes, the little jumping skeevers with the so-big ears. There are many in the Ashen Scar, and if you catch one when it`s small, it makes for a pleasant, fuzzy friend. I had one when I was a kitten!\" —Shuzirri of Riverhold',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Hopping Bob' 
+								),
+								160 => array (
+										'id' => 5846,
+										'name' => 'Hot Pepper Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_236_hotpepperbantam.dds',
+										'desc' => 'The Hot Pepper Bantam Guar breed is native to the \"spice island\" of Esroniet, the source of much of Tamriel`s nutmeg, cloves, mace, and hot peppers. And the Pepper Guar has a spicy little personality to go with its name!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Blisters' 
+								),
+								161 => array (
+										'id' => 5847,
+										'name' => 'Eerie Violet Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_255_twitchbantam.dds',
+										'desc' => '\"The recesses of our nightmares contain horrors that we often cannot look at. Yet we must, lest these pockets of terror fester and grow. To light your path, I present this bantam guar. Please do not squeal.\" — Overheard in a dark alley',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nightguar' 
+								),
+								162 => array (
+										'id' => 5848,
+										'name' => 'Hot-Blooded Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_250_bloodbuddybantam.dds',
+										'desc' => 'When asked about the rumor that the Hot-Blooded Bantam Guar had been bred as a vampiric sub-species by the disgraced mage Darvasen before he was exiled from Shad Astula, Arch-Mage Valeyn replied, \"What nonsense! They just like to eat tomatoes. Trust me.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gory-Guar' 
+								),
+								163 => array (
+										'id' => 5849,
+										'name' => 'Coldharbour Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_251_coldharbourbantam.dds',
+										'desc' => 'Start with a dollop of wiggly cuteness, add a dash of the Coldharbour glow, and you get a bantam guar that causes \"oohs!\" and \"ahhhs!\" wherever you go, plus helps you avoid stubbing your toe at night when you leave your bed. Genius!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wiggles' 
+								),
+								164 => array (
+										'id' => 5850,
+										'name' => 'Atmoran Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_237_atmoranbantam.dds',
+										'desc' => '\"A fur-less, cold-blooded reptile with icy blue eyes that comes from the frozen, far-north, and in-all-likelihood legendary continent of Atmora? Bah. I refuse to believe it.\" —Phrastus of Elinhir',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snow-on-Scales' 
+								),
+								165 => array (
+										'id' => 5851,
+										'name' => 'Deadlands Bantam Guar',
+										'icon' => '/esoui/art/icons/pet_247_deadlandbantam.dds',
+										'desc' => 'It may look cute, but this volcanic little pest comes from Mehrunes Dagon`s Oblivion plane of the Deadlands: it`s got lava in its blood and fire in its eyes, so keep it away from the curtains.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pumice' 
+								),
+								166 => array (
+										'id' => 5853,
+										'name' => 'Atmoran Chub Loon',
+										'icon' => '/esoui/art/icons/pet_240_atmoranchubloon.dds',
+										'desc' => 'According to Nord legend, in its native land of Atmora this Chub Loon is much larger, as tall as two warriors and with a squawk that starts avalanches. It took mighty Ysgramor a day and a night to wrestle one down from Shivering Glacier. What, you doubt?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Doom Loon' 
+								),
+								167 => array (
+										'id' => 5856,
+										'name' => 'Icebound Dwarven Spider',
+										'icon' => '/esoui/art/icons/pet_257_dwarvenice.dds',
+										'desc' => 'One might think that being frozen in a glacier for several thousand years would damage a delicate mechanism like a Dwarven Spider, but in the case of the Icebound units it seems instead to have preserved them in perfect working order.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skidley' 
+								),
+								168 => array (
+										'id' => 5861,
+										'name' => 'Meridian Sabre Cub',
+										'icon' => '/esoui/art/icons/pet_244_purifiedsenchecub.dds',
+										'desc' => '\"Our Lady of the Infinite Energies, Strict but Fair Arbiter of Inner Luminance, grant unto thy most devoted worshiper a sign of thy radiant favor, mayhap a loveable, glowing Sabre Cat cub.\" —Sayings of Valasha',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shinypaws' 
+								),
+								169 => array (
+										'id' => 5862,
+										'name' => 'Pebble Pal',
+										'icon' => '/esoui/art/icons/pet_258_pebblepal.dds',
+										'desc' => 'Tired of pets that follow you everywhere? Fed up with feeding them? Step up to Pebble Pal, the pet that`s a … rock.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rocky' 
+								),
+								170 => array (
+										'id' => 5864,
+										'name' => 'Carnelian Theodolite',
+										'icon' => '/esoui/art/icons/pet_248_redtheodolite.dds',
+										'desc' => 'The Dwarven Theodolite was a sort of automated measuring device designed to explore and survey subterranean areas; this version is notable for its distinctive red \"eye.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rufus' 
+								),
+								171 => array (
+										'id' => 6018,
+										'name' => 'Rihad Coffee Scorpion',
+										'icon' => '/esoui/art/icons/pet_243_coffeescorpion.dds',
+										'desc' => 'The Coffee Scorpion gets its name from the way they like their kaveh in Rihad: strong, dark, and sweet. (Well, I guess two out of three isn`t bad.)',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Kaveh' 
+								),
+								172 => array (
+										'id' => 6034,
+										'name' => 'Gloam Wolf Cub',
+										'icon' => '/esoui/art/icons/pet_246_nocturnalpup.dds',
+										'desc' => 'Hailing from Nocturnal`s Oblivion realm of Evergloam, the Gloam Wolf Cub seems to oscillate like an optical illusion between adorable and sinister.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pupshadow' 
+								),
+								173 => array (
+										'id' => 6035,
+										'name' => 'Ghostly Housecat',
+										'icon' => '/esoui/art/icons/pet_241_ghostcat.dds',
+										'desc' => 'According to Nibenese legend, a house where its owner was murdered will be haunted by the shade of their cat, sent from beyond by Lord Hollowjack to torment the killer with eternal shame and guilt.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rue' 
+								),
+								174 => array (
+										'id' => 6037,
+										'name' => 'Fledgling Vulture Gryphon',
+										'icon' => '/esoui/art/icons/pet_249_vulturegryphon.dds',
+										'desc' => 'Unlike most Gryphons, which catch live prey, the Vulture Gryphons subsist primarily on carrion. But they`re still majestic, and their young Fledglings still make adorable pets!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Li`l Buzzard' 
+								),
+								175 => array (
+										'id' => 6064,
+										'name' => 'Elinhir Arena Lion',
+										'icon' => '/esoui/art/icons/pet_256_gladiatorlion.dds',
+										'desc' => 'Arena Lions are trained to absolute obedience, whether as sturdy and savage Craglorn companions or as pit-fighting beasts taught to drag out a kill for the entertainment of an audience.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pit Cat' 
+								),
+								176 => array (
+										'id' => 6186,
+										'name' => 'Cerulean Scorpion',
+										'icon' => '/esoui/art/icons/pet_ceruleanscorpion.dds',
+										'desc' => 'The colors exhibited by the Cerulean Scorpion make it a creature sought after by artists and by those who prefer their companions to have a bit of a sting to them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Clamper' 
+								),
+								177 => array (
+										'id' => 6187,
+										'name' => 'Pedlar Pack Pony',
+										'icon' => '/esoui/art/icons/bandaaripedlarpony.dds',
+										'desc' => 'In their travels, the Baandari Pedlars have shown off their pack ponies to the delight of children everywhere. Recently they began selling them, and now children put even more pressure on parents to acquire them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Trotter' 
+								),
+								178 => array (
+										'id' => 6188,
+										'name' => 'Pedlar Pack Wolf Cub',
+										'icon' => '/esoui/art/icons/pet_pedlarwolfcub.dds',
+										'desc' => 'Even the pups receive the full Baandari Pedlar tack treatment! These wolf cubs are often seen chasing each other around those seeking wares from the Pedlars, sometimes tripping up customers until they`re trained to know better.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tripper' 
+								),
+								179 => array (
+										'id' => 6189,
+										'name' => 'Pedlar Pack Spider',
+										'icon' => '/esoui/art/icons/pets_baandaripedlarspider.dds',
+										'desc' => 'The Baandari Pedlars first used these repurposed mechanized spiders to help retrieve things that got lost in crevices and the like. For the right price, they may sell you one.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Master Clack' 
+								),
+								180 => array (
+										'id' => 6190,
+										'name' => 'Pedlar Pack Senche-Lion Cub',
+										'icon' => '/esoui/art/icons/pet_baandaripedsenchecub.dds',
+										'desc' => 'To prepare their Senche-Lion mounts, the Baandari Pedlars train them with full gear as cubs. Despite the tack, these cubs pounce and play as kittens do.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wrigglerump' 
+								),
+								181 => array (
+										'id' => 6191,
+										'name' => 'Alabaster Jerboa',
+										'icon' => '/esoui/art/icons/pet_259_alabasterjerboa.dds',
+										'desc' => 'Need some happiness in your day? The Alabaster Jerboa is your answer. Its hopping and air-dancing acrobatics can bring a smile to even the grumpiest Dark Elf.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Oochee' 
+								),
+								182 => array (
+										'id' => 6192,
+										'name' => 'Sunspire Ice-Fire Senche-Cub',
+										'icon' => '/esoui/art/icons/sunspiresenchecub.dds',
+										'desc' => 'Before ice-fire senche-lions become mounts, they start as adorable cubs. But be careful! These cute creatures still require careful handling due to their mix of cold and flame.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Purrbringer' 
+								),
+								183 => array (
+										'id' => 6193,
+										'name' => 'Elder Dragon Hunter Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_draghunthuskypup.dds',
+										'desc' => 'A traditional gift to successful Dragon Hunters, this pup exhibits the same courage that these hunters must have, and also reminds them of the lives they`re protecting with their ongoing work.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Faith' 
+								),
+								184 => array (
+										'id' => 6195,
+										'name' => 'Senche-Serval Kitten',
+										'icon' => '/esoui/art/icons/pet_senche-serval-kitten.dds',
+										'desc' => '\"While carrying out an assignment from Larnatille in my role as Sub-Sapiarch of Domestic Livestock, I created a mount both loyal and majestic. Though the kitten stage is … a bit trying.\" —Corderil of Sunhold',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mangler' 
+								),
+								185 => array (
+										'id' => 6381,
+										'name' => 'Grisly Mummy Tabby',
+										'icon' => '/esoui/art/icons/pet_grislymummytabby.dds',
+										'desc' => 'The reason behind the creation of this tabby was simple: Cats kill rodents. Mummified and mobile cats will kill rodents indefinitely. Thus this bandage-bound pet was … born?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Mewmy' 
+								),
+								186 => array (
+										'id' => 6382,
+										'name' => 'Skyterror Dragonslayer Pup',
+										'icon' => '/esoui/art/icons/pet_skydragonslayerpup.dds',
+										'desc' => '\"Sometimes pups hear the call. To defend against claws. To rend wings. When they show up, we train them.\"—Javinda, Dragonslayer',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Glimmerfang' 
+								),
+								187 => array (
+										'id' => 6434,
+										'name' => 'Spectral Chicken^F',
+										'icon' => '/esoui/art/icons/pet_spectralchicken.dds',
+										'desc' => '\"Do not ask me how this creature came to be. Or not be. It just is. But, perhaps do not kill chickens in already-haunted places.\"—Geem-Sai, Butcher',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cock-a-doodle-Boo' 
+								),
+								188 => array (
+										'id' => 6443,
+										'name' => 'Death Hound^n',
+										'icon' => '/esoui/art/icons/pet_deathhound.dds',
+										'desc' => '\"Occasionally one grows tired of the crush of humanity. To that end, I bought this Death Hound. Now I cannot enter most taverns, but I also don`t have people crowding my space.\"—Theldyn Faden, Explorer',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Toothy' 
+								),
+								189 => array (
+										'id' => 6445,
+										'name' => 'New Moon Wolf Pup^N',
+										'icon' => '/esoui/art/icons/pet_newmoonwolf.dds',
+										'desc' => 'Cult of the New Moon pups haven`t quite grown out of their youthful exuberance, which make them fun travel companions. They often stalk shadows, seeking to destroy them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shadowstalker' 
+								),
+								190 => array (
+										'id' => 6446,
+										'name' => 'New Moon Senche Cub^N',
+										'icon' => '/esoui/art/icons/pet_newmoonsenche.dds',
+										'desc' => 'Though this cub wears the signature barding of the Cult of the New Moon, it acts just like a kitten. Which is to say, you might need to train it to avoid rubbing its head and scratchy barding against your cheek.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cheeky' 
+								),
+								191 => array (
+										'id' => 6447,
+										'name' => 'New Moon Pony^n',
+										'icon' => '/esoui/art/icons/pet_newmoonhorse.dds',
+										'desc' => 'A handful of daring merchants stole some pack animals from the Cult of the New Moon, and they claim these ponies are as nimble as goats to the point of even climbing trees. Apple orchard farmers beware!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Treeclimber' 
+								),
+								192 => array (
+										'id' => 6448,
+										'name' => 'New Moon Guar Calf^F',
+										'icon' => '/esoui/art/icons/pet_newmoonguar.dds',
+										'desc' => 'The Cult of the New Moon keeps a number of different creatures around, including guars. Due to a peculiarity in its breeding, this guar tries to sing along whenever it hears someone singing. Only dogs can hear it do so, however.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scoundrel' 
+								),
+								193 => array (
+										'id' => 6449,
+										'name' => 'New Moon Bear Cub^n',
+										'icon' => '/esoui/art/icons/pet_newmoonbear.dds',
+										'desc' => 'This cub from the Cult of the New Moon will happily trundle along behind you as long as you keep it well-fed.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rumbleburr' 
+								),
+								194 => array (
+										'id' => 6450,
+										'name' => 'Coldsnap Durzog Pup^F',
+										'icon' => '/esoui/art/icons/pet_coldsnapdurzogpup.dds',
+										'desc' => 'Young durzogs acquired from the Coldsnap Goblin tribe are temperamental and require a firm hand. After you`ve established firm boundaries with this creature, though, its loyalty is boundless.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sludgepuppy' 
+								),
+								195 => array (
+										'id' => 6453,
+										'name' => 'Dread-Aurelian Dragonslayer Wolf',
+										'icon' => '/esoui/art/icons/pet_radiantdraghuntt2.dds',
+										'desc' => '\"This pup has lived through a Dragon attack, proving itself in front of all the Dragonslayers present. Its steadfastness should help keep you alive.\"—Javinda, Dragonslayer',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dawnhowler' 
+								),
+								196 => array (
+										'id' => 6455,
+										'name' => 'Witch`s Infernal Familiar',
+										'icon' => '/esoui/art/icons/pet_witchesinfernal.dds',
+										'desc' => 'Equipped with a hat, this black cat makes its way in the world at your side, leaving little fiery pawprints behind as it goes.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flamepaws' 
+								),
+								197 => array (
+										'id' => 6456,
+										'name' => 'Ancient Dragon Hunter Wolf^F',
+										'icon' => '/esoui/art/icons/pet_ancientdraghuntt2.dds',
+										'desc' => 'This wolf senses the impending arrival of Dragons, making it an excellent pet for veteran Dragon Hunters.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Intuition' 
+								),
+								198 => array (
+										'id' => 6616,
+										'name' => 'Ebon-Glow Indrik^n',
+										'icon' => '/esoui/art/icons/pet_onyxindrik.dds',
+										'desc' => 'Though many associate darkness with evil, those looking at the Ebon-Glow Indrik come to understand that darkness is simply the absence of light—neither good nor bad in itself. A soothing thought that calms fears, much like this magical indrik does.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nightbalm' 
+								),
+								199 => array (
+										'id' => 6617,
+										'name' => 'Frost-Light Indrik^n',
+										'icon' => '/esoui/art/icons/pet_puresnowindrik.dds',
+										'desc' => 'Some claim that this indrik comes into being when the first rays of the sun hit pristine snow. Whether that`s true or not, it can help you make an impression as you wander the streets of Alinor or venture beyond that.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snowpearl' 
+								),
+								200 => array (
+										'id' => 6622,
+										'name' => 'Fawn^M',
+										'icon' => '/esoui/art/icons/pet_fawn.dds',
+										'desc' => 'Nimble and fleet, this fawn sticks to your side like you`re its mother. Cute? Oh yes. Those eyes! That nose! Those spots!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sprinter' 
+								),
+								201 => array (
+										'id' => 6623,
+										'name' => 'Frost Atronach Wolf Pup^N',
+										'icon' => '/esoui/art/icons/pet_frostwolfpup.dds',
+										'desc' => 'This pup isn`t one for simple games of fetch, but it will follow you loyally through your adventures. That and its ability to chill your water simply by curling around it? Practical and cute, in its own frosty way.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snowball' 
+								),
+								202 => array (
+										'id' => 6624,
+										'name' => 'Frost Atronach Senche Cub^N',
+										'icon' => '/esoui/art/icons/pet_frostsenchecub.dds',
+										'desc' => 'Some would choose to pass on a senche cub that has sharp edges and no fur. But not you! In fact, you can look forward to its cooling nudges for attention while trudging through deserts.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Frostpurr' 
+								),
+								203 => array (
+										'id' => 6625,
+										'name' => 'Frost Atronach Pony^N',
+										'icon' => '/esoui/art/icons/pet_frostpony.dds',
+										'desc' => 'Are ponies too adorable for you? Fear not! This pony takes adorable, freezes it, and adds a hefty helping of \"don`t even think about petting my nose.\" A welcome companion to those who hate the heat, as well!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shardhoof' 
+								),
+								204 => array (
+										'id' => 6626,
+										'name' => 'Frost Atronach Kagouti Calf^N',
+										'icon' => '/esoui/art/icons/pet_frostkagouti.dds',
+										'desc' => 'A frost atronach in kagouti calf form, this companion embodies the essence of Vvardenfell`s wilds in an icy way, making it an interesting choice for heroes seeking to stop threats in that region. Native Dark Elves might look askance at you, however.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Winterstorm' 
+								),
+								205 => array (
+										'id' => 6628,
+										'name' => 'Jade-Crown Dragonslayer Wolf^F',
+										'icon' => '/esoui/art/icons/pet_jadecrowndragonslayerwolf.dds',
+										'desc' => '\"As the fiercest of the Dragonslayer wolves, this one`s eyes glow a steady green, and it remains by her owner`s side even against the most majestic of Dragons.\"—Javinda, Dragonslayer',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dauntless' 
+								),
+								206 => array (
+										'id' => 6630,
+										'name' => 'Frost Atronach Bear Cub^N',
+										'icon' => '/esoui/art/icons/pet_frostbearcub.dds',
+										'desc' => 'You needn`t know Conjuration magic to have an atronach companion—Clan Direnni mages have gifted bear cubs of that provenance to those they deem worthy. They can be oddly heart-warming despite their frosty form.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Iceclaw' 
+								),
+								207 => array (
+										'id' => 6631,
+										'name' => 'Legendary Dragon Wolf^M',
+										'icon' => '/esoui/art/icons/pet_legenddragwolf.dds',
+										'desc' => 'This wolf`s experiences with Dragons surpasses that of many Dragon Hunters. And it has chosen to be at your side! An excellent match, indeed.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Glory' 
+								),
+								208 => array (
+										'id' => 6672,
+										'name' => 'Mudcrab of Eternal Doom^N',
+										'icon' => '/esoui/art/icons/pet_deadlandsembercrab.dds',
+										'desc' => 'Few can withstand the scorching heat and relentless desolation of the Deadlands. Those unlucky few who find themselves trapped there may encounter one of these scuttling horrors—a hideous reminder of their grim and eternal fate.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Witherhope' 
+								),
+								209 => array (
+										'id' => 6689,
+										'name' => 'Voriplasm',
+										'icon' => '/esoui/art/icons/pet_voriplasm.dds',
+										'desc' => '\"A mage from Lilmoth found a way to, ahem, `tame` these green slimes. Yes, it will follow you around, leaving a disgusting trail of slime, but it`s hardly docile. My apprentice`s so-called `pet` woke me by trying to engulf my face.\"—Aleri Andalor',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gibblegog' 
+								),
+								210 => array (
+										'id' => 6950,
+										'name' => 'Haunting Indrik^n',
+										'icon' => '/esoui/art/icons/pet_ghostindrik.dds',
+										'desc' => 'Though some scholars in Alinor have hypotheses about why an indrik would linger after death, none have as yet proven them. Perhaps these indriks have simply picked someone worthy to follow for all time?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Requiem' 
+								),
+								211 => array (
+										'id' => 7105,
+										'name' => 'Sacrificial Pocket Mammoth',
+										'icon' => '/esoui/art/icons/pet_pocketmammoth.dds',
+										'desc' => 'Though the arcane markings on this gray pocket mammoth indicate its status as a sacrificial offering, these creatures often end up trundling along after soft-hearted souls like yourself.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Renegade' 
+								),
+								212 => array (
+										'id' => 7110,
+										'name' => 'Emberthroat Durzog',
+										'icon' => '/esoui/art/icons/pet_durzogemberthroat.dds',
+										'desc' => 'Bred for their wicked intelligence, the Emberthroat Durzog might just outwit the Netch Gouger Goblins that raised them. Only those with nimbler minds keep their loyalty—and that might just be you!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lavajumper' 
+								),
+								213 => array (
+										'id' => 7271,
+										'name' => 'Hallin`s Jackal',
+										'icon' => '/esoui/art/icons/pet_hallinsjackal.dds',
+										'desc' => 'After news of the Seventh Legion`s presence near Hallin`s Stand spread, several Evermore citizens moved quickly to protect some at-risk fauna, among them a breed of easily domesticated jackals. Now one of these fierce companions can roam at your side.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Spiritcaller' 
+								),
+								214 => array (
+										'id' => 7273,
+										'name' => 'Gloomspore Guar Calf',
+										'icon' => '/esoui/art/icons/pet_gloomsporeguar.dds',
+										'desc' => '\"No better companion exists than my devoted Gloomspore Guar Calf. I used spores known for their calming properties to modify the guar`s temperament. Regrettably, it makes the creature gassy, but unmatched loyalty is worth opening windows.\"—Mage Naleldil',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stewbait' 
+								),
+								215 => array (
+										'id' => 7274,
+										'name' => 'Gloomspore Bear Cub',
+										'icon' => '/esoui/art/icons/pet_gloomsporebear.dds',
+										'desc' => '\"Integrating research left behind by Ahzidal the Enchanter, I crafted a bear cub from spores acquired from a well-traveled merchant. This creature bumbles around a bit more than its animal counterpart, but it glows! Perfection!\"—Mage Naleldil',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bumbler' 
+								),
+								216 => array (
+										'id' => 7275,
+										'name' => 'Gloomspore Senche Cub',
+										'icon' => '/esoui/art/icons/pet_gloomsporesenche.dds',
+										'desc' => '\"To the surprise of none but the most hard-hearted, I made a tumbling ball of fungal-fur in the form of a senche cub. How could I not? And shame on any who pass this adorable bundle of spores without smiling.\"—Mage Naleldil',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sporesnuggle' 
+								),
+								217 => array (
+										'id' => 7276,
+										'name' => 'Gloomspore Pony',
+										'icon' => '/esoui/art/icons/pet_gloomsporepony.dds',
+										'desc' => '\"Challenged by a colleague, I created a pony-fungus creature. The first few stood as still as statues, so I added manic morels from Dementia. That livened things up considerably. If you adopt one, I suggest keeping it out of your parlor.\"—Mage Naleldil',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nuzzler' 
+								),
+								218 => array (
+										'id' => 7277,
+										'name' => 'Gloomspore Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_gloomsporewolf.dds',
+										'desc' => '\"I designed some adorable wolf pups, adding oxblood fungus spores to see if that instills fierce guardianship in them. It worked—they now guard my feet from things like boots and stockings. Consider garbing yourself out of their sight!\"—Mage Naleldil',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Waggles' 
+								),
+								219 => array (
+										'id' => 7278,
+										'name' => 'Rimedusk Indrik^n',
+										'icon' => '/esoui/art/icons/pet_rimeduskindrik.dds',
+										'desc' => 'The sound of wind gusting through dusklit, ice-laden trees heralds a Rimedust Indrik`s birth. These indriks emanate a sense of deep calm wherever they go.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stargazer' 
+								),
+								220 => array (
+										'id' => 7279,
+										'name' => 'Coldspring Nix-Hound',
+										'icon' => '/esoui/art/icons/pet_coldspringnixhound.dds',
+										'desc' => 'Dark Elves of House Hlaalu, knowing that Vvardenfell isn`t the only place with deadly flora, fauna, and folk, bred a nix-hound that can thrive in different environments. Even with its gorgeous blue-purple shading, it still possesses a menacing air.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bugeyes' 
+								),
+								221 => array (
+										'id' => 7280,
+										'name' => 'Ice-Glow Salamander',
+										'icon' => '/esoui/art/icons/pet_iceglowsalamander.dds',
+										'desc' => 'While studying arcane husbandry, Mage Naleldil discovered a long-forgotten Ayleid ritual capable of granting luminescent qualities to common salamanders. Now, due to an unexpected population explosion, she gives them to those who impress her.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stickytoes' 
+								),
+								222 => array (
+										'id' => 7502,
+										'name' => 'Rosethorn Indrik^n',
+										'icon' => '/esoui/art/icons/pet_rosethornindrik.dds',
+										'desc' => 'Some Alinor scholars claim these indriks form when Magicka mingles with the petals of early-blooming roses. Others note that the roses` thorns need to have drawn blood first. Regardless, this creature inspires creativity in any it follows.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dreamchaser' 
+								),
+								223 => array (
+										'id' => 7503,
+										'name' => 'Sapling Indrik^n',
+										'icon' => '/esoui/art/icons/pet_saplingindrik.dds',
+										'desc' => 'As trees awaken in the spring, the first light of dawn sparks the formation of a Sapling Indrik from Magicka-touched acorns. Boundless hope fills those they choose to follow.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Acorn`s Promise' 
+								),
+								224 => array (
+										'id' => 7531,
+										'name' => 'Skald-Muse Fledgling Gryphon',
+										'icon' => '/esoui/art/icons/pet_bardscollegegryphon.dds',
+										'desc' => 'Legends claim that Dibella sent one of these joyful gryphon fledglings to the Bards College during the bards` opening performance, marking it as being the first creature inside the building.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Piper' 
+								),
+								225 => array (
+										'id' => 7532,
+										'name' => 'Twilight Striped Lynx',
+										'icon' => '/esoui/art/icons/pet_lynxumbral.dds',
+										'desc' => 'Decades ago, Nords whispered stories of a reclusive dark-furred lynx that ate spirits barred from Sovngarde. Imagine the Nords` surprise when they found these lynxes domesticated as tent guards during a raid on Reach natives.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shadownipper' 
+								),
+								226 => array (
+										'id' => 7534,
+										'name' => 'Frostbite Spider',
+										'icon' => '/esoui/art/icons/pet_frostbitespider.dds',
+										'desc' => '\"Though I lost many trained frostbite spiders to those who took them for an aggressive infestation of Solitude, I moved outside town and now give them away. They are trained, venomous, and ready to follow you in your travels!\"—Hlokela of Solitude',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Webby' 
+								),
+								227 => array (
+										'id' => 7738,
+										'name' => 'Vale Fawn',
+										'icon' => '/esoui/art/icons/pet_valefawn.dds',
+										'desc' => 'Though this adorable fawn`s kin shimmer with hues different than its own, the first color ever seen was the pearly white glow on this one. Give it enough care and you can help it overcome its shyness, allowing it to cavort at your side.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wetnose' 
+								),
+								228 => array (
+										'id' => 7739,
+										'name' => 'Nightrose Vale Fawn',
+										'icon' => '/esoui/art/icons/pet_valefawnred.dds',
+										'desc' => '\"The red glow of a Nightrose stems from its time of birth,\" a spelunker claims. \"If the sky above is red, so is the fawn.\" While some scoff at this, all agree on one thing: Nightroses have a sixth sense for danger, nudging awake any chosen family.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rosewater' 
+								),
+								229 => array (
+										'id' => 7740,
+										'name' => 'Ambersheen Vale Fawn',
+										'icon' => '/esoui/art/icons/pet_valefawnyellow.dds',
+										'desc' => 'Its amber-gold glimmer creates a warmth that one stablemaster states, \"Can get you through chilly nights under the Skyrim stars.\" All it takes to keep one of these vale fawns at your side is a lick of honey now and again.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Honeywine' 
+								),
+								230 => array (
+										'id' => 7741,
+										'name' => 'Emerald Vale Fawn',
+										'icon' => '/esoui/art/icons/pet_valefawngreen.dds',
+										'desc' => 'For a time, scholars thought only one type of vale fawn existed. Now, knowing better, some wonder why the variation? The fawns care not. But, ones with a green shimmer love to race. Choose one as a companion, and it might even race you!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Fleetflicker' 
+								),
+								231 => array (
+										'id' => 7742,
+										'name' => 'Orchidfall Vale Fawn',
+										'icon' => '/esoui/art/icons/pet_valefawnpurple.dds',
+										'desc' => 'One scholar studying vale fawns notes that the purple-hued Orchidfall fawn—named after a now-lost flora-filled cavern in Skyrim—enjoys eating flowers. \"Give it a flower, and it`s your friend for life!\" Do you have your flower in hand?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nectarnuzzle' 
+								),
+								232 => array (
+										'id' => 8029,
+										'name' => 'Energetic Dwarven Shock-Spider',
+										'icon' => '/esoui/art/icons/pet_alchemistdwarvenspider.dds',
+										'desc' => 'Sparks fly with this dwarven spider! Light up your life by taking this automaton for a lively jaunt around town. It`ll follow over any terrain, happily zapping away!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Zappy the Wonderbug' 
+								),
+								233 => array (
+										'id' => 8030,
+										'name' => 'Firepoint Fledgling Gryphon',
+										'icon' => '/esoui/art/icons/pet_autumngryphon.dds',
+										'desc' => 'Dramatic coloration marks this gryphon as one originally bred by Khajiit in Elsweyr. Due to some \"incidents,\" the unfortunate breeders sold their stock, making them available to fine folk such as you!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Frolicfeather' 
+								),
+								234 => array (
+										'id' => 8031,
+										'name' => 'Nightmare Firestalker Cub',
+										'icon' => '/esoui/art/icons/pet_daemoncat3.dds',
+										'desc' => 'Some may find the fiery cuteness of this horned cub unbearable, but you can handle it! Just watch out for those adorable little paws—they`re hot as coals.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Heatwave' 
+								),
+								235 => array (
+										'id' => 8034,
+										'name' => 'Graywinter Sabre Cat Cub',
+										'icon' => '/esoui/art/icons/pet_skyrimsabercat.dds',
+										'desc' => 'Though adorable, even as cubs these sabre cats seek out trolls in the White River region, hoping to nip at their flesh and bring them down by sheer force of numbers. Luckily for you, you`re not a troll! Also, we mentioned they`re adorable, yes?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Trollroller' 
+								),
+								236 => array (
+										'id' => 8035,
+										'name' => 'Sovngarde Bear Cub',
+										'icon' => '/esoui/art/icons/pet_sovngardebearcub.dds',
+										'desc' => '\"Potential. Bear cubs from Sovngarde sense it and follow those who have it—all the way back to Sovngarde. While here, they make for sometimes silly companions.\"—Clever Woman Moritra',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rompworth' 
+								),
+								237 => array (
+										'id' => 8036,
+										'name' => 'Sovngarde Pony Guar',
+										'icon' => '/esoui/art/icons/pet_sovngardeguarcalf.dds',
+										'desc' => '\"You may laugh at the idea of a pony guar from Sovngarde, but they exist. In fact, one showed up around here, but it chose to follow a worthy traveler. Or perhaps one freer with cuddles than I am.\"—Clever Woman Moritra',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skitterhop' 
+								),
+								238 => array (
+										'id' => 8037,
+										'name' => 'Sovngarde Pony',
+										'icon' => '/esoui/art/icons/pet_sovngardepony.dds',
+										'desc' => '\"Noble ponies trot forth from Sovngarde, seeking those who have made oaths, knowingly or not. Curiosity prompts them to follow an oathmaker to see how they fulfill their promise. If one follows you, give it an apple. They love them.\"—Clever Woman Moritra',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Oatbreaker' 
+								),
+								239 => array (
+										'id' => 8038,
+										'name' => 'Sovngarde Sabre Cat Cub',
+										'icon' => '/esoui/art/icons/pet_sovngardesabercatcub.dds',
+										'desc' => '\"Sabre cat cubs from Sovngarde might play with string, but it`s not visiting us for such trifles. Instead, they serve as the eyes and ears of Sovngarde, allowing them watch our world—while sometimes getting tangled in yarn.\"—Clever Woman Moritra',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Caprice' 
+								),
+								240 => array (
+										'id' => 8039,
+										'name' => 'Sovngarde Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_sovngardewolfpup.dds',
+										'desc' => '\"Wolf cubs from the Hall of Valor tumble into our world, ready to help catalogue knowledge for their masters. They particularly love to howl along to skalds and bards, but they`ll join up with anyone who travels widely. \"—Clever Woman Moritra',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shoestalker' 
+								),
+								241 => array (
+										'id' => 8041,
+										'name' => 'Snowsnarl Durzog',
+										'icon' => '/esoui/art/icons/pet_wrothgardurzog.dds',
+										'desc' => 'Born with a snarl, these striped durzogs tend to bite the hand that feeds them—but only gently after they get to know you.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Icescream' 
+								),
+								242 => array (
+										'id' => 8153,
+										'name' => 'Barnacle-Back Coral Crab',
+										'icon' => '/esoui/art/icons/pet_coralmudcrabb.dds',
+										'desc' => 'While many crustaceans struggle to remove clinging barnacles, the Barnacle-Back Coral Crabs appreciate the company. Some naturalists believe the crabs welcome their guests` sharpened shells as an added protective layer. But maybe they`re just gregarious!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Barnie' 
+								),
+								243 => array (
+										'id' => 8186,
+										'name' => 'Microtized Verminous Fabricant',
+										'icon' => '/esoui/art/icons/pet_verminousfabricant.dds',
+										'desc' => 'With its sharp teeth, scary spines, and enormous horn, this fabricant follower not only shows that you mean business as you go about your day, but also indicates an appreciation for the complex and refined machines of Sotha Sil.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bristlehorn' 
+								),
+								244 => array (
+										'id' => 8187,
+										'name' => 'Tawny Lambent Guar',
+										'icon' => '/esoui/art/icons/pet_glowgillguar.dds',
+										'desc' => 'Frequently seen sniffing items and creatures alike, these Murkmire guar glow a soft amber. Those with close ties to the swamp claim they feel it feeding the guar`s light, but some scholars believe the luminescence is simply an alchemical reaction.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Noggin' 
+								),
+								245 => array (
+										'id' => 8188,
+										'name' => 'Akaviri Potentate Wolf Cub',
+										'icon' => '/esoui/art/icons/pet_potentatewolfcub.dds',
+										'desc' => '\"Talking with the trainers of the wolf riders that Versidue-Shaie established in 2E 4 allowed me to see the armored pups at play. I adored how they bonelessly stretched on the ground. Hard to believe they grow to be so fierce!\"—Mirannah of Gwylim',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Puddlejumper' 
+								),
+								246 => array (
+										'id' => 8189,
+										'name' => 'Akaviri Potentate Sabre Cat Cub',
+										'icon' => '/esoui/art/icons/pet_potentatesabrecub.dds',
+										'desc' => '\"Before heading to Skyrim in 2E 7, the Potentate had to train sabre cat cubs to the saddle. Watching these cubs pounce while wearing their training barding all these many years later almost made me lose my composure and squeal.\"—Mirannah of Gwylim',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Threadchaser' 
+								),
+								247 => array (
+										'id' => 8190,
+										'name' => 'Akaviri Potentate Pony',
+										'icon' => '/esoui/art/icons/pet_potentatepony.dds',
+										'desc' => '\"In 2E 5, companies using the new enchanted barding designed by Versidue-Shaie`s battlemages received their orders: hunt and kill Reman loyalists. Though initially only horses, ponies and more earned the special barding and training.\"—Mirannah of Gwylim',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Daintyhoof' 
+								),
+								248 => array (
+										'id' => 8191,
+										'name' => 'Akaviri Potentate Guar Calf',
+										'icon' => '/esoui/art/icons/pet_potentateguarcalf.dds',
+										'desc' => '\"The Potentate first mounted up on guar steeds in 2E 27 under the Red Mountain`s shadow, but they trained guar calves to the saddle just outside Mournhold. One barded calf demanded nose-pats from me when I visited—I couldn`t resist.\"—Mirannah of Gwylim',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Scritchnose' 
+								),
+								249 => array (
+										'id' => 8192,
+										'name' => 'Akaviri Potentate Bear Cub',
+										'icon' => '/esoui/art/icons/pet_potentatebearcub.dds',
+										'desc' => '\"The cubs trained into steeds by the Potentate in 2E 23 proved so successful that this practice continues today. Seeing one melted my heart—that tail tassel! In their training barding, they walk through Leyawiin`s streets each week.\"—Mirannah of Gwylim',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tailbobber' 
+								),
+								250 => array (
+										'id' => 8195,
+										'name' => 'Orcrest Jerboa',
+										'icon' => '/esoui/art/icons/pet_jerboiavar.dds',
+										'desc' => 'This fastidious little jerboa originated from Orcrest, but recent events saw them scurry away or go into deep hiding among the nooks and crannies of that ill-fated city. With coaxing, one of these delightful little creatures might venture forth with you!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nosenibbler' 
+								),
+								251 => array (
+										'id' => 8199,
+										'name' => 'Teacup Chaurus Chitterling',
+										'icon' => '/esoui/art/icons/pet_chaurus.dds',
+										'desc' => 'When raised from the egg, these small chaurus learn commands extraordinarily well. Some folk insist that carrying the egg near your heart helps the chitterling form an attachment to you, making it less likely to wander off and become a menace to others.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Teacup' 
+								),
+								252 => array (
+										'id' => 8200,
+										'name' => 'Karthwasten Silver Boar',
+										'icon' => '/esoui/art/icons/pet_boarvariant.dds',
+										'desc' => 'Silver hide and dark gray stripes mark these domesticated boars, which once ran wild around Karthwasten. Their stomachs run on a tight schedule, making them perfect for those who lose track of time. Nothing like waking up to boar snuffles in your ear!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snuffles' 
+								),
+								253 => array (
+										'id' => 8201,
+										'name' => 'Somnolent Void Rot',
+										'icon' => '/esoui/art/icons/pet_voidrot.dds',
+										'desc' => '\"I`m not sure why my apprentice insists on making pets of gooey creatures, but here we are, looking at a smaller void rot. So far, it seems the sleeping potion keeps it tractable. So far. Those black tendrils concern me, however.\"—Aleri Andalor',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gogglegoo' 
+								),
+								254 => array (
+										'id' => 8219,
+										'name' => 'Jewel-Feathered Sep Adder',
+										'icon' => '/esoui/art/icons/pet_colorfulsepadder.dds',
+										'desc' => '\"As we people of the root know, the Hist provides. With this feathered sep adder, it gives us a creature who provides both loyal companionship, as well as keen eyesight and smell. It senses danger before its companion quite often.\"—Daixth',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dreams-of-Flight' 
+								),
+								255 => array (
+										'id' => 8220,
+										'name' => 'Nightmare Bear Cub',
+										'icon' => '/esoui/art/icons/pet_nightmarebearcub.dds',
+										'desc' => 'Some say you should embrace your nightmares. With this darling little bear cub, you can do exactly that! This trundling bundle of adorable terror might have flaming eyes and fiery paws, but it loves hugs.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nightbear' 
+								),
+								256 => array (
+										'id' => 8221,
+										'name' => 'Snowball Buddy',
+										'icon' => '/esoui/art/icons/pet_snowball.dds',
+										'desc' => 'Never be without a snowball to throw at … uh, wait. It appears and goes plop onto the ground? Ah, I see! Ahem. Never be without a friendly snowball buddy as you adventure in Tamriel! Guaranteed to show up in even the hottest climates as if by magic.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snowy' 
+								),
+								257 => array (
+										'id' => 8222,
+										'name' => 'Viridescent Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_greendragonfrog.dds',
+										'desc' => '\"A tale says these green frogs grew as large as Dragons, but envied the Dragons their wings. One pact with Peryite later, and they gained their wings but lost their size. So, best not to make pacts with Peryite. Yet they are amusing companions.\"—Daixth',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Happyhopper' 
+								),
+								258 => array (
+										'id' => 8223,
+										'name' => 'Deadlands Wamasu',
+										'icon' => '/esoui/art/icons/pet_daedricwamasu.dds',
+										'desc' => 'Born from wamasu taken from Shadowfen to the Deadlands, or so their vendors claim, these progeny light up with fire instead of lightning. When confronted, their fiery spines project fire, making them fierce defenders of those they choose to follow.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flamethorn' 
+								),
+								259 => array (
+										'id' => 8520,
+										'name' => 'Nenalata Ayleid Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_ayleidwolfpup.dds',
+										'desc' => '\"During the Nenalata evacuation, barded wolf pups fought off a berserking bear until a warrior could take it down. These same pups helped keep their Ayleids warm when resting. Fierce but loving little creatures.\"—Beredalmo the Signifier',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lattakynd' 
+								),
+								260 => array (
+										'id' => 8532,
+										'name' => 'Linchal Titian Fox',
+										'icon' => '/esoui/art/icons/pet_linchaltitanfox.dds',
+										'desc' => 'Though shy, this orange and black creature fiercely defends its den, which builders of Fort Linchal noted in their records. They tamed those they displaced during construction, then took them home to the Imperial City, to the delight of many a noble.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Autumnflare' 
+								),
+								261 => array (
+										'id' => 8534,
+										'name' => 'Bal Ur Cliff Strider',
+										'icon' => '/esoui/art/icons/pet_cliffstrider.dds',
+										'desc' => '\"Everyone told me not to explore Bal Ur. Yeah, Daedric, blah blah whatever. What`s worse? Striders there go for the head in droves. Gorgeous colors, though, all red and black, so I trapped and started training them. Won`t crack your crown now!\"—Skorg',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nogginknocker' 
+								),
+								262 => array (
+										'id' => 8536,
+										'name' => 'Lilmoth Ancestor Lizard',
+										'icon' => '/esoui/art/icons/pet_helstromlizardvar.dds',
+										'desc' => 'Striking scarlet hues mark this ancestor lizard, which some claim are the ancestors of the Bright-Throats. While this hospitality-minded tribe remains silent on this claim, these lizards are known to comfort the pain of others by nuzzling them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dimik' 
+								),
+								263 => array (
+										'id' => 8537,
+										'name' => 'Regal Razorback',
+										'icon' => '/esoui/art/icons/pet_princeboar.dds',
+										'desc' => 'This boar`s regal bearing and attire indicate a level of breeding that would not allow for \"cute\" or \"comical\" behavior. Nothing could be further from the truth! He digs for his own truffles, plus rumors indicate he loves batter-based treats.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pancake' 
+								),
+								264 => array (
+										'id' => 8542,
+										'name' => 'Niben River Fellrunner',
+										'icon' => '/esoui/art/icons/pet_nibonriverfellrunner.dds',
+										'desc' => 'Those traversing the Niben River can see these fellrunners racing along the banks, avoiding dangers while seeking safe water. Enterprising merchants capture and sell them to buyers captivated by their teal-feathered, avian beauty.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Screech' 
+								),
+								265 => array (
+										'id' => 8544,
+										'name' => 'Blue Cloisonne Clockwork Shalk',
+										'icon' => '/esoui/art/icons/pet_blueclockworkshal.dds',
+										'desc' => '\"The unusual decorative touches on this clockwork creature show off the skill of its creator, which must be Sotha Sil himself. To what purpose? Well, I plan to keep one by my side to see if that ever becomes clear.\"—Journal fragment found on a skeleton',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Curiosity' 
+								),
+								266 => array (
+										'id' => 8547,
+										'name' => 'Clearspring Striped Fawn',
+										'icon' => '/esoui/art/icons/pet_clearspringstripedfawn.dds',
+										'desc' => 'Long ago, some of the striped fawns of Clearspring Tarn felt a call to migrate elsewhere, and they eventually found protection and a home with the Falinesti Wood Elves. Though you can spot them in many areas, they retain their original name.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Valedancer' 
+								),
+								267 => array (
+										'id' => 8551,
+										'name' => 'Dwarven Scarab',
+										'icon' => '/esoui/art/icons/pet_dwarvenscarab.dds',
+										'desc' => 'Some adventurers call animunculi like these nuisances since they get under foot easily. Some who prefer constructed companions recommend the Dwarven Scarab over any other type, stating that not only are they pleasing to the eye but also neat as a pin.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ambler' 
+								),
+								268 => array (
+										'id' => 8823,
+										'name' => 'Fledgling Terror Bird',
+										'icon' => '/esoui/art/icons/pet_terrorbird.dds',
+										'desc' => 'Taming even a young terror bird requires patience, full-coverage armor, and even more patience. The result, however, can put pause to any seeking to cast you in the role of victim. Plus these fledglings cuddle so nicely while making cute sleeping noises!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cuddlemonster' 
+								),
+								269 => array (
+										'id' => 9067,
+										'name' => 'Wasten Coraldale Mudcrab',
+										'icon' => '/esoui/art/icons/pet_wastencoraldalemudcrab.dds',
+										'desc' => 'Once considered a delicacy by Maormer, these iridescent mudcrabs regard every creature a threat, even other mudcrabs. With proper handling, it probably won`t snap at your nose. Probably.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Toetugger' 
+								),
+								270 => array (
+										'id' => 9068,
+										'name' => 'Goldspine Boar',
+										'icon' => '/esoui/art/icons/pet_goldspineboar.dds',
+										'desc' => 'While Alik`r natives count this sleeping boar`s twitches to foretell of coming sandstorms, others enjoy its penchant to bob along to a drum`s beat or squeal until it gains a taste of burgundy wine. Clearly, a boar that favors festivities! Like you, maybe?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Charmer' 
+								),
+								271 => array (
+										'id' => 9070,
+										'name' => 'Ja`khajiit Khamira',
+										'icon' => '/esoui/art/icons/pet_khamirasenchecub.dds',
+										'desc' => 'Ready for action? Like Khamira herself, this kitten certainly is! With a roll and a hiss, Ja`khajiit Khamira enters your life, ready to face danger at your side.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ja`khamira' 
+								),
+								272 => array (
+										'id' => 9072,
+										'name' => 'Scutecicle Haj Mota',
+										'icon' => '/esoui/art/icons/pet_hajmotavaru30.dds',
+										'desc' => 'These cerulean-toned haj mota hatchlings learn to fend for themselves amid ice caves, frozen wastes, and crevasses early on. If you tame one, not only do you have a future terror loyal to you, but you also gain its keen survival instinct in frosty lands.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shellie' 
+								),
+								273 => array (
+										'id' => 9073,
+										'name' => 'Vale Sabre Cat',
+										'icon' => '/esoui/art/icons/pet_valesabercat.dds',
+										'desc' => 'Syliril the trapper caught a sabre cat from the Vale and presented it to Emperor Durcorach in 2E 531. Not to be outdone, Durcorach`s beastmaster created a more resplendent cat. He was fed to the hunting dogs when the color washed out of the cat`s fur.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lilyfang' 
+								),
+								274 => array (
+										'id' => 9076,
+										'name' => 'Stitchfur Cavy',
+										'icon' => '/esoui/art/icons/pet_mara.dds',
+										'desc' => 'Visiting the Stitches requires a certain amount of fortitude and bravado. Living there, as do these cavies, involves hiding and good timing, as well. Gain a cavy`s hard-won trust, and you gain a furry friend seeking neck-snuggles for life.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Wigglerump' 
+								),
+								275 => array (
+										'id' => 9083,
+										'name' => 'Bog Dog',
+										'icon' => '/esoui/art/icons/pet_prowler.dds',
+										'desc' => '\"Blackwood has some odd creatures. Take the bog dog. Sure, it lives in bogs, but it`s no dog. That said, tame it and train it, and it`ll follow you anywhere. Just make sure the local guards know it`s yours.\"—Grelaith of White Stallion Inn',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Boggo' 
+								),
+								276 => array (
+										'id' => 9238,
+										'name' => 'Spectral Mudcrab',
+										'icon' => '/esoui/art/icons/pet_spectralmudcrab.dds',
+										'desc' => '\"If the creature following behind me truly is a ghost, then this is the gentlest haunting I have ever seen. The crustation only skitters at my feet and occasionally clacks its claws at unwelcome houseguests.\"—Bensharaz, Spirit Hunter',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tidepool' 
+								),
+								277 => array (
+										'id' => 9240,
+										'name' => 'Sandswirl Fledgling Terror Bird',
+										'icon' => '/esoui/art/icons/pet_terrorbirdyellow.dds',
+										'desc' => 'In the wild, Sandswirl Terror Birds cloak themselves in wind-blown sand to ambush unsuspecting prey. This little fledgling is keen to practice the technique, so be sure to warn your companions before a sandstorm hits. No one wants to lose a toe!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sandghost' 
+								),
+								278 => array (
+										'id' => 9243,
+										'name' => 'Lowland Bristleback',
+										'icon' => '/esoui/art/icons/pet_lowlandbristleback.dds',
+										'desc' => '\"Which lowland does this ornery creature call home? Why, all of them! Think I`m exaggerating? Believe what you want, but know that unless trained while young, they`ll charge you in a heartbeat. Best have them on your side.\"—Miet, Breeder',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Snortle' 
+								),
+								279 => array (
+										'id' => 9244,
+										'name' => 'Boar Snow',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => '',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								280 => array (
+										'id' => 9254,
+										'name' => 'Sapphire Sep Adder',
+										'icon' => '/esoui/art/icons/pet_sapphiresepadder.dds',
+										'desc' => 'According to the Ash`abah, if you receive one of these fierce sep adders as a gift and you both survive for a year with each other, you have passed the first trial necessary to trade in poisons. Bonus? You keep the jewel-toned creature—if you live.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bite-Bite' 
+								),
+								281 => array (
+										'id' => 9256,
+										'name' => 'Spotted Plow Spider',
+										'icon' => '/esoui/art/icons/pet_spottedplowspider.dds',
+										'desc' => 'Farmers in Southern Cyrodiil carry an antidote to Spotted Plow Spiders since it is not uncommon to accidentally rake through a nest and be bitten by thousands of tiny hatchlings. Despite the dangers and if raised correctly, the spiders make good pets.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Poison Dancer' 
+								),
+								282 => array (
+										'id' => 9275,
+										'name' => 'Topal Durzog',
+										'icon' => '/esoui/art/icons/pet_topaldurzog.dds',
+										'desc' => 'Said to have been bred by Coral-Splitter Goblins to hunt for fresh fish, these aqua-blue and coral-striped durzogs spread to the shores of Topal Bay decades ago. To this day, they still love to dive into the surf and snag aquatic bounty!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Fishhunter' 
+								),
+								283 => array (
+										'id' => 9369,
+										'name' => 'Prairie Dog',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Template Description',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								284 => array (
+										'id' => 9378,
+										'name' => 'Mzark Jade-Cap Shroom Shalk',
+										'icon' => '/esoui/art/icons/pet_greenshroomshalk.dds',
+										'desc' => '\"My Wick and I have built many nests, felled sickened trees, and cleaned the roots of our Hist. Dryskins think shalks of her color are lucky, but Wick dirties her pinchers in rotting bark for our fortune.\"—Vunsu, Arborealist',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shell Strong' 
+								),
+								285 => array (
+										'id' => 9379,
+										'name' => 'Sunback Bear Cub',
+										'icon' => '/esoui/art/icons/pet_sunbackbearcub.dds',
+										'desc' => 'Wardens of Morthal ride large, hulking Sunback Bears into battle. While the full-sized bears tend to scare villagers, cubs are more easily accepted. Plus, the cubs` tiny ears can get the staunchest of merchants to lower their prices.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Honey Thief' 
+								),
+								286 => array (
+										'id' => 9380,
+										'name' => 'Green Feathered Sep Adder',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Template Description',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								287 => array (
+										'id' => 9381,
+										'name' => 'Yellow Feathered Sep Adder',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Template Description',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								288 => array (
+										'id' => 9382,
+										'name' => 'Mind-Shriven Cat',
+										'icon' => '/esoui/art/icons/pet_mindshrivencat.dds',
+										'desc' => '\"The Mind-Shriven usually have no concept of the self, but this feline appears to be as content with its nature as always. It seems that Molag Bal himself cannot enslave a cat.\"—Warlock Aldaale',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Soot' 
+								),
+								289 => array (
+										'id' => 9388,
+										'name' => 'Wamasu Hatchling',
+										'icon' => '/esoui/art/icons/pet_wamasuhatchling.dds',
+										'desc' => 'A crackle of lightning accompanies this hatchling wherever it goes, providing a foreshadowing of what it will become in its adulthood. Before that point, though, it makes an excellent if imposing adventuring buddy!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stormlight' 
+								),
+								290 => array (
+										'id' => 9390,
+										'name' => 'Ironclad Senche-Serval Kitten',
+										'icon' => '/esoui/art/icons/pet_ironcladsencheserval.dds',
+										'desc' => 'Known for their prowess at sweeping an area clean of shalks, these armored kittens possess a keen sense of group tactics at an early age. So, not only do you gain an affectionate furball as a friend, but you also have fewer pests distracting you.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Little Letale' 
+								),
+								291 => array (
+										'id' => 9401,
+										'name' => 'Gloam Gryphon Fledgling',
+										'icon' => '/esoui/art/icons/pet_gloamgryphon.dds',
+										'desc' => 'Contrary to popular belief, this cute-yet-terrifying Evergloam creature does not eat shadows to grow larger. But they definitely do win at games that involve hiding in murky places—a gift from Nocturnal herself, perhaps?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Boo' 
+								),
+								292 => array (
+										'id' => 9406,
+										'name' => 'Shock Theodolite',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Template Description',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								293 => array (
+										'id' => 9449,
+										'name' => 'Rustbite Ringtail',
+										'icon' => '/esoui/art/icons/pet_siennaringtail.dds',
+										'desc' => 'Creating a perfect diversion any time it walks behind you, a Rustbite Ringtail`s adorably wide eyes never fail to draw a crowd of enamored onlookers. What you do with a crowd of happily distracted townsfolk is your business.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Burgundy' 
+								),
+								294 => array (
+										'id' => 9450,
+										'name' => 'Mossy Vvardvark',
+										'icon' => '/esoui/art/icons/pet_mossyvvardvark.dds',
+										'desc' => '\"Now, surely the presence of this creature is enough to dissuade those pompous academics from believing magic created the first Vvardvark. Who would create a creature so listless that moss grows on it?\"Atmore, —Vvardenfell Zoological Field Commission',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Timid Hide' 
+								),
+								295 => array (
+										'id' => 9452,
+										'name' => 'Keptu Bear Cub',
+										'icon' => '/esoui/art/icons/pet_keptubearcub.dds',
+										'desc' => 'Originally, young Keptu bear cubs received fresh markings once each season to gain Hircine`s favor. Some seeking to keep the tradition alive continue to mark cubs until these creatures bond to a hunting companion, then share the marking ritual with them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Hugger' 
+								),
+								296 => array (
+										'id' => 9507,
+										'name' => 'Palefrost Elk Fawn',
+										'icon' => '/esoui/art/icons/pet_platinumfawn.dds',
+										'desc' => '\"Some claim these elk originate from necromantic rituals involving restless spirits. Perhaps, I say. Regardless, these fawns make for delightful companions, though they`ll sometimes stare at nothing for hours.\"—Phrastus of Elinhir',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ghostwatcher' 
+								),
+								297 => array (
+										'id' => 9640,
+										'name' => 'Infernium',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Template Description',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								298 => array (
+										'id' => 9645,
+										'name' => 'Meadowglass Wolf Pup',
+										'icon' => '/esoui/art/icons/pet_glassworkwolfcub.dds',
+										'desc' => 'Cey-Tarn Keep dog-handlers made armor training wolf pups a priority after older members of the pack gnawed their plate-harnesses to pieces. The practice lives on in this pup who proudly displays his Elven panoply as he trots beside his owner.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Crystal' 
+								),
+								299 => array (
+										'id' => 9681,
+										'name' => 'Iliac Bay Crab',
+										'icon' => '/esoui/art/icons/pet_tealsheenmudcrab.dds',
+										'desc' => 'The distinctive blue colors of the Iliac Bay Crab make it both a sought-after adventuring friend for those who adore crabs as companions and a target for fisherfolk seeking the shellfish`s tender meat. Are you the former, the latter, or maybe both?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Peeker' 
+								),
+								300 => array (
+										'id' => 9791,
+										'name' => 'Appleback Salamander',
+										'icon' => '/esoui/art/icons/pet_magmaskinsalamander.dds',
+										'desc' => 'Brigands in Wayrest tried to use these creatures to help them harass nobles of that town, but after that plan backfired on them, they sold their stock. Lucky for you, these fiery salamanders receive loyalty training before being sold now.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Toasty' 
+								),
+								301 => array (
+										'id' => 9977,
+										'name' => 'Aurora Firepot Spider',
+										'icon' => '/esoui/art/icons/pet_aurorafirepotspider.dds',
+										'desc' => 'Feeling festive? Let this little firepot spider follow you around! With its adorable alchemical light show, you`re bound to brighten up anyone`s day—including your own!',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Brightfire' 
+								),
+								302 => array (
+										'id' => 9980,
+										'name' => 'Tortoiseshell Echatere',
+										'icon' => '/esoui/art/icons/pet_spottedechalette.dds',
+										'desc' => 'While they often disagree on theology, the Orsinium Orcs are unified by their love of this echatere`s coat. Some call it a blessing from Trinimac. Others call it an outcast`s brand from Malacath. Either way, this beast is a bundle of skittering joy.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skitterjoy' 
+								),
+								303 => array (
+										'id' => 10065,
+										'name' => 'Aurulun Fledgling Gryphon',
+										'icon' => '/esoui/art/icons/pet_aurulungryphon.dds',
+										'desc' => 'Spring blossoms nod their heads as if recognizing kin in this Elf-pampered companion. Some caretakers claim these gryphons provide a sense of ease to those who care for them—and pain for those who seek their demise.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dawnseeker' 
+								) 
+						) 
+				),
+				4 => array (
+						'subCategoryIndex' => 4,
+						'name' => 'Domestic',
+						'numCollectibles' => 74,
+						'collectibles' => array (
+								1 => array (
+										'id' => 9,
+										'name' => 'Pony Guar',
+										'icon' => '/esoui/art/icons/pet_003.dds',
+										'desc' => 'A favorite household pet in Morrowind, the Pony Guar is a glutton for affection.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Coconut' 
+								),
+								2 => array (
+										'id' => 12,
+										'name' => 'Whiterun Wolfhound',
+										'icon' => '/esoui/art/icons/pet_009.dds',
+										'desc' => 'The hunting dog of the Nords of Skyrim, known to face down sabre cats for their masters.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Horker' 
+								),
+								3 => array (
 										'id' => 14,
 										'name' => 'Bristlegut Piglet',
 										'icon' => '/esoui/art/icons/pet_016.dds',
@@ -25173,7 +25891,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Muddles' 
 								),
-								6 => array (
+								4 => array (
 										'id' => 29,
 										'name' => 'Bravil Retriever',
 										'icon' => '/esoui/art/icons/pet_008.dds',
@@ -25182,7 +25900,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Dogdroth' 
 								),
-								7 => array (
+								5 => array (
 										'id' => 32,
 										'name' => 'Windhelm Wolfhound',
 										'icon' => '/esoui/art/icons/pet_019.dds',
@@ -25191,7 +25909,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Wurfles' 
 								),
-								8 => array (
+								6 => array (
 										'id' => 33,
 										'name' => 'Housecat',
 										'icon' => '/esoui/art/icons/pet_010.dds',
@@ -25200,7 +25918,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Deathstare' 
 								),
-								9 => array (
+								7 => array (
 										'id' => 62,
 										'name' => 'Alik`r Dune-Hound',
 										'icon' => '/esoui/art/icons/pet_023.dds',
@@ -25209,7 +25927,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sandy' 
 								),
-								10 => array (
+								8 => array (
 										'id' => 86,
 										'name' => 'Shornhelm Shepherd',
 										'icon' => '/esoui/art/icons/pet_022.dds',
@@ -25218,7 +25936,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Hackles' 
 								),
-								11 => array (
+								9 => array (
 										'id' => 133,
 										'name' => 'Abecean Ratter Cat',
 										'icon' => '/esoui/art/icons/pet_029.dds',
@@ -25227,7 +25945,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Caramel' 
 								),
-								12 => array (
+								10 => array (
 										'id' => 134,
 										'name' => 'Senchal Striped Cat',
 										'icon' => '/esoui/art/icons/pet_030.dds',
@@ -25236,7 +25954,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sangiin' 
 								),
-								13 => array (
+								11 => array (
 										'id' => 135,
 										'name' => 'Necrom Ghostgazer Cat',
 										'icon' => '/esoui/art/icons/pet_031.dds',
@@ -25245,7 +25963,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Phantom' 
 								),
-								14 => array (
+								12 => array (
 										'id' => 136,
 										'name' => 'Markarth Bear-Dog',
 										'icon' => '/esoui/art/icons/pet_043.dds',
@@ -25254,7 +25972,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Furball' 
 								),
-								15 => array (
+								13 => array (
 										'id' => 144,
 										'name' => 'Ninendava Sacred Goat',
 										'icon' => '/esoui/art/icons/pet_035.dds',
@@ -25263,7 +25981,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Hircine' 
 								),
-								16 => array (
+								14 => array (
 										'id' => 150,
 										'name' => 'Imperial War Mastiff',
 										'icon' => '/esoui/art/icons/pet_130.dds',
@@ -25272,7 +25990,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Brutus' 
 								),
-								17 => array (
+								15 => array (
 										'id' => 153,
 										'name' => 'Copperback Bear-Dog',
 										'icon' => '/esoui/art/icons/pet_079.dds',
@@ -25281,7 +25999,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Winker' 
 								),
-								18 => array (
+								16 => array (
 										'id' => 157,
 										'name' => 'Dragontail Goat',
 										'icon' => '/esoui/art/icons/pet_042.dds',
@@ -25290,7 +26008,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'William' 
 								),
-								19 => array (
+								17 => array (
 										'id' => 158,
 										'name' => 'Sanguine`s Black Goat',
 										'icon' => '/esoui/art/icons/pet_041.dds',
@@ -25299,7 +26017,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Whisper' 
 								),
-								20 => array (
+								18 => array (
 										'id' => 192,
 										'name' => 'Psijic Domino Pig',
 										'icon' => '/esoui/art/icons/pet_047.dds',
@@ -25308,7 +26026,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Darlin`' 
 								),
-								21 => array (
+								19 => array (
 										'id' => 212,
 										'name' => 'Imperial War Dog Unarmored',
 										'icon' => '/esoui/art/icons/pet_129.dds',
@@ -25317,7 +26035,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								22 => array (
+								20 => array (
 										'id' => 221,
 										'name' => 'Black Mask Bear-Dog',
 										'icon' => '/esoui/art/icons/pet_078.dds',
@@ -25326,7 +26044,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Nightbiter' 
 								),
-								23 => array (
+								21 => array (
 										'id' => 304,
 										'name' => 'Alliance War Dog',
 										'icon' => '/esoui/art/icons/pet_086.dds',
@@ -25335,7 +26053,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Bruiser' 
 								),
-								24 => array (
+								22 => array (
 										'id' => 394,
 										'name' => 'Black Cat',
 										'icon' => '/esoui/art/icons/pet_067.dds',
@@ -25344,7 +26062,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Mimi' 
 								),
-								25 => array (
+								23 => array (
 										'id' => 766,
 										'name' => 'Black Morthal Mastiff',
 										'icon' => '/esoui/art/icons/pet_087.dds',
@@ -25353,7 +26071,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Blaggi' 
 								),
-								26 => array (
+								24 => array (
 										'id' => 767,
 										'name' => 'Tan Morthal Mastiff',
 										'icon' => '/esoui/art/icons/pet_090.dds',
@@ -25362,7 +26080,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Thaenaar' 
 								),
-								27 => array (
+								25 => array (
 										'id' => 768,
 										'name' => 'Gray Morthal Mastiff',
 										'icon' => '/esoui/art/icons/pet_089.dds',
@@ -25371,7 +26089,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Gregjar' 
 								),
-								28 => array (
+								26 => array (
 										'id' => 1147,
 										'name' => 'Milady`s Cloud Cat',
 										'icon' => '/esoui/art/icons/pet_110.dds',
@@ -25380,7 +26098,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Powder' 
 								),
-								29 => array (
+								27 => array (
 										'id' => 1345,
 										'name' => 'Haunted House Cat^n',
 										'icon' => '/esoui/art/icons/pet_152.dds',
@@ -25389,7 +26107,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Spectre Kitty' 
 								),
-								30 => array (
+								28 => array (
 										'id' => 1374,
 										'name' => 'Shadowghost Pony^n',
 										'icon' => '/esoui/art/icons/pet_149.dds',
@@ -25398,7 +26116,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Misty Princess' 
 								),
-								31 => array (
+								29 => array (
 										'id' => 1448,
 										'name' => 'White-Gold Imperial Pony^n',
 										'icon' => '/esoui/art/icons/pet_155.dds',
@@ -25407,7 +26125,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Goldie' 
 								),
-								32 => array (
+								30 => array (
 										'id' => 1472,
 										'name' => 'Mages Guild Sentry Cat^n',
 										'icon' => '/esoui/art/icons/pet_168.dds',
@@ -25416,7 +26134,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Uncanny Kitty' 
 								),
-								33 => array (
+								31 => array (
 										'id' => 4733,
 										'name' => 'Wrothgar Buck Goat',
 										'icon' => '/esoui/art/icons/pet_4733.dds',
@@ -25425,7 +26143,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Billy' 
 								),
-								34 => array (
+								32 => array (
 										'id' => 4734,
 										'name' => 'Big-Eared Ginger Mouser^n',
 										'icon' => '/esoui/art/icons/pet_4734.dds',
@@ -25434,7 +26152,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Mouse Murderer' 
 								),
-								35 => array (
+								33 => array (
 										'id' => 4735,
 										'name' => 'Karth Winter Pup^n',
 										'icon' => '/esoui/art/icons/pet_4735.dds',
@@ -25443,7 +26161,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Snowdrift' 
 								),
-								36 => array (
+								34 => array (
 										'id' => 4737,
 										'name' => 'Mage`s Sentry Kitten^n',
 										'icon' => '/esoui/art/icons/pet_169_magessentrykitten.dds',
@@ -25452,7 +26170,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Li`l Bat Ears' 
 								),
-								37 => array (
+								35 => array (
 										'id' => 4996,
 										'name' => 'Big-Eared Ginger Kitten^n',
 										'icon' => '/esoui/art/icons/pet_4996.dds',
@@ -25461,7 +26179,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Batkitty' 
 								),
-								38 => array (
+								36 => array (
 										'id' => 5081,
 										'name' => 'Great Daenian Hound^n',
 										'icon' => '/esoui/art/icons/pet_181_greatdane.dds',
@@ -25470,7 +26188,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Belle' 
 								),
-								39 => array (
+								37 => array (
 										'id' => 5190,
 										'name' => 'Silver Daenian Werewolf Tracker',
 										'icon' => '/esoui/art/icons/pet_204_greatdanehunter.dds',
@@ -25479,7 +26197,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Wolfhunter' 
 								),
-								40 => array (
+								38 => array (
 										'id' => 5620,
 										'name' => 'Riverwood White Hen',
 										'icon' => '/esoui/art/icons/pet_215_roosterwhite.dds',
@@ -25488,7 +26206,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Pecky' 
 								),
-								41 => array (
+								39 => array (
 										'id' => 5652,
 										'name' => 'Scruffy Skyrim Paint Pony',
 										'icon' => '/esoui/art/icons/pet_213_paintedpony.dds',
@@ -25497,7 +26215,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Ponytail' 
 								),
-								42 => array (
+								40 => array (
 										'id' => 5653,
 										'name' => 'Pale Pass Pony',
 										'icon' => '/esoui/art/icons/pet_212_spottedpony.dds',
@@ -25506,7 +26224,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								43 => array (
+								41 => array (
 										'id' => 5855,
 										'name' => 'Winterhold Wolfhound',
 										'icon' => '/esoui/art/icons/pet_254_winterholdwolfhound.dds',
@@ -25515,7 +26233,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Drift Dog' 
 								),
-								44 => array (
+								42 => array (
 										'id' => 5863,
 										'name' => 'Pink Pearl Pig',
 										'icon' => '/esoui/art/icons/pet_238_pinkpig.dds',
@@ -25524,7 +26242,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Fuchsia' 
 								),
-								45 => array (
+								43 => array (
 										'id' => 6194,
 										'name' => 'Breton Terrier',
 										'icon' => '/esoui/art/icons/pet_bretonterrier.dds',
@@ -25533,7 +26251,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Digger' 
 								),
-								46 => array (
+								44 => array (
 										'id' => 6196,
 										'name' => 'Sphynx Lynx',
 										'icon' => '/esoui/art/icons/pet_sphynxlynx.dds',
@@ -25542,7 +26260,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Shivers' 
 								),
-								47 => array (
+								45 => array (
 										'id' => 6492,
 										'name' => 'Belle',
 										'icon' => '/esoui/art/icons/pet_belle.dds',
@@ -25551,7 +26269,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Belle' 
 								),
-								48 => array (
+								46 => array (
 										'id' => 6619,
 										'name' => 'Silver-Gray Mouser Cat^F',
 										'icon' => '/esoui/art/icons/pet_silvergreymouser.dds',
@@ -25560,7 +26278,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Softpaws' 
 								),
-								49 => array (
+								47 => array (
 										'id' => 6620,
 										'name' => 'Senchal Harbor-Mutt^M',
 										'icon' => '/esoui/art/icons/pet_senchalharbormutt.dds',
@@ -25569,7 +26287,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Wharfrat' 
 								),
-								50 => array (
+								48 => array (
 										'id' => 6629,
 										'name' => 'Anthorbred Avalanche Dog^F',
 										'icon' => '/esoui/art/icons/pet_avalancedog.dds',
@@ -25578,7 +26296,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Gertrude' 
 								),
-								51 => array (
+								49 => array (
 										'id' => 6929,
 										'name' => 'Sable Tenmar Stray',
 										'icon' => '/esoui/art/icons/pet_stabletenmarstray.dds',
@@ -25587,7 +26305,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sandwiggle' 
 								),
-								52 => array (
+								50 => array (
 										'id' => 6930,
 										'name' => 'Merle Paddock Hound',
 										'icon' => '/esoui/art/icons/pet_merlepaddockhound.dds',
@@ -25596,7 +26314,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Waveracer' 
 								),
-								53 => array (
+								51 => array (
 										'id' => 7270,
 										'name' => 'Sovereign Sow',
 										'icon' => '/esoui/art/icons/pet_princesspig.dds',
@@ -25605,7 +26323,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Princess' 
 								),
-								54 => array (
+								52 => array (
 										'id' => 7533,
 										'name' => 'Whiterun Mottled Goat',
 										'icon' => '/esoui/art/icons/pet_goatvariant.dds',
@@ -25614,7 +26332,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Cheesemonger' 
 								),
-								55 => array (
+								53 => array (
 										'id' => 7535,
 										'name' => 'Pale Pass Mountain Hare',
 										'icon' => '/esoui/art/icons/pet_palepasshare.dds',
@@ -25623,7 +26341,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Fuzzlekins' 
 								),
-								56 => array (
+								54 => array (
 										'id' => 7536,
 										'name' => 'Tu`whacca`s Sphynx Cat',
 										'icon' => '/esoui/art/icons/pet_graysphynx.dds',
@@ -25632,7 +26350,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Purrbucket' 
 								),
-								57 => array (
+								55 => array (
 										'id' => 8193,
 										'name' => 'Druadach Mountain Dog',
 										'icon' => '/esoui/art/icons/pet_saintbrenardvar.dds',
@@ -25641,7 +26359,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Tenderpaw' 
 								),
-								58 => array (
+								56 => array (
 										'id' => 8196,
 										'name' => 'Pact Breton Terrier',
 										'icon' => '/esoui/art/icons/pet_bretonterrierep.dds',
@@ -25650,7 +26368,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Skaldie' 
 								),
-								59 => array (
+								57 => array (
 										'id' => 8197,
 										'name' => 'Dominion Breton Terrier',
 										'icon' => '/esoui/art/icons/pet_bretonterrierad.dds',
@@ -25659,7 +26377,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Queenie' 
 								),
-								60 => array (
+								58 => array (
 										'id' => 8198,
 										'name' => 'Covenant Breton Terrier',
 										'icon' => '/esoui/art/icons/pet_bretonterrierdc.dds',
@@ -25668,7 +26386,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Kingling' 
 								),
-								61 => array (
+								59 => array (
 										'id' => 8507,
 										'name' => 'Karthspire Coney',
 										'icon' => '/esoui/art/icons/pet_bunnyvariant.dds',
@@ -25677,7 +26395,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Fuzzwuzzle' 
 								),
-								62 => array (
+								60 => array (
 										'id' => 8533,
 										'name' => 'Woodhearth Brown Rabbit',
 										'icon' => '/esoui/art/icons/pet_bunnyvariantu29.dds',
@@ -25686,7 +26404,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Daisy' 
 								),
-								63 => array (
+								61 => array (
 										'id' => 8538,
 										'name' => 'Orcrest Rathound',
 										'icon' => '/esoui/art/icons/pet_senchalmuttv1.dds',
@@ -25695,7 +26413,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Urchin' 
 								),
-								64 => array (
+								62 => array (
 										'id' => 8539,
 										'name' => 'Greenhill Farmdog',
 										'icon' => '/esoui/art/icons/pet_greenhillfarmdog.dds',
@@ -25704,7 +26422,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Mousie' 
 								),
-								65 => array (
+								63 => array (
 										'id' => 8540,
 										'name' => 'Cloud Spring White Sheep',
 										'icon' => '/esoui/art/icons/pet_sheep.dds',
@@ -25713,7 +26431,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Praan' 
 								),
-								66 => array (
+								64 => array (
 										'id' => 8541,
 										'name' => 'Powderwhite Coney',
 										'icon' => '/esoui/art/icons/pet_powderwhiteconey.dds',
@@ -25722,7 +26440,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Whomper' 
 								),
-								67 => array (
+								65 => array (
 										'id' => 8545,
 										'name' => 'Bleakrock Black Sheep',
 										'icon' => '/esoui/art/icons/pet_sheepblack.dds',
@@ -25731,7 +26449,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Bleakbleat' 
 								),
-								68 => array (
+								66 => array (
 										'id' => 8546,
 										'name' => 'Ascadian Umber Sheep',
 										'icon' => '/esoui/art/icons/pet_sheepbrown.dds',
@@ -25740,7 +26458,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sundeath' 
 								),
-								69 => array (
+								67 => array (
+										'id' => 9069,
+										'name' => 'Iliac Spotted Goat',
+										'icon' => '/esoui/art/icons/pet_lliacspottedgoat.dds',
+										'desc' => 'Ask an Iliac Bay native what they`d miss most about their home and the answer might be the sight of tree-climbing spotted goats. Fortunately for these goat-lovers, the creatures now bleat their way from the bay to climb all manner of trees in new homes.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Timberblat' 
+								),
+								68 => array (
 										'id' => 9071,
 										'name' => 'Nibenese Pony',
 										'icon' => '/esoui/art/icons/pet_nibenesepony.dds',
@@ -25749,7 +26476,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Rose-Eater' 
 								),
-								70 => array (
+								69 => array (
 										'id' => 9367,
 										'name' => 'Nightmare Great Dane',
 										'icon' => '/esoui/art/icons/icon_missing.dds',
@@ -25758,7 +26485,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								71 => array (
+								70 => array (
 										'id' => 9377,
 										'name' => 'Cropsford Hen',
 										'icon' => '/esoui/art/icons/pet_cropsfordhen.dds',
@@ -25767,7 +26494,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Plucky' 
 								),
-								72 => array (
+								71 => array (
 										'id' => 9389,
 										'name' => 'Witch-Tamed Bear-Dog',
 										'icon' => '/esoui/art/icons/pet_halloweendog.dds',
@@ -25776,7 +26503,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Fur-rightful Fido' 
 								),
-								73 => array (
+								72 => array (
 										'id' => 9408,
 										'name' => 'Sooty Breton Terrier',
 										'icon' => '/esoui/art/icons/pet_sootybretonterrrior.dds',
@@ -25784,6 +26511,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Smudge' 
+								),
+								73 => array (
+										'id' => 9448,
+										'name' => 'Alcaire Blue Cockeral',
+										'icon' => '/esoui/art/icons/pet_bluegoldrooster.dds',
+										'desc' => 'The cockerels of Alcaire Castle uphold their noble duty and make as much noise during daybreak as possible. Their screeching continues well into the morning, waking any lucky enough to miss out on their earliest morning calls.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stunning Peter' 
+								),
+								74 => array (
+										'id' => 9577,
+										'name' => 'Catwell',
+										'icon' => '/esoui/art/icons/pet_catwell.dds',
+										'desc' => 'The cat`s eyes seem to speak, saying \"Jolly good to see you! We appear to have a small blight of rodents. Dreadful crawling things. Scuttling everywhere. Hmm, skittering blights. I knew a good joke about that. What? Oh, yes. Lovely day for a hunt!\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Catwell' 
 								) 
 						) 
 				),
@@ -25829,7 +26574,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/tutorial_idexicon_emotes_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 125,
+						'numCollectibles' => 133,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1255,
@@ -26955,6 +27700,78 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 21,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								126 => array (
+										'id' => 10226,
+										'name' => 'Feed Bird',
+										'icon' => '/esoui/art/icons/emote_feedbird.dds',
+										'desc' => 'Take a moment to breathe and feed the birds. There`s always a hungry bird somewhere, after all!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								127 => array (
+										'id' => 10227,
+										'name' => 'Sword Dance',
+										'icon' => '/esoui/art/icons/emote_sworddance.dds',
+										'desc' => 'According to the Way of the Sword, the blade must become an extension of the body. Display a Redguard`s weapon-mastery with this stylish display!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								128 => array (
+										'id' => 10228,
+										'name' => 'Where`s My Drink?',
+										'icon' => '/esoui/art/icons/emote_wheredrink.dds',
+										'desc' => 'Lost your drink, eh? Well, where did you last have it? Check there.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								129 => array (
+										'id' => 10229,
+										'name' => 'Crab Pinch',
+										'icon' => '/esoui/art/icons/emote_crabpinch.dds',
+										'desc' => 'That crab seems interested in you. Is it friendly? It seems that maybe—no, no, ouch! It`s pinching your finger!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								130 => array (
+										'id' => 10230,
+										'name' => 'Sit and Drink',
+										'icon' => '/esoui/art/icons/emote_sitdrink.dds',
+										'desc' => 'Rest your weary feet and slake your mighty thirst! You deserve it.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								131 => array (
+										'id' => 10241,
+										'name' => 'Pop the Cork',
+										'icon' => '/esoui/art/icons/emote_popthecork.dds',
+										'desc' => 'It`s time to celebrate! Pop open that sparkling cider and enjoy the moment.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								132 => array (
+										'id' => 10245,
+										'name' => 'Spyglass',
+										'icon' => '/esoui/art/icons/emote_spyglass.dds',
+										'desc' => 'Scan the horizon for distant shores with your trusty spyglass. Better to know the lay of the land than go in unprepared, yes?',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								133 => array (
+										'id' => 10246,
+										'name' => 'Glimmer Dust',
+										'icon' => '/esoui/art/icons/emote_glimmerdust.dds',
+										'desc' => 'Add a bit of alchemy to your day by using this fine powder.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -26993,7 +27810,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Head',
-						'numCollectibles' => 495,
+						'numCollectibles' => 517,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1598,
@@ -31397,6 +32214,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								490 => array (
+										'id' => 9593,
+										'name' => 'Annihilarch`s Chosen Helm',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_head_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								491 => array (
+										'id' => 9600,
+										'name' => 'Annihilarch`s Chosen Helmet',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_head_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								492 => array (
+										'id' => 9607,
+										'name' => 'Annihilarch`s Chosen Hat',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_head_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								493 => array (
 										'id' => 9629,
 										'name' => 'Magma Incarnate Mask',
 										'icon' => '/esoui/art/icons/gear_undearthinvarnate_head_a.dds',
@@ -31405,7 +32249,34 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								491 => array (
+								494 => array (
+										'id' => 9687,
+										'name' => 'Fargrave Guardian Helm',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_head_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								495 => array (
+										'id' => 9694,
+										'name' => 'Fargrave Guardian Helmet',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_head_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								496 => array (
+										'id' => 9701,
+										'name' => 'Fargrave Guardian Hat',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_head_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								497 => array (
 										'id' => 9721,
 										'name' => 'Evergloam Champion Helm',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_head_a.dds',
@@ -31414,7 +32285,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								492 => array (
+								498 => array (
 										'id' => 9728,
 										'name' => 'Scorianite Gladiator Helmet',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_head_a.dds',
@@ -31423,7 +32294,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								493 => array (
+								499 => array (
 										'id' => 9747,
 										'name' => 'Black Drake Clanwrap Hat',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_head_a.dds',
@@ -31432,7 +32303,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								494 => array (
+								500 => array (
 										'id' => 9799,
 										'name' => 'Nord Carved Helm',
 										'icon' => '/esoui/art/icons/gear_nordcarved_head_a.dds',
@@ -31441,11 +32312,155 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								495 => array (
+								501 => array (
 										'id' => 9812,
 										'name' => 'Opal Chokethorn Mask',
 										'icon' => '/esoui/art/icons/gear_undstrangler_head_e.dds',
 										'desc' => 'An Outfit look for headgear in the Chokethorn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								502 => array (
+										'id' => 9840,
+										'name' => 'Keptu Chief Helm',
+										'icon' => '/esoui/art/icons/gear_keptubear_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Keptu Chief style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								503 => array (
+										'id' => 9847,
+										'name' => 'Saberkeel Panoply Helm',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								504 => array (
+										'id' => 9854,
+										'name' => 'Dragonguard Berserker Helmet',
+										'icon' => '/esoui/art/icons/gear_dragonwing_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								505 => array (
+										'id' => 9914,
+										'name' => 'Dreadsails Helm',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_head_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								506 => array (
+										'id' => 9921,
+										'name' => 'Dreadsails Helmet',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_head_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								507 => array (
+										'id' => 9928,
+										'name' => 'Dreadsails Hat',
+										'icon' => '/esoui/art/icons/gear_krakenlight_head_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								508 => array (
+										'id' => 9946,
+										'name' => 'Ascendant Order Helm',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_head_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								509 => array (
+										'id' => 9953,
+										'name' => 'Ascendant Order Helmet',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_head_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								510 => array (
+										'id' => 9960,
+										'name' => 'Ascendant Order Hat',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_head_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								511 => array (
+										'id' => 10001,
+										'name' => 'Second Seed Raiment Hat',
+										'icon' => '/esoui/art/icons/gear_springdawn_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Second Seed Raiment style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								512 => array (
+										'id' => 10022,
+										'name' => 'Lady Thorn Mask',
+										'icon' => '/esoui/art/icons/gear_undvamplord_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Veteran Castle Thorn.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								513 => array (
+										'id' => 10024,
+										'name' => 'Baron Thirsk Mask',
+										'icon' => '/esoui/art/icons/gear_undgrievoustwilightv2_head_a.dds',
+										'desc' => 'Obtained by defeating Baron Thirsk, or from the Legionary Trophy Vault in the Imperial City.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								514 => array (
+										'id' => 10026,
+										'name' => 'Lady Malygda Mask',
+										'icon' => '/esoui/art/icons/gear_undladymalygda_head_a.dds',
+										'desc' => 'Obtained by defeating Lady Malygda, or from the Clawed Trophy Vault in the Imperial City.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								515 => array (
+										'id' => 10028,
+										'name' => 'Nunatak Mask',
+										'icon' => '/esoui/art/icons/gear_undfrostatronachv2_head_a.dds',
+										'desc' => 'Obtained by defeating Nunatak, or from the Bone Shard Trophy Vault in the Imperial City.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								516 => array (
+										'id' => 10035,
+										'name' => 'Kargaeda Mask',
+										'icon' => '/esoui/art/icons/gear_undgryphon_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Veteran Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								517 => array (
+										'id' => 10042,
+										'name' => 'Nazaray Mask',
+										'icon' => '/esoui/art/icons/gear_undspriggan_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Veteran Shipwright`s Regret.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -31455,7 +32470,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Chest',
-						'numCollectibles' => 614,
+						'numCollectibles' => 634,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1488,
@@ -36948,6 +37963,78 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								611 => array (
+										'id' => 9592,
+										'name' => 'Annihilarch`s Chosen Cuirass',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_chest_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								612 => array (
+										'id' => 9599,
+										'name' => 'Annihilarch`s Chosen Jack',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_chest_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								613 => array (
+										'id' => 9606,
+										'name' => 'Annihilarch`s Chosen Jerkin',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_chest_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								614 => array (
+										'id' => 9613,
+										'name' => 'Annihilarch`s Chosen Robe',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_robe_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								615 => array (
+										'id' => 9686,
+										'name' => 'Fargrave Guardian Cuirass',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_chest_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								616 => array (
+										'id' => 9693,
+										'name' => 'Fargrave Guardian Jack',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_chest_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								617 => array (
+										'id' => 9700,
+										'name' => 'Fargrave Guardian Jerkin',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_chest_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								618 => array (
+										'id' => 9707,
+										'name' => 'Fargrave Guardian Robe',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_robe_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								619 => array (
 										'id' => 9720,
 										'name' => 'Evergloam Champion Cuirass',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_chest_a.dds',
@@ -36956,7 +38043,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								612 => array (
+								620 => array (
 										'id' => 9727,
 										'name' => 'Scorianite Gladiator Jack',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_chest_a.dds',
@@ -36965,7 +38052,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								613 => array (
+								621 => array (
 										'id' => 9746,
 										'name' => 'Black Drake Clanwrap Jerkin',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_chest_a.dds',
@@ -36974,11 +38061,119 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								614 => array (
+								622 => array (
 										'id' => 9798,
 										'name' => 'Nord Carved Cuirass',
 										'icon' => '/esoui/art/icons/gear_nordcarved_chest_a.dds',
 										'desc' => 'An Outfit look for chests in the Nord Carved style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								623 => array (
+										'id' => 9839,
+										'name' => 'Keptu Chief Cuirass',
+										'icon' => '/esoui/art/icons/gear_keptubear_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Keptu Chief style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								624 => array (
+										'id' => 9846,
+										'name' => 'Saberkeel Panoply Cuirass',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								625 => array (
+										'id' => 9853,
+										'name' => 'Dragonguard Berserker Jack',
+										'icon' => '/esoui/art/icons/gear_dragonwing_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								626 => array (
+										'id' => 9913,
+										'name' => 'Dreadsails Cuirass',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_chest_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								627 => array (
+										'id' => 9920,
+										'name' => 'Dreadsails Jack',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_chest_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								628 => array (
+										'id' => 9927,
+										'name' => 'Dreadsails Jerkin',
+										'icon' => '/esoui/art/icons/gear_krakenlight_chest_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								629 => array (
+										'id' => 9934,
+										'name' => 'Dreadsails Robe',
+										'icon' => '/esoui/art/icons/gear_krakenlight_robe_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								630 => array (
+										'id' => 9945,
+										'name' => 'Ascendant Order Cuirass',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_chest_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								631 => array (
+										'id' => 9952,
+										'name' => 'Ascendant Order Jack',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_chest_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								632 => array (
+										'id' => 9959,
+										'name' => 'Ascendant Order Jerkin',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_chest_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								633 => array (
+										'id' => 9966,
+										'name' => 'Ascendant Order Robe',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_robe_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								634 => array (
+										'id' => 10000,
+										'name' => 'Second Seed Raiment Jerkin',
+										'icon' => '/esoui/art/icons/gear_springdawn_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Second Seed Raiment style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -36988,7 +38183,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Legs',
-						'numCollectibles' => 469,
+						'numCollectibles' => 485,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1491,
@@ -41176,6 +42371,60 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								466 => array (
+										'id' => 9595,
+										'name' => 'Annihilarch`s Chosen Greaves',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_legs_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								467 => array (
+										'id' => 9601,
+										'name' => 'Annihilarch`s Chosen Guards',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_legs_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								468 => array (
+										'id' => 9608,
+										'name' => 'Annihilarch`s Chosen Breeches',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_legs_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								469 => array (
+										'id' => 9689,
+										'name' => 'Fargrave Guardian Greaves',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_legs_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								470 => array (
+										'id' => 9695,
+										'name' => 'Fargrave Guardian Guards',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_legs_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								471 => array (
+										'id' => 9702,
+										'name' => 'Fargrave Guardian Breeches',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_legs_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								472 => array (
 										'id' => 9722,
 										'name' => 'Evergloam Champion Greaves',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_legs_a.dds',
@@ -41184,7 +42433,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								467 => array (
+								473 => array (
 										'id' => 9729,
 										'name' => 'Scorianite Gladiator Guards',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_legs_a.dds',
@@ -41193,7 +42442,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								468 => array (
+								474 => array (
 										'id' => 9748,
 										'name' => 'Black Drake Clanwrap Breeches',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_legs_a.dds',
@@ -41202,11 +42451,101 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								469 => array (
+								475 => array (
 										'id' => 9800,
 										'name' => 'Nord Carved Greaves',
 										'icon' => '/esoui/art/icons/gear_nordcarved_legs_a.dds',
 										'desc' => 'An Outfit look for legs in the Nord Carved style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								476 => array (
+										'id' => 9841,
+										'name' => 'Keptu Chief Greaves',
+										'icon' => '/esoui/art/icons/gear_keptubear_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Keptu Chief style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								477 => array (
+										'id' => 9848,
+										'name' => 'Saberkeel Panoply Greaves',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								478 => array (
+										'id' => 9855,
+										'name' => 'Dragonguard Berserker Guards',
+										'icon' => '/esoui/art/icons/gear_dragonwing_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								479 => array (
+										'id' => 9916,
+										'name' => 'Dreadsails Greaves',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_legs_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								480 => array (
+										'id' => 9922,
+										'name' => 'Dreadsails Guards',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_legs_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								481 => array (
+										'id' => 9929,
+										'name' => 'Dreadsails Breeches',
+										'icon' => '/esoui/art/icons/gear_krakenlight_legs_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								482 => array (
+										'id' => 9948,
+										'name' => 'Ascendant Order Greaves',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_legs_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								483 => array (
+										'id' => 9954,
+										'name' => 'Ascendant Order Guards',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_legs_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								484 => array (
+										'id' => 9961,
+										'name' => 'Ascendant Order Breeches',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_legs_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								485 => array (
+										'id' => 10002,
+										'name' => 'Second Seed Raiment Breeches',
+										'icon' => '/esoui/art/icons/gear_springdawn_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Second Seed Raiment style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -41216,7 +42555,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Shoulders',
-						'numCollectibles' => 523,
+						'numCollectibles' => 545,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1496,
@@ -45722,7 +47061,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9199,
 										'name' => 'Sul-Xan Pauldrons',
 										'icon' => '/esoui/art/icons/gear_rockgrove_heavy_shoulders_a.dds',
-										'desc' => 'Learned from the Sul-Xan Crafting Style, acquired by completing the weekly quest \"Of Stone and Steam\" for the Rockgrove Trail.',
+										'desc' => 'Learned from the Sul-Xan Crafting Style, acquired by completing the weekly quest \"\Of Stone and Steam\"\ for the Rockgrove Trail.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45872,6 +47211,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								518 => array (
+										'id' => 9594,
+										'name' => 'Annihilarch`s Chosen Pauldrons',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_shoulders_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								519 => array (
+										'id' => 9603,
+										'name' => 'Annihilarch`s Chosen Arm Cops',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_shoulders_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								520 => array (
+										'id' => 9609,
+										'name' => 'Annihilarch`s Chosen Epaulets',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_shoulder_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								521 => array (
 										'id' => 9630,
 										'name' => 'Magma Incarnate Shoulder',
 										'icon' => '/esoui/art/icons/gear_undearthinvarnate_shoulder_a.dds',
@@ -45880,7 +47246,34 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								519 => array (
+								522 => array (
+										'id' => 9688,
+										'name' => 'Fargrave Guardian Pauldrons',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_shoulders_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								523 => array (
+										'id' => 9697,
+										'name' => 'Fargrave Guardian Arm Cops',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_shoulders_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								524 => array (
+										'id' => 9703,
+										'name' => 'Fargrave Guardian Epaulets',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_shoulders_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								525 => array (
 										'id' => 9723,
 										'name' => 'Evergloam Champion Pauldrons',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_shoulder_a.dds',
@@ -45889,7 +47282,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								520 => array (
+								526 => array (
 										'id' => 9730,
 										'name' => 'Scorianite Gladiator Arm Cops',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_shoulder_a.dds',
@@ -45898,7 +47291,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								521 => array (
+								527 => array (
 										'id' => 9749,
 										'name' => 'Black Drake Clanwrap Epaulets',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_shoulder_a.dds',
@@ -45907,7 +47300,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								522 => array (
+								528 => array (
 										'id' => 9801,
 										'name' => 'Nord Carved Pauldrons',
 										'icon' => '/esoui/art/icons/gear_nordcarved_shoulders_a.dds',
@@ -45916,11 +47309,155 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								523 => array (
+								529 => array (
 										'id' => 9813,
 										'name' => 'Opal Chokethorn Shoulder',
 										'icon' => '/esoui/art/icons/gear_undstrangler_shoulders_e.dds',
 										'desc' => 'An Outfit look for shoulders in the Chokethorn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								530 => array (
+										'id' => 9842,
+										'name' => 'Keptu Chief Pauldrons',
+										'icon' => '/esoui/art/icons/gear_keptubear_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Keptu Chief style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								531 => array (
+										'id' => 9849,
+										'name' => 'Saberkeel Panoply Pauldrons',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								532 => array (
+										'id' => 9856,
+										'name' => 'Dragonguard Berserker Arm Cops',
+										'icon' => '/esoui/art/icons/gear_dragonwing_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								533 => array (
+										'id' => 9915,
+										'name' => 'Dreadsails Pauldrons',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_shoulder_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								534 => array (
+										'id' => 9924,
+										'name' => 'Dreadsails Arm Cops',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_shoulder_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								535 => array (
+										'id' => 9930,
+										'name' => 'Dreadsails Epaulets',
+										'icon' => '/esoui/art/icons/gear_krakenlight_shoulder_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								536 => array (
+										'id' => 9947,
+										'name' => 'Ascendant Order Pauldrons',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_shoulders_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								537 => array (
+										'id' => 9956,
+										'name' => 'Ascendant Order Arm Cops',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_shoulder_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								538 => array (
+										'id' => 9962,
+										'name' => 'Ascendant Order Epaulets',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_shoulder_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								539 => array (
+										'id' => 10003,
+										'name' => 'Second Seed Raiment Epaulets',
+										'icon' => '/esoui/art/icons/gear_springdawn_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Second Seed Raiment style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								540 => array (
+										'id' => 10023,
+										'name' => 'Lady Thorn Shoulder',
+										'icon' => '/esoui/art/icons/gear_undvamplord_shoulder_a.dds',
+										'desc' => 'Purchased from Urgarlag Chief-bane at an Undaunted Enclave. Obtained rarely by opening Urgarlag`s Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								541 => array (
+										'id' => 10025,
+										'name' => 'Baron Thirsk Shoulder',
+										'icon' => '/esoui/art/icons/gear_undgrievoustwilightv2_shoulder_a.dds',
+										'desc' => 'Purchased from the Tel Var Equipment Lockbox Merchant. Obtained rarely by opening an Imperial City Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								542 => array (
+										'id' => 10027,
+										'name' => 'Lady Malygda Shoulder',
+										'icon' => '/esoui/art/icons/gear_undladymalygda_shoulder_a.dds',
+										'desc' => 'Purchased from the Tel Var Equipment Lockbox Merchant. Obtained rarely by opening an Imperial City Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								543 => array (
+										'id' => 10029,
+										'name' => 'Nunatak Shoulder',
+										'icon' => '/esoui/art/icons/gear_undfrostatronachv2_shoulder_a.dds',
+										'desc' => 'Purchased from the Tel Var Equipment Lockbox Merchant. Obtained rarely by opening an Imperial City Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								544 => array (
+										'id' => 10036,
+										'name' => 'Kargaeda Shoulder',
+										'icon' => '/esoui/art/icons/gear_undgryphon_shoulder_a.dds',
+										'desc' => 'Purchased from Urgarlag Chief-bane at an Undaunted Enclave. Obtained rarely by opening Urgarlag Chief-bane`s Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								545 => array (
+										'id' => 10043,
+										'name' => 'Nazaray Shoulder',
+										'icon' => '/esoui/art/icons/gear_undspriggan_shoulder_a.dds',
+										'desc' => 'Purchased from Urgarlag Chief-bane at an Undaunted Enclave. Obtained rarely by opening Urgarlag Chief-bane`s Mystery Coffer.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45930,7 +47467,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Feet',
-						'numCollectibles' => 469,
+						'numCollectibles' => 485,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1489,
@@ -50118,6 +51655,60 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								466 => array (
+										'id' => 9598,
+										'name' => 'Annihilarch`s Chosen Sabatons',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_feet_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								467 => array (
+										'id' => 9604,
+										'name' => 'Annihilarch`s Chosen Boots',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_feet_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								468 => array (
+										'id' => 9611,
+										'name' => 'Annihilarch`s Chosen Shoes',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_feet_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								469 => array (
+										'id' => 9692,
+										'name' => 'Fargrave Guardian Sabatons',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_feet_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								470 => array (
+										'id' => 9698,
+										'name' => 'Fargrave Guardian Boots',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_feet_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								471 => array (
+										'id' => 9705,
+										'name' => 'Fargrave Guardian Shoes',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_feet_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								472 => array (
 										'id' => 9724,
 										'name' => 'Evergloam Champion Sabatons',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_feet_a.dds',
@@ -50126,7 +51717,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								467 => array (
+								473 => array (
 										'id' => 9731,
 										'name' => 'Scorianite Gladiator Boots',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_feet_a.dds',
@@ -50135,7 +51726,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								468 => array (
+								474 => array (
 										'id' => 9750,
 										'name' => 'Black Drake Clanwrap Shoes',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_feet_a.dds',
@@ -50144,11 +51735,101 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								469 => array (
+								475 => array (
 										'id' => 9802,
 										'name' => 'Nord Carved Sabatons',
 										'icon' => '/esoui/art/icons/gear_nordcarved_feet_a.dds',
 										'desc' => 'An Outfit look for footwear in the Nord Carved style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								476 => array (
+										'id' => 9843,
+										'name' => 'Keptu Chief Sabatons',
+										'icon' => '/esoui/art/icons/gear_keptubear_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Keptu Chief style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								477 => array (
+										'id' => 9850,
+										'name' => 'Saberkeel Panoply Sabatons',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								478 => array (
+										'id' => 9857,
+										'name' => 'Dragonguard Berserker Boots',
+										'icon' => '/esoui/art/icons/gear_dragonwing_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								479 => array (
+										'id' => 9919,
+										'name' => 'Dreadsails Sabatons',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_feet_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								480 => array (
+										'id' => 9925,
+										'name' => 'Dreadsails Boots',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_feet_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								481 => array (
+										'id' => 9932,
+										'name' => 'Dreadsails Shoes',
+										'icon' => '/esoui/art/icons/gear_krakenlight_feet_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								482 => array (
+										'id' => 9951,
+										'name' => 'Ascendant Order Sabatons',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_feet_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								483 => array (
+										'id' => 9957,
+										'name' => 'Ascendant Order Boots',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_feet_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								484 => array (
+										'id' => 9964,
+										'name' => 'Ascendant Order Shoes',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_feet_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								485 => array (
+										'id' => 10004,
+										'name' => 'Second Seed Raiment Shoes',
+										'icon' => '/esoui/art/icons/gear_springdawn_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Second Seed Raiment style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -50158,7 +51839,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Hands',
-						'numCollectibles' => 472,
+						'numCollectibles' => 488,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1490,
@@ -54373,6 +56054,60 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								469 => array (
+										'id' => 9597,
+										'name' => 'Annihilarch`s Chosen Gauntlets',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_hands_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								470 => array (
+										'id' => 9605,
+										'name' => 'Annihilarch`s Chosen Bracers',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_hands_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								471 => array (
+										'id' => 9612,
+										'name' => 'Annihilarch`s Chosen Gloves',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_hands_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								472 => array (
+										'id' => 9691,
+										'name' => 'Fargrave Guardian Gauntlets',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_hands_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								473 => array (
+										'id' => 9699,
+										'name' => 'Fargrave Guardian Bracers',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_hands_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								474 => array (
+										'id' => 9706,
+										'name' => 'Fargrave Guardian Gloves',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_hands_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								475 => array (
 										'id' => 9725,
 										'name' => 'Evergloam Champion Gauntlets',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_hands_a.dds',
@@ -54381,7 +56116,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								470 => array (
+								476 => array (
 										'id' => 9732,
 										'name' => 'Scorianite Gladiator Bracers',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_hands_a.dds',
@@ -54390,7 +56125,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								471 => array (
+								477 => array (
 										'id' => 9751,
 										'name' => 'Black Drake Clanwrap Gloves',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_hands_a.dds',
@@ -54399,11 +56134,101 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								472 => array (
+								478 => array (
 										'id' => 9803,
 										'name' => 'Nord Carved Gauntlets',
 										'icon' => '/esoui/art/icons/gear_nordcarved_hands_a.dds',
 										'desc' => 'An Outfit look for hands in the Nord Carved style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								479 => array (
+										'id' => 9844,
+										'name' => 'Keptu Chief Gauntlets',
+										'icon' => '/esoui/art/icons/gear_keptubear_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Keptu Chief style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								480 => array (
+										'id' => 9851,
+										'name' => 'Saberkeel Panoply Gauntlets',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								481 => array (
+										'id' => 9858,
+										'name' => 'Dragonguard Berserker Bracers',
+										'icon' => '/esoui/art/icons/gear_dragonwing_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								482 => array (
+										'id' => 9918,
+										'name' => 'Dreadsails Gauntlets',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_hands_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								483 => array (
+										'id' => 9926,
+										'name' => 'Dreadsails Bracers',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_hands_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								484 => array (
+										'id' => 9933,
+										'name' => 'Dreadsails Gloves',
+										'icon' => '/esoui/art/icons/gear_krakenlight_hands_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								485 => array (
+										'id' => 9950,
+										'name' => 'Ascendant Order Gauntlets',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_hands_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								486 => array (
+										'id' => 9958,
+										'name' => 'Ascendant Order Bracers',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_hands_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								487 => array (
+										'id' => 9965,
+										'name' => 'Ascendant Order Gloves',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_hands_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								488 => array (
+										'id' => 10005,
+										'name' => 'Second Seed Raiment Gloves',
+										'icon' => '/esoui/art/icons/gear_springdawn_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Second Seed Raiment style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -54413,7 +56238,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Waist',
-						'numCollectibles' => 465,
+						'numCollectibles' => 480,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1502,
@@ -58565,6 +60390,60 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								462 => array (
+										'id' => 9596,
+										'name' => 'Annihilarch`s Chosen Girdle',
+										'icon' => '/esoui/art/icons/gear_annilarchch_heavy_waist_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								463 => array (
+										'id' => 9602,
+										'name' => 'Annihilarch`s Chosen Belt',
+										'icon' => '/esoui/art/icons/gear_annilarchch_med_waist_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								464 => array (
+										'id' => 9610,
+										'name' => 'Annihilarch`s Chosen Sash',
+										'icon' => '/esoui/art/icons/gear_annilarchch_light_waist_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								465 => array (
+										'id' => 9690,
+										'name' => 'Fargrave Guardian Girdle',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_heavy_waist_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								466 => array (
+										'id' => 9696,
+										'name' => 'Fargrave Guardian Belt',
+										'icon' => '/esoui/art/icons/gear_godgravegaurdianmed_waist_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								467 => array (
+										'id' => 9704,
+										'name' => 'Fargrave Guardian Sash',
+										'icon' => '/esoui/art/icons/gear_godgrave_light_waist_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								468 => array (
 										'id' => 9726,
 										'name' => 'Evergloam Champion Girdle',
 										'icon' => '/esoui/art/icons/gear_nocturnalsoldier_waist_a.dds',
@@ -58573,7 +60452,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								463 => array (
+								469 => array (
 										'id' => 9733,
 										'name' => 'Scorianite Gladiator Belt',
 										'icon' => '/esoui/art/icons/gear_xivilaiarmor_waist_a.dds',
@@ -58582,7 +60461,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								464 => array (
+								470 => array (
 										'id' => 9752,
 										'name' => 'Black Drake Clanwrap Sash',
 										'icon' => '/esoui/art/icons/gear_longhouseemporer_waist_a.dds',
@@ -58591,11 +60470,92 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								465 => array (
+								471 => array (
 										'id' => 9804,
 										'name' => 'Nord Carved Girdle',
 										'icon' => '/esoui/art/icons/gear_nordcarved_waist_a.dds',
 										'desc' => 'An Outfit look for waists in the Nord Carved style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								472 => array (
+										'id' => 9852,
+										'name' => 'Saberkeel Panoply Girdle',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Saberkeel Panoply style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								473 => array (
+										'id' => 9859,
+										'name' => 'Dragonguard Berserker Belt',
+										'icon' => '/esoui/art/icons/gear_dragonwing_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Dragonguard Berserker style, acquired from Tel Var merchants.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								474 => array (
+										'id' => 9917,
+										'name' => 'Dreadsails Girdle',
+										'icon' => '/esoui/art/icons/gear_krakenheavy_waist_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								475 => array (
+										'id' => 9923,
+										'name' => 'Dreadsails Belt',
+										'icon' => '/esoui/art/icons/gear_krakenmedium_waist_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								476 => array (
+										'id' => 9931,
+										'name' => 'Dreadsails Sash',
+										'icon' => '/esoui/art/icons/gear_krakenlight_waist_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								477 => array (
+										'id' => 9949,
+										'name' => 'Ascendant Order Girdle',
+										'icon' => '/esoui/art/icons/gear_scribestruth_hvy_waist_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								478 => array (
+										'id' => 9955,
+										'name' => 'Ascendant Order Belt',
+										'icon' => '/esoui/art/icons/gear_scribestruth_med_waist_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								479 => array (
+										'id' => 9963,
+										'name' => 'Ascendant Order Sash',
+										'icon' => '/esoui/art/icons/gear_scribestruth_lgt_waist_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								480 => array (
+										'id' => 10006,
+										'name' => 'Second Seed Raiment Sash',
+										'icon' => '/esoui/art/icons/gear_springdawn_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Second Seed Raiment style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -58616,7 +60576,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Two-Handed',
-						'numCollectibles' => 604,
+						'numCollectibles' => 620,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1558,
@@ -63956,6 +65916,42 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								594 => array (
+										'id' => 9583,
+										'name' => 'Prior Thierric Greatsword',
+										'icon' => '/esoui/art/icons/gear_undartifactmaster_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Prior Thierric style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								595 => array (
+										'id' => 9614,
+										'name' => 'Annihilarch`s Chosen Battle Axe',
+										'icon' => '/esoui/art/icons/gear_annilarchch_2haxe_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								596 => array (
+										'id' => 9615,
+										'name' => 'Annihilarch`s Chosen Maul',
+										'icon' => '/esoui/art/icons/gear_annilarchch_2hhammer_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								597 => array (
+										'id' => 9616,
+										'name' => 'Annihilarch`s Chosen Greatsword',
+										'icon' => '/esoui/art/icons/gear_annilarchch_2hhammer_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								598 => array (
 										'id' => 9653,
 										'name' => 'Nord Carved Battle Axe',
 										'icon' => '/esoui/art/icons/gear_nordcarved_2haxe_a.dds',
@@ -63964,7 +65960,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								595 => array (
+								599 => array (
 										'id' => 9658,
 										'name' => 'Nord Carved Maul',
 										'icon' => '/esoui/art/icons/gear_nordcarved_2hmace_a.dds',
@@ -63973,7 +65969,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								596 => array (
+								600 => array (
 										'id' => 9659,
 										'name' => 'Nord Carved Greatsword',
 										'icon' => '/esoui/art/icons/gear_nordcarved_2hsword_a.dds',
@@ -63982,7 +65978,34 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								597 => array (
+								601 => array (
+										'id' => 9708,
+										'name' => 'Fargrave Guardian Battle Axe',
+										'icon' => '/esoui/art/icons/gear_godgrave_2haxe_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								602 => array (
+										'id' => 9709,
+										'name' => 'Fargrave Guardian Maul',
+										'icon' => '/esoui/art/icons/gear_godgrave_2hmace_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								603 => array (
+										'id' => 9710,
+										'name' => 'Fargrave Guardian Greatsword',
+										'icon' => '/esoui/art/icons/gear_godgrave_2hsword_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								604 => array (
 										'id' => 9753,
 										'name' => 'Evergloam Champion Battle Axe',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_2haxe_a.dds',
@@ -63991,7 +66014,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								598 => array (
+								605 => array (
 										'id' => 9758,
 										'name' => 'Evergloam Champion Maul',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_2hhammer_a.dds',
@@ -64000,7 +66023,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								599 => array (
+								606 => array (
 										'id' => 9759,
 										'name' => 'Evergloam Champion Greatsword',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_2hsword_a.dds',
@@ -64009,7 +66032,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								600 => array (
+								607 => array (
 										'id' => 9770,
 										'name' => 'Spellscar Lithoarms Battle Axe',
 										'icon' => '/esoui/art/icons/gear_spellscar_2haxe_a.dds',
@@ -64018,7 +66041,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								601 => array (
+								608 => array (
 										'id' => 9807,
 										'name' => 'Opal Chokethorn Greatsword',
 										'icon' => '/esoui/art/icons/gear_chokethornopal_2hsword_a.dds',
@@ -64027,7 +66050,61 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								602 => array (
+								609 => array (
+										'id' => 9935,
+										'name' => 'Dreadsails Battle Axe',
+										'icon' => '/esoui/art/icons/gear_kraken_2haxe_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								610 => array (
+										'id' => 9936,
+										'name' => 'Dreadsails Maul',
+										'icon' => '/esoui/art/icons/gear_kraken_2hmace_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								611 => array (
+										'id' => 9937,
+										'name' => 'Dreadsails Greatsword',
+										'icon' => '/esoui/art/icons/gear_kraken_2hsword_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								612 => array (
+										'id' => 9967,
+										'name' => 'Ascendant Order Battle Axe',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_2haxe_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								613 => array (
+										'id' => 9968,
+										'name' => 'Ascendant Order Maul',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_2hhammer_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								614 => array (
+										'id' => 9969,
+										'name' => 'Ascendant Order Greatsword',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_2hsword_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								615 => array (
 										'id' => 9987,
 										'name' => 'Gloambound Battle Axe',
 										'icon' => '/esoui/art/icons/gear_bound_1haxe_a.dds',
@@ -64036,7 +66113,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								603 => array (
+								616 => array (
 										'id' => 9992,
 										'name' => 'Gloambound Maul',
 										'icon' => '/esoui/art/icons/gear_bound_2hhammer_a.dds',
@@ -64045,11 +66122,38 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								604 => array (
+								617 => array (
 										'id' => 9993,
 										'name' => 'Gloambound Greatsword',
 										'icon' => '/esoui/art/icons/gear_bound_2hsword_a.dds',
 										'desc' => 'An Outfit look for two-handed weapons in the Gloambound style.\n\n|cffffffStowing this weapon will hide it when equipped.|r',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								618 => array (
+										'id' => 10007,
+										'name' => 'Saberkeel Armaments Battle Axe',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Saberkeel Armaments style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								619 => array (
+										'id' => 10012,
+										'name' => 'Reefborn Battle Axe',
+										'icon' => '/esoui/art/icons/gear_coraldrift_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Reefborn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								620 => array (
+										'id' => 10017,
+										'name' => 'Lady Thorn Battle Axe',
+										'icon' => '/esoui/art/icons/gear_undladythorn_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Lady Thorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -64059,7 +66163,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'One-Handed',
-						'numCollectibles' => 778,
+						'numCollectibles' => 798,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1563,
@@ -70938,6 +73042,51 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								765 => array (
+										'id' => 9587,
+										'name' => 'Prior Thierric Dagger',
+										'icon' => '/esoui/art/icons/gear_undartifactmaster_dagger_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Prior Thierric style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								766 => array (
+										'id' => 9617,
+										'name' => 'Annihilarch`s Chosen Axe',
+										'icon' => '/esoui/art/icons/gear_annilarchch_1haxe_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								767 => array (
+										'id' => 9619,
+										'name' => 'Annihilarch`s Chosen Mace',
+										'icon' => '/esoui/art/icons/gear_annilarchch_1hhammer_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								768 => array (
+										'id' => 9622,
+										'name' => 'Annihilarch`s Chosen Sword',
+										'icon' => '/esoui/art/icons/gear_annilarchch_1hsword_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								769 => array (
+										'id' => 9623,
+										'name' => 'Annihilarch`s Chosen Dagger',
+										'icon' => '/esoui/art/icons/gear_annilarchch_dagger_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								770 => array (
 										'id' => 9657,
 										'name' => 'Nord Carved Axe',
 										'icon' => '/esoui/art/icons/gear_nordcarved_axe_a.dds',
@@ -70946,7 +73095,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								766 => array (
+								771 => array (
 										'id' => 9660,
 										'name' => 'Nord Carved Mace',
 										'icon' => '/esoui/art/icons/gear_nordcarved_mace_a.dds',
@@ -70955,7 +73104,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								767 => array (
+								772 => array (
 										'id' => 9661,
 										'name' => 'Nord Carved Sword',
 										'icon' => '/esoui/art/icons/gear_nordcarved_sword_a.dds',
@@ -70964,7 +73113,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								768 => array (
+								773 => array (
 										'id' => 9662,
 										'name' => 'Nord Carved Dagger',
 										'icon' => '/esoui/art/icons/gear_nordcarved_dagger_a.dds',
@@ -70973,7 +73122,43 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								769 => array (
+								774 => array (
+										'id' => 9711,
+										'name' => 'Fargrave Guardian Axe',
+										'icon' => '/esoui/art/icons/gear_godgrave_axe_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								775 => array (
+										'id' => 9713,
+										'name' => 'Fargrave Guardian Mace',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_1hhammer_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								776 => array (
+										'id' => 9716,
+										'name' => 'Fargrave Guardian Sword',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_1hsword_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								777 => array (
+										'id' => 9717,
+										'name' => 'Fargrave Guardian Dagger',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_dagger_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								778 => array (
 										'id' => 9757,
 										'name' => 'Evergloam Champion Axe',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_1haxe_a.dds',
@@ -70982,7 +73167,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								770 => array (
+								779 => array (
 										'id' => 9760,
 										'name' => 'Evergloam Champion Mace',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_1hhammer_a.dds',
@@ -70991,7 +73176,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								771 => array (
+								780 => array (
 										'id' => 9761,
 										'name' => 'Evergloam Champion Sword',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_1hsword_a.dds',
@@ -71000,7 +73185,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								772 => array (
+								781 => array (
 										'id' => 9762,
 										'name' => 'Evergloam Champion Dagger',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_dagger_a.dds',
@@ -71009,7 +73194,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								773 => array (
+								782 => array (
 										'id' => 9774,
 										'name' => 'Spellscar Lithoarms Sword',
 										'icon' => '/esoui/art/icons/gear_spellscar_1hsword_a.dds',
@@ -71018,7 +73203,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								774 => array (
+								783 => array (
 										'id' => 9811,
 										'name' => 'Opal Chokethorn Axe',
 										'icon' => '/esoui/art/icons/gear_chokethornopal_mace_a.dds',
@@ -71027,7 +73212,79 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								775 => array (
+								784 => array (
+										'id' => 9938,
+										'name' => 'Dreadsails Axe',
+										'icon' => '/esoui/art/icons/gear_kraken_axe_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								785 => array (
+										'id' => 9940,
+										'name' => 'Dreadsails Mace',
+										'icon' => '/esoui/art/icons/gear_kraken_mace_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								786 => array (
+										'id' => 9943,
+										'name' => 'Dreadsails Sword',
+										'icon' => '/esoui/art/icons/gear_kraken_sword_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								787 => array (
+										'id' => 9944,
+										'name' => 'Dreadsails Dagger',
+										'icon' => '/esoui/art/icons/gear_kraken_dagger_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								788 => array (
+										'id' => 9970,
+										'name' => 'Ascendant Order Axe',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_1haxe_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								789 => array (
+										'id' => 9972,
+										'name' => 'Ascendant Order Mace',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_1hhammer_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								790 => array (
+										'id' => 9975,
+										'name' => 'Ascendant Order Sword',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_1hsword_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								791 => array (
+										'id' => 9976,
+										'name' => 'Ascendant Order Dagger',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_dagger_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								792 => array (
 										'id' => 9991,
 										'name' => 'Gloambound Axe',
 										'icon' => '/esoui/art/icons/gear_bound_1haxe_a.dds',
@@ -71036,7 +73293,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								776 => array (
+								793 => array (
 										'id' => 9994,
 										'name' => 'Gloambound Mace',
 										'icon' => '/esoui/art/icons/gear_bound_1hhammer_a.dds',
@@ -71045,7 +73302,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								777 => array (
+								794 => array (
 										'id' => 9995,
 										'name' => 'Gloambound Sword',
 										'icon' => '/esoui/art/icons/gear_bound_1hsword_a.dds',
@@ -71054,11 +73311,38 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								778 => array (
+								795 => array (
 										'id' => 9996,
 										'name' => 'Gloambound Dagger',
 										'icon' => '/esoui/art/icons/gear_bound_dagger_a.dds',
 										'desc' => 'An Outfit look for one-handed weapons in the Gloambound style. \n\n|cffffffStowing this weapon will hide it when equipped.|r',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								796 => array (
+										'id' => 10011,
+										'name' => 'Saberkeel Armaments Sword',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_sword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Saberkeel Armaments style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								797 => array (
+										'id' => 10016,
+										'name' => 'Reefborn Sword',
+										'icon' => '/esoui/art/icons/gear_coraldrift_sword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Reefborn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								798 => array (
+										'id' => 10021,
+										'name' => 'Lady Thorn Sword',
+										'icon' => '/esoui/art/icons/gear_undladythorn_sword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Lady Thorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -71068,7 +73352,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Shield',
-						'numCollectibles' => 249,
+						'numCollectibles' => 257,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1554,
@@ -73267,6 +75551,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								245 => array (
+										'id' => 9585,
+										'name' => 'Prior Thierric Shield',
+										'icon' => '/esoui/art/icons/gear_undartifactmaster_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Prior Thierric style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								246 => array (
+										'id' => 9620,
+										'name' => 'Annihilarch`s Chosen Shield',
+										'icon' => '/esoui/art/icons/gear_annilarchch_shield_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								247 => array (
 										'id' => 9655,
 										'name' => 'Nord Carved Shield',
 										'icon' => '/esoui/art/icons/gear_nordcarved_sheild_a.dds',
@@ -73275,7 +75577,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								246 => array (
+								248 => array (
+										'id' => 9714,
+										'name' => 'Fargrave Guardian Shield',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_shield_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								249 => array (
 										'id' => 9755,
 										'name' => 'Evergloam Champion Shield',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_shield_a.dds',
@@ -73284,7 +75595,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								247 => array (
+								250 => array (
 										'id' => 9772,
 										'name' => 'Spellscar Lithoarms Shield',
 										'icon' => '/esoui/art/icons/gear_spellscar_shield_a.dds',
@@ -73293,7 +75604,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								248 => array (
+								251 => array (
 										'id' => 9809,
 										'name' => 'Opal Chokethorn Shield',
 										'icon' => '/esoui/art/icons/gear_chokethornopal_sheild_a.dds',
@@ -73302,11 +75613,56 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								249 => array (
+								252 => array (
+										'id' => 9941,
+										'name' => 'Dreadsails Shield',
+										'icon' => '/esoui/art/icons/gear_kraken_shield_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								253 => array (
+										'id' => 9973,
+										'name' => 'Ascendant Order Shield',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_shield_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								254 => array (
 										'id' => 9989,
 										'name' => 'Gloambound Shield',
 										'icon' => '/esoui/art/icons/gear_bound_shield_a.dds',
 										'desc' => 'An Outfit look for shields in the Gloambound style.\n\n|cffffffStowing this weapon will hide it when equipped.|r',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								255 => array (
+										'id' => 10009,
+										'name' => 'Saberkeel Armaments Shield',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Saberkeel Armaments style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								256 => array (
+										'id' => 10014,
+										'name' => 'Reefborn Shield',
+										'icon' => '/esoui/art/icons/gear_coraldrift_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Reefborn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								257 => array (
+										'id' => 10019,
+										'name' => 'Lady Thorn Shield',
+										'icon' => '/esoui/art/icons/gear_undladythorn_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Lady Thorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -73316,7 +75672,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bow',
-						'numCollectibles' => 245,
+						'numCollectibles' => 253,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1587,
@@ -75479,6 +77835,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								241 => array (
+										'id' => 9584,
+										'name' => 'Prior Thierric Bow',
+										'icon' => '/esoui/art/icons/gear_undartifactmaster_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Prior Thierric style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								242 => array (
+										'id' => 9618,
+										'name' => 'Annihilarch`s Chosen Bow',
+										'icon' => '/esoui/art/icons/gear_annilarchch_bow_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								243 => array (
 										'id' => 9654,
 										'name' => 'Nord Carved Bow',
 										'icon' => '/esoui/art/icons/gear_nordcarved_bow_a.dds',
@@ -75487,7 +77861,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								242 => array (
+								244 => array (
+										'id' => 9712,
+										'name' => 'Fargrave Guardian Bow',
+										'icon' => '/esoui/art/icons/gear_godgrave_bow_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								245 => array (
 										'id' => 9754,
 										'name' => 'Evergloam Champion Bow',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_bow_a.dds',
@@ -75496,7 +77879,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								243 => array (
+								246 => array (
 										'id' => 9771,
 										'name' => 'Spellscar Lithoarms Bow',
 										'icon' => '/esoui/art/icons/gear_spellscar_bow_a.dds',
@@ -75505,7 +77888,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								244 => array (
+								247 => array (
 										'id' => 9808,
 										'name' => 'Opal Chokethorn Bow',
 										'icon' => '/esoui/art/icons/gear_chokethornopal_bow_a.dds',
@@ -75514,11 +77897,56 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								245 => array (
+								248 => array (
+										'id' => 9939,
+										'name' => 'Dreadsails Bow',
+										'icon' => '/esoui/art/icons/gear_kraken_bow_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								249 => array (
+										'id' => 9971,
+										'name' => 'Ascendant Order Bow',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_bow_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								250 => array (
 										'id' => 9988,
 										'name' => 'Gloambound Bow',
 										'icon' => '/esoui/art/icons/gear_bound_bow_a.dds',
 										'desc' => 'An Outfit look for bows in the Gloambound style.\n\n|cffffffStowing this weapon will hide it when equipped.|r',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								251 => array (
+										'id' => 10008,
+										'name' => 'Saberkeel Armaments Bow',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Saberkeel Armaments style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								252 => array (
+										'id' => 10013,
+										'name' => 'Reefborn Bow',
+										'icon' => '/esoui/art/icons/gear_coraldrift_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Reefborn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								253 => array (
+										'id' => 10018,
+										'name' => 'Lady Thorn Bow',
+										'icon' => '/esoui/art/icons/gear_undladythorn_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Lady Thorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -75528,7 +77956,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Staff',
-						'numCollectibles' => 253,
+						'numCollectibles' => 261,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1583,
@@ -77763,6 +80191,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								249 => array (
+										'id' => 9586,
+										'name' => 'Prior Thierric Staff',
+										'icon' => '/esoui/art/icons/gear_undartifactmaster_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Prior Thierric style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								250 => array (
+										'id' => 9621,
+										'name' => 'Annihilarch`s Chosen Staff',
+										'icon' => '/esoui/art/icons/gear_annilarchch_staff_a.dds',
+										'desc' => 'Learned from the Annihilarch`s Chosen Crafting Style, found in Deadlands Oblivion Portals.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								251 => array (
 										'id' => 9656,
 										'name' => 'Nord Carved Staff',
 										'icon' => '/esoui/art/icons/gear_nordcarved_staff_a.dds',
@@ -77771,7 +80217,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								250 => array (
+								252 => array (
+										'id' => 9715,
+										'name' => 'Fargrave Guardian Staff',
+										'icon' => '/esoui/art/icons/gear_godgraveguardian_staff_a.dds',
+										'desc' => 'Learned from the Fargrave Guardian Crafting Style, acquired from Fargrave World Boss Daily Quests.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								253 => array (
 										'id' => 9756,
 										'name' => 'Evergloam Champion Staff',
 										'icon' => '/esoui/art/icons/gear_noctournalsoldier_staff_a.dds',
@@ -77780,7 +80235,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								251 => array (
+								254 => array (
 										'id' => 9773,
 										'name' => 'Spellscar Lithoarms Staff',
 										'icon' => '/esoui/art/icons/gear_spellscar_staff_a.dds',
@@ -77789,7 +80244,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								252 => array (
+								255 => array (
 										'id' => 9810,
 										'name' => 'Opal Chokethorn Staff',
 										'icon' => '/esoui/art/icons/gear_chokethornopal_staff_a.dds',
@@ -77798,11 +80253,56 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								253 => array (
+								256 => array (
+										'id' => 9942,
+										'name' => 'Dreadsails Staff',
+										'icon' => '/esoui/art/icons/gear_kraken_staff_a.dds',
+										'desc' => 'Learned from the Dreadsails Crafting Style, acquired by defeating the final boss in Coral Aerie.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								257 => array (
+										'id' => 9974,
+										'name' => 'Ascendant Order Staff',
+										'icon' => '/esoui/art/icons/gear_scribestruthwpn_staff_a.dds',
+										'desc' => 'Learned from the Ascendant Order Crafting Style, aquired by defeating the final boss in Shipwright`s Regret.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								258 => array (
 										'id' => 9990,
 										'name' => 'Gloambound Staff',
 										'icon' => '/esoui/art/icons/gear_bound_staff_a.dds',
 										'desc' => 'An Outfit look for staves in the Gloambound style.\n\n|cffffffStowing this weapon will hide it when equipped.|r',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								259 => array (
+										'id' => 10010,
+										'name' => 'Saberkeel Armaments Staff',
+										'icon' => '/esoui/art/icons/gear_nauticalknight_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Saberkeel Armaments style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								260 => array (
+										'id' => 10015,
+										'name' => 'Reefborn Staff',
+										'icon' => '/esoui/art/icons/gear_coraldrift_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Reefborn style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								261 => array (
+										'id' => 10020,
+										'name' => 'Lady Thorn Staff',
+										'icon' => '/esoui/art/icons/gear_undladythorn_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Lady Thorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 

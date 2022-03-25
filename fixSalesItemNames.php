@@ -30,12 +30,12 @@ while (($item = $itemResult->fetch_assoc()))
 	$query = "SELECT name FROM uesp_esolog.minedItem WHERE itemId=$itemId AND internalLevel=$intLevel AND internalSubtype=$intType LIMIT 1;";
 	$result = $db->query($query);
 	
-	if ($result === false) 
+	if ($result === false)
 	{
 		print("\t$count: Error loading item $itemId:$intType:$intLevel data! " . $result->error . "\n");
 		print("\t\tQuery: $query\n");
 		print("\t\tError: {$db->error}\n");
-		continue;	
+		continue;
 	}
 	
 	if ($result->num_rows == 0)
@@ -59,7 +59,7 @@ while (($item = $itemResult->fetch_assoc()))
 	$name1 = MakeEsoTitleCaseName($item['name']);
 	$name2 = MakeEsoTitleCaseName($minedItem['name']);
 
-	if ($name1 != $name2) 
+	if ($name1 != $name2)
 	{
 		print("\t$itemId: Name mismatch: $name1 / $name2\n");
 		$safeName = $db->real_escape_string($name2);

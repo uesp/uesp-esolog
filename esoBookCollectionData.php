@@ -34,7 +34,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
 								),
 								13 => array (
-										'title' => 'The True Nature of Orcs (Banned Ed.)',
+										'title' => 'The True Nature of Orcs',
 										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
 								),
 								14 => array (
@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 90,
-						'numBooks' => 1242 
+						'numCollect' => 92,
+						'numBooks' => 1270 
 				),
 				1 => array (
 						'id' => 43,
@@ -7120,6 +7120,134 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				91 => array (
+						'id' => 191,
+						'name' => 'Annihilarch`s Chosen Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								6824 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6825 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6826 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6827 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6828 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6829 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6830 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6831 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6832 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6833 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6834 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6835 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6836 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6837 => array (
+										'title' => 'Crafting Motif 107: Annihilarch`s Chosen Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				92 => array (
+						'id' => 192,
+						'name' => 'Fargrave Guardian Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								6885 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6886 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6887 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6888 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6889 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6890 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6891 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6892 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6893 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6894 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6895 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6896 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6897 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								6898 => array (
+										'title' => 'Crafting Motif 108: Fargrave Guardian Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
@@ -7127,7 +7255,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 44,
-						'numBooks' => 3831 
+						'numBooks' => 3844 
 				),
 				1 => array (
 						'id' => 44,
@@ -18888,7 +19016,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				32 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 94,
+						'numBooks' => 102,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -19265,6 +19393,38 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								6899 => array (
 										'title' => 'Time to Face Reality',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								6854 => array (
+										'title' => 'Confiscated from the Prisoner',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								6855 => array (
+										'title' => 'Apply More Pressure',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								6856 => array (
+										'title' => 'Gryphon Watching Log',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								6857 => array (
+										'title' => 'Ancient Inscription',
+										'icon' => '/esoui/art/icons/quest_elsweyr_akaviri_tablets.dds' 
+								),
+								6861 => array (
+										'title' => 'Find the Lodestones!',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								6862 => array (
+										'title' => 'My Dear Vanessa',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								6863 => array (
+										'title' => 'Letter of Execution',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								6864 => array (
+										'title' => 'Report on the Dock Crash',
 										'icon' => '/esoui/art/icons/notes_003.dds' 
 								) 
 						) 
@@ -20241,7 +20401,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 142,
 						'name' => 'Anequina Archives',
 						'numBooks' => 116,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								5426 => array (
 										'title' => 'Ancient Gravestone',
@@ -20713,7 +20873,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 151,
 						'name' => 'Pellitine Postings',
 						'numBooks' => 77,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								5660 => array (
 										'title' => 'Restored Tablet',
@@ -21029,7 +21189,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 158,
 						'name' => 'Solitude Soliloquies',
 						'numBooks' => 118,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								5952 => array (
 										'title' => 'Things My Great-Gran Said',
@@ -21509,7 +21669,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 169,
 						'name' => 'Western Skyrim Register',
 						'numBooks' => 42,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								5924 => array (
 										'title' => 'Stonemelt Potion Recipe',
@@ -21685,7 +21845,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 170,
 						'name' => 'The Reach Reader',
 						'numBooks' => 71,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								6275 => array (
 										'title' => 'In the Deep Tombs',
@@ -21977,7 +22137,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 175,
 						'name' => 'Books of Blackwood',
 						'numBooks' => 118,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								6676 => array (
 										'title' => 'Destron`s Journal',
@@ -22456,8 +22616,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				43 => array (
 						'id' => 188,
 						'name' => 'The Impresario`s Catalogue',
-						'numBooks' => 3,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'numBooks' => 8,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								6493 => array (
 										'title' => 'An Invitation to Elsweyr',
@@ -22470,6 +22630,26 @@ $ESO_BOOK_COLLECTIONS = array (
 								6730 => array (
 										'title' => 'Bounties of Blackwood',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								6821 => array (
+										'title' => 'Tamriel`s Finest Wines',
+										'icon' => '/esoui/art/icons/quest_summerset_mannimarcos_journal.dds' 
+								),
+								7138 => array (
+										'title' => 'Letter from Lady Arabelle',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7096 => array (
+										'title' => 'Ascendant Order Note',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7097 => array (
+										'title' => 'Ascendant Champion Orders',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								6968 => array (
+										'title' => 'Ascendant Champion`s New Orders',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				),
@@ -22477,7 +22657,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 193,
 						'name' => 'Dispatches from the Deadlands',
 						'numBooks' => 81,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								6775 => array (
 										'title' => 'Work for Hire in Fargrave',
@@ -22597,7 +22777,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								6756 => array (
 										'title' => 'Kastav`s Journal',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
+										'icon' => '/esoui/art/icons/quest_bre_inc_paperstack001.dds' 
 								),
 								6511 => array (
 										'title' => 'Path of the Ironclad',

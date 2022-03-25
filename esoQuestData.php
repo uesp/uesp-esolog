@@ -2194,7 +2194,7 @@ $ESO_QUEST_DATA = array(
 		),
 	1804 => array(
 			'name'    => "Sunken Knowledge",
-			'journal' => "I've agreed to help the Hermaeus Mora cult of Primeval Seekers to prevent the nereid of Halcyon Lake from using forbidden secrets to subvert the laws of nature.",
+			'journal' => "I've agreed to help the Hermaeus Mora cult of Primeval Seekers to prevent the Nereid of Halcyon Lake from using forbidden secrets to subvert the laws of nature.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -2562,7 +2562,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5906 => array(
 			'name'    => "Siren's Song",
-			'journal' => "A Gold Coast Trading Company ship was lured ashore by a powerful nereid. I've been hired to defeat the nereid and recover the cargo in the wreckage. She's protected by a group of sailors who she controls through a magical song.",
+			'journal' => "A Gold Coast Trading Company ship was lured ashore by a powerful Nereid. I've been hired to defeat the Nereid and recover the cargo in the wreckage. She's protected by a group of sailors who she controls through a magical song.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -3514,7 +3514,7 @@ $ESO_QUEST_DATA = array(
 		),
 	1803 => array(
 			'name'    => "The Water Stone",
-			'journal' => "The nereid of Halcyon Lake is trying to save the lake from eventually drying up by using ancient and forbidden secrets to create a Water Stone. Hermaeus Mora cultists called Primeval Seekers are trying to stop her, but I've agreed to help her.",
+			'journal' => "The Nereid of Halcyon Lake is trying to save the lake from eventually drying up by using ancient and forbidden secrets to create a Water Stone. Hermaeus Mora cultists called Primeval Seekers are trying to stop her, but I've agreed to help her.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -14144,6 +14144,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	6740 => array(
+			'name'    => "An Order Gone Awry",
+			'journal' => "Captain Kaleen was hired to recover a missing rogue named Jakarn and a pair of items he was suppose to deliver. She asked for my assistance rescuing him and retrieving the items from a mysterious group called the Ascendant Order.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	4875 => array(
 			'name'    => "Bounty: Shadowed Path",
 			'journal' => "I accepted the Fighters Guild contract Arkas offered.",
@@ -15672,6 +15680,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	6743 => array(
+			'name'    => "Pledge: Shipwright's Regret",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Shipwright's Regret.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	4362 => array(
 			'name'    => "The Jester's Joke",
 			'journal' => "A restless spirit of Castle Rilis named Lisondor has asked me to retrieve his soul from a mad jester's playroom.",
@@ -16323,6 +16339,14 @@ $ESO_QUEST_DATA = array(
 	4494 => array(
 			'name'    => "You Have to Break a Few",
 			'journal' => "I discovered the body of a Dark Elf in a cave. There's a note next to the body.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	6742 => array(
+			'name'    => "Wright of Passage",
+			'journal' => "I encountered Za'ji, a Khajiiti sea captain, who claims to be searching Shipwright's Regret for a treasure of some kind. He's requested my help with his search.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -18755,6 +18779,14 @@ $ESO_QUEST_DATA = array(
 	5014 => array(
 			'name'    => "Crimes of the Past",
 			'journal' => "The Ring of Daggers has tracked down a war criminal named Gerard Althen, who once served as King Ranser's spymaster. He's hiding somewhere in Sanguine Barrows and I've agreed to find him and bring him out.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	6751 => array(
+			'name'    => "Ascending Doubt",
+			'journal' => "Jakarn is on the hunt for his friend, the mage Valessea, who disappeared from her workshop. I agreed to help him search for Valessea as well as the medallions his employer, Lady Arabelle, asked him to retrieve from her.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -23458,7 +23490,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6637 => array(
 			'name'    => "In Need of a Bath",
-			'journal' => "An Argonian named Hokatsei claims the nereid of the ruins of Vunalk, Sister of Pools, turned her brother, Deet-Loh, into a pig. She needs help to return to the ruins and break the spell over her brother.",
+			'journal' => "An Argonian named Hokatsei claims the Nereid of the ruins of Vunalk, Sister of Pools, turned her brother, Deet-Loh, into a pig. She needs help to return to the ruins and break the spell over her brother.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -23602,7 +23634,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6710 => array(
 			'name'    => "Propaganda Suppressed",
-			'journal' => "A merchant named Fyna commissioned Luna Beriel and the Gleaners of Arubis to sneak into the Brandfire Refomatory and destroy the propaganda the Order of the Waking Flame is making there.",
+			'journal' => "A merchant named Fyna commissioned Luna Beriel and the Gleaners of Aurbis to sneak into the Brandfire Refomatory and destroy the propaganda the Order of the Waking Flame is making there.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -23651,6 +23683,30 @@ $ESO_QUEST_DATA = array(
 	6718 => array(
 			'name'    => "Unmaker's Hoard",
 			'journal' => "The Unmaker presents a challenge to even the strongest Daedra, so many try to test their might against it and fail. Vaveli Indavel hired me to kill the Unmaker, as well as the Havocrel around it, and bring back armor for the Saraathu Tong.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	6722 => array(
+			'name'    => "Getting the Band Together",
+			'journal' => "The Breton Samuel Gourone has a plan to liven up the Jester's Festival. He asked for my help in gathering minstrels for a band that's \"out of this realm!\"",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	6741 => array(
+			'name'    => "Pledge: Coral Aerie",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore <<2>>.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	6761 => array(
+			'name'    => "A King's Retreat",
+			'journal' => "Jakarn and I recovered the invitation medallions and returned them to Lady Arabelle. She asked for my continued help. She wants me to deliver medallions to the Mages Guild and Fighters Guild delegates.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",

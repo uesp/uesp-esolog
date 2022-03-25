@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "33";
-	const SKILLS_TABLESUFFIX   = "33";
+	const MINEITEM_TABLESUFFIX = "";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -6495,6 +6495,8 @@ class EsoLogParser
 			$logEntry['level'] = $logEntry['reqLevel'];
 		}
 		
+		if ($logEntry['setName'] == null) $logEntry['setName'] = "";
+		
 			// Handles old bug where setMaxCount was missing
 		/*
 		if (!array_key_exists('setMaxCount', $logEntry))
@@ -6753,7 +6755,7 @@ class EsoLogParser
 			$logEntry['setDesc5'] = $logEntry['furnSubCateName']; */
 			
 			$logEntry['furnCategory'] = "{$logEntry['furnCateName']}:{$logEntry['furnSubCateName']} ({$logEntry['furnCate']}:{$logEntry['furnSubCate']})";
-		} 
+		}
 		
 	}
 	
@@ -8533,7 +8535,7 @@ class EsoLogParser
 			$achievement['dyeName'] = $logEntry['dyeName'];
 			$achievement['dyeRarity'] = $logEntry['dyeRarity'];
 			$achievement['dyeHue'] = $logEntry['dyeHue'];
-			$achievement['dyeColor'] = dechex(floor($logEntry['dyeR'] * 255)) . dechex(floor($logEntry['dyeG'] * 255)) . dechex(floor($logEntry['dyeB'] * 255));
+			$achievement['dyeColor'] = str_pad(dechex(floor($logEntry['dyeR'] * 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(floor($logEntry['dyeG'] * 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(floor($logEntry['dyeB'] * 255)), 2, '0', STR_PAD_LEFT);
 		}
 		else
 		{

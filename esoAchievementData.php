@@ -573,7 +573,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 10,
     'subIndex' => 0,
-    'points' => 220,
+    'points' => 230,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_prologue_up.dds',
   ),
   'Prologues' => 
@@ -582,7 +582,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 10,
     'subIndex' => 0,
-    'points' => 220,
+    'points' => 230,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_prologue_up.dds',
   ),
   'Prologues::Deadlands' => 
@@ -909,29 +909,56 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'points' => 525,
     'icon' => '',
   ),
+  'Ascending Tide::General' => 
+  array (
+    'name' => 'Ascending Tide',
+    'subName' => 'General',
+    'index' => 16,
+    'subIndex' => 0,
+    'points' => 1125,
+    'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
+  ),
+  'Ascending Tide' => 
+  array (
+    'name' => 'Ascending Tide',
+    'subName' => 'General',
+    'index' => 16,
+    'subIndex' => 0,
+    'points' => 1125,
+    'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
+  ),
+  'Ascending Tide::Veteran' => 
+  array (
+    'name' => 'Ascending Tide',
+    'subName' => 'Veteran',
+    'index' => 16,
+    'subIndex' => 1,
+    'points' => 1010,
+    'icon' => '',
+  ),
   'Deadlands::General' => 
   array (
     'name' => 'Deadlands',
     'subName' => 'General',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 0,
-    'points' => 590,
+    'points' => 690,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_deadlands_up.dds',
   ),
   'Deadlands' => 
   array (
     'name' => 'Deadlands',
     'subName' => 'General',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 0,
-    'points' => 590,
+    'points' => 690,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_deadlands_up.dds',
   ),
   'Deadlands::Exploration' => 
   array (
     'name' => 'Deadlands',
     'subName' => 'Exploration',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 1,
     'points' => 160,
     'icon' => '',
@@ -940,7 +967,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Deadlands',
     'subName' => 'Quests',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 2,
     'points' => 225,
     'icon' => '',
@@ -949,7 +976,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Waking Flame',
     'subName' => 'General',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 0,
     'points' => 1145,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -958,7 +985,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Waking Flame',
     'subName' => 'General',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 0,
     'points' => 1145,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -967,7 +994,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Waking Flame',
     'subName' => 'Veteran',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 1,
     'points' => 890,
     'icon' => '',
@@ -976,7 +1003,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'General',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -985,7 +1012,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'General',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -994,7 +1021,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'Veteran',
-    'index' => 18,
+    'index' => 19,
     'subIndex' => 1,
     'points' => 790,
     'icon' => '',
@@ -1003,7 +1030,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'General',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 0,
     'points' => 1190,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_markarth_up.dds',
@@ -1012,7 +1039,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'General',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 0,
     'points' => 1190,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_markarth_up.dds',
@@ -1021,7 +1048,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Exploration',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 1,
     'points' => 115,
     'icon' => '',
@@ -1030,7 +1057,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Quests',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 2,
     'points' => 295,
     'icon' => '',
@@ -1039,7 +1066,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Vateshran Hollows',
-    'index' => 19,
+    'index' => 20,
     'subIndex' => 3,
     'points' => 485,
     'icon' => '',
@@ -1048,7 +1075,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'General',
-    'index' => 20,
+    'index' => 21,
     'subIndex' => 1,
     'points' => 175,
     'icon' => '',
@@ -1057,7 +1084,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'General',
-    'index' => 20,
+    'index' => 21,
     'subIndex' => 0,
     'points' => 1055,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1066,7 +1093,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'Veteran',
-    'index' => 20,
+    'index' => 21,
     'subIndex' => 2,
     'points' => 880,
     'icon' => '',
@@ -1075,7 +1102,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'General',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 1,
     'points' => 245,
     'icon' => '',
@@ -1084,7 +1111,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'General',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1093,7 +1120,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'Veteran',
-    'index' => 21,
+    'index' => 22,
     'subIndex' => 2,
     'points' => 700,
     'icon' => '',
@@ -1102,7 +1129,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'General',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 0,
     'points' => 660,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_dragonguard_up.dds',
@@ -1111,7 +1138,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'General',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 0,
     'points' => 660,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_dragonguard_up.dds',
@@ -1120,7 +1147,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'Exploration',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 1,
     'points' => 130,
     'icon' => '',
@@ -1129,7 +1156,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'Quests',
-    'index' => 22,
+    'index' => 23,
     'subIndex' => 2,
     'points' => 225,
     'icon' => '',
@@ -1138,7 +1165,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'General',
-    'index' => 23,
+    'index' => 24,
     'subIndex' => 1,
     'points' => 175,
     'icon' => '',
@@ -1147,7 +1174,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'General',
-    'index' => 23,
+    'index' => 24,
     'subIndex' => 0,
     'points' => 845,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1156,7 +1183,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'Veteran',
-    'index' => 23,
+    'index' => 24,
     'subIndex' => 2,
     'points' => 670,
     'icon' => '',
@@ -1165,7 +1192,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'General',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 1,
     'points' => 185,
     'icon' => '',
@@ -1174,7 +1201,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'General',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 0,
     'points' => 870,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1183,7 +1210,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'Veteran',
-    'index' => 24,
+    'index' => 25,
     'subIndex' => 2,
     'points' => 685,
     'icon' => '',
@@ -1192,7 +1219,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'General',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_murkmire_up.dds',
@@ -1201,7 +1228,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'General',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_murkmire_up.dds',
@@ -1210,7 +1237,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Exploration',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 1,
     'points' => 120,
     'icon' => '',
@@ -1219,7 +1246,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Quests',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 2,
     'points' => 200,
     'icon' => '',
@@ -1228,7 +1255,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Blackrose Prison',
-    'index' => 25,
+    'index' => 26,
     'subIndex' => 3,
     'points' => 445,
     'icon' => '',
@@ -1237,7 +1264,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'General',
-    'index' => 26,
+    'index' => 27,
     'subIndex' => 1,
     'points' => 155,
     'icon' => '',
@@ -1246,7 +1273,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'General',
-    'index' => 26,
+    'index' => 27,
     'subIndex' => 0,
     'points' => 840,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1255,7 +1282,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'Veteran',
-    'index' => 26,
+    'index' => 27,
     'subIndex' => 2,
     'points' => 685,
     'icon' => '',
@@ -1264,7 +1291,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'General',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 0,
     'points' => 875,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1273,7 +1300,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'General',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 0,
     'points' => 875,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1282,7 +1309,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'Veteran',
-    'index' => 27,
+    'index' => 28,
     'subIndex' => 1,
     'points' => 730,
     'icon' => '',
@@ -1291,7 +1318,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'General',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_cwc_up.dds',
@@ -1300,7 +1327,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'General',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_cwc_up.dds',
@@ -1309,7 +1336,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Exploration',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 1,
     'points' => 85,
     'icon' => '',
@@ -1318,7 +1345,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Quests',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 2,
     'points' => 215,
     'icon' => '',
@@ -1327,7 +1354,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Asylum Sanctorium',
-    'index' => 28,
+    'index' => 29,
     'subIndex' => 3,
     'points' => 425,
     'icon' => '',
@@ -1336,7 +1363,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'General',
-    'index' => 29,
+    'index' => 30,
     'subIndex' => 0,
     'points' => 760,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1345,7 +1372,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'General',
-    'index' => 29,
+    'index' => 30,
     'subIndex' => 0,
     'points' => 760,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1354,7 +1381,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'Veteran',
-    'index' => 29,
+    'index' => 30,
     'subIndex' => 1,
     'points' => 615,
     'icon' => '',
@@ -1363,7 +1390,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'General',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 0,
     'points' => 785,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1372,7 +1399,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'General',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 0,
     'points' => 785,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1381,7 +1408,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'Veteran',
-    'index' => 30,
+    'index' => 31,
     'subIndex' => 1,
     'points' => 630,
     'icon' => '',
@@ -1390,7 +1417,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'General',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 0,
     'points' => 835,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds',
@@ -1399,7 +1426,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'General',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 0,
     'points' => 835,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds',
@@ -1408,7 +1435,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'Exploration',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 1,
     'points' => 295,
     'icon' => '',
@@ -1417,7 +1444,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'Quests',
-    'index' => 31,
+    'index' => 32,
     'subIndex' => 2,
     'points' => 180,
     'icon' => '',
@@ -1426,7 +1453,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'General',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 0,
     'points' => 1305,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_thievesguild_up.dds',
@@ -1435,7 +1462,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'General',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 0,
     'points' => 1305,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_thievesguild_up.dds',
@@ -1444,7 +1471,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Exploration',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 1,
     'points' => 370,
     'icon' => '',
@@ -1453,7 +1480,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Quests',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 2,
     'points' => 275,
     'icon' => '',
@@ -1462,7 +1489,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Maw of Lorkhaj',
-    'index' => 32,
+    'index' => 33,
     'subIndex' => 3,
     'points' => 340,
     'icon' => '',
@@ -1471,7 +1498,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'General',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds',
@@ -1480,7 +1507,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'General',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 0,
     'points' => 995,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds',
@@ -1489,7 +1516,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Exploration',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 1,
     'points' => 425,
     'icon' => '',
@@ -1498,7 +1525,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Quests',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 2,
     'points' => 170,
     'icon' => '',
@@ -1507,7 +1534,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Maelstrom Arena',
-    'index' => 33,
+    'index' => 34,
     'subIndex' => 3,
     'points' => 115,
     'icon' => '',
@@ -1516,7 +1543,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'General',
-    'index' => 34,
+    'index' => 35,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_ic_up.dds',
@@ -1525,7 +1552,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'General',
-    'index' => 34,
+    'index' => 35,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_ic_up.dds',
@@ -1534,7 +1561,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'Imperial City Prison',
-    'index' => 34,
+    'index' => 35,
     'subIndex' => 1,
     'points' => 300,
     'icon' => '',
@@ -1543,33 +1570,13 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'White Gold Tower',
-    'index' => 34,
+    'index' => 35,
     'subIndex' => 2,
     'points' => 275,
     'icon' => '',
   ),
 );
 $ESO_ACHIEVEMENT_DATA = array (
-  1006 => 
-  array (
-    'id' => 1006,
-    'name' => 'Recruit of the Undaunted',
-    'desc' => 'Join the Undaunted.',
-    'icon' => '/esoui/art/icons/achievement_018.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Recruit of the Undaunted',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Dried Blood Brown',
-    'dyeColor' => '997c6b',
-  ),
   1004 => 
   array (
     'id' => 1004,
@@ -1577,7 +1584,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Join the Mages Guild.',
     'icon' => '/esoui/art/icons/achievement_018.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -1597,7 +1604,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Join the Fighters Guild.',
     'icon' => '/esoui/art/icons/achievement_018.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -1610,6 +1617,105 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeName' => 'Fighters Guild Red',
     'dyeColor' => '72524f',
   ),
+  1006 => 
+  array (
+    'id' => 1006,
+    'name' => 'Recruit of the Undaunted',
+    'desc' => 'Join the Undaunted.',
+    'icon' => '/esoui/art/icons/achievement_018.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Recruit of the Undaunted',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Dried Blood Brown',
+    'dyeColor' => '997c6b',
+  ),
+  1012 => 
+  array (
+    'id' => 1012,
+    'name' => 'Fighters Guild Skill Master',
+    'desc' => 'Reach the max level of the Fighters Guild Skill Line.',
+    'icon' => '/esoui/art/icons/perks_fighters_guild_002.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fighters Guild Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Syffim Red',
+    'dyeColor' => '8b3e37',
+  ),
+  1011 => 
+  array (
+    'id' => 1011,
+    'name' => 'Mages Guild Skill Master',
+    'desc' => 'Reach the max level of the Mages Guild Skill Line.',
+    'icon' => '/esoui/art/icons/ability_mage_064.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Mages Guild Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Arcane Blue',
+    'dyeColor' => '1e4558',
+  ),
+  1013 => 
+  array (
+    'id' => 1013,
+    'name' => 'Undaunted Skill Master',
+    'desc' => 'Reach rank 5 in the Undaunted Skill Line.',
+    'icon' => '/esoui/art/icons/perks_fighters_guild_002.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Undaunted Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Undaunted Bronze',
+    'dyeColor' => '80543a',
+  ),
+  2043 => 
+  array (
+    'id' => 2043,
+    'name' => 'Truly Undaunted',
+    'desc' => 'Reach rank 10 in the Undaunted Skill Line.',
+    'icon' => '/esoui/art/icons/perks_fighters_guild_002.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Undaunted Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Undaunted',
+  ),
   702 => 
   array (
     'id' => 702,
@@ -1617,7 +1723,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Complete the Mages Guild series of quests.',
     'icon' => '/esoui/art/icons/perks_mages_guild_001.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -1662,7 +1768,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Complete the Fighters Guild series of quests.',
     'icon' => '/esoui/art/icons/quest_book_003.dds',
     'points' => 50,
-    'index' => 5,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -1707,7 +1813,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Buy drinks for your Undaunted companions at each gathering.',
     'icon' => '/esoui/art/icons/crafting_dom_beer_001.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -1807,85 +1913,6 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 16,
       ),
     ),
-  ),
-  1012 => 
-  array (
-    'id' => 1012,
-    'name' => 'Fighters Guild Skill Master',
-    'desc' => 'Reach the max level of the Fighters Guild Skill Line.',
-    'icon' => '/esoui/art/icons/perks_fighters_guild_002.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Fighters Guild Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Syffim Red',
-    'dyeColor' => '8b3e37',
-  ),
-  1011 => 
-  array (
-    'id' => 1011,
-    'name' => 'Mages Guild Skill Master',
-    'desc' => 'Reach the max level of the Mages Guild Skill Line.',
-    'icon' => '/esoui/art/icons/ability_mage_064.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Mages Guild Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Arcane Blue',
-    'dyeColor' => '1e4558',
-  ),
-  1013 => 
-  array (
-    'id' => 1013,
-    'name' => 'Undaunted Skill Master',
-    'desc' => 'Reach rank 5 in the Undaunted Skill Line.',
-    'icon' => '/esoui/art/icons/perks_fighters_guild_002.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Undaunted Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Undaunted Bronze',
-    'dyeColor' => '80543a',
-  ),
-  2043 => 
-  array (
-    'id' => 2043,
-    'name' => 'Truly Undaunted',
-    'desc' => 'Reach rank 10 in the Undaunted Skill Line.',
-    'icon' => '/esoui/art/icons/perks_fighters_guild_002.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Undaunted Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Undaunted',
   ),
   1684 => 
   array (
@@ -2049,114 +2076,6 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
     ),
   ),
-  1216 => 
-  array (
-    'id' => 1216,
-    'name' => 'Vigorous Decree',
-    'desc' => 'Spend 50 Champion Points in the Fitness Constellation.',
-    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_01.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 50  points in the Fitness Constellation',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1215 => 
-  array (
-    'id' => 1215,
-    'name' => 'Robust Destiny',
-    'desc' => 'Spend 100 Champion Points in the Fitness Constellation.',
-    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_02.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 100  points in the Fitness Constellation',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1217 => 
-  array (
-    'id' => 1217,
-    'name' => 'Champion of Last Seed',
-    'desc' => 'Spend 150 Champion Points in the Fitness Constellation.',
-    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_03.dds',
-    'points' => 50,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 150  points in the Fitness Constellation',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1221 => 
-  array (
-    'id' => 1221,
-    'name' => 'Stealthy Decree',
-    'desc' => 'Spend 50 Champion Points in the Craft Constellation.',
-    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_01.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 50  points in the Craft Constellation',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1222 => 
-  array (
-    'id' => 1222,
-    'name' => 'Devious Destiny',
-    'desc' => 'Spend 100 Champion Points in the Craft Constellation.',
-    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_02.dds',
-    'points' => 15,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 100  points in the Craft Constellation',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1223 => 
-  array (
-    'id' => 1223,
-    'name' => 'Champion of Evening Star',
-    'desc' => 'Spend 150 Champion Points in the Craft Constellation.',
-    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_03.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 150  points in the Craft Constellation',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   1218 => 
   array (
     'id' => 1218,
@@ -2164,7 +2083,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Spend 50 Champion Points in the Warfare Constellation.',
     'icon' => '/esoui/art/icons/u32_achievement_champion_mage_01.dds',
     'points' => 10,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -2182,7 +2101,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Spend 100 Champion Points in the Warfare Constellation.',
     'icon' => '/esoui/art/icons/u32_achievement_champion_mage_02.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -2200,7 +2119,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Spend 150 Champion Points in the Warfare Constellation.',
     'icon' => '/esoui/art/icons/u32_achievement_champion_mage_03.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -2218,7 +2137,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Spend your first Champion Point.',
     'icon' => '/esoui/art/icons/achievement_105.dds',
     'points' => 10,
-    'index' => 4,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -2243,259 +2162,132 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeName' => 'Starlight Gold',
     'dyeColor' => 'b1955e',
   ),
-  1198 => 
+  1221 => 
   array (
-    'id' => 1198,
-    'name' => 'Safebox Pilferer',
-    'desc' => 'Break into and loot the contents of a safebox.',
-    'icon' => '/esoui/art/icons/achievement_120.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Loot your first safebox',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1199 => 
-  array (
-    'id' => 1199,
-    'name' => 'Safebox Looter',
-    'desc' => 'Break into and loot the contents of ten safeboxes.',
-    'icon' => '/esoui/art/icons/achievement_120.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Loot 10 safeboxes',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1200 => 
-  array (
-    'id' => 1200,
-    'name' => 'Safebox Cracker',
-    'desc' => 'Break into and loot the contents of one hundred safeboxes.',
-    'icon' => '/esoui/art/icons/achievement_120.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Loot 100 safeboxes',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1213 => 
-  array (
-    'id' => 1213,
-    'name' => 'Grand Larcenist',
-    'desc' => 'Steal an item of Epic quality.',
-    'icon' => '/esoui/art/icons/perks_fighters_guild_003.dds',
-    'points' => 15,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Steal an Item of Epic Quality',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1212 => 
-  array (
-    'id' => 1212,
-    'name' => 'Discriminating Plunderer',
-    'desc' => 'Steal an item of Superior quality.',
-    'icon' => '/esoui/art/icons/justice_stolen_gem_001.dds',
+    'id' => 1221,
+    'name' => 'Stealthy Decree',
+    'desc' => 'Spend 50 Champion Points in the Craft Constellation.',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_01.dds',
     'points' => 10,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Steal an Item of Superior Quality',
+        'name' => 'Spend 50  points in the Craft Constellation',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  1197 => 
+  1222 => 
   array (
-    'id' => 1197,
-    'name' => 'Ill-Gotten Gains',
-    'desc' => 'Earn 1,000 gold by selling stolen goods to a Fence.',
-    'icon' => '/esoui/art/icons/achievement_110.dds',
-    'points' => 5,
+    'id' => 1222,
+    'name' => 'Devious Destiny',
+    'desc' => 'Spend 100 Champion Points in the Craft Constellation.',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_02.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend 100  points in the Craft Constellation',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1223 => 
+  array (
+    'id' => 1223,
+    'name' => 'Champion of Evening Star',
+    'desc' => 'Spend 150 Champion Points in the Craft Constellation.',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_thief_03.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend 150  points in the Craft Constellation',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1216 => 
+  array (
+    'id' => 1216,
+    'name' => 'Vigorous Decree',
+    'desc' => 'Spend 50 Champion Points in the Fitness Constellation.',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_01.dds',
+    'points' => 10,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Sell 1,000 gold worth of stolen goods to a fence',
-        'value' => 1000,
+        'name' => 'Spend 50  points in the Fitness Constellation',
+        'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  1201 => 
+  1215 => 
   array (
-    'id' => 1201,
-    'name' => 'Illicit Entrepreneur',
-    'desc' => 'Earn 100,000 gold by selling stolen goods to a Fence.',
-    'icon' => '/esoui/art/icons/achievement_110.dds',
+    'id' => 1215,
+    'name' => 'Robust Destiny',
+    'desc' => 'Spend 100 Champion Points in the Fitness Constellation.',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_02.dds',
     'points' => 15,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Sell 100,000 gold worth of stolen goods to a fence',
-        'value' => 100000,
+        'name' => 'Spend 100  points in the Fitness Constellation',
+        'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  1202 => 
+  1217 => 
   array (
-    'id' => 1202,
-    'name' => 'Black Market Mogul',
-    'desc' => 'Earn 1,000,000 gold by selling stolen goods to a Fence.',
-    'icon' => '/esoui/art/icons/achievement_111.dds',
+    'id' => 1217,
+    'name' => 'Champion of Last Seed',
+    'desc' => 'Spend 150 Champion Points in the Fitness Constellation.',
+    'icon' => '/esoui/art/icons/u32_achievement_champion_warrior_03.dds',
     'points' => 50,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Sell 1,000,000 gold worth of stolen goods to a fence',
-        'value' => 1000000,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Contraband Violet',
-    'dyeColor' => '59158e',
-  ),
-  1203 => 
-  array (
-    'id' => 1203,
-    'name' => 'Loot Cleaner',
-    'desc' => 'Spend 100 gold to launder stolen items through a Fence.',
-    'icon' => '/esoui/art/icons/achievement_116.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 100 gold laundering stolen goods through a fence',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1204 => 
-  array (
-    'id' => 1204,
-    'name' => 'Loot Sanitizer',
-    'desc' => 'Spend 1,000 gold to launder stolen items through a Fence.',
-    'icon' => '/esoui/art/icons/achievement_117.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 1,000 gold laundering stolen goods through a fence',
-        'value' => 1000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1205 => 
-  array (
-    'id' => 1205,
-    'name' => 'Illustrious Launderer',
-    'desc' => 'Spend 10,000 gold to launder stolen items through a Fence.',
-    'icon' => '/esoui/art/icons/achievement_118.dds',
-    'points' => 15,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spend 10,000 gold laundering stolen goods through a fence',
-        'value' => 10000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1193 => 
-  array (
-    'id' => 1193,
-    'name' => 'Cut and Run',
-    'desc' => 'Successfully escape a guard after choosing the "Flee" option in the Accost Dialogue Window.',
-    'icon' => '/esoui/art/icons/ability_rogue_066.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Escape a Guard One Time',
+        'name' => 'Spend 150  points in the Fitness Constellation',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  1194 => 
+  2588 => 
   array (
-    'id' => 1194,
-    'name' => 'Escape Artist',
-    'desc' => 'Successfully escape the guards a total of one hundred times after choosing the "Flee" option in the Accost Dialogue Window.',
-    'icon' => '/esoui/art/icons/ability_rogue_065.dds',
-    'points' => 15,
-    'index' => 6,
+    'id' => 2588,
+    'name' => 'Legerdemain Skill Master',
+    'desc' => 'Reach the max level of the Legerdemain Skill Line.',
+    'icon' => '/esoui/art/icons/achievement_newlifefestival_006.dds',
+    'points' => 50,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Escape a Guard 100 Times',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1211 => 
-  array (
-    'id' => 1211,
-    'name' => 'Discerning Pilferer',
-    'desc' => 'Steal an item of Fine quality.',
-    'icon' => '/esoui/art/icons/justice_stolen_box_001.dds',
-    'points' => 5,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Steal an Item of Fine Quality',
+        'name' => 'Legerdemain Skill Master',
         'value' => 1,
         'index' => 1,
       ),
     ),
+    'title' => 'Locksmith',
   ),
   1232 => 
   array (
@@ -2504,7 +2296,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a total of ten livestock animals.',
     'icon' => '/esoui/art/icons/achievement_119.dds',
     'points' => 5,
-    'index' => 8,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -2522,7 +2314,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a total of one hundred livestock animals.',
     'icon' => '/esoui/art/icons/achievement_119.dds',
     'points' => 5,
-    'index' => 8,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -2540,13 +2332,67 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a total of five hundred livestock animals.',
     'icon' => '/esoui/art/icons/achievement_119.dds',
     'points' => 5,
-    'index' => 8,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Kill five hundred Livestock Animals',
         'value' => 500,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1193 => 
+  array (
+    'id' => 1193,
+    'name' => 'Cut and Run',
+    'desc' => 'Successfully escape a guard after choosing the "Flee" option in the Accost Dialogue Window.',
+    'icon' => '/esoui/art/icons/ability_rogue_066.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Escape a Guard One Time',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1194 => 
+  array (
+    'id' => 1194,
+    'name' => 'Escape Artist',
+    'desc' => 'Successfully escape the guards a total of one hundred times after choosing the "Flee" option in the Accost Dialogue Window.',
+    'icon' => '/esoui/art/icons/ability_rogue_065.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Escape a Guard 100 Times',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1211 => 
+  array (
+    'id' => 1211,
+    'name' => 'Discerning Pilferer',
+    'desc' => 'Steal an item of Fine quality.',
+    'icon' => '/esoui/art/icons/justice_stolen_box_001.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Steal an Item of Fine Quality',
+        'value' => 1,
         'index' => 1,
       ),
     ),
@@ -2558,7 +2404,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Pay a total of 100,000 gold to the Fence OR to the Tamriel Guards to clear your criminal record.',
     'icon' => '/esoui/art/icons/achievement_110.dds',
     'points' => 15,
-    'index' => 9,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -2584,7 +2430,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a livestock cow, bull, or ox.',
     'icon' => '/esoui/art/icons/achievement_121.dds',
     'points' => 5,
-    'index' => 10,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -2602,7 +2448,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a livestock guar.',
     'icon' => '/esoui/art/icons/achievement_124.dds',
     'points' => 5,
-    'index' => 11,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -2620,7 +2466,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a livestock pig.',
     'icon' => '/esoui/art/icons/crafting_sausage.dds',
     'points' => 5,
-    'index' => 12,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -2638,7 +2484,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Successfully pick the lock on a locked door.',
     'icon' => '/esoui/art/icons/achievement_115.dds',
     'points' => 5,
-    'index' => 13,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -2656,7 +2502,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Successfully pick the locks on fifty locked doors.',
     'icon' => '/esoui/art/icons/achievement_115.dds',
     'points' => 10,
-    'index' => 13,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -2674,13 +2520,123 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Successfully pick the locks on one hundred locked doors.',
     'icon' => '/esoui/art/icons/achievement_115.dds',
     'points' => 15,
-    'index' => 13,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Successfully Lockpick one hundred doors',
         'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1197 => 
+  array (
+    'id' => 1197,
+    'name' => 'Ill-Gotten Gains',
+    'desc' => 'Earn 1,000 gold by selling stolen goods to a Fence.',
+    'icon' => '/esoui/art/icons/achievement_110.dds',
+    'points' => 5,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sell 1,000 gold worth of stolen goods to a fence',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1201 => 
+  array (
+    'id' => 1201,
+    'name' => 'Illicit Entrepreneur',
+    'desc' => 'Earn 100,000 gold by selling stolen goods to a Fence.',
+    'icon' => '/esoui/art/icons/achievement_110.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sell 100,000 gold worth of stolen goods to a fence',
+        'value' => 100000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1202 => 
+  array (
+    'id' => 1202,
+    'name' => 'Black Market Mogul',
+    'desc' => 'Earn 1,000,000 gold by selling stolen goods to a Fence.',
+    'icon' => '/esoui/art/icons/achievement_111.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sell 1,000,000 gold worth of stolen goods to a fence',
+        'value' => 1000000,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Contraband Violet',
+    'dyeColor' => '59158e',
+  ),
+  1203 => 
+  array (
+    'id' => 1203,
+    'name' => 'Loot Cleaner',
+    'desc' => 'Spend 100 gold to launder stolen items through a Fence.',
+    'icon' => '/esoui/art/icons/achievement_116.dds',
+    'points' => 5,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend 100 gold laundering stolen goods through a fence',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1204 => 
+  array (
+    'id' => 1204,
+    'name' => 'Loot Sanitizer',
+    'desc' => 'Spend 1,000 gold to launder stolen items through a Fence.',
+    'icon' => '/esoui/art/icons/achievement_117.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend 1,000 gold laundering stolen goods through a fence',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1205 => 
+  array (
+    'id' => 1205,
+    'name' => 'Illustrious Launderer',
+    'desc' => 'Spend 10,000 gold to launder stolen items through a Fence.',
+    'icon' => '/esoui/art/icons/achievement_118.dds',
+    'points' => 15,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend 10,000 gold laundering stolen goods through a fence',
+        'value' => 10000,
         'index' => 1,
       ),
     ),
@@ -2692,7 +2648,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Make a one time transaction of 1,000 gold or greater for crimes committed against the citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_109.dds',
     'points' => 15,
-    'index' => 14,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -2716,7 +2672,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a citizen of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_112.dds',
     'points' => 5,
-    'index' => 15,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -2734,7 +2690,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill fifty citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_113.dds',
     'points' => 5,
-    'index' => 15,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -2752,7 +2708,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill one hundred citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_114.dds',
     'points' => 5,
-    'index' => 15,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -2770,7 +2726,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Successfully pickpocket any citizen of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_106.dds',
     'points' => 5,
-    'index' => 16,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -2788,7 +2744,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Successfully pickpocket one hundred citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_107.dds',
     'points' => 10,
-    'index' => 16,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -2806,7 +2762,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Successfully pickpocket one thousand citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_108.dds',
     'points' => 15,
-    'index' => 16,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -2826,13 +2782,67 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a livestock chicken or bantam guar.',
     'icon' => '/esoui/art/icons/achievement_123.dds',
     'points' => 5,
-    'index' => 17,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Kill a domestic Chicken, or Bantam Guar',
         'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1198 => 
+  array (
+    'id' => 1198,
+    'name' => 'Safebox Pilferer',
+    'desc' => 'Break into and loot the contents of a safebox.',
+    'icon' => '/esoui/art/icons/achievement_120.dds',
+    'points' => 5,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Loot your first safebox',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1199 => 
+  array (
+    'id' => 1199,
+    'name' => 'Safebox Looter',
+    'desc' => 'Break into and loot the contents of ten safeboxes.',
+    'icon' => '/esoui/art/icons/achievement_120.dds',
+    'points' => 10,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Loot 10 safeboxes',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1200 => 
+  array (
+    'id' => 1200,
+    'name' => 'Safebox Cracker',
+    'desc' => 'Break into and loot the contents of one hundred safeboxes.',
+    'icon' => '/esoui/art/icons/achievement_120.dds',
+    'points' => 15,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Loot 100 safeboxes',
+        'value' => 100,
         'index' => 1,
       ),
     ),
@@ -2844,12 +2854,48 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Kill a livestock goat or sheep.',
     'icon' => '/esoui/art/icons/achievement_122.dds',
     'points' => 5,
-    'index' => 18,
+    'index' => 17,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Kill a domestic Goat or Sheep.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1212 => 
+  array (
+    'id' => 1212,
+    'name' => 'Discriminating Plunderer',
+    'desc' => 'Steal an item of Superior quality.',
+    'icon' => '/esoui/art/icons/justice_stolen_gem_001.dds',
+    'points' => 10,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Steal an Item of Superior Quality',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1213 => 
+  array (
+    'id' => 1213,
+    'name' => 'Grand Larcenist',
+    'desc' => 'Steal an item of Epic quality.',
+    'icon' => '/esoui/art/icons/perks_fighters_guild_003.dds',
+    'points' => 15,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Steal an Item of Epic Quality',
         'value' => 1,
         'index' => 1,
       ),
@@ -2862,7 +2908,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Have an article of stolen apparel that you are wearing repossessed by a guard.',
     'icon' => '/esoui/art/icons/justice_stolen_vest_001.dds',
     'points' => 5,
-    'index' => 19,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -2880,7 +2926,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Have stolen clothing from all your armor slots repossessed at the same time by a guard.',
     'icon' => '/esoui/art/icons/justice_stolen_clothing_001.dds',
     'points' => 10,
-    'index' => 20,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -2891,121 +2937,6 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
     ),
   ),
-  2588 => 
-  array (
-    'id' => 2588,
-    'name' => 'Legerdemain Skill Master',
-    'desc' => 'Reach the max level of the Legerdemain Skill Line.',
-    'icon' => '/esoui/art/icons/achievement_newlifefestival_006.dds',
-    'points' => 50,
-    'index' => 21,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Legerdemain Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Locksmith',
-  ),
-  2521 => 
-  array (
-    'id' => 2521,
-    'name' => 'Wailing Prison Skyshard Hunter',
-    'desc' => 'Find the Skyshard in the Wailing Prison.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Found while escaping the Wailing Prison.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  431 => 
-  array (
-    'id' => 431,
-    'name' => 'Khenarthi\'s Skyshard Hunter',
-    'desc' => 'Find all 6 Skyshards in Khenarthi\'s Roost.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Exposed to sky, surveying the strand.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Southern temple\'s hidden jewel.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Wooden bones, awash in ruin.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Abandoned before mourning.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Sighted by serpents in Mistral.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Surly root-chewers burrow nearby.',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-  ),
-  405 => 
-  array (
-    'id' => 405,
-    'name' => 'Bal Foyen Skyshard Hunter',
-    'desc' => 'Find all 3 Skyshards in Bal Foyen.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 5,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Hidden near the highest hut.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'In the fort, just around the way.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'About to set sail.',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
   989 => 
   array (
     'id' => 989,
@@ -3013,7 +2944,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all the Skyshards located throughout Tamriel.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -3164,6 +3095,24 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeName' => 'Aetherial Blue',
     'dyeColor' => '58a3b1',
   ),
+  2521 => 
+  array (
+    'id' => 2521,
+    'name' => 'Wailing Prison Skyshard Hunter',
+    'desc' => 'Find the Skyshard in the Wailing Prison.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Found while escaping the Wailing Prison.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   2514 => 
   array (
     'id' => 2514,
@@ -3171,7 +3120,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all the Skyshards located throughout the Daggerfall Covenant.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -3226,7 +3175,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all the Skyshards located throughout Craglorn.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -3251,7 +3200,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 15 Skyshards in the Aldmeri Dominion territory of Cyrodiil.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 7,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -3353,7 +3302,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 15 Skyshards in the Daggerfall Covenant territory of Cyrodiil.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 8,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -3455,7 +3404,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 15 Skyshards in the Ebonheart Pact territory of Cyrodiil.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 9,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -3557,7 +3506,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all the Skyshards located throughout Cyrodiil.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 10,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -3594,7 +3543,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all the Skyshards located throughout the Aldmeri Dominion.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 11,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -3643,7 +3592,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all the Skyshards located throughout the Ebonheart.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 12,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -3698,7 +3647,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Alik\'r Desert.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 13,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -3806,7 +3755,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Auridon.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 14,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -3907,6 +3856,36 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
     ),
   ),
+  405 => 
+  array (
+    'id' => 405,
+    'name' => 'Bal Foyen Skyshard Hunter',
+    'desc' => 'Find all 3 Skyshards in Bal Foyen.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 5,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hidden near the highest hut.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'In the fort, just around the way.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'About to set sail.',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
   557 => 
   array (
     'id' => 557,
@@ -3914,7 +3893,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Bangkorai.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 15,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -4022,7 +4001,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 3 Skyshards in Betnikh.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 5,
-    'index' => 16,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -4052,7 +4031,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 3 Skyshards in Bleakrock.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 5,
-    'index' => 17,
+    'index' => 16,
     'criteria' => 
     array (
       1 => 
@@ -4082,7 +4061,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Coldharbour.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 18,
+    'index' => 17,
     'criteria' => 
     array (
       1 => 
@@ -4190,7 +4169,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Deshaan.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 19,
+    'index' => 18,
     'criteria' => 
     array (
       1 => 
@@ -4298,7 +4277,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Eastmarch.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 20,
+    'index' => 19,
     'criteria' => 
     array (
       1 => 
@@ -4406,7 +4385,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Glenumbra.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 21,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -4514,7 +4493,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Grahtwood.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 22,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -4622,7 +4601,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Find all 16 Skyshards in Greenshade.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 15,
-    'index' => 23,
+    'index' => 22,
     'criteria' => 
     array (
       1 => 
@@ -4720,6 +4699,54 @@ $ESO_ACHIEVEMENT_DATA = array (
         'name' => 'Outside the Harbinger\'s chamber.',
         'value' => 1,
         'index' => 16,
+      ),
+    ),
+  ),
+  431 => 
+  array (
+    'id' => 431,
+    'name' => 'Khenarthi\'s Skyshard Hunter',
+    'desc' => 'Find all 6 Skyshards in Khenarthi\'s Roost.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Exposed to sky, surveying the strand.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Southern temple\'s hidden jewel.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Wooden bones, awash in ruin.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Abandoned before mourning.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Sighted by serpents in Mistral.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Surly root-chewers burrow nearby.',
+        'value' => 1,
+        'index' => 6,
       ),
     ),
   ),
@@ -6077,6 +6104,46 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeName' => 'Gangrene Green',
     'dyeColor' => '414b36',
   ),
+  1008 => 
+  array (
+    'id' => 1008,
+    'name' => 'Vampirism',
+    'desc' => 'Become a Vampire.',
+    'icon' => '/esoui/art/icons/ability_vampire_001.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Become a Vampire.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Noxophilic Black',
+    'dyeColor' => '3a3e40',
+  ),
+  1010 => 
+  array (
+    'id' => 1010,
+    'name' => 'Vampirism Master',
+    'desc' => 'Reach the max level of the Vampire Skill Line.',
+    'icon' => '/esoui/art/icons/ability_vampire_001_c.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Master the Vampire Skill Line.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Lamae\'s White',
+    'dyeColor' => 'bfbfbf',
+  ),
   2779 => 
   array (
     'id' => 2779,
@@ -6084,7 +6151,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Feed on another Vampire.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vampirefeedvampire.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -6102,7 +6169,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Infect another player with Vampirism.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vampirism.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -6120,7 +6187,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Feed on 1 citizen in each of the capital cities of the three alliances.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vampireglobetrotter.dds',
     'points' => 10,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -6150,7 +6217,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Feed 1 time as a Vampire.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vampirefeed1.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -6168,7 +6235,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Feed 10 times as a Vampire.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vampirefeed10.dds',
     'points' => 10,
-    'index' => 4,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -6186,7 +6253,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Feed 100 times as a Vampire.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vampirefeed100.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -6197,45 +6264,45 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
     ),
   ),
-  1008 => 
+  1007 => 
   array (
-    'id' => 1008,
-    'name' => 'Vampirism',
-    'desc' => 'Become a Vampire.',
-    'icon' => '/esoui/art/icons/ability_vampire_001.dds',
+    'id' => 1007,
+    'name' => 'Lycanthropy',
+    'desc' => 'Become a Werewolf.',
+    'icon' => '/esoui/art/icons/ability_werewolf_003.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Become a Vampire.',
+        'name' => 'Become a Werewolf.',
         'value' => 1,
         'index' => 1,
       ),
     ),
-    'dyeName' => 'Noxophilic Black',
-    'dyeColor' => '3a3e40',
+    'dyeName' => 'Wolf\'s Fur Brown',
+    'dyeColor' => '4b3b36',
   ),
-  1010 => 
+  1009 => 
   array (
-    'id' => 1010,
-    'name' => 'Vampirism Master',
-    'desc' => 'Reach the max level of the Vampire Skill Line.',
-    'icon' => '/esoui/art/icons/ability_vampire_001_c.dds',
+    'id' => 1009,
+    'name' => 'Lycanthropy Master',
+    'desc' => 'Reach the max level of the Werewolf Skill Line.',
+    'icon' => '/esoui/art/icons/ability_werewolf_002.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Master the Vampire Skill Line.',
+        'name' => 'Master the Werewolf Skill Line.',
         'value' => 1,
         'index' => 1,
       ),
     ),
-    'dyeName' => 'Lamae\'s White',
-    'dyeColor' => 'bfbfbf',
+    'dyeName' => 'Lycanthrope Gray',
+    'dyeColor' => '808080',
   ),
   2781 => 
   array (
@@ -6244,7 +6311,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Transform into a werewolf and devour a corpse in the capital cities of all three alliances.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_werewolfglobetrotter.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -6274,7 +6341,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Devour 1 corpse while in Werewolf form.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_werewolfdevour1.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -6292,7 +6359,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Devour 10 corpses while in Werewolf form.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_werewolfdevour10.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -6310,7 +6377,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Devour 100 corpses while in Werewolf form.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_werewolfdevour100.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -6328,7 +6395,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Infect another player with Lycanthropy.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_werewolfnew.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -6338,46 +6405,6 @@ $ESO_ACHIEVEMENT_DATA = array (
         'index' => 1,
       ),
     ),
-  ),
-  1007 => 
-  array (
-    'id' => 1007,
-    'name' => 'Lycanthropy',
-    'desc' => 'Become a Werewolf.',
-    'icon' => '/esoui/art/icons/ability_werewolf_003.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Become a Werewolf.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Wolf\'s Fur Brown',
-    'dyeColor' => '4b3b36',
-  ),
-  1009 => 
-  array (
-    'id' => 1009,
-    'name' => 'Lycanthropy Master',
-    'desc' => 'Reach the max level of the Werewolf Skill Line.',
-    'icon' => '/esoui/art/icons/ability_werewolf_002.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Master the Werewolf Skill Line.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Lycanthrope Gray',
-    'dyeColor' => '808080',
   ),
   12 => 
   array (
@@ -6479,97 +6506,25 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeName' => 'Master Gold',
     'dyeColor' => 'bfa585',
   ),
-  19 => 
+  36 => 
   array (
-    'id' => 19,
-    'name' => 'Treasure Chest Spotter',
-    'desc' => 'Loot any 10 Treasure Chests.',
-    'icon' => '/esoui/art/icons/achievement_012.dds',
-    'points' => 5,
+    'id' => 36,
+    'name' => 'Epic Attire',
+    'desc' => 'Wear a full set of Epic, and only Epic, gear.',
+    'icon' => '/esoui/art/icons/achievement_030.dds',
+    'points' => 15,
     'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Treasure Chest Spotter',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-  ),
-  20 => 
-  array (
-    'id' => 20,
-    'name' => 'Treasure Chest Seeker',
-    'desc' => 'Loot any 50 Treasure Chests.',
-    'icon' => '/esoui/art/icons/achievement_012.dds',
-    'points' => 5,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Treasure Chest Seeker',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-  ),
-  21 => 
-  array (
-    'id' => 21,
-    'name' => 'Treasure Chest Stalker',
-    'desc' => 'Loot any 100 Treasure Chests.',
-    'icon' => '/esoui/art/icons/achievement_012.dds',
-    'points' => 5,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Treasure Chest Stalker',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  22 => 
-  array (
-    'id' => 22,
-    'name' => 'Treasure Chest Hunter',
-    'desc' => 'Loot any 1000 Treasure Chests.',
-    'icon' => '/esoui/art/icons/achievement_012.dds',
-    'points' => 5,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Treasure Chest Hunter',
-        'value' => 1000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  18 => 
-  array (
-    'id' => 18,
-    'name' => 'Epic Acquirer',
-    'desc' => 'Acquire an Epic quality item.',
-    'icon' => '/esoui/art/icons/perks_fighters_guild_003.dds',
-    'points' => 5,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Epic Acquirer',
+        'name' => 'Epic Attire',
         'value' => 1,
         'index' => 1,
       ),
     ),
-    'dyeName' => 'Pillager Purple',
-    'dyeColor' => '4b214b',
+    'dyeName' => 'Epic Violet',
+    'dyeColor' => '3b1b30',
   ),
   17 => 
   array (
@@ -6578,7 +6533,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Acquire a Superior quality item.',
     'icon' => '/esoui/art/icons/achievement_016.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -6598,7 +6553,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Wear a full set of Superior, and only Superior, gear.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -6611,25 +6566,97 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeName' => 'Superior Blue',
     'dyeColor' => '243147',
   ),
-  36 => 
+  18 => 
   array (
-    'id' => 36,
-    'name' => 'Epic Attire',
-    'desc' => 'Wear a full set of Epic, and only Epic, gear.',
-    'icon' => '/esoui/art/icons/achievement_030.dds',
-    'points' => 15,
+    'id' => 18,
+    'name' => 'Epic Acquirer',
+    'desc' => 'Acquire an Epic quality item.',
+    'icon' => '/esoui/art/icons/perks_fighters_guild_003.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Epic Acquirer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Pillager Purple',
+    'dyeColor' => '4b214b',
+  ),
+  19 => 
+  array (
+    'id' => 19,
+    'name' => 'Treasure Chest Spotter',
+    'desc' => 'Loot any 10 Treasure Chests.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 5,
     'index' => 6,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Epic Attire',
-        'value' => 1,
+        'name' => 'Treasure Chest Spotter',
+        'value' => 10,
         'index' => 1,
       ),
     ),
-    'dyeName' => 'Epic Violet',
-    'dyeColor' => '3b1b30',
+  ),
+  20 => 
+  array (
+    'id' => 20,
+    'name' => 'Treasure Chest Seeker',
+    'desc' => 'Loot any 50 Treasure Chests.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Treasure Chest Seeker',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  21 => 
+  array (
+    'id' => 21,
+    'name' => 'Treasure Chest Stalker',
+    'desc' => 'Loot any 100 Treasure Chests.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Treasure Chest Stalker',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  22 => 
+  array (
+    'id' => 22,
+    'name' => 'Treasure Chest Hunter',
+    'desc' => 'Loot any 1000 Treasure Chests.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Treasure Chest Hunter',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
   ),
   39 => 
   array (
@@ -6927,6 +6954,24 @@ $ESO_ACHIEVEMENT_DATA = array (
     ),
     'title' => 'Duelist',
   ),
+  903 => 
+  array (
+    'id' => 903,
+    'name' => 'Cyrodiil Recruit',
+    'desc' => 'Reach level 10 and become eligible to enter Cyrodiil and join the Alliance War.',
+    'icon' => '/esoui/art/icons/ability_ava_002_b.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Cyrodiil Recruit',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   93 => 
   array (
     'id' => 93,
@@ -6934,7 +6979,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Earn the rank of Recruit in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -6953,7 +6998,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Earn your first rank in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -6967,49 +7012,6 @@ $ESO_ACHIEVEMENT_DATA = array (
     'dyeColor' => 'b1b1b1',
     'title' => 'Volunteer',
   ),
-  903 => 
-  array (
-    'id' => 903,
-    'name' => 'Cyrodiil Recruit',
-    'desc' => 'Reach level 10 and become eligible to enter Cyrodiil and join the Alliance War.',
-    'icon' => '/esoui/art/icons/ability_ava_002_b.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Cyrodiil Recruit',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  935 => 
-  array (
-    'id' => 935,
-    'name' => 'Emperor!',
-    'desc' => 'Dominate the Alliance War battlefield and become Emperor of Tamriel. 
-
-Long may you reign!',
-    'icon' => '/esoui/art/icons/gear_emperor_head_a.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Become Emperor',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Ruby Throne Red',
-    'dyeColor' => '581212',
-    'collectIcon' => '/esoui/art/icons/costume_emperorsregalia.dds',
-    'collectName' => 'Emperor\'s Regalia',
-    'collectId' => '47',
-  ),
   94 => 
   array (
     'id' => 94,
@@ -7017,7 +7019,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Tyro in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -7036,7 +7038,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Legionary in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 6,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -7057,7 +7059,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Veteran in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 7,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -7076,7 +7078,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Corporal in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 8,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -7090,6 +7092,56 @@ Long may you reign!',
     'dyeColor' => '4b4b36',
     'title' => 'Corporal',
   ),
+  2589 => 
+  array (
+    'id' => 2589,
+    'name' => 'Alliance War Skill Master',
+    'desc' => 'Reach the max level of the Assault and Support skill lines.',
+    'icon' => '/esoui/art/icons/achievement_update15_028.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Assault Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Support Skill Master',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'title' => 'Siegemaster',
+  ),
+  935 => 
+  array (
+    'id' => 935,
+    'name' => 'Emperor!',
+    'desc' => 'Dominate the Alliance War battlefield and become Emperor of Tamriel. 
+
+Long may you reign!',
+    'icon' => '/esoui/art/icons/gear_emperor_head_a.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Become Emperor',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Ruby Throne Red',
+    'dyeColor' => '581212',
+    'collectIcon' => '/esoui/art/icons/costume_emperorsregalia.dds',
+    'collectName' => 'Emperor\'s Regalia',
+    'collectId' => '47',
+  ),
   98 => 
   array (
     'id' => 98,
@@ -7097,7 +7149,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Sergeant in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 9,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -7118,7 +7170,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of First Sergeant in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 10,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -7137,7 +7189,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Lieutenant in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 11,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -7156,7 +7208,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Captain in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 12,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -7177,7 +7229,7 @@ Long may you reign!',
     'desc' => 'Earn the rank of Major in the Alliance War.',
     'icon' => '/esoui/art/icons/achievement_031.dds',
     'points' => 10,
-    'index' => 13,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -7188,31 +7240,6 @@ Long may you reign!',
       ),
     ),
     'title' => 'Major',
-  ),
-  2589 => 
-  array (
-    'id' => 2589,
-    'name' => 'Alliance War Skill Master',
-    'desc' => 'Reach the max level of the Assault and Support skill lines.',
-    'icon' => '/esoui/art/icons/achievement_update15_028.dds',
-    'points' => 50,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Assault Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Support Skill Master',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-    'title' => 'Siegemaster',
   ),
   102 => 
   array (
@@ -7476,7 +7503,7 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Overlord\'s Purple',
-    'dyeColor' => '2e72e',
+    'dyeColor' => '2e072e',
     'title' => 'Overlord',
   ),
   705 => 
@@ -7827,280 +7854,6 @@ Long may you reign!',
       ),
     ),
   ),
-  1915 => 
-  array (
-    'id' => 1915,
-    'name' => 'Battleground Butcher',
-    'desc' => 'Win a Team Deathmatch with 500 points before any other team reaches 200 points.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_063.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Battleground Butcher',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Battleground Butcher',
-  ),
-  1914 => 
-  array (
-    'id' => 1914,
-    'name' => 'Battleground Dominator',
-    'desc' => 'Control all four Capture Points simultaneously in a Domination match.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_062.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Battleground Dominator',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2092 => 
-  array (
-    'id' => 2092,
-    'name' => 'Battleground King',
-    'desc' => 'Control at least two Capture Points simultaneously in a Crazy King match.',
-    'icon' => '/esoui/art/icons/achievement_update16_042.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Battleground King',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1955 => 
-  array (
-    'id' => 1955,
-    'name' => 'Chaos Champion',
-    'desc' => 'Earn your first Chaos Champion Medal by dealing at least 450,000 points of damage to Chaosball carriers in a single Battleground match.',
-    'icon' => '/esoui/art/icons/achievement_update15_037.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Chaos Champion',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Chaos Champion',
-  ),
-  1954 => 
-  array (
-    'id' => 1954,
-    'name' => 'Chaos Guardian',
-    'desc' => 'Earn your first Chaos Guardian Medal by healing at least 375,000 points of damage for Chaosball carriers in a single Battleground match.',
-    'icon' => '/esoui/art/icons/achievement_update15_036.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Chaos Guardian',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Chaos Guardian',
-  ),
-  1957 => 
-  array (
-    'id' => 1957,
-    'name' => 'Chaosball Carnage',
-    'desc' => 'Win a game of Chaosball with 500 points, before any other team reaches 200 points.',
-    'icon' => '/esoui/art/icons/achievement_update15_039.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Chaosball Carnage',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1922 => 
-  array (
-    'id' => 1922,
-    'name' => 'Charging Champion',
-    'desc' => 'Earn your first Champion Medal by dealing at least 500,000 points of damage in a single Team Deathmatch battle.',
-    'icon' => '/esoui/art/icons/achievement_battlegrounds_014.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Charging Champion',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1917 => 
-  array (
-    'id' => 1917,
-    'name' => 'Claim-Staker',
-    'desc' => 'Seize at least four Capture Points without dying.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_065.dds',
-    'points' => 10,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Claim-Staker',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1936 => 
-  array (
-    'id' => 1936,
-    'name' => 'Divine Guardian',
-    'desc' => 'Earn your first Divine Guardian Medal by healing at least 275,000 points of damage for Relic carriers in a single Battleground match.',
-    'icon' => '/esoui/art/icons/achievement_battlegrounds_017.dds',
-    'points' => 10,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Divine Guardian',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1925 => 
-  array (
-    'id' => 1925,
-    'name' => 'Divine Protector',
-    'desc' => 'Earn your first Divine Protector Medal by healing at least 375,000 points of damage for Capture Point defenders in a single Domination match.',
-    'icon' => '/esoui/art/icons/achievement_battlegrounds_017.dds',
-    'points' => 10,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Divine Protector',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1923 => 
-  array (
-    'id' => 1923,
-    'name' => 'Fearless Physician',
-    'desc' => 'Earn your first Fearless Physician Medal by healing at least 375,000 points of damage in a single Team Deathmatch battle.',
-    'icon' => '/esoui/art/icons/achievement_battlegrounds_015.dds',
-    'points' => 10,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Fearless Physician',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1911 => 
-  array (
-    'id' => 1911,
-    'name' => 'Gladiator',
-    'desc' => 'Earn a lifetime medal score of 5,000 points in Battlegrounds.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_059.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Earn Lifetime Score',
-        'value' => 5000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1912 => 
-  array (
-    'id' => 1912,
-    'name' => 'Champion',
-    'desc' => 'Earn a lifetime medal score of 50,000 points in Battlegrounds.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_060.dds',
-    'points' => 15,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Earn Lifetime Score',
-        'value' => 50000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1913 => 
-  array (
-    'id' => 1913,
-    'name' => 'Grand Champion',
-    'desc' => 'Earn a lifetime medal score of 250,000 points in Battlegrounds.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_061.dds',
-    'points' => 50,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Earn Lifetime Score',
-        'value' => 250000,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Grand Champion',
-  ),
-  2091 => 
-  array (
-    'id' => 2091,
-    'name' => 'Kingdom Come',
-    'desc' => 'Seize at least 4 Capture Points without dying in a Crazy King match.',
-    'icon' => '/esoui/art/icons/achievement_update16_041.dds',
-    'points' => 10,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Kingdom Come',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   1935 => 
   array (
     'id' => 1935,
@@ -8108,7 +7861,7 @@ Long may you reign!',
     'desc' => 'Learn every chapter in the Militant Ordinator style book, sold in exchange for Alliance Points by Battleground Supplies Merchants.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 14,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -8194,6 +7947,280 @@ Long may you reign!',
         'name' => 'Learn the Militant Ordinator Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  1915 => 
+  array (
+    'id' => 1915,
+    'name' => 'Battleground Butcher',
+    'desc' => 'Win a Team Deathmatch with 500 points before any other team reaches 200 points.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_063.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Battleground Butcher',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Battleground Butcher',
+  ),
+  1914 => 
+  array (
+    'id' => 1914,
+    'name' => 'Battleground Dominator',
+    'desc' => 'Control all four Capture Points simultaneously in a Domination match.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_062.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Battleground Dominator',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2092 => 
+  array (
+    'id' => 2092,
+    'name' => 'Battleground King',
+    'desc' => 'Control at least two Capture Points simultaneously in a Crazy King match.',
+    'icon' => '/esoui/art/icons/achievement_update16_042.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Battleground King',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1955 => 
+  array (
+    'id' => 1955,
+    'name' => 'Chaos Champion',
+    'desc' => 'Earn your first Chaos Champion Medal by dealing at least 450,000 points of damage to Chaosball carriers in a single Battleground match.',
+    'icon' => '/esoui/art/icons/achievement_update15_037.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chaos Champion',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Chaos Champion',
+  ),
+  1954 => 
+  array (
+    'id' => 1954,
+    'name' => 'Chaos Guardian',
+    'desc' => 'Earn your first Chaos Guardian Medal by healing at least 375,000 points of damage for Chaosball carriers in a single Battleground match.',
+    'icon' => '/esoui/art/icons/achievement_update15_036.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chaos Guardian',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Chaos Guardian',
+  ),
+  1957 => 
+  array (
+    'id' => 1957,
+    'name' => 'Chaosball Carnage',
+    'desc' => 'Win a game of Chaosball with 500 points, before any other team reaches 200 points.',
+    'icon' => '/esoui/art/icons/achievement_update15_039.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chaosball Carnage',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1922 => 
+  array (
+    'id' => 1922,
+    'name' => 'Charging Champion',
+    'desc' => 'Earn your first Champion Medal by dealing at least 500,000 points of damage in a single Team Deathmatch battle.',
+    'icon' => '/esoui/art/icons/achievement_battlegrounds_014.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Charging Champion',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1917 => 
+  array (
+    'id' => 1917,
+    'name' => 'Claim-Staker',
+    'desc' => 'Seize at least four Capture Points without dying.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_065.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Claim-Staker',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1936 => 
+  array (
+    'id' => 1936,
+    'name' => 'Divine Guardian',
+    'desc' => 'Earn your first Divine Guardian Medal by healing at least 275,000 points of damage for Relic carriers in a single Battleground match.',
+    'icon' => '/esoui/art/icons/achievement_battlegrounds_017.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Divine Guardian',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1925 => 
+  array (
+    'id' => 1925,
+    'name' => 'Divine Protector',
+    'desc' => 'Earn your first Divine Protector Medal by healing at least 375,000 points of damage for Capture Point defenders in a single Domination match.',
+    'icon' => '/esoui/art/icons/achievement_battlegrounds_017.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Divine Protector',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1923 => 
+  array (
+    'id' => 1923,
+    'name' => 'Fearless Physician',
+    'desc' => 'Earn your first Fearless Physician Medal by healing at least 375,000 points of damage in a single Team Deathmatch battle.',
+    'icon' => '/esoui/art/icons/achievement_battlegrounds_015.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fearless Physician',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1911 => 
+  array (
+    'id' => 1911,
+    'name' => 'Gladiator',
+    'desc' => 'Earn a lifetime medal score of 5,000 points in Battlegrounds.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_059.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Earn Lifetime Score',
+        'value' => 5000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1912 => 
+  array (
+    'id' => 1912,
+    'name' => 'Champion',
+    'desc' => 'Earn a lifetime medal score of 50,000 points in Battlegrounds.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_060.dds',
+    'points' => 15,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Earn Lifetime Score',
+        'value' => 50000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1913 => 
+  array (
+    'id' => 1913,
+    'name' => 'Grand Champion',
+    'desc' => 'Earn a lifetime medal score of 250,000 points in Battlegrounds.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_061.dds',
+    'points' => 50,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Earn Lifetime Score',
+        'value' => 250000,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Grand Champion',
+  ),
+  2091 => 
+  array (
+    'id' => 2091,
+    'name' => 'Kingdom Come',
+    'desc' => 'Seize at least 4 Capture Points without dying in a Crazy King match.',
+    'icon' => '/esoui/art/icons/achievement_update16_041.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Kingdom Come',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -9342,6 +9369,80 @@ Long may you reign!',
     'dyeName' => 'Spectral Blue',
     'dyeColor' => 'b5afef',
   ),
+  1031 => 
+  array (
+    'id' => 1031,
+    'name' => 'Master Alchemist',
+    'desc' => 'Attain an Alchemy rank of 50.',
+    'icon' => '/esoui/art/icons/achievement_060.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Attain an Alchemy rank of 50.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Alchemist Bilious',
+    'dyeColor' => '726d1c',
+  ),
+  1764 => 
+  array (
+    'id' => 1764,
+    'name' => 'Novice Alchemy Furnisher',
+    'desc' => 'Learn your first Alchemy Formula.',
+    'icon' => '/esoui/art/icons/furniture_crafting_alchemy01.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Alchemy Formula',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1765 => 
+  array (
+    'id' => 1765,
+    'name' => 'Expert Alchemy Furnisher',
+    'desc' => 'Learn 10 Alchemy Formulas.',
+    'icon' => '/esoui/art/icons/furniture_crafting_alchemy02.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Alchemy Formulas',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1766 => 
+  array (
+    'id' => 1766,
+    'name' => 'Master Alchemy Furnisher',
+    'desc' => 'Learn 25 Alchemy Formulas.',
+    'icon' => '/esoui/art/icons/furniture_crafting_alchemy03.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Alchemy Formulas',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
   1789 => 
   array (
     'id' => 1789,
@@ -9349,7 +9450,7 @@ Long may you reign!',
     'desc' => 'Harvest your first unit of Alchemical Resin.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_alchemical_resin_01.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -9367,7 +9468,7 @@ Long may you reign!',
     'desc' => 'Harvest 25 units of Alchemical Resin.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_alchemical_resin_02.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -9385,7 +9486,7 @@ Long may you reign!',
     'desc' => 'Harvest 100 units of Alchemical Resin.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_alchemical_resin_03.dds',
     'points' => 15,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -9396,26 +9497,6 @@ Long may you reign!',
       ),
     ),
   ),
-  1031 => 
-  array (
-    'id' => 1031,
-    'name' => 'Master Alchemist',
-    'desc' => 'Attain an Alchemy rank of 50.',
-    'icon' => '/esoui/art/icons/achievement_060.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Attain an Alchemy rank of 50.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Alchemist Bilious',
-    'dyeColor' => '726d1c',
-  ),
   1045 => 
   array (
     'id' => 1045,
@@ -9423,7 +9504,7 @@ Long may you reign!',
     'desc' => 'Learn every trait for each of the Alchemy reagents listed below.',
     'icon' => '/esoui/art/icons/crafting_medium_armor_sp_names_001.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -9538,78 +9619,6 @@ Long may you reign!',
     'dyeName' => 'Nirnroot Gray',
     'dyeColor' => 'a6968d',
   ),
-  1102 => 
-  array (
-    'id' => 1102,
-    'name' => 'White Cap',
-    'desc' => 'Learn all of the Traits for the White Cap Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_white_cap_r1.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1088 => 
-  array (
-    'id' => 1088,
-    'name' => 'Wormwood',
-    'desc' => 'Learn all of the Traits for the Wormwood Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_flower_wormwood_r1.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
   1464 => 
   array (
     'id' => 1464,
@@ -9617,7 +9626,7 @@ Long may you reign!',
     'desc' => 'Learn every trait for each of the Alchemy reagents listed below.',
     'icon' => '/esoui/art/icons/achievement_darkbrotherhood_036.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -9670,14 +9679,50 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Viridian Venom',
-    'dyeColor' => '161ff',
+    'dyeColor' => '161f0f',
   ),
-  1094 => 
+  1466 => 
   array (
-    'id' => 1094,
-    'name' => 'Corn Flower',
-    'desc' => 'Learn all the Traits for the Corn Flower Alchemy Plant.',
-    'icon' => '/esoui/art/icons/crafting_flower_corn_flower_r1.dds',
+    'id' => 1466,
+    'name' => 'Beetle Scuttle',
+    'desc' => 'Learn all the traits for the Beetle Scuttle Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_scuttle.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1087 => 
+  array (
+    'id' => 1087,
+    'name' => 'Blessed Thistle',
+    'desc' => 'Learn all of the Traits for the Blessed Thistle Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_cloth_serrated_leaves.dds',
     'points' => 5,
     'index' => 7,
     'criteria' => 
@@ -9708,12 +9753,12 @@ Long may you reign!',
       ),
     ),
   ),
-  1465 => 
+  1098 => 
   array (
-    'id' => 1465,
-    'name' => 'Torchbug Thorax',
-    'desc' => 'Learn all the traits for the Torchbug Thorax Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_torchbug_thorax.dds',
+    'id' => 1098,
+    'name' => 'Blue Entoloma',
+    'desc' => 'Learn all of the Traits for the Blue Entoloma Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_blue_entoloma_cap_r1.dds',
     'points' => 5,
     'index' => 8,
     'criteria' => 
@@ -9744,12 +9789,12 @@ Long may you reign!',
       ),
     ),
   ),
-  1469 => 
+  1090 => 
   array (
-    'id' => 1469,
-    'name' => 'Fleshfly Larva',
-    'desc' => 'Learn all the traits for the Fleshfly Larva Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_fleshfly_larva.dds',
+    'id' => 1090,
+    'name' => 'Bugloss',
+    'desc' => 'Learn all of the Traits for the Bugloss Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_flower_vipers_bugloss_r1.dds',
     'points' => 5,
     'index' => 9,
     'criteria' => 
@@ -9816,12 +9861,12 @@ Long may you reign!',
       ),
     ),
   ),
-  1095 => 
+  1093 => 
   array (
-    'id' => 1095,
-    'name' => 'Nirnroot',
-    'desc' => 'Learn all of the Traits for the Nirnroot Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_water_plant_nirnroot_r1.dds',
+    'id' => 1093,
+    'name' => 'Columbine',
+    'desc' => 'Learn all of the Traits for the Columbine Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_flower_columbine_r1.dds',
     'points' => 5,
     'index' => 11,
     'criteria' => 
@@ -9852,374 +9897,14 @@ Long may you reign!',
       ),
     ),
   ),
-  1470 => 
+  1094 => 
   array (
-    'id' => 1470,
-    'name' => 'Scrib Jelly',
-    'desc' => 'Learn all the traits for the Scrib Jelly Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_scrib_jelly.dds',
+    'id' => 1094,
+    'name' => 'Corn Flower',
+    'desc' => 'Learn all the Traits for the Corn Flower Alchemy Plant.',
+    'icon' => '/esoui/art/icons/crafting_flower_corn_flower_r1.dds',
     'points' => 5,
     'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1467 => 
-  array (
-    'id' => 1467,
-    'name' => 'Spider Egg',
-    'desc' => 'Learn all the traits for the Spider Egg Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_spider_egg.dds',
-    'points' => 5,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1466 => 
-  array (
-    'id' => 1466,
-    'name' => 'Beetle Scuttle',
-    'desc' => 'Learn all the traits for the Beetle Scuttle Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_scuttle.dds',
-    'points' => 5,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1472 => 
-  array (
-    'id' => 1472,
-    'name' => 'Mudcrab Chitin',
-    'desc' => 'Learn all the traits for the Mudcrab Chitin Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_mudcrab_chitin.dds',
-    'points' => 5,
-    'index' => 15,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1471 => 
-  array (
-    'id' => 1471,
-    'name' => 'Nightshade',
-    'desc' => 'Learn all the traits for the Nightshade Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_nightshade_01.dds',
-    'points' => 5,
-    'index' => 16,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1101 => 
-  array (
-    'id' => 1101,
-    'name' => 'Namira\'s Rot',
-    'desc' => 'Learn all of the Traits for the Namira\'s Rot Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_namiras_rot_r1.dds',
-    'points' => 5,
-    'index' => 17,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1096 => 
-  array (
-    'id' => 1096,
-    'name' => 'Water Hyacinth',
-    'desc' => 'Learn all of the Traits for the Water Hyacinth Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_water_plant_water_hyacinth_r1.dds',
-    'points' => 5,
-    'index' => 18,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1103 => 
-  array (
-    'id' => 1103,
-    'name' => 'Luminous Russula',
-    'desc' => 'Learn all of the Traits for the Luminous Russula Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_luminous_russula_r1.dds',
-    'points' => 5,
-    'index' => 19,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1089 => 
-  array (
-    'id' => 1089,
-    'name' => 'Lady\'s Smock',
-    'desc' => 'Learn all of the Traits for the Lady\'s Smock Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_forester_potion_sp_names_001.dds',
-    'points' => 5,
-    'index' => 20,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1104 => 
-  array (
-    'id' => 1104,
-    'name' => 'Imp Stool',
-    'desc' => 'Learn all of the Traits for the Imp Stool Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_imp_stool_r2.dds',
-    'points' => 5,
-    'index' => 21,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1099 => 
-  array (
-    'id' => 1099,
-    'name' => 'Emetic Russula',
-    'desc' => 'Learn all of the Traits for the Emetic Russula Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_emetic_russula_r1.dds',
-    'points' => 5,
-    'index' => 22,
     'criteria' => 
     array (
       1 => 
@@ -10255,7 +9940,7 @@ Long may you reign!',
     'desc' => 'Learn all of the Traits for the Dragonthorn Alchemy reagent.',
     'icon' => '/esoui/art/icons/crafting_forester_potion_sp_names_002.dds',
     'points' => 5,
-    'index' => 23,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -10284,14 +9969,14 @@ Long may you reign!',
       ),
     ),
   ),
-  1097 => 
+  1099 => 
   array (
-    'id' => 1097,
-    'name' => 'Stinkhorn',
-    'desc' => 'Learn all of the Traits for the Stinkhorn Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_stinkhorn_cap_r1.dds',
+    'id' => 1099,
+    'name' => 'Emetic Russula',
+    'desc' => 'Learn all of the Traits for the Emetic Russula Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_emetic_russula_r1.dds',
     'points' => 5,
-    'index' => 24,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -10320,14 +10005,14 @@ Long may you reign!',
       ),
     ),
   ),
-  1093 => 
+  1469 => 
   array (
-    'id' => 1093,
-    'name' => 'Columbine',
-    'desc' => 'Learn all of the Traits for the Columbine Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_flower_columbine_r1.dds',
+    'id' => 1469,
+    'name' => 'Fleshfly Larva',
+    'desc' => 'Learn all the traits for the Fleshfly Larva Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_fleshfly_larva.dds',
     'points' => 5,
-    'index' => 25,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -10356,14 +10041,14 @@ Long may you reign!',
       ),
     ),
   ),
-  1090 => 
+  1104 => 
   array (
-    'id' => 1090,
-    'name' => 'Bugloss',
-    'desc' => 'Learn all of the Traits for the Bugloss Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_flower_vipers_bugloss_r1.dds',
+    'id' => 1104,
+    'name' => 'Imp Stool',
+    'desc' => 'Learn all of the Traits for the Imp Stool Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_imp_stool_r2.dds',
     'points' => 5,
-    'index' => 26,
+    'index' => 16,
     'criteria' => 
     array (
       1 => 
@@ -10392,14 +10077,14 @@ Long may you reign!',
       ),
     ),
   ),
-  1098 => 
+  1089 => 
   array (
-    'id' => 1098,
-    'name' => 'Blue Entoloma',
-    'desc' => 'Learn all of the Traits for the Blue Entoloma Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_blue_entoloma_cap_r1.dds',
+    'id' => 1089,
+    'name' => 'Lady\'s Smock',
+    'desc' => 'Learn all of the Traits for the Lady\'s Smock Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_forester_potion_sp_names_001.dds',
     'points' => 5,
-    'index' => 27,
+    'index' => 17,
     'criteria' => 
     array (
       1 => 
@@ -10428,50 +10113,14 @@ Long may you reign!',
       ),
     ),
   ),
-  1087 => 
+  1103 => 
   array (
-    'id' => 1087,
-    'name' => 'Blessed Thistle',
-    'desc' => 'Learn all of the Traits for the Blessed Thistle Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_cloth_serrated_leaves.dds',
+    'id' => 1103,
+    'name' => 'Luminous Russula',
+    'desc' => 'Learn all of the Traits for the Luminous Russula Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_luminous_russula_r1.dds',
     'points' => 5,
-    'index' => 28,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reveal Trait 1',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reveal Trait 2',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reveal Trait 3',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reveal Trait 4',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1100 => 
-  array (
-    'id' => 1100,
-    'name' => 'Violet Coprinus',
-    'desc' => 'Learn all of the Traits for the Violet Coprinus Alchemy reagent.',
-    'icon' => '/esoui/art/icons/crafting_mushroom_violet_coprinus_r1.dds',
-    'points' => 5,
-    'index' => 29,
+    'index' => 18,
     'criteria' => 
     array (
       1 => 
@@ -10507,6 +10156,402 @@ Long may you reign!',
     'desc' => 'Learn all of the Traits for the Mountain Flower Alchemy reagent.',
     'icon' => '/esoui/art/icons/crafting_flower_mountain_flower_r1.dds',
     'points' => 5,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1472 => 
+  array (
+    'id' => 1472,
+    'name' => 'Mudcrab Chitin',
+    'desc' => 'Learn all the traits for the Mudcrab Chitin Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_mudcrab_chitin.dds',
+    'points' => 5,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1101 => 
+  array (
+    'id' => 1101,
+    'name' => 'Namira\'s Rot',
+    'desc' => 'Learn all of the Traits for the Namira\'s Rot Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_namiras_rot_r1.dds',
+    'points' => 5,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1471 => 
+  array (
+    'id' => 1471,
+    'name' => 'Nightshade',
+    'desc' => 'Learn all the traits for the Nightshade Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_nightshade_01.dds',
+    'points' => 5,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1095 => 
+  array (
+    'id' => 1095,
+    'name' => 'Nirnroot',
+    'desc' => 'Learn all of the Traits for the Nirnroot Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_water_plant_nirnroot_r1.dds',
+    'points' => 5,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1470 => 
+  array (
+    'id' => 1470,
+    'name' => 'Scrib Jelly',
+    'desc' => 'Learn all the traits for the Scrib Jelly Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_scrib_jelly.dds',
+    'points' => 5,
+    'index' => 24,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1467 => 
+  array (
+    'id' => 1467,
+    'name' => 'Spider Egg',
+    'desc' => 'Learn all the traits for the Spider Egg Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_spider_egg.dds',
+    'points' => 5,
+    'index' => 25,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1097 => 
+  array (
+    'id' => 1097,
+    'name' => 'Stinkhorn',
+    'desc' => 'Learn all of the Traits for the Stinkhorn Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_stinkhorn_cap_r1.dds',
+    'points' => 5,
+    'index' => 26,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1465 => 
+  array (
+    'id' => 1465,
+    'name' => 'Torchbug Thorax',
+    'desc' => 'Learn all the traits for the Torchbug Thorax Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_poisonmaking_reagent_torchbug_thorax.dds',
+    'points' => 5,
+    'index' => 27,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1100 => 
+  array (
+    'id' => 1100,
+    'name' => 'Violet Coprinus',
+    'desc' => 'Learn all of the Traits for the Violet Coprinus Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_violet_coprinus_r1.dds',
+    'points' => 5,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1096 => 
+  array (
+    'id' => 1096,
+    'name' => 'Water Hyacinth',
+    'desc' => 'Learn all of the Traits for the Water Hyacinth Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_water_plant_water_hyacinth_r1.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1102 => 
+  array (
+    'id' => 1102,
+    'name' => 'White Cap',
+    'desc' => 'Learn all of the Traits for the White Cap Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_mushroom_white_cap_r1.dds',
+    'points' => 5,
     'index' => 30,
     'criteria' => 
     array (
@@ -10536,59 +10581,61 @@ Long may you reign!',
       ),
     ),
   ),
-  1764 => 
+  1088 => 
   array (
-    'id' => 1764,
-    'name' => 'Novice Alchemy Furnisher',
-    'desc' => 'Learn your first Alchemy Formula.',
-    'icon' => '/esoui/art/icons/furniture_crafting_alchemy01.dds',
+    'id' => 1088,
+    'name' => 'Wormwood',
+    'desc' => 'Learn all of the Traits for the Wormwood Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_flower_wormwood_r1.dds',
     'points' => 5,
     'index' => 31,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn Alchemy Formula',
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1032 => 
+  array (
+    'id' => 1032,
+    'name' => 'Master Blacksmith',
+    'desc' => 'Attain a Blacksmith rank of 50.',
+    'icon' => '/esoui/art/icons/achievement_061.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Attain a Blacksmith rank of 50.',
         'value' => 1,
         'index' => 1,
       ),
     ),
-  ),
-  1765 => 
-  array (
-    'id' => 1765,
-    'name' => 'Expert Alchemy Furnisher',
-    'desc' => 'Learn 10 Alchemy Formulas.',
-    'icon' => '/esoui/art/icons/furniture_crafting_alchemy02.dds',
-    'points' => 15,
-    'index' => 31,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn Alchemy Formulas',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1766 => 
-  array (
-    'id' => 1766,
-    'name' => 'Master Alchemy Furnisher',
-    'desc' => 'Learn 25 Alchemy Formulas.',
-    'icon' => '/esoui/art/icons/furniture_crafting_alchemy03.dds',
-    'points' => 50,
-    'index' => 31,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn Alchemy Formulas',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
+    'dyeName' => 'Smith Steel Blue',
+    'dyeColor' => '213a4b',
   ),
   1758 => 
   array (
@@ -10597,7 +10644,7 @@ Long may you reign!',
     'desc' => 'Learn your first Blacksmithing Diagram.',
     'icon' => '/esoui/art/icons/furniture_crafting_blacksmithing01.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -10615,7 +10662,7 @@ Long may you reign!',
     'desc' => 'Learn 25 Blacksmithing Diagrams.',
     'icon' => '/esoui/art/icons/furniture_crafting_blacksmithing02.dds',
     'points' => 15,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -10633,7 +10680,7 @@ Long may you reign!',
     'desc' => 'Learn 100 Blacksmithing Diagrams.',
     'icon' => '/esoui/art/icons/furniture_crafting_blacksmithing03.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -10651,7 +10698,7 @@ Long may you reign!',
     'desc' => 'Harvest your first unit of Regulus.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_regulus_01.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -10669,7 +10716,7 @@ Long may you reign!',
     'desc' => 'Harvest 25 units of Regulus.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_regulus_02.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -10687,7 +10734,7 @@ Long may you reign!',
     'desc' => 'Harvest 100 units of Regulus.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_regulus_03.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -10697,26 +10744,6 @@ Long may you reign!',
         'index' => 1,
       ),
     ),
-  ),
-  1032 => 
-  array (
-    'id' => 1032,
-    'name' => 'Master Blacksmith',
-    'desc' => 'Attain a Blacksmith rank of 50.',
-    'icon' => '/esoui/art/icons/achievement_061.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Attain a Blacksmith rank of 50.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Smith Steel Blue',
-    'dyeColor' => '213a4b',
   ),
   1040 => 
   array (
@@ -10756,59 +10783,25 @@ Long may you reign!',
     'dyeName' => 'Earthforge Iron Gray',
     'dyeColor' => '69868b',
   ),
-  1780 => 
+  1033 => 
   array (
-    'id' => 1780,
-    'name' => 'Clean Pelt Harvester',
-    'desc' => 'Harvest your first Clean Pelt.',
-    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_clean_pelt_01.dds',
-    'points' => 5,
+    'id' => 1033,
+    'name' => 'Master Clothier',
+    'desc' => 'Attain a Clothier rank of 50.',
+    'icon' => '/esoui/art/icons/achievement_062.dds',
+    'points' => 50,
     'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Harvest Clean Pelt',
+        'name' => 'Attain a Clothier rank of 50.',
         'value' => 1,
         'index' => 1,
       ),
     ),
-  ),
-  1781 => 
-  array (
-    'id' => 1781,
-    'name' => 'Expert Clean Pelt Harvester',
-    'desc' => 'Harvest 25 Clean Pelts.',
-    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_clean_pelt_02.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Harvest Clean Pelts',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1782 => 
-  array (
-    'id' => 1782,
-    'name' => 'Master Clean Pelt Harvester',
-    'desc' => 'Harvest 100 Clean Pelts.',
-    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_clean_pelt_03.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Harvest Clean Pelts',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
+    'dyeName' => 'Clothier Purple',
+    'dyeColor' => '4b132a',
   ),
   1786 => 
   array (
@@ -10864,25 +10857,59 @@ Long may you reign!',
       ),
     ),
   ),
-  1033 => 
+  1780 => 
   array (
-    'id' => 1033,
-    'name' => 'Master Clothier',
-    'desc' => 'Attain a Clothier rank of 50.',
-    'icon' => '/esoui/art/icons/achievement_062.dds',
-    'points' => 50,
+    'id' => 1780,
+    'name' => 'Clean Pelt Harvester',
+    'desc' => 'Harvest your first Clean Pelt.',
+    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_clean_pelt_01.dds',
+    'points' => 5,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Attain a Clothier rank of 50.',
+        'name' => 'Harvest Clean Pelt',
         'value' => 1,
         'index' => 1,
       ),
     ),
-    'dyeName' => 'Clothier Purple',
-    'dyeColor' => '4b132a',
+  ),
+  1781 => 
+  array (
+    'id' => 1781,
+    'name' => 'Expert Clean Pelt Harvester',
+    'desc' => 'Harvest 25 Clean Pelts.',
+    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_clean_pelt_02.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Harvest Clean Pelts',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1782 => 
+  array (
+    'id' => 1782,
+    'name' => 'Master Clean Pelt Harvester',
+    'desc' => 'Harvest 100 Clean Pelts.',
+    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_clean_pelt_03.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Harvest Clean Pelts',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
   ),
   1761 => 
   array (
@@ -10976,6 +11003,44 @@ Long may you reign!',
     'dyeName' => 'Ironweed Violet',
     'dyeColor' => 'b161b0',
   ),
+  1034 => 
+  array (
+    'id' => 1034,
+    'name' => 'Master Enchanter',
+    'desc' => 'Attain an Enchanting rank of 50.',
+    'icon' => '/esoui/art/icons/crafting_enchantment_022.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Attain an Enchanting rank of 50.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Enchanter Tangerine',
+    'dyeColor' => '733b22',
+  ),
+  2822 => 
+  array (
+    'id' => 2822,
+    'name' => 'Indeko Discoverer',
+    'desc' => 'Translate the Indeko rune.',
+    'icon' => '/esoui/art/icons/crafting_components_runestones_050.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Prismatic Regeneration',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   1777 => 
   array (
     'id' => 1777,
@@ -10983,7 +11048,7 @@ Long may you reign!',
     'desc' => 'Harvest your first Mundane Rune.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_mundante_rune_01.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -11001,7 +11066,7 @@ Long may you reign!',
     'desc' => 'Harvest 25 Mundane Runes.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_mundante_rune_02.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -11019,13 +11084,67 @@ Long may you reign!',
     'desc' => 'Harvest 100 Mundane Runes.',
     'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_mundante_rune_03.dds',
     'points' => 15,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Harvest Mundane Rune',
         'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1767 => 
+  array (
+    'id' => 1767,
+    'name' => 'Novice Enchanting Furnisher',
+    'desc' => 'Learn your first Enchanting Praxis.',
+    'icon' => '/esoui/art/icons/furniture_crafting_enchanting01.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Enchanting Praxis',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1772 => 
+  array (
+    'id' => 1772,
+    'name' => 'Expert Enchanting Furnisher',
+    'desc' => 'Learn 15 Enchanting Praxises.',
+    'icon' => '/esoui/art/icons/furniture_crafting_enchanting02.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Enchanting Praxises',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1768 => 
+  array (
+    'id' => 1768,
+    'name' => 'Master Enchanting Furnisher',
+    'desc' => 'Learn 50 Enchanting Praxises.',
+    'icon' => '/esoui/art/icons/furniture_crafting_enchanting03.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Enchanting Praxises',
+        'value' => 50,
         'index' => 1,
       ),
     ),
@@ -11037,7 +11156,7 @@ Long may you reign!',
     'desc' => 'Translate all of the Aspect runes.',
     'icon' => '/esoui/art/icons/crafting_components_runestones_003.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -11074,286 +11193,6 @@ Long may you reign!',
     'dyeName' => 'Aspect Red',
     'dyeColor' => '996e6b',
   ),
-  1317 => 
-  array (
-    'id' => 1317,
-    'name' => 'Ruby Potency',
-    'desc' => 'Translate all of the Champion 150 and Champion 160 runestones.',
-    'icon' => '/esoui/art/icons/crafting_components_runestones_050.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Divest',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Amplify',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Plunder',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Reinforce',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Prismatic',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  987 => 
-  array (
-    'id' => 987,
-    'name' => 'Potency',
-    'desc' => 'Translate all of the Potency runes.',
-    'icon' => '/esoui/art/icons/crafting_components_runestones_052.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Positive Potency',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Negative Potency',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-    'dyeName' => 'Potency Blue',
-    'dyeColor' => '706b99',
-  ),
-  780 => 
-  array (
-    'id' => 780,
-    'name' => 'Negative Potency',
-    'desc' => 'Translate all of the Negative Potency runes.',
-    'icon' => '/esoui/art/icons/crafting_components_runestones_036.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reduce',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Subtract',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Shrink',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Decrease',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Deduct',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Lower',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Diminish',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Weaken',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Lessen',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Impair',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Remove',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Drain',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Deprive',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Negate',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  779 => 
-  array (
-    'id' => 779,
-    'name' => 'Positive Potency',
-    'desc' => 'Translate all of the Positive Potency runes.',
-    'icon' => '/esoui/art/icons/crafting_components_runestones_050.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Develop',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Add',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Increase',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Raise',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Gain',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Supplement',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Boost',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Advance',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Augment',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Strengthen',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Exaggerate',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Empower',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Magnify',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Intensify',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1034 => 
-  array (
-    'id' => 1034,
-    'name' => 'Master Enchanter',
-    'desc' => 'Attain an Enchanting rank of 50.',
-    'icon' => '/esoui/art/icons/crafting_enchantment_022.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Attain an Enchanting rank of 50.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Enchanter Tangerine',
-    'dyeColor' => '733b22',
-  ),
   781 => 
   array (
     'id' => 781,
@@ -11361,7 +11200,7 @@ Long may you reign!',
     'desc' => 'Translate all of the Essence runes.',
     'icon' => '/esoui/art/icons/crafting_components_runestones_008.dds',
     'points' => 10,
-    'index' => 8,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -11470,11 +11309,133 @@ Long may you reign!',
     'dyeName' => 'Essence Green',
     'dyeColor' => 'a1bf85',
   ),
-  2822 => 
+  987 => 
   array (
-    'id' => 2822,
-    'name' => 'Indeko Discoverer',
-    'desc' => 'Translate the Indeko rune.',
+    'id' => 987,
+    'name' => 'Potency',
+    'desc' => 'Translate all of the Potency runes.',
+    'icon' => '/esoui/art/icons/crafting_components_runestones_052.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Positive Potency',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Negative Potency',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'dyeName' => 'Potency Blue',
+    'dyeColor' => '706b99',
+  ),
+  780 => 
+  array (
+    'id' => 780,
+    'name' => 'Negative Potency',
+    'desc' => 'Translate all of the Negative Potency runes.',
+    'icon' => '/esoui/art/icons/crafting_components_runestones_036.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reduce',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Subtract',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Shrink',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Decrease',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Deduct',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Lower',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Diminish',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Weaken',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Lessen',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Impair',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Remove',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Drain',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Deprive',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Negate',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  779 => 
+  array (
+    'id' => 779,
+    'name' => 'Positive Potency',
+    'desc' => 'Translate all of the Positive Potency runes.',
     'icon' => '/esoui/art/icons/crafting_components_runestones_050.dds',
     'points' => 10,
     'index' => 9,
@@ -11482,81 +11443,129 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Prismatic Regeneration',
+        'name' => 'Develop',
         'value' => 1,
         'index' => 1,
       ),
+      2 => 
+      array (
+        'name' => 'Add',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Increase',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Raise',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Gain',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Supplement',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Boost',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Advance',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Augment',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Strengthen',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Exaggerate',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Empower',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Magnify',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Intensify',
+        'value' => 1,
+        'index' => 14,
+      ),
     ),
   ),
-  1767 => 
+  1317 => 
   array (
-    'id' => 1767,
-    'name' => 'Novice Enchanting Furnisher',
-    'desc' => 'Learn your first Enchanting Praxis.',
-    'icon' => '/esoui/art/icons/furniture_crafting_enchanting01.dds',
-    'points' => 5,
+    'id' => 1317,
+    'name' => 'Ruby Potency',
+    'desc' => 'Translate all of the Champion 150 and Champion 160 runestones.',
+    'icon' => '/esoui/art/icons/crafting_components_runestones_050.dds',
+    'points' => 10,
     'index' => 10,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn Enchanting Praxis',
+        'name' => 'Divest',
         'value' => 1,
         'index' => 1,
       ),
-    ),
-  ),
-  1772 => 
-  array (
-    'id' => 1772,
-    'name' => 'Expert Enchanting Furnisher',
-    'desc' => 'Learn 15 Enchanting Praxises.',
-    'icon' => '/esoui/art/icons/furniture_crafting_enchanting02.dds',
-    'points' => 15,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
+      2 => 
       array (
-        'name' => 'Learn Enchanting Praxises',
-        'value' => 15,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1768 => 
-  array (
-    'id' => 1768,
-    'name' => 'Master Enchanting Furnisher',
-    'desc' => 'Learn 50 Enchanting Praxises.',
-    'icon' => '/esoui/art/icons/furniture_crafting_enchanting03.dds',
-    'points' => 50,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn Enchanting Praxises',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2214 => 
-  array (
-    'id' => 2214,
-    'name' => 'Jewelry Crafter',
-    'desc' => 'Learn the art of Jewelry Crafting. This can be learned in the Summerset Isle or by owning the Summerset chapter and interacting with a Jewelry Crafting Station.',
-    'icon' => '/esoui/art/icons/achievement_craft_jewelry_unlock.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn Jewelry Crafting',
+        'name' => 'Amplify',
         'value' => 1,
-        'index' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Plunder',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reinforce',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Prismatic',
+        'value' => 1,
+        'index' => 5,
       ),
     ),
   ),
@@ -11567,7 +11576,7 @@ Long may you reign!',
     'desc' => 'Attain a Jewelry Crafting rank of 50.',
     'icon' => '/esoui/art/icons/achievement_craft_jewelry_rank50.dds',
     'points' => 50,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -11579,6 +11588,24 @@ Long may you reign!',
     ),
     'dyeName' => 'Antique Silver',
     'dyeColor' => 'dfdbc6',
+  ),
+  2214 => 
+  array (
+    'id' => 2214,
+    'name' => 'Jewelry Crafter',
+    'desc' => 'Learn the art of Jewelry Crafting. This can be learned in the Summerset Isle or by owning the Summerset chapter and interacting with a Jewelry Crafting Station.',
+    'icon' => '/esoui/art/icons/achievement_craft_jewelry_unlock.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Jewelry Crafting',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
   ),
   2217 => 
   array (
@@ -11672,59 +11699,25 @@ Long may you reign!',
     'dyeName' => 'Divine Gold',
     'dyeColor' => 'd6b14b',
   ),
-  1792 => 
+  1035 => 
   array (
-    'id' => 1792,
-    'name' => 'Wax Harvester',
-    'desc' => 'Harvest your first unit of Decorative Wax.',
-    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_decorative_wax_01.dds',
-    'points' => 5,
+    'id' => 1035,
+    'name' => 'Master Provisioner',
+    'desc' => 'Attain a Provisioning rank of 50.',
+    'icon' => '/esoui/art/icons/achievement_063.dds',
+    'points' => 50,
     'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Harvest Decorative Wax',
+        'name' => 'Attain a Provisioning rank of 50.',
         'value' => 1,
         'index' => 1,
       ),
     ),
-  ),
-  1793 => 
-  array (
-    'id' => 1793,
-    'name' => 'Expert Wax Harvester',
-    'desc' => 'Harvest 25 units of Decorative Wax.',
-    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_decorative_wax_02.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Harvest Decorative Wax',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1794 => 
-  array (
-    'id' => 1794,
-    'name' => 'Master Wax Harvester',
-    'desc' => 'Harvest 100 units of Decorative Wax.',
-    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_decorative_wax_03.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Harvest Decorative Wax',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
+    'dyeName' => 'Provisioner Brown',
+    'dyeColor' => 'cc775b',
   ),
   1026 => 
   array (
@@ -11786,26 +11779,6 @@ Long may you reign!',
     'dyeName' => 'Recipe Reaper Red',
     'dyeColor' => '99444f',
   ),
-  1035 => 
-  array (
-    'id' => 1035,
-    'name' => 'Master Provisioner',
-    'desc' => 'Attain a Provisioning rank of 50.',
-    'icon' => '/esoui/art/icons/achievement_063.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Attain a Provisioning rank of 50.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Provisioner Brown',
-    'dyeColor' => 'cc775b',
-  ),
   1769 => 
   array (
     'id' => 1769,
@@ -11813,7 +11786,7 @@ Long may you reign!',
     'desc' => 'Learn your first Provisioning Design.',
     'icon' => '/esoui/art/icons/furniture_crafting_provisioning01.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -11831,7 +11804,7 @@ Long may you reign!',
     'desc' => 'Learn 25 Provisioning Designs.',
     'icon' => '/esoui/art/icons/furniture_crafting_provisioning02.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -11849,12 +11822,66 @@ Long may you reign!',
     'desc' => 'Learn 100 Provisioning Designs.',
     'icon' => '/esoui/art/icons/furniture_crafting_provisioning03.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Learn Provisioning Design',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1792 => 
+  array (
+    'id' => 1792,
+    'name' => 'Wax Harvester',
+    'desc' => 'Harvest your first unit of Decorative Wax.',
+    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_decorative_wax_01.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Harvest Decorative Wax',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1793 => 
+  array (
+    'id' => 1793,
+    'name' => 'Expert Wax Harvester',
+    'desc' => 'Harvest 25 units of Decorative Wax.',
+    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_decorative_wax_02.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Harvest Decorative Wax',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1794 => 
+  array (
+    'id' => 1794,
+    'name' => 'Master Wax Harvester',
+    'desc' => 'Harvest 100 units of Decorative Wax.',
+    'icon' => '/esoui/art/icons/achievement_crafting_furniture_base_decorative_wax_03.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Harvest Decorative Wax',
         'value' => 100,
         'index' => 1,
       ),
@@ -11934,59 +11961,25 @@ Long may you reign!',
     'dyeName' => 'Brewer\'s Ale Brown',
     'dyeColor' => '4b2113',
   ),
-  1755 => 
+  1036 => 
   array (
-    'id' => 1755,
-    'name' => 'Novice Woodworking Furnisher',
-    'desc' => 'Learn your first Woodworking Blueprint.',
-    'icon' => '/esoui/art/icons/furniture_crafting_woodworking01.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn Woodworking Blueprint',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1756 => 
-  array (
-    'id' => 1756,
-    'name' => 'Expert Woodworking Furnisher',
-    'desc' => 'Learn 50 Woodworking Blueprints.',
-    'icon' => '/esoui/art/icons/furniture_crafting_woodworking02.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn Woodworking Blueprints',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1757 => 
-  array (
-    'id' => 1757,
-    'name' => 'Master Woodworking Furnisher',
-    'desc' => 'Learn 200 Woodworking Blueprints.',
-    'icon' => '/esoui/art/icons/furniture_crafting_woodworking03.dds',
+    'id' => 1036,
+    'name' => 'Master Woodworker',
+    'desc' => 'Attain a Woodworking rank of 50.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
     'points' => 50,
     'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn Woodworking Blueprints',
-        'value' => 200,
+        'name' => 'Attain a Woodworking rank of 50.',
+        'value' => 1,
         'index' => 1,
       ),
     ),
+    'dyeName' => 'Woodworker Yellow',
+    'dyeColor' => '999344',
   ),
   1774 => 
   array (
@@ -12042,25 +12035,59 @@ Long may you reign!',
       ),
     ),
   ),
-  1036 => 
+  1755 => 
   array (
-    'id' => 1036,
-    'name' => 'Master Woodworker',
-    'desc' => 'Attain a Woodworking rank of 50.',
-    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'id' => 1755,
+    'name' => 'Novice Woodworking Furnisher',
+    'desc' => 'Learn your first Woodworking Blueprint.',
+    'icon' => '/esoui/art/icons/furniture_crafting_woodworking01.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Woodworking Blueprint',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1756 => 
+  array (
+    'id' => 1756,
+    'name' => 'Expert Woodworking Furnisher',
+    'desc' => 'Learn 50 Woodworking Blueprints.',
+    'icon' => '/esoui/art/icons/furniture_crafting_woodworking02.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn Woodworking Blueprints',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1757 => 
+  array (
+    'id' => 1757,
+    'name' => 'Master Woodworking Furnisher',
+    'desc' => 'Learn 200 Woodworking Blueprints.',
+    'icon' => '/esoui/art/icons/furniture_crafting_woodworking03.dds',
     'points' => 50,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Attain a Woodworking rank of 50.',
-        'value' => 1,
+        'name' => 'Learn Woodworking Blueprints',
+        'value' => 200,
         'index' => 1,
       ),
     ),
-    'dyeName' => 'Woodworker Yellow',
-    'dyeColor' => '999344',
   ),
   1044 => 
   array (
@@ -12208,6 +12235,997 @@ Long may you reign!',
       ),
     ),
   ),
+  1415 => 
+  array (
+    'id' => 1415,
+    'name' => 'Aldmeri Dominion Style Master',
+    'desc' => 'Learn every chapter in the Aldmeri Dominion style book, found by Dominion heroes in treasure chests in Cyrodiil and Imperial City.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Aldmeri Dominion Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1714 => 
+  array (
+    'id' => 1714,
+    'name' => 'Celestial Style Master',
+    'desc' => 'Learn every chapter in the Celestial style book, found in the weekly quest reward containers for Craglorn Trials.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Celestial Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Celestial Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Celestial Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Celestial Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Celestial Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Celestial Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Celestial Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Celestial Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Celestial Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Celestial Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Celestial Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Celestial Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Celestial Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Celestial Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1416 => 
+  array (
+    'id' => 1416,
+    'name' => 'Daggerfall Covenant Style Master',
+    'desc' => 'Learn every chapter in the Daggerfall Covenant style book, found by Covenant heroes in treasure chests in Cyrodiil and Imperial City.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Daggerfall Covenant Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1715 => 
+  array (
+    'id' => 1715,
+    'name' => 'Draugr Style Master',
+    'desc' => 'Learn every chapter in the Draugr style book, found in reward containers from daily quests for the Fighters Guild, the Mages Guild, and Bolgrul of the Undaunted.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Draugr Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Draugr Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Draugr Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Draugr Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Draugr Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Draugr Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Draugr Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Draugr Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Draugr Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Draugr Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Draugr Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Draugr Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Draugr Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Draugr Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1414 => 
+  array (
+    'id' => 1414,
+    'name' => 'Ebonheart Pact Style Master',
+    'desc' => 'Learn every chapter in the Ebonheart Pact style book, found by Pact heroes in treasure chests in Cyrodiil and Imperial City.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ebonheart Pact Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1798 => 
+  array (
+    'id' => 1798,
+    'name' => 'Ebony Style Master',
+    'desc' => 'Learn every chapter in the Ebony style book, purchasable from the Mastercraft Mediator in Alliance capital cities.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ebony Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ebony Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ebony Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ebony Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ebony Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ebony Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ebony Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ebony Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ebony Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ebony Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ebony Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ebony Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ebony Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ebony Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2226 => 
+  array (
+    'id' => 2226,
+    'name' => 'Professions Master',
+    'desc' => 'Earn the rank 50 achievements for all the crafting professions.',
+    'icon' => '/esoui/art/icons/achievement_crafting_allprofessions50.dds',
+    'points' => 15,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Master Alchemist',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Master Blacksmith',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Master Clothier',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Master Enchanter',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Master Jewelry Crafter',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Master Provisioner',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Master Woodworker',
+        'value' => 1,
+        'index' => 7,
+      ),
+    ),
+  ),
+  1797 => 
+  array (
+    'id' => 1797,
+    'name' => 'Ra Gada Style Master',
+    'desc' => 'Learn every chapter in the Ra Gada style book, found by defeating bosses and opening treasure chests in Craglorn.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ra Gada Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1418 => 
+  array (
+    'id' => 1418,
+    'name' => 'Soul Shriven Style Master',
+    'desc' => 'Learn the Soul Shriven style book, found by completing Cadwell\'s Silver.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 15,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Soul Shriven Style',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2228 => 
+  array (
+    'id' => 2228,
+    'name' => 'Fledgling Style Master',
+    'desc' => 'Collect and learn 10 full motifs.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn 10 Motifs',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2229 => 
+  array (
+    'id' => 2229,
+    'name' => 'Budding Style Master',
+    'desc' => 'Collect and learn 25 full motifs.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn 25 Motifs',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2230 => 
+  array (
+    'id' => 2230,
+    'name' => 'True Style Master',
+    'desc' => 'Collect and learn 50 full motifs.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn 50 Motifs',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Style Master',
+  ),
+  2120 => 
+  array (
+    'id' => 2120,
+    'name' => 'Worm Cult Style Master',
+    'desc' => 'Learn every chapter in the Worm Cult style book, occasionally found in Anniversary Jubilee Gift Boxes.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Worm Cult Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1713 => 
+  array (
+    'id' => 1713,
+    'name' => 'Yokudan Style Master',
+    'desc' => 'Learn every chapter in the Yokudan style book, occasionally found in repeatable quest reward containers in Craglorn.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Yokudan Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   2223 => 
   array (
     'id' => 2223,
@@ -12215,7 +13233,7 @@ Long may you reign!',
     'desc' => 'Research a Trait for any jewelry type.',
     'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -12274,535 +13292,6 @@ Long may you reign!',
       ),
     ),
   ),
-  2228 => 
-  array (
-    'id' => 2228,
-    'name' => 'Fledgling Style Master',
-    'desc' => 'Collect and learn 10 full motifs.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn 10 Motifs',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2229 => 
-  array (
-    'id' => 2229,
-    'name' => 'Budding Style Master',
-    'desc' => 'Collect and learn 25 full motifs.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 15,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn 25 Motifs',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2230 => 
-  array (
-    'id' => 2230,
-    'name' => 'True Style Master',
-    'desc' => 'Collect and learn 50 full motifs.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn 50 Motifs',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Style Master',
-  ),
-  1030 => 
-  array (
-    'id' => 1030,
-    'name' => 'Alliance Style Master',
-    'desc' => 'Learn all Alliance Racial Styles.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 15,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Breton Racial Style.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Redguard Racial Style.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Orc Racial Style.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Dark Elf Racial Style.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Nord Racial Style.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Argonian Racial Style.',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the High Elf Racial Style.',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Wood Elf Racial Style.',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Khajiit Racial Style.',
-        'value' => 1,
-        'index' => 9,
-      ),
-    ),
-    'dyeName' => 'Motif Pattern Blue',
-    'dyeColor' => '6b8c99',
-  ),
-  1125 => 
-  array (
-    'id' => 1125,
-    'name' => 'Learn the Nirnhoned Trait',
-    'desc' => 'Research the Nirnhoned Trait for any weapon or armor type.',
-    'icon' => '/esoui/art/icons/crafting_potent_nirncrux_stone.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Research the Nirnhoned Weapon Trait.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Research the Nirnhoned Armor Trait.',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-    'dyeName' => 'Nirncrux Red',
-    'dyeColor' => '4b1b1b',
-  ),
-  1041 => 
-  array (
-    'id' => 1041,
-    'name' => 'Trait Master',
-    'desc' => 'Research every available Trait at least once.',
-    'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Research the Powered Weapon Trait.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Research the Charged Weapon Trait.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Research the Precise Weapon Trait.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Research the Infused Weapon Trait.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Research the Defending Weapon Trait.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Research the Training Weapon Trait.',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Research the Sharpened Weapon Trait.',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Research the Decisive Weapon Trait.',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Research the Sturdy Armor Trait.',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Research the Impenetrable Armor Trait.',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Research the Reinforced Armor Trait.',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Research the Well Fitted Armor Trait.',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Research the Training Armor Trait.',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Research the Infused Armor Trait.',
-        'value' => 1,
-        'index' => 14,
-      ),
-      15 => 
-      array (
-        'name' => 'Research the Prosperous Armor Trait.',
-        'value' => 1,
-        'index' => 15,
-      ),
-      16 => 
-      array (
-        'name' => 'Research the Divines Armor Trait.',
-        'value' => 1,
-        'index' => 16,
-      ),
-    ),
-    'dyeName' => 'Moonstone White',
-    'dyeColor' => 'adc7cc',
-  ),
-  64 => 
-  array (
-    'id' => 64,
-    'name' => 'Apprentice Crafting Harvester',
-    'desc' => 'Harvest any crafting materials 10 times.',
-    'icon' => '/esoui/art/icons/achievement_064.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Apprentice Crafting Harvester',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Dragonthorn Yellow',
-    'dyeColor' => '99956b',
-  ),
-  65 => 
-  array (
-    'id' => 65,
-    'name' => 'Journeyman Crafting Harvester',
-    'desc' => 'Harvest any crafting materials 50 times.',
-    'icon' => '/esoui/art/icons/achievement_064.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Journeyman Crafting Harvester',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Hyacinth Pink',
-    'dyeColor' => 'bf859c',
-  ),
-  66 => 
-  array (
-    'id' => 66,
-    'name' => 'Expert Crafting Harvester',
-    'desc' => 'Harvest any crafting materials 100 times.',
-    'icon' => '/esoui/art/icons/achievement_064.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Expert Crafting Harvester',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Jute Green',
-    'dyeColor' => '4f725e',
-  ),
-  67 => 
-  array (
-    'id' => 67,
-    'name' => 'Master Crafting Harvester',
-    'desc' => 'Harvest any crafting materials 1000 times.',
-    'icon' => '/esoui/art/icons/achievement_064.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Master Crafting Harvester',
-        'value' => 1000,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Raw Hide Tan',
-    'dyeColor' => 'bf9385',
-  ),
-  68 => 
-  array (
-    'id' => 68,
-    'name' => 'Grand Master Crafting Harvester',
-    'desc' => 'Harvest any crafting materials 10000 times.',
-    'icon' => '/esoui/art/icons/achievement_064.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Grand Master Crafting Harvester',
-        'value' => 10000,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Kresh Flower Red',
-    'dyeColor' => '993e35',
-  ),
-  1025 => 
-  array (
-    'id' => 1025,
-    'name' => 'Racial Style Learned',
-    'desc' => 'Learn any Racial Style.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 5,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Breton Racial Style.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Redguard Racial Style.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Orc Racial Style.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Dark Elf Racial Style.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Nord Racial Style.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Argonian Racial Style.',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the High Elf Racial Style.',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Wood Elf Racial Style.',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Khajiit Racial Style.',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ancient Elf Racial Style.',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Imperial Racial Style.',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Barbaric Racial Style.',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Primitive Racial Style.',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Daedric Racial Style.',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-    'dyeName' => 'Book Cover Brown',
-    'dyeColor' => '725d4f',
-  ),
-  1146 => 
-  array (
-    'id' => 1146,
-    'name' => 'First Writ',
-    'desc' => 'Complete one Crafting Writ.',
-    'icon' => '/esoui/art/icons/scroll_001.dds',
-    'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete one crafting daily quest.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1147 => 
-  array (
-    'id' => 1147,
-    'name' => 'I Must Complete My Contract',
-    'desc' => 'Complete 25 Crafting Writs.',
-    'icon' => '/esoui/art/icons/scroll_001.dds',
-    'points' => 10,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete twenty five crafting daily quests.',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1148 => 
-  array (
-    'id' => 1148,
-    'name' => 'Signed the Manifest',
-    'desc' => 'Complete 150 Crafting Writs.',
-    'icon' => '/esoui/art/icons/scroll_001.dds',
-    'points' => 15,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete one hundred and fifty crafting daily quests.',
-        'value' => 150,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1149 => 
-  array (
-    'id' => 1149,
-    'name' => 'Writ Upon the Sky',
-    'desc' => 'Complete 250 Crafting Writs.',
-    'icon' => '/esoui/art/icons/scroll_001.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete two hundred fifty crafting daily quests.',
-        'value' => 250,
-        'index' => 1,
-      ),
-    ),
-  ),
   1023 => 
   array (
     'id' => 1023,
@@ -12810,7 +13299,7 @@ Long may you reign!',
     'desc' => 'Research a Trait for any weapon or armor type.',
     'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds',
     'points' => 5,
-    'index' => 9,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -12913,1254 +13402,6 @@ Long may you reign!',
     'dyeName' => 'Amethyst Violet',
     'dyeColor' => '544f72',
   ),
-  1145 => 
-  array (
-    'id' => 1145,
-    'name' => 'Certified Jack-of-All-Trades',
-    'desc' => 'Become certified in Alchemy, Blacksmithing, Clothing, Enchanting, Provisioning, and Woodworking.',
-    'icon' => '/esoui/art/icons/scroll_005.dds',
-    'points' => 10,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete the Alchemy Certification',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Complete the Blacksmithing Certification',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Complete the Clothier Certification',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Complete the Enchanting Certification',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Complete the Provisioning Certification',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Complete the Woodworking Certification',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-    'dyeName' => 'Woodsman Green',
-    'dyeColor' => '2d4034',
-  ),
-  1017 => 
-  array (
-    'id' => 1017,
-    'name' => 'Apprentice Deconstructor',
-    'desc' => 'Deconstruct 50 items.',
-    'icon' => '/esoui/art/icons/crafting_cloth_base_flax_r1.dds',
-    'points' => 5,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Deconstruct 50 items.',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Forge Ember Red',
-    'dyeColor' => 'bf7c7c',
-  ),
-  1018 => 
-  array (
-    'id' => 1018,
-    'name' => 'Expert Deconstructor',
-    'desc' => 'Deconstruct 100 items.',
-    'icon' => '/esoui/art/icons/crafting_smith_potion_002.dds',
-    'points' => 5,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Deconstruct 100 items.',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Obsidian Black',
-    'dyeColor' => '474747',
-  ),
-  1019 => 
-  array (
-    'id' => 1019,
-    'name' => 'Master Deconstructor',
-    'desc' => 'Deconstruct 1000 items.',
-    'icon' => '/esoui/art/icons/crafting_ghost_faint_glow_dust.dds',
-    'points' => 10,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Deconstruct 1000 items.',
-        'value' => 1000,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Craftmaster Gold',
-    'dyeColor' => '725734',
-  ),
-  1415 => 
-  array (
-    'id' => 1415,
-    'name' => 'Aldmeri Dominion Style Master',
-    'desc' => 'Learn every chapter in the Aldmeri Dominion style book, found by Dominion heroes in treasure chests in Cyrodiil and Imperial City.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Aldmeri Dominion Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1714 => 
-  array (
-    'id' => 1714,
-    'name' => 'Celestial Style Master',
-    'desc' => 'Learn every chapter in the Celestial style book, found in the weekly quest reward containers for Craglorn Trials.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Celestial Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Celestial Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Celestial Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Celestial Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Celestial Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Celestial Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Celestial Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Celestial Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Celestial Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Celestial Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Celestial Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Celestial Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Celestial Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Celestial Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2225 => 
-  array (
-    'id' => 2225,
-    'name' => 'Certified Jewelry Crafter',
-    'desc' => 'Become certified in Jewelry Crafting. Find this quest in the Summerset Isles.',
-    'icon' => '/esoui/art/icons/scroll_005.dds',
-    'points' => 5,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete the Jewelry Crafting Certification',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1416 => 
-  array (
-    'id' => 1416,
-    'name' => 'Daggerfall Covenant Style Master',
-    'desc' => 'Learn every chapter in the Daggerfall Covenant style book, found by Covenant heroes in treasure chests in Cyrodiil and Imperial City.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 15,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Daggerfall Covenant Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1715 => 
-  array (
-    'id' => 1715,
-    'name' => 'Draugr Style Master',
-    'desc' => 'Learn every chapter in the Draugr style book, found in reward containers from daily quests for the Fighters Guild, the Mages Guild, and Bolgrul of the Undaunted.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 16,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Draugr Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Draugr Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Draugr Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Draugr Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Draugr Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Draugr Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Draugr Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Draugr Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Draugr Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Draugr Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Draugr Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Draugr Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Draugr Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Draugr Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1414 => 
-  array (
-    'id' => 1414,
-    'name' => 'Ebonheart Pact Style Master',
-    'desc' => 'Learn every chapter in the Ebonheart Pact style book, found by Pact heroes in treasure chests in Cyrodiil and Imperial City.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 17,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ebonheart Pact Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1798 => 
-  array (
-    'id' => 1798,
-    'name' => 'Ebony Style Master',
-    'desc' => 'Learn every chapter in the Ebony style book, purchasable from the Mastercraft Mediator in Alliance capital cities.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 18,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ebony Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ebony Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ebony Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ebony Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ebony Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ebony Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ebony Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ebony Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ebony Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ebony Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ebony Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ebony Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ebony Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ebony Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2227 => 
-  array (
-    'id' => 2227,
-    'name' => 'Grand Master Crafter',
-    'desc' => 'Earn each of the following achievements:',
-    'icon' => '/esoui/art/icons/achievement_craft_mastercraftsman.dds',
-    'points' => 50,
-    'index' => 19,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Professions Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Unsurpassed Crafter',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Trait Master',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Jewelry Trait Master',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Nirnhoned Trait',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'True Style Master',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Recipe Compendium',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Potency',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Botanist',
-        'value' => 1,
-        'index' => 9,
-      ),
-    ),
-    'title' => 'Grand Master Crafter',
-    'collectIcon' => '/esoui/art/icons/gear_skyforge_hammer.dds',
-    'collectName' => 'Skyforge Smith Hammer',
-    'collectId' => '5472',
-  ),
-  1799 => 
-  array (
-    'id' => 1799,
-    'name' => 'Master Crafter',
-    'desc' => 'Complete your first Master Writ.',
-    'icon' => '/esoui/art/icons/achievement_housing_79.dds',
-    'points' => 10,
-    'index' => 20,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Master Writ',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1800 => 
-  array (
-    'id' => 1800,
-    'name' => 'Master of Many Crafts',
-    'desc' => 'Complete 25 Master Writs.',
-    'icon' => '/esoui/art/icons/achievement_housing_80.dds',
-    'points' => 15,
-    'index' => 20,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Master Writs',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1801 => 
-  array (
-    'id' => 1801,
-    'name' => 'Unsurpassed Crafter',
-    'desc' => 'Complete 100 Master Writs.',
-    'icon' => '/esoui/art/icons/achievement_housing_81.dds',
-    'points' => 50,
-    'index' => 20,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Master Writs',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2226 => 
-  array (
-    'id' => 2226,
-    'name' => 'Professions Master',
-    'desc' => 'Earn the rank 50 achievements for all the crafting professions.',
-    'icon' => '/esoui/art/icons/achievement_crafting_allprofessions50.dds',
-    'points' => 15,
-    'index' => 21,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Master Alchemist',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Master Blacksmith',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Master Clothier',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Master Enchanter',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Master Jewelry Crafter',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Master Provisioner',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Master Woodworker',
-        'value' => 1,
-        'index' => 7,
-      ),
-    ),
-  ),
-  1797 => 
-  array (
-    'id' => 1797,
-    'name' => 'Ra Gada Style Master',
-    'desc' => 'Learn every chapter in the Ra Gada style book, found by defeating bosses and opening treasure chests in Craglorn.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 22,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ra Gada Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1418 => 
-  array (
-    'id' => 1418,
-    'name' => 'Soul Shriven Style Master',
-    'desc' => 'Learn the Soul Shriven style book, found by completing Cadwell\'s Silver.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 15,
-    'index' => 23,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Soul Shriven Style',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2120 => 
-  array (
-    'id' => 2120,
-    'name' => 'Worm Cult Style Master',
-    'desc' => 'Learn every chapter in the Worm Cult style book, occasionally found in Anniversary Jubilee Gift Boxes.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 24,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Worm Cult Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1713 => 
-  array (
-    'id' => 1713,
-    'name' => 'Yokudan Style Master',
-    'desc' => 'Learn every chapter in the Yokudan style book, occasionally found in repeatable quest reward containers in Craglorn.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 25,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Yokudan Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1020 => 
-  array (
-    'id' => 1020,
-    'name' => 'Apprentice of Refinement',
-    'desc' => 'Refine raw materials 30 times.',
-    'icon' => '/esoui/art/icons/crafting_leather_base_boiled_leather_r2.dds',
-    'points' => 5,
-    'index' => 26,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Refine raw materials 30 times.',
-        'value' => 30,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Bugloss Blue',
-    'dyeColor' => '4f5d72',
-  ),
-  1021 => 
-  array (
-    'id' => 1021,
-    'name' => 'Expert of Refinement',
-    'desc' => 'Refine raw materials 300 times.',
-    'icon' => '/esoui/art/icons/crafting_wood_base_beech_r3.dds',
-    'points' => 5,
-    'index' => 26,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Refine raw materials 300 times.',
-        'value' => 300,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Birch White',
-    'dyeColor' => 'bfbfbf',
-  ),
-  1022 => 
-  array (
-    'id' => 1022,
-    'name' => 'Master of Refinement',
-    'desc' => 'Refine raw materials 3000 times.',
-    'icon' => '/esoui/art/icons/crafting_ore_base_iron_r3.dds',
-    'points' => 10,
-    'index' => 26,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Refine raw materials 3000 times.',
-        'value' => 3000,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Polished Steel Gray',
-    'dyeColor' => '8b8b8b',
-  ),
   2224 => 
   array (
     'id' => 2224,
@@ -14168,7 +13409,7 @@ Long may you reign!',
     'desc' => 'Research every Jewelry Trait at least once, regardless of whether from a ring or necklace.',
     'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds',
     'points' => 15,
-    'index' => 27,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -14227,6 +13468,308 @@ Long may you reign!',
       ),
     ),
   ),
+  1041 => 
+  array (
+    'id' => 1041,
+    'name' => 'Trait Master',
+    'desc' => 'Research every available Trait at least once.',
+    'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds',
+    'points' => 50,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Research the Powered Weapon Trait.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Research the Charged Weapon Trait.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Research the Precise Weapon Trait.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Research the Infused Weapon Trait.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Research the Defending Weapon Trait.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Research the Training Weapon Trait.',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Research the Sharpened Weapon Trait.',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Research the Decisive Weapon Trait.',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Research the Sturdy Armor Trait.',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Research the Impenetrable Armor Trait.',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Research the Reinforced Armor Trait.',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Research the Well Fitted Armor Trait.',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Research the Training Armor Trait.',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Research the Infused Armor Trait.',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Research the Prosperous Armor Trait.',
+        'value' => 1,
+        'index' => 15,
+      ),
+      16 => 
+      array (
+        'name' => 'Research the Divines Armor Trait.',
+        'value' => 1,
+        'index' => 16,
+      ),
+    ),
+    'dyeName' => 'Moonstone White',
+    'dyeColor' => 'adc7cc',
+  ),
+  1125 => 
+  array (
+    'id' => 1125,
+    'name' => 'Learn the Nirnhoned Trait',
+    'desc' => 'Research the Nirnhoned Trait for any weapon or armor type.',
+    'icon' => '/esoui/art/icons/crafting_potent_nirncrux_stone.dds',
+    'points' => 5,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Research the Nirnhoned Weapon Trait.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Research the Nirnhoned Armor Trait.',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'dyeName' => 'Nirncrux Red',
+    'dyeColor' => '4b1b1b',
+  ),
+  1025 => 
+  array (
+    'id' => 1025,
+    'name' => 'Racial Style Learned',
+    'desc' => 'Learn any Racial Style.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 5,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Breton Racial Style.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Redguard Racial Style.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Orc Racial Style.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Dark Elf Racial Style.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Nord Racial Style.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Argonian Racial Style.',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the High Elf Racial Style.',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Wood Elf Racial Style.',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Khajiit Racial Style.',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancient Elf Racial Style.',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Imperial Racial Style.',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Barbaric Racial Style.',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Primitive Racial Style.',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Daedric Racial Style.',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+    'dyeName' => 'Book Cover Brown',
+    'dyeColor' => '725d4f',
+  ),
+  1030 => 
+  array (
+    'id' => 1030,
+    'name' => 'Alliance Style Master',
+    'desc' => 'Learn all Alliance Racial Styles.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 15,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Breton Racial Style.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Redguard Racial Style.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Orc Racial Style.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Dark Elf Racial Style.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Nord Racial Style.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Argonian Racial Style.',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the High Elf Racial Style.',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Wood Elf Racial Style.',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Khajiit Racial Style.',
+        'value' => 1,
+        'index' => 9,
+      ),
+    ),
+    'dyeName' => 'Motif Pattern Blue',
+    'dyeColor' => '6b8c99',
+  ),
   1043 => 
   array (
     'id' => 1043,
@@ -14234,7 +13777,7 @@ Long may you reign!',
     'desc' => 'Learn all Rare Racial Styles.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 28,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -14278,7 +13821,7 @@ Long may you reign!',
     'desc' => 'Learn every chapter in the Akaviri style book, purchasable from War Researchers in Cyrodiil.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 29,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -14374,7 +13917,7 @@ Long may you reign!',
     'desc' => 'Learn every chapter in the Dwemer style book, found in Dwemer urns, trunks, and other dwarven knick-knacks.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 30,
+    'index' => 22,
     'criteria' => 
     array (
       1 => 
@@ -14472,7 +14015,7 @@ Long may you reign!',
     'desc' => 'Learn every chapter in the Glass style book, purchasable from the Mastercraft Mediator in Alliance capital cities.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 31,
+    'index' => 23,
     'criteria' => 
     array (
       1 => 
@@ -14568,7 +14111,7 @@ Long may you reign!',
     'desc' => 'Learn every chapter in the Mercenary style book, found in Undaunted Reward Chests.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 32,
+    'index' => 24,
     'criteria' => 
     array (
       1 => 
@@ -14656,6 +14199,490 @@ Long may you reign!',
         'index' => 14,
       ),
     ),
+  ),
+  1145 => 
+  array (
+    'id' => 1145,
+    'name' => 'Certified Jack-of-All-Trades',
+    'desc' => 'Become certified in Alchemy, Blacksmithing, Clothing, Enchanting, Provisioning, and Woodworking.',
+    'icon' => '/esoui/art/icons/scroll_005.dds',
+    'points' => 10,
+    'index' => 25,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete the Alchemy Certification',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Complete the Blacksmithing Certification',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Complete the Clothier Certification',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Complete the Enchanting Certification',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Complete the Provisioning Certification',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Complete the Woodworking Certification',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+    'dyeName' => 'Woodsman Green',
+    'dyeColor' => '2d4034',
+  ),
+  2225 => 
+  array (
+    'id' => 2225,
+    'name' => 'Certified Jewelry Crafter',
+    'desc' => 'Become certified in Jewelry Crafting. Find this quest in the Summerset Isles.',
+    'icon' => '/esoui/art/icons/scroll_005.dds',
+    'points' => 5,
+    'index' => 26,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete the Jewelry Crafting Certification',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2227 => 
+  array (
+    'id' => 2227,
+    'name' => 'Grand Master Crafter',
+    'desc' => 'Earn each of the following achievements:',
+    'icon' => '/esoui/art/icons/achievement_craft_mastercraftsman.dds',
+    'points' => 50,
+    'index' => 27,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Professions Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Unsurpassed Crafter',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Trait Master',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Jewelry Trait Master',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Nirnhoned Trait',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'True Style Master',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Recipe Compendium',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Potency',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Botanist',
+        'value' => 1,
+        'index' => 9,
+      ),
+    ),
+    'title' => 'Grand Master Crafter',
+    'collectIcon' => '/esoui/art/icons/gear_skyforge_hammer.dds',
+    'collectName' => 'Skyforge Smith Hammer',
+    'collectId' => '5472',
+  ),
+  1799 => 
+  array (
+    'id' => 1799,
+    'name' => 'Master Crafter',
+    'desc' => 'Complete your first Master Writ.',
+    'icon' => '/esoui/art/icons/achievement_housing_79.dds',
+    'points' => 10,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Master Writ',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1800 => 
+  array (
+    'id' => 1800,
+    'name' => 'Master of Many Crafts',
+    'desc' => 'Complete 25 Master Writs.',
+    'icon' => '/esoui/art/icons/achievement_housing_80.dds',
+    'points' => 15,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Master Writs',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1801 => 
+  array (
+    'id' => 1801,
+    'name' => 'Unsurpassed Crafter',
+    'desc' => 'Complete 100 Master Writs.',
+    'icon' => '/esoui/art/icons/achievement_housing_81.dds',
+    'points' => 50,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Master Writs',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  64 => 
+  array (
+    'id' => 64,
+    'name' => 'Apprentice Crafting Harvester',
+    'desc' => 'Harvest any crafting materials 10 times.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Apprentice Crafting Harvester',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Dragonthorn Yellow',
+    'dyeColor' => '99956b',
+  ),
+  65 => 
+  array (
+    'id' => 65,
+    'name' => 'Journeyman Crafting Harvester',
+    'desc' => 'Harvest any crafting materials 50 times.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Journeyman Crafting Harvester',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Hyacinth Pink',
+    'dyeColor' => 'bf859c',
+  ),
+  66 => 
+  array (
+    'id' => 66,
+    'name' => 'Expert Crafting Harvester',
+    'desc' => 'Harvest any crafting materials 100 times.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Expert Crafting Harvester',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Jute Green',
+    'dyeColor' => '4f725e',
+  ),
+  67 => 
+  array (
+    'id' => 67,
+    'name' => 'Master Crafting Harvester',
+    'desc' => 'Harvest any crafting materials 1000 times.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Master Crafting Harvester',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Raw Hide Tan',
+    'dyeColor' => 'bf9385',
+  ),
+  68 => 
+  array (
+    'id' => 68,
+    'name' => 'Grand Master Crafting Harvester',
+    'desc' => 'Harvest any crafting materials 10000 times.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'points' => 5,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Grand Master Crafting Harvester',
+        'value' => 10000,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Kresh Flower Red',
+    'dyeColor' => '993e35',
+  ),
+  1146 => 
+  array (
+    'id' => 1146,
+    'name' => 'First Writ',
+    'desc' => 'Complete one Crafting Writ.',
+    'icon' => '/esoui/art/icons/scroll_001.dds',
+    'points' => 5,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete one crafting daily quest.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1147 => 
+  array (
+    'id' => 1147,
+    'name' => 'I Must Complete My Contract',
+    'desc' => 'Complete 25 Crafting Writs.',
+    'icon' => '/esoui/art/icons/scroll_001.dds',
+    'points' => 10,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete twenty five crafting daily quests.',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1148 => 
+  array (
+    'id' => 1148,
+    'name' => 'Signed the Manifest',
+    'desc' => 'Complete 150 Crafting Writs.',
+    'icon' => '/esoui/art/icons/scroll_001.dds',
+    'points' => 15,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete one hundred and fifty crafting daily quests.',
+        'value' => 150,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1149 => 
+  array (
+    'id' => 1149,
+    'name' => 'Writ Upon the Sky',
+    'desc' => 'Complete 250 Crafting Writs.',
+    'icon' => '/esoui/art/icons/scroll_001.dds',
+    'points' => 50,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete two hundred fifty crafting daily quests.',
+        'value' => 250,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1020 => 
+  array (
+    'id' => 1020,
+    'name' => 'Apprentice of Refinement',
+    'desc' => 'Refine raw materials 30 times.',
+    'icon' => '/esoui/art/icons/crafting_leather_base_boiled_leather_r2.dds',
+    'points' => 5,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Refine raw materials 30 times.',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Bugloss Blue',
+    'dyeColor' => '4f5d72',
+  ),
+  1021 => 
+  array (
+    'id' => 1021,
+    'name' => 'Expert of Refinement',
+    'desc' => 'Refine raw materials 300 times.',
+    'icon' => '/esoui/art/icons/crafting_wood_base_beech_r3.dds',
+    'points' => 5,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Refine raw materials 300 times.',
+        'value' => 300,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Birch White',
+    'dyeColor' => 'bfbfbf',
+  ),
+  1022 => 
+  array (
+    'id' => 1022,
+    'name' => 'Master of Refinement',
+    'desc' => 'Refine raw materials 3000 times.',
+    'icon' => '/esoui/art/icons/crafting_ore_base_iron_r3.dds',
+    'points' => 10,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Refine raw materials 3000 times.',
+        'value' => 3000,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Polished Steel Gray',
+    'dyeColor' => '8b8b8b',
+  ),
+  1017 => 
+  array (
+    'id' => 1017,
+    'name' => 'Apprentice Deconstructor',
+    'desc' => 'Deconstruct 50 items.',
+    'icon' => '/esoui/art/icons/crafting_cloth_base_flax_r1.dds',
+    'points' => 5,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct 50 items.',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Forge Ember Red',
+    'dyeColor' => 'bf7c7c',
+  ),
+  1018 => 
+  array (
+    'id' => 1018,
+    'name' => 'Expert Deconstructor',
+    'desc' => 'Deconstruct 100 items.',
+    'icon' => '/esoui/art/icons/crafting_smith_potion_002.dds',
+    'points' => 5,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct 100 items.',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Obsidian Black',
+    'dyeColor' => '474747',
+  ),
+  1019 => 
+  array (
+    'id' => 1019,
+    'name' => 'Master Deconstructor',
+    'desc' => 'Deconstruct 1000 items.',
+    'icon' => '/esoui/art/icons/crafting_ghost_faint_glow_dust.dds',
+    'points' => 10,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deconstruct 1000 items.',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Craftmaster Gold',
+    'dyeColor' => '725734',
   ),
   1042 => 
   array (
@@ -14855,7 +14882,7 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Rank 9 Materials',
-    'dyeColor' => '28a15',
+    'dyeColor' => '280a15',
   ),
   2130 => 
   array (
@@ -14875,7 +14902,7 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Rank 10 Materials',
-    'dyeColor' => '66eb',
+    'dyeColor' => '660e0b',
   ),
   1503 => 
   array (
@@ -15122,7 +15149,7 @@ Long may you reign!',
   array (
     'id' => 1138,
     'name' => 'Sanctum Ophidia Difficult Mode',
-    'desc' => 'Defeat the Celestial Serpent after desecrating the sacred banners of the Scaled Court',
+    'desc' => 'Defeat the Celestial Serpent after desecrating the sacred banners of the Scaled Court.',
     'icon' => '/esoui/art/icons/achievement_022.dds',
     'points' => 50,
     'index' => 13,
@@ -15308,42 +15335,6 @@ Long may you reign!',
     'dyeColor' => '97acb1',
     'title' => 'Boethiah\'s Scythe',
   ),
-  470 => 
-  array (
-    'id' => 470,
-    'name' => 'Root Sunder Group Event',
-    'desc' => 'Defeat the Bonemonger and its captors in Root Sunder Ruins.',
-    'icon' => '/esoui/art/icons/achievement_025.dds',
-    'points' => 50,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Root Sunder Ruins Group Event',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  468 => 
-  array (
-    'id' => 468,
-    'name' => 'Toothmaul Gully Group Event',
-    'desc' => 'Destroy Bloodroot and its guardians at Toothmaul Gully.',
-    'icon' => '/esoui/art/icons/achievement_025.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Toothmaul Gully Group Challenge',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   1069 => 
   array (
     'id' => 1069,
@@ -15351,7 +15342,7 @@ Long may you reign!',
     'desc' => 'Defeat all of the Public Dungeon champions in the Aldmeri Dominion.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -15395,7 +15386,7 @@ Long may you reign!',
     'desc' => 'Defeat all of the Public Dungeon champions in the Daggerfall Covenant.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -15439,7 +15430,7 @@ Long may you reign!',
     'desc' => 'Defeat all of the Public Dungeon champions in the Ebonheart Pact.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 50,
-    'index' => 5,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -15483,7 +15474,7 @@ Long may you reign!',
     'desc' => 'Slay the Giant Snake Mother in Bad Man\'s Hallows.',
     'icon' => '/esoui/art/icons/achievement_022.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -15501,7 +15492,7 @@ Long may you reign!',
     'desc' => 'Defeat the Eternal One in the Bonesnap Ruins.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -15519,7 +15510,7 @@ Long may you reign!',
     'desc' => 'Defeat Flat Tooth and his minions at Crimson Cove.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -15537,7 +15528,7 @@ Long may you reign!',
     'desc' => 'Destroy the Soul Wraiths to summon and slay Ghyslain in Crow\'s Wood.',
     'icon' => '/esoui/art/icons/crafting_runecrafter_plug_sp_names_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -15555,7 +15546,7 @@ Long may you reign!',
     'desc' => 'Eradicate the Kwama infestation and kill the Kwama Guardians in the Forgotten Crypts.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -15573,7 +15564,7 @@ Long may you reign!',
     'desc' => 'Defeat Reynir the Destroyer and his minions in the Hall of the Dead.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 50,
-    'index' => 11,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -15591,7 +15582,7 @@ Long may you reign!',
     'desc' => 'Defeat  the Lonely Giant and his angry mammoths in the Lion\'s Den.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 50,
-    'index' => 12,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -15609,7 +15600,7 @@ Long may you reign!',
     'desc' => 'Solve the puzzle of the Guardians in the Lost City of the Na-Totambu.',
     'icon' => '/esoui/art/icons/quest_coldharbour_triangle_puzzle_key.dds',
     'points' => 50,
-    'index' => 13,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -15627,7 +15618,7 @@ Long may you reign!',
     'desc' => 'Defeat the Orc, Zilbash the Deceiver, at Obsidian Scar.',
     'icon' => '/esoui/art/icons/quest_head_male_008.dds',
     'points' => 50,
-    'index' => 14,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -15645,12 +15636,30 @@ Long may you reign!',
     'desc' => 'Defeat the flesh atronach at Razak\'s Wheel.',
     'icon' => '/esoui/art/icons/quest_head_monster_018.dds',
     'points' => 50,
-    'index' => 15,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Razak\'s Wheel Group Challenge',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  470 => 
+  array (
+    'id' => 470,
+    'name' => 'Root Sunder Group Event',
+    'desc' => 'Defeat the Bonemonger and its captors in Root Sunder Ruins.',
+    'icon' => '/esoui/art/icons/achievement_025.dds',
+    'points' => 50,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Root Sunder Ruins Group Event',
         'value' => 1,
         'index' => 1,
       ),
@@ -15663,7 +15672,7 @@ Long may you reign!',
     'desc' => 'Defeat the undead hordes of Hergor the Fallen at Rulanyil\'s Fall.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 50,
-    'index' => 16,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -15681,12 +15690,30 @@ Long may you reign!',
     'desc' => 'Defeat Fight-Master Grel and his adepts at Sanguine\'s Demesne.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 50,
-    'index' => 17,
+    'index' => 16,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Sanguine\'s Group Challenge',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  468 => 
+  array (
+    'id' => 468,
+    'name' => 'Toothmaul Gully Group Event',
+    'desc' => 'Destroy Bloodroot and its guardians at Toothmaul Gully.',
+    'icon' => '/esoui/art/icons/achievement_025.dds',
+    'points' => 50,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Toothmaul Gully Group Challenge',
         'value' => 1,
         'index' => 1,
       ),
@@ -18200,24 +18227,6 @@ Long may you reign!',
       ),
     ),
   ),
-  749 => 
-  array (
-    'id' => 749,
-    'name' => 'Dungeon Damage Dealer',
-    'desc' => 'Deal 1,000,000 points of damage in Dungeons or Delves.',
-    'icon' => '/esoui/art/icons/achievement_027.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dungeon Damage Dealer',
-        'value' => 1000000,
-        'index' => 1,
-      ),
-    ),
-  ),
   1158 => 
   array (
     'id' => 1158,
@@ -18225,7 +18234,7 @@ Long may you reign!',
     'desc' => 'Reach level 45, attracting the attention of the Undaunted elite.',
     'icon' => '/esoui/art/icons/achievement_036.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -18243,7 +18252,7 @@ Long may you reign!',
     'desc' => 'Complete one Undaunted Pledge bestowed by Urgarlag Chief-bane.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -18261,7 +18270,7 @@ Long may you reign!',
     'desc' => 'Complete 10 Undaunted Pledges bestowed by Urgarlag Chief-bane.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 10,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -18279,7 +18288,7 @@ Long may you reign!',
     'desc' => 'Complete 50 Undaunted Pledges bestowed by Urgarlag Chief-bane.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -18297,7 +18306,7 @@ Long may you reign!',
     'desc' => 'Complete 100 Undaunted Pledges bestowed by Urgarlag Chief-bane.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -18315,7 +18324,7 @@ Long may you reign!',
     'desc' => 'Complete one Undaunted Pledge bestowed by Maj al-Ragath.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -18333,7 +18342,7 @@ Long may you reign!',
     'desc' => 'Complete 10 Undaunted Pledges bestowed by Maj al-Ragath.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 10,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -18351,7 +18360,7 @@ Long may you reign!',
     'desc' => 'Complete 50 Undaunted Pledges bestowed by Maj al-Ragath.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -18369,7 +18378,7 @@ Long may you reign!',
     'desc' => 'Complete 100 Undaunted Pledges bestowed by Maj al-Ragath.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -18387,7 +18396,7 @@ Long may you reign!',
     'desc' => 'Complete one Undaunted Pledge bestowed by Glirion the Redbeard.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -18405,7 +18414,7 @@ Long may you reign!',
     'desc' => 'Complete 10 Undaunted Pledges bestowed by Glirion the Redbeard.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -18423,7 +18432,7 @@ Long may you reign!',
     'desc' => 'Complete 50 Undaunted Pledges bestowed by Glirion the Redbeard.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -18441,7 +18450,7 @@ Long may you reign!',
     'desc' => 'Complete 100 Undaunted Pledges bestowed by Glirion the Redbeard.',
     'icon' => '/esoui/art/icons/scroll_001.dds',
     'points' => 50,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -18459,7 +18468,7 @@ Long may you reign!',
     'desc' => 'Kill 100 named enemies in dungeons.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 10,
-    'index' => 6,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -18477,7 +18486,7 @@ Long may you reign!',
     'desc' => 'Defeat 1000 named enemies in Dungeons.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -18497,7 +18506,7 @@ Long may you reign!',
     'desc' => 'Defeat 1000 enemies in Dungeons.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 10,
-    'index' => 8,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -18515,7 +18524,7 @@ Long may you reign!',
     'desc' => 'Defeat 10,000 enemies in Dungeons.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -18527,6 +18536,24 @@ Long may you reign!',
     ),
     'dyeName' => 'Dungeon Victor Turquoise',
     'dyeColor' => '476663',
+  ),
+  749 => 
+  array (
+    'id' => 749,
+    'name' => 'Dungeon Damage Dealer',
+    'desc' => 'Deal 1,000,000 points of damage in Dungeons or Delves.',
+    'icon' => '/esoui/art/icons/achievement_027.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dungeon Damage Dealer',
+        'value' => 1000000,
+        'index' => 1,
+      ),
+    ),
   ),
   750 => 
   array (
@@ -18684,7 +18711,7 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Voidstone Violet',
-    'dyeColor' => '12f33',
+    'dyeColor' => '120f33',
   ),
   1554 => 
   array (
@@ -21967,7 +21994,7 @@ Long may you reign!',
   array (
     'id' => 1647,
     'name' => 'Blackheart Haven Conqueror',
-    'desc' => 'Complete Veteran Blackheart Haven by defeating Iron-Heel, Atarus, First Mate Wavecutter, the Roost Mother, Hollow Heart, and Captain Blackheart',
+    'desc' => 'Complete Veteran Blackheart Haven by defeating Iron-Heel, Atarus, First Mate Wavecutter, the Roost Mother, Hollow Heart, and Captain Blackheart.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 15,
     'index' => 26,
@@ -22071,42 +22098,6 @@ Long may you reign!',
       ),
     ),
   ),
-  573 => 
-  array (
-    'id' => 573,
-    'name' => 'Ne Salas Explorer',
-    'desc' => 'Explore and clear Ne Salas.',
-    'icon' => '/esoui/art/icons/achievement_023.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Ne Salas Explorer',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  289 => 
-  array (
-    'id' => 289,
-    'name' => 'Ondil Explorer',
-    'desc' => 'Explore and clear Ondil.',
-    'icon' => '/esoui/art/icons/achievement_023.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Ondil Explorer',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   969 => 
   array (
     'id' => 969,
@@ -22114,7 +22105,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all caves and locales throughout the Aldmeri Dominion Territory.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -22164,7 +22155,7 @@ Long may you reign!',
     'desc' => 'Complete all of the Aldmeri Dominion cave exploration achievements.',
     'icon' => '/esoui/art/icons/quest_small_furnishing_001.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -22206,7 +22197,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves and striking locales in Auridon.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
-    'index' => 5,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -22232,7 +22223,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves and striking locales in Grahtwood.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -22258,7 +22249,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves and striking locales in Greenshade.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -22284,7 +22275,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves and striking locales in Malabal Tor.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -22310,7 +22301,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves and striking locales in Reaper\'s March.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -22336,7 +22327,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves in Auridon.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 15,
-    'index' => 10,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -22384,7 +22375,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves in Grahtwood.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 15,
-    'index' => 11,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -22432,7 +22423,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves in Greenshade.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 15,
-    'index' => 12,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -22480,7 +22471,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves in Malabal Tor.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 15,
-    'index' => 13,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -22528,7 +22519,7 @@ Long may you reign!',
     'desc' => 'Discover and clear all six caves in Reaper\'s March.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 15,
-    'index' => 14,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -22576,7 +22567,7 @@ Long may you reign!',
     'desc' => 'Discover all of the striking locales on Auridon.',
     'icon' => '/esoui/art/icons/achievement_045.dds',
     'points' => 5,
-    'index' => 15,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -22630,7 +22621,7 @@ Long may you reign!',
     'desc' => 'Discover all of the striking locales in Grahtwood.',
     'icon' => '/esoui/art/icons/achievement_045.dds',
     'points' => 5,
-    'index' => 16,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -22684,7 +22675,7 @@ Long may you reign!',
     'desc' => 'Discover all of the striking locales in Greenshade.',
     'icon' => '/esoui/art/icons/achievement_045.dds',
     'points' => 5,
-    'index' => 17,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -22738,7 +22729,7 @@ Long may you reign!',
     'desc' => 'Discover all of the striking locales on Khenarthi\'s Roost.',
     'icon' => '/esoui/art/icons/achievement_045.dds',
     'points' => 5,
-    'index' => 18,
+    'index' => 16,
     'criteria' => 
     array (
       1 => 
@@ -22782,7 +22773,7 @@ Long may you reign!',
     'desc' => 'Discover all of the striking locales in Malabal Tor.',
     'icon' => '/esoui/art/icons/achievement_045.dds',
     'points' => 5,
-    'index' => 19,
+    'index' => 17,
     'criteria' => 
     array (
       1 => 
@@ -22836,7 +22827,7 @@ Long may you reign!',
     'desc' => 'Discover all of the striking locales in Reaper\'s March.',
     'icon' => '/esoui/art/icons/achievement_045.dds',
     'points' => 5,
-    'index' => 20,
+    'index' => 18,
     'criteria' => 
     array (
       1 => 
@@ -22890,7 +22881,7 @@ Long may you reign!',
     'desc' => 'Defeat Anarume at the Heritance Proving Ground and end his treason.',
     'icon' => '/esoui/art/icons/quest_head_male_007.dds',
     'points' => 5,
-    'index' => 21,
+    'index' => 19,
     'criteria' => 
     array (
       1 => 
@@ -22908,7 +22899,7 @@ Long may you reign!',
     'desc' => 'Defeat Quenyas, leader of Auridon\'s bandit gangs, in the camp at Seaside Scarp.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 5,
-    'index' => 22,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -22926,7 +22917,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Barrow Trench.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 23,
+    'index' => 21,
     'criteria' => 
     array (
       1 => 
@@ -22944,7 +22935,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Bewan.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 24,
+    'index' => 22,
     'criteria' => 
     array (
       1 => 
@@ -22962,7 +22953,7 @@ Long may you reign!',
     'desc' => 'Defeat Big Ozur the Ogre in Big Ozur\'s Valley.',
     'icon' => '/esoui/art/icons/quest_head_monster_003.dds',
     'points' => 5,
-    'index' => 25,
+    'index' => 23,
     'criteria' => 
     array (
       1 => 
@@ -22980,7 +22971,7 @@ Long may you reign!',
     'desc' => 'Explore and clear the Black Vine Ruins.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 26,
+    'index' => 24,
     'criteria' => 
     array (
       1 => 
@@ -22998,7 +22989,7 @@ Long may you reign!',
     'desc' => 'Kill the strangler Bone Grappler in its nest.',
     'icon' => '/esoui/art/icons/quest_head_monster_015.dds',
     'points' => 5,
-    'index' => 27,
+    'index' => 25,
     'criteria' => 
     array (
       1 => 
@@ -23016,7 +23007,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Burroot Kwama Mine.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 28,
+    'index' => 26,
     'criteria' => 
     array (
       1 => 
@@ -23034,7 +23025,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Carac Dena.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 29,
+    'index' => 27,
     'criteria' => 
     array (
       1 => 
@@ -23052,7 +23043,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Claw\'s Strike.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 30,
+    'index' => 28,
     'criteria' => 
     array (
       1 => 
@@ -23070,7 +23061,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Dead Man\'s Drop.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 31,
+    'index' => 29,
     'criteria' => 
     array (
       1 => 
@@ -23088,7 +23079,7 @@ Long may you reign!',
     'desc' => 'Destroy the tainted plant creatures at Deathsong Cleft in Reaper\'s March.',
     'icon' => '/esoui/art/icons/quest_head_monster_015.dds',
     'points' => 5,
-    'index' => 32,
+    'index' => 30,
     'criteria' => 
     array (
       1 => 
@@ -23106,7 +23097,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Del\'s Claim.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 33,
+    'index' => 31,
     'criteria' => 
     array (
       1 => 
@@ -23124,7 +23115,7 @@ Long may you reign!',
     'desc' => 'Destroy Thjormar and the Drowned Horde at Bitterpoint Strand.',
     'icon' => '/esoui/art/icons/achievement_025.dds',
     'points' => 5,
-    'index' => 34,
+    'index' => 32,
     'criteria' => 
     array (
       1 => 
@@ -23142,7 +23133,7 @@ Long may you reign!',
     'desc' => 'Kill the Orc reaver Dugan the Red.',
     'icon' => '/esoui/art/icons/quest_head_male_008.dds',
     'points' => 5,
-    'index' => 35,
+    'index' => 33,
     'criteria' => 
     array (
       1 => 
@@ -23160,7 +23151,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Entila\'s Folly.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 36,
+    'index' => 34,
     'criteria' => 
     array (
       1 => 
@@ -23178,7 +23169,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Fardir\'s Folly.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 37,
+    'index' => 35,
     'criteria' => 
     array (
       1 => 
@@ -23196,7 +23187,7 @@ Long may you reign!',
     'desc' => 'Defeat the Argonian Behemoth, Gathongor the Mauler, at Gathongor\'s Mire.',
     'icon' => '/esoui/art/icons/achievement_update12_dungeons_001.dds',
     'points' => 5,
-    'index' => 38,
+    'index' => 36,
     'criteria' => 
     array (
       1 => 
@@ -23214,7 +23205,7 @@ Long may you reign!',
     'desc' => 'Destroy Ghost Captain Blanchete at the Wreck of the Raptor.',
     'icon' => '/esoui/art/icons/quest_head_monster_010.dds',
     'points' => 5,
-    'index' => 39,
+    'index' => 37,
     'criteria' => 
     array (
       1 => 
@@ -23232,7 +23223,7 @@ Long may you reign!',
     'desc' => 'Defeat Gravecaller Niramo and his dark daughter Varien at the Reaper\'s Henge.',
     'icon' => '/esoui/art/icons/quest_head_male_005.dds',
     'points' => 5,
-    'index' => 40,
+    'index' => 38,
     'criteria' => 
     array (
       1 => 
@@ -23250,7 +23241,7 @@ Long may you reign!',
     'desc' => 'Kill Commander Faldethil of the Green Hunters at River Edge.',
     'icon' => '/esoui/art/icons/quest_head_male_007.dds',
     'points' => 5,
-    'index' => 41,
+    'index' => 39,
     'criteria' => 
     array (
       1 => 
@@ -23268,7 +23259,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Gurzag\'s Mine.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 42,
+    'index' => 40,
     'criteria' => 
     array (
       1 => 
@@ -23286,7 +23277,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Harridan\'s Lair.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 43,
+    'index' => 41,
     'criteria' => 
     array (
       1 => 
@@ -23304,7 +23295,7 @@ Long may you reign!',
     'desc' => 'Explore and clear the Hoarvor Pit.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 44,
+    'index' => 42,
     'criteria' => 
     array (
       1 => 
@@ -23322,7 +23313,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Jode\'s Light.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 45,
+    'index' => 43,
     'criteria' => 
     array (
       1 => 
@@ -23340,7 +23331,7 @@ Long may you reign!',
     'desc' => 'Defeat the ogre, Thodundor of the Hill, at Thodundor\'s View.',
     'icon' => '/esoui/art/icons/quest_head_monster_003.dds',
     'points' => 5,
-    'index' => 46,
+    'index' => 44,
     'criteria' => 
     array (
       1 => 
@@ -23358,7 +23349,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Kuna\'s Delve.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 47,
+    'index' => 45,
     'criteria' => 
     array (
       1 => 
@@ -23376,7 +23367,7 @@ Long may you reign!',
     'desc' => 'End the threat of the necromancers at Soulfire Plateau and avenge the First Auridon Marines.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 5,
-    'index' => 48,
+    'index' => 46,
     'criteria' => 
     array (
       1 => 
@@ -23394,7 +23385,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Mehrunes\' Spite.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 49,
+    'index' => 47,
     'criteria' => 
     array (
       1 => 
@@ -23412,7 +23403,7 @@ Long may you reign!',
     'desc' => 'Defeat the Queen of Three Mercies and her entourage at Waterdancer Falls in Reaper\'s March.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 5,
-    'index' => 50,
+    'index' => 48,
     'criteria' => 
     array (
       1 => 
@@ -23430,7 +23421,7 @@ Long may you reign!',
     'desc' => 'Explore and clear Mobar Mine.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 51,
+    'index' => 49,
     'criteria' => 
     array (
       1 => 
@@ -23448,7 +23439,7 @@ Long may you reign!',
     'desc' => 'Defeat the senche-tigress Nindaeril the Monsoon atop Nindaeril\'s Perch.',
     'icon' => '/esoui/art/icons/quest_head_female_006.dds',
     'points' => 5,
-    'index' => 52,
+    'index' => 50,
     'criteria' => 
     array (
       1 => 
@@ -23466,12 +23457,30 @@ Long may you reign!',
     'desc' => 'Explore and clear Naril Nagaia.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 53,
+    'index' => 51,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Naril Nagaia Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  573 => 
+  array (
+    'id' => 573,
+    'name' => 'Ne Salas Explorer',
+    'desc' => 'Explore and clear Ne Salas.',
+    'icon' => '/esoui/art/icons/achievement_023.dds',
+    'points' => 10,
+    'index' => 52,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ne Salas Explorer',
         'value' => 1,
         'index' => 1,
       ),
@@ -23484,7 +23493,7 @@ Long may you reign!',
     'desc' => 'Defeat the giant snake known as the Nestmother in her den.',
     'icon' => '/esoui/art/icons/achievement_022.dds',
     'points' => 5,
-    'index' => 54,
+    'index' => 53,
     'criteria' => 
     array (
       1 => 
@@ -23502,12 +23511,30 @@ Long may you reign!',
     'desc' => 'Defeat the vampire, Overlord Nur-dro, at Ushmal\'s Rest in Reaper\'s March.',
     'icon' => '/esoui/art/icons/ability_fightersguild_002_a.dds',
     'points' => 5,
-    'index' => 55,
+    'index' => 54,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Nur-dro\'s Downfall',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  289 => 
+  array (
+    'id' => 289,
+    'name' => 'Ondil Explorer',
+    'desc' => 'Explore and clear Ondil.',
+    'icon' => '/esoui/art/icons/achievement_023.dds',
+    'points' => 10,
+    'index' => 55,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ondil Explorer',
         'value' => 1,
         'index' => 1,
       ),
@@ -23739,7 +23766,7 @@ Long may you reign!',
   array (
     'id' => 261,
     'name' => 'Tallatta\'s Annihilator',
-    'desc' => 'Kill the nereid queen Tallatta the Lustrous in the Jagged Grotto.',
+    'desc' => 'Kill the Nereid queen Tallatta the Lustrous in the Jagged Grotto.',
     'icon' => '/esoui/art/icons/quest_head_monster_010.dds',
     'points' => 5,
     'index' => 68,
@@ -23883,7 +23910,7 @@ Long may you reign!',
   array (
     'id' => 698,
     'name' => 'Water Walloper',
-    'desc' => 'Defeat the nereid Lady Solace in Lady Solace\'s Fen.',
+    'desc' => 'Defeat the Nereid Lady Solace in Lady Solace\'s Fen.',
     'icon' => '/esoui/art/icons/quest_head_monster_010.dds',
     'points' => 5,
     'index' => 76,
@@ -24307,7 +24334,7 @@ Long may you reign!',
       ),
       6 => 
       array (
-        'name' => 'Norvolk Ruins Explorer',
+        'name' => 'Norvulk Ruins Explorer',
         'value' => 1,
         'index' => 6,
       ),
@@ -25631,7 +25658,7 @@ Long may you reign!',
   array (
     'id' => 163,
     'name' => 'Siren Hunter',
-    'desc' => 'Kill the nereid, Desuuga the Siren, at Siren\'s Cove.',
+    'desc' => 'Kill the Nereid, Desuuga the Siren, at Siren\'s Cove.',
     'icon' => '/esoui/art/icons/quest_head_monster_010.dds',
     'points' => 5,
     'index' => 68,
@@ -27403,7 +27430,7 @@ Long may you reign!',
   array (
     'id' => 188,
     'name' => 'Ogre Twin Tormentor',
-    'desc' => 'Kill the ogre twins Argalog and Vlaga at Xal Thak.',
+    'desc' => 'Kill the ogre twins Argablog and Vlaga at Xal Thak.',
     'icon' => '/esoui/art/icons/quest_head_monster_003.dds',
     'points' => 5,
     'index' => 60,
@@ -29584,7 +29611,7 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Daedric Red',
-    'dyeColor' => '33ff',
+    'dyeColor' => '330f0f',
     'title' => 'Daedric Lord Slayer',
   ),
   584 => 
@@ -32740,6 +32767,25 @@ Long may you reign!',
       ),
     ),
   ),
+  2638 => 
+  array (
+    'id' => 2638,
+    'name' => 'Soul Magic Skill Master',
+    'desc' => 'Reach the max rank of the Soul Magic Skill Line.',
+    'icon' => '/esoui/art/icons/achievement_crownstore_skillline_soulmagic_check.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Soul Magic Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Soul Mage Maven',
+  ),
   993 => 
   array (
     'id' => 993,
@@ -32747,7 +32793,7 @@ Long may you reign!',
     'desc' => 'Complete Main Quest Chapter 1.',
     'icon' => '/esoui/art/icons/achievement_067.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -32759,25 +32805,6 @@ Long may you reign!',
     ),
     'dyeName' => 'Soul Shriven Gray',
     'dyeColor' => '665e5b',
-  ),
-  2638 => 
-  array (
-    'id' => 2638,
-    'name' => 'Soul Magic Skill Master',
-    'desc' => 'Reach the max rank of the Soul Magic Skill Line.',
-    'icon' => '/esoui/art/icons/achievement_crownstore_skillline_soulmagic_check.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Soul Magic Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Soul Mage Maven',
   ),
   994 => 
   array (
@@ -35741,6 +35768,364 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'dyeName' => 'Indomitable Violet',
     'dyeColor' => '584757',
   ),
+  1725 => 
+  array (
+    'id' => 1725,
+    'name' => 'Homeowner',
+    'desc' => 'Obtain and enter any of the following staple homes.',
+    'icon' => '/esoui/art/icons/achievement_housing_002.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Barbed Hook Private Room',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Flaming Nix Deluxe Garret',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Sisters of the Sands Apartment',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Black Vine Villa',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Humblemud',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Snugpod',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Captain Margaux\'s Place',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Kragenhome',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Moonmirth House',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Cyrodilic Jungle House',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Autumn\'s-Gate',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Hammerdeath Bungalow',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Twin Arches',
+        'value' => 1,
+        'index' => 13,
+      ),
+    ),
+  ),
+  1812 => 
+  array (
+    'id' => 1812,
+    'name' => 'Freeholder',
+    'desc' => 'Obtain and enter at least three of the following staple homes.',
+    'icon' => '/esoui/art/icons/achievement_housing_002.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Barbed Hook Private Room',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Flaming Nix Deluxe Garret',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Sisters of the Sands Apartment',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Black Vine Villa',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Humblemud',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Snugpod',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Captain Margaux\'s Place',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Kragenhome',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Moonmirth House',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Cyrodilic Jungle House',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Autumn\'s-Gate',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Hammerdeath Bungalow',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Twin Arches',
+        'value' => 1,
+        'index' => 13,
+      ),
+    ),
+  ),
+  1813 => 
+  array (
+    'id' => 1813,
+    'name' => 'Citizen',
+    'desc' => 'Obtain and enter at least five of the following staple homes.',
+    'icon' => '/esoui/art/icons/achievement_housing_002.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Barbed Hook Private Room',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Flaming Nix Deluxe Garret',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Sisters of the Sands Apartment',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Black Vine Villa',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Humblemud',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Snugpod',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Captain Margaux\'s Place',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Kragenhome',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Moonmirth House',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Cyrodilic Jungle House',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Autumn\'s-Gate',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Hammerdeath Bungalow',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Twin Arches',
+        'value' => 1,
+        'index' => 13,
+      ),
+    ),
+  ),
+  1730 => 
+  array (
+    'id' => 1730,
+    'name' => '<<player{Count/Countess}>>',
+    'desc' => 'Obtain and enter all three of the following notable homes.',
+    'icon' => '/esoui/art/icons/achievement_housing_007.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Serenity Falls Estate',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Daggerfall Overlook',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Ebonheart Chateau',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'title' => 'Count',
+  ),
+  1728 => 
+  array (
+    'id' => 1728,
+    'name' => '<<player{Lord/Lady}>>',
+    'desc' => 'Obtain and enter Daggerfall Overlook.',
+    'icon' => '/esoui/art/icons/achievement_housing_005.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Daggerfall Overlook',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Lord',
+  ),
+  1727 => 
+  array (
+    'id' => 1727,
+    'name' => 'Clan <<player{Father/Mother}>>',
+    'desc' => 'Obtain and enter Serenity Falls Estate.',
+    'icon' => '/esoui/art/icons/achievement_housing_004.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Serenity Falls Estate',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Clan Father',
+  ),
+  1729 => 
+  array (
+    'id' => 1729,
+    'name' => 'Councilor',
+    'desc' => 'Obtain and enter Ebonheart Chateau.',
+    'icon' => '/esoui/art/icons/achievement_housing_006.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ebonheart Chateau',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Councilor',
+  ),
   1726 => 
   array (
     'id' => 1726,
@@ -35748,7 +36133,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Obtain and enter any of the following classic homes.',
     'icon' => '/esoui/art/icons/achievement_housing_003.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -35880,7 +36265,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Obtain and enter at least three of the following classic homes.',
     'icon' => '/esoui/art/icons/achievement_housing_003.dds',
     'points' => 15,
-    'index' => 1,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -36012,7 +36397,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Obtain and enter at least five of the following classic homes.',
     'icon' => '/esoui/art/icons/achievement_housing_003.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -36137,364 +36522,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1730 => 
-  array (
-    'id' => 1730,
-    'name' => '<<player{Count/Countess}>>',
-    'desc' => 'Obtain and enter all three of the following notable homes.',
-    'icon' => '/esoui/art/icons/achievement_housing_007.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Serenity Falls Estate',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Daggerfall Overlook',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Ebonheart Chateau',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-    'title' => 'Count',
-  ),
-  1728 => 
-  array (
-    'id' => 1728,
-    'name' => '<<player{Lord/Lady}>>',
-    'desc' => 'Obtain and enter Daggerfall Overlook.',
-    'icon' => '/esoui/art/icons/achievement_housing_005.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Daggerfall Overlook',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Lord',
-  ),
-  1727 => 
-  array (
-    'id' => 1727,
-    'name' => 'Clan <<player{Father/Mother}>>',
-    'desc' => 'Obtain and enter Serenity Falls Estate.',
-    'icon' => '/esoui/art/icons/achievement_housing_004.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Serenity Falls Estate',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Clan Father',
-  ),
-  1729 => 
-  array (
-    'id' => 1729,
-    'name' => 'Councilor',
-    'desc' => 'Obtain and enter Ebonheart Chateau.',
-    'icon' => '/esoui/art/icons/achievement_housing_006.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Ebonheart Chateau',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Councilor',
-  ),
-  1725 => 
-  array (
-    'id' => 1725,
-    'name' => 'Homeowner',
-    'desc' => 'Obtain and enter any of the following staple homes.',
-    'icon' => '/esoui/art/icons/achievement_housing_002.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Barbed Hook Private Room',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Flaming Nix Deluxe Garret',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Sisters of the Sands Apartment',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Black Vine Villa',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Humblemud',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Snugpod',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Captain Margaux\'s Place',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Kragenhome',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Moonmirth House',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Cyrodilic Jungle House',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Autumn\'s-Gate',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Hammerdeath Bungalow',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Twin Arches',
-        'value' => 1,
-        'index' => 13,
-      ),
-    ),
-  ),
-  1812 => 
-  array (
-    'id' => 1812,
-    'name' => 'Freeholder',
-    'desc' => 'Obtain and enter at least three of the following staple homes.',
-    'icon' => '/esoui/art/icons/achievement_housing_002.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Barbed Hook Private Room',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Flaming Nix Deluxe Garret',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Sisters of the Sands Apartment',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Black Vine Villa',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Humblemud',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Snugpod',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Captain Margaux\'s Place',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Kragenhome',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Moonmirth House',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Cyrodilic Jungle House',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Autumn\'s-Gate',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Hammerdeath Bungalow',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Twin Arches',
-        'value' => 1,
-        'index' => 13,
-      ),
-    ),
-  ),
-  1813 => 
-  array (
-    'id' => 1813,
-    'name' => 'Citizen',
-    'desc' => 'Obtain and enter at least five of the following staple homes.',
-    'icon' => '/esoui/art/icons/achievement_housing_002.dds',
-    'points' => 15,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Barbed Hook Private Room',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Flaming Nix Deluxe Garret',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Sisters of the Sands Apartment',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Black Vine Villa',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Humblemud',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Snugpod',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Captain Margaux\'s Place',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Kragenhome',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Moonmirth House',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Cyrodilic Jungle House',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Autumn\'s-Gate',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Hammerdeath Bungalow',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Twin Arches',
-        'value' => 1,
-        'index' => 13,
-      ),
-    ),
-  ),
   1724 => 
   array (
     'id' => 1724,
@@ -36555,6 +36582,150 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  1745 => 
+  array (
+    'id' => 1745,
+    'name' => 'Apprentice Decorator',
+    'desc' => 'Decorate a home you own with at least 50 objects.',
+    'icon' => '/esoui/art/icons/achievement_housing_dining-items.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 50 Objects',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1746 => 
+  array (
+    'id' => 1746,
+    'name' => 'Journeyman Decorator',
+    'desc' => 'Decorate a home you own with at least 100 objects.',
+    'icon' => '/esoui/art/icons/achievement_housing_gallery-items.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 100 Objects',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1747 => 
+  array (
+    'id' => 1747,
+    'name' => 'Expert Decorator',
+    'desc' => 'Decorate a home you own with at least 200 objects.',
+    'icon' => '/esoui/art/icons/achievement_housing_courtyard-items.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 200 Objects',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1748 => 
+  array (
+    'id' => 1748,
+    'name' => 'Master Decorator',
+    'desc' => 'Decorate a home you own with at least 300 objects.',
+    'icon' => '/esoui/art/icons/achievement_housing_suite-items.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 300 Objects',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1749 => 
+  array (
+    'id' => 1749,
+    'name' => 'Grand Master Decorator',
+    'desc' => 'Decorate a home you own with at least 350 objects. Truly, a hoard to rival those of legend.',
+    'icon' => '/esoui/art/icons/achievement_housing_library-items.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 350 Objects',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1741 => 
+  array (
+    'id' => 1741,
+    'name' => 'Conservatory Decorator',
+    'desc' => 'Decorate a home you own with at least 100 Conservatory furnishings.',
+    'icon' => '/esoui/art/icons/achievement_housing_018.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 100 Conservatory Furnishings',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1735 => 
+  array (
+    'id' => 1735,
+    'name' => 'Courtyard Decorator',
+    'desc' => 'Decorate a home you own with at least 30 Courtyard furnishings.',
+    'icon' => '/esoui/art/icons/achievement_housing_012.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 30 Courtyard Furnishings',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1734 => 
+  array (
+    'id' => 1734,
+    'name' => 'Dining Room Decorator',
+    'desc' => 'Decorate a home you own with at least 50 Dining Room furnishings.',
+    'icon' => '/esoui/art/icons/achievement_housing_011.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 50 Dining Room Furnishings',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   1744 => 
   array (
     'id' => 1744,
@@ -36562,7 +36733,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 20 Miscellaneous furnishings or at least 10 Services furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_020.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -36586,120 +36757,12 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 40 Gallery furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_015.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Decorate with 40 Gallery Furnishings',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1745 => 
-  array (
-    'id' => 1745,
-    'name' => 'Apprentice Decorator',
-    'desc' => 'Decorate a home you own with at least 50 objects.',
-    'icon' => '/esoui/art/icons/achievement_housing_dining-items.dds',
-    'points' => 5,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 50 Objects',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1746 => 
-  array (
-    'id' => 1746,
-    'name' => 'Journeyman Decorator',
-    'desc' => 'Decorate a home you own with at least 100 objects.',
-    'icon' => '/esoui/art/icons/achievement_housing_gallery-items.dds',
-    'points' => 5,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 100 Objects',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1747 => 
-  array (
-    'id' => 1747,
-    'name' => 'Expert Decorator',
-    'desc' => 'Decorate a home you own with at least 200 objects.',
-    'icon' => '/esoui/art/icons/achievement_housing_courtyard-items.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 200 Objects',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1748 => 
-  array (
-    'id' => 1748,
-    'name' => 'Master Decorator',
-    'desc' => 'Decorate a home you own with at least 300 objects.',
-    'icon' => '/esoui/art/icons/achievement_housing_suite-items.dds',
-    'points' => 15,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 300 Objects',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1749 => 
-  array (
-    'id' => 1749,
-    'name' => 'Grand Master Decorator',
-    'desc' => 'Decorate a home you own with at least 350 objects. Truly, a hoard to rival those of legend.',
-    'icon' => '/esoui/art/icons/achievement_housing_library-items.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 350 Objects',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1740 => 
-  array (
-    'id' => 1740,
-    'name' => 'Lighting Decorator',
-    'desc' => 'Decorate a home you own with at least 20 Lighting furnishings.',
-    'icon' => '/esoui/art/icons/achievement_housing_078.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 20 Lighting Furnishings',
         'value' => 1,
         'index' => 1,
       ),
@@ -36712,66 +36775,12 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 50 Hearth furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_014.dds',
     'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 50 Hearth Furnishings',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1741 => 
-  array (
-    'id' => 1741,
-    'name' => 'Conservatory Decorator',
-    'desc' => 'Decorate a home you own with at least 100 Conservatory furnishings.',
-    'icon' => '/esoui/art/icons/achievement_housing_018.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 100 Conservatory Furnishings',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1735 => 
-  array (
-    'id' => 1735,
-    'name' => 'Courtyard Decorator',
-    'desc' => 'Decorate a home you own with at least 30 Courtyard furnishings.',
-    'icon' => '/esoui/art/icons/achievement_housing_012.dds',
-    'points' => 5,
     'index' => 7,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Decorate with 30 Courtyard Furnishings',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1734 => 
-  array (
-    'id' => 1734,
-    'name' => 'Dining Room Decorator',
-    'desc' => 'Decorate a home you own with at least 50 Dining Room furnishings.',
-    'icon' => '/esoui/art/icons/achievement_housing_011.dds',
-    'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Decorate with 50 Dining Room Furnishings',
+        'name' => 'Decorate with 50 Hearth Furnishings',
         'value' => 1,
         'index' => 1,
       ),
@@ -36784,12 +36793,30 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Decorate a home you own with at least 50 Library furnishings.',
     'icon' => '/esoui/art/icons/achievement_housing_010.dds',
     'points' => 5,
-    'index' => 9,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Decorate with 50 Library Furnishings',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1740 => 
+  array (
+    'id' => 1740,
+    'name' => 'Lighting Decorator',
+    'desc' => 'Decorate a home you own with at least 20 Lighting furnishings.',
+    'icon' => '/esoui/art/icons/achievement_housing_078.dds',
+    'points' => 5,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Decorate with 20 Lighting Furnishings',
         'value' => 1,
         'index' => 1,
       ),
@@ -37333,6 +37360,42 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  1721 => 
+  array (
+    'id' => 1721,
+    'name' => 'Jester\'s Personal Chef',
+    'desc' => 'Acquire and learn all of the Jester\'s Festival provisioning recipes.',
+    'icon' => '/esoui/art/icons/achievement_jestersfestival_008.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Princess\'s Delight',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Candied Jester\'s Coins',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Dubious Camoran Throne',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Jewels of Misrule',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
   1716 => 
   array (
     'id' => 1716,
@@ -37340,7 +37403,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete the challenges set forth by Jester Queen Ayrenn, Jester King Emeric, and Jester King Jorunn and be crowned <<player{Lord/Lady}>> of Misrule.',
     'icon' => '/esoui/art/icons/achievement_jestersfestival_001.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -37374,7 +37437,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Bring some color to each of the Undaunted Enclaves with an Illusion Dazzler during the Jester\'s Festival.',
     'icon' => '/esoui/art/icons/achievement_jestersfestival_007.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -37404,7 +37467,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Consume 5 Festive Noise Maker Parts, found in Stupendous Jester\'s Festival Boxes.',
     'icon' => '/esoui/art/icons/achievement_jestersfestival_memento_noisemaker.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -37425,7 +37488,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Use a total of 50 illusion dazzlers.',
     'icon' => '/esoui/art/icons/achievement_jestersfestival_006.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -37443,7 +37506,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Consume 5 Joke Popper Parts, found in Stupendous Jester\'s Festival Boxes.',
     'icon' => '/esoui/art/icons/achievement_jestersfestival_memento_popper.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -37456,42 +37519,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'collectIcon' => '/esoui/art/icons/housing_bre_con_barrel001.dds',
     'collectName' => 'Jester\'s Festival Joke Popper',
     'collectId' => '5887',
-  ),
-  1721 => 
-  array (
-    'id' => 1721,
-    'name' => 'Jester\'s Personal Chef',
-    'desc' => 'Acquire and learn all of the Jester\'s Festival provisioning recipes.',
-    'icon' => '/esoui/art/icons/achievement_jestersfestival_008.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Princess\'s Delight',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Candied Jester\'s Coins',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Dubious Camoran Throne',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Jewels of Misrule',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
   ),
   1717 => 
   array (
@@ -37697,6 +37724,72 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'title' => 'Empieror',
   ),
+  1675 => 
+  array (
+    'id' => 1675,
+    'name' => 'New Life Provisioner',
+    'desc' => 'Learn all of the New Life Festival recipes.',
+    'icon' => '/esoui/art/icons/achievement_newlifefestival_011.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Snow Bear Glow-Wine',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Rajhin\'s Sugar Claws',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Lava Foot Soup-and-Saltrice',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Jagga-Drenched "Mud Ball"',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Bergama Warning Fire',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Alcaire Castle Sword-Pie',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Old Aldmeri Orphan Gruel',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Hissmir Fish-Eye Rye',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Betnikh Twice-Spiked Ale',
+        'value' => 1,
+        'index' => 9,
+      ),
+    ),
+  ),
   1669 => 
   array (
     'id' => 1669,
@@ -37704,7 +37797,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch five of each type of fish traditionally served during the Fish Boon Feast in Shadowfen.',
     'icon' => '/esoui/art/icons/achievement_newlifefestival_005.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -37734,7 +37827,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'During the Trial of Five-Clawed Guile in Reaper\'s March, unlock all chests in 35 seconds or less.',
     'icon' => '/esoui/art/icons/achievement_newlifefestival_006.dds',
     'points' => 5,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -37752,7 +37845,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete each of the achievements associated with the New Life Festival.',
     'icon' => '/esoui/art/icons/achievement_newlifefestival_12.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -37837,7 +37930,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Dance the Lava Foot Stomp with another player at each Stonefalls tavern.',
     'icon' => '/esoui/art/icons/achievement_newlifefestival_002.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -37873,7 +37966,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'During the Mud Ball Merriment, share the joy of mud balls with each Alliance leader.',
     'icon' => '/esoui/art/icons/achievement_newlifefestival_001.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -37903,7 +37996,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete all New Life Festival celebrations across Tamriel.',
     'icon' => '/esoui/art/icons/achievement_newlifefestival_010.dds',
     'points' => 10,
-    'index' => 6,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -37963,72 +38056,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'dyeName' => 'New Life Cerulean',
     'dyeColor' => '7c8ec6',
-  ),
-  1675 => 
-  array (
-    'id' => 1675,
-    'name' => 'New Life Provisioner',
-    'desc' => 'Learn all of the New Life Festival recipes.',
-    'icon' => '/esoui/art/icons/achievement_newlifefestival_011.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Snow Bear Glow-Wine',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Rajhin\'s Sugar Claws',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Lava Foot Soup-and-Saltrice',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Jagga-Drenched "Mud Ball"',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Bergama Warning Fire',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Alcaire Castle Sword-Pie',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Old Aldmeri Orphan Gruel',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Hissmir Fish-Eye Rye',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Betnikh Twice-Spiked Ale',
-        'value' => 1,
-        'index' => 9,
-      ),
-    ),
   ),
   2379 => 
   array (
@@ -38255,64 +38282,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1546 => 
-  array (
-    'id' => 1546,
-    'name' => 'An Unsparing Harvest',
-    'desc' => 'Complete the listed achievements for the Witches Festival.',
-    'icon' => '/esoui/art/icons/achievement_witchesfestival_00.dds',
-    'points' => 50,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Pumpkin Pairs Well With Guts',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Plunder Skull Fanatic',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Reaper\'s Harvest',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Happy Work For Hollowjack',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-    'title' => 'Sun\'s Dusk Reaper',
-  ),
-  2591 => 
-  array (
-    'id' => 2591,
-    'name' => 'Bare Bones Puppet',
-    'desc' => 'Consume 10 Skeletal Marionette Parts, which can be found in Witches Grab Bags.',
-    'icon' => '/esoui/art/icons/achievement_u23_skeletalmarionette.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Consume Skeletal Marionette Parts',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/justice_stolen_skull_001.dds',
-    'collectName' => 'Skeletal Marionette',
-    'collectId' => '6643',
-  ),
   1545 => 
   array (
     'id' => 1545,
@@ -38320,7 +38289,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter of the Hollowjack style book, found in Witchly Gifts acquired when completing Witches Festival Writs, which can be obtained from Plunder Skulls during the Witches Festival.',
     'icon' => '/esoui/art/icons/achievement_witchesfestival_02.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -38409,346 +38378,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1540 => 
-  array (
-    'id' => 1540,
-    'name' => 'Plunder Skull Enthusiast',
-    'desc' => 'Earn your first Plunder Skull.',
-    'icon' => '/esoui/art/icons/achievement_witchesfestival_04.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Earn Your First Plunder Skull',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1541 => 
-  array (
-    'id' => 1541,
-    'name' => 'Plunder Skull Aficionado',
-    'desc' => 'Earn 50 Plunder Skulls.',
-    'icon' => '/esoui/art/icons/achievement_witchesfestival_05.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Earn 50 Plunder Skulls',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1542 => 
-  array (
-    'id' => 1542,
-    'name' => 'Plunder Skull Fanatic',
-    'desc' => 'Earn 100 Plunder Skulls.',
-    'icon' => '/esoui/art/icons/achievement_witchesfestival_06.dds',
-    'points' => 15,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Earn 100 Plunder Skulls',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1539 => 
-  array (
-    'id' => 1539,
-    'name' => 'Pumpkin Pairs Well With Guts',
-    'desc' => 'Drink the Witchmother\'s Brew during the Witches Festival.',
-    'icon' => '/esoui/art/icons/achievement_witchesfestival_07.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Drink The Witchmother\'s Brew during the Witches Festival',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1543 => 
-  array (
-    'id' => 1543,
-    'name' => 'Reaper\'s Harvest',
-    'desc' => 'Complete the Witchmother\'s Bargain quest.',
-    'icon' => '/esoui/art/icons/achievement_witchesfestival_01.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete "Witchmother\'s Bargain" during the Witches Festival.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2586 => 
-  array (
-    'id' => 2586,
-    'name' => 'Wicked Writ Initiate',
-    'desc' => 'Complete your first Witches Festival Writ.',
-    'icon' => '/esoui/art/icons/achievement_u23_witchywrit_good.dds',
-    'points' => 5,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete 1 Witches Festival Writs',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2585 => 
-  array (
-    'id' => 2585,
-    'name' => 'Wicked Writ Apprentice',
-    'desc' => 'Complete 13 Witches Festival Writs.',
-    'icon' => '/esoui/art/icons/achievement_u23_witchywrit_better.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete 13 Witches Festival Writs',
-        'value' => 13,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/hat_witchesinfernal.dds',
-    'collectName' => 'Witch\'s Infernal Hat',
-    'collectId' => '6648',
-  ),
-  2587 => 
-  array (
-    'id' => 2587,
-    'name' => 'Wicked Writ Witch',
-    'desc' => 'Complete 28 Witches Festival Writs.',
-    'icon' => '/esoui/art/icons/achievement_u23_witchywrit_best.dds',
-    'points' => 15,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete 28 Witches Festival Writs',
-        'value' => 28,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Witch',
-  ),
-  2313 => 
-  array (
-    'id' => 2313,
-    'name' => 'Cauldron Conjurer',
-    'desc' => 'Use the Witchmother\'s Cauldron summoned from the Witchmother\'s Whistle 10 times.',
-    'icon' => '/esoui/art/icons/event_witchfest_cauldronconjur.dds',
-    'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Use the Witchmother\'s Cauldron 10 times',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2314 => 
-  array (
-    'id' => 2314,
-    'name' => 'Sacking Skeletons',
-    'desc' => 'Kill 100 Skeletons while under the effects of the Witchmother\'s Brew during the Witches Festival.',
-    'icon' => '/esoui/art/icons/event_witchfest_sacking_skelet.dds',
-    'points' => 15,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Kill 100 Skeletons as a Skeleton',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2315 => 
-  array (
-    'id' => 2315,
-    'name' => 'Gruesome Feast',
-    'desc' => 'Eat each of these Witches Festival foods during the Witches Festival.',
-    'icon' => '/esoui/art/icons/event_witchfest_gruesomefeast.dds',
-    'points' => 5,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Purifying Bloody Mara',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Witchmother\'s Potent Brew',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Frosted Brains',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Ghastly Eye-Bowl',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Crunchy Spider Skewer',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Witchmother\'s Party Punch',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Bowl of "Peeled Eyeballs"',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Crisp and Crunchy Pumpkin Snack Skewer',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Sweet Sanguine Apples',
-        'value' => 1,
-        'index' => 9,
-      ),
-    ),
-  ),
-  2595 => 
-  array (
-    'id' => 2595,
-    'name' => 'Gruesome Snack',
-    'desc' => 'Eat each of these Witches Festival foods during the Witches Festival.',
-    'icon' => '/esoui/art/icons/event_witchfest_gruesomefeast.dds',
-    'points' => 5,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Corrupting Bloody Mara',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Pack Leader\'s Bone Broth',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Bewitched Sugar Skulls',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
-  2316 => 
-  array (
-    'id' => 2316,
-    'name' => 'The Plundered Masses',
-    'desc' => 'Acquire one of each type of Plunder Skull during the Witches Festival.',
-    'icon' => '/esoui/art/icons/event_witchfest_plunderedmasse.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dremora Plunder Skull, Arena',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Dremora Plunder Skull, Insurgent',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Dremora Plunder Skull, Delve',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Dremora Plunder Skull, Dungeon',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Dremora Plunder Skull, Public & Sweeper',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Dremora Plunder Skull, Trial',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Dremora Plunder Skull, World',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Plunder Skull',
-        'value' => 1,
-        'index' => 8,
-      ),
-    ),
-  ),
   2188 => 
   array (
     'id' => 2188,
@@ -38756,7 +38385,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter of the Dremora style book, found in Dremora Plunder Skulls, earned by participating in the Witches Festival.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 13,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -38842,6 +38471,404 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Dremora Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  1546 => 
+  array (
+    'id' => 1546,
+    'name' => 'An Unsparing Harvest',
+    'desc' => 'Complete the listed achievements for the Witches Festival.',
+    'icon' => '/esoui/art/icons/achievement_witchesfestival_00.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Pumpkin Pairs Well With Guts',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Plunder Skull Fanatic',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reaper\'s Harvest',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Happy Work For Hollowjack',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'title' => 'Sun\'s Dusk Reaper',
+  ),
+  2591 => 
+  array (
+    'id' => 2591,
+    'name' => 'Bare Bones Puppet',
+    'desc' => 'Consume 10 Skeletal Marionette Parts, which can be found in Witches Grab Bags.',
+    'icon' => '/esoui/art/icons/achievement_u23_skeletalmarionette.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Consume Skeletal Marionette Parts',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/justice_stolen_skull_001.dds',
+    'collectName' => 'Skeletal Marionette',
+    'collectId' => '6643',
+  ),
+  1540 => 
+  array (
+    'id' => 1540,
+    'name' => 'Plunder Skull Enthusiast',
+    'desc' => 'Earn your first Plunder Skull.',
+    'icon' => '/esoui/art/icons/achievement_witchesfestival_04.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Earn Your First Plunder Skull',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1541 => 
+  array (
+    'id' => 1541,
+    'name' => 'Plunder Skull Aficionado',
+    'desc' => 'Earn 50 Plunder Skulls.',
+    'icon' => '/esoui/art/icons/achievement_witchesfestival_05.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Earn 50 Plunder Skulls',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1542 => 
+  array (
+    'id' => 1542,
+    'name' => 'Plunder Skull Fanatic',
+    'desc' => 'Earn 100 Plunder Skulls.',
+    'icon' => '/esoui/art/icons/achievement_witchesfestival_06.dds',
+    'points' => 15,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Earn 100 Plunder Skulls',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1539 => 
+  array (
+    'id' => 1539,
+    'name' => 'Pumpkin Pairs Well With Guts',
+    'desc' => 'Drink the Witchmother\'s Brew during the Witches Festival.',
+    'icon' => '/esoui/art/icons/achievement_witchesfestival_07.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Drink The Witchmother\'s Brew during the Witches Festival',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1543 => 
+  array (
+    'id' => 1543,
+    'name' => 'Reaper\'s Harvest',
+    'desc' => 'Complete the Witchmother\'s Bargain quest.',
+    'icon' => '/esoui/art/icons/achievement_witchesfestival_01.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete "Witchmother\'s Bargain" during the Witches Festival.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2586 => 
+  array (
+    'id' => 2586,
+    'name' => 'Wicked Writ Initiate',
+    'desc' => 'Complete your first Witches Festival Writ.',
+    'icon' => '/esoui/art/icons/achievement_u23_witchywrit_good.dds',
+    'points' => 5,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete 1 Witches Festival Writs',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2585 => 
+  array (
+    'id' => 2585,
+    'name' => 'Wicked Writ Apprentice',
+    'desc' => 'Complete 13 Witches Festival Writs.',
+    'icon' => '/esoui/art/icons/achievement_u23_witchywrit_better.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete 13 Witches Festival Writs',
+        'value' => 13,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/hat_witchesinfernal.dds',
+    'collectName' => 'Witch\'s Infernal Hat',
+    'collectId' => '6648',
+  ),
+  2587 => 
+  array (
+    'id' => 2587,
+    'name' => 'Wicked Writ Witch',
+    'desc' => 'Complete 28 Witches Festival Writs.',
+    'icon' => '/esoui/art/icons/achievement_u23_witchywrit_best.dds',
+    'points' => 15,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete 28 Witches Festival Writs',
+        'value' => 28,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Witch',
+  ),
+  2313 => 
+  array (
+    'id' => 2313,
+    'name' => 'Cauldron Conjurer',
+    'desc' => 'Use the Witchmother\'s Cauldron summoned from the Witchmother\'s Whistle 10 times.',
+    'icon' => '/esoui/art/icons/event_witchfest_cauldronconjur.dds',
+    'points' => 5,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Use the Witchmother\'s Cauldron 10 times',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2314 => 
+  array (
+    'id' => 2314,
+    'name' => 'Sacking Skeletons',
+    'desc' => 'Kill 100 Skeletons while under the effects of the Witchmother\'s Brew during the Witches Festival.',
+    'icon' => '/esoui/art/icons/event_witchfest_sacking_skelet.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Kill 100 Skeletons as a Skeleton',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2315 => 
+  array (
+    'id' => 2315,
+    'name' => 'Gruesome Feast',
+    'desc' => 'Eat each of these Witches Festival foods during the Witches Festival.',
+    'icon' => '/esoui/art/icons/event_witchfest_gruesomefeast.dds',
+    'points' => 5,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Purifying Bloody Mara',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Witchmother\'s Potent Brew',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Frosted Brains',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Ghastly Eye-Bowl',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Crunchy Spider Skewer',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Witchmother\'s Party Punch',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Bowl of "Peeled Eyeballs"',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Crisp and Crunchy Pumpkin Snack Skewer',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Sweet Sanguine Apples',
+        'value' => 1,
+        'index' => 9,
+      ),
+    ),
+  ),
+  2595 => 
+  array (
+    'id' => 2595,
+    'name' => 'Gruesome Snack',
+    'desc' => 'Eat each of these Witches Festival foods during the Witches Festival.',
+    'icon' => '/esoui/art/icons/event_witchfest_gruesomefeast.dds',
+    'points' => 5,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Corrupting Bloody Mara',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Pack Leader\'s Bone Broth',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Bewitched Sugar Skulls',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  2316 => 
+  array (
+    'id' => 2316,
+    'name' => 'The Plundered Masses',
+    'desc' => 'Acquire one of each type of Plunder Skull during the Witches Festival.',
+    'icon' => '/esoui/art/icons/event_witchfest_plunderedmasse.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dremora Plunder Skull, Arena',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Dremora Plunder Skull, Insurgent',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Dremora Plunder Skull, Delve',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Dremora Plunder Skull, Dungeon',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Dremora Plunder Skull, Public & Sweeper',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Dremora Plunder Skull, Trial',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Dremora Plunder Skull, World',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Plunder Skull',
+        'value' => 1,
+        'index' => 8,
       ),
     ),
   ),
@@ -39135,6 +39162,33 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Murkmire Prepper',
+  ),
+  3221 => 
+  array (
+    'id' => 3221,
+    'name' => 'Steadfast Collaborator',
+    'desc' => 'Help Jakarn rescue a missing mage and recover stolen medallions for the Society of the Steadfast.',
+    'icon' => '/esoui/art/icons/u34_teaser_prologue.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete "Ascending Doubt"',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Complete "A King\'s Retreat"',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/emote_glimmerdust.dds',
+    'collectName' => 'Glimmer Dust',
+    'collectId' => '10246',
   ),
   3065 => 
   array (
@@ -40616,376 +40670,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2985 => 
-  array (
-    'id' => 2985,
-    'name' => 'Rockgrove Completed',
-    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_trial_normal.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Rockgrove Completed',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Glenbridge Green',
-    'dyeColor' => '649a5d',
-    'title' => 'Defender of Rockgrove',
-  ),
-  2989 => 
-  array (
-    'id' => 2989,
-    'name' => 'Sul-Xan Slayer',
-    'desc' => 'Defeat 300 Sul-Xan in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrialkillmonstersa.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sul-Xan Slayer',
-        'value' => 300,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2990 => 
-  array (
-    'id' => 2990,
-    'name' => 'Havocrel Slayer',
-    'desc' => 'Defeat 100 Havocrel in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrialkillmonstersa_1.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Havocrel Slayer',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3004 => 
-  array (
-    'id' => 3004,
-    'name' => 'Xalvakka\'s Bane',
-    'desc' => 'Complete the listed achievements for Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrial_meta.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Rockgrove Completed',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Rockgrove Conqueror',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Rockgrove Vanquisher',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Rockgrove Sprinter',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Soul Savior',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Sul-Xan Slayer',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Havocrel Slayer',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Turtle Soup',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Light Stepper',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'What is this Filth?',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Keep Your Distance',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Soul Bombardier',
-        'value' => 1,
-        'index' => 12,
-      ),
-    ),
-    'title' => 'Daedric Bane',
-    'collectIcon' => '/esoui/art/icons/mount_sulxanfleshripper.dds',
-    'collectName' => 'Sul-Xan Fleshripper',
-    'collectId' => '9062',
-  ),
-  2987 => 
-  array (
-    'id' => 2987,
-    'name' => 'Rockgrove Conqueror',
-    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrial_veteran.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Rockgrove Conqueror',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Ca-Uxith Warrior',
-    'collectIcon' => '/esoui/art/icons/mrk_sulxanraider.dds',
-    'collectName' => 'Sul-Xan Raider Body Markings',
-    'collectId' => '8903',
-  ),
-  2986 => 
-  array (
-    'id' => 2986,
-    'name' => 'Rockgrove Sprinter',
-    'desc' => 'Defeat all encounters in addition to Oaxiltso, Flame-Herald Bahsei, and Xalvakka within 30 minutes of entering Veteran Rockgrove. Your timer starts when you engage the first group of enemies. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_037.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Rockgrove Sprinter',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2988 => 
-  array (
-    'id' => 2988,
-    'name' => 'Will of Stone',
-    'desc' => 'Defeat all encounters in addition to Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Veteran Rockgrove without suffering a group member death. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_039.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Will of Stone',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3003 => 
-  array (
-    'id' => 3003,
-    'name' => 'Soul Savior',
-    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka along with all their hostile followers after raising the challenge banner for each of them, without suffering a group member death, within 30 minutes of entering Veteran Rockgrove. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrial_perfect.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Soul Savior',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Planesbreaker',
-  ),
-  3007 => 
-  array (
-    'id' => 3007,
-    'name' => 'Rockgrove Vanquisher',
-    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka after raising the challenge banner in Veteran Rockgrove, in one run.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrial_all_hardmode.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Rockgrove Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Xalvakka\'s Scourge',
-    'collectIcon' => '/esoui/art/icons/mrf_sulxanraider.dds',
-    'collectName' => 'Sul-Xan Raider Face Markings',
-    'collectId' => '8902',
-  ),
-  3005 => 
-  array (
-    'id' => 3005,
-    'name' => 'Behemoth Beleaguerer',
-    'desc' => 'Defeat Oaxiltso after raising the challenge banner in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrial_b1_hardmode.dds',
-    'points' => 15,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Behemoth Beleaguerer',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3006 => 
-  array (
-    'id' => 3006,
-    'name' => 'Slay the Messenger',
-    'desc' => 'Defeat Flame-Herald Bahsei after raising the challenge banner in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_vtrial_b2_hardmode.dds',
-    'points' => 15,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Slay the Messenger',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3008 => 
-  array (
-    'id' => 3008,
-    'name' => 'Turtle Soup',
-    'desc' => 'Sacrifice the haj mota to the Grand Geyser in Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_1.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Turtle Soup',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3009 => 
-  array (
-    'id' => 3009,
-    'name' => 'Light Stepper',
-    'desc' => 'Complete Rockgrove without a single party member triggering a deadly plant or a trap.',
-    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_2.dds',
-    'points' => 10,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Light Stepper',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3010 => 
-  array (
-    'id' => 3010,
-    'name' => 'What is this Filth?',
-    'desc' => 'For every time that Noxious Sludge is cleansed, use all 4 cleansing pools to simultaneously remove it from 4 different infected party members, then defeat Oaxiltso in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_3.dds',
-    'points' => 10,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'What is this Filth?',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3011 => 
-  array (
-    'id' => 3011,
-    'name' => 'Keep Your Distance',
-    'desc' => 'Avoid infecting any party member with Death Touch by a separate party member, then defeat Flame-Herald Bahsei in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_4.dds',
-    'points' => 10,
-    'index' => 15,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Keep Your Distance',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3012 => 
-  array (
-    'id' => 3012,
-    'name' => 'Soul Bombardier',
-    'desc' => 'Use Purge Soul to feed 15 Corrupted Azureplasms until they explode during the fight with Xalvakka in Veteran Rockgrove.',
-    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_5.dds',
-    'points' => 10,
-    'index' => 16,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Soul Bombardier',
-        'value' => 15,
-        'index' => 1,
-      ),
-    ),
-  ),
   3002 => 
   array (
     'id' => 3002,
@@ -40993,7 +40677,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Sul-Xan style book, acquired by defeating the final boss in Rockgrove.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 17,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -41082,6 +40766,664 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2985 => 
+  array (
+    'id' => 2985,
+    'name' => 'Rockgrove Completed',
+    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_trial_normal.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rockgrove Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Glenbridge Green',
+    'dyeColor' => '649a5d',
+    'title' => 'Defender of Rockgrove',
+  ),
+  2989 => 
+  array (
+    'id' => 2989,
+    'name' => 'Sul-Xan Slayer',
+    'desc' => 'Defeat 300 Sul-Xan in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrialkillmonstersa.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sul-Xan Slayer',
+        'value' => 300,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2990 => 
+  array (
+    'id' => 2990,
+    'name' => 'Havocrel Slayer',
+    'desc' => 'Defeat 100 Havocrel in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrialkillmonstersa_1.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Havocrel Slayer',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3004 => 
+  array (
+    'id' => 3004,
+    'name' => 'Xalvakka\'s Bane',
+    'desc' => 'Complete the listed achievements for Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrial_meta.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rockgrove Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Rockgrove Conqueror',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Rockgrove Vanquisher',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Rockgrove Sprinter',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Soul Savior',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Sul-Xan Slayer',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Havocrel Slayer',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Turtle Soup',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Light Stepper',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'What is this Filth?',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Keep Your Distance',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Soul Bombardier',
+        'value' => 1,
+        'index' => 12,
+      ),
+    ),
+    'title' => 'Daedric Bane',
+    'collectIcon' => '/esoui/art/icons/mount_sulxanfleshripper.dds',
+    'collectName' => 'Sul-Xan Fleshripper',
+    'collectId' => '9062',
+  ),
+  2987 => 
+  array (
+    'id' => 2987,
+    'name' => 'Rockgrove Conqueror',
+    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrial_veteran.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rockgrove Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Ca-Uxith Warrior',
+    'collectIcon' => '/esoui/art/icons/mrk_sulxanraider.dds',
+    'collectName' => 'Sul-Xan Raider Body Markings',
+    'collectId' => '8903',
+  ),
+  2986 => 
+  array (
+    'id' => 2986,
+    'name' => 'Rockgrove Sprinter',
+    'desc' => 'Defeat all encounters in addition to Oaxiltso, Flame-Herald Bahsei, and Xalvakka within 30 minutes of entering Veteran Rockgrove. Your timer starts when you engage the first group of enemies. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_037.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rockgrove Sprinter',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2988 => 
+  array (
+    'id' => 2988,
+    'name' => 'Will of Stone',
+    'desc' => 'Defeat all encounters in addition to Oaxiltso, Flame-Herald Bahsei, and Xalvakka in Veteran Rockgrove without suffering a group member death. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_039.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Will of Stone',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3003 => 
+  array (
+    'id' => 3003,
+    'name' => 'Soul Savior',
+    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka along with all their hostile followers after raising the challenge banner for each of them, without suffering a group member death, within 30 minutes of entering Veteran Rockgrove. Defeating Bask-In-Snakes and the injured Sul-Xan Militants is not required for completion.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrial_perfect.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Soul Savior',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Planesbreaker',
+  ),
+  3007 => 
+  array (
+    'id' => 3007,
+    'name' => 'Rockgrove Vanquisher',
+    'desc' => 'Defeat Oaxiltso, Flame-Herald Bahsei, and Xalvakka after raising the challenge banner in Veteran Rockgrove, in one run.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrial_all_hardmode.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rockgrove Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Xalvakka\'s Scourge',
+    'collectIcon' => '/esoui/art/icons/mrf_sulxanraider.dds',
+    'collectName' => 'Sul-Xan Raider Face Markings',
+    'collectId' => '8902',
+  ),
+  3005 => 
+  array (
+    'id' => 3005,
+    'name' => 'Behemoth Beleaguerer',
+    'desc' => 'Defeat Oaxiltso after raising the challenge banner in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrial_b1_hardmode.dds',
+    'points' => 15,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Behemoth Beleaguerer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3006 => 
+  array (
+    'id' => 3006,
+    'name' => 'Slay the Messenger',
+    'desc' => 'Defeat Flame-Herald Bahsei after raising the challenge banner in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_vtrial_b2_hardmode.dds',
+    'points' => 15,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Slay the Messenger',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3008 => 
+  array (
+    'id' => 3008,
+    'name' => 'Turtle Soup',
+    'desc' => 'Sacrifice the haj mota to the Grand Geyser in Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_1.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Turtle Soup',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3009 => 
+  array (
+    'id' => 3009,
+    'name' => 'Light Stepper',
+    'desc' => 'Complete Rockgrove without a single party member triggering a deadly plant or a trap.',
+    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_2.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Light Stepper',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3010 => 
+  array (
+    'id' => 3010,
+    'name' => 'What is this Filth?',
+    'desc' => 'For every time that Noxious Sludge is cleansed, use all 4 cleansing pools to simultaneously remove it from 4 different infected party members, then defeat Oaxiltso in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_3.dds',
+    'points' => 10,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'What is this Filth?',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3011 => 
+  array (
+    'id' => 3011,
+    'name' => 'Keep Your Distance',
+    'desc' => 'Avoid infecting any party member with Death Touch by a separate party member, then defeat Flame-Herald Bahsei in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_4.dds',
+    'points' => 10,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Keep Your Distance',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3012 => 
+  array (
+    'id' => 3012,
+    'name' => 'Soul Bombardier',
+    'desc' => 'Use Purge Soul to feed 15 Corrupted Azureplasms until they explode during the fight with Xalvakka in Veteran Rockgrove.',
+    'icon' => '/esoui/art/icons/achievement_u30_trial_flavor_5.dds',
+    'points' => 10,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Soul Bombardier',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2903 => 
+  array (
+    'id' => 2903,
+    'name' => 'Ancestral Akaviri Style Master',
+    'desc' => 'Learn every chapter in the Ancestral Akaviri style book, occasionally found when digging for Antiquities.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ancestral Akaviri Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3001 => 
+  array (
+    'id' => 3001,
+    'name' => 'Ivory Brigade Style Master',
+    'desc' => 'Learn every chapter in the Ivory Brigade style book, found through Group Boss Daily Quests in Blackwood.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ivory Brigade Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3000 => 
+  array (
+    'id' => 3000,
+    'name' => 'Black Fin Legion Style Master',
+    'desc' => 'Learn every chapter in the Black Fin Legion style book, acquired by completing daily delve quests in Blackwood.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Black Fin Legion Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   3047 => 
   array (
     'id' => 3047,
@@ -41089,7 +41431,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of Blackwood.',
     'icon' => '/esoui/art/icons/achievement_u30_zone_meta.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -41140,7 +41482,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all 18 Skyshards in the Blackwood.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -41260,7 +41602,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in Blackwood.',
     'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -41337,293 +41679,49 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2903 => 
+  2786 => 
   array (
-    'id' => 2903,
-    'name' => 'Ancestral Akaviri Style Master',
-    'desc' => 'Learn every chapter in the Ancestral Akaviri style book, occasionally found when digging for Antiquities.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 4,
+    'id' => 2786,
+    'name' => 'Master of the Eye',
+    'desc' => 'Reach the max rank of the Scrying Skill Line.',
+    'icon' => '/esoui/art/icons/achievement_u26_skyrim_maxscryingskill.dds',
+    'points' => 15,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn the Ancestral Akaviri Style for Axes',
+        'name' => 'Reach Max Scrying Level',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ancestral Akaviri Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
     ),
+    'title' => 'Sagacious Seer',
+    'collectIcon' => '/esoui/art/icons/costume_antiqrobe.dds',
+    'collectName' => 'Antiquarian Robes',
+    'collectId' => '7623',
   ),
-  3001 => 
+  2792 => 
   array (
-    'id' => 3001,
-    'name' => 'Ivory Brigade Style Master',
-    'desc' => 'Learn every chapter in the Ivory Brigade style book, found through Group Boss Daily Quests in Blackwood.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 5,
+    'id' => 2792,
+    'name' => 'Master of the Spade',
+    'desc' => 'Reach the max rank of the Excavation Skill Line.',
+    'icon' => '/esoui/art/icons/achievement_u26_skyrim_maxdiggingskill.dds',
+    'points' => 15,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn the Ivory Brigade Style for Axes',
+        'name' => 'Reach Max Digging Level',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ivory Brigade Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
     ),
-  ),
-  3000 => 
-  array (
-    'id' => 3000,
-    'name' => 'Black Fin Legion Style Master',
-    'desc' => 'Learn every chapter in the Black Fin Legion style book, acquired by completing daily delve quests in Blackwood.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Black Fin Legion Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
+    'title' => 'Expert Excavator',
+    'collectIcon' => '/esoui/art/icons/gear_pickaxe.dds',
+    'collectName' => 'Antiquarian\'s Pickaxe',
+    'collectId' => '8073',
   ),
   2793 => 
   array (
@@ -41632,7 +41730,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Successfully excavate 3 antiquities.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_dig1.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -41650,7 +41748,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Successfully excavate 30 antiquities.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_dig10.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -41668,7 +41766,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Successfully excavate 100 antiquities.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_dig100.dds',
     'points' => 15,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -41688,7 +41786,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'While using the Antiquarian\'s Eye, capture all the foci on each difficulty.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_6stars.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -41724,7 +41822,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Obtain 5 Antiquarian Leads.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_leads1.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -41742,7 +41840,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Obtain 50 Antiquarian Leads.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_leads10.dds',
     'points' => 10,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -41760,7 +41858,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Obtain 150 Antiquarian Leads.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_leads100.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -41778,7 +41876,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete Antiquities achievements.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_antiquitymeta.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -41810,50 +41908,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'collectIcon' => '/esoui/art/icons/costume_antiqpants.dds',
     'collectName' => 'Antiquarian Field Garb',
     'collectId' => '8003',
-  ),
-  2786 => 
-  array (
-    'id' => 2786,
-    'name' => 'Master of the Eye',
-    'desc' => 'Reach the max rank of the Scrying Skill Line.',
-    'icon' => '/esoui/art/icons/achievement_u26_skyrim_maxscryingskill.dds',
-    'points' => 15,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reach Max Scrying Level',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Sagacious Seer',
-    'collectIcon' => '/esoui/art/icons/costume_antiqrobe.dds',
-    'collectName' => 'Antiquarian Robes',
-    'collectId' => '7623',
-  ),
-  2792 => 
-  array (
-    'id' => 2792,
-    'name' => 'Master of the Spade',
-    'desc' => 'Reach the max rank of the Excavation Skill Line.',
-    'icon' => '/esoui/art/icons/achievement_u26_skyrim_maxdiggingskill.dds',
-    'points' => 15,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reach Max Digging Level',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Expert Excavator',
-    'collectIcon' => '/esoui/art/icons/gear_pickaxe.dds',
-    'collectName' => 'Antiquarian\'s Pickaxe',
-    'collectId' => '8073',
   ),
   2796 => 
   array (
@@ -43307,6 +43361,102 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2762 => 
+  array (
+    'id' => 2762,
+    'name' => 'Sea Giant Style Master',
+    'desc' => 'Learn every chapter in the Sea Giant style book, acquired by completing "The Fight For Kyne\'s Aegis" quest.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Sea Giant Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   2743 => 
   array (
     'id' => 2743,
@@ -43314,7 +43464,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Yandir the Butcher without any player spreading Chaurus Bile to another player in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_trial_flavor_1.dds',
     'points' => 10,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -43332,7 +43482,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Successfully rescue all prisoners held captive by Lord Falgravn in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_trial_flavor_3.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -43392,7 +43542,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Captain Vrol after raising the challenge banner in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_b2_hardmode.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -43410,7 +43560,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat 100 half-giants in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrialkillmonstersa1.dds',
     'points' => 10,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -43428,7 +43578,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn in Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_trial_normal.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -43447,7 +43597,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_veteran.dds',
     'points' => 10,
-    'index' => 6,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -43469,7 +43619,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat all enemies in addition to Yandir the Butcher, Captain Vrol, and Lord Falgravn in Veteran Kyne\'s Aegis within 35 minutes of entering Kyne\'s Perch village.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_speed_run.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -43487,7 +43637,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn after raising the challenge banner in Veteran Kyne\'s Aegis, in one run.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_all_hardmode.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -43506,7 +43656,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete the listed achievements for Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_meta.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -43600,7 +43750,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Yandir the Butcher, Captain Vrol, and Lord Falgravn in Veteran Kyne\'s Aegis without ever being struck by Lightning Bolt.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_trial_flavor_4.dds',
     'points' => 10,
-    'index' => 10,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -43618,7 +43768,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat Yandir the Butcher after raising the challenge banner in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_b1_hardmode.dds',
     'points' => 15,
-    'index' => 11,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -43636,7 +43786,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat all enemies in addition to Yandir the Butcher, Captain Vrol, and Lord Falgravn without suffering a group member death in Veteran Kyne\'s Aegis.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_vtrial_deathless.dds',
     'points' => 50,
-    'index' => 12,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -43644,102 +43794,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Kyne\'s Aegis Veteran No Death',
         'value' => 1,
         'index' => 1,
-      ),
-    ),
-  ),
-  2762 => 
-  array (
-    'id' => 2762,
-    'name' => 'Sea Giant Style Master',
-    'desc' => 'Learn every chapter in the Sea Giant style book, acquired by completing "The Fight For Kyne\'s Aegis" quest.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Sea Giant Style for Swords',
-        'value' => 1,
-        'index' => 14,
       ),
     ),
   ),
@@ -43834,6 +43888,486 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2773 => 
+  array (
+    'id' => 2773,
+    'name' => 'Ancestral High Elf Style Master',
+    'desc' => 'Learn every chapter in the Ancestral High Elf style book, occasionally found when digging for Antiquities.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ancestral High Elf Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2763 => 
+  array (
+    'id' => 2763,
+    'name' => 'Ancestral Nord Style Master',
+    'desc' => 'Learn every chapter in the Ancestral Nord style book, occasionally found when digging for Antiquities.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ancestral Nord Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2776 => 
+  array (
+    'id' => 2776,
+    'name' => 'Ancestral Orc Style Master',
+    'desc' => 'Learn every chapter in the Ancestral Orc style book, occasionally found when digging for Antiquities.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ancestral Orc Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2757 => 
+  array (
+    'id' => 2757,
+    'name' => 'Blackreach Vanguard Style Master',
+    'desc' => 'Learn every chapter in the Blackreach Vanguard style book, acquired by completing delve and group boss daily quests in Western Skyrim and Blackreach: Greymoor Caverns.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Blackreach Vanguard Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2761 => 
+  array (
+    'id' => 2761,
+    'name' => 'Greymoor Style Master',
+    'desc' => 'Learn every chapter in the Greymoor style book, acquired by participating in Harrowstorm daily quests in Western Skyrim.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Greymoor Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   2669 => 
   array (
     'id' => 2669,
@@ -43841,7 +44375,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Locate and retrieve all 19 musical instruments and deliver them to the Bards College in Solitude.',
     'icon' => '/esoui/art/icons/achievement_u26_skyrim_sounds_of_success.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -43957,486 +44491,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Deliver Dozzen Talharpa',
         'value' => 1,
         'index' => 19,
-      ),
-    ),
-  ),
-  2773 => 
-  array (
-    'id' => 2773,
-    'name' => 'Ancestral High Elf Style Master',
-    'desc' => 'Learn every chapter in the Ancestral High Elf style book, occasionally found when digging for Antiquities.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ancestral High Elf Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2763 => 
-  array (
-    'id' => 2763,
-    'name' => 'Ancestral Nord Style Master',
-    'desc' => 'Learn every chapter in the Ancestral Nord style book, occasionally found when digging for Antiquities.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ancestral Nord Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2776 => 
-  array (
-    'id' => 2776,
-    'name' => 'Ancestral Orc Style Master',
-    'desc' => 'Learn every chapter in the Ancestral Orc style book, occasionally found when digging for Antiquities.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ancestral Orc Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2757 => 
-  array (
-    'id' => 2757,
-    'name' => 'Blackreach Vanguard Style Master',
-    'desc' => 'Learn every chapter in the Blackreach Vanguard style book, acquired by completing delve and group boss daily quests in Western Skyrim and Blackreach: Greymoor Caverns.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Blackreach Vanguard Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2761 => 
-  array (
-    'id' => 2761,
-    'name' => 'Greymoor Style Master',
-    'desc' => 'Learn every chapter in the Greymoor style book, acquired by participating in Harrowstorm daily quests in Western Skyrim.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Greymoor Style for Swords',
-        'value' => 1,
-        'index' => 14,
       ),
     ),
   ),
@@ -45814,323 +45868,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2468 => 
-  array (
-    'id' => 2468,
-    'name' => 'Sunspire Dragonbreak',
-    'desc' => 'Complete the listed achievements for Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_meta.dds',
-    'points' => 50,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sunspire Completed',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Sunspire Conqueror',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Sunspire Vanquisher',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Sunspire Sprinter',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Godslayer of Sunspire',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Senche-raht Slayer',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Dragonbound Slayer',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Strike When the Iron’s Hot',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Faster Than Lightning',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Keeping In Sync',
-        'value' => 1,
-        'index' => 10,
-      ),
-    ),
-    'title' => 'Hand of Alkosh',
-    'collectIcon' => '/esoui/art/icons/mount_sunspiresenchelion.dds',
-    'collectName' => 'Sunspire Champion Senche-Lion',
-    'collectId' => '6466',
-  ),
-  2433 => 
-  array (
-    'id' => 2433,
-    'name' => 'Sunspire Completed',
-    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas in Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_normal.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sunspire Completed',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Sunspire Ascendant',
-  ),
-  2435 => 
-  array (
-    'id' => 2435,
-    'name' => 'Sunspire Conqueror',
-    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_036.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sunspire Conqueror',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Sunspire Saint',
-    'collectIcon' => '/esoui/art/icons/skin_sunspire.dds',
-    'collectName' => 'Sunspire Ice-Fire',
-    'collectId' => '6272',
-  ),
-  2434 => 
-  array (
-    'id' => 2434,
-    'name' => 'Sunspire Sprinter',
-    'desc' => 'Defeat all enemies in addition to Yolnahkriin, Lokkestiiz, and Nahviintaas in Veteran Sunspire within 30 minutes of entering the corridor between the Sunspire Temple Vestibule and the Courtyard in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_037.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sunspire Sprinter',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2469 => 
-  array (
-    'id' => 2469,
-    'name' => 'Stoking the Fire',
-    'desc' => 'Defeat Yolnahkriin after extinguishing his offering braziers in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_b1_hardmode.dds',
-    'points' => 15,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Stoking the Fire',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2470 => 
-  array (
-    'id' => 2470,
-    'name' => 'Stormchaser',
-    'desc' => 'Defeat Lokkestiiz after extinguishing his offering braziers in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_b2_hardmode.dds',
-    'points' => 15,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Stormchaser',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2436 => 
-  array (
-    'id' => 2436,
-    'name' => 'Dragonsbane',
-    'desc' => 'Defeat all enemies in addition to Yolnahkriin, Lokkestiiz, and Nahviintaas without suffering a group member death in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_veteran_no_death.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dragonsbane',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2437 => 
-  array (
-    'id' => 2437,
-    'name' => 'Senche-raht Slayer',
-    'desc' => 'Defeat 100 Alkosh\'s Roars, Jone\'s Gale-Claws, or Jode\'s Fire-Fangs in Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_killmonstersb.dds',
-    'points' => 10,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Senche-raht Slayer',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2438 => 
-  array (
-    'id' => 2438,
-    'name' => 'Dragonbound Demolisher',
-    'desc' => 'Defeat 200 of Alkosh\'s Fate, Will, Fury, or Ruin in Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_killmonstersa.dds',
-    'points' => 10,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dragonbound Demolisher',
-        'value' => 200,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2499 => 
-  array (
-    'id' => 2499,
-    'name' => 'Strike When the Iron\'s Hot',
-    'desc' => 'Defeat Yolnahkriin while destroying his Iron Servants only after they have enraged in Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_flavor_1.dds',
-    'points' => 10,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Only Enraged Iron Servants Destroyed',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2500 => 
-  array (
-    'id' => 2500,
-    'name' => 'Faster Than Lightning',
-    'desc' => 'Defeat Lokkestiiz without any group members being hit by Storm Breath in Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_flavor_2.dds',
-    'points' => 10,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'No One Hit By Storm Breath',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2501 => 
-  array (
-    'id' => 2501,
-    'name' => 'Keeping In Sync',
-    'desc' => 'Defeat Nahviintaas without a member of the group Time Shifting through a Time Breach more than once in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_flavor_3.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'No One Uses a Time Breach More Than Once',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2467 => 
-  array (
-    'id' => 2467,
-    'name' => 'Godslayer of Sunspire',
-    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas along with all their hostile followers after extinguishing all their offering braziers, without suffering a group member death, within 30 minutes of entering the corridor between the Sunspire Temple Vestibule and the Courtyard in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_perfect.dds',
-    'points' => 50,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sunspire Perfect',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Godslayer',
-  ),
-  2466 => 
-  array (
-    'id' => 2466,
-    'name' => 'Sunspire Vanquisher',
-    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas after extinguishing all of their offering braziers in Veteran Sunspire.',
-    'icon' => '/esoui/art/icons/achievement_els_sunspire_hardmode_all.dds',
-    'points' => 50,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Sunspire Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Extinguisher of Flames',
-  ),
   2507 => 
   array (
     'id' => 2507,
@@ -46138,7 +45875,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Sunspire style book, found in the Sunspire trial.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 15,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -46227,6 +45964,515 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2468 => 
+  array (
+    'id' => 2468,
+    'name' => 'Sunspire Dragonbreak',
+    'desc' => 'Complete the listed achievements for Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_meta.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sunspire Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Sunspire Conqueror',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Sunspire Vanquisher',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Sunspire Sprinter',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Godslayer of Sunspire',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Senche-raht Slayer',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Dragonbound Slayer',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Strike When the Iron’s Hot',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Faster Than Lightning',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Keeping In Sync',
+        'value' => 1,
+        'index' => 10,
+      ),
+    ),
+    'title' => 'Hand of Alkosh',
+    'collectIcon' => '/esoui/art/icons/mount_sunspiresenchelion.dds',
+    'collectName' => 'Sunspire Champion Senche-Lion',
+    'collectId' => '6466',
+  ),
+  2433 => 
+  array (
+    'id' => 2433,
+    'name' => 'Sunspire Completed',
+    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas in Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_normal.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sunspire Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Sunspire Ascendant',
+  ),
+  2435 => 
+  array (
+    'id' => 2435,
+    'name' => 'Sunspire Conqueror',
+    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_036.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sunspire Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Sunspire Saint',
+    'collectIcon' => '/esoui/art/icons/skin_sunspire.dds',
+    'collectName' => 'Sunspire Ice-Fire',
+    'collectId' => '6272',
+  ),
+  2434 => 
+  array (
+    'id' => 2434,
+    'name' => 'Sunspire Sprinter',
+    'desc' => 'Defeat all enemies in addition to Yolnahkriin, Lokkestiiz, and Nahviintaas in Veteran Sunspire within 30 minutes of entering the corridor between the Sunspire Temple Vestibule and the Courtyard in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_037.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sunspire Sprinter',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2469 => 
+  array (
+    'id' => 2469,
+    'name' => 'Stoking the Fire',
+    'desc' => 'Defeat Yolnahkriin after extinguishing his offering braziers in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_b1_hardmode.dds',
+    'points' => 15,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stoking the Fire',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2470 => 
+  array (
+    'id' => 2470,
+    'name' => 'Stormchaser',
+    'desc' => 'Defeat Lokkestiiz after extinguishing his offering braziers in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_b2_hardmode.dds',
+    'points' => 15,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stormchaser',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2436 => 
+  array (
+    'id' => 2436,
+    'name' => 'Dragonsbane',
+    'desc' => 'Defeat all enemies in addition to Yolnahkriin, Lokkestiiz, and Nahviintaas without suffering a group member death in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_veteran_no_death.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dragonsbane',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2437 => 
+  array (
+    'id' => 2437,
+    'name' => 'Senche-raht Slayer',
+    'desc' => 'Defeat 100 Alkosh\'s Roars, Jone\'s Gale-Claws, or Jode\'s Fire-Fangs in Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_killmonstersb.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Senche-raht Slayer',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2438 => 
+  array (
+    'id' => 2438,
+    'name' => 'Dragonbound Demolisher',
+    'desc' => 'Defeat 200 of Alkosh\'s Fate, Will, Fury, or Ruin in Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_killmonstersa.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dragonbound Demolisher',
+        'value' => 200,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2499 => 
+  array (
+    'id' => 2499,
+    'name' => 'Strike When the Iron\'s Hot',
+    'desc' => 'Defeat Yolnahkriin while destroying his Iron Servants only after they have enraged in Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_flavor_1.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Only Enraged Iron Servants Destroyed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2500 => 
+  array (
+    'id' => 2500,
+    'name' => 'Faster Than Lightning',
+    'desc' => 'Defeat Lokkestiiz without any group members being hit by Storm Breath in Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_flavor_2.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'No One Hit By Storm Breath',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2501 => 
+  array (
+    'id' => 2501,
+    'name' => 'Keeping In Sync',
+    'desc' => 'Defeat Nahviintaas without a member of the group Time Shifting through a Time Breach more than once in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_flavor_3.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'No One Uses a Time Breach More Than Once',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2467 => 
+  array (
+    'id' => 2467,
+    'name' => 'Godslayer of Sunspire',
+    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas along with all their hostile followers after extinguishing all their offering braziers, without suffering a group member death, within 30 minutes of entering the corridor between the Sunspire Temple Vestibule and the Courtyard in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_perfect.dds',
+    'points' => 50,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sunspire Perfect',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Godslayer',
+  ),
+  2466 => 
+  array (
+    'id' => 2466,
+    'name' => 'Sunspire Vanquisher',
+    'desc' => 'Defeat Yolnahkriin, Lokkestiiz, and Nahviintaas after extinguishing all of their offering braziers in Veteran Sunspire.',
+    'icon' => '/esoui/art/icons/achievement_els_sunspire_hardmode_all.dds',
+    'points' => 50,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sunspire Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Extinguisher of Flames',
+  ),
+  2505 => 
+  array (
+    'id' => 2505,
+    'name' => 'Anequina Style Master',
+    'desc' => 'Learn every chapter in the Anequina style book, found by completing daily quests for Ri\'hirr and Nisuzi.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Anequina Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Anequina Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the AnequinaStyle for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Anequina Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Anequina Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Anequina Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Anequina Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Anequina for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Anequina Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Anequina Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Anequina Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Anequina Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Anequina Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Anequina Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2506 => 
+  array (
+    'id' => 2506,
+    'name' => 'Pellitine Style Master',
+    'desc' => 'Learn every chapter in the Pellitine style book, found by completing daily Dragon hunt quests.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Pellitine Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   2463 => 
   array (
     'id' => 2463,
@@ -46234,7 +46480,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Collect and restore all fragments of the Rithana-di-Renada, an ancient Khajiiti mural, for the House of Histories.',
     'icon' => '/esoui/art/icons/achievement_els_museum_mural.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -46351,7 +46597,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all 18 Skyshards in Northern Elsweyr.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -46471,7 +46717,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in Northern Elsweyr.',
     'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -46555,7 +46801,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of Elsweyr.',
     'icon' => '/esoui/art/icons/achievement_els_zone_meta.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -46602,7 +46848,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'dyeName' => 'Anequina Sunrise',
-    'dyeColor' => 'ff7ce',
+    'dyeColor' => 'ff7c0e',
     'title' => 'Savior of Elsweyr',
   ),
   2474 => 
@@ -46612,7 +46858,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 1 Dragon in the wilds of Northern Elsweyr.',
     'icon' => '/esoui/art/icons/achievement_worldboss_dragon1.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -46630,7 +46876,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 25 Dragons in the wilds of Northern Elsweyr.',
     'icon' => '/esoui/art/icons/achievement_worldboss_dragon2.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -46648,7 +46894,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 50 Dragons in the wilds of Northern Elsweyr.',
     'icon' => '/esoui/art/icons/achievement_worldboss_dragon3.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -46666,7 +46912,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 100 Flame Wyrms, Flame Atronachs, and Iron Atronachs while battling Dragons.',
     'icon' => '/esoui/art/icons/achievement_ava_artifact_kill100plus_with_artifact_one_session.dds',
     'points' => 10,
-    'index' => 6,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -46686,198 +46932,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Kill 100 Iron Atronachs',
         'value' => 100,
         'index' => 3,
-      ),
-    ),
-  ),
-  2505 => 
-  array (
-    'id' => 2505,
-    'name' => 'Anequina Style Master',
-    'desc' => 'Learn every chapter in the Anequina style book, found by completing daily quests for Ri\'hirr and Nisuzi.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Anequina Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Anequina Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the AnequinaStyle for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Anequina Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Anequina Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Anequina Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Anequina Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Anequina for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Anequina Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Anequina Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Anequina Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Anequina Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Anequina Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Anequina Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2506 => 
-  array (
-    'id' => 2506,
-    'name' => 'Pellitine Style Master',
-    'desc' => 'Learn every chapter in the Pellitine style book, found by completing daily Dragon hunt quests.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Pellitine Style for Swords',
-        'value' => 1,
-        'index' => 14,
       ),
     ),
   ),
@@ -48024,7 +48078,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2198,
     'name' => 'Divine Prosecutor',
-    'desc' => 'Complete your first Divine Prosecution Assignment from Justiciar Farowel',
+    'desc' => 'Complete your first Divine Prosecution Assignment from Justiciar Farowel.',
     'icon' => '/esoui/art/icons/achievement_su_gbdaily_2.dds',
     'points' => 5,
     'index' => 8,
@@ -48429,394 +48483,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2140 => 
-  array (
-    'id' => 2140,
-    'name' => 'Cloudrest Savior',
-    'desc' => 'Complete the listed achievements for Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_1.dds',
-    'points' => 50,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Cloudrest Completed',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Cloudrest Conqueror',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Cloudrest Vanquisher',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Speedy Sload Slayer',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Surviving the Shadows',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'One Core, No More',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Misery Loves Company',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Flares and Deadly Shadows',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Core Coordination',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Yaghra Blockade',
-        'value' => 1,
-        'index' => 10,
-      ),
-    ),
-    'title' => 'Welkynar Liberator',
-  ),
-  2131 => 
-  array (
-    'id' => 2131,
-    'name' => 'Cloudrest Completed',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_su_mainquest_3.dds',
-    'points' => 15,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Cloudrest',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Cloudrest Hero',
-  ),
-  2133 => 
-  array (
-    'id' => 2133,
-    'name' => 'Cloudrest Conqueror',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_su_karnwasten_groupevent.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Cloudrest',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Bedlam Purple',
-    'dyeColor' => '1d1542',
-    'title' => 'Shadow Breaker',
-  ),
-  2134 => 
-  array (
-    'id' => 2134,
-    'name' => 'A Sload and Her Shadow',
-    'desc' => 'Defeat Z\'Maja with one Welkynar shade fighting by her side in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_veteran+1.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Cloudrest +1',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2135 => 
-  array (
-    'id' => 2135,
-    'name' => 'Three\'s Deadly Company',
-    'desc' => 'Defeat Z\'Maja with two Welkynar shades fighting by her side in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_veteran+2.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Cloudrest +2',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2132 => 
-  array (
-    'id' => 2132,
-    'name' => 'Cloudrest Contender',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in the same fight in Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_1.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Do Hard Mode',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2136 => 
-  array (
-    'id' => 2136,
-    'name' => 'Cloudrest Vanquisher',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in the same fight in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_1.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Do the Hard Mode in Veteran Cloudrest',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Bringer of Light',
-    'collectIcon' => '/esoui/art/icons/skin_shadow.dds',
-    'collectName' => 'Z\'Maja\'s Shadow',
-    'collectId' => '5109',
-  ),
-  2139 => 
-  array (
-    'id' => 2139,
-    'name' => 'The Path to Alaxon',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in the same battle without suffering a group member death within 15 minutes of entering the Cloudrest Aerie in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_2.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Cloudrest Perfect',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Gryphon Heart',
-  ),
-  2138 => 
-  array (
-    'id' => 2138,
-    'name' => 'Surviving the Shadows',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe without suffering a group member death in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_nodeath_vet.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Perfect Run',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2137 => 
-  array (
-    'id' => 2137,
-    'name' => 'Speedy Sload Slayer',
-    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe within a time limit of 15 minutes in Veteran Cloudrest. Timer starts when players enter the Cloudrest Aerie.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_speed_vet.dds',
-    'points' => 50,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Completed Cloudrest Vet Within 15 Minutes',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2238 => 
-  array (
-    'id' => 2238,
-    'name' => 'Valorous Combustion',
-    'desc' => 'While battling Siroria\'s shade by itself, every Roaring Flare throughout the entire encounter must be split between at least 6 players in Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_3.dds',
-    'points' => 10,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'TBD',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2237 => 
-  array (
-    'id' => 2237,
-    'name' => 'Shocking Instinct',
-    'desc' => 'While battling Relequen\'s shade by itself, no player is hit by Voltaic Overload and no player spreads Voltaic Current to other players throughout the entire encounter in Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_5.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'TBD',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2231 => 
-  array (
-    'id' => 2231,
-    'name' => 'One Core, No More',
-    'desc' => 'Defeat Z\'Maja with each group member picking up and destroying only one Malevolent Core in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_su_groupboss_3.dds',
-    'points' => 50,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'TBD',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2232 => 
-  array (
-    'id' => 2232,
-    'name' => 'Misery Loves Company',
-    'desc' => 'While battling Z\'Maja with all three of the Welkynars\' shades by her side, a player with the Hoarfrost affliction and two other players with the Voltaic Overload affliction share the damage of the Roaring Flare eruption in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_su_groupboss_meta.dds',
-    'points' => 50,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'TBD',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2233 => 
-  array (
-    'id' => 2233,
-    'name' => 'Flares and Deadly Shadows',
-    'desc' => 'While battling Z\'Maja with Siroria\'s shade by her side, utilize a Roaring Flare attack and achieve 20 killing blows against Shadows of the Fallen in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_6.dds',
-    'points' => 15,
-    'index' => 15,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Roaring Attack Killing Blows',
-        'value' => 20,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2234 => 
-  array (
-    'id' => 2234,
-    'name' => 'Core Coordination',
-    'desc' => 'While battling Z\'Maja, after activating a single Welkynar\'s Light, activate two more Welkynar\'s Lights and destroy three Malevolent Cores within the next 6 seconds in Veteran Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_su_karnwasten_groupevent.dds',
-    'points' => 15,
-    'index' => 16,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'TBD',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2235 => 
-  array (
-    'id' => 2235,
-    'name' => 'Yaghra Blockade',
-    'desc' => 'While battling Z\'Maja during a single Shadow World event, prevent all yaghra from entering the gateway and crossing into the mortal realm on 15 separate occasions in Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_summerset_boss_002.dds',
-    'points' => 15,
-    'index' => 17,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'All Yaghra Denied',
-        'value' => 15,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2236 => 
-  array (
-    'id' => 2236,
-    'name' => 'The Mystic\'s Ice',
-    'desc' => 'Have Galenwe\'s shade destroy 20 roaming Hoarfrost cyclones with his Spiked Ice attack in Cloudrest.',
-    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_4.dds',
-    'points' => 15,
-    'index' => 18,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Hoarfrost Cyclones',
-        'value' => 20,
-        'index' => 1,
-      ),
-    ),
-  ),
   2319 => 
   array (
     'id' => 2319,
@@ -48824,7 +48490,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Welkynar style book, occasionally found as rewards for completing the Cloudrest Trial.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 19,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -48913,6 +48579,394 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2140 => 
+  array (
+    'id' => 2140,
+    'name' => 'Cloudrest Savior',
+    'desc' => 'Complete the listed achievements for Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_1.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Cloudrest Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Cloudrest Conqueror',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Cloudrest Vanquisher',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Speedy Sload Slayer',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Surviving the Shadows',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'One Core, No More',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Misery Loves Company',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Flares and Deadly Shadows',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Core Coordination',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Yaghra Blockade',
+        'value' => 1,
+        'index' => 10,
+      ),
+    ),
+    'title' => 'Welkynar Liberator',
+  ),
+  2131 => 
+  array (
+    'id' => 2131,
+    'name' => 'Cloudrest Completed',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_su_mainquest_3.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Cloudrest',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Cloudrest Hero',
+  ),
+  2133 => 
+  array (
+    'id' => 2133,
+    'name' => 'Cloudrest Conqueror',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_su_karnwasten_groupevent.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Veteran Cloudrest',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Bedlam Purple',
+    'dyeColor' => '1d1542',
+    'title' => 'Shadow Breaker',
+  ),
+  2134 => 
+  array (
+    'id' => 2134,
+    'name' => 'A Sload and Her Shadow',
+    'desc' => 'Defeat Z\'Maja with one Welkynar shade fighting by her side in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_veteran+1.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Veteran Cloudrest +1',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2135 => 
+  array (
+    'id' => 2135,
+    'name' => 'Three\'s Deadly Company',
+    'desc' => 'Defeat Z\'Maja with two Welkynar shades fighting by her side in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_veteran+2.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Veteran Cloudrest +2',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2132 => 
+  array (
+    'id' => 2132,
+    'name' => 'Cloudrest Contender',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in the same fight in Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_1.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Do Hard Mode',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2136 => 
+  array (
+    'id' => 2136,
+    'name' => 'Cloudrest Vanquisher',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in the same fight in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_1.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Do the Hard Mode in Veteran Cloudrest',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Bringer of Light',
+    'collectIcon' => '/esoui/art/icons/skin_shadow.dds',
+    'collectName' => 'Z\'Maja\'s Shadow',
+    'collectId' => '5109',
+  ),
+  2139 => 
+  array (
+    'id' => 2139,
+    'name' => 'The Path to Alaxon',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe in the same battle without suffering a group member death within 15 minutes of entering the Cloudrest Aerie in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_2.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Cloudrest Perfect',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Gryphon Heart',
+  ),
+  2138 => 
+  array (
+    'id' => 2138,
+    'name' => 'Surviving the Shadows',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe without suffering a group member death in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_nodeath_vet.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Perfect Run',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2137 => 
+  array (
+    'id' => 2137,
+    'name' => 'Speedy Sload Slayer',
+    'desc' => 'Defeat Z\'Maja, Siroria, Relequen, and Galenwe within a time limit of 15 minutes in Veteran Cloudrest. Timer starts when players enter the Cloudrest Aerie.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_speed_vet.dds',
+    'points' => 50,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Completed Cloudrest Vet Within 15 Minutes',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2238 => 
+  array (
+    'id' => 2238,
+    'name' => 'Valorous Combustion',
+    'desc' => 'While battling Siroria\'s shade by itself, every Roaring Flare throughout the entire encounter must be split between at least 6 players in Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_3.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'TBD',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2237 => 
+  array (
+    'id' => 2237,
+    'name' => 'Shocking Instinct',
+    'desc' => 'While battling Relequen\'s shade by itself, no player is hit by Voltaic Overload and no player spreads Voltaic Current to other players throughout the entire encounter in Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_5.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'TBD',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2231 => 
+  array (
+    'id' => 2231,
+    'name' => 'One Core, No More',
+    'desc' => 'Defeat Z\'Maja with each group member picking up and destroying only one Malevolent Core in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_su_groupboss_3.dds',
+    'points' => 50,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'TBD',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2232 => 
+  array (
+    'id' => 2232,
+    'name' => 'Misery Loves Company',
+    'desc' => 'While battling Z\'Maja with all three of the Welkynars\' shades by her side, a player with the Hoarfrost affliction and two other players with the Voltaic Overload affliction share the damage of the Roaring Flare eruption in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_su_groupboss_meta.dds',
+    'points' => 50,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'TBD',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2233 => 
+  array (
+    'id' => 2233,
+    'name' => 'Flares and Deadly Shadows',
+    'desc' => 'While battling Z\'Maja with Siroria\'s shade by her side, utilize a Roaring Flare attack and achieve 20 killing blows against Shadows of the Fallen in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_6.dds',
+    'points' => 15,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Roaring Attack Killing Blows',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2234 => 
+  array (
+    'id' => 2234,
+    'name' => 'Core Coordination',
+    'desc' => 'While battling Z\'Maja, after activating a single Welkynar\'s Light, activate two more Welkynar\'s Lights and destroy three Malevolent Cores within the next 6 seconds in Veteran Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_su_karnwasten_groupevent.dds',
+    'points' => 15,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'TBD',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2235 => 
+  array (
+    'id' => 2235,
+    'name' => 'Yaghra Blockade',
+    'desc' => 'While battling Z\'Maja during a single Shadow World event, prevent all yaghra from entering the gateway and crossing into the mortal realm on 15 separate occasions in Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_summerset_boss_002.dds',
+    'points' => 15,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'All Yaghra Denied',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2236 => 
+  array (
+    'id' => 2236,
+    'name' => 'The Mystic\'s Ice',
+    'desc' => 'Have Galenwe\'s shade destroy 20 roaming Hoarfrost cyclones with his Spiked Ice attack in Cloudrest.',
+    'icon' => '/esoui/art/icons/achievement_trial_cr_flavor_4.dds',
+    'points' => 15,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hoarfrost Cyclones',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
   2625 => 
   array (
     'id' => 2625,
@@ -48931,6 +48985,294 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2186 => 
+  array (
+    'id' => 2186,
+    'name' => 'Psijic Style Master',
+    'desc' => 'Learn every chapter in the Psijic Order style book, found by defeating bosses and opening treasure chests in Summerset.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Psijic Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Psijic Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Psijic Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Psijic Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Psijic Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Psijic Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Psijic Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Psijic Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Psijic Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Psijic Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Psijic Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Psijic Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Psijic Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Psijic Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2285 => 
+  array (
+    'id' => 2285,
+    'name' => 'Pyandonean Style Master',
+    'desc' => 'Learn every chapter in the Pyandonean style book, occasionally found by fishing in Summerset.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Pyandonean Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2187 => 
+  array (
+    'id' => 2187,
+    'name' => 'Sapiarch Style Master',
+    'desc' => 'Learn every chapter in the Sapiarch style book, occasionally found as rewards for completing daily quests for the Divine Prosecution.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Sapiarch Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   1845 => 
   array (
     'id' => 1845,
@@ -48938,7 +49280,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all 18 Skyshards in Summerset.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 10,
-    'index' => 2,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -49058,7 +49400,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of Summerset.',
     'icon' => '/esoui/art/icons/achievement_su_zonemeta.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -49115,7 +49457,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Retrieve the 20 dangerous relics stolen from the Vault of Moawita.',
     'icon' => '/esoui/art/icons/achievement_su_museum.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -49251,7 +49593,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn the fate of the Lost Sailor.',
     'icon' => '/esoui/art/icons/achievement_su_flavor_01.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -49269,7 +49611,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in Summerset.',
     'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
-    'index' => 6,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -49353,7 +49695,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 3 rare fish in Artaeum.',
     'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
-    'index' => 7,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -49383,7 +49725,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Win 5 PvP duels in the Colosseum of the Old Ways on Artaeum.',
     'icon' => '/esoui/art/icons/achievement_su_artaeum_01.dds',
     'points' => 5,
-    'index' => 8,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -49391,294 +49733,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Win 5 Duels in the Colosseum of the Old Ways',
         'value' => 5,
         'index' => 1,
-      ),
-    ),
-  ),
-  2186 => 
-  array (
-    'id' => 2186,
-    'name' => 'Psijic Style Master',
-    'desc' => 'Learn every chapter in the Psijic Order style book, found by defeating bosses and opening treasure chests in Summerset.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Psijic Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Psijic Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Psijic Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Psijic Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Psijic Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Psijic Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Psijic Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Psijic Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Psijic Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Psijic Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Psijic Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Psijic Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Psijic Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Psijic Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2285 => 
-  array (
-    'id' => 2285,
-    'name' => 'Pyandonean Style Master',
-    'desc' => 'Learn every chapter in the Pyandonean style book, occasionally found by fishing in Summerset.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Pyandonean Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  2187 => 
-  array (
-    'id' => 2187,
-    'name' => 'Sapiarch Style Master',
-    'desc' => 'Learn every chapter in the Sapiarch style book, occasionally found as rewards for completing daily quests for the Divine Prosecution.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Sapiarch Style for Swords',
-        'value' => 1,
-        'index' => 14,
       ),
     ),
   ),
@@ -50418,7 +50472,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1802,
     'name' => 'Songbird Silencer',
-    'desc' => 'Defeat the nereid Kimbrudhil the Songbird at Shipwreck Cove.',
+    'desc' => 'Defeat the Nereid Kimbrudhil the Songbird at Shipwreck Cove.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_001.dds',
     'points' => 10,
     'index' => 22,
@@ -50904,291 +50958,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1835 => 
-  array (
-    'id' => 1835,
-    'name' => 'Accept No Substitute',
-    'desc' => 'Defeat 5 of each of the Tactical Facsimiles that the Assembly General creates, on any difficulty.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_049.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Dragonknight Tactical Facsimiles',
-        'value' => 5,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Sorcerer Tactical Facsimiles',
-        'value' => 5,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Nightblade Tactical Facsimiles',
-        'value' => 5,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Warden Tactical Facsimiles',
-        'value' => 5,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Templar Tactical Facsimiles',
-        'value' => 5,
-        'index' => 5,
-      ),
-    ),
-  ),
-  1840 => 
-  array (
-    'id' => 1840,
-    'name' => 'Arc-Custodian',
-    'desc' => 'In Veteran Halls of Fabrication, defeat the Archcustodian using six or fewer Shock Pylons without ever missing an opportunity to disable it with one.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_045.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Arc-Custodian',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1836 => 
-  array (
-    'id' => 1836,
-    'name' => 'Dynamo',
-    'desc' => 'Complete each of the following achievements related to defeating the Assembly General:',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_050.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Halls of Fabrication Completed',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Halls of Fabrication Conqueror',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Halls of Fabrication Vanquisher',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Time Trial: Halls of Fabrication',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Well-Oiled Machine',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Environmentally Conscious',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Terminal Terminator',
-        'value' => 1,
-        'index' => 7,
-      ),
-    ),
-    'title' => 'The Dynamo',
-  ),
-  1833 => 
-  array (
-    'id' => 1833,
-    'name' => 'Environmentally Conscious',
-    'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication without any group member dying to traps and hazards.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_047.dds',
-    'points' => 15,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Environmentally Conscious',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1808 => 
-  array (
-    'id' => 1808,
-    'name' => 'Halls of Fabrication Completed',
-    'desc' => 'Defeat the Assembly General and assist Divayth Fyr in stopping the flood of animunculi coming from the Halls of Fabrication.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_035.dds',
-    'points' => 15,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete the Halls of Fabrication',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'dyeName' => 'Colossus Brass',
-    'dyeColor' => 'a5773a',
-    'title' => 'Clockwork Confounder',
-  ),
-  1810 => 
-  array (
-    'id' => 1810,
-    'name' => 'Halls of Fabrication Conqueror',
-    'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_036.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Halls of Fabrication',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Divayth Fyr\'s Coadjutor',
-    'collectIcon' => '/esoui/art/icons/skin_hallsoffabrication.dds',
-    'collectName' => 'Fabrication Sheath',
-    'collectId' => '1238',
-  ),
-  1829 => 
-  array (
-    'id' => 1829,
-    'name' => 'Halls of Fabrication Vanquisher',
-    'desc' => 'Defeat the Assembly General after empowering it by resetting the circuit breaker in Veteran Halls of Fabrication.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_038.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Halls of Fabrication Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1839 => 
-  array (
-    'id' => 1839,
-    'name' => 'Kill Process',
-    'desc' => 'Defeat one Hunter-Killer Fabricant while the other still has at least half of its health remaining, before defeating the remaining Fabricant in Veteran Halls of Fabrication.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_043.dds',
-    'points' => 10,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Kill Process',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1838 => 
-  array (
-    'id' => 1838,
-    'name' => 'Like Clockwork',
-    'desc' => 'Complete Veteran Halls of Fabrication after resetting the circuit breaker and empowering the Assembly General, all within 40 minutes of entering Abanabi Cave and without suffering a group member death.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_041.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Like Clockwork',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Tick-Tock Tormentor',
-  ),
-  1832 => 
-  array (
-    'id' => 1832,
-    'name' => 'Planned Obsolescence',
-    'desc' => 'Defeat the Refabrication Committee in Veteran Halls of Fabrication without ever allowing the Reclaimer to overcharge a Ruined Factotum.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_046.dds',
-    'points' => 15,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Planned Obsolescence',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1831 => 
-  array (
-    'id' => 1831,
-    'name' => 'Power House',
-    'desc' => 'Defeat the Pinnacle Factotum without ever using energy from the generator to break a Refabricated Sphere\'s shield, in Veteran Halls of Fabrication.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_044.dds',
-    'points' => 15,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Power House',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1830 => 
-  array (
-    'id' => 1830,
-    'name' => 'Refabricant Slayer',
-    'desc' => 'Defeat 100 Calefactors, Capacitors, or Dissectors in the Veteran Halls of Fabrication.',
-    'icon' => '/esoui/art/icons/achievement_vvardenfel_042.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Calefactors, Capacitors, or Dissectors',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
   2024 => 
   array (
     'id' => 2024,
@@ -51196,7 +50965,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Refabricated style book, found in the Halls of Fabrication Trial.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 13,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -51282,6 +51051,291 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Refabricated Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  1835 => 
+  array (
+    'id' => 1835,
+    'name' => 'Accept No Substitute',
+    'desc' => 'Defeat 5 of each of the Tactical Facsimiles that the Assembly General creates, on any difficulty.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_049.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Dragonknight Tactical Facsimiles',
+        'value' => 5,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Sorcerer Tactical Facsimiles',
+        'value' => 5,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Nightblade Tactical Facsimiles',
+        'value' => 5,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Warden Tactical Facsimiles',
+        'value' => 5,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Templar Tactical Facsimiles',
+        'value' => 5,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1840 => 
+  array (
+    'id' => 1840,
+    'name' => 'Arc-Custodian',
+    'desc' => 'In Veteran Halls of Fabrication, defeat the Archcustodian using six or fewer Shock Pylons without ever missing an opportunity to disable it with one.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_045.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Arc-Custodian',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1836 => 
+  array (
+    'id' => 1836,
+    'name' => 'Dynamo',
+    'desc' => 'Complete each of the following achievements related to defeating the Assembly General:',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_050.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Halls of Fabrication Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Halls of Fabrication Conqueror',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Halls of Fabrication Vanquisher',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Time Trial: Halls of Fabrication',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Well-Oiled Machine',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Environmentally Conscious',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Terminal Terminator',
+        'value' => 1,
+        'index' => 7,
+      ),
+    ),
+    'title' => 'The Dynamo',
+  ),
+  1833 => 
+  array (
+    'id' => 1833,
+    'name' => 'Environmentally Conscious',
+    'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication without any group member dying to traps and hazards.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_047.dds',
+    'points' => 15,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Environmentally Conscious',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1808 => 
+  array (
+    'id' => 1808,
+    'name' => 'Halls of Fabrication Completed',
+    'desc' => 'Defeat the Assembly General and assist Divayth Fyr in stopping the flood of animunculi coming from the Halls of Fabrication.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_035.dds',
+    'points' => 15,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete the Halls of Fabrication',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Colossus Brass',
+    'dyeColor' => 'a5773a',
+    'title' => 'Clockwork Confounder',
+  ),
+  1810 => 
+  array (
+    'id' => 1810,
+    'name' => 'Halls of Fabrication Conqueror',
+    'desc' => 'Defeat the Assembly General in Veteran Halls of Fabrication.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_036.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete Veteran Halls of Fabrication',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Divayth Fyr\'s Coadjutor',
+    'collectIcon' => '/esoui/art/icons/skin_hallsoffabrication.dds',
+    'collectName' => 'Fabrication Sheath',
+    'collectId' => '1238',
+  ),
+  1829 => 
+  array (
+    'id' => 1829,
+    'name' => 'Halls of Fabrication Vanquisher',
+    'desc' => 'Defeat the Assembly General after empowering it by resetting the circuit breaker in Veteran Halls of Fabrication.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_038.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Halls of Fabrication Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1839 => 
+  array (
+    'id' => 1839,
+    'name' => 'Kill Process',
+    'desc' => 'Defeat one Hunter-Killer Fabricant while the other still has at least half of its health remaining, before defeating the remaining Fabricant in Veteran Halls of Fabrication.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_043.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Kill Process',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1838 => 
+  array (
+    'id' => 1838,
+    'name' => 'Like Clockwork',
+    'desc' => 'Complete Veteran Halls of Fabrication after resetting the circuit breaker and empowering the Assembly General, all within 40 minutes of entering Abanabi Cave and without suffering a group member death.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_041.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Like Clockwork',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Tick-Tock Tormentor',
+  ),
+  1832 => 
+  array (
+    'id' => 1832,
+    'name' => 'Planned Obsolescence',
+    'desc' => 'Defeat the Refabrication Committee in Veteran Halls of Fabrication without ever allowing the Reclaimer to overcharge a Ruined Factotum.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_046.dds',
+    'points' => 15,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Planned Obsolescence',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1831 => 
+  array (
+    'id' => 1831,
+    'name' => 'Power House',
+    'desc' => 'Defeat the Pinnacle Factotum without ever using energy from the generator to break a Refabricated Sphere\'s shield, in Veteran Halls of Fabrication.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_044.dds',
+    'points' => 15,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Power House',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1830 => 
+  array (
+    'id' => 1830,
+    'name' => 'Refabricant Slayer',
+    'desc' => 'Defeat 100 Calefactors, Capacitors, or Dissectors in the Veteran Halls of Fabrication.',
+    'icon' => '/esoui/art/icons/achievement_vvardenfel_042.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Calefactors, Capacitors, or Dissectors',
+        'value' => 100,
+        'index' => 1,
       ),
     ),
   ),
@@ -51394,6 +51448,582 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  1932 => 
+  array (
+    'id' => 1932,
+    'name' => 'Ashlander Style Master',
+    'desc' => 'Learn every chapter in the Ashlander style book, occasionally found as rewards for completing daily quests for Huntmaster Sorim-Nakar and Numani-Rasi.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ashlander Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1934 => 
+  array (
+    'id' => 1934,
+    'name' => 'Buoyant Armiger Style Master',
+    'desc' => 'Learn every chapter in the Buoyant Armiger style book, occasionally found in treasure chests across Vvardenfell.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Buoyant Armiger Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1933 => 
+  array (
+    'id' => 1933,
+    'name' => 'Morag Tong Style Master',
+    'desc' => 'Learn every chapter in the Morag Tong style book, occasionally found in Bounty and Explorer\'s Dispensations from the Hall of Justice.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Morag Tong Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2021 => 
+  array (
+    'id' => 2021,
+    'name' => 'Hlaalu Style Master',
+    'desc' => 'Learn every chapter in the Hlaalu style book, found by stealing from civilians\' homes and pockets in Morrowind.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Hlaalu Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2022 => 
+  array (
+    'id' => 2022,
+    'name' => 'Redoran Style Master',
+    'desc' => 'Learn every chapter in the Redoran style book, found by stealing from civilians\' homes and pockets in Morrowind.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Redoran Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Redoran Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Redoran Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Redoran Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Redoran Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Redoran Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Redoran Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Redoran Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Redoran Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Redoran Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Redoran Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Redoran Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Redoran Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Redoran Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  2023 => 
+  array (
+    'id' => 2023,
+    'name' => 'Telvanni Style Master',
+    'desc' => 'Learn every chapter in the Telvanni style book, found by stealing from civilians\' homes and pockets in Morrowind.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Telvanni Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   1712 => 
   array (
     'id' => 1712,
@@ -51401,7 +52031,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Find all 30 ancestral tombs in Vvardenfell, make a rubbing of the information they contain, and deliver these rubbings to Librarian Bradyn to discover the location of the lost Library of Andule.',
     'icon' => '/esoui/art/icons/achievement_morrowind_021.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -51587,198 +52217,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'title' => 'Librarian',
   ),
-  1932 => 
-  array (
-    'id' => 1932,
-    'name' => 'Ashlander Style Master',
-    'desc' => 'Learn every chapter in the Ashlander style book, occasionally found as rewards for completing daily quests for Huntmaster Sorim-Nakar and Numani-Rasi.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ashlander Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1934 => 
-  array (
-    'id' => 1934,
-    'name' => 'Buoyant Armiger Style Master',
-    'desc' => 'Learn every chapter in the Buoyant Armiger style book, occasionally found in treasure chests across Vvardenfell.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Buoyant Armiger Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
   1842 => 
   array (
     'id' => 1842,
@@ -51786,7 +52224,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Do your part to eliminate the cliff strider menace by killing 100 cliff striders or cliff skippers in Vvardenfell.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_034.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -51797,102 +52235,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1933 => 
-  array (
-    'id' => 1933,
-    'name' => 'Morag Tong Style Master',
-    'desc' => 'Learn every chapter in the Morag Tong style book, occasionally found in Bounty and Explorer\'s Dispensations from the Hall of Justice.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Morag Tong Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
   1882 => 
   array (
     'id' => 1882,
@@ -51900,7 +52242,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in Vvardenfell.',
     'icon' => '/esoui/art/icons/achievement_morrowind_028.dds',
     'points' => 5,
-    'index' => 6,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -51984,7 +52326,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of Morrowind.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_021.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -52039,7 +52381,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Visit the silt strider caravaner at each of the stations in Vvardenfell.',
     'icon' => '/esoui/art/icons/achievement_morrowind_029.dds',
     'points' => 5,
-    'index' => 8,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -52093,7 +52435,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Visit the Shrines of the Seven Graces and read the inscription on each shine.',
     'icon' => '/esoui/art/icons/achievement_vvardenfel_032.dds',
     'points' => 5,
-    'index' => 9,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -52147,7 +52489,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Read all 36 Sermons of Vivec scattered across Vvardenfell.',
     'icon' => '/esoui/art/icons/achievement_morrowind_037.dds',
     'points' => 5,
-    'index' => 10,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -52375,7 +52717,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all 18 Skyshards in Vvardenfell.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 10,
-    'index' => 11,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -52488,291 +52830,875 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2021 => 
+  3121 => 
   array (
-    'id' => 2021,
-    'name' => 'Hlaalu Style Master',
-    'desc' => 'Learn every chapter in the Hlaalu style book, found by stealing from civilians\' homes and pockets in Morrowind.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'id' => 3121,
+    'name' => 'Ascending Tide Delver',
+    'desc' => 'Complete both Coral Aerie and Shipwright\'s Regret in Veteran.',
+    'icon' => '/esoui/art/icons/u33_pkg_both_vet_complete.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Coral Aerie Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Shipwright\'s Regret Conqueror',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'dyeName' => 'Drowned Cobalt',
+    'dyeColor' => '032d03',
+  ),
+  3110 => 
+  array (
+    'id' => 3110,
+    'name' => 'Coral Aerie Challenger',
+    'desc' => 'Complete the listed achievements for Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_meta.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Coral Aerie Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Superior Pedigree',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Shellback',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Aerie Glider',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3105 => 
+  array (
+    'id' => 3105,
+    'name' => 'Coral Aerie Conqueror',
+    'desc' => 'Defeat Maligalig, Sarydil, and Varallion in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_vet_bosses.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Maligalig',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Sarydil',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Varallion',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/memento_chillingdevice.dds',
+    'collectName' => 'Guardian\'s Frozen Shard',
+    'collectId' => '10247',
+  ),
+  3102 => 
+  array (
+    'id' => 3102,
+    'name' => 'Yaghra Slayer',
+    'desc' => 'Defeat 200 yaghra in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_killmonstersa.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Yaghra Slain',
+        'value' => 200,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3103 => 
+  array (
+    'id' => 3103,
+    'name' => 'Gryphon Slayer',
+    'desc' => 'Defeat 50 gryphons in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_killmonstersb.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Gryphons Slain',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3106 => 
+  array (
+    'id' => 3106,
+    'name' => 'Crustacean Cracker',
+    'desc' => 'Defeat Maligalig after placing the Challenge Banner in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_hard_mode_b1.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Maligalig after placing the Challenge Banner.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3225 => 
+  array (
+    'id' => 3225,
+    'name' => 'Not the Sharpest Knife',
+    'desc' => 'Defeat Sarydil after placing the Challenge Banner in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_hard_mode_b2.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Sarydil after placing the Challenge Banner.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3153 => 
+  array (
+    'id' => 3153,
+    'name' => 'Superior Pedigree',
+    'desc' => 'Defeat Varallion after placing the Challenge Banner in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_hard_mode_final.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Varallion after placing the Challenge Banner.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Gryphon Handler',
+  ),
+  3226 => 
+  array (
+    'id' => 3226,
+    'name' => 'Tentacless Triumph',
+    'desc' => 'Defeat Maligalig, Sarydil, and Varallion after placing the Challenge Banner and without gaining the benefits of any Covenants in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_hard_mode_meta.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Tentacless Triumph',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Aerie Ascender',
+  ),
+  3107 => 
+  array (
+    'id' => 3107,
+    'name' => 'Aerie Glider',
+    'desc' => 'Defeat all encounters in addition to Maligalig, Sarydil, and Varallion within 25 minutes of entering Veteran Coral Aerie. Your timer starts upon engaging the first group of enemies.',
+    'icon' => '/esoui/art/icons/u33_dun1_speed_challenge.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Aerie Glider',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3108 => 
+  array (
+    'id' => 3108,
+    'name' => 'Shellback',
+    'desc' => 'Defeat all encounters in addition to Maligalig, Sarydil, and Varallion in Veteran Coral Aerie without suffering a group member death.',
+    'icon' => '/esoui/art/icons/u33_dun1_death_challenge.dds',
+    'points' => 50,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Shellback',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3111 => 
+  array (
+    'id' => 3111,
+    'name' => 'Land, Air, and Sea Supremacy',
+    'desc' => 'Defeat all encounters in addition to Maligalig, Sarydil, and Varallion after placing the Challenge Banner in Veteran Coral Aerie within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
+    'icon' => '/esoui/art/icons/u33_dun1_perfectnonmeta.dds',
     'points' => 50,
     'index' => 12,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn the Hlaalu Style for Axes',
+        'name' => 'Land, Air, and Sea Supremacy',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Hlaalu Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
     ),
+    'title' => 'Coral Caretaker',
   ),
-  2022 => 
+  3123 => 
   array (
-    'id' => 2022,
-    'name' => 'Redoran Style Master',
-    'desc' => 'Learn every chapter in the Redoran style book, found by stealing from civilians\' homes and pockets in Morrowind.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
+    'id' => 3123,
+    'name' => 'Pressure Front',
+    'desc' => 'Defeat Maligalig without allowing a Storm Front to persist for more than five seconds during the fight in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavora.dds',
+    'points' => 10,
     'index' => 13,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn the Redoran Style for Axes',
+        'name' => 'Pressure Front',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
-      array (
-        'name' => 'Learn the Redoran Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Redoran Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Redoran Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Redoran Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Redoran Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Redoran Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Redoran Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Redoran Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Redoran Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Redoran Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Redoran Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Redoran Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Redoran Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
     ),
   ),
-  2023 => 
+  3125 => 
   array (
-    'id' => 2023,
-    'name' => 'Telvanni Style Master',
-    'desc' => 'Learn every chapter in the Telvanni style book, found by stealing from civilians\' homes and pockets in Morrowind.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
+    'id' => 3125,
+    'name' => 'Summerset Preservation Society',
+    'desc' => 'Defeat Sarydil without allowing her to break any of the stone pillars lining the room in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavorc.dds',
+    'points' => 10,
     'index' => 14,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Axes',
+        'name' => 'Summerset Preservation Society',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3126 => 
+  array (
+    'id' => 3126,
+    'name' => 'Splash Fighter Supreme',
+    'desc' => 'Destroy two or more Sea Orbs within five seconds during the battle with Varallion in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavord.dds',
+    'points' => 10,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Splash Fighter Supreme',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3127 => 
+  array (
+    'id' => 3127,
+    'name' => 'Tentacular Tenderizer',
+    'desc' => 'Strike enemies with tendrils 250 times as a group in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavore.dds',
+    'points' => 10,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enemies Struck',
+        'value' => 250,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3128 => 
+  array (
+    'id' => 3128,
+    'name' => 'Globule Gobbler',
+    'desc' => 'Collect 30 Alchemical Globules in Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavorf.dds',
+    'points' => 10,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Collect Alchemical Globules',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3231 => 
+  array (
+    'id' => 3231,
+    'name' => 'Time Served',
+    'desc' => 'Find and release the prisoner in the depths of Veteran Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_bonus_boss.dds',
+    'points' => 10,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Prisoner Released',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3119 => 
+  array (
+    'id' => 3119,
+    'name' => 'Shipwright\'s Regret Challenger',
+    'desc' => 'Complete the listed achievements for Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_meta.dds',
+    'points' => 50,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Shipwright\'s Regret Conqueror',
         'value' => 1,
         'index' => 1,
       ),
       2 => 
       array (
-        'name' => 'Learn the Telvanni Style for Belts',
+        'name' => 'Shove Off',
         'value' => 1,
         'index' => 2,
       ),
       3 => 
       array (
-        'name' => 'Learn the Telvanni Style for Boots',
+        'name' => 'In Shipshape',
         'value' => 1,
         'index' => 3,
       ),
       4 => 
       array (
-        'name' => 'Learn the Telvanni Style for Bows',
+        'name' => 'Shipyard Sprint',
         'value' => 1,
         'index' => 4,
       ),
-      5 => 
+    ),
+  ),
+  3115 => 
+  array (
+    'id' => 3115,
+    'name' => 'Shipwright\'s Regret Conqueror',
+    'desc' => 'Defeat Foreman Bradiggan, Nazaray, and Captain Numirril in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_vet_bosses.dds',
+    'points' => 10,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Chests',
+        'name' => 'Defeat Foreman Bradiggan',
         'value' => 1,
-        'index' => 5,
+        'index' => 1,
       ),
-      6 => 
+      2 => 
       array (
-        'name' => 'Learn the Telvanni Style for Daggers',
+        'name' => 'Defeat Nazaray',
         'value' => 1,
-        'index' => 6,
+        'index' => 2,
       ),
-      7 => 
+      3 => 
       array (
-        'name' => 'Learn the Telvanni Style for Gloves',
+        'name' => 'Defeat Captain Numirril',
         'value' => 1,
-        'index' => 7,
+        'index' => 3,
       ),
-      8 => 
+    ),
+    'collectIcon' => '/esoui/art/icons/mrk_abyssalembrace.dds',
+    'collectName' => 'Abyssal Embrace Body Markings',
+    'collectId' => '9426',
+  ),
+  3112 => 
+  array (
+    'id' => 3112,
+    'name' => 'Maormer Slayer',
+    'desc' => 'Defeat 200 Maormer in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_killmonstersb.dds',
+    'points' => 10,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Helmets',
-        'value' => 1,
-        'index' => 8,
+        'name' => 'Maormer Slain',
+        'value' => 200,
+        'index' => 1,
       ),
-      9 => 
+    ),
+  ),
+  3113 => 
+  array (
+    'id' => 3113,
+    'name' => 'Lurcher Slayer',
+    'desc' => 'Defeat 50 Lurchers in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_killmonstersa.dds',
+    'points' => 10,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Legs',
-        'value' => 1,
-        'index' => 9,
+        'name' => 'Lurcher Slain',
+        'value' => 50,
+        'index' => 1,
       ),
-      10 => 
+    ),
+  ),
+  3116 => 
+  array (
+    'id' => 3116,
+    'name' => 'Collective Bludgeoning',
+    'desc' => 'Defeat Foreman Bradiggan after placing the Challenge Banner in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_hard_mode_b1.dds',
+    'points' => 50,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Maces',
+        'name' => 'Defeat Foreman Bradiggan after placing the Challenge Banner.',
         'value' => 1,
-        'index' => 10,
+        'index' => 1,
       ),
-      11 => 
+    ),
+  ),
+  3223 => 
+  array (
+    'id' => 3223,
+    'name' => 'Scratching Post Mortem',
+    'desc' => 'Defeat Nazaray after placing the Challenge Banner in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_hard_mode_b2.dds',
+    'points' => 50,
+    'index' => 24,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Shields',
+        'name' => 'Defeat Nazaray after placing the Challenge Banner.',
         'value' => 1,
-        'index' => 11,
+        'index' => 1,
       ),
-      12 => 
+    ),
+  ),
+  3154 => 
+  array (
+    'id' => 3154,
+    'name' => 'Shove Off',
+    'desc' => 'Defeat Captain Numirril after placing the Challenge Banner in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_hard_mode_final.dds',
+    'points' => 50,
+    'index' => 25,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Shoulders',
+        'name' => 'Defeat Captain Numirril after placing the Challenge Banner.',
         'value' => 1,
-        'index' => 12,
+        'index' => 1,
       ),
-      13 => 
+    ),
+    'title' => 'Tide Turner',
+  ),
+  3224 => 
+  array (
+    'id' => 3224,
+    'name' => 'Sans Spirit Support',
+    'desc' => 'Defeat Foreman Bradiggan, Nazaray, and Captain Numirril after placing the Challenge Banner and without gaining the benefits of pacifying tormented spirits in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_hard_mode_meta.dds',
+    'points' => 50,
+    'index' => 26,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Staves',
+        'name' => 'Sans Spirit Support',
         'value' => 1,
-        'index' => 13,
+        'index' => 1,
       ),
-      14 => 
+    ),
+    'title' => 'Shipwright',
+  ),
+  3117 => 
+  array (
+    'id' => 3117,
+    'name' => 'Shipyard Sprint',
+    'desc' => 'Defeat all encounters in addition to Foreman Bradiggan, Nazaray, and Captain Numirril within 25 minutes of entering Shipwright\'s Regret. Your timer starts upon engaging the first group of enemies.',
+    'icon' => '/esoui/art/icons/u33_dun2_speed_challenge.dds',
+    'points' => 50,
+    'index' => 27,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Learn the Telvanni Style for Swords',
+        'name' => 'Shipyard Sprint',
         'value' => 1,
-        'index' => 14,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3118 => 
+  array (
+    'id' => 3118,
+    'name' => 'In Shipshape',
+    'desc' => 'Defeat all encounters in addition to Foreman Bradiggan, Nazaray, and Captain Numirril without suffering a group member death in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_death_challenge.dds',
+    'points' => 50,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'In Shipshape',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3120 => 
+  array (
+    'id' => 3120,
+    'name' => 'Zero Regrets',
+    'desc' => 'Defeat all encounters in addition to Foreman Bradiggan, Nazaray, and Captain Numirril after placing the Challenge Banner in Veteran Shipwright\'s Regret within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
+    'icon' => '/esoui/art/icons/u33_dun2_perfectnonmeta.dds',
+    'points' => 50,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Zero Regrets',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Privateer',
+  ),
+  3129 => 
+  array (
+    'id' => 3129,
+    'name' => 'Short Commute',
+    'desc' => 'Defeat Foreman Bradiggan after killing a ghost near a gravestone in each corner of the arena in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_flavora.dds',
+    'points' => 10,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Short Commute',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3130 => 
+  array (
+    'id' => 3130,
+    'name' => 'All-Weather Camper',
+    'desc' => 'Defeat Nazaray after avoiding taking damage from both Locust Rain and Liquidate in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_flavorb.dds',
+    'points' => 10,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'All-Weather Camper',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3131 => 
+  array (
+    'id' => 3131,
+    'name' => 'Soaked to the Gills',
+    'desc' => 'Become drenched three times in one encounter while fighting Captain Numirril in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_flavorc.dds',
+    'points' => 10,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Soaked to the Gills',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3132 => 
+  array (
+    'id' => 3132,
+    'name' => 'Safe Harbor',
+    'desc' => 'Defeat Captain Numirril with fewer than 10 Bilepools in the arena in Veteran Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_flavord.dds',
+    'points' => 10,
+    'index' => 33,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Safe Harbor',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3109 => 
+  array (
+    'id' => 3109,
+    'name' => 'Ascending Tide Explorer',
+    'desc' => 'Enter either Coral Aerie or Shipwright\'s Regret for the first time.',
+    'icon' => '/esoui/art/icons/u33_pkg_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Coral Aerie or Shipwright\'s Regret',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mrf_abyssalembrace.dds',
+    'collectName' => 'Abyssal Embrace Face Markings',
+    'collectId' => '9425',
+  ),
+  3122 => 
+  array (
+    'id' => 3122,
+    'name' => 'Ascending Tide Scout',
+    'desc' => 'Complete both Coral Aerie and Shipwright\'s Regret in Normal.',
+    'icon' => '/esoui/art/icons/u33_pkg_both_normal_complete.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Coral Aerie Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Shipwright\'s Regret Vanquisher',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3104 => 
+  array (
+    'id' => 3104,
+    'name' => 'Coral Aerie Vanquisher',
+    'desc' => 'Defeat Maligalig, Sarydil, and Varallion in Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_bosses.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Maligalig',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Sarydil',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Varallion',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3114 => 
+  array (
+    'id' => 3114,
+    'name' => 'Shipwright\'s Regret Vanquisher',
+    'desc' => 'Defeat Foreman Bradiggan, Nazaray, and Captain Numirril in Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_bosses.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Foreman Bradiggan',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Nazaray',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Captain Numirril',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3124 => 
+  array (
+    'id' => 3124,
+    'name' => 'Around and Around and Around',
+    'desc' => 'Travel two kilometers by Whirlpool during the battle with Maligalig in Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavorb.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Around and Around and Around',
+        'value' => 2000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3222 => 
+  array (
+    'id' => 3222,
+    'name' => 'Seafaring Sleuth',
+    'desc' => 'Complete secrets in both Coral Aerie and Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_secret_content_meta.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Coral Compact',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Final Farewell',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/memento_aquaticdevice_bubble.dds',
+    'collectName' => 'Maormer Ocean Pearl',
+    'collectId' => '10248',
+  ),
+  3230 => 
+  array (
+    'id' => 3230,
+    'name' => 'Coral Compact',
+    'desc' => 'Collect all Covenants available within Coral Aerie.',
+    'icon' => '/esoui/art/icons/u33_dun1_flavorg.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sword Covenant',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Staff Covenant',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Shield Covenant',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3134 => 
+  array (
+    'id' => 3134,
+    'name' => 'Final Farewell',
+    'desc' => 'Gain the benefits of pacifying all three tormented spirits within Shipwright\'s Regret.',
+    'icon' => '/esoui/art/icons/u33_dun2_flavorf.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Final Farewell',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -52957,7 +53883,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3142,
     'name' => 'Unmaker Unmaker',
-    'desc' => 'Defeat the Infernium Unmaker in the Den of the Unmaker',
+    'desc' => 'Defeat the Unmaker in the Den of the Unmaker.',
     'icon' => '/esoui/art/icons/achievement_u32_dl_groupboss1.dds',
     'points' => 10,
     'index' => 8,
@@ -52975,7 +53901,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3143,
     'name' => 'Scorpion Stomper',
-    'desc' => 'Defeat the Mantikora Taupezu Azzida in the Abomination Cradle',
+    'desc' => 'Defeat the Mantikora Taupezu Azzida in the Abomination Cradle.',
     'icon' => '/esoui/art/icons/achievement_u32_dl_groupboss2.dds',
     'points' => 10,
     'index' => 9,
@@ -53168,7 +54094,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3210,
     'name' => 'Rat Catcher',
-    'desc' => 'Complete the "Destruction Incarnate" quest in Fargrave',
+    'desc' => 'Complete the "Destruction Incarnate" quest in Fargrave.',
     'icon' => '/esoui/art/icons/achievement_u32_dl_mainquest_2.dds',
     'points' => 10,
     'index' => 2,
@@ -53425,7 +54351,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3218,
     'name' => 'Friend to the Kalmur',
-    'desc' => 'Complete the "Death Stalks the Weak" quest in the Deadlands',
+    'desc' => 'Complete the "Death Stalks the Weak" quest in the Deadlands.',
     'icon' => '/esoui/art/icons/achievement_u32_dl_quest_kithkalmur.dds',
     'points' => 10,
     'index' => 8,
@@ -53438,7 +54364,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
-    'title' => 'Ardent Hope',
+    'title' => 'Hope\'s Hero',
   ),
   3219 => 
   array (
@@ -53459,159 +54385,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'title' => 'The Wretched',
   ),
-  3145 => 
-  array (
-    'id' => 3145,
-    'name' => 'Hero of Fargrave',
-    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Fargrave.',
-    'icon' => '/esoui/art/icons/u32_pkg_both_normal_complete.dds',
-    'points' => 50,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Deadlands Master Explorer',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Against All Hope',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defender of the Deadlands',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Deadlands Grand Adventurer',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-    'dyeName' => 'Sunforge Patina',
-    'dyeColor' => 'daf671',
-    'title' => 'Hero of Fargrave',
-  ),
-  3205 => 
-  array (
-    'id' => 3205,
-    'name' => 'Hellfire and Brimstone',
-    'desc' => 'Find all of Sister Celdina\'s lectures in the Brandfire Reformatory.',
-    'icon' => '/esoui/art/icons/achievement_u32_flavor1_fireandbrimstone.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'First Lecture',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Second Lecture',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Third Lecture',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Fourth Lecture',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  3206 => 
-  array (
-    'id' => 3206,
-    'name' => 'Treat Yourself',
-    'desc' => 'Partake of all the services offered by the House of Whims.',
-    'icon' => '/esoui/art/icons/achievement_u32_flavor2_treatyourself.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Constrictions of Moath',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Golden Panacea',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Spiritual Lustration',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
-  3204 => 
-  array (
-    'id' => 3204,
-    'name' => 'The Grasp of the Stricture',
-    'desc' => 'Help the Grasp adjudicate a situation in Fargrave.',
-    'icon' => '/esoui/art/icons/achievement_u32_flavor3.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'The Grasp of the Stricture',
-        'value' => 3,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3207 => 
-  array (
-    'id' => 3207,
-    'name' => 'Keeping the Peace',
-    'desc' => 'Defeat all the bosses in the Shambles.',
-    'icon' => '/esoui/art/icons/achievement_u32_flavor4.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Boss Kezo',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Enzir of the Vanquished',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Shaermeta',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
   2999 => 
   array (
     'id' => 2999,
@@ -53619,7 +54392,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Ancient Daedric style book, occasionally found when digging for Antiquities.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -53712,10 +54485,10 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2959,
     'name' => 'House Hexos Style Master',
-    'desc' => 'Learn every chapter in the House Hexos style book, found through Group Boss Daily Quests in the Deadlands.',
+    'desc' => 'Learn every chapter in the House Hexos style book, found through Daily Delve Quests in the Deadlands.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -53804,6 +54577,237 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  3098 => 
+  array (
+    'id' => 3098,
+    'name' => 'Annihilarch\'s Style Master',
+    'desc' => 'Learn every chapter in the Annihilarch\'s Chosen style book, found in Deadlands Oblivion Portals.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Annihilarch\'s Chosen Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3220 => 
+  array (
+    'id' => 3220,
+    'name' => 'Fargrave Guardian Style Master',
+    'desc' => 'Learn every chapter in the Fargrave Guardian style book, acquired from Fargrave Group Boss Daily Quests.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Fargrave  Guardian Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3145 => 
+  array (
+    'id' => 3145,
+    'name' => 'Hero of Fargrave',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Fargrave.',
+    'icon' => '/esoui/art/icons/u32_pkg_both_normal_complete.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Deadlands Master Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Against All Hope',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defender of the Deadlands',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Deadlands Grand Adventurer',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'dyeName' => 'Sunforge Patina',
+    'dyeColor' => 'daf671',
+    'title' => 'Hero of Fargrave',
+  ),
   3140 => 
   array (
     'id' => 3140,
@@ -53811,7 +54815,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all 6 Skyshards in the Deadlands.',
     'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 10,
-    'index' => 8,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -53859,7 +54863,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in the Deadlands.',
     'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
-    'index' => 9,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -53933,6 +54937,120 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Ogrim Goonch (Foul)',
         'value' => 1,
         'index' => 12,
+      ),
+    ),
+  ),
+  3205 => 
+  array (
+    'id' => 3205,
+    'name' => 'Hellfire and Brimstone',
+    'desc' => 'Find all of Sister Celdina\'s lectures in the Brandfire Reformatory.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor1_fireandbrimstone.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'First Lecture',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Second Lecture',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Third Lecture',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Fourth Lecture',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3206 => 
+  array (
+    'id' => 3206,
+    'name' => 'Treat Yourself',
+    'desc' => 'Partake of all the services offered by the House of Whims.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor2_treatyourself.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Constrictions of Moath',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Golden Panacea',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Spiritual Lustration',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3204 => 
+  array (
+    'id' => 3204,
+    'name' => 'The Grasp of the Stricture',
+    'desc' => 'Help the Grasp adjudicate a situation in Fargrave.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor3.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The Grasp of the Stricture',
+        'value' => 3,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3207 => 
+  array (
+    'id' => 3207,
+    'name' => 'Keeping the Peace',
+    'desc' => 'Defeat all the bosses in the Shambles.',
+    'icon' => '/esoui/art/icons/achievement_u32_flavor4.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Boss Kezo',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Enzir of the Vanquished',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Shaermeta',
+        'value' => 1,
+        'index' => 3,
       ),
     ),
   ),
@@ -54566,288 +55684,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  3021 => 
-  array (
-    'id' => 3021,
-    'name' => 'Waking Flame Explorer',
-    'desc' => 'Enter either Red Petal Bastion or the Dread Cellar for the first time.',
-    'icon' => '/esoui/art/icons/u31_pkg_loyalty_reward.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Red Petal Bastion or the Dread Cellar',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/pet_daedriccollector.dds',
-    'collectName' => 'Scorion Pyreling',
-    'collectId' => '9409',
-  ),
-  3034 => 
-  array (
-    'id' => 3034,
-    'name' => 'Waking Flame Scout',
-    'desc' => 'Complete both Red Petal Bastion and the Dread Cellar in Normal.',
-    'icon' => '/esoui/art/icons/u31_pkg_both_normal_complete.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Red Petal Bastion Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'The Dread Cellar Vanquisher',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-  ),
-  3016 => 
-  array (
-    'id' => 3016,
-    'name' => 'Red Petal Bastion Vanquisher',
-    'desc' => 'Defeat Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen in Red Petal Bastion.',
-    'icon' => '/esoui/art/icons/achievement_u31_dun1_bosses.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Rogerain the Sly',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Eliam Merick, Ihudir, and Liramindrel',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Prior Thierric Sarazen',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
-  3026 => 
-  array (
-    'id' => 3026,
-    'name' => 'The Dread Cellar Vanquisher',
-    'desc' => 'Defeat the Scorion Broodlord, Cyronin Artellian, and the Magma Incarnate in the Dread Cellar.',
-    'icon' => '/esoui/art/icons/achievement_u31_dun2_bosses.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat the Scorion Broodlord',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Cyronin Artellian',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat the Magma Incarnate',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
-  3044 => 
-  array (
-    'id' => 3044,
-    'name' => 'Rest in Pieces',
-    'desc' => 'Destroy 200 Restless Dead as a group while fighting Cyronin Artellian in the Dread Cellar.',
-    'icon' => '/esoui/art/icons/achievement_u31_dun2_flavorc.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Restless Dead Destroyed',
-        'value' => 200,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3093 => 
-  array (
-    'id' => 3093,
-    'name' => 'Arcane Analyst',
-    'desc' => 'Complete secrets in both Red Petal Bastion and the Dread Cellar.',
-    'icon' => '/esoui/art/icons/achievement_u31_dun1_secret_content_meta.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Echoes of Wisdom',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Echoes of Life',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Echoes of Death',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Purgatory Purged',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'A Deadly Undertaking',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Warden Awarded',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/mrf_shatteredchivalry.dds',
-    'collectName' => 'Shattered Chivalry Face Tattoo',
-    'collectId' => '9531',
-  ),
-  3038 => 
-  array (
-    'id' => 3038,
-    'name' => 'Echoes of Wisdom',
-    'desc' => 'Enter and acquire the Crystal Animus Agea from the Goriseli Moraburo of Red Petal Bastion.',
-    'icon' => '/esoui/art/icons/u31_dun1_flavord.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Echoes of Wisdom',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3039 => 
-  array (
-    'id' => 3039,
-    'name' => 'Echoes of Life',
-    'desc' => 'Enter and acquire the Crystal Animus Anya from the Goriseli Moraburo of Red Petal Bastion.',
-    'icon' => '/esoui/art/icons/u31_dun1_flavore.dds',
-    'points' => 10,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Echoes of Life',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3040 => 
-  array (
-    'id' => 3040,
-    'name' => 'Echoes of Death',
-    'desc' => 'Enter and acquire the Crystal Animus Nagaia from the Goriseli Moraburo of Red Petal Bastion.',
-    'icon' => '/esoui/art/icons/u31_dun1_flavorf.dds',
-    'points' => 10,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Echoes of Death',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3090 => 
-  array (
-    'id' => 3090,
-    'name' => 'Purgatory Purged',
-    'desc' => 'Defeat the Purgator in battle and gain the ability to call upon it in the Dread Cellar.',
-    'icon' => '/esoui/art/icons/u31-dun2_flavor_g.dds',
-    'points' => 10,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Purgatory Purged',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3091 => 
-  array (
-    'id' => 3091,
-    'name' => 'A Deadly Undertaking',
-    'desc' => 'Defeat the Undertaker in battle and gain the ability to call upon it in the Dread Cellar.',
-    'icon' => '/esoui/art/icons/u31-dun2_flavor_h.dds',
-    'points' => 10,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'A Deadly Undertaking',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  3092 => 
-  array (
-    'id' => 3092,
-    'name' => 'Warden Awarded',
-    'desc' => 'Defeat the Grim Warden in battle and gain the ability to call upon it in the Dread Cellar.',
-    'icon' => '/esoui/art/icons/u31-dun2_flavor_i.dds',
-    'points' => 10,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Warden Awarded',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   3094 => 
   array (
     'id' => 3094,
@@ -54855,7 +55691,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Crimson Oath style book, occasionally found as rewards for completing the Dread Cellar dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 13,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -54951,7 +55787,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Silver Rose style book, occasionally found as rewards for completing the Red Petal Bastion dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 14,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -55037,6 +55873,288 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Silver Rose Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  3021 => 
+  array (
+    'id' => 3021,
+    'name' => 'Waking Flame Explorer',
+    'desc' => 'Enter either Red Petal Bastion or the Dread Cellar for the first time.',
+    'icon' => '/esoui/art/icons/u31_pkg_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Red Petal Bastion or the Dread Cellar',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/pet_daedriccollector.dds',
+    'collectName' => 'Scorion Pyreling',
+    'collectId' => '9409',
+  ),
+  3034 => 
+  array (
+    'id' => 3034,
+    'name' => 'Waking Flame Scout',
+    'desc' => 'Complete both Red Petal Bastion and the Dread Cellar in Normal.',
+    'icon' => '/esoui/art/icons/u31_pkg_both_normal_complete.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Red Petal Bastion Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'The Dread Cellar Vanquisher',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3016 => 
+  array (
+    'id' => 3016,
+    'name' => 'Red Petal Bastion Vanquisher',
+    'desc' => 'Defeat Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen in Red Petal Bastion.',
+    'icon' => '/esoui/art/icons/achievement_u31_dun1_bosses.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Rogerain the Sly',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Eliam Merick, Ihudir, and Liramindrel',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Prior Thierric Sarazen',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3026 => 
+  array (
+    'id' => 3026,
+    'name' => 'The Dread Cellar Vanquisher',
+    'desc' => 'Defeat the Scorion Broodlord, Cyronin Artellian, and the Magma Incarnate in the Dread Cellar.',
+    'icon' => '/esoui/art/icons/achievement_u31_dun2_bosses.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Scorion Broodlord',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Cyronin Artellian',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Magma Incarnate',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3044 => 
+  array (
+    'id' => 3044,
+    'name' => 'Rest in Pieces',
+    'desc' => 'Destroy 200 Restless Dead as a group while fighting Cyronin Artellian in the Dread Cellar.',
+    'icon' => '/esoui/art/icons/achievement_u31_dun2_flavorc.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Restless Dead Destroyed',
+        'value' => 200,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3093 => 
+  array (
+    'id' => 3093,
+    'name' => 'Arcane Analyst',
+    'desc' => 'Complete secrets in both Red Petal Bastion and the Dread Cellar.',
+    'icon' => '/esoui/art/icons/achievement_u31_dun1_secret_content_meta.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Echoes of Wisdom',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Echoes of Life',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Echoes of Death',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Purgatory Purged',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'A Deadly Undertaking',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Warden Awarded',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mrf_shatteredchivalry.dds',
+    'collectName' => 'Shattered Chivalry Face Tattoo',
+    'collectId' => '9531',
+  ),
+  3038 => 
+  array (
+    'id' => 3038,
+    'name' => 'Echoes of Wisdom',
+    'desc' => 'Enter and acquire the Crystal Animus Agea from the Goriseli Moraburo of Red Petal Bastion.',
+    'icon' => '/esoui/art/icons/u31_dun1_flavord.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Echoes of Wisdom',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3039 => 
+  array (
+    'id' => 3039,
+    'name' => 'Echoes of Life',
+    'desc' => 'Enter and acquire the Crystal Animus Anya from the Goriseli Moraburo of Red Petal Bastion.',
+    'icon' => '/esoui/art/icons/u31_dun1_flavore.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Echoes of Life',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3040 => 
+  array (
+    'id' => 3040,
+    'name' => 'Echoes of Death',
+    'desc' => 'Enter and acquire the Crystal Animus Nagaia from the Goriseli Moraburo of Red Petal Bastion.',
+    'icon' => '/esoui/art/icons/u31_dun1_flavorf.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Echoes of Death',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3090 => 
+  array (
+    'id' => 3090,
+    'name' => 'Purgatory Purged',
+    'desc' => 'Defeat the Purgator in battle and gain the ability to call upon it in the Dread Cellar.',
+    'icon' => '/esoui/art/icons/u31-dun2_flavor_g.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Purgatory Purged',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3091 => 
+  array (
+    'id' => 3091,
+    'name' => 'A Deadly Undertaking',
+    'desc' => 'Defeat the Undertaker in battle and gain the ability to call upon it in the Dread Cellar.',
+    'icon' => '/esoui/art/icons/u31-dun2_flavor_h.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'A Deadly Undertaking',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3092 => 
+  array (
+    'id' => 3092,
+    'name' => 'Warden Awarded',
+    'desc' => 'Defeat the Grim Warden in battle and gain the ability to call upon it in the Dread Cellar.',
+    'icon' => '/esoui/art/icons/u31-dun2_flavor_i.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Warden Awarded',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -55188,7 +56306,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'dyeName' => 'Scintillating Scarlet',
-    'dyeColor' => 'b1135',
+    'dyeColor' => 'b11305',
   ),
   2890 => 
   array (
@@ -55616,135 +56734,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2831 => 
-  array (
-    'id' => 2831,
-    'name' => 'Black Drake Villa Vanquisher',
-    'desc' => 'Defeat Kinras Ironeye, Captain Geminus, and Pyroturge Encratis in Black Drake Villa.',
-    'icon' => '/esoui/art/icons/achievement_u29_dun1_bosses.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Kinras Ironeye',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Captain Geminus',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Pyroturge Encratis',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
-  2884 => 
-  array (
-    'id' => 2884,
-    'name' => 'Bullseye!',
-    'desc' => 'Use a geyser to launch yourself into the eye of Pyroturge Encratis\'s Firestorm 5 times in Black Drake Villa.',
-    'icon' => '/esoui/art/icons/achievement_u29_dun1_flavori.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Bullseye!',
-        'value' => 5,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2889 => 
-  array (
-    'id' => 2889,
-    'name' => 'Daedric Demolitionist',
-    'desc' => 'Destroy 100 Molten Pillars using Lyranth\'s Cold-Flame Infusion synergy as a group in the Cauldron.',
-    'icon' => '/esoui/art/icons/achievement_u29_dun2_flavore.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Daedric Demolitionist',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2836 => 
-  array (
-    'id' => 2836,
-    'name' => 'Flames of Ambition Explorer',
-    'desc' => 'Enter either Black Drake Villa or the Cauldron for the first time.',
-    'icon' => '/esoui/art/icons/achievement_u29_pkg_loyalty_reward.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Black Drake Villa or the Cauldron',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/gear_fireforged_2hhammer_a.dds',
-    'collectName' => 'Fire-Forged Maul',
-    'collectId' => '8960',
-  ),
-  2841 => 
-  array (
-    'id' => 2841,
-    'name' => 'The Cauldron Vanquisher',
-    'desc' => 'Defeat Oxblood the Depraved, Taskmaster Viccia, the Molten Guardian; free Lyranth; and defeat Baron Zaudrus in the Cauldron.',
-    'icon' => '/esoui/art/icons/achievement_u29_dun2_bosses.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Oxblood the Depraved',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Taskmaster Viccia',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Molten Guardian',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Free Lyranth',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Baron Zaudrus',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
   2984 => 
   array (
     'id' => 2984,
@@ -55752,7 +56741,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the True-Sworn style book, found by defeating bosses in Black Drake Villa.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -55848,7 +56837,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Waking Flame style book, occasionally found as rewards for completing the Cauldron dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -55934,6 +56923,135 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Waking Flame Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  2831 => 
+  array (
+    'id' => 2831,
+    'name' => 'Black Drake Villa Vanquisher',
+    'desc' => 'Defeat Kinras Ironeye, Captain Geminus, and Pyroturge Encratis in Black Drake Villa.',
+    'icon' => '/esoui/art/icons/achievement_u29_dun1_bosses.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Kinras Ironeye',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Captain Geminus',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Pyroturge Encratis',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  2884 => 
+  array (
+    'id' => 2884,
+    'name' => 'Bullseye!',
+    'desc' => 'Use a geyser to launch yourself into the eye of Pyroturge Encratis\'s Firestorm 5 times in Black Drake Villa.',
+    'icon' => '/esoui/art/icons/achievement_u29_dun1_flavori.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bullseye!',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2889 => 
+  array (
+    'id' => 2889,
+    'name' => 'Daedric Demolitionist',
+    'desc' => 'Destroy 100 Molten Pillars using Lyranth\'s Cold-Flame Infusion synergy as a group in the Cauldron.',
+    'icon' => '/esoui/art/icons/achievement_u29_dun2_flavore.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Daedric Demolitionist',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2836 => 
+  array (
+    'id' => 2836,
+    'name' => 'Flames of Ambition Explorer',
+    'desc' => 'Enter either Black Drake Villa or the Cauldron for the first time.',
+    'icon' => '/esoui/art/icons/achievement_u29_pkg_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Black Drake Villa or the Cauldron',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/gear_fireforged_2hhammer_a.dds',
+    'collectName' => 'Fire-Forged Maul',
+    'collectId' => '8960',
+  ),
+  2841 => 
+  array (
+    'id' => 2841,
+    'name' => 'The Cauldron Vanquisher',
+    'desc' => 'Defeat Oxblood the Depraved, Taskmaster Viccia, the Molten Guardian; free Lyranth; and defeat Baron Zaudrus in the Cauldron.',
+    'icon' => '/esoui/art/icons/achievement_u29_dun2_bosses.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Oxblood the Depraved',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Taskmaster Viccia',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Molten Guardian',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Free Lyranth',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Baron Zaudrus',
+        'value' => 1,
+        'index' => 5,
       ),
     ),
   ),
@@ -57199,7 +58317,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'dyeName' => 'Void Pitch',
-    'dyeColor' => '000',
+    'dyeColor' => '000000',
   ),
   2924 => 
   array (
@@ -57297,24 +58415,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2929 => 
-  array (
-    'id' => 2929,
-    'name' => 'Markarth\'s Master Burglar',
-    'desc' => 'Steal the Luxurious Safebox from Vlindrel Hall.',
-    'icon' => '/esoui/art/icons/achievement_u28_safebox_flavor.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Markarth\'s Master Burglar',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   2926 => 
   array (
     'id' => 2926,
@@ -57322,7 +58422,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Nighthollow style book, acquired by completing Harrowstorm daily quests in the Reach.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -57411,88 +58511,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2927 => 
-  array (
-    'id' => 2927,
-    'name' => 'Red Eagle\'s Flight',
-    'desc' => 'Leap from the highest point in the Lost Valley Redoubt.',
-    'icon' => '/esoui/art/icons/achievement_u28_jump_flavor.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Took the Leap',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2928 => 
-  array (
-    'id' => 2928,
-    'name' => 'Saint Pelin\'s Avenger',
-    'desc' => 'Kill 100 Gray Host enemies in the Reach.',
-    'icon' => '/esoui/art/icons/achievement_u28_killcount_flavor.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Kill Gray Host Enemies',
-        'value' => 100,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Vanquisher of the Gray Host',
-  ),
-  2941 => 
-  array (
-    'id' => 2941,
-    'name' => 'Savior of the Reach',
-    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of the Reach.',
-    'icon' => '/esoui/art/icons/achievement_u28_zonemeta.dds',
-    'points' => 50,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reach Explorer',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Reach Cave Delver',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defender of the Reach',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'The Reach Grand Adventurer',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'A Bridge Between Kingdoms',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-    'dyeName' => 'Darkstorm Emerald',
-    'dyeColor' => '06042',
-    'title' => 'Guardian of the Reach',
-  ),
   2998 => 
   array (
     'id' => 2998,
@@ -57500,7 +58518,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Wayward Guardian style book, acquired by completing Wayward Guardian daily quests in the Reach.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -57589,138 +58607,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2857 => 
-  array (
-    'id' => 2857,
-    'name' => 'The Reach Skyshard Hunter',
-    'desc' => 'Discover all 6 Skyshards in the Reach and Blackreach: Arkthzand Cavern.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Hidden in the rubble of a Karthwasten canyon',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'At the brink of a timeworn aqueduct near Lost Valley Redoubt',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'On the lip of a broken bridge, north of Ghostlight Grotto',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Beneath Nighthollow Keep, obscured by a watery void',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'On an ancient stone overlook in Briar Rock Ruins',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Atop a massive rock, surrounded by eggs in Gloomreach',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-  ),
-  2861 => 
-  array (
-    'id' => 2861,
-    'name' => 'The Reach Master Angler',
-    'desc' => 'Catch all 12 rare fish in the Reach and Blackreach: Arkthzand Cavern.',
-    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
-    'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Druadach Garpike (Lake)',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Pinegilled Drum (Lake)',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Hagfin Vendace (Lake)',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Karth Crayfish (Lake)',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Blackreach Pilgrim (River)',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Lost Valley Tench (River)',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Fretfish (River)',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Nchuand Cavetrout (River)',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Briarthorn Goby (Foul)',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Leechtooth Eel (Foul)',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Muckbelly Frogfish (Foul)',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Siltwallow Burrfish (Foul)',
-        'value' => 1,
-        'index' => 12,
-      ),
-    ),
-  ),
   2905 => 
   array (
     'id' => 2905,
@@ -57728,7 +58614,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Ancestral Reach style book, occasionally found when digging for Antiquities.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -57824,7 +58710,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Arkthzand Armory style book, acquired by completing delve and group boss daily quests in the Reach.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -57913,192 +58799,235 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2704 => 
+  2929 => 
   array (
-    'id' => 2704,
-    'name' => 'Castle Thorn Vanquisher',
-    'desc' => 'Defeat Dread Tindulra, the Blood Twilight, Vaduroth, Talfyg, and Lady Thorn in Castle Thorn.',
-    'icon' => '/esoui/art/icons/achievement_u27_dun2_bosses.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Dread Tindulra',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Blood Twilight',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Vaduroth',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Talfyg',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Lady Thorn',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  2694 => 
-  array (
-    'id' => 2694,
-    'name' => 'Stone Garden Vanquisher',
-    'desc' => 'Defeat Exarch Kraglen, the Stone Behemoth, and Arkasis the Mad Alchemist in Stone Garden.',
-    'icon' => '/esoui/art/icons/achievement_u27_dun1_bosses.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Exarch Kraglen',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Stone Behemoth',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Arkasis the Mad Alchemist',
-        'value' => 1,
-        'index' => 3,
-      ),
-    ),
-  ),
-  2699 => 
-  array (
-    'id' => 2699,
-    'name' => 'Stonethorn Explorer',
-    'desc' => 'Enter either Stone Garden or Castle Thorn for the first time.',
-    'icon' => '/esoui/art/icons/achievement_u27_loyalty_reward.dds',
-    'points' => 5,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter either Stone Garden or Castle Thorn for the first time.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/pet_alchemistdwarvenspider.dds',
-    'collectName' => 'Energetic Dwarven Shock-Spider',
-    'collectId' => '8029',
-  ),
-  2862 => 
-  array (
-    'id' => 2862,
-    'name' => 'Stonethorn Scout',
-    'desc' => 'Complete both Castle Thorn and Stone Garden in Normal.',
-    'icon' => '/esoui/art/icons/achievement_u27_bothdunnormal.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Stone Garden Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Castle Thorn Vanquisher',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-  ),
-  2825 => 
-  array (
-    'id' => 2825,
-    'name' => 'Big Bad Wolf',
-    'desc' => 'Deal 100,000,000 damage as a Werewolf Behemoth in Stone Garden.',
-    'icon' => '/esoui/art/icons/achievement_u27_dun1_flavorf.dds',
+    'id' => 2929,
+    'name' => 'Markarth\'s Master Burglar',
+    'desc' => 'Steal the Luxurious Safebox from Vlindrel Hall.',
+    'icon' => '/esoui/art/icons/achievement_u28_safebox_flavor.dds',
     'points' => 10,
     'index' => 5,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Big Bad Wolf',
-        'value' => 100000000,
+        'name' => 'Markarth\'s Master Burglar',
+        'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  2810 => 
+  2927 => 
   array (
-    'id' => 2810,
-    'name' => 'Dig Deep',
-    'desc' => 'Dislodge 50 Shock Emitters before they explode while fighting Arkasis the Mad Alchemist in Stone Garden.',
-    'icon' => '/esoui/art/icons/achievement_u27_dun1_flavorc.dds',
+    'id' => 2927,
+    'name' => 'Red Eagle\'s Flight',
+    'desc' => 'Leap from the highest point in the Lost Valley Redoubt.',
+    'icon' => '/esoui/art/icons/achievement_u28_jump_flavor.dds',
     'points' => 10,
     'index' => 6,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Dig Deep',
-        'value' => 50,
+        'name' => 'Took the Leap',
+        'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  2826 => 
+  2928 => 
   array (
-    'id' => 2826,
-    'name' => 'Methodical Mixologist',
-    'desc' => 'Use Arkasis\'s alchemy equipment to gain the benefits of Alchemized Super Strength, Alchemized Super Vigor, and Alchemized Super Resilience and have all three active at the same time in Stone Garden.',
-    'icon' => '/esoui/art/icons/achievement_u27_dun1_flavorg.dds',
+    'id' => 2928,
+    'name' => 'Saint Pelin\'s Avenger',
+    'desc' => 'Kill 100 Gray Host enemies in the Reach.',
+    'icon' => '/esoui/art/icons/achievement_u28_killcount_flavor.dds',
     'points' => 10,
     'index' => 7,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Methodical Mixologist',
-        'value' => 1,
+        'name' => 'Kill Gray Host Enemies',
+        'value' => 100,
         'index' => 1,
       ),
     ),
+    'title' => 'Vanquisher of the Gray Host',
   ),
-  2814 => 
+  2941 => 
   array (
-    'id' => 2814,
-    'name' => 'Sickle Skills',
-    'desc' => 'Burst 70 corpses using any of Vaduroth\'s Sickles in Castle Thorn.',
-    'icon' => '/esoui/art/icons/achievement_u27_dun2_flavord.dds',
-    'points' => 10,
+    'id' => 2941,
+    'name' => 'Savior of the Reach',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Savior of the Reach.',
+    'icon' => '/esoui/art/icons/achievement_u28_zonemeta.dds',
+    'points' => 50,
     'index' => 8,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Sickle Skills',
-        'value' => 70,
+        'name' => 'Reach Explorer',
+        'value' => 1,
         'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reach Cave Delver',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defender of the Reach',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'The Reach Grand Adventurer',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'A Bridge Between Kingdoms',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+    'dyeName' => 'Darkstorm Emerald',
+    'dyeColor' => '006042',
+    'title' => 'Guardian of the Reach',
+  ),
+  2857 => 
+  array (
+    'id' => 2857,
+    'name' => 'The Reach Skyshard Hunter',
+    'desc' => 'Discover all 6 Skyshards in the Reach and Blackreach: Arkthzand Cavern.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hidden in the rubble of a Karthwasten canyon',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'At the brink of a timeworn aqueduct near Lost Valley Redoubt',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'On the lip of a broken bridge, north of Ghostlight Grotto',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Beneath Nighthollow Keep, obscured by a watery void',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'On an ancient stone overlook in Briar Rock Ruins',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Atop a massive rock, surrounded by eggs in Gloomreach',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  2861 => 
+  array (
+    'id' => 2861,
+    'name' => 'The Reach Master Angler',
+    'desc' => 'Catch all 12 rare fish in the Reach and Blackreach: Arkthzand Cavern.',
+    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
+    'points' => 5,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Druadach Garpike (Lake)',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Pinegilled Drum (Lake)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Hagfin Vendace (Lake)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Karth Crayfish (Lake)',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Blackreach Pilgrim (River)',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Lost Valley Tench (River)',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Fretfish (River)',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Nchuand Cavetrout (River)',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Briarthorn Goby (Foul)',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Leechtooth Eel (Foul)',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Muckbelly Frogfish (Foul)',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Siltwallow Burrfish (Foul)',
+        'value' => 1,
+        'index' => 12,
       ),
     ),
   ),
@@ -58109,7 +59038,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Hazardous Alchemy style book, occasionally found as rewards for completing the Stone Garden Dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -58205,7 +59134,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Thorn Legion style book, occasionally found as rewards for completing the Castle Thorn Dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -58291,6 +59220,195 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Thorn Legion Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  2704 => 
+  array (
+    'id' => 2704,
+    'name' => 'Castle Thorn Vanquisher',
+    'desc' => 'Defeat Dread Tindulra, the Blood Twilight, Vaduroth, Talfyg, and Lady Thorn in Castle Thorn.',
+    'icon' => '/esoui/art/icons/achievement_u27_dun2_bosses.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Dread Tindulra',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Blood Twilight',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Vaduroth',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Talfyg',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Lady Thorn',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2694 => 
+  array (
+    'id' => 2694,
+    'name' => 'Stone Garden Vanquisher',
+    'desc' => 'Defeat Exarch Kraglen, the Stone Behemoth, and Arkasis the Mad Alchemist in Stone Garden.',
+    'icon' => '/esoui/art/icons/achievement_u27_dun1_bosses.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Exarch Kraglen',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Stone Behemoth',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Arkasis the Mad Alchemist',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  2699 => 
+  array (
+    'id' => 2699,
+    'name' => 'Stonethorn Explorer',
+    'desc' => 'Enter either Stone Garden or Castle Thorn for the first time.',
+    'icon' => '/esoui/art/icons/achievement_u27_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter either Stone Garden or Castle Thorn for the first time.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/pet_alchemistdwarvenspider.dds',
+    'collectName' => 'Energetic Dwarven Shock-Spider',
+    'collectId' => '8029',
+  ),
+  2862 => 
+  array (
+    'id' => 2862,
+    'name' => 'Stonethorn Scout',
+    'desc' => 'Complete both Castle Thorn and Stone Garden in Normal.',
+    'icon' => '/esoui/art/icons/achievement_u27_bothdunnormal.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stone Garden Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Castle Thorn Vanquisher',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  2825 => 
+  array (
+    'id' => 2825,
+    'name' => 'Big Bad Wolf',
+    'desc' => 'Deal 100,000,000 damage as a Werewolf Behemoth in Stone Garden.',
+    'icon' => '/esoui/art/icons/achievement_u27_dun1_flavorf.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Big Bad Wolf',
+        'value' => 100000000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2810 => 
+  array (
+    'id' => 2810,
+    'name' => 'Dig Deep',
+    'desc' => 'Dislodge 50 Shock Emitters before they explode while fighting Arkasis the Mad Alchemist in Stone Garden.',
+    'icon' => '/esoui/art/icons/achievement_u27_dun1_flavorc.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dig Deep',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2826 => 
+  array (
+    'id' => 2826,
+    'name' => 'Methodical Mixologist',
+    'desc' => 'Use Arkasis\'s alchemy equipment to gain the benefits of Alchemized Super Strength, Alchemized Super Vigor, and Alchemized Super Resilience and have all three active at the same time in Stone Garden.',
+    'icon' => '/esoui/art/icons/achievement_u27_dun1_flavorg.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Methodical Mixologist',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2814 => 
+  array (
+    'id' => 2814,
+    'name' => 'Sickle Skills',
+    'desc' => 'Burst 70 corpses using any of Vaduroth\'s Sickles in Castle Thorn.',
+    'icon' => '/esoui/art/icons/achievement_u27_dun2_flavord.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Sickle Skills',
+        'value' => 70,
+        'index' => 1,
       ),
     ),
   ),
@@ -58888,27 +60006,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2544 => 
-  array (
-    'id' => 2544,
-    'name' => 'Harrowstorm Explorer',
-    'desc' => 'Enter either Icereach or Unhallowed Grave for the first time.',
-    'icon' => '/esoui/art/icons/achievement_u25_pkg_loyalty_reward.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Icereach or Unhallowed Grave',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/emote_wickerman.dds',
-    'collectName' => 'Wickerman Mishap',
-    'collectId' => '7391',
-  ),
   2747 => 
   array (
     'id' => 2747,
@@ -58916,7 +60013,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Icereach Coven style book, occasionally found as rewards for completing the Icereach dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -59012,7 +60109,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Pyre Watch style book, occasionally found as rewards for completing the Unhallowed Grave dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -59100,6 +60197,27 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 14,
       ),
     ),
+  ),
+  2544 => 
+  array (
+    'id' => 2544,
+    'name' => 'Harrowstorm Explorer',
+    'desc' => 'Enter either Icereach or Unhallowed Grave for the first time.',
+    'icon' => '/esoui/art/icons/achievement_u25_pkg_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Icereach or Unhallowed Grave',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/emote_wickerman.dds',
+    'collectName' => 'Wickerman Mishap',
+    'collectId' => '7391',
   ),
   2660 => 
   array (
@@ -59362,7 +60480,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'dyeName' => 'Frozen Blood',
-    'dyeColor' => '3153',
+    'dyeColor' => '310503',
   ),
   2545 => 
   array (
@@ -59667,7 +60785,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2554,
     'name' => 'Unhallowed Grave Challenger',
-    'desc' => 'Complete the listed achievements for Veteran Unhallowed Grave',
+    'desc' => 'Complete the listed achievements for Veteran Unhallowed Grave.',
     'icon' => '/esoui/art/icons/achievement_u25_dun2_meta.dds',
     'points' => 50,
     'index' => 16,
@@ -60703,79 +61821,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2656 => 
-  array (
-    'id' => 2656,
-    'name' => 'Draconic Minion Slayer',
-    'desc' => 'Kill 100 Undead Dragon Minions, 25 Storm Atronachs, and 25 Frost Atronachs while battling Dragons.',
-    'icon' => '/esoui/art/icons/achievement_u24_kill_dragon_minions.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Kill 100 Undead Dragon Minions',
-        'value' => 100,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Kill 25 Storm Atronachs',
-        'value' => 25,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Kill 25 Frost Atronachs',
-        'value' => 25,
-        'index' => 3,
-      ),
-    ),
-  ),
-  2623 => 
-  array (
-    'id' => 2623,
-    'name' => 'Hero of the Dragonguard',
-    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of the Dragonguard.',
-    'icon' => '/esoui/art/icons/achievement_u24_zonemeta.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Pieces of History',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Southern Elsweyr Master Explorer',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Pellitine\'s Pride and Joy',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defender of Pellitine',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Return of the Dragonguard',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-    'title' => 'Hero of the Dragonguard',
-  ),
   2748 => 
   array (
     'id' => 2748,
@@ -60783,7 +61828,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the New Moon Priest style book, found in the Dragonguard Supply Chest.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -60872,61 +61917,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2631 => 
-  array (
-    'id' => 2631,
-    'name' => 'Pellitine Dragon Killer',
-    'desc' => 'Kill 1 Dragon in the wilds of Southern Elsweyr.',
-    'icon' => '/esoui/art/icons/achievement_u24_worldboss_dragon1.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Pellitine Dragon Killer',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2636 => 
-  array (
-    'id' => 2636,
-    'name' => 'Pellitine Dragon Stalker',
-    'desc' => 'Kill 25 Dragons in the wilds of Southern Elsweyr.',
-    'icon' => '/esoui/art/icons/achievement_u24_worldboss_dragon2.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Pellitine Dragon Stalker',
-        'value' => 25,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2637 => 
-  array (
-    'id' => 2637,
-    'name' => 'Pellitine Dragon Hunter',
-    'desc' => 'Kill 50 Dragons in the wilds of Southern Elsweyr.',
-    'icon' => '/esoui/art/icons/achievement_u24_worldboss_dragon3.dds',
-    'points' => 15,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Pellitine Dragon Hunter',
-        'value' => 50,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Dragonslayer',
-  ),
   2750 => 
   array (
     'id' => 2750,
@@ -60934,7 +61924,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Shield of Senchal style book, found by completing daily quests for Bruccius Baenius or Guybert Flaubert.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 5,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -61023,225 +62013,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2534 => 
-  array (
-    'id' => 2534,
-    'name' => 'Pieces of History',
-    'desc' => 'Gather pieces of the priceless Khajiit tapestry, Khajiit of the Moons, to honor its history and inspire the citizens of Senchal.',
-    'icon' => '/esoui/art/icons/achievement_u24_museum_tapestry.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Nishzo\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Amaffi\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Oranu\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Magpie\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Bufasa\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Seleiz\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Hiijar\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Grastia\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Dancer\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Farro\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Kesta\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Jarro\'s Tapestry Piece',
-        'value' => 1,
-        'index' => 12,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/housing_els_inc_housingsetapestryframemural001.dds',
-    'collectName' => 'Khajiit of the Moons Replica',
-    'collectId' => '7323',
-  ),
-  2562 => 
-  array (
-    'id' => 2562,
-    'name' => 'Southern Elsweyr Skyshard Hunter',
-    'desc' => 'Discover all 6 Skyshards in Southern Elsweyr.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Overlooking the coast, southeast of Doomstone Keep',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Lurking inside a burned ruin in west Senchal',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Where water falls in the Western Plains',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Where falling water meets the natural arch east of Black Heights',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Across a rope bridge in Moonlit Cove',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Within the lower tunnels of the Forsaken Citadel',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-  ),
-  2566 => 
-  array (
-    'id' => 2566,
-    'name' => 'Pellitine Master Angler',
-    'desc' => 'Catch all 12 rare fish in Southern Elsweyr.',
-    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
-    'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Fresh-water Sardinella (River)',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Senchal River Perch (River)',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Roh-ri (River)',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Shaveskin Darter (River)',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Pellitine Tilapia (Foul)',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Radhin Zhab (Foul)',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Fif Cat (Foul)',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Ruin Sucker (Foul)',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Zha\'ja Roh (Salt)',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Pellitine Horse Mackerel (Salt)',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Wedgefish (Salt)',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Khaj\'Roh (Salt)',
-        'value' => 1,
-        'index' => 12,
-      ),
-    ),
-  ),
   2630 => 
   array (
     'id' => 2630,
@@ -61249,7 +62020,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Dragonguard style book, occasionally found as rewards for completing Dragonguard Daily Quests from Dirge Truptor and Chizbari the Chipper in Southern Elsweyr.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -61338,225 +62109,350 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2420 => 
+  2656 => 
   array (
-    'id' => 2420,
-    'name' => 'Scalebreaker Explorer',
-    'desc' => 'Enter either Moongrave Fane or Lair of Maarselok for the first time.',
-    'icon' => '/esoui/art/icons/achievement_u23_scalebreakerexplorer.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Moongrave Fane or Lair of Maarselok',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/gear_dragonhuntert2_helmet_b.dds',
-    'collectName' => 'Dread-Aurelian Mask',
-    'collectId' => '6800',
-  ),
-  2590 => 
-  array (
-    'id' => 2590,
-    'name' => 'Scalebreaker Scout',
-    'desc' => 'Complete both Lair of Maarselok and Moongrave Fane in Normal.',
-    'icon' => '/esoui/art/icons/achievement_u23_scalebreakerscout.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Lair of Maarselok Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Moongrave Fane Vanquisher',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/housing_els_duc_tablet002.dds',
-    'collectName' => 'Behold Khunzar-ri\'s Guile',
-    'collectId' => '6919',
-  ),
-  2415 => 
-  array (
-    'id' => 2415,
-    'name' => 'Moongrave Fane Vanquisher',
-    'desc' => 'Defeat the Risen Ruins, Dro\'zakar, the Kujo Kethba, Nisaazda, and Grundwulf in Moongrave Fane.',
-    'icon' => '/esoui/art/icons/achievement_u23_dun2_boss.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat the Risen Ruins',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Dro\'zakar',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat the Kujo Kethba',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Nisaazda',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Grundwulf',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  2577 => 
-  array (
-    'id' => 2577,
-    'name' => 'Blood Striker',
-    'desc' => 'Hit 150 enemies with Hemo Helots within Moongrave Fane.',
-    'icon' => '/esoui/art/icons/achievement_u23_qualifiedblooddonor.dds',
+    'id' => 2656,
+    'name' => 'Draconic Minion Slayer',
+    'desc' => 'Kill 100 Undead Dragon Minions, 25 Storm Atronachs, and 25 Frost Atronachs while battling Dragons.',
+    'icon' => '/esoui/art/icons/achievement_u24_kill_dragon_minions.dds',
     'points' => 10,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Blood Striker',
-        'value' => 150,
+        'name' => 'Kill 100 Undead Dragon Minions',
+        'value' => 100,
         'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Kill 25 Storm Atronachs',
+        'value' => 25,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Kill 25 Frost Atronachs',
+        'value' => 25,
+        'index' => 3,
       ),
     ),
   ),
-  2570 => 
+  2623 => 
   array (
-    'id' => 2570,
-    'name' => 'Bloody Kill',
-    'desc' => 'Defeat Dro\'zakar after smashing a Hemo Helot that he is consuming in Moongrave Fane.',
-    'icon' => '/esoui/art/icons/ability_u23_bloodball_chokeonit.dds',
-    'points' => 5,
+    'id' => 2623,
+    'name' => 'Hero of the Dragonguard',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of the Dragonguard.',
+    'icon' => '/esoui/art/icons/achievement_u24_zonemeta.dds',
+    'points' => 50,
     'index' => 5,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Bloody Kill',
+        'name' => 'Pieces of History',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Southern Elsweyr Master Explorer',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Pellitine\'s Pride and Joy',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defender of Pellitine',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Return of the Dragonguard',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+    'title' => 'Hero of the Dragonguard',
+  ),
+  2631 => 
+  array (
+    'id' => 2631,
+    'name' => 'Pellitine Dragon Killer',
+    'desc' => 'Kill 1 Dragon in the wilds of Southern Elsweyr.',
+    'icon' => '/esoui/art/icons/achievement_u24_worldboss_dragon1.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Pellitine Dragon Killer',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  2425 => 
+  2636 => 
   array (
-    'id' => 2425,
-    'name' => 'Lair of Maarselok Vanquisher',
-    'desc' => 'Defeat Selene, Maarselok in flight, the Azureblight Cancroid, Maarselok on his perch, and Maarselok in his roost in Lair of Maarselok.',
-    'icon' => '/esoui/art/icons/achievement_u23_dun1_boss.dds',
+    'id' => 2636,
+    'name' => 'Pellitine Dragon Stalker',
+    'desc' => 'Kill 25 Dragons in the wilds of Southern Elsweyr.',
+    'icon' => '/esoui/art/icons/achievement_u24_worldboss_dragon2.dds',
     'points' => 10,
     'index' => 6,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Defeat Selene',
-        'value' => 1,
+        'name' => 'Pellitine Dragon Stalker',
+        'value' => 25,
         'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Maarselok in Flight',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat the Azureblight Cancroid',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Maarselok on his Perch',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Maarselok in his Roost',
-        'value' => 1,
-        'index' => 5,
       ),
     ),
   ),
-  2576 => 
+  2637 => 
   array (
-    'id' => 2576,
-    'name' => 'Duck and Weave',
-    'desc' => 'Defeat Selene without taking damage from her Poison Bolts in Lair of Maarselok.',
-    'icon' => '/esoui/art/icons/achievement_u23_dun2_flavorboss1a.dds',
-    'points' => 10,
+    'id' => 2637,
+    'name' => 'Pellitine Dragon Hunter',
+    'desc' => 'Kill 50 Dragons in the wilds of Southern Elsweyr.',
+    'icon' => '/esoui/art/icons/achievement_u24_worldboss_dragon3.dds',
+    'points' => 15,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Pellitine Dragon Hunter',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Dragonslayer',
+  ),
+  2534 => 
+  array (
+    'id' => 2534,
+    'name' => 'Pieces of History',
+    'desc' => 'Gather pieces of the priceless Khajiit tapestry, Khajiit of the Moons, to honor its history and inspire the citizens of Senchal.',
+    'icon' => '/esoui/art/icons/achievement_u24_museum_tapestry.dds',
+    'points' => 50,
     'index' => 7,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Duck and Weave',
+        'name' => 'Nishzo\'s Tapestry Piece',
         'value' => 1,
         'index' => 1,
       ),
+      2 => 
+      array (
+        'name' => 'Amaffi\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Oranu\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Magpie\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Bufasa\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Seleiz\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Hiijar\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Grastia\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Dancer\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Farro\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Kesta\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Jarro\'s Tapestry Piece',
+        'value' => 1,
+        'index' => 12,
+      ),
     ),
+    'collectIcon' => '/esoui/art/icons/housing_els_inc_housingsetapestryframemural001.dds',
+    'collectName' => 'Khajiit of the Moons Replica',
+    'collectId' => '7323',
   ),
-  2578 => 
+  2562 => 
   array (
-    'id' => 2578,
-    'name' => 'Eyes to the Sky',
-    'desc' => 'Defeat Maarselok in flight without any member of your group being hit by his Blightbreath Strafe in Lair of Maarselok.',
-    'icon' => '/esoui/art/icons/achievement_u23_dun2_flavorboss2a.dds',
+    'id' => 2562,
+    'name' => 'Southern Elsweyr Skyshard Hunter',
+    'desc' => 'Discover all 6 Skyshards in Southern Elsweyr.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
     'points' => 10,
     'index' => 8,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Defeated Maarselok in Flight Without Being Hit By Strafe',
+        'name' => 'Overlooking the coast, southeast of Doomstone Keep',
         'value' => 1,
         'index' => 1,
       ),
+      2 => 
+      array (
+        'name' => 'Lurking inside a burned ruin in west Senchal',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Where water falls in the Western Plains',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Where falling water meets the natural arch east of Black Heights',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Across a rope bridge in Moonlit Cove',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Within the lower tunnels of the Forsaken Citadel',
+        'value' => 1,
+        'index' => 6,
+      ),
     ),
   ),
-  2580 => 
+  2566 => 
   array (
-    'id' => 2580,
-    'name' => 'Crop Rotation',
-    'desc' => 'Defeat the Azureblight Cancroid with a cleansed Seed of Corruption being picked up by every member of the group in Lair of Maarselok.',
-    'icon' => '/esoui/art/icons/achievement_u23_croprotation.dds',
+    'id' => 2566,
+    'name' => 'Pellitine Master Angler',
+    'desc' => 'Catch all 12 rare fish in Southern Elsweyr.',
+    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
     'index' => 9,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Crop Rotation',
+        'name' => 'Fresh-water Sardinella (River)',
         'value' => 1,
         'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Senchal River Perch (River)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Roh-ri (River)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Shaveskin Darter (River)',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Pellitine Tilapia (Foul)',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Radhin Zhab (Foul)',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Fif Cat (Foul)',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Ruin Sucker (Foul)',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Zha\'ja Roh (Salt)',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Pellitine Horse Mackerel (Salt)',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Wedgefish (Salt)',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Khaj\'Roh (Salt)',
+        'value' => 1,
+        'index' => 12,
       ),
     ),
   ),
@@ -61567,7 +62463,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Stags of Z\'en style book, found in the Lair of Maarselok dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -61663,7 +62559,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Moongrave style book, found in the Moongrave Fane dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 11,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -61752,6 +62648,228 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2420 => 
+  array (
+    'id' => 2420,
+    'name' => 'Scalebreaker Explorer',
+    'desc' => 'Enter either Moongrave Fane or Lair of Maarselok for the first time.',
+    'icon' => '/esoui/art/icons/achievement_u23_scalebreakerexplorer.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Moongrave Fane or Lair of Maarselok',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/gear_dragonhuntert2_helmet_b.dds',
+    'collectName' => 'Dread-Aurelian Mask',
+    'collectId' => '6800',
+  ),
+  2590 => 
+  array (
+    'id' => 2590,
+    'name' => 'Scalebreaker Scout',
+    'desc' => 'Complete both Lair of Maarselok and Moongrave Fane in Normal.',
+    'icon' => '/esoui/art/icons/achievement_u23_scalebreakerscout.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Lair of Maarselok Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Moongrave Fane Vanquisher',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/housing_els_duc_tablet002.dds',
+    'collectName' => 'Behold Khunzar-ri\'s Guile',
+    'collectId' => '6919',
+  ),
+  2415 => 
+  array (
+    'id' => 2415,
+    'name' => 'Moongrave Fane Vanquisher',
+    'desc' => 'Defeat the Risen Ruins, Dro\'zakar, the Kujo Kethba, Nisaazda, and Grundwulf in Moongrave Fane.',
+    'icon' => '/esoui/art/icons/achievement_u23_dun2_boss.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Risen Ruins',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Dro\'zakar',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Kujo Kethba',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Nisaazda',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Grundwulf',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2577 => 
+  array (
+    'id' => 2577,
+    'name' => 'Blood Striker',
+    'desc' => 'Hit 150 enemies with Hemo Helots within Moongrave Fane.',
+    'icon' => '/esoui/art/icons/achievement_u23_qualifiedblooddonor.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Blood Striker',
+        'value' => 150,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2570 => 
+  array (
+    'id' => 2570,
+    'name' => 'Bloody Kill',
+    'desc' => 'Defeat Dro\'zakar after smashing a Hemo Helot that he is consuming in Moongrave Fane.',
+    'icon' => '/esoui/art/icons/ability_u23_bloodball_chokeonit.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bloody Kill',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2425 => 
+  array (
+    'id' => 2425,
+    'name' => 'Lair of Maarselok Vanquisher',
+    'desc' => 'Defeat Selene, Maarselok in flight, the Azureblight Cancroid, Maarselok on his perch, and Maarselok in his roost in Lair of Maarselok.',
+    'icon' => '/esoui/art/icons/achievement_u23_dun1_boss.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Selene',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Maarselok in Flight',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Azureblight Cancroid',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Maarselok on his Perch',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Maarselok in his Roost',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2576 => 
+  array (
+    'id' => 2576,
+    'name' => 'Duck and Weave',
+    'desc' => 'Defeat Selene without taking damage from her Poison Bolts in Lair of Maarselok.',
+    'icon' => '/esoui/art/icons/achievement_u23_dun2_flavorboss1a.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Duck and Weave',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2578 => 
+  array (
+    'id' => 2578,
+    'name' => 'Eyes to the Sky',
+    'desc' => 'Defeat Maarselok in flight without any member of your group being hit by his Blightbreath Strafe in Lair of Maarselok.',
+    'icon' => '/esoui/art/icons/achievement_u23_dun2_flavorboss2a.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeated Maarselok in Flight Without Being Hit By Strafe',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2580 => 
+  array (
+    'id' => 2580,
+    'name' => 'Crop Rotation',
+    'desc' => 'Defeat the Azureblight Cancroid with a cleansed Seed of Corruption being picked up by every member of the group in Lair of Maarselok.',
+    'icon' => '/esoui/art/icons/achievement_u23_croprotation.dds',
+    'points' => 5,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Crop Rotation',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   2432 => 
   array (
     'id' => 2432,
@@ -61776,7 +62894,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'dyeName' => 'Hollowfang Cruor',
-    'dyeColor' => '3153',
+    'dyeColor' => '310503',
     'collectIcon' => '/esoui/art/icons/gear_dragonhuntert2_shoulder_b.dds',
     'collectName' => 'Dread-Aurelian Pauldrons',
     'collectId' => '6774',
@@ -62361,279 +63479,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2265 => 
-  array (
-    'id' => 2265,
-    'name' => 'Wrathstone Explorer',
-    'desc' => 'Enter either Frostvault or Depths of Malatar for the first time.',
-    'icon' => '/esoui/art/icons/achievement_wrathstone_explorer.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Frostvault or Depths of Malatar',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/hat_ayleidcrown_01.dds',
-    'collectName' => 'Ayleid Royal Crown',
-    'collectId' => '5911',
-  ),
-  2471 => 
-  array (
-    'id' => 2471,
-    'name' => 'Wrathstone Scout',
-    'desc' => 'Complete both Frostvault and Depths of Malatar in Normal.',
-    'icon' => '/esoui/art/icons/achievement_wrathstone_both_normal_complete.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Frostvault Vanquisher',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Depths of Malatar Vanquisher',
-        'value' => 1,
-        'index' => 2,
-      ),
-    ),
-  ),
-  2260 => 
-  array (
-    'id' => 2260,
-    'name' => 'Frostvault Vanquisher',
-    'desc' => 'Defeat Icestalker, Warlord Tzogvin, the Vault Protector, Rizzuk Bonechill, and the Stonekeeper in Frostvault.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_bosses.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Icestalker',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Warlord Tzogvin',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat the Vault Protector',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Rizzuk Bonechill',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat the Stonekeeper',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  2380 => 
-  array (
-    'id' => 2380,
-    'name' => 'Wild Walloping',
-    'desc' => 'Cause Icestalker to uppercut its allies during Frenzied Pummeling in Frostvault.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_1a.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Wild Walloping',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2381 => 
-  array (
-    'id' => 2381,
-    'name' => 'Running the Right Angles',
-    'desc' => 'Always dodge Warlord Tzogvin\'s Reckless Charges in Frostvault.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_2a.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Running the Right Angles',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2382 => 
-  array (
-    'id' => 2382,
-    'name' => 'Three Sheets to the Wind',
-    'desc' => 'Get Warlord Tzogvin to destroy all three of his banners with Raging Winds in Frostvault.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_2b.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Three Sheets to the Wind',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2383 => 
-  array (
-    'id' => 2383,
-    'name' => 'Collateral Damage',
-    'desc' => 'Destroy 20 of the Vault Protector\'s Constructs by detonating Volatile Spheres near them in Frostvault.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_3a.dds',
-    'points' => 10,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Collateral Damage',
-        'value' => 20,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2385 => 
-  array (
-    'id' => 2385,
-    'name' => 'Drop Testing',
-    'desc' => 'Knock 20 enemies off the Stonekeeper\'s platform in Frostvault.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_5a.dds',
-    'points' => 5,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Drop Testing',
-        'value' => 20,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2387 => 
-  array (
-    'id' => 2387,
-    'name' => 'Rat Race',
-    'desc' => 'Shut down the Stonekeeper\'s Extermination Protocol using Tharayya\'s skeevatons within 35 seconds of her summoning them in Frostvault. Timer begins at the start of her warning.',
-    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_5c.dds',
-    'points' => 10,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Rat Race',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2270 => 
-  array (
-    'id' => 2270,
-    'name' => 'Depths of Malatar Vanquisher',
-    'desc' => 'Defeat the Scavenging Maw, the Weeping Woman, the Dark Orb, King Narilmor, and the Symphony of Blades in Depths of Malatar.',
-    'icon' => '/esoui/art/icons/achievement_depthsofmalatar_bosses.dds',
-    'points' => 10,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat the Scavenging Maw',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Weeping Woman',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat the Dark Orb',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat King Narilmor',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat the Symphony of Blades',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  2391 => 
-  array (
-    'id' => 2391,
-    'name' => 'Soul Mates',
-    'desc' => 'Prevent Quintus from ever winning his deadlock with Tharayya during the battle with King Narilmor in Depths of Malatar.',
-    'icon' => '/esoui/art/icons/achievement_depthsofmalatar_flavor_boss_4a.dds',
-    'points' => 5,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Soul Mates',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2392 => 
-  array (
-    'id' => 2392,
-    'name' => 'Reaping Rainbow',
-    'desc' => 'Defeat each color of Auroran during the battle with the Symphony of Blades in Depths of Malatar.',
-    'icon' => '/esoui/art/icons/achievement_depthsofmalatar_flavor_boss_5a.dds',
-    'points' => 5,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Reaping Rainbow',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   2503 => 
   array (
     'id' => 2503,
@@ -62641,7 +63486,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Coldsnap style book, occasionally found as rewards for completing the Frostvault dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 13,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -62737,7 +63582,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Meridian style book, occasionally found as rewards for completing the Depths of Malatar dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 14,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -62823,6 +63668,279 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Meridian Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  2265 => 
+  array (
+    'id' => 2265,
+    'name' => 'Wrathstone Explorer',
+    'desc' => 'Enter either Frostvault or Depths of Malatar for the first time.',
+    'icon' => '/esoui/art/icons/achievement_wrathstone_explorer.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Frostvault or Depths of Malatar',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/hat_ayleidcrown_01.dds',
+    'collectName' => 'Ayleid Royal Crown',
+    'collectId' => '5911',
+  ),
+  2471 => 
+  array (
+    'id' => 2471,
+    'name' => 'Wrathstone Scout',
+    'desc' => 'Complete both Frostvault and Depths of Malatar in Normal.',
+    'icon' => '/esoui/art/icons/achievement_wrathstone_both_normal_complete.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Frostvault Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Depths of Malatar Vanquisher',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  2260 => 
+  array (
+    'id' => 2260,
+    'name' => 'Frostvault Vanquisher',
+    'desc' => 'Defeat Icestalker, Warlord Tzogvin, the Vault Protector, Rizzuk Bonechill, and the Stonekeeper in Frostvault.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_bosses.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Icestalker',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Warlord Tzogvin',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Vault Protector',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Rizzuk Bonechill',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat the Stonekeeper',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2380 => 
+  array (
+    'id' => 2380,
+    'name' => 'Wild Walloping',
+    'desc' => 'Cause Icestalker to uppercut its allies during Frenzied Pummeling in Frostvault.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_1a.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wild Walloping',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2381 => 
+  array (
+    'id' => 2381,
+    'name' => 'Running the Right Angles',
+    'desc' => 'Always dodge Warlord Tzogvin\'s Reckless Charges in Frostvault.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_2a.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Running the Right Angles',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2382 => 
+  array (
+    'id' => 2382,
+    'name' => 'Three Sheets to the Wind',
+    'desc' => 'Get Warlord Tzogvin to destroy all three of his banners with Raging Winds in Frostvault.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_2b.dds',
+    'points' => 5,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Three Sheets to the Wind',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2383 => 
+  array (
+    'id' => 2383,
+    'name' => 'Collateral Damage',
+    'desc' => 'Destroy 20 of the Vault Protector\'s Constructs by detonating Volatile Spheres near them in Frostvault.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_3a.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Collateral Damage',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2385 => 
+  array (
+    'id' => 2385,
+    'name' => 'Drop Testing',
+    'desc' => 'Knock 20 enemies off the Stonekeeper\'s platform in Frostvault.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_5a.dds',
+    'points' => 5,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Drop Testing',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2387 => 
+  array (
+    'id' => 2387,
+    'name' => 'Rat Race',
+    'desc' => 'Shut down the Stonekeeper\'s Extermination Protocol using Tharayya\'s skeevatons within 35 seconds of her summoning them in Frostvault. Timer begins at the start of her warning.',
+    'icon' => '/esoui/art/icons/achievement_frostvault_flavor_boss_5c.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rat Race',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2270 => 
+  array (
+    'id' => 2270,
+    'name' => 'Depths of Malatar Vanquisher',
+    'desc' => 'Defeat the Scavenging Maw, the Weeping Woman, the Dark Orb, King Narilmor, and the Symphony of Blades in Depths of Malatar.',
+    'icon' => '/esoui/art/icons/achievement_depthsofmalatar_bosses.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Scavenging Maw',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Weeping Woman',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Dark Orb',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat King Narilmor',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat the Symphony of Blades',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2391 => 
+  array (
+    'id' => 2391,
+    'name' => 'Soul Mates',
+    'desc' => 'Prevent Quintus from ever winning his deadlock with Tharayya during the battle with King Narilmor in Depths of Malatar.',
+    'icon' => '/esoui/art/icons/achievement_depthsofmalatar_flavor_boss_4a.dds',
+    'points' => 5,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Soul Mates',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2392 => 
+  array (
+    'id' => 2392,
+    'name' => 'Reaping Rainbow',
+    'desc' => 'Defeat each color of Auroran during the battle with the Symphony of Blades in Depths of Malatar.',
+    'icon' => '/esoui/art/icons/achievement_depthsofmalatar_flavor_boss_5a.dds',
+    'points' => 5,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reaping Rainbow',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -64210,332 +65328,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2362 => 
-  array (
-    'id' => 2362,
-    'name' => 'Blackrose Prison Vanquisher',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_normal.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Derelict Prison Yard',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Complete Hall of Beasts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Complete Vampire\'s Pen',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Complete Mess Hall of Misery',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Complete Drakeeh\'s Cage',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-    'dyeName' => 'Apricot Outrage',
-    'dyeColor' => '7524a',
-    'title' => 'Blackrose Condemner',
-  ),
-  2372 => 
-  array (
-    'id' => 2372,
-    'name' => 'A Thrilling Trifecta',
-    'desc' => 'Defeat Battlemage Ennodius, Lady Minara, and Tames-the-Beast within 20 seconds of each other in Veteran Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_boss_4.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Boss 4 all at once',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2367 => 
-  array (
-    'id' => 2367,
-    'name' => 'Blackrose Buccaneer',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison in under 40 minutes without dying. The timer starts when the first arena begins.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths_speed.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Blackrose Prison in under X minutes without dyi',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2363 => 
-  array (
-    'id' => 2363,
-    'name' => 'Blackrose Prison Conqueror',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_veteran.dds',
-    'points' => 50,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Derelict Prison Yard',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Complete Hall of Beasts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Complete Vampire\'s Pen',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Complete Mess Hall of Misery',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Complete Drakeeh\'s Cage',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-    'title' => 'Blackrose Executioner',
-    'collectIcon' => '/esoui/art/icons/skin_paleskin.dds',
-    'collectName' => 'Marshmist Palescale',
-    'collectId' => '5727',
-  ),
-  2376 => 
-  array (
-    'id' => 2376,
-    'name' => 'Cleansing the Damned',
-    'desc' => 'Have a single group member successfully absorb at least three of Drakeeh\'s targets during his Spirit Ignition ability and cleanse themselves without dying.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_extra_3.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Have a group member absorb all three of Drakeeh\'s targets',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2369 => 
-  array (
-    'id' => 2369,
-    'name' => 'Faster than Flames',
-    'desc' => 'Defeat Battlemage Ennodius without group members taking flame damage while her Flame Spouts ability is active in Veteran Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_boss_1.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Damage Avoided',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2366 => 
-  array (
-    'id' => 2366,
-    'name' => 'Gauntlet Gallop',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison in under 30 minutes. The timer starts when the first arena begins.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_speed.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Blackrose Prison in under X minutes',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2368 => 
-  array (
-    'id' => 2368,
-    'name' => 'God of the Gauntlet',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison in under 40 minutes without dying and without activating Sigils during combat. The timer starts when the first arena begins.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths_speed_no_powerups.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Blackrose Prison in under X minutes without dyi',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'The Unchained',
-  ),
-  2374 => 
-  array (
-    'id' => 2374,
-    'name' => 'Meteor Mayhem',
-    'desc' => 'Use Battlemage Ennodius\' Meteor ability to stun all four atronachs simultaneously in the first arena of Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_extra_1.dds',
-    'points' => 10,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Use Ennodius\'s meteors to stun all four atronachs simultaneously',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2370 => 
-  array (
-    'id' => 2370,
-    'name' => 'Rarely Rooted',
-    'desc' => 'Defeat Tames-the-Beast without a group member becoming trapped by the Crushing Roots ability in Veteran Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_boss_2.dds',
-    'points' => 10,
-    'index' => 10,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Boss 2 without rooting',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2375 => 
-  array (
-    'id' => 2375,
-    'name' => 'Rise of the Fallen',
-    'desc' => 'Use a Sigil of Resurrection in any arena to revive three other group members at once in Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_extra_2.dds',
-    'points' => 10,
-    'index' => 11,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Use a Sigil of Resurrection to revive 3 group members at once',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2364 => 
-  array (
-    'id' => 2364,
-    'name' => 'Sigil Stingy',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison without using Sigils during combat.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths_speed_no_powerups.dds',
-    'points' => 50,
-    'index' => 12,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Blackrose Prison without using Powerups',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2371 => 
-  array (
-    'id' => 2371,
-    'name' => 'Skeletal Summoning',
-    'desc' => 'Defeat Lady Minara after three Bone Colossi are summoned within 30 seconds of the round beginning in Veteran Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_boss_3.dds',
-    'points' => 10,
-    'index' => 13,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Boss 3 and 3 bone colossi',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2373 => 
-  array (
-    'id' => 2373,
-    'name' => 'Spirits Sundered',
-    'desc' => 'Defeat Drakeeh the Unchained while always ensuring he absorbs at least 2 spirits before casting Spirit Scream in Veteran Blackrose Prison.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_boss_5.dds',
-    'points' => 10,
-    'index' => 14,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Boss 5 allowing spirit absorption',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2365 => 
-  array (
-    'id' => 2365,
-    'name' => 'Unchained and Undying',
-    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison without dying.',
-    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths.dds',
-    'points' => 50,
-    'index' => 15,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Complete Veteran Blackrose Prison without dying',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   2359 => 
   array (
     'id' => 2359,
@@ -64543,7 +65335,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Honor Guard style book, occasionally found as rewards for completing Blackrose Prison.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 16,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -64632,325 +65424,329 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2340 => 
+  2362 => 
   array (
-    'id' => 2340,
-    'name' => 'The Festering Jewel',
-    'desc' => 'Travel to Lilmoth in Murkmire.',
-    'icon' => '/esoui/art/icons/achievement_murkmire_loyalty.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'The Festering Jewel',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/pet_hajmota_verdigris.dds',
-    'collectName' => 'Verdigris Haj Mota',
-    'collectId' => '5713',
-  ),
-  2331 => 
-  array (
-    'id' => 2331,
-    'name' => 'Hero of Murkmire',
-    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Murkmire.',
-    'icon' => '/esoui/art/icons/achievement_murkmire_hero.dds',
-    'points' => 50,
+    'id' => 2362,
+    'name' => 'Blackrose Prison Vanquisher',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_normal.dds',
+    'points' => 15,
     'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Murkmire Adventurer',
+        'name' => 'Complete Derelict Prison Yard',
         'value' => 1,
         'index' => 1,
       ),
       2 => 
       array (
-        'name' => 'Defender of Murkmire',
+        'name' => 'Complete Hall of Beasts',
         'value' => 1,
         'index' => 2,
       ),
       3 => 
       array (
-        'name' => 'Murkmire Pathfinder',
+        'name' => 'Complete Vampire\'s Pen',
         'value' => 1,
         'index' => 3,
       ),
       4 => 
       array (
-        'name' => 'The River of Rebirth',
+        'name' => 'Complete Mess Hall of Misery',
         'value' => 1,
         'index' => 4,
       ),
       5 => 
       array (
-        'name' => 'Murkmire Cave Delver',
+        'name' => 'Complete Drakeeh\'s Cage',
         'value' => 1,
         'index' => 5,
       ),
     ),
-    'title' => 'Hero of Murkmire',
-    'collectIcon' => '/esoui/art/icons/collectible_memento_dreamamuletofargon.dds',
-    'collectName' => 'Dream Amulet of Argon',
-    'collectId' => '5732',
+    'dyeName' => 'Apricot Outrage',
+    'dyeColor' => '75240a',
+    'title' => 'Blackrose Condemner',
   ),
-  2320 => 
+  2372 => 
   array (
-    'id' => 2320,
-    'name' => 'Chronic Chronologer',
-    'desc' => 'Collect and restore all the stone tablets in the Xinchei-Konu, an ancient Argonian calendar.',
-    'icon' => '/esoui/art/icons/achievement_murkmire_museum.dds',
-    'points' => 50,
+    'id' => 2372,
+    'name' => 'A Thrilling Trifecta',
+    'desc' => 'Defeat Battlemage Ennodius, Lady Minara, and Tames-the-Beast within 20 seconds of each other in Veteran Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_boss_4.dds',
+    'points' => 10,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Vakka Tablet',
+        'name' => 'Defeat Boss 4 all at once',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
-      array (
-        'name' => 'Xeech Tablet',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Sisei Tablet',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Hist-Deek Tablet',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Hist-Dooka Tablet',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Hist-Tsoko Tablet',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Thtithil-Gah Tablet',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Thtithil Tablet',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Nushmeeko Tablet',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Shaja-Nushmeeko Tablet',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Saxhleel Tablet',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Xulomaht Tablet',
-        'value' => 1,
-        'index' => 12,
-      ),
     ),
-    'collectIcon' => '/esoui/art/icons/housing_arg_run_floorcalendar001.dds',
-    'collectName' => 'Replica of the Xinchei-Konu',
-    'collectId' => '5930',
   ),
-  2321 => 
+  2367 => 
   array (
-    'id' => 2321,
-    'name' => 'Those Who Swallow Seasons',
-    'desc' => 'Defeat the four miregaunts who have swallowed Xinchei-Konu tablets.',
-    'icon' => '/esoui/art/icons/achievement_murkmire_hist_guardians.dds',
-    'points' => 10,
+    'id' => 2367,
+    'name' => 'Blackrose Buccaneer',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison in under 40 minutes without dying. The timer starts when the first arena begins.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths_speed.dds',
+    'points' => 50,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Defeat Swallows-the-Sun',
+        'name' => 'Complete Veteran Blackrose Prison in under X minutes without dyi',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
-      array (
-        'name' => 'Defeat Belly-of-Stone',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Roots-That-Stumble',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Breath-Like-Decay',
-        'value' => 1,
-        'index' => 4,
-      ),
     ),
   ),
-  2291 => 
+  2363 => 
   array (
-    'id' => 2291,
-    'name' => 'Murkmire Skyshard Hunter',
-    'desc' => 'Discover all 6 Skyshards in Murkmire.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
+    'id' => 2363,
+    'name' => 'Blackrose Prison Conqueror',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_veteran.dds',
+    'points' => 50,
     'index' => 5,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Atop the xanmeer between Lilmoth and Alten Meerhleel',
+        'name' => 'Complete Derelict Prison Yard',
         'value' => 1,
         'index' => 1,
       ),
       2 => 
       array (
-        'name' => 'Along the shore south of the Xinchei-Konu',
+        'name' => 'Complete Hall of Beasts',
         'value' => 1,
         'index' => 2,
       ),
       3 => 
       array (
-        'name' => 'Amidst the falls south of the Dominus Fatum',
+        'name' => 'Complete Vampire\'s Pen',
         'value' => 1,
         'index' => 3,
       ),
       4 => 
       array (
-        'name' => 'Beside the rotten hut north of Dead-Water Village',
+        'name' => 'Complete Mess Hall of Misery',
         'value' => 1,
         'index' => 4,
       ),
       5 => 
       array (
-        'name' => 'Deep in Tsofeer Cavern, far from any exit',
+        'name' => 'Complete Drakeeh\'s Cage',
         'value' => 1,
         'index' => 5,
       ),
-      6 => 
-      array (
-        'name' => 'Within the Teeth of Sithis atop the sunrise xanmeer',
-        'value' => 1,
-        'index' => 6,
-      ),
     ),
+    'title' => 'Blackrose Executioner',
+    'collectIcon' => '/esoui/art/icons/skin_paleskin.dds',
+    'collectName' => 'Marshmist Palescale',
+    'collectId' => '5727',
   ),
-  2295 => 
+  2376 => 
   array (
-    'id' => 2295,
-    'name' => 'Murkmire Master Angler',
-    'desc' => 'Catch all 12 rare fish in Murkmire.',
-    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
-    'points' => 5,
+    'id' => 2376,
+    'name' => 'Cleansing the Damned',
+    'desc' => 'Have a single group member successfully absorb at least three of Drakeeh\'s targets during his Spirit Ignition ability and cleanse themselves without dying.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_extra_3.dds',
+    'points' => 10,
     'index' => 6,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Bowfin (Lake)',
+        'name' => 'Have a group member absorb all three of Drakeeh\'s targets',
         'value' => 1,
         'index' => 1,
       ),
-      2 => 
+    ),
+  ),
+  2369 => 
+  array (
+    'id' => 2369,
+    'name' => 'Faster than Flames',
+    'desc' => 'Defeat Battlemage Ennodius without group members taking flame damage while her Flame Spouts ability is active in Veteran Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_boss_1.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Moist Scale Burrower (Lake)',
+        'name' => 'Damage Avoided',
         'value' => 1,
-        'index' => 2,
+        'index' => 1,
       ),
-      3 => 
+    ),
+  ),
+  2366 => 
+  array (
+    'id' => 2366,
+    'name' => 'Gauntlet Gallop',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison in under 30 minutes. The timer starts when the first arena begins.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_speed.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Redear Sunfish (Lake)',
+        'name' => 'Complete Veteran Blackrose Prison in under X minutes',
         'value' => 1,
-        'index' => 3,
+        'index' => 1,
       ),
-      4 => 
+    ),
+  ),
+  2368 => 
+  array (
+    'id' => 2368,
+    'name' => 'God of the Gauntlet',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison in under 40 minutes without dying and without activating Sigils during combat. The timer starts when the first arena begins.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths_speed_no_powerups.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Fat Sleeper (Salt)',
+        'name' => 'Complete Veteran Blackrose Prison in under X minutes without dyi',
         'value' => 1,
-        'index' => 4,
+        'index' => 1,
       ),
-      5 => 
+    ),
+    'title' => 'The Unchained',
+  ),
+  2374 => 
+  array (
+    'id' => 2374,
+    'name' => 'Meteor Mayhem',
+    'desc' => 'Use Battlemage Ennodius\' Meteor ability to stun all four atronachs simultaneously in the first arena of Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_extra_1.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Longlure Eelfin (Salt)',
+        'name' => 'Use Ennodius\'s meteors to stun all four atronachs simultaneously',
         'value' => 1,
-        'index' => 5,
+        'index' => 1,
       ),
-      6 => 
+    ),
+  ),
+  2370 => 
+  array (
+    'id' => 2370,
+    'name' => 'Rarely Rooted',
+    'desc' => 'Defeat Tames-the-Beast without a group member becoming trapped by the Crushing Roots ability in Veteran Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_boss_2.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Spotted Seatrout (Salt)',
+        'name' => 'Defeat Boss 2 without rooting',
         'value' => 1,
-        'index' => 6,
+        'index' => 1,
       ),
-      7 => 
+    ),
+  ),
+  2375 => 
+  array (
+    'id' => 2375,
+    'name' => 'Rise of the Fallen',
+    'desc' => 'Use a Sigil of Resurrection in any arena to revive three other group members at once in Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_extra_2.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Hist Sap Shiner (River)',
+        'name' => 'Use a Sigil of Resurrection to revive 3 group members at once',
         'value' => 1,
-        'index' => 7,
+        'index' => 1,
       ),
-      8 => 
+    ),
+  ),
+  2364 => 
+  array (
+    'id' => 2364,
+    'name' => 'Sigil Stingy',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison without using Sigils during combat.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths_speed_no_powerups.dds',
+    'points' => 50,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Kuuyicet (River)',
+        'name' => 'Complete Veteran Blackrose Prison without using Powerups',
         'value' => 1,
-        'index' => 8,
+        'index' => 1,
       ),
-      9 => 
+    ),
+  ),
+  2371 => 
+  array (
+    'id' => 2371,
+    'name' => 'Skeletal Summoning',
+    'desc' => 'Defeat Lady Minara after three Bone Colossi are summoned within 30 seconds of the round beginning in Veteran Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_boss_3.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Thick Scaled Mullet (River)',
+        'name' => 'Defeat Boss 3 and 3 bone colossi',
         'value' => 1,
-        'index' => 9,
+        'index' => 1,
       ),
-      10 => 
+    ),
+  ),
+  2373 => 
+  array (
+    'id' => 2373,
+    'name' => 'Spirits Sundered',
+    'desc' => 'Defeat Drakeeh the Unchained while always ensuring he absorbs at least 2 spirits before casting Spirit Scream in Veteran Blackrose Prison.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_boss_5.dds',
+    'points' => 10,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Ayotlchin (Foul)',
+        'name' => 'Defeat Boss 5 allowing spirit absorption',
         'value' => 1,
-        'index' => 10,
+        'index' => 1,
       ),
-      11 => 
+    ),
+  ),
+  2365 => 
+  array (
+    'id' => 2365,
+    'name' => 'Unchained and Undying',
+    'desc' => 'Defeat Battlemage Ennodius, Tames-the-Beast, Lady Minara, and Drakeeh the Unchained in Veteran Blackrose Prison without dying.',
+    'icon' => '/esoui/art/icons/achievement_blackrose_veteran_no_deaths.dds',
+    'points' => 50,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
       array (
-        'name' => 'Lined Sole (Foul)',
+        'name' => 'Complete Veteran Blackrose Prison without dying',
         'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Michinitl (Foul)',
-        'value' => 1,
-        'index' => 12,
+        'index' => 1,
       ),
     ),
   ),
@@ -64961,7 +65757,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Dead-Water style book, occasionally found as rewards for completing Daily Quests to defeat group bosses, explore delves in Murkmire, and help rebuild Root-Whisper Village.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -65057,7 +65853,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Elder Argonian style book, occasionally found as rewards for completing Daily Quests to defeat group bosses, explore delves in Murkmire, and help rebuild Root-Whisper Village.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -65146,213 +65942,325 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2157 => 
+  2340 => 
   array (
-    'id' => 2157,
-    'name' => 'Wolfhunter Explorer',
-    'desc' => 'Enter either Moon Hunter Keep or March of Sacrifices for the first time.',
-    'icon' => '/esoui/art/icons/wh_loyalty_reward.dds',
+    'id' => 2340,
+    'name' => 'The Festering Jewel',
+    'desc' => 'Travel to Lilmoth in Murkmire.',
+    'icon' => '/esoui/art/icons/achievement_murkmire_loyalty.dds',
     'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Wolfhunter Explorer',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/hat_helsing-vampire_03.dds',
-    'collectName' => 'Werewolf Hunter Hat',
-    'collectId' => '5235',
-  ),
-  2152 => 
-  array (
-    'id' => 2152,
-    'name' => 'Moon Hunter Keep Vanquisher',
-    'desc' => 'Defeat Jailer Melitus, Hedge Maze Guardian, Mylenne Moon-Caller, Archivist Ernarde, and Vykosa the Ascendant in Moon Hunter Keep.',
-    'icon' => '/esoui/art/icons/mh_bosses.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Jailer Melitus',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Hedge Maze Guardian',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Mylenne Moon-Caller',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Archivist Ernarde',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Vykosa the Ascendant',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  2298 => 
-  array (
-    'id' => 2298,
-    'name' => 'A Hulking Ally',
-    'desc' => 'Defeat Archivist Ernarde without killing his first Hulking Werewolf ally in Moon Hunter Keep.',
-    'icon' => '/esoui/art/icons/mh_no_hulk_death.dds',
-    'points' => 10,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'A Hulking Ally',
+        'name' => 'The Festering Jewel',
         'value' => 1,
         'index' => 1,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/pet_hajmota_verdigris.dds',
+    'collectName' => 'Verdigris Haj Mota',
+    'collectId' => '5713',
   ),
-  2299 => 
+  2331 => 
   array (
-    'id' => 2299,
-    'name' => 'Book Smarts',
-    'desc' => 'Defeat the Archivist without taking group member damage from Symbols of Xarxes in Moon Hunter Keep.',
-    'icon' => '/esoui/art/icons/mh_symbol_damage.dds',
-    'points' => 5,
+    'id' => 2331,
+    'name' => 'Hero of Murkmire',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Murkmire.',
+    'icon' => '/esoui/art/icons/achievement_murkmire_hero.dds',
+    'points' => 50,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Book Smarts',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  2162 => 
-  array (
-    'id' => 2162,
-    'name' => 'March of Sacrifices Vanquisher',
-    'desc' => 'Defeat the Wyrd Sisters, Aghaedh of the Solstice, Dagrund the Bulky, Tarcyr, and Balorgh in March of Sacrifices.',
-    'icon' => '/esoui/art/icons/mos_bosses.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat the Wyrd Sisters',
+        'name' => 'Murkmire Adventurer',
         'value' => 1,
         'index' => 1,
       ),
       2 => 
       array (
-        'name' => 'Defeat Aghaedh of the Solstice',
+        'name' => 'Defender of Murkmire',
         'value' => 1,
         'index' => 2,
       ),
       3 => 
       array (
-        'name' => 'Defeat Dagrund the Bulky',
+        'name' => 'Murkmire Pathfinder',
         'value' => 1,
         'index' => 3,
       ),
       4 => 
       array (
-        'name' => 'Defeat Tarcyr',
+        'name' => 'The River of Rebirth',
         'value' => 1,
         'index' => 4,
       ),
       5 => 
       array (
-        'name' => 'Defeat Balorgh',
+        'name' => 'Murkmire Cave Delver',
         'value' => 1,
         'index' => 5,
       ),
     ),
+    'title' => 'Hero of Murkmire',
+    'collectIcon' => '/esoui/art/icons/collectible_memento_dreamamuletofargon.dds',
+    'collectName' => 'Dream Amulet of Argon',
+    'collectId' => '5732',
   ),
-  2302 => 
+  2320 => 
   array (
-    'id' => 2302,
-    'name' => 'The Great Indrik Hunt',
-    'desc' => 'Complete all three Golden Indrik Hunts and gain their boons within March of Sacrifices.',
-    'icon' => '/esoui/art/icons/mos_indrik_hunt.dds',
-    'points' => 5,
-    'index' => 6,
+    'id' => 2320,
+    'name' => 'Chronic Chronologer',
+    'desc' => 'Collect and restore all the stone tablets in the Xinchei-Konu, an ancient Argonian calendar.',
+    'icon' => '/esoui/art/icons/achievement_murkmire_museum.dds',
+    'points' => 50,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Boon of Ferocity Obtained',
+        'name' => 'Vakka Tablet',
         'value' => 1,
         'index' => 1,
       ),
       2 => 
       array (
-        'name' => 'Boon of Prowling Obtained',
+        'name' => 'Xeech Tablet',
         'value' => 1,
         'index' => 2,
       ),
       3 => 
       array (
-        'name' => 'Boon of Hardiness Obtained',
+        'name' => 'Sisei Tablet',
         'value' => 1,
         'index' => 3,
       ),
+      4 => 
+      array (
+        'name' => 'Hist-Deek Tablet',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Hist-Dooka Tablet',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Hist-Tsoko Tablet',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Thtithil-Gah Tablet',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Thtithil Tablet',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Nushmeeko Tablet',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Shaja-Nushmeeko Tablet',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Saxhleel Tablet',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Xulomaht Tablet',
+        'value' => 1,
+        'index' => 12,
+      ),
     ),
-    'collectIcon' => '/esoui/art/icons/collectible_memento_werewolfbehemoth.dds',
-    'collectName' => 'Werewolf Behemoth Sigil',
-    'collectId' => '5242',
+    'collectIcon' => '/esoui/art/icons/housing_arg_run_floorcalendar001.dds',
+    'collectName' => 'Replica of the Xinchei-Konu',
+    'collectId' => '5930',
   ),
-  2306 => 
+  2321 => 
   array (
-    'id' => 2306,
-    'name' => 'Trick and Trap',
-    'desc' => 'Lead Balorgh into Tharas\' Trap 10 times in March of Sacrifices.',
-    'icon' => '/esoui/art/icons/mos_balorgh_trap.dds',
-    'points' => 5,
+    'id' => 2321,
+    'name' => 'Those Who Swallow Seasons',
+    'desc' => 'Defeat the four miregaunts who have swallowed Xinchei-Konu tablets.',
+    'icon' => '/esoui/art/icons/achievement_murkmire_hist_guardians.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Swallows-the-Sun',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Belly-of-Stone',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Roots-That-Stumble',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Breath-Like-Decay',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  2291 => 
+  array (
+    'id' => 2291,
+    'name' => 'Murkmire Skyshard Hunter',
+    'desc' => 'Discover all 6 Skyshards in Murkmire.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
     'index' => 7,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Trick and Trap',
-        'value' => 10,
+        'name' => 'Atop the xanmeer between Lilmoth and Alten Meerhleel',
+        'value' => 1,
         'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Along the shore south of the Xinchei-Konu',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Amidst the falls south of the Dominus Fatum',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Beside the rotten hut north of Dead-Water Village',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Deep in Tsofeer Cavern, far from any exit',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Within the Teeth of Sithis atop the sunrise xanmeer',
+        'value' => 1,
+        'index' => 6,
       ),
     ),
   ),
-  2307 => 
+  2295 => 
   array (
-    'id' => 2307,
-    'name' => 'Bloody Mess',
-    'desc' => 'Defeat Jailer Melitus without being damaged by Bloody Geysers in Moon Hunter Keep.',
-    'icon' => '/esoui/art/icons/mh_jailer_blood_pools.dds',
+    'id' => 2295,
+    'name' => 'Murkmire Master Angler',
+    'desc' => 'Catch all 12 rare fish in Murkmire.',
+    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
     'index' => 8,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Bloody Mess',
+        'name' => 'Bowfin (Lake)',
         'value' => 1,
         'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Moist Scale Burrower (Lake)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Redear Sunfish (Lake)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Fat Sleeper (Salt)',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Longlure Eelfin (Salt)',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Spotted Seatrout (Salt)',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Hist Sap Shiner (River)',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Kuuyicet (River)',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Thick Scaled Mullet (River)',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Ayotlchin (Foul)',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Lined Sole (Foul)',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Michinitl (Foul)',
+        'value' => 1,
+        'index' => 12,
       ),
     ),
   ),
@@ -65363,7 +66271,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Huntsman style book, occasionally found as rewards for completing the March of Sacrifices dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -65459,7 +66367,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Silver Dawn style book, occasionally found as rewards for completing the Moon Hunter Keep dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -65545,6 +66453,216 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Silver Dawn Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  2157 => 
+  array (
+    'id' => 2157,
+    'name' => 'Wolfhunter Explorer',
+    'desc' => 'Enter either Moon Hunter Keep or March of Sacrifices for the first time.',
+    'icon' => '/esoui/art/icons/wh_loyalty_reward.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wolfhunter Explorer',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/hat_helsing-vampire_03.dds',
+    'collectName' => 'Werewolf Hunter Hat',
+    'collectId' => '5235',
+  ),
+  2152 => 
+  array (
+    'id' => 2152,
+    'name' => 'Moon Hunter Keep Vanquisher',
+    'desc' => 'Defeat Jailer Melitus, Hedge Maze Guardian, Mylenne Moon-Caller, Archivist Ernarde, and Vykosa the Ascendant in Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/mh_bosses.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Jailer Melitus',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Hedge Maze Guardian',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Mylenne Moon-Caller',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Archivist Ernarde',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Vykosa the Ascendant',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2298 => 
+  array (
+    'id' => 2298,
+    'name' => 'A Hulking Ally',
+    'desc' => 'Defeat Archivist Ernarde without killing his first Hulking Werewolf ally in Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/mh_no_hulk_death.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'A Hulking Ally',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2299 => 
+  array (
+    'id' => 2299,
+    'name' => 'Book Smarts',
+    'desc' => 'Defeat the Archivist without taking group member damage from Symbols of Xarxes in Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/mh_symbol_damage.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Book Smarts',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2162 => 
+  array (
+    'id' => 2162,
+    'name' => 'March of Sacrifices Vanquisher',
+    'desc' => 'Defeat the Wyrd Sisters, Aghaedh of the Solstice, Dagrund the Bulky, Tarcyr, and Balorgh in March of Sacrifices.',
+    'icon' => '/esoui/art/icons/mos_bosses.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Wyrd Sisters',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Aghaedh of the Solstice',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Dagrund the Bulky',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Tarcyr',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Balorgh',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  2302 => 
+  array (
+    'id' => 2302,
+    'name' => 'The Great Indrik Hunt',
+    'desc' => 'Complete all three Golden Indrik Hunts and gain their boons within March of Sacrifices.',
+    'icon' => '/esoui/art/icons/mos_indrik_hunt.dds',
+    'points' => 5,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Boon of Ferocity Obtained',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Boon of Prowling Obtained',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Boon of Hardiness Obtained',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/collectible_memento_werewolfbehemoth.dds',
+    'collectName' => 'Werewolf Behemoth Sigil',
+    'collectId' => '5242',
+  ),
+  2306 => 
+  array (
+    'id' => 2306,
+    'name' => 'Trick and Trap',
+    'desc' => 'Lead Balorgh into Tharas\' Trap 10 times in March of Sacrifices.',
+    'icon' => '/esoui/art/icons/mos_balorgh_trap.dds',
+    'points' => 5,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Trick and Trap',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  2307 => 
+  array (
+    'id' => 2307,
+    'name' => 'Bloody Mess',
+    'desc' => 'Defeat Jailer Melitus without being damaged by Bloody Geysers in Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/mh_jailer_blood_pools.dds',
+    'points' => 5,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bloody Mess',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -66820,165 +67938,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  2104 => 
-  array (
-    'id' => 2104,
-    'name' => 'Dragon Bones Explorer',
-    'desc' => 'Enter either Fang Lair or Scalecaller Peak for the first time.',
-    'icon' => '/esoui/art/icons/achievement_loyalty_dragonbones.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Fang Lair or Scalecaller Peak',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/hat_fanglairhood_03.dds',
-    'collectName' => 'Renegade Dragon Priest Mask',
-    'collectId' => '4692',
-  ),
-  1959 => 
-  array (
-    'id' => 1959,
-    'name' => 'Fang Lair Vanquisher',
-    'desc' => 'Defeat Lizabet Charnis, the Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus, and Orryn the Black and Thurvokun in Fang Lair.',
-    'icon' => '/esoui/art/icons/achievement_fanglairpeak_normal.dds',
-    'points' => 5,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Lizabet Charnis',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Cadaverous Guar, Senche-Tiger, Dire Wolf, and Bear',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Caluurion',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Ulfnor and Sabina Cedus',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Orryn the Black and Thurvokun',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  1974 => 
-  array (
-    'id' => 1974,
-    'name' => 'Horrific Halitosis',
-    'desc' => 'When hit by Thurvokun\'s Plague Breath in Fang Lair, be under the protection of Yisareh\'s Life Ward while standing in direct contact with three other party members who also have Yisareh\'s Life Ward.',
-    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_hard.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Horrific Halitosis',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1975 => 
-  array (
-    'id' => 1975,
-    'name' => 'Scalecaller Peak Vanquisher',
-    'desc' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller in Scalecaller Peak.',
-    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_normal.dds',
-    'points' => 5,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Doylemish Ironheart',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Matriarch Aldis',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Plague Concocter Mortieu',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Zaan the Scalecaller',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  1985 => 
-  array (
-    'id' => 1985,
-    'name' => 'Scalecaller Savior',
-    'desc' => 'Collect both of the necessary ingredients and cure Jorvuld Davaux of the cult\'s plague.',
-    'icon' => '/esoui/art/icons/achievement_bossflavoreasy.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Scalecaller Savior',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1990 => 
-  array (
-    'id' => 1990,
-    'name' => 'Stand Your Ground',
-    'desc' => 'Defeat Zaan the Scalecaller without being knocked back by her shield.',
-    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_easy.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Stand Your Ground',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   2190 => 
   array (
     'id' => 2190,
@@ -66986,7 +67945,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Fang Lair style book, occasionally found as rewards for completing the Fang Lair dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -67082,7 +68041,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Scalecaller style book, occasionally found as rewards for completing the Scalecaller Peak dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -67168,6 +68127,165 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Scalecaller Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  2104 => 
+  array (
+    'id' => 2104,
+    'name' => 'Dragon Bones Explorer',
+    'desc' => 'Enter either Fang Lair or Scalecaller Peak for the first time.',
+    'icon' => '/esoui/art/icons/achievement_loyalty_dragonbones.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Fang Lair or Scalecaller Peak',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/hat_fanglairhood_03.dds',
+    'collectName' => 'Renegade Dragon Priest Mask',
+    'collectId' => '4692',
+  ),
+  1959 => 
+  array (
+    'id' => 1959,
+    'name' => 'Fang Lair Vanquisher',
+    'desc' => 'Defeat Lizabet Charnis, the Cadaverous Menagerie, Caluurion, Ulfnor and Sabina Cedus, and Orryn the Black and Thurvokun in Fang Lair.',
+    'icon' => '/esoui/art/icons/achievement_fanglairpeak_normal.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Lizabet Charnis',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Cadaverous Guar, Senche-Tiger, Dire Wolf, and Bear',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Caluurion',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Ulfnor and Sabina Cedus',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Orryn the Black and Thurvokun',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1974 => 
+  array (
+    'id' => 1974,
+    'name' => 'Horrific Halitosis',
+    'desc' => 'When hit by Thurvokun\'s Plague Breath in Fang Lair, be under the protection of Yisareh\'s Life Ward while standing in direct contact with three other party members who also have Yisareh\'s Life Ward.',
+    'icon' => '/esoui/art/icons/achievement_fanglairbossflavor_hard.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Horrific Halitosis',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1975 => 
+  array (
+    'id' => 1975,
+    'name' => 'Scalecaller Peak Vanquisher',
+    'desc' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling, Doylemish Ironheart, Matriarch Aldis, Plague Concocter Mortieu, and Zaan the Scalecaller in Scalecaller Peak.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_peak_normal.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Rinaerus the Rancid and Orzun the Foul-Smelling',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Doylemish Ironheart',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Matriarch Aldis',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Plague Concocter Mortieu',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Zaan the Scalecaller',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1985 => 
+  array (
+    'id' => 1985,
+    'name' => 'Scalecaller Savior',
+    'desc' => 'Collect both of the necessary ingredients and cure Jorvuld Davaux of the cult\'s plague.',
+    'icon' => '/esoui/art/icons/achievement_bossflavoreasy.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Scalecaller Savior',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1990 => 
+  array (
+    'id' => 1990,
+    'name' => 'Stand Your Ground',
+    'desc' => 'Defeat Zaan the Scalecaller without being knocked back by her shield.',
+    'icon' => '/esoui/art/icons/achievement_scalecaller_flavor_easy.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stand Your Ground',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -67953,301 +69071,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'title' => 'Saintly Savior',
   ),
-  2048 => 
-  array (
-    'id' => 2048,
-    'name' => 'Treasure of the Brass Fortress',
-    'desc' => 'Travel to the Brass Fortress in Clockwork City.',
-    'icon' => '/esoui/art/icons/achievement_update16_006.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Treasure of the Brass Fortress',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/pet_167.dds',
-    'collectName' => 'Scintillant Dovah-Fly',
-    'collectId' => '4659',
-  ),
-  2049 => 
-  array (
-    'id' => 2049,
-    'name' => 'Hero of Clockwork City',
-    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Clockwork City.',
-    'icon' => '/esoui/art/icons/achievement_update16_007.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Clockwork City Adventurer',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Clockwork City Defender',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Clockwork City Pathfinder',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'The Burden of Knowledge',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Clockwork City Cave Delver',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-    'title' => 'Hero of Clockwork City',
-    'collectIcon' => '/esoui/art/icons/collectible_memento_photooscillator.dds',
-    'collectName' => 'Umbral Projector',
-    'collectId' => '4663',
-  ),
-  1958 => 
-  array (
-    'id' => 1958,
-    'name' => 'Precursor Maker',
-    'desc' => 'Collect and install all of the parts necessary to reconstruct the Precursor factotum.',
-    'icon' => '/esoui/art/icons/achievement_update16_001.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Left Arm',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Right Arm',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Left Leg',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Right Leg',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Pelvis',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Chestpiece',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Spine',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Left Hand',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Right Hand',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Miniaturized Dynamo',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Integral of Calculus',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Integral of Introspection',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Integral of Reason',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Nullification Staff',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1844 => 
-  array (
-    'id' => 1844,
-    'name' => 'Clockwork City Skyshard Hunter',
-    'desc' => 'Discover all 6 Skyshards in the Clockwork City.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Beneath the drainage pipes along the river.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Soaking near a fluid pump north of the Pavilion of Artifice.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'By the collapsed pipes in the Mechanical Fundament.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'On the lip of the Skybridge.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'In a junction with three exits in the Halls of Regulation.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Amidst the wafts in the Shadow Cleft.',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-  ),
-  2027 => 
-  array (
-    'id' => 2027,
-    'name' => 'Clockwork City Master Angler',
-    'desc' => 'Catch all 12 rare fish in Clockwork City.',
-    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Barilzar\'s Grenadier (Oily)',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Ancestor Wrasse (Oily)',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Enmegalabzu (Oily)',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Orod (Oily)',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Whisper Knifefish (Oily)',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Coppery Cucumber (Oily)',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Verminous Catfish (Oily)',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Clicking Travally (Oily)',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Oil-eater Whalefish (Oily)',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Imperfect Blobfin (Oily)',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Operant Eel (Oily)',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Copperclaw Crayfish (Oily)',
-        'value' => 1,
-        'index' => 12,
-      ),
-    ),
-  ),
   2044 => 
   array (
     'id' => 2044,
@@ -68255,7 +69078,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Apostle style book, occasionally found as rewards for completing Brass Fortress Resupply daily quests, Clockwork City daily delve quests, and Clockwork City daily group boss quests.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -68351,7 +69174,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Ebonshadow style book, occasionally found as rewards for completing Blackfeather Court daily quests, Clockwork City daily delve quests, and Clockwork City daily group boss quests.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -68437,6 +69260,301 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Ebonshadow Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  2048 => 
+  array (
+    'id' => 2048,
+    'name' => 'Treasure of the Brass Fortress',
+    'desc' => 'Travel to the Brass Fortress in Clockwork City.',
+    'icon' => '/esoui/art/icons/achievement_update16_006.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Treasure of the Brass Fortress',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/pet_167.dds',
+    'collectName' => 'Scintillant Dovah-Fly',
+    'collectId' => '4659',
+  ),
+  2049 => 
+  array (
+    'id' => 2049,
+    'name' => 'Hero of Clockwork City',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Clockwork City.',
+    'icon' => '/esoui/art/icons/achievement_update16_007.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Clockwork City Adventurer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Clockwork City Defender',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Clockwork City Pathfinder',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'The Burden of Knowledge',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Clockwork City Cave Delver',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+    'title' => 'Hero of Clockwork City',
+    'collectIcon' => '/esoui/art/icons/collectible_memento_photooscillator.dds',
+    'collectName' => 'Umbral Projector',
+    'collectId' => '4663',
+  ),
+  1958 => 
+  array (
+    'id' => 1958,
+    'name' => 'Precursor Maker',
+    'desc' => 'Collect and install all of the parts necessary to reconstruct the Precursor factotum.',
+    'icon' => '/esoui/art/icons/achievement_update16_001.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Left Arm',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Right Arm',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Left Leg',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Right Leg',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Pelvis',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Chestpiece',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Spine',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Left Hand',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Right Hand',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Miniaturized Dynamo',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Integral of Calculus',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Integral of Introspection',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Integral of Reason',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Nullification Staff',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1844 => 
+  array (
+    'id' => 1844,
+    'name' => 'Clockwork City Skyshard Hunter',
+    'desc' => 'Discover all 6 Skyshards in the Clockwork City.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Beneath the drainage pipes along the river.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Soaking near a fluid pump north of the Pavilion of Artifice.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'By the collapsed pipes in the Mechanical Fundament.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'On the lip of the Skybridge.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'In a junction with three exits in the Halls of Regulation.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Amidst the wafts in the Shadow Cleft.',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  2027 => 
+  array (
+    'id' => 2027,
+    'name' => 'Clockwork City Master Angler',
+    'desc' => 'Catch all 12 rare fish in Clockwork City.',
+    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Barilzar\'s Grenadier (Oily)',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Ancestor Wrasse (Oily)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Enmegalabzu (Oily)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Orod (Oily)',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Whisper Knifefish (Oily)',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Coppery Cucumber (Oily)',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Verminous Catfish (Oily)',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Clicking Travally (Oily)',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Oil-eater Whalefish (Oily)',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Imperfect Blobfin (Oily)',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Operant Eel (Oily)',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Copperclaw Crayfish (Oily)',
+        'value' => 1,
+        'index' => 12,
       ),
     ),
   ),
@@ -69052,213 +70170,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1940 => 
-  array (
-    'id' => 1940,
-    'name' => 'Horns of the Reach Explorer',
-    'desc' => 'Enter either Falkreath Hold or Bloodroot Forge for the first time.',
-    'icon' => '/esoui/art/icons/achievement_update15_041.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Falkreath Hold or Bloodroot Forge',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/emote_bullhorns.dds',
-    'collectName' => 'Bull Horns',
-    'collectId' => '1334',
-  ),
-  1690 => 
-  array (
-    'id' => 1690,
-    'name' => 'Bloodroot Forge Vanquisher',
-    'desc' => 'Defeat Mathgamain, Caillaoife, Stoneheart, Galchobhar, Gherig Bullblood and his attendants, and the Earthgore Amalgam in Bloodroot Forge.',
-    'icon' => '/esoui/art/icons/achievement_update15_001.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Mathgamain',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Caillaoife',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Stoneheart',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Galchobhar',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Gherig Bullblood and His Attendants',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Defeat the Earthgore Amalgam',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-  ),
-  1697 => 
-  array (
-    'id' => 1697,
-    'name' => 'Blood, Sweat and Fire',
-    'desc' => 'Use the Stonefire Crucible to stun five targets and the Flameslake Cauldron to cool five lava pools within Bloodroot Forge.',
-    'icon' => '/esoui/art/icons/achievement_update15_024b.dds',
-    'points' => 5,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Stun Five Targets with the Stonefire Crucible',
-        'value' => 5,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Cool Five Lava Pools with the Flameslake Cauldron',
-        'value' => 5,
-        'index' => 2,
-      ),
-    ),
-  ),
-  1698 => 
-  array (
-    'id' => 1698,
-    'name' => 'Falkreath Hold Vanquisher',
-    'desc' => 'Defeat Morrigh Bullblood, the Siege Mammoth, Cernunnon, Deathlord Bjarfrud Skjoralmor, and Domihaus the Bloody-Horned in Falkreath Hold.',
-    'icon' => '/esoui/art/icons/achievement_update15_007.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Morrigh Bullblood',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Siege Mammoth',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Cernunnon',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Deathlord Bjarfrud Skjoralmor',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Domihaus the Bloody-Horned',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  1705 => 
-  array (
-    'id' => 1705,
-    'name' => 'Saluting the Honored Dead',
-    'desc' => 'Cleanse 1000 corpses in Falkreath Hold\'s Hall of the Dead on any difficulty.',
-    'icon' => '/esoui/art/icons/achievement_update15_026.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Saluting the Honored Dead',
-        'value' => 1000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1945 => 
-  array (
-    'id' => 1945,
-    'name' => 'War Chronicler',
-    'desc' => 'Discover the Urgent Missive, Unfinished Letter to Marika, In Reply to Concerning Rumors, and Epitaph of Bjarfrud Skjoralmor within Falkreath Hold.',
-    'icon' => '/esoui/art/icons/achievement_update15_027.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Urgent Missive',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Unfinished Letter to Marika',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'In Reply to Concerning Rumors',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Epitaph of Bjarfrud Skjoralmor',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1949 => 
-  array (
-    'id' => 1949,
-    'name' => 'Wild and Woolly',
-    'desc' => 'Defeat the Siege Mammoth in Falkreath Hold without being affected by an enemy stun, stagger, or knockback ability.',
-    'icon' => '/esoui/art/icons/achievement_update15_040.dds',
-    'points' => 5,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Wild and Woolly',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   2097 => 
   array (
     'id' => 2097,
@@ -69266,7 +70177,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Dreadhorn style book, occasionally found as rewards for completing the Falkreath Hold dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -69362,7 +70273,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Bloodforge style book, occasionally found as rewards for completing the Bloodroot Forge dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -69448,6 +70359,213 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Bloodforge Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  1940 => 
+  array (
+    'id' => 1940,
+    'name' => 'Horns of the Reach Explorer',
+    'desc' => 'Enter either Falkreath Hold or Bloodroot Forge for the first time.',
+    'icon' => '/esoui/art/icons/achievement_update15_041.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Falkreath Hold or Bloodroot Forge',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/emote_bullhorns.dds',
+    'collectName' => 'Bull Horns',
+    'collectId' => '1334',
+  ),
+  1690 => 
+  array (
+    'id' => 1690,
+    'name' => 'Bloodroot Forge Vanquisher',
+    'desc' => 'Defeat Mathgamain, Caillaoife, Stoneheart, Galchobhar, Gherig Bullblood and his attendants, and the Earthgore Amalgam in Bloodroot Forge.',
+    'icon' => '/esoui/art/icons/achievement_update15_001.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Mathgamain',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Caillaoife',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Stoneheart',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Galchobhar',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Gherig Bullblood and His Attendants',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Defeat the Earthgore Amalgam',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  1697 => 
+  array (
+    'id' => 1697,
+    'name' => 'Blood, Sweat, and Fire',
+    'desc' => 'Use the Stonefire Crucible to stun five targets and the Flameslake Cauldron to cool five lava pools within Bloodroot Forge.',
+    'icon' => '/esoui/art/icons/achievement_update15_024b.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stun Five Targets with the Stonefire Crucible',
+        'value' => 5,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Cool Five Lava Pools with the Flameslake Cauldron',
+        'value' => 5,
+        'index' => 2,
+      ),
+    ),
+  ),
+  1698 => 
+  array (
+    'id' => 1698,
+    'name' => 'Falkreath Hold Vanquisher',
+    'desc' => 'Defeat Morrigh Bullblood, the Siege Mammoth, Cernunnon, Deathlord Bjarfrud Skjoralmor, and Domihaus the Bloody-Horned in Falkreath Hold.',
+    'icon' => '/esoui/art/icons/achievement_update15_007.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Morrigh Bullblood',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Siege Mammoth',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Cernunnon',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Deathlord Bjarfrud Skjoralmor',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Domihaus the Bloody-Horned',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1705 => 
+  array (
+    'id' => 1705,
+    'name' => 'Saluting the Honored Dead',
+    'desc' => 'Cleanse 1000 corpses in Falkreath Hold\'s Hall of the Dead on any difficulty.',
+    'icon' => '/esoui/art/icons/achievement_update15_026.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Saluting the Honored Dead',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1945 => 
+  array (
+    'id' => 1945,
+    'name' => 'War Chronicler',
+    'desc' => 'Discover the Urgent Missive, Unfinished Letter to Marika, In Reply to Concerning Rumors, and Epitaph of Bjarfrud Skjoralmor within Falkreath Hold.',
+    'icon' => '/esoui/art/icons/achievement_update15_027.dds',
+    'points' => 5,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Urgent Missive',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Unfinished Letter to Marika',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'In Reply to Concerning Rumors',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Epitaph of Bjarfrud Skjoralmor',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1949 => 
+  array (
+    'id' => 1949,
+    'name' => 'Wild and Woolly',
+    'desc' => 'Defeat the Siege Mammoth in Falkreath Hold without being affected by an enemy stun, stagger, or knockback ability.',
+    'icon' => '/esoui/art/icons/achievement_update15_040.dds',
+    'points' => 5,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wild and Woolly',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -70028,159 +71146,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1520 => 
-  array (
-    'id' => 1520,
-    'name' => 'Shadows of the Hist Explorer',
-    'desc' => 'Enter either the Ruins of Mazzatun or the Cradle of Shadows for the first time.',
-    'icon' => '/esoui/art/icons/achievement_update11_dungeons_036.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Enter Ruins of Mazzatun or Cradle of Shadows.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/personality_heroic_01.dds',
-    'collectName' => 'Heroic',
-    'collectId' => '373',
-  ),
-  1522 => 
-  array (
-    'id' => 1522,
-    'name' => 'Cradle of Shadows Vanquisher',
-    'desc' => 'Defeat Sithera, Khephidaen the Spiderkith, the Votary of Velidreth, Dranos Velador, and Velidreth the Lady of Lace in the Cradle of Shadows.',
-    'icon' => '/esoui/art/icons/achievement_update11_dungeons_020.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Sithera',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat Khephidaen the Spiderkith',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat the Votary of Velidreth',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Dranos Velador',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Defeat Velidreth, the Lady of Lace',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  1536 => 
-  array (
-    'id' => 1536,
-    'name' => 'Venomous Evasion',
-    'desc' => 'Defeat Velidreth in Cradle of Shadows without any party members being hit by venom sacs.',
-    'icon' => '/esoui/art/icons/achievement_update11_dungeons_035.dds',
-    'points' => 10,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Velidreth without being hit by any of her spores.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1504 => 
-  array (
-    'id' => 1504,
-    'name' => 'Ruins of Mazzatun Vanquisher',
-    'desc' => 'Defeat Zatzu the Spine-Breaker, The Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in the Ruins of Mazzatun.',
-    'icon' => '/esoui/art/icons/achievement_update11_dungeons_004.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Defeat Zatzu the Spine-Breaker',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defeat the Mighty Chudan',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Defeat Xal-Nur the Slaver',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Defeat Tree-Minder Ka-Nesh',
-        'value' => 1,
-        'index' => 4,
-      ),
-    ),
-  ),
-  1512 => 
-  array (
-    'id' => 1512,
-    'name' => 'Mazzatun Massacre',
-    'desc' => 'Defeat Tree-Minder Na-Kesh after first eliminating all other enemies in Ruins of Mazzatun.',
-    'icon' => '/esoui/art/icons/achievement_update11_dungeons_011.dds',
-    'points' => 10,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Tree-Minder Ka-Nesh Slain Last',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1514 => 
-  array (
-    'id' => 1514,
-    'name' => 'Sapped Sludge Slingers',
-    'desc' => 'Complete Ruins of Mazzatun without ever allowing a Sludge Slinger to empower one of its allies with Amber Plasm.',
-    'icon' => '/esoui/art/icons/achievement_update11_dungeons_013.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Prevent all Sludge Slingers from buffing allies.',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   1795 => 
   array (
     'id' => 1795,
@@ -70188,7 +71153,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Mazzatun style book, occasionally found as rewards for completing the Ruins of Mazzatun dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -70284,7 +71249,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Silken Ring style book, occasionally found as rewards for completing the Cradle of Shadows dungeon.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -70370,6 +71335,159 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Silken Ring Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  1520 => 
+  array (
+    'id' => 1520,
+    'name' => 'Shadows of the Hist Explorer',
+    'desc' => 'Enter either the Ruins of Mazzatun or the Cradle of Shadows for the first time.',
+    'icon' => '/esoui/art/icons/achievement_update11_dungeons_036.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter Ruins of Mazzatun or Cradle of Shadows.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/personality_heroic_01.dds',
+    'collectName' => 'Heroic',
+    'collectId' => '373',
+  ),
+  1522 => 
+  array (
+    'id' => 1522,
+    'name' => 'Cradle of Shadows Vanquisher',
+    'desc' => 'Defeat Sithera, Khephidaen the Spiderkith, the Votary of Velidreth, Dranos Velador, and Velidreth the Lady of Lace in the Cradle of Shadows.',
+    'icon' => '/esoui/art/icons/achievement_update11_dungeons_020.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Sithera',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Khephidaen the Spiderkith',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Votary of Velidreth',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Dranos Velador',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Velidreth, the Lady of Lace',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1536 => 
+  array (
+    'id' => 1536,
+    'name' => 'Venomous Evasion',
+    'desc' => 'Defeat Velidreth in Cradle of Shadows without any party members being hit by venom sacs.',
+    'icon' => '/esoui/art/icons/achievement_update11_dungeons_035.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Velidreth without being hit by any of her spores.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1504 => 
+  array (
+    'id' => 1504,
+    'name' => 'Ruins of Mazzatun Vanquisher',
+    'desc' => 'Defeat Zatzu the Spine-Breaker, The Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in the Ruins of Mazzatun.',
+    'icon' => '/esoui/art/icons/achievement_update11_dungeons_004.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Zatzu the Spine-Breaker',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Mighty Chudan',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Xal-Nur the Slaver',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Tree-Minder Ka-Nesh',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  1512 => 
+  array (
+    'id' => 1512,
+    'name' => 'Mazzatun Massacre',
+    'desc' => 'Defeat Tree-Minder Na-Kesh after first eliminating all other enemies in Ruins of Mazzatun.',
+    'icon' => '/esoui/art/icons/achievement_update11_dungeons_011.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Tree-Minder Ka-Nesh Slain Last',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1514 => 
+  array (
+    'id' => 1514,
+    'name' => 'Sapped Sludge Slingers',
+    'desc' => 'Complete Ruins of Mazzatun without ever allowing a Sludge Slinger to empower one of its allies with Amber Plasm.',
+    'icon' => '/esoui/art/icons/achievement_update11_dungeons_013.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Prevent all Sludge Slingers from buffing allies.',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -71355,6 +72473,409 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  2524 => 
+  array (
+    'id' => 2524,
+    'name' => 'Dark Brotherhood Skill Master',
+    'desc' => 'Reach the max rank of the Dark Brotherhood Skill Line.',
+    'icon' => '/esoui/art/icons/achievement_u23_skillmaster_darkbrotherhood.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dark Brotherhood Skill Master',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Assassin',
+  ),
+  1424 => 
+  array (
+    'id' => 1424,
+    'name' => 'Assassins League Style Master',
+    'desc' => 'Learn every chapter in the Assassins League style book, found by defeating bosses in the Gold Coast.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Assassins League Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1661 => 
+  array (
+    'id' => 1661,
+    'name' => 'Dark Brotherhood Style Master',
+    'desc' => 'Learn every chapter in the Dark Brotherhood style book, often found in daily quest reward containers for fulfilling the Black Sacrament.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Dark Brotherhood Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1662 => 
+  array (
+    'id' => 1662,
+    'name' => 'Minotaur Style Master',
+    'desc' => 'Learn every chapter in the Minotaur style book, occasionally found in daily quest reward containers for resolving the disturbances at Tribune\'s Folly.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Minotaur Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1660 => 
+  array (
+    'id' => 1660,
+    'name' => 'Order of the Hour Style Master',
+    'desc' => 'Learn every chapter in the Order of the Hour style book, occasionally found in daily quest reward containers for successfully competing in the Kvatch Arena.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Order of the Hour Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   1421 => 
   array (
     'id' => 1421,
@@ -71362,7 +72883,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Visit the Gold Coast and take in the local scenery.',
     'icon' => '/esoui/art/icons/achievement_darkbrotherhood_041.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -71376,25 +72897,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'collectName' => 'Assassin',
     'collectId' => '374',
   ),
-  2524 => 
-  array (
-    'id' => 2524,
-    'name' => 'Dark Brotherhood Skill Master',
-    'desc' => 'Reach the max rank of the Dark Brotherhood Skill Line.',
-    'icon' => '/esoui/art/icons/achievement_u23_skillmaster_darkbrotherhood.dds',
-    'points' => 50,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dark Brotherhood Skill Master',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'title' => 'Assassin',
-  ),
   1434 => 
   array (
     'id' => 1434,
@@ -71402,7 +72904,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Bane of the Gold Coast.',
     'icon' => '/esoui/art/icons/achievement_darkbrotherhood_027.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -71448,7 +72950,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Execute all targets listed in the Litany of Blood and collect your reward.',
     'icon' => '/esoui/art/icons/achievement_darkbrotherhood_023.dds',
     'points' => 50,
-    'index' => 4,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -71560,7 +73062,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in the Gold Coast.',
     'icon' => '/esoui/art/icons/achievement_darkbrotherhood_002.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -71637,444 +73139,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1424 => 
-  array (
-    'id' => 1424,
-    'name' => 'Assassins League Style Master',
-    'desc' => 'Learn every chapter in the Assassins League style book, found by defeating bosses in the Gold Coast.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Assassins League Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1661 => 
-  array (
-    'id' => 1661,
-    'name' => 'Dark Brotherhood Style Master',
-    'desc' => 'Learn every chapter in the Dark Brotherhood style book, often found in daily quest reward containers for fulfilling the Black Sacrament.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Dark Brotherhood Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1662 => 
-  array (
-    'id' => 1662,
-    'name' => 'Minotaur Style Master',
-    'desc' => 'Learn every chapter in the Minotaur style book, occasionally found in daily quest reward containers for resolving the disturbances at Tribune\'s Folly.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Minotaur Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1660 => 
-  array (
-    'id' => 1660,
-    'name' => 'Order of the Hour Style Master',
-    'desc' => 'Learn every chapter in the Order of the Hour style book, occasionally found in daily quest reward containers for successfully competing in the Kvatch Arena.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 9,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Order of the Hour Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1395 => 
-  array (
-    'id' => 1395,
-    'name' => 'Finders Keepers',
-    'desc' => 'Discover and loot 1 Thieves Trove.',
-    'icon' => '/esoui/art/icons/achievement_thievesguild_008.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Finders Keepers',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1396 => 
-  array (
-    'id' => 1396,
-    'name' => 'An Eye For Details',
-    'desc' => 'Discover and loot 5 Thieves Troves.',
-    'icon' => '/esoui/art/icons/achievement_thievesguild_009.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'An Eye For Details',
-        'value' => 5,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1397 => 
-  array (
-    'id' => 1397,
-    'name' => 'Leave No Stash Behind',
-    'desc' => 'Discover and loot 15 Thieves Troves.',
-    'icon' => '/esoui/art/icons/achievement_thievesguild_010.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Leave No Stash Behind',
-        'value' => 15,
-        'index' => 1,
-      ),
-    ),
-  ),
   1359 => 
   array (
     'id' => 1359,
@@ -72082,7 +73146,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover and clear all caves and striking locales in Hew\'s Bane.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -72106,7 +73170,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover and clear both explorable caves in Hew\'s Bane.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
-    'index' => 3,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -72130,7 +73194,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Explore and clear Bahraha\'s Gloom.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -72148,7 +73212,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Explore and clear Shark\'s Teeth Grotto.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 5,
-    'index' => 5,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -72166,7 +73230,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat both Hew\'s Bane group bosses.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_023.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -72190,7 +73254,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill Syvarra of the Deep at Ko Estaran.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_021.dds',
     'points' => 10,
-    'index' => 7,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -72208,7 +73272,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill Captain Virindi Slave-Taker at Thrall Cove.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_022.dds',
     'points' => 10,
-    'index' => 8,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -72226,7 +73290,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Discover all of the striking locales in Hew\'s Bane.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_024.dds',
     'points' => 10,
-    'index' => 9,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -72262,7 +73326,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every rumor about the statue in the Thieves Den.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_006.dds',
     'points' => 5,
-    'index' => 10,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -72316,7 +73380,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Steal every treasure from Kari\'s Hit List and place them all within the Thieves Den.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_044.dds',
     'points' => 50,
-    'index' => 11,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -72356,7 +73420,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Steal the treasures on Kari\'s Hit List from every territory of the Aldmeri Dominion and place them in the Thieves Den.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_048.dds',
     'points' => 15,
-    'index' => 12,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -72398,7 +73462,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Steal the treasures on Kari\'s Hit List from every territory of the Daggerfall Covenant and place them in the Thieves Den.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_047.dds',
     'points' => 15,
-    'index' => 13,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -72440,7 +73504,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Steal the treasures on Kari\'s Hit List from every territory of the Ebonheart Pact and place them in the Thieves Den.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_046.dds',
     'points' => 15,
-    'index' => 14,
+    'index' => 13,
     'criteria' => 
     array (
       1 => 
@@ -72482,7 +73546,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Steal the treasure on Kari\'s Hit List from Abah\'s Landing and place it in the Thieves Den.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_045.dds',
     'points' => 15,
-    'index' => 15,
+    'index' => 14,
     'criteria' => 
     array (
       1 => 
@@ -72500,7 +73564,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete 1 heist for the Thieves Guild without being detected.',
     'icon' => '/esoui/art/icons/ability_rogue_065.dds',
     'points' => 10,
-    'index' => 16,
+    'index' => 15,
     'criteria' => 
     array (
       1 => 
@@ -72518,7 +73582,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Receive the highest possible reward in 5 heists for the Thieves Guild.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_020.dds',
     'points' => 15,
-    'index' => 17,
+    'index' => 16,
     'criteria' => 
     array (
       1 => 
@@ -72536,7 +73600,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Trespass in seven locked locations throughout Abah\'s Landing.',
     'icon' => '/esoui/art/icons/perks_theives_guild_004.dds',
     'points' => 5,
-    'index' => 18,
+    'index' => 17,
     'criteria' => 
     array (
       1 => 
@@ -72580,6 +73644,60 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'The Dreamsnake',
         'value' => 1,
         'index' => 7,
+      ),
+    ),
+  ),
+  1395 => 
+  array (
+    'id' => 1395,
+    'name' => 'Finders Keepers',
+    'desc' => 'Discover and loot 1 Thieves Trove.',
+    'icon' => '/esoui/art/icons/achievement_thievesguild_008.dds',
+    'points' => 5,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Finders Keepers',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1396 => 
+  array (
+    'id' => 1396,
+    'name' => 'An Eye For Details',
+    'desc' => 'Discover and loot 5 Thieves Troves.',
+    'icon' => '/esoui/art/icons/achievement_thievesguild_009.dds',
+    'points' => 10,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'An Eye For Details',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1397 => 
+  array (
+    'id' => 1397,
+    'name' => 'Leave No Stash Behind',
+    'desc' => 'Discover and loot 15 Thieves Troves.',
+    'icon' => '/esoui/art/icons/achievement_thievesguild_010.dds',
+    'points' => 15,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Leave No Stash Behind',
+        'value' => 15,
+        'index' => 1,
       ),
     ),
   ),
@@ -73423,27 +74541,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1413 => 
-  array (
-    'id' => 1413,
-    'name' => 'Spoils of Abah\'s Landing',
-    'desc' => 'Travel to the notorious free port of Abah\'s Landing!',
-    'icon' => '/esoui/art/icons/achievement_thievesguild_043.dds',
-    'points' => 5,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Spoils of Abah\'s Landing',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/pet_060.dds',
-    'collectName' => 'Jackal',
-    'collectId' => '360',
-  ),
   2523 => 
   array (
     'id' => 2523,
@@ -73451,7 +74548,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Reach the max rank of the Thieves Guild Skill Line.',
     'icon' => '/esoui/art/icons/achievement_u23_skillmaster_thievesguild.dds',
     'points' => 50,
-    'index' => 2,
+    'index' => 1,
     'criteria' => 
     array (
       1 => 
@@ -73463,180 +74560,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'title' => 'Scoundrel',
   ),
-  1365 => 
-  array (
-    'id' => 1365,
-    'name' => 'Hero of Hew\'s Bane',
-    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Hew\'s Bane.',
-    'icon' => '/esoui/art/icons/achievement_thievesguild_034.dds',
-    'points' => 50,
-    'index' => 3,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Hew\'s Bane Adventurer',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Defender of Hew\'s Bane',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Hew\'s Bane Pathfinder',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Prison Break',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Hew\'s Bane Cave Delver',
-        'value' => 1,
-        'index' => 5,
-      ),
-    ),
-  ),
-  1347 => 
-  array (
-    'id' => 1347,
-    'name' => 'Hew\'s Bane Skyshard Hunter',
-    'desc' => 'Find all 6 skyshards in Hew\'s Bane.',
-    'icon' => '/esoui/art/icons/ability_mage_050.dds',
-    'points' => 10,
-    'index' => 4,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'The bank\'s finest treasure.',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Near what is now Lost.',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'On the shoulder of the arch.',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Overlooking the home of the Deep.',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Necromancer\'s passage to the rafters.',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Highest point in the Grotto.',
-        'value' => 1,
-        'index' => 6,
-      ),
-    ),
-  ),
-  1351 => 
-  array (
-    'id' => 1351,
-    'name' => 'Hew\'s Bane Master Angler',
-    'desc' => 'Catch all 12 rare fish in Hew\'s Bane.',
-    'icon' => '/esoui/art/icons/achievement_thievesguild_025.dds',
-    'points' => 5,
-    'index' => 5,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Cichlid (Lake)',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Cherry Barb (Lake)',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Bala Shark (Lake)',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Sparking Anglermout (Salt)',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Crestfish (Salt)',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Begger Shark (Salt)',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Glass Catfish (River)',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Firemouth (River)',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Hew\'s Rasbora (River)',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Keuppia (Foul)',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Fringed Mudskipper (Foul)',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Daggertooth (Foul)',
-        'value' => 1,
-        'index' => 12,
-      ),
-    ),
-  ),
   1422 => 
   array (
     'id' => 1422,
@@ -73644,7 +74567,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Abah\'s Watch style book, found by completing Tip Board quests in the Thieves Guild.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 6,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -73740,7 +74663,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the dro-m\'Athra style book, found in weekly quest reward containers for sealing the Maw of Lorkhaj.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 7,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -73836,7 +74759,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Outlaw style book, found by defeating bosses in Hew\'s Bane.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -73932,7 +74855,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Thieves Guild style book, found by completing Heists in the Thieves Guild.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -74018,6 +74941,201 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Learn the Thieves Guild Style for Swords',
         'value' => 1,
         'index' => 14,
+      ),
+    ),
+  ),
+  1413 => 
+  array (
+    'id' => 1413,
+    'name' => 'Spoils of Abah\'s Landing',
+    'desc' => 'Travel to the notorious free port of Abah\'s Landing!',
+    'icon' => '/esoui/art/icons/achievement_thievesguild_043.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spoils of Abah\'s Landing',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/pet_060.dds',
+    'collectName' => 'Jackal',
+    'collectId' => '360',
+  ),
+  1365 => 
+  array (
+    'id' => 1365,
+    'name' => 'Hero of Hew\'s Bane',
+    'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Hew\'s Bane.',
+    'icon' => '/esoui/art/icons/achievement_thievesguild_034.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hew\'s Bane Adventurer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defender of Hew\'s Bane',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Hew\'s Bane Pathfinder',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Prison Break',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Hew\'s Bane Cave Delver',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  1347 => 
+  array (
+    'id' => 1347,
+    'name' => 'Hew\'s Bane Skyshard Hunter',
+    'desc' => 'Find all 6 skyshards in Hew\'s Bane.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'The bank\'s finest treasure.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Near what is now Lost.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'On the shoulder of the arch.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Overlooking the home of the Deep.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Necromancer\'s passage to the rafters.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Highest point in the Grotto.',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  1351 => 
+  array (
+    'id' => 1351,
+    'name' => 'Hew\'s Bane Master Angler',
+    'desc' => 'Catch all 12 rare fish in Hew\'s Bane.',
+    'icon' => '/esoui/art/icons/achievement_thievesguild_025.dds',
+    'points' => 5,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Cichlid (Lake)',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Cherry Barb (Lake)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Bala Shark (Lake)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Sparking Anglermout (Salt)',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Crestfish (Salt)',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Begger Shark (Salt)',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Glass Catfish (River)',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Firemouth (River)',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Hew\'s Rasbora (River)',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Keuppia (Foul)',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Fringed Mudskipper (Foul)',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Daggertooth (Foul)',
+        'value' => 1,
+        'index' => 12,
       ),
     ),
   ),
@@ -75254,6 +76372,294 @@ Note: Repeatable quests only count towards this achievement the first time they 
     ),
     'title' => 'The Flawless Conqueror',
   ),
+  1341 => 
+  array (
+    'id' => 1341,
+    'name' => 'Ancient Orc Style Master',
+    'desc' => 'Learn every chapter in the Ancient Orc style book, found by defeating foes in Old Orsinium and Rkindaleft.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Ancient Orc Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1412 => 
+  array (
+    'id' => 1412,
+    'name' => 'Malacath Style Master',
+    'desc' => 'Learn every chapter in the Malacath style book, found by completing daily quests for Arzorag inside Skalar\'s Hostel.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Malacath Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Malacath Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Malacath Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Malacath Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Malacath Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Malacath Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Malacath Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Malacath Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Malacath Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Malacath Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Malacath Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Malacath Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Malacath Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Malacath Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  1411 => 
+  array (
+    'id' => 1411,
+    'name' => 'Trinimac Style Master',
+    'desc' => 'Learn every chapter in the Trinimac style book, found by completing daily quests for Guruzug in Morkul.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Trinimac Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
   1393 => 
   array (
     'id' => 1393,
@@ -75261,7 +76667,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Come visit the Orcs\' newly rebuilt capital city: Orsinium!',
     'icon' => '/esoui/art/icons/achievement_wrothgar_047.dds',
     'points' => 5,
-    'index' => 1,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -75282,7 +76688,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Complete quests, defeat bosses, and explore delves to become the Hero of Wrothgar.',
     'icon' => '/esoui/art/icons/achievement_wrothgar_007.dds',
     'points' => 50,
-    'index' => 2,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -75331,7 +76737,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Collect 16 relics for the House of Orsimer Glories museum.',
     'icon' => '/esoui/art/icons/achievement_wrothgar_008.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -75463,7 +76869,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Collect all 20 relics for the House of Orsimer Glories museum.',
     'icon' => '/esoui/art/icons/achievement_wrothgar_008.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -75595,7 +77001,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in Wrothgar.',
     'icon' => '/esoui/art/icons/crafting_slaughterfish.dds',
     'points' => 5,
-    'index' => 4,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -75679,7 +77085,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch the rare Crab-Slaughter-Crane fish found in Wrothgar.',
     'icon' => '/esoui/art/icons/achievement_wrothgar_036.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -75687,294 +77093,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Hooking Wrothgar\'s Biggest Catch',
         'value' => 1,
         'index' => 1,
-      ),
-    ),
-  ),
-  1341 => 
-  array (
-    'id' => 1341,
-    'name' => 'Ancient Orc Style Master',
-    'desc' => 'Learn every chapter in the Ancient Orc style book, found by defeating foes in Old Orsinium and Rkindaleft.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Ancient Orc Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1412 => 
-  array (
-    'id' => 1412,
-    'name' => 'Malacath Style Master',
-    'desc' => 'Learn every chapter in the Malacath style book, found by completing daily quests for Arzorag inside Skalar\'s Hostel.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 7,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Malacath Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Malacath Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Malacath Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Malacath Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Malacath Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Malacath Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Malacath Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Malacath Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Malacath Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Malacath Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Malacath Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Malacath Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Malacath Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Malacath Style for Swords',
-        'value' => 1,
-        'index' => 14,
-      ),
-    ),
-  ),
-  1411 => 
-  array (
-    'id' => 1411,
-    'name' => 'Trinimac Style Master',
-    'desc' => 'Learn every chapter in the Trinimac style book, found by completing daily quests for Guruzug in Morkul.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 8,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Trinimac Style for Swords',
-        'value' => 1,
-        'index' => 14,
       ),
     ),
   ),
@@ -76523,57 +77641,99 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
-  1311 => 
+  1181 => 
   array (
-    'id' => 1311,
-    'name' => 'Tel Var Collector',
-    'desc' => 'Gain 1,000 Tel Var Stones over the lifetime of your character.',
-    'icon' => '/esoui/art/icons/achievement_ic_003_a.dds',
-    'points' => 10,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Gain 1000 Tel Var Stones over the lifetime of your character.',
-        'value' => 1000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1312 => 
-  array (
-    'id' => 1312,
-    'name' => 'Tel Var Baron',
-    'desc' => 'Gain 10,000 Tel Var Stones over the lifetime of your character.',
-    'icon' => '/esoui/art/icons/achievement_ic_003_b.dds',
-    'points' => 15,
-    'index' => 1,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Gain 10,000 Tel Var Stones over the lifetime of your character.',
-        'value' => 10000,
-        'index' => 1,
-      ),
-    ),
-  ),
-  1313 => 
-  array (
-    'id' => 1313,
-    'name' => 'Tel Var Master',
-    'desc' => 'Gain 100,000 Tel Var Stones over the lifetime of your character.',
-    'icon' => '/esoui/art/icons/achievement_ic_003_c.dds',
+    'id' => 1181,
+    'name' => 'Xivkyn Style Master',
+    'desc' => 'Learn every chapter in the Xivkyn style book, found in Daedric Caches in the Imperial City.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
     'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Gain 100,000 Tel Var Stones over the lifetime of your character.',
-        'value' => 100000,
+        'name' => 'Learn the Xivkyn Style for Axes',
+        'value' => 1,
         'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Xivkyn Style for Swords',
+        'value' => 1,
+        'index' => 14,
       ),
     ),
   ),
@@ -77181,7 +78341,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1109,
     'name' => 'Sewer Subjugator',
-    'desc' => 'Kill all the named champions lurking in the Imperial Sewers',
+    'desc' => 'Kill all the named champions lurking in the Imperial Sewers.',
     'icon' => '/esoui/art/icons/achievement_ic_006.dds',
     'points' => 15,
     'index' => 15,
@@ -77315,6 +78475,60 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  1311 => 
+  array (
+    'id' => 1311,
+    'name' => 'Tel Var Collector',
+    'desc' => 'Gain 1,000 Tel Var Stones over the lifetime of your account.',
+    'icon' => '/esoui/art/icons/achievement_ic_003_a.dds',
+    'points' => 10,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Gain 1,000 Tel Var Stones over the lifetime of your account.',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1312 => 
+  array (
+    'id' => 1312,
+    'name' => 'Tel Var Baron',
+    'desc' => 'Gain 10,000 Tel Var Stones over the lifetime of your account.',
+    'icon' => '/esoui/art/icons/achievement_ic_003_b.dds',
+    'points' => 15,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Gain 10,000 Tel Var Stones over the lifetime of your account.',
+        'value' => 10000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  1313 => 
+  array (
+    'id' => 1313,
+    'name' => 'Tel Var Master',
+    'desc' => 'Gain 100,000 Tel Var Stones over the lifetime of your account.',
+    'icon' => '/esoui/art/icons/achievement_ic_003_c.dds',
+    'points' => 50,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Gain 100,000 Tel Var Stones over the lifetime of your account.',
+        'value' => 100000,
+        'index' => 1,
+      ),
+    ),
+  ),
   1175 => 
   array (
     'id' => 1175,
@@ -77322,7 +78536,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Bring an end to Molag Bal\'s secret plot in the Imperial City.',
     'icon' => '/esoui/art/icons/achievement_094.dds',
     'points' => 15,
-    'index' => 17,
+    'index' => 18,
     'criteria' => 
     array (
       1 => 
@@ -77378,7 +78592,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 1 Trove Scamp while adventuring in the Imperial Sewers.',
     'icon' => '/esoui/art/icons/achievement_ic_treasurescamp.dds',
     'points' => 10,
-    'index' => 18,
+    'index' => 19,
     'criteria' => 
     array (
       1 => 
@@ -77396,7 +78610,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 50 Trove Scamps while adventuring in the Imperial Sewers.',
     'icon' => '/esoui/art/icons/achievement_ic_treasurescamp.dds',
     'points' => 15,
-    'index' => 18,
+    'index' => 19,
     'criteria' => 
     array (
       1 => 
@@ -77414,7 +78628,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 100 Trove Scamps while adventuring in the Imperial Sewers.',
     'icon' => '/esoui/art/icons/achievement_ic_treasurescamp.dds',
     'points' => 50,
-    'index' => 18,
+    'index' => 19,
     'criteria' => 
     array (
       1 => 
@@ -77432,7 +78646,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 1 member of the Coldharbour Elite Guard.',
     'icon' => '/esoui/art/icons/achievement_ic_007_a.dds',
     'points' => 10,
-    'index' => 19,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -77450,7 +78664,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 50 members of the Coldharbour Elite Guard.',
     'icon' => '/esoui/art/icons/achievement_ic_007_b.dds',
     'points' => 15,
-    'index' => 19,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -77468,7 +78682,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Kill 100 members of the Coldharbour Elite Guard.',
     'icon' => '/esoui/art/icons/achievement_ic_007_c.dds',
     'points' => 50,
-    'index' => 19,
+    'index' => 20,
     'criteria' => 
     array (
       1 => 
@@ -77476,102 +78690,6 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'name' => 'Kill 100 members of the Coldharbour Elite Guard.',
         'value' => 100,
         'index' => 1,
-      ),
-    ),
-  ),
-  1181 => 
-  array (
-    'id' => 1181,
-    'name' => 'Xivkyn Style Master',
-    'desc' => 'Learn every chapter in the Xivkyn style book, found in Daedric Caches in the Imperial City.',
-    'icon' => '/esoui/art/icons/quest_book_001.dds',
-    'points' => 50,
-    'index' => 20,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Axes',
-        'value' => 1,
-        'index' => 1,
-      ),
-      2 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Belts',
-        'value' => 1,
-        'index' => 2,
-      ),
-      3 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Boots',
-        'value' => 1,
-        'index' => 3,
-      ),
-      4 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Bows',
-        'value' => 1,
-        'index' => 4,
-      ),
-      5 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Chests',
-        'value' => 1,
-        'index' => 5,
-      ),
-      6 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Daggers',
-        'value' => 1,
-        'index' => 6,
-      ),
-      7 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Gloves',
-        'value' => 1,
-        'index' => 7,
-      ),
-      8 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Helmets',
-        'value' => 1,
-        'index' => 8,
-      ),
-      9 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Legs',
-        'value' => 1,
-        'index' => 9,
-      ),
-      10 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Maces',
-        'value' => 1,
-        'index' => 10,
-      ),
-      11 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Shields',
-        'value' => 1,
-        'index' => 11,
-      ),
-      12 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Shoulders',
-        'value' => 1,
-        'index' => 12,
-      ),
-      13 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Staves',
-        'value' => 1,
-        'index' => 13,
-      ),
-      14 => 
-      array (
-        'name' => 'Learn the Xivkyn Style for Swords',
-        'value' => 1,
-        'index' => 14,
       ),
     ),
   ),
@@ -77591,26 +78709,26 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       2 => 
       array (
+        0 => 36,
+      ),
+      3 => 
+      array (
+        0 => 17,
+      ),
+      4 => 
+      array (
+        0 => 35,
+      ),
+      5 => 
+      array (
+        0 => 18,
+      ),
+      6 => 
+      array (
         0 => 19,
         1 => 20,
         2 => 21,
         3 => 22,
-      ),
-      3 => 
-      array (
-        0 => 18,
-      ),
-      4 => 
-      array (
-        0 => 17,
-      ),
-      5 => 
-      array (
-        0 => 35,
-      ),
-      6 => 
-      array (
-        0 => 36,
       ),
       7 => 
       array (
@@ -77647,40 +78765,40 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1006,
+        0 => 1004,
       ),
       2 => 
       array (
-        0 => 1004,
+        0 => 1005,
       ),
       3 => 
       array (
-        0 => 1005,
+        0 => 1006,
       ),
       4 => 
       array (
-        0 => 702,
+        0 => 1012,
       ),
       5 => 
       array (
-        0 => 703,
+        0 => 1011,
       ),
       6 => 
       array (
-        0 => 704,
+        0 => 1013,
+        1 => 2043,
       ),
       7 => 
       array (
-        0 => 1012,
+        0 => 702,
       ),
       8 => 
       array (
-        0 => 1011,
+        0 => 703,
       ),
       9 => 
       array (
-        0 => 1013,
-        1 => 2043,
+        0 => 704,
       ),
       10 => 
       array (
@@ -77705,222 +78823,222 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1216,
-        1 => 1215,
-        2 => 1217,
+        0 => 1218,
+        1 => 1219,
+        2 => 1220,
       ),
       2 => 
+      array (
+        0 => 1214,
+      ),
+      3 => 
       array (
         0 => 1221,
         1 => 1222,
         2 => 1223,
       ),
-      3 => 
-      array (
-        0 => 1218,
-        1 => 1219,
-        2 => 1220,
-      ),
       4 => 
       array (
-        0 => 1214,
+        0 => 1216,
+        1 => 1215,
+        2 => 1217,
       ),
     ),
     'Justice' => 
     array (
       1 => 
       array (
-        0 => 1198,
-        1 => 1199,
-        2 => 1200,
+        0 => 2588,
       ),
       2 => 
-      array (
-        0 => 1213,
-      ),
-      3 => 
-      array (
-        0 => 1212,
-      ),
-      4 => 
-      array (
-        0 => 1197,
-        1 => 1201,
-        2 => 1202,
-      ),
-      5 => 
-      array (
-        0 => 1203,
-        1 => 1204,
-        2 => 1205,
-      ),
-      6 => 
-      array (
-        0 => 1193,
-        1 => 1194,
-      ),
-      7 => 
-      array (
-        0 => 1211,
-      ),
-      8 => 
       array (
         0 => 1232,
         1 => 1233,
         2 => 1234,
       ),
-      9 => 
+      3 => 
+      array (
+        0 => 1193,
+        1 => 1194,
+      ),
+      4 => 
+      array (
+        0 => 1211,
+      ),
+      5 => 
       array (
         0 => 1196,
       ),
-      10 => 
+      6 => 
       array (
         0 => 1227,
       ),
-      11 => 
+      7 => 
       array (
         0 => 1231,
       ),
-      12 => 
+      8 => 
       array (
         0 => 1230,
       ),
-      13 => 
+      9 => 
       array (
         0 => 1206,
         1 => 1207,
         2 => 1208,
       ),
-      14 => 
+      10 => 
+      array (
+        0 => 1197,
+        1 => 1201,
+        2 => 1202,
+      ),
+      11 => 
+      array (
+        0 => 1203,
+        1 => 1204,
+        2 => 1205,
+      ),
+      12 => 
       array (
         0 => 1195,
       ),
-      15 => 
+      13 => 
       array (
         0 => 1224,
         1 => 1225,
         2 => 1226,
       ),
-      16 => 
+      14 => 
       array (
         0 => 1190,
         1 => 1191,
         2 => 1192,
       ),
-      17 => 
+      15 => 
       array (
         0 => 1228,
       ),
-      18 => 
+      16 => 
+      array (
+        0 => 1198,
+        1 => 1199,
+        2 => 1200,
+      ),
+      17 => 
       array (
         0 => 1229,
       ),
+      18 => 
+      array (
+        0 => 1212,
+      ),
       19 => 
       array (
-        0 => 1209,
+        0 => 1213,
       ),
       20 => 
       array (
-        0 => 1210,
+        0 => 1209,
       ),
       21 => 
       array (
-        0 => 2588,
+        0 => 1210,
       ),
     ),
     'Skyshards' => 
     array (
       1 => 
       array (
-        0 => 2521,
+        0 => 989,
       ),
       2 => 
       array (
-        0 => 431,
+        0 => 2521,
       ),
       3 => 
       array (
-        0 => 405,
+        0 => 2514,
       ),
       4 => 
       array (
-        0 => 989,
+        0 => 2516,
       ),
       5 => 
       array (
-        0 => 2514,
+        0 => 694,
       ),
       6 => 
       array (
-        0 => 2516,
+        0 => 693,
       ),
       7 => 
       array (
-        0 => 694,
+        0 => 692,
       ),
       8 => 
       array (
-        0 => 693,
+        0 => 2517,
       ),
       9 => 
       array (
-        0 => 692,
+        0 => 2513,
       ),
       10 => 
       array (
-        0 => 2517,
+        0 => 2515,
       ),
       11 => 
       array (
-        0 => 2513,
+        0 => 556,
       ),
       12 => 
       array (
-        0 => 2515,
+        0 => 695,
       ),
       13 => 
       array (
-        0 => 556,
+        0 => 405,
       ),
       14 => 
       array (
-        0 => 695,
+        0 => 557,
       ),
       15 => 
       array (
-        0 => 557,
+        0 => 408,
       ),
       16 => 
       array (
-        0 => 408,
+        0 => 398,
       ),
       17 => 
       array (
-        0 => 398,
+        0 => 686,
       ),
       18 => 
       array (
-        0 => 686,
+        0 => 547,
       ),
       19 => 
       array (
-        0 => 547,
+        0 => 688,
       ),
       20 => 
       array (
-        0 => 688,
+        0 => 409,
       ),
       21 => 
       array (
-        0 => 409,
+        0 => 682,
       ),
       22 => 
       array (
-        0 => 682,
+        0 => 683,
       ),
       23 => 
       array (
-        0 => 683,
+        0 => 431,
       ),
       24 => 
       array (
@@ -78006,54 +79124,54 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2779,
+        0 => 1008,
       ),
       2 => 
       array (
-        0 => 2772,
+        0 => 1010,
       ),
       3 => 
       array (
-        0 => 2774,
+        0 => 2779,
       ),
       4 => 
+      array (
+        0 => 2772,
+      ),
+      5 => 
+      array (
+        0 => 2774,
+      ),
+      6 => 
       array (
         0 => 2775,
         1 => 2777,
         2 => 2778,
-      ),
-      5 => 
-      array (
-        0 => 1008,
-      ),
-      6 => 
-      array (
-        0 => 1010,
       ),
     ),
     'Werewolf' => 
     array (
       1 => 
       array (
-        0 => 2781,
+        0 => 1007,
       ),
       2 => 
+      array (
+        0 => 1009,
+      ),
+      3 => 
+      array (
+        0 => 2781,
+      ),
+      4 => 
       array (
         0 => 2782,
         1 => 2783,
         2 => 2784,
       ),
-      3 => 
-      array (
-        0 => 2780,
-      ),
-      4 => 
-      array (
-        0 => 1007,
-      ),
       5 => 
       array (
-        0 => 1009,
+        0 => 2780,
       ),
     ),
   ),
@@ -78152,59 +79270,59 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 93,
+        0 => 903,
       ),
       2 => 
       array (
-        0 => 92,
+        0 => 93,
       ),
       3 => 
       array (
-        0 => 903,
+        0 => 92,
       ),
       4 => 
       array (
-        0 => 935,
+        0 => 94,
       ),
       5 => 
       array (
-        0 => 94,
+        0 => 95,
       ),
       6 => 
       array (
-        0 => 95,
+        0 => 96,
       ),
       7 => 
       array (
-        0 => 96,
+        0 => 97,
       ),
       8 => 
       array (
-        0 => 97,
+        0 => 2589,
       ),
       9 => 
       array (
-        0 => 98,
+        0 => 935,
       ),
       10 => 
       array (
-        0 => 706,
+        0 => 98,
       ),
       11 => 
       array (
-        0 => 99,
+        0 => 706,
       ),
       12 => 
       array (
-        0 => 100,
+        0 => 99,
       ),
       13 => 
       array (
-        0 => 101,
+        0 => 100,
       ),
       14 => 
       array (
-        0 => 2589,
+        0 => 101,
       ),
       15 => 
       array (
@@ -78323,61 +79441,61 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1915,
+        0 => 1935,
       ),
       2 => 
       array (
-        0 => 1914,
+        0 => 1915,
       ),
       3 => 
       array (
-        0 => 2092,
+        0 => 1914,
       ),
       4 => 
       array (
-        0 => 1955,
+        0 => 2092,
       ),
       5 => 
       array (
-        0 => 1954,
+        0 => 1955,
       ),
       6 => 
       array (
-        0 => 1957,
+        0 => 1954,
       ),
       7 => 
       array (
-        0 => 1922,
+        0 => 1957,
       ),
       8 => 
       array (
-        0 => 1917,
+        0 => 1922,
       ),
       9 => 
       array (
-        0 => 1936,
+        0 => 1917,
       ),
       10 => 
       array (
-        0 => 1925,
+        0 => 1936,
       ),
       11 => 
       array (
-        0 => 1923,
+        0 => 1925,
       ),
       12 => 
+      array (
+        0 => 1923,
+      ),
+      13 => 
       array (
         0 => 1911,
         1 => 1912,
         2 => 1913,
       ),
-      13 => 
-      array (
-        0 => 2091,
-      ),
       14 => 
       array (
-        0 => 1935,
+        0 => 2091,
       ),
       15 => 
       array (
@@ -78471,27 +79589,121 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2223,
+        0 => 1415,
       ),
       2 => 
+      array (
+        0 => 1714,
+      ),
+      3 => 
+      array (
+        0 => 1416,
+      ),
+      4 => 
+      array (
+        0 => 1715,
+      ),
+      5 => 
+      array (
+        0 => 1414,
+      ),
+      6 => 
+      array (
+        0 => 1798,
+      ),
+      7 => 
+      array (
+        0 => 2226,
+      ),
+      8 => 
+      array (
+        0 => 1797,
+      ),
+      9 => 
+      array (
+        0 => 1418,
+      ),
+      10 => 
       array (
         0 => 2228,
         1 => 2229,
         2 => 2230,
       ),
-      3 => 
+      11 => 
       array (
-        0 => 1030,
+        0 => 2120,
       ),
-      4 => 
+      12 => 
       array (
-        0 => 1125,
+        0 => 1713,
       ),
-      5 => 
+      13 => 
+      array (
+        0 => 2223,
+      ),
+      14 => 
+      array (
+        0 => 1023,
+      ),
+      15 => 
+      array (
+        0 => 2224,
+      ),
+      16 => 
       array (
         0 => 1041,
       ),
-      6 => 
+      17 => 
+      array (
+        0 => 1125,
+      ),
+      18 => 
+      array (
+        0 => 1025,
+      ),
+      19 => 
+      array (
+        0 => 1030,
+      ),
+      20 => 
+      array (
+        0 => 1043,
+      ),
+      21 => 
+      array (
+        0 => 1318,
+      ),
+      22 => 
+      array (
+        0 => 1144,
+      ),
+      23 => 
+      array (
+        0 => 1319,
+      ),
+      24 => 
+      array (
+        0 => 1348,
+      ),
+      25 => 
+      array (
+        0 => 1145,
+      ),
+      26 => 
+      array (
+        0 => 2225,
+      ),
+      27 => 
+      array (
+        0 => 2227,
+      ),
+      28 => 
+      array (
+        0 => 1799,
+        1 => 1800,
+        2 => 1801,
+      ),
+      29 => 
       array (
         0 => 64,
         1 => 65,
@@ -78499,118 +79711,24 @@ $ESO_ACHIEVEMENT_TREE = array (
         3 => 67,
         4 => 68,
       ),
-      7 => 
-      array (
-        0 => 1025,
-      ),
-      8 => 
+      30 => 
       array (
         0 => 1146,
         1 => 1147,
         2 => 1148,
         3 => 1149,
       ),
-      9 => 
-      array (
-        0 => 1023,
-      ),
-      10 => 
-      array (
-        0 => 1145,
-      ),
-      11 => 
-      array (
-        0 => 1017,
-        1 => 1018,
-        2 => 1019,
-      ),
-      12 => 
-      array (
-        0 => 1415,
-      ),
-      13 => 
-      array (
-        0 => 1714,
-      ),
-      14 => 
-      array (
-        0 => 2225,
-      ),
-      15 => 
-      array (
-        0 => 1416,
-      ),
-      16 => 
-      array (
-        0 => 1715,
-      ),
-      17 => 
-      array (
-        0 => 1414,
-      ),
-      18 => 
-      array (
-        0 => 1798,
-      ),
-      19 => 
-      array (
-        0 => 2227,
-      ),
-      20 => 
-      array (
-        0 => 1799,
-        1 => 1800,
-        2 => 1801,
-      ),
-      21 => 
-      array (
-        0 => 2226,
-      ),
-      22 => 
-      array (
-        0 => 1797,
-      ),
-      23 => 
-      array (
-        0 => 1418,
-      ),
-      24 => 
-      array (
-        0 => 2120,
-      ),
-      25 => 
-      array (
-        0 => 1713,
-      ),
-      26 => 
+      31 => 
       array (
         0 => 1020,
         1 => 1021,
         2 => 1022,
       ),
-      27 => 
-      array (
-        0 => 2224,
-      ),
-      28 => 
-      array (
-        0 => 1043,
-      ),
-      29 => 
-      array (
-        0 => 1318,
-      ),
-      30 => 
-      array (
-        0 => 1144,
-      ),
-      31 => 
-      array (
-        0 => 1319,
-      ),
       32 => 
       array (
-        0 => 1348,
+        0 => 1017,
+        1 => 1018,
+        2 => 1019,
       ),
       33 => 
       array (
@@ -78661,41 +79779,43 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
+        0 => 1031,
+      ),
+      2 => 
+      array (
+        0 => 1764,
+        1 => 1765,
+        2 => 1766,
+      ),
+      3 => 
+      array (
         0 => 1789,
         1 => 1790,
         2 => 1791,
       ),
-      2 => 
-      array (
-        0 => 1031,
-      ),
-      3 => 
+      4 => 
       array (
         0 => 1045,
       ),
-      4 => 
-      array (
-        0 => 1102,
-      ),
       5 => 
-      array (
-        0 => 1088,
-      ),
-      6 => 
       array (
         0 => 1464,
       ),
+      6 => 
+      array (
+        0 => 1466,
+      ),
       7 => 
       array (
-        0 => 1094,
+        0 => 1087,
       ),
       8 => 
       array (
-        0 => 1465,
+        0 => 1098,
       ),
       9 => 
       array (
-        0 => 1469,
+        0 => 1090,
       ),
       10 => 
       array (
@@ -78703,108 +79823,106 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       11 => 
       array (
-        0 => 1095,
+        0 => 1093,
       ),
       12 => 
       array (
-        0 => 1470,
+        0 => 1094,
       ),
       13 => 
       array (
-        0 => 1467,
+        0 => 1091,
       ),
       14 => 
       array (
-        0 => 1466,
+        0 => 1099,
       ),
       15 => 
       array (
-        0 => 1472,
+        0 => 1469,
       ),
       16 => 
       array (
-        0 => 1471,
+        0 => 1104,
       ),
       17 => 
       array (
-        0 => 1101,
+        0 => 1089,
       ),
       18 => 
       array (
-        0 => 1096,
+        0 => 1103,
       ),
       19 => 
       array (
-        0 => 1103,
+        0 => 1092,
       ),
       20 => 
       array (
-        0 => 1089,
+        0 => 1472,
       ),
       21 => 
       array (
-        0 => 1104,
+        0 => 1101,
       ),
       22 => 
       array (
-        0 => 1099,
+        0 => 1471,
       ),
       23 => 
       array (
-        0 => 1091,
+        0 => 1095,
       ),
       24 => 
       array (
-        0 => 1097,
+        0 => 1470,
       ),
       25 => 
       array (
-        0 => 1093,
+        0 => 1467,
       ),
       26 => 
       array (
-        0 => 1090,
+        0 => 1097,
       ),
       27 => 
       array (
-        0 => 1098,
+        0 => 1465,
       ),
       28 => 
       array (
-        0 => 1087,
+        0 => 1100,
       ),
       29 => 
       array (
-        0 => 1100,
+        0 => 1096,
       ),
       30 => 
       array (
-        0 => 1092,
+        0 => 1102,
       ),
       31 => 
       array (
-        0 => 1764,
-        1 => 1765,
-        2 => 1766,
+        0 => 1088,
       ),
     ),
     'Blacksmithing' => 
     array (
       1 => 
       array (
+        0 => 1032,
+      ),
+      2 => 
+      array (
         0 => 1758,
         1 => 1759,
         2 => 1760,
       ),
-      2 => 
+      3 => 
       array (
         0 => 1783,
         1 => 1784,
         2 => 1785,
-      ),
-      3 => 
-      array (
-        0 => 1032,
       ),
       4 => 
       array (
@@ -78815,9 +79933,7 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1780,
-        1 => 1781,
-        2 => 1782,
+        0 => 1033,
       ),
       2 => 
       array (
@@ -78827,7 +79943,9 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       3 => 
       array (
-        0 => 1033,
+        0 => 1780,
+        1 => 1781,
+        2 => 1782,
       ),
       4 => 
       array (
@@ -78844,58 +79962,58 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
+        0 => 1034,
+      ),
+      2 => 
+      array (
+        0 => 2822,
+      ),
+      3 => 
+      array (
         0 => 1777,
         1 => 1778,
         2 => 1779,
       ),
-      2 => 
-      array (
-        0 => 788,
-      ),
-      3 => 
-      array (
-        0 => 1317,
-      ),
       4 => 
-      array (
-        0 => 987,
-      ),
-      5 => 
-      array (
-        0 => 780,
-      ),
-      6 => 
-      array (
-        0 => 779,
-      ),
-      7 => 
-      array (
-        0 => 1034,
-      ),
-      8 => 
-      array (
-        0 => 781,
-      ),
-      9 => 
-      array (
-        0 => 2822,
-      ),
-      10 => 
       array (
         0 => 1767,
         1 => 1772,
         2 => 1768,
+      ),
+      5 => 
+      array (
+        0 => 788,
+      ),
+      6 => 
+      array (
+        0 => 781,
+      ),
+      7 => 
+      array (
+        0 => 987,
+      ),
+      8 => 
+      array (
+        0 => 780,
+      ),
+      9 => 
+      array (
+        0 => 779,
+      ),
+      10 => 
+      array (
+        0 => 1317,
       ),
     ),
     'Jewelry Crafting' => 
     array (
       1 => 
       array (
-        0 => 2214,
+        0 => 2215,
       ),
       2 => 
       array (
-        0 => 2215,
+        0 => 2214,
       ),
       3 => 
       array (
@@ -78912,9 +80030,7 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1792,
-        1 => 1793,
-        2 => 1794,
+        0 => 1035,
       ),
       2 => 
       array (
@@ -78924,13 +80040,15 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       3 => 
       array (
-        0 => 1035,
-      ),
-      4 => 
-      array (
         0 => 1769,
         1 => 1770,
         2 => 1771,
+      ),
+      4 => 
+      array (
+        0 => 1792,
+        1 => 1793,
+        2 => 1794,
       ),
       5 => 
       array (
@@ -78949,9 +80067,7 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1755,
-        1 => 1756,
-        2 => 1757,
+        0 => 1036,
       ),
       2 => 
       array (
@@ -78961,7 +80077,9 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       3 => 
       array (
-        0 => 1036,
+        0 => 1755,
+        1 => 1756,
+        2 => 1757,
       ),
       4 => 
       array (
@@ -78993,48 +80111,48 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 749,
-      ),
-      2 => 
-      array (
         0 => 1158,
       ),
-      3 => 
+      2 => 
       array (
         0 => 1707,
         1 => 1708,
         2 => 1709,
         3 => 1710,
       ),
-      4 => 
+      3 => 
       array (
         0 => 1150,
         1 => 1151,
         2 => 1152,
         3 => 1153,
       ),
-      5 => 
+      4 => 
       array (
         0 => 1154,
         1 => 1155,
         2 => 1156,
         3 => 1157,
       ),
-      6 => 
+      5 => 
       array (
         0 => 691,
       ),
-      7 => 
+      6 => 
       array (
         0 => 709,
       ),
-      8 => 
+      7 => 
       array (
         0 => 710,
       ),
-      9 => 
+      8 => 
       array (
         0 => 711,
+      ),
+      9 => 
+      array (
+        0 => 749,
       ),
       10 => 
       array (
@@ -79152,71 +80270,71 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 470,
+        0 => 1069,
       ),
       2 => 
       array (
-        0 => 468,
+        0 => 1070,
       ),
       3 => 
       array (
-        0 => 1069,
+        0 => 1068,
       ),
       4 => 
       array (
-        0 => 1070,
+        0 => 380,
       ),
       5 => 
       array (
-        0 => 1068,
+        0 => 714,
       ),
       6 => 
       array (
-        0 => 380,
+        0 => 460,
       ),
       7 => 
       array (
-        0 => 714,
+        0 => 379,
       ),
       8 => 
       array (
-        0 => 460,
+        0 => 388,
       ),
       9 => 
       array (
-        0 => 379,
+        0 => 381,
       ),
       10 => 
       array (
-        0 => 388,
+        0 => 371,
       ),
       11 => 
       array (
-        0 => 381,
+        0 => 707,
       ),
       12 => 
       array (
-        0 => 371,
+        0 => 713,
       ),
       13 => 
       array (
-        0 => 707,
+        0 => 708,
       ),
       14 => 
       array (
-        0 => 713,
+        0 => 470,
       ),
       15 => 
       array (
-        0 => 708,
+        0 => 445,
       ),
       16 => 
       array (
-        0 => 445,
+        0 => 372,
       ),
       17 => 
       array (
-        0 => 372,
+        0 => 468,
       ),
       18 => 
       array (
@@ -80118,223 +81236,223 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 573,
+        0 => 969,
       ),
       2 => 
       array (
-        0 => 289,
+        0 => 622,
       ),
       3 => 
       array (
-        0 => 969,
+        0 => 976,
       ),
       4 => 
       array (
-        0 => 622,
+        0 => 977,
       ),
       5 => 
       array (
-        0 => 976,
+        0 => 978,
       ),
       6 => 
       array (
-        0 => 977,
+        0 => 979,
       ),
       7 => 
       array (
-        0 => 978,
+        0 => 980,
       ),
       8 => 
       array (
-        0 => 979,
+        0 => 287,
       ),
       9 => 
       array (
-        0 => 980,
+        0 => 572,
       ),
       10 => 
       array (
-        0 => 287,
+        0 => 568,
       ),
       11 => 
       array (
-        0 => 572,
+        0 => 296,
       ),
       12 => 
       array (
-        0 => 568,
+        0 => 452,
       ),
       13 => 
       array (
-        0 => 296,
+        0 => 769,
       ),
       14 => 
       array (
-        0 => 452,
+        0 => 832,
       ),
       15 => 
       array (
-        0 => 769,
+        0 => 839,
       ),
       16 => 
       array (
-        0 => 832,
+        0 => 768,
       ),
       17 => 
       array (
-        0 => 839,
+        0 => 862,
       ),
       18 => 
       array (
-        0 => 768,
+        0 => 835,
       ),
       19 => 
       array (
-        0 => 862,
+        0 => 356,
       ),
       20 => 
       array (
-        0 => 835,
+        0 => 352,
       ),
       21 => 
       array (
-        0 => 356,
+        0 => 559,
       ),
       22 => 
       array (
-        0 => 352,
+        0 => 293,
       ),
       23 => 
       array (
-        0 => 559,
+        0 => 426,
       ),
       24 => 
       array (
-        0 => 293,
+        0 => 281,
       ),
       25 => 
       array (
-        0 => 426,
+        0 => 260,
       ),
       26 => 
       array (
-        0 => 281,
+        0 => 576,
       ),
       27 => 
       array (
-        0 => 260,
+        0 => 553,
       ),
       28 => 
       array (
-        0 => 576,
+        0 => 456,
       ),
       29 => 
       array (
-        0 => 553,
+        0 => 274,
       ),
       30 => 
       array (
-        0 => 456,
+        0 => 425,
       ),
       31 => 
       array (
-        0 => 274,
+        0 => 288,
       ),
       32 => 
       array (
-        0 => 425,
+        0 => 258,
       ),
       33 => 
       array (
-        0 => 288,
+        0 => 259,
       ),
       34 => 
       array (
-        0 => 258,
+        0 => 290,
       ),
       35 => 
       array (
-        0 => 259,
+        0 => 457,
       ),
       36 => 
       array (
-        0 => 290,
+        0 => 560,
       ),
       37 => 
       array (
-        0 => 457,
+        0 => 353,
       ),
       38 => 
       array (
-        0 => 560,
+        0 => 428,
       ),
       39 => 
       array (
-        0 => 353,
+        0 => 263,
       ),
       40 => 
       array (
-        0 => 428,
+        0 => 555,
       ),
       41 => 
       array (
-        0 => 263,
+        0 => 558,
       ),
       42 => 
       array (
-        0 => 555,
+        0 => 298,
       ),
       43 => 
       array (
-        0 => 558,
+        0 => 458,
       ),
       44 => 
       array (
-        0 => 298,
+        0 => 561,
       ),
       45 => 
       array (
-        0 => 458,
+        0 => 453,
       ),
       46 => 
       array (
-        0 => 561,
+        0 => 351,
       ),
       47 => 
       array (
-        0 => 453,
+        0 => 292,
       ),
       48 => 
       array (
-        0 => 351,
+        0 => 427,
       ),
       49 => 
       array (
-        0 => 292,
+        0 => 578,
       ),
       50 => 
       array (
-        0 => 427,
+        0 => 697,
       ),
       51 => 
       array (
-        0 => 578,
+        0 => 567,
       ),
       52 => 
       array (
-        0 => 697,
+        0 => 573,
       ),
       53 => 
       array (
-        0 => 567,
+        0 => 355,
       ),
       54 => 
       array (
-        0 => 355,
+        0 => 430,
       ),
       55 => 
       array (
-        0 => 430,
+        0 => 289,
       ),
       56 => 
       array (
@@ -81587,11 +82705,11 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 993,
+        0 => 2638,
       ),
       2 => 
       array (
-        0 => 2638,
+        0 => 993,
       ),
       3 => 
       array (
@@ -82080,9 +83198,9 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1726,
-        1 => 1814,
-        2 => 1815,
+        0 => 1725,
+        1 => 1812,
+        2 => 1813,
       ),
       2 => 
       array (
@@ -82102,9 +83220,9 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       6 => 
       array (
-        0 => 1725,
-        1 => 1812,
-        2 => 1813,
+        0 => 1726,
+        1 => 1814,
+        2 => 1815,
       ),
       7 => 
       array (
@@ -82115,43 +83233,43 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1744,
-      ),
-      2 => 
-      array (
-        0 => 1738,
-      ),
-      3 => 
-      array (
         0 => 1745,
         1 => 1746,
         2 => 1747,
         3 => 1748,
         4 => 1749,
       ),
-      4 => 
-      array (
-        0 => 1740,
-      ),
-      5 => 
-      array (
-        0 => 1737,
-      ),
-      6 => 
+      2 => 
       array (
         0 => 1741,
       ),
-      7 => 
+      3 => 
       array (
         0 => 1735,
       ),
-      8 => 
+      4 => 
       array (
         0 => 1734,
       ),
-      9 => 
+      5 => 
+      array (
+        0 => 1744,
+      ),
+      6 => 
+      array (
+        0 => 1738,
+      ),
+      7 => 
+      array (
+        0 => 1737,
+      ),
+      8 => 
       array (
         0 => 1733,
+      ),
+      9 => 
+      array (
+        0 => 1740,
       ),
       10 => 
       array (
@@ -82234,27 +83352,27 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1716,
+        0 => 1721,
       ),
       2 => 
       array (
-        0 => 1720,
+        0 => 1716,
       ),
       3 => 
       array (
-        0 => 2464,
+        0 => 1720,
       ),
       4 => 
       array (
-        0 => 1719,
+        0 => 2464,
       ),
       5 => 
       array (
-        0 => 2465,
+        0 => 1719,
       ),
       6 => 
       array (
-        0 => 1721,
+        0 => 2465,
       ),
       7 => 
       array (
@@ -82293,31 +83411,31 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1669,
+        0 => 1675,
       ),
       2 => 
       array (
-        0 => 1670,
+        0 => 1669,
       ),
       3 => 
       array (
-        0 => 1677,
+        0 => 1670,
       ),
       4 => 
       array (
-        0 => 1666,
+        0 => 1677,
       ),
       5 => 
       array (
-        0 => 1548,
+        0 => 1666,
       ),
       6 => 
       array (
-        0 => 1674,
+        0 => 1548,
       ),
       7 => 
       array (
-        0 => 1675,
+        0 => 1674,
       ),
       8 => 
       array (
@@ -82352,64 +83470,71 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1546,
+        0 => 1545,
       ),
       2 => 
       array (
-        0 => 2591,
+        0 => 2188,
       ),
       3 => 
       array (
-        0 => 1545,
+        0 => 1546,
       ),
       4 => 
+      array (
+        0 => 2591,
+      ),
+      5 => 
       array (
         0 => 1540,
         1 => 1541,
         2 => 1542,
       ),
-      5 => 
+      6 => 
       array (
         0 => 1539,
       ),
-      6 => 
+      7 => 
       array (
         0 => 1543,
       ),
-      7 => 
+      8 => 
       array (
         0 => 2586,
         1 => 2585,
         2 => 2587,
       ),
-      8 => 
+      9 => 
       array (
         0 => 2313,
       ),
-      9 => 
+      10 => 
       array (
         0 => 2314,
       ),
-      10 => 
+      11 => 
       array (
         0 => 2315,
       ),
-      11 => 
+      12 => 
       array (
         0 => 2595,
       ),
-      12 => 
-      array (
-        0 => 2316,
-      ),
       13 => 
       array (
-        0 => 2188,
+        0 => 2316,
       ),
     ),
   ),
   'Prologues' => 
   array (
+    'General' => 
+    array (
+      1 => 
+      array (
+        0 => 3221,
+      ),
+    ),
     'Deadlands' => 
     array (
       1 => 
@@ -82478,27 +83603,27 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 3047,
+        0 => 2903,
       ),
       2 => 
       array (
-        0 => 2982,
+        0 => 3001,
       ),
       3 => 
       array (
-        0 => 2981,
+        0 => 3000,
       ),
       4 => 
       array (
-        0 => 2903,
+        0 => 3047,
       ),
       5 => 
       array (
-        0 => 3001,
+        0 => 2982,
       ),
       6 => 
       array (
-        0 => 3000,
+        0 => 2981,
       ),
     ),
     'Companions' => 
@@ -82713,71 +83838,71 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2985,
+        0 => 3002,
       ),
       2 => 
       array (
-        0 => 2989,
+        0 => 2985,
       ),
       3 => 
       array (
-        0 => 2990,
+        0 => 2989,
       ),
       4 => 
       array (
-        0 => 3004,
+        0 => 2990,
       ),
       5 => 
       array (
-        0 => 2987,
+        0 => 3004,
       ),
       6 => 
       array (
-        0 => 2986,
+        0 => 2987,
       ),
       7 => 
       array (
-        0 => 2988,
+        0 => 2986,
       ),
       8 => 
       array (
-        0 => 3003,
+        0 => 2988,
       ),
       9 => 
       array (
-        0 => 3007,
+        0 => 3003,
       ),
       10 => 
       array (
-        0 => 3005,
+        0 => 3007,
       ),
       11 => 
       array (
-        0 => 3006,
+        0 => 3005,
       ),
       12 => 
       array (
-        0 => 3008,
+        0 => 3006,
       ),
       13 => 
       array (
-        0 => 3009,
+        0 => 3008,
       ),
       14 => 
       array (
-        0 => 3010,
+        0 => 3009,
       ),
       15 => 
       array (
-        0 => 3011,
+        0 => 3010,
       ),
       16 => 
       array (
-        0 => 3012,
+        0 => 3011,
       ),
       17 => 
       array (
-        0 => 3002,
+        0 => 3012,
       ),
     ),
   ),
@@ -82787,27 +83912,27 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2669,
+        0 => 2773,
       ),
       2 => 
       array (
-        0 => 2773,
+        0 => 2763,
       ),
       3 => 
       array (
-        0 => 2763,
+        0 => 2776,
       ),
       4 => 
       array (
-        0 => 2776,
+        0 => 2757,
       ),
       5 => 
       array (
-        0 => 2757,
+        0 => 2761,
       ),
       6 => 
       array (
-        0 => 2761,
+        0 => 2669,
       ),
       7 => 
       array (
@@ -82826,31 +83951,31 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
+        0 => 2786,
+      ),
+      2 => 
+      array (
+        0 => 2792,
+      ),
+      3 => 
+      array (
         0 => 2793,
         1 => 2794,
         2 => 2795,
       ),
-      2 => 
+      4 => 
       array (
         0 => 2791,
       ),
-      3 => 
+      5 => 
       array (
         0 => 2819,
         1 => 2820,
         2 => 2821,
       ),
-      4 => 
-      array (
-        0 => 2805,
-      ),
-      5 => 
-      array (
-        0 => 2786,
-      ),
       6 => 
       array (
-        0 => 2792,
+        0 => 2805,
       ),
       7 => 
       array (
@@ -83059,55 +84184,55 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2743,
+        0 => 2762,
       ),
       2 => 
       array (
-        0 => 2745,
+        0 => 2743,
       ),
       3 => 
       array (
-        0 => 2737,
+        0 => 2745,
       ),
       4 => 
       array (
-        0 => 2742,
+        0 => 2737,
       ),
       5 => 
       array (
-        0 => 2732,
+        0 => 2742,
       ),
       6 => 
       array (
-        0 => 2734,
+        0 => 2732,
       ),
       7 => 
       array (
-        0 => 2733,
+        0 => 2734,
       ),
       8 => 
       array (
-        0 => 2739,
+        0 => 2733,
       ),
       9 => 
       array (
-        0 => 2746,
+        0 => 2739,
       ),
       10 => 
       array (
-        0 => 2816,
+        0 => 2746,
       ),
       11 => 
       array (
-        0 => 2736,
+        0 => 2816,
       ),
       12 => 
       array (
-        0 => 2735,
+        0 => 2736,
       ),
       13 => 
       array (
-        0 => 2762,
+        0 => 2735,
       ),
       14 => 
       array (
@@ -83137,37 +84262,37 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2463,
+        0 => 2505,
       ),
       2 => 
       array (
-        0 => 2461,
+        0 => 2506,
       ),
       3 => 
       array (
-        0 => 2412,
+        0 => 2463,
       ),
       4 => 
       array (
-        0 => 2509,
+        0 => 2461,
       ),
       5 => 
+      array (
+        0 => 2412,
+      ),
+      6 => 
+      array (
+        0 => 2509,
+      ),
+      7 => 
       array (
         0 => 2474,
         1 => 2475,
         2 => 2476,
       ),
-      6 => 
-      array (
-        0 => 2525,
-      ),
-      7 => 
-      array (
-        0 => 2505,
-      ),
       8 => 
       array (
-        0 => 2506,
+        0 => 2525,
       ),
     ),
     'Exploration' => 
@@ -83320,63 +84445,63 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2468,
+        0 => 2507,
       ),
       2 => 
       array (
-        0 => 2433,
+        0 => 2468,
       ),
       3 => 
       array (
-        0 => 2435,
+        0 => 2433,
       ),
       4 => 
       array (
-        0 => 2434,
+        0 => 2435,
       ),
       5 => 
       array (
-        0 => 2469,
+        0 => 2434,
       ),
       6 => 
       array (
-        0 => 2470,
+        0 => 2469,
       ),
       7 => 
       array (
-        0 => 2436,
+        0 => 2470,
       ),
       8 => 
       array (
-        0 => 2437,
+        0 => 2436,
       ),
       9 => 
       array (
-        0 => 2438,
+        0 => 2437,
       ),
       10 => 
       array (
-        0 => 2499,
+        0 => 2438,
       ),
       11 => 
       array (
-        0 => 2500,
+        0 => 2499,
       ),
       12 => 
       array (
-        0 => 2501,
+        0 => 2500,
       ),
       13 => 
       array (
-        0 => 2467,
+        0 => 2501,
       ),
       14 => 
       array (
-        0 => 2466,
+        0 => 2467,
       ),
       15 => 
       array (
-        0 => 2507,
+        0 => 2466,
       ),
     ),
   ),
@@ -83390,43 +84515,43 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       2 => 
       array (
-        0 => 1845,
+        0 => 2186,
       ),
       3 => 
       array (
-        0 => 2193,
+        0 => 2285,
       ),
       4 => 
       array (
-        0 => 2099,
+        0 => 2187,
       ),
       5 => 
       array (
-        0 => 2211,
+        0 => 1845,
       ),
       6 => 
       array (
-        0 => 2191,
+        0 => 2193,
       ),
       7 => 
       array (
-        0 => 2240,
+        0 => 2099,
       ),
       8 => 
       array (
-        0 => 2183,
+        0 => 2211,
       ),
       9 => 
       array (
-        0 => 2186,
+        0 => 2191,
       ),
       10 => 
       array (
-        0 => 2285,
+        0 => 2240,
       ),
       11 => 
       array (
-        0 => 2187,
+        0 => 2183,
       ),
     ),
     'Exploration' => 
@@ -83642,79 +84767,79 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2140,
+        0 => 2319,
       ),
       2 => 
       array (
-        0 => 2131,
+        0 => 2140,
       ),
       3 => 
       array (
-        0 => 2133,
+        0 => 2131,
       ),
       4 => 
       array (
-        0 => 2134,
+        0 => 2133,
       ),
       5 => 
       array (
-        0 => 2135,
+        0 => 2134,
       ),
       6 => 
       array (
-        0 => 2132,
+        0 => 2135,
       ),
       7 => 
       array (
-        0 => 2136,
+        0 => 2132,
       ),
       8 => 
       array (
-        0 => 2139,
+        0 => 2136,
       ),
       9 => 
       array (
-        0 => 2138,
+        0 => 2139,
       ),
       10 => 
       array (
-        0 => 2137,
+        0 => 2138,
       ),
       11 => 
       array (
-        0 => 2238,
+        0 => 2137,
       ),
       12 => 
       array (
-        0 => 2237,
+        0 => 2238,
       ),
       13 => 
       array (
-        0 => 2231,
+        0 => 2237,
       ),
       14 => 
       array (
-        0 => 2232,
+        0 => 2231,
       ),
       15 => 
       array (
-        0 => 2233,
+        0 => 2232,
       ),
       16 => 
       array (
-        0 => 2234,
+        0 => 2233,
       ),
       17 => 
       array (
-        0 => 2235,
+        0 => 2234,
       ),
       18 => 
       array (
-        0 => 2236,
+        0 => 2235,
       ),
       19 => 
       array (
-        0 => 2319,
+        0 => 2236,
       ),
     ),
   ),
@@ -83724,59 +84849,59 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1712,
+        0 => 1932,
       ),
       2 => 
       array (
-        0 => 1932,
+        0 => 1934,
       ),
       3 => 
       array (
-        0 => 1934,
+        0 => 1933,
       ),
       4 => 
       array (
-        0 => 1842,
+        0 => 2021,
       ),
       5 => 
       array (
-        0 => 1933,
+        0 => 2022,
       ),
       6 => 
       array (
-        0 => 1882,
+        0 => 2023,
       ),
       7 => 
       array (
-        0 => 1868,
+        0 => 1712,
       ),
       8 => 
       array (
-        0 => 1826,
+        0 => 1842,
       ),
       9 => 
       array (
-        0 => 1827,
+        0 => 1882,
       ),
       10 => 
       array (
-        0 => 1824,
+        0 => 1868,
       ),
       11 => 
       array (
-        0 => 1843,
+        0 => 1826,
       ),
       12 => 
       array (
-        0 => 2021,
+        0 => 1827,
       ),
       13 => 
       array (
-        0 => 2022,
+        0 => 1824,
       ),
       14 => 
       array (
-        0 => 2023,
+        0 => 1843,
       ),
     ),
     'Exploration' => 
@@ -83955,55 +85080,55 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1835,
+        0 => 2024,
       ),
       2 => 
       array (
-        0 => 1840,
+        0 => 1835,
       ),
       3 => 
       array (
-        0 => 1836,
+        0 => 1840,
       ),
       4 => 
       array (
-        0 => 1833,
+        0 => 1836,
       ),
       5 => 
       array (
-        0 => 1808,
+        0 => 1833,
       ),
       6 => 
       array (
-        0 => 1810,
+        0 => 1808,
       ),
       7 => 
       array (
-        0 => 1829,
+        0 => 1810,
       ),
       8 => 
       array (
-        0 => 1839,
+        0 => 1829,
       ),
       9 => 
       array (
-        0 => 1838,
+        0 => 1839,
       ),
       10 => 
       array (
-        0 => 1832,
+        0 => 1838,
       ),
       11 => 
       array (
-        0 => 1831,
+        0 => 1832,
       ),
       12 => 
       array (
-        0 => 1830,
+        0 => 1831,
       ),
       13 => 
       array (
-        0 => 2024,
+        0 => 1830,
       ),
       14 => 
       array (
@@ -84027,45 +85152,226 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
     ),
   ),
+  'Ascending Tide' => 
+  array (
+    'General' => 
+    array (
+      1 => 
+      array (
+        0 => 3109,
+      ),
+      2 => 
+      array (
+        0 => 3122,
+      ),
+      3 => 
+      array (
+        0 => 3104,
+      ),
+      4 => 
+      array (
+        0 => 3114,
+      ),
+      5 => 
+      array (
+        0 => 3124,
+      ),
+      6 => 
+      array (
+        0 => 3222,
+      ),
+      7 => 
+      array (
+        0 => 3230,
+      ),
+      8 => 
+      array (
+        0 => 3134,
+      ),
+    ),
+    'Veteran' => 
+    array (
+      1 => 
+      array (
+        0 => 3121,
+      ),
+      2 => 
+      array (
+        0 => 3110,
+      ),
+      3 => 
+      array (
+        0 => 3105,
+      ),
+      4 => 
+      array (
+        0 => 3102,
+      ),
+      5 => 
+      array (
+        0 => 3103,
+      ),
+      6 => 
+      array (
+        0 => 3106,
+      ),
+      7 => 
+      array (
+        0 => 3225,
+      ),
+      8 => 
+      array (
+        0 => 3153,
+      ),
+      9 => 
+      array (
+        0 => 3226,
+      ),
+      10 => 
+      array (
+        0 => 3107,
+      ),
+      11 => 
+      array (
+        0 => 3108,
+      ),
+      12 => 
+      array (
+        0 => 3111,
+      ),
+      13 => 
+      array (
+        0 => 3123,
+      ),
+      14 => 
+      array (
+        0 => 3125,
+      ),
+      15 => 
+      array (
+        0 => 3126,
+      ),
+      16 => 
+      array (
+        0 => 3127,
+      ),
+      17 => 
+      array (
+        0 => 3128,
+      ),
+      18 => 
+      array (
+        0 => 3231,
+      ),
+      19 => 
+      array (
+        0 => 3119,
+      ),
+      20 => 
+      array (
+        0 => 3115,
+      ),
+      21 => 
+      array (
+        0 => 3112,
+      ),
+      22 => 
+      array (
+        0 => 3113,
+      ),
+      23 => 
+      array (
+        0 => 3116,
+      ),
+      24 => 
+      array (
+        0 => 3223,
+      ),
+      25 => 
+      array (
+        0 => 3154,
+      ),
+      26 => 
+      array (
+        0 => 3224,
+      ),
+      27 => 
+      array (
+        0 => 3117,
+      ),
+      28 => 
+      array (
+        0 => 3118,
+      ),
+      29 => 
+      array (
+        0 => 3120,
+      ),
+      30 => 
+      array (
+        0 => 3129,
+      ),
+      31 => 
+      array (
+        0 => 3130,
+      ),
+      32 => 
+      array (
+        0 => 3131,
+      ),
+      33 => 
+      array (
+        0 => 3132,
+      ),
+    ),
+  ),
   'Deadlands' => 
   array (
     'General' => 
     array (
       1 => 
       array (
-        0 => 3145,
+        0 => 2999,
       ),
       2 => 
       array (
-        0 => 3205,
+        0 => 2959,
       ),
       3 => 
       array (
-        0 => 3206,
+        0 => 3098,
       ),
       4 => 
       array (
-        0 => 3204,
+        0 => 3220,
       ),
       5 => 
       array (
-        0 => 3207,
+        0 => 3145,
       ),
       6 => 
       array (
-        0 => 2999,
+        0 => 3140,
       ),
       7 => 
       array (
-        0 => 2959,
+        0 => 3144,
       ),
       8 => 
       array (
-        0 => 3140,
+        0 => 3205,
       ),
       9 => 
       array (
-        0 => 3144,
+        0 => 3206,
+      ),
+      10 => 
+      array (
+        0 => 3204,
+      ),
+      11 => 
+      array (
+        0 => 3207,
       ),
     ),
     'Exploration' => 
@@ -84178,59 +85484,59 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 3021,
+        0 => 3094,
       ),
       2 => 
       array (
-        0 => 3034,
+        0 => 3097,
       ),
       3 => 
       array (
-        0 => 3016,
+        0 => 3021,
       ),
       4 => 
       array (
-        0 => 3026,
+        0 => 3034,
       ),
       5 => 
       array (
-        0 => 3044,
+        0 => 3016,
       ),
       6 => 
       array (
-        0 => 3093,
+        0 => 3026,
       ),
       7 => 
       array (
-        0 => 3038,
+        0 => 3044,
       ),
       8 => 
       array (
-        0 => 3039,
+        0 => 3093,
       ),
       9 => 
       array (
-        0 => 3040,
+        0 => 3038,
       ),
       10 => 
       array (
-        0 => 3090,
+        0 => 3039,
       ),
       11 => 
       array (
-        0 => 3091,
+        0 => 3040,
       ),
       12 => 
       array (
-        0 => 3092,
+        0 => 3090,
       ),
       13 => 
       array (
-        0 => 3094,
+        0 => 3091,
       ),
       14 => 
       array (
-        0 => 3097,
+        0 => 3092,
       ),
     ),
     'Veteran' => 
@@ -84359,31 +85665,31 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2831,
+        0 => 2984,
       ),
       2 => 
       array (
-        0 => 2884,
+        0 => 2991,
       ),
       3 => 
       array (
-        0 => 2889,
+        0 => 2831,
       ),
       4 => 
       array (
-        0 => 2836,
+        0 => 2884,
       ),
       5 => 
       array (
-        0 => 2841,
+        0 => 2889,
       ),
       6 => 
       array (
-        0 => 2984,
+        0 => 2836,
       ),
       7 => 
       array (
-        0 => 2991,
+        0 => 2841,
       ),
       8 => 
       array (
@@ -84508,43 +85814,43 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2929,
+        0 => 2926,
       ),
       2 => 
       array (
-        0 => 2926,
+        0 => 2998,
       ),
       3 => 
       array (
-        0 => 2927,
+        0 => 2905,
       ),
       4 => 
       array (
-        0 => 2928,
+        0 => 2938,
       ),
       5 => 
       array (
-        0 => 2941,
+        0 => 2929,
       ),
       6 => 
       array (
-        0 => 2998,
+        0 => 2927,
       ),
       7 => 
       array (
-        0 => 2857,
+        0 => 2928,
       ),
       8 => 
       array (
-        0 => 2861,
+        0 => 2941,
       ),
       9 => 
       array (
-        0 => 2905,
+        0 => 2857,
       ),
       10 => 
       array (
-        0 => 2938,
+        0 => 2861,
       ),
     ),
     'Exploration' => 
@@ -84749,43 +86055,43 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2704,
+        0 => 2850,
       ),
       2 => 
       array (
-        0 => 2694,
+        0 => 2849,
       ),
       3 => 
       array (
-        0 => 2699,
+        0 => 2704,
       ),
       4 => 
       array (
-        0 => 2862,
+        0 => 2694,
       ),
       5 => 
       array (
-        0 => 2825,
+        0 => 2699,
       ),
       6 => 
       array (
-        0 => 2810,
+        0 => 2862,
       ),
       7 => 
       array (
-        0 => 2826,
+        0 => 2825,
       ),
       8 => 
       array (
-        0 => 2814,
+        0 => 2810,
       ),
       9 => 
       array (
-        0 => 2850,
+        0 => 2826,
       ),
       10 => 
       array (
-        0 => 2849,
+        0 => 2814,
       ),
     ),
     'Veteran' => 
@@ -84910,15 +86216,15 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2544,
+        0 => 2747,
       ),
       2 => 
       array (
-        0 => 2747,
+        0 => 2749,
       ),
       3 => 
       array (
-        0 => 2749,
+        0 => 2544,
       ),
       4 => 
       array (
@@ -85075,41 +86381,41 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2656,
+        0 => 2748,
       ),
       2 => 
       array (
-        0 => 2623,
+        0 => 2750,
       ),
       3 => 
       array (
-        0 => 2748,
+        0 => 2630,
       ),
       4 => 
+      array (
+        0 => 2656,
+      ),
+      5 => 
+      array (
+        0 => 2623,
+      ),
+      6 => 
       array (
         0 => 2631,
         1 => 2636,
         2 => 2637,
       ),
-      5 => 
-      array (
-        0 => 2750,
-      ),
-      6 => 
+      7 => 
       array (
         0 => 2534,
       ),
-      7 => 
+      8 => 
       array (
         0 => 2562,
       ),
-      8 => 
-      array (
-        0 => 2566,
-      ),
       9 => 
       array (
-        0 => 2630,
+        0 => 2566,
       ),
     ),
     'Exploration' => 
@@ -85230,47 +86536,47 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2420,
+        0 => 2629,
       ),
       2 => 
       array (
-        0 => 2590,
+        0 => 2628,
       ),
       3 => 
       array (
-        0 => 2415,
+        0 => 2420,
       ),
       4 => 
       array (
-        0 => 2577,
+        0 => 2590,
       ),
       5 => 
       array (
-        0 => 2570,
+        0 => 2415,
       ),
       6 => 
       array (
-        0 => 2425,
+        0 => 2577,
       ),
       7 => 
       array (
-        0 => 2576,
+        0 => 2570,
       ),
       8 => 
       array (
-        0 => 2578,
+        0 => 2425,
       ),
       9 => 
       array (
-        0 => 2580,
+        0 => 2576,
       ),
       10 => 
       array (
-        0 => 2629,
+        0 => 2578,
       ),
       11 => 
       array (
-        0 => 2628,
+        0 => 2580,
       ),
     ),
     'Veteran' => 
@@ -85395,59 +86701,59 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2265,
+        0 => 2503,
       ),
       2 => 
       array (
-        0 => 2471,
+        0 => 2504,
       ),
       3 => 
       array (
-        0 => 2260,
+        0 => 2265,
       ),
       4 => 
       array (
-        0 => 2380,
+        0 => 2471,
       ),
       5 => 
       array (
-        0 => 2381,
+        0 => 2260,
       ),
       6 => 
       array (
-        0 => 2382,
+        0 => 2380,
       ),
       7 => 
       array (
-        0 => 2383,
+        0 => 2381,
       ),
       8 => 
       array (
-        0 => 2385,
+        0 => 2382,
       ),
       9 => 
       array (
-        0 => 2387,
+        0 => 2383,
       ),
       10 => 
       array (
-        0 => 2270,
+        0 => 2385,
       ),
       11 => 
       array (
-        0 => 2391,
+        0 => 2387,
       ),
       12 => 
       array (
-        0 => 2392,
+        0 => 2270,
       ),
       13 => 
       array (
-        0 => 2503,
+        0 => 2391,
       ),
       14 => 
       array (
-        0 => 2504,
+        0 => 2392,
       ),
     ),
     'Veteran' => 
@@ -85560,35 +86866,35 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2340,
+        0 => 2360,
       ),
       2 => 
       array (
-        0 => 2331,
+        0 => 2361,
       ),
       3 => 
       array (
-        0 => 2320,
+        0 => 2340,
       ),
       4 => 
       array (
-        0 => 2321,
+        0 => 2331,
       ),
       5 => 
       array (
-        0 => 2291,
+        0 => 2320,
       ),
       6 => 
       array (
-        0 => 2295,
+        0 => 2321,
       ),
       7 => 
       array (
-        0 => 2360,
+        0 => 2291,
       ),
       8 => 
       array (
-        0 => 2361,
+        0 => 2295,
       ),
     ),
     'Exploration' => 
@@ -85723,67 +87029,67 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2362,
+        0 => 2359,
       ),
       2 => 
       array (
-        0 => 2372,
+        0 => 2362,
       ),
       3 => 
       array (
-        0 => 2367,
+        0 => 2372,
       ),
       4 => 
       array (
-        0 => 2363,
+        0 => 2367,
       ),
       5 => 
       array (
-        0 => 2376,
+        0 => 2363,
       ),
       6 => 
       array (
-        0 => 2369,
+        0 => 2376,
       ),
       7 => 
       array (
-        0 => 2366,
+        0 => 2369,
       ),
       8 => 
       array (
-        0 => 2368,
+        0 => 2366,
       ),
       9 => 
       array (
-        0 => 2374,
+        0 => 2368,
       ),
       10 => 
       array (
-        0 => 2370,
+        0 => 2374,
       ),
       11 => 
       array (
-        0 => 2375,
+        0 => 2370,
       ),
       12 => 
       array (
-        0 => 2364,
+        0 => 2375,
       ),
       13 => 
       array (
-        0 => 2371,
+        0 => 2364,
       ),
       14 => 
       array (
-        0 => 2373,
+        0 => 2371,
       ),
       15 => 
       array (
-        0 => 2365,
+        0 => 2373,
       ),
       16 => 
       array (
-        0 => 2359,
+        0 => 2365,
       ),
     ),
   ),
@@ -85793,43 +87099,43 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2157,
+        0 => 2317,
       ),
       2 => 
       array (
-        0 => 2152,
+        0 => 2318,
       ),
       3 => 
       array (
-        0 => 2298,
+        0 => 2157,
       ),
       4 => 
       array (
-        0 => 2299,
+        0 => 2152,
       ),
       5 => 
       array (
-        0 => 2162,
+        0 => 2298,
       ),
       6 => 
       array (
-        0 => 2302,
+        0 => 2299,
       ),
       7 => 
       array (
-        0 => 2306,
+        0 => 2162,
       ),
       8 => 
       array (
-        0 => 2307,
+        0 => 2302,
       ),
       9 => 
       array (
-        0 => 2317,
+        0 => 2306,
       ),
       10 => 
       array (
-        0 => 2318,
+        0 => 2307,
       ),
     ),
     'Veteran' => 
@@ -85954,35 +87260,35 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2104,
+        0 => 2190,
       ),
       2 => 
       array (
-        0 => 1959,
+        0 => 2189,
       ),
       3 => 
       array (
-        0 => 1974,
+        0 => 2104,
       ),
       4 => 
       array (
-        0 => 1975,
+        0 => 1959,
       ),
       5 => 
       array (
-        0 => 1985,
+        0 => 1974,
       ),
       6 => 
       array (
-        0 => 1990,
+        0 => 1975,
       ),
       7 => 
       array (
-        0 => 2190,
+        0 => 1985,
       ),
       8 => 
       array (
-        0 => 2189,
+        0 => 1990,
       ),
     ),
     'Veteran' => 
@@ -86115,31 +87421,31 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 2048,
+        0 => 2044,
       ),
       2 => 
       array (
-        0 => 2049,
+        0 => 2045,
       ),
       3 => 
       array (
-        0 => 1958,
+        0 => 2048,
       ),
       4 => 
       array (
-        0 => 1844,
+        0 => 2049,
       ),
       5 => 
       array (
-        0 => 2027,
+        0 => 1958,
       ),
       6 => 
       array (
-        0 => 2044,
+        0 => 1844,
       ),
       7 => 
       array (
-        0 => 2045,
+        0 => 2027,
       ),
     ),
     'Exploration' => 
@@ -86281,39 +87587,39 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1940,
+        0 => 2097,
       ),
       2 => 
       array (
-        0 => 1690,
+        0 => 2098,
       ),
       3 => 
       array (
-        0 => 1697,
+        0 => 1940,
       ),
       4 => 
       array (
-        0 => 1698,
+        0 => 1690,
       ),
       5 => 
       array (
-        0 => 1705,
+        0 => 1697,
       ),
       6 => 
       array (
-        0 => 1945,
+        0 => 1698,
       ),
       7 => 
       array (
-        0 => 1949,
+        0 => 1705,
       ),
       8 => 
       array (
-        0 => 2097,
+        0 => 1945,
       ),
       9 => 
       array (
-        0 => 2098,
+        0 => 1949,
       ),
     ),
     'Veteran' => 
@@ -86438,35 +87744,35 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1520,
+        0 => 1795,
       ),
       2 => 
       array (
-        0 => 1522,
+        0 => 1796,
       ),
       3 => 
       array (
-        0 => 1536,
+        0 => 1520,
       ),
       4 => 
       array (
-        0 => 1504,
+        0 => 1522,
       ),
       5 => 
       array (
-        0 => 1512,
+        0 => 1536,
       ),
       6 => 
       array (
-        0 => 1514,
+        0 => 1504,
       ),
       7 => 
       array (
-        0 => 1795,
+        0 => 1512,
       ),
       8 => 
       array (
-        0 => 1796,
+        0 => 1514,
       ),
     ),
     'Veteran' => 
@@ -86587,39 +87893,39 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1421,
+        0 => 2524,
       ),
       2 => 
       array (
-        0 => 2524,
+        0 => 1424,
       ),
       3 => 
       array (
-        0 => 1434,
+        0 => 1661,
       ),
       4 => 
       array (
-        0 => 1410,
+        0 => 1662,
       ),
       5 => 
       array (
-        0 => 1431,
+        0 => 1660,
       ),
       6 => 
       array (
-        0 => 1424,
+        0 => 1421,
       ),
       7 => 
       array (
-        0 => 1661,
+        0 => 1434,
       ),
       8 => 
       array (
-        0 => 1662,
+        0 => 1410,
       ),
       9 => 
       array (
-        0 => 1660,
+        0 => 1431,
       ),
     ),
     'Exploration' => 
@@ -86746,116 +88052,116 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1413,
+        0 => 2523,
       ),
       2 => 
       array (
-        0 => 2523,
+        0 => 1422,
       ),
       3 => 
       array (
-        0 => 1365,
+        0 => 1659,
       ),
       4 => 
       array (
-        0 => 1347,
+        0 => 1417,
       ),
       5 => 
       array (
-        0 => 1351,
+        0 => 1423,
       ),
       6 => 
       array (
-        0 => 1422,
+        0 => 1413,
       ),
       7 => 
       array (
-        0 => 1659,
+        0 => 1365,
       ),
       8 => 
       array (
-        0 => 1417,
+        0 => 1347,
       ),
       9 => 
       array (
-        0 => 1423,
+        0 => 1351,
       ),
     ),
     'Exploration' => 
     array (
       1 => 
       array (
-        0 => 1395,
-        1 => 1396,
-        2 => 1397,
+        0 => 1359,
       ),
       2 => 
       array (
-        0 => 1359,
+        0 => 1357,
       ),
       3 => 
       array (
-        0 => 1357,
+        0 => 1355,
       ),
       4 => 
       array (
-        0 => 1355,
+        0 => 1356,
       ),
       5 => 
       array (
-        0 => 1356,
+        0 => 1354,
       ),
       6 => 
       array (
-        0 => 1354,
+        0 => 1352,
       ),
       7 => 
       array (
-        0 => 1352,
+        0 => 1353,
       ),
       8 => 
       array (
-        0 => 1353,
+        0 => 1358,
       ),
       9 => 
       array (
-        0 => 1358,
+        0 => 1350,
       ),
       10 => 
       array (
-        0 => 1350,
+        0 => 1383,
       ),
       11 => 
       array (
-        0 => 1383,
+        0 => 1379,
       ),
       12 => 
       array (
-        0 => 1379,
+        0 => 1380,
       ),
       13 => 
       array (
-        0 => 1380,
+        0 => 1381,
       ),
       14 => 
       array (
-        0 => 1381,
+        0 => 1382,
       ),
       15 => 
       array (
-        0 => 1382,
+        0 => 1403,
       ),
       16 => 
       array (
-        0 => 1403,
+        0 => 1404,
       ),
       17 => 
       array (
-        0 => 1404,
+        0 => 1349,
       ),
       18 => 
       array (
-        0 => 1349,
+        0 => 1395,
+        1 => 1396,
+        2 => 1397,
       ),
       19 => 
       array (
@@ -86996,36 +88302,36 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1393,
+        0 => 1341,
       ),
       2 => 
       array (
-        0 => 1248,
+        0 => 1412,
       ),
       3 => 
+      array (
+        0 => 1411,
+      ),
+      4 => 
+      array (
+        0 => 1393,
+      ),
+      5 => 
+      array (
+        0 => 1248,
+      ),
+      6 => 
       array (
         0 => 1250,
         1 => 1324,
       ),
-      4 => 
+      7 => 
       array (
         0 => 1340,
       ),
-      5 => 
-      array (
-        0 => 1339,
-      ),
-      6 => 
-      array (
-        0 => 1341,
-      ),
-      7 => 
-      array (
-        0 => 1412,
-      ),
       8 => 
       array (
-        0 => 1411,
+        0 => 1339,
       ),
     ),
     'Exploration' => 
@@ -87204,9 +88510,7 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 1311,
-        1 => 1312,
-        2 => 1313,
+        0 => 1181,
       ),
       2 => 
       array (
@@ -87276,23 +88580,25 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       17 => 
       array (
-        0 => 1175,
+        0 => 1311,
+        1 => 1312,
+        2 => 1313,
       ),
       18 => 
+      array (
+        0 => 1175,
+      ),
+      19 => 
       array (
         0 => 1182,
         1 => 1269,
         2 => 1270,
       ),
-      19 => 
+      20 => 
       array (
         0 => 1261,
         1 => 1262,
         2 => 1263,
-      ),
-      20 => 
-      array (
-        0 => 1181,
       ),
     ),
     'Imperial City Prison' => 
