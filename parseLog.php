@@ -6716,11 +6716,11 @@ class EsoLogParser
 			
 			if ($abilityDesc != "") $abilityDesc .= "\n\n";
 			
-			if ($recipeIngredients != "") 
+			if ($recipeIngredients != "")
 			{
 				$ingr = ucwords($recipeIngredients);
 				$ingr = preg_replace("# X([0-9]+)#", " ($1)", $ingr);
-				$ingr = preg_replace("# \(1\)#", "", $ingr);
+				//$ingr = preg_replace("# \(1\)#", "", $ingr);		// Issue for items like "Ivory, Polished"
 				$abilityDesc .= "|cffffffINGREDIENTS|r\n" . $ingr;
 			}
 			
@@ -6730,7 +6730,7 @@ class EsoLogParser
 				$abilityDesc .= "|cffffffTO CREATE|r";
 				$trades = explode(",", $reqTrades);
 				
-				foreach ($trades as $trade) 
+				foreach ($trades as $trade)
 				{
 					$abilityDesc .= "\n|c00ff00Requires $trade|r";
 				}

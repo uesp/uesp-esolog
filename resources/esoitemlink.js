@@ -333,6 +333,74 @@ function UpdateEsoItemValue(text, display)
 }
 
 
+function GetItemLevelBlockDisplay(level, itemType)
+{
+	level = parseInt(level);
+	itemType = parseInt(itemType);
+	
+	if (level <= 0) return "none";
+	
+	switch (itemType)
+	{
+		case 61:	// Furnishing
+		case 29:	// Recipe
+		case 59:	// Dye Stamp
+		case 60:	// Master Writ
+		case 44:	// Style Material
+		case 31:	// Reagent
+		case 10:	// Ingredient
+		case 52:	// Rune
+		case 53:
+		case 41:	// Blacksmith Temper
+		case 43:
+		case 34:
+		case 39:
+		case 18:
+		case 55:
+		case 57:
+		case 47: 	// PVP Repair
+		case 36:	// BS Material
+		case 35:	// BS Raw Material
+		case 40:
+		case 54:
+		case 16:
+		case 8:
+		case 17:
+		case 6:
+		case 19:
+		case 48:
+		case 5:
+		case 46:
+		case 42:
+		case 38:
+		case 37:
+		case 0:
+		case -1:
+		case 58:	// Poison Base
+		case 33:	// Potion Base
+		case 45:
+		case 51:
+			return "none";
+			
+		case 2:		// Armor/Weapons
+		case 1:
+		case 12: 	// Drink
+		case 4: 	// Food
+		case 26:	// Glyph
+		case 3:
+		case 20:
+		case 21:
+		case 30:	// Poison
+		case 7:		// Potion
+		case 51:
+		case 9:		// Repair Kit
+			return "inline-block";
+	}
+	
+	return "inline-block";
+}
+
+
 function UpdateEsoItemData(level, quality)
 {
 	var itemData = FindEsoItemData(level, quality);
@@ -342,7 +410,9 @@ function UpdateEsoItemData(level, quality)
 	$('#esoil_itemname').removeClass("esoil_quality_None esoil_quality_Normal esoil_quality_Fine esoil_quality_Superior esoil_quality_Epic esoil_quality_Legendary esoil_quality_Mythic");
 	$('#esoil_itemname').addClass("esoil_quality_" + GetEsoItemQualityText(itemData['quality']));
 	
-	$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level'])).show();
+	$('#esoil_itemlevelblock').css("display", GetItemLevelBlockDisplay(level, itemData.type));
+	
+	$('#esoil_itemlevelblock').html(GetEsoItemFullLevelHtml(itemData['level']));
 	$('#esoil_levelheader').text(GetEsoItemLevelHeaderText(level, quality));
 	
 	if (itemRawVersion >= 10) 

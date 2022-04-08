@@ -558,8 +558,7 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 	var damageType = 'base';
 	if (tooltip.isDmg == 1) damageType = GetEsoSkillDamageTypeText(tooltip.dmgType).toLowerCase();
 	
-		// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Range, Melee
-	
+		// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Direct, Range, Melee, DirectRange, EnemyTarget
 	if (inputValues.SkillWeaponDamage == null)
 	{
 	}
@@ -660,6 +659,20 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 		if (weaponDamage == null) weaponDamage = inputValues.WeaponDamage;
 	}
 	
+		/* Skill specific weapon damage bonuses */
+	if (inputValues.SkillWeaponDamage.SkillWeaponDamages)
+	{
+		var skillBonusWeaponDamage = inputValues.SkillWeaponDamage.SkillWeaponDamages[skillData.name];
+		if (skillBonusWeaponDamage == null) skillBonusWeaponDamage = inputValues.SkillWeaponDamage.SkillWeaponDamages[skillData.baseName];
+		
+		if (skillBonusWeaponDamage != null && skillBonusWeaponDamage != 0)
+		{	
+			if (inputValues.SkillWeaponDamage.WeaponDamageFactor) skillBonusWeaponDamage = Math.round(skillBonusWeaponDamage * inputValues.SkillWeaponDamage.WeaponDamageFactor);
+			weaponDamage += skillBonusWeaponDamage;
+			weaponDamageTypes.push("Bonus Skill");
+		}
+	}
+	
 	return weaponDamage;
 }
 
@@ -675,8 +688,7 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 	var damageType = 'base';
 	if (tooltip.isDmg == 1) damageType = GetEsoSkillDamageTypeText(tooltip.dmgType).toLowerCase();
 	
-		// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Range, Melee
-	
+		// Order of spell/weapon checks: Class, Channel, Maelstrom, Healing, AOE, DOT, Direct, Range, Melee, DirectRange, EnemyTarget	
 	if (inputValues.SkillSpellDamage == null)
 	{
 	}
@@ -775,6 +787,20 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 		}
 		
 		if (spellDamage == null) spellDamage = inputValues.SpellDamage;
+	}
+	
+		/* Skill specific spell damage bonuses */
+	if (inputValues.SkillSpellDamage.SkillSpellDamages)
+	{
+		var skillBonusSpellDamage = inputValues.SkillSpellDamage.SkillSpellDamages[skillData.name];
+		if (skillBonusSpellDamage == null) skillBonusSpellDamage = inputValues.SkillSpellDamage.SkillSpellDamages[skillData.baseName];
+		
+		if (skillBonusSpellDamage != null && skillBonusSpellDamage != 0)
+		{	
+			if (inputValues.SkillSpellDamage.SpellDamageFactor) skillBonusSpellDamage = Math.round(skillBonusSpellDamage * inputValues.SkillSpellDamage.SpellDamageFactor);
+			spellDamage += skillBonusSpellDamage;
+			spellDamageTypes.push("Bonus Skill");
+		}
 	}
 	
 	return spellDamage;
