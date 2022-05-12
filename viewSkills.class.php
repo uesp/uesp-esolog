@@ -840,18 +840,18 @@ class CEsoViewSkills
 			}
 			
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $lastAbility, $baseAbility, true, $isPurchased, $baseAbilityId);
-				
+			
 			if ($lastAbility['maxRank'] > 1 || $this->displayType == "select")
 			{
 				$output .= $this->GetSkillContentHtml_AbilityList($abilityName, $abilityData);
 			}
 		}
-
+		
 		if ($output != "")
 		{
 			$output = "<div class='esovsSkillBlockTypeTitle'>$typeLabel</div>" . $output;
 		}
-
+		
 		return $output;
 	}
 
@@ -861,7 +861,7 @@ class CEsoViewSkills
 		global $ESO_FREE_SKILLS;
 		
 		$output = "";
-					
+		
 		if ($baseAbilityId == null) 
 			$baseId = $baseAbility['abilityId'];
 		else
@@ -931,7 +931,7 @@ class CEsoViewSkills
 				$rank -= 4;
 			}
 			
-			if ($this->displayType == "select" && $topLevel) 
+			if ($this->displayType == "select" && $topLevel)
 			{
 				if ($isPurchased)
 					$extraIconAttr = "draggable='true'";
@@ -990,7 +990,7 @@ class CEsoViewSkills
 		$output .= "</div>";
 		$output .= "</div>";
 		$output .= "</div>";
-
+		
 		return $output;
 	}
 	

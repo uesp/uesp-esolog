@@ -47,7 +47,7 @@ foreach ($ESO_SET_INDEXES as $setIndex => $setName)
 	
 	foreach ($items as $itemId => $item)
 	{
-		for ($i = 1; $i <= 7; ++$i)
+		for ($i = 1; $i <= 12; ++$i)
 		{
 			$desc = strtolower($item["setBonusDesc$i"]);
 			$desc = str_replace("|cffffff", "", $desc);
@@ -60,7 +60,7 @@ foreach ($ESO_SET_INDEXES as $setIndex => $setName)
 	
 	$printedName = false;
 	
-	for ($i = 1; $i <= 7; ++$i)
+	for ($i = 1; $i <= 12; ++$i)
 	{
 		$count = count($setDescCounts[$i]);
 		

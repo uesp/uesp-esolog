@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "34pts";
 
 $MAKE_NAME_TITLECASE = true;
 
@@ -54,6 +54,11 @@ $RANGE_FIELDS = array(
 		"setBonusDesc5",
 		"setBonusDesc6",
 		"setBonusDesc7",
+		"setBonusDesc8",
+		"setBonusDesc9",
+		"setBonusDesc10",
+		"setBonusDesc11",
+		"setBonusDesc12",
 );
 
 // if (intval($TABLE_SUFFIX) <= 8) unset($FIELDS['tags']);

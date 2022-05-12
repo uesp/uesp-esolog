@@ -273,7 +273,7 @@ function GetEsoItemSetBlockHtml(itemData)
 	var setBonusCount = parseInt(itemData.setBonusCount);
 	var output = "<div class='esoil_white esoil_small'>PART OF THE " + setName + " SET (" + setMaxEquipCount + "/" + setMaxEquipCount + " ITEMS)</div>";
 	
-	for (var i = 1; i <= 7; i += 1)
+	for (var i = 1; i <= 12; i += 1)
 	{
 		var setCount = itemData['setBonusCount'  + i];
 		var setDesc = itemData['setBonusDesc'  + i]

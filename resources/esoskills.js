@@ -222,6 +222,155 @@ window.GetRomanNumeral = function(value)
 }
 
 
+window.GetEsoSkillTooltipFormatCostClass = function(skillData)
+{
+	var classStr = "";
+	var mechanic = skillData['mechanic'];
+	
+	if (parseInt(g_SkillsVersion) >= 34)
+	{
+		if (mechanic == 1)
+		{
+			classStr += "esovsMagicka";
+		}
+		else if (mechanic == 2)
+		{
+		}
+		else if (mechanic == 4)
+		{
+			classStr += "esovsStamina";
+		}
+		else if (mechanic == 8)
+		{
+			classStr += "esovsUltimate";
+		}
+		else if (mechanic == 16)
+		{
+		}
+		else if (mechanic == 32)
+		{
+			classStr += "esovsHealth";
+		}
+		else if (mechanic == 64)
+		{
+		}
+		else if (mechanic == null)
+		{
+			classStr = "";
+		}
+		else 
+		{
+			classStr = "";
+		}
+	}
+	else
+	{
+		if (mechanic == 0)
+		{
+			classStr += "esovsMagicka";
+		}
+		else if (mechanic == 6)
+		{
+			classStr += "esovsStamina";
+		}
+		else if (mechanic == 10)
+		{
+			classStr += "esovsUltimate";
+		}
+		else if (mechanic == -2)
+		{
+			classStr += "esovsHealth";
+		}
+		else if (mechanic == null)
+		{
+			classStr = "";
+		}
+		else 
+		{
+			classStr = "";
+		}
+	}
+	
+	return classStr;
+}
+
+
+window.GetEsoSkillTooltipFormatCostString = function(skillData, cost)
+{
+	var costStr = "" + cost + " ";
+	var mechanic = skillData['mechanic'];
+	
+	if (parseInt(g_SkillsVersion) >= 34)
+	{
+		if (mechanic == 1)
+		{
+			costStr += "Magicka";
+		}
+		else if (mechanic == 2)
+		{
+			costStr += "Werewolf";
+		}
+		else if (mechanic == 4)
+		{
+			costStr += "Stamina";
+		}
+		else if (mechanic == 8)
+		{
+			costStr += "Ultimate";
+		}
+		else if (mechanic == 16)
+		{
+			costStr += "Mount Stamina";
+		}
+		else if (mechanic == 32)
+		{
+			costStr += "Health";
+		}
+		else if (mechanic == 64)
+		{
+			costStr += "Daedric";
+		}
+		else if (mechanic == null)
+		{
+			costStr = "";
+		}
+		else 
+		{
+			costStr = skillData['cost'];
+		}
+	}
+	else
+	{
+		if (mechanic == 0)
+		{
+			costStr += "Magicka";
+		}
+		else if (mechanic == 6)
+		{
+			costStr += "Stamina";
+		}
+		else if (mechanic == 10)
+		{
+			costStr += "Ultimate";
+		}
+		else if (mechanic == -2)
+		{
+			costStr += "Health";
+		}
+		else if (mechanic == null)
+		{
+			costStr = "";
+		}
+		else 
+		{
+			costStr = skillData['cost'];
+		}
+	}
+	
+	return costStr;
+}
+
+
 window.GetEsoSkillTooltipHtml = function(skillData)
 {
 	if (skillData == null) return "";
@@ -279,40 +428,10 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	if (skillType != 'Passive')
 	{
 		var realCost = ComputeEsoSkillCost(cost, null, null, skillData);
-		var costStr = "" + realCost + " ";
-		var costClass = "";
+		var costStr = GetEsoSkillTooltipFormatCostString(skillData,  realCost);
+		var costClass = GetEsoSkillTooltipFormatCostClass(skillData);
 		
-		if (mechanic == 0)
-		{
-			costStr += "Magicka";
-			costClass = "esovsMagicka";
-		}
-		else if (mechanic == 6)
-		{
-			costStr += "Stamina";
-			costClass = "esovsStamina";
-		}
-		else if (mechanic == 10)
-		{
-			costStr += "Ultimate";
-			costClass = "esovsUltimate";
-		}
-		else if (mechanic == -2)
-		{
-			costStr += "Health";
-			costClass = "esovsHealth";
-		}
-		else if (mechanic == null)
-		{
-			cost = "";
-			costStr = "";
-		}
-		else 
-		{
-			costStr = cost;
-		}
-		
-		if (channelTime > 0) 
+		if (channelTime > 0)
 		{
 			output += "<div class='esovsSkillTooltipValue'>" + channelTime + " seconds</div>";
 			output += "<div class='esovsSkillTooltipName'>Channel Time</div>";
@@ -2496,6 +2615,50 @@ ESO_SKILL_DOT_OVERRIDES =
 };
 
 
+window.IsEsoSkillMechanicUltimate = function(mechanic)
+{
+	if (parseInt(g_SkillsVersion) >= 34)
+	{
+		return mechanic == 8;
+	}
+	
+	return mechanic == 10;
+}
+
+
+window.IsEsoSkillMechanicMagicka = function(mechanic)
+{
+	if (parseInt(g_SkillsVersion) >= 34)
+	{
+		return mechanic == 1;
+	}
+	
+	return mechanic == 0;
+}
+
+
+window.IsEsoSkillMechanicStamina = function(mechanic)
+{
+	if (parseInt(g_SkillsVersion) >= 34)
+	{
+		return mechanic == 4;
+	}
+	
+	return mechanic == 6;
+}
+
+
+window.IsEsoSkillMechanicHealth = function(mechanic)
+{
+	if (parseInt(g_SkillsVersion) >= 34)
+	{
+		return mechanic == 32;
+	}
+	
+	return mechanic == -2;
+}
+
+
 window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputValues)
 {
 	var newDesc = skillDesc;
@@ -2666,7 +2829,9 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			var amountAll = 0;
 			
 			if (inputValues.Damage.All != null) amountAll += Math.round(inputValues.Damage.All*100)/100;
-			if (inputValues.Damage.Empower != null && !thisEffectIsDot && skillData.mechanic != 10) amountAll += Math.round(inputValues.Damage.Empower*100)/100;
+			
+					// Empower if not ultimate (check both mechanic types, pre and post update 34
+			if (inputValues.Damage.Empower != null && !thisEffectIsDot && !IsEsoSkillMechanicUltimate(skillData.mechanic)) amountAll += Math.round(inputValues.Damage.Empower*100)/100;
 			
 			if (isSingleTarget && inputValues.Damage.SingleTarget != null) 
 			{
@@ -2696,7 +2861,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				}
 			}
 			
-			if (skillData.mechanic == 0 && inputValues.MagickaAbilityDamageDone)
+			if (IsEsoSkillMechanicMagicka(skillData.mechanic) && inputValues.MagickaAbilityDamageDone)
 			{
 				baseFactor += Math.round(inputValues.MagickaAbilityDamageDone*100)/100;
 				newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;
@@ -3204,7 +3369,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		output += MakeEsoSkillCostOutputLine(inputValues.DamageShieldCost, "DamageShieldCost", 100, "%");
 	}
 	
-	if (mechanic == 0 && inputValues.MagickaCost != null)
+	if (IsEsoSkillMechanicMagicka(mechanic) && inputValues.MagickaCost != null)
 	{
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.MagickaCost);
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.MagickaCost);
@@ -3217,7 +3382,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (inputValues.MagickaCost.Skill != null) SkillFactor *= 1 + inputValues.MagickaCost.Skill;
 		if (inputValues.MagickaCost.Buff  != null) SkillFactor *= 1 + inputValues.MagickaCost.Buff;
 	}
-	else if (mechanic == 6 && inputValues.StaminaCost != null)
+	else if (IsEsoSkillMechanicStamina(mechanic) && inputValues.StaminaCost != null)
 	{
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.StaminaCost);
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.StaminaCost);
@@ -3230,7 +3395,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (inputValues.StaminaCost.Skill != null) SkillFactor *= 1 + inputValues.StaminaCost.Skill;
 		if (inputValues.StaminaCost.Buff  != null) SkillFactor *= 1 + inputValues.StaminaCost.Buff;
 	}
-	else if (mechanic == 10 && inputValues.UltimateCost != null)
+	else if (IsEsoSkillMechanicUltimate(mechanic) && inputValues.UltimateCost != null)
 	{
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.UltimateCost);
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.UltimateCost);
@@ -3244,7 +3409,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, skillData)
 		if (inputValues.UltimateCost.Set   != null) SkillFactor *= 1 + inputValues.UltimateCost.Set;
 		if (inputValues.UltimateCost.Buff  != null) SkillFactor *= 1 + inputValues.UltimateCost.Buff;
 	}
-	else if (mechanic == -2 && inputValues.HealthCost != null)
+	else if (IsEsoSkillMechanicHealth(mechanic) && inputValues.HealthCost != null)
 	{
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.HealthCost);
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.Skill.HealthCost);
@@ -3288,7 +3453,7 @@ window.ComputeEsoSkillCost = function (maxCost, level, inputValues, skillData)
 	
 	var cost = parseInt(maxCost);
 	
-	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6 || skillData.mechanic == -2))
+	if (skillData != null && (IsEsoSkillMechanicMagicka(skillData.mechanic) || IsEsoSkillMechanicStamina(skillData.mechanic) || IsEsoSkillMechanicHealth(skillData.mechanic)))
 	{
 		if (maxCost == 0) return 0;
 		if (level == null) level = inputValues.EffectiveLevel;
@@ -3309,7 +3474,7 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 	
 	var cost = parseInt(maxCost);
 	
-	if (skillData != null && (skillData.mechanic == 0 || skillData.mechanic == 6))
+	if (skillData != null && (IsEsoSkillMechanicMagicka(skillData.mechanic) || IsEsoSkillMechanicStamina(skillData.mechanic)))
 	{
 		if (level == null) level = inputValues.EffectiveLevel;
 		if (level < 1) level = 1;
@@ -3340,7 +3505,7 @@ window.GetEsoSkillCost = function(skillId, inputValues, useHtml = true)
 	if (skillData == null) return "";
 	
 	var mechanic = skillData['mechanic'];
-	if (mechanic != 0 && mechanic != 6 && mechanic != 10 && mechanic != -2) return "";
+	if (!IsEsoSkillMechanicUltimate(mechanic) && !IsEsoSkillMechanicMagicka(mechanic) && !IsEsoSkillMechanicStamina(mechanic) && !IsEsoSkillMechanicHealth(mechanic)) return "";
 	
 	var passive = skillData['isPassive'];
 	if (passive != 0) return "";
@@ -3351,16 +3516,7 @@ window.GetEsoSkillCost = function(skillId, inputValues, useHtml = true)
 	var chargeFreq = parseInt(skillData['chargeFreq'])/1000;
 	var cost = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, skillData);
 	
-	var costStr = "" + cost + " ";
-	
-	if (mechanic == 0)
-		costStr += "Magicka";
-	else if (mechanic == 6)
-		costStr += "Stamina";
-	else if (mechanic == 10)
-		costStr += "Ultimate";
-	else if (mechanic == -2)
-		costStr += "Health";
+	var costStr = GetEsoSkillTooltipFormatCostString(skillData, cost);
 	
 	skillData.newCost = cost;
 	skillData.newCostText = costStr;

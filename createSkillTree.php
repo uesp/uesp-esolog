@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "33";
+	public $TABLE_SUFFIX = "34pts";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -402,7 +402,7 @@ class CEsoCreateSkillTree
 			
 			$type = "Active";
 			
-			if ($rootSkill['mechanic']  == 10) $type = "Ultimate";
+			if ($rootSkill['mechanic']  == 10 || $rootSkill['mechanic'] == 8) $type = "Ultimate";
 			if ($rootSkill['isPassive'] ==  1) $type = "Passive";
 			
 			for($index = 1; $index <= 12; $index++)
@@ -419,7 +419,11 @@ class CEsoCreateSkillTree
 				
 				$desc = $this->db->real_escape_string($desc);
 				
-				$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText($thisSkill['mechanic']);
+				if (intval($this->TABLE_SUFFIX) >= 34)
+					$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText34($thisSkill['mechanic']);
+				else
+					$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText($thisSkill['mechanic']);
+				
 				$icon = $this->db->real_escape_string($thisSkill['texture']);
 				$learnedLevel = $thisSkill['learnedLevel'];
 				$abilityIndex = $thisSkill['skillIndex'];

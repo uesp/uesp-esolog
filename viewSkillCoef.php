@@ -484,7 +484,7 @@ class CEsoViewSkillCoef
 			if ($skillType == "") $skillType = $skill['raceType'];
 			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
 			
-			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
+			$mechanic = GetEsoMechanicTypeText($skill['mechanic'], $this->version);
 			
 			$output .= "<tr>";
 			$output .= "<td><b>$version</b></td>";
@@ -531,7 +531,7 @@ class CEsoViewSkillCoef
 			if ($skillType == "") $skillType = $skill['raceType'];
 			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
 			
-			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
+			$mechanic = GetEsoMechanicTypeText($skill['mechanic'], $this->version);
 			$link = "?abilityid={$skill['id']}";
 			
 			$output .= "<tr>";
@@ -578,7 +578,7 @@ class CEsoViewSkillCoef
 			if ($skillType == "") $skillType = $skill['raceType'];
 			if ($skillType == "") $skillType = GetEsoSkillTypeText($skill['skillType']);
 			
-			$mechanic = GetEsoMechanicTypeText($skill['mechanic']);
+			$mechanic = GetEsoMechanicTypeText($skill['mechanic'], $this->version);
 			
 			$output .= "{$skill['name']} $rank, ";
 			$output .= "{$skill['id']}, ";

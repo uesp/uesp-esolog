@@ -665,6 +665,7 @@ class EsoItemSearcher
 		$linkToItem = "//esoitem.uesp.net/itemLink.php?itemid=$itemId&summary";
 		$toolTipParams = "itemid='$itemId' summary='1'";
 		$imageLinkUrl = "//esoitem.uesp.net/itemLinkImage.php?itemid=$itemId&summary&none=item.png";
+		$imageLinkUrlPlain = "//esoitem.uesp.net/itemLinkImage.php?itemid=$itemId&none=item.png";
 		
 		if ($this->finalItemLevel > 0 && $this->finalItemQuality >= 0)
 		{
@@ -765,9 +766,10 @@ class EsoItemSearcher
 		}
 		
 		$output .= "<div class='esois_rawitemlink esois_helpcopy' tooltip='Click to Copy Item Link'>$outputItemLink</div> ";
-						
+		
 		$output .= "<div class='esois_itemdesc'>$desc</div> ";
-		$output .= "<a href='$imageLinkUrl' class='esois_linktoimage'>Link to Image</a>";
+		$output .= "<a href='$imageLinkUrlPlain' class='esois_linktoimage'>Link to Image</a>";
+		$output .= "<a href='$imageLinkUrl' class='esois_linktoimage' style='margin-right: 15px;'>Link to Image Summary</a>";
 		$output .= "</div>";
 		$output .= "</td></tr>\n";
 		

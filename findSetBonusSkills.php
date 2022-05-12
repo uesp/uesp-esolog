@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "34pts";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
@@ -107,7 +107,7 @@ foreach ($sets as $set)
 	$setName = $set['setName'];
 	print("\tChecking $setName...\n");
 	
-	for ($i = 1; $i <= 7; ++$i)
+	for ($i = 1; $i <= 12; ++$i)
 	{
 		$setBonus = $set["setBonusDesc$i"];
 		if ($setBonus == null || $setBonus == "") continue;

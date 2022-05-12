@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "33";
+	const ENABLE_PTS_VERSION = "34";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -59,7 +59,8 @@ class EsoLogViewer
 	const FIELD_TEXTTRANSFORM = 10;
 	const FIELD_GAMEICON = 11;
 	const FIELD_COLORBOX = 12;
-
+	const FIELD_INTYESBLANK = 6;
+	
 	
 	public static $FIELD_NAMES = array(
 			self::FIELD_INT => "integer",
@@ -71,7 +72,7 @@ class EsoLogViewer
 			'title' => self::FIELD_STRING,
 			'body' => self::FIELD_LARGESTRING,
 			'icon' => self::FIELD_GAMEICON,
-			'isLore' => self::FIELD_INTBOOLEAN,
+			'isLore' => self::FIELD_INTYESBLANK,
 			'skill' => self::FIELD_STRING,
 			'mediumIndex' => self::FIELD_INTTRANSFORM,
 			'categoryIndex' => self::FIELD_INTPOSITIVE,
@@ -270,10 +271,10 @@ class EsoLogViewer
 			'orderIndex' => self::FIELD_INT,
 			'type' => self::FIELD_INT,
 			'counter' => self::FIELD_INT,
-			'isFail' => self::FIELD_INTBOOLEAN,
-			'isPushed' => self::FIELD_INTBOOLEAN,
-			'isHidden' => self::FIELD_INTBOOLEAN,
-			'isComplete' => self::FIELD_INTBOOLEAN,
+			'isFail' => self::FIELD_INTYESBLANK,
+			'isPushed' => self::FIELD_INTYESBLANK,
+			'isHidden' => self::FIELD_INTYESBLANK,
+			'isComplete' => self::FIELD_INTYESBLANK,
 	);
 	
 	public static $NPC_FIELDS = array(
@@ -351,7 +352,7 @@ class EsoLogViewer
 			'mobsKilled' => self::FIELD_INT,
 			'duplicateCount' => self::FIELD_INT,
 			'language' => self::FIELD_STRING,
-			'enabled' => self::FIELD_INTBOOLEAN,
+			'enabled' => self::FIELD_INTYESBLANK,
 	);
 	
 	public static $MINEDITEM_FIELDS = array(
@@ -419,11 +420,11 @@ class EsoLogViewer
 			'traitDesc' => self::FIELD_STRING,
 			'traitAbilityDesc' => self::FIELD_TEXTTRANSFORM,
 			'traitCooldown' => self::FIELD_INT,
-			'isUnique' => self::FIELD_INTBOOLEAN,
-			'isUniqueEquipped' => self::FIELD_INTBOOLEAN,
-			'isVendorTrash' => self::FIELD_INTBOOLEAN,
-			'isArmorDecay' => self::FIELD_INTBOOLEAN,
-			'isConsumable' => self::FIELD_INTBOOLEAN,
+			'isUnique' => self::FIELD_INTYESBLANK,
+			'isUniqueEquipped' => self::FIELD_INTYESBLANK,
+			'isVendorTrash' => self::FIELD_INTYESBLANK,
+			'isArmorDecay' => self::FIELD_INTYESBLANK,
+			'isConsumable' => self::FIELD_INTYESBLANK,
 			'dyeData' => self::FIELD_STRING,
 			//'actorCategory' => self::FIELD_INT,
 	);
@@ -465,11 +466,11 @@ class EsoLogViewer
 			'bindType' => self::FIELD_INT,
 			'traitDesc' => self::FIELD_STRING,
 			'traitAbilityDesc' => self::FIELD_STRING,
-			'isUnique' => self::FIELD_INTBOOLEAN,
-			'isUniqueEquipped' => self::FIELD_INTBOOLEAN,
-			'isVendorTrash' => self::FIELD_INTBOOLEAN,
-			'isArmorDecay' => self::FIELD_INTBOOLEAN,
-			'isConsumable' => self::FIELD_INTBOOLEAN,
+			'isUnique' => self::FIELD_INTYESBLANK,
+			'isUniqueEquipped' => self::FIELD_INTYESBLANK,
+			'isVendorTrash' => self::FIELD_INTYESBLANK,
+			'isArmorDecay' => self::FIELD_INTYESBLANK,
+			'isConsumable' => self::FIELD_INTYESBLANK,
 			'materialLevelDesc' => self::FIELD_TEXTTRANSFORM,
 			'resultItemLink' => self::FIELD_TEXTTRANSFORM,
 			'recipeListIndex' => self::FIELD_INT,
@@ -726,8 +727,8 @@ class EsoLogViewer
 			'hint' => self::FIELD_STRING,
 			'icon' => self::FIELD_GAMEICON,
 			'lockedIcon' => self::FIELD_GAMEICON,
-			'backgroundIcon' => self::FIELD_STRING,
-			'categoryType' => self::FIELD_INT,
+			'backgroundIcon' => self::FIELD_GAMEICON,
+			'categoryType' => self::FIELD_INTTRANSFORM,
 			'zoneIndex' => self::FIELD_INT,
 			'categoryIndex' => self::FIELD_INT,
 			'subCategoryIndex' => self::FIELD_INT,
@@ -737,16 +738,16 @@ class EsoLogViewer
 			'subCategoryName' => self::FIELD_STRING,
 			'furnCategory' => self::FIELD_STRING,
 			'furnSubcategory' => self::FIELD_STRING,
-			'furnLimitType' => self::FIELD_STRING,
+			'furnLimitType' => self::FIELD_INTTRANSFORM,
 			'tags' => self::FIELD_STRING,
-			'isUnlocked' => self::FIELD_INT,
-			'isActive' => self::FIELD_INT,
-			'isSlottable' => self::FIELD_INT,
-			'isUsable' => self::FIELD_INT,
-			'isRenameable' => self::FIELD_INT,
-			'isPlaceholder' => self::FIELD_INT,
-			'isHidden' => self::FIELD_INT,
-			'hasAppearance' => self::FIELD_INT,
+			'isUnlocked' => self::FIELD_INTYESBLANK,
+			'isActive' => self::FIELD_INTYESBLANK,
+			'isSlottable' => self::FIELD_INTYESBLANK,
+			'isUsable' => self::FIELD_INTYESBLANK,
+			'isRenameable' => self::FIELD_INTYESBLANK,
+			'isPlaceholder' => self::FIELD_INTYESBLANK,
+			'isHidden' => self::FIELD_INTYESBLANK,
+			'hasAppearance' => self::FIELD_INTYESBLANK,
 			'visualPriority' => self::FIELD_INT,
 			'helpCategoryIndex' => self::FIELD_INT,
 			'helpIndex' => self::FIELD_INT,
@@ -896,6 +897,63 @@ class EsoLogViewer
 	);
 	
 	
+	public static $TRIBUTEPATRON_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'category' => self::FIELD_STRING,
+			'rarity' => self::FIELD_INT,
+			'smallIcon' => self::FIELD_GAMEICON,
+			'largeIcon' => self::FIELD_GAMEICON,
+			'loreDescription' => self::FIELD_STRING,
+			'collectibleId' => self::FIELD_INT,
+			'isNeutral' => self::FIELD_INT,
+			'skipNeutral' => self::FIELD_INT,
+			'categoryId' => self::FIELD_INT,
+			'playStyleDescription' => self::FIELD_STRING,
+			'acquireHint' => self::FIELD_STRING,
+			'numStartCards' => self::FIELD_INT,
+			'startCards' => self::FIELD_STRING,
+			'numDockCards' => self::FIELD_INT,
+			'dockCards' => self::FIELD_STRING,
+			'actionTexture' => self::FIELD_GAMEICON,
+			'largeRingIcon' => self::FIELD_GAMEICON,
+			'actionGlow' => self::FIELD_GAMEICON,
+			'agentTexture' => self::FIELD_GAMEICON,
+			'agentGlow' => self::FIELD_GAMEICON,
+			'suitIcon' => self::FIELD_GAMEICON,
+	);
+	
+	
+	public static $TRIBUTECARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'cardType' => self::FIELD_INT,
+			'rarity' => self::FIELD_INT,
+			'texture' => self::FIELD_GAMEICON,
+			'glowTexture' => self::FIELD_GAMEICON,
+			'resourceType' => self::FIELD_INT,
+			'resourceQnt' => self::FIELD_INT,
+			'defeatType' => self::FIELD_INT,
+			'defeatQnt' => self::FIELD_INT,
+			'doesTaunt' => self::FIELD_INT,
+			'isContract' => self::FIELD_INT,
+			'oneMechanic' => self::FIELD_INT,
+			'numActiveMechanics' => self::FIELD_INT,
+			'activeMechanic1' => self::FIELD_STRING,
+			'activeMechanic2' => self::FIELD_STRING,
+			'activeMechanic3' => self::FIELD_STRING,
+			'activeMechanic4' => self::FIELD_STRING,
+			'activeMechanic5' => self::FIELD_STRING,
+			'numComboMechanics' => self::FIELD_INT,
+			'comboMechanic1' => self::FIELD_STRING,
+			'comboMechanic2' => self::FIELD_STRING,
+			'comboMechanic3' => self::FIELD_STRING,
+			'comboMechanic4' => self::FIELD_STRING,
+			'comboMechanic5' => self::FIELD_STRING,
+	);
+	
+	
 	public static $PTS_SEARCH_TYPE_OPTIONS = array(
 			'Items Update ## PTS' => 'minedItemSummary##pts',
 			'Sets Update ## PTS' => 'setSummary##pts',
@@ -1012,13 +1070,13 @@ class EsoLogViewer
 					'message' => "These are skills for update ## (__NAME__) as logged from the PTS server.",
 						
 					'transform' => array(
-							'mechanic' => 'GetCombatMechanicText',
-							'type1' => 'GetCustomCombatMechanicText',
-							'type2' => 'GetCustomCombatMechanicText',
-							'type3' => 'GetCustomCombatMechanicText',
-							'type4' => 'GetCustomCombatMechanicText',
-							'type5' => 'GetCustomCombatMechanicText',
-							'type6' => 'GetCustomCombatMechanicText',
+							'mechanic' => 'GetCombatMechanicText34',
+							'type1' => 'GetCustomCombatMechanicText34',
+							'type2' => 'GetCustomCombatMechanicText34',
+							'type3' => 'GetCustomCombatMechanicText34',
+							'type4' => 'GetCustomCombatMechanicText34',
+							'type5' => 'GetCustomCombatMechanicText34',
+							'type6' => 'GetCustomCombatMechanicText34',
 							'skillType' => 'GetSkillTypeText',
 							'description' => 'RemoveTextFormats',
 							'descHeader' => 'RemoveTextFormats',
@@ -2135,6 +2193,8 @@ class EsoLogViewer
 					'sort' => array('id'),
 					
 					'transform' => array(
+							'categoryType' => 'GetCollectibleCategoryTypeText',
+							'furnLimitType' => 'GetEsoFurnLimitTypeRawText',
 					),
 					
 					'filters' => array(
@@ -2269,6 +2329,36 @@ class EsoLogViewer
 					),
 			),
 			
+			'tributeCards' => array(
+					'displayName' => 'Tribute Card',
+					'displayNameSingle' => 'Tribute Cards',
+					'record' => 'tributeCards',
+					'table' => 'tributeCards',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'tributePatrons' => array(
+					'displayName' => 'Tribute Patron',
+					'displayNameSingle' => 'Tribute Patrons',
+					'record' => 'tributePatrons',
+					'table' => 'tributePatrons',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 	);
 	
 	
@@ -2295,6 +2385,8 @@ class EsoLogViewer
 			'Recipes' => 'recipe',
 			'Sets' => 'setSummary',
 			'Skills' => 'minedSkills',
+			'Tribute Cards' => 'tributeCards',
+			'Tribute Patrons' => 'tributePatrons',
 			'Zones' => 'zones',
 			'Zone POIs' => 'zonePois',
 	);
@@ -2569,6 +2661,26 @@ class EsoLogViewer
 							'mapIcon' => 'icon',
 					),
 			),
+			
+			'tributeCards' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+							'texture' => 'icon',
+					),
+			),
+			
+			'tributePatrons' => array(
+					'searchFields' => array('name', 'loreDescription', 'playStyleDescription'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
+							'description' => 'note',
+							'smallIcon' => 'icon',
+					),
+			),
 	);
 	
 	
@@ -2633,6 +2745,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['antiquityLeads']['fields'] = self::$ANTIQUITYLEAD_FIELDS;
 		self::$RECORD_TYPES['zones']['fields'] = self::$ZONE_FIELDS;
 		self::$RECORD_TYPES['zonePois']['fields'] = self::$ZONEPOI_FIELDS;
+		self::$RECORD_TYPES['tributeCards']['fields'] = self::$TRIBUTECARD_FIELDS;
+		self::$RECORD_TYPES['tributePatrons']['fields'] = self::$TRIBUTEPATRON_FIELDS;
 		
 		$this->EnablePtsRecords();
 		
@@ -2822,6 +2936,18 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetCombatMechanicText34 ($value)
+	{
+		return GetEsoMechanicTypeText34($value);
+	}
+	
+	
+	public function GetCustomCombatMechanicText34 ($value)
+	{
+		return GetEsoCustomMechanicTypeText34($value);
+	}
+	
+	
 	public function GetBookMediumText ($value)
 	{
 			// TODO: Move to EsoCommon.php
@@ -2924,6 +3050,17 @@ class EsoLogViewer
 	public function GetEsoQuestRewardItemTypeText($value)
 	{
 		return GetEsoQuestRewardItemTypeText($value);
+	}
+	
+	
+	public function GetCollectibleCategoryTypeText($value) 
+	{
+		return GetEsoCollectibleCategoryTypeText($value);
+	}
+	
+	public function GetEsoFurnLimitTypeRawText($value)
+	{
+		return GetEsoFurnLimitTypeRawText($value);
 	}
 	
 	
@@ -3569,6 +3706,16 @@ If you do not understand what this information means, or how to use this webpage
 				if ($this->displayRawValues) return $value;
 				if ((int) $value != 0) $output = $value;
 				break;
+			case self::FIELD_INTYESBLANK:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "";
+				else
+					$output = "Yes";
+				
+				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
 				$intValue = (int)$value;
@@ -3646,6 +3793,16 @@ If you do not understand what this information means, or how to use this webpage
 				if ($this->displayRawValues) return $value;
 				if ((int) $value != 0) $output = $value;
 				break;
+			case self::FIELD_INTYESBLANK:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "\"\"";
+				else
+					$output = "\"true\"";
+				
+				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
 				$intValue = (int)$value;
@@ -3704,6 +3861,16 @@ If you do not understand what this information means, or how to use this webpage
 			case self::FIELD_TEXTTRANSFORM:
 				$output = $this->TransformRecordValue($recordInfo, $field, $value, $itemData);
 				break;
+			case self::FIELD_INTYESBLANK:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "";
+				elseif ($intValue > 0)
+					$output = "Yes";
+				
+				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;
 				$intValue = (int)$value;
@@ -3761,6 +3928,16 @@ If you do not understand what this information means, or how to use this webpage
 			case self::FIELD_INTTRANSFORM:
 			case self::FIELD_TEXTTRANSFORM:
 				$output = "\"" . $this->TransformRecordValue($recordInfo, $field, $value, $itemData) . "\"";
+				break;
+			case self::FIELD_INTYESBLANK:
+				if ($this->displayRawValues) return $value;
+				$intValue = (int)$value;
+				
+				if ($intValue === 0)
+					$output = "\"\"";
+				elseif ($intValue > 0)
+					$output = "\"Yes\"";
+				
 				break;
 			case self::FIELD_INTBOOLEAN:
 				if ($this->displayRawValues) return $value;

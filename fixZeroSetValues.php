@@ -258,7 +258,7 @@ class CEsoFixZeroSetValues
 			{
 				$fixedDescCount = 0;
 				
-				for ($setIndex = 1; $setIndex <= 7; ++$setIndex)
+				for ($setIndex = 1; $setIndex <= 12; ++$setIndex)
 				{
 					if ($this->FixManualItemSetIndex($setName, $item, $setIndex)) ++$fixedDescCount;
 				}
@@ -374,7 +374,7 @@ class CEsoFixZeroSetValues
 	{
 		$fixedDescCount = 0;
 		
-		for ($setIndex = 1; $setIndex <= 7; ++$setIndex)
+		for ($setIndex = 1; $setIndex <= 12; ++$setIndex)
 		{
 			if ($this->FixItemSetIndex($setName, $item1, $item2, $setIndex)) ++$fixedDescCount;
 		}

@@ -660,13 +660,13 @@ window.GetEsoSkillTooltipWeaponDamage2 = function(tooltip, skillData, inputValue
 	}
 	
 		/* Skill specific weapon damage bonuses */
-	if (inputValues.SkillWeaponDamage.SkillWeaponDamages)
+	if (inputValues.SkillWeaponDamage && inputValues.SkillWeaponDamage.SkillWeaponDamages)
 	{
 		var skillBonusWeaponDamage = inputValues.SkillWeaponDamage.SkillWeaponDamages[skillData.name];
 		if (skillBonusWeaponDamage == null) skillBonusWeaponDamage = inputValues.SkillWeaponDamage.SkillWeaponDamages[skillData.baseName];
 		
 		if (skillBonusWeaponDamage != null && skillBonusWeaponDamage != 0)
-		{	
+		{
 			if (inputValues.SkillWeaponDamage.WeaponDamageFactor) skillBonusWeaponDamage = Math.round(skillBonusWeaponDamage * inputValues.SkillWeaponDamage.WeaponDamageFactor);
 			weaponDamage += skillBonusWeaponDamage;
 			weaponDamageTypes.push("Bonus Skill");
@@ -790,7 +790,7 @@ window.GetEsoSkillTooltipSpellDamage2 = function(tooltip, skillData, inputValues
 	}
 	
 		/* Skill specific spell damage bonuses */
-	if (inputValues.SkillSpellDamage.SkillSpellDamages)
+	if (inputValues.SkillSpellDamage && inputValues.SkillSpellDamage.SkillSpellDamages)
 	{
 		var skillBonusSpellDamage = inputValues.SkillSpellDamage.SkillSpellDamages[skillData.name];
 		if (skillBonusSpellDamage == null) skillBonusSpellDamage = inputValues.SkillSpellDamage.SkillSpellDamages[skillData.baseName];
@@ -1140,7 +1140,7 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 	}
 	
 		// Magicka Damage Done
-	if (skillData.mechanic == 0 && inputValues.MagickaAbilityDamageDone)
+	if (IsEsoSkillMechanicMagicka(skillData.mechanic) && inputValues.MagickaAbilityDamageDone)
 	{
 		valueFactor += Math.floor(inputValues.MagickaAbilityDamageDone*100)/100;
 		newRawOutput.magickaAbilityDamageDone = inputValues.MagickaAbilityDamageDone;

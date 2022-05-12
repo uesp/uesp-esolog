@@ -35,7 +35,8 @@ class CEsoSkillTooltip
 	public $skillWeaponDamage = 2000;
 	public $skillMaxStat = 20000;
 	public $skillMaxDamage = 2000;
-	public $skillShowThumb = false;
+	public $useDefaultDesc = true;
+	public $skillShowThumb = true;
 	public $version = "";
 	public $useUpdate10Costs = false;
 	
@@ -101,13 +102,41 @@ class CEsoSkillTooltip
 		if (array_key_exists('skillname', $this->inputParams)) $this->skillName = $this->inputParams['skillname'];
 		if (array_key_exists('skillline', $this->inputParams)) $this->skillLine = $this->inputParams['skillline'];
 		
-		if (array_key_exists('level', $this->inputParams)) $this->skillLevel = $this->ParseLevel($this->inputParams['level']);
+		if (array_key_exists('level', $this->inputParams)) 
+		{
+			$this->skillLevel = $this->ParseLevel($this->inputParams['level']);
+			$this->useDefaultDesc = false;
+		}
 		
-		if (array_key_exists('health', $this->inputParams)) $this->skillHealth = intval($this->inputParams['health']);
-		if (array_key_exists('magicka', $this->inputParams)) $this->skillMagicka = intval($this->inputParams['magicka']);
-		if (array_key_exists('stamina', $this->inputParams)) $this->skillStamina = intval($this->inputParams['stamina']);
-		if (array_key_exists('spelldamage', $this->inputParams)) $this->skillSpellDamage = intval($this->inputParams['spelldamage']);
-		if (array_key_exists('weapondamage', $this->inputParams)) $this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
+		if (array_key_exists('health', $this->inputParams)) 
+		{
+			$this->skillHealth = intval($this->inputParams['health']);
+			$this->useDefaultDesc = false;
+		}
+		
+		if (array_key_exists('magicka', $this->inputParams)) 
+		{
+			$this->skillMagicka = intval($this->inputParams['magicka']);
+			$this->useDefaultDesc = false;
+		}
+		
+		if (array_key_exists('stamina', $this->inputParams)) 
+		{
+			$this->skillStamina = intval($this->inputParams['stamina']);
+			$this->useDefaultDesc = false;
+		}
+		
+		if (array_key_exists('spelldamage', $this->inputParams)) 
+		{
+			$this->skillSpellDamage = intval($this->inputParams['spelldamage']);
+			$this->useDefaultDesc = false;
+		}
+		
+		if (array_key_exists('weapondamage', $this->inputParams)) 
+		{
+			$this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
+			$this->useDefaultDesc = false;
+		}
 		
 		if (array_key_exists('thumb', $this->inputParams)) $this->skillShowThumb = true;
 		
@@ -115,7 +144,7 @@ class CEsoSkillTooltip
 		$this->skillMaxDamage = max($this->skillSpellDamage, $this->skillWeaponDamage);
 		
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
-	
+		
 		return true;
 	}
 	
@@ -186,7 +215,7 @@ class CEsoSkillTooltip
 		
 		if ($learnedLevel != null) $this->skillData['learnedLevel'] = $learnedLevel;
 		
-		return true;		
+		return true;
 	}
 	
 	
@@ -194,18 +223,18 @@ class CEsoSkillTooltip
 	{
 		global $argv;
 		$this->inputParams = $_REQUEST;
-	
+		
 			// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
 			$argIndex = 0;
-	
+			
 			foreach ($argv as $arg)
 			{
 				$argIndex += 1;
 				if ($argIndex <= 1) continue;
 				$e = explode("=", $arg);
-	
+				
 				if(count($e) == 2)
 				{
 					$this->inputParams[$e[0]] = $e[1];
@@ -218,15 +247,15 @@ class CEsoSkillTooltip
 		}
 	}
 	
-
+	
 	public function ComputeEsoSkillValue($type, $a, $b, $c)
 	{
 		$value = 0;
-	
+		
 		$a = floatval($a);
 		$b = floatval($b);
 		$c = floatval($c);
-	
+		
 		if ($type == -2) // Health
 		{
 			$value = $a * $this->skillHealth + $c;
@@ -251,7 +280,7 @@ class CEsoSkillTooltip
 		{
 			return '?';
 		}
-	
+		
 		return round($value);
 	}
 	
@@ -280,7 +309,7 @@ class CEsoSkillTooltip
 			$value = $this->ComputeEsoSkillValue($type, $a, $b, $c);
 			$coefDesc = str_replace($srcString, $value, $coefDesc);
 		}
-	
+		
 		return $this->ConvertDescriptionToHtml($coefDesc);
 	}
 	
@@ -314,7 +343,7 @@ class CEsoSkillTooltip
 		
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id ";
 		$query .= " WHERE abilityId=$abilityId;";
-				
+		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load skill data!");
 		
@@ -364,10 +393,10 @@ class CEsoSkillTooltip
 	{
 			/* Fix for double formatted text */
 		//$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r\|r/', '<div class="esoSkillToolWhite">$1</div>', $description);
-		$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}\|c([a-fA-F0-9]{6})([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r\|r/', '<div class="esoSkillToolWhite" style="color:#$1">$2</div>', $description);
+		$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}\|c([a-fA-F0-9]{6})([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r\|r/', '<div style="color:#$1;display:inline;">$2</div>', $description);
 		
 		//$newDesc = preg_replace('/\|c[a-fA-F0-9]{6}([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r/', '<div class="esoSkillToolWhite">$1</div>', $newDesc);
-		$newDesc = preg_replace('/\|c([a-fA-F0-9]{6})([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r/', '<div class="esoSkillToolWhite" style="color:#$1">$2</div>', $newDesc);
+		$newDesc = preg_replace('/\|c([a-fA-F0-9]{6})([a-zA-Z _0-9\.\+\-\:\;\n\r\t$]*)\|r/', '<div style="color:#$1;display:inline;">$2</div>', $newDesc);
 		
 		$newDesc = preg_replace('/\n/', '<br />', $newDesc);
 		return $newDesc;
@@ -390,7 +419,7 @@ class CEsoSkillTooltip
 	
 	public function OutputHtml()
 	{
-		$output = "";
+		$output = "<div class='esovsSkillTooltip'>";
 		
 		$name = $this->EscapeSkill('name');
 		$rank = $this->GetSkillData('rank');
@@ -426,7 +455,7 @@ class CEsoSkillTooltip
 		{
 			if ($realRank > 0 && !($realRank == 1 && $nextSkill <= 0)) $fullName .= " " . $this->GetRomanNumeral($realRank);
 			
-			$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
+			$output .= "<div class='esovsSkillTooltipTitle'>$fullName</div>";
 			$output .= self::TOOLTIP_DIVIDER;
 		}
 		else
@@ -434,91 +463,108 @@ class CEsoSkillTooltip
 			if ($realRank >= 9) $realRank -= 8;
 			if ($realRank >= 5) $realRank -= 4;
 			if ($realRank > 0) $fullName .= " " . $this->GetRomanNumeral($realRank);
-		
-			$output .= "<div class='esoSkillPopupTooltipTitle'>$fullName</div>";
+			
+			$output .= "<div class='esovsSkillTooltipTitle'>$fullName</div>";
 			$output .= self::TOOLTIP_DIVIDER;
-		
+			
 			$costStr = "$cost ";
 			$costClass = "";
 			
-			if ($mechanic == 0)
+			if (intval($this->version >= 34))
 			{
-				$costStr .= "Magicka";
-				$costClass = "esovsMagicka";
+				if ($mechanic == 1)
+				{
+					$costStr .= "Magicka";
+					$costClass = "esovsMagicka";
+				}
+				else if ($mechanic == 4)
+				{
+					$costStr .= "Stamina";
+					$costClass = "esovsStamina";
+				}
 			}
-			else if ($mechanic == 6)
+			else
 			{
-				$costStr .= "Stamina";
-				$costClass = "esovsStamina";
+				if ($mechanic == 0)
+				{
+					$costStr .= "Magicka";
+					$costClass = "esovsMagicka";
+				}
+				else if ($mechanic == 6)
+				{
+					$costStr .= "Stamina";
+					$costClass = "esovsStamina";
+				}
 			}
-				
+			
 			if ($channelTime > 0)
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$channelTime seconds</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Channel Time</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$channelTime seconds</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Channel Time</div>";
 				$castTimeStr = "";
 			}
 			else if ($castTime <= 0)
 			{
 				$castTimeStr = "Instant";
 			}
-				
+			
 			if ($castTimeStr != '')
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$castTimeStr</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Cast Time</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$castTimeStr</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Cast Time</div>";
 			}
-				
+			
 			if ($target != '')
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$target</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Target</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$target</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Target</div>";
 			}
-				
+			
 			if ($area != '')
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$area</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Area</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$area</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Area</div>";
 			}
-				
+			
 			if ($radius > 0)
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$radius meters</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Radius</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$radius meters</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Radius</div>";
 			}
-				
+			
 			if ($range > 0)
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$range</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Range</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$range</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Range</div>";
 			}
-				
+			
 			if ($duration > 0)
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue'>$duration seconds</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Duration</div>";
+				$output .= "<div class='esovsSkillTooltipValue'>$duration seconds</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Duration</div>";
 			}
-				
+			
 			if ($cost != '')
 			{
-				$output .= "<div class='esoSkillPopupTooltipValue $costClass'>$costStr</div>";
-				$output .= "<div class='esoSkillPopupTooltipName'>Cost</div>";
+				$output .= "<div class='esovsSkillTooltipValue $costClass'>$costStr</div>";
+				$output .= "<div class='esovsSkillTooltipName'>Cost</div>";
 			}
-				
+			
 			$output .= self::TOOLTIP_DIVIDER;
 		}
 		
-		$output .= "<div class='esoSkillPopupTooltipDesc'>$newDesc</div>";
-		if ($effectLines != "") $output .= " <div class='esoSkillPopupTooltipEffectLines'><b>NEW EFFECT</b><br/>$effectLines</div>";
+		$output .= "<div class='esovsSkillTooltipDesc'>$newDesc</div>";
+		if ($effectLines != "") $output .= " <div class='esovsSkillTooltipEffectLines'><b>NEW EFFECT</b><br/>$effectLines</div>";
 		
 		if ($learnedLevel > 0)
 		{
 			if ($skillLine != "")
-				$output .= "<div class='esoSkillPopupTooltipLevel'>Unlocked at $skillLine Rank $learnedLevel</div>";
+				$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at $skillLine Rank $learnedLevel</div>";
 			else
-				$output .= "<div class='esoSkillPopupTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
+				$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
 		}
 		
+		$output .= "</div>";
 		print($output);
 		
 		return true;
@@ -545,8 +591,8 @@ class CEsoSkillTooltip
 		
 		if (!$this->LoadSkill()) return "Unknown skill {$this->skillId}!";
 		
-		$this->FixupSkills();
-
+		//$this->FixupSkills();
+		
 		$this->OutputHtml();
 		
 		return true;

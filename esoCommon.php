@@ -502,6 +502,19 @@ $ESO_COMBATMECHANICS = array(
 );
 
 
+$ESO_COMBATMECHANICS_34 = array(
+		-1 => "Invalid",
+		0 => "",
+		1 => "Magicka",
+		2 => "Werewolf",
+		4 => "Stamina",
+		8 => "Ultimate",
+		16 => "Mount Stamina",
+		32 => "Health",
+		64 => "Daedric",
+);
+
+
 $ESO_SKILLTYPES = array(
 		-1 => "",
 		0 => "",
@@ -951,6 +964,19 @@ $ESO_MECHANIC_TEXTS = array(
 		10 => "Ultimate",
 		11 => "Mount Stamina",
 		12 => "Health Bonus",
+);
+
+
+$ESO_MECHANIC_TEXTS_34 = array(
+		-1 => "Invalid",
+		0 => "",
+		1 => "Magicka",
+		2 => "Werewolf",
+		4 => "Stamina",
+		8 => "Ultimate",
+		16 => "Mount Stamina",
+		32 => "Health",
+		64 => "Daedric",
 );
 
 
@@ -1800,7 +1826,7 @@ $ESO_SET_INDEXES = array(
 		428 => "Perfected Mender's Ward",
 		429 => "Mighty Glacier",
 		430 => "Tzogvin's Warband",
-		431 => "Icy Conjuror",
+		431 => "Icy Conjurer",
 		432 => "Stonekeeper",
 		433 => "Frozen Watcher",
 		434 => "Scavenging Demise",
@@ -1845,10 +1871,6 @@ $ESO_SET_INDEXES = array(
 		480 => "Critical Riposte",
 		481 => "Unchained Aggressor",
 		482 => "Dauntless Combatant",
-		483 => "Template_Drop_Magi",
-		484 => "Template_Drop_Stamina",
-		485 => "Template_Drop_Tank",
-		486 => "Template_Drop_Healer",
 		487 => "Winter's Respite",
 		488 => "Venomous Smite",
 		489 => "Eternal Vigor",
@@ -1866,10 +1888,6 @@ $ESO_SET_INDEXES = array(
 		503 => "Ring of the Wild Hunt",
 		505 => "Torc of Tonal Constancy",
 		506 => "Spell Parasite",
-		509 => "Template_Drop_Healer P",
-		510 => "Template_Drop_Tank P",
-		511 => "Template_Drop_Stamina P",
-		512 => "Template_Drop_Magi P",
 		513 => "Talfyg's Treachery",
 		514 => "Unleashed Terror",
 		515 => "Crimson Twilight",
@@ -1979,6 +1997,25 @@ $ESO_SET_INDEXES = array(
 		634 => "Nunatak",
 		635 => "Lady Malygda",
 		636 => "Baron Thirsk",
+		640 => "Order's Wrath",
+		641 => "Serpent's Disdain",
+		642 => "Druid's Braid",
+		643 => "Blessing of High Isle",
+		644 => "Steadfast's Mettle",
+		645 => "Systres' Scowl",
+		646 => "Whorl of the Depths",
+		647 => "Coral Riptide",
+		648 => "Pearlescent Ward",
+		649 => "Pillager's Profit",
+		650 => "Perfected Pillager's Profit",
+		651 => "Perfected Pearlescent Ward",
+		652 => "Perfected Coral Riptide",
+		653 => "Perfected Whorl of the Depths",
+		654 => "Mora's Whispers",
+		655 => "Dov-rha Sabatons",
+		656 => "Lefthander's War Girdle",
+		657 => "Sea-Serpent's Coil",
+		658 => "Oakensoul Ring",
 );
 
 
@@ -2026,6 +2063,37 @@ $ESO_FURNLIMITTYPE_TEXTS = array(
 		1 => "Special Furnishings",
 		2 => "Collectible Furnishings",
 		3 => "Special Collectibles",
+);
+
+$ESO_COLLECTIBLECATEGORYTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Invalid",
+		1 => "DLC",
+		2 => "Mount",
+		3 => "Vanity Pet",
+		4 => "Costume",
+		5 => "Trophy",
+		6 => "Account Upgrade",
+		7 => "Account Service",
+		8 => "Assistant",
+		9 => "Personality",
+		10 => "Hat",
+		11 => "Skin",
+		12 => "Polymorph",
+		13 => "Hair",
+		14 => "Facial Hair Horns",
+		15 => "Facial Accessory",
+		16 => "Piercing Jewelry",
+		17 => "Head Marking",
+		18 => "Body Marking",
+		19 => "House",
+		20 => "Furniture",
+		21 => "Emote",
+		22 => "Chapter",
+		23 => "Ability Skin",
+		24 => "Outfit Style",
+		25 => "House Bank",
+		25 => "Combination Fragment",
 );
 
 $ESO_ITEMBINDTYPE_TEXTS = array(
@@ -4239,6 +4307,10 @@ function GetEsoItemTableSuffix($version)
 			return "33pts";
 		case '33':
 			return "";
+		case '34pts':
+			return "34pts";
+		case '34':
+			return "34";
 	}
 
 	return "";
@@ -4354,6 +4426,16 @@ function GetEsoCombatMechanicText($value)
 
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_COMBATMECHANICS)) return $ESO_COMBATMECHANICS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoCombatMechanicText34($value)
+{
+	global $ESO_COMBATMECHANICS_34;
+
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_COMBATMECHANICS_34)) return $ESO_COMBATMECHANICS_34[$key];
 	return "Unknown ($key)";
 }
 
@@ -4533,12 +4615,34 @@ function GetEsoFurnLimitTypeText($bindType)
 }
 
 
-function GetEsoMechanicTypeText($mechanicType)
+function GetEsoCollectibleCategoryTypeText($bindType)
+{
+	global $ESO_COLLECTIBLECATEGORYTYPE_TEXTS;
+	
+	$key = (int) $bindType;
+	if (array_key_exists($key, $ESO_COLLECTIBLECATEGORYTYPE_TEXTS)) return $ESO_COLLECTIBLECATEGORYTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoMechanicTypeText($mechanicType, $version = '')
 {
 	global $ESO_MECHANIC_TEXTS;
-
+	
+	if (intval($version) >= 34) return GetEsoMechanicTypeText34($mechanicType);
+	
 	$key = (int) $mechanicType;
 	if (array_key_exists($key, $ESO_MECHANIC_TEXTS)) return $ESO_MECHANIC_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoMechanicTypeText34($mechanicType)
+{
+	global $ESO_MECHANIC_TEXTS_34;
+	
+	$key = (int) $mechanicType;
+	if (array_key_exists($key, $ESO_MECHANIC_TEXTS_34)) return $ESO_MECHANIC_TEXTS_34[$key];
 	return "Unknown ($key)";
 }
 
@@ -4546,7 +4650,7 @@ function GetEsoMechanicTypeText($mechanicType)
 function GetEsoBuffTypeText($value)
 {
 	global $ESO_BUFFTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_BUFFTYPE_TEXTS)) return $ESO_BUFFTYPE_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4556,7 +4660,7 @@ function GetEsoBuffTypeText($value)
 function GetEsoQuestRepeatTypeText($value)
 {
 	global $ESO_QUEST_REPEATTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_QUEST_REPEATTYPE_TEXTS)) return $ESO_QUEST_REPEATTYPE_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4566,7 +4670,7 @@ function GetEsoQuestRepeatTypeText($value)
 function GetEsoQuestStepTypeText($value)
 {
 	global $ESO_QUEST_STEPTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_QUEST_STEPTYPE_TEXTS)) return $ESO_QUEST_STEPTYPE_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4644,14 +4748,14 @@ function GetEsoCurrencyChangeReasonText($value)
 
 
 
-function GetEsoCustomMechanicTypeText($mechanicType)
+function GetEsoCustomMechanicTypeText($mechanicType, $version = '')
 {
 	global $ESO_CUSTOM_MECHANICS;
 	
 	$key = (int) $mechanicType;
 	if (array_key_exists($key, $ESO_CUSTOM_MECHANICS)) return $ESO_CUSTOM_MECHANICS[$key];
 	
-	return GetEsoMechanicTypeText($mechanicType);
+	return GetEsoMechanicTypeText($mechanicType, $version);
 }
 
 

@@ -1,0 +1,4 @@
+<div id="uesp_tributecardroot" style="width:{cardWidth}px; height:{cardHeight}px;">
+	<div class="uesptcBackgroundCardImage" style="background-image: url('{cardImageUrl}');">
+	</div>
+</div>

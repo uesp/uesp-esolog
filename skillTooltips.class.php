@@ -38,6 +38,7 @@ class CEsoSkillTooltips
 	protected $isDbConnected = false;
 	
 	protected $updateDescCount = 0;
+	protected $updateNameCount = 0;
 	protected $updateTooltipCount = 0;
 	protected $coefErrorCount = 0;
 	
@@ -394,6 +395,26 @@ class CEsoSkillTooltips
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Failed to update raw time data for skill $abilityId!");
 		
+		return true;
+	}
+	
+	
+	protected function UpdateSkillRawName($abilityId, $rawName)
+	{
+		if ($this->DONT_SAVE_TOOLTIPS) return true;
+		
+		$rawName = str_replace("  ", " ", $rawName);
+		$rawName = str_replace("  ", " ", $rawName);
+		
+		$safeName = $this->db->real_escape_string($rawName);
+		$this->lastQuery = "UPDATE minedSkills{$this->TABLE_SUFFIX} SET rawName='$safeName' where id='$abilityId';";
+		
+		//print($this->lastQuery . "\n");
+		
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return $this->ReportError("Failed to update raw name for skill $abilityId!");
+		
+		++$this->updateNameCount;
 		return true;
 	}
 	
@@ -1139,8 +1160,10 @@ class CEsoSkillTooltips
 		
 		//$rawDesc = iconv('WINDOWS-1256', 'UTF-8', $rawSkillData['desc']);		// Doesn't work for some binary character sequences
 		$rawDesc = $rawSkillData['desc'];
+		$rawName = $rawSkillData['name'];
 		if ($rawDesc == null || $rawDesc == "") return true;
 		
+		if (!$this->UpdateSkillRawName($abilityId, $rawName)) return false;
 		if (!$this->UpdateSkillRawDescription($abilityId, $rawDesc)) return false;
 		if (!$this->UpdateSkillRawTimes($abilityId, $rawSkillData['start'], $rawSkillData['tick'],  $rawSkillData['cooldown'])) return false;
 		
@@ -1200,7 +1223,7 @@ class CEsoSkillTooltips
 				++$errorCount;
 		}
 		
-		$this->ReportError("Updated $successCount skills ({$this->updateDescCount} descriptions, {$this->updateTooltipCount} tooltips) with $errorCount errors ({$this->coefErrorCount} coefficient errors).");
+		$this->ReportError("Updated $successCount skills ({$this->updateDescCount} descriptions, {$this->updateNameCount} names, {$this->updateTooltipCount} tooltips) with $errorCount errors ({$this->coefErrorCount} coefficient errors).");
 		
 		return true;
 	}

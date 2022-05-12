@@ -1,33 +1,36 @@
 .eso_skill_tooltip {
 	display: inline-block;
-    width: 52px;
-    height: 52px;
-    background-size: 100% 100%;
-    margin: 5px;
-    position: relative;
-    webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	width: 52px;
+	height: 52px;
+	background-size: 100% 100%;
+	margin: 5px;
+	position: relative;
+	webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .eso_skill_tooltip:after {
-    background-image: url(eso_ability_frame.png);
-    background-size: 100% 100%;
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+	background-image: url(eso_ability_frame.png);
+	background-size: 100% 100%;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
-.eso_skill_tooltip img {
+.esoSkillPopupIcon {
 	width: 48px;
-    height: 48px;
-    margin-top: 2px;
-    margin-left: 2px;
-    vertical-align: middle;
+	height: 48px;
+	margin-top: 2px;
+	margin-left: 2px;
+	vertical-align: middle;
+	margin: auto;
+	display: block;
 }
+

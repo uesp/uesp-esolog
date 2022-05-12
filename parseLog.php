@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "34pts";
+	const SKILLS_TABLESUFFIX   = "34pts";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -215,6 +215,8 @@ class EsoLogParser
 			"collectibles",
 			"achievements",
 			"minedItemSummary",
+			"tributePatrons",
+			"tributeCards",
 	);
 	
 	
@@ -695,6 +697,11 @@ class EsoLogParser
 			'setBonusDesc5' => self::FIELD_STRING,
 			'setBonusDesc6' => self::FIELD_STRING,
 			'setBonusDesc7' => self::FIELD_STRING,
+			'setBonusDesc8' => self::FIELD_STRING,
+			'setBonusDesc9' => self::FIELD_STRING,
+			'setBonusDesc10' => self::FIELD_STRING,
+			'setBonusDesc11' => self::FIELD_STRING,
+			'setBonusDesc12' => self::FIELD_STRING,
 	);
 	
 	public static $MINEDITEMSUMMARY_FIELDS = array(
@@ -742,6 +749,11 @@ class EsoLogParser
 			'setBonusCount5' => self::FIELD_INT,
 			'setBonusCount6' => self::FIELD_INT,
 			'setBonusCount7' => self::FIELD_INT,
+			'setBonusCount8' => self::FIELD_INT,
+			'setBonusCount9' => self::FIELD_INT,
+			'setBonusCount10' => self::FIELD_INT,
+			'setBonusCount11' => self::FIELD_INT,
+			'setBonusCount12' => self::FIELD_INT,
 			'setBonusDesc1' => self::FIELD_STRING,
 			'setBonusDesc2' => self::FIELD_STRING,
 			'setBonusDesc3' => self::FIELD_STRING,
@@ -749,6 +761,11 @@ class EsoLogParser
 			'setBonusDesc5' => self::FIELD_STRING,
 			'setBonusDesc6' => self::FIELD_STRING,
 			'setBonusDesc7' => self::FIELD_STRING,
+			'setBonusDesc8' => self::FIELD_STRING,
+			'setBonusDesc9' => self::FIELD_STRING,
+			'setBonusDesc10' => self::FIELD_STRING,
+			'setBonusDesc11' => self::FIELD_STRING,
+			'setBonusDesc12' => self::FIELD_STRING,
 			'siegeType' => self::FIELD_INT,
 			'siegeHP' => self::FIELD_INT,
 			'bookTitle' => self::FIELD_STRING,
@@ -822,6 +839,11 @@ class EsoLogParser
 			'setBonus5' => 'setBonusCount5',
 			'setBonus6' => 'setBonusCount6',
 			'setBonus7' => 'setBonusCount7',
+			'setBonus8' => 'setBonusCount8',
+			'setBonus9' => 'setBonusCount9',
+			'setBonus10' => 'setBonusCount10',
+			'setBonus11' => 'setBonusCount11',
+			'setBonus12' => 'setBonusCount12',
 			'setDesc1' => 'setBonusDesc1',
 			'setDesc2' => 'setBonusDesc2',
 			'setDesc3' => 'setBonusDesc3',
@@ -829,6 +851,11 @@ class EsoLogParser
 			'setDesc5' => 'setBonusDesc5',
 			'setDesc6' => 'setBonusDesc6',
 			'setDesc7' => 'setBonusDesc7',
+			'setDesc8' => 'setBonusDesc8',
+			'setDesc9' => 'setBonusDesc9',
+			'setDesc10' => 'setBonusDesc10',
+			'setDesc11' => 'setBonusDesc11',
+			'setDesc12' => 'setBonusDesc12',
 			'runeType' => 'runeType',
 			'bindType' => 'bindType',
 			'siegeType' => 'siegeType',
@@ -951,6 +978,7 @@ class EsoLogParser
 			'R6' => self::FIELD_FLOAT,
 			'avg6' => self::FIELD_FLOAT,
 			'rawDescription' => self::FIELD_STRING,
+			'rawName' => self::FIELD_STRING,
 			'rawTooltip' => self::FIELD_STRING,
 			'rawCoef' => self::FIELD_STRING,
 			'coefTypes' => self::FIELD_STRING,
@@ -1244,6 +1272,63 @@ class EsoLogParser
 			'objStartDesc' => self::FIELD_STRING,
 			'objEndDesc' => self::FIELD_STRING,
 			'count' => self::FIELD_INT,
+	);
+	
+	
+	public static $TRIBUTEPATRON_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'actionTexture' => self::FIELD_STRING,
+			'actionGlow' => self::FIELD_STRING,
+			'agentTexture' => self::FIELD_STRING,
+			'agentGlow' => self::FIELD_STRING,
+			'suitIcon' => self::FIELD_STRING,
+			'smallIcon' => self::FIELD_STRING,
+			'largeIcon' => self::FIELD_STRING,
+			'largeRingIcon' => self::FIELD_STRING,
+			'collectibleId' => self::FIELD_INT,
+			'rarity' => self::FIELD_INT,
+			'isNeutral' => self::FIELD_INT,
+			'skipNeutral' => self::FIELD_INT,
+			'categoryId' => self::FIELD_INT,
+			'category' => self::FIELD_STRING,
+			'loreDescription' => self::FIELD_STRING,
+			'playStyleDescription' => self::FIELD_STRING,
+			'acquireHint' => self::FIELD_STRING,
+			'numStartCards' => self::FIELD_INT,
+			'startCards' => self::FIELD_STRING,
+			'numDockCards' => self::FIELD_INT,
+			'dockCards' => self::FIELD_STRING,
+	);
+	
+	
+	public static $TRIBUTECARD_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'texture' => self::FIELD_STRING,
+			'glowTexture' => self::FIELD_STRING,
+			'cardType' => self::FIELD_INT,
+			'resourceType' => self::FIELD_INT,
+			'resourceQnt' => self::FIELD_INT,
+			'defeatType' => self::FIELD_INT,
+			'defeatQnt' => self::FIELD_INT,
+			'doesTaunt' => self::FIELD_INT,
+			'isContract' => self::FIELD_INT,
+			'oneMechanic' => self::FIELD_INT,
+			'description' => self::FIELD_STRING,
+			'rarity' => self::FIELD_INT,
+			'numActiveMechanics' => self::FIELD_INT,
+			'activeMechanic1' => self::FIELD_STRING,
+			'activeMechanic2' => self::FIELD_STRING,
+			'activeMechanic3' => self::FIELD_STRING,
+			'activeMechanic4' => self::FIELD_STRING,
+			'activeMechanic5' => self::FIELD_STRING,
+			'numComboMechanics' => self::FIELD_INT,
+			'comboMechanic1' => self::FIELD_STRING,
+			'comboMechanic2' => self::FIELD_STRING,
+			'comboMechanic3' => self::FIELD_STRING,
+			'comboMechanic4' => self::FIELD_STRING,
+			'comboMechanic5' => self::FIELD_STRING,
 	);
 	
 	
@@ -1725,6 +1810,24 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadTributePatron ($id)
+	{
+		$record = $this->loadRecord('tributePatrons', 'id', $id, self::$TRIBUTEPATRON_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
+	public function LoadTributeCard ($id)
+	{
+		$record = $this->loadRecord('tributeCards', 'id', $id, self::$TRIBUTECARD_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
 	public function LoadMinedItemLink ($itemLink)
 	{
 		$link = ParseEsoItemLink($itemLink);
@@ -2055,6 +2158,19 @@ class EsoLogParser
 	{
 		return $this->saveRecord('achievementCriteria', $record, 'id', self::$ACHIEVEMENTCRITERIA_FIELDS);
 	}
+	
+	
+	public function SaveTributePatron (&$record)
+	{
+		return $this->saveRecord('tributePatrons', $record, 'id', self::$TRIBUTEPATRON_FIELDS);
+	}
+	
+	
+	public function SaveTributeCard (&$record)
+	{
+		return $this->saveRecord('tributeCards', $record, 'id', self::$TRIBUTECARD_FIELDS);
+	}
+	
 	
 	
 	public function createTables()
@@ -2639,6 +2755,11 @@ class EsoLogParser
 			setBonusDesc5 TEXT NOT NULL,
 			setBonusDesc6 TEXT NOT NULL,
 			setBonusDesc7 TEXT NOT NULL,
+			setBonusDesc8 TEXT NOT NULL,
+			setBonusDesc9 TEXT NOT NULL,
+			setBonusDesc10 TEXT NOT NULL,
+			setBonusDesc11 TEXT NOT NULL,
+			setBonusDesc12 TEXT NOT NULL,
 			PRIMARY KEY (id),
 			INDEX index_itemId (itemId, internalLevel, internalSubtype)
 		) ENGINE=MYISAM;";
@@ -2692,6 +2813,11 @@ class EsoLogParser
 			setBonusCount5 TINYINT NOT NULL DEFAULT 0,
 			setBonusCount6 TINYINT NOT NULL DEFAULT 0,
 			setBonusCount7 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount8 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount9 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount10 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount11 TINYINT NOT NULL DEFAULT 0,
+			setBonusCount12 TINYINT NOT NULL DEFAULT 0,
 			setBonusDesc1 TEXT NOT NULL,
 			setBonusDesc2 TEXT NOT NULL,
 			setBonusDesc3 TEXT NOT NULL,
@@ -2699,6 +2825,11 @@ class EsoLogParser
 			setBonusDesc5 TEXT NOT NULL,
 			setBonusDesc6 TEXT NOT NULL,
 			setBonusDesc7 TEXT NOT NULL,
+			setBonusDesc8 TEXT NOT NULL,
+			setBonusDesc9 TEXT NOT NULL,
+			setBonusDesc10 TEXT NOT NULL,
+			setBonusDesc11 TEXT NOT NULL,
+			setBonusDesc12 TEXT NOT NULL,
 			siegeType TINYINT NOT NULL DEFAULT 0,
 			siegeHP INTEGER NOT NULL DEFAULT 0,
 			bookTitle TINYTEXT NOT NULL,
@@ -2835,6 +2966,7 @@ class EsoLogParser
 			R6 FLOAT NOT NULL DEFAULT -1,
 			avg6 FLOAT NOT NULL DEFAULT -1,
 			rawDescription TEXT NOT NULL,
+			rawName TINYTEXT NOT NULL,
 			rawTooltip TEXT NOT NULL,
 			rawCoef TEXT NOT NULL,
 			coefTypes TEXT NOT NULL,
@@ -3230,6 +3362,75 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create zonePois table!");
+		
+		
+		$query = "CREATE TABLE IF NOT EXISTS tributePatrons (
+						id INTEGER NOT NULL,
+						name TINYTEXT NOT NULL,
+						actionTexture TINYTEXT NOT NULL,
+						actionGlow TINYTEXT NOT NULL,
+						agentTexture TINYTEXT NOT NULL,
+						agentGlow TINYTEXT NOT NULL,
+						suitIcon TINYTEXT NOT NULL,
+						smallIcon TINYTEXT NOT NULL,
+						largeIcon TINYTEXT NOT NULL,
+						largeRingIcon TINYTEXT NOT NULL,
+						collectibleId INTEGER NOT NULL,
+						rarity TINYINT NOT NULL,
+						isNeutral TINYINT NOT NULL,
+						skipNeutral TINYINT NOT NULL,
+						categoryId TINYINT NOT NULL,
+						category TINYTEXT NOT NULL,
+						loreDescription TEXT NOT NULL,
+						playStyleDescription TEXT NOT NULL,
+						acquireHint TEXT NOT NULL,
+						numStartCards TINYINT NOT NULL,
+						startCards TINYTEXT NOT NULL,
+						numDockCards TINYINT NOT NULL,
+						dockCards TINYTEXT NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name, loreDescription, playStyleDescription, acquireHint)
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create tributePatrons table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS tributeCards (
+						id INTEGER NOT NULL,
+						name TINYTEXT NOT NULL,
+						texture TINYTEXT NOT NULL,
+						glowTexture TINYTEXT NOT NULL,
+						cardType TINYINT NOT NULL,
+						resourceType TINYINT NOT NULL,
+						resourceQnt TINYINT NOT NULL,
+						defeatType TINYINT NOT NULL,
+						defeatQnt TINYINT NOT NULL,
+						doesTaunt TINYINT NOT NULL,
+						isContract TINYINT NOT NULL,
+						oneMechanic TINYINT NOT NULL,
+						description TINYTEXT NOT NULL,
+						rarity TINYINT NOT NULL,
+						numActiveMechanics TINYINT NOT NULL,
+						activeMechanic1 TINYTEXT NOT NULL,
+						activeMechanic2 TINYTEXT NOT NULL,
+						activeMechanic3 TINYTEXT NOT NULL,
+						activeMechanic4 TINYTEXT NOT NULL,
+						activeMechanic5 TINYTEXT NOT NULL,
+						numComboMechanics TINYINT NOT NULL,
+						comboMechanic1 TINYTEXT NOT NULL,
+						comboMechanic2 TINYTEXT NOT NULL,
+						comboMechanic3 TINYTEXT NOT NULL,
+						comboMechanic4 TINYTEXT NOT NULL,
+						comboMechanic5 TINYTEXT NOT NULL,
+						PRIMARY KEY (id),
+						FULLTEXT(name, description),
+						INDEX index_name(name(32))
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create tributeCards table!");
 		
 		$this->skillTooltips->CreateTable();
 		
@@ -4350,21 +4551,21 @@ class EsoLogParser
 		$questStageRecord['isComplete'] = ($logEntry['isComplete'] === 'true') ? 1 : 0;
 		$questStageRecord['locationId'] = -1;
 		$questStageRecord['__isNew'] = true;
-	
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
-	
+		
 		$result = $this->SaveOldQuestStage($questStageRecord);
 		if (!$result) return null;
-	
+		
 		$questLocation = $this->CreateLocation("oldquest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
 		$result = $this->SaveLocation($questLocation);
 		if (!$result) return null;
-	
+		
 		$questStageRecord['locationId'] = $questLocation['id'];
 		$result = $this->SaveOldQuestStage($questStageRecord);
 		if (!$result) return null;
-	
+		
 		return $questStageRecord;
 	}
 	
@@ -4372,7 +4573,7 @@ class EsoLogParser
 	public function CreateQuest ($name, $logEntry)
 	{
 		$questRecord = $this->createNewRecord(self::$QUEST_FIELDS);
-	
+		
 		$questRecord['name'] = $name;
 		$questRecord['locationId'] = -1;
 		$questRecord['level'] = $logEntry['level'];
@@ -4400,21 +4601,21 @@ class EsoLogParser
 		if ($logEntry['questZone'] !== null && $logEntry['questZone'] != "") $questRecord['zone'] = $logEntry['questZone']; 
 		$questRecord['count'] = 1;
 		$questRecord['__isNew'] = true;
-	
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
-	
+		
 		$result = $this->SaveQuest($questRecord);
 		if (!$result) return null;
 		
 		$questLocation = $this->CreateLocation("quest", $name, $logEntry, array('questId' => $questRecord['id']));
 		$result = $this->SaveLocation($questLocation);
 		if (!$result) return null;
-	
+		
 		$questRecord['locationId'] = $questLocation['id'];
 		$result = $this->SaveQuest($questRecord);
 		if (!$result) return null;
-	
+		
 		return $questRecord;
 	}	
 	
@@ -4440,10 +4641,10 @@ class EsoLogParser
 		
 		$questStageRecord['numConditions'] = $logEntry['numCond'];
 		$questStageRecord['__isNew'] = true;
-	
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
-	
+		
 		$result = $this->SaveQuestStep($questStageRecord);
 		if (!$result) return null;
 		
@@ -4454,7 +4655,7 @@ class EsoLogParser
 		$questStageRecord['locationId'] = $questLocation['id'];
 		$result = $this->SaveQuestStep($questStageRecord);
 		if (!$result) return null;
-	
+		
 		return $questStageRecord;
 	}
 	
@@ -4462,10 +4663,10 @@ class EsoLogParser
 	public function CreateQuestCondition ($questRecord, $stepRecord, $logEntry)
 	{
 		$questCondRecord = $this->createNewRecord(self::$QUESTCONDITION_FIELDS);
-	
+		
 		$questCondRecord['questId'] = $questRecord['id'];
 		$questCondRecord['questStepId'] = $stepRecord['id'];
-				
+		
 		$questCondRecord['stageIndex'] = $logEntry['stageIndex'];
 		$questCondRecord['stepIndex'] = $logEntry['step'];
 		$questCondRecord['conditionIndex'] = $logEntry['condition'];
@@ -4487,7 +4688,7 @@ class EsoLogParser
 		
 		$result = $this->SaveQuestCondition($questCondRecord);
 		if (!$result) return null;
-	
+		
 		return $questCondRecord;
 	}
 	
@@ -4495,7 +4696,7 @@ class EsoLogParser
 	public function CreateQuestReward ($questRecord, $logEntry)
 	{
 		$rewardRecord = $this->createNewRecord(self::$QUESTREWARD_FIELDS);
-	
+		
 		$rewardRecord['questId'] = $questRecord['id'];
 		$rewardRecord['type'] = $logEntry['type'];
 		$rewardRecord['name'] = $logEntry['name'];
@@ -4508,13 +4709,13 @@ class EsoLogParser
 		$rewardRecord['uniqueId'] = $logEntry['uniqueId'];
 		$rewardRecord['count'] = 0;
 		$rewardRecord['__isNew'] = true;
-	
+		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
-	
+		
 		$result = $this->SaveQuestReward($rewardRecord);
 		if (!$result) return null;
-	
+		
 		return $rewardRecord;
 	}
 	
@@ -4522,7 +4723,7 @@ class EsoLogParser
 	public function CreateQuestGoldReward ($logEntry)
 	{
 		$rewardRecord = $this->createNewRecord(self::$QUESTGOLDREWARD_FIELDS);
-	
+		
 		$rewardRecord['questName'] = $logEntry['quest'];
 		$rewardRecord['gold'] = $logEntry['gold'];
 		$rewardRecord['playerLevel'] = $logEntry['effLevel'];
@@ -6456,6 +6657,94 @@ class EsoLogParser
 	}
 	
 	
+	public function OnTributePatron($logEntry)
+	{
+		if ($logEntry['patronId'] <= 0) return $this->reportLogParseError("\tWarning: Invalid tribute patron ID found in log!");
+		
+		$patron = $this->LoadTributePatron($logEntry['patronId']);
+		if ($patron === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize tribute patron data!");
+		
+		if ($patron['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		$patron['name'] = $logEntry['name'];
+		$patron['actionTexture'] = $logEntry['actionTexture'];
+		$patron['actionGlow'] = $logEntry['actionGlow'];
+		$patron['agentTexture'] = $logEntry['agentTexture'];
+		$patron['agentGlow'] = $logEntry['agentGlow'];
+		$patron['suitIcon'] = $logEntry['suitIcon'];
+		$patron['smallIcon'] = $logEntry['smallIcon'];
+		$patron['largeIcon'] = $logEntry['largeIcon'];
+		$patron['largeRingIcon'] = $logEntry['largeRingIcon'];
+		$patron['collectibleId'] = $logEntry['collectId'];
+		$patron['rarity'] = $logEntry['rarity'];
+		$patron['isNeutral'] = $logEntry['isNeutral'] == 'true' ? 1 : 0;
+		$patron['skipNeutral'] = $logEntry['skipNeutral'] == 'true' ? 1 : 0;
+		$patron['categoryId'] = $logEntry['categoryId'];
+		$patron['category'] = $logEntry['category'];
+		$patron['loreDescription'] = $logEntry['loreDesc'];
+		$patron['playStyleDescription'] = $logEntry['playStyleDesc'];
+		$patron['acquireHint'] = $logEntry['acquireHint'];
+		$patron['numStartCards'] = $logEntry['numStartCards'];
+		$patron['startCards'] = $logEntry['startCards'];
+		$patron['numDockCards'] = $logEntry['numDockCards'];
+		$patron['dockCards'] = $logEntry['dockCards'];
+		
+		$this->SaveTributePatron($patron);
+		
+		return true;
+	}
+	
+	
+	public function OnTributeCard($logEntry)
+	{
+		if ($logEntry['cardId'] <= 0) return $this->reportLogParseError("\tWarning: Invalid tribute card ID found in log!");
+		
+		$card = $this->LoadTributeCard($logEntry['cardId']);
+		if ($card === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize tribute card data!");
+		
+		if ($card['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		$card['name'] = $logEntry['name'];
+		$card['texture'] = $logEntry['texture'];
+		$card['glowTexture'] = $logEntry['glowTexture'];
+		$card['cardType'] = $logEntry['cardType'];
+		$card['resourceType'] = $logEntry['resource'];
+		$card['resourceQnt'] = $logEntry['qnt'];
+		$card['defeatType'] = $logEntry['defResource'];
+		$card['defeatQnt'] = $logEntry['defQnt'];
+		$card['isContract'] = $logEntry['isContract'] == 'true' ? 1 : 0;
+		$card['doesTaunt'] = $logEntry['taunts'] == 'true' ? 1 : 0;
+		$card['oneMechanic'] = $logEntry['oneMechanic'] == 'true' ? 1 : 0;
+		$card['description'] = $logEntry['flavorText'];
+		$card['rarity'] = $logEntry['rarity'];
+		
+		$card['numActiveMechanics'] = $logEntry['numMechAct'];
+		$card['activeMechanic1'] = $logEntry['acttext1'];
+		$card['activeMechanic2'] = $logEntry['acttext2'];
+		$card['activeMechanic3'] = $logEntry['acttext3'];
+		$card['activeMechanic4'] = $logEntry['acttext4'];
+		$card['activeMechanic5'] = $logEntry['acttext5'];
+		
+		$card['numComboMechanics'] = $logEntry['numMechCombo'];
+		$card['comboMechanic1'] = $logEntry['comtext1'];
+		$card['comboMechanic2'] = $logEntry['comtext2'];
+		$card['comboMechanic3'] = $logEntry['comtext3'];
+		$card['comboMechanic4'] = $logEntry['comtext4'];
+		$card['comboMechanic5'] = $logEntry['comtext5'];
+		
+		$this->SaveTributeCard($card);
+		return true;
+	}
+	
+	
 	public function ParseMinedItemLog (&$logEntry)
 	{
 		$itemLink = $logEntry['itemLink'];
@@ -6561,6 +6850,11 @@ class EsoLogParser
 			$logEntry['setBonus5'] = "";
 			$logEntry['setBonus6'] = "";
 			$logEntry['setBonus7'] = "";
+			$logEntry['setBonus8'] = "";
+			$logEntry['setBonus9'] = "";
+			$logEntry['setBonus10'] = "";
+			$logEntry['setBonus11'] = "";
+			$logEntry['setBonus12'] = "";
 			
 			$logEntry['setDesc1'] = "";
 			$logEntry['setDesc2'] = "";
@@ -6569,6 +6863,11 @@ class EsoLogParser
 			$logEntry['setDesc5'] = "";
 			$logEntry['setDesc6'] = "";
 			$logEntry['setDesc7'] = "";
+			$logEntry['setDesc8'] = "";
+			$logEntry['setDesc9'] = "";
+			$logEntry['setDesc10'] = "";
+			$logEntry['setDesc11'] = "";
+			$logEntry['setDesc12'] = "";
 			
 			$logEntry['setName'] = "";
 			$logEntry['setBonusCount'] = "";
@@ -6585,6 +6884,11 @@ class EsoLogParser
 			$logEntry['setBonus5'] = "";
 			$logEntry['setBonus6'] = "";
 			$logEntry['setBonus7'] = "";
+			$logEntry['setBonus8'] = "";
+			$logEntry['setBonus9'] = "";
+			$logEntry['setBonus10'] = "";
+			$logEntry['setBonus11'] = "";
+			$logEntry['setBonus12'] = "";
 			
 			$logEntry['setDesc1'] = "";
 			$logEntry['setDesc2'] = "";
@@ -6593,6 +6897,11 @@ class EsoLogParser
 			$logEntry['setDesc5'] = "";
 			$logEntry['setDesc6'] = "";
 			$logEntry['setDesc7'] = "";
+			$logEntry['setDesc8'] = "";
+			$logEntry['setDesc9'] = "";
+			$logEntry['setDesc10'] = "";
+			$logEntry['setDesc11'] = "";
+			$logEntry['setDesc12'] = "";
 			
 			$logEntry['setName'] = "";
 			$logEntry['setBonusCount'] = "";
@@ -6757,6 +7066,11 @@ class EsoLogParser
 			$logEntry['furnCategory'] = "{$logEntry['furnCateName']}:{$logEntry['furnSubCateName']} ({$logEntry['furnCate']}:{$logEntry['furnSubCate']})";
 		}
 		
+			/* Fix empty tags */
+		$logEntry['tags'] = trim($logEntry['tags']);
+		if ($logEntry['tags'] == ",") $logEntry['tags'] = "";
+		$logEntry['tags'] = preg_replace('/^,/', '', $logEntry['tags']);
+		$logEntry['tags'] = preg_replace('/,$/', '', $logEntry['tags']);
 	}
 	
 	
@@ -7727,7 +8041,7 @@ class EsoLogParser
 		if (array_key_exists('learnedLevel', $logEntry)) $skill['learnedLevel'] = $logEntry['learnedLevel'];
 		if (array_key_exists('abilityIndex', $logEntry)) $skill['skillIndex'] = $logEntry['abilityIndex'];
 		
-		if (array_key_exists('skillLine', $logEntry) || $logEntry['skillLineId'] > 0) 
+		if (array_key_exists('skillLine', $logEntry) || $logEntry['skillLineId'] > 0)
 		{
 			static $SKILL_TYPES = array(
 					"Legerdemain" => 4,
@@ -9189,6 +9503,12 @@ class EsoLogParser
 			case 'SkillCoef::Duration':
 			case 'SkillCoef::Desc':
 			case 'SkillCoef::Desc::Reset':
+			case 'tributepatron':
+			case 'tributepatron::start':
+			case 'tributepatron::end':
+			case 'tributecard':
+			case 'tributecard::start':
+			case 'tributecard::end':
 			//case 'SkillCoef':
 			//case 'SkillCoef::Start':
 			//case 'SkillCoef::End':
@@ -9575,6 +9895,14 @@ class EsoLogParser
 			case "PickpocketFailed":			$result = $this->OnPickPocketFailed($logEntry); break;
 			
 			case "loglocation":					$result = $this->OnLogLocation($logEntry); break;
+			
+			case "tributecard":					$result = $this->OnTributeCard($logEntry); break;
+			case "tributepatron":				$result = $this->OnTributePatron($logEntry); break;
+			
+			case "tributepatron:start":
+			case "tributepatron::end":
+			case "tributecard::start":
+			case "tributecard::end":			$result = $this->OnNullEntry($logEntry); break;
 			
 			case "Test":
 			case "TEST":

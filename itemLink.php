@@ -71,7 +71,9 @@ class CEsoItemLink
 	
 	const ESOIL_POTION_MAGICITEMID = 1;
 	const ESOIL_POISON_MAGICITEMID = 2;
-	const ESOIL_ENCHANT_ITEMID = 23662;	
+	const ESOIL_ENCHANT_ITEMID = 23662;
+	
+	const MAXSETINDEX = 12;
 	
 		// Weird results based on level when enabled (depends on level of character not item)
 	const ESOIL_USEPRECENT_CRITICALVALUE = false;
@@ -167,10 +169,10 @@ class CEsoItemLink
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
-	public $itemLevel = -1;		// 1-66
-	public $itemQuality = -1;	// 0-5
-	public $itemIntLevel = 1;	// 1-50
-	public $itemIntType = 1;	// 1-400
+	public $itemLevel = 66;		// 1-66
+	public $itemQuality = 5;	// 0-5
+	public $itemIntLevel = 50;	// 1-50
+	public $itemIntType = 370;	// 1-400
 	public $itemBound = -1;
 	public $itemStyle = -1;
 	public $itemCrafted = -1;
@@ -1612,6 +1614,12 @@ class CEsoItemLink
 	{
 		//if (!$this->ShouldShowLevel()) return "";
 		
+		if ($this->showSummary)
+		{
+			$level = $this->itemRecord['level'];
+			return "LEVEL <div id='esoil_itemlevel'>$level</div>";
+		}
+		
 		$level = intval($this->itemRecord['level']);
 		
 		if ($level <= 0) return "";
@@ -2150,7 +2158,7 @@ class CEsoItemLink
 		$setBonusCount = (int) $this->itemRecord['setBonusCount'];
 		$output = "<div class='esoil_white esoil_small'>PART OF THE $safeSetName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)</div>";
 		
-		for ($i = 1; $i <= 7; $i += 1)
+		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
 			$setDesc = $this->itemRecord['setBonusDesc' . $i];
@@ -2755,6 +2763,17 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetItemQualityText()
+	{
+		if ($this->showSummary)
+		{
+			if ($this->itemRecord['quality'] == "1-5" || $this->itemRecord['quality'] == "0-5") return GetEsoItemQualityText(5); 
+		}
+		
+		return GetEsoItemQualityText($this->itemRecord['quality']);
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
@@ -2773,7 +2792,7 @@ class CEsoItemLink
 				'{itemLevelRaw}' => $this->itemRecord['level'],
 				'{itemQualityRaw}' => $this->itemRecord['quality'],
 				'{itemLevelBlock}' => $this->MakeItemLevelString(),
-				'{itemQuality}' => GetEsoItemQualityText($this->itemRecord['quality']),
+				'{itemQuality}' => $this->GetItemQualityText(),
 				'{iconLink}' => $this->MakeItemIconImageLink(),
 				'{itemLeftBlock}' => $this->MakeItemLeftBlock(),
 				'{itemRightBlock}' => $this->MakeItemRightBlock(),

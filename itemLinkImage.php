@@ -39,6 +39,8 @@ class CEsoItemLinkImage
 	const ESOIL_POISON_MAGICITEMID = 2;
 	const ESOIL_ENCHANT_ITEMID = 23662;
 	
+	const MAXSETINDEX = 12;
+	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
 			"name" => "Unknown",
 			"itemId" => 0,
@@ -73,10 +75,10 @@ class CEsoItemLinkImage
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
-	public $itemLevel = -1;		// 1-64
-	public $itemQuality = -1;	// 0-5
-	public $itemIntLevel = -1;	// 1-50
-	public $itemIntType = -1;	// 1-40
+	public $itemLevel = -66;		// 1-64
+	public $itemQuality = 5;	// 0-5
+	public $itemIntLevel = 50;	// 1-50
+	public $itemIntType = 370;	// 1-40
 	public $itemBound = -1;
 	public $itemStyle = -1;
 	public $itemCrafted = -1;
@@ -230,6 +232,8 @@ class CEsoItemLinkImage
 	
 	private function ParseInputParams ()
 	{
+		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
+		
 		if (array_key_exists('itemlink', $this->inputParams))
 		{
 			$this->itemLink = urldecode($this->inputParams['itemlink']);
@@ -246,7 +250,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('level', $this->inputParams))
 		{
 			$level = strtolower($this->inputParams['level']);
-				
+			
 			if ($level[0] == 'v')
 			{
 				$this->itemLevel = (int) ltrim($level, 'v') + 50;
@@ -254,6 +258,10 @@ class CEsoItemLinkImage
 			else if ($level[0] == 'c' && $level[1] == 'p')
 			{
 				$this->itemLevel = floor(((int) substr($level, 2))/10) + 50;
+			}
+			else if ($this->showSummary)
+			{
+				$this->itemLevel = strtoupper($level);
 			}
 			else
 			{
@@ -300,7 +308,6 @@ class CEsoItemLinkImage
 		
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		if (array_key_exists('nocache', $this->inputParams)) $this->noCache = true;
-		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];;
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];;
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
@@ -1550,7 +1557,22 @@ class CEsoItemLinkImage
 	
 	public function OutputItemNewLevelBlock($image, $y)
 	{
-		if ($this->showSummary) return 0;
+		if ($this->showSummary)
+		{
+				// Is output in OutputItemRightBlock()?
+			return 0;
+			
+			$level = $this->itemRecord['level'];
+			
+			$printData = array();
+			$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
+			$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
+			
+			$x = self::ESOIL_IMAGE_WIDTH/2;
+			//if (!$this->GetItemLeftBlockDisplay()) $x -= self::ESOIL_LEVELBLOCK_CENTERXAMT;
+			
+			return $this->PrintDataText($image, $printData, $x, $y + 4, 'center');
+		}
 		
 		$level = intval($this->itemRecord['level']);
 		if ($level <= 0) return 0;
@@ -1614,13 +1636,7 @@ class CEsoItemLinkImage
 				return false;
 				
 			case 2:
-				$equipType = $this->itemRecord['equipType'];
-				
-				if ($equipType == 2 || $equipType == 12) 
-					$display = false;
-				else
-					$display = true;
-				
+				$display = true;
 				break;
 				
 			case 1:
@@ -1685,7 +1701,8 @@ class CEsoItemLinkImage
 			$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
 			$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
 			
-			return $this->PrintDataText($image, $printData, $x, $y + 4, 'right');
+			$x = self::ESOIL_IMAGE_WIDTH/2;
+			return $this->PrintDataText($image, $printData, $x, $y + 4, 'center');
 		}
 		
 		if ($level <= 50) return 0;
@@ -2259,7 +2276,7 @@ class CEsoItemLinkImage
 		$setLabel = "PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)";
 		$this->AddPrintData($printData, $setLabel, $this->printOptionsSmallWhite, array('br' => true));
 		
-		for ($i = 1; $i <= 7; $i += 1)
+		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
 			$setDesc = $this->itemRecord['setBonusDesc' . $i];
@@ -2353,7 +2370,7 @@ class CEsoItemLinkImage
 		else
 			$desc = "Used to create glyphs of $minDesc to $maxDesc.";
 		
-		return $desc;		
+		return $desc;
 	}
 	
 	
@@ -2631,7 +2648,13 @@ class CEsoItemLinkImage
 		
 		$itemName = strtoupper($itemData['name']);
 		$quality = $itemData['quality'];
-		$this->nameColor = $this->qualityColors[$quality];
+		$this->nameColor = $this->qualityColors[5];
+		
+		if ($this->showSummary)
+		{
+			if ($quality == '1-5' || $quality == '0-5') $this->nameColor = $this->qualityColors[5];
+		}
+		
 		if ($this->nameColor == null) $this->nameColor = $this->white;
 		
 		$namePrintOptions = array(
@@ -2668,7 +2691,7 @@ class CEsoItemLinkImage
 		else
 		{
 			$y += 5;
-		}			
+		}
 		
 		$y += $this->OutputItemAbilityBlock($image, $y);
 		$y += $this->OutputItemEnchantBlock($image, $y);
