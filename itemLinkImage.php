@@ -247,6 +247,22 @@ class CEsoItemLinkImage
 		
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
 		
+		if (array_key_exists('intlevel', $this->inputParams)) 
+		{
+			$this->itemLevel = -1;
+			$this->itemQuality = -1;
+			$this->itemIntLevel = (int) $this->inputParams['intlevel'];
+			$this->itemIntType = 1;
+		}
+		
+		if (array_key_exists('inttype', $this->inputParams)) 
+		{
+			$this->itemLevel = -1;
+			$this->itemQuality = -1;
+			$this->itemIntType = (int) $this->inputParams['inttype'];
+			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
+		}
+		
 		if (array_key_exists('level', $this->inputParams))
 		{
 			$level = strtolower($this->inputParams['level']);
@@ -275,18 +291,6 @@ class CEsoItemLinkImage
 		{
 			$this->itemQuality = (int) $this->inputParams['quality'];
 			if ($this->itemLevel < 0) $this->itemLevel = 1;
-		}
-		
-		if (array_key_exists('intlevel', $this->inputParams))
-		{
-			$this->itemIntLevel = (int) $this->inputParams['intlevel'];
-			$this->itemIntType = 1;
-		}
-		
-		if (array_key_exists('inttype', $this->inputParams))
-		{
-			$this->itemIntType = (int) $this->inputParams['inttype'];
-			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
 		}
 		
 		if (array_key_exists('enchantid', $this->inputParams))

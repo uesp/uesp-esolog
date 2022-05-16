@@ -300,6 +300,21 @@ class CEsoItemLink
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		
+		if (array_key_exists('intlevel', $this->inputParams)) 
+		{
+			$this->itemLevel = -1;
+			$this->itemQuality = -1;
+			$this->itemIntLevel = (int) $this->inputParams['intlevel'];
+		}
+		
+		if (array_key_exists('inttype', $this->inputParams)) 
+		{
+			$this->itemLevel = -1;
+			$this->itemQuality = -1;
+			$this->itemIntType = (int) $this->inputParams['inttype'];
+		}
+		
+		
 		if (array_key_exists('level', $this->inputParams)) 
 		{
 			$level = strtolower($this->inputParams['level']);
@@ -328,8 +343,6 @@ class CEsoItemLink
 		
 		if (array_key_exists('show', $this->inputParams) || array_key_exists('showall', $this->inputParams)) $this->showAll = true;
 		if (array_key_exists('rawdata', $this->inputParams)) $this->outputRaw = true;
-		if (array_key_exists('intlevel', $this->inputParams)) $this->itemIntLevel = (int) $this->inputParams['intlevel'];
-		if (array_key_exists('inttype', $this->inputParams)) $this->itemIntType = (int) $this->inputParams['inttype'];
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
