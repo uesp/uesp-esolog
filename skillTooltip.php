@@ -35,8 +35,9 @@ class CEsoSkillTooltip
 	public $skillWeaponDamage = 2000;
 	public $skillMaxStat = 20000;
 	public $skillMaxDamage = 2000;
+	public $includeLink = false;
 	public $useDefaultDesc = true;
-	public $skillShowThumb = true;
+	public $skillShowThumb = false;
 	public $version = "";
 	public $useUpdate10Costs = false;
 	
@@ -99,40 +100,43 @@ class CEsoSkillTooltip
 		if (array_key_exists('skillid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
 		if (array_key_exists('abilityid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
 		
+		if (array_key_exists('name', $this->inputParams)) $this->skillName = $this->inputParams['name'];
 		if (array_key_exists('skillname', $this->inputParams)) $this->skillName = $this->inputParams['skillname'];
 		if (array_key_exists('skillline', $this->inputParams)) $this->skillLine = $this->inputParams['skillline'];
 		
-		if (array_key_exists('level', $this->inputParams)) 
+		if (array_key_exists('includelink', $this->inputParams)) $this->includeLink = intval($this->inputParams['includelink']) != 0;
+		
+		if (array_key_exists('level', $this->inputParams))
 		{
 			$this->skillLevel = $this->ParseLevel($this->inputParams['level']);
 			$this->useDefaultDesc = false;
 		}
 		
-		if (array_key_exists('health', $this->inputParams)) 
+		if (array_key_exists('health', $this->inputParams))
 		{
 			$this->skillHealth = intval($this->inputParams['health']);
 			$this->useDefaultDesc = false;
 		}
 		
-		if (array_key_exists('magicka', $this->inputParams)) 
+		if (array_key_exists('magicka', $this->inputParams))
 		{
 			$this->skillMagicka = intval($this->inputParams['magicka']);
 			$this->useDefaultDesc = false;
 		}
 		
-		if (array_key_exists('stamina', $this->inputParams)) 
+		if (array_key_exists('stamina', $this->inputParams))
 		{
 			$this->skillStamina = intval($this->inputParams['stamina']);
 			$this->useDefaultDesc = false;
 		}
 		
-		if (array_key_exists('spelldamage', $this->inputParams)) 
+		if (array_key_exists('spelldamage', $this->inputParams))
 		{
 			$this->skillSpellDamage = intval($this->inputParams['spelldamage']);
 			$this->useDefaultDesc = false;
 		}
 		
-		if (array_key_exists('weapondamage', $this->inputParams)) 
+		if (array_key_exists('weapondamage', $this->inputParams))
 		{
 			$this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
 			$this->useDefaultDesc = false;
@@ -341,15 +345,38 @@ class CEsoSkillTooltip
 		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
 		$abilityId = $this->skillId;
 		
-		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id ";
-		$query .= " WHERE abilityId=$abilityId;";
+		if ($this->skillId <= 0 && $this->skillName != "")
+		{
+			$skillName = $this->skillName;
+			$skillTypeName = "";
+			$skillLine = "";
+			
+			$result = preg_match('#(.*)/(.*)/(.*)#', $this->skillName, $matches);
+			
+			if ($result)
+			{
+				$skillTypeName = preg_replace('#-#', ' ' , $matches[1]);
+				$skillLine = preg_replace('#-#', ' ' , $matches[2]);
+				$skillName = preg_replace('#-#', ' ' , $matches[3]);
+			}
+			
+			$safeSkillName = $this->db->real_escape_string($skillName);
+			$safeSkillLine = $this->db->real_escape_string($skillLine);
+			$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.name='$safeSkillName' and skillLine='$safeSkillLine' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
+			
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
+			
+			$this->skillData = $result->fetch_assoc();
+			return true;
+		}
+		
+		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE abilityId=$abilityId;";
 		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load skill data!");
 		
-		$result->data_seek(0);
 		$this->skillData = $result->fetch_assoc();
-		
 		return true;
 	}
 	
@@ -448,7 +475,7 @@ class CEsoSkillTooltip
 		{
 			$realIcon = str_replace(".dds", ".png", self::ICON_URL . $icon);
 			$output .=  "<img src='$realIcon' class='esoSkillPopupIcon' />";
-			$output .= "<div style='height: 32px;'></div>";
+			//$output .= "<div style='height: 32px;'></div>";
 		}
 		
 		if ($skillType == 'passive' || $skillType == 'Passive')
@@ -562,6 +589,32 @@ class CEsoSkillTooltip
 				$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at $skillLine Rank $learnedLevel</div>";
 			else
 				$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
+		}
+		
+		
+		if ($this->includeLink)
+		{
+			$linkUrl = "https://en.uesp.net/";
+			
+			if ($this->skillName != "")
+			{
+				$result = preg_match('#(.*)/(.*)/(.*)#', $this->skillName, $matches);
+				
+				if ($result)
+				{
+					$articleName = preg_replace('#-#', ' ', $matches[3]);
+					$articleName = ucwords($articleName);
+				}
+				else
+				{
+					$articleName = preg_replace('#-#', ' ', $skillName);
+					$articleName = ucwords($articleName);
+				}
+				
+				$linkUrl .= "wiki/Online:" . $articleName;
+			}
+			
+			$output .= "<div class='esovsSkillTooltipLink'><a href=\"$linkUrl\">Tooltips from the UESP.net</a></div>";
 		}
 		
 		$output .= "</div>";

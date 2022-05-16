@@ -3729,6 +3729,7 @@ If you do not understand what this information means, or how to use this webpage
 			case self::FIELD_GAMEICON:
 				//$output =  $this->EscapeStringHtml($value);
 				$url = self::GAME_ICON_URL . preg_replace("/\.dds/", ".png", $value);
+				//TODO: Need a url/uri escaping here and elsewhere that gameicon type is output to HTML
 				$output = "<a href='$url'><img src='$url' title='$value'/ width='32'></a>";
 				break;
 		}

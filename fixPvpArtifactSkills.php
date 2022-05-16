@@ -149,6 +149,9 @@ foreach ($skills as $skillId => $skillData)
 	$columns[] = "rank";
 	$values[] = $rank;
 	
+	$columns[] = "isPlayer";
+	$values[] = '1';
+	
 	$columns[] = "baseName";
 	$values[] = "'" . $db->real_escape_string($skillData['name']) . "'";
 	

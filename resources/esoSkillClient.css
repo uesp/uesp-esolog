@@ -14,7 +14,7 @@
 }
 
 .eso_skill_tooltip:after {
-	background-image: url(eso_ability_frame.png);
+	background-image: url(https://esolog.uesp.net/resources/eso_ability_frame.png);
 	background-size: 100% 100%;
 	content: '';
 	position: absolute;
@@ -22,15 +22,71 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
+	user-select: none;
+    pointer-events: none;
 }
 
 .esoSkillPopupIcon {
 	width: 48px;
 	height: 48px;
 	margin-top: 2px;
-	margin-left: 2px;
 	vertical-align: middle;
-	margin: auto;
 	display: block;
+	margin-left: 140px;
 }
 
+.uespEsoSkillBar {
+	margin: 5px;
+	display: inline-block;
+	text-align: center;
+}
+
+.uespEsoSkillIconDiv {
+	display: inline-block;
+	width: 52px;
+	height: 52px;
+	background-size: 100% 100%;
+	margin: 5px;
+	position: relative;
+	webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.uespEsoSkillIconDiv:after {
+	background-image: url(https://esolog.uesp.net/resources/eso_ability_frame.png);
+	background-size: 100% 100%;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	user-select: none;
+	pointer-events: none;
+}
+
+.uespEsoSkillIcon {
+	width: 48px;
+	height: 48px;
+	margin-top: 2px;
+	vertical-align: middle;
+	display: inline-block;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.uespEsoSkillIcon:hover {
+	filter: brightness(1.5);
+}
+
+.esovsSkillTooltipLink {
+	float: right;
+	margin-top: 5px;
+}
+
+.esovsSkillTooltipLink a {
+}
