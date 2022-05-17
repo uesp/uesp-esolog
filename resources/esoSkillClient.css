@@ -69,6 +69,19 @@
 	pointer-events: none;
 }
 
+.uespEsoSkillIconDivPassive:after {
+	background-image: url(https://esolog.uesp.net/resources/eso_round_ability_frame.png);
+	background-size: 100% 100%;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	user-select: none;
+	pointer-events: none;
+}
+
 .uespEsoSkillIcon {
 	width: 48px;
 	height: 48px;
@@ -89,4 +102,9 @@
 }
 
 .esovsSkillTooltipLink a {
+}
+
+.uespEsoSkillIconDiv a, .uespEsoSkillIconDiv a:focus {
+	border: none;
+	outline:none;
 }

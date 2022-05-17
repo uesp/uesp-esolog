@@ -293,10 +293,16 @@ class CEsoSkillTooltip
 	{
 		$descHeader = $this->skillData['descHeader'];
 		$coefDesc = $this->skillData['coefDescription'];
-		if ($descHeader) $coefDesc = "|cffffff$descHeader|r\n" . $coefDesc;
+		//if ($descHeader) $coefDesc = "|cffffff$descHeader|r\n" . $coefDesc;
 		
-		if ($coefDesc == null || $coefDesc == "")
+		if ($this->useDefaultDesc)
 		{
+			if ($descHeader) return $this->ConvertDescriptionToHtml("|cffffff$descHeader|r\n" . $this->skillData['description']);
+			return $this->ConvertDescriptionToHtml($this->skillData['description']);
+		}
+		elseif ($coefDesc == null || $coefDesc == "")
+		{
+			if ($descHeader) return $this->ConvertDescriptionToHtml("|cffffff$descHeader|r\n" . $this->skillData['description']);
 			return $this->ConvertDescriptionToHtml($this->skillData['description']);
 		}
 		
@@ -339,37 +345,51 @@ class CEsoSkillTooltip
 	}
 	
 	
-	public function LoadSkill()
+	public function LoadSkillByName()
 	{
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
 		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
 		$abilityId = $this->skillId;
 		
-		if ($this->skillId <= 0 && $this->skillName != "")
+		$skillName = $this->skillName;
+		$skillTypeName = "";
+		$skillLine = "";
+		
+		$result = preg_match('#(.*)/(.*)/(.*)#', $this->skillName, $matches);
+		
+		if ($result)
 		{
-			$skillName = $this->skillName;
-			$skillTypeName = "";
-			$skillLine = "";
-			
-			$result = preg_match('#(.*)/(.*)/(.*)#', $this->skillName, $matches);
-			
-			if ($result)
-			{
-				$skillTypeName = preg_replace('#-#', ' ' , $matches[1]);
-				$skillLine = preg_replace('#-#', ' ' , $matches[2]);
-				$skillName = preg_replace('#-#', ' ' , $matches[3]);
-			}
-			
-			$safeSkillName = $this->db->real_escape_string($skillName);
-			$safeSkillLine = $this->db->real_escape_string($skillLine);
-			$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.name='$safeSkillName' and skillLine='$safeSkillLine' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
-			
+			$skillTypeName = preg_replace('#-#', ' ' , $matches[1]);
+			$skillLine = preg_replace('#-#', ' ' , $matches[2]);
+			$skillName = preg_replace('#-#', ' ' , $matches[3]);
+		}
+		
+		$safeSkillName = $this->db->real_escape_string($skillName);
+		$safeSkillLine = $this->db->real_escape_string($skillLine);
+		
+		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.indexName='$safeSkillName' and skillLine='$safeSkillLine' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
+		
+		if ($result->num_rows == 0)
+		{
+			$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.indexName='$safeSkillName' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
-			
-			$this->skillData = $result->fetch_assoc();
-			return true;
 		}
+		
+		$this->skillData = $result->fetch_assoc();
+		return true;
+	}
+	
+	
+	public function LoadSkill()
+	{
+		if ($this->skillId <= 0 && $this->skillName != "") return $this->LoadSkillByName();
+		
+		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
+		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
+		$abilityId = $this->skillId;
 		
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE abilityId=$abilityId;";
 		
@@ -590,7 +610,6 @@ class CEsoSkillTooltip
 			else
 				$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
 		}
-		
 		
 		if ($this->includeLink)
 		{

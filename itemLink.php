@@ -314,7 +314,6 @@ class CEsoItemLink
 			$this->itemIntType = (int) $this->inputParams['inttype'];
 		}
 		
-		
 		if (array_key_exists('level', $this->inputParams)) 
 		{
 			$level = strtolower($this->inputParams['level']);

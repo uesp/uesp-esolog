@@ -901,6 +901,7 @@ class EsoLogParser
 			'id' => self::FIELD_INT,
 			'displayId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
+			'indexName' => self::FIELD_STRING,
 			'description' => self::FIELD_STRING,
 			'descHeader' => self::FIELD_STRING,
 			'duration' => self::FIELD_INT,
@@ -2889,6 +2890,7 @@ class EsoLogParser
 			id INTEGER NOT NULL PRIMARY KEY,
 			displayId INTEGER NOT NULL DEFAULT -1,
 			name TINYTEXT NOT NULL,
+			indexName TINYTEXT NOT NULL,
 			description TEXT NOT NULL,
 			descHeader TEXT NOT NULL,
 			target TINYTEXT NOT NULL,
@@ -7704,9 +7706,10 @@ class EsoLogParser
 		
 		$skill = $this->LoadSkillDump($abilityId);
 		if ($skill === false) return $this->reportLogParseError("Failed to load skill $abilityId!");
-  	
+		
 		$skill['displayId'] = $logEntry['id'];
 		$skill['name'] = $logEntry['name'];
+		$skill['indexName'] = strtolower(preg_replace('#\'#', '', $logEntry['name']));
 		
 			/* Rank dependent parameters */
 		$skill['description'] = $logEntry['desc'];
@@ -7874,7 +7877,7 @@ class EsoLogParser
 			$skill['cost'] = $logEntry['costTime1'];
 			$skill['mechanic'] = $logEntry['mechanicTime1'];
 		}
-						
+		
 		$this->SaveSkillDump($skill);
 		//print("Skill1: " . $this->lastQuery . "\n");
 		

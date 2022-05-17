@@ -3,7 +3,7 @@
  * Generates static skill icons with the skill name.
  */
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "34pts";
 $OUTPUT_PATH = "/mnt/uesp/esogameicons/uespskills";
 $ICON_PATH = "/mnt/uesp/esogameicons";
 $ONLY_OUTPUT_PLAYER = true;
@@ -89,13 +89,16 @@ foreach ($skills as $skill)
 	}
 	
 	$name = strtolower($name);
-	$name = preg_replace('#[ /:"]#', '-', $name);
+	$name = str_replace("'", '', $name);
+	$name = preg_replace('#[ /:"<>&]#', '-', $name);
 	
 	$skillTypeName = strtolower($skillTypeName);
-	$skillTypeName = preg_replace('#[ /:"]#', '-', $skillTypeName);
+	$skillTypeName = str_replace("'", '', $skillTypeName);
+	$skillTypeName = preg_replace('#[ /:"&<>]#', '-', $skillTypeName);
 	
 	$skillLine = strtolower($skillLine);
-	$skillLine = preg_replace('#[ /:"]#', '-', $skillLine);
+	$skillLine = str_replace("'", '', $skillLine);
+	$skillLine = preg_replace('#[ /:"&<>]#', '-', $skillLine);
 	
 	$outputPath = $OUTPUT_PATH . $versionPath . "/" . $skillTypeName . "/" . $skillLine;
 	$outputFilename = $outputPath . "/" . $name . '.png';
