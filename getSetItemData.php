@@ -6,9 +6,9 @@ require_once("esoCommon.php");
 
 class CEsoLogGetSetItemData
 {
-
+	
 	public $db = null;
-
+	
 	public $version = "";
 	public $inputLevel = 66;
 	public $inputQuality = 5;
@@ -31,12 +31,12 @@ class CEsoLogGetSetItemData
 	public function ReportError($errorMsg, $statusCode = 0)
 	{
 		error_log($errorMsg);
-	
+		
 		if ($this->outputData['error'] == null) $this->outputData['error'] = array();
 		$this->outputData['error'][] = $errorMsg;
-	
+		
 		if ($statusCode > 0) header("X-PHP-Response-Code: " . $statusCode, true, $statusCode);
-	
+		
 		return false;
 	}
 	
@@ -44,10 +44,10 @@ class CEsoLogGetSetItemData
 	private function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!", 500);
-	
+		
 		return true;
 	}
 	
@@ -85,9 +85,9 @@ class CEsoLogGetSetItemData
 	{
 		global $argv;
 		global $_REQUEST;
-	
+		
 		$this->inputParams = $_REQUEST;
-	
+		
 		// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
