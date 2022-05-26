@@ -506,6 +506,11 @@ function UpdateEsoItemRawData(itemData)
 		else
 			element.text(value);
 	}
+	
+	AddEsoItemLinkCopyButton("esoil_rawdata_link");
+	AddEsoItemLinkCopyButton("esoil_rawdata_origItemLink");
+	AddEsoItemLinkCopyButton("esoil_rawdata_resultItemLink");
+	AddEsoItemLinkCopyButton("esoil_rawdata_refinedItemLink");
 }
 
 
@@ -586,19 +591,54 @@ function UpdateAllItemData()
 }
 
 
+function OnEsoItemLinkCopyClicked(e)
+{
+	var element = document.getElementById($(e).parent().attr("id"));
+	if (element == null) return;
+	
+	var text = element.childNodes[0];
+	if (text == null) return;
+	text = text.nodeValue;
+	
+	console.log("OnEsoItemLinkCopyClicked", this, text);
+	
+	if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+	{
+		navigator.clipboard.writeText(text);
+	}
+}
+
+
+function AddEsoItemLinkCopyButton(id)
+{
+	var element = $("#" + id);
+	var html = element.html();
+	var buttonHtml = "";
+	
+	buttonHtml = "<button class='esoil_copy_button' onclick='OnEsoItemLinkCopyClicked(this);'>Copy</button>";
+	
+	element.html(html + buttonHtml);
+}
+
+
 $( document ).ready(function() {
 
 	$('#esoil_levelcontrol').on('input', function(e) { 
 		$('#esoil_leveltext').val(GetEsoItemFullLevelText(this.value));
-		UpdateEsoItemData(this.value, $('#esoil_qualitycontrol').val()); 
+		UpdateEsoItemData(this.value, $('#esoil_qualitycontrol').val());
 	});
 	
 	$('#esoil_qualitycontrol').on('input', function(e) { 
 		$('#esoil_qualitytext').val(GetEsoItemQualityText(this.value));
-		UpdateEsoItemData($('#esoil_levelcontrol').val(), this.value); 
+		UpdateEsoItemData($('#esoil_levelcontrol').val(), this.value);
 	});
 	
 	UpdateAllItemData();
+	
+	AddEsoItemLinkCopyButton("esoil_rawdata_link");
+	AddEsoItemLinkCopyButton("esoil_rawdata_origItemLink");
+	AddEsoItemLinkCopyButton("esoil_rawdata_resultItemLink");
+	AddEsoItemLinkCopyButton("esoil_rawdata_refinedItemLink");
 });
 	
 	

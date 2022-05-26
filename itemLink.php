@@ -1427,9 +1427,37 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetItemRawDataListKeys($itemRecord)
+	{
+		$fixedKeys = [ "itemId", "link", "names" ];
+		$addedKeys = [];
+		$keys = [];
+		
+		foreach ($fixedKeys as $key)
+		{
+			$keys[] = $key;
+			$addedKeys[$key] = 1;
+		}
+		
+		foreach ($itemRecord as $key => $value)
+		{
+			if ($addedKeys[$key] == null)
+			{
+				$keys[] = $key;
+				$addedKeys[$key] = 1;
+			}
+		}
+		
+		return $keys;
+	}
+	
+	
 	private function MakeItemRawDataList()
 	{	
 		$output = "";
+		
+		if ($this->itemRecord['link'] == null) $this->itemRecord['link'] = $this->MakeItemLink();
+		
 		$this->itemRecord['origItemLink'] = $this->itemRecord['link'];
 		$this->itemRecord['isBound'] = $this->itemBound < 0 ? 0 : $this->itemBound;
 		$this->itemRecord['isCrafted'] = $this->itemCrafted < 0 ? 0 : $this->itemCrafted;
@@ -1442,12 +1470,15 @@ class CEsoItemLink
 			$this->itemRecord['style'] = $this->itemStyle;
 		}
 		
-		foreach ($this->itemRecord as $key => $value)
+		$keys = $this->GetItemRawDataListKeys($this->itemRecord);
+		
+		foreach ($keys as $key)
 		{
+			$value = $this->itemRecord[$key];
 			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
 			$id = "esoil_rawdata_" . $key;
 			
-			if ($key == "link") $value = $this->MakeItemLink();
+			if ($key == "link") $value = $this->MakeItemLink(true);
 			
 			$safeValue = $this->escape($value);
 			
@@ -1455,17 +1486,19 @@ class CEsoItemLink
 			{
 				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeItemIconImageLink()}' /> $safeValue</td></tr>\n";
 			}
-			else if ($key == 'resultItemLink')
+			elseif ($key == 'resultItemLink')
 			{
 				$newValue = $this->FormatResultItemLink($value);
-				$output .= "\t<tr><td>$key</td><td id='$id'>$newValue</td></tr>\n";
+				$output .= "\t<tr><td>resultItem</td><td id='esoil_rawdata_resultItem'>$newValue</td></tr>\n";
+				
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 			}
 			elseif ($key == "furnCategory")
 			{
 				$value = str_replace(":", " : ", $safeValue);
 				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 			}
-			else 
+			else
 			{
 				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
 			}
@@ -2400,7 +2433,7 @@ class CEsoItemLink
 	private function GetItemNewValueBlockDisplay()
 	{
 		if (!$this->useUpdate10Display) return "none";
-	
+		
 		if ($this->itemRecord['value'] > 0) return "inline-block";
 		return "none";
 	}
@@ -2413,11 +2446,33 @@ class CEsoItemLink
 	}
 	
 	
-	private function MakeItemLink()
+	private function MakeItemLink($matchLiveSubtype = false)
 	{
+		global $ESO_ITEMQUALITYLEVEL_INTTYPEMAP;
+		global $ESO_ITEMINTTYPE_QUALITYMAP;
+		
 		$d1 = $this->itemRecord['itemId'];
+		
 		$d2 = $this->itemRecord['internalSubtype'];
+		if ($d2 == null || $d2 == "") $d2 = 370;
+		
 		$d3 = $this->itemRecord['internalLevel'];
+		if ($d3 == null || $d3 == "") $d3 = 50;
+		
+		if ($matchLiveSubtype)
+		{
+			$quality = $ESO_ITEMINTTYPE_QUALITYMAP[$d2];
+			
+			if ($quality != null)
+			{
+				$level = GetEsoLevelFromIntType($d2, $d3);
+				$subtypes = FindEsoItemLevelIntTypeMap($level);
+				$newSubtype = $subtypes[$quality];
+				
+				if ($newSubtype) $d2 = $newSubtype;
+			}
+		}
+		
 		$d4 = $this->enchantId1;
 		$d5 = $this->enchantIntType1;
 		$d6 = $this->enchantIntLevel1;
@@ -3239,7 +3294,7 @@ class CEsoItemLink
 		}
 		
 		$output .= "</tr>\n";
-	
+		
 		foreach ($this->antiquityItemData as $key => $value)
 		{
 			$value = $this->escape($value);
@@ -3247,7 +3302,7 @@ class CEsoItemLink
 			$output .= "<td>$value</td>\n";
 			$output .= "</tr>\n";
 		}
-	
+		
 		$output .= "</table>\n";
 		return $output;
 	}
@@ -3257,22 +3312,22 @@ class CEsoItemLink
 	{
 		$output = "";
 		$output .= $this->GetRawItemDataHeaderCsv();
-	
+		
 		foreach ($this->rawDataSortedIndexes as $sortedIndex)
 		{
 			$index = $sortedIndex[2];
 			$item = $this->itemAllData[$index];
 			$output .= $this->CreateRawItemDataCsv($item);
 		}
-	
+		
 		return $output;
 	}
 	
-		
+	
 	public function CreateRawItemDataSortedIndexes()
 	{
 		$this->rawDataSortedIndexes = array();
-	
+		
 		foreach ($this->itemAllData as $key => $item)
 		{
 			$level = $item['internalLevel'];
@@ -3322,13 +3377,13 @@ class CEsoItemLink
 	public function GetRawItemDataHeaderCsv()
 	{
 		$output = "";
-	
+		
 		foreach ($this->rawDataKeys as $key)
 		{
 			if ($output != "") $output .= ",";
 			$output .= "\"$key\"";
 		}
-	
+		
 		$output .= "\n";
 	
 		return $output;
@@ -3356,7 +3411,7 @@ class CEsoItemLink
 	public function CreateRawItemDataCsv($item)
 	{
 		$output = "";
-	
+		
 		foreach ($this->rawDataKeys as $key)
 		{
 			$value = $item[$key];
@@ -3367,9 +3422,9 @@ class CEsoItemLink
 			if ($output != "") $output .= ",";
 			$output .= "\"$value\"";
 		}
-	
+		
 		$output .= "\n";
-	
+		
 		return $output;
 	}
 	
