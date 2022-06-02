@@ -954,6 +954,39 @@ class EsoLogViewer
 	);
 	
 	
+	public static $CAMPAIGNINFO_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'server' => self::FIELD_STRING,
+			'idx' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'scoreAldmeri' => self::FIELD_INT,
+			'scoreDaggerfall' => self::FIELD_INT,
+			'scoreEbonheart' => self::FIELD_INT,
+			'underdogAlliance' => self::FIELD_INT,
+			'populationAldmeri' => self::FIELD_INT,
+			'populationDaggerfall' => self::FIELD_INT,
+			'populationEbonheart' => self::FIELD_INT,
+			'waitTime' => self::FIELD_INT,
+			'startTime' => self::FIELD_INTTRANSFORM,
+			'endTime' => self::FIELD_INTTRANSFORM,
+			'lastUpdated' => self::FIELD_INTTRANSFORM,
+			'entriesUpdated' => self::FIELD_INTTRANSFORM,
+	);
+	
+	
+	public static $CAMPAIGNLEADERBOARDS_FIELDS = array(
+			'campaignId' => self::FIELD_INT,
+			'server' => self::FIELD_STRING,
+			'campaignName' => self::FIELD_STRING,
+			'rank' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			//'displayName' => self::FIELD_STRING,
+			'class' => self::FIELD_INTTRANSFORM,
+			'alliance' => self::FIELD_INTTRANSFORM,
+	);
+	
+	
 	public static $PTS_SEARCH_TYPE_OPTIONS = array(
 			'Items Update ## PTS' => 'minedItemSummary##pts',
 			'Sets Update ## PTS' => 'setSummary##pts',
@@ -2359,6 +2392,50 @@ class EsoLogViewer
 					),
 			),
 			
+			'campaignInfo' => array(
+					'displayName' => 'Campaigns',
+					'displayNameSingle' => 'Campaign',
+					'record' => 'campaignInfo',
+					'table' => 'campaignInfo',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+							'startTime' => 'GetTimestampDateFormatWithDiff',
+							'endTime' => 'GetTimestampDateFormatWithDiff',
+							'lastUpdated' => 'GetTimestampDateFormatWithDiff',
+							'entriesUpdated' => 'GetTimestampDateFormatWithDiff',
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'campaignLeaderboards' => array(
+					'displayName' => 'Campaign Leaderboards',
+					'displayNameSingle' => 'Campaign Leaderboard',
+					'record' => 'campaignLeaderboards',
+					'table' => 'campaignLeaderboards',
+					'method' => 'DoRecordDisplay',
+					'sort' => array('server', 'campaignId', 'points DESC'),
+					
+					'join' => array(
+							'campaignId' => array(
+									'joinField' => 'id',
+									'table' => 'campaignInfo',
+									'fields' => array('campaignName' => 'name'),
+							),
+					),
+					
+					'transform' => array(
+							'class' => 'GetEsoClassIdText',
+							'alliance' => 'GetEsoAllianceShortText',
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 	);
 	
 	
@@ -2747,6 +2824,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['zonePois']['fields'] = self::$ZONEPOI_FIELDS;
 		self::$RECORD_TYPES['tributeCards']['fields'] = self::$TRIBUTECARD_FIELDS;
 		self::$RECORD_TYPES['tributePatrons']['fields'] = self::$TRIBUTEPATRON_FIELDS;
+		self::$RECORD_TYPES['campaignInfo']['fields'] = self::$CAMPAIGNINFO_FIELDS;
+		self::$RECORD_TYPES['campaignLeaderboards']['fields'] = self::$CAMPAIGNLEADERBOARDS_FIELDS;
 		
 		$this->EnablePtsRecords();
 		
@@ -2914,6 +2993,24 @@ class EsoLogViewer
 	}
 	
 	
+	public function GetEsoClassIdText($value)
+	{
+		return GetEsoClassIdText($value);
+	}
+	
+	
+	public function GetEsoAllianceText($value)
+	{
+		return GetEsoAllianceText($value);
+	}
+	
+	
+	public function GetEsoAllianceShortText($value)
+	{
+		return GetEsoAllianceShortText($value);
+	}
+	
+	
 	public function GetBuffTypeText ($value) {
 		return GetEsoBuffTypeText($value);
 	}
@@ -2945,6 +3042,86 @@ class EsoLogViewer
 	public function GetCustomCombatMechanicText34 ($value)
 	{
 		return GetEsoCustomMechanicTypeText34($value);
+	}
+	
+	
+	public function GetTimestampDateFormat ($value)
+	{
+		if ($value <= 0) return '-';
+		return date('Y-m-d H:i:s', $value);
+	}
+	
+	
+	public function FormatTimeDiffSeconds ($diff)
+	{
+		$output = "";
+		$diff = abs($diff);
+		
+		if ($diff == 0) return "just now";
+		
+		$seconds = $diff;
+		$minutes = $diff / 60;
+		$hours = $diff / 3600;
+		$days = $diff / 86400;
+		$months = $diff / (86400 * 30.5);
+		$years = $diff / (86400 * 365.25);
+		
+		if ($years >= 1)
+		{
+			$output = number_format($years, 1) . "year";
+			if ($years > 1.1) $output .= "s";
+		}
+		elseif ($months >= 1)
+		{
+			$output = number_format($months, 1) . " month";
+			if ($months > 1.1) $output .= "s";
+		}
+		elseif ($days >= 1)
+		{
+			$output = number_format($days, 1) . " day";
+			if ($days > 1.1) $output .= "s";
+		}
+		elseif ($hours >= 1)
+		{
+			$output = number_format($hours, 1) . " hour";
+			if ($hours > 1.1) $output .= "s";
+		}
+		elseif ($minutes >=  1)
+		{
+			$output = number_format($minutes, 1) . " minute";
+			if ($minutes > 1.1) $output .= "s";
+		}
+		else
+		{
+			$output = $seconds . " second";
+			if ($seconds > 1) $output .= "s";
+		}
+		
+		return $output;
+	}
+	
+	
+	public function GetTimestampDateFormatWithDiff ($value)
+	{
+		if ($value <= 0) return '-';
+		$date = date('Y-m-d H:i:s', $value);
+		
+		$diffTime = time() - $value;
+		
+		if ($diffTime > 0)
+		{
+			$diff = $this->FormatTimeDiffSeconds($diffTime) . " ago";
+		}
+		elseif ($diffTime < 0)
+		{
+			$diff = "in " . $this->FormatTimeDiffSeconds($diffTime);
+		}
+		else
+		{
+			$diff = "just now";
+		}
+		
+		return $date . " ($diff)";
 	}
 	
 	

@@ -99,6 +99,7 @@
 .esovsSkillTooltipLink {
 	float: right;
 	margin-top: 5px;
+	color: #777;
 }
 
 .esovsSkillTooltipLink a {

@@ -4040,6 +4040,36 @@ $ESO_FLAMEAOE_SKILLS = array(
 );
 
 
+$ESO_ALLIANCES = array(
+		-1 => "",
+		0 => "",
+		1 => "Aldmeri Dominion",
+		2 => "Daggerfall Covenant",
+		3 => "Ebonheart Pact",
+);
+
+
+$ESO_ALLIANCES_SHORT = array(
+		-1 => "",
+		0 => "",
+		1 => "Aldmeri",
+		2 => "Daggerfall",
+		3 => "Ebonheart",
+);
+
+
+$ESO_CLASSIDS = array(
+		-1 => "",
+		0 => "",
+		1 => "Dragonknight",
+		2 => "Sorcerer",
+		3 => "Nightblade",
+		4 => "Warden",
+		5 => "Necromancer",
+		6 => "Templar",
+);
+
+
 $ESO_SKILLTYPESTYPE = array(
 		0 => "Class",
 		1 => "Dragonknight",
@@ -4344,6 +4374,8 @@ function FindEsoItemLevelIntTypeMap($inLevel)
 	global $ESO_ITEMQUALITYLEVEL_INTTYPEMAP;
 	$lastMap = array();
 	
+	$inLevel = intval($inLevel);
+	
 	foreach ($ESO_ITEMQUALITYLEVEL_INTTYPEMAP as $level => $map)
 	{
 		if ($level == $inLevel) return $map;
@@ -4433,7 +4465,7 @@ function GetEsoCombatMechanicText($value)
 function GetEsoCombatMechanicText34($value)
 {
 	global $ESO_COMBATMECHANICS_34;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_COMBATMECHANICS_34)) return $ESO_COMBATMECHANICS_34[$key];
 	return "Unknown ($key)";
@@ -4443,9 +4475,39 @@ function GetEsoCombatMechanicText34($value)
 function GetEsoItemCraftTypeText($value)
 {
 	global $ESO_CRAFTTYPES;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_CRAFTTYPES)) return $ESO_CRAFTTYPES[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoAllianceText($value)
+{
+	global $ESO_ALLIANCES;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_ALLIANCES)) return $ESO_ALLIANCES[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoAllianceShortText($value)
+{
+	global $ESO_ALLIANCES_SHORT;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_ALLIANCES_SHORT)) return $ESO_ALLIANCES_SHORT[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoClassIdText($value)
+{
+	global $ESO_CLASSIDS;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_CLASSIDS)) return $ESO_CLASSIDS[$key];
 	return "Unknown ($key)";
 }
 
@@ -4453,7 +4515,7 @@ function GetEsoItemCraftTypeText($value)
 function GetEsoSkillTypeTypeText($value)
 {
 	global $ESO_SKILLTYPESTYPE;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_SKILLTYPESTYPE)) return $ESO_SKILLTYPESTYPE[$key];
 	return "Unknown ($key)";
@@ -4463,7 +4525,7 @@ function GetEsoSkillTypeTypeText($value)
 function GetEsoItemCraftRequireText($value)
 {
 	global $ESO_CRAFT_REQUIRESKILLS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_CRAFT_REQUIRESKILLS)) return $ESO_CRAFT_REQUIRESKILLS[$key];
 	return "Unknown ($key)";

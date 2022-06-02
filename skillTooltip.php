@@ -94,7 +94,7 @@ class CEsoSkillTooltip
 	
 	private function ParseInputParams ()
 	{
-		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
+		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
 		
 		if (array_key_exists('id', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
 		if (array_key_exists('skillid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
@@ -432,7 +432,7 @@ class CEsoSkillTooltip
 	
 	public function escape($string)
 	{
-		return htmlspecialchars($string, ENT_COMPAT, 'UTF-8');
+		return htmlspecialchars($string);
 	}
 	
 	
@@ -634,6 +634,10 @@ class CEsoSkillTooltip
 			}
 			
 			$output .= "<div class='esovsSkillTooltipLink'><a href=\"$linkUrl\">Tooltips from the UESP.net</a></div>";
+		}
+		else
+		{
+			$output .= "<div class='esovsSkillTooltipLink'>Tooltips from the UESP.net</div>";
 		}
 		
 		$output .= "</div>";

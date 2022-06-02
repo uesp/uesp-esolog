@@ -29,7 +29,7 @@ class CEsoItemLinkImage
 	const ESOIL_IMAGE_CACHEPATH = "/home/uesp/esoItemImages/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	const ESOIL_IMAGE_WIDTH = 400;
-	const ESOIL_IMAGE_MAXHEIGHT = 600;
+	const ESOIL_IMAGE_MAXHEIGHT = 1000;
 	const ESOIL_REGULARFONT_FILE = "./resources/esofontregular-webfont.ttf";
 	const ESOIL_BOLDFONT_FILE = "./resources/esofontbold-webfont.ttf";
 	const ESOIL_LINEHEIGHT_FACTOR = 1.75;
@@ -2841,7 +2841,7 @@ class CEsoItemLinkImage
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
-
+		
 		$filename = $this->GetImageFilename() . ".png";
 		$intFilename = $this->GetImageIntFilename() . ".png";
 		
@@ -2864,7 +2864,7 @@ class CEsoItemLinkImage
 		
 		if ($this->itemIntLevel > 0 && $this->itemIntType >= 0 && file_exists($fullIntFilename))
 		{
-				
+			
 			if ($useRedirect)
 			{
 				$url = "/itemcache/" . $intFilename;

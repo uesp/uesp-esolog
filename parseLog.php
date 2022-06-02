@@ -40,10 +40,12 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "34pts";
-	const SKILLS_TABLESUFFIX   = "34pts";
+	const MINEITEM_TABLESUFFIX = "34";
+	const SKILLS_TABLESUFFIX   = "34";
 	
 	const SHOW_PARSE_LINENUMBERS = true;
+	
+	const SKIP_PVP_TIMESTAMP_CHECK = true;	// if true update campaign/leaderboards regardless of if the log data is old or not
 	
 	const ELP_INPUT_LOG_PATH = "";
 	const ELP_OUTPUTLOG_FILENAME = "parser.log";
@@ -217,6 +219,8 @@ class EsoLogParser
 			"minedItemSummary",
 			"tributePatrons",
 			"tributeCards",
+			"campaignInfo",
+			"campaignLeaderboards",
 	);
 	
 	
@@ -1333,6 +1337,38 @@ class EsoLogParser
 	);
 	
 	
+	public static $CAMPAIGNINFO_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'server' => self::FIELD_STRING,
+			'idx' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'scoreAldmeri' => self::FIELD_INT,
+			'scoreDaggerfall' => self::FIELD_INT,
+			'scoreEbonheart' => self::FIELD_INT,
+			'underdogAlliance' => self::FIELD_INT,
+			'populationAldmeri' => self::FIELD_INT,
+			'populationDaggerfall' => self::FIELD_INT,
+			'populationEbonheart' => self::FIELD_INT,
+			'waitTime' => self::FIELD_INT,
+			'startTime' => self::FIELD_INT,
+			'endTime' => self::FIELD_INT,
+			'lastUpdated' => self::FIELD_INT,
+			'entriesUpdated' => self::FIELD_INT,
+	);
+	
+	
+	public static $CAMPAIGNLEADERBOARDS_FIELDS = array(
+			'campaignId' => self::FIELD_INT,
+			'server' => self::FIELD_STRING,
+			'rank' => self::FIELD_INT,
+			'points' => self::FIELD_INT,
+			'class' => self::FIELD_INT,
+			'alliance' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'displayName' => self::FIELD_STRING,
+	);
+	
+	
 	public function __construct ()
 	{
 		ini_set('mysql.connect_timeout', 1000);
@@ -1520,17 +1556,17 @@ class EsoLogParser
 		
 		$query = $this->createSelectQuery2($table, $idField, $id, $idField2, $id2, $fieldDef);
 		if ($query === false) return false;
-	
+		
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to load record $id from $table table!");
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows === 0) return $this->createNewRecordID2($idField, $id, $idField2, $id2, $fieldDef);
-	
+		
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
-	
+		
 		return $this->createRecordFromRow($row, $fieldDef);
 	}
 	
@@ -1583,6 +1619,8 @@ class EsoLogParser
 	
 	public function createUpdateQuery ($table, $record, $idField, $fieldDef)
 	{
+		if ($idField == null) return $this->reportError("NULL ID field found in $table table!");
+		
 		$idType = $fieldDef[$idField];
 		if ($idType == null) return $this->reportError("Unknown ID field $idField in $table table!");
 		
@@ -1628,7 +1666,77 @@ class EsoLogParser
 			$query .= " WHERE `$idField`='". $this->db->real_escape_string($id) ."';";
 		else
 			return $this->reportError("Unknown ID type $idType in $table table!");
+		
+		$this->lastQuery = $query;
+		return $query;
+	}
 	
+	
+	public function createUpdateQuery2 ($table, $record, $idField1, $idField2, $fieldDef)
+	{
+		if ($idField1 == null || $idField2 == null) return $this->reportError("NULL ID field found in $table table!");
+		
+		$idType1 = $fieldDef[$idField1];
+		if ($idType1 == null) return $this->reportError("Unknown ID field $idField1 in $table table!");
+		
+		$idType2 = $fieldDef[$idField2];
+		if ($idType2 == null) return $this->reportError("Unknown ID field $idField2 in $table table!");
+		
+		$id1 = $record[$idField1];
+		if ($id1 == null) return $this->reportError("$table record missing ID field $idField1 value!");
+		
+		$id2 = $record[$idField2];
+		if ($id2 == null) return $this->reportError("$table record missing ID field $idField2 value!");
+		
+		$query = "UPDATE $table SET ";
+		$isFirst = true;
+		
+		foreach ($fieldDef as $key => $value)
+		{
+			if ($key === $idField) continue;
+			if ($key === 'id') continue;
+			
+			if (!array_key_exists($key, $record))
+			{
+				$this->reportError("Missing value for $key field in $table table update!");
+				continue;
+			}
+			
+			if (!$isFirst) $query .= ', ';
+			
+			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
+			{
+				if ($record[$key] === null || $record[$key] === '' )
+					$query .= "`{$key}`=-1";
+				else
+					$query .= "`{$key}`={$record[$key]}";
+			}
+			elseif ($value == self::FIELD_STRING)
+				$query .= "`{$key}`='". $this->db->real_escape_string($record[$key]) ."'";
+			else
+				$this->reportError("Unknown ID type $value found for $key field in $table table!");
+			
+			$isFirst = false;
+		}
+		
+		if ($idType1 == self::FIELD_INT)
+			$query .= " WHERE `$idField1`=$id1";
+		elseif ($idType1 == self::FIELD_FLOAT)
+			$query .= " WHERE `$idField1`=$id1";
+		elseif ($idType1 == self::FIELD_STRING)
+			$query .= " WHERE `$idField1`='". $this->db->real_escape_string($id1) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType1 in $table table!");
+		
+		if ($idType2 == self::FIELD_INT)
+			$query .= " AND `$idField2`=$id2;";
+		elseif ($idType2 == self::FIELD_FLOAT)
+			$query .= " AND `$idField2`=$id2;";
+		elseif ($idType2 == self::FIELD_STRING)
+			$query .= " AND `$idField2`='". $this->db->real_escape_string($id2) ."';";
+		else
+			return $this->reportError("Unknown ID type $idType2 in $table table!");
+		
 		$this->lastQuery = $query;
 		return $query;
 	}
@@ -1739,6 +1847,28 @@ class EsoLogParser
 	}
 	
 	
+	public function saveRecord2 ($table, &$record, $idField1, $idField2, $fieldDef, $insertIgnore = false)
+	{
+		if ($record['__isNew'])
+			$query = $this->createInsertQuery($table, $record, $fieldDef, $insertIgnore);
+		else
+			$query = $this->createUpdateQuery2($table, $record, $idField1, $idField2, $fieldDef);
+		
+		if ($query === false) return false;
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to save record {$record[$idField1]},{$record[$idField2]} to {$table} table!");
+		
+		$this->dbWriteCount++;
+		
+		if ($record['__isNew']) $record['id'] = $this->db->insert_id;
+		$record['__isNew'] = false;
+		$record['__dirty'] = false;
+		
+		return true;
+	}
+	
+	
 	public function LoadBook ($bookTitle)
 	{
 		$book = $this->loadRecord('book', 'title', $bookTitle, self::$BOOK_FIELDS);
@@ -1826,6 +1956,33 @@ class EsoLogParser
 		if ($record === false) return false;
 		
 		return $record;
+	}
+	
+	
+	public function LoadCampaignInfo ($id, $server)
+	{
+		$record = $this->loadRecord2('campaignInfo', 'server', $server, 'id', $id, self::$CAMPAIGNINFO_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
+	public function ClearCampaignLeaderboards ($id, $server)
+	{
+		$id = intval($id);
+		if ($id <= 0) return $this->ReportError("Missing campaignId to clear leaderboards!");
+		
+		$server = trim($server);
+		if ($server == "") return $this->ReportError("Missing $server to clear leaderboards!");
+		
+		$safeServer = $this->db->real_escape_string($server);
+		
+		$this->lastQuery = "DELETE FROM campaignLeaderboards WHERE server='$safeServer' AND campaignId='$id';";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === false) return false;
+		
+		return true;
 	}
 	
 	
@@ -2173,6 +2330,17 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveCampaignInfo (&$record)
+	{
+		return $this->saveRecord2('campaignInfo', $record, 'server', 'id', self::$CAMPAIGNINFO_FIELDS);
+	}
+	
+	
+	public function SaveCampaignLeaderboardsEntry (&$record)
+	{
+		return $this->saveRecord('campaignLeaderboards', $record, null, self::$CAMPAIGNLEADERBOARDS_FIELDS);
+	}
+	
 	
 	public function createTables()
 	{
@@ -2206,10 +2374,10 @@ class EsoLogParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS user (
 						name TINYTEXT NOT NULL,
-						entryCount INTEGER NOT NULL,
-						errorCount INTEGER NOT NULL,
-						duplicateCount INTEGER NOT NULL,
-						newCount INTEGER NOT NULL,
+						entryCount BIGINT NOT NULL,
+						errorCount BIGINT NOT NULL,
+						duplicateCount BIGINT NOT NULL,
+						newCount BIGINT NOT NULL,
 						chestsFound INTEGER NOT NULL,
 						sacksFound INTEGER NOT NULL,
 						trovesFound INTEGER NOT NULL,
@@ -3433,6 +3601,64 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create tributeCards table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS campaignInfo (
+						id INTEGER NOT NULL,
+						server TINYTEXT NOT NULL,
+						idx INTEGER NOT NULL,
+						name TINYTEXT NOT NULL,
+						scoreAldmeri INTEGER NOT NULL,
+						scoreDaggerfall INTEGER NOT NULL,
+						scoreEbonheart INTEGER NOT NULL,
+						populationAldmeri INTEGER NOT NULL,
+						populationDaggerfall INTEGER NOT NULL,
+						populationEbonheart INTEGER NOT NULL,
+						underdogAlliance TINYINT NOT NULL,
+						waitTime INTEGER NOT NULL,
+						startTime INTEGER NOT NULL,
+						endTime INTEGER NOT NULL,
+						lastUpdated INTEGER NOT NULL,
+						entriesUpdated INTEGER NOT NULL,
+						PRIMARY KEY (server(8), id),
+						FULLTEXT(name)
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create campaignInfo table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS campaignLeaderboards (
+						campaignId INTEGER NOT NULL,
+						server TINYTEXT NOT NULL,
+						rank INTEGER NOT NULL,
+						points INTEGER NOT NULL,
+						class TINYINT NOT NULL,
+						alliance TINYINT NOT NULL,
+						name TINYTEXT NOT NULL,
+						displayName TINYTEXT NOT NULL,
+						INDEX index_campaignId(server(8), campaignId)
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create campaignLeaderboards table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS endeavors (
+						startTimestamp INTEGER NOT NULL,
+						endTimestamp INTEGER NOT NULL,
+						name TINYTEXT NOT NULL,
+						description MEDIUMTEXT NOT NULL,
+						idx TINYINT NOT NULL,
+						type TINYINT NOT NULL,
+						typeLimit TINYINT NOT NULL,
+						numRewards TINYINT NOT NULL,
+						rewards MEDIUMTEXT NOT NULL,
+						INDEX index_main(startTimestamp, name(32))
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create endeavors table!");
 		
 		$this->skillTooltips->CreateTable();
 		
@@ -6747,6 +6973,103 @@ class EsoLogParser
 	}
 	
 	
+	public function OnCampaignInfo ($logEntry)
+	{
+		if ($logEntry['id'] <= 0 || $logEntry['server'] == '') return $this->reportLogParseError("\tWarning: Invalid campaign server/ID found in log!");
+		
+		$info = $this->LoadCampaignInfo($logEntry['id'], $logEntry['server']);
+		if ($info === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize campaignInfo data!");
+		
+		if ($info['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+			$info['lastUpdated'] = 0;
+			$info['entriesUpdated'] = 0;
+		}
+		
+			/* Ignore older data than what we already have */
+		if (!self::SKIP_PVP_TIMESTAMP_CHECK && intval($logEntry['timeStamp1']) <= intval($info['lastUpdated'])) 
+		{
+			print("\tSkipping campaign Info with timestamp {$logEntry['timeStamp1']} (last updated is {$info['lastUpdated']})!\n");
+			return true;
+		}
+		
+		$info['idx'] = $logEntry['index'];
+		$info['name'] = $logEntry['name'];
+		$info['scoreAldmeri'] = $logEntry['score1'];
+		$info['scoreEbonheart'] = $logEntry['score2'];
+		$info['scoreDaggerfall'] = $logEntry['score3'];
+		$info['populationAldmeri'] = $logEntry['pop1'];
+		$info['populationEbonheart'] = $logEntry['pop2'];
+		$info['populationDaggerfall'] = $logEntry['pop3'];
+		$info['underdogAlliance'] = $logEntry['underdog'];
+		$info['waitTime'] = $logEntry['waitTime'];
+		if ($logEntry['startTime'] > 0) $info['startTime'] = intval($logEntry['startTime']) + intval($logEntry['timeStamp1']);
+		$info['endTime'] = intval($logEntry['endTime']) + intval($logEntry['timeStamp1']);
+		$info['lastUpdated'] = $logEntry['timeStamp1'];
+		
+		$this->SaveCampaignInfo($info);
+		return true;
+	}
+	
+	
+	public function OnCampaignLeaderboard ($logEntry)
+	{
+		if ($logEntry['id'] <= 0 || $logEntry['server'] == '') return $this->reportLogParseError("\tWarning: Invalid campaign server/ID found in log!");
+		
+		$info = $this->LoadCampaignInfo($logEntry['id'], $logEntry['server']);
+		if ($info === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize campaignInfo data!");
+		
+		if ($info['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+			$info['lastUpdated'] = 0;
+			$info['entriesUpdated'] = 0;
+		}
+		
+			/* Ignore older data than what we already have */
+		if (!self::SKIP_PVP_TIMESTAMP_CHECK && intval($logEntry['timeStamp1']) <= intval($info['entriesUpdated'])) 
+		{
+			$this->currentUser['skipCampaignLeaderboardEntries'] = true;
+			print("\tSkipping campaign leaderboards with timestamp {$logEntry['timeStamp1']} (last updated is {$info['entriesUpdated']})!\n");
+			return true;
+		}
+		
+		$this->currentUser['skipCampaignLeaderboardEntries'] = false;
+		
+		$info['name'] = $logEntry['name'];
+		$info['entriesUpdated'] = $logEntry['timeStamp1'];
+		
+		$this->ClearCampaignLeaderboards($logEntry['id'], $logEntry['server']);
+		
+		$this->SaveCampaignInfo($info);
+		return true;
+	}
+	
+	
+	public function OnCampaignLeaderboardEntry ($logEntry)
+	{
+		if ($this->currentUser['skipCampaignLeaderboardEntries']) return true;
+		
+		$entry = [];
+		$entry['__isNew'] = true;
+		$entry['campaignId'] = $logEntry['campaignId'];
+		$entry['alliance'] = $logEntry['alliance'];
+		$entry['name'] = $logEntry['name'];
+		$entry['displayName'] = $logEntry['displayName'];
+		$entry['rank'] = $logEntry['rank'];
+		$entry['points'] = $logEntry['points'];
+		$entry['class'] = $logEntry['classId'];
+		$entry['server'] = $logEntry['server'];
+		
+		$this->SaveCampaignLeaderboardsEntry($entry);
+		
+		return true;
+	}
+	
+	
 	public function ParseMinedItemLog (&$logEntry)
 	{
 		$itemLink = $logEntry['itemLink'];
@@ -9512,6 +9835,9 @@ class EsoLogParser
 			case 'tributecard':
 			case 'tributecard::start':
 			case 'tributecard::end':
+			case 'campaign':
+			case 'campaign::Leaderboard':
+			case 'campaign::LeadEntry':
 			//case 'SkillCoef':
 			//case 'SkillCoef::Start':
 			//case 'SkillCoef::End':
@@ -9906,6 +10232,10 @@ class EsoLogParser
 			case "tributepatron::end":
 			case "tributecard::start":
 			case "tributecard::end":			$result = $this->OnNullEntry($logEntry); break;
+			
+			case "campaign":					$result = $this->OnCampaignInfo($logEntry); break;
+			case "campaign::Leaderboard":		$result = $this->OnCampaignLeaderboard($logEntry); break;
+			case "campaign::LeadEntry":			$result = $this->OnCampaignLeaderboardEntry($logEntry); break;
 			
 			case "Test":
 			case "TEST":

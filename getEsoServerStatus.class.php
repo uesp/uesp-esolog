@@ -291,6 +291,8 @@ class CEsoServerStatus
 			$lastUpdate = $this->escape($lastUpdateMsg . "just now");
 		else if ($diffMinutes == 0)
 			$lastUpdate = $this->escape($lastUpdateMsg . "$diffSeconds seconds ago");
+		elseif ($diffMinutes == 1)
+			$lastUpdate = $this->escape($lastUpdateMsg . "$diffMinutes minute ago");
 		elseif ($diffMinutes < 1000)
 			$lastUpdate = $this->escape($lastUpdateMsg . "$diffMinutes minutes ago");
 		else
@@ -299,10 +301,10 @@ class CEsoServerStatus
 		$output = "<div id='uespEsoServerStatus'>";
 		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PC - NA :</div> $pcna</div>";
 		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PC - EU :</div> $pceu</div>";
-		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PS4 - NA :</div> $ps4na</div>";
-		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PS4 - EU :</div> $ps4eu</div>";
-		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>XBox - NA :</div> $xboxna</div>";
-		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>XBox - EU :</div> $xboxeu</div>";
+		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PlayStation - NA :</div> $ps4na</div>";
+		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PlayStation - EU :</div> $ps4eu</div>";
+		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>Xbox - NA :</div> $xboxna</div>";
+		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>Xbox - EU :</div> $xboxeu</div>";
 		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PTS :</div> $pts</div>";
 		$output .= "<div class='uespEsoServerUpdated'>Last Updated : $lastUpdate</div>";
 		$output .= "</div>";

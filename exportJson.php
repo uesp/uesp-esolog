@@ -48,6 +48,7 @@ class CEsoLogJsonExport
 			"minedItemSummary31pts",
 			"minedItemSummary32pts",
 			"minedItemSummary33pts",
+			"minedItemSummary34pts",
 			"minedSkills",
 			"minedSkills30pts",
 			"minedSkills31pts",
@@ -60,6 +61,7 @@ class CEsoLogJsonExport
 			"setSummary31pts",
 			"setSummary32pts",
 			"setSummary33pts",
+			"setSummary34pts",
 			"achievementCategories",
 			"achievementCriteria",
 			"achievements",
@@ -78,6 +80,7 @@ class CEsoLogJsonExport
 			"skillTooltips",
 			"skillTooltips32pts",
 			"skillTooltips33pts",
+			"skillTooltips34pts",
 	);
 	
 	public $TABLE_IDS = array(
