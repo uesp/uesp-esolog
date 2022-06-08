@@ -1,8 +1,8 @@
 <?php
 /*
- * getLeadHtml.php -- by Dave Humphrey (dave@uesp.net), May 2022
+ * getGoldenVendorHtml.php -- by Dave Humphrey (dave@uesp.net), May 2022
  * 
- * Returns HTML fragments of Antiquity Lead information.
+ * Returns HTML fragments of Golden Vendor items.
  * 
  * TODO:
  *

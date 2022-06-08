@@ -15,6 +15,7 @@ require("esoCommon.php");
 
 class CEsoEndeavorHtml
 {
+	public $showDesc = false;
 	public $showAll = false;
 	
 	public $db = null;
@@ -47,6 +48,7 @@ class CEsoEndeavorHtml
 		$this->inputParams = $_REQUEST;
 		
 		if (array_key_exists('showall', $this->inputParams)) $this->showAll = intval($this->inputParams['showall']);
+		if (array_key_exists('showdesc', $this->inputParams)) $this->showDesc = intval($this->inputParams['showdesc']);
 	}
 	
 	
@@ -127,7 +129,8 @@ class CEsoEndeavorHtml
 		
 		while ($row = $result->fetch_assoc())
 		{
-			$this->endeavors[] = $row;
+			$type = intval($row['type']);
+			$this->endeavors[$type][] = $row;
 		}
 		
 		return true;
@@ -148,7 +151,9 @@ class CEsoEndeavorHtml
 		while ($row = $result->fetch_assoc())
 		{
 			$ts = intval($row['startTimestamp']);
-			$this->allEndeavors[$ts][] = $row;
+			$type = intval($row['type']);
+			
+			$this->allEndeavors[$ts][$type][] = $row;
 		}
 		
 		krsort($this->allEndeavors);
@@ -168,7 +173,7 @@ class CEsoEndeavorHtml
 	{
 		$output = "";
 		
-		if ($groupedItems == null) $groupedItems = $this->groupedItems;
+		if ($endeavors == null) $endeavors = $this->endeavors;
 		if ($timestamp == null) $timestamp = $this->itemTimestamp;
 		
 		$formatDate = "";
@@ -180,33 +185,32 @@ class CEsoEndeavorHtml
 			$formatDate = gmdate('j F Y', $timestamp + 1);
 		}
 		
-		$output .= "<a name='uespesoGoldenItems_$formatDateId'></a>\n";
+		$output .= "<a name='uespesoEndeavors_$formatDateId'></a>\n";
 		$output .= "<h4>$titlePrefix$formatDate</h4>\n";
-		$output .= "<ul class='uespesoGoldenItemList'>\n";
+		$output .= "<ul class='uespesoEndeavorList'>\n";
 		
-		foreach ($groupedItems as $nameId => $groupedItem)
+		foreach ($endeavors as $type => $endeavorTypes)
 		{
-			$traits = $groupedItem['traits'];
-			$prices = $groupedItem['prices'];
-			$name = $groupedItem['name'];
-			$bindType = $groupedItem['bindType'];
-			$quality = $groupedItem['quality'];
-			$className = "uespesoGoldenItemQuality" . $quality;
+			$typeLimit = intval($endeavorTypes[0]['typeLimit']);
+			$typeName =GetEsoTimedActivityTypeText($type);
+			$output .= "<li><span class='uespesoEndeavtorTypeTitle'>$typeName Endeavors (perform any $typeLimit)</span><ul class='uespesoEndeavorList$type'>\n";
 			
-			$safePrices = $this->FormatPricesHtml($prices);
-			$safeName = $this->EscapeHtml($name);
-			$safeTraits = $this->GetTraitTexts($traits);
+			foreach ($endeavorTypes as $endeavor)
+			{
+				$rewards = $this->EscapeHtml($endeavor['rewards']);
+				$name = $this->EscapeHtml($endeavor['name']);
+				$desc = $this->EscapeHtml($endeavor['description']);
+				$endTimestamp = $endeavor['endTimestamp'];
+				
+				$formatEndDate = gmdate('j F Y', $endTimestamp);
+				
+				$output .= "<li><span class='uespesoEndeavorName'>$name</span> -- <span class='uespesoEndeavorReward'>$rewards</span>";
+				//$output .= " (ends on $formatEndDate)";
+				if ($this->showDesc) $output .= "<br/><div class='uespesoEndeavorDesc'>$desc</div>";
+				$output .= "</li>\n";
+			}
 			
-			$safeBind = "";
-			if ($bindType == 2) $safeBind = " (Bind on Equip)";
-			
-			$itemLinkAtag = $this->GetItemLinkATag($groupedItem['items'][0]);
-			$itemLinkAtagEnd = "";
-			if ($itemLinkAtag) $itemLinkAtagEnd = "</a>";
-			
-			$output .= "<li>";
-			$output .= "$itemLinkAtag<span class='uespesoGoldenItem $className'>$safeName ($safeTraits)</span>$itemLinkAtagEnd -- $safePrices $safeBind";
-			$output .= "</li>\n";
+			$output .= "</ul></li>\n";
 		}
 		
 		$output .= "</ul>\n";
@@ -214,9 +218,9 @@ class CEsoEndeavorHtml
 	}
 	
 	
-	private function OutputLatestEndeavorsHtml($groupedItems = null, $timestamp = null)
+	private function OutputLatestEndeavorsHtml()
 	{
-		return $this->OutputGroupedEndeavorsHtml("Latest Endeavors for ", $this->endeavors, $this->itemTimestamp);
+		return $this->OutputGroupedEndeavorsHtml("Latest Endeavors for ", $this->endeavors, $this->dailyStartTimestamp);
 	}
 	
 	
@@ -239,9 +243,9 @@ class CEsoEndeavorHtml
 		$output = "<div class='uespesoGoldenVendor'>\n";
 		
 		if ($this->showAll)
-			$output .= $this->OutputAllItemsHtml();
+			$output .= $this->OutputAllEndeavorsHtml();
 		else
-			$output .= $this->OutputLatestItemsHtml();
+			$output .= $this->OutputLatestEndeavorsHtml();
 		
 		$output .= "</div>\n";
 		
