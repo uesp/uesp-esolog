@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "31pts";
+$TABLE_SUFFIX = "";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
@@ -81,6 +81,27 @@ $REPLACE_PAIRS = array(
 		"Ebonheart Breton Terrier Pet" => "Pact Breton Terrier",
 		"Rage of the Reach Emote" => "Rage of the Reach",
 		"Nibenese Court Wizard Robe" => "Nibenese Court Wizard Jerkin",
+		"Rage of The Reach Emote" => "Rage of the Reach",
+		"Marshmallow Toasty Treat Emote" => "Marshmallow Toasty Treat",
+		"Witch's Bonfire Memento" => "Witch's Bonfire Dust",
+		"Black Drake's Face Warpaint" => "The Black Drake's Face Warpaint",
+		"Black Drake's Body Warpaint" => "The Black Drake's Body Warpaint",
+		"Siegestomper Emote" => "Siegestomper",
+		"Mother Ciannait Shoulder" => "Mother Ciannait's Shoulder",
+		"Second Seed Jerkin" => "Second Seed Raiment Jerkin",
+		"Second Seed Hat" => "Second Seed Raiment Hat",
+		"Second Seed Breeches" => "Second Seed Raiment Breeches",
+		"Second Seed Epaulets" => "Second Seed Raiment Epaulets",
+		"Second Seed Shoes" => "Second Seed Raiment Shoes",
+		"Second Seed Glove" => "Second Seed Raiment Glove",
+		"Second Seed Sash" => "Second Seed Raiment Sash",
+		"Saberkeel Cuirass" => "Saberkeel Panoply Cuirass",
+		"Saberkeel Helm" => "Saberkeel Panoply Helm",
+		"Saberkeel Greaves" => "Saberkeel Panoply Greaves",
+		"Saberkeel Pauldrons" => "Saberkeel Panoply Pauldrons",
+		"Saberkeel Sabatons" => "Saberkeel Panoply Sabatons",
+		"Saberkeel Gauntlets" => "Saberkeel Panoply Gauntlets",
+		"Saberkeel Girdle" => "Saberkeel Panoply Girdle",
 );
 
 require("/home/uesp/secrets/esolog.secrets");

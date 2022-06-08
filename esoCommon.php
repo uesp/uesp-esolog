@@ -2013,11 +2013,10 @@ $ESO_SET_INDEXES = array(
 		653 => "Perfected Whorl of the Depths",
 		654 => "Mora's Whispers",
 		655 => "Dov-rha Sabatons",
-		656 => "Lefthander's War Girdle",
+		656 => "Lefthander's Aegis Belt",
 		657 => "Sea-Serpent's Coil",
 		658 => "Oakensoul Ring",
 );
-
 
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
 		-1 => "",
@@ -2412,6 +2411,28 @@ $ESO_CHESTTYPE_TEXTS = array(
 );
 
 
+$ESO_REWARDENTRYTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Mail Item",
+		1 => "Add Currency",
+		2 => "Add Title",
+		3 => "Remove Title",
+		4 => "Advance Achevement",
+		5 => "Add Skill Line",
+		6 => "Remove Skill Line",
+		7 => "Add Effect",
+		8 => "Remove Effect",
+		9 => "Collectible",
+		10 => "Loot Crate",
+		11 => "Deprecated1",
+		12 => "Item",
+		13 => "Choice",
+		14 => "Instant Unlock",
+		15 => "Reward List",
+		16 => "Experience",
+);
+
+
 $ESO_QUESTREWARDTYPE_TEXTS = array(
 		-2 => "",
 		-1 => "Experience",	//Custom
@@ -2435,6 +2456,47 @@ $ESO_QUESTREWARDITEMTYPE_TEXTS = array(
 		-1 => "",
 		0 => "Item",
 		1 => "Collectible",
+);
+
+
+$ESO_TIMEDACTIVITYTYPE_TEXTS = array(
+		-1 => "",
+		0 => "Daily",
+		1 => "Weekly",
+);
+
+
+$ESO_CURRENCYTYPE_TEXTS = array(
+		-1 => '',
+		0 => 'None',
+		1 => 'Gold',
+		2 => 'Alliance Points',
+		3 => 'Telvar Stones',
+		4 => '4',
+		5 => 'Chaotic Creatia',
+		6 => 'Crown Gems',
+		7 => 'Crowns',
+		8 => 'Style Stones',
+		9 => 'Event Tickets',
+		10 => 'Undaunted Keys',
+		11 => 'Seals of Endeavor',
+);
+
+
+$ESO_CURRENCYTYPESHORT_TEXTS = array(
+		-1 => '',
+		0 => '',
+		1 => 'GP',
+		2 => 'AP',
+		3 => 'Telvar',
+		4 => '4',
+		5 => 'CC',
+		6 => 'Gems',
+		7 => 'Crowns',
+		8 => 'Stones',
+		9 => 'Tickets',
+		10 => 'Keys',
+		11 => 'Seals',
 );
 
 
@@ -4168,13 +4230,15 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 33;
+	return 34;
 }
 
 
 function GetEsoItemTableSuffix($version)
 {
 
+	//if ($version == GetEsoUpdateVersion()) return "";
+	
 	switch ($version)
 	{
 		case '1.5':
@@ -4336,11 +4400,11 @@ function GetEsoItemTableSuffix($version)
 		case '33pts':
 			return "33pts";
 		case '33':
-			return "";
+			return "33";
 		case '34pts':
 			return "34pts";
 		case '34':
-			return "34";
+			return "";
 	}
 
 	return "";
@@ -4742,7 +4806,7 @@ function GetEsoQuestStepTypeText($value)
 function GetEsoQuestStepVisibilityTypeText($value)
 {
 	global $ESO_QUEST_STEPVISIBILITYTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_QUEST_STEPVISIBILITYTYPE_TEXTS)) return $ESO_QUEST_STEPVISIBILITYTYPE_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4752,7 +4816,7 @@ function GetEsoQuestStepVisibilityTypeText($value)
 function GetEsoQuestTypeText($value)
 {
 	global $ESO_QUESTTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_QUESTTYPE_TEXTS)) return $ESO_QUESTTYPE_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4762,7 +4826,7 @@ function GetEsoQuestTypeText($value)
 function GetEsoMapPinTypeText($value)
 {
 	global $ESO_MAPPINTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_MAPPINTYPE_TEXTS)) return $ESO_MAPPINTYPE_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4772,9 +4836,19 @@ function GetEsoMapPinTypeText($value)
 function GetEsoChestTypeText($value)
 {
 	global $ESO_CHESTTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_CHESTTYPE_TEXTS)) return $ESO_CHESTTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoRewardEntryTypeText($value)
+{
+	global $ESO_REWARDENTRYTYPE_TEXTS;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_REWARDENTRYTYPE_TEXTS)) return $ESO_REWARDENTRYTYPE_TEXTS[$key];
 	return "Unknown ($key)";
 }
 
@@ -4782,9 +4856,19 @@ function GetEsoChestTypeText($value)
 function GetEsoQuestRewardTypeText($value)
 {
 	global $ESO_QUESTREWARDTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_QUESTREWARDTYPE_TEXTS)) return $ESO_QUESTREWARDTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoTimedActivityTypeText($value)
+{
+	global $ESO_TIMEDACTIVITYTYPE_TEXTS;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_TIMEDACTIVITYTYPE_TEXTS)) return $ESO_TIMEDACTIVITYTYPE_TEXTS[$key];
 	return "Unknown ($key)";
 }
 
@@ -4792,9 +4876,29 @@ function GetEsoQuestRewardTypeText($value)
 function GetEsoQuestRewardItemTypeText($value)
 {
 	global $ESO_QUESTREWARDITEMTYPE_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_QUESTREWARDITEMTYPE_TEXTS)) return $ESO_QUESTREWARDITEMTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoCurrencyTypeText($value)
+{
+	global $ESO_CURRENCYTYPE_TEXTS;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_CURRENCYTYPE_TEXTS)) return $ESO_CURRENCYTYPE_TEXTS[$key];
+	return "Unknown ($key)";
+}
+
+
+function GetEsoCurrencyTypeShortText($value)
+{
+	global $ESO_CURRENCYTYPESHORT_TEXTS;
+	
+	$key = (int) $value;
+	if (array_key_exists($key, $ESO_CURRENCYTYPESHORT_TEXTS)) return $ESO_CURRENCYTYPESHORT_TEXTS[$key];
 	return "Unknown ($key)";
 }
 
@@ -4802,7 +4906,7 @@ function GetEsoQuestRewardItemTypeText($value)
 function GetEsoCurrencyChangeReasonText($value)
 {
 	global $ESO_CURRENCYCHANGEREASON_TEXTS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_CURRENCYCHANGEREASON_TEXTS)) return $ESO_CURRENCYCHANGEREASON_TEXTS[$key];
 	return "Unknown ($key)";
@@ -4826,7 +4930,7 @@ function GetEsoSkillTypeText ($value)
 	global $ESO_SKILLTYPES;
 	
 	$key = (int) $value;
-
+	
 	if (array_key_exists($key, $ESO_SKILLTYPES)) return $ESO_SKILLTYPES[$key];
 	return "Unknown ($key)";
 }

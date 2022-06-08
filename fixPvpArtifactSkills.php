@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "34pts";
+$TABLE_SUFFIX = "34";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -120,7 +120,7 @@ foreach ($skills as $skillId => $skillData)
 	$morph = $fixedData['morph'];
 	$learnedLevel = $fixedData['learnedLevel'];
 		
-	$query = "UPDATE minedSkills$TABLE_SUFFIX SET skillIndex='$skillIndex', skillType='$skillType', skillLine='$skillLine', rank='$rank', morph='$morph', learnedLevel='$learnedLevel', baseAbilityId='$skillId' WHERE id='$skillId';";
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET skillIndex='$skillIndex', skillType='$skillType', skillLine='$skillLine', rank='$rank', morph='$morph', isPlayer=1, learnedLevel='$learnedLevel', baseAbilityId='$skillId' WHERE id='$skillId';";
 	$result = $db->query($query);
 	if (!$result) print("\tError: Failed to update skill $skillId!\n" . $db->error);
 	
@@ -149,8 +149,8 @@ foreach ($skills as $skillId => $skillData)
 	$columns[] = "rank";
 	$values[] = $rank;
 	
-	$columns[] = "isPlayer";
-	$values[] = '1';
+	//$columns[] = "isPlayer";
+	//$values[] = '1';
 	
 	$columns[] = "baseName";
 	$values[] = "'" . $db->real_escape_string($skillData['name']) . "'";
@@ -178,7 +178,6 @@ foreach ($skills as $skillId => $skillData)
 	
 	$query = "INSERT INTO skillTree$TABLE_SUFFIX($dbCols) VALUES($dbValues);";
 	//print($query . "\n");
-		
 	$result = $db->query($query);
 	if (!$result) print("\tError: Failed to create skillTree record for $skillId!\n" . $db->error);
 }

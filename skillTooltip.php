@@ -368,6 +368,7 @@ class CEsoSkillTooltip
 		$safeSkillLine = $this->db->real_escape_string($skillLine);
 		
 		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.indexName='$safeSkillName' and skillLine='$safeSkillLine' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
+		
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
 		
@@ -379,6 +380,8 @@ class CEsoSkillTooltip
 		}
 		
 		$this->skillData = $result->fetch_assoc();
+		
+		if ($this->skillData == null) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
 		return true;
 	}
 	
@@ -397,6 +400,7 @@ class CEsoSkillTooltip
 		if (!$result) return $this->ReportError("Failed to load skill data!");
 		
 		$this->skillData = $result->fetch_assoc();
+		if ($this->skillData == null) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
 		return true;
 	}
 	
@@ -452,6 +456,7 @@ class CEsoSkillTooltip
 	
 	public function GetSkillData($key, $default = '')
 	{
+		if ($this->skillData == null) return $default;
 		if (!array_key_exists($key, $this->skillData)) return $default;
 		return $this->skillData[$key];
 	}

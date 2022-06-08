@@ -30,7 +30,7 @@ class CEsoLogJsonExport
 	
 	
 	public $VALID_TABLES = array(
-			#"cpDisciplines",
+			#"cpDisciplines",		// Old CP tables
 			#"cpSkills",
 			#"cpSkillDescriptions",
 			"cp2Disciplines",
@@ -39,29 +39,29 @@ class CEsoLogJsonExport
 			"cp2ClusterRoots",
 			"cp2SkillDescriptions",
 			"minedItem",
-			"minedItem30pts",
-			"minedItem31pts",
-			"minedItem32pts",
-			"minedItem33pts",
+			//"minedItem30pts",
+			//"minedItem31pts",
+			//"minedItem32pts",
+			//"minedItem33pts",
 			"minedItemSummary",
-			"minedItemSummary30pts",
-			"minedItemSummary31pts",
-			"minedItemSummary32pts",
-			"minedItemSummary33pts",
-			"minedItemSummary34pts",
+			//"minedItemSummary30pts",
+			//"minedItemSummary31pts",
+			//"minedItemSummary32pts",
+			//"minedItemSummary33pts",
+			//"minedItemSummary34pts",
 			"minedSkills",
-			"minedSkills30pts",
-			"minedSkills31pts",
-			"minedSkills32pts",
-			"minedSkills33pts",
+			//"minedSkills30pts",
+			//"minedSkills31pts",
+			//"minedSkills32pts",
+			//"minedSkills33pts",
 			"skillCoef",
 			"playerSkills",
 			"setSummary",
-			"setSummary30pts",
-			"setSummary31pts",
-			"setSummary32pts",
-			"setSummary33pts",
-			"setSummary34pts",
+			//"setSummary30pts",
+			//"setSummary31pts",
+			//"setSummary32pts",
+			//"setSummary33pts",
+			//"setSummary34pts",
 			"achievementCategories",
 			"achievementCriteria",
 			"achievements",
@@ -73,15 +73,16 @@ class CEsoLogJsonExport
 			"questStep",
 			"uniqueQuest",
 			"skillTree",
-			"skillTree30pts",
-			"skillTree31pts",
-			"skillTree32pts",
-			"skillTree33pts",
+			//"skillTree30pts",
+			//"skillTree31pts",
+			//"skillTree32pts",
+			//"skillTree33pts",
 			"skillTooltips",
-			"skillTooltips32pts",
-			"skillTooltips33pts",
-			"skillTooltips34pts",
+			//"skillTooltips32pts",
+			//"skillTooltips33pts",
+			//"skillTooltips34pts",
 	);
+	
 	
 	public $TABLE_IDS = array(
 			"cpDisciplines" => "name",
@@ -209,9 +210,13 @@ class CEsoLogJsonExport
 	
 	private function IsValidTable($table)
 	{
-		if (!in_array($table, $this->VALID_TABLES)) return false;
+		if (in_array($table, $this->VALID_TABLES)) return true;
 		
-		return true;
+			// Include versioned tables like 'XXX30' or 'XXX31pts'
+		$table = preg_replace('#[0-9]+(pts)?$#', '', $table);
+		if (in_array($table, $this->VALID_TABLES)) return true;
+		
+		return false;
 	}
 	
 	

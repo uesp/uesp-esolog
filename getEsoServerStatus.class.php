@@ -282,7 +282,7 @@ class CEsoServerStatus
 		$pts = $this->FormatStatus($response['PTS']);
 		
 		$diffSeconds = (time() - $this->statusLastUpdatedTimestamp);
-		$diffMinutes = round($diffSeconds / 60);
+		$diffMinutes = floor($diffSeconds / 60);
 		
 		$lastUpdateMsg = $this->statusLastUpdated . ", ";
 		if (self::USE_SHORT_UPDATEMESSAGE) $lastUpdateMsg = ""; 

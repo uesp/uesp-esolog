@@ -55,6 +55,22 @@ class CEsoItemLinkImage
 			"style" => -1,
 	);
 	
+	static public $ESOIL_ERROR_SETITEM_DATA = array(
+			"name" => "Unknown",
+			"set" => "Unknown",
+			"itemId" => 0,
+			"internalSubtype" => 0,
+			"internalLevel" => 0,
+			"quality" => 0,
+			"level" => "?",
+			"value" => "?",
+			"type" => 0,
+			"bind" => 0,
+			"description" => "",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
+			"style" => -1,
+	);
+	
 	static public $ESOIL_ITEM_SUMMARY_FIELDS = array(
 			"level",
 			"value",
@@ -72,6 +88,7 @@ class CEsoItemLinkImage
 			"icon",
 	);
 	
+	public $isError = false;
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
@@ -87,6 +104,7 @@ class CEsoItemLinkImage
 	public $itemTrait = 0;
 	public $itemPotionData = -1;
 	public $itemStolen = -1;
+	public $itemSet = "";
 	public $transmuteTrait = 0;
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
@@ -188,7 +206,6 @@ class CEsoItemLinkImage
 	
 	public function ReportError($errorMsg)
 	{
-		print($errorMsg);
 		error_log($errorMsg);
 		return false;
 	}
@@ -245,9 +262,10 @@ class CEsoItemLinkImage
 			$this->ParseItemLink($this->itemLink);
 		}
 		
+		if (array_key_exists('id', $this->inputParams)) $this->itemId = (int) $this->inputParams['id'];
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
 		
-		if (array_key_exists('intlevel', $this->inputParams)) 
+		if (array_key_exists('intlevel', $this->inputParams))
 		{
 			$this->itemLevel = -1;
 			$this->itemQuality = -1;
@@ -255,7 +273,7 @@ class CEsoItemLinkImage
 			$this->itemIntType = 1;
 		}
 		
-		if (array_key_exists('inttype', $this->inputParams)) 
+		if (array_key_exists('inttype', $this->inputParams))
 		{
 			$this->itemLevel = -1;
 			$this->itemQuality = -1;
@@ -340,7 +358,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('writ5', $this->inputParams)) $this->writData5 = (int) $this->inputParams['writ5'];
 		if (array_key_exists('writ6', $this->inputParams)) $this->writData6 = (int) $this->inputParams['writ6'];
 		if (array_key_exists('vouchers', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['vouchers'];
-						
+		
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Display = true;
 		
 		if ($this->itemLevel < 0 && $this->itemQuality < 0)
@@ -348,6 +366,8 @@ class CEsoItemLinkImage
 			if ($this->itemIntLevel < 0) $this->itemIntLevel = 1;
 			if ($this->itemIntType  < 0) $this->itemIntType  = 1;
 		}
+		
+		if (array_key_exists('set', $this->inputParams)) $this->itemSet = trim($this->inputParams['set']);
 		
 		$this->inputIntType = $this->itemIntType;
 		$this->inputIntLevel = $this->itemIntLevel;
@@ -367,7 +387,7 @@ class CEsoItemLinkImage
 		if ($argv !== null)
 		{
 			$argIndex = 0;
-				
+			
 			foreach ($argv as $arg)
 			{
 				$argIndex += 1;
@@ -417,8 +437,80 @@ class CEsoItemLinkImage
 	}
 	
 	
+	private function LoadSetItemRecord()
+	{
+		$setTable = "setSummary" . $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" . $this->GetTableSuffix();
+		
+		$safeSet = $this->db->real_escape_string($this->itemSet);
+		
+		$query = "SELECT * FROM $setTable WHERE setName='$safeSet' LIMIT 1;";
+		$this->itemErrorDesc = "set='{$this->itemSet}'";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->setItemData = $result->fetch_assoc();
+		
+		if (!$this->setItemData)
+		{
+			$safeSet = strtolower($this->itemSet);
+			$safeSet = str_replace("'", "", $safeSet);
+			$safeSet = str_replace(",", "", $safeSet);
+			$safeSet = str_replace(" ", "-", $safeSet);
+			$safeSet = $this->db->real_escape_string($safeSet);
+			
+			$query = "SELECT * FROM setSummary". $this->GetTableSuffix() ." WHERE indexName='$safeSet' LIMIT 1;";
+			
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			
+			$this->setItemData = $result->fetch_assoc();
+			
+			if (!$this->setItemData)
+			{
+				$this->ReportError("ERROR: No set found matching '{$this->itemSet}'!");
+				$this->setItemData = array();
+				return false;
+			}
+		}
+		
+		$this->setItemData['name'] = $this->setItemData['setName'];
+		$this->setItemData['quality'] = 5;
+		
+		$safeSet = $this->db->real_escape_string($this->setItemData['setName']);
+		
+		$query = "SELECT icon FROM $summaryTable WHERE setName='$safeSet' AND type=2 AND equipType=1 LIMIT 1;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		if ($result->num_rows == 0)
+		{
+			$query = "SELECT icon FROM $summaryTable WHERE setName='$safeSet' AND type=1 AND (equipType=5 OR equipType=6) LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		}
+		
+		$iconRow = $result->fetch_assoc();
+		
+		if ($iconRow)
+		{
+			$this->setItemData['icon'] = $iconRow['icon'];
+		}
+		
+		$this->setItemData['description'] = $this->setItemData['itemSlots'];
+		$this->setItemData['type'] = $this->setItemData['gameId'];
+		
+		
+		$this->itemRecord = $this->setItemData;
+		
+		return true;
+	}
+	
+	
 	private function LoadItemRecord()
 	{
+		if ($this->itemSet != "") return $this->LoadSetItemRecord();
+		
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
 		$query = "";
 		
@@ -580,7 +672,7 @@ class CEsoItemLinkImage
 				}
 				
 				$this->LoadItemTransmuteTraitData();
-					
+				
 				if ($this->transmuteTrait == 13)		/* Transmuted Reinforced */
 				{
 					$factor = 1;
@@ -607,7 +699,7 @@ class CEsoItemLinkImage
 				{
 					$factor = 0;
 					$result = preg_match("#by (?:\|c[0-9a-fA-F]{6})?([0-9.]+)(?:\|r)?%#", $this->itemRecord['traitDesc'], $matches);
-				
+					
 					if ($result)
 					{
 						$factor = 1 + floatval($matches[1])/100;
@@ -801,6 +893,21 @@ class CEsoItemLinkImage
 	
 	private function LoadItemErrorData()
 	{
+		$this->isError = true;
+		
+		if ($this->itemSet != "")
+		{
+			$this->itemRecord = self::$ESOIL_ERROR_SETITEM_DATA;
+			
+			$this->itemRecord['name'] = "Unknown Set";
+			$this->itemRecord['setName'] = $this->itemSet;
+			$this->itemRecord['setMaxEquipCount'] = '0';
+			$this->itemRecord['setBonusCount'] = '0';
+			//$this->itemRecord['description'] = "No set found matching '{$this->itemSet}'!";
+			
+			return;
+		}
+		
 		$this->itemRecord = self::$ESOIL_ERROR_ITEM_DATA;
 		$this->itemRecord['name'] = "Unknown Item #" . $this->itemId;
 		$this->itemRecord['itemId'] = $this->itemId;
@@ -1400,6 +1507,13 @@ class CEsoItemLinkImage
 	
 	private function MakeItemTypeText()
 	{
+		if ($this->itemSet != "") 
+		{
+			$type = intval($this->itemRecord['type']);
+			if ($type > 0) return $type;
+			return "";
+		}
+		
 		if ($this->itemRecord['specialType'] > 0) return GetEsoItemSpecialTypeText($this->itemRecord['specialType']);
 		
 		switch ($this->itemRecord['type'])
@@ -2652,7 +2766,8 @@ class CEsoItemLinkImage
 		
 		$itemName = strtoupper($itemData['name']);
 		$quality = $itemData['quality'];
-		$this->nameColor = $this->qualityColors[5];
+		$this->nameColor = $this->qualityColors[$quality];
+		if ($this->nameColor == null) $this->nameColor = $this->qualityColors[5];
 		
 		if ($this->showSummary)
 		{
@@ -2739,7 +2854,11 @@ class CEsoItemLinkImage
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
 		$filename = "";
 		
-		if ($this->showSummary)
+		if ($this->itemSet != "")
+		{
+			$filename = str_replace("'", '', $this->itemSet);
+		}
+		elseif ($this->showSummary)
 		{
 			if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
 			{
@@ -2750,7 +2869,7 @@ class CEsoItemLinkImage
 				$filename   = $this->itemId . "-summary";
 			}
 		}
-		else if ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
+		elseif ($this->enchantId1 > 0 && $this->enchantIntType1 >= 0 && $this->enchantIntLevel1 > 0)
 		{
 			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . "-" . $this->enchantId1 . "-" . $this->enchantIntLevel1 . "-" . $this->enchantIntType1 . "";
 		}
@@ -2794,10 +2913,25 @@ class CEsoItemLinkImage
 	
 	public function SaveImage($image)
 	{
+		if ($this->version != "") return false;
+		if ($this->isError) return false;
+		if ($this->noCache) return false;
+		
+		if ($this->itemSet != "")
+		{
+			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
+			$filename = $this->GetImageFilename() . ".png";
+			$fullFilename = $path . $filename;
+			
+			if (!file_exists($path) && !mkdir($path, 0775, true)) return false;
+			imagepng($image, $fullFilename);
+			
+			return true;
+		}
+		
 		if ($this->itemId <= 0) return false;
 		if ($this->itemIntLevel <= 0) return false;
 		if ($this->itemIntType <= 0) return false;
-		if ($this->version != "") return false;
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId;
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int";
@@ -2821,6 +2955,7 @@ class CEsoItemLinkImage
 	
 	public function ServeCachedImage($useRedirect)
 	{
+		if ($this->isError) return false;
 		if ($this->noCache) return false;
 		if ($this->itemId <= 0) return false;
 		if ($this->itemBound > 0) return false;
@@ -2838,6 +2973,21 @@ class CEsoItemLinkImage
 		if ($this->itemSetCount >= 0) return false;
 		if ($this->itemStolen > 0) return false;
 		if ($this->transmuteTrait > 0) return false;
+		
+		if ($this->itemSet != "")
+		{
+			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
+			$filename = $this->GetImageFilename() . ".png";
+			$fullFilename = $path . $filename;
+			
+			if (file_exists($fullFilename))
+			{
+				readfile($fullFilename);
+				return true;
+			}
+			
+			return false;
+		}
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
@@ -2892,7 +3042,7 @@ class CEsoItemLinkImage
 			return true;
 		}
 		
-		if ($this->ServeCachedImage(false)) 
+		if ($this->ServeCachedImage(false))
 		{
 			UpdateEsoPageViews("itemLinkImageViews");
 			return true;
@@ -2908,10 +3058,10 @@ class CEsoItemLinkImage
 			{
 				if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
 			}
-				
+			
 			$this->LoadEnchantRecords();
 			if (!$this->LoadItemSummaryData()) $this->LoadItemErrorData();
-				
+			
 			if ($this->version >= GetEsoUpdateVersion())
 				$this->MergeItemSummary();
 			else
@@ -2922,7 +3072,7 @@ class CEsoItemLinkImage
 			if (!$this->LoadItemRecord()) $this->LoadItemErrorData();
 			$this->LoadEnchantRecords();
 		}
-				
+		
 		if ($this->ServeCachedImage(false)) return true;
 		
 		$this->OutputImage();
@@ -2930,13 +3080,8 @@ class CEsoItemLinkImage
 	}
 	
 	
-	
 };
 
 $g_EsoItemLinkImage = new CEsoItemLinkImage();
 $g_EsoItemLinkImage->MakeImage();
-
-
-?>
-
 

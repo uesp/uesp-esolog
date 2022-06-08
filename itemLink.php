@@ -93,6 +93,22 @@ class CEsoItemLink
 			"style" => -1,
 	);
 	
+	static public $ESOIL_ERROR_SETITEM_DATA = array(
+			"name" => "Unknown",
+			"set" => "Unknown",
+			"itemId" => 0,
+			"internalSubtype" => 0,
+			"internalLevel" => 0,
+			"quality" => 0,
+			"level" => "?",
+			"value" => "?",
+			"type" => 0,
+			"bind" => 0,
+			"description" => "Unknown set!",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
+			"style" => -1,
+	);
+	
 	static public $ESOIL_ERROR_QUESTITEM_DATA = array(
 			"name" => "Unknown",
 			"questId" => "",
@@ -181,6 +197,7 @@ class CEsoItemLink
 	public $itemStolen = -1;
 	public $itemSetCount = -1;
 	public $itemTrait = 0;
+	public $itemSet = "";
 	public $showStyle = true;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
@@ -227,6 +244,8 @@ class CEsoItemLink
 	
 	public $antiquityItemId = -1;
 	public $antiquityItemData = array();
+	
+	public $setItemData = array();
 	
 	
 	public function __construct ()
@@ -286,7 +305,7 @@ class CEsoItemLink
 	
 	private function ParseInputParams ()
 	{
-		if (array_key_exists('itemlink', $this->inputParams)) 
+		if (array_key_exists('itemlink', $this->inputParams))
 		{ 
 			$this->itemLink = urldecode($this->inputParams['itemlink']);
 			$this->ParseItemLink($this->itemLink);
@@ -300,21 +319,21 @@ class CEsoItemLink
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
 		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
 		
-		if (array_key_exists('intlevel', $this->inputParams)) 
+		if (array_key_exists('intlevel', $this->inputParams))
 		{
 			$this->itemLevel = -1;
 			$this->itemQuality = -1;
 			$this->itemIntLevel = (int) $this->inputParams['intlevel'];
 		}
 		
-		if (array_key_exists('inttype', $this->inputParams)) 
+		if (array_key_exists('inttype', $this->inputParams))
 		{
 			$this->itemLevel = -1;
 			$this->itemQuality = -1;
 			$this->itemIntType = (int) $this->inputParams['inttype'];
 		}
 		
-		if (array_key_exists('level', $this->inputParams)) 
+		if (array_key_exists('level', $this->inputParams))
 		{
 			$level = strtolower($this->inputParams['level']);
 			
@@ -325,7 +344,7 @@ class CEsoItemLink
 			else if ($level[0] == 'c' && $level[1] == 'p')
 			{
 				$this->itemLevel = floor(((int) substr($level, 2))/10) + 50;
-			}			
+			}
 			else
 			{
 				$this->itemLevel = (int) $level;
@@ -369,7 +388,7 @@ class CEsoItemLink
 		if (array_key_exists('writ5', $this->inputParams)) $this->writData5 = (int) $this->inputParams['writ5'];
 		if (array_key_exists('writ6', $this->inputParams)) $this->writData6 = (int) $this->inputParams['writ6'];
 		if (array_key_exists('vouchers', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['vouchers'];
-				
+		
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
 		
@@ -381,7 +400,7 @@ class CEsoItemLink
 		else
 		{
 			$this->htmlTemplate = file_get_contents(self::ESOIL_HTML_TEMPLATE);
-		}		
+		}
 		
 		if (array_key_exists('enchantid', $this->inputParams))
 		{
@@ -422,6 +441,8 @@ class CEsoItemLink
 		if (array_key_exists('aid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['aid'];
 		if (array_key_exists('antiid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['antiid'];
 		if (array_key_exists('antiquityid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['antiquityid'];
+		
+		if (array_key_exists('set', $this->inputParams)) $this->itemSet = trim($this->inputParams['set']);
 		
 		$this->useUpdate10Display = IsEsoVersionAtLeast($this->version, 10);
 		
@@ -613,6 +634,18 @@ class CEsoItemLink
 		else
 			$this->itemRecord['description'] = "No item found matching itemId # {$this->itemId}!";
 		
+	}
+	
+	
+	private function LoadSetItemErrorData()
+	{
+		$this->setItemData = self::$ESOIL_ERROR_SETITEM_DATA;
+		
+		$this->setItemData['name'] = "Unknown Set";
+		$this->setItemData['setName'] = $this->itemSet;
+		$this->setItemData['setMaxEquipCount'] = '0';
+		$this->setItemData['setBonusCount'] = '0';
+		$this->setItemData['description'] = "No set found matching '{$this->itemSet}'!";
 	}
 	
 	
@@ -1097,11 +1130,73 @@ class CEsoItemLink
 	}
 	
 	
+	private function LoadSetItemRecord()
+	{
+		if ($this->itemSet == "") return $this->ReportError("ERROR: Missing or invalid set name specified!");
+		
+		$safeSet = $this->db->real_escape_string($this->itemSet);
+		$query = "SELECT * FROM setSummary". $this->GetTableSuffix() ." WHERE setName='$safeSet' LIMIT 1;";
+		$this->itemErrorDesc = "set='{$this->itemSet}'";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$this->setItemData = $result->fetch_assoc();
+		
+		if (!$this->setItemData)
+		{
+			$safeSet = strtolower($this->itemSet);
+			$safeSet = str_replace("'", "", $safeSet);
+			$safeSet = str_replace(",", "", $safeSet);
+			$safeSet = str_replace(" ", "-", $safeSet);
+			$safeSet = $this->db->real_escape_string($safeSet);
+			
+			$query = "SELECT * FROM setSummary". $this->GetTableSuffix() ." WHERE indexName='$safeSet' LIMIT 1;";
+			
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			
+			$this->setItemData = $result->fetch_assoc();
+			
+			if (!$this->setItemData)
+			{
+				$this->ReportError("ERROR: No set found matching '{$this->itemSet}'!");
+				$this->setItemData = array();
+				return false;
+			}
+		}
+		
+		$this->setItemData['name'] = $this->setItemData['setName'];
+		$this->setItemData['quality'] = 5;
+		
+		$safeSet = $this->db->real_escape_string($this->setItemData['setName']);
+		
+		$query = "SELECT icon FROM minedItemSummary". $this->GetTableSuffix() ." WHERE setName='$safeSet' AND type=2 AND equipType=1 LIMIT 1;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		if ($result->num_rows == 0)
+		{
+			$query = "SELECT icon FROM minedItemSummary". $this->GetTableSuffix() ." WHERE setName='$safeSet' AND type=1 AND (equipType=5 OR equipType=6) LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		}
+		
+		$iconRow = $result->fetch_assoc();
+		
+		if ($iconRow)
+		{
+			$this->setItemData['icon'] = $iconRow['icon'];
+		}
+		
+		return true;
+	}
+	
+	
 	private function LoadQuestItemRecord()
 	{
 		if ($this->questItemId <= 0) return $this->ReportError("ERROR: Missing or invalid quest item ID specified (1-85000)!");
 		$query = "";
-	
+		
 		$query = "SELECT * FROM questItem". $this->GetTableSuffix() ." WHERE itemId='{$this->questItemId}' LIMIT 1;";
 		$this->itemErrorDesc = "qid={$this->questItemId}";
 		$result = $this->db->query($query);
@@ -1125,12 +1220,12 @@ class CEsoItemLink
 	{
 		if ($this->collectibleItemId <= 0) return $this->ReportError("ERROR: Missing or invalid collectible item ID specified (1-85000)!");
 		$query = "";
-	
+		
 		$query = "SELECT * FROM collectibles". $this->GetTableSuffix() ." WHERE id='{$this->collectibleItemId}' LIMIT 1;";
 		$this->itemErrorDesc = "cid={$this->collectibleItemId}";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
-	
+		
 		$result->data_seek(0);
 		$this->collectibleItemData = $result->fetch_assoc();
 		
@@ -1140,7 +1235,7 @@ class CEsoItemLink
 			$this->collectibleItemData = array();
 			return false;
 		}
-	
+		
 		return true;
 	}
 	
@@ -1149,12 +1244,12 @@ class CEsoItemLink
 	{
 		if ($this->antiquityItemId <= 0) return $this->ReportError("ERROR: Missing or invalid collectible item ID specified (1-85000)!");
 		$query = "";
-	
+		
 		$query = "SELECT * FROM antiquityLeads". $this->GetTableSuffix() ." WHERE id='{$this->antiquityItemId}' LIMIT 1;";
 		$this->itemErrorDesc = "aid={$this->antiquityItemId}";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
-	
+		
 		$result->data_seek(0);
 		$this->antiquityItemData = $result->fetch_assoc();
 		
@@ -1164,7 +1259,7 @@ class CEsoItemLink
 			$this->antiquityItemData = array();
 			return false;
 		}
-	
+		
 		return true;
 	}
 	
@@ -1531,6 +1626,28 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeSetItemRawDataList()
+	{
+		$output = "";
+		$this->setItemData['version'] = $this->version;
+		
+		foreach ($this->setItemData as $key => $value)
+		{
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
+			$id = "esoil_rawdata_" . $key;
+			
+			$safeValue = $this->escape($value);
+			
+			if ($key == "icon")
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeSetItemIconImageLink()}' /> $safeValue</td></tr>\n";
+			else
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
+		}
+		
+		return $output;
+	}
+	
+	
 	private function MakeCollectibleItemRawDataList()
 	{
 		$output = "";
@@ -1599,6 +1716,13 @@ class CEsoItemLink
 	private function MakeQuestItemIconImageLink()
 	{
 		$icon = $this->questItemData['icon'];
+		return $this->MakeIconImageLink($icon);
+	}
+	
+	
+	private function MakeSetItemIconImageLink()
+	{
+		$icon = $this->setItemData['icon'];
 		return $this->MakeIconImageLink($icon);
 	}
 	
@@ -2217,6 +2341,31 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeSetItemSetBlock()
+	{
+		$setName = strtoupper($this->setItemData['setName']);
+		if ($setName == "") return "";
+		
+		$safeSetName = $this->escape($setName);
+		
+		$setMaxEquipCount = $this->setItemData['setMaxEquipCount'];
+		$setBonusCount = (int) $this->setItemData['setBonusCount'];
+		$output = "<div class='esoil_white esoil_small'>PART OF THE $safeSetName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)</div>";
+		
+		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
+		{
+			$setCount = $this->setItemData['setBonusCount' . $i];
+			$setDesc = $this->setItemData['setBonusDesc' . $i];
+			if ($setDesc == null || $setDesc == "") continue;
+			
+			$setDesc = $this->FormatSetDescriptionText($setDesc, $setCount);
+			$output .= "<br />$setDesc";
+		}
+		
+		return $output;
+	}
+	
+	
 	private function MakeItemAbilityBlock()
 	{
 		
@@ -2713,6 +2862,17 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeSetItemDescription()
+	{
+		//return "";
+		
+		//$desc = $this->escape($this->setItemData['description']);
+		//$setName = $this->escape($this->setItemData['setName']);
+		$slots = $this->escape($this->setItemData['itemSlots']); 
+		return FormatEsoItemDescriptionText($desc) . "<br/><div class='esoil_itemdescSetName'>$slots</div>";
+	}
+	
+	
 	private function MakeQuestItemDescription()
 	{
 		$desc = $this->escape($this->questItemData['description']);
@@ -2841,6 +3001,12 @@ class CEsoItemLink
 	}
 	
 	
+	private function GetSetItemQualityText()
+	{
+		return GetEsoItemQualityText($this->setItemData['quality']);
+	}
+	
+	
 	private function OutputHtml()
 	{
 		$replacePairs = array(
@@ -2902,7 +3068,68 @@ class CEsoItemLink
 		print ($output);
 	}
 	
+	
+	private function OutputSetItemHtml()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->escape($this->setItemData['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->setItemData['name'])),
+				'{itemDesc}' => $this->MakeSetItemDescription(),
+				'{itemLink}' => $this->escape($this->setItemData['itemLink']),
+				'{itemStyle}' => "",
+				'{itemId}' => $this->escape($this->itemSet),
+				'{itemType1}' => $this->escape($this->setItemData['gameId']),
+				'{itemType2}' => "",
+				'{itemStolen}' => "",
+				'{itemBindType}' => "",
+				'{itemValue}' => "",
+				'{itemLevel}' => "",
+				'{itemLevelRaw}' => "",
+				'{itemQualityRaw}' => $this->setItemData['quality'],
+				'{itemLevelBlock}' => "",
+				'{itemQuality}' => $this->GetSetItemQualityText(),
+				'{iconLink}' => $this->MakeSetItemIconImageLink(),
+				'{itemLeftBlock}' => "",
+				'{itemRightBlock}' => "",
+				'{itemNewValueBlock}' => "",
+				'{itemBar}' => "",
+				'{itemBarClass}' => "esoilHidden",
+				'{itemEnchantBlock}' => "",
+				'{itemTraitBlock}' => "",
+				'{itemSetBlock}' => $this->MakeSetItemSetBlock(),
+				'{itemAbilityBlock}' => "",
+				'{itemTraitAbilityBlock}' => "",
+				'{itemLeftBlockDisplay}' => "none",
+				'{itemLevelBlockDisplay}' => "none",
+				'{itemRightBlockDisplay}' => "none",
+				'{itemNewValueBlockDisplay}' => "none",
+				'{itemCraftedBlock}' => "",
+				'{itemTags}' => "",
+				'{itemDataJson}' => "{}",
+				'{itemSimilarBlock}' => "",
+				'{itemEnchantId1}' => "",
+				'{itemEnchantIntLevel1}' => "",
+				'{itemEnchantIntType1}' => "",
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => "",
+				'{viewSumDataExtraQuery}' => "",
+				'{itemRawDataList}' => $this->MakeSetItemRawDataList(),
+				'{rawItemVersion}' => $this->GetItemRawVersion(),
+				'{extraDataLinkDisplay}' => "none",
+				'{controlBlockDisplay}' => "none",
+				'{similarItemBlockDisplay}' => "none",
+				'{itemTypeTitle}' => "Set ",
+				'{itemDescClass}' => "esoil_itemdescSet",
+				'{itemDyeStampBlock}' => '',
+		);
 		
+		$output = strtr($this->htmlTemplate, $replacePairs);
+		
+		print ($output);
+	}
+	
 	private function OutputQuestItemHtml()
 	{
 		$replacePairs = array(
@@ -2958,13 +3185,13 @@ class CEsoItemLink
 				'{itemDescClass}' => "esoil_itemdescQuest",
 				'{itemDyeStampBlock}' => '',
 		);
-	
+		
 		$output = strtr($this->htmlTemplate, $replacePairs);
-	
+		
 		print ($output);
 	}
 	
-
+	
 	private function MakeCollectibleItemName()
 	{
 		$name = $this->escape(strtoupper($this->collectibleItemData['name']));
@@ -2973,7 +3200,7 @@ class CEsoItemLink
 		if ($nickname != "") $name .= "<div class='esoil_nickname'>\"".$nickname."\"</div>";
 		
 		return $name;
-	}		
+	}	
 	
 	
 	private function MakeAntiquityItemName()
@@ -3128,6 +3355,27 @@ class CEsoItemLink
 		if ($this->outputType == "html") return $this->OutputRawDataHtml();
 		
 		print($this->GetRawItemDataCsv());
+	}
+	
+	
+	public function OutputSetItemRawData()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->escape($this->setItemData['name']),
+				'{itemNameUpper}' => $this->escape(strtoupper($this->setItemData['name'])),
+				'{itemId}' => $this->escape($this->itemSet),
+				'{iconLink}' => $this->MakeSetItemIconImageLink(),
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{rawItemData}' => $this->GetRawQuestItemDataHtml(),
+				'{itemDyeStampBlock}' => '',
+		);
+		
+		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
+		
+		$output = strtr($rawDataTemplate, $replacePairs);
+		print ($output);
 	}
 	
 	
@@ -3454,6 +3702,15 @@ class CEsoItemLink
 	}
 	
 	
+	public function DumpSetItem()
+	{
+		foreach ($this->setItemData as $key => $value)
+		{
+			print("$key = $value\n");
+		}
+	}
+	
+	
 	public function DumpCollectibleItem()
 	{
 		foreach ($this->collectibleItemData as $key => $value)
@@ -3469,6 +3726,23 @@ class CEsoItemLink
 		{
 			print("$key = $value\n");
 		}
+	}
+	
+	
+	public function ShowSetItem()
+	{
+		if (!$this->LoadSetItemRecord()) $this->LoadSetItemErrorData();
+		
+		if ($this->outputRaw)
+			$this->OutputSetItemRawData();
+		else if ($this->outputType == "html")
+			$this->OutputSetItemHtml();
+		elseif ($this->outputType == "text")
+			$this->DumpSetItem();
+		else
+			return $this->ReportError("Error: Unknown output type '{$this->outputType}' specified!");
+		
+		return true;
 	}
 	
 	
@@ -3547,6 +3821,7 @@ class CEsoItemLink
 		if ($this->questItemId > 0) return $this->ShowQuestItem();
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		if ($this->antiquityItemId > 0) return $this->ShowAntiquityItem();
+		if ($this->itemSet != "") return $this->ShowSetItem();
 		
 		if ($this->version != "" && $this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		

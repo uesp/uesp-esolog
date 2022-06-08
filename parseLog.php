@@ -43,7 +43,12 @@ class EsoLogParser
 	const MINEITEM_TABLESUFFIX = "34";
 	const SKILLS_TABLESUFFIX   = "34";
 	
+	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
+	
 	const SHOW_PARSE_LINENUMBERS = true;
+	
+	const VENDOR_TIMESTAMP_OFFSET = 1591401600;
+	const ENDEAVOR_TIMESTAMP_OFFSET = 1623045600;
 	
 	const SKIP_PVP_TIMESTAMP_CHECK = true;	// if true update campaign/leaderboards regardless of if the log data is old or not
 	
@@ -58,7 +63,7 @@ class EsoLogParser
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
-	const ELP_SKILLCOEF_MININUM_R2 = -1;       //Log all coefficients for now
+	const ELP_SKILLCOEF_MININUM_R2 = -1;		//Log all coefficients for now
 	const ELP_SKILLCOEF_MININUM_NUMPOINTS = 5;
 	const ELP_SKILLCOEF_MAXCOEFVARS = 6;
 	
@@ -1369,6 +1374,31 @@ class EsoLogParser
 	);
 	
 	
+	public static $ENDEAVOR_FIELDS = array(
+			'startTimestamp' => self::FIELD_INT,
+			'endTimestamp' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'idx' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'typeLimit' => self::FIELD_INT,
+			'numRewards' => self::FIELD_INT,
+			'rewards' => self::FIELD_STRING,
+			'rawRewards' => self::FIELD_STRING,
+	);
+	
+	
+	public static $GOLDENVENDORITEM_FIELDS = array(
+			'startTimestamp' => self::FIELD_INT,
+			'link' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'bindType' => self::FIELD_INT,
+			'price' => self::FIELD_STRING,
+	);
+	
+	
 	public function __construct ()
 	{
 		ini_set('mysql.connect_timeout', 1000);
@@ -1959,6 +1989,30 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadEndeavor($timestamp, $name)
+	{
+		$timestamp = intval($timestamp);
+		$name = trim($name);
+		
+		if ($timestamp < 0) return $this->ReportError("\tError: Invalid timestamp for endeavor ($timestamp)!");
+		if ($name == "") return $this->ReportError("\tError: Empty name in endeavor!");
+		
+		$record = $this->loadRecord2('endeavors', 'startTimestamp', $timestamp, 'name', $name, self::$ENDEAVOR_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
+	public function LoadGoldenVendorItem($timestamp, $link)
+	{
+		$record = $this->loadRecord2('goldenVendorItems', 'startTimestamp', $timestamp, 'link', $link, self::$GOLDENVENDORITEM_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
 	public function LoadCampaignInfo ($id, $server)
 	{
 		$record = $this->loadRecord2('campaignInfo', 'server', $server, 'id', $id, self::$CAMPAIGNINFO_FIELDS);
@@ -2327,6 +2381,18 @@ class EsoLogParser
 	public function SaveTributeCard (&$record)
 	{
 		return $this->saveRecord('tributeCards', $record, 'id', self::$TRIBUTECARD_FIELDS);
+	}
+	
+	
+	public function SaveEndeavor(&$record)
+	{
+		return $this->saveRecord2('endeavors', $record, 'startTimestamp', 'name', self::$ENDEAVOR_FIELDS);
+	}
+	
+	
+	public function SaveGoldenVendorItem (&$record)
+	{
+		return $this->saveRecord2('goldenVendorItems', $record, 'startTimestamp', 'link', self::$GOLDENVENDORITEM_FIELDS);
 	}
 	
 	
@@ -3653,12 +3719,28 @@ class EsoLogParser
 						typeLimit TINYINT NOT NULL,
 						numRewards TINYINT NOT NULL,
 						rewards MEDIUMTEXT NOT NULL,
+						rawRewards MEDIUMTEXT NOT NULL,
 						INDEX index_main(startTimestamp, name(32))
 					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create endeavors table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS goldenVendorItems (
+						startTimestamp INTEGER NOT NULL,
+						link TINYTEXT NOT NULL,
+						name TINYTEXT NOT NULL,
+						trait TINYINT NOT NULL,
+						quality TINYINT NOT NULL,
+						bindType TINYINT NOT NULL,
+						price TINYTEXT NOT NULL,
+						INDEX index_main(startTimestamp, link(32))
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create goldenVendorItems table!");
 		
 		$this->skillTooltips->CreateTable();
 		
@@ -4128,7 +4210,7 @@ class EsoLogParser
 		if ($logEntry['lastTarget'] == "Thieves Trove" && $logEntry['timeStamp'] < self::ELP_THIEVESTROVE_LASTFIXTIMESTAMP)
 		{
 			$diff = $logEntry['gameTime'] - $this->currentUser['__lastTroveFoundGameTime'];
-				
+			
 			if ($diff >= self::TREASURE_DELTA_TIME || $diff < 0)
 			{
 				++$this->currentUser['trovesFound'];
@@ -4142,12 +4224,12 @@ class EsoLogParser
 		
 		if ($logEntry['ppClassString'] != null && $logEntry['ppDifficulty'] != null)
 		{
-			$name = $logEntry['lastTarget'];
-		
+			$name = trim($logEntry['lastTarget']);
+			
 			if ($name != "")
 			{
 				$name = explode('^', $name)[0];
-				$logEntry['name'] = $name;
+				$logEntry['name'] = trim($name);
 				$npcRecord = $this->FindNPC($name);
 					
 				if ($npcRecord == null) {
@@ -4584,7 +4666,7 @@ class EsoLogParser
 	{
 		$npcRecord = $this->createNewRecord(self::$NPC_FIELDS);
 		
-		$npcRecord['name'] = $logEntry['name'];
+		$npcRecord['name'] = trim($logEntry['name']);
 		$npcRecord['gender'] = $logEntry['gender'];
 		$npcRecord['level'] = $logEntry['level'];
 		$npcRecord['difficulty'] = $logEntry['difficulty'];
@@ -5980,6 +6062,7 @@ class EsoLogParser
 	
 	public function FindNPC ($name)
 	{
+		$name = trim($name);
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM npc WHERE name='$safeName';";
 		$this->lastQuery = $query;
@@ -6003,6 +6086,7 @@ class EsoLogParser
 	
 	public function FindLootSource ($name)
 	{
+		$name = trim($name);
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM lootSources WHERE name='$safeName';";
 		$this->lastQuery = $query;
@@ -6032,9 +6116,9 @@ class EsoLogParser
 		
 		$query = "SELECT * FROM npcLoot WHERE lootSourceId=$safeId AND zone='$safeZone' AND itemLink='$safeLink';";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve NPC loot!");
@@ -6042,9 +6126,9 @@ class EsoLogParser
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$NPCLOOT_FIELDS);
 	}
@@ -6055,9 +6139,9 @@ class EsoLogParser
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM recipe WHERE name='$safeName';";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve recipe!");
@@ -6065,9 +6149,9 @@ class EsoLogParser
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$RECIPE_FIELDS);
 	}
@@ -6080,9 +6164,9 @@ class EsoLogParser
 		$safeName = $this->db->real_escape_string(preg_replace("|\^.*|", '', $name));
 		$query = "SELECT * FROM ingredient WHERE recipeId=$safeId1 AND itemId=$safeId2 AND name='$safeName';";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve ingredient!");
@@ -6090,9 +6174,9 @@ class EsoLogParser
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$INGREDIENT_FIELDS);
 	}
@@ -6711,12 +6795,12 @@ class EsoLogParser
 		//x{0.45511141419411}  zone{Stormhaven}  y{0.47166284918785}  timeStamp{4743643569678450688}  gameTime{2655510}  
 		//userName{...}  ipAddress{...}  logTime{1396487115}  end{}
 		
-		$logEntry['rawName'] = $logEntry['name'];
+		$logEntry['rawName'] = trim($logEntry['name']);
 		
 		$logEntry['name'] = preg_replace('/\|c[0-9a-fA-F]{6}/', '', $logEntry['name']);
 		$logEntry['name'] = str_replace('|r', '', $logEntry['name']);
 		$splitName = explode('^', $logEntry['name']);
-		$logEntry['name'] = $splitName[0];
+		$logEntry['name'] = trim($splitName[0]);
 		$lowerName = strtolower($logEntry['name']);
 		
 			// Ignore companion names
@@ -7066,6 +7150,207 @@ class EsoLogParser
 		
 		$this->SaveCampaignLeaderboardsEntry($entry);
 		
+		return true;
+	}
+	
+	
+	public function OnVendorStart ($logEntry)
+	{
+		$name = strtolower($logEntry['name']);
+		
+		if ($name != "adhazabi aba-daro")
+		{
+			$this->currentUser['skipVendorItems'] = true;
+			return true;
+		}
+		
+		$this->currentUser['skipVendorItems'] = false;
+		$this->currentUser['vendorName'] = $logEntry['name'];
+		$this->currentUser['vendorTimestamp'] = $logEntry['timeStamp'];
+		$this->currentUser['vendorTimestamp1'] = $logEntry['timeStamp1'];
+		$this->currentUser['vendorNumItems'] = $logEntry['numItems'];
+		
+				//1591401600 = 2020, June 6th (Sat) 0:00 GMT
+		$startTimestamp = intval($logEntry['timeStamp1']);
+		$weekIndex = round(($startTimestamp - self::VENDOR_TIMESTAMP_OFFSET) / 604800);
+		$startTimestamp = $weekIndex * 604800 + self::VENDOR_TIMESTAMP_OFFSET;
+		$this->currentUser['vendorStartTimestamp'] = $startTimestamp;
+		
+		return true;
+	}
+	
+	
+	public function MergeVendorPrices ($prices, $newPrice)
+	{
+		$newPrices = [];
+		
+		$newPrice = trim($newPrice);
+		$newPriceParts = explode(' ', $newPrice, 2);
+		$newPriceValue = trim($newPriceParts[0]);
+		$newPriceType = trim($newPriceParts[1]);
+		
+		$usedNewPrice = false;
+		
+		foreach ($prices as $price)
+		{
+			$price = trim($price);
+			$priceParts = explode(' ', $price, 2);
+			$priceValue = trim($priceParts[0]);
+			$priceType = trim($priceParts[1]);
+			
+			if ($priceType == $newPriceType)
+			{
+				$newPrices[] = $newPrice;
+				$usedNewPrice = true;
+			}
+			else
+			{
+				$newPrices[] = $price;
+			}
+		}
+		
+		if (!$usedNewPrice) $newPrices[] = $newPrice;
+		
+		return $newPrices;
+	}
+	
+	
+	public function OnVendorItem ($logEntry)
+	{
+		if ($this->currentUser['skipVendorItems'] === true) return true;
+		
+		$link = $logEntry['link'];
+		$startTimestamp = $this->currentUser['vendorStartTimestamp'];
+		
+		$itemRecord = $this->LoadGoldenVendorItem($startTimestamp, $link);
+		if ($itemRecord === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize goldenVendorItem data!");
+		
+		if ($itemRecord['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		$itemRecord['name'] = preg_replace('#\^.*$#', '', $logEntry['name']);
+		$itemRecord['quality'] = $logEntry['quality'];
+		$itemRecord['bindType'] = $logEntry['bindType'];
+		$itemRecord['trait'] = $logEntry['trait'];
+		
+		$prices = [];
+		if ($logEntry['price'] > 0) $prices[] = "{$logEntry['price']} gp";
+		if ($logEntry['currQnt1'] > 0) $prices[] = "{$logEntry['currQnt1']} " . GetEsoCurrencyTypeShortText($logEntry['currType1']);
+		if ($logEntry['currQnt2'] > 0) $prices[] = "{$logEntry['currQnt2']} " . GetEsoCurrencyTypeShortText($logEntry['currType2']);
+		//$price = implode(", ", $prices);
+		$oldPrices = explode(',', $itemRecord['price']);
+		$newPrices = $oldPrices;
+		
+		foreach ($prices as $price)
+		{
+			$newPrices = $this->MergeVendorPrices($newPrices, $price);
+		}
+		
+		$itemRecord['price'] = implode(', ', $newPrices);
+		
+		$this->SaveGoldenVendorItem($itemRecord);
+		return true;
+	}
+	
+	
+	public function OnVendorEnd ($logEntry)
+	{
+		$this->currentUser['skipVendorItems'] = false;
+		$this->currentUser['vendorName'] = "";
+		$this->currentUser['vendorTimestamp'] = 0;
+		$this->currentUser['vendorTimestamp1'] = 0;;
+		$this->currentUser['vendorNumItems'] = 0;
+		$this->currentUser['vendorStartTimestamp'] = 0;
+		
+		return true;
+	}
+	
+	
+	public function OnEndeavor ($logEntry)
+	{
+		$timestamp = intval($logEntry['timeStamp1']);
+		if ($timestamp <= 0) return $this->reportLogParseError("\tError: Endeavor has invalid timestamp!");
+		
+		$timeRemain = intval($logEntry['timeRemain']);
+		if ($timeRemain <= 0) return $this->reportLogParseError("\tError: Endeavor has invalid timeRemain value!");
+		
+		$endTimestamp = $timestamp + $timeRemain;
+		
+		$timestampOffset = ($endTimestamp - self::ENDEAVOR_TIMESTAMP_OFFSET);
+		$dayIndex = round($timestampOffset / 86400);
+		$weekIndex = round($timestampOffset / 604800);
+		$dayEndTimestamp = $dayIndex * 86400 + self::ENDEAVOR_TIMESTAMP_OFFSET;
+		$weeEndTimestamp = $weekIndex * 604800 + self::ENDEAVOR_TIMESTAMP_OFFSET;
+		
+		$dayStartTimestamp = $dayEndTimestamp - 86400;
+		$weekStartTimestamp = $dayEndTimestamp - 604800;
+		
+		$type = $logEntry['type'];
+		$name = $logEntry['name'];
+		
+		if ($type == 0)
+			$endeavor = $this->LoadEndeavor($dayStartTimestamp, $name);
+		elseif ($type == 1)
+			$endeavor = $this->LoadEndeavor($weekStartTimestamp, $name);
+		else
+			return $this->reportLogParseError("\tError: Unknown endeavor type '$type'!");
+		
+		if ($endeavor == null) return false;
+		
+		if ($endeavor['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		$endeavor['numRewards'] = intval($logEntry['numRewards']);
+		$endeavor['idx'] = intval($logEntry['actIndex']);
+		$endeavor['endTimestamp'] = $endTimestamp;
+		$endeavor['description'] = $logEntry['desc'];
+		$endeavor['type'] = intval($logEntry['type']);
+		$endeavor['typeLimit'] = intval($logEntry['limit']);
+		$rawRewards = [];
+		$rewards = [];
+		
+		for ($i = 1; $i <= $endeavor['numRewards']; ++$i)
+		{
+			$reward = $logEntry["reward$i"];
+			$rawRewards[] = $reward;
+			
+			$matchResult = preg_match('#([0-9]+)\(([0-9]+):([0-9]+)\)#', $reward, $matches);
+			
+			if ($matchResult)
+			{
+				$rewardType = $matches[1];
+				$qnt = $matches[2];
+				$currencyType = $matches[3];
+				
+				if ($rewardType == 16)
+				{
+					$rewards[] = $qnt . ' Experience';
+				}
+				elseif ($rewardType == 1)
+				{
+					$rewards[] = $qnt . ' ' . GetEsoCurrencyTypeShortText($currencyType);
+				}
+				else
+				{
+					$rewards[] = $qnt . ' ' . GetEsoRewardEntryTypeText($rewardType);
+				}
+			}
+			else
+			{
+				$rewards[] = "Unknown ($reward)";
+			}
+		}
+		
+		$endeavor['rawRewards'] = implode(",", $rawRewards);
+		$endeavor['rewards'] = implode(",", $rewards);
+		
+		$this->SaveEndeavor($endeavor);
 		return true;
 	}
 	
@@ -8204,6 +8489,7 @@ class EsoLogParser
 		$this->SaveSkillDump($skill);
 		//print("Skill1: " . $this->lastQuery . "\n");
 		
+		$skill2['indexName'] = $skill['indexName'];
 		$skill2['displayId'] = $abilityId;
 		$skill2['description'] = $logEntry['desc2'];
 		$skill2['duration'] = $logEntry['duration2'];
@@ -8228,6 +8514,7 @@ class EsoLogParser
 		$this->SaveSkillDump($skill2);
 		//print("Skill2: " . $this->lastQuery . "\n");
 		
+		$skill3['indexName'] = $skill['indexName'];
 		$skill3['displayId'] = $abilityId;
 		$skill3['description'] = $logEntry['desc3'];
 		$skill3['duration'] = $logEntry['duration3'];
@@ -8252,6 +8539,7 @@ class EsoLogParser
 		$this->SaveSkillDump($skill3);
 		//print("Skill3: " . $this->lastQuery . "\n");
 		
+		$skill4['indexName'] = $skill['indexName'];
 		$skill4['displayId'] = $abilityId;
 		$skill4['description'] = $logEntry['desc4'];
 		$skill4['duration'] = $logEntry['duration4'];
@@ -9601,7 +9889,7 @@ class EsoLogParser
 		if ($name == "") return false;
 		
 		$name = explode('^', $name)[0];
-		$logEntry['name'] = $name;
+		$logEntry['name'] = trim($name);
 		
 		$npcRecord = $this->FindNPC($name);
 		
@@ -9618,7 +9906,7 @@ class EsoLogParser
 			}
 		}
 		
-		$isNewLocation = false;		
+		$isNewLocation = false;
 		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
 		
 		if ($npcLocation == null)
@@ -9630,7 +9918,7 @@ class EsoLogParser
 		else
 		{
 			++$npcLocation['counter'];
-				
+			
 			$result = $this->SaveLocation($npcLocation);
 			if (!$result) return false;
 		}
@@ -9838,6 +10126,9 @@ class EsoLogParser
 			case 'campaign':
 			case 'campaign::Leaderboard':
 			case 'campaign::LeadEntry':
+			case 'vendor::start':
+			case 'vendor::item':
+			case 'vendor::end':
 			//case 'SkillCoef':
 			//case 'SkillCoef::Start':
 			//case 'SkillCoef::End':
@@ -10237,6 +10528,12 @@ class EsoLogParser
 			case "campaign::Leaderboard":		$result = $this->OnCampaignLeaderboard($logEntry); break;
 			case "campaign::LeadEntry":			$result = $this->OnCampaignLeaderboardEntry($logEntry); break;
 			
+			case "vendor::start":				$result = $this->OnVendorStart($logEntry); break;
+			case "vendor::item":				$result = $this->OnVendorItem($logEntry); break;
+			case "vendor::end":					$result = $this->OnVendorEnd($logEntry); break;
+			
+			case "endeavor":					$result = $this->OnEndeavor($logEntry); break;
+			
 			case "Test":
 			case "TEST":
 			case "test":						$result = $this->OnNullEntry($logEntry); break;
@@ -10578,12 +10875,13 @@ class EsoLogParser
 	private function setInputParams ()
 	{
 		global $argv;
+		
+		$foundPath = false;
 		$this->inputParams = $_REQUEST;
 		
 			// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
-			$foundPath = false;
 			$argIndex = 0;
 			
 			foreach ($argv as $arg)
@@ -10608,6 +10906,12 @@ class EsoLogParser
 					$this->inputParams[$e[0]] = 1;
 				}
 			}
+		}
+		
+		if (!$foundPath)
+		{
+			$this->logFilePath = self::DEFAULT_LOG_PATH;
+			print("Using default log file path: {$this->logFilePath}\n");
 		}
 	}
 	

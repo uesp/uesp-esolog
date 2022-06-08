@@ -987,11 +987,36 @@ class EsoLogViewer
 	);
 	
 	
+	public static $ENDEAVOR_FIELDS = array(
+			'startTimestamp' => self::FIELD_INT,
+			'endTimestamp' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'idx' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'typeLimit' => self::FIELD_INT,
+			'numRewards' => self::FIELD_INT,
+			'rewards' => self::FIELD_STRING,
+			'rawRewards' => self::FIELD_STRING,
+	);
+	
+	
+	public static $GOLDENVENDORITEM_FIELDS = array(
+			'startTimestamp' => self::FIELD_INT,
+			'link' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'bindType' => self::FIELD_INT,
+			'price' => self::FIELD_STRING,
+	);
+	
+	
 	public static $PTS_SEARCH_TYPE_OPTIONS = array(
 			'Items Update ## PTS' => 'minedItemSummary##pts',
 			'Sets Update ## PTS' => 'setSummary##pts',
 			'Skills Update ## PTS' => 'minedSkills##pts',
-	);	
+	);
 	
 	
 	public static $PTS_RECORD_TYPES = array(
@@ -2436,6 +2461,40 @@ class EsoLogViewer
 					),
 			),
 			
+			'endeavors' => array(
+					'displayName' => 'Endeavors',
+					'displayNameSingle' => 'Endeavor',
+					'record' => 'endeavors',
+					'table' => 'endeavors',
+					'method' => 'DoRecordDisplay',
+					
+					'join' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'goldenVendorItems' => array(
+					'displayName' => 'Golden Vendor Items',
+					'displayNameSingle' => 'Golden Vendor Item',
+					'record' => 'goldenVendorItems',
+					'table' => 'goldenVendorItems',
+					'method' => 'DoRecordDisplay',
+					
+					'join' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 	);
 	
 	
@@ -2826,6 +2885,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['tributePatrons']['fields'] = self::$TRIBUTEPATRON_FIELDS;
 		self::$RECORD_TYPES['campaignInfo']['fields'] = self::$CAMPAIGNINFO_FIELDS;
 		self::$RECORD_TYPES['campaignLeaderboards']['fields'] = self::$CAMPAIGNLEADERBOARDS_FIELDS;
+		self::$RECORD_TYPES['endeavors']['fields'] = self::$ENDEAVOR_FIELDS;
+		self::$RECORD_TYPES['goldenVendorItems']['fields'] = self::$GOLDENVENDORITEM_FIELDS;
 		
 		$this->EnablePtsRecords();
 		

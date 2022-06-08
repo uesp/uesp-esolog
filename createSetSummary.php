@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "34pts";
+$TABLE_SUFFIX = "34";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -279,6 +279,7 @@ if (!$result) print("Error: Failed to delete table setSummaryTmp!\n{$db->error}"
 $query = "CREATE TABLE IF NOT EXISTS setSummaryTmp(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			setName TINYTEXT NOT NULL,
+			indexName TINYTEXT NOT NULL,
 			setMaxEquipCount TINYINT NOT NULL DEFAULT 0,
 			setBonusCount TINYINT NOT NULL DEFAULT 0,
 			itemCount INTEGER NOT NULL DEFAULT 0,
@@ -329,6 +330,12 @@ while (($row = $rowResult->fetch_assoc()))
 	
 	++$itemCount;
 	$setName = $row['setName'];
+	
+	$indexName = strtolower($setName);
+	$indexName = str_replace("'", "", $indexName);
+	$indexName = str_replace(",", "", $indexName);
+	$indexName = str_replace(" ", "-", $indexName);
+	
 	$setBonusDesc1 = TransformBonusDesc($row['setBonusDesc1']);
 	$setBonusDesc2 = TransformBonusDesc($row['setBonusDesc2']);
 	$setBonusDesc3 = TransformBonusDesc($row['setBonusDesc3']);
@@ -450,6 +457,7 @@ while (($row = $rowResult->fetch_assoc()))
 		if ($gameIndex == null) $gameIndex = -1;
 		
 		$setName = $db->real_escape_string($setName);
+		$indexName = $this->db->real_escape_string($indexName);
 		$setBonusDesc = $db->real_escape_string($setBonusDesc);
 		$setBonusDesc1 = $db->real_escape_string($setBonusDesc1);
 		$setBonusDesc2 = $db->real_escape_string($setBonusDesc2);
@@ -464,8 +472,8 @@ while (($row = $rowResult->fetch_assoc()))
 		$setBonusDesc11 = $db->real_escape_string($setBonusDesc11);
 		$setBonusDesc12 = $db->real_escape_string($setBonusDesc12);
 		
-		$query  = "INSERT INTO setSummaryTmp(setName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12, setBonusDesc, gameId) ";
-		$query .= "VALUES('$setName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc6', '$setBonusDesc7', '$setBonusDesc8', '$setBonusDesc9', '$setBonusDesc10', '$setBonusDesc11', '$setBonusDesc12', '$setBonusDesc', $gameIndex);";
+		$query  = "INSERT INTO setSummaryTmp(setName, indexName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12, setBonusDesc, gameId) ";
+		$query .= "VALUES('$setName', '$indexName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc6', '$setBonusDesc7', '$setBonusDesc8', '$setBonusDesc9', '$setBonusDesc10', '$setBonusDesc11', '$setBonusDesc12', '$setBonusDesc', $gameIndex);";
 		
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error . "\n" . $query);
