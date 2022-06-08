@@ -193,7 +193,7 @@ class CEsoEndeavorHtml
 		{
 			$typeLimit = intval($endeavorTypes[0]['typeLimit']);
 			$typeName =GetEsoTimedActivityTypeText($type);
-			$output .= "<li><span class='uespesoEndeavtorTypeTitle'>$typeName Endeavors (perform any $typeLimit)</span><ul class='uespesoEndeavorList$type'>\n";
+			$output .= "<li><span class='uespesoEndeavorTypeTitle uespesoEndeavorTypeTitle$type'>$typeName Endeavors (perform any $typeLimit)</span><ul class='uespesoEndeavorList$type'>\n";
 			
 			foreach ($endeavorTypes as $endeavor)
 			{
@@ -204,7 +204,7 @@ class CEsoEndeavorHtml
 				
 				$formatEndDate = gmdate('j F Y', $endTimestamp);
 				
-				$output .= "<li><span class='uespesoEndeavorName'>$name</span> -- <span class='uespesoEndeavorReward'>$rewards</span>";
+				$output .= "<li title='$desc'><span class='uespesoEndeavorName'>$name</span> -- <span class='uespesoEndeavorReward'>$rewards</span>";
 				//$output .= " (ends on $formatEndDate)";
 				if ($this->showDesc) $output .= "<br/><div class='uespesoEndeavorDesc'>$desc</div>";
 				$output .= "</li>\n";
