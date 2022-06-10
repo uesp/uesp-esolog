@@ -716,6 +716,7 @@ class CEsoViewCP
 			}
 			
 			$output .= "<button class='esotvcpResetDisc' $showEdit>Reset Discipline</button>";
+			//$output .= "<button class='esotvcpPurchaseAllDisc' $showEdit>Purchase All</button>";
 			$output .= "</div>";
 		}
 		
@@ -846,8 +847,9 @@ class CEsoViewCP
 		}
 		
 		$output .= "<div class='esovcpDiscSkillTitle  esovpcDiscTitle'>$name</div>";
-		$output .= "<div class='esovcpDiscTitlePoints  esovpcDiscTitle'>$totalPoints</div>";
+		$output .= "<div class='esovcpDiscTitlePoints  esovpcDiscTitle'>$totalPoints</div><br/>";
 		$output .= "<button class='esotvcpResetDisc esotvcpResetDisc2' $showEdit>Reset Discipline</button>";
+		$output .= "<button class='esotvcpPurchaseAllDisc esotvcpPurchaseAllDisc2' $showEdit>Purchase All</button>";
 		
 		foreach ($skillsData as $skill)
 		{

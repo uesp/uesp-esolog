@@ -357,9 +357,14 @@
 	margin-left: 50px;
 }
 
-.esotvcpResetDisc2 {
+.esotvcpPurchaseAllDisc {
+	pointer-events: auto;
+	margin-left: 10px;
+}
+
+.esotvcpResetDisc2,  .esotvcpPurchaseAllDisc2 {
 	margin-top: 10px;
-	display: block;
+	display: inline-block;
 }
 
 .esovcpSkillSuffix {

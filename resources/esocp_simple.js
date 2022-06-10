@@ -831,7 +831,7 @@ window.OnEsoCPResetAll = function (e)
 	$("#esovcpSkills").find(".esovcpPointInput").val(0);
 	$("#esovcpSkills").find(".esovcpEquipCheck").prop("checked", false);
 	
-	if (window.g_EsoCpIsV2) 
+	if (window.g_EsoCpIsV2)
 	{
 		$("#esovcpSkills").find(".esovcpNotPurchaseable").removeClass("esovcpNotPurchaseable");
 		$("#esovcpSkills").find(".esovcpSkill[isroot='0']").addClass("esovcpNotPurchaseable");
@@ -840,6 +840,55 @@ window.OnEsoCPResetAll = function (e)
 	}
 	
 	EsoCpUpdateAll();
+}
+
+
+window.OnEsoCPPurchaseAllDisc = function(e)
+{
+		// Added after v2 CPs were introduced
+	if (!window.g_EsoCpIsV2) return;
+	
+	var parent = $(this).parent();
+	
+	esovcpHideTooltip();
+	
+	var discId = parent.attr("disciplineid");
+	if (discId == null || discId == "") return;
+	
+	var discIndex = parent.attr("disciplineindex");
+	if (discIndex == null) discIndex = "0";
+	
+	var clusters = $("#esovcp2Disciplines").find(".esovcp2DiscCluster[clusterindex='" + discIndex + "']")
+	var equipSlots = $("#esovcpSkillEquipBar").find(".esovcpSkillEquipBarSlot[disciplineindex='" + discIndex + "']");
+	
+	parent.find(".esovcpPointInput").each(function (){
+		var $this = $(this);
+		var maxPoints = $this.attr("maxpoints");
+		$this.val(maxPoints);
+	});
+	
+	parent.find(".esovcpNotPurchaseable").removeClass("esovcpNotPurchaseable");
+	
+	if (!parent.hasClass("esovcp2SkillsCluster")) clusters.each(function() {
+		var $this = $(this);
+		var clusterId = $this.attr("id");
+		var cluster = $("#skills_" + clusterId);
+		
+		cluster.find(".esovcpPointInput").each(function (){
+			var $this = $(this);
+			var maxPoints = $this.attr("maxpoints");
+			$this.val(maxPoints);
+		});
+		
+		cluster.find(".esovcpNotPurchaseable").removeClass("esovcpNotPurchaseable");
+		
+		UpdateEsoCPDiscSkillDesc(clusterId);
+		UpdateEsoCPDiscPoints(clusterId);
+	});
+	
+	UpdateEsoCPDiscSkillDesc(discId);
+	UpdateEsoCPDiscPoints(discId);
+	UpdateCP2SkillPurchaseable();
 }
 
 
@@ -852,7 +901,7 @@ window.OnEsoCPResetDisc = function (e)
 	var discId = parent.attr("disciplineid");
 	if (discId == null || discId == "") return;
 	
-	if (window.g_EsoCpIsV2) 
+	if (window.g_EsoCpIsV2)
 	{
 		var discIndex = parent.attr("disciplineindex");
 		if (discIndex == null) discIndex = "0";
@@ -1733,6 +1782,7 @@ window.esovcpOnDocReady = function ()
 	
 	$("#esotvcpResetCP").click(OnEsoCPResetAll);
 	$(".esotvcpResetDisc").click(OnEsoCPResetDisc);
+	$(".esotvcpPurchaseAllDisc").click(OnEsoCPPurchaseAllDisc);
 	
 	$(".esovcpShowTooltip").hover(OnEsoCP2StarHoverIn, OnEsoCP2StarHoverOut);
 	$(".esovcpSkillChildLink").click(OnEsoCP2ChildLinkClick);
