@@ -51,16 +51,16 @@ function GetItemWeaponTypeText ($value)
 			3 => "Sword",
 			4 => "2HSword",
 			5 => "2HAxe",
-			6 => "2HHammer",
+			6 => "2HMaul",
 			7 => "Prop",
 			8 => "Bow",
-			9 => "HealStaff",
+			9 => "Rest",
 			10 => "Rune",
 			11 => "Dagger",
-			12 => "FireStaff",
-			13 => "FrostStaff",
+			12 => "Flame",
+			13 => "Frost",
 			14 => "Shield",
-			15 => "LightStaff",
+			15 => "Shock",
 	);
 	
 	$key = (int) $value;

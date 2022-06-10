@@ -2967,7 +2967,7 @@ class CEsoItemLinkImage
 		
 		if ($this->itemSet != "")
 		{
-			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
+			$path     = self::ESOIL_IMAGE_CACHEPATH . "sets/";
 			$filename = $this->GetImageFilename() . ".png";
 			$fullFilename = $path . $filename;
 			

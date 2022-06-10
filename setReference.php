@@ -21,6 +21,7 @@ class CUespEsoSetReference
 	public $lastQuery = "";
 	public $sets = [];
 	
+	
 	public function __construct()
 	{
 		$this->ParseInputParams();
@@ -39,6 +40,12 @@ class CUespEsoSetReference
 	private function ParseInputParams ()
 	{
 		$this->inputParams = $_REQUEST;
+		
+		if (array_key_exists('version', $this->inputParams)) 
+		{
+			$this->version = trim($this->inputParams['version']);
+			if ($this->version === strval(GetEsoUpdateVersion())) $this->version = "";
+		}
 	}
 	
 	
@@ -57,6 +64,7 @@ class CUespEsoSetReference
 	{
 		$tableSuffix = GetEsoItemTableSuffix($this->version);
 		$this->lastQuery = "SELECT * FROM setSummary$tableSuffix ORDER BY setName;";
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Error: Failed to load set data!");
 		
@@ -66,6 +74,47 @@ class CUespEsoSetReference
 		}
 		
 		return true;
+	}
+	
+	
+	public function GetVersionList($currentVersion) 
+	{
+		$output = "";
+		if ($currentVersion == "") $currentVersion = GetEsoUpdateVersion();
+		
+		$query = "SHOW TABLES LIKE 'setSummary%';";
+		$result = $this->db->query($query);
+		if ($result === false) return $this->ReportError("Failed to list all setSummary table versions!");
+		
+		$tables = array();
+		$output .= "<form action='?' method='get' style='display: inline-block;'>";
+		$output .= "<select name='version'>";
+		
+		$tables = array();
+		
+		while (($row = $result->fetch_row())) 
+		{
+			$table = $row[0];
+			$version = substr($table, 10);
+			if ($version == "") $version = GetEsoUpdateVersion();
+			
+			$tables[$version] = $version;
+		}
+		
+		natsort($tables);
+		
+		foreach ($tables as $version)
+		{
+			$select = "";
+			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";
+			$output .= "<option $select>$version</option>";
+		}
+		
+		$output .= "</select>";
+		$output .= "<input type='submit' value='Go'>";
+		$output .= "</form>";
+		
+		return $output;
 	}
 	
 	
@@ -89,6 +138,9 @@ class CUespEsoSetReference
 	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
 </head>
 <body>
+<body>
+<a href='viewlog.php'>Back to Home</a><br />
+<h1>ESO: Set Reference</h1>
 <?php
 		return true;
 	}
@@ -103,7 +155,7 @@ for more information. Some data is extracted directly from the ESO game data fil
 </body>
 </html>
 <?php
-			return true;
+		return true;
 	}
 	
 	
@@ -123,7 +175,12 @@ for more information. Some data is extracted directly from the ESO game data fil
 	
 	private function OutputHtml()
 	{
-		$output = "<table border='1' cellspacing='0' cellpadding='2'>\n";
+		$versionList = $this->GetVersionList($this->version);
+		$count = count($this->sets);
+		
+		$output = "Showing $count sets for game update: $versionList";
+		
+		$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
 		$output .= "<tr>\n";
 		$output .= "<th>Set Name</th>";
 		$output .= "<th>Bonuses</th>";
@@ -137,7 +194,9 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$name = $this->EscapeHtml($set['setName']);
 			$desc = $this->EscapeHtml($set['setBonusDesc']);
 			$itemSlots = $this->EscapeHtml($set['itemSlots']);
+			
 			$imageLink = "https://esolog.uesp.net/itemLinkImage.php?set=$nameUrl";
+			if ($this->version != "") $imageLink .= "&version=" . $this->version;
 			
 			$output .= "<tr>\n";
 			$output .= "<td><b>$name</b></td>\n";
