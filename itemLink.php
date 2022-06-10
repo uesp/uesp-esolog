@@ -1179,6 +1179,13 @@ class CEsoItemLink
 			$query = "SELECT icon FROM minedItemSummary". $this->GetTableSuffix() ." WHERE setName='$safeSet' AND type=1 AND (equipType=5 OR equipType=6) LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			
+			if ($result->num_rows == 0)
+			{
+				$query = "SELECT icon FROM $summaryTable WHERE setName='$safeSet' AND (type=1 or type=2) LIMIT 1;";
+				$result = $this->db->query($query);
+				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			}
 		}
 		
 		$iconRow = $result->fetch_assoc();

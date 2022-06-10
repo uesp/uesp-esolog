@@ -488,6 +488,13 @@ class CEsoItemLinkImage
 			$query = "SELECT icon FROM $summaryTable WHERE setName='$safeSet' AND type=1 AND (equipType=5 OR equipType=6) LIMIT 1;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			
+			if ($result->num_rows == 0)
+			{
+				$query = "SELECT icon FROM $summaryTable WHERE setName='$safeSet' AND (type=1 or type=2) LIMIT 1;";
+				$result = $this->db->query($query);
+				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			}
 		}
 		
 		$iconRow = $result->fetch_assoc();
@@ -2957,6 +2964,22 @@ class CEsoItemLinkImage
 	{
 		if ($this->isError) return false;
 		if ($this->noCache) return false;
+		
+		if ($this->itemSet != "")
+		{
+			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
+			$filename = $this->GetImageFilename() . ".png";
+			$fullFilename = $path . $filename;
+			
+			if (file_exists($fullFilename))
+			{
+				readfile($fullFilename);
+				return true;
+			}
+			
+			return false;
+		}
+		
 		if ($this->itemId <= 0) return false;
 		if ($this->itemBound > 0) return false;
 		if ($this->itemStyle > 0) return false;
@@ -2973,21 +2996,6 @@ class CEsoItemLinkImage
 		if ($this->itemSetCount >= 0) return false;
 		if ($this->itemStolen > 0) return false;
 		if ($this->transmuteTrait > 0) return false;
-		
-		if ($this->itemSet != "")
-		{
-			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
-			$filename = $this->GetImageFilename() . ".png";
-			$fullFilename = $path . $filename;
-			
-			if (file_exists($fullFilename))
-			{
-				readfile($fullFilename);
-				return true;
-			}
-			
-			return false;
-		}
 		
 		$path    = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/";
 		$intPath = self::ESOIL_IMAGE_CACHEPATH . $this->itemId . "/int/";
