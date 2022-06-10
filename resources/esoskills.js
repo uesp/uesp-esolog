@@ -227,7 +227,7 @@ window.GetEsoSkillTooltipFormatCostClass = function(skillData)
 	var classStr = "";
 	var mechanic = skillData['mechanic'];
 	
-	if (parseInt(g_SkillsVersion) >= 34)
+	if (g_SkillsVersion == '' || parseInt(g_SkillsVersion) >= 34)
 	{
 		if (mechanic == 1)
 		{
@@ -300,7 +300,7 @@ window.GetEsoSkillTooltipFormatCostString = function(skillData, cost)
 	var costStr = "" + cost + " ";
 	var mechanic = skillData['mechanic'];
 	
-	if (parseInt(g_SkillsVersion) >= 34)
+	if (g_SkillsVersion == '' || parseInt(g_SkillsVersion) >= 34)
 	{
 		if (mechanic == 1)
 		{
@@ -2617,7 +2617,7 @@ ESO_SKILL_DOT_OVERRIDES =
 
 window.IsEsoSkillMechanicUltimate = function(mechanic)
 {
-	if (parseInt(g_SkillsVersion) >= 34)
+	if (g_SkillsVersion == '' || parseInt(g_SkillsVersion) >= 34)
 	{
 		return mechanic == 8;
 	}
@@ -2628,7 +2628,7 @@ window.IsEsoSkillMechanicUltimate = function(mechanic)
 
 window.IsEsoSkillMechanicMagicka = function(mechanic)
 {
-	if (parseInt(g_SkillsVersion) >= 34)
+	if (g_SkillsVersion == '' || parseInt(g_SkillsVersion) >= 34)
 	{
 		return mechanic == 1;
 	}
@@ -2639,7 +2639,7 @@ window.IsEsoSkillMechanicMagicka = function(mechanic)
 
 window.IsEsoSkillMechanicStamina = function(mechanic)
 {
-	if (parseInt(g_SkillsVersion) >= 34)
+	if (g_SkillsVersion == '' || parseInt(g_SkillsVersion) >= 34)
 	{
 		return mechanic == 4;
 	}
@@ -2650,7 +2650,7 @@ window.IsEsoSkillMechanicStamina = function(mechanic)
 
 window.IsEsoSkillMechanicHealth = function(mechanic)
 {
-	if (parseInt(g_SkillsVersion) >= 34)
+	if (g_SkillsVersion == '' || parseInt(g_SkillsVersion) >= 34)
 	{
 		return mechanic == 32;
 	}

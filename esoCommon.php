@@ -4519,7 +4519,7 @@ function GetEsoDamageTypeText($value)
 function GetEsoCombatMechanicText($value)
 {
 	global $ESO_COMBATMECHANICS;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_COMBATMECHANICS)) return $ESO_COMBATMECHANICS[$key];
 	return "Unknown ($key)";

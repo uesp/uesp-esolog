@@ -9,11 +9,11 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "34";
+	public $TABLE_SUFFIX = "";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
-
+	
 	public $db = null;
 	
 	public $skills = array();
@@ -419,7 +419,7 @@ class CEsoCreateSkillTree
 				
 				$desc = $this->db->real_escape_string($desc);
 				
-				if (intval($this->TABLE_SUFFIX) >= 34)
+				if (intval($this->TABLE_SUFFIX) >= 34 || ($this->TABLE_SUFFIX == "" && GetEsoUpdateVersion() >= 34))
 					$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText34($thisSkill['mechanic']);
 				else
 					$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText($thisSkill['mechanic']);
