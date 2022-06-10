@@ -15,7 +15,7 @@ require("esoCommon.php");
 
 class CEsoGetLeadHtml
 {
-	public $ITEM_TABLE_SUFFIX = "34pts";
+	public $ITEM_TABLE_SUFFIX = "";
 	
 		// Grab list by running ListItemIds()
 	public $ITEMIDS = [
