@@ -119,7 +119,7 @@ class CEsoEndeavorHtml
 		$maxWeeklyTimestamp = intval($maxWeeklyTimestamp);
 		$this->weeklyStartTimestamp = $maxWeeklyTimestamp;
 		
-		$this->lastQuery = "SELECT * FROM endeavors WHERE startTimestamp=$maxDailyTimestamp OR startTimestamp=$maxWeeklyTimestamp;";
+		$this->lastQuery = "SELECT * FROM endeavors WHERE (startTimestamp=$maxDailyTimestamp AND type=0) OR (startTimestamp=$maxWeeklyTimestamp AND type=1);";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Error: Failed to load endeavor data!");
@@ -175,6 +175,8 @@ class CEsoEndeavorHtml
 		
 		if ($endeavors == null) $endeavors = $this->endeavors;
 		if ($timestamp == null) $timestamp = $this->itemTimestamp;
+		
+		ksort($endeavors);
 		
 		$formatDate = "";
 		$formatDateId = "";
