@@ -3101,7 +3101,9 @@ class EsoLogParser
 			INDEX index_equiptype (equipType),
 			INDEX index_crafttype (craftType),
 			INDEX index_setid (setId),
-			INDEX index_setname (setName(24))
+			INDEX index_setname (setName(24)),
+			FULLTEXT index_fulltext(name, description, abilityDesc, enchantName, enchantDesc, traitDesc, setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, 
+				tags, allNames, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12)
 		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;

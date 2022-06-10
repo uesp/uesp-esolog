@@ -113,17 +113,17 @@ class EsoItemSearcher
 	
 	static public $ESOIS_SEARCH_FIELDS = array(
 			'name', 
-			'description', 
+			'description',
 			//'abilityName',		//Removed in update 30 
-			'abilityDesc', 
-			'enchantName', 
-			'enchantDesc', 
-			'traitDesc', 
+			'abilityDesc',
+			'enchantName',
+			'enchantDesc',
+			'traitDesc',
 			'setName', 
 			'setBonusDesc1',
-			'setBonusDesc2', 
-			'setBonusDesc3', 
-			'setBonusDesc4', 
+			'setBonusDesc2',
+			'setBonusDesc3',
+			'setBonusDesc4',
 			'setBonusDesc5',
 			'tags',
 	);
@@ -185,7 +185,24 @@ class EsoItemSearcher
 			self::$ESOIS_SEARCH_FIELDS[] = 'allNames';
 		}
 		
-		$this->LoadHtmlTemplate();		
+		if (IsEsoVersionAtLeast($this->version, 30))
+		{
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc6';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc7';
+		}
+		
+		if (IsEsoVersionAtLeast($this->version, 34))
+		{
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc6';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc7';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc8';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc9';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc10';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc11';
+			self::$ESOIS_SEARCH_FIELDS[] = 'setBonusDesc12';
+		}
+		
+		$this->LoadHtmlTemplate();
 	}
 	
 	
@@ -428,7 +445,7 @@ class EsoItemSearcher
 		{
 			$searchText = $this->db->real_escape_string($this->formValues['text']);
 			$searchFields = implode(",", self::$ESOIS_SEARCH_FIELDS);
-			$tmpWhere = "MATCH($searchFields) AGAINST ('$searchText' in BOOLEAN MODE)";
+			$tmpWhere = "MATCH($searchFields) AGAINST ('$searchText*' in BOOLEAN MODE)";
 			$intVal = intval($this->formValues['text']);
 			
 			if (is_numeric($this->formValues['text']) && $intVal > 0 && $intVal < 200000) 
