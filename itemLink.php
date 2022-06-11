@@ -198,6 +198,7 @@ class CEsoItemLink
 	public $itemSetCount = -1;
 	public $itemTrait = 0;
 	public $itemSet = "";
+	public $showSetSummary = false;
 	public $showStyle = true;
 	public $enchantId1 = 0;
 	public $enchantIntLevel1 = 0;
@@ -317,7 +318,12 @@ class CEsoItemLink
 		}
 		
 		if (array_key_exists('itemid', $this->inputParams)) $this->itemId = (int) $this->inputParams['itemid'];
-		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
+		
+		if (array_key_exists('summary', $this->inputParams))
+		{
+			$this->showSummary = true;
+			$this->showSetSummary = true;
+		}
 		
 		if (array_key_exists('intlevel', $this->inputParams))
 		{
@@ -1195,7 +1201,24 @@ class CEsoItemLink
 			$this->setItemData['icon'] = $iconRow['icon'];
 		}
 		
+		if (!$this->showSetSummary)
+		{
+			$this->setItemData['setBonusDesc'] = $this->RemoveSummaryNumbers($this->setItemData['setBonusDesc']);
+			
+			for ($i = 1; $i <= 12; ++$i)
+			{
+				$this->setItemData["setBonusDesc$i"] = $this->RemoveSummaryNumbers($this->setItemData["setBonusDesc$i"]);
+			}
+		}
+		
 		return true;
+	}
+	
+	
+	private function RemoveSummaryNumbers($desc)
+	{
+		$newDesc = preg_replace('#([0-9]+)\-([0-9]+)#', '\2', $desc);
+		return $newDesc;
 	}
 	
 	

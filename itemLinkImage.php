@@ -105,6 +105,7 @@ class CEsoItemLinkImage
 	public $itemPotionData = -1;
 	public $itemStolen = -1;
 	public $itemSet = "";
+	public $showSetSummary = false;
 	public $transmuteTrait = 0;
 	public $enchantId1 = -1;
 	public $enchantIntLevel1 = -1;
@@ -249,7 +250,11 @@ class CEsoItemLinkImage
 	
 	private function ParseInputParams ()
 	{
-		if (array_key_exists('summary', $this->inputParams)) $this->showSummary = true;
+		if (array_key_exists('summary', $this->inputParams))
+		{
+			$this->showSummary = true;
+			$this->showSetSummary = true;
+		}
 		
 		if (array_key_exists('itemlink', $this->inputParams))
 		{
@@ -507,10 +512,26 @@ class CEsoItemLinkImage
 		$this->setItemData['description'] = $this->setItemData['itemSlots'];
 		$this->setItemData['type'] = $this->setItemData['gameId'];
 		
+		if (!$this->showSetSummary)
+		{
+			$this->setItemData['setBonusDesc'] = $this->RemoveSummaryNumbers($this->setItemData['setBonusDesc']);
+			
+			for ($i = 1; $i <= 12; ++$i)
+			{
+				$this->setItemData["setBonusDesc$i"] = $this->RemoveSummaryNumbers($this->setItemData["setBonusDesc$i"]);
+			}
+		}
 		
 		$this->itemRecord = $this->setItemData;
 		
 		return true;
+	}
+	
+	
+	private function RemoveSummaryNumbers($desc)
+	{
+		$newDesc = preg_replace('#([0-9]+)\-([0-9]+)#', '\2', $desc);
+		return $newDesc;
 	}
 	
 	
@@ -2926,6 +2947,8 @@ class CEsoItemLinkImage
 		
 		if ($this->itemSet != "")
 		{
+			if ($this->showSetSummary) return false;
+			
 			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
 			$filename = $this->GetImageFilename() . ".png";
 			$fullFilename = $path . $filename;
@@ -2967,6 +2990,8 @@ class CEsoItemLinkImage
 		
 		if ($this->itemSet != "")
 		{
+			if ($this->showSetSummary) return false;
+			
 			$path     = self::ESOIL_IMAGE_CACHEPATH . "sets/";
 			$filename = $this->GetImageFilename() . ".png";
 			$fullFilename = $path . $filename;
@@ -3060,7 +3085,7 @@ class CEsoItemLinkImage
 		
 		if ($this->version != "" && $this->version < GetEsoUpdateVersion()) $this->showSummary = true;
 		
-		if ($this->showSummary)
+		if ($this->showSummary && $this->itemSet == "")
 		{
 			if ($this->version >= GetEsoUpdateVersion())
 			{
@@ -3081,7 +3106,7 @@ class CEsoItemLinkImage
 			$this->LoadEnchantRecords();
 		}
 		
-		if ($this->ServeCachedImage(false)) return true;
+		//if ($this->ServeCachedImage(false)) return true;
 		
 		$this->OutputImage();
 		return true;
