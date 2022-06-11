@@ -7187,6 +7187,8 @@ class EsoLogParser
 		$newPrices = [];
 		
 		$newPrice = trim($newPrice);
+		if ($newPrice == "") return $prices;
+		
 		$newPriceParts = explode(' ', $newPrice, 2);
 		$newPriceValue = trim($newPriceParts[0]);
 		$newPriceType = trim($newPriceParts[1]);
@@ -7205,7 +7207,7 @@ class EsoLogParser
 				$newPrices[] = $newPrice;
 				$usedNewPrice = true;
 			}
-			else
+			else if ($price != "")
 			{
 				$newPrices[] = $price;
 			}

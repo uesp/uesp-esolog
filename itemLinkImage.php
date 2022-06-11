@@ -3106,8 +3106,6 @@ class CEsoItemLinkImage
 			$this->LoadEnchantRecords();
 		}
 		
-		//if ($this->ServeCachedImage(false)) return true;
-		
 		$this->OutputImage();
 		return true;
 	}
