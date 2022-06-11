@@ -104,6 +104,9 @@ class CEsoGetGoldenVendorHtml
 		$nameId = str_replace(" pauldron", " shoulders", $nameId);
 		$nameId = str_replace(" arm cops", " shoulders", $nameId);
 		$nameId = str_replace(" epaulets", " shoulders", $nameId);
+		$nameId = str_replace(" guise",  " mask", $nameId);
+		$nameId = str_replace(" mask",   " mask", $nameId);
+		$nameId = str_replace(" visage", " mask", $nameId);
 		
 		return $nameId;
 	}
@@ -114,6 +117,9 @@ class CEsoGetGoldenVendorHtml
 		$name = str_ireplace(" Pauldron", " Shoulders", $name);
 		$name = str_ireplace(" Arm Cops", " Shoulders", $name);
 		$name = str_ireplace(" Epaulets", " Shoulders", $name);
+		$name = str_ireplace(" Guise",  " Mask", $name);
+		$name = str_ireplace(" Mask",   " Mask", $name);
+		$name = str_ireplace(" Visage", " Mask", $name);
 		
 		return $name;
 	}
