@@ -17,6 +17,7 @@ class CEsoEndeavorHtml
 {
 	public $showDesc = false;
 	public $showAll = false;
+	public $showLatestInHistory = false;
 	
 	public $db = null;
 	
@@ -24,6 +25,8 @@ class CEsoEndeavorHtml
 	public $allEndeavors = [];
 	public $dailyStartTimestamp = -1;
 	public $weeklyStartTimestamp = -1;
+	public $latestDailyTimestamp = -1;
+	public $latestWeeklyTimestamp = -1;
 	
 	public $errorMessages = [];
 	
@@ -49,6 +52,7 @@ class CEsoEndeavorHtml
 		
 		if (array_key_exists('showall', $this->inputParams)) $this->showAll = intval($this->inputParams['showall']);
 		if (array_key_exists('showdesc', $this->inputParams)) $this->showDesc = intval($this->inputParams['showdesc']);
+		if (array_key_exists('showlatest', $this->inputParams)) $this->showLatestInHistory = intval($this->inputParams['showlatest']);
 	}
 	
 	
@@ -109,6 +113,7 @@ class CEsoEndeavorHtml
 		if ($maxDailyTimestamp == null || $maxDailyTimestamp <= 0) return $this->ReportError("Error: Failed to find latest daily endeavor timestamp!");
 		$maxDailyTimestamp = intval($maxDailyTimestamp);
 		$this->dailyStartTimestamp = $maxDailyTimestamp;
+		$this->latestDailyTimestamp = $maxDailyTimestamp;
 		
 		$this->lastQuery = "select max(startTimestamp) as m from endeavors where type=1;";
 		$result = $this->db->query($this->lastQuery);
@@ -118,6 +123,7 @@ class CEsoEndeavorHtml
 		if ($maxWeeklyTimestamp == null || $maxWeeklyTimestamp <= 0) return $this->ReportError("Error: Failed to find latest weekly endeavor timestamp!");
 		$maxWeeklyTimestamp = intval($maxWeeklyTimestamp);
 		$this->weeklyStartTimestamp = $maxWeeklyTimestamp;
+		$this->latestWeeklyTimestamp = $maxWeeklyTimestamp;
 		
 		$this->lastQuery = "SELECT * FROM endeavors WHERE (startTimestamp=$maxDailyTimestamp AND type=0) OR (startTimestamp=$maxWeeklyTimestamp AND type=1);";
 		
@@ -147,14 +153,23 @@ class CEsoEndeavorHtml
 		if ($result->num_rows == 0) return $this->ReportError("No endeavor data found!");
 		
 		$this->allEndeavors = [];
+		$latestWeeklyTimestamp = 0;
+		$latestDailyTimestamp = 0;
 		
 		while ($row = $result->fetch_assoc())
 		{
 			$ts = intval($row['startTimestamp']);
 			$type = intval($row['type']);
 			
+			if ($type == 0 && $ts > $latestDailyTimestamp) $latestDailyTimestamp = $ts;
+			if ($type == 1 && $ts > $latestWeeklyTimestamp) $latestWeeklyTimestamp = $ts;
+			
+			
 			$this->allEndeavors[$ts][$type][] = $row;
 		}
+		
+		$this->latestDailyTimestamp = $latestDailyTimestamp;
+		$this->latestWeeklyTimestamp = $latestWeeklyTimestamp;
 		
 		krsort($this->allEndeavors);
 		return true;
@@ -178,6 +193,8 @@ class CEsoEndeavorHtml
 		
 		ksort($endeavors);
 		
+		if (count($endeavors) == 0) return "";
+		
 		$formatDate = "";
 		$formatDateId = "";
 		
@@ -193,6 +210,8 @@ class CEsoEndeavorHtml
 		
 		foreach ($endeavors as $type => $endeavorTypes)
 		{
+			if (count($endeavorTypes) == 0) continue;
+			
 			$typeLimit = intval($endeavorTypes[0]['typeLimit']);
 			$typeName =GetEsoTimedActivityTypeText($type);
 			$output .= "<li><span class='uespesoEndeavorTypeTitle uespesoEndeavorTypeTitle$type'>$typeName Endeavors (perform any $typeLimit)</span><ul class='uespesoEndeavorList$type'>\n";
@@ -232,6 +251,9 @@ class CEsoEndeavorHtml
 		
 		foreach ($this->allEndeavors as $timestamp => $endeavors)
 		{
+			if ($timestamp == $this->latestDailyTimestamp && !$this->showLatestInHistory) unset($endeavors[0]);
+			if ($timestamp == $this->latestWeeklyTimestamp && !$this->showLatestInHistory) unset($endeavors[1]);
+			
 			$output .= $this->OutputGroupedEndeavorsHtml("Endeavors for ", $endeavors, $timestamp);
 		}
 		
