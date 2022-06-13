@@ -16,6 +16,7 @@ require("esoCommon.php");
 class CEsoGetGoldenVendorHtml
 {
 	public $showAll = false;
+	public $showLatestInHistory = false;
 	
 	public $db = null;
 	
@@ -23,6 +24,7 @@ class CEsoGetGoldenVendorHtml
 	public $allItems = [];
 	public $groupedItems = [];
 	public $itemTimestamp = -1;
+	public $latestTimestamp = -1;
 	
 	public $errorMessages = [];
 	
@@ -47,6 +49,7 @@ class CEsoGetGoldenVendorHtml
 		$this->inputParams = $_REQUEST;
 		
 		if (array_key_exists('showall', $this->inputParams)) $this->showAll = intval($this->inputParams['showall']);
+		if (array_key_exists('showlatest', $this->inputParams)) $this->$showLatestInHistory = intval($this->inputParams['showlatest']);
 	}
 	
 	
@@ -169,8 +172,10 @@ class CEsoGetGoldenVendorHtml
 		
 		$maxTimestamp = $result->fetch_assoc()['m'];
 		if ($maxTimestamp == null || $maxTimestamp <= 0) return $this->ReportError("Error: Failed to find latest golden vendor timestamp!");
+		
 		$maxTimestamp = intval($maxTimestamp);
 		$this->itemTimestamp = $maxTimestamp;
+		$this->latestTimestamp = $maxTimestamp;
 		
 		$this->lastQuery = "SELECT * FROM goldenVendorItems WHERE startTimestamp=$maxTimestamp;";
 		
@@ -200,13 +205,17 @@ class CEsoGetGoldenVendorHtml
 		if ($result->num_rows == 0) return $this->ReportError("No golden vendor items found!");
 		
 		$this->allItems = [];
+		$maxTimestamp = 0;
 		
 		while ($row = $result->fetch_assoc())
 		{
 			$ts = intval($row['startTimestamp']);
+			if ($ts > $maxTimestamp) $maxTimestamp = $ts;
+			
 			$this->allItems[$ts][] = $row;
 		}
 		
+		$this->latestTimestamp = $maxTimestamp;
 		krsort($this->allItems);
 		return true;
 	}
@@ -342,6 +351,8 @@ class CEsoGetGoldenVendorHtml
 		foreach ($this->allItems as $timestamp => $items)
 		{
 			$groupedItems = $this->GroupItems($items);
+			
+			if ($timestamp == $this->latestTimestamp && !$this->showLatestInHistory) continue;
 			
 			$output .= $this->OutputGroupedItemsHtml("Golden Vendor Items for ", $groupedItems, $timestamp);
 		}
