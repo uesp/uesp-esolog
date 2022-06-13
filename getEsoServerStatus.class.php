@@ -298,7 +298,7 @@ class CEsoServerStatus
 		else
 			$lastUpdate = $this->escape($lastUpdateMsg . "a while ago");
 		
-		$output = "<div id='uespEsoServerStatus'>";
+		$output = "<div class='uespEsoServerStatus'>";
 		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PC - NA :</div> $pcna</div>";
 		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PC - EU :</div> $pceu</div>";
 		$output .= "<div class='uespEsoServer'><div class='uespEsoServerTitle'>PlayStation - NA :</div> $ps4na</div>";
