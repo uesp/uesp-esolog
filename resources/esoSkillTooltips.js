@@ -284,11 +284,13 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 	switch(parseInt(tooltip.coefType))
 	{
 	case -2:	// Health
+	case 32:	// Update 34
 		output += srcString + " = " + a + " Health ";
 		if (c != 0) output += cOp + " " + c;
 		typeString = "Health";
 		break;
 	case 0:		// Magicka
+	case 1:		// Update 34
 		output += srcString + " = " + a + " Magicka ";
 		if (b != 0) output += bOp + " " + b + " SpellDamage ";
 		if (c != 0) output += cOp + " " + c;
@@ -296,12 +298,14 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		ratio = (b/a).toFixed(2);
 		break;
 	case 6:		// Stamina
+	case 4:		// Update 34
 		output += srcString + " = " + a + " Stamina ";
 		if (b != 0) output += bOp + " " + b + " WeaponDamage ";
 		if (c != 0) output += cOp + " " + c;
 		typeString = "Stamina";
 		ratio = (b/a).toFixed(2);
 		break;
+	case 8:		// Update 34
 	case 10:	// Ultimate
 		output += srcString + " = " + a + " MaxStat ";
 		if (b != 0) output += bOp + " " + b + " MaxDamage ";
@@ -1673,6 +1677,7 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 	switch (parseInt(tooltip.coefType))
 	{
 	case -2:	// Health
+	case 32:	// Update 34
 		value = Math.floor(a * health) + c;
 		
 			// Special case for equilibrim and morphs
@@ -1685,14 +1690,17 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		
 		break;
 	case 0:		// Magicka
+	case 1:		// Update 34
 		value = Math.floor(a * magicka) + Math.floor(b * spellDamage) + c;
 		++includeSpellRawOutput;
 		break;
 	case 6:		// Stamina
+	case 4:		// Update 34
 		value = Math.floor(a * stamina) + Math.floor(b * weaponDamage) + c;
 		++includeWeaponRawOutput;
 		break;
 	case 10:	// Ultimate
+	case 8:		// Update 34
 		value = Math.floor(a * maxStat) + Math.floor(b * maxDamage) + c;
 		++includeSpellRawOutput;
 		++includeWeaponRawOutput;
