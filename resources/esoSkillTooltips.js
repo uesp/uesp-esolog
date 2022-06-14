@@ -835,6 +835,7 @@ window.MakeEsoSkillTooltipDamageRawOutput = function(rawData)
 	if (rawData.skillLineDirectDamage != null && rawData.skillLineDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDirectDamage) + " SkillLineDirect";
 	if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
 	if (rawData.flatOverloadDamage != null && rawData.flatOverloadDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatOverloadDamage) + " Overload";
+	if (rawData.flatBashDamage != null && rawData.flatBashDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatBashDamage) + " Flat Bash Damage";
 	
 	if (output == "")
 		output = "" + rawData.baseDamage + " " + rawData.damageType + " Damage (unmodified)";
@@ -1224,6 +1225,14 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 			newRawOutput.HADamage = inputValues.Damage.HADamage;
 			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "HA Damage", "+" + inputValues.Damage.HADamage, '%');
 		}
+	}
+	
+		// Power bash special case
+	if (skillData.baseName == "Power Bash" && tooltip.isDmg && tooltip.dmgType == 2 && inputValues.Damage.ExtraBashDamage)
+	{
+		valueFlat += inputValues.Damage.ExtraBashDamage;
+		newRawOutput.flatBashDamage = inputValues.Damage.flatBashDamage;
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Flat Bash Damage", "+" + inputValues.Damage.ExtraBashDamage, '');
 	}
 	
 		// Vulnerability
