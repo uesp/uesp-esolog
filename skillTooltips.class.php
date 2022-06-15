@@ -779,6 +779,7 @@ class CEsoSkillTooltips
 		$tooltipId = $rawCoef['id'];
 		
 		//if ($rawSkillData['dmgtype']) $newInfo['dmgType'] = $rawSkillData['dmgtype'];
+		if ($rawCoef['dmgtype']) $newInfo['dmgType'] = $rawCoef['dmgtype'];
 		if ($tooltipType) $newInfo['rawType'] = $tooltipType;
 		if ($tooltipId) $newInfo['origAbilityId'] = $tooltipId;
 		
