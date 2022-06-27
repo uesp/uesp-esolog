@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "34";
+$TABLE_SUFFIX = "";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
@@ -9,13 +9,21 @@ $FIXED_DATA = [
 		142012 => "CP:Cutting Defense"
 ];
 
+$IGNORE_SKILLS = [
+		76617 => true,
+		76618 => true,
+];
+
 $IGNORE_SETS = [
-	"The Worm's Raiment",
-	"Ebon Armory",
+		"The Worm's Raiment",
+		"Ebon Armory",
 ];
 
 $IGNORE_SET_BONUS = [
-	"Bahraha's Curse" => [ 4 => true ],
+		"Bahraha's Curse" => [ 4 => true ],
+		"Syvarra's Scales" => [ 4 => true ],
+		"Vesture of Darloc Brae" => [ 3 => true ],
+		"Way of Air" => [ 3 => true ],
 ];
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -71,6 +79,7 @@ print("\tLoaded $count skills that might be set descriptions.\n");
 
 function FindMatchingSkill($setBonus, $setName)
 {
+	global $IGNORE_SKILLS;
 	global $skills;
 	global $SHOW_SET;
 	
@@ -87,6 +96,8 @@ function FindMatchingSkill($setBonus, $setName)
 	
 	foreach ($skills as $skill)
 	{
+		if ($IGNORE_SKILLS[$skill['id']]) continue;
+		
 		if ($SHOW_SET == $setName) print("\t\t\t{$skill['id']}:{$skill['matchDesc']}\n");
 		if (strcasecmp($rawBonus, $skill['matchDesc']) == 0) $foundSkills[] = $skill; 
 	}
@@ -115,7 +126,12 @@ foreach ($sets as $set)
 		if ($IGNORE_SET_BONUS[$setName])
 		{
 			$ignore = $IGNORE_SET_BONUS[$setName];
-			if ($ignore[$i] === true) continue;
+			
+			if ($ignore[$i] === true) 
+			{
+				print("\t\tIgnoring set bonus $i\n");
+				continue;
+			}
 		}
 		
 		//print("\t\tsetBonusDesc$i : $setBonus\n");
