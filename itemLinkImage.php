@@ -856,9 +856,58 @@ class CEsoItemLinkImage
 		$this->LoadItemPotionDataEffect($potionEffect2, false);
 		$this->LoadItemPotionDataEffect($potionEffect3, false);
 		
+		$effectCount = count($this->itemRecord['traitAbilityDescArray']);
+		$this->ModifyPoisonEffectDurations($effectCount);
+		
 		ksort($this->itemRecord['traitAbilityDescArray']);
 		ksort($this->itemRecord['traitCooldownArray']);
+		
 		return true;
+	}
+	
+	
+	private function ModifyPoisonEffectDurations($effectCount)
+	{
+		global $ESO_POTIONEFFECT_DATA;
+		
+		if ($effectCount == 1) return;
+		
+		$newArray = [];
+		
+		foreach ($this->itemRecord['traitAbilityDescArray'] as $effectIndex => $desc)
+		{
+			$newDesc = $desc;
+			
+			$effectData = $ESO_POTIONEFFECT_DATA[$effectIndex];
+			
+			if ($effectData == null)
+			{
+				$newArray[$effectIndex] = $newDesc;
+				continue;
+			}
+			
+			$factor = 1;
+			if ($effectCount == 2) $factor = $effectData['factor2'];
+			if ($effectCount == 3) $factor = $effectData['factor3'];
+			
+			if ($factor == null || $factor == 1)
+			{
+				$newArray[$effectIndex] = $newDesc;
+				continue;
+			}
+			
+			$newDesc = preg_replace_callback('/(for \|c[a-fA-F0-9]{6})([0-9.]+)(\|r second)/', function($matches) use($factor) {
+				$duration = floatval($matches[2]);
+				if ($duration == 0) return $matches[1] + $matches[2] + $matches[3];
+				
+				$newDuration = round($duration * $factor, 1);
+				return $matches[1] . $newDuration . $matches[3];
+			}, $newDesc);
+			
+			$newArray[$effectIndex] = $newDesc;
+		}
+		
+		$this->itemRecord['traitAbilityDescArray'] = $newArray;
 	}
 	
 	

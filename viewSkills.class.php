@@ -171,6 +171,12 @@ class CEsoViewSkills
 	}
 	
 	
+	public function EscapeHtml($html)
+	{
+		return htmlspecialchars($html);
+	}
+	
+	
 	private function OutputHtmlHeader()
 	{
 		ob_start("ob_gzhandler");
@@ -854,8 +860,25 @@ class CEsoViewSkills
 		
 		return $output;
 	}
-
-
+	
+	
+	public function GetSkillCostHtml($skill, $id)
+	{
+		$costHtml = "";
+		$costs = explode(",", $skill['cost']);
+		$mechanics = explode(",", $skill['mechanic']);
+		
+		foreach ($costs as $i => $cost)
+		{
+			$mechanic = $mechanics[$i];
+			$safeCost = $this->EscapeHtml($cost);
+			$costHtml .= "<div mechanic='$mechanic' class='esovsAbilityBlockCost' skillid='$id'>$safeCost</div>";
+		}
+		
+		return $costHtml;
+	}
+	
+	
 	public function GetSkillContentHtml_AbilityBlock($abilityName, $abilityData, $baseAbility, $topLevel, $isPurchased, $baseAbilityId)
 	{
 		global $ESO_FREE_SKILLS;
@@ -887,6 +910,7 @@ class CEsoViewSkills
 		$learnedLevel = $abilityData['learnedLevel'];
 		if ($learnedLevel > 50) $learnedLevel = 50;
 		$costDesc = "";
+		$costHtml = "";
 		$rank = $abilityData['rank'];
 		$origRank = $rank;
 		$maxRank = $abilityData['maxRank'];
@@ -919,6 +943,7 @@ class CEsoViewSkills
 		else
 		{
 			$costDesc = $cost;
+			$costHtml = $this->GetSkillCostHtml($abilityData, $id);
 			
 			if ($rank > 8)
 			{
@@ -983,7 +1008,8 @@ class CEsoViewSkills
 		$output .= "<div class='esovsAbilityBlockTitle'>";
 		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
 		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
-		$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
+		//$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
+		$output .= $costHtml;
 		$output .= "</div>";
 		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc";
 		if ($effectLines != "") $output .= " <div class='esovsAbilityBlockEffectLines'>$effectLines</div>";

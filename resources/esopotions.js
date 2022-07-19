@@ -53,9 +53,10 @@ function UpdateEsoPotionTooltip(potionData, potionItemId, poisonItemId)
 	linkSrc += "&intlevel=" + intLevel;
 	linkSrc += "&inttype=" + intType;
 	linkSrc += "&potiondata=" + potionData;
+	if (solventData.isPoison) linkSrc += "&ispoison=1";
 	
 	if (potionData != 0) $("#esopdCopyItemLink").show();
-			
+	
 	$.get(linkSrc, function(data) {
 		EsoPotionItemLinkPopup.html(data);
 		if (potionData == 0) ShowBadEsoPotion(solventData.isPoison);

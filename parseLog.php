@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "35pts";
+	const SKILLS_TABLESUFFIX   = "35pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -917,7 +917,7 @@ class EsoLogParser
 			'startTime' => self::FIELD_INT,
 			'tickTime' => self::FIELD_INT,
 			'cooldown' => self::FIELD_INT,
-			'cost' => self::FIELD_INT,
+			'cost' => self::FIELD_STRING,
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
 			'maxRange' => self::FIELD_INT,
@@ -928,7 +928,7 @@ class EsoLogParser
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
-			'mechanic' => self::FIELD_INT,
+			'mechanic' => self::FIELD_STRING,
 			'upgradeLines' => self::FIELD_STRING,
 			'effectLines' => self::FIELD_STRING,
 			'texture'  => self::FIELD_STRING,
@@ -948,7 +948,7 @@ class EsoLogParser
 			'skillIndex' => self::FIELD_INT,
 			'buffType' => self::FIELD_INT,
 			'isToggle' => self::FIELD_INT,
-			'chargeFreq' => self::FIELD_INT,
+			'chargeFreq' => self::FIELD_STRING,
 			'numCoefVars' => self::FIELD_INT,
 			'coefDescription' =>  self::FIELD_STRING,
 			'type1' => self::FIELD_INT,
@@ -3137,7 +3137,7 @@ class EsoLogParser
 			startTime INTEGER NOT NULL DEFAULT -1,
 			tickTime INTEGER NOT NULL DEFAULT -1,
 			cooldown INTEGER NOT NULL DEFAULT -1,
-			cost INTEGER NOT NULL DEFAULT -1,
+			cost TINYTEXT NOT NULL,
 			minRange INTEGER NOT NULL DEFAULT -1,
 			maxRange INTEGER NOT NULL DEFAULT -1,
 			radius INTEGER NOT NULL DEFAULT -1,
@@ -3147,7 +3147,7 @@ class EsoLogParser
 			castTime INTEGER NOT NULL DEFAULT -1,
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
-			mechanic INTEGER NOT NULL DEFAULT -1,
+			mechanic TINYTEXT NOT NULL,
 			texture TEXT NOT NULL,
 			isPlayer TINYINT NOT NULL DEFAULT 0,
 			raceType TINYTEXT NOT NULL,
@@ -3164,7 +3164,7 @@ class EsoLogParser
 			skillIndex TINYINT NOT NULL DEFAULT -1,
 			buffType TINYINT NOT NULL DEFAULT -1,
 			isToggle TINYINT NOT NULL DEFAULT 0,
-			chargeFreq INTEGER NOT NULL DEFAULT -1,
+			chargeFreq TINYTEXT NOT NULL,
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL,
 			type1 TINYINT NOT NULL DEFAULT -1,

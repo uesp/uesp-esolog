@@ -70,6 +70,12 @@ class CEsoSkillTooltip
 	}
 	
 	
+	public function EscapeHtml($html)
+	{
+		return htmlspecialchars($html);
+	}
+	
+	
 	private function ParseLevel($level)
 	{
 		if (is_numeric($level))
@@ -469,6 +475,70 @@ class CEsoSkillTooltip
 	}
 	
 	
+	public function GetCostClass($mechanic)
+	{
+		$costClass = "";
+		
+		if (intval($this->version >= 34))
+		{
+			if ($mechanic == 1)
+			{
+				$costClass = "esovsMagicka";
+			}
+			else if ($mechanic == 4)
+			{
+				$costClass = "esovsStamina";
+			}
+		}
+		else
+		{
+			if ($mechanic == 0)
+			{
+				$costClass = "esovsMagicka";
+			}
+			else if ($mechanic == 6)
+			{
+				$costClass = "esovsStamina";
+			}
+		}
+		
+		return $costClass;
+	}
+	
+	
+	public function GetCostSuffix($mechanic)
+	{
+		if (intval($this->version >= 34))
+		{
+			return GetEsoCombatMechanicText34($mechanic);
+		}
+		
+		return GetEsoCombatMechanicText($mechanic);
+	}
+	
+	
+	public function GetCostHtml()
+	{
+		$output = "";
+		$costs = explode(",", $this->GetSkillData('cost'));
+		$mechanics = explode(",", $this->GetSkillData('mechanic'));
+		
+		foreach ($costs as $i => $cost)
+		{
+			$mechanic = $mechanics[$i];
+			
+			//$cost = $this->ComputeEsoSkillCost($cost, $this->skillLevel) . " " . $this->GetCostSuffix($mechanic);
+			$safeCost = $this->EscapeHtml($cost);
+			$costClass = $this->GetCostClass($mechanic);
+			
+			$output .= "<div class='esovsSkillTooltipValue $costClass'>$safeCost</div>";
+			$output .= "<div class='esovsSkillTooltipName'>Cost</div>";
+		}
+		
+		return $output;
+	}
+	
+	
 	public function OutputHtml()
 	{
 		$output = "<div class='esovsSkillTooltip'>";
@@ -484,7 +554,6 @@ class CEsoSkillTooltip
 		$target = $this->escape($this->GetSkillData('target'));
 		$area = $this->escape($this->GetSkillData('area'));
 		$range = $this->escape($this->GetSkillData('range'));
-		$cost = $this->ComputeEsoSkillCost(intval($this->GetSkillData('cost')), $this->skillLevel);
 		$castTimeStr = $castTime . " seconds";
 		$skillType = $this->GetSkillData('type');
 		$newDesc = $this->GetSkillDescription();
@@ -492,6 +561,7 @@ class CEsoSkillTooltip
 		$effectLines = $this->GetSkillData('effectLines');
 		$nextSkill = $this->GetSkillData('nextSkill');
 		$icon = $this->GetSkillData('icon');
+		$cost = $this->GetSkillData('cost');
 		
 		$realRank = $rank;
 		$fullName = $name;
@@ -518,36 +588,6 @@ class CEsoSkillTooltip
 			
 			$output .= "<div class='esovsSkillTooltipTitle'>$fullName</div>";
 			$output .= self::TOOLTIP_DIVIDER;
-			
-			$costStr = "$cost ";
-			$costClass = "";
-			
-			if (intval($this->version >= 34))
-			{
-				if ($mechanic == 1)
-				{
-					$costStr .= "Magicka";
-					$costClass = "esovsMagicka";
-				}
-				else if ($mechanic == 4)
-				{
-					$costStr .= "Stamina";
-					$costClass = "esovsStamina";
-				}
-			}
-			else
-			{
-				if ($mechanic == 0)
-				{
-					$costStr .= "Magicka";
-					$costClass = "esovsMagicka";
-				}
-				else if ($mechanic == 6)
-				{
-					$costStr .= "Stamina";
-					$costClass = "esovsStamina";
-				}
-			}
 			
 			if ($channelTime > 0)
 			{
@@ -598,8 +638,9 @@ class CEsoSkillTooltip
 			
 			if ($cost != '')
 			{
-				$output .= "<div class='esovsSkillTooltipValue $costClass'>$costStr</div>";
-				$output .= "<div class='esovsSkillTooltipName'>Cost</div>";
+				$output .= $this->GetCostHtml();
+				//$output .= "<div class='esovsSkillTooltipValue $costClass'>$costStr</div>";
+				//$output .= "<div class='esovsSkillTooltipName'>Cost</div>";
 			}
 			
 			$output .= self::TOOLTIP_DIVIDER;

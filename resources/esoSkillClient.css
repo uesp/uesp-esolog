@@ -23,7 +23,15 @@
 	bottom: 0;
 	left: 0;
 	user-select: none;
-    pointer-events: none;
+	pointer-events: none;
+}
+
+.eso_skill_tooltip img {
+	width: 48px;
+	height: 48px;
+	position: relative;
+	top: 2px;
+	left: 2px;
 }
 
 .esoSkillPopupIcon {

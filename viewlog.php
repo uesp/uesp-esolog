@@ -12,7 +12,7 @@ class EsoLogViewer
 	const PRINT_DB_ERRORS = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "34";
+	const ENABLE_PTS_VERSION = "35";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -510,7 +510,7 @@ class EsoLogViewer
 			'startTime' => self::FIELD_INT,
 			'tickTime' => self::FIELD_INT,
 			'cooldown' => self::FIELD_INT,
-			'cost' => self::FIELD_INT,
+			'cost' => self::FIELD_STRING,
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
 			'maxRange' => self::FIELD_INT,
@@ -525,10 +525,10 @@ class EsoLogViewer
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
-			'mechanic' =>self::FIELD_INTTRANSFORM,
+			'mechanic' =>self::FIELD_INTTRANSFORM,	//TODO: Update 35pts
 			'buffType' => self::FIELD_INTTRANSFORM,
 			'isToggle' => self::FIELD_INT,
-			'chargeFreq' => self::FIELD_INTTRANSFORM,
+			'chargeFreq' => self::FIELD_INTTRANSFORM,	//TODO: Update 35pts
 			'skillIndex' => self::FIELD_INT,
 			'skillType'  => self::FIELD_INTTRANSFORM,
 			'skillLine' => self::FIELD_STRING,
@@ -3102,7 +3102,7 @@ class EsoLogViewer
 	
 	public function GetCustomCombatMechanicText34 ($value)
 	{
-		return GetEsoCustomMechanicTypeText34($value);
+		return GetEsoCustomMechanicTypeText($value);	//TODO ?
 	}
 	
 	

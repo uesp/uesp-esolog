@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "35pts";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 
@@ -102,6 +102,8 @@ $REPLACE_PAIRS = array(
 		"Saberkeel Sabatons" => "Saberkeel Panoply Sabatons",
 		"Saberkeel Gauntlets" => "Saberkeel Panoply Gauntlets",
 		"Saberkeel Girdle" => "Saberkeel Panoply Girdle",
+		"Ghastly Visitation Memento" => "Ghastly Visitation",
+		"Witchmother's Servant's " => "Witchmother's Servant ",
 );
 
 require("/home/uesp/secrets/esolog.secrets");

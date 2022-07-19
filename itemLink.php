@@ -194,6 +194,7 @@ class CEsoItemLink
 	public $itemCrafted = -1;
 	public $itemCharges = -1;
 	public $itemPotionData = -1;
+	public $itemIsPoison = false;
 	public $itemStolen = -1;
 	public $itemSetCount = -1;
 	public $itemTrait = 0;
@@ -369,6 +370,7 @@ class CEsoItemLink
 		if (array_key_exists('rawdata', $this->inputParams)) $this->outputRaw = true;
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];
+		if (array_key_exists('ispoison', $this->inputParams)) $this->itemIsPoison = ((int) $this->inputParams['ispoison']) != 0;
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
 		if (array_key_exists('style', $this->inputParams)) $this->itemStyle = (int) $this->inputParams['style'];
 		if (array_key_exists('enchantfactor', $this->inputParams)) $this->enchantFactor = (float) $this->inputParams['enchantfactor'];
@@ -1326,9 +1328,59 @@ class CEsoItemLink
 		$this->LoadItemPotionDataEffect($potionEffect2, false);
 		$this->LoadItemPotionDataEffect($potionEffect3, false);
 		
+		$effectCount = count($this->itemRecord['traitAbilityDescArray']);
+		$this->ModifyPoisonEffectDurations($effectCount);
+		
 		ksort($this->itemRecord['traitAbilityDescArray']);
 		ksort($this->itemRecord['traitCooldownArray']);
+		
+		$this->itemIsPoison = true;
 		return true;
+	}
+	
+	
+	private function ModifyPoisonEffectDurations($effectCount)
+	{
+		global $ESO_POTIONEFFECT_DATA;
+		
+		if ($effectCount == 1) return;
+		
+		$newArray = [];
+		
+		foreach ($this->itemRecord['traitAbilityDescArray'] as $effectIndex => $desc)
+		{
+			$newDesc = $desc;
+			
+			$effectData = $ESO_POTIONEFFECT_DATA[$effectIndex];
+			
+			if ($effectData == null)
+			{
+				$newArray[$effectIndex] = $newDesc;
+				continue;
+			}
+			
+			$factor = 1;
+			if ($effectCount == 2) $factor = $effectData['factor2'];
+			if ($effectCount == 3) $factor = $effectData['factor3'];
+			
+			if ($factor == null || $factor == 1)
+			{
+				$newArray[$effectIndex] = $newDesc;
+				continue;
+			}
+			
+			$newDesc = preg_replace_callback('/(for \|c[a-fA-F0-9]{6})([0-9.]+)(\|r second)/', function($matches) use($factor) {
+				$duration = floatval($matches[2]);
+				if ($duration == 0) return $matches[1] + $matches[2] + $matches[3];
+				
+				$newDuration = round($duration * $factor, 1);
+				return $matches[1] . $newDuration . $matches[3];
+			}, $newDesc);
+			
+			$newArray[$effectIndex] = $newDesc;
+		}
+		
+		$this->itemRecord['traitAbilityDescArray'] = $newArray;
 	}
 	
 	
@@ -2482,6 +2534,7 @@ class CEsoItemLink
 		
 		$abilityDesc = array();
 		$cooldownDesc = "";
+		
 		
 		foreach ($this->itemRecord['traitAbilityDescArray'] as $index => $desc)
 		{

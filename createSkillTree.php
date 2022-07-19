@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "";
+	public $TABLE_SUFFIX = "35pts";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -375,6 +375,30 @@ class CEsoCreateSkillTree
 	}
 	
 	
+	public function CreateSkillCost($skill)
+	{
+		$cost = "";
+		
+		if (($this->TABLE_SUFFIX != "" && intval($this->TABLE_SUFFIX) < 34) && ($this->TABLE_SUFFIX == "" && GetEsoUpdateVersion() < 34))
+		{
+			$cost = "" . $skill['cost'] . " " . GetEsoCombatMechanicText($skill['mechanic']);
+			return $cost;
+		}
+		
+		$rawCosts = explode(",", $skill['cost']);
+		$mechanics = explode(",", $skill['mechanic']);
+		$costs = [];
+		
+		foreach ($rawCosts as $i => $cost)
+		{
+			$mechanic = $mechanics[$i];
+			$costs[] = "" . $cost . " " . GetEsoCombatMechanicText34($mechanic);
+		}
+		
+		return implode(",", $costs);
+	}
+	
+	
 	public function SaveActiveSkillTree()
 	{
 		print("Creating skill tree...\n");
@@ -418,11 +442,13 @@ class CEsoCreateSkillTree
 				//if ($descHeader) $desc = "|cffffff$descHeader|r\n$desc";
 				
 				$desc = $this->db->real_escape_string($desc);
-				
+/*				
 				if (intval($this->TABLE_SUFFIX) >= 34 || ($this->TABLE_SUFFIX == "" && GetEsoUpdateVersion() >= 34))
 					$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText34($thisSkill['mechanic']);
 				else
 					$cost = "" . $thisSkill['cost'] . " " . GetEsoCombatMechanicText($thisSkill['mechanic']);
+				*/
+				$cost = $this->CreateSkillCost($thisSkill);
 				
 				$icon = $this->db->real_escape_string($thisSkill['texture']);
 				$learnedLevel = $thisSkill['learnedLevel'];

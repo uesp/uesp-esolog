@@ -29,7 +29,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Dungeon DLC',
-						'numCollectibles' => 22,
+						'numCollectibles' => 24,
 						'collectibles' => array (
 								1 => array (
 										'id' => 375,
@@ -228,6 +228,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 1,
 										'image' => '/esoui/art/store/pc_collections_dlc_atd_shipwrightsregret_loadscreen_2x1.dds',
 										'nickname' => '' 
+								),
+								23 => array (
+										'id' => 10400,
+										'name' => 'Earthen Root Enclave',
+										'icon' => '/esoui/art/icons/icon_u35-dlc.dds',
+										'desc' => 'The Firesong Circle, unseen in the wider world for years, now threatens a tender peace between the Druids. Laurel seeks help to protect the resting place of a legendary sacred seed. Can you soothe Air, Root, and Stone, and survive the fury of the Firesong?',
+										'type' => 1,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								24 => array (
+										'id' => 10401,
+										'name' => 'Graven Deep',
+										'icon' => '/esoui/art/icons/icon_u35-dlc.dds',
+										'desc' => 'An abandoned Dwemer facility sits atop an uncharted island in the Abecean Sea. The prefect place for an adventure! Join Dhulef of the Mages Guild as he investigates mysterious storms, shattered ships, and the dark stirrings of Necromancy at Graven Deep.',
+										'type' => 1,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -378,16 +396,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10403,
 										'name' => 'Saint Pelin',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_pelin.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Saint Pelin.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
 								2 => array (
 										'id' => 10405,
-										'name' => 'Grandmaster Delmene Hlaalul',
+										'name' => 'Grandmaster Delmene Hlaalu',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_hlaalu.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Hlaalu Grandmaster Delmene.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -396,7 +414,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10406,
 										'name' => 'Duke of Crows',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_blackfeather.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of the Duke of Crows.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -405,7 +423,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10407,
 										'name' => 'Psijic Loremaster Celarus',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_psijic.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Psijic Loremaster Celarus.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -414,7 +432,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10574,
 										'name' => 'Red Eagle',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_redeagle.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Red Eagle.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -423,7 +441,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10575,
 										'name' => 'Rajhin',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_rahjin.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Rajhin, the Purring Liar.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -432,7 +450,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10591,
 										'name' => 'Ansei Frandar Hunding',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_hunding.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Frandar Hunding.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -441,7 +459,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10607,
 										'name' => 'Sorcerer-King Orgnum',
 										'icon' => '/esoui/art/icons/tribute_collectable_upgrade_orgnum.dds',
-										'desc' => '',
+										'desc' => 'A Tales of Tribute deck telling the story of Orgnum, the Sorcerer-King.',
 										'type' => 28,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -561,7 +579,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9457,
 										'name' => 'Bastian`s Julianos Medallion',
 										'icon' => '/esoui/art/icons/noncombatperk_u30_bastian_keepsake.dds',
-										'desc' => 'The Silvelle house tutor gifted this medallion to Bastian when he was still a boy. It depicts the logician`s triangle in polished bronze. The sharp edges of Julianos`s symbol have grown dull over the years—the result of frequent use as a worry talisman.',
+										'desc' => 'Gifted to Bastian when he was still a boy, this medallion depicts the logician`s triangle in polished bronze. The edges have grown dull, the result of frequent use as a worry talisman.\n\nPermanently grants the passive \"Bastian`s Insight\" to the bearer.',
 										'type' => 6,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -570,7 +588,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9458,
 										'name' => 'Ancient Anticipations Idol',
 										'icon' => '/esoui/art/icons/noncombatperk_u30_miressi_keepsake.dds',
-										'desc' => 'Hewn from Red Mountain basalt, this idol merges all three of the Good Daedra into a single, grotesque effigy. While some might consider such an object hideous, Mirri regards it as one of her greatest finds—now in the possession of her greatest friend.',
+										'desc' => 'Hewn from basalt, this idol merges all three Good Daedra into single grotesque effigy. While some might consider such an object hideous, Mirri regards it as one of her greatest finds.\n\nPermanently grants the passive \"Mirri`s Expertise\" to the bearer.',
 										'type' => 6,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -618,7 +636,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Hats',
-						'numCollectibles' => 144,
+						'numCollectibles' => 146,
 						'collectibles' => array (
 								1 => array (
 										'id' => 174,
@@ -1782,6 +1800,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								130 => array (
+										'id' => 8202,
+										'name' => 'Windhelm Fox Mask',
+										'icon' => '/esoui/art/icons/hat_nordfox.dds',
+										'desc' => '\"After my fox mask did well in Sentinel, I traveled to Windhelm and crafted some in their style. My timing was perfect! It was Fishing Day, and some drunken Nords wanted to fish while wearing my masks. I, of course, joined them.\"—Nandim',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								131 => array (
 										'id' => 8661,
 										'name' => 'Arkthzand Insight Vertex Shroud',
 										'icon' => '/esoui/art/icons/gear_arkthzandarm_bosshelmet2.dds',
@@ -1790,7 +1817,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								131 => array (
+								132 => array (
 										'id' => 8662,
 										'name' => 'Arkthzand Anfractuosity Shroud',
 										'icon' => '/esoui/art/icons/gear_arkthzandarm_bosshelmet3.dds',
@@ -1799,7 +1826,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								132 => array (
+								133 => array (
 										'id' => 8663,
 										'name' => 'Arkthzand Flanged Auspice Shroud',
 										'icon' => '/esoui/art/icons/gear_arkthzandarm_bosshelmet1.dds',
@@ -1808,7 +1835,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								133 => array (
+								134 => array (
 										'id' => 8824,
 										'name' => 'Witchwise Headdress',
 										'icon' => '/esoui/art/icons/hat_witchwise.dds',
@@ -1817,7 +1844,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								134 => array (
+								135 => array (
 										'id' => 8850,
 										'name' => 'Netch Handler Cap',
 										'icon' => '/esoui/art/icons/hat_netchhandler.dds',
@@ -1826,7 +1853,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								135 => array (
+								136 => array (
 										'id' => 8851,
 										'name' => 'Courtly Crow Mask',
 										'icon' => '/esoui/art/icons/hat_ravenmask.dds',
@@ -1835,7 +1862,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								136 => array (
+								137 => array (
 										'id' => 9237,
 										'name' => 'Helm of the Black Fin',
 										'icon' => '/esoui/art/icons/hat_keshuhelm.dds',
@@ -1844,7 +1871,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								137 => array (
+								138 => array (
 										'id' => 9393,
 										'name' => 'Ironclad Sarcoshroud',
 										'icon' => '/esoui/art/icons/hat_annihilarchbosshelmet.dds',
@@ -1853,7 +1880,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								138 => array (
+								139 => array (
 										'id' => 9411,
 										'name' => 'Oblivion Explorer`s Headwrap',
 										'icon' => '/esoui/art/icons/hat_oblivionexplorersheadwrap.dds',
@@ -1862,7 +1889,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								139 => array (
+								140 => array (
 										'id' => 9506,
 										'name' => 'Nereid`s Seafoam Coiffure',
 										'icon' => '/esoui/art/icons/hat_seafoamraiment.dds',
@@ -1871,7 +1898,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								140 => array (
+								141 => array (
 										'id' => 9522,
 										'name' => 'Savvy Scoundrel`s Mask',
 										'icon' => '/esoui/art/icons/hat_blackheartmask.dds',
@@ -1880,7 +1907,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								141 => array (
+								142 => array (
 										'id' => 9838,
 										'name' => 'Nighthunter`s Cowl',
 										'icon' => '/esoui/art/icons/hat_nighthunterscowl.dds',
@@ -1889,7 +1916,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								142 => array (
+								143 => array (
 										'id' => 9873,
 										'name' => 'Society Domino Mask',
 										'icon' => '/esoui/art/icons/hat_societydominomask.dds',
@@ -1898,7 +1925,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								143 => array (
+								144 => array (
+										'id' => 10288,
+										'name' => 'Sentinel Fox Mask',
+										'icon' => '/esoui/art/icons/hat_sunfoxmask.dds',
+										'desc' => 'Popularized at one of King Fahara`jad`s festivities by young Maraya before she came of age, these ornate masks became de rigueur at Sentinel gatherings for many weeks. Some still proudly display them on shelves, while others wear them out of nostalgia.',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								145 => array (
 										'id' => 10411,
 										'name' => 'Royal Courier Hood',
 										'icon' => '/esoui/art/icons/hat_royalcourierhood.dds',
@@ -1907,7 +1943,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								144 => array (
+								146 => array (
 										'id' => 10431,
 										'name' => 'Sailor-at-Arms Helm',
 										'icon' => '/esoui/art/icons/gear_searoamer_head_a.dds',
@@ -3170,7 +3206,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Head Markings',
-						'numCollectibles' => 274,
+						'numCollectibles' => 281,
 						'collectibles' => array (
 								1 => array (
 										'id' => 445,
@@ -5621,6 +5657,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								273 => array (
+										'id' => 10197,
+										'name' => 'Red Diamond Face Stainwork',
+										'icon' => '/esoui/art/icons/mrf_retributionspromise.dds',
+										'desc' => 'Resembling the glass forged in the fires of an artisan`s workshop, this marking is painted on the brow of anyone who`s been tempered by the flames of the empire`s collapse. The marking may wash away with rain, but the vow remains.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								274 => array (
 										'id' => 10213,
 										'name' => 'Knights of St. Pelin Face Marks',
 										'icon' => '/esoui/art/icons/mrf_evermoresaint.dds',
@@ -5629,11 +5674,65 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								274 => array (
+								275 => array (
+										'id' => 10305,
+										'name' => 'Wyrd Sight',
+										'icon' => '/esoui/art/icons/mrf_sylvanblessingeyes.dds',
+										'desc' => 'The most dedicated champions of the forest receive visions from their Wyrd Sight, a gift from the Sisters. As to what those visions are, well. It depends on the champion.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								276 => array (
 										'id' => 10307,
 										'name' => 'Stonelore`s Legend Face Paint',
 										'icon' => '/esoui/art/icons/mrf_lorekeeperslegend.dds',
 										'desc' => 'Instead of looking to recreate the mountains or symmetry of stones, Stonelore druids developed a pattern of looping swirls and harsh line breaks. They paint it in charcoal and ash around one eye to represent the ever-watchful gaze of Y`ffre.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								277 => array (
+										'id' => 10315,
+										'name' => 'Eyes of Umaril',
+										'icon' => '/esoui/art/icons/mrf_dawngoldeyes.dds',
+										'desc' => '\"Some say that Umaril the Unfeathered can work through mortals, making their eyes glow. You see someone with yellow radiance in their eyes? Think twice before pummeling such folk.\"—Globura of Gonfalon Bay',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								278 => array (
+										'id' => 10390,
+										'name' => 'Netchspot Abstraction Face Marks',
+										'icon' => '/esoui/art/icons/mrf_risktakershonor.dds',
+										'desc' => '\"Strokes of golden joy embracing rings of azure and bronze. These call attention to the spark of enduring happiness within you. You already love the idea of it, I can tell. Make it a reality.\"—Artist-Adept Aimira',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								279 => array (
+										'id' => 10392,
+										'name' => 'Shagrath`s Favor Face Marks',
+										'icon' => '/esoui/art/icons/mrf_shagrathsfavor.dds',
+										'desc' => 'Rarely do those gently gathered within Shagrath`s web ever leave. Dreams of whispersilk strands tug upon the heart of her prey. And those few that escape gain a webbed brand on their visage.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								280 => array (
+										'id' => 10412,
+										'name' => 'Oak`s Promise Face Marks',
+										'icon' => '/esoui/art/icons/mrf_oakspromise.dds',
+										'desc' => 'With its rich green hues and distinctive shape, this marking is a natural for those who appreciate and protect the living world around them.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								281 => array (
+										'id' => 10647,
+										'name' => 'Touch of the Draoife Face Marks',
+										'icon' => '/esoui/art/icons/mrf_stonelorearbor.dds',
+										'desc' => 'With a few strokes of mystic ink, the druid council imparts their blessing. The Draoife`s auguries foretold of this moment, though they remain silent on what glorious purpose you may yet fulfill.',
 										'type' => 17,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -7869,7 +7968,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Costumes',
-						'numCollectibles' => 235,
+						'numCollectibles' => 237,
 						'collectibles' => array (
 								1 => array (
 										'id' => 38,
@@ -8854,9 +8953,9 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								110 => array (
 										'id' => 283,
-										'name' => 'Khajiit F Low',
+										'name' => 'Rimmen Fountain-Side Loungewear',
 										'icon' => '/esoui/art/icons/costume_khafemcultural_a.dds',
-										'desc' => '',
+										'desc' => 'Famed for their clear water, the fountains of Rimmen provide a place for locals to gather and catch up on the news of the day. If you seek a moment of refreshment, wear this elegant yet comfortable garb as you dangle your feet in the cool waters.',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -9969,6 +10068,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								234 => array (
+										'id' => 10194,
+										'name' => 'Stillrise Ritecaller',
+										'icon' => '/esoui/art/icons/cos_dreadawakener.dds',
+										'desc' => '\"The few Kothringi that survived the tumultuous events at Stillrise Village now serve the Ideal Masters. So if you see this garb, flee.\"—Orranvir',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								235 => array (
+										'id' => 10255,
+										'name' => 'Liespinner`s Vestments',
+										'icon' => '/esoui/art/icons/cos_liespinner.dds',
+										'desc' => 'Acolytes of Mephala spread falsehoods and disinformation to keep their secrets hidden. When they meet, they don these vestments to conceal their identities. Beware her whispers beneath the veil.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								236 => array (
 										'id' => 10430,
 										'name' => 'Sailor-at-Arms',
 										'icon' => '/esoui/art/icons/cos_sailoratarms.dds',
@@ -9977,7 +10094,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								235 => array (
+								237 => array (
 										'id' => 10439,
 										'name' => 'Frostbane Dragon Priest',
 										'icon' => '/esoui/art/icons/cos_winterblightdragonpriest.dds',
@@ -9991,7 +10108,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Body Markings',
-						'numCollectibles' => 249,
+						'numCollectibles' => 255,
 						'collectibles' => array (
 								1 => array (
 										'id' => 444,
@@ -12217,6 +12334,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								248 => array (
+										'id' => 10198,
+										'name' => 'Red Diamond Body Stainwork',
+										'icon' => '/esoui/art/icons/mrk_retributionspromise.dds',
+										'desc' => '\"The glass stained on my skin as it is in the temples of the Imperial city is a pledge. Not to a dream—fleeting and unattainable—but to the future that lays before us. An oath to see the empire restored!\"—Garrus Congonius, Champion of the Heartlands',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								249 => array (
 										'id' => 10214,
 										'name' => 'Knights of St. Pelin Body Marks',
 										'icon' => '/esoui/art/icons/mrk_evermoresaint.dds',
@@ -12225,11 +12351,56 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								249 => array (
+								250 => array (
 										'id' => 10308,
 										'name' => 'Stonelore`s Legend Body Paint',
 										'icon' => '/esoui/art/icons/mrk_lorekeeperslegend.dds',
 										'desc' => '\"Don`t ask a Stonelore druid about their markings. They`ll tell you a long tale about how one of their ancient practitioners went six days without sleep and saw the magic of Y`ffre swirling about him. What nonsense!\"—The Final Correspondence of Lernynyas',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								251 => array (
+										'id' => 10391,
+										'name' => 'Netchspot Abstraction Body Marks',
+										'icon' => '/esoui/art/icons/mrk_risktakershonor.dds',
+										'desc' => '\"The calm of the netch infuses some folk. Yet their spirit burns bright with playful inner joy. For one such person, I created colorful tattoos inspired by golden, spotted netches I encountered long ago.\"—Artist-Adept Aimira',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								252 => array (
+										'id' => 10393,
+										'name' => 'Shagrath`s Favor Body Marks',
+										'icon' => '/esoui/art/icons/mrk_shagrathsfavor.dds',
+										'desc' => '\"I can see Shagrath`s interest in you. The silver strands spun across your body speak volumes. My question is, will you traverse her weavings, or spin your own? Shagrath prefers the latter.\"—Selene',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								253 => array (
+										'id' => 10395,
+										'name' => 'Skald`s Body Branding',
+										'icon' => '/esoui/art/icons/mrk_deepbrinebridler.dds',
+										'desc' => '\"I`ve learned that Nord vessels sailing the Sea of Ghosts prefer having a skald on board to lull the spirits haunting those waters into happier memories. These fish-knot markings indicate a master seafaring skald.\"—Sarion',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								254 => array (
+										'id' => 10413,
+										'name' => 'Oak`s Promise Body Marks',
+										'icon' => '/esoui/art/icons/mrk_oakspromise.dds',
+										'desc' => '\"The druids of old knew the oak`s promise: stand strong, stay true, and shelter all. Some Stonelore druids mark this promise into their skin even today. And they`ll cudgel you into the dirt if you cut down a tree.\"—Globura of Gonfalon Bay',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								255 => array (
+										'id' => 10648,
+										'name' => 'Touch of the Draoife Body Marks',
+										'icon' => '/esoui/art/icons/mrk_stonelorearbor.dds',
+										'desc' => '\"Auguries. Through stone and starlight, fire and ash, the Draoife glimpse the future—and act. And they gave you such wondrous markings. Oh, my friend, what secrets will you find in the wilds?\"—Scholar Thaegara',
 										'type' => 18,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -12239,7 +12410,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				9 => array (
 						'subCategoryIndex' => 9,
 						'name' => 'Skins',
-						'numCollectibles' => 62,
+						'numCollectibles' => 65,
 						'collectibles' => array (
 								1 => array (
 										'id' => 161,
@@ -12764,6 +12935,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								59 => array (
+										'id' => 9789,
+										'name' => 'Magmaheart',
+										'icon' => '/esoui/art/icons/skin_magmaheart.dds',
+										'desc' => '\"Little stops the patient flow of magma, or so druids have always known. Seeing this quality in you, they whispered words that set your very being aflame. Now, I free you. Go, heart of magma. Burn.\"—Druid Llanith',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								60 => array (
 										'id' => 9814,
 										'name' => 'Impish Epidermis',
 										'icon' => '/esoui/art/icons/sko_impishepidermis.dds',
@@ -12772,7 +12952,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								60 => array (
+								61 => array (
 										'id' => 9836,
 										'name' => 'Ocean Lamellar',
 										'icon' => '/esoui/art/icons/sko_brinebreaker.dds',
@@ -12781,7 +12961,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								61 => array (
+								62 => array (
+										'id' => 10063,
+										'name' => 'Brineglow',
+										'icon' => '/esoui/art/icons/skin_brineglow.dds',
+										'desc' => 'Extensive proximity to a certain breed of ornaug may cause these unusual luminescent markings to appear. Or such is the claim of the druids. True or not, they make for great tavern discussions.',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								63 => array (
 										'id' => 10195,
 										'name' => 'Reefdweller',
 										'icon' => '/esoui/art/icons/sko_glimmerstreak.dds',
@@ -12790,11 +12979,20 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								62 => array (
+								64 => array (
 										'id' => 10196,
 										'name' => 'Ethertide',
 										'icon' => '/esoui/art/icons/sko_ethertide.dds',
 										'desc' => '\"I walked through the waters of the Ancient Darkness. The waves of the Void washed through me. Tread in the nothingness too long and it seeps into you. Mangles you. Twists you into something other than what you were.\"—Opius Balvel, Oblivion Walker',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								65 => array (
+										'id' => 10323,
+										'name' => 'Shallowbay Nereid',
+										'icon' => '/esoui/art/icons/skin_shallowbaynereid.dds',
+										'desc' => '\"Splash among the fish and flora? Looking like a nereid scaled in hues of coral, pearl, and night? Speak to me no more of this pure joy. This unadulterated bliss. You merely tease, yes. Yet … magic, you say?\"—Tariran, Seeker of New Experiences',
 										'type' => 11,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -13036,7 +13234,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				11 => array (
 						'subCategoryIndex' => 11,
 						'name' => 'Polymorphs',
-						'numCollectibles' => 24,
+						'numCollectibles' => 25,
 						'collectibles' => array (
 								1 => array (
 										'id' => 34,
@@ -13250,6 +13448,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Soulrazer Knight',
 										'icon' => '/esoui/art/icons/poly_soulrazerknight.dds',
 										'desc' => 'While the origin of the Soulrazer Knights is shrouded in mystery, their power and dogged determination are legendary. Assume their guise and watch your enemies run in terror at the sight of your unnatural glow.',
+										'type' => 12,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								25 => array (
+										'id' => 10286,
+										'name' => 'Boneman',
+										'icon' => '/esoui/art/icons/poly_grimdarkskeleton.dds',
+										'desc' => '\"We die. We pray. To live. We serve.\"—The Boneman`s Oath, The Book of Life and Service',
 										'type' => 12,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -14112,7 +14319,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'General',
-						'numCollectibles' => 67,
+						'numCollectibles' => 72,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1171,
@@ -14716,6 +14923,51 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								68 => array (
+										'id' => 10587,
+										'name' => 'Sacred Hourglass of Alkosh',
+										'icon' => '/esoui/art/icons/housing_uni_inc_antsealkoshhourglass001_fx.dds',
+										'desc' => 'You may place the hourglass within your home. Focusing on its falling sands causes them to blur, and local perception of time to shift. Until the hourglass is disturbed, time seems to stand still. Enjoy everything from eternal sunrises to endless nights.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								69 => array (
+										'id' => 10844,
+										'name' => 'Statuette: Kynareth of the Winds',
+										'icon' => '/esoui/art/icons/housing_uni_inc_statuettekynareth002.dds',
+										'desc' => 'A miniature statue of Kynareth, goddess of the elements, as sculpted in High Isle.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								70 => array (
+										'id' => 10845,
+										'name' => 'Statuette: Duchess Martinne',
+										'icon' => '/esoui/art/icons/housing_uni_inc_statuetteduchessmartinne001.dds',
+										'desc' => 'A miniature statue of the Duchess Martinne Guimard, leader of the consortium that purchased the Systres Archipelago.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								71 => array (
+										'id' => 10846,
+										'name' => 'Painting: Systres Archipelago',
+										'icon' => '/esoui/art/icons/housing_sys_inc_housingkeyartpainting002.dds',
+										'desc' => 'A painting by Vaudrie Barthel, well-known for her landscapes and scenes depicting life and nature in the Systres Isles.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								72 => array (
+										'id' => 10853,
+										'name' => 'Statue, Ascendant Lord',
+										'icon' => '/esoui/art/icons/housing_str_exc_statueascendantlord001.dds',
+										'desc' => 'Though the artist who sculpted this statue remains unknown, those who have faced the Ascendant Lord declare it captures this leader`s might and presence perfectly. Claimed from the treasure trove of the Ascendant Order.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -14801,7 +15053,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Undaunted Busts',
-						'numCollectibles' => 63,
+						'numCollectibles' => 65,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1110,
@@ -15369,13 +15621,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								64 => array (
+										'id' => 10856,
+										'name' => 'Bust: Archdruid Devyric',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veteranmonstrousbear001.dds',
+										'desc' => 'Bronze bust commemorating an Undaunted victory in Earthen Root Enclave.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								65 => array (
+										'id' => 10857,
+										'name' => 'Bust: Euphotic Gatekeeper',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veteranhadolidboss001.dds',
+										'desc' => 'Bronze bust commemorating an Undaunted victory in Graven Deep.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Undaunted Trophies',
-						'numCollectibles' => 63,
+						'numCollectibles' => 65,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1265,
@@ -15943,13 +16213,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								64 => array (
+										'id' => 10854,
+										'name' => 'Trophy: Archdruid Devyric',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophymonstrousbear001.dds',
+										'desc' => 'Trophy taken from Archdruid Devyric in honor of an Undaunted victory in Earthen Root Enclave.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								65 => array (
+										'id' => 10855,
+										'name' => 'Trophy: Euphotic Gatekeeper',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophyhadolidboss001.dds',
+										'desc' => 'Trophy taken from the Euphotic Gatekeeper in honor of an Undaunted victory in Graven Deep.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Houseguests',
-						'numCollectibles' => 32,
+						'numCollectibles' => 35,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7931,
@@ -16238,6 +16526,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								33 => array (
+										'id' => 10654,
+										'name' => 'Clan Mother Tadali',
+										'icon' => '/esoui/art/icons/houseguest_tadali.dds',
+										'desc' => 'Get ready for a visit from Clan Mother Tadali! She`ll share her wisdom with you if you share your sunbeams with her. After adding Tadali to your home, you can set her on a path, plus you and your visitors can speak with her.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								34 => array (
+										'id' => 10655,
+										'name' => 'Dhulef',
+										'icon' => '/esoui/art/icons/houseguest_dhulef.dds',
+										'desc' => 'Grab your favorite beverage and settle in for pithy tales from former pirate, current Mages Guild member, and Stonelore druid friend Dhulef. After adding Dhulef to your home, you can set him on a path, plus you and your visitors can speak with him.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								35 => array (
+										'id' => 10656,
+										'name' => 'Captain Isara Davaux',
+										'icon' => '/esoui/art/icons/houseguest_captainisaradavaux.dds',
+										'desc' => 'Ghostly Isara may think she`s still part of the All Flags Navy, fighting their ancient foes, but that just makes her a hauntingly novel guest. After adding Isara to your home, you can set her on a path, plus you and your visitors can speak with her.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -16248,7 +16563,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'name' => 'Fragments',
 						'icon' => '/esoui/art/treeicons/store_indexicon_fragments_up.dds',
 						'special' => 0,
-						'numSubCategories' => 25,
+						'numSubCategories' => 26,
 						'numCollectibles' => 0,
 						'collectibles' => array () 
 				),
@@ -16621,6 +16936,40 @@ $ESO_COLLECTIBLE_DATA = array (
 				),
 				11 => array (
 						'subCategoryIndex' => 11,
+						'name' => 'Sacred Hourglass of Alkosh',
+						'numCollectibles' => 3,
+						'collectibles' => array (
+								1 => array (
+										'id' => 10588,
+										'name' => 'Engraved Glassblowing Tools',
+										'icon' => '/esoui/art/icons/item_u34_collectible_akatosh_hourglass001.dds',
+										'desc' => 'Blessed and engraved tools for glassblowing.\n\nA component required to morph a Soulfire Dragon Illusion into the Sacred Hourglass of Alkosh furnishing.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								2 => array (
+										'id' => 10589,
+										'name' => 'Hallowed White-Gold Ingot',
+										'icon' => '/esoui/art/icons/item_u34_collectible_akatosh_hourglass002.dds',
+										'desc' => 'A sanctified ingot of specially-prepared white gold.\n\nA component required to morph a Soulfire Dragon Illusion into the Sacred Hourglass of Alkosh furnishing.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								3 => array (
+										'id' => 10590,
+										'name' => 'Mysterious Time-Lost Sands',
+										'icon' => '/esoui/art/icons/item_u34_collectible_akatosh_hourglass003.dds',
+										'desc' => 'Two pouches of sand, one golden and one black. Touching the sands calls forth memories of experiences long ago and those yet to be experienced.\n\nA component required to morph a Soulfire Dragon Illusion into the Sacred Hourglass of Alkosh furnishing.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								) 
+						) 
+				),
+				12 => array (
+						'subCategoryIndex' => 12,
 						'name' => 'Sorcerer-King Orgnum Deck',
 						'numCollectibles' => 5,
 						'collectibles' => array (
@@ -16671,8 +17020,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				12 => array (
-						'subCategoryIndex' => 12,
+				13 => array (
+						'subCategoryIndex' => 13,
 						'name' => 'Ansei Frandar Hunding Deck',
 						'numCollectibles' => 5,
 						'collectibles' => array (
@@ -16723,8 +17072,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				13 => array (
-						'subCategoryIndex' => 13,
+				14 => array (
+						'subCategoryIndex' => 14,
 						'name' => 'Dawnwood Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16766,8 +17115,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				14 => array (
-						'subCategoryIndex' => 14,
+				15 => array (
+						'subCategoryIndex' => 15,
 						'name' => 'Luminous Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16809,8 +17158,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				15 => array (
-						'subCategoryIndex' => 15,
+				16 => array (
+						'subCategoryIndex' => 16,
 						'name' => 'Onyx Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16852,8 +17201,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				16 => array (
-						'subCategoryIndex' => 16,
+				17 => array (
+						'subCategoryIndex' => 17,
 						'name' => 'Pure-Snow Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -16895,8 +17244,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				17 => array (
-						'subCategoryIndex' => 17,
+				18 => array (
+						'subCategoryIndex' => 18,
 						'name' => 'Apple-Bobbing',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -16965,8 +17314,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				18 => array (
-						'subCategoryIndex' => 18,
+				19 => array (
+						'subCategoryIndex' => 19,
 						'name' => 'Spectral Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -17008,8 +17357,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				19 => array (
-						'subCategoryIndex' => 19,
+				20 => array (
+						'subCategoryIndex' => 20,
 						'name' => 'Icebreath Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -17051,8 +17400,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				20 => array (
-						'subCategoryIndex' => 20,
+				21 => array (
+						'subCategoryIndex' => 21,
 						'name' => 'Mossheart Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -17094,8 +17443,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				21 => array (
-						'subCategoryIndex' => 21,
+				22 => array (
+						'subCategoryIndex' => 22,
 						'name' => 'Crimson Indrik',
 						'numCollectibles' => 4,
 						'collectibles' => array (
@@ -17137,8 +17486,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				22 => array (
-						'subCategoryIndex' => 22,
+				23 => array (
+						'subCategoryIndex' => 23,
 						'name' => 'Voriplasm Pet',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -17207,8 +17556,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				23 => array (
-						'subCategoryIndex' => 23,
+				24 => array (
+						'subCategoryIndex' => 24,
 						'name' => 'Wooden Grave-Stake Memento',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -17277,8 +17626,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				24 => array (
-						'subCategoryIndex' => 24,
+				25 => array (
+						'subCategoryIndex' => 25,
 						'name' => 'Sovereign Sow',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -17347,8 +17696,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				25 => array (
-						'subCategoryIndex' => 25,
+				26 => array (
+						'subCategoryIndex' => 26,
 						'name' => 'Cartographer Fragments',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -17603,7 +17952,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_trophy_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 142,
+						'numCollectibles' => 146,
 						'collectibles' => array (
 								1 => array (
 										'id' => 335,
@@ -18882,6 +19231,42 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								143 => array (
+										'id' => 10585,
+										'name' => 'Darkswarm Talisman',
+										'icon' => '/esoui/art/icons/u35_momento_batsurge.dds',
+										'desc' => '\"All you have to do is hold this close to your chest and listen to your heartbeat. It summons so many friends. So … wondrous. So … dark. I love it!\"—Naifaha the Dread Dreamer',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								144 => array (
+										'id' => 10597,
+										'name' => 'Riften Leafpile',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'You haven`t lived until you`ve thrown yourself into a Riften-style leafpile. Start by making the pile. Then throw yourself into it. Praise Kyne!',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								145 => array (
+										'id' => 10698,
+										'name' => 'Dhulef`s Bubble Ward',
+										'icon' => '/esoui/art/icons/u35_momento_dhulefshydrosphere.dds',
+										'desc' => '\"Ever visited the bottom of the sea? I overheard a Redguard talking about doing just that with some spell he`s working on. A warding trinket, maybe. It`s like walking in a bubble, I guess.\"—Enri Coulon of the Ancient Anchor',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								146 => array (
+										'id' => 10850,
+										'name' => 'Ghastly Visitation',
+										'icon' => '/esoui/art/icons/u35_momento_spookyghost.dds',
+										'desc' => '\"A classic mage prank: hide an enchanted pebble on someone, then trigger the magic. An illusion springs up, ranging from silly to frightening. A common gag is the appearance of a dark entity of the most frightening sort!\"—Scholar Thaegara',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -18974,7 +19359,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Equines',
-						'numCollectibles' => 118,
+						'numCollectibles' => 120,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1,
@@ -20012,6 +20397,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Bravura' 
 								),
 								116 => array (
+										'id' => 9983,
+										'name' => 'Wraithtide Horse',
+										'icon' => '/esoui/art/icons/mount_wraithhaunthorse.dds',
+										'desc' => '\"The day a Stonelore druid thundered in on this frightful sea-birthed horse, well … let`s just say I`m glad I recognized Druid Dolvasie on top. Her ferocious expression will haunt my nightmares—as will this steed.\"—Squire Hareld, Oaken Order',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Brinespine' 
+								),
+								117 => array (
+										'id' => 10057,
+										'name' => 'Forge Master`s Charger',
+										'icon' => '/esoui/art/icons/mount_firebrandcharger.dds',
+										'desc' => 'Though some claim these fiery steeds first sprang from the Earth Forge, others make a case for the fires of Morkuldin`s Descent taking that honor. None can quench the blaze of this incandescent horse!',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Flamestepper' 
+								),
+								118 => array (
 										'id' => 10211,
 										'name' => 'Su-Zahleel Horse-Lizard',
 										'icon' => '/esoui/art/icons/mount_xoleelhorse.dds',
@@ -20020,7 +20423,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sunset-in-Scales' 
 								),
-								117 => array (
+								119 => array (
 										'id' => 10262,
 										'name' => 'Grand Joust Destrier',
 										'icon' => '/esoui/art/icons/mount_systresjouster.dds',
@@ -20029,21 +20432,21 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Abet' 
 								),
-								118 => array (
+								120 => array (
 										'id' => 10386,
-										'name' => 'Cavalry Barding',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'name' => 'Jouster`s Charger',
+										'icon' => '/esoui/art/icons/mount_cavalrybarding.dds',
+										'desc' => '\"Though these fellows work the tilt-yard like a dream, they`re trained to the field, too. You never know when you`ll need a finely barded steed to get you across those fancy sunflower fields you see around High Isle.\"—Perien Jerrick, Castle Navire',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Tilter' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Felines',
-						'numCollectibles' => 89,
+						'numCollectibles' => 92,
 						'collectibles' => array (
 								1 => array (
 										'id' => 22,
@@ -20272,12 +20675,12 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								26 => array (
 										'id' => 1377,
-										'name' => 'Cinder Skeletal Senche^n',
+										'name' => 'Cinder Skeletal Senche',
 										'icon' => '/esoui/art/icons/mount_skeletalcsenche.dds',
-										'desc' => '',
+										'desc' => '\"Long-held grudges and rage simmer within this skeletal senche—fitting given its supposed origin as a battle steed for Orcs fighting within the Ashen Forge! This mount`s riders gain the utmost respect from Malacath`s adherents.\"—Erisa Moorcroft',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
-										'nickname' => '' 
+										'nickname' => 'Grudge' 
 								),
 								27 => array (
 										'id' => 1410,
@@ -20845,6 +21248,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Squall' 
+								),
+								90 => array (
+										'id' => 9982,
+										'name' => 'Wraithtide Senche',
+										'icon' => '/esoui/art/icons/mount_wraithhauntsenche.dds',
+										'desc' => '\"Some believe these skeletal senche respond to the call of a lost soul seeking safe passage. I firmly believe Y`ffre`s hand is involved, and I pray I can prove it one day.\"—Druid Phillic',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tidefang' 
+								),
+								91 => array (
+										'id' => 10231,
+										'name' => 'Ashgray Senche-Serval',
+										'icon' => '/esoui/art/icons/mount_argentsencheserval.dds',
+										'desc' => '\"House Mornard won`t say where it tamed these gorgeous beasts. My guess is Summerset. For a time, only the elder nobles of that house rode their own. Now, after a downturn in Mornard fortunes, you`ll find them all over Tamriel.\"—Sadia Vonius, Student',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Dangerclaw' 
+								),
+								92 => array (
+										'id' => 10382,
+										'name' => 'Vale Sabre Cat Growler',
+										'icon' => '/esoui/art/icons/mount_valesabrecatgrowler.dds',
+										'desc' => 'Bards in Skyrim claim these luminous sabre cats gain their glow from Kyne. Scholars in the College of Sapiarchs refute this, each with their own pet hypotheses. Everyone agrees that this growler`s fur is silky soft and its rumbling purr soothing.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Glowfur' 
 								) 
 						) 
 				),
@@ -20930,7 +21360,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bipedals',
-						'numCollectibles' => 44,
+						'numCollectibles' => 47,
 						'collectibles' => array (
 								1 => array (
 										'id' => 18,
@@ -21327,13 +21757,40 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Scootums' 
+								),
+								45 => array (
+										'id' => 9984,
+										'name' => 'Wraithtide Guar',
+										'icon' => '/esoui/art/icons/mount_wraithhauntguar.dds',
+										'desc' => '\"The ghost of Ol` Brineburr herds glowing guar down trade roads, seeking buyers. Don`t be put off by their appearance. Or, hmmm, maybe seeing your steed`s skeleton is a bonus to you? Regardless, get one.\"—Initiate Rogeric',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Slosher' 
+								),
+								46 => array (
+										'id' => 10253,
+										'name' => 'Turquoise War Pangrit',
+										'icon' => '/esoui/art/icons/mount_xitahranterror.dds',
+										'desc' => '\"Some claim the Hadolids created the pangrits somehow. I suspect they simply tamed these spiky beasts. If they`d made them, they`d be smarter. If a pangrit wants something, they poke you. Learn quickly how to tell what they want!\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sprinter' 
+								),
+								47 => array (
+										'id' => 10398,
+										'name' => 'Scarlet War Pangrit',
+										'icon' => '/esoui/art/icons/mount_xitahranagonizer.dds',
+										'desc' => '\"These hard-headed creatures might seem empty-minded. Yet, somehow, they keep you alive when you`ve angered the ornaugs. Such is the nature of a loyal mount.\"—Saissula, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Poker' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Camelids',
-						'numCollectibles' => 27,
+						'numCollectibles' => 28,
 						'collectibles' => array (
 								1 => array (
 										'id' => 233,
@@ -21577,13 +22034,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Majesty' 
+								),
+								28 => array (
+										'id' => 10389,
+										'name' => 'Black Heights Camel',
+										'icon' => '/esoui/art/icons/mount_blackheightscamel.dds',
+										'desc' => '\"You`d not think to see camels around this one`s home of Black Heights, but you`d be wrong! We love to brighten these fragrant beasts with pigments and a touch of sleekening oil so that they provide both beauty and transport!\"—Hurzarr, Artist',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Pigment' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Multi-Rider',
-						'numCollectibles' => 5,
+						'numCollectibles' => 6,
 						'collectibles' => array (
 								1 => array (
 										'id' => 6972,
@@ -21629,13 +22095,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sweetbreeze' 
+								),
+								6 => array (
+										'id' => 10384,
+										'name' => 'Skingrad Pillion Courser',
+										'icon' => '/esoui/art/icons/mount_skingradpillioncourser.dds',
+										'desc' => '\"The first pillion mount in Skingrad came about when two of Rislav`s siblings wished to ride with fewer guards about. `Two guards per horse,` they were told. Thus they created the first battle-hardened pillion mount.\"—Richon Charchere, Stablemaster',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Taciturn' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Canines',
-						'numCollectibles' => 79,
+						'numCollectibles' => 83,
 						'collectibles' => array (
 								1 => array (
 										'id' => 105,
@@ -22331,6 +22806,42 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Stormscourge' 
 								),
 								78 => array (
+										'id' => 9986,
+										'name' => 'Wraithtide Wolf',
+										'icon' => '/esoui/art/icons/mount_wraithhauntwolf.dds',
+										'desc' => '\"Communing with the Evergrowth is sometimes confusing. I saw the waters birth an unusual wolf pack, flowing like the angry waves that gave them life. Experience proves they possess the same loyalty other wolves have toward their riders.\"—Druid Anotille',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ebbflow' 
+								),
+								79 => array (
+										'id' => 10055,
+										'name' => 'Ossified Rime Wolf',
+										'icon' => '/esoui/art/icons/mount_icebonewolf.dds',
+										'desc' => '\"Tears of rage and hatred don`t go wasted in Skyrim. These rare droplets fall upon the snow, calling a spirit of bone and rime from Aetherius. Within seconds, a frost-spiked wolf forms, snarling and bridled with grim purpose.\"—Hef, Tale Collector',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Deathspike' 
+								),
+								80 => array (
+										'id' => 10225,
+										'name' => 'Bleakrock Snowdog',
+										'icon' => '/esoui/art/icons/mount_bleakrocksnowdog.dds',
+										'desc' => 'Originally hailing from Bleakrock Isle, these blue-eyed canines love playing in the frosty air and snow of that distant spit of land. In fact, the locals often bring them inside at night just so that they aren`t awoken by their antics in the morning.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Slushy' 
+								),
+								81 => array (
+										'id' => 10237,
+										'name' => 'Warmaiden`s Wolf',
+										'icon' => '/esoui/art/icons/mount_handmaidensstormwolf.dds',
+										'desc' => 'While Nords claim this lightning-limned wolf seeks out Kyne`s champions to serve, the Stonelore druids believe differently. Only an imbalance in nature would cause such a creature to coalesce. Its purpose? To find a rider who can restore the balance.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stormhowl' 
+								),
+								82 => array (
 										'id' => 10242,
 										'name' => 'Stormsurge Howler',
 										'icon' => '/esoui/art/icons/mount_stormsurgehowler.dds',
@@ -22339,7 +22850,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Brinewalker' 
 								),
-								79 => array (
+								83 => array (
 										'id' => 10290,
 										'name' => 'New Moon Fox',
 										'icon' => '/esoui/art/icons/mount_newmoonfox.dds',
@@ -22353,7 +22864,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Cervines',
-						'numCollectibles' => 29,
+						'numCollectibles' => 31,
 						'collectibles' => array (
 								1 => array (
 										'id' => 591,
@@ -22615,6 +23126,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Mountain Flower' 
+								),
+								30 => array (
+										'id' => 10210,
+										'name' => 'Nibenay Bay Ram',
+										'icon' => '/esoui/art/icons/mount_mottledram.dds',
+										'desc' => '\"Sturdy rams graze the lush meadowlands all around Nibenay Bay. An amusing tale claims they first became steeds because the local herbalist wearied of them eating all the nirnroot. They were trained to saddle and now, here we are.\"—Sadia Vonius, Student',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Nirnbane' 
+								),
+								31 => array (
+										'id' => 10438,
+										'name' => 'Oaken Order Mountain Goat',
+										'icon' => '/esoui/art/icons/mount_oakspromiseram.dds',
+										'desc' => 'Cavalry masters of the Oaken Order diligently trained mountain goats to the bridle. Now, these surefooted creatures are both mounts and companions. None can match their spirit or persistence, or so the wizardly knights boast.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Bearded Wonder' 
 								) 
 						) 
 				),
@@ -22700,7 +23229,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				10 => array (
 						'subCategoryIndex' => 10,
 						'name' => 'Heavyweights',
-						'numCollectibles' => 17,
+						'numCollectibles' => 19,
 						'collectibles' => array (
 								1 => array (
 										'id' => 5708,
@@ -22854,6 +23383,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Venerate' 
+								),
+								18 => array (
+										'id' => 10199,
+										'name' => 'Druid-Bound Ursauk',
+										'icon' => '/esoui/art/icons/mount_monsterousbear.dds',
+										'desc' => '\"I prefer the company of animals over people. Communing with the Evergrowth provides a calming respite from the need to speak. This ursauk, for example, has proven most personable. And now, it needs a rider.\"—Druid Dolvasie',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Headscratch' 
+								),
+								19 => array (
+										'id' => 10244,
+										'name' => 'Speckled Welwa',
+										'icon' => '/esoui/art/icons/mount_speckledwelwa.dds',
+										'desc' => 'This savage welwa so interested members of the College of Sapiarchs that they brought several to Sil-Var-Woad for study. To help endear them to the public, an enterprising conservator trained them to saddle and \"lent\" them out into the wild.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Investigator Welwa' 
 								) 
 						) 
 				),
@@ -22912,7 +23459,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				12 => array (
 						'subCategoryIndex' => 12,
 						'name' => 'Ursines',
-						'numCollectibles' => 38,
+						'numCollectibles' => 39,
 						'collectibles' => array (
 								1 => array (
 										'id' => 151,
@@ -23255,13 +23802,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Shoot' 
+								),
+								39 => array (
+										'id' => 9985,
+										'name' => 'Wraithtide Bear',
+										'icon' => '/esoui/art/icons/mount_wraithhauntbear.dds',
+										'desc' => '\"Where mages born from water gather, they enact ancient rites. Together they bind the essence of bear and sea and death, forming it into a mount one of their number may ride. Or so the tales go.\"—Druid Sandire',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Whirlpool' 
 								) 
 						) 
 				),
 				13 => array (
 						'subCategoryIndex' => 13,
 						'name' => 'Serpentes',
-						'numCollectibles' => 1,
+						'numCollectibles' => 2,
 						'collectibles' => array (
 								1 => array (
 										'id' => 9572,
@@ -23271,6 +23827,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Waverider' 
+								),
+								2 => array (
+										'id' => 10056,
+										'name' => 'Reefstrider Ornaug',
+										'icon' => '/esoui/art/icons/mount_luminousseabeast.dds',
+										'desc' => 'Scales the color of High Isle`s sky speckle this beast, making it highly sought after by nobles. When domesticated, the Reefstrider joyfully takes its rider across tidepools and shallows, but avoids the deeps—especially in northern climes.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shoalstalker' 
 								) 
 						) 
 				) 
@@ -23548,7 +24113,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Flying Pets',
-						'numCollectibles' => 58,
+						'numCollectibles' => 59,
 						'collectibles' => array (
 								1 => array (
 										'id' => 36,
@@ -24071,13 +24636,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Havoc' 
+								),
+								59 => array (
+										'id' => 10277,
+										'name' => 'Lemondot Netch',
+										'icon' => '/esoui/art/icons/pet_lemondotnetch.dds',
+										'desc' => '\"Do colors seem louder? Does music taste different? Does Tirdas have a personality? You`re probably experiencing the synesthesic venom of the rare lemondot netch. Relax. It`s harmless. A little new perspective never killed anybody.\"—Alinon the Alchemist',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Miss Ophonia' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Exotic',
-						'numCollectibles' => 314,
+						'numCollectibles' => 323,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7,
@@ -26565,9 +27139,9 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								277 => array (
 										'id' => 9240,
-										'name' => 'Sandswirl Fledgling Terror Bird',
+										'name' => 'Topaz Fledgling Terror Bird',
 										'icon' => '/esoui/art/icons/pet_terrorbirdyellow.dds',
-										'desc' => 'In the wild, Sandswirl Terror Birds cloak themselves in wind-blown sand to ambush unsuspecting prey. This little fledgling is keen to practice the technique, so be sure to warn your companions before a sandstorm hits. No one wants to lose a toe!',
+										'desc' => 'In the wild, Topaz Terror Birds cloak themselves in wind-blown sand to ambush unsuspecting prey. This little fledgling is keen to practice the technique, so be sure to warn your companions before a sandstorm hits. No one wants to lose a toe!',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sandghost' 
@@ -26647,7 +27221,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								286 => array (
 										'id' => 9380,
 										'name' => 'Green Feathered Sep Adder',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'icon' => '/esoui/art/icons/pet_greenfeathersepadder.dds',
 										'desc' => 'Template Description',
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -26888,6 +27462,51 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Aquamarine' 
 								),
 								313 => array (
+										'id' => 10224,
+										'name' => 'Sterling Cavy',
+										'icon' => '/esoui/art/icons/pet_silverstarcavymara.dds',
+										'desc' => '\"The cavy`s placid essence makes them nature`s mediators, dear. I adopted this one years ago. There`s an undeniable sophistication in silver hair, you see. It gives one the impression of wisdom, whether earned or not.\"—Lady Arabelle Davaux',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ennui' 
+								),
+								314 => array (
+										'id' => 10239,
+										'name' => 'Mulberry Hermit Crab',
+										'icon' => '/esoui/art/icons/pet_damsonhermitcrab.dds',
+										'desc' => 'Before the druids, before the coin-barons, before even the noble houses, the hermit crab held dominion over the Systres. Hauling its belongings wherever it travels, its beady eyes give you a look that seems to say, \"We`re not so different, you and I.\"',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rex' 
+								),
+								315 => array (
+										'id' => 10240,
+										'name' => 'Rustpelt Sabre Cat',
+										'icon' => '/esoui/art/icons/pet_rustpeltsabrecat.dds',
+										'desc' => '\"Where`d I get the cat? Cards. Poor thing was used in place of coin by some pet-smuggling lowlife. I`m teaching her how to count cards and fetch me a pint.\"—Privateer Mahk',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Cardnibbler' 
+								),
+								316 => array (
+										'id' => 10243,
+										'name' => 'Anchorborn Pony',
+										'icon' => '/esoui/art/icons/pet_planemeldpony.dds',
+										'desc' => '\"Now, I says to my friend, look at all this dark anchor debris. No one`s using it. No one owns it. And I look at his pony, this sickly little thing, and I say, why not make ourselves something nice?\"—\"Innovator\" Delan',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Quarter Horse' 
+								),
+								317 => array (
+										'id' => 10250,
+										'name' => 'Ringtail Jerboa',
+										'icon' => '/esoui/art/icons/pet_birchghostjerboa.dds',
+										'desc' => 'The eye-catching tail pouf of the ringtail jerboa makes for a daring fashion statement especially appreciated by the aristocracy of High Isle. It`s also, of course, used for balance.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Kohl' 
+								),
+								318 => array (
 										'id' => 10251,
 										'name' => 'Hermit Crab',
 										'icon' => '/esoui/art/icons/pet_hermitcrab.dds',
@@ -26896,7 +27515,43 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Scuttle' 
 								),
-								314 => array (
+								319 => array (
+										'id' => 10252,
+										'name' => 'Pangrit Nymphling',
+										'icon' => '/esoui/art/icons/pet_xitahrannymph.dds',
+										'desc' => '\"My study of pangrits have provided few clues as to their origin. Their young don`t possess the spikes of the adults, and their hide is supple like velvet. I could almost hug one of these smaller versions! Almost.\"—Sadia Vonius, Student',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Racket' 
+								),
+								320 => array (
+										'id' => 10321,
+										'name' => 'Sweetgrape Dragon Frog',
+										'icon' => '/esoui/art/icons/pet_sweetgrapedragonfrog.dds',
+										'desc' => 'Once bred for their ability to smell when a grape is perfectly ripe, the Sweetgrape Dragon Frog is now considered an invasive pest. Winemakers go to great lengths to keep the grape-loving frog away from their vineyards.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sweettooth' 
+								),
+								321 => array (
+										'id' => 10325,
+										'name' => 'Silver-Limned Guar',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Template Description',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								322 => array (
+										'id' => 10414,
+										'name' => 'Mnemoflare Fabricant',
+										'icon' => '/esoui/art/icons/pet_mnemoflarefabricant.dds',
+										'desc' => '\"A reminder to all researchers that a close eye must be kept on the Mnemoflare Fabricant. It has a frustrating knack for picking locks and its sharp claws have made short work of Attendant Mhunvack`s herb garden.\"—Bthuchard, Dwemer Researcher',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Rootgnasher' 
+								),
+								323 => array (
 										'id' => 10429,
 										'name' => 'Crow Court Pony Guar',
 										'icon' => '/esoui/art/icons/pet_purpleguar.dds',
@@ -26910,7 +27565,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Domestic',
-						'numCollectibles' => 77,
+						'numCollectibles' => 80,
 						'collectibles' => array (
 								1 => array (
 										'id' => 9,
@@ -27319,7 +27974,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								46 => array (
 										'id' => 6619,
-										'name' => 'Silver-Gray Mouser Cat^F',
+										'name' => 'Silver-Gray Mouser Cat',
 										'icon' => '/esoui/art/icons/pet_silvergreymouser.dds',
 										'desc' => 'Though they originally hail from Senchal, these mousers have recently started showing up in other locales. Having one at your side not only exhibits your charity toward street cats, but also helps ensure you sleep free of pesky mice!',
 										'type' => 3,
@@ -27597,6 +28252,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Brisket' 
 								),
 								77 => array (
+										'id' => 10209,
+										'name' => 'Mottled Sheep',
+										'icon' => '/esoui/art/icons/pet_mottledsheep.dds',
+										'desc' => '\"Her calm presence keeps our patients at ease. Sometimes I ask them about the patterns and shapes they see in her coat, and their answers give me insight into their state of mind.\"—Mender Teliel',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sheary' 
+								),
+								78 => array (
+										'id' => 10238,
+										'name' => 'Morthal Bear-Dog',
+										'icon' => '/esoui/art/icons/pet_spottedbeardog.dds',
+										'desc' => 'It`s the prestige of the mastiffs of Morthal that give the city`s resident breed of bear-dog license to be a bit more … silly. Whether watching over children or facing intruders, someone`s bound to get a licking.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Chunk' 
+								),
+								79 => array (
 										'id' => 10306,
 										'name' => 'Jerall Rescue Dog',
 										'icon' => '/esoui/art/icons/pet_riellerescuedog.dds',
@@ -27604,6 +28277,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Snowbounder' 
+								),
+								80 => array (
+										'id' => 10396,
+										'name' => 'Crusader`s Coin Chicken',
+										'icon' => '/esoui/art/icons/pet_goldenglowchicken.dds',
+										'desc' => 'Easily identifiable by their flaming red feathers, this aggressive barnyard fowl has been used as an alternative to a guard dog by knights on crusade. Their loud crowing is nearly impossible to sleep through.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sir Bawk-Bawk' 
 								) 
 						) 
 				),
@@ -27649,7 +28331,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/tutorial_idexicon_emotes_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 141,
+						'numCollectibles' => 156,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1255,
@@ -27815,7 +28497,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								19 => array (
 										'id' => 4994,
-										'name' => 'Whenever',
+										'name' => 'Sheor`s Beard!',
 										'icon' => '/esoui/art/icons/emote_whenever.dds',
 										'desc' => '',
 										'type' => 21,
@@ -27932,9 +28614,9 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								32 => array (
 										'id' => 5737,
-										'name' => 'Whittling',
+										'name' => 'Carve Knickknack',
 										'icon' => '/esoui/art/icons/emote_whittlewood.dds',
-										'desc' => 'Just a-whittling away on a piece of swamp wood, yes, indeed.',
+										'desc' => 'Just a-carving away, yes, indeed.',
 										'type' => 21,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -28696,6 +29378,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								117 => array (
+										'id' => 9641,
+										'name' => 'Wash My Hands of This',
+										'icon' => '/esoui/art/icons/emote_washhandsofit.dds',
+										'desc' => 'Oh yeah, you`re totally done with this. Whatever \"this\" is.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								118 => array (
+										'id' => 9642,
+										'name' => 'Befuddled',
+										'icon' => '/esoui/art/icons/emote_befuddled.dds',
+										'desc' => 'What`s going on here? Where am I? Express your total lack of comprehension with this bewildered emote.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								119 => array (
 										'id' => 9648,
 										'name' => 'No Dice',
 										'icon' => '/esoui/art/icons/emote_nodice.dds',
@@ -28704,7 +29404,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								118 => array (
+								120 => array (
 										'id' => 9718,
 										'name' => 'Siegestomper',
 										'icon' => '/esoui/art/icons/emote_siegestomper.dds',
@@ -28713,7 +29413,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								119 => array (
+								121 => array (
 										'id' => 9734,
 										'name' => 'Pet Plant',
 										'icon' => '/esoui/art/icons/emote_petplant.dds',
@@ -28722,7 +29422,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								120 => array (
+								122 => array (
+										'id' => 9742,
+										'name' => 'Uh … Never Mind',
+										'icon' => '/esoui/art/icons/emote_nevermind.dds',
+										'desc' => 'Now you have the ideal reaction for those moments when the point flies right on past someone else (never you, of course).',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								123 => array (
 										'id' => 9860,
 										'name' => 'Stargazer',
 										'icon' => '/esoui/art/icons/emote_stargazer.dds',
@@ -28731,7 +29440,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								121 => array (
+								124 => array (
 										'id' => 9861,
 										'name' => 'Feline`s Fancy Juggling',
 										'icon' => '/esoui/art/icons/emote_yarnball.dds',
@@ -28740,7 +29449,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								122 => array (
+								125 => array (
 										'id' => 9863,
 										'name' => 'Ritual Casting',
 										'icon' => '/esoui/art/icons/emote_ritualcasting.dds',
@@ -28749,7 +29458,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								123 => array (
+								126 => array (
 										'id' => 9864,
 										'name' => 'Flower Fling',
 										'icon' => '/esoui/art/icons/emote_flowerfling.dds',
@@ -28758,7 +29467,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								124 => array (
+								127 => array (
 										'id' => 9866,
 										'name' => 'Wargame Ballista',
 										'icon' => '/esoui/art/icons/emote_ballista.dds',
@@ -28767,7 +29476,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								125 => array (
+								128 => array (
 										'id' => 9867,
 										'name' => 'Elite Seat',
 										'icon' => '/esoui/art/icons/emote_sitonthrown.dds',
@@ -28776,7 +29485,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								126 => array (
+								129 => array (
 										'id' => 9868,
 										'name' => 'Air the Heir',
 										'icon' => '/esoui/art/icons/emote_fanning.dds',
@@ -28785,7 +29494,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								127 => array (
+								130 => array (
 										'id' => 9869,
 										'name' => 'Wait the Great',
 										'icon' => '/esoui/art/icons/emote_waiter.dds',
@@ -28794,7 +29503,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								128 => array (
+								131 => array (
 										'id' => 9870,
 										'name' => 'Bumbling Artificer',
 										'icon' => '/esoui/art/icons/emote_bumblingartificer.dds',
@@ -28803,7 +29512,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								129 => array (
+								132 => array (
 										'id' => 10226,
 										'name' => 'Feed Bird',
 										'icon' => '/esoui/art/icons/emote_feedbird.dds',
@@ -28812,7 +29521,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								130 => array (
+								133 => array (
 										'id' => 10227,
 										'name' => 'Sword Dance',
 										'icon' => '/esoui/art/icons/emote_sworddance.dds',
@@ -28821,7 +29530,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								131 => array (
+								134 => array (
 										'id' => 10228,
 										'name' => 'Where`s My Drink?',
 										'icon' => '/esoui/art/icons/emote_wheredrink.dds',
@@ -28830,7 +29539,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								132 => array (
+								135 => array (
 										'id' => 10229,
 										'name' => 'Crab Pinch',
 										'icon' => '/esoui/art/icons/emote_crabpinch.dds',
@@ -28839,7 +29548,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								133 => array (
+								136 => array (
 										'id' => 10230,
 										'name' => 'Sit and Drink',
 										'icon' => '/esoui/art/icons/emote_sitdrink.dds',
@@ -28848,7 +29557,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								134 => array (
+								137 => array (
 										'id' => 10241,
 										'name' => 'Pop the Cork',
 										'icon' => '/esoui/art/icons/emote_popthecork.dds',
@@ -28857,7 +29566,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								135 => array (
+								138 => array (
 										'id' => 10245,
 										'name' => 'Spyglass',
 										'icon' => '/esoui/art/icons/emote_spyglass.dds',
@@ -28866,7 +29575,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								136 => array (
+								139 => array (
 										'id' => 10246,
 										'name' => 'Glimmer Dust',
 										'icon' => '/esoui/art/icons/emote_glimmerdust.dds',
@@ -28875,7 +29584,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								137 => array (
+								140 => array (
 										'id' => 10367,
 										'name' => 'Alik`r Shrieking Cheese',
 										'icon' => '/esoui/art/icons/emote_shriekingcheese.dds',
@@ -28884,7 +29593,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								138 => array (
+								141 => array (
 										'id' => 10368,
 										'name' => 'Sapphire Heraldry Horn 1',
 										'icon' => '/esoui/art/icons/emote_heraldtrumpet1.dds',
@@ -28893,7 +29602,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								139 => array (
+								142 => array (
+										'id' => 10369,
+										'name' => 'Contemplation of Aetheric Arms',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => '\"None are so blessed as those who, while meditating about Aetherius, gain multiple spirit limbs for a few moments. Alas, while they are impressive to look upon, they do not allow you to accomplish more things.\"—Scholar Zoellene Ruqueville',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								143 => array (
 										'id' => 10370,
 										'name' => 'Souvenir Conch Shell',
 										'icon' => '/esoui/art/icons/emote_conchshell.dds',
@@ -28902,7 +29620,16 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								140 => array (
+								144 => array (
+										'id' => 10416,
+										'name' => 'Plant Yourself',
+										'icon' => '/esoui/art/icons/emote_plantyourself.dds',
+										'desc' => 'Need to take a break? Why not conjure up a chair for yourself and sit. You deserve a nice respite.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								145 => array (
 										'id' => 10571,
 										'name' => 'Sapphire Heraldry Horn 2',
 										'icon' => '/esoui/art/icons/emote_heraldtrumpet2.dds',
@@ -28911,11 +29638,101 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								141 => array (
+								146 => array (
 										'id' => 10572,
 										'name' => 'Sapphire Heraldry Horn 3',
 										'icon' => '/esoui/art/icons/emote_heraldtrumpet3.dds',
 										'desc' => 'Announce the beginning of festivities by playing a jaunty tune on this gleaming horn, originally used at the Sapphire Tourney.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								147 => array (
+										'id' => 10580,
+										'name' => 'Round of Applause',
+										'icon' => '/esoui/art/icons/emote_roundofapplause.dds',
+										'desc' => 'Be ready to support (or admonish?) your friends with a very literal round of applause.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								148 => array (
+										'id' => 10581,
+										'name' => 'Trumpet Solo',
+										'icon' => '/esoui/art/icons/emote_trumpetsolo.dds',
+										'desc' => 'You`re not afraid to show your skill with a trumpet. Just the opposite, in fact.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								149 => array (
+										'id' => 10592,
+										'name' => 'Apple Intimidation',
+										'icon' => '/esoui/art/icons/emote_stabfruit.dds',
+										'desc' => 'Stab that fruit! It deserves it. Then enjoy its sweet, sweet deliciousness.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								150 => array (
+										'id' => 10593,
+										'name' => 'Knightly Bow',
+										'icon' => '/esoui/art/icons/emote_knightlybow.dds',
+										'desc' => 'Time spent among nobles requires knowledge of etiquette—or at least knowledge of how to bow properly. If you prefer more martial forms of respect, this knightly bow may become your favorite.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								151 => array (
+										'id' => 10594,
+										'name' => 'Pale Lord`s Throne',
+										'icon' => '/esoui/art/icons/emote_effulgentennui.dds',
+										'desc' => 'Oh, life. Or death. Whichever. It matters not, really, as long as you have power over both. As a Pale Lord, you can grant either to those who kneel before you.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								152 => array (
+										'id' => 10595,
+										'name' => 'Sapphire Knighting',
+										'icon' => '/esoui/art/icons/emote_knightingceremony.dds',
+										'desc' => 'Re-enact the knighting ceremony held at Castle Navire, just as the Knight Commander does it. Your opinion of who is and is not a knight is somewhat less binding than hers.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								153 => array (
+										'id' => 10596,
+										'name' => 'Apprentice`s Flower Trick',
+										'icon' => '/esoui/art/icons/emote_flowerflub.dds',
+										'desc' => 'You`ve practiced this for ages, or so it seems. Now let`s see your mastery over … oh dear. No. That`s not it. That`s not it at all.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								154 => array (
+										'id' => 10611,
+										'name' => 'Petal Presentation',
+										'icon' => '/esoui/art/icons/emote_petalpeddlerspresent.dds',
+										'desc' => 'Give your favorite person a delightful flower.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								155 => array (
+										'id' => 10631,
+										'name' => 'Key Harp',
+										'icon' => '/esoui/art/icons/emote_nyckelharpa.dds',
+										'desc' => 'Play High Isle`s favorite instrument, the key harp, and entertain your audience with your skills.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								156 => array (
+										'id' => 10885,
+										'name' => 'Fingers Crossed',
+										'icon' => '/esoui/art/icons/emote_fingerscrossed.dds',
+										'desc' => 'Cross your fingers and hope for the best!',
 										'type' => 21,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -28957,7 +29774,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Head',
-						'numCollectibles' => 533,
+						'numCollectibles' => 546,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1598,
@@ -30475,7 +31292,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3928,
 										'name' => 'Ra Gada Helm',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_head_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -30484,7 +31301,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3934,
 										'name' => 'Ra Gada Helmet',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_head_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -30520,7 +31337,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3971,
 										'name' => 'Ra Gada Hat',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_head_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -31897,7 +32714,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 6800,
 										'name' => 'Dread-Aurelian Mask',
 										'icon' => '/esoui/art/icons/gear_dragonhuntert2_helmet_b.dds',
-										'desc' => 'Acquired by completing the \"Scalebreaker Explorer\" Achievement.',
+										'desc' => 'An Outfit look for headgear in the Dread-Aurelian style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -32131,7 +32948,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 7209,
 										'name' => 'Topal Corsair Hat',
 										'icon' => '/esoui/art/icons/gear_topalcorsair_helmet_a.dds',
-										'desc' => 'Part of the Topal Corsair Outfit, acquired by completing the achievement Welcome to Pellitine.',
+										'desc' => 'An Outfit look for headgear in the Topal Corsair style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -33508,7 +34325,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9812,
 										'name' => 'Opal Chokethorn Mask',
 										'icon' => '/esoui/art/icons/gear_undstrangler_head_e.dds',
-										'desc' => 'An Outfit look for headgear in the Chokethorn style.',
+										'desc' => 'An Outfit look for headgear in the Opal Chokethorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -33661,7 +34478,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10074,
 										'name' => 'Syrabanic Marine Helm',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_head_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -33670,7 +34487,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10081,
 										'name' => 'Syrabanic Marine Helmet',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_head_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -33679,7 +34496,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10088,
 										'name' => 'Syrabanic Marine Hat',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_head_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -33755,13 +34572,130 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								534 => array (
+										'id' => 10361,
+										'name' => 'Witchmother`s Servant Hat',
+										'icon' => '/esoui/art/icons/gear_witchesfest_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								535 => array (
+										'id' => 10443,
+										'name' => 'Y`ffre`s Will Helm',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_head_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								536 => array (
+										'id' => 10450,
+										'name' => 'Y`ffre`s Will Helmet',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_head_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								537 => array (
+										'id' => 10457,
+										'name' => 'Y`ffre`s Will Hat',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_head_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								538 => array (
+										'id' => 10478,
+										'name' => 'Drowned Mariner Helm',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_head_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								539 => array (
+										'id' => 10485,
+										'name' => 'Drowned Mariner Helmet',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_head_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								540 => array (
+										'id' => 10492,
+										'name' => 'Drowned Mariner Hat',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_head_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								541 => array (
+										'id' => 10515,
+										'name' => 'Oaken Order Helmet',
+										'icon' => '/esoui/art/icons/gear_oakenorder_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								542 => array (
+										'id' => 10532,
+										'name' => 'Red Rook HEAD SLOT',
+										'icon' => '/esoui/art/icons/ability_healer_017.dds',
+										'desc' => 'An Outfit look for headgear in the Template style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								543 => array (
+										'id' => 10549,
+										'name' => 'Seamount Raider Helm',
+										'icon' => '/esoui/art/icons/gear_deepbrine_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Seamount Raider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								544 => array (
+										'id' => 10561,
+										'name' => 'Opal Velidreth Mask',
+										'icon' => '/esoui/art/icons/gear_undvelidrethopal_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Opal Velidreth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								545 => array (
+										'id' => 10563,
+										'name' => 'Euphotic Gatekeeper Mask',
+										'icon' => '/esoui/art/icons/gear_hadolid_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Veteran Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								546 => array (
+										'id' => 10565,
+										'name' => 'Archdruid Devyric Mask',
+										'icon' => '/esoui/art/icons/gear_terrorbear_head_a.dds',
+										'desc' => 'Obtained rarely by completing the dungeon Veteran Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Chest',
-						'numCollectibles' => 654,
+						'numCollectibles' => 666,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1488,
@@ -36134,7 +37068,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3927,
 										'name' => 'Ra Gada Cuirass',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_chest_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -36143,7 +37077,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3933,
 										'name' => 'Ra Gada Jack',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_chest_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -36188,7 +37122,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3970,
 										'name' => 'Ra Gada Jerkin',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_shirt_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -36197,7 +37131,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3976,
 										'name' => 'Ra Gada Robe',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_robe_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -39518,7 +40452,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10073,
 										'name' => 'Syrabanic Marine Cuirass',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_chest_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -39527,7 +40461,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10080,
 										'name' => 'Syrabanic Marine Jack',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_chest_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -39536,7 +40470,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10087,
 										'name' => 'Syrabanic Marine Jerkin',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_chest_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -39545,7 +40479,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10094,
 										'name' => 'Syrabanic Marine Robe',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_robe_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -39648,13 +40582,121 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								655 => array (
+										'id' => 10360,
+										'name' => 'Witchmother`s Servant Jerkin',
+										'icon' => '/esoui/art/icons/gear_witchesfest_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								656 => array (
+										'id' => 10442,
+										'name' => 'Y`ffre`s Will Cuirass',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_chest_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								657 => array (
+										'id' => 10449,
+										'name' => 'Y`ffre`s Will Jack',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_chest_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								658 => array (
+										'id' => 10456,
+										'name' => 'Y`ffre`s Will Jerkin',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_chest_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								659 => array (
+										'id' => 10463,
+										'name' => 'Y`ffre`s Will Robe',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_robe_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								660 => array (
+										'id' => 10477,
+										'name' => 'Drowned Mariner Cuirass',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_chest_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								661 => array (
+										'id' => 10484,
+										'name' => 'Drowned Mariner Jack',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_chest_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								662 => array (
+										'id' => 10491,
+										'name' => 'Drowned Mariner Jerkin',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_chest_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								663 => array (
+										'id' => 10498,
+										'name' => 'Drowned Mariner Robe',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_robe_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								664 => array (
+										'id' => 10514,
+										'name' => 'Oaken Order Jack',
+										'icon' => '/esoui/art/icons/gear_oakenorder_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								665 => array (
+										'id' => 10531,
+										'name' => 'Red Rook CHEST SLOT',
+										'icon' => '/esoui/art/icons/ability_healer_017.dds',
+										'desc' => 'An Outfit look for chests in the Template style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								666 => array (
+										'id' => 10548,
+										'name' => 'Seamount Raider Jack',
+										'icon' => '/esoui/art/icons/gear_deepbrine_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Seamount Raider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Legs',
-						'numCollectibles' => 500,
+						'numCollectibles' => 510,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1491,
@@ -41442,7 +42484,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3929,
 										'name' => 'Ra Gada Greaves',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_legs_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -41451,7 +42493,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3935,
 										'name' => 'Ra Gada Guards',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_legs_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -41487,7 +42529,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3972,
 										'name' => 'Ra Gada Breeches',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_legs_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44061,7 +45103,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10076,
 										'name' => 'Syrabanic Marine Greaves',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_legs_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44070,7 +45112,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10082,
 										'name' => 'Syrabanic Marine Guards',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_legs_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44079,7 +45121,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10089,
 										'name' => 'Syrabanic Marine Breeches',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_legs_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -44122,7 +45164,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								497 => array (
 										'id' => 10146,
-										'name' => 'Systres Guardian Guardians',
+										'name' => 'Systres Guardian Guards',
 										'icon' => '/esoui/art/icons/gear_systresguard_med_legs_a.dds',
 										'desc' => 'Learned from the Systres Guardian Crafting Style, acquired by completing daily delve quests in High Isle.',
 										'type' => 24,
@@ -44155,13 +45197,103 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								501 => array (
+										'id' => 10362,
+										'name' => 'Witchmother`s Servant Breeches',
+										'icon' => '/esoui/art/icons/gear_witchesfest_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								502 => array (
+										'id' => 10445,
+										'name' => 'Y`ffre`s Will Greaves',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_legs_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								503 => array (
+										'id' => 10451,
+										'name' => 'Y`ffre`s Will Guards',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_legs_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								504 => array (
+										'id' => 10458,
+										'name' => 'Y`ffre`s Will Skirt',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_legs_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								505 => array (
+										'id' => 10480,
+										'name' => 'Drowned Mariner Greaves',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_legs_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								506 => array (
+										'id' => 10486,
+										'name' => 'Drowned Mariner Guards',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_legs_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								507 => array (
+										'id' => 10493,
+										'name' => 'Drowned Mariner Breeches',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_legs_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								508 => array (
+										'id' => 10516,
+										'name' => 'Oaken Order Guards',
+										'icon' => '/esoui/art/icons/gear_oakenorder_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								509 => array (
+										'id' => 10533,
+										'name' => 'Red Rook LEG SLOT',
+										'icon' => '/esoui/art/icons/ability_healer_017.dds',
+										'desc' => 'An Outfit look for legs in the Template style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								510 => array (
+										'id' => 10550,
+										'name' => 'Seamount Raider Greaves',
+										'icon' => '/esoui/art/icons/gear_deepbrine_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Seamount Raider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Shoulders',
-						'numCollectibles' => 562,
+						'numCollectibles' => 575,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1496,
@@ -45940,7 +47072,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3930,
 										'name' => 'Ra Gada Pauldrons',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_shoulders_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45949,7 +47081,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3936,
 										'name' => 'Ra Gada Arm Cops',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_shoulders_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -45985,7 +47117,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3973,
 										'name' => 'Ra Gada Epaulets',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_shoulders_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -47371,7 +48503,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 6774,
 										'name' => 'Dread-Aurelian Pauldrons',
 										'icon' => '/esoui/art/icons/gear_dragonhuntert2_shoulder_b.dds',
-										'desc' => 'Acquired by completing the \"Scalebreaker Delver\" Achievement.',
+										'desc' => 'An Outfit look for shoulders in the Dread-Aurelian style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -48703,7 +49835,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9199,
 										'name' => 'Sul-Xan Pauldrons',
 										'icon' => '/esoui/art/icons/gear_rockgrove_heavy_shoulders_a.dds',
-										'desc' => 'Learned from the Sul-Xan Crafting Style, acquired by completing the weekly quest \"\Of Stone and Steam\"\ for the Rockgrove Trail.',
+										'desc' => 'Learned from the Sul-Xan Crafting Style, acquired by completing the weekly quest \"\\Of Stone and Steam\"\\ for the Rockgrove Trail.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -48964,7 +50096,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 9813,
 										'name' => 'Opal Chokethorn Shoulder',
 										'icon' => '/esoui/art/icons/gear_undstrangler_shoulders_e.dds',
-										'desc' => 'An Outfit look for shoulders in the Chokethorn style.',
+										'desc' => 'An Outfit look for shoulders in the Opal Chokethorn style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -49126,7 +50258,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10075,
 										'name' => 'Syrabanic Marine Pauldrons',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_shoulders_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -49135,7 +50267,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10084,
 										'name' => 'Syrabanic Marine Arm Cops',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_shoulder_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -49144,7 +50276,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10090,
 										'name' => 'Syrabanic Marine Epaulets',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_shoulder_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -49220,13 +50352,130 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								563 => array (
+										'id' => 10363,
+										'name' => 'Witchmother`s Servant Epaulets',
+										'icon' => '/esoui/art/icons/gear_witchesfest_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								564 => array (
+										'id' => 10444,
+										'name' => 'Y`ffre`s Will Pauldrons',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_shoulder_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								565 => array (
+										'id' => 10453,
+										'name' => 'Y`ffre`s Will Arm Cops',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_shoulder_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								566 => array (
+										'id' => 10459,
+										'name' => 'Y`ffre`s Will Epaulets',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_shoulder_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								567 => array (
+										'id' => 10479,
+										'name' => 'Drowned Mariner Pauldrons',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_shoulder_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								568 => array (
+										'id' => 10488,
+										'name' => 'Drowned Mariner Arm Cops',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_shoulder_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								569 => array (
+										'id' => 10494,
+										'name' => 'Drowned Mariner Epaulets',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_shoulder_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								570 => array (
+										'id' => 10517,
+										'name' => 'Oaken Order Arm Cops',
+										'icon' => '/esoui/art/icons/gear_oakenorder_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								571 => array (
+										'id' => 10534,
+										'name' => 'Red Rook SHOULDER SLOT',
+										'icon' => '/esoui/art/icons/ability_healer_017.dds',
+										'desc' => 'An Outfit look for shoulders in the Template style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								572 => array (
+										'id' => 10551,
+										'name' => 'Seamount Raider Pauldrons',
+										'icon' => '/esoui/art/icons/gear_deepbrine_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Seamount Raider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								573 => array (
+										'id' => 10562,
+										'name' => 'Opal Velidreth Shoulder',
+										'icon' => '/esoui/art/icons/gear_undvelidrethopal_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Opal Velidreth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								574 => array (
+										'id' => 10564,
+										'name' => 'Euphotic Gatekeeper Shoulder',
+										'icon' => '/esoui/art/icons/gear_hadolid_shoulder_a.dds',
+										'desc' => 'Purchased from Urgarlag Chief-bane at an Undaunted Enclave. Obtained rarely by opening Urgalag`s Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								575 => array (
+										'id' => 10566,
+										'name' => 'Archdruid Devyric Shoulder',
+										'icon' => '/esoui/art/icons/gear_terrorbear_shoulder_a.dds',
+										'desc' => 'Purchased from Urgarlag Chief-bane at an Undaunted Enclave. Obtained rarely by opening Urgalag`s Mystery Coffer.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Feet',
-						'numCollectibles' => 501,
+						'numCollectibles' => 511,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1489,
@@ -51014,7 +52263,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3931,
 										'name' => 'Ra Gada Sabatons',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_feet_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -51023,7 +52272,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3937,
 										'name' => 'Ra Gada Boots',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_feet_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -51059,7 +52308,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3974,
 										'name' => 'Ra Gada Shoes',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_feet_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -53642,7 +54891,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10079,
 										'name' => 'Syrabanic Marine Sabatons',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_feet_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -53651,7 +54900,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10085,
 										'name' => 'Syrabanic Marine Boots',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_feet_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -53660,7 +54909,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10092,
 										'name' => 'Syrabanic Marine Shoes',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_feet_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -53736,13 +54985,103 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								502 => array (
+										'id' => 10364,
+										'name' => 'Witchmother`s Servant Shoes',
+										'icon' => '/esoui/art/icons/gear_witchesfest_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								503 => array (
+										'id' => 10448,
+										'name' => 'Y`ffre`s Will Sabatons',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_feet_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								504 => array (
+										'id' => 10454,
+										'name' => 'Y`ffre`s Will Boots',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_feet_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								505 => array (
+										'id' => 10461,
+										'name' => 'Y`ffre`s Will Shoes',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_feet_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								506 => array (
+										'id' => 10483,
+										'name' => 'Drowned Mariner Sabatons',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_feet_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								507 => array (
+										'id' => 10489,
+										'name' => 'Drowned Mariner Boots',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_feet_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								508 => array (
+										'id' => 10496,
+										'name' => 'Drowned Mariner Shoes',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_feet_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								509 => array (
+										'id' => 10518,
+										'name' => 'Oaken Order Boots',
+										'icon' => '/esoui/art/icons/gear_oakenorder_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								510 => array (
+										'id' => 10535,
+										'name' => 'Red Rook FEET SLOT',
+										'icon' => '/esoui/art/icons/ability_healer_017.dds',
+										'desc' => 'An Outfit look for footwear in the Template style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								511 => array (
+										'id' => 10552,
+										'name' => 'Seamount Raider Sabatons',
+										'icon' => '/esoui/art/icons/gear_deepbrine_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Seamount Raider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Hands',
-						'numCollectibles' => 503,
+						'numCollectibles' => 513,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1490,
@@ -55530,7 +56869,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3932,
 										'name' => 'Ra Gada Gauntlets',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_hands_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -55539,7 +56878,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3938,
 										'name' => 'Ra Gada Bracers',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_hands_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -55575,7 +56914,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3975,
 										'name' => 'Ra Gada Gloves',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_hands_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -58176,7 +59515,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10078,
 										'name' => 'Syrabanic Marine Gauntlets',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_hands_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -58185,7 +59524,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10086,
 										'name' => 'Syrabanic Marine Bracers',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_hands_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -58194,7 +59533,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10093,
 										'name' => 'Syrabanic Marine Gloves',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_hands_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -58270,13 +59609,103 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								504 => array (
+										'id' => 10365,
+										'name' => 'Witchmother`s Servant Gloves',
+										'icon' => '/esoui/art/icons/gear_witchesfest_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								505 => array (
+										'id' => 10447,
+										'name' => 'Y`ffre`s Will Gauntlets',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_hands_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								506 => array (
+										'id' => 10455,
+										'name' => 'Y`ffre`s Will Bracers',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_hands_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								507 => array (
+										'id' => 10462,
+										'name' => 'Y`ffre`s Will Gloves',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_hands_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								508 => array (
+										'id' => 10482,
+										'name' => 'Drowned Mariner Gauntlets',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_hands_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								509 => array (
+										'id' => 10490,
+										'name' => 'Drowned Mariner Bracers',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_hands_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								510 => array (
+										'id' => 10497,
+										'name' => 'Drowned Mariner Gloves',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_hands_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								511 => array (
+										'id' => 10519,
+										'name' => 'Oaken Order Bracers',
+										'icon' => '/esoui/art/icons/gear_oakenorder_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								512 => array (
+										'id' => 10536,
+										'name' => 'Red Rook HAND SLOT',
+										'icon' => '/esoui/art/icons/ability_healer_017.dds',
+										'desc' => 'An Outfit look for hands in the Template style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								513 => array (
+										'id' => 10553,
+										'name' => 'Seamount Raider Gauntlets',
+										'icon' => '/esoui/art/icons/gear_deepbrine_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Seamount Raider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Waist',
-						'numCollectibles' => 496,
+						'numCollectibles' => 504,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1502,
@@ -60019,7 +61448,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3987,
 										'name' => 'Ra Gada Girdle',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_heavy_waist_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -60028,7 +61457,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3988,
 										'name' => 'Ra Gada Belt',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_medium_waist_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -60037,7 +61466,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3989,
 										'name' => 'Ra Gada Sash',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_light_waist_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -62638,7 +64067,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10077,
 										'name' => 'Syrabanic Marine Girdle',
 										'icon' => '/esoui/art/icons/gear_amenossea_hvy_waist_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -62647,7 +64076,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10083,
 										'name' => 'Syrabanic Marine Belt',
 										'icon' => '/esoui/art/icons/gear_amenossea_med_waist_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -62656,7 +64085,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10091,
 										'name' => 'Syrabanic Marine Sash',
 										'icon' => '/esoui/art/icons/gear_amenossea_lgt_waist_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -62741,6 +64170,78 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								497 => array (
+										'id' => 10366,
+										'name' => 'Witchmother`s Servant Sash',
+										'icon' => '/esoui/art/icons/gear_witchesfest_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								498 => array (
+										'id' => 10446,
+										'name' => 'Y`ffre`s Will Girdle',
+										'icon' => '/esoui/art/icons/gear_feraldruid_heavy_waist_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								499 => array (
+										'id' => 10452,
+										'name' => 'Y`ffre`s Will Belt',
+										'icon' => '/esoui/art/icons/gear_feraldruid_medium_waist_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								500 => array (
+										'id' => 10460,
+										'name' => 'Y`ffre`s Will Sash',
+										'icon' => '/esoui/art/icons/gear_feraldruid_light_waist_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								501 => array (
+										'id' => 10481,
+										'name' => 'Drowned Mariner Girdle',
+										'icon' => '/esoui/art/icons/gear_shipwreck_heavy_waist_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								502 => array (
+										'id' => 10487,
+										'name' => 'Drowned Mariner Belt',
+										'icon' => '/esoui/art/icons/gear_shipwreck_medium_waist_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								503 => array (
+										'id' => 10495,
+										'name' => 'Drowned Mariner Sash',
+										'icon' => '/esoui/art/icons/gear_shipwreck_light_waist_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								504 => array (
+										'id' => 10520,
+										'name' => 'Oaken Order Belt',
+										'icon' => '/esoui/art/icons/gear_oakenorder_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -62758,7 +64259,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Two-Handed',
-						'numCollectibles' => 636,
+						'numCollectibles' => 652,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1558,
@@ -64870,7 +66371,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3915,
 										'name' => 'Ra Gada Battle Axe',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_2haxe_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -64879,7 +66380,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3916,
 										'name' => 'Ra Gada Maul',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_2hhammer_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -64888,7 +66389,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3917,
 										'name' => 'Ra Gada Greatsword',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_2hsword_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -66931,7 +68432,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 7571,
 										'name' => 'Lyris`s Icereach Battle Axe',
 										'icon' => '/esoui/art/icons/gear_lyristitanborn_2haxe_a.dds',
-										'desc' => 'Alter your two-handed weapon`s Outfit style with a replica of Lyris Titanborn`s Icereach Battle Axe.',
+										'desc' => 'An Outfit look for two-handed weapons in the Lyris`s Icereach Battle Axe style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -67201,7 +68702,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 8073,
 										'name' => 'Antiquarian`s Pickaxe',
 										'icon' => '/esoui/art/icons/gear_pickaxe.dds',
-										'desc' => 'Alter your two-handed weapon`s Outfit style with the Antiquarian`s Pickaxe.',
+										'desc' => 'An Outfit look for two-handed weapons in the Antiquarian`s Pickaxe style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -67795,7 +69296,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 8960,
 										'name' => 'Fire-Forged Maul',
 										'icon' => '/esoui/art/icons/gear_fireforged_2hhammer_a.dds',
-										'desc' => 'An Outfit look for two-handed weapons.',
+										'desc' => 'An Outfit look for two-handed weapons in the Fire-Forged Maul style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -68389,7 +69890,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10095,
 										'name' => 'Syrabanic Marine Battle Axe',
 										'icon' => '/esoui/art/icons/gear_amenossea_2haxe_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -68398,7 +69899,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10096,
 										'name' => 'Syrabanic Marine Maul',
 										'icon' => '/esoui/art/icons/gear_amenossea_2hmace_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -68407,7 +69908,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10097,
 										'name' => 'Syrabanic Marine Greatsword',
 										'icon' => '/esoui/art/icons/gear_amenossea_2hsword_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -68483,13 +69984,157 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								637 => array (
+										'id' => 10343,
+										'name' => 'Anvil of Zenithar Greatsword',
+										'icon' => '/esoui/art/icons/gear_rivenwrath_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Anvil of Zenithar style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								638 => array (
+										'id' => 10350,
+										'name' => 'Runepriest`s Greatsword',
+										'icon' => '/esoui/art/icons/gear_runestrike_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Runepriest`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								639 => array (
+										'id' => 10355,
+										'name' => 'Passion Dancer`s Battle Axe',
+										'icon' => '/esoui/art/icons/gear_passiondancer_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Passion Dancer`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								640 => array (
+										'id' => 10372,
+										'name' => 'Witchmother`s Servant Battle Axe',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								641 => array (
+										'id' => 10377,
+										'name' => 'Witchmother`s Servant Maul',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_2hhammer_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								642 => array (
+										'id' => 10378,
+										'name' => 'Witchmother`s Servant Greatsword',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								643 => array (
+										'id' => 10464,
+										'name' => 'Y`ffre`s Will Battle Axe',
+										'icon' => '/esoui/art/icons/gear_feraldruid_2haxe_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								644 => array (
+										'id' => 10465,
+										'name' => 'Y`ffre`s Will Maul',
+										'icon' => '/esoui/art/icons/gear_feraldruid_2hhammer_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								645 => array (
+										'id' => 10466,
+										'name' => 'Y`ffre`s Will Greatsword',
+										'icon' => '/esoui/art/icons/gear_feraldruid_2hsword_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								646 => array (
+										'id' => 10499,
+										'name' => 'Drowned Mariner Battle Axe',
+										'icon' => '/esoui/art/icons/gear_shipwreck_2haxe_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								647 => array (
+										'id' => 10500,
+										'name' => 'Drowned Mariner Maul',
+										'icon' => '/esoui/art/icons/gear_shipwreck_2hhammer_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								648 => array (
+										'id' => 10501,
+										'name' => 'Drowned Mariner Greatsword',
+										'icon' => '/esoui/art/icons/gear_shipwreck_2hsword_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								649 => array (
+										'id' => 10521,
+										'name' => 'Oaken Order Battle Axe',
+										'icon' => '/esoui/art/icons/gear_oakenorder_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								650 => array (
+										'id' => 10526,
+										'name' => 'Oaken Order Maul',
+										'icon' => '/esoui/art/icons/gear_oakenorder_2hhammer_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								651 => array (
+										'id' => 10527,
+										'name' => 'Oaken Order Greatsword',
+										'icon' => '/esoui/art/icons/gear_oakenorder_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								652 => array (
+										'id' => 10556,
+										'name' => 'Opal Velidreth Maul',
+										'icon' => '/esoui/art/icons/gear_velidreth_2hhammer_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Opal Velidreth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'One-Handed',
-						'numCollectibles' => 818,
+						'numCollectibles' => 838,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1563,
@@ -70592,7 +72237,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3918,
 										'name' => 'Ra Gada Axe',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_12haxe_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -70601,7 +72246,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3920,
 										'name' => 'Ra Gada Mace',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_1hhammer_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -70610,7 +72255,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3923,
 										'name' => 'Ra Gada Sword',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_1hsword_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -71942,7 +73587,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 4897,
 										'name' => 'Ra Gada Dagger',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_dagger_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -72509,7 +74154,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 5472,
 										'name' => 'Skyforge Smith Hammer',
 										'icon' => '/esoui/art/icons/gear_skyforge_hammer.dds',
-										'desc' => 'The Skyforge Smith Hammer is an Outfit style for one-handed weapons available only to experienced crafters: those with Legendary gear, who know every Trait, and at least 50 Crafting Motifs. You can`t buy it—wielding this shows you`re a crafting legend.',
+										'desc' => 'An Outfit look for one-handed weapons in the Skyforge Smith Hammer style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -75731,7 +77376,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10098,
 										'name' => 'Syrabanic Marine Axe',
 										'icon' => '/esoui/art/icons/gear_amenossea_axe_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -75740,7 +77385,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10100,
 										'name' => 'Syrabanic Marine Mace',
 										'icon' => '/esoui/art/icons/gear_amenossea_mace_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -75749,7 +77394,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10103,
 										'name' => 'Syrabanic Marine Sword',
 										'icon' => '/esoui/art/icons/gear_amenossea_sword_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -75758,7 +77403,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10104,
 										'name' => 'Syrabanic Marine Dagger',
 										'icon' => '/esoui/art/icons/gear_amenossea_dagger_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -75852,13 +77497,193 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								819 => array (
+										'id' => 10347,
+										'name' => 'Anvil of Zenithar Axe',
+										'icon' => '/esoui/art/icons/gear_rivenwrath_1haxe_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Anvil of Zenithar style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								820 => array (
+										'id' => 10354,
+										'name' => 'Runepriest`s Sword',
+										'icon' => '/esoui/art/icons/gear_runestrike_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Runepriest`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								821 => array (
+										'id' => 10359,
+										'name' => 'Passion Dancer`s Sword',
+										'icon' => '/esoui/art/icons/gear_passiondancer_sword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Passion Dancer`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								822 => array (
+										'id' => 10376,
+										'name' => 'Witchmother`s Servant Axe',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_1haxe_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								823 => array (
+										'id' => 10379,
+										'name' => 'Witchmother`s Servant Mace',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_1hhamer_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								824 => array (
+										'id' => 10380,
+										'name' => 'Witchmother`s Servant Sword',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								825 => array (
+										'id' => 10381,
+										'name' => 'Witchmother`s Servant Dagger',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_dagger_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								826 => array (
+										'id' => 10467,
+										'name' => 'Y`ffre`s Will Axe',
+										'icon' => '/esoui/art/icons/gear_feraldruid_1haxe_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								827 => array (
+										'id' => 10469,
+										'name' => 'Y`ffre`s Will Mace',
+										'icon' => '/esoui/art/icons/gear_feraldruid_1hhamer_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								828 => array (
+										'id' => 10472,
+										'name' => 'Y`ffre`s Will Sword',
+										'icon' => '/esoui/art/icons/gear_feraldruid_1hsword_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								829 => array (
+										'id' => 10473,
+										'name' => 'Y`ffre`s Will Dagger',
+										'icon' => '/esoui/art/icons/gear_feraldruid_dagger_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								830 => array (
+										'id' => 10502,
+										'name' => 'Drowned Mariner Axe',
+										'icon' => '/esoui/art/icons/gear_shipwreck_1haxe_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								831 => array (
+										'id' => 10504,
+										'name' => 'Drowned Mariner Mace',
+										'icon' => '/esoui/art/icons/gear_shipwreck_1hhamer_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								832 => array (
+										'id' => 10507,
+										'name' => 'Drowned Mariner Sword',
+										'icon' => '/esoui/art/icons/gear_shipwreck_sword_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								833 => array (
+										'id' => 10508,
+										'name' => 'Drowned Mariner Dagger',
+										'icon' => '/esoui/art/icons/gear_shipwreck_dagger_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								834 => array (
+										'id' => 10525,
+										'name' => 'Oaken Order Axe',
+										'icon' => '/esoui/art/icons/gear_oakenorder_1haxe.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								835 => array (
+										'id' => 10528,
+										'name' => 'Oaken Order Mace',
+										'icon' => '/esoui/art/icons/gear_oakenorder_1hhamer.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								836 => array (
+										'id' => 10529,
+										'name' => 'Oaken Order Sword',
+										'icon' => '/esoui/art/icons/gear_oakenorder_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								837 => array (
+										'id' => 10530,
+										'name' => 'Oaken Order Dagger',
+										'icon' => '/esoui/art/icons/gear_oakenorder_dagger_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								838 => array (
+										'id' => 10560,
+										'name' => 'Opal Velidreth Sword',
+										'icon' => '/esoui/art/icons/gear_velidreth_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Opal Velidreth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Shield',
-						'numCollectibles' => 265,
+						'numCollectibles' => 273,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1554,
@@ -76566,7 +78391,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3921,
 										'name' => 'Ra Gada Shield',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_shield_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -78204,7 +80029,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10101,
 										'name' => 'Syrabanic Marine Shield',
 										'icon' => '/esoui/art/icons/gear_amenossea_sheild_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -78244,13 +80069,85 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								266 => array (
+										'id' => 10345,
+										'name' => 'Anvil of Zenithar Shield',
+										'icon' => '/esoui/art/icons/gear_rivenwrath_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Anvil of Zenithar style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								267 => array (
+										'id' => 10352,
+										'name' => 'Runepriest`s Shield',
+										'icon' => '/esoui/art/icons/gear_runestrike_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Runepriest`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								268 => array (
+										'id' => 10357,
+										'name' => 'Passion Dancer`s Shield',
+										'icon' => '/esoui/art/icons/gear_passiondancer_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Passion Dancer`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								269 => array (
+										'id' => 10374,
+										'name' => 'Witchmother`s Servant Shield',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_sheild_a.dds',
+										'desc' => 'An Outfit look for shields in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								270 => array (
+										'id' => 10470,
+										'name' => 'Y`ffre`s Will Shield',
+										'icon' => '/esoui/art/icons/gear_feraldruid_shield_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								271 => array (
+										'id' => 10505,
+										'name' => 'Drowned Mariner Shield',
+										'icon' => '/esoui/art/icons/gear_shipwreck_shield_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								272 => array (
+										'id' => 10523,
+										'name' => 'Oaken Order Shield',
+										'icon' => '/esoui/art/icons/gear_oakenorder_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								273 => array (
+										'id' => 10558,
+										'name' => 'Opal Velidreth Shield',
+										'icon' => '/esoui/art/icons/gear_velidreth_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Opal Velidreth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bow',
-						'numCollectibles' => 261,
+						'numCollectibles' => 269,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1587,
@@ -78958,7 +80855,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3919,
 										'name' => 'Ra Gada Bow',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_bow_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -80560,7 +82457,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10099,
 										'name' => 'Syrabanic Marine Bow',
 										'icon' => '/esoui/art/icons/gear_amenossea_bow_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -80600,13 +82497,85 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								262 => array (
+										'id' => 10344,
+										'name' => 'Anvil of Zenithar Bow',
+										'icon' => '/esoui/art/icons/gear_rivenwrath_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Anvil of Zenithar style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								263 => array (
+										'id' => 10351,
+										'name' => 'Runepriest`s Bow',
+										'icon' => '/esoui/art/icons/gear_runestrike_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Runepriest`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								264 => array (
+										'id' => 10356,
+										'name' => 'Passion Dancer`s Bow',
+										'icon' => '/esoui/art/icons/gear_passiondancer_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Passion Dancer`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								265 => array (
+										'id' => 10373,
+										'name' => 'Witchmother`s Servant Bow',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								266 => array (
+										'id' => 10468,
+										'name' => 'Y`ffre`s Will Bow',
+										'icon' => '/esoui/art/icons/gear_feraldruid_bow_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								267 => array (
+										'id' => 10503,
+										'name' => 'Drowned Mariner Bow',
+										'icon' => '/esoui/art/icons/gear_shipwreck_bow_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								268 => array (
+										'id' => 10522,
+										'name' => 'Oaken Order Bow',
+										'icon' => '/esoui/art/icons/gear_oakenorder_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								269 => array (
+										'id' => 10557,
+										'name' => 'Opal Velidreth Bow',
+										'icon' => '/esoui/art/icons/gear_velidreth_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Opal Velidreth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Staff',
-						'numCollectibles' => 269,
+						'numCollectibles' => 277,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1583,
@@ -81323,7 +83292,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 3922,
 										'name' => 'Ra Gada Staff',
 										'icon' => '/esoui/art/icons/gear_ancientyokudan_staff_a.dds',
-										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or World Bosses, but only in Craglorn.',
+										'desc' => 'Learned from the Ra Gada Crafting Style, acquired by completing Focus Points. It can also be found from looting treasure chests or defeating delve or world bosses, but only in Craglorn.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -82988,7 +84957,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 10102,
 										'name' => 'Syrabanic Marine Staff',
 										'icon' => '/esoui/art/icons/gear_amenossea_staff_a.dds',
-										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing Dreadsail Reef Dungeon.',
+										'desc' => 'Learned from the Syrabanic Marine Crafting Style, acquired by completing the weekly quest \"Reavers of the Reef\" for Dreadsail Reef Trial.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -83025,6 +84994,78 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Encratis`s Behemoth Staff',
 										'icon' => '/esoui/art/icons/gear_undfiregiant_staff_a.dds',
 										'desc' => 'An Outfit look for staves in the Encratis`s Behemoth style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								270 => array (
+										'id' => 10346,
+										'name' => 'Anvil of Zenithar Staff',
+										'icon' => '/esoui/art/icons/gear_rivenwrath_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Anvil of Zenithar style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								271 => array (
+										'id' => 10353,
+										'name' => 'Runepriest`s Staff',
+										'icon' => '/esoui/art/icons/gear_runestrike_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Runepriest`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								272 => array (
+										'id' => 10358,
+										'name' => 'Passion Dancer`s Staff',
+										'icon' => '/esoui/art/icons/gear_passiondancer_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Passion Dancer`s style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								273 => array (
+										'id' => 10375,
+										'name' => 'Witchmother`s Servant Staff',
+										'icon' => '/esoui/art/icons/gear_pumpkinstem_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Witchmother`s Servant style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								274 => array (
+										'id' => 10471,
+										'name' => 'Y`ffre`s Will Staff',
+										'icon' => '/esoui/art/icons/gear_feraldruid_staff_a.dds',
+										'desc' => 'Learned from the Y`ffre`s Will Crafting Style, acquired by defeating the final boss in Earthen Root Enclave.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								275 => array (
+										'id' => 10506,
+										'name' => 'Drowned Mariner Staff',
+										'icon' => '/esoui/art/icons/gear_shipwreck_staff_a.dds',
+										'desc' => 'Learned from the Drowned Mariner Crafting Style, acquired by defeating the final boss in Graven Deep.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								276 => array (
+										'id' => 10524,
+										'name' => 'Oaken Order Staff',
+										'icon' => '/esoui/art/icons/gear_oakenorder_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Oaken Order style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								277 => array (
+										'id' => 10559,
+										'name' => 'Opal Velidreth Staff',
+										'icon' => '/esoui/art/icons/gear_velidreth_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Opal Velidreth style.',
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 

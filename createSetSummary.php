@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "34";
+$TABLE_SUFFIX = "35pts";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -457,7 +457,7 @@ while (($row = $rowResult->fetch_assoc()))
 		if ($gameIndex == null) $gameIndex = -1;
 		
 		$setName = $db->real_escape_string($setName);
-		$indexName = $this->db->real_escape_string($indexName);
+		$indexName = $db->real_escape_string($indexName);
 		$setBonusDesc = $db->real_escape_string($setBonusDesc);
 		$setBonusDesc1 = $db->real_escape_string($setBonusDesc1);
 		$setBonusDesc2 = $db->real_escape_string($setBonusDesc2);

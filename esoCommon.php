@@ -119,6 +119,8 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"101031" => "7.1",
 		"101032" => "7.2",
 		"101033" => "7.3",
+		"101034" => "8.0",
+		"101035" => "8.1",
 );
 
 
@@ -2016,7 +2018,19 @@ $ESO_SET_INDEXES = array(
 		656 => "Lefthander's Aegis Belt",
 		657 => "Sea-Serpent's Coil",
 		658 => "Oakensoul Ring",
+		660 => "Deeproot Zeal",
+		661 => "Stone's Accord",
+		662 => "Rage of the Ursauk",
+		663 => "Pangrit Denmother",
+		664 => "Grave Inevitability",
+		665 => "Phylactery's Grasp",
+		666 => "Archdruid Devyric",
+		667 => "Euphotic Gatekeeper",
+		668 => "Langour of Peryite",
+		669 => "Nocturnal's Ploy",
+		670 => "Mara's Balm",
 );
+
 
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
 		-1 => "",
@@ -4405,6 +4419,10 @@ function GetEsoItemTableSuffix($version)
 			return "34pts";
 		case '34':
 			return "";
+		case '35pts':
+			return "35pts";
+		case '35':
+			return "35";
 	}
 
 	return "";

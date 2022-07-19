@@ -46,7 +46,7 @@ class CEsoViewPotions
 		
 		if (!array_key_exists($this->inputSolvent, $ESO_SOLVENT_DATA)) $this->inputSolvent = "Lorkhan's Tears";
 		if (array_key_exists($this->inputSolvent, $ESO_SOLVENT_DATA) && $ESO_SOLVENT_DATA[$this->inputSolvent]['isPoison']) $this->inputIsPoison = true;
-				
+		
 		if (array_key_exists("r1", $this->inputParams)) $this->inputReagents[0] = $this->inputParams['r1'];
 		if (array_key_exists("r2", $this->inputParams)) $this->inputReagents[1] = $this->inputParams['r2'];
 		if (array_key_exists("r3", $this->inputParams)) $this->inputReagents[2] = $this->inputParams['r3'];

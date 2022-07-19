@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "34";
+$TABLE_SUFFIX = "35pts";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -165,7 +165,7 @@ foreach ($skills as $skillId => $skillData)
 	$values[] =  "'" . $fixedData['type'] . "'";
 	
 	$columns[] = "cost";
-	$values[] =  $skillData['cost'];
+	$values[] =  "'" . $skillData['cost'] . "'";;
 	
 	$columns[] = "icon";
 	$values[] =  "'" . $skillData['texture'] . "'";

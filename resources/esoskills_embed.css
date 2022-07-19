@@ -66,8 +66,8 @@
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	width: 400px;
 	float: left;
-    padding-right: 5px;
-    border-right: solid 2px #afaf94;	
+	padding-right: 5px;
+	border-right: solid 2px #afaf94;	
 }
 
 #esovsRightBlock {
@@ -79,7 +79,7 @@
 #esovsSkillTree {
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	font-size: 16px;
-    width: 170px;
+	width: 170px;
 	float: left;
 }
 
@@ -88,12 +88,12 @@
 }
 
 .esovsSkillTypeTitle {
-    font-size: 20px;
-    font-weight: bold;
-    color: #000000;
-    padding: 4px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000;
+	padding: 4px;
 	margin: 4px;
-    padding-left: 5px;
+	padding-left: 5px;
 }
 
 .esovsSkillTypeTitle:hover {
@@ -104,11 +104,11 @@
 }
 
 .esovsSkillLineTitle {
-    font-size: 17px;
-    font-weight: bold;
-    color: #000000;
-    padding: 2px;
-    padding-left: 5px;
+	font-size: 17px;
+	font-weight: bold;
+	color: #000000;
+	padding: 2px;
+	padding-left: 5px;
 }
 
 .esovsSkillLineTitle:hover {
@@ -141,23 +141,23 @@
 
 .esovsSkillContentTitle {
 	font-size: 24px;
-    font-weight: bold;
-    color: #000000;
-    padding: 8px;
-    padding-left: 0px;
+	font-weight: bold;
+	color: #000000;
+	padding: 8px;
+	padding-left: 0px;
 }
 
 .esovsSkillBlockTypeTitle {
 	font-size: 20px;
-    font-weight: bold;
-    color: #666622;
-    padding: 5px;
+	font-weight: bold;
+	color: #666622;
+	padding: 5px;
 }
 
 .esovsAbilityBlock {
 	padding: 5px;
-    display: inline-block;
-    width: 99%;
+	display: inline-block;
+	width: 99%;
 	border-radius: 20px;
 	position: relative;
 }
@@ -170,10 +170,10 @@
 
 .esovsAbilityBlockTitle {
 	font-size: 18px;
-    font-weight: bold;
-    color: #000000;
-    margin-left: 10px;
-    display: block;
+	font-weight: bold;
+	color: #000000;
+	margin-left: 10px;
+	display: block;
 	width: auto;
 	overflow: hidden;
 }
@@ -183,9 +183,9 @@
 	width: 52px;
 	height: 52px;
 	background-size: 100% 100%;
-    margin: 5px;
-    float: left;
-    position: relative;
+	margin: 5px;
+	float: left;
+	position: relative;
 	webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -218,23 +218,23 @@
 
 .esovsAbilityBlockIcon img, .esovsAbilityBlockPassiveIcon img {
 	width: 48px;
-    height: 48px;
-    margin-top: 2px;
-    margin-left: 2px;
-    vertical-align: middle;
+	height: 48px;
+	margin-top: 2px;
+	margin-left: 2px;
+	vertical-align: middle;
 }
 
 .esovsAbilityBlockIconLevel {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    color: #FFFF99;
-    text-shadow: 0px 0px 2px black;
-    z-index: 10;
-    background-color: rgba(0,0,0,0.5);
-    border-radius: 10px;
-    padding: 1px;
-    box-shadow: 0px 0px 2px rgb(0, 0, 0);
+	position: absolute;
+	bottom: 2px;
+	right: 2px;
+	color: #FFFF99;
+	text-shadow: 0px 0px 2px black;
+	z-index: 10;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 10px;
+	padding: 1px;
+	box-shadow: 0px 0px 2px rgb(0, 0, 0);
 	webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
@@ -246,12 +246,12 @@
 
 .esovsAbilityBlockDesc {
 	font-size: 14px;
-    font-weight: normal;
-    color: #000000;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 10px;
-    line-height: 1.2em;
+	font-weight: normal;
+	color: #000000;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+	line-height: 1.2em;
 }
 
 .esovsAbilityBlockEffectLines {
@@ -266,20 +266,21 @@
 
 .esovsAbilityBlockLevel {
 	font-size: 15px;
-    font-weight: bold;
-    color: #000000;
-    display: inline-block;
-    float: right;
-    text-align: right;
+	font-weight: bold;
+	color: #000000;
+	display: inline-block;
+	float: right;
+	text-align: right;
 }
 
 .esovsAbilityBlockCost {
 	font-size: 17px;
-    font-weight: bold;
-    color: #000000;
-    display: inline-block;
-    text-align: center;
-    float: center;
+	font-weight: bold;
+	color: #000000;
+	display: inline-block;
+	text-align: center;
+	float: center;
+	margin-right: 10px;
 }
 
 .esovsAbilityBlockTitleLabel {
@@ -292,7 +293,7 @@
 	margin-left: 60px;
 	overflow: hidden;
 	border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 
 .esovsAbilityBlockList .esovsAbilityBlockDesc {
@@ -307,9 +308,9 @@
 .esovsAbilityBlockList .esovsAbilityBlockIcon img, 
 .esovsAbilityBlockList .esovsAbilityBlockPassiveIcon img {
 	width: 48px;
-    height: 48px;
-    margin-top: 2px;
-    margin-left: 2px;
+	height: 48px;
+	margin-top: 2px;
+	margin-left: 2px;
 }
 
 .esovsBlockClear {
@@ -382,7 +383,7 @@
 	color: #C5C29E;
 	line-height: 125%;
 	text-align: left;
-    white-space: normal;
+	white-space: normal;
 	padding: 10px;
 	display: inline-block;
 }
@@ -391,7 +392,7 @@
 	width: 100%;
 	height: 3px;
 	padding-top: 10px;
-    padding-bottom: 5px;
+	padding-bottom: 5px;
 }
 
 .esovsSkillTooltipDesc {
@@ -495,15 +496,15 @@
 	width: 100px;
 	font-weight: bold;
 	text-align: right;
-    display: inline-block;
-    vertical-align: top;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .esovsRawDataValue {
 	width: 280px;
-    display: inline-block;
+	display: inline-block;
 	text-align: left;
-    padding-left: 10px;
+	padding-left: 10px;
 	vertical-align: top;
 	overflow: hidden;
 }
@@ -555,21 +556,21 @@
 .esovsShowHideButton {
 	width: 100%;
 	background-color: #DBBFA5;
-    color: #666666;
-    height: 18px;
-    line-height: 18px;
-    text-align: center;
-    vertical-align: middle;
-    border-style: solid;
-    border-color: #bbb #888 #666 #aaa;
-    border-width: 1px 2px 2px 1px;
+	color: #666666;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	vertical-align: middle;
+	border-style: solid;
+	border-color: #bbb #888 #666 #aaa;
+	border-width: 1px 2px 2px 1px;
 }
 
 .esovsShowHideButton:hover {
 	cursor: pointer; 
 	background-color: #AB9F95;
-    border-color: #666 #aaa #bbb #888;
-    border-width: 2px 1px 1px 2px;
+	border-color: #666 #aaa #bbb #888;
+	border-width: 2px 1px 1px 2px;
 }
 
 #esovsSearchBlock {
@@ -614,7 +615,7 @@
 	width: 360px;
 	line-height: 125%;
 	text-align: left;
-    white-space: normal;
+	white-space: normal;
 	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	position: absolute;
 	z-index: 50;
@@ -665,10 +666,10 @@
 
 #esovsSkillBar {
 	width: 580px;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    white-space: nowrap;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	white-space: nowrap;
 	padding-top: 10px;
 	webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -696,32 +697,32 @@
 
 .esovsSkillBarItem {
 	display: inline-block;
-    width: 68px;
-    height: 68px;
-    background-image: url(eso_ability_frame.png);
-    background-size: 100% 100%;
-    vertical-align: middle;
-    text-align: center;
+	width: 68px;
+	height: 68px;
+	background-image: url(eso_ability_frame.png);
+	background-size: 100% 100%;
+	vertical-align: middle;
+	text-align: center;
 	background-color: black;
 }
 
 .esovsSkillBarTitle {
 	display: inline-block;
-    vertical-align: middle;
-    padding-right: 10px;
-    width: 75px;
-    text-align: right;
+	vertical-align: middle;
+	padding-right: 10px;
+	width: 75px;
+	text-align: right;
 	font-weight: bold;
-    font-size: 17px;    
+	font-size: 17px;
 }
 
 .esovsSkillBarIcon {
 	width: 64px;
-    height: 64px;
-    left: 0px;
-    top: 2px;
-    position: relative;
-    background-color: black;
+	height: 64px;
+	left: 0px;
+	top: 2px;
+	position: relative;
+	background-color: black;
 }
 
 #esovsSkillPointsContent {
@@ -751,7 +752,7 @@
 
 .esovsSkillLineResetAll {
 	float: right;
-    margin: 10px;
+	margin: 10px;
 }
 
 .esovsSkillAcceptHover {
