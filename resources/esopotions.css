@@ -429,3 +429,19 @@ a:hover {
 #esopdFindItemLinkRoot {
 	padding: 5px;
 }
+
+.esopdButtonSort {
+	display: inline-block;
+	width: 100px;
+	padding: 4px;
+	background: #f5deb3;
+	text-align: center;
+	cursor: pointer;
+	font-size: smaller;
+	border: 1px solid #ccc;
+	margin-bottom: 4px;
+}
+
+.esopdButtonSort:hover {
+	background: #eee;
+}

@@ -18,6 +18,8 @@
 		<button onclick="OnEsoPotionEffectFind()"  id="esopdFindEffects">Find</button>
 		<button onclick="OnEsoPotionEffectReset()" id="esopdResetEffects">Reset</button>
 		<h3>Effects</h3>
+		<div class='esopdButtonSort' id='esopdButtonSortByName'>Sort By Name</div>
+		<div class='esopdButtonSort' id='esopdButtonSortByID'>Sort By ID</div>
 		{effects}
 	</div>
 	<div id="esopdCenter">

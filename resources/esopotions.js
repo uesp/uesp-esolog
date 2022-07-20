@@ -1041,6 +1041,34 @@ function ShowBadEsoPotion(isPoison)
 }
 
 
+function OnClickEsoSortByName()
+{
+	var effects = $('#esopdEffects .esopdEffect').get();
+	
+	effects.sort(function(a, b) {
+		var name1 = $(a).children(".esopdEffectName");
+		var name2 = $(b).children(".esopdEffectName");
+		return name1.text().toUpperCase().localeCompare(name2.text().toUpperCase());
+	});
+	
+	$.each(effects, function(idx, itm) { $("#esopdEffects").append(itm); });
+}
+
+
+function OnClickEsoSortByID()
+{
+	var effects = $('#esopdEffects .esopdEffect').get();
+	
+	effects.sort(function(a, b) {
+		var id1 = parseInt($(a).attr("effectindex"));
+		var id2 = parseInt($(b).attr("effectindex"));
+		return id1 - id2;
+	});
+	
+	$.each(effects, function(idx, itm) { $("#esopdEffects").append(itm); });
+}
+
+
 function esopdOnDocReady()
 {
 	EsoPotionItemLinkPopup = $("#esopdTooltip");
@@ -1058,6 +1086,8 @@ function esopdOnDocReady()
 	$("#esopdFindOneEffect").change(OnEsoFindOneEffect)
 	$("#esopdFindTwoEffects").change(OnEsoFindTwoEffects)
 	$("#esopdFindThreeEffects").change(OnEsoFindThreeEffects)
+	$("#esopdButtonSortByName").click(OnClickEsoSortByName);
+	$("#esopdButtonSortByID").click(OnClickEsoSortByID);
 	
 	UpdateEsoPotion();
 }
