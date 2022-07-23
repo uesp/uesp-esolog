@@ -103,7 +103,8 @@ class CEsoGetGoldenVendorHtml
 	private function MakeNameId($name)
 	{
 		$nameId = strtolower($name);
-		
+		+
+		$nameId = str_replace(" pauldrons", " shoulders", $nameId);
 		$nameId = str_replace(" pauldron", " shoulders", $nameId);
 		$nameId = str_replace(" arm cops", " shoulders", $nameId);
 		$nameId = str_replace(" epaulets", " shoulders", $nameId);
@@ -117,6 +118,7 @@ class CEsoGetGoldenVendorHtml
 	
 	private function TransformName($name)
 	{
+		$name = str_ireplace(" Pauldrons", " Shoulders", $name);
 		$name = str_ireplace(" Pauldron", " Shoulders", $name);
 		$name = str_ireplace(" Arm Cops", " Shoulders", $name);
 		$name = str_ireplace(" Epaulets", " Shoulders", $name);
