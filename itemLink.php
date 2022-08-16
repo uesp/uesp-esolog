@@ -1152,6 +1152,15 @@ class CEsoItemLink
 		
 		if (!$this->setItemData)
 		{
+			$query = "SELECT * FROM $setTable WHERE setName LIKE '%$safeSet%' LIMIT 1;";
+			$result = $this->db->query($query);
+			if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+			
+			$this->setItemData = $result->fetch_assoc();
+		}
+		
+		if (!$this->setItemData)
+		{
 			$safeSet = strtolower($this->itemSet);
 			$safeSet = str_replace("'", "", $safeSet);
 			$safeSet = str_replace(",", "", $safeSet);
