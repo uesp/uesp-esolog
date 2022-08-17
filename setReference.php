@@ -262,7 +262,7 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$articleName = str_replace(' ', '_', $set['setName']);
 			$fixupName = $this->WIKI_ARTICLE_FIXUP[$set['setName']];
 			if ($fixupName != null) $articleName = str_replace(' ', '_', $fixupName);
-			$wikiLink = "https://en.uesp.net/wiki/Online:$articleName";
+			$wikiLink = "https://en.uesp.net/wiki/Online:$articleName?set";
 			
 			$output .= "<tr>\n";
 			$output .= "<td><b>$name</b></td>\n";
@@ -272,9 +272,9 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$output .= "<td>$itemSlots</td>\n";
 			
 			if ($this->showImage) 
-				$output .= "<td style='min-width: 320px'><a href=\"$wikiLink\">$name</a><br/><img src=\"$imageLink\"><br/><a href=\"$imageLink\">$imageLink</a></td>\n";
+				$output .= "<td style='min-width: 320px'><a href=\"$wikiLink\" setname=\"$name\">$name</a><br/><img src=\"$imageLink\"><br/><a href=\"$imageLink\">$imageLink</a></td>\n";
 			else
-				$output .= "<td><a href=\"$wikiLink\">$name</a><p/><a href=\"$imageLink\">$imageLink</a></td>\n";
+				$output .= "<td><a href=\"$wikiLink\" setname=\"$name\">$name</a><p/><a href=\"$imageLink\">$imageLink</a></td>\n";
 			
 			$output .= "</tr>\n";
 		}
