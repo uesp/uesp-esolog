@@ -298,6 +298,8 @@ $query = "CREATE TABLE IF NOT EXISTS setSummaryTmp(
 			setBonusDesc TEXT NOT NULL,
 			itemSlots TEXT NOT NULL,
 			gameId INTEGER NOT NULL DEFAULT 0,
+			type TINYTEXT NOT NULL,
+			sources TINYTEXT NOT NULL,
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12)
 		) ENGINE=MYISAM;";
 
@@ -312,6 +314,25 @@ foreach ($ESO_SET_INDEXES as $setIndex => $setName)
 	if ($ESO_SETINDEX_MAP[$setName] != null) print ("\tWarning: Duplicate set index $setIndex for '$setName'!\n");
 	$ESO_SETINDEX_MAP[$setName] = $setIndex;
 }
+
+$count = count($ESO_SETINDEX_MAP);
+print("Found $count set index records!\n");
+
+$query = "SELECT * FROM setInfo;";
+$rowResult = $db->query($query);
+if (!$rowResult) exit("ERROR: Database query error (loading setInfo)!\n" . $db->error);
+$rowResult->data_seek(0);
+
+$setInfos = [];
+
+while (($row = $rowResult->fetch_assoc()))
+{
+	$setName = strtolower($row['setName']);
+	$setInfos[$setName] = $row;
+}
+
+$count = count($setInfos);
+print("Loaded $count setInfo records!\n");
 
 $query = "SELECT * FROM minedItem".$SOURCEITEMTABLE.$TABLE_SUFFIX." WHERE setName!='' ORDER BY itemId DESC;";
 $rowResult = $db->query($query);
@@ -456,6 +477,20 @@ while (($row = $rowResult->fetch_assoc()))
 		$gameIndex = $ESO_SETINDEX_MAP[strtolower($setName)];
 		if ($gameIndex == null) $gameIndex = -1;
 		
+		$setInfo = $setInfos[strtolower($setName)];
+		$setType = "";
+		$setSources = "";
+		
+		if ($setInfo)
+		{
+			$setType = $db->real_escape_string($setInfo['type']);
+			$setSources = $db->real_escape_string($setInfo['sources']);
+		}
+		else
+		{
+			print("\t\tWARNING: No $setName found in set info!\n");
+		}
+		
 		$setName = $db->real_escape_string($setName);
 		$indexName = $db->real_escape_string($indexName);
 		$setBonusDesc = $db->real_escape_string($setBonusDesc);
@@ -472,8 +507,8 @@ while (($row = $rowResult->fetch_assoc()))
 		$setBonusDesc11 = $db->real_escape_string($setBonusDesc11);
 		$setBonusDesc12 = $db->real_escape_string($setBonusDesc12);
 		
-		$query  = "INSERT INTO setSummaryTmp(setName, indexName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12, setBonusDesc, gameId) ";
-		$query .= "VALUES('$setName', '$indexName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc6', '$setBonusDesc7', '$setBonusDesc8', '$setBonusDesc9', '$setBonusDesc10', '$setBonusDesc11', '$setBonusDesc12', '$setBonusDesc', $gameIndex);";
+		$query  = "INSERT INTO setSummaryTmp(setName, indexName, setMaxEquipCount, setBonusCount, itemCount, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12, setBonusDesc, gameId, type, sources) ";
+		$query .= "VALUES('$setName', '$indexName', $setMaxEquipCount, $setBonusCount, 1, '$setBonusDesc1', '$setBonusDesc2', '$setBonusDesc3', '$setBonusDesc4', '$setBonusDesc5', '$setBonusDesc6', '$setBonusDesc7', '$setBonusDesc8', '$setBonusDesc9', '$setBonusDesc10', '$setBonusDesc11', '$setBonusDesc12', '$setBonusDesc', $gameIndex, '$setType', '$setSources');";
 		
 		$result = $db->query($query);
 		if (!$result) exit("ERROR: Database query error inserting into table!\n" . $db->error . "\n" . $query);

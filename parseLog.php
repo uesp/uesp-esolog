@@ -3744,6 +3744,17 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create goldenVendorItems table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS setInfo (
+						setName TINYTEXT NOT NULL,
+						type TINYTEXT NOT NULL,
+						sources TINYTEXT NOT NULL,
+				 		PRIMARY KEY idx_setName(setName(64))
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create goldenVendorItems table!");
+		
 		$this->skillTooltips->CreateTable();
 		
 		return true;

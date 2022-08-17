@@ -16,10 +16,61 @@ require("esoCommon.php");
 class CUespEsoSetReference
 {
 	public $version = "";
+	public $showImage = true;
 	
 	public $db = null;
 	public $lastQuery = "";
 	public $sets = [];
+	
+	public $WIKI_ARTICLE_FIXUP = [
+			"Agility" => "Agility (set)",
+			"Alessian Order" => "Alessian Order (set)",
+			"Balorgh" => "Balorgh (set)",
+			"Baron Thirsk" => "Baron Thirsk (set)",
+			"Baron Zaudrus" => "Baron Zaudrus (set)",
+			"Bloodspawn" => "Bloodspawn (set)",
+ 			"Chokethorn" => "Chokethorn (set)",
+			"Giant Spider" => "Giant Spider (set)",
+			"Glorgoloch the Destroyer" => "Glorgoloch the Destroyer (set)",
+			"Grave Guardian" => "Grave Guardian (set)",
+			"Grothdarr" => "Grothdarr (set)",
+			"Grundwulf" => "Grundwulf (set)",
+			"Iceheart" => "Iceheart (set)",
+			"Immolator Charr" => "Immolator Charr (set)",
+			"Infernal Guardian" => "Infernal Guardian (set)",
+			"Kargaeda" => "Kargaeda (set)",
+			"Lady Malygda" => "Lady Malygda (set)",
+			"Lady Thorn" => "Lady Thorn (set)",
+			"Maarselok" => "Maarselok (set)",
+			"Magma Incarnate" => "Magma Incarnate (set)",
+			"Maw of the Infernal" => "Maw of the Infernal (set)",
+			"Might Chudan" => "Might Chudan (set)",
+			"Molag Kena" => "Molag Kena (set)",
+			"Mother Ciannait" => "Mother Ciannait (set)",
+			"Nazaray" => "Nazaray (set)",
+			"Nerien'eth" => "Nerien'eth (set)",
+			"Night Terror" => "Night Terror (set)",
+			"Nunatak" => "Nunatak (set)",
+			"Selene" => "Selene (set)",
+			"Sentinel of Rkugamz" => "Sentinel of Rkugamz (set)",
+			"Sentry" => "Sentry (set)",
+			"Shadow Walker" => "Shadow Walker (set)",
+			"Shadowrend" => "Shadowrend (set)",
+			"Slimecraw" => "Slimecraw (set)",
+			"Spawn of Mephala" => "Spawn of Mephala (set)",
+			"Stone Husk" => "Stone Husk (set)",
+			"Stormfist" => "Stormfist (set)",
+			"Swarm Mother" => "Swarm Mother (set)",
+			"Symphony of Blades" => "Symphony of Blades (set)",
+			"Thurvokun" => "Thurvokun (set)",
+			"Tremorscale" => "Tremorscale (set)",
+			"The Troll King" => "The Troll King (set)",
+			"Valkyn Skoria" => "Valkyn Skoria (set)",
+			"Vampire Lord" => "Vampire Lord (set)",
+			"Velidreth" => "Velidreth (set)",
+			"Winterborn" => "Winterborn (set)",
+			"Zoal the Ever-Wakeful" => "Zoal the Ever-Wakeful (set)",
+	];
 	
 	
 	public function __construct()
@@ -45,6 +96,11 @@ class CUespEsoSetReference
 		{
 			$this->version = trim($this->inputParams['version']);
 			if ($this->version === strval(GetEsoUpdateVersion())) $this->version = "";
+		}
+		
+		if (array_key_exists('showimage', $this->inputParams)) 
+		{
+			$this->showImage = intval($this->inputParams['showImage']);
 		}
 	}
 	
@@ -88,6 +144,7 @@ class CUespEsoSetReference
 		
 		$tables = array();
 		$output .= "<form action='?' method='get' style='display: inline-block;'>";
+		if (!$this->showImage) $output .= "<input type='hidden' name='showimage' value='0'>";
 		$output .= "<select name='version'>";
 		
 		$tables = array();
@@ -184,6 +241,8 @@ for more information. Some data is extracted directly from the ESO game data fil
 		$output .= "<tr>\n";
 		$output .= "<th>Set Name</th>";
 		$output .= "<th>Bonuses</th>";
+		$output .= "<th>Type</th>";
+		$output .= "<th>Sources</th>";
 		$output .= "<th>Item Slots</th>";
 		$output .= "<th>Image</th>";
 		$output .= "</tr>\n";
@@ -194,15 +253,29 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$name = $this->EscapeHtml($set['setName']);
 			$desc = $this->EscapeHtml($set['setBonusDesc']);
 			$itemSlots = $this->EscapeHtml($set['itemSlots']);
+			$type = $this->EscapeHtml($set['type']);
+			$sources = $this->EscapeHtml($set['sources']);
 			
 			$imageLink = "https://esolog.uesp.net/itemLinkImage.php?set=$nameUrl";
 			if ($this->version != "") $imageLink .= "&version=" . $this->version;
 			
+			$articleName = str_replace(' ', '_', $set['setName']);
+			$fixupName = $this->WIKI_ARTICLE_FIXUP[$set['setName']];
+			if ($fixupName != null) $articleName = str_replace(' ', '_', $fixupName);
+			$wikiLink = "https://en.uesp.net/wiki/Online:$articleName";
+			
 			$output .= "<tr>\n";
 			$output .= "<td><b>$name</b></td>\n";
 			$output .= "<td style='white-space: pre-wrap; word-wrap: break-word;'>$desc</td>\n";
+			$output .= "<td>$type</td>\n";
+			$output .= "<td>$sources</td>\n";
 			$output .= "<td>$itemSlots</td>\n";
-			$output .= "<td style='min-width: 320px'><a href=\"$imageLink\">$imageLink</a><br/><img src=\"$imageLink\"></td>\n";
+			
+			if ($this->showImage) 
+				$output .= "<td style='min-width: 320px'><a href=\"$wikiLink\">$name</a><br/><img src=\"$imageLink\"><br/><a href=\"$imageLink\">$imageLink</a></td>\n";
+			else
+				$output .= "<td><a href=\"$wikiLink\">$name</a><p/><a href=\"$imageLink\">$imageLink</a></td>\n";
+			
 			$output .= "</tr>\n";
 		}
 		

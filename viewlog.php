@@ -482,6 +482,8 @@ class EsoLogViewer
 	public static $SETSUMMARY_FIELDS = array(
 			'gameId' => self::FIELD_INTID,
 			'setName' => self::FIELD_STRING,
+			'type' => self::FIELD_STRING,
+			'sources' => self::FIELD_STRING,
 			'setMaxEquipCount' => self::FIELD_INT,
 			'setBonusCount' => self::FIELD_INT,
 			'setBonusDesc' => self::FIELD_TEXTTRANSFORM,
@@ -495,6 +497,13 @@ class EsoLogViewer
 			'setBonusDesc6' => self::FIELD_TEXTTRANSFORM,
 			'setBonusDesc7' => self::FIELD_TEXTTRANSFORM,
 			'id' => self::FIELD_INTID,
+	);
+	
+	
+	public static $SETINFO_FIELDS = array(
+			'setName' => self::FIELD_STRING,
+			'type' => self::FIELD_STRING,
+			'sources' => self::FIELD_STRING,
 	);
 	
 	
@@ -1994,6 +2003,24 @@ class EsoLogViewer
 					),
 			),
 			
+			'setInfo' => array(
+					'displayName' => 'Set Infos',
+					'displayNameSingle' => 'Set Info',
+					'record' => 'setInfo',
+					'table' => 'setInfo',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'setName',
+					
+					'columnNames' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 			'minedSkills' => array(
 					'displayName' => 'Mined Skills',
 					'displayNameSingle' => 'Mined Skill',
@@ -2764,7 +2791,7 @@ class EsoLogViewer
 					),
 			),
 			'setSummary' => array(
-					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7'),
+					'searchFields' => array('setName', 'setBonusDesc1', 'setBonusDesc2', 'setBonusDesc3', 'setBonusDesc4', 'setBonusDesc5', 'setBonusDesc6', 'setBonusDesc7', 'type', 'sources'),
 					'fields' => array(
 							'id' => 'id',
 							'setName' => 'name',
@@ -2862,6 +2889,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['minedItem']['fields'] = self::$MINEDITEM_FIELDS;
 		self::$RECORD_TYPES['minedItemSummary']['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
+		self::$RECORD_TYPES['setInfo']['fields'] = self::$SETINFO_FIELDS;
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
