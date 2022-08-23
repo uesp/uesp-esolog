@@ -4307,6 +4307,25 @@ window.FindNextEsoSkillText = function ()
 		
 		if (index >= 0 && skillData.__isOutput)
 		{
+			var abilityBlock = $("#esovsSkillContent .esovsAbilityBlock[skillid=" + id + "]").first();
+			var skillLine = abilityBlock.attr("skilline") || "";
+			var classType = abilityBlock.attr("classtype") || "";
+			
+				// Don't search skills hidden in the build editor (class skills)
+			if (classType != "")
+			{
+				var classSkillsBlock = $("#esovsSkillTree .esovsSkillType[skilltypeid='" + classType + "']");
+				var classTitleBlock = classSkillsBlock.prev();
+				if (classTitleBlock.length == 0 || classTitleBlock.is(":hidden")) continue;
+			}
+			
+				// Don't search skill lines hidden in the build editor (Vampire and Werewolf)
+			if (skillLine != "")
+			{
+				var skillLineBlock = $("#esovsSkillTree .esovsSkillLineTitle[skilllineid='" + skillLine + "']");
+				if (skillLineBlock.length == 0 || skillLineBlock.css('display') == "none") continue;
+			}
+			
 			return { id : id, index: i };
 		}
 	}
