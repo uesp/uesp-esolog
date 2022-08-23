@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "35pts";
+$TABLE_SUFFIX = "35";
 
 $MAKE_NAME_TITLECASE = true;
 
@@ -144,7 +144,7 @@ while ($row = $result->fetch_assoc())
 } */
 
 $FIRSTID = 3;			// 1/2 are potion/poison data
-$LASTID = 200000;
+$LASTID = 220000;
 $MINSUBTYPE = 0;		// Has problems with item enchantments missing
 $MINSUBTYPE = 2;
 $MAXSUBTYPE = 370;

@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 97,
-						'numBooks' => 1340 
+						'numCollect' => 100,
+						'numBooks' => 1382 
 				),
 				1 => array (
 						'id' => 43,
@@ -7442,6 +7442,70 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				),
 				96 => array (
+						'id' => 197,
+						'name' => 'Syrabanic Marine Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7051 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7052 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7053 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7054 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7055 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7056 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7057 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7058 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7059 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7060 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7061 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7062 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7063 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7064 => array (
+										'title' => 'Crafting Motif 112: Syrabanic Marine Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				97 => array (
 						'id' => 198,
 						'name' => 'Steadfast Society Style',
 						'numBooks' => 14,
@@ -7505,7 +7569,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								) 
 						) 
 				),
-				97 => array (
+				98 => array (
 						'id' => 199,
 						'name' => 'Systres Guardian Style',
 						'numBooks' => 14,
@@ -7568,6 +7632,134 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				99 => array (
+						'id' => 201,
+						'name' => 'Y`ffre`s Will Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7221 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7222 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7223 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7224 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7225 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7226 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7227 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7228 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7229 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7230 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7231 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7232 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7233 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7234 => array (
+										'title' => 'Crafting Motif 115: Y`ffre`s Will Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				100 => array (
+						'id' => 202,
+						'name' => 'Drowned Mariner Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7236 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7237 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7238 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7239 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7240 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7241 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7242 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7243 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7244 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7245 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7246 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7247 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7248 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7249 => array (
+										'title' => 'Crafting Motif 116: Drowned Mariner Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
@@ -7575,7 +7767,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 46,
-						'numBooks' => 3996 
+						'numBooks' => 4013 
 				),
 				1 => array (
 						'id' => 44,
@@ -8056,7 +8248,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				2 => array (
 						'id' => 45,
 						'name' => 'Criminal Correspondence',
-						'numBooks' => 97,
+						'numBooks' => 98,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								75 => array (
@@ -8446,6 +8638,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								5269 => array (
 										'title' => 'Blackguard Instructions, Three',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7318 => array (
+										'title' => 'Wrongly Incarcerated!',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
 								) 
 						) 
 				),
@@ -9704,7 +9900,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				6 => array (
 						'id' => 49,
 						'name' => 'Hearts and Flowers',
-						'numBooks' => 82,
+						'numBooks' => 84,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								118 => array (
@@ -10034,6 +10230,14 @@ $ESO_BOOK_COLLECTIONS = array (
 								7111 => array (
 										'title' => 'The Rose of Navire, Part the Third',
 										'icon' => '/esoui/art/icons/scroll_003.dds' 
+								),
+								7292 => array (
+										'title' => 'Letter From Ember',
+										'icon' => '/esoui/art/icons/housing_uni_inc_scrollunsealed002.dds' 
+								),
+								7293 => array (
+										'title' => 'Letter From Isobel',
+										'icon' => '/esoui/art/icons/housing_cwc_crf_scroll001.dds' 
 								) 
 						) 
 				),
@@ -19368,7 +19572,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				32 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 103,
+						'numBooks' => 112,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -19782,6 +19986,42 @@ $ESO_BOOK_COLLECTIONS = array (
 								3047 => array (
 										'title' => 'Terran`s Notes',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7185 => array (
+										'title' => 'Spirits of Lost Nature',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7186 => array (
+										'title' => 'Message of Welcome',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7187 => array (
+										'title' => 'The Only Record of Our Plan',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								7188 => array (
+										'title' => 'The Meaning of the Hidden Fawn',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7192 => array (
+										'title' => 'A Warning to Those Who Follow',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7193 => array (
+										'title' => 'A Second Warning',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7194 => array (
+										'title' => 'Your Final Warning',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7195 => array (
+										'title' => 'Logbook of Druid Anwas',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								7196 => array (
+										'title' => 'Logbook of Druid Betrys',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
 								) 
 						) 
 				),
@@ -22976,7 +23216,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				43 => array (
 						'id' => 188,
 						'name' => 'The Impresario`s Catalogue',
-						'numBooks' => 8,
+						'numBooks' => 10,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								6493 => array (
@@ -23010,6 +23250,14 @@ $ESO_BOOK_COLLECTIONS = array (
 								6968 => array (
 										'title' => 'Ascendant Champion`s New Orders',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7250 => array (
+										'title' => 'Help Wanted: Philien`s Tours',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7217 => array (
+										'title' => 'By Command of the Ascendant Order',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 
 				),
@@ -23348,7 +23596,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				45 => array (
 						'id' => 200,
 						'name' => 'Systres Tomes and Scrolls',
-						'numBooks' => 126,
+						'numBooks' => 128,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								7142 => array (
@@ -23613,7 +23861,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7210 => array (
 										'title' => 'Note to Nilsmon Booklover',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+										'icon' => '/esoui/art/icons/notes_003.dds' 
 								),
 								7177 => array (
 										'title' => 'Notes on Vulk`esh',
@@ -23657,7 +23905,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7157 => array (
 										'title' => 'About Jhaka',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+										'icon' => '/esoui/art/icons/notes_001.dds' 
 								),
 								7158 => array (
 										'title' => 'Investigator Vale and the Haunted Lighthouse',
@@ -23854,13 +24102,21 @@ $ESO_BOOK_COLLECTIONS = array (
 								7107 => array (
 										'title' => 'Kiv`s Notes',
 										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								7282 => array (
+										'title' => 'Letter from Druid Laurel',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7271 => array (
+										'title' => 'Archdruid Michiel`s Orders',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
 								) 
 						) 
 				),
 				46 => array (
 						'id' => 203,
 						'name' => 'Tomes of Tributes',
-						'numBooks' => 16,
+						'numBooks' => 17,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								7219 => array (
@@ -23880,7 +24136,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/scroll_004.dds' 
 								),
 								7254 => array (
-										'title' => 'Summerset Raid Clue',
+										'title' => 'Summerset Sacking Clue',
 										'icon' => '/esoui/art/icons/scroll_005.dds' 
 								),
 								7255 => array (
@@ -23926,6 +24182,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								7298 => array (
 										'title' => 'Ansei`s Victory Clue',
 										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								7168 => array (
+										'title' => 'Seeking Tribute Players!',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
 				) 

@@ -9,13 +9,13 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "34";
+$TABLE_SUFFIX = "35";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 $DO_TYPE_CHECK = false;		// Not needed after changing db tables in update 30
 
 $START_ID = 3;
-$END_ID = 200000;
+$END_ID = 220000;
 
 $MAXBADITEMCOUNT = 1450;
 

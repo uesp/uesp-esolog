@@ -6,7 +6,7 @@ require("esoCommon.php");
 
 $NEW_TABLE_SUFFIX = "30";
 $OLD_TABLE_SUFFIX = "";
-$MAX_ITEM_ID = 200000;
+$MAX_ITEM_ID = 220000;
 
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");

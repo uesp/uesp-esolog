@@ -136,7 +136,7 @@ class CEsoSalesMakePriceList
 	}
 	
 	
-	public function MakeLuaData($itemData, $server)
+	public function MakeLuaData(&$itemData, $server)
 	{
 		$output = "";
 		$dataCount = 0;
@@ -154,7 +154,7 @@ class CEsoSalesMakePriceList
 		foreach ($itemData as $itemId => $levelData)
 		{
 			$itemOutputCount++;
-				
+			
 			if ($itemOutputCount >= $this->MAXITEMSPERFUNCTION)
 			{
 				$itemOutputCount = 0;
@@ -197,16 +197,16 @@ class CEsoSalesMakePriceList
 								$output .= "\n";
 							}
 						}
-		
+						
 						$output .= "},\n";
 					}
 						
 					$output .= "},";
 				}
-		
+				
 				$output .= "},";
 			}
-		
+			
 			$output .= "}\n";
 		}
 		
@@ -222,7 +222,7 @@ class CEsoSalesMakePriceList
 	}
 	
 	
-	public function MakePhpData($itemData, $server)
+	public function MakePhpData(&$itemData, $server)
 	{
 		$output = array();
 		$dataCount = 0;
@@ -231,27 +231,27 @@ class CEsoSalesMakePriceList
 		$output['SalesPricesServer'] = $server;
 		$output['SalesPricesVersion'] = $this->VERSION;
 		$output['SalesPricesLastUpdate'] = $updateDate;
-				
+		
 		foreach ($itemData as $itemId => $levelData)
 		{
 			$output[$itemId] = array();
-		
+			
 			foreach ($levelData as $level => $qualityData)
 			{
 				$output[$itemId][$level] = array();
-		
+				
 				foreach ($qualityData as $quality => $traitData)
 				{
 					$output[$itemId][$level][$quality] = array();
-		
+					
 					foreach ($traitData as $trait => $potionData)
 					{
 						$output[$itemId][$level][$quality][$trait] = array();
-		
+						
 						foreach ($potionData as $potion => $salesData)
 						{
 							$output[$itemId][$level][$quality][$trait][$potion] = array($salesData[0], $salesData[1], $salesData[2], $salesData[3], $salesData[4], $salesData[5], $salesData[6], $salesData[7]);
-							if ($salesData[7] > 0) $output[$itemId][$level][$quality][$trait][$potion][7] = $salesData[7];  
+							if ($salesData[7] > 0) $output[$itemId][$level][$quality][$trait][$potion][7] = $salesData[7];
 							++$dataCount;
 						}
 					}
@@ -333,14 +333,14 @@ class CEsoSalesMakePriceList
 		
 		$luaData = $this->MakeLuaData($itemData, $server);
 		$phpData = $this->MakePhpData($itemData, $server);
-				
+		
 		$this->OutputPriceList($server, $phpData, $this->OUTPUT_PHPFILENAME);
 		$this->OutputPriceList($server, $luaData, $this->OUTPUT_LUAFILENAME);
 		
 		return true;
 	}
 	
-		
+	
 	public function MakePrices()
 	{
 		$this->CreatePriceList("NA");

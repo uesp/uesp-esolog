@@ -44,7 +44,7 @@ $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWriteP
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
 $MIN_ID = 64000;
-$MAX_ID = 200000;
+$MAX_ID = 220000;
 
 $cols = implode(",", $TABLE_FIELDS);
 

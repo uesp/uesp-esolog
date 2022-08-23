@@ -29,6 +29,23 @@ foreach ($items as $item)
 	$intLevel = $item['internalLevel'];
 	$intType = $item['internalSubType'];
 	
+	$query = "SELECT * FROM uesp_esolog.minedItemSummary WHERE itemId=$itemId;";
+	$result = $db->query($query);
+	
+	if ($result === false)
+	{
+		print("\t$count: Error loading item summary $itemId data! " . $result->error . "\n");
+		continue;
+	}
+	
+	if ($result->num_rows == 0)
+	{
+		print("\t$count: Item Summary $itemId was not found!\n");
+		continue;
+	}
+	
+	$minedItemSummary = $result->fetch_assoc();
+	
 	$query = "SELECT * FROM uesp_esolog.minedItem WHERE itemId=$itemId AND internalLevel=$intLevel AND internalSubtype=$intType;";
 	$result = $db->query($query);
 	
@@ -58,11 +75,11 @@ foreach ($items as $item)
 	$quality = $item['quality'];
 	if ($quality <= 0) $quality = $minedItem['quality'];
 	
-	$trait = $minedItem['trait'];
-	$itemType = $minedItem['type'];
-	$equipType = $minedItem['equipType'];
-	$weaponType = $minedItem['weaponType'];
-	$armorType = $minedItem['armorType'];
+	$trait = $minedItemSummary['trait'];
+	$itemType = $minedItemSummary['type'];
+	$equipType = $minedItemSummary['equipType'];
+	$weaponType = $minedItemSummary['weaponType'];
+	$armorType = $minedItemSummary['armorType'];
 	$icon = $db->real_escape_string($minedItem['icon']);
 	$setName = $db->real_escape_string($minedItem['setName']);
 	$name = $db->real_escape_string($minedItem['name']);
@@ -70,6 +87,7 @@ foreach ($items as $item)
 	
 	$query  = "UPDATE items SET trait='$trait', itemType='$itemType', level='$level', quality='$quality', equipType='$equipType', ";
 	$query .= "weaponType='$weaponType', armorType='$armorType', icon='$icon', setName='$setName', name='$name' WHERE id=$id;";
+	//print("$query\n");
 	
 	$result = $db->query($query);
 	if ($result === false) print("\tError updating item $id!\n");
