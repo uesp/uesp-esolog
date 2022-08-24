@@ -3009,6 +3009,12 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 				newRawOutput.flatOverloadDamage = inputValues.FlatOverloadDamage;
 			}
 			
+			if (inputValues.SkillFlatDamage && inputValues.SkillFlatDamage[skillData.baseName])
+			{
+				modDamage += inputValues.SkillFlatDamage[skillData.baseName];
+				newRawOutput.skillFlatDamage = inputValues.SkillFlatDamage[skillData.baseName];
+			}
+			
 			newRawOutput.finalDamage = Math.round(modDamage);
 			
 			rawOutput.push(newRawOutput);
@@ -3040,6 +3046,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 		if (rawData.skillLineDirectDamage != null && rawData.skillLineDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDirectDamage) + " SkillLineDirect";
 		if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
 		if (rawData.flatOverloadDamage != null && rawData.flatOverloadDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatOverloadDamage) + " Overload";
+		if (rawData.skillFlatDamage != null && rawData.skillFlatDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.skillFlatDamage) + " Flat";
 		
 		if (output == "")
 			output = "" + rawData.baseDamage + " " + rawData.damageId + " Damage (unmodified)";

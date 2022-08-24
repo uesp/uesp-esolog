@@ -840,6 +840,7 @@ window.MakeEsoSkillTooltipDamageRawOutput = function(rawData)
 	if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
 	if (rawData.flatOverloadDamage != null && rawData.flatOverloadDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatOverloadDamage) + " Overload";
 	if (rawData.flatBashDamage != null && rawData.flatBashDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatBashDamage) + " Flat Bash Damage";
+	if (rawData.skillFlatDamage != null && rawData.skillFlatDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.skillFlatDamage) + " Flat";
 	
 	if (output == "")
 		output = "" + rawData.baseDamage + " " + rawData.damageType + " Damage (unmodified)";
@@ -856,7 +857,7 @@ window.MakeEsoSkillTooltipHealingRawOutput = function(rawData)
 	var percent = "";
 	
 	if (rawData.display == "%") percent = "%";
-			
+	
 	if (rawData.healDone != null && rawData.healDone != 0) output += " + " + RoundEsoSkillPercent(rawData.healDone*100) + "% " + rawData.healId;
 	if (rawData.dotHeal  != null && rawData.dotHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.dotHeal*100) + "% DOT";
 	if (rawData.aoeHeal  != null && rawData.aoeHeal  != 0) output += " + " + RoundEsoSkillPercent(rawData.aoeHeal*100) + "% AOE";
@@ -1189,6 +1190,13 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 		valueFlat += inputValues.FlatOverloadDamage;
 		newRawOutput.flatOverloadDamage = inputValues.FlatOverloadDamage;
 		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Overload", inputValues.FlatOverloadDamage, '');
+	}
+	
+	if (inputValues.SkillFlatDamage && inputValues.SkillFlatDamage[skillData.baseName])
+	{
+		valueFlat += inputValues.SkillFlatDamage[skillData.baseName];
+		newRawOutput.skillFlatDamage = inputValues.SkillFlatDamage[skillData.baseName];
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Flat", inputValues.SkillFlatDamage[skillData.baseName], '');
 	}
 	
 		// Pummeling Goliath special case (TODO: This might fail if tooltip changes)
