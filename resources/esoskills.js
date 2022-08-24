@@ -3189,6 +3189,7 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	var finalExtraDmg = 3.00;
 	var skipExtraDmgParse = false;
 	var finalDmgIndex = 1;
+	var numHits = 4;	// Used to be 5 at one point
 	
 	if (inputValues == null) return newDesc;
 	
@@ -3235,9 +3236,15 @@ window.UpdateEsoSkillRapidStrikesDescription = function (skillData, skillDesc, i
 	var hit3 = Math.floor(baseDmg * (hitExtraDmg*2 + modDmg));
 	var hit4 = Math.floor(baseDmg * (hitExtraDmg*3 + modDmg));
 	var hit5 = Math.floor(baseDmg * (hitExtraDmg + modDmg) + baseDmg * finalExtraDmg * (1 + hitExtraDmg));
-	var totalDmg = hit1 + hit2 + hit3 + hit4 + hit5;
 	
-	extraDesc += "Hits: |cffffff" + hit1 + "|r, |cffffff" + hit2 + "|r, |cffffff" + hit3 + "|r, |cffffff" + hit4 + "|r, |cffffff" + hit5 + "|r";
+	var totalDmg = hit1 + hit2 + hit3 + hit4 + hit5;
+	if (numHits == 4) totalDmg = hit1 + hit2 + hit3 + hit4;
+	
+	if (numHits == 4) 
+		extraDesc += "Hits: |cffffff" + hit1 + "|r, |cffffff" + hit2 + "|r, |cffffff" + hit3 + "|r, |cffffff" + hit4 + "|r";
+	else
+		extraDesc += "Hits: |cffffff" + hit1 + "|r, |cffffff" + hit2 + "|r, |cffffff" + hit3 + "|r, |cffffff" + hit4 + "|r";
+	
 	extraDesc += "  (Total |cffffff" + totalDmg + "|r)";
 	
 	return newDesc + extraDesc;
