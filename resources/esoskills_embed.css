@@ -67,7 +67,7 @@
 	width: 400px;
 	float: left;
 	padding-right: 5px;
-	border-right: solid 2px #afaf94;	
+	border-right: solid 2px #afaf94;
 }
 
 #esovsRightBlock {
@@ -377,6 +377,7 @@
 }
 
 .esovsSkillTooltip {
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
 	width: 360px;
 	background-image: url(eso_skill_border.png);
 	background-size: 100% 100%;
@@ -783,4 +784,9 @@
 
 .esovsSkillDraggable.esovsAbilityBlockIcon:after {
 	background-image: none;
+}
+
+
+.esoSkillPopupTooltipDivider {
+	width: 100%;
 }

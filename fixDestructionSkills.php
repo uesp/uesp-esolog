@@ -52,7 +52,7 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	$row = $result->fetch_assoc();
 	
 	$skillType = GetEsoSkillTypeTypeText(5);
-	$skillTypeName = $db->real_escape_string($skillType . ":" . $baseRow['skillLine']);
+	$skillTypeName = $db->real_escape_string($skillType . "::" . $baseRow['skillLine']);
 	$learnedLevel = $baseRow['learnedLevel'];
 	$maxRank = 4;
 	$rank = $baseRow['rank'];

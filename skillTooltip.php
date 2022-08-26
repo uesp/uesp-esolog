@@ -38,6 +38,7 @@ class CEsoSkillTooltip
 	public $includeLink = false;
 	public $useDefaultDesc = true;
 	public $skillShowThumb = false;
+	public $outputFullHtml = false;
 	public $version = "";
 	public $useUpdate10Costs = false;
 	
@@ -152,6 +153,8 @@ class CEsoSkillTooltip
 		
 		$this->skillMaxStat = max($this->skillMagicka, $this->skillStamina);
 		$this->skillMaxDamage = max($this->skillSpellDamage, $this->skillWeaponDamage);
+		
+		if (array_key_exists('fullhtml', $this->inputParams)) $this->outputFullHtml = intval($this->inputParams['fullhtml']) != 0;
 		
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
 		
@@ -687,9 +690,38 @@ class CEsoSkillTooltip
 		}
 		
 		$output .= "</div>";
-		print($output);
+		
+		if ($this->outputFullHtml)
+		{
+			$this->OutputFullHtml($output);
+		}
+		else
+		{
+			print($output);
+		}
 		
 		return true;
+	}
+	
+	
+	private function OutputFullHtml($skillOutput)
+	{
+?>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO Skill Tooltip</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoskills_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoSkillClient.css" />
+	</head>
+<body style="width: 380px; margin: 0; padding: 0;">
+<?php
+		print($skillOutput);
+?>
+</body>
+</html>
+<?php
 	}
 	
 	
