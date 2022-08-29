@@ -1754,6 +1754,8 @@ window.OnEsoCP2StarDoubleClick = function()
 
 window.esovcpOnDocReady = function ()
 {
+	$("#esovcp2Tooltip").detach().appendTo('body');
+	
 	g_EsoCpUpdateSkillElements = $("#esovcpContainer").find(".esovcpSkill, .esovcp2Skill").not(".esovcpSkillCluster");
 	g_EsoCpUpdateDiscElements = $("#esovcpContainer").find(".esovcpDiscipline");
 	g_EsoCpUpdatAttributeElements = $("#esovcpContainer").find(".esovcpDiscAttrPoints");
