@@ -1460,6 +1460,9 @@ window.GetEsoSkillDescription = function(skillId, inputValues, useHtml, noEffect
 	coefDesc = UpdateEsoSkillBleedDamageDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillElfBaneDurationDescription(skillData, coefDesc, inputValues);
 	coefDesc = UpdateEsoSkillRapidStrikesDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillUppercutDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillScatterShotDescription(skillData, coefDesc, inputValues);
+	coefDesc = UpdateEsoSkillVolleyDescription(skillData, coefDesc, inputValues);
 	
 	if (useHtml)
 	{
@@ -3182,6 +3185,98 @@ window.UpdateEsoSkillElfBaneDurationDescription = function (skillData, skillDesc
 					return p1 + p2 + newDuration + p4;
 				});
 	}
+	
+	return newDesc;
+}
+
+window.UpdateEsoSkillUppercutDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	
+	if (inputValues == null || inputValues['SkillDamage'] == null) return newDesc;
+	if (skillData['baseName'] != "Uppercut") return newDesc;
+	
+	var aoeAmount = inputValues['SkillDamage']['Cleave_AOE'];
+	if (aoeAmount == null || aoeAmount == 0) return newDesc;
+	
+	var numbers = newDesc.match(/([0-9]+)/g);
+	if (numbers == null) return newDesc;
+	
+	var baseDmg = parseFloat(numbers[0]);
+	if (baseDmg == null) return newDesc;
+	
+	var damage = Math.floor(aoeAmount * baseDmg);
+	var extraDesc = "\n\nAdds |cffffff" + damage + "|r Physical Damage to all nearby enemies.";
+	
+	newDesc += extraDesc;
+	
+	return newDesc;
+}
+
+
+window.UpdateEsoSkillScatterShotDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	
+	if (inputValues == null || inputValues['SkillDamage'] == null) return newDesc;
+	if (skillData['baseName'] != "Scatter Shot") return newDesc;
+	
+	var dotAmount = inputValues['SkillDamage']['Scatter_Shot_DOT'];
+	if (dotAmount == null || dotAmount == 0) return newDesc;
+	
+	var numbers = newDesc.match(/([0-9]+)/g);
+	if (numbers == null) return newDesc;
+	
+	var baseDmg = parseFloat(numbers[0]);
+	if (baseDmg == null) return newDesc;
+	
+	var damage = Math.floor(dotAmount * baseDmg);
+	var extraDesc = "\n\nAdds |cffffff" + damage + "|r Poison Damage every |cffffff2|r seconds for |cffffff4-12|r seconds.";
+	
+	newDesc += extraDesc;
+	
+	return newDesc;
+}
+
+
+window.UpdateEsoSkillVolleyDescription = function (skillData, skillDesc, inputValues)
+{
+	var newDesc = skillDesc;
+	
+	if (inputValues == null || inputValues['SkillDamage'] == null) return newDesc;
+	if (skillData['baseName'] != "Volley") return newDesc;
+	
+	var dmgAmount = inputValues['SkillDamage']['Volley_Tick'];
+	var tickAmount = inputValues['SkillDamage']['Volley_DmgTick'];
+	if (dmgAmount == null || dmgAmount == 0) return newDesc;
+	if (tickAmount == null || tickAmount == 0) return newDesc;
+	
+	var numbers = newDesc.match(/([0-9]+)/g);
+	if (numbers == null) return newDesc;
+	
+	var baseDmg = parseFloat(numbers[0]);
+	var duration = parseInt(numbers[2]);
+	if (baseDmg == null || duration == null || duration <= 0) return newDesc;
+	
+	duration++;		// Ticks at start and end of duration
+	var dmgTicks = [];
+	var tickDamage = baseDmg;
+	var maxTick = 9;	// The set tooltip says 8 but it seems to be 9 ticks on PTS 35
+	
+	for (var i = 0; i < duration; ++i)
+	{
+		if (i < maxTick)
+			tickDamage = baseDmg + dmgAmount + tickAmount * i;
+		else
+			tickDamage = baseDmg + dmgAmount + tickAmount * 8;
+			
+		dmgTicks.push(tickDamage);
+	}
+	
+	dmgTicks.join(", ");
+	var extraDesc = "\n\nTick Damage: " + dmgTicks.join(", ");
+	
+	newDesc += extraDesc;
 	
 	return newDesc;
 }

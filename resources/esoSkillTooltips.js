@@ -2030,6 +2030,9 @@ window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEff
 	var output = "";
 	
 	rawDesc = UpdateEsoSkillRapidStrikesDescription(skillData, rawDesc, inputValues);
+	rawDesc = UpdateEsoSkillUppercutDescription(skillData, rawDesc, inputValues);
+	rawDesc = UpdateEsoSkillScatterShotDescription(skillData, rawDesc, inputValues);
+	rawDesc = UpdateEsoSkillVolleyDescription(skillData, rawDesc, inputValues);
 	
 	if (useHtml)
 	{
