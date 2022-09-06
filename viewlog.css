@@ -84,3 +84,13 @@ body {
 	cursor: pointer;
 	background-color: #ccc;
 }
+
+.uespesoGoldenVendor h4 {
+	font-size: larger;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.uespesoGoldenItemList {
+	margin-top: 5px;
+}
