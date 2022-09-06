@@ -17,6 +17,12 @@ class CEsoSkillTooltips
 	protected $MIN_ALLOWED_ERRORPERCENT = 3;
 	protected $MIN_ALLOWED_R2 = 0.99;
 	
+	protected $POWERTYPE_INVALID = POWERTYPE_INVALID;
+	protected $POWERTYPE_MAGICKA = POWERTYPE_MAGICKA;
+	protected $POWERTYPE_STAMINA = POWERTYPE_STAMINA;
+	protected $POWERTYPE_ULTIMATE = POWERTYPE_ULTIMATE;
+	protected $POWERTYPE_HEALTH = POWERTYPE_HEALTH;
+	
 	protected $FIXED_COEF_FACTORS = array(
 		16212 => array( 1 => 2.0 ),
 		50325 => array( 2 => 1.0 ),
@@ -48,6 +54,19 @@ class CEsoSkillTooltips
 	public function __construct($tableSuffix = "")
 	{
 		$this->TABLE_SUFFIX = $tableSuffix;
+		
+		$updateVersion = intval($this->TABLE_SUFFIX);
+		if ($this->TABLE_SUFFIX == "") $updateVersion = intval(GetEsoUpdateVersion());
+		
+			// Support for older power type constants
+		if ($updateVersion < 34)
+		{
+			$this->POWERTYPE_INVALID = POWERTYPE_OLD_INVALID;
+			$this->POWERTYPE_MAGICKA = POWERTYPE_OLD_MAGICKA;
+			$this->POWERTYPE_STAMINA = POWERTYPE_OLD_STAMINA;
+			$this->POWERTYPE_ULTIMATE = POWERTYPE_OLD_ULTIMATE;
+			$this->POWERTYPE_HEALTH = POWERTYPE_OLD_HEALTH;
+		}
 	}
 	
 	
@@ -167,27 +186,27 @@ class CEsoSkillTooltips
 		if ($type1 != 0 && $type2 ==  0 && $coef1 == 0) return UESP_POWERTYPE_CONSTANTVALUE;
 		if ($type2 != 0 && $type1 ==  0 && $coef2 == 0) return UESP_POWERTYPE_CONSTANTVALUE;
 		
-		if ($type1 == 25 && $type2 ==  4)	return POWERTYPE_MAGICKA;
-		if ($type1 ==  4 && $type2 == 25)	return POWERTYPE_MAGICKA;
-		if ($type1 == 25 && $type2 ==  0)	return POWERTYPE_MAGICKA;
-		if ($type1 ==  4 && $type2 ==  0)	return POWERTYPE_MAGICKA;
+		if ($type1 == 25 && $type2 ==  4)	return $this->POWERTYPE_MAGICKA;
+		if ($type1 ==  4 && $type2 == 25)	return $this->POWERTYPE_MAGICKA;
+		if ($type1 == 25 && $type2 ==  0)	return $this->POWERTYPE_MAGICKA;
+		if ($type1 ==  4 && $type2 ==  0)	return $this->POWERTYPE_MAGICKA;
 		if ($type1 == 25 && $type2 == 35)	return UESP_POWERTYPE_DAMAGE;
 		if ($type1 == 35 && $type2 ==  4)	return UESP_POWERTYPE_MAGICKAWITHWD;
 		if ($type1 ==  1 && $type2 ==  0)	return UESP_POWERTYPE_WEAPONPOWER;
 		if ($type1 ==  2 && $type2 ==  0)	return UESP_POWERTYPE_WEAPONPOWER;
-		if ($type1 ==  7 && $type2 ==  0)	return POWERTYPE_HEALTH;
-		if ($type1 ==  7 && $type2 ==  7)	return POWERTYPE_HEALTH;	//New in update 33
-		if ($type1 == 35 && $type2 == 29)	return POWERTYPE_STAMINA;
-		if ($type1 == 29 && $type2 == 35)	return POWERTYPE_STAMINA;
-		if ($type1 == 35 && $type2 ==  0)	return POWERTYPE_STAMINA;
-		if ($type1 == 29 && $type2 ==  0)	return POWERTYPE_STAMINA;
+		if ($type1 ==  7 && $type2 ==  0)	return $this->POWERTYPE_HEALTH;
+		if ($type1 ==  7 && $type2 ==  7)	return $this->POWERTYPE_HEALTH;	//New in update 33
+		if ($type1 == 35 && $type2 == 29)	return $this->POWERTYPE_STAMINA;
+		if ($type1 == 29 && $type2 == 35)	return $this->POWERTYPE_STAMINA;
+		if ($type1 == 35 && $type2 ==  0)	return $this->POWERTYPE_STAMINA;
+		if ($type1 == 29 && $type2 ==  0)	return $this->POWERTYPE_STAMINA;
 		if ($type1 ==  0 && $type2 ==  0) 	return UESP_POWERTYPE_CONSTANTVALUE;
 		if ($type1 == 22 && $type2 == 13) 	return UESP_POWERTYPE_RESISTANCE;
 		if ($type1 == 13 && $type2 == 22) 	return UESP_POWERTYPE_RESISTANCE;
 		if ($type1 == 13 && $type2 ==  0) 	return UESP_POWERTYPE_RESISTANCE;
 		if ($type1 == 22 && $type2 ==  0) 	return UESP_POWERTYPE_RESISTANCE;
 		
-		return POWERTYPE_INVALID;
+		return $this->POWERTYPE_INVALID;
 	}
 	
 	
@@ -803,20 +822,20 @@ class CEsoSkillTooltips
 		$coefType1 = $this->ConvertStatTypeToPowerType($rawCoef['type1'], $rawCoef['type2'], $rawCoef['coef1'], $rawCoef['coef2']);
 		$coefType2 = $this->ConvertStatTypeToPowerType($rawCoef['type3'], $rawCoef['type4'], $rawCoef['coef3'], $rawCoef['coef4']);
 		
-		if ($coefType1 == POWERTYPE_INVALID) print("\t\t$abilityId:$rank:$tooltipIndex: Invalid coefficient type found: {$rawCoef['type1']}:{$rawCoef['type2']}\n");
-		if ($coefType2 == POWERTYPE_INVALID) print("\t\t$abilityId:$rank:$tooltipIndex: Invalid coefficient type found: {$rawCoef['type3']}:{$rawCoef['type4']}\n");
+		if ($coefType1 == $this->POWERTYPE_INVALID) print("\t\t$abilityId:$rank:$tooltipIndex: Invalid coefficient type found: {$rawCoef['type1']}:{$rawCoef['type2']}\n");
+		if ($coefType2 == $this->POWERTYPE_INVALID) print("\t\t$abilityId:$rank:$tooltipIndex: Invalid coefficient type found: {$rawCoef['type3']}:{$rawCoef['type4']}\n");
 		
-		if (($coefType1 == UESP_POWERTYPE_CONSTANTVALUE && $coefType2 == UESP_POWERTYPE_CONSTANTVALUE) || ($coefType1 == POWERTYPE_INVALID && $coefType2 == POWERTYPE_INVALID))
+		if (($coefType1 == UESP_POWERTYPE_CONSTANTVALUE && $coefType2 == UESP_POWERTYPE_CONSTANTVALUE) || ($coefType1 == $this->POWERTYPE_INVALID && $coefType2 == $this->POWERTYPE_INVALID))
 		{
 			if ($this->ONLY_DO_ABILITYID > 0) print("\t$abilityId : $rank : $tooltipIndex: No raw cofficient values to use!\n");
 			return true;
 		}
 		
-		if (($coefType1 == POWERTYPE_MAGICKA && $coefType2 == POWERTYPE_STAMINA) || ($coefType1 == POWERTYPE_STAMINA && $coefType2 == POWERTYPE_MAGICKA))
-			$coefType = POWERTYPE_ULTIMATE;
-		else if ($coefType1 == POWERTYPE_MAGICKA && $coefType2 == POWERTYPE_HEALTH)
+		if (($coefType1 == $this->POWERTYPE_MAGICKA && $coefType2 == $this->POWERTYPE_STAMINA) || ($coefType1 == $this->POWERTYPE_STAMINA && $coefType2 == $this->POWERTYPE_MAGICKA))
+			$coefType = $this->POWERTYPE_ULTIMATE;
+		else if ($coefType1 == $this->POWERTYPE_MAGICKA && $coefType2 == $this->POWERTYPE_HEALTH)
 			$coefType = UESP_POWERTYPE_HEALTHORSPELLDAMAGE;
-		else if ($coefType1 == POWERTYPE_DAMAGE && $coefType2 == POWERTYPE_HEALTH)
+		else if ($coefType1 == $this->POWERTYPE_DAMAGE && $coefType2 == $this->POWERTYPE_HEALTH)
 			$coefType = UESP_POWERTYPE_HEALTHORDAMAGE;
 		else 
 			$coefType = $coefType1;
@@ -905,7 +924,7 @@ class CEsoSkillTooltips
 		}
 		
 			/* Check for health capped damage shield coefficients */
-		if ($tooltipType == 16 && $coefType == POWERTYPE_MAGICKA && $b == 0)
+		if ($tooltipType == 16 && $coefType == $this->POWERTYPE_MAGICKA && $b == 0)
 		{
 			if ($this->ONLY_DO_ABILITYID > 0) print("\t\tChecking for health capped damage shield...\n");
 			

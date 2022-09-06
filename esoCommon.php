@@ -13,11 +13,20 @@ const UESP_ESO_ICON_URL = "//esoicons.uesp.net";
 const ENABLE_ESO_PAGEVIEW_UPDATES = true;
 
 	/* Make sure these match values used in uespLog */
-const POWERTYPE_MAGICKA = 0;
+		// Old values pre update 34
+const POWERTYPE_OLD_INVALID = -1;
+const POWERTYPE_OLD_HEALTH = -2;
+const POWERTYPE_OLD_MAGICKA = 0;
+const POWERTYPE_OLD_STAMINA = 6;
+const POWERTYPE_OLD_ULTIMATE = 10;
+
+	/* Update 34 new values */
 const POWERTYPE_INVALID = -1;
-const POWERTYPE_HEALTH = -2;
-const POWERTYPE_STAMINA = 6;
-const POWERTYPE_ULTIMATE = 10;
+const POWERTYPE_MAGICKA = 1;
+const POWERTYPE_STAMINA = 4;
+const POWERTYPE_ULTIMATE = 8;
+const POWERTYPE_HEALTH = 32;
+
 const UESP_POWERTYPE_SOULTETHER    = -50;
 const UESP_POWERTYPE_LIGHTARMOR    = -51;
 const UESP_POWERTYPE_MEDIUMARMOR   = -52;
