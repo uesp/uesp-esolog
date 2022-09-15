@@ -992,14 +992,6 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		WeaponDamageType.push("Healing");
 	}
 	
-	if (isHealing && skillWeaponValues != null && skillSpellValues != null) 
-	{
-		skillWeaponValues = skillWeaponValues['Healing'];
-		skillSpellValues  = skillSpellValues['Healing'];
-		SpellDamageType.push("Healing");
-		WeaponDamageType.push("Healing");
-	}
-	
 	if (isDot && skillWeaponValues != null && skillSpellValues != null) 
 	{
 		skillWeaponValues = skillWeaponValues['DOT'];
