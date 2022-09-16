@@ -1194,9 +1194,17 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 	
 	if (inputValues.SkillFlatDamage && inputValues.SkillFlatDamage[skillData.baseName])
 	{
-		valueFlat += inputValues.SkillFlatDamage[skillData.baseName];
-		newRawOutput.skillFlatDamage = inputValues.SkillFlatDamage[skillData.baseName];
-		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Flat", inputValues.SkillFlatDamage[skillData.baseName], '');
+			// TODO: Special case for Cleave direct damage
+		if (skillData.baseName == "Cleave" && tooltip.isDOT == 1)
+		{
+			// Do nothing
+		}
+		else
+		{
+			valueFlat += inputValues.SkillFlatDamage[skillData.baseName];
+			newRawOutput.skillFlatDamage = inputValues.SkillFlatDamage[skillData.baseName];
+			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Flat", inputValues.SkillFlatDamage[skillData.baseName], '');
+		}
 	}
 	
 		// Pummeling Goliath special case (TODO: This might fail if tooltip changes)

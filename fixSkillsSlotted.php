@@ -237,8 +237,8 @@ $ESO_COEF_VALUE = array(
 					array(4, 0, 0) 
 				),
 		
-		116197 => 2,	//Necromancer: Death Knell
-		116198 => 4,
+		116197 => 4,	//Necromancer: Death Knell
+		116198 => 8,
 		
 /* Old Values
 		28418 => array(0.3655, 0.4, 0),		//Sorcerer: Conjured Ward
