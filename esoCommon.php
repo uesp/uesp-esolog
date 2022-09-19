@@ -95,6 +95,10 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"101034" => "34",
 		"101035" => "35",
 		"101036" => "36",
+		"101037" => "37",
+		"101038" => "38",
+		"101039" => "39",
+		"101040" => "40",
 );
 
 
@@ -130,6 +134,11 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"101033" => "7.3",
 		"101034" => "8.0",
 		"101035" => "8.1",
+		"101036" => "8.2",
+		"101037" => "8.3",
+		"101038" => "9.0",
+		"101039" => "9.1",
+		"101040" => "9.2",
 );
 
 
@@ -165,6 +174,11 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"29" => "Flames of Ambition",
 		"30" => "Blackwood",
 		"31" => "Waking Flame",
+		"32" => "The Deadlands",
+		"33" => "Ascending Tide",
+		"34" => "High Isle",
+		"35" => "Lost Depths",
+		"36" => "Firesong",
 	);
 
 
@@ -4432,6 +4446,10 @@ function GetEsoItemTableSuffix($version)
 			return "35pts";
 		case '35':
 			return "";
+		case '36pts':
+			return "36pts";
+		case '36':
+			return "36";
 	}
 
 	return "";
