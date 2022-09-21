@@ -984,7 +984,7 @@ class CEsoViewSkills
 		$isFree = "0";
 		if ($ESO_FREE_SKILLS[$id]) $isFree = "1";
 		
-		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$baseId' rank='$rank' origrank='$origRank' maxrank='$maxRank' isfree='$isFree' abilitytype='$type' skilltype='$skillType' skilline='$skillLine' classtype='$classType' racetype='$raceType'>" ;
+		$output .= "<div class='esovsAbilityBlock $extraClass' morph='$morph' skillid='$id' origskillid='$baseId' rank='$rank' origrank='$origRank' maxrank='$maxRank' isfree='$isFree' abilitytype='$type' skilltype=\"$skillType\" skilline=\"$skillLine\" classtype=\"$classType\" racetype=\"$raceType\">" ;
 		
 		if ($topLevel)
 		{

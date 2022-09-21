@@ -2052,6 +2052,15 @@ $ESO_SET_INDEXES = array(
 		668 => "Langour of Peryite",
 		669 => "Nocturnal's Ploy",
 		670 => "Mara's Balm",
+		671 => "Back-Alley Gourmand",
+		672 => "Phoenix Moth Theurge",
+		673 => "Bastion of the Draoife",
+		674 => "Faun's Lark Cladding",
+		675 => "Stormweaver's Cavort",
+		676 => "Syrabane's Ward",
+		677 => "Chimera's Rebuke",
+		678 => "Old Growth Brewer",
+		679 => "Claw of the Forest Wraith",
 );
 
 

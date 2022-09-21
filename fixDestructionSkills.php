@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "35";
+$TABLE_SUFFIX = "";
 $PRINT_TABLE = false;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -79,7 +79,7 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 		$origBaseRow = $result->fetch_assoc();
 		$baseName = $db->real_escape_string($origBaseRow['name']);
 	}
-		
+	
 	$query  = "INSERT INTO skillTree$TABLE_SUFFIX SET ";
 	$query .= "abilityId='$elementAbilityId', ";
 	$query .= "skillTypeName='$skillTypeName', ";
@@ -98,16 +98,16 @@ function AddSkillTreeElement($baseAbilityId, $elementAbilityId, $element, $newNa
 	
 	$result = $db->query($query);
 	if ($result === false) print("\tError adding element $elementAbilityId to skill tree!\n");
-		
+	
 	$query  = "UPDATE minedSkills$TABLE_SUFFIX SET baseAbilityId='$origAbilityId', ";
-	$query .= " prevSkill='$prevSkill', nextSkill='$nextSkill', nextSkill2='$nextSkill2', skillType='2', skillLine='Destruction Staff', target=''";
+	$query .= " prevSkill='$prevSkill', nextSkill='$nextSkill', nextSkill2='$nextSkill2', skillType='2', skillLine='Destruction Staff', target='', learnedLevel='$learnedLevel'";
 	$query .= " WHERE id='$elementAbilityId';";
 	
 	$result = $db->query($query);
 	if ($result === false) print("\tError updating element $elementAbilityId base ability ID!\n");
 	
 	print("\tUpdated element $elementAbilityId base ability ID!\n");
-		
+	
 	return true;
 }
 
