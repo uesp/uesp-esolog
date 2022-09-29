@@ -341,6 +341,8 @@ class CEsoCreateMapLocations
 		$posWidth = $posRight - $posLeft;
 		$posHeight = $posTop - $posBottom;
 		
+			// I think this only works because Stormhaven is off-by 1 from a power of 8 (7x7)...
+			// Should be X1 = X * (NextorEqualPowerOf2 from tilesX) / tilesX 
 		$xExtentRight = floor($posWidth * $numTilesX/($numTilesX + 1)) + $posLeft;
 		$xExtentLeft = $posLeft;
 		$yExtentTop = $posTop;

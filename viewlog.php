@@ -4894,18 +4894,16 @@ If you do not understand what this information means, or how to use this webpage
 		
 		if (array_key_exists('sortorder', $this->inputParams))
 		{
+			$this->inputParams['sortorder'] = strtolower($this->inputParams['sortorder']);
+			
 			switch ($this->inputParams['sortorder'])
 			{
 				default:
 				case 'a':
-				case 'A':
-				case 'ASC';
 				case 'asc':
 					$this->recordSortOrder = 'ASC';
 					break;
 				case 'd':
-				case 'D':
-				case 'DESC':
 				case 'desc':
 					$this->recordSortOrder = 'DESC';
 					break;
