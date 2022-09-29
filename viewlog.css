@@ -94,3 +94,9 @@ body {
 .uespesoGoldenItemList {
 	margin-top: 5px;
 }
+
+.uespEsoSkillRefTable tr td:nth-child(3), 
+.uespEsoSkillRefTable tr td:nth-child(4),
+.uespEsoSkillRefTable tr td:nth-child(5) {
+	text-align: center;
+}

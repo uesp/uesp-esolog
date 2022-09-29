@@ -3545,11 +3545,12 @@ If you do not understand what this information means, or how to use this webpage
 		<li><a href="/viewSkillCoef.php">Skill Coefficients</a></li>
 		<li><a href="//www.uesp.net/wiki/Special:EsoBuildEditor">Build Editor</a></li>
 		<li><a href="/viewPotions.php">Alchemy Calculator</a></li>
-		<li><a href="goldenVendor.php">Golden Vendor Items</a></li>
+		<li><a href="/goldenVendor.php">Golden Vendor Items</a></li>
 		<li><a href="//esosales.uesp.net/viewSales.php">Sales Data</a></li>
 		<li><a href="/viewAchievements.php">Achievement Viewer</a></li>
 		<li><a href="/viewFurnishings.php">Furnishing Recipe List (CSV)</a></li>
-		<li><a href="setReference.php">Set Reference</a></li>
+		<li><a href="/setReference.php">Set Reference</a> &nbsp; <a href="/setReference.php?showimage=0">(without images)</a></li>
+		<li><a href="/skillReference.php">Skill Reference</a></li>
 		<li><a href="//esoapi.uesp.net">API Information</a></li>
 		<li><a href="//esofiles.uesp.net/">ESO Raw File Download</a></li>
 		<li><a href="https://github.com/esoui/esoui">ESO UI Source Code on GitHub</a></li>
