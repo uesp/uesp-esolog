@@ -16,7 +16,7 @@ require("esoCommon.php");
 class CEsoViewSkillCoef
 {
 	const ESOVSC_HTML_TEMPLATE = "templates/esovsc_template.txt";
-		
+	
 	public $db = null;
 	
 	public $coefData = array();
@@ -42,7 +42,7 @@ class CEsoViewSkillCoef
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
-	
+		
 		$this->htmlTemplate = file_get_contents(self::ESOVSC_HTML_TEMPLATE);
 	}
 	
@@ -84,9 +84,9 @@ class CEsoViewSkillCoef
 		if (array_key_exists('minratio', $this->inputParams)) $this->minRatio = floatval($this->inputParams['minratio']);
 		if (array_key_exists('maxratio', $this->inputParams)) $this->maxRatio = floatval($this->inputParams['maxratio']);
 		if ($this->minRatio > $this->maxRatio) swap($this->minRatio, $this->maxRatio);
-	
+		
 		$this->tableSuffix = GetEsoItemTableSuffix($this->version);
-	
+		
 		if ($this->version != '')
 		{
 			$this->extraQueryString = '&version='.$this->version;
@@ -98,18 +98,18 @@ class CEsoViewSkillCoef
 	{
 		global $argv;
 		$this->inputParams = $_REQUEST;
-	
+		
 		// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
 			$argIndex = 0;
-	
+			
 			foreach ($argv as $arg)
 			{
 				$argIndex += 1;
 				if ($argIndex <= 1) continue;
 				$e = explode("=", $arg);
-	
+				
 				if(count($e) == 2)
 				{
 					$this->inputParams[$e[0]] = $e[1];
@@ -126,10 +126,10 @@ class CEsoViewSkillCoef
 	public function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
-	
+		
 		return true;
 	}
 	
@@ -142,7 +142,7 @@ class CEsoViewSkillCoef
 		
 		$tables = array();
 		
-		while (($row = $result->fetch_row())) 
+		while (($row = $result->fetch_row()))
 		{
 			$tables[] = $row[0];
 		}
@@ -155,16 +155,16 @@ class CEsoViewSkillCoef
 			$query = "SELECT * FROM $table WHERE id={$this->showSkillId};";
 			$result = $this->db->query($query);
 			if ($result === false || $result->num_rows == 0) continue;
-
+			
 			$row = $result->fetch_assoc();
 			
 			$version = substr($table, 11);
 			if ($version == "") $version = GetEsoUpdateVersion();
 			$this->skillVersions[$version] = $version;
 			
-			$row['version'] = $version;			
+			$row['version'] = $version;
 			
-			$this->skillResults[$version] = $row;				
+			$this->skillResults[$version] = $row;
 		}
 		
 		natsort($this->skillVersions);
@@ -188,7 +188,7 @@ class CEsoViewSkillCoef
 		
 		usort($this->coefData, function($a, $b) {
 			$c = strcmp($a['name'], $b['name']);
-			if ($c == 0) $c = $a['rank'] - $b['rank']; 
+			if ($c == 0) $c = $a['rank'] - $b['rank'];
 			return $c;
 		});
 		
@@ -228,7 +228,7 @@ class CEsoViewSkillCoef
 		$count = count($this->coefData);
 		$output = "<div>This is a list of skill coefficients currently available. Found $count skills with valid coefficients.</div>";
 		$output .= "<div>";
-
+		
 		if ($this->minR2 > 0 || $this->maxR2 < 1)
 		{
 			$output .= "Showing skill coefficients with an R2 value between ".$this->minR2." - ".$this->maxR2.". ";
@@ -288,7 +288,7 @@ class CEsoViewSkillCoef
 		if ($ratio > $this->maxRatio) return false;
 		
 		if ($R2 < $this->minR2) return false;
-		if ($R2 > $this->maxR2) return false;		
+		if ($R2 > $this->maxR2) return false;
 		
 		return true;
 	}
@@ -387,7 +387,7 @@ class CEsoViewSkillCoef
 			$ratio = sprintf("%0.2f", $b / $a);
 			
 			if (!$this->ShouldOutputCoef($a, $b, $c, $R)) continue;
-				
+			
 			$bop = "+";
 			$cop = "+";
 			if ($b < 0) { $b = -$b; $bop = "-"; }
@@ -403,13 +403,13 @@ class CEsoViewSkillCoef
 	}
 	
 	
-	public function GetCurrentVersion() 
+	public function GetCurrentVersion()
 	{
 		return GetEsoDisplayVersion($this->version);
 	}
 	
 	
-	public function GetVersionList($currentVersion) 
+	public function GetVersionList($currentVersion)
 	{
 		$output = "";
 		
@@ -432,7 +432,7 @@ class CEsoViewSkillCoef
 			$table = $row[0];
 			$version = substr($table, 11);
 			if ($version == "") $version = GetEsoUpdateVersion();
-						
+			
 			$tables[$version] = $version;
 		}
 		
@@ -453,7 +453,7 @@ class CEsoViewSkillCoef
 	}
 	
 	
-	public function MakeHistoryContentHtml() 
+	public function MakeHistoryContentHtml()
 	{
 		$output = "";
 		
@@ -471,7 +471,7 @@ class CEsoViewSkillCoef
 		foreach ($this->skillVersions as $version)
 		{
 			$skill = $this->skillResults[$version];
-					
+			
 			$desc = FormatRemoveEsoItemDescriptionText($skill['coefDescription']);
 			
 			$equationData = $this->MakeEquationDataHtml($skill);
@@ -497,7 +497,7 @@ class CEsoViewSkillCoef
 			$output .= "<td class='esovsc_nobreak'>$equationData</td>";
 			$output .= "</tr>\n";
 		}
-				
+		
 		return $output;
 	}
 	
@@ -545,8 +545,8 @@ class CEsoViewSkillCoef
 			$output .= "<td class='esovsc_nobreak'>$equationData</td>";
 			$output .= "</tr>\n";
 		}
-				
-		return $output;		
+		
+		return $output;
 	}
 	
 	
@@ -590,8 +590,8 @@ class CEsoViewSkillCoef
 			$output .= "\"$equationData\"";
 			$output .= "\n";
 		}
-				
-		print($output);		
+		
+		print($output);
 		
 		return true;
 	}
