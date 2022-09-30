@@ -4971,11 +4971,16 @@ function GetEsoCurrencyChangeReasonText($value)
 function GetEsoCustomMechanicTypeText($mechanicType, $version = '')
 {
 	global $ESO_CUSTOM_MECHANICS;
+	global $ESO_MECHANIC_TEXTS;
+	global $ESO_MECHANIC_TEXTS_34;
 	
 	$key = (int) $mechanicType;
 	if (array_key_exists($key, $ESO_CUSTOM_MECHANICS)) return $ESO_CUSTOM_MECHANICS[$key];
+	if (array_key_exists($key, $ESO_MECHANIC_TEXTS_34)) return $ESO_MECHANIC_TEXTS_34[$key];
+	if (array_key_exists($key, $ESO_MECHANIC_TEXTS)) return $ESO_MECHANIC_TEXTS[$key];
+	return "Unknown ($key)";
 	
-	return GetEsoMechanicTypeText($mechanicType, $version);
+	//return GetEsoMechanicTypeText($mechanicType, $version);
 }
 
 
