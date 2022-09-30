@@ -601,14 +601,14 @@ class CEsoViewSkillCoef
 	{
 		$this->OutputHeader();
 		
-		if ($this->showSkillId > 0) 
+		if ($this->showSkillId > 0)
 		{
 			$this->LoadSkillHistory();
 			return $this->OutputSkillHistory();
 		}
 		
 		$this->LoadSkillCoef();
-	
+		
 		if ($this->outputType == "HTML") return $this->OutputHtml();
 		if ($this->outputType == "CSV")  return $this->OutputCsv();
 		
@@ -620,7 +620,7 @@ class CEsoViewSkillCoef
 };
 
 
-function swap(&$x,&$y) 
+function swap(&$x,&$y)
 {
 	$tmp=$x;
 	$x=$y;
