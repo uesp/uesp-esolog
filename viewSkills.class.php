@@ -336,6 +336,7 @@ class CEsoViewSkills
 					foreach ($baseAbility as $rank => &$ability)
 					{
 						if (!is_numeric($rank)) continue;
+						//if ($ability['skillIndex'] < 0) continue;
 						
 						if ($ability['effectLines'] == "")
 						{
@@ -398,24 +399,27 @@ class CEsoViewSkills
 		$abilityName = $skill['name'];
 		$baseName = $skill['baseName'];
 		$rank = $skill['rank'];
+		$skillIndex = $skill['skillIndex'];
+		
+		if ($rank < 0 || $skillIndex < 0) return;
 		
 		if (!array_key_exists($skillType, $this->skillTree)) $this->skillTree[$skillType] = array();
 		if (!array_key_exists($skillLine, $this->skillTree[$skillType])) $this->skillTree[$skillType][$skillLine] = array();
 		if (!array_key_exists($baseName, $this->skillTree[$skillType][$skillLine])) $this->skillTree[$skillType][$skillLine][$baseName] = array();
 		
 		//$this->skillTree[$skillType][$skillLine]['skillType'] = $skillType;
-
+		
 		$this->skillTree[$skillType][$skillLine][$baseName][$rank] = &$skill;
 		$this->skillTree[$skillType][$skillLine][$baseName]['type'] = $skill['type'];
 		$this->skillTree[$skillType][$skillLine][$baseName]['name'] = $skill['baseName'];
-
+		
 		return true;
 	}
 	
 	
 	public function ParseLevel($level)
 	{
-		$value = 66;	
+		$value = 66;
 	
 		if (is_numeric($level))
 		{
@@ -443,8 +447,8 @@ class CEsoViewSkills
 		if (UESP_SHOWCPLEVEL) return "CP" . (($level - 50)*10);
 		return "v" . ($level - 50);
 	}
-
-
+	
+	
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
@@ -591,7 +595,7 @@ class CEsoViewSkills
 		return $output;
 	}
 	
-
+	
 	public function GetSkillTreeTypeHtml($skillType, $isClass)
 	{
 		$isClassVisible = true;
@@ -618,7 +622,7 @@ class CEsoViewSkills
 		$output .= "<div class='esovsSkillTypeTitle' style=\"display: $titleDisplayType;\">$skillTypeUpper</div>\n";
 		$output .= "<div class='esovsSkillType' skilltypeid=\"$skillType\" style=\"display: $displayType;\">\n";
 		$isFirstSkillLine = true;
-
+		
 		foreach ($this->skillTree[$skillType] as $skillLine => $skillLineData)
 		{
 			$isRaceVisible = true;
@@ -626,43 +630,43 @@ class CEsoViewSkills
 			if ($skillType == "Racial")
 			{
 				$isRaceVisible = false;
-				if ($this->displayRace == "all" || startsWithNoCase($skillLine, $this->displayRace)) $isRaceVisible = true;				
+				if ($this->displayRace == "all" || startsWithNoCase($skillLine, $this->displayRace)) $isRaceVisible = true;
 			}
 			
 			if ($displayType != "none" && ($this->highlightSkillLine == $skillLine || ($this->highlightSkillLine == "" && $isFirstSkillLine)))
 				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight", $isRaceVisible);
 			else
 				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "", $isRaceVisible);
-						
+			
 			$isFirstSkillLine = false;
 		}
-
+		
 		$output .= "</div>\n";
 		return $output;
 	}
-
-
+	
+	
 	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "", $isVisible = true)
 	{
 		$displayType = "block";
 		
-		if (!$isVisible) 
+		if (!$isVisible)
 		{
 			$displayType = "none";
 			$extraClass .= " esovsSkillLineDisabled";
 		}
 		
 		$output  = "<div class='esovsSkillLineTitle $extraClass' skilllineid=\"$skillLine\" style=\"display: $displayType;\">$skillLine</div>";
-
+		
 		return $output;
 	}
-
-
+	
+	
 	public function GetSkillContentHtml()
 	{
 		$output = "";
 		$this->isFirstSkill = true;
-
+		
 		foreach($this->skillTree as $skillType => $skillTypeData)
 		{
 			foreach($skillTypeData as $skillLine => $skillLineData)
@@ -670,35 +674,35 @@ class CEsoViewSkills
 				$output .= $this->GetSkillContentHtml_SkillLine($skillLine, $skillLineData, $skillType);
 			}
 		}
-
+		
 		return $output;
 	}
-
-
+	
+	
 	public function GetSkillId($skill)
 	{
 		$id = $skill['baseName'] . $skill['rank'];
 		$id = preg_replace("#[ '\"]#", "_", $id);
 		return $id;
 	}
-
-
+	
+	
 	public function MakeHtmlId($string)
 	{
 		return preg_replace("#[ '\"]#", "_", $string);
 	}
-
-
+	
+	
 	public function GetSkillContentHtml_SkillLine($skillLine, $skillLineData, $skillType)
 	{
 		$displayType = "none";
-
+	
 		if (($this->isFirstSkill && $this->highlightSkillLine == "") || $this->highlightSkillLine == $skillLine)
 		{
 			$displayType = "block";
 			$this->isFirstSkill = false;
 		}
-
+		
 		$id = $this->MakeHtmlId($skillLine);
 		$output = "<div class='esovsSkillContentBlock' id='$id' style='display: $displayType;' skilltype='$skillType'>\n";
 		
@@ -707,9 +711,9 @@ class CEsoViewSkills
 			$output .= "<button class='esovsSkillLineResetAll'>Reset Line</button>";
 			$output .= "<button class='esovsSkillLinePurchaseAll'>Purchase Line</button> ";
 		}
-
+		
 		$output .= "<div class='esovsSkillContentTitle'>".$skillLine."</div>";
-
+		
 		$output .= $this->GetSkillContentHtml_SkillLineType("Ultimate", "ULTIMATES", $skillLine, $skillLineData);
 		$output .= $this->GetSkillContentHtml_SkillLineType("Active",   "SKILLS",    $skillLine, $skillLineData);
 		$output .= $this->GetSkillContentHtml_SkillLineType("Passive",  "PASSIVES",  $skillLine, $skillLineData);
@@ -717,23 +721,23 @@ class CEsoViewSkills
 		$output .= "</div>\n";
 		return $output;
 	}
-
-
+	
+	
 	public function FindFirstAbility($abilityData)
 	{
 		for ($i = -1; $i <= 12; ++$i)
 		{
 			if (array_key_exists($i, $abilityData)) return $abilityData[$i];
 		}
-
+		
 		return null;
 	}
-
-
+	
+	
 	public function FindLastAbility($abilityData)
 	{
 		if ($abilityData['type'] != "Passive" && array_key_exists(4, $abilityData)) return $abilityData[4];
-
+		
 		for ($i = 12; $i >= -1; --$i)
 		{
 			if (array_key_exists($i, $abilityData)) return $abilityData[$i];
@@ -774,11 +778,11 @@ class CEsoViewSkills
 
 		$this->highlightSkillType = $skillType;
 		$this->highlightSkillLine = $skillLine;
-
+		
 		return true;
 	}
-
-
+	
+	
 	public function GetIconURL($icon)
 	{
 		if ($icon == null || $icon == "") return self::ESOVS_ICON_URL . "/" . self::ESOVS_BLANK_ICON;
@@ -787,8 +791,8 @@ class CEsoViewSkills
 		$iconLink = self::ESOVS_ICON_URL . "/" . $icon;
 		return $iconLink;
 	}
-
-
+	
+	
 	public function GetRomanNumeral($value)
 	{
 		static $NUMERALS = array(
@@ -805,17 +809,17 @@ class CEsoViewSkills
 				11 => 'XI',
 				12 => 'XII',
 		);
-
+		
 		if ($value <= 0) return '';
 		if (array_key_exists($value, $NUMERALS)) return $NUMERALS[$value];
 		return $value;
 	}
-
-
+	
+	
 	public function GetSkillContentHtml_SkillLineType($type, $typeLabel, $skillLine, $skillLineData)
 	{
 		$output = "";
-
+		
 		foreach ($skillLineData as $abilityName => $abilityData)
 		{
 			if ($abilityData['type'] != $type) continue;
@@ -1524,14 +1528,14 @@ class CEsoViewSkills
 				'{skillHistoryLink}' => "",
 				'{hasV2SkillTooltips}' => $this->hasSkillTooltips ? "1" : "0",
 		);
-	
+		
 		$output = strtr($this->htmlTemplate, $replacePairs);
-	
+		
 		$this->LogProfile("OutputHtml():Error:Transform", $startTime);
 		return $output;
 	}
-
-
+	
+	
 	public function Render()
 	{
 		$this->OutputHtmlHeader();
