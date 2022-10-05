@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "36pts";
+$TABLE_SUFFIX = "";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
@@ -86,8 +86,12 @@ function FindMatchingSkill($setBonus, $setName)
 	$rawBonus = str_replace("  ", " ", $setBonus);
 	$rawBonus = str_replace("  ", " ", $rawBonus);
 	$rawBonus = preg_replace("/\([0-9]+ items\) /", "", $rawBonus);
+	$rawBonus = preg_replace("/\([0-9]+ item\) /", "", $rawBonus);
 	$rawBonus = preg_replace("/[0-9]+(?:\.[0-9]+)?(?:-[0-9]+(?:\.[0-9]+)?)?/", "#", $rawBonus);
+	$rawBonus = str_replace("\r\n", " ", $rawBonus);
+	$rawBonus = str_replace("\r", " ", $rawBonus);
 	$rawBonus = str_replace("\n", " ", $rawBonus);
+	$rawBonus = str_replace("  ", " ", $rawBonus);
 	//print("\t\t'$rawBonus'\n");
 	
 	if ($SHOW_SET == $setName) print("\t\t$setName: '$rawBonus'\n");
