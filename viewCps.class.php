@@ -1312,7 +1312,7 @@ class CEsoViewCP
 		$isRoot = "0";
 		if ($skill['isRoot'] > 0) $isRoot = "1";
 		
-		$output = "<div id='skill_$id' skillid='$id' class='esovcp2Skill $extraClass' unlocklevel='$unlockLevel' disciplineindex='$disciplineIndex' isroot='$isRoot' skilltype='$skillType' unlocked='$isUnlocked' $clusterAttr style='left: {$left}px; top: {$top}px;'>";
+		$output = "<div id='skill_$id' skillid='$id' class='esovcp2Skill $extraClass' maxpoints='$maxPoints' unlocklevel='$unlockLevel' disciplineindex='$disciplineIndex' isroot='$isRoot' skilltype='$skillType' unlocked='$isUnlocked' $clusterAttr style='left: {$left}px; top: {$top}px;'>";
 		$output .= "<div class='esovcp2SkillStar esovcpShowTooltip $extraImgClass' draggable='$isDraggable'><img src='$imageSrc' draggable='$isDraggable' /></div>";
 		
 		$output .= "<div class='esovcpSkillName' style='display: none;'>$name</div>";

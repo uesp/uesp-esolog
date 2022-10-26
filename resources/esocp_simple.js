@@ -510,7 +510,7 @@ window.UpdateEsoCPDiscPoints = function(discId)
 	
 	skillInputs.each(function() {
 		var points = parseInt($(this).val()) || 0;
-		var maxPoints = parseInt($(this).attr("maxpoints)")) || 100;
+		var maxPoints = parseInt($(this).attr("maxpoints")) || 100;
 		if (points < 0) points = 0;
 		if (points > maxPoints) points = maxPoints;
 		totalPoints += points;
