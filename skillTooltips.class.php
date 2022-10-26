@@ -16,6 +16,7 @@ class CEsoSkillTooltips
 	protected $DONT_SAVE_TOOLTIPS = false;
 	protected $MIN_ALLOWED_ERRORPERCENT = 3;
 	protected $MIN_ALLOWED_R2 = 0.99;
+	protected $ONLY_UPDATE_DESCRIPTIONS = false;
 	
 	protected static $POWERTYPE_INVALID = POWERTYPE_INVALID;
 	protected static $POWERTYPE_MAGICKA = POWERTYPE_MAGICKA;
@@ -1182,6 +1183,14 @@ class CEsoSkillTooltips
 		$rawDesc = $rawSkillData['desc'];
 		$rawName = $rawSkillData['name'];
 		if ($rawDesc == null || $rawDesc == "") return true;
+		
+		$rawDesc = str_replace(")>>", ">>", $rawDesc);
+		
+		if ($this->ONLY_UPDATE_DESCRIPTIONS)
+		{
+			if (!$this->UpdateSkillRawDescription($abilityId, $rawDesc)) return false;
+			return true;
+		}
 		
 		if (!$this->UpdateSkillRawName($abilityId, $rawName)) return false;
 		if (!$this->UpdateSkillRawDescription($abilityId, $rawDesc)) return false;

@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "36pts";
-	const SKILLS_TABLESUFFIX   = "36pts";
+	const MINEITEM_TABLESUFFIX = "36";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -60,6 +60,8 @@ class EsoLogParser
 	const TREASURE_DELTA_TIME = 4000;
 	const BOOK_DELTA_TIME = 4000;
 	const QUESTOFFERED_DELTA_TIME = 30000;
+	
+	const MAX_PARSE_TIME_SECONDS = 3300;	// Prevent script from running many hours and getting slow due to memory leaks/fragmentation/...
 	
 	const ELP_POSITION_FACTOR = 1000;	// Converts floating point position in log to integer value for db
 	
@@ -1423,6 +1425,8 @@ class EsoLogParser
 		$this->setInputParams();
 		$this->parseInputParams();
 		$this->readParseIndexFile();
+		
+		$this->determineFilesToParse();
 		
 		$this->log("Current date is " . date('Y-m-d H:i:s'));
 	}
@@ -10752,6 +10756,17 @@ class EsoLogParser
 	}
 	
 	
+	public function checkParseTime()
+	{
+		$currentMicroTime = microtime(true);
+		$diffTime = $currentMicroTime - $this->startMicroTime;
+		
+		if ($diffTime > self::MAX_PARSE_TIME_SECONDS) return false;
+		
+		return true;
+	}
+	
+	
 	public function ParseAllLogs()
 	{	
 		$files = glob($this->logFilePath . "eso*.log");
@@ -10761,12 +10776,20 @@ class EsoLogParser
 		foreach ($files as $key => $value)
 		{
 			$this->parseEntireLog($value);
+			
+			if (!$this->checkParseTime()) 
+			{
+				$this->log("Stopping log parsing due to exceeding max parse time of " . self::MAX_PARSE_TIME_SECONDS . "s!");
+				break;
+			}
 		}
 		
 		if ($this->lastFileIndexParsed > 0 && !$this->usingManualStartIndex)
 		{
 			$this->writeParseIndexFile($this->lastFileIndexParsed, $this->lastFileLineParsed);
 		}
+		
+		$this->log("Stopped parsing at file {$this->lastFileIndexParsed} line {$this->lastFileLineParsed}!"); 
 		
 		$this->logInfos['lastUpdate'] = date("Y-M-d H:i:s");
 		return true;
@@ -10843,6 +10866,32 @@ class EsoLogParser
 		
 		$result = file_put_contents($this->logFilePath . self::ELP_OUTPUTLOG_FILENAME, "$diffTime: $msg\n", FILE_APPEND | LOCK_EX);
 		return TRUE;
+	}
+	
+	
+	private function determineFilesToParse()
+	{
+		$files = glob($this->logFilePath . "eso*.log");
+		
+		$filesToParse = [];
+		$firstFile = "";
+		
+		foreach ($files as $key => $file)
+		{
+			$fileIndex = 0;
+			$result = preg_match("|eso([0-9]*)\.log|", $file, $matches);
+			if ($result) $fileIndex = (int) $matches[1];
+			
+			if ($this->startFileIndex > $fileIndex) continue;
+			
+			$filesToParse[] = $file;
+			if ($firstFile == "") $firstFile = $file;
+		}
+		
+		$lastFile = end($filesToParse);
+		
+		$count = count($filesToParse);
+		$this->log("Parsing $count log files from $firstFile to $lastFile!");
 	}
 	
 	

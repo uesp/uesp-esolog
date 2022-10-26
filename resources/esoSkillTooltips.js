@@ -540,7 +540,7 @@ window.GetEsoSkillCoefContentHtml2 = function(abilityId)
 	var numTooltips = CountEsoSkillTooltips(abilityId);
 	
 	output += "Showing " + numTooltips + " skill coefficients:<p/>";
-		
+	
 	for (var tooltipIndex = 1; tooltipIndex <= numTooltips; ++tooltipIndex)
 	{
 		output += CreateEsoSkillCoefContentForIndexHtml(skillData, tooltipIndex, true);
@@ -1996,6 +1996,8 @@ window.CreateEsoSkillTooltipRawDescription2 = function(skillData, inputValues)
 	var rawDesc = skillData.rawDescription;
 	
 	if (rawDesc == "") rawDesc = skillData.description;
+	
+	rawDesc = rawDesc.replaceAll(/<<([0-9]+)\)>>/g, '<<$1>>');		// Fix strange <<1)>> in some tooltips
 	
 	for (var tooltipIndex in skillData.tooltips)
 	{
