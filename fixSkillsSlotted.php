@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "36pts";
+$TABLE_SUFFIX = "36";
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
