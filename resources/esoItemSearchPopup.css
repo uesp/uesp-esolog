@@ -141,3 +141,7 @@
 	background-color: #ccc !important;
 }
 
+#esoispAnyLevelRoot {
+	float: left;
+	position: absolute;
+}

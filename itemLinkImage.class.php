@@ -92,8 +92,10 @@ class CEsoItemLinkImage
 	public $inputParams = array();
 	public $itemId = 0;
 	public $itemLink = "";
-	public $itemLevel = -66;		// 1-64
+	public $itemLevel = 66;		// 1-64
 	public $itemQuality = 5;	// 0-5
+	public $hasSetItemLevel = false;
+	public $hasSetItemQuality = false;
 	public $itemIntLevel = 50;	// 1-50
 	public $itemIntType = 370;	// 1-40
 	public $itemBound = -1;
@@ -290,6 +292,7 @@ class CEsoItemLinkImage
 		if (array_key_exists('level', $this->inputParams))
 		{
 			$level = strtolower($this->inputParams['level']);
+			$this->hasSetItemLevel = true;
 			
 			if ($level[0] == 'v')
 			{
@@ -313,6 +316,7 @@ class CEsoItemLinkImage
 		
 		if (array_key_exists('quality', $this->inputParams))
 		{
+			$this->hasSetItemQuality = true;
 			$this->itemQuality = (int) $this->inputParams['quality'];
 			if ($this->itemLevel < 0) $this->itemLevel = 1;
 		}
@@ -1074,8 +1078,8 @@ class CEsoItemLinkImage
 		if ($this->itemRecord['setBonusDesc4'] != "") $this->itemRecord['setBonusCount'] = 4;
 		if ($this->itemRecord['setBonusDesc5'] != "") $this->itemRecord['setBonusCount'] = 5;
 		
-		if ($this->itemQuality > 0) $this->itemRecord['quality'] = $this->itemQuality;
-		if ($this->itemLevel > 0) $this->itemRecord['level'] = $this->itemLevel;
+		if ($this->hasSetItemQuality && $this->itemQuality > 0) $this->itemRecord['quality'] = $this->itemQuality;
+		if ($this->hasSetItemLevel && $this->itemLevel > 0) $this->itemRecord['level'] = $this->itemLevel;
 		
 		return true;
 	}

@@ -220,7 +220,7 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	var rootElement = $("<div />").
 				attr("id", "esoispRoot").
 				attr("style", "display:none;").
-				html(this.getPopupRootText()).				
+				html(this.getPopupRootText()).
 				appendTo("body");
 	
 	$("#esoispCloseButton").click(function() { self.onClose(); });
@@ -393,7 +393,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='12'>Impenetrable</option>" +
 		"		<option value='16'>Infused</option>" +
 		"		<option value='17'>Invigorating</option>" +
-		"		<option value='25'>Nirnhoned</option>" +		
+		"		<option value='25'>Nirnhoned</option>" +
 		"		<option value='13'>Reinforced</option>" +
 		"		<option value='11'>Sturdy</option>" +
 		"		<option value='15'>Training</option>" +
@@ -413,6 +413,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"		<option value='12'>Drink</option>" +
 		"	</select>" +
 		"	<br/>" +
+		"	<div id='esoispAnyLevelRoot' style='display: none;'><input id='esoispAnyLevel' type='checkbox' name='anylevel' value='1'> Any</div>" + 
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='CP160'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
 		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip Item</button>" +
@@ -477,6 +478,7 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 	
 	if (this.itemType == 1) // Weapons
 	{
+		$("#esoispAnyLevelRoot").hide();
 		$("#esoispQuality").show();
 		$("#esoispQualityLabel").show();
 		$("#esoispArmorType").hide();
@@ -539,6 +541,7 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 	}
 	else if (this.itemType == 2) // Armor
 	{
+		$("#esoispAnyLevelRoot").hide();
 		$("#esoispQuality").show();
 		$("#esoispQualityLabel").show();
 		$("#esoispWeaponType1").hide();
@@ -594,8 +597,9 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 			}
 		}
 	}
-	else if (this.itemType == "4,12")
+	else if (this.itemType == "4,12" || this.itemType == 4 || this.itemType == 12)
 	{
+		$("#esoispAnyLevelRoot").show();
 		$("#esoispQuality").hide();
 		$("#esoispQualityLabel").hide();
 		$("#esoispJewelryTrait").hide();
@@ -617,6 +621,7 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 	}
 	else
 	{
+		$("#esoispAnyLevelRoot").hide();
 		$("#esoispQuality").show();
 		$("#esoispQualityLabel").show();
 		$("#esoispJewelryTrait").hide();
@@ -690,6 +695,9 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	
 	var text = $("#esoispInputText").val().trim();
 	
+	queryParams['anylevel'] = null;
+	if ($("#esoispAnyLevelRoot").is(":visible")) queryParams['anylevel'] = $("#esoispAnyLevel").is(":checked") ? 1 : 0;
+	
 	if (text != "") queryParams['text'] = text;
 	if (this.itemType != null) queryParams['type'] = this.itemType;
 	if (this.equipType != null) queryParams['equiptype'] = this.equipType;
@@ -717,7 +725,7 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 }
 
 
-UESP.EsoItemSearchPopup.prototype.onSearch = function() 
+UESP.EsoItemSearchPopup.prototype.onSearch = function()
 {
 	var queryParams = this.getSearchQueryParam();
 	
@@ -759,7 +767,7 @@ UESP.EsoItemSearchPopup.prototype.onSearchResults = function(data, status, xhr)
 }
 
 
-UESP.EsoItemSearchPopup.prototype.onResultsScroll = function(e) 
+UESP.EsoItemSearchPopup.prototype.onResultsScroll = function(e)
 {
 	//console.log("scroll");
 	//e.preventDefault();
@@ -1101,7 +1109,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	var clearSettings = false;
 	
 	data = data || {};
-		
+	
 	this.version = data.version || "";
 	this.sourceElement = sourceElement;
 	this.onSelectItem = data.onSelectItem;

@@ -5,7 +5,7 @@ require_once("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
 
 
-class CEsoItemSearchPopup 
+class CEsoItemSearchPopup
 {
 	
 	public $inputParams = array();
@@ -22,6 +22,7 @@ class CEsoItemSearchPopup
 	public $inputItemIntLevel = -1;
 	public $inputItemIntType = -1;
 	public $inputVersion = "";
+	public $inputAnyLevel = null;
 	
 	public $inputItemTransmuteTrait = -1;
 	public $inputLimit = 150;
@@ -57,7 +58,7 @@ class CEsoItemSearchPopup
 	public function OutputHeader()
 	{
 		ob_start("ob_gzhandler");
-	
+		
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
@@ -88,16 +89,17 @@ class CEsoItemSearchPopup
 		if (array_key_exists('intype', $this->inputParams) && $this->inputParams['inttype'] !== "") $this->inputItemIntType = (int) $this->inputParams['intype'];
 		if (array_key_exists('inttype', $this->inputParams) && $this->inputParams['inttype'] !== "") $this->inputItemIntType = (int) $this->inputParams['inttype'];
 		if (array_key_exists('transmutetrait', $this->inputParams) && $this->inputParams['transmutetrait'] !== "") $this->inputItemTransmuteTrait = (int) $this->inputParams['transmutetrait'];
+		if (array_key_exists('anylevel', $this->inputParams) && $this->inputParams['anylevel'] !== "") $this->inputAnyLevel = (int) $this->inputParams['anylevel'];
 	}
 	
 	
 	public function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-	
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
-	
+		
 		return true;
 	}
 	
@@ -108,17 +110,17 @@ class CEsoItemSearchPopup
 		$rows = implode(",", $this->itemRows);
 		$query = "SELECT SQL_CALC_FOUND_ROWS $rows FROM minedItemSummary$suffix ";
 		$whereQuery = array();
-				
+		
 		if ($this->inputItemType != "")
 		{
 			$itemTypes = explode(",", $this->inputItemType);
 			$tmpQuery = array();
-				
+			
 			foreach ($itemTypes as $itemType)
 			{
 				$tmpQuery[] = "type=".((int)$itemType);
 			}
-				
+			
 			$whereQuery[] = "(" . implode(" OR ", $tmpQuery) . ")";
 		}
 		
@@ -127,7 +129,7 @@ class CEsoItemSearchPopup
 			$level = (int) $this->inputItemLevel;
 			$where = "";
 			
-			if ($level <= 0)
+			if ($level <= 0 || $this->inputAnyLevel === 1)
 			{
 				// Do nothing
 			}
@@ -279,7 +281,7 @@ class CEsoItemSearchPopup
 		else
 			$this->OutputJson($this->resultError);
 			
-		return true;		
+		return true;
 	}
 	
 };
