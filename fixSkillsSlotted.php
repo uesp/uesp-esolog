@@ -1,6 +1,8 @@
 <?php
 
-$TABLE_SUFFIX = "36";
+$TABLE_SUFFIX = "";
+
+require_once("esoCommon.php");
 
 $ESO_SLOTTED_SKILLS = array(
 		35803 => -58,	//FG: Slayer
@@ -185,10 +187,10 @@ $ESO_COEF_VALUE = array(
 					array(1, 0, 0),
 				),
 		
-		20930 => array(1/6300, 1/600, 10),	// Engulfing Flames, updated 27 Feb 2020, PTS v5.3.3
-		34042 => array(1/6300, 1/600, 10),  // Technically Ranks 1-3 are 1 less than Rank 4 for both Magicka and Spell Damage
-		34045 => array(1/6300, 1/600, 10),
-		34048 => array(1/6300, 1/600, 10),
+		20930 => array(1/6300, 1/600, 6),	// Engulfing Flames, updated 27 Feb 2020, PTS v5.3.3
+		34042 => array(1/6300, 1/600, 6),   // Technically Ranks 1-3 are 1 less than Rank 4 for both Magicka and Spell Damage
+		34045 => array(1/6300, 1/600, 6),	// Changed to 6% cap in update 36?
+		34048 => array(1/6300, 1/600, 6),
 		
 	/* Old Values
 		29338 => array(0.3300, 0.4, 0),		//Light Armor: Annulment
@@ -358,6 +360,40 @@ foreach ($ESO_SLOTTED_SKILLS as $skillId => $powerType)
 		$skillsData[$skillId]['type' + $i] = $powerType;
 	}
 
+}
+
+	// Special case for parsing cap of Engulfing Flames
+if ($skillsData[20930])
+{
+	$desc = FormatRemoveEsoItemDescriptionText($skillsData[20930]['description']);
+	
+	if (preg_match('/a maximum of ([0-9]+)% bonus damage/', $desc, $matches))
+	{
+		$damageCap = floatval($matches[1]);
+		
+		if ($damageCap > 0)
+		{
+			$ESO_COEF_VALUE[20930][2] = $damageCap;
+			$ESO_COEF_VALUE[34042][2] = $damageCap;
+			$ESO_COEF_VALUE[34045][2] = $damageCap;
+			$ESO_COEF_VALUE[34048][2] = $damageCap;
+			print("\tFound damage cap of $damageCap% for Engulfing Flames!\n");
+		}
+		else
+		{
+			print("\tWarning: Failed to find damage cap in Engulfing Flames (zero or non-numeric value found)!\n");
+			print("\tDescription: $desc\n");
+		}
+	}
+	else
+	{
+		print("\tWarning: Failed to find damage cap in Engulfing Flames (description didn't match)!\n");
+		print("\tDescription: $desc\n");
+	}
+}
+else
+{
+	print("\tWarning: Failed to find damage cap in Engulfing Flames (skill data not loaded)!\n");
 }
 
 
