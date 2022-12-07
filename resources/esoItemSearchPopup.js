@@ -210,6 +210,7 @@ UESP.EsoItemSearchPopup = function ()
 	this.xoffset = 0;
 	this.yoffset = 0;
 	this.version = "";
+	this.searchType = "contains";
 };
 
 
@@ -237,6 +238,7 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	$("#esoispWeaponType2").change(function(e) { self.onWeaponType2Change(e); });
 	$("#esoispFoodQuality").change(function(e) { self.onFoodQualityChange(e); });
 	$("#esoispFoodType").change(function(e) { self.onFoodTypeChange(e); });
+	$("#esoispSearchType").change(function(e) { self.onSearchTypeChange(e); });
 	
 	$("#esoispInputText").keyup(function (e) {
 	    if (e.keyCode == 13) {
@@ -258,15 +260,15 @@ UESP.EsoItemSearchPopup.prototype.parseLevel = function(level)
 	var vetRank = level.match(/^\s*V(\d+)|\s*VR(\d+)/i);
 	var cpLevel = level.match(/^\s*CP(\d+)/i);
 	
-	if ($.isNumeric(level)) 
+	if ($.isNumeric(level))
 	{
 		level =  parseInt(level);
 	}
-	else if (vetRank != null) 
+	else if (vetRank != null)
 	{
 		level = parseInt(vetRank[1]) + 50;
 	}
-	else if (cpLevel != null) 
+	else if (cpLevel != null)
 	{
 		level =  Math.floor(parseInt(cpLevel[1])/10) + 50;
 	}
@@ -323,7 +325,16 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"<div id='esoispTitle'>Select Item</div>" + 
 		"<div id='esoispInputs'>" + 
 		"	<p>" +
-		"	<div class='esoispInputLabel'>Find Text</div> <input id='esoispInputText' type='text' name='text' value=''>" +
+		"	<div class='esoispInputLabel'>Find Text</div> " +
+		"	<div id='esoispSearchTypeRoot'>" +
+		"		<select id='esoispSearchType' name='searchtype'>" +
+		"			<option value='contains' selected>Contains Text</option>" +
+		"			<option value='startswith'>Starts With Text</option>" +
+		"			<option value='setstarts'>Set Name Starts With</option>" +
+		"			<option value='setcontains'>Set Name Contains</option>" +
+		"		</select>" +
+		"		<input id='esoispInputText' type='text' name='text' value=''>" +
+		"	</div>" +
 		"	<div class='esoispInputLabel' id='esoispQualityLabel'>Quality</div> <select id='esoispQuality' type='text' name='quality'>" +
 		"		<option value='1'>Normal</option>" +
 		"		<option value='2'>Fine</option>" +
@@ -417,6 +428,7 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='CP160'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
 		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip Item</button>" +
+		"	<div id='esoispResultText'></div>" + 
 		"	<button id='esoispSearchButton' class='esoispButton'>Search...</button>" +
 		"</div>" +
 		"<div id='esoispResults'></div>" + 
@@ -705,6 +717,7 @@ UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 	if (this.armorType != null) queryParams['armortype'] = this.armorType;
 	if (this.itemTrait >= 0) queryParams['trait'] = this.itemTrait;
 	if (this.version != "") queryParams['version'] = this.version;
+	if (this.searchType != "") queryParams['searchtype'] = this.searchType;
 	
 	this.updateLevelQuality();
 	
@@ -756,6 +769,7 @@ UESP.EsoItemSearchPopup.prototype.sendSearchQuery = function(queryParams)
 UESP.EsoItemSearchPopup.prototype.onSearchError = function(xhr, status, errorMsg)
 {
 	$("#esoispResults").text("Error: " + errorMsg);
+	$("#esoispResultText").text("");
 }
 
 
@@ -805,6 +819,7 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 	var resultsElement = $("#esoispResults");
 	var newResults = "";
 	var self = this;
+	var totalRowCount = -1;
 	
 	this.searchResults = itemData;
 	
@@ -818,9 +833,9 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 	{
 		if (itemData[i].type < 0)
 		{
-			var rowCount = itemData[i].rowCount;
+			totalRowCount = itemData[i].rowCount;
 			
-			if (rowCount == 0)
+			if (totalRowCount == 0)
 			{
 				
 				if (this.itemTrait <= 0)
@@ -828,9 +843,9 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 				else
 					newResults += "No items found matching the input values!<br/><br/>If you can't find the desired trait choose any trait and then \"Transmute\" it.";
 			}
-			else if (rowCount > this.ROW_LIMIT)
+			else if (totalRowCount > this.ROW_LIMIT)
 			{
-				rowCount -= this.ROW_LIMIT;
+				var rowCount = totalRowCount - this.ROW_LIMIT;
 				newResults += "Found " + rowCount + " more results! Try a more specific search query.";
 			}
 			
@@ -839,8 +854,10 @@ UESP.EsoItemSearchPopup.prototype.displaySearchResults = function(itemData)
 		
 		newResults += this.createSearchResult(itemData[i], i);
 	}
-		
+	
 	resultsElement.html(newResults);
+	
+	$("#esoispResultText").text("Showing " + (itemData.length - 1) + " of " + totalRowCount + " results");
 	
 	$(".esoispResultRow").click(function(e) { self.onResultClick(e, $(this)); });
 	$('#esoispResults .eso_item_link').hover(OnEsoItemLinkEnter, OnEsoItemLinkLeave);
@@ -1044,6 +1061,12 @@ UESP.EsoItemSearchPopup.prototype.onFoodTypeChange = function(e)
 UESP.EsoItemSearchPopup.prototype.onArmorTypeChange = function(e)
 {
 	this.armorType = $("#esoispArmorType").val();
+}
+
+
+UESP.EsoItemSearchPopup.prototype.onSearchTypeChange = function(e)
+{
+	this.searchType = $("#esoispSearchType").val();
 }
 
 

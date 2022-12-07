@@ -118,7 +118,11 @@
 }
 
 #esoispInputText {
-	width: 116px;
+	width: 113px;
+	z-index: 10;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 #esoispInputs select {
@@ -144,4 +148,27 @@
 #esoispAnyLevelRoot {
 	float: left;
 	position: absolute;
+}
+
+
+#esoispQualityLabel {
+	width: 72px;
+}
+
+
+#esoispSearchType {
+	width: 139px !important;
+	height: 21px;
+	outline: none;
+}
+
+#esoispSearchTypeRoot {
+	position: relative;
+	display: inline-block;
+}
+
+#esoispResultText {
+	display: inline-block;
+	width: 270px;
+	text-align: center;
 }

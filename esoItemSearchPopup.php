@@ -23,9 +23,10 @@ class CEsoItemSearchPopup
 	public $inputItemIntType = -1;
 	public $inputVersion = "";
 	public $inputAnyLevel = null;
+	public $inputSearchType = "contains";
 	
 	public $inputItemTransmuteTrait = -1;
-	public $inputLimit = 150;
+	public $inputLimit = 300;
 	
 	public $resultItems = array();
 	public $resultError = array("error" => true);
@@ -90,6 +91,7 @@ class CEsoItemSearchPopup
 		if (array_key_exists('inttype', $this->inputParams) && $this->inputParams['inttype'] !== "") $this->inputItemIntType = (int) $this->inputParams['inttype'];
 		if (array_key_exists('transmutetrait', $this->inputParams) && $this->inputParams['transmutetrait'] !== "") $this->inputItemTransmuteTrait = (int) $this->inputParams['transmutetrait'];
 		if (array_key_exists('anylevel', $this->inputParams) && $this->inputParams['anylevel'] !== "") $this->inputAnyLevel = (int) $this->inputParams['anylevel'];
+		if (array_key_exists('searchtype', $this->inputParams) && $this->inputParams['searchtype'] !== "") $this->inputSearchType = strtolower($this->inputParams['searchtype']);
 	}
 	
 	
@@ -129,6 +131,11 @@ class CEsoItemSearchPopup
 			$level = (int) $this->inputItemLevel;
 			$where = "";
 			
+			if ($this->inputSearchType == "setcontains")
+				$this->inputSearchType = "contains";
+			elseif ($this->inputSearchType == "setstarts")
+				$this->inputSearchType = "startswith";
+			
 			if ($level <= 0 || $this->inputAnyLevel === 1)
 			{
 				// Do nothing
@@ -163,7 +170,7 @@ class CEsoItemSearchPopup
 				$where = "((level >= 'CP100' AND level < 'CP150')";
 			else if ($level <= 66)
 				$where = "((level >= 'CP150' AND level <= 'CP160')";
-
+			
 			if ($where != "") 
 			{
 				$whereQuery[] = $where . " OR specialType=8 OR name=\"Orzorga's Red Frothgar\" OR name=\"Spring-Loaded Infusion\" OR name=\"Artaeum Picked Fish Bowl\"  OR name=\"Artaeum Takeaway Broth\" OR abilityDesc LIKE \"%These effects are scaled based on your level%\")";
@@ -190,8 +197,27 @@ class CEsoItemSearchPopup
 		
 		if ($this->inputText != "")
 		{
-			$safeText = $this->db->real_escape_string($this->inputText);
-			$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%' OR setName LIKE '%$safeText%' OR allNames LIKE '%$safeText%')";
+			if ($this->inputSearchType == "contains" || $this->inputSearchType == "")
+			{
+				$safeText = $this->db->real_escape_string($this->inputText);
+				$whereQuery[] = "(name LIKE '%$safeText%' OR description LIKE '%$safeText%' OR setName LIKE '%$safeText%' OR allNames LIKE '%$safeText%')";
+			}
+			elseif ($this->inputSearchType == "startswith" || $this->inputSearchType == "starts")
+			{
+				$safeText = $this->db->real_escape_string($this->inputText);
+				$whereQuery[] = "(name LIKE '$safeText%' OR description LIKE '$safeText%' OR setName LIKE '$safeText%' OR allNames LIKE '$safeText%')";
+			}
+			elseif ($this->inputSearchType == "setstarts" && $this->inputItemSet == "")
+			{
+				$safeText = $this->db->real_escape_string($this->inputText);
+				$whereQuery[] = "(setName LIKE '$safeText%')";
+			}
+			elseif ($this->inputSearchType == "setcontains" && $this->inputItemSet == "")
+			{
+				$safeText = $this->db->real_escape_string($this->inputText);
+				$whereQuery[] = "(setName LIKE '%$safeText%')";
+			}
+			
 		}
 		
 		if ($this->inputItemSet != "")
