@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "36";
+$TABLE_SUFFIX = "37pts";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
@@ -68,8 +68,12 @@ while ($row = $result->fetch_assoc())
 {
 	$row['matchDesc'] = str_replace("  ", " ", $row['description']);
 	$row['matchDesc'] = str_replace("  ", " ", $row['matchDesc']);
+	$row['matchDesc'] = str_replace("  ", " ", $row['matchDesc']);
+	$row['matchDesc'] = str_replace("  ", " ", $row['matchDesc']);
 	$row['matchDesc'] = FormatRemoveEsoItemDescriptionText($row['matchDesc']);
-	$row['matchDesc'] = preg_replace("/[0-9]+(?:\.[0-9]+)?(?:-[0-9]+(?:\.[0-9]+)?)?/", "#", $row['matchDesc']); 
+	$row['matchDesc'] = preg_replace("/[0-9]+(?:\.[0-9]+)?(?:-[0-9]+(?:\.[0-9]+)?)?/", "#", $row['matchDesc']);
+	$row['matchDesc'] = str_replace("  ", " ", $row['matchDesc']);
+	$row['matchDesc'] = str_replace("  ", " ", $row['matchDesc']);
 	$skills[] = $row;
 }
 
@@ -91,6 +95,8 @@ function FindMatchingSkill($setBonus, $setName)
 	$rawBonus = str_replace("\r\n", " ", $rawBonus);
 	$rawBonus = str_replace("\r", " ", $rawBonus);
 	$rawBonus = str_replace("\n", " ", $rawBonus);
+	$rawBonus = str_replace("  ", " ", $rawBonus);
+	$rawBonus = str_replace("  ", " ", $rawBonus);
 	$rawBonus = str_replace("  ", " ", $rawBonus);
 	//print("\t\t'$rawBonus'\n");
 	

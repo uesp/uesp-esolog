@@ -179,6 +179,7 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"34" => "High Isle",
 		"35" => "Lost Depths",
 		"36" => "Firesong",
+		"37" => "Scribes of Fate",
 	);
 
 
@@ -2061,6 +2062,17 @@ $ESO_SET_INDEXES = array(
 		677 => "Chimera's Rebuke",
 		678 => "Old Growth Brewer",
 		679 => "Claw of the Forest Wraith",
+		680 => "Ritemaster's Bond",
+		681 => "Nix-Hound's Howl",
+		682 => "Telvanni Enforcer",
+		683 => "Roksa the Warped",
+		684 => "Runecarver's Blaze",
+		685 => "Apocryphal Inspiration",
+		686 => "Abyssal Brace",
+		687 => "Ozezan the Inferno",
+		688 => "Snake in the Stars",
+		689 => "Shell Splitter",
+		690 => "Judgement of Akatosh",
 );
 
 
@@ -3957,7 +3969,9 @@ $ESO_POISON_SKILLS = array(
 		39425 => 1,		// Trapping Webs 	
 );
 
-	/* Skills that are classed as "Flame AOE" for the Elf Bane set.
+	/* TODO: Needs Updating
+	 * 
+	 * Skills that are classed as "Flame AOE" for the Elf Bane set.
 	 * 		0 = Only affect description durations.
 	 *		1 = Replace duration of entire ability in addition to all description durations.
 	 *		2 = Match description duration to skill duration.
@@ -3966,86 +3980,29 @@ $ESO_POISON_SKILLS = array(
 $ESO_ELFBANE_SKILLS = array(
 		3341  => 0,  // Lava Flows
 		15957 => 0,  // Magma Armor 1
-		15957 => 0,  // Magma Armor 2
-		15957 => 0,  // Magma Armor 3
-		15957 => 0,  // Magma Armor 4
 		17874 => 0,  // Magma Shell 1
-		17874 => 0,  // Magma Shell 2
-		17874 => 0,  // Magma Shell 3
-		17874 => 0,  // Magma Shell 4
 		20657 => 0,  // Searing Strike 1
-		20657 => 0,  // Searing Strike 2
-		20657 => 0,  // Searing Strike 3
-		20657 => 0,  // Searing Strike 4
 		20660 => 0,  // Burning Embers 1
-		20660 => 0,  // Burning Embers 2
-		20660 => 0,  // Burning Embers 3
-		20660 => 0,  // Burning Embers 4
 		20917 => 0,  // Fiery Breath 1
-		20917 => 0,  // Fiery Breath 2
-		20917 => 0,  // Fiery Breath 3
-		20917 => 0,  // Fiery Breath 4
 		20930 => 0,  // Engulfing Flames 1
-		20930 => 0,  // Engulfing Flames 2
-		20930 => 0,  // Engulfing Flames 3
-		20930 => 0,  // Engulfing Flames 4
 		21726 => 0,  // Sun Fire 1
-		21726 => 0,  // Sun Fire 2
-		21726 => 0,  // Sun Fire 3
-		21726 => 0,  // Sun Fire 4
 		21729 => 0,  // Vampire's Bane 1
-		21729 => 0,  // Vampire's Bane 2
-		21729 => 0,  // Vampire's Bane 3
-		21729 => 0,  // Vampire's Bane 4
 		21732 => 0,  // Reflective Light 1
-		21732 => 0,  // Reflective Light 2
-		21732 => 0,  // Reflective Light 3
-		21732 => 0,  // Reflective Light 4
 		28708 => 0,  // Empower
 		28807 => 0,  // Wall of Fire 1
-		28807 => 0,  // Wall of Fire 2
-		28807 => 0,  // Wall of Fire 3
-		28807 => 0,  // Wall of Fire 4
 		28988 => 0,  // Dragonknight Standard 1
-		28988 => 0,  // Dragonknight Standard 2
-		28988 => 0,  // Dragonknight Standard 3
-		28988 => 0,  // Dragonknight Standard 4
-		32710 => 0,  // Eruption 1
-		32710 => 0,  // Eruption 2
-		32710 => 0,  // Eruption 3
-		32710 => 0,  // Eruption 4
+		32710 => 1,  // Eruption 1
 		32947 => 0,  // Standard of Might 1
-		32947 => 0,  // Standard of Might 2
-		32947 => 0,  // Standard of Might 3
-		32947 => 0,  // Standard of Might 4
 		32958 => 0,  // Shifting Standard 1
-		32958 => 0,  // Shifting Standard 2
-		32958 => 0,  // Shifting Standard 3
-		32958 => 0,  // Shifting Standard 4
 		39012 => 0,  // Blockade of Fire 1
-		39012 => 0,  // Blockade of Fire 2
-		39012 => 0,  // Blockade of Fire 3
-		39012 => 0,  // Blockade of Fire 4
 		39053 => 0,  // Unstable Wall of Fire 1
-		39053 => 0,  // Unstable Wall of Fire 2
-		39053 => 0,  // Unstable Wall of Fire 3
-		39053 => 0,  // Unstable Wall of Fire 4
 		54129 => 0,  // Fire Chain
 		63198 => 0,  // Fiery Chain
 		83625 => 0,  // Fire Storm 1
-		83625 => 0,  // Fire Storm 2
-		83625 => 0,  // Fire Storm 3
-		83625 => 0,  // Fire Storm 4
 		83682 => 0,  // Eye of Flame 1
-		83682 => 0,  // Eye of Flame 2
-		83682 => 0,  // Eye of Flame 3
-		83682 => 0,  // Eye of Flame 4
 		85126 => 0,  // Fiery Rage 1
-		85126 => 0,  // Fiery Rage 2
-		85126 => 0,  // Fiery Rage 3
-		85126 => 0,  // Fiery Rage 4
 		100155 => 0,  // Crushing Wall
-
+		
 				// Older data no longer needed (stored in skillTooltips database)
 		3341  => 2, // Lava Flows
 		15774 => 2, // Flaming Oil
@@ -4459,6 +4416,10 @@ function GetEsoItemTableSuffix($version)
 			return "36pts";
 		case '36':
 			return "";
+		case '37pts':
+			return "37pts";
+		case '37':
+			return "37";
 	}
 
 	return "";

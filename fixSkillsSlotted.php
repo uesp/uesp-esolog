@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "37pts";
 
 require_once("esoCommon.php");
 
@@ -165,10 +165,10 @@ $ESO_COEF_VALUE = array(
 		29791 => array(0.5, 0, 0),	//Heavy Armor: Rapid Mending
 		45529 => array(1, 0, 0),
 		
-		39197 => array(0.25, 0, 5),		//Heavy Armor: Unstoppable
-		41097 => array(0.25, 0, 5),
-		41100 => array(0.25, 0, 5),
-		41103 => array(0.25, 0, 5),
+		39197 => array(5, 0, 65),		//Heavy Armor: Unstoppable
+		41097 => array(5, 0, 65),
+		41100 => array(5, 0, 65),
+		41103 => array(5, 0, 65),
 		
 		39192 => array(					//Medium Armor: Elude
 					array(2, 0, 16),

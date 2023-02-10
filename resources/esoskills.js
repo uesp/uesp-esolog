@@ -3849,28 +3849,27 @@ window.GetEsoSkillDuration = function(skillId, inputValues)
 	
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
 	
-	if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null)
-	{
-		modDuration = +inputValues.SkillDuration[skillData.baseName];
-		newDuration = 0;
-		
-		if (modDuration >= 1)
-		{
-			newDuration = +skillData.duration + modDuration*1000;
-			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base + " + modDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
-		}
-		else
-		{
-			newDuration = Math.floor(+skillData.duration * (1 + modDuration));
-			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base x " + Math.floor(modDuration*100) + "% = " + (Math.floor(newDuration/100)/10) + " secs";
-		}
-	}
-	
 	if (inputValues.ElfBaneDuration && (g_EsoSkillElfBaneSkills[skillId] || g_EsoSkillElfBaneSkills[displayId]))
 	{
 		var origDuration = newDuration;
 		newDuration += inputValues.ElfBaneDuration*1000;
 		skillData.rawOutput["Elf Bane Duration"] = "" + (Math.floor(origDuration/100)/10) + " + " + inputValues.ElfBaneDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+	}
+	
+	if (inputValues.SkillDuration && inputValues.SkillDuration[skillData.baseName] != null)
+	{
+		modDuration = +inputValues.SkillDuration[skillData.baseName];
+		
+		if (modDuration >= 1)
+		{
+			newDuration = newDuration + modDuration*1000;
+			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base + " + modDuration + " secs = " + (Math.floor(newDuration/100)/10) + " secs";
+		}
+		else
+		{
+			newDuration = Math.floor(newDuration * (1 + modDuration));
+			skillData.rawOutput["Duration"] = "" + (Math.floor(skillData.duration/100)/10) + " Base x " + Math.floor(modDuration*100) + "% = " + (Math.floor(newDuration/100)/10) + " secs";
+		}
 	}
 	
 		// Modify Elude duration based on Medium Armor worn
