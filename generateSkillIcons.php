@@ -3,7 +3,7 @@
  * Generates static skill icons with the skill name.
  */
 
-$TABLE_SUFFIX = "37pts";
+$TABLE_SUFFIX = "37";
 $OUTPUT_PATH = "/mnt/uesp/esogameicons/uespskills";
 $ICON_PATH = "/mnt/uesp/esogameicons";
 $ONLY_OUTPUT_PLAYER = true;

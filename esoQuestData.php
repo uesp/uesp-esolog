@@ -10480,6 +10480,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7027 => array(
+			'name'    => "A War of Scribes",
+			'journal' => "A mage called Valinna staged a coup and now leads the Scribes of Mora. An old Khajiit named Keshargo needs my help to reclaim the Itinerant Staff and remove Valinna from her position of power.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	4150 => array(
 			'name'    => "Sleeping on the Job",
 			'journal' => "Something is definitely happening at Fort Amol. Groups of high-ranking Nords, Argonians, and Dark Elves are on hand, and the guards are turning travelers away from the inn. I should try to figure out what's going on.",
@@ -13072,6 +13080,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7028 => array(
+			'name'    => "Pledge: Scrivener's Hall",
+			'journal' => "Urgarlag Chief-bane of the Undaunted has challenged me to remove Valinna from her position as the leader of the Scribes of Mora in Scrivener's Hall.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	4651 => array(
 			'name'    => "The Champion Division",
 			'journal' => "I have defeated the champions of the three major divisions in Thizzrini Arena. Now I am ready to face Ishalga and become the Grand Champion of Thizzrini Arena.",
@@ -13113,7 +13129,7 @@ $ESO_QUEST_DATA = array(
 			'type' => 0,
 		),
 	6859 => array(
-			'name'    => "City Under Siege",
+			'name'    => "The Siege of Vastyr",
 			'journal' => "The Firesong and their Dreadsails allies are about to begin the siege of Vastyr. Sir Stefan needs my help to defend the city and defeat the invaders.",
 			'internalName' => "",
 			'zoneId' => 0,
@@ -15082,7 +15098,7 @@ $ESO_QUEST_DATA = array(
 		),
 	4153 => array(
 			'name'    => "Concealed Weapons",
-			'journal' => "I've arrived in Nimalten to find the city under threat. Thane Fjora was attacked by her houscarl. Aera Earth-Turner, my old friend from Bleakrock Isle, is leading an investigation.",
+			'journal' => "I've arrived in Nimalten to find the city under threat. Thane Fjora was attacked by her housecarl. Aera Earth-Turner, my old friend from Bleakrock Isle, is leading an investigation.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -19658,7 +19674,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6852 => array(
 			'name'    => "The Dream of Kasorayn",
-			'journal' => "We ended the Dreadsails siege on Vastyr, but at the cost of a great many lives—including Count Mornard and Archdruids Rahval and Ellic. And the Firesong now have all three sacred seeds. We need to find a way to stop Archdruid Orlaith.",
+			'journal' => "We ended the Dreadsails siege on Vastyr, but at the cost of a great many lives-including Count Mornard and Archdruids Rahval and Ellic. And the Firesong now have all three sacred seeds. We need to find a way to stop Archdruid Orlaith.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -24560,6 +24576,22 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	6896 => array(
+			'name'    => "Unstuck From Time",
+			'journal' => "As I arrived at the stronghold of Bal Sunnar, several Dark Elves recognized me and ran away. A mage named Saresea has come to find the cause of a temporal distortion. I agreed to help her contain its source.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	6897 => array(
+			'name'    => "Pledge: Bal Sunnar",
+			'journal' => "<<1>> of the Undaunted has challenged me to explore Bal Sunnar.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	6905 => array(
 			'name'    => "Spice of Life",
 			'journal' => "Chef Rhazeez has enlisted me as his assistant. He wants to create the spiciest dish in Tamriel using local Galen ingredients.",
@@ -24568,5 +24600,12 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	6967 => array(
+			'name'    => "Eye of Fate",
+			'journal' => "Leramil the Wise claims that the Daedric Prince of Fate, Hermaeus Mora, needs my help to stop a threat that could destroy both Mora's realm of Apocrypha and the mortal realm of Nirn.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 );
-

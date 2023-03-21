@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 102,
-						'numBooks' => 1382 
+						'numCollect' => 104,
+						'numBooks' => 1438 
 				),
 				1 => array (
 						'id' => 43,
@@ -7762,18 +7762,260 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				),
 				101 => array (
-						'id' => 0,
-						'name' => '',
-						'numBooks' => 0,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
-						'books' => array () 
+						'id' => 204,
+						'name' => 'Firesong Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7320 => array (
+										'title' => 'Crafting Motif 117: Firesong Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7321 => array (
+										'title' => 'Crafting Motif 117: Firesong Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7322 => array (
+										'title' => 'Crafting Motif 117: Firesong Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7323 => array (
+										'title' => 'Crafting Motif 117: Firesong Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7324 => array (
+										'title' => 'Crafting Motif 117: Firesong Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7325 => array (
+										'title' => 'Crafting Motif 117: Firesong Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7326 => array (
+										'title' => 'Crafting Motif 117: Firesong Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7327 => array (
+										'title' => 'Crafting Motif 117: Firesong Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7328 => array (
+										'title' => 'Crafting Motif 117: Firesong Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7329 => array (
+										'title' => 'Crafting Motif 117: Firesong Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7330 => array (
+										'title' => 'Crafting Motif 117: Firesong Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7331 => array (
+										'title' => 'Crafting Motif 117: Firesong Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7332 => array (
+										'title' => 'Crafting Motif 117: Firesong Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7333 => array (
+										'title' => 'Crafting Motif 117: Firesong Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				),
 				102 => array (
-						'id' => 0,
-						'name' => '',
-						'numBooks' => 0,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
-						'books' => array () 
+						'id' => 205,
+						'name' => 'House Mornard Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7335 => array (
+										'title' => 'Crafting Motif 118: House Mornard Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7336 => array (
+										'title' => 'Crafting Motif 118: House Mornard Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7337 => array (
+										'title' => 'Crafting Motif 118: House Mornard Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7338 => array (
+										'title' => 'Crafting Motif 118: House Mornard Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7339 => array (
+										'title' => 'Crafting Motif 118: House Mornard Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7340 => array (
+										'title' => 'Crafting Motif 118: House Mornard Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7341 => array (
+										'title' => 'Crafting Motif 118: House Mornard Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7342 => array (
+										'title' => 'Crafting Motif 118: House Mornard Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7343 => array (
+										'title' => 'Crafting Motif 118: House Mornard Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7344 => array (
+										'title' => 'Crafting Motif 118: House Mornard Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7345 => array (
+										'title' => 'Crafting Motif 118: House Mornard Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7346 => array (
+										'title' => 'Crafting Motif 118: House Mornard Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7347 => array (
+										'title' => 'Crafting Motif 118: House Mornard Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7348 => array (
+										'title' => 'Crafting Motif 118: House Mornard Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				103 => array (
+						'id' => 208,
+						'name' => 'Scribes of Mora Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7480 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7481 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7482 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7483 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7484 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7485 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7486 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7487 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7488 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7489 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7490 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7491 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7492 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7493 => array (
+										'title' => 'Crafting Motif 120: Scribes of Mora Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				104 => array (
+						'id' => 209,
+						'name' => 'Blessed Inheritor Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7495 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7496 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7497 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7498 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7499 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7500 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7501 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7502 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7503 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7504 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7505 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7506 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7507 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7508 => array (
+										'title' => 'Crafting Motif 119: Blessed Inheritor Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
@@ -7781,7 +8023,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 47,
-						'numBooks' => 4095 
+						'numBooks' => 4107 
 				),
 				1 => array (
 						'id' => 44,
@@ -8662,7 +8904,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				3 => array (
 						'id' => 46,
 						'name' => 'Daedric Cults',
-						'numBooks' => 102,
+						'numBooks' => 104,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_daedric.dds',
 						'books' => array (
 								68 => array (
@@ -9071,6 +9313,14 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								6820 => array (
 										'title' => 'Lyranth`s Letter',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7509 => array (
+										'title' => 'Mildanor`s Ripped Note',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7646 => array (
+										'title' => 'Letter from Leramil the Wise',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
 								) 
 						) 
@@ -19586,7 +19836,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				32 => array (
 						'id' => 104,
 						'name' => 'Library of Incunabula',
-						'numBooks' => 112,
+						'numBooks' => 122,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								3713 => array (
@@ -20019,15 +20269,15 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7192 => array (
 										'title' => 'A Warning to Those Who Follow',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
 								),
 								7193 => array (
 										'title' => 'A Second Warning',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
 								),
 								7194 => array (
 										'title' => 'Your Final Warning',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+										'icon' => '/esoui/art/icons/justice_stolen_letter_001.dds' 
 								),
 								7195 => array (
 										'title' => 'Logbook of Druid Anwas',
@@ -20036,6 +20286,46 @@ $ESO_BOOK_COLLECTIONS = array (
 								7196 => array (
 										'title' => 'Logbook of Druid Betrys',
 										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
+								),
+								7472 => array (
+										'title' => 'Octants of the Scrivener',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7473 => array (
+										'title' => 'Mission Report: Successful',
+										'icon' => '/esoui/art/icons/housing_bre_inc_scroll_closed002.dds' 
+								),
+								7474 => array (
+										'title' => 'Mazandi`s Rift Tracking',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7475 => array (
+										'title' => 'Letter to the Magnastylus',
+										'icon' => '/esoui/art/icons/housing_bre_inc_scroll_closed002.dds' 
+								),
+								7476 => array (
+										'title' => 'Excerpts from Keshargo`s Journal',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color3.dds' 
+								),
+								7477 => array (
+										'title' => 'Letter of Resignation',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7478 => array (
+										'title' => 'Scribes of Mephala',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								7349 => array (
+										'title' => 'Journal of Kovan Giryon',
+										'icon' => '/esoui/art/icons/housing_bre_inc_book_closed002.dds' 
+								),
+								7350 => array (
+										'title' => 'Journal of Nerile Belvayn',
+										'icon' => '/esoui/art/icons/housing_bre_inc_book_closed002.dds' 
+								),
+								7351 => array (
+										'title' => 'Journal of Adosi Fevur',
+										'icon' => '/esoui/art/icons/housing_bre_inc_book_closed002.dds' 
 								) 
 						) 
 				),
@@ -24219,7 +24509,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7546 => array (
 										'title' => 'Druid King Vestments Clue',
-										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
 								) 
 						) 
 				),
@@ -24338,7 +24628,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book5_detail3_color5.dds' 
 								),
 								7360 => array (
-										'title' => 'The Flora and Fauna of Galen',
+										'title' => 'Flora and Fauna of Galen',
 										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
 								),
 								7363 => array (
@@ -24350,15 +24640,15 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
 								),
 								7470 => array (
-										'title' => 'A Travel Guide to Tamriel Castles',
+										'title' => 'Guide to Tamriel Castles',
 										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
 								),
 								7512 => array (
-										'title' => 'Argument Between Priest and Druid Number 12',
+										'title' => 'Priest and Druid Argument 12',
 										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
 								),
 								7513 => array (
-										'title' => 'Dreadsails: Threat to the Isles',
+										'title' => 'Threat of the Dreadsails',
 										'icon' => '/esoui/art/icons/notes_001.dds' 
 								),
 								7519 => array (
@@ -24390,7 +24680,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
 								),
 								7526 => array (
-										'title' => 'Arnoit and Lisette: The True Story',
+										'title' => 'Arnoit and Lisette: The Truth',
 										'icon' => '/esoui/art/icons/lore_book5_detail5_color4.dds' 
 								),
 								7527 => array (
@@ -24486,7 +24776,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
 								),
 								7572 => array (
-										'title' => 'Druid Fables: Butterfly and Faun Lord',
+										'title' => 'Druid Fables: The Faun Lord',
 										'icon' => '/esoui/art/icons/lore_book2_detail5_color1.dds' 
 								),
 								7573 => array (

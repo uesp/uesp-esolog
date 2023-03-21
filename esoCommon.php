@@ -4233,7 +4233,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 36;
+	return 37;
 }
 
 
@@ -4415,11 +4415,11 @@ function GetEsoItemTableSuffix($version)
 		case '36pts':
 			return "36pts";
 		case '36':
-			return "";
+			return "36";
 		case '37pts':
 			return "37pts";
 		case '37':
-			return "37";
+			return "";
 	}
 
 	return "";
