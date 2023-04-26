@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "37";
+$TABLE_SUFFIX = "38pts";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 

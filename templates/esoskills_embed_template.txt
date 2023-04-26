@@ -32,16 +32,20 @@
 		<br />
 		<div class="esovsRangeLabel">Spell Damage</div>
 		<input id="esovsInputSpellDamage" class="esovsInputControl" type="text" value="{spellDamage}">
-		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="1" max="10000" value="{spellDamage}">
+		<input id="esovsControlSpellDamage"  class="esovsRangeControl" type="range" min="0" max="10000" value="{spellDamage}">
 		<br />
 		<div class="esovsRangeLabel">Weapon Damage</div>
 		<input id="esovsInputWeaponDamage" class="esovsInputControl" type="text" value="{weaponDamage}">
-		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="1" max="10000" value="{weaponDamage}">
+		<input id="esovsControlWeaponDamage" class="esovsRangeControl" type="range" min="0" max="10000" value="{weaponDamage}">
+		<br />
+		<div class="esovsRangeLabel">Armor</div>
+		<input id="esovsInputArmor" class="esovsInputControl" type="text" value="{armor}">
+		<input id="esovsControlArmor" class="esovsRangeControl" type="range" min="0" max="32100" value="{armor}">
 		<br />
 	</div>
 	<hr />
 	<div id="esovsSkillCoefData">
-		<h2>Skill Coefficients</h2>		
+		<h2>Skill Coefficients</h2>
 		<div id="esovsSkillCoefContent" style="display: none;">
 			{coefSkillData}
 		</div>

@@ -40,6 +40,7 @@ class CEsoViewSkills
 	public $skillLevel = 66;
 	public $skillSpellDamage = 2000;
 	public $skillWeaponDamage = 2000;
+	public $skillArmor = 11000;
 	
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
@@ -472,8 +473,9 @@ class CEsoViewSkills
 		if (array_key_exists('stamina', $this->inputParams)) $this->skillStamina = intval($this->inputParams['stamina']);
 		if (array_key_exists('spelldamage', $this->inputParams)) $this->skillSpellDamage = intval($this->inputParams['spelldamage']);
 		if (array_key_exists('weapondamage', $this->inputParams)) $this->skillWeaponDamage = intval($this->inputParams['weapondamage']);
+		if (array_key_exists('armor', $this->inputParams)) $this->skillArmor = intval($this->inputParams['armor']);
 		
-		if (array_key_exists('display', $this->inputParams)) 
+		if (array_key_exists('display', $this->inputParams))
 		{
 			$displayType = urldecode($this->inputParams['display']);
 			
@@ -553,6 +555,7 @@ class CEsoViewSkills
 		$output = "";
 		$this->isFirstSkill = true;
 
+		if (IsEsoVersionAtLeast($this->version, "38") && CanViewEsoLogVersion("38pts")) $output .= $this->GetSkillTreeTypeHtml("Arcanist", true);
 		$output .= $this->GetSkillTreeTypeHtml("Dragonknight", true);
 		if (IsEsoVersionAtLeast($this->version, "22") && CanViewEsoLogVersion("22pts")) $output .= $this->GetSkillTreeTypeHtml("Necromancer", true);
 		$output .= $this->GetSkillTreeTypeHtml("Nightblade", true);
@@ -1388,6 +1391,7 @@ class CEsoViewSkills
 		if ($this->skillStamina) $output .= "<input type='hidden' name='stamina' value='{$this->skillStamina}'>";
 		if ($this->skillSpellDamage) $output .= "<input type='hidden' name='spelldamage' value='{$this->skillSpellDamage}'>";
 		if ($this->skillWeaponDamage) $output .= "<input type='hidden' name='weapondamage' value='{$this->skillWeaponDamage}'>";
+		if ($this->skillArmor) $output .= "<input type='hidden' name='armor' value='{$this->skillArmor}'>";
 		if ($this->displayType) $output .= "<input type='hidden' name='display' value='{$this->displayType}'>";
 		$output .= "<select name='version'>";
 		
@@ -1454,6 +1458,7 @@ class CEsoViewSkills
 				'{stamina}' => $this->skillStamina,
 				'{spellDamage}' => $this->skillSpellDamage,
 				'{weaponDamage}' => $this->skillWeaponDamage,
+				'{armor}' => $this->skillArmor,
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
 				'{updateDate}' => $this->GetUpdateDate(),
 				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,
@@ -1513,6 +1518,7 @@ class CEsoViewSkills
 				'{stamina}' => $this->skillStamina,
 				'{spellDamage}' => $this->skillSpellDamage,
 				'{weaponDamage}' => $this->skillWeaponDamage,
+				'{armor}' => $this->skillArmor,
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
 				'{updateDate}' => $this->GetUpdateDate(),
 				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,

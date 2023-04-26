@@ -180,6 +180,7 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"35" => "Lost Depths",
 		"36" => "Firesong",
 		"37" => "Scribes of Fate",
+		"38" => "Necrom",
 	);
 
 
@@ -2069,7 +2070,7 @@ $ESO_SET_INDEXES = array(
 		665 => "Phylactery's Grasp",
 		666 => "Archdruid Devyric",
 		667 => "Euphotic Gatekeeper",
-		668 => "Langour of Peryite",
+		668 => "Languor of Peryite",
 		669 => "Nocturnal's Ploy",
 		670 => "Mara's Balm",
 		671 => "Back-Alley Gourmand",
@@ -2091,7 +2092,24 @@ $ESO_SET_INDEXES = array(
 		687 => "Ozezan the Inferno",
 		688 => "Snake in the Stars",
 		689 => "Shell Splitter",
-		690 => "Judgement of Akatosh",
+		690 => "Judgment of Akatosh",
+		691 => "Cryptcanon Vestments",
+		692 => "Esoteric Environment Greaves",
+		694 => "Velothi Ur-Mage's Amulet",
+		695 => "Shattered Fate",
+		696 => "Telvanni Efficiency",
+		697 => "Seeker Synthesis",
+		698 => "Vivec's Duality",
+		699 => "Camonna Tong",
+		700 => "Adamant Lurker",
+		701 => "Peace and Serenity",
+		702 => "Ansuul's Torment",
+		703 => "Test of Resolve",
+		704 => "Transformative Hope",
+		705 => "Perfected Transformative Hope",
+		706 => "Perfected Test of Resolve",
+		707 => "Perfected Ansuul's Torment",
+		708 => "Perfected Peace and Serenity",
 );
 
 
@@ -4151,6 +4169,7 @@ $ESO_CLASSIDS = array(
 		4 => "Warden",
 		5 => "Necromancer",
 		6 => "Templar",
+		7 => "Arcanist", //Update 38
 );
 
 
@@ -4439,6 +4458,10 @@ function GetEsoItemTableSuffix($version)
 			return "37pts";
 		case '37':
 			return "";
+		case '38pts':
+			return "38pts";
+		case '38':
+			return "38";
 	}
 
 	return "";

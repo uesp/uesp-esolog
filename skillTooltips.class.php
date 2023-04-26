@@ -307,8 +307,6 @@ class CEsoSkillTooltips
 	
 	public function SaveTooltipFlags($abilityId, $tooltipIndex, $flags)
 	{
-		if ($this->DONT_SAVE_TOOLTIPS) return true;
-		
 		$values = array();
 		
 		foreach ($flags as $flag => $value)
@@ -318,8 +316,14 @@ class CEsoSkillTooltips
 		}
 		
 		$values = implode(",", $values);
-		
 		$this->lastQuery = "UPDATE skillTooltips{$this->TABLE_SUFFIX} SET $values WHERE abilityId='$abilityId' AND idx='$tooltipIndex';";
+		
+		if ($this->DONT_SAVE_TOOLTIPS)
+		{
+			if ($abilityId == $this->ONLY_DO_ABILITYID) print($this->lastQuery . "\n");
+			return true;
+		}
+		
 		$result = $this->db->query($this->lastQuery);
 		if (!$result) return false;
 		
@@ -329,11 +333,12 @@ class CEsoSkillTooltips
 	
 	public function ResetAllTooltipFlags()
 	{
+		$this->lastQuery = "UPDATE skillTooltips{$this->TABLE_SUFFIX} SET isDmg=0, isHeal=0, isDmgShield=0, isAOE=0, isDOT=0, isFlameAOE=0, isElfBane=0, isMelee=0;";
+		
 		if ($this->DONT_SAVE_TOOLTIPS) return true;
 		
 		if (!$this->InitDatabaseWrite()) return false;
 		
-		$this->lastQuery = "UPDATE skillTooltips{$this->TABLE_SUFFIX} SET isDmg=0, isHeal=0, isDmgShield=0, isAOE=0, isDOT=0, isFlameAOE=0, isElfBane=0, isMelee=0;";
 		$result = $this->db->query($this->lastQuery);
 		if ($result == false) return $this->ReportError("Error: Failed to reset all tooltip flags!");
 		
@@ -482,8 +487,6 @@ class CEsoSkillTooltips
 	
 	protected function SaveTooltipInfo($abilityId, $tooltipIndex, $tooltipInfo)
 	{
-		if ($this->DONT_SAVE_TOOLTIPS) return true;
-		
 		$cols = array(
 				'abilityId',
 				'idx',
@@ -534,6 +537,13 @@ class CEsoSkillTooltips
 		$values = $this->ImplodeSql($values, "'");
 		
 		$this->lastQuery = "INSERT INTO skillTooltips{$this->TABLE_SUFFIX}($cols) VALUES($values);";
+		
+		if ($this->DONT_SAVE_TOOLTIPS) 
+		{
+			if ($abilityId == $this->ONLY_DO_ABILITYID) print($this->lastQuery . "\n");
+			return true;
+		}
+		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === false) return $this->ReportError("Error: Failed to save tooltip info for ability $abilityId:{$tooltipInfo['tooltipIndex']}!");
 		
@@ -544,8 +554,6 @@ class CEsoSkillTooltips
 	
 	protected function SaveTooltipInfos($abilityId, $tooltipInfos)
 	{
-		if ($this->DONT_SAVE_TOOLTIPS) return true;
-		
 		foreach ($tooltipInfos as $i => $tooltipInfo)
 		{
 			if (!$this->SaveTooltipInfo($abilityId, $i, $tooltipInfo)) return false;
@@ -1009,7 +1017,7 @@ class CEsoSkillTooltips
 			
 			$coefMatch = $coefMatches[$i];
 			$newInfo['value'] = $coefMatch;
-			$hasCoefMatch =  preg_match("/[$]([0-9]+)/", $coefMatch);
+			$hasCoefMatch = preg_match("/[$]([0-9]+)/", $coefMatch);
 			
 			$coefIndex = -1;
 			if ($hasCoefMatch) $coefIndex = intval($coefMatch[1]);
@@ -1025,6 +1033,7 @@ class CEsoSkillTooltips
 			else
 			{
 				$newInfo['coefType'] = UESP_POWERTYPE_CONSTANTVALUE;
+				//print("\t$abilityId:$tooltipIndex: No coefIndex match!\n");
 			}
 			
 			$tooltipInfo[$i] = $newInfo;

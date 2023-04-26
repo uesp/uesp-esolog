@@ -859,6 +859,7 @@ window.GetEsoSkillInputValues = function ()
 	var spellDamage = parseInt($('#esovsInputSpellDamage').val());
 	var weaponDamage = parseInt($('#esovsInputWeaponDamage').val());
 	var level = ParseEsoLevel($('#esovsInputLevel').val());
+	var armor = parseInt($('#esovsInputArmor').val());
 	
 	if (isNaN(health)) health = 20000;
 	if (isNaN(magicka)) magicka = 20000;
@@ -866,6 +867,7 @@ window.GetEsoSkillInputValues = function ()
 	if (isNaN(spellDamage)) spellDamage = 2000;
 	if (isNaN(weaponDamage)) weaponDamage = 2000;
 	if (isNaN(level)) level = 66;
+	if (isNaN(armor)) armor = 11000;
 	
 	g_LastSkillInputValues = { Magicka: magicka,
 			 Stamina: stamina,
@@ -891,9 +893,11 @@ window.GetEsoSkillInputValues = function ()
 			 WeaponPower: 0,
 			 DotDamageDone: {},
 			 ChannelDamageDone: {},
+			 SpellResist: armor,
+			 PhysicalResist: armor,
 		};
 	
-	return g_LastSkillInputValues; 
+	return g_LastSkillInputValues;
 }
 
 
@@ -4560,6 +4564,7 @@ window.UpdateSkillLink = function ()
 	params += "&stamina=" + inputValues.Stamina;
 	params += "&spelldamage=" + inputValues.SpellDamage;
 	params += "&weapondamage=" + inputValues.WeaponDamage;
+	params += "&armor=" + inputValues.SpellResist;
 	
 	if (window.g_SkillsVersion && g_SkillsVersion != "") params += "&version=" + g_SkillsVersion;
 	if (g_SkillShowAll) params += "&showall";
@@ -4801,6 +4806,7 @@ window.EnableEsoClassSkills = function(className)
 	
 	RemovePurchasedEsoClassSkills();
 	
+	$(".esovsSkillTypeTitle:contains('ARCANIST')").hide();
 	$(".esovsSkillTypeTitle:contains('DRAGONKNIGHT')").hide();
 	$(".esovsSkillTypeTitle:contains('NIGHTBLADE')").hide();
 	$(".esovsSkillTypeTitle:contains('SORCERER')").hide();
@@ -5808,6 +5814,9 @@ window.esovsOnDocReady = function ()
 	
 	$('#esovsControlWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage'); });
 	$('#esovsInputWeaponDamage').on('input', function(e) { OnChangeEsoSkillData.call(this, 'WeaponDamage');	});
+	
+	$('#esovsControlArmor').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Armor'); });
+	$('#esovsInputArmor').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Armor');	});
 	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);
