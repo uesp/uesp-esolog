@@ -10,6 +10,7 @@ class CEsoLogGetSkillData
 	public $db = null;
 
 	public $version = "";
+	public $inputType = "";
 
 	public $outputData = array();
 	public $outputJson = "";
@@ -34,41 +35,41 @@ class CEsoLogGetSkillData
 
 		return false;
 	}
-
-
+	
+	
 	private function InitDatabase()
 	{
 		global $uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase;
-
+		
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!", 500);
-
+		
 		return true;
 	}
-
-
+	
+	
 	private function GetTableSuffix()
 	{
 		return GetEsoItemTableSuffix($this->version);
 	}
-
-
+	
+	
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
-
+		if (array_key_exists('type', $this->inputParams)) $this->inputType = strtolower(urldecode($this->inputParams['type']));
 		return true;
 	}
-
-
+	
+	
 	private function SetInputParams ()
 	{
 		global $_REQUEST;
-
+		
 		$this->inputParams = $_REQUEST;
 	}
-
-
+	
+	
 	private function OutputHeader()
 	{
 		ob_start("ob_gzhandler");
@@ -79,8 +80,8 @@ class CEsoLogGetSkillData
 		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
 		header("content-type: application/json");
 	}
-
-
+	
+	
 	private function LoadAllSkillData()
 	{
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
@@ -97,19 +98,55 @@ class CEsoLogGetSkillData
 			$this->outputData[$id] = $row;
 			++$numRecords;
 		}
-
+		
 		$this->outputData['numRecords'] += $numRecords;
-
+		
 		return true;
 	}
-
-
+	
+	
+	private function GetDeltiasJsonData()
+	{
+		$data = [];
+		
+		foreach ($this->outputData as $id => $skillData)
+		{
+			$id = intval($id);
+			if ($id <= 0) continue;
+			
+			$newData = [];
+			$newData['id'] = $id;
+			$newData['name'] = $skillData['name'];
+			$newData['skillTypeName'] = $skillData['skillTypeName'];
+			$newData['baseName'] = $skillData['baseName'];
+			$newData['type'] = ($skillData['type'] == "Active") ? ($skillData['isPassive'] == 1 ? "Passive" : "Active") : $skillData['type'];
+			
+			$data[$id] = $newData;
+		}
+		
+		$data['numRecords'] = $this->outputData['numRecords'];
+		
+		return json_encode($data); 
+	}
+	
+	
+	private function GetJsonData()
+	{
+		if ($this->inputType == "deltias")
+			$json = $this->GetDeltiasJsonData();
+		else
+			$json = json_encode($this->outputData);
+		
+		return $json;
+	}
+	
+	
 	public function Export()
 	{
 		$this->OutputHeader();
 		$this->LoadAllSkillData();
-
-		$this->outputJson = json_encode($this->outputData);
+		
+		$this->outputJson = $this->GetJsonData();
 		print($this->outputJson);
 	}
 
@@ -118,3 +155,5 @@ class CEsoLogGetSkillData
 
 $g_ExportData = new CEsoLogGetSkillData();
 $g_ExportData->Export();
+
+
