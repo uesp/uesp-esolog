@@ -2180,8 +2180,8 @@ class EsoLogViewer
 			'cp2Disciplines' => array(
 					'displayName' => 'Champion Point v2 Disciplines',
 					'displayNameSingle' => 'Champion Point v2 Discipline',
-					'record' => 'cp2Disciplines29pts',
-					'table' => 'cp2Disciplines29pts',
+					'record' => 'cp2Disciplines',
+					'table' => 'cp2Disciplines',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'disciplineId',
 					
@@ -2195,8 +2195,8 @@ class EsoLogViewer
 			'cp2Skills' => array(
 					'displayName' => 'Champion Point v2 Skills',
 					'displayNameSingle' => 'Champion Point v2 Skill',
-					'record' => 'cp2Skills29pts',
-					'table' => 'cp2Skills29pts',
+					'record' => 'cp2Skills',
+					'table' => 'cp2Skills',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('disciplineIndex', 'skillIndex'),
 						
@@ -2212,8 +2212,8 @@ class EsoLogViewer
 			'cp2SkillLinks' => array(
 					'displayName' => 'Champion Point v2 Skill Links',
 					'displayNameSingle' => 'Champion v2 Point Skill Link',
-					'record' => 'cp2SkillLinks29pts',
-					'table' => 'cp2SkillLinks29pts',
+					'record' => 'cp2SkillLinks',
+					'table' => 'cp2SkillLinks',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('parentSkillId'),
 						
@@ -2225,13 +2225,13 @@ class EsoLogViewer
 					
 					'join' => array(
 							'parentSkillId' => array(
-									'table' => 'cp2Skills29pts',
+									'table' => 'cp2Skills',
 									'joinField' => 'skillId',
 									'fields' => array('parentName' => 'name'),
 							),
 							'skillId' => array(
-									'table' => 'cp2Skills29pts',
-									'tableAlias' => 'cp2Skills29ptsA',
+									'table' => 'cp2Skills',
+									'tableAlias' => 'cp2Skills',
 									'joinField' => 'skillId',
 									'fields' => array('name' => 'name'),
 							),
@@ -2241,8 +2241,8 @@ class EsoLogViewer
 			'cp2ClusterRoots' => array(
 					'displayName' => 'Champion Point v2 Cluster Roots',
 					'displayNameSingle' => 'Champion Point v2 Cluster Root',
-					'record' => 'cp2ClusterRoots29pts',
-					'table' => 'cp2ClusterRoots29pts',
+					'record' => 'cp2ClusterRoots',
+					'table' => 'cp2ClusterRoots',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('name'),
 						
@@ -2256,8 +2256,8 @@ class EsoLogViewer
 			'cp2SkillDescriptions' => array(
 					'displayName' => 'Champion Point v2 Skill Descriptions',
 					'displayNameSingle' => 'Champion Point v2 Skill Description',
-					'record' => 'cp2SkillDescriptions29pts',
-					'table' => 'cp2SkillDescriptions29pts',
+					'record' => 'cp2SkillDescriptions',
+					'table' => 'cp2SkillDescriptions',
 					'method' => 'DoRecordDisplay',
 					'sort' => array('skillId', 'points'),
 					
@@ -2802,7 +2802,7 @@ class EsoLogViewer
 					'searchFields' => array('name', 'description', 'descHeader'),
 					'fields' => array(
 							'id' => 'id',
-							'zoneName' => 'name',
+							'name' => 'name',
 							'description' => 'note',
 							'texture' => 'icon',
 					),

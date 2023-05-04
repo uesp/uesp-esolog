@@ -20,6 +20,7 @@ class CEsoSkillTooltip
 	const TOOLTIP_DIVIDER = "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
 	const ICON_URL = "//esoicons.uesp.net";
 	const MAX_SKILL_COEF = 6;
+	public $ALTERNATE_TABLE_SUFFIX = "38pts";	// Is automatically set to the highest current PTS version in constructor
 	
 	public $inputParams = array();
 	public $db = null;
@@ -47,6 +48,13 @@ class CEsoSkillTooltip
 	
 	public function __construct ()
 	{
+		$this->ALTERNATE_TABLE_SUFFIX = (GetEsoUpdateVersion()+1) . "pts";
+		
+		if (GetEsoItemTableSuffix($this->ALTERNATE_TABLE_SUFFIX) == "")
+		{
+			$this->ALTERNATE_TABLE_SUFFIX = GetEsoUpdateVersion() . "pts";
+		}
+		
 		$this->SetInputParams();
 		$this->ParseInputParams();
 		$this->InitDatabase();
@@ -386,6 +394,24 @@ class CEsoSkillTooltip
 			$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.indexName='$safeSkillName' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
+			
+			if ($result->num_rows == 0)
+			{
+				$minedSkillTable = "minedSkills" . $this->ALTERNATE_TABLE_SUFFIX;
+				$skillTreeTable  = "skillTree" . $this->ALTERNATE_TABLE_SUFFIX;
+				
+				$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.indexName='$safeSkillName' and skillLine='$safeSkillLine' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
+				
+				$result = $this->db->query($query);
+				if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
+				
+				if ($result->num_rows == 0)
+				{
+					$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE $minedSkillTable.indexName='$safeSkillName' and isPlayer=1 and (($minedSkillTable.rank=4 and isPassive=0) or (isPassive=1 and $minedSkillTable.rank=1));";
+					$result = $this->db->query($query);
+					if (!$result) return $this->ReportError("Failed to load skill data ($skillTypeName, $skillLine, $skillName!\n$query");
+				}
+			}
 		}
 		
 		$this->skillData = $result->fetch_assoc();
