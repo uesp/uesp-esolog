@@ -41,7 +41,7 @@ class EsoLogViewer
 	public $searchTotalCount = 0;
 	public $searchTerms = array();
 	public $searchResults = array();
-	public $displayLimit = 500;
+	public $displayLimit = 1000;
 	public $displayStart = 0;
 	public $displayRawValues = false;
 	public $PTS_VERSION_NAME = "Unknown";
