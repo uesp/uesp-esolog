@@ -4735,7 +4735,10 @@ class EsoLogParser
 	{
 		$lootSourceRecord = $this->createNewRecord(self::$LOOTSOURCE_FIELDS);
 		
-		$lootSourceRecord['name'] = $logEntry['name'];
+		$name = trim($logEntry['name']);
+		//$name = preg_replace("|\^.*|", '', $name); //Keep prefix?
+		
+		$lootSourceRecord['name'] = $name;
 		$lootSourceRecord['count'] = 0;
 		$lootSourceRecord['__isNew'] = true;
 		
@@ -6106,6 +6109,7 @@ class EsoLogParser
 	public function FindLootSource ($name)
 	{
 		$name = trim($name);
+		//$name = preg_replace("|\^.*|", '', $name);	//Keep prefix?
 		$safeName = $this->db->real_escape_string($name);
 		$query = "SELECT * FROM lootSources WHERE name='$safeName';";
 		$this->lastQuery = $query;
