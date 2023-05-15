@@ -588,3 +588,7 @@
 .esovcpSkillDraggableGood {
 	display: none !important;
 }
+.esoil_white {
+	display: inline;
+	color: white;
+}

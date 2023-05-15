@@ -112,8 +112,8 @@ class CEsoSkillTooltip
 		if (array_key_exists('version', $this->inputParams)) $this->version = $this->inputParams['version'];
 		
 		if (array_key_exists('id', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
-		if (array_key_exists('skillid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
-		if (array_key_exists('abilityid', $this->inputParams)) $this->skillId = intval($this->inputParams['id']);
+		if (array_key_exists('skillid', $this->inputParams)) $this->skillId = intval($this->inputParams['skillid']);
+		if (array_key_exists('abilityid', $this->inputParams)) $this->skillId = intval($this->inputParams['abilityid']);
 		
 		if (array_key_exists('name', $this->inputParams)) $this->skillName = $this->inputParams['name'];
 		if (array_key_exists('skillname', $this->inputParams)) $this->skillName = $this->inputParams['skillname'];

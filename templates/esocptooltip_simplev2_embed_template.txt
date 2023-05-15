@@ -1,0 +1,5 @@
+	<div id="esovcp2TooltipName">{cpName}</div>
+	<img src="resources/eso_item_hr.png" id="esoil_item_hr">
+	<div id="esovcp2TooltipDesc">{cpDesc}</div>
+	<div id="esovcp2TooltipCenter"><div id="esovcp2TooltipPoints">Points: <div class="esovcpDescWhite">{cpMaxPoints} / {cpMaxPoints}</div></div><div id="esovcp2TooltipJump" style="{cpDisplayStage}">Stages: <div class="esovcpDescWhite">{cpNextStage}</div> pts</div></div>
+	<div id="esovcp2TooltipEquip">{cpEquip}</div>

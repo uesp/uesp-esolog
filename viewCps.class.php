@@ -575,7 +575,7 @@ class CEsoViewCP
 		$this->htmlTemplate = file_get_contents($templateFile);
 	}
 	
-
+	
 	private function ParseInputParams ()
 	{
 		if (array_key_exists('version', $this->inputParams)) 

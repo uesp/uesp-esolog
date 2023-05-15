@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>UESP:ESO CP Tooltip</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esocp.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esocp_simple_embed.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+	</head>
+<body>
+
+<h1>UESP: ESO Champion Point Tooltip</h1>
+
+<div id="esovcp2Tooltip" style="">
+	<div id="esovcp2TooltipName">{cpName}</div>
+	<img src="resources/eso_item_hr.png" id="esoil_item_hr">
+	<div id="esovcp2TooltipDesc">{cpDesc}</div>
+	<div id="esovcp2TooltipCenter"><div id="esovcp2TooltipPoints">Points: <div class="esovcpDescWhite">{cpMaxPoints} / {cpMaxPoints}</div></div><div id="esovcp2TooltipJump" style="{cpDisplayStage}">Stages: <div class="esovcpDescWhite">{cpNextStage}</div> pts</div></div>
+	<div id="esovcp2TooltipEquip">{cpEquip}</div>
+</div>
+
+</body>
+</html>
