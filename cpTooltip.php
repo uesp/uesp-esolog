@@ -137,10 +137,30 @@ public function ReportError($errorMsg)
 	}
 	
 	
+	public function LoadCPByName()
+	{
+		if ($this->cpName == null || $this->cpName == "") return false;
+		$safeName = $this->db->real_escape_string($this->cpName);
+		
+		$cpTable = "cp2Skills" . $this->GetTableSuffix();
+		$descTable = "cp2SkillDescriptions" . $this->GetTableSuffix();
+		
+		$query = "SELECT * FROM $cpTable WHERE name='$safeName';";
+		
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load CP data by name!");
+		
+		$this->cpData = $result->fetch_assoc();
+		if ($this->cpData == null) return $this->ReportError("Failed to load CP data for $safeName!");
+		
+		return true;
+	}
+	
+	
 	public function LoadCP()
 	{
 		$cpId = intval($this->cpId);
-		if ($cpId <= 0) return false;
+		if ($cpId <= 0) return $this->LoadCPByName();
 		
 		$cpTable = "cp2Skills" . $this->GetTableSuffix();
 		$descTable = "cp2SkillDescriptions" . $this->GetTableSuffix();
@@ -151,7 +171,7 @@ public function ReportError($errorMsg)
 		if (!$result) return $this->ReportError("Failed to load CP data!");
 		
 		$this->cpData = $result->fetch_assoc();
-		if ($this->cpData == null) return $this->ReportError("Failed to load CP data for $cpId!\n$query");
+		if ($this->cpData == null) return $this->ReportError("Failed to load CP data for $cpId!");
 		
 		/*
 		$query = "SELECT * FROM $descTable WHERE skillid='$cpId';";
@@ -182,7 +202,7 @@ public function ReportError($errorMsg)
 	}
 	
 	
-	public function GetCurrentVersion() 
+	public function GetCurrentVersion()
 	{
 		return GetEsoDisplayVersion($this->version);
 	}
@@ -190,6 +210,12 @@ public function ReportError($errorMsg)
 	
 	public function GetCpNameHtml()
 	{
+		if ($this->cpData == null) 
+		{
+			if ($this->cpName != null) return $this->EscapeHtml($this->cpName); 
+			return "Unknown";
+		}
+		
 		$name = $this->cpData['name'];
 		$name = strtoupper($name);
 		$name = $this->EscapeHtml($name);
@@ -199,6 +225,12 @@ public function ReportError($errorMsg)
 	
 	public function GetCpDescHtml()
 	{
+		if ($this->cpData == null) 
+		{
+			if ($this->cpName != null) return $this->EscapeHtml("No CP found with a name matching '{$this->cpName}'!");
+			return $this->EscapeHtml("No CP found with an ID of '{$this->cpId}'!");
+		}
+		
 		$desc = $this->cpData['maxDescription'];
 		//$desc = $this->EscapeHtml($desc);
 		$desc = FormatEsoItemDescriptionText($desc);
@@ -255,10 +287,25 @@ public function ReportError($errorMsg)
 				'{cpNextStage}' => $this->GetCpNextStageHtml(),
 		);
 		
-		if (!CanViewEsoLogVersion($this->version))
-		{
-			return $this->CreateErrorOutputHtml();
-		}
+		$output = strtr($this->htmlTemplate, $replacePairs);
+		return $output;
+	}
+	
+	
+	public function CreateErrorOutputHtml()
+	{
+		$this->LoadTemplate();
+		
+		//Increases your Bash damage by <div class="esovcpDescWhite">60</div> per stage.<p></p>Current bonus: <div class="esovcpDescWhite">0</div> increased damage</div>
+		$replacePairs = array(
+				'{version}' => $this->GetCurrentVersion(),
+				'{cpName}' => $this->GetCpNameHtml(),
+				'{cpDesc}' => $this->GetCpDescHtml(),
+				'{cpMaxPoints}' => 0,
+				'{cpEquip}' => "",
+				'{cpDisplayStage}' => "display:none;",
+				'{cpNextStage}' => "",
+		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
 		return $output;
@@ -267,7 +314,6 @@ public function ReportError($errorMsg)
 	
 	public function OutputHtml()
 	{
-		
 		$output = $this->CreateOutput2Html();
 		print($output);
 		return true;
@@ -312,7 +358,12 @@ public function ReportError($errorMsg)
 	{
 		$this->OutputHtmlHeader();
 		
-		if (!$this->LoadCP()) return "Unknown CP {$this->cpId}!";
+		if (!$this->LoadCP()) 
+		{
+			$errorHtml = $this->CreateErrorOutputHtml();
+			print($errorHtml);
+			return false;
+		}
 		
 		$this->OutputHtml();
 		
