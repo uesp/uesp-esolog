@@ -2695,6 +2695,7 @@ class EsoLogParser
 						uniqueId INTEGER NOT NULL,
 						PRIMARY KEY (id),
 						INDEX index_quest(questId, stageIndex, stepIndex, conditionIndex),
+						INDEX index_questStepId(questStepId),
 						FULLTEXT(text)
 					) ENGINE=MYISAM;";
 		
