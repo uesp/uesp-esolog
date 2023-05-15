@@ -179,6 +179,7 @@ class EsoLogViewer
 			'stageIndex' => self::FIELD_INT,
 			'stepIndex' => self::FIELD_INT,
 			'text' => self::FIELD_STRING,
+			'journalText' => self::FIELD_STRING,
 			'type' => self::FIELD_INTTRANSFORM,
 			'overrideText' => self::FIELD_STRING,
 			'visibility' => self::FIELD_INTTRANSFORM,
@@ -1516,8 +1517,15 @@ class EsoLogViewer
 									'table' => 'location',
 									'fields' => array('x', 'y', 'zone'),
 							),
+							'id' => array(
+									'joinField' => 'questStepId',
+									'table' => 'questCondition',
+									'fields' => array('journalText' => 'text'),
+							),
 					),
-						
+					
+					'group' => 'questCondition.questStepId',
+					
 					'filters' => array(
 							array(
 									'record' => 'quest',
@@ -4345,6 +4353,7 @@ If you do not understand what this information means, or how to use this webpage
 		if ($endIndex > $this->totalRowCount) $endIndex = $this->totalRowCount;
 		
 		$output = "";
+		//$output = "$query</br>";
 		
 		if ($this->IsOutputHTML())
 		{
