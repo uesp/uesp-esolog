@@ -3,8 +3,8 @@ import pymysql
 import re
 from pathlib import Path
 
-TABLE_SUFFIX = "36pts"
-OUTPUT_PATH = "/tmp/skills36pts/"
+TABLE_SUFFIX = "38pts"
+OUTPUT_PATH = "/tmp/skills38pts/"
 
 print("Outputting all skill tooltip images for update '{0}' to '{1}'...".format(TABLE_SUFFIX, OUTPUT_PATH))
 

@@ -135,7 +135,21 @@ class EsoLogViewer
 			'zone' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
 			'objective' => self::FIELD_STRING,
-	);	
+	);
+	
+	public static $CROWNSTOREITEM_FIELDS = array(
+			'id' => self::FIELD_INTID,
+			'name' => self::FIELD_STRING,
+			//'description' => self::FIELD_STRING,
+			'category' => self::FIELD_STRING,
+			'subCategory' => self::FIELD_STRING,
+			'price' => self::FIELD_STRING,
+			'esoPlusPrice' => self::FIELD_STRING,
+			'saleTimestamp' => self::FIELD_INTTRANSFORM,
+			'lastUpdated' => self::FIELD_INTTRANSFORM,
+			'isNew' => self::FIELD_INT,
+			'imageUrl' => self::FIELD_TEXTTRANSFORM,
+	);
 	
 	public static $QUEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
@@ -1213,6 +1227,21 @@ class EsoLogViewer
 									'table' => 'location',
 									'fields' => array('x', 'y', 'zone'),
 							),
+					),
+			),
+			
+			'crownStoreItems' => array(
+					'displayName' => 'Crown Store Items',
+					'displayNameSingle' => 'Crown Store Item',
+					'record' => 'crownStoreItems',
+					'table' => 'crownStoreItems',
+					'method' => 'DoRecordDisplay',
+					'sort' => [ 'category', 'subCategory', 'name'],
+					
+					'transform' => array(
+							'lastUpdated' => 'GetTimestampDateFormatWithDiff',
+							'saleTimestamp' => 'GetTimestampDateFormatWithDiff',
+							'imageUrl' => 'MakeShortLink',
 					),
 			),
 			
@@ -2539,6 +2568,7 @@ class EsoLogViewer
 			'Antiquity Leads' => 'antiquityLeads',
 			'Books' => 'book',
 			'Collectibles' => 'collectibles',
+			'Crown Store Items' => 'crownStoreItems',
 			'Ingredients' => 'ingredient',
 			'Items' => 'minedItemSummary',
 			'Logged Items' => 'item',
@@ -2643,6 +2673,13 @@ class EsoLogViewer
 							'id' => 'id',
 							'name' => 'name',
 							'icon' => 'icon',
+					),
+			),
+			'crownStoreItems' => array(
+					'searchFields' => array('name', 'description'),
+					'fields' => array(
+							'id' => 'id',
+							'name' => 'name',
 					),
 			),
 			'item' => array(
@@ -2877,6 +2914,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['chest']['fields'] = self::$CHEST_FIELDS;
 		self::$RECORD_TYPES['item']['fields'] = self::$ITEM_FIELDS;
 		self::$RECORD_TYPES['location']['fields'] = self::$LOCATION_FIELDS;
+		self::$RECORD_TYPES['crownStoreItems']['fields'] = self::$CROWNSTOREITEM_FIELDS;
 		//self::$RECORD_TYPES['oldQuest']['fields'] = self::$OLDQUEST_FIELDS;
 		//self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
@@ -3382,6 +3420,8 @@ class EsoLogViewer
 		if (!array_key_exists('transform', $recordInfo)) return $value;
 		if (!array_key_exists($field, $recordInfo['transform'])) return $value;
 		
+		if ($recordInfo['transform'][$field] == '') return $value;
+		
 		$method = $recordInfo['transform'][$field];
 		return $this->$method($value, $itemData);
 	}
@@ -3445,6 +3485,15 @@ class EsoLogViewer
 		
 		$row = $result->fetch_row();
 		return $row[0];
+	}
+	
+	
+	public function MakeShortLink($url)
+	{
+		if (!$this->IsOutputHTML()) return $url;
+		
+		$output = "<a href=\"$url\">link</a>";
+		return $output;
 	}
 	
 	

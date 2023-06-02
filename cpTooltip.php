@@ -248,7 +248,7 @@ public function ReportError($errorMsg)
 	public function GetCpEquipHtml()
 	{
 		$skillType = $this->cpData['skillType'];
-		if ($skillType == 1) return "Add to Champion Bar to Activate";
+		if ($skillType >= 1) return "Add to Champion Bar to Activate";
 		return "";
 	}
 	
