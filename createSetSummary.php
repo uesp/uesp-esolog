@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "38pts1";
+$TABLE_SUFFIX = "38";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -47,20 +47,20 @@ function GetItemWeaponTypeText ($value)
 			-1 => "",
 			0 => "",
 			1 => "Axe",
-			2 => "Hammer",
+			2 => "Mace",
 			3 => "Sword",
-			4 => "2HSword",
-			5 => "2HAxe",
-			6 => "2HMaul",
+			4 => "Greatsword",
+			5 => "Battleaxe",
+			6 => "Maul",
 			7 => "Prop",
 			8 => "Bow",
-			9 => "Rest",
+			9 => "Resto",
 			10 => "Rune",
 			11 => "Dagger",
 			12 => "Flame",
 			13 => "Frost",
 			14 => "Shield",
-			15 => "Shock",
+			15 => "Lightning",
 	);
 	
 	$key = (int) $value;

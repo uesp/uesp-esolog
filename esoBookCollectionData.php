@@ -186,7 +186,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
 								),
 								49 => array (
-										'title' => 'The True-Told Tale of Hallin, Pt 2',
+										'title' => 'The True-Told Tale of Hallin, Pt. 2',
 										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
 								),
 								50 => array (
@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 104,
-						'numBooks' => 1438 
+						'numCollect' => 105,
+						'numBooks' => 1452 
 				),
 				1 => array (
 						'id' => 43,
@@ -8016,14 +8016,78 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				105 => array (
+						'id' => 213,
+						'name' => 'Dead Keeper Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7716 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7717 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7718 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7719 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7720 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7721 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7722 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7723 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7724 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7725 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7726 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7727 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7728 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7729 => array (
+										'title' => 'Crafting Motif 122: Dead Keeper Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 47,
-						'numBooks' => 4107 
+						'numCollect' => 49,
+						'numBooks' => 4282 
 				),
 				1 => array (
 						'id' => 44,
@@ -8493,7 +8557,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								2547 => array (
 										'title' => 'Castles and Coffers Volume III: Hel Ra Citadel',
-										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
 								),
 								2559 => array (
 										'title' => 'Elenaire`s Journal',
@@ -9800,7 +9864,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
 								),
 								883 => array (
-										'title' => 'No Admittance—This Means You',
+										'title' => 'No Admittance: This Means You',
 										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
 								),
 								884 => array (
@@ -10104,7 +10168,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/notes_001.dds' 
 								),
 								2561 => array (
-										'title' => 'Shrine of Mara',
+										'title' => 'Shrine to Mara',
 										'icon' => '/esoui/art/icons/crafting_motif_tablet.dds' 
 								),
 								2747 => array (
@@ -10352,7 +10416,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_shadowfen_map.dds' 
 								),
 								1450 => array (
-										'title' => 'Forged Letter From \"Zali\"',
+										'title' => 'Forged Letter from \"Zali\"',
 										'icon' => '/esoui/art/icons/quest_shadowfen_map.dds' 
 								),
 								1464 => array (
@@ -10496,11 +10560,11 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/scroll_003.dds' 
 								),
 								7292 => array (
-										'title' => 'Letter From Ember',
+										'title' => 'Letter from Ember',
 										'icon' => '/esoui/art/icons/housing_uni_inc_scrollunsealed002.dds' 
 								),
 								7293 => array (
-										'title' => 'Letter From Isobel',
+										'title' => 'Letter from Isobel',
 										'icon' => '/esoui/art/icons/housing_cwc_crf_scroll001.dds' 
 								) 
 						) 
@@ -10964,7 +11028,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_plans_001.dds' 
 								),
 								970 => array (
-										'title' => 'Letter From Tamien Sellan',
+										'title' => 'Letter from Tamien Sellan',
 										'icon' => '/esoui/art/icons/quest_shadowfen_map.dds' 
 								),
 								1007 => array (
@@ -11628,11 +11692,11 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book3_detail3_color2.dds' 
 								),
 								1513 => array (
-										'title' => 'Memory Stone of Makela Leki, Pt. 1',
+										'title' => 'Memory Stone of Makela Leki, Part 1',
 										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
 								),
 								1514 => array (
-										'title' => 'Memory Stone of Makela Leki, Pt. 2',
+										'title' => 'Memory Stone of Makela Leki, Part 2',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color5.dds' 
 								),
 								1524 => array (
@@ -11744,7 +11808,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book1_detail4_color3.dds' 
 								),
 								2625 => array (
-										'title' => 'Coming of the Learned One Vol. I',
+										'title' => 'Coming of the Learned One, Vol. I',
 										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
 								),
 								2626 => array (
@@ -13196,7 +13260,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_shadowfen_map.dds' 
 								),
 								2328 => array (
-										'title' => 'Shalan`s Note',
+										'title' => 'Hurried Note',
 										'icon' => '/esoui/art/icons/quest_plans_001.dds' 
 								),
 								2367 => array (
@@ -18384,7 +18448,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/notes_002.dds' 
 								),
 								3216 => array (
-										'title' => 'Unsent Letter From Qumih at-Tamina',
+										'title' => 'Unsent Letter from Qumih at-Tamina',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
 								),
 								3215 => array (
@@ -23520,7 +23584,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				43 => array (
 						'id' => 188,
 						'name' => 'The Impresario`s Catalogue',
-						'numBooks' => 11,
+						'numBooks' => 13,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								6493 => array (
@@ -23566,6 +23630,14 @@ $ESO_BOOK_COLLECTIONS = array (
 								7358 => array (
 										'title' => 'Mel Adrys` Journal',
 										'icon' => '/esoui/art/icons/u30_elam_drals_journal.dds' 
+								),
+								7751 => array (
+										'title' => 'The Impresario`s Catalogue',
+										'icon' => '/esoui/art/icons/housing_sys_inc_books002.dds' 
+								),
+								7316 => array (
+										'title' => 'Slayer`s Note',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 
 				),
@@ -24424,7 +24496,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				46 => array (
 						'id' => 203,
 						'name' => 'Tomes of Tributes',
-						'numBooks' => 21,
+						'numBooks' => 24,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								7219 => array (
@@ -24510,13 +24582,25 @@ $ESO_BOOK_COLLECTIONS = array (
 								7546 => array (
 										'title' => 'Druid King Vestments Clue',
 										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								7713 => array (
+										'title' => 'Challenge of the Paramount',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7767 => array (
+										'title' => 'Hand of Almalexia Clue',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								7768 => array (
+										'title' => 'Mercymother Elite Clue',
+										'icon' => '/esoui/art/icons/scroll_005.dds' 
 								) 
 						) 
 				),
 				47 => array (
 						'id' => 206,
 						'name' => 'Archipelago Books and Almanacs',
-						'numBooks' => 77,
+						'numBooks' => 76,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_places.dds',
 						'books' => array (
 								7303 => array (
@@ -24807,10 +24891,6 @@ $ESO_BOOK_COLLECTIONS = array (
 										'title' => 'Rescue Me',
 										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
 								),
-								7601 => array (
-										'title' => 'Vastyr Fisherfolk Song',
-										'icon' => '/esoui/art/icons/lore_book3_detail3_color4.dds' 
-								),
 								7314 => array (
 										'title' => 'Calling All Sea Elves!',
 										'icon' => '/esoui/art/icons/notes_001.dds' 
@@ -24826,6 +24906,706 @@ $ESO_BOOK_COLLECTIONS = array (
 								7416 => array (
 										'title' => 'Vastyr Fisherfolk Song',
 										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								) 
+						) 
+				),
+				48 => array (
+						'id' => 210,
+						'name' => 'Telvanni Tomes',
+						'numBooks' => 103,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								7695 => array (
+										'title' => 'The Prior`s Fulcrum',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color3.dds' 
+								),
+								7603 => array (
+										'title' => 'Master Shelreni`s Notes: Torvesard',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7604 => array (
+										'title' => 'Master Shelreni`s Notes: The Restoration',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7543 => array (
+										'title' => 'First Mate Dalmir`s Log',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color5.dds' 
+								),
+								7585 => array (
+										'title' => 'Hidden Kindred Instructions',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7745 => array (
+										'title' => 'Closed By Order of the Abbot',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7588 => array (
+										'title' => 'Blightcrown`s Orders',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7611 => array (
+										'title' => 'Master Shelreni`s Orders',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7612 => array (
+										'title' => 'Dusksaber Report',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								),
+								7613 => array (
+										'title' => 'Meln`s To-Do List',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7630 => array (
+										'title' => 'Letter to Magister Meln Rendys',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7563 => array (
+										'title' => 'Letter to Mouth Vabdru',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7564 => array (
+										'title' => 'Mouth Vabdru`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								7565 => array (
+										'title' => 'Dusk Captain Zenfis`s Orders',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7606 => array (
+										'title' => 'Correspondence from Torvesard',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								7575 => array (
+										'title' => 'On the Work at Alavelis',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7574 => array (
+										'title' => 'On the Purchase of the Alavelis Mine',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7694 => array (
+										'title' => 'Survey of the Alavelis Mine',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7670 => array (
+										'title' => 'Oblivion Gateway Instructions',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7650 => array (
+										'title' => 'Orders to Kindred Rector Nyleth',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7424 => array (
+										'title' => 'A Report on the Dusksabers',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color3.dds' 
+								),
+								7580 => array (
+										'title' => 'Master`s Warning',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7697 => array (
+										'title' => 'Camp Update',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7624 => array (
+										'title' => 'Report on Operation Siphon',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7623 => array (
+										'title' => 'Letter Concerning Tredecim',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7696 => array (
+										'title' => 'House Dres Orders',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7625 => array (
+										'title' => 'Dres Message',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7622 => array (
+										'title' => 'Mud-Covered Letter',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7418 => array (
+										'title' => 'Oath of the Keepers',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color3.dds' 
+								),
+								7422 => array (
+										'title' => 'Ranks and Titles of House Telvanni',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color3.dds' 
+								),
+								7425 => array (
+										'title' => 'Peryite`s Salvation',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								),
+								7426 => array (
+										'title' => 'On Joining the Keepers of the Dead',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
+								),
+								7429 => array (
+										'title' => 'Uluscant`s Manifesto',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
+								),
+								7431 => array (
+										'title' => 'How Rajhin Stole the Book that Knows',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
+								),
+								7432 => array (
+										'title' => 'Herma-Mora: The Woodland Man?',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								7433 => array (
+										'title' => 'Life in the Camonna Tong',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								7440 => array (
+										'title' => 'Our Puny Allies',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color5.dds' 
+								),
+								7444 => array (
+										'title' => 'A Feast Among the Dead, Chapter I',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								7461 => array (
+										'title' => 'A Feast Among the Dead, Chapter II',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color3.dds' 
+								),
+								7462 => array (
+										'title' => 'A Feast Among the Dead, Chapter III',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color1.dds' 
+								),
+								7463 => array (
+										'title' => 'A Feast Among the Dead, Chapter IV',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color2.dds' 
+								),
+								7445 => array (
+										'title' => 'A Brief History of House Telvanni',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color1.dds' 
+								),
+								7589 => array (
+										'title' => 'Death to All Mages',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7590 => array (
+										'title' => 'History of the Dreamstone',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7591 => array (
+										'title' => 'Warlock Vanton`s Research Proposal',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper002.dds' 
+								),
+								7592 => array (
+										'title' => 'Archwizard Twelvane`s Decree',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								7446 => array (
+										'title' => 'Brave Little Scrib and the River Troll',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								),
+								7452 => array (
+										'title' => 'Daedric Worship and the Dark Elves',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
+								),
+								7569 => array (
+										'title' => 'Note to Nathyn',
+										'icon' => '/esoui/art/icons/scroll_005.dds' 
+								),
+								7577 => array (
+										'title' => 'Sathile`s Research Notes',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								7454 => array (
+										'title' => 'A New Cult Arises',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
+								),
+								7464 => array (
+										'title' => 'Our Dunmer Heritage',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								7439 => array (
+										'title' => 'The Spires of the 34th Sermon',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color5.dds' 
+								),
+								7441 => array (
+										'title' => 'We Reject the Pact',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								),
+								7442 => array (
+										'title' => 'Critter Dangers: Telvanni Peninsula',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color2.dds' 
+								),
+								7443 => array (
+										'title' => 'Visitor`s Guide: Telvanni Peninsula',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color5.dds' 
+								),
+								7447 => array (
+										'title' => 'History of Necrom: The City of the Dead',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
+								),
+								7449 => array (
+										'title' => 'Beverages for the Bereaved',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
+								),
+								7460 => array (
+										'title' => 'What`s an Arcanist? Part 1',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color2.dds' 
+								),
+								7459 => array (
+										'title' => 'What`s an Arcanist? Part 2',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color2.dds' 
+								),
+								7753 => array (
+										'title' => 'Sunvys Golsathyn Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7754 => array (
+										'title' => 'Savienie Mavlyn Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7755 => array (
+										'title' => 'Elovul Alarndil Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7756 => array (
+										'title' => 'Favami Seravel Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7757 => array (
+										'title' => 'Triys Rehlo Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7758 => array (
+										'title' => 'Dayldela Gilrom Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7759 => array (
+										'title' => 'Aralos Sarvrothi Gravestone',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet001.dds' 
+								),
+								7761 => array (
+										'title' => 'Letter from Sharp',
+										'icon' => '/esoui/art/icons/housing_cwc_crf_scroll001.dds' 
+								),
+								7762 => array (
+										'title' => 'Preparing Necrom Kwama, Fifth Draft',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color2.dds' 
+								),
+								7765 => array (
+										'title' => 'A Servant`s Tale',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								7772 => array (
+										'title' => 'Parables of Saint Vorys',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								7514 => array (
+										'title' => 'Note to Rilasi',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7515 => array (
+										'title' => 'The Eye of Baan Dar',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color4.dds' 
+								),
+								7517 => array (
+										'title' => 'Ransom Note from Shadeya',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7549 => array (
+										'title' => 'The Curse of Blackscale Island',
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
+								),
+								7567 => array (
+										'title' => 'Letter to Deredrien',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7570 => array (
+										'title' => 'Organization Notes',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								7578 => array (
+										'title' => 'Courier`s Permit',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								7579 => array (
+										'title' => 'Note from Gadri to Federo',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7582 => array (
+										'title' => 'Sondivel`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
+								),
+								7609 => array (
+										'title' => 'The Never-Woven',
+										'icon' => '/esoui/art/icons/quest_book_002.dds' 
+								),
+								7621 => array (
+										'title' => 'Commentary on Fate Dialectal',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7647 => array (
+										'title' => 'Bringing Home the Trolls',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7649 => array (
+										'title' => 'Communications Between Nilphas and Thoryn',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								7675 => array (
+										'title' => 'Reynila`s Journal',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color1.dds' 
+								),
+								7677 => array (
+										'title' => 'Letter to Elistrenne Starflower',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								7687 => array (
+										'title' => 'Letter from the Reformer',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7688 => array (
+										'title' => 'Mysterious Letter to Federo',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								7689 => array (
+										'title' => 'Another Letter from the Reformer',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7771 => array (
+										'title' => 'Tainted Egg Mine Report',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7626 => array (
+										'title' => 'Adventurers, Take Heed!',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7678 => array (
+										'title' => 'Attention All Egg-Hands',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7635 => array (
+										'title' => 'From the Journal of Balver Bemis',
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
+								),
+								7618 => array (
+										'title' => 'Folsi`s Report',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7637 => array (
+										'title' => 'Dreynis`s Notes, Entry 001',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								7638 => array (
+										'title' => 'Dreynis`s Notes, Entry 028',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color1.dds' 
+								),
+								7639 => array (
+										'title' => 'Dreynis`s Notes, Entry 007',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color4.dds' 
+								),
+								7640 => array (
+										'title' => 'Compiled Research',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								7760 => array (
+										'title' => 'Letter from Azandar',
+										'icon' => '/esoui/art/icons/housing_cwc_crf_scroll001.dds' 
+								),
+								7800 => array (
+										'title' => 'The Waiting Door',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
+								),
+								7804 => array (
+										'title' => 'House Telvanni Song',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								7806 => array (
+										'title' => 'The Spotted Towers',
+										'icon' => '/esoui/art/icons/lore_book4_detail1_color1.dds' 
+								),
+								7805 => array (
+										'title' => 'Song of Fate',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								) 
+						) 
+				),
+				49 => array (
+						'id' => 211,
+						'name' => 'Apocryphal Pages',
+						'numBooks' => 68,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								7419 => array (
+										'title' => 'Ode to Vaermina',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color3.dds' 
+								),
+								7420 => array (
+										'title' => 'Deal with a Daedric Prince',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color3.dds' 
+								),
+								7633 => array (
+										'title' => 'Memories Lost',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7566 => array (
+										'title' => 'Blightcrown`s Notes',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7421 => array (
+										'title' => 'The Legend of Fathoms Drift',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color4.dds' 
+								),
+								7680 => array (
+										'title' => 'On the Fulcrum Obscura',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7681 => array (
+										'title' => 'On the Infinite Panopticon',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7652 => array (
+										'title' => 'Secret of the Tormenting Eye',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book7.dds' 
+								),
+								7651 => array (
+										'title' => 'Chamber Instructions',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7653 => array (
+										'title' => 'Dreams of the Forgotten',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book9.dds' 
+								),
+								7654 => array (
+										'title' => 'On the Pact Primordial',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book8.dds' 
+								),
+								7714 => array (
+										'title' => 'Chronicle of Apocrypha',
+										'icon' => '/esoui/art/icons/daedricprinceslore_book4.dds' 
+								),
+								7417 => array (
+										'title' => 'Larydeilmo is Sane',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color2.dds' 
+								),
+								7423 => array (
+										'title' => 'The Doom of the Hushed',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color5.dds' 
+								),
+								7428 => array (
+										'title' => 'The Currency of Secrets',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color3.dds' 
+								),
+								7430 => array (
+										'title' => 'On Tracts Perilous',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color5.dds' 
+								),
+								7434 => array (
+										'title' => 'Kynmarcher Strix`s Journal',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								7436 => array (
+										'title' => 'The Dangers of Truth',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color1.dds' 
+								),
+								7437 => array (
+										'title' => 'On the Nature of Nymics',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color4.dds' 
+								),
+								7438 => array (
+										'title' => 'Master of the Tides of Fate',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color3.dds' 
+								),
+								7448 => array (
+										'title' => 'Denizens of Apocrypha',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								7451 => array (
+										'title' => 'Ciphers of the Eye',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								7554 => array (
+										'title' => 'Coded Missive',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7560 => array (
+										'title' => 'List of Books',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7616 => array (
+										'title' => 'Call to the Cloisters',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7453 => array (
+										'title' => 'Torvesard`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
+								),
+								7450 => array (
+										'title' => 'Planar Exploration Vol. 14: Darkreave Curators',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color1.dds' 
+								),
+								7455 => array (
+										'title' => 'The Littlest Tomeshell',
+										'icon' => '/esoui/art/icons/lore_book2_detail5_color3.dds' 
+								),
+								7610 => array (
+										'title' => 'Pact of the Remnants',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color1.dds' 
+								),
+								7456 => array (
+										'title' => 'On Cipher`s Midden',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color4.dds' 
+								),
+								7457 => array (
+										'title' => 'What About Glyphics?',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color5.dds' 
+								),
+								7458 => array (
+										'title' => 'Working in the Infinite Panopticon',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color4.dds' 
+								),
+								7465 => array (
+										'title' => 'Tidefall Cantos I',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color3.dds' 
+								),
+								7466 => array (
+										'title' => 'Fanlyrion`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								),
+								7773 => array (
+										'title' => 'The Remnant Truth',
+										'icon' => '/esoui/art/icons/lore_book1_detail5_color2.dds' 
+								),
+								7556 => array (
+										'title' => 'Fargrave: A City of Myth',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								7558 => array (
+										'title' => 'White-Gold: The Ayleid Perspective',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								7559 => array (
+										'title' => 'Tamrielic Twins of Myth',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
+								),
+								7568 => array (
+										'title' => 'First Servant`s Letter, Page 1',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7596 => array (
+										'title' => 'First Servant`s Letter, Page 2',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7597 => array (
+										'title' => 'Cipher Sabinius`s Apology',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7607 => array (
+										'title' => 'Naanurrel`s Logbook',
+										'icon' => '/esoui/art/icons/quest_summerset_captains_log.dds' 
+								),
+								7615 => array (
+										'title' => 'Notes on Doors of Oblivion',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color2.dds' 
+								),
+								7619 => array (
+										'title' => 'Morian Zenas Cell Note',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7620 => array (
+										'title' => 'Beasts of the Gallery',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								7632 => array (
+										'title' => 'Predestination and Paradox: A Treatise',
+										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								7642 => array (
+										'title' => 'Cipher Tlaxalt`s Note',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								7643 => array (
+										'title' => 'Cipher Dreyla`s Note',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7644 => array (
+										'title' => 'Cipher Nelfynn`s Note',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7645 => array (
+										'title' => 'Altered Naanurrel`s Logbook',
+										'icon' => '/esoui/art/icons/quest_summerset_captains_log.dds' 
+								),
+								7662 => array (
+										'title' => 'Sentient Beasts of the Gallery',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								7668 => array (
+										'title' => 'Uldazaan`s Letter',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7679 => array (
+										'title' => 'A Plea for Aid',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7690 => array (
+										'title' => 'Cipher Akacirn`s Journal',
+										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
+								),
+								7769 => array (
+										'title' => 'Recipe for Book Soup',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								7770 => array (
+										'title' => 'Reminders for Underweave Watchlings',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7691 => array (
+										'title' => 'Conversations with Sleeps-Fitfully',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								7692 => array (
+										'title' => 'Administrative Ledger, Entry 3,412',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color2.dds' 
+								),
+								7693 => array (
+										'title' => 'Pact of the Daggerfall Devil',
+										'icon' => '/esoui/art/icons/lore_book2_detail3_color4.dds' 
+								),
+								7628 => array (
+										'title' => 'Voidprowler Journal',
+										'icon' => '/esoui/art/icons/quest_cwc_inc_book001.dds' 
+								),
+								7631 => array (
+										'title' => 'Your New Target',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								7682 => array (
+										'title' => 'Onri Murien`s Hidden Wishes',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								7683 => array (
+										'title' => 'Ilasaba`s Excuses',
+										'icon' => '/esoui/art/icons/scroll_003.dds' 
+								),
+								7684 => array (
+										'title' => 'Zeirinia`s Silent Admission',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								7435 => array (
+										'title' => 'A Summoner`s Guide to Nymics',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color4.dds' 
+								),
+								7671 => array (
+										'title' => 'Plague Concoctor`s Instructions',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
+								),
+								7775 => array (
+										'title' => 'Note from Uxunath',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7776 => array (
+										'title' => 'Journal of the First Remnant',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color1.dds' 
 								) 
 						) 
 				) 

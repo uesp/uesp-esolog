@@ -7,21 +7,22 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "38pts";
-$VERSION = "38pts";
+$TABLEPREFIX = "38";
+$VERSION = "38";
 $FIRSTID = 3;
 $INCLUDEENDFUNC = true;
 $LASTID = 220000;
 //$MAGICCOUNT = 1483;
 //$MAGICCOUNT = 1533;
 $MAGICCOUNT = 1532;
-$MAGICCOUNT = 8;	//PTS
+//$MAGICCOUNT = 8;	//PTS
 
 $luaFunctionCount = 1;
 $MAX_ITEMS_PER_FUNCTION = 1;
 $MAX_CALLS_PER_FUNCTION = 500;
 $linesOutput = 0;
 $itemsOutput = 0;
+$totalLinesOutput = 0;
 
 $checkData = array();
 
@@ -145,12 +146,14 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 				
 				$output .= "\tuespLog.MineItemSingle($id, $internalLevel, $internalSubtype)\n";
 				++$itemsOutput;
+				++$totalLinesOutput;
 			}
 		}
 		else
 		{
 			$output .= "\tuespLog.MineSingleItemSafe($id) \n";
 			++$linesOutput;
+			++$totalLinesOutput;
 			$itemsOutput += $MAGICCOUNT;
 		}
 		
@@ -182,3 +185,5 @@ if ($del_output != "")
 	file_put_contents("delitems.txt", $del_output, 0);
 }
 
+
+print("Output $totalLinesOutput lines to fixitems.lua!\n");
