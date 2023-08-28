@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 105,
-						'numBooks' => 1452 
+						'numCollect' => 107,
+						'numBooks' => 1480 
 				),
 				1 => array (
 						'id' => 43,
@@ -8018,6 +8018,70 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				),
 				105 => array (
+						'id' => 212,
+						'name' => 'Clan Dreamcarver Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7699 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7700 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7701 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7702 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7703 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7704 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7705 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7706 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7707 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7708 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7709 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7710 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7711 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7712 => array (
+										'title' => 'Crafting Motif 121: Clan Dreamcarver Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				106 => array (
 						'id' => 213,
 						'name' => 'Dead Keeper Style',
 						'numBooks' => 14,
@@ -8077,6 +8141,70 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7729 => array (
 										'title' => 'Crafting Motif 122: Dead Keeper Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				107 => array (
+						'id' => 214,
+						'name' => 'Kindred`s Concord Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7731 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7732 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7733 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7734 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7735 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7736 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7737 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7738 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7739 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7740 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7741 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7742 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7743 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7744 => array (
+										'title' => 'Crafting Motif 123: Kindred`s Concord Swords',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
@@ -16284,7 +16412,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book5_detail5_color2.dds' 
 								),
 								667 => array (
-										'title' => 'Song of Despair',
+										'title' => 'The Song of Despair',
 										'icon' => '/esoui/art/icons/lore_book5_detail1_color3.dds' 
 								),
 								715 => array (
@@ -24912,7 +25040,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				48 => array (
 						'id' => 210,
 						'name' => 'Telvanni Tomes',
-						'numBooks' => 103,
+						'numBooks' => 97,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								7695 => array (
@@ -24929,7 +25057,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7543 => array (
 										'title' => 'First Mate Dalmir`s Log',
-										'icon' => '/esoui/art/icons/lore_book1_detail4_color5.dds' 
+										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
 								),
 								7585 => array (
 										'title' => 'Hidden Kindred Instructions',
@@ -25043,18 +25171,6 @@ $ESO_BOOK_COLLECTIONS = array (
 										'title' => 'On Joining the Keepers of the Dead',
 										'icon' => '/esoui/art/icons/lore_book3_detail5_color5.dds' 
 								),
-								7429 => array (
-										'title' => 'Uluscant`s Manifesto',
-										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
-								),
-								7431 => array (
-										'title' => 'How Rajhin Stole the Book that Knows',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
-								),
-								7432 => array (
-										'title' => 'Herma-Mora: The Woodland Man?',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
-								),
 								7433 => array (
 										'title' => 'Life in the Camonna Tong',
 										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
@@ -25089,7 +25205,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7590 => array (
 										'title' => 'History of the Dreamstone',
-										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
 								),
 								7591 => array (
 										'title' => 'Warlock Vanton`s Research Proposal',
@@ -25185,11 +25301,11 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7761 => array (
 										'title' => 'Letter from Sharp',
-										'icon' => '/esoui/art/icons/housing_cwc_crf_scroll001.dds' 
+										'icon' => '/esoui/art/icons/notes_001.dds' 
 								),
 								7762 => array (
 										'title' => 'Preparing Necrom Kwama, Fifth Draft',
-										'icon' => '/esoui/art/icons/lore_book3_detail2_color2.dds' 
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
 								),
 								7765 => array (
 										'title' => 'A Servant`s Tale',
@@ -25211,10 +25327,6 @@ $ESO_BOOK_COLLECTIONS = array (
 										'title' => 'Ransom Note from Shadeya',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
 								),
-								7549 => array (
-										'title' => 'The Curse of Blackscale Island',
-										'icon' => '/esoui/art/icons/quest_book_001.dds' 
-								),
 								7567 => array (
 										'title' => 'Letter to Deredrien',
 										'icon' => '/esoui/art/icons/notes_003.dds' 
@@ -25234,10 +25346,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								7582 => array (
 										'title' => 'Sondivel`s Journal',
 										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
-								),
-								7609 => array (
-										'title' => 'The Never-Woven',
-										'icon' => '/esoui/art/icons/quest_book_002.dds' 
 								),
 								7621 => array (
 										'title' => 'Commentary on Fate Dialectal',
@@ -25313,7 +25421,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7800 => array (
 										'title' => 'The Waiting Door',
-										'icon' => '/esoui/art/icons/lore_book4_detail5_color1.dds' 
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
 								),
 								7804 => array (
 										'title' => 'House Telvanni Song',
@@ -25322,17 +25430,13 @@ $ESO_BOOK_COLLECTIONS = array (
 								7806 => array (
 										'title' => 'The Spotted Towers',
 										'icon' => '/esoui/art/icons/lore_book4_detail1_color1.dds' 
-								),
-								7805 => array (
-										'title' => 'Song of Fate',
-										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
 								) 
 						) 
 				),
 				49 => array (
 						'id' => 211,
 						'name' => 'Apocryphal Pages',
-						'numBooks' => 68,
+						'numBooks' => 74,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								7419 => array (
@@ -25505,7 +25609,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7615 => array (
 										'title' => 'Notes on Doors of Oblivion',
-										'icon' => '/esoui/art/icons/lore_book2_detail1_color2.dds' 
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color3.dds' 
 								),
 								7619 => array (
 										'title' => 'Morian Zenas Cell Note',
@@ -25549,7 +25653,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								7690 => array (
 										'title' => 'Cipher Akacirn`s Journal',
-										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color4.dds' 
 								),
 								7769 => array (
 										'title' => 'Recipe for Book Soup',
@@ -25606,6 +25710,30 @@ $ESO_BOOK_COLLECTIONS = array (
 								7776 => array (
 										'title' => 'Journal of the First Remnant',
 										'icon' => '/esoui/art/icons/lore_book3_detail2_color1.dds' 
+								),
+								7805 => array (
+										'title' => 'Song of Fate',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								),
+								7549 => array (
+										'title' => 'The Curse of Blackscale Island',
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
+								),
+								7609 => array (
+										'title' => 'The Never-Woven',
+										'icon' => '/esoui/art/icons/housing_bre_inc_book_open001.dds' 
+								),
+								7429 => array (
+										'title' => 'Uluscant`s Manifesto',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
+								),
+								7431 => array (
+										'title' => 'How Rajhin Stole the Book that Knows',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color5.dds' 
+								),
+								7432 => array (
+										'title' => 'Herma-Mora: The Woodland Man?',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
 								) 
 						) 
 				) 

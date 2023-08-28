@@ -181,6 +181,7 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"36" => "Firesong",
 		"37" => "Scribes of Fate",
 		"38" => "Necrom",
+		"39" => "Update 39",
 	);
 
 
@@ -2110,6 +2111,9 @@ $ESO_SET_INDEXES = array(
 		706 => "Perfected Test of Resolve",
 		707 => "Perfected Ansuul's Torment",
 		708 => "Perfected Peace and Serenity",
+		711 => "Colovian Highlands General",
+		712 => "Jerall Mountains Warchief",
+		713 => "Nibenay Bay Battlereeve",
 );
 
 
@@ -4464,6 +4468,10 @@ function GetEsoItemTableSuffix($version)
 			return "38pts1";
 		case '38':
 			return "";
+		case '39pts':
+			return "39pts";
+		case '39':
+			return "39";
 	}
 
 	return "";
