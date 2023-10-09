@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "39";
-	const SKILLS_TABLESUFFIX   = "39";
+	const MINEITEM_TABLESUFFIX = "40pts";
+	const SKILLS_TABLESUFFIX   = "40pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	

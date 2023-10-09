@@ -2,25 +2,30 @@
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$NUMTESTS = 1000;
+$NUMTESTS = 100;
 $MAXITEMID = 1800000;
-$TEST_DB_WRITE = true;
+$TEST_DB = "newdb1";
 srand(552);
 
-print("Quick ESO Sales Database benchmark...\n");
+print("Quick ESO Sales Database benchmark for $TEST_DB...\n");
 
 require_once("/home/uesp/secrets/esosalesdata.secrets");
 require_once("esoCommon.php");
 
-if ($TEST_DB_WRITE)
+if ($TEST_DB == "db1")
 {
 	$db = new mysqli($uespEsoSalesDataWriteDBHost, $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase);
-	if ($db->connect_error) die("Could not connect to mysql database!");
+	if ($db->connect_error) die("Could not connect to mysql database $TEST_DB!");
+}
+else if ($TEST_DB == "newdb1")
+{
+	$db = new mysqli("10.12.222.33", $uespEsoSalesDataWriteUser, $uespEsoSalesDataWritePW, $uespEsoSalesDataDatabase);
+	if ($db->connect_error) die("Could not connect to mysql database $TEST_DB!");
 }
 else
 {
 	$db = new mysqli($uespEsoSalesDataReadDBHost, $uespEsoSalesDataReadUser, $uespEsoSalesDataReadPW, $uespEsoSalesDataDatabase);
-	if ($db->connect_error) die("Could not connect to mysql database!");
+	if ($db->connect_error) die("Could not connect to mysql database $TEST_DB!");
 }
 
 $totalCount = 0;

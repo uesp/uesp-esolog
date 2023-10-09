@@ -2096,6 +2096,7 @@ $ESO_SET_INDEXES = array(
 		690 => "Judgment of Akatosh",
 		691 => "Cryptcanon Vestments",
 		692 => "Esoteric Environment Greaves",
+		693 => "Emblem of the Last Ayleid King",
 		694 => "Velothi Ur-Mage's Amulet",
 		695 => "Shattered Fate",
 		696 => "Telvanni Efficiency",
@@ -2114,6 +2115,13 @@ $ESO_SET_INDEXES = array(
 		711 => "Colovian Highlands General",
 		712 => "Jerall Mountains Warchief",
 		713 => "Nibenay Bay Battlereeve",
+		722 => "Reawakened Hierophant",
+		723 => "Basalt-Blooded Warrior",
+		724 => "Nobility in Decay",
+		726 => "Soulcleaver",
+		727 => "Monolith of Storms",
+		728 => "Wrathsun",
+		729 => "Gardener of Seasons",
 );
 
 
@@ -4275,7 +4283,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 38;
+	return 39;
 }
 
 
@@ -4467,11 +4475,15 @@ function GetEsoItemTableSuffix($version)
 		case '38pts1':
 			return "38pts1";
 		case '38':
-			return "";
+			return "38";
 		case '39pts':
 			return "39pts";
 		case '39':
-			return "39";
+			return "";
+		case '40pts':
+			return "40pts";
+		case '40':
+			return "";
 	}
 
 	return "";
