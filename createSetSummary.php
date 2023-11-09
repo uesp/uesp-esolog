@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "40pts";
+$TABLE_SUFFIX = "40";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
@@ -278,28 +278,28 @@ if (!$result) print("Error: Failed to delete table setSummaryTmp!\n{$db->error}"
 
 $query = "CREATE TABLE IF NOT EXISTS setSummaryTmp(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			setName TINYTEXT NOT NULL,
-			indexName TINYTEXT NOT NULL,
+			setName TINYTEXT NOT NULL DEFAULT '',
+			indexName TINYTEXT NOT NULL DEFAULT '',
 			setMaxEquipCount TINYINT NOT NULL DEFAULT 0,
 			setBonusCount TINYINT NOT NULL DEFAULT 0,
 			itemCount INTEGER NOT NULL DEFAULT 0,
-			setBonusDesc1 TEXT NOT NULL,
-			setBonusDesc2 TEXT NOT NULL,
-			setBonusDesc3 TEXT NOT NULL,
-			setBonusDesc4 TEXT NOT NULL,
-			setBonusDesc5 TEXT NOT NULL,
-			setBonusDesc6 TEXT NOT NULL,
-			setBonusDesc7 TEXT NOT NULL,
-			setBonusDesc8 TEXT NOT NULL,
-			setBonusDesc9 TEXT NOT NULL,
-			setBonusDesc10 TEXT NOT NULL,
-			setBonusDesc11 TEXT NOT NULL,
-			setBonusDesc12 TEXT NOT NULL,
-			setBonusDesc TEXT NOT NULL,
-			itemSlots TEXT NOT NULL,
+			setBonusDesc1 TEXT NOT NULL DEFAULT '',
+			setBonusDesc2 TEXT NOT NULL DEFAULT '',
+			setBonusDesc3 TEXT NOT NULL DEFAULT '',
+			setBonusDesc4 TEXT NOT NULL DEFAULT '',
+			setBonusDesc5 TEXT NOT NULL DEFAULT '',
+			setBonusDesc6 TEXT NOT NULL DEFAULT '',
+			setBonusDesc7 TEXT NOT NULL DEFAULT '',
+			setBonusDesc8 TEXT NOT NULL DEFAULT '',
+			setBonusDesc9 TEXT NOT NULL DEFAULT '',
+			setBonusDesc10 TEXT NOT NULL DEFAULT '',
+			setBonusDesc11 TEXT NOT NULL DEFAULT '',
+			setBonusDesc12 TEXT NOT NULL DEFAULT '',
+			setBonusDesc TEXT NOT NULL DEFAULT '',
+			itemSlots TEXT NOT NULL DEFAULT '',
 			gameId INTEGER NOT NULL DEFAULT 0,
-			type TINYTEXT NOT NULL,
-			sources TINYTEXT NOT NULL,
+			type TINYTEXT NOT NULL DEFAULT '',
+			sources TINYTEXT NOT NULL DEFAULT '',
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12)
 		) ENGINE=MYISAM;";
 

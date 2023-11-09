@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "37pts";
+$TABLE_SUFFIX = "";
 
 $REPLACE_PAIRS = array(
 		"Storm Lord" => "Stormlord", 

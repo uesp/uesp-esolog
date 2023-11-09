@@ -461,11 +461,11 @@ class EsoSalesDataParser
 		$goodSoldPrice = $itemData['goodSoldPrice'];
 		
 		$this->lastQuery = "UPDATE items SET ";
-		$this->lastQuery .= "countPurchases=$countPurchases, countSales=$countSales, countItemPurchases=$countItemPurchases, ";
-		$this->lastQuery .= "countItemSales=$countItemSales, sumPurchases=$sumPurchases, sumSales=$sumSales, icon='$icon', ";
-		$this->lastQuery .= "lastPurchaseTimestamp=$lastPurchase, lastSaleTimestamp=$lastSale, lastSeen=$lastSeen, ";
-		$this->lastQuery .= "goodPrice=$goodPrice, goodListPrice=$goodListPrice, goodSoldPrice=$goodSoldPrice ";
-		$this->lastQuery .= "WHERE id=$id;";
+		$this->lastQuery .= "countPurchases='$countPurchases', countSales='$countSales', countItemPurchases='$countItemPurchases', ";
+		$this->lastQuery .= "countItemSales='$countItemSales', sumPurchases='$sumPurchases', sumSales='$sumSales', icon='$icon', ";
+		$this->lastQuery .= "lastPurchaseTimestamp='$lastPurchase', lastSaleTimestamp='$lastSale', lastSeen='$lastSeen', ";
+		$this->lastQuery .= "goodPrice='$goodPrice', goodListPrice='$goodListPrice', goodSoldPrice='$goodSoldPrice' ";
+		$this->lastQuery .= "WHERE id='$id';";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to save item stats data!");
@@ -1154,7 +1154,7 @@ class EsoSalesDataParser
 		{
 			$level = 1;
 		}
-						
+		
 		//if ($itemRawData['name'] != null) $name = $itemRawData['name']; 
 		if ($itemRawData['icon'] != null) $icon = $itemRawData['icon'];
 		
@@ -1169,11 +1169,11 @@ class EsoSalesDataParser
 		$extraData = $this->db->real_escape_string($extraData);
 		
 		$this->lastQuery  = "INSERT INTO items(server, itemId, potionData, level, quality, trait, itemType, equipType, weaponType, armorType, icon, name, setName, internalLevel, internalSubType, extraData) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$potionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', \"$safeIcon\", \"$safeName\", \"$safeSetName\", \"$internalLevel\", \"$internalSubType\", \"$extraData\");";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$potionData', '$level', '$quality', '$trait', '$itemType', '$equipType', '$weaponType', '$armorType', '$safeIcon', '$safeName', '$safeSetName', '$internalLevel', '$internalSubType', '$extraData');";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create items record!");
-				
+		
 		$this->dbWriteCount++;
 		
 		$itemData = array();
@@ -1548,8 +1548,8 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 		
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$buyTimestamp');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen, listTimestamp) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$buyTimestamp', '0'l);";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
@@ -1592,8 +1592,8 @@ class EsoSalesDataParser
 		$server = $this->db->real_escape_string($this->server);
 		$itemLink = $this->db->real_escape_string($saleData['itemLink']);
 	
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$timestamp');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, buyTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen, listTimestamp) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$buyTimestamp', '$buyTimestamp', '$eventId', '$price', '$qnt', '$itemLink', '$timestamp', '0');";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record!");
@@ -1637,8 +1637,8 @@ class EsoSalesDataParser
 		$uniqueId = 0;
 		if ($saleData['uniqueId']) $uniqueId = $this->db->real_escape_string($saleData['uniqueId']);
 		
-		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen, uniqueId) ";
-		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp, '$uniqueId');";
+		$this->lastQuery  = "INSERT INTO sales(server, itemId, guildId, sellerName, buyerName, listTimestamp, timestamp, eventId, price, qnt, itemLink, lastSeen, uniqueId, buyTimestamp) ";
+		$this->lastQuery .= "VALUES('$server', '$itemId', '$guildId', '$sellerName', '$buyerName', '$listTimestamp', '$listTimestamp', '$eventId', '$price', '$qnt', '$itemLink', $timestamp, '$uniqueId', '0');";
 		
 		$result = $this->db->query($this->lastQuery);
 		if ($result === FALSE) return $this->reportError("Failed to create new sales record from search entry!");

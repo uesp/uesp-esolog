@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "40pts";
+	public $TABLE_SUFFIX = "40";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -97,18 +97,18 @@ class CEsoCreateSkillTree
 	{
 		$query = "CREATE TABLE IF NOT EXISTS skillTree" . $this->TABLE_SUFFIX . "(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			abilityId BIGINT NOT NULL,
-			displayId BIGINT NOT NULL,
-			skillTypeName TINYTEXT NOT NULL,
+			abilityId BIGINT NOT NULL DEFAULT -1,
+			displayId BIGINT NOT NULL DEFAULT -1,
+			skillTypeName TINYTEXT NOT NULL DEFAULT '',
 			learnedLevel INTEGER NOT NULL DEFAULT -1,
 			maxRank TINYINT NOT NULL DEFAULT -1,
 			rank INTEGER NOT NULL DEFAULT -1,
-			baseName TINYTEXT NOT NULL,
-			name TINYTEXT NOT NULL,
-			description TEXT NOT NULL,
-			type TINYTEXT NOT NULL,
-			cost TINYTEXT NOT NULL,
-			icon TINYTEXT NOT NULL,
+			baseName TINYTEXT NOT NULL DEFAULT '',
+			name TINYTEXT NOT NULL DEFAULT '',
+			description TEXT NOT NULL DEFAULT '',
+			type TINYTEXT NOT NULL DEFAULT '',
+			cost TINYTEXT NOT NULL DEFAULT '',
+			icon TINYTEXT NOT NULL DEFAULT '',
 			skillIndex TINYINT NOT NULL DEFAULT -1,
 			INDEX index_abilityId(abilityId),
 			INDEX index_skillTypeName(skillTypeName(20)),

@@ -2096,7 +2096,6 @@ $ESO_SET_INDEXES = array(
 		690 => "Judgment of Akatosh",
 		691 => "Cryptcanon Vestments",
 		692 => "Esoteric Environment Greaves",
-		693 => "Emblem of the Last Ayleid King",
 		694 => "Velothi Ur-Mage's Amulet",
 		695 => "Shattered Fate",
 		696 => "Telvanni Efficiency",
@@ -4283,7 +4282,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 39;
+	return 40;
 }
 
 
@@ -4479,7 +4478,7 @@ function GetEsoItemTableSuffix($version)
 		case '39pts':
 			return "39pts";
 		case '39':
-			return "";
+			return "39";
 		case '40pts':
 			return "40pts";
 		case '40':

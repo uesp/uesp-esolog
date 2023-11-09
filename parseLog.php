@@ -40,10 +40,13 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "40pts";
-	const SKILLS_TABLESUFFIX   = "40pts";
+	const MINEITEM_TABLESUFFIX = "40";
+	const SKILLS_TABLESUFFIX   = "40";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
+	
+	const DO_BENCHMARK = false;
+	public $benchmarkData = [];
 	
 	const SHOW_PARSE_LINENUMBERS = true;
 	
@@ -122,6 +125,8 @@ class EsoLogParser
 	const ONLY_PARSE_MAILITEM = false;
 	const ONLY_PARSE_SAFEBOXES_FOUND = false;
 	const ONLY_PARSE_SHOWBOOK = false;
+	
+	public $hasParsedItemSummary = [];
 	
 	public $SKIP_SALES = false;
 	public $SALES_LOG_OUTPUT = "/home/uesp/esolog/salesdata.log";
@@ -2537,7 +2542,7 @@ class EsoLogParser
 		$query = "CREATE TABLE IF NOT EXISTS chest (
 						id BIGINT NOT NULL AUTO_INCREMENT,
 						locationId BIGINT NOT NULL,
-						logId BIGINT NOT NULL,
+						logId BIGINT NOT NULL DEFAULT 0,
 						quality TINYINT NOT NULL,
 						name TINYTEXT NOT NULL,
 						PRIMARY KEY (id)
@@ -3132,11 +3137,11 @@ class EsoLogParser
 		$query = "CREATE TABLE IF NOT EXISTS minedSkills".self::SKILLS_TABLESUFFIX."(
 			id INTEGER NOT NULL PRIMARY KEY,
 			displayId INTEGER NOT NULL DEFAULT -1,
-			name TINYTEXT NOT NULL,
-			indexName TINYTEXT NOT NULL,
-			description TEXT NOT NULL,
-			descHeader TEXT NOT NULL,
-			target TINYTEXT NOT NULL,
+			name TINYTEXT NOT NULL DEFAULT '',
+			indexName TINYTEXT NOT NULL DEFAULT '',
+			description TEXT NOT NULL DEFAULT '',
+			descHeader TEXT NOT NULL DEFAULT '',
+			target TINYTEXT NOT NULL DEFAULT '',
 			skillType INTEGER NOT NULL DEFAULT -1,
 			upgradeLines TEXT NOT NULL,
 			effectLines TEXT NOT NULL,
@@ -3154,13 +3159,13 @@ class EsoLogParser
 			castTime INTEGER NOT NULL DEFAULT -1,
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
-			mechanic TINYTEXT NOT NULL,
-			texture TEXT NOT NULL,
+			mechanic TINYTEXT NOT NULL DEFAULT '',
+			texture TEXT NOT NULL DEFAULT '',
 			isPlayer TINYINT NOT NULL DEFAULT 0,
-			raceType TINYTEXT NOT NULL,
-			classType TINYTEXT NOT NULL,
-			setName TINYTEXT NOT NULL,
-			skillLine TINYTEXT NOT NULL,
+			raceType TINYTEXT NOT NULL DEFAULT '',
+			classType TINYTEXT NOT NULL DEFAULT '',
+			setName TINYTEXT NOT NULL DEFAULT '',
+			skillLine TINYTEXT NOT NULL DEFAULT '',
 			prevSkill INTEGER NOT NULL DEFAULT 0,
 			nextSkill INTEGER NOT NULL DEFAULT 0,
 			nextSkill2 INTEGER NOT NULL DEFAULT 0,
@@ -3171,9 +3176,9 @@ class EsoLogParser
 			skillIndex TINYINT NOT NULL DEFAULT -1,
 			buffType TINYINT NOT NULL DEFAULT -1,
 			isToggle TINYINT NOT NULL DEFAULT 0,
-			chargeFreq TINYTEXT NOT NULL,
+			chargeFreq TINYTEXT NOT NULL DEFAULT '',
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
-			coefDescription TEXT NOT NULL,
+			coefDescription TEXT NOT NULL DEFAULT '',
 			type1 TINYINT NOT NULL DEFAULT -1,
 			a1 FLOAT NOT NULL DEFAULT -1,
 			b1 FLOAT NOT NULL DEFAULT -1,
@@ -3210,11 +3215,11 @@ class EsoLogParser
 			c6 FLOAT NOT NULL DEFAULT -1,
 			R6 FLOAT NOT NULL DEFAULT -1,
 			avg6 FLOAT NOT NULL DEFAULT -1,
-			rawDescription TEXT NOT NULL,
-			rawName TINYTEXT NOT NULL,
-			rawTooltip TEXT NOT NULL,
-			rawCoef TEXT NOT NULL,
-			coefTypes TEXT NOT NULL,
+			rawDescription TEXT NOT NULL DEFAULT '',
+			rawName TINYTEXT NOT NULL DEFAULT '',
+			rawTooltip TEXT NOT NULL DEFAULT '',
+			rawCoef TEXT NOT NULL DEFAULT '',
+			coefTypes TEXT NOT NULL DEFAULT '',
 			FULLTEXT(name),
 			FULLTEXT(description),
 			FULLTEXT(descHeader),
@@ -3229,12 +3234,12 @@ class EsoLogParser
 		$query = "CREATE TABLE IF NOT EXISTS minedSkillLines".self::SKILLS_TABLESUFFIX."(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			name TINYTEXT NOT NULL,
-			fullName TINYTEXT NOT NULL,
-			skillType TINYTEXT NOT NULL,
-			raceType TINYTEXT NOT NULL,
-			classType TINYTEXT NOT NULL,
+			fullName TINYTEXT NOT NULL DEFAULT '',
+			skillType TINYTEXT NOT NULL DEFAULT '',
+			raceType TINYTEXT NOT NULL DEFAULT '',
+			classType TINYTEXT NOT NULL DEFAULT '',
 			numRanks INTEGER NOT NULL DEFAULT 0,
-			xp TEXT NOT NULL,
+			xp TEXT NOT NULL DEFAULT '',
 			totalXp INTEGER NOT NULL DEFAULT 0,
 			INDEX index_name (name(16)),
 			INDEX index_fullName (fullName(32))
@@ -6918,6 +6923,8 @@ class EsoLogParser
 		$this->currentUser['lastMinedItemLogEntry'] = null;
 		$this->currentUser['mineItemStartGameTime'] = $logEntry['gameTime'];
 		$this->currentUser['mineItemStartTimeStamp'] = $logEntry['timeStamp'];
+		
+		$this->hasParsedItemSummary = [];
 	}
 	
 	
@@ -7720,6 +7727,11 @@ class EsoLogParser
 	
 	public function OnMineItem ($logEntry)
 	{
+		if (self::DO_BENCHMARK)
+		{
+			$start = microtime(true);
+		}
+		
 		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp!" . $logEntry['timeStamp']);
 		
 		$itemLink = $logEntry['itemLink'];
@@ -7727,8 +7739,22 @@ class EsoLogParser
 		
 		$itemLink = $this->FixItemLink($itemLink);
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItem::FixItemLink');
+			$start = $end;
+		}
+		
 		$minedItem = $this->LoadMinedItemLink($itemLink);
 		if ($minedItem === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize item data!");
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItem::LoadMinedItemLink');
+			$start = $end;
+		}
 		
 		if ($minedItem['__isNew'] === true)
 		{
@@ -7737,7 +7763,22 @@ class EsoLogParser
 		}
 		
 		$this->ParseMinedItemLog($logEntry);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItem::ParseMinedItemLog');
+			$start = $end;
+		}
+		
 		$this->MergeMineItemLogToDb($minedItem, $logEntry);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItem::MergeMineItemLogToDb');
+			$start = $end;
+		}
 		
 		/* Old mined item was limited to 5 set descriptions 
 		if (array_key_exists('setDesc7', $logEntry))
@@ -7841,19 +7882,52 @@ class EsoLogParser
 		{
 			$result = $this->SaveMinedItem($minedItem);
 			if (!$result) $this->reportLogParseError("\tError: Failed to save item data!");
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'OnMineItem::SaveMinedItem');
+				$start = $end;
+			}
 		}
 		
 		$this->currentUser['lastMinedItemLogEntry'] = $logEntry;
+		$itemId = intval($minedItem['itemId']);
 		
-		if ($minedItem['itemId'] > 10)
+		if ($itemId > 10 && !$this->hasParsedItemSummary[$itemId])
 		{
-			$minedItemSummary = $this->LoadMinedItemSummary($minedItem['itemId']);
+			$minedItemSummary = $this->LoadMinedItemSummary($itemId);
 			if ($minedItemSummary === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize item summary data!");
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'OnMineItem::LoadMinedItemSummary');
+				$start = $end;
+			}
 			
 			$this->MergeMineItemLogToDb($minedItemSummary, $logEntry);
 			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'OnMineItem::MergeMineItemLogToDb_Summary');
+				$start = $end;
+			}
+			
 			$result = $this->SaveMinedItemSummary($minedItemSummary);
-			if (!$result) $this->reportLogParseError("\tError: Failed to save item summary data!");
+			
+			if (!$result) 
+				$this->reportLogParseError("\tError: Failed to save item summary data!");
+			else
+				$this->hasParsedItemSummary[$itemId] = true;
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'OnMineItem::SaveMinedItemSummary');
+				$start = $end;
+			}
 		}
 		
 		//$this->log("Found mined item $itemLink");
@@ -7903,10 +7977,29 @@ class EsoLogParser
 		$itemLink = $logEntry['itemLink'];
 		if ($itemLink == null) return $this->reportLogParseError("Missing item link!");
 		
+		if (self::DO_BENCHMARK)
+		{
+			$start = microtime(true);
+		}
+		
 		$itemLink = $this->FixItemLink($itemLink);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItemShort::FixItemLink');
+			$start = $end;
+		}
 		
 		$minedItem = $this->LoadMinedItemLink($itemLink);
 		if ($minedItem === false) return $this->reportLogParseError("\tError: Failed to load or initialize item data!");
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItemShort::LoadMinedItemLink');
+			$start = $end;
+		}
 		
 		if ($minedItem['__isNew'] === true)
 		{
@@ -7915,9 +8008,31 @@ class EsoLogParser
 		}
 		
 		$mergedLogEntry = $this->MergeMineItemLogs($logEntry, $this->currentUser['lastMinedItemLogEntry']);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItemShort::MergeMineItemLogs');
+			$start = $end;
+		}
+		
 		$this->ParseMinedItemLog($mergedLogEntry);
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItemShort::ParseMinedItemLog');
+			$start = $end;
+		}
+		
 		$this->MergeMineItemLogToDb($minedItem, $mergedLogEntry);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItemShort::MergeMineItemLogToDb');
+			$start = $end;
+		}
 		
 		/* Old mined item was limited to 5 set descriptions 
 	 	if (array_key_exists('setDesc7', $mergedLogEntry))
@@ -8020,6 +8135,13 @@ class EsoLogParser
 		
 		$result = true;
 		if ($minedItem['__dirty']) $result &= $this->SaveMinedItem($minedItem);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnMineItemShort::SaveMinedItem');
+			$start = $end;
+		}
 		
 		if (!$result) $this->reportLogParseError("\tError: Failed to save item data!");
 		
@@ -8275,6 +8397,8 @@ class EsoLogParser
 			$c = $logEntry["c".$i];
 			$R = $logEntry["R".$i];
 			$type = $logEntry["type".$i];
+			
+			if ($type == null || $type == "") $type = -1;
 			
 			if ($a == null) continue;
 			if ($b == null) continue;
@@ -10171,6 +10295,11 @@ class EsoLogParser
 	
 	public function handleLogEntry ($logEntry)
 	{
+		if (self::DO_BENCHMARK)
+		{
+			$start = microtime(true);
+		}
+		
 		$skipLogEntryCreate = false;
 		
 		if ($this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 > 0 && $logEntry['timeStamp1'] > 0)
@@ -10319,18 +10448,47 @@ class EsoLogParser
 			}
 		}
 		
-		if (!$this->isValidLogEntry($logEntry))
+		if (self::DO_BENCHMARK)
 		{
-			//print ("Not valid log entry\n");
-			return false;
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'handleLogEntry::prepare_data');
+			$start = $end;
 		}
+		
+		$isValid = $this->isValidLogEntry($logEntry);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'handleLogEntry::isValidLogEntry');
+			$start = $end;
+		}
+		
+		if (!$isValid) return;
 		
 		if ($this->dbWriteCount >= $this->dbWriteNextSleepCount || $this->dbReadCount >= $this->dbReadNextSleepCount)
 		{
 			$this->WaitForSlaveDatabase();
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'handleLogEntry::WaitForSlaveDatabase');
+				$start = $end;
+			}
 		}
 		
-		if ($this->PING_SALES_DB) $this->CheckPingSalesDB();
+		if ($this->PING_SALES_DB)
+		{
+			$this->CheckPingSalesDB();
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'handleLogEntry::CheckPingSalesDB');
+				$start = $end;
+			}
+		}
 		
 		$user = &$this->getUserRecord($logEntry['userName']);
 		$ipAddress = &$this->getIPAddressRecord($logEntry['ipAddress']);
@@ -10346,6 +10504,13 @@ class EsoLogParser
 		$createLogEntry = $this->checkLogEntryRecordCreate($logEntry);
 		$isDuplicate = false;
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'handleLogEntry::checkLogEntryRecordCreate');
+			$start = $end;
+		}
+		
 			/* For debugging/testing only (permits parsing of the same record logs multiple times) */
 		//if ($logEntry['userName'] == 'Reorx') $skipLogEntryCreate = true;
 		
@@ -10355,6 +10520,13 @@ class EsoLogParser
 		{
 			$isDuplicate = $this->isDuplicateLogEntry($logEntry);
 			//$this->log("\tLogEntry: {$logEntry['event']} = $isDuplicate");
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'handleLogEntry::isDuplicateLogEntry');
+				$start = $end;
+			}
 		}
 		
 		if ($this->skipDuplicates && $isDuplicate)
@@ -10373,6 +10545,14 @@ class EsoLogParser
 		if ($createLogEntry)
 		{
 			$logId = $this->addLogEntryRecordFromLog($logEntry);
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'handleLogEntry::addLogEntryRecordFromLog');
+				$start = $end;
+			}
+			
 			if ($logId === false) return false;
 			$this->currentLogEntryId = $logId;
 		}
@@ -10575,6 +10755,13 @@ class EsoLogParser
 			$user['__dirty'] = true;
 		}
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'handleLogEntry::handle_log_entry');
+			$start = $end;
+		}
+		
 		return true;
 	}
 	
@@ -10584,7 +10771,19 @@ class EsoLogParser
 		$matchData = array();
 		$resultData = array();
 		
+		if (self::DO_BENCHMARK)
+		{
+			$start = microtime(true);
+		}
+		
 		$result = preg_match_all("|([a-zA-Z0-9_]+){(.*?)}  |s", $logString, $matchData);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'parseLogEntry::preg_match_all');
+			$start = $end;
+		}
 		
 		if ($result === 0) 
 		{
@@ -10605,7 +10804,22 @@ class EsoLogParser
 			return null;
 		}
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'parseLogEntry::store_data');
+			$start = $end;
+		}
+		
 		$this->prepareLogEntry($resultData, $logString);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'parseLogEntry::prepareLogEntry');
+			$start = $end;
+		}
+		
 		return $resultData; 
 	}
 	
@@ -10698,19 +10912,36 @@ class EsoLogParser
 		$nextLineUpdate = 1000;
 		if ($this->startFileIndex == $fileIndex) $nextLineUpdate = intval($this->startFileLine/1000)*1000 + 1000;
 		
+		$parseStartTime = microtime(true);
+		$parseEndTime = 0;
+		$parseLogCount = 0;
+		
 		foreach ($logEntries[1] as $key => $value)
 		{
 			$lineCount = substr_count($value, "\n") + 1;
 			$totalLineCount += $lineCount;
 			$this->currentParseLine = $totalLineCount;
 			$this->currentLine = $value;
+			++$parseLogCount;
 			
 			if ($this->startFileIndex == $fileIndex && $totalLineCount < $this->startFileLine)
 			{
 				continue;
 			}
-		
+			
+			if (self::DO_BENCHMARK)
+			{
+				$start = microtime(true);
+			}
+			
 			$entryLog = $this->parseLogEntry($value);
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'parseLogEntry');
+				$start = $end;
+			}
 			
 			if (!$this->handleLogEntry($entryLog))
 			{
@@ -10718,11 +10949,32 @@ class EsoLogParser
 				++$errorCount;
 			}
 			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'handleLogEntry');
+				$start = $end;
+			}
+			
 			++$entryCount;
 			
 			if ($totalLineCount >= $nextLineUpdate && self::SHOW_PARSE_LINENUMBERS)
 			{
-				$this->log("\tParsing line $totalLineCount...");
+				$parseEndTime = microtime(true);
+				$parseRate = 0;
+				$parseRateText = '';
+				
+				if ($parseLogCount > 0 && $parseEndTime > $parseStartTime)
+				{
+					$parseRate = ($parseLogCount / ($parseEndTime - $parseStartTime));
+					$parseRateText = "" . number_format($parseRate, 1) . " lines/sec";
+				}
+				
+				$parseStartTime = $parseEndTime;
+				$parseLogCount = 0;
+				
+				$this->log("\tParsing line $totalLineCount ($parseRateText)...");
+				$this->ShowBenchmarks();
 				$nextLineUpdate += 1000;
 			}
 		}
@@ -10732,7 +10984,40 @@ class EsoLogParser
 		$this->log("\tParsed {$entryCount} log entries in {$totalLineCount} lines from file.");
 		$this->log("\tFound {$errorCount} entries with errors.");
 		$this->log("\tSkipped {$this->fileDuplicateCount} duplicate log entries.");
+		
+		$this->ShowBenchmarks();
+		
 		return TRUE;
+	}
+	
+	
+	public function RecordBenchmark($deltaTime, $label)
+	{
+		$this->benchmarkData[$label] += $deltaTime;
+	}
+	
+	
+	public function ShowBenchmarks()
+	{
+		if (!self::DO_BENCHMARK) return;
+		
+		$totalTime = 0;
+		
+		foreach ($this->benchmarkData as $label => $time)
+		{
+			if (strpos($label, '::') !== false) continue;
+			$totalTime += $time;
+		}
+		
+		if ($totalTime <= 0) return;
+		
+		$this->log("\t\tTotal Benchmark time of {$totalTime} secs:");
+		
+		foreach ($this->benchmarkData as $label => $time)
+		{
+			$pct = $time / $totalTime * 100;
+			$this->log("\t\t$label = $time ($pct%)");
+		}
 	}
 	
 	
@@ -10973,7 +11258,7 @@ class EsoLogParser
 				{
 					$this->logFilePath = rtrim($e[0], '/') . '/';
 					$foundPath = true;
-					print("Using log file path: {$this->logFilePath}\n");
+					$this->log("Using log file path: {$this->logFilePath}\n");
 				}
 				else
 				{
@@ -10985,7 +11270,7 @@ class EsoLogParser
 		if (!$foundPath)
 		{
 			$this->logFilePath = self::DEFAULT_LOG_PATH;
-			print("Using default log file path: {$this->logFilePath}\n");
+			$this->log("Using default log file path: {$this->logFilePath}\n");
 		}
 	}
 	

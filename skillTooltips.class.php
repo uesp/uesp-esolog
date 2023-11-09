@@ -141,33 +141,33 @@ class CEsoSkillTooltips
 		
 		$this->lastQuery = "CREATE TABLE IF NOT EXISTS skillTooltips{$this->TABLE_SUFFIX} (
 						abilityId INTEGER NOT NULL,
-						idx TINYINT NOT NULL,
+						idx TINYINT NOT NULL DEFAULT -1,
 						origAbilityId INTEGER NOT NULL,
-						coefType TINYINT NOT NULL,
-						rawType TINYINT NOT NULL,
-						value TINYTEXT NOT NULL,
-						rawValue1 INTEGER NOT NULL,
-						rawValue2 INTEGER NOT NULL,
-						duration INTEGER NOT NULL,
-						startTime INTEGER NOT NULL,
-						tickTime INTEGER NOT NULL,
-						cooldown INTEGER NOT NULL,
-						a float NOT NULL,
-						b float NOT NULL,
-						c float NOT NULL,
-						r float NOT NULL,
-						dmgType TINYINT NOT NULL,
-						isDmg TINYINT(1) NOT NULL,
-						isHeal TINYINT(1) NOT NULL,
-						isDmgShield TINYINT(1) NOT NULL,
-						isAOE TINYINT(1) NOT NULL,
-						isDOT TINYINT(1) NOT NULL,
-						isFlameAOE TINYINT(1) NOT NULL,
-						isElfBane TINYINT(1) NOT NULL,
-						isPlayer TINYINT(1) NOT NULL,
-						isMelee TINYINT(1) NOT NULL,
-						hasRankMod TINYINT(1) NOT NULL,
-						usesManualCoef TINYINT(1) NOT NULL,
+						coefType TINYINT NOT NULL DEFAULT -1,
+						rawType TINYINT NOT NULL DEFAULT -1,
+						value TINYTEXT NOT NULL DEFAULT '',
+						rawValue1 INTEGER NOT NULL DEFAULT -1,
+						rawValue2 INTEGER NOT NULL DEFAULT -1,
+						duration INTEGER NOT NULL DEFAULT -1,
+						startTime INTEGER NOT NULL DEFAULT -1,
+						tickTime INTEGER NOT NULL DEFAULT -1,
+						cooldown INTEGER NOT NULL DEFAULT -1,
+						a float NOT NULL DEFAULT -1,
+						b float NOT NULL DEFAULT -1,
+						c float NOT NULL DEFAULT -1,
+						r float NOT NULL DEFAULT -1,
+						dmgType MEDIUMINT NOT NULL DEFAULT -1,
+						isDmg TINYINT(1) NOT NULL DEFAULT 0,
+						isHeal TINYINT(1) NOT NULL DEFAULT 0,
+						isDmgShield TINYINT(1) NOT NULL DEFAULT 0,
+						isAOE TINYINT(1) NOT NULL DEFAULT 0,
+						isDOT TINYINT(1) NOT NULL DEFAULT 0,
+						isFlameAOE TINYINT(1) NOT NULL DEFAULT 0,
+						isElfBane TINYINT(1) NOT NULL DEFAULT 0,
+						isPlayer TINYINT(1) NOT NULL DEFAULT 0,
+						isMelee TINYINT(1) NOT NULL DEFAULT 0,
+						hasRankMod TINYINT(1) NOT NULL DEFAULT 0,
+						usesManualCoef TINYINT(1) NOT NULL DEFAULT 0,
 						PRIMARY KEY id (abilityId, idx)
 				) ENGINE=MYISAM;";
 		
@@ -510,6 +510,16 @@ class CEsoSkillTooltips
 				'rawValue1',
 				'rawValue2',
 		);
+		
+		if ($tooltipInfo['duration'] == '') $tooltipInfo['duration'] = '-1';
+		if ($tooltipInfo['startTime'] == '') $tooltipInfo['startTime'] = '-1';
+		if ($tooltipInfo['tickTime'] == '') $tooltipInfo['tickTime'] = '-1';
+		if ($tooltipInfo['cooldown'] == '') $tooltipInfo['cooldown'] = '-1';
+		if ($tooltipInfo['rawValue1'] == '') $tooltipInfo['rawValue1'] = '-1';
+		if ($tooltipInfo['rawValue2'] == '') $tooltipInfo['rawValue2'] = '-1';
+		
+		if ($tooltipInfo['isManual'] == '') $tooltipInfo['isManual'] = '0';
+		if ($tooltipInfo['isPlayer'] == '') $tooltipInfo['isPlayer'] = '0';
 		
 		$values = array(
 				$abilityId,
