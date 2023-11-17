@@ -476,7 +476,15 @@ window.UpdateEsoCPSkillDesc = function(skillId, points)
 	var desc = esovcpGetTooltipDescription(skillId, points)
 	
 	descControl.html(desc);
-	g_EsoCpData[skillId].description = descControl.text();
+	
+	if (g_EsoCpData[skillId])
+	{
+		g_EsoCpData[skillId].description = descControl.text();
+	}
+	else
+	{
+		//EsoCpLog("Error: Missing g_EsoCpData element for skill ID #", skillId)
+	}
 	
 	if (skillId == esovcpTooltipSkillId)
 	{
@@ -490,7 +498,7 @@ window.UpdateEsoCPDiscSkillDesc = function(discId)
 {
 	var discElement = $("#skills_" + discId);
 	
-	discElement.find(".esovcpSkill .esovcp2Skill").each(function(i, element){
+	discElement.find(".esovcpSkill, .esovcp2Skill").each(function(i, element){
 		var skillId = $(this).attr("skillid");
 		if (skillId == null || skillId == "") return;
 		var points = parseInt($(this).find(".esovcpPointInput").val());

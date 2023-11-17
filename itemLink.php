@@ -179,6 +179,13 @@ class CEsoItemLink
 			"setBonusDesc3",
 			"setBonusDesc4",
 			"setBonusDesc5",
+			"setBonusDesc6",
+			"setBonusDesc7",
+			"setBonusDesc8",
+			"setBonusDesc9",
+			"setBonusDesc10",
+			"setBonusDesc11",
+			"setBonusDesc12",
 			"icon",
 	);
 	
@@ -199,6 +206,8 @@ class CEsoItemLink
 	public $itemIsPoison = false;
 	public $itemStolen = -1;
 	public $itemSetCount = -1;
+	public $itemPerfectCount = -1;
+	public $itemDisableEnchant = false;
 	public $itemTrait = 0;
 	public $itemSet = "";
 	public $showSetSummary = false;
@@ -373,6 +382,8 @@ class CEsoItemLink
 		if (array_key_exists('show', $this->inputParams) || array_key_exists('showall', $this->inputParams)) $this->showAll = true;
 		if (array_key_exists('rawdata', $this->inputParams)) $this->outputRaw = true;
 		if (array_key_exists('setcount', $this->inputParams)) $this->itemSetCount = (int) $this->inputParams['setcount'];
+		if (array_key_exists('perfectcount', $this->inputParams)) $this->itemPerfectCount = (int) $this->inputParams['perfectcount'];
+		if (array_key_exists('enchantdisable', $this->inputParams)) $this->itemDisableEnchant = ((int) $this->inputParams['enchantdisable']) != 0;
 		if (array_key_exists('potiondata', $this->inputParams)) $this->itemPotionData = (int) $this->inputParams['potiondata'];
 		if (array_key_exists('ispoison', $this->inputParams)) $this->itemIsPoison = ((int) $this->inputParams['ispoison']) != 0;
 		if (array_key_exists('stolen', $this->inputParams)) $this->itemStolen = (int) $this->inputParams['stolen'];
@@ -570,6 +581,13 @@ class CEsoItemLink
 				if (array_key_exists('setBonusDesc3', $row) && $row['setBonusDesc3'] != "") $highestSetDesc = $row['setBonusDesc3'];
 				if (array_key_exists('setBonusDesc4', $row) && $row['setBonusDesc4'] != "") $highestSetDesc = $row['setBonusDesc4'];
 				if (array_key_exists('setBonusDesc5', $row) && $row['setBonusDesc5'] != "") $highestSetDesc = $row['setBonusDesc5'];
+				if (array_key_exists('setBonusDesc6', $row) && $row['setBonusDesc6'] != "") $highestSetDesc = $row['setBonusDesc6'];
+				if (array_key_exists('setBonusDesc7', $row) && $row['setBonusDesc7'] != "") $highestSetDesc = $row['setBonusDesc7'];
+				if (array_key_exists('setBonusDesc8', $row) && $row['setBonusDesc8'] != "") $highestSetDesc = $row['setBonusDesc8'];
+				if (array_key_exists('setBonusDesc9', $row) && $row['setBonusDesc9'] != "") $highestSetDesc = $row['setBonusDesc9'];
+				if (array_key_exists('setBonusDesc10', $row) && $row['setBonusDesc10'] != "") $highestSetDesc = $row['setBonusDesc10'];
+				if (array_key_exists('setBonusDesc11', $row) && $row['setBonusDesc11'] != "") $highestSetDesc = $row['setBonusDesc11'];
+				if (array_key_exists('setBonusDesc12', $row) && $row['setBonusDesc12'] != "") $highestSetDesc = $row['setBonusDesc12'];
 				
 				if ($highestSetDesc != "")
 				{
@@ -705,6 +723,8 @@ class CEsoItemLink
 				$this->itemRecord[$field] = $value;
 		}
 		
+		$this->ParsePerfectSetCounts();
+		
 		return true;
 	}
 	
@@ -739,7 +759,28 @@ class CEsoItemLink
 		
 		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc5'], $matches);
 		if ($result) $numSetItems = max($numSetItems, $matches[1]);
-				
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc6'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc7'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc8'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc9'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc10'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc11'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
+		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc12'], $matches);
+		if ($result) $numSetItems = max($numSetItems, $matches[1]);
+		
 		$this->itemRecord['setMaxEquipCount'] = $numSetItems;
 		
 		if ($this->itemRecord['setBonusDesc1'] != "") $this->itemRecord['setBonusCount'] = 1;
@@ -747,9 +788,18 @@ class CEsoItemLink
 		if ($this->itemRecord['setBonusDesc3'] != "") $this->itemRecord['setBonusCount'] = 3;
 		if ($this->itemRecord['setBonusDesc4'] != "") $this->itemRecord['setBonusCount'] = 4;
 		if ($this->itemRecord['setBonusDesc5'] != "") $this->itemRecord['setBonusCount'] = 5;
+		if ($this->itemRecord['setBonusDesc6'] != "") $this->itemRecord['setBonusCount'] = 6;
+		if ($this->itemRecord['setBonusDesc7'] != "") $this->itemRecord['setBonusCount'] = 7;
+		if ($this->itemRecord['setBonusDesc8'] != "") $this->itemRecord['setBonusCount'] = 8;
+		if ($this->itemRecord['setBonusDesc9'] != "") $this->itemRecord['setBonusCount'] = 9;
+		if ($this->itemRecord['setBonusDesc10'] != "") $this->itemRecord['setBonusCount'] = 10;
+		if ($this->itemRecord['setBonusDesc11'] != "") $this->itemRecord['setBonusCount'] = 11;
+		if ($this->itemRecord['setBonusDesc12'] != "") $this->itemRecord['setBonusCount'] = 12;
 		
 		if ($this->hasSetItemQuality && $this->itemQuality > 0) $this->itemRecord['quality'] = $this->itemQuality;
 		if ($this->hasSetItemLevel && $this->itemLevel > 0) $this->itemRecord['level'] = $this->itemLevel;
+		
+		$this->ParsePerfectSetCounts();
 		
 		return true;
 	}
@@ -780,6 +830,13 @@ class CEsoItemLink
 		$row['setBonusCount3'] = "";
 		$row['setBonusCount4'] = "";
 		$row['setBonusCount5'] = "";
+		$row['setBonusCount6'] = "";
+		$row['setBonusCount7'] = "";
+		$row['setBonusCount8'] = "";
+		$row['setBonusCount9'] = "";
+		$row['setBonusCount10'] = "";
+		$row['setBonusCount11'] = "";
+		$row['setBonusCount12'] = "";
 		$row['internalSubtype'] = "";
 		$row['internalLevel'] = "";
 		$row['abilityCooldown'] = "";
@@ -908,6 +965,13 @@ class CEsoItemLink
 			if (array_key_exists('setBonusDesc3', $row) && $row['setBonusDesc3'] != "") $highestSetDesc = $row['setBonusDesc3'];
 			if (array_key_exists('setBonusDesc4', $row) && $row['setBonusDesc4'] != "") $highestSetDesc = $row['setBonusDesc4'];
 			if (array_key_exists('setBonusDesc5', $row) && $row['setBonusDesc5'] != "") $highestSetDesc = $row['setBonusDesc5'];
+			if (array_key_exists('setBonusDesc6', $row) && $row['setBonusDesc6'] != "") $highestSetDesc = $row['setBonusDesc6'];
+			if (array_key_exists('setBonusDesc7', $row) && $row['setBonusDesc7'] != "") $highestSetDesc = $row['setBonusDesc7'];
+			if (array_key_exists('setBonusDesc8', $row) && $row['setBonusDesc8'] != "") $highestSetDesc = $row['setBonusDesc8'];
+			if (array_key_exists('setBonusDesc9', $row) && $row['setBonusDesc9'] != "") $highestSetDesc = $row['setBonusDesc9'];
+			if (array_key_exists('setBonusDesc10', $row) && $row['setBonusDesc10'] != "") $highestSetDesc = $row['setBonusDesc10'];
+			if (array_key_exists('setBonusDesc11', $row) && $row['setBonusDesc11'] != "") $highestSetDesc = $row['setBonusDesc11'];
+			if (array_key_exists('setBonusDesc12', $row) && $row['setBonusDesc12'] != "") $highestSetDesc = $row['setBonusDesc12'];
 				
 			if ($highestSetDesc != "")
 			{
@@ -1067,7 +1131,9 @@ class CEsoItemLink
 			$this->transmuteTrait = 0;
 		}
 		
+		$this->ParsePerfectSetCounts();
 		$this->LoadEnchantMaxCharges();
+		
 		return true;
 	}
 	
@@ -1220,7 +1286,7 @@ class CEsoItemLink
 		{
 			$this->setItemData['setBonusDesc'] = $this->RemoveSummaryNumbers($this->setItemData['setBonusDesc']);
 			
-			for ($i = 1; $i <= 12; ++$i)
+			for ($i = 1; $i <= self::MAXSETINDEX; ++$i)
 			{
 				$this->setItemData["setBonusDesc$i"] = $this->RemoveSummaryNumbers($this->setItemData["setBonusDesc$i"]);
 			}
@@ -2071,6 +2137,8 @@ class CEsoItemLink
 			if ($this->itemRecord['enchantDesc'] != "") $hasEnchant = true;
 			if ($this->enchantRecord1 != null) $hasEnchant = true;
 			if ($this->enchantRecord2 != null)  $hasEnchant = true;
+			if ($this->itemDisableEnchant) $hasEnchant = false;
+			
 			if (!$hasEnchant) return false;
 			return true;
 		}
@@ -2305,6 +2373,8 @@ class CEsoItemLink
 			/* TODO: Temp fix for potions showing enchantments/sets */
 		if ($this->itemRecord['type'] == 7) return "";
 		
+		if ($this->itemDisableEnchant) return "";
+		
 		if ($this->enchantRecord1 != null)
 		{
 			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
@@ -2383,7 +2453,7 @@ class CEsoItemLink
 	}
 	
 	
-	private function FormatSetDescriptionText($desc, $setCount)
+	private function FormatSetDescriptionText($desc, $setCount, $perfectCount = -1)
 	{
 		$desc = $this->escape($desc);
 		
@@ -2392,7 +2462,7 @@ class CEsoItemLink
 		else
 			$output = $desc;
 		
-		if ($this->itemSetCount >= 0 && $setCount > $this->itemSetCount)
+		if (($this->itemSetCount >= 0 && $setCount > $this->itemSetCount) || ($this->itemPerfectCount > 0 && $perfectCount > $this->itemPerfectCount))
 		{
 			$output = preg_replace("#\|c([0-9a-fA-F]{6})([a-zA-Z \-0-9\.%]+)\|r#s", "$2", $output);
 			$output = str_replace("\n", "<br />", $output);
@@ -2405,6 +2475,33 @@ class CEsoItemLink
 		}
 		
 		return $output;
+	}
+	
+	
+	private function ParsePerfectSetCounts()
+	{
+		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
+		{
+			//$setCount = $this->itemRecord['setBonusCount' . $i];
+			//$perfectCount = $this->itemRecord['perfectBonusCount' . $i];
+			$setDesc = $this->itemRecord['setBonusDesc' . $i];
+			
+			$result = preg_match('/\(([0-9]+) items\)/', $setDesc, $matches);
+			
+			if ($result)
+			{
+				$this->itemRecord['perfectBonusCount' . $i] = -1;
+				continue;
+			}
+			
+			$result = preg_match('/\(([0-9]+) perfected items\)/', $setDesc, $matches);
+			
+			if ($result)
+			{
+				$this->itemRecord['perfectBonusCount' . $i] = intval($matches[1]);
+				$this->itemRecord['setBonusCount' . $i] = -1;
+			}
+		}
 	}
 	
 	
@@ -2425,10 +2522,11 @@ class CEsoItemLink
 		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
 		{
 			$setCount = $this->itemRecord['setBonusCount' . $i];
+			$perfectCount = $this->itemRecord['perfectBonusCount' . $i];
 			$setDesc = $this->itemRecord['setBonusDesc' . $i];
 			if ($setDesc == null || $setDesc == "") continue;
 			
-			$setDesc = $this->FormatSetDescriptionText($setDesc, $setCount);
+			$setDesc = $this->FormatSetDescriptionText($setDesc, $setCount, $perfectCount);
 			$output .= "<br />$setDesc";
 		}
 		
@@ -2450,10 +2548,11 @@ class CEsoItemLink
 		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
 		{
 			$setCount = $this->setItemData['setBonusCount' . $i];
+			$perfectCount = $this->itemRecord['perfectBonusCount' . $i];
 			$setDesc = $this->setItemData['setBonusDesc' . $i];
 			if ($setDesc == null || $setDesc == "") continue;
 			
-			$setDesc = $this->FormatSetDescriptionText($setDesc, $setCount);
+			$setDesc = $this->FormatSetDescriptionText($setDesc, $setCount, $perfectCount);
 			$output .= "<br />$setDesc";
 		}
 		

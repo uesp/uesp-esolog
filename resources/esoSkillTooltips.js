@@ -816,6 +816,7 @@ window.MakeEsoSkillTooltipDamageRawOutput = function(rawData)
 	var output = "";
 	
 	if (rawData.modDuration    != null && rawData.modDuration    != 0) output += " + " + RoundEsoSkillPercent(rawData.modDuration) + " sec ";
+	
 	if (rawData.skillLineDamageDone != null && rawData.skillLineDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDamageDone*100) + "% Skill Line ";
 	if (rawData.skillDamageDone != null && rawData.skillDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.skillDamageDone*100) + "% Skill ";
 	if (rawData.mainDamageDone != null && rawData.mainDamageDone != 0) output += " + " + RoundEsoSkillPercent(rawData.mainDamageDone*100) + "% " + rawData.damageType;
@@ -839,6 +840,7 @@ window.MakeEsoSkillTooltipDamageRawOutput = function(rawData)
 	if (rawData.skillLineDirectDamage != null && rawData.skillLineDirectDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.skillLineDirectDamage) + " SkillLineDirect";
 	if (rawData.twinSlashInitialDamage != null && rawData.twinSlashInitialDamage != 0) output += " + " + RoundEsoSkillPercent(rawData.twinSlashInitialDamage) + " StingingSlashes";
 	if (rawData.flatOverloadDamage != null && rawData.flatOverloadDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatOverloadDamage) + " Overload";
+	if (rawData.flatDamageDone != null && rawData.flatDamageDone != 0) output += " + " + rawData.flatDamageDone + " Flat Base ";
 	if (rawData.flatBashDamage != null && rawData.flatBashDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.flatBashDamage) + " Flat Bash Damage";
 	if (rawData.skillFlatDamage != null && rawData.skillFlatDamage > 0) output += " + " + RoundEsoSkillPercent(rawData.skillFlatDamage) + " Flat";
 	
@@ -1182,6 +1184,13 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 			newRawOutput.twinSlashInitialDamage = inputValues.TwinSlashInitialDamage;
 			AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Twin Slashes", inputValues.TwinSlashInitialDamage, '');
 		}
+	}
+	
+	if (tooltip.isDmg == 1 && inputValues.Damage.Flat != null && inputValues.Damage.Flat > 0)
+	{
+		baseDamage += inputValues.Damage.Flat;
+		newRawOutput.flatDamageDone = inputValues.Damage.Flat;
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Flat Base", inputValues.Damage.Flat, '');
 	}
 	
 		// Overload special case

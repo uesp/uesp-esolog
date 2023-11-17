@@ -192,6 +192,7 @@ UESP.EsoItemSearchPopup = function ()
 	this.queryURL = "//esolog.uesp.net/esoItemSearchPopup.php";
 	this.rootElement = this.create();
 	this.sourceElement = null;
+	this.isItemEnabled = true;
 	this.onSelectItem = null;
 	this.searchResults = [];
 	
@@ -227,6 +228,7 @@ UESP.EsoItemSearchPopup.prototype.create = function()
 	$("#esoispCloseButton").click(function() { self.onClose(); });
 	$("#esoispSearchButton").click(function() { self.onSearch(); });
 	$("#esoispUneqipButton").click(function() { self.onUnequip(); });
+	$("#esoispDisableButton").click(function() { self.onDisableToggle(); });
 	$("#esoispLevel").on("input", function(e) { self.onLevelChange(e); });
 	$("#esoispLevelSlider").on("input", function(e) { self.onLevelSlideChange(e); });
 	$("#esoispQuality").change(function(e) { self.onQualityChange(e); });
@@ -427,7 +429,8 @@ UESP.EsoItemSearchPopup.prototype.getPopupRootText = function()
 		"	<div id='esoispAnyLevelRoot' style='display: none;'><input id='esoispAnyLevel' type='checkbox' name='anylevel' value='1'> Any</div>" + 
 		"	<div class='esoispInputLabel'>Level</div> <input id='esoispLevel' type='text' name='level' value='CP160'>" +
 		"	<input id='esoispLevelSlider' type='range' min='1' max='66' value='66'><br/>" + 
-		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip Item</button>" +
+		"	<button id='esoispUneqipButton' class='esoispButton'>Unequip</button>" +
+		"	<button id='esoispDisableButton' class='esoispButton'>Disable</button>" +
 		"	<div id='esoispResultText'></div>" + 
 		"	<button id='esoispSearchButton' class='esoispButton'>Search...</button>" +
 		"</div>" +
@@ -701,6 +704,17 @@ UESP.EsoItemSearchPopup.prototype.onUnequip = function()
 };
 
 
+UESP.EsoItemSearchPopup.prototype.onDisableToggle = function()
+{
+	this.hide();
+	$(document).trigger("EsoItemSearchPopupOnClose");
+	
+	this.isItemEnabled = !this.isItemEnabled;
+	
+	if (this.onSelectItem) this.onSelectItem({toggleEnable: true, isEnabled:this. isItemEnabled }, this.sourceElement);
+}
+
+
 UESP.EsoItemSearchPopup.prototype.getSearchQueryParam = function()
 {
 	var queryParams = {};
@@ -946,6 +960,15 @@ UESP.EsoItemSearchPopup.prototype.getIconUrl = function(rawIcon)
 }
 
 
+UESP.EsoItemSearchPopup.prototype.updateDisableButton = function()
+{
+	if (this.isItemEnabled)
+		$("#esoispDisableButton").text("Disable");
+	else
+		$("#esoispDisableButton").text("Enable");
+}
+
+
 UESP.EsoItemSearchPopup.prototype.updateTitle = function()
 {
 	var titleElement = $("#esoispTitle");
@@ -1136,6 +1159,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	this.version = data.version || "";
 	this.sourceElement = sourceElement;
 	this.onSelectItem = data.onSelectItem;
+	this.isItemEnabled = data.isEnabled; 
 	
 	this.xoffset = 0;
 	this.yoffset = 0;
@@ -1182,6 +1206,7 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	
 	this.update();
 	this.updateTitle();
+	this.updateDisableButton();
 	this.show();
 	this.adjustPosition();
 }

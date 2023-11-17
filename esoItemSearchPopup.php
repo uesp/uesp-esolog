@@ -241,6 +241,7 @@ class CEsoItemSearchPopup
 	public function LoadItems()
 	{
 		$query = $this->CreateQuery();
+		//error_log($query);
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Error: Database query error loading items! " . $this->db->error . "\n" . $query);
 		
