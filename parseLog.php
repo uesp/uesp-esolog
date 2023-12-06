@@ -3406,7 +3406,7 @@ class EsoLogParser
 			zoneIndex INTEGER NOT NULL,
 			categoryIndex TINYINT NOT NULL,
 			subCategoryIndex TINYINT NOT NULL,
-			collectibleIndex TINYINT NOT NULL,
+			collectibleIndex MEDIUMINT NOT NULL,
 			achievementIndex INTEGER NOT NULL,
 			categoryName TINYTEXT NOT NULL,
 			subCategoryName TINYTEXT NOT NULL,
