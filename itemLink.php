@@ -1961,7 +1961,7 @@ class CEsoItemLink
 			if ($this->useUpdate10Display)
 				return "LEVEL <div id='esoil_itemlevel'>50</div>";
 			else
-				return "<img src='//esoitem.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
+				return "<img src='//esolog-static.uesp.net/resources/eso_item_veteranicon.png' /> RANK <div id='esoil_itemlevel'>$level</div>";
 		}
 		
 		return "LEVEL <div id='esoil_itemlevel'>$level</div>";
@@ -2002,8 +2002,8 @@ class CEsoItemLink
 		{
 			$prefix = "";
 			if ($this->showSummary) $prefix = "LEVEL ";
-			if ($level == "CP160") return "$prefix <img src='//esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
-			if ($level == "1-CP160") return "$prefix <div id='esoil_itemlevel'>1 - </div> <img src='//esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
+			if ($level == "CP160") return "$prefix <img src='//esolog-static.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
+			if ($level == "1-CP160") return "$prefix <div id='esoil_itemlevel'>1 - </div> <img src='//esolog-static.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>160</div>";
 			return "$prefix <div id='esoil_itemlevel'>$level</div>";
 		}
 		
@@ -2013,7 +2013,7 @@ class CEsoItemLink
 		$output = "";
 		
 		//if ($this->showSummary) $output .= "LEVEL ";
-		$output .= "<img src='//esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>$cp</div>";
+		$output .= "<img src='//esolog-static.uesp.net/resources/champion_icon.png' class='esoil_cpimg'>CP<div id='esoil_itemlevel'>$cp</div>";
 		
 		return $output;
 	}
@@ -2034,7 +2034,7 @@ class CEsoItemLink
 		if ($value <= 0) return "";
 		
 		$value = $this->itemRecord['value'];
-		$output = "<div id='esoil_itemnewvalue'>$value</div> <img src='//esoitem.uesp.net/resources/currency_gold_32.png' class='esoil_goldimg'>";
+		$output = "<div id='esoil_itemnewvalue'>$value</div> <img src='//esolog-static.uesp.net/resources/currency_gold_32.png' class='esoil_goldimg'>";
 		return $output;
 	}
 	
@@ -2043,7 +2043,7 @@ class CEsoItemLink
 	{
 		if ($this->itemStolen <= 0) return "";
 		
-		$output = "<img src='//esoitem.uesp.net/resources/stolenitem.png' class='esoil_stolenicon' />";
+		$output = "<img src='//esolog-static.uesp.net/resources/stolenitem.png' class='esoil_stolenicon' />";
 		
 		return $output;
 	}
@@ -2192,7 +2192,7 @@ class CEsoItemLink
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
 			
-			return "<img src='//esoitem.uesp.net/resources/eso_item_chargebar.png' id='esoil_chargebar' /><img src='//esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_chargebar_coverleft' style='width: {$coverImageSize}px;' /><img src='//esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_chargebar_coverright' style='width: {$coverImageSize}px;' />";
+			return "<img src='//esolog-static.uesp.net/resources/eso_item_chargebar.png' id='esoil_chargebar' /><img src='//esolog-static.uesp.net/resources/eso_item_barblack.png' id='esoil_chargebar_coverleft' style='width: {$coverImageSize}px;' /><img src='//esolog-static.uesp.net/resources/eso_item_barblack.png' id='esoil_chargebar_coverright' style='width: {$coverImageSize}px;' />";
 		}
 		
 		if ($type == 1 || $type == 2)
@@ -2204,7 +2204,7 @@ class CEsoItemLink
 			if ($coverImageSize < 0) $coverImageSize = 0;
 			if ($coverImageSize > 112) $coverImageSize = 112;
 			
-			return "<img src='//esoitem.uesp.net/resources/eso_item_conditionbar.png' id='esoil_conditionbar' /><img src='//esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_conditionbar_coverleft' style='width: {$coverImageSize}px;' /><img src='//esoitem.uesp.net/resources/eso_item_barblack.png' id='esoil_conditionbar_coverright' style='width: {$coverImageSize}px;' />";
+			return "<img src='//esolog-static.uesp.net/resources/eso_item_conditionbar.png' id='esoil_conditionbar' /><img src='//esolog-static.uesp.net/resources/eso_item_barblack.png' id='esoil_conditionbar_coverleft' style='width: {$coverImageSize}px;' /><img src='//esolog-static.uesp.net/resources/eso_item_barblack.png' id='esoil_conditionbar_coverright' style='width: {$coverImageSize}px;' />";
 		}
 		
 		return "";
@@ -2440,7 +2440,7 @@ class CEsoItemLink
 		
 		if ($trait <= 0) return "";
 		
-		if ($this->transmuteTrait > 0) $transmuteIcon = "<img src='//esoitem.uesp.net/resources/transmute_icon.png' class='esoil_transmute_icon'>";
+		if ($this->transmuteTrait > 0) $transmuteIcon = "<img src='//esolog-static.uesp.net/resources/transmute_icon.png' class='esoil_transmute_icon'>";
 		
 		return "$transmuteIcon<div class='esoil_white esoil_small'>$traitName</div><br />$traitDesc";
 	}
@@ -2977,7 +2977,7 @@ class CEsoItemLink
 		else
 		{
 			$cp = ($level - 50) * 10;
-			$desc = "<img src='//esoitem.uesp.net/resources/champion_icon.png' class='esoil_cpimgsmall'>CP $cp";
+			$desc = "<img src='//esolog-static.uesp.net/resources/champion_icon.png' class='esoil_cpimgsmall'>CP $cp";
 			//$desc = "|t16:16:esoui/art/champion/champion_icon_32.dds|tCP $cp";
 			//$desc = FormatEsoItemDescriptionIcons($desc);
 		}
@@ -3173,7 +3173,7 @@ class CEsoItemLink
 		
 		$output = "<div class='esoil_dyename'>";
 		
-			////esoitem.uesp.net/resources/dyeStampBox.png  24x24 px
+			////esolog-static.uesp.net/resources/dyeStampBox.png  24x24 px
 		$output .= "<div class='esoil_dyecolorbox'>";
 		$output .= "<div class='esoil_dyecolor' style='background-color: #{$dyeColor}'></div>";
 		$output .= "</div>"; 

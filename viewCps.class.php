@@ -1275,9 +1275,9 @@ class CEsoViewCP
 		$left = intval($offsetX + $skill['x'] + $this->POSITION_OFFSETX_V2) * $this->POSITION_FACTORX_V2 * $this->GLOBAL_SCALE;
 		$top  = intval($offsetY + $skill['y'] + $this->POSITION_OFFSETY_V2) * $this->POSITION_FACTORY_V2 * $this->GLOBAL_SCALE;
 		
-		$imageSrc = '//esolog.uesp.net/resources/cpstar_yellow.png';
-		if ($skillType >= 1) $imageSrc = '//esolog.uesp.net/resources/cpstar_white.png';
-		if ($skillType < 0) $imageSrc = '//esolog.uesp.net/resources/cpstar_pink.png';
+		$imageSrc = '//esolog-static.uesp.net/resources/cpstar_yellow.png';
+		if ($skillType >= 1) $imageSrc = '//esolog-static.uesp.net/resources/cpstar_white.png';
+		if ($skillType < 0) $imageSrc = '//esolog-static.uesp.net/resources/cpstar_pink.png';
 		
 		$extraImgClass = "";
 		$isDraggable = "false";
@@ -1522,7 +1522,7 @@ class CEsoViewCP
 			$slotIndex = $i + $startSlotIndex;
 			
 			$slottedAbilityId = $this->initialData['slots'][$slotIndex];
-			$imgSrc = "//esolog.uesp.net/resources/cpstar_white.png";
+			$imgSrc = "//esolog-static.uesp.net/resources/cpstar_white.png";
 			$imgDisplay = "inline";
 			
 			if ($slottedAbilityId == null) 

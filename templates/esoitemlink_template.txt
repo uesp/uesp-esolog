@@ -24,7 +24,7 @@
 			<div id="esoil_itemstolen">{itemStolen}</div>
 			<div id="esoil_itembindtype">{itemBindType}</div>
 			<div id="esoil_itemname" class="esoil_quality_{itemQuality}">{itemNameUpper}</div>
-			<img src="resources/eso_item_hr.png" id="esoil_item_hr"/>
+			<img src="//esolog-static.uesp.net/resources/eso_item_hr.png" id="esoil_item_hr"/>
 			<div id="esoil_datablock">
 				<div id="esoil_itemleftblock" style="display:{itemLeftBlockDisplay};">{itemLeftBlock}</div>
 				<div id="esoil_itemlevelblock" style="display:{itemLevelBlockDisplay};">{itemLevelBlock}</div>
@@ -39,7 +39,7 @@
 			<div id="esoil_itemdyestampblock">{itemDyeStampBlock}</div>
 			<div id="esoil_itemdesc" class="{itemDescClass}">{itemDesc}</div>
 			<div id="esoil_itemtags">{itemTags}</div>
-			<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>			
+			<div id="esoil_itemcraftedblock">{itemCraftedBlock}</div>
 			<div id="esoil_itemnewvalueblock" style="display:{itemNewValueBlockDisplay}">{itemNewValueBlock}</div>
 		</div>
 	</div>

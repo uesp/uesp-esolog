@@ -3,8 +3,8 @@
 	<head>
 		<title>UESP:ESO Item{versionTitle} -- {itemName}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="resources/esoitemlink_raw.css" />
-		<script type="text/javascript" src="resources/jquery-1.10.2.js"></script>
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink_raw.css" />
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 	</head>
 <body>
 <h1>ESO Item Raw Data{versionTitle} -- {itemName} (#{itemId})</h1>

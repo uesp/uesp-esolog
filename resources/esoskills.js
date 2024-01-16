@@ -529,7 +529,7 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	if (angleDistance > 0) area = (radius) + " x " + (angleDistance/50) + " meters"
 	
 	output += "<div class='esovsSkillTooltipTitle'>" + safeName + rankStr + "</div>\n";
-	output += "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
+	output += "<img src='//esolog-static.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	
 	if (skillType != 'Passive')
 	{
@@ -590,7 +590,7 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 			output += CreateEsoSkillCostTooltipHtml(skillData);
 		}
 		
-		output += "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
+		output += "<img src='//esolog-static.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
 	}
 
 	output += "<div id='esovsSkillTooltipDesc' class='esovsSkillTooltipDesc'>" + desc + "</div>\n";

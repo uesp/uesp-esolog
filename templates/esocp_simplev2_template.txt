@@ -32,7 +32,7 @@
 
 <div id="esovcp2Tooltip" style="display: none;">
 	<div id="esovcp2TooltipName">Name</div>
-	<img src="resources/eso_item_hr.png" id="esoil_item_hr">
+	<img src="//esolog-static.uesp.net/resources/eso_item_hr.png" id="esoil_item_hr">
 	<div id="esovcp2TooltipDesc">Description</div>
 	<div id="esovcp2TooltipCenter"><div id="esovcp2TooltipPoints">Points</div><div id="esovcp2TooltipJump">Jump</div></div>
 	<div id="esovcp2TooltipEquip">Equip</div>

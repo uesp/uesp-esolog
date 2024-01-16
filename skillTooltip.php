@@ -17,7 +17,7 @@ require("esoCommon.php");
 class CEsoSkillTooltip
 {
 	
-	const TOOLTIP_DIVIDER = "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
+	const TOOLTIP_DIVIDER = "<img src='//esolog-static.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
 	const ICON_URL = "//esoicons.uesp.net";
 	const MAX_SKILL_COEF = 6;
 	public $ALTERNATE_TABLE_SUFFIX = "38pts";	// Is automatically set to the highest current PTS version in constructor
@@ -739,7 +739,7 @@ class CEsoSkillTooltip
 		<title>UESP:ESO Skill Tooltip</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoskills_embed.css" />
-		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoSkillClient.css" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoSkillClient.css" />
 	</head>
 <body style="width: 380px; margin: 0; padding: 0;">
 <?php

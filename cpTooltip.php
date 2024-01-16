@@ -19,7 +19,7 @@ class CEsoCPTooltip
 	public $ESOVCPTOOLTIP_HTML_SIMPLEV2_TEMPLATE = "";
 	public $ESOVCPTOOLIP_HTML_SIMPLEV2_TEMPLATE_EMBED = "";
 	
-	const TOOLTIP_DIVIDER = "<img src='//esolog.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
+	const TOOLTIP_DIVIDER = "<img src='//esolog-static.uesp.net/resources/skill_divider.png' class='esoSkillPopupTooltipDivider'>";
 	const ICON_URL = "//esoicons.uesp.net";
 	public $ALTERNATE_TABLE_SUFFIX = "38pts";	// Is automatically set to the highest current PTS version in constructor
 	
