@@ -36,14 +36,14 @@ class CEsoSkillTooltip
 	public $skillWeaponDamage = 2000;
 	public $skillMaxStat = 20000;
 	public $skillMaxDamage = 2000;
+	public $skillRaceData = [];
+	public $skillData = [];
 	public $includeLink = false;
 	public $useDefaultDesc = true;
 	public $skillShowThumb = false;
 	public $outputFullHtml = false;
 	public $version = "";
 	public $useUpdate10Costs = false;
-	
-	public $skillData = array();
 	
 	
 	public function __construct ()
@@ -167,6 +167,79 @@ class CEsoSkillTooltip
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
 		
 		return true;
+	}
+	
+	
+	public function GetSkillRace($name)
+	{
+		$name = strtolower($name);
+		
+		switch ($name)
+		{
+			case "breton":
+				return "Breton";
+			case "redguard":
+				return "Redguard";
+			case "orc":
+				return "Orc";
+			case "dunmer":
+			case "darkelf":
+			case "dark elf":
+			case "dark-elf":
+				return "Dark Elf";
+			case "nord":
+				return "Nord";
+			case "argonian":
+				return "Argonian";
+			case "altmer":
+			case "highelf":
+			case "high-elf":
+			case "high elf":
+				return "High Elf";
+			case "bosmer":
+			case "woodelf":
+			case "wood-elf":
+			case "woodelf":
+				return "Wood Elf";
+			case "khajiit":
+				return "Khajiit";
+			case "imperial":
+				return "Imperial";
+		}
+		
+		return $name;
+	}
+	
+	
+	public function IsRaceLine()
+	{
+		$name = strtolower($this->skillName);
+		
+		switch ($name)
+		{
+			case "breton":
+			case "redguard":
+			case "orc":
+			case "dunmer":
+			case "darkelf":
+			case "dark elf":
+			case "dark-elf":
+			case "nord":
+			case "argonian":
+			case "altmer":
+			case "highelf":
+			case "high-elf":
+			case "high elf":
+			case "bosmer":
+			case "woodelf":
+			case "wood-elf":
+			case "woodelf":
+			case "khajiit":
+			case "imperial":
+				return true;
+		}
+		
+		return false;
 	}
 	
 	
@@ -440,6 +513,31 @@ class CEsoSkillTooltip
 	}
 	
 	
+	public function LoadSkillRace()
+	{
+		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
+		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
+		$race = $this->db->real_escape_string($this->GetSkillRace($this->skillName));
+		
+		$query = "SELECT $minedSkillTable.*, $skillTreeTable.* FROM $skillTreeTable LEFT JOIN $minedSkillTable ON abilityId=$minedSkillTable.id WHERE raceType='$race';";
+		
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load race skill data!");
+		
+		while ($row = $result->fetch_assoc())
+		{
+				// Only load maxrank passives for race skills
+			if ($row['isPassive'] == 0) continue;
+			if ($row['maxRank'] != $row['rank']) continue;
+			
+			$this->skillRaceData[] = $row;
+		}
+		
+		if (count($this->skillRaceData) == 0) return false;
+		return true;
+	}
+	
+	
 	public function GetRomanNumeral($value)
 	{
 		static $NUMERALS = array(
@@ -565,6 +663,108 @@ class CEsoSkillTooltip
 		}
 		
 		return $output;
+	}
+	
+	
+	public function OutputRaceHtml()
+	{
+		$output = "<div class='esovsSkillTooltip'>";
+		$count = count($this->skillRaceData);
+		
+		$name = $this->escape($this->skillName . " Race Skills");
+		
+		$output .= "<div class='esovsSkillTooltipTitle'>$name</div>";
+		$output .= self::TOOLTIP_DIVIDER;
+		
+		foreach ($this->skillRaceData as $raceData)
+		{
+			$this->skillData = $raceData;
+			
+			$output .= "<div class='esovsSkillRace'>";
+			
+			$name = $this->EscapeSkill('name');
+			$rank = $this->GetSkillData('rank');
+			$learnedLevel = $this->GetSkillData('learnedLevel');
+			$skillLine = $this->GetSkillData('skillLine');
+			$channelTime = intval($this->GetSkillData('channelTime')) / 1000;
+			$castTime = intval($this->GetSkillData('castTime')) / 1000;
+			$radius = intval($this->GetSkillData('radius')) / 100;
+			$duration = intval($this->GetSkillData('duration')) / 1000;
+			$target = $this->escape($this->GetSkillData('target'));
+			$area = $this->escape($this->GetSkillData('area'));
+			$range = $this->escape($this->GetSkillData('range'));
+			$castTimeStr = $castTime . " seconds";
+			$skillType = $this->GetSkillData('type');
+			$newDesc = $this->GetSkillDescription();
+			$mechanic = $this->GetSkillData('mechanic');
+			$effectLines = $this->GetSkillData('effectLines');
+			$nextSkill = $this->GetSkillData('nextSkill');
+			$icon = $this->GetSkillData('icon');
+			$cost = $this->GetSkillData('cost');
+			
+			$realRank = $rank;
+			$fullName = $name;
+			
+			$realIcon = str_replace(".dds", ".png", self::ICON_URL . $icon);
+			$output .=  "<img src='$realIcon' class='esoSkillPopupIcon' />";
+			$output .= "<div class='esovsSkillTooltipTitle'>$fullName</div>";
+			
+			//$output .= "<div class='esovsSkillTooltipDesc'>$newDesc</div>";
+			//if ($effectLines != "") $output .= " <div class='esovsSkillTooltipEffectLines'><b>NEW EFFECT</b><br/>$effectLines</div>";
+			
+			/*
+			if ($learnedLevel > 0)
+			{
+				if ($skillLine != "")
+					$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at $skillLine Rank $learnedLevel</div>";
+				else
+					$output .= "<div class='esovsSkillTooltipLevel'>Unlocked at Rank $learnedLevel</div>";
+			} //*/
+			
+			$output .= "</div>";
+		}
+		
+		if ($this->includeLink)
+		{
+			$linkUrl = "https://en.uesp.net/";
+			
+			if ($this->skillName != "")
+			{
+				$result = preg_match('#(.*)/(.*)/(.*)#', $this->skillName, $matches);
+				
+				if ($result)
+				{
+					$articleName = preg_replace('#-#', ' ', $matches[3]);
+					$articleName = ucwords($articleName);
+				}
+				else
+				{
+					$articleName = preg_replace('#-#', ' ', $skillName);
+					$articleName = ucwords($articleName);
+				}
+				
+				$linkUrl .= "wiki/Online:" . $articleName;
+			}
+			
+			$output .= "<div class='esovsSkillTooltipLink'><a href=\"$linkUrl\">Tooltips from the UESP.net</a></div>";
+		}
+		else
+		{
+			$output .= "<div class='esovsSkillTooltipLink'>Tooltips from the UESP.net</div>";
+		}
+		
+		$output .= "</div>";
+		
+		if ($this->outputFullHtml)
+		{
+			$this->OutputFullHtml($output);
+		}
+		else
+		{
+			print($output);
+		}
+		
+		return true;
 	}
 	
 	
@@ -768,6 +968,13 @@ class CEsoSkillTooltip
 	public function Render()
 	{
 		$this->OutputHtmlHeader();
+		
+		if ($this->IsRaceLine())
+		{
+			if (!$this->LoadSkillRace()) return "Unknown race skill {$this->skillName}!";
+			$this->OutputRaceHtml();
+			return true;
+		}
 		
 		if (!$this->LoadSkill()) return "Unknown skill {$this->skillId}!";
 		
