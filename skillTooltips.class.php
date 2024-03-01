@@ -362,6 +362,7 @@ class CEsoSkillTooltips
 		$skillDesc = str_replace("<<(AB_PHYSICAL_DAMAGE:104695>>", "AB_PHYSICAL_DAMAGE", $skillDesc);
 		$skillDesc = str_replace("<<AB_DURATION:17566))>>", "AB_DURATION", $skillDesc);
 		$skillDesc = str_replace(")>>", ">>", $skillDesc);
+		//$skillDesc = str_replace(":>>", ">>", $skillDesc);
 		$skillDesc = preg_replace("/\|c[a-fA-F0-9]{6}/", "", $skillDesc);
 		$skillDesc = str_replace("|r", "", $skillDesc);
 		$skillDesc = str_replace("    ", " ", $skillDesc);

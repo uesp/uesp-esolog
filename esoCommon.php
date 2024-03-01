@@ -99,6 +99,11 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"101038" => "38",
 		"101039" => "39",
 		"101040" => "40",
+		"101041" => "41",
+		"101042" => "42",
+		"101043" => "43",
+		"101044" => "44",
+		"101045" => "45",
 );
 
 
@@ -139,6 +144,11 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"101038" => "9.0",
 		"101039" => "9.1",
 		"101040" => "9.2",
+		"101041" => "9.3",
+		"101042" => "10.0",
+		"101043" => "10.1",
+		"101044" => "10.2",
+		"101045" => "10.3",
 );
 
 
@@ -182,6 +192,9 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"37" => "Scribes of Fate",
 		"38" => "Necrom",
 		"39" => "Update 39",
+		"40" => "Update 40",
+		"41" => "Scions of Ithelia",
+		"42" => "Gold Road",
 	);
 
 
@@ -2096,6 +2109,7 @@ $ESO_SET_INDEXES = array(
 		690 => "Judgment of Akatosh",
 		691 => "Cryptcanon Vestments",
 		692 => "Esoteric Environment Greaves",
+		693 => "Torc of the Last Ayleid King",
 		694 => "Velothi Ur-Mage's Amulet",
 		695 => "Shattered Fate",
 		696 => "Telvanni Efficiency",
@@ -2121,6 +2135,17 @@ $ESO_SET_INDEXES = array(
 		727 => "Monolith of Storms",
 		728 => "Wrathsun",
 		729 => "Gardener of Seasons",
+		730 => "Cinders of Anthelmir",
+		731 => "Sluthrug's Hunger",
+		732 => "Black-Glove Grounding",
+		734 => "Anthelmir's Construct",
+		735 => "Blind Path Induction",
+		736 => "Tarnished Nightmare",
+		737 => "Reflected Fury",
+		738 => "The Blind",
+		754 => "Oakfather's Retribution",
+		755 => "Blunted Blades",
+		756 => "Baan Dar's Blessing",
 );
 
 
@@ -4483,6 +4508,10 @@ function GetEsoItemTableSuffix($version)
 			return "40pts";
 		case '40':
 			return "";
+		case '41pts':
+			return "41pts";
+		case '41':
+			return "41";
 	}
 
 	return "";

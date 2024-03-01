@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "40";
+	public $TABLE_SUFFIX = "41pts";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -366,6 +366,10 @@ class CEsoCreateSkillTree
 			$skillIndex = $this->db->real_escape_string($skill['skillIndex']);
 			$effectLines = $this->db->real_escape_string($skill['effectLines']);
 			
+			if ($skillType == '') $skillType = 0;
+			if ($learnedLevel == '') $learnedLevel = 0;
+			if ($skillIndex == '') $skillIndex = 0;
+			
 			$query = "UPDATE minedSkills" . $this->TABLE_SUFFIX . " SET skillType=\"$skillType\", raceType=\"$raceType\", classType=\"$classType\", skillLine=\"$skillLine\", learnedLevel=\"$learnedLevel\", skillIndex=\"$skillIndex\", effectLines=\"$effectLines\" WHERE id=$id;";
 			$result = $this->db->query($query);
 			if (!$result) return $this->ReportError("ERROR: Database query error updating skills table!\n$query");
@@ -432,6 +436,8 @@ class CEsoCreateSkillTree
 			for($index = 1; $index <= 12; $index++)
 			{
 				$skillLineId = $skillTreeLine[$index];
+				//if ($skillLineId == '') continue;
+				
 				$thisSkill = $this->skills[$skillLineId];
 				$displayId = $thisSkill['displayId'];
 				$name = $this->db->real_escape_string($thisSkill['name']);
@@ -455,10 +461,14 @@ class CEsoCreateSkillTree
 				$abilityIndex = $thisSkill['skillIndex'];
 				$maxLevel = $thisSkill['maxLevel'];
 				
+				if ($learnedLevel == '') $learnedLevel = -1;
+				if ($abilityIndex == '') $abilityIndex = -1;
+				if ($maxLevel == '') $maxLevel = -1;
+				
 				$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank,displayId) ";
 				$query .= " VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\", \"$displayId\")";
 				$result = $this->db->query($query);
-				if (!$result) $this->ReportError("ERROR: Database query error inserting into skillTree database!");
+				if (!$result) $this->ReportError("ERROR: Database query error inserting into skillTree database! " . $query);
 			}
 		}
 		
@@ -469,7 +479,7 @@ class CEsoCreateSkillTree
 	{
 		$query = "SELECT * FROM minedSkills" . $this->TABLE_SUFFIX . " WHERE isPassive=1 AND isPlayer=1;";
 		$passiveResult = $this->db->query($query);
-		if (!$passiveResult) return $this->ReportError("ERROR: Database query error finding passive skills!");
+		if (!$passiveResult) return $this->ReportError("ERROR: Database query error finding passive skills! " . $query);
 		
 		$count = 0;
 		$type = "Passive";
@@ -722,21 +732,23 @@ class CEsoCreateSkillTree
 			$abilityIndex = $passive['skillIndex'];
 			$maxLevel = $passive['maxLevel'];
 			
+			if ($learnedLevel == '') $learnedLevel = -1;
 			if ($learnedLevel < 0) $learnedLevel = 1;
+			if ($abilityIndex == '') $abilityIndex = -1;
 			
 			$skillTypeName = $this->db->real_escape_string($passive['skillTypeName']);
 			
 			$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank,displayId) ";
 			$query .= " VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'Passive','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\", \"$displayId\")";
 			$result = $this->db->query($query);
-			if (!$result) return $this->ReportError("ERROR: Database query error inserting into skillTree table!");
+			if (!$result) return $this->ReportError("ERROR: Database query error inserting into skillTree table!" . $query);
 			
 			$nextSkill = $passive['nextSkill'];
 			$prevSkill = $passive['prevSkill'];
 			
 			$query = "UPDATE minedSkills" . $this->TABLE_SUFFIX . " SET nextSkill='$nextSkill', prevSkill='$prevSkill' WHERE id='$id';";
 			$result = $this->db->query($query);
-			if (!$result) return $this->ReportError("ERROR: Database query error updating minedSkill table!");
+			if (!$result) return $this->ReportError("ERROR: Database query error updating minedSkill table! " . $query);
 		}
 		
 		print("\tFound and saved $count passive player skills.\n");

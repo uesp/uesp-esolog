@@ -117,3 +117,26 @@
 	border: none;
 	outline:none;
 }
+
+.esovsSkillRace {
+	padding-bottom: 20px;
+}
+
+.esovsSkillRace .esoSkillPopupIcon {
+	float: left;
+	margin-right: 10px;
+	margin-left: 5px;
+} 
+
+.esovsSkillRace .esovsSkillTooltipTitle {
+	display: inline;
+	padding: 5px;
+}
+
+.esovsSkillRace .esovsSkillTooltipDesc {
+	display: inline;
+}
+
+.esovsSkillTooltipRaceDesc {
+	display: inline;
+}

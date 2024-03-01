@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "40";
-	const SKILLS_TABLESUFFIX   = "40";
+	const MINEITEM_TABLESUFFIX = "41pts";
+	const SKILLS_TABLESUFFIX   = "41pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -3080,7 +3080,7 @@ class EsoLogParser
 			siegeType TINYINT NOT NULL DEFAULT 0,
 			siegeHP INTEGER NOT NULL DEFAULT 0,
 			bookTitle TINYTEXT NOT NULL,
-			craftSkillRank TINYINT NOT NULL DEFAULT 0,
+			craftSkillRank SMALLINT NOT NULL DEFAULT 0,
 			recipeRank TINYINT NOT NULL DEFAULT 0,
 			recipeQuality TINYINT NOT NULL DEFAULT 0,
 			refinedItemLink TINYTEXT NOT NULL,
@@ -9697,7 +9697,7 @@ class EsoLogParser
 			$guildData['storeLocation'] = $logEntry['kiosk'];
 			$guildData['lastStoreLocTime'] = $logEntry['timeStamp1'];
 			$guildData['numMembers'] = $logEntry['numMembers'];
-			$guildData['leader'] = $logEntry['leader'];			
+			$guildData['leader'] = $logEntry['leader'];
 			
 			$guildData['__dirty'] = true;
 			$guildData['__new'] = false;
