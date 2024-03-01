@@ -696,6 +696,8 @@ class CEsoSkillTooltip
 			$castTimeStr = $castTime . " seconds";
 			$skillType = $this->GetSkillData('type');
 			$newDesc = $this->GetSkillDescription();
+			$newDesc = str_replace('<br />', ' ', $newDesc);
+			$newDesc = str_replace('<br>', ' ', $newDesc);
 			$mechanic = $this->GetSkillData('mechanic');
 			$effectLines = $this->GetSkillData('effectLines');
 			$nextSkill = $this->GetSkillData('nextSkill');
@@ -707,9 +709,11 @@ class CEsoSkillTooltip
 			
 			$realIcon = str_replace(".dds", ".png", self::ICON_URL . $icon);
 			$output .=  "<img src='$realIcon' class='esoSkillPopupIcon' />";
-			$output .= "<div class='esovsSkillTooltipTitle'>$fullName</div>";
 			
-			//$output .= "<div class='esovsSkillTooltipDesc'>$newDesc</div>";
+			$output .= "<div class='esovsSkillTooltipRaceDesc'>";
+			$output .= "<div class='esovsSkillTooltipTitle'>$fullName</div>";
+			$output .= "<div class='esovsSkillTooltipDesc'>$newDesc</div>";
+			$output .= "</div>";
 			//if ($effectLines != "") $output .= " <div class='esovsSkillTooltipEffectLines'><b>NEW EFFECT</b><br/>$effectLines</div>";
 			
 			/*
