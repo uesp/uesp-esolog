@@ -254,7 +254,7 @@ class CEsoGetGoldenVendorHtml
 		$intLevel = intval($parsedLink['level']);
 		$intType = intval($parsedLink['subtype']);
 		
-		return "<a href='https://esolog.uesp.net/itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType' class='uespesoItemLink' itemid='$itemId' intlevel='$intLevel' inttype='$intType'>";
+		return "<a href='https://esolog.uesp.net/itemLink.php?itemid=$itemId&intlevel=$intLevel&inttype=$intType' class='uespesoItemLink eso_item_link' itemid='$itemId' intlevel='$intLevel' inttype='$intType'>";
 	}
 	
 	

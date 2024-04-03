@@ -902,6 +902,7 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		34 => "Imperial",
 		35 => "Yokudan",
 		36 => "Universal",
+		37 => "Reach Winter",
 		38 => "Tsaesci",
 		39 => "Minotaur",
 		40 => "Ebony",
@@ -993,6 +994,11 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		136 => 'Drowned Mariner',
 		138 => 'Firesong',
 		139 => 'House Mornard',
+		140 => 'Scribes of Mora',
+		141 => 'Blessed Inheritor',
+		142 => 'Clan Dreamcarver',
+		143 => 'Dead Keeper',
+		144 => 'Kindred\'s Concord',
 );
 
 
