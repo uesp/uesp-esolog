@@ -297,17 +297,22 @@ class EsoLogViewer
 			'name' => self::FIELD_STRING,
 			'level' => self::FIELD_INT,
 			'gender' => self::FIELD_INT,
+			'maxHealth' => self::FIELD_INT,
 			'difficulty' => self::FIELD_INT,
 			'ppClass' => self::FIELD_STRING,
 			'ppDifficulty' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 			'reaction' => self::FIELD_INTTRANSFORM,
+			'unitType' => self::FIELD_INT,
 	);
 	
 	public static $NPC_LOCATION_FIELDS = array(
 			'npcId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'zone' => self::FIELD_STRING,
+			'locCount' => self::FIELD_INT,
+			'maxHealth' => self::FIELD_INT,
+			'unitType' => self::FIELD_INT,
 	);
 	
 	public static $LOOTSOURCE_FIELDS = array(

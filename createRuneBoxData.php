@@ -92,6 +92,7 @@ $REPLACE_PAIRS = array(
 		"Second Seed Hat" => "Second Seed Raiment Hat",
 		"Second Seed Breeches" => "Second Seed Raiment Breeches",
 		"Second Seed Epaulets" => "Second Seed Raiment Epaulets",
+		"Second Seed Epaulet" => "Second Seed Raiment Epaulet",
 		"Second Seed Shoes" => "Second Seed Raiment Shoes",
 		"Second Seed Glove" => "Second Seed Raiment Glove",
 		"Second Seed Sash" => "Second Seed Raiment Sash",
@@ -104,6 +105,14 @@ $REPLACE_PAIRS = array(
 		"Saberkeel Girdle" => "Saberkeel Panoply Girdle",
 		"Ghastly Visitation Memento" => "Ghastly Visitation",
 		"Witchmother's Servant's " => "Witchmother's Servant ",
+		"Sellistrix Shoulder" => "Sellistrix's Shoulder",
+		"Valkyn Skoria's " => "Valkyn Skoria ",
+		"Grothdar's Shoulder" => "Grothdarr Shoulder",
+		"Maw of the Infernal " => "Maw of the Infernal's ",
+		"Opal Lord Warden's " => "Opal Lord Warden ",
+		"Opal Domihaus " => "Domihaus ",
+		"Y'ffre's Fallen-Wood Pauldron" => "Y'ffre's Fallen-Wood Pauldrons",
+		"Ilambris " => "Ilambris' ",
 );
 
 require("/home/uesp/secrets/esolog.secrets");

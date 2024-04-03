@@ -217,7 +217,7 @@ class EsoLogSubmitter
 		<br />
 		<br />
 		<br />
-		<input type="hidden" name="MAX_FILE_SIZE" value="80000000" />
+		<input type="hidden" name="MAX_FILE_SIZE" value="120000000" />
 		<input type="file" name="logfile" value="Choose File..." />
 		<br /> &nbsp;
 	</td>

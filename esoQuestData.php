@@ -184,6 +184,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7156 => array(
+			'name'    => "Pledge: Bedlam Veil",
+			'journal' => "Ugarlag Chief-bane of the Undaunted has challenged me to explore Bedlam Veil.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	45 => array(
 			'name'    => "Aldcroft Manor",
 			'journal' => "Katarin delivered Ranser's murder weapon to Countess Virolynn in Aldcroft manor.",
@@ -722,7 +730,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7065 => array(
 			'name'    => "Replication Elimination",
-			'journal' => "There are more copies of Tho'at Replicanum creating chaos inside the Endless Archive. Master Malkhest needs help eliminating the maligraphies and the copies of Tho'at Replicanum.",
+			'journal' => "There are more copies of Tho'at Replicanum creating chaos inside the Infinite Archive. Master Malkhest needs help eliminating the maligraphies and the copies of Tho'at Replicanum.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -1699,6 +1707,14 @@ $ESO_QUEST_DATA = array(
 	427 => array(
 			'name'    => "Blackmoore's End",
 			'journal' => "My long pursuit of Baron Blackmoore ends here, in his own keep. His crimes will not go unpunished, and his death will be a message to all. Time for me to hunt him down in his own home.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7191 => array(
+			'name'    => "For Cake's Sake",
+			'journal' => "Mogh, Chef Donolon's son and apprentice, needs my help to embarrass his father's rival bakers and recover the ingredients he needs to make his Jubilee Cake.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -10808,6 +10824,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7106 => array(
+			'name'    => "Pledge: Oathsworn Pit",
+			'journal' => "Urgarlag Chief-bane of the Undaunted has challenged me to explore Oathsworn Pit.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	3396 => array(
 			'name'    => "Scout the Farm",
 			'journal' => "",
@@ -11659,6 +11683,14 @@ $ESO_QUEST_DATA = array(
 	5097 => array(
 			'name'    => "The Beast Pits",
 			'journal' => "",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7155 => array(
+			'name'    => "The Forgotten Vault",
+			'journal' => "The Blind Path, led by the Blind, invaded a subsection of Maelstrom called Bedlam Veil. Fa-Nuit-Hen asked me to figure out what the Blind is looking for and deal with the Blind Path army.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -15323,6 +15355,14 @@ $ESO_QUEST_DATA = array(
 	4185 => array(
 			'name'    => "To Honrich Tower",
 			'journal' => "Valdur spoke of a dark gathering at Honrich Tower.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7079 => array(
+			'name'    => "Prisoner of Fate",
+			'journal' => "Leramil the Wise called me to serve as proxy to Hermaeus Mora, Daedric Prince of Fate. The Dremora Torvesard seeks to unlock a secret hidden in the vaults of Apocrypha. If he succeeds, reality itself could be in danger.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -25114,7 +25154,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7061 => array(
 			'name'    => "The Margins of Ire",
-			'journal' => "Tho'at Replicanum is creating enemies of ink from books in the Endless Archive. Master Malkhest has a plan to summon Tho'at Replicanum, but he needs my help to track down the pieces of her nymic and defeat her.",
+			'journal' => "Tho'at Replicanum is creating enemies of ink from books in the Infinite Archive. Master Malkhest has a plan to summon Tho'at Replicanum, but he needs my help to track down the pieces of her nymic and defeat her.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -25129,8 +25169,8 @@ $ESO_QUEST_DATA = array(
 			'type' => 0,
 		),
 	7069 => array(
-			'name'    => "Aiding the Endless Archive",
-			'journal' => "Filer Pix, a Watchling under the service of a Master Malkhest, asked me to help defend the mysterious Endless Archive.",
+			'name'    => "Aiding the Infinite Archive",
+			'journal' => "Filer Pix, a Watchling under the service of a Master Malkhest, asked me to help defend the mysterious Infinite Archive.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -25146,7 +25186,15 @@ $ESO_QUEST_DATA = array(
 		),
 	7101 => array(
 			'name'    => "A Bookbinder's Bind",
-			'journal' => "A librarian named Destozuno wants me to collect the pages from a book called Fynboar the Resurrected, which have been scattered throughout the Endless Archive.",
+			'journal' => "A librarian named Destozuno wants me to collect the pages from a book called Fynboar the Resurrected, which have been scattered throughout the Infinite Archive.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7105 => array(
+			'name'    => "Victory Through Strife",
+			'journal' => "A group called the Recollection has invaded the Oathsworn Pit. Bazrag asked me to help him repel these invaders.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",

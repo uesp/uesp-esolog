@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "41pts";
-	const SKILLS_TABLESUFFIX   = "41pts";
+	const MINEITEM_TABLESUFFIX = "";
+	const SKILLS_TABLESUFFIX   = "41";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -558,11 +558,16 @@ class EsoLogParser
 			'ppDifficulty' => self::FIELD_INT,
 			'count' => self::FIELD_INT,
 			'reaction' => self::FIELD_INT,
+			'maxHealth' => self::FIELD_INT,
+			'unitType' => self::FIELD_INT,
 	);
 	
 	public static $NPC_LOCATION_FIELDS = array(
 			'npcId' => self::FIELD_INT,
 			'zone' => self::FIELD_STRING,
+			'locCount' => self::FIELD_INT,
+			'maxHealth' => self::FIELD_INT,
+			'unitType' => self::FIELD_INT,
 	);
 	
 	public static $LOOTSOURCE_FIELDS = array(
@@ -2809,6 +2814,7 @@ class EsoLogParser
 						ppDifficulty TINYINT NOT NULL,
 						count INTEGER NOT NULL,
 						reaction TINYINT NOT NULL,
+						maxHealth INTEGER NOT NULL DEFAULT -1,
 						PRIMARY KEY (id),
 						FULLTEXT(name, ppClass)
 					) ENGINE=MYISAM;";
@@ -2820,6 +2826,9 @@ class EsoLogParser
 		$query = "CREATE TABLE IF NOT EXISTS npcLocations (
 						npcId BIGINT NOT NULL,
 						zone TINYTEXT NOT NULL,
+						locCount INTEGER NOT NULL DEFAULT 0,
+						maxHealth INTEGER NOT NULL DEFAULT -1,
+						unitType TINYINT NOT NULL DEFAULT -1,
 						PRIMARY KEY (npcId, zone(64))
 					) ENGINE=MYISAM;";
 		
@@ -4274,6 +4283,9 @@ class EsoLogParser
 			}
 			
 			$updateNpcZone = true;
+			
+			$npcRecord['zoneDifficulty'] = $logEntry['zonediff'];
+			if ($npcRecord['zoneDifficulty'] == null) $npcRecord['zoneDifficulty'] = 0;
 		}
 		
 		if ($logEntry['rvcType'] == "stole" || $logEntry['rcvType'] == "stole")
@@ -4300,7 +4312,7 @@ class EsoLogParser
 		$isNewLocation = false;
 		$this->CheckLocation("item", $itemRecord['name'], $logEntry, array('itemId' => $itemRecord['id']), $isNewLocation);
 		
-		if ($updateNpcZone) $this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
+		if ($updateNpcZone) $this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation, $npcRecord);
 		
 		return true;
 	}
@@ -4701,6 +4713,8 @@ class EsoLogParser
 		if ($logEntry['ppClassString'] != "") $npcRecord['ppClass']      = $logEntry['ppClassString'];
 		if ($logEntry['ppDifficulty']  != "") $npcRecord['ppDifficulty'] = $logEntry['ppDifficulty'];
 		if ($logEntry['reaction']      != "") $npcRecord['reaction']     = $logEntry['reaction'];
+		if ($logEntry['maxHp']         != "") $npcRecord['maxHealth']    = intval($logEntry['maxHp']);
+		if ($logEntry['unitType']      != "") $npcRecord['unitType']     = intval($logEntry['unitType']);
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
@@ -4712,24 +4726,33 @@ class EsoLogParser
 	}
 	
 	
-	public function UpdateNpcZone ($npcId, $zone, $isNewLocation)
+	public function UpdateNpcZone ($npcId, $zone, $isNewLocation, $npcRecord)
 	{
 		if ($npcId === null || $npcId <= 0) return false;
 		if ($zone === null || $zone == "") return false;
 		
 		$safeZone = $this->db->real_escape_string($zone);
+		$zoneDiff = $npcRecord['zoneDifficulty'];
+		
+		if ($zoneDiff == 1) $safeZone .= " (Normal)";
+		if ($zoneDiff == 2) $safeZone .= " (Veteran)";
+		
+		$unitType = $npcRecord['unitType'];
+		$maxHealth = $npcRecord['maxHealth'];
+		if ($unitType == "") $unitType = -1;
+		if ($maxHealth == "") $maxHealth = -1;
 		
 		if ($isNewLocation)
 		{
-			$query = "INSERT INTO npcLocations(npcId, zone, locCount) VALUES($npcId, '$safeZone', 1) ON DUPLICATE KEY UPDATE locCount = locCount + 1;";
+			$query = "INSERT INTO npcLocations(npcId, zone, locCount, maxHealth, unitType) VALUES('$npcId', '$safeZone', 1, '$maxHealth', '$unitType') ON DUPLICATE KEY UPDATE locCount = locCount + 1, unitType='$unitType', maxHealth='$maxHealth';";
 		}
 		else
 		{
-			$query = "INSERT IGNORE INTO npcLocations(npcId, zone, locCount) VALUES($npcId, '$safeZone', 1);";
-		}		
+			$query = "INSERT IGNORE INTO npcLocations(npcId, zone, locCount, maxHealth, unitType) VALUES('$npcId', '$safeZone', 1, '$maxHealth', '$unitType') ON DUPLICATE KEY UPDATE unitType='$unitType', maxHealth='$maxHealth';";
+		}
 		
 		$this->lastQuery = $query;
-			
+		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to insert/update npcLocations record!");
 		
@@ -6860,6 +6883,17 @@ class EsoLogParser
 			$npcRecord = $this->CreateNPC($logEntry);
 			if ($npcRecord == null) return false;
 		}
+		else
+		{
+			if ($npcRecord['maxHealth'] < 0 && $logEntry['maxHp'] > 0) $npcRecord['maxHealth'] = intval($logEntry['maxHp']);
+			if ($npcRecord['ppDifficulty'] < 0 && $logEntry['ppDifficulty'] != null) $npcRecord['ppDifficulty'] = intval($logEntry['ppDifficulty']);
+			if ($npcRecord['ppClass'] == "" && $logEntry['ppClassString'] != null) $npcRecord['ppClass'] = $logEntry['ppClassString'];
+			if ($npcRecord['reaction'] < 0 && $logEntry['reaction'] > 0) $npcRecord['reaction'] = intval($logEntry['reaction']);
+			if ($npcRecord['unitType'] < 0 && $logEntry['unitType'] >= 0) $npcRecord['unitType'] = intval($logEntry['unitType']);
+		}
+		
+		$npcRecord['zoneDifficulty'] = $logEntry['zonediff'];
+		if ($npcRecord['zoneDifficulty'] == null) $npcRecord['zoneDifficulty'] = 0;
 		
 		$npcRecord['count'] += 1;
 		$this->SaveNPC($npcRecord);
@@ -6867,7 +6901,7 @@ class EsoLogParser
 		$isNewLocation = false;
 		$this->CheckLocation("npc", $logEntry['name'], $logEntry, array('npcId' => $npcRecord['id']), $isNewLocation);
 		
-		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
+		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation, $npcRecord);
 		
 		return true;
 	}
@@ -6920,6 +6954,8 @@ class EsoLogParser
 	public function OnMineItemStart ($logEntry)
 	{
 		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
+		if (!$this->IsValidUser($logEntry)) return false;
+		
 		$this->currentUser['lastMinedItemLogEntry'] = null;
 		$this->currentUser['mineItemStartGameTime'] = $logEntry['gameTime'];
 		$this->currentUser['mineItemStartTimeStamp'] = $logEntry['timeStamp'];
@@ -6930,6 +6966,8 @@ class EsoLogParser
 	
 	public function OnMineItemEnd ($logEntry)
 	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
 		if ($logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return false;
 		$this->currentUser['lastMinedItemLogEntry'] = null;
 	}
@@ -7727,6 +7765,8 @@ class EsoLogParser
 	
 	public function OnMineItem ($logEntry)
 	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
 		if (self::DO_BENCHMARK)
 		{
 			$start = microtime(true);
@@ -7972,6 +8012,7 @@ class EsoLogParser
 	
 	public function OnMineItemShort ($logEntry)
 	{
+		if (!$this->IsValidUser($logEntry)) return false;
 		if ($logEntry['timeStamp'] > 0 && $logEntry['timeStamp'] < self::START_MINEITEM_TIMESTAMP) return $this->reportLogParseError("\tWarning: Skipping mineitem due to old timestamp! ". $logEntry['timeStamp']);
 		
 		$itemLink = $logEntry['itemLink'];
@@ -10059,6 +10100,9 @@ class EsoLogParser
 			}
 		}
 		
+		$npcRecord['zoneDifficulty'] = $logEntry['zonediff'];
+		if ($npcRecord['zoneDifficulty'] == null) $npcRecord['zoneDifficulty'] = 0;
+		
 		$isNewLocation = false;
 		$npcLocation = $this->FindLocation("npc", $logEntry['x'], $logEntry['y'], $logEntry['zone'], array('npcId' => $npcRecord['id']));
 		
@@ -10076,7 +10120,7 @@ class EsoLogParser
 			if (!$result) return false;
 		}
 		
-		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation);
+		$this->UpdateNpcZone($npcRecord['id'], $logEntry['zone'], $isNewLocation, $npcRecord);
 		
 		return true;
 	}

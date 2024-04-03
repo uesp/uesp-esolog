@@ -2,7 +2,7 @@
 
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
-require("esoCollectibleData.php");
+//require("esoCollectibleData.php");
 
 class CEsoViewCollectibles
 {
@@ -16,6 +16,7 @@ class CEsoViewCollectibles
 	public $viewSearch = "";
 	public $extraQueryString = "";
 	public $version = "";
+	public $tableSuffix = "";
 	
 	public $allCollectibles = array();
 	public $collectibles = array();
@@ -50,7 +51,7 @@ class CEsoViewCollectibles
 		$this->tableSuffix = GetEsoItemTableSuffix($this->version);
 		$this->fullTableName = $this->tableName . $this->tableSuffix;
 		
-		if ($this->version != '') 
+		if ($this->version != '')
 		{
 			$this->extraQueryString = '&version='.$this->version;
 		}
@@ -102,7 +103,16 @@ class CEsoViewCollectibles
 	
 	public function LoadCollectibles()
 	{
-		global $ESO_COLLECTIBLE_DATA;
+		$ESO_DATA_FILENAME = "./esoCollectibleData{$this->tableSuffix}.php";
+		
+		if (!file_exists($ESO_DATA_FILENAME))
+		{
+			//"Error: File $ESO_DATA_FILENAME not found!";
+			return false;
+		}
+		
+		require($ESO_DATA_FILENAME);
+		//global $ESO_COLLECTIBLE_DATA;
 		
 		foreach ($ESO_COLLECTIBLE_DATA as $categoryIndex => $categoryData)
 		{
@@ -182,6 +192,9 @@ class CEsoViewCollectibles
 	{
 		$output = "<ol id='esovmi_itemlist'>\n";
 		
+		$versionSuffix = "";
+		if ($this->version != "") $versionSuffix = "&version=" . $this->version;
+		
 		foreach ($this->collectibles as $item)
 		{
 			$itemId = $item['id'];
@@ -193,17 +206,17 @@ class CEsoViewCollectibles
 			if ($item['isCategory'])
 			{
 				$safeName2 = $this->EscapeUri($name);
-				$output .= "<li><a href='viewCollectibles.php?category=$safeName2' class='esovmiCategoryItem'>$safeName</a></li>";
+				$output .= "<li><a href='viewCollectibles.php?category=$safeName2$versionSuffix' class='esovmiCategoryItem'>$safeName</a></li>";
 			}
 			else if ($item['isSubcategory'])
 			{
 				$safeName2 = $this->EscapeUri($name);
 				$safeCategory = $this->EscapeUri($item['category']);
-				$output .= "<li><a href='viewCollectibles.php?category=$safeCategory&subcategory=$safeName2' class='esovmiCategoryItem'>$safeName</a></li>";
+				$output .= "<li><a href='viewCollectibles.php?category=$safeCategory&subcategory=$safeName2$versionSuffix' class='esovmiCategoryItem'>$safeName</a></li>";
 			}
 			else
 			{
-				//$output .= "<li><a href='viewlog.php?action=view&record=collectibles&id=$itemId{$this->extraQueryString}'>$safeName</a></li>";
+				//$output .= "<li><a href='viewlog.php?action=view&record=collectibles&id=$itemId{$this->extraQueryString}$versionSuffix'>$safeName</a></li>";
 				$output .= "<li><a href='itemLink.php?collectid=$itemId{$this->extraQueryString}'>$safeName</a></li>";
 			}
 		}
@@ -220,7 +233,7 @@ class CEsoViewCollectibles
 		//TODO
 		//if (!$this->LoadSearchRecords()) return "";
 		return $this->MakeCollectiblesBlock();
-	}	
+	}
 	
 	
 	public function MakeContentBlock()

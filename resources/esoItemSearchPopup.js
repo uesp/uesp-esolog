@@ -193,6 +193,7 @@ UESP.EsoItemSearchPopup = function ()
 	this.rootElement = this.create();
 	this.sourceElement = null;
 	this.isItemEnabled = true;
+	this.onlyMaxLevel = false;
 	this.onSelectItem = null;
 	this.searchResults = [];
 	
@@ -669,10 +670,22 @@ UESP.EsoItemSearchPopup.prototype.update = function()
 	}
 	else
 	{
-		$('#esoispLevel').prop('readonly', false);
-		$('#esoispLevelSlider').prop('disabled', false);
-		//$('#esoispQuality').prop('disabled', false);
+		if (this.onlyMaxLevel)
+		{
+			$("#esoispLevel").val("CP160");
+			$("#esoispLevelSlider").val(66);
+			$('#esoispLevel').prop('readonly', true);
+			$('#esoispLevelSlider').prop('disabled', true);
+		}
+		else
+		{
+			$('#esoispLevel').prop('readonly', false);
+			$('#esoispLevelSlider').prop('disabled', false);
+			//$('#esoispQuality').prop('disabled', false);
+		}
 	}
+	
+	
 }
 
 
@@ -1159,7 +1172,8 @@ UESP.EsoItemSearchPopup.prototype.display = function(sourceElement, data)
 	this.version = data.version || "";
 	this.sourceElement = sourceElement;
 	this.onSelectItem = data.onSelectItem;
-	this.isItemEnabled = data.isEnabled; 
+	this.isItemEnabled = data.isEnabled;
+	this.onlyMaxLevel = data.onlyMaxLevel;
 	
 	this.xoffset = 0;
 	this.yoffset = 0;

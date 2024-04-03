@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 107,
-						'numBooks' => 1480 
+						'numCollect' => 109,
+						'numBooks' => 1508 
 				),
 				1 => array (
 						'id' => 43,
@@ -8208,6 +8208,134 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				108 => array (
+						'id' => 216,
+						'name' => 'The Recollection Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7904 => array (
+										'title' => 'Crafting Motif 124: The Recollection Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7905 => array (
+										'title' => 'Crafting Motif 124: The Recollection Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7906 => array (
+										'title' => 'Crafting Motif 124: The Recollection Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7907 => array (
+										'title' => 'Crafting Motif 124: The Recollection Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7908 => array (
+										'title' => 'Crafting Motif 124: The Recollection Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7909 => array (
+										'title' => 'Crafting Motif 124: The Recollection Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7910 => array (
+										'title' => 'Crafting Motif 124: The Recollection Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7911 => array (
+										'title' => 'Crafting Motif 124: The Recollection Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7912 => array (
+										'title' => 'Crafting Motif 124: The Recollection Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7913 => array (
+										'title' => 'Crafting Motif 124: The Recollection Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7914 => array (
+										'title' => 'Crafting Motif 124: The Recollection Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7915 => array (
+										'title' => 'Crafting Motif 124: The Recollection Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7916 => array (
+										'title' => 'Crafting Motif 124: The Recollection Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7917 => array (
+										'title' => 'Crafting Motif 124: The Recollection Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				109 => array (
+						'id' => 217,
+						'name' => 'Blind Path Cultist Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7920 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7921 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7922 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7923 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7924 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7925 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7926 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7927 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7928 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7929 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7930 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7931 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7932 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7933 => array (
+										'title' => 'Crafting Motif 125: Blind Path Cultist Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
@@ -8215,7 +8343,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 50,
-						'numBooks' => 4299 
+						'numBooks' => 4329 
 				),
 				1 => array (
 						'id' => 44,
@@ -9096,7 +9224,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				3 => array (
 						'id' => 46,
 						'name' => 'Daedric Cults',
-						'numBooks' => 104,
+						'numBooks' => 117,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_daedric.dds',
 						'books' => array (
 								68 => array (
@@ -9514,6 +9642,58 @@ $ESO_BOOK_COLLECTIONS = array (
 								7646 => array (
 										'title' => 'Letter from Leramil the Wise',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7918 => array (
+										'title' => 'Letter from Leramil the Wise',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7824 => array (
+										'title' => 'Endegor`s Orders',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7856 => array (
+										'title' => 'A Call for Recollection',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
+								),
+								7825 => array (
+										'title' => 'A Dance Along the Webs',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color3.dds' 
+								),
+								7826 => array (
+										'title' => 'Testament of Dandera Helas',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color2.dds' 
+								),
+								7817 => array (
+										'title' => 'From Exile to Exodus, Pt. 1',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								7818 => array (
+										'title' => 'From Exile to Exodus, Pt. 2',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color4.dds' 
+								),
+								7901 => array (
+										'title' => 'The Bladesongs of Boethra, Volume II',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								7902 => array (
+										'title' => 'The Bladesongs of Boethra, Volume III',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color2.dds' 
+								),
+								7890 => array (
+										'title' => 'The Bladesongs of Boethra, Volume V',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color3.dds' 
+								),
+								8058 => array (
+										'title' => 'The Prophecy of Anudnabia',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								7938 => array (
+										'title' => 'The Nine Coruscations, Volume I',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color1.dds' 
+								),
+								7939 => array (
+										'title' => 'The Nine Coruscations, Volume II',
+										'icon' => '/esoui/art/icons/lore_book3_detail4_color4.dds' 
 								) 
 						) 
 				),
@@ -11564,7 +11744,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				9 => array (
 						'id' => 52,
 						'name' => 'Lore and Culture',
-						'numBooks' => 110,
+						'numBooks' => 111,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								351 => array (
@@ -12006,6 +12186,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								5376 => array (
 										'title' => 'Reman II: The Limits of Ambition',
 										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
+								),
+								7940 => array (
+										'title' => 'All Our Perfect Forms',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
 								) 
 						) 
 				),
@@ -25764,8 +25948,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				50 => array (
 						'id' => 222,
 						'name' => 'Dungeon Delver Documents',
-						'numBooks' => 11,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'numBooks' => 27,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								7763 => array (
 										'title' => 'The Last Addition of Bikkus-Muz',
@@ -25810,6 +25994,70 @@ $ESO_BOOK_COLLECTIONS = array (
 								7871 => array (
 										'title' => 'Materials for Novice Necromancers',
 										'icon' => '/esoui/art/icons/lore_book2_detail5_color1.dds' 
+								),
+								7845 => array (
+										'title' => 'Tutor Riparius`s List',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7846 => array (
+										'title' => 'A Challenger`s Thoughts',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7847 => array (
+										'title' => 'Initiate`s Last Sight',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7851 => array (
+										'title' => 'Fa-Nuit-Hen`s Note',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7942 => array (
+										'title' => 'Fa-Nuit-Hen`s Second Note',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7943 => array (
+										'title' => 'Fa-Nuit-Hen`s Third Note',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7810 => array (
+										'title' => 'Lessons of the Pit',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								7811 => array (
+										'title' => 'Initiate`s Fear',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								7812 => array (
+										'title' => 'Niborwen`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								7813 => array (
+										'title' => 'Maerolor`s Chronicle',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								7814 => array (
+										'title' => 'Faenalir`s Letter',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8091 => array (
+										'title' => 'In Memoriam of the Carver of Shadows',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8092 => array (
+										'title' => 'In Memoriam of the Gentle Warrior',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8093 => array (
+										'title' => 'In Memoriam of the Scorching Storm',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8094 => array (
+										'title' => 'In Memoriam of the Salt Spray',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8095 => array (
+										'title' => 'In Memoriam of the Ashy Wind',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
 								) 
 						) 
 				) 

@@ -6,7 +6,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 1,
     'subIndex' => 0,
-    'points' => 2685,
+    'points' => 2715,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_general_up.dds',
   ),
   'Character' => 
@@ -15,7 +15,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 1,
     'subIndex' => 0,
-    'points' => 2685,
+    'points' => 2715,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_general_up.dds',
   ),
   'Character::Guilds' => 
@@ -42,7 +42,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'Justice',
     'index' => 1,
     'subIndex' => 3,
-    'points' => 390,
+    'points' => 420,
     'icon' => '',
   ),
   'Character::Skyshards' => 
@@ -105,7 +105,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 2,
     'subIndex' => 0,
-    'points' => 1695,
+    'points' => 1840,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_alliancewar_up.dds',
   ),
   'Player VS Player' => 
@@ -114,7 +114,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 2,
     'subIndex' => 0,
-    'points' => 1695,
+    'points' => 1840,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_alliancewar_up.dds',
   ),
   'Player VS Player::Alliance War' => 
@@ -123,7 +123,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'Alliance War',
     'index' => 2,
     'subIndex' => 1,
-    'points' => 775,
+    'points' => 865,
     'icon' => '',
   ),
   'Player VS Player::Battlegrounds' => 
@@ -495,11 +495,47 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'points' => 50,
     'icon' => '',
   ),
+  'Infinite Archive::General' => 
+  array (
+    'name' => 'Infinite Archive',
+    'subName' => 'General',
+    'index' => 8,
+    'subIndex' => 1,
+    'points' => 570,
+    'icon' => '',
+  ),
+  'Infinite Archive' => 
+  array (
+    'name' => 'Infinite Archive',
+    'subName' => 'General',
+    'index' => 8,
+    'subIndex' => 0,
+    'points' => 1475,
+    'icon' => '/esoui/art/treeicons/tutorial_endlessdungeon_up.dds',
+  ),
+  'Infinite Archive::Tales of Tribute' => 
+  array (
+    'name' => 'Infinite Archive',
+    'subName' => 'Tales of Tribute',
+    'index' => 8,
+    'subIndex' => 2,
+    'points' => 45,
+    'icon' => '',
+  ),
+  'Infinite Archive::Exploration' => 
+  array (
+    'name' => 'Infinite Archive',
+    'subName' => 'Exploration',
+    'index' => 8,
+    'subIndex' => 3,
+    'points' => 860,
+    'icon' => '',
+  ),
   'Housing::General' => 
   array (
     'name' => 'Housing',
     'subName' => 'General',
-    'index' => 8,
+    'index' => 9,
     'subIndex' => 0,
     'points' => 505,
     'icon' => '/esoui/art/treeicons/collection_indexicon_housing_up.dds',
@@ -508,7 +544,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Housing',
     'subName' => 'General',
-    'index' => 8,
+    'index' => 9,
     'subIndex' => 0,
     'points' => 505,
     'icon' => '/esoui/art/treeicons/collection_indexicon_housing_up.dds',
@@ -517,7 +553,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Housing',
     'subName' => 'Property',
-    'index' => 8,
+    'index' => 9,
     'subIndex' => 1,
     'points' => 315,
     'icon' => '',
@@ -526,7 +562,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Housing',
     'subName' => 'Decorating',
-    'index' => 8,
+    'index' => 9,
     'subIndex' => 2,
     'points' => 150,
     'icon' => '',
@@ -535,35 +571,44 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Holiday Events',
     'subName' => 'General',
-    'index' => 9,
+    'index' => 10,
     'subIndex' => 0,
-    'points' => 890,
+    'points' => 1025,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_events_up.dds',
   ),
   'Holiday Events' => 
   array (
     'name' => 'Holiday Events',
     'subName' => 'General',
-    'index' => 9,
+    'index' => 10,
     'subIndex' => 0,
-    'points' => 890,
+    'points' => 1025,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_events_up.dds',
   ),
   'Holiday Events::Whitestrake\'s Mayhem' => 
   array (
     'name' => 'Holiday Events',
     'subName' => 'Whitestrake\'s Mayhem',
-    'index' => 9,
+    'index' => 10,
     'subIndex' => 1,
     'points' => 165,
+    'icon' => '',
+  ),
+  'Holiday Events::Anniversary Jubilee' => 
+  array (
+    'name' => 'Holiday Events',
+    'subName' => 'Anniversary Jubilee',
+    'index' => 10,
+    'subIndex' => 2,
+    'points' => 135,
     'icon' => '',
   ),
   'Holiday Events::Jester\'s Festival' => 
   array (
     'name' => 'Holiday Events',
     'subName' => 'Jester\'s Festival',
-    'index' => 9,
-    'subIndex' => 2,
+    'index' => 10,
+    'subIndex' => 3,
     'points' => 270,
     'icon' => '',
   ),
@@ -571,8 +616,8 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Holiday Events',
     'subName' => 'New Life Festival',
-    'index' => 9,
-    'subIndex' => 3,
+    'index' => 10,
+    'subIndex' => 4,
     'points' => 175,
     'icon' => '',
   ),
@@ -580,8 +625,8 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Holiday Events',
     'subName' => 'Witches Festival',
-    'index' => 9,
-    'subIndex' => 4,
+    'index' => 10,
+    'subIndex' => 5,
     'points' => 280,
     'icon' => '',
   ),
@@ -589,25 +634,25 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'General',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 0,
-    'points' => 210,
+    'points' => 220,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_prologue_up.dds',
   ),
   'Prologues' => 
   array (
     'name' => 'Prologues',
     'subName' => 'General',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 0,
-    'points' => 210,
+    'points' => 220,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_prologue_up.dds',
   ),
   'Prologues::Necrom' => 
   array (
     'name' => 'Prologues',
     'subName' => 'Necrom',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 1,
     'points' => 10,
     'icon' => '',
@@ -616,7 +661,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Galen',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 2,
     'points' => 10,
     'icon' => '',
@@ -625,7 +670,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'High Isle',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 3,
     'points' => 10,
     'icon' => '',
@@ -634,7 +679,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Deadlands',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 4,
     'points' => 10,
     'icon' => '',
@@ -643,7 +688,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Blackwood',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 5,
     'points' => 10,
     'icon' => '',
@@ -652,7 +697,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Markarth',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 6,
     'points' => 10,
     'icon' => '',
@@ -661,7 +706,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Greymoor',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 7,
     'points' => 10,
     'icon' => '',
@@ -670,7 +715,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Dragonhold',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 8,
     'points' => 10,
     'icon' => '',
@@ -679,7 +724,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Elsweyr',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 9,
     'points' => 85,
     'icon' => '',
@@ -688,7 +733,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Prologues',
     'subName' => 'Murkmire',
-    'index' => 10,
+    'index' => 11,
     'subIndex' => 10,
     'points' => 45,
     'icon' => '',
@@ -697,25 +742,25 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Necrom',
     'subName' => 'General',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 0,
-    'points' => 1865,
+    'points' => 1880,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_necrom_up.dds',
   ),
   'Necrom' => 
   array (
     'name' => 'Necrom',
     'subName' => 'General',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 0,
-    'points' => 1865,
+    'points' => 1880,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_necrom_up.dds',
   ),
   'Necrom::Tales of Tribute' => 
   array (
     'name' => 'Necrom',
     'subName' => 'Tales of Tribute',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 1,
     'points' => 65,
     'icon' => '',
@@ -724,7 +769,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Necrom',
     'subName' => 'Companions',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 2,
     'points' => 120,
     'icon' => '',
@@ -733,16 +778,16 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Necrom',
     'subName' => 'Antiquities',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 3,
-    'points' => 155,
+    'points' => 170,
     'icon' => '',
   ),
   'Necrom::Exploration' => 
   array (
     'name' => 'Necrom',
     'subName' => 'Exploration',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 4,
     'points' => 410,
     'icon' => '',
@@ -751,7 +796,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Necrom',
     'subName' => 'Quests',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 5,
     'points' => 330,
     'icon' => '',
@@ -760,7 +805,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Necrom',
     'subName' => 'Bastion Nymic',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 6,
     'points' => 125,
     'icon' => '',
@@ -769,7 +814,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Necrom',
     'subName' => 'Sanity\'s Edge',
-    'index' => 11,
+    'index' => 12,
     'subIndex' => 7,
     'points' => 380,
     'icon' => '',
@@ -778,7 +823,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'General',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 0,
     'points' => 2320,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_highisle_up.dds',
@@ -787,7 +832,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'General',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 0,
     'points' => 2320,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_highisle_up.dds',
@@ -796,7 +841,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Tales of Tribute',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 1,
     'points' => 685,
     'icon' => '',
@@ -805,7 +850,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Companions',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 2,
     'points' => 120,
     'icon' => '',
@@ -814,7 +859,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Exploration',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 3,
     'points' => 390,
     'icon' => '',
@@ -823,7 +868,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Antiquities',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 4,
     'points' => 140,
     'icon' => '',
@@ -832,7 +877,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Quests',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 5,
     'points' => 230,
     'icon' => '',
@@ -841,7 +886,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Volcanic Vents',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 6,
     'points' => 90,
     'icon' => '',
@@ -850,7 +895,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'High Isle',
     'subName' => 'Dreadsail Reef',
-    'index' => 12,
+    'index' => 13,
     'subIndex' => 7,
     'points' => 370,
     'icon' => '',
@@ -859,7 +904,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'General',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 0,
     'points' => 1600,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_blackwood_up.dds',
@@ -868,7 +913,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'General',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 0,
     'points' => 1600,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_blackwood_up.dds',
@@ -877,7 +922,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'Companions',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 1,
     'points' => 120,
     'icon' => '',
@@ -886,7 +931,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'Exploration',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 2,
     'points' => 445,
     'icon' => '',
@@ -895,7 +940,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'Antiquities',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 3,
     'points' => 125,
     'icon' => '',
@@ -904,7 +949,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'Quests',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 4,
     'points' => 230,
     'icon' => '',
@@ -913,7 +958,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Blackwood',
     'subName' => 'Rockgrove',
-    'index' => 13,
+    'index' => 14,
     'subIndex' => 5,
     'points' => 420,
     'icon' => '',
@@ -922,7 +967,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'General',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 0,
     'points' => 2085,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_greymoor_up.dds',
@@ -931,7 +976,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'General',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 0,
     'points' => 2085,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_greymoor_up.dds',
@@ -940,7 +985,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'Antiquities',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 1,
     'points' => 485,
     'icon' => '',
@@ -949,7 +994,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'Exploration',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 2,
     'points' => 370,
     'icon' => '',
@@ -958,7 +1003,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'Quests',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 3,
     'points' => 255,
     'icon' => '',
@@ -967,7 +1012,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'Harrowstorms',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 4,
     'points' => 155,
     'icon' => '',
@@ -976,7 +1021,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Greymoor',
     'subName' => 'Kyne\'s Aegis',
-    'index' => 14,
+    'index' => 15,
     'subIndex' => 5,
     'points' => 430,
     'icon' => '',
@@ -985,7 +1030,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Elsweyr',
     'subName' => 'General',
-    'index' => 15,
+    'index' => 16,
     'subIndex' => 0,
     'points' => 1340,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_elsweyr_up.dds',
@@ -994,7 +1039,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Elsweyr',
     'subName' => 'General',
-    'index' => 15,
+    'index' => 16,
     'subIndex' => 0,
     'points' => 1340,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_elsweyr_up.dds',
@@ -1003,7 +1048,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Elsweyr',
     'subName' => 'Exploration',
-    'index' => 15,
+    'index' => 16,
     'subIndex' => 1,
     'points' => 400,
     'icon' => '',
@@ -1012,7 +1057,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Elsweyr',
     'subName' => 'Quests',
-    'index' => 15,
+    'index' => 16,
     'subIndex' => 2,
     'points' => 270,
     'icon' => '',
@@ -1021,7 +1066,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Elsweyr',
     'subName' => 'Sunspire',
-    'index' => 15,
+    'index' => 16,
     'subIndex' => 3,
     'points' => 400,
     'icon' => '',
@@ -1030,7 +1075,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Summerset',
     'subName' => 'General',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 0,
     'points' => 1935,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_summerset_up.dds.dds',
@@ -1039,7 +1084,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Summerset',
     'subName' => 'General',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 0,
     'points' => 1935,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_summerset_up.dds.dds',
@@ -1048,7 +1093,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Summerset',
     'subName' => 'Exploration',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 1,
     'points' => 385,
     'icon' => '',
@@ -1057,7 +1102,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Summerset',
     'subName' => 'Quests',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 2,
     'points' => 340,
     'icon' => '',
@@ -1066,7 +1111,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Summerset',
     'subName' => 'Abyssal Geysers',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 3,
     'points' => 150,
     'icon' => '',
@@ -1075,7 +1120,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Summerset',
     'subName' => 'Cloudrest',
-    'index' => 16,
+    'index' => 17,
     'subIndex' => 4,
     'points' => 695,
     'icon' => '',
@@ -1084,7 +1129,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Morrowind',
     'subName' => 'General',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 0,
     'points' => 1640,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_morrowind_up.dds',
@@ -1093,7 +1138,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Morrowind',
     'subName' => 'General',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 0,
     'points' => 1640,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_morrowind_up.dds',
@@ -1102,7 +1147,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Morrowind',
     'subName' => 'Exploration',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 1,
     'points' => 380,
     'icon' => '',
@@ -1111,7 +1156,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Morrowind',
     'subName' => 'Quests',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 2,
     'points' => 255,
     'icon' => '',
@@ -1120,16 +1165,43 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Morrowind',
     'subName' => 'Halls of Fabrication',
-    'index' => 17,
+    'index' => 18,
     'subIndex' => 3,
     'points' => 525,
+    'icon' => '',
+  ),
+  'Scions of Ithelia::General' => 
+  array (
+    'name' => 'Scions of Ithelia',
+    'subName' => 'General',
+    'index' => 19,
+    'subIndex' => 1,
+    'points' => 240,
+    'icon' => '',
+  ),
+  'Scions of Ithelia' => 
+  array (
+    'name' => 'Scions of Ithelia',
+    'subName' => 'General',
+    'index' => 19,
+    'subIndex' => 0,
+    'points' => 1340,
+    'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
+  ),
+  'Scions of Ithelia::Veteran' => 
+  array (
+    'name' => 'Scions of Ithelia',
+    'subName' => 'Veteran',
+    'index' => 19,
+    'subIndex' => 2,
+    'points' => 1100,
     'icon' => '',
   ),
   'Scribes of Fate::General' => 
   array (
     'name' => 'Scribes of Fate',
     'subName' => 'General',
-    'index' => 18,
+    'index' => 20,
     'subIndex' => 0,
     'points' => 1360,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1138,7 +1210,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scribes of Fate',
     'subName' => 'General',
-    'index' => 18,
+    'index' => 20,
     'subIndex' => 0,
     'points' => 1360,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1147,7 +1219,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scribes of Fate',
     'subName' => 'Veteran',
-    'index' => 18,
+    'index' => 20,
     'subIndex' => 1,
     'points' => 1110,
     'icon' => '',
@@ -1156,7 +1228,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Firesong',
     'subName' => 'General',
-    'index' => 19,
+    'index' => 21,
     'subIndex' => 0,
     'points' => 700,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_firesong_up.dds',
@@ -1165,7 +1237,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Firesong',
     'subName' => 'General',
-    'index' => 19,
+    'index' => 21,
     'subIndex' => 0,
     'points' => 700,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_firesong_up.dds',
@@ -1174,7 +1246,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Firesong',
     'subName' => 'Exploration',
-    'index' => 19,
+    'index' => 21,
     'subIndex' => 1,
     'points' => 100,
     'icon' => '',
@@ -1183,7 +1255,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Firesong',
     'subName' => 'Quests',
-    'index' => 19,
+    'index' => 21,
     'subIndex' => 2,
     'points' => 205,
     'icon' => '',
@@ -1192,7 +1264,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Firesong',
     'subName' => 'Antiquities',
-    'index' => 19,
+    'index' => 21,
     'subIndex' => 3,
     'points' => 135,
     'icon' => '',
@@ -1201,7 +1273,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Firesong',
     'subName' => 'Tales of Tribute',
-    'index' => 19,
+    'index' => 21,
     'subIndex' => 4,
     'points' => 40,
     'icon' => '',
@@ -1210,7 +1282,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Lost Depths',
     'subName' => 'General',
-    'index' => 20,
+    'index' => 22,
     'subIndex' => 0,
     'points' => 1325,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1219,7 +1291,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Lost Depths',
     'subName' => 'General',
-    'index' => 20,
+    'index' => 22,
     'subIndex' => 0,
     'points' => 1325,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1228,7 +1300,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Lost Depths',
     'subName' => 'Veteran',
-    'index' => 20,
+    'index' => 22,
     'subIndex' => 1,
     'points' => 1090,
     'icon' => '',
@@ -1237,7 +1309,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Ascending Tide',
     'subName' => 'General',
-    'index' => 21,
+    'index' => 23,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1246,7 +1318,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Ascending Tide',
     'subName' => 'General',
-    'index' => 21,
+    'index' => 23,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1255,7 +1327,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Ascending Tide',
     'subName' => 'Veteran',
-    'index' => 21,
+    'index' => 23,
     'subIndex' => 1,
     'points' => 1010,
     'icon' => '',
@@ -1264,25 +1336,25 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Deadlands',
     'subName' => 'General',
-    'index' => 22,
+    'index' => 24,
     'subIndex' => 0,
-    'points' => 795,
+    'points' => 810,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_deadlands_up.dds',
   ),
   'Deadlands' => 
   array (
     'name' => 'Deadlands',
     'subName' => 'General',
-    'index' => 22,
+    'index' => 24,
     'subIndex' => 0,
-    'points' => 795,
+    'points' => 810,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_deadlands_up.dds',
   ),
   'Deadlands::Exploration' => 
   array (
     'name' => 'Deadlands',
     'subName' => 'Exploration',
-    'index' => 22,
+    'index' => 24,
     'subIndex' => 1,
     'points' => 160,
     'icon' => '',
@@ -1291,7 +1363,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Deadlands',
     'subName' => 'Quests',
-    'index' => 22,
+    'index' => 24,
     'subIndex' => 2,
     'points' => 225,
     'icon' => '',
@@ -1300,7 +1372,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Deadlands',
     'subName' => 'Antiquities',
-    'index' => 22,
+    'index' => 24,
     'subIndex' => 3,
     'points' => 105,
     'icon' => '',
@@ -1309,7 +1381,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Waking Flame',
     'subName' => 'General',
-    'index' => 23,
+    'index' => 25,
     'subIndex' => 0,
     'points' => 1145,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1318,7 +1390,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Waking Flame',
     'subName' => 'General',
-    'index' => 23,
+    'index' => 25,
     'subIndex' => 0,
     'points' => 1145,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1327,7 +1399,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Waking Flame',
     'subName' => 'Veteran',
-    'index' => 23,
+    'index' => 25,
     'subIndex' => 1,
     'points' => 890,
     'icon' => '',
@@ -1336,7 +1408,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'General',
-    'index' => 24,
+    'index' => 26,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1345,7 +1417,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'General',
-    'index' => 24,
+    'index' => 26,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1354,7 +1426,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Flames of Ambition',
     'subName' => 'Veteran',
-    'index' => 24,
+    'index' => 26,
     'subIndex' => 1,
     'points' => 790,
     'icon' => '',
@@ -1363,7 +1435,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'General',
-    'index' => 25,
+    'index' => 27,
     'subIndex' => 0,
     'points' => 1335,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_markarth_up.dds',
@@ -1372,7 +1444,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'General',
-    'index' => 25,
+    'index' => 27,
     'subIndex' => 0,
     'points' => 1335,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_markarth_up.dds',
@@ -1381,7 +1453,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Exploration',
-    'index' => 25,
+    'index' => 27,
     'subIndex' => 1,
     'points' => 115,
     'icon' => '',
@@ -1390,7 +1462,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Quests',
-    'index' => 25,
+    'index' => 27,
     'subIndex' => 2,
     'points' => 295,
     'icon' => '',
@@ -1399,7 +1471,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Antiquities',
-    'index' => 25,
+    'index' => 27,
     'subIndex' => 3,
     'points' => 130,
     'icon' => '',
@@ -1408,7 +1480,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Markarth',
     'subName' => 'Vateshran Hollows',
-    'index' => 25,
+    'index' => 27,
     'subIndex' => 4,
     'points' => 485,
     'icon' => '',
@@ -1417,7 +1489,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'General',
-    'index' => 26,
+    'index' => 28,
     'subIndex' => 1,
     'points' => 175,
     'icon' => '',
@@ -1426,7 +1498,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'General',
-    'index' => 26,
+    'index' => 28,
     'subIndex' => 0,
     'points' => 1055,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1435,7 +1507,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Stonethorn',
     'subName' => 'Veteran',
-    'index' => 26,
+    'index' => 28,
     'subIndex' => 2,
     'points' => 880,
     'icon' => '',
@@ -1444,7 +1516,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'General',
-    'index' => 27,
+    'index' => 29,
     'subIndex' => 1,
     'points' => 245,
     'icon' => '',
@@ -1453,7 +1525,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'General',
-    'index' => 27,
+    'index' => 29,
     'subIndex' => 0,
     'points' => 945,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1462,7 +1534,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Harrowstorm',
     'subName' => 'Veteran',
-    'index' => 27,
+    'index' => 29,
     'subIndex' => 2,
     'points' => 700,
     'icon' => '',
@@ -1471,7 +1543,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'General',
-    'index' => 28,
+    'index' => 30,
     'subIndex' => 0,
     'points' => 675,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_dragonguard_up.dds',
@@ -1480,7 +1552,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'General',
-    'index' => 28,
+    'index' => 30,
     'subIndex' => 0,
     'points' => 675,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_dragonguard_up.dds',
@@ -1489,7 +1561,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'Exploration',
-    'index' => 28,
+    'index' => 30,
     'subIndex' => 1,
     'points' => 130,
     'icon' => '',
@@ -1498,7 +1570,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragonhold',
     'subName' => 'Quests',
-    'index' => 28,
+    'index' => 30,
     'subIndex' => 2,
     'points' => 225,
     'icon' => '',
@@ -1507,7 +1579,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'General',
-    'index' => 29,
+    'index' => 31,
     'subIndex' => 1,
     'points' => 175,
     'icon' => '',
@@ -1516,7 +1588,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'General',
-    'index' => 29,
+    'index' => 31,
     'subIndex' => 0,
     'points' => 845,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1525,7 +1597,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Scalebreaker',
     'subName' => 'Veteran',
-    'index' => 29,
+    'index' => 31,
     'subIndex' => 2,
     'points' => 670,
     'icon' => '',
@@ -1534,7 +1606,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'General',
-    'index' => 30,
+    'index' => 32,
     'subIndex' => 1,
     'points' => 185,
     'icon' => '',
@@ -1543,7 +1615,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'General',
-    'index' => 30,
+    'index' => 32,
     'subIndex' => 0,
     'points' => 870,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1552,7 +1624,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wrathstone',
     'subName' => 'Veteran',
-    'index' => 30,
+    'index' => 32,
     'subIndex' => 2,
     'points' => 685,
     'icon' => '',
@@ -1561,7 +1633,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'General',
-    'index' => 31,
+    'index' => 33,
     'subIndex' => 0,
     'points' => 1050,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_murkmire_up.dds',
@@ -1570,7 +1642,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'General',
-    'index' => 31,
+    'index' => 33,
     'subIndex' => 0,
     'points' => 1050,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_murkmire_up.dds',
@@ -1579,7 +1651,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Exploration',
-    'index' => 31,
+    'index' => 33,
     'subIndex' => 1,
     'points' => 120,
     'icon' => '',
@@ -1588,7 +1660,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Quests',
-    'index' => 31,
+    'index' => 33,
     'subIndex' => 2,
     'points' => 240,
     'icon' => '',
@@ -1597,7 +1669,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Murkmire',
     'subName' => 'Blackrose Prison',
-    'index' => 31,
+    'index' => 33,
     'subIndex' => 3,
     'points' => 445,
     'icon' => '',
@@ -1606,7 +1678,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'General',
-    'index' => 32,
+    'index' => 34,
     'subIndex' => 1,
     'points' => 155,
     'icon' => '',
@@ -1615,7 +1687,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'General',
-    'index' => 32,
+    'index' => 34,
     'subIndex' => 0,
     'points' => 840,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1624,7 +1696,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Wolfhunter',
     'subName' => 'Veteran',
-    'index' => 32,
+    'index' => 34,
     'subIndex' => 2,
     'points' => 685,
     'icon' => '',
@@ -1633,7 +1705,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'General',
-    'index' => 33,
+    'index' => 35,
     'subIndex' => 0,
     'points' => 875,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1642,7 +1714,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'General',
-    'index' => 33,
+    'index' => 35,
     'subIndex' => 0,
     'points' => 875,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1651,7 +1723,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dragon Bones',
     'subName' => 'Veteran',
-    'index' => 33,
+    'index' => 35,
     'subIndex' => 1,
     'points' => 730,
     'icon' => '',
@@ -1660,7 +1732,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'General',
-    'index' => 34,
+    'index' => 36,
     'subIndex' => 0,
     'points' => 960,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_cwc_up.dds',
@@ -1669,7 +1741,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'General',
-    'index' => 34,
+    'index' => 36,
     'subIndex' => 0,
     'points' => 960,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_cwc_up.dds',
@@ -1678,7 +1750,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Exploration',
-    'index' => 34,
+    'index' => 36,
     'subIndex' => 1,
     'points' => 85,
     'icon' => '',
@@ -1687,7 +1759,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Quests',
-    'index' => 34,
+    'index' => 36,
     'subIndex' => 2,
     'points' => 215,
     'icon' => '',
@@ -1696,7 +1768,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Clockwork City',
     'subName' => 'Asylum Sanctorium',
-    'index' => 34,
+    'index' => 36,
     'subIndex' => 3,
     'points' => 425,
     'icon' => '',
@@ -1705,7 +1777,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'General',
-    'index' => 35,
+    'index' => 37,
     'subIndex' => 0,
     'points' => 760,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1714,7 +1786,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'General',
-    'index' => 35,
+    'index' => 37,
     'subIndex' => 0,
     'points' => 760,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1723,7 +1795,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Horns of the Reach',
     'subName' => 'Veteran',
-    'index' => 35,
+    'index' => 37,
     'subIndex' => 1,
     'points' => 615,
     'icon' => '',
@@ -1732,7 +1804,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'General',
-    'index' => 36,
+    'index' => 38,
     'subIndex' => 0,
     'points' => 785,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1741,7 +1813,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'General',
-    'index' => 36,
+    'index' => 38,
     'subIndex' => 0,
     'points' => 785,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
@@ -1750,7 +1822,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Shadows of the Hist',
     'subName' => 'Veteran',
-    'index' => 36,
+    'index' => 38,
     'subIndex' => 1,
     'points' => 630,
     'icon' => '',
@@ -1759,7 +1831,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'General',
-    'index' => 37,
+    'index' => 39,
     'subIndex' => 0,
     'points' => 850,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds',
@@ -1768,7 +1840,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'General',
-    'index' => 37,
+    'index' => 39,
     'subIndex' => 0,
     'points' => 850,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_darkbrotherhood_up.dds',
@@ -1777,7 +1849,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'Exploration',
-    'index' => 37,
+    'index' => 39,
     'subIndex' => 1,
     'points' => 295,
     'icon' => '',
@@ -1786,7 +1858,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Dark Brotherhood',
     'subName' => 'Quests',
-    'index' => 37,
+    'index' => 39,
     'subIndex' => 2,
     'points' => 180,
     'icon' => '',
@@ -1795,7 +1867,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'General',
-    'index' => 38,
+    'index' => 40,
     'subIndex' => 0,
     'points' => 1305,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_thievesguild_up.dds',
@@ -1804,7 +1876,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'General',
-    'index' => 38,
+    'index' => 40,
     'subIndex' => 0,
     'points' => 1305,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_thievesguild_up.dds',
@@ -1813,7 +1885,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Exploration',
-    'index' => 38,
+    'index' => 40,
     'subIndex' => 1,
     'points' => 370,
     'icon' => '',
@@ -1822,7 +1894,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Quests',
-    'index' => 38,
+    'index' => 40,
     'subIndex' => 2,
     'points' => 275,
     'icon' => '',
@@ -1831,7 +1903,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Thieves Guild',
     'subName' => 'Maw of Lorkhaj',
-    'index' => 38,
+    'index' => 40,
     'subIndex' => 3,
     'points' => 340,
     'icon' => '',
@@ -1840,7 +1912,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'General',
-    'index' => 39,
+    'index' => 41,
     'subIndex' => 0,
     'points' => 1010,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds',
@@ -1849,7 +1921,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'General',
-    'index' => 39,
+    'index' => 41,
     'subIndex' => 0,
     'points' => 1010,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_wrothgar_up.dds',
@@ -1858,7 +1930,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Exploration',
-    'index' => 39,
+    'index' => 41,
     'subIndex' => 1,
     'points' => 425,
     'icon' => '',
@@ -1867,7 +1939,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Quests',
-    'index' => 39,
+    'index' => 41,
     'subIndex' => 2,
     'points' => 170,
     'icon' => '',
@@ -1876,7 +1948,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Orsinium',
     'subName' => 'Maelstrom Arena',
-    'index' => 39,
+    'index' => 41,
     'subIndex' => 3,
     'points' => 115,
     'icon' => '',
@@ -1885,7 +1957,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'General',
-    'index' => 40,
+    'index' => 42,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_ic_up.dds',
@@ -1894,7 +1966,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'General',
-    'index' => 40,
+    'index' => 42,
     'subIndex' => 0,
     'points' => 1225,
     'icon' => '/esoui/art/treeicons/tutorial_indexicon_ic_up.dds',
@@ -1903,7 +1975,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'Imperial City Prison',
-    'index' => 40,
+    'index' => 42,
     'subIndex' => 1,
     'points' => 300,
     'icon' => '',
@@ -1912,7 +1984,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
   array (
     'name' => 'Imperial City',
     'subName' => 'White Gold Tower',
-    'index' => 40,
+    'index' => 42,
     'subIndex' => 2,
     'points' => 275,
     'icon' => '',
@@ -2711,7 +2783,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Slaughterer',
     'desc' => 'Kill a total of one hundred livestock animals.',
     'icon' => '/esoui/art/icons/achievement_119.dds',
-    'points' => 5,
+    'points' => 10,
     'index' => 3,
     'criteria' => 
     array (
@@ -2729,7 +2801,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Livestock Mass Murderer',
     'desc' => 'Kill a total of five hundred livestock animals.',
     'icon' => '/esoui/art/icons/achievement_119.dds',
-    'points' => 5,
+    'points' => 15,
     'index' => 3,
     'criteria' => 
     array (
@@ -2915,7 +2987,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Serial Killer',
     'desc' => 'Kill fifty citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_113.dds',
-    'points' => 5,
+    'points' => 10,
     'index' => 10,
     'criteria' => 
     array (
@@ -2933,7 +3005,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Mass Murderer',
     'desc' => 'Kill one hundred citizens of Tamriel.',
     'icon' => '/esoui/art/icons/achievement_114.dds',
-    'points' => 5,
+    'points' => 15,
     'index' => 10,
     'criteria' => 
     array (
@@ -7883,7 +7955,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Massive Damage Dealer',
     'desc' => 'Deal 5,000,000 points of damage to enemies in Cyrodiil.',
     'icon' => '/esoui/art/icons/achievement_027.dds',
-    'points' => 10,
+    'points' => 15,
     'index' => 7,
     'criteria' => 
     array (
@@ -7901,7 +7973,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Tremendous Damage Dealer',
     'desc' => 'Deal 100,000,000 points of damage to enemies in Cyrodiil.',
     'icon' => '/esoui/art/icons/procs_003.dds',
-    'points' => 10,
+    'points' => 50,
     'index' => 7,
     'criteria' => 
     array (
@@ -8015,7 +8087,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Massive Healer',
     'desc' => 'Heal 5,000,000 points of damage to allies in Cyrodiil.',
     'icon' => '/esoui/art/icons/ability_healer_016.dds',
-    'points' => 10,
+    'points' => 15,
     'index' => 12,
     'criteria' => 
     array (
@@ -8033,7 +8105,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'name' => 'Tremendous Healer',
     'desc' => 'Heal 100,000,000 points of damage to allies in Cyrodiil.',
     'icon' => '/esoui/art/icons/ability_healer_015.dds',
-    'points' => 10,
+    'points' => 50,
     'index' => 12,
     'criteria' => 
     array (
@@ -9812,7 +9884,7 @@ Long may you reign!',
     'name' => 'Vindication',
     'desc' => 'Score 10 Avenge kills in the Alliance War or Battlegrounds.',
     'icon' => '/esoui/art/icons/ability_ava_002_b.dds',
-    'points' => 10,
+    'points' => 15,
     'index' => 3,
     'criteria' => 
     array (
@@ -10054,7 +10126,7 @@ Long may you reign!',
     'name' => 'Sweet Vengeance',
     'desc' => 'Score 10 Revenge kills in the Alliance War or Battlegrounds.',
     'icon' => '/esoui/art/icons/ability_ava_002_b.dds',
-    'points' => 10,
+    'points' => 15,
     'index' => 11,
     'criteria' => 
     array (
@@ -10090,7 +10162,7 @@ Long may you reign!',
     'name' => 'Five Under Five',
     'desc' => 'Earn 5 kills when below 5 percent health in the Alliance War or Battlegrounds.',
     'icon' => '/esoui/art/icons/ability_rogue_010.dds',
-    'points' => 10,
+    'points' => 15,
     'index' => 12,
     'criteria' => 
     array (
@@ -10108,7 +10180,7 @@ Long may you reign!',
     'name' => 'Ten Under Five',
     'desc' => 'Earn 10 kills when below 5 percent health in the Alliance War or Battlegrounds.',
     'icon' => '/esoui/art/icons/ability_rogue_010.dds',
-    'points' => 10,
+    'points' => 50,
     'index' => 12,
     'criteria' => 
     array (
@@ -13155,7 +13227,7 @@ Long may you reign!',
   2114 => 
   array (
     'id' => 2114,
-    'name' => 'Prisoner On The Loose',
+    'name' => 'Prisoner on the Loose',
     'desc' => 'Use the "Prisoner\'s Chains" Style in an Outfit.',
     'icon' => '/esoui/art/icons/achievement_manacles.dds',
     'points' => 5,
@@ -13164,7 +13236,7 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Prisoner On The Loose',
+        'name' => 'Prisoner on the Loose',
         'value' => 1,
         'index' => 1,
       ),
@@ -16534,7 +16606,7 @@ Long may you reign!',
       ),
       4 => 
       array (
-        'name' => 'Defeat all champions in The Vile Manse',
+        'name' => 'Defeat all champions in the Vile Manse',
         'value' => 1,
         'index' => 4,
       ),
@@ -17272,7 +17344,7 @@ Long may you reign!',
       ),
       4 => 
       array (
-        'name' => 'Defeat The Silent Sword',
+        'name' => 'Defeat the Silent Sword',
         'value' => 1,
         'index' => 4,
       ),
@@ -17314,7 +17386,7 @@ Long may you reign!',
       ),
       4 => 
       array (
-        'name' => 'Defeat The Silent Sword',
+        'name' => 'Defeat the Silent Sword',
         'value' => 1,
         'index' => 4,
       ),
@@ -17936,7 +18008,7 @@ Long may you reign!',
   array (
     'id' => 1052,
     'name' => 'The Vile Manse Conqueror',
-    'desc' => 'Defeat all of the champions in The Vile Manse.',
+    'desc' => 'Defeat all of the champions in the Vile Manse.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 50,
     'index' => 36,
@@ -17984,7 +18056,7 @@ Long may you reign!',
   array (
     'id' => 1060,
     'name' => 'The Vile Manse Vanquisher',
-    'desc' => 'Defeat three of the champions in The Vile Manse.',
+    'desc' => 'Defeat three of the champions in the Vile Manse.',
     'icon' => '/esoui/art/icons/achievement_017.dds',
     'points' => 10,
     'index' => 37,
@@ -21400,7 +21472,7 @@ Long may you reign!',
   array (
     'id' => 1592,
     'name' => 'Wayrest Sewers I Assassin',
-    'desc' => 'Defeat Slimecraw, Investigator Garron, The Rat Whisperer, Uulgarg the Hungry, Varaine Pellingare, and Allene Pellingare in Veteran Wayrest Sewers I, all within fifteen minutes of starting the dungeon. Timer starts when any player enters the first tunnel to the right of the entrance chamber.',
+    'desc' => 'Defeat Slimecraw, Investigator Garron, the Rat Whisperer, Uulgarg the Hungry, Varaine Pellingare, and Allene Pellingare in Veteran Wayrest Sewers I, all within fifteen minutes of starting the dungeon. Timer starts when any player enters the first tunnel to the right of the entrance chamber.',
     'icon' => '/esoui/art/icons/achievement_020.dds',
     'points' => 50,
     'index' => 19,
@@ -21742,7 +21814,7 @@ Long may you reign!',
   array (
     'id' => 1593,
     'name' => 'Wayrest Sewers I Survivor',
-    'desc' => 'Defeat Slimecraw, Investigator Garron, The Rat Whisperer, Uulgarg the Hungry, Varaine Pellingare, and Allene in Veteran Wayrest Sewers I, without suffering a group member death.',
+    'desc' => 'Defeat Slimecraw, Investigator Garron, the Rat Whisperer, Uulgarg the Hungry, Varaine Pellingare, and Allene in Veteran Wayrest Sewers I, without suffering a group member death.',
     'icon' => '/esoui/art/icons/ability_warrior_032.dds',
     'points' => 50,
     'index' => 13,
@@ -22000,7 +22072,7 @@ Long may you reign!',
   array (
     'id' => 1589,
     'name' => 'Wayrest Sewers I Conqueror',
-    'desc' => 'Defeat Slimecraw, Investigator Garron, The Rat Whisperer, Uulgarg the Hungry, Varain Pellingare, and Allene Pellingare in Veteran Wayrest Sewers I.',
+    'desc' => 'Defeat Slimecraw, Investigator Garron, the Rat Whisperer, Uulgarg the Hungry, Varain Pellingare, and Allene Pellingare in Veteran Wayrest Sewers I.',
     'icon' => '/esoui/art/icons/achievement_026.dds',
     'points' => 10,
     'index' => 2,
@@ -22020,7 +22092,7 @@ Long may you reign!',
       ),
       3 => 
       array (
-        'name' => 'Defeat The Rat Whisperer',
+        'name' => 'Defeat the Rat Whisperer',
         'value' => 1,
         'index' => 3,
       ),
@@ -27003,7 +27075,7 @@ Long may you reign!',
   array (
     'id' => 974,
     'name' => 'The Rift Master Explorer',
-    'desc' => 'Discover and clear all six caves and striking locales in The Rift.',
+    'desc' => 'Discover and clear all six caves and striking locales in the Rift.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 50,
     'index' => 3,
@@ -27697,7 +27769,7 @@ Long may you reign!',
   array (
     'id' => 251,
     'name' => 'Chill Hollow Explorer',
-    'desc' => 'Explore and clear The Chill Hollow.',
+    'desc' => 'Explore and clear the Chill Hollow.',
     'icon' => '/esoui/art/icons/achievement_023.dds',
     'points' => 10,
     'index' => 32,
@@ -36811,6 +36883,2262 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'dyeColor' => '242d58',
     'title' => 'Covenant Hero',
   ),
+  3751 => 
+  array (
+    'id' => 3751,
+    'name' => 'Infinite Archive Challenger',
+    'desc' => 'Complete the listed achievements for the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_muti_meta.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Infinitely Versed',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Attentive Eye',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Leading the Charge',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Arcing Onward',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Infinite Archive Conqueror',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'No Book Left Unread',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+    'title' => 'The Unending',
+    'collectIcon' => '/esoui/art/icons/mrk_shatteredtext.dds',
+    'collectName' => 'Mirrorscribe Body Markings',
+    'collectId' => '11659',
+  ),
+  3752 => 
+  array (
+    'id' => 3752,
+    'name' => 'Infinitely Versed',
+    'desc' => 'Complete all of the unique Verse achievements in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_verse_meta.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'I Crave Violence',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'You Can\'t Touch Me',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Viable and Versatile',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/u39_pagesoftheaggrieved_memento.dds',
+    'collectName' => 'Summoned Booknado',
+    'collectId' => '11480',
+  ),
+  3753 => 
+  array (
+    'id' => 3753,
+    'name' => 'Attentive Eye',
+    'desc' => 'Complete all of the unique Vision achievements in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_vision_meta.dds',
+    'points' => 50,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Visions of Violence',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Infinite Defender',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Seeing the Big Picture',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/u40_accursed_mirror.dds',
+    'collectName' => 'Malkhest\'s Accursed Mirror',
+    'collectId' => '11900',
+  ),
+  3754 => 
+  array (
+    'id' => 3754,
+    'name' => 'Leading the Charge',
+    'desc' => 'Complete the Defeat Boss and Marauder achievements in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_bosses_meta.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Running the Gauntlet',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Watch Them Fall',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Outstanding Onslaught',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Infinite Arc\'s End',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/u40_butcher_haefals_accursed_knife.dds',
+    'collectName' => 'Butcher Haefal\'s Accursed Knife',
+    'collectId' => '11902',
+  ),
+  3755 => 
+  array (
+    'id' => 3755,
+    'name' => 'No Book Left Unread',
+    'desc' => 'Complete all Infinite Archive Optional Achievements.',
+    'icon' => '/esoui/art/icons/u40_ed2_optional_content_meta.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Word Waltzer Complete',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Hidden Prowess Complete',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Ghostlight Gatherer Complete',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Kidding Around Complete',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Mind over Magicka Complete',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Eye See You! Complete',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Pilfered Pilfer Complete',
+        'value' => 1,
+        'index' => 7,
+      ),
+    ),
+    'title' => 'The Well-Versed',
+  ),
+  3934 => 
+  array (
+    'id' => 3934,
+    'name' => 'Going Solo',
+    'desc' => 'Complete 3 Stages without the aid of a companion or other player in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_solo_clears.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Solo Stages Cleared',
+        'value' => 3,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3935 => 
+  array (
+    'id' => 3935,
+    'name' => 'Who Needs Friends?',
+    'desc' => 'Complete 15 Stages without the aid of a companion or other player in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_solo_clears_silver.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Solo Stages Cleared',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3936 => 
+  array (
+    'id' => 3936,
+    'name' => 'Me, Myself, and I',
+    'desc' => 'Complete 60 Stages without the aid of a companion or other player in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_solo_clears_gold.dds',
+    'points' => 15,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Solo Stages Cleared',
+        'value' => 60,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3765 => 
+  array (
+    'id' => 3765,
+    'name' => 'A Little Help Never Hurt',
+    'desc' => 'Complete 3 Stages with a companion in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_companion_allies.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Companion Stages Cleared',
+        'value' => 3,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3930 => 
+  array (
+    'id' => 3930,
+    'name' => 'Companionable Combatant',
+    'desc' => 'Complete 15 Stages with a companion in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_companion_allies_silver.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Companion Stages Cleared',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3931 => 
+  array (
+    'id' => 3931,
+    'name' => 'Companion Champion',
+    'desc' => 'Complete 60 Stages with a companion in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_companion_allies_gold.dds',
+    'points' => 15,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Companion Stages Cleared',
+        'value' => 60,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3766 => 
+  array (
+    'id' => 3766,
+    'name' => 'A Stage For Two',
+    'desc' => 'Complete 3 Stages with another player in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_player_allies.dds',
+    'points' => 5,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Two Player Stages Cleared',
+        'value' => 3,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3932 => 
+  array (
+    'id' => 3932,
+    'name' => 'Infinite Camaraderie',
+    'desc' => 'Complete 15 Stages with another player in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_player_allies_silver.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Two Player Stages Cleared',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3933 => 
+  array (
+    'id' => 3933,
+    'name' => 'Friends for Life',
+    'desc' => 'Complete 60 Stages with another player in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_player_allies_gold.dds',
+    'points' => 15,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Two Player Stages Cleared',
+        'value' => 60,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3768 => 
+  array (
+    'id' => 3768,
+    'name' => 'Once More, Please',
+    'desc' => 'Complete the Replication Elimination daily quest 10 times in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_daily_completions.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Replication Elimination',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3769 => 
+  array (
+    'id' => 3769,
+    'name' => 'First Splurge!',
+    'desc' => 'Spend 1,000 Archival Fortunes in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_collect_tome_coins.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend Archival Fortunes',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3937 => 
+  array (
+    'id' => 3937,
+    'name' => 'It\'s an Investment',
+    'desc' => 'Spend 10,000 Archival Fortunes.',
+    'icon' => '/esoui/art/icons/u40_ed2_spend_tome_coins_silver.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend Archival Fortunes',
+        'value' => 10000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3938 => 
+  array (
+    'id' => 3938,
+    'name' => 'Fortune\'s Flush',
+    'desc' => 'Spend 100,000 Archival Fortunes.',
+    'icon' => '/esoui/art/icons/u40_ed2_spend_tome_coins_gold.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spend Archival Fortunes',
+        'value' => 100000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4008 => 
+  array (
+    'id' => 4008,
+    'name' => 'Favorite Customer',
+    'desc' => 'Purchase all collectibles from the Infinite Archive Merchants.',
+    'icon' => '/esoui/art/icons/u40_ed2_purchased_all_collectibles.dds',
+    'points' => 50,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Filer Kor\'s Truesight',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Aramril\'s Training',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Tentacular Motivation',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Sweeter Deal',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Ghostly Gratitude',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Destozuno\'s Safety Net',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  3926 => 
+  array (
+    'id' => 3926,
+    'name' => 'Ichor Most Malevolent',
+    'desc' => 'Acquire and use 50 Maligraphic Ichors.',
+    'icon' => '/esoui/art/icons/u40_ed2_collectible_mount.dds',
+    'points' => 50,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Maligraphic Ichors',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mount_maligraphicmount.dds',
+    'collectName' => 'Maligraphic Mount',
+    'collectId' => '11407',
+  ),
+  3927 => 
+  array (
+    'id' => 3927,
+    'name' => 'Scheming Skeevers',
+    'desc' => 'Acquire and use 25 Disgusting Spoils.',
+    'icon' => '/esoui/art/icons/u40_ed2_collectible_pet.dds',
+    'points' => 15,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Disgusting Spoils',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/pet_gallinkapocryphaskeever.dds',
+    'collectName' => 'Maligraphic Skeever',
+    'collectId' => '11459',
+  ),
+  3928 => 
+  array (
+    'id' => 3928,
+    'name' => 'Peer Into the Mirror Maze',
+    'desc' => 'Acquire and use 20 Unreliable Archive Maps.',
+    'icon' => '/esoui/art/icons/u40_ed2_collectible_facemarking.dds',
+    'points' => 15,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Unreliable Archive Maps',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mrf_mirthlessmaze.dds',
+    'collectName' => 'Shattered Mirror Maze Face Marks',
+    'collectId' => '11411',
+  ),
+  3929 => 
+  array (
+    'id' => 3929,
+    'name' => 'Walk Through the Mirror Maze',
+    'desc' => 'Acquire and use 20 Erroneous Archive Maps.',
+    'icon' => '/esoui/art/icons/u40_ed2_collectible_bodymarking.dds',
+    'points' => 15,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Erroneous Archive Maps',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mrk_mirthlessmaze.dds',
+    'collectName' => 'Shattered Mirror Maze Body Marks',
+    'collectId' => '11412',
+  ),
+  3946 => 
+  array (
+    'id' => 3946,
+    'name' => 'Pact with the Inevitable Knower',
+    'desc' => 'Collect the Hermaeus Mora Tales of Tribute deck.',
+    'icon' => '/esoui/art/icons/u40_tribute_collect.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Acquire Visionary Mora Deck Fragment',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Acquire Versed Mora Deck Fragment',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Acquire Academ\'s Mora Deck Fragment',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Acquire Seeker\'s Mora Deck Fragment',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Acquire Filer\'s Mora Deck Fragment',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Combine All Hermaeus Mora Deck Fragments',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/tribute_collectable_upgrade_generic.dds',
+    'collectName' => 'Hermaeus Mora',
+    'collectId' => '11564',
+  ),
+  3943 => 
+  array (
+    'id' => 3943,
+    'name' => 'Fathomed the Fathomless',
+    'desc' => 'Collect the upgraded cards from the Hermaeus Mora deck in Tales of Tribute.',
+    'icon' => '/esoui/art/icons/u40_tribute_deckcardupgrade.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Lantern of the Endless',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Unfathomable Secrets',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Seeker Aspirant',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Chromatic Resevoir',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3944 => 
+  array (
+    'id' => 3944,
+    'name' => 'Tentacles in Every Tavern',
+    'desc' => 'Use Hermaeus Mora\'s Patron power to acquire a card from the Tavern 10 times in match-made Tales of Tribute games.',
+    'icon' => '/esoui/art/icons/u40_tribute_power.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'MECHANIC',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3945 => 
+  array (
+    'id' => 3945,
+    'name' => 'Metrand Met His Match',
+    'desc' => 'Defeat Tribute Grand Master Metrand in a game of Tribute.',
+    'icon' => '/esoui/art/icons/u40_tribute_hiddenmaster.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Master Metrand',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3759 => 
+  array (
+    'id' => 3759,
+    'name' => 'Infinite Archive Conqueror',
+    'desc' => 'Defeat the final evolution of Tho\'at Replicanum in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_all_forms_final_boss.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Tho\'at 
+Replicanum',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Inkslayer',
+  ),
+  4004 => 
+  array (
+    'id' => 4004,
+    'name' => 'Knock \'em Down a Peg',
+    'desc' => 'Defeat one of the Marauders in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_defeat_rival_monster.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Marauder',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4005 => 
+  array (
+    'id' => 4005,
+    'name' => 'Marauder Slaughter',
+    'desc' => 'Encounter and defeat all the Marauders in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_defeat_all_rival_monsters.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Marauder Gothmau',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Marauder Ulmor',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Marauder Hilkarax',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3781 => 
+  array (
+    'id' => 3781,
+    'name' => 'I Crave Violence',
+    'desc' => 'Acquire 16 specific and unique Offensive Verses in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_offensive_verses_15.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Archival Weaponry Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Class Embodiment Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Guild Superiority Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Archival Assault Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Archival Worldliness Acquired',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Pustulent Globs Acquired',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Flame Aura Acquired',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Cold Blast Acquired',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Swift Gale Acquired',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Augmented Areas Acquired',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Exsanguinate Acquired',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Beatdown Acquired',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Magical Multitudes Acquired',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Fire Orb Acquired',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Guardian of Pestilence Acquired',
+        'value' => 1,
+        'index' => 15,
+      ),
+      16 => 
+      array (
+        'name' => 'Frenzied Zeal Acquired',
+        'value' => 1,
+        'index' => 16,
+      ),
+    ),
+  ),
+  3782 => 
+  array (
+    'id' => 3782,
+    'name' => 'You Can\'t Touch Me',
+    'desc' => 'Acquire 16 specific and unique Defensive Verses in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_defensive_verses_15.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Transfusion Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Sequential Shield Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Enhanced Remedy Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Siphoning Vigor Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Archival Evasion Acquired',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Head-On Defense Acquired',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Rebirth Acquired',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Reactive Curse Acquired',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Restorative Elixirs Acquired',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Regenerating Bastion Acquired',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Shackled Resolve Acquired',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Redirecting Bonds Acquired',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Defensive Maneuver Acquired',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Fortified Dexterity Acquired',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Restorative Enabling Acquired',
+        'value' => 1,
+        'index' => 15,
+      ),
+      16 => 
+      array (
+        'name' => 'Eye Catching Acquired',
+        'value' => 1,
+        'index' => 16,
+      ),
+    ),
+  ),
+  3783 => 
+  array (
+    'id' => 3783,
+    'name' => 'Viable and Versatile',
+    'desc' => 'Acquire 11 specific and unique Utility Verses in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_utility_verses_15.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stamina Renewal Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Magicka Renewal Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Tomefoolery Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Vital Expiration Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Magical Expiration Acquired',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Energetic Expiration Acquired',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Glamorous Scholar Acquired',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Mighty Bash Acquired',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Unwitting Fortress Acquired',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Gilded Sleight Acquired',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Bountiful Resources Acquired',
+        'value' => 1,
+        'index' => 11,
+      ),
+    ),
+  ),
+  3784 => 
+  array (
+    'id' => 3784,
+    'name' => 'Visions of Violence',
+    'desc' => 'Acquire 16 specific and unique Offensive Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_offensive_visions_15.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Well-Trained Command Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Painful Proficient Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Powerful Domain Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Brawling Blitz Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Brawling Advantage Acquired',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Thaumic Boom Acquired',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Lethal Sorcery Acquired',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Persistent Pain Acquired',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Thumping Thaumaturgy Acquired',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Lasting Harm Acquired',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Targeted Ire Acquired',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Focused Efforts Acquired',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Piercing Perfection Acquired',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Crystalline Strikes Acquired',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Ferocious Strikes Acquired',
+        'value' => 1,
+        'index' => 15,
+      ),
+      16 => 
+      array (
+        'name' => 'Scorching Strikes Acquired',
+        'value' => 1,
+        'index' => 16,
+      ),
+    ),
+  ),
+  3785 => 
+  array (
+    'id' => 3785,
+    'name' => 'Infinite Defender',
+    'desc' => 'Acquire 16 specific and unique Defensive Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_defensive_visions_15.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Curative Vigor Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Hearty Vitality Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Tempered Ward Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Refined Restoration Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Armored Shell Acquired',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Sweeping Guard Acquired',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Mystical Ward Acquired',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Effortless Acrobatics Acquired',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Effortless Aegis Acquired',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Unrestrained Endurance Acquired',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Bolstered Mending Acquired',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Energized Salve Acquired',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Restorative Protection Acquired',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Crystalline Fortification Acquired',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Ferocious Fortification Acquired',
+        'value' => 1,
+        'index' => 15,
+      ),
+      16 => 
+      array (
+        'name' => 'Scorching Fortification Acquired',
+        'value' => 1,
+        'index' => 16,
+      ),
+    ),
+  ),
+  3786 => 
+  array (
+    'id' => 3786,
+    'name' => 'Seeing the Big Picture',
+    'desc' => 'Acquire 15 specific and unique Utility Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_unique_utility_visions_15.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Lessons Learned Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Full Coffers Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Attuned Enchantments Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Vicious Poisons Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Archival Endurance Acquired',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Archival Intelligence Acquired',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Stamina Reserves Acquired',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Magicka Reserves Acquired',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Extended Favor Acquired',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Boundless Potential Acquired',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Resolute Mind Acquired',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Supplemental Thread Acquired',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Crystalline Support Acquired',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Ferocious Support Acquired',
+        'value' => 1,
+        'index' => 14,
+      ),
+      15 => 
+      array (
+        'name' => 'Scorching Support Acquired',
+        'value' => 1,
+        'index' => 15,
+      ),
+    ),
+  ),
+  3795 => 
+  array (
+    'id' => 3795,
+    'name' => 'Keeping It Cool',
+    'desc' => 'Acquire all Visions in the Crystalline Set and then acquire the Ice Avatar Verse in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_ice_avatar.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Crystalline Strikes Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Crystalline Fortification Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Crystalline Support Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Ice Avatar Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3796 => 
+  array (
+    'id' => 3796,
+    'name' => 'Howling with Rage',
+    'desc' => 'Acquire all Visions in the Ferocious Set and then acquire the Werewolf Behemoth Verse in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_werewolf_behemoth.dds',
+    'points' => 15,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ferocious Strikes Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Ferocious Fortification Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Ferocious Support Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Werewolf Behemoth Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3797 => 
+  array (
+    'id' => 3797,
+    'name' => 'Molten Measures',
+    'desc' => 'Acquire all Visions in the Scorching Set and then acquire the Iron Atronach Verse in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_iron_atronach.dds',
+    'points' => 15,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Scorching Strikes Acquired',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Scorching Fortification Acquired',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Scorching Support Acquired',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Iron Atronach Acquired',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3799 => 
+  array (
+    'id' => 3799,
+    'name' => 'Battle Ready',
+    'desc' => 'Acquire 5 Offensive Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_offensive_total_5.dds',
+    'points' => 5,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Offensive Verses or Visions Acquired',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3800 => 
+  array (
+    'id' => 3800,
+    'name' => 'Armed Onslaught',
+    'desc' => 'Acquire 25 Offensive Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_offensive_total_25.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Offensive Verses or Visions Acquired',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3801 => 
+  array (
+    'id' => 3801,
+    'name' => 'Mora\'s Onslaught',
+    'desc' => 'Acquire 75 Offensive Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_offensive_total_75.dds',
+    'points' => 15,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Offensive Verses or Visions Acquired',
+        'value' => 75,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3802 => 
+  array (
+    'id' => 3802,
+    'name' => 'A Sturdy Shield',
+    'desc' => 'Acquire 5 Defensive Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_defensive_total_5.dds',
+    'points' => 5,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defensive Verses or Visions Acquired',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3803 => 
+  array (
+    'id' => 3803,
+    'name' => 'Forceful Fortifications',
+    'desc' => 'Acquire 25 Defensive Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_defensive_total_25.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defensive Verses or Visions Acquired',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3804 => 
+  array (
+    'id' => 3804,
+    'name' => 'Under Mora\'s Protection',
+    'desc' => 'Acquire 75 Defensive Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_defensive_total_75.dds',
+    'points' => 15,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defensive Verses or Visions Acquired',
+        'value' => 75,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3805 => 
+  array (
+    'id' => 3805,
+    'name' => 'Studying Up',
+    'desc' => 'Acquire 5 Utility Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_utility_total_5.dds',
+    'points' => 5,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Utility Verses or Visions Acquired',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3806 => 
+  array (
+    'id' => 3806,
+    'name' => 'Unorthodox Approach',
+    'desc' => 'Acquire 25 Utility Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_utility_total_25.dds',
+    'points' => 10,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Utility Verses or Visions Acquired',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3807 => 
+  array (
+    'id' => 3807,
+    'name' => 'Power Practicum',
+    'desc' => 'Acquire 75 Utility Verses or Visions in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/u40_ed2_utility_total_75.dds',
+    'points' => 15,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Utility Verses or Visions Acquired',
+        'value' => 75,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3798 => 
+  array (
+    'id' => 3798,
+    'name' => 'Archive\'s Most Adored',
+    'desc' => 'Encounter the following factions within the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_factions_encountered.dds',
+    'points' => 10,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ascendant',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Dreadhorn',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Dro-m\'Athra',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Firesong',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Goblins',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Grovebound',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Silver Rose',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Daedric Minions',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Dwarven Constructs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Forest Hunters',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Living Roots',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Magma',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Stormy Seas',
+        'value' => 1,
+        'index' => 13,
+      ),
+    ),
+  ),
+  3760 => 
+  array (
+    'id' => 3760,
+    'name' => 'Heavy Hitter',
+    'desc' => 'Defeat 1,000 Maligraphies within the Infinite Archive Stages.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_heavy_monsters.dds',
+    'points' => 10,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Monsters',
+        'value' => 1000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3761 => 
+  array (
+    'id' => 3761,
+    'name' => 'Monster Mercenary',
+    'desc' => 'Defeat 2,000 Maligraphies within the Infinite Archive Stages.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_heavy_monsters_plus.dds',
+    'points' => 15,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Monsters',
+        'value' => 2000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3762 => 
+  array (
+    'id' => 3762,
+    'name' => 'Fortune\'s Soldier',
+    'desc' => 'Defeat 5,000 Maligraphies within the Infinite Archive Stages.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_heavy_dynamics_2.dds',
+    'points' => 50,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Maligraphies',
+        'value' => 5000,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3763 => 
+  array (
+    'id' => 3763,
+    'name' => 'Fabled Foil',
+    'desc' => 'Defeat 500 Fabled in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_heavy_dynamics_plus.dds',
+    'points' => 50,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fabled',
+        'value' => 500,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3770 => 
+  array (
+    'id' => 3770,
+    'name' => 'Proof of Ability',
+    'desc' => 'Defeat 1 Boss in the Infinite Archive during the first Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_1_bosses_10.dds',
+    'points' => 5,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Boss',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3771 => 
+  array (
+    'id' => 3771,
+    'name' => 'Infinite Endurance',
+    'desc' => 'Defeat 50 Bosses in the Infinite Archive within the first Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_1_bosses_50.dds',
+    'points' => 10,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3772 => 
+  array (
+    'id' => 3772,
+    'name' => 'Running the Gauntlet',
+    'desc' => 'Defeat 100 Bosses in the Infinite Archive within the first Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_1_bosses_100.dds',
+    'points' => 15,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3773 => 
+  array (
+    'id' => 3773,
+    'name' => 'Back for Seconds',
+    'desc' => 'Defeat 1 Boss in the Infinite Archive within the second Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_2_bosses_10.dds',
+    'points' => 5,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Boss',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3774 => 
+  array (
+    'id' => 3774,
+    'name' => 'Boss Basher',
+    'desc' => 'Defeat 30 Bosses in the Infinite Archive within the second Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_2_bosses_50.dds',
+    'points' => 10,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3775 => 
+  array (
+    'id' => 3775,
+    'name' => 'Watch Them Fall',
+    'desc' => 'Defeat 50 Bosses in the Infinite Archive within the second Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_2_bosses_100_brief.dds',
+    'points' => 15,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3776 => 
+  array (
+    'id' => 3776,
+    'name' => 'Still Standing',
+    'desc' => 'Defeat 1 Boss in the Infinite Archive within the third Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_3_bosses_10.dds',
+    'points' => 10,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Boss',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3777 => 
+  array (
+    'id' => 3777,
+    'name' => 'Decisive Dispatch',
+    'desc' => 'Defeat 15 Bosses in the Infinite Archive within the third Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_3_bosses_50.dds',
+    'points' => 15,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 15,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3778 => 
+  array (
+    'id' => 3778,
+    'name' => 'Outstanding Onslaught',
+    'desc' => 'Defeat 30 Bosses in the Infinite Archive within the third Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_3_bosses_100.dds',
+    'points' => 50,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3779 => 
+  array (
+    'id' => 3779,
+    'name' => 'Furious Fighter',
+    'desc' => 'Defeat 1 Boss in the Infinite Archive within the fourth Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_4_bosses_10.dds',
+    'points' => 10,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Boss',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3780 => 
+  array (
+    'id' => 3780,
+    'name' => 'Slaying the Hordes',
+    'desc' => 'Defeat 10 Bosses in the Infinite Archive within the fourth Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_4_bosses_50.dds',
+    'points' => 15,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Infinite Archive Bosses',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3848 => 
+  array (
+    'id' => 3848,
+    'name' => 'Infinite Arc\'s End',
+    'desc' => 'Defeat 20 Bosses in the Infinite Archive within the fourth Arc.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_cycle_4_bosses_100.dds',
+    'points' => 50,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeated Infinite Archive Bosses',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3756 => 
+  array (
+    'id' => 3756,
+    'name' => 'Infinite Archive Vanquisher',
+    'desc' => 'Defeat Tho\'at Replicanum once in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_final_boss_1.dds',
+    'points' => 10,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Tho\'at Replicanum',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3757 => 
+  array (
+    'id' => 3757,
+    'name' => 'You Again',
+    'desc' => 'Defeat Tho\'at Replicanum 10 times in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_final_boss_10.dds',
+    'points' => 15,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Tho\'at Replicanum',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3758 => 
+  array (
+    'id' => 3758,
+    'name' => 'Replicable Results',
+    'desc' => 'Defeat Tho\'at Replicanum 50 times in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_defeat_final_boss_50.dds',
+    'points' => 50,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Tho\'at Replicanum',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mrf_shatteredtext.dds',
+    'collectName' => 'Mirrorscribe Face Markings',
+    'collectId' => '11658',
+  ),
+  3764 => 
+  array (
+    'id' => 3764,
+    'name' => 'Destined Dungeoneer',
+    'desc' => 'Complete 150 Stages at or above Arc 2 in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_heavy_clears.dds',
+    'points' => 15,
+    'index' => 24,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stages Cleared',
+        'value' => 150,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3767 => 
+  array (
+    'id' => 3767,
+    'name' => 'Arcing Onward',
+    'desc' => 'Reach Arc 4 in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_circuit_reached.dds',
+    'points' => 50,
+    'index' => 25,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Arc 4 Reached',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Arc Master Moss',
+    'dyeColor' => '59590f',
+  ),
+  3787 => 
+  array (
+    'id' => 3787,
+    'name' => 'Word Waltzer',
+    'desc' => 'Complete all quests related to the Destozuno\'s Library optional content in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_lost_librarian.dds',
+    'points' => 15,
+    'index' => 26,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'A Bookbinder\'s Bind',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Restoring the Resurrected',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3789 => 
+  array (
+    'id' => 3789,
+    'name' => 'Hidden Prowess',
+    'desc' => 'Complete all difficulties related to the Theater of War\'s optional content in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_lost_duelist.dds',
+    'points' => 15,
+    'index' => 27,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hidden Prowess',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3790 => 
+  array (
+    'id' => 3790,
+    'name' => 'Ghostlight Gatherer',
+    'desc' => 'Complete all difficulties of the Echoing Den optional content in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_wisp_herder.dds',
+    'points' => 15,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ghostlight Gatherer',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3791 => 
+  array (
+    'id' => 3791,
+    'name' => 'Kidding Around',
+    'desc' => 'Complete all difficulties related to the Haefal\'s Butchery optional content in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_goat_run.dds',
+    'points' => 15,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Kidding Around',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3792 => 
+  array (
+    'id' => 3792,
+    'name' => 'Mind Over Magicka',
+    'desc' => 'Completed all difficulties related to the Treacherous Crossing optional content in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_puzzle_room.dds',
+    'points' => 15,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Mind Over Magick',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3793 => 
+  array (
+    'id' => 3793,
+    'name' => 'Eye See You!',
+    'desc' => 'Complete all difficulties related to the Filer\'s Wing optional content in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_watcher_chase.dds',
+    'points' => 15,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Eye See You!',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3794 => 
+  array (
+    'id' => 3794,
+    'name' => 'Pilfered Pilfer',
+    'desc' => 'Kill Gw the Pilferer 5 times in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/achievement_u40_ed2_complete_cartoklept.dds',
+    'points' => 15,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Pilfered Pilfer',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
   1725 => 
   array (
     'id' => 1725,
@@ -38257,8 +40585,8 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1884,
     'name' => 'Echo of Pelinal\'s Fury',
-    'desc' => 'Read a Scroll of Pelinal\'s Ferocity during Whitestrake\'s Mayhem.',
-    'icon' => '/esoui/art/icons/achievement_midyearevent_002.dds',
+    'desc' => 'Prepare yourself for combat by using a Basin of the Gore Virtuous during Whitestrake\'s Mayhem.',
+    'icon' => '/esoui/art/icons/housing_vrd_exc_bowlofblood001.dds',
     'points' => 5,
     'index' => 7,
     'criteria' => 
@@ -38349,7 +40677,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       9 => 
       array (
-        'name' => 'Defeat The Screeching Matron',
+        'name' => 'Defeat the Screeching Matron',
         'value' => 1,
         'index' => 9,
       ),
@@ -38426,6 +40754,208 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
+  ),
+  4031 => 
+  array (
+    'id' => 4031,
+    'name' => 'Cake Devourer',
+    'desc' => 'Acquire a slice of cake from every Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslicemeta.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2016-2018',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2019',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2020',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2021',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2022',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2023',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2024',
+        'value' => 1,
+        'index' => 7,
+      ),
+    ),
+    'title' => 'Cake Connoisseur',
+  ),
+  4032 => 
+  array (
+    'id' => 4032,
+    'name' => 'Jubilee Cake Slice 2016-2018',
+    'desc' => 'Acquire a cake slice from the 2016-2018 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2018.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2016-2018',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4033 => 
+  array (
+    'id' => 4033,
+    'name' => 'Jubilee Cake Slice 2019',
+    'desc' => 'Acquire a cake slice from the 2019 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2019.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2019',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4034 => 
+  array (
+    'id' => 4034,
+    'name' => 'Jubilee Cake Slice 2020',
+    'desc' => 'Acquire a cake slice from the 2020 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2020.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2020',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4035 => 
+  array (
+    'id' => 4035,
+    'name' => 'Jubilee Cake Slice 2021',
+    'desc' => 'Acquire a cake slice from the 2021 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2021.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2020',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4036 => 
+  array (
+    'id' => 4036,
+    'name' => 'Jubilee Cake Slice 2022',
+    'desc' => 'Acquire a cake slice from the 2022 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2022.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2022',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4037 => 
+  array (
+    'id' => 4037,
+    'name' => 'Jubilee Cake Slice 2023',
+    'desc' => 'Acquire a cake slice from the 2023 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2023.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2023',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4038 => 
+  array (
+    'id' => 4038,
+    'name' => 'Jubilee Cake Slice 2024',
+    'desc' => 'Acquire a cake slice from the 2024 Jubilee Cake.',
+    'icon' => '/esoui/art/icons/u41_anniversary_cakeslice2024.dds',
+    'points' => 5,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Cake Slice 2024',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3827 => 
+  array (
+    'id' => 3827,
+    'name' => 'Jubilee Confetti Conveyor',
+    'desc' => 'Consume 25 Jubilee Confetti Packs.',
+    'icon' => '/esoui/art/icons/u41_anniversary_mount.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Jubilee Confetti Pack',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mount_jubileesteed.dds',
+    'collectName' => 'Jubilee Steed',
+    'collectId' => '11535',
   ),
   1719 => 
   array (
@@ -39548,7 +42078,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     array (
       1 => 
       array (
-        'name' => 'Drink The Witchmother\'s Brew during the Witches Festival',
+        'name' => 'Drink the Witchmother\'s Brew during the Witches Festival',
         'value' => 1,
         'index' => 1,
       ),
@@ -40079,6 +42609,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/memento_daedricunwardingamulet.dds',
+    'collectName' => 'Daedric Unwarding Amulet',
+    'collectId' => '9007',
   ),
   2865 => 
   array (
@@ -40131,6 +42664,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Dark Delver',
+    'collectIcon' => '/esoui/art/icons/memento_teaserquest_redchains_007.dds',
+    'collectName' => 'Chains of the Ice Witch',
+    'collectId' => '7404',
   ),
   2567 => 
   array (
@@ -40155,6 +42691,9 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 2,
       ),
     ),
+    'collectIcon' => '/esoui/art/icons/justice_stolen_horn_001.dds',
+    'collectName' => 'Dragonhorn Curio',
+    'collectId' => '6641',
   ),
   2447 => 
   array (
@@ -40319,6 +42858,27 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
     'title' => 'Murkmire Prepper',
+  ),
+  4030 => 
+  array (
+    'id' => 4030,
+    'name' => 'Chosen of Fate',
+    'desc' => 'Help maintain Hermaeus Mora\'s final secret concerning the Forgotten Prince.',
+    'icon' => '/esoui/art/icons/u42_teaserprologue_in_u41.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete "Prisoner of Fate"',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/pet_mirrormoormudcrap.dds',
+    'collectName' => 'Mirrormoor Mudcrab',
+    'collectId' => '11534',
   ),
   3703 => 
   array (
@@ -40830,6 +43390,24 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  3716 => 
+  array (
+    'id' => 3716,
+    'name' => 'Torc of the Last Ayleid King',
+    'desc' => 'Acquire the Mythic Item, Torc of the Last Ayleid King, in Apocrypha.',
+    'icon' => '/esoui/art/icons/u41_tribute_acquiretorcofthelastayleidking.dds',
+    'points' => 15,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Acquire Torc of the Last Ayleid King',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   3745 => 
   array (
     'id' => 3745,
@@ -40837,7 +43415,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Spore Savant Face Marks antiquity.',
     'icon' => '/esoui/art/icons/mrf_sporecrafter.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -40855,7 +43433,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Spore Savant Body Marks antiquity.',
     'icon' => '/esoui/art/icons/mrk_sporecrafter.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -40873,7 +43451,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Glyphic Secrets Music Box antiquity.',
     'icon' => '/esoui/art/icons/housing_uni_inc_glyphicmusicbox001.dds',
     'points' => 15,
-    'index' => 7,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -40891,7 +43469,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Telvanni Alchemy Station antiquity.',
     'icon' => '/esoui/art/icons/housing_uni_fur_tlvalchemystation001.dds',
     'points' => 15,
-    'index' => 8,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -44227,7 +46805,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       4 => 
       array (
-        'name' => 'Defeat Tribute Founder The Author',
+        'name' => 'Defeat Tribute Founder the Author',
         'value' => 1,
         'index' => 4,
       ),
@@ -44269,7 +46847,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       4 => 
       array (
-        'name' => 'Defeat Tribute Founder The Author',
+        'name' => 'Defeat Tribute Founder the Author',
         'value' => 1,
         'index' => 4,
       ),
@@ -48162,7 +50740,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       2 => 
       array (
-        'name' => 'Defeat The Frigid Temptress',
+        'name' => 'Defeat the Frigid Temptress',
         'value' => 1,
         'index' => 2,
       ),
@@ -48782,7 +51360,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3058,
     'name' => 'Leyawiin Agent',
-    'desc' => 'Complete 30 solo daily jobs for Deetum-Jas in Leyawiin within the Blackwood zone.',
+    'desc' => 'Complete 10 solo daily jobs for Deetum-Jas in Leyawiin within the Blackwood zone.',
     'icon' => '/esoui/art/icons/achievement_u30_solo_daily_10.dds',
     'points' => 10,
     'index' => 5,
@@ -55565,7 +58143,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       4 => 
       array (
-        'name' => 'Defeat The Pyandonean Wind',
+        'name' => 'Defeat the Pyandonean Wind',
         'value' => 1,
         'index' => 4,
       ),
@@ -55847,7 +58425,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       4 => 
       array (
-        'name' => 'Defeat The Pyandonean Wind',
+        'name' => 'Defeat the Pyandonean Wind',
         'value' => 1,
         'index' => 4,
       ),
@@ -55965,7 +58543,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2036,
     'name' => 'Reef Raider',
-    'desc' => 'Defeat Queen of the Reef at The Queen\'s Hatchery.',
+    'desc' => 'Defeat Queen of the Reef at the Queen\'s Hatchery.',
     'icon' => '/esoui/art/icons/achievement_su_groupboss_1.dds',
     'points' => 10,
     'index' => 15,
@@ -61676,6 +64254,1259 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  3921 => 
+  array (
+    'id' => 3921,
+    'name' => 'The Recollection Style Master',
+    'desc' => 'Learn every chapter in the Recollection style book, found by defeating the final boss in Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Recollection Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Recollection Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Recollection Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Recollection Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Recollection Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Recollection Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Recollection Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Recollection Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Recollection Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Recollection Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Recollection Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Recollection Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Recollection Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Recollection Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3922 => 
+  array (
+    'id' => 3922,
+    'name' => 'Blind Path Cultist Style Master',
+    'desc' => 'Learn every chapter in the Blind Path Cultist style book, found by defeating the final boss in Bedlam Veil.',
+    'icon' => '/esoui/art/icons/quest_book_001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Axes',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Belts',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Boots',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Bows',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Chests',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Daggers',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Gloves',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Helmets',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Legs',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Maces',
+        'value' => 1,
+        'index' => 10,
+      ),
+      11 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Shields',
+        'value' => 1,
+        'index' => 11,
+      ),
+      12 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Shoulders',
+        'value' => 1,
+        'index' => 12,
+      ),
+      13 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Staves',
+        'value' => 1,
+        'index' => 13,
+      ),
+      14 => 
+      array (
+        'name' => 'Learn the Blind Path Cultist Style for Swords',
+        'value' => 1,
+        'index' => 14,
+      ),
+    ),
+  ),
+  3829 => 
+  array (
+    'id' => 3829,
+    'name' => 'Scions of Ithelia Scout',
+    'desc' => 'Complete both Oathsworn Pit and Bedlam Veil in Normal.',
+    'icon' => '/esoui/art/icons/u41_pkg_both_normal_complete.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Oathsworn Pit Vanquisher',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Bedlam Veil Vanquisher',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  3810 => 
+  array (
+    'id' => 3810,
+    'name' => 'Oathsworn Pit Vanquisher',
+    'desc' => 'Defeat Packmaster Rethelros, Anthelmir and Anthelmir\'s Construct, as well as Aradros the Awakened in Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/u41_dun1_bosses.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Packmaster Rethelros',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Anthelmir and Anthelmir\'s Construct',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Aradros the Awakened',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3851 => 
+  array (
+    'id' => 3851,
+    'name' => 'Bedlam Veil Vanquisher',
+    'desc' => 'Defeat the Shattered Champion, Darkshard, and the Blind in Bedlam Veil.',
+    'icon' => '/esoui/art/icons/u41_dun2_bosses.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Shattered Champion',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Darkshard',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat The Blind',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  4029 => 
+  array (
+    'id' => 4029,
+    'name' => 'Retribution Takes Time',
+    'desc' => 'Complete optional content in Oathsworn Pit and Bedlam Veil.',
+    'icon' => '/esoui/art/icons/u41_achievement_retributiontakestime.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Seeking Approval',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Maelstrom\'s Lockpick',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'dyeName' => 'Artifact-Hunter Amber',
+    'dyeColor' => '330507',
+  ),
+  3825 => 
+  array (
+    'id' => 3825,
+    'name' => 'Seeking Approval',
+    'desc' => 'Complete optional content in Oathsworn Pit by finding and completing the Lodge Leader\'s Trials.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_sidecontent.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Complete the Trial of Blood',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Complete the Trial of Conquest',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Complete the Trial of War',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3866 => 
+  array (
+    'id' => 3866,
+    'name' => 'Maelstrom\'s Lockpick',
+    'desc' => 'Find and solve all the puzzles in Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_optional_content.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Zephyrus Obscuris Unlocked',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Ocular Disperser Unlocked',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Catatonic Disruptor Unlocked',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  3820 => 
+  array (
+    'id' => 3820,
+    'name' => 'Ready. Set. Kick!',
+    'desc' => 'Knock four Recollection members into the pit in Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_flavord.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Ready. Set. Kick!',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3860 => 
+  array (
+    'id' => 3860,
+    'name' => 'Fighting the Locks',
+    'desc' => 'Solve all 3 puzzles within 30 seconds of each other as a team in Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_flavorc.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fighting the Locks',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3861 => 
+  array (
+    'id' => 3861,
+    'name' => 'Veiled Historian',
+    'desc' => 'Find and read all the plaques dedicated to the Barons Who Move Like This in the Hall of Barons in Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_flavord.dds',
+    'points' => 10,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'In Memoriam of the Carver of Shadows',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'In Memoriam of the Gentle Warrior',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'In Memoriam of the Scorching Storm',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'In Memoriam of the Salt Spray',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'In Memoriam of the Ashy Wind',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  4011 => 
+  array (
+    'id' => 4011,
+    'name' => 'Obscured and Erased',
+    'desc' => 'Use Zephyrus Obscuris to clear 5 Area of Effect attacks from one section of the battlefield as a team.',
+    'icon' => '/esoui/art/icons/u41_dun2_flavorg.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Obscured and Erased',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3828 => 
+  array (
+    'id' => 3828,
+    'name' => 'Scions of Ithelia Delver',
+    'desc' => 'Complete both Oathsworn Pit and Bedlam Veil in Veteran.',
+    'icon' => '/esoui/art/icons/u41_pkg_both_veteran_complete.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Oathsworn Pit Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Bedlam Veil Conqueror',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/skin_malacathsblessed.dds',
+    'collectName' => 'Bloodmarks of Malacath',
+    'collectId' => '11912',
+  ),
+  3815 => 
+  array (
+    'id' => 3815,
+    'name' => 'Oathsworn Pit Challenger',
+    'desc' => 'Complete the listed achievements for Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_meta.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Oathsworn Pit Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Scorched but Surviving',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Malacath\'s Swift Revenge',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Enduring Retribution',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3811 => 
+  array (
+    'id' => 3811,
+    'name' => 'Oathsworn Pit Conqueror',
+    'desc' => 'Defeat Packmaster Rethelros, Anthelmir and Anthelmir\'s Construct, as well as Aradros the Awakened in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_vet_bosses.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Packmaster Rethelros',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Anthelmir and Anthelmir\'s Construct',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Aradros the Awakened',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/u41_memento_malacathsdroppedhelmet.dds',
+    'collectName' => 'Malacath Helm Haunt',
+    'collectId' => '12268',
+  ),
+  3823 => 
+  array (
+    'id' => 3823,
+    'name' => 'Pack Hunter',
+    'desc' => 'Defeat Packmaster Rethelros after placing the Challenge Banner in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_hard_mode_boss1.dds',
+    'points' => 50,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Packmaster Rethelros after placing the Challenge Banner',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3824 => 
+  array (
+    'id' => 3824,
+    'name' => 'Splitting Headache',
+    'desc' => 'Defeat Anthelmir and Anthelmir\'s Construct after placing the Challenge Banner in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_hard_mode_boss2.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Anthelmir and her Construct after placing the Banner',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3812 => 
+  array (
+    'id' => 3812,
+    'name' => 'Scorched but Surviving',
+    'desc' => 'Defeat Aradros the Awakened after placing the Challenge Banner in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_hard_mode_final.dds',
+    'points' => 50,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Aradros the Awakened After Placing the Challenge Banner',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Pitmaster',
+  ),
+  3826 => 
+  array (
+    'id' => 3826,
+    'name' => 'Dogged Avenger',
+    'desc' => 'Defeat Aradros the Awakened after placing the Challenge Banner without completing any optional content in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_hard_mode_noside.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dogged Avenger',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3813 => 
+  array (
+    'id' => 3813,
+    'name' => 'Malacath\'s Swift Revenge',
+    'desc' => 'Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir\'s Construct, as well as Aradros the Awakened within 25 minutes of entering Veteran Oathsworn Pit. Your timer starts after engaging the first Recollection members.',
+    'icon' => '/esoui/art/icons/u41_dun1_speed_challenge.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Malacath\'s Swift Revenge',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3814 => 
+  array (
+    'id' => 3814,
+    'name' => 'Enduring Retribution',
+    'desc' => 'Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir\'s Construct, and Aradros the Awakened in Veteran Oathsworn Pit without suffering a group member death.',
+    'icon' => '/esoui/art/icons/u41_dun1_death_challenge.dds',
+    'points' => 50,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enduring Retribution',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3816 => 
+  array (
+    'id' => 3816,
+    'name' => 'Lighting the Embers',
+    'desc' => 'Defeat all encounters in addition to Packmaster Rethelros, Anthelmir and Anthelmir\'s Construct, as well as Aradros the Awakened after placing the Challenge Banner in Veteran Oathsworn Pit within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_perfectnonmeta.dds',
+    'points' => 50,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Lighting the Embers',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Oathsworn',
+  ),
+  4009 => 
+  array (
+    'id' => 4009,
+    'name' => 'Oathsworn Pit Champion',
+    'desc' => 'Complete the listed achievements for Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u37_dun1_flavormeta.dds',
+    'points' => 50,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Recollection Slayer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Robust Monster Slayer',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Betrayed\'s Defender',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Fight Fire with Fire',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Gubduthag\'s Blessing',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Ready. Set. Kick!',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Forgesmith',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Axe Sworn',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Seeking Approval',
+        'value' => 1,
+        'index' => 9,
+      ),
+    ),
+    'title' => 'the Vengeful',
+  ),
+  3808 => 
+  array (
+    'id' => 3808,
+    'name' => 'Recollection Slayer',
+    'desc' => 'Defeat 300 Recollection in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_killmonstersa.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Recollection Slain',
+        'value' => 300,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3809 => 
+  array (
+    'id' => 3809,
+    'name' => 'Robust Monster Slayer',
+    'desc' => 'Defeat 100 Bears, Lurchers, or Iron Atronachs in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_killmonstersb.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Robust Monsters Slain',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3817 => 
+  array (
+    'id' => 3817,
+    'name' => 'Betrayed\'s Defender',
+    'desc' => 'Fight Packmaster Rethelros with all the Oathsworn Warriors alive in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_flavora.dds',
+    'points' => 10,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Betrayed\'s Defender',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3818 => 
+  array (
+    'id' => 3818,
+    'name' => 'Fight Fire with Fire',
+    'desc' => 'Defeat Anthelmir and Anthelmir\'s Construct after detonating every Kindle Pitch Barrel in Malacath\'s Eye in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_flavorb.dds',
+    'points' => 10,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fight Fire with Fire',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3819 => 
+  array (
+    'id' => 3819,
+    'name' => 'Grubduthag\'s Blessing',
+    'desc' => 'Defeat Aradros the Awakened while under the effects of Warrior\'s Visage in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_flavorc.dds',
+    'points' => 10,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Grubduthag\'s Blessing',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3821 => 
+  array (
+    'id' => 3821,
+    'name' => 'Forgesmith',
+    'desc' => 'Forge the Smelter while fighting Aradros the Awakened in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_flavore.dds',
+    'points' => 10,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Forgesmith',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3822 => 
+  array (
+    'id' => 3822,
+    'name' => 'Axe Sworn',
+    'desc' => 'Land all 4 axes within 5 meters of each other while fighting Anthelmir and Anthelmir\'s Construct in Veteran Oathsworn Pit.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun1_flavorf.dds',
+    'points' => 10,
+    'index' => 18,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Axe Sworn',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3856 => 
+  array (
+    'id' => 3856,
+    'name' => 'Bedlam Veil Challenger',
+    'desc' => 'Complete the listed achievements for Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_meta.dds',
+    'points' => 50,
+    'index' => 19,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bedlam Veil Conqueror',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Lithe and Clever',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Demiprince\'s Delight',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Following a Path',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  3852 => 
+  array (
+    'id' => 3852,
+    'name' => 'Bedlam Veil Conqueror',
+    'desc' => 'Defeat the Shattered Champion, Darkshard, and the Blind in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_vet_bosses.dds',
+    'points' => 10,
+    'index' => 20,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Shattered Champion',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Darkshard',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat the Blind',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/u41_memento_echoniirexamination.dds',
+    'collectName' => 'Echonir Examination',
+    'collectId' => '12412',
+  ),
+  3864 => 
+  array (
+    'id' => 3864,
+    'name' => 'Champion Fracturer',
+    'desc' => 'Defeat the Shattered Champion after placing the Challenge Banner in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_hard_mode_boss1.dds',
+    'points' => 50,
+    'index' => 21,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Shattered Champion after placing the Challenge Banner',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3853 => 
+  array (
+    'id' => 3853,
+    'name' => 'Lithe and Clever',
+    'desc' => 'Defeat the Blind after placing the Challenge Banner in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_hard_mode_final.dds',
+    'points' => 50,
+    'index' => 22,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat "the Blind" after Placing the Challenge Banner',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'the Self-governing',
+  ),
+  3865 => 
+  array (
+    'id' => 3865,
+    'name' => 'Light Bringer',
+    'desc' => 'Defeat the Darkshard after placing the Challenge Banner in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_hard_mode_boss2.dds',
+    'points' => 50,
+    'index' => 23,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Darkshard after placing the challenge banner.',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3867 => 
+  array (
+    'id' => 3867,
+    'name' => 'Martial Gift',
+    'desc' => 'Defeat the Blind after placing the Challenge Banner without completing any optional content and having the aid of the buffs in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_hard_mode_nooptional.dds',
+    'points' => 50,
+    'index' => 24,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Martial Gift',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3854 => 
+  array (
+    'id' => 3854,
+    'name' => 'Following a Path',
+    'desc' => 'Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind within 25 minutes of entering Veteran Bedlam Veil. Your timer starts upon engaging the first enemies.',
+    'icon' => '/esoui/art/icons/u41_dun2_speed_challenge.dds',
+    'points' => 50,
+    'index' => 25,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Following a Path',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3855 => 
+  array (
+    'id' => 3855,
+    'name' => 'Demiprince\'s Delight',
+    'desc' => 'Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind in Veteran Bedlam Veil without suffering a group member death.',
+    'icon' => '/esoui/art/icons/u41_dun2_death_challenge.dds',
+    'points' => 50,
+    'index' => 26,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Demiprince\'s Delight',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3857 => 
+  array (
+    'id' => 3857,
+    'name' => 'Unshakeable Fervor',
+    'desc' => 'Defeat all encounters in addition to the Shattered Champion, Darkshard, and the Blind after placing the Challenge Banner in Veteran Bedlam Veil within 25 minutes without suffering a group member death.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_trifecta.dds',
+    'points' => 50,
+    'index' => 27,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Unshakeable Fervor',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Bedlam\'s Disciple',
+  ),
+  4010 => 
+  array (
+    'id' => 4010,
+    'name' => 'Bedlam Veil Champion',
+    'desc' => 'Complete the listed achievements in Bedlam Veil.',
+    'icon' => '/esoui/art/icons/u37_dun2_flavormeta.dds',
+    'points' => 50,
+    'index' => 28,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Blind Path Slayer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Hollow Sentinal Slayer',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Arachnophilia',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Shattered Attackers',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Fighting the Locks',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Veiled Historian',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Trinket Treasurer',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Well Aimed',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Obscured and Erased',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Maelstrom\'s Lockpick',
+        'value' => 1,
+        'index' => 10,
+      ),
+    ),
+    'title' => 'the Intervener',
+  ),
+  3849 => 
+  array (
+    'id' => 3849,
+    'name' => 'Blind Path Slayer',
+    'desc' => 'Defeat 150 Blind Path Cultists in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_killmonstersa.dds',
+    'points' => 10,
+    'index' => 29,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Blind Path Slain',
+        'value' => 150,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3850 => 
+  array (
+    'id' => 3850,
+    'name' => 'Hollow Sentinel Slayer',
+    'desc' => 'Defeat 60 Hollow Sentinels in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_killmonstersb.dds',
+    'points' => 10,
+    'index' => 30,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hollow Sentinels Slain',
+        'value' => 60,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3858 => 
+  array (
+    'id' => 3858,
+    'name' => 'Arachnophilia',
+    'desc' => 'Uncover a Humming Artifact 15 times while fighting the Darkshard in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_flavora.dds',
+    'points' => 10,
+    'index' => 31,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Arachnophilia',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3859 => 
+  array (
+    'id' => 3859,
+    'name' => 'Shattered Attackers',
+    'desc' => 'Kill 10 Glass Remnants after the Siege phase has ended during the Blind Encounter in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/achievement_u41_dun2_flavorb.dds',
+    'points' => 10,
+    'index' => 32,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Shattered Attackers',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3862 => 
+  array (
+    'id' => 3862,
+    'name' => 'Trinket Treasurer',
+    'desc' => 'Use the Ocular Disperser 5 times in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/u41_dun2_flavore.dds',
+    'points' => 10,
+    'index' => 33,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Trinket Treasurer',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+  ),
+  3863 => 
+  array (
+    'id' => 3863,
+    'name' => 'Well Aimed',
+    'desc' => 'Use Catatonic Disruptor to knock the Blind out of the air 3 times as a team in Veteran Bedlam Veil.',
+    'icon' => '/esoui/art/icons/u41_dun2_flavorf.dds',
+    'points' => 10,
+    'index' => 34,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Well Aimed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   3486 => 
   array (
     'id' => 3486,
@@ -62918,7 +66749,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 3662,
     'name' => 'Missing Map Recovered',
-    'desc' => 'Locate and dig up Scrivener\'s Treasure in The Rift.',
+    'desc' => 'Locate and dig up Scrivener\'s Treasure in the Rift.',
     'icon' => '/esoui/art/icons/u37_dun2_flavorg.dds',
     'points' => 10,
     'index' => 12,
@@ -63340,7 +67171,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 1,
       ),
     ),
-    'collectIcon' => '/esoui/art/icons/tribute_collectable_upgrade_generic.dds',
+    'collectIcon' => '/esoui/art/icons/tribute_collectable_upgrade_druid.dds',
     'collectName' => 'Dreamer\'s Druid Deck Fragment',
     'collectId' => '11111',
   ),
@@ -64116,7 +67947,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
         'index' => 6,
       ),
     ),
-    'collectIcon' => '/esoui/art/icons/tribute_collectable_upgrade_generic.dds',
+    'collectIcon' => '/esoui/art/icons/tribute_collectable_upgrade_druid.dds',
     'collectName' => 'Soothing Druid Deck Fragment',
     'collectId' => '11110',
   ),
@@ -67516,6 +71347,24 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
     ),
   ),
+  4007 => 
+  array (
+    'id' => 4007,
+    'name' => 'Fargrave Larcenist',
+    'desc' => 'At the Fargrave Outlaws Refuge in the Deadlands, receive 20,000 gold for fencing items.',
+    'icon' => '/esoui/art/icons/achievement_110.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fargrave Outlaws Refuge',
+        'value' => 20000,
+        'index' => 1,
+      ),
+    ),
+  ),
   3144 => 
   array (
     'id' => 3144,
@@ -67523,7 +71372,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Catch all 12 rare fish in the Deadlands.',
     'icon' => '/esoui/art/icons/achievement_update16_002.dds',
     'points' => 5,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -67607,7 +71456,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Find all of Sister Celdina\'s lectures in the Brandfire Reformatory.',
     'icon' => '/esoui/art/icons/achievement_u32_flavor1_fireandbrimstone.dds',
     'points' => 10,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -67643,7 +71492,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Partake of all the services offered by the House of Whims.',
     'icon' => '/esoui/art/icons/achievement_u32_flavor2_treatyourself.dds',
     'points' => 10,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -67673,7 +71522,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Help the Grasp adjudicate a situation in Fargrave.',
     'icon' => '/esoui/art/icons/achievement_u32_flavor3.dds',
     'points' => 10,
-    'index' => 6,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -67691,7 +71540,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Defeat all the bosses in the Shambles.',
     'icon' => '/esoui/art/icons/achievement_u32_flavor4.dds',
     'points' => 10,
-    'index' => 7,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -67721,7 +71570,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Ancient Daedric style book, occasionally found when digging for Antiquities.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 8,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -67817,7 +71666,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the House Hexos style book, found through delve daily Quests in the Deadlands.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 9,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -67913,7 +71762,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Annihilarch\'s Chosen style book, found in Deadlands Oblivion Portals.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 10,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -68009,7 +71858,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'desc' => 'Learn every chapter in the Fargrave Guardian style book, acquired from Fargrave world boss daily quests.',
     'icon' => '/esoui/art/icons/quest_book_001.dds',
     'points' => 50,
-    'index' => 11,
+    'index' => 12,
     'criteria' => 
     array (
       1 => 
@@ -70126,7 +73975,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   2942 => 
   array (
     'id' => 2942,
-    'name' => 'Welcome to The Reach',
+    'name' => 'Welcome to the Reach',
     'desc' => 'Enter the Reach for the first time.',
     'icon' => '/esoui/art/icons/achievement_u28_loyalty_reward.dds',
     'points' => 5,
@@ -70135,7 +73984,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     array (
       1 => 
       array (
-        'name' => 'Enter The Reach',
+        'name' => 'Enter the Reach',
         'value' => 1,
         'index' => 1,
       ),
@@ -70432,7 +74281,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2944,
     'name' => 'Crow-Eye Savior',
-    'desc' => 'Complete the "After the Storm" quest in The Reach.',
+    'desc' => 'Complete the "After the Storm" quest in the Reach.',
     'icon' => '/esoui/art/icons/achievement_u28_karthwasten.dds',
     'points' => 10,
     'index' => 1,
@@ -73745,7 +77594,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2542,
     'name' => 'Thane\'s Haste',
-    'desc' => 'Defeat Kjarg the Tuskscraper, Sister Skelga, Vearogh the Shambler, The Stormborn Revenant, and the Icereach Coven within 30 minutes of entering Veteran Icereach. Your timer starts when you engage the first group of enemies.',
+    'desc' => 'Defeat Kjarg the Tuskscraper, Sister Skelga, Vearogh the Shambler, the Stormborn Revenant, and the Icereach Coven within 30 minutes of entering Veteran Icereach. Your timer starts when you engage the first group of enemies.',
     'icon' => '/esoui/art/icons/achievement_u25_dun1_speed_challenge.dds',
     'points' => 50,
     'index' => 6,
@@ -74775,7 +78624,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     array (
       1 => 
       array (
-        'name' => 'Complete X Story Quests in Southern Elsweyr',
+        'name' => 'Complete 16 Story Quests in Southern Elsweyr',
         'value' => 16,
         'index' => 1,
       ),
@@ -81567,7 +85416,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     array (
       1 => 
       array (
-        'name' => 'Defeat The Imperfect',
+        'name' => 'Defeat the Imperfect',
         'value' => 1,
         'index' => 1,
       ),
@@ -81583,7 +85432,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 2028,
     'name' => 'Imperfection',
-    'desc' => 'Defeat The Imperfect in the Sanctuary of Verification.',
+    'desc' => 'Defeat the Imperfect in the Sanctuary of Verification.',
     'icon' => '/esoui/art/icons/achievement_update16_003.dds',
     'points' => 10,
     'index' => 5,
@@ -81591,7 +85440,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     array (
       1 => 
       array (
-        'name' => 'Kill The Imperfect',
+        'name' => 'Kill the Imperfect',
         'value' => 1,
         'index' => 1,
       ),
@@ -84110,7 +87959,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1505,
     'name' => 'Ruins of Mazzatun Conqueror',
-    'desc' => 'Defeat Zatzu the Spine-Breaker, The Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in Veteran Ruins of Mazzatun.',
+    'desc' => 'Defeat Zatzu the Spine-Breaker, the Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in Veteran Ruins of Mazzatun.',
     'icon' => '/esoui/art/icons/achievement_update11_dungeons_033.dds',
     'points' => 10,
     'index' => 16,
@@ -84164,7 +88013,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1507,
     'name' => 'Ruination',
-    'desc' => 'Defeat Zatzu the Spine-Breaker, The Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in Veteran Ruins of Mazzatun within 30 minutes of starting the dungeon. Timer starts on passing through the first archway.',
+    'desc' => 'Defeat Zatzu the Spine-Breaker, the Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in Veteran Ruins of Mazzatun within 30 minutes of starting the dungeon. Timer starts on passing through the first archway.',
     'icon' => '/esoui/art/icons/achievement_update11_dungeons_006.dds',
     'points' => 50,
     'index' => 18,
@@ -84182,7 +88031,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1508,
     'name' => 'Unbowed',
-    'desc' => 'Defeat Zatzu the Spine-Breaker, The Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in Veteran Ruins of Mazzatun without suffering a group member death.',
+    'desc' => 'Defeat Zatzu the Spine-Breaker, the Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in Veteran Ruins of Mazzatun without suffering a group member death.',
     'icon' => '/esoui/art/icons/achievement_update11_dungeons_007.dds',
     'points' => 50,
     'index' => 19,
@@ -84596,7 +88445,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1504,
     'name' => 'Ruins of Mazzatun Vanquisher',
-    'desc' => 'Defeat Zatzu the Spine-Breaker, The Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in the Ruins of Mazzatun.',
+    'desc' => 'Defeat Zatzu the Spine-Breaker, the Mighty Chudan, Xal-Nur the Slaver, and Tree-Minder Na-Kesh in the Ruins of Mazzatun.',
     'icon' => '/esoui/art/icons/achievement_update11_dungeons_004.dds',
     'points' => 10,
     'index' => 5,
@@ -86221,7 +90070,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       10 => 
       array (
-        'name' => 'Slay the Target in The Rift with the Blade of Woe',
+        'name' => 'Slay the Target in the Rift with the Blade of Woe',
         'value' => 1,
         'index' => 10,
       ),
@@ -87123,7 +90972,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       5 => 
       array (
-        'name' => 'Steal Kari’s Hit List item in The Rift',
+        'name' => 'Steal Kari\'s Hit List item in the Rift',
         'value' => 1,
         'index' => 5,
       ),
@@ -90394,7 +94243,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       4 => 
       array (
-        'name' => 'Defeat The Flesh Abomination',
+        'name' => 'Defeat the Flesh Abomination',
         'value' => 1,
         'index' => 4,
       ),
@@ -90484,7 +94333,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
   array (
     'id' => 1128,
     'name' => 'No Prison Can Hold Me',
-    'desc' => 'Defeat all mini-boss and boss enemies in Veteran Imperial City Prison within forty five minutes of starting the dungeon. Timer starts when players enter The Bastion.',
+    'desc' => 'Defeat all mini-boss and boss enemies in Veteran Imperial City Prison within forty five minutes of starting the dungeon. Timer starts when players enter the Bastion.',
     'icon' => '/esoui/art/icons/achievement_020.dds',
     'points' => 50,
     'index' => 5,
@@ -91461,7 +95310,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
     array (
       1 => 
       array (
-        'name' => 'Kill The Devourer',
+        'name' => 'Kill the Devourer',
         'value' => 1,
         'index' => 1,
       ),
@@ -91691,7 +95540,7 @@ Note: Repeatable quests only count towards this achievement the first time they 
       ),
       9 => 
       array (
-        'name' => 'Defeat The Screeching Matron',
+        'name' => 'Defeat the Screeching Matron',
         'value' => 1,
         'index' => 9,
       ),
@@ -96524,6 +100373,248 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
     ),
   ),
+  'Infinite Archive' => 
+  array (
+    'General' => 
+    array (
+      1 => 
+      array (
+        0 => 3751,
+      ),
+      2 => 
+      array (
+        0 => 3752,
+      ),
+      3 => 
+      array (
+        0 => 3753,
+      ),
+      4 => 
+      array (
+        0 => 3754,
+      ),
+      5 => 
+      array (
+        0 => 3755,
+      ),
+      6 => 
+      array (
+        0 => 3934,
+        1 => 3935,
+        2 => 3936,
+      ),
+      7 => 
+      array (
+        0 => 3765,
+        1 => 3930,
+        2 => 3931,
+      ),
+      8 => 
+      array (
+        0 => 3766,
+        1 => 3932,
+        2 => 3933,
+      ),
+      9 => 
+      array (
+        0 => 3768,
+      ),
+      10 => 
+      array (
+        0 => 3769,
+        1 => 3937,
+        2 => 3938,
+      ),
+      11 => 
+      array (
+        0 => 4008,
+      ),
+      12 => 
+      array (
+        0 => 3926,
+      ),
+      13 => 
+      array (
+        0 => 3927,
+      ),
+      14 => 
+      array (
+        0 => 3928,
+      ),
+      15 => 
+      array (
+        0 => 3929,
+      ),
+    ),
+    'Tales of Tribute' => 
+    array (
+      1 => 
+      array (
+        0 => 3946,
+      ),
+      2 => 
+      array (
+        0 => 3943,
+      ),
+      3 => 
+      array (
+        0 => 3944,
+      ),
+      4 => 
+      array (
+        0 => 3945,
+      ),
+    ),
+    'Exploration' => 
+    array (
+      1 => 
+      array (
+        0 => 3759,
+      ),
+      2 => 
+      array (
+        0 => 4004,
+      ),
+      3 => 
+      array (
+        0 => 4005,
+      ),
+      4 => 
+      array (
+        0 => 3781,
+      ),
+      5 => 
+      array (
+        0 => 3782,
+      ),
+      6 => 
+      array (
+        0 => 3783,
+      ),
+      7 => 
+      array (
+        0 => 3784,
+      ),
+      8 => 
+      array (
+        0 => 3785,
+      ),
+      9 => 
+      array (
+        0 => 3786,
+      ),
+      10 => 
+      array (
+        0 => 3795,
+      ),
+      11 => 
+      array (
+        0 => 3796,
+      ),
+      12 => 
+      array (
+        0 => 3797,
+      ),
+      13 => 
+      array (
+        0 => 3799,
+        1 => 3800,
+        2 => 3801,
+      ),
+      14 => 
+      array (
+        0 => 3802,
+        1 => 3803,
+        2 => 3804,
+      ),
+      15 => 
+      array (
+        0 => 3805,
+        1 => 3806,
+        2 => 3807,
+      ),
+      16 => 
+      array (
+        0 => 3798,
+      ),
+      17 => 
+      array (
+        0 => 3760,
+        1 => 3761,
+        2 => 3762,
+      ),
+      18 => 
+      array (
+        0 => 3763,
+      ),
+      19 => 
+      array (
+        0 => 3770,
+        1 => 3771,
+        2 => 3772,
+      ),
+      20 => 
+      array (
+        0 => 3773,
+        1 => 3774,
+        2 => 3775,
+      ),
+      21 => 
+      array (
+        0 => 3776,
+        1 => 3777,
+        2 => 3778,
+      ),
+      22 => 
+      array (
+        0 => 3779,
+        1 => 3780,
+        2 => 3848,
+      ),
+      23 => 
+      array (
+        0 => 3756,
+        1 => 3757,
+        2 => 3758,
+      ),
+      24 => 
+      array (
+        0 => 3764,
+      ),
+      25 => 
+      array (
+        0 => 3767,
+      ),
+      26 => 
+      array (
+        0 => 3787,
+      ),
+      27 => 
+      array (
+        0 => 3789,
+      ),
+      28 => 
+      array (
+        0 => 3790,
+      ),
+      29 => 
+      array (
+        0 => 3791,
+      ),
+      30 => 
+      array (
+        0 => 3792,
+      ),
+      31 => 
+      array (
+        0 => 3793,
+      ),
+      32 => 
+      array (
+        0 => 3794,
+      ),
+    ),
+  ),
   'Housing' => 
   array (
     'General' => 
@@ -96699,6 +100790,45 @@ $ESO_ACHIEVEMENT_TREE = array (
       12 => 
       array (
         0 => 2247,
+      ),
+    ),
+    'Anniversary Jubilee' => 
+    array (
+      1 => 
+      array (
+        0 => 4031,
+      ),
+      2 => 
+      array (
+        0 => 4032,
+      ),
+      3 => 
+      array (
+        0 => 4033,
+      ),
+      4 => 
+      array (
+        0 => 4034,
+      ),
+      5 => 
+      array (
+        0 => 4035,
+      ),
+      6 => 
+      array (
+        0 => 4036,
+      ),
+      7 => 
+      array (
+        0 => 4037,
+      ),
+      8 => 
+      array (
+        0 => 4038,
+      ),
+      9 => 
+      array (
+        0 => 3827,
       ),
     ),
     'Jester\'s Festival' => 
@@ -96885,6 +101015,13 @@ $ESO_ACHIEVEMENT_TREE = array (
   ),
   'Prologues' => 
   array (
+    'General' => 
+    array (
+      1 => 
+      array (
+        0 => 4030,
+      ),
+    ),
     'Necrom' => 
     array (
       1 => 
@@ -97083,17 +101220,21 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       5 => 
       array (
-        0 => 3745,
+        0 => 3716,
       ),
       6 => 
       array (
-        0 => 3746,
+        0 => 3745,
       ),
       7 => 
       array (
-        0 => 3747,
+        0 => 3746,
       ),
       8 => 
+      array (
+        0 => 3747,
+      ),
+      9 => 
       array (
         0 => 3748,
       ),
@@ -99576,6 +103717,199 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
     ),
   ),
+  'Scions of Ithelia' => 
+  array (
+    'General' => 
+    array (
+      1 => 
+      array (
+        0 => 3921,
+      ),
+      2 => 
+      array (
+        0 => 3922,
+      ),
+      3 => 
+      array (
+        0 => 3829,
+      ),
+      4 => 
+      array (
+        0 => 3810,
+      ),
+      5 => 
+      array (
+        0 => 3851,
+      ),
+      6 => 
+      array (
+        0 => 4029,
+      ),
+      7 => 
+      array (
+        0 => 3825,
+      ),
+      8 => 
+      array (
+        0 => 3866,
+      ),
+      9 => 
+      array (
+        0 => 3820,
+      ),
+      10 => 
+      array (
+        0 => 3860,
+      ),
+      11 => 
+      array (
+        0 => 3861,
+      ),
+      12 => 
+      array (
+        0 => 4011,
+      ),
+    ),
+    'Veteran' => 
+    array (
+      1 => 
+      array (
+        0 => 3828,
+      ),
+      2 => 
+      array (
+        0 => 3815,
+      ),
+      3 => 
+      array (
+        0 => 3811,
+      ),
+      4 => 
+      array (
+        0 => 3823,
+      ),
+      5 => 
+      array (
+        0 => 3824,
+      ),
+      6 => 
+      array (
+        0 => 3812,
+      ),
+      7 => 
+      array (
+        0 => 3826,
+      ),
+      8 => 
+      array (
+        0 => 3813,
+      ),
+      9 => 
+      array (
+        0 => 3814,
+      ),
+      10 => 
+      array (
+        0 => 3816,
+      ),
+      11 => 
+      array (
+        0 => 4009,
+      ),
+      12 => 
+      array (
+        0 => 3808,
+      ),
+      13 => 
+      array (
+        0 => 3809,
+      ),
+      14 => 
+      array (
+        0 => 3817,
+      ),
+      15 => 
+      array (
+        0 => 3818,
+      ),
+      16 => 
+      array (
+        0 => 3819,
+      ),
+      17 => 
+      array (
+        0 => 3821,
+      ),
+      18 => 
+      array (
+        0 => 3822,
+      ),
+      19 => 
+      array (
+        0 => 3856,
+      ),
+      20 => 
+      array (
+        0 => 3852,
+      ),
+      21 => 
+      array (
+        0 => 3864,
+      ),
+      22 => 
+      array (
+        0 => 3853,
+      ),
+      23 => 
+      array (
+        0 => 3865,
+      ),
+      24 => 
+      array (
+        0 => 3867,
+      ),
+      25 => 
+      array (
+        0 => 3854,
+      ),
+      26 => 
+      array (
+        0 => 3855,
+      ),
+      27 => 
+      array (
+        0 => 3857,
+      ),
+      28 => 
+      array (
+        0 => 4010,
+      ),
+      29 => 
+      array (
+        0 => 3849,
+      ),
+      30 => 
+      array (
+        0 => 3850,
+      ),
+      31 => 
+      array (
+        0 => 3858,
+      ),
+      32 => 
+      array (
+        0 => 3859,
+      ),
+      33 => 
+      array (
+        0 => 3862,
+      ),
+      34 => 
+      array (
+        0 => 3863,
+      ),
+    ),
+  ),
   'Scribes of Fate' => 
   array (
     'General' => 
@@ -100367,37 +104701,41 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       3 => 
       array (
-        0 => 3144,
+        0 => 4007,
       ),
       4 => 
       array (
-        0 => 3205,
+        0 => 3144,
       ),
       5 => 
       array (
-        0 => 3206,
+        0 => 3205,
       ),
       6 => 
       array (
-        0 => 3204,
+        0 => 3206,
       ),
       7 => 
       array (
-        0 => 3207,
+        0 => 3204,
       ),
       8 => 
       array (
-        0 => 2999,
+        0 => 3207,
       ),
       9 => 
       array (
-        0 => 2959,
+        0 => 2999,
       ),
       10 => 
       array (
-        0 => 3098,
+        0 => 2959,
       ),
       11 => 
+      array (
+        0 => 3098,
+      ),
+      12 => 
       array (
         0 => 3220,
       ),

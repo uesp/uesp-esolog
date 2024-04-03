@@ -1340,7 +1340,7 @@ class CEsoItemLink
 		$result->data_seek(0);
 		$this->collectibleItemData = $result->fetch_assoc();
 		
-		if (!$this->collectibleItemData) 
+		if (!$this->collectibleItemData)
 		{
 			$this->ReportError("ERROR: No collectible item found matching {$this->itemErrorDesc}!");
 			$this->collectibleItemData = array();
@@ -1364,7 +1364,7 @@ class CEsoItemLink
 		$result->data_seek(0);
 		$this->antiquityItemData = $result->fetch_assoc();
 		
-		if (!$this->antiquityItemData) 
+		if (!$this->antiquityItemData)
 		{
 			$this->ReportError("ERROR: No antiquity item found matching {$this->itemErrorDesc}!");
 			$this->antiquityItemData = array();
