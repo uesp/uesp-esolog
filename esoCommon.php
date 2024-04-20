@@ -2152,6 +2152,23 @@ $ESO_SET_INDEXES = array(
 		754 => "Oakfather's Retribution",
 		755 => "Blunted Blades",
 		756 => "Baan Dar's Blessing",
+		757 => "Symmetry of the Weald",
+		758 => "Macabre Vintage",
+		759 => "Ayleid Refuge",
+		760 => "Rourken Steamguards",
+		761 => "The Shadow Queen's Cowl",
+		762 => "The Saint and the Seducer",
+		763 => "Tharriker's Strike",
+		764 => "Highland Sentinel",
+		765 => "Threads of War",
+		766 => "Mora Scribe's Thesis",
+		767 => "Slivers of the Null Arca",
+		768 => "Lucent Echoes",
+		769 => "Xoryn's Masterpiece",
+		770 => "Perfected Xoryn's Masterpiece",
+		771 => "Perfected Lucent Echoes",
+		772 => "Perfected Slivers of the Null Arca",
+		773 => "Perfected Mora Scribe's Thesis",
 );
 
 
@@ -4516,6 +4533,12 @@ function GetEsoItemTableSuffix($version)
 			return "";
 		case '41pts':
 			return "41pts";
+		case '41':
+			return "";
+		case '42pts':
+			return "42pts";
+		case '42':
+			return "42";
 		case '':
 			return "";
 	}
