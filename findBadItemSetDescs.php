@@ -11,7 +11,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 $count = count($ESO_SET_INDEXES);
 print("Finding all bad set descriptions in $count sets...\n");
 
-$TABLE_SUFFIX = "40";
+$TABLE_SUFFIX = "42";
 $VERBOSE = true;
 $REMOVE_NUMBERS = true;
 $OUTPUT_FIXITEMS = true;

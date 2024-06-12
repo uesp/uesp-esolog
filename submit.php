@@ -100,6 +100,8 @@ class EsoLogSubmitter
 	{
 		//print("Error: " . $errorMsg . "\n");
 		
+		error_log("ESO Log Submit Error: $errorMsg");
+		
 		$this->fileErrorMsg .= $errorMsg . "<br/>";
 		$this->fileError = 10;
 		
@@ -109,8 +111,10 @@ class EsoLogSubmitter
 	
 	public function reportWarning ($errorMsg)
 	{
+		error_log("ESO Log Submit Warning: $errorMsg");
+		
 		$this->fileErrorMsg .= $errorMsg . "<br/>";
-	
+		
 		return false;
 	}
 	
@@ -267,13 +271,18 @@ Uploading Data...
 		
 		$result = move_uploaded_file ($this->fileTmpName, $destFilename);
 		if (!$result) return $this->reportError("Failed to move temporary upload file!");
-
+		
 		chmod($destFilename, 0644);
 		
 		$this->Lua = new Lua();
 		
-		$result = $this->Lua->include($destFilename);
-		$this->fileLuaResult = $result;
+		try {
+			$result = $this->Lua->include($destFilename);
+			$this->fileLuaResult = $result;
+		} catch (Exception $e) {
+			$this->reportError("LUA Parse Error: " . $e->getMessage());
+			return false;
+		}
 		
 		$this->readIndexFile();
 		$this->parseVarRootLevel($this->Lua->uespLogSavedVars);
@@ -355,7 +364,7 @@ Uploading Data...
 			// Older log files won't have a buildData section so its not an error
 		if ($buildData == null) return TRUE;
 		
-			// Empty data sections are removed by the Lua/PHP parser	
+			// Empty data sections are removed by the Lua/PHP parser
 		$data = $buildData['data'];
 		if ($data == null) return True;
 		

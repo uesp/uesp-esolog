@@ -1,12 +1,15 @@
 <?php
 
 
-$TABLE_SUFFIX = "41";
+$TABLE_SUFFIX = "";
 $OUTPUT_PATH = "/home/uesp/esoItemImages/sets/";
 
 require("itemLinkImage.class.php");
 
-if ($TABLE_SUFFIX != "") $OUTPUT_PATH .= "$TABLE_SUFFIX/";
+if ($TABLE_SUFFIX == "")
+	$OUTPUT_PATH .= GetEsoUpdateVersion() . "/";
+else
+	$OUTPUT_PATH .= "$TABLE_SUFFIX/";
 
 print("Generating all set image tooltips for update $TABLE_SUFFIX to '$OUTPUT_PATH'...\n");
 

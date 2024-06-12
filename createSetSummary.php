@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "42pts";
+$TABLE_SUFFIX = "42";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;

@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "42pts";
-	const SKILLS_TABLESUFFIX   = "42pts";
+	const MINEITEM_TABLESUFFIX = "42";
+	const SKILLS_TABLESUFFIX   = "42";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -1219,6 +1219,7 @@ class EsoLogParser
 	
 	public static $ANTIQUITYLEAD_FIELDS = array(
 			'id' => self::FIELD_INT,
+			'logId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'icon' => self::FIELD_STRING,
 			'quality' => self::FIELD_INT,
@@ -2456,21 +2457,21 @@ class EsoLogParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS user (
 						name TINYTEXT NOT NULL,
-						entryCount BIGINT NOT NULL,
-						errorCount BIGINT NOT NULL,
-						duplicateCount BIGINT NOT NULL,
-						newCount BIGINT NOT NULL,
-						chestsFound INTEGER NOT NULL,
-						sacksFound INTEGER NOT NULL,
-						trovesFound INTEGER NOT NULL,
-						safeBoxesFound INTEGER NOT NULL,
-						booksRead INTEGER NOT NULL,
-						nodesHarvested INTEGER NOT NULL,
-						itemsLooted INTEGER NOT NULL,
-						itemsStolen INTEGER NOT NULL,
-						mobsKilled INTEGER NOT NULL,
+						entryCount BIGINT NOT NULL DEFAULT 0,
+						errorCount BIGINT NOT NULL DEFAULT 0,
+						duplicateCount BIGINT NOT NULL DEFAULT 0,
+						newCount BIGINT NOT NULL DEFAULT 0,
+						chestsFound INTEGER NOT NULL DEFAULT 0,
+						sacksFound INTEGER NOT NULL DEFAULT 0,
+						trovesFound INTEGER NOT NULL DEFAULT 0,
+						safeBoxesFound INTEGER NOT NULL DEFAULT 0,
+						booksRead INTEGER NOT NULL DEFAULT 0,
+						nodesHarvested INTEGER NOT NULL DEFAULT 0,
+						itemsLooted INTEGER NOT NULL DEFAULT 0,
+						itemsStolen INTEGER NOT NULL DEFAULT 0,
+						mobsKilled INTEGER NOT NULL DEFAULT 0,
 						enabled TINYINT NOT NULL DEFAULT 1,
-						language TINYTEXT NOT NULL,
+						language TINYTEXT NOT NULL DEFAULT '',
 						PRIMARY KEY (name(64))
 					) ENGINE=MYISAM;";
 		
@@ -3538,24 +3539,24 @@ class EsoLogParser
 						setName TINYTEXT NOT NULL,
 						setIcon TINYTEXT NOT NULL,
 						setQuality TINYINT NOT NULL,
-						setRewardId INTEGER NOT NULL,
-						setCount TINYINT NOT NULL,
-						categoryId INTEGER NOT NULL,
-						categoryOrder TINYINT NOT NULL,
-						categoryName TINYTEXT NOT NULL,
-						categoryIcon TINYTEXT NOT NULL,
-						categoryCount TINYINT NOT NULL,
-						parentCategoryId INTEGER NOT NULL,
-						loreName1 TINYTEXT NOT NULL,
-						loreDescription1 MEDIUMTEXT NOT NULL,
-						loreName2 TINYTEXT NOT NULL,
-						loreDescription2 MEDIUMTEXT NOT NULL,
-						loreName3 TINYTEXT NOT NULL,
-						loreDescription3 MEDIUMTEXT NOT NULL,
-						loreName4 TINYTEXT NOT NULL,
-						loreDescription4 MEDIUMTEXT NOT NULL,
-						loreName5 TINYTEXT NOT NULL,
-						loreDescription5 MEDIUMTEXT NOT NULL,
+						setRewardId INTEGER NOT NULL DEFAULT -1,
+						setCount TINYINT NOT NULL DEFAULT 0,
+						categoryId INTEGER NOT NULL DEFAULT -1,
+						categoryOrder TINYINT NOT NULL DEFAULT 0,
+						categoryName TINYTEXT NOT NULL DEFAULT '',
+						categoryIcon TINYTEXT NOT NULL DEFAULT '',
+						categoryCount TINYINT NOT NULL DEFAULT 0,
+						parentCategoryId INTEGER NOT NULL DEFAULT -1,
+						loreName1 TINYTEXT NOT NULL DEFAULT '',
+						loreDescription1 MEDIUMTEXT NOT NULL DEFAULT '',
+						loreName2 TINYTEXT NOT NULL DEFAULT '',
+						loreDescription2 MEDIUMTEXT NOT NULL DEFAULT '',
+						loreName3 TINYTEXT NOT NULL DEFAULT '',
+						loreDescription3 MEDIUMTEXT NOT NULL DEFAULT '',
+						loreName4 TINYTEXT NOT NULL DEFAULT '',
+						loreDescription4 MEDIUMTEXT NOT NULL DEFAULT '',
+						loreName5 TINYTEXT NOT NULL DEFAULT '',
+						loreDescription5 MEDIUMTEXT NOT NULL DEFAULT '',
 						PRIMARY KEY (id),
 						FULLTEXT(name, loreName1, loreDescription1, loreName2, loreDescription2, loreName3, loreDescription3, loreName4, loreDescription4, loreName5, loreDescription5)
 					) ENGINE=MYISAM;";
@@ -6998,6 +6999,7 @@ class EsoLogParser
 			$this->currentUser['__dirty'] = true;
 		}
 		
+		//$antiquity['logId'] = $this->currentLogEntryId;
 		$antiquity['name'] = $logEntry['name'];
 		$antiquity['requiresLead'] = $logEntry['requiresLead'] == 'true' ? "1" : "0";
 		$antiquity['icon'] = $logEntry['icon'];
