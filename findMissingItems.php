@@ -7,15 +7,15 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "42";
-$VERSION = "42";
+$TABLEPREFIX = "43pts";
+$VERSION = "43pts";
 $FIRSTID = 3;
 $INCLUDEENDFUNC = true;
 $LASTID = 220000;
 //$MAGICCOUNT = 1483;
 //$MAGICCOUNT = 1533;
 $MAGICCOUNT = 1532;
-//$MAGICCOUNT = 8;	//PTS
+$MAGICCOUNT = 8;	//PTS
 
 $luaFunctionCount = 1;
 $MAX_ITEMS_PER_FUNCTION = 1;

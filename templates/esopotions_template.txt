@@ -131,6 +131,7 @@
 				<li reagent1="Blue Entoloma" reagent2="Clam Gall" reagent3="Scrib Jelly">Blue Entoloma + Clam Gall + Scrib Jelly</li>
 				<li reagent1="Beetle Scuttle" reagent2="Corn Flower" reagent3="Lady's Smock">Beetle Scuttle + Corn Flower + Lady's Smock</li>
 				<li reagent1="Emetic Russula" reagent2="Water Hyacinth" reagent3="White Cap">Emetic Russula + Water Hyacinth + White Cap</li>
+				<li reagent1="Dragon's Bile" reagent2="Fleshfly Larva" reagent3="">Dragon's Bile + Fleshfly Larva</li>
 			</ol>
 			<p/><br/>
 			To learn just the 2 new reagents from the Summerset chapter in as few combinations as possible (4):

@@ -4541,6 +4541,10 @@ function GetEsoItemTableSuffix($version)
 			return "";
 		case '':
 			return "";
+		case '43pts':
+			return "43pts";
+		case '43':
+			return "43";
 	}
 
 	return "";

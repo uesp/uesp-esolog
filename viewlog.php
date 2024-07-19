@@ -10,9 +10,10 @@ require("esoCommon.php");
 class EsoLogViewer
 {
 	const PRINT_DB_ERRORS = true;
+	const SHOW_QUERY = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "42";
+	const ENABLE_PTS_VERSION = "43";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -1539,7 +1540,17 @@ class EsoLogViewer
 					'table' => 'questStep',
 					'method' => 'DoRecordDisplay',
 					'sort' => 'questId, stageIndex, stepIndex',
-						
+					
+					'badSort' => [ 'journalText' => 1, 'text' => 1 ],
+					'validsortfields' => array(
+							'id',
+							'questId',
+							'stageIndex',
+							'stepIndex',
+							'zone',
+							'uniqueId',
+					),
+					
 					'transform' => array(
 							'type' => 'GetEsoQuestStepTypeText',
 							'visibility' => 'GetEsoQuestStepVisibilityTypeText',
@@ -3457,6 +3468,13 @@ class EsoLogViewer
 	{
 		if ($this->outputFormat == 'CSV') return true;
 		
+		if (self::SHOW_QUERY)
+		{
+			print("<!-- Last Query: \n");
+			print($this->lastQuery);
+			print("  -->\n");
+		}
+		
 		$lastUpdate = $this->logInfos['lastUpdate'];
 		if ($lastUpdate == null) $lastUpdate = '?';
 		
@@ -3756,6 +3774,10 @@ If you do not understand what this information means, or how to use this webpage
 	public function IsValidSortField($recordInfo, $field)
 	{
 		if ($field == '') return true;
+		
+		$badSort = $recordInfo['badSort'];
+		if ($badSort && $badSort[$field]) return false;
+		
 		if (!array_key_exists('validsortfields', $recordInfo)) return true;
 		if (in_array($field, $recordInfo['validsortfields'])) return true;
 		return false;
@@ -3766,6 +3788,7 @@ If you do not understand what this information means, or how to use this webpage
 	{
 		$sort = '';
 		$customSort = $this->recordSort;
+		$badSort = $recordInfo['badSort'];
 		
 		if (!$this->IsValidSortField($recordInfo, $customSort)) $customSort = '';
 		if ($customSort == '' && $recordInfo['sort'] == '') return '';
