@@ -6072,6 +6072,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7228 => array(
+			'name'    => "The Lord of Fear",
+			'journal' => "The Daedric Lord of Fear, Hollowjack, is once again active in Nirn. I met a priest of Stendarr named Maxien Roudille who told me the Daedric Lord is torturing his victims with fear and terror. I agreed to help stop him.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	2746 => array(
 			'name'    => "Scout Dragonclaw Lumbermill",
 			'journal' => "I accepted a mission to scout Dragonclaw Lumbermill  for the Dominion.",
@@ -7370,7 +7378,7 @@ $ESO_QUEST_DATA = array(
 		),
 	4463 => array(
 			'name'    => "The Merethic Collection",
-			'journal' => "The Merethic Society hid several of its most valuable treasures throughout the ruins of Runanyil's Fall.",
+			'journal' => "The Merethic Society hid several of its most valuable treasures throughout the ruins of Rulanyil's Fall.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -18560,6 +18568,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7232 => array(
+			'name'    => "Fallen Leaves of West Weald",
+			'journal' => "Gandrinar, a Wood Elf researcher, is working on a book about the Ayleids and their connection to the Daedra. He asked me to help him search for Ayleid remnants scattered across West Weald and assemble them into a bundle for his research.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	4814 => array(
 			'name'    => "News of Fallen Kin",
 			'journal' => "I discovered the body of one of the Fighters Guild soldiers in Mal Sorra's Tomb. She started writing a note to her cousin, Grundskar, another soldier.",
@@ -20891,6 +20907,14 @@ $ESO_QUEST_DATA = array(
 	5505 => array(
 			'name'    => "Fire in the Hold",
 			'journal' => "The perfidious occupants of Watcher's Hold have regrouped. Even now, they stockpile supplies in preparation for more attacks on the people of Wrothgar. Sergeant Oufa has signed a contract to ensure that the situation is dealt with.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7233 => array(
+			'name'    => "Infinite Avenger: Fabled",
+			'journal' => "A ghost named Esalinwe lost all her threads of fate in the Infinite Archive. She wants retribution, and asked me to kill the Fabled maligraphies who had a hand in causing her death.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -25659,6 +25683,14 @@ $ESO_QUEST_DATA = array(
 	7220 => array(
 			'name'    => "The Wing of the Crow",
 			'journal' => "The final wing of the Scholarium lies open. The unmarked door is actually the Wing of the Crow. The Crow will be conducting my final trial, as I seek to complete my journey to restore the Scribing Altar.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7230 => array(
+			'name'    => "Infinite Avenger: Marauder",
+			'journal' => "A ghost named Esalinwe lost all her threads of fate in the Infinite Archive. She wants retribution, and asked me to kill a Marauder since they played a part in her death.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",

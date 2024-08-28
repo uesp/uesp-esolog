@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 110,
-						'numBooks' => 1522 
+						'numCollect' => 113,
+						'numBooks' => 1564 
 				),
 				1 => array (
 						'id' => 43,
@@ -8400,6 +8400,198 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				111 => array (
+						'id' => 219,
+						'name' => 'West Weald Legion Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7964 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7965 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7966 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7967 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7968 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7969 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7970 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7971 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7972 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7973 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7974 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7975 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7976 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7977 => array (
+										'title' => 'Crafting Motif 127: West Weald Legion Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				112 => array (
+						'id' => 220,
+						'name' => 'Lucent Sentinel Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								7979 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7980 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7981 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7982 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7983 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7984 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7985 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7986 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7987 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7988 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7989 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7990 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7991 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								7992 => array (
+										'title' => 'Crafting Motif 128: Lucent Sentinel Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				113 => array (
+						'id' => 221,
+						'name' => 'Hircine Bloodhunter Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								8030 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8031 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8032 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8033 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8034 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8035 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8036 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8037 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8038 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8039 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8040 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8041 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8042 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8043 => array (
+										'title' => 'Crafting Motif 129: Hircine Bloodhunter Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
 				) 
 		),
 		3 => array (
@@ -8407,7 +8599,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
 						'numCollect' => 52,
-						'numBooks' => 4520 
+						'numBooks' => 4533 
 				),
 				1 => array (
 						'id' => 44,
@@ -10944,7 +11136,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				7 => array (
 						'id' => 50,
 						'name' => 'Houses, Shops, and Trade',
-						'numBooks' => 86,
+						'numBooks' => 87,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								152 => array (
@@ -11290,6 +11482,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								5960 => array (
 										'title' => 'Architectural Survey Summary Report',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8237 => array (
+										'title' => 'Handbook for New Homeowners',
+										'icon' => '/esoui/art/icons/lore_book2_detail2_color3.dds' 
 								) 
 						) 
 				),
@@ -11808,7 +12004,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				9 => array (
 						'id' => 52,
 						'name' => 'Lore and Culture',
-						'numBooks' => 111,
+						'numBooks' => 110,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								351 => array (
@@ -12250,10 +12446,6 @@ $ESO_BOOK_COLLECTIONS = array (
 								5376 => array (
 										'title' => 'Reman II: The Limits of Ambition',
 										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
-								),
-								7940 => array (
-										'title' => 'All Our Perfect Forms',
-										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
 								) 
 						) 
 				),
@@ -18648,7 +18840,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				27 => array (
 						'id' => 85,
 						'name' => 'Orsinium Archive',
-						'numBooks' => 54,
+						'numBooks' => 59,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
 						'books' => array (
 								3210 => array (
@@ -18866,6 +19058,26 @@ $ESO_BOOK_COLLECTIONS = array (
 								3224 => array (
 										'title' => 'Invitation to Orsinium',
 										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								3089 => array (
+										'title' => 'Torug ag Krazak, Uz',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								3086 => array (
+										'title' => 'Torug ag Krazak, Uhz',
+										'icon' => '/esoui/art/icons/quest_runestone_006.dds' 
+								),
+								3087 => array (
+										'title' => 'Torug ag Krazak, Uhg',
+										'icon' => '/esoui/art/icons/quest_runestone_005.dds' 
+								),
+								3088 => array (
+										'title' => 'Torug ag Krazak, Aht',
+										'icon' => '/esoui/art/icons/quest_runestone_004.dds' 
+								),
+								3091 => array (
+										'title' => 'Kharsthun`s Translation, Second Stanza',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
 								) 
 						) 
 				),
@@ -23964,7 +24176,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				43 => array (
 						'id' => 188,
 						'name' => 'The Impresario`s Catalogue',
-						'numBooks' => 15,
+						'numBooks' => 17,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								6493 => array (
@@ -24026,6 +24238,14 @@ $ESO_BOOK_COLLECTIONS = array (
 								6215 => array (
 										'title' => 'Jubilee Cake Voucher',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8164 => array (
+										'title' => 'Letter from Farvyn`s Mother',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8151 => array (
+										'title' => 'Research Assistant Required!',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
 								) 
 						) 
 				),
@@ -26024,7 +26244,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				50 => array (
 						'id' => 215,
 						'name' => 'West Weald Writings',
-						'numBooks' => 120,
+						'numBooks' => 122,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								7778 => array (
@@ -26497,7 +26717,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								8052 => array (
 										'title' => 'Seeker Manadra`s Expedition',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color5.dds' 
 								),
 								8053 => array (
 										'title' => 'Neletai`s Notes',
@@ -26506,13 +26726,21 @@ $ESO_BOOK_COLLECTIONS = array (
 								8054 => array (
 										'title' => 'Cavot Agnan`s Breakthrough',
 										'icon' => '/esoui/art/icons/lore_book3_detail2_color1.dds' 
+								),
+								7897 => array (
+										'title' => 'Dawnwood Note',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								7899 => array (
+										'title' => 'Note to Nantharion',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
 								) 
 						) 
 				),
 				51 => array (
 						'id' => 222,
 						'name' => 'Dungeon Delver Documents',
-						'numBooks' => 27,
+						'numBooks' => 28,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								7763 => array (
@@ -26622,14 +26850,18 @@ $ESO_BOOK_COLLECTIONS = array (
 								8095 => array (
 										'title' => 'In Memoriam of the Ashy Wind',
 										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								7792 => array (
+										'title' => 'Notes on Tho`at Replicanum',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color3.dds' 
 								) 
 						) 
 				),
 				52 => array (
 						'id' => 223,
 						'name' => 'Scholarium Scribblings',
-						'numBooks' => 68,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'numBooks' => 71,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_magic.dds',
 						'books' => array (
 								8146 => array (
 										'title' => 'An Argument For Common Sense',
@@ -26902,6 +27134,18 @@ $ESO_BOOK_COLLECTIONS = array (
 								8111 => array (
 										'title' => 'Notes on the Fable of the Netch',
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8294 => array (
+										'title' => 'Scribing for the Aldmeri Dominion',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
+								),
+								8296 => array (
+										'title' => 'Scribing for the Ebonheart Pact',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
+								),
+								8298 => array (
+										'title' => 'Scribing for the Daggerfall Covenant',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
 								) 
 						) 
 				) 

@@ -77,7 +77,7 @@ class CEsoCreateSkillTree
 	
 	public function ReportError($msg)
 	{
-		exit($msg . "\nDB Error: " . $this->db->error . "\n");
+		print($msg . "\nDB Error: " . $this->db->error . "\n");
 		return false;
 	}
 	
@@ -436,10 +436,11 @@ class CEsoCreateSkillTree
 			for($index = 1; $index <= 12; $index++)
 			{
 				$skillLineId = $skillTreeLine[$index];
-				//if ($skillLineId == '') continue;
+				if ($skillLineId == '') continue;		//TODO: Shouldn't happen but sometimes does?
 				
 				$thisSkill = $this->skills[$skillLineId];
 				$displayId = $thisSkill['displayId'];
+				if ($displayId == "") $displayId = $skillLineId;		//TODO: Shouldn't happen but sometimes does?
 				$name = $this->db->real_escape_string($thisSkill['name']);
 				
 				$desc = $thisSkill['description'];
