@@ -3454,9 +3454,11 @@ class EsoLogViewer
 	<title>UESP:ESO Log Data Viewer</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css" />
+	<link rel="stylesheet" href="//esolog-static.uesp.net/resources/theme.default.min.css?sept2024a" />
+	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css?sept2024b" />
 	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
+	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.tablesorter.min.js?sept2024a"></script>
+	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js?sept2024a"></script>
 </head>
 <body>
 <?php
@@ -3982,8 +3984,8 @@ If you do not understand what this information means, or how to use this webpage
 	{
 		if ($this->IsOutputHTML())
 		{
-			$output  = "\t<tr>\n";
-			$output .= "\t\t<th></th>\n";
+			$output  = "\t<thead><tr>\n";
+			$output .= "\t\t<th class='sorter-false'></th>\n";
 		}
 		
 		foreach ($recordInfo['fields'] as $key => $value)
@@ -4009,8 +4011,8 @@ If you do not understand what this information means, or how to use this webpage
 		
 		if ($this->IsOutputHTML())
 		{
-			$output .= "\t\t<th></th>\n";
-			$output .= "\t</tr>\n";
+			$output .= "\t\t<th class='sorter-false'></th>\n";
+			$output .= "\t</tr></thead>\n";
 		}
 		elseif ($this->IsOutputCSV())
 		{
@@ -4436,10 +4438,11 @@ If you do not understand what this information means, or how to use this webpage
 		{
 			$output .= "Displaying $displayCount of $this->totalRowCount records from $startIndex to $endIndex.\n";
 			$output .= "<br />" . $this->GetNextPrevLink($recordInfo);
-			$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
+			$output .= "<table id='esologtable' border='1' cellspacing='0' cellpadding='2' class=''>\n";
 		}
 		
 		$output .= $this->GetRecordFieldHeader($recordInfo);
+		if ($this->IsOutputHTML()) $output .= "<tbody>\n";
 		
 		$result->data_seek(0);
 		
@@ -4479,6 +4482,7 @@ If you do not understand what this information means, or how to use this webpage
 		
 		if ($this->IsOutputHTML()) 
 		{
+			$output .= "</tbody>\n";
 			$output .= "</table>\n";
 			$output .= $this->GetNextPrevLink($recordInfo);
 		}

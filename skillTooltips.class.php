@@ -192,6 +192,7 @@ class CEsoSkillTooltips
 		if ($type1 == 25 && $type2 ==  0)	return self::$POWERTYPE_MAGICKA;
 		if ($type1 ==  4 && $type2 ==  0)	return self::$POWERTYPE_MAGICKA;
 		if ($type1 == 25 && $type2 == 35)	return UESP_POWERTYPE_DAMAGE;
+		if ($type1 == 35 && $type2 == 25)	return UESP_POWERTYPE_DAMAGE;
 		if ($type1 == 35 && $type2 ==  4)	return UESP_POWERTYPE_MAGICKAWITHWD;
 		if ($type1 ==  1 && $type2 ==  0)	return UESP_POWERTYPE_WEAPONPOWER;
 		if ($type1 ==  2 && $type2 ==  0)	return UESP_POWERTYPE_WEAPONPOWER;
@@ -860,6 +861,8 @@ class CEsoSkillTooltips
 			$coefType = UESP_POWERTYPE_HEALTHORDAMAGE;
 		else 
 			$coefType = $coefType1;
+		
+		if ($coefType == -1) $coefType = UESP_POWERTYPE_CONSTANTVALUE;
 		
 		$newInfo['coefFactor'] = $this->GetTooltipCoefFactor($abilityId, $rank, $tooltipIndex, $coefIndex);
 		$coefFactor = 1;

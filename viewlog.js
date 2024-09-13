@@ -12,6 +12,10 @@ function OnEsoLogViewSearchRowClick()
 window.esologViewerOnDocReady = function ()
 {
 	$(".esologSearchRow").click(OnEsoLogViewSearchRowClick)
+	
+	$("#esologtable").tablesorter({
+		theme : 'default'
+	});
 }
 
 

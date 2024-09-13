@@ -479,6 +479,16 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		output += srcString + "    (Capped at " + c + "% Health)";
 		typeString = "Magicka and Light Armor (Health Capped)";
 		break;
+	case -80:	// Herald of the Tome skills slotted
+		a = Math.round(a);
+		output += srcString + " = " + a + " HeraldoftheTomeSkills";
+		typeString = "Herald of the Tome Skills Slotted";
+		break;
+	case -81:	//Soldier of Apocrypha skills slotted
+		a = Math.round(a);
+		output += srcString + " = " + a + " SoldierofApocryphaSkills";
+		typeString = "Soldier of Apocryphae Skills Slotted";
+		break;
 	default:
 		output += srcString + " = ?";
 		typeString = "Unknown Type " + tooltip.coefType;
@@ -1902,6 +1912,12 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		
 		var maxValue = Math.floor(c * health);
 		if (value > maxValue) value = maxValue;
+		break;
+	case -80:	// Herald of the Tome skills slotted
+		value = a * inputValues.HeraldoftheTomeSkills;
+		break;
+	case -81:	//Soldier of Apocrypha skills slotted
+		value = a * inputValues.SoldierofApocryphaSkills;
 		break;
 	default:
 		value = '?';

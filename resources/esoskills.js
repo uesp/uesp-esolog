@@ -895,6 +895,8 @@ window.GetEsoSkillInputValues = function ()
 			 ChannelDamageDone: {},
 			 SpellResist: armor,
 			 PhysicalResist: armor,
+			 HeraldoftheTomeSkills: 0,
+			 SoldierofApocryphaSkills: 0,
 		};
 	
 	return g_LastSkillInputValues;
@@ -1240,7 +1242,7 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 		value = value1 + value2;
 		if (value > maxValue) value = maxValue;
 	}	
-	else if (type == -74) 
+	else if (type == -74)
 	{
 		value = a * values.WeaponPower + c;
 	}
@@ -1248,21 +1250,29 @@ window.ComputeEsoSkillValue = function (values, type, a, b, c, coefDesc, valueIn
 	{
 		value = c;
 	}
-	else if (type == -76) 
+	else if (type == -76)
 	{
 		var value1 = Math.floor(a * values.SpellDamage) + c;
 		var value2 = Math.floor(b * values.Health) + c;
 		value = Math.max(value1, value2);
 	}
-	else if (type == -79) 
+	else if (type == -79)
 	{
 		var value1 = Math.floor(a * values.SpellDamage) + Math.floor(b * values.WeaponDamage);
 		var value2 = Math.floor(c * values.Health);
 		value = Math.max(value1, value2);
 	}
-	else if (type == -77) 
+	else if (type == -77)
 	{
 		value = Math.floor(a * Math.max(values.SpellResist, values.PhysicalResist)) + c;
+	}
+	else if (type == -80)
+	{
+		value = a * values.HeraldoftheTomeSkills;
+	}
+	else if (type == -81)
+	{
+		value = a * values.SoldierofApocryphaSkills;
 	}
 	else
 	{
@@ -4215,6 +4225,18 @@ window.GetEsoSkillCoefDataHtml = function(skillData, i)
 	{
 		output += srcString + " = " + a + " MaxResist " + cOp + " " + c;
 		typeString = "Max Resistance";
+	}
+	else if (type == -80)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " HeraldoftheTomeSkills";
+		typeString = "Herald of the Tome Slotted";
+	}
+	else if (type == -81)
+	{
+		a = Math.round(a);
+		output += srcString + " = " + a + " SoldierofApocryphaSkills";
+		typeString = "Soldier of Apocrypha Slotted";
 	}
 	else
 	{

@@ -940,6 +940,7 @@ class EsoLogParser
 			'isPassive' => self::FIELD_INT,
 			'isChanneled' => self::FIELD_INT,
 			'isPermanent' => self::FIELD_INT,
+			'isCrafted' => self::FIELD_INT,
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
@@ -3167,6 +3168,7 @@ class EsoLogParser
 			isPassive TINYINT NOT NULL DEFAULT 0,
 			isChanneled TINYINT NOT NULL DEFAULT 0,
 			isPermanent TINYINT NOT NULL DEFAULT 0,
+			isCrafted TINYINT NOT NULL DEFAULT 0,
 			castTime INTEGER NOT NULL DEFAULT -1,
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
@@ -8524,10 +8526,11 @@ class EsoLogParser
 		$skill['radius'] = $logEntry['radius'];
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
-				
+		
 		$skill['isPassive'] = $logEntry['passive'] == "true" ? 1 : 0;
 		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
 		$skill['isChanneled'] = $logEntry['channel'];
+		$skill['isCrafted'] = $logEntry['isCrafted'] == "true" ? 1 : 0;
 		
 		$skill['angleDistance'] = $logEntry['angleDistance'];
 		$skill['mechanic'] = $logEntry['mechanic'];
@@ -8835,6 +8838,7 @@ class EsoLogParser
 		$skill['radius'] = $logEntry['radius'];
 		$skill['isPassive'] = $logEntry['passive'];
 		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
+		$skill['isCrafted'] = $logEntry['isCrafted'] == "true" ? 1 : 0;
 		if ($skill['isPermanent'] == null) $skill['isPermanent'] = 0;
 		$skill['isChanneled'] = $logEntry['channel'];
 		$skill['castTime'] = $logEntry['castTime'];

@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "43";
+$TABLE_SUFFIX = "";
 
 require_once("esoCommon.php");
 
@@ -112,6 +112,12 @@ $ESO_SLOTTED_SKILLS = array(
 		34042 => -73,
 		34045 => -73,
 		34048 => -73,
+		
+		184885 => -80,	//Arcanist Splintered Secrets
+		184887 => -80,
+		
+		185033 => -81, 	//Arcanist Wellspring of the Abyss
+		185036 => -81,
 );
 
 $ESO_COEF_INDEX = array(

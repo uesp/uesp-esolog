@@ -100,3 +100,16 @@ body {
 .uespEsoSkillRefTable tr td:nth-child(5) {
 	text-align: center;
 }
+
+.tablesorter-default tbody>tr.even:hover>td, .tablesorter-default tbody>tr.hover>td, .tablesorter-default tbody>tr.odd:hover>td, .tablesorter-default tbody>tr:hover>td {
+	background-color: transparent;
+}
+.tablesorter-default {
+	background-color: transparent;
+}
+.tablesorter-default td {
+    background-color: transparent;
+}
+.tablesorter-default th, .tablesorter-default thead td {
+	background-color: transparent;
+}

@@ -57,6 +57,8 @@ const UESP_POWERTYPE_HEALTHORSPELLDAMAGE = -76;
 const UESP_POWERTYPE_RESISTANCE = -77;
 const UESP_POWERTYPE_MAGICLIGHTARMOR = -78;
 const UESP_POWERTYPE_HEALTHORDAMAGE = -79;
+const UESP_POWERTYPE_HERALDOFTHETOME = -80;
+const UESP_POWERTYPE_SOLDIEROFAPOCRYPHA = -81;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -1513,6 +1515,8 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_HEALTHORDAMAGE => "Health or Weapon/Spell Damage",
 		UESP_POWERTYPE_RESISTANCE => "Max Resistance",
 		UESP_POWERTYPE_MAGICLIGHTARMOR => "Magicka and Light Armor (Health Capped)",
+		UESP_POWERTYPE_HERALDOFTHETOME => "Herald of the Tome Skills Slotted",
+		UESP_POWERTYPE_SOLDIEROFAPOCRYPHA => "Soldier of Apocrypha Skills Slotted",
 );
 
 
@@ -4544,6 +4548,8 @@ function GetEsoItemTableSuffix($version)
 		case '43pts':
 			return "43pts";
 		case '43':
+			return "";
+		case 'test':
 			return "";
 	}
 	

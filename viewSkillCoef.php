@@ -405,7 +405,6 @@ class CEsoViewSkillCoef
 				UESP_POWERTYPE_ARMORTYPE => array("ArmorTypes", ""),
 				UESP_POWERTYPE_DAMAGE => array("SD", "WD"),
 				UESP_POWERTYPE_ASSASSINATION => array("Assassin", ""),
-				
 				UESP_POWERTYPE_FIGHTERSGUILD => array("FightersGuild", ""),
 				UESP_POWERTYPE_DRACONICPOWER => array("DraconicPower", ""),
 				UESP_POWERTYPE_SHADOW => array("Shadow", ""),
@@ -428,6 +427,8 @@ class CEsoViewSkillCoef
 				UESP_POWERTYPE_RESISTANCE => array("MaxResist", ""),
 				UESP_POWERTYPE_MAGICLIGHTARMOR => array("Magicka", "LightArmor"),
 				UESP_POWERTYPE_HEALTHORDAMAGE => array("Health", "MaxPower"),
+				UESP_POWERTYPE_HERALDOFTHETOME => array("HeraldoftheTome", ""),
+				UESP_POWERTYPE_SOLDIEROFAPOCRYPHA => array("SoldierofApocrypha", ""),
 				
 				-2 => array("Health", ""),
 				0 => array("Magicka", "SD"),

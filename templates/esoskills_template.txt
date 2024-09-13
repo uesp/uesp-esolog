@@ -8,8 +8,8 @@
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?26March2021"></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoSkillTooltips.js?26March2021"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?12Sept2024a"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoSkillTooltips.js?12Sept2024a"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
@@ -64,7 +64,7 @@
 	<hr />
 	<div id="esovsSkillCoefData">
 		<a id="esovsSkillHistoryLink" href="{skillHistoryLink}">Skill Coefficient History</a>
-		<h2>Skill Coefficients</h2>		
+		<h2>Skill Coefficients</h2>
 		<div id="esovsSkillCoefContent" style="display: none;">
 			{coefSkillData}
 		</div>
@@ -73,7 +73,7 @@
 	<hr />
 	<div id="esovsRawData">
 		<a id="esovsRawDataSkillLink" class="esovsRawDataSkillLink">Link to Raw Skill Data</a>
-		<h2>Raw Skill Data</h2>		
+		<h2>Raw Skill Data</h2>
 		<div id="esovsRawDataContent" style="display: none;">
 			{rawSkillData}
 		</div>
@@ -83,7 +83,7 @@
 <div id="esovsRightBlock" style="{rightBlockMargin}">
 	<div id="esovsSkillTree">{skillTree}</div>
 	<div id="esovsSkillContent">{skillContent}</div>
-	{skillBar}		
+	{skillBar}
 </div>
 
 <div class="esovsBlockClear"></div>
