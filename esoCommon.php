@@ -2173,6 +2173,19 @@ $ESO_SET_INDEXES = array(
 		771 => "Perfected Lucent Echoes",
 		772 => "Perfected Slivers of the Null Arca",
 		773 => "Perfected Mora Scribe's Thesis",
+		775 => "Spattering Disjunction",
+		776 => "Pyrebrand",
+		777 => "Corpseburster",
+		778 => "Umbral Edge",
+		779 => "Beacon of Oblivion",
+		780 => "Aetheric Lancer",
+		781 => "Aerie's Cry",
+		782 => "Tracker's Lash",
+		783 => "Shared Pain",
+		784 => "Siegemaster's Focus",
+		791 => "Bulwark Ruination",
+		792 => "Farstrider",
+		793 => "Netch Oil",
 );
 
 
@@ -4549,6 +4562,10 @@ function GetEsoItemTableSuffix($version)
 			return "43pts";
 		case '43':
 			return "";
+		case '44pts':
+			return "44pts";
+		case '44':
+			return "44";
 		case 'test':
 			return "";
 	}

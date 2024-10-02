@@ -37,6 +37,7 @@ window.RAWDATA_KEYS =
 		"type",
 		"skillTypeName",
 		"cost",
+		"costTime",
 		"rank",
 		"maxRank",
 		"learnedLevel",
@@ -103,6 +104,7 @@ window.RAWDATA_KEYS =
 		"skillIndex",
 		"isChanneled",
 		"mechanic",
+		"mechanicTime",
 		"upgradeLines",
 ];
 
@@ -447,30 +449,51 @@ window.CreateEsoSkillCostTooltipHtml = function(skillData)
 	
 	var mechanics = skillData['mechanic'].split(',');
 	var costs = skillData['cost'].split(',');
+	var costTimes;
+	var mechanicTimes;
 	var chargeFreqs = skillData['chargeFreq'].split(',');
+	
+	if (skillData['costTime'] == null) 
+		costTimes = costs;
+	else
+		costTimes = skillData['costTime'].split(',');;
+		
+	if (skillData['mechanicTime'] == null) 
+		mechanicTimes = mechanics;
+	else
+		mechanicTimes = skillData['mechanicTime'].split(',');;
 	
 	for (var i = 0; i < mechanics.length; ++i)
 	{
 		var mechanic = parseInt(mechanics[i]);
+		var mechanicTime = parseInt(mechanicTimes[i]);
 		var cost = parseInt(costs[i]);
+		var costTime = parseInt(costTimes[i]);
 		var chargeFreq = parseInt(chargeFreqs[i]) / 1000;
 		
 		if (isNaN(cost)) cost = 0;
+		if (isNaN(costTime)) costTime = 0;
+		if (isNaN(mechanicTime)) mechanicTime = 0;
 		if (isNaN(chargeFreq)) chargeFreq = 0;
 		
 		var realCost = ComputeEsoSkillCost(cost, null, null, mechanic, skillData);
+		var realCostTime = ComputeEsoSkillCost(costTime, null, null, mechanicTime, skillData);
 		var costStr = GetEsoSkillTooltipFormatCostString(mechanic, realCost, skillData);
+		var costTimeStr = GetEsoSkillTooltipFormatCostString(mechanicTime, realCostTime, skillData);
 		var costClass = GetEsoSkillTooltipFormatCostClass(mechanic);
+		var costClassTime = GetEsoSkillTooltipFormatCostClass(mechanicTime);
 		
-		if (chargeFreq > 0) 
+		if (chargeFreq > 0 && costTime > 0)
 		{
-			output += "<div mechanic='" + mechanic + "' class='esovsSkillTooltipValue " + costClass + " esovsSkillTooltipCost' >" + costStr + "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div></div>";
+			output += "<div mechanic='" + mechanicTime + "' class='esovsSkillTooltipValue " + costClassTime + " esovsSkillTooltipCost' >" + costTimeStr + "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div></div>";
+			output += "<div class='esovsSkillTooltipName'>Cost</div>";
 		}
-		else {
-			output += "<div  mechanic='" + mechanic + "' class='esovsSkillTooltipValue " + costClass + " esovsSkillTooltipCost' >" + costStr + "</div>";
+		else if (cost > 0)
+		{
+			output += "<div mechanic='" + mechanic + "' class='esovsSkillTooltipValue " + costClass + " esovsSkillTooltipCost' >" + costStr + "</div>";
+			output += "<div class='esovsSkillTooltipName'>Cost</div>";
 		}
 		
-		output += "<div class='esovsSkillTooltipName'>Cost</div>";
 	}
 	
 	return output;
@@ -3705,7 +3728,7 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 {	
 	if (g_LastSkillId <= 0) return;
 	
-	$(".esovsSkillTooltipCost").each(function() 
+	$(".esovsSkillTooltipCost").each(function()
 	{
 		var skillData = g_SkillsData[g_LastSkillId];
 		if (skillData == null) return;
@@ -3713,24 +3736,50 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 		var mechanics = skillData['mechanic'].split(',');
 		var costs = skillData['cost'].split(',');
 		var chargeFreqs = skillData['chargeFreq'].split(',');
+		var costTimes;
+		var mechanicTimes;
 		
 		var thisMechanic = parseInt($(this).attr("mechanic"));
+		
+		if (skillData['mechanicTime'] != null)
+			mechanicTimes = skillData['mechanicTime'].split(',');
+		else
+			mechanicTimes = mechanics;
+		
+		if (skillData['costTime'] != null)
+			costTimes = skillData['costTime'].split(',');
+		else
+			costTimes = costs;
 		
 		for (var i = 0; i < mechanics.length; ++i)
 		{
 			var mechanic = parseInt(mechanics[i]);
+			var mechanicTime = parseInt(mechanicTimes[i]);
 			var baseCost = parseInt(costs[i]);
+			var baseCostTime = parseInt(costTimes[i]);
 			var chargeFreq = parseInt(chargeFreqs[i]) / 1000;
 			
-			if (mechanic == thisMechanic)
+			if (mechanic == thisMechanic || mechanicTime == thisMechanic)
 			{
-				var costText = ComputeEsoSkillCost(baseCost, g_LastSkillInputValues.EffectiveLevel, g_LastSkillInputValues, mechanic, skillData);
-				var costHtml = GetEsoSkillTooltipFormatCostString(mechanic, costText, skillData);
+				var costText = "";
+				var costHtml = "";
 				
-				if (chargeFreq > 0) 
+				if (chargeFreq > 0 && baseCostTime > 0)
 				{
+					costText = ComputeEsoSkillCost(baseCostTime, g_LastSkillInputValues.EffectiveLevel, g_LastSkillInputValues, mechanicTime, skillData);
+					costHtml = GetEsoSkillTooltipFormatCostString(mechanicTime, costText, skillData);
+					
 					costHtml += "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div>";
 					costText += " / " + chargeFreq + "s";
+				}
+				else if (baseCost > 0)
+				{
+					costText = ComputeEsoSkillCost(baseCost, g_LastSkillInputValues.EffectiveLevel, g_LastSkillInputValues, mechanic, skillData);
+					costHtml = GetEsoSkillTooltipFormatCostString(mechanic, costText, skillData);
+				}
+				else
+				{
+					costHtml = "";
 				}
 				
 				$(this).html(costHtml);
@@ -3755,6 +3804,18 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 	var mechanics = skillData['mechanic'].split(',');
 	var costs = skillData['cost'].split(',');
 	var chargeFreqs = skillData['chargeFreq'].split(',');
+	var mechanicTimes;
+	var costTimes;
+	
+	if (skillData['mechanicTime'] != null)
+		mechanicTimes = skillData['mechanicTime'].split(',');
+	else
+		mechanicTimes = mechanics;
+	
+	if (skillData['costTime'] != null)
+		costTimes = skillData['costTime'].split(',');
+	else
+		costTimes = costs;
 	
 	var costHtmls = [];
 	var costTexts = [];
@@ -3762,23 +3823,35 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 	for (var i = 0; i < mechanics.length; ++i)
 	{
 		var mechanic = parseInt(mechanics[i]);
+		var mechanicTime = parseInt(mechanicTimes[i]);
 		var baseCost = parseInt(costs[i]);
+		var baseCostTime = parseInt(costTimes[i]);
 		var chargeFreq = parseInt(chargeFreqs[i]) / 1000;
 		
-		if (mechanic != thisMechanic) continue;
+		if (mechanic != thisMechanic && mechanicTime != thisMechanic) continue;
 		
 		if (isNaN(baseCost)) baseCost = 0;
+		if (isNaN(baseCostTime)) baseCostTime = 0;
 		if (isNaN(chargeFreq)) chargeFreq = 0;
 		
-		if (!IsEsoSkillMechanicUltimate(mechanic) && !IsEsoSkillMechanicMagicka(mechanic) && !IsEsoSkillMechanicStamina(mechanic) && !IsEsoSkillMechanicHealth(mechanic)) continue;
+		if (!IsEsoSkillMechanicUltimate(mechanic) && !IsEsoSkillMechanicMagicka(mechanic) && !IsEsoSkillMechanicStamina(mechanic) && !IsEsoSkillMechanicHealth(mechanic) &&
+				!IsEsoSkillMechanicUltimate(mechanicTime) && !IsEsoSkillMechanicMagicka(mechanicTime) && !IsEsoSkillMechanicStamina(mechanicTime) && !IsEsoSkillMechanicHealth(mechanicTime)) continue;
 		
-		var costText = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, mechanic, skillData);
-		var costHtml = GetEsoSkillTooltipFormatCostString(mechanic, costText, skillData);
+		var costText = "";
+		var costHtml = "";
 		
-		if (chargeFreq > 0) 
+		if (chargeFreq > 0 && baseCostTime > 0)
 		{
+			costText = ComputeEsoSkillCost(baseCostTime, inputValues.EffectiveLevel, inputValues, mechanicTime, skillData);
+			costHtml = GetEsoSkillTooltipFormatCostString(mechanicTime, costText, skillData);
+			
 			costHtml += "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div>";
 			costText += " / " + chargeFreq + "s";
+		}
+		else
+		{
+			costText = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, mechanic, skillData);
+			costHtml = GetEsoSkillTooltipFormatCostString(mechanic, costText, skillData);
 		}
 		
 		costHtmls.push(costHtml);
@@ -3806,28 +3879,52 @@ window.GetEsoSkillCost = function(skillId, inputValues, useHtml = true)
 	var mechanics = skillData['mechanic'].split(',');
 	var costs = skillData['cost'].split(',');
 	var chargeFreqs = skillData['chargeFreq'].split(',');
+	var mechanicTimes;
+	var costTimes;
 	
 	var costHtmls = [];
 	var costTexts = [];
 	
+	if (skillData['mechanicTime'] != null)
+		mechanicTimes = skillData['mechanicTime'].split(',');
+	else
+		mechanicTimes = mechanics;
+	
+	if (skillData['costTime'] != null)
+		costTimes = skillData['costTime'].split(',');
+	else
+		costTimes = costs;
+	
 	for (var i = 0; i < mechanics.length; ++i)
 	{
 		var mechanic = parseInt(mechanics[i]);
+		var mechanicTime = parseInt(mechanicTimes[i]);
 		var baseCost = parseInt(costs[i]);
+		var baseCostTime = parseInt(costTimes[i]);
 		var chargeFreq = parseInt(chargeFreqs[i]) / 1000;
 		
 		if (isNaN(baseCost)) baseCost = 0;
+		if (isNaN(baseCostTime)) baseCostTime = 0;
 		if (isNaN(chargeFreq)) chargeFreq = 0;
 		
-		if (!IsEsoSkillMechanicUltimate(mechanic) && !IsEsoSkillMechanicMagicka(mechanic) && !IsEsoSkillMechanicStamina(mechanic) && !IsEsoSkillMechanicHealth(mechanic)) continue;
+		if (!IsEsoSkillMechanicUltimate(mechanic) && !IsEsoSkillMechanicMagicka(mechanic) && !IsEsoSkillMechanicStamina(mechanic) && !IsEsoSkillMechanicHealth(mechanic) &&
+				!IsEsoSkillMechanicUltimate(mechanicTime) && !IsEsoSkillMechanicMagicka(mechanicTime) && !IsEsoSkillMechanicStamina(mechanicTime) && !IsEsoSkillMechanicHealth(mechanicTime)) continue;
 		
-		var costText = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, mechanic, skillData);
-		var costHtml = GetEsoSkillTooltipFormatCostString(mechanic, costText, skillData);
+		var costText = "";
+		var costHtml = "";
 		
-		if (chargeFreq > 0) 
+		if (chargeFreq > 0 && baseCostTime > 0)
 		{
+			costText = ComputeEsoSkillCost(baseCostTime, inputValues.EffectiveLevel, inputValues, mechanicTime, skillData);
+			costHtml = GetEsoSkillTooltipFormatCostString(mechanicTime, costText, skillData);
+			
 			costHtml += "<div class='esovsChargeFreq'>&nbsp;/ " + chargeFreq + "s</div>";
 			costText += " / " + chargeFreq + "s";
+		}
+		else
+		{
+			costText = ComputeEsoSkillCost(baseCost, inputValues.EffectiveLevel, inputValues, mechanic, skillData);
+			costHtml = GetEsoSkillTooltipFormatCostString(mechanic, costText, skillData);
 		}
 		
 		costHtmls.push(costHtml);
@@ -3843,7 +3940,7 @@ window.GetEsoSkillCost = function(skillId, inputValues, useHtml = true)
 
 
 window.UpdateEsoSkillTooltipDuration = function()
-{	
+{
 	if (g_LastSkillId <= 0) return;
 	UpdateEsoSkillDuration(g_LastSkillId, $("#esovsSkillTooltipDuration"), GetEsoSkillInputValues());
 }

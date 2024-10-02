@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "44pts";
 $OUTPUT_PATH = "/home/uesp/esoItemImages/sets/";
 
 require("itemLinkImage.class.php");

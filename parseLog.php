@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "43";
-	const SKILLS_TABLESUFFIX   = "43";
+	const MINEITEM_TABLESUFFIX = "44pts";
+	const SKILLS_TABLESUFFIX   = "42";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -933,6 +933,7 @@ class EsoLogParser
 			'tickTime' => self::FIELD_INT,
 			'cooldown' => self::FIELD_INT,
 			'cost' => self::FIELD_STRING,
+			'costTime' => self::FIELD_STRING,		//Added update 42
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
 			'maxRange' => self::FIELD_INT,
@@ -945,6 +946,7 @@ class EsoLogParser
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
 			'mechanic' => self::FIELD_STRING,
+			'mechanicTime' => self::FIELD_STRING,		//Added update 42
 			'upgradeLines' => self::FIELD_STRING,
 			'effectLines' => self::FIELD_STRING,
 			'texture'  => self::FIELD_STRING,
@@ -3162,6 +3164,8 @@ class EsoLogParser
 			tickTime INTEGER NOT NULL DEFAULT -1,
 			cooldown INTEGER NOT NULL DEFAULT -1,
 			cost TINYTEXT NOT NULL,
+			costTime TINYTEXT NOT NULL,
+			chargeFreq TINYTEXT NOT NULL DEFAULT '',
 			minRange INTEGER NOT NULL DEFAULT -1,
 			maxRange INTEGER NOT NULL DEFAULT -1,
 			radius INTEGER NOT NULL DEFAULT -1,
@@ -3173,6 +3177,7 @@ class EsoLogParser
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
 			mechanic TINYTEXT NOT NULL DEFAULT '',
+			mechanicTime TINYTEXT NOT NULL DEFAULT '',
 			texture TEXT NOT NULL DEFAULT '',
 			isPlayer TINYINT NOT NULL DEFAULT 0,
 			raceType TINYTEXT NOT NULL DEFAULT '',
@@ -3189,7 +3194,6 @@ class EsoLogParser
 			skillIndex TINYINT NOT NULL DEFAULT -1,
 			buffType TINYINT NOT NULL DEFAULT -1,
 			isToggle TINYINT NOT NULL DEFAULT 0,
-			chargeFreq TINYTEXT NOT NULL DEFAULT '',
 			numCoefVars TINYINT NOT NULL DEFAULT -1,
 			coefDescription TEXT NOT NULL DEFAULT '',
 			type1 TINYINT NOT NULL DEFAULT -1,
@@ -8527,10 +8531,11 @@ class EsoLogParser
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
 		
-		$skill['isPassive'] = $logEntry['passive'] == "true" ? 1 : 0;
-		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
+		$skill['isPassive'] = ($logEntry['passive'] == "true") ? 1 : 0;
+		$skill['isPermanent'] = ($logEntry['perm'] == "true") ? 1 : 0;
 		$skill['isChanneled'] = $logEntry['channel'];
-		$skill['isCrafted'] = $logEntry['isCrafted'] == "true" ? 1 : 0;
+		$skill['isCrafted'] = 0;
+		$skill['isCrafted'] = ($logEntry['isCrafted'] == "true") ? 1 : 0;
 		
 		$skill['angleDistance'] = $logEntry['angleDistance'];
 		$skill['mechanic'] = $logEntry['mechanic'];
@@ -8543,9 +8548,19 @@ class EsoLogParser
 		$skill['isToggle'] = $logEntry['isToggle'] == "true" ? 1 : 0;
 		$skill['chargeFreq'] = $logEntry['chargeFreqMS'];
 		
-		if ($logEntry['costTime'] > 0) {
-			$skill['cost'] = $logEntry['costTime'];
-			$skill['mechanic'] = $logEntry['mechanicTime'];
+		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
+		{
+			if ($logEntry['costTime'] > 0) $skill['costTime'] = $logEntry['costTime'];
+			if ($logEntry['mechanicTime'] > 0) {
+				$skill['costTime'] = $logEntry['costTime'];
+				$skill['mechanicTime'] = $logEntry['mechanicTime'];
+			}
+		}
+		else {
+			if ($logEntry['costTime'] > 0) {
+				$skill['cost'] = $logEntry['costTime'];
+				$skill['mechanic'] = $logEntry['mechanicTime'];
+			}
 		}
 		
 		if ($logEntry['skillType'] > 0 || $logEntry['desc1'] != null)
@@ -8678,9 +8693,19 @@ class EsoLogParser
 		if ($origPrevSkill == $abilityId) $skill['prevSkill'] = 0;
 		if ($origPrevSkill == $id1) $skill['prevSkill'] = 0;
 		
-		if ($logEntry['costTime1'] > 0) {
-			$skill['cost'] = $logEntry['costTime1'];
-			$skill['mechanic'] = $logEntry['mechanicTime1'];
+		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
+		{
+			if ($logEntry['costTime1'] > 0) $skill['costTime'] = $logEntry['costTime1'];
+			if ($logEntry['mechanicTime1'] > 0) {
+				$skill['costTime'] = $logEntry['costTime1'];
+				$skill['mechanicTime'] = $logEntry['mechanicTime1'];
+			}
+		}
+		else {
+			if ($logEntry['costTime1'] > 0) {
+				$skill['cost'] = $logEntry['costTime1'];
+				$skill['mechanic'] = $logEntry['mechanicTime1'];
+			}
 		}
 		
 		$this->SaveSkillDump($skill);
@@ -8698,14 +8723,25 @@ class EsoLogParser
 		$skill2['castTime'] = $logEntry['castTime2'];
 		$skill2['channelTime'] = $logEntry['channelTime2'];
 		$skill2['chargeFreq'] = $logEntry['chargeFreqMS2'];
+		$skill2['isCrafted'] = $skill['isCrafted'];
 		$skill2['rank'] = 2;
 		$skill2['nextSkill'] = $id3;
 		$skill2['nextSkill2'] = 0;
 		$skill2['prevSkill'] = $id1;
 		
-		if ($logEntry['costTime2'] > 0) {
-			$skill2['cost'] = $logEntry['costTime2'];
-			$skill2['mechanic'] = $logEntry['mechanicTime2'];
+		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
+		{
+			if ($logEntry['costTime2'] > 0) $skill2['costTime'] = $logEntry['costTime2'];
+			if ($logEntry['mechanicTime2'] > 0) {
+				$skill2['costTime'] = $logEntry['costTime2'];
+				$skill2['mechanicTime'] = $logEntry['mechanicTime2'];
+			}
+		}
+		else {
+			if ($logEntry['costTime2'] > 0) {
+				$skill2['cost'] = $logEntry['costTime2'];
+				$skill2['mechanic'] = $logEntry['mechanicTime2'];
+			}
 		}
 		
 		$this->SaveSkillDump($skill2);
@@ -8723,14 +8759,25 @@ class EsoLogParser
 		$skill3['castTime'] = $logEntry['castTime3'];
 		$skill3['channelTime'] = $logEntry['channelTime3'];
 		$skill3['chargeFreq'] = $logEntry['chargeFreqMS3'];
+		$skill3['isCrafted'] = $skill['isCrafted'];
 		$skill3['rank'] = 3;
 		$skill3['nextSkill'] = $id4;
 		$skill3['nextSkill2'] = 0;
 		$skill3['prevSkill'] = $id2;
 		
-		if ($logEntry['costTime3'] > 0) {
-			$skill3['cost'] = $logEntry['costTime3'];
-			$skill3['mechanic'] = $logEntry['mechanicTime3'];
+		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
+		{
+			if ($logEntry['costTime3'] > 0) $skill3['costTime'] = $logEntry['costTime3'];
+			if ($logEntry['mechanicTime3'] > 0) {
+				$skill3['costTime'] = $logEntry['costTime3'];
+				$skill3['mechanicTime'] = $logEntry['mechanicTime3'];
+			}
+		}
+		else {
+			if ($logEntry['costTime3'] > 0) {
+				$skill3['cost'] = $logEntry['costTime3'];
+				$skill3['mechanic'] = $logEntry['mechanicTime3'];
+			}
 		}
 		
 		$this->SaveSkillDump($skill3);
@@ -8748,14 +8795,25 @@ class EsoLogParser
 		$skill4['castTime'] = $logEntry['castTime4'];
 		$skill4['channelTime'] = $logEntry['channelTime4'];
 		$skill4['chargeFreq'] = $logEntry['chargeFreqMS4'];
+		$skill4['isCrafted'] = $skill['isCrafted'];
 		$skill4['rank'] = 4;
 		$skill4['nextSkill'] = $origNextSkill;
 		$skill4['nextSkill2'] = $origNextSkill2;
 		$skill4['prevSkill'] = $id3;
 		
-		if ($logEntry['costTime4'] > 0) {
-			$skill4['cost'] = $logEntry['costTime4'];
-			$skill4['mechanic'] = $logEntry['mechanicTime4'];
+		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
+		{
+			if ($logEntry['costTime4'] > 0) $skill4['costTime'] = $logEntry['costTime4'];
+			if ($logEntry['mechanicTime4'] > 0) {
+				$skill4['mechanicTime'] = $logEntry['mechanicTime4'];
+				$skill4['costTime'] = $logEntry['costTime4'];
+			}
+		}
+		else {
+			if ($logEntry['costTime4'] > 0) {
+				$skill4['cost'] = $logEntry['costTime4'];
+				$skill4['mechanic'] = $logEntry['mechanicTime4'];
+			}
 		}
 		
 		$this->SaveSkillDump($skill4);
@@ -8838,6 +8896,7 @@ class EsoLogParser
 		$skill['radius'] = $logEntry['radius'];
 		$skill['isPassive'] = $logEntry['passive'];
 		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
+		$skill['isCrafted'] = 0;
 		$skill['isCrafted'] = $logEntry['isCrafted'] == "true" ? 1 : 0;
 		if ($skill['isPermanent'] == null) $skill['isPermanent'] = 0;
 		$skill['isChanneled'] = $logEntry['channel'];

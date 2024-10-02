@@ -8,8 +8,8 @@
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?12Sept2024a"></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoSkillTooltips.js?12Sept2024a"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?3Oct2024c"></script>
+		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoSkillTooltips.js?3Oct2024c"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>

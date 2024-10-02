@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "";
+	public $TABLE_SUFFIX = "42";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -134,7 +134,7 @@ class CEsoCreateSkillTree
 	
 	public function LoadActiveSkills()
 	{
-		$query = "SELECT * from minedSkills" . $this->TABLE_SUFFIX . " WHERE (nextSkill >= 0 OR prevSkill >= 0) AND isPassive=0 AND isPlayer=1 AND rank > 0 AND isCrafted=0;";
+		$query = "SELECT * from minedSkills" . $this->TABLE_SUFFIX . " WHERE (nextSkill >= 0 OR prevSkill >= 0) AND isPassive=0 AND isPlayer=1 AND rank > 0 AND isCrafted<=0;";
 		$skillResult = $this->db->query($query);
 		if (!$skillResult) return $this->ReportError("ERROR: Database query error (finding skill lines)!");
 		
@@ -444,6 +444,8 @@ class CEsoCreateSkillTree
 				
 				$desc = $thisSkill['description'];
 				
+				//if ($displayId == "") continue; //Indicates a skill not loaded so don't include in data?
+				
 				//$descHeader = $thisSkill['descHeader'];
 				//if ($descHeader) $desc = "|cffffff$descHeader|r\n$desc";
 				
@@ -468,7 +470,7 @@ class CEsoCreateSkillTree
 				$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank,displayId) ";
 				$query .= " VALUES('$skillLineId','$skillTypeName','$index',\"$baseName\",\"$name\",\"$desc\",'$type','$cost',\"$icon\", \"$learnedLevel\",\"$abilityIndex\", \"$maxLevel\", \"$displayId\")";
 				$result = $this->db->query($query);
-				if (!$result) $this->ReportError("ERROR: Database query error inserting into skillTree database! " . $query);
+				if (!$result) $this->ReportError("ERROR: Database query error inserting into active skillTree database! " . $query);
 			}
 		}
 		
@@ -477,7 +479,7 @@ class CEsoCreateSkillTree
 	
 	public function LoadPassives()
 	{
-		$query = "SELECT * FROM minedSkills" . $this->TABLE_SUFFIX . " WHERE isPassive=1 AND isPlayer=1 AND rank > 0 AND isCrafted=0;";
+		$query = "SELECT * FROM minedSkills" . $this->TABLE_SUFFIX . " WHERE isPassive=1 AND isPlayer=1 AND rank > 0 AND isCrafted<=0;";
 		$passiveResult = $this->db->query($query);
 		if (!$passiveResult) return $this->ReportError("ERROR: Database query error finding passive skills! " . $query);
 		
@@ -741,7 +743,7 @@ class CEsoCreateSkillTree
 			$query = "INSERT INTO skillTree" . $this->TABLE_SUFFIX . "(abilityId,skillTypeName,rank,baseName,name,description,type,cost,icon,learnedLevel,skillIndex,maxRank,displayId) ";
 			$query .= " VALUES('$id','$skillTypeName','$rank',\"$baseName\",\"$name\",\"$desc\",'Passive','None',\"$icon\", \"$learnedLevel\", \"$abilityIndex\", \"$maxLevel\", \"$displayId\")";
 			$result = $this->db->query($query);
-			if (!$result) return $this->ReportError("ERROR: Database query error inserting into skillTree table!" . $query);
+			if (!$result) return $this->ReportError("ERROR: Database query error inserting into passive skillTree table!" . $query);
 			
 			$nextSkill = $passive['nextSkill'];
 			$prevSkill = $passive['prevSkill'];

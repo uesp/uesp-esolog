@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "41";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -24,6 +24,7 @@ $FIXED_SKILLS = array(
 					"rank" => 4,
 					"skillIndex" => 1,
 					"morph" => 0,
+					//"cost" => 250,
 			),
 			"Rourken's Rebuke" => array(
 					"id" => 116093,
@@ -119,7 +120,7 @@ foreach ($skills as $skillId => $skillData)
 	$rank = $fixedData['rank'];
 	$morph = $fixedData['morph'];
 	$learnedLevel = $fixedData['learnedLevel'];
-		
+	
 	$query = "UPDATE minedSkills$TABLE_SUFFIX SET skillIndex='$skillIndex', skillType='$skillType', skillLine='$skillLine', rank='$rank', morph='$morph', isPlayer=1, learnedLevel='$learnedLevel', baseAbilityId='$skillId' WHERE id='$skillId';";
 	$result = $db->query($query);
 	if (!$result) print("\tError: Failed to update skill $skillId!\n" . $db->error);
