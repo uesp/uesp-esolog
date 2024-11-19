@@ -14,6 +14,7 @@ ignore = *.sql
 ignore = cron*
 ignore = log/*.log
 ignore = log/upload/uespLog*
+ignore = archive/*
 
 dest = content3.uesp.net:/home/uesp/www/esolog/
 dest = files1.uesp.net:/home/uesp/esolog.static/
