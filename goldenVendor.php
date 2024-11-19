@@ -4,21 +4,21 @@
 	<title>UESP:ESO Golden Vendor Items</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css" />
+	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css?4Oct2024" />
 	<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoitemlink_embed.css" />
 	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
+	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js?4Oct2024"></script>
 	<script type="text/javascript" src="//en.uesp.net/w/extensions/UespEsoItemLink/uespitemlink.js"></script>
 </head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
-<h1>UESP:ESO Golden Vendor Items</h1>
-Showing all recorded golden vendor items.
 <?php
 	require_once("goldenVendor.class.php");
 	$golden = new CEsoGetGoldenVendorHtml();
 	$golden->showAll = true;
 	$golden->showLatestInHistory = true;
+	
+	print($golden->GetTitleHtml());
 	print($golden->GetHtml());
 ?>
 <hr>

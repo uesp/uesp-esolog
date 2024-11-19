@@ -607,7 +607,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								209 => array (
 										'title' => 'Ancient Scrolls of the Dwemer IV',
-										'icon' => '/esoui/art/icons/dwemerlore_book7.dds' 
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
 								) 
 						) 
 				),
@@ -3636,7 +3636,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
 								),
 								4509 => array (
-										'title' => 'Crafting Motif 48: Ashlander Helms',
+										'title' => 'Crafting Motif 48: Ashlander Helmets',
 										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
 								),
 								4510 => array (
@@ -4024,7 +4024,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/quest_cwc_inc_scrollplate001.dds' 
 								),
 								4752 => array (
-										'title' => 'Crafting Motif 56: Apostle Leg Greaves',
+										'title' => 'Crafting Motif 56: Apostle Legs',
 										'icon' => '/esoui/art/icons/quest_cwc_inc_scrollplate001.dds' 
 								),
 								4753 => array (
@@ -8598,8 +8598,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 52,
-						'numBooks' => 4533 
+						'numCollect' => 54,
+						'numBooks' => 4582 
 				),
 				1 => array (
 						'id' => 44,
@@ -12004,7 +12004,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				9 => array (
 						'id' => 52,
 						'name' => 'Lore and Culture',
-						'numBooks' => 110,
+						'numBooks' => 111,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								351 => array (
@@ -12446,6 +12446,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								5376 => array (
 										'title' => 'Reman II: The Limits of Ambition',
 										'icon' => '/esoui/art/icons/lore_book1_detail2_color3.dds' 
+								),
+								7940 => array (
+										'title' => 'All Our Perfect Forms',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color3.dds' 
 								) 
 						) 
 				),
@@ -26244,7 +26248,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				50 => array (
 						'id' => 215,
 						'name' => 'West Weald Writings',
-						'numBooks' => 122,
+						'numBooks' => 125,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								7778 => array (
@@ -26734,6 +26738,18 @@ $ESO_BOOK_COLLECTIONS = array (
 								7899 => array (
 										'title' => 'Note to Nantharion',
 										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8062 => array (
+										'title' => 'Trapper`s Note',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8064 => array (
+										'title' => 'Trapper`s Offer',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8065 => array (
+										'title' => 'Marcien`s Message',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
 								) 
 						) 
 				),
@@ -26860,7 +26876,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				52 => array (
 						'id' => 223,
 						'name' => 'Scholarium Scribblings',
-						'numBooks' => 71,
+						'numBooks' => 72,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_magic.dds',
 						'books' => array (
 								8146 => array (
@@ -27146,6 +27162,202 @@ $ESO_BOOK_COLLECTIONS = array (
 								8298 => array (
 										'title' => 'Scribing for the Daggerfall Covenant',
 										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
+								),
+								8444 => array (
+										'title' => 'On the Development of Banner Bearer',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								) 
+						) 
+				),
+				53 => array (
+						'id' => 226,
+						'name' => 'Companions Correspondence',
+						'numBooks' => 39,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								8145 => array (
+										'title' => 'In Memory of Zerith-var',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								7959 => array (
+										'title' => 'Rites of the Order of the Hidden Moon',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								8006 => array (
+										'title' => 'Missive from Grand Inquisitor Arsalan',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8063 => array (
+										'title' => 'Cantor Izalgo`s Journal',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color1.dds' 
+								),
+								8007 => array (
+										'title' => 'Scrap of Paper',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								7998 => array (
+										'title' => 'Scrawled Ceythalmor Orders',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8109 => array (
+										'title' => 'Pocket Ballista Design Document',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8241 => array (
+										'title' => 'Ceythalmor Mission Orders',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8158 => array (
+										'title' => 'Auridon Target Brief',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8005 => array (
+										'title' => 'Invitation from the Gardener',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8112 => array (
+										'title' => 'Tanlorin`s Bird Note',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8286 => array (
+										'title' => 'Skywatch Guard Report',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8008 => array (
+										'title' => 'Reeve Nardarmor`s Private Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color5.dds' 
+								),
+								8009 => array (
+										'title' => 'Ceythalmor Interrogation Log',
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
+								),
+								8282 => array (
+										'title' => 'Letter to Zerith-var',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8214 => array (
+										'title' => 'Summons of the Inquisition',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8137 => array (
+										'title' => 'Scroll of the Crescent Blade',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								8139 => array (
+										'title' => 'Scroll of Evensong',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								8311 => array (
+										'title' => 'Bogcup`s Letter from Hyacinth',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8307 => array (
+										'title' => 'Snapdragon`s Burnt Notes',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8061 => array (
+										'title' => 'Snapdragon`s Revealed Notes',
+										'icon' => '/esoui/art/icons/justice_stolen_letter_001.dds' 
+								),
+								8087 => array (
+										'title' => 'Ceythalmor Captain`s Journal',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color4.dds' 
+								),
+								8204 => array (
+										'title' => 'Snapdragon`s Research Journal',
+										'icon' => '/esoui/art/icons/lore_book5_detail2_color3.dds' 
+								),
+								8046 => array (
+										'title' => 'Ceythalmor Relocation Orders',
+										'icon' => '/esoui/art/icons/justice_stolen_letter_001.dds' 
+								),
+								8220 => array (
+										'title' => 'Torn Out Journal Entry',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper002.dds' 
+								),
+								8070 => array (
+										'title' => 'The Strike on Alinor',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8319 => array (
+										'title' => 'Unfinished Letter',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8326 => array (
+										'title' => 'Viti`s Notes: Moon Beasts',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color1.dds' 
+								),
+								8322 => array (
+										'title' => 'In Memory of Moon-Singer Talbira',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8324 => array (
+										'title' => 'Strange Inscription',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8325 => array (
+										'title' => 'Viti`s Notes: Order of the Hidden Moon, Part I',
+										'icon' => '/esoui/art/icons/book_arquitius_001.dds' 
+								),
+								8327 => array (
+										'title' => 'Krin`ze`s Journal',
+										'icon' => '/esoui/art/icons/book_arquitius_002.dds' 
+								),
+								8328 => array (
+										'title' => 'Inquisitor Orders',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8386 => array (
+										'title' => 'Viti`s Notes: Song of Binding',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								8387 => array (
+										'title' => 'Viti`s Notes: Order of the Hidden Moon, Part II',
+										'icon' => '/esoui/art/icons/book_arquitius_001.dds' 
+								),
+								8388 => array (
+										'title' => 'Translation of Strange Inscription',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8378 => array (
+										'title' => 'Letter from Zerith-var',
+										'icon' => '/esoui/art/icons/housing_uni_inc_scrollunsealed001.dds' 
+								),
+								8393 => array (
+										'title' => 'Letter from Tanlorin',
+										'icon' => '/esoui/art/icons/housing_uni_inc_scrollunsealed001.dds' 
+								),
+								8445 => array (
+										'title' => 'Note from Cantor Krin`ze',
+										'icon' => '/esoui/art/icons/justice_stolen_letter_001.dds' 
+								) 
+						) 
+				),
+				54 => array (
+						'id' => 232,
+						'name' => 'Elusive Manuscripts',
+						'numBooks' => 5,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								8409 => array (
+										'title' => 'Garden of Sacred Numbers Temporal Tome',
+										'icon' => '/esoui/art/icons/collectible_memento_psijicscryingtalisman.dds' 
+								),
+								8410 => array (
+										'title' => 'Coral Aerie Temporal Tome',
+										'icon' => '/esoui/art/icons/collectible_memento_psijicscryingtalisman.dds' 
+								),
+								8411 => array (
+										'title' => 'Traitor`s Vault Temporal Tome',
+										'icon' => '/esoui/art/icons/achievement_crownstore_skillline_psijicorder_check.dds' 
+								),
+								8412 => array (
+										'title' => 'Karnwasten Temporal Tome',
+										'icon' => '/esoui/art/icons/achievement_su_psijic_order_complete.dds' 
+								),
+								8413 => array (
+										'title' => 'Vault of Moawita Temporal Tome',
+										'icon' => '/esoui/art/icons/collectible_memento_psijicscryingtalisman.dds' 
 								) 
 						) 
 				) 

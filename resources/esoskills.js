@@ -12,11 +12,12 @@ window.g_EsoSkillUpdateEnable = true;
 window.g_EsoSkillIsMobile = false;
 
 window.g_LastSkillId = -1;
+window.g_LastSkillData = null;
 
 window.USE_V2_TOOLTIPS = true;
 
 
-ESO_SKILL_TYPES = {
+window.ESO_SKILL_TYPES = {
 		0 : "",
 		1 : "Class",
 		2 : "Weapon",
@@ -27,6 +28,18 @@ ESO_SKILL_TYPES = {
 		7 : "Racial",
 		8 : "Craft",
 		9 : "Champion",	
+};
+
+
+window.ESO_MECHANIC_TYPES = {
+		0  : "",
+		1  : "Magicka",
+		2  : "Werewolf",
+		4  : "Stamina",
+		8  : "Ultimate",
+		16 : "Mount Stamina",
+		32 : "Health",
+		64 : "Daedric",
 };
 
 
@@ -505,6 +518,13 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	if (skillData == null) return "";
 	
 	var output = "<div class='esovsSkillTooltip'>\n";
+	var skillData1 = skillData;
+	
+	if (skillData['useCraftedDesc'] && skillData['craftAbilityId'])
+	{
+		var repData = g_SkillsData[skillData['craftAbilityId']];
+		if (repData) skillData1 = repData;
+	}
 	
 	var mechanic = skillData['mechanic'];
 	var abilityId = skillData['abilityId'];
@@ -512,16 +532,16 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	var rank = skillData['rank'];
 	var maxRank = skillData['maxRank'];
 	var desc = GetEsoSkillDescription(abilityId, null, true);
-	var channelTime = skillData['channelTime'] / 1000;
-	var castTime = skillData['castTime'] / 1000;
-	var radius = skillData['radius'] / 100;
-	var duration = Math.floor(GetEsoSkillDuration(abilityId, null) / 100) / 10;
-	var target = skillData['target'];
-	var angleDistance = skillData['angleDistance'];
-	var minRange = skillData['minRange'];
-	var maxRange = skillData['maxRange'];
-	var cost = skillData['cost'];
-	var radius = skillData['radius'] / 100;
+	var channelTime = skillData1['channelTime'] / 1000;
+	var castTime = skillData1['castTime'] / 1000;
+	var radius = skillData1['radius'] / 100;
+	var duration = Math.floor(GetEsoSkillDurationData(skillData1, null) / 100) / 10;
+	var target = skillData1['target'];
+	var angleDistance = skillData1['angleDistance'];
+	var minRange = skillData1['minRange'];
+	var maxRange = skillData1['maxRange'];
+	var cost = skillData1['cost'];
+	var radius = skillData1['radius'] / 100;
 	var castTimeStr = castTime + " seconds";
 	var skillType = skillData['type'];
 	var learnedLevel = skillData['learnedLevel'];
@@ -532,7 +552,9 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	var range = "";
 	var rankStr = "";
 	var realRank = rank;
-	var chargeFreqMS = parseInt(skillData['chargeFreq']);
+	var chargeFreqMS = parseInt(skillData1['chargeFreq']);
+	
+	if (skillData['craftName']) safeName = skillData['craftName'];
 	
 	if (skillType != 'Passive')
 	{
@@ -541,6 +563,7 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	}
 	
 	if (maxRank > 1 && realRank > 0) rankStr = " " + GetRomanNumeral(realRank);
+	if (skillData['isCrafted']) rankStr = "";
 	
 	if (minRange > 0 && maxRange > 0)
 		range = (minRange/100) + " - " + (maxRange/100) + " meters"
@@ -610,7 +633,7 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 		
 		if (cost != '')
 		{
-			output += CreateEsoSkillCostTooltipHtml(skillData);
+			output += CreateEsoSkillCostTooltipHtml(skillData1);
 		}
 		
 		output += "<img src='//esolog-static.uesp.net/resources/skill_divider.png' class='esovsSkillTooltipDivider' />";
@@ -719,16 +742,23 @@ window.AdjustEsoSkillPopupTooltipPosition = function (tooltip, parent)
 window.EsoViewSkillShowTooltip = function(skillData)
 {
 	var element = $('#esovsSkillTooltipRoot');
-		
-	if (skillData == null) 
+	
+	if (skillData == null)
 	{
 		element.html("<div class='esovsSkillTooltip'>Click on a skill to the right to view tooltip.</div>");
 		g_LastSkillId = -1;
 		return;
 	}
-			
+	
 	g_LastSkillId = skillData.abilityId;
+	g_LastSkillData = skillData;
 	element.html(GetEsoSkillTooltipHtml(skillData));
+}
+
+
+window.EsoUpdateSkillTooltip = function()
+{
+	EsoViewSkillShowTooltip(g_LastSkillData);
 }
 
 
@@ -3948,8 +3978,17 @@ window.UpdateEsoSkillTooltipDuration = function()
 
 window.GetEsoSkillDuration = function(skillId, inputValues)
 {
-	var modDuration = 0;
 	var skillData = g_SkillsData[skillId];
+	if (skillData == null) return "";
+	
+	return GetEsoSkillDurationData(skillData, inputValues);
+}
+
+
+window.GetEsoSkillDurationData = function(skillData, inputValues)
+{
+	var modDuration = 0;
+	
 	if (skillData == null) return "";
 	
 	var displayId = skillData['displayId'];
@@ -4039,6 +4078,8 @@ window.UpdateEsoSkillDescription_ForEach = function (index, element)
 {
 	var skillId = $(this).attr('skillid');
 	if (skillId == null || skillId == '') return;
+	
+	if ($(this).hasClass("esovsCraftedSkill")) return;
 	
 	UpdateEsoSkillDescription(skillId, $(element), g_LastSkillInputValues, false);
 }
@@ -4483,6 +4524,8 @@ window.OnChangeEsoSkillData = function (dataName)
 	UpdateEsoAllSkillCost();
 	UpdateSkillLink();
 	
+	UpdateEsoHiddenSkillFormValues();
+	
 	//var diffTime = performance.now() - startTime;
 	//console.log("OnChangeEsoSkillData", diffTime);
 }
@@ -4691,6 +4734,7 @@ window.UpdateSkillLink = function ()
 	linkElement.attr("href", "?" + params);
 	
 	UpdateSkillCoefHistoryLink();
+	UpdateEsoHiddenSkillFormValues();
 }
 
 
@@ -5890,6 +5934,320 @@ window.OnClickDocument = function()
 }
 
 
+window.CompareScriptByName = function (a, b)
+{
+	return ('' + a.name).localeCompare(b.name);
+};
+
+
+window.MakeEsoCraftedSkillSlotHtml = function(craftedSkill, skillData, slots, slotIndex, selectedScriptId)
+{
+	output = '<div class="esovsAbilityBlockScript" slotindex="' + slotIndex + '">';
+	output += '<div class="esovsAbilityBlockScriptTitle">Scribing Slot ' + slotIndex + '</div>';
+	
+	var namesSorted = [];
+	var i;
+	
+	for (i in slots)
+	{
+		var scriptId = slots[i];
+		var scriptData = g_EsoCraftedScripts[scriptId];
+		if (scriptData == null) continue;
+		namesSorted.push(scriptData);
+	}
+	
+	namesSorted.sort(CompareScriptByName);
+	
+		// TODO: Sort by name
+	for (i in namesSorted)
+	{
+		//var scriptId = slots[i];
+		//var scriptData = g_EsoCraftedScripts[scriptId];
+		var scriptData = namesSorted[i];
+		if (scriptData == null) continue;
+		
+		var scriptId = scriptData.id;
+		var selectedClass = "";
+		
+		var imgUrl = "//esoicons.uesp.net/" + scriptData['icon'];
+		
+		if (scriptId == selectedScriptId) selectedClass = "esovsAbilityScriptSelected";
+		
+		output += '<div class="esovsAbilityScript ' + selectedClass + '" scriptid="' + scriptId + '">';
+		output += '<img src="' + imgUrl + '">';
+		output += '<div class="esovsAbilityScriptName">' + scriptData['name'] + '</div> ';
+		output += '<div class="esovsAbilityScriptDesc"> -- ' + scriptData['description'] + ' ' + scriptData['hint'] + '</div>';
+		output += '</div>';
+	}
+	
+	output += '</div>';
+	return output;
+};
+
+
+window.MakeEsoCraftedSkillHtml = function(craftedSkill, skillData)
+{
+	var output = "";
+	
+	var abilityId = skillData['id'];
+	var craftedId = craftedSkill['id'];
+	var skillType = ESO_SKILL_TYPES[skillData['skillType']];
+	var skillLine = skillData['skillLine'];
+	var raceType = skillData['raceType'];
+	var classType = skillData['classType'];
+	var iconUrl = "//esoicons.uesp.net/" + skillData['texture'];
+	var skillName = craftedSkill['name'];
+	var skillCost = skillData['cost'];
+	var skillMechanic = skillData['mechanic'];
+	var skillDesc = craftedSkill['description'] + ' ' + craftedSkill['hint'];
+	var learnedLevel = skillData['learnedLevel'];
+	
+	skillData['useCraftedDesc'] = true;
+	craftedSkill['baseDescription'] = craftedSkill['description'];
+	
+	if (learnedLevel <= 0) learnedLevel = '';
+	
+	if (skillMechanic == '' || skillMechanic == 0) 
+	{
+		skillMechanic = skillData['baseMechanic'];
+		skillData['mechanic'] = skillData['baseMechanic'];
+	}
+	
+	var mechanicText = ESO_MECHANIC_TYPES[skillMechanic] ? ESO_MECHANIC_TYPES[skillMechanic] : "";
+	skillCost += " " + mechanicText;
+	skillData['cost'] = skillCost;
+	
+	craftedSkill['scriptId1'] = craftedSkill['slots1'][0];
+	craftedSkill['scriptId2'] = craftedSkill['slots2'][0];
+	craftedSkill['scriptId3'] = craftedSkill['slots3'][0];
+	
+	//var scriptData1 = craftedSkill['datas'][craftedSkill['scriptId1']];
+	//var repSkillData = 
+	
+	UpdateEsoCraftedSkillData(craftedSkill);
+	
+	output += '<div class="esovsAbilityBlock esovsAbilityBlockHover esovsCraftedAbility" craftedid="' + craftedId + '" morph="0" skillid="' + abilityId + '" origskillid="' + abilityId + '" rank="4" origrank="4" maxrank="4" isfree="0" abilitytype="Active" skilltype="' + skillType + '" skilline="' + skillLine + '" classtype="' + classType + '" racetype="' + raceType + '">';
+	output += '<img loading="lazy" class="esovsAbilityBlockPlus" src="//esolog-static.uesp.net/resources/pointsplus_up.png">';
+	
+	output += '<div class="esovsAbilityBlockIcon ui-draggable ui-draggable-handle">';
+	output += '<img loading="lazy" alt="" src="' + iconUrl + '">';
+	output += '<div class="esovsAbilityBlockIconLevel">' + learnedLevel + '</div>';
+	output += '</div>';
+	
+	output += '<div class="esovsAbilityBlockTitle">';
+	output += '<div class="esovsAbilityBlockTitleLabel">';
+	output += '<div class="esovsAbilityBlockName">' + skillName + '</div>';
+	output += '<div mechanic="' + skillMechanic + '" class="esovsAbilityBlockCost esovsCraftedSkill" skillid="' + abilityId + '">' + skillCost + '</div>';
+	output += '</div>';
+	output += '<div class="esovsAbilityBlockDesc esovsCraftedSkill" skillid="' + abilityId + '">' + skillDesc + '</div>';
+	output += '</div>';
+	
+	output += '</div>';
+	
+	var selSlot1 = craftedSkill['scriptId1'];
+	var selSlot2 = craftedSkill['scriptId2'];
+	var selSlot3 = craftedSkill['scriptId3'];
+	
+	output += '<div class="esovsAbilityBlockList" craftedid="' + craftedId + '" style="display: none;">';
+	//output += 'Crafted Skill';
+	output += MakeEsoCraftedSkillSlotHtml(craftedSkill, skillData, craftedSkill['slots1'], 1, selSlot1);
+	output += '<hr/>';
+	output += MakeEsoCraftedSkillSlotHtml(craftedSkill, skillData, craftedSkill['slots2'], 2, selSlot2);
+	output += '<hr/>';
+	output += MakeEsoCraftedSkillSlotHtml(craftedSkill, skillData, craftedSkill['slots3'], 3, selSlot3);
+	output += '</div>';
+	
+	return output;
+};
+
+
+window.AddEsoCraftedSkills = function()
+{
+	if (window.g_EsoCraftedSkills == null) return;
+	
+	$(".esovsCraftedAbility").remove();
+	
+	for (var craftedId in g_EsoCraftedSkills)
+	{
+		var craftedSkill = g_EsoCraftedSkills[craftedId];
+		var abilityId = parseInt(craftedSkill['abilityId']);
+		var skillData = g_SkillsData[abilityId];
+		
+		if (skillData == null) 
+		{
+			console.log("AddEsoCraftedSkills: Missing skill data!", craftedSkill);
+			continue;
+		}
+		
+		var skillLine = skillData['skillLine'];
+		var skillLineId = skillLine.replace(/[ '"]/g, '_');;
+		var skillBlock = $("#" + skillLineId);
+		var firstSkillBlock = skillBlock.children(".esovsAbilityBlock").eq(1);
+		
+		var html = MakeEsoCraftedSkillHtml(craftedSkill, skillData)
+		
+		//console.log("AddEsoCraftedSkills: Done!", craftedSkill, skillData, skillBlock, firstSkillBlock, html);
+		
+		firstSkillBlock.before(html);
+	}
+	
+	$('.esovsCraftedAbility.esovsAbilityBlock').click(OnEsoSkillBlockClick);
+	$('.esovsCraftedAbility .esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
+	$('.esovsCraftedAbility .esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
+	$('.esovsCraftedAbility .esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
+	$(".esovsCraftedAbility .esovsAbilityBlockSelect").click(OnAbilityBlockPurchase);
+	
+	$(".esovsCraftedAbility .esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+	$(".esovsCraftedAbility .esovsAbilityBlockPassiveIcon").hover(OnHoverEsoPassiveIcon, OnLeaveEsoIcon);
+	$(".esovsCraftedAbility .esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
+	
+	$(".esovsAbilityScript").click(OnEsoScriptBlockClick);
+};
+
+
+window.OnEsoScriptBlockClick = function(e)
+{
+	var $this = $(this);
+	var scriptId = $this.attr('scriptid');
+	var slotIndex = $this.parent().attr('slotindex');
+	var craftedId = $this.parent().parent().attr('craftedid');
+	
+	$this.siblings().removeClass("esovsAbilityScriptSelected");
+	$this.addClass("esovsAbilityScriptSelected");
+	
+	var craftedSkill = g_EsoCraftedSkills[craftedId];
+	
+	if (craftedSkill)
+	{
+		craftedSkill["scriptId" + slotIndex] = scriptId;
+		UpdateEsoCraftedSkillData(craftedSkill);
+		EsoUpdateSkillTooltip();
+	}
+};
+
+
+window.UpdateEsoCraftedSkillData = function(craftedSkill)
+{
+	var scriptData1 = craftedSkill['datas'][craftedSkill['scriptId1']] ? craftedSkill['datas'][craftedSkill['scriptId1']] : {};
+	var scriptData2 = craftedSkill['datas'][craftedSkill['scriptId2']] ? craftedSkill['datas'][craftedSkill['scriptId2']] : {};
+	var scriptData3 = craftedSkill['datas'][craftedSkill['scriptId3']] ? craftedSkill['datas'][craftedSkill['scriptId3']] : {};
+	
+	var repId = scriptData1['abilityId'];
+	if (repId <= 0) repId = craftedSkill.abilityId;
+	
+	var skillData = g_SkillsData[craftedSkill.abilityId];
+	var skillData1 = g_SkillsData[repId];
+	
+	var desc1 = scriptData1['description'] ? scriptData1['description'] : "";
+	var desc2 = scriptData2['description'] ? scriptData2['description'] : "";
+	var desc3 = scriptData3['description'] ? scriptData3['description'] : "";
+	
+	craftedSkill['description'] = craftedSkill['baseDescription'] + "\n" + desc1 + "\n" + desc2 + "\n" + desc3;
+	craftedSkill['craftDesc1'] = desc1;
+	craftedSkill['craftDesc2'] = desc2;
+	craftedSkill['craftDesc3'] = desc3;
+	
+	if (skillData)
+	{
+		skillData['useCraftedDesc'] = true;
+		skillData['craftAbilityId'] = repId;
+		skillData['craftName'] = scriptData1['name'];
+		skillData['craftDesc1'] = desc1;
+		skillData['craftDesc2'] = desc2;
+		skillData['craftDesc3'] = desc3;
+		skillData['craftId'] = craftedSkill['id'];
+		skillData['scriptId1'] = craftedSkill['scriptId1'];
+		skillData['scriptId2'] = craftedSkill['scriptId2'];
+		skillData['scriptId3'] = craftedSkill['scriptId3'];
+	}
+	
+	if (skillData1)
+	{
+		skillData1['useCraftedDesc'] = true;
+		skillData1['craftAbilityId'] = repId;
+		skillData1['craftName'] = scriptData1['name'];
+		skillData1['craftDesc1'] = desc1;
+		skillData1['craftDesc2'] = desc2;
+		skillData1['craftDesc3'] = desc3;
+		skillData1['craftId'] = craftedSkill['id'];
+		skillData1['scriptId1'] = craftedSkill['scriptId1'];
+		skillData1['scriptId2'] = craftedSkill['scriptId2'];
+		skillData1['scriptId3'] = craftedSkill['scriptId3'];
+	}
+	
+	return craftedSkill['description'];
+};
+
+
+window.UpdateEsoHiddenSkillFormValues = function()
+{
+	$("#evsHiddenShowAll").val($("#esovsInputShowAll").is(":checked") ? 1 : 0);
+	$("#evsHiddenHighlightId").val(g_LastSkillId);
+	$("#evsHiddenLevel").val($("#esovsInputLevel").val());
+	$("#evsHiddenHealth").val($("#esovsInputHealth").val());
+	$("#evsHiddenMagicka").val($("#esovsInputMagicka").val());
+	$("#evsHiddenStamina").val($("#esovsInputStamina").val());
+	$("#evsHiddenArmor").val($("#esovsInputArmor").val());
+	$("#evsHiddenSpellDamage").val($("#esovsInputSpellDamage").val());
+	$("#evsHiddenWeaponDamage").val($("#esovsInputWeaponDamage").val());
+}
+
+
+window.OnEsoVersionFormSubmit = function(e)
+{
+	var $this = $(this);
+	
+	//console.log("OnEsoVersionFormSubmit");
+	UpdateEsoHiddenSkillFormValues();
+	
+	var level = $("#evsHiddenLevel").val();
+	var highlightId = parseInt($("#evsHiddenHighlightId").val());
+	var health = parseInt($("#evsHiddenHealth").val());
+	var magicka = parseInt($("#evsHiddenMagicka").val());
+	var stamina = parseInt($("#evsHiddenStamina").val());
+	var spellDamage = parseInt($("#evsHiddenSpellDamage").val());
+	var weaponDamage = parseInt($("#evsHiddenWeaponDamage").val());
+	var armor = parseInt($("#evsHiddenArmor").val());
+	var showAll = parseInt($("#evsHiddenShowAll").val());
+	var displayType = $("#evsHiddenDisplay").val();
+	var debug = parseInt($("#evsHiddenDebug").val());
+	
+	if (level == 66 || level == "CP160") $("#evsHiddenLevel").prop("disabled", true);
+	if (highlightId <= 0 || highlightId == 33963) $("#evsHiddenHighlightId").prop("disabled", true);
+	if (health == 20000) $("#evsHiddenHealth").prop("disabled", true);
+	if (magicka == 20000) $("#evsHiddenMagicka").prop("disabled", true);
+	if (stamina == 20000) $("#evsHiddenStamina").prop("disabled", true);
+	if (spellDamage == 2000) $("#evsHiddenSpellDamage").prop("disabled", true);
+	if (weaponDamage == 2000) $("#evsHiddenWeaponDamage").prop("disabled", true);
+	if (armor == 11000) $("#evsHiddenArmor").prop("disabled", true);
+	if (showAll == 0) $("#evsHiddenShowAll").prop("disabled", true);
+	if (displayType == "summary") $("#evsHiddenDisplay").prop("disabled", true);
+	if (debug == 0) $("#evsHiddenDebug").prop("disabled", true);
+	
+	return true;
+}
+
+
+window.OnEsoInputFormDefault = function()
+{
+	$("#esovsControlLevel").val(66);
+	$("#esovsInputLevel").val("CP160");
+	$("#esovsControlHealth").val("20000");
+	$("#esovsInputHealth").val("20000");
+	$("#esovsControlMagicka").val("20000");
+	$("#esovsInputMagicka").val("20000");
+	$("#esovsControlStamina").val("20000");
+	$("#esovsInputStamina").val("20000");
+	$("#esovsControlSpellDamage").val("2000");
+	$("#esovsInputSpellDamage").val("2000");
+	$("#esovsControlWeaponDamage").val("2000");
+	$("#esovsInputWeaponDamage").val("2000");
+	$("#esovsControlArmor").val("11000");
+	$("#esovsInputArmor").val("11000");
+	$("#esovsInputShowAll").prop("checked", false);
+}
+
+
 window.esovsOnDocReady = function ()
 {
 		/* TODO: Need better way to detect mobile view */
@@ -5936,6 +6294,8 @@ window.esovsOnDocReady = function ()
 	
 	$('#esovsControlArmor').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Armor'); });
 	$('#esovsInputArmor').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Armor');	});
+	
+	$('#esovsInputShowAll').on('input', function(e) { UpdateEsoHiddenSkillFormValues(); });
 	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);
@@ -6030,6 +6390,11 @@ window.esovsOnDocReady = function ()
 		else
 			highlightSkill.trigger('click');
 	}
+	
+	$("#evsVersionForm").on("submit", OnEsoVersionFormSubmit);
+	$("#esovsInputDefault").on("click", OnEsoInputFormDefault);
+	
+	if ($("#evsHiddenDebug").val() == 1) AddEsoCraftedSkills();
 	
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();

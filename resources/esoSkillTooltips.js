@@ -47,6 +47,7 @@ window.GetEsoSkillDamageTypeText = function(damageType)
 		case 10: return "Disease";
 		case 11: return "Poison";
 		case 12: return "Bleed";
+		case 515: return "Flame";
 	}
 	
 	return "Unknown " + damageType;
@@ -2100,6 +2101,41 @@ window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEff
 		else
 			output = rawDesc;
 	}
+	
+	skillData.lastDesc = output;
+	
+	if (skillData.useCraftedDesc === true) return GetEsoCraftedSkillDescription2(abilityId, skillData, inputValues, useHtml, noEffectLines, outputRaw)
+	return output;
+}
+
+
+window.GetEsoCraftedSkillDescription2 = function(abilityId, skillData, inputValues, useHtml, noEffectLines, outputRaw)
+{
+	var output = skillData.lastDesc;
+	var desc1 = skillData['craftDesc1'] ? skillData['craftDesc1'] : "";
+	var desc2 = skillData['craftDesc2'] ? skillData['craftDesc2'] : "";
+	var desc3 = skillData['craftDesc3'] ? skillData['craftDesc3'] : "";
+	
+	if (desc1) desc1 = "\n\n" + desc1;
+	if (desc2) desc2 = "\n\n" + desc2;
+	if (desc3) desc3 = "\n\n" + desc3;
+	
+	if (useHtml)
+	{
+		desc1 = EsoConvertDescToHTML(desc1);
+		desc2 = EsoConvertDescToHTML(desc2);
+		desc3 = EsoConvertDescToHTML(desc3);
+	}
+	else if (outputRaw !== true)
+	{
+		desc1 = EsoConvertDescToText(desc1);
+		desc2 = EsoConvertDescToText(desc2);
+		desc3 = EsoConvertDescToText(desc3);
+ 	}
+	
+	output += desc1;
+	output += desc2;
+	output += desc3;
 	
 	skillData.lastDesc = output;
 	return output;

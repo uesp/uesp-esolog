@@ -606,7 +606,7 @@ $ESO_REAGENT_DATA = array(
 		"Dragonthorn" => array(
 				"name" => "Dragonthorn",
 				"itemId" => 30162,
-				"icon" => "resources/dragonthorn_r2.png",
+				"icon" => "resources/dragonthorn.png",
 				"effects" => array(ESO_POTIONEFFECT_WEAPONPOWER, ESO_POTIONEFFECT_RESTORESTAMINA, ESO_POTIONEFFECT_LOWERARMOR, ESO_POTIONEFFECT_WEAPONCRIT),
 		),
 		"Emetic Russula" => array(
@@ -630,7 +630,7 @@ $ESO_REAGENT_DATA = array(
 		"Lady's Smock" => array(
 				"name" => "Lady's Smock",
 				"itemId" => 30158,
-				"icon" => "resources/ladys_smock_r2.png",
+				"icon" => "resources/ladysmock.png",
 				"effects" => array(ESO_POTIONEFFECT_SPELLPOWER, ESO_POTIONEFFECT_RESTOREMAGICKA, ESO_POTIONEFFECT_LOWERSPELLRESIST, ESO_POTIONEFFECT_SPELLCRIT),
 		),
 		"Luminous Russula" => array(

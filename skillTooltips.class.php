@@ -1130,6 +1130,7 @@ class CEsoSkillTooltips
 			return $rankData[0];
 		}
 		
+		if ($abilityId >= 50000000) return -1;
 		if ($abilityId >= 40000000) return $abilityId - 40000000;
 		if ($abilityId >= 30000000) return $abilityId - 30000000;
 		if ($abilityId >= 20000000) return $abilityId - 20000000;

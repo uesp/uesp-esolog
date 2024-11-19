@@ -4,12 +4,12 @@
 		<title>UESP:ESO Skill Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoskills.css" />
-		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoskills_embed.css" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoskills_embed.css" />
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoskills.js?3Oct2024c"></script>
-		<script type="text/javascript" src="//esolog-static.uesp.net/resources/esoSkillTooltips.js?3Oct2024c"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esoskills.js?3Oct2024c"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esoSkillTooltips.js?3Oct2024c"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>
@@ -18,7 +18,7 @@
 	<input type="search" id="esovsSearchText" value="" size="30" />
 	<button id="esovsSearchButton">Find Skill</button>
 	<div id="esovsSearchResult">
-	</div> 
+	</div>
 </div>
 <h1>UESP:ESO Skill Browser {versionTitle}</h1>
 <div id="esovsVersion">Showing skills for update {niceVersion}. Show data for update {versionList}</div>
@@ -32,6 +32,7 @@
 		Use the controls below to set your character stats and update all skill tooltips. Click on any skill to
 		focus it in the above tooltip.
 		<p />
+		<form id="esovsAttributesForm" method="">
 		<div class="esovsRangeLabel">Level</div>
 		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="{fmtLevel}">
 		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">
@@ -60,6 +61,13 @@
 		<input id="esovsInputArmor" class="esovsInputControl" type="text" value="{armor}">
 		<input id="esovsControlArmor" class="esovsRangeControl" type="range" min="0" max="32100" value="{armor}">
 		<br />
+		<div class="esovsRangeLabel">Show All</div>
+		<input id="esovsInputShowAll" class="esovsInputControl" type="checkbox" {showAllChecked} value="1">
+		<div class="esovsRangeControl">Requires Reloading (Go Button)</div>
+		<br />
+		<input id="esovsInputReset" class="" type="reset" value="Reset">
+		<input id="esovsInputDefault" class="" type="button" value="Defaults">
+		</form>
 	</div>
 	<hr />
 	<div id="esovsSkillCoefData">
@@ -108,7 +116,9 @@
 	var g_EsoSkillPoisonSkills = {poisonSkillsJson};
 	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};
 	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};
-	var g_EsoSkillHasV2Tooltips = {hasV2SkillTooltips};	
+	var g_EsoSkillHasV2Tooltips = {hasV2SkillTooltips};
+	var g_EsoCraftedSkills = {craftedSkillsJson};
+	var g_EsoCraftedScripts = {craftedScriptsJson};
 </script>
 <div class="esovsUpdateDate">Skill data last updated on {updateDate}.</div>
 <hr>

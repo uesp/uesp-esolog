@@ -3,7 +3,8 @@
 #
 
 name = uesp.esologcollector
-staged = true
+# Staged is too slow for this repo due to size
+staged = false
 
 ignore = .hg*
 ignore = .git*

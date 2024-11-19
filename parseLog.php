@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "44pts";
-	const SKILLS_TABLESUFFIX   = "42";
+	const MINEITEM_TABLESUFFIX = "44";
+	const SKILLS_TABLESUFFIX   = "44";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -229,6 +229,8 @@ class EsoLogParser
 			"uniqueQuest",
 			"antiquityLeads",
 			"minedSkills",
+			"craftedSkills",
+			"craftedScripts",
 			"collectibles",
 			"achievements",
 			"minedItemSummary",
@@ -933,7 +935,10 @@ class EsoLogParser
 			'tickTime' => self::FIELD_INT,
 			'cooldown' => self::FIELD_INT,
 			'cost' => self::FIELD_STRING,
-			'costTime' => self::FIELD_STRING,		//Added update 42
+			'costTime' => self::FIELD_STRING,			//Added update 42
+			'baseCost' => self::FIELD_STRING,			//Added update 44
+			'baseMechanic' => self::FIELD_STRING,		//Added update 44
+			'baseIsCostTime' => self::FIELD_STRING,		//Added update 44
 			'target' => self::FIELD_STRING,
 			'minRange' => self::FIELD_INT,
 			'maxRange' => self::FIELD_INT,
@@ -942,6 +947,7 @@ class EsoLogParser
 			'isChanneled' => self::FIELD_INT,
 			'isPermanent' => self::FIELD_INT,
 			'isCrafted' => self::FIELD_INT,
+			'craftedId' => self::FIELD_INT,
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
 			'angleDistance' => self::FIELD_INT,
@@ -1010,6 +1016,41 @@ class EsoLogParser
 			'rawTooltip' => self::FIELD_STRING,
 			'rawCoef' => self::FIELD_STRING,
 			'coefTypes' => self::FIELD_STRING,
+	);
+	
+	
+	public static $CRAFTEDSKILL_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'abilityIds' => self::FIELD_STRING,
+			'skillType' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'hint' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'slots1' => self::FIELD_STRING,
+			'slots2' => self::FIELD_STRING,
+			'slots3' => self::FIELD_STRING,
+	);
+	
+	
+	public static $CRAFTEDSCRIPT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'slot' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'hint' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+	);
+	
+	
+	public static $CRAFTEDSCRIPTDESCRIPTION_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'craftedAbilityId' => self::FIELD_INT,
+			'scriptId' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
 	);
 	
 	
@@ -1408,6 +1449,17 @@ class EsoLogParser
 	
 	
 	public static $GOLDENVENDORITEM_FIELDS = array(
+			'startTimestamp' => self::FIELD_INT,
+			'link' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'bindType' => self::FIELD_INT,
+			'price' => self::FIELD_STRING,
+	);
+	
+	
+	public static $LUXURYVENDORITEM_FIELDS = array(
 			'startTimestamp' => self::FIELD_INT,
 			'link' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
@@ -2034,6 +2086,15 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadLuxuryVendorItem($timestamp, $link)
+	{
+		$record = $this->loadRecord2('luxuryVendorItems', 'startTimestamp', $timestamp, 'link', $link, self::$LUXURYVENDORITEM_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
 	public function LoadCampaignInfo ($id, $server)
 	{
 		$record = $this->loadRecord2('campaignInfo', 'server', $server, 'id', $id, self::$CAMPAIGNINFO_FIELDS);
@@ -2114,6 +2175,39 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadCraftedSkill ($craftedId)
+	{
+		if ($craftedId <= 0) return false;
+		
+		$skill = $this->loadRecord('craftedSkills'.self::SKILLS_TABLESUFFIX, 'id', $craftedId, self::$CRAFTEDSKILL_FIELDS);
+		if ($skill === false) return false;
+		
+		return $skill;
+	}
+	
+	
+	public function LoadCraftedScript ($scriptId)
+	{
+		if ($scriptId <= 0) return false;
+		
+		$script = $this->loadRecord('craftedScripts'.self::SKILLS_TABLESUFFIX, 'id', $scriptId, self::$CRAFTEDSCRIPT_FIELDS);
+		if ($script === false) return false;
+		
+		return $script;
+	}
+	
+	
+	public function LoadCraftedScriptDescription ($craftedId, $scriptId)
+	{
+		if ($craftedId <= 0 && $scriptId <= 0) return false;
+		
+		$desc = $this->loadRecord2('craftedScriptDescriptions'.self::SKILLS_TABLESUFFIX, 'craftedAbilityId', $craftedId, 'scriptId', $scriptId, self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS);
+		if ($desc === false) return false;
+		
+		return $desc;
+	}
+	
+	
 	public function LoadSkillLine ($name)
 	{
 		if ($name == "") return false;
@@ -2142,15 +2236,21 @@ class EsoLogParser
 	{
 		$abilityId = intval($coefData['id']);
 		$setQuery = array();
+		$cols = [];
+		$values = [];
 		
 		foreach ($coefData as $key => $value)
 		{
-			if ($key == "id") continue;
 			$safeValue = $this->db->real_escape_string($value);
+			
+			$cols[] = "`" . $key . "`";
+			$values[] = "'$safeValue'";
+			
+			if ($key == "id") continue;
 			$setQuery[] = "$key=\"$safeValue\"";
 		}
 		
-		$query = "UPDATE minedSkills".self::SKILLS_TABLESUFFIX." SET " . implode(", ", $setQuery) . " WHERE id='$abilityId';";
+		$query = "INSERT INTO minedSkills".self::SKILLS_TABLESUFFIX." (" . implode(", ", $cols) . ") VALUES(" . implode(", ", $values) . ") ON DUPLICATE KEY UPDATE " . implode(", ", $setQuery) . ";";
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportError("Failed to save skill coefficient data!");
@@ -2211,6 +2311,24 @@ class EsoLogParser
 	public function SaveSkillDump (&$record)
 	{
 		return $this->saveRecord('minedSkills'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$SKILLDUMP_FIELDS);
+	}
+	
+	
+	public function SaveCraftedSkill (&$record)
+	{
+		return $this->saveRecord('craftedSkills'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CRAFTEDSKILL_FIELDS);
+	}
+	
+	
+	public function SaveCraftedScript (&$record)
+	{
+		return $this->saveRecord('craftedScripts'.self::SKILLS_TABLESUFFIX, $record, 'id', self::$CRAFTEDSCRIPT_FIELDS);
+	}
+	
+	
+	public function SaveCraftedScriptDescription (&$record)
+	{
+		return $this->saveRecord2('craftedScriptDescriptions'.self::SKILLS_TABLESUFFIX, $record, 'craftedAbilityId', 'scriptId', self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS);
 	}
 	
 	
@@ -2414,6 +2532,12 @@ class EsoLogParser
 	public function SaveGoldenVendorItem (&$record)
 	{
 		return $this->saveRecord2('goldenVendorItems', $record, 'startTimestamp', 'link', self::$GOLDENVENDORITEM_FIELDS);
+	}
+	
+	
+	public function SaveLuxuryVendorItem (&$record)
+	{
+		return $this->saveRecord2('luxuryVendorItems', $record, 'startTimestamp', 'link', self::$LUXURYVENDORITEM_FIELDS);
 	}
 	
 	
@@ -3157,14 +3281,17 @@ class EsoLogParser
 			descHeader TEXT NOT NULL DEFAULT '',
 			target TINYTEXT NOT NULL DEFAULT '',
 			skillType INTEGER NOT NULL DEFAULT -1,
-			upgradeLines TEXT NOT NULL,
-			effectLines TEXT NOT NULL,
+			upgradeLines TEXT NOT NULL DEFAULT '',
+			effectLines TEXT NOT NULL DEFAULT '',
 			duration INTEGER NOT NULL DEFAULT -1,
 			startTime INTEGER NOT NULL DEFAULT -1,
 			tickTime INTEGER NOT NULL DEFAULT -1,
 			cooldown INTEGER NOT NULL DEFAULT -1,
-			cost TINYTEXT NOT NULL,
-			costTime TINYTEXT NOT NULL,
+			cost TINYTEXT NOT NULL DEFAULT '',
+			costTime TINYTEXT NOT NULL DEFAULT '',
+			baseCost TINYTEXT NOT NULL DEFAULT '',
+			baseMechanic TINYTEXT NOT NULL DEFAULT '',
+			baseIsCostTime TINYTEXT NOT NULL DEFAULT '',
 			chargeFreq TINYTEXT NOT NULL DEFAULT '',
 			minRange INTEGER NOT NULL DEFAULT -1,
 			maxRange INTEGER NOT NULL DEFAULT -1,
@@ -3173,6 +3300,7 @@ class EsoLogParser
 			isChanneled TINYINT NOT NULL DEFAULT 0,
 			isPermanent TINYINT NOT NULL DEFAULT 0,
 			isCrafted TINYINT NOT NULL DEFAULT 0,
+			craftedId INTEGER NOT NULL DEFAULT 0,
 			castTime INTEGER NOT NULL DEFAULT -1,
 			channelTime INTEGER NOT NULL DEFAULT -1,
 			angleDistance INTEGER NOT NULL DEFAULT -1,
@@ -3265,6 +3393,51 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create minedSkillLines table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS craftedSkills".self::SKILLS_TABLESUFFIX."(
+			id INTEGER NOT NULL PRIMARY KEY,
+			abilityId INTEGER NOT NULL DEFAULT 0,
+			abilityIds MEDIUMTEXT NOT NULL DEFAULT '',
+			skillType TINYINT NOT NULL DEFAULT 0,
+			name TINYTEXT NOT NULL DEFAULT '',
+			description MEDIUMTEXT NOT NULL DEFAULT '',
+			hint MEDIUMTEXT NOT NULL DEFAULT '',
+			icon TINYTEXT NOT NULL DEFAULT '',
+			slots1 TINYTEXT NOT NULL DEFAULT '',
+			slots2 TINYTEXT NOT NULL DEFAULT '',
+			slots3 TINYTEXT NOT NULL DEFAULT ''
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create craftedSkills table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS craftedScripts".self::SKILLS_TABLESUFFIX."(
+			id INTEGER NOT NULL PRIMARY KEY,
+			name TINYTEXT NOT NULL DEFAULT '',
+			slot TINYINT NOT NULL DEFAULT 0,
+			description MEDIUMTEXT NOT NULL DEFAULT '',
+			hint MEDIUMTEXT NOT NULL DEFAULT '',
+			icon TINYTEXT NOT NULL DEFAULT ''
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create craftedScripts table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS craftedScriptDescriptions".self::SKILLS_TABLESUFFIX."(
+			id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			craftedAbilityId INTEGER NOT NULL,
+			scriptId INTEGER NOT NULL,
+			abilityId INTEGER NOT NULL DEFAULT 0,
+			name TINYTEXT NOT NULL DEFAULT '',
+			description MEDIUMTEXT NOT NULL DEFAULT '',
+			UNIQUE KEY id_key (craftedAbilityId, scriptId)
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create craftedScriptDescriptions table!");
 		
 		/*		Old CP system not used since update 29
 		$query = "CREATE TABLE IF NOT EXISTS cpDisciplines".self::SKILLS_TABLESUFFIX."(
@@ -3773,6 +3946,21 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create goldenVendorItems table!");
 		
+		$query = "CREATE TABLE IF NOT EXISTS luxuryVendorItems (
+						startTimestamp INTEGER NOT NULL,
+						link TINYTEXT NOT NULL,
+						name TINYTEXT NOT NULL,
+						trait TINYINT NOT NULL,
+						quality TINYINT NOT NULL,
+						bindType TINYINT NOT NULL,
+						price TINYTEXT NOT NULL,
+						INDEX index_main(startTimestamp, link(32))
+					) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create luxuryVendorItems table!");
+		
 		$query = "CREATE TABLE IF NOT EXISTS setInfo (
 						setName TINYTEXT NOT NULL,
 						type TINYTEXT NOT NULL,
@@ -3782,7 +3970,7 @@ class EsoLogParser
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create goldenVendorItems table!");
+		if ($result === FALSE) return $this->reportError("Failed to create setInfo table!");
 		
 		$this->skillTooltips->CreateTable();
 		
@@ -7236,7 +7424,7 @@ class EsoLogParser
 	{
 		$name = strtolower($logEntry['name']);
 		
-		if ($name != "adhazabi aba-daro")
+		if ($name != "adhazabi aba-daro" && $name != "zanil theran")
 		{
 			$this->currentUser['skipVendorItems'] = true;
 			return true;
@@ -7299,6 +7487,56 @@ class EsoLogParser
 	{
 		if ($this->currentUser['skipVendorItems'] === true) return true;
 		
+		if ($this->currentUser['vendorName'] == "Zanil Theran")
+			return $this->OnLuxuryVendorItem($logEntry);
+		else if ($this->currentUser['vendorName'] == "Adhazabi Aba-daro")
+			return $this->OnGoldenVendorItem($logEntry);
+		
+		return $this->reportLogParseError("\tWarning: Unknown vendor data from '{$this->currentUser['vendorName']}' found!");
+	}
+	
+	
+	public function OnLuxuryVendorItem ($logEntry)
+	{
+			$link = $logEntry['link'];
+		$startTimestamp = $this->currentUser['vendorStartTimestamp'];
+		
+		$itemRecord = $this->LoadLuxuryVendorItem($startTimestamp, $link);
+		if ($itemRecord === false) return $this->reportLogParseError("\tWarning: Failed to load or initialize luxuryVendorItem data!");
+		
+		if ($itemRecord['__isNew'] === true)
+		{
+			++$this->currentUser['newCount'];
+			$this->currentUser['__dirty'] = true;
+		}
+		
+		$itemRecord['name'] = preg_replace('#\^.*$#', '', $logEntry['name']);
+		$itemRecord['quality'] = $logEntry['quality'];
+		$itemRecord['bindType'] = $logEntry['bindType'];
+		$itemRecord['trait'] = $logEntry['trait'];
+		
+		$prices = [];
+		if ($logEntry['price'] > 0) $prices[] = "{$logEntry['price']} gp";
+		if ($logEntry['currQnt1'] > 0) $prices[] = "{$logEntry['currQnt1']} " . GetEsoCurrencyTypeShortText($logEntry['currType1']);
+		if ($logEntry['currQnt2'] > 0) $prices[] = "{$logEntry['currQnt2']} " . GetEsoCurrencyTypeShortText($logEntry['currType2']);
+		//$price = implode(", ", $prices);
+		$oldPrices = explode(',', $itemRecord['price']);
+		$newPrices = $oldPrices;
+		
+		foreach ($prices as $price)
+		{
+			$newPrices = $this->MergeVendorPrices($newPrices, $price);
+		}
+		
+		$itemRecord['price'] = implode(', ', $newPrices);
+		
+		$this->SaveLuxuryVendorItem($itemRecord);
+		return true;
+	}
+	
+	
+	public function OnGoldenVendorItem ($logEntry)
+	{
 		$link = $logEntry['link'];
 		$startTimestamp = $this->currentUser['vendorStartTimestamp'];
 		
@@ -8438,7 +8676,7 @@ class EsoLogParser
 		$coefData['coefDescription'] = $logEntry['desc'];
 		$coefData['id'] = $logEntry['abilityId'];
 		
-		if ($numVars > self::ELP_SKILLCOEF_MAXCOEFVARS) $numVars = self::ELP_SKILLCOEF_MAXCOEFVARS; 
+		if ($numVars > self::ELP_SKILLCOEF_MAXCOEFVARS) $numVars = self::ELP_SKILLCOEF_MAXCOEFVARS;
 		
 		for ($i = 1; $i <= $numVars; ++$i)
 		{
@@ -8454,6 +8692,16 @@ class EsoLogParser
 			if ($b == null) continue;
 			if ($c == null) continue;
 			if ($R == null) continue;
+			
+			if ($a == "-nan(ind)") continue;
+			if ($b == "-nan(ind)") continue;
+			if ($c == "-nan(ind)") continue;
+			if ($R == "-nan(ind)") continue;
+			
+			if (is_nan($a)) continue;
+			if (is_nan($b)) continue;
+			if (is_nan($c)) continue;
+			if (is_nan($R)) $R = 0;
 			
 			if ($R < self::ELP_SKILLCOEF_MININUM_R2) continue;
 			
@@ -8477,9 +8725,106 @@ class EsoLogParser
 	}
 	
 	
+	public function OnCraftedAbilityStart ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		if ($logEntry['note'] != null)
+			$this->currentUser['lastSkillDumpNote'] = $logEntry['note'];
+		else
+			$this->currentUser['lastSkillDumpNote'] = '';
+		
+		$this->logInfos['lastSkillUpdate'] = date("Y-M-d H:i:s");
+		return true;
+	}
+	
+	
+	public function OnCraftedAbilityEnd ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		$this->currentUser['lastSkillDumpNote'] = null;
+		$this->currentUser['lastSkillLineName'] = null;
+		return true;
+	}
+	
+	
+	public function OnCraftedAbility ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		$abilityId = $logEntry['craftedId'];
+		if ($abilityId == null || $abilityId == "") return $this->reportLogParseError("Missing craftedId in crafted ability!");
+		
+		$skill = $this->LoadCraftedSkill($abilityId);
+		if ($skill === false) return $this->reportLogParseError("Failed to load crafted skill $abilityId!");
+		
+		$skill['skillType'] = $logEntry['skillType'];
+		$skill['name'] = $logEntry['displayName'];
+		$skill['description'] = $logEntry['description'];
+		$skill['icon'] = $logEntry['icon'];
+		$skill['hint'] = $logEntry['hint'];
+		$skill['abilityId'] = $logEntry['abilityId'];
+		$skill['slots1'] = $logEntry['slots1'];
+		$skill['slots2'] = $logEntry['slots2'];
+		$skill['slots3'] = $logEntry['slots3'];
+		
+		$this->SaveCraftedSkill($skill);
+		
+		return true;
+	}
+	
+	
+	public function OnCraftedAbilityScript ($logEntry)
+	{
+		if (!$this->IsValidUser($logEntry)) return false;
+		
+		$version = $this->currentUser['lastSkillDumpNote'];
+		
+		$scriptId = $logEntry['id'];
+		if ($scriptId == null || $scriptId == "") return $this->reportLogParseError("Missing id in crafted script!");
+		
+		$script = $this->LoadCraftedScript($scriptId);
+		if ($script === false) return $this->reportLogParseError("Failed to load crafted script $scriptId!");
+		
+		$script['slot'] = $logEntry['slot'];
+		$script['name'] = $logEntry['name'];
+		$script['description'] = $logEntry['generelDesc'];
+		$script['icon'] = $logEntry['icon'];
+		$script['hint'] = $logEntry['hint'];
+		
+		$numCrafted = intval($logEntry['numCrafted']);
+		
+		if ($numCrafted > 0)
+		{
+			for ($i = 1; $i <= $numCrafted; $i++)
+			{
+				$desc = $logEntry["desc$i"];
+				$name = $logEntry["name$i"];
+				$id = $logEntry["repid$i"];
+				if ($desc == null) continue;
+				
+				$record = $this->LoadCraftedScriptDescription($i, $scriptId);
+				if ($record === false) continue;
+				
+				$record['description'] = $desc;
+				$record['name'] = $name;
+				$record['abilityId'] = $id;
+				
+				$this->SaveCraftedScriptDescription($record);
+			}
+		}
+		
+		$this->SaveCraftedScript($script);
+		
+		return true;
+	}
+	
+	
 	public function OnSkillDumpStart ($logEntry)
 	{
-		if (!$this->IsValidUser($logEntry)) return false; 
+		if (!$this->IsValidUser($logEntry)) return false;
 		
 		if ($logEntry['note'] != null)
 			$this->currentUser['lastSkillDumpNote'] = $logEntry['note'];
@@ -8530,12 +8875,18 @@ class EsoLogParser
 		$skill['radius'] = $logEntry['radius'];
 		$skill['castTime'] = $logEntry['castTime'];
 		$skill['channelTime'] = $logEntry['channelTime'];
+		$skill['baseCost'] = $logEntry['baseCost'];
+		$skill['baseMechanic'] = $logEntry['baseMechanic'];
+		$skill['baseIsCostTime'] = $logEntry['baseIsCostTime'];
 		
 		$skill['isPassive'] = ($logEntry['passive'] == "true") ? 1 : 0;
 		$skill['isPermanent'] = ($logEntry['perm'] == "true") ? 1 : 0;
 		$skill['isChanneled'] = $logEntry['channel'];
+		
 		$skill['isCrafted'] = 0;
+		$skill['craftedId'] = 0;
 		$skill['isCrafted'] = ($logEntry['isCrafted'] == "true") ? 1 : 0;
+		$skill['craftedId'] = ($logEntry['craftedAbilityId'] != null) ? $logEntry['craftedAbilityId'] : 0;
 		
 		$skill['angleDistance'] = $logEntry['angleDistance'];
 		$skill['mechanic'] = $logEntry['mechanic'];
@@ -8692,6 +9043,9 @@ class EsoLogParser
 		$skill['prevSkill'] = $origPrevSkill;
 		if ($origPrevSkill == $abilityId) $skill['prevSkill'] = 0;
 		if ($origPrevSkill == $id1) $skill['prevSkill'] = 0;
+		$skill['baseCost'] = $logEntry['baseCost1'];
+		$skill['baseMechanic'] = $logEntry['baseMechanic1'];
+		$skill['baseIsCostTime'] = $logEntry['baseIsCostTime1'];
 		
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
 		{
@@ -8724,10 +9078,14 @@ class EsoLogParser
 		$skill2['channelTime'] = $logEntry['channelTime2'];
 		$skill2['chargeFreq'] = $logEntry['chargeFreqMS2'];
 		$skill2['isCrafted'] = $skill['isCrafted'];
+		$skill2['craftedId'] = $skill['craftedId'];
 		$skill2['rank'] = 2;
 		$skill2['nextSkill'] = $id3;
 		$skill2['nextSkill2'] = 0;
 		$skill2['prevSkill'] = $id1;
+		$skill2['baseCost'] = $logEntry['baseCost2'];
+		$skill2['baseMechanic'] = $logEntry['baseMechanic2'];
+		$skill2['baseIsCostTime'] = $logEntry['baseIsCostTime2'];
 		
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
 		{
@@ -8760,10 +9118,14 @@ class EsoLogParser
 		$skill3['channelTime'] = $logEntry['channelTime3'];
 		$skill3['chargeFreq'] = $logEntry['chargeFreqMS3'];
 		$skill3['isCrafted'] = $skill['isCrafted'];
+		$skill3['craftedId'] = $skill['craftedId'];
 		$skill3['rank'] = 3;
 		$skill3['nextSkill'] = $id4;
 		$skill3['nextSkill2'] = 0;
 		$skill3['prevSkill'] = $id2;
+		$skill3['baseCost'] = $logEntry['baseCost3'];
+		$skill3['baseMechanic'] = $logEntry['baseMechanic3'];
+		$skill3['baseIsCostTime'] = $logEntry['baseIsCostTime3'];
 		
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
 		{
@@ -8796,10 +9158,14 @@ class EsoLogParser
 		$skill4['channelTime'] = $logEntry['channelTime4'];
 		$skill4['chargeFreq'] = $logEntry['chargeFreqMS4'];
 		$skill4['isCrafted'] = $skill['isCrafted'];
+		$skill4['craftedId'] = $skill['craftedId'];
 		$skill4['rank'] = 4;
 		$skill4['nextSkill'] = $origNextSkill;
 		$skill4['nextSkill2'] = $origNextSkill2;
 		$skill4['prevSkill'] = $id3;
+		$skill4['baseCost'] = $logEntry['baseCost4'];
+		$skill4['baseMechanic'] = $logEntry['baseMechanic4'];
+		$skill4['baseIsCostTime'] = $logEntry['baseIsCostTime4'];
 		
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
 		{
@@ -8873,7 +9239,7 @@ class EsoLogParser
 	public function OnSkill ($logEntry)
 	{
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 18)) return $this->OnSkill18($logEntry);
-		print("OnSkill (you shouldn't see this for recent parses)\n");
+		print("OnSkill (you shouldn't see this for recent parses after update 18)\n");
 		
 		if (!$this->IsValidUser($logEntry)) return false;
 		
@@ -8897,7 +9263,9 @@ class EsoLogParser
 		$skill['isPassive'] = $logEntry['passive'];
 		$skill['isPermanent'] = $logEntry['perm'] == "true" ? 1 : 0;
 		$skill['isCrafted'] = 0;
+		$skill['craftedId'] = 0;
 		$skill['isCrafted'] = $logEntry['isCrafted'] == "true" ? 1 : 0;
+		$skill['craftedId'] = ($logEntry['craftedAbilityId'] != null) ? $logEntry['craftedAbilityId'] : 0;
 		if ($skill['isPermanent'] == null) $skill['isPermanent'] = 0;
 		$skill['isChanneled'] = $logEntry['channel'];
 		$skill['castTime'] = $logEntry['castTime'];
@@ -10323,7 +10691,11 @@ class EsoLogParser
 			case 'mineanti':
 			case 'mineanti::end':
 			case "mineanti::start":
-			case "skill":
+			case "skillDump::Start":
+			case "CraftedAbility::Start":
+			case "CraftedAbility::End":
+			case "CraftedAbility":
+			case "CraftedAbilityScript":
 			case "skillDump::Start":
 			case "skillDump::StartProgression":
 			case "skillDump::StartType":
@@ -10797,6 +11169,11 @@ class EsoLogParser
 			case "skillDump::StartLearned":		$result = $this->OnSkillDumpStart($logEntry); break;
 			case "skillLearned":				$result = $this->OnSkillLearned($logEntry); break;
 			case "skillDump::EndLearned":		$result = $this->OnSkillDumpEnd($logEntry); break;
+			
+			case "CraftedAbility::Start":		$result = $this->OnCraftedAbilityStart($logEntry); break;
+			case "CraftedAbility::End":			$result = $this->OnCraftedAbilityEnd($logEntry); break;
+			case "CraftedAbility":				$result = $this->OnCraftedAbility($logEntry); break;
+			case "CraftedAbilityScript":		$result = $this->OnCraftedAbilityScript($logEntry); break;
 			
 			case "CP::start":					$result = $this->OnCPStart($logEntry); break;
 			case "CP::disc":					$result = $this->OnCPDiscipline($logEntry); break;

@@ -786,7 +786,47 @@
 	background-image: none;
 }
 
-
 .esoSkillPopupTooltipDivider {
 	width: 100%;
+}
+
+.esovsAbilityBlockScript {
+	padding: 5px
+}
+
+.esovsAbilityBlockScriptTitle {
+	font-weight: bold;
+	font-size: 18px;
+	padding-left: 10px;
+	padding-bottom: 5px;
+}
+
+.esovsAbilityScript {
+	display: inline-block;
+	border: 2px solid transparent;
+	border-radius: 5px;
+	width: 99%;
+}
+
+.esovsAbilityScript:hover {
+	cursor: pointer;
+	background: #E3d5c0;
+}
+
+.esovsAbilityScript img {
+	float: left;
+	width: 32px;
+}
+.esovsAbilityScriptName {
+	font-weight: bold;
+	display: inline-block;
+	font-size: 15px;
+}
+.esovsAbilityScriptDesc {
+	display: inline;
+	font-size: 14px;
+}
+
+.esovsAbilityScriptSelected {
+	border: 2px solid blue;
 }

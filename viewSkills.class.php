@@ -10,6 +10,17 @@ class CEsoViewSkills
 	const ESOVS_ENABLE_PROFILE = false;
 	CONST ESOVS_USE_MEMCACHE = false;		// Not completely implemented or tested, does not drastically increase speed at the moment
 	
+	const DEFAULT_SKILL_HEALTH = 20000;
+	const DEFAULT_SKILL_MAGICKA = 20000;
+	const DEFAULT_SKILL_STAMINA = 20000;
+	const DEFAULT_SKILL_SPELLDAMAGE = 2000;
+	const DEFAULT_SKILL_WEAPONDAMAGE = 2000;
+	const DEFAULT_SKILL_LEVEL = 66;
+	const DEFAULT_SKILL_ARMOR = 11000;
+	const DEFAULT_SKILL_DISPLAYTYPE = "summary";
+	const DEFAULT_SKILL_DEBUG = 0;
+	const DEFAULT_SKILL_ID = 33963;
+	
 	public $ESOVS_HTML_TEMPLATE = "";
 	public $ESOVS_HTML_TEMPLATE_EMBED = "";
 	
@@ -20,7 +31,7 @@ class CEsoViewSkills
 	
 	public $version = "";
 	public $showAll = false;
-	public $highlightSkillId = 33963; // Dragonknight Standard
+	public $highlightSkillId = self::DEFAULT_SKILL_ID; // Dragonknight Standard
 	public $highlightSkillType = "";
 	public $highlightSkillLine = "";
 	
@@ -34,17 +45,21 @@ class CEsoViewSkills
 	public $skillTree = array();
 	public $skillSearchIds = array();
 	public $setSkills = array();
-	public $skillHealth = 20000;
-	public $skillMagicka = 20000;
-	public $skillStamina = 20000;
-	public $skillLevel = 66;
-	public $skillSpellDamage = 2000;
-	public $skillWeaponDamage = 2000;
-	public $skillArmor = 11000;
+	public $skillHealth = self::DEFAULT_SKILL_HEALTH;
+	public $skillMagicka = self::DEFAULT_SKILL_MAGICKA;
+	public $skillStamina = self::DEFAULT_SKILL_STAMINA;
+	public $skillLevel = self::DEFAULT_SKILL_LEVEL;
+	public $skillSpellDamage = self::DEFAULT_SKILL_SPELLDAMAGE;
+	public $skillWeaponDamage = self::DEFAULT_SKILL_WEAPONDAMAGE;
+	public $skillArmor = self::DEFAULT_SKILL_ARMOR;
+	
+	public $LOAD_CRAFTED_SKILLS = false;
+	public $craftedSkills = array();
+	public $craftedScripts = array();
 	
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
-	public $displayType = "summary";
+	public $displayType = self::DEFAULT_SKILL_DISPLAYTYPE;
 	public $showLeftDetails = true;
 	public $displayClass = "all";
 	public $displayRace = "all";
@@ -203,10 +218,177 @@ class CEsoViewSkills
 	}
 	
 	
+	public function CreateCraftedSkillCost($skill)
+	{
+		$cost = "";
+		
+		if (($this->TABLE_SUFFIX != "" && intval($this->TABLE_SUFFIX) < 34) && ($this->TABLE_SUFFIX == "" && GetEsoUpdateVersion() < 34))
+		{
+			$cost = "" . $skill['cost'] . " " . GetEsoCombatMechanicText($skill['mechanic']);
+			return $cost;
+		}
+		
+		$mechanic = $skill['mechanic'];
+		if ($mechanic == "") $mechanic = $skill['baseMechanic'];
+		
+		$cost = $skill['cost'];
+		if ($cost == "") $cost = $skill['baseCost'];
+		
+		$rawCosts = explode(",", $cost);
+		$mechanics = explode(",", $mechanic);
+		$costs = [];
+		
+		foreach ($rawCosts as $i => $cost)
+		{
+			$mechanic = $mechanics[$i];
+			$costs[] = "" . $cost . " " . GetEsoCombatMechanicText34($mechanic);
+		}
+		
+		return implode(",", $costs);
+	}
+	
+	
+	private function LoadCraftedSkillAbilities()
+	{
+		if (!$this->LOAD_CRAFTED_SKILLS) return true;
+		
+		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
+		$skillTreeTable  = "skillTree" . $this->GetTableSuffix();
+		
+		$query = "SELECT $minedSkillTable.* FROM $minedSkillTable WHERE isCrafted='1';";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load crafted skill ability data!");
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$id = intval($row['id']);
+			$index = count($this->skills);
+			
+			//error_log("LoadCraftedSkillAbilities: $id");
+			
+			$row['__isOutput'] = false;
+			$row['__index'] = $index;
+			$row['abilityId'] = $id;
+			
+			if ($row['skillType'] == 1)
+			{
+				$skillTypeName = $row['classType'] . "::" . $row['skillLine'];
+			}
+			elseif ($row['skillType'] == 7)
+			{
+				$skillTypeName = "Racial::" . $row['skillLine'];
+			}
+			else
+			{
+				$skillTypeName = GetEsoSkillTypeText($row['skillType']) . "::" . $row['skillLine'];
+			}
+			
+			$row['skillTypeName'] =$skillTypeName;
+			$row['baseName'] = $row['name'];
+			if ($row['mechanic'] == '') $row['mechanic'] = $row['baseMechanic'];
+			if ($row['cost'] == '') $row['cost'] = $row['baseCost'];
+			$row['cost'] = $this->CreateCraftedSkillCost($row);
+			$row['icon'] = $row['texture'];
+			
+			$row['maxRank'] = 1;
+			
+			$row['type'] = "Active";
+			if ($row['mechanic']  == 10 || $row['mechanic'] == 8) $row['type'] = "Ultimate";
+			if ($row['baseMechanic']  == 10 || $row['baseMechanic'] == 8) $row['type'] = "Ultimate";
+			if ($row['isPassive'] ==  1) $row['type'] = "Passive";
+			
+			$this->skills[] = $row;
+			$this->skillIds[$id] = $row;
+		}
+		
+		return true;
+	}
+	
+	
+	private function LoadCraftedSkills()
+	{
+		if (!$this->LOAD_CRAFTED_SKILLS) return true;
+		
+		$craftedSkillTable = "craftedSkills" . $this->GetTableSuffix();
+		$craftedScriptsTable = "craftedScripts" . $this->GetTableSuffix();
+		$craftedDescTable = "craftedScriptDescriptions" . $this->GetTableSuffix();
+		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
+		
+		$query = "SELECT * FROM $minedSkillTable WHERE id>50000000;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load crafted skill data from minedSkills!");
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$id = intval($row['id']);
+			$index = count($this->skills);
+			
+			$row['__isOutput'] = false;
+			$row['__index'] = $index;
+			
+			$this->skills[] = $row;
+			$this->skillIds[$id] = $row;
+		}
+		
+		$query = "SELECT * FROM $craftedSkillTable;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load crafted skill data!");
+		
+		$this->craftedSkills = [];
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$id = intval($row['id']);
+			
+			$row['__isOutput'] = false;
+			$row['datas'] = [];
+			$row['abilityIds'] = explode(",", $row['abilityIds']);
+			$row['slots1'] = explode(",", $row['slots1']);
+			$row['slots2'] = explode(",", $row['slots2']);
+			$row['slots3'] = explode(",", $row['slots3']);
+			
+			$this->craftedSkills[$id] = $row;
+		}
+		
+		$query = "SELECT * FROM $craftedScriptsTable;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load crafted scripts data!");
+		
+		$this->craftedScripts = [];
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$id = intval($row['id']);
+			
+			$row['__isOutput'] = false;
+			
+			$this->craftedScripts[$id] = $row;
+		}
+		
+		$query = "SELECT * FROM $craftedDescTable;";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("Failed to load crafted script descriptions data!");
+		
+		while (($row = $result->fetch_assoc()))
+		{
+			$id = intval($row['id']);
+			$scriptId = intval($row['scriptId']);
+			$craftedId = intval($row['craftedAbilityId']);
+			
+			$row['__isOutput'] = false;
+			
+			if ($this->craftedSkills[$craftedId])
+			{
+				$this->craftedSkills[$craftedId]['datas'][$scriptId] = $row;
+			}
+		}
+		
+		return $this->LoadCraftedSkillAbilities();
+	}
+	
+	
 	private function LoadSkillTooltips()
 	{
-		$startTime = microtime(true);
-		
 		$tooltipsTable = "skillTooltips" . $this->GetTableSuffix();
 		$query = "SELECT * FROM $tooltipsTable;";
 		$result = $this->db->query($query);
@@ -454,7 +636,7 @@ class CEsoViewSkills
 	{
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		
-		if (array_key_exists('showall', $this->inputParams)) 
+		if (array_key_exists('showall', $this->inputParams))
 		{
 			if ($this->inputParams['showall'] == '')
 				$this->showAll = true;
@@ -483,6 +665,13 @@ class CEsoViewSkills
 				$this->displayType = "summary";
 			else if ($displayType == "select")
 				$this->displayType = "select";
+		}
+		
+		if (array_key_exists('debug', $this->inputParams))
+		{
+			//error_log("Skills: Debug ON");
+			$this->DEBUG = true;
+			$this->LOAD_CRAFTED_SKILLS = true;
 		}
 		
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
@@ -1041,7 +1230,7 @@ class CEsoViewSkills
 	{
 		$skillData = $this->skillIds[$abilityId];
 		if ($skillData == null) { return $abilityId; }
-				
+		
 		while ($skillData['prevSkill'] > 0)
 		{
 			$prevId = $skillData['prevSkill'];
@@ -1051,7 +1240,7 @@ class CEsoViewSkills
 		
 		$baseAbilityId = $skillData['abilityId'];
 		if ($skillData['isPassive'] != 0) { return $baseAbilityId; }
-				
+		
 		while ($skillData['nextSkill'] > 0)
 		{
 			$nextId = $skillData['nextSkill'];
@@ -1131,6 +1320,8 @@ class CEsoViewSkills
 		foreach ($this->skills as $skill)
 		{
 			$abilityId = intval($skill['abilityId']);
+			if ($abilityId == null) continue;
+			
 			$skillIds[$abilityId] = $skill;
 			
 			$tooltips = $this->skillTooltips[$abilityId];
@@ -1204,6 +1395,20 @@ class CEsoViewSkills
 		
 		$this->LogProfile("GetSkillSearchIdsJson()", $startTime);
 		
+		return $output;
+	}
+	
+	
+	public function GetCraftedSkillsJson()
+	{
+		$output = json_encode($this->craftedSkills);
+		return $output;
+	}
+	
+	
+	public function GetCraftedScriptsJson()
+	{
+		$output = json_encode($this->craftedScripts);
 		return $output;
 	}
 	
@@ -1367,13 +1572,13 @@ class CEsoViewSkills
 	}
 	
 	
-	public function GetCurrentVersion() 
+	public function GetCurrentVersion()
 	{
 		return GetEsoDisplayVersion($this->version);
 	}
 	
 	
-	public function GetVersionList($currentVersion) 
+	public function GetVersionList($currentVersion)
 	{
 		$output = "";
 		
@@ -1382,17 +1587,18 @@ class CEsoViewSkills
 		if ($result === false) return $this->ReportError("Failed to list all minedSkills table versions!");
 		
 		$tables = array();
-		$output .= "<form action='?' method='get'>";
-		if ($this->showall) $output .= "<input type='hidden' name='showall' value='1'>";
-		if ($this->highlightSkillId) $output .= "<input type='hidden' name='id' value='{$this->highlightSkillId}'>";
-		if ($this->skillLevel) $output .= "<input type='hidden' name='level' value='{$this->skillLevel}'>";
-		if ($this->skillHealth) $output .= "<input type='hidden' name='health' value='{$this->skillHealth}'>";
-		if ($this->skillMagicka) $output .= "<input type='hidden' name='magicka' value='{$this->skillMagicka}'>";
-		if ($this->skillStamina) $output .= "<input type='hidden' name='stamina' value='{$this->skillStamina}'>";
-		if ($this->skillSpellDamage) $output .= "<input type='hidden' name='spelldamage' value='{$this->skillSpellDamage}'>";
-		if ($this->skillWeaponDamage) $output .= "<input type='hidden' name='weapondamage' value='{$this->skillWeaponDamage}'>";
-		if ($this->skillArmor) $output .= "<input type='hidden' name='armor' value='{$this->skillArmor}'>";
-		if ($this->displayType) $output .= "<input type='hidden' name='display' value='{$this->displayType}'>";
+		$output .= "<form action='?' method='get' id='evsVersionForm'>";
+		$output .= "<input type='hidden' id='evsHiddenShowAll' name='showall' value='1'>";
+		$output .= "<input type='hidden' id='evsHiddenHighlightId' name='id' value='{$this->highlightSkillId}'>";
+		$output .= "<input type='hidden' id='evsHiddenLevel' name='level' value='{$this->skillLevel}'>";
+		$output .= "<input type='hidden' id='evsHiddenHealth' name='health' value='{$this->skillHealth}'>";
+		$output .= "<input type='hidden' id='evsHiddenMagicka' name='magicka' value='{$this->skillMagicka}'>";
+		$output .= "<input type='hidden' id='evsHiddenStamina' name='stamina' value='{$this->skillStamina}'>";
+		$output .= "<input type='hidden' id='evsHiddenSpellDamage' name='spelldamage' value='{$this->skillSpellDamage}'>";
+		$output .= "<input type='hidden' id='evsHiddenWeaponDamage' name='weapondamage' value='{$this->skillWeaponDamage}'>";
+		$output .= "<input type='hidden' id='evsHiddenArmor' name='armor' value='{$this->skillArmor}'>";
+		$output .= "<input type='hidden' id='evsHiddenDisplay' name='display' value='{$this->displayType}'>";
+		$output .= "<input type='hidden' id='evsHiddenDebug' name='debug' value='{$this->DEBUG}'>";
 		$output .= "<select name='version'>";
 		
 		$tables = array();
@@ -1402,13 +1608,13 @@ class CEsoViewSkills
 			$table = $row[0];
 			$version = substr($table, 11);
 			if ($version == "") $version = GetEsoUpdateVersion();
-						
+			
 			$tables[$version] = $version;
 		}
 		
 		natsort($tables);
 		
-		foreach ($tables as $version) 
+		foreach ($tables as $version)
 		{
 			$select = "";
 			if (strcasecmp($version, $currentVersion) == 0) $select = "selected";
@@ -1438,7 +1644,7 @@ class CEsoViewSkills
 		global $ESO_ELFBANE_SKILLS;
 		
 		$startTime = microtime(true);
-	
+		
 		$replacePairs = array(
 				'{skillTree}' => $this->GetSkillTreeHtml(),
 				'{skillContent}'  => $this->GetSkillContentHtml(),
@@ -1460,6 +1666,8 @@ class CEsoViewSkills
 				'{weaponDamage}' => $this->skillWeaponDamage,
 				'{armor}' => $this->skillArmor,
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
+				'{showAll}' => $this->showAll ? "1" : "0",
+				'{showAllChecked}' => $this->showAll ? "checked=\"checked\"" : "",
 				'{updateDate}' => $this->GetUpdateDate(),
 				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,
 				'{leftBlockDisplay}' => $this->GetLeftBlockDisplay(),
@@ -1480,6 +1688,8 @@ class CEsoViewSkills
 				'{skillSearchIdJson}' => $this->GetSkillSearchIdsJson(),
 				'{setSkillsJson}' => $this->GetSetSkillsJson(),
 				'{skillsJson}' => $this->GetSkillsJson(),
+				'{craftedSkillsJson}' => $this->GetCraftedSkillsJson(),
+				'{craftedScriptsJson}' => $this->GetCraftedScriptsJson(),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1520,6 +1730,8 @@ class CEsoViewSkills
 				'{weaponDamage}' => $this->skillWeaponDamage,
 				'{armor}' => $this->skillArmor,
 				'{skillShowAll}' => $this->showAll ? "true" : "false",
+				'{showAll}' => $this->showAll ? "1" : "0",
+				'{showAllChecked}' => $this->showAll ? "checked=\"checked\"" : "",
 				'{updateDate}' => $this->GetUpdateDate(),
 				'{useUpdate10Costs}' => $this->useUpdate10Costs ? 1 : 0,
 				'{leftBlockDisplay}' => $this->GetLeftBlockDisplay(),
@@ -1533,6 +1745,8 @@ class CEsoViewSkills
 				'{skillBarJson}'  => "{}",
 				'{skillHistoryLink}' => "",
 				'{hasV2SkillTooltips}' => $this->hasSkillTooltips ? "1" : "0",
+				'{craftedSkillsJson}' => "{}",
+				'{craftedScriptsJson}' => "{}",
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
@@ -1546,7 +1760,7 @@ class CEsoViewSkills
 	{
 		$this->OutputHtmlHeader();
 		
-		if (!$this->dataLoaded)	$this->LoadData();
+		$this->LoadData();
 		
 		$this->SetupHighlightSkill();
 		$this->OutputHtml();
@@ -1555,16 +1769,22 @@ class CEsoViewSkills
 	
 	public function LoadData()
 	{
+		if ($this->dataLoaded) return true;
+		
 		$this->LoadTemplate();
 		$this->LoadSkills();
+		$this->LoadCraftedSkills();
+		
 		$this->hasSkillTooltips = $this->LoadSkillTooltips();
+		
 		$this->dataLoaded = true;
+		return true;
 	}
 	
 	
 	public function GetOutputHtml()
 	{
-		if (!$this->dataLoaded)	$this->LoadData();
+		$this->LoadData();
 		
 		$this->SetupHighlightSkill();
 		return $this->CreateOutputHtml();

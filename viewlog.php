@@ -549,6 +549,8 @@ class EsoLogViewer
 			'isChanneled' => self::FIELD_INT,
 			'isPermanent' => self::FIELD_INT,
 			'isPlayer'  => self::FIELD_INT,
+			'isCrafted' => self::FIELD_INT,
+			'craftedId' => self::FIELD_INT,
 			'rank'  => self::FIELD_INT,
 			'morph'  => self::FIELD_INT,
 			'learnedLevel'  => self::FIELD_INT,
@@ -1032,6 +1034,17 @@ class EsoLogViewer
 	
 	
 	public static $GOLDENVENDORITEM_FIELDS = array(
+			'startTimestamp' => self::FIELD_INT,
+			'link' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'trait' => self::FIELD_INT,
+			'quality' => self::FIELD_INT,
+			'bindType' => self::FIELD_INT,
+			'price' => self::FIELD_STRING,
+	);
+	
+	
+	public static $LUXURYVENDORITEM_FIELDS = array(
 			'startTimestamp' => self::FIELD_INT,
 			'link' => self::FIELD_STRING,
 			'name' => self::FIELD_STRING,
@@ -2575,6 +2588,23 @@ class EsoLogViewer
 					),
 			),
 			
+			'luxuryVendorItems' => array(
+					'displayName' => 'Luxury Vendor Items',
+					'displayNameSingle' => 'Luxury Vendor Item',
+					'record' => 'luxuryVendorItems',
+					'table' => 'luxuryVendorItems',
+					'method' => 'DoRecordDisplay',
+					
+					'join' => array(
+					),
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 	);
 	
 	
@@ -2977,6 +3007,7 @@ class EsoLogViewer
 		self::$RECORD_TYPES['campaignLeaderboards']['fields'] = self::$CAMPAIGNLEADERBOARDS_FIELDS;
 		self::$RECORD_TYPES['endeavors']['fields'] = self::$ENDEAVOR_FIELDS;
 		self::$RECORD_TYPES['goldenVendorItems']['fields'] = self::$GOLDENVENDORITEM_FIELDS;
+		self::$RECORD_TYPES['luxuryVendorItems']['fields'] = self::$LUXURYVENDORITEM_FIELDS;
 		
 		$this->EnablePtsRecords();
 		
@@ -3628,6 +3659,7 @@ If you do not understand what this information means, or how to use this webpage
 		<li><a href="//www.uesp.net/wiki/Special:EsoBuildEditor">Build Editor</a></li>
 		<li><a href="/viewPotions.php">Alchemy Calculator</a></li>
 		<li><a href="/goldenVendor.php">Golden Vendor Items</a></li>
+		<li><a href="/goldenVendor.php?vendor=luxury">Luxury Vendor Items</a></li>
 		<li><a href="//esosales.uesp.net/viewSales.php">Sales Data</a></li>
 		<li><a href="/viewAchievements.php">Achievement Viewer</a></li>
 		<li><a href="/viewFurnishings.php">Furnishing Recipe List (CSV)</a></li>

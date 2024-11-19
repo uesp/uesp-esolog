@@ -18,6 +18,10 @@ class CEsoGetGoldenVendorHtml
 	public $groupedItems = [];
 	public $itemTimestamp = -1;
 	public $latestTimestamp = -1;
+	public $inputVendor = "golden";
+	public $tableName = "goldenVendorItems";
+	public $outputName = "golden";
+	public $outputTitle = "Golden";
 	
 	public $errorMessages = [];
 	
@@ -43,6 +47,14 @@ class CEsoGetGoldenVendorHtml
 		
 		if (array_key_exists('showall', $this->inputParams)) $this->showAll = intval($this->inputParams['showall']);
 		if (array_key_exists('showlatest', $this->inputParams)) $this->$showLatestInHistory = intval($this->inputParams['showlatest']);
+		if (array_key_exists('vendor', $this->inputParams)) $this->inputVendor = strtolower($this->inputParams['vendor']);
+		
+		if ($this->inputVendor == "luxury") 
+		{
+			$this->tableName = "luxuryVendorItems";
+			$this->outputName = "luxury";
+			$this->outputTitle = "Luxury";
+		}
 	}
 	
 	
@@ -161,22 +173,22 @@ class CEsoGetGoldenVendorHtml
 	
 	private function LoadLatestItems()
 	{
-		$this->lastQuery = "SELECT max(startTimestamp) as m FROM goldenVendorItems;";
+		$this->lastQuery = "SELECT max(startTimestamp) as m FROM {$this->tableName};";
 		$result = $this->db->query($this->lastQuery);
-		if ($result === false) return $this->ReportError("Error: Failed to find latest golden vendor timestamp!");
+		if ($result === false) return $this->ReportError("Error: Failed to find latest {$this->outputName} vendor timestamp!");
 		
 		$maxTimestamp = $result->fetch_assoc()['m'];
-		if ($maxTimestamp == null || $maxTimestamp <= 0) return $this->ReportError("Error: Failed to find latest golden vendor timestamp!");
+		if ($maxTimestamp == null || $maxTimestamp <= 0) return $this->ReportError("Error: Failed to find latest {$this->outputName} vendor timestamp!");
 		
 		$maxTimestamp = intval($maxTimestamp);
 		$this->itemTimestamp = $maxTimestamp;
 		$this->latestTimestamp = $maxTimestamp;
 		
-		$this->lastQuery = "SELECT * FROM goldenVendorItems WHERE startTimestamp=$maxTimestamp;";
+		$this->lastQuery = "SELECT * FROM {$this->tableName} WHERE startTimestamp=$maxTimestamp;";
 		
 		$result = $this->db->query($this->lastQuery);
-		if ($result === false) return $this->ReportError("Error: Failed to load golden vendor item data!");
-		if ($result->num_rows == 0) return $this->ReportError("No matching golden vendor items found!");
+		if ($result === false) return $this->ReportError("Error: Failed to load {$this->outputName} vendor item data!");
+		if ($result->num_rows == 0) return $this->ReportError("No matching {$this->outputName} vendor items found!");
 		
 		$this->items = [];
 		
@@ -193,11 +205,11 @@ class CEsoGetGoldenVendorHtml
 	private function LoadAllItems()
 	{
 		$this->itemTimestamp = -1;
-		$this->lastQuery = "SELECT * FROM goldenVendorItems;";
+		$this->lastQuery = "SELECT * FROM {$this->tableName};";
 		
 		$result = $this->db->query($this->lastQuery);
-		if ($result === false) return $this->ReportError("Error: Failed to load all golden vendor data!");
-		if ($result->num_rows == 0) return $this->ReportError("No golden vendor items found!");
+		if ($result === false) return $this->ReportError("Error: Failed to load all {$this->outputName} vendor data!");
+		if ($result->num_rows == 0) return $this->ReportError("No {$this->outputName} vendor items found!");
 		
 		$this->allItems = [];
 		$maxTimestamp = 0;
@@ -324,7 +336,12 @@ class CEsoGetGoldenVendorHtml
 			if ($itemLinkAtag) $itemLinkAtagEnd = "</a>";
 			
 			$output .= "<li>";
-			$output .= "$itemLinkAtag<span class='uespesoGoldenItem $className'>$safeName ($safeTraits)</span>$itemLinkAtagEnd -- $safePrices $safeBind";
+			
+			if ($safeTraits == "")
+				$output .= "$itemLinkAtag<span class='uespesoGoldenItem $className'>$safeName</span>$itemLinkAtagEnd -- $safePrices $safeBind";
+			else
+				$output .= "$itemLinkAtag<span class='uespesoGoldenItem $className'>$safeName ($safeTraits)</span>$itemLinkAtagEnd -- $safePrices $safeBind";
+			
 			$output .= "</li>\n";
 		}
 		
@@ -335,7 +352,7 @@ class CEsoGetGoldenVendorHtml
 	
 	private function OutputLatestItemsHtml($groupedItems = null, $timestamp = null)
 	{
-		return $this->OutputGroupedItemsHtml("Latest Golden Vendor Items for ", $this->groupedItems, $this->itemTimestamp);
+		return $this->OutputGroupedItemsHtml("Latest {$this->outputTitle} Vendor Items for ", $this->groupedItems, $this->itemTimestamp);
 	}
 	
 	
@@ -350,7 +367,7 @@ class CEsoGetGoldenVendorHtml
 			if ($timestamp == $this->latestTimestamp && !$this->showLatestInHistory) continue;
 			if ($timestamp <= 0 && !$this->showInvalidTimestamps) continue;
 			
-			$output .= $this->OutputGroupedItemsHtml("Golden Vendor Items for ", $groupedItems, $timestamp);
+			$output .= $this->OutputGroupedItemsHtml("Vendor Items for ", $groupedItems, $timestamp);
 		}
 		
 		$output .= "</div>";
@@ -396,9 +413,19 @@ class CEsoGetGoldenVendorHtml
 	}
 	
 	
+	public function GetTitleHtml()
+	{
+		$output = "<h1>UESP:ESO {$this->outputTitle} Vendor Items</h1>\n";
+		$output .= "Showing all recorded {$this->outputName} vendor items.\n";
+		return $output;
+	}
+	
+	
 	public function Render()
 	{
 		$this->OutputHtmlHeader();
+		
+	
 		
 		if ($this->showAll)
 		{

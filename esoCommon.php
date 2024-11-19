@@ -513,6 +513,7 @@ $ESO_ABILITYTYPES = array(
 		111 => "ResourceTap",
 );
 
+
 $ESO_DAMAGETYPES = array(
 		0 => "None",
 		1 => "Generic",
@@ -527,6 +528,7 @@ $ESO_DAMAGETYPES = array(
 		10 => "Disease",
 		11 => "Poison",
 		12 => "Bleed",
+		515 => "Flame", //Flame Skull
 );
 
 
@@ -4347,7 +4349,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 43;	//TODO: Update after each live patch once items/skills updated
+	return 44;	//TODO: Update after each live patch once items/skills updated
 }
 
 
@@ -4549,7 +4551,7 @@ function GetEsoItemTableSuffix($version)
 		case '40pts':
 			return "40pts";
 		case '40':
-			return "";
+			return "40";
 		case '41pts':
 			return "41pts";
 		case '41':
@@ -4561,12 +4563,14 @@ function GetEsoItemTableSuffix($version)
 		case '43pts':
 			return "43pts";
 		case '43':
-			return "";
+			return "43";
 		case '44pts':
 			return "44pts";
 		case '44':
-			return "44";
+			return "";
 		case 'test':
+		case 'dev':
+		case 'debug':
 			return "";
 	}
 	
@@ -4652,7 +4656,7 @@ function GetEsoItemTraitFullText($trait, $version = "")
 function GetEsoStatTypeText($value)
 {
 	global $ESO_STATTYPES;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_STATTYPES)) return $ESO_STATTYPES[$key];
 	return "Unknown ($key)";
@@ -4662,7 +4666,7 @@ function GetEsoStatTypeText($value)
 function GetEsoAbilityTypeText($value)
 {
 	global $ESO_ABILITYTYPES;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_ABILITYTYPES)) return $ESO_ABILITYTYPES[$key];
 	return "Unknown ($key)";
@@ -4672,10 +4676,23 @@ function GetEsoAbilityTypeText($value)
 function GetEsoDamageTypeText($value)
 {
 	global $ESO_DAMAGETYPES;
-
+	
 	$key = (int) $value;
 	if (array_key_exists($key, $ESO_DAMAGETYPES)) return $ESO_DAMAGETYPES[$key];
 	return "Unknown ($key)";
+}
+
+
+function GetEsoDamageTypeFromText($value)
+{
+	global $ESO_DAMAGETYPES;
+	
+	foreach ($ESO_DAMAGETYPES as $dmgValue => $dmgText)
+	{
+		if (strcasecmp($value, $dmgText) == 0) return $dmgValue;
+	}
+	
+	return -1;
 }
 
 

@@ -1,7 +1,7 @@
 <div id="esovsSearchBlockFloat" style="display: {menuBarDisplay};">
 	<input type="search" id="esovsSearchText" value="" size="30" /> 
 	<button id="esovsSearchButton">Find Skill</button>
-	<div id="esovsSearchResult"></div> 
+	<div id="esovsSearchResult"></div>
 </div>
 <a id="esovsLinkBlock" class="esovsLinkBlockFloat" href="" style="display: {menuBarDisplay};">Link to Skill</a>
 <div id="esovsLeftBlock" style="display: {leftBlockDisplay};">
@@ -14,6 +14,7 @@
 		Use the controls below to set your character stats and update all skill tooltips. Click on any skill to
 		focus it in the above tooltip.
 		<p />
+		<form id="esovsAttributesForm" method="">
 		<div class="esovsRangeLabel">Level</div>
 		<input id="esovsInputLevel" class="esovsInputControl" type="text" value="{fmtLevel}">
 		<input id="esovsControlLevel"  class="esovsRangeControl" type="range" min="1" max="66" value="{level}">
@@ -42,6 +43,13 @@
 		<input id="esovsInputArmor" class="esovsInputControl" type="text" value="{armor}">
 		<input id="esovsControlArmor" class="esovsRangeControl" type="range" min="0" max="32100" value="{armor}">
 		<br />
+		<div class="esovsRangeLabel">Show All</div>
+		<input id="esovsInputShowAll" class="esovsInputControl" type="checkbox" {showAllChecked} value="1">
+		<div class="esovsRangeControl">Requires Reloading (Go Button)</div>
+		<br />
+		<input id="esovsInputReset" class="" type="reset" value="Reset">
+		<input id="esovsInputDefault" class="" type="button" value="Defaults">
+		</form>
 	</div>
 	<hr />
 	<div id="esovsSkillCoefData">
@@ -90,4 +98,6 @@
 	var g_EsoSkillFlameAOESkills = {flameAOESkillsJson};
 	var g_EsoSkillElfBaneSkills = {elfBaneSkillsJson};
 	var g_EsoSkillHasV2Tooltips = {hasV2SkillTooltips};
+	var g_EsoCraftedSkills = {craftedSkillsJson};
+	var g_EsoCraftedScripts = {craftedScriptsJson};
 </script>

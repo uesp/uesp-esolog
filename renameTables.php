@@ -9,6 +9,9 @@ $destVersion = "";
 $archiveVersion = 0;
 $DRYRUN = false;
 
+$SKILL_TABLES = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2SkillLinks", "minedSkills", "skillTree", "minedSkillLines", "skillTooltips", "craftedSkills", "craftedScripts", "craftedScriptDescriptions");
+$ITEM_TABLES = array("minedItem", "minedItemSummary", "setSummary");
+
 for ($i = 1; $i < $argc; ++$i) {
 	$cmd = strtolower($argv[$i]);
 	
@@ -55,8 +58,10 @@ function renameItems() {
 	global $version;
 	global $archiveVersion;
 	global $DRYRUN;
+	global $ITEM_TABLES;
 	
-	$tables = array("minedItem", "minedItemSummary", "setSummary");
+	//$tables = array("minedItem", "minedItemSummary", "setSummary");
+	$tables = $ITEM_TABLES;
 	
 	foreach ($tables as $i => $table)
 	{
@@ -108,9 +113,11 @@ function renameSkills() {
 	global $version;
 	global $archiveVersion;
 	global $DRYRUN;
+	global $SKILL_TABLES;
 	
 	//$tables = array("cpSkills", "cpSkillDescriptions", "cpDisciplines", "minedSkills", "skillTree", "minedSkillLines");	// Pre-update 29 skill tables
-	$tables = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2SkillLinks", "minedSkills", "skillTree", "minedSkillLines", "skillTooltips");
+	//$tables = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2SkillLinks", "minedSkills", "skillTree", "minedSkillLines", "skillTooltips", "craftedSkills", "craftedScripts", "craftedScriptDescriptions");
+	$tables = $SKILL_TABLES;
 	
 	foreach ($tables as $i => $table)
 	{
@@ -162,8 +169,10 @@ function renameItemsDest($destVersion) {
 	global $version;
 	global $archiveVersion;
 	global $DRYRUN;
+	global $ITEM_TABLES;
 	
-	$tables = array("minedItem", "minedItemSummary", "setSummary");
+	//$tables = array("minedItem", "minedItemSummary", "setSummary");
+	$tables = $ITEM_TABLES;
 	
 	foreach ($tables as $i => $table)
 	{
@@ -204,9 +213,10 @@ function renameSkillsDest($destVersion) {
 	global $version;
 	global $archiveVersion;
 	global $DRYRUN;
+	global $SKILL_TABLES;
 	
 	//$tables = array("cpSkills", "cpSkillDescriptions", "cpDisciplines", "minedSkills", "skillTree", "minedSkillLines");	// Pre-update 29 skill tables
-	$tables = array("cp2Skills", "cp2SkillDescriptions", "cp2Disciplines", "cp2ClusterRoots", "cp2SkillLinks", "minedSkills", "skillTree", "minedSkillLines", "skillTooltips");
+	$tables = $SKILL_TABLES;
 	
 	foreach ($tables as $i => $table)
 	{

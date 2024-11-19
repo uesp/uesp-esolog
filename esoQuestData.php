@@ -1930,7 +1930,7 @@ $ESO_QUEST_DATA = array(
 		),
 	736 => array(
 			'name'    => "The Flame of Dissent",
-			'journal' => "The Knights of the Flame are divided over whether to attack the redguard army at Alcaire Castle. Sir Croix and other knights would potentially destroy the Covenant. They need to be stopped. I've agreed to rally knights to Sir Edmund's cause.",
+			'journal' => "The Knights of the Flame are divided over whether to attack the Redguard army at Alcaire Castle. Sir Croix and other knights would potentially destroy the Covenant. They need to be stopped. I've agreed to rally knights to Sir Edmund's cause.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -7410,7 +7410,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6571 => array(
 			'name'    => "Magic Mycology",
-			'journal' => "<<1>>'s needs someone to gather a strange kind of mushroom growing in Gloomreach that a few Reach clans are interested in. I volunteered my services.",
+			'journal' => "<<1>> needs someone to gather a strange kind of mushroom growing in Gloomreach that a few Reach clans are interested in. I volunteered my services.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -10546,7 +10546,7 @@ $ESO_QUEST_DATA = array(
 		),
 	5952 => array(
 			'name'    => "To the Victor",
-			'journal' => "Battlemaster Rivyn has challenged me to win three Battleground matches.",
+			'journal' => "Battlemaster Rivyn has challenged me to win Battleground matches. I can join games and find worthy opponents via the Group and Activity Finder.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -12584,6 +12584,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7189 => array(
+			'name'    => "Of Crown and Flowers",
+			'journal' => "Tanlorin was shaken by the revelation that Wisteria betrayed the Garland Ring. They want to uncover the truth of the Ceythalmor plan and put a stop to this threat once and for all.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	3731 => array(
 			'name'    => "Broken Apart",
 			'journal' => "To rid the area of her corrupting influence, <<1>> and I cleansed the ancient vessel. We need it capture the wispmother in <<2>>.",
@@ -12659,6 +12667,14 @@ $ESO_QUEST_DATA = array(
 	3735 => array(
 			'name'    => "The Death of Balreth",
 			'journal' => "I've defeated Ash Mountain's guardians. Now I must enter Ash Mountain's caldera, defeat Balreth, and imprison him again.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7186 => array(
+			'name'    => "The Garland Ring",
+			'journal' => "Along the road near Vulkhel Guard in Auridon, I met a tattooed High Elf caught in an ice trap.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -16490,7 +16506,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6286 => array(
 			'name'    => "Aloe That Heals",
-			'journal' => "The healers of Root-Whisper Village are in need of a rare aloe that goes in Vakka-Bok. I'll need to make my way past the dangerous creatures that lurk there in order to gather this plant.",
+			'journal' => "The healers of Root-Whisper Village are in need of a rare aloe that grows in Vakka-Bok. I'll need to make my way past the dangerous creatures that lurk there in order to gather this plant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -18512,6 +18528,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7216 => array(
+			'name'    => "Paths Out Of Darkness",
+			'journal' => "Zerith received a suspicious summons from High Cantor Viti to meet in Pa'alat. Perhaps she finally realized we share an enemy in the Rajaska, but Zerith-var suspects it may be a trap.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	7037 => array(
 			'name'    => "Secret Protection",
 			'journal' => "Ordinator Tilena wants three perfect Dremnaken teeth. The Ordinators believe they can use the teeth in a ritual to protect their secrets from Hermaeus Mora.",
@@ -18674,7 +18698,7 @@ $ESO_QUEST_DATA = array(
 		),
 	4834 => array(
 			'name'    => "A Past Remembered",
-			'journal' => "While exploring the Tribulation Crypt, I encountered a ghost that beckoned me deeper into the tomb. The ghost led me to an ancient sword engraved with the following message: \"Marcelle Stenric of Shornhelm.",
+			'journal' => "While exploring the Tribulation Crypt, I encountered a ghost that beckoned me deeper into the tomb. The ghost led me to an ancient sword engraved with the following message: \"Marcelle Stenric of Shornhelm.\"",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -22936,6 +22960,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7194 => array(
+			'name'    => "A Moonlit Shadow",
+			'journal' => "",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	5991 => array(
 			'name'    => "A Masterful Concoction",
 			'journal' => "",
@@ -25648,6 +25680,30 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7187 => array(
+			'name'    => "Thorns and Blossoms",
+			'journal' => "Tanlorin received an invitation to meet with the Gardener, the leader of the Garland Ring. Tan hopes there's been progress in the search for answers after the Ceythalmor attack on them and their friends.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7188 => array(
+			'name'    => "Uprooted",
+			'journal' => "A traitor hides in the ranks of the Garland Ring. Tanlorin, eager to follow up on this threat, received a message from Hyacinth that asked us to investigate further.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7207 => array(
+			'name'    => "Beyond a Veil of Twilight",
+			'journal' => "Zerith-var received a letter from Cantor Krin'ze asking us to meet with her. Zerith believes it might have something to do with the Rajaska.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	7209 => array(
 			'name'    => "Flocking Together",
 			'journal' => "I found a note from a trapper named Marcien in the wilderness, along with an old snared guzzard. The note says if I deliver the guzzard to Star-Gazer Sariyaah in Ontus, I'll be rewarded.",
@@ -25683,6 +25739,14 @@ $ESO_QUEST_DATA = array(
 	7220 => array(
 			'name'    => "The Wing of the Crow",
 			'journal' => "The final wing of the Scholarium lies open. The unmarked door is actually the Wing of the Crow. The Crow will be conducting my final trial, as I seek to complete my journey to restore the Scribing Altar.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7221 => array(
+			'name'    => "The Dark Behind the World",
+			'journal' => "Zerith's gauntlet beckons him to Khenarthi's Rise, a place that was ruins even in his day. I should help him investigate this unusual summons, as he feels it might relate to our goal to stop Ravith-morna.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
