@@ -1056,7 +1056,7 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 			
 		}
 		
-		if (inputValues.Damage.Dot != 0)
+		if (inputValues.Damage.Dot && inputValues.Damage.Dot != 0)
 		{
 			valueFactor += +inputValues.Damage.Dot;
 			newRawOutput.dotDamageDone = inputValues.Damage.Dot;
@@ -1082,7 +1082,7 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 		// Direct Damage Modifiers
 	else
 	{
-		if (inputValues.Damage.Direct != 0)
+		if (inputValues.Damage.Direct && inputValues.Damage.Direct != 0)
 		{
 			valueFactor += +inputValues.Damage.Direct;
 			newRawOutput.directDamageDone = inputValues.Damage.Direct;
@@ -2115,6 +2115,19 @@ window.GetEsoCraftedSkillDescription2 = function(abilityId, skillData, inputValu
 	var desc1 = skillData['craftDesc1'] ? skillData['craftDesc1'] : "";
 	var desc2 = skillData['craftDesc2'] ? skillData['craftDesc2'] : "";
 	var desc3 = skillData['craftDesc3'] ? skillData['craftDesc3'] : "";
+	
+	var craftedId = parseInt(skillData['craftedId']);
+	var id1 = 50000000 + parseInt(skillData['scriptId1'])*1000 + craftedId;
+	var id2 = 50000000 + parseInt(skillData['scriptId2'])*1000 + craftedId;
+	var id3 = 50000000 + parseInt(skillData['scriptId3'])*1000 + craftedId;
+	
+	var coefDesc1 = GetEsoSkillDescription2(id1, inputValues, useHtml, noEffectLines, outputRaw);
+	var coefDesc2 = GetEsoSkillDescription2(id2, inputValues, useHtml, noEffectLines, outputRaw);
+	var coefDesc3 = GetEsoSkillDescription2(id3, inputValues, useHtml, noEffectLines, outputRaw);
+	
+	desc1 = coefDesc1 ? coefDesc1 : desc1;
+	desc2 = coefDesc2 ? coefDesc2 : desc2;
+	desc3 = coefDesc3 ? coefDesc3 : desc3;
 	
 	if (desc1) desc1 = "\n\n" + desc1;
 	if (desc2) desc2 = "\n\n" + desc2;

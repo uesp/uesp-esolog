@@ -3,13 +3,13 @@
 	<head>
 		<title>UESP:ESO Skill Browser {versionTitle}</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoskills.css" />
-		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoskills_embed.css" />
+		<link rel="stylesheet" href="//esolog-static.uesp.net/resources/esoskills.css?20Nov2024" />
+		<link rel="stylesheet" href="//esolog.uesp.net/resources/esoskills_embed.css?20Nov2024" />
 		<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery-ui.min.js?version=28Mar2017'></script>
 		<script type="text/javascript" src='//esolog-static.uesp.net/resources/jquery.ui.touch-punch.min.js?version=28Mar2017'></script>
-		<script type="text/javascript" src="//esolog.uesp.net/resources/esoskills.js?3Oct2024c"></script>
-		<script type="text/javascript" src="//esolog.uesp.net/resources/esoSkillTooltips.js?3Oct2024c"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esoskills.js?20Nov2024"></script>
+		<script type="text/javascript" src="//esolog.uesp.net/resources/esoSkillTooltips.js?20Nov2024"></script>
 	</head>
 <body>
 <a href="/viewlog.php">Back to Home</a>

@@ -22,8 +22,13 @@ while ($row = $result->fetch_assoc())
 	$skillCoef[$id] = $row;
 }
 
+$insertCount = 0;
 $count = count($skillCoef);
 print("Loaded $count skill coefficient records from minedSkills$TABLE_SUFFIX!\n");
+
+$query = "DELETE FROM skillTooltips$TABLE_SUFFIX WHERE abilityId>50000000;";
+$result = $db->query($query);
+if (!$result) die("Error: Failed to delete skill tooltips for ability $id!");
 
 foreach ($skillCoef as $id => $skill)
 {
@@ -32,6 +37,7 @@ foreach ($skillCoef as $id => $skill)
 	$scriptId = intval($baseId / 1000);
 	
 	$numVars = intval($skill['numCoefVars']);
+	$rawBaseDesc = FormatRemoveEsoItemDescriptionText($skill['description']);
 	$rawDesc = FormatRemoveEsoItemDescriptionText($skill['coefDescription']);
 	$skillRawDesc = $skill['coefDescription'];
 	
@@ -66,6 +72,21 @@ foreach ($skillCoef as $id => $skill)
 		
 		$skillRawDesc = preg_replace("/\|cffffff$coefName\|r/", "<<$i>>", $skillRawDesc);
 		$skillRawDesc = preg_replace("/$coefName/", "<<$i>>", $skillRawDesc);
+		
+		$regex = preg_replace("/$coefName/", "(.+)", $rawDesc);
+		$regex = preg_replace("/\\$[0-9]+/", ".+", $regex);
+		//$regex = preg_replace("/\./", "\.", $regex);
+		$tooltipValue = ""; 
+		
+		if (preg_match("/$regex/", $rawBaseDesc, $matches))
+		{
+			$tooltipValue = $matches[1];
+			//print("\t$i: Value {$matches[1]} in $rawBaseDesc\n");
+		}
+		else
+		{
+			print("\t$i: ERROR: No value match!\n\t$rawBaseDesc\n\t$regex\n");
+		}
 		
 		$isHeal = 0;
 		$isDamage = 0;
@@ -121,6 +142,7 @@ foreach ($skillCoef as $id => $skill)
 			$isDot = 1;
 			$isAoe = 1;
 			$rawType = 49;
+			$rawType = 18;
 		}
 		else if (preg_match("/ $coefName (\w+) Damage every second/i", $rawDesc, $matches))
 		{
@@ -129,6 +151,7 @@ foreach ($skillCoef as $id => $skill)
 			$isDamage = 1;
 			$isDot = 1;
 			$rawType = 49;
+			$rawType = 18;
 		}
 		else if (preg_match("/ $coefName (\w+) Damage to attackers/i", $rawDesc, $matches))
 		{
@@ -222,7 +245,7 @@ foreach ($skillCoef as $id => $skill)
 				"origAbilityId" => $id,
 				"coefType" => $coefType,
 				"rawType" => $rawType,
-				"value" => "",
+				"value" => $db->real_escape_string($tooltipValue),
 				"rawValue1" => -1,
 				"rawValue2" => -1,
 				"duration" => $duration > 0 ? $duration * 1000 : -1,
@@ -256,16 +279,15 @@ foreach ($skillCoef as $id => $skill)
 			$values[] = "'$value'";
 		}
 		
-		$query = "DELETE FROM skillTooltips$TABLE_SUFFIX WHERE abilityId='$id';";
-		$result = $db->query($query);
-		if (!$result) print("Error: Failed to delete skill tooltips for ability $id!");
-		
 		$cols = implode(",", $cols);
 		$values = implode(",", $values);
 		
 		$query = "INSERT INTO skillTooltips$TABLE_SUFFIX($cols) VALUES($values);";
 		$result = $db->query($query);
+		//print($query . "\n" . $db->error);
 		if (!$result) print("Error: Failed to add new skill tooltips for ability $id!\n $query\n".$db->error);
+		
+		$insertCount++;
 	}
 	
 	$safeRawDesc = $db->real_escape_string($skillRawDesc);
@@ -273,7 +295,7 @@ foreach ($skillCoef as $id => $skill)
 	$safeName = $db->real_escape_string($origScriptName);
 	$indexName = strtolower($safeName);
 	
-	$query = "UPDATE minedSkills$TABLE_SUFFIX SET name='$safeName', indexName='$indexName', displayId='$origScriptId', description='$safeDesc', rawDescription='$safeRawDesc' WHERE id=$id;";
+	$query = "UPDATE minedSkills$TABLE_SUFFIX SET name='$safeName', indexName='$indexName', displayId='$origScriptId', description='$safeDesc', rawDescription='$safeRawDesc', isCrafted='1', craftedId='$craftedId' WHERE id=$id;";
 	//print($query . "\n");
 	$result = $db->query($query);
 	if (!$result) print("Error: Failed to add update skill raw description for ability $id!\n $query\n".$db->error);
@@ -285,4 +307,4 @@ foreach ($skillCoef as $id => $skill)
 	//Deals $1 Physical Damage over 10 seconds to the enemy. This effect can trigger your weapon enchantment
 }
 
-print("Finished!\n");
+print("Finished! Inserted $insertCount skillTooltip records\n");

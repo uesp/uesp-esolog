@@ -950,6 +950,13 @@ window.GetEsoSkillInputValues = function ()
 			 PhysicalResist: armor,
 			 HeraldoftheTomeSkills: 0,
 			 SoldierofApocryphaSkills: 0,
+			 Damage: {},
+			 DamageShield: {},
+			 SkillHealing: {},
+			 SkillDamage: {},
+			 Healing: {
+				 Done: 0,
+			 },
 		};
 	
 	return g_LastSkillInputValues;
@@ -4110,11 +4117,11 @@ window.UpdateEsoSkillRawData = function(skillId)
 	var rawDataElement = $("#esovsRawDataContent");
 	
 	UpdateEsoSkillRawDataLink();
-		
+	
 	if (skillId == null) skillId = g_LastSkillId;
 	var skillData = g_SkillsData[skillId];
 	
-	if (skillData == null) 
+	if (skillData == null)
 	{
 		rawDataElement.html("");
 		return;
@@ -4719,17 +4726,17 @@ window.UpdateSkillLink = function ()
 	var inputValues = GetEsoSkillInputValues();
 	var params = "";
 	
-	params += "id=" + g_LastSkillId;
-	params += "&level=" + inputValues.EffectiveLevel;
-	params += "&health=" + inputValues.Health;
-	params += "&magicka=" + inputValues.Magicka;
-	params += "&stamina=" + inputValues.Stamina;
-	params += "&spelldamage=" + inputValues.SpellDamage;
-	params += "&weapondamage=" + inputValues.WeaponDamage;
-	params += "&armor=" + inputValues.SpellResist;
+	if (g_LastSkillId > 0 && g_LastSkillId != 33693) params += "id=" + g_LastSkillId;
+	if (inputValues.EffectiveLevel != 66 && inputValues.EffectiveLevel != "CP160") params += "&level=" + inputValues.EffectiveLevel;
+	if (inputValues.Health != 20000) params += "&health=" + inputValues.Health;
+	if (inputValues.Magicka != 20000) params += "&magicka=" + inputValues.Magicka;
+	if (inputValues.Stamina != 20000) params += "&stamina=" + inputValues.Stamina;
+	if (inputValues.SpellDamage != 2000) params += "&spelldamage=" + inputValues.SpellDamage;
+	if (inputValues.WeaponDamage != 2000) params += "&weapondamage=" + inputValues.WeaponDamage;
+	if (inputValues.SpellResist != 11000) params += "&armor=" + inputValues.SpellResist;
 	
 	if (window.g_SkillsVersion && g_SkillsVersion != "") params += "&version=" + g_SkillsVersion;
-	if (g_SkillShowAll) params += "&showall";
+	if (g_SkillShowAll) params += "&showall=1";
 	
 	linkElement.attr("href", "?" + params);
 	
@@ -5943,7 +5950,15 @@ window.CompareScriptByName = function (a, b)
 window.MakeEsoCraftedSkillSlotHtml = function(craftedSkill, skillData, slots, slotIndex, selectedScriptId)
 {
 	output = '<div class="esovsAbilityBlockScript" slotindex="' + slotIndex + '">';
-	output += '<div class="esovsAbilityBlockScriptTitle">Scribing Slot ' + slotIndex + '</div>';
+	
+	if (slotIndex == 1)
+		output += '<div class="esovsAbilityBlockScriptTitle">Focus Script</div>';
+	else if (slotIndex == 2)
+		output += '<div class="esovsAbilityBlockScriptTitle">Signature Script</div>';
+	else if (slotIndex == 3)
+		output += '<div class="esovsAbilityBlockScriptTitle">Affix Script</div>';
+	else
+		output += '<div class="esovsAbilityBlockScriptTitle">Scribing Slot ' + slotIndex + '</div>';
 	
 	var namesSorted = [];
 	var i;
@@ -5968,12 +5983,16 @@ window.MakeEsoCraftedSkillSlotHtml = function(craftedSkill, skillData, slots, sl
 		
 		var scriptId = scriptData.id;
 		var selectedClass = "";
+		var extraStyle = "";
 		
 		var imgUrl = "//esoicons.uesp.net/" + scriptData['icon'];
 		
-		if (scriptId == selectedScriptId) selectedClass = "esovsAbilityScriptSelected";
+		if (scriptId == selectedScriptId) 
+			selectedClass = "esovsAbilityScriptSelected";
+		else
+			extraStyle = "display:none;";
 		
-		output += '<div class="esovsAbilityScript ' + selectedClass + '" scriptid="' + scriptId + '">';
+		output += '<div class="esovsAbilityScript ' + selectedClass + '" scriptid="' + scriptId + '" style="' + extraStyle + '">';
 		output += '<img src="' + imgUrl + '">';
 		output += '<div class="esovsAbilityScriptName">' + scriptData['name'] + '</div> ';
 		output += '<div class="esovsAbilityScriptDesc"> -- ' + scriptData['description'] + ' ' + scriptData['hint'] + '</div>';
@@ -5981,6 +6000,7 @@ window.MakeEsoCraftedSkillSlotHtml = function(craftedSkill, skillData, slots, sl
 	}
 	
 	output += '</div>';
+	//output += '<hr/>';
 	return output;
 };
 
@@ -6049,13 +6069,12 @@ window.MakeEsoCraftedSkillHtml = function(craftedSkill, skillData)
 	var selSlot3 = craftedSkill['scriptId3'];
 	
 	output += '<div class="esovsAbilityBlockList" craftedid="' + craftedId + '" style="display: none;">';
-	//output += 'Crafted Skill';
+	
 	output += MakeEsoCraftedSkillSlotHtml(craftedSkill, skillData, craftedSkill['slots1'], 1, selSlot1);
-	output += '<hr/>';
 	output += MakeEsoCraftedSkillSlotHtml(craftedSkill, skillData, craftedSkill['slots2'], 2, selSlot2);
-	output += '<hr/>';
 	output += MakeEsoCraftedSkillSlotHtml(craftedSkill, skillData, craftedSkill['slots3'], 3, selSlot3);
-	output += '</div>';
+	
+	output += "</div>";
 	
 	return output;
 };
@@ -6112,8 +6131,25 @@ window.OnEsoScriptBlockClick = function(e)
 	var slotIndex = $this.parent().attr('slotindex');
 	var craftedId = $this.parent().parent().attr('craftedid');
 	
-	$this.siblings().removeClass("esovsAbilityScriptSelected");
+	if ($this.hasClass("esovsAbilityScriptSelected"))
+	{
+		if ($this.hasClass("esovsAbilityScriptToggled"))
+		{
+			$this.siblings(".esovsAbilityScript").slideUp();
+			$this.removeClass("esovsAbilityScriptToggled");
+		}
+		else
+		{
+			$this.siblings(".esovsAbilityScript").slideDown();
+			$this.addClass("esovsAbilityScriptToggled");
+		}
+		
+		return;
+	}
+	
+	$this.siblings(".esovsAbilityScript").removeClass("esovsAbilityScriptSelected").removeClass("esovsAbilityScriptToggled");
 	$this.addClass("esovsAbilityScriptSelected");
+	$this.siblings(".esovsAbilityScript").slideUp();
 	
 	var craftedSkill = g_EsoCraftedSkills[craftedId];
 	
@@ -6181,7 +6217,8 @@ window.UpdateEsoCraftedSkillData = function(craftedSkill)
 
 window.UpdateEsoHiddenSkillFormValues = function()
 {
-	$("#evsHiddenShowAll").val($("#esovsInputShowAll").is(":checked") ? 1 : 0);
+	g_SkillShowAll = $("#esovsInputShowAll").is(":checked") ? 1 : 0;
+	$("#evsHiddenShowAll").val(g_SkillShowAll);
 	$("#evsHiddenHighlightId").val(g_LastSkillId);
 	$("#evsHiddenLevel").val($("#esovsInputLevel").val());
 	$("#evsHiddenHealth").val($("#esovsInputHealth").val());
@@ -6295,7 +6332,7 @@ window.esovsOnDocReady = function ()
 	$('#esovsControlArmor').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Armor'); });
 	$('#esovsInputArmor').on('input', function(e) { OnChangeEsoSkillData.call(this, 'Armor');	});
 	
-	$('#esovsInputShowAll').on('input', function(e) { UpdateEsoHiddenSkillFormValues(); });
+	$('#esovsInputShowAll').on('input', function(e) { UpdateEsoHiddenSkillFormValues(); UpdateSkillLink(); });
 	
 	$("#esovsSkillCoefButton").click(OnToggleSkillCoef);
 	$("#esovsRawDataButton").click(OnToggleRawDataCoef);

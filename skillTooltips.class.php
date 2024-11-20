@@ -141,8 +141,8 @@ class CEsoSkillTooltips
 		
 		$this->lastQuery = "CREATE TABLE IF NOT EXISTS skillTooltips{$this->TABLE_SUFFIX} (
 						abilityId INTEGER NOT NULL,
-						idx TINYINT NOT NULL DEFAULT -1,
-						origAbilityId INTEGER NOT NULL,
+						idx TINYINT NOT NULL,
+						origAbilityId INTEGER NOT NULL DEFAULT -1,
 						coefType TINYINT NOT NULL DEFAULT -1,
 						rawType TINYINT NOT NULL DEFAULT -1,
 						value TINYTEXT NOT NULL DEFAULT '',

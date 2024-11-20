@@ -797,7 +797,7 @@
 .esovsAbilityBlockScriptTitle {
 	font-weight: bold;
 	font-size: 18px;
-	padding-left: 10px;
+	padding-left: 5px;
 	padding-bottom: 5px;
 }
 
@@ -806,6 +806,8 @@
 	border: 2px solid transparent;
 	border-radius: 5px;
 	width: 99%;
+	padding-left: 25px;
+	position: relative;
 }
 
 .esovsAbilityScript:hover {
@@ -828,5 +830,26 @@
 }
 
 .esovsAbilityScriptSelected {
+}
+
+.esovsAbilityScriptToggled {
 	border: 2px solid blue;
+}
+
+.esovsAbilityScriptSelected::before {
+	content: '';
+	background: url(//esolog-static.uesp.net/resources/pointsplus_up.png);
+	background-size: cover;
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	display: inline-block;
+	z-index: 100;
+	left: 0px;
+	top: 4px;
+}
+
+.esovsAbilityScriptSelected:hover::before {
+	cursor: pointer;
+	opacity: 0.3;
 }
