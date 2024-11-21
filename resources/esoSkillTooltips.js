@@ -540,12 +540,68 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 }
 
 
+window.GetEsoCraftedSkillCoefBaseContentHtml2 = function(skillData, desc)
+{
+	var output = "<b>" + desc + "</b> -- ";
+	if (skillData == null) return output + "No known skill coefficients.";
+	
+	var rawDesc = ConvertEsoSkillRawDescToHtml(skillData.rawDescription);
+	var numTooltips = CountEsoSkillTooltips(skillData.id);
+	
+	if (numTooltips == 0) return output + "No known skill coefficients."
+	
+	output += "Showing " + numTooltips + " skill coefficients:<p/>";
+	
+	for (var tooltipIndex = 1; tooltipIndex <= numTooltips; ++tooltipIndex)
+	{
+		output += CreateEsoSkillCoefContentForIndexHtml(skillData, tooltipIndex, true);
+	}
+	
+	output += "<div class='esovsSkillCoefDesc'>" + rawDesc + "</div>";
+	return output;
+}
+
+
+window.GetEsoCraftedSkillCoefContentHtml2 = function(abilityId)
+{
+	var output = "";
+	var skillData = g_SkillsData[abilityId];
+	
+	if (skillData == null || abilityId <= 0) return "No known skill coefficients.";
+	
+	var craftedId = parseInt(skillData['craftedId']);
+	var scriptId1 = parseInt(skillData['scriptId1']);
+	var scriptId2 = parseInt(skillData['scriptId2']);
+	var scriptId3 = parseInt(skillData['scriptId3']);
+	var id1 = 50000000 + scriptId1*1000 + craftedId;
+	var id2 = 50000000 + scriptId2*1000 + craftedId;
+	var id3 = 50000000 + scriptId3*1000 + craftedId;
+	
+	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, false);
+	
+	output += GetEsoCraftedSkillCoefBaseContentHtml2(skillData, "Base Skill");
+	output += "<hr/>";
+	output += GetEsoCraftedSkillCoefBaseContentHtml2(g_SkillsData[id1], "Focus Script");
+	output += "<hr/>";
+	output += GetEsoCraftedSkillCoefBaseContentHtml2(g_SkillsData[id2], "Signature Script");
+	output += "<hr/>";
+	output += GetEsoCraftedSkillCoefBaseContentHtml2(g_SkillsData[id3], "Affix Script");
+	output += "<p/>";
+	
+	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, true);
+	
+	return output;
+}
+
+
 window.GetEsoSkillCoefContentHtml2 = function(abilityId)
 {
 	var output = "";
 	var skillData = g_SkillsData[abilityId];
 	
-	if (skillData == null || abilityId <= 0 || skillData.tooltips == null || skillData.tooltips[1] == null) return "No known skill coefficients.";
+	if (skillData == null || abilityId <= 0) return "No known skill coefficients.";
+	if (skillData.isCrafted == 1) return GetEsoCraftedSkillCoefContentHtml2(abilityId);
+	if (skillData.tooltips == null || skillData.tooltips[1] == null) return "No known skill coefficients.";
 	
 	var rawDesc = ConvertEsoSkillRawDescToHtml(skillData.rawDescription);
 	var numTooltips = CountEsoSkillTooltips(abilityId);
@@ -2109,6 +2165,42 @@ window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEff
 }
 
 
+window.ModifyEsoCraftedScriptDamageTypes = function(skillId1, skillId2, restoreOrig)
+{
+	var skillData1 = g_SkillsData[skillId1];
+	var skillData2 = g_SkillsData[skillId2];
+	
+	if (skillData1 == null || skillData2 == null) return false;
+	if (skillData1.tooltips == null || skillData2.tooltips == null) return false;
+	
+	var tooltip1 = skillData1.tooltips[1];
+	var tooltip2 = skillData2.tooltips[1];
+	if (tooltip1 == null || tooltip2 == null) return false;
+	
+	if (tooltip1.isDmg == 0) return false;
+	if (tooltip2.isDmg == 0) return false;
+	
+	if (restoreOrig && tooltip2.origDmgType)
+	{
+		skillData2.rawDescription = skillData2.origRawDescription;
+		tooltip2.dmgType = tooltip2.origDmgType;
+		return true;
+	}
+	else if (!restoreOrig)
+	{
+		var origDmgText = GetEsoSkillDamageTypeText(tooltip2.dmgType);
+		var dmgText = GetEsoSkillDamageTypeText(tooltip1.dmgType);
+		skillData2.origRawDescription = skillData2.rawDescription;
+		skillData2.rawDescription = skillData2.rawDescription.replaceAll(" " + origDmgText + " Damage", " " + dmgText + " Damage"); 
+		tooltip2.origDmgType = tooltip2.dmgType;
+		tooltip2.dmgType = tooltip1.dmgType;
+		return true;
+	}
+	
+	return false;
+}
+
+
 window.GetEsoCraftedSkillDescription2 = function(abilityId, skillData, inputValues, useHtml, noEffectLines, outputRaw)
 {
 	var output = skillData.lastDesc;
@@ -2117,13 +2209,20 @@ window.GetEsoCraftedSkillDescription2 = function(abilityId, skillData, inputValu
 	var desc3 = skillData['craftDesc3'] ? skillData['craftDesc3'] : "";
 	
 	var craftedId = parseInt(skillData['craftedId']);
-	var id1 = 50000000 + parseInt(skillData['scriptId1'])*1000 + craftedId;
-	var id2 = 50000000 + parseInt(skillData['scriptId2'])*1000 + craftedId;
-	var id3 = 50000000 + parseInt(skillData['scriptId3'])*1000 + craftedId;
+	var scriptId1 = parseInt(skillData['scriptId1']);
+	var scriptId2 = parseInt(skillData['scriptId2']);
+	var scriptId3 = parseInt(skillData['scriptId3']);
+	var id1 = 50000000 + scriptId1*1000 + craftedId;
+	var id2 = 50000000 + scriptId2*1000 + craftedId;
+	var id3 = 50000000 + scriptId3*1000 + craftedId;
+	
+	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, false);
 	
 	var coefDesc1 = GetEsoSkillDescription2(id1, inputValues, useHtml, noEffectLines, outputRaw);
 	var coefDesc2 = GetEsoSkillDescription2(id2, inputValues, useHtml, noEffectLines, outputRaw);
 	var coefDesc3 = GetEsoSkillDescription2(id3, inputValues, useHtml, noEffectLines, outputRaw);
+	
+	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, true);
 	
 	desc1 = coefDesc1 ? coefDesc1 : desc1;
 	desc2 = coefDesc2 ? coefDesc2 : desc2;

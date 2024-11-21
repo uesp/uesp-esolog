@@ -951,7 +951,7 @@ window.GetEsoSkillInputValues = function ()
 			 HeraldoftheTomeSkills: 0,
 			 SoldierofApocryphaSkills: 0,
 			 Damage: {},
-			 DamageShield: {},
+			 DamageShield: 0,
 			 SkillHealing: {},
 			 SkillDamage: {},
 			 Healing: {
@@ -4403,7 +4403,9 @@ window.GetEsoSkillCoefContentHtml = function(skillId)
 	if (USE_V2_TOOLTIPS && window.g_EsoSkillHasV2Tooltips && window.GetEsoSkillCoefContentHtml2) return GetEsoSkillCoefContentHtml2(skillId);
 	
 	var skillData = g_SkillsData[skillId];
-	if (skillData == null || skillData['numCoefVars'] <= 0) return "No known skill coefficients.";
+	if (skillData == null) return "No known skill coefficients.";
+	//if (skillData.isCrafted) return GetEsoCraftedSkillCoefContentHtml(skillId);
+	if (skillData['numCoefVars'] <= 0) return "No known skill coefficients.";
 	
 	var output = "";
 	
@@ -6130,6 +6132,9 @@ window.OnEsoScriptBlockClick = function(e)
 	var scriptId = $this.attr('scriptid');
 	var slotIndex = $this.parent().attr('slotindex');
 	var craftedId = $this.parent().parent().attr('craftedid');
+	var abilityId = $this.parent().parent().prev().attr('skillid');
+	
+	EsoViewSkillShowTooltip(g_SkillsData[abilityId]);
 	
 	if ($this.hasClass("esovsAbilityScriptSelected"))
 	{
@@ -6158,6 +6163,7 @@ window.OnEsoScriptBlockClick = function(e)
 		craftedSkill["scriptId" + slotIndex] = scriptId;
 		UpdateEsoCraftedSkillData(craftedSkill);
 		EsoUpdateSkillTooltip();
+		UpdateEsoSkillCoefData();
 	}
 };
 

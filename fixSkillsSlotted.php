@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "44";
+$TABLE_SUFFIX = "44pts";
 
 require_once("esoCommon.php");
 
@@ -124,8 +124,8 @@ $ESO_COEF_INDEX = array(
 		30893 => 2,		//DW: Twin Blade and Blunt
 		45482 => 2,
 		
-		18866 => array(1, 2),		//Nightblade: Shadow Barrier
-		45071 => array(1, 2),
+		18866 => array(1),		//Nightblade: Shadow Barrier
+		45071 => array(1),
 		
 		39182 => 1,		//Light Armor: Harness Magicka
 		41115 => 1,
@@ -158,15 +158,13 @@ $ESO_COEF_VALUE = array(
 		45482 => 1095,
 		
 		18866 => array(		//Nightblade: Shadow Barrier
-					array(25, 0, 0),
-					array(0.75, 0, 3),
+					array(2, 0, 6),		//Update 43
 				),
 		45071 => array (
-					array(25, 0, 0),
-					array(1.5, 0, 6),
+					array(2, 0, 12),	//Update 43
 				),
 		
-		//45533 => array(362.4, 0, 0),	// Heavy Armor: Resolve
+		//45533 => array(362.4, 0, 0),	//Heavy Armor: Resolve
 		
 		29791 => array(0.5, 0, 0),	//Heavy Armor: Rapid Mending
 		45529 => array(1, 0, 0),
@@ -272,8 +270,8 @@ $ESO_COEF_NUMBER_INDEX = array(
 		30893 => 6,		//DW: Twin Blade and Blunt
 		45482 => 6,
 		
-		18866 => array(4, 5),		//Nightblade: Shadow Barrier
-		45071 => array(4, 5),
+		18866 => array(4),		//Nightblade: Shadow Barrier
+		45071 => array(4),
 		
 		39197 => 4,		//Heavy Armor: Unstoppable
 		41097 => 4,
