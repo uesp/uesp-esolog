@@ -5949,6 +5949,25 @@ window.CompareScriptByName = function (a, b)
 };
 
 
+window.MakeEsoCraftedSkillClassListHtml = function(selectedClassId)
+{
+	var output = "";
+	
+	output = "<select class='esovsAbilityScriptClassList'>";
+	output += "<option value='7' " + (selectedClassId == 7 ? "selected" : "") + ">Arcanist</option>";
+	output += "<option value='1' " + (selectedClassId == 1 ? "selected" : "") + ">Dragonknight</option>";
+	output += "<option value='5' " + (selectedClassId == 5 ? "selected" : "") + ">Necromancer</option>";
+	output += "<option value='3' " + (selectedClassId == 3 ? "selected" : "") + ">Nightblade</option>";
+	output += "<option value='2' " + (selectedClassId == 2 ? "selected" : "") + ">Sorcerer</option>";
+	output += "<option value='6' " + (selectedClassId == 6 ? "selected" : "") + ">Templar</option>";
+	output += "<option value='4' " + (selectedClassId == 4 ? "selected" : "") + ">Warden</option>";
+	
+	output += "</select>";
+	
+	return output;
+};
+
+
 window.MakeEsoCraftedSkillSlotHtml = function(craftedSkill, skillData, slots, slotIndex, selectedScriptId)
 {
 	output = '<div class="esovsAbilityBlockScript" slotindex="' + slotIndex + '">';
@@ -5994,9 +6013,13 @@ window.MakeEsoCraftedSkillSlotHtml = function(craftedSkill, skillData, slots, sl
 		else
 			extraStyle = "display:none;";
 		
+		var classList = "";
+		
+		if (scriptId == 31) classList = MakeEsoCraftedSkillClassListHtml(craftedSkill['classId']);
+		
 		output += '<div class="esovsAbilityScript ' + selectedClass + '" scriptid="' + scriptId + '" style="' + extraStyle + '">';
 		output += '<img src="' + imgUrl + '">';
-		output += '<div class="esovsAbilityScriptName">' + scriptData['name'] + '</div> ';
+		output += '<div class="esovsAbilityScriptName">' + scriptData['name'] + '</div> ' + classList + " ";
 		output += '<div class="esovsAbilityScriptDesc"> -- ' + scriptData['description'] + ' ' + scriptData['hint'] + '</div>';
 		output += '</div>';
 	}
@@ -6123,7 +6146,59 @@ window.AddEsoCraftedSkills = function()
 	$(".esovsCraftedAbility .esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
 	
 	$(".esovsAbilityScript").click(OnEsoScriptBlockClick);
+	
+	$(".esovsAbilityScriptClassList").click(OnEsoScriptClassListClick);
+	$(".esovsAbilityScriptClassList").on("change", OnEsoScriptClassListChange);
 };
+
+
+window.OnEsoScriptClassListChange = function(e)
+{
+	var $this = $(this);
+	var classId = $this.val();
+	var $parent = $this.parent(".esovsAbilityScript");
+	var scriptId = $parent.attr('scriptid');
+	var slotIndex = $parent.parent().attr('slotindex');
+	var craftedId = $parent.parent().parent().attr('craftedid');
+	var abilityId = $parent.parent().parent().prev().attr('skillid');
+	
+	console.log("OnEsoScriptClassListChange", classId);
+	
+	EsoViewSkillShowTooltip(g_SkillsData[abilityId]);
+	
+	if ($parent.hasClass("esovsAbilityScriptSelected"))
+	{
+		if ($parent.hasClass("esovsAbilityScriptToggled"))
+		{
+			$parent.siblings(".esovsAbilityScript").slideUp();
+			$parent.removeClass("esovsAbilityScriptToggled");
+		}
+	}
+	
+	$parent.siblings(".esovsAbilityScript").removeClass("esovsAbilityScriptSelected").removeClass("esovsAbilityScriptToggled");
+	$parent.addClass("esovsAbilityScriptSelected");
+	$parent.siblings(".esovsAbilityScript").slideUp();
+	
+	var craftedSkill = g_EsoCraftedSkills[craftedId];
+	
+	if (craftedSkill)
+	{
+		craftedSkill["scriptId" + slotIndex] = scriptId;
+		craftedSkill["classId"] = classId;
+		
+		UpdateEsoCraftedSkillData(craftedSkill);
+		EsoUpdateSkillTooltip();
+		UpdateEsoSkillCoefData();
+	}
+	
+}
+
+
+window.OnEsoScriptClassListClick = function(e)
+{
+	e.preventDefault();
+	return false;
+}
 
 
 window.OnEsoScriptBlockClick = function(e)
@@ -6174,11 +6249,20 @@ window.UpdateEsoCraftedSkillData = function(craftedSkill)
 	var scriptData2 = craftedSkill['datas'][craftedSkill['scriptId2']] ? craftedSkill['datas'][craftedSkill['scriptId2']] : {};
 	var scriptData3 = craftedSkill['datas'][craftedSkill['scriptId3']] ? craftedSkill['datas'][craftedSkill['scriptId3']] : {};
 	
+	var classId = craftedSkill['classId'];
+	if (classId == null || classId <= 0) classId = 1;
+	
 	var repId = scriptData1['abilityId'];
 	if (repId <= 0) repId = craftedSkill.abilityId;
 	
 	var skillData = g_SkillsData[craftedSkill.abilityId];
 	var skillData1 = g_SkillsData[repId];
+	
+	if (craftedSkill['scriptId2'] == 31)
+	{
+		scriptData2 = craftedSkill['datas'][classId * 1000];
+		if (scriptData2 == null) scriptData2 = {};
+	}
 	
 	var desc1 = scriptData1['description'] ? scriptData1['description'] : "";
 	var desc2 = scriptData2['description'] ? scriptData2['description'] : "";
@@ -6197,6 +6281,7 @@ window.UpdateEsoCraftedSkillData = function(craftedSkill)
 		skillData['craftDesc1'] = desc1;
 		skillData['craftDesc2'] = desc2;
 		skillData['craftDesc3'] = desc3;
+		skillData['craftClassId'] = classId;
 		skillData['craftId'] = craftedSkill['id'];
 		skillData['scriptId1'] = craftedSkill['scriptId1'];
 		skillData['scriptId2'] = craftedSkill['scriptId2'];
@@ -6211,6 +6296,7 @@ window.UpdateEsoCraftedSkillData = function(craftedSkill)
 		skillData1['craftDesc1'] = desc1;
 		skillData1['craftDesc2'] = desc2;
 		skillData1['craftDesc3'] = desc3;
+		skillData1['craftClassId'] = classId;
 		skillData1['craftId'] = craftedSkill['id'];
 		skillData1['scriptId1'] = craftedSkill['scriptId1'];
 		skillData1['scriptId2'] = craftedSkill['scriptId2'];

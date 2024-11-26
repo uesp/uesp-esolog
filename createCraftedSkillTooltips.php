@@ -34,7 +34,10 @@ foreach ($skillCoef as $id => $skill)
 {
 	$baseId = intval($id) % 50000000;
 	$craftedId = $baseId % 1000;
-	$scriptId = intval($baseId / 1000);
+	$scriptId = intval($baseId / 1000) % 1000;
+	$classId = intval($baseId / 1000000);
+	
+	print("Parsing Skill $craftedId:$scriptId:$classId ($id)...\n");
 	
 	$numVars = intval($skill['numCoefVars']);
 	$rawBaseDesc = FormatRemoveEsoItemDescriptionText($skill['description']);
@@ -49,22 +52,28 @@ foreach ($skillCoef as $id => $skill)
 	$origScriptDesc = "";
 	$origScriptName = "";
 	$origScriptId = -1;
-	$query = "SELECT * FROM craftedScriptDescriptions$TABLE_SUFFIX WHERE craftedAbilityId=$craftedId AND scriptId=$scriptId;";
+	$query = "SELECT * FROM craftedScriptDescriptions$TABLE_SUFFIX WHERE craftedAbilityId=$craftedId AND scriptId=$scriptId AND classId=$classId;";
 	$result = $db->query($query);
 	
-	if ($result)
+	if ($result && $result->num_rows > 0)
 	{
 		$row = $result->fetch_assoc();
 		$origScriptDesc = $row["description"];
 		$origScriptName = $row["name"];
 		$origScriptId = $row["abilityId"];
+		print("\tFound ability $origScriptId\n");
+		
+		$skill['description'] = $origScriptDesc;
+		$rawBaseDesc = FormatRemoveEsoItemDescriptionText($origScriptDesc);
 	}
 	else
 	{
-		print($db->error . "\n");
+		print("No crafted script description found for $baseId = $craftedId:$scriptId:$classId!\n" . $db->error . "\n");
+		die();
 	}
 	
 	$rawScriptDesc = FormatRemoveEsoItemDescriptionText($origScriptDesc);
+	
 	
 	for ($i = 1; $i <= $numVars; ++$i)
 	{
@@ -85,7 +94,8 @@ foreach ($skillCoef as $id => $skill)
 		}
 		else
 		{
-			print("\t$i: ERROR: No value match!\n\t$rawBaseDesc\n\t$regex\n");
+			print("\t$i: ERROR: No value match!\n\tBase Desc: $rawBaseDesc\n\tRegex: $regex\n");
+			//die();
 		}
 		
 		$isHeal = 0;
@@ -227,6 +237,10 @@ foreach ($skillCoef as $id => $skill)
 			$duration = $matches[2];
 			$rawType = 16;
 		}
+		else if (preg_match("/Create a Crux/i", $rawDesc, $matches))
+		{
+			continue;
+		}
 		else
 		{
 			print("\tWARNING: No match for description: $rawDesc!\n");
@@ -285,7 +299,12 @@ foreach ($skillCoef as $id => $skill)
 		$query = "INSERT INTO skillTooltips$TABLE_SUFFIX($cols) VALUES($values);";
 		$result = $db->query($query);
 		//print($query . "\n" . $db->error);
-		if (!$result) print("Error: Failed to add new skill tooltips for ability $id!\n $query\n".$db->error);
+		
+		if (!$result) 
+		{
+			print("Error: Failed to add new skill tooltips for ability $id!\n $query\n".$db->error);
+			die();
+		}
 		
 		$insertCount++;
 	}
@@ -298,7 +317,12 @@ foreach ($skillCoef as $id => $skill)
 	$query = "UPDATE minedSkills$TABLE_SUFFIX SET name='$safeName', indexName='$indexName', displayId='$origScriptId', description='$safeDesc', rawDescription='$safeRawDesc', isCrafted='1', craftedId='$craftedId' WHERE id=$id;";
 	//print($query . "\n");
 	$result = $db->query($query);
-	if (!$result) print("Error: Failed to add update skill raw description for ability $id!\n $query\n".$db->error);
+	
+	if (!$result) 
+	{
+		print("Error: Failed to add update skill raw description for ability $id!\n $query\n".$db->error);
+		die();
+	}
 	
 	//print("\t:$skillRawDesc\n");
 	

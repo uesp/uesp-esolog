@@ -4248,6 +4248,7 @@ $ESO_CLASSIDS = array(
 		5 => "Necromancer",
 		6 => "Templar",
 		7 => "Arcanist", //Update 38
+		117 => "Arcanist", //Was this changed at some point?
 );
 
 

@@ -346,6 +346,7 @@ class CEsoViewSkills
 			$row['slots1'] = explode(",", $row['slots1']);
 			$row['slots2'] = explode(",", $row['slots2']);
 			$row['slots3'] = explode(",", $row['slots3']);
+			$row['classId'] = 1;
 			
 			$this->craftedSkills[$id] = $row;
 		}
@@ -374,12 +375,16 @@ class CEsoViewSkills
 			$id = intval($row['id']);
 			$scriptId = intval($row['scriptId']);
 			$craftedId = intval($row['craftedAbilityId']);
+			$classId = intval($row['classId']);
 			
 			$row['__isOutput'] = false;
 			
 			if ($this->craftedSkills[$craftedId])
 			{
-				$this->craftedSkills[$craftedId]['datas'][$scriptId] = $row;
+				if ($classId == 0)
+					$this->craftedSkills[$craftedId]['datas'][$scriptId] = $row;
+				else
+					$this->craftedSkills[$craftedId]['datas'][$classId * 1000] = $row;
 			}
 		}
 		

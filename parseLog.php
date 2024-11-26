@@ -41,7 +41,7 @@ require_once("skillTooltips.class.php");
 class EsoLogParser
 {
 	const MINEITEM_TABLESUFFIX = "44";
-	const SKILLS_TABLESUFFIX   = "44";
+	const SKILLS_TABLESUFFIX   = "44pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -1048,6 +1048,7 @@ class EsoLogParser
 			'id' => self::FIELD_INT,
 			'craftedAbilityId' => self::FIELD_INT,
 			'scriptId' => self::FIELD_INT,
+			'classId' => self::FIELD_INT,
 			'abilityId' => self::FIELD_INT,
 			'name' => self::FIELD_STRING,
 			'description' => self::FIELD_STRING,
@@ -1556,6 +1557,17 @@ class EsoLogParser
 	}
 	
 	
+	public function createNewRecordID3 ($idField, $id, $idField2, $id2, $idField3, $id3, $fieldDef)
+	{
+		$record = $this->createNewRecord($fieldDef);
+		$record[$idField] = $id;
+		$record[$idField2] = $id2;
+		$record[$idField3] = $id3;
+		
+		return $record;
+	}
+	
+	
 	public function createSelectQuery ($table, $idField, $id, $fieldDef)
 	{
 		$idType = $fieldDef[$idField];
@@ -1596,6 +1608,43 @@ class EsoLogParser
 			return $this->reportError("Unknown ID type $idType2 in $table table!");
 		
 		$this->lastQuery = "SELECT * FROM $table WHERE $query1 AND $query2 LIMIT 1";
+		return $this->lastQuery;
+	}
+	
+	
+	public function createSelectQuery3 ($table, $idField, $id, $idField2, $id2, $idField3, $id3, $fieldDef)
+	{
+		$idType = $fieldDef[$idField];
+		if ($idType == null) return $this->reportError("Unknown ID field $idField in $table table!");
+		
+		$idType2 = $fieldDef[$idField2];
+		if ($idType2 == null) return $this->reportError("Unknown ID field $idField2 in $table table!");
+		
+		$idType3 = $fieldDef[$idField3];
+		if ($idType3 == null) return $this->reportError("Unknown ID field $idField3 in $table table!");
+		
+		if ($idType == self::FIELD_INT)
+			$query1 = "$idField='$id'";
+		elseif ($idType == self::FIELD_STRING)
+			$query1 = "$idField='". $this->db->real_escape_string($id) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType in $table table!");
+		
+		if ($idType2 == self::FIELD_INT)
+			$query2 = "$idField2='$id2'";
+		elseif ($idType2 == self::FIELD_STRING)
+			$query2 = "$idField2='". $this->db->real_escape_string($id2) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType2 in $table table!");
+		
+		if ($idType3 == self::FIELD_INT)
+			$query3 = "$idField3='$id3'";
+		elseif ($idType3 == self::FIELD_STRING)
+			$query3 = "$idField3='". $this->db->real_escape_string($id3) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType2 in $table table!");
+		
+		$this->lastQuery = "SELECT * FROM $table WHERE $query1 AND $query2 AND $query3 LIMIT 1";
 		return $this->lastQuery;
 	}
 	
@@ -1661,11 +1710,32 @@ class EsoLogParser
 		if ($query === false) return false;
 		
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to load record $id from $table table!");
+		if ($result === FALSE) return $this->reportError("Failed to load record $id/$id2 from $table table!");
 		
 		++$this->dbReadCount;
 		
 		if ($result->num_rows === 0) return $this->createNewRecordID2($idField, $id, $idField2, $id2, $fieldDef);
+		
+		$result->data_seek(0);
+		$row = $result->fetch_assoc();
+		
+		return $this->createRecordFromRow($row, $fieldDef);
+	}
+	
+	
+	public function loadRecord3 ($table, $idField, $id, $idField2, $id2, $idField3, $id3, $fieldDef)
+	{
+		if ($id == null || $id2 == null) return $this->createNewRecordID3($idField, $id, $idField2, $id2, $idField3, $id3, $fieldDef);
+		
+		$query = $this->createSelectQuery3($table, $idField, $id, $idField2, $id2, $idField3, $id3, $fieldDef);
+		if ($query === false) return false;
+		
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to load record $id/$id2/$id3 from $table table!");
+		
+		++$this->dbReadCount;
+		
+		if ($result->num_rows === 0) return $this->createNewRecordID3($idField, $id, $idField2, $id2, $idField3, $id3, $fieldDef);
 		
 		$result->data_seek(0);
 		$row = $result->fetch_assoc();
@@ -1797,6 +1867,7 @@ class EsoLogParser
 		foreach ($fieldDef as $key => $value)
 		{
 			if ($key === $idField) continue;
+			if ($key === $idField2) continue;
 			if ($key === 'id') continue;
 			
 			if (!array_key_exists($key, $record))
@@ -1839,6 +1910,93 @@ class EsoLogParser
 			$query .= " AND `$idField2`='". $this->db->real_escape_string($id2) ."';";
 		else
 			return $this->reportError("Unknown ID type $idType2 in $table table!");
+		
+		$this->lastQuery = $query;
+		return $query;
+	}
+	
+	
+	public function createUpdateQuery3 ($table, $record, $idField1, $idField2, $idField3, $fieldDef)
+	{
+		if ($idField1 == null || $idField2 == null || $idField3 == null) return $this->reportError("NULL ID field found in $table table!");
+		
+		$idType1 = $fieldDef[$idField1];
+		if ($idType1 === null) return $this->reportError("Unknown ID field $idField1 in $table table!");
+		
+		$idType2 = $fieldDef[$idField2];
+		if ($idType2 === null) return $this->reportError("Unknown ID field $idField2 in $table table!");
+		
+		$idType3 = $fieldDef[$idField3];
+		if ($idType3 === null) return $this->reportError("Unknown ID field $idField3 in $table table!");
+		
+		$id1 = $record[$idField1];
+		if ($id1 === null) return $this->reportError("$table record missing ID field $idField1 value!");
+		
+		$id2 = $record[$idField2];
+		if ($id2 === null) return $this->reportError("$table record missing ID field $idField2 value!");
+		
+		$id3 = $record[$idField3];
+		if ($id3 === null) return $this->reportError("$table record missing ID field $idField3 value ($id3)!");
+		
+		$query = "UPDATE $table SET ";
+		$isFirst = true;
+		
+		foreach ($fieldDef as $key => $value)
+		{
+			if ($key === $idField) continue;
+			if ($key === $idField2) continue;
+			if ($key === $idField3) continue;
+			if ($key === 'id') continue;
+			
+			if (!array_key_exists($key, $record))
+			{
+				$this->reportError("Missing value for $key field in $table table update!");
+				continue;
+			}
+			
+			if (!$isFirst) $query .= ', ';
+			
+			if ($value == self::FIELD_INT || $value == self::FIELD_FLOAT)
+			{
+				if ($record[$key] === null || $record[$key] === '' )
+					$query .= "`{$key}`=-1";
+				else
+					$query .= "`{$key}`={$record[$key]}";
+			}
+			elseif ($value == self::FIELD_STRING)
+				$query .= "`{$key}`='". $this->db->real_escape_string($record[$key]) ."'";
+			else
+				$this->reportError("Unknown ID type $value found for $key field in $table table!");
+			
+			$isFirst = false;
+		}
+		
+		if ($idType1 == self::FIELD_INT)
+			$query .= " WHERE `$idField1`='$id1'";
+		elseif ($idType1 == self::FIELD_FLOAT)
+			$query .= " WHERE `$idField1`='$id1'";
+		elseif ($idType1 == self::FIELD_STRING)
+			$query .= " WHERE `$idField1`='". $this->db->real_escape_string($id1) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType1 in $table table!");
+		
+		if ($idType2 == self::FIELD_INT)
+			$query .= " AND `$idField2`='$id2'";
+		elseif ($idType2 == self::FIELD_FLOAT)
+			$query .= " AND `$idField2`='$id2'";
+		elseif ($idType2 == self::FIELD_STRING)
+			$query .= " AND `$idField2`='". $this->db->real_escape_string($id2) ."'";
+		else
+			return $this->reportError("Unknown ID type $idType2 in $table table!");
+		
+		if ($idType3 == self::FIELD_INT)
+			$query .= " AND `$idField3`='$id3';";
+		elseif ($idType3 == self::FIELD_FLOAT)
+			$query .= " AND `$idField3`='$id3';";
+		elseif ($idType3 == self::FIELD_STRING)
+			$query .= " AND `$idField3`='". $this->db->real_escape_string($id3) ."';";
+		else
+			return $this->reportError("Unknown ID type $idType3 in $table table!");
 		
 		$this->lastQuery = $query;
 		return $query;
@@ -1961,6 +2119,28 @@ class EsoLogParser
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to save record {$record[$idField1]},{$record[$idField2]} to {$table} table!");
+		
+		$this->dbWriteCount++;
+		
+		if ($record['__isNew']) $record['id'] = $this->db->insert_id;
+		$record['__isNew'] = false;
+		$record['__dirty'] = false;
+		
+		return true;
+	}
+	
+	
+	public function saveRecord3 ($table, &$record, $idField1, $idField2, $idField3, $fieldDef, $insertIgnore = false)
+	{
+		if ($record['__isNew'])
+			$query = $this->createInsertQuery($table, $record, $fieldDef, $insertIgnore);
+		else
+			$query = $this->createUpdateQuery3($table, $record, $idField1, $idField2, $idField3, $fieldDef);
+		
+		if ($query === false) return false;
+		
+		$result = $this->db->query($query);
+		if ($result === false) return $this->reportError("Failed to save record {$record[$idField1]},{$record[$idField2]},{$record[$idField3]} to {$table} table!");
 		
 		$this->dbWriteCount++;
 		
@@ -2197,11 +2377,11 @@ class EsoLogParser
 	}
 	
 	
-	public function LoadCraftedScriptDescription ($craftedId, $scriptId)
+	public function LoadCraftedScriptDescription ($craftedId, $scriptId, $classId)
 	{
 		if ($craftedId <= 0 && $scriptId <= 0) return false;
 		
-		$desc = $this->loadRecord2('craftedScriptDescriptions'.self::SKILLS_TABLESUFFIX, 'craftedAbilityId', $craftedId, 'scriptId', $scriptId, self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS);
+		$desc = $this->loadRecord3('craftedScriptDescriptions'.self::SKILLS_TABLESUFFIX, 'craftedAbilityId', $craftedId, 'scriptId', $scriptId, 'classId', $classId, self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS);
 		if ($desc === false) return false;
 		
 		return $desc;
@@ -2328,7 +2508,7 @@ class EsoLogParser
 	
 	public function SaveCraftedScriptDescription (&$record)
 	{
-		return $this->saveRecord2('craftedScriptDescriptions'.self::SKILLS_TABLESUFFIX, $record, 'craftedAbilityId', 'scriptId', self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS);
+		return $this->saveRecord3('craftedScriptDescriptions'.self::SKILLS_TABLESUFFIX, $record, 'craftedAbilityId', 'scriptId', 'classId', self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS);
 	}
 	
 	
@@ -3429,10 +3609,11 @@ class EsoLogParser
 			id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			craftedAbilityId INTEGER NOT NULL,
 			scriptId INTEGER NOT NULL,
+			classId TINYINT NOT NULL DEFAULT 0,
 			abilityId INTEGER NOT NULL DEFAULT 0,
 			name TINYTEXT NOT NULL DEFAULT '',
 			description MEDIUMTEXT NOT NULL DEFAULT '',
-			UNIQUE KEY id_key (craftedAbilityId, scriptId)
+			UNIQUE KEY id_key (craftedAbilityId, scriptId, classId)
 		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
@@ -8793,6 +8974,11 @@ class EsoLogParser
 		$script['description'] = $logEntry['generelDesc'];
 		$script['icon'] = $logEntry['icon'];
 		$script['hint'] = $logEntry['hint'];
+		$classId = $logEntry['classId'];
+		if ($classId == null) $classId = 0;
+		if ($classId == 117) $classId = 7;	//Arcanist?
+		
+		print("\tclassId=$classId\n");
 		
 		$numCrafted = intval($logEntry['numCrafted']);
 		
@@ -8805,14 +8991,34 @@ class EsoLogParser
 				$id = $logEntry["repid$i"];
 				if ($desc == null) continue;
 				
-				$record = $this->LoadCraftedScriptDescription($i, $scriptId);
+				$record = $this->LoadCraftedScriptDescription($i, $scriptId, 0);
 				if ($record === false) continue;
 				
 				$record['description'] = $desc;
 				$record['name'] = $name;
 				$record['abilityId'] = $id;
+				$record['classId'] = 0;
 				
+				print("\t\tSaving class id 0\n");
 				$this->SaveCraftedScriptDescription($record);
+				
+					//For the class mastery script 
+				if ($scriptId == 31 && $classId != 0)
+				{
+					print("\t\tUpdating class mastery script for $classId...\n");
+					
+					$record2 = $this->LoadCraftedScriptDescription($i, $scriptId, $classId);
+					if ($record2 === false) continue;
+					
+					print("\t\tLoaded\n");
+					
+					$record2['description'] = $desc;
+					$record2['name'] = $name;
+					$record2['abilityId'] = $id;
+					$record2['classId'] = $classId;
+					
+					$this->SaveCraftedScriptDescription($record2);
+				}
 			}
 		}
 		

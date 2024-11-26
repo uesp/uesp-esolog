@@ -573,10 +573,13 @@ window.GetEsoCraftedSkillCoefContentHtml2 = function(abilityId)
 	var scriptId1 = parseInt(skillData['scriptId1']);
 	var scriptId2 = parseInt(skillData['scriptId2']);
 	var scriptId3 = parseInt(skillData['scriptId3']);
+	var classId = parseInt(skillData['craftClassId']);
+	
 	var id1 = 50000000 + scriptId1*1000 + craftedId;
 	var id2 = 50000000 + scriptId2*1000 + craftedId;
 	var id3 = 50000000 + scriptId3*1000 + craftedId;
 	
+	if (scriptId2 == 31 && classId > 0) id2 += classId * 1000000;
 	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, false);
 	
 	output += GetEsoCraftedSkillCoefBaseContentHtml2(skillData, "Base Skill");
@@ -2212,9 +2215,13 @@ window.GetEsoCraftedSkillDescription2 = function(abilityId, skillData, inputValu
 	var scriptId1 = parseInt(skillData['scriptId1']);
 	var scriptId2 = parseInt(skillData['scriptId2']);
 	var scriptId3 = parseInt(skillData['scriptId3']);
+	var classId = parseInt(skillData['craftClassId']);
+	
 	var id1 = 50000000 + scriptId1*1000 + craftedId;
 	var id2 = 50000000 + scriptId2*1000 + craftedId;
 	var id3 = 50000000 + scriptId3*1000 + craftedId;
+	
+	if (scriptId2 == 31 && classId > 0) id2 += classId * 1000000;
 	
 	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, false);
 	
