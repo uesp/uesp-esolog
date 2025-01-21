@@ -197,6 +197,9 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"40" => "Update 40",
 		"41" => "Scions of Ithelia",
 		"42" => "Gold Road",
+		"43" => "Update 43",
+		"44" => "Update 44",
+		"45" => "Fallen Banners",
 	);
 
 
@@ -2188,6 +2191,17 @@ $ESO_SET_INDEXES = array(
 		791 => "Bulwark Ruination",
 		792 => "Farstrider",
 		793 => "Netch Oil",
+		794 => "Vandorallen's Resonance",
+		795 => "Jerensi's Bladestorm",
+		796 => "Lucilla's Windshield",
+		797 => "Squall of Retribution",
+		798 => "Heroic Unity",
+		799 => "Fledgling's Nest",
+		800 => "Noxious Boulder",
+		801 => "Orpheon the Tactician",
+		802 => "Arkay's Charity",
+		803 => "Lamp Knight's Art",
+		804 => "Blackfeather Flight",
 );
 
 
@@ -4569,6 +4583,10 @@ function GetEsoItemTableSuffix($version)
 			return "44pts";
 		case '44':
 			return "";
+		case '45pts':
+			return "45pts";
+		case '45':
+			return "45";
 		case 'test':
 		case 'dev':
 		case 'debug':

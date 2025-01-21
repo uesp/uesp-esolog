@@ -128,6 +128,8 @@ class EsoLogViewer
 			'questId' => self::FIELD_INTID,
 			'questStageId' => self::FIELD_INTID,
 			'itemId' => self::FIELD_INTID,
+			'firstTime' => self::FIELD_INTTRANSFORM,
+			'lastTime' => self::FIELD_INTTRANSFORM,
 	);
 	
 	public static $OLDQUEST_FIELDS = array(
@@ -1307,6 +1309,11 @@ class EsoLogViewer
 					),
 					
 					'join' => array(
+					),
+					
+					'transform' => array(
+							'firstTime' => 'GetTimestampText',
+							'lastTime' => 'GetTimestampText',
 					),
 					
 					'filters' => array(
@@ -3166,6 +3173,13 @@ class EsoLogViewer
 	public function GetAttributeText($value)
 	{
 		return GetEsoAttributeText($value);
+	}
+	
+	
+	public function GetTimestampText ($value)
+	{
+		if ($value <= 0) return "";
+		return date('Y-m-d H:i:s', $value);
 	}
 	
 	

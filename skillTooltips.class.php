@@ -1256,7 +1256,7 @@ class CEsoSkillTooltips
 	public function UpdateAllSkillRawData()
 	{
 		global $ESO_RAWSKILL_DATA;
-		require_once("esoRawSkillData{$this->TABLE_SUFFIX}.php");
+		require_once("./archive/esoRawSkillData{$this->TABLE_SUFFIX}.php");
 		
 		if (!$this->InitDatabaseWrite()) return false;
 		if (!$this->LoadAllMinedSkills()) return false;

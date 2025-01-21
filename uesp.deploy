@@ -17,6 +17,8 @@ ignore = log/upload/uespLog*
 ignore = archive/*
 
 dest = content3.uesp.net:/home/uesp/www/esolog/
+dest = content2.uesp.net:/home/uesp/www/esolog/
+dest = content1.uesp.net:/home/uesp/www/esolog/
 dest = files1.uesp.net:/home/uesp/esolog.static/
 dest = content1.uesp.net:/home/uesp/esolog.static/
 dest = content2.uesp.net:/home/uesp/esolog.static/

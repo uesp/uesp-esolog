@@ -2507,7 +2507,7 @@ window.UpdateEsoSkillHealingDescription = function (skillData, skillDesc, inputV
 		{
 			++matchCount;
 		
-			if (inputValues.Healing[matchData.healId] == null) return string;
+			if (inputValues.Healing[matchData.healId] == null) return match;
 			
 			var modHealing = parseFloat(p2);
 			
@@ -2875,7 +2875,7 @@ window.UpdateEsoSkillDamageDescription = function (skillData, skillDesc, inputVa
 			var modDamage = parseFloat(p3);
 			skillData.baseTooltips[matchIndex] = modDamage;
 			
-			if (inputValues.Damage[matchData.damageId] == null) return string;
+			if (inputValues.Damage[matchData.damageId] == null) return match;
 			
 			var baseFactor = 1;
 			var isAOE = false;

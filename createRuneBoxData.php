@@ -1,9 +1,12 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "45pts";
 
 $REPLACE_PAIRS = array(
+		// Transform item names into the matching collectible name. For most collectibles the name matches the item
+		// but some do not.
+		// 		Item Name => Collectible Name
 		"Storm Lord" => "Stormlord", 
 		"Fire Drake" => "Firedrake", 
 		"Dwemer Theodolite Pet" => "Dwarven Theodolite",
@@ -113,6 +116,9 @@ $REPLACE_PAIRS = array(
 		"Opal Domihaus " => "Domihaus ",
 		"Y'ffre's Fallen-Wood Pauldron" => "Y'ffre's Fallen-Wood Pauldrons",
 		"Ilambris " => "Ilambris' ",
+		"Snowglobe Surprise" => "Surprising Snowglobe",
+		"Face-Eating Tome Memento" => "Haj Mota Hatchling",
+		"Plunder Blunder Memento" => "Plunder Skull Blunder",
 );
 
 require("/home/uesp/secrets/esolog.secrets");

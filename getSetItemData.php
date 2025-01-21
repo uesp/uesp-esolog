@@ -124,7 +124,7 @@ class CEsoLogGetSetItemData
 		header("content-type: application/json");
 	}
 	
-		
+	
 	private function FindItemId()
 	{
 		$tableSuffix = $this->GetTableSuffix();

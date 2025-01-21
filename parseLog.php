@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "44";
-	const SKILLS_TABLESUFFIX   = "44pts";
+	const MINEITEM_TABLESUFFIX = "45pts";
+	const SKILLS_TABLESUFFIX   = "45pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -399,6 +399,8 @@ class EsoLogParser
 			'rawX' => self::FIELD_FLOAT,
 			'rawY' => self::FIELD_FLOAT,
 			'zone' => self::FIELD_STRING,
+			'firstTime' => self::FIELD_INT,
+			'lastTime' => self::FIELD_INT,
 	);
 	
 	public static $OLDQUEST_FIELDS = array(
@@ -1744,6 +1746,17 @@ class EsoLogParser
 	}
 	
 	
+	public function GetLogTime ($logEntry)
+	{
+		if ($logEntry == null) return 0;
+			//timeStamp1{1609374464}
+			//logTime{1609374599}
+		if ($logEntry['timeStamp1']) return (int) $logEntry['timeStamp1'];
+		if ($logEntry['logTime']) return (int) $logEntry['logTime'];
+		return 0;
+	}
+	
+	
 	public function LoadLogInfo ()
 	{
 		$query = "SELECT * FROM logInfo;";
@@ -1759,7 +1772,7 @@ class EsoLogParser
 		
 		$result->data_seek(0);
 		
-		while (($row = $result->fetch_assoc())) 
+		while (($row = $result->fetch_assoc()))
 		{
 			$key = $row['id'];
 			$value = $row['value'];
@@ -5733,7 +5746,7 @@ class EsoLogParser
 		$questRecord['count'] += 1;
 		$questRecord['__dirty'] = true;
 		
-		$locationId = $this->CheckLocationId("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id']));
+		$locationId = $this->CheckLocationId("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => -1));
 		
 		if ($locationId > 0)
 		{
@@ -5780,7 +5793,7 @@ class EsoLogParser
 		
 		$questStageRecord['numConditions'] = $logEntry['numCond'];
 		$questStageRecord['__dirty'] = true;
-				
+		
 		$locationId = $this->CheckLocationId("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
 		
 		if ($locationId > 0)
@@ -6341,9 +6354,9 @@ class EsoLogParser
 		$safeId = $this->db->real_escape_string($internalId);
 		$query = "SELECT * FROM uniqueQuest WHERE internalId='$safeId';";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve uniqueQuest!");
@@ -6351,12 +6364,12 @@ class EsoLogParser
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows == 0) 
 		{
 			return null;
 		}
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUEST_FIELDS);
 	}
@@ -6369,9 +6382,9 @@ class EsoLogParser
 		$safeId = (int) $questId;
 		$query = "SELECT * FROM questStep WHERE questId=$safeId AND stageIndex=$safeStage and stepIndex=$safeIndex;";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
-	
+		
 		if ($result === false)
 		{
 			$this->reportError("Failed to retrieve quest step!");
@@ -6379,9 +6392,9 @@ class EsoLogParser
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		if ($result->num_rows == 0) return null;
-	
+		
 		$row = $result->fetch_assoc();
 		return $this->createRecordFromRow($row, self::$QUESTSTEP_FIELDS);
 	}
@@ -6674,11 +6687,11 @@ class EsoLogParser
 		
 		if ($this->IncrementLocationCounter($type, $name, $logEntry, $extraIds))
 		{
-			$isNew = true;
+			$isNew = false;
 			return true;
 		}
 		
-		$isNew = false;
+		$isNew = true;
 		return $this->CreateLocation($type, $name, $logEntry, $extraIds) != null;
 	}
 	
@@ -6704,7 +6717,12 @@ class EsoLogParser
 		$locationRecord = $this->FindLocation($type, $logEntry['x'], $logEntry['y'], $logEntry['zone'], $extraIds);
 		if ($locationRecord == null) return false;
 		
+		$logTime = $this->GetLogTime($logEntry);
+		if ($logTime > 0 && $locationRecord['firstTime'] > $logTime) $locationRecord['firstTime'] = $logTime;
+		if ($logTime > 0 && $locationRecord['lastTime']  < $logTime) $locationRecord['lastTime']  = $logTime;
+		
 		++$locationRecord['count'];
+		
 		$this->saveLocation($locationRecord);
 		
 		return true;
@@ -6715,10 +6733,15 @@ class EsoLogParser
 	{
 		$locationRecord = $this->FindLocation($type, $logEntry['x'], $logEntry['y'], $logEntry['zone'], $extraIds);
 		if ($locationRecord == null) return 0;
-	
+		
+		$logTime = $this->GetLogTime($logEntry);
+		if ($logTime > 0 && $locationRecord['firstTime'] > $logTime) $locationRecord['firstTime'] = $logTime;
+		if ($logTime > 0 && $locationRecord['lastTime']  < $logTime) $locationRecord['lastTime']  = $logTime;
+		
 		++$locationRecord['count'];
+		
 		$this->saveLocation($locationRecord);
-	
+		
 		return $locationRecord['id'];
 	}
 	
@@ -6748,6 +6771,8 @@ class EsoLogParser
 		$locationRecord['count'] = 1;
 		$locationRecord['type'] = $type;
 		$locationRecord['name'] = $name;
+		$locationRecord['firstTime'] = $this->GetLogTime($logEntry);
+		$locationRecord['lastTime'] = $locationRecord['firstTime'];
 		$locationRecord['__isNew'] = true;
 		
 		if ($extraIds != null)
@@ -6757,7 +6782,7 @@ class EsoLogParser
 			if (array_key_exists('questId', $extraIds)) $locationRecord['questId'] = $extraIds['questId'];
 			if (array_key_exists('questStageId', $extraIds)) $locationRecord['questStageId'] = $extraIds['questStageId'];
 			
-			if (array_key_exists('itemId', $extraIds)) 
+			if (array_key_exists('itemId', $extraIds))
 			{
 				$locationRecord['itemId'] = $extraIds['itemId'];
 				if ($locationRecord['itemId'] == null || $locationRecord['itemId'] <= 0) return null;
@@ -10756,6 +10781,10 @@ class EsoLogParser
 		{
 			++$npcLocation['counter'];
 			
+			$logTime = $this->GetLogTime($logEntry);
+			if ($logTime > 0 && $npcLocation['firstTime'] > $logTime) $npcLocation['firstTime'] = $logTime;
+			if ($logTime > 0 && $npcLocation['lastTime']  < $logTime) $npcLocation['lastTime']  = $logTime;
+			
 			$result = $this->SaveLocation($npcLocation);
 			if (!$result) return false;
 		}
@@ -10845,7 +10874,7 @@ class EsoLogParser
 			$slavePos = $slaveData['Exec_Master_Log_Pos'];
 			$slaveLag = $slaveData['Seconds_Behind_Master'];
 			
-			if ($slaveLag < $this->maxAllowedSlaveLag) 
+			if ($slaveLag < $this->maxAllowedSlaveLag)
 			{
 				$this->log("Slave database lag is $slaveLag sec...resuming writes!");
 				return true;
@@ -11588,7 +11617,7 @@ class EsoLogParser
 		
 		$this->lastFileIndexParsed = $fileIndex;
 		$this->lastFileLineParsed = 0;
-				
+		
 		$logEntries = array();
 		$entryCount = 0;
 		$errorCount = 0;
@@ -11763,7 +11792,7 @@ class EsoLogParser
 		{
 			$this->parseEntireLog($value);
 			
-			if (!$this->checkParseTime()) 
+			if (!$this->checkParseTime())
 			{
 				$this->log("Stopping log parsing due to exceeding max parse time of " . self::MAX_PARSE_TIME_SECONDS . "s!");
 				break;
@@ -11820,7 +11849,7 @@ class EsoLogParser
 		return true;
 	}
 	
-		
+	
 	public function reportError ($errorMsg)
 	{
 		$this->log($errorMsg);
