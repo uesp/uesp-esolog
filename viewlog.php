@@ -525,8 +525,13 @@ class EsoLogViewer
 	
 	public static $SETINFO_FIELDS = array(
 			'setName' => self::FIELD_STRING,
+			'gameId' => self::FIELD_INT,
 			'type' => self::FIELD_STRING,
+			'gameType' => self::FIELD_STRING,
 			'sources' => self::FIELD_STRING,
+			'category' => self::FIELD_STRING,
+			'slots' => self::FIELD_STRING,
+			'numPieces' => self::FIELD_INT,
 	);
 	
 	

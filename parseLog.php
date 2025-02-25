@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "45pts";
-	const SKILLS_TABLESUFFIX   = "45pts";
+	const MINEITEM_TABLESUFFIX = "45";
+	const SKILLS_TABLESUFFIX   = "45";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -143,7 +143,8 @@ class EsoLogParser
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1590498405;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1615217417;
 	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1661174700;
-	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1718393424;
+	//public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1718393424;
+	public $IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 = 1739722195; //4745083731755139072 
 	
 	public $db = null;
 	public $dbSlave = null;
@@ -238,6 +239,7 @@ class EsoLogParser
 			"tributeCards",
 			"campaignInfo",
 			"campaignLeaderboards",
+			"setInfo",
 	);
 	
 	
@@ -1473,6 +1475,18 @@ class EsoLogParser
 	);
 	
 	
+	public static $SETINFO_FIELDS = array(
+			'setName' => self::FIELD_STRING,
+			'type' => self::FIELD_STRING,
+			'sources' => self::FIELD_STRING,
+			'gameType' => self::FIELD_STRING,
+			'category' => self::FIELD_STRING,
+			'slots' => self::FIELD_STRING,
+			'numPieces' => self::FIELD_INT,
+			'gameId' => self::FIELD_INT,
+	);
+	
+	
 	public function __construct ()
 	{
 		ini_set('mysql.connect_timeout', 1000);
@@ -2255,6 +2269,15 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadSetInfo ($setName)
+	{
+		$record = $this->loadRecord('setInfo', 'setName', $setName, self::$SETINFO_FIELDS);
+		if ($record === false) return false;
+		
+		return $record;
+	}
+	
+	
 	public function LoadEndeavor($timestamp, $name)
 	{
 		$timestamp = intval($timestamp);
@@ -2716,6 +2739,12 @@ class EsoLogParser
 	}
 	
 	
+	public function SaveSetInfo (&$record)
+	{
+		return $this->saveRecord('setInfo', $record, 'setName', self::$SETINFO_FIELDS);
+	}
+	
+	
 	public function SaveEndeavor(&$record)
 	{
 		return $this->saveRecord2('endeavors', $record, 'startTimestamp', 'name', self::$ENDEAVOR_FIELDS);
@@ -2972,6 +3001,7 @@ class EsoLogParser
 						PRIMARY KEY (id),
 						INDEX index_name(name(32)),
 						INDEX index_internalId(internalId),
+						INDEX index_uniqueId(name(32),uniqueId),
 						FULLTEXT(backgroundText, objective, goalText, confirmText, declineText, endDialogText, endBackgroundText, endJournalText)
 					) ENGINE=MYISAM;";
 		
@@ -4157,9 +4187,15 @@ class EsoLogParser
 		
 		$query = "CREATE TABLE IF NOT EXISTS setInfo (
 						setName TINYTEXT NOT NULL,
-						type TINYTEXT NOT NULL,
-						sources TINYTEXT NOT NULL,
-				 		PRIMARY KEY idx_setName(setName(64))
+						type TINYTEXT NOT NULL DEFAULT '',
+						gameType TINYTEXT NOT NULL DEFAULT '',
+						sources TINYTEXT NOT NULL DEFAULT '',
+						category TINYTEXT NOT NULL DEFAULT '',
+						slots TINYTEXT NOT NULL DEFAULT '',
+						gameId INTEGER NOT NULL DEFAULT 0,
+						numPieces INTEGER NOT NULL DEFAULT 0,
+				 		PRIMARY KEY idx_setName(setName(64)),
+						INDEX index_gameId(gameId)
 					) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
@@ -5121,6 +5157,11 @@ class EsoLogParser
 		if ($npcId === null || $npcId <= 0) return false;
 		if ($zone === null || $zone == "") return false;
 		
+		if (self::DO_BENCHMARK)
+		{
+			$start = microtime(true);
+		}
+		
 		$safeZone = $this->db->real_escape_string($zone);
 		$zoneDiff = $npcRecord['zoneDifficulty'];
 		
@@ -5145,6 +5186,13 @@ class EsoLogParser
 		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to insert/update npcLocations record!");
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'UpdateNpcZone');
+			$start = $end;
+		}
 		
 		return true;
 	}
@@ -5727,7 +5775,7 @@ class EsoLogParser
 		$questRecord['backgroundText'] = $logEntry['bgText'];
 		$questRecord['poiIndex'] = $logEntry['poiIndex'];
 		$questRecord['objective'] = $logEntry['objective'];
-				
+		
 		if ($logEntry['goal']) $questRecord['goalText'] = $logEntry['goal'];
 		if ($logEntry['confirm']) $questRecord['confirmText'] = $logEntry['confirm'];
 		if ($logEntry['decline']) $questRecord['declineText'] = $logEntry['decline'];
@@ -5768,15 +5816,42 @@ class EsoLogParser
 	{
 		if ($logEntry['stageIndex'] == null || $logEntry['stageIndex'] <= 0) return true;
 		
+		if (self::DO_BENCHMARK)
+		{
+			$start = microtime(true);
+		}
+		
 		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		if ($questRecord == null) return false;
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnQuestStep::FindQuest');
+			$start = $end;
+		}
+		
 		$questStageRecord = $this->FindQuestStep($questRecord['id'], $logEntry['stageIndex'], $logEntry['step']);
+		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnQuestStep::FindQuestStep');
+			$start = $end;
+		}
 		
 		if ($questStageRecord == null)
 		{
 			$questStageRecord = $this->CreateQuestStep($questRecord, $logEntry);
 			if ($questStageRecord == null) return false;
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'OnQuestStep::CreateQuestStep');
+				$start = $end;
+			}
+			
 			return true;
 		}
 		
@@ -5796,6 +5871,13 @@ class EsoLogParser
 		
 		$locationId = $this->CheckLocationId("quest", $questRecord['name'], $logEntry, array('questId' => $questRecord['id'], 'questStageId' => $questStageRecord['id']));
 		
+		if (self::DO_BENCHMARK)
+		{
+			$end = microtime(true);
+			$this->RecordBenchmark($end - $start, 'OnQuestStep::CheckLocationId');
+			$start = $end;
+		}
+		
 		if ($locationId > 0)
 		{
 			$questStageRecord['locationId'] = $locationId;
@@ -5806,6 +5888,13 @@ class EsoLogParser
 		{
 			$result = $this->SaveQuestStep($questStageRecord);
 			if (!$result) return false;
+			
+			if (self::DO_BENCHMARK)
+			{
+				$end = microtime(true);
+				$this->RecordBenchmark($end - $start, 'OnQuestStep::SaveQuestStep');
+				$start = $end;
+			}
 		}
 		
 		return true;
@@ -5823,7 +5912,7 @@ class EsoLogParser
 		if ($questStageRecord == null) return $this->reportError("Failed to find matching quest step for {$logEntry['quest']}:{$logEntry['stageIndex']}:{$logEntry['step']}!");
 		
 		$questCondRecord = $this->FindQuestCondition($questRecord['id'], $logEntry['stageIndex'], $logEntry['step'], $logEntry['condition'], $logEntry['text']);
-				
+		
 		if ($questCondRecord == null)
 		{
 			$questCondRecord = $this->CreateQuestCondition($questRecord, $questStageRecord, $logEntry);
@@ -7789,6 +7878,42 @@ class EsoLogParser
 		$this->currentUser['vendorNumItems'] = 0;
 		$this->currentUser['vendorStartTimestamp'] = 0;
 		
+		return true;
+	}
+	
+	
+	
+	public function OnSetInfo ($logEntry)
+	{
+		/*
+		 * 
+		 * event{SetInfo}  numPieces{22}  suppression{|cffffff|r}  parentId{4}  setName{Vivec's Duality}  setId{698}  unperfectId{0}  setType{3}  setTypeStr{World}  category{Apocrypha}  
+		 * slots{Light(All) Weapons(All) Neck Ring}  categoryId{107}  parent{DLC Zones}  
+		 */
+		$gameId = intval($logEntry['setId']);
+		if ($gameId <= 0) return false;
+		
+		$setName = $logEntry['setName'];
+		if ($setName == "") return false;
+		
+		$setInfo = $this->LoadSetInfo($setName);
+		if ($setInfo == null) return false;
+		
+		$setInfo['gameId'] = $gameId;
+		$setInfo['numPieces'] = intval($logEntry['numPieces']);
+		if ($setInfo['numPieces'] <= 0) $setInfo['numPieces'] = 22;
+		
+		if ($setInfo['setName'] == "") $setInfo['setName'] = $logEntry['setName'];
+		$setInfo['gameType'] = $logEntry['setTypeStr'];
+		
+		if ($logEntry['parent'] == "")
+			$setInfo['category'] = $logEntry['category'];
+		else
+			$setInfo['category'] = $logEntry['parent'] . ":" . $logEntry['category'];
+		
+		$setInfo['slots'] = $logEntry['slots'];
+		
+		$this->SaveSetInfo($setInfo);
 		return true;
 	}
 	
@@ -11465,6 +11590,10 @@ class EsoLogParser
 			
 			case "endeavor":					$result = $this->OnEndeavor($logEntry); break;
 			
+			case "SetInfo::Start":				$result = $this->OnNullEntry($logEntry); break;
+			case "SetInfo::End":				$result = $this->OnNullEntry($logEntry); break;
+			case "SetInfo":						$result = $this->OnSetInfo($logEntry); break;
+			
 			case "Test":
 			case "TEST":
 			case "test":						$result = $this->OnNullEntry($logEntry); break;
@@ -11480,7 +11609,8 @@ class EsoLogParser
 		if (self::DO_BENCHMARK)
 		{
 			$end = microtime(true);
-			$this->RecordBenchmark($end - $start, 'handleLogEntry::handle_log_entry');
+			//$this->RecordBenchmark($end - $start, 'handleLogEntry::handle_log_entry');
+			$this->RecordBenchmark($end - $start, 'event::'.$logEntry['event']);
 			$start = $end;
 		}
 		
