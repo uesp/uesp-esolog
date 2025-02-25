@@ -338,7 +338,7 @@ class EsoViewSalesData
 		if (array_key_exists('output', $this->inputParams) && $this->inputParams['output'] != null)
 		{
 			$this->inputParams['output'] = strtolower($this->inputParams['output']);
-				
+			
 			if ($this->inputParams['output'] == 'csv')
 				$this->outputType = "csv";
 			else if ($this->inputParams['output'] == 'html')
@@ -359,7 +359,7 @@ class EsoViewSalesData
 		{
 			$this->viewRawData = true;
 		}
-				
+		
 		if (array_key_exists("sort", $this->inputParams)) $this->sortField = $this->inputParams['sort'];
 		if (array_key_exists("order", $this->inputParams)) $this->sortOrder = intval($this->inputParams['order']);
 		
@@ -369,6 +369,13 @@ class EsoViewSalesData
 			$this->showForm = "ViewDeals";
 		}
 		
+		
+		if (array_key_exists("limit", $this->inputParams)) 
+		{
+			$limit = intval($this->inputParams['limit']);
+			if ($limit > 0) $this->searchLimitCount = $limit;
+		}
+		
 		return true;
 	}
 	
@@ -376,19 +383,19 @@ class EsoViewSalesData
 	private function ParseFormParam($name)
 	{
 		$id = $name;
-	
+		
 		if (array_key_exists($id, $this->inputParams))
 		{
 			$this->formValues[$name] = $this->inputParams[$id];
 			return true;
 		}
-	
+		
 		$this->formValues[$name] = "";
 		
 		return false;
 	}
-
-
+	
+	
 	private function SetInputParams ()
 	{
 		global $argv;
@@ -397,8 +404,8 @@ class EsoViewSalesData
 		$this->hasSearchData = false;
 		if (count($this->inputParams) > 0) $this->hasSearchData = true;
 	}
-
-
+	
+	
 	private function OutputHtmlHeader()
 	{
 		ob_start("ob_gzhandler");
@@ -2863,7 +2870,7 @@ class EsoViewSalesData
 			$listDate = $row['listTimestamp'];
 			$lastSeen = $row['lastSeen'];
 			$unitPrice = number_format(floatval($row['price']) / floatval($row['qnt']), 2, ".", '');
-							
+			
 			$kiosk = $this->CsvEscape($guild['storeLocation']);
 			if ($kiosk == "") $kiosk = "None";
 			
@@ -2876,11 +2883,11 @@ class EsoViewSalesData
 			$output .= "\"$kiosk\",";
 			if (!$this->OMIT_SELLER_INFO) $output .= "\"{$row['buyerName']}\",";
 			if (!$this->OMIT_BUYER_INFO) $output .= "\"{$row['sellerName']}\",";
-				
+			
 			$output .= "\"{$listDate}\",";
 			$output .= "\"{$buyDate}\",";
 			$output .= "\"{$lastSeen}\",";
-	
+			
 			$output .= "\"{$row['price']}\",";
 			$output .= "\"{$row['qnt']}\",";
 			$output .= "\"{$unitPrice}\",";
