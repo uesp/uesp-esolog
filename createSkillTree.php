@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "45pts";
+	public $TABLE_SUFFIX = "45";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -410,19 +410,26 @@ class CEsoCreateSkillTree
 		foreach ($this->skillTree as $id => $skillTreeLine)
 		{
 			$skill = $this->skills[$id];
+			$leadingSkillType = "";
 			
 			if ($skill['skillType'] == 1)
 			{
-				$skillTypeName = $skill['classType'] . "::" . $skill['skillLine'];
+				$leadingSkillType = $skill['classType'];
+				$skillTypeName = $leadingSkillType . "::" . $skill['skillLine'];
 			}
 			elseif ($skill['skillType'] == 7)
 			{
+				$leadingSkillType = "Racial";
 				$skillTypeName = "Racial::" . $skill['skillLine'];
 			}
 			else
 			{
-				$skillTypeName = GetEsoSkillTypeText($skill['skillType']) . "::" . $skill['skillLine'];
+				$leadingSkillType = GetEsoSkillTypeText($skill['skillType']);
+				$skillTypeName = $leadingSkillType . "::" . $skill['skillLine'];
 			}
+			
+				//TODO: Skip skills with no or unknown root skill type
+			if ($leadingSkillType == "") continue;
 			
 			$rootSkill = $this->skills[$skillTreeLine[1]];
 			$skillTypeName = $this->db->real_escape_string($skillTypeName);

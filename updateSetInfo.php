@@ -2,6 +2,9 @@
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
+	//Versions to update, if empty 
+//$VERSIONS = [ "44" ];
+
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
@@ -47,11 +50,14 @@ foreach ($setTables as $setTable)
 {
 	print("Updating $setTable...\n");
 	
-	$query = "ALTER TABLE `$setTable` ADD COLUMN type TINYTEXT NOT NULL;";
-	$rowResult = $db->query($query); //Might fail if the row already exists
+	//$query = "ALTER TABLE `$setTable` ADD COLUMN type TINYTEXT NOT NULL DEFAULT '';";
+	//$rowResult = $db->query($query); //Might fail if the row already exists
 	 
-	$query = "ALTER TABLE `$setTable` ADD COLUMN sources TINYTEXT NOT NULL;";
-	$rowResult = $db->query($query); //Might fail if the row already exists
+	//$query = "ALTER TABLE `$setTable` ADD COLUMN sources TINYTEXT NOT NULL DEFAULT '';";
+	//$rowResult = $db->query($query); //Might fail if the row already exists
+	
+	//$query = "ALTER TABLE `$setTable` ADD COLUMN category TINYTEXT NOT NULL DEFAULT '';";
+	//$rowResult = $db->query($query); //Might fail if the row already exists
 	
 	$query = "SELECT id, setName FROM `$setTable`;";
 	$rowResult = $db->query($query);
@@ -87,8 +93,10 @@ foreach ($setTables as $setTable)
 		
 		$setType = $db->real_escape_string($setInfo['type']);
 		$setSources = $db->real_escape_string($setInfo['sources']);
+		$setCategory = $db->real_escape_string($setInfo['category']);
+		$setSlots = $db->real_escape_string($setInfo['slots']);
 		
-		$query = "UPDATE `$setTable` SET type='$setType', sources='$setSources' WHERE id='$id';";
+		$query = "UPDATE `$setTable` SET type='$setType', sources='$setSources', category='$setCategory', itemSlots='$setSlots' WHERE id='$id';";
 		$writeResult = $db->query($query);
 		if (!$writeResult) exit("ERROR: Database query error (failed to update row $id)!\n" . $db->error);
 		

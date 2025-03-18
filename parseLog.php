@@ -1,4 +1,4 @@
-f<?php
+<?php
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -41,7 +41,7 @@ require_once("skillTooltips.class.php");
 class EsoLogParser
 {
 	const MINEITEM_TABLESUFFIX = "45";
-	const SKILLS_TABLESUFFIX   = "45";
+	const SKILLS_TABLESUFFIX   = "";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -1483,11 +1483,12 @@ class EsoLogParser
 			'category' => self::FIELD_STRING,
 			'slots' => self::FIELD_STRING,
 			'numPieces' => self::FIELD_INT,
+			'maxEquipCount' => self::FIELD_INT,
 			'gameId' => self::FIELD_INT,
 	);
 	
 	
-	public function __construct ()
+	public function __construct()
 	{
 		ini_set('mysql.connect_timeout', 1000);
 		ini_set('mysql.wait_timeout', 1000);
@@ -4194,6 +4195,7 @@ class EsoLogParser
 						slots TINYTEXT NOT NULL DEFAULT '',
 						gameId INTEGER NOT NULL DEFAULT 0,
 						numPieces INTEGER NOT NULL DEFAULT 0,
+						maxEquipCount INTEGER NOT NULL DEFAULT 0,
 				 		PRIMARY KEY idx_setName(setName(64)),
 						INDEX index_gameId(gameId)
 					) ENGINE=MYISAM;";
@@ -7901,7 +7903,7 @@ class EsoLogParser
 		
 		$setInfo['gameId'] = $gameId;
 		$setInfo['numPieces'] = intval($logEntry['numPieces']);
-		if ($setInfo['numPieces'] <= 0) $setInfo['numPieces'] = 22;
+		if ($setInfo['numPieces'] <= 0) $setInfo['numPieces'] = 36;
 		
 		if ($setInfo['setName'] == "") $setInfo['setName'] = $logEntry['setName'];
 		$setInfo['gameType'] = $logEntry['setTypeStr'];
@@ -7912,6 +7914,7 @@ class EsoLogParser
 			$setInfo['category'] = $logEntry['parent'] . ":" . $logEntry['category'];
 		
 		$setInfo['slots'] = $logEntry['slots'];
+		$setInfo['maxEquipCount'] = $logEntry['numItems'];
 		
 		$this->SaveSetInfo($setInfo);
 		return true;
@@ -9128,7 +9131,7 @@ class EsoLogParser
 		if ($classId == null) $classId = 0;
 		if ($classId == 117) $classId = 7;	//Arcanist?
 		
-		print("\tclassId=$classId\n");
+		//print("\tclassId=$classId\n");
 		
 		$numCrafted = intval($logEntry['numCrafted']);
 		
@@ -9149,13 +9152,13 @@ class EsoLogParser
 				$record['abilityId'] = $id;
 				$record['classId'] = 0;
 				
-				print("\t\tSaving class id 0\n");
+				//print("\t\tSaving class id 0\n");
 				$this->SaveCraftedScriptDescription($record);
 				
 					//For the class mastery script 
 				if ($scriptId == 31 && $classId != 0)
 				{
-					print("\t\tUpdating class mastery script for $classId...\n");
+					//print("\t\tUpdating class mastery script for $classId...\n");
 					
 					$record2 = $this->LoadCraftedScriptDescription($i, $scriptId, $classId);
 					if ($record2 === false) continue;
@@ -9354,6 +9357,13 @@ class EsoLogParser
 				}
 				
 			}
+		}
+		
+			//TODO: Undo this if these skills ever become live
+		if (preg_match('/^Vengeance .*/', $skill['skillLine'])) 
+		{
+			$this->reportLogParseError("WARNING: Setting " . $skill['skillLine'] . " skill line to non-player (" . $skill['name'] . ")!");
+			$skill['isPlayer'] = 0;
 		}
 		
 		if (($logEntry['skillType'] <= 0 && $logEntry['desc2'] == null) || $skill['isPassive'] || $logEntry['desc1'] == null || ($skill['isPlayer'] == 0 && $logEntry['desc2'] == null))

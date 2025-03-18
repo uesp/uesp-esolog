@@ -612,6 +612,9 @@ function OnEsoItemLinkCopyClicked(e)
 function AddEsoItemLinkCopyButton(id)
 {
 	var element = $("#" + id);
+	
+	element.find("button.esoil_copy_button").remove();
+	
 	var html = element.html();
 	var buttonHtml = "";
 	

@@ -1284,7 +1284,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 20,
     'subIndex' => 1,
-    'points' => 280,
+    'points' => 270,
     'icon' => '',
   ),
   'Fallen Banners' => 
@@ -1293,7 +1293,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 20,
     'subIndex' => 0,
-    'points' => 1320,
+    'points' => 1310,
     'icon' => '/esoui/art/treeicons/store_indexicon_dungdlc_up.dds',
   ),
   'Fallen Banners::Veteran' => 
@@ -8722,153 +8722,117 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
       16 => 
       array (
-        'name' => 'Malabal Tor',
+        'name' => 'Stros M\'Kai',
         'value' => 1,
         'index' => 16,
       ),
       17 => 
       array (
-        'name' => 'Shadowfen',
+        'name' => 'Wrothgar',
         'value' => 1,
         'index' => 17,
       ),
       18 => 
       array (
-        'name' => 'Bal Foyen',
+        'name' => 'Hew\'s Bane',
         'value' => 1,
         'index' => 18,
       ),
       19 => 
       array (
-        'name' => 'Stros M\'Kai',
+        'name' => 'Gold Coast',
         'value' => 1,
         'index' => 19,
       ),
       20 => 
       array (
-        'name' => 'Betnikh',
+        'name' => 'Clockwork City',
         'value' => 1,
         'index' => 20,
       ),
       21 => 
       array (
-        'name' => 'Khenarthi\'s Roost',
+        'name' => 'Vvardenfell',
         'value' => 1,
         'index' => 21,
       ),
       22 => 
       array (
-        'name' => 'Wrothgar',
+        'name' => 'Murkmire',
         'value' => 1,
         'index' => 22,
       ),
       23 => 
       array (
-        'name' => 'Hew\'s Bane',
+        'name' => 'Summerset',
         'value' => 1,
         'index' => 23,
       ),
       24 => 
       array (
-        'name' => 'Gold Coast',
+        'name' => 'Artaeum',
         'value' => 1,
         'index' => 24,
       ),
       25 => 
       array (
-        'name' => 'Clockwork City',
+        'name' => 'Northern Elsweyr',
         'value' => 1,
         'index' => 25,
       ),
       26 => 
       array (
-        'name' => 'Vvardenfell',
+        'name' => 'Southern Elsweyr',
         'value' => 1,
         'index' => 26,
       ),
       27 => 
       array (
-        'name' => 'Murkmire',
+        'name' => 'Blackreach: Greymoor Caverns',
         'value' => 1,
         'index' => 27,
       ),
       28 => 
       array (
-        'name' => 'Summerset',
+        'name' => 'Western Skyrim',
         'value' => 1,
         'index' => 28,
       ),
       29 => 
       array (
-        'name' => 'Artaeum',
+        'name' => 'Blackwood',
         'value' => 1,
         'index' => 29,
       ),
       30 => 
       array (
-        'name' => 'The Reach',
+        'name' => 'Deadlands',
         'value' => 1,
         'index' => 30,
       ),
       31 => 
       array (
-        'name' => 'Northern Elsweyr',
+        'name' => 'High Isle',
         'value' => 1,
         'index' => 31,
       ),
       32 => 
       array (
-        'name' => 'Southern Elsweyr',
+        'name' => 'Galen',
         'value' => 1,
         'index' => 32,
       ),
       33 => 
       array (
-        'name' => 'Blackreach: Greymoor Caverns',
+        'name' => 'Telvani Peninsula or Apocrypha',
         'value' => 1,
         'index' => 33,
       ),
       34 => 
       array (
-        'name' => 'Western Skyrim',
-        'value' => 1,
-        'index' => 34,
-      ),
-      35 => 
-      array (
-        'name' => 'Blackwood',
-        'value' => 1,
-        'index' => 35,
-      ),
-      36 => 
-      array (
-        'name' => 'Deadlands',
-        'value' => 1,
-        'index' => 36,
-      ),
-      37 => 
-      array (
-        'name' => 'High Isle',
-        'value' => 1,
-        'index' => 37,
-      ),
-      38 => 
-      array (
-        'name' => 'Galen',
-        'value' => 1,
-        'index' => 38,
-      ),
-      39 => 
-      array (
-        'name' => 'Telvani Peninsula or Apocrypha',
-        'value' => 1,
-        'index' => 39,
-      ),
-      40 => 
-      array (
         'name' => 'West Weald',
         'value' => 1,
-        'index' => 40,
+        'index' => 34,
       ),
     ),
     'dyeName' => '10-Year Anniversary Gold Leaf',
@@ -45602,7 +45566,7 @@ Replicanum',
     'id' => 4292,
     'name' => 'Jubilee Cake Slice 2025',
     'desc' => 'Acquire a Replica Jubilee Cake Slice from the 2025 Jubilee Cake.',
-    'icon' => '/esoui/art/icons/u45_2025_jubileecakeslice.dds',
+    'icon' => '/esoui/art/icons/icon_missing.dds',
     'points' => 5,
     'index' => 9,
     'criteria' => 
@@ -47686,7 +47650,7 @@ Replicanum',
   array (
     'id' => 4306,
     'name' => 'Slayer of Death Itself',
-    'desc' => 'Destroy 25 of the Worm Cult\'s soul reaper devices deployed across Tamriel.',
+    'desc' => 'Destroy 25 soul reaper devices deployed by the Worm Cult.',
     'icon' => '/esoui/art/icons/u46_reaper_slayer_in_u45.dds',
     'points' => 10,
     'index' => 2,
@@ -73470,24 +73434,6 @@ Replicanum',
       ),
     ),
   ),
-  4117 => 
-  array (
-    'id' => 4117,
-    'name' => 'Unfragmented',
-    'desc' => 'During the battle with the Squall of Retribution pick up a Fire, Ice, or Shock Orb before they develop into Fiery Eruption, Freezing Shard, or Lightning Blast and defeat the Squall of Retribution in Exiled Redoubt.',
-    'icon' => '/esoui/art/icons/achievement_u45_dun1_flavorb.dds',
-    'points' => 10,
-    'index' => 16,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Unfragmented',
-        'value' => 1,
-        'index' => 1,
-      ),
-    ),
-  ),
   4146 => 
   array (
     'id' => 4146,
@@ -73773,12 +73719,6 @@ Replicanum',
         'value' => 1,
         'index' => 8,
       ),
-      9 => 
-      array (
-        'name' => 'Unfragmented',
-        'value' => 1,
-        'index' => 9,
-      ),
     ),
     'title' => 'Master Exorcist',
   ),
@@ -73787,7 +73727,7 @@ Replicanum',
     'id' => 4107,
     'name' => 'Canine Slayer',
     'desc' => 'Defeat 200 Wolves and Bog Dogs in Veteran Exiled Redoubt.',
-    'icon' => '/esoui/art/icons/achievement_u45_dun1_killmonstersa.dds',
+    'icon' => '/esoui/art/icons/icon_missing.dds',
     'points' => 10,
     'index' => 12,
     'criteria' => 
@@ -74003,7 +73943,7 @@ Replicanum',
   array (
     'id' => 4131,
     'name' => 'Quick Deliverance',
-    'desc' => 'Defeat all encounters including Garvin the Tracker, Noriwen, and Orpheon the Tactician within 30 minutes of entering Veteran Lep Seclusa. Your timer starts upon engaging the first enemies.',
+    'desc' => 'Defeat all encounters including Garvin the Tracker, Noriwen, and Orpheon the Tactician within 25 minutes of entering Veteran Lep Seclusa. Your timer starts upon engaging the first enemies.',
     'icon' => '/esoui/art/icons/u45_dun2_speed_challenge.dds',
     'points' => 50,
     'index' => 22,
@@ -74039,7 +73979,7 @@ Replicanum',
   array (
     'id' => 4134,
     'name' => 'Sic Semper',
-    'desc' => 'Defeat all encounters in addition to Garvin the Tracker, Noriwen, and Orpheon the Tactician after raising the Challenge Banner in Veteran Lep Seclusa within 30 minutes without suffering a group member death.',
+    'desc' => 'Defeat all encounters in addition to Garvin the Tracker, Noriwen, and Orpheon the Tactician after raising the Challenge Banner in Veteran Lep Seclusa within 25 minutes without suffering a group member death.',
     'icon' => '/esoui/art/icons/u45_dun2_perfectnonmeta.dds',
     'points' => 50,
     'index' => 24,
@@ -114618,10 +114558,6 @@ $ESO_ACHIEVEMENT_TREE = array (
       15 => 
       array (
         0 => 4160,
-      ),
-      16 => 
-      array (
-        0 => 4117,
       ),
     ),
     'Veteran' => 

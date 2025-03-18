@@ -13,7 +13,7 @@ class EsoLogViewer
 	const SHOW_QUERY = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "44";
+	const ENABLE_PTS_VERSION = "45";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -532,6 +532,7 @@ class EsoLogViewer
 			'category' => self::FIELD_STRING,
 			'slots' => self::FIELD_STRING,
 			'numPieces' => self::FIELD_INT,
+			'maxEquipCount' => self::FIELD_INT,
 	);
 	
 	
@@ -622,6 +623,42 @@ class EsoLogViewer
 			'rawTooltip' =>  self::FIELD_STRING,
 			'rawCoef' =>  self::FIELD_STRING,
 			'coefTypes' =>  self::FIELD_STRING,
+	);
+	
+	
+	public static $CRAFTEDSKILL_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'abilityIds' => self::FIELD_STRING,
+			'skillType' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'hint' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'slots1' => self::FIELD_STRING,
+			'slots2' => self::FIELD_STRING,
+			'slots3' => self::FIELD_STRING,
+	);
+	
+	
+	public static $CRAFTEDSCRIPT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'slot' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'hint' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+	);
+	
+	
+	public static $CRAFTEDSCRIPTDESCRIPTION_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'craftedAbilityId' => self::FIELD_INT,
+			'scriptId' => self::FIELD_INT,
+			'classId' => self::FIELD_INT,
+			'abilityId' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
 	);
 	
 	
@@ -1195,6 +1232,54 @@ class EsoLogViewer
 							'buffType' => 'GetBuffTypeText',
 					),
 						
+					'filters' => array(
+					),
+			),
+			
+			'craftedSkills##pts' => array(
+					'displayName' => 'Update ## PTS: Crafted Skills',
+					'displayNameSingle' => 'Update ## PTS: Crafted Skill',
+					'record' => 'craftedSkills##pts',
+					'table' => 'craftedSkills##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are crafted skills for update ## (__NAME__) as logged from the PTS server.",
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'craftedScripts##pts' => array(
+					'displayName' => 'Update ## PTS: Crafted Scripts',
+					'displayNameSingle' => 'Update ## PTS: Crafted Script',
+					'record' => 'craftedScripts##pts',
+					'table' => 'craftedScripts##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are crafted skills for update ## (__NAME__) as logged from the PTS server.",
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'craftedScriptDescriptions##pts' => array(
+					'displayName' => 'Update ## PTS: Crafted Script Descriptions',
+					'displayNameSingle' => 'Update ## PTS: Crafted Script Description',
+					'record' => 'craftedScriptDescriptions##pts',
+					'table' => 'craftedScriptDescriptions##pts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					'message' => "These are crafted skills for update ## (__NAME__) as logged from the PTS server.",
+					
+					'transform' => array(
+					),
+					
 					'filters' => array(
 					),
 			),
@@ -2157,6 +2242,51 @@ class EsoLogViewer
 					),
 			),
 			
+			'craftedSkills' => array(
+					'displayName' => 'Crafted Skills',
+					'displayNameSingle' => 'Crafted Skill',
+					'record' => 'craftedSkills',
+					'table' => 'craftedSkills',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'craftedScripts' => array(
+					'displayName' => 'Crafted Scripts',
+					'displayNameSingle' => 'Crafted Script',
+					'record' => 'craftedScripts',
+					'table' => 'craftedScripts',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
+			'craftedScriptDescriptions' => array(
+					'displayName' => 'Crafted Script Descriptions',
+					'displayNameSingle' => 'Crafted Script Description',
+					'record' => 'craftedScriptDescriptions',
+					'table' => 'craftedScriptDescriptions',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'name',
+					
+					'transform' => array(
+					),
+					
+					'filters' => array(
+					),
+			),
+			
 			'minedSkillLines' => array(
 					'displayName' => 'Mined Skill Lines',
 					'displayNameSingle' => 'Mined Skill Line',
@@ -2995,6 +3125,9 @@ class EsoLogViewer
 		self::$RECORD_TYPES['setSummary']['fields'] = self::$SETSUMMARY_FIELDS;
 		self::$RECORD_TYPES['setInfo']['fields'] = self::$SETINFO_FIELDS;
 		self::$RECORD_TYPES['minedSkills']['fields'] = self::$SKILLDUMP_FIELDS;
+		self::$RECORD_TYPES['craftedSkills']['fields'] = self::$CRAFTEDSKILL_FIELDS;
+		self::$RECORD_TYPES['craftedScripts']['fields'] = self::$CRAFTEDSCRIPT_FIELDS;
+		self::$RECORD_TYPES['craftedScriptDescriptions']['fields'] = self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS;
 		self::$RECORD_TYPES['minedSkillLines']['fields'] = self::$SKILLLINE_FIELDS;
 		self::$RECORD_TYPES['skillTree']['fields'] = self::$SKILLTREE_FIELDS;
 		//self::$RECORD_TYPES['cpDisciplines']['fields'] = self::$CPDISCIPLINE_FIELDS;
@@ -3044,6 +3177,9 @@ class EsoLogViewer
 			if (startsWith($key, "setSummary##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$SETSUMMARY_FIELDS;
 			if (startsWith($key, "minedItemSummary##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$MINEDITEMSUMMARY_FIELDS;
 			if (startsWith($key, "minedSkills##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$SKILLDUMP_FIELDS;
+			if (startsWith($key, "craftedSkills##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$CRAFTEDSKILL_FIELDS;
+			if (startsWith($key, "craftedScripts##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$CRAFTEDSCRIPT_FIELDS;
+			if (startsWith($key, "craftedScriptDescriptions##")) self::$RECORD_TYPES[$newKey]['fields'] = self::$CRAFTEDSCRIPTDESCRIPTION_FIELDS;
 		}
 		
 		foreach (self::$PTS_SEARCH_TYPE_OPTIONS as $key => $name)
@@ -3647,6 +3783,9 @@ class EsoLogViewer
 	{
 ?>
 	<h1>ESO: Record Types</h1>
+<div style="background-color:#cfc; padding:5px; border: solid 1px gray;">
+The username/password for some data views is <b>esolog</b> / <b>esolog</b> due to issues with Bots DDOSing this service.
+</div>
 The ESO log viewer displays the raw game data for Elder Scrolls Online as collected by the <a href="//www.uesp.net/wiki/User:Daveh/uespLog_Addon">uespLog add-on</a>. It was created to be a tool for UESP editors and patrollers to
 use as part of improving and maintaining <a href="//www.uesp.net/">UESPWiki</a>. It is not intended to be a user-friendly way to learn about the Elder Scrolls games.
 If you do not understand what this information means, or how to use this webpage, then go to <a href="//www.uesp.net/"><b>UESPWiki</b></a> for user-friendly game information.
@@ -4020,12 +4159,12 @@ If you do not understand what this information means, or how to use this webpage
 		
 		$idField = 'id';
 		if ($recordInfo['idField']) $idField = $recordInfo['idField'];
-	
+		
 		$query = "SELECT COUNT(*) FROM $table ";
 		$query .= $this->GetSelectQueryJoins($recordInfo);
 		$query .= " WHERE $table.$idField='$id'";
 		$query .= ";";
-	
+		
 		$this->lastQuery = $query;
 		return $query;
 	}

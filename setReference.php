@@ -190,8 +190,10 @@ class CUespEsoSetReference
 	<title>UESP:ESO Log Data -- Set Reference</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	<meta charset="utf-8" />
+	<link rel="stylesheet" href="//esolog-static.uesp.net/resources/theme.default.min.css?sept2024a" />
 	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css" />
 	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.tablesorter.min.js?sept2024a"></script>
 	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js"></script>
 </head>
 <body>
@@ -237,15 +239,16 @@ for more information. Some data is extracted directly from the ESO game data fil
 		
 		$output = "Showing $count sets for game update: $versionList";
 		
-		$output .= "<table border='1' cellspacing='0' cellpadding='2'>\n";
-		$output .= "<tr>\n";
+		$output .= "<table id='esologtable' border='1' cellspacing='0' cellpadding='2'>\n";
+		$output .= "<thead><tr>\n";
 		$output .= "<th>Set Name</th>";
 		$output .= "<th>Bonuses</th>";
 		$output .= "<th>Type</th>";
+		$output .= "<th>Category</th>";
 		$output .= "<th>Sources</th>";
 		$output .= "<th>Item Slots</th>";
 		$output .= "<th>Image</th>";
-		$output .= "</tr>\n";
+		$output .= "</tr></thead><tbody>\n";
 		
 		foreach ($this->sets as $set)
 		{
@@ -254,6 +257,7 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$desc = $this->EscapeHtml($set['setBonusDesc']);
 			$itemSlots = $this->EscapeHtml($set['itemSlots']);
 			$type = $this->EscapeHtml($set['type']);
+			$category = $this->EscapeHtml($set['category']);
 			$sources = $this->EscapeHtml($set['sources']);
 			
 			$imageLink = "https://esolog.uesp.net/itemLinkImage.php?set=$nameUrl";
@@ -268,10 +272,11 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$output .= "<td><b>$name</b></td>\n";
 			$output .= "<td style='white-space: pre-wrap; word-wrap: break-word;'>$desc</td>\n";
 			$output .= "<td>$type</td>\n";
+			$output .= "<td>$category</td>\n";
 			$output .= "<td>$sources</td>\n";
 			$output .= "<td>$itemSlots</td>\n";
 			
-			if ($this->showImage) 
+			if ($this->showImage)
 				$output .= "<td style='min-width: 320px'><a href=\"$wikiLink\" setname=\"$name\">$name</a><br/><img src=\"$imageLink\"><br/><a href=\"$imageLink\">$imageLink</a></td>\n";
 			else
 				$output .= "<td><a href=\"$wikiLink\" setname=\"$name\">$name</a><p/><a href=\"$imageLink\">$imageLink</a></td>\n";
@@ -279,7 +284,7 @@ for more information. Some data is extracted directly from the ESO game data fil
 			$output .= "</tr>\n";
 		}
 		
-		$output .= "</table>";
+		$output .= "</tbody></table>";
 		print($output);
 		
 		return true;

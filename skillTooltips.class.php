@@ -359,7 +359,7 @@ class CEsoSkillTooltips
 	
 	
 	public static function MakeNiceDescription($skillDesc)
-	{
+	{	//                          (AB_PHYSICAL_DAMAGE:104695
 		$skillDesc = str_replace("<<(AB_PHYSICAL_DAMAGE:104695>>", "AB_PHYSICAL_DAMAGE", $skillDesc);
 		$skillDesc = str_replace("<<AB_DURATION:17566))>>", "AB_DURATION", $skillDesc);
 		$skillDesc = str_replace(")>>", ">>", $skillDesc);

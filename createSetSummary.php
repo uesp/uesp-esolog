@@ -1,9 +1,10 @@
 <?php
 
-$TABLE_SUFFIX = "45pts";
+$TABLE_SUFFIX = "";
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;
+$SHOW_ONLY_SET = "";
 $QUIET = true;
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -157,9 +158,9 @@ function GetItemTypeText ($value)
 			52 => "aspect_rune",
 			53 => "essence_rune",
 	);
-
+	
 	$key = (int) $value;
-
+	
 	if (array_key_exists($key, $VALUES)) return $VALUES[$key];
 	return "$key?";
 }
@@ -299,6 +300,7 @@ $query = "CREATE TABLE IF NOT EXISTS setSummaryTmp(
 			itemSlots TEXT NOT NULL DEFAULT '',
 			gameId INTEGER NOT NULL DEFAULT 0,
 			type TINYTEXT NOT NULL DEFAULT '',
+			category TINYTEXT NOT NULL DEFAULT '',
 			sources TINYTEXT NOT NULL DEFAULT '',
 			FULLTEXT(setName, setBonusDesc1, setBonusDesc2, setBonusDesc3, setBonusDesc4, setBonusDesc5, setBonusDesc6, setBonusDesc7, setBonusDesc8, setBonusDesc9, setBonusDesc10, setBonusDesc11, setBonusDesc12)
 		) ENGINE=MYISAM;";
@@ -346,6 +348,8 @@ $setItemSlots = array();
 
 while (($row = $rowResult->fetch_assoc()))
 {
+	$QUIET_SET = $QUIET;
+	
 	$itemType = intval($row['type']);
 	if ($itemType == 18) continue;	//Ignore containers?
 	
@@ -406,7 +410,18 @@ while (($row = $rowResult->fetch_assoc()))
 	$regResult = preg_match('/\(([0-9]+) items\)/', $lastBonusDesc, $matches);
 	if ($regResult) $setMaxEquipCount = $matches[1];
 	
-	if (!$QUIET) print("\tUpdating set $setName with $setMaxEquipCount items...\n");
+	if (!$QUIET)
+	{
+		if ($SHOW_ONLY_SET == "" || $SHOW_ONLY_SET == $setName)
+		{
+			print("\tUpdating set $setName with $setMaxEquipCount items...\n");
+			$QUIET_SET = false;
+		}
+		else
+		{
+			$QUIET_SET = true;
+		}
+	}
 	//print("\t\t$setBonusDesc1 == " . $row['setBonusDesc1'] . "\n");
 	
 	$query = "SELECT * FROM setSummaryTmp WHERE setName=\"$setName\";";
@@ -433,19 +448,19 @@ while (($row = $rowResult->fetch_assoc()))
 		$newBonusDesc11 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc11']);
 		$newBonusDesc12 = preg_replace('/\|c[0-9a-fA-F]{6}([a-zA-Z0-9\.\-\%\s]+)\|r/', '$1', $newRow['setBonusDesc12']);
 		
-		if ($newBonusDesc1 != $setBonusDesc1) { $matches = true; if (!$QUIET) print("\t\tSet bonus #1 doesn't match!\n"); }
-		if ($newBonusDesc2 != $setBonusDesc2) { $matches = true; if (!$QUIET) print("\t\tSet bonus #2 doesn't match!\n"); }
-		if ($newBonusDesc3 != $setBonusDesc3) { $matches = true; if (!$QUIET) print("\t\tSet bonus #3 doesn't match!\n"); }
-		if ($newBonusDesc4 != $setBonusDesc4) { $matches = true; if (!$QUIET) print("\t\tSet bonus #4 doesn't match!\n"); }
-		if ($newBonusDesc5 != $setBonusDesc5) { $matches = true; if (!$QUIET) print("\t\tSet bonus #5 doesn't match!\n"); }
-		if ($newBonusDesc6 != $setBonusDesc6) { $matches = true; if (!$QUIET) print("\t\tSet bonus #6 doesn't match!\n"); }
-		if ($newBonusDesc7 != $setBonusDesc7) { $matches = true; if (!$QUIET) print("\t\tSet bonus #7 doesn't match!\n"); }
-		if ($newBonusDesc8 != $setBonusDesc8) { $matches = true; if (!$QUIET) print("\t\tSet bonus #8 doesn't match!\n"); }
-		if ($newBonusDesc9 != $setBonusDesc9) { $matches = true; if (!$QUIET) print("\t\tSet bonus #9 doesn't match!\n"); }
-		if ($newBonusDesc10 != $setBonusDesc10) { $matches = true; if (!$QUIET) print("\t\tSet bonus #10 doesn't match!\n"); }
-		if ($newBonusDesc11 != $setBonusDesc11) { $matches = true; if (!$QUIET) print("\t\tSet bonus #11 doesn't match!\n"); }
-		if ($newBonusDesc12 != $setBonusDesc12) { $matches = true; if (!$QUIET) print("\t\tSet bonus #12 doesn't match!\n"); }
-		if ($newRow['setMaxEquipCount'] != $setMaxEquipCount) { $matches = false; if (!$QUIET) print("\t\tSet max equip count doesn't match!\n"); }
+		if ($newBonusDesc1 != $setBonusDesc1) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #1 doesn't match!\n"); }
+		if ($newBonusDesc2 != $setBonusDesc2) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #2 doesn't match!\n"); }
+		if ($newBonusDesc3 != $setBonusDesc3) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #3 doesn't match!\n"); }
+		if ($newBonusDesc4 != $setBonusDesc4) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #4 doesn't match!\n"); }
+		if ($newBonusDesc5 != $setBonusDesc5) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #5 doesn't match!\n"); }
+		if ($newBonusDesc6 != $setBonusDesc6) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #6 doesn't match!\n"); }
+		if ($newBonusDesc7 != $setBonusDesc7) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #7 doesn't match!\n"); }
+		if ($newBonusDesc8 != $setBonusDesc8) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #8 doesn't match!\n"); }
+		if ($newBonusDesc9 != $setBonusDesc9) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #9 doesn't match!\n"); }
+		if ($newBonusDesc10 != $setBonusDesc10) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #10 doesn't match!\n"); }
+		if ($newBonusDesc11 != $setBonusDesc11) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #11 doesn't match!\n"); }
+		if ($newBonusDesc12 != $setBonusDesc12) { $matches = true; if (!$QUIET_SET) print("\t\tSet bonus #12 doesn't match!\n"); }
+		if ($newRow['setMaxEquipCount'] != $setMaxEquipCount) { $matches = false; if (!$QUIET_SET) print("\t\tSet max equip count doesn't match!\n"); }
 		
 		if ($matches) 
 		{
@@ -457,7 +472,6 @@ while (($row = $rowResult->fetch_assoc()))
 	
 	if ($createNewSet)
 	{
-		if (!$QUIET) print("\t\tCreating new set...\n");
 		++$newCount;
 		
 		$setBonusDesc = "";
@@ -473,6 +487,8 @@ while (($row = $rowResult->fetch_assoc()))
 		if ($setBonusDesc10 != "") $setBonusDesc .= "\n".$setBonusDesc10;
 		if ($setBonusDesc11 != "") $setBonusDesc .= "\n".$setBonusDesc11;
 		if ($setBonusDesc12 != "") $setBonusDesc .= "\n".$setBonusDesc12;
+		
+		if (!$QUIET_SET) print("\t\tCreating new set $setName\n$setBonusDesc...\n");
 		
 		$gameIndex = $ESO_SETINDEX_MAP[strtolower($setName)];
 		if ($gameIndex == null) $gameIndex = -1;
@@ -515,7 +531,7 @@ while (($row = $rowResult->fetch_assoc()))
 	}
 	else if ($updateId > 0)
 	{
-		if (!$QUIET) print("\t\tUpdating set $updateId...\n");
+		//if (!$QUIET_SET) print("\t\tUpdating set $updateId...\n");
 		++$updateCount;
 		$query = "UPDATE setSummaryTmp SET itemCount=itemCount+1 WHERE id=$updateId;";
 		$result = $db->query($query);
@@ -523,7 +539,7 @@ while (($row = $rowResult->fetch_assoc()))
 	}
 	else
 	{
-		if (!$QUIET) print("\t\tError: Unknown set record to update!\n");
+		if (!$QUIET_SET) print("\t\tError: Unknown set record to update!\n");
 	}
 	
 }
@@ -585,7 +601,6 @@ if ($REMOVEDUPLICATES)
 		}
 	}
 }
-
 
 $query = "DROP TABLE IF EXISTS setSummary$TABLE_SUFFIX;";
 $db->query($query);

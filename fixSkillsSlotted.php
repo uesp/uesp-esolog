@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "45pts";
+$TABLE_SUFFIX = "45";
 
 require_once("esoCommon.php");
 
