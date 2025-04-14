@@ -53,7 +53,7 @@ class CEsoViewSkills
 	public $skillWeaponDamage = self::DEFAULT_SKILL_WEAPONDAMAGE;
 	public $skillArmor = self::DEFAULT_SKILL_ARMOR;
 	
-	public $LOAD_CRAFTED_SKILLS = false;
+	public $LOAD_CRAFTED_SKILLS = true;
 	public $craftedSkills = array();
 	public $craftedScripts = array();
 	
@@ -911,9 +911,9 @@ class CEsoViewSkills
 		
 		$output .= "<div class='esovsSkillContentTitle'>".$skillLine."</div>";
 		
-		$output .= $this->GetSkillContentHtml_SkillLineType("Ultimate", "ULTIMATES", $skillLine, $skillLineData);
-		$output .= $this->GetSkillContentHtml_SkillLineType("Active",   "SKILLS",    $skillLine, $skillLineData);
-		$output .= $this->GetSkillContentHtml_SkillLineType("Passive",  "PASSIVES",  $skillLine, $skillLineData);
+		$output .= $this->GetSkillContentHtml_SkillLineType("Ultimate", "ULTIMATES", $skillLine, $skillLineData, $skillType);
+		$output .= $this->GetSkillContentHtml_SkillLineType("Active",   "SKILLS",    $skillLine, $skillLineData, $skillType);
+		$output .= $this->GetSkillContentHtml_SkillLineType("Passive",  "PASSIVES",  $skillLine, $skillLineData, $skillType);
 		
 		$output .= "</div>\n";
 		return $output;
@@ -1013,9 +1013,113 @@ class CEsoViewSkills
 	}
 	
 	
-	public function GetSkillContentHtml_SkillLineType($type, $typeLabel, $skillLine, $skillLineData)
+	public function FindCraftedSkillsForLine($skillLine)
+	{
+		$craftedSkills = [];
+		
+		foreach ($this->craftedSkills as $id => $craftedSkill)
+		{
+			$id = $craftedSkills['abilityId'];
+			$skillData = $this->skills[$id];
+			if ($skillData == null) continue;
+			
+			if ($skillData['skillLine'] == $skillLine) $craftedSkills[] = $craftedSkill;
+		}
+		
+		return $craftedSkills;
+	}
+	
+	
+	public function GetCraftedSkillContentHtml($type, $typeLabel, $skillLine, $skillLineData, $skillType)
+	{
+		$craftedSkills = $this->FindCraftedSkillsForLine($skillLine);
+		$count = count($craftedSkills);
+		$output = "<div>Crafted Skills $count</div>";
+		return "";
+		
+		$abilityData = null;
+		$id = 0;
+		$cost = 0;
+		$topLevel = 0;
+		$isPurchased = false;
+		$iconClass = "";
+		$learnedLevel = 0;
+		$rankLabel = "";
+		$desc = "";
+		$effectLines = "";
+		
+		$costDesc = $cost;
+		$costHtml = $this->GetSkillCostHtml($abilityData, $id);
+		
+		if ($this->displayType == "select" && $topLevel)
+		{
+			if ($isPurchased)
+				$extraIconAttr = "draggable='true'";
+			else
+				$extraIconAttr = "draggable='false'";
+		}
+		
+		$extraClass = "esovsAbilityBlockHover";
+		
+		if ($this->displayType == "select")
+		{
+			if ($topLevel && !$isPurchased)
+				$extraClass .= " esovsAbilityBlockNotPurchase";
+			else if ($topLevel)
+				$extraClass .= "";
+			else
+				$extraClass .= " esovsAbilityBlockSelect";
+		}
+		
+		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
+		
+		$output .= "<div class='esovsAbilityBlock $extraClass' morph='0' skillid='$id' origskillid='$id' rank='1' origrank='1' maxrank='1' isfree='0' abilitytype='$type' skilltype=\"$skillType\" skilline=\"$skillLine\" classtype=\"\" racetype=\"\">" ;
+		
+		if ($topLevel)
+		{
+			if ($this->displayType == "select")
+			{
+				$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsAbilityBlockPlusSelect' src='//esolog-static.uesp.net/resources/pointsplus_up.png' />";
+			}
+			else if ($maxRank > 1)
+			{
+				$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsAbilityBlockPlus' src='//esolog-static.uesp.net/resources/pointsplus_up.png' />";
+			}
+			else
+			{
+				$output .= "<div class='esovsAbilityBlockPlus'></div>";
+			}
+		}
+		
+		$output .= "<div class='$iconClass' $extraIconAttr><img loading='{$this->IMAGE_LAZY_LOADING}' alt='' src='$icon' />";
+		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
+		$output .= "</div>";
+		$output .= "<div class='esovsAbilityBlockTitle'>";
+		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
+		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
+		//$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
+		$output .= $costHtml;
+		$output .= "</div>";
+		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc";
+		if ($effectLines != "") $output .= " <div class='esovsAbilityBlockEffectLines'>$effectLines</div>";
+		$output .= "</div>";
+		$output .= "</div>";
+		$output .= "</div>";
+		
+		
+		return $output;
+	}
+	
+	
+	public function GetSkillContentHtml_SkillLineType($type, $typeLabel, $skillLine, $skillLineData, $skillType)
 	{
 		$output = "";
+		
+			//Start with crafted skill if valid
+		if ($this->LOAD_CRAFTED_SKILLS && $type == "Active")
+		{
+			$output .= $this->GetCraftedSkillContentHtml($type, $typeLabel, $skillLine, $skillLineData, $skillType);
+		}
 		
 		foreach ($skillLineData as $abilityName => $abilityData)
 		{
@@ -1037,7 +1141,7 @@ class CEsoViewSkills
 			{
 				$purchasedAbility = $this->FindPurchasedAbility($abilityData);
 				
-				if ($purchasedAbility != null) 
+				if ($purchasedAbility != null)
 				{
 					$lastAbility = $purchasedAbility;
 					$baseAbility = $lastAbility;
@@ -1172,7 +1276,7 @@ class CEsoViewSkills
 		
 		if ($this->displayType == "select")
 		{
-			if ($topLevel && !$isPurchased) 
+			if ($topLevel && !$isPurchased)
 				$extraClass .= " esovsAbilityBlockNotPurchase";
 			else if ($topLevel)
 				$extraClass .= "";
@@ -1608,7 +1712,7 @@ class CEsoViewSkills
 		
 		$tables = array();
 		
-		while (($row = $result->fetch_row())) 
+		while (($row = $result->fetch_row()))
 		{
 			$table = $row[0];
 			$version = substr($table, 11);
@@ -1824,18 +1928,21 @@ function CompareEsoSkillLineName_Priv($a, $b)
 function CompareEsoSkillTypeName_Priv($a, $b)
 {
 	static $SKILLTYPES = array(
-			"Class" => 0,
-			"Dragonknight" => 1,
-			"Nightblade" => 2,
-			"Sorcerer" => 3,
-			"Templar" => 4,
-			"Weapon" => 5,
-			"Armor" => 6,
-			"World" => 7,
-			"Guild" => 8,
-			"Alliance War" => 9,
-			"Racial" => 10,
-			"Craft" => 11,
+			"Class" => 0,			//Custom values for sort order
+			"Arcanist" => 1,
+			"Dragonknight" => 2,
+			"Nightblade" => 3,
+			"Necromancer" => 4,
+			"Sorcerer" => 5,
+			"Templar" => 6,
+			"Warden" => 7,
+			"Weapon" => 8,
+			"Armor" => 9,
+			"World" => 10,
+			"Guild" => 11,
+			"Alliance War" => 12,
+			"Racial" => 13,
+			"Craft" => 14,
 	);
 	
 	if (!array_key_exists($a, $SKILLTYPES) || !array_key_exists($b, $SKILLTYPES))

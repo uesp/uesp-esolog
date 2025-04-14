@@ -6117,7 +6117,7 @@ window.AddEsoCraftedSkills = function()
 		var abilityId = parseInt(craftedSkill['abilityId']);
 		var skillData = g_SkillsData[abilityId];
 		
-		if (skillData == null) 
+		if (skillData == null)
 		{
 			console.log("AddEsoCraftedSkills: Missing skill data!", craftedSkill);
 			continue;
@@ -6130,7 +6130,7 @@ window.AddEsoCraftedSkills = function()
 		
 		var html = MakeEsoCraftedSkillHtml(craftedSkill, skillData)
 		
-		//console.log("AddEsoCraftedSkills: Done!", craftedSkill, skillData, skillBlock, firstSkillBlock, html);
+		console.log("AddEsoCraftedSkills: Done!", craftedSkill, skillData, skillBlock, firstSkillBlock, html);
 		
 		firstSkillBlock.before(html);
 	}
@@ -6523,7 +6523,8 @@ window.esovsOnDocReady = function ()
 	$("#evsVersionForm").on("submit", OnEsoVersionFormSubmit);
 	$("#esovsInputDefault").on("click", OnEsoInputFormDefault);
 	
-	if ($("#evsHiddenDebug").val() == 1) AddEsoCraftedSkills();
+		//TODO: Remove once implemented server side
+	AddEsoCraftedSkills();
 	
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();

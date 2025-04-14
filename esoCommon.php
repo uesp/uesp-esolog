@@ -59,6 +59,7 @@ const UESP_POWERTYPE_MAGICLIGHTARMOR = -78;
 const UESP_POWERTYPE_HEALTHORDAMAGE = -79;
 const UESP_POWERTYPE_HERALDOFTHETOME = -80;
 const UESP_POWERTYPE_SOLDIEROFAPOCRYPHA = -81;
+const UESP_POWERTYPE_HEALTHORMAGICKACAPPED = -82;
 
 	// Set to true to show levels as "CP160", false to show as "VR16"
 const UESP_SHOWCPLEVEL = true;
@@ -1157,6 +1158,9 @@ $ESO_ITEMTYPE_TEXTS = array(
 		69 => "Recall Stone",
 		70 => "Currency Container",
 		71 => "Group Repair",
+		72 => "Grimoires",
+		73 => "Scripts",
+		74 => "Luminous Ink",
 );
 
 
@@ -1522,6 +1526,7 @@ $ESO_CUSTOM_MECHANICS = array(
 		UESP_POWERTYPE_MAGICLIGHTARMOR => "Magicka and Light Armor (Health Capped)",
 		UESP_POWERTYPE_HERALDOFTHETOME => "Herald of the Tome Skills Slotted",
 		UESP_POWERTYPE_SOLDIEROFAPOCRYPHA => "Soldier of Apocrypha Skills Slotted",
+		UESP_POWERTYPE_HEALTHORMAGICKACAPPED => "Health of Magicka Capped",
 );
 
 

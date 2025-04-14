@@ -856,7 +856,7 @@ class CEsoSkillTooltips
 		if (($coefType1 == self::$POWERTYPE_MAGICKA && $coefType2 == self::$POWERTYPE_STAMINA) || ($coefType1 == self::$POWERTYPE_STAMINA && $coefType2 == self::$POWERTYPE_MAGICKA))
 			$coefType = self::$POWERTYPE_ULTIMATE;
 		else if ($coefType1 == self::$POWERTYPE_MAGICKA && $coefType2 == self::$POWERTYPE_HEALTH)
-			$coefType = UESP_POWERTYPE_HEALTHORSPELLDAMAGE;
+			$coefType = UESP_POWERTYPE_HEALTHORMAGICKACAPPED;
 		else if ($coefType1 == UESP_POWERTYPE_DAMAGE && $coefType2 == self::$POWERTYPE_HEALTH)
 			$coefType = UESP_POWERTYPE_HEALTHORDAMAGE;
 		else 
@@ -933,6 +933,15 @@ class CEsoSkillTooltips
 			$a = $rawCoef['coef1'];
 			$b = $rawCoef['coef3'];
 			$c = 0;
+			$rawa = $a;
+			$rawb = $b;
+			$rawc = $c;
+		}
+		else if ($coefType == UESP_POWERTYPE_HEALTHORMAGICKACAPPED)
+		{
+			$a = $rawCoef['coef1'];
+			$b = $rawCoef['coef3'];
+			$c = $rawCoef['cap'];
 			$rawa = $a;
 			$rawb = $b;
 			$rawc = $c;

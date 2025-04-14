@@ -490,6 +490,12 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		output += srcString + " = " + a + " SoldierofApocryphaSkills";
 		typeString = "Soldier of Apocryphae Skills Slotted";
 		break;
+	case -82:	// Health or Magicka with Health Cap
+		output += srcString + " = max(" + a + " Magicka " + b + " Health) ";
+		c = Math.round(c * 100);
+		if (c != 0) output += " (Capped at " + c + "% Health)";
+		typeString = "Health or Magicka (Capped)";
+		break;
 	default:
 		output += srcString + " = ?";
 		typeString = "Unknown Type " + tooltip.coefType;
@@ -1978,6 +1984,13 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 		break;
 	case -81:	//Soldier of Apocrypha skills slotted
 		value = a * inputValues.SoldierofApocryphaSkills;
+		break;
+	case -82:	// Health or Magicka with Health Cap
+		var value1 = Math.floor(a * inputValues.Magicka);
+		var value2 = Math.floor(b * inputValues.Health);
+		value = Math.max(value1, value2);
+		var maxValue = Math.floor(c * health);
+		if (maxValue > 0 && value > maxValue) value = maxValue;
 		break;
 	default:
 		value = '?';

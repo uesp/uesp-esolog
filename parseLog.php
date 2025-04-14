@@ -9163,7 +9163,7 @@ class EsoLogParser
 					$record2 = $this->LoadCraftedScriptDescription($i, $scriptId, $classId);
 					if ($record2 === false) continue;
 					
-					print("\t\tLoaded\n");
+					//print("\t\tLoaded\n");
 					
 					$record2['description'] = $desc;
 					$record2['name'] = $name;
