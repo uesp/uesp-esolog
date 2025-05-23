@@ -9,7 +9,7 @@ print("Creating skill tree from mined skill data...\n");
 
 class CEsoCreateSkillTree
 {
-	public $TABLE_SUFFIX = "45";
+	public $TABLE_SUFFIX = "46pts";
 	
 	public $PRINT_TABLE = false;
 	public $USE_UPDATE18 = false;
@@ -451,7 +451,7 @@ class CEsoCreateSkillTree
 				
 				$desc = $thisSkill['description'];
 				
-				//if ($displayId == "") continue; //Indicates a skill not loaded so don't include in data?
+				if ($displayId == "") continue; //Indicates a skill not loaded so don't include in data?
 				
 				//$descHeader = $thisSkill['descHeader'];
 				//if ($descHeader) $desc = "|cffffff$descHeader|r\n$desc";

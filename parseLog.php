@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "45";
-	const SKILLS_TABLESUFFIX   = "";
+	const MINEITEM_TABLESUFFIX = "46";
+	const SKILLS_TABLESUFFIX   = "46";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -6099,6 +6099,7 @@ class EsoLogParser
 		return true;
 	}
 	
+	
 	public function OnQuestRemoved ($logEntry)
 	{
 		//event{QuestRemoved}  completed{true}  poiIndex{12}  quest{The White Mask of Merien}  zoneIndex{2}
@@ -6111,6 +6112,7 @@ class EsoLogParser
 		if ($logEntry['uniqueId'] == null) return true;
 		if ($logEntry['uniqueId'] == 0) return true;
 		
+		$idString = $logEntry['questId'] . ":" . $logEntry['uniqueId'];
 		$questIdRecord = $this->createNewRecord(self::$UNIQUEQUESTID_FIELDS);
 		$questIdRecord['questId'] = $logEntry['questId'];
 		$questIdRecord['uniqueId'] = $logEntry['uniqueId'];
@@ -6120,7 +6122,7 @@ class EsoLogParser
 		$questRecord = $this->FindQuest($logEntry['quest'], $logEntry['uniqueId']);
 		
 		if ($questRecord == null) {
-			$this->reportError("Failed to load quest {$logEntry['quest']}::{$logEntry['uniqueId']}!");
+			$this->reportError("OnQuestRemoved: Failed to load quest {$logEntry['quest']}::{$logEntry['uniqueId']}!");
 			return false;
 		}
 		
@@ -6131,11 +6133,12 @@ class EsoLogParser
 		$uniqueQuestRecord = $this->FindUniqueQuest($logEntry['questId']);
 		
 		if ($uniqueQuestRecord == null) {
+			//$this->reportError("OnQuestRemoved: Added new unique quest for $idString");
 			$uniqueQuestRecord = $questRecord;
 			$uniqueQuestRecord['__isNew'] = true;
 		}
 		else {
-			$uniqueQuestRecord['id'] = $questRecord['id'];
+			//$this->reportError("OnQuestRemoved: Updating unique quest for $idString");
 			$uniqueQuestRecord['name'] = $questRecord['name'];
 			$uniqueQuestRecord['locationId'] = $questRecord['locationId'];
 			$uniqueQuestRecord['level'] = $questRecord['level'];
@@ -6438,7 +6441,7 @@ class EsoLogParser
 	public function FindUniqueQuest ($internalId)
 	{
 		if ($internalId == null || $internalId == 0) {
-			$this->reportError("Skipping uniqueQuest load with no ID!");
+			$this->reportError("FindUniqueQuest: Skipping uniqueQuest load with no ID!");
 			return null;
 		}
 		

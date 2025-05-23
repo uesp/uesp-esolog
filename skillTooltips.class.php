@@ -942,6 +942,8 @@ class CEsoSkillTooltips
 			$a = $rawCoef['coef1'];
 			$b = $rawCoef['coef3'];
 			$c = $rawCoef['cap'];
+			if ($c == '') $c = 0;
+			if ($c > 1) $c = $c / 100;
 			$rawa = $a;
 			$rawb = $b;
 			$rawc = $c;

@@ -2207,6 +2207,23 @@ $ESO_SET_INDEXES = array(
 		802 => "Arkay's Charity",
 		803 => "Lamp Knight's Art",
 		804 => "Blackfeather Flight",
+		805 => "Three Queens Wellspring",
+		806 => "Death-Dancer",
+		807 => "Full Belly Barricade",
+		808 => "Shared Burden",
+		809 => "Tide-Born Wildstalker",
+		810 => "Fellowship's Fortitude",
+		811 => "Mad God's Dancing Shoes",
+		812 => "Rakkhat's Voidmantle",
+		813 => "Monomyth Reforged",
+		814 => "Harmony in Chaos",
+		815 => "Kazpian's Cruel Signet",
+		816 => "Dolorous Arena",
+		817 => "Recovery Convergence",
+		818 => "Perfected Recovery Convergence",
+		819 => "Perfected Dolorous Arena",
+		820 => "Perfected Kazpian's Cruel Signet",
+		821 => "Perfected Harmony in Chaos",
 );
 
 
@@ -4592,6 +4609,10 @@ function GetEsoItemTableSuffix($version)
 			return "45pts";
 		case '45':
 			return "";
+		case '46pts':
+			return "46pts";
+		case '46':
+			return "46";
 		case 'test':
 		case 'dev':
 		case 'debug':

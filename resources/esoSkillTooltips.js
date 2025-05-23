@@ -493,8 +493,12 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 	case -82:	// Health or Magicka with Health Cap
 		output += srcString + " = max(" + a + " Magicka " + b + " Health) ";
 		c = Math.round(c * 100);
-		if (c != 0) output += " (Capped at " + c + "% Health)";
-		typeString = "Health or Magicka (Capped)";
+		typeString = "Health or Magicka";
+		if (c != 0)
+		{
+			output += " (Capped at " + c + "% Health)";
+			typeString = "Health or Magicka (Capped)";
+		}
 		break;
 	default:
 		output += srcString + " = ?";
