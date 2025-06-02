@@ -4386,7 +4386,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 45;	//TODO: Update after each live patch once items/skills updated
+	return 46;	//TODO: Update after each live patch once items/skills updated
 }
 
 
@@ -4608,11 +4608,11 @@ function GetEsoItemTableSuffix($version)
 		case '45pts':
 			return "45pts";
 		case '45':
-			return "";
+			return "45";
 		case '46pts':
 			return "46pts";
 		case '46':
-			return "46";
+			return "";
 		case 'test':
 		case 'dev':
 		case 'debug':
