@@ -203,6 +203,7 @@ window.EsoConvertDescToHTMLClass = function(desc, className)
 {
 	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}\|c[a-fA-F0-9]{6}([^|]*)\|r\|r/g, '<div class="' + className + '">$1</div>'); 
 	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '<div class="' + className + '">$1</div>');
+	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}\|([^|]*)\|r/g, '<div class="' + className + '">$1</div>');
 	newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -212,6 +213,7 @@ window.EsoConvertDescToHTMLColor = function(desc)
 {
 	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}\|c([a-fA-F0-9]{6})([^|]*)\|r\|r/g, '<div style="color:#$1; display:inline;">$2</div>'); 
 	newDesc = newDesc.replace(/\|c([a-fA-F0-9]{6})([^|]*)\|r/g, '<div style="color:#$1; display:inline;">$2</div>');
+	newDesc = newDesc.replace(/\|c([a-fA-F0-9]{6})\|([^|]*)\|r/g, '<div style="color:#$1; display:inline;">$2</div>');
 	newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }
@@ -221,6 +223,7 @@ window.EsoConvertDescToText = function(desc)
 {
 	var newDesc = desc.replace(/\|c[a-fA-F0-9]{6}\|c[a-fA-F0-9]{6}([^|]*)\|r\|r/g, '$1');
 	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '$1');
+	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}\|([^|]*)\|r/g, '$1');
 	//newDesc = newDesc.replace(/\n/g, '<br />');
 	return newDesc;
 }

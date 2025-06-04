@@ -8,6 +8,7 @@ window.ConvertEsoSkillRawDescToHtml = function(rawDesc)
 						.replace(/'/g, "&#039;");
 	
 	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}([^|]*)\|r/g, '<div class="esovsBold">$1</div>');
+	newDesc = newDesc.replace(/\|c[a-fA-F0-9]{6}\|([^|]*)\|r/g, '<div class="esovsBold">$1</div>');
 	newDesc = newDesc.replace(/(&lt;&lt;[0-9]+&gt;&gt;)/g, '<div class="esovsBold">$1</div>');
 	
 	return newDesc;

@@ -5267,6 +5267,7 @@ function FormatEsoItemDescriptionText($desc)
 	
 	$output = preg_replace("#\|c[0-9a-fA-F]{6}\|c([0-9a-fA-F]{6})([^|]+)\|r\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([^|]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})\|([^|]+)\|r#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);	//Master Assassin in update 46
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})(.*)#s", "<div style='color:#$1;display:inline;'>$2</div>", $output);
 	
 		//|t32:32:EsoUI/Art/UnitFrames/target_veteranRank_icon.dds|t
@@ -5286,6 +5287,7 @@ function FormatRemoveEsoItemDescriptionText($desc)
 {
 	$output = preg_replace("#\|c[0-9a-fA-F]{6}\|c([0-9a-fA-F]{6})([^|]+)\|r\|r#s", "$2", $desc);
 	$output = preg_replace("#\|c([0-9a-fA-F]{6})([^|]+)\|r#s", "$2", $desc);
+	$output = preg_replace("#\|c([0-9a-fA-F]{6})\|([^|]+)\|r#s", "$2", $desc);	//Master Assassin in update 46
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*champion_icon\.dds)\|t#s", "CP ", $output);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $output);
 	$output = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $output);
