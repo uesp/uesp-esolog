@@ -16,6 +16,7 @@ ignore = log/*.log
 ignore = log/upload/uespLog*
 ignore = archive/*
 
+dest = content4.uesp.net:/home/uesp/www/esolog/
 dest = content3.uesp.net:/home/uesp/www/esolog/
 dest = content2.uesp.net:/home/uesp/www/esolog/
 dest = content1.uesp.net:/home/uesp/www/esolog/
@@ -23,6 +24,7 @@ dest = files1.uesp.net:/home/uesp/esolog.static/
 dest = content1.uesp.net:/home/uesp/esolog.static/
 dest = content2.uesp.net:/home/uesp/esolog.static/
 dest = content3.uesp.net:/home/uesp/esolog.static/
+dest = content4.uesp.net:/home/uesp/esolog.static/
 
 # chown_dest = apache {dest}log/
 # chown_dest = apache {dest}log/upload
