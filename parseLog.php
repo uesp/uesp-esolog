@@ -2656,8 +2656,17 @@ class EsoLogParser
 	}
 	
 	
-	public function SaveUniqueQuest (&$record)
+	public function SaveUniqueQuest (&$record, $newId)
 	{
+		$id = intval($record['id']);
+		
+		$this->lastQuery = "DELETE FROM uniqueQuest WHERE id='$id';";
+		$result = $this->db->query($this->lastQuery);
+		if (!$result) return $this->reportLogParseError("Failed to delete uniqueQuest record $id!");
+		
+		$record['id'] = $newId;
+		$record['__isNew'] = true;
+		
 		return $this->saveRecord('uniqueQuest', $record, 'id', self::$QUEST_FIELDS);
 	}
 	
@@ -6170,7 +6179,7 @@ class EsoLogParser
 		$uniqueQuestRecord['internalId'] = $logEntry['questId'];
 		$uniqueQuestRecord['__dirty'] = true;
 		
-		$this->SaveUniqueQuest($uniqueQuestRecord);
+		$this->SaveUniqueQuest($uniqueQuestRecord, $questRecord['id']);
 		
 		++$this->currentUser['newCount'];
 		$this->currentUser['__dirty'] = true;
