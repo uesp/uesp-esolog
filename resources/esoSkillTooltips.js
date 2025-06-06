@@ -348,7 +348,7 @@ window.CreateEsoSkillCoefContentForIndexHtml = function(skillData, tooltipIndex,
 		typeString = "Armor Type #";
 		break;
 	case -56:	// Spell + Weapon Damage
-	case 4:
+	//case 4:	// Old value?
 		output += srcString + " = " + a + " SpellDamage ";
 		if (b != 0) output += bOp + " " + b + " WeaponDamage ";
 		if (c != 0) output += cOp + " " + c;
@@ -1884,7 +1884,7 @@ window.ComputeEsoSkillTooltipCoefDescription2 = function(tooltip, skillData, inp
 			value = a * inputValues.ArmorTypes;
 		break;
 	case -56:	// Spell + Weapon Damage
-	case 4:
+	//case 4:	// Old value?
 		value = Math.floor(a * spellDamage) + Math.floor(b * weaponDamage) + c;
 		++includeSpellRawOutput;
 		++includeWeaponRawOutput;
