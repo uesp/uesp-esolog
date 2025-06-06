@@ -54,7 +54,7 @@ class CEsoViewSkillCoef
 	public function ReportError($errorMsg)
 	{
 		print($errorMsg);
-		error_log($errorMsg);
+		error_log("CEsoViewSkillCoef -- " . $errorMsg);
 		return false;
 	}
 	
@@ -538,6 +538,8 @@ class CEsoViewSkillCoef
 		$output = "";
 		$numVars = $skill['numCoefVars'];
 		
+		//error_log("MakeEquationDataHtml - $numVars");
+		
 		for ($i = 1; $i <= $numVars; ++$i)
 		{
 			$a = $skill['a'.$i];
@@ -560,15 +562,28 @@ class CEsoViewSkillCoef
 			$name3 = $statNames[3];
 			if ($name3 == null) $name3 = '';
 			
-			if (!$this->ShouldOutputCoef($a, $b, $c, $R)) continue;
+			if (!$this->ShouldOutputCoef($a, $b, $c, $R))
+			{
+				//$output = "ShouldOutputCoef is false";
+				continue;
+			}
 			
 			$bop = "+";
 			$cop = "+";
 			if ($b < 0) { $b = -$b; $bop = "-"; }
 			if ($c < 0) { $c = -$c; $cop = "-"; }
 			
-			if ($a == null || $b == null || $c == null || $R == null) continue;
-			if ($R < 0) continue;
+			if ($a == null || $b == null || $c == null || $R == null) 
+			{
+				//$output = "NULL coefficient values!";
+				continue;
+			}
+			
+			if ($R < 0) 
+			{
+				//$output = "Negative R value!";
+				continue;
+			}
 			
 			if ($b == 0 && $c == 0)
 				$output .= "\$$i = {$a} $name1";
@@ -695,7 +710,7 @@ class CEsoViewSkillCoef
 			$desc = $this->EscapeHtml(FormatRemoveEsoItemDescriptionText($skill['coefDescription']));
 			
 			$equationData = $this->MakeEquationDataHtml($skill);
-			if ($equationData == "") continue;
+			if ($equationData == "") $equationData = "None";
 			
 			$skillLine = $this->EscapeHtml($skill['skillLine']);
 			$skillType = $skill['classType'];
@@ -708,35 +723,36 @@ class CEsoViewSkillCoef
 			$name = $this->EscapeHtml($skill['name']);
 			$mechanic = $this->EscapeHtml(GetEsoMechanicTypeText($skill['mechanic'], $this->version));
 			
-			$rowspan = "";
-			
 			if (!$this->showOldCoefData && $tooltips != null)
 			{
 				$skill['tooltips'] = $tooltips;
 				
 				$desc2 = $this->EscapeHtml(FormatRemoveEsoItemDescriptionText($skill['rawDescription']));
 				$equationData2 = $this->MakeTooltipEquationDataHtml($skill);
-				$rowspan = "rowspan='2'";
-			}
-			
-			$output .= "<tr>";
-			$output .= "<td $rowspan><b>$version</b></td>";
-			$output .= "<td $rowspan><nobr>$name $rank</nobr></td>";
-			$output .= "<td $rowspan>$mechanic</td>";
-			$output .= "<td $rowspan>$skillType</td>";
-			$output .= "<td $rowspan>$skillLine</td>";
-			$output .= "<td>{$skill['numCoefVars']}</td>";
-			$output .= "<td>$desc</td>";
-			$output .= "<td class='esovsc_nobreak'>$equationData</td>";
-			$output .= "</tr>\n";
-			
-			if ($rowspan)
-			{
 				$count = count($tooltips);
+				
 				$output .= "<tr>";
+				$output .= "<td $rowspan><b>$version</b></td>";
+				$output .= "<td $rowspan><nobr>$name $rank</nobr></td>";
+				$output .= "<td $rowspan>$mechanic</td>";
+				$output .= "<td $rowspan>$skillType</td>";
+				$output .= "<td $rowspan>$skillLine</td>";
 				$output .= "<td>$count</td>";
 				$output .= "<td>$desc2</td>";
 				$output .= "<td class='esovsc_nobreak'>$equationData2</td>";
+				$output .= "</tr>\n";
+			}
+			else
+			{
+				$output .= "<tr>";
+				$output .= "<td $rowspan><b>$version</b></td>";
+				$output .= "<td $rowspan><nobr>$name $rank</nobr></td>";
+				$output .= "<td $rowspan>$mechanic</td>";
+				$output .= "<td $rowspan>$skillType</td>";
+				$output .= "<td $rowspan>$skillLine</td>";
+				$output .= "<td>{$skill['numCoefVars']}</td>";
+				$output .= "<td>$desc</td>";
+				$output .= "<td class='esovsc_nobreak'>$equationData</td>";
 				$output .= "</tr>\n";
 			}
 		}
