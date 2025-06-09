@@ -857,3 +857,67 @@
 .esovsAbilityScriptClassList {
 	
 }
+
+.esovsSubclassButton {
+	position: relative;
+	left: 0px;
+	top: 0px;
+	float: left;
+	line-height: 0.5em;
+	margin-left: -20px;
+}
+
+.esovsSubclassImage {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+.esovsSubclassImage:hover {
+	opacity: 0.3;
+}
+
+#esovsSubclassPopupRoot {
+	background-color: #FBEFD5;
+	border: solid 1px gray;
+	position: absolute;
+	padding: 15px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: "EsoFontStyleAlt", "Arial", sans-serif;
+	z-index: 100;
+	font-size: medium;
+}
+
+.esovsSubclassPopupTitle {
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+	display: block;
+}
+
+.esovsSubclassPopupClass {
+	margin-top: 10px;
+}
+
+.esovsSubclassPopupClassTitle {
+	font-weight: bold;
+}
+
+.esovsSubclassPopupChoice {
+	padding: 3px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+.esovsSubclassPopupChoice:hover {
+	border-radius: 10px;
+	background-color: #E3d5c0;
+	box-shadow: 0px 0px 6px rgba(0,0,0,0.7);
+}
+
+.esovsSubclassResetButton, .esovsSubclassCancelButton {
+	float: right;
+	margin: 5px;
+}

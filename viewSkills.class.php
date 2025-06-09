@@ -53,9 +53,13 @@ class CEsoViewSkills
 	public $skillWeaponDamage = self::DEFAULT_SKILL_WEAPONDAMAGE;
 	public $skillArmor = self::DEFAULT_SKILL_ARMOR;
 	
+	public $DEBUG = false;
+	
 	public $LOAD_CRAFTED_SKILLS = true;
 	public $craftedSkills = array();
 	public $craftedScripts = array();
+	
+	public $PERMIT_SUBCLASSING = false;
 	
 	public $htmlTemplate = "";
 	public $isEmbedded = false;
@@ -677,6 +681,7 @@ class CEsoViewSkills
 			//error_log("Skills: Debug ON");
 			$this->DEBUG = true;
 			$this->LOAD_CRAFTED_SKILLS = true;
+			$this->PERMIT_SUBCLASSING = true;
 		}
 		
 		if (IsEsoVersionAtLeast($this->version, 10)) $this->useUpdate10Costs = true;
@@ -697,7 +702,7 @@ class CEsoViewSkills
 			$this->displayMenuBar = false;
 			$this->displaySkillBar = true;
 		}
-
+		
 		return true;
 	}
 
@@ -819,9 +824,11 @@ class CEsoViewSkills
 		$output .= "<div class='esovsSkillTypeTitle' style=\"display: $titleDisplayType;\">$skillTypeUpper</div>\n";
 		$output .= "<div class='esovsSkillType' skilltypeid=\"$skillType\" style=\"display: $displayType;\">\n";
 		$isFirstSkillLine = true;
+		$index = 0;
 		
 		foreach ($this->skillTree[$skillType] as $skillLine => $skillLineData)
 		{
+			$index++;
 			$isRaceVisible = true;
 			
 			if ($skillType == "Racial")
@@ -831,9 +838,9 @@ class CEsoViewSkills
 			}
 			
 			if ($displayType != "none" && ($this->highlightSkillLine == $skillLine || ($this->highlightSkillLine == "" && $isFirstSkillLine)))
-				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight", $isRaceVisible);
+				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight", $isRaceVisible, $skillType, $isClass, $index);
 			else
-				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "", $isRaceVisible);
+				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "", $isRaceVisible, $skillType, $isClass, $index);
 			
 			$isFirstSkillLine = false;
 		}
@@ -843,7 +850,7 @@ class CEsoViewSkills
 	}
 	
 	
-	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "", $isVisible = true)
+	public function GetSkillTreeLineHtml($skillLine, $skillLineData, $extraClass = "", $isVisible = true, $skillType = "", $isClassType = false, $index = 0)
 	{
 		$displayType = "block";
 		
@@ -853,7 +860,14 @@ class CEsoViewSkills
 			$extraClass .= " esovsSkillLineDisabled";
 		}
 		
-		$output  = "<div class='esovsSkillLineTitle $extraClass' skilllineid=\"$skillLine\" style=\"display: $displayType;\">$skillLine</div>";
+		$subclassButton = "";
+		
+		if ($isClassType && $this->PERMIT_SUBCLASSING)
+		{
+			$subclassButton = "<div class='esovsSubclassButton'><img loading='lazy' title='[Select a Subclass Skill]' skilllineindex='$index' origskilllineid=\"$skillLine\" skilllineid=\"$skillLine\" class='esovsSubclassImage' src='//esolog-static.uesp.net/resources/pointsplus_up.png'></div>";
+		}
+		
+		$output  = "$subclassButton<div class='esovsSkillLineTitle $extraClass' skilllineindex='$index' origskilllineid=\"$skillLine\" skilllineid=\"$skillLine\" subclass=\"\" subclassid=\"\" style=\"display: $displayType;\">$skillLine</div>";
 		
 		return $output;
 	}
@@ -1745,6 +1759,41 @@ class CEsoViewSkills
 	}
 	
 	
+	public function GetSubclassPopupClassHtml($className)
+	{
+		$output = "<div classid='$className' class='esovsSubclassPopupClass'>";
+		$output .= "<div class='esovsSubclassPopupClassTitle'>$className</div>";
+		
+		foreach ($this->skillTree[$className] as $skillLine => $skillLineData)
+		{
+			$output .= "<div classid='$className' skilllineid='$skillLine' class='esovsSubclassPopupChoice'>$skillLine</div>";
+		}
+		
+		$output .= "</div>";
+		return $output;
+	}
+	
+	
+	public function GetSubclassPopupContent()
+	{
+		$output = "<div class='esovsSubclassPopupTitle'>Choose Subclass</div>";
+		
+		$output .= "<button class='esovsSubclassResetButton'>Reset</button>";
+		$output .= "<button class='esovsSubclassCancelButton'>Cancel</button>";
+		$output .= "<p/><br/>";
+		
+		if (IsEsoVersionAtLeast($this->version, "38")) $output .= $this->GetSubclassPopupClassHtml("Arcanist");
+		$output .= $this->GetSubclassPopupClassHtml("Dragonknight");
+		if (IsEsoVersionAtLeast($this->version, "22")) $output .= $this->GetSubclassPopupClassHtml("Necromancer");
+		$output .= $this->GetSubclassPopupClassHtml("Nightblade");
+		$output .= $this->GetSubclassPopupClassHtml("Sorcerer");
+		$output .= $this->GetSubclassPopupClassHtml("Templar");
+		if (IsEsoVersionAtLeast($this->version, "14")) $output .= $this->GetSubclassPopupClassHtml("Warden");
+		
+		return $output;
+	}
+	
+	
 	public function CreateOutputHtml()
 	{
 		global $ESO_DESTRUCTION_SKILLS;
@@ -1799,6 +1848,7 @@ class CEsoViewSkills
 				'{skillsJson}' => $this->GetSkillsJson(),
 				'{craftedSkillsJson}' => $this->GetCraftedSkillsJson(),
 				'{craftedScriptsJson}' => $this->GetCraftedScriptsJson(),
+				'{subclassPopupContent}' => $this->GetSubclassPopupContent(),
 		);
 		
 		if (!CanViewEsoLogVersion($this->version))
@@ -1856,6 +1906,7 @@ class CEsoViewSkills
 				'{hasV2SkillTooltips}' => $this->hasSkillTooltips ? "1" : "0",
 				'{craftedSkillsJson}' => "{}",
 				'{craftedScriptsJson}' => "{}",
+				'{subclassPopupContent}' => "",
 		);
 		
 		$output = strtr($this->htmlTemplate, $replacePairs);
