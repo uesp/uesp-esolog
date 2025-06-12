@@ -77,6 +77,7 @@ class CEsoViewSkills
 	public $initialData = array();
 	public $activeData = array();
 	public $passiveData = array();
+	public $charStats = array();
 	public $enableWerewolf = false;
 	public $enableOverload = false;
 	public $activeWeaponBar3 = "-1";
@@ -867,7 +868,17 @@ class CEsoViewSkills
 			$subclassButton = "<div class='esovsSubclassButton'><img loading='lazy' title='[Select a Subclass Skill]' skilllineindex='$index' origskilllineid=\"$skillLine\" skilllineid=\"$skillLine\" class='esovsSubclassImage' src='//esolog-static.uesp.net/resources/pointsplus_up.png'></div>";
 		}
 		
-		$output  = "$subclassButton<div class='esovsSkillLineTitle $extraClass' skilllineindex='$index' origskilllineid=\"$skillLine\" skilllineid=\"$skillLine\" subclass=\"\" subclassid=\"\" style=\"display: $displayType;\">$skillLine</div>";
+		$origSkillLine = $skillLine;
+		
+		$charSubclass = $this->charStats["Subclass" . $index];
+		$charSubclassLine = $this->charStats["SubclassSkillLine" . $index];
+		if ($charSubclass) $charSubclass = $charSubclass['value'];
+		if ($charSubclassLine) $charSubclassLine = $charSubclassLine['value'];
+		if (!$charSubclass) $charSubclass = "";
+		if (!$charSubclassLine) $charSubclassLine = "";
+		if ($charSubclassLine) $skillLine = $charSubclassLine;
+		
+		$output = "$subclassButton<div class='esovsSkillLineTitle $extraClass' skilllineindex='$index' origskilllineid=\"$origSkillLine\" skilllineid=\"$skillLine\" subclass=\"$charSubclass\" subclassid=\"$charSubclassLine\" style=\"display: $displayType;\">$skillLine</div>";
 		
 		return $output;
 	}
