@@ -4990,6 +4990,7 @@ window.EnableEsoClassSkills = function(className)
 	$(".esovsSkillTypeTitle:contains('NECROMANCER')").hide();
 	$(".esovsSkillContentBlock").hide();
 	$(".esovsSkillType").hide();
+	$(".esovsSkillTypeActiveClass").removeClass("esovsSkillTypeActiveClass");
 	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
 	$(".esovsSkillTypeTitleHighlight").removeClass("esovsSkillTypeTitleHighlight");
 		
@@ -5002,7 +5003,9 @@ window.EnableEsoClassSkills = function(className)
 	firstSkillLine.addClass("esovsSkillLineTitleHighlight");
 	
 	classElement.show();
+	skillTypes.addClass("esovsSkillTypeActiveClass");
 	skillTypes.show();
+	
 	$("#" + skillLine).show();
 }
 

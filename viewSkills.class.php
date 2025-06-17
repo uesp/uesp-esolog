@@ -813,17 +813,17 @@ class CEsoViewSkills
 			$displayType = "none";
 			$titleDisplayType = "none";
 		}
-			
+		
 		if ($isClassVisible && (($this->isFirstSkill && $this->highlightSkillType == "") || $this->highlightSkillType == $skillType))
 		{
-			$extraClass = "esovsSkillLineTitleHighlight";
+			$extraClass = "esovsSkillTypeActiveClass";
 			$displayType = "block";
 			$this->isFirstSkill = false;
 		}
 		
 		$output  = "";
 		$output .= "<div class='esovsSkillTypeTitle' style=\"display: $titleDisplayType;\">$skillTypeUpper</div>\n";
-		$output .= "<div class='esovsSkillType' skilltypeid=\"$skillType\" style=\"display: $displayType;\">\n";
+		$output .= "<div class='esovsSkillType $extraClass' skilltypeid=\"$skillType\" style=\"display: $displayType;\">\n";
 		$isFirstSkillLine = true;
 		$index = 0;
 		
@@ -1777,7 +1777,7 @@ class CEsoViewSkills
 		
 		foreach ($this->skillTree[$className] as $skillLine => $skillLineData)
 		{
-			$output .= "<div classid='$className' skilllineid='$skillLine' class='esovsSubclassPopupChoice'>$skillLine</div>";
+			$output .= "<div classid=\"$className\" skilllineid=\"$skillLine\" class='esovsSubclassPopupChoice'>$skillLine</div>";
 		}
 		
 		$output .= "</div>";
@@ -1792,6 +1792,7 @@ class CEsoViewSkills
 		$output .= "<button class='esovsSubclassResetButton'>Reset</button>";
 		$output .= "<button class='esovsSubclassCancelButton'>Cancel</button>";
 		$output .= "<p/><br/>";
+		$output .= "<div class='esovsSubclassWarning' style='display:none;'>You must keep at least one of your original class skill lines!</div>";
 		
 		if (IsEsoVersionAtLeast($this->version, "38")) $output .= $this->GetSubclassPopupClassHtml("Arcanist");
 		$output .= $this->GetSubclassPopupClassHtml("Dragonknight");

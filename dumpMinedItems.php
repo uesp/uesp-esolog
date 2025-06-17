@@ -280,6 +280,8 @@ class CEsoDumpMinedItems {
 				$this->outputType = "html";
 			elseif ($this->inputParams['output'] == "wiki")
 				$this->outputType = "wiki";
+			elseif ($this->inputParams['output'] == "json")
+				$this->outputType = "json";
 			
 		}
 		
@@ -301,6 +303,8 @@ class CEsoDumpMinedItems {
 			$this->SetHtmlStrings();
 		elseif ($this->outputType == "wiki")
 			$this->SetWikiStrings();
+		elseif ($this->outputType == "json")
+			$this->SetJsonStrings();
 		
 		return true;
 	}
@@ -317,6 +321,22 @@ class CEsoDumpMinedItems {
 		$this->colHeaderSepText = ",";
 		$this->rowStartText = "";
 		$this->rowEndText = "\n";
+		$this->rowSepText = "";
+		$this->colSepText = ",";
+	}
+	
+	
+	public function SetJsonStrings()
+	{
+		$this->tableStartText = "{";
+		$this->tableEndText = "}";
+		$this->colStartText = "\"";
+		$this->colEndText = "\"";
+		$this->colHeaderStartText = "\"";
+		$this->colHeaderEndText = "\"";
+		$this->colHeaderSepText = ",";
+		$this->rowStartText = "{";
+		$this->rowEndText = "},\n";
 		$this->rowSepText = "";
 		$this->colSepText = ",";
 	}
@@ -445,6 +465,8 @@ class CEsoDumpMinedItems {
 		
 		if ($this->outputType == "html")
 			header("content-type: text/html");
+		else if ($this->outputType == "json")
+			header("content-type: text/json");
 		else
 			header("content-type: text/plain");
 	}
@@ -676,8 +698,59 @@ class CEsoDumpMinedItems {
 	}
 	
 	
+	public function OutputJson()
+	{
+		$data = [];
+		$row = 0;
+		$numRows = count($this->itemRecords);
+		$numCols = count($this->tableFields);
+		
+		if ($numCols == 0)
+		{
+			print("{ error: \"No fields to output! Try with the 'keepinvariant' option.\" }");
+			return true;
+		}
+		
+		if ($numRows == 0)
+		{
+			print("{ error: \"No rows to output!\" }");
+			return true;
+		}
+		
+		foreach ($this->itemRecords as $record)
+		{
+			if ($this->showLimits && !($row == 0 || $row == $numRows-1)) {
+				$row++;
+				continue;
+			}
+			
+			$col = 0;
+			$dataRow = [];
+			
+			foreach ($this->tableFields as $field)
+			{
+				if (array_key_exists($field, $record))
+					$value = $this->TransformFieldValue($field, $record[$field], $record);
+				else
+					$value = "";
+				
+				$dataRow[$field] = $value;
+				$col++;
+			}
+			
+			$data[] = $dataRow;
+			$row++;
+		}
+		
+		$json = json_encode($data);
+		print($json);
+	}
+	
+	
 	public function OutputRecords()
 	{
+		if ($this->outputType == "json") return $this->OutputJson();
+		
 		$numRows = count($this->itemRecords);
 		$numCols = count($this->tableFields);
 		

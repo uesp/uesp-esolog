@@ -9,7 +9,7 @@ require("esoCommon.php");
 class CEsoTrimOldMinedItems 
 {
 	public $db = null;
-	public $version = "38";
+	public $version = "42";
 	public $itemsLoaded = 0;
 	public $itemsTrimmed = 0;
 	public $itemsCopied = 0;
