@@ -1674,7 +1674,8 @@ window.ModifyEsoSkillTooltipConstantElfBaneValue2 = function(baseDuration, toolt
 	}
 	
 	var finalDuration = baseDuration + inputValues.ElfBaneDuration;
-	if (modDuration) finalDuration = baseDuration + inputValues.ElfBaneDuration * (1 + modDuration);
+	
+	if (modDuration != 0 && modDuration < 1) finalDuration = baseDuration + inputValues.ElfBaneDuration * (1 + modDuration);
 	
 		// Now g_EsoSkillElfBaneSkills only controls the base skill duration, not the description durations
 	//var elfBaneSkill = g_EsoSkillElfBaneSkills[skillData.abilityId];
@@ -1684,9 +1685,9 @@ window.ModifyEsoSkillTooltipConstantElfBaneValue2 = function(baseDuration, toolt
 	
 	finalDuration = Math.round(finalDuration * 10) / 10;
 	
-	if (modDuration)
+	if (modDuration != 0 && modDuration < 1)
 	{
-		skillData.rawOutput["Tooltip Flame DOT Duration (Elf Bane)"] = "" + baseDuration + " + " + inputValues.ElfBaneDuration + " * " + (modDuration*100) + "% = " + finalDuration + " secs";
+		skillData.rawOutput["Tooltip Flame DOT Duration (Elf Bane)"] = "" + baseDuration + " + " + inputValues.ElfBaneDuration + " + " + modDuration + " = " + finalDuration + " secs";
 		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Elf Bane", Math.round(inputValues.ElfBaneDuration * (1 + modDuration) * 10) / 10, '');
 	}
 	else

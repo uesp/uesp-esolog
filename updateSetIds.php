@@ -1,6 +1,6 @@
 <?php 
 
-$TABLE_SUFFIX = "46pts";
+$TABLE_SUFFIX = "47pts";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -27,6 +27,8 @@ $ESO_SETINDEX_MAP = array();
 
 foreach ($ESO_SET_INDEXES as $setIndex => $setName)
 {
+	//print("$setIndex = $setName => " . strtolower($setName) . "\n");
+	
 	$setName = strtolower($setName);
 	if ($ESO_SETINDEX_MAP[$setName] != null) print ("\tWarning: Duplicate set index $setIndex for '$setName'!\n");
 	$ESO_SETINDEX_MAP[$setName] = $setIndex;

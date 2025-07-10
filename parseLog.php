@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "46";
-	const SKILLS_TABLESUFFIX   = "46";
+	const MINEITEM_TABLESUFFIX = "47pts";
+	const SKILLS_TABLESUFFIX   = "47pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -4418,7 +4418,7 @@ class EsoLogParser
 		
 		$result &= $this->salesData->SaveUpdatedGuilds();
 		$result &= $this->salesData->SaveUpdatedItems();
-				
+		
 		return $result;
 	}
 	

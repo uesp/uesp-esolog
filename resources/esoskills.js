@@ -2763,9 +2763,12 @@ ESO_SKILL_PETDAMAGE_OVERRIDES =
 		"Summon Unstable Familiar" : true,
 		"Summon Winged Twilight" : true,
 		"Summon Shade" : true,
-		"Frozen Colossus" : true,
-		"Skeletal Mage" : true,
-		"Feral Guardian" : true,
+		//"Frozen Colossus" : true,
+		//"Skeletal Mage" : true,
+		//"Feral Guardian" : true,
+		"Defiler" : true,
+		"Shadowrend" : true,
+		"Maw of the Infernal" : true,
 };
 
 
@@ -3549,6 +3552,7 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, mechanic, 
 	var skillNameId = CreateEsoSkillLineId(skillData.baseName) + "_Cost";
 	var skillNameId2 = CreateEsoSkillLineId(skillData.name) + "_Cost";
 	var mechanicText = GetEsoSkillMechanicText(mechanic);
+	var isHeal = false;
 	
 		/* DK World in Ruins Passive */
 	if (window.g_EsoSkillPoisonSkills && inputValues.PoisonStaminaCost)
@@ -3566,21 +3570,38 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, mechanic, 
 	
 	if (inputValues.HealingAbilityCost)
 	{
-		var skillDesc = skillData.description;
-		
-		for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
+		if (skillData.tooltips)
 		{
-			var matchData = ESO_SKILL_HEALINGMATCHES[i].match;
-			
-			if (skillDesc.match(matchData) != null)
+			for (var tooltipIndex in skillData.tooltips)
 			{
-				CostFactor *= 1 + inputValues.HealingAbilityCost;
-				AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.HealingAbilityCost);
-				output += MakeEsoSkillCostOutputLine(inputValues.HealingAbilityCos, "Healing Ability Cost", 100, "%");
-				break;
+				var tooltip = skillData.tooltips[tooltipIndex];
+				
+				if (tooltip.isHeal == 1)
+				{
+					isHeal = true;
+					break;
+				}
 			}
 		}
 		
+		if (!isHeal)
+		{
+			var skillDesc = skillData.description;
+			
+			for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
+			{
+				var matchData = ESO_SKILL_HEALINGMATCHES[i].match;
+				
+				if (skillDesc.match(matchData) != null)
+				{
+					CostFactor *= 1 + inputValues.HealingAbilityCost;
+					AddEsoSkillCostMods(costMods, inputValues.StatHistory.Set.HealingAbilityCost);
+					output += MakeEsoSkillCostOutputLine(inputValues.HealingAbilityCost, "Healing Ability Cost", 100, "%");
+					isHeal = true;
+					break;
+				}
+			}
+		}
 	}
 	
 	if (skillData.skillType != 2 && inputValues.NonWeaponAbilityCost != null && inputValues.NonWeaponAbilityCost != 0) {
@@ -3641,6 +3662,39 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, mechanic, 
 		output += MakeEsoSkillCostOutputLine(inputValues.DamageShieldCost, "DamageShieldCost", 100, "%");
 	}
 	
+	if (!isHeal && ((IsEsoSkillMechanicMagicka(mechanic) && inputValues.MagickaCost != null && inputValues.MagickaCost.Healing) || (IsEsoSkillMechanicStamina(mechanic) && inputValues.StaminaCost != null && inputValues.StaminaCost.Healing)))
+	{
+		if (skillData.tooltips)
+		{
+			for (var tooltipIndex in skillData.tooltips)
+			{
+				var tooltip = skillData.tooltips[tooltipIndex];
+				
+				if (tooltip.isHeal == 1)
+				{
+					isHeal = true;
+					break;
+				}
+			}
+		}
+		
+		if (!isHeal)
+		{
+			var skillDesc = skillData.description;
+			
+			for (var i = 0; i < ESO_SKILL_HEALINGMATCHES.length; ++i)
+			{
+				var matchData = ESO_SKILL_HEALINGMATCHES[i].match;
+				
+				if (skillDesc.match(matchData) != null)
+				{
+					isHeal = true;
+					break;
+				}
+			}
+		}
+	}
+	
 	if (IsEsoSkillMechanicMagicka(mechanic) && inputValues.MagickaCost != null)
 	{
 		AddEsoSkillCostMods(costMods, inputValues.StatHistory.CP.MagickaCost);
@@ -3653,6 +3707,12 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, mechanic, 
 		if (inputValues.MagickaCost.Set   != null) SkillFactor *= 1 + inputValues.MagickaCost.Set;
 		if (inputValues.MagickaCost.Skill != null) SkillFactor *= 1 + inputValues.MagickaCost.Skill;
 		if (inputValues.MagickaCost.Buff  != null) SkillFactor *= 1 + inputValues.MagickaCost.Buff;
+		
+		if (isHeal && inputValues.MagickaCost.Healing)
+		{
+			AddEsoSkillCostMods(costMods, inputValues.MagickaCost.Healing);
+			SkillFactor *= 1 + inputValues.MagickaCost.Healing;
+		}
 	}
 	else if (IsEsoSkillMechanicStamina(mechanic) && inputValues.StaminaCost != null)
 	{
@@ -3666,6 +3726,12 @@ window.ComputeEsoSkillCostExtra = function (cost, level, inputValues, mechanic, 
 		if (inputValues.StaminaCost.Set   != null) SkillFactor *= 1 + inputValues.StaminaCost.Set;
 		if (inputValues.StaminaCost.Skill != null) SkillFactor *= 1 + inputValues.StaminaCost.Skill;
 		if (inputValues.StaminaCost.Buff  != null) SkillFactor *= 1 + inputValues.StaminaCost.Buff;
+		
+		if (isHeal && inputValues.StaminaCost.Healing)
+		{
+			AddEsoSkillCostMods(costMods, inputValues.StaminaCost.Healing);
+			SkillFactor *= 1 + inputValues.StaminaCost.Healing;
+		}
 	}
 	else if (IsEsoSkillMechanicUltimate(mechanic) && inputValues.UltimateCost != null)
 	{
@@ -4001,6 +4067,7 @@ window.GetEsoSkillDurationData = function(skillData, inputValues)
 	
 	if (skillData == null) return "";
 	
+	var skillId = skillData['abilityId'];
 	var displayId = skillData['displayId'];
 	var newDuration = +skillData.duration;
 	
@@ -4592,7 +4659,7 @@ window.FindNextEsoSkillText = function ()
 				// Don't search skills hidden in the build editor (class skills)
 			if (classType != "")
 			{
-				var classSkillsBlock = $("#esovsSkillTree .esovsSkillType[skilltypeid='" + classType + "']");
+				var classSkillsBlock = $("#esovsSkillTree .esovsSkillType[skilltypeid=\"" + classType + "\"]");
 				var classTitleBlock = classSkillsBlock.prev();
 				if (classTitleBlock.length == 0 || classTitleBlock.is(":hidden")) continue;
 			}
@@ -4600,7 +4667,8 @@ window.FindNextEsoSkillText = function ()
 				// Don't search skill lines hidden in the build editor (Vampire and Werewolf)
 			if (skillLine != "")
 			{
-				var skillLineBlock = $("#esovsSkillTree .esovsSkillLineTitle[skilllineid='" + skillLine + "']");
+				skillLine = skillLine.replace("'", "_");
+				var skillLineBlock = $("#esovsSkillTree .esovsSkillLineTitle[skilllineid=\"" + skillLine + "\"]");
 				if (skillLineBlock.length == 0 || skillLineBlock.css('display') == "none") continue;
 			}
 			
@@ -4808,7 +4876,7 @@ window.OnHoverEsoPassiveIcon = function (e)
 	
 	var parentBlockAttr = parentBlock.parents(".esovsSkillContentBlock").attr("id");
 	var raceType = "";
-	if (parentBlockAttr) raceType = parentBlockAttr.replace("_Skills", "").replace("_", " ");
+	if (parentBlockAttr && parentBlockAttr.indexOf("_Skills") > 0) raceType = parentBlockAttr.replace("_Skills", "").replace("_", " ");
 	var learnedLevel = $(this).find(".esovsAbilityBlockIconLevel").text();
 	
 	var skillData = g_SkillsData[parseInt(skillid)];

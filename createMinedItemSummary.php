@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "46";
+$TABLE_SUFFIX = "47pts";
 
 $MAKE_NAME_TITLECASE = true;
 

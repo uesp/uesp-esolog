@@ -761,7 +761,7 @@ class CEsoViewSkills
 		$output .= $this->GetSkillTreeTypeHtml("Nightblade", true);
 		$output .= $this->GetSkillTreeTypeHtml("Sorcerer", true);
 		$output .= $this->GetSkillTreeTypeHtml("Templar", true);
-		if (IsEsoVersionAtLeast($this->version, "14") && CanViewEsoLogVersion("14pts")) $output .= $this->GetSkillTreeTypeHtml("Warden", true);		
+		if (IsEsoVersionAtLeast($this->version, "14") && CanViewEsoLogVersion("14pts")) $output .= $this->GetSkillTreeTypeHtml("Warden", true);
 		$output .= $this->GetSkillTreeTypeHtml("Weapon", false);
 		$output .= $this->GetSkillTreeTypeHtml("Armor", false);
 		$output .= $this->GetSkillTreeTypeHtml("World", false);
@@ -862,21 +862,22 @@ class CEsoViewSkills
 		}
 		
 		$subclassButton = "";
+		$charSubclass = "";
+		$charSubclassLine = "";
+		$origSkillLine = $skillLine;
 		
 		if ($isClassType && $this->PERMIT_SUBCLASSING)
 		{
 			$subclassButton = "<div class='esovsSubclassButton'><img loading='lazy' title='[Select a Subclass Skill]' skilllineindex='$index' origskilllineid=\"$skillLine\" skilllineid=\"$skillLine\" class='esovsSubclassImage' src='//esolog-static.uesp.net/resources/pointsplus_up.png'></div>";
+			
+			$charSubclass = $this->charStats["Subclass" . $index];
+			$charSubclassLine = $this->charStats["SubclassSkillLine" . $index];
+			if ($charSubclass) $charSubclass = $charSubclass['value'];
+			if ($charSubclassLine) $charSubclassLine = $charSubclassLine['value'];
+			if (!$charSubclass) $charSubclass = "";
+			if (!$charSubclassLine) $charSubclassLine = "";
+			if ($charSubclassLine) $skillLine = $charSubclassLine;
 		}
-		
-		$origSkillLine = $skillLine;
-		
-		$charSubclass = $this->charStats["Subclass" . $index];
-		$charSubclassLine = $this->charStats["SubclassSkillLine" . $index];
-		if ($charSubclass) $charSubclass = $charSubclass['value'];
-		if ($charSubclassLine) $charSubclassLine = $charSubclassLine['value'];
-		if (!$charSubclass) $charSubclass = "";
-		if (!$charSubclassLine) $charSubclassLine = "";
-		if ($charSubclassLine) $skillLine = $charSubclassLine;
 		
 		$output = "$subclassButton<div class='esovsSkillLineTitle $extraClass' skilllineindex='$index' origskilllineid=\"$origSkillLine\" skilllineid=\"$skillLine\" subclass=\"$charSubclass\" subclassid=\"$charSubclassLine\" style=\"display: $displayType;\">$skillLine</div>";
 		

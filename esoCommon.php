@@ -2224,7 +2224,19 @@ $ESO_SET_INDEXES = array(
 		819 => "Perfected Dolorous Arena",
 		820 => "Perfected Kazpian's Cruel Signet",
 		821 => "Perfected Harmony in Chaos",
+		822 => "Lustrous Soulwell",
+		823 => "Vykand's Soulfury",
+		824 => "Black Foundry Steel",
+		825 => "Xanmeer Spellweaver",
+		826 => "Tools of the Trapmaster",
+		827 => "Stonehulk Domination",
+		828 => "Black Gem Monstrosity",
+		829 => "Bar-Sakka",
+		830 => "Spellshredder",
+		831 => "Coup De Grâce",
+		832 => "Unflinching Ultimate",
 );
+
 
 
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
@@ -4613,6 +4625,10 @@ function GetEsoItemTableSuffix($version)
 			return "46pts";
 		case '46':
 			return "";
+		case '47pts':
+			return "47pts";
+		case '47':
+			return "47";
 		case 'test':
 		case 'dev':
 		case 'debug':
