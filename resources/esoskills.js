@@ -4923,12 +4923,70 @@ window.IsEsoSkillFree = function (skillId)
 }
 
 
-window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank)
+window.IsEsoSkillSubclassed = function(abilityId)
 {
+	if (window.g_EsoBuildSubclassData == null) return false;
+	
+	var skillData = g_SkillsData[abilityId];
+	if (skillData == null) return false;
+	
+	var skillLine = skillData['skillLine'];
+	
+	if (skillLine == g_EsoBuildSubclassData.SubclassSkillLine1) return true;
+	if (skillLine == g_EsoBuildSubclassData.SubclassSkillLine2) return true;
+	if (skillLine == g_EsoBuildSubclassData.SubclassSkillLine3) return true;
+	
+	return false;
+}
+
+
+window.OnEsoSkillUpdatePoints = function()
+{
+	var $this = $(this);
+	var isFree = $this.attr("isfree");
+	
+	if (isFree == 1) return;
+	
+	var origAbilityId = $this.attr("origskillid");
+	var abilityId = $this.attr("skillid");
+	var abilityType = $this.attr("abilitytype");
+	var rank = $this.attr("rank");
+	var morph = $this.attr("morph");
+	
+	if (abilityType == "Passive")
+		UpdateEsoSkillPassiveData(origAbilityId, abilityId, rank, true);
+	else if (abilityType == "Active")
+		UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, morph, true);
+	else if (abilityType == "Ultimate")
+		UpdateEsoSkillActiveData(origAbilityId, abilityId, rank, abilityType, morph, true);
+}
+
+
+window.UpdateAllEsoSkillPoints = function()
+{
+	g_EsoSkillUpdateEnable = false;
+	
+	g_EsoSkillPointsUsed = 0;
+	
+	$("#esovsSkillContent .esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase").not(".esovsAbilityBlockSelect").each(OnEsoSkillUpdatePoints);
+	
+	UpdateEsoSkillTotalPoints();
+	g_EsoSkillUpdateEnable = true;
+	
+	UpdateEsoSkillTotalPoints();
+}
+
+
+window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank, recompute)
+{
+	var skillFactor = 1;
+	
+	if (IsEsoSkillSubclassed(origAbilityId)) skillFactor = 2;
+	
 	//EsoSkillLog("UpdateEsoSkillPassiveData", origAbilityId, abilityId, rank);
-		
-	rank = parseInt(rank); 
-		
+	
+	rank = parseInt(rank);
+	
 	if (g_EsoSkillPassiveData[origAbilityId] == null)
 	{
 		if (rank <= 0) return true;
@@ -4937,12 +4995,13 @@ window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank)
 	}
 	
 	var origRank = parseInt(g_EsoSkillPassiveData[origAbilityId].rank);
+	if (recompute === true) origRank = 0;
 	if (origRank == rank) return true;
 	
 	if (rank <= 0)
 	{
-		g_EsoSkillPointsUsed -= origRank;
-		if (origRank >= 1 && rank < 1 && IsEsoSkillFree(origAbilityId)) g_EsoSkillPointsUsed += 1;
+		g_EsoSkillPointsUsed -= origRank * skillFactor;
+		if (origRank >= 1 && rank < 1 && IsEsoSkillFree(origAbilityId)) g_EsoSkillPointsUsed += 1 * skillFactor;
 		
 		delete g_EsoSkillPassiveData[origAbilityId];
 		
@@ -4950,8 +5009,8 @@ window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank)
 		return true;
 	}
 	
-	g_EsoSkillPointsUsed += rank - origRank;
-	if (origRank < 1 && rank >= 1 && IsEsoSkillFree(origAbilityId)) g_EsoSkillPointsUsed -= 1;
+	g_EsoSkillPointsUsed += (rank - origRank) * skillFactor;
+	if (origRank < 1 && rank >= 1 && IsEsoSkillFree(origAbilityId)) g_EsoSkillPointsUsed -= 1 * skillFactor;
 	
 	g_EsoSkillPassiveData[origAbilityId].rank = rank;
 	g_EsoSkillPassiveData[origAbilityId].abilityId = abilityId;
@@ -4963,11 +5022,15 @@ window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank)
 }
 
 
-window.UpdateEsoSkillActiveData = function (origAbilityId, abilityId, rank, abilityType, morph)
+window.UpdateEsoSkillActiveData = function (origAbilityId, abilityId, rank, abilityType, morph, recompute)
 {
 	var origPoints = 0;
 	var newPoints = 1;
 	var isFree = IsEsoSkillFree(origAbilityId);
+	var skillFactor = 1;
+	
+	if (IsEsoSkillSubclassed(origAbilityId)) skillFactor = 2;
+	newPoints = skillFactor;
 	
 	if (g_EsoSkillActiveData[origAbilityId] == null)
 	{
@@ -4977,9 +5040,10 @@ window.UpdateEsoSkillActiveData = function (origAbilityId, abilityId, rank, abil
 	}
 	else
 	{
-		origPoints = 1;
-		if (g_EsoSkillActiveData[origAbilityId].morph > 0) ++origPoints;
-		if (isFree) origPoints -= 1;
+		origPoints = 1 * skillFactor;
+		if (g_EsoSkillActiveData[origAbilityId].morph > 0) origPoints += skillFactor;
+		if (isFree) origPoints -= 1 * skillFactor;
+		if (recompute === true) origPoints = 0;
 	}
 	
 	if (rank <= 0)
@@ -4991,8 +5055,8 @@ window.UpdateEsoSkillActiveData = function (origAbilityId, abilityId, rank, abil
 		return true;
 	}
 	
-	if (morph > 0) ++newPoints;
-	if (isFree) newPoints -= 1;
+	if (morph > 0) newPoints += 1*skillFactor;
+	if (isFree) newPoints -= 1*skillFactor;
 	
 	g_EsoSkillPointsUsed += newPoints - origPoints;	
 	
@@ -5968,8 +6032,8 @@ window.OnEsoSkillLineResetAll = function ()
 	
 	if (skillType == "Racial") RemoveEsoRaceSkillsFromPassiveData();
 	
-	g_EsoSkillUpdateEnable = true;
 	UpdateEsoSkillTotalPoints();
+	g_EsoSkillUpdateEnable = true;
 }
 
 
