@@ -5,7 +5,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
 
-$TABLE_SUFFIX = "47pts";
+$TABLE_SUFFIX = "47";
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) return $this->ReportError("ERROR: Could not connect to esolog database for writing!");

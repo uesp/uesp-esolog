@@ -91,7 +91,7 @@ foreach ($categories as $category)
 {
 	$catName = $category['categoryName'];
 	$subCatName = $category['subCategoryName'];
-		
+	
 	$newCate = array();
 	$newCate['name'] = $catName;
 	$newCate['subName'] = $subCatName;
@@ -164,7 +164,7 @@ foreach ($achievements as $achievement)
 	
 	//if ($outputData[$cateName1] == null) continue;
 	//if ($outputData[$cateName1]['categories'][$cateName2] == null) continue;
-
+	
 	$newData = array();
 	$newData['id'] = intval($achievement['id']);
 	$newData['name'] = $achievement['name'];
@@ -173,7 +173,7 @@ foreach ($achievements as $achievement)
 	$newData['points'] = intval($achievement['points']);
 	$newData['index'] = intval($achievement['achievementIndex']);
 	$newData['criteria'] = array();
-		
+	
 	if ($achievement['dyeName'] != "")
 	{
 		$newData['dyeName'] = $achievement['dyeName'];
@@ -214,22 +214,24 @@ foreach ($achievements as $achievement)
 		$newCrit['value'] = intval($criteria['numRequired']);
 		$newCrit['index'] = intval($criteria['criteriaIndex']);
 		
-		$newData['criteria'][$index] = $newCrit;	
+		$newData['criteria'][$index] = $newCrit;
 	}
 	
 	$achData[$achievement['id']] = $newData;
 	//$outputData[$cateName1]['categories'][$cateName2]['achievements'][] = $newData;
 	
-	if ($treeData[$cateName1] === null) 
+	if ($treeData[$cateName1] === null)
 	{
 		print("Unknown category '$cateName1' found!\n");
-		continue;
+		$treeData[$cateName1] = [];
+		//continue;
 	}
 	
-	if ($treeData[$cateName1][$cateName2] === null) 
+	if ($treeData[$cateName1][$cateName2] === null)
 	{
 		print("Unknown category '$cateName1::$cateName2' found!\n");
-		continue;
+		$treeData[$cateName1][$cateName2] = [];
+		//continue;
 	}
 	
 	$achIndex = intval($achievement['achievementIndex']);

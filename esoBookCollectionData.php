@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 116,
-						'numBooks' => 1606 
+						'numCollect' => 118,
+						'numBooks' => 1634 
 				),
 				1 => array (
 						'id' => 43,
@@ -8722,6 +8722,134 @@ $ESO_BOOK_COLLECTIONS = array (
 						) 
 				),
 				116 => array (
+						'id' => 227,
+						'name' => 'Stirk Fellowship Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								8333 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8334 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8335 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8336 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8337 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8338 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8339 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8340 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8341 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8342 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8343 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8344 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8345 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8346 => array (
+										'title' => 'Crafting Motif 132: Stirk Fellowship Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				117 => array (
+						'id' => 228,
+						'name' => 'Coldharbour Dominator Style',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								8349 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8350 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8351 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8352 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8353 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8354 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8355 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8356 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8357 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8358 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8359 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8360 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dom. Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8361 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8362 => array (
+										'title' => 'Crafting Motif 133: Coldharbour Dominator Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				118 => array (
 						'id' => 229,
 						'name' => 'Tide-Born Style',
 						'numBooks' => 14,
@@ -8790,8 +8918,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 55,
-						'numBooks' => 4681 
+						'numCollect' => 56,
+						'numBooks' => 4721 
 				),
 				1 => array (
 						'id' => 44,
@@ -26972,7 +27100,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				51 => array (
 						'id' => 222,
 						'name' => 'Dungeon Delver Documents',
-						'numBooks' => 37,
+						'numBooks' => 47,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_dungeons.dds',
 						'books' => array (
 								7763 => array (
@@ -27122,6 +27250,46 @@ $ESO_BOOK_COLLECTIONS = array (
 								8180 => array (
 										'title' => 'The Sacking of Bruma',
 										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
+								),
+								8473 => array (
+										'title' => 'Prayer to the Voskrona Guardians',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								8474 => array (
+										'title' => 'Talen-Lah`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
+								),
+								8475 => array (
+										'title' => 'Seeksxilt`s Notes on Bar-Sakka',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8476 => array (
+										'title' => 'Why the Wind Howls',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color4.dds' 
+								),
+								8477 => array (
+										'title' => 'Seekxilts` Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								8483 => array (
+										'title' => '5 Things List',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8484 => array (
+										'title' => 'Misura`s Missive to Quarrymaster Saldezaar',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8485 => array (
+										'title' => 'Atronach Needs and Allocations',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8489 => array (
+										'title' => 'Notes on Black Gem Prismatics and Refracted Souls',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								8553 => array (
+										'title' => 'Notes on Our Secret Project',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color1.dds' 
 								) 
 						) 
 				),
@@ -27628,7 +27796,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				55 => array (
 						'id' => 233,
 						'name' => 'Solstice Summations',
-						'numBooks' => 81,
+						'numBooks' => 86,
 						'icon' => '/esoui/art/icons/icon_missing.dds',
 						'books' => array (
 								8397 => array (
@@ -27880,7 +28048,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
 								),
 								8494 => array (
-										'title' => 'Tide-Born Song',
+										'title' => 'Tide Returns You',
 										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
 								),
 								8495 => array (
@@ -27954,6 +28122,134 @@ $ESO_BOOK_COLLECTIONS = array (
 								8517 => array (
 										'title' => 'Reward for Missing Steed!',
 										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								8513 => array (
+										'title' => 'Gabrielle`s Journal',
+										'icon' => '/esoui/art/icons/u30_elam_drals_journal.dds' 
+								),
+								8514 => array (
+										'title' => 'Gabrielle`s Research Notes',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8529 => array (
+										'title' => 'Hezsatari`s Instructions',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8549 => array (
+										'title' => 'Cultist Orders',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8502 => array (
+										'title' => 'Worm Cult Correspondence',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								) 
+						) 
+				),
+				56 => array (
+						'id' => 235,
+						'name' => 'Jewelry Crafting Surveys',
+						'numBooks' => 25,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								5116 => array (
+										'title' => 'Jewelry Crafting Survey: Stormhaven',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								5124 => array (
+										'title' => 'Jewelry Crafting Survey: Auridon',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								5125 => array (
+										'title' => 'Jewelry Crafting Survey: Glenumbra',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								5126 => array (
+										'title' => 'Jewelry Crafting Survey: Stonefalls',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								5127 => array (
+										'title' => 'Jewelry Crafting Survey: Grahtwood',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								5128 => array (
+										'title' => 'Jewelry Crafting Survey: Deshaan',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								5129 => array (
+										'title' => 'Jewelry Crafting Survey: Greenshade',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								5130 => array (
+										'title' => 'Jewelry Crafting Survey: Shadowfen',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								5131 => array (
+										'title' => 'Jewelry Crafting Survey: Rivenspire',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								5132 => array (
+										'title' => 'Jewelry Crafting Survey: Malabal Tor',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								5133 => array (
+										'title' => 'Jewelry Crafting Survey: Alik`r Desert',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								5134 => array (
+										'title' => 'Jewelry Crafting Survey: Reaper`s March',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								5135 => array (
+										'title' => 'Jewelry Crafting Survey: The Rift',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								5136 => array (
+										'title' => 'Jewelry Crafting Survey: Bangkorai',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								5137 => array (
+										'title' => 'Jewelry Crafting Survey: Eastmarch',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								5142 => array (
+										'title' => 'Jewelry Crafting Survey: Coldharbour I',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								5143 => array (
+										'title' => 'Jewelry Crafting Survey: Coldharbour II',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								5144 => array (
+										'title' => 'Jewelry Crafting Survey: Craglorn I',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								5145 => array (
+										'title' => 'Jewelry Crafting Survey: Craglorn II',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								5151 => array (
+										'title' => 'Jewelry Crafting Survey: Craglorn III',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								5153 => array (
+										'title' => 'Jewelry Crafting Survey: Wrothgar I',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								5154 => array (
+										'title' => 'Jewelry Crafting Survey: Wrothgar II',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								5155 => array (
+										'title' => 'Jewelry Crafting Survey: Wrothgar III',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								5156 => array (
+										'title' => 'Jewelry Crafting Survey: Vvardenfell',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								5631 => array (
+										'title' => 'Jewelry Crafting Survey: Elsweyr',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 
 				) 

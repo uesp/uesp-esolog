@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "45pts";
+$TABLE_SUFFIX = "47";
 
 $REPLACE_PAIRS = array(
 		// Transform item names into the matching collectible name. For most collectibles the name matches the item
@@ -119,6 +119,9 @@ $REPLACE_PAIRS = array(
 		"Snowglobe Surprise" => "Surprising Snowglobe",
 		"Face-Eating Tome Memento" => "Haj Mota Hatchling",
 		"Plunder Blunder Memento" => "Plunder Skull Blunder",
+		"Hagmatron's Face Marking" => "Hagmatron's Face Markings",
+		"Hagmatron's Body Marking" => "Hagmatron's Body Markings",
+		"Jester's Deadly Headband Adornment" => "Jester's Deadly Headband",
 );
 
 require("/home/uesp/secrets/esolog.secrets");
