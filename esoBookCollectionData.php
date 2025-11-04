@@ -1432,8 +1432,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 4,
 						'name' => 'Crafting Motifs',
-						'numCollect' => 118,
-						'numBooks' => 1634 
+						'numCollect' => 121,
+						'numBooks' => 1662 
 				),
 				1 => array (
 						'id' => 43,
@@ -8912,14 +8912,149 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
 								) 
 						) 
+				),
+				119 => array (
+						'id' => 230,
+						'name' => 'Black Soul Gem',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								8415 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8416 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8417 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8418 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8419 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8420 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8421 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8422 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8423 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8424 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8425 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8426 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8427 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8428 => array (
+										'title' => 'Crafting Motif 135: Black Soul Gem Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				120 => array (
+						'id' => 231,
+						'name' => 'Voskrona Guardian',
+						'numBooks' => 14,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_craftingstyle.dds',
+						'books' => array (
+								8430 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Axes',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8431 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Belts',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8432 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Boots',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8433 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Bows',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8434 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Chests',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8435 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Daggers',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8436 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Gloves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8437 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Helmets',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8438 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Legs',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8439 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Maces',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8440 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Shields',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8441 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Shoulders',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8442 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Staves',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8443 => array (
+										'title' => 'Crafting Motif 136: Voskrona Guardian Swords',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								) 
+						) 
+				),
+				121 => array (
+						'id' => 0,
+						'name' => '',
+						'numBooks' => 0,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array () 
 				) 
 		),
 		3 => array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 56,
-						'numBooks' => 4721 
+						'numCollect' => 57,
+						'numBooks' => 4800 
 				),
 				1 => array (
 						'id' => 44,
@@ -24520,7 +24655,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				43 => array (
 						'id' => 188,
 						'name' => 'The Impresario`s Catalogue',
-						'numBooks' => 17,
+						'numBooks' => 18,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								6493 => array (
@@ -24590,6 +24725,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								8151 => array (
 										'title' => 'Research Assistant Required!',
 										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
+								),
+								8688 => array (
+										'title' => 'Reigniting Love for Contemporary Audiences',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
 								) 
 						) 
 				),
@@ -27260,7 +27399,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/lore_book1_detail2_color4.dds' 
 								),
 								8475 => array (
-										'title' => 'Seeksxilt`s Notes on Bar-Sakka',
+										'title' => 'Seeksxilts` Notes on Bar-Sakka',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
 								),
 								8476 => array (
@@ -28137,7 +28276,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								8549 => array (
 										'title' => 'Cultist Orders',
-										'icon' => '/esoui/art/icons/notes_001.dds' 
+										'icon' => '/esoui/art/icons/notes_002.dds' 
 								),
 								8502 => array (
 										'title' => 'Worm Cult Correspondence',
@@ -28249,6 +28388,326 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								5631 => array (
 										'title' => 'Jewelry Crafting Survey: Elsweyr',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								) 
+						) 
+				),
+				57 => array (
+						'id' => 237,
+						'name' => 'Solstice Summations, Part 2',
+						'numBooks' => 78,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								8118 => array (
+										'title' => 'Warning: Oozt-Tzel Disappearances',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8467 => array (
+										'title' => 'Fading Builder`s Journal I',
+										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
+								),
+								8533 => array (
+										'title' => 'Fading Builder`s Journal II',
+										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
+								),
+								8534 => array (
+										'title' => 'Fading Builder`s Journal III',
+										'icon' => '/esoui/art/icons/quest_murkmire_captain_hostias_journal.dds' 
+								),
+								8550 => array (
+										'title' => 'Prince Naemon and the Staff of Magnus',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8551 => array (
+										'title' => 'Letter to Vicereeve Nirenorwe',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								8556 => array (
+										'title' => 'Letter for Dark Adept Vairisse',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8557 => array (
+										'title' => 'Khag`s Head Count',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8408 => array (
+										'title' => 'Sahmazim`s Journal',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color3.dds' 
+								),
+								8555 => array (
+										'title' => 'Sahmazim`s Vos-Toh Translations',
+										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								8122 => array (
+										'title' => 'Golvyni`s Journal',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color1.dds' 
+								),
+								8304 => array (
+										'title' => 'Prisoner Manifest',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8303 => array (
+										'title' => 'Shipment Manifest',
+										'icon' => '/esoui/art/icons/u46_mainquest_crumpledpaper.dds' 
+								),
+								8290 => array (
+										'title' => 'Report on the Improved Reapers',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8309 => array (
+										'title' => 'Note to Gabrielle',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8310 => array (
+										'title' => 'Worm Cult Mine Orders',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paperstack001.dds' 
+								),
+								8315 => array (
+										'title' => 'Soul Flayer Perimeter Plan',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
+								),
+								8316 => array (
+										'title' => 'Burial Site Orders',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8317 => array (
+										'title' => 'Village Report',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8527 => array (
+										'title' => 'Mannimarco`s Directive',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8528 => array (
+										'title' => 'Acolyte`s Report',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8446 => array (
+										'title' => 'The Guardians of Mor Naril',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color5.dds' 
+								),
+								8447 => array (
+										'title' => 'Chronicles of Kinlord Orlemar, Part IV',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color5.dds' 
+								),
+								8448 => array (
+										'title' => 'Kinlord Orlemar`s Notes',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8585 => array (
+										'title' => 'Missive to Mor Naril',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8347 => array (
+										'title' => 'Love Letter from Adrolir',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8569 => array (
+										'title' => 'Wormblood`s Journal',
+										'icon' => '/esoui/art/icons/quest_murkmire_eshrafs_journal.dds' 
+								),
+								8570 => array (
+										'title' => 'Mannimarco`s Notes',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color4.dds' 
+								),
+								8572 => array (
+										'title' => 'Caterwaul Logbook',
+										'icon' => '/esoui/art/icons/book_arquitius_001.dds' 
+								),
+								8596 => array (
+										'title' => 'Bonnie Spriggan Logbook',
+										'icon' => '/esoui/art/icons/book_arquitius_001.dds' 
+								),
+								8586 => array (
+										'title' => 'Letter from Ezhkel',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8566 => array (
+										'title' => 'Baar-Jasa`s Enigma Totem Solution',
+										'icon' => '/esoui/art/icons/quest_u44_companions_woventreedrawing.dds' 
+								),
+								8576 => array (
+										'title' => 'We Were Undaunted',
+										'icon' => '/esoui/art/icons/book_arquitius_001.dds' 
+								),
+								8567 => array (
+										'title' => 'Vahath Hunter`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								8568 => array (
+										'title' => 'The Collected Writings of Tzinik-Muz',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color5.dds' 
+								),
+								8574 => array (
+										'title' => 'Mural Dedication',
+										'icon' => '/esoui/art/icons/housing_els_duc_tablet002.dds' 
+								),
+								8234 => array (
+										'title' => 'The First Dialogue of Mannimarco and Galerion',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
+								),
+								8235 => array (
+										'title' => 'The Second Dialogue of Mannimarco and Galerion',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
+								),
+								8620 => array (
+										'title' => 'Death-Dancer Recitations',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								8289 => array (
+										'title' => 'The Secret Stone Guardians',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color4.dds' 
+								),
+								8617 => array (
+										'title' => 'Stone-Nest Funerary Practices',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								),
+								8622 => array (
+										'title' => 'On Shackled Titans',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color5.dds' 
+								),
+								8454 => array (
+										'title' => 'An Ex-Pirate',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								8619 => array (
+										'title' => 'Water Cuts Stone, A Textual Analysis',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color1.dds' 
+								),
+								8497 => array (
+										'title' => 'Maldriths: Correctors of Coldharbour',
+										'icon' => '/esoui/art/icons/lore_book3_detail2_color4.dds' 
+								),
+								8466 => array (
+										'title' => 'Coldharbour`s Conquests',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								8616 => array (
+										'title' => 'The Sorrow of Stone and Tide',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color3.dds' 
+								),
+								8618 => array (
+										'title' => 'Carrying the Weight of History',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color1.dds' 
+								),
+								8621 => array (
+										'title' => 'The Amber Egg and Cerulean Sea',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
+								),
+								8629 => array (
+										'title' => 'Songs of the Stone-Nest People',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								),
+								8587 => array (
+										'title' => 'Visitor`s Guide to Eastern Solstice',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color3.dds' 
+								),
+								8589 => array (
+										'title' => 'Triumph of the Darkbinders',
+										'icon' => '/esoui/art/icons/lore_book3_detail5_color3.dds' 
+								),
+								8405 => array (
+										'title' => 'The Ritual of Zyv-Elehk (Ritual Fires Dormant)',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								8406 => array (
+										'title' => 'The Ritual of Zyv-Elehk (Ritual Fires Lit)',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color1.dds' 
+								),
+								8588 => array (
+										'title' => 'Scouting Report: Northeast Solstice',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8590 => array (
+										'title' => 'To Anchorite Odska, From Black Mage Tacitus.',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8591 => array (
+										'title' => 'Anchorite Odska`s Report, Morndas Eve.',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8592 => array (
+										'title' => 'Anchorite Odska`s Final Report',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8593 => array (
+										'title' => 'The Origins of the Stone-Nest: A Fable',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8594 => array (
+										'title' => 'Vaedinhill, the Kinlord`s Folly',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color2.dds' 
+								),
+								8597 => array (
+										'title' => 'The Accursed Temple',
+										'icon' => '/esoui/art/icons/lore_book3_detail3_color3.dds' 
+								),
+								8609 => array (
+										'title' => 'Scouting Report on Gristmung Hold',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8610 => array (
+										'title' => 'Peace of Xor-Hist',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								8611 => array (
+										'title' => 'Scouting Report on Worm Cult Activity',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8612 => array (
+										'title' => 'Scouting Report on Soul Flayers',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8607 => array (
+										'title' => 'A Tale of Greed',
+										'icon' => '/esoui/art/icons/lore_book5_detail5_color5.dds' 
+								),
+								8552 => array (
+										'title' => 'Terinvel`s Notebook',
+										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								8558 => array (
+										'title' => 'An Offer of Protection',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								8562 => array (
+										'title' => 'A Trick to the Doors',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8563 => array (
+										'title' => 'Dirty Abandoned Journal',
+										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								8564 => array (
+										'title' => 'Rotting Journal',
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
+								),
+								8579 => array (
+										'title' => 'Note About Paths',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8582 => array (
+										'title' => 'Hastily Written Observations',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8599 => array (
+										'title' => 'Misplaced Journal',
+										'icon' => '/esoui/art/icons/quest_book_002.dds' 
+								),
+								8613 => array (
+										'title' => 'Panicked Note',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8565 => array (
+										'title' => 'Terinvel`s Lost Note',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8583 => array (
+										'title' => 'Hurriedly Written Note',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8615 => array (
+										'title' => 'Vitrified Souls Ritual Status Report',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 

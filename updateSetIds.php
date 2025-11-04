@@ -1,6 +1,6 @@
 <?php 
 
-$TABLE_SUFFIX = "47pts";
+$TABLE_SUFFIX = "48";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -27,7 +27,7 @@ $ESO_SETINDEX_MAP = array();
 
 foreach ($ESO_SET_INDEXES as $setIndex => $setName)
 {
-	//print("$setIndex = $setName => " . strtolower($setName) . "\n");
+	print("$setIndex = $setName => " . strtolower($setName) . "\n");
 	
 	$setName = strtolower($setName);
 	if ($ESO_SETINDEX_MAP[$setName] != null) print ("\tWarning: Duplicate set index $setIndex for '$setName'!\n");
@@ -45,8 +45,13 @@ foreach ($sets as $set)
 	
 	if ($gameIndex == null)
 	{
-		print("\tError: Missing gameId for set '$name'!\n");
-		continue;
+		$gameIndex = $ESO_SETINDEX_MAP[$name];
+		
+		if ($gameIndex == null)
+		{
+			print("\tError: Missing gameId for set '$name'!\n");
+			continue;
+		}
 	}
 	
 	$safeName = $db->real_escape_string($name);

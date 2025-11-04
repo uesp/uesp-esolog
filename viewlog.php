@@ -13,7 +13,7 @@ class EsoLogViewer
 	const SHOW_QUERY = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "47";
+	const ENABLE_PTS_VERSION = "48";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;
@@ -3765,7 +3765,7 @@ class EsoLogViewer
 		
 		$itemId = $itemData['itemId'];
 		$ptsVersion = self::ENABLE_PTS_VERSION . "pts";
-	
+		
 		$output = "<a href=\"itemLink.php?itemid=$itemId&summary&version=$ptsVersion\">" . $value . "</a>";
 		return $output;
 	}
@@ -3783,9 +3783,9 @@ class EsoLogViewer
 	{
 ?>
 	<h1>ESO: Record Types</h1>
-<div style="background-color:#cfc; padding:5px; border: solid 1px gray;">
-The username/password for some data views is <b>esolog</b> / <b>esolog</b> due to issues with Bots DDOSing this service.
-</div>
+<!-- <div style="background-color:#cfc; padding:5px; border: solid 1px gray;">
+	The username/password for some data views is <b>esolog</b> / <b>esolog</b> due to issues with Bots DDOSing this service.
+</div> -->
 The ESO log viewer displays the raw game data for Elder Scrolls Online as collected by the <a href="//www.uesp.net/wiki/User:Daveh/uespLog_Addon">uespLog add-on</a>. It was created to be a tool for UESP editors and patrollers to
 use as part of improving and maintaining <a href="//www.uesp.net/">UESPWiki</a>. It is not intended to be a user-friendly way to learn about the Elder Scrolls games.
 If you do not understand what this information means, or how to use this webpage, then go to <a href="//www.uesp.net/"><b>UESPWiki</b></a> for user-friendly game information.

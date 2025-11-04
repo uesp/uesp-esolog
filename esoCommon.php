@@ -107,6 +107,10 @@ $APIVERSION_TO_GAMEUPDATE = array(
 		"101043" => "43",
 		"101044" => "44",
 		"101045" => "45",
+		"101046" => "46",
+		"101047" => "47",
+		"101048" => "48",
+		"101049" => "49",
 );
 
 
@@ -152,6 +156,10 @@ $APIVERSION_TO_GAMEVERSION = array(
 		"101043" => "10.1",
 		"101044" => "10.2",
 		"101045" => "10.3",
+		"101046" => "11.0",
+		"101047" => "11.1",
+		"101048" => "11.2",
+		"101049" => "11.3",
 );
 
 
@@ -201,6 +209,9 @@ $GAMEUPDATE_TO_GAMENAME = array(
 		"43" => "Update 43",
 		"44" => "Update 44",
 		"45" => "Fallen Banners",
+		"46" => "Season of the Worm (Part 1)",
+		"47" => "Feast of Shadows",
+		"48" => "Season of the Worm Cult (Part 2)",
 	);
 
 
@@ -2233,10 +2244,11 @@ $ESO_SET_INDEXES = array(
 		828 => "Black Gem Monstrosity",
 		829 => "Bar-Sakka",
 		830 => "Spellshredder",
-		831 => "Coup De Grâce",
+		831 => utf8_encode("Coup De Grâce"),
 		832 => "Unflinching Ultimate",
+		845 => "Huntsman's Warmask",
+		846 => "Xanmeer Genesis",
 );
-
 
 
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
@@ -4398,7 +4410,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 47;	//TODO: Update after each live patch once items/skills updated
+	return 48;	//TODO: Update after each live patch once items/skills updated
 }
 
 
@@ -4628,6 +4640,10 @@ function GetEsoItemTableSuffix($version)
 		case '47pts':
 			return "47pts";
 		case '47':
+			return "47";
+		case '48pts':
+			return "48pts";
+		case '48':
 			return "";
 		case 'test':
 		case 'dev':

@@ -9,7 +9,7 @@ if ($db->connect_error) exit("Could not connect to mysql database!");
 
 print("Finding all mismatched item names in mined item data...\n");
 
-$TABLE_SUFFIX = "47";
+$TABLE_SUFFIX = "48";
 $linesOutput = 0;
 $luaFunctionCount = 1;
 $DO_TYPE_CHECK = false;		// Not needed after changing db tables in update 30

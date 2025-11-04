@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "47";
-	const SKILLS_TABLESUFFIX   = "47";
+	const MINEITEM_TABLESUFFIX = "48";
+	const SKILLS_TABLESUFFIX   = "48";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -4547,12 +4547,12 @@ class EsoLogParser
 			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
 		}
 		
-		if ($logEntry['event'] == 'skill')
+		if ($logEntry['event'] == 'skill' || $logEntry['event'] == 'MineCollectID' || $logEntry['event'] == 'Achievement::Criteria' || $logEntry['event'] == 'Achievement::Category' || $logEntry['event'] == 'Achievement::Subcategory')
 		{
 			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
 		}
 		
-		if ($logEntry['event'] == 'SkillCoef::Desc')
+		if ($logEntry['event'] == 'SkillCoef::Desc' || $logEntry['event'] == 'Achievement' )
 		{
 			return !($logEntry['ipAddress'] == '' || $logEntry['userName'] == '');
 		}
@@ -4807,28 +4807,55 @@ class EsoLogParser
 	{
 		$matches = ParseEsoItemLink($itemLink);
 		if ($matches === false) return false;
-	
+		
 		$itemId = (int) $matches['itemId'];
 		$itemLevel = (int) $matches['level'];
 		$itemSubtype = (int) $matches['subtype'];
-	
+		
 		$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubtype='$itemSubtype';";
+		$query1 = "SELECT * FROM minedItemSummary WHERE itemId='$itemId';";
+		$summaryResult = $this->db->query($query1);
 		$result = $this->db->query($query);
-		if (!$result) return false;
-	
+		if (!$result || !$summaryResult) return false;
+		
 		if ($result->num_rows == 0)
 		{
 			$query = "SELECT * FROM minedItem WHERE itemId='$itemId' AND internalLevel='1' AND internalSubtype='1';";
 			$result = $this->db->query($query);
 			if (!$result) return false;
+			
+			if ($result->num_rows == 0)
+			{
+				$query = "SELECT * FROM minedItem".self::MINEITEM_TABLESUFFIX." WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubtype='$itemSubtype';";
+				$result = $this->db->query($query);
+				if (!$result) return false;
 				
-			if ($result->num_rows == 0) return false;
+				if ($result->num_rows == 0)
+				{
+					$query = "SELECT * FROM minedItem".self::MINEITEM_TABLESUFFIX." WHERE itemId='$itemId' AND internalLevel='1' AND internalSubtype='1';";
+					$result = $this->db->query($query);
+					if (!$result) return false;
+					
+					if ($result->num_rows == 0) return false;
+				}
+			}
+		}
+		
+		if ($summaryResult->num_rows == 0)
+		{
+			$query1 = "SELECT * FROM minedItemSummary".$MINEITEM_TABLESUFFIX." WHERE itemId='$itemId';";
+			$summaryResult = $this->db->query($query1);
+			if (!$summaryResult) return false;
+			
+			if ($summaryResult->num_rows == 0) return false;
 		}
 		
 		++$this->dbReadCount;
-	
+		
 		$row = $result->fetch_assoc();
-		return $row;
+		$summary = $summaryResult->fetch_assoc();
+		
+		return array_merge($summary, $row);
 	}
 	
 	
@@ -4840,7 +4867,7 @@ class EsoLogParser
 		$gameTime = (int) $logEntry['gameTime'];
 		$npcName = $logEntry['lastTarget'];
 		$qnt = intval($logEntry['qnt']);
-				
+		
 		if ($npcName == null || $npcName == "") return false;
 		
 		if (($npcName == "Chest" || $npcName == "Safebox") && $this->currentUser['__lastLockPickQuality'] != null)
@@ -4955,12 +4982,12 @@ class EsoLogParser
 			$this->SaveNPCLoot($lootRecord);
 			
 			$lootRecord = $this->FindNPCLoot($lootSourceRecord['id'], "", "__totalCount");
-				
+			
 			if ($lootRecord == null)
 			{
 				$lootRecord = $this->CreateNPCLoot($lootSourceRecord, "", $logEntry);
 				if ($lootRecord == null) return false;
-			
+				
 				$lootRecord['itemLink'] = "__totalCount";
 				$lootRecord['itemName'] = "__totalCount";
 				$lootRecord['itemId'] = -1;
@@ -4978,7 +5005,7 @@ class EsoLogParser
 		
 		$this->currentUser['__lastLootGainedTarget'] = $npcName;
 		$this->currentUser['__lastLootGainedGameTime'] = $gameTime;
-				
+		
 		return true;
 	}
 	
@@ -6659,7 +6686,7 @@ class EsoLogParser
 		$safeZone = $this->db->real_escape_string($zone);
 		$safeId = (int) $lootSourceId;
 		
-		$query = "SELECT * FROM npcLoot WHERE lootSourceId=$safeId AND zone='$safeZone' AND itemLink='$safeLink';";
+		$query = "SELECT * FROM npcLoot WHERE lootSourceId='$safeId' AND zone='$safeZone' AND itemLink='$safeLink';";
 		$this->lastQuery = $query;
 		
 		$result = $this->db->query($query);
@@ -10281,14 +10308,16 @@ class EsoLogParser
 	
 	public function OnMineCollectIDStart ($logEntry)
 	{
-		if (!$this->IsValidUser($logEntry)) return false;
-		
+		if (!$this->IsValidUser($logEntry))	return false;
+		$this->currentUser['__lastMineCollectGameTime'] = $logEntry['gameTime'];
 		return true;
 	}
 	
 	
 	public function OnMineCollectID ($logEntry)
 	{
+		if ($logEntry['gameTime'] == null) $logEntry['gameTime'] = $this->currentUser['__lastMineCollectGameTime'];
+		
 		if (!$this->IsValidUser($logEntry)) return false;
 		
 		$id = $logEntry['id'];
