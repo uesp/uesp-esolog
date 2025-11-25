@@ -1,14 +1,14 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "47";
+$TABLE_SUFFIX = "";
 
 $REPLACE_PAIRS = array(
 		// Transform item names into the matching collectible name. For most collectibles the name matches the item
 		// but some do not.
 		// 		Item Name => Collectible Name
-		"Storm Lord" => "Stormlord", 
-		"Fire Drake" => "Firedrake", 
+		"Storm Lord" => "Stormlord",
+		"Fire Drake" => "Firedrake",
 		"Dwemer Theodolite Pet" => "Dwarven Theodolite",
 		"Dwarven Theodolite Pet" => "Dwarven Theodolite",
 		"Sixth House Robe Costume" => "Sixth House Robe",

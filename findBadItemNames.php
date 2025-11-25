@@ -15,7 +15,7 @@ $luaFunctionCount = 1;
 $DO_TYPE_CHECK = false;		// Not needed after changing db tables in update 30
 
 $START_ID = 3;
-$END_ID = 220000;
+$END_ID = 270000;
 
 $MAXBADITEMCOUNT = 1450;
 
