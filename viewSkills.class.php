@@ -39,7 +39,6 @@ class CEsoViewSkills
 	public $useUpdate10Costs = true;
 	
 	public $skills = array();
-	public $skillIds = array();
 	public $skillTooltips = array();
 	public $hasSkillTooltips = true;
 	public $skillTree = array();
@@ -211,7 +210,6 @@ class CEsoViewSkills
 	
 	public function LoadTemplate()
 	{
-		//$templateFile = $this->basePath;
 		$templateFile = "";
 		
 		if ($this->isEmbedded)
@@ -226,6 +224,7 @@ class CEsoViewSkills
 	public function CreateCraftedSkillCost($skill)
 	{
 		$cost = "";
+		$id = $skill['id'];
 		
 		if (($this->TABLE_SUFFIX != "" && intval($this->TABLE_SUFFIX) < 34) && ($this->TABLE_SUFFIX == "" && GetEsoUpdateVersion() < 34))
 		{
@@ -249,7 +248,8 @@ class CEsoViewSkills
 			$costs[] = "" . $cost . " " . GetEsoCombatMechanicText34($mechanic);
 		}
 		
-		return implode(",", $costs);
+		$cost = implode(",", $costs); 
+		return $cost;
 	}
 	
 	
@@ -263,13 +263,12 @@ class CEsoViewSkills
 		$query = "SELECT $minedSkillTable.* FROM $minedSkillTable WHERE isCrafted='1';";
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("Failed to load crafted skill ability data!");
+		$count = 0;
 		
 		while (($row = $result->fetch_assoc()))
 		{
 			$id = intval($row['id']);
 			$index = count($this->skills);
-			
-			//error_log("LoadCraftedSkillAbilities: $id");
 			
 			$row['__isOutput'] = false;
 			$row['__index'] = $index;
@@ -302,11 +301,23 @@ class CEsoViewSkills
 			if ($row['baseMechanic']  == 10 || $row['baseMechanic'] == 8) $row['type'] = "Ultimate";
 			if ($row['isPassive'] ==  1) $row['type'] = "Passive";
 			
-			$this->skills[] = $row;
-			$this->skillIds[$id] = $row;
+			$this->skills[$id] = $row;
+			++$count;
 		}
 		
+		$this->UpdateCraftedSkillData();
+		
+		error_log("LoadCraftedSkillAbilities = $count");
 		return true;
+	}
+	
+	
+	public function UpdateCraftedSkillData()
+	{
+		foreach ($this->craftedSkills as $id => &$craftedSkill)
+		{
+			$this->UpdateEsoCraftedSkillData($craftedSkill);
+		}
 	}
 	
 	
@@ -331,8 +342,7 @@ class CEsoViewSkills
 			$row['__isOutput'] = false;
 			$row['__index'] = $index;
 			
-			$this->skills[] = $row;
-			$this->skillIds[$id] = $row;
+			$this->skills[$id] = $row;
 		}
 		
 		$query = "SELECT * FROM $craftedSkillTable;";
@@ -351,7 +361,11 @@ class CEsoViewSkills
 			$row['slots1'] = explode(",", $row['slots1']);
 			$row['slots2'] = explode(",", $row['slots2']);
 			$row['slots3'] = explode(",", $row['slots3']);
+			$row['scriptId1'] = $row['slots1'][0];
+			$row['scriptId2'] = $row['slots2'][0];
+			$row['scriptId3'] = $row['slots3'][0];
 			$row['classId'] = 1;
+			$row['baseDescription'] = $row['description'];
 			
 			$this->craftedSkills[$id] = $row;
 		}
@@ -393,6 +407,8 @@ class CEsoViewSkills
 			}
 		}
 		
+		$count = count($this->craftedSkills);
+		error_log("LoadCraftedSkills = $count");
 		return $this->LoadCraftedSkillAbilities();
 	}
 	
@@ -427,19 +443,16 @@ class CEsoViewSkills
 		if (false && self::ESOVS_USE_MEMCACHE)
 		{
 			$this->skills = GetUespMemcache("uesp_skills_skills");
-			$this->skillIds = GetUespMemcache("uesp_skills_skillIds");
 			$this->setSkills = GetUespMemcache("uesp_skills_setSkills");
 			$this->skillTree = GetUespMemcache("uesp_skills_skillTree");
 			$this->skillSearchIds = GetUespMemcache("uesp_skills_skillSearchIds");
 			
-			if ($this->skills && $this->skillIds && $this->setSkills && $this->skillTree && $this->skillSearchIds)
+			if ($this->skills && $this->setSkills && $this->skillTree && $this->skillSearchIds)
 			{
 				$this->isUsingCachedData = true;
 				$this->LogProfile("LoadSkills(cached)", $startTime);
 				return true;
 			}
-			
-			//error_log("Skills Data: {$this->skills}:{$this->skillIds}:{$this->setSkills}:{$this->skillTree}:{$this->skillSearchIds}");
 		}
 		
 		$minedSkillTable = "minedSkills" . $this->GetTableSuffix();
@@ -458,8 +471,7 @@ class CEsoViewSkills
 			$row['__isOutput'] = false;
 			$row['__index'] = $index;
 			
-			$this->skills[] = $row;
-			$this->skillIds[$id] = $row;
+			$this->skills[$id] = $row;
 		}
 		
 			/* Set skills */
@@ -471,10 +483,10 @@ class CEsoViewSkills
 		
 		while (($row = $result->fetch_assoc()))
 		{
-			$id = intval($row['abilityId']);
+			$id = intval($row['id']);
 			$index = count($this->skills);
 			
-			$row['abilityId'] = $row['id'];
+			$row['abilityId'] = $id;
 			$row['__isOutput'] = false;
 			$row['__index'] = $index;
 			$row['skillTypeName'] = "";
@@ -482,8 +494,7 @@ class CEsoViewSkills
 			$row['maxRank'] = -1;
 			
 			if ($row['setName']) $this->setSkills[$row['setName']] = $row;
-			$this->skills[] = $row;
-			$this->skillIds[$id] = $row;
+			$this->skills[$id] = $row;
 		}
 		
 		$this->LogProfile("LoadSkills()", $startTime);
@@ -495,7 +506,6 @@ class CEsoViewSkills
 		if (false && self::ESOVS_USE_MEMCACHE)
 		{
 			SetUespMemcache("uesp_skills_skills", $this->skills);
-			SetUespMemcache("uesp_skills_skillIds", $this->skillIds);
 			SetUespMemcache("uesp_skills_setSkills", $this->setSkills);
 			SetUespMemcache("uesp_skills_skillTree", $this->skillTree);
 			SetUespMemcache("uesp_skills_skillSearchIds", $this->skillSearchIds);
@@ -677,7 +687,7 @@ class CEsoViewSkills
 				$this->displayType = "select";
 		}
 		
-		if (array_key_exists('debug', $this->inputParams))
+		if (array_key_exists('debug', $this->inputParams) || array_key_exists('dev', $this->inputParams))
 		{
 			//error_log("Skills: Debug ON");
 			$this->DEBUG = true;
@@ -706,24 +716,24 @@ class CEsoViewSkills
 		
 		return true;
 	}
-
-
+	
+	
 	private function SetInputParams ()
 	{
 		global $argv;
 		$this->inputParams = $_REQUEST;
-
+		
 			// Add command line arguments to input parameters for testing
 		if ($argv !== null)
 		{
 			$argIndex = 0;
-
+		
 			foreach ($argv as $arg)
 			{
 				$argIndex += 1;
 				if ($argIndex <= 1) continue;
 				$e = explode("=", $arg);
-
+				
 				if(count($e) == 2)
 				{
 					$this->inputParams[$e[0]] = $e[1];
@@ -748,13 +758,13 @@ class CEsoViewSkills
 		if ($this->GetTableSuffix() == "") return "";
 		return " v" . $this->version . "";
 	}
-
-
+	
+	
 	public function GetSkillTreeHtml()
 	{
 		$output = "";
 		$this->isFirstSkill = true;
-
+	
 		if (IsEsoVersionAtLeast($this->version, "38") && CanViewEsoLogVersion("38pts")) $output .= $this->GetSkillTreeTypeHtml("Arcanist", true);
 		$output .= $this->GetSkillTreeTypeHtml("Dragonknight", true);
 		if (IsEsoVersionAtLeast($this->version, "22") && CanViewEsoLogVersion("22pts")) $output .= $this->GetSkillTreeTypeHtml("Necromancer", true);
@@ -983,13 +993,13 @@ class CEsoViewSkills
 			return $abilityData[$i];
 		}
 		
-		return null;		
+		return null;
 	}
 
 
 	public function SetupHighlightSkill()
 	{
-		$skillData = $this->skillIds[$this->highlightSkillId];
+		$skillData = $this->skills[$this->highlightSkillId];
 		if ($skillData == null) return false;
 
 		$skillTypeName = $skillData['skillTypeName'];
@@ -1039,42 +1049,216 @@ class CEsoViewSkills
 	}
 	
 	
+	public function UpdateEsoCraftedSkillData(&$craftedSkill)
+	{
+		$craftId = intval($craftedSkill['id']);
+		$abilityId = intval($craftedSkill['abilityId']);
+		$activeData = $this->activeData[$abilityId];
+		
+		if ($activeData)
+		{
+			if ($activeData['scriptId1']) $craftedSkill['scriptId1'] = $activeData['scriptId1'];
+			if ($activeData['scriptId2']) $craftedSkill['scriptId2'] = $activeData['scriptId2'];
+			if ($activeData['scriptId3']) $craftedSkill['scriptId3'] = $activeData['scriptId3'];
+			$classId = GetEsoClassIdFromText($this->displayClass);
+			$craftedSkill['classId'] = $classId;
+			//error_log("Updating Active Data for $abilityId : {$craftedSkill['scriptId1']}");
+		}
+		else {
+			//error_log("No Active Data for $abilityId");
+		}
+		
+		$scriptData1 = $craftedSkill['datas'][$craftedSkill['scriptId1']] ? $craftedSkill['datas'][$craftedSkill['scriptId1']] : [];
+		$scriptData2 = $craftedSkill['datas'][$craftedSkill['scriptId2']] ? $craftedSkill['datas'][$craftedSkill['scriptId2']] : [];
+		$scriptData3 = $craftedSkill['datas'][$craftedSkill['scriptId3']] ? $craftedSkill['datas'][$craftedSkill['scriptId3']] : [];
+		
+		$classId = $craftedSkill['classId'];
+		if ($classId == null || $classId <= 0) $classId = 1;
+		
+		$repId = $scriptData1['abilityId'];
+		if ($repId <= 0) $repId = $abilityId;
+		
+		$skillData = &$this->skills[$abilityId];
+		$skillData1 = &$this->skills[$repId];
+		
+		if ($craftedSkill['scriptId2'] == 31)
+		{
+			$scriptData2 = $craftedSkill['datas'][$classId * 1000];
+			if ($scriptData2 == null) $scriptData2 = [];
+		}
+		
+		$desc1 = $scriptData1['description'] ? $scriptData1['description'] : "";
+		$desc2 = $scriptData2['description'] ? $scriptData2['description'] : "";
+		$desc3 = $scriptData3['description'] ? $scriptData3['description'] : "";
+		
+		$craftedSkill['description'] = $craftedSkill['baseDescription'] . "\n" . $desc1 . "\n" . $desc2 . "\n" . $desc3;
+		$craftedSkill['craftDesc1'] = $desc1;
+		$craftedSkill['craftDesc2'] = $desc2;
+		$craftedSkill['craftDesc3'] = $desc3;
+		
+		if ($skillData)
+		{
+			$skillData['useCraftedDesc'] = true;
+			$skillData['craftAbilityId'] = $repId;
+			$skillData['craftName'] = $scriptData1['name'];
+			$skillData['craftDesc1'] = $desc1;
+			$skillData['craftDesc2'] = $desc2;
+			$skillData['craftDesc3'] = $desc3;
+			$skillData['craftClassId'] = $classId;
+			$skillData['craftId'] = $craftedSkill['id'];
+			$skillData['scriptId1'] = $craftedSkill['scriptId1'];
+			$skillData['scriptId2'] = $craftedSkill['scriptId2'];
+			$skillData['scriptId3'] = $craftedSkill['scriptId3'];
+			$skillData['scriptAbilityId1'] = $scriptData1['abilityId'];
+			$skillData['scriptAbilityId2'] = $scriptData2['abilityId'];
+			$skillData['scriptAbilityId3'] = $scriptData3['abilityId'];
+			$skillData['baseDescription'] = $skillData['description'];
+			$skillData['craftDesc'] = $craftedSkill['description'];
+		}
+		
+		if ($skillData1)
+		{
+			$skillData1['useCraftedDesc'] = true;
+			$skillData1['craftAbilityId'] = $repId;
+			$skillData1['craftName'] = $scriptData1['name'];
+			$skillData1['craftDesc1'] = $desc1;
+			$skillData1['craftDesc2'] = $desc2;
+			$skillData1['craftDesc3'] = $desc3;
+			$skillData1['craftClassId'] = $classId;
+			$skillData1['craftId'] = $craftedSkill['id'];
+			$skillData1['scriptId1'] = $craftedSkill['scriptId1'];
+			$skillData1['scriptId2'] = $craftedSkill['scriptId2'];
+			$skillData1['scriptId3'] = $craftedSkill['scriptId3'];
+			$skillData1['scriptAbilityId1'] = $scriptData1['abilityId'];
+			$skillData1['scriptAbilityId2'] = $scriptData2['abilityId'];
+			$skillData1['scriptAbilityId3'] = $scriptData3['abilityId'];
+			$skillData1['baseDescription'] = $skillData1['description'];
+			$skillData1['craftDesc'] = $craftedSkill['description'];
+		}
+	}
+	
+	
 	public function FindCraftedSkillsForLine($skillLine)
 	{
 		$craftedSkills = [];
 		
-		foreach ($this->craftedSkills as $id => $craftedSkill)
+		foreach ($this->craftedSkills as $craftedId => $craftedSkill)
 		{
-			$id = $craftedSkills['abilityId'];
+			$id = $craftedSkill['abilityId'];
 			$skillData = $this->skills[$id];
 			if ($skillData == null) continue;
 			
-			if ($skillData['skillLine'] == $skillLine) $craftedSkills[] = $craftedSkill;
+			if ($skillData['skillLine'] == $skillLine) $craftedSkills[$craftedId] = $craftedSkill;
 		}
 		
 		return $craftedSkills;
 	}
 	
 	
-	public function GetCraftedSkillContentHtml($type, $typeLabel, $skillLine, $skillLineData, $skillType)
+	public static function CompareScriptByName($a, $b)
 	{
-		$craftedSkills = $this->FindCraftedSkillsForLine($skillLine);
-		$count = count($craftedSkills);
-		$output = "<div>Crafted Skills $count</div>";
-		return "";
+		return strcmp($a['name'], $b['name']);
+	}
+	
+	
+	public function MakeEsoCraftedSkillClassListHtml($selectedClassId)
+	{
+		$output = "";
 		
-		$abilityData = null;
-		$id = 0;
-		$cost = 0;
-		$topLevel = 0;
-		$isPurchased = false;
-		$iconClass = "";
-		$learnedLevel = 0;
-		$rankLabel = "";
-		$desc = "";
-		$effectLines = "";
+		$output = "<select class='esovsAbilityScriptClassList'>";
+		$output .= "<option value='7' " . (($selectedClassId == 7 || $selectedClassId == "Arcanist") ? "selected" : "") . ">Arcanist</option>";
+		$output .= "<option value='1' " . (($selectedClassId == 1 || $selectedClassId == "Dragonknight") ? "selected" : "") . ">Dragonknight</option>";
+		$output .= "<option value='5' " . (($selectedClassId == 5 || $selectedClassId == "Necromancer") ? "selected" : "") . ">Necromancer</option>";
+		$output .= "<option value='3' " . (($selectedClassId == 3 || $selectedClassId == "Nightblade") ? "selected" : "") . ">Nightblade</option>";
+		$output .= "<option value='2' " . (($selectedClassId == 2 || $selectedClassId == "Sorcerer") ? "selected" : "") . ">Sorcerer</option>";
+		$output .= "<option value='6' " . (($selectedClassId == 6 || $selectedClassId == "Templar") ? "selected" : "") . ">Templar</option>";
+		$output .= "<option value='4' " . (($selectedClassId == 4 || $selectedClassId == "Warden") ? "selected" : "") . ">Warden</option>";
 		
-		$costDesc = $cost;
+		$output .= "</select>";
+		
+		return $output;
+	}
+	
+	
+	public function MakeEsoCraftedSkillSlotHtml($craftedSkill, $abilityData, $slots, $slotIndex, $selectedScriptId)
+	{
+		$output = '<div class="esovsAbilityBlockScript" slotindex="' . $slotIndex . '">';
+		
+		if ($slotIndex == 1)
+			$output .= '<div class="esovsAbilityBlockScriptTitle">Focus Script</div>';
+		else if ($slotIndex == 2)
+			$output .= '<div class="esovsAbilityBlockScriptTitle">Signature Script</div>';
+		else if ($slotIndex == 3)
+			$output .= '<div class="esovsAbilityBlockScriptTitle">Affix Script</div>';
+		else
+			$output .= '<div class="esovsAbilityBlockScriptTitle">Scribing Slot ' . $slotIndex . '</div>';
+		
+		$namesSorted = [];
+		
+		foreach ($slots as $i => $scriptId)
+		{
+			$scriptData = $this->craftedScripts[$scriptId];
+			if ($scriptData == null) continue;
+			$namesSorted[] = $scriptData;
+		}
+		
+		uasort($namesSorted, array('self', 'CompareScriptByName'));
+		
+		foreach ($namesSorted as $i => $scriptData)
+		{
+			if ($scriptData == null) continue;
+			
+			$scriptId = $scriptData['id'];
+			$selectedClass = "";
+			$extraStyle = "";
+			$imgUrl = "//esoicons.uesp.net/" . $scriptData['icon'];
+			
+			if ($scriptId == $selectedScriptId) 
+				$selectedClass = "esovsAbilityScriptSelected";
+			else
+				$extraStyle = "display:none;";
+			
+			$classList = "";
+			if ($scriptId == 31) $classList = $this->MakeEsoCraftedSkillClassListHtml($craftedSkill['classId']);
+			
+			$output .= '<div class="esovsAbilityScript ' . $selectedClass . '" scriptid="' . $scriptId . '" style="' . $extraStyle . '">';
+			$output .= '<img src="' . $imgUrl . '">';
+			$output .= '<div class="esovsAbilityScriptName">' . $scriptData['name'] . '</div> ' . $classList . " ";
+			$output .= '<div class="esovsAbilityScriptDesc"> -- ' . $scriptData['description'] . ' ' . $scriptData['hint'] . '</div>';
+			$output .= '</div>';
+		}
+		
+		$output .= '</div>';
+		return $output;
+	}
+	
+	
+	public function GetCraftedSkillContentHtml_Skill($type, $typeLabel, $skillLine, $skillLineData, $skillType, $craftedId, $craftedSkill)
+	{
+		$output = "";
+		
+		$id = intval($craftedSkill['abilityId']);
+		$abilityData = $this->skills[$id];
+		if ($abilityData == null) return "";
+		
+		$raceType = $abilityData['raceType'];
+		$classType = $abilityData['classType'];
+		$iconUrl = "//esoicons.uesp.net/" . $abilityData['texture'];
+		$skillName = $craftedSkill['name'];
+		$skillCost = $abilityData['cost'];
+		$skillMechanic = $abilityData['mechanic'];
+		
+			//If we use the full description we will have to update it each time the scripts are changed
+		//$skillDesc = FormatRemoveEsoItemDescriptionText($craftedSkill['description'] . ' ' . $craftedSkill['hint']);
+		$skillDesc = FormatRemoveEsoItemDescriptionText($craftedSkill['baseDescription'] . ' ' . $craftedSkill['hint']);
+		
+		$learnedLevel = $abilityData['learnedLevel'];
+		if ($learnedLevel <= 0) $learnedLevel = '';
+		
+		$topLevel = true;
+		$isPurchased = true;	//Scribed skills are automatically purchased
+		
+		//$costDesc = $skillCost;
 		$costHtml = $this->GetSkillCostHtml($abilityData, $id);
 		
 		if ($this->displayType == "select" && $topLevel)
@@ -1099,39 +1283,66 @@ class CEsoViewSkills
 		
 		if ($id == $this->highlightSkillId && $this->displayType == "summary") $extraClass .= " esovsSearchHighlight";
 		
-		$output .= "<div class='esovsAbilityBlock $extraClass' morph='0' skillid='$id' origskillid='$id' rank='1' origrank='1' maxrank='1' isfree='0' abilitytype='$type' skilltype=\"$skillType\" skilline=\"$skillLine\" classtype=\"\" racetype=\"\">" ;
+		$output .= '<div class="esovsAbilityBlock esovsAbilityBlockHover esovsCraftedAbility ' . $extraClass . '" craftedid="' . $craftedId . '" morph="0" skillid="' . $id . '" origskillid="' . $id . '" rank="4" origrank="4" maxrank="4" isfree="0" abilitytype="Active" skilltype="' . $skillType . '" skilline="' . $skillLine . '" classtype="' . $classType . '" racetype="' . $raceType . '">';
+		$output .= '<img loading="lazy" class="esovsAbilityBlockPlus" src="//esolog-static.uesp.net/resources/pointsplus_up.png">';
 		
-		if ($topLevel)
+		$output .= '<div class="esovsAbilityBlockIcon ui-draggable ui-draggable-handle">';
+		$output .= '<img loading="lazy" alt="" src="' . $iconUrl .'">';
+		$output .= '<div class="esovsAbilityBlockIconLevel">' . $learnedLevel . '</div>';
+		$output .= '</div>';
+		
+		$output .= '<div class="esovsAbilityBlockTitle">';
+		$output .= '<div class="esovsAbilityBlockTitleLabel">';
+		$output .= '<div class="esovsAbilityBlockName">' . $skillName . '</div>';
+		$output .= $costHtml;
+		//$output .= "<!-- skillCost $costHtml -- $skillCost -->";
+		$output .= '</div>';
+		$output .= '<div class="esovsAbilityBlockDesc esovsCraftedSkill" skillid="' . $id . '">' . $skillDesc . '</div>';
+		$output .= '</div>';
+		
+		$output .= '</div>';
+		
+		$selSlot1 = $craftedSkill['scriptId1'];
+		$selSlot2 = $craftedSkill['scriptId2'];
+		$selSlot3 = $craftedSkill['scriptId3'];
+		
+		$activeData = $this->activeData[$id];
+		
+		if ($activeData)
 		{
-			if ($this->displayType == "select")
-			{
-				$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsAbilityBlockPlusSelect' src='//esolog-static.uesp.net/resources/pointsplus_up.png' />";
-			}
-			else if ($maxRank > 1)
-			{
-				$output .= "<img loading='{$this->IMAGE_LAZY_LOADING}' class='esovsAbilityBlockPlus' src='//esolog-static.uesp.net/resources/pointsplus_up.png' />";
-			}
-			else
-			{
-				$output .= "<div class='esovsAbilityBlockPlus'></div>";
-			}
+			if ($activeData['scriptId1']) $selSlot1 = $activeData['scriptId1'];
+			if ($activeData['scriptId2']) $selSlot2 = $activeData['scriptId2'];
+			if ($activeData['scriptId3']) $selSlot3 = $activeData['scriptId3'];
+			$output .= "<!-- $selSlot1 / $selSlot2 / $selSlot3 -->";
+		}
+		else {
+			$output .= "<!-- No Active Dataa for $id -->";
 		}
 		
-		$output .= "<div class='$iconClass' $extraIconAttr><img loading='{$this->IMAGE_LAZY_LOADING}' alt='' src='$icon' />";
-		if ($learnedLevel > 0) $output .= "<div class='esovsAbilityBlockIconLevel'>$learnedLevel</div>";
-		$output .= "</div>";
-		$output .= "<div class='esovsAbilityBlockTitle'>";
-		$output .= "<div class='esovsAbilityBlockTitleLabel'>";
-		$output .= "<div class='esovsAbilityBlockName'>$name $rankLabel</div>";
-		//$output .= "<div class='esovsAbilityBlockCost' skillid='$id'>$costDesc</div>";
-		$output .= $costHtml;
-		$output .= "</div>";
-		$output .= "<div class='esovsAbilityBlockDesc' skillid='$id'>$desc";
-		if ($effectLines != "") $output .= " <div class='esovsAbilityBlockEffectLines'>$effectLines</div>";
-		$output .= "</div>";
-		$output .= "</div>";
+		$output .= '<div class="esovsAbilityBlockList" craftedid="' . $craftedId . '" style="display: none;">';
+		
+		$output .= $this->MakeEsoCraftedSkillSlotHtml($craftedSkill, $abilityData, $craftedSkill['slots1'], 1, $selSlot1);
+		$output .= $this->MakeEsoCraftedSkillSlotHtml($craftedSkill, $abilityData, $craftedSkill['slots2'], 2, $selSlot2);
+		$output .= $this->MakeEsoCraftedSkillSlotHtml($craftedSkill, $abilityData, $craftedSkill['slots3'], 3, $selSlot3);
+		
 		$output .= "</div>";
 		
+		return $output;
+	}
+	
+	
+	public function GetCraftedSkillContentHtml($type, $typeLabel, $skillLine, $skillLineData, $skillType)
+	{
+		$craftedSkills = $this->FindCraftedSkillsForLine($skillLine);
+		$count = count($craftedSkills);
+		//$output = "<div>Crafted Skills for $type/$typeLabel/$skillLine $count</div>";
+		//error_log("GetCraftedSkillContentHtml($type, $typeLabel, $skillLine) = $count");
+		//return "";
+		
+		foreach ($craftedSkills as $craftedId => $craftedSkill)
+		{
+			$output .= $this->GetCraftedSkillContentHtml_Skill($type, $typeLabel, $skillLine, $skillLineData, $skillType, $craftedId, $craftedSkill);
+		}
 		
 		return $output;
 	}
@@ -1144,6 +1355,7 @@ class CEsoViewSkills
 			//Start with crafted skill if valid
 		if ($this->LOAD_CRAFTED_SKILLS && $type == "Active")
 		{
+			//error_log("GetSkillContentHtml_SkillLineType($type, $typeLabel, $skillLine)");
 			$output .= $this->GetCraftedSkillContentHtml($type, $typeLabel, $skillLine, $skillLineData, $skillType);
 		}
 		
@@ -1197,13 +1409,28 @@ class CEsoViewSkills
 	{
 		$costHtml = "";
 		$costs = explode(",", $skill['cost']);
+		$costTimes = explode(",", $skill['costTime']);
 		$mechanics = explode(",", $skill['mechanic']);
+		$mechanicTimes = explode(",", $skill['mechanicTime']);
+		$chargeFreqs = explode(",", $skill['chargeFreq']);
 		
 		foreach ($costs as $i => $cost)
 		{
-			$mechanic = $mechanics[$i];
+			$mechanic = intval($mechanics[$i]);
+			$mechanicTime = intval($mechanicTimes[$i]);
+			$chargeFreq = intval($chargeFreqs[$i]);
 			$safeCost = $this->EscapeHtml($cost);
-			$costHtml .= "<div mechanic='$mechanic' class='esovsAbilityBlockCost' skillid='$id'>$safeCost</div>";
+			$safeCostTime = $this->EscapeHtml($costTimes[$i]);
+			
+			if ($chargeFreq > 0)
+			{
+				$chargeFreq = $chargeFreq / 1000;
+				$costHtml .= "<div mechanic='$mechanic' class='esovsAbilityBlockCost' skillid='$id'>$safeCost<div class='esovsChargeFreq'>&nbsp;/ {$chargeFreq}s</div></div>";
+			}
+			else
+			{
+				$costHtml .= "<div mechanic='$mechanic' class='esovsAbilityBlockCost' skillid='$id'>$safeCost</div>";
+			}
 		}
 		
 		return $costHtml;
@@ -1363,13 +1590,14 @@ class CEsoViewSkills
 	
 	public function FindBaseAbilityForActiveData($abilityId)
 	{
-		$skillData = $this->skillIds[$abilityId];
-		if ($skillData == null) { return $abilityId; }
+		$skillData = $this->skills[$abilityId];
+		if ($skillData == null) return $abilityId;
+		if ($skillData['isCrafted'] == 1) return $abilityId;
 		
 		while ($skillData['prevSkill'] > 0)
 		{
 			$prevId = $skillData['prevSkill'];
-			$skillData = $this->skillIds[$prevId];
+			$skillData = $this->skills[$prevId];
 			if ($skillData == null) { return $abilityId; }
 		}
 		
@@ -1379,15 +1607,15 @@ class CEsoViewSkills
 		while ($skillData['nextSkill'] > 0)
 		{
 			$nextId = $skillData['nextSkill'];
-			$skillData = $this->skillIds[$nextId];
+			$skillData = $this->skills[$nextId];
 			if ($skillData == null) return $baseAbilityId;
 			if ($skillData['rank'] == 4) return $skillData['abilityId'];
 		}
 		
 		return $baseAbilityId;
-	}	
-
-
+	}
+	
+	
 	public function DoesAbilityListHaveHighlightSkill($abilityData)
 	{
 		foreach ($abilityData as $rank => $ability)
@@ -1406,7 +1634,7 @@ class CEsoViewSkills
 		$extraClass = "";
 		$baseId = "";
 		if ($this->displayType == "summary" && $this->DoesAbilityListHaveHighlightSkill($abilityData)) $displayType = "block";
-			
+		
 		$output = "<div class='esovsAbilityBlockList $extraClass' style='display: $displayType;'>\n";
 		
 		if ($this->displayType == "select")
@@ -1426,7 +1654,7 @@ class CEsoViewSkills
 			}
 			
 			if ($baseId == "") $baseId = $ability['abilityId'];
-				
+			
 			$output .= $this->GetSkillContentHtml_AbilityBlock($abilityName, $ability, $ability, false, false, $baseId);
 		}
 		
@@ -1689,7 +1917,7 @@ class CEsoViewSkills
 			
 			if ($skillData['skillId'] > 0)
 			{
-				$abilityData = $this->skillIds[$skillData['skillId']];
+				$abilityData = $this->skills[$skillData['skillId']];
 				
 				$draggable = "true";
 				$skillId = $skillData['skillId'];

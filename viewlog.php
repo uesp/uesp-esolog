@@ -13,7 +13,7 @@ class EsoLogViewer
 	const SHOW_QUERY = true;
 	
 		/* Which PTS version to enable. Blank for none */
-	const ENABLE_PTS_VERSION = "48";
+	const ENABLE_PTS_VERSION = "49";
 	
 		// Must be same as matching value in the log parser
 	const ELV_POSITION_FACTOR = 1000;

@@ -189,6 +189,19 @@ window.ESO_FREE_PASSIVES = {
 		117979 : 1,
 		116095 : 1,
 		117985 : 1,
+		
+		214960 : 1,		// Scribing skills
+		215731 : 1,
+		217061 : 1,
+		217184 : 1,
+		217228 : 1,
+		220549 : 1,
+		217872 : 1,
+		217462 : 1,
+		222678 : 1,
+		217630 : 1,
+		220541 : 1,
+		217699 : 1,
 };
 
 
@@ -566,7 +579,7 @@ window.GetEsoSkillTooltipHtml = function(skillData)
 	}
 	
 	if (maxRank > 1 && realRank > 0) rankStr = " " + GetRomanNumeral(realRank);
-	if (skillData['isCrafted']) rankStr = "";
+	if (skillData['isCrafted'] == 1) rankStr = "";
 	
 	if (minRange > 0 && maxRange > 0)
 		range = (minRange/100) + " - " + (maxRange/100) + " meters"
@@ -862,9 +875,12 @@ window.OnEsoSkillLineTitleClick = function (event, noUpdate)
 }
 
 
-window.OnEsoSkillBlockPlusClick = function (event)
+window.OnEsoSkillBlockPlusClick = function (e)
 {
 	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
 }
 
 
@@ -904,6 +920,9 @@ window.OnEsoSkillBlockPlusSelectClick = function (e)
 window.OnEsoSkillBlockMinusSelectClick = function (event)
 {
 	$(this).parent().next('.esovsAbilityBlockList').slideToggle();
+	e.preventDefault();
+	e.stopPropagation();
+	return false;
 }
 
 
@@ -3901,25 +3920,32 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 {
 	var skillData = g_SkillsData[skillId];
 	if (skillData == null) return "";
+	var skillData1 = skillData;
 	
 	var passive = skillData['isPassive'];
 	if (passive != 0) return "";
 	
+	if (skillData['useCraftedDesc'] && skillData['craftAbilityId'])
+	{
+		var repData = g_SkillsData[skillData['craftAbilityId']];
+		if (repData) skillData1 = repData;
+	}
+	
 	if (inputValues == null) inputValues = g_LastSkillInputValues;
 	
-	var mechanics = skillData['mechanic'].split(',');
-	var costs = skillData['cost'].split(',');
-	var chargeFreqs = skillData['chargeFreq'].split(',');
+	var mechanics = skillData1['mechanic'].split(',');
+	var costs = skillData1['cost'].split(',');
+	var chargeFreqs = skillData1['chargeFreq'].split(',');
 	var mechanicTimes;
 	var costTimes;
 	
-	if (skillData['mechanicTime'] != null)
-		mechanicTimes = skillData['mechanicTime'].split(',');
+	if (skillData1['mechanicTime'] != null)
+		mechanicTimes = skillData1['mechanicTime'].split(',');
 	else
 		mechanicTimes = mechanics;
 	
-	if (skillData['costTime'] != null)
-		costTimes = skillData['costTime'].split(',');
+	if (skillData1['costTime'] != null)
+		costTimes = skillData1['costTime'].split(',');
 	else
 		costTimes = costs;
 	
@@ -3934,7 +3960,18 @@ window.ComputeEsoSkillCostOld = function (maxCost, level, inputValues, skillData
 		var baseCostTime = parseInt(costTimes[i]);
 		var chargeFreq = parseInt(chargeFreqs[i]) / 1000;
 		
-		if (mechanic != thisMechanic && mechanicTime != thisMechanic) continue;
+		if (mechanic != thisMechanic && mechanicTime != thisMechanic) 
+		{
+				// Fixup for Banner Bearer + Immobilize
+			if (skillId == 217699)
+			{
+				if (!(thisMechanic == 1 && (mechanic == 32 || mechanicTime == 32))) continue;
+			}
+			else
+			{
+				continue;
+			}
+		}
 		
 		if (isNaN(baseCost)) baseCost = 0;
 		if (isNaN(baseCostTime)) baseCostTime = 0;
@@ -4968,7 +5005,7 @@ window.UpdateAllEsoSkillPoints = function()
 	
 	g_EsoSkillPointsUsed = 0;
 	
-	$("#esovsSkillContent .esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase").not(".esovsAbilityBlockSelect").each(OnEsoSkillUpdatePoints);
+	$("#esovsSkillContent .esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase").not(".esovsAbilityBlockSelect").not(".esovsCraftedAbility").each(OnEsoSkillUpdatePoints);
 	
 	UpdateEsoSkillTotalPoints();
 	g_EsoSkillUpdateEnable = true;
@@ -5018,6 +5055,50 @@ window.UpdateEsoSkillPassiveData = function (origAbilityId, abilityId, rank, rec
 	g_EsoSkillPassiveData[origAbilityId].skillDesc = GetEsoCurrentSkillDescription(abilityId);
 	
 	if (g_EsoSkillUpdateEnable) UpdateEsoSkillTotalPoints();
+	return true;
+}
+
+
+window.UpdateEsoAllCraftedSkillActiveData = function ()
+{
+	$(".esovsCraftedAbility").each(function() {
+		var $this = $(this);
+		var skillId = parseInt($this.attr("skillid"));
+		UpdateEsoCraftedSkillActiveData(skillId);
+	});
+}
+
+
+window.UpdateEsoCraftedSkillActiveData = function (abilityId)
+{
+	abilityId = parseInt(abilityId);
+	if (abilityId <= 0 || abilityId == null) return false;
+	
+	var baseAbilityId = (abilityId < 10000000) ? (abilityId + 40000000) : abilityId;
+	baseAbilityId = abilityId;
+	
+	if (g_EsoSkillActiveData[baseAbilityId] == null)
+	{
+		g_EsoSkillActiveData[baseAbilityId] = {};
+		g_EsoSkillActiveData[baseAbilityId].abilityType = "Active";
+	}
+	
+	g_EsoSkillActiveData[baseAbilityId].morph = 0;
+	g_EsoSkillActiveData[baseAbilityId].rank = 1;
+	g_EsoSkillActiveData[baseAbilityId].abilityId = abilityId;
+	g_EsoSkillActiveData[baseAbilityId].baseAbilityId = baseAbilityId;
+	
+	var skillData = g_SkillsData[baseAbilityId];
+	
+	if (skillData)
+	{
+		g_EsoSkillActiveData[baseAbilityId].skillDesc = skillData['craftDesc'];
+	}
+	else
+	{
+		g_EsoSkillActiveData[baseAbilityId].skillDesc = "";
+	}
+	
 	return true;
 }
 
@@ -5154,12 +5235,12 @@ window.PurchaseEsoSkill = function(abilityId)
 	var passiveIconDisplayBlock = displayBlock.children(".esovsAbilityBlockPassiveIcon");
 	var iconDisplayBlock = displayBlock.children(".esovsAbilityBlockIcon");
 	var titleDisplayBlock = displayBlock.children(".esovsAbilityBlockTitle");
-		
+	
 	var rank = skillElement.attr("rank");
 	var morph = skillElement.attr("morph");
 	var origAbilityId = displayBlock.attr("origskillid");
 	var abilityType = skillElement.attr("abilitytype");
-		
+	
 	var origRank = displayBlock.attr("rank");
 	var origSkillId1 = displayBlock.attr("skillid");
 	var origSkillId2 = displayBlock.attr("origskillid");
@@ -5234,7 +5315,8 @@ window.RemovePurchasedEsoClassSkills = function ()
 {
 	var skillElements = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skilltype='Class']").
-				not(".esovsAbilityBlockNotPurchase");
+				not(".esovsAbilityBlockNotPurchase").
+				not(".esovsCraftedAbility");
 	
 	var initialUpdate = g_EsoSkillUpdateEnable;
 	g_EsoSkillUpdateEnable = false;	
@@ -5318,18 +5400,19 @@ window.RemovePurchasedEsoRaceSkills = function()
 {
 	var skillElements = $(".esovsSkillContentBlock").
 				children(".esovsAbilityBlock[skilltype='Racial']").
-				not(".esovsAbilityBlockNotPurchase");
+				not(".esovsAbilityBlockNotPurchase").
+				not(".esovsCraftedAbility");
 	
 	var initialUpdate = g_EsoSkillUpdateEnable;
 	
 	g_EsoSkillUpdateEnable = false;
-
+	
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		ResetEsoPurchasedSkill(skillId);
 	});
 	
-	RemoveEsoRaceSkillsFromPassiveData();	
+	RemoveEsoRaceSkillsFromPassiveData();
 	
 	g_EsoSkillUpdateEnable = initialUpdate;
 	
@@ -5350,13 +5433,13 @@ window.EnableEsoRaceSkills = function(raceName, purchaseAll)
 	$(".esovsSkillLineTitleHighlight").removeClass("esovsSkillLineTitleHighlight");
 	$(".esovsSkillContentBlock").hide();
 	$(".esovsSkillType").hide();
-
+	
 	raceElement.addClass("esovsSkillLineTitleHighlight");
 	
 	raceId = raceId.replace(/ /g, "_");
 	
 	var skillElements = $("#" + raceId).children(".esovsAbilityBlock");
-
+	
 	skillElements.each(function() {
 		var skillId = $(this).attr("skillid");
 		var lastSkill = $(this).next(".esovsAbilityBlockList").children(".esovsAbilityBlock").last();
@@ -5364,7 +5447,7 @@ window.EnableEsoRaceSkills = function(raceName, purchaseAll)
 		
 		if (purchaseAll || ESO_FREE_PASSIVES[lastSkillId]) PurchaseEsoSkill(lastSkillId);
 	});	
-
+	
 	classElement.next(".esovsSkillType").show();
 	raceElement.show();
 	raceElement.removeClass("esovsSkillLineDisabled");
@@ -5997,6 +6080,7 @@ window.OnEsoSkillReset = function (e)
 	
 	UpdateEsoSkillBarData();
 	UpdateEsoSkillTotalPoints();
+	UpdateEsoAllCraftedSkillActiveData();
 }
 
 
@@ -6020,7 +6104,7 @@ window.OnEsoSkillLinePurchaseAll = function ()
 
 window.OnEsoSkillLineResetAll = function ()
 {
-	var skillElements = $(this).parent().children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
+	var skillElements = $(this).parent().children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase").not(".esovsCraftedAbility");
 	var skillType = $(this).parent(".esovsSkillContentBlock").attr("skilltype");
 	
 	g_EsoSkillUpdateEnable = false;
@@ -6033,6 +6117,7 @@ window.OnEsoSkillLineResetAll = function ()
 	if (skillType == "Racial") RemoveEsoRaceSkillsFromPassiveData();
 	
 	UpdateEsoSkillTotalPoints();
+	UpdateEsoAllCraftedSkillActiveData();
 	g_EsoSkillUpdateEnable = true;
 }
 
@@ -6041,7 +6126,7 @@ window.EsoResetSkillLine = function (skillLine, noUpdate)
 {
 	var skillLineId = CreateEsoSkillLineId(skillLine);
 	var skillLineBlock = $("#esovsSkillContent").children("#" + skillLineId);
-	var skillElements = skillLineBlock.children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase");
+	var skillElements = skillLineBlock.children(".esovsAbilityBlock").not(".esovsAbilityBlockNotPurchase").not(".esovsCraftedAbility");
 	var skillType = skillLineBlock.attr("skilltype");
 	
 	if (noUpdate !== true) g_EsoSkillUpdateEnable = false;
@@ -6246,6 +6331,7 @@ window.MakeEsoCraftedSkillHtml = function(craftedSkill, skillData)
 window.AddEsoCraftedSkills = function()
 {
 	if (window.g_EsoCraftedSkills == null) return;
+	//console.log("AddEsoCraftedSkills");
 	
 	$(".esovsCraftedAbility").remove();
 	
@@ -6268,20 +6354,31 @@ window.AddEsoCraftedSkills = function()
 		
 		var html = MakeEsoCraftedSkillHtml(craftedSkill, skillData)
 		
-		console.log("AddEsoCraftedSkills: Done!", craftedSkill, skillData, skillBlock, firstSkillBlock, html);
+		//console.log("AddEsoCraftedSkills: Done!", craftedSkill, skillData, skillBlock, firstSkillBlock, html);
 		
 		firstSkillBlock.before(html);
 	}
 	
-	$('.esovsCraftedAbility.esovsAbilityBlock').click(OnEsoSkillBlockClick);
-	$('.esovsCraftedAbility .esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
-	$('.esovsCraftedAbility .esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
-	$('.esovsCraftedAbility .esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
-	$(".esovsCraftedAbility .esovsAbilityBlockSelect").click(OnAbilityBlockPurchase);
+	AddEsoCraftedSkillEvents(true);
+}
+
+
+window.AddEsoCraftedSkillEvents = function(addAll)
+{
+	//console.log("AddEsoCraftedSkillEvents", addAll);
 	
-	$(".esovsCraftedAbility .esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
-	$(".esovsCraftedAbility .esovsAbilityBlockPassiveIcon").hover(OnHoverEsoPassiveIcon, OnLeaveEsoIcon);
-	$(".esovsCraftedAbility .esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
+	if (addAll === true)
+	{
+		$('.esovsCraftedAbility.esovsAbilityBlock').click(OnEsoSkillBlockClick);
+		$('.esovsCraftedAbility .esovsAbilityBlockPlusSelect').click(OnEsoSkillBlockPlusSelectClick);
+		$('.esovsCraftedAbility .esovsAbilityBlockMinusSelect').click(OnEsoSkillBlockMinusSelectClick);
+		$('.esovsCraftedAbility .esovsAbilityBlockPlus').click(OnEsoSkillBlockPlusClick);
+		$(".esovsCraftedAbility .esovsAbilityBlockSelect").click(OnAbilityBlockPurchase);
+		
+		$(".esovsCraftedAbility .esovsAbilityBlockIcon").hover(OnHoverEsoIcon, OnLeaveEsoIcon);
+		$(".esovsCraftedAbility .esovsAbilityBlockPassiveIcon").hover(OnHoverEsoPassiveIcon, OnLeaveEsoIcon);
+		$(".esovsCraftedAbility .esovsSkillBarIcon").hover(OnHoverEsoSkillBarIcon, OnLeaveEsoSkillBarIcon);
+	}
 	
 	$(".esovsAbilityScript").click(OnEsoScriptBlockClick);
 	
@@ -6315,7 +6412,7 @@ window.OnEsoScriptClassListChange = function(e)
 	
 	$parent.siblings(".esovsAbilityScript").removeClass("esovsAbilityScriptSelected").removeClass("esovsAbilityScriptToggled");
 	$parent.addClass("esovsAbilityScriptSelected");
-	$parent.siblings(".esovsAbilityScript").slideUp();
+	$parent.siblings(".esovsAbilityScript").not(".esovsAbilityScriptSelected").slideUp();
 	
 	var craftedSkill = g_EsoCraftedSkills[craftedId];
 	
@@ -6378,6 +6475,8 @@ window.OnEsoScriptBlockClick = function(e)
 		EsoUpdateSkillTooltip();
 		UpdateEsoSkillCoefData();
 	}
+	
+	if (g_EsoSkillUpdateEnable)	$(document).trigger("EsoSkillUpdate");
 };
 
 
@@ -6419,11 +6518,15 @@ window.UpdateEsoCraftedSkillData = function(craftedSkill)
 		skillData['craftDesc1'] = desc1;
 		skillData['craftDesc2'] = desc2;
 		skillData['craftDesc3'] = desc3;
+		skillData['craftDesc'] = craftedSkill['description'];
 		skillData['craftClassId'] = classId;
 		skillData['craftId'] = craftedSkill['id'];
 		skillData['scriptId1'] = craftedSkill['scriptId1'];
 		skillData['scriptId2'] = craftedSkill['scriptId2'];
 		skillData['scriptId3'] = craftedSkill['scriptId3'];
+		skillData['scriptAbilityId1'] = scriptData1['abilityId'];
+		skillData['scriptAbilityId2'] = scriptData2['abilityId'];
+		skillData['scriptAbilityId3'] = scriptData3['abilityId'];
 	}
 	
 	if (skillData1)
@@ -6434,13 +6537,18 @@ window.UpdateEsoCraftedSkillData = function(craftedSkill)
 		skillData1['craftDesc1'] = desc1;
 		skillData1['craftDesc2'] = desc2;
 		skillData1['craftDesc3'] = desc3;
+		skillData1['craftDesc'] = craftedSkill['description'];
 		skillData1['craftClassId'] = classId;
 		skillData1['craftId'] = craftedSkill['id'];
 		skillData1['scriptId1'] = craftedSkill['scriptId1'];
 		skillData1['scriptId2'] = craftedSkill['scriptId2'];
 		skillData1['scriptId3'] = craftedSkill['scriptId3'];
+		skillData1['scriptAbilityId1'] = scriptData1['abilityId'];
+		skillData1['scriptAbilityId2'] = scriptData2['abilityId'];
+		skillData1['scriptAbilityId3'] = scriptData3['abilityId'];
 	}
 	
+	UpdateEsoCraftedSkillActiveData(craftedSkill.abilityId);
 	return craftedSkill['description'];
 };
 
@@ -6662,10 +6770,13 @@ window.esovsOnDocReady = function ()
 	$("#esovsInputDefault").on("click", OnEsoInputFormDefault);
 	
 		//TODO: Remove once implemented server side
-	AddEsoCraftedSkills();
+	//AddEsoCraftedSkills();
+	AddEsoCraftedSkillEvents();
 	
 	UpdateEsoAllSkillDescription();
 	UpdateEsoAllSkillCost();
+	
+	UpdateEsoAllCraftedSkillActiveData();
 	
 	OnLeaveEsoSkillBarIcon();
 }

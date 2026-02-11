@@ -929,7 +929,7 @@ class CEsoViewSkillCoef
 		if ($this->outputType == "HTML") return $this->OutputHtml();
 		if ($this->outputType == "CSV")  return $this->OutputCsv();
 		
-		$this->reportError("Unknown output type!");
+		$this->ReportError("Unknown output type!");
 		return false;
 		
 	}

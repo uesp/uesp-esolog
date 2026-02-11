@@ -41,6 +41,52 @@ class CEsoItemLinkImage
 	
 	const MAXSETINDEX = 12;
 	
+	public $LANG_TEXTS = [
+		"fr" => [
+			"items" => "objets",
+			"ITEMS" => "OBJETS",
+			"LEVEL" => "NIVEAU",
+			"Level" => "Niveau",
+			"Food" => "Nourriture",
+			"Unique" => "Unique",
+			"CP" => "PC",
+			"PART OF THE" => ("ÉLÉMENT DE L'ENSEMBLE"),
+			"SET" => "",	//Special case
+			"ARMOR" => "ARMURE",
+			"DAMAGE" => "DOMMAGE",
+			"Unknown Item" => "Objet Inconnu",
+			"No item found matching" => ("Aucun article trouvé correspondant"),
+		],
+	];
+	
+	
+	public function GetLangText($text)
+	{
+		if ($this->LANG_TEXTS[$this->lang] === null) return $text;
+		if ($this->LANG_TEXTS[$this->lang][$text] !== null) return utf8_encode($this->LANG_TEXTS[$this->lang][$text]);
+		return $text;
+	}
+	
+	
+	public function IncludeLangFile()
+	{
+		global $ESO_ITEMSTYLE_TEXTS;
+		global $ESO_ITEMTYPE_TEXTS;
+		global $ESO_ITEMSPECIALTYPE_TEXTS;
+		global $ESO_ITEMSPECIALTYPE_RAW_TEXTS;
+		global $ESO_ITEMDISPLAYCATEGORY_TEXTS;
+		global $ESO_ITEMTRAIT15_TEXTS;
+		global $ESO_ITEMARMORTYPE_TEXTS;
+		global $ESO_ITEMWEAPONTYPE_TEXTS;
+		global $ESO_ITEMEQUIPTYPE_TEXTS;
+		global $ESO_ITEMBINDTYPE_TEXTS;
+		global $ESO_QUESTTYPE_TEXTS;
+		global $ESO_CRAFTTYPES;
+		
+		if ($this->lang == "") return; 
+		include_once("esoCommon" . $this->lang . ".php");
+	}
+	
 	static public $ESOIL_ERROR_ITEM_DATA = array(
 			"name" => "Unknown",
 			"itemId" => 0,
@@ -125,6 +171,7 @@ class CEsoItemLinkImage
 	public $enchantFactor = 0;
 	public $weaponTraitFactor = 0;
 	public $version = "";
+	public $lang = "";	//Blank for english
 	public $useUpdate10Display = true;
 	public $noCache = false;
 	public $showSummary = false;
@@ -350,6 +397,28 @@ class CEsoItemLinkImage
 		if (array_key_exists('version', $this->inputParams)) $this->version = urldecode($this->inputParams['version']);
 		if (array_key_exists('v', $this->inputParams)) $this->version = urldecode($this->inputParams['v']);
 		
+		if (array_key_exists('lang', $this->inputParams)) $lang = strtolower(urldecode($this->inputParams['lang']));
+		
+			//Whitelist languages
+		switch ($lang)
+		{
+			case "en":
+				$this->lang = "";
+				break;
+			case "fr":
+				$this->lang = "fr";
+				break;
+			case "de":	
+			case "es":
+			case "jp":
+			case "ru":
+			case "zh":	//Not yet supported
+				$this->lang = "";
+				break;
+		};
+		
+		$this->IncludeLangFile();
+		
 		if (array_key_exists('extradata', $this->inputParams))
 		{
 			$extraData = explode(":", $this->inputParams['extradata']);
@@ -426,6 +495,9 @@ class CEsoItemLinkImage
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!");
 		
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
+		
 		UpdateEsoPageViews("itemLinkImageViews");
 		
 		$this->initDatabaseRead = true;
@@ -453,8 +525,8 @@ class CEsoItemLinkImage
 	
 	private function LoadSetItemRecord()
 	{
-		$setTable = "setSummary" . $this->GetTableSuffix();
-		$summaryTable = "minedItemSummary" . $this->GetTableSuffix();
+		$setTable = "setSummary" . $this->lang . $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" . $this->lang . $this->GetTableSuffix();
 		
 		$safeSet = $this->db->real_escape_string($this->itemSet);
 		
@@ -476,7 +548,7 @@ class CEsoItemLinkImage
 		
 		if (!$this->setItemData)
 		{
-			$safeSet = strtolower($this->itemSet);
+			$safeSet = mb_strtolower($this->itemSet);
 			$safeSet = str_replace("'", "", $safeSet);
 			$safeSet = str_replace(",", "", $safeSet);
 			$safeSet = str_replace(" ", "-", $safeSet);
@@ -560,21 +632,19 @@ class CEsoItemLinkImage
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
 		$query = "";
 		
-		$minedTable = "minedItem" . $this->GetTableSuffix();
-		$summaryTable = "minedItemSummary" . $this->GetTableSuffix();
+		$minedTable = "minedItem" . $this->lang . $this->GetTableSuffix();
+		$summaryTable = "minedItemSummary" . $this->lang . $this->GetTableSuffix();
 		
 		if ($this->itemLevel >= 1)
 		{
 			if ($this->itemLevel <= 0) return $this->ReportError("ERROR: Missing or invalid item Level specified (1-64)!");
 			if ($this->itemQuality < 0) return $this->ReportError("ERROR: Missing or invalid item Quality specified (1-5)!");
-			//$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->itemId} AND level={$this->itemLevel} AND quality={$this->itemQuality} LIMIT 1;";
-				$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.level='{$this->itemLevel}' AND $minedTable.quality='{$this->itemQuality}' LIMIT 1;";
+			$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.level='{$this->itemLevel}' AND $minedTable.quality='{$this->itemQuality}' LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Level={$this->itemLevel}, Quality={$this->itemQuality}";
 		}
 		else
 		{
 			if ($this->itemIntType < 0) return $this->ReportError("ERROR: Missing or invalid item internal type specified (1-400)!");
-			//$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 			$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 			$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 		}
@@ -587,7 +657,6 @@ class CEsoItemLinkImage
 			if ($this->itemLevel <= 0 && $this->itemIntType == 1)
 			{
 				$this->itemIntType = 2;
-				//$query = "SELECT * FROM minedItem".$this->GetTableSuffix()." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
 				$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
 				
@@ -598,11 +667,10 @@ class CEsoItemLinkImage
 			{
 				$this->itemIntType = 1;
 				$this->itemIntLevel = 1;
-			
-				//$query = "SELECT * FROM minedItem". $this->GetTableSuffix() ." WHERE itemId={$this->itemId} AND internalLevel={$this->itemIntLevel} AND internalSubtype={$this->itemIntType} LIMIT 1;";
+				
 				$query = "SELECT $summaryTable.*, $minedTable.* FROM $minedTable LEFT JOIN $summaryTable ON $summaryTable.itemId=$minedTable.itemId WHERE $minedTable.itemId='{$this->itemId}' AND $minedTable.internalLevel='{$this->itemIntLevel}' AND $minedTable.internalSubtype='{$this->itemIntType}' LIMIT 1;";
 				$this->itemErrorDesc = "id={$this->itemId}, Internal Level={$this->itemIntLevel}, Internal Type={$this->itemIntType}";
-			
+				
 				$result = $this->db->query($query);
 				if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
 			}
@@ -622,18 +690,18 @@ class CEsoItemLinkImage
 		{
 			$highestSetDesc = "";
 			$row['setMaxEquipCount'] = 0;
-				
+			
 			if (array_key_exists('setBonusDesc1', $row) && $row['setBonusDesc1'] != "") $highestSetDesc = $row['setBonusDesc1'];
 			if (array_key_exists('setBonusDesc2', $row) && $row['setBonusDesc2'] != "") $highestSetDesc = $row['setBonusDesc2'];
 			if (array_key_exists('setBonusDesc3', $row) && $row['setBonusDesc3'] != "") $highestSetDesc = $row['setBonusDesc3'];
 			if (array_key_exists('setBonusDesc4', $row) && $row['setBonusDesc4'] != "") $highestSetDesc = $row['setBonusDesc4'];
 			if (array_key_exists('setBonusDesc5', $row) && $row['setBonusDesc5'] != "") $highestSetDesc = $row['setBonusDesc5'];
-		
+			
 			if ($highestSetDesc != "")
 			{
 				$row['setMaxEquipCount'] = 1;
 				$matches = array();
-				$matchResult = preg_match("/\(([0-9]+) items\)/", $highestSetDesc, $matches);
+				$matchResult = preg_match("/\(([0-9]+) " . $this->GetLangText("items") . "\)/", $highestSetDesc, $matches);
 				if ($matchResult) $row['setMaxEquipCount'] = (int) $matches[1];
 			}
 		}
@@ -646,6 +714,7 @@ class CEsoItemLinkImage
 		$this->itemLink = $row['link'];
 		
 		$row['name'] = preg_replace("#\|.*#", "", $row['name']);
+		$row['name'] = preg_replace('#Â $#', "", $row['name']);
 		
 		if ($row['weaponType'] == 14) $row['armorRating'] += $this->extraArmor;
 		
@@ -810,17 +879,19 @@ class CEsoItemLinkImage
 	{
 		if ($this->itemRecord['maxCharges'] > 0) return true;
 		
+		$table = "minedItem" . $this->lang . $this->GetTableSuffix();
+		
 		if ($this->itemLevel >= 1)
 		{
 			$level = $this->itemLevel;
 			$quality = $this->itemQuality;
-			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND level=$level AND quality=$quality LIMIT 1;";
+			$query = "SELECT maxCharges FROM $table WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND level=$level AND quality=$quality LIMIT 1;";
 		}
 		else
 		{
 			$intlevel = $this->itemIntLevel;
 			$subtype = $this->itemIntType;
-			$query = "SELECT maxCharges FROM minedItem{$this->GetTableSuffix()} WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND internalLevel=$intlevel AND internalSubtype=$type LIMIT 1;";
+			$query = "SELECT maxCharges FROM $table WHERE itemId=".self::ESOIL_ENCHANT_ITEMID." AND internalLevel=$intlevel AND internalSubtype=$type LIMIT 1;";
 		}
 		
 		$this->lastQuery = $query;
@@ -934,6 +1005,8 @@ class CEsoItemLinkImage
 		$effectIndex = intval($effectIndex);
 		if ($effectIndex <= 0 || $effectIndex > 127) return true;
 		
+		$table = "minedItem" . $this->lang . $this->GetTableSuffix();
+		
 		if ($loadPotion)
 			$itemId = self::ESOIL_POTION_MAGICITEMID;
 		else
@@ -943,25 +1016,25 @@ class CEsoItemLinkImage
 		{
 			$intlevel = $this->inputIntLevel;
 			$subtype = $this->inputIntType;
-			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM $table WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 		else if ($this->itemIntLevel >= 0 && $this->itemIntType >= 0)
 		{
 			$intlevel = $this->itemIntLevel;
 			$subtype = $this->itemIntType;
-			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM $table WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 		else if ($this->itemLevel >= 1)
 		{
 			$level = $this->itemLevel;
 			$quality = $this->itemQuality;
-			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM $table WHERE itemId=$itemId AND level=$level AND quality=$quality AND potionData=$effectIndex LIMIT 1;";
 		}
 		else
 		{
 			$intlevel = 1;
 			$subtype = 1;
-			$query = "SELECT traitAbilityDesc FROM minedItem{$this->GetTableSuffix()} WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
+			$query = "SELECT traitAbilityDesc FROM $table WHERE itemId=$itemId AND internalLevel=$intlevel AND internalSubtype=$subtype AND potionData=$effectIndex LIMIT 1;";
 		}
 		
 		$this->lastQuery = $query;
@@ -1055,19 +1128,19 @@ class CEsoItemLinkImage
 		$this->itemRecord['setMaxEquipCount'] = 0;
 		$numSetItems = 0;
 	
-		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc1'], $matches);
+		$result = preg_match("#\(([0-9]+) " .  $this->GetLangText("items") . "\)#", $this->itemRecord['setBonusDesc1'], $matches);
 		if ($result) $numSetItems = max($numSetItems, $matches[1]);
 	
-		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc2'], $matches);
+		$result = preg_match("#\(([0-9]+) " .  $this->GetLangText("items") . "\)#", $this->itemRecord['setBonusDesc2'], $matches);
 		if ($result) $numSetItems = max($numSetItems, $matches[1]);
 	
-		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc3'], $matches);
+		$result = preg_match("#\(([0-9]+) " .  $this->GetLangText("items") . "\)#", $this->itemRecord['setBonusDesc3'], $matches);
 		if ($result) $numSetItems = max($numSetItems, $matches[1]);
 	
-		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc4'], $matches);
+		$result = preg_match("#\(([0-9]+) " .  $this->GetLangText("items") . "\)#", $this->itemRecord['setBonusDesc4'], $matches);
 		if ($result) $numSetItems = max($numSetItems, $matches[1]);
 	
-		$result = preg_match("#\(([0-9]+) items\)#", $this->itemRecord['setBonusDesc5'], $matches);
+		$result = preg_match("#\(([0-9]+) " .  $this->GetLangText("items") . "\)#", $this->itemRecord['setBonusDesc5'], $matches);
 		if ($result) $numSetItems = max($numSetItems, $matches[1]);
 	
 		$this->itemRecord['setMaxEquipCount'] = $numSetItems;
@@ -1094,8 +1167,9 @@ class CEsoItemLinkImage
 	
 	private function LoadItemSummaryData()
 	{
+		$table = "minedItemSummary" . $this->lang . $this->GetTableSuffix();
 		if ($this->itemId <= 0) return $this->ReportError("ERROR: Missing or invalid item ID specified (1-65000)!");
-		$query = "SELECT * FROM minedItemSummary".$this->GetTableSuffix()." WHERE itemId={$this->itemId};";
+		$query = "SELECT * FROM $table WHERE itemId={$this->itemId};";
 	
 		$result = $this->db->query($query);
 		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
@@ -1134,7 +1208,7 @@ class CEsoItemLinkImage
 	{
 		if ($this->enchantId1 > 0 && $this->enchantIntLevel1 > 0 && $this->enchantIntType1 > 0)
 		{
-			$item = LoadEsoMinedItemExact($this->db, $this->enchantId1, $this->enchantIntLevel1, $this->enchantIntType1, $this->GetTableSuffix());
+			$item = LoadEsoMinedItemExact($this->db, $this->enchantId1, $this->enchantIntLevel1, $this->enchantIntType1, $this->GetTableSuffix(), $this->lang);
 			if ($item) $this->enchantRecord1 = $item;
 		}
 		
@@ -1159,7 +1233,7 @@ class CEsoItemLinkImage
 		$lineBreak = array_key_exists('br', $lineData);
 		
 		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|trank #s", "VR ", $lineData['text']);
-		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):champion_icon_[0-9]+\.dds\|t#s", "CP", $newText);
+		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):champion_icon_[0-9]+\.dds\|t#s", $this->GetLangText("CP"), $newText);
 		                         //"|t24:24:champion_icon_24.dds|t"
 		$newText = preg_replace("#\|t([0-9%]*):([0-9%]*):([^\|]*)\|t#s", "", $newText);
 		
@@ -1617,7 +1691,7 @@ class CEsoItemLinkImage
 			case 2:
 				return GetEsoItemEquipTypeText($this->itemRecord['equipType']);
 			case 4:
-				return "Food";
+				return $this->GetLangText("Food");
 			default:
 				return GetEsoItemTypeText($this->itemRecord['type']);
 		}
@@ -1629,6 +1703,7 @@ class CEsoItemLinkImage
 		$type = $this->itemRecord['type'];
 		$craftType = $this->itemRecord['craftType'];
 		$specialType = $this->itemRecord['specialType'];
+		$unique = $this->itemRecord['isUnique'];
 		
 		if ($type <= 0) 
 		{
@@ -1664,6 +1739,10 @@ class CEsoItemLinkImage
 		else if ($craftType > 0)
 		{
 			return "" . GetEsoItemCraftTypeText($craftType) . "";
+		}
+		else if ($unique)
+		{
+			return "(" . $this->GetLangText("Unique") . ")";
 		}
 	
 		return "";
@@ -1745,7 +1824,7 @@ class CEsoItemLinkImage
 		else
 		{
 			$imageFile = "";
-			$label = "LEVEL ";
+			$label = $this->GetLangText("LEVEL") . " ";
 			$levelText = $level;
 		}
 		
@@ -1778,7 +1857,7 @@ class CEsoItemLinkImage
 			$level = $this->itemRecord['level'];
 			
 			$printData = array();
-			$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
+			$this->AddPrintData($printData, $this->GetLangText("LEVEL") . " ", $this->printOptionsMedBeige);
 			$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
 			
 			$x = self::ESOIL_IMAGE_WIDTH/2;
@@ -1793,7 +1872,7 @@ class CEsoItemLinkImage
 		if ($level > 50) $level = 50;
 		
 		$printData = array();
-		$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $this->GetLangText("LEVEL") . " ", $this->printOptionsMedBeige);
 		$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
 		
 		$x = self::ESOIL_IMAGE_WIDTH/2;
@@ -1911,7 +1990,7 @@ class CEsoItemLinkImage
 			if ($level == "1-CP160") $level = "1 - CP160";
 			
 			$printData = array();
-			$this->AddPrintData($printData, "LEVEL ", $this->printOptionsMedBeige);
+			$this->AddPrintData($printData, $this->GetLangText("LEVEL") . " ", $this->printOptionsMedBeige);
 			$this->AddPrintData($printData, $level, $this->printOptionsLargeWhite);
 			
 			$x = self::ESOIL_IMAGE_WIDTH/2;
@@ -1925,10 +2004,10 @@ class CEsoItemLinkImage
 		$cpImage = imagecreatefrompng($imageFile);
 		
 		$printData = array();
-		$this->AddPrintData($printData, "CP ", $this->printOptionsMedBeige);
+		$this->AddPrintData($printData, $this->GetLangText("CP") . " ", $this->printOptionsMedBeige);
 		$this->AddPrintData($printData, $cp, $this->printOptionsLargeWhite);
 		
-		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, "CP ");
+		$extents1 = $this->GetTextExtents($this->medFontSize, self::ESOIL_BOLDFONT_FILE, $this->GetLangText("CP") . " ");
 		$extents2 = $this->GetTextExtents($this->bigFontSize, self::ESOIL_BOLDFONT_FILE, $cp);
 		$totalWidth = $extents1[0] + $extents2[0];
 		
@@ -2004,11 +2083,11 @@ class CEsoItemLinkImage
 			case 1:
 				if ($this->itemRecord['equipType'] == 7) // shield
 				{
-					$label = "ARMOR ";
+					$label = $this->GetLangText("ARMOR") . " ";
 					$valueText = $this->itemRecord['armorRating'];
 				}
 				else {	//weapon
-					$label = "DAMAGE ";
+					$label = $this->GetLangText("DAMAGE") . " ";
 					$valueText = $this->itemRecord['weaponPower'];
 				}
 				break;
@@ -2020,7 +2099,7 @@ class CEsoItemLinkImage
 					return;
 				}
 				
-				$label = "ARMOR ";
+				$label = $this->GetLangText("ARMOR") . " ";
 				$valueText = $this->itemRecord['armorRating'];
 				break;
 			default:
@@ -2286,7 +2365,7 @@ class CEsoItemLinkImage
 		
 		if ($this->enchantRecord1 != null)
 		{
-			$enchantName = strtoupper($this->enchantRecord1['enchantName']);
+			$enchantName = mb_strtoupper($this->enchantRecord1['enchantName']);
 			$enchantDesc = $this->ModifyEnchantDesc($this->enchantRecord1['enchantDesc'], false);
 				
 			if ($enchantDesc != "")
@@ -2298,7 +2377,7 @@ class CEsoItemLinkImage
 		
 		if ($this->enchantRecord2 != null)
 		{
-			$enchantName = strtoupper($this->enchantRecord2['enchantName']);
+			$enchantName = mb_strtoupper($this->enchantRecord2['enchantName']);
 			$enchantDesc = $this->ModifyEnchantDesc($this->enchantRecord2['enchantDesc'], false);
 		
 			if ($enchantDesc != "")
@@ -2311,7 +2390,7 @@ class CEsoItemLinkImage
 		
 		if ($this->enchantRecord1 == null && $this->enchantRecord2 == null)
 		{
-			$enchantName = strtoupper($this->itemRecord['enchantName']);
+			$enchantName = mb_strtoupper($this->itemRecord['enchantName']);
 			$enchantDesc = $this->ModifyEnchantDesc($this->itemRecord['enchantDesc'], true);
 			
 			if ($enchantDesc != "")
@@ -2335,7 +2414,7 @@ class CEsoItemLinkImage
 		}
 		else if ($this->itemRecord['type'] == 29)	// Recipes
 		{
-			$ability = strtoupper($this->itemRecord['abilityName']);
+			$ability = mb_strtoupper($this->itemRecord['abilityName']);
 			$abilityDesc = $this->itemRecord['abilityDesc'];
 			if ($abilityDesc == "") return 0;
 		}
@@ -2373,7 +2452,7 @@ class CEsoItemLinkImage
 		}
 		else
 		{
-			$ability = strtoupper($this->itemRecord['abilityName']);
+			$ability = mb_strtoupper($this->itemRecord['abilityName']);
 			$abilityDesc = $this->itemRecord['abilityDesc'];
 			if ($abilityDesc == "") return 0;
 			
@@ -2395,7 +2474,7 @@ class CEsoItemLinkImage
 		if ($trait <= 0) return 0;
 		
 		$printData = array();
-		$this->AddPrintData($printData, strtoupper(GetEsoItemTraitText($trait, $this->version)), $this->printOptionsSmallWhite, array('br' => true));
+		$this->AddPrintData($printData, mb_strtoupper(GetEsoItemTraitText($trait, $this->version)), $this->printOptionsSmallWhite, array('br' => true));
 		
 		$traitDesc = $this->itemRecord['traitDesc'];
 		
@@ -2441,7 +2520,7 @@ class CEsoItemLinkImage
 	{
 		if ($this->itemRecord['traitAbilityDescArray'] == null)
 		{
-			$abilityDesc = strtoupper($this->itemRecord['traitAbilityDesc']);
+			$abilityDesc = mb_strtoupper($this->itemRecord['traitAbilityDesc']);
 			if ($abilityDesc == "") return 0;
 			//$cooldown = ((int) $this->itemRecord['traitCooldown']) / 1000;
 			//$abilityDesc .= " ($cooldown second cooldown)";
@@ -2480,13 +2559,13 @@ class CEsoItemLinkImage
 			/* TODO: Temp fix for potions showing enchantments/sets */
 		if ($this->itemRecord['type'] == 7) return 0;
 		
-		$setName = strtoupper($this->itemRecord['setName']);
+		$setName = mb_strtoupper($this->itemRecord['setName']);
 		if ($setName == "") return 0;
 		$printData = array();
 		
 		$setMaxEquipCount = $this->itemRecord['setMaxEquipCount'];
 		$setBonusCount = (int) $this->itemRecord['setBonusCount'];
-		$setLabel = "PART OF THE $setName SET ($setMaxEquipCount/$setMaxEquipCount ITEMS)";
+		$setLabel = $this->GetLangText("PART OF THE") . " $setName " .$this->GetLangText("SET") . " ($setMaxEquipCount/$setMaxEquipCount " .  $this->GetLangText("ITEMS") . ")";
 		$this->AddPrintData($printData, $setLabel, $this->printOptionsSmallWhite, array('br' => true));
 		
 		for ($i = 1; $i <= self::MAXSETINDEX; $i += 1)
@@ -2535,12 +2614,12 @@ class CEsoItemLinkImage
 	
 		if ($level <= 50)
 		{
-			$minDesc = "level $level";
+			$minDesc = $this->GetLangText("LEVEL") . " $level";
 		}
 		else
 		{
 			$cp = ($level - 50) * 10;
-			$minDesc = "CP$cp";
+			$minDesc = $this->GetLangText("CP") ."$cp";
 		}
 	
 		return $desc;
@@ -2569,7 +2648,7 @@ class CEsoItemLinkImage
 		
 		if ($glyphMaxLevel < 50)
 		{
-			$maxDesc = "level $glyphMaxLevel";
+			$maxDesc = $this->GetLangText("LEVEL") . " $glyphMaxLevel";
 		}
 		else
 		{
@@ -2859,7 +2938,7 @@ class CEsoItemLinkImage
 		imagefill($image, 0, 0, $this->background);
 		imagefilledrectangle ($image, $this->borderWidth, $this->topMargin + $this->borderWidth, self::ESOIL_IMAGE_WIDTH - $this->borderWidth, self::ESOIL_IMAGE_MAXHEIGHT - $this->borderWidth, $this->black);
 		
-		$itemName = strtoupper($itemData['name']);
+		$itemName = mb_strtoupper($itemData['name']);
 		$quality = $itemData['quality'];
 		$this->nameColor = $this->qualityColors[$quality];
 		if ($this->nameColor == null) $this->nameColor = $this->qualityColors[5];
@@ -2985,6 +3064,8 @@ class CEsoItemLinkImage
 			$filename   = $this->itemId . "-" .$this->itemLevel . "-" . $this->itemQuality . "";
 		}
 		
+		$filename .= $this->lang;
+		
 		return $filename;
 	}
 	
@@ -3014,6 +3095,7 @@ class CEsoItemLinkImage
 			$intFilename = $this->itemId . "-" .$this->itemIntLevel . "-" . $this->itemIntType . "";
 		}
 		
+		$filename .= $this->lang;
 		return $intFilename;
 	}
 	

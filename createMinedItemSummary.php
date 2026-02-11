@@ -4,7 +4,8 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "49pts";
+$TABLE_LANG = "";		//Use empty string for english
 
 $MAKE_NAME_TITLECASE = true;
 
@@ -66,8 +67,14 @@ $RANGE_FIELDS = array(
 $dbRead = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($dbRead->connect_error) exit("Could not connect to mysql database!");
 
+$dbRead->query("SET NAMES utf8;");
+$dbRead->query("SET CHARACTER SET utf8;");
+
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
+
+$db->query("SET NAMES utf8;");
+$db->query("SET CHARACTER SET utf8;");
 
 /* Old method
  * 
@@ -162,21 +169,24 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		print("\tWarning: Found null mined\ItemSummary!\n");
 	} */
 	
-	$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
+	$table = "minedItem$TABLE_LANG$TABLE_SUFFIX";
+	$summary = "minedItemSummary$TABLE_LANG$TABLE_SUFFIX";
+	
+	$query = "SELECT * FROM $table WHERE itemId=$id AND internalLevel=1 AND internalSubtype=$MINSUBTYPE LIMIT 1;";
 	$result = $dbRead->query($query);
 	if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 	$minItemData = $result->fetch_assoc();
 	
 	if (!$minItemData)
 	{
-		$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=1 AND internalSubtype=1 LIMIT 1;";
+		$query = "SELECT * FROM $table WHERE itemId=$id AND internalLevel=1 AND internalSubtype=1 LIMIT 1;";
 		$result = $dbRead->query($query);
 		if (!$result) exit("ERROR: Database query error (finding min item)!\n" . $db->error);
 		$minItemData = $result->fetch_assoc();
 		
 		if (!$minItemData)
 		{
-			$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id LIMIT 1;";
+			$query = "SELECT * FROM $table WHERE itemId=$id LIMIT 1;";
 			$result = $dbRead->query($query);
 			if (!$result) exit("ERROR: Database query error (finding min item v2)!\n" . $db->error);
 			$minItemData = $result->fetch_assoc();
@@ -185,21 +195,21 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		if (!$minItemData) continue;
 	}
 	
-	$query = "SELECT * FROM minedItem$TABLE_SUFFIX WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
+	$query = "SELECT * FROM $table WHERE itemId=$id AND internalLevel=50 AND internalSubtype=$MAXSUBTYPE LIMIT 1;";
 	$result = $dbRead->query($query);
 	if (!$result) exit("ERROR: Database query error (finding max item)!\n" . $db->error);
 	$maxItemData = $result->fetch_assoc();
 	
 	if (!$maxItemData)
 	{
-		$query = "SELECT * FROM minedItem$TABLE_SUFFIX where itemId=$id ORDER BY value DESC LIMIT 1;";
+		$query = "SELECT * FROM $table where itemId=$id ORDER BY value DESC LIMIT 1;";
 		$result = $dbRead->query($query);
 		if (!$result) exit("ERROR: Database query error (finding max item v2)!\n" . $db->error);
 		$maxItemData = $result->fetch_assoc();
 	}
 	
 	$allNames = array();
-	$query = "SELECT name from minedItem$TABLE_SUFFIX where itemId=$id;";
+	$query = "SELECT name from $table where itemId=$id;";
 	$result = $dbRead->query($query);
 	if (!$result) exit("ERROR: Database query error (finding all item names)!\n" . $db->error);
 	
@@ -237,6 +247,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		
 		if ($value != "" && ($field == 'name' || $field == 'setName'))
 		{
+			$value = preg_replace('/\^.*$/', "", $value);
 			$value = preg_replace("#Trifling #i", "", $value);
 			if ($MAKE_NAME_TITLECASE) $value = MakeEsoTitleCaseName($value);
 		}
@@ -325,7 +336,7 @@ for ($id = $FIRSTID; $id <= $LASTID; $id++)
 		$querySets[] = "$col=$value";
 	}
 	
-	$query  = "UPDATE minedItemSummary$TABLE_SUFFIX SET " . implode(",", $querySets) . " WHERE itemId='$id';";
+	$query  = "UPDATE $summary SET " . implode(",", $querySets) . " WHERE itemId='$id';";
 	$result = $db->query($query);
 	if (!$result) print("ERROR: Database query error (updating item summary)!\n" . $db->error . "\nQuery=".$query . "\n");
 }

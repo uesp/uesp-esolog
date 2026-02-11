@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "48";
-	const SKILLS_TABLESUFFIX   = "48";
+	const MINEITEM_TABLESUFFIX = "49pts";
+	const SKILLS_TABLESUFFIX   = "49pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -159,6 +159,8 @@ class EsoLogParser
 	public $salesData = null;
 	
 	public $currentLanguage = 'en';
+	public $langDbSuffix = '';
+	public $langLogEntryCount = 0;
 	
 	public $logFilePath = "";
 	public $currentParseLine = 0;
@@ -1496,9 +1498,6 @@ class EsoLogParser
 		
 		$this->startMicroTime = microtime(true);
 		
-		//if (intval(self::MINEITEM_TABLESUFFIX) <= 8) unset(self::$MINEDITEM_FIELDS['tags']);
-		//if (intval(self::MINEITEM_TABLESUFFIX) < 13) unset(self::$MINEDITEM_FIELDS['specialType']);
-		
 		$this->skillTooltips = new CEsoSkillTooltips(self::SKILLS_TABLESUFFIX);
 		
 		$this->salesData = new EsoSalesDataParser(true);
@@ -2245,7 +2244,7 @@ class EsoLogParser
 	
 	public function LoadMinedItemID ($id)
 	{
-		$minedItem = $this->loadRecord('minedItem'.self::MINEITEM_TABLESUFFIX, 'id', $id, self::$MINEDITEM_FIELDS);
+		$minedItem = $this->loadRecord($this->GetMinedItemTableName('minedItem'), 'id', $id, self::$MINEDITEM_FIELDS);
 		if ($minedItem === false) return false;
 		
 		return $minedItem;
@@ -2349,10 +2348,12 @@ class EsoLogParser
 		$intSubtype = intval($link['subtype']);
 		$potionData = intval($link['potionData']);
 		
-		$this->lastQuery = "SELECT * FROM minedItem".self::MINEITEM_TABLESUFFIX." WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype' AND potionData='$potionData';";
+		$table = $this->GetMinedItemTableName('minedItem');
+		
+		$this->lastQuery = "SELECT * FROM $table WHERE itemId='$itemId' AND internalLevel='$intLevel' AND internalSubtype='$intSubtype' AND potionData='$potionData';";
 		
 		$result = $this->db->query($this->lastQuery);
-		if ($result === FALSE) return $this->reportError("Failed to load record $itemLink from minedItem".self::MINEITEM_TABLESUFFIX." table!");
+		if ($result === FALSE) return $this->reportError("Failed to load record $itemLink from $table table!");
 		
 		++$this->dbReadCount;
 		
@@ -2374,7 +2375,7 @@ class EsoLogParser
 	
 	public function LoadMinedItemSummary ($itemId)
 	{
-		$minedItem = $this->loadRecord('minedItemSummary'.self::MINEITEM_TABLESUFFIX, 'itemId', $itemId, self::$MINEDITEMSUMMARY_FIELDS);
+		$minedItem = $this->loadRecord($this->GetMinedItemTableName('minedItemSummary'), 'itemId', $itemId, self::$MINEDITEMSUMMARY_FIELDS);
 		if ($minedItem === false) return false;
 		
 		return $minedItem;
@@ -2555,15 +2556,23 @@ class EsoLogParser
 	}
 	
 	
+	public function GetMinedItemTableName($baseTable, $overrideLang = null)
+	{
+		if ($overrideLang) return $baseTable.$overrideLang.self::MINEITEM_TABLESUFFIX;
+		if ($this->langDbSuffix) return $baseTable.$this->langDbSuffix.self::MINEITEM_TABLESUFFIX;
+		return $baseTable.self::MINEITEM_TABLESUFFIX;
+	}
+	
+	
 	public function SaveMinedItem (&$record)
 	{
-		return $this->saveRecord('minedItem'.self::MINEITEM_TABLESUFFIX, $record, 'id', self::$MINEDITEM_FIELDS);
+		return $this->saveRecord($this->GetMinedItemTableName('minedItem'), $record, 'id', self::$MINEDITEM_FIELDS);
 	}
 	
 	
 	public function SaveMinedItemSummary (&$record)
 	{
-		return $this->saveRecord('minedItemSummary'.self::MINEITEM_TABLESUFFIX, $record, 'itemId', self::$MINEDITEMSUMMARY_FIELDS);
+		return $this->saveRecord($this->GetMinedItemTableName('minedItemSummary'), $record, 'itemId', self::$MINEDITEMSUMMARY_FIELDS);
 	}
 	
 	
@@ -3268,85 +3277,8 @@ class EsoLogParser
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create ingredient table!");
 		
-		/* Old Version
-		$query = "CREATE TABLE IF NOT EXISTS minedItem".self::MINEITEM_TABLESUFFIX." (
-			id BIGINT NOT NULL AUTO_INCREMENT,
-			logId BIGINT NOT NULL,
-			link TINYTEXT NOT NULL,
-			itemId INTEGER NOT NULL DEFAULT 0,
-			internalLevel SMALLINT NOT NULL DEFAULT 0,
-			internalSubtype INTEGER NOT NULL DEFAULT 0,
-			potionData INTEGER NOT NULL DEFAULT 0,
-			name TINYTEXT NOT NULL,
-			description TEXT NOT NULL,
-			style TINYINT NOT NULL,
-			trait TINYINT NOT NULL,
-			quality TINYINT NOT NULL,
-			value INTEGER NOT NULL DEFAULT -1,
-			level TINYINT NOT NULL,
-			type TINYINT NOT NULL,
-			specialType SMALLINT NOT NULL DEFAULT -1,
-			equipType TINYINT NOT NULL DEFAULT -1,
-			weaponType TINYINT NOT NULL DEFAULT -1,
-			armorType TINYINT NOT NULL DEFAULT -1,
-			craftType TINYINT NOT NULL DEFAULT -1,
-			armorRating INTEGER NOT NULL DEFAULT -1,
-			weaponPower INTEGER NOT NULL DEFAULT -1,
-			cond INTEGER NOT NULL DEFAULT -1,
-			enchantId INTEGER NOT NULL DEFAULT -1,
-			enchantLevel SMALLINT NOT NULL DEFAULT -1,
-			enchantSubtype INTEGER NOT NULL DEFAULT -1,
-			enchantName TINYTEXT NOT NULL,
-			enchantDesc TEXT NOT NULL,
-			maxCharges INTEGER NOT NULL DEFAULT -1,
-			abilityName TINYTEXT NOT NULL,
-			abilityDesc TEXT NOT NULL,
-			abilityCooldown INTEGER NOT NULL DEFAULT -1,
-			setName TINYTEXT NOT NULL,
-			setBonusCount TINYINT NOT NULL DEFAULT -1,
-			setMaxEquipCount TINYINT NOT NULL DEFAULT -1,
-			setBonusCount1 TINYINT NOT NULL DEFAULT -1,
-			setBonusCount2 TINYINT NOT NULL DEFAULT -1,
-			setBonusCount3 TINYINT NOT NULL DEFAULT -1,
-			setBonusCount4 TINYINT NOT NULL DEFAULT -1,
-			setBonusCount5 TINYINT NOT NULL DEFAULT -1,
-			setBonusDesc1 TEXT NOT NULL,
-			setBonusDesc2 TEXT NOT NULL,
-			setBonusDesc3 TEXT NOT NULL,
-			setBonusDesc4 TEXT NOT NULL,
-			setBonusDesc5 TEXT NOT NULL,
-			glyphMinLevel SMALLINT NOT NULL DEFAULT -1,
-			glyphMaxLevel SMALLINT NOT NULL DEFAULT -1,
-			runeType TINYINT NOT NULL DEFAULT -1,
-			runeRank TINYINT NOT NULL DEFAULT -1,
-			bindType TINYINT NOT NULL DEFAULT -1,
-			siegeHP INTEGER NOT NULL DEFAULT -1,
-			bookTitle TINYTEXT NOT NULL,
-			craftSkillRank TINYINT NOT NULL DEFAULT -1,
-			recipeRank TINYINT NOT NULL DEFAULT -1,
-			recipeQuality TINYINT NOT NULL DEFAULT -1,
-			refinedItemLink TINYTEXT NOT NULL,
-			resultItemLink TINYTEXT NOT NULL,
-			materialLevelDesc TINYTEXT NOT NULL,
-			traitDesc TINYTEXT NOT NULL,
-			traitAbilityDesc TINYTEXT NOT NULL,
-			traitCooldown INTEGER NOT NULL DEFAULT -1,
-			isUnique BIT NOT NULL DEFAULT 0,
-			isUniqueEquipped BIT NOT NULL DEFAULT 0,
-			isVendorTrash BIT NOT NULL DEFAULT 0,
-			isArmorDecay BIT NOT NULL DEFAULT 0,
-			isConsumable BIT NOT NULL DEFAULT 0,
-			icon TINYTEXT NOT NULL,
-			comment TINYTEXT NOT NULL,
-			tags TINYTEXT NOT NULL,
-			dyeData TEXT NOT NULL,
-			actorCategory TINYINT NOT NULL DEFAULT 0,
-			PRIMARY KEY (id),
-			INDEX index_link (link(64)),
-			INDEX index_itemId (itemId, internalLevel, internalSubtype)
-		) ENGINE=MYISAM;"; */
-		
-		$query = "CREATE TABLE IF NOT EXISTS minedItem".self::MINEITEM_TABLESUFFIX." (
+		$table = $this->GetMinedItemTableName('minedItem');
+		$query = "CREATE TABLE IF NOT EXISTS $table (
 			id BIGINT NOT NULL AUTO_INCREMENT,
 			itemId INTEGER NOT NULL DEFAULT 0,
 			internalLevel TINYINT NOT NULL DEFAULT 0,
@@ -3384,9 +3316,16 @@ class EsoLogParser
 		
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create minedItem table!");
+		if ($result === FALSE) return $this->reportError("Failed to create $table table!");
 		
-		$query = "CREATE TABLE IF NOT EXISTS minedItemSummary".self::MINEITEM_TABLESUFFIX." (
+			//TODO: Handle other language tables?
+		$table1 = $this->GetMinedItemTableName('minedItem', 'fr');
+		$this->lastQuery = "CREATE TABLE IF NOT EXISTS $table1 LIKE $table";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to create $table1 table!");
+		
+		$table = $this->GetMinedItemTableName('minedItemSummary');
+		$query = "CREATE TABLE IF NOT EXISTS $table (
 			itemId INTEGER NOT NULL,
 			name TINYTEXT NOT NULL,
 			allNames TEXT NOT NULL,
@@ -3490,8 +3429,14 @@ class EsoLogParser
 		) ENGINE=MYISAM;";
 		
 		$this->lastQuery = $query;
-		$result = $this->db->query($query);
-		if ($result === FALSE) return $this->reportError("Failed to create minedItemSummary table!");
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to create $table table!");
+		
+			//TODO: Handle other language tables?
+		$table1 = $this->GetMinedItemTableName('minedItemSummary', 'fr');
+		$this->lastQuery = "CREATE TABLE IF NOT EXISTS $table1 LIKE $table";
+		$result = $this->db->query($this->lastQuery);
+		if ($result === FALSE) return $this->reportError("Failed to create $table1 table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS itemIdCheck(
 			id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -4644,6 +4589,9 @@ class EsoLogParser
 		
 		$this->skillTooltips->ConnectDB($this->db, true, self::SKILLS_TABLESUFFIX);
 		
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
+		
 		if ($this->skipCreateTables) return true;
 		return $this->createTables();
 	}
@@ -4826,13 +4774,14 @@ class EsoLogParser
 			
 			if ($result->num_rows == 0)
 			{
-				$query = "SELECT * FROM minedItem".self::MINEITEM_TABLESUFFIX." WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubtype='$itemSubtype';";
+				$table = $this->GetMinedItemTableName('minedItem');
+				$query = "SELECT * FROM $table WHERE itemId='$itemId' AND internalLevel='$itemLevel' AND internalSubtype='$itemSubtype';";
 				$result = $this->db->query($query);
 				if (!$result) return false;
 				
 				if ($result->num_rows == 0)
 				{
-					$query = "SELECT * FROM minedItem".self::MINEITEM_TABLESUFFIX." WHERE itemId='$itemId' AND internalLevel='1' AND internalSubtype='1';";
+					$query = "SELECT * FROM $table WHERE itemId='$itemId' AND internalLevel='1' AND internalSubtype='1';";
 					$result = $this->db->query($query);
 					if (!$result) return false;
 					
@@ -4843,7 +4792,8 @@ class EsoLogParser
 		
 		if ($summaryResult->num_rows == 0)
 		{
-			$query1 = "SELECT * FROM minedItemSummary".$MINEITEM_TABLESUFFIX." WHERE itemId='$itemId';";
+			$table = $this->GetMinedItemTableName('minedItemSummary');
+			$query1 = "SELECT * FROM $table WHERE itemId='$itemId';";
 			$summaryResult = $this->db->query($query1);
 			if (!$summaryResult) return false;
 			
@@ -8070,6 +8020,7 @@ class EsoLogParser
 			$result = preg_match("|(.*)(\^[a-zA-Z0-9]*)|s", $logEntry['name'], $matchData);
 			if ($result) $logEntry['name'] = $matchData[1];
 			$logEntry['name'] = explode('||', $logEntry['name'])[0];
+			$logEntry['name'] = preg_replace('| $|', '', $logEntry['name']);
 		}
 		
 		if (array_key_exists('reqVetLevel', $logEntry) && $logEntry['reqVetLevel'] > 0)
@@ -8086,6 +8037,7 @@ class EsoLogParser
 		}
 		
 		if ($logEntry['setName'] == null) $logEntry['setName'] = "";
+		$logEntry['setName'] = preg_replace('/\^.*$/', "", $logEntry['setName']);
 		
 			// Handles old bug where setMaxCount was missing
 		/*
@@ -8538,6 +8490,8 @@ class EsoLogParser
 			$minedItem['__dirty'] = true;
 		} */
 		
+		//print("\t\t" . $minedItem['name'] . "\n");
+		
 		if ($minedItem['__dirty']) 
 		{
 			$result = $this->SaveMinedItem($minedItem);
@@ -8577,7 +8531,7 @@ class EsoLogParser
 			
 			$result = $this->SaveMinedItemSummary($minedItemSummary);
 			
-			if (!$result) 
+			if (!$result)
 				$this->reportLogParseError("\tError: Failed to save item summary data!");
 			else
 				$this->hasParsedItemSummary[$itemId] = true;
@@ -8603,6 +8557,7 @@ class EsoLogParser
 			if (!array_key_exists($key, self::$MINED_ITEMKEY_TO_DBKEY)) continue;
 			$dbKey = self::$MINED_ITEMKEY_TO_DBKEY[$key];
 			
+			//if ($dbKey == "name") print("\t\tName = $value\n");
 			//if ($dbKey != null && (!array_key_exists($dbKey, $minedItem) || $minedItem[$dbKey] != $value))
 			{
 				$minedItem[$dbKey] = $value;
@@ -9296,6 +9251,24 @@ class EsoLogParser
 		$skill['buffType'] = $logEntry['buffType'];
 		$skill['isToggle'] = $logEntry['isToggle'] == "true" ? 1 : 0;
 		$skill['chargeFreq'] = $logEntry['chargeFreqMS'];
+		
+			// Special case for Banner Bearer
+			// TODO: Make general case for any bit-mask of mechanics?
+		if ($logEntry['baseMechanic'] == 5)
+		{
+			$logEntry['baseCost'] = $logEntry['baseCost'] . "," . $logEntry['baseCost'];
+			$logEntry['baseMechanic'] = "1,4";
+			$logEntry['chargeFreqMS'] = $logEntry['chargeFreqMS'] . "," . $logEntry['chargeFreqMS'];
+			$skill['chargeFreq'] = $logEntry['chargeFreqMS'];
+		}
+		
+		if ($logEntry['baseMechanic'] == 36)
+		{
+			$logEntry['baseCost'] = $logEntry['baseCost'] . "," . $logEntry['baseCost'];
+			$logEntry['baseMechanic'] = "4,32";
+			$logEntry['chargeFreqMS'] = $logEntry['chargeFreqMS'] . "," . $logEntry['chargeFreqMS'];
+			$skill['chargeFreq'] = $logEntry['chargeFreqMS'];
+		}
 		
 		if (IsEsoVersionAtLeast(self::SKILLS_TABLESUFFIX, 42))
 		{
@@ -11066,6 +11039,15 @@ class EsoLogParser
 	}
 	
 	
+	public function getLanguage ($logEntry)
+	{
+		$language = $logEntry['lang'];
+		
+		if ($language == null) return $this->currentUser['language'];
+		return $language;
+	}
+	
+	
 	public function checkLanguage ($logEntry)
 	{
 		$language = $logEntry['lang'];
@@ -11186,6 +11168,72 @@ class EsoLogParser
 	}
 	
 	
+		//Handle a non-english log-entry 
+	public function handleLanguageLogEntry($logEntry)
+	{
+		$lang = $this->getLanguage($logEntry);
+		$event = $logEntry['event'];
+		
+			//Whitelist languages
+		switch ($lang)
+		{
+			case 'fr':
+			case 'de':
+			case 'es':
+			case 'jp':
+			case 'ru':
+			case 'zh':
+				break;
+			case 'en': 	//Should be handled before we get here
+				return false;
+			default:
+				return false;
+		}
+		
+			//Only supports certain events
+		switch ($event)
+		{
+			case "mineItem::AutoStart":
+			case "mineitem::Start":
+			case "mineItem::Start":
+			case "mineItems::idCheck::start":
+			case "mineItem::idCheck::start":
+			case "mineItems::idCheck::end":
+			case "mineItem::idCheck::end":
+			case "mineItems::idCheck":
+			case "mineItem::idCheck":
+			case "mineItem::AutoEnd":
+			case "mineitem::End":
+			case "mineItem::End":
+			case "mineitem":
+			case "mineItem":
+			case "mineitem2":
+			case "mi":
+			case "mi2":
+			case "MineCollect::Start":
+			case "MineCollect::Category":
+			case "MineCollect::Subcategory":
+			case "MineCollect::Index":
+			case "MineCollect::End":
+			case "MineCollectID::Start":
+			case "MineCollectID":
+			case "MineCollectID::End":
+				break;
+			default:
+				return false;
+		};
+		
+		if ($this->langLogEntryCount % 1000 == 0)
+		{
+			$this->reportLogParseError("Handling log entry '$event' in language '$lang'!");
+		}
+		
+		$this->langLogEntryCount++;
+		$this->langDbSuffix = $lang;
+		return true;
+	}
+	
+	
 	public function handleLogEntry ($logEntry)
 	{
 		if (self::DO_BENCHMARK)
@@ -11197,7 +11245,7 @@ class EsoLogParser
 		
 		if ($this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1 > 0 && $logEntry['timeStamp1'] > 0)
 		{
-			if ($logEntry['timeStamp1'] < $this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1) 
+			if ($logEntry['timeStamp1'] < $this->IGNORE_LOGENTRY_BEFORE_TIMESTAMP1)
 			{
 				return $this->reportLogParseError("Skipping old log entry ({$logEntry['timeStamp1']})!");
 			}
@@ -11393,7 +11441,14 @@ class EsoLogParser
 		if ($user['enabled'] === false) return $this->reportLogParseError("User is disabled...skipping entry!");
 		if ($ipAddress['enabled'] === false) return $this->reportLogParseError("IP address is disabled...skipping entry!");
 		
-		if (!$this->checkLanguage($logEntry)) return true;
+		$this->langDbSuffix = '';
+		
+		if (!$this->checkLanguage($logEntry))
+		{
+			if (!$this->handleLanguageLogEntry($logEntry)) return true;
+			//return true;
+		}
+		
 		$createLogEntry = $this->checkLogEntryRecordCreate($logEntry);
 		$isDuplicate = false;
 		
@@ -11723,7 +11778,7 @@ class EsoLogParser
 			$start = $end;
 		}
 		
-		return $resultData; 
+		return $resultData;
 	}
 	
 	
