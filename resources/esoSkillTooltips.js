@@ -610,6 +610,9 @@ window.GetEsoCraftedSkillCoefContentHtml2 = function(abilityId)
 	
 	if (scriptId2 == 31 && classId > 0) id2 += classId * 1000000;
 	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, false);
+	ModifyEsoCraftedScriptData(abilityId, id1);
+	ModifyEsoCraftedScriptData(abilityId, id2);
+	ModifyEsoCraftedScriptData(abilityId, id3);
 	
 	output += GetEsoCraftedSkillCoefBaseContentHtml2(skillData, "Base Skill");
 	output += "<hr/>";
@@ -2206,6 +2209,19 @@ window.GetEsoSkillDescription2 = function(abilityId, inputValues, useHtml, noEff
 }
 
 
+window.ModifyEsoCraftedScriptData = function(baseId, skillId)
+{
+	var skillData1 = g_SkillsData[baseId];
+	var skillData2 = g_SkillsData[skillId];
+	
+	if (skillData1 == null || skillData2 == null) return false;
+	if (skillData1.tooltips == null || skillData2.tooltips == null) return false;
+	
+	skillData2['skillLine'] = skillData1['skillLine'];
+	skillData2['skillType'] = skillData1['skillType'];
+}
+
+
 window.ModifyEsoCraftedScriptDamageTypes = function(skillId1, skillId2, restoreOrig)
 {
 	var skillData1 = g_SkillsData[skillId1];
@@ -2261,6 +2277,9 @@ window.GetEsoCraftedSkillDescription2 = function(abilityId, skillData, inputValu
 	if (scriptId2 == 31 && classId > 0) id2 += classId * 1000000;
 	
 	if (scriptId2 == 24) ModifyEsoCraftedScriptDamageTypes(id1, id2, false);
+	ModifyEsoCraftedScriptData(abilityId, id1);
+	ModifyEsoCraftedScriptData(abilityId, id2);
+	ModifyEsoCraftedScriptData(abilityId, id3);
 	
 	var coefDesc1 = GetEsoSkillDescription2(id1, inputValues, useHtml, noEffectLines, outputRaw);
 	var coefDesc2 = GetEsoSkillDescription2(id2, inputValues, useHtml, noEffectLines, outputRaw);
