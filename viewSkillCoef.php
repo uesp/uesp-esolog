@@ -231,7 +231,7 @@ class CEsoViewSkillCoef
 		$treeTable = "skillTree{$this->tableSuffix}";
 		
 		//$query = "select $skillTable.*, $tooltipTable.* FROM $tooltipTable LEFT JOIN $skillTable on abilityId=id;";
-		$query = "select * FROM $tooltipTable;";
+		$query = "SELECT * FROM $tooltipTable;";
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportErrror("Failed to load skill tooltip data!");
 		
@@ -527,9 +527,9 @@ class CEsoViewSkillCoef
 			if ($isDOT) $flags[] = "DOT"; else $flags[] = "Direct";
 			if ($isMelee) $flags[] = "Melee";
 			if ($isRankMod) $flags[] = "RankMod";
-			if ($duration) $flags[] = ($duration/1000)."s duration";
-			if ($tickTime) $flags[] = ($tickTime/1000)."s tick";
-			if ($cooldown) $flags[] = ($cooldown/1000)."s cooldown";
+			if ($duration > 0) $flags[] = ($duration/1000)."s duration";
+			if ($tickTime > 0) $flags[] = ($tickTime/1000)."s tick";
+			if ($cooldown > 0) $flags[] = ($cooldown/1000)."s cooldown";
 			$flags[] = "R2 = $R";
 			$flags = implode(", ", $flags);
 			
