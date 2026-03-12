@@ -31,6 +31,7 @@ class CEsoViewSkillCoef
 	public $minRatio = -1000000;
 	public $maxRatio = 1000000;
 	public $showSkillId = -1;
+	public $INCLUDE_RANK_MOD = true;	// Whether to include the rank modifier factor for player active skills
 	
 	public $skillVersions = array();
 	public $skillResults = array();
@@ -450,6 +451,9 @@ class CEsoViewSkillCoef
 	public function MakeTooltipEquationDataHtml($skill)
 	{
 		$output = "";
+		$isPlayer = intval($skill['isPlayer']);
+		$isPassive = intval($skill['isPassive']);
+		$rank = intval($skill['rank']);
 		
 		foreach ($skill['tooltips'] as $tooltip)
 		{
@@ -493,9 +497,28 @@ class CEsoViewSkillCoef
 			else
 				$ratio = sprintf("%0.2f", $b / $a);
 			
+			$rankFactor = 1.0;
 			$flags = [];
 			$flags[] = $typeName;
 			if ($ratio != "NAN" && $ratio != 0) $flags[] = "ratio = $ratio";
+			
+			if ($hasRankMod == 1 && $isPassive == 0 && $isPlayer == 1)
+			{
+				$rank = $rank % 4;
+				
+				if ($rank == 2)
+					$rankFactor = 1.011;
+				else if ($rank == 3)
+					$rankFactor = 1.022;
+				else if ($rank == 4 || $rank == 0)
+					$rankFactor = 1.033;
+				
+				$a = $a * $rankFactor;
+				$b = $b * $rankFactor;
+				$c = $c * $rankFactor;
+				$flags[] = "RankMod($rankFactor)";
+			}
+			
 			if ($isDmg) $flags[] = "Dmg";
 			if ($isDmg && $dmgType) $flags[] = GetEsoDamageTypeText($dmgType);
 			if ($isDmgShield) $flags[] = "DmgShield";
