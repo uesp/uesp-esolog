@@ -140,6 +140,8 @@ class CEsoLogJsonExport
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to mysql database!", 500);
 		
 		$this->db->set_charset("utf8");
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
 		
 		UpdateEsoPageViews("exportJsonViews");
 		
@@ -259,7 +261,8 @@ class CEsoLogJsonExport
 		header("Expires: 0");
 		header("Pragma: no-cache");
 		header("Cache-Control: no-cache, no-store, must-revalidate");
-		header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . "");
+		//header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] . ""); //Doesn't work with CloudFlare?
+		header("Access-Control-Allow-Origin: *");
 		header("content-type: application/json");
 	}
 	

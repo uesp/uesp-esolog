@@ -4580,7 +4580,7 @@ If you do not understand what this information means, or how to use this webpage
 	
 	public function GetViewRecordLink ($record, $targetId, $id, $link)
 	{
-		if ($id == '' || $id == 0) return "";
+		if ($id == '' || $id <= 0) return "";
 		
 		$link = "<a class='elvRecordLink' href='?action=view&record=$record&$targetId=$id'>$link</a>";
 		

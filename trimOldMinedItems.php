@@ -9,14 +9,14 @@ require("esoCommon.php");
 class CEsoTrimOldMinedItems 
 {
 	public $db = null;
-	public $version = "42";
+	public $version = "45";
 	public $itemsLoaded = 0;
 	public $itemsTrimmed = 0;
 	public $itemsCopied = 0;
 	
 		// Keep all potions at itemId 1/2
 	public $START_ITEMID = 10;
-	public $END_ITEMID = 250000;
+	public $END_ITEMID = 270000;
 	public $TEMP_TABLE_NAME = "minedItemTrimTmp";
 	
 		// InternalLevel:InternalSubtype for mined items to keep

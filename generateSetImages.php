@@ -1,8 +1,8 @@
 <?php
 
 
-$TABLE_SUFFIX = "48";
-$OUTPUT_PATH = "/home/uesp/esoItemImages/sets/";
+$TABLE_SUFFIX = "49";
+$OUTPUT_PATH = "/home/uesp/esoSetImages/";
 
 require("itemLinkImage.class.php");
 
@@ -20,6 +20,9 @@ $itemLinkImage->version = $TABLE_SUFFIX;
 
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
+
+$db->query("SET NAMES utf8;");
+$db->query("SET CHARACTER SET utf8;");
 
 $query = "SELECT * FROM setSummary$TABLE_SUFFIX ORDER BY setName;";
 $result = $db->query($query);
@@ -55,7 +58,6 @@ foreach ($sets as $set)
 		print("\tSaved $setName to '$filename'\n");
 		++$successCount;
 	}
-	
 }
 
 if ($count > 0)

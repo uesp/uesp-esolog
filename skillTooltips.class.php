@@ -31,9 +31,9 @@ class CEsoSkillTooltips
 	
 	protected $RANK_FACTORS = array(
 		1 => 1.00,
-		2 => 1.01,
-		3 => 1.02,
-		4 => 1.03,
+		2 => 1.011,
+		3 => 1.022,
+		4 => 1.033,
 	);
 	
 	protected static $NUMBER_REGEX = '/[0-9]+(?:\.[0-9]+)?/';
@@ -88,6 +88,9 @@ class CEsoSkillTooltips
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to esolog database!");
 		
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
+		
 		$this->isDbReadInitialized = true;
 		$this->isDbWriteInitialized = false;
 		$this->isDbConnected = false;
@@ -104,6 +107,9 @@ class CEsoSkillTooltips
 		$this->db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("ERROR: Could not connect to esolog database for writing!");
 		
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
+		
 		$this->isDbWriteInitialized = true;
 		$this->isDbReadInitialized = false;
 		$this->isDbConnected = false;
@@ -114,6 +120,9 @@ class CEsoSkillTooltips
 	public function ConnectDB($db, $isWrite = false, $tableSuffix = null)
 	{
 		$this->db = $db;
+		
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
 		
 		$this->isDbConnected = true;
 		$this->isDbWriteInitialized = true;

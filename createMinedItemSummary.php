@@ -4,7 +4,7 @@ if (php_sapi_name() != "cli") die("Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require("esoCommon.php");
 
-$TABLE_SUFFIX = "49pts";
+$TABLE_SUFFIX = "49";
 $TABLE_LANG = "";		//Use empty string for english
 
 $MAKE_NAME_TITLECASE = true;

@@ -2724,12 +2724,15 @@ $ESO_REWARDENTRYTYPE_TEXTS = array(
 		8 => "Remove Effect",
 		9 => "Collectible",
 		10 => "Loot Crate",
-		11 => "Deprecated1",
+		11 => "Active Companion Experience",
 		12 => "Item",
 		13 => "Choice",
 		14 => "Instant Unlock",
 		15 => "Reward List",
 		16 => "Experience",
+		17 => "Skill Line Experience",
+		18 => "Tribute Card Experience",
+		19 => "Tribute Club Experience",
 );
 
 
@@ -2742,13 +2745,16 @@ $ESO_QUESTREWARDTYPE_TEXTS = array(
 		3 => "Writ Vouchers",
 		4 => "Telvar Stones",
 		5 => "Inspiration",
-		6 => "Unused",
+		6 => "Undaunted Keys",
 		7 => "Auto Item",
-		8 => "Unused3",
+		8 => "Chaotic Creatia",
 		9 => "Partial Skill Points",
 		10 => "Skill Line",
 		11 => "Event Tickets",
 		12 => "Style Stones",
+		13 => "Tribute Club Experience",
+		14 => "Archival Fortunes",
+		15 => "Imperial Fragments",
 );
 
 
@@ -2769,17 +2775,23 @@ $ESO_TIMEDACTIVITYTYPE_TEXTS = array(
 $ESO_CURRENCYTYPE_TEXTS = array(
 		-1 => '',
 		0 => 'None',
-		1 => 'Gold',
-		2 => 'Alliance Points',
-		3 => 'Telvar Stones',
-		4 => '4',
-		5 => 'Chaotic Creatia',
-		6 => 'Crown Gems',
-		7 => 'Crowns',
-		8 => 'Style Stones',
-		9 => 'Event Tickets',
-		10 => 'Undaunted Keys',
-		11 => 'Seals of Endeavor',
+		1 => 'Gold', 					// The common coin of Tamriel. Gold is accepted by merchants and players in exchange for goods and services. /esoui/art/currency/gold_mipmap.dds
+		2 => 'Alliance Points', 		// A form of scrip paid out for participation in the Alliance War or Battlegrounds exercises. This currency is used to purchase siege equipment and item sets to help you in your war effort. /esoui/art/currency/alliancepoints_mipmap.dds
+		3 => 'Tel Var Stones', 			// Esoteric fragments of the White-Gold Tower, found during adventures in the corrupted Imperial City. This currency is  used to purchase crafting materials and item sets within the Imperial City. /esoui/art/currency/telvar_mipmap.dds
+		4 => 'Writ vouchers', 			// A letter of credit from Rolis Hlaalu for completing his Crafting Master Writs, used for his rarefied goods. /esoui/art/currency/writvoucher_mipmap.dds
+		5 => 'Transmute Crystals', 		// Seed-crystals of potent transmutative energy, useful for changing the qualities of things. /esoui/art/currency/currency_seedcrystal_mipmap.dds
+		6 => 'Crown Gems', 				//  /esoui/art/currency/crowngem_mipmap.dds
+		7 => 'Crowns', 					//  /esoui/art/currency/crowns_mipmap.dds
+		8 => 'Outfit Change Tokens', 	// A voucher for one free Outfit alteration, redeemable at any Outfit Station. /esoui/art/currency/token_clothing_mipmap.dds
+		9 => 'Trade Bars', 				// Ingots exchanged by the Gold Coast Trading Company, coveted by traders across Tamriel. /esoui/art/currency/u49_tt_tradebars_64.dds
+		10 => 'Undaunted Keys', 		// Keys obtained by performing heroic deeds on behalf of the Undaunted. /esoui/art/currency/undauntedkey_mipmap.dds
+		11 => 'Seals of Endeavor', 		// Made from a precious mix of metals, these seals are awarded to those with an adventurous spirit. Seals can be traded for costumes, mounts, and much, much more. /esoui/art/currency/currency_seals_of_endeavor_64.dds
+		12 => 'Archival Fortunes', 		// The currency of the Infinite Archive. Archival Fortunes are accepted by the Filers of the Infinite Archive in exchange for their goods. /esoui/art/currency/archivalfragments_mipmaps.dds
+		13 => 'Imperial Fragments', 	// A currency used in the Imperial City. /esoui/art/currency/currency_imperial_trophy_key_mipmap.dds
+		14 => 'Tome Points', 			// Earned from Tamriel Tome challenges, these can be spent on a myriad of rewards in each season's tome. /esoui/art/currency/u49_tt_tomepoints_64.dds
+		15 => 'Premium Tome Token', 	// Can be used to purchase a Premium + Bonuses Tamriel Tome. /esoui/art/currency/u49_tt_premiumtomepoints_64.dds
+		16 => 'Cache of Tome Points', 	// A pristine cache containing 2,000 Tome Points. /esoui/art/currency/u49_tt_cacheoftomepoints_64.dds
+		17 => 'Challenge Re-rolls', 	// Don't like a particular challenge? Re-roll it for a new one.\nYou are granted a small number of Challenge Re-rolls each week and can acquire more for gold. /esoui/art/currency/u49_tt_reroll_64.dds
 );
 
 
@@ -2789,14 +2801,20 @@ $ESO_CURRENCYTYPESHORT_TEXTS = array(
 		1 => 'GP',
 		2 => 'AP',
 		3 => 'Telvar',
-		4 => '4',
-		5 => 'CC',
+		4 => 'Writ',
+		5 => 'TC',
 		6 => 'Gems',
 		7 => 'Crowns',
-		8 => 'Stones',
-		9 => 'Tickets',
+		8 => 'Tokens',
+		9 => 'Bars',
 		10 => 'Keys',
 		11 => 'Seals',
+		12 => 'Fortunes',
+		13 => 'Fragments',
+		14 => 'Tomes',
+		15 => 'PremiumTokens',
+		16 => 'Caches',
+		17 => 'Rerolls',
 );
 
 
@@ -2813,17 +2831,19 @@ $ESO_CURRENCYCHANGEREASON_TEXTS = array(
 		8 => "Bagspace",
 		9 => "Bankspace",
 		10 => "Soulweary",
+		11 => "Antiquity Reward",
 		12 => "Battleground",
 		13 => "Kill",
-		14 => "Keep Reward",
+		14 => "Deprecated 0",
 		15 => "Keep Upgrade",
 		16 => "Deconstruct",
+		17 => "Deprecated 2",
 		18 => "Soul Heal",
 		19 => "Travel Graveyard",
 		20 => "Cash On Delivery",
 		21 => "Medal",
 		22 => "Ability Upgrade Purchase",
-		23 => "Hookpoint Store",
+		23 => "Deprecated 1",
 		24 => "Craft",
 		25 => "Stablespace",
 		26 => "Achievement",
@@ -2853,7 +2873,7 @@ $ESO_CURRENCYCHANGEREASON_TEXTS = array(
 		50 => "Guild Tabard",
 		51 => "Guild Bank Deposit",
 		52 => "Guild Bank Withdrawal",
-		53 => "Guild Standard",
+		53 => "Deprecated 3",
 		54 => "Jump Failure Refund",
 		55 => "Respec Morphs",
 		56 => "Bounty Paid Fence",
@@ -2870,7 +2890,7 @@ $ESO_CURRENCYCHANGEREASON_TEXTS = array(
 		67 => "Death",
 		68 => "Unknown",
 		69 => "Crown Crate Duplicate",
-		70 => "Converted to Gems",
+		70 => "Item Converted To Gems",
 		71 => "Purchased With Gems",
 		72 => "Purchased With Crowns",
 		73 => "Crowns Purchased",
@@ -2879,6 +2899,9 @@ $ESO_CURRENCYCHANGEREASON_TEXTS = array(
 		76 => "Loot Currency Container",
 		77 => "Character Upgrade",
 		78 => "Reconstruction",
+		79 => "Purchased With Endeavor Seals",
+		80 => "Tribute",
+		81 => "Expiration",
 );
 
 
@@ -4477,7 +4500,7 @@ function GetEsoDisplayVersion($version)
 
 function GetEsoUpdateVersion()
 {
-	return 48;	//TODO: Update after each live patch once items/skills updated
+	return 49;	//TODO: Update after each live patch once items/skills updated
 }
 
 
@@ -4715,7 +4738,7 @@ function GetEsoItemTableSuffix($version)
 		case '49pts':
 			return "49pts";
 		case '49':
-			return "49";
+			return "";
 		case 'test':
 		case 'dev':
 		case 'debug':

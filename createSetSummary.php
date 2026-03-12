@@ -1,7 +1,7 @@
 <?php
 
-$TABLE_SUFFIX = "49pts";
-$LANG_SUFFIX = "fr";		//Use empty string for english
+$TABLE_SUFFIX = "49";
+$LANG_SUFFIX = "";		//Use empty string for english
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
 $REMOVEDUPLICATES = true;

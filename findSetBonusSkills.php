@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "49pts";
+$TABLE_SUFFIX = "49";
 $SHOW_SET = "";
 $MATCH_ALL_SETS = true;
 
@@ -107,6 +107,7 @@ function FindMatchingSkill($setBonus, $setName)
 	foreach ($skills as $skill)
 	{
 		if ($IGNORE_SKILLS[$skill['id']]) continue;
+		if ($skill['isPlayer'] == 1) continue;
 		
 		if ($SHOW_SET == $setName) print("\t\t\t{$skill['id']}:{$skill['matchDesc']}\n");
 		if (strcasecmp($rawBonus, $skill['matchDesc']) == 0) $foundSkills[] = $skill; 

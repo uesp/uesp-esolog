@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "49pts";
+$TABLE_SUFFIX = "49";
 
 require_once("esoCommon.php");
 
@@ -361,7 +361,7 @@ foreach ($ESO_SLOTTED_SKILLS as $skillId => $powerType)
 	
 	foreach($index as $i)
 	{
-		$skillsData[$skillId]['type' + $i] = $powerType;
+		$skillsData[$skillId]['type' . $i] = $powerType;
 	}
 
 }
@@ -371,7 +371,10 @@ if ($skillsData[20930])
 {
 	$desc = FormatRemoveEsoItemDescriptionText($skillsData[20930]['description']);
 	
-	if (preg_match('/a maximum of ([0-9]+)% bonus damage/', $desc, $matches))
+	$result = preg_match('/a maximum of ([0-9]+)% bonus damage/', $desc, $matches);
+	if (!$result) $result = preg_match('/to a maximum of ([0-9]+)%/', $desc, $matches);
+	
+	if ($result)
 	{
 		$damageCap = floatval($matches[1]);
 		
@@ -511,7 +514,7 @@ foreach ($skillsData as $skillId => &$skill)
 		else
 			$skill['coefDescription'] = $coefDescription;
 		
-		$type = $skill['type' + $indexValue];
+		$type = $skill['type' . $indexValue];
 		
 		//print("\tCoef Description: {$skill['coefDescription']}\n");
 		

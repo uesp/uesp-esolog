@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "49pts";
-	const SKILLS_TABLESUFFIX   = "49pts";
+	const MINEITEM_TABLESUFFIX = "49";
+	const SKILLS_TABLESUFFIX   = "49";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -1526,6 +1526,21 @@ class EsoLogParser
 	}
 	
 	
+	public function convertGameTime($value)
+	{
+		if ($value == null || $value <= 0) return false;
+		$hexString = sprintf("%x", $value);
+		$arrayWith2CharsPerElement = str_split($hexString, 2);
+		$arrayWithReversedOrder = array_reverse($arrayWith2CharsPerElement);
+		$hexString = implode($arrayWithReversedOrder);
+		$binaryData = hex2bin($hexString);
+		$result = unpack("dnum", $binaryData);
+		$timeValue = $result['num'];
+		if (is_nan($timeValue)) return false;
+		return $timeValue;
+	}
+	
+	
 	public function createNewRecord ($fieldDef)
 	{
 		$newRecord = array();
@@ -1766,6 +1781,10 @@ class EsoLogParser
 			//timeStamp1{1609374464}
 			//logTime{1609374599}
 		if ($logEntry['timeStamp1']) return (int) $logEntry['timeStamp1'];
+		
+		$gameTime = $this->convertGameTime($logEntry['timeStamp']);
+		if ($gameTime !== false) return $gameTime;
+		
 		if ($logEntry['logTime']) return (int) $logEntry['logTime'];
 		return 0;
 	}
@@ -2341,7 +2360,7 @@ class EsoLogParser
 	public function LoadMinedItemLink ($itemLink)
 	{
 		$link = ParseEsoItemLink($itemLink);
-		if (!link) return false;
+		if (!$link) return false;
 		
 		$itemId = intval($link['itemId']);
 		$intLevel = intval($link['level']);
@@ -4093,16 +4112,16 @@ class EsoLogParser
 		if ($result === FALSE) return $this->reportError("Failed to create campaignLeaderboards table!");
 		
 		$query = "CREATE TABLE IF NOT EXISTS endeavors (
-						startTimestamp INTEGER NOT NULL,
-						endTimestamp INTEGER NOT NULL,
+						startTimestamp BIGINT NOT NULL DEFAULT 0,
+						endTimestamp BIGINT NOT NULL DEFAULT 0,
 						name TINYTEXT NOT NULL,
-						description MEDIUMTEXT NOT NULL,
-						idx TINYINT NOT NULL,
-						type TINYINT NOT NULL,
-						typeLimit TINYINT NOT NULL,
-						numRewards TINYINT NOT NULL,
-						rewards MEDIUMTEXT NOT NULL,
-						rawRewards MEDIUMTEXT NOT NULL,
+						description MEDIUMTEXT NOT NULL DEFAULT '',
+						idx TINYINT NOT NULL DEFAULT 0,
+						type TINYINT NOT NULL DEFAULT 0,
+						typeLimit TINYINT NOT NULL DEFAULT 0,
+						numRewards TINYINT NOT NULL DEFAULT 0,
+						rewards MEDIUMTEXT NOT NULL DEFAULT '',
+						rawRewards MEDIUMTEXT NOT NULL DEFAULT '',
 						INDEX index_main(startTimestamp, name(32))
 					) ENGINE=MYISAM;";
 		

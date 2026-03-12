@@ -27,6 +27,7 @@ class CEsoItemLinkImage
 {
 	const ESOIL_ICON_PATH = "/home/uesp/www/eso/gameicons/";
 	const ESOIL_IMAGE_CACHEPATH = "/home/uesp/esoItemImages/";
+	const ESOIL_SET_CACHEPATH = "/home/uesp/esoSetImages/";
 	const ESOIL_ICON_UNKNOWN = "unknown.png";
 	const ESOIL_IMAGE_WIDTH = 400;
 	const ESOIL_IMAGE_MAXHEIGHT = 1000;
@@ -563,7 +564,7 @@ class CEsoItemLinkImage
 			
 			if (!$this->setItemData)
 			{
-				$this->ReportError("ERROR: No set found matching '{$this->itemSet}'!");
+				$this->ReportError("ERROR: No set found matching '{$this->itemSet}' ($safeSet)!");
 				$this->setItemData = array();
 				return false;
 			}
@@ -3109,7 +3110,7 @@ class CEsoItemLinkImage
 		{
 			if ($this->showSetSummary) return false;
 			
-			$path    = self::ESOIL_IMAGE_CACHEPATH . "sets/";
+			$path    = self::ESOIL_SET_CACHEPATH;
 			if ($this->version != "") $path = $path . $this->GetTableSuffix() . "/";
 			
 			$filename = $this->GetImageFilename() . ".png";
@@ -3155,7 +3156,7 @@ class CEsoItemLinkImage
 		{
 			if ($this->showSetSummary) return false;
 			
-			$path = self::ESOIL_IMAGE_CACHEPATH . "sets/";
+			$path = self::ESOIL_SET_CACHEPATH;
 			if ($this->version != "") $path = $path . $this->GetTableSuffix() . "/";
 			
 			$filename = $this->GetImageFilename() . ".png";
