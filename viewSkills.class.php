@@ -2047,9 +2047,12 @@ class CEsoViewSkills
 		
 		$startTime = microtime(true);
 		
+			//Make sure this is done first
+		$skillContent = $this->GetSkillContentHtml();
+		
 		$replacePairs = array(
 				'{skillTree}' => $this->GetSkillTreeHtml(),
-				'{skillContent}'  => $this->GetSkillContentHtml(),
+				'{skillContent}'  => $skillContent,
 				'{version}' => $this->version,
 				'{niceVersion}' => $this->GetCurrentVersion(),
 				'{versionList}' => $this->GetVersionList($this->GetCurrentVersion()),

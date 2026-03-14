@@ -4687,9 +4687,11 @@ window.FindNextEsoSkillText = function ()
 		var index = skillData['name'].toLowerCase().indexOf(searchText);
 		if (index < 0) index = skillData['description'].toLowerCase().indexOf(searchText);
 		
-		if (index >= 0 && skillData.__isOutput)
+		if (index >= 0)
 		{
 			var abilityBlock = $("#esovsSkillContent .esovsAbilityBlock[skillid=" + id + "]").first();
+			if (abilityBlock.length <= 0) continue;
+			
 			var skillLine = abilityBlock.attr("skilline") || "";
 			var classType = abilityBlock.attr("classtype") || "";
 			
