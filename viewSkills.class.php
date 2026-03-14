@@ -1488,7 +1488,8 @@ class CEsoViewSkills
 			$index = $baseAbility['__index'];
 		}
 		
-		$this->skills[$index]['__isOutput'] = true;
+			//TODO: This is not working
+		//$this->skills[$abilityData['id']]['__isOutput'] = true;
 		
 		$desc = FormatRemoveEsoItemDescriptionText($abilityData['description']);
 		$extraIconAttr = "";
