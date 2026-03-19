@@ -3247,6 +3247,9 @@ class EsoLogViewer
 		$this->db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 		if ($this->db->connect_error) return $this->ReportError("Could not connect to mysql database!");
 		
+		$this->db->query("SET NAMES utf8;");
+		$this->db->query("SET CHARACTER SET utf8;");
+		
 		UpdateEsoPageViews("logViews");
 		
 		$this->dbReadInitialized = true;
@@ -3272,22 +3275,22 @@ class EsoLogViewer
 	{
 		$query = "SELECT * FROM logInfo;";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->reportError("Failed to load records from logInfo table!");
-	
+		
 		$records = array();
 		if ($result->num_rows === 0) return true;
-	
+		
 		$result->data_seek(0);
-	
+		
 		while (($row = $result->fetch_assoc()))
 		{
 			$key = $row['id'];
 			$value = $row['value'];
 			$records[$key] = $value;
 		}
-	
+		
 		$this->logInfos = $records;
 		return true;
 	}

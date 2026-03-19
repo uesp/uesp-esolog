@@ -322,7 +322,7 @@ $ESO_QUEST_DATA = array(
 		),
 	2932 => array(
 			'name'    => "Capture Castle Bloodmayne",
-			'journal' => "I accepted a mission to help re- capture Castle Bloodmayne for the Dominion.",
+			'journal' => "I accepted a mission to help recapture Castle Bloodmayne for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -1240,6 +1240,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7439 => array(
+			'name'    => "Blunt Steel",
+			'journal' => "I discovered a missive requesting that I sabotage weapon stores across Sorrow's Friend. I should seek them out and blunt each of the stored weapons. Doing so may give us an edge against the district's challenges.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	2774 => array(
 			'name'    => "Scout Arrius Keep",
 			'journal' => "I accepted a mission to scout Arrius Keep for the Covenant.",
@@ -1866,7 +1874,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3216 => array(
 			'name'    => "Capture Fort Aleswell",
-			'journal' => "I accepted a mission to help regain Fort Aleswell for the Covenant.",
+			'journal' => "I accepted a mission to help recapture Fort Aleswell for the Covenant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -2211,6 +2219,14 @@ $ESO_QUEST_DATA = array(
 	2831 => array(
 			'name'    => "Scout Farragut Lumbermill",
 			'journal' => "I accepted a mission to scout Farragut Lumbermill  for the Covenant.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7451 => array(
+			'name'    => "Express Delivery",
+			'journal' => "I found a note left by some hungry explorers from my faction. They asked me to deliver food so that they don't have to take a break from their current mission.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -4010,7 +4026,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3213 => array(
 			'name'    => "Capture Fort Rayles",
-			'journal' => "I accepted a mission to help re-capture Fort Rayles for the Covenant.",
+			'journal' => "I accepted a mission to help recapture Fort Rayles for the Covenant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -5994,7 +6010,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3094 => array(
 			'name'    => "Capture Drakelowe Keep",
-			'journal' => "I accepted a mission to help re-capture Drakelowe Keep for the Pact.",
+			'journal' => "I accepted a mission to help recapture Drakelowe Keep for the Pact.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -6066,7 +6082,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3093 => array(
 			'name'    => "Capture Blue Road Keep",
-			'journal' => "I accepted a mission to help re-capture Blue Road Keep for the Pact.",
+			'journal' => "I accepted a mission to help recapture Blue Road Keep for the Pact.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -6562,7 +6578,7 @@ $ESO_QUEST_DATA = array(
 		),
 	2930 => array(
 			'name'    => "Capture Castle Brindle",
-			'journal' => "I accepted a mission to help re-capture Castle Brindle for the Dominion.",
+			'journal' => "I accepted a mission to help recapture Castle Brindle for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -6714,7 +6730,7 @@ $ESO_QUEST_DATA = array(
 		),
 	2928 => array(
 			'name'    => "Capture Castle Faregyl",
-			'journal' => "I accepted a mission to help regain Castle Faregyl for the Dominion.",
+			'journal' => "I accepted a mission to help recapture Castle Faregyl for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -7434,7 +7450,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3212 => array(
 			'name'    => "Capture Fort Warden",
-			'journal' => "I accepted a mission to help re-capture Fort Warden for the Covenant.",
+			'journal' => "I accepted a mission to help recapture Fort Warden for the Covenant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -8066,7 +8082,7 @@ $ESO_QUEST_DATA = array(
 		),
 	2927 => array(
 			'name'    => "Capture Castle Alessia",
-			'journal' => "I accepted a mission to help regain Castle Alessia for the Dominion.",
+			'journal' => "I accepted a mission to help recapture Castle Alessia for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -8082,7 +8098,7 @@ $ESO_QUEST_DATA = array(
 		),
 	2929 => array(
 			'name'    => "Capture Castle Roebeck",
-			'journal' => "I accepted a mission to help re-capture Castle Roebeck for the Dominion.",
+			'journal' => "I accepted a mission to help recapture Castle Roebeck for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -8098,7 +8114,7 @@ $ESO_QUEST_DATA = array(
 		),
 	2931 => array(
 			'name'    => "Capture Castle Black Boot",
-			'journal' => "I accepted a mission to help regain Castle Black Boot for the Dominion.",
+			'journal' => "I accepted a mission to help recapture Castle Black Boot for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -8608,6 +8624,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7460 => array(
+			'name'    => "Ink-Parched",
+			'journal' => "I discovered a field journal in the Parch filled with valuable information, but with important sections missing. I can visit the locations in the journal to fill in the missing contents and turn it in for a reward with my faction.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	2978 => array(
 			'name'    => "Capture Chalman Lumbermill",
 			'journal' => "I accepted a mission to help capture Chalman Lumbermill for the Dominion.",
@@ -8675,6 +8699,14 @@ $ESO_QUEST_DATA = array(
 	4591 => array(
 			'name'    => "Timely Intervention",
 			'journal' => "<<1>> asked that I search for <<2>> and <<3>>.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7459 => array(
+			'name'    => "Dark and Empty Spaces",
+			'journal' => "I discovered an unfinished sketch book in Sorrow's Friend. I should see if I can fill in the last few pages and turn it in for a reward.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -9050,7 +9082,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3089 => array(
 			'name'    => "Capture Chalman Keep",
-			'journal' => "I accepted a mission to help re-capture Chalman Keep for the Pact.",
+			'journal' => "I accepted a mission to help recapture Chalman Keep for the Pact.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -9074,7 +9106,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3090 => array(
 			'name'    => "Capture Arrius Keep",
-			'journal' => "I accepted a mission to help re-capture Arrius Keep for the Pact.",
+			'journal' => "I accepted a mission to help recapture Arrius Keep for the Pact.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -9098,7 +9130,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3091 => array(
 			'name'    => "Capture Kingscrest Keep",
-			'journal' => "I accepted a mission to help re-capture Kingscrest Keep for the Pact.",
+			'journal' => "I accepted a mission to help recapture Kingscrest Keep for the Pact.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -9122,7 +9154,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3092 => array(
 			'name'    => "Capture Farragut Keep",
-			'journal' => "I accepted a mission to help re-capture Farragut Keep for the Pact.",
+			'journal' => "I accepted a mission to help recapture Farragut Keep for the Pact.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -10002,7 +10034,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3214 => array(
 			'name'    => "Capture Fort Glademist",
-			'journal' => "I accepted a mission to help re-capture Fort Glademist for the Covenant.",
+			'journal' => "I accepted a mission to help recapture Fort Glademist for the Covenant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -10010,7 +10042,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3215 => array(
 			'name'    => "Capture Fort Ash",
-			'journal' => "I accepted a mission to help re-capture Fort Ash for the Covenant.",
+			'journal' => "I accepted a mission to help recapture Fort Ash for the Covenant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -10034,7 +10066,7 @@ $ESO_QUEST_DATA = array(
 		),
 	3217 => array(
 			'name'    => "Capture Fort Dragonclaw",
-			'journal' => "I accepted a mission to help regain Fort Dragonclaw for the Covenant.",
+			'journal' => "I accepted a mission to help recapture Fort Dragonclaw for the Covenant.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -11986,7 +12018,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7359 => array(
 			'name'    => "Famished Fellowship",
-			'journal' => "Armorer Reistalf asked me to prepare three of any provisions I can for the Stirk Fellowship. I agreed to help. He said I could ask nearby chefs and brewers if I needed recipes.",
+			'journal' => "Armorer Reistaff asked me to prepare three of any provisions I can for the Stirk Fellowship. I agreed to help. He said I could ask nearby chefs and brewers if I needed recipes.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -12010,7 +12042,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7352 => array(
 			'name'    => "Bows for the Fellowship",
-			'journal' => "Armorer Reistalf asked me to craft three bows of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft three bows of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -12050,7 +12082,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7347 => array(
 			'name'    => "Helms for the Headstrong",
-			'journal' => "Armorer Reistalf asked me to craft two helms for soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two helms for soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -12226,7 +12258,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7376 => array(
 			'name'    => "Lost Among the Ashes",
-			'journal' => "A High Elf mage named Sirilonwe is concerned about her missing partner, Terinvel. They came to Solstice to explore the Hall of Vampires, but he has gone missing.",
+			'journal' => "Two academics, Sirilonwe and Terinvel, came to study Ashbound Hall, a vampire prison that arrived with the planemeld on Solstice. However, Terinvel went missing and Sirilonwe needs help finding him among the deadly vampires.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -12475,6 +12507,14 @@ $ESO_QUEST_DATA = array(
 	3685 => array(
 			'name'    => "The Thin Ones",
 			'journal' => "I met Kothringi from <<1>> who told me Worm Cult necromancers plague their village.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7404 => array(
+			'name'    => "Representing the Faction",
+			'journal' => "My faction leader hired me to represent the faction in a skirmish within the Night Market's districts.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -13186,7 +13226,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7353 => array(
 			'name'    => "Shields for the Fellowship",
-			'journal' => "Armorer Reistalf asked me to craft two shields of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two shields of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -14520,6 +14560,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7438 => array(
+			'name'    => "Defacement",
+			'journal' => "I looted a statue head from an enemy in Sorrow's Friend. When properly situated, it is supposed to project a magical rune indicating the north rooftop oasis nearby. I can aid the members of my faction by finding the statue and returning its head.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	3988 => array(
 			'name'    => "Dangerous Webs",
 			'journal' => "I found a Fighters Guild camp where an Argonian soldier is recovering from a fierce battle with spiders.",
@@ -14619,6 +14667,14 @@ $ESO_QUEST_DATA = array(
 	3997 => array(
 			'name'    => "The Mad God's Bargain",
 			'journal' => "Valaste and Shalidor have finished analysis of Sheogorath's books. Now I need to help them take possession of Eyevea, the Mages Guild Sanctuary.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7441 => array(
+			'name'    => "Feed Your Curiosity",
+			'journal' => "I pledged myself to the Thousand Eyes faction in the Night Market. Melandir, speaker for Molto the Whisperer, wants me to get to know the perils of the districts better before sending me out on more jobs for the Thousand Eyes.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -17114,7 +17170,7 @@ $ESO_QUEST_DATA = array(
 		),
 	6212 => array(
 			'name'    => "Capture All 3 Towns",
-			'journal' => "",
+			'journal' => "I accepted a mission to help capture the towns of Vlastarus, Cropsford, and Bruma for the Dominion.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -18090,7 +18146,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7349 => array(
 			'name'    => "Axes for the Assault",
-			'journal' => "Armorer Reistalf asked me to craft three axes of any kind for the Stirk Fellowship to break through the Worm Cult's defenses. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft three axes of any kind for the Stirk Fellowship to break through the Worm Cult's defenses. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -18114,7 +18170,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7358 => array(
 			'name'    => "First Aid Provider",
-			'journal' => "Armorer Reistalf asked me to craft three health potions of any kind for injured soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft three health potions of any kind for injured soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -18336,6 +18392,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7381 => array(
+			'name'    => "Blood on the Sands",
+			'journal' => "A Khajiit named Dorfifar hired me to kill as many creatures in the Night Market as I can. He doesn't seem to care which enemies, just that I avenge his missing eye.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	7048 => array(
 			'name'    => "Numinous Grimoire, Volume 1",
 			'journal' => "I found the body of a mortal scribe in Apocrypha. A note and a pack were lying on the ground beside the dead cipher.",
@@ -18387,6 +18451,14 @@ $ESO_QUEST_DATA = array(
 	5392 => array(
 			'name'    => "Blacksmith Writ",
 			'journal' => "I've taken a contract from one of the Writ boards, an agreement to deliver Blacksmith goods to an interested organization.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7406 => array(
+			'name'    => "Keen of Mind",
+			'journal' => "My faction leader hired me to complete an oddity in the Night Market.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -20344,6 +20416,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7456 => array(
+			'name'    => "Adding to the Collection",
+			'journal' => "I found a scroll from Gazmod the Collector asking whoever found it to locate some curios in the Parch to add to their collection.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	6765 => array(
 			'name'    => "To Catch a Magus",
 			'journal' => "Now that the alliance leaders have been rescued from the prison island of Amenos, Lady Arabelle wants to find the meeting place of the Ascendant Order and attempt to capture their leaders, the Lord and the Magus.",
@@ -20730,7 +20810,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7356 => array(
 			'name'    => "A Call for Arm Cops",
-			'journal' => "Armorer Reistalf asked me to craft two arm cops of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two arm cops of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -21882,7 +21962,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7357 => array(
 			'name'    => "A Call for Jacks",
-			'journal' => "Armorer Reistalf asked me to craft two jacks of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two jacks of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -22427,6 +22507,14 @@ $ESO_QUEST_DATA = array(
 	5734 => array(
 			'name'    => "The Spirit Trap in Malabal Tor",
 			'journal' => "<<1>>, one of the Undaunted, gave me a challenge to complete in Shael Ruins, located in Malabal Tor.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7450 => array(
+			'name'    => "The Finer Things",
+			'journal' => "Tachien asked me to help some factionless individuals in the Night Market's districts. She said that was the best way for me to prove my skills and help get the Glittering Goad closer to their goals.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -23632,6 +23720,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7363 => array(
+			'name'    => "Those Who Would Rule",
+			'journal' => "The Curator told me a little bit about the mysterious Night Market which recently opened in Fargrave. He said it was a good place to gain power and influence.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	6022 => array(
 			'name'    => "Masterful Leatherwear",
 			'journal' => "",
@@ -23642,7 +23738,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7354 => array(
 			'name'    => "A Call for Epaulets",
-			'journal' => "Armorer Reistalf asked me to craft two epaulets of any kind for Stirk Fellowship soldiers he befriended. I agree to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two epaulets of any kind for Stirk Fellowship soldiers he befriended. I agree to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -24234,7 +24330,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7350 => array(
 			'name'    => "Cuirasses for the Courageous",
-			'journal' => "Armorer Reistalf asked me to craft two cuirasses of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two cuirasses of any kind for soldiers in the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -25640,6 +25736,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7432 => array(
+			'name'    => "District Field Journal",
+			'journal' => "I discovered an unfinished field journal covered in webs. I should check the journal in my inventory and see if I can complete the unfinished notes and turn them in for a reward at a collection box on a rooftop oasis.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	6741 => array(
 			'name'    => "Pledge: Coral Aerie",
 			'journal' => "<<1>> of the Undaunted has challenged me to explore <<2>>.",
@@ -26160,6 +26264,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7405 => array(
+			'name'    => "Fleet and Swift",
+			'journal' => "My faction leader hired me to complete a daring race in the Night Market's districts.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	7072 => array(
 			'name'    => "Seeds of Suspicion",
 			'journal' => "Beragon believes the best way to get to the bottom of West Weald's troubles is to find the source of the wildburn seeds. He thinks that the seed we found can lead us to the Recollection … or the Recollection can lead us to more seeds.",
@@ -26546,7 +26658,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7351 => array(
 			'name'    => "Staves for the Fellowship",
-			'journal' => "Armorer Reistalf asked me to craft three restoration staves of any kind for the Stirk Fellowship's healers. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft three restoration staves of any kind for the Stirk Fellowship's healers. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -26554,7 +26666,7 @@ $ESO_QUEST_DATA = array(
 		),
 	7360 => array(
 			'name'    => "An Enchanting Request",
-			'journal' => "Armorer Reistalf asked me to craft two glyphs of any kind with a ta aspect rune for the Stirk Fellowship. I agreed to help him.",
+			'journal' => "Armorer Reistaff asked me to craft two glyphs of any kind with a ta aspect rune for the Stirk Fellowship. I agreed to help him.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",
@@ -26584,6 +26696,14 @@ $ESO_QUEST_DATA = array(
 			'zone' => "",
 			'type' => 0,
 		),
+	7377 => array(
+			'name'    => "Make Some Noise",
+			'journal' => "I pledged myself to the Ruckus faction in the Night Market. My patron, Kharakhal Moon-Eye, wants me to better understand the perils of the districts before sending me out on more jobs for the Ruckus.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
 	7391 => array(
 			'name'    => "A Cold Grave",
 			'journal' => "I met the spirit of Tesamoril in Western Solstice standing next to his frozen corpse. He asked me to find his wife, Healer Namreras, and inform her of his death.",
@@ -26603,6 +26723,86 @@ $ESO_QUEST_DATA = array(
 	7393 => array(
 			'name'    => "The Golden Knight",
 			'journal' => "Darien asked me to go on one last adventure with him to discover whatever secret Mannimarco knew about Darien's light and how it connects to why he's still among the living. I agreed to help him figure it all out.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7400 => array(
+			'name'    => "Argent Eradication",
+			'journal' => "My faction leader hired me to kill an argent enemy in the Night Market.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7403 => array(
+			'name'    => "Brazen Eradication",
+			'journal' => "My faction leader hired me to kill brazen in the Night Market's districts.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7433 => array(
+			'name'    => "Missing Persons",
+			'journal' => "I found a notice from the Grasp of the Stricture offering a reward for detailed information on three missing persons in the Skittering Precinct.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7435 => array(
+			'name'    => "Sullied Reputations",
+			'journal' => "I found a note tacked onto a notice board telling me that the other factions put up horrible propaganda about my faction. For a reward, I can clean up the district and protect our reputation.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7437 => array(
+			'name'    => "Curio Collection",
+			'journal' => "I discovered an incomplete requisition for some unusual items scattered throughout the Skittering Precinct. If I find them, I can deliver them to the northern rooftop oasis for a reward and gain reputation within my faction.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7454 => array(
+			'name'    => "Free the Caged",
+			'journal' => "I found a note asking for aid in freeing caged animals captured by poachers. If I free the animals, I can return this note to a collection box on a rooftop oasis to receive payment.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7455 => array(
+			'name'    => "Fatal Flask",
+			'journal' => "I found a note in the Parch about a bottle of some deadly concoction misplaced by Alchemist Narinyor in one of three locations in the Parch. He offered a reward for its return to a delivery box in the northern rooftop oasis.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7457 => array(
+			'name'    => "Restocking the Bizarre",
+			'journal' => "I discovered a written request for bizarre objects found within Sorrow's Friend. If I find them, I can deliver them for a reward and gain reputation within my faction.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7458 => array(
+			'name'    => "Scavenger's Riddles",
+			'journal' => "I found a curious missive that hints at a hidden treasure somewhere in the Parch. If I solve this riddle, I might learn more.",
+			'internalName' => "",
+			'zoneId' => 0,
+			'zone' => "",
+			'type' => 0,
+		),
+	7461 => array(
+			'name'    => "Too Many Spiders",
+			'journal' => "I discovered a scroll asking me to repair spider deterrent devices in the Skittering Precinct. The author of the scroll seemed really concerned that the devices were going to overheat and stop working.",
 			'internalName' => "",
 			'zoneId' => 0,
 			'zone' => "",

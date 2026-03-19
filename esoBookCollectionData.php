@@ -9053,8 +9053,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 57,
-						'numBooks' => 4800 
+						'numCollect' => 58,
+						'numBooks' => 4859 
 				),
 				1 => array (
 						'id' => 44,
@@ -12923,7 +12923,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				10 => array (
 						'id' => 53,
 						'name' => 'Military Orders and Reports',
-						'numBooks' => 106,
+						'numBooks' => 107,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								83 => array (
@@ -13349,6 +13349,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								8330 => array (
 										'title' => 'Guildmaster Merric`s Notes',
 										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								2925 => array (
+										'title' => 'Investigator`s Note',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 
 				),
@@ -16935,7 +16939,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				20 => array (
 						'id' => 63,
 						'name' => 'The World and Its Creatures',
-						'numBooks' => 80,
+						'numBooks' => 93,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								300 => array (
@@ -17257,6 +17261,58 @@ $ESO_BOOK_COLLECTIONS = array (
 								6577 => array (
 										'title' => 'A Foe Most Porcine',
 										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8764 => array (
+										'title' => 'Mounts of Tamriel: Introduction',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
+								),
+								8765 => array (
+										'title' => 'Mounts of Tamriel: Volume 1, Horses',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
+								),
+								8766 => array (
+										'title' => 'Mounts of Tamriel: Volume 2, Wolves and Foxes',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								8767 => array (
+										'title' => 'Mounts of Tamriel: Volume 3, Nix-Oxen',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color4.dds' 
+								),
+								8768 => array (
+										'title' => 'Mounts of Tamriel: Volume 4, Big Cats',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color5.dds' 
+								),
+								8769 => array (
+										'title' => 'Mounts of Tamriel: Volume 5, Kagouti and Guar',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color1.dds' 
+								),
+								8770 => array (
+										'title' => 'Mounts of Tamriel: Volume 6, Camels',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color2.dds' 
+								),
+								8771 => array (
+										'title' => 'Mounts of Tamriel: Volume 7, Durzogs',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color2.dds' 
+								),
+								8772 => array (
+										'title' => 'Mounts of Tamriel: Volume 8, Elk',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color1.dds' 
+								),
+								8773 => array (
+										'title' => 'Mounts of Tamriel: Volume 9, Senche-raht',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color2.dds' 
+								),
+								8774 => array (
+										'title' => 'Mounts of Tamriel: Volume 10, Rams',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color3.dds' 
+								),
+								8775 => array (
+										'title' => 'Mounts of Tamriel: Volume 11, Bears',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								8776 => array (
+										'title' => 'Mounts of Tamriel: Volume 12, Constructs',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color1.dds' 
 								) 
 						) 
 				),
@@ -27896,7 +27952,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 232,
 						'name' => 'Elusive Manuscripts',
 						'numBooks' => 8,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								8409 => array (
 										'title' => 'Garden of Sacred Numbers Temporal Tome',
@@ -27936,7 +27992,7 @@ $ESO_BOOK_COLLECTIONS = array (
 						'id' => 233,
 						'name' => 'Solstice Summations',
 						'numBooks' => 86,
-						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								8397 => array (
 										'title' => 'Storm Coming In',
@@ -28604,7 +28660,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								8589 => array (
 										'title' => 'Triumph of the Darkbinders',
-										'icon' => '/esoui/art/icons/lore_book3_detail5_color3.dds' 
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color5.dds' 
 								),
 								8405 => array (
 										'title' => 'The Ritual of Zyv-Elehk (Ritual Fires Dormant)',
@@ -28709,6 +28765,194 @@ $ESO_BOOK_COLLECTIONS = array (
 								8615 => array (
 										'title' => 'Vitrified Souls Ritual Status Report',
 										'icon' => '/esoui/art/icons/notes_005.dds' 
+								) 
+						) 
+				),
+				58 => array (
+						'id' => 240,
+						'name' => 'Night Market Miscellanea',
+						'numBooks' => 45,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								8631 => array (
+										'title' => 'Reward for Missing Mortals',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8633 => array (
+										'title' => 'Burn the False Propaganda',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8638 => array (
+										'title' => 'Abandoned Requisition Request',
+										'icon' => '/esoui/art/icons/scroll_005.dds' 
+								),
+								8642 => array (
+										'title' => 'Blunt Their Weapons',
+										'icon' => '/esoui/art/icons/u44_quest_tornletter.dds' 
+								),
+								8673 => array (
+										'title' => 'Urgent! Food Needed',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8675 => array (
+										'title' => 'Free the Caged',
+										'icon' => '/esoui/art/icons/item_u47_paper_slip.dds' 
+								),
+								8676 => array (
+										'title' => 'IT`S NOT A POTION!',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8677 => array (
+										'title' => 'Add to the Collector`s Villa',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								8678 => array (
+										'title' => 'Desperate for the Fantastical',
+										'icon' => '/esoui/art/icons/scroll_003.dds' 
+								),
+								8679 => array (
+										'title' => 'Curious Missive',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8680 => array (
+										'title' => 'Curious Missive II',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8681 => array (
+										'title' => 'Curious Missive III',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8682 => array (
+										'title' => 'Curious Missive IV',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8685 => array (
+										'title' => 'Work Order: Spider Deterrent Devices',
+										'icon' => '/esoui/art/icons/scroll_002.dds' 
+								),
+								8658 => array (
+										'title' => 'Join the Glittering Goad',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								8729 => array (
+										'title' => 'Join the Ruckus',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								8747 => array (
+										'title' => 'Join the Thousand Eyes',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								8663 => array (
+										'title' => 'The True Nature of the Night Market',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color2.dds' 
+								),
+								8705 => array (
+										'title' => 'Thoughts about the Windglass',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
+								),
+								8727 => array (
+										'title' => 'Relics of the Night Market: The Egg of Arac',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color2.dds' 
+								),
+								8746 => array (
+										'title' => 'A Study in Glinting and Gleaming',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color2.dds' 
+								),
+								8706 => array (
+										'title' => 'List of Items to be Auctioned off in House Malenel',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								8707 => array (
+										'title' => 'Esetev`s Report on the Parch',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8744 => array (
+										'title' => 'Report on the Skittering Precinct',
+										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								8740 => array (
+										'title' => 'Report on Sorrow`s Friend',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8710 => array (
+										'title' => 'Night Market Report',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8730 => array (
+										'title' => 'Myshka`s Journal',
+										'icon' => '/esoui/art/icons/lore_book5_detail3_color3.dds' 
+								),
+								8742 => array (
+										'title' => 'Marifah`s Journal',
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
+								),
+								8718 => array (
+										'title' => 'Accusation of Falsity',
+										'icon' => '/esoui/art/icons/quest_bre_inc_paperstack001.dds' 
+								),
+								8722 => array (
+										'title' => 'A Meeting Between Friends',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								8738 => array (
+										'title' => 'Letter for Moon-Eye',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8725 => array (
+										'title' => 'Essential Knots for Sailing',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color2.dds' 
+								),
+								8723 => array (
+										'title' => 'I`ve Had It',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8737 => array (
+										'title' => 'Gilded B`Kyfxi`s Research',
+										'icon' => '/esoui/art/icons/lore_book4_detail3_color5.dds' 
+								),
+								8735 => array (
+										'title' => 'Elegy of Forgotten Fatelines',
+										'icon' => '/esoui/art/icons/quest_elsweyr_quest_tablet.dds' 
+								),
+								8728 => array (
+										'title' => 'Rules of the Night Market',
+										'icon' => '/esoui/art/icons/quest_cwc_inc_bookplate001.dds' 
+								),
+								8724 => array (
+										'title' => 'Thieves in the Starlit Plaza',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8736 => array (
+										'title' => 'Curator Dossier',
+										'icon' => '/esoui/art/icons/lore_book4_detail4_color2.dds' 
+								),
+								8739 => array (
+										'title' => 'Something Is Eating Our Eyes',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8741 => array (
+										'title' => 'Scamp Eyes Hurt',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8743 => array (
+										'title' => 'In Memory of the Pathfinders',
+										'icon' => '/esoui/art/icons/quest_scroll_001.dds' 
+								),
+								8745 => array (
+										'title' => 'In Need of Mortal Implements',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8719 => array (
+										'title' => 'Slumbering Danger: Who are the Opulent?',
+										'icon' => '/esoui/art/icons/lore_book5_detail4_color4.dds' 
+								),
+								8720 => array (
+										'title' => 'Checklist for Challenging the Opulent',
+										'icon' => '/esoui/art/icons/scroll_003.dds' 
+								),
+								8721 => array (
+										'title' => 'Curious Missive',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
 								) 
 						) 
 				) 

@@ -42,6 +42,9 @@ function SortBySubCategoryName($a, $b)
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
+$db->query("SET NAMES utf8;");
+$db->query("SET CHARACTER SET utf8;");
+
 $query = "SELECT * FROM achievementCategories;";
 $result = $db->query($query);
 if (!$result) exit("Failed to load achievementCategories!");
@@ -127,12 +130,12 @@ foreach ($categories as $category)
 	$outputData[$name]['categories']['General'] = $newData; */
 }
 
-uksort($treeData, SortByCategoryName);
+uksort($treeData, "SortByCategoryName");
 
 foreach ($treeData as $catName => $data)
 {
 	$CURRENT_CATEGORY = $catName;
-	uksort($treeData[$catName], SortBySubCategoryName);
+	uksort($treeData[$catName], "SortBySubCategoryName");
 }
 
 //uasort($outputData, SortByIndex);
