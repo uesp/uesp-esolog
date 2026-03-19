@@ -18,6 +18,9 @@ print("Generating static skill icons...\n");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
+$db->query("SET NAMES utf8;");
+$db->query("SET CHARACTER SET utf8;");
+
 $query = "SELECT id, displayId, name, texture, isPlayer, setName, rank, isPassive, morph, skillLine, skillType, classType, raceType, prevSkill FROM minedSkills$TABLE_SUFFIX;";
 $result = $db->query($query);
 if ($result === false) die("Failed to load skill records!\n");
