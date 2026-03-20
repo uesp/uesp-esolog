@@ -25,6 +25,7 @@ class CEsoViewSkillCoef
 	public $version = "";
 	public $tableSuffix = "";
 	public $showOldCoefData = false;
+	public $viewOnlySets = false;
 	public $extraQueryString = "";
 	public $minR2 = 0;
 	public $maxR2 = 1;
@@ -78,6 +79,9 @@ class CEsoViewSkillCoef
 		if (array_key_exists('v',       $this->inputParams)) $this->version = $this->inputParams['v'];
 		
 		if (array_key_exists('showold', $this->inputParams)) $this->showOldCoefData = intval($this->inputParams['showold']) != 0;
+		
+		if (array_key_exists('sets', $this->inputParams)) $this->viewOnlySets = true;
+		if (array_key_exists('viewsets', $this->inputParams)) $this->viewOnlySets = true;
 		
 		if (array_key_exists('minr2', $this->inputParams)) $this->minR2 = floatval($this->inputParams['minr2']);
 		if (array_key_exists('maxr2', $this->inputParams)) $this->maxR2 = floatval($this->inputParams['maxr2']);
@@ -245,7 +249,13 @@ class CEsoViewSkillCoef
 			$this->skillTooltips[$abilityId][$tooltipIndex] = $row;
 		}
 		
-		$query = "select * FROM $skillTable WHERE id IN (SELECT DISTINCT abilityId FROM $tooltipTable);";
+		$query = "SELECT * FROM $skillTable WHERE id IN (SELECT DISTINCT abilityId FROM $tooltipTable);";
+		
+		if ($this->viewOnlySets)
+		{
+			$query = "SELECT * FROM $skillTable WHERE setName!='' AND id IN (SELECT DISTINCT abilityId FROM $tooltipTable);";
+		}
+		
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportErrror("Failed to load skill tooltip data!");
 		
@@ -272,7 +282,13 @@ class CEsoViewSkillCoef
 	
 	public function LoadSkillCoef()
 	{
-		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1 > 0.9;";
+		$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE R1>0.9;";
+		
+		if ($this->viewOnlySets)
+		{
+			$query = "SELECT * FROM minedSkills".$this->tableSuffix." WHERE setName!='' AND R1>0.9;";
+		}
+		
 		$result = $this->db->query($query);
 		if (!$result) return $this->reportErrror("Failed to load skill coefficient data!");
 		
@@ -326,7 +342,9 @@ class CEsoViewSkillCoef
 		$count = count($this->coefData);
 		if (!$this->showOldCoefData && count($this->skillTooltips) > 0) $count = count($this->skillData);
 		
-		$output = "<div>This is a list of skill coefficients currently available. Found $count skills with valid coefficients.</div>";
+		$output = "<div>This is a list of skill coefficients currently available. Found $count skills with valid coefficients.";
+		if ($this->viewOnlySets) $output .= " Viewing only set coefficients. ";
+		$output .= "</div>";
 		$output .= "<div>";
 		
 		if ($this->minR2 > 0 || $this->maxR2 < 1)
@@ -680,6 +698,7 @@ class CEsoViewSkillCoef
 		if ($this->maxR2 < 1) $output .= "<input type='hidden' name='maxr2' value='{$this->maxR2}'>";
 		if ($this->minRatio != -1000000) $output .= "<input type='hidden' name='minratio' value='{$this->minRatio}'>";
 		if ($this->maxRatio != 1000000) $output .= "<input type='hidden' name='maxratio' value='{$this->maxRatio}'>";
+		if ($this->viewOnlySets) $output .= "<input type='hidden' name='sets' value='1'>";
 		$output .= "<select name='version'>";
 		
 		$tables = array();
@@ -720,6 +739,7 @@ class CEsoViewSkillCoef
 		$output .= "<th>Mechanic</th>";
 		$output .= "<th>Class</th>";
 		$output .= "<th>Skill Line</th>";
+		$output .= "<th>Set Name</th>";
 		$output .= "<th>#</th>";
 		$output .= "<th>Description</th>";
 		$output .= "<th>Equations</th>";
@@ -736,6 +756,7 @@ class CEsoViewSkillCoef
 			if ($equationData == "") $equationData = "None";
 			
 			$skillLine = $this->EscapeHtml($skill['skillLine']);
+			$setName = $this->EscapeHtml($skill['setName']);
 			$skillType = $skill['classType'];
 			$rank = $skill['rank'];
 			if ($rank <= 0) $rank = '';
@@ -760,6 +781,7 @@ class CEsoViewSkillCoef
 				$output .= "<td $rowspan>$mechanic</td>";
 				$output .= "<td $rowspan>$skillType</td>";
 				$output .= "<td $rowspan>$skillLine</td>";
+				
 				$output .= "<td>$count</td>";
 				$output .= "<td>$desc2</td>";
 				$output .= "<td class='esovsc_nobreak'>$equationData2</td>";
@@ -794,6 +816,7 @@ class CEsoViewSkillCoef
 		$output .= "<th>Mechanic</th>";
 		$output .= "<th>Class</th>";
 		$output .= "<th>Skill Line</th>";
+		$output .= "<th>Set Name</th>";
 		$output .= "<th>#</th>";
 		$output .= "<th>Description</th>";
 		$output .= "<th>Equations</th>";
@@ -808,6 +831,7 @@ class CEsoViewSkillCoef
 			
 			$numTooltips = count($skill['tooltips']);
 			$skillLine = $this->EscapeHtml($skill['skillLine']);
+			$setName = $this->EscapeHtml($skill['setName']);
 			$skillType = $skill['classType'];
 			$rank = $skill['rank'];
 			if ($rank <= 0) $rank = '';
@@ -825,6 +849,7 @@ class CEsoViewSkillCoef
 			$output .= "<td>$mechanic</td>";
 			$output .= "<td>$skillType</td>";
 			$output .= "<td>$skillLine</td>";
+			$output .= "<td>$setName</td>";
 			$output .= "<td>$numTooltips</td>";
 			$output .= "<td>$desc</td>";
 			$output .= "<td class='esovsc_nobreak'>$equationData</td>";
@@ -847,6 +872,7 @@ class CEsoViewSkillCoef
 		$output .= "<th>Mechanic</th>";
 		$output .= "<th>Class</th>";
 		$output .= "<th>Skill Line</th>";
+		$output .= "<th>Set Name</th>";
 		$output .= "<th>#</th>";
 		$output .= "<th>Description</th>";
 		$output .= "<th>Equations</th>";
@@ -860,6 +886,7 @@ class CEsoViewSkillCoef
 			if ($equationData == "") continue;
 			
 			$skillLine = $this->EscapeHtml($skill['skillLine']);
+			$setName = $this->EscapeHtml($skill['setName']);
 			$skillType = $skill['classType'];
 			$rank = $skill['rank'];
 			if ($rank <= 0) $rank = '';
@@ -877,6 +904,7 @@ class CEsoViewSkillCoef
 			$output .= "<td>$mechanic</td>";
 			$output .= "<td>$skillType</td>";
 			$output .= "<td>$skillLine</td>";
+			$output .= "<td>$setName</td>";
 			$output .= "<td>{$skill['numCoefVars']}</td>";
 			$output .= "<td>$desc</td>";
 			$output .= "<td class='esovsc_nobreak'>$equationData</td>";
@@ -896,6 +924,7 @@ class CEsoViewSkillCoef
 		$output .= "Mechanic, ";
 		$output .= "Class, ";
 		$output .= "Skill Line, ";
+		$output .= "Set Name, ";
 		$output .= "#, ";
 		$output .= "Description, ";
 		$output .= "Equations";
@@ -909,6 +938,7 @@ class CEsoViewSkillCoef
 			if ($equationData == "") continue;
 			
 			$skillLine = $skill['skillLine'];
+			$setName = $skill['setName'];
 			$skillType = $skill['classType'];
 			$rank = $skill['rank'];
 			if ($rank <= 0) $rank = '';
@@ -922,6 +952,7 @@ class CEsoViewSkillCoef
 			$output .= "$mechanic, ";
 			$output .= "$skillType, ";
 			$output .= "$skillLine, ";
+			$output .= "$setName, ";
 			$output .= "{$skill['numCoefVars']}, ";
 			$output .= "\"$desc\", ";
 			$output .= "\"$equationData\"";
