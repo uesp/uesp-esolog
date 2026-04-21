@@ -4739,6 +4739,10 @@ function GetEsoItemTableSuffix($version)
 			return "49pts";
 		case '49':
 			return "";
+		case '50':
+			return '50';
+		case '50pts':
+			return '50pts';
 		case 'test':
 		case 'dev':
 		case 'debug':

@@ -40,8 +40,8 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "49";
-	const SKILLS_TABLESUFFIX   = "49";
+	const MINEITEM_TABLESUFFIX = "50pts";
+	const SKILLS_TABLESUFFIX   = "50pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
@@ -7461,6 +7461,9 @@ class EsoLogParser
 		$this->currentUser['mineItemStartGameTime'] = $logEntry['gameTime'];
 		$this->currentUser['mineItemStartTimeStamp'] = $logEntry['timeStamp'];
 		
+		if ($this->currentUser['mineItemStartGameTime'] == null) $this->currentUser['mineItemStartGameTime'] = 0;
+		if ($this->currentUser['mineItemStartTimeStamp'] == null) $this->currentUser['mineItemStartTimeStamp'] = 0;
+		
 		$this->hasParsedItemSummary = [];
 	}
 	
@@ -11108,6 +11111,7 @@ class EsoLogParser
 			case "CraftedAbility::End":
 			case "CraftedAbility":
 			case "CraftedAbilityScript":
+			case "skill":
 			case "skillDump::Start":
 			case "skillDump::StartProgression":
 			case "skillDump::StartType":
@@ -11511,6 +11515,8 @@ class EsoLogParser
 		
 		if ($createLogEntry)
 		{
+			//print("\t\tevent {$logEntry['event']}\n");
+			//print("\t\tcreateLogEntry\n");
 			$logId = $this->addLogEntryRecordFromLog($logEntry);
 			
 			if (self::DO_BENCHMARK)
@@ -11530,6 +11536,7 @@ class EsoLogParser
 		
 		++$user['entryCount'];
 		$user['__dirty'] = true;
+		
 		
 		//$this->log($logEntry['event'] . "");
 		
@@ -11819,11 +11826,13 @@ class EsoLogParser
 			if (!array_key_exists('gameTime', $logEntry))
 			{
 				$logEntry['gameTime'] = $this->currentUser['mineItemStartGameTime'];
+				if ($logEntry['gameTime'] == null) $logEntry['gameTime'] = 0;
 			}
-		
+			
 			if (!array_key_exists('timeStamp', $logEntry))
 			{
 				$logEntry['timeStamp'] = $this->currentUser['mineItemStartTimeStamp'];
+				if ($logEntry['timeStamp'] == null) $logEntry['timeStamp'] = 0;
 			}
 		}
 		
