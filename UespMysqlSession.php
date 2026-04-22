@@ -26,6 +26,7 @@ if (!class_exists("UespMysqlSession"))
 		public static $SESSION_PREFIX = "uesp_net_wiki5";
 		public static $SESSION = null;
 		public $db = null;
+		public $cachedId = "";
 		
 		
 		static function install($dbname = "uesp_net_wiki5")
@@ -97,6 +98,9 @@ if (!class_exists("UespMysqlSession"))
 		
 		public function read($id)
 		{
+			if ($id) $this->cachedId = $id;
+                        if ($id == "" && $this->cachedId) $id = $this->cachedId;                //This is a temporary hack to get around issue in php74
+
 			//error_log("UespMysqlSession::read($id)");
 			
 			$cleanId = str_replace( ':', '%3A', $id );
