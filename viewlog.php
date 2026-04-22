@@ -3645,7 +3645,7 @@ class EsoLogViewer
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="//esolog-static.uesp.net/resources/theme.default.min.css?sept2024a" />
 	<link rel="stylesheet" href="//esolog-static.uesp.net/viewlog.css?sept2024b" />
-	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="//esolog-static.uesp.net/resources/jquery.tablesorter.min.js?sept2024a"></script>
 	<script type="text/javascript" src="//esolog-static.uesp.net/viewlog.js?sept2024a"></script>
 </head>
