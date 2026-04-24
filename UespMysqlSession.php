@@ -51,6 +51,7 @@ if (!class_exists("UespMysqlSession"))
 			
 			$SESSION = self::$SESSION;
 			$data = $SESSION->read(session_id());
+			if (is_string($data)) $data = unserialize($data);
 			
 			if ($data == "" || $data == null || $data['data'] == null)
 			{
@@ -98,8 +99,8 @@ if (!class_exists("UespMysqlSession"))
 		
 		public function read($id)
 		{
-			if ($id) $this->cachedId = $id;
-                        if ($id == "" && $this->cachedId) $id = $this->cachedId;                //This is a temporary hack to get around issue in php74
+			//if ($id) $this->cachedId = $id;
+                        //if ($id == "" && $this->cachedId) $id = $this->cachedId;                //This is a temporary hack to get around issue in php74
 
 			//error_log("UespMysqlSession::read($id)");
 			
@@ -134,8 +135,8 @@ if (!class_exists("UespMysqlSession"))
 			
 			//error_log("UespMysqlSession::read($id) = $rawValue");
 			
-			$value = unserialize( $rawValue);
-			return $value;
+			//$value = unserialize( $rawValue);
+			return $rawValue;
 		}
 		
 		
@@ -153,7 +154,7 @@ if (!class_exists("UespMysqlSession"))
 		}
 		
 		
-		public function gc($maxlifetime)
+		public function gc($maxlifetime): bool
 		{
 			//Not implemented
 			return true;
