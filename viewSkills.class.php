@@ -310,7 +310,7 @@ class CEsoViewSkills
 		
 		$this->UpdateCraftedSkillData();
 		
-		error_log("LoadCraftedSkillAbilities = $count");
+		//error_log("LoadCraftedSkillAbilities = $count");
 		return true;
 	}
 	
@@ -411,7 +411,7 @@ class CEsoViewSkills
 		}
 		
 		$count = count($this->craftedSkills);
-		error_log("LoadCraftedSkills = $count");
+		//error_log("LoadCraftedSkills = $count");
 		return $this->LoadCraftedSkillAbilities();
 	}
 	
