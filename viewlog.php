@@ -41,7 +41,8 @@ class EsoLogViewer
 	public $searchType = '';
 	public $searchTotalCount = 0;
 	public $searchTerms = array();
-	public $searchResults = array();
+	public $searchExactResults = [];
+	public $searchPartialResults = [];
 	public $displayLimit = 1000;
 	public $displayStart = 0;
 	public $displayRawValues = false;
@@ -4812,7 +4813,7 @@ If you do not understand what this information means, or how to use this webpage
 		$limitCount = $this->displayLimit;
 		$likeString = " LIKE '%$safeSearch%' ";
 		$searchFields = $searchData['searchFields']; 
-				
+		
 		foreach ($searchFields as &$field)
 		{
 			$field .= $likeString;
@@ -4821,34 +4822,34 @@ If you do not understand what this information means, or how to use this webpage
 		$whereQuery = implode(' OR ', $searchFields);
 		$query = "SELECT COUNT(*) FROM $table WHERE $whereQuery LIMIT $limitCount;";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to perform exact search on $table table!");
-	
+		
 		$rowData = $result->fetch_row();
 		$this->searchTotalCount += $rowData[0];
-	
+		
 		$query = "SELECT * FROM $table WHERE $whereQuery LIMIT $limitCount;";
 		$this->lastQuery = $query;
-	
+		
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to perform search on $table table!");
-	
+		
 		$result->data_seek(0);
-	
+		
 		while ( ($row = $result->fetch_assoc()) )
 		{
 			$results = array();
-				
+			
 			foreach($searchData['fields'] as $key => $value)
 			{
 				$results[$value] = $row[$key];
 			}
-				
+			
 			$results['type'] = $table;
-			$this->searchResults[] = $results;
+			$this->searchExactResults[] = $results;
 		}
-	
+		
 		return true;
 	}
 	
@@ -4898,7 +4899,7 @@ If you do not understand what this information means, or how to use this webpage
 			}
 			
 			$results['type'] = $table;
-			$this->searchResults[] = $results;
+			$this->searchPartialResults[] = $results;
 		}
 		
 		return true;
@@ -4989,9 +4990,44 @@ If you do not understand what this information means, or how to use this webpage
 	}
 	
 	
+	public function GetOutputSearchResult($key, $result)
+	{
+		$output = "";
+		$viewLink = $this->CreateSearchViewLink($result);
+		
+		if ($this->IsOutputHTML())
+		{
+			$output .= "<tr class='esologSearchRow'>\n";
+			$output .= "\t<td>$viewLink</td>\n";
+		}
+		
+		foreach (self::$SEARCH_FIELDS as $key => $value)
+		{
+			$fmtValue = "";
+			if (array_key_exists($key, $result)) $fmtValue = $this->SimpleFormatField($result[$key], $value);
+			
+			if ($this->IsOutputHTML())
+				$output .= "\t<td>$fmtValue</td>\n";
+			elseif ($this->IsOutputCSV())
+				$output .= "$fmtValue,";
+		}
+		
+		if ($this->IsOutputHTML())
+		{
+			$output .= "\t<td></td>\n";
+			$output .= "</tr>\n";
+		}
+		elseif ($this->IsOutputCSV())
+		{
+			$output .= "\n";
+		}
+		return $output;
+	}
+	
+	
 	public function DisplaySearchResults()
 	{
-		$searchCount = count($this->searchResults);
+		$searchCount = count($this->searchExactResults) + count($this->searchPartialResults);
 		$totalCount = $this->searchTotalCount;
 		
 		if ($this->IsOutputHTML())
@@ -5024,36 +5060,28 @@ If you do not understand what this information means, or how to use this webpage
 			$output .= "\n";
 		}
 		
-		foreach ($this->searchResults as $key => $result)
+		$count = count($this->searchExactResults);
+		
+		if ($count <= 0)
+			$output .= "<tr><th colspan='20' style='text-align:center; background-color:#ccf''>There are no exact search results</th></tr>";
+		else
+			$output .= "<tr><th colspan='20' style='text-align:center; background-color:#ccf''>There are $count exact search results.</th></tr>";
+		
+		foreach ($this->searchExactResults as $key => $result)
 		{
-			$viewLink = $this->CreateSearchViewLink($result);
-			
-			if ($this->IsOutputHTML())
-			{
-				$output .= "<tr class='esologSearchRow'>\n";
-				$output .= "\t<td>$viewLink</td>\n";
-			}
-			
-			foreach (self::$SEARCH_FIELDS as $key => $value)
-			{
-				$fmtValue = "";
-				if (array_key_exists($key, $result)) $fmtValue = $this->SimpleFormatField($result[$key], $value);
-				
-				if ($this->IsOutputHTML())
-					$output .= "\t<td>$fmtValue</td>\n";
-				elseif ($this->IsOutputCSV())
-					$output .= "$fmtValue,";
-			}
-			
-			if ($this->IsOutputHTML())
-			{
-				$output .= "\t<td></td>\n";
-				$output .= "</tr>\n";
-			}
-			elseif ($this->IsOutputCSV())
-			{
-				$output .= "\n";
-			}
+			$output .= $this->GetOutputSearchResult($key, $result);
+		}
+		
+		$count = count($this->searchPartialResults);
+		
+		if ($count <= 0)
+			$output .= "<tr><th colspan='20' style='text-align:center; background-color:#ccf'>There are no partial search results</th></tr>";
+		else
+			$output .= "<tr><th colspan='20' style='text-align:center; background-color:#ccf''>There are $count partial search results.</th></tr>";
+		
+		foreach ($this->searchPartialResults as $key => $result)
+		{
+			$output .= $this->GetOutputSearchResult($key, $result);
 		}
 		
 		if ($this->IsOutputHTML()) $output .= "</table>\n";
@@ -5081,7 +5109,8 @@ If you do not understand what this information means, or how to use this webpage
 		$this->OutputTopMenu();
 		
 		$this->searchTotalCount = 0;
-		$this->searchResults = array();
+		$this->searchExactResults = [];
+		$this->searchPartialResults = [];
 		$this->searchTerms = explode(" ", $this->search);
 		
 			/* Exact searches */
