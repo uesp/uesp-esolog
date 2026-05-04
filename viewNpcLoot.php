@@ -188,23 +188,26 @@ class CEsoViewNpcLoot
 	
 	public function LoadSalesPrices()
 	{
+			//Don't load data due to memory issues 
+		return false;
+		
 		if ($this->salesPriceServer == "") return true;
 		
 		if ($this->salesPriceServer == "NA")
 		{
-			include "pricesNA/uespSalesPrices.php";
+			//include "pricesNA/uespSalesPrices.php";
 		}
 		else if ($this->salesPriceServer == "EU")
 		{
-			include "pricesEU/uespSalesPrices.php";
+			//include "pricesEU/uespSalesPrices.php";
 		}
 		else if ($this->salesPriceServer == "PTS")
 		{
-			include "pricesPTS/uespSalesPrices.php";
+			//include "pricesPTS/uespSalesPrices.php";
 		}
 		else if ($this->salesPriceServer == "Other")
 		{
-			include "pricesOther/uespSalesPrices.php";
+			//include "pricesOther/uespSalesPrices.php";
 		}
 		else
 		{
@@ -213,7 +216,7 @@ class CEsoViewNpcLoot
 		
 		if ($uespSalesPrices == null) return false;
 		
-		$this->salesPrices = &$uespSalesPrices;		
+		$this->salesPrices = &$uespSalesPrices;
 		
 		$this->UpdateWritVoucherValue();
 		return true;
@@ -1162,7 +1165,7 @@ class CEsoViewNpcLoot
 			}
 			
 			if ($trait > 0)
-			{				
+			{
 				$traitName = GetEsoItemTraitText($trait);
 				$trait = $trait + 1000;
 				
@@ -1170,7 +1173,7 @@ class CEsoViewNpcLoot
 				$this->itemSummary[$itemType][$trait]['count'] += $result['count'];
 				$this->itemSummary[$itemType][$trait]['qnt'] += $result['qnt'];
 				$this->itemSummary[$itemType][$trait]['numItems'] += 1;
-
+				
 				if ($this->itemSummary[$traitName] == null) $this->itemSummary[$traitName] = array();
 				if ($this->itemSummary[$traitName]["all"] == null) $this->itemSummary[$traitName]["all"] = array( 'count' => 0, 'qnt' => 0, 'numItems' => 0, 'totalPrice' => 0);
 				
