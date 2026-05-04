@@ -4812,7 +4812,7 @@ If you do not understand what this information means, or how to use this webpage
 		$limitCount = $this->displayLimit;
 		$likeString = " LIKE '%$safeSearch%' ";
 		$searchFields = $searchData['searchFields']; 
-		
+				
 		foreach ($searchFields as &$field)
 		{
 			$field .= $likeString;
@@ -4821,34 +4821,34 @@ If you do not understand what this information means, or how to use this webpage
 		$whereQuery = implode(' OR ', $searchFields);
 		$query = "SELECT COUNT(*) FROM $table WHERE $whereQuery LIMIT $limitCount;";
 		$this->lastQuery = $query;
-		
+	
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to perform exact search on $table table!");
-		
+	
 		$rowData = $result->fetch_row();
 		$this->searchTotalCount += $rowData[0];
-		
+	
 		$query = "SELECT * FROM $table WHERE $whereQuery LIMIT $limitCount;";
 		$this->lastQuery = $query;
-		
+	
 		$result = $this->db->query($query);
 		if ($result === false) return $this->ReportError("Failed to perform search on $table table!");
-		
+	
 		$result->data_seek(0);
-		
+	
 		while ( ($row = $result->fetch_assoc()) )
 		{
 			$results = array();
-			
+				
 			foreach($searchData['fields'] as $key => $value)
 			{
 				$results[$value] = $row[$key];
 			}
-			
+				
 			$results['type'] = $table;
 			$this->searchResults[] = $results;
 		}
-		
+	
 		return true;
 	}
 	
@@ -4861,7 +4861,7 @@ If you do not understand what this information means, or how to use this webpage
 		
 		foreach ($matches[1] as $word)
 		{
-			if (count($word) > 2) $this->searchWords[] = $word;
+			if (strlen($word) > 2) $this->searchWords[] = $word;
 		}
 		
 		if (count($this->searchWords) == 0) return false;
@@ -5101,8 +5101,6 @@ If you do not understand what this information means, or how to use this webpage
 				$this->SearchTable($table, $searchData);
 			}
 		}
-		
-		//TODO: De-Duplicate search results
 		
 		$this->DisplaySearchResults();
 		$this->WritePageFooter();
