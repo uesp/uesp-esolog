@@ -509,6 +509,8 @@ window.UpdateEsoCPDiscSkillDesc = function(discId)
 
 window.UpdateEsoCPDiscPoints = function(discId)
 {
+	if (discId == "") return;
+	
 	//var skillInputs = $("#skills_" + discId + " .esovcpPointInput");
 	var totalPoints = 0;
 	var attributeIndex = $("#" + discId).parent().attr("attributeindex");

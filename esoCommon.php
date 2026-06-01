@@ -556,7 +556,7 @@ $ESO_DAMAGETYPES = array(
 		10 => "Disease",
 		11 => "Poison",
 		12 => "Bleed",
-		515 => "Flame", //Flame Skull
+		515 => "Flame", //Flame Skull, might just be 512 | 3
 );
 
 

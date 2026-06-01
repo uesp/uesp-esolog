@@ -865,6 +865,7 @@
 	float: left;
 	line-height: 0.5em;
 	margin-left: -20px;
+	display: none;
 }
 
 .esovsSubclassImage {

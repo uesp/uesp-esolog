@@ -851,6 +851,11 @@ class CEsoViewSkills
 				if ($this->displayRace == "all" || startsWithNoCase($skillLine, $this->displayRace)) $isRaceVisible = true;
 			}
 			
+			if ($skillLine == "Class Mastery")
+			{
+				$skillLine = $skillLine . " " . $skillType;
+			}
+			
 			if ($displayType != "none" && ($this->highlightSkillLine == $skillLine || ($this->highlightSkillLine == "" && $isFirstSkillLine)))
 				$output .= $this->GetSkillTreeLineHtml($skillLine, $skillLineData, "esovsSkillLineTitleHighlight", $isRaceVisible, $skillType, $isClass, $index);
 			else
@@ -879,7 +884,7 @@ class CEsoViewSkills
 		$charSubclassLine = "";
 		$origSkillLine = $skillLine;
 		
-		if ($isClassType && $this->PERMIT_SUBCLASSING)
+		if ($isClassType && $this->PERMIT_SUBCLASSING && !preg_match('/^Class Mastery/', $skillLine))
 		{
 			$subclassButton = "<div class='esovsSubclassButton'><img loading='lazy' title='[Select a Subclass Skill]' skilllineindex='$index' origskilllineid=\"$skillLine\" skilllineid=\"$skillLine\" class='esovsSubclassImage' src='//esolog-static.uesp.net/resources/pointsplus_up.png'></div>";
 			
@@ -892,7 +897,9 @@ class CEsoViewSkills
 			if ($charSubclassLine) $skillLine = $charSubclassLine;
 		}
 		
-		$output = "$subclassButton<div class='esovsSkillLineTitle $extraClass' skilllineindex='$index' origskilllineid=\"$origSkillLine\" skilllineid=\"$skillLine\" subclass=\"$charSubclass\" subclassid=\"$charSubclassLine\" style=\"display: $displayType;\">$skillLine</div>";
+		$skillLineTitle = preg_replace('/^Class Mastery .*/', 'Class Mastery', $skillLine);
+		
+		$output = "$subclassButton<div class='esovsSkillLineTitle $extraClass' skilllineindex='$index' targetid=\"$skillLine\" origskilllineid=\"$origSkillLine\" skilllineid=\"$skillLine\" subclass=\"$charSubclass\" subclassid=\"$charSubclassLine\" style=\"display: $displayType;\">$skillLineTitle</div>";
 		
 		return $output;
 	}
@@ -937,6 +944,11 @@ class CEsoViewSkills
 		{
 			$displayType = "block";
 			$this->isFirstSkill = false;
+		}
+		
+		if ($skillLine == "Class Mastery")
+		{
+			$skillLine = $skillLine . " " . $skillType;
 		}
 		
 		$id = $this->MakeHtmlId($skillLine);

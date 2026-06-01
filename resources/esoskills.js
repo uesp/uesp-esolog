@@ -839,6 +839,7 @@ window.OnEsoSkillTypeTitleClick = function (event, noUpdate)
 	
 	var skillType = $(this).text();
 	var skillLine = firstSkillLine.text();
+	skillLine = firstSkillLine.attr('targetid');
 	
 	if (noUpdate !== false)
 	{
@@ -862,6 +863,7 @@ window.OnEsoSkillLineTitleClick = function (event, noUpdate)
 	$(this).addClass("esovsSkillLineTitleHighlight");
 	
 	var skillLine = $(this).text();
+	skillLine = $(this).attr('targetid');
 	
 	if (noUpdate !== false)
 	{

@@ -40,7 +40,7 @@ require_once("skillTooltips.class.php");
 
 class EsoLogParser
 {
-	const MINEITEM_TABLESUFFIX = "50pts";
+	const MINEITEM_TABLESUFFIX = "50";
 	const SKILLS_TABLESUFFIX   = "50pts";
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
@@ -953,6 +953,7 @@ class EsoLogParser
 			'isChanneled' => self::FIELD_INT,
 			'isPermanent' => self::FIELD_INT,
 			'isCrafted' => self::FIELD_INT,
+			'isMastery' => self::FIELD_INT,
 			'craftedId' => self::FIELD_INT,
 			'castTime' => self::FIELD_INT,
 			'channelTime' => self::FIELD_INT,
@@ -3497,6 +3498,7 @@ class EsoLogParser
 			isChanneled TINYINT NOT NULL DEFAULT 0,
 			isPermanent TINYINT NOT NULL DEFAULT 0,
 			isCrafted TINYINT NOT NULL DEFAULT 0,
+			isMastery TINYINT NOT NULL DEFAULT 0,
 			craftedId INTEGER NOT NULL DEFAULT 0,
 			castTime INTEGER NOT NULL DEFAULT -1,
 			channelTime INTEGER NOT NULL DEFAULT -1,
@@ -9307,6 +9309,8 @@ class EsoLogParser
 			}
 		}
 		
+		if ($logEntry['skillLineName'] == "Class Mastery") $skill['isMastery'] = 1;
+		
 		if ($logEntry['skillType'] > 0 || $logEntry['desc1'] != null)
 		{
 			$skill['isUltimate'] = $logEntry['ultimate'];
@@ -9770,6 +9774,15 @@ class EsoLogParser
 			218 => "Arcanist",
 			219 => "Arcanist",
 			220 => "Arcanist",
+			
+				//Class Mastery, update 50pts
+			351 => "Dragonknight",
+			352 => "Arcanist",
+			353 => "Necromancer",
+			354 => "Warden",
+			355 => "Templar",
+			356 => "Nightblade",
+			357 => "Sorcerer",
 	);
 	
 	
@@ -9792,25 +9805,33 @@ class EsoLogParser
 		if (!$this->IsValidUser($logEntry)) return false;
 		$version = $this->currentUser['lastSkillDumpNote'];
 		
-		$this->currentUser['lastSkillLineName'] = $logEntry['name'];
-		
-		$skillLine = $this->LoadSkillLine($logEntry['name']);
-		if ($skillLine === false) return false;
-		
+		$skillLineName = $logEntry['name'];
 		$skillLineId = $logEntry['skillLineId'];
-		$skillLine['xp'] = $logEntry['xpString'];
-		$skillLine['totalXp'] = $logEntry['totalXp'];
-		
-			// Doesn't work from update 17
-		//if (array_key_exists('race', $logEntry)) $skillLine['raceType'] = $logEntry['race'];
-		//if (array_key_exists('class', $logEntry)) $skillLine['classType'] = $logEntry['class'];
+		$isMastery = false;
+		$classType = "";
+		$raceType = "";
 		
 		if ($this->CLASS_SKILLLINE_IDS[$skillLineId])
-			$skillLine['classType'] = $this->CLASS_SKILLLINE_IDS[$skillLineId];
+			$classType = $this->CLASS_SKILLLINE_IDS[$skillLineId];
 		elseif ($this->RACE_SKILLLINE_IDS[$skillLineId])
-			$skillLine['raceType'] = $this->RACE_SKILLLINE_IDS[$skillLineId];
+			$raceType = $this->RACE_SKILLLINE_IDS[$skillLineId];
 		
+		if ($skillLineName == "Class Mastery") 
+		{
+			$skillLineName = $skillLineName . " " . $classType;
+			$isMastery = true;
+		}
+		
+		$this->currentUser['lastSkillLineName'] = $skillLineName;
+		
+		$skillLine = $this->LoadSkillLine($skillLineName);
+		if ($skillLine === false) return false;
+		
+		$skillLine['xp'] = $logEntry['xpString'];
+		$skillLine['totalXp'] = $logEntry['totalXp'];
 		$skillLine['skillType'] = $logEntry['skillType'];
+		$skillLine['classType'] = $classType;
+		$skillLine['raceType'] = $raceType;
 		
 		if (array_key_exists('numRanks', $logEntry))
 		{
