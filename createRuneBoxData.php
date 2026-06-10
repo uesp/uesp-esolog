@@ -122,6 +122,7 @@ $REPLACE_PAIRS = array(
 		"Hagmatron's Face Marking" => "Hagmatron's Face Markings",
 		"Hagmatron's Body Marking" => "Hagmatron's Body Markings",
 		"Jester's Deadly Headband Adornment" => "Jester's Deadly Headband",
+		"[Gloamwalker]" => "Gloambound",
 );
 
 require("/home/uesp/secrets/esolog.secrets");

@@ -5,7 +5,7 @@ if (php_sapi_name() != "cli") die("Error: Can only be run from command line!");
 require("/home/uesp/secrets/esolog.secrets");
 require_once("esoCommon.php");
 
-$TABLE_SUFFIX = "50pts";
+$TABLE_SUFFIX = "50";
 
 print("Finding all crafted skill abilityIds and updating the craftedSkill$TABLE_SUFFIX table...\n");
 
