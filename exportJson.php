@@ -23,6 +23,8 @@ class CEsoLogJsonExport
 	public $inputFields = "";
 	public $inputTransmuteTrait = "";
 	public $inputLimit = -1;
+	public $inputStartId = -1;
+	public $inputEndId = -1;
 	public $exportTables = array();
 	public $outputData = array();
 	public $tableFields = array();
@@ -181,6 +183,16 @@ class CEsoLogJsonExport
 		if (array_key_exists('limit', $this->inputParams)) $this->inputLimit = (int) $this->inputParams['limit'];
 		if (array_key_exists('transmutetrait', $this->inputParams)) $this->inputTransmuteTrait = (int) $this->inputParams['transmutetrait'];
 		
+		if (array_key_exists('startid', $this->inputParams))
+		{
+			$this->inputStartId = (int) $this->inputParams['startid'];
+		}
+		
+		if (array_key_exists('endid', $this->inputParams))
+		{
+			$this->inputEndId = (int) $this->inputParams['endid'];
+		}
+		
 		if (array_key_exists('fields', $this->inputParams)) 
 		{
 			$this->inputFields = $this->inputParams['fields'];
@@ -318,6 +330,10 @@ class CEsoLogJsonExport
 				$ids = implode(",", $this->inputIds);
 				$where[] = "$idField IN ($ids)";
 			}
+			else if ($this->inputStartId > 0 && $this->inputEndId > 0)
+			{
+				$where[] = "itemId>={$this->inputStartId} AND itemId<={$this->inputEndId}";
+			}
 			
 			if ($this->inputIntLevel != "" && $this->inputIntType != "")
 			{
@@ -352,6 +368,10 @@ class CEsoLogJsonExport
 				$ids = implode(",", $this->inputIds);
 				$where[] = "$idField IN ($ids)";
 			}
+			else if ($this->inputStartId > 0 && $this->inputEndId > 0)
+			{
+				$where[] = "itemId>={$this->inputStartId} AND itemId<={$this->inputEndId}";
+			}
 			
 			if ($this->inputItemType != "") $where[] = "type=".(int)$this->inputItemType;
 			if ($this->inputEquipType != "") $where[] = "equipType=".(int)$this->inputEquipType;
@@ -370,6 +390,11 @@ class CEsoLogJsonExport
 			$idField = $this->TABLE_IDS[$table];
 			$ids = implode(",", $this->inputIds);
 			$where[] = "$idField IN ($ids)";
+		}
+		else if ($this->inputStartId > 0 && $this->inputEndId > 0)
+		{
+			$idField = $this->TABLE_IDS[$table];
+			$where[] = "$idField>={$this->inputStartId} AND $idField<={$this->inputEndId}";
 		}
 		
 		$fields = "*";
@@ -393,7 +418,7 @@ class CEsoLogJsonExport
 		$query = $this->GetQuery($table);
 		if ($query == "") return false;
 		
-		$result = $this->db->query($query);
+		$result = $this->db->query($query, MYSQLI_USE_RESULT);
 		if (!$result) return $this->ReportError("Error: Failed to load records from '$table'!", 500);
 		
 		$this->outputData[$table] = array();
@@ -412,6 +437,8 @@ class CEsoLogJsonExport
 			$this->outputData[$table][] = $row;
 			++$numRecords;
 		}
+		
+		$result->free();
 		
 		$this->outputData['numRecords'] += $numRecords;
 		
