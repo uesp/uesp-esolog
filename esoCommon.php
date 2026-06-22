@@ -1050,6 +1050,7 @@ $ESO_ITEMSTYLE_TEXTS = array(
 		157 => 'Tide-Born',
 		158 => 'Black Soul Gem',
 		159 => 'Voskrona Guardian',
+		162 => 'Koldane Cartel',
 );
 
 
@@ -2450,6 +2451,8 @@ $ESO_QUESTTYPE_TEXTS = array(
 		16 => 'Companion',
 		17 => 'Tales of Tribute',",
 		18 => 'Scribing',",
+		19 => 'Favors',
+		20 => 'Tamriel Tales',
 );
 
 
