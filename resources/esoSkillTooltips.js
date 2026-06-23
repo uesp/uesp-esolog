@@ -1318,6 +1318,13 @@ window.ModifyEsoSkillTooltipDamageValue2 = function(baseDamage, tooltip, skillDa
 		}
 	}
 	
+	if (inputValues.SkillLineFlatDamage && inputValues.SkillLineFlatDamage[skillLineName])
+	{
+		valueFlat += inputValues.SkillLineFlatDamage[skillLineName];
+		newRawOutput.skillFlatDamage = inputValues.SkillLineFlatDamage[skillLineName];
+		AddEsoSkillTooltipRawOutputMod(skillData, tooltip.idx, "Flat", inputValues.SkillLineFlatDamage[skillLineName], '');
+	}
+	
 		// Pummeling Goliath special case (TODO: This might fail if tooltip changes)
 	if (skillData.name == "Pummeling Goliath" && inputValues.Damage.ExtraBashDamage > 0 && tooltip.dmgType == 2 && tooltip.coefType == 10)
 	{
