@@ -841,6 +841,9 @@ window.OnEsoSkillTypeTitleClick = function (event, noUpdate)
 	var skillLine = firstSkillLine.text();
 	skillLine = firstSkillLine.attr('targetid');
 	
+	var subClassLine = firstSkillLine.attr("subclassid");
+	if (subClassLine != "") skillLine = subClassLine;
+	
 	if (noUpdate !== false)
 	{
 		EsoSkillShowSkillLine(skillLine);
@@ -864,6 +867,9 @@ window.OnEsoSkillLineTitleClick = function (event, noUpdate)
 	
 	var skillLine = $(this).text();
 	skillLine = $(this).attr('targetid');
+	
+	var subClassLine = $(this).attr("subclassid");
+	if (subClassLine != "") skillLine = subClassLine;
 	
 	if (noUpdate !== false)
 	{

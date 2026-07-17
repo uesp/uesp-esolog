@@ -2022,6 +2022,7 @@ class CEsoViewSkills
 		
 		foreach ($this->skillTree[$className] as $skillLine => $skillLineData)
 		{
+			if ($skillLine == "Class Mastery") continue;
 			$output .= "<div classid=\"$className\" skilllineid=\"$skillLine\" class='esovsSubclassPopupChoice'>$skillLine</div>";
 		}
 		
