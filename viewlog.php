@@ -2435,12 +2435,13 @@ class EsoLogViewer
 					'join' => array(
 							'parentSkillId' => array(
 									'table' => 'cp2Skills',
+									'tableAlias' => 'cp2Skills1',
 									'joinField' => 'skillId',
 									'fields' => array('parentName' => 'name'),
 							),
 							'skillId' => array(
 									'table' => 'cp2Skills',
-									'tableAlias' => 'cp2Skills',
+									'tableAlias' => 'cp2Skills2',
 									'joinField' => 'skillId',
 									'fields' => array('name' => 'name'),
 							),
