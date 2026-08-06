@@ -1,6 +1,6 @@
 <?php 
 
-$TABLE_SUFFIX = "49pts";
+$TABLE_SUFFIX = "51pts";
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
@@ -11,6 +11,9 @@ print("Updating the gameIds for all sets for version $TABLE_SUFFIX...\n");
 
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
+
+$db->query("SET NAMES utf8;");
+$db->query("SET CHARACTER SET utf8;");
 
 $query = "SELECT * FROM setSummary$TABLE_SUFFIX;";
 $result = $db->query($query);

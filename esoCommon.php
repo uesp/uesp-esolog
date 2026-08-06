@@ -2312,11 +2312,14 @@ $ESO_SET_INDEXES = array(
 		849 => "Glittering Goad",
 		850 => "Thousand Eyes",
 		851 => "The Ruckus",
-		852 => "Prototype Mythic Ring - u49 Mythic Proto 3",
 		853 => "Prototype Mythic Ring - u49 Mythic Proto 4",
+		854 => "Prowler's Talisman",
 		855 => "Gorethief",
 		856 => "Prototype Mythic Necklace - u49 Mythic Proto 1",
+		876 => "Tarcyr",
+		877 => "Mylenne Moon-Caller",
 );
+
 
 
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
@@ -4748,6 +4751,10 @@ function GetEsoItemTableSuffix($version)
 			return '';
 		case '50pts':
 			return '50pts';
+		case '51':
+			return '51';
+		case '51pts':
+			return '51pts';
 		case 'test':
 		case 'dev':
 		case 'debug':
