@@ -170,6 +170,20 @@ class CEsoItemLink
 			"conditionIndex" => "",
 	);
 	
+	static public $ESOIL_ERROR_RUMOR_DATA = array(
+			"name" => "Unknown",
+			"rumorId" => "",
+			"hintIndex" => "",
+			"itemLink" => "",
+			"rumorName" => "",
+			"itemId" => "",
+			"header" => "",
+			"icon" => "/esoui/art/icons/icon_missing.dds",
+			"description" => "Unknown rumor!",
+			"stepIndex" => "",
+			"conditionIndex" => "",
+	);
+	
 	static public $ESOIL_ERROR_COLLECTIBLEITEM_DATA = array(
 			"name" => "Unknown",
 			"itemLink" => "",
@@ -306,6 +320,10 @@ class CEsoItemLink
 	
 	public $antiquityItemId = -1;
 	public $antiquityItemData = array();
+	
+	public $rumorId = -1;
+	public $hintIndex = -1;
+	public $rumorIndexData = array();
 	
 	public $setItemData = array();
 	
@@ -535,6 +553,10 @@ class CEsoItemLink
 		if (array_key_exists('aid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['aid'];
 		if (array_key_exists('antiid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['antiid'];
 		if (array_key_exists('antiquityid', $this->inputParams)) $this->antiquityItemId = (int) $this->inputParams['antiquityid'];
+		if (array_key_exists('rumorid', $this->inputParams)) $this->rumorId = (int) $this->inputParams['rumorid'];
+		if (array_key_exists('hintindex', $this->inputParams)) $this->hintIndex = (int) $this->inputParams['hintindex'];
+		
+		error_log("Rumor Data: {$this->rumorId} / {$this->hintIndex}");
 		
 		if (array_key_exists('set', $this->inputParams)) $this->itemSet = trim($this->inputParams['set']);
 		
@@ -770,7 +792,7 @@ class CEsoItemLink
 	private function LoadCollectibleItemErrorData()
 	{
 		$this->collectibleItemData = self::$ESOIL_ERROR_COLLECTIBLEITEM_DATA;
-	
+		
 		$this->collectibleItemData['name'] = "Unknown Collectible";
 		$this->collectibleItemData['id'] = $this->collectibleItemId;
 		$this->collectibleItemData['description'] = "No collectible item found matching ID# {$this->collectibleItemId}!";
@@ -780,10 +802,20 @@ class CEsoItemLink
 	private function LoadAntiquityItemErrorData()
 	{
 		$this->antiquityItemData = self::$ESOIL_ERROR_ANTIQUITYITEM_DATA;
-	
+		
 		$this->antiquityItemData['name'] = "Unknown Antiquity";
 		$this->antiquityItemData['id'] = $this->antiquityItemId;
 		$this->antiquityItemData['description'] = "No antiquity lead found matching ID# {$this->antiquityItemId}!";
+	}
+	
+	
+	private function LoadRumorErrorData()
+	{
+		$this->rumorItemData = self::$ESOIL_ERROR_RUMOR_DATA;
+		
+		$this->rumorItemData['name'] = "Unknown Rumor";
+		$this->rumorItemData['id'] = $this->rumorId;
+		$this->rumorItemData['description'] = "No rumor hint found matching ID# {$this->rumorId} / {$this->hintIndex}!";
 	}
 	
 	
@@ -1440,6 +1472,29 @@ class CEsoItemLink
 	}
 	
 	
+	private function LoadRumorRecord()
+	{
+		if ($this->rumorId <= 0 || $this->hintIndex <= 0) return $this->ReportError("ERROR: Missing or invalid rumor hint ID or index specified!");
+		
+		$query = "SELECT * FROM rumorHints WHERE rumorId='{$this->rumorId}' AND hintIndex='{$this->hintIndex}' LIMIT 1;";
+		$this->itemErrorDesc = "rumorId={$this->rumorId} AND hintIndex={$this->hintIndex}";
+		$result = $this->db->query($query);
+		if (!$result) return $this->ReportError("ERROR: Database query error! " . $this->db->error);
+		
+		$result->data_seek(0);
+		$this->rumorItemData = $result->fetch_assoc();
+		
+		if (!$this->rumorItemData)
+		{
+			$this->ReportError("ERROR: No rumor hint found matching {$this->itemErrorDesc}!");
+			$this->rumorItemData = array();
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
 	private function LoadItemPotionData()
 	{
 		if ($this->itemPotionData <= 0) return true;
@@ -1923,6 +1978,29 @@ class CEsoItemLink
 	}
 	
 	
+	private function MakeRumorRawDataList()
+	{
+		$output = "";
+		$this->rumorItemData['version'] = $this->version;
+		
+		foreach ($this->rumorItemData as $key => $value)
+		{
+			if (!$this->showAll && ($key == 'id' || $key == 'logId' || $value == "" || $value == '-1')) continue;
+			$id = "esoil_rawdata_" . $key;
+			
+			$safeValue = $this->escape($value);
+			
+			if ($key == "icon")
+				$output .= "\t<tr><td>$key</td><td id='$id'><img id='esoil_rawdata_iconimage' src='{$this->MakeRumorIconImageLink()}' /> $safeValue</td></tr>\n";
+			else
+				$output .= "\t<tr><td>$key</td><td id='$id'>$safeValue</td></tr>\n";
+	
+		}
+	
+		return $output;
+	}
+	
+	
 	private function MakeIconImageLink($icon)
 	{
 		if ($icon == null || $icon == "") $icon = self::ESOIL_ICON_UNKNOWN;
@@ -1966,6 +2044,13 @@ class CEsoItemLink
 	private function MakeAntiquityItemIconImageLink()
 	{
 		$icon = $this->antiquityItemData['icon'];
+		return $this->MakeIconImageLink($icon);
+	}
+	
+	
+	private function MakeRumorIconImageLink()
+	{
+		$icon = $this->rumorItemData['icon'];
 		return $this->MakeIconImageLink($icon);
 	}
 	
@@ -3607,6 +3692,68 @@ class CEsoItemLink
 	}
 	
 	
+	private function OutputRumorHtml()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->escape($this->rumorItemData['name']),
+				'{itemNameUpper}' => mb_strtoupper($this->rumorItemData['name']),
+				'{itemDesc}' => FormatEsoItemDescriptionText($this->rumorItemData['description']),
+				'{itemLink}' => "",
+				'{itemStyle}' => "",
+				'{itemId}' => $this->rumorId . " / " . $this->hintIndex,
+				'{itemType1}' => "",
+				'{itemType2}' => "",
+				'{itemStolen}' => "",
+				'{itemBindType}' => "",
+				'{itemValue}' => "",
+				'{itemLevel}' => "",
+				'{itemLevelRaw}' => "",
+				'{itemQualityRaw}' => 1,
+				'{itemLevelBlock}' => "",
+				'{itemQuality}' => 'Common',
+				'{iconLink}' => $this->MakeRumorIconImageLink(),
+				'{itemLeftBlock}' => "",
+				'{itemRightBlock}' => "",
+				'{itemNewValueBlock}' => "",
+				'{itemBar}' => "",
+				'{itemBarClass}' => "esoilHidden",
+				'{itemEnchantBlock}' => "",
+				'{itemTraitBlock}' => "",
+				'{itemSetBlock}' => "",
+				'{itemAbilityBlock}' => "",
+				'{itemTraitAbilityBlock}' => "",
+				'{itemLeftBlockDisplay}' => "none",
+				'{itemLevelBlockDisplay}' => "none",
+				'{itemRightBlockDisplay}' => "none",
+				'{itemNewValueBlockDisplay}' => "none",
+				'{itemCraftedBlock}' => "",
+				'{itemTags}' => "",
+				'{itemDataJson}' => "{}",
+				'{itemSimilarBlock}' => "",
+				'{itemEnchantId1}' => "",
+				'{itemEnchantIntLevel1}' => "",
+				'{itemEnchantIntType1}' => "",
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{itemLinkURL}' => "",
+				'{viewSumDataExtraQuery}' => "",
+				'{itemRawDataList}' => $this->MakeRumorRawDataList(),
+				'{rawItemVersion}' => $this->GetItemRawVersion(),
+				'{extraDataLinkDisplay}' => "none",
+				'{controlBlockDisplay}' => "none",
+				'{similarItemBlockDisplay}' => "none",
+				'{itemTypeTitle}' => "Rumor ",
+				'{itemDescClass}' => "esoil_itemdescQuest",
+				'{itemDyeStampBlock}' => '',
+		);
+	
+		$output = strtr($this->htmlTemplate, $replacePairs);
+	
+		print ($output);
+	}
+	
+	
 	public function GetSummaryDataExtraQuery()
 	{
 		$output = "";
@@ -3705,6 +3852,27 @@ class CEsoItemLink
 				'{version}' => $this->version,
 				'{versionTitle}' => $this->GetVersionTitle(),
 				'{rawItemData}' => $this->GetRawAntiquityItemDataHtml(),
+				'{itemDyeStampBlock}' => '',
+		);
+		
+		$rawDataTemplate = file_get_contents(self::ESOIL_RAWDATA_HTML_TEMPLATE);
+		
+		$output = strtr($rawDataTemplate, $replacePairs);
+		print ($output);
+	}
+	
+	
+	public function OutputRumorRawData()
+	{
+		$replacePairs = array(
+				'{itemName}' => $this->escape($this->rumorItemData['name']),
+				'{itemNameUpper}' => $this->escape(mb_strtoupper($this->rumorItemData['name'])),
+				'{itemId}' => $this->rumorId . "/" . $this->hintIndex,
+				'{iconLink}' => $this->MakeRumorIconImageLink(),
+				'{showSummary}' => "",
+				'{version}' => $this->version,
+				'{versionTitle}' => $this->GetVersionTitle(),
+				'{rawItemData}' => $this->GetRawRumorHtml(),
 				'{itemDyeStampBlock}' => '',
 		);
 		
@@ -3817,6 +3985,31 @@ class CEsoItemLink
 		$output .= "</tr>\n";
 		
 		foreach ($this->antiquityItemData as $key => $value)
+		{
+			$value = $this->escape($value);
+			$output .= "<tr>";
+			$output .= "<td>$value</td>\n";
+			$output .= "</tr>\n";
+		}
+		
+		$output .= "</table>\n";
+		return $output;
+	}
+	
+	
+	public function GetRawRumorHtml()
+	{
+		$output  = "<table class='esoil_rawitemdata_table'>\n";
+		$output .= "<tr>";
+		
+		foreach ($this->rumorItemData as $key => $value)
+		{
+			$output .= "<th>$key</th>\n";
+		}
+		
+		$output .= "</tr>\n";
+		
+		foreach ($this->rumorItemData as $key => $value)
 		{
 			$value = $this->escape($value);
 			$output .= "<tr>";
@@ -4002,6 +4195,15 @@ class CEsoItemLink
 	}
 	
 	
+	public function DumpRumorItem()
+	{
+		foreach ($this->rumorItemData as $key => $value)
+		{
+			print("$key = $value\n");
+		}
+	}
+	
+	
 	public function ShowSetItem()
 	{
 		if (!$this->LoadSetItemRecord()) $this->LoadSetItemErrorData();
@@ -4070,6 +4272,23 @@ class CEsoItemLink
 	}
 	
 	
+	public function ShowRumorItem()
+	{
+		if (!$this->LoadRumorRecord()) $this->LoadRumorErrorData();
+		
+		if ($this->outputRaw)
+			$this->OutputRumorRawData();
+		else if ($this->outputType == "html")
+			$this->OutputRumorHtml();
+		elseif ($this->outputType == "text")
+			$this->DumpRumorItem();
+		else
+			return $this->ReportError("Error: Unknown output type '{$this->outputType}' specified!");
+		
+		return true;
+	}
+	
+	
 	public function ShowItem()
 	{
 		$this->OutputHtmlHeader();
@@ -4094,6 +4313,7 @@ class CEsoItemLink
 		if ($this->questItemId > 0) return $this->ShowQuestItem();
 		if ($this->collectibleItemId > 0) return $this->ShowCollectibleItem();
 		if ($this->antiquityItemId > 0) return $this->ShowAntiquityItem();
+		if ($this->rumorId > 0 && $this->hintIndex > 0) return $this->ShowRumorItem();
 		if ($this->itemSet != "") return $this->ShowSetItem();
 		
 		if ($this->version != "" && $this->version < GetEsoUpdateVersion()) $this->showSummary = true;

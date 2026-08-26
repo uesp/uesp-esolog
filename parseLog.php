@@ -242,6 +242,7 @@ class EsoLogParser
 			"campaignInfo",
 			"campaignLeaderboards",
 			"setInfo",
+			"rumors",
 	);
 	
 	
@@ -429,6 +430,27 @@ class EsoLogParser
 			'isPushed' => self::FIELD_INT,
 			'isHidden' => self::FIELD_INT,
 			'isComplete' => self::FIELD_INT,
+	);
+	
+	public static $RUMOR_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'startHint' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'completeText' => self::FIELD_STRING,
+			'numHints' => self::FIELD_INT,
+	);
+	
+	public static $RUMORHINT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'rumorId' => self::FIELD_INT,
+			'hintIndex' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'description' => self::FIELD_STRING,
+			'icon' => self::FIELD_STRING,
+			'book' => self::FIELD_STRING,
 	);
 	
 	public static $QUEST_FIELDS = array(
@@ -2271,6 +2293,33 @@ class EsoLogParser
 	}
 	
 	
+	public function LoadRumor ($id)
+	{
+		$rumor = $this->loadRecord('rumors', 'id', $id, self::$RUMOR_FIELDS);
+		if ($rumor === false) return false;
+		
+		return $rumor;
+	}
+	
+	
+	public function LoadRumorHintById ($id)
+	{
+		$rumor = $this->loadRecord('rumorHints', 'id', $id, self::$RUMORHINT_FIELDS);
+		if ($rumor === false) return false;
+		
+		return $rumor;
+	}
+	
+	
+	public function LoadRumorHint ($rumorId, $hintIndex)
+	{
+		$rumor = $this->loadRecord2('rumorHints', 'rumorId', $rumorId, 'hintIndex', $hintIndex, self::$RUMORHINT_FIELDS);
+		if ($rumor === false) return false;
+		
+		return $rumor;
+	}
+	
+	
 	public function LoadTributePatron ($id)
 	{
 		$record = $this->loadRecord('tributePatrons', 'id', $id, self::$TRIBUTEPATRON_FIELDS);
@@ -2733,6 +2782,18 @@ class EsoLogParser
 	public function SaveRecipe (&$record)
 	{
 		return $this->saveRecord('recipe', $record, 'id', self::$RECIPE_FIELDS);
+	}
+	
+	
+	public function SaveRumor (&$record)
+	{
+		return $this->saveRecord('rumors', $record, 'id', self::$RUMOR_FIELDS);
+	}
+	
+	
+	public function SaveRumorHint(&$record)
+	{
+		return $this->saveRecord('rumorHints', $record, 'id', self::$RUMORHINT_FIELDS);
 	}
 	
 	
@@ -4178,6 +4239,38 @@ class EsoLogParser
 		$this->lastQuery = $query;
 		$result = $this->db->query($query);
 		if ($result === FALSE) return $this->reportError("Failed to create setInfo table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS rumors(
+						id INTEGER NOT NULL PRIMARY KEY,
+						type TINYINT NOT NULL DEFAULT 0,
+						name TINYTEXT NOT NULL DEFAULT '',
+						startHint TINYTEXT NOT NULL DEFAULT '',
+						backgroundText TINYTEXT NOT NULL DEFAULT '',
+						completeText TINYTEXT NOT NULL DEFAULT '',
+						numHints TINYINT NOT NULL DEFAULT 0,
+						rewardId INTEGER NOT NULL DEFAULT 0,
+						rewardQnt INTEGER NOT NULL DEFAULT 0
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create rumors table!");
+		
+		$query = "CREATE TABLE IF NOT EXISTS rumorHints(
+						id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+						rumorId INTEGER NOT NULL DEFAULT 0,
+						hintIndex TINYINT NOT NULL DEFAULT 0,
+						name TINYTEXT NOT NULL DEFAULT '',
+						backgroundText TINYTEXT NOT NULL DEFAULT '',
+						description TINYTEXT NOT NULL DEFAULT '',
+						icon TINYTEXT NOT NULL DEFAULT '',
+						book TINYTEXT NOT NULL DEFAULT '',
+						CONSTRAINT rumor_const UNIQUE (rumorId, hintIndex)
+		) ENGINE=MYISAM;";
+		
+		$this->lastQuery = $query;
+		$result = $this->db->query($query);
+		if ($result === FALSE) return $this->reportError("Failed to create rumorHints table!");
 		
 		$this->skillTooltips->CreateTable();
 		
@@ -10920,11 +11013,58 @@ class EsoLogParser
 			$zonePoiRecord['objStartDesc'] = $logEntry['startDesc'];
 			$zonePoiRecord['objEndDesc'] = $logEntry['endDesc'];
 			$zonePoiRecord['count'] = intval($zonePoiRecord['count']) + 1;
-					
+			
 			$zonePoiRecord["__dirty"] = true;
-		
+			
 			$this->SaveZonePoi($zonePoiRecord);
 		}
+		
+		return true;
+	}
+	
+	
+	public function OnRumor ($logEntry)
+	{
+		$id = intval($logEntry['id']);
+		if ($id <= 0) return false;
+		
+		$rumor = $this->LoadRumor($id);
+		if ($rumor === false) return false;
+		
+		if ($logEntry['name'] && $logEntry['name'] != '' && $logEntry['name'] != '???')	$rumor['name'] = $logEntry['name'];
+		if ($logEntry['startHint']) $rumor['startHint'] = $logEntry['startHint'];
+		if ($logEntry['background']) $rumor['backgroundText'] = $logEntry['background'];
+		if ($logEntry['complete']) $rumor['completeText'] = $logEntry['complete'];
+		if ($logEntry['type']) $rumor['type'] = intval($logEntry['type']);
+		if ($logEntry['numHints']) $rumor['numHints'] = intval($logEntry['numHints']);
+		
+		$rumor["__dirty"] = true;
+		
+		$this->SaveRumor($rumor);
+		
+		return true;
+	}
+	
+	
+	public function OnRumorHint ($logEntry)
+	{
+		$id = intval($logEntry['id']);
+		if ($id <= 0) return false;
+		
+		$hintIndex = intval($logEntry['hintindex']);
+		if ($hintIndex <= 0) return false;
+		
+		$rumorHint = $this->LoadRumorHint($id, $hintIndex);
+		if ($rumorHint === false) return false;
+		
+		if ($logEntry['name']) $rumorHint['name'] = $logEntry['name'];
+		if ($logEntry['desc']) $rumorHint['description'] = $logEntry['desc'];
+		if ($logEntry['icon']) $rumorHint['icon'] = $logEntry['icon'];
+		if ($logEntry['book']) $rumorHint['book'] = $logEntry['book'];
+		
+		$rumorHint["__dirty"] = true;
+		
+		$this->SaveRumorHint($rumorHint);
 		
 		return true;
 	}
@@ -11201,6 +11341,10 @@ class EsoLogParser
 			case 'vendor::start':
 			case 'vendor::item':
 			case 'vendor::end':
+			case "Rumor":
+			case "Rumor::Start":
+			case "Rumor::End":
+			case "RumorHint":
 			//case 'SkillCoef':
 			//case 'SkillCoef::Start':
 			//case 'SkillCoef::End':
@@ -11720,6 +11864,11 @@ class EsoLogParser
 			case "GuildSaleListingEntry::Cancel":$result = $this->OnGuildSaleListingEntryCancel($logEntry); break;
 			case "GuildSaleListingInfo":		$result = $this->OnGuildSaleListingInfo($logEntry); break;
 			case "GuildSaleListingEntry":		$result = $this->OnGuildSaleListingEntry($logEntry); break;
+			
+			case "Rumor::Start":				$result = $this->OnNullEntry($logEntry); break;
+			case "Rumor::End":					$result = $this->OnNullEntry($logEntry); break;
+			case "Rumor":						$result = $this->OnRumor($logEntry); break;
+			case "RumorHint":					$result = $this->OnRumorHint($logEntry); break;
 			
 			case "PickpocketFailed":			$result = $this->OnPickPocketFailed($logEntry); break;
 			

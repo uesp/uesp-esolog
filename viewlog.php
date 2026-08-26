@@ -155,6 +155,28 @@ class EsoLogViewer
 			'imageUrl' => self::FIELD_TEXTTRANSFORM,
 	);
 	
+	public static $RUMOR_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'type' => self::FIELD_INT,
+			'name' => self::FIELD_STRING,
+			'startHint' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'completeText' => self::FIELD_STRING,
+			'numHints' => self::FIELD_INT,
+	);
+	
+	public static $RUMORHINT_FIELDS = array(
+			'id' => self::FIELD_INT,
+			'rumorId' => self::FIELD_INT,
+			'hintIndex' => self::FIELD_INT,
+			'rumorName' => self::FIELD_STRING,
+			'name' => self::FIELD_STRING,
+			'backgroundText' => self::FIELD_STRING,
+			'description' => self::FIELD_TEXTTRANSFORM,
+			'icon' => self::FIELD_GAMEICON,
+			'book' => self::FIELD_STRING,
+	);
+	
 	public static $QUEST_FIELDS = array(
 			'id' => self::FIELD_INTID,
 			'internalId' => self::FIELD_INTID,
@@ -1529,6 +1551,66 @@ class EsoLogViewer
 							),
 					),
 			), //*/
+			
+			'rumors' => array(
+					'displayName' => 'Rumors',
+					'displayNameSingle' => 'Rumor',
+					'record' => 'rumors',
+					'table' => 'rumors',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'id',
+					
+					'filters' => array(
+							array(
+									'record' => 'rumorHints',
+									'field' => 'rumorId',
+									'thisField' => 'id',
+									'displayName' => 'View Hints',
+									'type' => 'filter',
+							),
+					),
+					
+					'transform' => array(
+					),
+			),
+			
+			'rumorHints' => array(
+					'displayName' => 'Rumor Hints',
+					'displayNameSingle' => 'Rumor Hint',
+					'record' => 'rumorHints',
+					'table' => 'rumorHints',
+					'method' => 'DoRecordDisplay',
+					'sort' => 'rumorId, hintIndex',
+					
+					'join' => array(
+							'rumorId' => array(
+									'joinField' => 'id',
+									'table' => 'rumors',
+									'fields' => array('rumorName' => "name"),
+							),
+					),
+					
+					'filters' => array(
+							array(
+									'record' => 'rumors',
+									'field' => 'id',
+									'thisField' => 'rumorId',
+									'displayName' => 'View Rumor',
+									'type' => 'viewRecord',
+							),
+							array(
+									'record' => 'book',
+									'field' => 'bookId',
+									'thisField' => 'book',
+									'displayName' => 'View Book',
+									'type' => 'viewRecord',
+							),
+					),
+					
+					'transform' => array(
+							'description' => 'RemoveTextFormats',
+					),
+			),
 			
 			'quest' => array(
 					'displayName' => 'Quests',
@@ -3107,6 +3189,8 @@ class EsoLogViewer
 		self::$RECORD_TYPES['crownStoreItems']['fields'] = self::$CROWNSTOREITEM_FIELDS;
 		//self::$RECORD_TYPES['oldQuest']['fields'] = self::$OLDQUEST_FIELDS;
 		//self::$RECORD_TYPES['oldQuestStage']['fields'] = self::$OLDQUESTSTAGE_FIELDS;
+		self::$RECORD_TYPES['rumors']['fields'] = self::$RUMOR_FIELDS;
+		self::$RECORD_TYPES['rumorHints']['fields'] = self::$RUMORHINT_FIELDS;
 		self::$RECORD_TYPES['quest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['uniqueQuest']['fields'] = self::$QUEST_FIELDS;
 		self::$RECORD_TYPES['questStep']['fields'] = self::$QUESTSTEP_FIELDS;
