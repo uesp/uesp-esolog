@@ -111,7 +111,7 @@ class CEsoGetGoldenVendorHtml
 	private function MakeNameId($name)
 	{
 		$nameId = strtolower($name);
-		+
+		
 		$nameId = str_replace(" pauldrons", " shoulders", $nameId);
 		$nameId = str_replace(" pauldron", " shoulders", $nameId);
 		$nameId = str_replace(" arm cops", " shoulders", $nameId);
